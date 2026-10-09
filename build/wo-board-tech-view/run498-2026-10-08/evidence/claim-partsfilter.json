@@ -1,0 +1,33 @@
+{
+ "claim": "Purchase Orders, Vendors and Vendor Invoices have no Vendor or State/Province filter (sv10043 and production)",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "the same toolbar read finds filter_chip_status / assigned_to_me / vehicleHere on Work Orders; filter_chip_* code lives in FilterBar, used by Work Orders, not by Orders/Vendors/Deliveries (build/wo-board-tech-view/run498-2026-10-08/evidence/code-search-2026-10-09.md)"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "each page opened in the browser and its toolbar read: Orders = Search, Column Selection, New PO; Vendors = Search, New Vendor; Vendor Invoices = Search (build/wo-board-tech-view/run498-2026-10-08/evidence/probe-ui2.json, UI2-orders/vendors/deliveries.png)"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "read twice on the branch (rest-batch, probe-ui2) with 6 s settle, and once on production (prod-check2.json, prod-*.png)"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "read-only toolbar read; URLs /parts/orders, /parts/vendors, /parts/deliveries unchanged"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "rows present on each page (heads and rows read in probe-ui2.json)"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "git grep 'vendor filter|filter_chip_vendor' over playbook and skills: only the Inventory Value report note"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "most likely my fault: the filter sits in a column header menu or behind a button I missed. Ruled out by the code: the three pages pass only the search term as the table's filter (q-table 'filter' prop = search) and contain no filter_chip; FilterUrlSync keeps that SEARCH in the address"
+  }
+ }
+}

@@ -1,0 +1,46 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368169": {
+   "verdict": "Blocked",
+   "observed": "Blocked: this build has no way to open an 'Edit Work Order' window for an existing work order. The work order page offers no edit button, and its three-dots menu holds only Audit Log, Timesheets, Add Work Order Fee / Discount, Print Work Order and Delete Work Order. The app's code has an 'Edit Work Order' title, but every screen that opens that window opens it to CREATE a work order. Production v26.40.13 is the same. Lead technician, mileage and engine hours are changed directly on the work order page's status card instead. Proved with the blocker gate (7 of 7): evidence/claim-editwo.json, evidence/code-search-2026-10-09.md, evidence/probe-ui2.json, evidence/prod-2026-10-09/prod-check2.json. Does not block: changing the lead on the status card (C368166\u2013C368168, tested separately).",
+   "not_observed": "the whole case: the window it uses cannot be opened",
+   "todo": "QA lead: there is no Edit Work Order window to test. Decide whether these steps should use the status card on the work order page (Lead Technician, Mileage, Engine Hours, Finance > Customer PO), or whether the window is expected to exist (then it is a question for the developer)."
+  },
+  "C368170": {
+   "verdict": "Blocked",
+   "observed": "Blocked: this build has no way to open an 'Edit Work Order' window for an existing work order. The work order page offers no edit button, and its three-dots menu holds only Audit Log, Timesheets, Add Work Order Fee / Discount, Print Work Order and Delete Work Order. The app's code has an 'Edit Work Order' title, but every screen that opens that window opens it to CREATE a work order. Production v26.40.13 is the same. Lead technician, mileage and engine hours are changed directly on the work order page's status card instead. Proved with the blocker gate (7 of 7): evidence/claim-editwo.json, evidence/code-search-2026-10-09.md, evidence/probe-ui2.json, evidence/prod-2026-10-09/prod-check2.json. Does not block: changing the lead on the status card (C368166\u2013C368168, tested separately).",
+   "not_observed": "the whole case: the window it uses cannot be opened",
+   "todo": "QA lead: there is no Edit Work Order window to test. Decide whether these steps should use the status card on the work order page (Lead Technician, Mileage, Engine Hours, Finance > Customer PO), or whether the window is expected to exist (then it is a question for the developer)."
+  },
+  "C368171": {
+   "verdict": "Blocked",
+   "observed": "Blocked: this build has no way to open an 'Edit Work Order' window for an existing work order. The work order page offers no edit button, and its three-dots menu holds only Audit Log, Timesheets, Add Work Order Fee / Discount, Print Work Order and Delete Work Order. The app's code has an 'Edit Work Order' title, but every screen that opens that window opens it to CREATE a work order. Production v26.40.13 is the same. Lead technician, mileage and engine hours are changed directly on the work order page's status card instead. Proved with the blocker gate (7 of 7): evidence/claim-editwo.json, evidence/code-search-2026-10-09.md, evidence/probe-ui2.json, evidence/prod-2026-10-09/prod-check2.json. Does not block: changing the lead on the status card (C368166\u2013C368168, tested separately).",
+   "not_observed": "the whole case: the window it uses cannot be opened",
+   "todo": "QA lead: there is no Edit Work Order window to test. Decide whether these steps should use the status card on the work order page (Lead Technician, Mileage, Engine Hours, Finance > Customer PO), or whether the window is expected to exist (then it is a question for the developer)."
+  },
+  "C368218": {
+   "verdict": "Blocked",
+   "observed": "Blocked: Purchase Orders has no Vendor filter on this build, and none on Production v26.40.13 either. The page's toolbar holds only Search, Column Selection and New PO. In the app's code the page's only filter is the Search box, which is kept in the page address. Proved with the blocker gate (7 of 7): evidence/claim-partsfilter.json, evidence/code-search-2026-10-09.md, evidence/probe-ui2.json, evidence/prod-2026-10-09/prod-check2.json. Does not block: the Work Orders filters (tested separately).",
+   "not_observed": "the whole case: the filter it uses does not exist",
+   "todo": "QA lead: the Vendor filter does not exist on this page (here or on production). Decide whether the case should check the Search box being kept after a reload (the page's only filter), or whether a Vendor filter is expected (a question for the developer)."
+  },
+  "C368219": {
+   "verdict": "Blocked",
+   "observed": "Blocked: Vendors has no State/Province filter on this build, and none on Production v26.40.13 either. The page's toolbar holds only Search and New Vendor. In the app's code the page's only filter is the Search box, which is kept in the page address. Proved with the blocker gate (7 of 7): evidence/claim-partsfilter.json, evidence/code-search-2026-10-09.md, evidence/probe-ui2.json, evidence/prod-2026-10-09/prod-check2.json. Does not block: the Work Orders filters (tested separately).",
+   "not_observed": "the whole case: the filter it uses does not exist",
+   "todo": "QA lead: the State/Province filter does not exist on this page (here or on production). Decide whether the case should check the Search box being kept after a reload (the page's only filter), or whether a State/Province filter is expected (a question for the developer)."
+  },
+  "C368223": {
+   "verdict": "Blocked",
+   "observed": "Blocked: Vendor Invoices has no Vendor filter on this build, and none on Production v26.40.13 either. The page's toolbar holds only Search. In the app's code the page's only filter is the Search box, which is kept in the page address. Proved with the blocker gate (7 of 7): evidence/claim-partsfilter.json, evidence/code-search-2026-10-09.md, evidence/probe-ui2.json, evidence/prod-2026-10-09/prod-check2.json. Does not block: the Work Orders filters (tested separately).",
+   "not_observed": "the whole case: the filter it uses does not exist",
+   "todo": "QA lead: the Vendor filter does not exist on this page (here or on production). Decide whether the case should check the Search box being kept after a reload (the page's only filter), or whether a Vendor filter is expected (a question for the developer)."
+  }
+ }
+}

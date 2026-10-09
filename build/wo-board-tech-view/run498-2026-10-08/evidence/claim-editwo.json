@@ -1,0 +1,33 @@
+{
+ "claim": "Edit Work Order window cannot be opened for an existing work order (sv10043 and production)",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "Same code crawl finds known labels: 'Reassign lead technician' in ReassignLeadTechnicianDialog/WorkOrderMoreActions, and the 'Edit Work Order' title itself in WorkOrderDialog (build/wo-board-tech-view/run498-2026-10-08/evidence/code-search-2026-10-09.md); same screen walk found every other work-order control (probe-ui2.json woButtons)"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "work order page walked in the browser: every button and aria-label listed, three-dots menu opened = Audit Log, Timesheets, Add Work Order Fee / Discount, Print Work Order, Delete Work Order (build/wo-board-tech-view/run498-2026-10-08/evidence/probe-ui2.json, UI2-wo-menu.png)"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "4 work orders opened with 6-7 s settle each (rest-batch C368169/C368170/C368171 and probe-ui2) and on production (prod-check2.json) \u2014 same controls each time"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "no control to click exists; the menu items were read, not clicked; URL unchanged (/workorders/<id>/lines)"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "work orders created and read back by API before opening (rest-batch.json; ZZAUTOTEST Edit WO \u2026)"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "git grep 'edit work order' over playbook, skills, BLOCKED-*.md, PROJECT-STATE: no route recorded; only Inventory Value's Vendor filter note (unrelated)"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "most likely my fault: the window opens from a control I did not see (a hidden or hover button). Ruled out by the code: every caller of the work-order dialog (WorkOrders list, Customer and Vehicle Work Orders tabs, Schedule) opens it to CREATE (isShown true / a company id / a schedule start); none passes an existing work order (build/wo-board-tech-view/run498-2026-10-08/evidence/code-search-2026-10-09.md)"
+  }
+ }
+}
