@@ -27,6 +27,10 @@
   }
  },
  "C368242": {
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"profile_menu_button\"]')\n"
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"profile_menu_button\"]')\n",
+  "before": "no tr:has-text(\"Tech 93638\") .q-avatar, tr:has-text(\"Tech 93638\") img"
+ },
+ "C368243": {
+  "before": "no [data-test-id*=\"e30fe02d-096f-4e71-8356-6ff97119a293\"] .q-avatar, :text(\"ZZAUTOTEST Photo Tech 93638\") >> xpath=ancestor::*[.//*[contains(@class,\"q-avatar\")]][1] >> .q-avatar"
  }
 }
