@@ -6,7 +6,8 @@
  * organisation, so a label match there can hand back another company's role).
  */
 import type { Api } from './data.mts';
-export { HEAVY, LETH } from './profile.mts';
+import { HEAVY, LETH } from './profile.mts';
+export { HEAVY, LETH };
 export async function staffRows(a: Api, q = ''): Promise<any[]> {
   const r = await a.get(`/api/staff?limit=200${q ? '&search=' + encodeURIComponent(q) : ''}`);
   return r.body?.data?.collection ?? [];
