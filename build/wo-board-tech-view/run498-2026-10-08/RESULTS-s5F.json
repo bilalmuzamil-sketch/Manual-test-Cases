@@ -1,0 +1,18 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96983": {
+   "verdict": "Failed",
+   "observed": "Normal save: in Board View, Created date turned on stayed on after a reload. Forced load failure (the page's request for the saved choices answered with a server error): Board View showed its default fields (Lead technician, Customer, Asset, Progress, Total price, plus the always-on number, unit and status) and Tech View showed its starting columns, the same as the List default columns (On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price, Created On). Then, still with the failure in place, On-site was turned on in Fields to display: it showed on the menu, but the page sent NO save at all (a save sent for a normal change a moment earlier was seen, so the recording works). After the failure was removed and the page reloaded, On-site was off again and the saved choices were exactly as before the failure. The case expects the next field choice made after the failure to be saved. Report prepared and held for the QA lead's approval; nothing raised.",
+   "not_observed": null,
+   "todo": "What needs to be done: after the saved choices fail to load, the next field choice should still be saved. Report held for the QA lead.",
+   "ticket_held": true,
+   "ticket": "Report prepared and held with the QA lead for approval (one at a time); no ticket raised yet."
+  }
+ }
+}

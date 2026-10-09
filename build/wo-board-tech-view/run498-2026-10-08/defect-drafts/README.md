@@ -16,6 +16,7 @@ Source reconciliation: NOT done this pass — the QA lead will check the cases a
 | D6 | C368135 | A click outside the "Clear …'s scheduled shifts?" question does not call the change off (Cancel, X and Escape do) | SV-10047 (Story 4) — status to be read live before asking | picture to be made with the 2x recapture |
 | D7 | C368138 | Dropping next to a card another person just moved shows the general "Couldn't save the new order" headline above the expected sentence, instead of exactly that sentence | SV-10047 (Story 4) — status to be read live before asking | `D7-C368138-alert-annotated.png` |
 | D2 | C96923 | After changing location, Assigned to me stays switched on (List, Tech View and Board View alike) | SV-10044 | `D2-C96923-board-annotated.png` |
+| D9 | C96983 | When the saved Work Orders choices cannot load, the next field choice is not saved: no save is sent and the choice is gone after a reload | SV-10048 (Story 5) — status to be read live before asking | picture to be made with the 2x recapture |
 | D8 | C96962 | A technician added to a line in the Edit Line window is saved, but no history entry is written for it (neither the line's Audit log nor the work order's history) | SV-10047 (Story 4) — status to be read live before asking | picture to be made with the 2x recapture |
 
 ## D1 — C96918 · No-results message and its Clear filters action
@@ -114,3 +115,14 @@ the lead added none.
 production, because if production does not either, this is not a change made by this story.
 **Steps for the QA lead:** open any work order with a line > click the line's name > Edit Line > Add Technician > pick
 someone > Save & Close > line menu (⋮) > Audit log: no entry for the technician change.
+
+## D9 — C96983 · A field choice made after a load failure is not saved
+
+**What happens:** with the saved Work Orders choices failing to load, Board View and Tech View correctly show their
+defaults. Turning a field on (On-site) then shows on the menu, but the page sends no save at all, and after a
+reload the choice is gone. A normal change a moment earlier was saved, so the recorder works.
+**What the case expects:** "The next field choice made after the failure is saved and is still there after the
+reload." (PRD S5-N3: "Save the user's next field selection after a preference-load failure.")
+**How it was forced:** the page's request for the saved choices was answered with a server error (the case says a
+developer must force it by hand). **Steps for the QA lead:** needs a developer to make the saved-choices request
+fail; then in Board View > Fields to display turn one field on, remove the failure, reload: the field is off again.
