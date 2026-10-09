@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96987": {
+   "verdict": "Passed",
+   "observed": "A brand-new user with the Admin role (made for this run; no saved Work Orders choices). List: there is no density control in the toolbar. Tech View: the density button offers Compact, Regular and Comfortable, with Regular selected (check mark). Board View: the same three choices, Regular selected.",
+   "not_observed": null
+  },
+  "C96990": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Compact Text, S10043-18018. Text sizes were read from the screen (font size of every piece of text in the row/card). List row: smallest 11.0 px, largest 22.5 px. Tech View at Compact: the same, smallest 11.0 px, largest 22.5 px. Board View card at Compact: smallest 11.0 px, largest 17.2 px. So Compact text is not smaller than the List row text; the text sizes are the same at Compact, Regular and Comfortable, only the spacing changes.",
+   "not_observed": null
+  },
+  "C96991": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Density Load Fail. Tech View set to Comfortable; after a normal reload Comfortable was still selected. Then the saved choices were made unreadable (the page's request for them answered with a server error): Tech View showed Regular selected, and Board View showed Regular selected. The saved choice itself was untouched (still Comfortable).",
+   "not_observed": null
+  }
+ }
+}
