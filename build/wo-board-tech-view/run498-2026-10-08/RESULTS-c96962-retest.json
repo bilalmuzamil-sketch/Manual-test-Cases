@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96962": {
+   "verdict": "Retest",
+   "observed": "9 Oct 2026: the QA lead marked SV-11107 Obsolete and had the test corrected. Lead technician changes are recorded in the WORK ORDER's log (\u22ee at the top right of the work order > Audit Log, 'Work Order Log': e.g. 'Lead tech changed \u2014 Lead tech: Ashlee Thomas \u2192 AaaE2E EntityBen'), not in a line's own Audit log, which correctly shows only 'Line created' for lines that moved with the lead. The case's preconditions and steps were rewritten (simple setup; step 5 now opens the Work Order Log); its expected result was not changed. To be re-run with the corrected steps.",
+   "not_observed": "The corrected steps have not been run yet.",
+   "ticket": "SV-11107 https://shopview.atlassian.net/browse/SV-11107 (Obsolete \u2014 QA lead 9 Oct 2026: the test looked in the wrong log)",
+   "todo": "Re-run this case with its corrected steps."
+  }
+ }
+}

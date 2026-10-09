@@ -5388,3 +5388,12 @@ PRD" because production also writes nothing. **Reusable rule:** judge a case or 
 says, read plainly, and what the build does. Production is a comparison shown to him when asked or useful, never an input
 that narrows or reinterprets the requirement. Where the PRD's words are genuinely unclear, ask him (Rule 58); do not let
 production settle it.
+
+
+## L0304 — 2026-10-09 — LEAD TECHNICIAN CHANGES ARE IN THE WORK ORDER'S LOG, NOT A LINE'S (QA lead, with a recording)
+
+On a work order page, the ⋮ at the top right (next to New Line) > **Audit Log** opens the **Work Order Log**: lead changes
+read *"Lead tech changed — Lead tech: A → B"*. A line's own log (click the line number > **Audit log**, "Line Log: Line 1")
+does not show lead changes — and for lines that moved with the lead it should not (PRD S4-R17). I judged C96962 on the line's
+log and filed SV-11107; he closed it as Obsolete and had the case corrected. **Reusable rule:** before calling an audit entry
+missing, open EVERY log the product has for that record (work order log AND line log) and name which one the source means.
