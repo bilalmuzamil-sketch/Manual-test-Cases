@@ -1,0 +1,10 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-09"},
+ "results": {
+  "C96984": {
+   "verdict": "Passed",
+   "observed": "Board View with Asset/Unit, Line count, Total price and Progress shown. (a) TRK-118 work order (S10043-18296, asset 2022 Freightliner M2 made through New Asset): the card shows 'TRK-118 · Asset 2022 Freightliner M2'. (b) Work order on a 1999 Ford Explorer with no unit (S10043-18297): the card shows '1999 Ford Explorer' where the unit would be. (c) Work order on an asset with NO unit and NO year/make/model (S10043-18517; the New Asset form will not save without a Make, so this asset was made behind the screen): the card shows only 'S10043-18517 Approved', then '0 lines', 'Progress 0%', 'Total price $0.00' — no unit or asset line, nothing invented and no blank placeholder; the control card in the same column (S10043-18516, unit ZZCTRL-1) shows its unit. (d) Zero values show as values on every card: Line count 0 lines, Total price $0.00, Progress 0%.",
+   "not_observed": null
+  }
+ }
+}
