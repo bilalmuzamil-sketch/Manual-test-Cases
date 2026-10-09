@@ -164,4 +164,5 @@ SV-10054 are all **Ready for QA** (Rule 112 allows filing); SV-10053 is OBSOLETE
 | Report | Re-run | Still happens? |
 |---|---|---|
 | D1 (C96918) | s1-batch1, 05:13 | **Yes** — a no-match search still reads *No work orders match the search "ZZNOMATCH123".* with no Clear filters action (List, Tech View, Board View). |
+| D10 (C96978) | s5-batchC, 05:29 (2x) | **Yes** — S10043-18218, three lines estimated 18 + 90 + 24 min (2.2 h); Fields to display offers 13 fields and all 13 were on, Estimated hours included; the card shows every other field but no Estimated hours; the work order's own estimate reads 0.00. Pictures `evidence/recapture-2026-10-09/C96978-*.png`. |
 | D5 (C368131) | s3-batchC, 05:26 | **Yes** — Ayesha Khan's Location changed to Staging Lethbridge - 4310 only: at Heavy Duty she is still eligible and her pinned column reads *Drag a work order here to assign it*; control in the same run: Jenny Wilson (deactivated) reads *No work orders*. Restored afterwards. |
