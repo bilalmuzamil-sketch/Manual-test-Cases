@@ -31,90 +31,40 @@
    {
     "urlBefore": "/parts/orders?search=S10043-18432",
     "rowsBefore": 1,
-    "urlAfter": "https://sleep.qa.shopview.com/?app=sv10043&api=sv10043",
-    "boxVisible": false,
-    "boxValue": null,
-    "rowsAfter": 0,
-    "firstRow": null,
+    "urlAfter": "/parts/orders?search=S10043-18432",
+    "boxVisible": true,
+    "boxValue": "S10043-18432",
+    "rowsAfter": 1,
+    "firstRow": " S10043-18432 S10043-18432 warning Vendor missing on 1 part Ordered Today Admin ",
     "toasts": []
    }
   ],
-  "columnsButton": 0,
-  "afterReload": {
-   "search": null,
-   "rows": [],
-   "url": "https://sleep.qa.shopview.com/?app=sv10043&api=sv10043",
-   "heads": [],
-   "toasts": []
-  },
-  "sameRows": false
- },
- "C368219": {
-  "route": "/parts/vendors",
-  "rowsBefore": 0,
-  "heads": [],
-  "value": null,
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"page_search_toggle\"]')\n"
- },
- "C368223": {
-  "route": "/parts/deliveries",
-  "rowsBefore": 30,
-  "heads": [
+  "columnsButton": 1,
+  "columnToggles": 5,
+  "columnOff": "",
+  "headsFiltered": [
    "Work Orderarrow_drop_up",
-   "Invoice Numberarrow_drop_up",
-   "Order Numberarrow_drop_up",
-   "Received Byarrow_drop_up",
-   "Vendor Namearrow_drop_up",
-   "Date Receivedarrow_drop_up",
-   "Invoice Datearrow_drop_up",
-   "Due Datearrow_drop_up",
+   "Purchase Order Numberarrow_drop_up",
+   "Vendor",
+   "Order Statusarrow_drop_up",
+   "Created Onarrow_drop_up",
+   "Ordered By",
    "arrow_drop_upTotal Cost",
    "Notearrow_drop_up"
   ],
-  "value": "ZZINV2305",
-  "rowsFiltered": [
-   "S10043-18524 ZZINV2305 S10043-18524 AS ZZAUTOTEST Staged Parts Vendor Today Toda"
-  ],
-  "narrowed": true,
-  "urlFiltered": "/parts/deliveries?search=ZZINV2305",
-  "attempts": [
-   {
-    "urlBefore": "/parts/deliveries",
-    "rowsBefore": 0,
-    "urlAfter": "/parts/deliveries",
-    "boxVisible": false,
-    "boxValue": null,
-    "rowsAfter": 30,
-    "firstRow": "S10043-18524 ZZINV2305 S10043-18524 AS ZZAUTOTEST Staged Parts Vendor Today Toda",
-    "toasts": []
-   },
-   {
-    "urlBefore": "/parts/deliveries?search=ZZINV2305",
-    "rowsBefore": 1,
-    "urlAfter": "/parts/deliveries?search=ZZINV2305",
-    "boxVisible": true,
-    "boxValue": "ZZINV2305",
-    "rowsAfter": 1,
-    "firstRow": "S10043-18524 ZZINV2305 S10043-18524 AS ZZAUTOTEST Staged Parts Vendor Today Toda",
-    "toasts": []
-   }
-  ],
-  "columnsButton": 0,
   "afterReload": {
-   "search": "ZZINV2305",
+   "search": "S10043-18432",
    "rows": [
-    "S10043-18524 ZZINV2305 S10043-18524 AS ZZAUTOTEST Staged Parts Vendor Today Toda"
+    " S10043-18432 S10043-18432 warning Vendor missing on 1 part Ordered Today Admin "
    ],
-   "url": "/parts/deliveries?search=ZZINV2305",
+   "url": "/parts/orders?search=S10043-18432",
    "heads": [
     "Work Orderarrow_drop_up",
-    "Invoice Numberarrow_drop_up",
-    "Order Numberarrow_drop_up",
-    "Received Byarrow_drop_up",
-    "Vendor Namearrow_drop_up",
-    "Date Receivedarrow_drop_up",
-    "Invoice Datearrow_drop_up",
-    "Due Datearrow_drop_up",
+    "Purchase Order Numberarrow_drop_up",
+    "Vendor",
+    "Order Statusarrow_drop_up",
+    "Created Onarrow_drop_up",
+    "Ordered By",
     "arrow_drop_upTotal Cost",
     "Notearrow_drop_up"
    ],
