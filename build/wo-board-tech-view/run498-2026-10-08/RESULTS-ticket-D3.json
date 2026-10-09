@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96929": {
+   "verdict": "Failed",
+   "observed": "Technician Carol Neal leads only these three work orders, created in this order: ZZAUTOTEST Zeta Hauling, ZZAUTOTEST Alpha Freight, ZZAUTOTEST Mid Trucking. The customer names carry a ZZAUTOTEST prefix so they can be found again; their A-Z order is the same as in the case. Done as [User-B], who has never reordered anything; List's default sort for that user is Customer, A-Z. List order: Alpha Freight, Mid Trucking, Zeta Hauling. Tech View, Carol Neal's group: Zeta Hauling, Alpha Freight, Mid Trucking, which is the order they were created, not List's order. Board View, Carol Neal's column: Zeta Hauling, Alpha Freight, Mid Trucking, the same as Tech View. Expected: Tech View and Board View in List's default order, Alpha Freight, Mid Trucking, Zeta Hauling. Report prepared and held for the QA lead's approval; nothing raised.",
+   "not_observed": null,
+   "todo": "Follow SV-11101; re-test this case when it is fixed.",
+   "ticket": "SV-11101 https://shopview.atlassian.net/browse/SV-11101 (Story Defect, Open, created 9 Oct 2026 under SV-10045)"
+  }
+ }
+}

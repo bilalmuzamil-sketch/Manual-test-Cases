@@ -5346,3 +5346,23 @@ rule books, and never report that they differ. Work handed over from another ses
 and done by my rules, not reshaped to match them unless my own rules require it.
 **Reusable rule:** when another branch holds something useful, take the fact and leave the rules. A different
 rule number or wording elsewhere is expected, not a finding.
+
+
+## L0301 — 2026-10-09 — A KEYWORD SEARCH IS NOT A FILTER (QA lead, after SV-11099 was filed in error)
+
+**What happened:** I filed SV-11099 ("a search with no results has no Clear filters action") against PRD S1-N1,
+*"When filters return no results, show the existing List empty state and Clear filters action…"*. The QA lead
+marked it **Obsolete** the same hour and deleted its test case: *"the message "No Workorders match these
+filters" … shows the clear all filters button when the filters are applied … Searching through the keywords
+does filter on the page the date but its not applying a filter. Applying a filter is what you see in the
+screenshot. You might have made similar mistakes somewhere else too."*
+**The fact:** on Work Orders, a **filter** is a header chip (Status, Assigned to me, Asset on Site). With a
+filter that matches nothing the page reads *No work orders match these filters* / *Try removing a filter to
+widen your results.* with **Clear all filters** — which is what S1-N1 asks for, and the build does it. Typing
+in **Search** narrows the rows but is NOT a filter; its own message (*No work orders match the search "…"*)
+is not governed by S1-N1.
+**Reusable rule:** before judging any requirement that says "filter", check WHICH control the source means.
+A search box narrowing a list is not "a filter" unless the source says so (exception, his own ruling of
+9 Oct: on the Parts pages that have no filter chip, the page Search is the filter used for those cases).
+**Swept the same day:** every run 498 result and case that mentions both search and filters — the other
+hits used Search only to narrow the list to the test's own records, and no other report rests on it.

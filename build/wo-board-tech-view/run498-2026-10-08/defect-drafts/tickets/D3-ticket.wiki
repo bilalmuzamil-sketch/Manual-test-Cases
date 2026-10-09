@@ -17,6 +17,7 @@ h2. Steps to Reproduce
 # Create three work orders in this order, for customers *Zeta Co*, *Alpha Co* and *Mid Co*, all with the same lead technician (one who leads nothing else).
 # Sign in as a user who has never reordered work, open *Work Orders* > *All* > *List*.
 #* The three show as *Alpha Co, Mid Co, Zeta Co* (List's default, customer A-Z).
+#* A user who has clicked a List column heading keeps that sort instead; the default is what a user who never changed it sees.
 # Click *Tech View* and find that technician's group; then click *Board View* and find that technician's column.
 #* Both show *Zeta Co, Alpha Co, Mid Co* — the order they were created.
 
@@ -34,6 +35,7 @@ h2. Environment
 
 * *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
 * *Location:* Staging Lethbridge - 4310 · *User:* Carol Neal (her own Assigned to me)
+* The List picture is set to *Customer* A-Z (the default) because this user had saved a different sort; the default itself was read as *ZZAUTOTEST WOB User B*, who never changed it.
 * *Example records:* [S10043-17729|https://sv10043.qa.shopview.com/workorders/1ca21752-35b5-4ebe-bfc2-446bf7bccf4f/lines] (ZZAUTOTEST Zeta Hauling, made first), [S10043-17730|https://sv10043.qa.shopview.com/workorders/08b9a6a1-260d-495c-a4a7-aebe313ffc17/lines] (ZZAUTOTEST Alpha Freight), [S10043-17731|https://sv10043.qa.shopview.com/workorders/40265ef6-cb8f-4ddc-a01e-24689b756986/lines] (ZZAUTOTEST Mid Trucking, made last), all led by Carol Neal
 
 h2. Sources
