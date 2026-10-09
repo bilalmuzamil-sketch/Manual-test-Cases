@@ -1,0 +1,10 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-09"},
+ "results": {
+  "C368197": {
+   "verdict": "Passed",
+   "observed": "35 work orders were made for one customer (\"ZZAUTOTEST List Paging\") on the same date. On Work Orders > All, searching that name in the List showed 30 rows at first. There is no rows-per-page choice at the bottom of the List on this build; the List loads the next page when you scroll to the bottom. Scrolling down loaded page 2 and the List then showed 35 rows. Every one of the 35 work order numbers appeared exactly once across the two pages: none repeated, none missing (30 + 5 = 35). Pictures: C368197-scrolled.",
+   "not_observed": "Step 2's rows-per-page choice does not exist on this build, so the page size could not be set to 10; the paging was checked at the build's own page size of 30."
+  }
+ }
+}
