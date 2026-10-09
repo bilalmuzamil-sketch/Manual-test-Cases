@@ -1,0 +1,60 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96993": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F3 Avatar Group: work order led by Esther Howard; Line 1 given to Ralph Edwards, Line 2 to Dana Ortiz, Line 3 with no labor technician but a Schedule shift for Jenny Wilson tomorrow 8:00-10:00. Board View with Line technicians turned on: the card shows a compact group of 4 avatars, EH, RE, DO, JW; hovering each shows Esther Howard, Ralph Edwards, Dana Ortiz, Jenny Wilson. Tech View with Assigned Techs turned on: the row shows the same 4 avatars with the same names. List's Column Selection does not offer Assigned Techs (it offers Waiting On Parts, Asset, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total price, Created on, Invoiced Date, Days open, Parts, Returns).",
+   "not_observed": null
+  },
+  "C96994": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F3 Lead First Once: lead Esther Howard, Line 1 given to Esther Howard, Lines 2 and 3 given to Ralph Edwards. Board View (Line technicians on) and Tech View (Assigned Techs on) both show 2 avatars: EH first (hover 'Esther Howard'), then RE (hover 'Ralph Edwards'). Each appears once.",
+   "not_observed": null
+  },
+  "C96995": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F3 Plus N Avatars: lead Esther Howard, five lines given to Ralph Edwards, Dana Ortiz, Jenny Wilson, Kristin Watson and Theresa Webb (6 people). Board View: 4 avatars EH, RE, DO, JW followed by '+2' (4 + 2 = 6). Hovering each avatar showed only that person's name (Esther Howard, Ralph Edwards, Dana Ortiz, Jenny Wilson); hovering '+2' listed 'Kristin Watson, Theresa Webb'. Tech View (Assigned Techs on): exactly the same.",
+   "not_observed": null
+  },
+  "C96996": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F3 Blank Technician: (a) S10043-18024 no lead and no line technician; (b) S10043-18025 no lead, one line given to Ralph Edwards; (c) S10043-18026 lead Esther Howard and no line technician. Board View with Line technicians on: (a) has no line technicians field at all (blank), (b) shows RE (Ralph Edwards), (c) shows EH (Esther Howard). Tech View with Assigned Techs on: (a) empty cell, (b) RE, (c) EH. Only 1 of the 3 is blank.",
+   "not_observed": null
+  },
+  "C368141": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F3 Assigned Techs Column. Tech View: Assigned Techs started off in Column Selection. With Lines on and Assigned Techs turned on, the column directly to the right of Lines is Assigned Techs (On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Assigned Techs, Total Price, Created On). Turned off again, the Assigned Techs column was gone.",
+   "not_observed": null
+  },
+  "C368142": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F3 Scheduled Techs Lines: work order with no lead and three approved lines ('Service - Cabin air filter', 'Replace - Suspension air bag', 'Service - Obtain oil sample and send for analysis'), none with a labor technician; shifts tomorrow: Jenny Wilson 8:00-10:00 on Line 2, Ralph Edwards 10:00-12:00 and Dana Ortiz 13:00-15:00 on Line 3. Lines tab: Line 2's Labor row reads 'Jenny Wilson'; Line 3's Labor row reads 'Dana Ortiz, Ralph Edwards' (2 names). No 'Needs techs' badge or any other badge on those rows.",
+   "not_observed": null
+  },
+  "C368143": {
+   "verdict": "Passed",
+   "observed": "Same set-up (customer ZZAUTOTEST F3 Unassigned Labor Row). Lines tab: Line 1, with no labor technician and no shift, reads 'Unassigned'. After Line 1 was given Ralph Edwards as its labor technician, its Labor row reads 'Ralph Edwards'.",
+   "not_observed": "Line 1's technician was set the way the screen saves it, not by clicking Labor > More actions > Edit labor."
+  },
+  "C96997": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F3 Story Check Mark, S10043-18030: Line 1 has the story 'Brought unit in. Completed inspection.'. Lines tab as the admin: the Story row shows the text and there is no check mark anywhere on the line (no check icon on the page at all). Opened as the technician Esther Howard (the technician's simplified work order view, with Start buttons on the Labor rows): the story text shows and there is no check mark either.",
+   "not_observed": null
+  },
+  "C97000": {
+   "verdict": "Passed",
+   "observed": "Same work order S10043-18030: Line 1 with a story, Line 2 without ('Add tech story for this line'). On the admin's Lines tab and in the technician's view (Esther Howard), neither line shows any icon, badge or colour about the tech story; Line 2 only shows the usual 'Add tech story for this line' prompt.",
+   "not_observed": null
+  },
+  "C96999": {
+   "verdict": "Passed",
+   "observed": "S10043-18030 Line 2 (no story): the Story row shows the prompt 'Add tech story for this line', with no new mark. Compared with the record of a production work order's Lines tab taken on 12 September 2026 (before this release): the same Story row and the same prompt 'Add tech story for this line'; no story element missing and none added. The other differences between the two records come from the user and the site (rate and margin columns for the admin, the AI line builder on this test site, the clock button for a technician), not from the Story row.",
+   "not_observed": "A side-by-side picture of production today was not taken; the comparison is with the production record of 12 September 2026."
+  }
+ }
+}
