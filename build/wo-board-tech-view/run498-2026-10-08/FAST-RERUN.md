@@ -55,6 +55,7 @@ Single script on any environment: `GS_APP=… ONLY=C368169 ./wob-run.sh editwo-b
 - **People**: impersonation = `/impersonate-user/<user id>`, Exit in the orange bar; run it as the admin, not the
   runner. Staff with labor can't be deleted ("Staff is being used elsewhere") — a "Deleted user" row only exists in
   old data (`deleted-search.mts`). The admin can switch only to locations he is enrolled at.
+- **Sleeping branch**: a QA branch pauses itself when idle and redirects to `sleep.qa.shopview.com`; `session.mts` now presses Wake Up and logs "BRANCH ASLEEP". Any reading around that line is void: re-run the check.
 - **Pictures**: capture at 2x (`WOB_SCALE=2`) into `defect-drafts/raw`, wait for images to load before capturing,
   annotate with `annotate_v2.py --scale 2` (one marker per fault keeps leader lines off the toolbar).
 

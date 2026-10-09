@@ -67,3 +67,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | kbd-fix3 (WOB_LIVE=1) | C368151, C368152, C97020, C97022 — body focus, leftmost-first arrow walk, visible-row collapse count, view-only item pressed and role read back |
 | ps-counts | C368217 — the case's own Add Part (typed description, vendor, cost, sell), Authorize, Order, Receive (vendor chosen if missing), Return part; list filtered by the page Search |
 | editwo-fix | C368170 — read-only card boxes on an Invoiced work order are recorded as locked, the Finance PO box state is read |
+| parts-filter2 (again) | C368218, C368219 — the first run hit the sleeping branch mid-check |

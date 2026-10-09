@@ -28,6 +28,12 @@ async function works(page: Page) {
 const NOISE = process.env.WOB_LIVE ? /maps\.googleapis|intercom|sentry\.io|googletagmanager|google-analytics|hotjar|fullstory/i : /maps\.googleapis|intercom|sentry\.io|mercure\.qa|googletagmanager|google-analytics|hotjar|fullstory/i;
 async function quiet(page: Page) {
   await page.context().route((u) => NOISE.test(u.toString()), (r) => r.abort()).catch(() => {});
+  // The QA branch pauses itself when idle and redirects to sleep.qa.shopview.com ("Environment Sleeping", one Wake Up
+  // button; playbook 2026-09-03). If any page lands there mid-batch, press Wake Up and say so in the log: every reading
+  // taken around that line is void and the check is re-run.
+  page.on('framenavigated', async (fr) => { if (fr !== page.mainFrame() || !/sleep\.qa\.shopview\.com/.test(fr.url())) return;
+    console.log(t(), 'BRANCH ASLEEP — pressing Wake Up; readings around this line are void');
+    await page.getByRole('button', { name: /Wake Up/i }).first().click({ timeout: 10_000 }).catch(() => {}); });
 }
 export async function open(route = '/workorders'): Promise<{ browser: Browser; page: Page }> {
   if (fs.existsSync(STATE)) {

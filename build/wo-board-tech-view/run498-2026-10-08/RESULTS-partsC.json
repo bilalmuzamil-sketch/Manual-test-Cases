@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368223": {
+   "verdict": "Passed",
+   "observed": "Parts > Vendor Invoices. This page has no Vendor filter (QA lead 9 Oct 2026); the filter used is the page's own Search at the right of the header. Before: 30 rows. Typing 'ZZINV2305' narrowed the list to 1 row: 'S10043-18524 \u00b7 ZZINV2305 \u00b7 S10043-18524 \u00b7 AS \u00b7 ZZAUTOTEST Staged Parts Vendor \u00b7 Today', and the address became /parts/deliveries?search=ZZINV2305. After a reload the Search box still reads 'ZZINV2305' and the same single row shows, with the same columns. No error message appeared. Seen on two attempts.",
+   "not_observed": null
+  }
+ }
+}
