@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96962": {
+   "verdict": "Failed",
+   "observed": "Re-checked 9 Oct 2026 in the original situation. Work order S10043-18751, Line 1 'Service - Cabin air filter', lead Ralph Edwards (on the line's Labor). Edit Line > Add Technician > Dana Ortiz > Save & Close: Dana Ortiz saved (Labor lists both), but the line's Audit log still shows only 'Line created'. Adding a third technician (Esther Howard) to the same line also wrote nothing. Control: on a line with NO technician, adding Dana Ortiz DID write 'Line tech changed \u2014 Tech: - \u2192 Dana Ortiz'. The lead-change entries themselves behaved as the case expects (one entry per lead change, none for the lines that moved). PRD S4-R18 (page version 44, read 9 Oct 2026): 'Continue existing line auditing for technician changes made directly on a work order line.' \u2014 adding a technician on the line is such a change and is not recorded.",
+   "not_observed": "The case's step 5 words it as setting the line's technicians to another person (replacing); this run added technicians without removing the existing ones.",
+   "ticket": "SV-11107 https://shopview.atlassian.net/browse/SV-11107 (Story Defect, Open, created 9 Oct 2026 under SV-10047)",
+   "todo": "Follow SV-11107; re-test this case when it is fixed."
+  }
+ }
+}

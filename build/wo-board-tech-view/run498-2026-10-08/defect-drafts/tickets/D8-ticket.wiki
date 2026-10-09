@@ -27,6 +27,7 @@ h2. Steps to Reproduce
 
 *Actual Result:*
 * Adding a technician to a line that already has one saves, but no entry is written to the line's history.
+* The same with a third technician: adding *Esther Howard* to the same line (Ralph Edwards and Dana Ortiz already on it) also wrote nothing.
 
 *Expected Result:*
 * The technician change made on the line is recorded in the line's history, as it is when the first technician is added (*Line tech changed*).
@@ -44,7 +45,7 @@ h2. Environment
 
 h2. Sources
 
-* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S4-R18, read 8 Oct 2026:
+* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S4-R18 (page version 44), read 9 Oct 2026:
 {quote}Continue existing line auditing for technician changes made directly on a work order line.{quote}
 
 h2. Test case

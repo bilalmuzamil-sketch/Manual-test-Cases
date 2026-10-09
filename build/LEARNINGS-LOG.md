@@ -5375,3 +5375,16 @@ screen, no example record and no picture. Rule 99 already requires every ask to 
 anything. **Reusable rule:** every question about a behaviour carries (1) where the feature is and what it does,
 (2) numbered steps he can follow himself, including the example record and how to make one, (3) what I saw, with
 the picture attached, (4) what the requirement and our test each say, quoted, then (5) the options.
+
+
+## L0303 — 2026-10-09 — THE PRD WINS; PRODUCTION IS NEVER USED TO DECIDE WHAT THE PRD MEANS (QA lead)
+
+*"You are not supposed to tele the PRD with production to confirm if PRD is correct. PRD wins over the production branch,
+production branch is just used for comparison for a few cases where needed and where you need to tell me how it is behaving
+in production. For this test case/defect you need to know what the PRD is asking and what is actually happening."*
+**What happened:** for D8 I read PRD S4-R18 ("Continue existing line auditing for technician changes made directly on a work
+order line"), then checked production to decide what "existing" covered, and was about to call the build "not against the
+PRD" because production also writes nothing. **Reusable rule:** judge a case or a defect on two things only — what the PRD
+says, read plainly, and what the build does. Production is a comparison shown to him when asked or useful, never an input
+that narrows or reinterprets the requirement. Where the PRD's words are genuinely unclear, ask him (Rule 58); do not let
+production settle it.
