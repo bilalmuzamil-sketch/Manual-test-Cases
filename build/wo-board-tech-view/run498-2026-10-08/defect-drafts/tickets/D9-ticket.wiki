@@ -14,13 +14,15 @@ This appears inconsistent with the requirement defined in *Epic SV-10043* and th
 
 h2. Steps to Reproduce
 
-# Open *Work Orders* > *Board View* in Chrome and open *DevTools* > *Network*.
-# Reload, right-click the request ending {{preferences/work-orders-list}} > *Block request URL*, and reload again.
-#* Board View shows its default fields.
-# Open *Fields to display* and turn *On-site* on.
-#* The field appears on the cards.
-# In *DevTools* remove the block, then reload the page.
-#* *On-site* is off again.
+# Have a developer make *only the loading* of the saved Work Orders choices fail (the {{GET}} of {{/api/users/me/preferences/work-orders-list}} returns an error). Saving must still work. _Do not use the browser's "Block request URL": it blocks the save as well._
+# Open *Work Orders* > *All* > *Board View*.
+#* Board View shows its default fields (correct).
+# Click *Fields to display* and turn *On-site* on.
+#* On-site shows on the cards.
+# Remove the failure and reload the page.
+#* *On-site* is off again: the choice was never saved.
+# Control: without the failure, turn a field on and reload.
+#* That choice is kept, so saving itself works.
 
 *Actual Result:*
 * The field choice made after the failed load is not saved; it is lost on reload.
