@@ -16,6 +16,7 @@ Source reconciliation: NOT done this pass — the QA lead will check the cases a
 | D6 | C368135 | A click outside the "Clear …'s scheduled shifts?" question does not call the change off (Cancel, X and Escape do) | SV-10047 (Story 4) — status to be read live before asking | picture to be made with the 2x recapture |
 | D7 | C368138 | Dropping next to a card another person just moved shows the general "Couldn't save the new order" headline above the expected sentence, instead of exactly that sentence | SV-10047 (Story 4) — status to be read live before asking | `D7-C368138-alert-annotated.png` |
 | D2 | C96923 | After changing location, Assigned to me stays switched on (List, Tech View and Board View alike) | SV-10044 | `D2-C96923-board-annotated.png` |
+| D8 | C96962 | A technician added to a line in the Edit Line window is saved, but no history entry is written for it (neither the line's Audit log nor the work order's history) | SV-10047 (Story 4) — status to be read live before asking | picture to be made with the 2x recapture |
 
 ## D1 — C96918 · No-results message and its Clear filters action
 
@@ -98,3 +99,18 @@ read Lethbridge.
 
 **What you will see:** one alert reading "Couldn't save the new order. Please try again." with "The card you dropped this next to has moved. Refresh the board and try again." under it. The card goes back correctly.
 **What the case expects:** an alert reading exactly "The card you dropped this next to has moved. Refresh the board and try again."
+
+## D8 — C96962 · A line edit writes no history entry
+
+**What happens:** on S10043-17986, Line 1 ("Service - Cabin air filter") was opened in the Edit Line window, Dana
+Ortiz was added under Add Technician and Save & Close was pressed. The change saved (the line's technicians then read
+"Dana Ortiz, Ralph Edwards"), but nothing was recorded: the line's Audit log (line menu > Audit log) still held only
+"Line created", and the work order's change history had no new entry.
+**What the case expects:** "Changing a line's technician directly in Edit Line still adds its own line entry, as it does
+today." (PRD S4-R18: "Continue existing line auditing for technician changes made directly on a work order line.")
+**The rest of the case passed:** each of the three lead changes added exactly one history entry; lines that moved with
+the lead added none.
+**Open before asking:** whether production writes a line entry for this today (the case says it does) — check it on
+production, because if production does not either, this is not a change made by this story.
+**Steps for the QA lead:** open any work order with a line > click the line's name > Edit Line > Add Technician > pick
+someone > Save & Close > line menu (⋮) > Audit log: no entry for the technician change.

@@ -1,0 +1,18 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96962": {
+   "verdict": "Failed",
+   "observed": "Lead changes: work order S10043-17944 (customer ZZAUTOTEST F1 Lead History). Each of the three lead changes added exactly one entry to the work order's change history, showing the previous lead, the new lead, the person who made it and the time: drag in Board View 'Lead tech changed Esther Howard -> Ralph Edwards by Admin ShopView at 2026-10-08 23:57:51'; Reassign lead technician dialog 'Ralph Edwards -> Esther Howard' at 23:58:15; Lead Technician on the work order page 'Esther Howard -> Ralph Edwards' at 23:58:25. Three changes, three entries. Lines that moved: on a second work order, S10043-17986, both lines followed the lead to Ralph Edwards when the card was dragged, and neither line's own Audit log (line menu > Audit log) gained an entry; each still held only 'Line created'. Line edit: on S10043-17986 Line 1 ('Service - Cabin air filter') was opened in the Edit Line window, Dana Ortiz was added under Add Technician and Save & Close was pressed. The change was saved (the line's technicians then read 'Dana Ortiz, Ralph Edwards'), but NO entry appeared for it, neither in that line's Audit log (still only 'Line created') nor in the work order's change history. The case expects the line edit to add its own line entry. Report prepared and held for the QA lead's approval; nothing raised.",
+   "not_observed": "Whether production records a line entry for this today was not checked.",
+   "todo": "What needs to be done: a technician changed directly in the Edit Line window should add its own entry to the line's history. Report held for the QA lead.",
+   "ticket_held": true,
+   "ticket": "Report prepared and held with the QA lead for approval (one at a time); no ticket raised yet."
+  }
+ }
+}
