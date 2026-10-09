@@ -226,3 +226,5 @@ Each is treated fully in the core; they are listed here because **they are the o
 | Per-project cold-resume snapshots | `build/<project>/PROJECT-STATE.md` |
 
 | `19-V1-V2-PARITY-SUITE.md` | **The task is "make sure V2 still does everything V1 could"** (Rule 109) — the end-to-end pipeline: pin the V1 baseline commit, extract the capability list BY SCRIPT from V1's source, map every capability to a case, prove coverage live in both directions, audit that every case is sourced to V1, seed with unique keywords and a control, build-verify the screen, hand off. Ships `parity_coverage_proof.py` + `parity_source_audit.py` |
+
+- `21-REFINE-TESTS.md` — **ONLY when the QA lead asks to "refine the tests"** (not part of build verification): simplify Preconditions/Setup/Steps without breaking runnability, build-verified status or truth.
