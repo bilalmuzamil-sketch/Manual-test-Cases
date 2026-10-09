@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368198": {
+   "verdict": "Passed",
+   "observed": "Work Orders > All, Status: Invoiced only, Invoiced Date column turned on, search 'ZZAUTOTEST Invoice Order': Y (S10043-18280, invoiced later) is listed above X (S10043-18279) \u2014 Invoiced Date order, newest first.",
+   "not_observed": null
+  },
+  "C368205": {
+   "verdict": "Passed",
+   "observed": "Opened /workorders?vehicleHere=2: the Asset on Site filter had nothing selected (label 'Asset on Site', options Yes / No / Clear selection, none ticked), the List showed the same 30 work orders as before, and no error message appeared.",
+   "not_observed": null
+  }
+ }
+}
