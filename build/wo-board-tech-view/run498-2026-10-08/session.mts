@@ -24,7 +24,8 @@ async function works(page: Page) {
 // Third-party traffic the cases do not depend on, and that the session's network drops mid-request
 // (maps, chat widget, error reporting, and the live-update channel — a WebSocket the proxy cannot carry).
 // Blocking it keeps a dropped side-request from stalling a page the check is waiting on.
-const NOISE = /maps\.googleapis|intercom|sentry\.io|mercure\.qa|googletagmanager|google-analytics|hotjar|fullstory/i;
+// WOB_LIVE=1 lets the live-update channel (mercure) through on the main page too, so a 'no warning' check can be judged fairly
+const NOISE = process.env.WOB_LIVE ? /maps\.googleapis|intercom|sentry\.io|googletagmanager|google-analytics|hotjar|fullstory/i : /maps\.googleapis|intercom|sentry\.io|mercure\.qa|googletagmanager|google-analytics|hotjar|fullstory/i;
 async function quiet(page: Page) {
   await page.context().route((u) => NOISE.test(u.toString()), (r) => r.abort()).catch(() => {});
 }
