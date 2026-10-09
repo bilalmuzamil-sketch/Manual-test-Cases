@@ -121,7 +121,8 @@ export async function allBoardCols(p: Page) {
 /** bring one Board column on screen */
 export async function toColumn(p: Page, id: string) {
   await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller').scrollLeft = 0`); await p.waitForTimeout(400);
-  for (let i = 0; i < 40 && !(await p.locator(`[data-test-id="board_column_${id}"]`).count()); i++) { await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller').scrollLeft += 600`); await p.waitForTimeout(350); }
+  // 2026-10-09: the location now holds ~200 technicians (other teams' E2E staff sort first) — keep going until the column renders or the board ends
+  for (let i = 0; i < 400 && !(await p.locator(`[data-test-id="board_column_${id}"]`).count()); i++) { const moved = await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); if (!h) return false; const b = h.scrollLeft; h.scrollLeft += 900; return h.scrollLeft !== b; })()`); await p.waitForTimeout(300); if (!moved) break; }
   await p.evaluate(`document.querySelector('[data-test-id="board_column_${id}"]')?.scrollIntoView({ inline: 'center', block: 'nearest' })`); await p.waitForTimeout(800);
   return (await p.locator(`[data-test-id="board_column_${id}"]`).count()) > 0;
 }
