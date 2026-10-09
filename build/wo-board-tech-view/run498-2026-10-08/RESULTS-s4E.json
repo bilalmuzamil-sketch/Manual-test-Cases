@@ -1,0 +1,25 @@
+{
+ "results": {
+  "C96960": {
+   "verdict": "Passed",
+   "observed": "New work order S10043-17941 (customer ZZAUTOTEST F1 Drag Moves Open Lines) led by Esther Howard, with the six lines set up: Line 1 with no technician, Line 2 following the lead, Line 3 given to Dana Ortiz, Line 4 Complete, Line 5 with about a minute of labor logged by Esther Howard, Line 6 with Esther Howard's clock running. In Board View the card was dragged from Esther Howard's column to Ralph Edwards' column; message 'Lead technician updated'. Afterwards: Line 1 Ralph Edwards, Line 2 Ralph Edwards, Line 3 Dana Ortiz, Line 4 Esther Howard, Line 5 Esther Howard, Line 6 Esther Howard, and her clock on Line 6 was still running. Exactly Lines 1 and 2 moved. The clock was then stopped.",
+   "not_observed": null
+  },
+  "C96961": {
+   "verdict": "Passed",
+   "observed": "New work order S10043-17942 (customer ZZAUTOTEST F1 Remove Lead Lines) with the same six lines, Esther Howard clocked in on Line 6. Board View > More actions > Reassign lead technician > Unassigned > confirm: message 'Lead technician removed', the card moved to the Unassigned column and the work order has no lead. Afterwards: Line 1 Unassigned, Line 2 Unassigned, Line 3 Dana Ortiz, Line 4 Esther Howard, Line 5 Esther Howard, Line 6 Esther Howard with her clock still running. The clock was then stopped.",
+   "not_observed": null
+  },
+  "C368140": {
+   "verdict": "Passed",
+   "observed": "New work order S10043-17943 (customer ZZAUTOTEST F1 Assign Unassigned Lines), no lead: Line 1 with no technician, Line 2 given to Dana Ortiz, Line 3 Complete with no technician. Board View, card in the Unassigned column > More actions > Reassign lead technician > Ralph Edwards > confirm: message 'Lead technician updated' and the card in Ralph Edwards' column. Afterwards Line 1 Ralph Edwards, Line 2 Dana Ortiz, Line 3 Unassigned: one of three lines moved. (To complete a line on this branch the work order first needs a mileage.)",
+   "not_observed": null
+  }
+ },
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-08"
+ }
+}
