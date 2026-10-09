@@ -1,0 +1,16 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368170": {
+   "verdict": "Blocked",
+   "observed": "Work order S10043-18586 made Invoiced (Finance > Create Invoice), lead Esther Howard, Mileage 123,456, Engine Hours 3,420, Customer PO 'PO-100'. Per the QA lead (9 Oct) the edits are made on the work order page's left card, because no Edit Work Order window exists. On the Invoiced work order the card's Lead Technician has no list to pick from (it only reads Esther Howard), and the Mileage and Engine Hours boxes are read-only, so none of these three could be changed; after a reload they still read Esther Howard, 123,456 and 3,420. The Customer PO box on the Finance tab is still editable on the Invoiced work order: 'PO-200' was typed and saved, and after a reload the PO reads PO-200. So three of the four values stayed and the PO changed.",
+   "not_observed": "Whether the PO is meant to stay: the source sentence quoted in the case is about 'the other edits in the same save', and on this build the PO is saved on its own on the Finance tab, not in one save with the lead. That needs the QA lead's reading before this is judged.",
+   "todo": "QA lead: decide whether changing the Customer PO on an Invoiced work order (Finance tab, saved on its own) counts against this case. If it does, this becomes Failed with a report; if not, Passed."
+  }
+ }
+}
