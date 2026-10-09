@@ -1,0 +1,37 @@
+import sys; sys.path.insert(0, __file__.rsplit("/",1)[0]); from common import *
+LINE = 'A work order line (Title for example "Replace tie rod", Description for example "excessive play", Tech Story for example "Both outer ends worn, replaced and aligned")'
+LS = (1, "on the work order click New Line", None)
+NOSEED = "The 'Seed ...' item only lists the records that must exist (no click path or recipe), so nothing to move."
+D = {
+154705: ([0,
+          'A work order at this location (customer for example "4 Star Truck Repair").',
+          "A part sale at this location.",
+          "User A has written one note on each: the work order, the part sale and the customer.",
+          'User B: a teammate at the same location who can sign in, with the role "ZZAUTOTEST WO delete" (built from the "Service Advisor" template; Work orders - Delete ticked, Part sales - Delete and Customers - Delete unticked).',
+          'User C: a second teammate, with the role "ZZAUTOTEST PS and customer delete" (built from the "Service Advisor" template; Part sales - Delete and Customers - Delete ticked, Work orders - Delete unticked).',
+          'For tagging or group membership only, any staff member (for example "Ashlee Thomas") can be User C.',
+          "User D: a teammate with neither role and none of those Delete permissions.",
+          9],
+         [(1, "top menu Work Orders", None), (2, "top menu Parts", None), (3, "top menu Customers", None), (4, "on its Notes tab", None), 5,
+          (6, "on a QA branch", None), (7, "On a QA branch only", None), (8, "on a QA branch", None)], ""),
+154706: ([0, "User B: a teammate who is not an admin.",
+          'User B owns a public tag group "ZZ Public team" (with a member), a personal tag group "ZZ Personal team" (Public off), and a quick note "ZZ Note".',
+          "User C: a second non-admin teammate."],
+         [(1, "on a QA branch", None), (2, "on a QA branch", None)], ""),
+154707: (None, [], ""),
+154708: (None, [], ""),
+154709: (None, [], ""),
+154710: ([0, f"The previously seeded line: {LINE[0].lower()}{LINE[1:]}; its saved title, description and tech story are recorded."], [LS], ""),
+154711: ([0, "The AI ShopCoach line builder is open (from the line dialog)."], [1], ""),
+154712: ([0, "The AI ShopCoach line builder is open."], [1], ""),
+154713: ([0, f"{LINE}.", 2], [LS], ""),
+154714: (None, [], NOSEED),
+154715: ([0, f"{LINE}.", 2, 3], [LS], ""),
+154716: ([0, "Require Tech Story is turned OFF (Work Order Settings).", 2], [1], ""),
+154717: (None, [], NOSEED),
+154718: (None, [], "The item lists the exact values the line holds (no click path or recipe), so nothing to move."),
+154719: ([0, f"{LINE}, created by a finance user beforehand and then invoiced."], [LS], ""),
+154720: (None, [], ""),
+154721: (None, [], ""),
+154722: (None, [], NOSEED),
+}

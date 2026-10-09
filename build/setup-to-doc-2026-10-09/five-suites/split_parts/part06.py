@@ -1,0 +1,32 @@
+import sys; sys.path.insert(0, __file__.rsplit("/",1)[0]); from common import *
+TG = [SIGNED_ADMIN, TAGTAB, ACTLOC]
+TGS = [QA_ADMIN, NOTIF_OPEN, OPEN_TAGTAB, LOCPAREN]
+D = {
+154685: (TG, TGS, ""),
+154686: (TG + [2], TGS, ""),
+154687: (TG + ['A tag group (for example "Service Team" with at least one Member, for example "Ashlee Thomas"; Public off, or on for a public group).'],
+         TGS + [(2, "on the Tag groups tab", None)], ""),
+154688: (TG + [2], TGS, ""),
+154689: (TG + ["A public group and your personal group.", "A personal group owned by another user.",
+               '"Another user at the location" in the steps is Tech ShopView.'],
+         TGS + [(2, "bell -> Tag groups", "-> Create"), (2, "sign in as Tech ShopView", "Public tag group off")], ""),
+154690: (TG + [2], TGS, ""),
+154691: (TG + ["A public group; a personal group owned by another user; sign-in as a non-owner non-admin, and as an admin."],
+         TGS + [(2, "On a QA branch", None)], ""),
+154692: (TG + ["A second user at the same location."], TGS + [(2, "on a QA branch", None)], ""),
+154693: (TG + ["A public group (that you will switch to personal).", "An admin renaming another user's public group.",
+               "A group whose only member has left the location."],
+         TGS + ["Tech ShopView creates a public group; Admin ShopView renames it", (2, "make a group whose only member", "Save & Close")], ""),
+154698: ([SIGNED_ADMIN, "The Notifications page is open on the Preferences tab."], [QA_ADMIN, NOTIF_OPEN, 1], ""),
+154699: ([SIGNED_ADMIN, "A second user who can sign in and has access to a work order; you will tag them on a note.",
+          "Reading their email needs a mailbox you can open for that user."],
+         [QA_ADMIN, NOTIF_OPEN, (1, "on a QA branch the second user", '"Tech ShopView")'), (1, "the QA quick-login addresses", None)],
+         "The QA-branch caveat (quick-login mailboxes cannot be opened, so only the inbox and bell half is done by hand) moved to setup word for word."),
+154704: ([0,
+          'User B: a teammate at the same location who can sign in, with the role "ZZAUTOTEST Part sales only" (built from the "Service Advisor" template; Work orders - View unticked, Part sales - View ticked).',
+          'A work order at this location (customer for example "4 Star Truck Repair").',
+          "A part sale at this location.",
+          'User C: a second teammate, with the role "ZZAUTOTEST Work orders only" (built from the "Service Advisor" template; Work orders - View ticked, Part sales - View unticked).',
+          'For tagging or group membership only, any staff member (for example "Ashlee Thomas") can be User C.'],
+         [(1, "on a QA branch", None), (2, "top menu Work Orders", None), (3, "top menu Parts", None), 4, (5, "On a QA branch only", None)], ""),
+}

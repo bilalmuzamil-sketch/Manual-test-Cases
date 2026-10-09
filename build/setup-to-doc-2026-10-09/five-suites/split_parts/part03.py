@@ -15,7 +15,7 @@ D = {
 154628: ([ADMIN_BOTH, CUST2, STATUS, 3], [C1, S2], ""),
 154629: ([ADMIN_BOTH, CUST2, STATUS, 3], [C1, S2], ""),
 154630: ([ADMIN_BOTH, CUST2, STATUS,
-          'The sale holds a recorded deposit (Deposit Amount for example $50.00, Payment Method for example "Cash").'],
+          'The sale holds a recorded deposit (Deposit Amount for example $50.00; Payment Method for example "Cash").'],
          [C1, S2, (3, "Finance tab ->", None)], ""),
 154631: ([ADMIN_BOTH, CUST2, "Two locations exist.",
           "The Location-A sale: a part sale owned by one location (for example Location A) while the user has a different location (Location B) selected."],
@@ -28,7 +28,7 @@ D = {
          [(0, "if none does", None), (1, "top menu Parts", None), (2, "click your initials", "each logs out and back in.")], ""),
 154634: ([ADMIN_PI, CUST,
           f'The part sale: {NEWSALE}, with the part "Brake Pads" (Quantity 1, Vendor = the test vendor, Sell Price $290.91); the sale reads Estimate.',
-          'The user without Customer Portal access: a spare test user with the role "ZZAUTOTEST No portal" (built from a template, for example "Parts Manager"; Customer portal under Page Access unticked). A shop with ShopPay turned off would also do, but on this QA build no ShopPay switch was found under Settings.',
+          'The user without Customer Portal access: a spare test user with the role "ZZAUTOTEST No portal" (built from a template, for example "Parts Manager"; Customer portal under Page Access unticked). A shop with online payments off (ShopPay turned off) would also do, but on this QA build no ShopPay switch was found under Settings.',
           5],
          [(1, "If not:", None), 2, 3, (4, "Use either:", None)], ""),
 }

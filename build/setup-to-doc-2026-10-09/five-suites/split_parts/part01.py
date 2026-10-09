@@ -41,7 +41,7 @@ D = {
 154591: (["A test customer exists.",
           "A test vendor exists to order parts from.",
           "The part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way).",
-          'The part sale has the part "Water Pump" (Quantity 1, Vendor = the test vendor, Sell Price $517.55, Core Charge $79.99) and, beneath it, a row "Core for Water Pump".',
+          'The part sale has the part "Water Pump" (Quantity 1; Vendor = the test vendor; Sell Price $517.55; Core Charge $79.99) and, beneath it, a row "Core for Water Pump".',
           "The part has been authorized, ordered and received: the part row reads Received and its core row offers Return Core in the Actions column.",
           "The service work order: a service work order for the same customer with a received core (a part with Vendor = the test vendor and a Core Charge of $79.99).",
           'User X is a spare test user with the role "ZZAUTOTEST Parts no core" (built from a template, for example "Parts Manager"): Part sales - Create & Edit ticked; every box under Vendor and order management (vendors, purchase orders, deliveries and part returns) unticked; Work order lines - Create & Edit and Work orders - Create & Edit unticked.',

@@ -1,0 +1,2206 @@
+[
+ {
+  "id": 88507,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user with \"Settings - Service\" enabled, on the build under test.",
+   "A template with a Checkbox field and a Per-axle measurement field."
+  ],
+  "setup": [
+   "open Settings - Service > Inspection Templates, Edit a template (or New template), then use Add field:",
+   "Add a Checkbox field.",
+   "Add a Per-axle measurement field.",
+   "Save the template."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88508,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user with \"Settings - Service\" enabled, on the build under test.",
+   "A template with a checkbox field that has \"Note required if Monitor / Not OK\" on, and a per-axle field with it on.",
+   "You are filling an inspection against that template, with \"Work order lines - Create & Edit\" enabled."
+  ],
+  "setup": [
+   "seed via Settings - Service > Inspection Templates > Add field, turn the option on, Save",
+   "open a work order, start the inspection"
+  ],
+  "note": ""
+ },
+ {
+  "id": 88509,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user with \"Settings - Service\" enabled, on the build under test.",
+   "Templates with the note option on and off, plus a template created before this release; you are filling inspections against them."
+  ],
+  "setup": [
+   "seed the templates in Settings - Service > Inspection Templates"
+  ],
+  "note": ""
+ },
+ {
+  "id": 88510,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": "The option label \"Photo required if Not OK\" has to stay in the preconditions, and the split checker reads \"if Not\" in it as an \"If not:\" how-to; renaming the option would change a fact, so the case is left unchanged (its seed-via text is still in the preconditions)."
+ },
+ {
+  "id": 88511,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": "The option label \"Photo required if Not OK\" has to stay in the preconditions, and the split checker reads \"if Not\" in it as an \"If not:\" how-to; renaming the option would change a fact, so the case is left unchanged (its seed-via text is still in the preconditions)."
+ },
+ {
+  "id": 88512,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88515,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Work order lines - Create & Edit' and 'Work orders - Create & Edit', on the build under test; ShopCoach is enabled and the shop has at least one labor type.",
+   "A completed inspection with at least one Monitor or Not OK finding, run on a work order.",
+   "One inspection you will draft-then-abandon, and one you will fully add lines from twice."
+  ],
+  "setup": [
+   "Open a work order for a customer and asset (Work Orders > New, pick the customer/unit).",
+   "Start an inspection from a template that has a checkbox field; mark one field Not OK and one Monitor.",
+   "Complete and sign the inspection so it is in its read-only completed view."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88517,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": "Items state only what must exist (a 'Seed' list of states with no click path or recipe), so nothing to move."
+ },
+ {
+  "id": 88519,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Work order lines - Create & Edit' and 'Work orders - Create & Edit', on the build under test; ShopCoach is enabled and the shop has at least one labor type.",
+   "A completed inspection with at least one Monitor or Not OK finding, run on a work order.",
+   "A phone (or a narrow browser window) available to repeat the flow."
+  ],
+  "setup": [
+   "Open a work order for a customer and asset (Work Orders > New, pick the customer/unit).",
+   "Start an inspection from a template that has a checkbox field; mark one field Not OK and one Monitor.",
+   "Complete and sign the inspection so it is in its read-only completed view."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88521,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": "Items state only what must exist (a 'Seed' list of states with no click path or recipe), so nothing to move."
+ },
+ {
+  "id": 88524,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88530,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Customers - View' and 'Work orders - View'.",
+   "Inspections containing checkbox and per-axle measurement fields with: some responses N/A or unanswered; a per-axle field with three axles marked OK, Monitor and Not OK; and some hidden fields."
+  ],
+  "setup": [
+   "Seed a template with these field types and set the responses."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88534,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Work order lines - Create & Edit' and 'Work orders - Create & Edit', on the build under test; ShopCoach is enabled and the shop has at least one labor type.",
+   "The asset record (from a customer) is open on its Inspections tab.",
+   "A \"Needs action\" row you will build from; the tab's filter row and summary line visible."
+  ],
+  "setup": [
+   "Open the asset record (from a customer) and its Inspections tab.",
+   "seed as above"
+  ],
+  "note": ""
+ },
+ {
+  "id": 88541,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Work order lines - Create & Edit' and 'Work orders - Create & Edit', on the build under test; ShopCoach is enabled and the shop has at least one labor type.",
+   "A completed inspection with at least one Monitor/Not OK finding, including a per-axle finding with a note."
+  ],
+  "setup": [
+   "seed a template with a checkbox and a per-axle field; flag and note them",
+   "Choose the target work order to reach the brief."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88546,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88549,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88550,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Settings - Service' enabled, on the build under test (template authoring).",
+   "A template with a Per axle field and a standalone Measurement field."
+  ],
+  "setup": [
+   "Settings - Service > Inspection Templates > New template (or Edit), use Add field to add the fields, then Save."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88551,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a technician with 'Work order lines - Create & Edit', on the build under test.",
+   "A template with a Per axle field.",
+   "Fill an inspection against it; have Single and Dual axles, and axles with and without brakes."
+  ],
+  "setup": [
+   "Settings - Service > Inspection Templates > New template (or Edit), use Add field to add the fields, then Save."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88552,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a technician with 'Work order lines - Create & Edit', on the build under test.",
+   "A template with a Per axle field with several rows and positions.",
+   "Fill it, giving some positions verdicts and leaving some without."
+  ],
+  "setup": [
+   "Settings - Service > Inspection Templates > New template (or Edit), use Add field to add the fields, then Save."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88553,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a technician with 'Work order lines - Create & Edit', on the build under test.",
+   "A template with a Per axle field with multiple axles.",
+   "Fill it on desktop and on a phone."
+  ],
+  "setup": [
+   "Settings - Service > Inspection Templates > New template (or Edit), use Add field to add the fields, then Save."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88554,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a technician with 'Work order lines - Create & Edit', on the build under test.",
+   "A completed inspection with per-axle fields carrying mixed verdicts across positions and rows."
+  ],
+  "setup": [
+   "seed a template with a Per axle field; fill and complete with a mix of OK/Monitor/Not OK"
+  ],
+  "note": ""
+ },
+ {
+  "id": 88555,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a technician with 'Work order lines - Create & Edit', on the build under test.",
+   "A template with a required Per axle field.",
+   "Fill it to produce: no verdict anywhere; an axle with Drum/Disc left blank; and a position with a value but no verdict."
+  ],
+  "setup": [
+   "Settings - Service > Inspection Templates > New template (or Edit), use Add field to add the fields, then Save."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88556,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a technician with 'Work order lines - Create & Edit', on the build under test.",
+   "A template with a Per axle field.",
+   "Produce axles/values covering: a verdict with no measurements; a value \"N/A\" vs a verdict N/A; free text in a value; a road train (7+ axles); a completed inspection; a Single/Dual switch then leaving the page; and a unit change after readings exist."
+  ],
+  "setup": [
+   "Settings - Service > Inspection Templates > New template (or Edit), use Add field to add the fields, then Save."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88557,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Settings - Service' enabled, on the build under test (template authoring).",
+   "A template with fields of several types.",
+   "Have PDF, image (incl. HEIC), Word, Excel and a video file to hand."
+  ],
+  "setup": [
+   "Settings - Service > Inspection Templates > New template (or Edit), use Add field to add the fields, then Save."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88558,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a technician with 'Work order lines - Create & Edit', on the build under test.",
+   "A template whose fields carry attachments of various types (PDF, web image, HEIC, TIFF, Word, Excel).",
+   "Fill an inspection with \"Work orders - View\"."
+  ],
+  "setup": [
+   "seed via Settings - Service, attaching a reference file per field"
+  ],
+  "note": ""
+ },
+ {
+  "id": 88559,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88560,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88561,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88562,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Settings - Service' enabled, on the build under test (template authoring).",
+   "You are on a desktop, creating a brand-new template."
+  ],
+  "setup": [
+   "Settings - Service > Inspection Templates > New template"
+  ],
+  "note": ""
+ },
+ {
+  "id": 88563,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88564,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Settings - Service' enabled, on the build under test (template authoring).",
+   "A template with a per-axle field and a checkbox field."
+  ],
+  "setup": [
+   "Settings - Service > Inspection Templates > New template (or Edit), use Add field to add the fields, then Save."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88565,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Settings - Service' enabled, on the build under test (template authoring).",
+   "A template with a checkbox field (response labels) and a per-axle field (measurement rows)."
+  ],
+  "setup": [
+   "Settings - Service > Inspection Templates > New template (or Edit), use Add field to add the fields, then Save."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88566,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Settings - Service' enabled, on the build under test (template authoring).",
+   "A template with checkbox and per-axle fields and at least one empty section."
+  ],
+  "setup": [
+   "Settings - Service > Inspection Templates > New template (or Edit), use Add field to add the fields, then Save."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88567,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88568,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Settings - Service' enabled, on the build under test (template authoring).",
+   "A template draft being edited, with a per-axle field, unsaved edits, and a reference file attached, open in Preview."
+  ],
+  "setup": [
+   "open Preview"
+  ],
+  "note": ""
+ },
+ {
+  "id": 88569,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88570,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88571,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88573,
+  "change": true,
+  "preconditions": [
+   "You are signed in with ‘Work orders - View’ (enough to open a work order and view its inspection report), plus the inspection roles needed to run one (‘Work order lines - Create & Edit’).",
+   "A completed inspection on a work order whose number carries a branch prefix (work order numbers carry the workplace’s prefix, for example S1-2252)."
+  ],
+  "setup": [
+   "open a work order (top menu “Work Orders” > “New”, pick a customer and unit), start an inspection from a published template, answer its fields, then complete and sign it.",
+   "To reach its report: open the unit (vehicle) from the work order’s sidebar or from Customers, open its “Inspections” tab, find that inspection run in the history table, and open its report from the “Report” column (the “PDF” export)."
+  ],
+  "note": "The whole 'To reach its report' item is navigation, so it moved to setup in full; no precondition replaces it."
+ },
+ {
+  "id": 88575,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88576,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88577,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a technician with 'Work order lines - Create & Edit', on the build under test.",
+   "A phone; an inspection with a per-axle field; gloves available for the touch check."
+  ],
+  "setup": [
+   "seed a template with a Per axle field"
+  ],
+  "note": ""
+ },
+ {
+  "id": 88578,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88579,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88580,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a technician with 'Work order lines - Create & Edit', on the build under test.",
+   "An open, editable inspection with sections, checkbox fields and an untouched per-axle field.",
+   "Some positions already given verdicts and some still Not inspected."
+  ],
+  "setup": [
+   "seed a template with these"
+  ],
+  "note": ""
+ },
+ {
+  "id": 88581,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88582,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88583,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88584,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Settings - Service' enabled, on the build under test (template authoring).",
+   "A template with a checkbox field.",
+   "The field's response-options section is open."
+  ],
+  "setup": [
+   "Settings - Service > Inspection Templates > New template (or Edit), use Add field to add the fields, then Save.",
+   "Open the field's response-options section."
+  ],
+  "note": ""
+ },
+ {
+  "id": 88585,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Settings - Service' enabled, on the build under test (template authoring).",
+   "A checkbox field with the follow-up section on, carrying OK, Monitor, Not OK and N/A response blocks with content."
+  ],
+  "setup": [
+   "seed via Settings - Service"
+  ],
+  "note": ""
+ },
+ {
+  "id": 88586,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88587,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a technician with 'Work order lines - Create & Edit', on the build under test.",
+   "A filled inspection with a checkbox field carrying follow-ups on OK, Monitor, Not OK and N/A, some also requiring a note."
+  ],
+  "setup": [
+   "seed the template accordingly"
+  ],
+  "note": ""
+ },
+ {
+  "id": 88588,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88589,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88590,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88591,
+  "change": true,
+  "preconditions": [
+   "You are signed in with 'Settings - Service' enabled, on the build under test (template authoring).",
+   "A template draft with a checkbox field carrying configured follow-ups and an attached file, open in Preview mode."
+  ],
+  "setup": [
+   "open Preview mode"
+  ],
+  "note": ""
+ },
+ {
+  "id": 88592,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 88593,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 154591,
+  "change": true,
+  "preconditions": [
+   "A test customer exists.",
+   "A test vendor exists to order parts from.",
+   "The part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way).",
+   "The part sale has the part \"Water Pump\" (Quantity 1; Vendor = the test vendor; Sell Price $517.55; Core Charge $79.99) and, beneath it, a row \"Core for Water Pump\".",
+   "The part has been authorized, ordered and received: the part row reads Received and its core row offers Return Core in the Actions column.",
+   "The service work order: a service work order for the same customer with a received core (a part with Vendor = the test vendor and a Core Charge of $79.99).",
+   "User X is a spare test user with the role \"ZZAUTOTEST Parts no core\" (built from a template, for example \"Parts Manager\"): Part sales - Create & Edit ticked; every box under Vendor and order management (vendors, purchase orders, deliveries and part returns) unticked; Work order lines - Create & Edit and Work orders - Create & Edit unticked.",
+   "User Y is a spare test user with the role \"ZZAUTOTEST No financial data\" (built from a template, for example \"Parts Manager\"): See Financial Data (under Cross-Cutting) unticked.",
+   "The sale and the work order are built while signed in as an Owner/Admin user."
+  ],
+  "setup": [
+   "If not: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "If not: top menu Parts -> Vendors (left sidebar) -> New Vendor, enter a Name (e.g. \"ZZAUTOTEST Parts Supply\"), pick a value in Taxes (required, e.g. \"GST\"), then click Save & Close.",
+   "Start a new part sale today (a sale started before this release handles cores the old way): top menu Parts -> Part Sales -> New Part Sale; in the New part sale dialog pick the Customer and click Save. The sale opens with the status Estimate.",
+   "On the Parts tab click Add Part (on a sale with no parts the Add Part dialog opens by itself). In the Add Part dialog enter Description \"Water Pump\", Quantity 1 (required), Vendor = the test vendor, Sell Price $517.55 and Core Charge $79.99, then click Save & Close. The grid shows the part and, beneath it, a row \"Core for Water Pump\".",
+   "Click Authorize (green button above the parts list); the sale becomes Approved and the part row shows Auth To Order. In that row's Actions column click Order. The row now shows Awaiting.",
+   "Click Receive on the row. In the Receive parts dialog tick both rows (Select All), type a part number in each red Part number box (e.g. \"ZZ-WP-1\", then press Enter), enter the part row's Cost (e.g. $400.00), keep Qty Received at the full quantity and click Receive Parts. The message \"Parts received.\" appears; the part row reads Received and its core row offers Return Core in the Actions column.",
+   "A service work order for the same customer with a received core: top menu Work Orders -> Create Work Order, select the customer, add a line, add a part to it with Vendor = the test vendor and a Core Charge of $79.99, then Order and Receive the part (in the Receive parts dialog type a part number and Cost, then click Receive Parts).",
+   "Create the test role: Settings (click your initials at the top right -> Settings) -> Roles & Permissions -> Create Custom Role -> in Choose a template pick e.g. \"Parts Manager\" -> Apply; tick Part sales -> Create & Edit, and untick every box under Vendor and order management (vendors, purchase orders, deliveries and part returns), Work order lines -> Create & Edit and Work orders -> Create & Edit (this build has no permission named \"Vendors\" or \"Work Order Parts\"; these are the nearest); enter the Role name \"ZZAUTOTEST Parts no core\" and click Create. Assign it: Settings -> Staff -> on a spare test user's row click the edit icon -> in Edit Staff Member set Role to \"ZZAUTOTEST Parts no core\" -> Save & Close. That user must log out and back in before testing (a role change ends their session). This user is User X.",
+   "Create the test role: Settings (click your initials at the top right -> Settings) -> Roles & Permissions -> Create Custom Role -> in Choose a template pick e.g. \"Parts Manager\" -> Apply; untick See Financial Data (under Cross-Cutting); enter the Role name \"ZZAUTOTEST No financial data\" and click Create. Assign it: Settings -> Staff -> on a spare test user's row click the edit icon -> in Edit Staff Member set Role to \"ZZAUTOTEST No financial data\" -> Save & Close. That user must log out and back in before testing (a role change ends their session). This user is User Y.",
+   "Build the sale and the work order while signed in as an Owner/Admin user, then switch to User X and User Y for the steps."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154594,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create & Edit).",
+   "A customer to sell to exists.",
+   "The pre-release sale: a part sale started BEFORE the release with a core (created before the Founder Mode release reached this build, for example dated Sep 30, 2026 or earlier), whose parts list shows a \"Core for ...\" row.",
+   "The newly-created sale: a NEW part sale seeded now for the customer with the part \"Water Pump\" (Quantity 1, Vendor = a test vendor, Sell Price $517.55, Core Charge $79.99), not Authorized or Ordered.",
+   "A sale you can split and two part sales you can move a line between."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "in top menu Parts -> Part Sales open the oldest sales (created before the Founder Mode release reached this build, e.g. dated Sep 30, 2026 or earlier; ask the QA lead for the release date if unsure) and pick one whose parts list shows a \"Core for ...\" row.",
+   "New Part Sale (pick the customer, Save), then in the Add Part dialog Description \"Water Pump\", Quantity 1, Vendor = a test vendor, Sell Price $517.55, Core Charge $79.99 -> Save & Close; do not Authorize or Order it.",
+   "any two new sales built the same way for the same customer"
+  ],
+  "note": ""
+ },
+ {
+  "id": 154595,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create & Edit and Invoicing & payments - Create & Edit).",
+   "A test customer exists.",
+   "A test vendor exists to order parts from.",
+   "The part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way).",
+   "The part sale has the part \"Water Pump\" (Quantity 1; Vendor = the test vendor; Sell Price $517.55; Core Charge $79.99) and, beneath it, a row \"Core for Water Pump\".",
+   "The part has been authorized, ordered and received: the part row reads Received and its core row offers Return Core in the Actions column.",
+   "A service work order for the same customer to move the part onto, with a line."
+  ],
+  "setup": [
+   "If not: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "If not: top menu Parts -> Vendors (left sidebar) -> New Vendor, enter a Name (e.g. \"ZZAUTOTEST Parts Supply\"), pick a value in Taxes (required, e.g. \"GST\"), then click Save & Close.",
+   "Start a new part sale today (a sale started before this release handles cores the old way): top menu Parts -> Part Sales -> New Part Sale; in the New part sale dialog pick the Customer and click Save. The sale opens with the status Estimate.",
+   "On the Parts tab click Add Part (on a sale with no parts the Add Part dialog opens by itself). In the Add Part dialog enter Description \"Water Pump\", Quantity 1 (required), Vendor = the test vendor, Sell Price $517.55 and Core Charge $79.99, then click Save & Close. The grid shows the part and, beneath it, a row \"Core for Water Pump\".",
+   "Click Authorize (green button above the parts list); the sale becomes Approved and the part row shows Auth To Order. In that row's Actions column click Order. The row now shows Awaiting.",
+   "Click Receive on the row. In the Receive parts dialog tick both rows (Select All), type a part number in each red Part number box (e.g. \"ZZ-WP-1\", then press Enter), enter the part row's Cost (e.g. $400.00), keep Qty Received at the full quantity and click Receive Parts. The message \"Parts received.\" appears; the part row reads Received and its core row offers Return Core in the Actions column.",
+   "Work Orders -> Create Work Order, select the customer, add a line."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154596,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create & Edit and Invoicing & payments - Create & Edit).",
+   "A test customer exists.",
+   "QuickBooks Online is connected to this shop (the QuickBooks test company).",
+   "The core's part category (the category the part uses, \"Uncategorized\" if none was chosen) is mapped to a QuickBooks item (for example \"Parts\").",
+   "A test vendor exists to order parts from.",
+   "The first sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way), with the part \"Water Pump\" (Quantity 1; Vendor = the test vendor; Sell Price $517.55; Core Charge $79.99) and, beneath it, a row \"Core for Water Pump\".",
+   "On the first sale the part is authorized, ordered and received, and the core has been returned: the core row's Status reads Returned, and the document on the Finance tab has a Core credit row of -$79.99.",
+   "The second sale (for the unmapped check): built exactly like the first, but with the part's Category set to \"ZZAUTOTEST No QuickBooks item\", a category whose QuickBooks Products And Services is empty; it is ordered, received and its core returned too."
+  ],
+  "setup": [
+   "If not: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "Settings (click your initials at the top right -> Settings) -> left sidebar INTEGRATIONS -> QuickBooks shows the QuickBooks test company connected. If it is not, connect it there and sign in to the QuickBooks test company.",
+   "Settings (click your initials at the top right -> Settings) -> left sidebar PARTS -> Categories; on the category the part uses (\"Uncategorized\" if none was chosen) pick an item in the QuickBooks Products And Services column (e.g. \"Parts\").",
+   "If not: top menu Parts -> Vendors (left sidebar) -> New Vendor, enter a Name (e.g. \"ZZAUTOTEST Parts Supply\"), pick a value in Taxes (required, e.g. \"GST\"), then click Save & Close.",
+   "Start a new part sale today (a sale started before this release handles cores the old way): top menu Parts -> Part Sales -> New Part Sale; in the New part sale dialog pick the Customer and click Save. The sale opens with the status Estimate.",
+   "On the Parts tab click Add Part (on a sale with no parts the Add Part dialog opens by itself). In the Add Part dialog enter Description \"Water Pump\", Quantity 1 (required), Vendor = the test vendor, Sell Price $517.55 and Core Charge $79.99, then click Save & Close. The grid shows the part and, beneath it, a row \"Core for Water Pump\".",
+   "Click Authorize (green button above the parts list); the sale becomes Approved and the part row shows Auth To Order. In that row's Actions column click Order. The row now shows Awaiting.",
+   "Click Receive on the row. In the Receive parts dialog tick both rows (Select All), type a part number in each red Part number box (e.g. \"ZZ-WP-1\", then press Enter), enter the part row's Cost (e.g. $400.00), keep Qty Received at the full quantity and click Receive Parts. The message \"Parts received.\" appears; the part row reads Received and its core row offers Return Core in the Actions column.",
+   "On the core row click Return Core (no confirmation appears). The core row's Status reads Returned, and the document on the Finance tab gains a Core credit row of -$79.99.",
+   "A second part sale for the unmapped check: Settings (click your initials at the top right -> Settings) -> left sidebar PARTS -> Categories -> New Category, name it \"ZZAUTOTEST No QuickBooks item\" and leave its QuickBooks Products And Services empty. Then build a second sale exactly as above, but set the part's Category to \"ZZAUTOTEST No QuickBooks item\" before ordering; Order, Receive and Return Core on it too."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154600,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create & Edit).",
+   "A customer to sell to exists.",
+   "A part sale created on or after the release, carrying a part (for example \"Water Pump\", Quantity 1, Vendor = a test vendor, Sell Price for example $517.55) with a Core Charge greater than 0 (for example $79.99); a \"Core for ...\" row appears beneath the part.",
+   "The part is authorized, ordered and received, so Return Core is available on the core row.",
+   "A per-item fee or discount is added while the core is charged (for example a flat $5 fee)."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "Top menu Parts -> Part Sales -> New Part Sale; pick the Customer (e.g. \"4 Star Truck Repair\") and click Save.",
+   "In the Add Part dialog (it opens by itself on an empty sale) enter Description (e.g. \"Water Pump\"), Quantity 1, Vendor = a test vendor and Sell Price (e.g. $517.55).",
+   "In the same dialog enter a Core Charge greater than 0 (e.g. $79.99), then click Save & Close; a \"Core for ...\" row appears beneath the part.",
+   "Click Authorize, Order the part, then Receive it (in the Receive parts dialog type a part number and Cost, then Receive Parts) so Return Core becomes available on the core row.",
+   "open the row menu ( ... ) -> Add Part Fee / Discount (if the core row has no menu while charged, record that and use its part row's menu)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154608,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create & Edit and Invoicing & payments - Create & Edit).",
+   "A test customer exists.",
+   "A test vendor exists to order parts from.",
+   "The invoiced sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way), with the part \"Brake Pads\" (Quantity 1, Vendor = the test vendor, Sell Price $290.91).",
+   "The part is ordered and received, so the sale is Complete.",
+   "The sale has been invoiced and paid in full, and that payment then reversed: the sale stays Invoiced, with no payment applied.",
+   "Two tax rates exist (for example a second one, \"ZZAUTOTEST 6%\" at 6.00%).",
+   "The user without the permission: a spare test user with the role \"ZZAUTOTEST No part sale edit\" (built from a template, for example \"Parts Manager\"): Part sales - Create & Edit unticked, Part sales View left ticked."
+  ],
+  "setup": [
+   "If not: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "If not: top menu Parts -> Vendors (left sidebar) -> New Vendor, enter a Name (e.g. \"ZZAUTOTEST Parts Supply\"), pick a value in Taxes (required, e.g. \"GST\"), then click Save & Close.",
+   "Start a new part sale today (a sale started before this release handles cores the old way): top menu Parts -> Part Sales -> New Part Sale; in the New part sale dialog pick the Customer and click Save. The sale opens with the status Estimate.",
+   "On the Parts tab click Add Part (on a sale with no parts the Add Part dialog opens by itself). In the Add Part dialog enter Description \"Brake Pads\", Quantity 1 (required), Vendor = the test vendor and Sell Price $290.91, then click Save & Close.",
+   "Order and Receive that part: click Authorize (green button above the parts list), then in the row's Actions column click Order, then Receive; in the Receive parts dialog tick the row, type a part number in the red Part number box (e.g. \"ZZ-BP-1\", then press Enter), enter a Cost (e.g. $150.00) and click Receive Parts. Receiving every part takes the sale to Complete.",
+   "On the Finance tab click Create Invoice. In the New Customer Payment dialog pick a Payment Method (e.g. \"Cash\") and click Make Payment for the full balance. (The payment dialog lists every open invoice for this customer and fills in an amount on each one: set the Payment amount of every other invoice to 0 so only this sale is paid.) Do not just close the dialog: closing it without paying cancels the invoice.",
+   "Then reverse that payment: top menu Customers -> open the customer -> Payments tab -> on the payment's row click the trash icon (tooltip \"Remove\") -> in the Confirmation dialog click Reverse. The sale stays Invoiced, with no payment applied.",
+   "Settings (click your initials at the top right -> Settings) -> Taxes. If needed click New Tax and add one, e.g. \"ZZAUTOTEST 6%\" at 6.00%.",
+   "Create the test role: Settings (click your initials at the top right -> Settings) -> Roles & Permissions -> Create Custom Role -> in Choose a template pick e.g. \"Parts Manager\" -> Apply; untick Part sales -> Create & Edit (leave Part sales View ticked); enter the Role name \"ZZAUTOTEST No part sale edit\" and click Create. Assign it: Settings -> Staff -> on a spare test user's row click the edit icon -> in Edit Staff Member set Role to \"ZZAUTOTEST No part sale edit\" -> Save & Close. That user must log out and back in before testing (a role change ends their session)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154613,
+  "change": true,
+  "preconditions": [
+   "Sign in as an Owner/Admin user to build the data below.",
+   "A customer to sell to exists.",
+   "A part sale that is not invoiced or paid, for the customer, with a part (for example \"Brake Pads\"; Quantity 1; Sell Price for example $290.91).",
+   "The user without the permission: a test user WITHOUT Part sales - Create & Edit (role \"ZZAUTOTEST No part sale edit\", built from a template, for example \"Parts Manager\", with Part sales View left ticked).",
+   "A second part sale, and a service work order with one change made on it, so both have entries that must never appear in this part sale's log."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "top menu Parts -> Part Sales -> New Part Sale, pick the Customer (e.g. \"4 Star Truck Repair\") and click Save; in the Add Part dialog that opens enter a Description (e.g. \"Brake Pads\"), Quantity 1 and a Sell Price (e.g. $290.91), then click Save & Close.",
+   "click your initials at the top right -> Settings -> Roles & Permissions -> Create Custom Role -> in Choose a template pick e.g. \"Parts Manager\" -> Apply; untick Part sales -> Create & Edit (leave Part sales View ticked); Role Name \"ZZAUTOTEST No part sale edit\" -> Create. Then Settings -> Staff -> on a spare test user's row click the edit icon -> set Role to \"ZZAUTOTEST No part sale edit\" -> Save & Close; that user logs out and back in.",
+   "Also create a second part sale the same way, and open any service work order (top menu Work Orders) and make one change on it, so both have entries that must never appear here."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154614,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create & Edit).",
+   "A part sale started before the release and a split made before the release (created before the Founder Mode release reached this build, for example dated Sep 30, 2026 or earlier).",
+   "A service work order with Split from / Split to entries."
+  ],
+  "setup": [
+   "in top menu Parts -> Part Sales, open the oldest sales in the list (created before the Founder Mode release reached this build, e.g. dated Sep 30, 2026 or earlier; ask the QA lead for the release date if unsure).",
+   "top menu Work Orders, open a work order, tick one of its lines and use Split on it."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154615,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create & Edit).",
+   "A customer to sell to exists.",
+   "A part sale that is not invoiced or paid, for the customer, with a part (for example \"Brake Pads\"; Quantity 1; Sell Price for example $290.91).",
+   "The shop has at least one active sales representative."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "top menu Parts -> Part Sales -> New Part Sale, pick the Customer (e.g. \"4 Star Truck Repair\") and click Save; in the Add Part dialog that opens enter a Description (e.g. \"Brake Pads\"), Quantity 1 and a Sell Price (e.g. $290.91), then click Save & Close.",
+   "click your initials at the top right -> Settings -> Staff -> on a staff member's row click the edit icon -> in Edit Staff Member turn on Sales Representative -> Save & Close."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154616,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create & Edit).",
+   "A customer to sell to exists.",
+   "A part sale that is not invoiced or paid, for the customer, with a part (for example \"Brake Pads\"; Quantity 1; Sell Price for example $290.91).",
+   "At least two active sales representatives exist.",
+   "The sale will be taken to invoice."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "top menu Parts -> Part Sales -> New Part Sale, pick the Customer (e.g. \"4 Star Truck Repair\") and click Save; in the Add Part dialog that opens enter a Description (e.g. \"Brake Pads\"), Quantity 1 and a Sell Price (e.g. $290.91), then click Save & Close.",
+   "click your initials at the top right -> Settings -> Staff -> on a staff member's row click the edit icon -> turn on Sales Representative -> Save & Close; repeat for a second person."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154625,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create & Edit and Invoicing & payments - Create & Edit).",
+   "A test customer exists.",
+   "A test vendor exists to order parts from.",
+   "The part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way).",
+   "The part sale has two parts: \"Brake Pads\" (Quantity 1, Sell Price $290.91, Vendor = the test vendor) and \"Oil Filter\" (Quantity 1, Sell Price $12.50); the sale reads Estimate."
+  ],
+  "setup": [
+   "If not: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "If not: top menu Parts -> Vendors (left sidebar) -> New Vendor, enter a Name (e.g. \"ZZAUTOTEST Parts Supply\"), pick a value in Taxes (required, e.g. \"GST\"), then click Save & Close.",
+   "Start a new part sale today (a sale started before this release handles cores the old way): top menu Parts -> Part Sales -> New Part Sale; in the New part sale dialog pick the Customer and click Save. The sale opens with the status Estimate.",
+   "Add two parts on the Parts tab: in the Add Part dialog enter \"Brake Pads\" (Quantity 1, Sell Price $290.91, Vendor = the test vendor) and click Save & Add Part, then \"Oil Filter\" (Quantity 1, Sell Price $12.50) and click Save & Close. The sale reads Estimate.",
+   "For the Declined step: on this build there is no Decline in a line's menu; the red Decline button above the parts list declines the sale at once (no confirmation) and it reads Declined. For the Approved and Complete checks: Authorize (green button) makes it Approved; ordering and receiving every part makes it Complete."
+  ],
+  "note": "The item on reaching Declined / Approved / Complete (red Decline button, Authorize, order and receive) is guidance for the steps; moved to setup word for word."
+ },
+ {
+  "id": 154626,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create & Edit AND Invoicing & payments - Create & Edit).",
+   "A customer to sell to exists.",
+   "A part sale in Estimate, Approved or Complete status, for the customer, with a part (for example \"Brake Pads\"; Quantity 1; Sell Price for example $290.91)."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "top menu Parts -> Part Sales -> New Part Sale, pick the Customer (e.g. \"4 Star Truck Repair\") and click Save; in the Add Part dialog that opens enter a Description (e.g. \"Brake Pads\"), Quantity 1 and a Sell Price (e.g. $290.91), click Save & Close, then open the Finance tab. The sale reads Estimate (click Authorize above the parts list for Approved)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154627,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create & Edit AND Invoicing & payments - Create & Edit).",
+   "A customer to sell to exists.",
+   "A part sale for the customer with cores in various states (one charged, one returned): two parts, each with Quantity 1, a Vendor and a Core Charge (for example $79.99), both ordered and received; Return Core done on one core row, the other core left charged."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "top menu Parts -> Part Sales -> New Part Sale (pick the customer, Save); in the Add Part dialog add two parts, each with Quantity 1, a Vendor and a Core Charge (e.g. $79.99) — click Save & Add Part after the first, Save & Close after the second. Click Authorize, Order both, Receive both (in the Receive parts dialog type a part number and Cost for each, then Receive Parts). Click Return Core on one core row; leave the other core charged."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154628,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create & Edit AND Invoicing & payments - Create & Edit).",
+   "A customer to sell to exists.",
+   "A part sale in Estimate, Approved or Complete status, for the customer, with a part (for example \"Brake Pads\"; Quantity 1; Sell Price for example $290.91).",
+   "The shop takes online payments and the user has Customer Portal access; be able to test both a portal that confirms it can collect and one that declines."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "top menu Parts -> Part Sales -> New Part Sale, pick the Customer (e.g. \"4 Star Truck Repair\") and click Save; in the Add Part dialog that opens enter a Description (e.g. \"Brake Pads\"), Quantity 1 and a Sell Price (e.g. $290.91), click Save & Close, then open the Finance tab. The sale reads Estimate (click Authorize above the parts list for Approved)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154629,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create & Edit AND Invoicing & payments - Create & Edit).",
+   "A customer to sell to exists.",
+   "A part sale in Estimate, Approved or Complete status, for the customer, with a part (for example \"Brake Pads\"; Quantity 1; Sell Price for example $290.91).",
+   "QuickBooks connected with the one-time bookkeeping consent given."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "top menu Parts -> Part Sales -> New Part Sale, pick the Customer (e.g. \"4 Star Truck Repair\") and click Save; in the Add Part dialog that opens enter a Description (e.g. \"Brake Pads\"), Quantity 1 and a Sell Price (e.g. $290.91), click Save & Close, then open the Finance tab. The sale reads Estimate (click Authorize above the parts list for Approved)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154630,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create & Edit AND Invoicing & payments - Create & Edit).",
+   "A customer to sell to exists.",
+   "A part sale in Estimate, Approved or Complete status, for the customer, with a part (for example \"Brake Pads\"; Quantity 1; Sell Price for example $290.91).",
+   "The sale holds a recorded deposit (Deposit Amount for example $50.00; Payment Method for example \"Cash\")."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "top menu Parts -> Part Sales -> New Part Sale, pick the Customer (e.g. \"4 Star Truck Repair\") and click Save; in the Add Part dialog that opens enter a Description (e.g. \"Brake Pads\"), Quantity 1 and a Sell Price (e.g. $290.91), click Save & Close, then open the Finance tab. The sale reads Estimate (click Authorize above the parts list for Approved).",
+   "Finance tab -> Add Deposit -> Deposit Amount (e.g. $50.00), Payment Method (e.g. \"Cash\") -> Record Deposit."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154631,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create & Edit AND Invoicing & payments - Create & Edit).",
+   "A customer to sell to exists.",
+   "Two locations exist.",
+   "The Location-A sale: a part sale owned by one location (for example Location A) while the user has a different location (Location B) selected."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "click your initials at the top right -> Settings -> Locations",
+   "create the sale while Location A is selected, then click your initials at the top right -> Change Location -> pick Location B."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154632,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create & Edit AND Invoicing & payments - Create & Edit).",
+   "A customer to sell to exists.",
+   "An invoiced or paid part sale.",
+   "The sale's Finance tab is open."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "create a part sale as above, click Authorize, then Order and Receive its part (in the Receive parts dialog type a part number and Cost, then click Receive Parts) so it reaches Complete, then on the Finance tab click Create Invoice and Make Payment (or close the dialog after paying part of it).",
+   "Open the Finance tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154633,
+  "change": true,
+  "preconditions": [
+   "A customer to sell to exists.",
+   "A part sale in Estimate, Approved or Complete status, for the customer, with a part (for example \"Brake Pads\"; Quantity 1; Sell Price for example $290.91).",
+   "Two spare test users: one with the role \"ZZAUTOTEST No part sale edit\" (Part sales - Create & Edit unticked) and one with the role \"ZZAUTOTEST No invoicing edit\" (Invoicing & payments - Create & Edit unticked), both built from a template (for example \"Parts Manager\").",
+   "Sign in as an Owner/Admin user to build the sale."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "top menu Parts -> Part Sales -> New Part Sale, pick the Customer (e.g. \"4 Star Truck Repair\") and click Save; in the Add Part dialog that opens enter a Description (e.g. \"Brake Pads\"), Quantity 1 and a Sell Price (e.g. $290.91), click Save & Close, then open the Finance tab. The sale reads Estimate (click Authorize above the parts list for Approved).",
+   "click your initials at the top right -> Settings -> Roles & Permissions -> Create Custom Role -> pick e.g. \"Parts Manager\" -> Apply; make role \"ZZAUTOTEST No part sale edit\" (untick Part sales -> Create & Edit) and role \"ZZAUTOTEST No invoicing edit\" (untick Invoicing & payments -> Create & Edit), each -> Create. Then Settings -> Staff -> on two spare test users' rows click the edit icon -> set Role -> Save & Close; each logs out and back in."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154634,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create & Edit and Invoicing & payments - Create & Edit).",
+   "A test customer exists.",
+   "The part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way), with the part \"Brake Pads\" (Quantity 1, Vendor = the test vendor, Sell Price $290.91); the sale reads Estimate.",
+   "The user without Customer Portal access: a spare test user with the role \"ZZAUTOTEST No portal\" (built from a template, for example \"Parts Manager\"; Customer portal under Page Access unticked). A shop with online payments off (ShopPay turned off) would also do, but on this QA build no ShopPay switch was found under Settings.",
+   "Not checkable by hand: a Customer Portal that cannot be reached. A manual tester cannot take the portal offline, so that half is left to automation."
+  ],
+  "setup": [
+   "If not: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "Start a new part sale today (a sale started before this release handles cores the old way): top menu Parts -> Part Sales -> New Part Sale; in the New part sale dialog pick the Customer and click Save. The sale opens with the status Estimate.",
+   "On the Parts tab click Add Part (on a sale with no parts the Add Part dialog opens by itself). In the Add Part dialog enter Description \"Brake Pads\", Quantity 1 (required), Vendor = the test vendor and Sell Price $290.91, then click Save & Close. The sale reads Estimate.",
+   "Use either: (1) on this test shop, ShopPay turned off (on this QA build no ShopPay switch was found under Settings, so use option 2); or (2) a test role without Customer Portal access - Create the test role: Settings (click your initials at the top right -> Settings) -> Roles & Permissions -> Create Custom Role -> in Choose a template pick e.g. \"Parts Manager\" -> Apply; untick Customer portal (under Page Access); enter the Role name \"ZZAUTOTEST No portal\" and click Create. Assign it: Settings -> Staff -> on a spare test user's row click the edit icon -> in Edit Staff Member set Role to \"ZZAUTOTEST No portal\" -> Save & Close. That user must log out and back in before testing (a role change ends their session)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154635,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create & Edit and Invoicing & payments - Create & Edit).",
+   "A test customer exists.",
+   "The part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way), with the part \"Brake Pads\" (Quantity 1, Vendor = the test vendor, Sell Price $290.91); the sale reads Estimate.",
+   "Know whether this build's Customer Portal takes part sale deposits: the release notes for this build say so, or ask the QA lead.",
+   "The expected results cover both answers."
+  ],
+  "setup": [
+   "If not: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "Start a new part sale today (a sale started before this release handles cores the old way): top menu Parts -> Part Sales -> New Part Sale; in the New part sale dialog pick the Customer and click Save. The sale opens with the status Estimate.",
+   "On the Parts tab click Add Part (on a sale with no parts the Add Part dialog opens by itself). In the Add Part dialog enter Description \"Brake Pads\", Quantity 1 (required), Vendor = the test vendor and Sell Price $290.91, then click Save & Close. The sale reads Estimate.",
+   "Open the deposit dialog: Finance tab -> Add Deposit (the dialog is titled Create Deposit)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154636,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create & Edit AND Invoicing & payments - Create & Edit).",
+   "A customer to sell to exists.",
+   "A part sale whose deposits will exceed its total: the part \"Water Pump\" (Quantity 1, Vendor = a test vendor, Sell Price $517.55; with GST 5% the total is $543.43), a recorded deposit of $600.00 (Payment Method \"Cash\"), and the part ordered and received."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "top menu Parts -> Part Sales -> New Part Sale (pick the customer, Save); in the Add Part dialog enter Description \"Water Pump\", Quantity 1, Vendor = a test vendor, Sell Price $517.55 -> Save & Close (with GST 5% the total is $543.43); Finance tab -> Add Deposit -> Deposit Amount $600.00, Payment Method \"Cash\" -> Record Deposit. Then click Authorize, Order and Receive the part (in the Receive parts dialog type a part number and Cost, then Receive Parts). Optionally add a Core Charge and Return Core to drop the total."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154640,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create & Edit and Invoicing & payments - Create & Edit).",
+   "A test customer exists.",
+   "QuickBooks Online is connected to this shop (the QuickBooks test company).",
+   "The core's part category (the category the part uses, \"Uncategorized\" if none was chosen) is mapped to a QuickBooks item (for example \"Parts\").",
+   "A test vendor exists to order parts from.",
+   "The part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way), with the part \"Water Pump\" (Quantity 1; Vendor = the test vendor; Sell Price $517.55; Core Charge $79.99) and, beneath it, a row \"Core for Water Pump\".",
+   "The part has been authorized, ordered and received, and the core returned: the core row's Status reads Returned, and the document on the Finance tab has a Core credit row of -$79.99.",
+   "The sale has been invoiced (the invoice syncs to QuickBooks) and paid in full.",
+   "Compare every figure to the cent; do not estimate."
+  ],
+  "setup": [
+   "If not: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "Settings (click your initials at the top right -> Settings) -> left sidebar INTEGRATIONS -> QuickBooks shows the QuickBooks test company connected. If it is not, connect it there and sign in to the QuickBooks test company.",
+   "Settings (click your initials at the top right -> Settings) -> left sidebar PARTS -> Categories; on the category the part uses (\"Uncategorized\" if none was chosen) pick an item in the QuickBooks Products And Services column (e.g. \"Parts\").",
+   "If not: top menu Parts -> Vendors (left sidebar) -> New Vendor, enter a Name (e.g. \"ZZAUTOTEST Parts Supply\"), pick a value in Taxes (required, e.g. \"GST\"), then click Save & Close.",
+   "Start a new part sale today (a sale started before this release handles cores the old way): top menu Parts -> Part Sales -> New Part Sale; in the New part sale dialog pick the Customer and click Save. The sale opens with the status Estimate.",
+   "On the Parts tab click Add Part (on a sale with no parts the Add Part dialog opens by itself). In the Add Part dialog enter Description \"Water Pump\", Quantity 1 (required), Vendor = the test vendor, Sell Price $517.55 and Core Charge $79.99, then click Save & Close. The grid shows the part and, beneath it, a row \"Core for Water Pump\".",
+   "Click Authorize (green button above the parts list); the sale becomes Approved and the part row shows Auth To Order. In that row's Actions column click Order. The row now shows Awaiting.",
+   "Click Receive on the row. In the Receive parts dialog tick both rows (Select All), type a part number in each red Part number box (e.g. \"ZZ-WP-1\", then press Enter), enter the part row's Cost (e.g. $400.00), keep Qty Received at the full quantity and click Receive Parts. The message \"Parts received.\" appears; the part row reads Received and its core row offers Return Core in the Actions column.",
+   "On the core row click Return Core (no confirmation appears). The core row's Status reads Returned, and the document on the Finance tab gains a Core credit row of -$79.99.",
+   "On the Finance tab click Create Invoice so the invoice syncs to QuickBooks. In the New Customer Payment dialog pick a Payment Method (e.g. \"Cash\") and click Make Payment for the full balance. (The payment dialog lists every open invoice for this customer and fills in an amount on each one: set the Payment amount of every other invoice to 0 so only this sale is paid.) Do not just close the dialog: closing it without paying cancels the invoice."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154641,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create & Edit and Invoicing & payments - Create & Edit).",
+   "Numeric-accuracy case.",
+   "A customer to sell to exists.",
+   "A part sale whose deposit exceeds its total: the part \"Water Pump\" (Quantity 1, Vendor = a test vendor, Sell Price $517.55; with GST 5% the total is $543.43), a recorded deposit of $600.00 (Payment Method \"Cash\"), and the part ordered and received."
+  ],
+  "setup": [
+   "if none does, create one first: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "top menu Parts -> Part Sales -> New Part Sale (pick the customer, Save); in the Add Part dialog enter Description \"Water Pump\", Quantity 1, Vendor = a test vendor, Sell Price $517.55 -> Save & Close (with GST 5% the total is $543.43); Finance tab -> Add Deposit -> Deposit Amount $600.00, Payment Method \"Cash\" -> Record Deposit. Click Authorize, Order and Receive the part (in the Receive parts dialog type a part number and Cost, then Receive Parts). Compute 600.00 - 543.43 by hand."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154644,
+  "change": true,
+  "preconditions": [
+   "You are signed in with the inspection roles ('Settings - Service', 'Work order lines - Create & Edit'), on the build under test.",
+   "The Digital Inspections V2 feature flag is OFF for the shop."
+  ],
+  "setup": [
+   "set the shop's feature flag off (an admin/config toggle - ask the QA lead if you cannot set it), then reload."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154645,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a technician with 'Work order lines - Create & Edit', on the build under test.",
+   "An inspection with a per-axle field carrying both judged positions and not-inspected positions.",
+   "Be able to view the screen in light theme and in dark theme."
+  ],
+  "setup": [
+   "Settings - Service > Inspection Templates > add a Per axle field; fill an inspection and give some positions a verdict, leaving others not inspected."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154647,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a technician with 'Work order lines - Create & Edit', on the build under test.",
+   "A per-axle field (and a checkbox field) being filled, with some positions judged and some left not inspected."
+  ],
+  "setup": [
+   "Seed a template with these fields and fill an inspection against it."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154651,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "3 notifications addressed to you, from notes a second user wrote on a work order.",
+   "The states of 0, exactly 99, and 100+ unread can be reached."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "a second user writes the notes (on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\")): open a work order (top menu Work Orders -> click a work order number (e.g. S2-4219) -> Notes tab) -> New Note, type a message, type @ and pick \"Admin ShopView\" (or click a tag group pill you belong to under \"Tag groups:\"), then click Save.",
+   "Also reach the states of 0, exactly 99, and 100+ unread (seed enough notes, or mark some read)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154652,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Inbox tab.",
+   "60 notifications addressed to you (enough to exceed one page of 50), from notes a second user wrote on a work order.",
+   "One note whose notification you received has been deleted."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell icon at the top right (it opens on the Inbox tab).",
+   "a second user writes the notes (on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\")): open a work order (top menu Work Orders -> click a work order number (e.g. S2-4219) -> Notes tab) -> New Note, type a message, type @ and pick \"Admin ShopView\" (or click a tag group pill you belong to under \"Tag groups:\"), then click Save.",
+   "Also delete one note whose notification you received."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154653,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Inbox tab.",
+   "3 notifications addressed to you, from notes a second user wrote on work orders, using distinct references (different work orders) and message text.",
+   "More than 50 results, so a second page exists."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell icon at the top right (it opens on the Inbox tab).",
+   "a second user writes the notes (on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\")): open a work order (top menu Work Orders -> click a work order number (e.g. S2-4219) -> Notes tab) -> New Note, type a message, type @ and pick \"Admin ShopView\" (or click a tag group pill you belong to under \"Tag groups:\"), using distinct references (different work orders) and message text, then click Save.",
+   "Have more than 50 results so a second page exists."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154654,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "3 notifications addressed to you, from notes a second user wrote on a work order, with a mix of read and unread.",
+   "A second user account and a second browser/device."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "a second user writes the notes (on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\")): open a work order (top menu Work Orders -> click a work order number (e.g. S2-4219) -> Notes tab) -> New Note, type a message, type @ and pick \"Admin ShopView\" (or click a tag group pill you belong to under \"Tag groups:\"), then click Save.",
+   "A second user account and a second browser/device: on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\")."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154655,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Inbox tab.",
+   "Some unread notifications addressed to you, from notes a second user wrote on a work order.",
+   "Later, a state with none unread."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell icon at the top right (it opens on the Inbox tab).",
+   "a second user writes the notes (on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\")): open a work order (top menu Work Orders -> click a work order number (e.g. S2-4219) -> Notes tab) -> New Note, type a message, type @ and pick \"Admin ShopView\" (or click a tag group pill you belong to under \"Tag groups:\"), then click Save",
+   "then a state with none unread (Mark all read)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154656,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "Two locations you can switch between: location A, and location B (any other location, for example Staging Lethbridge - 4310).",
+   "At location A: a notification from a work-order/part-sale note, and a notification from a note on a customer or an asset (which has no location), both written by a second user and tagging you."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "the location name shown next to the bell; change it with your initials at the top right -> Change Location",
+   "on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\"); at location A it writes a note on a work order and one on a customer (top menu Customers -> open the customer -> Notes tab), each tagging \"Admin ShopView\".",
+   "Location B is any other location in Change Location (e.g. Staging Lethbridge - 4310)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154657,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Inbox tab.",
+   "A notification addressed to you, from a note a second user wrote on a work order."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell icon at the top right (it opens on the Inbox tab).",
+   "a second user writes the notes (on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\")): open a work order (top menu Work Orders -> click a work order number (e.g. S2-4219) -> Notes tab) -> New Note, type a message, type @ and pick \"Admin ShopView\" (or click a tag group pill you belong to under \"Tag groups:\"), then click Save."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154658,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Inbox tab.",
+   "A notification addressed to you, from a note a second user wrote on a work order.",
+   "The message contains @ tags (for example \"@Service Team please road test\")."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell icon at the top right (it opens on the Inbox tab).",
+   "a second user writes the notes (on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\")): open a work order (top menu Work Orders -> click a work order number (e.g. S2-4219) -> Notes tab) -> New Note, type a message, type @ and pick \"Admin ShopView\" (or click a tag group pill you belong to under \"Tag groups:\"), then click Save."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154659,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Inbox tab.",
+   "Notifications from a note on a work order (for example S2-4219), a part sale (for example P9667-370), and a work order line, each written by a second user and tagging you."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell icon at the top right (it opens on the Inbox tab).",
+   "on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\"); it writes each note (Notes tab -> New Note; for the line, pick it under \"Create note for\"), types @ and picks \"Admin ShopView\", then clicks Save."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154660,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Inbox tab.",
+   "A note that tags you and four other people (for example Ashlee Thomas, Ashley Schultz, Amy Fernandez, Angelica Harper), written by a second user on a work order, tagging each person in that order.",
+   "A note you wrote whose only recipient is you."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell icon at the top right (it opens on the Inbox tab).",
+   "on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\"); it writes the note on a work order (top menu Work Orders -> click a work order number (e.g. S2-4219) -> Notes tab -> New Note), types @ and picks each person in that order, then clicks Save.",
+   "as yourself, write a note whose only recipient is you (type @ and pick \"Admin ShopView (You)\")."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154661,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Inbox tab.",
+   "A notification whose note carries an attachment, from a note a second user wrote on a work order."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell icon at the top right (it opens on the Inbox tab).",
+   "a second user writes the notes (on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\")): open a work order (top menu Work Orders -> click a work order number (e.g. S2-4219) -> Notes tab) -> New Note, type a message, type @ and pick \"Admin ShopView\" (or click a tag group pill you belong to under \"Tag groups:\"), then click Save; then, as that author, open the note's menu ( ... ) -> Add attachment and attach any file."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154662,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Inbox tab.",
+   "Three notifications addressed to you, from notes a second user wrote on a work order: one whose note has been edited, one that has never been edited, and one whose message contains a plain \"@\" that is not a tag (for example \"@ me if urgent\")."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell icon at the top right (it opens on the Inbox tab).",
+   "a second user writes the notes (on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\")): open a work order (top menu Work Orders -> click a work order number (e.g. S2-4219) -> Notes tab) -> New Note, type a message, type @ and pick \"Admin ShopView\" (or click a tag group pill you belong to under \"Tag groups:\"), then click Save - one whose note has been edited (as its author, the note's menu ( ... ) -> Edit), one that has never been edited, and one whose message contains a plain \"@\" that is not a tag (e.g. \"@ me if urgent\")."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154673,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "A note that reached several recipients (including an author who tagged themselves): written by a second user on a work order, tagging itself and you.",
+   "A second user who will delete it while recipients have their inbox open: you, as Owner/Admin, while the note's author keeps its inbox open in a private window."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\"); it writes the note on a work order, tagging itself and \"Admin ShopView\".",
+   "you, as Owner/Admin (the note's menu ( ... ) -> Delete Note), while Tech ShopView keeps its inbox open in the private window."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154675,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "A note you authored on a work order that tagged several recipients (for example \"Tech ShopView\" and another teammate) and carries an attachment.",
+   "The tagged user sees it in their inbox."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "top menu Work Orders -> click a work order number (e.g. S2-4219) -> Notes tab -> New Note, type @ and pick \"Tech ShopView\" and another teammate, Save; then the note's menu ( ... ) -> Add attachment. Tech ShopView (Tech quick-login, private window) sees it in its inbox."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154681,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Tag groups tab.",
+   "An active location is selected.",
+   "Tag groups exist (for example \"Service Team\" with at least one Member, for example \"Ashlee Thomas\"), including a public group and a personal group.",
+   "A state with no groups can be reached."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell and select the Tag groups tab.",
+   "the location name shown next to the bell; change it with your initials at the top right -> Change Location",
+   "on the Tag groups tab click New tag group, type a Name (e.g. \"Service Team\"), pick at least one Member (e.g. \"Ashlee Thomas\"), leave Public off (or turn it on for a public group), and Create. Include a public group and a personal group; and reach a state with no groups."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154682,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Tag groups tab.",
+   "An active location is selected."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell and select the Tag groups tab.",
+   "the location name shown next to the bell; change it with your initials at the top right -> Change Location"
+  ],
+  "note": ""
+ },
+ {
+  "id": 154683,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Tag groups tab.",
+   "An active location is selected."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell and select the Tag groups tab.",
+   "the location name shown next to the bell; change it with your initials at the top right -> Change Location"
+  ],
+  "note": ""
+ },
+ {
+  "id": 154684,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Tag groups tab.",
+   "An active location is selected.",
+   "The New tag group dialog is open (and later the Edit tag group dialog)."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell and select the Tag groups tab.",
+   "the location name shown next to the bell; change it with your initials at the top right -> Change Location",
+   "Open the New tag group dialog (and later the Edit tag group dialog)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154685,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Tag groups tab.",
+   "An active location is selected."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell and select the Tag groups tab.",
+   "the location name shown next to the bell; change it with your initials at the top right -> Change Location"
+  ],
+  "note": ""
+ },
+ {
+  "id": 154686,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Tag groups tab.",
+   "An active location is selected.",
+   "Staff exist at the active location and at another location."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell and select the Tag groups tab.",
+   "the location name shown next to the bell; change it with your initials at the top right -> Change Location"
+  ],
+  "note": ""
+ },
+ {
+  "id": 154687,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Tag groups tab.",
+   "An active location is selected.",
+   "A tag group (for example \"Service Team\" with at least one Member, for example \"Ashlee Thomas\"; Public off, or on for a public group)."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell and select the Tag groups tab.",
+   "the location name shown next to the bell; change it with your initials at the top right -> Change Location",
+   "on the Tag groups tab click New tag group, type a Name (e.g. \"Service Team\"), pick at least one Member (e.g. \"Ashlee Thomas\"), leave Public off (or turn it on for a public group), and Create."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154688,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Tag groups tab.",
+   "An active location is selected.",
+   "A personal group and a public group you can delete."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell and select the Tag groups tab.",
+   "the location name shown next to the bell; change it with your initials at the top right -> Change Location"
+  ],
+  "note": ""
+ },
+ {
+  "id": 154689,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Tag groups tab.",
+   "An active location is selected.",
+   "A public group and your personal group.",
+   "A personal group owned by another user.",
+   "\"Another user at the location\" in the steps is Tech ShopView."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell and select the Tag groups tab.",
+   "the location name shown next to the bell; change it with your initials at the top right -> Change Location",
+   "bell -> Tag groups -> New tag group, Public tag group on / off -> Create",
+   "sign in as Tech ShopView and create one with Public tag group off"
+  ],
+  "note": ""
+ },
+ {
+  "id": 154690,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Tag groups tab.",
+   "An active location is selected.",
+   "You already own a personal group named \"Techs\"; a public group named \"Techs\" exists at the location."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell and select the Tag groups tab.",
+   "the location name shown next to the bell; change it with your initials at the top right -> Change Location"
+  ],
+  "note": ""
+ },
+ {
+  "id": 154691,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Tag groups tab.",
+   "An active location is selected.",
+   "A public group; a personal group owned by another user; sign-in as a non-owner non-admin, and as an admin."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell and select the Tag groups tab.",
+   "the location name shown next to the bell; change it with your initials at the top right -> Change Location",
+   "On a QA branch: the admin is Admin ShopView; the non-admin and \"another user\" is Tech ShopView (Tech quick-login, Technician role). Create the public group as Admin ShopView and the personal group as Tech ShopView."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154692,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Tag groups tab.",
+   "An active location is selected.",
+   "A second user at the same location."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell and select the Tag groups tab.",
+   "the location name shown next to the bell; change it with your initials at the top right -> Change Location",
+   "on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\")."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154693,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Tag groups tab.",
+   "An active location is selected.",
+   "A public group (that you will switch to personal).",
+   "An admin renaming another user's public group.",
+   "A group whose only member has left the location."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell and select the Tag groups tab.",
+   "the location name shown next to the bell; change it with your initials at the top right -> Change Location",
+   "Tech ShopView creates a public group; Admin ShopView renames it",
+   "make a group whose only member is a spare staff member, then remove that person from this location in Settings -> Staff -> edit icon -> Location -> Save & Close"
+  ],
+  "note": ""
+ },
+ {
+  "id": 154698,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "The Notifications page is open on the Preferences tab."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "Open the Notifications page from the bell in the top navigation and select the Preferences tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154699,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user.",
+   "A second user who can sign in and has access to a work order; you will tag them on a note.",
+   "Reading their email needs a mailbox you can open for that user."
+  ],
+  "setup": [
+   "on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"",
+   "The Notifications page opens from the bell icon at the top right, next to your location name.",
+   "on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\")",
+   "the QA quick-login addresses cannot be opened by a tester, so the email half cannot be done by hand on a QA branch (left to automation) - do the inbox and bell half."
+  ],
+  "note": "The QA-branch caveat (quick-login mailboxes cannot be opened, so only the inbox and bell half is done by hand) moved to setup word for word."
+ },
+ {
+  "id": 154704,
+  "change": true,
+  "preconditions": [
+   "Sign in as an Owner/Admin user (the standard Admin role). This is User A.",
+   "User B: a teammate at the same location who can sign in, with the role \"ZZAUTOTEST Part sales only\" (built from the \"Service Advisor\" template; Work orders - View unticked, Part sales - View ticked).",
+   "A work order at this location (customer for example \"4 Star Truck Repair\").",
+   "A part sale at this location.",
+   "User C: a second teammate, with the role \"ZZAUTOTEST Work orders only\" (built from the \"Service Advisor\" template; Work orders - View ticked, Part sales - View unticked).",
+   "For tagging or group membership only, any staff member (for example \"Ashlee Thomas\") can be User C."
+  ],
+  "setup": [
+   "on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\"). They are listed under Settings -> Staff.",
+   "top menu Work Orders -> Create Work Order, select a customer (e.g. \"4 Star Truck Repair\"), save.",
+   "top menu Parts -> Part Sales -> New Part Sale, pick the Customer and click Save.",
+   "Create the test role: Settings (click your initials at the top right -> Settings) -> Roles & Permissions -> Create Custom Role -> in Choose a template pick \"Service Advisor\" -> Apply; untick Work orders -> View and leave Part sales -> View ticked; enter the Role name \"ZZAUTOTEST Part sales only\" and click Create. Assign it: Settings -> Staff -> on User B's row click the edit icon -> in Edit Staff Member set Role to \"ZZAUTOTEST Part sales only\" -> Save & Close. User B must log out and back in before testing (a role change ends their session).",
+   "On a QA branch only two users can sign in (Admin and Tech): when a step says \"Sign in as User C\", first give Tech ShopView User C's role (Settings -> Staff -> on Tech ShopView's row click the edit icon -> Role -> Save & Close; Tech signs out and back in) and run that step as Tech ShopView. For tagging or group membership only, any staff member (e.g. \"Ashlee Thomas\") can be User C. Create the test role: Settings (click your initials at the top right -> Settings) -> Roles & Permissions -> Create Custom Role -> in Choose a template pick \"Service Advisor\" -> Apply; leave Work orders -> View ticked and untick Part sales -> View; enter the Role name \"ZZAUTOTEST Work orders only\" and click Create. Assign it: Settings -> Staff -> on User C's row click the edit icon -> in Edit Staff Member set Role to \"ZZAUTOTEST Work orders only\" -> Save & Close. User C must log out and back in before testing (a role change ends their session)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154705,
+  "change": true,
+  "preconditions": [
+   "Sign in as an Owner/Admin user (the standard Admin role). This is User A.",
+   "A work order at this location (customer for example \"4 Star Truck Repair\").",
+   "A part sale at this location.",
+   "User A has written one note on each: the work order, the part sale and the customer.",
+   "User B: a teammate at the same location who can sign in, with the role \"ZZAUTOTEST WO delete\" (built from the \"Service Advisor\" template; Work orders - Delete ticked, Part sales - Delete and Customers - Delete unticked).",
+   "User C: a second teammate, with the role \"ZZAUTOTEST PS and customer delete\" (built from the \"Service Advisor\" template; Part sales - Delete and Customers - Delete ticked, Work orders - Delete unticked).",
+   "For tagging or group membership only, any staff member (for example \"Ashlee Thomas\") can be User C.",
+   "User D: a teammate with neither role and none of those Delete permissions.",
+   "For the last step: a work order note written by the customer in the Customer Portal, and a system note (one the app wrote itself). If the work order has neither, mark step 5 Blocked and write why."
+  ],
+  "setup": [
+   "top menu Work Orders -> Create Work Order, select a customer (e.g. \"4 Star Truck Repair\"), save.",
+   "top menu Parts -> Part Sales -> New Part Sale, pick the Customer and click Save.",
+   "top menu Customers -> open the customer (e.g. \"4 Star Truck Repair\") -> Notes tab.",
+   "on its Notes tab click New Note, type the message, type @ and pick the person from the list, then click Save.",
+   "As User A, write one note on each: the work order, the part sale and the customer.",
+   "on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\"). They are listed under Settings -> Staff. Create the test role: Settings (click your initials at the top right -> Settings) -> Roles & Permissions -> Create Custom Role -> in Choose a template pick \"Service Advisor\" -> Apply; tick Work orders -> Delete, and untick Part sales -> Delete and Customers -> Delete; enter the Role name \"ZZAUTOTEST WO delete\" and click Create. Assign it: Settings -> Staff -> on User B's row click the edit icon -> in Edit Staff Member set Role to \"ZZAUTOTEST WO delete\" -> Save & Close. User B must log out and back in before testing (a role change ends their session).",
+   "On a QA branch only two users can sign in (Admin and Tech): when a step says \"Sign in as User C\", first give Tech ShopView User C's role (Settings -> Staff -> on Tech ShopView's row click the edit icon -> Role -> Save & Close; Tech signs out and back in) and run that step as Tech ShopView. For tagging or group membership only, any staff member (e.g. \"Ashlee Thomas\") can be User C. Create the test role: Settings (click your initials at the top right -> Settings) -> Roles & Permissions -> Create Custom Role -> in Choose a template pick \"Service Advisor\" -> Apply; tick Part sales -> Delete and Customers -> Delete, and untick Work orders -> Delete; enter the Role name \"ZZAUTOTEST PS and customer delete\" and click Create. Assign it: Settings -> Staff -> on User C's row click the edit icon -> in Edit Staff Member set Role to \"ZZAUTOTEST PS and customer delete\" -> Save & Close. User C must log out and back in before testing (a role change ends their session).",
+   "on a QA branch, Tech ShopView with its standard Technician role (set its Role back to \"Technician\" before that step; check under Settings -> Roles & Permissions that the Technician role has no Delete under Work orders, Part sales or Customers)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154706,
+  "change": true,
+  "preconditions": [
+   "Sign in as an Owner/Admin user (the standard Admin role). This is User A.",
+   "User B: a teammate who is not an admin.",
+   "User B owns a public tag group \"ZZ Public team\" (with a member), a personal tag group \"ZZ Personal team\" (Public off), and a quick note \"ZZ Note\".",
+   "User C: a second non-admin teammate."
+  ],
+  "setup": [
+   "on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\"). As User B: open the Notifications page from the bell -> Tag groups tab -> New tag group: Name \"ZZ Public team\", pick a member, turn Public tag group on, Create. Again: Name \"ZZ Personal team\", Public off, Create. Then Quick notes tab -> New quick note: Name \"ZZ Note\", any message, save.",
+   "on a QA branch, after User B's steps give Tech ShopView the \"Service Advisor\" role (Settings -> Staff -> edit icon -> Role -> Save & Close) and use it as User C."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154707,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 154708,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 154709,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 154710,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a service writer on the build under test, with a work order open.",
+   "The previously seeded line: a work order line (Title for example \"Replace tie rod\", Description for example \"excessive play\", Tech Story for example \"Both outer ends worn, replaced and aligned\"); its saved title, description and tech story are recorded."
+  ],
+  "setup": [
+   "on the work order click New Line, type a Title (e.g. \"Replace tie rod\"), a Description (e.g. \"excessive play\") and a Tech Story (e.g. \"Both outer ends worn, replaced and aligned\"), and Save & Close. Record its saved title, description and tech story."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154711,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a service writer on the build under test, with a work order open.",
+   "The AI ShopCoach line builder is open (from the line dialog)."
+  ],
+  "setup": [
+   "Open the AI ShopCoach line builder from the line dialog."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154712,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a service writer on the build under test, with a work order open.",
+   "The AI ShopCoach line builder is open."
+  ],
+  "setup": [
+   "Open the AI ShopCoach line builder."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154713,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a service writer on the build under test, with a work order open.",
+   "A work order line (Title for example \"Replace tie rod\", Description for example \"excessive play\", Tech Story for example \"Both outer ends worn, replaced and aligned\").",
+   "Complete and invoice the work order so a Customer Invoice exists (e.g. work order S2-17578)."
+  ],
+  "setup": [
+   "on the work order click New Line, type a Title (e.g. \"Replace tie rod\"), a Description (e.g. \"excessive play\") and a Tech Story (e.g. \"Both outer ends worn, replaced and aligned\"), and Save & Close."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154714,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": "The 'Seed ...' item only lists the records that must exist (no click path or recipe), so nothing to move."
+ },
+ {
+  "id": 154715,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a service writer on the build under test, with a work order open.",
+   "A work order line (Title for example \"Replace tie rod\", Description for example \"excessive play\", Tech Story for example \"Both outer ends worn, replaced and aligned\").",
+   "Complete and invoice the work order so a Customer Invoice exists (e.g. work order S2-17578).",
+   "The shop has an active QuickBooks Online connection so the invoice also syncs."
+  ],
+  "setup": [
+   "on the work order click New Line, type a Title (e.g. \"Replace tie rod\"), a Description (e.g. \"excessive play\") and a Tech Story (e.g. \"Both outer ends worn, replaced and aligned\"), and Save & Close."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154716,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a service writer on the build under test, with a work order open.",
+   "Require Tech Story is turned OFF (Work Order Settings).",
+   "Seed and invoice two lines: (a) title + description, tech story left empty; (b) a line whose tech story is the literal text \"Tech story missing.\" that the dialog writes when nothing was typed."
+  ],
+  "setup": [
+   "In Administration -> Work Order Settings, turn Require Tech Story OFF."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154717,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": "The 'Seed ...' item only lists the records that must exist (no click path or recipe), so nothing to move."
+ },
+ {
+  "id": 154718,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": "The item lists the exact values the line holds (no click path or recipe), so nothing to move."
+ },
+ {
+  "id": 154719,
+  "change": true,
+  "preconditions": [
+   "Sign in as a user who cannot see financial data, on the build under test.",
+   "A work order line (Title for example \"Replace tie rod\", Description for example \"excessive play\", Tech Story for example \"Both outer ends worn, replaced and aligned\"), created by a finance user beforehand and then invoiced."
+  ],
+  "setup": [
+   "on the work order click New Line, type a Title (e.g. \"Replace tie rod\"), a Description (e.g. \"excessive play\") and a Tech Story (e.g. \"Both outer ends worn, replaced and aligned\"), and Save & Close. (as a finance user beforehand), then invoice it."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154720,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 154721,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 154722,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": "The 'Seed ...' item only lists the records that must exist (no click path or recipe), so nothing to move."
+ },
+ {
+  "id": 154723,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an admin, on the build under test.",
+   "The Invoices page under Administration (the historical invoice import) is open."
+  ],
+  "setup": [
+   "Open Administration -> Invoices (the historical invoice import)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154724,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an admin, on the build under test, on the Invoices page under Administration.",
+   "Prepare three import files with otherwise valid rows: (a) both columns under the NEW names; (b) both under the OLD names (\"*Line Title - What are you doing\" / \"Line Description - Why are you doing it\"); (c) one column old, the other new."
+  ],
+  "setup": [
+   "Administration -> Invoices"
+  ],
+  "note": ""
+ },
+ {
+  "id": 154725,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an admin, on the build under test, on the Invoices page under Administration."
+  ],
+  "setup": [
+   "Administration -> Invoices"
+  ],
+  "note": ""
+ },
+ {
+  "id": 154726,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Categories page is open.",
+   "Categories whose names mix case and numbers (for example \"Tier 2\", \"Tier 9\", \"Tier 10\", \"alpha\", \"Beta\").",
+   "The Default category already exists (for example \"Uncategorized\").",
+   "The list is longer than one screen."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Categories.",
+   "click New Category and create names that mix case and numbers (e.g. \"Tier 2\", \"Tier 9\", \"Tier 10\", \"alpha\", \"Beta\").",
+   "Add enough categories that the list is longer than one screen."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154727,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Categories page is open.",
+   "Categories whose names mix case and numbers (for example \"Tier 2\", \"Tier 9\", \"Tier 10\", \"alpha\", \"Beta\").",
+   "The Default category already exists (for example \"Uncategorized\")."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Categories.",
+   "click New Category and create names that mix case and numbers (e.g. \"Tier 2\", \"Tier 9\", \"Tier 10\", \"alpha\", \"Beta\")."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154728,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Categories page is open.",
+   "The shop is connected to QuickBooks (so the QuickBooks Products And Services column is shown).",
+   "Categories whose names mix case and numbers (for example \"Tier 2\", \"Tier 9\", \"Tier 10\", \"alpha\", \"Beta\").",
+   "The Default category already exists (for example \"Uncategorized\")."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Categories.",
+   "click New Category and create names that mix case and numbers (e.g. \"Tier 2\", \"Tier 9\", \"Tier 10\", \"alpha\", \"Beta\")."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154729,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Categories page is open.",
+   "The shop is connected to QuickBooks (so the QuickBooks Products And Services column is shown).",
+   "Categories whose names mix case and numbers (for example \"Tier 2\", \"Tier 9\", \"Tier 10\", \"alpha\", \"Beta\").",
+   "The Default category already exists (for example \"Uncategorized\")."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Categories.",
+   "click New Category and create names that mix case and numbers (e.g. \"Tier 2\", \"Tier 9\", \"Tier 10\", \"alpha\", \"Beta\")."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154730,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Categories page is open.",
+   "Categories whose names mix case and numbers (for example \"Tier 2\", \"Tier 9\", \"Tier 10\", \"alpha\", \"Beta\").",
+   "The Default category already exists (for example \"Uncategorized\")."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Categories.",
+   "click New Category and create names that mix case and numbers (e.g. \"Tier 2\", \"Tier 9\", \"Tier 10\", \"alpha\", \"Beta\")."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154731,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Categories page is open.",
+   "Categories whose names mix case and numbers (for example \"Tier 2\", \"Tier 9\", \"Tier 10\", \"alpha\", \"Beta\").",
+   "The Default category already exists (for example \"Uncategorized\")."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Categories.",
+   "click New Category and create names that mix case and numbers (e.g. \"Tier 2\", \"Tier 9\", \"Tier 10\", \"alpha\", \"Beta\")."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154732,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Categories page is open.",
+   "The shop is connected to QuickBooks (so the QuickBooks Products And Services column is shown).",
+   "Have at least one category never mapped to QuickBooks, and at least one whose mapping is genuinely named \"Parts\"."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Categories."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154733,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Categories page is open.",
+   "The shop is connected to QuickBooks (so the QuickBooks Products And Services column is shown).",
+   "Categories whose names mix case and numbers (for example \"Tier 2\", \"Tier 9\", \"Tier 10\", \"alpha\", \"Beta\").",
+   "The Default category already exists (for example \"Uncategorized\").",
+   "The Default category (for example \"Uncategorized\") carries a Default badge."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Categories.",
+   "click New Category and create names that mix case and numbers (e.g. \"Tier 2\", \"Tier 9\", \"Tier 10\", \"alpha\", \"Beta\")."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154734,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 154735,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 154736,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Pricing Matrices tab is open.",
+   "Several pricing matrices with names that mix case and numbers (for example \"COC matrix\", \"HD-Dynamic 55\", \"70% override\")."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Pricing -> Pricing Matrices tab.",
+   "Seed several pricing matrices with names that mix case and numbers via New Price Matrix"
+  ],
+  "note": ""
+ },
+ {
+  "id": 154737,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Pricing Matrices tab is open.",
+   "Seed matrices whose names mix case and numbers (e.g. \"matrix 9\", \"Matrix 10\")."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Pricing -> Pricing Matrices tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154738,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Pricing Matrices tab is open."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Pricing -> Pricing Matrices tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154739,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Pricing Matrices tab is open."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Pricing -> Pricing Matrices tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154740,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Pricing Matrices tab is open.",
+   "The tab has a default pricing matrix (carrying a Default badge, e.g. \"Default matrix 07/12/2023\")."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Pricing -> Pricing Matrices tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154741,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 154742,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Fixed Rules tab is open.",
+   "The tab lists fixed rules with a range of part numbers, categories and fixed prices (e.g. org \"Automotive - 4700\")."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Pricing -> Fixed Rules tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154743,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Fixed Rules tab is open.",
+   "The tab lists parts whose numbers mix letters, case and numbers (e.g. \"BRK-9\", \"BRK-10\", \"BRK-100\")."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Pricing -> Fixed Rules tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154744,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Fixed Rules tab is open.",
+   "The tab lists rules across several categories whose names mix case and numbers."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Pricing -> Fixed Rules tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154745,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Fixed Rules tab is open.",
+   "The tab lists rules with a range of fixed prices (e.g. $1.40, $3.99, $14.48, $16.73)."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Pricing -> Fixed Rules tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154746,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Fixed Rules tab is open."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Pricing -> Fixed Rules tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154747,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Fixed Rules tab is open.",
+   "Use the largest organisation so the list is long (production peaks near 8,994 rules)."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Pricing -> Fixed Rules tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154748,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Fixed Rules tab is open."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Pricing -> Fixed Rules tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154749,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Fixed Rules tab is open."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Pricing -> Fixed Rules tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154750,
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user who holds the \"Settings - Parts\" permission, on the build under test.",
+   "The Fixed Rules tab is open.",
+   "Use the largest organisation so loading takes a few seconds."
+  ],
+  "setup": [
+   "Open Settings -> Parts -> Pricing -> Fixed Rules tab."
+  ],
+  "note": ""
+ },
+ {
+  "id": 154751,
+  "change": false,
+  "preconditions": [],
+  "setup": [],
+  "note": ""
+ },
+ {
+  "id": 236959,
+  "change": true,
+  "preconditions": [
+   "You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create & Edit and Invoicing & payments - Create & Edit).",
+   "A test customer exists.",
+   "A test vendor exists to order parts from.",
+   "The seeded part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way), with the part \"Brake Pads\" (Quantity 1; Vendor = the test vendor; Sell Price $100.00).",
+   "The sale's tax rate is set to an 8.25% rate (for example \"ZZAUTOTEST 8.25%\").",
+   "The sale's own Total on the Finance tab is $108.25 ($100.00 + $8.25 tax).",
+   "For comparison, a work order for the same customer with a taxable $100.00 part (Sell Price $100.00, tax 8.25%)."
+  ],
+  "setup": [
+   "If not: top menu Customers -> New Customer, enter a Name (e.g. \"4 Star Truck Repair\") and click Save.",
+   "If not: top menu Parts -> Vendors (left sidebar) -> New Vendor, enter a Name (e.g. \"ZZAUTOTEST Parts Supply\"), pick a value in Taxes (required, e.g. \"GST\"), then click Save & Close.",
+   "Start a new part sale today (a sale started before this release handles cores the old way): top menu Parts -> Part Sales -> New Part Sale; in the New part sale dialog pick the Customer and click Save. The sale opens with the status Estimate.",
+   "On the Parts tab click Add Part (on a sale with no parts the Add Part dialog opens by itself). In the Add Part dialog enter Description \"Brake Pads\", Quantity 1 (required), Vendor = the test vendor and Sell Price $100.00, then click Save & Close.",
+   "Set the tax: on the Financial Info card click the edit icon (tooltip \"Edit tax rate\"), pick an 8.25% rate in the Taxes list and click Save (if none exists, first add \"ZZAUTOTEST 8.25%\" at 8.25%: click your initials at the top right -> Settings -> Taxes -> New Tax).",
+   "Check the sale's own Total on the Finance tab: $108.25 ($100.00 + $8.25 tax).",
+   "top menu Work Orders -> Create Work Order, select the customer, add a line with a part at Sell Price $100.00, tax 8.25%."
+  ],
+  "note": ""
+ },
+ {
+  "id": 236967,
+  "change": true,
+  "preconditions": [
+   "Sign in as an Owner/Admin user (the standard Admin role). This is User A.",
+   "User B: a teammate at the same location to tag, who can sign in.",
+   "Two locations User A and User B can both switch between, Location 1 and Location 2.",
+   "A work order at Location 2.",
+   "The customer (for example \"4 Star Truck Repair\"), whose own notes are on its Notes tab.",
+   "User B is kept signed in on a second browser, at Location 1."
+  ],
+  "setup": [
+   "on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\"). They are listed under Settings -> Staff.",
+   "with your initials at the top right -> Change Location",
+   "switch to Location 2 with your initials at the top right -> Change Location, then top menu Work Orders -> Create Work Order",
+   "top menu Customers -> open the customer (e.g. \"4 Star Truck Repair\") -> Notes tab.",
+   "on its Notes tab click New Note, type the message, type @ and pick the person from the list, then click Save.",
+   "Keep User B signed in on a second browser, at Location 1."
+  ],
+  "note": ""
+ },
+ {
+  "id": 236970,
+  "change": true,
+  "preconditions": [
+   "Sign in as an Owner/Admin user (the standard Admin role). This is User A.",
+   "User B: a teammate at the same location to tag, who can sign in.",
+   "A work order at this location (customer for example \"4 Star Truck Repair\").",
+   "A tag group you own (for example \"ZZ Pair\").",
+   "A note on the work order: \"Please check this @Tech ShopView and @ZZ Pair today\" (tagging User B and the group)."
+  ],
+  "setup": [
+   "on a QA branch the second user is the Tech quick-login user (sign in from a private browser window with the Tech button; appears as \"Tech ShopView\"). They are listed under Settings -> Staff.",
+   "top menu Work Orders -> Create Work Order, select a customer (e.g. \"4 Star Truck Repair\"), save.",
+   "on its Notes tab click New Note, type the message, type @ and pick the person from the list, then click Save.",
+   "bell -> Tag groups tab -> New tag group",
+   "Write a note on the work order: \"Please check this @Tech ShopView and @ZZ Pair today\" (tagging User B and the group)."
+  ],
+  "note": ""
+ },
+ {
+  "id": 236974,
+  "change": true,
+  "preconditions": [
+   "Sign in as an Owner/Admin user (the standard Admin role). This is User A.",
+   "A part sale at this location, for a customer that has a Customer Portal login for one of its contacts.",
+   "The Customer Portal login for that customer contact (ask the account admin for it if you do not have it).",
+   "For comparison, a service work order for the same customer."
+  ],
+  "setup": [
+   "top menu Parts -> Part Sales -> New Part Sale, pick the Customer and click Save."
+  ],
+  "note": ""
+ }
+]
