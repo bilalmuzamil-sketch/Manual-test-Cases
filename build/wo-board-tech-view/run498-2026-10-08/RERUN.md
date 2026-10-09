@@ -80,3 +80,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | kbd-fix4 (WOB_LIVE=1) | C368151, C368152, C97020 — group arrow button by Tab plus Space/Left/Right on the row; reassign list walked with arrows to the right Ben Bravo (by staff record); view-only user re-checked on a real view-only role |
 | rename-probe | not a check — does the List's Lead Technician column keep a stale name after a staff rename? |
 | sort-fix5 | C368196 — the window after a technician's Start is answered and each work order's clocked-in count read back before Clocked In is sorted (On Site passed in sort-fix4) |
+| deleted-search3 | C368191 — the 'technician no longer exists' flag sits on the lines' tasks; keep only tasks that also name a technician |
