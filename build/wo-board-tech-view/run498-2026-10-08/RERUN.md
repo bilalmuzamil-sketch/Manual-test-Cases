@@ -75,3 +75,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | orgb-fix (again) | REGISTER, C368175, C154650 — a comment had swallowed the register page line ('pg is not defined') |
 | s9-fix6 | C97003, C97012 — readings kept as taken, scroll back before step 8, one retry for a slow page |
 | c368149-two (WOB_LIVE=1) | C368149 — two REAL sessions (second quick-login in its own browser); the switch-user version was signed out by live updates and hung |
+| imp-fix2 | C368238, C368239 — the list narrowed to the case number with its own Search; C368239 run twice to confirm a red message on exit |
