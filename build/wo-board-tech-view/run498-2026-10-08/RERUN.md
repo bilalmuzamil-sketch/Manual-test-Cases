@@ -72,3 +72,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | sort-fix4 | C368196 — a comment had swallowed a declaration |
 | deleted-search2 | C368191 — wider read-only hunt (3,000 work orders, labor entries only) |
 | medium-fix2 | C368220–C368237, C368247 — filter chips matched whole-word inside the page (hidden text 'personVendor'; 'Customer' had hit the top menu), options recorded, imported number clicked |
+| orgb-fix (again) | REGISTER, C368175, C154650 — a comment had swallowed the register page line ('pg is not defined') |

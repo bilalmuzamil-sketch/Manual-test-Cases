@@ -105,7 +105,8 @@ await run('C368247', async () => {
   await p.locator('[aria-label="List"]').first().click(); await p.waitForTimeout(2000);
   await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Imported/ }).first().click(); await p.waitForTimeout(2500); await p.keyboard.press('Escape'); await p.waitForTimeout(1500);
   const o: any = { rows: await p.evaluate(`[...document.querySelectorAll('tbody tr')].length`) };
-  await p.getByText(inv, { exact: true }).first().click({ timeout: 15000 }).catch(async () => { await p.getByText(/^ZZIMP-1001$/).first().click(); });   // FIX 2: click the imported number itself await p.waitForTimeout(5000); o.url = p.url().replace(APP, '');
+  await p.getByText(inv, { exact: true }).first().click({ timeout: 15000 }).catch(async () => { await p.getByText(/^ZZIMP-1001$/).first().click(); });   // FIX 2: click the imported number itself
+    await p.waitForTimeout(5000); o.url = p.url().replace(APP, '');
   o.page = (await p.locator('main, .q-page').first().innerText()).replace(/\s+/g, ' ').slice(0, 600); o.leadControl = await p.locator('[data-test-id="select_lead_technician"]').count(); o.leadText = /Lead Technician/i.test(o.page);
   await shot(p, 'C368247'); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); o.afterReloadLead = /Lead Technician/i.test(await p.locator('main, .q-page').first().innerText());
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(3000); await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); await p.locator('.q-menu').getByText('Clear selection').first().click(); await p.keyboard.press('Escape');

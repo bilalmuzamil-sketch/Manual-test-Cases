@@ -177,7 +177,8 @@ const lineName = (i: number) => String(canned[i % canned.length].canned_line_nam
 
 
 const orgName = `ZZAUTOTEST F3 Scope OrgB ${RUNNO}`; const orgEmail = `zz.wob.orgb.${RUNNO}@staging.shopview.local`;
-await run('REGISTER', async () => { const o: any = {}; const st = await p.context().storageState(); const ctx = await browser.newContext({ storageState: st, viewport: { width: 1600, height: 1000 }, ignoreHTTPSErrors: true });   // FIX 2026-10-09: /register is now a signed-in page (route meta public:false); a bare SSO-only session lands on Login const pg = await ctx.newPage(); o.cookieNames = st.cookies.filter((c: any) => /sso/i.test(c.name)).map((c: any) => c.name);
+await run('REGISTER', async () => { const o: any = {}; const st = await p.context().storageState(); const ctx = await browser.newContext({ storageState: st, viewport: { width: 1600, height: 1000 }, ignoreHTTPSErrors: true });   // FIX 2026-10-09: /register is now a signed-in page (route meta public:false); a bare SSO-only session lands on Login
+  const pg = await ctx.newPage(); o.cookieNames = st.cookies.filter((c: any) => /sso/i.test(c.name)).map((c: any) => c.name);
   try { await pg.goto(APP + '/register', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); o.url = pg.url().replace(APP, ''); o.labels = await pg.evaluate(`[...document.querySelectorAll('.q-field__label, label')].map(e => e.innerText.trim()).filter(Boolean)`);
     const fill = async (re: RegExp, v: string) => { const f = pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: re }) }).first(); if (await f.count()) { await f.locator('input').first().fill(v); return 'ok'; } return 'no field'; };
     o.fill = [await fill(/email/i, orgEmail), await fill(/first/i, 'ZZAUTOTEST'), await fill(/last/i, 'OrgB Tech'), await fill(/company/i, orgName), await fill(/start|number/i, String(5000 + Number(RUNNO) % 4000))];
