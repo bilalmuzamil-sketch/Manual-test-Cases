@@ -5913,3 +5913,10 @@ three wrong characterisations before it was found — see learning **L0233**.
   row cannot be edited. Schedule rows load as the calendar scrolls.
 - **`/register` on a QA branch needs the branch's SSO cookie but NO app sign-in:** a bare new browser context is sent to
   Google sign-in. Create the context with `storageState: { cookies: <only the sv_sso cookie>, origins: [] }`.
+- **Staff routes, read from the app's own code (sv10043, 2026-10-09):** enrol a person at a location in a department —
+  `POST /api/staff/enrollment/create {staffId, workplaceId, departmentId}` (camelCase; remove with
+  `/api/staff/enrollment/remove`); delete a staff member — `DELETE /api/staff/{id}` (the staff row carries `deletable`);
+  deactivate — `POST /api/iam/change-status`; edit — `POST /api/staff/{id}/change`; view — `GET /api/staff/{id}/view`.
+  Schedule rows are drawn only for technicians in the **Service** department, so enrol a technician there before a
+  Schedule check. `/settings/staff` opened directly renders blank for the switched-in test admin — reach Staff via
+  initials > Settings > Staff.

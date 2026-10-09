@@ -1,0 +1,32 @@
+{
+ "runner": "059edc87",
+ "techs": {
+  "ana": true,
+  "ben": true,
+  "cal": true,
+  "dan": true
+ },
+ "SCAN": {
+  "scanned": 200,
+  "hits": []
+ },
+ "DELETE": {
+  "rowKeys": "id,email,first_name,last_name,created_on,confirmed_invitation_on,avatar_url,is_active,role_label,staff_id,job_title,salary_type,salary,billable,clockable,is_sales_rep,is_default,departments,defaultWorkplace,defaultWorkplaceName,salary_type_label,workplace_id,deletable,role_id",
+  "deletable": true,
+  "row": 0,
+  "rowButtons": [],
+  "editUrl": "/settings/staff",
+  "editButtons": [
+   "ShopHub expand_more",
+   "search Search customers, work orders, parts... Ctrl K",
+   "Staging Heavy Duty - 9919 ZR"
+  ],
+  "apiTries": {
+   "DELETE /api/iam/<id>": "no del",
+   "POST /api/iam/delete": 404,
+   "DELETE /api/staff/<id>": "no del",
+   "POST /api/staff/<id>/delete": 404
+  },
+  "after": 1
+ }
+}

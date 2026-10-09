@@ -177,6 +177,10 @@ async function editLine(lineName: string, remove: string | null, add: string | n
 const lineName = (i: number) => String(canned[i % canned.length].canned_line_name ?? canned[i % canned.length].name ?? '').trim();
 
 
+// Schedule rows are drawn for technicians in the Service department (case preconditions): enrol Esther and Jenny there,
+// with the app's own route (StaffDialog > EnrollmentsDialog: POST /api/staff/enrollment/create {staffId, workplaceId, departmentId})
+{ const deps = (await a.get('/api/departments')).body?.data; const dl = Array.isArray(deps) ? deps : deps?.collection ?? []; const svc = dl.find((d: any) => /^Service$/i.test(d.name));
+  R.enrol = { service: !!svc }; if (svc) for (const [k, t2] of [['Esther', ES], ['Jenny', JW], ['Ralph', RE], ['Dana', DO]] as const) R.enrol[k] = say(await a.post('/api/staff/enrollment/create', { staffId: t2.staff_id, workplaceId: HEAVY, departmentId: svc.id })); }
 // ---- fixed helpers (probe-lines.json, 2026-10-09): the Lead / technician lists are VIRTUAL — scroll them to reach a name;
 // the roster's remove button is button_line_roster_remove_<staffId>; a typed description is kept with Enter once the
 // list reads "No results"; the line menu opens from line_number_<id> and holds "Edit labor".
