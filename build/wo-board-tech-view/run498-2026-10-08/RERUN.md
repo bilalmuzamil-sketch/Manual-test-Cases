@@ -57,3 +57,5 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | s11-fix3 | C97032 step 6 (dialog opened from any visible card, as the case says), C368157 (the whole board read — ~190 technicians now — and Cal's neighbours compared) |
 | editwo-batch (2) | C368170 (lead locked on an Invoiced work order recorded, then mileage / engine hours / PO), C368171 (Audit Log window closed properly) |
 | parts-filter2 | C368218, C368219, C368223 — the search-only reload repeated twice with the address recorded before the reload; pages given up to 30 s to load |
+| high1-fix3 | C368172–C368174, C368177–C368179, C368188–C368192 — confirm "Remove technician?", untick in the same list, forced clock clicks, whole-lane shift read, the left card's own Assets tab |
+| deleted-search | C368191 — read-only hunt for an existing line whose labor technician no longer exists ("Deleted user"); the app refuses to delete staff with labor |
