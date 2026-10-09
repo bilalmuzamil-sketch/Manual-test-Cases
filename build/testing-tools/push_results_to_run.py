@@ -76,6 +76,7 @@ so on 2026-09-07 for R417. --allow-non-passed makes you state that you have it.
 """
 import argparse
 import json
+import re
 import sys
 
 sys.path.insert(0, 'build/testing-tools')
@@ -229,9 +230,16 @@ def main():
     payload = []
     for cid, r in sorted(res.items()):
         todo = r.get('todo') or todos.get(cid)
-        payload.append({'case_id': int(cid[1:]),
-                        'status_id': STATUS[r['verdict']],
-                        'comment': comment_for(r, todo, header, a.footer, a.lead)})
+        item = {'case_id': int(cid[1:]),
+                'status_id': STATUS[r['verdict']],
+                'comment': comment_for(r, todo, header, a.footer, a.lead)}
+        # QA lead 2026-10-09: "The failed test run links should have the related tickets." The ticket
+        # goes into TestRail's own Defects field (shown and linked on the test), not only the comment.
+        # Taken from an explicit "defects" list, else from every .../browse/<KEY> link in the ticket text.
+        keys = r.get('defects') or re.findall(r'browse/([A-Z][A-Z0-9]+-\d+)', r.get('ticket') or '')
+        if keys:
+            item['defects'] = ','.join(dict.fromkeys(keys))
+        payload.append(item)
     assert not any('<br' in p['comment'] for p in payload), 'never emit <br> in an API write'
 
     counts = {}

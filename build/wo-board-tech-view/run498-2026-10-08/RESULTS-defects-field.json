@@ -1,0 +1,34 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96923": {
+   "verdict": "Failed",
+   "observed": "After a location change, Assigned to me stays on, in List, Tech View and Board View (Staging Heavy Duty - 9919 to Staging Lethbridge - 4310 and back). The source says 'Assigned to me resets on location change, as it does today' (PRD S1-E3). The live product also keeps it on, but the QA lead ruled on 9 Oct 2026 that behaviour against the specification is a defect, so a defect report is prepared against the owning story.",
+   "not_observed": null,
+   "ticket": "SV-11098 https://shopview.atlassian.net/browse/SV-11098 (Story Defect, Open, created 9 Oct 2026 under SV-10044)",
+   "todo": "Follow SV-11098; re-test this case when it is fixed."
+  },
+  "C96938": {
+   "verdict": "Failed",
+   "observed": "Unchanged from 8 Oct: in Tech View, hovering a technician's round avatar in a group header shows no name. This is already reported by Ahtasham Amjad on 8 Oct 2026 as SV-11075 'Tech View \u2013 technician avatar in group header has no name tooltip' (Open, under story SV-10045), so no second report is prepared.",
+   "not_observed": null,
+   "ticket": "SV-11075 https://shopview.atlassian.net/browse/SV-11075 (Open, raised by Ahtasham Amjad 8 Oct 2026)",
+   "todo": "Nothing new to raise: follow SV-11075; re-test this case when SV-11075 is fixed.",
+   "defects": [
+    "SV-11075"
+   ]
+  },
+  "C96929": {
+   "verdict": "Passed",
+   "observed": "Passed on the QA lead's own re-check, 9 Oct 2026: he marked SV-11101 Obsolete because the order now works as expected (a technician's work orders start in the List's default order in Tech View and Board View). Not re-observed by me in this session: the QA branch sign-in had expired.",
+   "not_observed": null,
+   "ticket": "SV-11101 https://shopview.atlassian.net/browse/SV-11101 (Obsolete \u2014 now working as expected, QA lead 9 Oct 2026)",
+   "todo": "Nothing to do."
+  }
+ }
+}
