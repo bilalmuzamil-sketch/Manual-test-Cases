@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C97010": {
+   "verdict": "Passed",
+   "observed": "'ZZAUTOTEST F3 Inactive Drop \u2026', Board View. Dan Delta deactivated: his pinned column reads Inactive with count 1. Alpha Co dragged from Ana's column onto Dan's: not accepted \u2014 still in Ana's column, lead Ana Alpha, Dan's count still 1, no lead-change message. Failed save: the network could not be turned off for this browser without the branch's sleep page taking over, so the save was made to fail (the server answered with an error); the card went back to Ana's column and the alert read 'Failed to update lead technician, please try again.', still showing 10 seconds later until dismissed. After a refresh Alpha Co was in Ana's column with Lead Technician Ana Alpha. The app's own offline message was therefore not seen.",
+   "not_observed": "the real network-off route (simulated with a refused save instead)"
+  }
+ }
+}
