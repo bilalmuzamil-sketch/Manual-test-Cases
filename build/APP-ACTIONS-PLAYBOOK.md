@@ -5887,3 +5887,6 @@ three wrong characterisations before it was found — see learning **L0233**.
   (an icon), so "not already ticked" cannot be read from the text.
 - **Production test accounts:** `/tmp/shopview/prod-login.env` is the QA lead's OWN account — use
   `PROD_ENVF=/tmp/shopview/prod-login-second.env` (a Service Advisor test account, locations Truck Hill 1 / Trucks Hill 2 / SANKAN).
+- **Side-menu links carry their icon's name in their text** (Reports: *autorenew Work In Progress*; Parts: the same), so
+  an anchored `^\s*Work In Progress\s*$` never matches. Match `(^|\s)<name>\s*$` and take the LAST match (the side menu
+  sits after the top menu in the page).
