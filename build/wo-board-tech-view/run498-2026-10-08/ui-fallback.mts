@@ -20,13 +20,17 @@ const R: Record<string, any> = {};
 const sends: string[] = []; p.on('request', (q) => { if (q.method() !== 'GET' && /\/api\/(staff|iam|vehicles|customers)/.test(q.url())) sends.push(`${q.method()} ${q.url().replace(/^https:\/\/[^/]+/, '')} ${(q.postData() || '').slice(0, 500)}`); });
 const where = () => p.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`) as Promise<string | null>;
 const PREF = '/api/users/me/preferences/work-orders-list';
-async function run(id: string, f: () => Promise<void>) { try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 300) }; await shot(p, `${id}-error`); }
+const ONLYS = (process.env.ONLY || '').split(',').filter(Boolean);
+async function run(id: string, f: () => Promise<void>) { if (ONLYS.length && !ONLYS.includes(id)) return; try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 300) }; await shot(p, `${id}-error`); }
   R[id] = { ...(R[id] || {}), sent: sends.splice(0).slice(0, 8) }; console.log(t(), id, JSON.stringify(R[id]).slice(0, 3000)); fs.writeFileSync(path.join(EV, 'ui-fallback.json'), JSON.stringify(R, null, 1)); }
 /** pick in a Quasar select inside the open dialog by its label: click, type, choose the first option containing `want` */
 async function pick(label: RegExp, typeText: string, want: RegExp | string) {
   const f = p.locator('.q-dialog:visible .q-field').filter({ hasText: label }).first(); await f.click(); await p.waitForTimeout(800);
   if (typeText) { await p.keyboard.type(typeText, { delay: 30 }); await p.waitForTimeout(1500); }
+  for (let i = 0; i < 4 && typeText && !(await p.locator('.q-menu:visible .q-item').filter({ hasText: want }).count()); i++) await p.waitForTimeout(1500);
   const opts = await p.locator('.q-menu:visible .q-item').allInnerTexts(); const o = p.locator('.q-menu:visible .q-item').filter({ hasText: want }).first();
+  // Year offers no list on this build: it is typed
+  if (!opts.length && typeof want === 'string') { await p.keyboard.press('Escape'); const inp = f.locator('input').first(); await inp.fill(want); await p.keyboard.press('Tab'); return `typed ${want} (now ${await inp.inputValue().catch(() => '?')})`; }
   if (await o.count()) { await o.click(); await p.waitForTimeout(800); return `picked ${(await o.innerText().catch(() => '')).trim() || want}`; }
   await p.keyboard.press('Escape'); return `no option ${want} in [${opts.slice(0, 8).join(' | ')}]`;
 }
@@ -89,7 +93,7 @@ const vehiclesOf = async (companyId: string) => ((await a.get(`/api/customers/vi
 for (const id of ['C96982', 'C96984']) await run(id, async () => {
   const n = `ZZAUTOTEST F2 ${id === 'C96982' ? 'Required Only' : 'Unit Fallback'} UI ${Date.now() % 100000}`;
   const c = await customer(a, n, 'ZZTMP');   // the customer + contact (an asset needs a contact); its API asset is not used
-  const o: any = { m2: await newAsset(c.company_id, '2022', ['Freight', /Freightliner/], ['M2', /^\s*M2/], 'TRK-118'), explorer: await newAsset(c.company_id, '1999', ['Ford', /^\s*Ford\s*$/], ['Explorer', /Explorer/], '') };
+  const o: any = { m2: await newAsset(c.company_id, '2022', ['Freight', /Freightliner/], ['M2', /(^|check\s+)M2\s*$/], 'TRK-118'), explorer: await newAsset(c.company_id, '1999', ['Ford', /(^|check\s+)Ford\s*$/], ['Explorer', /(^|check\s+)Explorer\s*$/], '') };
   const vs = await vehiclesOf(c.company_id); o.vehicles = vs.map((v: any) => `${v.year} ${v.vehicle_make?.name ?? v.vehicle_make ?? ''} ${v.vehicle_model?.name ?? v.vehicle_model ?? ''} unit=${v.unit ?? ''}`);
   const all = (await a.get(`/api/vehicles?pagination[rowsPerPage]=50&search=${encodeURIComponent('TRK-118')}`)).body?.data;
   const m2 = vs.find((v: any) => v.unit === 'TRK-118'), ex = vs.find((v: any) => String(v.year) === '1999');
@@ -101,7 +105,7 @@ for (const id of ['C96982', 'C96984']) await run(id, async () => {
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); await tab(p, 'All'); await display(p, 'Board View'); await search(p, n);
   // C96982: every optional field off; C96984: defaults + line count, total price, progress
   await p.locator('[data-test-id="button_board_fields_selection"]').click(); await p.waitForTimeout(900);
-  const sws = p.locator('.q-menu [data-test-id^="toggle_board_field_"]'); for (let i = 0; i < await sws.count(); i++) { const s = sws.nth(i); const k = (await s.getAttribute('data-test-id'))!.replace('toggle_board_field_', ''); const on = (await s.locator('[role=switch]').getAttribute('aria-checked').catch(() => null)) === 'true';
+  const sws = p.locator('.q-menu [data-test-id^="toggle_board_field_"]'); for (let i = 0; i < await sws.count(); i++) { const s = sws.nth(i); const k = (await s.getAttribute('data-test-id'))!.replace('toggle_board_field_', ''); const on = await s.evaluate((e) => !!e.querySelector('.q-toggle__inner--truthy, .q-checkbox__inner--truthy') || (e.querySelector('[aria-checked]') ?? e).getAttribute('aria-checked') === 'true');
     const wantOn = id === 'C96984' && ['vehicle', 'lines_count', 'total_price', 'progress'].includes(k); if (on !== wantOn) { await s.click(); await p.waitForTimeout(700); } }
   await p.keyboard.press('Escape'); await p.waitForTimeout(1500);
   o.cards = { wo1: o.wo1 ? await cardOf(o.wo1) : null, wo2: o.wo2 ? await cardOf(o.wo2) : null, wo3: o.wo3 ? await cardOf(o.wo3) : null }; await shot(p, `ui-${id}-cards`);

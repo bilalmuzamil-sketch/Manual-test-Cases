@@ -57,5 +57,133 @@
   "sent": [
    "POST /api/iam/change-location {\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"workplace_timezone\":\"America/Edmonton\"}"
   ]
+ },
+ "C96982": {
+  "m2": {
+   "labels": [
+    "Contact *",
+    "VIN/Serial #",
+    "Year",
+    "Make *",
+    "Model",
+    "Trim",
+    "Engine",
+    "Drivetrain",
+    "Unit",
+    "Type",
+    "Mileage",
+    "Engine Hours",
+    "Licence Plate",
+    "Color",
+    "Notes"
+   ],
+   "contact": "picked /ZZAUTOTEST/",
+   "year": "no option 2022 in []",
+   "make": "picked /Freightliner/",
+   "model": "no option /^\\s*M2/ in [check Em2 106 | check M2]",
+   "toasts": []
+  },
+  "explorer": {
+   "labels": [
+    "Contact *",
+    "VIN/Serial #",
+    "Year",
+    "Make *",
+    "Model",
+    "Trim",
+    "Engine",
+    "Drivetrain",
+    "Unit",
+    "Type",
+    "Mileage",
+    "Engine Hours",
+    "Licence Plate",
+    "Color",
+    "Notes"
+   ],
+   "contact": "picked /ZZAUTOTEST/",
+   "year": "no option 1999 in []",
+   "make": "no option /^\\s*Ford\\s*$/ in [check Ford | check FORD | check FORD MOTOR CO., MEXICO PASSENGER CAR | check Ford Motor Company Of New Zealand | check Fords Trailer Sales]",
+   "model": "no option /Explorer/ in [No results]",
+   "toasts": []
+  },
+  "vehicles": [
+   "2021   unit=ZZTMP",
+   "2022 Freightliner  unit=TRK-118"
+  ],
+  "wo1": "94818617-ae5c-4f42-8344-82b658488a67",
+  "cards": {
+   "wo1": "S10043-18185 Approved more_horiz Customer ZZAUTOTEST F2 Required Only UI 81411 TRK-118· Asset 2022 Freightliner Progress 0% Lead technician Esther Howard Total price $0.00",
+   "wo2": null,
+   "wo3": null
+  },
+  "sent": [
+   "POST /api/customers/create {\"name\":\"ZZAUTOTEST F2 Required Only UI 81411\"}",
+   "POST /api/vehicles/create {\"company_id\":\"da04fa46-e250-410e-bfd6-9df29a62b159\",\"customer_id\":\"15f9f80c-18c9-46d2-86b1-495357c38215\",\"year\":2021,\"unit\":\"ZZTMP\",\"vin\":\"ZZWOB179151708303\"}",
+   "POST /api/vehicles/create {\"company_id\":\"da04fa46-e250-410e-bfd6-9df29a62b159\",\"customer_id\":\"15f9f80c-18c9-46d2-86b1-495357c38215\",\"engine_hours\":\"\",\"maker_name\":\"Freightliner\",\"mileage\":\"\",\"notes\":null,\"pin_notes\":false,\"unit\":\"TRK-118\",\"vehicle_id\":null,\"vehicle_maker_id\":\"258d9d6c-4cea-4352-9826-1e0f636dc0cd\",\"vehicle_type_id\":null,\"year\":\"2022\",\"shouldChangeAll\":true}"
+  ]
+ },
+ "C96984": {
+  "m2": {
+   "labels": [
+    "Contact *",
+    "VIN/Serial #",
+    "Year",
+    "Make *",
+    "Model",
+    "Trim",
+    "Engine",
+    "Drivetrain",
+    "Unit",
+    "Type",
+    "Mileage",
+    "Engine Hours",
+    "Licence Plate",
+    "Color",
+    "Notes"
+   ],
+   "contact": "picked /ZZAUTOTEST/",
+   "year": "no option 2022 in []",
+   "make": "no option /Freightliner/ in [check | check -- | check ? | check = | check 1/off Kustoms, Llc | check 102 Ironworks, Inc. | check 12832429 Canada Inc. | check 17 Creek Enterprises]",
+   "model": "no option /^\\s*M2/ in [No results]",
+   "toasts": []
+  },
+  "explorer": {
+   "labels": [
+    "Contact *",
+    "VIN/Serial #",
+    "Year",
+    "Make *",
+    "Model",
+    "Trim",
+    "Engine",
+    "Drivetrain",
+    "Unit",
+    "Type",
+    "Mileage",
+    "Engine Hours",
+    "Licence Plate",
+    "Color",
+    "Notes"
+   ],
+   "contact": "picked /ZZAUTOTEST/",
+   "year": "no option 1999 in []",
+   "make": "no option /^\\s*Ford\\s*$/ in [check Ford | check FORD | check FORD MOTOR CO., MEXICO PASSENGER CAR | check Ford Motor Company Of New Zealand | check Fords Trailer Sales]",
+   "model": "no option /Explorer/ in [No results]",
+   "toasts": []
+  },
+  "vehicles": [
+   "2021   unit=ZZTMP"
+  ],
+  "wo3": "56ae6aa5-c90b-4c55-9aa8-cdbe2ef5819a",
+  "cards": {
+   "wo1": null,
+   "wo2": null,
+   "wo3": "S10043-18186 Approved more_horiz Customer ZZAUTOTEST F2 Unit Fallback UI 34209 ZZTMP VIN/serial VIN ZZWOB179151763565 Line count format_list_bulleted 0 lines Lead technician Esther Howard"
+  },
+  "sent": [
+   "POST /api/customers/create {\"name\":\"ZZAUTOTEST F2 Unit Fallback UI 34209\"}",
+   "POST /api/vehicles/create {\"company_id\":\"9b30eb4b-cafc-48d1-a507-8ea5022db8df\",\"customer_id\":\"97b44d9c-2a62-4291-824d-588233b11b10\",\"year\":2021,\"unit\":\"ZZTMP\",\"vin\":\"ZZWOB179151763565\"}"
+  ]
  }
 }
