@@ -66,3 +66,12 @@ layman-understandable AND hand-runnable — the authoring session creates, this 
     half (one tile fails, others load) is covered by the Section 6 loading/failure case.
 - Result: all 61 pass `check_tester_runnable.py`; run hand-off now 55 manual + 5 automated runnable + C88631 held.
 - The 5 automated (C88594 among them) remain `custom_atmstatus=3`; C88594 was edited this pass → in the "tell Vlad" set.
+
+## 2026-10-09 — "Refine tests" pass (QA lead's one-time request; skill 21) — 90 cases
+- 88 eligible + pilots C88633/C88615 rewritten: Preconditions ("what must be true") + Setup ("For N: path only"), Steps count unchanged, Expected unchanged except made-up names (QA lead: "Correct them") — C88638, C88639, C88640, C88641, C351721, C351723, C351724, C351734, C351735. Markers and build stamps unchanged (byte-compared live).
+- Setup routes seen on sv490 this pass: `OBSERVED-UI-LABELS-sv490.md` § SETUP SCREENS (location via profile icon > Change Location — L0056; Create Work Order dialog; New Line form; Story/Update; Complete / Missing Details / Mark Reviewed; Create Invoice / New Customer Payment; Reverse / Issue Credit; Start/Stop/Clock Out; labor rates $100 EVR Travel to EVO, $150 Calgary Transit Rate; quiet location 0 % shop supplies).
+- Automated cases changed with QA lead OK (tell Vlad): C88594, C88609, C88612, C88617, C88623.
+- Gates (final, 90 cases): runnable 90/90 · served fr-view 90/90 · labels ALL CLEAR · tester: C88631 only — "250 ms" in its Expected (not changeable).
+- Data gaps on sv490 (reported, cases say "mark Blocked" honestly): no location shows invoices this month at Staging Heavy Duty - 9919 (history runs to Aug 2026); ZZAUTOTEST Dashboard Quiet had 7 invoices today (2026-10-09, Ayesha Khan / Admin ShopView) so it is not quiet this week.
+- Not walked (kept from the cases' own wording): accepting a new staff member's invitation; ordering/receiving a part; the Issue Credit window's fields; editing a timesheet record; New Inventory Part; walk-in Part Sale.
+- Test data left on sv490 (location 9919, customer 4 Star Truck Repair, ZZAUTOTEST lines): S490-17644 (invoiced, unpaid) · S490-17645 (estimate, ~1 min clocked by Tech ShopView).
