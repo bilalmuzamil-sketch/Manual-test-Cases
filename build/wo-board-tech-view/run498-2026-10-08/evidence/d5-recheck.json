@@ -1,0 +1,79 @@
+{
+ "before": {
+  "enrolled": [
+   "QB Location/Shop Time (Shop hand)",
+   "Staging Heavy Duty - 9919/Administration",
+   "Staging Lethbridge - 4310/Administration"
+  ],
+  "heavyDept": "Administration"
+ },
+ "control": {
+  "drawn": true,
+  "column": {
+   "name": "Ayesha Khan",
+   "pinned": "true",
+   "count": 0,
+   "text": "Drag a work order here to assign it"
+  },
+  "candidateApi": true,
+  "offeredInReassign": true,
+  "reassignNames": [
+   "AK Ayesha Khan 100 open",
+   "EH Esther Howard 217 open",
+   "RE Ralph Edwards 42 open"
+  ]
+ },
+ "mainMoved": {
+  "shown": "Location Staging Lethbridge - 4310 arrow_drop_down",
+  "calls": [
+   "POST /api/staff/ac802dc7-e45f-479b-a7d3-8e999e27770b/change {\"first_name\":\"Ayesha\",\"last_name\":\"Khan\",\"email\":\"ayesha.khan@shopview.com\",\"role_id\":\"73f72525-3d67-436b-9c1d-12677cdf9883\",\"workplace_id\":\"f8a8b802-7780-4b16-bf10-343caeb616b2\",\"job_title\":null,\"salary_type\":null,\"salary\":null,\"billable\":1,\"clockable\":true,\"is_sales_rep\":false}"
+  ],
+  "stillOpen": 0
+ },
+ "remove": "201 {\"data\":{\"enrollment\":\"Removed.\"}}",
+ "afterRemove": {
+  "enrolled": [
+   "QB Location/Shop Time (Shop hand)",
+   "Staging Lethbridge - 4310/Administration"
+  ]
+ },
+ "removedHere": true,
+ "judged": {
+  "drawn": false,
+  "column": "no column on screen",
+  "candidateApi": false,
+  "offeredInReassign": false,
+  "reassignNames": [
+   "EH Esther Howard 217 open",
+   "RE Ralph Edwards 42 open"
+  ]
+ },
+ "judgedAgain": {
+  "drawn": false,
+  "column": "no column on screen",
+  "candidateApi": false,
+  "offeredInReassign": false,
+  "reassignNames": [
+   "EH Esther Howard 217 open",
+   "RE Ralph Edwards 42 open"
+  ]
+ },
+ "restore": "201 {\"data\":{\"enrollment\":\"Created for staff id: ac802dc7-e45f-479b-a7d3-8e999e27770b\"}}",
+ "mainBack": {
+  "shown": "Location Staging Heavy Duty - 9919 arrow_drop_down",
+  "calls": [
+   "POST /api/staff/ac802dc7-e45f-479b-a7d3-8e999e27770b/change {\"first_name\":\"Ayesha\",\"last_name\":\"Khan\",\"email\":\"ayesha.khan@shopview.com\",\"role_id\":\"73f72525-3d67-436b-9c1d-12677cdf9883\",\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"job_title\":null,\"salary_type\":null,\"salary\":null,\"billable\":1,\"clockable\":true,\"is_sales_rep\":false}"
+  ],
+  "stillOpen": 0
+ },
+ "mainRead": "Staging Heavy Duty - 9919",
+ "restoredRead": {
+  "enrolled": [
+   "QB Location/Shop Time (Shop hand)",
+   "Staging Heavy Duty - 9919/Administration",
+   "Staging Lethbridge - 4310/Administration"
+  ],
+  "candidate": true
+ },
+ "pinsRestored": true
+}

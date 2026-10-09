@@ -5970,3 +5970,9 @@ three wrong characterisations before it was found — see learning **L0233**.
   `size_pics.py` still reports the picture "found and sized" and the media node reads full-width, so only the
   rendered `<img>` count catches it. Before the PUT, check every `!name.png|…!` in the wiki exists under that exact
   name in the folder you attach from; after it, require img tags == pictures in the wiki.
+- **Taking a technician OFF a location (2026-10-09, sv10043)** — two steps, in this order: (1) Settings > Staff > edit >
+  **Location** = another location they are enrolled at > Save & Close (this only changes their MAIN location); (2) remove
+  the enrolment at the old location (app route `POST /api/staff/enrollment/remove {staffId, workplaceId, departmentId}`;
+  StaffDialog > EnrollmentsDialog). Step 2 alone is refused: *"Staff must be enrolled in at least one department from
+  default location"*. Step 1 alone leaves them enrolled — that mistake produced a false report (D5). Restore: enrolment
+  create, then Location back. `seedCase()` does NOT return work orders in plan order — pick them by lead.

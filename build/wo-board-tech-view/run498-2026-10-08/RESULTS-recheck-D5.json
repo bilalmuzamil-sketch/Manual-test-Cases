@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368131": {
+   "verdict": "Passed",
+   "observed": "Run in full on 9 Oct 2026 at 17:20, done the right way this time. Customer ZZAUTOTEST F2 Pinned Gone 2: S10043-18749 led by Esther Howard (WO-1), S10043-18750 led by Ayesha Khan (WO-2). Admin and the view-only person both had Jenny Wilson and Ayesha Khan pinned (control: both pinned columns drawn; Jenny's read 'Drag a work order here to assign it' for the admin). Jenny Wilson deactivated. Ayesha Khan taken off Staging Heavy Duty - 9919: her main location moved to Lethbridge on her staff form (the app refuses to remove the enrolment at a person's main location: 'Staff must be enrolled in at least one department from default location'), then her Heavy Duty enrolment removed; read back: enrolled at QB Location and Lethbridge only. Board View (admin), twice on a settled page: Jenny Wilson's column still pinned right after Unassigned, empty, 'No work orders'; Ayesha Khan not pinned, shown as an ordinary column holding S10043-18750 with no pin icon; Ayesha no longer offered as a lead technician. Dropping S10043-18749 on Jenny's column: its lead stayed Esther Howard. S10043-18750 dragged to Unassigned: lead removed, and Ayesha Khan then had no column at all (checked twice). View-only person: Jenny Wilson 'No work orders', no Ayesha Khan column. Everything put back and read back (Jenny active, Ayesha main location Heavy Duty and enrolled there again, pins as before).",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do. (The earlier Failed result for this case was withdrawn: that check had only changed Ayesha Khan's main location, which does not take her off a location.)"
+  }
+ }
+}
