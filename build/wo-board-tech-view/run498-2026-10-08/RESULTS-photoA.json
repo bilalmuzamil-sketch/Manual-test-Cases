@@ -1,0 +1,10 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-09"},
+ "results": {
+  "C368241": {
+   "verdict": "Passed",
+   "observed": "Through the screen: initials > Edit Profile (/profile), clicked the photo and picked the red photo, then reloaded. The top-bar avatar showed the red photo (picture C368241-avatar-before). Then Edit Profile again and the blue photo was picked; the page sent one upload of the avatar. After going back and reloading the page, the top-bar avatar showed the BLUE photo, not the old red one (picture C368241-avatar-after). The avatar image loaded properly both times (256 px wide, answered 200), so the earlier broken-image impression was a capture taken before the image arrived, not a fault.",
+   "not_observed": null
+  }
+ }
+}

@@ -40,3 +40,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | imp-batch | C368238, C368239 — account access started (page `/impersonate-user/<user id>`) and exited (orange bar Exit) while Reports > Work In Progress is loading; run as Admin ShopView itself, not the runner |
 | parts-batch | C368213 — two vendor part requests, the first ordered and received through its Purchase Order page, one return raised on the received part; List Parts/Returns read |
 | kbd-fix | C368150, C368151, C368152, C97020, C97022 — focus placed at the roving Tab stop (a card OR a column header), then the arrows; Tech View rows reached with ArrowDown; Status filter helper defined |
+| ps-photo-fix | C368242–C368244 (photo technician enrolled in Service so the Schedule draws her row; Staff row read cell by cell), C368215–C368217 (part sales — never reached on 9 Oct because the batch crashed after the blue upload) |
