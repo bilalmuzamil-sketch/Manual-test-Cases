@@ -3215,3 +3215,15 @@ It slept again **within the same session**, minutes after a successful seeding r
 against a QA branch should expect it, and any verifier should say so in its own error message
 rather than making the next person re-derive this — `verify_toggle.py` prints the wake command on a
 403 for exactly that reason.
+
+
+## §S — PARTS: five set-up facts (QA lead, 9 Oct 2026)
+
+Source and screenshots described in `build/founder-mode/part-lifecycle/po-answers-2026-10-09/ANSWERS-QA-lead-test-setup-2026-10-09.md`.
+- **Negative bin:** add an inventory part to a work order line when its bin quantity is already 0.
+- **No bin / no default bin:** import the part with `grid_location` empty (the import's Grid Location = the UI's Bin
+  Location). Edit Inventory Part then shows Bin Location "Unassigned", Quantity 0, "Default". Example file in the
+  folder above.
+- **New global search:** on by default for every account, QA branches included.
+- **Part Library entry with no stock:** delete the part in Parts → Inventory; it is still in Parts → Catalog.
+- **Cores:** Parts → Inventory "Core" column; Parts → Returns rows "Core for <part>" and the "Show cores only" filter.
