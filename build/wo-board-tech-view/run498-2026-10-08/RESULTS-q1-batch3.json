@@ -1,0 +1,39 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368172": {
+   "verdict": "Passed",
+   "observed": "S10043-18764: New Line with Dana Ortiz added in Technicians (the window pre-filled Esther Howard, the lead); saved with no error message; the new line's technicians read 'Dana Ortiz, Esther Howard' (Dana Ortiz kept).",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368188": {
+   "verdict": "Passed",
+   "observed": "Asset's Work Orders tab (S10043-18769): the Asset on Site toggle flipped from off to on with no error message; the new value was kept; Lead Technician still reads Ana Alpha.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368189": {
+   "verdict": "Passed",
+   "observed": "S10043-18773: the lead was changed to Ben Bravo in another session; the asset's Work Orders tab left open from before then flipped Asset on Site (off to on, kept). Lead Technician reads Ben Bravo \u2014 the older page did not put Ana Alpha back.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368149": {
+   "verdict": "Failed",
+   "observed": "Two real sessions on Ana's column (Alpha Co, Bravo Co, Charlie Co). Browser 1 moved Charlie Co to the top (Charlie, Alpha, Bravo). Browser 2, not refreshed, dropped Bravo Co above Alpha Co. No warning in either browser. After refreshing, BOTH show Charlie Co, Bravo Co, Alpha Co \u2014 a merge of the two moves, not the later save (Bravo, Alpha, Charlie) and no 'card has moved' alert.",
+   "not_observed": null,
+   "ticket_held": true,
+   "ticket": "Report held with the QA lead \u2014 to be reconciled with the PRD (S4-N11 and the reorder rules) before it is put to him.",
+   "todo": "Reconcile with the PRD, then ask the QA lead."
+  }
+ }
+}

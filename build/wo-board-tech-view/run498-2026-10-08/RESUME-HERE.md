@@ -53,3 +53,6 @@ start the bridge first (`bash build/testing-tools/ensure_bridge.sh`).
 C368224, C368225 (script picked the "All …" option, not a value) · C368226, C368231 (nothing picked) · C368230 (rows differed after reload — recheck) ·
 C368233, C368234, C368235 (report filter is "All …" + single picks; the case's untick/select-all/clear steps do not fit — case question for the QA lead) ·
 C368237 (Sales By Representative has no data — seed a sale with a sales representative first).
+
+### Batch 3 judged 9 Oct 19:58: C368172, C368188, C368189 Passed; C368149 Failed (merge of two reorders, no alert) — reconcile with PRD S4-N11 before asking.
+NOT judged, re-run needed: C368177 (labor move not performed by the script) · C368178, C368179, C368190, C368192 (Schedule shift not created after Create — instrument or app, decide first) · C97003 (column order read incomplete; Tech View drag found no handle) · C97012 (script error: technician not found) · C368217 (Add Part box not found) · C368240 (sign-out: Reports click timed out) · C368238, C368239 (hung 3 times — propose MANUAL).
