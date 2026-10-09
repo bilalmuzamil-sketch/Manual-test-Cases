@@ -1,0 +1,15 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-09"},
+ "results": {
+  "C97025": {
+   "verdict": "Passed",
+   "observed": "Read from the page's own analytics requests (the same events DebugView shows), with Google Analytics allowed. Board View > Fields to display: turning Service advisor on and Customer off sent exactly 2 field change events (work_orders_field_toggle: board_view service_advisor on; board_view company_name off). Density > Compact sent exactly 1 density change event (work_orders_density_change: board_view compact). Picking Compact again and then opening and closing Fields to display without a change sent 0 new events. Failed save: not checked by hand.",
+   "not_observed": "failed save: not checked by hand"
+  },
+  "C368155": {
+   "verdict": "Passed",
+   "observed": "Read from the page's own analytics requests (the same events DebugView shows), with Google Analytics allowed. Opened Work Orders > Board View, clicked a card to open the work order (its Lines page), then went back. The work_orders_display_view events and the existing work_order_view event carry the same user: the signed-in ShopView user's own ID (the same ID on every event, and the same as the user the session belongs to). The Work Orders events add no other user or customer identifier (no extra user properties). The event names seen were page_view, work_orders_display_view, work_orders_field_load, work_orders_density_load, page_search and work_order_view.",
+   "not_observed": null
+  }
+ }
+}

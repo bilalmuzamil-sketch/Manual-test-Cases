@@ -43,3 +43,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | ps-photo-fix | C368242–C368244 (photo technician enrolled in Service so the Schedule draws her row; Staff row read cell by cell), C368215–C368217 (part sales — never reached on 9 Oct because the batch crashed after the blue upload) |
 | signout-fix | C368240 — LAST in any queue (signing out ends the shared session); Logout found by exact text (icon-name trap), Inventory Value by exact text |
 | d3-pics | D3 pictures: the technicians own screen (Assigned to me) shows only her three work orders — List, Tech View and Board View at 2x into defect-drafts/raw |
+| s11-fix2 | C97030 (Estimates seeded WITHOUT a line — an authorized line approves an Estimate), C97032 (same seed fix; column scroll guarded), C368157 (Tech View read with groups collapsed) |
