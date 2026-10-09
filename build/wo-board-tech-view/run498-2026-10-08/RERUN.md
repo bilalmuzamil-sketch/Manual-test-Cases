@@ -64,4 +64,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | dash-seed | C368246 — two technicians clock time on their own work orders this month, invoiced, then every dashboard table read and sorted |
 | orgb-fix | REGISTER (now a signed-in page), C368175 (line_number_ menu for Edit labor), C154650 (2560 window; control brought into view; every column header read for organisation-B people) |
 | imp-fix | C368238, C368239 (sign in as another user while a page loads). Number matched by its digits; a Technician cannot open Reports, so the exit check uses Schedule as the loading page |
-| kbd-fix3 (WOB_LIVE=1) | C368152 — focus on the page body no longer crashes the walk |
+| kbd-fix3 (WOB_LIVE=1) | C368151, C368152, C97020, C97022 — body focus, leftmost-first arrow walk, visible-row collapse count, view-only item pressed and role read back |
