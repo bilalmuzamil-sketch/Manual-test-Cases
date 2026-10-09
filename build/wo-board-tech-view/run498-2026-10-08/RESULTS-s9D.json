@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C97005": {
+   "verdict": "Passed",
+   "observed": "Customers 'ZZAUTOTEST F3 Shared Order \u2026 Alpha Co / Bravo Co / Charlie Co', all led by Ana Alpha; Ana's work started Alpha Co, Bravo Co, Charlie Co. Tech View: Charlie Co dragged above Alpha Co: Charlie Co, Alpha Co, Bravo Co. Board View showed Ana's column in the same order. A second dispatcher (another Admin user made for this run), without doing anything, saw Charlie Co, Alpha Co, Bravo Co in both Tech View and Board View, and that dispatcher's technician order was still Ana before Ben. Opened again afterwards, the first dispatcher still saw Charlie Co, Alpha Co, Bravo Co.",
+   "not_observed": null
+  },
+  "C97007": {
+   "verdict": "Passed",
+   "observed": "Customers 'ZZAUTOTEST F3 Reassign Bottom \u2026': Ben Bravo leads Bravo Co, Delta Co; Cal Charlie leads Aardvark Co, Abbey Co, Echo Co. Ben's column started Bravo Co, Delta Co. Aardvark Co given to Ben with More actions > Reassign lead technician: Bravo Co, Delta Co, Aardvark Co (bottom, although first by name). Abbey Co given to Ben on its work order page: Bravo Co, Delta Co, Aardvark Co, Abbey Co. Echo Co dragged above Delta Co: Bravo Co, Echo Co, Delta Co, Aardvark Co, Abbey Co. Tech View showed the same order in Ben's group, and a second dispatcher saw the same order in both views.",
+   "not_observed": null
+  },
+  "C368147": {
+   "verdict": "Passed",
+   "observed": "Customers 'ZZAUTOTEST F3 No Drag Permission \u2026': Ana Alpha leads Alpha Co and Bravo Co. As a view-only user (made for this run; role 'ZZAUTOTEST WO View Only', no Work orders Create & Edit): in Board View, Bravo Co dragged above Alpha Co did not move (still Alpha Co, Bravo Co, no message); Alpha Co dragged into Ben's column did not move (Ben's column empty, no message); hovering the card shows no More actions (\u2026) button, so no Reassign lead technician is offered. In Tech View the rows could not be dragged either (still Alpha Co, Bravo Co). Afterwards Alpha Co still has Lead Technician Ana Alpha. (The same drags move cards for the dispatcher in the other checks of this section.)",
+   "not_observed": null
+  }
+ }
+}
