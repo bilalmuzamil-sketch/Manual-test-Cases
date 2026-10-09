@@ -292,6 +292,20 @@ await run('C368202', async () => { const c = await customer(a, `ZZAUTOTEST New W
   for (let i = 0; i < 3 && await p.locator('.q-dialog').count(); i++) { await p.locator('.q-dialog [data-test-id="button_close_dialog"]').last().click().catch(async () => { await p.keyboard.press('Escape'); }); await p.waitForTimeout(1200); } o.dialogsLeft = await p.locator('.q-dialog').count();
   await p.locator('[data-test-id="button_desktop_nav_link"]').filter({ hasText: /Work Orders/ }).first().click({ force: true }); await p.waitForTimeout(4000); o.reloaded = false; await tab(p, 'All'); await display(p, 'List'); await search(p, `New WO Listed ${RUNNO}`); await p.waitForTimeout(3000);
   o.listed = await p.evaluate(`[...document.querySelectorAll('tbody tr')].map(r => (r.innerText.match(/S\\d+-\\d+/) || [])[0]).filter(Boolean)`); o.found = o.number ? o.listed.includes(o.number.trim()) : null; await shot(p, 'C368202-list'); R.C368202 = o; });
+
+await run('C368191', async () => { const o: any = {}; const w = await one('ZZAUTOTEST Deleted Labor', null, 2);
+  const gone = (await person(a, 'ZZAUTOTEST Gone', `Tech ${RUNNO}`, { role: (await roleIds(a))['Technician'], email: `zz.wob.gone.${RUNNO}@staging.shopview.local`, clockable: true })).row; o.goneDeletable = gone.deletable;
+  const v = await asUser(gone);
+  try { const pg = v.page; await page(w.id, 'lines', pg); const tg = pg.locator(`[data-test-id="button_clock_toggle_task_${w.ls[0]}"]`).first(); o.start = await tg.count(); await tg.click(); await pg.waitForTimeout(65000);
+    await pg.locator(`[data-test-id="button_clock_toggle_task_${w.ls[0]}"], button:has-text("Stop")`).first().click(); await pg.waitForTimeout(2000); const d = dlg(pg); o.stopButtons = (await d.locator('button').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim());
+    await d.locator('textarea').first().fill('ZZAUTOTEST labor before deletion').catch(() => {}); await d.locator('button').filter({ hasText: /^\s*(Stop|Stop Working|Save|Clock Out|Submit)\s*$/i }).last().click().catch(() => {}); await pg.waitForTimeout(3000); await shot(pg, 'C368191-stopped');
+  } finally { await v.close(); }
+  await page(w.id); o.laborBefore = await laborRows();
+  o.del = await p.evaluate(async ([api, id]) => { const r = await fetch(`${api}/api/staff/${id}`, { method: 'DELETE', credentials: 'include' }); return `${r.status} ${(await r.text()).slice(0, 120)}`; }, ['https://sv10043api.qa.shopview.com', gone.staff_id]);
+  o.stillListed = (await staffRows(a, `zz.wob.gone.${RUNNO}`)).length;
+  await page(w.id); o.laborAfterDelete = await laborRows();
+  o.shift = await schedDrop(w, JW.staff_id, /^\s*11\s*(AM|am|:00)/, lineName(1));
+  await page(w.id); o.laborAfterShift = await laborRows(); await shot(p, 'C368191-lines'); R.C368191 = o; });
 await a.put(PREF, { value: ORIGINAL }); R.restored = true;
 fs.writeFileSync(path.join(EV, 'high1-fix.json'), JSON.stringify(R, null, 1));
 await RUN.end(); await done(browser);
