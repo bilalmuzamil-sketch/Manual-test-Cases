@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368218": {
+   "verdict": "Passed",
+   "observed": "Parts > Purchase Orders. This page has no Vendor filter (QA lead 9 Oct 2026); the filter used is the page's own Search at the right of the header. Before: 30 rows. Typing 'S10043-18432' narrowed the list to 1 row (S10043-18432, 'Vendor missing on 1 part', Ordered, Today, Admin) and the address became /parts/orders?search=S10043-18432. The column button was also used: the Note column was switched on. After a reload the Search box still reads 'S10043-18432', the same single row shows, and the Note column is still on. No error message. Seen on two attempts.",
+   "not_observed": null
+  },
+  "C368219": {
+   "verdict": "Passed",
+   "observed": "Parts > Vendors. This page has no State/Province filter (QA lead 9 Oct 2026); the filter used is the page's own Search at the right of the header. Before: 30 rows. Typing 'Carolina Truck & Trailer Repair' narrowed the list to 1 row (Carolina Truck & Trailer Repair, 517-560-6942) and the address became /parts/vendors?search=Carolina+Truck+%26+Trailer+Repair. After a reload the Search box still reads 'Carolina Truck & Trailer Repair' and the same single row shows, with the same columns. No error message. Seen on two attempts.",
+   "not_observed": null
+  }
+ }
+}
