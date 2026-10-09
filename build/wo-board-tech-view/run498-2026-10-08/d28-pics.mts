@@ -23,14 +23,15 @@ await run('D2', async () => { const o: any = {};
   await p.locator('[data-test-id="profile_menu_button"]').click(); await p.waitForTimeout(1200); await shot(p, 'D2-menu');
   const cur = p.locator('.q-menu').getByText(/ - \d{3,5}$/).first(); if (await cur.count()) { await cur.click(); await p.waitForTimeout(1500); }
   o.options = (await p.locator('.q-menu .q-item, .q-menu .q-checkbox').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 10);
-  await p.locator('.q-menu').last().getByText(/Lethbridge/).first().click(); await p.waitForTimeout(7000); await p.keyboard.press('Escape').catch(() => {});
+  // FIX: Admin ShopView can switch only to the locations he is enrolled at (here 'ZZAUTOTEST Empty Shop'): pick any OTHER location the list offers
+  const other = p.locator('.q-menu').last().locator('.q-item, .q-checkbox').filter({ hasNotText: /Heavy Duty|Edit Profile|Timesheets|Portal|Billing|What.s New|Settings|Logout|Light|Dark/ }).first(); o.picked = (await other.innerText().catch(() => '')).replace(/\s+/g, ' ').replace(/^check\s*/, ''); await other.click(); await p.waitForTimeout(7000); await p.keyboard.press('Escape').catch(() => {});
   o.after = { at: await where(), pressed: await assigned().getAttribute('aria-pressed').catch(() => null), url: p.url().replace(APP, '') }; await shot(p, 'D2-after');
   await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' }); R.D2 = o; });
 
 await run('D8', async () => { const o: any = {};
-  const c = await customer(a, `ZZAUTOTEST D8 Line History ${Date.now() % 100000}`, 'ZZD8'); const w = await workOrder(a, c, 'approved', null);
+  let c: any = null, w: any = null; for (let i = 0; i < 3 && !w; i++) { c = await customer(a, `ZZAUTOTEST D8 Line History ${Date.now() % 100000}`, `ZZD8-${i}`); o.cust = { company: !!c.company_id, contact: !!c.contact_id, vehicle: !!c.vehicle_id }; w = await workOrder(a, c, 'estimate', null).catch((e) => { o[`create${i}`] = String(e).slice(0, 200); return null; }); }
   const canned = (await a.get('/api/work-orders/canned-lines')).body?.data; const cl = Array.isArray(canned) ? canned : canned?.collection ?? [];
-  const lr = await a.post(`/api/work-orders/${w}/lines/create-from-canned-line`, { canned_line_id: cl[1].id, status: 'authorized' }); const line = lr.body?.data?.line_id;
+  const lr = await a.post(`/api/work-orders/${w}/lines/create-from-canned-line`, { canned_line_id: cl[1].id, status: 'authorized' }); const line = lr.body?.data?.line_id;   // an authorized line also approves the work order
   const v = (await a.get(`/api/work-orders/view/${w}`)).body?.data?.work_order; o.wo = v?.number; o.url = `${APP}/workorders/${w}`;
   const hist = async () => { const r = (await a.get(`/api/work-orders/lines/${line}/history`)).body?.data; return (Array.isArray(r) ? r : r?.collection ?? []).length; };
   o.lineHistoryBefore = await hist();
