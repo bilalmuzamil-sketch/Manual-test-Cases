@@ -10,8 +10,9 @@ import type { Browser, Page } from 'playwright';
 import { API } from './session.mts';
 import type { Api } from './data.mts';
 import { HEAVY } from './staff.mts';
-export async function viewAs(browser: Browser, main: Page, a: Api, userId: string, adminStaffId: string) {
-  const s = await a.post('/api/switch-user', { user_id: userId });
+export async function viewAs(browser: Browser, main: Page, a: Api, userId: string, adminStaffId: string, backTo?: () => Promise<void>) {
+  let s = await a.post('/api/switch-user', { user_id: userId });
+  if (s.status >= 300) { await a.post('/api/exit-switch-user', {}); s = await a.post('/api/switch-user', { user_id: userId }); }
   if (s.status >= 300) throw new Error(`switch ${s.status} ${JSON.stringify(s.body).slice(0, 160)}`);
   await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' });
   const fe = (await a.get('/api/auth/me/fe-permissions')).body?.data ?? null;
@@ -22,6 +23,6 @@ export async function viewAs(browser: Browser, main: Page, a: Api, userId: strin
     try { localStorage.setItem('user', JSON.stringify({ data: u })); if (f) localStorage.setItem('fe_permissions_wrapper', JSON.stringify(f)); if (u?.token) localStorage.setItem('token', u.token); } catch { /* */ }
   }, [user, fe] as any);
   const page = await ctx.newPage();
-  const close = async () => { await ctx.close().catch(() => {}); const e = await a.post('/api/exit-switch-user', {}); if (e.status >= 300) await a.post('/api/switch-user', { user_id: adminStaffId }); };
+  const close = async () => { await ctx.close().catch(() => {}); if (backTo) return backTo(); const e = await a.post('/api/exit-switch-user', {}); if (e.status >= 300) await a.post('/api/switch-user', { user_id: adminStaffId }); };
   return { page, close, userKeys: user ? Object.keys(user) : null, perms: Array.isArray(fe) ? fe.length : (fe?.fe_permissions ?? []).length };
 }

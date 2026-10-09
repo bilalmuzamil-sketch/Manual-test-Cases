@@ -1,0 +1,203 @@
+{
+ "clearedSwitch": 200,
+ "C96964": {
+  "made": [
+   "invoice 400",
+   "invoice 400 paid 201"
+  ],
+  "set": [
+   "S10043-17953 paid lead=Esther",
+   "S10043-17952 ready_for_review lead=Esther"
+  ],
+  "Board View WO-1 Invoiced": {
+   "icons": [
+    "more_horiz||"
+   ],
+   "lockTooltip": "no lock icon in the card/row",
+   "menuItem": {
+    "disabled": false,
+    "text": "Reassign lead technician"
+   },
+   "menuTooltip": []
+  },
+  "Board View WO-2 Paid": {
+   "icons": [
+    "|board_card_lock|The lead technician can't be changed once a work order is Invoiced or Paid.",
+    "more_horiz||"
+   ],
+   "lockTooltip": "no lock icon in the card/row",
+   "menuItem": {
+    "disabled": true,
+    "text": "Reassign lead technician"
+   },
+   "menuTooltip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ]
+  },
+  "Tech View WO-1 Invoiced": {
+   "icons": [
+    "location_on||",
+    "content_copy||",
+    "more_horiz||"
+   ],
+   "lockTooltip": "no lock icon in the card/row",
+   "menuItem": {
+    "disabled": false,
+    "text": "Reassign lead technician"
+   },
+   "menuTooltip": []
+  },
+  "Tech View WO-2 Paid": {
+   "icons": [
+    "location_on||",
+    "|tech_view_row_lock|The lead technician can't be changed once a work order is Invoiced or Paid.",
+    "content_copy||",
+    "more_horiz||"
+   ],
+   "lockTooltip": "no lock icon in the card/row",
+   "menuItem": {
+    "disabled": true,
+    "text": "Reassign lead technician"
+   },
+   "menuTooltip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ]
+  }
+ },
+ "C96966": {
+  "wo": "S10043-17954",
+  "clock": {
+   "in1": 201,
+   "out1": 201,
+   "in2": 201,
+   "running": "{\"technician_task\":{\"id\":\"570e8822-f74a-40da-8e75-fca9c01f37c1\",\"start_date\":\"2026-10-09 00:05:38\",\"description\":\"Preventative maintenance\",\"end_date\":null,\"staff_id\":\"1161043d-a0e8-42b0-b2c7-63d3e749"
+  },
+  "before": {
+   "status": "in_progress",
+   "lead": "Esther Howard",
+   "line": {},
+   "wo": {
+    "total_time": 18
+   },
+   "tasks": [
+    {}
+   ]
+  },
+  "shiftMade": [
+   "someon 2026-10-09 08:00-12:00 whole"
+  ],
+  "move": 200,
+  "afterMove": {
+   "shifts": [
+    "someon 2026-10-09 13:00-17:00 whole"
+   ],
+   "status": "in_progress",
+   "lead": "Esther Howard",
+   "line": {},
+   "wo": {
+    "total_time": 18
+   },
+   "tasks": [
+    {}
+   ]
+  },
+  "resize": 200,
+  "afterResize": {
+   "shifts": [
+    "someon 2026-10-09 13:00-17:00 whole"
+   ],
+   "status": "in_progress",
+   "lead": "Esther Howard",
+   "line": {},
+   "wo": {
+    "total_time": 18
+   },
+   "tasks": [
+    {}
+   ]
+  },
+  "reassign": "200",
+  "afterReassign": {
+   "shifts": [
+    "someon 2026-10-09 13:00-17:00 whole"
+   ],
+   "status": "in_progress",
+   "lead": "Esther Howard",
+   "line": {},
+   "wo": {
+    "total_time": 18
+   },
+   "tasks": [
+    {}
+   ]
+  },
+  "prompt": null,
+  "message": [
+   "Lead technician updated"
+  ],
+  "afterLeadChange": {
+   "shifts": [
+    "someon 2026-10-09 13:00-17:00 whole"
+   ],
+   "status": "in_progress",
+   "lead": "Ralph Edwards",
+   "line": {},
+   "wo": {
+    "total_time": 18
+   },
+   "tasks": [
+    {}
+   ]
+  },
+  "clockStillRunning": "{\"technician_task\":{\"id\":\"570e8822-f74a-40da-8e75-fca9c01f37c1\",\"start_date\":\"2026-10-09 00:05:38\",\"description\":\"Preventative maintenance\",\"end_date\":null,\"staff_id\":\"1161043d-a0e8-42b0-b2c7-63d3e749",
+  "stopClock": 201
+ },
+ "C96958": {
+  "wo": "S10043-17955",
+  "base": {
+   "Esther Howard": {
+    "count": 0,
+    "mentionsWo": [],
+    "top": [],
+    "empty": true,
+    "bell": [
+     ""
+    ],
+    "calls": [
+     "200 /notifications",
+     "200 /js/Notifications.DL6EMkpq.js",
+     "200 /js/useMercureNotifications.D0YLbNfY.js"
+    ]
+   },
+   "Ralph Edwards": {
+    "count": 0,
+    "mentionsWo": [],
+    "top": [],
+    "empty": true,
+    "bell": [
+     ""
+    ],
+    "calls": [
+     "200 /notifications",
+     "200 /js/useMercureNotifications.D0YLbNfY.js",
+     "200 /js/Notifications.DL6EMkpq.js"
+    ]
+   },
+   "Dana Ortiz": {
+    "count": 0,
+    "mentionsWo": [],
+    "top": [],
+    "empty": true,
+    "bell": [
+     ""
+    ],
+    "calls": [
+     "200 /notifications",
+     "200 /js/useMercureNotifications.D0YLbNfY.js",
+     "200 /js/Notifications.DL6EMkpq.js"
+    ]
+   }
+  },
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"select_lead_technician\"]')\n"
+ }
+}

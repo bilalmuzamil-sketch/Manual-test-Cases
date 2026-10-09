@@ -8,6 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
+import { asRunner } from './runner.mts';
 import { api, candidates, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
 import { viewAs } from './viewas.mts';
@@ -16,10 +17,11 @@ import { mkShift, shiftsOn } from './shifts.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
-const { browser, page: p } = await open('/workorders?tab=all');
+const { browser, page: p0 } = await open('/workorders?tab=all');
+const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p;  // our own test admin (runner.mts)
 p.setDefaultTimeout(30_000);
 const a = api(p);
-const R: Record<string, any> = { clearedSwitch: (await a.post('/api/exit-switch-user', {})).status };
+const R: Record<string, any> = { runner: { id: RUN.id.slice(0, 8), perms: RUN.perms, who: RUN.who, log: RUN.log } };
 const D = '@staging.shopview.local';
 const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
 const ES = await sid('esther.howard'), RE = await sid('ralph.edwards'), DO = await sid('dana.ortiz');
@@ -34,9 +36,9 @@ const lineTechs = async (wo: string, label: Record<string, string>) => Object.fr
 const linesRaw = async (wo: string) => { const d = (await a.get(`/api/work-orders/lines/${wo}`)).body?.data; return Array.isArray(d) ? d : d?.collection ?? d?.lines ?? []; };
 const taskOf = async (wo: string, line: string, staff: string) => ((await linesRaw(wo)).find((l: any) => l.line_id === line)?.tasks ?? []).find((x: any) => x.tech_assigned_id === staff)?.id;
 async function asTech<T>(userId: string, f: () => Promise<T>): Promise<T> {
-  const s = await a.post('/api/switch-user', { user_id: userId }); if (s.status >= 300) throw new Error(`switch ${s.status}`);
+  let s = await a.post('/api/switch-user', { user_id: userId }); if (s.status >= 300) { await a.post('/api/exit-switch-user', {}); s = await a.post('/api/switch-user', { user_id: userId }); } if (s.status >= 300) throw new Error(`switch ${s.status}`);
   await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' });
-  try { return await f(); } finally { const e = await a.post('/api/exit-switch-user', {}); if (e.status >= 300) await a.post('/api/switch-user', { user_id: me.id }); }
+  try { return await f(); } finally { await RUN.toRunner(); }
 }
 async function completeLine(wo: string, line: string) {
   await a.post('/api/work-orders/change-mileage', { work_order_id: wo, mileage: '123456' });
@@ -56,10 +58,20 @@ async function run(id: string, f: () => Promise<void>) {
 
 const say = (r: any) => `${r.status}${r.status >= 300 ? ' ' + JSON.stringify(r.body?.message ?? r.body?.errors ?? r.body).slice(0, 140) : ''}`;
 /** take a work order with one line to Complete, then (optionally) invoice it and mark it paid; every answer logged */
+async function ensure(sel: string, n: string, pg: Page = p) {
+  for (let i = 0; i < 8; i++) { if (await pg.locator(sel).count()) return true; await pg.waitForTimeout(5000); await search(pg, n); }
+  return false;
+}
 async function finish(wo: string, to: 'complete' | 'invoiced' | 'paid', log: any[]) {
   const ls = await linesRaw(wo); if (!ls.length) ls.push({ line_id: await mkLine(wo, 1) });
   log.push(`mileage ${say(await a.post('/api/work-orders/change-mileage', { work_order_id: wo, mileage: '123456' }))}`);
   for (const l of await linesRaw(wo)) {
+    // a canned line brings vendor part requests, and the work order refuses Complete until they are received:
+    // cancel them (playbook §Y: POST /api/work-orders/part/remove-request/{requestId})
+    const reqs = (l.part_requests ?? l.partRequests ?? []) as any[];
+    if (!R.lineKeys) R.lineKeys = Object.keys(l).join(',');
+    for (const q of reqs) log.push(`remove part request ${say(await a.post(`/api/work-orders/part/remove-request/${q.id ?? q.part_request_id}`, {}))}`);
+    if ((l.parts ?? []).length) log.push(`line still holds ${(l.parts ?? []).length} picked part(s)`);
     log.push(`story ${say(await a.post('/api/work-orders/lines/change-story', { line_id: l.line_id, tech_story: 'Done', work_order_id: wo }))}`);
     log.push(`line complete ${say(await a.post('/api/work-orders/lines/change-status', { line_id: l.line_id, status: 'complete', workOrderId: wo }))}`);
   }
@@ -95,7 +107,7 @@ await run('C96963', async () => {
     const order = async (staff: string) => tv ? p.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_row_"]')].map(r => r.getAttribute('data-test-id').slice(14))`) as Promise<string[]> : ((await boardCols(p)).find((x) => x.id === staff)?.cards ?? []);
     const go = async () => { await bv(n, view); if (tv) await expandSmallGroups(p); };
     const tryMove = async (label: string, id: string, staff: string, dy = 120) => {
-      await go(); await shot(p, `C96963-${tv ? 'TV' : 'BV'}-${label}-before`);
+      await go(); if (!(await ensure(host(id), n))) return { lead: await where(id), message: [], prompt: null, notOnPage: true }; await shot(p, `C96963-${tv ? 'TV' : 'BV'}-${label}-before`);
       const empty = `[data-test-id="tech_view_group_empty_${staff}"]`;
       await drag(p, host(id), tv && await p.locator(empty).count() ? empty : target(staff), tv ? 10 : dy); const prompt = await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1200);
       const m = await toasts(p); await shot(p, `C96963-${tv ? 'TV' : 'BV'}-${label}-after`);
@@ -109,7 +121,7 @@ await run('C96963', async () => {
     o.inv4ToEsther = await tryMove('W4-inv-Esther', W4, ES.staff_id);
     // reorder inside Esther's column/group: Invoiced above the Approved one, then Paid above the Approved one
     for (const [lab, id] of [['W2-inv-reorder', W2], ['W3-paid-reorder', W3]] as [string, string][]) {
-      await go(); const before = await order(ES.staff_id);
+      await go(); await ensure(host(id), n); await ensure(host(W1), n); const before = await order(ES.staff_id);
       await drag(p, host(id), host(W1), 4); await p.waitForTimeout(1200); const m = await toasts(p);
       await shot(p, `C96963-${tv ? 'TV' : 'BV'}-${lab}`); await go();
       o[lab] = { before: before.map((x: string) => num(x) ?? x), afterReload: (await order(ES.staff_id)).map((x: string) => num(x) ?? x), lead: await where(id), message: m };
@@ -140,7 +152,7 @@ await run('C96972', async () => {
   const wo = await workOrder(a, c, 'estimate', null); await mkLine(wo, 1);
   await a.post('/api/work-orders/change-status', { id: wo, status: 'approved' }); await a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: ES.staff_id });
   await finish(wo, 'complete', log);
-  await bv(n); R.C96972 = { log, cardStatus: await p.locator(`[data-test-id="board_card_${wo}"] [data-test-id="board_card_status"]`).innerText().catch(() => null) };
+  await bv(n); await ensure(`[data-test-id="board_card_${wo}"]`, n); R.C96972 = { log, cardStatus: await p.locator(`[data-test-id="board_card_${wo}"] [data-test-id="board_card_status"]`).innerText().catch(() => null) };
   // "browser 2": invoice it now, behind this board's back
   const inv = await a.post('/api/invoices/create', { work_order_id: wo, issue_date: new Date().toISOString().slice(0, 10), due_date: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10) });
   R.C96972.invoiced = say(inv); R.C96972.statusNow = (await workOrders(a, n))[0]?.status;
@@ -164,11 +176,12 @@ await run('C96964', async () => {
   const all = await workOrders(a, n); R.C96964.set = all.map((w: any) => `${w.number} ${w.status} lead=${w.techAssignedFirstName ?? 'none'}`);
   for (const view of ['Board View', 'Tech View']) {
     await bv(n, view); if (view === 'Tech View') await expandSmallGroups(p);
+    await ensure(view === 'Board View' ? `[data-test-id="board_card_${W1}"]` : `[data-test-id="tech_view_row_${W1}"]`, n);
     for (const [k, w] of [['WO-1 Invoiced', W1], ['WO-2 Paid', W2]] as [string, string][]) {
       const host = p.locator(view === 'Board View' ? `[data-test-id="board_card_${w}"]` : `[data-test-id="tech_view_row_${w}"]`);
       const o: any = {};
       o.icons = await host.evaluate((e) => [...e.querySelectorAll('i, svg, [data-test-id*="lock"]')].map((i) => `${(i.textContent || '').trim()}|${i.getAttribute('data-test-id') || ''}|${i.getAttribute('aria-label') || ''}`).filter((x) => x !== '||')).catch((er) => `not found: ${String(er).slice(0, 80)}`);
-      const lock = host.locator('i, [data-test-id*="lock"]').filter({ hasText: /lock/i }).first();
+      const lock = host.locator('[data-test-id$="_lock"]').first();   // board_card_lock / tech_view_row_lock (aria-label = its tooltip)
       if (await lock.count()) { await lock.hover(); await p.waitForTimeout(1200); o.lockTooltip = await tooltip(); await shot(p, `C96964-${view.replace(' ', '')}-${k.slice(0, 4)}-lock`); }
       else o.lockTooltip = 'no lock icon in the card/row';
       await p.mouse.move(5, 5); await p.waitForTimeout(400);
@@ -182,7 +195,6 @@ await run('C96964', async () => {
   }
 });
 
-await a.post('/api/exit-switch-user', {});
-await a.put('/api/users/me/preferences/work-orders-list', { value: { ...(await prefGet()), pinnedTechnicianIds: ['3ff0914b-49a3-4d80-b07d-92a10e1a89f8'] } });
+await RUN.end();
 fs.writeFileSync(path.join(EV, 's4-batchG.json'), JSON.stringify(R, null, 1));
 await done(browser);

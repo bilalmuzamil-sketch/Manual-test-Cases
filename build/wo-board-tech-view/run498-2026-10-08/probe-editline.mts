@@ -8,16 +8,20 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { open, done, APP } from './session.mts';
+import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, drag, shiftPrompt, toasts } from './wob.mts';
 import { staffRows } from './staff.mts';
 
-const { browser, page: p } = await open('/workorders?tab=all');
+const { browser, page: p0 } = await open('/workorders?tab=all');
+const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p;  // our own test admin (runner.mts)
 p.setDefaultTimeout(30_000);
-const a = api(p); const R: any = { exit: (await a.post('/api/exit-switch-user', {})).status };
+const a = api(p); const R: any = { runner: RUN.id.slice(0, 8) };
 const D = '@staging.shopview.local';
 const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
 const ES = await sid('esther.howard'), RE = await sid('ralph.edwards'), DO = await sid('dana.ortiz');
+const prefGet = async () => (await a.get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {};
+await a.put('/api/users/me/preferences/work-orders-list', { value: { ...(await prefGet()), pinnedTechnicianIds: [ES.staff_id, RE.staff_id, DO.staff_id] } });
 const canned: any[] = []; { const c = (await a.get('/api/work-orders/canned-lines')).body?.data; canned.push(...(Array.isArray(c) ? c : c?.collection ?? [])); }
 const mkLine = async (wo: string, i: number) => (await a.post(`/api/work-orders/${wo}/lines/create-from-canned-line`, { canned_line_id: canned[i % canned.length].id, status: 'authorized' })).body?.data?.line_id as string;
 const n = `ZZAUTOTEST F1 Lead History ${Date.now() % 100000}`;
@@ -29,7 +33,7 @@ const lh = async (l: string) => { const r = await a.get(`/api/work-orders/lines/
   return { status: r.status, n: Array.isArray(h) ? h.length : -1, entries: (Array.isArray(h) ? h : []).slice(0, 4).map((x: any) => `${x.eventName ?? x.event ?? '?'} ${x.originalLineTechName ?? ''}->${x.newLineTechName ?? ''} by ${x.userName ?? ''} ${x.historyDate ?? ''} ${x.historyTime ?? ''}`), keys: Array.isArray(h) && h[0] ? Object.keys(h[0]).slice(0, 12).join(',') : (r.status !== 200 ? JSON.stringify(r.body).slice(0, 160) : '') }; };
 const techs = async () => Object.fromEntries(((await a.get(`/api/work-orders/${wo}/line-technicians`)).body?.data?.lineTechnicians ?? []).map((x: any) => [x.lineId === l1 ? 'Line 1' : 'Line 2', `${(x.technicians ?? []).map((tt: any) => `${tt.firstName} ${tt.lastName}`).join(', ') || 'Unassigned'}${x.derivedFromLeadTech ? ' (follows lead)' : ''}`]));
 R.wo = num; R.before = { techs: await techs(), l1: await lh(l1), l2: await lh(l2) };
-await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); await tab(p, 'All'); await display(p, 'Board View'); await search(p, num);
+await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); await tab(p, 'All'); await display(p, 'Board View'); await search(p, n); await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"]'); if (h) h.scrollLeft = 0; })()`); await p.waitForTimeout(600);
 await drag(p, `[data-test-id="board_card_${wo}"]`, `[data-test-id="board_column_${RE.staff_id}"]`, 120); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
 R.drag = { message: await toasts(p), techs: await techs(), l1: await lh(l1), l2: await lh(l2) };
 // Edit Line, through the screen
@@ -55,4 +59,5 @@ const wh = (await a.get(`/api/work-orders/${wo}/history`)).body?.data?.history ?
 R.woHistory = wh.slice(0, 5).map((h: any) => `${h.eventName} ${h.originalLeadTechName ?? ''}->${h.newLeadTechName ?? ''} ${h.originalLineTechName ?? ''}->${h.newLineTechName ?? ''} by ${h.userName}`);
 console.log(t(), JSON.stringify(R, null, 1).slice(0, 5000));
 fs.writeFileSync(path.join(EV, 'C96962-editline.json'), JSON.stringify(R, null, 1));
+await RUN.end();
 await done(browser);
