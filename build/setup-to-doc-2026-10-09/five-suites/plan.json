@@ -1,0 +1,758 @@
+[
+ {
+  "id": 88507,
+  "title": "Note required option on checkbox and per-axle fields, on by default",
+  "updated_on": 1791367331,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with &quot;Settings - Service&quot; enabled, on the build under test.</li><li>A template with a Checkbox field and a Per-axle measurement field.</li></ul>"
+ },
+ {
+  "id": 88508,
+  "title": "A required note must be filled in to submit, and is listed as outstanding",
+  "updated_on": 1791367332,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with &quot;Settings - Service&quot; enabled, on the build under test.</li><li>A template with a checkbox field that has &quot;Note required if Monitor / Not OK&quot; on, and a per-axle field with it on.</li><li>You are filling an inspection against that template, with &quot;Work order lines - Create &amp; Edit&quot; enabled.</li></ul>"
+ },
+ {
+  "id": 88509,
+  "title": "Note required: what it does not apply to, and unusual cases",
+  "updated_on": 1791367334,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with &quot;Settings - Service&quot; enabled, on the build under test.</li><li>Templates with the note option on and off, plus a template created before this release; you are filling inspections against them.</li></ul>"
+ },
+ {
+  "id": 88510,
+  "title": "Photo required if Not OK: off by default, checked on submit",
+  "updated_on": 1791367335,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with &quot;Settings - Service&quot; enabled, on the build under test.</li><li>Photo upload is available to the technician; a template has a checkbox field with &quot;Photo required if Not OK&quot; turned on.</li><li>You are filling an inspection against that template, with &quot;Work order lines - Create &amp; Edit&quot; enabled.</li></ul>"
+ },
+ {
+  "id": 88511,
+  "title": "Photo required if Not OK vs Photo required, which answers count, HEIC photos",
+  "updated_on": 1791367337,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with &quot;Settings - Service&quot; enabled, on the build under test.</li><li>A template checkbox field with both &quot;Photo required&quot; and &quot;Photo required if Not OK&quot; available and turned on.</li><li>You are filling an inspection against that template, with &quot;Work order lines - Create &amp; Edit&quot; enabled.</li><li>A phone camera that can produce a HEIC photo.</li></ul>"
+ },
+ {
+  "id": 88515,
+  "title": "After building you land on Lines, the finding is marked done, rebuild asks",
+  "updated_on": 1791367344,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Work order lines - Create &amp; Edit&#x27; and &#x27;Work orders - Create &amp; Edit&#x27;, on the build under test; ShopCoach is enabled and the shop has at least one labor type.</li><li>A completed inspection with at least one Monitor or Not OK finding, run on a work order.</li><li>One inspection you will draft-then-abandon, and one you will fully add lines from twice.</li></ul>"
+ },
+ {
+  "id": 88519,
+  "title": "Build lines from the completed inspection screen, also on a phone",
+  "updated_on": 1791367349,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Work order lines - Create &amp; Edit&#x27; and &#x27;Work orders - Create &amp; Edit&#x27;, on the build under test; ShopCoach is enabled and the shop has at least one labor type.</li><li>A completed inspection with at least one Monitor or Not OK finding, run on a work order.</li><li>A phone (or a narrow browser window) available to repeat the flow.</li></ul>"
+ },
+ {
+  "id": 88530,
+  "title": "How findings are counted, once per axle",
+  "updated_on": 1791367381,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Customers - View&#x27; and &#x27;Work orders - View&#x27;.</li><li>Inspections containing checkbox and per-axle measurement fields with: some responses N/A or unanswered; a per-axle field with three axles marked OK, Monitor and Not OK; and some hidden fields.</li></ul>"
+ },
+ {
+  "id": 88534,
+  "title": "After building, the row shows the result and the counts update",
+  "updated_on": 1791367387,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Work order lines - Create &amp; Edit&#x27; and &#x27;Work orders - Create &amp; Edit&#x27;, on the build under test; ShopCoach is enabled and the shop has at least one labor type.</li><li>The asset record (from a customer) is open on its Inspections tab.</li><li>A &quot;Needs action&quot; row you will build from; the tab&#x27;s filter row and summary line visible.</li></ul>"
+ },
+ {
+  "id": 88541,
+  "title": "What ShopCoach is told about the inspection findings",
+  "updated_on": 1791367397,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Work order lines - Create &amp; Edit&#x27; and &#x27;Work orders - Create &amp; Edit&#x27;, on the build under test; ShopCoach is enabled and the shop has at least one labor type.</li><li>A completed inspection with at least one Monitor/Not OK finding, including a per-axle finding with a note.</li></ul>"
+ },
+ {
+  "id": 88550,
+  "title": "Building a template: editing axle rows, reference file and axle count",
+  "updated_on": 1791367411,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Settings - Service&#x27; enabled, on the build under test (template authoring).</li><li>A template with a Per axle field and a standalone Measurement field.</li></ul>"
+ },
+ {
+  "id": 88551,
+  "title": "Filling an inspection: setting up each axle and recording values",
+  "updated_on": 1791367413,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a technician with &#x27;Work order lines - Create &amp; Edit&#x27;, on the build under test.</li><li>A template with a Per axle field.</li><li>Fill an inspection against it; have Single and Dual axles, and axles with and without brakes.</li></ul>"
+ },
+ {
+  "id": 88552,
+  "title": "Filling: verdict colours, the worst verdict wins, and the truck diagram",
+  "updated_on": 1791367414,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a technician with &#x27;Work order lines - Create &amp; Edit&#x27;, on the build under test.</li><li>A template with a Per axle field with several rows and positions.</li><li>Fill it, giving some positions verdicts and leaving some without.</li></ul>"
+ },
+ {
+  "id": 88553,
+  "title": "Filling: single or dual wheels, adding and removing axles, row units",
+  "updated_on": 1791367416,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a technician with &#x27;Work order lines - Create &amp; Edit&#x27;, on the build under test.</li><li>A template with a Per axle field with multiple axles.</li><li>Fill it on desktop and on a phone.</li></ul>"
+ },
+ {
+  "id": 88554,
+  "title": "The finished report shows per-axle results and findings per row",
+  "updated_on": 1791367418,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a technician with &#x27;Work order lines - Create &amp; Edit&#x27;, on the build under test.</li><li>A completed inspection with per-axle fields carrying mixed verdicts across positions and rows.</li></ul>"
+ },
+ {
+  "id": 88555,
+  "title": "Submitting with unanswered fields, no brake type, or a value without verdict",
+  "updated_on": 1791367419,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a technician with &#x27;Work order lines - Create &amp; Edit&#x27;, on the build under test.</li><li>A template with a required Per axle field.</li><li>Fill it to produce: no verdict anywhere; an axle with Drum/Disc left blank; and a position with a value but no verdict.</li></ul>"
+ },
+ {
+  "id": 88556,
+  "title": "Per axle with N/A, free text, road trains, older templates and units",
+  "updated_on": 1791367420,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a technician with &#x27;Work order lines - Create &amp; Edit&#x27;, on the build under test.</li><li>A template with a Per axle field.</li><li>Produce axles/values covering: a verdict with no measurements; a value &quot;N/A&quot; vs a verdict N/A; free text in a value; a road train (7+ axles); a completed inspection; a Single/Dual switch then leaving the page; and a unit change after readings exist.</li></ul>"
+ },
+ {
+  "id": 88557,
+  "title": "Attach one file per question: file types, panel, size limit and names",
+  "updated_on": 1791367422,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Settings - Service&#x27; enabled, on the build under test (template authoring).</li><li>A template with fields of several types.</li><li>Have PDF, image (incl. HEIC), Word, Excel and a video file to hand.</li></ul>"
+ },
+ {
+  "id": 88558,
+  "title": "The technician opens the attached file, unsupported types offer download",
+  "updated_on": 1791367424,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a technician with &#x27;Work order lines - Create &amp; Edit&#x27;, on the build under test.</li><li>A template whose fields carry attachments of various types (PDF, web image, HEIC, TIFF, Word, Excel).</li><li>Fill an inspection with &quot;Work orders - View&quot;.</li></ul>"
+ },
+ {
+  "id": 88562,
+  "title": "A brand-new template only offers to choose a starting point",
+  "updated_on": 1791367431,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Settings - Service&#x27; enabled, on the build under test (template authoring).</li><li>You are on a desktop, creating a brand-new template.</li></ul>"
+ },
+ {
+  "id": 88564,
+  "title": "Field settings: measurement row cards and answer options",
+  "updated_on": 1791367434,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Settings - Service&#x27; enabled, on the build under test (template authoring).</li><li>A template with a per-axle field and a checkbox field.</li></ul>"
+ },
+ {
+  "id": 88565,
+  "title": "Field settings: validation errors and the report wording tooltip",
+  "updated_on": 1791367436,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Settings - Service&#x27; enabled, on the build under test (template authoring).</li><li>A template with a checkbox field (response labels) and a per-axle field (measurement rows).</li></ul>"
+ },
+ {
+  "id": 88566,
+  "title": "The template canvas: field rows, summaries and empty sections",
+  "updated_on": 1791367437,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Settings - Service&#x27; enabled, on the build under test (template authoring).</li><li>A template with checkbox and per-axle fields and at least one empty section.</li></ul>"
+ },
+ {
+  "id": 88568,
+  "title": "Preview shows the fill screen read-only, except the axle control",
+  "updated_on": 1791367441,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Settings - Service&#x27; enabled, on the build under test (template authoring).</li><li>A template draft being edited, with a per-axle field, unsaved edits, and a reference file attached, open in Preview.</li></ul>"
+ },
+ {
+  "id": 88573,
+  "title": "The report shows the work order number and inspected date correctly",
+  "updated_on": 1791367451,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with ‘Work orders - View’ (enough to open a work order and view its inspection report), plus the inspection roles needed to run one (‘Work order lines - Create &amp; Edit’).</li><li>A completed inspection on a work order whose number carries a branch prefix (work order numbers carry the workplace’s prefix, for example S1-2252).</li></ul>"
+ },
+ {
+  "id": 88577,
+  "title": "Per-axle fields display and respond to touch on a phone",
+  "updated_on": 1791367458,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a technician with &#x27;Work order lines - Create &amp; Edit&#x27;, on the build under test.</li><li>A phone; an inspection with a per-axle field; gloves available for the touch check.</li></ul>"
+ },
+ {
+  "id": 88580,
+  "title": "Mark all, section or field OK sets only OK and never adds values",
+  "updated_on": 1791367463,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a technician with &#x27;Work order lines - Create &amp; Edit&#x27;, on the build under test.</li><li>An open, editable inspection with sections, checkbox fields and an untouched per-axle field.</li><li>Some positions already given verdicts and some still Not inspected.</li></ul>"
+ },
+ {
+  "id": 88584,
+  "title": "Building a template: the follow-up switch and the answer blocks",
+  "updated_on": 1791367471,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Settings - Service&#x27; enabled, on the build under test (template authoring).</li><li>A template with a checkbox field.</li><li>The field&#x27;s response-options section is open.</li></ul>"
+ },
+ {
+  "id": 88585,
+  "title": "Building a template: acknowledgement switch, renamed answers, what is kept",
+  "updated_on": 1791367473,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Settings - Service&#x27; enabled, on the build under test (template authoring).</li><li>A checkbox field with the follow-up section on, carrying OK, Monitor, Not OK and N/A response blocks with content.</li></ul>"
+ },
+ {
+  "id": 88587,
+  "title": "Filling: the Instruction word, and where and when it opens",
+  "updated_on": 1790852182,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a technician with &#x27;Work order lines - Create &amp; Edit&#x27;, on the build under test.</li><li>A filled inspection with a checkbox field carrying follow-ups on OK, Monitor, Not OK and N/A, some also requiring a note.</li></ul>"
+ },
+ {
+  "id": 88591,
+  "title": "Preview shows every follow-up, acknowledgement inactive, no banner",
+  "updated_on": 1791367481,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with &#x27;Settings - Service&#x27; enabled, on the build under test (template authoring).</li><li>A template draft with a checkbox field carrying configured follow-ups and an attached file, open in Preview mode.</li></ul>"
+ },
+ {
+  "id": 154591,
+  "title": "Core actions are hidden without the shared core permission",
+  "updated_on": 1791224807,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>A test customer exists.</li><li>A test vendor exists to order parts from.</li><li>The part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way).</li><li>The part sale has the part &quot;Water Pump&quot; (Quantity 1; Vendor = the test vendor; Sell Price $517.55; Core Charge $79.99) and, beneath it, a row &quot;Core for Water Pump&quot;.</li><li>The part has been authorized, ordered and received: the part row reads Received and its core row offers Return Core in the Actions column.</li><li>The service work order: a service work order for the same customer with a received core (a part with Vendor = the test vendor and a Core Charge of $79.99).</li><li>User X is a spare test user with the role &quot;ZZAUTOTEST Parts no core&quot; (built from a template, for example &quot;Parts Manager&quot;): Part sales - Create &amp; Edit ticked; every box under Vendor and order management (vendors, purchase orders, deliveries and part returns) unticked; Work order lines - Create &amp; Edit and Work orders - Create &amp; Edit unticked.</li><li>User Y is a spare test user with the role &quot;ZZAUTOTEST No financial data&quot; (built from a template, for example &quot;Parts Manager&quot;): See Financial Data (under Cross-Cutting) unticked.</li><li>The sale and the work order are built while signed in as an Owner/Admin user.</li></ul>"
+ },
+ {
+  "id": 154594,
+  "title": "Only part sales created after release charge the core from the quote",
+  "updated_on": 1791366604,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create &amp; Edit).</li><li>A customer to sell to exists.</li><li>The pre-release sale: a part sale started BEFORE the release with a core (created before the Founder Mode release reached this build, for example dated Sep 30, 2026 or earlier), whose parts list shows a &quot;Core for ...&quot; row.</li><li>The newly-created sale: a NEW part sale seeded now for the customer with the part &quot;Water Pump&quot; (Quantity 1, Vendor = a test vendor, Sell Price $517.55, Core Charge $79.99), not Authorized or Ordered.</li><li>A sale you can split and two part sales you can move a line between.</li></ul>"
+ },
+ {
+  "id": 154595,
+  "title": "Moving a charged core to a work order is not available yet",
+  "updated_on": 1791366605,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create &amp; Edit and Invoicing &amp; payments - Create &amp; Edit).</li><li>A test customer exists.</li><li>A test vendor exists to order parts from.</li><li>The part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way).</li><li>The part sale has the part &quot;Water Pump&quot; (Quantity 1; Vendor = the test vendor; Sell Price $517.55; Core Charge $79.99) and, beneath it, a row &quot;Core for Water Pump&quot;.</li><li>The part has been authorized, ordered and received: the part row reads Received and its core row offers Return Core in the Actions column.</li><li>A service work order for the same customer to move the part onto, with a line.</li></ul>"
+ },
+ {
+  "id": 154596,
+  "title": "Core rows sync to QuickBooks under the core part's category item",
+  "updated_on": 1791366607,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create &amp; Edit and Invoicing &amp; payments - Create &amp; Edit).</li><li>A test customer exists.</li><li>QuickBooks Online is connected to this shop (the QuickBooks test company).</li><li>The core&#x27;s part category (the category the part uses, &quot;Uncategorized&quot; if none was chosen) is mapped to a QuickBooks item (for example &quot;Parts&quot;).</li><li>A test vendor exists to order parts from.</li><li>The first sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way), with the part &quot;Water Pump&quot; (Quantity 1; Vendor = the test vendor; Sell Price $517.55; Core Charge $79.99) and, beneath it, a row &quot;Core for Water Pump&quot;.</li><li>On the first sale the part is authorized, ordered and received, and the core has been returned: the core row&#x27;s Status reads Returned, and the document on the Finance tab has a Core credit row of -$79.99.</li><li>The second sale (for the unmapped check): built exactly like the first, but with the part&#x27;s Category set to &quot;ZZAUTOTEST No QuickBooks item&quot;, a category whose QuickBooks Products And Services is empty; it is ordered, received and its core returned too.</li></ul>"
+ },
+ {
+  "id": 154600,
+  "title": "A fee or discount on a returned core comes to $0",
+  "updated_on": 1791366951,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create &amp; Edit).</li><li>A customer to sell to exists.</li><li>A part sale created on or after the release, carrying a part (for example &quot;Water Pump&quot;, Quantity 1, Vendor = a test vendor, Sell Price for example $517.55) with a Core Charge greater than 0 (for example $79.99); a &quot;Core for ...&quot; row appears beneath the part.</li><li>The part is authorized, ordered and received, so Return Core is available on the core row.</li><li>A per-item fee or discount is added while the core is charged (for example a flat $5 fee).</li></ul>"
+ },
+ {
+  "id": 154608,
+  "title": "Edit tax rate locks once invoiced, unlocks on reversal, needs permission",
+  "updated_on": 1791366619,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create &amp; Edit and Invoicing &amp; payments - Create &amp; Edit).</li><li>A test customer exists.</li><li>A test vendor exists to order parts from.</li><li>The invoiced sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way), with the part &quot;Brake Pads&quot; (Quantity 1, Vendor = the test vendor, Sell Price $290.91).</li><li>The part is ordered and received, so the sale is Complete.</li><li>The sale has been invoiced and paid in full, and that payment then reversed: the sale stays Invoiced, with no payment applied.</li><li>Two tax rates exist (for example a second one, &quot;ZZAUTOTEST 6%&quot; at 6.00%).</li><li>The user without the permission: a spare test user with the role &quot;ZZAUTOTEST No part sale edit&quot; (built from a template, for example &quot;Parts Manager&quot;): Part sales - Create &amp; Edit unticked, Part sales View left ticked.</li></ul>"
+ },
+ {
+  "id": 154613,
+  "title": "Part Sale Log needs permission and shows only this part sale",
+  "updated_on": 1791366625,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Owner/Admin user to build the data below.</li><li>A customer to sell to exists.</li><li>A part sale that is not invoiced or paid, for the customer, with a part (for example &quot;Brake Pads&quot;; Quantity 1; Sell Price for example $290.91).</li><li>The user without the permission: a test user WITHOUT Part sales - Create &amp; Edit (role &quot;ZZAUTOTEST No part sale edit&quot;, built from a template, for example &quot;Parts Manager&quot;, with Part sales View left ticked).</li><li>A second part sale, and a service work order with one change made on it, so both have entries that must never appear in this part sale&#x27;s log.</li></ul>"
+ },
+ {
+  "id": 154614,
+  "title": "Old part sales get no log history, and the work order log is unchanged",
+  "updated_on": 1791366627,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create &amp; Edit).</li><li>A part sale started before the release and a split made before the release (created before the Founder Mode release reached this build, for example dated Sep 30, 2026 or earlier).</li><li>A service work order with Split from / Split to entries.</li></ul>"
+ },
+ {
+  "id": 154615,
+  "title": "The header card carries a clearable Sales Representative field",
+  "updated_on": 1791224076,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create &amp; Edit).</li><li>A customer to sell to exists.</li><li>A part sale that is not invoiced or paid, for the customer, with a part (for example &quot;Brake Pads&quot;; Quantity 1; Sell Price for example $290.91).</li><li>The shop has at least one active sales representative.</li></ul>"
+ },
+ {
+  "id": 154616,
+  "title": "Sales Representative is saved at invoicing and its change is logged",
+  "updated_on": 1791366629,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create &amp; Edit).</li><li>A customer to sell to exists.</li><li>A part sale that is not invoiced or paid, for the customer, with a part (for example &quot;Brake Pads&quot;; Quantity 1; Sell Price for example $290.91).</li><li>At least two active sales representatives exist.</li><li>The sale will be taken to invoice.</li></ul>"
+ },
+ {
+  "id": 154625,
+  "title": "Add Deposit opens the work order dialog on the Finance tab",
+  "updated_on": 1791224097,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create &amp; Edit and Invoicing &amp; payments - Create &amp; Edit).</li><li>A test customer exists.</li><li>A test vendor exists to order parts from.</li><li>The part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way).</li><li>The part sale has two parts: &quot;Brake Pads&quot; (Quantity 1, Sell Price $290.91, Vendor = the test vendor) and &quot;Oil Filter&quot; (Quantity 1, Sell Price $12.50); the sale reads Estimate.</li></ul>"
+ },
+ {
+  "id": 154626,
+  "title": "A deposit shows in payment history and is applied at invoicing",
+  "updated_on": 1791366652,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create &amp; Edit AND Invoicing &amp; payments - Create &amp; Edit).</li><li>A customer to sell to exists.</li><li>A part sale in Estimate, Approved or Complete status, for the customer, with a part (for example &quot;Brake Pads&quot;; Quantity 1; Sell Price for example $290.91).</li></ul>"
+ },
+ {
+  "id": 154627,
+  "title": "Add Deposit works without a core, and Record Deposit has its own methods",
+  "updated_on": 1791366654,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create &amp; Edit AND Invoicing &amp; payments - Create &amp; Edit).</li><li>A customer to sell to exists.</li><li>A part sale for the customer with cores in various states (one charged, one returned): two parts, each with Quantity 1, a Vendor and a Core Charge (for example $79.99), both ordered and received; Return Core done on one core row, the other core left charged.</li></ul>"
+ },
+ {
+  "id": 154628,
+  "title": "Collect in Portal shows only when the customer portal allows it",
+  "updated_on": 1791366655,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create &amp; Edit AND Invoicing &amp; payments - Create &amp; Edit).</li><li>A customer to sell to exists.</li><li>A part sale in Estimate, Approved or Complete status, for the customer, with a part (for example &quot;Brake Pads&quot;; Quantity 1; Sell Price for example $290.91).</li><li>The shop takes online payments and the user has Customer Portal access; be able to test both a portal that confirms it can collect and one that declines.</li></ul>"
+ },
+ {
+  "id": 154629,
+  "title": "A part sale deposit syncs to QuickBooks like a work order's",
+  "updated_on": 1791224112,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create &amp; Edit AND Invoicing &amp; payments - Create &amp; Edit).</li><li>A customer to sell to exists.</li><li>A part sale in Estimate, Approved or Complete status, for the customer, with a part (for example &quot;Brake Pads&quot;; Quantity 1; Sell Price for example $290.91).</li><li>QuickBooks connected with the one-time bookkeeping consent given.</li></ul>"
+ },
+ {
+  "id": 154630,
+  "title": "A held deposit blocks changing the customer and deleting the part sale",
+  "updated_on": 1791366657,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create &amp; Edit AND Invoicing &amp; payments - Create &amp; Edit).</li><li>A customer to sell to exists.</li><li>A part sale in Estimate, Approved or Complete status, for the customer, with a part (for example &quot;Brake Pads&quot;; Quantity 1; Sell Price for example $290.91).</li><li>The sale holds a recorded deposit (Deposit Amount for example $50.00; Payment Method for example &quot;Cash&quot;).</li></ul>"
+ },
+ {
+  "id": 154631,
+  "title": "A deposit is charged to the owning location's payment account",
+  "updated_on": 1791366658,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create &amp; Edit AND Invoicing &amp; payments - Create &amp; Edit).</li><li>A customer to sell to exists.</li><li>Two locations exist.</li><li>The Location-A sale: a part sale owned by one location (for example Location A) while the user has a different location (Location B) selected.</li></ul>"
+ },
+ {
+  "id": 154632,
+  "title": "Add Deposit is refused once the sale is invoiced or paid",
+  "updated_on": 1791224123,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create &amp; Edit AND Invoicing &amp; payments - Create &amp; Edit).</li><li>A customer to sell to exists.</li><li>An invoiced or paid part sale.</li><li>The sale&#x27;s Finance tab is open.</li></ul>"
+ },
+ {
+  "id": 154633,
+  "title": "Add Deposit needs both permissions, also checked when saving",
+  "updated_on": 1791366660,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>A customer to sell to exists.</li><li>A part sale in Estimate, Approved or Complete status, for the customer, with a part (for example &quot;Brake Pads&quot;; Quantity 1; Sell Price for example $290.91).</li><li>Two spare test users: one with the role &quot;ZZAUTOTEST No part sale edit&quot; (Part sales - Create &amp; Edit unticked) and one with the role &quot;ZZAUTOTEST No invoicing edit&quot; (Invoicing &amp; payments - Create &amp; Edit unticked), both built from a template (for example &quot;Parts Manager&quot;).</li><li>Sign in as an Owner/Admin user to build the sale.</li></ul>"
+ },
+ {
+  "id": 154634,
+  "title": "Collect in Portal is hidden without online payments or portal access",
+  "updated_on": 1791224130,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create &amp; Edit and Invoicing &amp; payments - Create &amp; Edit).</li><li>A test customer exists.</li><li>The part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way), with the part &quot;Brake Pads&quot; (Quantity 1, Vendor = the test vendor, Sell Price $290.91); the sale reads Estimate.</li><li>The user without Customer Portal access: a spare test user with the role &quot;ZZAUTOTEST No portal&quot; (built from a template, for example &quot;Parts Manager&quot;; Customer portal under Page Access unticked). A shop with online payments off (ShopPay turned off) would also do, but on this QA build no ShopPay switch was found under Settings.</li><li>Not checkable by hand: a Customer Portal that cannot be reached. A manual tester cannot take the portal offline, so that half is left to automation.</li></ul>"
+ },
+ {
+  "id": 154635,
+  "title": "Collect in Portal is held until the portal takes part sale deposits",
+  "updated_on": 1791366661,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create &amp; Edit and Invoicing &amp; payments - Create &amp; Edit).</li><li>A test customer exists.</li><li>The part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way), with the part &quot;Brake Pads&quot; (Quantity 1, Vendor = the test vendor, Sell Price $290.91); the sale reads Estimate.</li><li>Know whether this build&#x27;s Customer Portal takes part sale deposits: the release notes for this build say so, or ask the QA lead.</li><li>The expected results cover both answers.</li></ul>"
+ },
+ {
+  "id": 154636,
+  "title": "Deposits above the total bring the balance to zero and leave a credit",
+  "updated_on": 1791366662,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including BOTH Part sales - Create &amp; Edit AND Invoicing &amp; payments - Create &amp; Edit).</li><li>A customer to sell to exists.</li><li>A part sale whose deposits will exceed its total: the part &quot;Water Pump&quot; (Quantity 1, Vendor = a test vendor, Sell Price $517.55; with GST 5% the total is $543.43), a recorded deposit of $600.00 (Payment Method &quot;Cash&quot;), and the part ordered and received.</li></ul>"
+ },
+ {
+  "id": 154640,
+  "title": "Core credit reaches QuickBooks as the exact negative amount",
+  "updated_on": 1791224141,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create &amp; Edit and Invoicing &amp; payments - Create &amp; Edit).</li><li>A test customer exists.</li><li>QuickBooks Online is connected to this shop (the QuickBooks test company).</li><li>The core&#x27;s part category (the category the part uses, &quot;Uncategorized&quot; if none was chosen) is mapped to a QuickBooks item (for example &quot;Parts&quot;).</li><li>A test vendor exists to order parts from.</li><li>The part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way), with the part &quot;Water Pump&quot; (Quantity 1; Vendor = the test vendor; Sell Price $517.55; Core Charge $79.99) and, beneath it, a row &quot;Core for Water Pump&quot;.</li><li>The part has been authorized, ordered and received, and the core returned: the core row&#x27;s Status reads Returned, and the document on the Finance tab has a Core credit row of -$79.99.</li><li>The sale has been invoiced (the invoice syncs to QuickBooks) and paid in full.</li><li>Compare every figure to the cent; do not estimate.</li></ul>"
+ },
+ {
+  "id": 154641,
+  "title": "A deposit above the total leaves the exact customer credit",
+  "updated_on": 1791366668,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create &amp; Edit and Invoicing &amp; payments - Create &amp; Edit).</li><li>Numeric-accuracy case.</li><li>A customer to sell to exists.</li><li>A part sale whose deposit exceeds its total: the part &quot;Water Pump&quot; (Quantity 1, Vendor = a test vendor, Sell Price $517.55; with GST 5% the total is $543.43), a recorded deposit of $600.00 (Payment Method &quot;Cash&quot;), and the part ordered and received.</li></ul>"
+ },
+ {
+  "id": 154644,
+  "title": "With the feature switch off, none of the new inspection screens show",
+  "updated_on": 1791367501,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in with the inspection roles (&#x27;Settings - Service&#x27;, &#x27;Work order lines - Create &amp; Edit&#x27;), on the build under test.</li><li>The Digital Inspections V2 feature flag is OFF for the shop.</li></ul>"
+ },
+ {
+  "id": 154645,
+  "title": "Verdicts never rely on colour alone, and colours work in the dark theme",
+  "updated_on": 1791367503,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a technician with &#x27;Work order lines - Create &amp; Edit&#x27;, on the build under test.</li><li>An inspection with a per-axle field carrying both judged positions and not-inspected positions.</li><li>Be able to view the screen in light theme and in dark theme.</li></ul>"
+ },
+ {
+  "id": 154647,
+  "title": "Not inspected means no verdict was given, it is never a choice to pick",
+  "updated_on": 1791367506,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a technician with &#x27;Work order lines - Create &amp; Edit&#x27;, on the build under test.</li><li>A per-axle field (and a checkbox field) being filled, with some positions judged and some left not inspected.</li></ul>"
+ },
+ {
+  "id": 154651,
+  "title": "The bell opens the inbox and badges the unread count",
+  "updated_on": 1791226214,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>3 notifications addressed to you, from notes a second user wrote on a work order.</li><li>The states of 0, exactly 99, and 100+ unread can be reached.</li></ul>"
+ },
+ {
+  "id": 154652,
+  "title": "The inbox is a single list, newest first, 50 at a time with Load more",
+  "updated_on": 1791226217,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Inbox tab.</li><li>60 notifications addressed to you (enough to exceed one page of 50), from notes a second user wrote on a work order.</li><li>One note whose notification you received has been deleted.</li></ul>"
+ },
+ {
+  "id": 154653,
+  "title": "Search filters the list by name, reference or text",
+  "updated_on": 1791226221,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Inbox tab.</li><li>3 notifications addressed to you, from notes a second user wrote on work orders, using distinct references (different work orders) and message text.</li><li>More than 50 results, so a second page exists.</li></ul>"
+ },
+ {
+  "id": 154654,
+  "title": "Unread only is on by default and is remembered for the user, any browser",
+  "updated_on": 1791366674,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>3 notifications addressed to you, from notes a second user wrote on a work order, with a mix of read and unread.</li><li>A second user account and a second browser/device.</li></ul>"
+ },
+ {
+  "id": 154655,
+  "title": "Mark all read clears unread, and is disabled with a tooltip if none",
+  "updated_on": 1791366675,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Inbox tab.</li><li>Some unread notifications addressed to you, from notes a second user wrote on a work order.</li><li>Later, a state with none unread.</li></ul>"
+ },
+ {
+  "id": 154656,
+  "title": "The inbox follows the active location, customer and asset notes show in all",
+  "updated_on": 1791366678,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>Two locations you can switch between: location A, and location B (any other location, for example Staging Lethbridge - 4310).</li><li>At location A: a notification from a work-order/part-sale note, and a notification from a note on a customer or an asset (which has no location), both written by a second user and tagging you.</li></ul>"
+ },
+ {
+  "id": 154657,
+  "title": "The inbox has no archive, dismiss, compose, sender filter or sort",
+  "updated_on": 1791227533,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Inbox tab.</li><li>A notification addressed to you, from a note a second user wrote on a work order.</li></ul>"
+ },
+ {
+  "id": 154658,
+  "title": "A notification shows sender, record pill, time and message with tags",
+  "updated_on": 1791366679,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Inbox tab.</li><li>A notification addressed to you, from a note a second user wrote on a work order.</li><li>The message contains @ tags (for example &quot;@Service Team please road test&quot;).</li></ul>"
+ },
+ {
+  "id": 154659,
+  "title": "The record pill wording for a work order, part sale and line",
+  "updated_on": 1791366681,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Inbox tab.</li><li>Notifications from a note on a work order (for example S2-4219), a part sale (for example P9667-370), and a work order line, each written by a second user and tagging you.</li></ul>"
+ },
+ {
+  "id": 154660,
+  "title": "The Tagged line names recipients (2 then N more), not the author or emails",
+  "updated_on": 1791366683,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Inbox tab.</li><li>A note that tags you and four other people (for example Ashlee Thomas, Ashley Schultz, Amy Fernandez, Angelica Harper), written by a second user on a work order, tagging each person in that order.</li><li>A note you wrote whose only recipient is you.</li></ul>"
+ },
+ {
+  "id": 154661,
+  "title": "A notification can be marked read or unread and shows its attachments",
+  "updated_on": 1791366684,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Inbox tab.</li><li>A notification whose note carries an attachment, from a note a second user wrote on a work order.</li></ul>"
+ },
+ {
+  "id": 154662,
+  "title": "The Edited stamp wording, and a plain @ left in the message text",
+  "updated_on": 1791366686,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Inbox tab.</li><li>Three notifications addressed to you, from notes a second user wrote on a work order: one whose note has been edited, one that has never been edited, and one whose message contains a plain &quot;@&quot; that is not a tag (for example &quot;@ me if urgent&quot;).</li></ul>"
+ },
+ {
+  "id": 154673,
+  "title": "Deleting a note updates every recipient's inbox except the deleter's",
+  "updated_on": 1791366701,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>A note that reached several recipients (including an author who tagged themselves): written by a second user on a work order, tagging itself and you.</li><li>A second user who will delete it while recipients have their inbox open: you, as Owner/Admin, while the note&#x27;s author keeps its inbox open in a private window.</li></ul>"
+ },
+ {
+  "id": 154675,
+  "title": "Deleting a note removes it and its attachments from every inbox",
+  "updated_on": 1791366702,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>A note you authored on a work order that tagged several recipients (for example &quot;Tech ShopView&quot; and another teammate) and carries an attachment.</li><li>The tagged user sees it in their inbox.</li></ul>"
+ },
+ {
+  "id": 154681,
+  "title": "The Tag groups tab lists your own and public groups with three columns",
+  "updated_on": 1791366714,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Tag groups tab.</li><li>An active location is selected.</li><li>Tag groups exist (for example &quot;Service Team&quot; with at least one Member, for example &quot;Ashlee Thomas&quot;), including a public group and a personal group.</li><li>A state with no groups can be reached.</li></ul>"
+ },
+ {
+  "id": 154682,
+  "title": "New tag group window: fields, toggle off, help text, location, success",
+  "updated_on": 1791366716,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Tag groups tab.</li><li>An active location is selected.</li></ul>"
+ },
+ {
+  "id": 154683,
+  "title": "Name is required, up to 40 characters, and needs at least one member",
+  "updated_on": 1791366718,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Tag groups tab.</li><li>An active location is selected.</li></ul>"
+ },
+ {
+  "id": 154684,
+  "title": "The Name field's @ prefix cannot be removed or clicked into",
+  "updated_on": 1791366719,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Tag groups tab.</li><li>An active location is selected.</li><li>The New tag group dialog is open (and later the Edit tag group dialog).</li></ul>"
+ },
+ {
+  "id": 154685,
+  "title": "The @ prefix is not part of the saved name and never appears twice",
+  "updated_on": 1791366722,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Tag groups tab.</li><li>An active location is selected.</li></ul>"
+ },
+ {
+  "id": 154686,
+  "title": "The Members list offers only this location's staff, including you",
+  "updated_on": 1791366723,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Tag groups tab.</li><li>An active location is selected.</li><li>Staff exist at the active location and at another location.</li></ul>"
+ },
+ {
+  "id": 154687,
+  "title": "Editing a tag group: menu actions, filled-in window, hover and success",
+  "updated_on": 1791366725,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Tag groups tab.</li><li>An active location is selected.</li><li>A tag group (for example &quot;Service Team&quot; with at least one Member, for example &quot;Ashlee Thomas&quot;; Public off, or on for a public group).</li></ul>"
+ },
+ {
+  "id": 154688,
+  "title": "Deleting a tag group: different wording for personal and public groups",
+  "updated_on": 1791366726,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Tag groups tab.</li><li>An active location is selected.</li><li>A personal group and a public group you can delete.</li></ul>"
+ },
+ {
+  "id": 154689,
+  "title": "Public groups are shared with everyone, personal groups only with the owner",
+  "updated_on": 1791366728,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Tag groups tab.</li><li>An active location is selected.</li><li>A public group and your personal group.</li><li>A personal group owned by another user.</li><li>&quot;Another user at the location&quot; in the steps is Tech ShopView.</li></ul>"
+ },
+ {
+  "id": 154690,
+  "title": "Duplicate name checks differ for personal and public groups",
+  "updated_on": 1791366729,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Tag groups tab.</li><li>An active location is selected.</li><li>You already own a personal group named &quot;Techs&quot;; a public group named &quot;Techs&quot; exists at the location.</li></ul>"
+ },
+ {
+  "id": 154691,
+  "title": "Only owners and admins manage public groups, admins can't edit personal ones",
+  "updated_on": 1791366731,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Tag groups tab.</li><li>An active location is selected.</li><li>A public group; a personal group owned by another user; sign-in as a non-owner non-admin, and as an admin.</li></ul>"
+ },
+ {
+  "id": 154692,
+  "title": "The window never shows a location, and two users may share a personal name",
+  "updated_on": 1791366732,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Tag groups tab.</li><li>An active location is selected.</li><li>A second user at the same location.</li></ul>"
+ },
+ {
+  "id": 154693,
+  "title": "Visibility change applies at once, empty groups are blocked, members kept",
+  "updated_on": 1791366734,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Tag groups tab.</li><li>An active location is selected.</li><li>A public group (that you will switch to personal).</li><li>An admin renaming another user&#x27;s public group.</li><li>A group whose only member has left the location.</li></ul>"
+ },
+ {
+  "id": 154698,
+  "title": "Preferences tab: the Notification preferences card, email switch and Save",
+  "updated_on": 1791366741,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>The Notifications page is open on the Preferences tab.</li></ul>"
+ },
+ {
+  "id": 154699,
+  "title": "The email switch affects email only, the inbox and bell are always on",
+  "updated_on": 1791366742,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user.</li><li>A second user who can sign in and has access to a work order; you will tag them on a note.</li><li>Reading their email needs a mailbox you can open for that user.</li></ul>"
+ },
+ {
+  "id": 154704,
+  "title": "Adding a note needs View permission on that kind of record",
+  "updated_on": 1791366751,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Owner/Admin user (the standard Admin role). This is User A.</li><li>User B: a teammate at the same location who can sign in, with the role &quot;ZZAUTOTEST Part sales only&quot; (built from the &quot;Service Advisor&quot; template; Work orders - View unticked, Part sales - View ticked).</li><li>A work order at this location (customer for example &quot;4 Star Truck Repair&quot;).</li><li>A part sale at this location.</li><li>User C: a second teammate, with the role &quot;ZZAUTOTEST Work orders only&quot; (built from the &quot;Service Advisor&quot; template; Work orders - View ticked, Part sales - View unticked).</li><li>For tagging or group membership only, any staff member (for example &quot;Ashlee Thomas&quot;) can be User C.</li></ul>"
+ },
+ {
+  "id": 154705,
+  "title": "Only the author edits a note, deleting needs authorship or Delete",
+  "updated_on": 1791366753,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Owner/Admin user (the standard Admin role). This is User A.</li><li>A work order at this location (customer for example &quot;4 Star Truck Repair&quot;).</li><li>A part sale at this location.</li><li>User A has written one note on each: the work order, the part sale and the customer.</li><li>User B: a teammate at the same location who can sign in, with the role &quot;ZZAUTOTEST WO delete&quot; (built from the &quot;Service Advisor&quot; template; Work orders - Delete ticked, Part sales - Delete and Customers - Delete unticked).</li><li>User C: a second teammate, with the role &quot;ZZAUTOTEST PS and customer delete&quot; (built from the &quot;Service Advisor&quot; template; Part sales - Delete and Customers - Delete ticked, Work orders - Delete unticked).</li><li>For tagging or group membership only, any staff member (for example &quot;Ashlee Thomas&quot;) can be User C.</li><li>User D: a teammate with neither role and none of those Delete permissions.</li><li>For the last step: a work order note written by the customer in the Customer Portal, and a system note (one the app wrote itself). If the work order has neither, mark step 5 Blocked and write why.</li></ul>"
+ },
+ {
+  "id": 154706,
+  "title": "Admins edit a public tag group, only its owner makes it public or personal",
+  "updated_on": 1791366755,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Owner/Admin user (the standard Admin role). This is User A.</li><li>User B: a teammate who is not an admin.</li><li>User B owns a public tag group &quot;ZZ Public team&quot; (with a member), a personal tag group &quot;ZZ Personal team&quot; (Public off), and a quick note &quot;ZZ Note&quot;.</li><li>User C: a second non-admin teammate.</li></ul>"
+ },
+ {
+  "id": 154710,
+  "title": "Nothing else in the New Line window changes, existing lines stay as they are",
+  "updated_on": 1791366773,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a service writer on the build under test, with a work order open.</li><li>The previously seeded line: a work order line (Title for example &quot;Replace tie rod&quot;, Description for example &quot;excessive play&quot;, Tech Story for example &quot;Both outer ends worn, replaced and aligned&quot;); its saved title, description and tech story are recorded.</li></ul>"
+ },
+ {
+  "id": 154711,
+  "title": "The ShopCoach line builder labels its fields Title and Description too",
+  "updated_on": 1791366775,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a service writer on the build under test, with a work order open.</li><li>The AI ShopCoach line builder is open (from the line dialog).</li></ul>"
+ },
+ {
+  "id": 154712,
+  "title": "ShopCoach still generates the same text, and the line works like any other",
+  "updated_on": 1791366777,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a service writer on the build under test, with a work order open.</li><li>The AI ShopCoach line builder is open.</li></ul>"
+ },
+ {
+  "id": 154713,
+  "title": "Invoice line text joins the three parts with spaced hyphens, no labels",
+  "updated_on": 1791366778,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a service writer on the build under test, with a work order open.</li><li>A work order line (Title for example &quot;Replace tie rod&quot;, Description for example &quot;excessive play&quot;, Tech Story for example &quot;Both outer ends worn, replaced and aligned&quot;).</li><li>Complete and invoice the work order so a Customer Invoice exists (e.g. work order S2-17578).</li></ul>"
+ },
+ {
+  "id": 154715,
+  "title": "The QuickBooks sync and the downloaded report show the same line text",
+  "updated_on": 1791366782,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a service writer on the build under test, with a work order open.</li><li>A work order line (Title for example &quot;Replace tie rod&quot;, Description for example &quot;excessive play&quot;, Tech Story for example &quot;Both outer ends worn, replaced and aligned&quot;).</li><li>Complete and invoice the work order so a Customer Invoice exists (e.g. work order S2-17578).</li><li>The shop has an active QuickBooks Online connection so the invoice also syncs.</li></ul>"
+ },
+ {
+  "id": 154716,
+  "title": "A missing description is left out, including \"Tech story missing.\"",
+  "updated_on": 1791366784,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a service writer on the build under test, with a work order open.</li><li>Require Tech Story is turned OFF (Work Order Settings).</li><li>Seed and invoice two lines: (a) title + description, tech story left empty; (b) a line whose tech story is the literal text &quot;Tech story missing.&quot; that the dialog writes when nothing was typed.</li></ul>"
+ },
+ {
+  "id": 154719,
+  "title": "The report hides money for users without financial access, not line text",
+  "updated_on": 1791366789,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>Sign in as a user who cannot see financial data, on the build under test.</li><li>A work order line (Title for example &quot;Replace tie rod&quot;, Description for example &quot;excessive play&quot;, Tech Story for example &quot;Both outer ends worn, replaced and aligned&quot;), created by a finance user beforehand and then invoiced.</li></ul>"
+ },
+ {
+  "id": 154723,
+  "title": "Invoice import columns are renamed to Line Title and Line Description",
+  "updated_on": 1791366796,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an admin, on the build under test.</li><li>The Invoices page under Administration (the historical invoice import) is open.</li></ul>"
+ },
+ {
+  "id": 154724,
+  "title": "Old import column names still work, and a file may mix old and new",
+  "updated_on": 1791366798,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an admin, on the build under test, on the Invoices page under Administration.</li><li>Prepare three import files with otherwise valid rows: (a) both columns under the NEW names; (b) both under the OLD names (&quot;*Line Title - What are you doing&quot; / &quot;Line Description - Why are you doing it&quot;); (c) one column old, the other new.</li></ul>"
+ },
+ {
+  "id": 154725,
+  "title": "Other import columns and their order are unchanged",
+  "updated_on": 1791366799,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an admin, on the build under test, on the Invoices page under Administration.</li></ul>"
+ },
+ {
+  "id": 154726,
+  "title": "Categories opens sorted by Name A to Z, with an up arrow",
+  "updated_on": 1791366816,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Categories page is open.</li><li>Categories whose names mix case and numbers (for example &quot;Tier 2&quot;, &quot;Tier 9&quot;, &quot;Tier 10&quot;, &quot;alpha&quot;, &quot;Beta&quot;).</li><li>The Default category already exists (for example &quot;Uncategorized&quot;).</li><li>The list is longer than one screen.</li></ul>"
+ },
+ {
+  "id": 154727,
+  "title": "Clicking Name switches A to Z and Z to A, ignoring capitals, numbers in order",
+  "updated_on": 1791366818,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Categories page is open.</li><li>Categories whose names mix case and numbers (for example &quot;Tier 2&quot;, &quot;Tier 9&quot;, &quot;Tier 10&quot;, &quot;alpha&quot;, &quot;Beta&quot;).</li><li>The Default category already exists (for example &quot;Uncategorized&quot;).</li></ul>"
+ },
+ {
+  "id": 154728,
+  "title": "QuickBooks Products And Services column sorts A to Z, then Z to A",
+  "updated_on": 1791366819,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Categories page is open.</li><li>The shop is connected to QuickBooks (so the QuickBooks Products And Services column is shown).</li><li>Categories whose names mix case and numbers (for example &quot;Tier 2&quot;, &quot;Tier 9&quot;, &quot;Tier 10&quot;, &quot;alpha&quot;, &quot;Beta&quot;).</li><li>The Default category already exists (for example &quot;Uncategorized&quot;).</li></ul>"
+ },
+ {
+  "id": 154729,
+  "title": "Only one Categories column is sorted at a time",
+  "updated_on": 1790767638,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Categories page is open.</li><li>The shop is connected to QuickBooks (so the QuickBooks Products And Services column is shown).</li><li>Categories whose names mix case and numbers (for example &quot;Tier 2&quot;, &quot;Tier 9&quot;, &quot;Tier 10&quot;, &quot;alpha&quot;, &quot;Beta&quot;).</li><li>The Default category already exists (for example &quot;Uncategorized&quot;).</li></ul>"
+ },
+ {
+  "id": 154730,
+  "title": "Categories keeps its sort after a reload, a fresh open goes back to Name A-Z",
+  "updated_on": 1791366821,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Categories page is open.</li><li>Categories whose names mix case and numbers (for example &quot;Tier 2&quot;, &quot;Tier 9&quot;, &quot;Tier 10&quot;, &quot;alpha&quot;, &quot;Beta&quot;).</li><li>The Default category already exists (for example &quot;Uncategorized&quot;).</li></ul>"
+ },
+ {
+  "id": 154731,
+  "title": "Typing a Categories search term keeps the current sort",
+  "updated_on": 1790767640,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Categories page is open.</li><li>Categories whose names mix case and numbers (for example &quot;Tier 2&quot;, &quot;Tier 9&quot;, &quot;Tier 10&quot;, &quot;alpha&quot;, &quot;Beta&quot;).</li><li>The Default category already exists (for example &quot;Uncategorized&quot;).</li></ul>"
+ },
+ {
+  "id": 154732,
+  "title": "Unmapped categories show Parts in the QuickBooks column and sort under P",
+  "updated_on": 1791366822,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Categories page is open.</li><li>The shop is connected to QuickBooks (so the QuickBooks Products And Services column is shown).</li><li>Have at least one category never mapped to QuickBooks, and at least one whose mapping is genuinely named &quot;Parts&quot;.</li></ul>"
+ },
+ {
+  "id": 154733,
+  "title": "The Default category stays first, with its badge, under every sort",
+  "updated_on": 1791366824,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Categories page is open.</li><li>The shop is connected to QuickBooks (so the QuickBooks Products And Services column is shown).</li><li>Categories whose names mix case and numbers (for example &quot;Tier 2&quot;, &quot;Tier 9&quot;, &quot;Tier 10&quot;, &quot;alpha&quot;, &quot;Beta&quot;).</li><li>The Default category already exists (for example &quot;Uncategorized&quot;).</li><li>The Default category (for example &quot;Uncategorized&quot;) carries a Default badge.</li></ul>"
+ },
+ {
+  "id": 154736,
+  "title": "Pricing Matrices opens sorted by matrix name A to Z, with an up arrow",
+  "updated_on": 1791366830,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Pricing Matrices tab is open.</li><li>Several pricing matrices with names that mix case and numbers (for example &quot;COC matrix&quot;, &quot;HD-Dynamic 55&quot;, &quot;70% override&quot;).</li></ul>"
+ },
+ {
+  "id": 154737,
+  "title": "Clicking Matrix Category switches A to Z and Z to A, numbers in order",
+  "updated_on": 1791366831,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Pricing Matrices tab is open.</li><li>Seed matrices whose names mix case and numbers (e.g. &quot;matrix 9&quot;, &quot;Matrix 10&quot;).</li></ul>"
+ },
+ {
+  "id": 154738,
+  "title": "Pricing Matrices keeps its sort after a reload, a fresh open resets it",
+  "updated_on": 1791366832,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Pricing Matrices tab is open.</li></ul>"
+ },
+ {
+  "id": 154739,
+  "title": "The Pricing matrices tab label carries a space before the count",
+  "updated_on": 1790767647,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Pricing Matrices tab is open.</li></ul>"
+ },
+ {
+  "id": 154740,
+  "title": "The default pricing matrix is not pinned first, it sorts by its name",
+  "updated_on": 1791366949,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Pricing Matrices tab is open.</li><li>The tab has a default pricing matrix (carrying a Default badge, e.g. &quot;Default matrix 07/12/2023&quot;).</li></ul>"
+ },
+ {
+  "id": 154742,
+  "title": "Fixed Rules sorts by three columns, one at a time, each click flips order",
+  "updated_on": 1791366835,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Fixed Rules tab is open.</li><li>The tab lists fixed rules with a range of part numbers, categories and fixed prices (e.g. org &quot;Automotive - 4700&quot;).</li></ul>"
+ },
+ {
+  "id": 154743,
+  "title": "Part number sorting puts numbers in order and ignores capitals",
+  "updated_on": 1791366837,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Fixed Rules tab is open.</li><li>The tab lists parts whose numbers mix letters, case and numbers (e.g. &quot;BRK-9&quot;, &quot;BRK-10&quot;, &quot;BRK-100&quot;).</li></ul>"
+ },
+ {
+  "id": 154744,
+  "title": "Category sorting puts numbers in order, and only rules with a category show",
+  "updated_on": 1791366839,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Fixed Rules tab is open.</li><li>The tab lists rules across several categories whose names mix case and numbers.</li></ul>"
+ },
+ {
+  "id": 154745,
+  "title": "Fixed price sorts lowest first ascending and highest first descending",
+  "updated_on": 1791366840,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Fixed Rules tab is open.</li><li>The tab lists rules with a range of fixed prices (e.g. $1.40, $3.99, $14.48, $16.73).</li></ul>"
+ },
+ {
+  "id": 154746,
+  "title": "Fixed Rules opens by Part number ascending and keeps its sort after reload",
+  "updated_on": 1791366842,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Fixed Rules tab is open.</li></ul>"
+ },
+ {
+  "id": 154747,
+  "title": "All fixed rules load when the page opens, and the sort covers all of them",
+  "updated_on": 1791366843,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Fixed Rules tab is open.</li><li>Use the largest organisation so the list is long (production peaks near 8,994 rules).</li></ul>"
+ },
+ {
+  "id": 154748,
+  "title": "The Fixed rules tab label carries a space before the count",
+  "updated_on": 1790767656,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Fixed Rules tab is open.</li></ul>"
+ },
+ {
+  "id": 154749,
+  "title": "The Fixed Rules search now works and keeps the current sort",
+  "updated_on": 1790767657,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Fixed Rules tab is open.</li></ul>"
+ },
+ {
+  "id": 154750,
+  "title": "Fixed Rules shows a loading indicator and is not usable until fully loaded",
+  "updated_on": 1790767658,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Fixed Rules tab is open.</li><li>Use the largest organisation so loading takes a few seconds.</li></ul>"
+ },
+ {
+  "id": 236959,
+  "title": "Customer Part Sales tab: Total Price includes tax",
+  "updated_on": 1791224822,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner/Admin user (that role holds every permission, including Part sales - Create &amp; Edit and Invoicing &amp; payments - Create &amp; Edit).</li><li>A test customer exists.</li><li>A test vendor exists to order parts from.</li><li>The seeded part sale: a new part sale started today for the test customer (a sale started before this release handles cores the old way), with the part &quot;Brake Pads&quot; (Quantity 1; Vendor = the test vendor; Sell Price $100.00).</li><li>The sale&#x27;s tax rate is set to an 8.25% rate (for example &quot;ZZAUTOTEST 8.25%&quot;).</li><li>The sale&#x27;s own Total on the Finance tab is $108.25 ($100.00 + $8.25 tax).</li><li>For comparison, a work order for the same customer with a taxable $100.00 part (Sell Price $100.00, tax 8.25%).</li></ul>"
+ },
+ {
+  "id": 236967,
+  "title": "New mention pop-up follows the inbox's location rule",
+  "updated_on": 1791226426,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Owner/Admin user (the standard Admin role). This is User A.</li><li>User B: a teammate at the same location to tag, who can sign in.</li><li>Two locations User A and User B can both switch between, Location 1 and Location 2.</li><li>A work order at Location 2.</li><li>The customer (for example &quot;4 Star Truck Repair&quot;), whose own notes are on its Notes tab.</li><li>User B is kept signed in on a second browser, at Location 1.</li></ul>"
+ },
+ {
+  "id": 236970,
+  "title": "Tags in a note show in blue, the rest of the text in normal colour",
+  "updated_on": 1791366761,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Owner/Admin user (the standard Admin role). This is User A.</li><li>User B: a teammate at the same location to tag, who can sign in.</li><li>A work order at this location (customer for example &quot;4 Star Truck Repair&quot;).</li><li>A tag group you own (for example &quot;ZZ Pair&quot;).</li><li>A note on the work order: &quot;Please check this @Tech ShopView and @ZZ Pair today&quot; (tagging User B and the group).</li></ul>"
+ },
+ {
+  "id": 236974,
+  "title": "Customer Portal: a customer's own part sale note still works",
+  "updated_on": 1791226451,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Owner/Admin user (the standard Admin role). This is User A.</li><li>A part sale at this location, for a customer that has a Customer Portal login for one of its contacts.</li><li>The Customer Portal login for that customer contact (ask the account admin for it if you do not have it).</li><li>For comparison, a service work order for the same customer.</li></ul>"
+ }
+]

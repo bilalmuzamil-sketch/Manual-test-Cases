@@ -1,0 +1,18 @@
+<html><body><h1>Setup: The Fixed Rules search now works and keeps the current sort</h1><p>Test case: <a href="https://shopview.testrail.io/index.php?/cases/view/154749">C154749</a>, FM - Price/Category. Part 1 is for a manual QA tester. Part 2 is for a Claude session that prepares and runs the case on its own. Both create the starting state listed in the test case's Preconditions.</p><p>Values given as examples ("e.g." or "for example") can be anything: they are not records that already exist in the app. Write down the real values you used, because the test steps refer to them.</p><h2>What the setup creates</h2><ul><li>You are signed in as a user who holds the &quot;Settings - Parts&quot; permission, on the build under test.</li><li>The Fixed Rules tab is open.</li></ul><h1>Part 1. Setup for manual QA tester</h1><p>The case's full original preconditions, with every step for setting them up:</p><ol><li>You are signed in as a user who holds the "Settings - Parts" permission, on the build under test. Open Settings -&gt; Parts -&gt; Pricing -&gt; Fixed Rules tab.</li></ol><h1>Part 2. Setup for Claude session</h1>
+<p>Prepare the same starting state by carrying out Part 1 in a browser with Playwright, then run the test case's steps in the same browser. Record the real value of every named record, the build marker and screenshots in the case's verification folder in the Manual-test-Cases repository, and judge pass or fail against the test case's Expected results only. Facts below come from the team's recorded playbook (build/APP-ACTIONS-PLAYBOOK.md).</p>
+<h2>Environment</h2>
+<ul>
+<li>Staging: app https://app.staging.shopview.com, API https://api.staging.shopview.com.</li>
+<li>A QA branch named in the test run: the app is https://sv followed by the branch number and .qa.shopview.com, and the API host adds "api" after the branch number with no dot (for example https://sv10043.qa.shopview.com and https://sv10043api.qa.shopview.com).</li>
+<li>Record the build marker (app-version on the app page) before you start.</li>
+<li>Browser: Chromium at /opt/pw-browsers/chromium-1194/chrome-linux/chrome through Playwright. Do not run "playwright install".</li>
+</ul>
+<h2>Access</h2>
+<ul>
+<li>Ask the QA lead for the environment's cookies (sv_sso_session, cf_clearance and PHPSESSID). Keep them in /tmp only, with file mode 600. Never write a cookie into a document, a commit or a log.</li>
+<li>Check access: GET /api/auth/me/fe-permissions answers 200. On a QA branch the sign-in page has quick-login buttons; quick-login signs out other sessions using the same login, so confirm with the QA lead that no other session is live first.</li>
+<li>GET /api/staff/my-workplaces lists the locations and their ids; switch location in the top bar, or with POST /api/iam/change-location (workplace_id and its workplace_timezone).</li>
+</ul>
+<h2>Cleanup</h2>
+<p>Leave records whose names start with ZZAUTOTEST; they are marked as test data. Delete work orders you created when the case is finished.</p>
+</body></html>

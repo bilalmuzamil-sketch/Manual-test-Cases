@@ -42,17 +42,32 @@
  },
  {
   "id": 88510,
-  "change": false,
-  "preconditions": [],
-  "setup": [],
-  "note": "The option label \"Photo required if Not OK\" has to stay in the preconditions, and the split checker reads \"if Not\" in it as an \"If not:\" how-to; renaming the option would change a fact, so the case is left unchanged (its seed-via text is still in the preconditions)."
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user with \"Settings - Service\" enabled, on the build under test.",
+   "Photo upload is available to the technician; a template has a checkbox field with \"Photo required if Not OK\" turned on.",
+   "You are filling an inspection against that template, with \"Work order lines - Create & Edit\" enabled."
+  ],
+  "setup": [
+   "seed via Settings - Service > Inspection Templates > Add field > Checkbox, then turn the option on",
+   "open a work order, start the inspection"
+  ],
+  "note": "split by hand by the main session (option label contains \"if Not\")"
  },
  {
   "id": 88511,
-  "change": false,
-  "preconditions": [],
-  "setup": [],
-  "note": "The option label \"Photo required if Not OK\" has to stay in the preconditions, and the split checker reads \"if Not\" in it as an \"If not:\" how-to; renaming the option would change a fact, so the case is left unchanged (its seed-via text is still in the preconditions)."
+  "change": true,
+  "preconditions": [
+   "You are signed in as a user with \"Settings - Service\" enabled, on the build under test.",
+   "A template checkbox field with both \"Photo required\" and \"Photo required if Not OK\" available and turned on.",
+   "You are filling an inspection against that template, with \"Work order lines - Create & Edit\" enabled.",
+   "A phone camera that can produce a HEIC photo."
+  ],
+  "setup": [
+   "seed and turn both on in Settings - Service > Inspection Templates",
+   "open a work order, start the inspection"
+  ],
+  "note": "split by hand by the main session (option label contains \"if Not\")"
  },
  {
   "id": 88512,
