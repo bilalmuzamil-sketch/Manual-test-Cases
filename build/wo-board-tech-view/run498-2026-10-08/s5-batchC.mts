@@ -134,8 +134,9 @@ await run('C96978', async () => {
 await run('C96982', async () => {
   const n = `ZZAUTOTEST F2 Required Only ${Date.now() % 100000}`; const c = await customer(a, n, 'TRK-118');
   const v2 = await vehicle(a, c, 'ZZNOUNIT');
-  R.C96982 = { shape1: await shape(c, c.vehicle_id, { unit: 'TRK-118', year: 2022, mm: MM.m2, vin: '1FVACWDT0NHZZ0118' }), shape2: await shape(c, v2, { unit: '', year: 1999, mm: MM.explorer, vin: '1FMZU34E9XZZ00999' }) };
+  // work orders first: a work order could not be created on an asset after it was reshaped (500, 2026-10-09)
   const w1 = await workOrder(a, c, 'approved', ES.staff_id), w2 = await workOrder(a, { ...c, vehicle_id: v2 }, 'approved', ES.staff_id);
+  R.C96982 = { shape1: await shape(c, c.vehicle_id, { unit: 'TRK-118', year: 2022, mm: MM.m2, vin: '1FVACWDT0NHZZ0118' }), shape2: await shape(c, v2, { unit: '', year: 1999, mm: MM.explorer, vin: '1FMZU34E9XZZ00999' }) };
   const all = await workOrders(a, n); R.C96982.wos = all.map((w: any) => `${w.number} unit=${w.unit ?? w.vehicleUnit ?? '-'}`);
   await go('Board View', n); await allOff(); R.C96982.menuAfter = onKeys(await menu('Board View')); await close();
   R.C96982.card1 = await card(p, w1); R.C96982.card2 = await card(p, w2);
@@ -146,10 +147,11 @@ await run('C96982', async () => {
 await run('C96984', async () => {
   const n = `ZZAUTOTEST F2 Unit Fallback ${Date.now() % 100000}`; const c = await customer(a, n, 'TRK-118');
   const vb = await vehicle(a, c, 'ZZNOUNIT');
-  R.C96984 = { shapeA: await shape(c, c.vehicle_id, { unit: 'TRK-118', year: 2022, mm: MM.m2, vin: '1FVACWDT0NHZZ0218' }), shapeB: await shape(c, vb, { unit: '', year: 1999, mm: MM.explorer, vin: '1FMZU34E9XZZ01999' }) };
+  R.C96984 = {};
   const wa = await workOrder(a, c, 'estimate', null); await mkLine(wa, 1); await a.post('/api/work-orders/change-status', { id: wa, status: 'approved' }); await a.post('/api/work-orders/change-lead-technician', { work_order_id: wa, tech_assigned_id: ES.staff_id });
   const wb = await workOrder(a, { ...c, vehicle_id: vb }, 'estimate', null); await mkLine(wb, 1); await a.post('/api/work-orders/change-status', { id: wb, status: 'approved' }); await a.post('/api/work-orders/change-lead-technician', { work_order_id: wb, tech_assigned_id: ES.staff_id });
   const wd = await workOrder(a, c, 'approved', ES.staff_id);   // no lines: 0 lines, $0.00, 0%
+  R.C96984.shapeA = await shape(c, c.vehicle_id, { unit: 'TRK-118', year: 2022, mm: MM.m2, vin: '1FVACWDT0NHZZ0218' }); R.C96984.shapeB = await shape(c, vb, { unit: '', year: 1999, mm: MM.explorer, vin: '1FMZU34E9XZZ01999' });
   await go('Board View', n); await allOff(); for (const k of ['vehicle', 'lines_count', 'total_price', 'progress']) await setSwitch('Board View', k, true);
   R.C96984.on = onKeys(await menu('Board View')); await close();
   R.C96984.a = await card(p, wa); R.C96984.b = await card(p, wb); R.C96984.d = await card(p, wd); await shot(p, 'C96984-cards');

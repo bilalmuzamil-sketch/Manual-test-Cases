@@ -14,9 +14,9 @@ const w4 = (await workOrders(a, 'S10043-18001'))[0];
 const v = (await a.get(`/api/work-orders/view/${w4.id}`)).body?.data?.work_order ?? {};
 const n = w4.companyName ?? w4.company_name ?? v.company_name ?? v.company?.name;
 R.w4 = { number: w4.number, status: w4.status, lead: w4.techAssignedFirstName ?? 'none', customer: n };
-let others = (await workOrders(a, n)).filter((x: any) => !x.techAssignedFirstName && x.id !== w4.id && x.status === 'approved');
-if (!others.length) { await workOrder(a, { company_id: v.company_id, vehicle_id: v.vehicle_id, contact_id: v.contact_id ?? v.customer_id }, 'approved', null); others = (await workOrders(a, n)).filter((x: any) => !x.techAssignedFirstName && x.id !== w4.id && x.status === 'approved'); }
-const other = others[0]; R.other = other?.number;
+// the customer's Approved work order (S10043-17998, [WO-1] of batch G) is moved to Unassigned so W4 has a neighbour there
+const other = (await workOrders(a, n)).find((x: any) => x.id !== w4.id && x.status === 'approved');
+R.other = other?.number; R.unassign = (await a.post('/api/work-orders/change-lead-technician', { work_order_id: other.id, tech_assigned_id: null })).status;
 const go = async (d: string) => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); await tab(p, 'All'); await display(p, d); await search(p, n); if (d === 'Tech View') await expandSmallGroups(p); };
 const ordBoard = async () => (await boardCols(p)).find((c) => c.id === 'unassigned')?.cards ?? [];
 const ordTech = async () => p.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_row_"]')].map(r => (r.innerText.match(/S\\d+-\\d+/) || [''])[0])`) as Promise<string[]>;
