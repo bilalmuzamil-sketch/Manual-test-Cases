@@ -5366,3 +5366,12 @@ A search box narrowing a list is not "a filter" unless the source says so (excep
 9 Oct: on the Parts pages that have no filter chip, the page Search is the filter used for those cases).
 **Swept the same day:** every run 498 result and case that mentions both search and filters — the other
 hits used Search only to narrow the list to the test's own records, and no other report rests on it.
+
+## L0302 — 2026-10-09 — AN ASK WITHOUT THE STEPS CANNOT BE ANSWERED (QA lead, on the click-outside question)
+
+*"You are not giving me the context neither I know the steps to follow what you are saying to verify what you need."*
+I put the click-outside question (D6, C368135) to him as a requirement quote and my opinion, with no route to the
+screen, no example record and no picture. Rule 99 already requires every ask to be answerable without opening
+anything. **Reusable rule:** every question about a behaviour carries (1) where the feature is and what it does,
+(2) numbered steps he can follow himself, including the example record and how to make one, (3) what I saw, with
+the picture attached, (4) what the requirement and our test each say, quoted, then (5) the options.
