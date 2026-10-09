@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96962": {
+   "verdict": "Passed",
+   "observed": "Re-run 9 Oct 2026 18:24-18:28 with the corrected steps, all read on screen. S10043-18780 (customer ZZAUTOTEST F1 Lead History 99960), two lines following the lead. Board View drag Esther Howard -> Ralph Edwards: the Work Order Log (\u22ee > Audit Log) gained exactly one 'Lead tech changed \u2014 Lead tech: Esther Howard \u2192 Ralph Edwards', Admin ShopView, 06:25 PM; both lines' own logs still show only 'Line created'. Edit Line on Line 1, Ralph Edwards replaced by Dana Ortiz: 'Line tech changed \u2014 Tech: Ralph Edwards \u2192 Dana Ortiz' in Line 1's log (and in the Work Order Log). Reassign lead technician (Ralph Edwards -> Esther Howard): one more 'Lead tech changed' entry, 06:27 PM. Left card Lead Technician (Esther Howard -> Ralph Edwards): one more, 06:28 PM. 3 lead changes = 3 entries; Line 2's log still only 'Line created'.",
+   "not_observed": null,
+   "ticket": "SV-11107 https://shopview.atlassian.net/browse/SV-11107 (Obsolete \u2014 the earlier run read the wrong log)",
+   "todo": "Nothing to do."
+  }
+ }
+}

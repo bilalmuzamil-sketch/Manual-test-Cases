@@ -5397,3 +5397,8 @@ read *"Lead tech changed — Lead tech: A → B"*. A line's own log (click the l
 does not show lead changes — and for lines that moved with the lead it should not (PRD S4-R17). I judged C96962 on the line's
 log and filed SV-11107; he closed it as Obsolete and had the case corrected. **Reusable rule:** before calling an audit entry
 missing, open EVERY log the product has for that record (work order log AND line log) and name which one the source means.
+
+
+## L0305 — 2026-10-09 — THE MODEL FOR PRECONDITIONS AND STEPS IS C96962 (QA lead: "a great example of a good test case preconditions and steps")
+
+His ask: *"Keep the precondition and the steps super simple build glossary and understandable for the manual QA tester, keep it all understandable runnable and concise"* — then, of the result, *"Great this is a great example"*. The shape (case-edits/C96962-new-fields.json): 3–4 precondition bullets (who signs in; the record needed WITH a named example; one line on how to make it if missing; the other people needed, with examples); 8 short numbered steps, one action each, the screen's own labels, "e.g." names inline, "Repeat steps 3 and 4" instead of re-writing. Written through the TestRail editor (case-edits/ui_write_pre_steps.mjs) so it renders; expected untouched.

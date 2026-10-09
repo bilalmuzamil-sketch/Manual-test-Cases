@@ -1,0 +1,122 @@
+{
+ "calls": [
+  {
+   "url": "/api/dashboard/config",
+   "status": 200,
+   "bytes": 6549,
+   "sample": "{\"data\":{\"defaultReports\":[\"revenueKpi\",\"techEfficiencyKpi\",\"billingEfficiencyKpi\",\"techUtilizationKpi\",\"revenueSeries\",\"techEfficiencySeries\",\"invoicingEfficiencySeries\",\"techUtilizationSeries\",\"billingEfficiencyByAdvis"
+  },
+  {
+   "url": "/api/reporting/individual-punch-clock/today?range=today",
+   "status": 200,
+   "bytes": 3368,
+   "sample": "{\"data\":{\"collection\":[{\"id\":\"435b781b-c52d-4be6-9505-5f110dab8523\",\"date\":\"Oct 09 2026\",\"staff_id\":\"7f85bc58-9ff5-4b50-b3f3-d85821069066\",\"employee\":\"Admin ShopView\",\"work_order\":\"S10043-17581\",\"work_order_id\":\"31a3135b"
+  },
+  {
+   "url": "/api/dashboard/reports?reports%5B%5D=revenueSeries&reports%5B%5D=techEfficiencySeries&reports%5B%5D=invoicingEfficiencySeries&reports%5B%5D=techUtilizationSeries&reports%5B%5D=atRiskCustomers&reports%5B%5D=techEfficiencyByTechSeries&reports%5B%5D=invoicingEfficiencyByAdvisorSeries&reports%5B%5D=techUtilizationByTechSeries&from=2025-11-01&to=2026-10-09&group=month",
+   "status": 200,
+   "bytes": 49619,
+   "sample": "{\"data\":{\"from\":\"2025-11-01\",\"to\":\"2026-10-10\",\"group\":\"month\",\"cached_at\":\"2026-10-09T18:25:19+00:00\",\"revenueSeries\":[{\"bucket\":\"2025-11-01\",\"revenue\":378753,\"invoiceCount\":144},{\"bucket\":\"2025-12-01\",\"revenue\":458370,"
+  },
+  {
+   "url": "/api/reporting/individual-punch-clock/today?range=today",
+   "status": 200,
+   "bytes": 3368,
+   "sample": "{\"data\":{\"collection\":[{\"id\":\"435b781b-c52d-4be6-9505-5f110dab8523\",\"date\":\"Oct 09 2026\",\"staff_id\":\"7f85bc58-9ff5-4b50-b3f3-d85821069066\",\"employee\":\"Admin ShopView\",\"work_order\":\"S10043-17581\",\"work_order_id\":\"31a3135b"
+  },
+  {
+   "url": "/api/reporting/individual-punch-clock/today?range=today",
+   "status": 200,
+   "bytes": 3368,
+   "sample": "{\"data\":{\"collection\":[{\"id\":\"435b781b-c52d-4be6-9505-5f110dab8523\",\"date\":\"Oct 09 2026\",\"staff_id\":\"7f85bc58-9ff5-4b50-b3f3-d85821069066\",\"employee\":\"Admin ShopView\",\"work_order\":\"S10043-17581\",\"work_order_id\":\"31a3135b"
+  },
+  {
+   "url": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-10-01T00%3A00%3A00.000Z&end_date=2026-10-09T23%3A59%3A59.999Z&locations=4775b927-423d-49e4-9066-8409c4bc82ef%2C781d47fe-0ad8-4ba8-9b1c-7e110b9de438%2Cb3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2",
+   "status": 200,
+   "bytes": 801,
+   "sample": "{\"data\":{\"collection\":[{\"staff_id\":\"7f85bc58-9ff5-4b50-b3f3-d85821069066\",\"technician_name\":\"Admin ShopView\"},{\"staff_id\":\"b4f8b308-b0c5-4e5e-b734-d76175757be9\",\"technician_name\":\"Daniel Montoya\"},{\"staff_id\":\"1161043d-a"
+  },
+  {
+   "url": "/api/reporting/individual-punch-clock/today?range=today",
+   "status": 200,
+   "bytes": 3368,
+   "sample": "{\"data\":{\"collection\":[{\"id\":\"435b781b-c52d-4be6-9505-5f110dab8523\",\"date\":\"Oct 09 2026\",\"staff_id\":\"7f85bc58-9ff5-4b50-b3f3-d85821069066\",\"employee\":\"Admin ShopView\",\"work_order\":\"S10043-17581\",\"work_order_id\":\"31a3135b"
+  },
+  {
+   "url": "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-10-01T00%3A00%3A00.000Z&end_date=2026-10-09T23%3A59%3A59.999Z&locations=4775b927-423d-49e4-9066-8409c4bc82ef%2C781d47fe-0ad8-4ba8-9b1c-7e110b9de438%2Cb3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=technician&pagination%",
+   "status": 200,
+   "bytes": 2159,
+   "sample": "{\"data\":{\"collection\":[{\"staff_id\":\"7f85bc58-9ff5-4b50-b3f3-d85821069066\",\"technician_name\":\"Admin ShopView\",\"total_seconds\":3708,\"wo_seconds\":3708,\"internal_seconds\":0,\"est_lost_labor_cents\":0,\"location\":\"Staging Heavy "
+  }
+ ],
+ "consoleErrors": [
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED",
+  "Failed to load resource: net::ERR_FAILED"
+ ],
+ "failed": [
+  "net::ERR_ABORTED /api/iam/view-avatar/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8?v=/organization/d55bc308-e61a-438d-b5f1-c7a73c89d49f/avatar/6d",
+  "net::ERR_ABORTED /api/work-orders/board?search=&showMyWorkOrders=0&groups%5B0%5D=29c72861-63be-4328-bba8-80af229005ee&groups%5B1%5D=df0ca",
+  "net::ERR_ABORTED /api/reporting/individual-punch-clock/today?range=today",
+  "net::ERR_ABORTED /.well-known/mercure?topic=/users/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8/notifications&authorization=eyJ0eXAiOiJKV1QiLCJhb",
+  "net::ERR_ABORTED /api/6364962/envelope/?sentry_version=7&sentry_key=<hidden>&sentry_client=sentry.javascript.vue%",
+  "net::ERR_ABORTED /g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6a72v9250300735za200zd9250300735xf1&_p=1791570313651&gcd=13l3l3l3l1l1&npa=0&dma=",
+  "net::ERR_FAILED /gtag/js?id=G-CMYCXL13C9",
+  "net::ERR_FAILED /maps/api/js?libraries=places&key=AIzaSyCPN5W8yDviHWCRbLHfGys421NDST6Jsno&callback=Function.prototype&loading=async",
+  "net::ERR_FAILED /api/6364962/envelope/?sentry_version=7&sentry_key=<hidden>&sentry_client=sentry.javascript.vue%",
+  "net::ERR_FAILED /widget/u6fon4u9",
+  "net::ERR_FAILED /api/6364962/envelope/?sentry_version=7&sentry_key=<hidden>&sentry_client=sentry.javascript.vue%",
+  "net::ERR_FAILED /api/6364962/envelope/?sentry_version=7&sentry_key=<hidden>&sentry_client=sentry.javascript.vue%",
+  "net::ERR_ABORTED /api/dashboard/reports?reports%5B%5D=notifications&reports%5B%5D=reminders&from=2026-10-01&to=2026-10-09&group=day",
+  "net::ERR_FAILED /.well-known/mercure?topic=/users/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8/notifications&authorization=eyJ0eXAiOiJKV1QiLCJhb",
+  "net::ERR_FAILED /.well-known/mercure?topic=/users/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8/notifications&authorization=eyJ0eXAiOiJKV1QiLCJhb",
+  "net::ERR_FAILED /.well-known/mercure?topic=/users/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8/notifications&authorization=eyJ0eXAiOiJKV1QiLCJhb",
+  "net::ERR_FAILED /.well-known/mercure?topic=/users/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8/notifications&authorization=eyJ0eXAiOiJKV1QiLCJhb",
+  "net::ERR_FAILED /.well-known/mercure?topic=/users/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8/notifications&authorization=eyJ0eXAiOiJKV1QiLCJhb",
+  "net::ERR_FAILED /.well-known/mercure?topic=/users/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8/notifications&authorization=eyJ0eXAiOiJKV1QiLCJhb",
+  "net::ERR_FAILED /.well-known/mercure?topic=/users/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8/notifications&authorization=eyJ0eXAiOiJKV1QiLCJhb",
+  "net::ERR_FAILED /.well-known/mercure?topic=/users/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8/notifications&authorization=eyJ0eXAiOiJKV1QiLCJhb",
+  "net::ERR_FAILED /.well-known/mercure?topic=/users/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8/notifications&authorization=eyJ0eXAiOiJKV1QiLCJhb",
+  "net::ERR_ABORTED /api/6364962/envelope/?sentry_version=7&sentry_key=<hidden>&sentry_client=sentry.javascript.vue%",
+  "net::ERR_FAILED /gtag/js?id=G-CMYCXL13C9",
+  "net::ERR_FAILED /maps/api/js?libraries=places&key=AIzaSyCPN5W8yDviHWCRbLHfGys421NDST6Jsno&callback=Function.prototype&loading=async",
+  "net::ERR_FAILED /api/6364962/envelope/?sentry_version=7&sentry_key=<hidden>&sentry_client=sentry.javascript.vue%",
+  "net::ERR_FAILED /widget/u6fon4u9",
+  "net::ERR_FAILED /api/6364962/envelope/?sentry_version=7&sentry_key=<hidden>&sentry_client=sentry.javascript.vue%",
+  "net::ERR_FAILED /api/6364962/envelope/?sentry_version=7&sentry_key=<hidden>&sentry_client=sentry.javascript.vue%",
+  "net::ERR_FAILED /.well-known/mercure?topic=/users/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8/notifications&authorization=eyJ0eXAiOiJKV1QiLCJhb",
+  "net::ERR_FAILED /.well-known/mercure?topic=/users/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8/notifications&authorization=eyJ0eXAiOiJKV1QiLCJhb",
+  "net::ERR_FAILED /.well-known/mercure?topic=/users/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8/notifications&authorization=eyJ0eXAiOiJKV1QiLCJhb",
+  "net::ERR_FAILED /.well-known/mercure?topic=/users/6d71382d-4ddb-4707-a0f3-33b4bb78b0b8/notifications&authorization=eyJ0eXAiOiJKV1QiLCJhb"
+ ],
+ "canvases": [
+  "CANVAS 0x0",
+  "CANVAS 0x0",
+  "CANVAS 0x0",
+  "CANVAS 0x0"
+ ],
+ "dashboardText": "Skip to main content ShopHub expand_more Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications Staging Heavy Duty - 9919 0.88 Hrs Today Revenue This Month n/a 0 Invoices Tech Efficiency This Month n/a 0 Invoiced Tech Hrs / 0 Clocked Invoicing Efficiency This Month n/a 0 Invoiced / 0 Clocked Tech Utilization This Month n/a 0 WO Hrs / 0 Clocked Revenue Last 12 Months Tech Efficiency Last 12 Months Invoicing Efficiency Last 12 Months Tech Utilization Last 12 Months Efficiency by Tech This Month Techarrow_drop_up arrow_drop_upClocked Hours arrow_drop_upInvoiced Tech Hrs arrow_drop_upEfficiency % No data for selected date r",
+ "reportText": "Skip to main content ShopHub expand_more Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications Staging Heavy Duty - 9919 0.88 Hrs Today LABOR schedule Timesheet Activities PERFORMANCE description Sales percent Technician Efficiency query_stats Advisor Analysis engineering Shop Efficiency loop Work In Progress groups Technician Utilization groups_2 Sales By Customer badge Sales By Representative PARTS inventory_2 Parts Velocity sell Inventory Value FINANCE payments Sales Tax Collected ACCOUNTS RECEIVABLE article A/R Aging Summary list_alt A/R Aging Detail library_books A/R Aging Collection ACCOUNTS PAYABLE article A/P Aging Summary list_alt A/P Aging Detail library_books A/P Unpaid Invoices ACCOUNTING paid IBS Batches warning QB Unexported download Export Reports COMMUNICATIONS chat Notes alarm Reminders Technician "
+}
