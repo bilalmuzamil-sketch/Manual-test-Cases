@@ -5899,3 +5899,6 @@ three wrong characterisations before it was found — see learning **L0233**.
 - **Profile photo upload (sv10043):** initials (top right) > Edit Profile (`/profile`) has an `input[type=file]`; setting a
   file there posts `POST /api/iam/upload-avatar`. The header avatar is an `<img>` from `/api/iam/view-avatar/<id>` on the
   API host. A view-as page starts blank — open the app before clicking `profile_menu_button`.
+- **Queue hygiene trap:** `pkill -f "<text>"` also matches the shell running that very command (its command line
+  contains the text), so it kills itself (exit 144) and can take a waiting chain with it. Find the PID first with
+  `ps -eo pid,args | grep "[m]asterNN.sh"` and `kill <pid>`.
