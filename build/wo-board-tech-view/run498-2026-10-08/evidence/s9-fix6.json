@@ -70,5 +70,40 @@
    "Unassigned",
    "Ana"
   ]
- }
+ },
+ "C97012": {
+  "seed": [],
+  "addCE": "200",
+  "cardsSeen": [
+   "Alpha Co",
+   "Bravo Co"
+  ],
+  "alphaInDom": 1,
+  "invoice": "400 [{\"error\":\"Work order is not complete.\"}]",
+  "invoiceRoute": [
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 201",
+   "wo ready_for_review 201",
+   "wo complete 201",
+   "invoice 201",
+   "status now Invoiced"
+  ],
+  "alphaStatus": "Invoiced",
+  "step5drag": "ok",
+  "step5": {
+   "msg": [
+    "priority_high Session expired, please log in again. Session expired, please log in again."
+   ],
+   "ana": [],
+   "ben": []
+  },
+  "restoreInFinally": "200",
+  "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://sv10043.qa.shopview.com/workorders?tab=all\", waiting until \"domcontentloaded\"\n"
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "restored": true
 }
