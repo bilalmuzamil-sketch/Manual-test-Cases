@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C97032": {
+   "verdict": "Passed",
+   "observed": "Work Orders > All, search 'ZZAUTOTEST F3 Open Count', Board View. Ben Bravo leads ten work orders here: Approved, In Progress, Ready for Review, Complete, Estimate, Invoiced, Paid, Declined, one more Approved (Spare Co) and one where he is only a line technician, plus one at the other location. Step 5: Reassign lead technician from the Spare Co card shows Ben '4 open'. Step 6: with Status = Estimate only, the window opened from the Estimate Co card still shows '4 open', so the page filter does not change it. Step 7: after Ben's Estimate was approved, the window shows '5 open'. Estimate, Invoiced, Paid, Declined, the line-only work order and the other location's work order are not counted.",
+   "not_observed": null
+  },
+  "C368157": {
+   "verdict": "Passed",
+   "observed": "Work Orders > All > Board View, with every technician column shown (194 columns at this location). Before pinning, Cal sits at position 169 between the same two neighbours. Step 3: after the pin icon in Cal's header is clicked, Cal is the first column after Unassigned (the pinned area). Step 4: after the same pin icon is clicked again, Cal is back at position 169 with the same neighbour on each side as before. Step 5: Tech View lists its 194 groups in exactly the same order as Board View's columns (no difference anywhere), Cal at the same place. This location also holds other teams' technicians, so the sequence is checked by Cal's place and neighbours rather than the five names alone.",
+   "not_observed": null
+  }
+ }
+}
