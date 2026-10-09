@@ -715,7 +715,21 @@ replaced the entire page**. I saw an empty screen and called it an empty box.
 
 ---
 
-### 7. ⛔ NO "TEST CASES" SECTION IN THE TICKET — HE REMOVED IT 2026-09-17
+### 7. 🛑 THE TICKET ENDS WITH THE TEST CASE LINK, BELOW SOURCES (Rule 120, QA lead 2026-10-09)
+
+*"OK One rule: Always put the test case link at the bottom of the ticket. Make it a permanent rule"* — and,
+asked, he chose **case link only** (no run link). Wiki markup, the very last block:
+
+```
+h2. Test case
+
+* [C<id> <case title>|https://shopview.testrail.io/index.php?/cases/view/<id>]
+```
+
+A case that no longer exists in TestRail is left off and the omission is reported to him. The ticket number
+still goes onto the case's result in the run (113), so the link runs both ways.
+
+### 7-OLD. ⛔ SUPERSEDED 2026-10-09 BY RULE 120, KEPT DATED: NO "TEST CASES" SECTION IN THE TICKET — HE REMOVED IT 2026-09-17
 
 *"Also do not mention the test cases at the bottom."*
 

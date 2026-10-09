@@ -197,3 +197,6 @@ Recapture on a FRESH line with NO technician: adding Dana Ortiz in Edit Line DID
 | Report | Ticket | Case | Filed |
 |---|---|---|---|
 | D2 — "Assigned to me" stays on after changing location | [SV-11098](https://shopview.atlassian.net/browse/SV-11098) (Story Defect, Open, under SV-10044, relates to SV-10044) | C96923 | QA lead approved 9 Oct; picture inline full-width, verified |
+| D1 — a search with no results has no Clear filters action | [SV-11099](https://shopview.atlassian.net/browse/SV-11099) (Story Defect, Open, under SV-10044, relates to SV-10044, label board-tech-view) | C368211 (C96918, the original case, no longer exists in TestRail — `get_case` refuses it — so it is not linked) | QA lead approved 9 Oct; picture inline full-width; ends with the case link (Rule 120) |
+
+**Standing for this suite (QA lead, 9 Oct 2026, with a picture of the label):** *"for this testing suite apply this label to all the defects you are creating."* ⇒ every ticket from this suite carries the Jira label **`board-tech-view`** (SV-11098 given it after filing). Every draft in `tickets/` now has `LABEL: board-tech-view` and ends with its `h2. Test case` link (Rule 120).

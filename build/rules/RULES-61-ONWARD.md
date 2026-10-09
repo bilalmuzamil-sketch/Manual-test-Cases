@@ -4758,3 +4758,25 @@ each with its own job and its own rule book. From now on: Follow only your own r
 **How it sits with the older rules:** Rule 97's search of another branch is a search for FACTS (an error text, a
 recipe, a BLOCKED file), never for rules or skills. Rule 111 (a handoff is a work list, never a standard) is the
 same principle applied to tickets and pictures; Rule 119 widens it to everything. **Learning:** L0300.
+
+---
+
+## RULE 120 — EVERY TICKET ENDS WITH THE TEST CASE LINK, BELOW SOURCES
+
+**Ordered by the QA lead on 2026-10-09, PERMANENT, recorded on his instruction:** *"OK One rule: Always put the
+test case link at the bottom of the ticket. Make it a permanent rule"*. Surfaced under Rule 63 against his
+2026-09-17 ruling (*"Also do not mention the test cases at the bottom."*); he chose the new rule, and chose
+**"Case link only"** over "case link + run link".
+
+1. **The last thing in every Jira description is a `Test case` heading** placed after Sources, with the TestRail
+   **case link** of each case the ticket covers: `https://shopview.testrail.io/index.php?/cases/view/<id>`.
+2. **Case link only.** No run link, no `/tests/view/` link and no test result in the ticket. (Rule 8 still
+   governs what HE reads: case + run together in chat and deliverables.)
+3. **Only a case that exists.** A case deleted from TestRail (`get_case` refuses it) is left off, and the report
+   to him says so.
+4. **The other direction stays (Rule 113):** the ticket number is still appended to the case's result in the
+   run. The link now goes both ways.
+5. **Applies to tickets already filed in the pass where he gave it** (he chose "add it now" for SV-11098).
+
+⛔ **Supersedes** `build/skills/06-DEFECT-PREP.md` §7 (*"NO TEST CASES SECTION IN THE TICKET — HE REMOVED IT
+2026-09-17"*), kept there visible and dated.

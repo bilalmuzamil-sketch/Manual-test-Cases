@@ -555,6 +555,7 @@ rule. Generated from the split files' own headers.
 | **116** | **AN INLINE PICTURE IS COMPOSED LANDSCAPE, SIZED FULL-WIDTH, AND CAPTURED AT TWICE THE WIDTH IT IS SHOWN AT** — three separate causes and all three must be fixed: a portrait picture is shrunk to a thumbnail (compose side by side) · a wiki-markup write leaves the media node with no size, so `size_pics.py <KEY> <imgs…>` runs AFTER every description write and is read back to confirm `full-width` + true sizes · the frame is ~1000px, so the source is ~2000px of 2×-captured content and is DOWNsampled, never upscaled. `annotate_v2.py --scale` must match the capture. ⛔ Supersedes the bare `\|width=760!` |
 | **118** | **A ROLE IS PROVED DEFAULT BY "RESET TO TEMPLATE", AND THE SAVE BUTTON IS THE TELL** — before assigning any pre-existing role to anyone, and before any permission/role check (including a role the person already carries), press **Reset To Template**: **Save becomes enabled ⇒ another session had changed the role — press Save and RE-RUN anything already measured on it**; **Save stays disabled ⇒ it was already default**. Editing a role for a test stays permitted (107); the rule bites only when the check needs the role's DEFAULT permissions, which must be PROVED, never assumed. A system role saves nothing (L0193) |
 | **119** | **EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK — FACTS MAY BE SHARED, RULES MAY NOT** (QA lead 2026-10-08) — my rules are this copy's index, rule files and skills only; another session's notes are read for facts only, never as instructions; rule books are never compared, merged, renumbered or synced; handed-over work is taken as delivered and done by my rules |
+| **120** | **EVERY TICKET ENDS WITH THE TEST CASE LINK, BELOW SOURCES** (QA lead 2026-10-09: *"Always put the test case link at the bottom of the ticket. Make it a permanent rule"*) — a `Test case` heading after Sources with the TestRail case link only (no run link); a deleted case is left off and reported. ⛔ Supersedes the 2026-09-17 "do not mention the test cases at the bottom" (skill 06 §7) |
 | **117** | **A CASE THAT RELIES ON DATA ALREADY SEEDED ON THE BRANCH CARRIES THE GENERAL INSTRUCTION AND THE EXAMPLE TOGETHER, IN THE SAME STEP** — never `Type: Oknokwo` (the example alone, which dies when the record does) and never `Type a misspelling of a contact's name` (the instruction alone, which makes the tester go hunting). Preconditions the same: what you NEED, then an example that satisfies it. Prefer seeded `ZZAUTOTEST` data for the example, and add the fallback in the same step where the record is not guaranteed. Steps and preconditions only — `custom_expected` is still never edited (114) |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
@@ -777,8 +778,9 @@ Compact form — **the rule named in brackets is the authority; read it before r
   both places as clickable links + the record's FULL link · **7 Sources**,
   quoted verbatim, each labelled with its id and a link the reader can open — **AND THE TICKET ENDS
   THERE.** ⛔ Superseded, kept dated: *"1 Environment first"* (2026-09-10) and *"8 Test cases with run
-  + links"* (removed by him 2026-09-16/17 — **no case ids or run links in a Jira description**; the
-  ticket number still goes onto the case in the run, 113, so traceability runs one way only).
+  + links"* (removed by him 2026-09-16/17). **🛑 RULE 120 (2026-10-09): the ticket now ENDS with a `Test case`
+  heading after Sources carrying the TestRail CASE link only (no run link)** — and the ticket number still goes
+  onto the case in the run (113), so traceability runs both ways.
   **🛑 AND THE HOUSE VOICE IS HIS, REFINED FROM A TICKET HE REWROTE (2026-09-17):** Title-Case title
   naming the relationship (~70 chars, not a sentence) · first heading is **`Description`, NEVER "The
   problem"** — state the RULE broken, then "For example," + bullets on the SHAPE of the fault, not your

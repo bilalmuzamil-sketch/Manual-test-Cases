@@ -1,5 +1,5 @@
 TITLE: Work Orders – Search With No Results Has No "Clear filters" Action
-TYPE: Story Defect · PARENT: SV-10044 (Ready for QA, read 9 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-10044
+TYPE: Story Defect · PARENT: SV-10044 (Ready for QA, read 9 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-10044 · LABEL: board-tech-view
 
 h2. Description
 
@@ -25,6 +25,7 @@ h2. Steps to Reproduce
 
 *Actual Result:*
 * A search with no results shows *No work orders match the search "…"* with no Clear filters action, in List, Tech View and Board View.
+* The same happens on a phone-width screen.
 
 *Expected Result:*
 * Every display shows *No work orders match your filters* with a *Clear filters* action.
@@ -41,3 +42,7 @@ h2. Sources
 
 * [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S1-N1, read 8 Oct 2026:
 {quote}When filters return no results, show the existing List empty state and Clear filters action in every display: "No work orders match your filters".{quote}
+
+h2. Test case
+
+* [C368211 On a phone a no-match search shows the empty state with Clear filters|https://shopview.testrail.io/index.php?/cases/view/368211]
