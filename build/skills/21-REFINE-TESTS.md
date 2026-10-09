@@ -51,6 +51,14 @@ the right of the top bar (e.g. QA Testing)" in 34 — both wrong; "Settings > �
 profile icon (76); "Clockable" where the staff screen says `Time Clock` (11); a location-creation recipe that skipped
 seven required fields (18); staff names ("Tom Tech", "Alex Advisor", "Grace Sullivan", …) that exist on no site.
 
+**🟢 ALLOWED IN A REFINE PASS ONLY (QA lead, 2026-10-09):** to see a setup button or window that only appears
+part-way through a process (finishing a work order, invoicing, clocking time), you may walk that setup flow once on
+the test site, creating marked test data (`ZZAUTOTEST`). Verbatim: *"So for refining the test cases when I ask you
+to refine the test cases its ok if you did that."* Never run the test itself or read its result, and leave the
+test data in place (QA lead, same day: *"Need not to clean any data ever."*). **This does NOT apply to build
+verification** — there the Rule 115 lane limit stands unchanged: confirm screens and labels only; anything more ⇒
+stop and ask first.
+
 **So, before rewriting:**
 1. **Find out which build the testers will run the suite on** — and that you can sign in to it. If you cannot, STOP
    and ask; never fall back to another build that lacks the feature.
