@@ -1,0 +1,28 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96988": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Density Content, S10043-18036 led by Esther Howard, three lines. Board View with Estimated hours and Total price turned on in Fields to display. At Compact, Regular and Comfortable the card showed exactly the same fields and values (number, Approved, customer, unit ZZF6CT, Progress 0%, Lead technician Esther Howard, Total price $435.27); only the spacing changed: card height 168 / 180 / 196 px, inner padding 10-12 / 12 / 16 px. Tech View: the same columns and the same row values at all three densities; row height 40 / 48 / 64 px. Text sizes did not change.",
+   "not_observed": "Estimated hours did not show on the card at any density although it was turned on; that is reported under C96978 and is the same at every density, so it does not change this check."
+  },
+  "C96992": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Density Scope, S10043-18020. List row height 48 px before, and still 48 px after Tech View and Board View were set to Compact. Tech View row: 64 px at Comfortable, 40 px at Compact. Board View card: 175 px with 16 px padding at Comfortable, 147 px with 10-12 px padding at Compact. Customers page table row: 48 px before and 48 px after (unchanged).",
+   "not_observed": null
+  },
+  "C96978": {
+   "verdict": "Failed",
+   "observed": "Customer ZZAUTOTEST F2 Card Field Values, S10043-18032: lead Esther Howard, Service Advisor Esther Howard, three lines with estimated time 0.3 + 1.5 + 0.4 hours, Line 2 given to Ralph Edwards, asset on site, Esther Howard and Ralph Edwards both clocked in. Fields to display offers exactly 13 optional fields: Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date. With all 13 turned on, the card matched List for: customer, unit ZZF2FV, VIN, Progress 0%, Lead technician Esther Howard, Service advisor Esther Howard, 3 lines, Total price $435.27, On site, Created Today, line technicians EH and RE. Clocked in reads 'Esther Howard +1' on the card and 'Esther Howard+1' in List, and hovering shows 'Esther Howard, Ralph Edwards' in both. BUT Estimated hours never appears on the card, although it is turned on and the lines carry 2.2 estimated hours (the work order's own total estimate reads 0.00). Seen again on a second work order with three lines (S10043-18036) at every density. Report prepared and held for the QA lead's approval; nothing raised.",
+   "not_observed": "The Asset field was on but this test asset has no make or model, so it is left off in both places.",
+   "todo": "What needs to be done: the card's Estimated hours field should show the work order's estimated hours when turned on. Report held for the QA lead.",
+   "ticket_held": true,
+   "ticket": "Report prepared and held with the QA lead for approval (one at a time); no ticket raised yet."
+  }
+ }
+}

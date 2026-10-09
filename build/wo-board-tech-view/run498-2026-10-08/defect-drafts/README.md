@@ -16,6 +16,7 @@ Source reconciliation: NOT done this pass — the QA lead will check the cases a
 | D6 | C368135 | A click outside the "Clear …'s scheduled shifts?" question does not call the change off (Cancel, X and Escape do) | SV-10047 (Story 4) — status to be read live before asking | picture to be made with the 2x recapture |
 | D7 | C368138 | Dropping next to a card another person just moved shows the general "Couldn't save the new order" headline above the expected sentence, instead of exactly that sentence | SV-10047 (Story 4) — status to be read live before asking | `D7-C368138-alert-annotated.png` |
 | D2 | C96923 | After changing location, Assigned to me stays switched on (List, Tech View and Board View alike) | SV-10044 | `D2-C96923-board-annotated.png` |
+| D10 | C96978 | Board View's Estimated hours field never shows on a card, although it is turned on and the work order's lines carry estimated time | SV-10048 (Story 5) — status to be read live before asking | picture to be made with the 2x recapture |
 | D9 | C96983 | When the saved Work Orders choices cannot load, the next field choice is not saved: no save is sent and the choice is gone after a reload | SV-10048 (Story 5) — status to be read live before asking | picture to be made with the 2x recapture |
 | D8 | C96962 | A technician added to a line in the Edit Line window is saved, but no history entry is written for it (neither the line's Audit log nor the work order's history) | SV-10047 (Story 4) — status to be read live before asking | picture to be made with the 2x recapture |
 
@@ -126,3 +127,18 @@ reload." (PRD S5-N3: "Save the user's next field selection after a preference-lo
 **How it was forced:** the page's request for the saved choices was answered with a server error (the case says a
 developer must force it by hand). **Steps for the QA lead:** needs a developer to make the saved-choices request
 fail; then in Board View > Fields to display turn one field on, remove the failure, reload: the field is off again.
+
+## D10 — C96978 · Estimated hours never shows on a card
+
+**What happens:** Board View > Fields to display > Estimated hours turned on. Work order S10043-18032 has three lines
+with estimated time 0.3 + 1.5 + 0.4 hours (its page shows them), yet the card shows no Estimated hours field at all.
+The work order's own total estimate reads 0.00. Same on S10043-18036 at Compact, Regular and Comfortable. Every
+other optional field turned on at the same time does show.
+**What the case expects:** each field on the card shows the same value as the work order (e.g. 8.0 estimated hours).
+(PRD S5-R11: "Offer the optional fields listed below using their existing production meaning" — the list includes
+"estimated hours".)
+**Open before asking:** what "estimated hours" means in production for a work order (the sum of its lines' Estimate,
+as the page shows, or a separate work-order estimate that is 0.00 here). If it is a separate value that is simply
+empty, the card is right to leave it off (empty fields are left off) and this is not a defect.
+**Steps for the QA lead:** open any work order with lines that have an Estimate > Work Orders > Board View >
+Fields to display > turn Estimated hours on > the card shows no Estimated hours.
