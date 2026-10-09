@@ -5798,3 +5798,18 @@ three wrong characterisations before it was found — see learning **L0233**.
 - **`/api/contacts?company_id=` and `/api/vehicles?company_id=` ignore the filter** and return the branch's first rows.
   Reusing "the customer's vehicle" from them gave every test customer the same Ford Transit with no unit; make each
   new customer its own vehicle (`data.mts customer()` does now).
+- **🔴 A DRAG FROM A CARD BELOW THE BOTTOM OF THE WINDOW DOES NOTHING — AND LOOKS EXACTLY LIKE A REFUSED MOVE
+  (2026-10-08).** With six cards in one Board View column, the last ones sat below the window; mouse-dragging them
+  moved nothing and showed no message, the same as a locked Invoiced/Paid card. Scroll the card into view first
+  (`wob.mts drag()` does now), and always drag a card that SHOULD move (Declined/Complete) first in the same pass
+  as the positive control — if the control does not move, the reading for the locked card proves nothing.
+- **Line audit vs work order history:** the work order's change history is `GET /api/work-orders/{id}/history`
+  (lead changes: `eventName` "Lead tech changed", `originalLeadTechName`/`newLeadTechName`). A LINE's own
+  Audit log (line ⋮ > Audit log) is a separate list, `GET /api/work-orders/lines/{lineId}/history`; a technician
+  changed in the Edit Line window is looked for there, not in the work order's history. The Edit Line window
+  saves through `POST /api/work-orders/lines/change`.
+- **Notifications page** is `/notifications` (top bar bell): it lists note mentions, "Unread only" on by default
+  (`toggle_unread_only`), empty text "There are no notifications for selected filters".
+- **Completing a line needs the work order's mileage first:** `POST /api/work-orders/change-mileage
+  {work_order_id, mileage:'123456'}` (a STRING — a number answers 500), else the line answers 400 "Add the
+  mileage to the work order before completing it."

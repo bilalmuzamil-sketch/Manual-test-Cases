@@ -83,6 +83,9 @@ export const groups = (p: Page) => p.evaluate(`(() => {
 export async function toggleGroup(p: Page, id: string) { await p.locator(`[data-test-id="button_tech_view_group_toggle_${id}"]`).click(); await p.waitForTimeout(1500); }
 /** drag from one element's centre to another's (mouse, in steps, so a drag library sees a real drag) */
 export async function drag(p: Page, from: string, to: string, dy = 4) {
+  // 🔴 2026-10-08: a card below the bottom of the window was "dragged" from off-screen and nothing happened —
+  // which read exactly like the product refusing the move. Bring the card into view first.
+  await p.locator(from).first().scrollIntoViewIfNeeded().catch(() => {}); await p.waitForTimeout(300);
   const a = await p.locator(from).first().boundingBox(), b = await p.locator(to).first().boundingBox();
   if (!a || !b) throw new Error(`drag: missing ${!a ? from : to}`);
   // grab at 45% across: the exact middle of a Tech View row sits over cells (copy buttons, badges) that eat the press
