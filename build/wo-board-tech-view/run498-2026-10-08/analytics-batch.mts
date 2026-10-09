@@ -163,7 +163,12 @@ type Ev = { en: string; ep: Record<string, string>; uid: string | null; t: numbe
 function tap(pg: Page) { const ev: Ev[] = [];
   const grab = (url: string, body: string | null) => { if (!/\/g\/collect|google-analytics\.com\/.*collect/.test(url)) return;
     for (const l of (body ? body.split('\n') : [''])) { const q = new URLSearchParams((url.split('?')[1] ?? '') + '&' + l); const en = q.get('en'); if (en) ev.push({ en, ep: Object.fromEntries([...q.entries()].filter(([k]) => /^(ep|epn|up|upn)\./.test(k))), uid: q.get('uid'), t: Date.now() }); } };
-  pg.on('request', (r) => grab(r.url(), r.postData())); return ev; }
+  // playbook: a sendBeacon body is not always exposed to a request listener, so intercept the collect route and read
+  // postDataBuffer(); a post whose body cannot be read is COUNTED (unread), never reported as "no such event"
+  (ev as any).unread = 0;
+  pg.route(/\/g\/collect|google-analytics\.com\/.*collect/, async (route) => { const r = route.request(); const buf = r.postDataBuffer(); const body = buf ? buf.toString('utf8') : null;
+    if (!body && !/[?&]en=/.test(r.url())) (ev as any).unread++; grab(r.url(), body); await route.continue().catch(() => {}); }).catch(() => {});
+  return ev; }
 const WO = (e: Ev) => /^work_orders_/.test(e.en);
 const evs = (ev: Ev[], en: string, from = 0) => ev.slice(from).filter((e) => e.en === en);
 const brief = (e: Ev) => `${e.en} ${e.ep['ep.element_location'] ?? ''} ${e.ep['ep.element_label'] ?? ''} ${e.ep['ep.setting_value'] ?? ''} ${e.ep['ep.setting_source'] ?? ''}`.trim();
@@ -172,7 +177,7 @@ const fresh = async (tag: string, role = ADMIN_ROLE) => mkUser('ZZAUTOTEST', `GA
 const roleRead = async (id: string) => (await a.get(`/api/roles/${id}`)).body?.data;
 async function setFin(id: string, on: boolean) { const r = await roleRead(id); const w = await a.put(`/api/roles/${id}`, { name: r.name, description: r.description, view_mode: r.view_mode, template_id: r.template_id, fe_permissions: (r.fe_permissions ?? []).map((x: any) => x.id), cross_toggles: { ...(r.cross_toggles ?? {}), seeFinancialData: on } }); return `${w.status} now ${(await roleRead(id))?.cross_toggles?.seeFinancialData}`; }
 const openWO = async (pg: Page) => { await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); };
-async function withUser(u: any, f: (pg: Page, ev: Ev[]) => Promise<void>) { const v = await asUser(u); const ev = tap(v.page); try { await f(v.page, ev); } finally { await v.close(); } }
+async function withUser(u: any, f: (pg: Page, ev: Ev[]) => Promise<void>) { const v = await asUser(u); const ev = tap(v.page); try { await f(v.page, ev); } finally { (R.unread ??= []).push((ev as any).unread); await v.close(); } }
 
 await run('C97023', async () => { const o: any = {}; const u = await fresh('Views');
   await withUser(u, async (pg, ev) => { await openWO(pg); await settle(pg); o.step1 = evs(ev, 'work_orders_display_view').map(brief);
