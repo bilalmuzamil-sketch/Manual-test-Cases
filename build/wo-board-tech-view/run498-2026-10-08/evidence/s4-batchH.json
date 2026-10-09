@@ -1,0 +1,234 @@
+{
+ "clearedSwitch": 200,
+ "C96966keys": {
+  "line": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+  "wo": "deletable,deletable_reason,editable,id,number,display_number,engine_hours,tax,time_estimate,start_date,end_date,status_value,status,priority,workplace_id,is_vehicle_here,vin,licence_plate,customer_po,service_advisor_id,service_advisor_name,service_advisor_is_inactive,sales_rep_id,sales_rep_name,sales_rep_is_inactive,authorizer_contact_id,authorizer_full_name,authorizer_telephone,customer_id,company_id,company_name,customer_first_name,customer_last_name,company_notes,company_pin_notes,company_ibs,company_labour_type_id,customer_require_po,tech_assigned_id,technician_first_name,technician_last_name,purchase_order,mileage,vehicle,invoice_status,invoice_id,is_invoice_created,paid_balance,amount_paid,refunded_amount,total_parts_cost,total_labour_cost,total_tech_time,total_time,total_labour_cost_amount,total_tax_cost_amount,total_tax_cost,total_cost,progress,tech_progress,tech_tasks,total_clocked_time,clocked_labor,total_received_quantity,total_returned_quantity,part_request_count,part_return_request_count,notes_count,clock_ins_count,credit_term,balance,credit_limit,is_over_limit,payment_method,customer_account_id,sub_total,customer_payments,deposits,deposit_total,has_deposits,adjustments,totalAdjustments,adjustmentsSummary,invoice_balance,payments_applied,open_balance,has_part_sale_credits,invoiceCredits,reverseBlockedByCredits,reverseBlockedByLegacyCredit,cores_pending,shop_supplies_cost,work_order_shop_supplies_charge,shop_supplies_charge,max_shop_supplies_charge,min_shop_supplies_charge,invoice_shop_supplies_charge,invoice_tax,history_count,type,ibs_approval_code,invoice_shop_id"
+ },
+ "C96966": {
+  "wo": "S10043-17975",
+  "clock": {
+   "in1": 201,
+   "out1": 201,
+   "in2": 201,
+   "running": "{\"technician_task\":{\"id\":\"a606fdc4-88f1-4a00-bfc4-d99edaedf3a8\",\"start_date\":\"2026-10-09 00:28:58\",\"description\":\"Preventative maintenance\",\"end_date\":null,\"staff_id\":\"1161043d-a0e8-42b0-b2c7-63d3e749"
+  },
+  "before": {
+   "status": "in_progress",
+   "lead": "Esther Howard",
+   "line": {},
+   "wo": {
+    "total_time": 18
+   },
+   "tasks": [
+    {}
+   ]
+  },
+  "shiftMade": "nobody 2026-10-09T14:00:00Z -> 2026-10-09T18:00:00Z (240 min)",
+  "shiftKeys": "id,staffId,departmentId,seriesId,startsAt,endsAt,isAllDay,durationMinutes,color,note,isConflict,conflictReasons,workOrder,lines",
+  "move": 200,
+  "afterMove": {
+   "shift": "nobody 2026-10-09T19:00:00Z -> 2026-10-09T23:00:00Z (240 min)",
+   "status": "in_progress",
+   "lead": "Esther Howard",
+   "line": {},
+   "wo": {
+    "total_time": 18
+   },
+   "tasks": [
+    {}
+   ]
+  },
+  "resize": 200,
+  "afterResizeTry1": "nobody 2026-10-09T19:00:00Z -> 2026-10-09T23:00:00Z (240 min)",
+  "resize2": "200 {\"data\":{\"shifts\":[{\"id\":\"2d298179-4a53-4999-820b-8acbfc3a9527\",\"staffId\":\"1161043d-a0e8-42b0-b2c7-63d3e74940ba\",\"departmentId\":null,\"seriesId\":null,\"startsAt\":",
+  "afterResize": {
+   "shift": "nobody 2026-10-09T19:00:00Z -> 2026-10-09T22:00:00Z (180 min)",
+   "status": "in_progress",
+   "lead": "Esther Howard",
+   "line": {},
+   "wo": {
+    "total_time": 18
+   },
+   "tasks": [
+    {}
+   ]
+  },
+  "reassign": "200 {\"data\":{\"shifts\":[{\"id\":\"2d298179-4a53-4999-820b-8acbfc3a9527\",\"staffId\":\"2557c6eb-8dfc-4a5b-9632-6a450253f6b8\",\"departmentId\":null,\"seriesId\":null,\"startsAt\":\"2026-10-09T19:00:00Z\",\"endsAt\":\"2026-10-09T22:00:00Z\",\"isAl",
+  "afterReassign": {
+   "shift": "nobody 2026-10-09T19:00:00Z -> 2026-10-09T22:00:00Z (180 min)",
+   "status": "in_progress",
+   "lead": "Esther Howard",
+   "line": {},
+   "wo": {
+    "total_time": 18
+   },
+   "tasks": [
+    {}
+   ]
+  },
+  "prompt": null,
+  "message": [
+   "Lead technician updated"
+  ],
+  "afterLeadChange": {
+   "shift": "nobody 2026-10-09T19:00:00Z -> 2026-10-09T22:00:00Z (180 min)",
+   "status": "in_progress",
+   "lead": "Ralph Edwards",
+   "line": {},
+   "wo": {
+    "total_time": 18
+   },
+   "tasks": [
+    {}
+   ]
+  },
+  "clockStillRunning": "{\"technician_task\":{\"id\":\"a606fdc4-88f1-4a00-bfc4-d99edaedf3a8\",\"start_date\":\"2026-10-09 00:28:58\",\"description\":\"Preventative maintenance\",\"end_date\":null,\"staff_id\":\"1161043d-a0e8-42b0-b2c7-63d3e749",
+  "stopClock": 201
+ },
+ "C96958": {
+  "wo": "S10043-17976",
+  "base": {
+   "Esther Howard": {
+    "count": 0,
+    "mentionsWo": [],
+    "top": [],
+    "empty": true,
+    "bell": [
+     ""
+    ],
+    "calls": [
+     "200 /notifications",
+     "200 /js/useMercureNotifications.D0YLbNfY.js",
+     "200 /js/Notifications.DL6EMkpq.js"
+    ]
+   },
+   "Ralph Edwards": {
+    "count": 0,
+    "mentionsWo": [],
+    "top": [],
+    "empty": true,
+    "bell": [
+     ""
+    ],
+    "calls": [
+     "200 /notifications",
+     "200 /js/useMercureNotifications.D0YLbNfY.js",
+     "200 /js/Notifications.DL6EMkpq.js"
+    ]
+   },
+   "Dana Ortiz": {
+    "count": 0,
+    "mentionsWo": [],
+    "top": [],
+    "empty": true,
+    "bell": [
+     ""
+    ],
+    "calls": [
+     "200 /notifications",
+     "200 /js/Notifications.DL6EMkpq.js",
+     "200 /js/useMercureNotifications.D0YLbNfY.js"
+    ]
+   }
+  },
+  "leadAfterWoPage": "Ralph",
+  "afterWoPage": {
+   "Esther Howard": {
+    "count": 0,
+    "mentionsWo": [],
+    "top": [],
+    "empty": true,
+    "bell": [
+     ""
+    ],
+    "calls": [
+     "200 /notifications",
+     "200 /js/useMercureNotifications.D0YLbNfY.js",
+     "200 /js/Notifications.DL6EMkpq.js"
+    ]
+   },
+   "Ralph Edwards": {
+    "count": 0,
+    "mentionsWo": [],
+    "top": [],
+    "empty": true,
+    "bell": [
+     ""
+    ],
+    "calls": [
+     "200 /notifications",
+     "200 /js/useMercureNotifications.D0YLbNfY.js",
+     "200 /js/Notifications.DL6EMkpq.js"
+    ]
+   }
+  },
+  "boardMessage": [
+   "Lead technician updated"
+  ],
+  "leadAfterBoard": "Dana",
+  "afterBoard": {
+   "Ralph Edwards": {
+    "count": 0,
+    "mentionsWo": [],
+    "top": [],
+    "empty": true,
+    "bell": [
+     ""
+    ],
+    "calls": [
+     "200 /notifications",
+     "200 /js/Notifications.DL6EMkpq.js",
+     "200 /js/useMercureNotifications.D0YLbNfY.js"
+    ]
+   },
+   "Dana Ortiz": {
+    "count": 0,
+    "mentionsWo": [],
+    "top": [],
+    "empty": true,
+    "bell": [
+     ""
+    ],
+    "calls": [
+     "200 /notifications",
+     "200 /js/useMercureNotifications.D0YLbNfY.js",
+     "200 /js/Notifications.DL6EMkpq.js"
+    ]
+   }
+  },
+  "techMessage": [
+   "Lead technician updated"
+  ],
+  "leadAfterTech": "Esther",
+  "afterTech": {
+   "Dana Ortiz": {
+    "count": 0,
+    "mentionsWo": [],
+    "top": [],
+    "empty": true,
+    "bell": [
+     ""
+    ],
+    "calls": [
+     "200 /notifications",
+     "200 /js/Notifications.DL6EMkpq.js",
+     "200 /js/useMercureNotifications.D0YLbNfY.js"
+    ]
+   },
+   "Esther Howard": {
+    "count": 0,
+    "mentionsWo": [],
+    "top": [],
+    "empty": true,
+    "bell": [
+     ""
+    ],
+    "calls": [
+     "200 /notifications",
+     "200 /js/Notifications.DL6EMkpq.js",
+     "200 /js/useMercureNotifications.D0YLbNfY.js"
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96966": {
+   "verdict": "Passed",
+   "observed": "New work order S10043-17975 (customer ZZAUTOTEST F1 Status And Time Kept), led by Esther Howard, In Progress: Esther Howard logged about a minute on its line, then clocked in again and left the clock running. A shift for her on this work order was made for tomorrow 8:00-12:00. On the Schedule the shift was moved to 13:00-17:00, shortened to 13:00-16:00, then given to Dana Ortiz: after each of the three the Lead Technician still read Esther Howard. In Board View the card was then dragged from Esther Howard's column to Ralph Edwards' column: 'Lead technician updated', no shift question (her shift had already gone to Dana Ortiz). Afterwards the Status still read In Progress, the work order's total time was the same as before (18 before, 18 after), and Esther Howard's clock was still running (the same clock entry). The clock was stopped at the end.",
+   "not_observed": "The three Schedule changes were sent the way the Schedule itself sends them, not by dragging on the Schedule screen (that screen cannot be dragged by the test tool). The line's own Actual hours figure was not read separately; the work order's total time was. Whether this shop locks time entries was not checked, so the locked-entry part was not exercised."
+  }
+ }
+}
