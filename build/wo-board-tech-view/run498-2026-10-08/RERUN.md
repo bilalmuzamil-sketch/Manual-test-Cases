@@ -35,3 +35,5 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | recapture (master13) | every held report re-run with `WOB_SCALE=2 WOB_EV=evidence/recapture-2026-10-09` — re-verifies on the day's build and gives 2x pictures for the tickets |
 | high1-batch | C368165–C368168, C368172–C368174, C368176, C368177, C368178, C368179, C368190, C368192, C368180–C368189, C368202, C368213 (high-risk first half) |
 | orgb-batch | C368175, C154650 — organisation B registered through the branch /register page (playbook §X); its only staff member is "ZZAUTOTEST OrgB Tech" |
+| c-fix | C96984 (c) — an asset with no unit and no year/make/model, made behind the screen (New Asset will not save without a Make) |
+| s9-fix4 | C97003 (2560px window, Tech View groups read from the virtual table), C97012 (seeded Approved — a Complete card is not on the board), C368146 (Tech View read with the big groups collapsed) |
