@@ -18,3 +18,9 @@ x_Orders.CTZ2cySy.js: filter_chip occurrences = 0
 x_Vendors.NNc4E8gz.js: filter_chip occurrences = 0
 x_Deliveries.CrmOBQ6f.js: filter_chip occurrences = 0
 control: filter_chip_* lives in x_FilterBar.Ca4KMevH.js 
+
+## Account access (impersonation) — found 2026-10-09
+- Route: `/impersonate-user/:user_id` (component `ImpersonateUser`) starts account access for that staff member's **user** id (`staff` row `.id`, not `.staff_id`); it returns early if you are already in account-access mode, and sends you to Work Orders for an invalid id.
+- Exit: the orange bar's **Exit** button, `[data-test-id="button_exit_impersonation"]` (component `ImpersonationBar`).
+- API behind both: `POST /api/switch-user {user_id}`, `GET /api/switch-user` (state), `POST /api/exit-switch-user`.
+- Positive control for "the route exists": the runner harness itself uses the same `switch-user` API for every viewAs.

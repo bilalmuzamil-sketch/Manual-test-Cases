@@ -5920,3 +5920,9 @@ three wrong characterisations before it was found — see learning **L0233**.
   Schedule rows are drawn only for technicians in the **Service** department, so enrol a technician there before a
   Schedule check. `/settings/staff` opened directly renders blank for the switched-in test admin — reach Staff via
   initials > Settings > Staff.
+
+### Account access (impersonation) on the Work Orders QA branch — route found in the app code (2026-10-09)
+- Start: open `/impersonate-user/<user id>` (the staff row's `id`, NOT `staff_id`). The page shows "Please wait..." and switches. It does nothing if you are ALREADY in account-access mode — so run it from the admin's own session, never from a harness that has already switched to a runner user.
+- Exit: the orange "Account Access Mode" bar's **Exit** — `[data-test-id="button_exit_impersonation"]`.
+- API: `POST /api/switch-user {user_id}` · `GET /api/switch-user` (state) · `POST /api/exit-switch-user`.
+- Script: `build/wo-board-tech-view/run498-2026-10-08/imp-batch.mts`.
