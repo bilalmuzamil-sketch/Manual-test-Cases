@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96958": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Lead Notifications, S10043-17976 (with one line), led by Esther Howard. Before anything, the Notifications pages (bell > Notifications, Unread only switched off) of Esther Howard, Ralph Edwards and Dana Ortiz were each empty: 'There are no notifications for selected filters'. 1) Work order page, Lead Technician changed Esther Howard -> Ralph Edwards: neither Esther Howard nor Ralph Edwards received any notification. 2) Board View, card dragged Ralph Edwards -> Dana Ortiz ('Lead technician updated'): neither received any. 3) Tech View, More actions > Reassign lead technician, Dana Ortiz -> Esther Howard ('Lead technician updated'): neither received any. So the board and Tech View give exactly the same result as the work order page: no notification. Check that the reading works: a work order note mentioning @Esther Howard did appear on her Notifications page straight away (1 notification, 'ZZ WOB Runner Work Order: S-17955 ... @Esther Howard ...').",
+   "not_observed": "Email: the test technicians' addresses are not real mailboxes, so emails could not be read; only the in-app notifications were checked."
+  }
+ }
+}
