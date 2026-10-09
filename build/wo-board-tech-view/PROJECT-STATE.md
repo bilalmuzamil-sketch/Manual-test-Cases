@@ -65,3 +65,4 @@
   drafting 19 cases and 19 setup docs (in the Drive folder; drafts + doc links in structure-conversion-2026-10-08/paused-drafts/). NOTHING written to
   TestRail. To resume: re-read every case live (the other session's results do not change case text, but check updated_on), let helpers skip ids
   already in paused-drafts, then conv_check.py → conv_write.py → display_check.sh per batch.
+- 2026-10-09: structure conversion stays PAUSED (QA lead: "Keep it paused for now."). 19 drafts in structure-conversion-2026-10-08/paused-drafts/.
