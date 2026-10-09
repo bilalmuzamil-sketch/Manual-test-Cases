@@ -1,0 +1,10 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-09"},
+ "results": {
+  "C97021": {
+   "verdict": "Passed",
+   "observed": "Keys used: Tab and the arrow keys. Board View: after clicking in Search, Tab brought focus onto the first card (Golf Co in Unassigned) with a visible focus outline. The arrow keys then reached every card and every column. ArrowDown moved through a column's cards, ArrowUp reached the column header, and ArrowRight moved to the next column. In order, focus reached Golf Co, the Unassigned header, Alpha Co, Bravo Co, Ana's header, Charlie Co and Ben's header, each with a visible outline. Tech View: Tab reached the Unassigned group header. ArrowDown then reached the Golf Co row, Ana's group, the Alpha Co and Bravo Co rows, Ben's group, the Charlie Co row and the next technician groups, each with a visible outline. Rows are reached with the arrows, not by Tab, because only one item in the view is a Tab stop. Nothing on either view could not be reached. Pictures: C97021-board-walk and the Tech View walk.",
+   "not_observed": null
+  }
+ }
+}
