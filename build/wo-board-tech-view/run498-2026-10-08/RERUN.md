@@ -84,3 +84,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | high1-fix5 | C368172, C368177, C368178, C368179, C368190, C368188, C368189 (+C368192 as setup) — hour heading measured after scrolling into view; shift read from the Schedule's own data and its block found by text; Assets TAB clicked; running-clock window waited for |
 | medium-fix3 | C368220–C368237 — options picked from the same tick-box rows the menu reading lists; no word-end rule on chip labels |
 | orgb-fix2 | REGISTER, C368175, C154650 — /register cannot be reached on v26.40 (signed in → Work Orders, signed out → Login); the form's own request POST /api/register is sent directly, fields taken from its refusal |
+| (manual) | C368175, C154650 — need organisation B; left for manual testing on the QA lead's instruction (9 Oct 2026) |

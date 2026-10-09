@@ -22,8 +22,11 @@ GS_APP=https://<branch>.qa.shopview.com ./run-all.sh /tmp/wob-rerun-<date>
 3. **One log per script** in the log folder; judge each check from its log + pictures and write results with
    `build/testing-tools/push_results_to_run.py` (Failed needs `ticket_held` and a "held with the QA lead" note).
 
-Manual only (3): C97026, C97033, C97034 — they read the Google Analytics REPORTS a day / a week later; this session has
-no access to the property. The browser half of every analytics check is scripted and passes.
+Manual only (5):
+- C97026, C97033, C97034 — they read the Google Analytics REPORTS a day / a week later; this session has no access to the
+  property. The browser half of every analytics check is scripted and passes.
+- C368175, C154650 — they need a second organisation (organisation B). **QA lead, 9 Oct 2026: "Any test cases that require
+  Organization B leave them for manual testing."** Not scripted, not queued.
 
 Single script on any environment: `GS_APP=… ONLY=C368169 ./wob-run.sh editwo-batch.mts`.
 

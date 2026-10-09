@@ -186,3 +186,7 @@ Recapture on a FRESH line with NO technician: adding Dana Ortiz in Edit Line DID
 |---|---|---|---|
 | Q1 | C368170 | On an Invoiced work order the card locks Lead Technician, Mileage and Engine Hours, but the Customer PO on the Finance tab can still be changed (PO-100 → PO-200, kept after reload). | The case expects the PO to stay; its source sentence is about "other edits in the **same save**", and on this build the PO saves on its own. Does the PO change count against the case (Failed + report) or not (Passed)? |
 | Q2 | C368238 / C368239 setup | Admin ShopView's own "Assigned to me" lists work orders he only created (Service Advisor), not ones he leads. | The cases assume "Assigned to me" lists none for him. Is "Assigned to me" meant to include work orders where you are the Service Advisor? (Observation only — not raised as a defect without the source.) |
+
+## Left for manual testing (QA lead, 9 Oct 2026)
+
+*"Any test cases that require Organization B leave them for manual testing."* — C368175 (line technician lists offer no staff from another organization) and C154650 (Tech View and Board View show only this organization and location). Not run by script; left Untested in run 498 for the manual tester.

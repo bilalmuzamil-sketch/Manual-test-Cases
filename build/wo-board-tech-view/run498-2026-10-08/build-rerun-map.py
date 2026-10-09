@@ -11,10 +11,12 @@ for f in glob.glob('*.mts'):
     born[f] = int(r[-1]) if r else 9_999_999_999
 order = sorted(born, key=lambda f: born[f]); text = {f: open(f).read() for f in order}
 MANUAL = {97026, 97033, 97034}                                    # Google Analytics REPORTS: read by hand
+MANUAL_ORGB = {368175, 154650}                                    # need a second organisation: manual testing (QA lead, 9 Oct 2026)
 PIN = {368164: 's5-batchA.mts', 96997: 's7-batch.mts', 96999: 's7-batch.mts', 97000: 's7-batch.mts'}
 m = {}
 for cid in cases:
     if cid in MANUAL: m.setdefault('(manual: Google Analytics reports)', []).append(cid); continue
+    if cid in MANUAL_ORGB: m.setdefault('(manual: needs a second organisation)', []).append(cid); continue
     hits = [f for f in order if re.search(r"['\"`]C%d['\"`]" % cid, text[f])]
     m.setdefault(PIN.get(cid) or (hits[-1] if hits else '(none)'), []).append(cid)
 json.dump({k: sorted(v) for k, v in m.items()}, open('rerun-map.json', 'w'), indent=1)
