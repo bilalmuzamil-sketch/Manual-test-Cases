@@ -9,7 +9,7 @@ while true; do
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01QvLHRX1rY5c7HuyoMWVGpU" && git push -q origin claude/slack-session-setup-7v5itm; }
-  [ -f $U/applied/c154761-delete-result.json ] && [ -f $U/run-membership.DONE ] && [ -f $W/design-crawl/AUDIT-DONE ] && { git add -- $U $W; git diff --cached --quiet || { git commit -qm "Background jobs finished
+  [ -f $U/applied/c154761-delete-result.json ] && [ -f $U/run-membership.DONE ] && { [ -f $W/design-crawl/AUDIT-DONE ] || [ -f $W/design-crawl/AUDIT-STOPPED ]; } && { git add -- $U $W; git diff --cached --quiet || { git commit -qm "Background jobs finished
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01QvLHRX1rY5c7HuyoMWVGpU"; git push -q origin claude/slack-session-setup-7v5itm; }; exit 0; }

@@ -3022,3 +3022,52 @@ proven before anyone may say it was done.** Operator form: `build/skills/21-DESI
    them except through a fix that every project then gets.
 11. **Checkpoints run outside the session's background-job limit** (a `nohup` script, not a session background task),
    so a 2-hour limit can never silently stop the commits while a crawl is still running.
+
+### 🔴 Amendment 2026-10-09 (PERMANENT) — the text inventory replaces the exhaustive crawl; coverage is proven from the design's files
+
+Ordered by the QA lead on 9 Oct 2026, after asking why test case creation had become so slow: *"Follow what is your
+recommendation knowing that I need 100% test case coverages and those test cases should be authentic without any
+hallucination or invention."*
+
+**What the evidence showed (WO Board & Tech View, 8–9 Oct 2026).** The stateful crawl in 3(b) took about 3 h 50 min,
+its retry another 50 min, and the shortcut audit in point 9 was still unfinished after more than 18 hours. Its triage
+produced 5 CASE-NEEDED and 12 SPEC-CONFLICT findings. **Every one of those 17 is written in the design's own files**
+(for example "Collapse all", "No columns match", "Search technicians", and the toast built as
+`srcId + " lead technician set to " + t.name`). Reading the files' text finds them in seconds, and also finds text on
+screens a crawler cannot reach (the crawl left 4 screens unreachable and 6 elements never exercised). A crawl adds
+thousands of repeat clicks, but expected results come from the specification (Rules 57, 113), so those clicks never
+fed a case.
+
+**What changes (all projects):**
+1. **3(b) is replaced.** The exhaustive stateful crawl to an empty queue, the every-draggable-on-every-drop-zone matrix,
+   and point 9's shortcut audit are no longer required. In their place:
+   - **(b) Text inventory, the coverage proof.** `python3 build/testing-tools/design_text_inventory.py --design
+     <package folder> --cases <case snapshots> --out <stem> --library <design-system paths> --sweep-text <sweep
+     text files>` extracts every on-screen text in the package: HTML text and visible attributes, JSX text, string
+     literals, template strings, and messages glued together from parts. Each is matched against our cases.
+     **Every row not already in a case is classified, one by one: DATA · COVERED (C-id) · OUT-OF-SCOPE (ruling) ·
+     SPEC-CONFLICT (PO question) · CASE-NEEDED (case written). Zero unclassified.** Design-system library text no
+     board shows is listed in its own section and may be classified per component group, with the reason.
+   - **(c) Targeted flow drive.** Every multi-step flow the files show — a dialog with a search, a drag and drop, a
+     menu inside a view, a confirm or undo, an empty or error state behind an action — is clicked through by hand or
+     script, two to three levels deep, to confirm the labels and the order of the screens. Time limit about
+     30 minutes per board. A flow that cannot be finished in time is named to the QA lead, never silently dropped.
+   - **(a) The one-click sweep stays** (minutes): every element hovered and clicked, tooltips, dark theme, widths,
+     screenshots. Its page text is fed to (b) with `--sweep-text`.
+2. **Gates now read:** every file read (point 2, unchanged); the sweep has run on every board; the text inventory has
+   zero unclassified rows; every multi-step flow is driven or named; every drag the files define has been tried at
+   least once (drag allowed and drag refused, where the design shows both). Points 4's first two crawl bullets and
+   point 9 no longer apply.
+3. **Designs with no text in their files** (boards that are only images, such as a canvas of PNG screens): every
+   image is viewed and every on-screen word in it is transcribed into the inventory by hand, then classified the
+   same way. **Figma:** the text comes from the Figma file through its connector.
+4. **Authenticity is unchanged and strengthened:** the design supplies labels and design-only details that do not
+   contradict the specification; expected results are the specification's own words (Rules 57, 113); design code is
+   never quoted as an expected result; nothing is invented to fill a gap — a gap with no source is a PO question
+   (Rules 58, 64). Every row of the inventory points to the file and line it came from, so any reviewer can check it.
+5. **The proof file** (point 7) now reports: the file-reading table; the sweep totals; the inventory counts (texts
+   found, already in a case, classified by class); the flows driven and any not driven, with the reason.
+6. `crawl_design_states.py` stays available as an optional tool. It may be used when a flow cannot be confirmed by the
+   targeted drive, but it is no longer a gate and never runs open-ended.
+
+Worked example and evidence: `build/wo-board-tech-view/source-update-2026-10-08/text-inventory-trial/`.
