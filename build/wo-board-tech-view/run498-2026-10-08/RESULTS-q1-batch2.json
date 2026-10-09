@@ -1,0 +1,67 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368220": {
+   "verdict": "Passed",
+   "observed": "Parts > Return requests: ticked vendor '4Refuel' in the Vendor filter (4 rows); after a reload the filter still shows 4Refuel ticked and the same 4 rows show; no error message.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368222": {
+   "verdict": "Passed",
+   "observed": "Parts > Part Sales: added 'Completed' to the Status filter (Estimate, Approved, Completed ticked); after a reload the same three stay ticked and the same rows show; no error message.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368227": {
+   "verdict": "Passed",
+   "observed": "Reports > Sales By Customer: picked 'E2E Credits Customer' (2 rows, $299.90); after a reload the same customer stays chosen and the same rows and totals show; no error message.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368228": {
+   "verdict": "Passed",
+   "observed": "Reports > Parts Velocity: picked vendor '4Refuel' (11 rows); after a reload the same vendor stays chosen and the same rows show; no error message.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368229": {
+   "verdict": "Passed",
+   "observed": "Reports > Inventory Value: picked category '.Brake Parts' (5 rows); after a reload the same category stays chosen and the same rows show; no error message.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368232": {
+   "verdict": "Passed",
+   "observed": "Reports > Work In Progress, Location filter: unticking 'Staging Heavy Duty - 9919' left only QB Location ticked (Select all unticked) and the report updated to leave it out ('No record matches these filters'); ticking it again brought back 31 rows; Select all ticks every option; 'Clear selection' unticks every option. Words: 'Select all', 'Clear selection'.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368236": {
+   "verdict": "Passed",
+   "observed": "Reports > Technician Utilization, Technician filter: unticking Daniel Montoya left the others ticked and the report dropped to 8 rows; ticking him again brought back 9; Select all ticks every technician; 'Clear selection' unticks all. Words: 'Select all', 'Clear selection'.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368221": {
+   "verdict": "Failed",
+   "observed": "Parts > Returns, Credits tab: chose '60 days' in the date filter; after a reload the page opened on the Returns tab, not Credits (the 60 days choice itself was kept). This is the case's 'What you should see today', outcome (1).",
+   "not_observed": null,
+   "ticket_held": true,
+   "ticket": "Report held with the QA lead \u2014 nothing raised yet (outcome 1 of the case).",
+   "todo": "Decide with the QA lead whether this needs a ticket."
+  }
+ }
+}

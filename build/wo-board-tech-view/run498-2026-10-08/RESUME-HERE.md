@@ -48,3 +48,8 @@ start the bridge first (`bash build/testing-tools/ensure_bridge.sh`).
 | two | C368149 | ran — judge |
 | imp | C368238, C368239 | 3rd attempt hung (page.goto timeout after switch-user; C368239 timed out). Proposed: leave for MANUAL testing |
 | signout | C368240 | half: tab 2 went to /login after sign-out (good); the Reports click timed out — finish by hand or re-run |
+
+### Filter step (medium) — judged 9 Oct 19:50: 7 Passed, C368221 Failed (outcome 1). NOT judged, re-run needed:
+C368224, C368225 (script picked the "All …" option, not a value) · C368226, C368231 (nothing picked) · C368230 (rows differed after reload — recheck) ·
+C368233, C368234, C368235 (report filter is "All …" + single picks; the case's untick/select-all/clear steps do not fit — case question for the QA lead) ·
+C368237 (Sales By Representative has no data — seed a sale with a sales representative first).
