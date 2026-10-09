@@ -124,3 +124,11 @@ Already answered by Product in v26, so NOT asked:
   - Same C-ids, content unchanged, every move verified (`applied/retire-move-log.jsonl`). Nothing deleted.
   - **Recorded gap:** S4-N1, S4-N2, S5-N1, S9-E9, S13-R19d and S10-R25a now have no case in the manual suite. They rely on the developers' automated tests (tech plan §7: BE functional tests cover them). The same goes for the §8 server-error rows and the two Part Library part-request refusal rows.
   - **Live manual suite:** 251 cases (259 − 7 retired − C154761 once deleted). PRD coverage in the manual suite: 282 of 288.
+
+## 9 Oct 2026 — question sheet written (QA lead: "Make a google sheet with PM level questions")
+Google Sheet: https://docs.google.com/spreadsheets/d/1qVNQ2RtjBUJP7hor79Pjo9Y5mKmYaGM55W3rLgkme7k/edit (source workbook and spec in `questions-2026-10-09/`; layman check clean).
+- Tab "For Chris (product)": 13 product questions (the 15 above, reworded for a product manager; question 12 split, its developer part moved).
+- Tab "For the developers": 5 test-setup questions (12a, 14, and the three in 15).
+- Tab "QA internal - not for the PO": case ids and requirement codes for each question.
+- Dropped: "5 Available for +5 and −2" (SV-10380 already says the available-to-pick quantity keeps its existing behaviour).
+- Written before build verification at the QA lead's request; he decides when it is sent (Rule 66).
