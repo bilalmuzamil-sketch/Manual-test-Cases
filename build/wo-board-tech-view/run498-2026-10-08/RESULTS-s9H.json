@@ -1,0 +1,10 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-09"},
+ "results": {
+  "C368145": {
+   "verdict": "Passed",
+   "observed": "Way used: SPLIT. The New Work Order window has no Lead Technician field (its fields are Customer and Asset), so, as the case allows, a line of the Bravo Co work order (lead Ben Bravo) was split off into a new work order. Before: Ben's column read Bravo Co, Delta Co. After the split, with the same search on Work Orders > All > Board View, Ben's column read: the split-off Bravo Co work order (S10043-18392, lead Ben Bravo), the original Bravo Co (S10043-18390), then Delta Co (S10043-18391). The split-off work order took its customer-name place among Ben's work (with the other Bravo Co), not the bottom.",
+   "not_observed": "The Create Work Order route could not be used: the window has no Lead Technician field."
+  }
+ }
+}

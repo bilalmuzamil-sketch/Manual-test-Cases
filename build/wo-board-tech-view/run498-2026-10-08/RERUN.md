@@ -48,3 +48,5 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | parts-filter | C368218, C368219, C368223 — the page's own Search used as the filter (no Vendor/State filter exists, QA lead 9 Oct) |
 | high1-fix2 | C368172–C368174, C368177–C368179, C368188–C368192, C368202 — see the FIX 2 header in the script for the seven causes |
 | sort-fix2 | C368196 — VIN sent with the asset change; saved list filters cleared at sign-in |
+| s9-batchA5 | C368144 — Lead Technician list scrolled to the TOP first (it opens at the current lead; Unassigned is first) |
+| medium4 + orgb3 | re-run of the reports/cards batch and organisation B after the sign-in filter-clear crashed them at 08:44 |

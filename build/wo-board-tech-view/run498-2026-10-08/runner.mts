@@ -34,10 +34,10 @@ export async function asRunner(browser: Browser, main: Page, a0: Api) {
   };
   const v = await viewAs(browser, main, a0, row.id, me?.id ?? '', toRunner);
   via = api(v.page);
+  await v.page.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await v.page.waitForTimeout(4000);
   // 2026-10-09: a batch that ticks a Status filter leaves it SAVED on this user, and every later list check then starts
   // filtered (an 'Imported' filter hid every work order for an hour). Every batch starts with no saved list filters.
-  { const PREF = '/api/users/me/preferences/work-orders-list'; const pv = (await via.get(PREF)).body?.data?.value; if (pv?.filters && Object.keys(pv.filters).length) await via.put(PREF, { value: { ...pv, filters: {} } }); }
-  await v.page.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await v.page.waitForTimeout(4000);
+  { const PREF = '/api/users/me/preferences/work-orders-list'; const pv = (await via.get(PREF).catch(() => ({ body: null } as any))).body?.data?.value; if (pv?.filters && Object.keys(pv.filters).length) { await via.put(PREF, { value: { ...pv, filters: {} } }); await v.page.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await v.page.waitForTimeout(3000); } }
   const who = (await api(v.page).get('/api/auth/me/fe-permissions')).status;
   return { p: v.page, a: api(v.page), id: row.id as string, staffId: row.staff_id as string, me, toRunner, perms: v.perms, who, log,
     end: async () => { await via.post('/api/exit-switch-user', {}); } };
