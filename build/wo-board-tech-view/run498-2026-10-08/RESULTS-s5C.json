@@ -1,0 +1,16 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96977": {
+   "verdict": "Blocked",
+   "observed": "Customer ZZAUTOTEST F2 Card Always On, S10043-17989, asset unit TRK-118. Board View > Fields to display lists 13 fields (Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date). Work order number, Unit number and Status are not in the list at all, so they cannot be turned off. With every listed field turned off, the card still showed 'S10043-17989', 'Approved' and 'TRK-118'.",
+   "not_observed": null,
+   "todo": "What needs to be done: the QA lead to decide. The case expects the three to be 'shown as always on' in the picker; the picker leaves them out entirely. The requirement quoted in the case (S5-R3) only says they 'are mandatory and cannot be deselected', which holds. Pass or Fail on that wording is his call; nothing raised."
+  }
+ }
+}

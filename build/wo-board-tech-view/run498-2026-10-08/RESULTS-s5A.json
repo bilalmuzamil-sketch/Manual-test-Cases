@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368160": {
+   "verdict": "Blocked",
+   "observed": "Outcome (1), what the case says you see today. Tech View's Column Selection button (tooltip 'Column Selection') opens a plain list of columns, each with an on/off switch: Waiting On Parts, Asset, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Assigned Techs, Total price, Created on, Invoiced Date, Days open, Parts, Returns. There is no 'Columns' heading, no '<n> of <m> shown' count, and no 'Show all' or 'Reset to default' button anywhere in the menu. Number and Status are not listed and always show in the rows. Read on the screen as a brand-new user and as the admin.",
+   "not_observed": "Steps 9 to 13 (the count, Show all and Reset to default) cannot be done: those controls are not in this build.",
+   "todo": "What needs to be done: nothing to raise. The developer says the count, Show all and Reset to default are not in this release; run this case again when they ship."
+  },
+  "C368164": {
+   "verdict": "Blocked",
+   "observed": "Outcome (1), what the case says you see today. Tech View's Column Selection menu lists its columns with on/off switches and has no search box (no 'Find a column'). Board View has its Fields to display button in the same toolbar place, and its menu lists the 13 fields with switches and also has no search box. Nothing in either menu can be typed into.",
+   "not_observed": "Steps 8 to 15 (typing in the search box) cannot be done: there is no search box in this build.",
+   "todo": "What needs to be done: nothing to raise. The developer says the search box is not in this release; run this case again when it ships."
+  }
+ }
+}

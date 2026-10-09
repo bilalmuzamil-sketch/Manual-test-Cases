@@ -1,0 +1,390 @@
+{
+ "runner": {
+  "id": "059edc87",
+  "perms": 57,
+  "who": 200,
+  "log": []
+ },
+ "menus": {
+  "techView": {
+   "box": {
+    "x": 1200,
+    "y": 86
+   },
+   "items": [
+    "Waiting On Parts=false",
+    "Asset=true",
+    "VIN/Serial #=true",
+    "Progress=true",
+    "Service Advisor=true",
+    "Lead Technician=true",
+    "Clocked In=true",
+    "Lines=true",
+    "Assigned Techs=false",
+    "Total price=true",
+    "Created on=true",
+    "Invoiced Date=false",
+    "Days open=false",
+    "Parts=false",
+    "Returns=false"
+   ]
+  },
+  "techViewWords": "Waiting On Parts Asset VIN/Serial # Progress Service Advisor Lead Technician Clocked In Lines Assigned Techs Total price Created on Invoiced Date Days open Parts Returns",
+  "techViewHasSearch": 0,
+  "techViewButtons": [],
+  "tooltip": [
+   "Column Selection"
+  ],
+  "board": {
+   "box": {
+    "x": 1200,
+    "y": 86
+   },
+   "items": [
+    "Lead technician=true",
+    "Customer=true",
+    "Asset=true",
+    "VIN/serial=false",
+    "Progress=true",
+    "Service advisor=false",
+    "Clocked in=false",
+    "Line count=false",
+    "Line technicians=false",
+    "Estimated hours=false",
+    "Total price=true",
+    "On-site=false",
+    "Created date=false"
+   ]
+  },
+  "boardHasSearch": 0,
+  "boardButtons": []
+ },
+ "C96975": {
+  "listStart": [
+   "vehicle",
+   "vin",
+   "progress",
+   "serviceAdvisor",
+   "technician",
+   "clockedInTechnicians",
+   "linesCount",
+   "totalPrice",
+   "startDate"
+  ],
+  "listHeadsStart": [
+   "On Site",
+   "Status",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On"
+  ],
+  "techStart": [
+   "vehicle",
+   "vin",
+   "progress",
+   "service_advisor",
+   "technician",
+   "clocked_in_technicians",
+   "lines_count",
+   "total_price",
+   "start_date"
+  ],
+  "setTech": [
+   "ok",
+   "ok"
+  ],
+  "techHeadsAfterSet": [
+   "On Site",
+   "Status",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Assigned Techs",
+   "Total Price",
+   "Created On"
+  ],
+  "listAfterTechChange": {
+   "on": [
+    "vehicle",
+    "vin",
+    "progress",
+    "serviceAdvisor",
+    "technician",
+    "clockedInTechnicians",
+    "linesCount",
+    "totalPrice",
+    "startDate"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On"
+   ]
+  },
+  "setList": "ok",
+  "listHeadsAfterProgressOff": [
+   "On Site",
+   "Status",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On"
+  ],
+  "techAfterListChange": {
+   "on": [
+    "vehicle",
+    "vin",
+    "progress",
+    "technician",
+    "clocked_in_technicians",
+    "lines_count",
+    "assigned_techs",
+    "total_price",
+    "start_date"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Progress",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Assigned Techs",
+    "Total Price",
+    "Created On"
+   ]
+  },
+  "error": "page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://sv10043.qa.shopview.com/workorders?tab=all\nCall log:\n  - navigating to \"https://sv10043.qa.shopview.com/workorders?tab=all\", waiting until \"domcontentloaded\"\n"
+ },
+ "C96976": {
+  "techViewButtonAt": {
+   "x": 1200,
+   "y": 86
+  },
+  "boardButtonAt": {
+   "x": 1200,
+   "y": 86
+  },
+  "start": [
+   "technician",
+   "company_name",
+   "vehicle",
+   "progress",
+   "total_price"
+  ],
+  "cardStart": {
+   "number": "S10043-17988",
+   "status": "Approved",
+   "field_company_name": "Customer ZZAUTOTEST F2 Board Fields Saved",
+   "unit": "ZZF2BF",
+   "field_progress": "Progress 0%",
+   "field_technician": "Lead technician Esther Howard",
+   "field_total_price": "Total price $0.00"
+  },
+  "vin": "ZZWOB179150712441",
+  "set": [
+   "ok",
+   "ok"
+  ],
+  "cardAfter": {
+   "number": "S10043-17988",
+   "status": "Approved",
+   "unit": "ZZF2BF",
+   "field_vin": "VIN/serial VIN ZZWOB179150712441",
+   "field_progress": "Progress 0%",
+   "field_technician": "Lead technician Esther Howard",
+   "field_total_price": "Total price $0.00"
+  },
+  "error": "page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://sv10043.qa.shopview.com/workorders?tab=all\nCall log:\n  - navigating to \"https://sv10043.qa.shopview.com/workorders?tab=all\", waiting until \"domcontentloaded\"\n"
+ },
+ "C96977": {
+  "menuItems": [
+   "Lead technician",
+   "Customer",
+   "Asset",
+   "VIN/serial",
+   "Progress",
+   "Service advisor",
+   "Clocked in",
+   "Line count",
+   "Line technicians",
+   "Estimated hours",
+   "Total price",
+   "On-site",
+   "Created date"
+  ],
+  "offersNumberUnitStatus": [],
+  "cardAllOff": {
+   "number": "S10043-17989",
+   "status": "Approved",
+   "unit": "TRK-118"
+  },
+  "unitOnAsset": "TRK-118"
+ },
+ "C96981": {
+  "menuWas": [
+   "company_name"
+  ],
+  "before": {
+   "S10043-17992": {
+    "number": "S10043-17992",
+    "status": "Approved",
+    "field_company_name": "Customer ZZAUTOTEST F2 Fields No Reload",
+    "unit": "ZZF2NR"
+   },
+   "S10043-17991": {
+    "number": "S10043-17991",
+    "status": "Approved",
+    "field_company_name": "Customer ZZAUTOTEST F2 Fields No Reload",
+    "unit": "ZZF2NR"
+   },
+   "S10043-17990": {
+    "number": "S10043-17990",
+    "status": "Approved",
+    "field_company_name": "Customer ZZAUTOTEST F2 Fields No Reload",
+    "unit": "ZZF2NR"
+   }
+  },
+  "after": {
+   "S10043-17992": {
+    "number": "S10043-17992",
+    "status": "Approved",
+    "unit": "ZZF2NR",
+    "field_start_date": "Created date Today"
+   },
+   "S10043-17991": {
+    "number": "S10043-17991",
+    "status": "Approved",
+    "unit": "ZZF2NR",
+    "field_start_date": "Created date Today"
+   },
+   "S10043-17990": {
+    "number": "S10043-17990",
+    "status": "Approved",
+    "unit": "ZZF2NR",
+    "field_start_date": "Created date Today"
+   }
+  },
+  "stillSamePage": true,
+  "search": "ZZAUTOTEST F2 Fields No Reload"
+ },
+ "C96983": {
+  "normalBoard": [
+   "start_date"
+  ],
+  "normalTech": [
+   "On Site",
+   "Status",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Assigned Techs",
+   "Total Price",
+   "Created On"
+  ],
+  "normalSave": "ok",
+  "afterReload": [
+   "start_date"
+  ],
+  "failBoard": {
+   "on": [
+    "technician",
+    "company_name",
+    "vehicle",
+    "progress",
+    "total_price"
+   ],
+   "reads": 2
+  },
+  "failTech": {
+   "heads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On"
+   ],
+   "on": [
+    "vehicle",
+    "vin",
+    "progress",
+    "service_advisor",
+    "technician",
+    "clocked_in_technicians",
+    "lines_count",
+    "total_price",
+    "start_date"
+   ]
+  },
+  "changeDuringFailure": "ok",
+  "afterFailureRemoved": [
+   "start_date"
+  ],
+  "savedNow": {
+   "vin": false,
+   "vehicle": false,
+   "progress": false,
+   "startDate": true,
+   "technician": false,
+   "totalPrice": false,
+   "companyName": false
+  }
+ },
+ "loc2": {
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-menu').getByText(/ - \\d{3,5}$/).first()\n"
+ },
+ "restored": true
+}
