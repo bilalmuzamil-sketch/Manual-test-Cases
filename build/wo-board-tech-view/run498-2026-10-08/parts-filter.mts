@@ -1,7 +1,7 @@
 /**
  * PARTS PAGES KEEP THEIR FILTER AFTER A RELOAD (2026-10-09): C368218 Purchase Orders, C368219 Vendors, C368223 Vendor
  * Invoices. QA lead 9 Oct 2026 confirmed these pages have no Vendor / State filter: each has the page's own Search
- * (left of the page's buttons), the app-wide search, and (Purchase Orders) a columns button. So the page's own Search
+ * (the Search button at the RIGHT of the page header), the app-wide search, and (Purchase Orders) a columns button. So the page's own Search
  * is the filter used; the expected results are unchanged. Positive control: the search must NARROW the rows first.
  */
 import fs from 'node:fs';
