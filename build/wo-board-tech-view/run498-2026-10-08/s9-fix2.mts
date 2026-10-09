@@ -140,7 +140,7 @@ const prefFor = async () => (await a.get(PREF)).body?.data?.value ?? {};
 
 const hdr = (id: string) => `[data-test-id="board_column_header_${id}"]`;
 const showCols = async (pg: Page, first: string) => { await pg.evaluate(`document.querySelector('[data-test-id="board_view_scroller"]').scrollLeft = 0`); await pg.waitForTimeout(400);
-  for (let i = 0; i < 40 && !(await pg.locator(hdr(first)).count()); i++) { await pg.evaluate(`document.querySelector('[data-test-id="board_view_scroller"]').scrollLeft += 500`); await pg.waitForTimeout(300); }
+  for (let i = 0; i < 400 && !(await pg.locator(hdr(first)).count()); i++) { const mv = await pg.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"]'); const b = h.scrollLeft; h.scrollLeft += 900; return h.scrollLeft !== b; })()`); await pg.waitForTimeout(300); if (!mv) break; }
   await pg.evaluate(`document.querySelector('[data-test-id="board_column_${first}"]')?.scrollIntoView({ inline: 'start' })`); await pg.waitForTimeout(800); };
 const visibleIds = (pg: Page) => pg.evaluate(`[...document.querySelectorAll('[data-test-id^="board_column_header_"]')].filter(h => { const r = h.getBoundingClientRect(); return r.left >= 0 && r.right <= innerWidth; }).map(h => h.getAttribute('data-test-id').replace('board_column_header_', ''))`) as Promise<string[]>;
 
