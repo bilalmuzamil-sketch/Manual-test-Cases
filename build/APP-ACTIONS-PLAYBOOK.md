@@ -5911,3 +5911,5 @@ three wrong characterisations before it was found — see learning **L0233**.
   line note, Save as canned line, Story history, Audit log, Add inspection, **Edit labor**, Authorization required,
   Decline, Delete line). Timesheets is a TAB of the work order (three-dots > Timesheets), not a dialog; an Active clock
   row cannot be edited. Schedule rows load as the calendar scrolls.
+- **`/register` on a QA branch needs the branch's SSO cookie but NO app sign-in:** a bare new browser context is sent to
+  Google sign-in. Create the context with `storageState: { cookies: <only the sv_sso cookie>, origins: [] }`.
