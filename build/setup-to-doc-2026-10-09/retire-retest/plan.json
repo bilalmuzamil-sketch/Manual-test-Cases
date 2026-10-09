@@ -1,0 +1,50 @@
+[
+ {
+  "id": 154761,
+  "title": "A single part can be deactivated from its edit dialog footer",
+  "updated_on": 1791536507,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>You are on the Parts -&gt; Inventory page on the build under test, with permission to view inventory parts.</li><li>You hold the \"Part Library &amp; Inventory - Delete\" permission (needed to change status/tracking).</li><li>A few inventory parts tagged as throwaway test data (for example part number \"ZZAUTOTEST-PKG-1\", name \"ZZAUTOTEST package part\").</li></ul>"
+ },
+ {
+  "id": 425602,
+  "title": "A server error during a bulk change shows Failed to update part status",
+  "updated_on": 1791472310,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>User: [User-A], signed in with the Admin role. Admin holds the 'Part Library &amp; Inventory' permissions View, Create &amp; Edit and Delete by default (Settings → Roles &amp; Permissions); Delete is what allows Deactivate parts and Activate parts.</li><li>Location: [Loc-1], any one location [User-A] can pick in the location selector in the top bar.</li><li>Browser: a desktop browser window at least 1280 pixels wide (parts management is desktop and tablet only).</li><li>Data: at [Loc-1], 1 active part [Part-A] (e.g. ZZAUTOTEST-PL-SRVERR-01).</li></ul>"
+ },
+ {
+  "id": 425622,
+  "title": "Part request refusals about the Part Library use Part Library wording",
+  "updated_on": 1791472310,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>User: [User-A], Admin role.</li><li>Location: [Loc-1], any one location [User-A] can pick in the location selector in the top bar.</li><li>Browser: a desktop browser window at least 1280 pixels wide (parts management is desktop and tablet only).</li><li>Data: an open work order [WO-1] for a ZZAUTOTEST customer with one line; [PN-A] (e.g. ZZAUTOTEST-PL-REQMSG-01) stocked at [Loc-1].</li></ul>"
+ },
+ {
+  "id": 425629,
+  "title": "A tracked part sent with no bin is refused with the bin message",
+  "updated_on": 1791472310,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>User: you are signed in as an Admin, or as a user whose role has View, Create &amp; Edit and Delete ticked in the Part Library and Inventory group of Settings → Roles &amp; Permissions and who can see costs and prices.</li><li>Location: [Loc-1] = the location shown in the location switcher in the top bar when you start. Every part in this case is at [Loc-1].</li><li>Data: no part numbered ZZAUTOTEST-PL-NOBIN-01 exists at [Loc-1]; the import file in Setup tries to create it.</li><li>Most of this case cannot be checked by hand: the New Inventory Part and Edit Inventory Part dialogs never send a tracked part without a bin. The parts CSV import is the only manual way tried here.</li></ul>"
+ },
+ {
+  "id": 425701,
+  "title": "A rename made through the public API follows the part window rules",
+  "updated_on": 1791472310,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>User: an Admin, who has 'Part Library &amp; Inventory → View / Create &amp; Edit / Delete' and See Financial Data.</li><li>[Loc-1] = the location you work in (pick it in the location switcher in the top bar).</li><li>[Loc-2] = a second location the Admin can pick in the location switcher. If there is none: Settings → Locations → add a location (e.g. 'ZZAUTOTEST PL Loc 2') → Save, then Settings → Staff → open the Admin → give access to the new location → Save.</li><li>Data: part [Part-A] stocked at [Loc-1] and [Loc-2], with an open purchase order line [PO-1] at [Loc-1].</li><li>State this case relies on: [Part-A] has been renamed to [Part-A-new] by a connected system through the ShopView public API. This cannot be done by hand.</li></ul>"
+ },
+ {
+  "id": 425723,
+  "title": "Part window server errors show the failure messages",
+  "updated_on": 1791472310,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>User: an Admin, who has 'Part Library &amp; Inventory → View / Create &amp; Edit / Delete' and See Financial Data.</li><li>[Loc-1] = the location you work in (pick it in the location switcher in the top bar).</li><li>Data at [Loc-1]: one active part [Part-A].</li><li>State this case relies on: the system fails while saving (a server error). This cannot be made by hand.</li></ul>"
+ },
+ {
+  "id": 425755,
+  "title": "Public API refuses to create a part whose number already exists",
+  "updated_on": 1791472310,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>User: [Admin] = you, signed in with the Admin role, which by default has 'Part Library &amp; Inventory → View / Create &amp; Edit / Delete' and See Financial Data.</li><li>Location: [Loc-1] = the location picked in the top-bar location switcher at the start; every step runs at [Loc-1] unless it names another location.</li><li>Data: [Part-A] = one tracked part at [Loc-1].</li><li>Names and numbers marked (e.g. …) are examples only. What must hold is the status (active or inactive), tracking, quantity and link described above.</li></ul>"
+ },
+ {
+  "id": 425776,
+  "title": "Public API rename is recorded as Changed through Public API",
+  "updated_on": 1791472310,
+  "new_pre_body": "<p><strong>Preconditions</strong></p><ul><li>User: [Admin] = you, signed in with the Admin role, which by default has 'Part Library &amp; Inventory → View / Create &amp; Edit / Delete' and See Financial Data.</li><li>Location: [Loc-1] = the location picked in the top-bar location switcher at the start; every step runs at [Loc-1] unless it names another location.</li><li>Location: [Loc-2] = a second location.</li><li>Data: [Part-A] = one tracked part stocked at [Loc-1] and [Loc-2].</li><li>Names and numbers marked (e.g. …) are examples only. What must hold is the status (active or inactive), tracking, quantity and link described above.</li></ul>"
+ }
+]
