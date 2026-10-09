@@ -6,118 +6,38 @@
   "cal": true,
   "dan": true
  },
- "C97021": {
-  "firstCard": {
-   "presses": 11,
-   "found": true,
-   "outline": true
-  },
-  "boardReached": [
-   "Golf Co"
-  ],
-  "columnsReached": 1,
-  "firstRow": {
-   "presses": 120,
-   "found": false
-  },
-  "techReached": [],
-  "groupControlsReached": [
-   "tech_view_group_unassigned",
-   "button_tech_view_group_toggle_unassigned"
-  ]
- },
- "C368150": {
-  "focused": false,
-  "enter": "/reports/punch-clock-activities",
-  "refocused": false,
-  "key Space": "/reports/punch-clock-activities",
-  "key ArrowDown": "/workorders?search=ZZAUTOTEST+F3+Keyboard+Enter+Opens+26418",
-  "key ArrowRight": "/reports/punch-clock-activities",
-  "key Control+ArrowDown": "/workorders?search=ZZAUTOTEST+F3+Keyboard+Enter+Opens+26418",
-  "key Alt+ArrowDown": "/workorders?search=ZZAUTOTEST+F3+Keyboard+Reach+26418",
-  "afterKeys": {
-   "ana": [
-    "S10043-18040",
-    "S10043-18038",
-    "S10043-18042",
-    "S10043-18044",
-    "S10043-18045",
-    "S10043-18049",
-    "S10043-18050",
-    "S10043-18057"
-   ],
-   "before": [
-    "Alpha Co",
-    "Bravo Co"
-   ],
-   "lead": "ZZAUTOTEST Ana Alpha"
-  },
-  "techFocused": false,
-  "techEnter": "/workorders?search=ZZAUTOTEST+F3+Keyboard+Enter+Opens+26418"
- },
- "C368151": {
-  "moreActionsVisibleOnFocus": true,
-  "reachedMoreActions": false,
-  "menuOpenedByEnter": 0,
-  "menuClosedByEscape": true,
-  "pinReached": false,
-  "pin0": "false",
-  "toggleReached": false,
-  "c0": null
- },
  "C368152": {
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"page_search_toggle\"]')\n    - locator resolved to <button tabindex=\"0\" type=\"button\" filled=\"true\" data-v-68e00a17=\"\" data-v-3603d72a=\"\" aria-label=\"Search\" data-test-id=\"page_search_toggle\" class=\"q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-ho"
- },
- "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
- "C97020": {
-  "viewerFocused": false,
-  "viewerKeys": {
-   "Space": "menu/dialog",
-   "ArrowDown": "menu/dialog",
-   "ArrowUp": "menu/dialog",
-   "ArrowLeft": "menu/dialog",
-   "ArrowRight": "menu/dialog",
-   "Shift+ArrowRight": "menu/dialog",
-   "Shift+ArrowDown": "menu/dialog",
-   "Enter": "menu/dialog"
-  },
-  "viewerMoreActions": 0,
-  "alphaAfterViewer": {
-   "lead": "ZZAUTOTEST Ana Alpha"
-  },
-  "dispatcherMenuItem": {
-   "text": "",
-   "disabled": null
-  },
-  "dialogOpened": 0,
-  "tooltip": [],
-  "bravoLead": "ZZAUTOTEST Ana Alpha"
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"page_search_input\"]')\n"
  },
  "C97022": {
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-menu .q-item').filter({ hasText: /^\\s*Approved\\s*$/ }).first()\n"
- },
- "C97028": {
-  "loaded": 1,
-  "step2": {
-   "vinShown": 1,
-   "density": "compact"
-  },
-  "step3": {
-   "msg": [
-    "Lead technician updated"
-   ],
-   "lead": "ZZAUTOTEST Ben Bravo"
-  },
   "step4": {
-   "display": "board_view",
-   "vinShown": 1,
-   "density": "compact",
-   "inBen": true
+   "tid": "global_search_trigger",
+   "raw": "global_search_trigger",
+   "text": "search Search customers, work orders, pa",
+   "outline": true
   },
-  "analyticsBlocked": [
-   "https://www.googletagmanager.com/gtag/js"
-  ],
-  "note": "this harness refuses every Google Analytics / Tag Manager request"
+  "golfFocused": false,
+  "golfToInProgress": "201",
+  "step5": {
+   "tid": "body"
+  },
+  "step5afterTab": {
+   "tid": "skip-to-content",
+   "raw": "skip-to-content",
+   "text": "Skip to main content",
+   "outline": true
+  },
+  "benFocused": false,
+  "deactivateBen": "201",
+  "step6": {
+   "tid": "body"
+  },
+  "step6afterTab": {
+   "tid": "skip-to-content",
+   "raw": "skip-to-content",
+   "text": "Skip to main content",
+   "outline": true
+  }
  },
  "C368154": {
   "savedBefore": {},
@@ -126,97 +46,102 @@
    "Regular"
   ],
   "step5": [
-   "",
-   "",
-   "",
-   "",
-   ""
+   "Lead technician [technician]",
+   "Customer [company_name]",
+   "Asset [vehicle]",
+   "Progress [progress]",
+   "Total price [total_price]"
+  ],
+  "step5all": [
+   "technician=true/on",
+   "company_name=true/on",
+   "vehicle=true/on",
+   "vin=false/off",
+   "progress=true/on",
+   "service_advisor=false/off",
+   "clocked_in_technicians=false/off",
+   "lines_count=false/off",
+   "line_technicians=false/off",
+   "time_estimate=false/off",
+   "total_price=true/on",
+   "vehicle_here=false/off",
+   "start_date=false/off"
   ]
  },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
  "C97030": {
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-menu .q-item').filter({ hasText: /^\\s*Approved\\s*$/ }).first()\n"
- },
- "C97031": {
-  "step4": {
+  "step4": 7,
+  "step6": {
    "Unassigned": "2/2",
    "Ana": "3/3",
    "Ben": "2/2",
    "Cal": "0/0"
   },
-  "step5": {
-   "Unassigned": "2/2",
-   "Ana": "2/2",
-   "Ben": "2/2",
-   "Cal": "1/1"
-  },
-  "step6": {
-   "Unassigned": "3/3",
-   "Ana": "1/1",
-   "Ben": "2/2",
-   "Cal": "1/1"
-  },
-  "step7": {
-   "counts": {
-    "Unassigned": "3/3",
-    "Ana": "1/1",
-    "Ben": "2/2",
-    "Cal": "1/1"
-   },
-   "un": [
-    "Bravo Co",
-    "Golf Co",
-    "Hotel Co"
-   ]
-  },
   "step8": {
-   "counts": {
-    "Unassigned": "3/3",
-    "Ana": "1/1",
-    "Ben": "2/2",
-    "Cal": "1/1"
-   },
-   "echoLead": "ZZAUTOTEST Ben Bravo"
+   "Unassigned": "2/2",
+   "Ana": "3/3",
+   "Ben": "2/2",
+   "Cal": "0/0"
   },
   "step9": {
-   "Unassigned": "3/3",
-   "Ana": "1/1",
-   "Ben": "2/2",
-   "Cal": "1/1"
+   "board": {
+    "Unassigned": "2/2",
+    "Ana": "3/3",
+    "Ben": "0/0",
+    "Cal": "0/0"
+   },
+   "tech": {
+    "Unassigned": "2/2",
+    "Ana": "3/3",
+    "Ben": "0/0",
+    "Cal": "0/0"
+   },
+   "list": 5
   },
   "step10": {
-   "Unassigned": "3/3",
-   "Ana": "1/1",
-   "Ben": "2/2",
-   "Cal": "1/1"
+   "board": {
+    "Unassigned": "not drawn",
+    "Ana": "not drawn",
+    "Ben": "not drawn",
+    "Cal": "not drawn"
+   },
+   "tech": {
+    "Unassigned": "not drawn",
+    "Ana": "not drawn",
+    "Ben": "not drawn",
+    "Cal": "not drawn"
+   }
   }
  },
  "C97032": {
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-menu .q-item').filter({ hasText: /^\\s*Estimate\\s*$/ }).first()\n"
+  "error": "page.evaluate: TypeError: Cannot set properties of null (setting 'scrollLeft')\n    at eval (eval at evaluate (:290:30), <anonymous>:1:98)\n    at eval (<anonymous>)\n    at UtilityScript.evaluate (<anonymous>:290:30)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
  },
  "C154648": {
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-menu .q-item').filter({ hasText: /^\\s*Imported/ }).first()\n"
- },
- "C154649": {
-  "saved0": "board_view",
-  "narrow": {
-   "switcher": 0,
-   "density": 0,
-   "fields": 0,
-   "board": 0
+  "importedOptionInList": "Imported",
+  "Tech View": {
+   "disabled": true,
+   "tooltip": [
+    "Not available while Imported is selected."
+   ],
+   "activeAfterClick": "List"
   },
-  "narrowAfterRefresh": {
-   "switcher": 0,
-   "density": 0,
-   "fields": 0,
-   "board": 0
+  "Board View": {
+   "disabled": true,
+   "tooltip": [
+    "Not available while Imported is selected."
+   ],
+   "activeAfterClick": "List"
   },
-  "savedNarrow": "board_view",
-  "wide": {
-   "switcher": 2,
-   "density": 1,
-   "fields": 1,
-   "board": 72,
-   "saved": "board_view"
+  "listRowsWhileImported": 0,
+  "Tech View imported option": {
+   "disabled": true,
+   "text": "Imported",
+   "ticked": false
+  },
+  "Board View imported option": {
+   "disabled": true,
+   "text": "Imported",
+   "ticked": false
   }
  },
  "C368157": {
@@ -227,7 +152,7 @@
    "Cal",
    "Dan"
   ],
-  "calIndexBefore": 77,
+  "calIndexBefore": 79,
   "pinned": {
    "calIndex": 1,
    "first3": [
@@ -236,33 +161,22 @@
    ]
   },
   "unpinned": {
-   "calIndex": 77,
+   "calIndex": 79,
    "sameAsBefore": true,
    "neighbours": [
     "Cal",
     "Dan"
    ]
   },
+  "techFirst": [
+   "Unassigned"
+  ],
+  "techAroundCal": [
+   "Unassigned"
+  ],
+  "techSameAsBoard": true,
   "techSameOrder": false,
   "techCalIndex": -1
- },
- "C368158": {
-  "status": "invoiced",
-  "before": "0",
-  "msg": [],
-  "after": "1",
-  "lead": "ZZAUTOTEST Ana Alpha"
- },
- "C368159": {
-  "before": {
-   "here": "0",
-   "lead": "ZZAUTOTEST Ana Alpha"
-  },
-  "leadAfterB2": "ZZAUTOTEST Ben Bravo",
-  "after": {
-   "here": "1",
-   "lead": "ZZAUTOTEST Ben Bravo"
-  }
  },
  "restored": true
 }

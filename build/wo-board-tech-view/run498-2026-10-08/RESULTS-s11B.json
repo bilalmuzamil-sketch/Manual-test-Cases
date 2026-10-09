@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368154": {
+   "verdict": "Passed",
+   "observed": "A brand-new user (nothing saved) opened Work Orders: List was active. Board View density read Regular. Fields to display had exactly Lead technician, Customer, Asset, Progress and Total price on (the optional ones; work order number, unit and status always show) and VIN/serial, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, On-site and Created date off \u2014 the standard Board View defaults.",
+   "not_observed": null
+  },
+  "C154648": {
+   "verdict": "Passed",
+   "observed": "List, Status > Imported ticked: Tech View and Board View were disabled, the tooltip read 'Not available while Imported is selected.', and clicking them kept List active. Cleared the selection, switched to Tech View: in Status the Imported option was disabled and could not be ticked; the same in Board View.",
+   "not_observed": "that the List keeps showing Imported work orders: it showed none, and whether this branch holds any imported work orders was not established"
+  }
+ }
+}
