@@ -1,0 +1,95 @@
+<html><body>
+<h1>Setup: Crediting a returned part leaves no zero-quantity line on the Returns page</h1>
+<p>Test case: <a href="https://shopview.testrail.io/index.php?/cases/view/450360">C450360</a>, the regression case for <a href="https://shopview.atlassian.net/browse/SV-5054">SV-5054</a>. Part 1 is for a manual QA tester. Part 2 is for a Claude session that prepares and runs the case on its own. Both create the same starting state, the one listed in the test case's Preconditions.</p>
+<p>How to read this document: a name in braces, such as {Part-A} or {Line-1}, stands for a record you create or pick. Every brace name is defined before it is used. Wherever a value is given "for example", you may use any other value: the example is not a record that already exists in the app. Write down the real value you used for each brace name, because the test steps refer to it.</p>
+<h2>What the setup creates</h2>
+<ul>
+<li>You are signed in as an Owner or Admin at {Location-A} (for example Staging Heavy Duty - 9919). Everything below is created there.</li>
+<li>Vendor {Vendor-A} (for example ZZAUTOTEST SV5054 Parts Supply).</li>
+<li>Customer {Customer-A} (for example ZZAUTOTEST SV5054 Returns), with contact {Contact-A} (for example Sam Tester) and asset {Asset-A} (for example a 2020 Freightliner Cascadia).</li>
+<li>Work order {Work-order-1} (for example S2-15440) for {Customer-A} and {Asset-A}. The app gives the work order its number.</li>
+<li>An approved line on {Work-order-1}, {Line-1} (for example "Replace - Wiper blade").</li>
+<li>Special order part {Part-A} (for example part number ZZAUTOTEST-SV5054-01, description "ZZAUTOTEST SV5054 wiper blade"), requested on {Line-1} from {Vendor-A} with quantity 1, ordered and received. It has not been returned.</li>
+</ul>
+<h1>Part 1. Setup for manual QA tester</h1>
+<ol>
+<li>Sign in as an Owner or Admin user. On a QA build, use the Admin quick-login button on the sign-in page.</li>
+<li>Look at the location shown in the top bar, next to the bell. This is {Location-A}. To use another one, click your initials at the top right, then Change Location.</li>
+<li>Go to Parts &gt; Vendors and click New Vendor. Type a new name (for example ZZAUTOTEST SV5054 Parts Supply), pick a Country and Taxes, and click Save &amp; Close. This is {Vendor-A}. If a map covers the Save button, scroll or close the map first.</li>
+<li>Go to Customers and click New Customer. Type a new name (for example ZZAUTOTEST SV5054 Returns) and click Save. This is {Customer-A}.</li>
+<li>On the customer page, open the Contacts tab, click New Contact, type a first and last name (for example Sam Tester), and click Save. This is {Contact-A}.</li>
+<li>Open the Assets tab, click New Asset, pick {Contact-A}, then a Year, Make and Model (for example 2020 Freightliner Cascadia), and click Save. This is {Asset-A}.</li>
+<li>Go to Work Orders and click Create Work Order. Pick {Customer-A} and {Asset-A}, and click Save. If an over-credit-limit confirmation appears, click Create. Write down the work order number the app shows (for example S2-15440); this is {Work-order-1}.</li>
+<li>The New Line window opens. If it does not, click New Line on the Lines tab.</li>
+<li>Open "What Are You Doing?" and pick any ready-made line (for example "Replace - Wiper blade"). Turn Line Approved on, and click Save &amp; Close. This line is {Line-1}. If the ready-made line added parts of its own, leave them alone: this test uses only {Part-A}.</li>
+<li>On {Line-1}, click its three-dot menu, then Request part.</li>
+<li>Type a new Part Number (for example ZZAUTOTEST-SV5054-01).</li>
+<li>Type a Description (for example ZZAUTOTEST SV5054 wiper blade).</li>
+<li>Set Source to Special Order, and pick {Vendor-A} as the vendor.</li>
+<li>Type Quantity 1, any Cost (for example 10.00) and any Sell Price (for example 20.00).</li>
+<li>Click Save &amp; Close. This part is {Part-A}.</li>
+<li>Order {Part-A} from {Vendor-A}.</li>
+<li>Receive {Part-A} (quantity 1).</li>
+<li>Check the setup worked: on {Line-1}, {Part-A} shows quantity 1 with a received status, and Parts &gt; Returns shows no line for {Part-A}.</li>
+</ol>
+<h1>Part 2. Setup for Claude session</h1>
+<p>The facts below come from the team's recorded playbook (build/APP-ACTIONS-PLAYBOOK.md in the Manual-test-Cases repository), from the SV-4802 and SV-5294 setup documents, and from SV-5054 and SV-5059. Points marked UNVERIFIED have not been observed yet. Check them, and record the answer in the playbook. Record the real value of every brace name in the case's verification folder.</p>
+<h2>Brace names used only in Part 2</h2>
+<ul>
+<li>The id of {Location-A}. In this part it is called {Location-A id} (for example b3c8c820-f815-4cf1-8938-10956c5ee71a for Staging Heavy Duty - 9919, time zone America/Edmonton).</li>
+<li>The id returned when {Vendor-A} is created. It is called {Vendor-A id}.</li>
+<li>Any tax id the vendor create call accepts. It is called {Tax-A id}.</li>
+<li>The company id returned when {Customer-A} is created. It is called {Customer-A id}.</li>
+<li>data.contact_id returned when {Contact-A} is created. It is called {Contact-A id}.</li>
+<li>The vehicle id returned when {Asset-A} is created. It is called {Asset-A id}.</li>
+<li>data.work_order_id returned when {Work-order-1} is created. It is called {Work-order-1 id}.</li>
+</ul>
+<h2>What the bug was, and what the test must prove</h2>
+<ul>
+<li>SV-5054 (reported 25 Nov 2025): a part that had already been returned and credited stayed on the Returns page with Requested Return Qty 0.</li>
+<li>Nebojsa Glavinic's comment of 27 Nov 2025 gives the steps used in the test case: order and receive a special order part with quantity 1, return it, change the return quantity to 2, credit 1, then change the remaining quantity on the work order back to 1. He wrote that a line with quantity 0 should not exist on the Returns page, and that trying to credit it shows "Cannot return zero or less parts."</li>
+<li>SV-5054 was closed as Obsolete on 20 Aug 2026 after the bug squad review, without a fix. The case may fail today; the case tells the tester what to do in each outcome.</li>
+<li>The result must be judged on the Returns page itself, read from the screen. An API answer alone cannot prove this test.</li>
+</ul>
+<h2>Environment</h2>
+<ul>
+<li>Staging: app https://app.staging.shopview.com, API https://api.staging.shopview.com (every /api path below is on the API host).</li>
+<li>A QA branch named in the test run: the app is https://sv followed by the branch number and .qa.shopview.com, and the API host adds "api" after the branch number with no dot (for example https://sv10043.qa.shopview.com and https://sv10043api.qa.shopview.com). Check the host with /api/nope-does-not-exist: the API answers 404.</li>
+<li>Record the build marker (app-version on the app page) before you start.</li>
+<li>Browser: Chromium at /opt/pw-browsers/chromium-1194/chrome-linux/chrome through Playwright. Do not run "playwright install".</li>
+</ul>
+<h2>Access</h2>
+<ul>
+<li>Ask the QA lead for the environment's cookies: sv_sso_session, cf_clearance and PHPSESSID. Keep them in /tmp only (for staging the helpers read /tmp/cln/cookies.json), with file mode 600. Never write a cookie into a document, a commit or a log. They last about 24 hours, or until a new deployment.</li>
+<li>Check access: GET /api/auth/me/fe-permissions answers 200. For a fresh admin session, use POST /api/quick-login with key admin, and swap only the returned PHPSESSID into the cookie header.</li>
+<li>Quick-login rotates the shared sign-in and signs out other sessions working elsewhere. Confirm with the QA lead that no other session is live before calling it.</li>
+<li>GET /api/staff/my-workplaces lists the locations and their ids. To switch to {Location-A}, POST /api/iam/change-location with workplace_id {Location-A id} and its workplace_timezone.</li>
+</ul>
+<h2>Setup calls</h2>
+<ol>
+<li>Create {Vendor-A}: POST /api/parts-catalogue/add-vendor with a new name (for example "ZZAUTOTEST SV5054 Parts Supply") and tax_id {Tax-A id} (a valid tax id is required; without it the call answers 400). Record {Vendor-A id}. In the browser the vendor form can be blocked by a map overlay.</li>
+<li>Create {Customer-A}: POST /api/customers/create with a new name. Record {Customer-A id}.</li>
+<li>Create {Contact-A}: POST /api/contacts/create with company_id {Customer-A id} and any first_name. Record {Contact-A id} at once.</li>
+<li>Create {Asset-A}: POST /api/vehicles/create with company_id {Customer-A id}, customer_id {Contact-A id} (the contact, not the company) and any unit (for example "SV5054-1"). Record {Asset-A id}.</li>
+<li>Create {Work-order-1}: POST /api/work-orders/create with company_id {Customer-A id}, vehicle_id {Asset-A id}, workplace_id {Location-A id}, start_date and is_vehicle_here true. Record {Work-order-1 id} from data.work_order_id (not "id"). This call can answer 500 in some sessions; if it does, use Part 1 step 7 in the browser.</li>
+<li>Create {Line-1} approved, and request, order and receive {Part-A}, in the browser with Part 1 steps 8 to 18. UNVERIFIED: the API status value for an approved line, the part_source_type value for Special Order, and the controls used to order and receive a special order part (on the part row, or through a purchase order). Record what you find.</li>
+</ol>
+<h2>Check the setup worked</h2>
+<ul>
+<li>In the browser at /workorders/ followed by {Work-order-1 id} and /lines, {Part-A} shows quantity 1 with a received status on {Line-1}.</li>
+<li>Parts &gt; Returns shows no line for {Part-A}. UNVERIFIED: the exact address and column names of the Returns page (the ticket names "Requested Return Qty" and "Accepted Qty"). Record them.</li>
+</ul>
+<h2>Running the test steps</h2>
+<ol>
+<li>Use a fresh browser context with the cookies loaded and a 1440 x 900 window. Take a screenshot after each test step.</li>
+<li>Test steps 1 to 3: on {Line-1}, return {Part-A} with quantity 1, then change its return quantity to 2. UNVERIFIED: the control for returning a part from a line and for changing its return quantity. Record them.</li>
+<li>Test steps 4 to 7: on Parts &gt; Returns, find {Part-A} from {Vendor-A}, enter Accepted Qty 1, and process the credit. Record the Requested Return Qty shown before you enter anything, and any message after.</li>
+<li>Test steps 8 and 9: back on {Line-1}, change the return quantity of {Part-A} back to 1.</li>
+<li>Test steps 10 and 11: open Parts &gt; Returns and read, from the page itself (the DOM), every line for {Part-A} and its Requested Return Qty.</li>
+</ol>
+<h2>Evidence and cleanup</h2>
+<ul>
+<li>Keep the build marker, the real value of each brace name, the screenshots and the text read from the page in the repository, under the case's verification folder. Judge pass or fail against the test case's Expected results only, using its three outcomes.</li>
+<li>Delete {Work-order-1} afterwards: POST /api/work-orders/delete with work_order_id {Work-order-1 id} (uncomplete it first if needed; on staging the delete can be browser-only, top three-dot menu &gt; Delete Work Order). Leave {Vendor-A} and {Customer-A}; their ZZAUTOTEST names mark them as test data.</li>
+</ul>
+</body></html>
