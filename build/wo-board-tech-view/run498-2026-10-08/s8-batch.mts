@@ -86,7 +86,10 @@ async function story(line: string, text: string, tag: string) {
   const box = p.locator('.q-dialog textarea:visible, .q-dialog input[type=text]:visible, textarea:visible').first();
   o.box = await box.count();
   if (!o.box) return o;
-  await box.fill(text); await p.waitForTimeout(500);
+  // as a person edits: click into the box, select everything, type the new text
+  o.before = await box.inputValue().catch(() => null);
+  await box.click(); await p.keyboard.press('Control+A'); await p.keyboard.type(text, { delay: 20 }); await p.waitForTimeout(500);
+  o.typed = await box.inputValue().catch(() => null);
   const save = p.locator('.q-dialog button:visible, button:visible').filter({ hasText: /^\s*(save|save & close|update|done)\s*$/i }).last();
   o.saveButton = await save.count() ? (await save.innerText()).trim() : null;
   if (o.saveButton) await save.click(); else { await box.press('Enter'); }

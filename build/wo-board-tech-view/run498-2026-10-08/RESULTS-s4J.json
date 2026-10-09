@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96963": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Invoiced Paid Locked 48257, made with real invoices: S10043-17998 Approved (Esther Howard), S10043-17999 Invoiced (Esther Howard), S10043-18000 Paid (Esther Howard), S10043-18001 Invoiced with no lead, S10043-18002 Declined (Esther Howard), S10043-18003 Complete (Esther Howard). Board View: the Declined and Complete cards moved to Ralph Edwards normally ('Lead technician updated'). The Invoiced S10043-17999 and the Paid S10043-18000 could not be moved to Ralph Edwards or to Unassigned: each stayed in Esther Howard's column, no message, lead still Esther Howard. Both could be reordered inside Esther Howard's column (each placed above S10043-17998) and kept their new place after a reload. The unassigned Invoiced S10043-18001 could not be moved into Esther Howard's column (stayed in Unassigned), and could be reordered inside Unassigned (moved below S10043-17998, kept after a reload, still no lead). Tech View: the same - Declined and Complete moved to Ralph Edwards and back to Esther Howard; the Invoiced and Paid rows could not be moved to Ralph Edwards or Unassigned; both could be reordered within Esther Howard's group and kept the order after a reload; the unassigned Invoiced row could not be moved into Esther Howard's group. Work order page of S10043-17999 (Invoiced): there is no Lead Technician box to change, the lead is shown as text.",
+   "not_observed": "server refusal not checked by hand (a direct change was in fact answered 'The lead technician can't be changed once a work order is Invoiced or Paid.'). In Tech View the unassigned Invoiced row was already in the second place, so its reorder inside Unassigned was shown in Board View only."
+  }
+ }
+}
