@@ -23,7 +23,7 @@ Catalog→Part Library rename, editable part number.
   - Every case is `AUTOMATION: HOLD - no Part Lifecycle QA build exists yet, not build-verified`.
 - **New section 54274** "Inventory Value net quantity (SV-10380)": 9 cases.
 - **QA lead decisions (8 Oct):**
-  - **C154761** is to be deleted, once the test-run check proves it is in no run.
+  - **C154761** was NOT deleted (it is in 332 open Nightly Test Runs); on 9 Oct it was moved to section 54275 "Retire OR retest" (renamed from "Not manually runnable") on the QA lead's choice.
   - **7 cases** a manual tester cannot fully run were moved to section **54275 "Retired - not manually runnable"** (not deleted).
   - **Manual suite:** 251 cases, 282 of 288 requirements. S4-N1, S4-N2, S5-N1, S9-E9, S13-R19d and S10-R25a are left to the developers' automated tests.
 - **Report, PO questions and hand-runnability decisions:** `update-2026-10-08/FULL-UPDATE-2026-10-08.md`. PO questions go out AFTER build verification.

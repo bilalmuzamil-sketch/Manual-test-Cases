@@ -132,3 +132,8 @@ Google Sheet: https://docs.google.com/spreadsheets/d/1qVNQ2RtjBUJP7hor79Pjo9Y5mK
 - Tab "QA internal - not for the PO": case ids and requirement codes for each question.
 - Dropped: "5 Available for +5 and −2" (SV-10380 already says the available-to-pick quantity keeps its existing behaviour).
 - Written before build verification at the QA lead's request; he decides when it is sent (Rule 66).
+
+## 9 Oct 2026 — C154761 moved, not deleted (QA lead: "A … change the folder name to Retire OR retest")
+- The open-run check finished: 378 runs scanned; C154761 is in 332 open Nightly Test Runs (3–7 Oct), so it was not deleted (deleting would remove it and its results from those runs).
+- C154761 moved to section 54275, renamed from "Not manually runnable" to "Retire OR retest". The folder now holds 8 cases (the 7 not-hand-runnable cases and C154761). Body and title unchanged (checked).
+- Live manual suite unchanged at 251; PRD coverage in the manual suite 282 of 288.
