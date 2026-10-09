@@ -271,7 +271,11 @@ await run('C368144', async () => {
   await p.locator('[data-test-id="option_lead_technician_unassigned"]').click(); await p.locator('[data-test-id="button_confirm_reassign_lead_technician"]').click(); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1200);
   o.step5 = await toasts(p); o.step6 = await col('unassigned', s);
   const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${s.w['Alpha Co'].id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(6000);
-  await pg.locator('[data-test-id="select_lead_technician"]').click(); await pg.waitForTimeout(1200); await pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Unassigned/ }).first().click(); await pg.waitForTimeout(3000); await pg.close();
+  { const f = pg.locator('[data-test-id="select_lead_technician"]'); const clr = f.locator('i').filter({ hasText: /^(cancel|clear|close)$/ }).first();
+    if (await clr.count()) { await clr.click(); R.C368144_clearRoute = 'clear icon'; } else { await f.click(); await pg.waitForTimeout(1200); let done = false;
+      for (let i = 0; i < 40 && !done; i++) { const o = pg.locator('.q-menu .q-item').filter({ hasText: /Unassigned|None|No lead/i }).first(); if (await o.count()) { await o.click(); done = true; R.C368144_clearRoute = 'list option'; break; } await pg.evaluate(`(() => { const m = document.querySelector('.q-menu .q-virtual-scroll, .q-menu'); if (m) m.scrollTop += 350; })()`); await pg.waitForTimeout(250); }
+      if (!done) { R.C368144_clearRoute = 'none found'; R.C368144_firstOptions = (await pg.locator('.q-menu .q-item').allInnerTexts()).slice(0, 5); await pg.screenshot({ path: path.join(EV, 'C368144-lead-list.png') }); await pg.keyboard.press('Escape'); } }
+    await pg.waitForTimeout(3000); } await pg.close();
   await go('Board View', s.q); o.step8 = await col('unassigned', s);
   await go('Tech View', s.q); o.step9 = await grp('unassigned', s);
   R.C368144 = o;
@@ -288,7 +292,7 @@ await run('C368145', async () => {
   await p.goto(`${APP}/workorders/${bw}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
   await p.locator(`[data-test-id="line_checkbox_${ls[ls.length - 1].line_id}"]`).click(); await p.waitForTimeout(800);
   { const bb = p.locator('[data-test-id="button_line_bulk_action"]'); if (await bb.count()) await bb.click(); else await p.locator('button').filter({ hasText: /^\s*More/ }).first().click(); } await p.waitForTimeout(1000); o.bulkMenu = await p.locator('.q-menu .q-item').allInnerTexts();
-  await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Split work order/i }).first().click(); await p.waitForTimeout(2500);
+  { const it = p.locator('.q-menu .q-item').filter({ hasText: /Split work order/i }).first(); await it.click({ force: true }); await p.waitForTimeout(3000); if (await p.locator('.q-menu .q-item').filter({ hasText: /Split work order/i }).count()) { await it.evaluate((e: any) => e.click()); await p.waitForTimeout(3000); } if (await p.locator('.q-menu .q-item').filter({ hasText: /Split work order/i }).count()) { await it.focus().catch(() => {}); await p.keyboard.press('Enter'); await p.waitForTimeout(3000); } }
   const dlg = p.locator('.q-dialog:visible'); o.splitDialog = (await dlg.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 300); await shot(p, 'C368145-split-dialog');
   const go2 = dlg.locator('button').filter({ hasText: /split|confirm|create|continue/i }).last(); if (await go2.count()) { await go2.click(); await p.waitForTimeout(4000); }
   o.toasts = await toasts(p); o.urlAfter = p.url().replace(APP, '');
