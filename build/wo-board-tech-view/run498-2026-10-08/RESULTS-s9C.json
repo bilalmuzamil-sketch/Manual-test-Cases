@@ -1,0 +1,30 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C97008": {
+   "verdict": "Passed",
+   "observed": "Customers 'ZZAUTOTEST F3 Move Message \u2026': Ana Alpha leads Alpha Co, Bravo Co, Charlie Co; Ben Bravo leads Delta Co. Board View header counts Ana 3, Ben 1. Alpha Co dragged into Ben's column: 'Lead technician updated' and the counts changed at once to Ana 2, Ben 2 with no page reload; the message had gone by itself after 10 seconds. Alpha Co then dragged above Delta Co inside Ben's column: order Alpha Co, Delta Co, no message, counts still Ana 2, Ben 2, and Alpha Co's lead is still Ben Bravo.",
+   "not_observed": null
+  },
+  "C97009": {
+   "verdict": "Passed",
+   "observed": "Customers 'ZZAUTOTEST F3 Invoiced Lock \u2026' made with real invoices: Ana Alpha leads Alpha Co Approved, Bravo Co Invoiced, Charlie Co Paid, Delta Co Declined, Echo Co Complete; Golf Co Invoiced with no lead. Board View: Bravo Co and Charlie Co carry a padlock whose label reads 'The lead technician can't be changed once a work order is Invoiced or Paid.' (the design's words are 'Invoiced \u00b7 can't be reassigned'). Bravo Co dragged above Alpha Co: it moved (Bravo Co, Alpha Co, \u2026). Bravo Co dragged into Ben's column and Charlie Co into Unassigned: both stayed in Ana's column, no message, Ana's count unchanged (5). Golf Co dragged from Unassigned into Ana's column: it stayed in Unassigned. Delta Co (Declined) and Echo Co (Complete) dragged into Ben's column: both moved, each with 'Lead technician updated'. Tech View: Charlie Co's row dragged into Ben's group stayed in Ana's group.",
+   "not_observed": null
+  },
+  "C97011": {
+   "verdict": "Passed",
+   "observed": "Customers 'ZZAUTOTEST F3 Cancelled Drag \u2026': Ana's column Alpha Co, Bravo Co; counts Ana 2, Ben 1. Bravo Co picked up and held over Ben's column, Escape pressed, then released: Ana's column still Alpha Co, Bravo Co, counts Ana 2, Ben 1, no message. The same holding it above Alpha Co with Escape: nothing changed. Dropped outside any column: nothing changed, no message. After a refresh Ana's column still reads Alpha Co, Bravo Co and Bravo Co's lead is Ana Alpha.",
+   "not_observed": "Whether Escape itself or the release cancelled the drag cannot be told apart; in every case the order and the lead stayed unchanged."
+  },
+  "C368148": {
+   "verdict": "Passed",
+   "observed": "Customers 'ZZAUTOTEST F3 Hidden Tech Order \u2026': Ana leads Alpha Co, Ben Bravo Co, Cal Charlie Co, Dan Delta Co; the dispatcher is Service Advisor on Alpha Co and Charlie Co only; nobody pinned. Board View order: Unassigned, Ana, Ben, Cal, Dan. With Assigned to me on, only Ana's and Cal's columns show. Cal's column dragged by its handle before Ana's: Cal, Ana. Assigned to me turned off: Unassigned, Cal, Ana, Ben, Dan - Cal right before Ana, and the hidden Ben and Dan kept their order.",
+   "not_observed": null
+  }
+ }
+}
