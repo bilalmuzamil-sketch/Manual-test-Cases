@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96978": {
+   "verdict": "Failed",
+   "observed": "Customer ZZAUTOTEST F2 Card Field Values, S10043-18032: lead Esther Howard, Service Advisor Esther Howard, three lines with estimated time 0.3 + 1.5 + 0.4 hours, Line 2 given to Ralph Edwards, asset on site, Esther Howard and Ralph Edwards both clocked in. Fields to display offers exactly 13 optional fields: Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date. With all 13 turned on, the card matched List for: customer, unit ZZF2FV, VIN, Progress 0%, Lead technician Esther Howard, Service advisor Esther Howard, 3 lines, Total price $435.27, On site, Created Today, line technicians EH and RE. Clocked in reads 'Esther Howard +1' on the card and 'Esther Howard+1' in List, and hovering shows 'Esther Howard, Ralph Edwards' in both. BUT Estimated hours never appears on the card, although it is turned on and the lines carry 2.2 estimated hours (the work order's own total estimate reads 0.00). Seen again on a second work order with three lines (S10043-18036) at every density. Report prepared and held for the QA lead's approval; nothing raised.",
+   "not_observed": "The Asset field was on but this test asset has no make or model, so it is left off in both places.",
+   "todo": "Follow SV-11106; re-test this case when it is fixed (turn Line count on as well as Estimated hours \u2014 QA lead 9 Oct).",
+   "ticket": "SV-11106 https://shopview.atlassian.net/browse/SV-11106 (Story Defect, Open, created 9 Oct 2026 under SV-10048)"
+  }
+ }
+}
