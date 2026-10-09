@@ -1,0 +1,10 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-09"},
+ "results": {
+  "C368146": {
+   "verdict": "Passed",
+   "observed": "The dispatcher's own order was set first, as the preconditions say: Dan pinned, then Cal, then Ben, then the location's other technicians (97 columns in all: Unassigned, Dan, Cal, Ben, …). A new staff member 'ZZAUTOTEST Aaron Able' (Active, Time Clock on, role Technician, this location) was added: Board View then had 98 columns and Aaron was the LAST one (after every existing unpinned technician), and the order before him was unchanged. A staff member 'ZZAUTOTEST Ezra Echo' with Time Clock off was then switched to Time Clock on: Board View had 99 columns, Ezra last, directly after Aaron. Tech View, read with every group collapsed so the whole list could be read, shows the same 99 groups in exactly the same order (Unassigned, Dan, Cal, Ben, … Aaron, Ezra). Picture: C368146-v4-tech.",
+   "not_observed": null
+  }
+ }
+}

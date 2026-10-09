@@ -50,3 +50,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | sort-fix2 | C368196 — VIN sent with the asset change; saved list filters cleared at sign-in |
 | s9-batchA5 | C368144 — Lead Technician list scrolled to the TOP first (it opens at the current lead; Unassigned is first) |
 | medium4 + orgb3 | re-run of the reports/cards batch and organisation B after the sign-in filter-clear crashed them at 08:44 |
+| s9-fix5 | C97003 (scroll to the test columns first — Unassigned stays pinned on the left), C97012 (page wait raised to 90 s) |
