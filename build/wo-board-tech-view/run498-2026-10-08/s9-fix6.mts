@@ -197,7 +197,7 @@ await run('C97003', async () => {
 await run('C97012', async () => {
   const s = await mkSet('ZZAUTOTEST F3 Stale Drop', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: ANA }]); const o: any = { seed: s.log }; R.C97012 = o;
   const roleRead = async (id: string) => (await a.get(`/api/roles/${id}`)).body?.data;
-  const orig = await roleRead(VIEW_ROLE); const adminRole = await roleRead(ADMIN_ROLE); const ce = (adminRole?.fe_permissions ?? []).filter((x: any) => /^workOrders(CreateAndEdit|View)$/.test(x.code));
+  const orig0 = await roleRead(VIEW_ROLE); const orig = { ...orig0, fe_permissions: (orig0?.fe_permissions ?? []).filter((x: any) => x.code !== 'workOrdersCreateAndEdit' && x.name !== 'workOrdersCreateAndEdit') };   /* FIX 6: never treat a left-over Create & Edit as the role's own */ const adminRole = await roleRead(ADMIN_ROLE); const ce = (adminRole?.fe_permissions ?? []).filter((x: any) => /^workOrders(CreateAndEdit|View)$/.test(x.code));
   const put = async (ids: string[]) => say(await a.put(`/api/roles/${VIEW_ROLE}`, { name: orig.name, description: orig.description, view_mode: orig.view_mode, template_id: orig.template_id, fe_permissions: ids, cross_toggles: orig.cross_toggles }));
   o.addCE = await put([...new Set([...(orig.fe_permissions ?? []).map((x: any) => x.id), ...ce.map((x: any) => x.id)])]);
   const userD = await mkUser('ZZAUTOTEST', `RoleD4 ${stamp}`, VIEW_ROLE, 'roled4'); const v = await asUser(userD);
@@ -215,7 +215,7 @@ await run('C97012', async () => {
     await RUN.toRunner(); o.removeCE = await put((orig.fe_permissions ?? []).map((x: any) => x.id)); await a.post('/api/switch-user', { user_id: userD.id });
     o.step8drag = await dragOn(pg, card(s, 'Bravo Co'), `[data-test-id="board_column_${BEN.staff_id}"]`, 120); await shiftPrompt(pg, 'Keep shifts').catch(() => {});
     o.step8 = { msg: await toastsOn(pg), url: pg.url().replace(APP, ''), ana: await colCards(pg, ANA.staff_id, s), ben: await colCards(pg, BEN.staff_id, s) }; await shot(pg, 'C97012-v4-step8');
-  } finally { await v.close(); }
+  } finally { await v.close(); o.restoreInFinally = await put((orig.fe_permissions ?? []).map((x: any) => x.id)).catch((e: any) => String(e).slice(0, 80)); }   /* FIX 6: the role is put back even when a step fails */
   await RUN.toRunner().catch(() => {});
   o.step6 = { status: (await a.get(`/api/work-orders/view/${s.w['Alpha Co'].id}`)).body?.data?.work_order?.status, lead: await leadOf(s, 'Alpha Co') }; o.step9 = await leadOf(s, 'Bravo Co');
   o.restore = await put((orig.fe_permissions ?? []).map((x: any) => x.id)); R.C97012 = o; });

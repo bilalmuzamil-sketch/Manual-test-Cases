@@ -76,3 +76,6 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | s9-fix6 | C97003, C97012 — readings kept as taken, scroll back before step 8, one retry for a slow page |
 | c368149-two (WOB_LIVE=1) | C368149 — two REAL sessions (second quick-login in its own browser); the switch-user version was signed out by live updates and hung |
 | imp-fix2 | C368238, C368239 — the list narrowed to the case number with its own Search; C368239 run twice to confirm a red message on exit |
+| role-restore | not a check — takes Work orders > Create & Edit back off 'ZZAUTOTEST WO View Only' (left on by a C97012 run that stopped part-way) |
+| kbd-fix4 (WOB_LIVE=1) | C368151, C368152, C97020 — group arrow button by Tab plus Space/Left/Right on the row; reassign list walked with arrows to the right Ben Bravo (by staff record); view-only user re-checked on a real view-only role |
+| rename-probe | not a check — does the List's Lead Technician column keep a stale name after a staff rename? |
