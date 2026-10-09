@@ -59,3 +59,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | parts-filter2 | C368218, C368219, C368223 — the search-only reload repeated twice with the address recorded before the reload; pages given up to 30 s to load |
 | high1-fix3 | C368172–C368174, C368177–C368179, C368188–C368192 — confirm "Remove technician?", untick in the same list, forced clock clicks, whole-lane shift read, the left card's own Assets tab |
 | deleted-search | C368191 — read-only hunt for an existing line whose labor technician no longer exists ("Deleted user"); the app refuses to delete staff with labor |
+| sort-fix3 | C368196 — On Site seeded on one work order, Clocked In read from its avatars (only those two headers were still unjudged) |
