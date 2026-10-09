@@ -5902,3 +5902,11 @@ three wrong characterisations before it was found — see learning **L0233**.
 - **Queue hygiene trap:** `pkill -f "<text>"` also matches the shell running that very command (its command line
   contains the text), so it kills itself (exit 144) and can take a waiting chain with it. Find the PID first with
   `ps -eo pid,args | grep "[m]asterNN.sh"` and `kill <pid>`.
+- **Work order page lists are VIRTUAL (sv10043, 2026-10-09, `evidence/probe-lines.json`):** the status card's Lead
+  Technician select and the line window's *Add technician* select render ~30 options at a time; typing does not filter
+  (the input is read-only). Scroll `.q-menu .q-virtual-scroll` until the name appears. Line window: remove a technician
+  with `button_line_roster_remove_<staffId>`; a typed description is kept by pressing Enter once the list reads
+  *No results*; `input_time_estimate` is a number box. The line menu opens from `line_number_<id>` (Request part, Add
+  line note, Save as canned line, Story history, Audit log, Add inspection, **Edit labor**, Authorization required,
+  Decline, Delete line). Timesheets is a TAB of the work order (three-dots > Timesheets), not a dialog; an Active clock
+  row cannot be edited. Schedule rows load as the calendar scrolls.
