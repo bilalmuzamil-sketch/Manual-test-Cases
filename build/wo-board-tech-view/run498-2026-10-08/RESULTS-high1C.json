@@ -1,0 +1,20 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-09"},
+ "results": {
+  "C368166": {
+   "verdict": "Passed",
+   "observed": "Work order led by Esther Howard opened; on the status card Lead Technician was changed to Ralph Edwards. The field read 'Ralph Edwards' straight away and no error message appeared. After a reload it still read 'Ralph Edwards' (the saved work order also names Ralph Edwards as lead). Picture: C368166-after.",
+   "not_observed": null
+  },
+  "C368167": {
+   "verdict": "Passed",
+   "observed": "Work order led by Esther Howard open on its page; it was then invoiced from elsewhere. On the open page, picking Ralph Edwards in Lead Technician showed the message 'The lead technician can't be changed once a work order is Invoiced or Paid. Please try to resolve this.' and the page then showed the work order as Invoiced with Lead technician 'Esther Howard' (no longer offered as a choice). After a reload Lead Technician still read 'Esther Howard'; the change was not saved. Picture: C368167-message.",
+   "not_observed": null
+  },
+  "C368168": {
+   "verdict": "Passed",
+   "observed": "Work order led by Esther Howard with two lines: Line 1 following the lead, Line 2 given to Dana Ortiz in its Edit Line window (Esther removed, Dana added, Save & Close). On the status card the lead was changed to Ralph Edwards. No clear-shifts question appeared on the work order page. After a reload the Labor rows read: Line 1 'Ralph Edwards' (it followed the lead), Line 2 'Dana Ortiz' (kept). 1 of 2 lines moved. Picture: C368168-lines.",
+   "not_observed": null
+  }
+ }
+}

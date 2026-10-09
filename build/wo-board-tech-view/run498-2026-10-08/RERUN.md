@@ -46,3 +46,5 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | s11-fix2 | C97030 (Estimates seeded WITHOUT a line — an authorized line approves an Estimate), C97032 (same seed fix; column scroll guarded), C368157 (Tech View read with groups collapsed) |
 | editwo-batch | C368169, C368170, C368171 — the Edit Work Order checks run on the work order page's left-hand card (QA lead 9 Oct) |
 | parts-filter | C368218, C368219, C368223 — the page's own Search used as the filter (no Vendor/State filter exists, QA lead 9 Oct) |
+| high1-fix2 | C368172–C368174, C368177–C368179, C368188–C368192, C368202 — see the FIX 2 header in the script for the seven causes |
+| sort-fix2 | C368196 — VIN sent with the asset change; saved list filters cleared at sign-in |
