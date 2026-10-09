@@ -16,8 +16,8 @@ https://shopview.testrail.io/index.php?/cases/view/88633
 3. The whole case is run on one day, and not on the last evening of the week, so every record you create stays inside This Week.
 4. A test customer with one contact and one asset (for example "ZZAUTOTEST Dash Customer 1", contact "Dana Test", unit "ZZ-101").
 5. An in-stock inventory part with a Sell price (for example $200.00).
-6. Invoice 1 for that customer, not paid: Service Advisor "Alex Advisor", one approved labor line by technician "Tom Tech" (for example Labor Rate $125.00 per hour, Estimated Time 10.00, Tech Time 10.00) and a flat Discount (for example $100.00). Not sent and not paid. You have written down its Subtotal (before any discount and before tax, for example $1,250.00 = 10.00 hours x $125.00).
-7. Invoice 2 for the same customer, not paid: Service Advisor "Alex Advisor", one approved labor line by "Tom Tech" (for example Labor Rate $140.00 per hour, Estimated Time 2.00, Tech Time 2.00) with the part from 5 added (quantity 1, In stock). Not sent and not paid. You have written down its Subtotal (for example $480.00 = $280.00 labor + the $200.00 part).
+6. Invoice 1 for that customer: Service Advisor "Alex Advisor", one approved labor line by technician "Tom Tech" (for example Labor Rate $125.00 per hour, Estimated Time 10.00, Tech Time 10.00) and a flat Discount (for example $100.00). Not sent and not paid. You have written down its Subtotal (before any discount and before tax, for example $1,250.00 = 10.00 hours x $125.00).
+7. Invoice 2 for the same customer: Service Advisor "Alex Advisor", one approved labor line by "Tom Tech" (for example Labor Rate $140.00 per hour, Estimated Time 2.00, Tech Time 2.00) with the part from 5 added (quantity 1, In stock). Not sent and not paid. You have written down its Subtotal (for example $480.00 = $280.00 labor + the $200.00 part).
 8. A credit on invoice 2 that returns the part, Outcome Store Credit. You have written down its amount before tax (for example $200.00).
 
 **Setup**
