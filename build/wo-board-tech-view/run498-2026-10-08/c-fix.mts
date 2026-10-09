@@ -8,7 +8,7 @@ import path from 'node:path';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, vehicle } from './data.mts';
-import { EV, t, shot, display, tab, search } from './wob.mts';
+import { EV, t, shot, display, tab, search, toColumn } from './wob.mts';
 import { staffRows } from './staff.mts';
 const { browser, page: p0 } = await open('/workorders?tab=all');
 const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p; p.setDefaultTimeout(30_000); const a = api(p);
@@ -30,6 +30,8 @@ try {
     const on = await s.evaluate((e) => !!e.querySelector('.q-toggle__inner--truthy, .q-checkbox__inner--truthy'));
     const want = ['vehicle', 'lines_count', 'total_price', 'progress'].includes(k); if (on !== want) { await s.click(); await p.waitForTimeout(700); } R.fields[k] = want; }
   await p.keyboard.press('Escape'); await p.waitForTimeout(2000);
+  // FIX: both cards sit in Esther's column, which can be off-screen — bring it into view (positive control included)
+  await toColumn(p, ES).catch(() => {}); await p.waitForTimeout(1500);
   const cardOf = (id: string) => p.evaluate(`(() => { const c = document.querySelector('[data-test-id="board_card_${id}"]'); return c ? c.innerText.replace(/\\s+/g, ' ') : null; })()`);
   const htmlOf = (id: string) => p.evaluate(`(() => { const c = document.querySelector('[data-test-id="board_card_${id}"]'); return c ? c.innerHTML.replace(/\\s+/g, ' ').slice(0, 2500) : null; })()`);
   for (let k = 0; k < 2; k++) { R[`try${k}`] = { ctrl: await cardOf(R.ctrl), bare: R.bareWo ? await cardOf(R.bareWo) : null }; await p.waitForTimeout(2000); }
@@ -38,5 +40,5 @@ try {
   await shot(p, 'C96984-c-cards');
 } catch (e: any) { R.error = String(e?.message || e).slice(0, 300); await shot(p, 'C96984-c-error'); }
 console.log(t(), 'C96984c', JSON.stringify(R).slice(0, 5000));
-fs.writeFileSync(path.join(EV, 'c-fix.json'), JSON.stringify(R, null, 1));
+fs.writeFileSync(path.join(EV, 'c-fix2.json'), JSON.stringify(R, null, 1));
 await RUN.end(); await done(browser);
