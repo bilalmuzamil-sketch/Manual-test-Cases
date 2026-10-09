@@ -25,7 +25,10 @@ def flatten(h):
         elif part in ('</ol>', '</ul>'):
             flush(); stack.pop()
         else:
-            if stack: buf.append(part)
+            m = re.search(r'<h[1-6]>', part) if stack else None
+            if m:  # a heading inside an unclosed list: close the list first
+                buf.append(part[:m.start()]); flush(); stack.clear(); out.append(part[m.start():])
+            elif stack: buf.append(part)
             else: out.append(part)
     return ''.join(out)
 if __name__ == '__main__':
