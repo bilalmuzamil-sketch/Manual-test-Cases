@@ -157,3 +157,11 @@ Evidence: `evidence/prod-2026-10-09/` (pictures at 2x, `prod-check.json`), scrip
 Owning stories read live 9 Oct 2026: SV-10044, SV-10045, SV-10046, SV-10047, SV-10048, SV-10049, SV-10050, SV-10051, SV-10052,
 SV-10054 are all **Ready for QA** (Rule 112 allows filing); SV-10053 is OBSOLETE. Existing Story Defects under them: SV-11075
 (= D4) and [SV-11074](https://shopview.atlassian.net/browse/SV-11074) (*Board View – drag made while offline isn't reverted and is saved on reconnect*, Open, SV-10052) — no overlap with D1–D10 other than D4.
+
+
+## Re-verification on the build of 9 October 2026 (Rule 62(c) / skill 06 §6e)
+
+| Report | Re-run | Still happens? |
+|---|---|---|
+| D1 (C96918) | s1-batch1, 05:13 | **Yes** — a no-match search still reads *No work orders match the search "ZZNOMATCH123".* with no Clear filters action (List, Tech View, Board View). |
+| D5 (C368131) | s3-batchC, 05:26 | **Yes** — Ayesha Khan's Location changed to Staging Lethbridge - 4310 only: at Heavy Duty she is still eligible and her pinned column reads *Drag a work order here to assign it*; control in the same run: Jenny Wilson (deactivated) reads *No work orders*. Restored afterwards. |
