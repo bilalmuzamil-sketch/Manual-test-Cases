@@ -71,7 +71,7 @@ const reportsTick: [string, string, string][] = [['C368232', 'Work In Progress',
 for (const [id, rep, label] of reportsTick) await run(id, async () => { await nav('Reports', rep); R[id] = { page: p.url().replace(APP, '') }; Object.assign(R[id], await tickSelectClear(id, label)); });
 
 await run('C368245', async () => { await nav('Customers'); const o: any = { first: await table(), toasts: await toasts() };
-  const th = p.locator('thead th').filter({ hasText: /Customer Name|Name/ }).first(); await th.click(); await p.waitForTimeout(2500);
+  const th0 = p.locator('thead th').filter({ hasText: /Customer Name|Name/ }).first(); const th = (await th0.count()) ? th0 : p.getByText('Customer Name', { exact: true }).first(); o.headerKind = (await th0.count()) ? 'th' : 'text'; await th.click(); await p.waitForTimeout(2500);
   const names = async () => p.evaluate(`[...document.querySelectorAll('tbody tr')].map(r => r.querySelector('td')?.innerText.trim()).filter(Boolean)`) as Promise<string[]>;
   const n1 = await names(); o.sorted = n1.slice(0, 6); o.inOrder = n1.every((x, i) => i === 0 || n1[i - 1].localeCompare(x, undefined, { sensitivity: 'base' }) <= 0) || n1.every((x, i) => i === 0 || n1[i - 1].localeCompare(x, undefined, { sensitivity: 'base' }) >= 0);
   for (let i = 0; i < 4; i++) { await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle') || document.scrollingElement; s.scrollTop = 1e9; window.scrollTo(0, 1e9); })()`); await p.waitForTimeout(1800); }
@@ -83,7 +83,7 @@ await run('C368246', async () => { await p.goto(APP + '/dashboard', { waitUntil:
   const sorts: any = {}; const cards = p.locator('.q-card').filter({ has: p.locator('table') });
   for (let i = 0; i < Math.min(await cards.count(), 6); i++) { const c = cards.nth(i); const title = ((await c.innerText()).split('\n')[0] || '').trim().slice(0, 40); const th = c.locator('thead th').filter({ has: p.locator('i, .q-icon') }).first();
     if (!(await th.count())) { sorts[title] = 'no sortable header'; continue; } const col = await th.evaluate((e) => Array.from(e.parentElement!.children).indexOf(e));
-    const read = () => c.evaluate((el, k) => [...el.querySelectorAll('tbody tr')].map((r) => (r.children[k as number] as HTMLElement)?.innerText.trim()), col);
+    const read = () => c.evaluate((el, k) => [...el.querySelectorAll('tbody tr')].map((r) => ((r.children[k as number] as HTMLElement)?.innerText.trim() || (r as HTMLElement).innerText.replace(/\s+/g, ' ').trim())), col);
     const b = await read(); await th.click(); await p.waitForTimeout(1500); const x = await read(); await th.click(); await p.waitForTimeout(1500); const y = await read();
     sorts[title] = { header: (await th.innerText()).trim(), before: b.slice(0, 4), first: x.slice(0, 4), second: y.slice(0, 4), changed: JSON.stringify(x) !== JSON.stringify(y) }; }
   o.sorts = sorts; await shot(p, 'C368246'); R.C368246 = o; });
