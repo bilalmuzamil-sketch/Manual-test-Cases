@@ -1,0 +1,61 @@
+{
+ "enrol": {
+  "labels": [
+   "First Name",
+   "Last Name",
+   "Email",
+   "Salary Type",
+   "Salary",
+   "Job Title",
+   "Role",
+   "Location",
+   "Billable"
+  ],
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-dialog:visible .q-field').filter({ hasText: /Department/ }).first()\n",
+  "sent": []
+ },
+ "loc2": {
+  "saved": {
+   "tab": "estimate",
+   "sortBy": "startDate",
+   "columns": {
+    "vin": true,
+    "vehicle": true,
+    "daysOpen": false,
+    "progress": false,
+    "startDate": true,
+    "linesCount": true,
+    "technician": true,
+    "totalPrice": true,
+    "invoicedDate": false,
+    "serviceAdvisor": false,
+    "partRequestsCount": false,
+    "clockedInTechnicians": true,
+    "partReturnRequestsCount": false,
+    "unreceivedPartRequestsCount": false
+   },
+   "density": "comfortable",
+   "display": "list",
+   "filters": [],
+   "descending": true,
+   "boardFields": {
+    "vin": true,
+    "companyName": false
+   },
+   "techViewColumns": {
+    "linesCount": false,
+    "assignedTechs": true,
+    "serviceAdvisor": false
+   },
+   "pinnedTechnicianIds": [
+    "1161043d-a0e8-42b0-b2c7-63d3e74940ba",
+    "6b218dde-87fd-4d9c-b22d-5fecba64c0c8"
+   ]
+  },
+  "menuButton": 0,
+  "at": "Staging Heavy Duty - 9919",
+  "sent": [
+   "POST /api/iam/change-location {\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"workplace_timezone\":\"America/Edmonton\"}"
+  ]
+ }
+}

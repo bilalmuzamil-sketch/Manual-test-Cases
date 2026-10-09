@@ -34,3 +34,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | prod-check.mjs | not a case: Production behaviour behind held reports D2, D8, D10. Run with `PROD_ENVF=/tmp/shopview/prod-login-second.env` (the default file is the QA lead's own account — a second login signs him out) |
 | recapture (master13) | every held report re-run with `WOB_SCALE=2 WOB_EV=evidence/recapture-2026-10-09` — re-verifies on the day's build and gives 2x pictures for the tickets |
 | high1-batch | C368165–C368168, C368172–C368174, C368176, C368177, C368178, C368179, C368190, C368192, C368180–C368189, C368202, C368213 (high-risk first half) |
+| orgb-batch | C368175, C154650 — organisation B registered through the branch /register page (playbook §X); its only staff member is "ZZAUTOTEST OrgB Tech" |
