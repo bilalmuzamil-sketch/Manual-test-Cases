@@ -30,3 +30,6 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | probe-kbd | not a case: every focus stop with Tab on Board View and Tech View, what the arrow keys do, which cards/rows carry a tabindex (feeds C97021, C368150–C368152) |
 | ps-photo-batch | C368215–C368217 (part sales), C368241–C368244 (new photo after a reload; red/blue squares in `evidence/zz-photo-*.png`, colour read off element pictures afterwards) |
 | rest-batch | C368169–C368171 (Edit Work Order), C368197 (paging), C368218/C368219/C368223 (filters kept), C368156 (pins per location), C368238/C368239 (impersonation), C368240 (ended session — runs LAST, signs the session out) |
+| analytics-batch | C97023, C97024, C97025, C97027, C97029, C97035, C368153, C368155, measurable steps of C97026. Events read from the page's own analytics requests (`en`, `ep.*`, `uid`); `WOB_GA=1` lets view-as pages keep analytics |
+| prod-check.mjs | not a case: Production behaviour behind held reports D2, D8, D10. Run with `PROD_ENVF=/tmp/shopview/prod-login-second.env` (the default file is the QA lead's own account — a second login signs him out) |
+| recapture (master13) | every held report re-run with `WOB_SCALE=2 WOB_EV=evidence/recapture-2026-10-09` — re-verifies on the day's build and gives 2x pictures for the tickets |

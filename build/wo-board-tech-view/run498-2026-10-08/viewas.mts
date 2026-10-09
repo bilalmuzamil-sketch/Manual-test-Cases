@@ -17,8 +17,9 @@ export async function viewAs(browser: Browser, main: Page, a: Api, userId: strin
   await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' });
   const fe = (await a.get('/api/auth/me/fe-permissions')).body?.data ?? null;
   const user = s.body?.data ?? null;
-  const ctx = await browser.newContext({ storageState: await main.context().storageState(), viewport: { width: 1600, height: 1000 }, ignoreHTTPSErrors: true });
-  await ctx.route((u) => /maps\.googleapis|intercom|sentry\.io|mercure\.qa|googletagmanager|google-analytics|hotjar|fullstory/i.test(u.toString()), (r) => r.abort()).catch(() => {});
+  const ctx = await browser.newContext({ storageState: await main.context().storageState(), viewport: { width: 1600, height: 1000 }, deviceScaleFactor: Number(process.env.WOB_SCALE || 1), ignoreHTTPSErrors: true });
+  const block = process.env.WOB_GA ? /maps\.googleapis|intercom|sentry\.io|mercure\.qa|hotjar|fullstory/i : /maps\.googleapis|intercom|sentry\.io|mercure\.qa|googletagmanager|google-analytics|hotjar|fullstory/i;
+  await ctx.route((u) => block.test(u.toString()), (r) => r.abort()).catch(() => {});
   await ctx.addInitScript(([u, f]: [any, any]) => {
     try { localStorage.setItem('user', JSON.stringify({ data: u })); if (f) localStorage.setItem('fe_permissions_wrapper', JSON.stringify(f)); if (u?.token) localStorage.setItem('token', u.token); } catch { /* */ }
   }, [user, fe] as any);

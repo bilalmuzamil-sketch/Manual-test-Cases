@@ -1,0 +1,35 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C97028": {
+   "verdict": "Passed",
+   "observed": "Analytics (Google Tag Manager / Analytics) was blocked for the whole visit and the request to it was refused. Board View for 'ZZAUTOTEST F3 Blocked Analytics \u2026' loaded normally. VIN/Serial turned on and Compact picked: both applied at once. Alpha Co dragged from Ana Alpha's column to Ben Bravo's: the card moved and 'Lead technician updated' appeared. After a refresh: Board View, VIN/Serial shown, Compact, and Alpha Co in Ben Bravo's column. Blocked analytics made no difference.",
+   "not_observed": null
+  },
+  "C97031": {
+   "verdict": "Passed",
+   "observed": "Board View, 'ZZAUTOTEST F3 Count After Move \u2026': counts started Unassigned 2, Ana 3, Ben 2, Cal 0 (7). Alpha Co dragged Ana to Cal: Ana 2, Cal 1, others unchanged, at once without a reload. Bravo Co reassigned to Unassigned from More actions: Ana 1, Unassigned 3. Golf Co dragged above Hotel Co inside Unassigned (order became Bravo Co, Golf Co, Hotel Co): no count changed. Echo Co (Invoiced) dragged from Ben to Cal: refused, still led by Ben, no count changed. Tech View: Unassigned 3, Ana 1, Ben 2, Cal 1 (7), the same after a refresh.",
+   "not_observed": null
+  },
+  "C154649": {
+   "verdict": "Passed",
+   "observed": "Board View chosen at full width. At about 900 px wide: no display switcher, no density control, no Fields to display picker and no board; the phone List shows. Refreshed while narrow: still the phone List. Widened back to full width: the page opened in Board View again, with the switcher, density and field picker back; the saved choice stayed Board View throughout.",
+   "not_observed": null
+  },
+  "C368158": {
+   "verdict": "Passed",
+   "observed": "'ZZAUTOTEST F3 Invoiced On Site \u2026 Inv Co' taken to Invoiced. In List its On Site toggle was clicked: accepted with no error message; after a refresh On Site read on (was off). Lead Technician still ZZAUTOTEST Ana Alpha.",
+   "not_observed": null
+  },
+  "C368159": {
+   "verdict": "Passed",
+   "observed": "Browser 1 had 'ZZAUTOTEST F3 Stale On Site \u2026 Site Co' open in List (On Site off, lead Ana Alpha). In browser 2 the lead was changed to Ben Bravo. Browser 1, without refreshing, clicked Site Co's On Site toggle. After a refresh: On Site on, and Lead Technician ZZAUTOTEST Ben Bravo; the older page did not put Ana back.",
+   "not_observed": null
+  }
+ }
+}

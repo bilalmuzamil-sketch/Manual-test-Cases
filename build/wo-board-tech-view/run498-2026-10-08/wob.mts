@@ -10,7 +10,7 @@
 import path from 'node:path';
 import type { Page } from 'playwright';
 
-export const EV = path.join(path.dirname(new URL(import.meta.url).pathname), 'evidence');
+export const EV = process.env.WOB_EV || path.join(path.dirname(new URL(import.meta.url).pathname), 'evidence');
 export const t = () => new Date().toISOString().slice(11, 19);
 export const shot = (p: Page, n: string) => p.screenshot({ path: path.join(EV, `${n}.png`) }).catch(() => {});
 export async function display(p: Page, l: string) { await p.locator(`[aria-label="${l}"]`).first().click(); await p.waitForTimeout(3000); }

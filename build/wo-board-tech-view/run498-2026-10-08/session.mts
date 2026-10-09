@@ -31,7 +31,7 @@ export async function open(route = '/workorders'): Promise<{ browser: Browser; p
   if (fs.existsSync(STATE)) {
     console.log(t(), 'trying the saved session');
     const browser = await chromium.launch();
-    const ctx = await browser.newContext({ storageState: STATE, viewport: { width: 1600, height: 1000 } });
+    const ctx = await browser.newContext({ storageState: STATE, viewport: { width: 1600, height: 1000 }, deviceScaleFactor: Number(process.env.WOB_SCALE || 1) });
     const page = await ctx.newPage();
     await quiet(page);
     await page.goto(APP + route, { waitUntil: 'domcontentloaded', timeout: 45_000 }).catch(() => {});

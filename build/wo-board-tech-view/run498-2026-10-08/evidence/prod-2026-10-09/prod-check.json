@@ -1,0 +1,150 @@
+{
+ "version": "v26.40.13-013e543",
+ "SHAPE": {
+  "top": [
+   "pagination",
+   "work_orders"
+  ],
+  "row": "linesCount=1 | serviceActionsCount=0 | partRequestsCount=0 | statusRequestedCount=0 | statusAuthToOrderCount=0 | statusInStock=0 | partReturnRequestsCount=0 | progress=0 | unreceivedPartRequestsCount=0 | orderId=null | clockedInTechnicians=[] | id=13667d39-8898-4371-9 | startDate=2026-09-22 09:10:41 | number=S1-915 | status=approved | vehicleHere=true | vehicleModelName=null | vehicleMakeName=Freightliner | engineHours=null | mileage=5645454 | timeEstimate=120 | totalPrice=34768 | vin=4444343434 | unit=null | licencePlate=205012 | companyName=Ahsan | invoicedDate=null | serviceAdvisorFirstName=Service Advisor | serviceAdvisorLastName=No Reports (Admin) | techAssignedFirstName=null | clockedInTechniciansCount=0 | techAssignedLastName=null | priority=null",
+  "lines": {
+   "status": 200,
+   "top": [
+    "collection"
+   ],
+   "first": "{\"line_id\":\"<id>\",\"description\":\"Sadsadad\",\"time_estimate\":120,\"tech_time\":120,\"is_diagnosis\":0,\"is_warranty\":0,\"is_authorized_to_repair\":1,\"is_parts_required_are_authorized\":0,\"line_name\":\"Sadasdsad\",\"work_order_number\":\"S-915\",\"work_order_display_number\":\"S1-915\",\"work_order_status\":\"approved\",\"tech_story\":null,\"line_tech_assigned_id\":\"<id>\",\"labour_type_id\":\"<id>\",\"labour_type\":\"General Labor\",\"labour_rate\":135,\"labour_type_cost\":13500,\"tasks\":[{\"id\":\"<id>\",\"line_id\":\"<id>\",\"tech_assigned_id\":\"<id>\",\"time_estimate\":0,\"tech_time\":0,\"first_name\":\"Ahtasham\",\"last_name\":\"Amjad\",\"start_date\":\"\",\"end_date\":\"\",\"note\":\"Tech story missing.\",\"tech_exists\":true,\"logged_time\":0,\"logged_time_cost\":0,\"logged_time_decimal\":\"0.00\",\"additional_info\":\"\",\"is_authorized\":true,\"task_records\":[],\"labour_rate\":135,\"can_edit\":true}],\"task_records\":[],\"tech_times\":[],\"status_display\":\"Authorized\",\"status\":\"authorized\",\"part_requests\":[],\"parts\":[],\"part_return_requests\":[],\"deletable\":true,\"editable\":true,\"deletable_reason\":\"\",\"total_labour_time\":0,\"total_labour_time_decimal\":\"0.00\",\"cost_by_minute\":225,\"total_parts_sell_price\":\"0.00\",\"total_parts_sell_price_float\":0,\"total_labour_cost\":270,\"is_in_progress\":false,\"line_order\":1,\"fixed_price\":null,\"fixed_line_total\":null,\"created_from_canned_line\":false,\"assigned_techs\":[\"<id>\"],\"logged_techs\":[],\"labor_margin\":100,\"adjustments\":[],\"total_cost\":270,\"progress\":0,\"can_decline\":false}"
+  }
+ },
+ "D10": {
+  "listStatus": 200,
+  "listEstimateKeys": [
+   "engineHours",
+   "timeEstimate"
+  ],
+  "samples": [
+   {
+    "number": "S1-915",
+    "listEst": {
+     "engineHours": null,
+     "timeEstimate": 120
+    },
+    "viewEst": {},
+    "lines": [
+     {
+      "time_estimate": 120
+     }
+    ]
+   },
+   {
+    "number": "S1-816",
+    "listEst": {
+     "engineHours": null,
+     "timeEstimate": 60
+    },
+    "viewEst": {},
+    "lines": [
+     {
+      "time_estimate": 60
+     }
+    ]
+   },
+   {
+    "number": "S1-793",
+    "listEst": {
+     "engineHours": null,
+     "timeEstimate": 60
+    },
+    "viewEst": {},
+    "lines": [
+     {
+      "time_estimate": 60
+     }
+    ]
+   }
+  ],
+  "headers": [
+   "On Sitearrow_drop_up",
+   "Statusarrow_drop_up",
+   "Waiting On Partsarrow_drop_up",
+   "Numberarrow_drop_up",
+   "Customerarrow_drop_up",
+   "Assetarrow_drop_up",
+   "Unitarrow_drop_up",
+   "VIN/Serial #arrow_drop_up",
+   "Progress",
+   "Service Advisorarrow_drop_up",
+   "Lead Technicianarrow_drop_up",
+   "Clocked Inarrow_drop_up",
+   "Linesarrow_drop_up",
+   "Total Pricearrow_drop_up",
+   "Created Onarrow_drop_up",
+   "Invoiced Datearrow_drop_up",
+   "Days Openarrow_drop_up",
+   "Partsarrow_drop_up",
+   "Returnsarrow_drop_up"
+  ],
+  "columnChoices": [
+   "Waiting On Parts",
+   "Asset",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total price",
+   "Created on",
+   "Invoiced Date",
+   "Days open",
+   "Parts",
+   "Returns"
+  ]
+ },
+ "D8": {
+  "wo": "S1-915",
+  "lineName": "Sadasdsad",
+  "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_re",
+  "before": {
+   "status": 200,
+   "n": 5,
+   "top": [
+    "Part returned to inventory ->",
+    "Part picked ->",
+    "Part category changed ->"
+   ]
+  },
+  "dialog": {
+   "open": true,
+   "labels": [
+    "What Are You Doing?",
+    "What Are You Doing?",
+    "Why Are You Doing It?",
+    "Why Are You Doing It?",
+    "Status\nAuthorized\narrow_drop_down",
+    "Status",
+    "Add Technician\narrow_drop_down",
+    "Add Technician",
+    "Labor Rate\nGeneral Labor\narrow_drop_down",
+    "Labor Rate",
+    "Estimated Time",
+    "Estimated Time",
+    "Tech Time",
+    "Tech Time"
+   ]
+  },
+  "optionCount": 6,
+  "picked": "check Ahtesham ABCPROD",
+  "toasts": [],
+  "after": {
+   "status": 200,
+   "n": 5,
+   "top": [
+    "Part returned to inventory ->",
+    "Part picked ->",
+    "Part category changed ->"
+   ]
+  }
+ },
+ "D2": {
+  "error": "locator.click: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.q-menu .q-btn, .q-menu button').filter({ hasText: /Trucks Hill/ }).last()\u001b[22m\n"
+ }
+}

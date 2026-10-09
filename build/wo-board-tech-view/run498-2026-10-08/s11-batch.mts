@@ -157,7 +157,7 @@ const focusInfo = (pg: Page = p) => pg.evaluate(`(() => { const e = document.act
 async function tabTo(pg: Page, want: (f: any) => boolean, max = 120, key = 'Tab') { const seen: string[] = [];
   for (let i = 0; i < max; i++) { await pg.keyboard.press(key); await pg.waitForTimeout(120); const f = await focusInfo(pg); seen.push(f.tid); if (want(f)) return { found: true, presses: i + 1, f, seen }; }
   return { found: false, presses: max, seen }; }
-const clickSearch = async (pg: Page) => { const box = pg.locator('[data-test-id="page_search_input"]'); if (!(await box.isVisible().catch(() => false))) await pg.locator('[data-test-id="page_search_toggle"]').click(); await box.click(); await pg.waitForTimeout(300); };
+const clickSearch = async (pg: Page) => { const box = pg.locator('[data-test-id="page_search_input"]'); if (!(await box.isVisible().catch(() => false))) { await pg.keyboard.press('Escape'); await pg.locator('[data-test-id="page_search_toggle"]').click({ force: true }); } await box.click(); await pg.waitForTimeout(300); };
 
 await run('C97021', async () => {
   await pins([ANA.staff_id, BEN.staff_id]);
@@ -268,7 +268,7 @@ await run('C97022', async () => {
   for (let i = 0; i < 8; i++) { const cur = await p.evaluate(`document.activeElement?.innerText?.trim()`); if (/Reassign lead technician/.test(String(cur))) break; await p.keyboard.press('ArrowDown'); await p.waitForTimeout(250); }
   await p.keyboard.press('Enter'); await p.waitForTimeout(1500); await p.keyboard.press('Escape'); await p.waitForTimeout(1000);
   o.step4 = await focusInfo(); await shot(p, 'C97022-step4');
-  await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); await p.locator('.q-menu .q-item').filter({ hasText: /^\s*Approved\s*$/ }).first().click(); await p.waitForTimeout(1200); await p.keyboard.press('Escape'); await p.waitForTimeout(1200);
+  await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); await p.locator('.q-menu .q-item').filter({ hasText: /Approved/ }).first().click(); await p.waitForTimeout(1200); await p.keyboard.press('Escape'); await p.waitForTimeout(1200);
   await clickSearch(p); const g = await tabTo(p, (f) => f.raw === `board_card_${s.w['Golf Co'].id}`); o.golfFocused = g.found;
   o.golfToInProgress = say(await a.post('/api/work-orders/change-status', { id: s.w['Golf Co'].id, status: 'in_progress' }));
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); o.step5 = await focusInfo(); await p.keyboard.press('Tab'); await p.waitForTimeout(300); o.step5afterTab = await focusInfo();
@@ -302,7 +302,8 @@ await run('C368154', async () => {
     await pg.locator('[data-test-id="button_density"]').click(); await pg.waitForTimeout(800);
     o.step4 = await pg.evaluate(`[...document.querySelectorAll('[data-test-id^="option_density_"]')].filter(e => e.getBoundingClientRect().width > 0 && /check/.test(e.innerText)).map(e => e.innerText.replace('check','').trim())`); await pg.keyboard.press('Escape');
     await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900);
-    o.step5 = await pg.evaluate(`[...document.querySelectorAll('.q-menu [data-test-id^="toggle_board_field_"]')].filter(e => (e.querySelector('[role=switch]') || e).getAttribute('aria-checked') === 'true').map(e => e.innerText.trim())`); await pg.keyboard.press('Escape');
+    o.step5 = await pg.evaluate(`[...document.querySelectorAll('.q-menu [data-test-id^="toggle_board_field_"]')].filter(e => (e.querySelector('[role=switch], [role=checkbox], [aria-checked]') || e).getAttribute('aria-checked') === 'true' || e.querySelector('.q-toggle__inner--truthy, .q-checkbox__inner--truthy')).map(e => (e.innerText.trim() || (e.closest('.q-item') || e).innerText.trim()) + ' [' + e.getAttribute('data-test-id').replace('toggle_board_field_', '') + ']')`);
+    o.step5all = await pg.evaluate(`[...document.querySelectorAll('.q-menu [data-test-id^="toggle_board_field_"]')].map(e => e.getAttribute('data-test-id').replace('toggle_board_field_', '') + '=' + ((e.querySelector('[aria-checked]') || e).getAttribute('aria-checked')) + '/' + (e.querySelector('.q-toggle__inner--truthy, .q-checkbox__inner--truthy') ? 'on' : 'off'))`); await shot(pg, 'C368154-fields'); await pg.keyboard.press('Escape');
   } finally { await v.close(); }
   R.C368154 = o;
 });
@@ -312,7 +313,7 @@ const IDS4: Record<string, string> = { Unassigned: 'unassigned', Ana: ANA.staff_
 const boardCounts = async (set: any) => { const cs = await boardCols(p); return Object.fromEntries(Object.entries(IDS4).map(([k, id]) => { const c = cs.find((x) => x.id === id); return [k, c ? `${c.count}/${c.cards.length}` : 'not drawn']; })); };
 const techCounts = async (set: any) => { const gs = await groups(p); return Object.fromEntries(Object.entries(IDS4).map(([k, id]) => { const g = gs.find((x) => x.id === id); return [k, g ? `${g.count}/${g.rows.length}` : 'not drawn']; })); };
 const listCount = async () => p.evaluate(`[...document.querySelectorAll('tbody tr')].filter(r => /S\\d+-\\d+/.test(r.innerText)).length`);
-const statusOnly = async (label: string | null) => { await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); if (label) await p.locator('.q-menu .q-item').filter({ hasText: new RegExp('^\\s*' + label + '\\s*$') }).first().click(); else await p.locator('.q-menu').getByText('Clear selection').first().click(); await p.waitForTimeout(1500); await p.keyboard.press('Escape'); await p.waitForTimeout(1500); await expandSmallGroups(p); };
+const statusOnly = async (label: string | null) => { await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); if (label) await p.locator('.q-menu .q-item').filter({ hasText: new RegExp(label, 'i') }).first().click(); else await p.locator('.q-menu').getByText('Clear selection').first().click(); await p.waitForTimeout(1500); await p.keyboard.press('Escape'); await p.waitForTimeout(1500); await expandSmallGroups(p); };
 
 await run('C97030', async () => {
   await pins([ANA.staff_id, BEN.staff_id, CAL.staff_id]);
@@ -358,7 +359,7 @@ await run('C97032', async () => {
 
 await run('C154648', async () => {
   await goP(p, 'List', ''); const o: any = {};
-  await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); const imp = p.locator('.q-menu .q-item').filter({ hasText: /^\s*Imported/ }).first(); o.importedOptionInList = await imp.innerText().catch(() => null);
+  await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); const imp = p.locator('.q-menu .q-item').filter({ hasText: /Imported/ }).first(); o.importedOptionInList = await imp.innerText().catch(() => null);
   await imp.click(); await p.waitForTimeout(1500); await p.keyboard.press('Escape'); await p.waitForTimeout(1500);
   for (const l of ['Tech View', 'Board View']) { const b = p.locator(`[aria-label="${l}"]`).first(); await b.hover(); await p.waitForTimeout(1000);
     o[l] = { disabled: await b.evaluate((e) => e.hasAttribute('disabled') || e.getAttribute('aria-disabled') === 'true' || e.classList.contains('disabled')), tooltip: await p.evaluate(`[...document.querySelectorAll('.q-tooltip')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.trim())`) };
@@ -366,7 +367,7 @@ await run('C154648', async () => {
   o.listRowsWhileImported = await listCount(); await shot(p, 'C154648-list-imported');
   await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); await p.locator('.q-menu').getByText('Clear selection').first().click(); await p.waitForTimeout(1200); await p.keyboard.press('Escape');
   for (const l of ['Tech View', 'Board View']) { await display(p, l); await p.waitForTimeout(1500); await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900);
-    const it = p.locator('.q-menu .q-item').filter({ hasText: /^\s*Imported/ }).first(); o[`${l} imported option`] = { disabled: await it.evaluate((e) => e.getAttribute('aria-disabled') === 'true' || e.classList.contains('disabled') || e.classList.contains('q-item--disabled')).catch(() => null), text: await it.innerText().catch(() => null) };
+    const it = p.locator('.q-menu .q-item').filter({ hasText: /Imported/ }).first(); o[`${l} imported option`] = { disabled: await it.evaluate((e) => e.getAttribute('aria-disabled') === 'true' || e.classList.contains('disabled') || e.classList.contains('q-item--disabled')).catch(() => null), text: await it.innerText().catch(() => null) };
     await it.click({ force: true }).catch(() => {}); await p.waitForTimeout(1000); o[`${l} imported option`].ticked = await it.evaluate((e) => !!e.querySelector('[aria-checked=true], .q-checkbox__inner--truthy')).catch(() => null); await p.keyboard.press('Escape'); await p.waitForTimeout(800); }
   R.C154648 = o;
 });
@@ -388,7 +389,10 @@ await run('C368157', async () => {
   await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"]').scrollLeft = 0`); await p.waitForTimeout(500); await p.locator(`[data-test-id="button_board_pin_${CAL.staff_id}"]`).click(); await p.waitForTimeout(2000);
   const after = await allCols(p); o.unpinned = { calIndex: after.indexOf(CAL.staff_id), sameAsBefore: JSON.stringify(after) === JSON.stringify(before), neighbours: named(after.slice(Math.max(0, after.indexOf(CAL.staff_id) - 2), after.indexOf(CAL.staff_id) + 3), IDS) };
   await display(p, 'Tech View'); await p.waitForTimeout(2500);
-  const g = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_group_"]')].map(e => e.getAttribute('data-test-id')).filter(t => /^tech_view_group_[0-9a-f-]{36}$|^tech_view_group_unassigned$/.test(t)).map(t => t.replace('tech_view_group_', ''))`) as string[];
+  // Tech View draws only the groups on screen: scroll the page and collect each group id in the order it appears
+  const g: string[] = []; await p.evaluate(`window.scrollTo(0, 0); document.querySelectorAll('.scroll, .q-scrollarea__container, main, .q-page-container').forEach(e => e.scrollTop = 0)`);
+  for (let i = 0; i < 120; i++) { const ids = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_group_"]')].map(e => e.getAttribute('data-test-id')).filter(t => /^tech_view_group_[0-9a-f-]{36}$|^tech_view_group_unassigned$/.test(t)).map(t => t.replace('tech_view_group_', ''))`) as string[]; for (const x of ids) if (!g.includes(x)) g.push(x); if (g.includes(CAL.staff_id) && g.includes(DAN.staff_id) && i > 2) break; await p.mouse.wheel(0, 900); await p.waitForTimeout(250); }
+  o.techFirst = named(g.slice(0, 6), IDS); o.techAroundCal = named(g.slice(Math.max(0, g.indexOf(CAL.staff_id) - 2), g.indexOf(CAL.staff_id) + 3), IDS); o.techSameAsBoard = JSON.stringify(g) === JSON.stringify(after.slice(0, g.length));
   o.techSameOrder = JSON.stringify(g) === JSON.stringify(after); o.techCalIndex = g.indexOf(CAL.staff_id);
   R.C368157 = o;
 });
