@@ -1,5 +1,7 @@
 # Run 498 — PAUSED 9 Oct 2026 ~15:00 UTC (QA lead: "save the state and pause everything else we can resume later")
 
+> **9 Oct 15:35 — FIRST STEP ON RESUME:** the branch sign-in (`sv_sso_session` in `/tmp/shopview/sv10043.env`) EXPIRED ("the Google session has expired") — only the QA lead can supply a fresh one. Then run `d5-discover.mts` and re-check C368131 by removing the enrolment (see defect-drafts/README.md, D5 WITHDRAWN), then the D8 original-state re-check (`d8-pics2.mts`), then the table below.
+
 > **QA lead, 9 Oct 2026: "if I forget please make sure to resume testing once we are done with creating all the tickets."** — when the last approved ticket is created, RESUME this queue from step 1 without being asked.
 
 **Why paused:** the QA lead moved to the defect round. At the pause the branch sv10043 also answered quick-login with **HTTP 502** (three batches failed to sign in at 14:58: kbd-fix4, rename-probe, d8-pics2) — check `GET https://sv10043.qa.shopview.com/` and a quick-login before resuming.

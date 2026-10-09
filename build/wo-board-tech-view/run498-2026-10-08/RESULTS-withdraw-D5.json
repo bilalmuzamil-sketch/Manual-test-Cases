@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368131": {
+   "verdict": "Retest",
+   "observed": "The earlier Failed result for the 'removed from this location' half is WITHDRAWN (9 Oct 2026). That check changed Ayesha Khan's Location field on her staff form, which only picks her main location from the locations she already works at; she stayed enrolled at Staging Heavy Duty - 9919, so being offered there was correct. The deactivated half passed (Jenny Wilson's pinned column read 'No work orders' for both users).",
+   "not_observed": "The removed-from-this-location half has not yet been run the right way: take the technician's enrolment at this location away (Settings > Staff), then look at her pinned column and the lead technician list.",
+   "todo": "Re-check: remove the technician's enrolment at this location, check her pinned column reads 'No work orders' and she is not offered as lead here; then put the enrolment back. Needs a fresh sign-in to the QA branch.",
+   "ticket": ""
+  }
+ }
+}
