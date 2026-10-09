@@ -29,3 +29,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | s9-fix2 | C97003 (dispatcher does the same column drag first, as the positive control), C97010, C97012, C368146 (dispatcher's own order set first), C368149 |
 | probe-kbd | not a case: every focus stop with Tab on Board View and Tech View, what the arrow keys do, which cards/rows carry a tabindex (feeds C97021, C368150–C368152) |
 | ps-photo-batch | C368215–C368217 (part sales), C368241–C368244 (new photo after a reload; red/blue squares in `evidence/zz-photo-*.png`, colour read off element pictures afterwards) |
+| rest-batch | C368169–C368171 (Edit Work Order), C368197 (paging), C368218/C368219/C368223 (filters kept), C368156 (pins per location), C368238/C368239 (impersonation), C368240 (ended session — runs LAST, signs the session out) |
