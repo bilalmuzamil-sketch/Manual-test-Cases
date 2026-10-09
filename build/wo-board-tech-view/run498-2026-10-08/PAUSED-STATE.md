@@ -1,5 +1,7 @@
 # Run 498 — PAUSED 9 Oct 2026 ~15:00 UTC (QA lead: "save the state and pause everything else we can resume later")
 
+> **QA lead, 9 Oct 2026: "if I forget please make sure to resume testing once we are done with creating all the tickets."** — when the last approved ticket is created, RESUME this queue from step 1 without being asked.
+
 **Why paused:** the QA lead moved to the defect round. At the pause the branch sv10043 also answered quick-login with **HTTP 502** (three batches failed to sign in at 14:58: kbd-fix4, rename-probe, d8-pics2) — check `GET https://sv10043.qa.shopview.com/` and a quick-login before resuming.
 
 **Live run counts at pause:** 252 tests — 187 passed · 16 failed · 9 blocked · 40 untested (2 of them, C368175 and C154650, are left for MANUAL testing by the QA lead: they need organisation B).

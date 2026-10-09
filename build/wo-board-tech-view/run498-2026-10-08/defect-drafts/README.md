@@ -190,3 +190,10 @@ Recapture on a FRESH line with NO technician: adding Dana Ortiz in Edit Line DID
 ## Left for manual testing (QA lead, 9 Oct 2026)
 
 *"Any test cases that require Organization B leave them for manual testing."* — C368175 (line technician lists offer no staff from another organization) and C154650 (Tech View and Board View show only this organization and location). Not run by script; left Untested in run 498 for the manual tester.
+
+
+## Filed (per-ticket approval, 9 Oct 2026)
+
+| Report | Ticket | Case | Filed |
+|---|---|---|---|
+| D2 — "Assigned to me" stays on after changing location | [SV-11098](https://shopview.atlassian.net/browse/SV-11098) (Story Defect, Open, under SV-10044, relates to SV-10044) | C96923 | QA lead approved 9 Oct; picture inline full-width, verified |

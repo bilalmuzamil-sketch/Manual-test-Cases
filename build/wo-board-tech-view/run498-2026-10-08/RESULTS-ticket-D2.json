@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96923": {
+   "verdict": "Failed",
+   "observed": "After a location change, Assigned to me stays on, in List, Tech View and Board View (Staging Heavy Duty - 9919 to Staging Lethbridge - 4310 and back). The source says 'Assigned to me resets on location change, as it does today' (PRD S1-E3). The live product also keeps it on, but the QA lead ruled on 9 Oct 2026 that behaviour against the specification is a defect, so a defect report is prepared against the owning story.",
+   "not_observed": null,
+   "ticket": "SV-11098 https://shopview.atlassian.net/browse/SV-11098 (Story Defect, Open, created 9 Oct 2026 under SV-10044)",
+   "todo": "Follow SV-11098; re-test this case when it is fixed."
+  }
+ }
+}
