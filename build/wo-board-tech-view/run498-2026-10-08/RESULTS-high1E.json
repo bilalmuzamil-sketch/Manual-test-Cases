@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368174": {
+   "verdict": "Passed",
+   "observed": "Work order S10043-18548 with two lines, both led by Esther Howard. On the Lines tab, each line's three-dots > Edit labor > Technician: Esther Howard unticked and Ralph Edwards picked in the same open list > Save & Close. No error message on either save. After a reload both lines' Labor rows read 'Ralph Edwards' (2 of 2), and the work order's data agrees.",
+   "not_observed": null
+  },
+  "C368192": {
+   "verdict": "Passed",
+   "observed": "Work order S10043-18552: Jenny Wilson scheduled on Line 1 'Service - Cabin air filter' through Schedule (drag the card onto her row > Choose lines > Line 1 > 1h > Create). Window narrowed to phone width (390 px), Lines tab: Line 1's card ('1.' at top left) expanded with its arrow button (its tooltip then reads 'Collapse'). The expanded card shows Tech Story, Actual/Est 0.00 / 1.00, Rate $149.95, Margin 100%, Total $149.95, then 'Assigned Technicians \u2014 Jenny Wilson', then Parts (1). No 'Needs techs' badge appears.",
+   "not_observed": null
+  }
+ }
+}

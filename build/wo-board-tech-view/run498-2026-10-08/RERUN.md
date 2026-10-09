@@ -68,3 +68,6 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | ps-counts | C368217 — the case's own Add Part (typed description, vendor, cost, sell), Authorize, Order, Receive (vendor chosen if missing), Return part; list filtered by the page Search |
 | editwo-fix | C368170 — read-only card boxes on an Invoiced work order are recorded as locked, the Finance PO box state is read |
 | parts-filter2 (again) | C368218, C368219 — the first run hit the sleeping branch mid-check |
+| high1-fix4 | C368172, C368173, C368177, C368178, C368179, C368190, C368188, C368189 (+C368192 as setup) — exact Schedule hour heading, shifts found by position then opened, Dana added without removing anyone, running-clock window answered, "Assets (2)" tab |
+| sort-fix4 | C368196 — a comment had swallowed a declaration |
+| deleted-search2 | C368191 — wider read-only hunt (3,000 work orders, labor entries only) |
