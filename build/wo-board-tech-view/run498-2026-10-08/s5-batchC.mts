@@ -70,16 +70,21 @@ const linesRaw = async (wo: string) => { const d = (await a.get(`/api/work-order
 /** make/model ids borrowed from an existing vehicle whose make and model match */
 const vehiclesSeen: any[] = [];
 async function makeModel(make: RegExp, model: RegExp) {
-  for (const q of [model.source.replace(/[^A-Za-z0-9 ]/g, ''), make.source.replace(/[^A-Za-z0-9 ]/g, '')]) {
-    const r = await a.get(`/api/vehicles?pagination[rowsPerPage]=200&search=${encodeURIComponent(q)}`); const rows = r.body?.data?.collection ?? r.body?.data?.vehicles ?? r.body?.data ?? [];
-    if (Array.isArray(rows)) vehiclesSeen.push(...rows.slice(0, 3));
-    const hit = (Array.isArray(rows) ? rows : []).find((v: any) => make.test(String(v.make ?? v.vehicle_maker ?? v.maker_name ?? v.vehicleMaker?.name ?? '')) && model.test(String(v.model ?? v.vehicle_model ?? v.model_name ?? v.vehicleModel?.name ?? '')));
-    if (hit) return { maker: hit.vehicle_maker_id ?? hit.vehicleMakerId ?? hit.maker_id, model: hit.vehicle_model_id ?? hit.vehicleModelId ?? hit.model_id, from: `${hit.year ?? ''} ${hit.make ?? ''} ${hit.model ?? ''}`.trim() };
+  // vehicles carry the names as vehicle_make / vehicle_model (a string or {name}) next to vehicle_maker_id / vehicle_model_id
+  const nm = (x: any) => typeof x === 'string' ? x : x?.name ?? x?.title ?? '';
+  const qs = [model.source.replace(/[^A-Za-z0-9 ]/g, ''), make.source.replace(/[^A-Za-z0-9 ]/g, ''), ''];
+  for (const q of qs) for (let page = 1; page <= (q ? 2 : 6); page++) {
+    const r = await a.get(`/api/vehicles?pagination[rowsPerPage]=200&pagination[page]=${page}${q ? '&search=' + encodeURIComponent(q) : ''}`);
+    const rows = r.body?.data?.collection ?? r.body?.data?.vehicles ?? r.body?.data ?? [];
+    if (!Array.isArray(rows) || !rows.length) break;
+    vehiclesSeen.push(...rows.slice(0, 2).map((v: any) => `${v.year} ${nm(v.vehicle_make)} ${nm(v.vehicle_model)}`));
+    const hit = rows.find((v: any) => make.test(nm(v.vehicle_make)) && model.test(nm(v.vehicle_model)) && v.vehicle_maker_id && v.vehicle_model_id);
+    if (hit) return { maker: hit.vehicle_maker_id, model: hit.vehicle_model_id, from: `${hit.year ?? ''} ${nm(hit.vehicle_make)} ${nm(hit.vehicle_model)}`.trim() };
   }
   return null;
 }
 async function shape(c: any, vid: string, o: { unit: string; year?: number; mm?: any; vin?: string }) {
-  return say(await a.post('/api/vehicles/change', { vehicle_id: vid, company_id: c.company_id, customer_id: c.contact_id, unit: o.unit, year: o.year ?? null, vehicle_maker_id: o.mm?.maker ?? null, vehicle_model_id: o.mm?.model ?? null, vin: o.vin ?? '' }));
+  return say(await a.post('/api/vehicles/change', { vehicle_id: vid, company_id: c.company_id, customer_id: c.contact_id, unit: o.unit, year: o.year ?? null, vehicle_maker_id: o.mm?.maker ?? null, vehicle_model_id: o.mm?.model ?? null, ...(o.vin !== undefined ? { vin: o.vin } : {}) }));
 }
 const listRow = async (num: string, pg: Page = p) => pg.evaluate(`(() => { const hs = [...document.querySelectorAll('thead th')].map(e => e.innerText.replace('arrow_drop_up','').trim());
   const tr = [...document.querySelectorAll('tbody tr')].find(r => r.innerText.includes(${JSON.stringify(num)})); if (!tr) return null;
@@ -90,7 +95,8 @@ const allOff = async () => { const m = await menu('Board View'); await close(); 
 const MM: any = {};
 await run('assets', async () => {
   MM.explorer = await makeModel(/ford/i, /explorer/i); MM.m2 = await makeModel(/freightliner/i, /m2/i);
-  R.assets = { explorer: MM.explorer, m2: MM.m2, sampleKeys: Object.keys(vehiclesSeen[0] ?? {}).join(',') };
+  R.assets = { explorer: MM.explorer, m2: MM.m2, seen: vehiclesSeen.slice(0, 12) };
+  if (!MM.explorer || !MM.m2) throw new Error('make/model not found — the asset cases cannot be judged this run');
 });
 
 await run('C96978', async () => {
@@ -114,9 +120,13 @@ await run('C96978', async () => {
   await ci.hover().catch(() => {}); await p.waitForTimeout(1200); R.C96978.listClockHover = await tooltip();
   await display(p, 'Board View'); await p.waitForTimeout(1500);
   const m = await menu('Board View'); R.C96978.offered = (m.items ?? []).map((x: any) => x[1]); R.C96978.offeredCount = (m.items ?? []).length; await close();
-  await allOn(); R.C96978.card = await card(p, wo); await shot(p, 'C96978-card');
-  await p.locator(`[data-test-id="board_card_${wo}"] [data-test-id="board_card_field_clocked_in_technicians"]`).hover().catch(() => {}); await p.waitForTimeout(1200);
-  R.C96978.cardClockHover = await tooltip(); await shot(p, 'C96978-card-clock-hover');
+  await allOn(); R.C96978.menuAfterAllOn = onKeys(await menu('Board View')); await close(); R.C96978.card = await card(p, wo); await shot(p, 'C96978-card');
+  const fld = p.locator(`[data-test-id="board_card_${wo}"] [data-test-id="board_card_field_clocked_in_technicians"]`);
+  R.C96978.cardClockHover = [];
+  for (const target of [fld.getByText(/\+\d+/).first(), fld.getByText(/Ralph|Esther/).first(), fld]) {
+    if (!(await target.count())) continue; await target.hover().catch(() => {}); await p.waitForTimeout(1300);
+    const tt = await tooltip(); R.C96978.cardClockHover.push(tt); if (tt.length) { await shot(p, 'C96978-card-clock-hover'); break; } }
+  R.C96978.estimate = { wo: (await a.get(`/api/work-orders/view/${wo}`)).body?.data?.work_order?.time_estimate ?? null, cardHasField: await p.locator(`[data-test-id="board_card_${wo}"] [data-test-id="board_card_field_time_estimate"]`).count() };
   // stop both clocks
   for (const who of [ES, RE]) { await a.post('/api/switch-user', { user_id: who.id }); try { const cur = (await a.get('/api/technician-tasks/my-current-task')).body?.data; if (cur?.technician_task?.id) await a.post('/api/technician-tasks/check-out', { task_id: cur.technician_task.id }); } finally { await RUN.toRunner(); } }
 });
@@ -148,8 +158,10 @@ await run('C96984', async () => {
 
 await run('C96985', async () => {
   const n = `ZZAUTOTEST F2 Empty Fields Hidden ${Date.now() % 100000}`; const c = await customer(a, n, 'ZZF2EH');
-  R.C96985 = { noVin: await shape(c, c.vehicle_id, { unit: 'ZZF2EH', year: 2022, mm: MM.m2, vin: '' }) };
-  const wo = await workOrder(a, c, 'approved', ES.staff_id);
+  const nv = await a.post('/api/vehicles/create', { company_id: c.company_id, customer_id: c.contact_id, year: 2022, unit: 'ZZF2EH' });
+  const vid = nv.body?.data?.vehicle_id ?? nv.body?.data?.id ?? nv.body?.vehicle_id;
+  R.C96985 = { createNoVin: say(nv), shape: vid ? await shape(c, vid, { unit: 'ZZF2EH', year: 2022, mm: MM.m2 }) : 'no vehicle' };
+  const wo = await workOrder(a, { ...c, vehicle_id: vid ?? c.vehicle_id }, 'approved', ES.staff_id);
   R.C96985.noAdvisor = say(await a.post('/api/work-orders/change-service-advisor', { work_order_id: wo, service_advisor_id: null }));
   const w = (await workOrders(a, n))[0]; R.C96985.wo = { number: w?.number, advisor: w?.serviceAdvisorFirstName ?? null, vin: w?.vin ?? w?.vehicleVin ?? null };
   await go('Board View', n); await allOff(); for (const k of ['service_advisor', 'vin', 'clocked_in_technicians', 'technician', 'company_name', 'progress']) await setSwitch('Board View', k, true);

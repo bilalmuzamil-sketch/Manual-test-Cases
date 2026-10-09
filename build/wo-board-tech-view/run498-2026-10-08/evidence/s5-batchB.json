@@ -7,130 +7,73 @@
  },
  "roles": {
   "admin": true,
-  "viewOnly": false,
+  "viewOnly": true,
   "names": []
  },
- "C96979": {
-  "nora": {
-   "prefBefore": null,
-   "list": {
-    "heads": [
-     "On Site",
-     "Status",
-     "Number",
-     "Customer",
-     "Asset",
-     "Unit",
-     "VIN/Serial #",
-     "Progress",
-     "Service Advisor",
-     "Lead Technician",
-     "Clocked In",
-     "Lines",
-     "Total Price",
-     "Created On"
-    ],
-    "on": [
-     "vehicle",
-     "vin",
-     "progress",
-     "serviceAdvisor",
-     "technician",
-     "clockedInTechnicians",
-     "linesCount",
-     "totalPrice",
-     "startDate"
-    ]
-   },
-   "tech": {
-    "heads": [
-     "On Site",
-     "Status",
-     "Number",
-     "Customer",
-     "Asset",
-     "Unit",
-     "VIN/Serial #",
-     "Progress",
-     "Service Advisor",
-     "Lead Technician",
-     "Clocked In",
-     "Lines",
-     "Total Price",
-     "Created On"
-    ],
-    "on": [
-     "vehicle",
-     "vin",
-     "progress",
-     "service_advisor",
-     "technician",
-     "clocked_in_technicians",
-     "lines_count",
-     "total_price",
-     "start_date"
-    ]
-   }
+ "C96980": {
+  "roleViewOnlyBefore": {
+   "seeFinancialData": true,
+   "seeApArData": false,
+   "viewHistoryLogs": true
   },
-  "mine": [
-   "ok",
-   "ok"
-  ],
-  "mineAfterReload": [
-   "vehicle",
-   "vin",
-   "progress",
-   "technician",
-   "clockedInTechnicians",
-   "linesCount",
-   "totalPrice",
-   "startDate"
-  ],
-  "techChange": "ok",
-  "mineAfterSwitchAndReload": [
-   "vehicle",
-   "vin",
-   "progress",
-   "technician",
-   "clockedInTechnicians",
-   "linesCount",
-   "totalPrice",
-   "startDate"
-  ]
+  "setOff": "200 now seeFinancialData=false",
+  "fay": {
+   "card": null,
+   "on": [
+    "technician",
+    "company_name",
+    "vehicle",
+    "progress",
+    "total_price"
+   ],
+   "offered": [
+    "technician",
+    "company_name",
+    "vehicle",
+    "vin",
+    "progress",
+    "service_advisor",
+    "clocked_in_technicians",
+    "lines_count",
+    "line_technicians",
+    "time_estimate",
+    "total_price",
+    "vehicle_here",
+    "start_date"
+   ],
+   "perms": null
+  },
+  "nate": {
+   "card": null,
+   "on": [
+    "technician",
+    "company_name",
+    "vehicle",
+    "progress"
+   ],
+   "offered": [
+    "technician",
+    "company_name",
+    "vehicle",
+    "vin",
+    "progress",
+    "service_advisor",
+    "clocked_in_technicians",
+    "lines_count",
+    "line_technicians",
+    "time_estimate",
+    "vehicle_here",
+    "start_date"
+   ],
+   "perms": null
+  }
  },
- "C368160": {
-  "headsStart": [
-   "On Site",
-   "Status",
-   "Number",
-   "Customer",
-   "Asset",
-   "Unit",
-   "VIN/Serial #",
-   "Progress",
-   "Service Advisor",
-   "Lead Technician",
-   "Clocked In",
-   "Lines",
-   "Total Price",
-   "Created On"
-  ],
-  "menuWords": "Waiting On Parts Asset VIN/Serial # Progress Service Advisor Lead Technician Clocked In Lines Assigned Techs Total price Created on Invoiced Date Days open Parts Returns",
-  "buttons": [],
-  "countShown": false,
-  "onStart": [
-   "vehicle",
-   "vin",
-   "progress",
-   "service_advisor",
-   "technician",
-   "clocked_in_technicians",
-   "lines_count",
-   "total_price",
-   "start_date"
-  ],
-  "afterUntickCreatedOn": {
-   "heads": [
+ "C96986": {
+  "setOn": "200 now seeFinancialData=true",
+  "withFinance": {
+   "s1": "ok",
+   "s2": "ok",
+   "techHeads": [
     "On Site",
     "Status",
     "Number",
@@ -143,24 +86,90 @@
     "Lead Technician",
     "Clocked In",
     "Lines",
-    "Total Price"
+    "Total Price",
+    "Created On"
    ],
-   "on": [
-    "vehicle",
-    "vin",
-    "progress",
-    "service_advisor",
-    "technician",
-    "clocked_in_technicians",
-    "lines_count",
-    "total_price"
+   "card": null,
+   "pref": {}
+  },
+  "setOff": "200 now seeFinancialData=false",
+  "withoutFinance": {
+   "techHeads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Created On"
+   ],
+   "techOffered": [
+    "Waiting On Parts",
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Assigned Techs",
+    "Created on",
+    "Invoiced Date",
+    "Days open",
+    "Parts",
+    "Returns"
+   ],
+   "techRowDollars": [],
+   "filters": {
+    "filter_chip_status": [
+     "Estimate Approved In progress Review Complete Invoiced Paid Declined Imported Imported work orders open in List. Clear selection"
+    ],
+    "filter_chip_assigned_to_me": [],
+    "filter_chip_vehicleHere": [
+     "Yes No Clear selection"
+    ]
+   },
+   "filterDollars": [],
+   "card": null,
+   "cardDollars": [],
+   "boardOffered": [
+    "Lead technician",
+    "Customer",
+    "Asset",
+    "VIN/serial",
+    "Progress",
+    "Service advisor",
+    "Clocked in",
+    "Line count",
+    "Line technicians",
+    "Estimated hours",
+    "On-site",
+    "Created date"
+   ],
+   "listHeads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Created On"
    ]
   }
  },
- "C96980": {
-  "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined"
- },
- "C96986": {
-  "error": "Cannot read properties of undefined (reading 'name')"
- }
+ "roleRestore": "200 now seeFinancialData=true",
+ "roleRestoredExactly": true,
+ "restored": true
 }

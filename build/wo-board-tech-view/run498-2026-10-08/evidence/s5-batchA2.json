@@ -1,0 +1,115 @@
+{
+ "runner": {
+  "id": "059edc87",
+  "perms": 57,
+  "who": 200,
+  "log": []
+ },
+ "C96975": {
+  "set": [
+   "ok",
+   "ok"
+  ],
+  "setList": "ok",
+  "here": {
+   "tech": [
+    "vehicle",
+    "vin",
+    "progress",
+    "technician",
+    "clocked_in_technicians",
+    "assigned_techs",
+    "total_price",
+    "start_date"
+   ],
+   "list": [
+    "vehicle",
+    "vin",
+    "technician",
+    "clockedInTechnicians",
+    "linesCount",
+    "totalPrice",
+    "startDate"
+   ]
+  },
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-tab, [role=tab]').filter({ hasText: /^\\s*All\\s*$/ }).first()\n"
+ },
+ "C96976": {
+  "set": [
+   "ok",
+   "ok"
+  ],
+  "card": {
+   "number": "S10043-17988",
+   "status": "Approved",
+   "unit": "ZZF2BF",
+   "field_vin": "VIN/serial VIN ZZWOB179150712441",
+   "field_progress": "Progress 0%",
+   "field_technician": "Lead technician Esther Howard",
+   "field_total_price": "Total price $0.00"
+  },
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-tab, [role=tab]').filter({ hasText: /^\\s*All\\s*$/ }).first()\n"
+ },
+ "loc2": {
+  "runnerKeys": "id,email,first_name,last_name,created_on,confirmed_invitation_on,avatar_url,is_active,role_label,staff_id,job_title,salary_type,salary,billable,clockable,is_sales_rep,is_default,departments,defaultWorkplace,defaultWorkplaceName,salary_type_label,workplace_id,deletable,role_id",
+  "workplaces": [
+   "Staging Heavy Duty - 9919/Shop Time (Shop hand)"
+  ],
+  "deps": {
+   "here": [
+    "Shop Time (Shop hand)@",
+    "Work order status@",
+    "Foreman Duties (Calgary HD)@"
+   ],
+   "leth": [
+    "Shop Time (Shop hand)@",
+    "Work order status@",
+    "Foreman Duties (Calgary HD)@"
+   ]
+  },
+  "move": "200",
+  "at": null,
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-tab, [role=tab]').filter({ hasText: /^\\s*All\\s*$/ }).first()\n"
+ },
+ "C96983": {
+  "before": [
+   "technician",
+   "vehicle",
+   "vin",
+   "progress",
+   "total_price",
+   "start_date"
+  ],
+  "failBoard": [
+   "technician",
+   "company_name",
+   "vehicle",
+   "progress",
+   "total_price"
+  ],
+  "change": "ok",
+  "failBoardAfterChange": [
+   "technician",
+   "company_name",
+   "vehicle",
+   "progress",
+   "total_price",
+   "vehicle_here"
+  ],
+  "savesDuringFailure": [],
+  "afterReload": [
+   "technician",
+   "vehicle",
+   "vin",
+   "progress",
+   "total_price",
+   "start_date"
+  ],
+  "savedNow": {
+   "vin": true,
+   "startDate": true,
+   "companyName": false
+  }
+ },
+ "restored": true
+}

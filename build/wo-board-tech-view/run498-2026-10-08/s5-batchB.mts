@@ -85,6 +85,13 @@ const filters = async (pg: Page) => { const out: Record<string, string[]> = {};
     out[tid] = await pg.evaluate(`[...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.replace(/\\s+/g, ' ').slice(0, 300))`) as string[];
     await pg.keyboard.press('Escape'); await pg.waitForTimeout(500); }
   return out; };
+/** find a card on the board, scrolling the board sideways (columns off to the right are not drawn until reached) */
+async function cardFound(pg: Page, wo: string) {
+  for (let i = 0; i < 30; i++) { if (await pg.locator(`[data-test-id="board_card_${wo}"]`).count()) { await pg.locator(`[data-test-id="board_card_${wo}"]`).scrollIntoViewIfNeeded().catch(() => {}); return card(pg, wo); }
+    const moved = await pg.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"]'); if (!h) return false; const b = h.scrollLeft; h.scrollLeft = b + 900; return h.scrollLeft !== b; })()`);
+    await pg.waitForTimeout(700); if (!moved) break; }
+  return null;
+}
 const dollars = (o: any) => JSON.stringify(o).match(/\$\s?[\d,]+(\.\d\d)?/g) ?? [];
 
 await run('C96979', async () => {
@@ -119,7 +126,7 @@ await run('C96980', async () => {
   if (R.C96980.roleViewOnlyBefore?.seeFinancialData) R.C96980.setOff = await roleSetFinancial(VIEW_ROLE, false);
   const fay = await mkUser('Fay', 'Financial', ADMIN_ROLE, 'fay.financial'), nate = await mkUser('Nate', 'Nofinance', VIEW_ROLE, 'nate.nofinance');
   for (const [k, u] of [['fay', fay], ['nate', nate]] as [string, any][]) R.C96980[k] = await asUser(u, async (pg) => {
-    await go('Board View', n, pg); const c = await card(pg, wo); const m = await menu('Board View', pg); await shot(pg, `C96980-${k}`); await close(pg);
+    await go('Board View', n, pg); const c = await cardFound(pg, wo); await shot(pg, `C96980-${k}`); const m = await menu('Board View', pg); await close(pg);
     return { card: c, on: onKeys(m), offered: (m.items ?? []).map((x: any) => x[0]), perms: (await a.get('/api/auth/me/fe-permissions')).body?.data?.length ?? null }; });
 });
 
@@ -128,15 +135,15 @@ await run('C96986', async () => {
   R.C96986 = { setOn: await roleSetFinancial(VIEW_ROLE, true) };
   const nate = await mkUser('Nate', 'Nofinance', VIEW_ROLE, 'nate.nofinance.nd');
   R.C96986.withFinance = await asUser(nate, async (pg) => {
-    await go('Tech View', n, pg); const s1 = await setSwitch('Tech View', 'total_price', true, pg); const h = await heads(pg);
-    await display(pg, 'Board View'); await pg.waitForTimeout(1500); const s2 = await setSwitch('Board View', 'total_price', true, pg); const c = await card(pg, wo);
+    await go('Tech View', n, pg); await setSwitch('Tech View', 'total_price', false, pg); const s1 = await setSwitch('Tech View', 'total_price', true, pg); const h = await heads(pg);
+    await display(pg, 'Board View'); await pg.waitForTimeout(1500); await setSwitch('Board View', 'total_price', false, pg); const s2 = await setSwitch('Board View', 'total_price', true, pg); const c = await cardFound(pg, wo);
     return { s1, s2, techHeads: h, card: c, pref: { tech: ((await a.get(PREF)).body?.data?.value ?? {}).techViewColumns, board: ((await a.get(PREF)).body?.data?.value ?? {}).boardFields } }; });
   R.C96986.setOff = await roleSetFinancial(VIEW_ROLE, false);
   R.C96986.withoutFinance = await asUser(nate, async (pg) => {
     await go('Tech View', n, pg); const h = await heads(pg); const m = await menu('Tech View', pg); await close(pg); await shot(pg, 'C96986-techview');
     const rowText = await pg.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_row_"]')].map(r => r.innerText.replace(/\\s+/g, ' ')).join(' | ')`);
     const f = await filters(pg);
-    await display(pg, 'Board View'); await pg.waitForTimeout(1500); const c = await card(pg, wo); const bm = await menu('Board View', pg); await close(pg); await shot(pg, 'C96986-board');
+    await display(pg, 'Board View'); await pg.waitForTimeout(1500); const c = await cardFound(pg, wo); await shot(pg, 'C96986-board'); const bm = await menu('Board View', pg); await close(pg);
     await display(pg, 'List'); await pg.waitForTimeout(1500); const lh = await heads(pg);
     return { techHeads: h, techOffered: (m.items ?? []).map((x: any) => x[1]), techRowDollars: dollars(rowText), filters: f, filterDollars: dollars(f), card: c, cardDollars: dollars(c), boardOffered: (bm.items ?? []).map((x: any) => x[1]), listHeads: lh }; });
 });
