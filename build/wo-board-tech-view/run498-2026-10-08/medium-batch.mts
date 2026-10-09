@@ -25,7 +25,7 @@ async function run(id: string, f: () => Promise<void>) {
 const toasts = () => p.evaluate(`[...document.querySelectorAll('.q-notification')].map(e => e.innerText.replace(/\\s+/g, ' ').trim())`) as Promise<string[]>;
 const nav = async (top: string, sub?: string) => { await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000);
   await p.locator('[data-test-id="button_desktop_nav_link"]').filter({ hasText: top }).first().click(); await p.waitForTimeout(4000);
-  if (sub) { const l = p.locator('a, .q-item, [role=link], .q-card, button').filter({ hasText: new RegExp('(^|\\s)' + sub.replace(/[()]/g, '\\$&') + '\\s*$') }).last(); await l.click(); await p.waitForTimeout(5000); } };
+  if (sub) { const l = p.getByText(sub, { exact: true }).last(); await l.click(); await p.waitForTimeout(5000); } };
 const table = async () => ({ rows: await p.evaluate(`[...document.querySelectorAll('tbody tr')].filter(r => r.getBoundingClientRect().height > 0).length`), first: await p.evaluate(`[...document.querySelectorAll('tbody tr')].slice(0, 4).map(r => r.innerText.replace(/\\s+/g, ' ').slice(0, 80))`), bottom: await p.locator('.q-table__bottom').first().innerText().catch(() => null), totals: (await p.locator('main, .q-page').first().innerText().catch(() => '')).match(/\$[\d,]+\.\d\d/g)?.slice(0, 4) ?? [] });
 /** open a filter by its label (a chip, a button or a field whose text starts with the label) */
 const filterEl = (label: string) => p.locator('button, .q-btn, .q-chip, .q-field, [data-test-id^="filter_chip_"]').filter({ hasText: new RegExp('^\\s*' + label, 'i') }).filter({ visible: true }).first();

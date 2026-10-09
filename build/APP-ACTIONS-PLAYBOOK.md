@@ -5887,9 +5887,10 @@ three wrong characterisations before it was found — see learning **L0233**.
   (an icon), so "not already ticked" cannot be read from the text.
 - **Production test accounts:** `/tmp/shopview/prod-login.env` is the QA lead's OWN account — use
   `PROD_ENVF=/tmp/shopview/prod-login-second.env` (a Service Advisor test account, locations Truck Hill 1 / Trucks Hill 2 / SANKAN).
-- **Side-menu links carry their icon's name in their text** (Reports: *autorenew Work In Progress*; Parts: the same), so
-  an anchored `^\s*Work In Progress\s*$` never matches. Match `(^|\s)<name>\s*$` and take the LAST match (the side menu
-  sits after the top menu in the page).
+- **Side-menu links carry their icon's name in their text with NO space** (Reports: text content *autorenewWork In
+  Progress*; Parts: the same), so neither `^\s*Work In Progress\s*$` nor `(^|\s)Work In Progress\s*$` matches (both
+  tried and failed on 2026-10-09). Use `page.getByText('<label>', { exact: true }).last()` — it matches the label's own
+  span — and take the LAST match (the side menu sits after the top menu in the page).
 - **Keyboard on Board View / Tech View (v26.40.8, measured 2026-10-09, `evidence/probe-kbd.json`):** Tab stops on ONE card
   per board (roving focus: the first card has `tabindex=0`, the rest none) — every other card and the column headers are
   reached with the ARROW keys (Down/Up within a column, Right/Left across, Up from the top card = the column header).
