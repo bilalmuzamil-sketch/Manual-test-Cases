@@ -51,3 +51,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | s9-batchA5 | C368144 — Lead Technician list scrolled to the TOP first (it opens at the current lead; Unassigned is first) |
 | medium4 + orgb3 | re-run of the reports/cards batch and organisation B after the sign-in filter-clear crashed them at 08:44 |
 | s9-fix5 | C97003 (scroll to the test columns first — Unassigned stays pinned on the left), C97012 (page wait raised to 90 s) |
+| kbd-fix2 | C368151 (focus read after each Enter on the group), C368152 (dialog walked by keyboard to the confirm button), C97020 (view-only user's card menu read by keyboard), C97022 (WOB_LIVE=1: the board updates by itself, no reload) |
