@@ -5896,3 +5896,6 @@ three wrong characterisations before it was found — see learning **L0233**.
   A Tab-only walk therefore "finds" one card and leaves the board; it is not evidence that the others are unreachable.
   Tech View: Tab stops on the first group header and its collapse button only; rows carry no tabindex. Use
   `kbd-batch.mts` (`walkBoard`, `arrowToCard`) rather than a Tab loop.
+- **Profile photo upload (sv10043):** initials (top right) > Edit Profile (`/profile`) has an `input[type=file]`; setting a
+  file there posts `POST /api/iam/upload-avatar`. The header avatar is an `<img>` from `/api/iam/view-avatar/<id>` on the
+  API host. A view-as page starts blank — open the app before clicking `profile_menu_button`.

@@ -159,6 +159,7 @@ const clickSearch = async (pg: Page) => { const box = pg.locator('[data-test-id=
 const RED = path.join(EV, 'zz-photo-red.png'), BLUE = path.join(EV, 'zz-photo-blue.png');
 const posts: string[] = []; const rec = (pg: Page) => pg.on('request', (r) => { if (r.method() !== 'GET' && /\/api\//.test(r.url())) posts.push(`${r.method()} ${r.url().replace(APP, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>')}`); });
 async function openEditProfile(pg: Page) {
+  if (!pg.url().startsWith(APP)) { await pg.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); }
   await pg.locator('[data-test-id="profile_menu_button"]').click(); await pg.waitForTimeout(800);
   const item = pg.locator('.q-menu .q-item, .q-menu a').filter({ hasText: /Edit Profile/i }).first();
   if (await item.count()) { await item.click(); } else { await pg.keyboard.press('Escape'); await pg.goto(APP + '/profile', { waitUntil: 'domcontentloaded' }); }
@@ -172,13 +173,16 @@ async function upload(pg: Page, file: string) {
   await pg.waitForTimeout(3000); return `input x${n}`;
 }
 const snap = async (pg: Page, sel: string, name: string) => { const l = pg.locator(sel).first(); if (!(await l.count())) return `no ${sel}`; await l.scrollIntoViewIfNeeded().catch(() => {}); await l.screenshot({ path: path.join(EV, `${name}.png`) }); return { file: `${name}.png`, src: await l.evaluate((e) => (e.querySelector('img') as any)?.getAttribute('src')?.replace(/[?#].*/, '').slice(-60) ?? null) }; };
-const HDR = '[data-test-id="profile_menu_button"]';
+const HDR = '[data-test-id="profile_menu_button"] .q-avatar, [data-test-id="profile_menu_button"] img';
+const imgState = (pg: Page, _sel: string) => pg.evaluate(async () => { const i = document.querySelector('[data-test-id="profile_menu_button"] img') as HTMLImageElement | null; if (!i) return 'no img';
+  let fetchStatus: any = null, type: any = null; try { const r = await fetch(i.src, { credentials: 'include' }); fetchStatus = r.status; type = r.headers.get('content-type'); } catch (e) { fetchStatus = String(e).slice(0, 80); }
+  return { complete: i.complete, naturalWidth: i.naturalWidth, fetchStatus, type, src: i.src.replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>').slice(-70) }; });
 
 await run('C368241', async () => { rec(p); const o: any = {};
   o.route = await openEditProfile(p); o.red = await upload(p, RED); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000);
-  o.before = await snap(p, HDR, 'C368241-avatar-before'); posts.length = 0;
+  o.before = await snap(p, HDR, 'C368241-avatar-before'); o.beforeImg = await imgState(p, HDR); posts.length = 0;
   await openEditProfile(p); o.blue = await upload(p, BLUE); o.uploadCalls = [...posts]; o.noReload = await snap(p, HDR, 'C368241-avatar-noreload');
-  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); o.after = await snap(p, HDR, 'C368241-avatar-after');
+  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); o.after = await snap(p, HDR, 'C368241-avatar-after'); o.afterImg = await imgState(p, HDR);
   await shot(p, 'C368241-page'); R.C368241 = o; });
 
 const photoTech = async () => { const t = (await person(a, 'ZZAUTOTEST Photo', `Tech ${stamp}`, { role: TECH_ROLE, email: `zz.wob.photo.${stamp}${D}`, clockable: true })).row; return t; };
@@ -192,7 +196,7 @@ const s44 = await mkSet('ZZAUTOTEST Photo Board', [{ co: 'Alpha Co', lead: { sta
 for (const id of ['C368242', 'C368243', 'C368244'] as const) await run(id, async () => { const o: any = R[id] ?? {}; const w = where[id];
   if (id === 'C368244') { await pins([PT.staff_id]); await goP(p, 'Board View', (s44 as any).q ?? ''); await toColumn(p, PT.staff_id).catch(() => {}); } else { await p.goto(APP + w.url, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); if (id === 'C368242') { const box = p.locator('input[type=search], input[placeholder*="Search" i]').first(); if (await box.count()) { await box.fill(`Tech ${stamp}`); await p.waitForTimeout(2500); } } }
   o.before = await snap(p, w.sel(), `${id}-avatar-before`); await shot(p, `${id}-before`); R[id] = o; });
-R.blueUpload = await asTechUpload(BLUE);
+await run('BLUE', async () => { R.blueUpload = await asTechUpload(BLUE); });
 for (const id of ['C368242', 'C368243', 'C368244'] as const) await run(id, async () => { const o: any = R[id] ?? {}; const w = where[id];
   if (id === 'C368244') { await goP(p, 'Board View', (s44 as any).q ?? ''); await toColumn(p, PT.staff_id).catch(() => {}); } else { await p.goto(APP + w.url, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); if (id === 'C368242') { const box = p.locator('input[type=search], input[placeholder*="Search" i]').first(); if (await box.count()) { await box.fill(`Tech ${stamp}`); await p.waitForTimeout(2500); } } }
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); if (id === 'C368244') await toColumn(p, PT.staff_id).catch(() => {});
