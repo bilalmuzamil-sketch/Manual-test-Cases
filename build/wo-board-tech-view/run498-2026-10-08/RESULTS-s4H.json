@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96964": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Locked Lead Tooltip: S10043-18005 Invoiced and S10043-18006 Paid, both led by Esther Howard (made by completing the line and the work order, then a real invoice; the Paid one then marked paid). Board View: both cards show a padlock sign after the work order number; its label reads 'The lead technician can't be changed once a work order is Invoiced or Paid.'. Card > More actions: 'Reassign lead technician' is greyed out and hovering it shows exactly 'The lead technician can't be changed once a work order is Invoiced or Paid.'. Tech View: the same padlock on both rows and the same greyed-out action with the same tooltip.",
+   "not_observed": "Hovering the padlock itself did not open a separate tooltip; its wording is carried as the padlock's label (noted as seen; the case only asks to write down any tooltip)."
+  },
+  "C96972": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Invoiced Elsewhere: S10043-18004, Complete, led by Esther Howard, shown in Board View (status 'Complete'). Without reloading the board, the work order was invoiced elsewhere (status now Invoiced; the card on the board still read Complete). Dragging the card to Ralph Edwards' column was refused: the card went back to Esther Howard's column and an alert read 'Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid.'. After a reload the card was in Esther Howard's column and the lead was still Esther Howard.",
+   "not_observed": "The alert was not closed by hand in this run."
+  }
+ }
+}

@@ -16,7 +16,8 @@
    "wo in_progress 201",
    "wo ready_for_review 201",
    "wo complete 201",
-   "invoice 500 [{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"23249668-be67-4871-80a5-e508",
+   "invoice 201",
+   "status now Invoiced",
    "mileage 201",
    "remove part request 200",
    "story 201",
@@ -25,8 +26,9 @@
    "wo in_progress 201",
    "wo ready_for_review 201",
    "wo complete 201",
-   "invoice 500 [{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"e5b52074-79e5-4ad8-9492-af70",
-   "paid 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "paid 201",
+   "status now Paid",
    "mileage 201",
    "remove part request 200",
    "story 201",
@@ -35,7 +37,8 @@
    "wo in_progress 201",
    "wo ready_for_review 201",
    "wo complete 201",
-   "invoice 500 [{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"3011f13b-d46b-4765-8195-9be7",
+   "invoice 201",
+   "status now Invoiced",
    "declined 201",
    "mileage 201",
    "remove part request 200",
@@ -47,20 +50,20 @@
    "wo complete 201"
   ],
   "set": {
-   "S10043-17982": "complete lead=Esther Howard",
-   "S10043-17981": "declined lead=Esther Howard",
-   "S10043-17980": "complete lead=none",
-   "S10043-17979": "complete lead=Esther Howard",
-   "S10043-17978": "complete lead=Esther Howard",
-   "S10043-17977": "approved lead=Esther Howard"
+   "S10043-18003": "complete lead=Esther Howard",
+   "S10043-18002": "declined lead=Esther Howard",
+   "S10043-18001": "invoiced lead=none",
+   "S10043-18000": "paid lead=Esther Howard",
+   "S10043-17999": "invoiced lead=Esther Howard",
+   "S10043-17998": "approved lead=Esther Howard"
   },
   "ids": {
-   "W1": "S10043-17977",
-   "W2": "S10043-17978",
-   "W3": "S10043-17979",
-   "W4": "S10043-17980",
-   "W5": "S10043-17981",
-   "W6": "S10043-17982"
+   "W1": "S10043-17998",
+   "W2": "S10043-17999",
+   "W3": "S10043-18000",
+   "W4": "S10043-18001",
+   "W5": "S10043-18002",
+   "W6": "S10043-18003"
   },
   "views": {
    "Board View": {
@@ -79,84 +82,69 @@
      "prompt": null
     },
     "invToRalph": {
-     "lead": "Ralph Edwards",
-     "message": [
-      "Lead technician updated"
-     ],
+     "lead": "Esther Howard",
+     "message": [],
      "prompt": null
     },
     "invToUnassigned": {
-     "lead": "Unassigned",
-     "message": [
-      "Lead technician removed"
-     ],
+     "lead": "Esther Howard",
+     "message": [],
      "prompt": null
     },
     "paidToRalph": {
-     "lead": "Ralph Edwards",
-     "message": [
-      "Lead technician updated"
-     ],
+     "lead": "Esther Howard",
+     "message": [],
      "prompt": null
     },
     "paidToUnassigned": {
-     "lead": "Unassigned",
-     "message": [
-      "Lead technician removed"
-     ],
+     "lead": "Esther Howard",
+     "message": [],
      "prompt": null
     },
     "inv4ToEsther": {
-     "lead": "Esther Howard",
-     "message": [
-      "Lead technician updated"
-     ],
+     "lead": "Unassigned",
+     "message": [],
      "prompt": null
     },
     "W2-inv-reorder": {
      "before": [
-      "S10043-17980",
-      "S10043-17977"
+      "S10043-17998",
+      "S10043-17999",
+      "S10043-18000"
      ],
      "afterReload": [
-      "S10043-17980",
-      "S10043-17978",
-      "S10043-17977"
+      "S10043-17999",
+      "S10043-17998",
+      "S10043-18000"
      ],
      "lead": "Esther Howard",
-     "message": [
-      "Lead technician updated"
-     ]
+     "message": []
     },
     "W3-paid-reorder": {
      "before": [
-      "S10043-17980",
-      "S10043-17978",
-      "S10043-17977"
+      "S10043-17999",
+      "S10043-17998",
+      "S10043-18000"
      ],
      "afterReload": [
-      "S10043-17980",
-      "S10043-17978",
-      "S10043-17979",
-      "S10043-17977"
+      "S10043-17999",
+      "S10043-18000",
+      "S10043-17998"
      ],
      "lead": "Esther Howard",
-     "message": [
-      "Lead technician updated"
-     ]
+     "message": []
     },
     "W4reorderUnassigned": {
      "before": [
-      "S10043-17977"
+      "S10043-18001",
+      "S10043-17998"
      ],
      "after": [
-      "S10043-17980",
-      "S10043-17977"
+      "S10043-18001",
+      "S10043-17998"
      ],
      "lead": "Unassigned",
-     "message": [
-      "Lead technician removed"
-     ]
+     "message": []
     }
    },
    "Tech View": {
@@ -175,83 +163,81 @@
      "prompt": null
     },
     "invToRalph": {
-     "lead": "Ralph Edwards",
-     "message": [
-      "Lead technician updated"
-     ],
+     "lead": "Esther Howard",
+     "message": [],
      "prompt": null
     },
     "invToUnassigned": {
-     "lead": "Unassigned",
-     "message": [
-      "Lead technician removed"
-     ],
+     "lead": "Esther Howard",
+     "message": [],
      "prompt": null
     },
     "paidToRalph": {
-     "lead": "Ralph Edwards",
-     "message": [
-      "Lead technician updated"
-     ],
+     "lead": "Esther Howard",
+     "message": [],
      "prompt": null
     },
     "paidToUnassigned": {
-     "lead": "Unassigned",
-     "message": [
-      "Lead technician removed"
-     ],
+     "lead": "Esther Howard",
+     "message": [],
      "prompt": null
     },
     "inv4ToEsther": {
-     "lead": "Esther Howard",
-     "message": [
-      "Lead technician updated"
-     ],
+     "lead": "Unassigned",
+     "message": [],
      "prompt": null
     },
     "W2-inv-reorder": {
      "before": [
-      "S10043-17979",
-      "S10043-17978",
-      "S10043-17977",
-      "S10043-17980",
-      "S10043-17981",
-      "S10043-17982"
+      "S10043-18001",
+      "lock",
+      "S10043-17999",
+      "lock",
+      "S10043-18000",
+      "lock",
+      "S10043-17998",
+      "S10043-18002",
+      "S10043-18003"
      ],
      "afterReload": [
-      "S10043-17979",
-      "S10043-17978",
-      "S10043-17977",
-      "S10043-17980",
-      "S10043-17981",
-      "S10043-17982"
+      "S10043-18001",
+      "lock",
+      "S10043-18000",
+      "lock",
+      "S10043-17999",
+      "lock",
+      "S10043-17998",
+      "S10043-18002",
+      "S10043-18003"
      ],
      "lead": "Esther Howard",
-     "message": [
-      "Lead technician updated"
-     ]
+     "message": []
     },
     "W3-paid-reorder": {
      "before": [
-      "S10043-17979",
-      "S10043-17978",
-      "S10043-17977",
-      "S10043-17980",
-      "S10043-17981",
-      "S10043-17982"
+      "S10043-18001",
+      "lock",
+      "S10043-18000",
+      "lock",
+      "S10043-17999",
+      "lock",
+      "S10043-17998",
+      "S10043-18002",
+      "S10043-18003"
      ],
      "afterReload": [
-      "S10043-17978",
-      "S10043-17979",
-      "S10043-17977",
-      "S10043-17980",
-      "S10043-17981",
-      "S10043-17982"
+      "S10043-18001",
+      "lock",
+      "S10043-17999",
+      "lock",
+      "S10043-18000",
+      "lock",
+      "S10043-17998",
+      "S10043-18002",
+      "S10043-18003"
      ],
      "lead": "Esther Howard",
-     "message": [
-      "Lead technician updated"
-     ]
+     "message": []
     },
     "declinedBack": {
      "lead": "Esther Howard",
@@ -270,19 +256,18 @@
    }
   },
   "woPage": {
-   "present": 1,
-   "disabled": true,
-   "text": "Esther Howard",
-   "menuOpened": 30
+   "present": 0,
+   "disabled": "n/a",
+   "text": null
   },
-  "serverRefusal": "201",
+  "serverRefusal": "409 [{\"error\":\"The lead technician can't be changed once a work order is Invoiced or Paid.\"}]",
   "final": {
-   "S10043-17982": "complete lead=Esther Howard",
-   "S10043-17981": "declined lead=Esther Howard",
-   "S10043-17980": "complete lead=Esther Howard",
-   "S10043-17979": "complete lead=Esther Howard",
-   "S10043-17978": "complete lead=Ralph Edwards",
-   "S10043-17977": "approved lead=Esther Howard"
+   "S10043-18003": "complete lead=Esther Howard",
+   "S10043-18002": "declined lead=Esther Howard",
+   "S10043-18001": "invoiced lead=none",
+   "S10043-18000": "paid lead=Esther Howard",
+   "S10043-17999": "invoiced lead=Esther Howard",
+   "S10043-17998": "approved lead=Esther Howard"
   }
  },
  "C96972": {
@@ -297,18 +282,18 @@
    "wo complete 201"
   ],
   "cardStatus": "Complete",
-  "invoiced": "500 [{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"c2028777-dcf3-40bd-a887-a6bd",
-  "statusNow": "complete",
+  "invoiced": "201",
+  "statusNow": "invoiced",
   "cardStatusStill": "Complete",
   "message": [
-   "Lead technician updated"
+   "Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid."
   ],
-  "column": "Ralph Edwards",
+  "column": "Esther Howard",
   "afterReload": {
    "lead": {
-    "S10043-17983": "complete lead=Ralph Edwards"
+    "S10043-18004": "invoiced lead=Esther Howard"
    },
-   "column": "Ralph Edwards"
+   "column": "Esther Howard"
   }
  },
  "C96964": {
@@ -321,7 +306,8 @@
    "wo in_progress 201",
    "wo ready_for_review 201",
    "wo complete 201",
-   "invoice 500 [{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"c68fa756-6a7d-4691-824b-e5ca",
+   "invoice 201",
+   "status now Invoiced",
    "mileage 201",
    "remove part request 200",
    "story 201",
@@ -330,60 +316,73 @@
    "wo in_progress 201",
    "wo ready_for_review 201",
    "wo complete 201",
-   "invoice 500 [{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"b3ccc830-9906-4c1e-b1e8-3b91",
-   "paid 400 [{\"error\":\"Complete work order cannot change its status again.\"}]"
+   "invoice 201",
+   "paid 201",
+   "status now Paid"
   ],
   "set": [
-   "S10043-17985 complete lead=Esther",
-   "S10043-17984 complete lead=Esther"
+   "S10043-18005 invoiced lead=Esther",
+   "S10043-18006 paid lead=Esther"
   ],
   "Board View WO-1 Invoiced": {
    "icons": [
+    "|board_card_lock|The lead technician can't be changed once a work order is Invoiced or Paid.",
     "more_horiz||"
    ],
-   "lockTooltip": "no lock icon in the card/row",
+   "lockTooltip": [],
    "menuItem": {
-    "disabled": false,
+    "disabled": true,
     "text": "Reassign lead technician"
    },
-   "menuTooltip": []
+   "menuTooltip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ]
   },
   "Board View WO-2 Paid": {
    "icons": [
+    "|board_card_lock|The lead technician can't be changed once a work order is Invoiced or Paid.",
     "more_horiz||"
    ],
-   "lockTooltip": "no lock icon in the card/row",
+   "lockTooltip": [],
    "menuItem": {
-    "disabled": false,
+    "disabled": true,
     "text": "Reassign lead technician"
    },
-   "menuTooltip": []
+   "menuTooltip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ]
   },
   "Tech View WO-1 Invoiced": {
    "icons": [
     "location_on||",
+    "|tech_view_row_lock|The lead technician can't be changed once a work order is Invoiced or Paid.",
     "content_copy||",
     "more_horiz||"
    ],
-   "lockTooltip": "no lock icon in the card/row",
+   "lockTooltip": [],
    "menuItem": {
-    "disabled": false,
+    "disabled": true,
     "text": "Reassign lead technician"
    },
-   "menuTooltip": []
+   "menuTooltip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ]
   },
   "Tech View WO-2 Paid": {
    "icons": [
     "location_on||",
+    "|tech_view_row_lock|The lead technician can't be changed once a work order is Invoiced or Paid.",
     "content_copy||",
     "more_horiz||"
    ],
-   "lockTooltip": "no lock icon in the card/row",
+   "lockTooltip": [],
    "menuItem": {
-    "disabled": false,
+    "disabled": true,
     "text": "Reassign lead technician"
    },
-   "menuTooltip": []
+   "menuTooltip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ]
   }
  }
 }
