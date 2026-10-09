@@ -140,12 +140,14 @@ await run('C96986', async () => {
     return { s1, s2, techHeads: h, card: c, pref: { tech: ((await a.get(PREF)).body?.data?.value ?? {}).techViewColumns, board: ((await a.get(PREF)).body?.data?.value ?? {}).boardFields } }; });
   R.C96986.setOff = await roleSetFinancial(VIEW_ROLE, false);
   R.C96986.withoutFinance = await asUser(nate, async (pg) => {
+    // pin Esther Howard (the lead) for this person so her group / column is drawn at the top
+    await a.put(PREF, { value: { ...((await a.get(PREF)).body?.data?.value ?? {}), pinnedTechnicianIds: [ES.staff_id] } });
     await go('Tech View', n, pg); const h = await heads(pg); const m = await menu('Tech View', pg); await close(pg); await shot(pg, 'C96986-techview');
-    const rowText = await pg.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_row_"]')].map(r => r.innerText.replace(/\\s+/g, ' ')).join(' | ')`);
+    const rowText = await pg.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_row_"]')].map(r => r.innerText.replace(/\\s+/g, ' ')).join(' | ')`); const rowFound = rowText.includes(w[0].number);
     const f = await filters(pg);
     await display(pg, 'Board View'); await pg.waitForTimeout(1500); const c = await cardFound(pg, wo); await shot(pg, 'C96986-board'); const bm = await menu('Board View', pg); await close(pg);
     await display(pg, 'List'); await pg.waitForTimeout(1500); const lh = await heads(pg);
-    return { techHeads: h, techOffered: (m.items ?? []).map((x: any) => x[1]), techRowDollars: dollars(rowText), filters: f, filterDollars: dollars(f), card: c, cardDollars: dollars(c), boardOffered: (bm.items ?? []).map((x: any) => x[1]), listHeads: lh }; });
+    return { rowFound, rowText: rowText.slice(0, 300), techHeads: h, techOffered: (m.items ?? []).map((x: any) => x[1]), techRowDollars: dollars(rowText), filters: f, filterDollars: dollars(f), card: c, cardDollars: dollars(c), boardOffered: (bm.items ?? []).map((x: any) => x[1]), listHeads: lh }; });
 });
 
 // put the role back exactly as it was, and read it back

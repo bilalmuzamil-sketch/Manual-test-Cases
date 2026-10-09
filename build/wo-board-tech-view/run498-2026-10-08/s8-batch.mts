@@ -82,8 +82,10 @@ async function story(line: string, text: string, tag: string) {
   const edit = p.locator(`[data-test-id="button_tech_story_edit_${line}"]`);
   const row = p.locator(`[data-test-id="line_tech_story_${line}"]`);
   if (await edit.count() && await edit.isVisible()) { await edit.click(); o.opened = 'pencil'; } else { await row.click(); o.opened = 'story row'; }
+  // wait for the Tech Story window; click again once if it did not open
+  for (let i = 0; i < 2 && !(await p.locator('.q-dialog textarea').count()); i++) { await p.waitForTimeout(2000); if (!(await p.locator('.q-dialog textarea').count())) { if (o.opened === 'pencil') await edit.click(); else await row.click(); } }
   await p.waitForTimeout(1500); await shot(p, `C96998-${tag}-open`);
-  const box = p.locator('.q-dialog textarea:visible, .q-dialog input[type=text]:visible, textarea:visible').first();
+  const box = p.locator('.q-dialog textarea').first();
   o.box = await box.count();
   if (!o.box) return o;
   // as a person edits: click into the box, select everything, type the new text
