@@ -4165,3 +4165,9 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     helper told to "walk" cases will run them. **If something seems to need more than confirming labels and routes, STOP AND ASK first, with
     the time it would take.** Worked overstep, same day: shift-prompt experiments, reading Parts/Returns results, trying to delete staff and
     seed a deleted-user line, a helper running all 83 regression cases end to end — most of a day spent outside the lane.
+    **ADDED 2026-10-09 (QA lead, permanent) — ASK, THEN ONLY ON YES:** Verbatim: *"Also when you are build verifying something and you are
+    unable to find something and finding that requires you to go beyond your limits ASK ME with the time it would take to complete if I say YES
+    only then proceed other wise stay in limit and lane."* So: when a label, button, route or setting cannot be found within the lane, and
+    finding it would need more (creating data, walking a process, clocking time, anything past opening and reading screens), ASK him — what
+    is missing, what you would do, and how long it would take — and proceed ONLY on his YES. No answer or NO ⇒ stay in the lane: keep the
+    case's wording and report that item plainly as not seen on the build. (A refine pass he asked for is different — skill 21.)
