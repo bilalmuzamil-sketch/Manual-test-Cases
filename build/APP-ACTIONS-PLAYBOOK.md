@@ -5813,3 +5813,64 @@ three wrong characterisations before it was found — see learning **L0233**.
 - **Completing a line needs the work order's mileage first:** `POST /api/work-orders/change-mileage
   {work_order_id, mileage:'123456'}` (a STRING — a number answers 500), else the line answers 400 "Add the
   mileage to the work order before completing it."
+
+#### WO Board — FAST RE-RUN RECIPE (everything learned running run 498, 2026-10-08/09; harness in `build/wo-board-tech-view/run498-2026-10-08/`)
+**Start here; each line below cost at least one failed attempt.**
+- **Run as our own test admin, never as "Admin ShopView".** Work Orders choices (pins, columns, fields, density,
+  technician order) are saved PER USER and someone else uses the Admin ShopView login on this branch — their pins
+  changed under a running batch. `runner.mts asRunner()` signs in once, switches to "ZZ WOB Runner" (Admin role, Time
+  Clock off so it is never a technician column) and works in a page carrying that user's own storage. **After the first
+  switch every call must go through the runner's own page** — a switch renews the session cookie and the sign-in page's
+  older copy answers 401. Take other people in turn with `viewAs(..., RUN.toRunner)`; two "browsers" for two people =
+  open the second person's page, switch back, act, switch to them again: their unrefreshed page acts as a stale board.
+- **One queue, one session at a time.** Never run two batches at once (a switch-user in one changes the other's
+  identity). Chain them in one script (`master*.sh` pattern: `ONLY=<case ids> wob.sh <batch>.mts`, `echo EXIT=`). A
+  container restart kills the queue — check `m-*.log` for `EXIT=` and restart from the first unfinished batch.
+- **Test data, fast and right:** one customer PER work order (`<prefix> <runNo> Alpha Co` …) so the List's
+  customer-name order is known; lines added BEFORE the lead follow the lead (`derivedFromLeadTech`), lines added after
+  have no technician. Work orders need a **contact** (`work-orders/create … customer_id:<contactId>`) or invoicing
+  answers 500. Canned lines bring **vendor part requests**, and Complete is refused ("All vendor parts must be received
+  before completing the work order.") until they are cancelled: `POST /api/work-orders/part/remove-request/{id}`.
+  Order: mileage (STRING) → remove part requests → `lines/change-story` → `lines/change-status complete` →
+  `change-status in_progress → ready_for_review → complete` → `invoices/create {work_order_id, issue_date, due_date}`
+  → `change-status paid`. Paid is refused from Complete; Estimate = do not approve. A work order could NOT be created on
+  an asset after `vehicles/change` reshaped it (500) — create the work order first, reshape after.
+- **Assets:** `vehicles/change` takes `vehicle_maker_id`/`vehicle_model_id` (borrow from a `GET /api/vehicles` row whose
+  `vehicle_make`/`vehicle_model` NAMES match — those are the name fields). A VIN once set cannot be removed ("Cannot
+  remove VIN form vehicle"): make the asset without one. Cards did not show make/model set this way — **make assets
+  for card checks through the New Asset form (UI)**, as the cases say.
+- **Drags:** scroll the card into view first (an off-screen card "drags" and nothing happens — looks like a refusal);
+  always drag a card that SHOULD move (Declined/Complete) first as the positive control. Board columns off to the right
+  are not drawn: pin the technicians (runner's pref `pinnedTechnicianIds`) or scroll `[data-test-id="board_view_scroller"]`.
+  Tech View: drop on `tech_view_group_empty_<id>` when the group is empty. Column/group drag = the six-dot
+  `drag_indicator` icon in the header. Network-off cannot be used (the branch's "sleeping" page takes over): refuse the
+  save with `route.fulfill(500)` on `board-move|change-lead-technician`.
+- **Menus and fields:** List `button_column_selection` (`toggle_column_<camel>`), Tech View
+  `button_tech_view_column_selection` (`toggle_tech_view_column_<snake>`), Board `button_board_fields_selection`
+  (`toggle_board_field_<snake>`); density `button_density` → `option_density_compact|regular|comfortable` (selected
+  shows a check). Status filter `filter_chip_status` (options incl. "In progress", "Imported", "Clear selection" —
+  match unanchored, items carry icon text). Lead box on the work order page `select_lead_technician`: type the name's
+  START ("ZZAUTOTEST Ben", not "Ben"). Option "Unassigned" — match unanchored too.
+- **Work order page:** line name → Edit Line window (Add Technician ADDS, Save & Close); story row
+  `line_tech_story_<line>` / pencil `button_tech_story_edit_<line>` open "Tech Story: …" (scope the textarea to
+  `.q-dialog` — the AI line builder has its own textarea); `button_action_complete_line_<line>` opens the completion
+  windows ("Tech stories", then "Receive parts" → "Complete Line"); split = tick `line_checkbox_<line>` →
+  `button_line_bulk_action` → "Split work order". The New Work Order window has only Customer and Asset (no lead).
+- **History:** work order `GET /api/work-orders/{id}/history`; a LINE's own Audit log
+  `GET /api/work-orders/lines/{lineId}/history`.
+- **Schedule edits** (what the Schedule sends): `PATCH /api/schedule/shifts/{id}` with `startsAt` (move),
+  `startsAt + durationMinutes` (resize — `endsAt` alone is ignored), `staffId + reassign:true` (reassign);
+  `scope:'shift'`. Delete `DELETE /api/schedule/shifts/{id}?scope=shift`.
+- **Clocks:** check-in as the tech `{task_id:<line task id>, line_id, work_order_id}`; check-out needs the RUNNING
+  record's id from `my-current-task` (`technician_task.id`). Stop every clock you start.
+- **Notifications** page `/notifications` lists note mentions; positive control = `POST /api/note/create {type:'work_order',
+  reference_id, content:'@Name …', mentions:[{referenceId:<user id>, label}]}` (appears at once).
+- **Roles:** `seeFinancialData` is a cross toggle (`PUT /api/roles/{id}` with `fe_permissions` as ids + `cross_toggles`);
+  the org role list can come back empty — take role ids from staff rows (`roleIds()`), or from a known person's row.
+  Save the role first, put it back, read it back.
+- **Locations:** departments are shared across locations; enrolment is a "Location/Department" pair (staff rows show
+  `departments:["Staging Heavy Duty - 9919/Shop Time (Shop hand)"]`). `staff/{id}/change {departments:[ids]}` did NOT
+  add a second location → use the Staff form (UI) or a person already enrolled at both (Ayesha Khan: Heavy Duty and
+  Lethbridge). Switch with the location menu (initials → orange location button → pick).
+- **Analytics:** the harness blocks Google Analytics by default; un-route it and read the events from the page's own
+  requests (`en=` parameter) — DebugView is not needed.
