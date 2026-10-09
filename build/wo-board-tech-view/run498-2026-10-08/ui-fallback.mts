@@ -58,7 +58,7 @@ await run('loc2', async () => {
   await p.locator('header').getByText(/^[A-Z]{2}$/).last().click(); await p.waitForTimeout(1500);
   const cur = p.locator('.q-menu').getByText(/ - \d{3,5}$/).first(); R.loc2.menuButton = await cur.count();
   if (await cur.count()) { await cur.click(); await p.waitForTimeout(1500); R.loc2.options = await p.locator('.q-menu .q-item').allInnerTexts();
-    await p.locator('.q-menu .q-item').filter({ hasText: 'Lethbridge' }).first().click().catch(() => {}); await p.waitForTimeout(6000); }
+    await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: 'Lethbridge' }).first().click().catch(() => {}); await p.waitForTimeout(6000); }
   await p.keyboard.press('Escape').catch(() => {}); R.loc2.at = await where(); await shot(p, 'ui-loc2');
   if (/lethbridge/i.test(String(R.loc2.at))) {
     const sw = async (btn: string) => { await p.locator(`[data-test-id="${btn}"]`).click(); await p.waitForTimeout(1000); const r = await p.evaluate(`[...document.querySelectorAll('.q-menu [data-test-id^="toggle_"]')].filter(e => (e.querySelector('[role=switch]') || e).getAttribute('aria-checked') === 'true').map(e => e.innerText.trim())`); await p.keyboard.press('Escape'); await p.waitForTimeout(500); return r; };

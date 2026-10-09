@@ -268,7 +268,7 @@ await run('C97022', async () => {
   for (let i = 0; i < 8; i++) { const cur = await p.evaluate(`document.activeElement?.innerText?.trim()`); if (/Reassign lead technician/.test(String(cur))) break; await p.keyboard.press('ArrowDown'); await p.waitForTimeout(250); }
   await p.keyboard.press('Enter'); await p.waitForTimeout(1500); await p.keyboard.press('Escape'); await p.waitForTimeout(1000);
   o.step4 = await focusInfo(); await shot(p, 'C97022-step4');
-  await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); await p.locator('.q-menu .q-item').filter({ hasText: /Approved/ }).first().click(); await p.waitForTimeout(1200); await p.keyboard.press('Escape'); await p.waitForTimeout(1200);
+  await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Approved/ }).first().click(); await p.waitForTimeout(1200); await p.keyboard.press('Escape'); await p.waitForTimeout(1200);
   await clickSearch(p); const g = await tabTo(p, (f) => f.raw === `board_card_${s.w['Golf Co'].id}`); o.golfFocused = g.found;
   o.golfToInProgress = say(await a.post('/api/work-orders/change-status', { id: s.w['Golf Co'].id, status: 'in_progress' }));
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); o.step5 = await focusInfo(); await p.keyboard.press('Tab'); await p.waitForTimeout(300); o.step5afterTab = await focusInfo();
@@ -313,7 +313,7 @@ const IDS4: Record<string, string> = { Unassigned: 'unassigned', Ana: ANA.staff_
 const boardCounts = async (set: any) => { const cs = await boardCols(p); return Object.fromEntries(Object.entries(IDS4).map(([k, id]) => { const c = cs.find((x) => x.id === id); return [k, c ? `${c.count}/${c.cards.length}` : 'not drawn']; })); };
 const techCounts = async (set: any) => { const gs = await groups(p); return Object.fromEntries(Object.entries(IDS4).map(([k, id]) => { const g = gs.find((x) => x.id === id); return [k, g ? `${g.count}/${g.rows.length}` : 'not drawn']; })); };
 const listCount = async () => p.evaluate(`[...document.querySelectorAll('tbody tr')].filter(r => /S\\d+-\\d+/.test(r.innerText)).length`);
-const statusOnly = async (label: string | null) => { await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); if (label) await p.locator('.q-menu .q-item').filter({ hasText: new RegExp(label, 'i') }).first().click(); else await p.locator('.q-menu').getByText('Clear selection').first().click(); await p.waitForTimeout(1500); await p.keyboard.press('Escape'); await p.waitForTimeout(1500); await expandSmallGroups(p); };
+const statusOnly = async (label: string | null) => { await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); if (label) await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: new RegExp(label, 'i') }).first().click(); else await p.locator('.q-menu').getByText('Clear selection').first().click(); await p.waitForTimeout(1500); await p.keyboard.press('Escape'); await p.waitForTimeout(1500); await expandSmallGroups(p); };
 
 await run('C97030', async () => {
   await pins([ANA.staff_id, BEN.staff_id, CAL.staff_id]);
@@ -359,7 +359,7 @@ await run('C97032', async () => {
 
 await run('C154648', async () => {
   await goP(p, 'List', ''); const o: any = {};
-  await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); const imp = p.locator('.q-menu .q-item').filter({ hasText: /Imported/ }).first(); o.importedOptionInList = await imp.innerText().catch(() => null);
+  await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); const imp = p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Imported/ }).first(); o.importedOptionInList = await imp.innerText().catch(() => null);
   await imp.click(); await p.waitForTimeout(1500); await p.keyboard.press('Escape'); await p.waitForTimeout(1500);
   for (const l of ['Tech View', 'Board View']) { const b = p.locator(`[aria-label="${l}"]`).first(); await b.hover(); await p.waitForTimeout(1000);
     o[l] = { disabled: await b.evaluate((e) => e.hasAttribute('disabled') || e.getAttribute('aria-disabled') === 'true' || e.classList.contains('disabled')), tooltip: await p.evaluate(`[...document.querySelectorAll('.q-tooltip')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.trim())`) };
@@ -367,7 +367,7 @@ await run('C154648', async () => {
   o.listRowsWhileImported = await listCount(); await shot(p, 'C154648-list-imported');
   await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); await p.locator('.q-menu').getByText('Clear selection').first().click(); await p.waitForTimeout(1200); await p.keyboard.press('Escape');
   for (const l of ['Tech View', 'Board View']) { await display(p, l); await p.waitForTimeout(1500); await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900);
-    const it = p.locator('.q-menu .q-item').filter({ hasText: /Imported/ }).first(); o[`${l} imported option`] = { disabled: await it.evaluate((e) => e.getAttribute('aria-disabled') === 'true' || e.classList.contains('disabled') || e.classList.contains('q-item--disabled')).catch(() => null), text: await it.innerText().catch(() => null) };
+    const it = p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Imported/ }).first(); o[`${l} imported option`] = { disabled: await it.evaluate((e) => e.getAttribute('aria-disabled') === 'true' || e.classList.contains('disabled') || e.classList.contains('q-item--disabled')).catch(() => null), text: await it.innerText().catch(() => null) };
     await it.click({ force: true }).catch(() => {}); await p.waitForTimeout(1000); o[`${l} imported option`].ticked = await it.evaluate((e) => !!e.querySelector('[aria-checked=true], .q-checkbox__inner--truthy')).catch(() => null); await p.keyboard.press('Escape'); await p.waitForTimeout(800); }
   R.C154648 = o;
 });
@@ -416,7 +416,7 @@ await run('C368159', async () => {
   // browser 2: the work order page, Lead Technician -> Ben Bravo
   const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${s.w['Site Co'].id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(6000);
   await pg.locator('[data-test-id="select_lead_technician"]').click(); await pg.waitForTimeout(1000); await pg.keyboard.type('ZZAUTOTEST Ben'); await pg.waitForTimeout(1200);
-  await pg.locator('.q-menu .q-item').filter({ hasText: 'Ben Bravo' }).first().click(); await pg.waitForTimeout(3000); await pg.close();
+  await pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: 'Ben Bravo' }).first().click(); await pg.waitForTimeout(3000); await pg.close();
   o.leadAfterB2 = await leadOf(s, 'Site Co');
   // browser 1, stale page: toggle On Site
   const tr = p.locator('tbody tr').filter({ hasText: s.w['Site Co'].number }); await tr.locator('[data-test-id="button_vehicle_here_toggle"]').first().click(); await p.waitForTimeout(2500);

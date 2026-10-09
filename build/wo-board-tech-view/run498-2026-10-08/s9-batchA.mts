@@ -188,7 +188,7 @@ await run('C97007', async () => {
   o.step7 = await col(BEN.staff_id, s);
   const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${s.w['Abbey Co'].id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(6000);
   await pg.locator('[data-test-id="select_lead_technician"]').click(); await pg.waitForTimeout(1000); await pg.keyboard.type('ZZAUTOTEST Ben'); await pg.waitForTimeout(1200);
-  await pg.locator('.q-menu .q-item').filter({ hasText: 'Ben Bravo' }).first().click(); await pg.waitForTimeout(3000); await pg.close();
+  await pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: 'Ben Bravo' }).first().click(); await pg.waitForTimeout(3000); await pg.close();
   await go('Board View', s.q); o.step9 = await col(BEN.staff_id, s);
   await drag(p, card(s, 'Echo Co'), card(s, 'Delta Co'), 4); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
   o.step10 = await col(BEN.staff_id, s); await shot(p, 'C97007-board');
@@ -248,7 +248,7 @@ await run('C97013', async () => {
   await pins([ANA.staff_id]);
   const s = await mkSet('ZZAUTOTEST F3 Filtered Reorder', [{ co: 'Alpha Co', lead: ANA, status: 'in_progress' }, { co: 'Bravo Co', lead: ANA }, { co: 'Charlie Co', lead: ANA, status: 'in_progress' }, { co: 'Delta Co', lead: ANA }]);
   const status = async (what: 'In progress' | 'clear') => { await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(1000);
-    if (what === 'clear') await p.locator('.q-menu').getByText('Clear selection').first().click(); else await p.locator('.q-menu .q-item').filter({ hasText: /In progress/i }).first().click();
+    if (what === 'clear') await p.locator('.q-menu').getByText('Clear selection').first().click(); else await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /In progress/i }).first().click();
     await p.waitForTimeout(1500); await p.keyboard.press('Escape'); await p.waitForTimeout(1500); await expandSmallGroups(p); };
   await go('Tech View', s.q); const o: any = { step4: await grp(ANA.staff_id, s) };
   await status('In progress'); o.step5 = await grp(ANA.staff_id, s);
@@ -271,7 +271,7 @@ await run('C368144', async () => {
   await p.locator('[data-test-id="option_lead_technician_unassigned"]').click(); await p.locator('[data-test-id="button_confirm_reassign_lead_technician"]').click(); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1200);
   o.step5 = await toasts(p); o.step6 = await col('unassigned', s);
   const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${s.w['Alpha Co'].id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(6000);
-  await pg.locator('[data-test-id="select_lead_technician"]').click(); await pg.waitForTimeout(1200); await pg.locator('.q-menu .q-item').filter({ hasText: /Unassigned/ }).first().click(); await pg.waitForTimeout(3000); await pg.close();
+  await pg.locator('[data-test-id="select_lead_technician"]').click(); await pg.waitForTimeout(1200); await pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Unassigned/ }).first().click(); await pg.waitForTimeout(3000); await pg.close();
   await go('Board View', s.q); o.step8 = await col('unassigned', s);
   await go('Tech View', s.q); o.step9 = await grp('unassigned', s);
   R.C368144 = o;
@@ -287,8 +287,8 @@ await run('C368145', async () => {
   const bw = s.w['Bravo Co'].id; await mkLine(bw, 2); const ls = await linesRaw(bw); o.lines = ls.length;
   await p.goto(`${APP}/workorders/${bw}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
   await p.locator(`[data-test-id="line_checkbox_${ls[ls.length - 1].line_id}"]`).click(); await p.waitForTimeout(800);
-  await p.locator('[data-test-id="button_line_bulk_action"]').click(); await p.waitForTimeout(1000); o.bulkMenu = await p.locator('.q-menu .q-item').allInnerTexts();
-  await p.locator('.q-menu .q-item').filter({ hasText: /Split work order/i }).first().click(); await p.waitForTimeout(2500);
+  { const bb = p.locator('[data-test-id="button_line_bulk_action"]'); if (await bb.count()) await bb.click(); else await p.locator('button').filter({ hasText: /^\s*More/ }).first().click(); } await p.waitForTimeout(1000); o.bulkMenu = await p.locator('.q-menu .q-item').allInnerTexts();
+  await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Split work order/i }).first().click(); await p.waitForTimeout(2500);
   const dlg = p.locator('.q-dialog:visible'); o.splitDialog = (await dlg.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 300); await shot(p, 'C368145-split-dialog');
   const go2 = dlg.locator('button').filter({ hasText: /split|confirm|create|continue/i }).last(); if (await go2.count()) { await go2.click(); await p.waitForTimeout(4000); }
   o.toasts = await toasts(p); o.urlAfter = p.url().replace(APP, '');

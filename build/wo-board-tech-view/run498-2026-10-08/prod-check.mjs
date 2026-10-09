@@ -14,9 +14,9 @@ const api = async (m, u, body) => { const r = await ctx.request.fetch(`https://a
 const rows = (b) => { const d = b?.data; return Array.isArray(d) ? d : d?.collection ?? d?.work_orders ?? d?.workOrders ?? []; };
 const step = async (k, f) => { try { await f(); } catch (e) { R[k] = { ...(R[k] || {}), error: String(e?.message || e).slice(0, 300) }; await shot(`${k}-error`); } console.log(t(), k, JSON.stringify(R[k]).slice(0, 1500)); save(); };
 
-await step('SHAPE', async () => { const l = await api('GET', '/api/work-orders?pagination[rowsPerPage]=5'); const d = l.body?.data; R.SHAPE = { top: d && !Array.isArray(d) ? Object.keys(d) : 'array', row: rows(l.body)[0] ? Object.entries(rows(l.body)[0]).map(([k, v]) => k + '=' + (typeof v === 'object' ? JSON.stringify(v)?.slice(0, 40) : String(v).slice(0, 20))).join(' | ').slice(0, 1500) : null };
+if (!process.env.ONLY_D || process.env.ONLY_D.includes('SHAPE')) await step('SHAPE', async () => { const l = await api('GET', '/api/work-orders?pagination[rowsPerPage]=5'); const d = l.body?.data; R.SHAPE = { top: d && !Array.isArray(d) ? Object.keys(d) : 'array', row: rows(l.body)[0] ? Object.entries(rows(l.body)[0]).map(([k, v]) => k + '=' + (typeof v === 'object' ? JSON.stringify(v)?.slice(0, 40) : String(v).slice(0, 20))).join(' | ').slice(0, 1500) : null };
   const w = rows(l.body)[0]; if (w) { const x = await api('GET', `/api/work-orders/lines/${w.id}`); const xd = x.body?.data; R.SHAPE.lines = { status: x.status, top: xd && !Array.isArray(xd) ? Object.keys(xd) : 'array', first: JSON.stringify(rows(x.body)[0] ?? xd)?.replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>').slice(0, 1500) }; } });
-await step('D10', async () => { const o = {};
+if (!process.env.ONLY_D || process.env.ONLY_D.includes('D10')) await step('D10', async () => { const o = {};
   const l = await api('GET', '/api/work-orders?pagination[rowsPerPage]=50'); const ws = rows(l.body); o.listStatus = l.status; o.listEstimateKeys = ws[0] ? Object.keys(ws[0]).filter((k) => /estim|hour/i.test(k)) : [];
   o.samples = [];
   for (const w of ws.slice(0, 50)) { const ls = rows((await api('GET', `/api/work-orders/lines/${w.id}`)).body); const est = ls.map((x) => Object.fromEntries(Object.entries(x).filter(([k]) => /estim|hour/i.test(k)))); const has = est.some((e) => Object.values(e).some((v) => Number(v) > 0));
@@ -33,17 +33,18 @@ await step('D8', async () => { const o = {};
   if (!wo) { o.err = 'no approved/in progress work order with a line'; R.D8 = o; return; }
   o.wo = wo.number; o.lineName = line.name ?? line.line_name ?? line.title; o.lineKeys = Object.keys(line).join(',').slice(0, 300);
   const lh = async () => { const r = await api('GET', `/api/work-orders/lines/${line.line_id ?? line.id}/history`); const h = r.body?.data?.history ?? r.body?.data?.collection ?? r.body?.data ?? []; return { status: r.status, n: Array.isArray(h) ? h.length : -1, top: (Array.isArray(h) ? h : []).slice(0, 3).map((x) => `${x.eventName ?? x.event ?? '?'} ${x.originalLineTechName ?? ''}->${x.newLineTechName ?? ''}`) }; };
-  o.before = await lh();
+  const wh = async () => { const r = await api('GET', `/api/work-orders/${wo.id}/history`); const h = r.body?.data?.history ?? r.body?.data ?? []; return { status: r.status, n: Array.isArray(h) ? h.length : -1, top: (Array.isArray(h) ? h : []).slice(0, 3).map((x) => `${x.eventName ?? '?'} ${x.originalLineTechName ?? ''}->${x.newLineTechName ?? ''}`) }; };
+  o.before = await lh(); o.woBefore = await wh();
   await p.goto(`${APP}/workorders/${wo.id}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(9000);
   await p.getByText(String(o.lineName).trim(), { exact: false }).first().click(); await p.waitForTimeout(3000);
   const dlg = p.locator('.q-dialog').last(); o.dialog = { open: await dlg.isVisible().catch(() => false), labels: await dlg.evaluate((e) => [...e.querySelectorAll('.q-field__label, label')].map((x) => x.innerText.trim()).filter(Boolean).slice(0, 20)).catch(() => []) };
   await shot('D8-prod-editline-open');
   const fld = dlg.locator('.q-field').filter({ hasText: /technician/i }).first();
-  if (await fld.count()) { await fld.click(); await p.waitForTimeout(1000); const opts = p.locator('.q-menu .q-item'); o.optionCount = await opts.count(); const pick = opts.first(); o.picked = (await pick.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 40); await pick.click(); await p.waitForTimeout(800);
+  if (await fld.count()) { await fld.click(); await p.waitForTimeout(1000); const opts = p.locator('.q-menu .q-item'); o.optionCount = await opts.count(); o.options = (await opts.allInnerTexts()).map((x) => x.replace(/\s+/g, ' ').slice(0, 40)); const idx = o.options.findIndex((x) => !/^\s*check\b/.test(x)); o.pickIndex = idx; const pick = opts.nth(Math.max(0, idx)); o.picked = (await pick.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 40); await pick.click(); await p.waitForTimeout(800);
     await dlg.locator('.q-card__section, .text-h6').first().click().catch(() => {}); await shot('D8-prod-editline-picked');
     await dlg.locator('button').filter({ hasText: /Save & Close|^\s*Save\s*$/i }).last().click(); await p.waitForTimeout(4000); o.toasts = await p.evaluate(() => [...document.querySelectorAll('.q-notification')].map((e) => e.innerText.replace(/\s+/g, ' ')));
   } else o.noTechField = true;
-  o.after = await lh(); R.D8 = o; });
+  o.after = await lh(); o.woAfter = await wh(); o.lineAfter = JSON.stringify(rows((await api('GET', `/api/work-orders/lines/${wo.id}`)).body).find((x) => (x.line_id ?? x.id) === (line.line_id ?? line.id))?.tasks?.map((t) => `${t.first_name} ${t.last_name}`) ?? null); R.D8 = o; });
 
 await step('D2', async () => { const o = {};
   await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000);
@@ -51,11 +52,11 @@ await step('D2', async () => { const o = {};
   if (!o.found) { await shot('D2-prod-no-toggle'); R.D2 = o; return; }
   await atm.click(); await p.waitForTimeout(3000); o.urlOn = p.url().replace(APP, ''); o.onLooks = await atm.evaluate((e) => e.className + ' ' + (e.getAttribute('aria-pressed') ?? e.getAttribute('aria-checked') ?? '')); await shot('D2-prod-on');
   await p.locator('[data-test-id="profile_menu_button"]').click(); await p.waitForTimeout(1200); o.menu = await p.evaluate(() => [...document.querySelectorAll('.q-menu .q-item, .q-menu button')].map((e) => e.innerText.replace(/\s+/g, ' ').trim()).filter(Boolean).slice(0, 20)); await shot('D2-prod-menu');
-  const before = new Set(o.menu); const locBtn = p.locator('.q-menu .q-btn, .q-menu button').filter({ hasText: /Trucks Hill/ }); o.locControls = await locBtn.evaluateAll((es) => es.map((e) => e.tagName + ':' + e.innerText.replace(/\s+/g, ' ').trim()));
+  const before = new Set(o.menu); const locBtn = p.locator('.q-menu').getByText(/Hill [0-9]/); o.locControls = await locBtn.evaluateAll((es) => es.map((e) => e.tagName + ':' + e.innerText.replace(/\s+/g, ' ').trim()));
   await locBtn.last().click(); await p.waitForTimeout(2000);
   o.choices = await p.evaluate(() => [...document.querySelectorAll('.q-menu .q-item, .q-dialog .q-item, .q-dialog button')].map((e) => e.innerText.replace(/\s+/g, ' ').trim()).filter(Boolean).slice(0, 20)); await shot('D2-prod-choices');
-  const fresh = o.choices.filter((c) => !before.has(c) && !/Trucks Hill 2|Light|Dark|Logout|Settings|Timesheets|Portal|Billing|New|Edit Profile/.test(c));
-  o.fresh = fresh; if (fresh.length) { o.pickedLocation = fresh[0]; await p.locator('.q-menu .q-item, .q-dialog .q-item, .q-dialog button').filter({ hasText: fresh[0] }).first().click(); await p.waitForTimeout(8000); }
+  const fresh = o.choices.filter((c) => !before.has(c) && !/Truck Hill 1|Trucks Hill 2|Light|Dark|Logout|Settings|Timesheets|Portal|Billing|New|Edit Profile/.test(c));
+  o.fresh = fresh; const target = p.locator('.q-menu').last().getByText(/^\s*Trucks Hill 2\s*$/).first(); o.targetFound = await target.count(); if (o.targetFound) { o.pickedLocation = 'Trucks Hill 2'; await target.click(); await p.waitForTimeout(9000); }
   o.whereNow = await p.evaluate(() => document.body.innerText.match(/Change Location:[^\n]*/)?.[0] ?? null);
   o.urlAfter = p.url().replace(APP, ''); o.afterLooks = await p.locator('[data-test-id*="assigned"], button, .q-toggle, .q-chip').filter({ hasText: /Assigned to me/i }).first().evaluate((e) => e.className + ' ' + (e.getAttribute('aria-pressed') ?? e.getAttribute('aria-checked') ?? '')).catch(() => null); await shot('D2-prod-after');
   R.D2 = o; });

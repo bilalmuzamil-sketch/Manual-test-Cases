@@ -142,3 +142,18 @@ as the page shows, or a separate work-order estimate that is 0.00 here). If it i
 empty, the card is right to leave it off (empty fields are left off) and this is not a defect.
 **Steps for the QA lead:** open any work order with lines that have an Estimate > Work Orders > Board View >
 Fields to display > turn Estimated hours on > the card shows no Estimated hours.
+
+## Production check, 9 October 2026 (production v26.40.13-013e543, the second production test account — never the QA lead's)
+
+Evidence: `evidence/prod-2026-10-09/` (pictures at 2x, `prod-check.json`), script `prod-check.mjs`.
+
+| Report | What production does today | What it means for the report |
+|---|---|---|
+| **D2** (C96923) | Work Orders > All > **Assigned to me** on > initials > Change Location: *Truck Hill 1* → *Trucks Hill 2*: the top bar reads Trucks Hill 2 and **Assigned to me is still on** (address keeps `?assigned_to_me=1`). Pictures `D2-prod-on.png`, `D2-prod-after.png`. | The source sentence *"Assigned to me resets on location change, as it does today"* (PRD S1-E3) does not match today's product: production keeps it on, and so does the test branch. **Not raised as a defect — a question for the product owner** (Rule 58): should a location change switch Assigned to me off (a new behaviour), or is the "as it does today" sentence wrong? |
+| **D8** (C96962) | Work order S1-915, Line 1 *Sadasdsad* > Edit Line > Add Technician > a new technician > Save & Close: the technician **is added** (read back on the line), but the line's history stays at 5 entries and the work order's history at 6 — **no entry is written**, twice, for two different technicians. | Production does not audit this change either, so there is no *"existing line auditing"* for this story to *"continue"* (PRD S4-R18). **Not raised as a defect**: the case's "as it does today" premise is contradicted by production. Put to the QA lead with the case text. |
+| **D10** (C96978) | The work-order list carries **`timeEstimate`** = the sum of its lines' estimated time (S1-915: one line of 120 min → 120; S1-816 and S1-793: 60 → 60). Production's List offers no Estimated hours column. | "Estimated hours" in production is the work order's time estimate, **the sum of its lines' estimates**. On the test branch the card shows no Estimated hours at all for a work order whose lines carry 0.3 + 1.5 + 0.4 h — **the report stands**. |
+| **D4** (C96938) | — | **Already reported** by Ahtasham Amjad on 8 Oct 2026: [SV-11075](https://shopview.atlassian.net/browse/SV-11075) *Tech View – technician avatar in group header has no name tooltip* (Open, under SV-10045). No second ticket; the run's result for C96938 is to point at SV-11075. |
+
+Owning stories read live 9 Oct 2026: SV-10044, SV-10045, SV-10046, SV-10047, SV-10048, SV-10049, SV-10050, SV-10051, SV-10052,
+SV-10054 are all **Ready for QA** (Rule 112 allows filing); SV-10053 is OBSOLETE. Existing Story Defects under them: SV-11075
+(= D4) and [SV-11074](https://shopview.atlassian.net/browse/SV-11074) (*Board View – drag made while offline isn't reverted and is saved on reconnect*, Open, SV-10052) — no overlap with D1–D10 other than D4.

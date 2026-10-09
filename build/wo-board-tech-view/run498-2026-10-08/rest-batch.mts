@@ -165,12 +165,12 @@ async function openEdit(id: string) {
   for (const c of cands) if (await c.first().count() && await c.first().isVisible().catch(() => false)) { await c.first().click(); await p.waitForTimeout(2500); if (await p.locator('.q-dialog').count()) return 'button'; }
   // the page's three-dots menu
   const dots = p.locator('button:has(i:text-is("more_vert")), button:has(i:text-is("more_horiz"))');
-  for (let i = 0; i < Math.min(await dots.count(), 4); i++) { await dots.nth(i).click().catch(() => {}); await p.waitForTimeout(800); const it = p.locator('.q-menu .q-item').filter({ hasText: /Edit/i }).first(); if (await it.count()) { await it.click(); await p.waitForTimeout(2500); return `menu ${i}`; } await p.keyboard.press('Escape'); }
+  for (let i = 0; i < Math.min(await dots.count(), 4); i++) { await dots.nth(i).click().catch(() => {}); await p.waitForTimeout(800); const it = p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Edit/i }).first(); if (await it.count()) { await it.click(); await p.waitForTimeout(2500); return `menu ${i}`; } await p.keyboard.press('Escape'); }
   // the header customer/asset block opens the edit window in some builds
   return 'not found';
 }
 const fieldByLabel = (re: RegExp) => p.locator('.q-dialog .q-field').filter({ has: p.locator('.q-field__label', { hasText: re }) }).first();
-async function setLead(name: string) { const f = fieldByLabel(/Lead Tech/i); if (!(await f.count())) return 'no Lead field'; await f.click(); await p.waitForTimeout(600); await p.keyboard.type(name, { delay: 50 }); await p.waitForTimeout(1500); const o = p.locator('.q-menu .q-item').filter({ hasText: new RegExp(name, 'i') }).first(); if (!(await o.count())) return 'no option'; await o.click(); await p.waitForTimeout(600); return 'set'; }
+async function setLead(name: string) { const f = fieldByLabel(/Lead Tech/i); if (!(await f.count())) return 'no Lead field'; await f.click(); await p.waitForTimeout(600); await p.keyboard.type(name, { delay: 50 }); await p.waitForTimeout(1500); const o = p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: new RegExp(name, 'i') }).first(); if (!(await o.count())) return 'no option'; await o.click(); await p.waitForTimeout(600); return 'set'; }
 async function setText(re: RegExp, v: string) { const f = fieldByLabel(re); if (!(await f.count())) return `no ${re}`; const i = f.locator('input').first(); await i.fill(v); return 'set'; }
 const saveDlg = async () => { const b = p.locator('.q-dialog button').filter({ hasText: /^\s*Save/i }).first(); if (!(await b.count())) return 'no Save'; await b.click(); await p.waitForTimeout(3000); return { toasts: await toastsOn(p), open: await p.locator('.q-dialog').count() }; };
 const ES = await tech('Esther', 'Howard', 'esther.howard'), RE = await tech('Ralph', 'Edwards', 'ralph.edwards');
@@ -190,7 +190,7 @@ await run('C368171', async () => { const { id } = await one('ZZAUTOTEST Edit WO 
   const h1 = await hist(); o.after = h1.length; o.newest = h1.slice(0, 4).map((x: any) => JSON.stringify(x).replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>').slice(0, 300)); o.leadEntries1 = h1.filter((x: any) => /lead/i.test(JSON.stringify(x))).length;
   // the screen's Audit Log, as the case reads it
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); const dots = p.locator('button:has(i:text-is("more_vert"))');
-  for (let i = 0; i < Math.min(await dots.count(), 4); i++) { await dots.nth(i).click().catch(() => {}); await p.waitForTimeout(800); const it = p.locator('.q-menu .q-item').filter({ hasText: /Audit Log/i }).first(); if (await it.count()) { await it.click(); await p.waitForTimeout(3000); o.auditText = (await p.locator('.q-dialog').innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 1500); await shot(p, 'C368171-audit'); break; } await p.keyboard.press('Escape'); }
+  for (let i = 0; i < Math.min(await dots.count(), 4); i++) { await dots.nth(i).click().catch(() => {}); await p.waitForTimeout(800); const it = p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Audit Log/i }).first(); if (await it.count()) { await it.click(); await p.waitForTimeout(3000); o.auditText = (await p.locator('.q-dialog').innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 1500); await shot(p, 'C368171-audit'); break; } await p.keyboard.press('Escape'); }
   R.C368171 = o; });
 
 await run('C368170', async () => { const { s, id } = await one('ZZAUTOTEST Edit WO Refused'); const o: any = {};
@@ -267,7 +267,7 @@ await a.put(PREF, { value: ORIGINAL }); R.restored = true; fs.writeFileSync(path
 await run('C368240', async () => { const o: any = {}; await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000);
   const t2 = await p.context().newPage(); await t2.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await t2.waitForTimeout(4000);
   await t2.locator('[data-test-id="profile_menu_button"]').click(); await t2.waitForTimeout(800); o.menu = await t2.evaluate(`[...document.querySelectorAll('.q-menu .q-item')].map(e => e.innerText.trim())`);
-  const so = t2.locator('.q-menu .q-item').filter({ hasText: /Sign Out|Log ?out/i }).first(); o.signOut = await so.count(); if (o.signOut) { await so.click(); await t2.waitForTimeout(4000); } o.tab2 = t2.url().replace(APP, '');
+  const so = t2.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Sign Out|Log ?out/i }).first(); o.signOut = await so.count(); if (o.signOut) { await so.click(); await t2.waitForTimeout(4000); } o.tab2 = t2.url().replace(APP, '');
   await p.bringToFront(); const nav = p.locator('a, .q-tab, button').filter({ hasText: /^\s*Reports\s*$/ }).first(); if (await nav.count()) { await nav.click(); await p.waitForTimeout(1200); const iv = p.locator('.q-menu .q-item, a').filter({ hasText: /Inventory Value/i }).first(); if (await iv.count()) await iv.click(); else await p.goto(APP + '/reports/inventory-value'); } else await p.goto(APP + '/reports/inventory-value');
   await p.waitForTimeout(6000); o.tab1 = p.url().replace(APP, ''); o.toasts = await toastsOn(p); o.rows = await p.evaluate(`document.querySelectorAll('tbody tr').length`); o.signInShown = await p.evaluate(`/sign in|log in|password/i.test(document.body.innerText)`); await shot(p, 'C368240-tab1');
   R.C368240 = o; fs.writeFileSync(path.join(EV, 'rest-batch.json'), JSON.stringify(R, null, 1)); });

@@ -179,7 +179,7 @@ await run('C97023', async () => { const o: any = {}; const u = await fresh('View
     await display(pg, 'Tech View'); await settle(pg, 4000); await display(pg, 'Board View'); await settle(pg, 4000); o.step3 = evs(ev, 'work_orders_display_view').map(brief);
     await tab(pg, 'Estimates'); await settle(pg, 4000); await tab(pg, 'All'); await settle(pg, 4000); o.step4 = evs(ev, 'work_orders_display_view').map(brief); const n4 = ev.length;
     await pg.mouse.move(800, 600); for (let i = 0; i < 6; i++) { await pg.mouse.wheel(0, 900); await pg.waitForTimeout(400); } await settle(pg, 30000);
-    await search(pg, 'ZZAUTOTEST'); await pg.waitForTimeout(2500); await pg.locator('[data-test-id="filter_chip_status"]').click(); await pg.waitForTimeout(900); await pg.locator('.q-menu .q-item').filter({ hasText: /Approved/ }).first().click(); await pg.waitForTimeout(1500); await pg.keyboard.press('Escape');
+    await search(pg, 'ZZAUTOTEST'); await pg.waitForTimeout(2500); await pg.locator('[data-test-id="filter_chip_status"]').click(); await pg.waitForTimeout(900); await pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Approved/ }).first().click(); await pg.waitForTimeout(1500); await pg.keyboard.press('Escape');
     await pg.setViewportSize({ width: 900, height: 1000 }); await settle(pg, 4000); await pg.setViewportSize({ width: 1600, height: 1000 }); await settle(pg, 6000);
     o.step5to7new = evs(ev, 'work_orders_display_view', n4).map(brief); o.total = evs(ev, 'work_orders_display_view').length; o.otherWO = ev.filter(WO).filter((e) => e.en !== 'work_orders_display_view').map(brief).slice(0, 40); });
   R.C97023 = o; });

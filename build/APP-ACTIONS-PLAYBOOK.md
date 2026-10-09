@@ -5874,3 +5874,16 @@ three wrong characterisations before it was found — see learning **L0233**.
   Lethbridge). Switch with the location menu (initials → orange location button → pick).
 - **Analytics:** the harness blocks Google Analytics by default; un-route it and read the events from the page's own
   requests (`en=` parameter) — DebugView is not needed.
+
+### WO Board (sv10043) — three selector traps learned 2026-10-09 (each cost a whole batch)
+- **The Status filter's options are TICK BOXES, not menu items.** `filter_chip_status` opens a `.q-menu` whose options
+  (Estimate · Approved · In progress · Review · Complete · Invoiced · Paid · Declined · Imported) are `.q-checkbox`, so
+  `.q-menu .q-item` finds nothing and times out. Use `.q-menu .q-item, .q-menu .q-checkbox` filtered by text.
+- **The line bulk bar's menu button is labelled "More"** (bar: *N selected · Complete Line · Order (n) · More*); there is
+  no `button_line_bulk_action` on v26.40.8. Split work order is under More.
+- **Production profile menu (v26.40.13):** the location is a button under *Change Location:* showing the CURRENT location
+  (e.g. *Truck Hill 1*); clicking it opens a second `.q-menu` listing the locations (current one ticked). Pick by exact
+  text in the LAST `.q-menu`. In Edit Line's *Add Technician* list every option's text starts with the word `check`
+  (an icon), so "not already ticked" cannot be read from the text.
+- **Production test accounts:** `/tmp/shopview/prod-login.env` is the QA lead's OWN account — use
+  `PROD_ENVF=/tmp/shopview/prod-login-second.env` (a Service Advisor test account, locations Truck Hill 1 / Trucks Hill 2 / SANKAN).
