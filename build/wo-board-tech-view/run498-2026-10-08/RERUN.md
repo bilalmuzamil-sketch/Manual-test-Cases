@@ -71,3 +71,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | high1-fix4 | C368172, C368173, C368177, C368178, C368179, C368190, C368188, C368189 (+C368192 as setup) — exact Schedule hour heading, shifts found by position then opened, Dana added without removing anyone, running-clock window answered, "Assets (2)" tab |
 | sort-fix4 | C368196 — a comment had swallowed a declaration |
 | deleted-search2 | C368191 — wider read-only hunt (3,000 work orders, labor entries only) |
+| medium-fix2 | C368220–C368237, C368247 — filter chips matched whole-word inside the page (hidden text 'personVendor'; 'Customer' had hit the top menu), options recorded, imported number clicked |
