@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368213": {
+   "verdict": "Passed",
+   "observed": "Work order S10043-18524 (customer ZZAUTOTEST WO Parts Counts 85469) was set up with two part requests: ZZPC-A-9138, left Auth To Order, and ZZPC-B-9417, ordered from ZZAUTOTEST Staged Parts Vendor, received (vendor chosen first, since the order came out without one) and then returned with a reason. On Work Orders > All, after searching 'ZZAUTOTEST WO Parts Counts' and turning on the Parts and Returns columns under Column Selection, the row reads Parts 2 and Returns 1. The work order's own data also holds 2 parts and 1 return, so nothing from other work orders or locations was added.",
+   "not_observed": null
+  }
+ }
+}
