@@ -44,3 +44,5 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | signout-fix | C368240 — LAST in any queue (signing out ends the shared session); Logout found by exact text (icon-name trap), Inventory Value by exact text |
 | d3-pics | D3 pictures: the technicians own screen (Assigned to me) shows only her three work orders — List, Tech View and Board View at 2x into defect-drafts/raw |
 | s11-fix2 | C97030 (Estimates seeded WITHOUT a line — an authorized line approves an Estimate), C97032 (same seed fix; column scroll guarded), C368157 (Tech View read with groups collapsed) |
+| editwo-batch | C368169, C368170, C368171 — the Edit Work Order checks run on the work order page's left-hand card (QA lead 9 Oct) |
+| parts-filter | C368218, C368219, C368223 — the page's own Search used as the filter (no Vendor/State filter exists, QA lead 9 Oct) |
