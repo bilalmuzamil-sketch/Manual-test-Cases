@@ -1,99 +1,389 @@
 {
- "clearedSwitch": 200,
+ "runner": {
+  "id": "059edc87",
+  "perms": 57,
+  "who": 200,
+  "log": []
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
  "C96963": {
   "log": [
    "mileage 201",
+   "remove part request 200",
    "story 201",
    "line complete 200",
    "lines now complete",
    "wo in_progress 201",
    "wo ready_for_review 201",
-   "wo complete 400 [{\"error\":\"All vendor parts must be received before completing the work order.\"}]",
-   "invoice 400 [{\"error\":\"Work order is not complete.\"}]",
+   "wo complete 201",
+   "invoice 500 [{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"23249668-be67-4871-80a5-e508",
    "mileage 201",
+   "remove part request 200",
    "story 201",
    "line complete 200",
    "lines now complete",
    "wo in_progress 201",
    "wo ready_for_review 201",
-   "wo complete 400 [{\"error\":\"All vendor parts must be received before completing the work order.\"}]",
-   "invoice 400 [{\"error\":\"Work order is not complete.\"}]",
-   "paid 201",
+   "wo complete 201",
+   "invoice 500 [{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"e5b52074-79e5-4ad8-9492-af70",
+   "paid 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
    "mileage 201",
+   "remove part request 200",
    "story 201",
    "line complete 200",
    "lines now complete",
    "wo in_progress 201",
    "wo ready_for_review 201",
-   "wo complete 400 [{\"error\":\"All vendor parts must be received before completing the work order.\"}]",
-   "invoice 400 [{\"error\":\"Work order is not complete.\"}]",
+   "wo complete 201",
+   "invoice 500 [{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"3011f13b-d46b-4765-8195-9be7",
    "declined 201",
    "mileage 201",
+   "remove part request 200",
    "story 201",
    "line complete 200",
    "lines now complete",
    "wo in_progress 201",
    "wo ready_for_review 201",
-   "wo complete 400 [{\"error\":\"All vendor parts must be received before completing the work order.\"}]"
+   "wo complete 201"
   ],
   "set": {
-   "S10043-17968": "ready_for_review lead=Esther Howard",
-   "S10043-17967": "declined lead=Esther Howard",
-   "S10043-17966": "ready_for_review lead=none",
-   "S10043-17965": "paid lead=Esther Howard",
-   "S10043-17964": "ready_for_review lead=Esther Howard",
-   "S10043-17963": "approved lead=Esther Howard"
+   "S10043-17982": "complete lead=Esther Howard",
+   "S10043-17981": "declined lead=Esther Howard",
+   "S10043-17980": "complete lead=none",
+   "S10043-17979": "complete lead=Esther Howard",
+   "S10043-17978": "complete lead=Esther Howard",
+   "S10043-17977": "approved lead=Esther Howard"
   },
   "ids": {
-   "W1": "S10043-17963",
-   "W2": "S10043-17964",
-   "W3": "S10043-17965",
-   "W4": "S10043-17966",
-   "W5": "S10043-17967",
-   "W6": "S10043-17968"
+   "W1": "S10043-17977",
+   "W2": "S10043-17978",
+   "W3": "S10043-17979",
+   "W4": "S10043-17980",
+   "W5": "S10043-17981",
+   "W6": "S10043-17982"
   },
-  "error": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_card_5c56272d-add4-4d6e-a801-33f75e7b7ee0\"]').first()\n"
+  "views": {
+   "Board View": {
+    "declinedToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "completeToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "invToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "invToUnassigned": {
+     "lead": "Unassigned",
+     "message": [
+      "Lead technician removed"
+     ],
+     "prompt": null
+    },
+    "paidToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "paidToUnassigned": {
+     "lead": "Unassigned",
+     "message": [
+      "Lead technician removed"
+     ],
+     "prompt": null
+    },
+    "inv4ToEsther": {
+     "lead": "Esther Howard",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "W2-inv-reorder": {
+     "before": [
+      "S10043-17980",
+      "S10043-17977"
+     ],
+     "afterReload": [
+      "S10043-17980",
+      "S10043-17978",
+      "S10043-17977"
+     ],
+     "lead": "Esther Howard",
+     "message": [
+      "Lead technician updated"
+     ]
+    },
+    "W3-paid-reorder": {
+     "before": [
+      "S10043-17980",
+      "S10043-17978",
+      "S10043-17977"
+     ],
+     "afterReload": [
+      "S10043-17980",
+      "S10043-17978",
+      "S10043-17979",
+      "S10043-17977"
+     ],
+     "lead": "Esther Howard",
+     "message": [
+      "Lead technician updated"
+     ]
+    },
+    "W4reorderUnassigned": {
+     "before": [
+      "S10043-17977"
+     ],
+     "after": [
+      "S10043-17980",
+      "S10043-17977"
+     ],
+     "lead": "Unassigned",
+     "message": [
+      "Lead technician removed"
+     ]
+    }
+   },
+   "Tech View": {
+    "declinedToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "completeToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "invToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "invToUnassigned": {
+     "lead": "Unassigned",
+     "message": [
+      "Lead technician removed"
+     ],
+     "prompt": null
+    },
+    "paidToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "paidToUnassigned": {
+     "lead": "Unassigned",
+     "message": [
+      "Lead technician removed"
+     ],
+     "prompt": null
+    },
+    "inv4ToEsther": {
+     "lead": "Esther Howard",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "W2-inv-reorder": {
+     "before": [
+      "S10043-17979",
+      "S10043-17978",
+      "S10043-17977",
+      "S10043-17980",
+      "S10043-17981",
+      "S10043-17982"
+     ],
+     "afterReload": [
+      "S10043-17979",
+      "S10043-17978",
+      "S10043-17977",
+      "S10043-17980",
+      "S10043-17981",
+      "S10043-17982"
+     ],
+     "lead": "Esther Howard",
+     "message": [
+      "Lead technician updated"
+     ]
+    },
+    "W3-paid-reorder": {
+     "before": [
+      "S10043-17979",
+      "S10043-17978",
+      "S10043-17977",
+      "S10043-17980",
+      "S10043-17981",
+      "S10043-17982"
+     ],
+     "afterReload": [
+      "S10043-17978",
+      "S10043-17979",
+      "S10043-17977",
+      "S10043-17980",
+      "S10043-17981",
+      "S10043-17982"
+     ],
+     "lead": "Esther Howard",
+     "message": [
+      "Lead technician updated"
+     ]
+    },
+    "declinedBack": {
+     "lead": "Esther Howard",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "completeBack": {
+     "lead": "Esther Howard",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    }
+   }
+  },
+  "woPage": {
+   "present": 1,
+   "disabled": true,
+   "text": "Esther Howard",
+   "menuOpened": 30
+  },
+  "serverRefusal": "201",
+  "final": {
+   "S10043-17982": "complete lead=Esther Howard",
+   "S10043-17981": "declined lead=Esther Howard",
+   "S10043-17980": "complete lead=Esther Howard",
+   "S10043-17979": "complete lead=Esther Howard",
+   "S10043-17978": "complete lead=Ralph Edwards",
+   "S10043-17977": "approved lead=Esther Howard"
+  }
  },
  "C96972": {
   "log": [
    "mileage 201",
+   "remove part request 200",
    "story 201",
    "line complete 200",
    "lines now complete",
    "wo in_progress 201",
    "wo ready_for_review 201",
-   "wo complete 400 [{\"error\":\"All vendor parts must be received before completing the work order.\"}]"
+   "wo complete 201"
   ],
-  "cardStatus": null,
-  "invoiced": "400 [{\"error\":\"Work order is not complete.\"}]",
-  "statusNow": "ready_for_review",
-  "cardStatusStill": null,
-  "error": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_card_739e28f6-e830-450f-b095-ef86adecf78c\"]').first()\n"
+  "cardStatus": "Complete",
+  "invoiced": "500 [{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"c2028777-dcf3-40bd-a887-a6bd",
+  "statusNow": "complete",
+  "cardStatusStill": "Complete",
+  "message": [
+   "Lead technician updated"
+  ],
+  "column": "Ralph Edwards",
+  "afterReload": {
+   "lead": {
+    "S10043-17983": "complete lead=Ralph Edwards"
+   },
+   "column": "Ralph Edwards"
+  }
  },
  "C96964": {
   "log": [
    "mileage 201",
+   "remove part request 200",
    "story 201",
    "line complete 200",
    "lines now complete",
    "wo in_progress 201",
    "wo ready_for_review 201",
-   "wo complete 400 [{\"error\":\"All vendor parts must be received before completing the work order.\"}]",
-   "invoice 400 [{\"error\":\"Work order is not complete.\"}]",
+   "wo complete 201",
+   "invoice 500 [{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"c68fa756-6a7d-4691-824b-e5ca",
    "mileage 201",
+   "remove part request 200",
    "story 201",
    "line complete 200",
    "lines now complete",
    "wo in_progress 201",
    "wo ready_for_review 201",
-   "wo complete 400 [{\"error\":\"All vendor parts must be received before completing the work order.\"}]",
-   "invoice 400 [{\"error\":\"Work order is not complete.\"}]",
-   "paid 201"
+   "wo complete 201",
+   "invoice 500 [{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"b3ccc830-9906-4c1e-b1e8-3b91",
+   "paid 400 [{\"error\":\"Complete work order cannot change its status again.\"}]"
   ],
   "set": [
-   "S10043-17974 paid lead=Esther",
-   "S10043-17973 ready_for_review lead=Esther"
+   "S10043-17985 complete lead=Esther",
+   "S10043-17984 complete lead=Esther"
   ],
-  "error": "locator.hover: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_card_79b99fa0-45fb-428d-87dd-7c21914b0596\"]')\n"
+  "Board View WO-1 Invoiced": {
+   "icons": [
+    "more_horiz||"
+   ],
+   "lockTooltip": "no lock icon in the card/row",
+   "menuItem": {
+    "disabled": false,
+    "text": "Reassign lead technician"
+   },
+   "menuTooltip": []
+  },
+  "Board View WO-2 Paid": {
+   "icons": [
+    "more_horiz||"
+   ],
+   "lockTooltip": "no lock icon in the card/row",
+   "menuItem": {
+    "disabled": false,
+    "text": "Reassign lead technician"
+   },
+   "menuTooltip": []
+  },
+  "Tech View WO-1 Invoiced": {
+   "icons": [
+    "location_on||",
+    "content_copy||",
+    "more_horiz||"
+   ],
+   "lockTooltip": "no lock icon in the card/row",
+   "menuItem": {
+    "disabled": false,
+    "text": "Reassign lead technician"
+   },
+   "menuTooltip": []
+  },
+  "Tech View WO-2 Paid": {
+   "icons": [
+    "location_on||",
+    "content_copy||",
+    "more_horiz||"
+   ],
+   "lockTooltip": "no lock icon in the card/row",
+   "menuItem": {
+    "disabled": false,
+    "text": "Reassign lead technician"
+   },
+   "menuTooltip": []
+  }
  }
 }

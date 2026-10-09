@@ -80,6 +80,7 @@ async function finish(wo: string, to: 'complete' | 'invoiced' | 'paid', log: any
   if (to === 'complete') return;
   log.push(`invoice ${say(await a.post('/api/invoices/create', { work_order_id: wo, issue_date: new Date().toISOString().slice(0, 10), due_date: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10) }))}`);
   if (to === 'paid') log.push(`paid ${say(await a.post('/api/work-orders/change-status', { id: wo, work_order: wo, status: 'paid' }))}`);
+  log.push(`status now ${(await a.get(`/api/work-orders/view/${wo}`)).body?.data?.work_order?.status}`);
 }
 const statusOf = async (n: string) => Object.fromEntries((await workOrders(a, n)).map((w: any) => [w.number, `${w.status} lead=${w.techAssignedFirstName ? w.techAssignedFirstName + ' ' + w.techAssignedLastName : 'none'}`]));
 

@@ -70,8 +70,10 @@ export async function vehicle(a: Api, c: { company_id: string; contact_id: strin
 }
 
 /** a new work order for that customer, moved to `status`, led by `lead` (staff id) or none */
-export async function workOrder(a: Api, c: { company_id: string; vehicle_id: string }, status = 'approved', lead: string | null = null, here = false) {
-  const r = await a.post('/api/work-orders/create', { is_vehicle_here: here, company_id: c.company_id, vehicle_id: c.vehicle_id });
+export async function workOrder(a: Api, c: { company_id: string; vehicle_id: string; contact_id?: string }, status = 'approved', lead: string | null = null, here = false) {
+  // customer_id = the CONTACT person: without it the work order can never be invoiced (invoices/create answers 500,
+  // playbook "THE CONTACT IS MANDATORY FOR INVOICING")
+  const r = await a.post('/api/work-orders/create', { is_vehicle_here: here, company_id: c.company_id, vehicle_id: c.vehicle_id, ...(c.contact_id ? { customer_id: c.contact_id } : {}) });
   if (r.status >= 300) throw new Error(`work order: ${r.status} ${JSON.stringify(r.body).slice(0, 200)}`);
   const id = r.body?.data?.work_order_id ?? r.body?.data?.id ?? r.body?.work_order_id;
   if (status !== 'estimate') {

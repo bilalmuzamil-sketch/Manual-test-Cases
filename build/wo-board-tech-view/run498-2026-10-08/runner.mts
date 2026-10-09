@@ -23,15 +23,19 @@ export async function asRunner(browser: Browser, main: Page, a0: Api) {
   const { row, log } = await person(a0, 'ZZ WOB', 'Runner', { role: admin, email: RUNNER_EMAIL, clockable: false });
   if (!row) throw new Error(`runner not made: ${log.join('; ')}`);
   const me = (await candidates(a0)).find((x) => x.name === 'Admin ShopView');
+  // after the first switch every call goes through the runner's own browser: a switch can renew the session cookie,
+  // and the sign-in page's older copy then answers 401 (seen 2026-10-09 when switching back from a technician)
+  let via: Api = a0;
   const toRunner = async () => {
-    let s = await a0.post('/api/switch-user', { user_id: row.id });
-    if (s.status >= 300) { await a0.post('/api/exit-switch-user', {}); s = await a0.post('/api/switch-user', { user_id: row.id }); }
+    let s = await via.post('/api/switch-user', { user_id: row.id });
+    if (s.status >= 300) { await via.post('/api/exit-switch-user', {}); s = await via.post('/api/switch-user', { user_id: row.id }); }
     if (s.status >= 300) throw new Error(`switch to runner ${s.status}`);
-    await a0.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' });
+    await via.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' });
   };
   const v = await viewAs(browser, main, a0, row.id, me?.id ?? '', toRunner);
+  via = api(v.page);
   await v.page.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await v.page.waitForTimeout(4000);
   const who = (await api(v.page).get('/api/auth/me/fe-permissions')).status;
   return { p: v.page, a: api(v.page), id: row.id as string, staffId: row.staff_id as string, me, toRunner, perms: v.perms, who, log,
-    end: async () => { await a0.post('/api/exit-switch-user', {}); } };
+    end: async () => { await via.post('/api/exit-switch-user', {}); } };
 }
