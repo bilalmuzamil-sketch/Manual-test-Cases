@@ -201,7 +201,7 @@ await run('C97024', async () => { const o: any = {}; const u = await fresh('Fiel
 await run('C97025', async () => { const o: any = {}; const u = await fresh('Changes');
   await withUser(u, async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await settle(pg, 4000); const n0 = ev.length;
     await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900);
-    await pg.locator('[data-test-id="toggle_board_field_service_advisor"]').click(); await pg.waitForTimeout(1500); await pg.locator('[data-test-id="toggle_board_field_customer"]').click(); await pg.waitForTimeout(1500); await pg.keyboard.press('Escape'); await settle(pg);
+    await pg.locator('[data-test-id="toggle_board_field_service_advisor"]').click(); await pg.waitForTimeout(1500); await pg.locator('[data-test-id="toggle_board_field_company_name"]').click(); await pg.waitForTimeout(1500); await pg.keyboard.press('Escape'); await settle(pg);
     o.step3 = evs(ev, 'work_orders_field_toggle', n0).map(brief); const n3 = ev.length;
     await pg.locator('[data-test-id="button_density"]').click(); await pg.waitForTimeout(800); await pg.locator('[data-test-id="option_density_compact"]').click(); await settle(pg);
     o.step5 = evs(ev, 'work_orders_density_change', n3).map(brief); const n5 = ev.length;
@@ -257,7 +257,7 @@ await run('C368153', async () => { const o: any = {}; const orig = (await roleRe
 
 await run('C368155', async () => { const o: any = {}; const s = await mkSet('ZZAUTOTEST GA Identity', [{ co: 'Alpha Co', lead: ANA }]); const u = await fresh('Identity');
   await withUser(u, async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await search(pg, s.q); await pg.waitForTimeout(3000); await settle(pg, 3000);
-    await pg.locator(card(s, 'Alpha Co')).click(); await pg.waitForTimeout(6000); o.opened = pg.url().replace(APP, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/, '<id>'); await pg.goBack(); await settle(pg);
+    await pins([ANA.staff_id]).catch(() => {}); for (let i = 0; i < 6 && !(await pg.locator(card(s, 'Alpha Co')).count()); i++) { await toColumn(pg, ANA.staff_id).catch(() => {}); await pg.waitForTimeout(2500); if (i === 2) await search(pg, s.q); } await pg.locator(card(s, 'Alpha Co')).click(); await pg.waitForTimeout(6000); o.opened = pg.url().replace(APP, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/, '<id>'); await pg.goBack(); await settle(pg);
     const dv = evs(ev, 'work_orders_display_view'); const wv = ev.filter((e) => /work_order_view|page_view/.test(e.en));
     o.display = dv.map((e) => ({ uid: e.uid?.slice(0, 8), up: Object.keys(e.ep).filter((k) => /^up/.test(k)) })); o.workOrderView = wv.map((e) => ({ en: e.en, uid: e.uid?.slice(0, 8) }));
     o.userIdOf = { switchedUser: String(u.id).slice(0, 8) }; o.allEventNames = [...new Set(ev.map((e) => e.en))];

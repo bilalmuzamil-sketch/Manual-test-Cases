@@ -1,0 +1,58 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C97023": {
+   "verdict": "Passed",
+   "observed": "Read from the page's own analytics requests (the same events DebugView shows), with Google Analytics allowed; every analytics post was read (0 unread). A new user opened Work Orders: exactly 1 display view (list, all). Tech View then Board View: 1 more each (tech_view, board_view; total 3). Estimates tab then All: 1 more each (board_view estimates, board_view all; total 5). Scrolling, 30 s idle, searching 'ZZAUTOTEST', ticking Approved, and narrowing then widening the window added no display view. Total 5. The page worked as usual.",
+   "not_observed": null
+  },
+  "C97024": {
+   "verdict": "Passed",
+   "observed": "Read from the page's own analytics requests (the same events DebugView shows), with Google Analytics allowed; every analytics post was read (0 unread). A user who had saved VIN/serial on: Board View recorded 13 field-load events, one per optional field, all source default except VIN/serial on with source saved, plus 1 density load (board_view regular). Tech View: 15 field-load events plus 1 density load. Board View, List and Board View again: 0 new field events and 0 new density events. Total field loads in the session 13 + 15 = 28.",
+   "not_observed": null
+  },
+  "C97027": {
+   "verdict": "Passed",
+   "observed": "Read from the page's own analytics requests (the same events DebugView shows), with Google Analytics allowed; every analytics post was read (0 unread). A session that searched 'ZZAUTOTEST Bravo GA \u2026', switched Tech View and Board View, turned VIN/serial on and changed density: 35 Work Orders events. Every parameter value was a page, display, field or setting name or an on/off/default/saved value (e.g. board_view, total_price, on, comfortable, default). None contained the customer name, a technician name, the work order number, the VIN, the search text or a dollar amount.",
+   "not_observed": null
+  },
+  "C97029": {
+   "verdict": "Passed",
+   "observed": "Read from the page's own analytics requests (the same events DebugView shows), with Google Analytics allowed; every analytics post was read (0 unread). First use (a brand-new user): display view with source default and 13 field events with source default. Restored settings (the dispatcher): the display view named the saved Board View with source saved; the fields the dispatcher had saved (asset, VIN, progress, line count, total price) and the density (compact) read source saved, fields never changed read default. View changes: Tech View, then Estimates = 2 display views. Successful save: VIN/serial changed = exactly 1 field-change event for VIN/serial. Financial visibility off (role's See Financial Data turned off, then restored): 12 field events and none for total price. Fallback and failed save: not checked by hand.",
+   "not_observed": "the VIN/serial change was recorded as 'off' because this dispatcher already had it on; the case says turn it on"
+  },
+  "C97035": {
+   "verdict": "Passed",
+   "observed": "Read from the page's own analytics requests (the same events DebugView shows), with Google Analytics allowed; every analytics post was read (0 unread). One session: List, Tech View, Board View, Tech View, Board View; Service advisor, Line count and Created date turned on one after another; Compact picked; a long column scrolled. Counts: work_orders_display_view 5, work_orders_field_load 28, work_orders_density_load 2, work_orders_field_toggle 3, work_orders_density_change 1 = 39. Scrolling added nothing.",
+   "not_observed": null
+  },
+  "C368153": {
+   "verdict": "Passed",
+   "observed": "Read from the page's own analytics requests (the same events DebugView shows), with Google Analytics allowed; every analytics post was read (0 unread). A user whose role has See Financial Data off (turned off for this check, then restored): Board View recorded 12 field-load events and none for total price; Tech View 14 and none for total price (26 in all). Fields to display did not offer Total price, and no card showed a dollar amount.",
+   "not_observed": null
+  },
+  "C97026": {
+   "verdict": "Blocked",
+   "observed": "Steps 1-2 measured in the browser: a brand-new user's field and density events showed source default; the dispatcher's density event showed source saved (compact). Blocked: this step is read in the Story 12 reports in Google Analytics, a day or a week after the test. This session has no access to the Google Analytics property, so the report cannot be opened. Everything that can be measured in the browser is covered by the other analytics checks.",
+   "not_observed": "step 3, the Story 12 reports; fallback: not checked by hand",
+   "todo": "QA lead: give this session access to the Google Analytics property (or read the Story 12 reports for 9 October yourself) \u2014 then step 3 can be judged."
+  },
+  "C97033": {
+   "verdict": "Blocked",
+   "observed": "Blocked: this step is read in the Story 12 reports in Google Analytics, a day or a week after the test. This session has no access to the Google Analytics property, so the report cannot be opened. Everything that can be measured in the browser is covered by the other analytics checks.",
+   "not_observed": "the whole case: it is judged on the weekly field selection report",
+   "todo": "QA lead: access to the Google Analytics property, or someone with access reads the Board View field selection report for the test week."
+  },
+  "C97034": {
+   "verdict": "Blocked",
+   "observed": "Blocked: this step is read in the Story 12 reports in Google Analytics, a day or a week after the test. This session has no access to the Google Analytics property, so the report cannot be opened. Everything that can be measured in the browser is covered by the other analytics checks.",
+   "not_observed": "the whole case: it is judged on the weekly display usage and density reports",
+   "todo": "QA lead: access to the Google Analytics property, or someone with access reads the weekly display usage and density reports."
+  }
+ }
+}
