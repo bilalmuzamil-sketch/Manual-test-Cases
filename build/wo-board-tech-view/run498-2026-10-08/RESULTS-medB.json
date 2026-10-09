@@ -1,0 +1,18 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368247": {
+   "verdict": "Failed",
+   "observed": "An imported work order was made with the Imports > Work Orders CSV (customer ZZAUTOTEST Imported Lead 67980, invoice ZZAUTOTEST-IMP-69142). Work Orders > List > All with Status = Imported lists it; clicking its number opens a separate imported page (/imported-work-orders/...) showing the number ZZAUTOTEST-IMP-69142, an 'Imported' badge, 'Invoiced: Oct 9, 2026', the asset card (2015 Freightliner Cascadia, Unit IMP-1), Financial Info (Total $105.00) and the invoice itself. No Lead Technician is shown anywhere on the page, before or after a reload, so there is nothing to write down at step 2 or change at step 3. This is exactly the outcome the case describes for build v26.40.8-7a95011 (outcome 1).",
+   "not_observed": null,
+   "ticket_held": true,
+   "ticket": "held with the QA lead \u2014 the case says raise nothing new (outcome 1), so no report is prepared",
+   "todo": "Nothing new to raise: this is the behaviour the case already describes for today's build. Re-run when the branch changes."
+  }
+ }
+}

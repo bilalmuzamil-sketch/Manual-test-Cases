@@ -82,3 +82,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | sort-fix5 | C368196 — the window after a technician's Start is answered and each work order's clocked-in count read back before Clocked In is sorted (On Site passed in sort-fix4) |
 | deleted-search3 | C368191 — the 'technician no longer exists' flag sits on the lines' tasks; keep only tasks that also name a technician |
 | high1-fix5 | C368172, C368177, C368178, C368179, C368190, C368188, C368189 (+C368192 as setup) — hour heading measured after scrolling into view; shift read from the Schedule's own data and its block found by text; Assets TAB clicked; running-clock window waited for |
+| medium-fix3 | C368220–C368237 — options picked from the same tick-box rows the menu reading lists; no word-end rule on chip labels |

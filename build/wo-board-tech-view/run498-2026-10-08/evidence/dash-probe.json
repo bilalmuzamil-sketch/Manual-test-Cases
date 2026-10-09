@@ -1,0 +1,54 @@
+{
+ "calls": [
+  {
+   "url": "/api/dashboard/config",
+   "status": 200,
+   "bytes": 6549,
+   "sample": "{\"data\":{\"defaultReports\":[\"revenueKpi\",\"techEfficiencyKpi\",\"billingEfficiencyKpi\",\"techUtilizationKpi\",\"revenueSeries\",\"techEfficiencySeries\",\"invoicingEfficiencySeries\",\"techUtilizationSeries\",\"billingEfficiencyByAdvis"
+  },
+  {
+   "url": "/api/reporting/individual-punch-clock/today?range=today",
+   "status": 200,
+   "bytes": 2587,
+   "sample": "{\"data\":{\"collection\":[{\"id\":\"0d0e6cc1-ea16-4cbf-9690-afcf39feed75\",\"date\":\"Oct 09 2026\",\"staff_id\":\"7f85bc58-9ff5-4b50-b3f3-d85821069066\",\"employee\":\"Admin ShopView\",\"work_order\":\"S10043-18489\",\"work_order_id\":\"90706af9"
+  },
+  {
+   "url": "/api/reporting/individual-punch-clock/today?range=today",
+   "status": 200,
+   "bytes": 2587,
+   "sample": "{\"data\":{\"collection\":[{\"id\":\"0d0e6cc1-ea16-4cbf-9690-afcf39feed75\",\"date\":\"Oct 09 2026\",\"staff_id\":\"7f85bc58-9ff5-4b50-b3f3-d85821069066\",\"employee\":\"Admin ShopView\",\"work_order\":\"S10043-18489\",\"work_order_id\":\"90706af9"
+  },
+  {
+   "url": "/api/dashboard/reports?reports%5B%5D=revenueSeries&reports%5B%5D=techEfficiencySeries&reports%5B%5D=invoicingEfficiencySeries&reports%5B%5D=",
+   "status": 200,
+   "bytes": 49616,
+   "sample": "{\"data\":{\"from\":\"2025-11-01\",\"to\":\"2026-10-10\",\"group\":\"month\",\"cached_at\":\"2026-10-09T14:09:03+00:00\",\"revenueSeries\":[{\"bucket\":\"2025-11-01\",\"revenue\":378753,\"invoiceCount\":144},{\"bucket\":\"2025-12-01\",\"revenue\":458370,"
+  },
+  {
+   "url": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-10-01T00%3A00%3A00.000Z&end_date=2026-10-09T23%3A59%3",
+   "status": 200,
+   "bytes": 801,
+   "sample": "{\"data\":{\"collection\":[{\"staff_id\":\"7f85bc58-9ff5-4b50-b3f3-d85821069066\",\"technician_name\":\"Admin ShopView\"},{\"staff_id\":\"b4f8b308-b0c5-4e5e-b734-d76175757be9\",\"technician_name\":\"Daniel Montoya\"},{\"staff_id\":\"1161043d-a"
+  },
+  {
+   "url": "/api/reporting/individual-punch-clock/today?range=today",
+   "status": 200,
+   "bytes": 2587,
+   "sample": "{\"data\":{\"collection\":[{\"id\":\"0d0e6cc1-ea16-4cbf-9690-afcf39feed75\",\"date\":\"Oct 09 2026\",\"staff_id\":\"7f85bc58-9ff5-4b50-b3f3-d85821069066\",\"employee\":\"Admin ShopView\",\"work_order\":\"S10043-18489\",\"work_order_id\":\"90706af9"
+  },
+  {
+   "url": "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-10-01T00%3A00%3A00.000Z&end_date=2026-10-09T23%3A59%3A59.999Z&loc",
+   "status": 200,
+   "bytes": 2159,
+   "sample": "{\"data\":{\"collection\":[{\"staff_id\":\"7f85bc58-9ff5-4b50-b3f3-d85821069066\",\"technician_name\":\"Admin ShopView\",\"total_seconds\":1116,\"wo_seconds\":1116,\"internal_seconds\":0,\"est_lost_labor_cents\":0,\"location\":\"Staging Heavy "
+  },
+  {
+   "url": "/api/reporting/individual-punch-clock/today?range=today",
+   "status": 200,
+   "bytes": 2587,
+   "sample": "{\"data\":{\"collection\":[{\"id\":\"0d0e6cc1-ea16-4cbf-9690-afcf39feed75\",\"date\":\"Oct 09 2026\",\"staff_id\":\"7f85bc58-9ff5-4b50-b3f3-d85821069066\",\"employee\":\"Admin ShopView\",\"work_order\":\"S10043-18489\",\"work_order_id\":\"90706af9"
+  }
+ ],
+ "dashboardText": "Skip to main content ShopHub expand_more Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications Staging Heavy Duty - 9919 0.15 Hrs Today Revenue This Month n/a 0 Invoices Tech Efficiency This Month n/a 0 Invoiced Tech Hrs / 0 Clocked Invoicing Efficiency This Month n/a 0 Invoiced / 0 Clocked Tech Utilization This Month n/a 0 WO Hrs / 0 Clocked Revenue Last 12 Months Tech Efficiency Last 12 Months Invoicing Efficiency Last 12 Months Tech Utilization Last 12 Months Efficiency by Tech This Month Techarrow_drop_up arrow_drop_upClocked Hours arrow_drop_upInvoiced Tech Hrs arrow_drop_upEfficiency % No data for selected date r",
+ "reportText": "Skip to main content ShopHub expand_more Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications Staging Heavy Duty - 9919 0.15 Hrs Today LABOR schedule Timesheet Activities PERFORMANCE description Sales percent Technician Efficiency query_stats Advisor Analysis engineering Shop Efficiency loop Work In Progress groups Technician Utilization groups_2 Sales By Customer badge Sales By Representative PARTS inventory_2 Parts Velocity sell Inventory Value FINANCE payments Sales Tax Collected ACCOUNTS RECEIVABLE article A/R Aging Summary list_alt A/R Aging Detail library_books A/R Aging Collection ACCOUNTS PAYABLE article A/P Aging Summary list_alt A/P Aging Detail library_books A/P Unpaid Invoices ACCOUNTING paid IBS Batches warning QB Unexported download Export Reports COMMUNICATIONS chat Notes alarm Reminders Technician "
+}
