@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96979": {
+   "verdict": "Passed",
+   "observed": "Nora New was created for this run with the Admin role and had never saved any Work Orders choice (her saved choices read empty). Her List showed: On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price, Created On. Her Tech View showed exactly the same columns, and in Tech View's Column Selection, Assigned Techs was off. As my own user, in List I turned Service Advisor off with Created on on and reloaded: the choice stayed. I then changed a Tech View column (Lines off), went back to List and reloaded: List still had Service Advisor off and Created on on.",
+   "not_observed": "pre-release List choice not checked (no user with a List choice saved before this release)."
+  }
+ }
+}

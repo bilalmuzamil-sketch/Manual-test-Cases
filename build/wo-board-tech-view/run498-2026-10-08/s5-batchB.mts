@@ -69,7 +69,7 @@ const ORG = 'd55bc308-e61a-438d-b5f1-c7a73c89d49f';
 const roles: any[] = ((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data?.collection ?? []);
 const fromStaff = await roleIds(a);
 const rid = (re: RegExp) => roles.find((r) => re.test(r.label ?? r.name ?? ''))?.id ?? Object.entries(fromStaff).find(([l]) => re.test(l))?.[1];
-const ADMIN_ROLE = rid(/^admin(istrator)?$/i), VIEW_ROLE = rid(/^ZZAUTOTEST WO View Only$/);
+const ADMIN_ROLE = rid(/^admin(istrator)?$/i), VIEW_ROLE = rid(/^ZZAUTOTEST WO View Only$/) ?? (await sid('viewonly'))?.role_id;
 const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
 R.roles = { admin: !!ADMIN_ROLE, viewOnly: !!VIEW_ROLE, names: roles.map((r) => r.label ?? r.name).slice(0, 40) };
 const stamp = Date.now() % 1000000;
@@ -142,7 +142,7 @@ await run('C96986', async () => {
 });
 
 // put the role back exactly as it was, and read it back
-{ const orig = JSON.parse(fs.readFileSync(path.join(EV, 'S5-role-viewonly-before.json'), 'utf8'));
+if (fs.existsSync(path.join(EV, 'S5-role-viewonly-before.json'))) { const orig = JSON.parse(fs.readFileSync(path.join(EV, 'S5-role-viewonly-before.json'), 'utf8'));
   R.roleRestore = await roleSetFinancial(VIEW_ROLE, !!orig?.cross_toggles?.seeFinancialData);
   const now = await roleRead(VIEW_ROLE); R.roleRestoredExactly = JSON.stringify(now?.cross_toggles) === JSON.stringify(orig?.cross_toggles) && JSON.stringify((now?.fe_permissions ?? []).map((x: any) => x.id).sort()) === JSON.stringify((orig?.fe_permissions ?? []).map((x: any) => x.id).sort()); }
 const BACK = ORIGINAL; await a.put(PREF, { value: BACK }); R.restored = JSON.stringify(await prefGet()) === JSON.stringify(BACK);
