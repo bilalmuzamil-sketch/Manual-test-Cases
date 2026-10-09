@@ -1,0 +1,80 @@
+{
+ "C368213": {
+  "q": "ZZAUTOTEST WO Parts Counts 85469",
+  "approve": "201",
+  "vendor": "ZZAUTOTEST Staged Parts Vendor",
+  "cat": true,
+  "req0": "201",
+  "req1": "201",
+  "requests": [
+   "ZZPC-B-9417:authorized_to_order",
+   "ZZPC-A-9138:authorized_to_order"
+  ],
+  "order": "201",
+  "afterOrder": [
+   "ZZPC-B-9417:waiting_to_receive:po",
+   "ZZPC-A-9138:authorized_to_order:-"
+  ],
+  "vendorField": 1,
+  "vendorPicked": 1,
+  "receiveEnabled": true,
+  "afterReceiveUrl": "/workorders/<id>/lines",
+  "lineParts": [
+   "ZZPC-B-9417:Authorized"
+  ],
+  "requestsNow": [
+   "ZZPC-A-9138:authorized_to_order"
+  ],
+  "partKeys": "id,line_id,part_number,description,part_source_type,quantity,staged_quantity,cost,cost_decimal,margin,sell_price,total_sell_price,discount,core_charge,status,status_val,arrived_date,inventory_part_id,part_request_id,vendor_id,parent_part_number,parent_wo_part_id,core_resolved,core_resolution,core_pa",
+  "ret": "200",
+  "api": {
+   "parts": 2,
+   "returns": 1,
+   "number": "S10043-18524"
+  },
+  "heads": [
+   "On Site",
+   "Status",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On",
+   "Parts",
+   "Returns"
+  ],
+  "rows": [
+   [
+    "location_on",
+    "Approved\n1",
+    "S10043-18524",
+    "ZZAUTOTEST WO Parts Counts 854..",
+    "",
+    "TRK-118",
+    "ZZWOB179154428660\ncontent_copy",
+    "0%",
+    "Unassigned",
+    "",
+    "1",
+    "$73.20",
+    "Today",
+    "2",
+    "1"
+   ],
+   [
+    "",
+    "$73.20"
+   ]
+  ],
+  "screen": {
+   "parts": "2",
+   "returns": "1"
+  }
+ }
+}
