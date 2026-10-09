@@ -54,3 +54,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | kbd-fix2 | C368151 (focus read after each Enter on the group), C368152 (dialog walked by keyboard to the confirm button), C97020 (view-only user's card menu read by keyboard), C97022 (WOB_LIVE=1: the board updates by itself, no reload) |
 | ps-photo-fix2 | C368242–C368244 (wait for each photo to load before capturing; Staff page at /administration/staff), C368215, C368217 (close leftover windows before Add Part) |
 | d3-pics (2) | technician found by one word of her name |
+| s11-fix3 | C97032 step 6 (dialog opened from any visible card, as the case says), C368157 (the whole board read — ~190 technicians now — and Cal's neighbours compared) |
