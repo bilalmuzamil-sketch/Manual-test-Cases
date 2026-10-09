@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368138": {
+   "verdict": "Failed",
+   "observed": "Customer ZZAUTOTEST F1 Moved Neighbour: S10043-17923, S10043-17924, S10043-17925 led by Esther Howard, open in two tabs. Tab 2 dragged S10043-17924 to Ralph Edwards. Tab 1, without reloading, dropped S10043-17925 directly above S10043-17924. Tab 1 showed one alert headed 'Couldn't save the new order. Please try again.', with the line 'The card you dropped this next to has moved. Refresh the board and try again.' under it. S10043-17925 went back, and after the reload the board matched tab 2 (S10043-17924 under Ralph Edwards). Expected: the alert reads exactly 'The card you dropped this next to has moved. Refresh the board and try again.'; here it carries the general reorder headline as well. Report prepared and held for the QA lead's approval; nothing raised. Seen again 9 Oct 2026 07:33 with the same two-line alert.",
+   "not_observed": null,
+   "todo": "Follow SV-11104; re-test this case when it is fixed.",
+   "ticket": "SV-11104 https://shopview.atlassian.net/browse/SV-11104 (Story Defect, Open, created 9 Oct 2026 under SV-10047)"
+  }
+ }
+}

@@ -5966,3 +5966,7 @@ three wrong characterisations before it was found — see learning **L0233**.
   on the test; a key only inside the comment does not count. `push_results_to_run.py` fills it from every
   `browse/<KEY>` link in the record's `ticket` text, or from an explicit `"defects": ["SV-…"]`. There is no API to edit
   a past result: re-post the same status with the field set.
+- **A ticket picture whose wiki name does not match the attached file renders as nothing (2026-10-09, SV-11104).**
+  `size_pics.py` still reports the picture "found and sized" and the media node reads full-width, so only the
+  rendered `<img>` count catches it. Before the PUT, check every `!name.png|…!` in the wiki exists under that exact
+  name in the folder you attach from; after it, require img tags == pictures in the wiki.

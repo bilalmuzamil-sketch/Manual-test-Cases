@@ -216,3 +216,5 @@ Recapture on a FRESH line with NO technician: adding Dana Ortiz in Edit Line DID
 **Defects field (QA lead 9 Oct: "The failed test run links should have the related tickets.")** `push_results_to_run.py` now fills TestRail's own **Defects** field from every `browse/<KEY>` link in the ticket text (or an explicit `"defects"` list). Back-filled and read back: C96923 → SV-11098 · C96938 → SV-11075 · C96929 (Passed) → SV-11101.
 
 **D6 CLOSED 9 Oct 2026 — QA lead: "NOt a defect".** C368135 recorded **Passed** in run 498 on his ruling; its click-outside step goes beyond PRD S4-R30 and the case text is left as it is (Rule 114).
+
+| D7 — "card has moved" alert shows an extra headline | [SV-11104](https://shopview.atlassian.net/browse/SV-11104) (Story Defect, Open, under SV-10047, relates to SV-10047, label board-tech-view) | C368138 | QA lead approved 9 Oct; seen again 9 Oct 07:33; picture inline full-width (first write pointed at an old file name — fixed and re-verified: 1 img tag); ends with the case link |
