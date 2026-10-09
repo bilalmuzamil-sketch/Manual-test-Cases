@@ -78,6 +78,7 @@ await run('C368135', async () => {
       if (how === 'Escape') await p.keyboard.press('Escape');
       if (how === 'outside') await p.mouse.click(30, 980);
       await p.waitForTimeout(1500);
+      if (how === 'outside') await shot(p, `D6-${where}-outside-click`);   // ticket picture: the question still open after a click outside
       const home = where === 'board' ? (await boardCols(p)).find((c) => c.id === ES.staff_id)?.cards.includes(w.number) : (await groups(p)).find((g) => g.id === ES.staff_id)?.rows.includes(w.number);
       res[how] = { opened, promptStillOpen: await promptLoc().count(), cardBackWithEsther: home, message: await toasts(p), lead: (await lead(n))[w.number] };
       if (await promptLoc().count()) await promptLoc().locator('[data-test-id="button_clear_shifts_cancel"]').click().catch(() => {});

@@ -1,4 +1,4 @@
-TITLE: Board View – Clicking Outside the Clear-Shifts Question Doesn't Cancel the Move
+TITLE: Board View & Tech View – Clicking Outside the Clear-Shifts Question Doesn't Cancel the Move
 TYPE: Story Defect · PARENT: SV-10047 (Ready for QA, read 9 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-10047
 
 h2. Description
@@ -19,9 +19,11 @@ h2. Steps to Reproduce
 #* The question *Clear …'s scheduled shifts?* opens.
 # Click an empty part of the page outside the question.
 #* The question stays open and the card stays in the new column.
+# Do the same in *Tech View*: drag the row into another technician's group, then click outside the question.
+#* The same happens: the question stays open and the row stays in the new group.
 
 *Actual Result:*
-* A click outside the question does not close it; only Cancel, X or Escape call the move off.
+* In Board View and in Tech View, a click outside the question does not close it; only Cancel, X or Escape call the move off.
 
 *Expected Result:*
 * Closing the question by clicking outside calls the move off: the card goes back to its place.
