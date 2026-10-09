@@ -38,3 +38,4 @@ own data (`data.mts` customers / work orders with a contact; `mkSet()` = one cus
 | c-fix | C96984 (c) — an asset with no unit and no year/make/model, made behind the screen (New Asset will not save without a Make) |
 | s9-fix4 | C97003 (2560px window, Tech View groups read from the virtual table), C97012 (seeded Approved — a Complete card is not on the board), C368146 (Tech View read with the big groups collapsed) |
 | imp-batch | C368238, C368239 — account access started (page `/impersonate-user/<user id>`) and exited (orange bar Exit) while Reports > Work In Progress is loading; run as Admin ShopView itself, not the runner |
+| parts-batch | C368213 — two vendor part requests, the first ordered and received through its Purchase Order page, one return raised on the received part; List Parts/Returns read |
