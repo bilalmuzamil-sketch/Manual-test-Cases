@@ -1,0 +1,32 @@
+{
+ "runner": "059edc87",
+ "techs": {
+  "ana": true,
+  "ben": true,
+  "cal": true,
+  "dan": true
+ },
+ "C368241": {
+  "route": "/profile",
+  "red": "input x1",
+  "before": {
+   "file": "C368241-avatar-before.png",
+   "src": "com/api/iam/view-avatar/059edc87-d8c7-499f-b07e-cdccf641e0ee"
+  },
+  "blue": "input x1",
+  "uploadCalls": [
+   "POST https://sv10043api.qa.shopview.com/api/iam/upload-avatar"
+  ],
+  "noReload": {
+   "file": "C368241-avatar-noreload.png",
+   "src": "com/api/iam/view-avatar/059edc87-d8c7-499f-b07e-cdccf641e0ee"
+  },
+  "after": {
+   "file": "C368241-avatar-after.png",
+   "src": "com/api/iam/view-avatar/059edc87-d8c7-499f-b07e-cdccf641e0ee"
+  }
+ },
+ "C368242": {
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"profile_menu_button\"]')\n"
+ }
+}
