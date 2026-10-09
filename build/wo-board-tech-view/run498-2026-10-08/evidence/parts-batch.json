@@ -1,0 +1,20 @@
+{
+ "C368213": {
+  "q": "ZZAUTOTEST WO Parts Counts 81544",
+  "approve": "201",
+  "vendor": "ZZAUTOTEST Staged Parts Vendor",
+  "cat": true,
+  "req0": "201",
+  "req1": "201",
+  "requests": [
+   "ZZPC-B-7688:authorized_to_order",
+   "ZZPC-A-7394:authorized_to_order"
+  ],
+  "order": "201",
+  "afterOrder": [
+   "ZZPC-B-7688:waiting_to_receive:po",
+   "ZZPC-A-7394:authorized_to_order:-"
+  ],
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"button_receive_po_75a27e50-4e9b-4f66-9a35-ea1358192f7a\"]')\n    - locator resolved to <button disabled tabindex=\"-1\" type=\"button\" filled=\"true\" data-v-68e00a17=\"\" data-v-904d587e=\"\" aria-disabled=\"true\" data-test-id=\"button_receive_po_75a27e50-4e9b-4f66-9a35-ea1358192f7a\" class=\"q-btn q-btn-item non-selectab"
+ }
+}

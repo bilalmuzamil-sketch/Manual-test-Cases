@@ -35,9 +35,14 @@ try {
   const orderId = r0.order_id; const itemId = r0.order_item_id;
   // receive through the screen
   await p.goto(`${APP}/order/${orderId}?receive=1&returnTo=WorkOrder&returnId=${w}`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
+  // FIX: the order came out with 'Vendor missing' and Receive stays disabled until a vendor is chosen on this page
+  { const vf = p.locator('.q-field').filter({ has: p.locator('.q-field__label', { hasText: /^\s*Vendor\s*$/ }) }).first(); o.vendorField = await vf.count();
+    if (o.vendorField) { await vf.click(); await p.waitForTimeout(800); await p.keyboard.type(String(vendor?.name ?? 'ZZAUTOTEST').slice(0, 18), { delay: 40 }); await p.waitForTimeout(2000);
+      const opt = p.locator('.q-menu .q-item').filter({ hasText: String(vendor?.name ?? 'ZZAUTOTEST') }).first(); o.vendorPicked = await opt.count(); if (o.vendorPicked) await opt.click(); else await p.locator('.q-menu .q-item').first().click().catch(() => {}); await p.waitForTimeout(1500); }
+    if (!o.vendorPicked) o.assignVendor = say(await a.post(`/api/orders/${orderId}/assign-vendor`, { vendorId: vendor?.id, orderItemIds: [itemId] })); }
   await p.locator(`[data-test-id="input_invoice_${orderId}"]`).fill(`ZZINV${Date.now() % 100000}`);
   const sell = p.locator(`[data-test-id="input_sell_${itemId}"]`); if (await sell.count()) { const v = await sell.inputValue().catch(() => ''); if (!(Number(v) > 0)) await sell.fill('20'); }
-  await shot(p, 'C368213-receive'); await p.locator(`[data-test-id="button_receive_po_${orderId}"]`).click(); await p.waitForTimeout(7000); o.afterReceiveUrl = p.url().replace(APP, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>');
+  await shot(p, 'C368213-receive'); o.receiveEnabled = await p.locator(`[data-test-id="button_receive_po_${orderId}"]`).isEnabled().catch(() => null); await p.locator(`[data-test-id="button_receive_po_${orderId}"]`).click(); await p.waitForTimeout(7000); o.afterReceiveUrl = p.url().replace(APP, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>');
   const l = (await linesRaw(w))[0]; o.lineParts = (l?.parts ?? []).map((x: any) => `${x.part_number}:${x.status ?? ''}`); o.requestsNow = (l?.part_requests ?? []).map((r: any) => `${r.part_number}:${r.status}`);
   const part = (l?.parts ?? [])[0]; o.partKeys = part ? Object.keys(part).join(',').slice(0, 300) : null;
   if (part) o.ret = say(await a.post('/api/work-orders/part/make-return-request', { part_id: part.part_id ?? part.id, work_order_id: w, quantity: 1, return_reason: 'ZZAUTOTEST parts count' }));
@@ -53,4 +58,4 @@ try {
   o.screen = r1 ? { parts: r1[hi('Parts')], returns: r1[hi('Returns')] } : null; await shot(p, 'C368213-list');
 } catch (e: any) { o.error = String(e?.message || e).slice(0, 400); await shot(p, 'C368213-error'); }
 R.C368213 = o; console.log(t(), 'C368213', JSON.stringify(o).slice(0, 4000));
-fs.writeFileSync(path.join(EV, 'parts-batch.json'), JSON.stringify(R, null, 1)); await done(browser);
+fs.writeFileSync(path.join(EV, 'parts-batch2.json'), JSON.stringify(R, null, 1)); await done(browser);
