@@ -1,0 +1,10 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-09"},
+ "results": {
+  "C368169": {
+   "verdict": "Passed",
+   "observed": "Route used (QA lead 9 Oct 2026: there is no Edit Work Order window for an existing work order; these checks use the work order page's left-hand card instead). Work order S10043-18481 led by Esther Howard: on the card, Lead Technician changed to Ralph Edwards and Mileage set to 120,500. No error message appeared. After a reload the card read Lead Technician 'Ralph Edwards' and Mileage '120,500' (the saved work order agrees: lead Ralph Edwards, mileage 120500). Both changes were saved. Pictures: C368169-card, C368169-after-reload.",
+   "not_observed": "There is no Edit Work Order window to save both at once; each field on the card saves on its own."
+  }
+ }
+}

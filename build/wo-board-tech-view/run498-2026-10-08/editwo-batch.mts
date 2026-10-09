@@ -107,7 +107,7 @@ async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 2600));
-  fs.writeFileSync(path.join(EV, 'editwo-batch.json'), JSON.stringify(R, null, 1));
+  fs.writeFileSync(path.join(EV, 'editwo-batch2.json'), JSON.stringify(R, null, 1));
 }
 const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.staff_id };
 
@@ -197,7 +197,7 @@ const roster = (d: any) => d.evaluate((e: any) => [...e.querySelectorAll('[data-
 const auditText = async () => { await p.locator('[data-test-id="button_work_order_nav_bar_menu"]').click(); await p.waitForTimeout(1000);
   await p.locator('.q-menu .q-item').filter({ hasText: /Audit Log/i }).first().click(); await p.waitForTimeout(3500);
   const t = (await p.locator('.q-dialog').last().innerText().catch(() => '')).replace(/\s+/g, ' '); return t; };
-const closeDlg = async () => { await p.keyboard.press('Escape'); await p.waitForTimeout(800); };
+const closeDlg = async () => { for (let i = 0; i < 3 && await p.locator('.q-dialog').count(); i++) { await p.locator('.q-dialog [data-test-id="button_close_dialog"], .q-dialog button:has(i:text-is("close"))').last().click({ timeout: 3000 }).catch(async () => { await p.keyboard.press('Escape'); }); await p.waitForTimeout(800); } };   // FIX: make sure the Audit Log window is really closed
 const cardInput = async (tid: string, v: string) => { const i = p.locator(`[data-test-id="${tid}"]`).first(); if (!(await i.count())) return `no ${tid}`; await i.click(); await i.fill(v); await i.press('Enter').catch(() => {}); await p.locator('body').click({ position: { x: 5, y: 5 } }).catch(() => {}); await p.waitForTimeout(2500); return 'typed'; };
 const cardVal = async (tid: string) => p.locator(`[data-test-id="${tid}"]`).first().inputValue().catch(() => null);
 const poOf = async (id: string) => { const v = await view(id); return v.work_order?.customer_po ?? v.customer_po ?? v.work_order?.po_number ?? null; };
@@ -222,10 +222,11 @@ await a.post('/api/work-orders/change-mileage', { work_order_id: w.id, mileage: 
   o.poSeed = await setPO(w.id, 'PO-100');
   const log: any[] = []; await finish(w.id, 'invoiced', log); o.status = (await view(w.id)).work_order?.status ?? (await view(w.id)).status;
   o.before = { lead: await leadName(w.id), ...(await vehOf(w.id)), po: await poOf(w.id) };
-  await page(w.id); o.leadPicked = await pickLeadOnPage2(/Ralph Edwards/); o.leadToasts = await toastsOn(p);
+  await page(w.id); o.leadFieldIsPicker = await p.locator('[data-test-id="select_lead_technician"]').count(); o.leadShown = (await p.evaluate(`(document.body.innerText.match(/Lead technician\\s*\\n\\s*([^\\n]+)/i) || [])[1] || null`)); await shot(p, 'C368170-invoiced-card');
+  o.leadPicked = o.leadFieldIsPicker ? await pickLeadOnPage2(/Ralph Edwards/).catch((e) => `could not pick: ${String(e).slice(0, 80)}`) : 'locked: no picker on an Invoiced work order'; o.leadToasts = await toastsOn(p);
   o.mileageEditable = await p.locator('[data-test-id="input_vehicle_mileage"]').first().isEditable().catch(() => null); o.mileage = await cardInput('input_vehicle_mileage', '120500'); o.mileageToasts = await toastsOn(p);
   o.engineEditable = await p.locator('[data-test-id="input_vehicle_engine_hours"]').first().isEditable().catch(() => null); o.engine = await cardInput('input_vehicle_engine_hours', '3470'); o.engineToasts = await toastsOn(p); await shot(p, 'C368170-card');
   o.po = await setPO(w.id, 'PO-200'); o.poToasts = await toastsOn(p); await shot(p, 'C368170-finance');
   await page(w.id); o.after = { leadScreen: await leadText(), mileageScreen: await cardVal('input_vehicle_mileage'), engineScreen: await cardVal('input_vehicle_engine_hours'), lead: await leadName(w.id), ...(await vehOf(w.id)), po: await poOf(w.id) }; R.C368170 = o; });
-fs.writeFileSync(path.join(EV, 'editwo-batch.json'), JSON.stringify(R, null, 1));
+fs.writeFileSync(path.join(EV, 'editwo-batch2.json'), JSON.stringify(R, null, 1));
 await RUN.end(); await done(browser);
