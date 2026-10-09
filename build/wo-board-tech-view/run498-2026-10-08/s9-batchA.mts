@@ -187,7 +187,7 @@ await run('C97007', async () => {
   await p.locator(`[data-test-id="option_lead_technician_${BEN.staff_id}"]`).click(); await p.locator('[data-test-id="button_confirm_reassign_lead_technician"]').click(); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
   o.step7 = await col(BEN.staff_id, s);
   const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${s.w['Abbey Co'].id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(6000);
-  await pg.locator('[data-test-id="select_lead_technician"]').click(); await pg.waitForTimeout(1000); await pg.keyboard.type('Ben'); await pg.waitForTimeout(1200);
+  await pg.locator('[data-test-id="select_lead_technician"]').click(); await pg.waitForTimeout(1000); await pg.keyboard.type('ZZAUTOTEST Ben'); await pg.waitForTimeout(1200);
   await pg.locator('.q-menu .q-item').filter({ hasText: 'Ben Bravo' }).first().click(); await pg.waitForTimeout(3000); await pg.close();
   await go('Board View', s.q); o.step9 = await col(BEN.staff_id, s);
   await drag(p, card(s, 'Echo Co'), card(s, 'Delta Co'), 4); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);

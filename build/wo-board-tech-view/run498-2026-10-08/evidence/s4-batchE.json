@@ -96,5 +96,101 @@
    "Lead tech changed Esther Howard -> Ralph Edwards by Admin ShopView at 2026-10-08 23:58:25"
   ],
   "whereFound": "Work order page > the change history (GET /api/work-orders/{id}/history, the list the page shows)"
+ },
+ "C96963inv": [
+  "400",
+  "400",
+  "400"
+ ],
+ "C96963paid": 201,
+ "C96963": {
+  "set": [
+   "S10043-17950 ready_for_review lead=Esther",
+   "S10043-17949 declined lead=Esther",
+   "S10043-17948 ready_for_review lead=none",
+   "S10043-17947 paid lead=Esther",
+   "S10043-17946 ready_for_review lead=Esther",
+   "S10043-17945 approved lead=Esther"
+  ],
+  "inv2ToRalph": {
+   "column": "Ralph Edwards",
+   "message": [
+    "Lead technician updated"
+   ]
+  },
+  "inv2ToUnassigned": {
+   "column": "Unassigned",
+   "message": [
+    "Lead technician removed"
+   ]
+  },
+  "inv2Reorder": {
+   "order": [
+    "S10043-17946",
+    "S10043-17945",
+    "S10043-17947",
+    "S10043-17949",
+    "S10043-17950"
+   ],
+   "message": [
+    "Lead technician updated"
+   ]
+  },
+  "paid3ToRalph": {
+   "column": "Esther Howard",
+   "message": []
+  },
+  "paid3ToUnassigned": {
+   "column": "Esther Howard",
+   "message": []
+  },
+  "inv4ToEsther": {
+   "column": "Esther Howard",
+   "message": [
+    "Lead technician updated"
+   ]
+  },
+  "declined5ToRalph": {
+   "column": "Esther Howard",
+   "message": []
+  },
+  "complete6ToRalph": {
+   "column": "Esther Howard",
+   "message": []
+  },
+  "leads": {
+   "S10043-17950": "Esther Howard",
+   "S10043-17949": "Esther Howard",
+   "S10043-17948": "Esther Howard",
+   "S10043-17947": "Esther Howard",
+   "S10043-17946": "Esther Howard",
+   "S10043-17945": "Esther Howard"
+  },
+  "woPageLeadControl": {
+   "text": "Esther Howard",
+   "disabled": "no"
+  },
+  "ids": {
+   "W2": "S10043-17946",
+   "W3": "S10043-17947",
+   "W4": "S10043-17948",
+   "W5": "S10043-17949",
+   "W6": "S10043-17950"
+  }
+ },
+ "C96972": {
+  "cardStatus": "Ready For Review",
+  "invoiced": 400,
+  "statusNow": "ready_for_review",
+  "message": [
+   "Lead technician updated"
+  ],
+  "column": "Ralph Edwards",
+  "afterReload": {
+   "lead": {
+    "S10043-17951": "Ralph Edwards"
+   },
+   "column": "Ralph Edwards"
+  }
  }
 }

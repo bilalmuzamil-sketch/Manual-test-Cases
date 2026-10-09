@@ -411,7 +411,7 @@ await run('C368159', async () => {
   await goP(p, 'List', s.q); o.before = { here: await here(), lead: await leadOf(s, 'Site Co') };
   // browser 2: the work order page, Lead Technician -> Ben Bravo
   const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${s.w['Site Co'].id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(6000);
-  await pg.locator('[data-test-id="select_lead_technician"]').click(); await pg.waitForTimeout(1000); await pg.keyboard.type('Ben'); await pg.waitForTimeout(1200);
+  await pg.locator('[data-test-id="select_lead_technician"]').click(); await pg.waitForTimeout(1000); await pg.keyboard.type('ZZAUTOTEST Ben'); await pg.waitForTimeout(1200);
   await pg.locator('.q-menu .q-item').filter({ hasText: 'Ben Bravo' }).first().click(); await pg.waitForTimeout(3000); await pg.close();
   o.leadAfterB2 = await leadOf(s, 'Site Co');
   // browser 1, stale page: toggle On Site

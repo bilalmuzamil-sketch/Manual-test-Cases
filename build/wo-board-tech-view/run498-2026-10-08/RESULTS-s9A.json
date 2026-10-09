@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C97001": {
+   "verdict": "Passed",
+   "observed": "Technicians ZZAUTOTEST Ana Alpha, Ben Bravo, Cal Charlie (made for these checks). Customers 'ZZAUTOTEST F3 Drag Order \u2026 Alpha Co \u2026 Echo Co': Ana leads Alpha Co, Bravo Co, Charlie Co; Ben leads Delta Co; Cal leads Echo Co. Tech View: Ana's group started Alpha Co, Bravo Co, Charlie Co. Charlie Co dragged above Alpha Co: Charlie Co, Alpha Co, Bravo Co. Bravo Co dragged into Ben's group below Delta Co: Ben's group Delta Co, Bravo Co; Ana's group Charlie Co, Alpha Co ('Lead technician updated'). Board View: in Ben's column Bravo Co dragged above Delta Co: Bravo Co, Delta Co. Echo Co dragged from Cal's column into Ana's column below the last card: Ana's column Charlie Co, Alpha Co, Echo Co; Cal's column empty. Every drag was allowed and stayed where released; after a reload Ana: Charlie Co, Alpha Co, Echo Co; Ben: Bravo Co, Delta Co; Cal: empty.",
+   "not_observed": null
+  },
+  "C97002": {
+   "verdict": "Passed",
+   "observed": "Customers 'ZZAUTOTEST F3 Drag Lead Change \u2026 Alpha Co / Golf Co': Alpha Co led by Ana Alpha, Golf Co with no lead. Board View: Alpha Co dragged into Ben's column: it sits there and 'Lead technician updated' appeared and was gone by itself within 9 seconds; the work order's Lead Technician is Ben Bravo. Alpha Co dragged into Unassigned: 'Lead technician removed'; the work order has no lead technician. Golf Co dragged from Unassigned into Cal's column: 'Lead technician updated', lead Cal Charlie. Tech View: Golf Co's row dragged into Ana's group: 'Lead technician updated', lead Ana Alpha.",
+   "not_observed": null
+  },
+  "C97004": {
+   "verdict": "Passed",
+   "observed": "Customers 'ZZAUTOTEST F3 Pinned Reorder \u2026': Ana leads Alpha Co; Ben leads Bravo Co and Charlie Co; Cal leads Delta Co; Dan leads none. Only Ana and Ben pinned. Board View started Unassigned, Ana, Ben, Cal, Dan with counts Ana 1, Ben 2, Cal 1, Dan 0. Ben's column dragged by its handle before Ana: Unassigned, Ben, Ana, Cal, Dan. Ben's column then dragged towards the unpinned columns: he stayed among the pinned technicians (Unassigned, Ana, Ben, Cal, Dan; pinned still Ana and Ben) and Cal and Dan stayed after them. Tech View: the pinned groups come right after Unassigned in the same pinned order (Ana, Ben); Ana's group dragged towards the unpinned groups stayed in the pinned area (now after Ben). Counts afterwards unchanged (Ana 1, Ben 2, Cal 1, Dan 0) and Bravo Co's lead is still Ben Bravo.",
+   "not_observed": null
+  }
+ }
+}

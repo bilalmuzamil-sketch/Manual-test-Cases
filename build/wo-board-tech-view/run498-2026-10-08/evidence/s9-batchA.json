@@ -1,0 +1,193 @@
+{
+ "runner": "059edc87",
+ "techs": {
+  "ana": true,
+  "ben": true,
+  "cal": true,
+  "dan": true
+ },
+ "C97001": {
+  "anaStart": [
+   "Alpha Co",
+   "Bravo Co",
+   "Charlie Co"
+  ],
+  "step5": [
+   "Charlie Co",
+   "Alpha Co",
+   "Bravo Co"
+  ],
+  "step6": {
+   "ana": [
+    "Charlie Co",
+    "Alpha Co"
+   ],
+   "ben": [
+    "Delta Co",
+    "Bravo Co"
+   ],
+   "msg": [
+    "Lead technician updated"
+   ]
+  },
+  "step8": [
+   "Bravo Co",
+   "Delta Co"
+  ],
+  "step9": {
+   "ana": [
+    "Charlie Co",
+    "Alpha Co",
+    "Echo Co"
+   ],
+   "cal": [],
+   "msg": [
+    "Lead technician updated"
+   ]
+  },
+  "afterReload": {
+   "ana": [
+    "Charlie Co",
+    "Alpha Co",
+    "Echo Co"
+   ],
+   "ben": [
+    "Bravo Co",
+    "Delta Co"
+   ],
+   "cal": []
+  }
+ },
+ "C97002": {
+  "step4": {
+   "msg": [
+    "Lead technician updated"
+   ],
+   "ben": [
+    "Alpha Co"
+   ]
+  },
+  "step4fadedAfter9s": true,
+  "step5": "ZZAUTOTEST Ben Bravo",
+  "step6": {
+   "msg": [
+    "Lead technician removed"
+   ],
+   "un": [
+    "Alpha Co",
+    "Golf Co"
+   ]
+  },
+  "step7": "none",
+  "step8": {
+   "msg": [
+    "Lead technician updated"
+   ],
+   "cal": [
+    "Golf Co"
+   ]
+  },
+  "step9": "ZZAUTOTEST Cal Charlie",
+  "step11": {
+   "msg": [
+    "Lead technician updated"
+   ],
+   "ana": [
+    "Golf Co"
+   ],
+   "lead": "ZZAUTOTEST Ana Alpha"
+  }
+ },
+ "C97004": {
+  "start": [
+   "Unassigned",
+   "Ana",
+   "Ben",
+   "Cal",
+   "Dan"
+  ],
+  "counts": {
+   "Ana": 1,
+   "Ben": 2,
+   "Cal": 1,
+   "Dan": 0
+  },
+  "step5drag": "ok",
+  "step5": [
+   "Unassigned",
+   "Ben",
+   "Ana",
+   "Cal",
+   "Dan"
+  ],
+  "step6drag": "ok",
+  "step6": [
+   "Unassigned",
+   "Ana",
+   "Ben",
+   "Cal",
+   "Dan"
+  ],
+  "step6pinned": [
+   "Ana",
+   "Ben"
+  ],
+  "step8": [
+   "Unassigned",
+   "Ana",
+   "Ben"
+  ],
+  "step8pinnedGroups": [
+   "ZZAUTOTEST Ana Alpha",
+   "ZZAUTOTEST Ben Bravo"
+  ],
+  "step8drag": "ok",
+  "step8after": [
+   "Unassigned",
+   "Ben",
+   "Ana"
+  ],
+  "step9": {
+   "counts": {
+    "Ben": 2,
+    "Ana": 1,
+    "Cal": 1,
+    "Dan": 0
+   },
+   "bravoLead": "ZZAUTOTEST Ben Bravo"
+  }
+ },
+ "C97006": {
+  "step4": {
+   "sort": [
+    "Created Onarrow_drop_up desc"
+   ],
+   "rows": [
+    "Charlie Co",
+    "Bravo Co",
+    "Alpha Co"
+   ]
+  },
+  "techAfter": [
+   "Bravo Co",
+   "Alpha Co"
+  ],
+  "boardAfter": [
+   "Alpha Co",
+   "Bravo Co"
+  ],
+  "step9": {
+   "sort": [
+    "Created Onarrow_drop_up desc"
+   ],
+   "rows": [
+    "Charlie Co",
+    "Bravo Co",
+    "Alpha Co"
+   ]
+  }
+ },
+ "C97007": {
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-menu .q-item').filter({ hasText: 'Ben Bravo' }).first()\n"
+ }
+}
