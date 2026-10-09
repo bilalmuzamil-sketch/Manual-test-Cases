@@ -1,0 +1,61 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368176": {
+   "verdict": "Passed",
+   "observed": "Work order S10043-18254 with no lead: both lines' Labor rows read Unassigned. As Esther Howard (her own session): Start on Line 1's Labor row, waited over 1 minute, Stop, typed what was done in the Stop working window and saved. Back as the admin: Line 1's Labor row reads Esther Howard; Line 2 still Unassigned. The line took the technician who clocked in.",
+   "not_observed": null
+  },
+  "C368180": {
+   "verdict": "Passed",
+   "observed": "Customer 'ZZAUTOTEST Asset Tab \u2026' with assets TRK-201 (work orders A, B, C) and TRK-202 (D). Customers > the customer > Assets > TRK-201 > Work Orders tab: S10043-18258, S10043-18259, S10043-18260 (A, B, C \u2014 3 rows) and nothing else; D (S10043-18261, on TRK-202) is not listed. No error message; the table finished loading.",
+   "not_observed": null
+  },
+  "C368182": {
+   "verdict": "Passed",
+   "observed": "Asset TRK-201's Work Orders tab: work order B (two lines, one completed) shows Progress 0%, the same value the Work Orders List shows for it (0%).",
+   "not_observed": null
+  },
+  "C368183": {
+   "verdict": "Passed",
+   "observed": "Asset TRK-201's Work Orders tab, Number header clicked: S10043-18260, S10043-18259, S10043-18258; clicked again: S10043-18258, S10043-18259, S10043-18260 \u2014 the same 3 rows in the reverse order, none missing or repeated. (The first click sorts newest first.)",
+   "not_observed": null
+  },
+  "C368184": {
+   "verdict": "Passed",
+   "observed": "Customer 'ZZAUTOTEST Customer Tab \u2026' Work Orders tab (label 'Work Orders (4)'): S10043-18262 to S10043-18265 \u2014 A, B, C and D, 4 rows, nothing from other customers; no error message; the table finished loading.",
+   "not_observed": null
+  },
+  "C368185": {
+   "verdict": "Passed",
+   "observed": "Customer Work Orders tab: the tab label reads 'Work Orders (4)' and the table has 4 rows \u2014 the same number.",
+   "not_observed": null
+  },
+  "C368186": {
+   "verdict": "Passed",
+   "observed": "Customer Work Orders tab: work order B shows Progress 0%, the same as the Work Orders List shows for it.",
+   "not_observed": null
+  },
+  "C368165": {
+   "verdict": "Failed",
+   "observed": "Paid work order S10043-18248 (lead Esther Howard): the status card shows 'Lead technician' with 'Esther Howard' as plain read-only text \u2014 no dropdown arrow, not a greyed-out field \u2014 and clicking it opens nothing; after a reload it still reads Esther Howard (the lead did not change). This is exactly the case's 'What you should see today', outcome (1): marked Failed, nothing new raised.",
+   "not_observed": null,
+   "ticket_held": true,
+   "ticket": "held with the QA lead \u2014 the case says raise nothing new (outcome 1), so no report is prepared",
+   "todo": "Nothing new to raise: this is the behaviour the case already describes for today's build. Re-run when the branch changes."
+  },
+  "C368181": {
+   "verdict": "Failed",
+   "observed": "Asset TRK-201's Work Orders tab: the tab reads 'Work Orders' with no number and there is no count or 'x of y' under the table; the table has 3 rows. This is exactly the case's 'What you should see today', outcome (1): marked Failed, nothing new raised.",
+   "not_observed": null,
+   "ticket_held": true,
+   "ticket": "held with the QA lead \u2014 the case says raise nothing new (outcome 1), so no report is prepared",
+   "todo": "Nothing new to raise: this is the behaviour the case already describes for today's build. Re-run when the branch changes."
+  }
+ }
+}

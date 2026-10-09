@@ -1,27 +1,37 @@
-/** Line states for the lead cases: which calls make a line follow the lead, be explicit, complete, logged, clocked. */
-import { open, done } from './session.mts';
-import { api, customer, workOrder } from './data.mts';
+/** UI map 3 (2026-10-09): the line window (description list, Technicians area and its remove control, Estimated Time),
+ *  the Labor row's three-dots menu, the status card's Lead Technician list (how to reach a name low in the list), and
+ *  the Schedule's technician rows (which staff have one, and their departments). Reads only, plus one New Line typed
+ *  and cancelled. */
+import fs from 'node:fs';
+import path from 'node:path';
+import { open, done, APP } from './session.mts';
+import { asRunner } from './runner.mts';
+import { api, workOrders } from './data.mts';
+import { EV, t, shot } from './wob.mts';
 import { staffRows } from './staff.mts';
-import { t } from './wob.mts';
-const { browser, page: p } = await open('/workorders');
-const a = api(p);
-const D = '@staging.shopview.local';
-const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
-const ES = await sid('esther.howard'), DO = await sid('dana.ortiz');
-const c = await customer(a, 'ZZAUTOTEST F1 Line Probe', 'ZZF4LP');
-const wo = await workOrder(a, c, 'estimate', null);
-const canned = (await a.get('/api/work-orders/canned-lines')).body?.data; const cl = (Array.isArray(canned) ? canned : canned?.collection ?? []);
-const mk = async (i: number) => { const r = await a.post(`/api/work-orders/${wo}/lines/create-from-canned-line`, { canned_line_id: cl[i % cl.length].id, status: 'authorized' }); return { status: r.status, id: r.body?.data?.line_id ?? r.body?.data?.id ?? r.body?.line_id, raw: JSON.stringify(r.body).slice(0, 160) }; };
-const L2 = await mk(1); console.log(t(), 'line create', JSON.stringify(L2));
-console.log(t(), 'status approved', (await a.post('/api/work-orders/change-status', { id: wo, status: 'approved' })).status);
-console.log(t(), 'lead', (await a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: ES.staff_id })).status);
-const lt = async () => JSON.stringify((await a.get(`/api/work-orders/${wo}/line-technicians`)).body?.data?.lineTechnicians?.map((x: any) => ({ line: x.lineId.slice(0, 6), derived: x.derivedFromLeadTech, techs: (x.technicians ?? []).map((tt: any) => tt.firstName ?? tt.name ?? tt.staffId ?? tt) })));
-console.log(t(), 'after lead', await lt());
-const L1 = await mk(2); console.log(t(), 'line added after lead', await lt());
-console.log(t(), 'clear L1', (await a.put(`/api/work-orders/lines/${L1.id}/technicians`, { staffIds: [] })).status, await lt());
-const L3 = await mk(3); console.log(t(), 'explicit', (await a.put(`/api/work-orders/lines/${L3.id}/technicians`, { staffIds: [DO.staff_id] })).status, await lt());
-const story = await a.post('/api/work-orders/lines/change-story', { line_id: L2.id, tech_story: 'Done', work_order_id: wo }); console.log(t(), 'story', story.status);
-const comp = await a.post('/api/work-orders/lines/change-status', { line_id: L2.id, status: 'complete', workOrderId: wo }); console.log(t(), 'complete', comp.status, JSON.stringify(comp.body).slice(0, 160), await lt());
-const lines = (await a.get(`/api/work-orders/lines/${wo}`)).body?.data; console.log(t(), 'lines keys', JSON.stringify((Array.isArray(lines) ? lines : lines?.lines ?? [])[0] ?? lines).slice(0, 900));
-const task = await a.post('/api/work-orders/tasks/create', { staff_id: ES.staff_id, work_order_id: wo, line_id: L1.id }); console.log(t(), 'task create', task.status, JSON.stringify(task.body).slice(0, 300));
-await done(browser);
+const { browser, page: p0 } = await open('/workorders?tab=all');
+const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p; const a = api(p); const R: any = {};
+const [w] = await workOrders(a, 'ZZAUTOTEST WO Page Lead Change'); R.wo = w?.number;
+try { await p.goto(`${APP}/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000);
+  // Lead Technician list
+  await p.locator('[data-test-id="select_lead_technician"]').click(); await p.waitForTimeout(1200);
+  R.lead = { inputs: await p.evaluate(`[...document.querySelectorAll('[data-test-id="select_lead_technician"] input')].map(i => i.outerHTML.slice(0, 200))`), menuItems: await p.locator('.q-menu .q-item').count(), virtual: await p.locator('.q-menu .q-virtual-scroll__content').count() };
+  await p.keyboard.type('Ralph', { delay: 60 }); await p.waitForTimeout(1500); R.lead.afterTyping = (await p.locator('.q-menu .q-item').allInnerTexts()).slice(0, 5);
+  await p.keyboard.press('Escape'); await p.waitForTimeout(800);
+  // Labor row menu
+  const lab = p.locator('[data-test-id^="button_add_labor_adjustment_"]').first(); await lab.click().catch(() => {}); await p.waitForTimeout(1000); R.laborMenu = await p.locator('.q-menu .q-item').allInnerTexts().catch(() => []); await shot(p, 'UI3-labor-menu'); await p.keyboard.press('Escape');
+  const ln = p.locator('[data-test-id^="line_number_"]').first(); await ln.click().catch(() => {}); await p.waitForTimeout(1000); R.lineNumberMenu = await p.locator('.q-menu .q-item').allInnerTexts().catch(() => []); await p.keyboard.press('Escape');
+  // New Line window
+  await p.locator('[data-test-id="button_new_line"]').click(); await p.waitForTimeout(2500); const d = p.locator('.q-dialog').last();
+  await d.locator('[data-test-id="select_line_canned_line"]').click(); await p.keyboard.type('ZZAUTOTEST Oil change zq', { delay: 30 }); await p.waitForTimeout(2000); R.menuTexts = (await p.locator('.q-menu .q-item').allInnerTexts()).slice(0, 3);
+  await p.keyboard.press('Escape'); await p.waitForTimeout(800); R.descAfterEscape = await d.locator('[data-test-id="select_line_canned_line"] input').inputValue().catch(() => null);
+  R.techArea = await d.evaluate((e) => { const h = [...e.querySelectorAll('*')].find((x: any) => /^\s*Technicians\s*$/.test(x.innerText || '')); const box = h?.parentElement; return box ? box.outerHTML.replace(/\s+/g, ' ').slice(0, 2500) : 'no Technicians heading'; });
+  R.estimate = await d.locator('[data-test-id="input_time_estimate"]').evaluate((e) => e.outerHTML.slice(0, 300)).catch(() => null); await shot(p, 'UI3-newline'); await d.locator('[data-test-id="button_close_dialog"]').click().catch(() => {});
+} catch (e: any) { R.error = String(e).slice(0, 300); }
+try { await p.goto(`${APP}/schedule`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000);
+  R.lanes = await p.evaluate(`[...document.querySelectorAll('[data-staff-id]')].map(e => e.getAttribute('data-staff-id').slice(0, 8) + ' ' + ((e.querySelector('[data-test-id="schedule_lane_label"]') || e).innerText || '').replace(/\\s+/g, ' ').slice(0, 40)).slice(0, 60)`);
+  for (const n of ['esther.howard', 'jenny.wilson']) { const r = (await staffRows(a, `zz.wob.${n}@staging.shopview.local`))[0]; R[n] = r ? { staff: String(r.staff_id).slice(0, 8), deps: r.departments } : null; }
+  const deps = (await a.get('/api/departments')).body?.data; R.departments = (Array.isArray(deps) ? deps : deps?.collection ?? []).map((d: any) => `${d.name}${d.enable_time_clock ? ' [clock]' : ''}`).slice(0, 20);
+} catch (e: any) { R.schedError = String(e).slice(0, 300); }
+console.log(t(), JSON.stringify(R).slice(0, 8000)); fs.writeFileSync(path.join(EV, 'probe-lines.json'), JSON.stringify(R, null, 1));
+await RUN.end(); await done(browser);
