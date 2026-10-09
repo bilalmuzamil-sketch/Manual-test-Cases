@@ -43,6 +43,10 @@ export async function open(route = '/workorders'): Promise<{ browser: Browser; p
   const s = await signIn(route);
   await quiet(s.page);
   fs.writeFileSync(STATE, JSON.stringify(await s.ctx.storageState()), { mode: 0o600 });
+  // the sign-in helper's window is 1x; when a sharp (2x) capture is asked for, reopen the saved state at that scale
+  const scale = Number(process.env.WOB_SCALE || 1);
+  if (scale !== 1) { const ctx2 = await s.browser.newContext({ storageState: STATE, viewport: { width: 1600, height: 1000 }, deviceScaleFactor: scale }); const pg2 = await ctx2.newPage(); await quiet(pg2);
+    await pg2.goto(APP + route, { waitUntil: 'domcontentloaded', timeout: 45_000 }).catch(() => {}); await pg2.waitForTimeout(3000); await s.ctx.close().catch(() => {}); return { browser: s.browser, page: pg2 }; }
   return { browser: s.browser, page: s.page };
 }
 
