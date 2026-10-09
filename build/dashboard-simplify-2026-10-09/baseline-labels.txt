@@ -1,0 +1,80 @@
+cases checked      : 83
+observed-label file: build/dashboard/OBSERVED-UI-LABELS-sv490.md
+
+UNCONFIRMED LABELS — quoted in a precondition, never observed on the build:
+     13 case(s)  “ZZAUTOTEST Dashboard Quiet”   ['C88632', 'C88634', 'C88635', 'C88636', 'C88637', 'C88638'] …
+     12 case(s)  “QA Testing”   ['C88601', 'C351705', 'C88604', 'C88606', 'C88607', 'C88610'] …
+     11 case(s)  “Dana Test”   ['C88632', 'C88634', 'C88635', 'C88636', 'C88637', 'C88638'] …
+     11 case(s)  “Tom Tech”   ['C88632', 'C88634', 'C88635', 'C88636', 'C88637', 'C88638'] …
+     11 case(s)  “ZZAUTOTEST Dash Customer 1”   ['C88632', 'C88634', 'C88635', 'C88636', 'C88637', 'C88638'] …
+      9 case(s)  “Alex Advisor”   ['C88632', 'C88634', 'C88635', 'C88636', 'C88637', 'C88638'] …
+      9 case(s)  “Please select a contact for the asset”   ['C88632', 'C88634', 'C88635', 'C88636', 'C88637', 'C88638'] …
+      8 case(s)  “Dash Shop”   ['C88602', 'C88604', 'C88605', 'C351707', 'C351709', 'C351710'] …
+      8 case(s)  “ZZAUTOTEST Advisor X”   ['C88602', 'C88604', 'C88605', 'C351707', 'C351709', 'C351710'] …
+      8 case(s)  “ZZAUTOTEST Advisor Y”   ['C88602', 'C88604', 'C88605', 'C351707', 'C351709', 'C351710'] …
+      8 case(s)  “ZZAUTOTEST Alpha Fleet”   ['C88602', 'C88604', 'C88605', 'C351707', 'C351709', 'C351710'] …
+      8 case(s)  “ZZAUTOTEST Bravo Fleet”   ['C88602', 'C88604', 'C88605', 'C351707', 'C351709', 'C351710'] …
+      8 case(s)  “ZZAUTOTEST Dash Shop”   ['C88602', 'C88604', 'C88605', 'C351707', 'C351709', 'C351710'] …
+      8 case(s)  “ZZAUTOTEST Tech One”   ['C88602', 'C88604', 'C88605', 'C351707', 'C351709', 'C351710'] …
+      8 case(s)  “ZZAUTOTEST Tech Two”   ['C88602', 'C88604', 'C88605', 'C351707', 'C351709', 'C351710'] …
+      8 case(s)  “ZZAUTOTEST Empty Shop”   ['C88607', 'C351706', 'C351708', 'C351711', 'C351712', 'C351713'] …
+      7 case(s)  “ZZAUTOTEST Dash Customer”   ['C351716', 'C88619', 'C351717', 'C88622', 'C351721', 'C88624'] …
+      5 case(s)  “, or”   ['C88637', 'C88638', 'C88639', 'C88640', 'C88641']
+      4 case(s)  “ZZAUTOTEST Line 1”   ['C88632', 'C88637', 'C88639', 'C88641']
+      3 case(s)  “ZZAUTOTEST Shop Cleanup”   ['C88641', 'C88646', 'C88652']
+      2 case(s)  “ZZAUTOTEST Line 2”   ['C88637', 'C88639']
+      1 case(s)  “ZZAUTOTEST No Clock Shop”   ['C88603']
+      1 case(s)  “Ruline Partners”   ['C351705']
+      1 case(s)  “ZZAUTOTEST Keep Fleet”   ['C351705']
+      1 case(s)  “ZZAUTOTEST Void Fleet”   ['C351705']
+      1 case(s)  “ZZAUTOTEST Void Shop”   ['C351705']
+      1 case(s)  “Range: 31 days”   ['C88606']
+      1 case(s)  “ZZAUTOTEST Big Fleet”   ['C88607']
+      1 case(s)  “ZZAUTOTEST Big Shop”   ['C88607']
+      1 case(s)  “ZZAUTOTEST One Customer Shop”   ['C88608']
+      1 case(s)  “ZZAUTOTEST Solo Fleet”   ['C88608']
+      1 case(s)  “ZZAUTOTEST Walk-in Shop”   ['C88611']
+      1 case(s)  “ZZAUTOTEST Outlier”   ['C88621']
+      1 case(s)  “ZZAUTOTEST High Tech”   ['C351720']
+      1 case(s)  “ZZAUTOTEST Tech”   ['C351720']
+      1 case(s)  “ZZAUTOTEST Labor 1h”   ['C88634']
+      1 case(s)  “ZZAUTOTEST Line”   ['C88635']
+      1 case(s)  “ZZAUTOTEST Labor 2h”   ['C88636']
+      1 case(s)  “Bea Advisor”   ['C88638']
+      1 case(s)  “ZZAUTOTEST A”   ['C88638']
+      1 case(s)  “ZZAUTOTEST B”   ['C88638']
+      1 case(s)  “Tara Tech”   ['C88640']
+      1 case(s)  “ZZAUTOTEST No clock”   ['C88640']
+      1 case(s)  “ZZAUTOTEST SBC 1”   ['C88642']
+      1 case(s)  “ZZAUTOTEST SBC 4”   ['C88642']
+      1 case(s)  “Range: N days”   ['C88647']
+
+Each one is a job for a probe: read it off the served page, then add it to the observed
+file with its evidence — or correct the case to the wording the build actually uses.
+
+🛑 NO LABEL QUOTED AT ALL — the preconditions and steps name nothing on the screen,
+   so this gate has nothing to check and a tester has nothing to click:
+   C88620  Unticking every technician hides the technician chart
+   C351718  A chart's filter choice is still set on your next visit
+   C204097  Chart value axis starts at 0 unless a value is below 0
+   C351719  Percentage axis fits the data when no value is above 200%
+   C351722  Technician charts draw one line per ticked technician and nothing else
+   C351723  Hovering a name in a dashboard chart legend shows latest month and ave
+   C351724  Hovering a month on the Revenue and technician charts lists its values
+   C351725  Report opens with the tile's preset selected, not Custom
+   C351726  Report opened from a tile covers exactly the tile's dates
+   C351727  Sales, Service Advisor Analysis and Technician Efficiency offer Last 1
+   C351728  Last 12 months runs from the 1st of the month eleven months back to to
+   C351729  A report without the tile's preset opens on the same dates as Custom
+   C88625  The chart on a report page has no controls of its own
+   C204098  Hide chart sits on the report's filter row, right of the filters
+   C351730  Hide chart and Show chart put the report chart away and bring it back
+   C351731  The report chart follows the report's date and person filters
+   C351733  The show or hide choice is remembered for each report
+   C351734  Hovering a name in a report chart legend shows latest month and averag
+   C351735  Hovering a month on a report chart lists every line's value
+   C88626  Desktop shows four KPI tiles in a row and two count tiles below
+   ... and 11 more
+   Read the route off the build and quote its labels. A silent case is NOT a clean case.
+
+PRECONDITION-LABEL GATE: PROBLEMS ABOVE
