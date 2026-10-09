@@ -10,7 +10,7 @@ HOST="$(echo "${GS_APP:-https://sv10043.qa.shopview.com}" | sed -E 's#https?://(
 [ -f "$HERE/profiles/$HOST.json" ] || [ "$HOST" = "sv10043.qa.shopview.com" ] || "$HERE/wob-run.sh" discover-profile.mts > "$LOG/00-profile.log"
 while read -r s; do [ -z "$s" ] && continue
   ids=$(python3 -c "import json;print(','.join('C%d'%c for c in json.load(open('$HERE/rerun-map.json'))['$s']))")
-  extra=""; case "$s" in kbd-fix2.mts) extra="WOB_LIVE=1";; esac
+  extra=""; case "$s" in kbd-fix2.mts|s9-fix2.mts) extra="WOB_LIVE=1";; esac
   echo "$(date +%H:%M:%S) $s ($ids)"; env ONLY="$ids" $extra timeout 3600 "$HERE/wob-run.sh" "$s" > "$LOG/${s%.mts}.log" 2>&1; echo "EXIT=$?" >> "$LOG/${s%.mts}.log"
 done < "$HERE/rerun-order.txt"
 echo "done — logs in $LOG"
