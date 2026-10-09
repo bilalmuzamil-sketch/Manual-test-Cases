@@ -71,7 +71,7 @@ const reportsTick: [string, string, string][] = [['C368232', 'Work In Progress',
 for (const [id, rep, label] of reportsTick) await run(id, async () => { await nav('Reports', rep); R[id] = { page: p.url().replace(APP, '') }; Object.assign(R[id], await tickSelectClear(id, label)); });
 
 await run('C368245', async () => { await nav('Customers'); const o: any = { first: await table(), toasts: await toasts() };
-  const th0 = p.locator('thead th').filter({ hasText: /Customer Name|Name/ }).first(); const th = (await th0.count()) ? th0 : p.getByText('Customer Name', { exact: true }).first(); o.headerKind = (await th0.count()) ? 'th' : 'text'; await th.click(); await p.waitForTimeout(2500);
+  const th0 = p.locator('thead th').filter({ hasText: /Customer Name|Name/ }).first(); const th = (await th0.count()) ? th0 : p.getByText('Customer Name').last(); o.headerKind = (await th0.count()) ? 'th' : 'text'; await th.click(); await p.waitForTimeout(2500);
   const names = async () => p.evaluate(`[...document.querySelectorAll('tbody tr')].map(r => r.querySelector('td')?.innerText.trim()).filter(Boolean)`) as Promise<string[]>;
   const n1 = await names(); o.sorted = n1.slice(0, 6); o.inOrder = n1.every((x, i) => i === 0 || n1[i - 1].localeCompare(x, undefined, { sensitivity: 'base' }) <= 0) || n1.every((x, i) => i === 0 || n1[i - 1].localeCompare(x, undefined, { sensitivity: 'base' }) >= 0);
   for (let i = 0; i < 4; i++) { await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle') || document.scrollingElement; s.scrollTop = 1e9; window.scrollTo(0, 1e9); })()`); await p.waitForTimeout(1800); }
@@ -84,11 +84,19 @@ await run('C368246', async () => { await p.goto(APP + '/dashboard', { waitUntil:
   for (let i = 0; i < Math.min(await cards.count(), 6); i++) { const c = cards.nth(i); const title = ((await c.innerText()).split('\n')[0] || '').trim().slice(0, 40); const th = c.locator('thead th').filter({ has: p.locator('i, .q-icon') }).first();
     if (!(await th.count())) { sorts[title] = 'no sortable header'; continue; } const col = await th.evaluate((e) => Array.from(e.parentElement!.children).indexOf(e));
     const read = () => c.evaluate((el, k) => [...el.querySelectorAll('tbody tr')].map((r) => ((r.children[k as number] as HTMLElement)?.innerText.trim() || (r as HTMLElement).innerText.replace(/\s+/g, ' ').trim())), col);
+    if (await c.getByText(/No data for selected date range/).count()) { const rng = c.locator('button, .q-btn, .q-select').filter({ hasText: /This Month|Month|Week|Year|Days/ }).first(); if (await rng.count()) { await rng.click(); await p.waitForTimeout(900); const opts = p.locator('.q-menu .q-item'); const n = await opts.count(); if (n) { (sorts as any)[title + ' ranges'] = (await opts.allInnerTexts()).map((x) => x.trim()).slice(0, 8); await opts.nth(n - 1).click(); await p.waitForTimeout(3000); } } (sorts as any)[title + ' rowsAfterWiden'] = await c.locator('tbody tr').count(); }
     const b = await read(); await th.click(); await p.waitForTimeout(1500); const x = await read(); await th.click(); await p.waitForTimeout(1500); const y = await read();
     sorts[title] = { header: (await th.innerText()).trim(), before: b.slice(0, 4), first: x.slice(0, 4), second: y.slice(0, 4), changed: JSON.stringify(x) !== JSON.stringify(y) }; }
   o.sorts = sorts; await shot(p, 'C368246'); R.C368246 = o; });
 
-await run('C368247', async () => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500);
+await run('C368247', async () => {
+  const cust = `ZZAUTOTEST Imported Lead ${Date.now() % 100000}`; await (await import('./data.mts')).customer(a, cust, 'IMP-1');
+  const hdr = 'Shop Location,Customer,VIN,Year,Make,Model,Unit #,Unit Type,Mileage,Hours,Invoice Number,Invoice Date,PO,Service Advisor,Item,Line Title - What are you doing,Line Description - Why are you doing it,Tech Story,Part #,Part Description,Qty,Rate,Total,Tax Amount';
+  const d = new Date(); const mdy = `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`; const inv = `ZZAUTOTEST-IMP-${Date.now() % 100000}`;
+  const csv = [hdr, `Staging Heavy Duty - 9919,${cust},,2015,Freightliner,Cascadia,IMP-1,Truck,120000,,${inv},${mdy},ZZAUTOTEST,,Labor,ZZAUTOTEST imported labor,Imported lead check,,,,1,100.00,100.00,5.00`].join('\n') + '\n';
+  const imp = await p.evaluate(async ([api, body]) => { const fd = new FormData(); fd.append('file', new Blob([body as string], { type: 'text/csv' }), 'zzautotest-imported.csv'); const r = await fetch(`${api}/api/imports/work-order-historical`, { method: 'POST', body: fd, credentials: 'include' }); return { status: r.status, body: (await r.text()).slice(0, 200) }; }, ['https://sv10043api.qa.shopview.com', csv]);
+  R.C368247seed = { inv, imp, listed: ((await a.get('/api/work-orders-imported?pagination[page]=1&pagination[rowsPerPage]=50')).body?.data?.work_orders ?? (await a.get('/api/work-orders-imported?pagination[page]=1&pagination[rowsPerPage]=50')).body?.data?.collection ?? []).length };
+  await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500);
   await p.locator('[aria-label="List"]').first().click(); await p.waitForTimeout(2000);
   await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Imported/ }).first().click(); await p.waitForTimeout(2500); await p.keyboard.press('Escape'); await p.waitForTimeout(1500);
   const o: any = { rows: await p.evaluate(`[...document.querySelectorAll('tbody tr')].length`) };
