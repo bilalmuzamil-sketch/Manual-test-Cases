@@ -1,0 +1,30 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96975": {
+   "verdict": "Passed",
+   "observed": "List columns noted. In Tech View's Column Selection Service Advisor turned off and Assigned Techs on: List still showed Service Advisor and no Assigned Techs. In List Progress turned off: Tech View still showed Progress. Signed in again (a new sign-in) and in a second browser as the same user: Tech View kept Service Advisor off and Assigned Techs on, List kept Progress off. Second location: the runner could not be given a Lethbridge department from the API or the Staff screen on this branch, so the same steps were done as Ayesha Khan (Admin, enrolled at both locations): after Change Location to Staging Lethbridge - 4310, Tech View had Service Advisor off and Assigned Techs on, and List had Progress off and Service Advisor on.",
+   "not_observed": null
+  },
+  "C96976": {
+   "verdict": "Passed",
+   "observed": "Board View's Fields to display sits in the same toolbar spot as Tech View's Column Selection (same position, a list of switches). Customer turned off and VIN/serial on: the card for S10043-17988 stopped showing the customer and showed 'VIN/serial ZZWOB179150712441'. Kept after signing in again and in a second browser. Second location, done as Ayesha Khan (see C96975): at Staging Lethbridge - 4310 Board View had Customer off and VIN/serial on. Usage recording not checked by hand (the analytics checks cover it).",
+   "not_observed": null
+  },
+  "C96989": {
+   "verdict": "Passed",
+   "observed": "Tech View density set to Comfortable: Board View was already Comfortable. Kept after signing in again and in a second browser (Tech View and Board View both Comfortable). Second location, done as Ayesha Khan: at Staging Lethbridge - 4310 Tech View and Board View were Comfortable.",
+   "not_observed": null
+  },
+  "C96998": {
+   "verdict": "Passed",
+   "observed": "Work order S10043-18184, Lines tab: Line 1's story entered as 'First note' (saved with Update) and edited to 'First note, edited' \u2014 the line shows the edited text, and it is stored. Completing Line 2 without a story: the Complete Line window opened on 'Tech stories' and asked for the story; the line stayed Authorized. With a story entered ('Second note') and its parts received, Complete gave '1 line completed.' and the line became Complete.",
+   "not_observed": null
+  }
+ }
+}

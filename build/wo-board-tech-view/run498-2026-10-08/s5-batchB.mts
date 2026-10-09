@@ -87,6 +87,8 @@ const filters = async (pg: Page) => { const out: Record<string, string[]> = {};
   return out; };
 /** find a card on the board, scrolling the board sideways (columns off to the right are not drawn until reached) */
 async function cardFound(pg: Page, wo: string) {
+  // a saved 'Assigned to me' hides every card this user does not lead: switch it off first
+  const atm = pg.locator('[data-test-id="filter_chip_assigned_to_me"]'); if (await atm.count() && /filter-chip--active/.test((await atm.getAttribute('class')) ?? '')) { await atm.click(); await pg.waitForTimeout(2500); }
   for (let i = 0; i < 30; i++) { if (await pg.locator(`[data-test-id="board_card_${wo}"]`).count()) { await pg.locator(`[data-test-id="board_card_${wo}"]`).scrollIntoViewIfNeeded().catch(() => {}); return card(pg, wo); }
     const moved = await pg.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"]'); if (!h) return false; const b = h.scrollLeft; h.scrollLeft = b + 900; return h.scrollLeft !== b; })()`);
     await pg.waitForTimeout(700); if (!moved) break; }

@@ -1,0 +1,32 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96938": {
+   "verdict": "Failed",
+   "observed": "Unchanged from 8 Oct: in Tech View, hovering a technician's round avatar in a group header shows no name. This is already reported by Ahtasham Amjad on 8 Oct 2026 as SV-11075 'Tech View \u2013 technician avatar in group header has no name tooltip' (Open, under story SV-10045), so no second report is prepared.",
+   "not_observed": null,
+   "ticket": "SV-11075 https://shopview.atlassian.net/browse/SV-11075 (Open, raised by Ahtasham Amjad 8 Oct 2026)"
+  },
+  "C96923": {
+   "verdict": "Failed",
+   "observed": "Test branch unchanged: after a location change Assigned to me stays on. Production checked 9 Oct (v26.40.13-013e543, Truck Hill 1 to Trucks Hill 2): Assigned to me ALSO stays on there. So the source sentence 'Assigned to me resets on location change, as it does today' does not match today's product. Not raised as a defect; put to the QA lead as a product question.",
+   "not_observed": null,
+   "ticket_held": true,
+   "ticket": "held with the QA lead \u2014 product question, not a defect (production behaves the same)",
+   "todo": "QA lead / product owner: decide whether a location change should switch Assigned to me off (new behaviour) or whether the source's 'as it does today' is wrong."
+  },
+  "C96962": {
+   "verdict": "Failed",
+   "observed": "Test branch unchanged: adding a technician in Edit Line saves but writes no history entry. Production checked 9 Oct (v26.40.13-013e543, S1-915 Line 1): adding a technician in Edit Line saved, and neither the line's history (5 entries) nor the work order's (6 entries) gained an entry \u2014 twice, two technicians. So production does not write this entry either; the case's 'as it does today' is contradicted. Not raised as a defect; put to the QA lead.",
+   "not_observed": null,
+   "ticket_held": true,
+   "ticket": "held with the QA lead \u2014 not a defect against this story (production behaves the same)",
+   "todo": "QA lead: the case's premise ('as it does today') does not hold on production; decide how the case should treat it."
+  }
+ }
+}
