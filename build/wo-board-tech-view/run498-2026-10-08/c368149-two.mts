@@ -235,13 +235,17 @@ await run('C368149', async () => {
   const { signIn } = await import('../../global-search/e2e/fixtures/auth.js'); const s2: any = await signIn('/workorders?tab=all'); const pg2: Page = s2.page;
   try {
     await RUN.toRunner(); await goP(p, 'Board View', s.q); o.session1AliveAfterSecondLogin = !/\/login/.test(p.url());
-    await goP(pg2, 'Board View', s.q); await pg2.evaluate(`document.querySelector('[data-test-id="board_column_${ANA.staff_id}"]')?.scrollIntoView({ inline: 'start' })`).catch(() => {});
+    await goP(pg2, 'Board View', s.q);
+    /* FIX (2026-10-09): Ana is not pinned for browser 2's user, so her column sits far right among ~200 — scroll to it */
+    const showAna = async () => { for (let k = 0; k < 3 && !(await colCards(pg2, ANA.staff_id, s)).length; k++) { await toColumn(pg2, ANA.staff_id).catch(() => {}); await pg2.waitForTimeout(1500); } };
+    await showAna();
     o.b1start = await colCards(p, ANA.staff_id, s); o.b2start = await colCards(pg2, ANA.staff_id, s);
     const top1 = o.b1start[0]; await dragOn(p, card(s, 'Charlie Co'), card(s, top1), 4); await p.waitForTimeout(2000); o.b1after = await colCards(p, ANA.staff_id, s); o.b1msg = await toastsOn(p);
+    await showAna(); o.b2beforeDrop = await colCards(pg2, ANA.staff_id, s); if (!o.b2start.length) o.b2start = o.b2beforeDrop; if (!o.b2start.length) throw new Error('browser 2 never showed Ana\'s column');
     const top2 = o.b2start[0]; await dragOn(pg2, card(s, 'Bravo Co'), card(s, top2), 4); await pg2.waitForTimeout(2000); o.b2drop = { order: await colCards(pg2, ANA.staff_id, s), msg: await toastsOn(pg2) }; await shot(pg2, 'C368149-two-b2');
     const seen: string[] = []; for (let i = 0; i < 12; i++) { for (const m of await toastsOn(p)) if (!seen.includes(m)) seen.push(m); await p.waitForTimeout(500); } o.b1warning = seen; await shot(p, 'C368149-two-b1-watch');
     await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); await goP(p, 'Board View', s.q); o.b1afterRefresh = await colCards(p, ANA.staff_id, s);
-    await pg2.reload({ waitUntil: 'domcontentloaded' }); await pg2.waitForTimeout(6000); await goP(pg2, 'Board View', s.q); o.b2afterRefresh = await colCards(pg2, ANA.staff_id, s); await shot(pg2, 'C368149-two-b2-refreshed');
+    await pg2.reload({ waitUntil: 'domcontentloaded' }); await pg2.waitForTimeout(6000); await goP(pg2, 'Board View', s.q); await showAna(); o.b2afterRefresh = await colCards(pg2, ANA.staff_id, s); await shot(pg2, 'C368149-two-b2-refreshed');
   } finally { await s2.browser?.close().catch(() => {}); }
 });
 
