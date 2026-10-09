@@ -1,0 +1,20 @@
+/** How does a work order get to Complete and Invoiced on this branch? Print every answer. */
+import { open, done } from './session.mts';
+import { api, customer, workOrder } from './data.mts';
+import { staffRows } from './staff.mts';
+const { browser, page: p } = await open('/customers');
+const a = api(p);
+const ES = (await staffRows(a, 'zz.wob.esther.howard@staging.shopview.local'))[0];
+const c = await customer(a, `ZZAUTOTEST F1 Invoice Probe ${Date.now() % 100000}`, 'ZZF4IV');
+const wo = await workOrder(a, c, 'approved', ES.staff_id);
+const canned = (await a.get('/api/work-orders/canned-lines')).body?.data; const cl = (Array.isArray(canned) ? canned : canned?.collection ?? [])[0];
+const l = (await a.post(`/api/work-orders/${wo}/lines/create-from-canned-line`, { canned_line_id: cl.id, status: 'authorized' })).body?.data?.line_id;
+const show = async (lab: string, r: any) => console.log(lab, r.status, JSON.stringify(r.body).slice(0, 220));
+await show('story', await a.post('/api/work-orders/lines/change-story', { line_id: l, tech_story: 'Done', work_order_id: wo }));
+await show('line complete', await a.post('/api/work-orders/lines/change-status', { line_id: l, status: 'complete', workOrderId: wo }));
+for (const s of ['in_progress', 'ready_for_review', 'complete']) await show('wo ' + s, await a.post('/api/work-orders/change-status', { id: wo, status: s }));
+const st = (await a.get(`/api/work-orders/view/${wo}`)).body?.data?.work_order; console.log('now', st?.status_value, st?.status);
+const statuses = (await a.get('/api/work-orders/statuses')).body; console.log('statuses', JSON.stringify(statuses).slice(0, 500));
+await show('review endpoint?', await a.post('/api/work-orders/review', { work_order_id: wo }));
+await show('invoice', await a.post('/api/invoices/create', { work_order_id: wo, issue_date: new Date().toISOString().slice(0, 10), due_date: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10) }));
+await done(browser);

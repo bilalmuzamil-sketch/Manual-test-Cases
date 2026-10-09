@@ -1,0 +1,27 @@
+/** Line states for the lead cases: which calls make a line follow the lead, be explicit, complete, logged, clocked. */
+import { open, done } from './session.mts';
+import { api, customer, workOrder } from './data.mts';
+import { staffRows } from './staff.mts';
+import { t } from './wob.mts';
+const { browser, page: p } = await open('/workorders');
+const a = api(p);
+const D = '@staging.shopview.local';
+const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
+const ES = await sid('esther.howard'), DO = await sid('dana.ortiz');
+const c = await customer(a, 'ZZAUTOTEST F1 Line Probe', 'ZZF4LP');
+const wo = await workOrder(a, c, 'estimate', null);
+const canned = (await a.get('/api/work-orders/canned-lines')).body?.data; const cl = (Array.isArray(canned) ? canned : canned?.collection ?? []);
+const mk = async (i: number) => { const r = await a.post(`/api/work-orders/${wo}/lines/create-from-canned-line`, { canned_line_id: cl[i % cl.length].id, status: 'authorized' }); return { status: r.status, id: r.body?.data?.line_id ?? r.body?.data?.id ?? r.body?.line_id, raw: JSON.stringify(r.body).slice(0, 160) }; };
+const L2 = await mk(1); console.log(t(), 'line create', JSON.stringify(L2));
+console.log(t(), 'status approved', (await a.post('/api/work-orders/change-status', { id: wo, status: 'approved' })).status);
+console.log(t(), 'lead', (await a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: ES.staff_id })).status);
+const lt = async () => JSON.stringify((await a.get(`/api/work-orders/${wo}/line-technicians`)).body?.data?.lineTechnicians?.map((x: any) => ({ line: x.lineId.slice(0, 6), derived: x.derivedFromLeadTech, techs: (x.technicians ?? []).map((tt: any) => tt.firstName ?? tt.name ?? tt.staffId ?? tt) })));
+console.log(t(), 'after lead', await lt());
+const L1 = await mk(2); console.log(t(), 'line added after lead', await lt());
+console.log(t(), 'clear L1', (await a.put(`/api/work-orders/lines/${L1.id}/technicians`, { staffIds: [] })).status, await lt());
+const L3 = await mk(3); console.log(t(), 'explicit', (await a.put(`/api/work-orders/lines/${L3.id}/technicians`, { staffIds: [DO.staff_id] })).status, await lt());
+const story = await a.post('/api/work-orders/lines/change-story', { line_id: L2.id, tech_story: 'Done', work_order_id: wo }); console.log(t(), 'story', story.status);
+const comp = await a.post('/api/work-orders/lines/change-status', { line_id: L2.id, status: 'complete', workOrderId: wo }); console.log(t(), 'complete', comp.status, JSON.stringify(comp.body).slice(0, 160), await lt());
+const lines = (await a.get(`/api/work-orders/lines/${wo}`)).body?.data; console.log(t(), 'lines keys', JSON.stringify((Array.isArray(lines) ? lines : lines?.lines ?? [])[0] ?? lines).slice(0, 900));
+const task = await a.post('/api/work-orders/tasks/create', { staff_id: ES.staff_id, work_order_id: wo, line_id: L1.id }); console.log(t(), 'task create', task.status, JSON.stringify(task.body).slice(0, 300));
+await done(browser);
