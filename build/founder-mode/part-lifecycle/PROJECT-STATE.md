@@ -64,3 +64,7 @@ Catalog→Part Library rename, editable part number.
 - **Design (11 boards, driven):** ✅ CONFIRM — no DIVERGE (canvas covers stories the PRD marks TBD).
 - **Tech plan:** first copy received 8 Oct 2026 (dated 7 Oct, PRD v22) — see SOURCE-CHECK-2026-10-08.md; suite NOT yet updated against it.
 - **Epic (SV-10647):** ✅ 13 stories map 1:1 to the 13 sub-folders.
+
+## 9 Oct 2026 — Chris's answers received; spec page changed
+- Chris Ward answered all 13 product questions (`po-answers-2026-10-09/ANSWERS-Chris-Ward-2026-10-09.md`) and edited the PRD (Confluence 829227015, last modified 9 Oct 2026): new S7-N5a, S7-N5c, S9-R10b, S10-R12a, S11-E4; S13-R4a and S13-R13 updated; S5-R14 and S9-E12 removed; overview line on Inventory Value past dates.
+- Full update pass against the changed PRD: offered; QA lead said **"Wait"** (9 Oct). Not started. Cases still follow PRD v26.
