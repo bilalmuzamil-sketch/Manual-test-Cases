@@ -1,0 +1,33 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368242": {
+   "verdict": "Failed",
+   "observed": "Settings > Staff, before and after uploading the blue photo for the test technician (Tech 718636) through her own Edit Profile, then reloading. The Staff list has no photo at all: its columns are First Name, Last Name, Email, Job Title, Role, Department(S), Created, Confirmed Invitation and Billable, with no avatar on any row, before or after. This is exactly the outcome the case describes for build v26.40.8-7a95011 (outcome 1).",
+   "not_observed": null,
+   "ticket_held": true,
+   "ticket": "held with the QA lead \u2014 the case says raise nothing new (outcome 1), so no report is prepared",
+   "todo": "Nothing new to raise: this is the behaviour the case already describes for today's build. Re-run when the branch changes."
+  },
+  "C368243": {
+   "verdict": "Passed",
+   "observed": "Schedule: the test technician's row avatar showed the red photo before the upload. After the blue photo was uploaded through her own Edit Profile and the Schedule page was reloaded, the same avatar shows the blue photo (fully loaded, no broken image), not the old red one.",
+   "not_observed": null
+  },
+  "C368244": {
+   "verdict": "Passed",
+   "observed": "Work Orders > Board View: the avatar in the test technician's column header showed the red photo before the upload. After the blue photo was uploaded through her own Edit Profile and the board was reloaded, the header avatar shows the blue photo (fully loaded), not the old red one.",
+   "not_observed": null
+  },
+  "C368215": {
+   "verdict": "Passed",
+   "observed": "Parts > Part Sales > part sale P10043-255 (customer ZZAUTOTEST Part Sale Card 15232). The status card at the left reads 'P10043-255', status 'Estimate', 'Started: Today'. The customer card under it reads Contact 'ZZAUTOTEST Contact', Phone (blank: this contact has no phone number) and Authorizer 'None'. No empty box, missing card or error message; the parts table and Financial Info (Parts $90.87, GST $4.54, Total $95.41) load beside it. No Sales Representative or technician field exists on a part sale, as already recorded for the sibling check.",
+   "not_observed": null
+  }
+ }
+}
