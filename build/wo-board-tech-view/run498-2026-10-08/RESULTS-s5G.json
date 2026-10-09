@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C96980": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F2 Board Default Fields, S10043-17996 led by Esther Howard. Fay Financial (made for this run, Admin role, which sees financial data, never opened Board View): Fields to display has Lead technician, Customer, Asset, Progress and Total price on, and VIN/serial, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, On-site and Created date off. Her card shows S10043-17996, Approved, the customer, unit ZZF2BD, Progress 0%, Lead technician Esther Howard and Total price $0.00. Nate Nofinance (made for this run; role 'ZZAUTOTEST WO View Only' with See Financial Data turned off): the same defaults without Total price, and Total price is not offered in his Fields to display at all; his card shows the same fields without any price.",
+   "not_observed": "The Asset field is on for both, but this test asset has no make or model, so the card leaves it off (as empty fields are). The role's See Financial Data was put back as it was."
+  }
+ }
+}
