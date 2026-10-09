@@ -32,3 +32,19 @@ Running/left: s9, two, imp, signout (LAST). None of the queue's outputs are judg
 ## Sign-in
 Fresh sv_sso_session given by the QA lead 9 Oct ~17:00 (in /tmp only). Production checks: PROD_ENVF=/tmp/shopview/prod-login-second.env,
 start the bridge first (`bash build/testing-tools/ensure_bridge.sh`).
+
+## Queue outcome, 9 Oct 19:40 UTC (logs copied to `queue-logs-2026-10-09/`; NOTHING from it is judged or written to the run yet)
+| Step | Cases | Outcome |
+|---|---|---|
+| kbd | C368151, C368152, C97020 | ran — judge from the log |
+| rename | (probe) | ran: the List's Lead Technician column showed the NEW name after a staff rename (no stale name here) |
+| pscounts | C368217 | INSTRUMENT FAULT: Add Part's "Part Number" box not found — fix `ps-counts.mts`, re-run |
+| sort | C368196 | ran — judge |
+| deleted | C368191 | ran — judge |
+| high1 | C368172, C368177, C368178, C368179, C368190, C368188, C368189 | ran; Schedule shift creation showed no shift after Create — decide instrument vs app first |
+| medium | C368220–C368237 | ran — judge |
+| dash | C368246 probe | ran — judge |
+| s9 | C97003, C97012 | C97003 ran; C97012 script error (technician not found) — fix and re-run |
+| two | C368149 | ran — judge |
+| imp | C368238, C368239 | 3rd attempt hung (page.goto timeout after switch-user; C368239 timed out). Proposed: leave for MANUAL testing |
+| signout | C368240 | half: tab 2 went to /login after sign-out (good); the Reports click timed out — finish by hand or re-run |
