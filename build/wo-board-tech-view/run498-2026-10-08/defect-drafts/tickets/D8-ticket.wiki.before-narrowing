@@ -1,0 +1,49 @@
+TITLE: Edit Line – Adding a Technician to a Line Writes No History Entry
+TYPE: Story Defect · PARENT: SV-10047 (Ready for QA, read 9 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-10047 · LABEL: board-tech-view
+
+h2. Description
+
+A technician change made directly on a work order line *should be recorded in the history*.
+
+For example,
+* a user opens a line in the *Edit Line* window and adds a technician
+* the change saves and the technician shows on the line
+* nothing is written to the line's *Audit log* or to the work order's history
+
+Lead changes are recorded correctly: each one writes one entry, and lines that move with the lead write none.
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* and the *PRD* (S4-R18).
+
+h2. Steps to Reproduce
+
+# Open any work order that has a line.
+# Click the line's name to open the *Edit Line* window.
+# Under *Add Technician* pick a technician, then click *Save & Close*.
+#* The technician now shows on the line.
+# Open the line's menu (⋮) > *Audit log*.
+#* There is no entry for the technician change.
+# Open the work order's three-dots menu > *Audit Log*.
+#* There is no entry for it there either.
+
+*Actual Result:*
+* Adding a technician in Edit Line saves, but no history entry is written for it.
+
+*Expected Result:*
+* The technician change made on the line is recorded in the line's history.
+
+!D8-edit-line-no-history.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
+* *Example record:* work order [S10043-17986|https://sv10043.qa.shopview.com/workorders/c6f8c300-7e12-410f-b206-72382d8f67e1/lines], Line 1 "Service - Cabin air filter", technician Dana Ortiz added
+
+h2. Sources
+
+* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S4-R18, read 8 Oct 2026:
+{quote}Continue existing line auditing for technician changes made directly on a work order line.{quote}
+
+h2. Test case
+
+* [C96962 A lead change adds one history entry and none for the lines it moves|https://shopview.testrail.io/index.php?/cases/view/96962]

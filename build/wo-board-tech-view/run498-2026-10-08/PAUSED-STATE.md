@@ -1,4 +1,4 @@
-# Run 498 — PAUSED 9 Oct 2026 ~15:00 UTC (QA lead: "save the state and pause everything else we can resume later")
+# Run 498 — RESUMED 9 Oct 2026 17:40 UTC (fresh sign-in from the QA lead; steps 1–2 and 4–13 queued in order, step 3 done by hand) — was PAUSED 9 Oct 2026 ~15:00 UTC (QA lead: "save the state and pause everything else we can resume later")
 
 > **9 Oct 15:35 — FIRST STEP ON RESUME:** the branch sign-in (`sv_sso_session` in `/tmp/shopview/sv10043.env`) EXPIRED ("the Google session has expired") — only the QA lead can supply a fresh one. Then run `d5-discover.mts` and re-check C368131 by removing the enrolment (see defect-drafts/README.md, D5 WITHDRAWN), then the D8 original-state re-check (`d8-pics2.mts`), then the table below.
 

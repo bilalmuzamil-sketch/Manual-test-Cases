@@ -1,43 +1,46 @@
-TITLE: Edit Line – Adding a Technician to a Line Writes No History Entry
+TITLE: Work Order Line – Adding a Second Technician Writes No History Entry
 TYPE: Story Defect · PARENT: SV-10047 (Ready for QA, read 9 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-10047 · LABEL: board-tech-view
 
 h2. Description
 
-A technician change made directly on a work order line *should be recorded in the history*.
+A technician change made directly on a work order line *should be recorded in the line's history*.
 
 For example,
-* a user opens a line in the *Edit Line* window and adds a technician
-* the change saves and the technician shows on the line
-* nothing is written to the line's *Audit log* or to the work order's history
+* a line already has one technician (here the lead technician, who comes onto the line with the lead)
+* a user opens the line in *Edit Line* and adds a second technician
+* the change saves and both technicians show on the line
+* the line's *Audit log* gets no entry for it
 
-Lead changes are recorded correctly: each one writes one entry, and lines that move with the lead write none.
+Adding the *first* technician to a line with none is recorded correctly (*Line tech changed*, *Tech: - → <name>*), so the gap is only when the line already has a technician.
 
 This appears inconsistent with the requirement defined in *Epic SV-10043* and the *PRD* (S4-R18).
 
 h2. Steps to Reproduce
 
-# Open any work order that has a line.
-# Click the line's name to open the *Edit Line* window.
-# Under *Add Technician* pick a technician, then click *Save & Close*.
-#* The technician now shows on the line.
-# Open the line's menu (⋮) > *Audit log*.
-#* There is no entry for the technician change.
-# Open the work order's three-dots menu > *Audit Log*.
-#* There is no entry for it there either.
+# Create a work order with one line and set its *Lead Technician* (e.g. *Ralph Edwards*). The lead also appears under the line's *Labor*.
+# On the line, click its menu > *Audit log*.
+#* One entry: *Line created*.
+# Click the line to open *Edit Line*. Under *Technicians*, click *Add Technician*, pick a second technician (e.g. *Dana Ortiz*), then click *Save & Close*.
+#* The line's *Labor* now lists *Ralph Edwards* and *Dana Ortiz*.
+# Open the line's menu > *Audit log* again.
+#* Still one entry: *Line created*. Nothing records that Dana Ortiz was added.
 
 *Actual Result:*
-* Adding a technician in Edit Line saves, but no history entry is written for it.
+* Adding a technician to a line that already has one saves, but no entry is written to the line's history.
 
 *Expected Result:*
-* The technician change made on the line is recorded in the line's history.
+* The technician change made on the line is recorded in the line's history, as it is when the first technician is added (*Line tech changed*).
 
-!D8-edit-line-no-history.png|width=1000!
+!D8-C96962-1-line-saved-annotated.png|width=1000!
+
+!D8-C96962-2-line-log-annotated.png|width=1000!
 
 h2. Environment
 
 * *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
 * *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
-* *Example record:* work order [S10043-17986|https://sv10043.qa.shopview.com/workorders/c6f8c300-7e12-410f-b206-72382d8f67e1/lines], Line 1 "Service - Cabin air filter", technician Dana Ortiz added
+* *Example record:* work order [S10043-18751|https://sv10043.qa.shopview.com/workorders/414a9680-4159-49da-b134-6f16efb5ad27/lines] (customer {{ZZAUTOTEST D8 Line History 13827}}), Line 1 *Service - Cabin air filter*, lead Ralph Edwards, Dana Ortiz added 9 Oct 2026 17:25
+
 
 h2. Sources
 
