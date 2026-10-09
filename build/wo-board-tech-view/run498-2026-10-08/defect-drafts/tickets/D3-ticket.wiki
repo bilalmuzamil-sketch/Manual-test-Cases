@@ -1,0 +1,42 @@
+TITLE: Tech View & Board View – New Groups Don't Start in the List's Default Order
+TYPE: Story Defect · PARENT: SV-10045 (Ready for QA, read 9 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-10045
+
+h2. Description
+
+Before anyone reorders a technician's work orders, *Tech View and Board View should list them in the List's default order* (customer name A-Z).
+
+For example,
+* one technician leads three work orders for customers whose names sort differently
+* nobody has reordered that technician's work yet
+* Tech View and Board View list them in the order they were created, not A-Z
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* and the *PRD* (S2-R6).
+
+h2. Steps to Reproduce
+
+# Create three work orders in this order, for customers *Zeta Co*, *Alpha Co* and *Mid Co*, all with the same lead technician (one who leads nothing else).
+# Sign in as a user who has never reordered work, open *Work Orders* > *All* > *List*.
+#* The three show as *Alpha Co, Mid Co, Zeta Co* (List's default, customer A-Z).
+# Click *Tech View* and find that technician's group; then click *Board View* and find that technician's column.
+#* Both show *Zeta Co, Alpha Co, Mid Co* — the order they were created.
+
+*Actual Result:*
+* Before any reorder, a group/column lists its work orders in creation order.
+
+*Expected Result:*
+* Before any reorder, a group/column uses the List's default order: *Alpha Co, Mid Co, Zeta Co*.
+
+!D3-group-order.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
+* *Example record:* customers {{ZZAUTOTEST … Zeta Co
+}, {{… Alpha Co}}, {{… Mid Co}}}
+
+h2. Sources
+
+* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S2-R6, read 8 Oct 2026:
+{quote}Before a manual order is saved, use the List's default work order sort.{quote}
+* Review Decisions (page 853901313), DR-45: the desktop List's default sort is customer name A-Z, ties by work order number.

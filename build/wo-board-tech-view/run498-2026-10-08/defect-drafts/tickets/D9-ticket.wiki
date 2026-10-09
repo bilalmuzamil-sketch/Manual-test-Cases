@@ -1,0 +1,44 @@
+TITLE: Board View – Field Choice After a Failed Settings Load Isn't Saved
+TYPE: Story Defect · PARENT: SV-10048 (Ready for QA, read 9 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-10048
+
+h2. Description
+
+If a person's saved Work Orders settings fail to load, *the defaults should show and the person's next field choice should still be saved*.
+
+For example,
+* the saved settings do not load, so the defaults show (correct)
+* the person turns a field on
+* the field shows, but nothing is saved: after a reload it is gone
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* and the *PRD* (S5-N3).
+
+h2. Steps to Reproduce
+
+# Open *Work Orders* > *Board View* in Chrome and open *DevTools* > *Network*.
+# Reload, right-click the request ending {{preferences/work-orders-list}} > *Block request URL*, and reload again.
+#* Board View shows its default fields.
+# Open *Fields to display* and turn *On-site* on.
+#* The field appears on the cards.
+# In *DevTools* remove the block, then reload the page.
+#* *On-site* is off again.
+
+*Actual Result:*
+* The field choice made after the failed load is not saved; it is lost on reload.
+
+*Expected Result:*
+* The next field choice after a failed load is saved and is still there after the reload.
+
+!D9-choice-lost.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
+* *Example record:* any Work Orders page; the block is on the settings request only
+
+
+h2. Sources
+
+* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S5-N2 and S5-N3, read 8 Oct 2026:
+{quote}If field preferences cannot load, use Tech View's starting columns (S5-R4) or Board View's default fields for the current display.{quote}
+{quote}Save the user's next field selection after a preference-load failure.{quote}

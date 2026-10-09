@@ -1,0 +1,41 @@
+TITLE: Board View – Clicking Outside the Clear-Shifts Question Doesn't Cancel the Move
+TYPE: Story Defect · PARENT: SV-10047 (Ready for QA, read 9 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-10047
+
+h2. Description
+
+Closing the *"Clear …'s scheduled shifts?"* question in any way should *call the change off* and put the card back.
+
+For example,
+* a work order is dragged to another technician and the question opens
+* *Cancel*, the *X* and *Escape* all call the move off correctly
+* a click outside the question does nothing: the question stays open
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* and the *PRD* (S4-R30).
+
+h2. Steps to Reproduce
+
+# Pick a work order whose lead technician has a shift on it for the whole work order tomorrow (e.g. 8:00–12:00).
+# In *Work Orders* > *Board View*, drag its card into another technician's column.
+#* The question *Clear …'s scheduled shifts?* opens.
+# Click an empty part of the page outside the question.
+#* The question stays open and the card stays in the new column.
+
+*Actual Result:*
+* A click outside the question does not close it; only Cancel, X or Escape call the move off.
+
+*Expected Result:*
+* Closing the question by clicking outside calls the move off: the card goes back to its place.
+
+!D6-click-outside.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
+* *Example record:* a work order with a shift for its lead tomorrow
+
+
+h2. Sources
+
+* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S4-R30, read 8 Oct 2026:
+{quote}Cancel, or closing the prompt, calls the change off. A dragged card goes back to where it was; in the Reassign dialog the user is back in the dialog with their choice kept.{quote}

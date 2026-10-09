@@ -1,0 +1,44 @@
+TITLE: Board View – Technician Moved to Another Location Still Takes Work Here
+TYPE: Story Defect · PARENT: SV-10046 (Ready for QA, read 9 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-10046
+
+h2. Description
+
+A pinned technician who is *no longer at this location* should show *"No work orders"* and should not be offered for work here.
+
+For example,
+* a technician's Location is changed so it no longer includes this location
+* their pinned column here still invites a drop
+* they are still offered as a lead technician here
+
+The deactivated case already behaves correctly (*No work orders*).
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* and the *PRD* (S3-R20a, S4-N5).
+
+h2. Steps to Reproduce
+
+# Pin a technician who is enrolled at two locations (e.g. *Ayesha Khan*) in *Work Orders* > *Board View*.
+# Open *Settings* > *Staff* > that technician > *Location* = *Staging Lethbridge - 4310* only > *Save & Close*.
+# Back at *Staging Heavy Duty - 9919*, open *Work Orders* > *Board View*.
+#* Their column still reads *Drag a work order here to assign it*.
+# Open any card's *More actions* > *Reassign lead technician*.
+#* The technician is still offered.
+
+*Actual Result:*
+* The technician's pinned column still invites a drop, and they can still be picked as lead here.
+
+*Expected Result:*
+* The pinned column reads *No work orders*, and the technician cannot be given work at this location.
+
+!D5-column-still-open.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
+* *Example record:* technician {{Ayesha Khan
+} (set back to Staging Heavy Duty - 9919 afterwards)}
+
+h2. Sources
+
+* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S3-R20a, read 8 Oct 2026:
+{quote}The empty column of a pinned technician who can no longer be assigned work orders (deactivated, or not enrolled at this location) shows "No work orders" to every user, because nothing can be dropped there (S4-N5).{quote}

@@ -1,0 +1,44 @@
+TITLE: Board View – "Estimated hours" Field Never Shows on a Card
+TYPE: Story Defect · PARENT: SV-10048 (Ready for QA, read 9 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-10048
+
+h2. Description
+
+When *Estimated hours* is turned on in *Fields to display*, *each card should show the work order's estimated hours*.
+
+For example,
+* a work order's lines carry estimated time
+* Estimated hours is turned on
+* the card shows every other chosen field, but no Estimated hours
+
+In production a work order's estimated time is the sum of its lines' estimates.
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* and the *PRD* (S5-R11).
+
+h2. Steps to Reproduce
+
+# Open a work order whose lines have an *Estimated Time* (e.g. 0.3, 1.5 and 0.4 h).
+# Open *Work Orders* > *Board View* > *Fields to display* and turn *Estimated hours* on.
+# Find that work order's card.
+#* The card shows the other chosen fields but *no Estimated hours*.
+#* The same at *Compact*, *Regular* and *Comfortable* density.
+
+*Actual Result:*
+* No card shows Estimated hours, even when the work order's lines carry estimated time.
+
+*Expected Result:*
+* The card shows the work order's estimated hours (here *2.2*).
+
+!D10-no-estimate.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
+* *Example record:* a work order with lines estimated 0.3 + 1.5 + 0.4 h
+
+
+h2. Sources
+
+* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S5-R11, read 8 Oct 2026:
+{quote}Offer the optional fields listed below using their existing production meaning.{quote}
+The field list in S5-R11 includes *estimated hours*.

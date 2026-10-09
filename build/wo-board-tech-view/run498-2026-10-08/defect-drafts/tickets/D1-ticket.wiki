@@ -1,0 +1,44 @@
+TITLE: Work Orders – Search With No Results Has No "Clear filters" Action
+TYPE: Story Defect · PARENT: SV-10044 (Ready for QA, read 9 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-10044
+
+h2. Description
+
+When a search finds no work orders, *the page should show the shared empty state with a Clear filters action in every display*.
+
+For example,
+* a search that matches nothing shows its own message instead of the shared one
+* the message offers *no Clear filters* action
+* the only way back is the small clear icon in the search box
+
+When it is the *filters* (not the search) that find nothing, the page already shows the shared empty state with *Clear all filters*.
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* and the *PRD* (S1-N1).
+
+h2. Steps to Reproduce
+
+# Sign in and open *Work Orders*, then click the *All* tab.
+# Click *Search* and type {{ZZNOMATCH123}}.
+#* The page reads *No work orders match the search "ZZNOMATCH123".*
+#* There is *no Clear filters* action.
+# Click *Tech View*, then *Board View* in the display switcher.
+#* The same message shows in both, with no Clear filters action.
+
+*Actual Result:*
+* A search with no results shows *No work orders match the search "…"* with no Clear filters action, in List, Tech View and Board View.
+
+*Expected Result:*
+* Every display shows *No work orders match your filters* with a *Clear filters* action.
+
+!D1-search-no-results.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
+* *Example record:* search text {{ZZNOMATCH123
+}}
+
+h2. Sources
+
+* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S1-N1, read 8 Oct 2026:
+{quote}When filters return no results, show the existing List empty state and Clear filters action in every display: "No work orders match your filters".{quote}

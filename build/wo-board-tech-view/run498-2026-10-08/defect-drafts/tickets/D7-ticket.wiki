@@ -1,0 +1,43 @@
+TITLE: Board View – "Card Has Moved" Alert Shows an Extra Headline
+TYPE: Story Defect · PARENT: SV-10047 (Ready for QA, read 9 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-10047
+
+h2. Description
+
+When a card is dropped next to one that someone else has just moved, *the alert should read exactly the specified sentence*.
+
+For example,
+* two people have the same board open
+* one moves a card away
+* the other drops a card next to where it was
+* the alert adds a general *Couldn't save the new order* headline above the sentence
+
+The card itself goes back correctly.
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* and the *PRD* (S4-N11).
+
+h2. Steps to Reproduce
+
+# Make three work orders led by one technician; open *Work Orders* > *Board View* in two browser tabs.
+# In tab 2, drag the middle card into another technician's column.
+# In tab 1, without refreshing, drop the last card directly above that middle card.
+#* The alert reads *Couldn't save the new order. Please try again.* with *The card you dropped this next to has moved. Refresh the board and try again.* under it.
+
+*Actual Result:*
+* The alert shows two sentences: a general save-failed headline, then the specified sentence.
+
+*Expected Result:*
+* The alert reads only: *The card you dropped this next to has moved. Refresh the board and try again.*
+
+!D7-alert.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
+* *Example record:* three work orders led by one technician
+
+
+h2. Sources
+
+* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S4-N11, read 8 Oct 2026:
+{quote}A card dropped next to a work order that someone else has just moved is not saved. The alert reads "The card you dropped this next to has moved. Refresh the board and try again." and the card goes back to where it was.{quote}
