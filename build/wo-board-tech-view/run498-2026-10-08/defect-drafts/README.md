@@ -230,3 +230,14 @@ Recapture on a FRESH line with NO technician: adding Dana Ortiz in Edit Line DID
 | D8 — adding a second technician to a line writes no history entry | [SV-11107](https://shopview.atlassian.net/browse/SV-11107) (Story Defect, Open, under SV-10047, relates to SV-10047, label board-tech-view) | C96962 | QA lead: *"Yes Create the ticket if the behavior is against the PRDs"*, then *"PRD wins over the production branch … you need to know what the PRD is asking and what is actually happening."* Judged on PRD S4-R18 (v44) vs the build only (L0303). Production attempts `prod-d8b/c.mjs` kept as evidence but NOT used to judge |
 
 **D8 CLOSED 9 Oct 2026 — QA lead marked [SV-11107](https://shopview.atlassian.net/browse/SV-11107) Obsolete:** *"the test first need a correction to tell the user that the WORK ORDER audit needs to be checked for the Lead Technician's change audit log and not the line audit log. Correct the test case with simple precondition steps."* (with a recording). C96962's preconditions and steps rewritten through the TestRail editor (`case-edits/`); expected NOT changed (Rule 114) — the save only stored `&mdash;`/`&ldquo;`/`&rdquo;` as the characters themselves, text identical. Result set to Retest; the corrected case is re-run next.
+
+## The six failed cases nobody had reported — judged PRD/source vs build (L0303), 9 Oct 2026 18:35
+
+| Case | Source sentence | Build | Reading | State |
+|---|---|---|---|---|
+| C368204 | QA handoff §2 "afterwards shows the saved view, not the link's"; PRD §1 List "stays exactly as it is in production today" | link's tab + Assigned to me stay after the top menu (re-seen 9 Oct 18:31) | **likely defect** | `tickets/D11-C368204-ticket.wiki` + `D11-C368204-annotated.png`, READY (owning story SV-10044 to read live) |
+| C368165 | PRD §4 "Lead technician cannot be changed once a work order is Invoiced or Paid" | cannot be changed (plain text, not a greyed field) | PRD met; only the look differs from the dev note | ask: not a defect? |
+| C368247 | PRD S4-N2 lead must not change in Imported status | imported page shows no lead at all | PRD met | ask: not a defect? |
+| C368181 | dev note only: "Check rows, counts…" | asset Work Orders tab has no count | no requirement for a count | ask |
+| C368216 | dev note: "check … that changing the technician works" | part sales have no technician field | case assumed a field that does not exist | ask |
+| C368242 | dev note: "Avatars everywhere (header, Staff, …)" | Staff list has no photo column | no requirement for a photo column | ask |

@@ -1,0 +1,46 @@
+TITLE: Work Orders – Top Menu Keeps a Link's Tab and "Assigned to me" Instead of the Saved View
+TYPE: Story Defect · PARENT: SV-10044 (read live before the ask) · PRIORITY: Medium · LINK: relates to SV-10044 · LABEL: board-tech-view
+MY READING: LIKELY DEFECT (handoff source broken; PRD says List stays as production — production not compared, per L0303 the PRD/handoff wording decides).
+
+h2. Description
+
+After a Work Orders link has been opened, *clicking Work Orders in the top menu should show the user's own saved view*, not the link's.
+
+For example,
+* a link opens Work Orders on the *Estimates* tab with *Assigned to me* on
+* the user then clicks *Work Orders* in the top menu
+* the page stays on *Estimates* with *Assigned to me* on, instead of the saved *All* view
+
+h2. Steps to Reproduce
+
+# Open the link {{https://sv10043.qa.shopview.com/workorders?tab=estimate&assigned_to_me=1}}.
+#* *Estimates* is selected and *Assigned to me* is on (as the link asks).
+# Click *Work Orders* in the top menu.
+#* *Estimates* is still selected and *Assigned to me* is still on.
+# Type the plain Work Orders address ({{/workorders}}) instead.
+#* The saved *All* view shows, with *Assigned to me* off.
+
+*Actual Result:*
+* After a link, the top menu *Work Orders* keeps the link's tab and *Assigned to me* instead of the saved view.
+
+*Expected Result:*
+* Clicking *Work Orders* in the top menu shows the saved view (here *All*, *Assigned to me* off).
+
+!D11-C368204-annotated.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
+
+
+h2. Sources
+
+* QA handoff test plan (2026-10-08), §2:
+{quote}afterwards shows the saved view, not the link's.{quote}
+* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — §1 Business Case:
+{quote}List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.{quote}
+
+h2. Test case
+
+* [C368204 Opening Work Orders after a link shows your saved view|https://shopview.testrail.io/index.php?/cases/view/368204]
