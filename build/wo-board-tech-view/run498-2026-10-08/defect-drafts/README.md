@@ -166,3 +166,12 @@ SV-10054 are all **Ready for QA** (Rule 112 allows filing); SV-10053 is OBSOLETE
 | D1 (C96918) | s1-batch1, 05:13 | **Yes** — a no-match search still reads *No work orders match the search "ZZNOMATCH123".* with no Clear filters action (List, Tech View, Board View). |
 | D10 (C96978) | s5-batchC, 05:29 (2x) | **Yes** — S10043-18218, three lines estimated 18 + 90 + 24 min (2.2 h); Fields to display offers 13 fields and all 13 were on, Estimated hours included; the card shows every other field but no Estimated hours; the work order's own estimate reads 0.00. Pictures `evidence/recapture-2026-10-09/C96978-*.png`. |
 | D5 (C368131) | s3-batchC, 05:26 | **Yes** — Ayesha Khan's Location changed to Staging Lethbridge - 4310 only: at Heavy Duty she is still eligible and her pinned column reads *Drag a work order here to assign it*; control in the same run: Jenny Wilson (deactivated) reads *No work orders*. Restored afterwards. |
+
+## QA lead rulings, 9 Oct 2026 (answers to the four questions)
+
+| Item | His answer (verbatim) | What it means here |
+|---|---|---|
+| D2 (C96923) — Assigned to me stays on after a location change, here and on production | *"If that is against the spec we will create a ticket for it with the reference from specs and with annotated screenshot and everything which tells the problem."* | **D2 is a defect report.** Ticket drafted (`tickets/D2-ticket.wiki`), pictures from `d28-pics.mts`; the run result is Failed with the ticket held. Production behaving the same does not stop it. |
+| D8 (C96962) — Edit Line technician add writes no history, here and on production | *"If that behavior is against the Specs then it warrants for a defect ticket."* | **D8 is a defect report.** Ticket drafted (`tickets/D8-ticket.wiki`), pictures from `d28-pics.mts`; result Failed, ticket held. |
+| Analytics reports (C97026, C97033, C97034) | *"Leave blocked"* | Stay Blocked; nothing more to do. |
+| Missing screens (C368169–C368171 Edit Work Order; C368218, C368219, C368223 Parts filters) | *"You need to tell me for all these … so that I can manually check and tell you if you are missing something and I can unblock you and you can also then save it in your recipe/playbook etc for future use aswell."* | Manual-check guide sent to him: `MANUAL-CHECK-missing-screens.md`. Whatever route he finds goes into the playbook and the six are re-run. |

@@ -1,0 +1,21 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-09"},
+ "results": {
+  "C96923": {
+   "verdict": "Failed",
+   "observed": "After a location change, Assigned to me stays on, in List, Tech View and Board View (Staging Heavy Duty - 9919 to Staging Lethbridge - 4310 and back). The source says 'Assigned to me resets on location change, as it does today' (PRD S1-E3). The live product also keeps it on, but the QA lead ruled on 9 Oct 2026 that behaviour against the specification is a defect, so a defect report is prepared against the owning story.",
+   "not_observed": null,
+   "ticket_held": true,
+   "ticket": "Defect report prepared (D2: 'Work Orders – \"Assigned to me\" Stays On After Changing Location'); held with the QA lead until he approves filing it.",
+   "todo": "QA lead: approve filing D2 when the defect round starts."
+  },
+  "C96962": {
+   "verdict": "Failed",
+   "observed": "Lead changes behave as written: each lead change (drag, Reassign dialog, work order page) adds exactly one history entry, and lines that move with the lead add none. But adding a technician to a line directly in the Edit Line window saves and writes NO history entry, neither in the line's Audit log nor in the work order's. The source says 'Continue existing line auditing for technician changes made directly on a work order line' (PRD S4-R18). The live product also writes none, but the QA lead ruled on 9 Oct 2026 that behaviour against the specification is a defect, so a defect report is prepared against the owning story.",
+   "not_observed": null,
+   "ticket_held": true,
+   "ticket": "Defect report prepared (D8: 'Edit Line – Adding a Technician to a Line Writes No History Entry'); held with the QA lead until he approves filing it.",
+   "todo": "QA lead: approve filing D8 when the defect round starts."
+  }
+ }
+}

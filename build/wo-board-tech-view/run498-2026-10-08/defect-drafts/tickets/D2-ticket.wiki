@@ -1,0 +1,44 @@
+TITLE: Work Orders – "Assigned to me" Stays On After Changing Location
+TYPE: Story Defect · PARENT: SV-10044 (Ready for QA, read 9 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-10044
+
+h2. Description
+
+When the user changes location, *"Assigned to me" should switch off*.
+
+For example,
+* a user turns on *Assigned to me* on the Work Orders page
+* they change to another location from the menu under their initials
+* the new location's Work Orders page opens with *Assigned to me still on*
+
+It happens in *List*, *Tech View* and *Board View* alike.
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* and the *PRD* (S1-E3).
+
+h2. Steps to Reproduce
+
+# Sign in and open *Work Orders*, then click the *All* tab.
+# Click *Board View* in the display switcher, then turn on *Assigned to me*.
+# Click your initials at the top right > *Change Location* and pick another location.
+#* The top bar shows the new location.
+#* *Assigned to me* is still on.
+# Click *Tech View*, turn on *Assigned to me*, and change back to the first location.
+#* *Assigned to me* is still on.
+
+*Actual Result:*
+* After a location change, *Assigned to me* stays on in List, Tech View and Board View.
+
+*Expected Result:*
+* After a location change, *Assigned to me* is switched off.
+
+!D2-assigned-to-me-after-location-change.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Locations:* Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 · *User:* Admin (quick-login)
+* *Page:* [Work Orders|https://sv10043.qa.shopview.com/workorders?tab=all]
+
+h2. Sources
+
+* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S1-E3, read 8 Oct 2026:
+{quote}Assigned to me resets on location change, as it does today.{quote}

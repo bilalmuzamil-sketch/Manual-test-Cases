@@ -1,5 +1,5 @@
 {
- "tab": "estimate",
+ "tab": "all",
  "sortBy": "startDate",
  "columns": {
   "vin": true,
@@ -18,21 +18,27 @@
   "unreceivedPartRequestsCount": false
  },
  "density": "compact",
- "display": "list",
- "filters": [],
+ "display": "board_view",
+ "filters": {
+  "status": [
+   "imported"
+  ]
+ },
  "descending": true,
  "boardFields": {
-  "vin": true,
-  "vehicle": false,
-  "progress": false,
+  "vin": false,
+  "vehicle": true,
+  "progress": true,
   "linesCount": true,
-  "totalPrice": false
+  "technician": false,
+  "totalPrice": true,
+  "companyName": false
  },
  "techViewColumns": {
   "linesCount": false
  },
  "technicianOrder": [],
  "pinnedTechnicianIds": [
-  "e30fe02d-096f-4e71-8356-6ff97119a293"
+  "2883adf1-375c-4dbd-977c-9092df3f6899"
  ]
 }
