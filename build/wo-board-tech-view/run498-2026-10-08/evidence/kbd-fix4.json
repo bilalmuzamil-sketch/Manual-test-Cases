@@ -1,0 +1,142 @@
+{
+ "runner": "059edc87",
+ "techs": {
+  "ana": true,
+  "ben": true,
+  "cal": true,
+  "dan": true
+ },
+ "C368151": {
+  "cardFocused": true,
+  "moreVisibleOnFocus": true,
+  "tabFromCard": "button_work_order_more_actions",
+  "menuByEnter": 1,
+  "menuItems": [
+   "Reassign lead technician"
+  ],
+  "menuAfterEscape": 0,
+  "header": "board_column_header_<id>",
+  "toPin": [
+   "button_board_pin_<id>"
+  ],
+  "afterEnter1": false,
+  "afterEnter2": true,
+  "pinnedBefore": true,
+  "toggleReached": "arrows",
+  "techArrowSeq": [
+   "tech_view_group_<id>"
+  ],
+  "focusAfterFirst": "tech_view_group_<id>",
+  "focusBeforeSecond": "tech_view_group_<id>",
+  "collapse": {
+   "rows0": 1,
+   "afterFirstEnter": 1,
+   "afterSecondEnter": 1
+  },
+  "toggleByTab": {
+   "at": 1,
+   "before": 1,
+   "afterEnter": 0,
+   "afterEnter2": 1
+  },
+  "tabsFromRow": [
+   "button_tech_view_group_toggle_<id>"
+  ],
+  "keysOnRow": {
+   "Space": "1 -> 1 (focus tech_view_group_<id>)",
+   "ArrowLeft": "1 -> 1 (focus tech_view_group_<id>)",
+   "ArrowRight": "1 -> 1 (focus tech_view_group_<id>)"
+  }
+ },
+ "C368152": {
+  "cardFocused": true,
+  "onMore": "button_work_order_more_actions",
+  "items": [
+   "Reassign lead technician"
+  ],
+  "menuFocus": "Reassign lead technician",
+  "dialog": 1,
+  "reachedBen": true,
+  "dialogSeq": [
+   {
+    "active": "option_lead_technician_unassigned",
+    "hl": null
+   },
+   {
+    "active": "option_lead_technician_2aa6c3f7-ea5f-4fc9-91e6-4ed",
+    "hl": null
+   },
+   {
+    "active": "option_lead_technician_26a43fda-541d-468e-b4d2-1bc",
+    "hl": null
+   }
+  ],
+  "afterPick": {
+   "active": "option_lead_technician_26a43fda-541d-468e-b4d2-1bc",
+   "hl": null
+  },
+  "toConfirm": [
+   "option_lead_technician_<id>",
+   "button_cancel_reassign_lead_technician",
+   "button_confirm_reassign_lead_technician"
+  ],
+  "toasts": [
+   "Lead technician updated"
+  ],
+  "dialogLeft": 0,
+  "lead": "ZZAUTOTEST Ben Bravo",
+  "reorder": {
+   "before": [
+    "Bravo Co",
+    "Charlie Co"
+   ],
+   "after": [
+    "Bravo Co",
+    "Charlie Co"
+   ]
+  }
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "C97020": {
+  "viewerFocused": true,
+  "viewerTabTo": "body",
+  "viewerRole": {
+   "name": "ZZAUTOTEST WO View Only",
+   "count": 24,
+   "workOrderPerms": [
+    "workOrderLinesDelete",
+    "woFullViewMode",
+    "woPickParts",
+    "woOrderParts",
+    "woReviewWorkOrders",
+    "workOrdersView",
+    "workOrderLinesCreateAndEdit"
+   ]
+  },
+  "viewerKeys": {
+   "Enter": "opened the work order",
+   "Space": "nothing",
+   "ArrowDown": "nothing",
+   "ArrowRight": "nothing",
+   "Shift+ArrowRight": "nothing",
+   "Shift+ArrowDown": "nothing",
+   "Alt+ArrowRight": "nothing",
+   "Control+ArrowRight": "nothing"
+  },
+  "viewerMoreActions": 0,
+  "alphaAfterViewer": {
+   "lead": "ZZAUTOTEST Ana Alpha"
+  },
+  "dispFocused": true,
+  "item": {
+   "found": 1,
+   "disabled": true
+  },
+  "tooltip": [
+   "The lead technician can't be changed once a work order is Invoiced or Paid."
+  ],
+  "dialogOpened": 0,
+  "bravoLead": "ZZAUTOTEST Ana Alpha"
+ },
+ "restored": true
+}
