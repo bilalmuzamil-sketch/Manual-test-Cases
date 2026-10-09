@@ -24,12 +24,22 @@
    "heads": [],
    "row": null
   },
-  "before": "no tr:has-text(\"Tech 644840\") .q-avatar, tr:has-text(\"Tech 644840\") img"
+  "before": "no tr:has-text(\"Tech 644840\") .q-avatar, tr:has-text(\"Tech 644840\") img",
+  "staffAfter": {
+   "heads": [],
+   "row": null
+  },
+  "after": "no tr:has-text(\"Tech 644840\") .q-avatar, tr:has-text(\"Tech 644840\") img"
  },
  "C368243": {
   "laneBefore": true,
   "before": {
    "file": "C368243-avatar-before.png",
+   "src": "com/api/iam/view-avatar/9d9e9f99-840f-44f8-88f1-606ddb3b73fc"
+  },
+  "laneAfter": true,
+  "after": {
+   "file": "C368243-avatar-after.png",
    "src": "com/api/iam/view-avatar/9d9e9f99-840f-44f8-88f1-606ddb3b73fc"
   }
  },
@@ -37,6 +47,55 @@
   "before": {
    "file": "C368244-avatar-before.png",
    "src": "com/api/iam/view-avatar/9d9e9f99-840f-44f8-88f1-606ddb3b73fc"
-  }
- }
+  },
+  "after": "no [data-test-id=\"board_column_header_f8fca079-1f84-415f-9201-7ad703acc9a0\"] .q-avatar"
+ },
+ "blueUpload": {
+  "r": "input x1",
+  "calls": [
+   "POST https://o1220818.ingest.sentry.io/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "POST https://o1220818.ingest.sentry.io/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "POST https://o1220818.ingest.sentry.io/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "POST https://o1220818.ingest.sentry.io/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "POST https://o1220818.ingest.sentry.io/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "POST https://sv10043api.qa.shopview.com/api/iam/upload-avatar"
+  ]
+ },
+ "C368215": {
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"button_add_part\"]').first()\n    - locator resolved to <button tabindex=\"0\" type=\"button\" filled=\"true\" data-v-68e00a17=\"\" data-test-id=\"button_add_part\" class=\"q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-mx-xs\">…</button>"
+ },
+ "C368216": {
+  "labels": [
+   "Contact",
+   "Phone",
+   "Authorizer\nNone\narrow_drop_down",
+   "Authorizer",
+   "Asset\narrow_drop_down",
+   "Asset",
+   "Part Number",
+   "Part Number",
+   "Description",
+   "Description",
+   "Quantity",
+   "Quantity",
+   "Source\nVendor",
+   "Source",
+   "Category",
+   "Vendor\narrow_drop_down",
+   "Vendor",
+   "$\nCost",
+   "Cost",
+   "$\nCore Charge",
+   "Core Charge",
+   "$\nSell Price",
+   "Sell Price",
+   "Margin\n%",
+   "Margin"
+  ],
+  "techField": []
+ },
+ "C368217": {
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"button_add_part\"]').first()\n    - locator resolved to <button tabindex=\"0\" type=\"button\" filled=\"true\" data-v-68e00a17=\"\" data-test-id=\"button_add_part\" class=\"q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-mx-xs\">…</button>"
+ },
+ "restored": true
 }

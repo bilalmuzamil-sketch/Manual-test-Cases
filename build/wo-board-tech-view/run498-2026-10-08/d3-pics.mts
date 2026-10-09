@@ -14,7 +14,7 @@ import { viewAs } from './viewas.mts';
 const { browser, page: p0 } = await open('/workorders?tab=all');
 const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p; const a = api(p);
 const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
-const carol = (await staffRows(a, 'Carol Neal')).find((r: any) => `${r.first_name} ${r.last_name}` === 'Carol Neal');
+const carol = (await staffRows(a, 'Carol')).concat(await staffRows(a, 'Neal')).find((r: any) => `${r.first_name} ${r.last_name}` === 'Carol Neal');
 const o: any = { carol: !!carol };
 const v = await viewAs(browser, p, a, carol.id, me.id, RUN.toRunner); const pg = v.page;
 try {

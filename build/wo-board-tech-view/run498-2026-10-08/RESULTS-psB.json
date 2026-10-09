@@ -1,0 +1,13 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-09"},
+ "results": {
+  "C368216": {
+   "verdict": "Failed",
+   "observed": "Outcome (1) of the case, exactly as foreseen: a new part sale was opened from Parts > Part Sales; its status card shows Contact, Phone, Authorizer and Asset. There is no technician or Sales Representative field on it, so there is nothing to change and the change cannot be saved or read back. Nothing new raised, as the case instructs.",
+   "not_observed": "steps 3-4: no technician / Sales Representative field exists on the part sale status card",
+   "ticket_held": true,
+   "ticket": "No new report: this is the case's own foreseen outcome (1); held with the QA lead in the run summary.",
+   "todo": "None for the tester; the case already describes this state."
+  }
+ }
+}
