@@ -1,0 +1,16 @@
+<h1>Part 2. Setup for Claude session</h1>
+<p>Prepare the same starting state by carrying out Part 1 in a browser with Playwright. Record the real values you used, the build marker and screenshots in the Manual-test-Cases repository, and judge pass or fail against the test case's Expected results only.</p>
+<h2>Environment</h2>
+<ul>
+<li>Dashboard QA site: app https://sv490.qa.shopview.com, API https://sv490api.qa.shopview.com.</li>
+<li>Record the build marker (app-version on the app page) before you start.</li>
+<li>Browser: Chromium at /opt/pw-browsers/chromium through Playwright. Do not run "playwright install".</li>
+</ul>
+<h2>Access</h2>
+<ul>
+<li>Sign in with the QA site's quick login: node build/testing-tools/qa-branch-boot.mjs (see build/APP-ACTIONS-PLAYBOOK.md section A). Carry the sv_sso_session cookie only, scoped to the host.</li>
+<li>Keep cookies in /tmp only, with file mode 600. Never write a cookie into a document, a commit or a log.</li>
+<li>Change location through the profile icon (your initials, top right) &gt; Change Location.</li>
+</ul>
+<h2>Test data</h2>
+<p>Name anything you create with ZZAUTOTEST at the start. Leave all test data in place; nothing is deleted afterwards.</p>

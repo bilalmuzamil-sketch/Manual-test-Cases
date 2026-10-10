@@ -1,0 +1,14 @@
+{
+ "id": 88641,
+ "title": "Technician Utilization shows the exact percentage and equals its report",
+ "labels": [
+  "User",
+  "Location",
+  "Timing",
+  "Data",
+  "People",
+  "Data",
+  "Data"
+ ],
+ "pre_body": "<p><strong>Preconditions</strong></p><ol><li>User: you are signed in as an Admin (the Admin role has every permission, including Reports).</li><li>Location: you are in a fresh test location made for this run, so nothing else is invoiced, credited or clocked there; on the Dashboard, the Technician Utilization tile on This Week shows no percentage (a grey \"-\").</li><li>Timing: you run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.</li><li>Data: a test customer with one contact and one asset that uses that contact (for example ZZAUTOTEST Dash Customer 1, contact Dana Test, unit ZZ-101).</li><li>People (Technician 1): a test technician in this run's location, with Time Clock on and a department whose time clock is on (for internal, non work order time), whose sign-in you have.</li><li>Data (Work-order time): a work order with one labor line (ZZAUTOTEST Line 1, Technician 1, $100.00 an hour, Estimated Time 2.00, Tech Time 2.00) with exactly 2.00 hours clocked on it. It does not need to be invoiced: this tile counts clocked time only.</li><li>Data (Internal time): Technician 1 clocked into the department (not a work order) for exactly 1.00 hour earlier today.</li></ol>"
+}
