@@ -28,3 +28,16 @@ the details should be in that file."*
 - Trial C351706, C88601, C88641 relinked to their headings; display fr-view; links verified on the served page.
 - Now unused in Drive (not deleted, QA lead to decide): 3 per-test trial Docs, the first combined Doc without contents
   (`13X4jdSup0k5LKKgU43MpSJaMgjPF9i1U7p0lsajKwuI`), scratch check Doc `1I8U8BQzXg4GhFkjDlwztJDryiaUxEk2RP0BQixrZPA8`.
+
+## Final (10 Oct): one Doc per test (QA lead: "keep each doc separate for each test case")
+- 70 per-test Docs in folder `1zdj0d1RqpI1julHfiPPhTgDR_iUAKj3e` (map: `docs-created.jsonl` + `results-1/2/3.jsonl`);
+  the folder is already "anyone with the link can view", so Ayesha can open them (checked permissions).
+- QA lead "Go with what's best to make the test runnable": in 5 setups (C88633, C88641, C88642, C88651, C88652) the
+  undefined "Advisor A" became "any name in the list" — those tests' results do not depend on the advisor. Where the
+  test defines Advisor A (8 other tests) it is unchanged.
+- Read back: all 70 Docs match their files word for word (`compare.py`, readback/).
+- TestRail: 70 Preconditions written (guarded; Steps, Expected, title, automation fields re-read identical to the morning
+  copies in `before/`); display fr-view 70/70 (`served-45.json`, `served-25.json`); every link opens its own Doc
+  (`links-70.txt`).
+- Unused in Drive, not deleted (QA lead to decide): see `unused-docs.txt` (C88641 first per-test Doc, two combined Docs,
+  scratch Doc).
