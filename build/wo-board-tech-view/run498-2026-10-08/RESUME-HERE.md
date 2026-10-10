@@ -1,3 +1,13 @@
+# STATE 10 Oct 10:30 UTC — scripted testing finished
+Run 498: passed 217 · failed 19 · blocked 9 · untested 6 (C97022 waits on the QA lead; C368240, C368238, C368239 manual;
+C154650, C368175 manual — need a second organization). Recorded today: C97012, C368190, C368237, C368217 Passed;
+C368178, C368179 Failed (held ticket D19, six-hour Schedule jump); C368177 Failed (linked to SV-11087, "future" refusal noted
+on D19); C368233-235 Failed, NO ticket (production identical). SV-11122 is OBSOLETE (C368181) — asked the QA lead whether to
+mark C368181 Passed (L0306); act only on his yes. Questions put to him: SV-11122/C368181 · file D19 · the three report-filter
+tests · C97022 refresh step · L0307. Report text: session scratchpad report.md (also in the chat).
+
+---
+
 # UPDATE 10 Oct 09:50 UTC
 **Recorded today:** C368233/C368234/C368235 Failed (case outcome 1) — production behaves the same, so NO ticket (not a
 regression of this work); the test's steps describe the other filter style — for the QA lead. C368179 Failed — a shift dropped
