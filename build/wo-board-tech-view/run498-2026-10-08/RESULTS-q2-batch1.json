@@ -1,0 +1,59 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-10"
+ },
+ "results": {
+  "C97003": {
+   "verdict": "Passed",
+   "observed": "The view-only person (ZZAUTOTEST Viewer4, pinned Ana, Ben, Cal) dragged Cal's column before Ana's: Unassigned, Cal, Ana, Ben. Dragging Ben onto Unassigned placed him right after it (Unassigned, Ben, Cal, Ana) \u2014 Unassigned stays first. Unassigned's header has no drag handle and dragging it moved nothing. Tech View: Unassigned is the first group and has no drag handle. After a refresh the view-only person still sees Unassigned, Ben, Cal, Ana in both views. The dispatcher's own order is unchanged (Unassigned, Ana).",
+   "not_observed": "Step 10's drag of Ben above Unassigned in Tech View could not be performed by the script (Unassigned has no handle and stayed first).",
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368224": {
+   "verdict": "Passed",
+   "observed": "Parts > Catalog: picked manufacturer 'Therno-Flex' (1 row); after a reload it stays ticked and the same row shows; no error message.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368225": {
+   "verdict": "Passed",
+   "observed": "Parts > Inventory: picked category '.Brake Parts' (4 rows); after a reload it stays ticked and the same 4 rows show; no error message.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368226": {
+   "verdict": "Passed",
+   "observed": "Reports > Work In Progress: unticked 'QB Location' in the Location filter (Staging Heavy Duty - 9919 stays ticked); after a reload the same choice is kept and the report shows Staging Heavy Duty's 31 rows; no error message.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368230": {
+   "verdict": "Passed",
+   "observed": "Reports > Technician Utilization: unticked Daniel Montoya; after a reload he stays unticked and the report shows the same 8 technicians (hours moved slightly with live clocked time); no error message.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368231": {
+   "verdict": "Passed",
+   "observed": "Reports > Sales By Representative: unticked 'QB Location'; after a reload the same choice is kept; the report has no rows on this branch before or after; no error message.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  },
+  "C368246": {
+   "verdict": "Passed",
+   "observed": "Dashboard (/dashboard), nothing blocked: the table cards Efficiency by Tech, Billing Efficiency by Advisor, Effective Labor Rate (ELR) by Advisor and Utilization by Tech show their headings and 'No data for selected date range' (this month); At Risk Customers lists its rows (e.g. Golden Truck & Trailer Repair - Eagleville 122 13 $50,155) and clicking 'Last Work (Days)' orders them one way, then back. No error message.",
+   "not_observed": "Observation outside this case, reported to the QA lead: the four 'Last 12 Months' charts draw nothing (no axes, no 'no data' message) although the server returns 12 months of figures, and the 'This Month' tiles read n/a / 0 Invoices.",
+   "ticket": "",
+   "todo": "Nothing to do."
+  }
+ }
+}

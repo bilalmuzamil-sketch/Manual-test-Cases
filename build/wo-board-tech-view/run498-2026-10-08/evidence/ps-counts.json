@@ -7,7 +7,7 @@
   "dan": true
  },
  "C368217": {
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-dialog').last().locator('.q-field').filter({ has: locator('.q-field__label').filter({ hasText: /^\\s*Part Number/ }) }).first()\n"
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-dialog').last().getByText(/^\\s*Part Number\\s*$/).first()\n"
  },
  "restored": true
 }
