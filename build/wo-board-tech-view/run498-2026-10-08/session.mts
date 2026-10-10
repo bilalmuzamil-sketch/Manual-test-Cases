@@ -27,7 +27,8 @@ async function works(page: Page) {
 // WOB_LIVE=1 lets the live-update channel (mercure) through on the main page too, so a 'no warning' check can be judged fairly
 const NOISE = process.env.WOB_LIVE ? /maps\.googleapis|intercom|sentry\.io|googletagmanager|google-analytics|hotjar|fullstory/i : /maps\.googleapis|intercom|sentry\.io|mercure\.qa|googletagmanager|google-analytics|hotjar|fullstory/i;
 async function quiet(page: Page) {
-  await page.context().route((u) => NOISE.test(u.toString()), (r) => r.abort()).catch(() => {});
+  // WOB_NOBLOCK=1 (10 Oct 2026): block nothing at all — for checks where a blocked request could itself be the cause (dashboard charts)
+  if (!process.env.WOB_NOBLOCK) await page.context().route((u) => NOISE.test(u.toString()), (r) => r.abort()).catch(() => {});
   // The QA branch pauses itself when idle and redirects to sleep.qa.shopview.com ("Environment Sleeping", one Wake Up
   // button; playbook 2026-09-03). If any page lands there mid-batch, press Wake Up and say so in the log: every reading
   // taken around that line is void and the check is re-run.
