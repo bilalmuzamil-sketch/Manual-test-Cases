@@ -5427,3 +5427,9 @@ The same mistake had happened before: a watcher built on a signal nobody had che
    a negative needs a positive control — "still down" is a negative claim).
 3. **Never rely on the watcher alone.** At every message to the QA lead during an outage, do one real check by hand and give
    its time; and re-check on any status turn. A quiet watcher is not evidence the outage continues.
+
+## L0308 — 2026-10-10 — A filed ticket is HIS text now: add to it, never rewrite it from the draft
+Before adding pictures to SV-11123 and SV-11125 I compared the live description with my draft: the QA lead had edited both
+("Do not pick this up - I need to double check it in the evening today"). Re-sending the draft would have erased his note.
+Rule of thumb: after filing, a description is changed only by INSERTING into the live text (the picture line above
+Environment), never by replacing it with a local copy. `defect-drafts/addpics.sh` now works that way.
