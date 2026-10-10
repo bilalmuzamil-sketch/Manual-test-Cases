@@ -5980,14 +5980,15 @@ three wrong characterisations before it was found — see learning **L0233**.
   plain web page, so a curl ping can never tell up from down. Use `build/testing-tools/wait_branch_up.sh <run dir> <flag>`:
   it signs in through `wob-run.sh build-probe.mts` (the real action), prints its answer at start (positive control), then
   re-checks every 3 minutes. Still do one real check by hand before each message to the QA lead.
-- **Schedule: the browser's time zone and the remembered day (2026-10-10).** A test browser runs on UTC unless told otherwise;
-  the shop (Staging Heavy Duty - 9919) is `America/Edmonton` (read from the signed-in user in `localStorage.user`). In a UTC
-  browser a drop under the **9 AM** heading was saved and drawn at **3 PM** — six hours off — so a reader looking at 9 AM saw
-  nothing. Run Schedule checks with `WOB_TZ=America/Edmonton ./wob-run.sh …` (the runner passes it to the browser as `TZ`).
-  Whether the offset itself is a product fault for a user whose computer is in another zone is NOT settled — a question, not a
-  finding. Also: **the Schedule remembers the last day viewed across reloads**, so "click > until a working day" lands on a
-  different day each time; press **Today** first, then step to the exact day (`goRange()` in `high1-fix7.mts`). An hour-heading
-  regex like `13` also matches the mini-calendar's date — match the heading text `1 PM` only.
+- **Schedule: a dropped shift lands SIX HOURS after the hour it was dropped on, and the remembered day (2026-10-10).**
+  ⛔ CORRECTED the same morning: I first blamed the test browser's UTC clock. Re-run with `WOB_TZ=America/Edmonton`
+  (the shop's zone, from `localStorage.user`), a drop under **1 PM** was still saved **07:00 PM – 09:00 PM** (read in the
+  shift's own details), and under **9 AM** drawn at **3 PM** — the jump does NOT depend on the browser's zone. Production
+  (shop on UTC) saved a 1 PM drop as 12:00–14:00, over the drop point. Finding: C368179 / draft D19. Readers must look for the
+  block where it really lands (match the work-order number in its details), not under the hour dropped on. Also: **the
+  Schedule remembers the last day viewed across reloads** — press **Today** first, then step to the exact day (`goRange()` in
+  `high1-fix7.mts`); an hour regex like `13` also matches the mini-calendar's date — match `1 PM`. Earlier runs leave
+  same-named shifts piled up ("+3 more" hides some): `WOB_SCHED_SKIP=n` lands on an empty day.
 - **The Tech quick-login (2026-10-10):** he is "Tech ShopView", `tech@shopview.com`. `GET /api/staff?search=Tech` does NOT
   return him on sv10043 (54 others do); `search=tech@shopview.com` does. There is no who-am-I endpoint on this build
   (`/api/auth/me`, `/api/users/me`, `/api/auth/user` → 404); read the name from the profile menu instead.
