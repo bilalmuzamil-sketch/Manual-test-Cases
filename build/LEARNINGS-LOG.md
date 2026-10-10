@@ -5402,3 +5402,12 @@ missing, open EVERY log the product has for that record (work order log AND line
 ## L0305 — 2026-10-09 — THE MODEL FOR PRECONDITIONS AND STEPS IS C96962 (QA lead: "a great example of a good test case preconditions and steps")
 
 His ask: *"Keep the precondition and the steps super simple build glossary and understandable for the manual QA tester, keep it all understandable runnable and concise"* — then, of the result, *"Great this is a great example"*. The shape (case-edits/C96962-new-fields.json): 3–4 precondition bullets (who signs in; the record needed WITH a named example; one line on how to make it if missing; the other people needed, with examples); 8 short numbered steps, one action each, the screen's own labels, "e.g." names inline, "Repeat steps 3 and 4" instead of re-writing. Written through the TestRail editor (case-edits/ui_write_pre_steps.mjs) so it renders; expected untouched.
+
+## L0306 — 2026-10-10 — EVERY TICKET IS COMMENTED IN THE RUN WITH ITS FULL LINK; AN OBSOLETED TICKET MEANS ASK "MARK THE TEST PASSED?" (QA lead)
+
+*"make sure that each defect you create must be commented in the Test case Run with the complete ticket link to be tracked and once I
+obsolete that ticket you need to ask me if we then need to mark the test case run as passed? if I say yes then act accordingly."*
+**Do:** the run result for the failed case carries `https://shopview.atlassian.net/browse/<KEY>` in its comment AND the key in the
+Defects field (push_results_to_run.py does both from the ticket text). At every check-in, read the status of each ticket we filed;
+when one reads OBSOLETE, ask him in plain words whether to mark that test Passed — never mark it on your own (his earlier
+"mark the test as passed too" for SV-11101 was a one-off answer to that question, not a standing permission).

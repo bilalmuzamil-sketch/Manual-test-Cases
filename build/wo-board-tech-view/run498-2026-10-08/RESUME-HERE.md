@@ -63,3 +63,8 @@ NOT judged, re-run needed: C368177 (labor move not performed by the script) · C
 - C368221 (Return credits): source is a dev note only ("pages that remember filters and settings … check that it's kept"); the filter WAS kept, only the tab went back to Returns → put to the QA lead as "not a defect?".
 - Blocked 9 reviewed: all legitimately blocked (case-instructed PO questions C368162/C368160/C368164/C96977/C154887; analytics ruling C97026/C97033/C97034; Q1 C368170).
 - Next on the branch, in order: s9-fix8 C97003 (viewer pins the 3 techs), C97012, C97022 (judge what can be judged), C368177, shifts C368178/C368179/C368190 (+C368192 setup), C368217, filters C368224/225/226/230/231/237, C368246 dashboard, D12 pictures, C368240 sign-out LAST.
+
+## Tickets to watch (L0306): when any reads OBSOLETE, ask the QA lead "mark that test Passed?" — act only on yes
+SV-11098 C96923 · SV-11104 C368138 · SV-11106 C96978 · SV-11117 C96983 · SV-11118 C368204 · SV-11119 C368149 · SV-11120 C368165 ·
+SV-11121 C368247 · SV-11122 C368181 · SV-11123 C368216 · SV-11124 C368242 · SV-11125 C368221 · (SV-11075 C96938, someone else's)
+Pictures still to add (2x, after the branch is back: caps2x + twopics steps of resume2.sh): SV-11119..SV-11125.
