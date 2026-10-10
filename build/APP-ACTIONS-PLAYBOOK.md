@@ -5980,3 +5980,20 @@ three wrong characterisations before it was found — see learning **L0233**.
   plain web page, so a curl ping can never tell up from down. Use `build/testing-tools/wait_branch_up.sh <run dir> <flag>`:
   it signs in through `wob-run.sh build-probe.mts` (the real action), prints its answer at start (positive control), then
   re-checks every 3 minutes. Still do one real check by hand before each message to the QA lead.
+- **Schedule: the browser's time zone and the remembered day (2026-10-10).** A test browser runs on UTC unless told otherwise;
+  the shop (Staging Heavy Duty - 9919) is `America/Edmonton` (read from the signed-in user in `localStorage.user`). In a UTC
+  browser a drop under the **9 AM** heading was saved and drawn at **3 PM** — six hours off — so a reader looking at 9 AM saw
+  nothing. Run Schedule checks with `WOB_TZ=America/Edmonton ./wob-run.sh …` (the runner passes it to the browser as `TZ`).
+  Whether the offset itself is a product fault for a user whose computer is in another zone is NOT settled — a question, not a
+  finding. Also: **the Schedule remembers the last day viewed across reloads**, so "click > until a working day" lands on a
+  different day each time; press **Today** first, then step to the exact day (`goRange()` in `high1-fix7.mts`). An hour-heading
+  regex like `13` also matches the mini-calendar's date — match the heading text `1 PM` only.
+- **The Tech quick-login (2026-10-10):** he is "Tech ShopView", `tech@shopview.com`. `GET /api/staff?search=Tech` does NOT
+  return him on sv10043 (54 others do); `search=tech@shopview.com` does. There is no who-am-I endpoint on this build
+  (`/api/auth/me`, `/api/users/me`, `/api/auth/user` → 404); read the name from the profile menu instead.
+- **Sign-out in a second tab freezes the headless test browser (2026-10-10, C368240).** After Logout in tab 2, BOTH tabs stop
+  answering (a screenshot and even `evaluate('1+1')` time out) with no redirect loop, no dialog and no script error; with the
+  request blocking off it still freezes, and the full Chromium build could not load the pages at all here. Tab 1 was seen to
+  move to `/login` on its own in one of two runs. Treat as a manual check; do not call it a product fault.
+- **Jira search moved (2026-10-10):** `GET /rest/api/2/search` now answers **410 Gone**. Use
+  `GET /rest/api/3/search/jql?jql=…&fields=status,summary&maxResults=50` through `jira.sh`.

@@ -14,8 +14,9 @@ const st = (r: any) => `${r.status} ${r.status >= 300 ? JSON.stringify(r.body).s
 try {
   const c: any = await customer(a, `ZZAUTOTEST SBR Sale ${Date.now() % 100000}`, 'SBR-1'); o.customer = !!c.company_id; o.contact = !!c.contact_id; o.vehicle = !!c.vehicle_id;
   const w = await workOrder(a, c, 'approved'); o.wo = (await a.get(`/api/work-orders/view/${w}`)).body?.data?.work_order?.number;
-  const reps = (await a.get('/api/sales-reps')).body?.data ?? []; o.reps = reps.map((r: any) => r.name).slice(0, 6); const rep = reps[0];
-  o.rep = rep?.name; o.setRep = st(await a.post('/api/work-orders/change-sales-rep', { work_order_id: w, sales_rep_id: rep?.id }));
+  const rr = await a.get('/api/sales-reps'); const rb = rr.body; o.repsShape = `${rr.status} ${JSON.stringify(rb).slice(0, 160)}`;
+  const reps: any[] = Array.isArray(rb) ? rb : Array.isArray(rb?.data) ? rb.data : (rb?.data?.collection ?? rb?.data?.items ?? Object.values(rb?.data ?? {}).find(Array.isArray) ?? []); o.reps = reps.map((r: any) => r.name ?? `${r.first_name} ${r.last_name}`).slice(0, 6); const rep = reps[0];
+  o.rep = rep?.name; o.setRep = st(await a.post('/api/work-orders/change-sales-rep', { work_order_id: w, sales_rep_id: rep?.id ?? rep?.staff_id }));
   const canned = ((await a.get('/api/work-orders/canned-lines')).body?.data?.collection ?? (await a.get('/api/work-orders/canned-lines')).body?.data ?? []) as any[];
   const cl = canned.find((x) => x.fixed_price && (!x.workplace_id || x.workplace_id === HEAVY)) ?? canned[0]; o.canned = cl?.name ?? cl?.title;
   const lr = await a.post(`/api/work-orders/${w}/lines/create-from-canned-line`, { canned_line_id: cl?.id, status: 'authorized' }); o.line = st(lr); const lid = lr.body?.data?.line_id ?? lr.body?.line_id;

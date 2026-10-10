@@ -1,3 +1,28 @@
+# Run 498 — RESUME HERE — STATE 10 Oct 2026 09:15 UTC (newest first; older notes below)
+
+**Run 498 live:** passed 213 · failed 13 · blocked 9 · untested 16 (C97012 C97022 C368177 C368178 C368179 C368190 C368217
+C368233 C368234 C368235 C368237 C154650 C368240 C368238 C368239 C368175). All 13 filed tickets read **Open** live 09:05
+(SV-11075 SV-11098 SV-11104 SV-11106 SV-11117–SV-11125). On any Obsolete: ASK the QA lead whether to mark the test Passed (L0306).
+
+**Queues running (session scratchpad, status files r3/r4/r5.status; logs `queue-logs-2026-10-10/r3-*`, `r4-*`, `r5-*`):**
+- r3: sbr-seed (failed: sales-rep list shape — fixed) → medium-fix4 C368233/234/235/237 → high1-fix7 C368177/178/179/192/190
+  with `WOB_TZ=America/Edmonton` (shop's zone; a UTC browser saved a 9 AM drop at 3 PM).
+- r4: sbr-seed again → C368237 again → C97012 again (s9-fix8 FIX 10 reads the tech's page right after his permission is removed).
+- r5: pics2.mts → 2x pictures for SV-11123 (part sale card) and SV-11125 (Credits reload) into `defect-drafts/raw/`; then
+  annotate with `annotate_v2.py --scale 2`, put before/after side by side, run scratchpad `addpics.sh <KEY> <wiki>`.
+
+**Judged today, not yet written to the run:** C97012 steps 5–6 (refused with "Failed to update lead technician, please try
+again. The lead technician can't be changed once a work order is Invoiced or Paid.", card back in Ana's column, Alpha Invoiced);
+steps 8–9 pending the r4 re-run. C368192 is already recorded.
+
+**C368233/C368234/C368235** carry today's behaviour + three outcomes in their own text: if seen exactly, mark Failed, raise nothing.
+**C368240 (sign-out):** test browser freezes after sign-out in tab 2 (4 attempts, 3 instruments) — tab 1 reached the sign-in page
+once. Leave for a MANUAL run; steps are the case's own. **C97022:** the case's "refresh" step always puts focus at the top —
+question for the QA lead, explained in plain words in the end report. **Manual:** C368238, C368239, C368175, C154650.
+**Still to fix:** C368217 (Part Number box), impersonation retry.
+
+---
+
 # Run 498 — RESUME HERE (written 9 Oct 2026 18:30 UTC, weekly quota at 92%)
 
 QA lead, 9 Oct: *"first make all the defects READY for me to review and immediately file when I approve … ALL the failed test

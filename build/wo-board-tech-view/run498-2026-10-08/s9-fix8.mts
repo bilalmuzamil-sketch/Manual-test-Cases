@@ -9,7 +9,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
+import { EV, t, shot, display, active, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
@@ -222,7 +222,10 @@ await run('C97012', async () => {
     o.step5 = { msg: await toastsOn(pg), ana: await colCards(pg, ANA.staff_id, s), ben: await colCards(pg, BEN.staff_id, s) }; await shot(pg, 'C97012-v4-step5');
     await pg.reload({ waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); await goP(pg, 'Board View', s.q);
     o.removeCE = await put((orig.fe_permissions ?? []).map((x: any) => x.id));
-    o.step8drag = await dragOn(pg, card(s, 'Bravo Co'), `[data-test-id="board_column_${BEN.staff_id}"]`, 120); await shiftPrompt(pg, 'Keep shifts').catch(() => {});
+    /* FIX 10 (2026-10-10): the Bravo card was not found after the permission change — read the page at that moment first */
+    await pg.waitForTimeout(6000); o.afterRoleChange = { url: pg.url().replace(APP, ''), display: await active(pg).catch(() => null), cards: await pg.locator('[data-test-id^="board_card_"]').count(), bravo: await pg.locator(card(s, 'Bravo Co')).count(), signIn: /login/.test(pg.url()), toasts: await toastsOn(pg) }; await shot(pg, 'C97012-v5-after-role-change');
+    if (!o.afterRoleChange.bravo) { await search(pg, s.q).catch(() => {}); await pg.waitForTimeout(3000); o.bravoAfterSearch = await pg.locator(card(s, 'Bravo Co')).count(); await shot(pg, 'C97012-v5-after-search'); }
+    o.step8drag = o.bravoAfterSearch === 0 ? 'no card' : await dragOn(pg, card(s, 'Bravo Co'), `[data-test-id="board_column_${BEN.staff_id}"]`, 120); await shiftPrompt(pg, 'Keep shifts').catch(() => {});
     o.step8 = { msg: await toastsOn(pg), url: pg.url().replace(APP, ''), ana: await colCards(pg, ANA.staff_id, s), ben: await colCards(pg, BEN.staff_id, s) }; await shot(pg, 'C97012-v4-step8');
   } finally { await v.close(); o.restoreInFinally = await put((orig.fe_permissions ?? []).map((x: any) => x.id)).catch((e: any) => String(e).slice(0, 80)); o.techRoleBack = techRole ? (await a.post(`/api/staff/${techRow.staff_id}/change`, techBody(techRole))).status : 'no original role'; }   /* FIX 6: the role is put back even when a step fails */
   o.step6 = { status: (await a.get(`/api/work-orders/view/${s.w['Alpha Co'].id}`)).body?.data?.work_order?.status, lead: await leadOf(s, 'Alpha Co') }; o.step9 = await leadOf(s, 'Bravo Co');
