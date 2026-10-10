@@ -1,0 +1,14 @@
+{
+ "id": 88634,
+ "title": "Revenue tile shows a negative amount when credits are larger than sales",
+ "labels": [
+  "User",
+  "Location",
+  "Timing",
+  "Data",
+  "Data",
+  "Data",
+  "Data"
+ ],
+ "pre_body": "<p><strong>Preconditions</strong></p><ol><li>User: you are signed in as an Admin (the Admin role has every permission, including Reports).</li><li>Location: you are in a fresh test location made for this run, so nothing else is invoiced, credited or clocked there; on the Dashboard, the Revenue tile on This Week reads $0.00 with 0 Invoices.</li><li>Timing: you run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.</li><li>Data: an older invoice dated before this week that carries a part (e.g. last month, with a $500.00 part), in any location you can switch to.</li><li>Data: a test customer with one contact and one asset that uses that contact (for example ZZAUTOTEST Dash Customer 1, contact Dana Test, unit ZZ-101).</li><li>Data: This week's sale, in the fresh location: one invoiced work order (not sent, not paid) for the test customer, Service Advisor Advisor A, one labor line of 1.00 hour at $150.00 an hour (Estimated Time 1.00, Tech Time 1.00). You have written down its Subtotal (e.g. $150.00).</li><li>Data: This week, a credit against the older invoice: its part returned with Outcome Store Credit. You have written down the credit's amount before tax (e.g. $500.00).</li></ol>"
+}

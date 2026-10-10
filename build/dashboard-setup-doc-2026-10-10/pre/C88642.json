@@ -1,0 +1,12 @@
+{
+ "id": 88642,
+ "title": "Sales by Customer counts each customer once and leaves out undone invoices",
+ "labels": [
+  "User",
+  "Location",
+  "Timing",
+  "Data",
+  "Data"
+ ],
+ "pre_body": "<p><strong>Preconditions</strong></p><ol><li>User: you are signed in as an Admin (the Admin role has every permission, including Reports).</li><li>Location: you are in a fresh test location made for this run, so nothing else is invoiced, credited or clocked there; on the Dashboard, the Revenue tile on This Week reads $0.00 with 0 Invoices.</li><li>Timing: you run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.</li><li>Data: Four test customers, each with one contact and one asset that uses that contact (e.g. ZZAUTOTEST SBC 1 to ZZAUTOTEST SBC 4).</li><li>Data: Invoiced work orders (each one labor line, 1.00 hour at $100.00 an hour, Tech Time 1.00): Customer 1 two; Customer 2 one; Customer 3 one, then reversed; Customer 4 one left unpaid and unsent, then voided by adding a new line (e.g. 0.50 hour), with no new invoice created for it.</li></ol>"
+}

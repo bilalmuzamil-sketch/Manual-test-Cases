@@ -1,0 +1,17 @@
+<html><body><h1>Setup: Tiles load on their own and remember choices in this browser</h1><p>Test case: <a href="https://shopview.testrail.io/index.php?/cases/view/88615">C88615</a>, Dashboard. Part 1 is for the manual QA tester. Part 2 is for a Claude session that prepares the case on its own. Both create the starting state listed in the test case's Preconditions; the numbers below match that list.</p><h2>What must be true before you start</h2><ol><li>User: you are signed in as a user whose role has the Reports permission (for example an Administrator).</li><li>Browser: your browser window is at least 1024 pixels wide (a maximised laptop or desktop window).</li><li>Location: you are in a location (workplace) that has invoices and technician clocked time on several different days this month and in the last twelve months.</li><li>Browser: a second browser on the same computer (for example Chrome and Firefox), or a private window.</li></ol><h1>Part 1. Setup for manual QA tester</h1><p>Each line says which precondition it sets up. Where a precondition is not listed, it needs no setup.</p><ul><li><strong>For precondition 1:</strong> profile icon (your initials, top right) &gt; Settings &gt; Roles &amp; Permissions &gt; open the role &gt; the Reports permission is switched on.</li><li><strong>For precondition 3:</strong><ol><li>To change location, click your profile icon (your initials, top right, beside the current location name) &gt; under Change Location: click the orange button showing the current location &gt; pick the location from the list.</li><li>To find one with this data, pick a location and look at the Dashboard: Revenue on This Month must be above $0.00 and Technician Utilization must show a figure</li><li>If not, try the next location in the list.</li></ol></li></ul><h1>Part 2. Setup for Claude session</h1>
+<p>Prepare the same starting state by carrying out Part 1 in a browser with Playwright. Record the real values you used, the build marker and screenshots in the Manual-test-Cases repository, and judge pass or fail against the test case's Expected results only.</p>
+<h2>Environment</h2>
+<ul>
+<li>Dashboard QA site: app https://sv490.qa.shopview.com, API https://sv490api.qa.shopview.com.</li>
+<li>Record the build marker (app-version on the app page) before you start.</li>
+<li>Browser: Chromium at /opt/pw-browsers/chromium through Playwright. Do not run "playwright install".</li>
+</ul>
+<h2>Access</h2>
+<ul>
+<li>Sign in with the QA site's quick login: node build/testing-tools/qa-branch-boot.mjs (see build/APP-ACTIONS-PLAYBOOK.md section A). Carry the sv_sso_session cookie only, scoped to the host.</li>
+<li>Keep cookies in /tmp only, with file mode 600. Never write a cookie into a document, a commit or a log.</li>
+<li>Change location through the profile icon (your initials, top right) &gt; Change Location.</li>
+</ul>
+<h2>Test data</h2>
+<p>Name anything you create with ZZAUTOTEST at the start. Leave all test data in place; nothing is deleted afterwards.</p>
+</body></html>

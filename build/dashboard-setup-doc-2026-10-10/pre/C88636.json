@@ -1,0 +1,14 @@
+{
+ "id": 88636,
+ "title": "Revenue tile shows Parts and Labor as whole percentages, or the invoice count",
+ "labels": [
+  "User",
+  "Location",
+  "Timing",
+  "Data",
+  "Data",
+  "People",
+  "Data"
+ ],
+ "pre_body": "<p><strong>Preconditions</strong></p><ol><li>User: you are signed in as an Admin (the Admin role has every permission, including Reports).</li><li>Location: you are in a fresh test location made for this run, so nothing else is invoiced, credited or clocked there; on the Dashboard, the Revenue tile on This Week reads $0.00 with 0 Invoices.</li><li>Timing: you run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.</li><li>Data: a test customer with one contact and one asset that uses that contact (for example ZZAUTOTEST Dash Customer 1, contact Dana Test, unit ZZ-101). Its Default Shop Supplies is 0, so the invoice carries only labor and parts.</li><li>Data: an in-stock inventory part with a Sell price (e.g. $100.00) that this location can sell.</li><li>People (Advisor A): you (Admin ShopView); the Service Advisor in the work order's left panel shows your name by default.</li><li>Data: one work order for that customer, ready but not invoiced yet: Service Advisor Advisor A, one labor line of 2.00 hours at $100.00 an hour (Estimated Time 2.00, Tech Time 2.00) with the part added (quantity 1, In stock); line completed and the work order marked reviewed.</li></ol>"
+}

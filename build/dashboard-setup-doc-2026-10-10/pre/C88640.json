@@ -1,0 +1,15 @@
+{
+ "id": 88640,
+ "title": "Technician Efficiency shares a line's hours by each technician's clocked time",
+ "labels": [
+  "User",
+  "Location",
+  "Timing",
+  "Data",
+  "People",
+  "People",
+  "People",
+  "Data"
+ ],
+ "pre_body": "<p><strong>Preconditions</strong></p><ol><li>User: you are signed in as an Admin (the Admin role has every permission, including Reports).</li><li>Location: you are in a fresh test location made for this run, so nothing else is invoiced, credited or clocked there; on the Dashboard, the Technician Efficiency tile on This Week shows no percentage (a grey \"-\").</li><li>Timing: you run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.</li><li>Data: a test customer with one contact and one asset that uses that contact (for example ZZAUTOTEST Dash Customer 1, contact Dana Test, unit ZZ-101).</li><li>People: Technician 1 is you (Admin ShopView, Time Clock on): in a fresh location you are the technician offered in Add Technician, and you clock time yourself.</li><li>People (Technician 2): a test technician in this run's location, with Time Clock on, whose sign-in you have.</li><li>People (Advisor A): you (Admin ShopView); the Service Advisor in the work order's left panel shows your name by default.</li><li>Data: Work order 1 (technician time but nobody clocks it), invoiced, not sent, not paid: Service Advisor Advisor A, one labor line ZZAUTOTEST No clock, Technician 1, $100.00 an hour, Estimated Time 1.00, Tech Time 1.00; nobody clocks in on it. Work order 2 is created later, in the steps.</li></ol>"
+}

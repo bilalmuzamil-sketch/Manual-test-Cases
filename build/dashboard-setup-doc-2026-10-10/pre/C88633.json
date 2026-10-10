@@ -1,0 +1,15 @@
+{
+ "id": 88633,
+ "title": "Revenue tile shows the exact amount to the cent and equals the Sales report",
+ "labels": [
+  "User",
+  "Location",
+  "Timing",
+  "Data",
+  "Data",
+  "Data",
+  "Data",
+  "Data"
+ ],
+ "pre_body": "<p><strong>Preconditions</strong></p><ol><li>User: you are signed in as an Admin (the Admin role has every permission, including Reports).</li><li>Location: you are in a quiet test location: nobody else invoices, issues credits or clocks time there this week; on the Dashboard, the Revenue tile on This Week reads $0.00 with 0 Invoices.</li><li>Timing: you run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.</li><li>Data: a test customer with one contact and one asset that uses that contact (for example ZZAUTOTEST Dash Customer 1, contact Dana Test, unit ZZ-101).</li><li>Data: an in-stock inventory part with a Sell price (for example $200.00).</li><li>Data: Invoice 1 for that customer (not sent, not paid): one approved labor line (for example 10.00 hours at a rate from the list) and a flat Discount (for example $100.00). You have written down its Subtotal (before any discount and before tax).</li><li>Data: Invoice 2 for the same customer (not sent, not paid): one approved labor line (for example 2.00 hours) with the part from 5 added (quantity 1, In stock). You have written down its Subtotal.</li><li>Data: a credit on invoice 2 that returns the part, Outcome Store Credit. You have written down its amount before tax.</li></ol>"
+}

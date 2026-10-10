@@ -1,0 +1,14 @@
+{
+ "id": 88635,
+ "title": "Revenue tile leaves out a reversed or voided invoice, like the Sales report",
+ "labels": [
+  "User",
+  "Location",
+  "Timing",
+  "Data",
+  "People",
+  "Data",
+  "User"
+ ],
+ "pre_body": "<p><strong>Preconditions</strong></p><ol><li>User: you are signed in as an Admin (the Admin role has every permission, including Reports).</li><li>Location: you are in a fresh test location made for this run, so nothing else is invoiced, credited or clocked there; on the Dashboard, the Revenue tile on This Week reads $0.00 with 0 Invoices.</li><li>Timing: you run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.</li><li>Data: a test customer with one contact and one asset that uses that contact (for example ZZAUTOTEST Dash Customer 1, contact Dana Test, unit ZZ-101).</li><li>People (Advisor A): you (Admin ShopView); the Service Advisor in the work order's left panel shows your name by default.</li><li>Data: Three invoiced work orders A, B and C (not sent, not paid) for that customer, Service Advisor Advisor A, each with one labor line at $100.00 an hour: A 3.00 hours, B 5.00 hours, C 2.00 hours (Tech Time the same). You have written down each Subtotal (e.g. A $300.00, B $500.00, C $200.00). Invoice C stays unpaid and unsent: it is the one you will void (a line added to a sent or paid invoice splits the work order instead of voiding).</li><li>User: your role can reverse an invoice (Admin can): Reverse is in the invoice's three dots on the Finance tab.</li></ol>"
+}
