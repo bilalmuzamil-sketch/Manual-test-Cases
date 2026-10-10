@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-10"
+ },
+ "results": {
+  "C368217": {
+   "verdict": "Passed",
+   "observed": "Setup: part sale P10043-266 (customer ZZAUTOTEST Part Sale Counts 49475) with two parts; Authorize, Order, Receive ('Parts received.'), then one return raised (Add new part return request > Save & Close); and a part sale at the second location (P10043-267, two parts). Check: Parts > Part Sales, typed P10043-266 in Search: its row reads Parts 2 and Returns 1. The second location's part sale shows on its own row (P10043-267: Parts 2, Returns 0), and its counts are not added to P10043-266 (which would read 4).",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  }
+ }
+}
