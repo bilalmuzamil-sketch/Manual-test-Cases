@@ -5976,3 +5976,7 @@ three wrong characterisations before it was found — see learning **L0233**.
   StaffDialog > EnrollmentsDialog). Step 2 alone is refused: *"Staff must be enrolled in at least one department from
   default location"*. Step 1 alone leaves them enrolled — that mistake produced a false report (D5). Restore: enrolment
   create, then Location back. `seedCase()` does NOT return work orders in plan order — pick them by lead.
+- **Waiting for a QA branch to come back (2026-10-10, L0307).** Signed out, every `/api/...` path on a QA branch answers with the
+  plain web page, so a curl ping can never tell up from down. Use `build/testing-tools/wait_branch_up.sh <run dir> <flag>`:
+  it signs in through `wob-run.sh build-probe.mts` (the real action), prints its answer at start (positive control), then
+  re-checks every 3 minutes. Still do one real check by hand before each message to the QA lead.

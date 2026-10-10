@@ -5411,3 +5411,19 @@ obsolete that ticket you need to ask me if we then need to mark the test case ru
 Defects field (push_results_to_run.py does both from the ticket text). At every check-in, read the status of each ticket we filed;
 when one reads OBSOLETE, ask him in plain words whether to mark that test Passed — never mark it on your own (his earlier
 "mark the test as passed too" for SV-11101 was a one-off answer to that question, not a standing permission).
+
+## L0307 — 2026-10-10 — A WATCHER MUST TEST THE REAL THING, AND MUST BE PROVED ABLE TO SAY "UP" (QA lead: "Branch is back, since 30 minutes why could not know that? … Your watcher does the same all the time")
+
+**What happened:** the branch's quick-login answered 503 early on 10 Oct. I started a watcher that pinged `/api/version`
+without signing in and waited for JSON. Signed out, every `/api/...` path on a QA branch returns the plain web page — up
+or down — so the watcher could NEVER report "up". The branch came back and I did not know for ~30 minutes; he had to tell me.
+The same mistake had happened before: a watcher built on a signal nobody had checked against a known-good state.
+**Rule, three parts:**
+1. **Watch with the real action.** "Is it back?" is answered by doing what the work needs — a real sign-in through the
+   suite's own launcher (`build/testing-tools/wait_branch_up.sh` does exactly that) — never by a signed-out ping, a status
+   code or a page title.
+2. **Prove the watcher can say "up" before trusting its silence.** Run the check once at start and print its answer
+   (the script does); if the thing is known to be working somewhere, check the watcher returns "up" there first (Rule 104:
+   a negative needs a positive control — "still down" is a negative claim).
+3. **Never rely on the watcher alone.** At every message to the QA lead during an outage, do one real check by hand and give
+   its time; and re-check on any status turn. A quiet watcher is not evidence the outage continues.
