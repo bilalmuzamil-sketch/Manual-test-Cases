@@ -1,0 +1,73 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-10"
+ },
+ "results": {
+  "C96983": {
+   "verdict": "Failed",
+   "observed": "Normal save: in Board View, Created date turned on stayed on after a reload. Forced load failure (the page's request for the saved choices answered with a server error): Board View showed its default fields (Lead technician, Customer, Asset, Progress, Total price, plus the always-on number, unit and status) and Tech View showed its starting columns, the same as the List default columns (On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price, Created On). Then, still with the failure in place, On-site was turned on in Fields to display: it showed on the menu, but the page sent NO save at all (a save sent for a normal change a moment earlier was seen, so the recording works). After the failure was removed and the page reloaded, On-site was off again and the saved choices were exactly as before the failure. The case expects the next field choice made after the failure to be saved. Report prepared and held for the QA lead's approval; nothing raised.",
+   "not_observed": null,
+   "todo": "QA lead to review SV-11117 (keep or mark Obsolete); re-test when fixed.",
+   "ticket": "SV-11117 https://shopview.atlassian.net/browse/SV-11117 (Story Defect, Open, created 10 Oct 2026 under SV-10048; filed on the QA lead's instruction to create all of this list for his review)"
+  },
+  "C368204": {
+   "verdict": "Failed",
+   "observed": "Opened /workorders?tab=estimate&assigned_to_me=1, then clicked Work Orders in the top menu: the Estimates tab stayed selected and Assigned to me stayed on (address /workorders?assigned_to_me=1&tab=estimate); typing the plain Work Orders address showed the saved All view with Assigned to me off. This is exactly the case's 'What you should see today', outcome (1): marked Failed, nothing new raised.",
+   "not_observed": null,
+   "ticket": "SV-11118 https://shopview.atlassian.net/browse/SV-11118 (Story Defect, Open, created 10 Oct 2026 under SV-10044; filed on the QA lead's instruction to create all of this list for his review)",
+   "todo": "QA lead to review SV-11118 (keep or mark Obsolete); re-test when fixed."
+  },
+  "C368149": {
+   "verdict": "Failed",
+   "observed": "Two real sessions on Ana's column (Alpha Co, Bravo Co, Charlie Co). Browser 1 moved Charlie Co to the top (Charlie, Alpha, Bravo). Browser 2, not refreshed, dropped Bravo Co above Alpha Co. No warning in either browser. After refreshing, BOTH show Charlie Co, Bravo Co, Alpha Co \u2014 a merge of the two moves, not the later save (Bravo, Alpha, Charlie) and no 'card has moved' alert.",
+   "not_observed": null,
+   "ticket": "SV-11119 https://shopview.atlassian.net/browse/SV-11119 (Story Defect, Open, created 10 Oct 2026 under SV-10052; filed on the QA lead's instruction to create all of this list for his review)",
+   "todo": "QA lead to review SV-11119 (keep or mark Obsolete); re-test when fixed."
+  },
+  "C368165": {
+   "verdict": "Failed",
+   "observed": "Paid work order S10043-18248 (lead Esther Howard): the status card shows 'Lead technician' with 'Esther Howard' as plain read-only text \u2014 no dropdown arrow, not a greyed-out field \u2014 and clicking it opens nothing; after a reload it still reads Esther Howard (the lead did not change). This is exactly the case's 'What you should see today', outcome (1): marked Failed, nothing new raised.",
+   "not_observed": null,
+   "ticket": "SV-11120 https://shopview.atlassian.net/browse/SV-11120 (Story Defect, Open, created 10 Oct 2026 under SV-10047; filed on the QA lead's instruction to create all of this list for his review)",
+   "todo": "QA lead to review SV-11120 (keep or mark Obsolete); re-test when fixed."
+  },
+  "C368247": {
+   "verdict": "Failed",
+   "observed": "An imported work order was made with the Imports > Work Orders CSV (customer ZZAUTOTEST Imported Lead 67980, invoice ZZAUTOTEST-IMP-69142). Work Orders > List > All with Status = Imported lists it; clicking its number opens a separate imported page (/imported-work-orders/...) showing the number ZZAUTOTEST-IMP-69142, an 'Imported' badge, 'Invoiced: Oct 9, 2026', the asset card (2015 Freightliner Cascadia, Unit IMP-1), Financial Info (Total $105.00) and the invoice itself. No Lead Technician is shown anywhere on the page, before or after a reload, so there is nothing to write down at step 2 or change at step 3. This is exactly the outcome the case describes for build v26.40.8-7a95011 (outcome 1).",
+   "not_observed": null,
+   "ticket": "SV-11121 https://shopview.atlassian.net/browse/SV-11121 (Story Defect, Open, created 10 Oct 2026 under SV-10047; filed on the QA lead's instruction to create all of this list for his review)",
+   "todo": "QA lead to review SV-11121 (keep or mark Obsolete); re-test when fixed."
+  },
+  "C368181": {
+   "verdict": "Failed",
+   "observed": "Asset TRK-201's Work Orders tab: the tab reads 'Work Orders' with no number and there is no count or 'x of y' under the table; the table has 3 rows. This is exactly the case's 'What you should see today', outcome (1): marked Failed, nothing new raised.",
+   "not_observed": null,
+   "ticket": "SV-11122 https://shopview.atlassian.net/browse/SV-11122 (Story Defect, Open, created 10 Oct 2026 under SV-10044; filed on the QA lead's instruction to create all of this list for his review)",
+   "todo": "QA lead to review SV-11122 (keep or mark Obsolete); re-test when fixed."
+  },
+  "C368216": {
+   "verdict": "Failed",
+   "observed": "Outcome (1) of the case, exactly as foreseen: a new part sale was opened from Parts > Part Sales; its status card shows Contact, Phone, Authorizer and Asset. There is no technician or Sales Representative field on it, so there is nothing to change and the change cannot be saved or read back. Nothing new raised, as the case instructs.",
+   "not_observed": "steps 3-4: no technician / Sales Representative field exists on the part sale status card",
+   "ticket": "SV-11123 https://shopview.atlassian.net/browse/SV-11123 (Story Defect, Open, created 10 Oct 2026 under SV-10047; filed on the QA lead's instruction to create all of this list for his review)",
+   "todo": "QA lead to review SV-11123 (keep or mark Obsolete); re-test when fixed."
+  },
+  "C368242": {
+   "verdict": "Failed",
+   "observed": "Settings > Staff, before and after uploading the blue photo for the test technician (Tech 718636) through her own Edit Profile, then reloading. The Staff list has no photo at all: its columns are First Name, Last Name, Email, Job Title, Role, Department(S), Created, Confirmed Invitation and Billable, with no avatar on any row, before or after. This is exactly the outcome the case describes for build v26.40.8-7a95011 (outcome 1).",
+   "not_observed": null,
+   "ticket": "SV-11124 https://shopview.atlassian.net/browse/SV-11124 (Story Defect, Open, created 10 Oct 2026 under SV-10050; filed on the QA lead's instruction to create all of this list for his review)",
+   "todo": "QA lead to review SV-11124 (keep or mark Obsolete); re-test when fixed."
+  },
+  "C368221": {
+   "verdict": "Failed",
+   "observed": "Parts > Returns, Credits tab: chose '60 days' in the date filter; after a reload the page opened on the Returns tab, not Credits (the 60 days choice itself was kept). This is the case's 'What you should see today', outcome (1).",
+   "not_observed": null,
+   "ticket": "SV-11125 https://shopview.atlassian.net/browse/SV-11125 (Story Defect, Open, created 10 Oct 2026 under SV-10048; filed on the QA lead's instruction to create all of this list for his review)",
+   "todo": "QA lead to review SV-11125 (keep or mark Obsolete); re-test when fixed."
+  }
+ }
+}

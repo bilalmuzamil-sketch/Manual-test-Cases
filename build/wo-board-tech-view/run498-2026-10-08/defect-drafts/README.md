@@ -241,3 +241,17 @@ Recapture on a FRESH line with NO technician: adding Dana Ortiz in Edit Line DID
 | C368181 | dev note only: "Check rows, counts…" | asset Work Orders tab has no count | no requirement for a count | ask |
 | C368216 | dev note: "check … that changing the technician works" | part sales have no technician field | case assumed a field that does not exist | ask |
 | C368242 | dev note: "Avatars everywhere (header, Staff, …)" | Staff list has no photo column | no requirement for a photo column | ask |
+
+## Filed 10 Oct 2026 — QA lead: "Create tickets for all of them, then give me the link … so that I can then verify all of them and see if they are good or can be obsoleted." (one-time exception to the one-at-a-time rule, confirmed when asked)
+
+| Case | Ticket | Story | Pictures |
+|---|---|---|---|
+| C96983 | [SV-11117](https://shopview.atlassian.net/browse/SV-11117) | SV-10048 | inline |
+| C368204 | [SV-11118](https://shopview.atlassian.net/browse/SV-11118) | SV-10044 | inline |
+| C368149 | [SV-11119](https://shopview.atlassian.net/browse/SV-11119) | SV-10052 | to add at 2x when the branch is back |
+| C368165 | [SV-11120](https://shopview.atlassian.net/browse/SV-11120) | SV-10047 | to add at 2x when the branch is back |
+| C368247 | [SV-11121](https://shopview.atlassian.net/browse/SV-11121) | SV-10047 | to add at 2x when the branch is back |
+| C368181 | [SV-11122](https://shopview.atlassian.net/browse/SV-11122) | SV-10044 | to add at 2x when the branch is back |
+| C368216 | [SV-11123](https://shopview.atlassian.net/browse/SV-11123) | SV-10047 | to add at 2x when the branch is back |
+| C368242 | [SV-11124](https://shopview.atlassian.net/browse/SV-11124) | SV-10050 | to add at 2x when the branch is back |
+| C368221 | [SV-11125](https://shopview.atlassian.net/browse/SV-11125) | SV-10048 | to add at 2x when the branch is back |
