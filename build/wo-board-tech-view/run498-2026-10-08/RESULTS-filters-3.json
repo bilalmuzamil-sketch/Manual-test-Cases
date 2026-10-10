@@ -1,0 +1,34 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-10"
+ },
+ "results": {
+  "C368233": {
+   "verdict": "Failed",
+   "observed": "Reports > Sales By Customer, Customer filter, starting from 'All customers' ticked: clicking 'E2E Credits Customer' did not untick it \u2014 it became the ONLY ticked option and the report showed 2 rows (only that customer); clicking it again went back to 'All customers' ticked and 31 rows. The select-all box is labelled 'All customers'. There is no Clear selection button (no button in the filter at all). This is the case's own 'what you should see today', outcome (1). CORRECTION (same day): production (app.shopview.com, v26.40.14-7a55f9c, 10 Oct 2026) behaves exactly the same \u2014 clicking 'ZZAUTOTEST Fibridge Commercial' made it the only ticked option, clicking again went back to 'All \u2026', and the filter has no buttons. So this is NOT a change made by this work: these reports have always used the 'All \u2026' style. (Control: Technician Utilization on production shows Select all and Clear selection, read the same way.)",
+   "not_observed": "Clicking 'All customers' while it is ticked (to untick every option) was not read this pass.",
+   "ticket": "NO TICKET \u2014 not a regression: production behaves the same (checked 10 Oct 2026). Held with the QA lead to decide what to do with the test; the earlier note saying a ticket was prepared is withdrawn.",
+   "todo": "For the QA lead: the case's steps (untick one option / Select all / Clear selection) describe the other filter style, which these three reports never had. The expected result is left as written (it is never changed); decide whether this test stays Failed as known behaviour or gets new steps.",
+   "ticket_held": true
+  },
+  "C368234": {
+   "verdict": "Failed",
+   "observed": "Reports > Parts Velocity, Vendor filter, starting from 'All vendors' ticked: clicking '4Refuel' did not untick it \u2014 it became the ONLY ticked option and the report showed 11 rows (only that vendor); clicking it again went back to 'All vendors' ticked and 30 rows. The select-all box is labelled 'All vendors'. There is no Clear selection button (no button in the filter at all). This is the case's own 'what you should see today', outcome (1). CORRECTION (same day): production (app.shopview.com, v26.40.14-7a55f9c, 10 Oct 2026) behaves exactly the same \u2014 clicking 'gfhfghg' made it the only ticked option, clicking again went back to 'All \u2026', and the filter has no buttons. So this is NOT a change made by this work: these reports have always used the 'All \u2026' style. (Control: Technician Utilization on production shows Select all and Clear selection, read the same way.)",
+   "not_observed": "Clicking 'All vendors' while it is ticked (to untick every option) was not read this pass.",
+   "ticket": "NO TICKET \u2014 not a regression: production behaves the same (checked 10 Oct 2026). Held with the QA lead to decide what to do with the test; the earlier note saying a ticket was prepared is withdrawn.",
+   "todo": "For the QA lead: the case's steps (untick one option / Select all / Clear selection) describe the other filter style, which these three reports never had. The expected result is left as written (it is never changed); decide whether this test stays Failed as known behaviour or gets new steps.",
+   "ticket_held": true
+  },
+  "C368235": {
+   "verdict": "Failed",
+   "observed": "Reports > Inventory Value, Category filter, starting from 'All categories' ticked: clicking '.Brake Parts' did not untick it \u2014 it became the ONLY ticked option and the report showed 5 rows (only that category); clicking it again went back to 'All categories' ticked and 31 rows. The select-all box is labelled 'All categories'. There is no Clear selection button (no button in the filter at all). This is the case's own 'what you should see today', outcome (1). CORRECTION (same day): production (app.shopview.com, v26.40.14-7a55f9c, 10 Oct 2026) behaves exactly the same \u2014 clicking 'Air Conditioning' made it the only ticked option, clicking again went back to 'All \u2026', and the filter has no buttons. So this is NOT a change made by this work: these reports have always used the 'All \u2026' style. (Control: Technician Utilization on production shows Select all and Clear selection, read the same way.)",
+   "not_observed": "Clicking 'All categories' while it is ticked (to untick every option) was not read this pass.",
+   "ticket": "NO TICKET \u2014 not a regression: production behaves the same (checked 10 Oct 2026). Held with the QA lead to decide what to do with the test; the earlier note saying a ticket was prepared is withdrawn.",
+   "todo": "For the QA lead: the case's steps (untick one option / Select all / Clear selection) describe the other filter style, which these three reports never had. The expected result is left as written (it is never changed); decide whether this test stays Failed as known behaviour or gets new steps.",
+   "ticket_held": true
+  }
+ }
+}
