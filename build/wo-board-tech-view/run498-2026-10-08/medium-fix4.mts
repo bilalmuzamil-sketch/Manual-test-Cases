@@ -26,7 +26,7 @@ const R: Record<string, any> = {};
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 300) }; await shot(p, `${id}-error`); }
-  console.log(t(), id, JSON.stringify(R[id]).slice(0, 2400)); fs.writeFileSync(path.join(EV, 'medium-fix3.json'), JSON.stringify(R, null, 1));
+  console.log(t(), id, JSON.stringify(R[id]).slice(0, 2400)); fs.writeFileSync(path.join(EV, 'medium-fix5.json'), JSON.stringify(R, null, 1));
 }
 const toasts = () => p.evaluate(`[...document.querySelectorAll('.q-notification')].map(e => e.innerText.replace(/\\s+/g, ' ').trim())`) as Promise<string[]>;
 const nav = async (top: string, sub?: string) => { await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000);
@@ -117,5 +117,5 @@ await run('C368247', async () => {
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(3000); await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); await p.locator('.q-menu').getByText('Clear selection').first().click(); await p.keyboard.press('Escape');
   R.C368247 = o; await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(3000); await p.locator('[data-test-id="filter_chip_status"]').click().catch(() => {}); await p.waitForTimeout(800); await p.locator('.q-menu').getByText('Clear selection').first().click().catch(() => {}); await p.keyboard.press('Escape').catch(() => {});   /* FIX: never leave the Imported filter saved */ });
 
-fs.writeFileSync(path.join(EV, 'medium-fix3.json'), JSON.stringify(R, null, 1));
+fs.writeFileSync(path.join(EV, 'medium-fix5.json'), JSON.stringify(R, null, 1));
 await RUN.end(); await done(browser);

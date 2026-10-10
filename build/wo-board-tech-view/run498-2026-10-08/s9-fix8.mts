@@ -207,7 +207,7 @@ await run('C97012', async () => {
   /* FIX 7 (2026-10-09): switching ONE session between the admin and the role-D user signed the user's browser out with live
      updates on. The dragging person is now the Tech quick-login in its OWN session, put on the check's role for the duration
      (and put back after); the admin side (invoice, role change) stays in this session. Nobody switches users mid-check. */
-  const techRow: any = (await staffRows(a, 'Tech')).find((x: any) => `${x.first_name} ${x.last_name}` === 'Tech ShopView'); o.techFound = !!techRow; const techRole = techRow?.role_id;
+  const techRow: any = (await staffRows(a, 'tech@shopview.com')).find((x: any) => x.email === 'tech@shopview.com')   /* FIX 9 (2026-10-10): the name search 'Tech' does not return him; the email search does */; o.techFound = !!techRow; const techRole = techRow?.role_id;
   const techBody = (role: string) => ({ first_name: techRow.first_name, last_name: techRow.last_name, email: techRow.email, role_id: role, workplace_id: techRow.workplace_id ?? HEAVY, job_title: techRow.job_title ?? null, salary_type: null, salary: null, billable: techRow.billable ? 1 : 0, clockable: !!techRow.clockable, is_sales_rep: !!techRow.is_sales_rep });
   o.techOnRoleD = (await a.post(`/api/staff/${techRow.staff_id}/change`, techBody(VIEW_ROLE))).status;
   const { signIn } = await import('../../global-search/e2e/fixtures/auth.js'); const s2: any = await signIn('/workorders?tab=all', undefined, undefined, 'tech'); const v = { page: s2.page as Page, close: async () => { await s2.browser?.close().catch(() => {}); } };
