@@ -9,8 +9,43 @@
  "C97012": {
   "seed": [],
   "addCE": "200",
-  "techFound": false,
-  "error": "Cannot read properties of undefined (reading 'staff_id')"
+  "techFound": true,
+  "techOnRoleD": 201,
+  "cardsSeen": [
+   "Alpha Co",
+   "Bravo Co"
+  ],
+  "alphaInDom": 1,
+  "invoice": "400 [{\"error\":\"Work order is not complete.\"}]",
+  "invoiceRoute": [
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 201",
+   "wo ready_for_review 201",
+   "wo complete 201",
+   "invoice 201",
+   "status now Invoiced"
+  ],
+  "alphaStatus": "Invoiced",
+  "step5drag": "ok",
+  "step5": {
+   "msg": [
+    "Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "ana": [
+    "Alpha Co",
+    "Bravo Co"
+   ],
+   "ben": []
+  },
+  "removeCE": "200",
+  "restoreInFinally": "200",
+  "techRoleBack": 201,
+  "error": "locator.boundingBox: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_card_49a9db6f-0a50-4120-9551-9043acf8faff\"]').first()\n"
  },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
  "restored": true
 }
