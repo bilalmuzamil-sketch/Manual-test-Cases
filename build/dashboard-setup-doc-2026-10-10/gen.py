@@ -30,6 +30,10 @@ def split(i):
     return items,sl
 def build(i):
     t=live[i]['title']; items,sl=split(i)
+    # QA lead 10 Oct "Go with what's best to make the test runnable": Advisor A was never defined in these tests and
+    # the advisor does not affect their result.
+    if i in (88633,88641,88642,88651,88652):  # only where the test never defines Advisor A
+        sl=[x.replace('Service Advisor to Advisor A in the left panel','Service Advisor to any name in the list in the left panel') for x in sl]
     lab=[label(x) for x in items]
     lis=''.join(f'<li>{fmt(l,x)}</li>' for l,x in zip(lab,items))
     test_list='<p><strong>Preconditions</strong></p><ol>'+lis+'</ol>'
