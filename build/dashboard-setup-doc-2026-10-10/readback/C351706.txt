@@ -1,0 +1,51 @@
+# **Setup: Ratio tiles with no clocked hours show an empty chart outline**
+
+Test case: [C351706](https://shopview.testrail.io/index.php?/cases/view/351706), Dashboard. Part 1 is for the manual QA tester. Part 2 is for a Claude session that prepares the case on its own. Both create the starting state listed in the test case's Preconditions; the numbers below match that list.
+
+## **What must be true before you start**
+
+1.  User: you are signed in as a user whose role has the Reports permission (for example Admin).
+2.  Browser: you use a desktop browser window at least 1024 pixels wide (a maximised laptop or desktop window).
+3.  Location: you are in a location (workplace) with nothing in it: no work order, invoice, credit or clocked time (for example ZZAUTOTEST Empty Shop).
+
+# **Part 1. Setup for manual QA tester**
+
+Each line says which precondition it sets up. Where a precondition is not listed, it needs no setup.
+
+  - **For precondition 1:**
+
+<!-- end list -->
+
+1.  On the QA site's sign-in page, in the DEV MODE — QUICK LOGIN panel, click Admin (this signs you in as Admin ShopView).
+2.  To use another role, check it has Reports: profile icon \> Settings \> Roles & Permissions \> edit icon on the role \> Reports is switched on.
+
+<!-- end list -->
+
+  - **For precondition 3:**
+
+<!-- end list -->
+
+1.  Profile icon \> Settings \> Locations \> New Location: Name ZZAUTOTEST Empty Shop, the address fields, Timezone, Telephone, Shop Supplies Charge 0 % \> Save & Close (if a location with this name already exists, reuse it only if it still matches the precondition).
+2.  It then appears in your Change Location list
+3.  To switch to it, click your profile icon (your initials, top right, beside the current location name) \> under Change Location: click the orange button showing the current location \> pick the location from the list.
+4.  Create nothing in it.
+
+# **Part 2. Setup for Claude session**
+
+Prepare the same starting state by carrying out Part 1 in a browser with Playwright. Record the real values you used, the build marker and screenshots in the Manual-test-Cases repository, and judge pass or fail against the test case's Expected results only.
+
+## **Environment**
+
+  - Dashboard QA site: app https://sv490.qa.shopview.com, API https://sv490api.qa.shopview.com.
+  - Record the build marker (app-version on the app page) before you start.
+  - Browser: Chromium at /opt/pw-browsers/chromium through Playwright. Do not run "playwright install".
+
+## **Access**
+
+  - Sign in with the QA site's quick login: node build/testing-tools/qa-branch-boot.mjs (see build/APP-ACTIONS-PLAYBOOK.md section A). Carry the sv\_sso\_session cookie only, scoped to the host.
+  - Keep cookies in /tmp only, with file mode 600. Never write a cookie into a document, a commit or a log.
+  - Change location through the profile icon (your initials, top right) \> Change Location.
+
+## **Test data**
+
+Name anything you create with ZZAUTOTEST at the start. Leave all test data in place; nothing is deleted afterwards.

@@ -1,0 +1,60 @@
+# **Setup: Ratio tiles with no hours show a grey dash, never 0.00%**
+
+Test case: [C88646](https://shopview.testrail.io/index.php?/cases/view/88646), Dashboard. Part 1 is for the manual QA tester. Part 2 is for a Claude session that prepares the case on its own. Both create the starting state listed in the test case's Preconditions; the numbers below match that list.
+
+## **What must be true before you start**
+
+1.  User: you are signed in as an Admin (the Admin role has every permission, including Reports).
+2.  Location: you are in a fresh test location made for this run, with no clocked time and no invoices this week (you check this in step 1).
+3.  Timing: you run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.
+4.  People (Technician 1): a test technician in this run's location, with Time Clock on and a department whose time clock is on (for internal, non work order time), whose sign-in you have.
+
+# **Part 1. Setup for manual QA tester**
+
+Each line says which precondition it sets up. Where a precondition is not listed, it needs no setup.
+
+  - **For precondition 1:**
+
+<!-- end list -->
+
+1.  On the QA site's sign-in page, in the DEV MODE — QUICK LOGIN panel, click Admin (this signs you in as Admin ShopView).
+2.  To use another role, check it has Reports: profile icon \> Settings \> Roles & Permissions \> edit icon on the role \> Reports is switched on.
+
+<!-- end list -->
+
+  - **For precondition 2:**
+
+<!-- end list -->
+
+1.  Create a fresh location for every run (use a new name each time, for example ZZAUTOTEST Quiet plus today's date and a letter): profile icon \> Settings \> Locations \> New Location: Name, Address 1, City, State/Province, ZIP/Postal Code, Timezone, Telephone, Shop Supplies Charge 0 \> Save & Close.
+2.  Switch to it: click your profile icon (your initials, top right, beside the current location name) \> under Change Location: click the orange button showing the current location \> pick the location from the list.
+3.  Check: Dashboard \> Revenue tile \> range pill \> This Week: it reads $0.00 with 0 Invoices.
+
+<!-- end list -->
+
+  - **For precondition 4:**
+
+<!-- end list -->
+
+1.  Create Technician 1 for this run: profile icon \> Settings \> Staff \> New Staff Member: a name (for example ZZAUTOTEST Technician1 plus today's date), an Email you can open, Role Technician, Departments including one with Clock Time Enabled (for example Training; profile icon \> Settings \> Departments shows which), Location = this run's location, Time Clock on \> Save & Close.
+2.  Accept the invitation email, set a password, and sign in as them in a private window when the test needs them.
+
+# **Part 2. Setup for Claude session**
+
+Prepare the same starting state by carrying out Part 1 in a browser with Playwright. Record the real values you used, the build marker and screenshots in the Manual-test-Cases repository, and judge pass or fail against the test case's Expected results only.
+
+## **Environment**
+
+  - Dashboard QA site: app https://sv490.qa.shopview.com, API https://sv490api.qa.shopview.com.
+  - Record the build marker (app-version on the app page) before you start.
+  - Browser: Chromium at /opt/pw-browsers/chromium through Playwright. Do not run "playwright install".
+
+## **Access**
+
+  - Sign in with the QA site's quick login: node build/testing-tools/qa-branch-boot.mjs (see build/APP-ACTIONS-PLAYBOOK.md section A). Carry the sv\_sso\_session cookie only, scoped to the host.
+  - Keep cookies in /tmp only, with file mode 600. Never write a cookie into a document, a commit or a log.
+  - Change location through the profile icon (your initials, top right) \> Change Location.
+
+## **Test data**
+
+Name anything you create with ZZAUTOTEST at the start. Leave all test data in place; nothing is deleted afterwards.

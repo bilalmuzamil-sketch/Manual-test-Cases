@@ -1,0 +1,59 @@
+# **Setup: At Risk Customers counts days in the location's own time zone**
+
+Test case: [C88644](https://shopview.testrail.io/index.php?/cases/view/88644), Dashboard. Part 1 is for the manual QA tester. Part 2 is for a Claude session that prepares the case on its own. Both create the starting state listed in the test case's Preconditions; the numbers below match that list.
+
+## **What must be true before you start**
+
+1.  User: you are signed in as an Admin (the Admin role has every permission, including Reports).
+2.  Location: you are in a location (workplace) with several months of invoice history (many customers, invoices going back more than a year). At Risk needs old invoices, which cannot be back-dated by hand.
+3.  Before you start: you have written down the location's time zone.
+4.  Data: you have a second device (a second computer or a phone) whose clock is set to a time zone far from the location's (e.g. 8 or more hours apart), signed in as the same or another user with the Reports permission and the same location selected.
+5.  Data: the At Risk Customers table is open (Dashboard \> View details under the At Risk Customers tile); it shows Customer, Last Invoice Date, Lifetime Invoices and Revenue (12 Mo).
+
+# **Part 1. Setup for manual QA tester**
+
+Each line says which precondition it sets up. Where a precondition is not listed, it needs no setup.
+
+  - **For precondition 1:**
+
+<!-- end list -->
+
+1.  On the QA site's sign-in page, in the DEV MODE — QUICK LOGIN panel, click Admin (this signs you in as Admin ShopView).
+2.  To use another role, check it has Reports: profile icon \> Settings \> Roles & Permissions \> edit icon on the role \> Reports is switched on.
+
+<!-- end list -->
+
+  - **For precondition 2:**
+
+<!-- end list -->
+
+1.  To change location, click your profile icon (your initials, top right, beside the current location name) \> under Change Location: click the orange button showing the current location \> pick the location from the list.
+2.  On the QA site try Staging Heavy Duty - 9919.
+3.  Check: the At Risk Customers tile on 120 Days shows a number above 0, and View details lists customers with Last Invoice Dates spread over the last months.
+4.  If not, try the other locations in the list.
+5.  If no location in the list passes this check, mark the case Blocked and write in the result comment that no location has this data.
+
+<!-- end list -->
+
+  - **For precondition 3:** profile icon \> Settings \> Locations: the Timezone column shows it.
+  - **For precondition 4:** on the second device, sign in the same way (For 1) and change location as in For 2.
+
+# **Part 2. Setup for Claude session**
+
+Prepare the same starting state by carrying out Part 1 in a browser with Playwright. Record the real values you used, the build marker and screenshots in the Manual-test-Cases repository, and judge pass or fail against the test case's Expected results only.
+
+## **Environment**
+
+  - Dashboard QA site: app https://sv490.qa.shopview.com, API https://sv490api.qa.shopview.com.
+  - Record the build marker (app-version on the app page) before you start.
+  - Browser: Chromium at /opt/pw-browsers/chromium through Playwright. Do not run "playwright install".
+
+## **Access**
+
+  - Sign in with the QA site's quick login: node build/testing-tools/qa-branch-boot.mjs (see build/APP-ACTIONS-PLAYBOOK.md section A). Carry the sv\_sso\_session cookie only, scoped to the host.
+  - Keep cookies in /tmp only, with file mode 600. Never write a cookie into a document, a commit or a log.
+  - Change location through the profile icon (your initials, top right) \> Change Location.
+
+## **Test data**
+
+Name anything you create with ZZAUTOTEST at the start. Leave all test data in place; nothing is deleted afterwards.

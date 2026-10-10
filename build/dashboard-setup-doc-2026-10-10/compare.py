@@ -8,7 +8,11 @@ for a in sys.argv[1:]:
     i=int(a); f=f'{D}/readback/C{i}.txt'
     if not os.path.exists(f): res[i]='NO READBACK'; continue
     src=html.unescape(re.sub(r'<[^>]+>',' ',open(f'{D}/docs/C{i}.html').read()))
-    got=open(f).read().replace('\\>','>').replace('\\_','_').replace('\\[','[').replace('\\]',']').replace('\\-','-')
+    got=open(f).read()
+    got=re.sub(r'\]\((https?://[^)]+)\)',']',got)      # Markdown link target (the HTML href is not text)
+    got=got.replace('<!-- end list -->','')                 # list-end markers added by the export
+    got=re.sub(r'(?m)^\s*\d+\.\s+','',got)               # list numbers added by the export
+    got=got.replace('\\>','>').replace('\\_','_').replace('\\[','[').replace('\\]',']').replace('\\-','-')
     a1,b1=words(src),words(got)
     if a1==b1: res[i]='MATCH'
     else:
