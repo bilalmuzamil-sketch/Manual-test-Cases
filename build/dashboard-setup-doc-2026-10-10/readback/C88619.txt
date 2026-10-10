@@ -1,0 +1,74 @@
+# **Setup: Technician filter on the expanded technician charts**
+
+Test case: [C88619](https://shopview.testrail.io/index.php?/cases/view/88619), Dashboard. Part 1 is for the manual QA tester. Part 2 is for a Claude session that prepares the case on its own. Both create the starting state listed in the test case's Preconditions; the numbers below match that list.
+
+## **What must be true before you start**
+
+1.  User: you are signed in as an Admin (the Admin role has every permission, including Reports).
+2.  Location: you are in one location (workplace) with the data below.
+3.  Browser: you use a desktop browser at 100% zoom on a screen at least 1024 pixels wide (any ordinary laptop or desktop monitor).
+4.  People: at least two technicians have clocked time on invoiced work order lines this month in this location.
+
+# **Part 1. Setup for manual QA tester**
+
+Each line says which precondition it sets up. Where a precondition is not listed, it needs no setup.
+
+  - **For precondition 1:**
+
+<!-- end list -->
+
+1.  On the QA site's sign-in page, in the DEV MODE — QUICK LOGIN panel, click Admin (this signs you in as Admin ShopView).
+2.  To use another role, check it has Reports: profile icon \> Settings \> Roles & Permissions \> edit icon on the role \> Reports is switched on.
+
+<!-- end list -->
+
+  - **For precondition 2:**
+
+<!-- end list -->
+
+1.  To change location, click your profile icon (your initials, top right, beside the current location name) \> under Change Location: click the orange button showing the current location \> pick the location from the list.
+2.  On the QA site use Staging Heavy Duty - 9919 unless a later line says otherwise.
+
+<!-- end list -->
+
+  - **For precondition 4:**
+
+<!-- end list -->
+
+1.  Check: Technician Efficiency (This Month) \> View details: the table lists at least two technicians.
+2.  If not, create an invoice with clocked time for each technician: first with Tech ShopView: Customers \> New Customer \> Name \> Save (for example ZZAUTOTEST Dash Customer)
+3.  Work Orders \> Create Work Order \> in the New Work Order window pick the Customer and an Asset (Add beside either if needed) \> Save (if a Confirmation says the customer is over their credit limit, click Create)
+4.  The New Line window opens: What Are You Doing? (any text), Add Technician = Tech ShopView, Labor Rate = EVR Travel to EVO ($100 an hour), Estimated Time 1 and Tech Time 1, tick Line Approved \> Save & Close
+5.  Then the Service Advisor is filled in with your name (Admin ShopView)
+6.  To use another advisor change Service Advisor in the work order's left panel
+7.  Clock time as the technician: in a second browser or a private window, on the QA site's sign-in page, in the DEV MODE — QUICK LOGIN panel, click Tech (this signs you in as Tech ShopView, a technician at Staging Heavy Duty - 9919 with Time Clock on)
+8.  Open the work order \> on the line's Labor row click Start
+9.  When done click Stop \> Clock Out
+10. To make the time exact, as Admin: the three dots at the top right of the Lines tab \> Timesheets (n) \> edit the record's start and end (if it cannot be edited there or in Reports \> Timesheet Activities, keep the real time and use the hours Timesheet Activities shows)
+11. On the line click Story (Add tech story for this line) \> type a short story \> Update
+12. Click Complete (if a Missing Details window asks for Mileage, enter one \> Complete All Lines)
+13. Click Mark Reviewed
+14. Finance tab \> Create Invoice
+15. Close the New Customer Payment window without paying (do not send or pay the invoice).
+16. Then create a second technician you can sign in as: profile icon \> Settings \> Staff \> New Staff Member: a name (for example ZZAUTOTEST Tech Two), an Email you can open, Role Technician, a Department, Location = this location, Time Clock on \> Save & Close
+17. Accept the invitation email and set a password, and repeat with a second customer and that technician.
+
+# **Part 2. Setup for Claude session**
+
+Prepare the same starting state by carrying out Part 1 in a browser with Playwright. Record the real values you used, the build marker and screenshots in the Manual-test-Cases repository, and judge pass or fail against the test case's Expected results only.
+
+## **Environment**
+
+  - Dashboard QA site: app https://sv490.qa.shopview.com, API https://sv490api.qa.shopview.com.
+  - Record the build marker (app-version on the app page) before you start.
+  - Browser: Chromium at /opt/pw-browsers/chromium through Playwright. Do not run "playwright install".
+
+## **Access**
+
+  - Sign in with the QA site's quick login: node build/testing-tools/qa-branch-boot.mjs (see build/APP-ACTIONS-PLAYBOOK.md section A). Carry the sv\_sso\_session cookie only, scoped to the host.
+  - Keep cookies in /tmp only, with file mode 600. Never write a cookie into a document, a commit or a log.
+  - Change location through the profile icon (your initials, top right) \> Change Location.
+
+## **Test data**
+
+Name anything you create with ZZAUTOTEST at the start. Leave all test data in place; nothing is deleted afterwards.

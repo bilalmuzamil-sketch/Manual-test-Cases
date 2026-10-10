@@ -1,0 +1,84 @@
+# **Setup: A voided invoice is left out of every dashboard figure**
+
+Test case: [C351705](https://shopview.testrail.io/index.php?/cases/view/351705), Dashboard. Part 1 is for the manual QA tester. Part 2 is for a Claude session that prepares the case on its own. Both create the starting state listed in the test case's Preconditions; the numbers below match that list.
+
+## **What must be true before you start**
+
+1.  User: you are signed in as a user whose role has the Reports permission (for example Admin).
+2.  Browser: you use a desktop browser window at least 1024 pixels wide (a maximised laptop or desktop window).
+3.  Location: a location for the void check exists (for example ZZAUTOTEST Void Shop) with two invoices, not paid and not sent: customer ZZAUTOTEST Keep Fleet, one labor line of 1.00 hour at $100.00 an hour with Tech Time 1.00 and exactly 1.00 hour clocked on it; customer ZZAUTOTEST Void Fleet, one labor line of 2.00 hours at $150.00 an hour (e.g. $300.00) with Tech Time 2.00 and nobody clocked on it.
+4.  User: you can switch to a location with at-risk customers, and you have written down one at-risk customer's name and Last Invoice Date (Dashboard \> View details on At Risk Customers).
+
+# **Part 1. Setup for manual QA tester**
+
+Each line says which precondition it sets up. Where a precondition is not listed, it needs no setup.
+
+  - **For precondition 1:**
+
+<!-- end list -->
+
+1.  On the QA site's sign-in page, in the DEV MODE — QUICK LOGIN panel, click Admin (this signs you in as Admin ShopView).
+2.  To use another role, check it has Reports: profile icon \> Settings \> Roles & Permissions \> edit icon on the role \> Reports is switched on.
+
+<!-- end list -->
+
+  - **For precondition 3:**
+
+<!-- end list -->
+
+1.  Profile icon \> Settings \> Locations \> New Location: Name ZZAUTOTEST Void Shop, the address fields, Timezone, Telephone, Shop Supplies Charge 0 % \> Save & Close (if a location with this name already exists, reuse it only if it still matches the precondition).
+2.  It then appears in your Change Location list
+3.  To switch to it, click your profile icon (your initials, top right, beside the current location name) \> under Change Location: click the orange button showing the current location \> pick the location from the list
+4.  Switch to it
+5.  Customers \> New Customer \> Name \> Save for ZZAUTOTEST Keep Fleet and ZZAUTOTEST Void Fleet.
+6.  Keep Fleet: Work Orders \> Create Work Order \> in the New Work Order window pick the Customer and an Asset (Add beside either if needed) \> Save (if a Confirmation says the customer is over their credit limit, click Create)
+7.  The New Line window opens: What Are You Doing? (any text), Add Technician = a technician you can sign in as (for example Tech ShopView; set its Location to this location first if the Technicians list does not offer it: profile icon \> Settings \> Staff \> edit icon \> Location \> Save & Close), Labor Rate = EVR Travel to EVO ($100 an hour), Estimated Time 1 and Tech Time 1, tick Line Approved \> Save & Close
+8.  Clock time as the technician: in a second browser or a private window, on the QA site's sign-in page, in the DEV MODE — QUICK LOGIN panel, click Tech (this signs you in as Tech ShopView, a technician at Staging Heavy Duty - 9919 with Time Clock on)
+9.  Open the work order \> on the line's Labor row click Start
+10. When done click Stop \> Clock Out
+11. To make the time exact, as Admin: the three dots at the top right of the Lines tab \> Timesheets (n) \> edit the record's start and end (if it cannot be edited there or in Reports \> Timesheet Activities, keep the real time and use the hours Timesheet Activities shows)
+12. On the line click Story (Add tech story for this line) \> type a short story \> Update
+13. Click Complete (if a Missing Details window asks for Mileage, enter one \> Complete All Lines)
+14. Click Mark Reviewed
+15. Finance tab \> Create Invoice
+16. Close the New Customer Payment window without paying (do not send or pay the invoice).
+17. Void Fleet: Work Orders \> Create Work Order \> in the New Work Order window pick the Customer and an Asset (Add beside either if needed) \> Save (if a Confirmation says the customer is over their credit limit, click Create)
+18. The New Line window opens: What Are You Doing? (any text), Add Technician = a technician (for example Tech ShopView), Labor Rate = Calgary Transit Rate ($150 an hour), Estimated Time 2 and Tech Time 2, tick Line Approved \> Save & Close
+19. On the line click Story (Add tech story for this line) \> type a short story \> Update
+20. Click Complete (if a Missing Details window asks for Mileage, enter one \> Complete All Lines)
+21. Click Mark Reviewed
+22. Finance tab \> Create Invoice
+23. Close the New Customer Payment window without paying (do not send or pay the invoice).
+24. Nobody clocks on the Void Fleet line.
+
+<!-- end list -->
+
+  - **For precondition 4:**
+
+<!-- end list -->
+
+1.  To change location, click your profile icon (your initials, top right, beside the current location name) \> under Change Location: click the orange button showing the current location \> pick the location from the list.
+2.  On the QA site try Staging Heavy Duty - 9919.
+3.  Check: the At Risk Customers tile shows a number above 0.
+4.  If not, try the other locations in the list.
+5.  If no location in the list passes this check, mark the case Blocked and write in the result comment that no location has this data.
+
+# **Part 2. Setup for Claude session**
+
+Prepare the same starting state by carrying out Part 1 in a browser with Playwright. Record the real values you used, the build marker and screenshots in the Manual-test-Cases repository, and judge pass or fail against the test case's Expected results only.
+
+## **Environment**
+
+  - Dashboard QA site: app https://sv490.qa.shopview.com, API https://sv490api.qa.shopview.com.
+  - Record the build marker (app-version on the app page) before you start.
+  - Browser: Chromium at /opt/pw-browsers/chromium through Playwright. Do not run "playwright install".
+
+## **Access**
+
+  - Sign in with the QA site's quick login: node build/testing-tools/qa-branch-boot.mjs (see build/APP-ACTIONS-PLAYBOOK.md section A). Carry the sv\_sso\_session cookie only, scoped to the host.
+  - Keep cookies in /tmp only, with file mode 600. Never write a cookie into a document, a commit or a log.
+  - Change location through the profile icon (your initials, top right) \> Change Location.
+
+## **Test data**
+
+Name anything you create with ZZAUTOTEST at the start. Leave all test data in place; nothing is deleted afterwards.

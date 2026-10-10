@@ -18,7 +18,11 @@ snap={x['id']:x for x in json.load(open('/tmp/cln/dash-live-1010.json'))}
 docs={}
 for l in open(f'{D}/docs-created.jsonl'):
     d=json.loads(l); docs[d['id']]=d['doc']
-LINKS=json.load(open(f'{D}/heading-links.json')) if os.path.exists(f'{D}/heading-links.json') else {}
+import glob
+for f in glob.glob(f'{D}/results-*.jsonl'):
+    for l in open(f):
+        if l.strip(): d=json.loads(l); docs[d['id']]=d['doc']
+LINKS={str(i):f'https://docs.google.com/document/d/{d}/edit' for i,d in docs.items()}  # one Doc per test (QA lead, 10 Oct)
 def ours_before(i,pre):  # the trial write of 10 Oct (per-test Doc link + same list)
     return f'<p><strong><a href="https://docs.google.com/document/d/{docs[i]}/edit">Setup (manual QA tester and Claude session)</a></strong></p><p></p>'+pre if i in docs else None
 log=open(f'{D}/write-log.jsonl','a')
@@ -27,7 +31,8 @@ for a in sys.argv[1:]:
     def rec(s,**k): log.write(json.dumps({'id':i,'result':s,**k})+'\n'); print(i,s,k,flush=True)
     if cur['created_by']!=3: rec('SKIP not ours'); continue
     pre=json.load(open(f'{D}/pre/C{i}.json'))['pre_body']
-    if cur['updated_on']!=snap[i]['updated_on'] and not (cur['updated_by']==3 and cur['custom_preconds']==ours_before(i,pre)):
+    ours=cur['updated_by']==3 and cur['custom_preconds'].startswith('<p><strong><a href="https://docs.google.com/document/d/') and cur['custom_preconds'].endswith('<p></p>'+pre)
+    if cur['updated_on']!=snap[i]['updated_on'] and not ours:
         rec('SKIP changed since snapshot',by=cur['updated_by']); continue
     if cur['custom_atmstatus']==3 or cur['custom_automation_type']==1: rec('SKIP automated/e2e'); continue
     link=LINKS[str(i)]
