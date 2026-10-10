@@ -8,7 +8,7 @@ A shift made by dragging a work order onto the *Schedule* should start at the ho
 
 For example,
 * dropped under *1 PM* on a technician's row, the shift is saved as *07:00 PM – 09:00 PM*
-* dropped under *9 AM*, the shift is drawn at *3 PM*
+* dropped under *9 AM* as the whole work order, the shift is saved as *03:00 PM – 05:00 PM*
 
 h2. Steps to Reproduce
 
@@ -31,7 +31,7 @@ h2. Environment
 
 * *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/schedule]
 * *Location:* Staging Heavy Duty - 9919 (time zone America/Edmonton) · *User:* Admin (quick-login)
-* *Example:* work order S10043-18806, Esther Howard's row, Mon Oct 12 2026
+* *Examples:* S10043-18806 (one line, dropped under 1 PM, Mon Oct 12 2026) and S10043-18818 (whole work order, dropped under 9 AM, Tue Oct 20 2026), both on Esther Howard's row
 
 h2. Sources
 
@@ -42,3 +42,4 @@ h2. Sources
 h2. Test case
 
 * [C368179 Dragging a work order onto the Schedule with Choose lines makes a line shift|https://shopview.testrail.io/index.php?/cases/view/368179]
+* [C368178 Dragging a work order onto the Schedule as Entire work order makes a shift|https://shopview.testrail.io/index.php?/cases/view/368178]

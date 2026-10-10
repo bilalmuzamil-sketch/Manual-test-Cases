@@ -1,0 +1,18 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-10"
+ },
+ "results": {
+  "C368178": {
+   "verdict": "Failed",
+   "observed": "Schedule, Tue Oct 20 (browser on the shop's time zone, America/Edmonton): dragged S10043-18818 (ZZAUTOTEST Sched Entire) onto Esther Howard's row and dropped it under the 9 AM heading; kept Entire work order, Hours 2h, 'Create 1 shift'. 'Shift scheduled.' showed, no error. After a reload the shift's details read: SCHEDULED Tue, Oct 20, 2026 \u00b7 TIME 03:00 PM \u2013 05:00 PM \u00b7 Esther Howard \u00b7 2 lines (the whole work order, no single line named). So it is the whole work order, as expected, but at 3 PM\u20135 PM \u2014 six hours after the hour it was dropped on \u2014 instead of 9:00\u201311:00. Same fault as C368179.",
+   "not_observed": null,
+   "ticket_held": true,
+   "ticket": "Same prepared ticket as C368179, HELD with the QA lead (not filed): a shift dragged onto the Schedule is saved six hours after the hour it was dropped on.",
+   "todo": "Waiting on the QA lead: approve filing the prepared ticket (one ask covers both tests)."
+  }
+ }
+}
