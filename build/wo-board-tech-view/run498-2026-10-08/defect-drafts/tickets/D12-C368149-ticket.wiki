@@ -1,0 +1,49 @@
+TITLE: Board View – Two People Reordering the Same Technician: the Later Save Does Not Win
+TYPE: Story Defect · PARENT: SV-10052 (read live before the ask) · PRIORITY: Medium · LINK: relates to SV-10052 · LABEL: board-tech-view
+MY READING: DEFECT — PRD S9-R11 "the later save wins"; the build merges the two moves instead (seen 9 Oct 18:39, two real sessions).
+
+h2. Description
+
+When two people reorder the same technician's work orders at the same time, *the later save should win* and both should see that order after a refresh.
+
+For example,
+* two people have the same Board View open
+* the first moves one card to the top of a technician's column
+* the second, without refreshing, moves a different card to the top of the same column
+* after a refresh both see a mix of the two moves, not the second person's order
+
+h2. Steps to Reproduce
+
+# In two browsers open *Work Orders* > *All* > *Board View* and search the same customer; one technician leads three of its work orders, shown as *Alpha Co, Bravo Co, Charlie Co*.
+# In browser 1, drag *Charlie Co* to the top of that technician's column.
+#* Browser 1 shows *Charlie Co, Alpha Co, Bravo Co*.
+# In browser 2, without refreshing, drag *Bravo Co* to the top of the same column.
+#* Browser 2 shows *Bravo Co, Alpha Co, Charlie Co*. No warning in either browser.
+# Refresh both browsers.
+#* Both show *Charlie Co, Bravo Co, Alpha Co*.
+
+*Actual Result:*
+* After both refresh, the column shows *Charlie Co, Bravo Co, Alpha Co* — a mix of the two moves.
+
+*Expected Result:*
+* The later save wins: both browsers show browser 2's order, *Bravo Co, Alpha Co, Charlie Co*.
+
+!D12-C368149-1-browser2-drop-annotated.png|width=1000!
+
+!D12-C368149-2-after-refresh-annotated.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *Users:* two people signed in separately (Admin and the technician quick-login)
+* *Example:* customer search {{ZZAUTOTEST F3 Later Drop Wins}}, three work orders led by ZZAUTOTEST Ana Alpha
+
+
+h2. Sources
+
+* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S9-R11 (page version 44), read 10 Oct 2026:
+{quote}Save the manual order of work orders once per location. Everyone at the location sees the same order, in both Tech View and Board View. If two people reorder at the same time, the later save wins; the other person sees the saved order on their next refresh and is not warned.{quote}
+
+h2. Test case
+
+* [C368149 When two dispatchers reorder the same technician, the later drop wins|https://shopview.testrail.io/index.php?/cases/view/368149]
