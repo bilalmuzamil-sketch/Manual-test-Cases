@@ -1,0 +1,42 @@
+TITLE: Staff List – No Photos Shown
+TYPE: Story Defect · PARENT: (owning story to confirm — regression item) · PRIORITY: Medium · LABEL: board-tech-view
+MY READING: PROBABLY NOT A DEFECT — the Staff list has no photo column at all; only a developer note mentions Staff avatars.
+
+h2. Description
+
+After someone uploads a new photo, *a reload should show the new photo* everywhere avatars appear, including Staff.
+
+For example,
+* Settings > Staff lists First Name, Last Name, Email, Job Title, Role, Department(S), Created, Confirmed Invitation and Billable
+* no row has a photo, before or after an upload
+
+h2. Steps to Reproduce
+
+# Upload a new profile photo for a staff member (their initials > *Edit Profile* > *Click to upload a profile photo*).
+# Open *Settings* > *Staff* and reload.
+#* The list shows no photos at all.
+
+*Actual Result:*
+* The Staff list shows no photos.
+
+*Expected Result:*
+* After a reload the staff member's new photo shows.
+
+!D17-C368242-annotated.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
+
+
+h2. Sources
+
+* Developer regression list (8 Oct 2026), Medium 9:
+{quote}Avatars everywhere (header, Staff, Schedule, cards). Avatars are now cached. After someone uploads a new photo, a reload must show the new one.{quote}
+* QA handoff test plan (2026-10-08), §9:
+{quote}After a new photo is uploaded, a reload shows the new image.{quote}
+
+h2. Test case
+
+* [C368242 A new photo shows in the Staff list after a reload|https://shopview.testrail.io/index.php?/cases/view/368242]

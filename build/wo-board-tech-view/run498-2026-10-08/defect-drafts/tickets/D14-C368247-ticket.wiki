@@ -1,0 +1,44 @@
+TITLE: Imported Work Order – Page Shows No Lead Technician at All
+TYPE: Story Defect · PARENT: SV-10047 · PRIORITY: Medium · LABEL: board-tech-view
+MY READING: PROBABLY NOT A DEFECT — PRD S4-N2 (no lead change in Imported status) is met: the imported page has no lead to change.
+
+h2. Description
+
+An *Imported* work order should show its *Lead Technician*, locked, so it cannot be changed.
+
+For example,
+* opening an imported work order goes to a separate imported page
+* the page shows the number, *Imported*, *Invoiced: <date>*, Financial Info and the invoice
+* there is no Lead Technician on the page at all
+
+h2. Steps to Reproduce
+
+# Open *Work Orders* > *List* > *All*, tick *Imported* in *Status* and open an imported work order.
+#* A separate imported page opens.
+# Look for *Lead Technician*.
+#* It is not shown anywhere on the page.
+
+*Actual Result:*
+* The imported work order page shows no Lead Technician.
+
+*Expected Result:*
+* Lead Technician is shown and cannot be changed.
+
+!D14-C368247-annotated.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
+
+
+h2. Sources
+
+* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S4-N2:
+{quote}Do not allow the lead technician to change in Invoiced, Paid, or Imported status.{quote}
+* Developer regression list (8 Oct 2026), Low:
+{quote}Imported work orders: they open in List, and the lead stays locked.{quote}
+
+h2. Test case
+
+* [C368247 An imported work order's lead technician cannot be changed|https://shopview.testrail.io/index.php?/cases/view/368247]

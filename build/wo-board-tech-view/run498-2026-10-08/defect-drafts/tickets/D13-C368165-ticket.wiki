@@ -1,0 +1,44 @@
+TITLE: Paid Work Order – Lead Technician Shows as Plain Text, Not a Disabled Field
+TYPE: Story Defect · PARENT: SV-10047 · PRIORITY: Medium · LABEL: board-tech-view
+MY READING: PROBABLY NOT A DEFECT — PRD §4 (lead cannot be changed once Invoiced or Paid) is met; only the look differs from the developer note / QA handoff ("the lead select is disabled").
+
+h2. Description
+
+On a *Paid* work order, *the Lead Technician select on the status card should be shown disabled* (QA handoff §7).
+
+For example,
+* the status card shows *Lead technician* as plain read-only text, with no greyed-out field
+* clicking it opens nothing, and the lead cannot be changed (this part is correct)
+
+h2. Steps to Reproduce
+
+# Open a *Paid* work order (e.g. S10043-18248).
+# Look at *Lead technician* on the status card at the left.
+#* It is plain text, not a greyed-out (disabled) field.
+# Click it.
+#* Nothing opens; the lead does not change.
+
+*Actual Result:*
+* Lead technician shows as plain text on a Paid work order (it cannot be changed).
+
+*Expected Result:*
+* The Lead Technician field is shown disabled (greyed out) and cannot be changed.
+
+!D13-C368165-annotated.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
+
+
+h2. Sources
+
+* QA handoff test plan (2026-10-08), §7:
+{quote}On the detail page status card, the lead select is disabled on Invoiced and Paid.{quote}
+* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — §4 Key Decisions:
+{quote}Lead technician cannot be changed once a work order is Invoiced or Paid.{quote}
+
+h2. Test case
+
+* [C368165 Lead Technician cannot be changed on a Paid work order's page|https://shopview.testrail.io/index.php?/cases/view/368165]

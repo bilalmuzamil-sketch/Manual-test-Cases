@@ -1,0 +1,40 @@
+TITLE: Part Sale – Status Card Has No Technician or Sales Representative Field
+TYPE: Story Defect · PARENT: (owning story to confirm — regression item) · PRIORITY: Medium · LABEL: board-tech-view
+MY READING: PROBABLY NOT A DEFECT — part sales have no technician field to change; the developer note assumed one.
+
+h2. Description
+
+A part sale's *status card* should let the user change its person (technician / Sales Representative).
+
+For example,
+* the card shows Contact, Phone, Authorizer and Asset
+* there is no technician or Sales Representative field
+
+h2. Steps to Reproduce
+
+# Open *Parts* > *Part Sales* and open a part sale.
+# Look at the status card at the left.
+#* It shows Contact, Phone, Authorizer and Asset only.
+
+*Actual Result:*
+* No technician or Sales Representative field on the part sale status card.
+
+*Expected Result:*
+* The person can be changed on the card and the change is kept after a reload.
+
+!D16-C368216-annotated.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
+
+
+h2. Sources
+
+* Developer regression list (8 Oct 2026), Medium 5:
+{quote}The detail page's status card had props removed. Check that it renders and that changing the technician works.{quote}
+
+h2. Test case
+
+* [C368216 Changing the person on a part sale's status card saves|https://shopview.testrail.io/index.php?/cases/view/368216]

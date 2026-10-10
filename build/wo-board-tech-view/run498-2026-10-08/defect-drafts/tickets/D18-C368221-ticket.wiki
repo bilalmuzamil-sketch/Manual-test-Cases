@@ -1,0 +1,42 @@
+TITLE: Returns – Reload Goes Back to the Returns Tab Instead of Credits
+TYPE: Story Defect · PARENT: (owning story to confirm — regression item) · PRIORITY: Medium · LABEL: board-tech-view
+MY READING: PROBABLY NOT A DEFECT — the chosen filter IS kept; only the selected tab goes back to Returns. The source (developer note) is about filters.
+
+h2. Description
+
+*Parts > Returns* should keep the user's place after a reload.
+
+For example,
+* on the *Credits* tab, a date filter is chosen
+* after a reload the filter is kept, but the page opens on the *Returns* tab
+
+h2. Steps to Reproduce
+
+# Open *Parts* > *Returns* and click the *Credits* tab.
+# Choose *60 days* in the date filter.
+# Reload the page.
+#* The page opens on the *Returns* tab; the 60 days choice is kept.
+
+*Actual Result:*
+* After a reload the page opens on Returns, not Credits.
+
+*Expected Result:*
+* After a reload the Credits tab and its filter are kept.
+
+!D18-C368221-annotated.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 · *User:* Admin (quick-login)
+
+
+h2. Sources
+
+* Developer regression list (8 Oct 2026), item 6:
+{quote}Pages that remember filters and settings: Orders, Vendors, Return Requests, Return Credits, Part Sales, Deliveries, Parts Catalogue, Inventory, and the report pages.{quote}
+{quote}Set a filter, reload, and check that it's kept.{quote}
+
+h2. Test case
+
+* [C368221 Return credits keeps a chosen filter after a reload|https://shopview.testrail.io/index.php?/cases/view/368221]
