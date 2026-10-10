@@ -62,10 +62,12 @@ async function tickSelectClear(id: string, label: string) {
   const n = await items.count(); const idx = Math.min(2, n - 1); const t0 = await table();
   await items.nth(idx).click(); await p.waitForTimeout(2000); o.afterUntick = await menuState(); o.tableAfterUntick = await table();
   await items.nth(idx).click(); await p.waitForTimeout(2000); o.afterRetick = await menuState(); o.tableAfterRetick = await table();
-  const sel = p.locator('.q-menu:visible').locator('.q-item, button, [role=option]').filter({ hasText: /^\s*(Select all|All\b)/i }).first(); o.selectAllWord = (await sel.innerText().catch(() => null))?.replace(/\s+/g, ' ').trim() ?? null;
+  /* FIX (2026-10-10): the item's text starts with its icon name, so an anchored 'Select all' never matched — match anywhere */
+  const sel = p.locator('.q-menu:visible').locator('.q-item, button, [role=option]').filter({ hasText: /Select all|\bAll [a-z]+/i }).first(); o.selectAllWord = (await sel.innerText().catch(() => null))?.replace(/\s+/g, ' ').trim() ?? null;
   if (await sel.count()) { await sel.click(); await p.waitForTimeout(2000); o.afterSelectAll = await menuState(); }
   const clr = p.locator('.q-menu:visible').locator('.q-item, button').filter({ hasText: /Clear( selection)?/i }).first(); o.clearWord = (await clr.innerText().catch(() => null))?.replace(/\s+/g, ' ').trim() ?? null;
   if (await clr.count()) { await clr.click(); await p.waitForTimeout(2000); o.afterClear = await menuState(); }
+  if (o.afterClear) { const sel2 = p.locator('.q-menu:visible').locator('.q-item, button, [role=option]').filter({ hasText: /Select all|\bAll [a-z]+/i }).first(); if (await sel2.count()) { await sel2.click(); await p.waitForTimeout(2000); o.afterSelectAllFromCleared = await menuState(); o.tableAfterSelectAll = await table(); } }
   o.tableStart = t0; await shot(p, `${id}-menu`); await closeMenu(); return o;
 }
 
