@@ -1,37 +1,60 @@
 {
  "C368217": {
   "ps1": {
-   "id": "fe2c9aae-2ffb-4fba-aee9-74e59183890a",
-   "number": "P-262",
+   "id": "ce4067d5-e826-4c7c-b93e-b74e8ab94087",
+   "number": "P-264",
    "create": "200"
   },
   "add1": "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 In",
   "add2": "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 In",
-  "ps1parts": [
+  "number": "P-264",
+  "stages": [
+   "after authorize:  ",
+   "receive window: Receive parts close expand_less Butautas' Truck & Trailer Repair LLC 0 of 1 selected $0.00 Vendor Butautas' Truck & Trailer Repair LLC arrow_drop_down Vendor Invoice Number event Invoice Date Delivery Note Receive parts Part number & description Select All Cost Qty Ordered Qty Received Total Brake e",
+   "no part number field",
+   "no qty field",
+   "after receive:  ",
+   "no Return part button",
+   "return window: null",
+   "no reason field",
+   "no Save & Close",
    {
-    "id": "c5e328e6",
-    "status": "quoted",
-    "qty": 1
+    "status": 200,
+    "body": {
+     "data": {
+      "bookkeeping_enabled": true
+     }
+    }
    },
    {
-    "id": "79ac57fe",
-    "status": "quoted",
-    "qty": 1
+    "status": 200,
+    "body": {
+     "data": {
+      "bookkeeping_enabled": true
+     }
+    }
    }
   ],
-  "return": "400 {\"errors\":[{\"part_id\":\"Not found\"}]}",
-  "returnAlt": "400 {\"errors\":[{\"vendor_id\":\"Missing required parameter\"},{\"items\":\"Missing required parameter\"}]}",
-  "toL2": "200",
+  "receiveToasts": [
+   "warning There is already invoice with number: ZZINV-PS1 Please try to resolve this. Close"
+  ],
+  "returnToasts": [],
+  "setupCheck": {
+   "tab": "Parts (2)",
+   "rows": " "
+  },
+  "ps1number": "P-264",
   "ps2": {
-   "id": "571d6094-1b86-435d-973d-b671b22eb871",
-   "number": "P-263",
+   "id": "42311f30-4209-47e2-a125-f6f497f42f93",
+   "number": "P-265",
    "create": "200"
   },
   "l2add": [
-   "ATM (mini) HD FUSE HOLDER BUS HHM Inventory Qty: 2 EA DRAWER",
-   "ATM (mini) HD FUSE HOLDER BUS HHM Inventory Qty: 2 EA DRAWER"
+   "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 In",
+   "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 In"
   ],
   "l2parts": 2,
+  "ps2number": "P10043-265",
   "l2row": {
    "heads": [
     "Numberarrow_drop_up",
@@ -45,12 +68,22 @@
     "Parts",
     "Returns"
    ],
-   "row": null,
-   "parts": null,
-   "returns": null,
+   "row": [
+    "P10043-265",
+    "Estimate",
+    "ZZAUTOTEST Part Sale Counts L2 96702",
+    "",
+    "",
+    "Admin ShopView",
+    "$16.62",
+    "Today",
+    "2",
+    "0"
+   ],
+   "parts": "2",
+   "returns": "0",
    "rowsShown": 1
   },
-  "toL1": "200",
   "check": {
    "heads": [
     "Numberarrow_drop_up",

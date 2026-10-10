@@ -39,7 +39,7 @@ try {
      (the list shows "P10043-262", the API says "P-262"). */
   const page = APP + `/parts/part-sale/${ps.id}/part-requests`; const st = (x: string) => { o.stages = [...(o.stages ?? []), x]; };
   await p.goto(page, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
-  const num = ps.number ?? (await p.locator('body').innerText()).match(/\bP\d+-\d+\b/)?.[0]; o.number = num;
+  const num = (await p.locator('body').innerText()).match(/\bP\d+-\d+\b/)?.[0] ?? ps.number;   // FIX 4: the number as the list shows it (P10043-264), not the API's P-264 o.number = num;
   const btn = (re: RegExp) => p.getByRole('button', { name: re }).first(); const dlgText = () => p.locator('.q-dialog').last().innerText().then((x) => x.replace(/\s+/g, ' ').slice(0, 300)).catch(() => null);
   await btn(/^Authorize$/).click(); await p.waitForTimeout(2000); if (await p.locator('.q-dialog').count()) { st('authorize dialog: ' + (await dlgText())); await p.locator('.q-dialog').last().getByRole('button', { name: /Authorize|Confirm|Yes|OK/i }).last().click().catch(() => {}); await p.waitForTimeout(2500); }
   st('after authorize: ' + (await p.locator('tbody').first().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 200)); await shot(p, 'C368217-authorized');
@@ -48,9 +48,9 @@ try {
   await btn(/^Receive$/).click(); await p.waitForTimeout(3000); st('receive window: ' + (await dlgText())); const d = p.locator('.q-dialog').last();
   // the order can come out "Vendor missing": choose the vendor before receiving (playbook)
   const vend = d.locator('[data-test-id*="vendor" i]').first(); if (await vend.count() && /Vendor missing/i.test((await dlgText()) ?? '')) { await vend.click(); await p.waitForTimeout(1200); await p.locator('.q-menu .q-item').first().click().catch(() => {}); await p.waitForTimeout(1200); st('vendor picked'); }
-  const field = (re: RegExp) => d.getByLabel(re).first(); await field(/Vendor Invoice/i).fill('ZZINV-PS1').catch(() => st('no invoice field'));
+  const field = (re: RegExp) => d.getByLabel(re).first(); await field(/Vendor Invoice/i).fill(`ZZINV-PS1-${stamp}`).catch(() => st('no invoice field'));
   await d.getByLabel(/Part (Number|#)/i).first().fill('ZZPN-PS1').catch(() => st('no part number field')); await d.getByLabel(/Qty Received|Received/i).first().fill('1').catch(() => st('no qty field'));
-  await d.locator('tbody .q-checkbox, tbody [role=checkbox]').first().click().catch(() => st('no row tick')); await p.waitForTimeout(800); await shot(p, 'C368217-receive-window');
+  await d.locator('tbody .q-checkbox, tbody [role=checkbox]').first().click().catch(async () => { st('no row tick - using Select All'); await d.getByText('Select All', { exact: true }).first().click().catch(() => st('no Select All')); }); await p.waitForTimeout(800); await shot(p, 'C368217-receive-window');
   await d.getByRole('button', { name: /Receive Parts/i }).first().click().catch(() => st('no Receive Parts button')); await p.waitForTimeout(4000); o.receiveToasts = await toasts();
   await p.goto(page, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); st('after receive: ' + (await p.locator('tbody').first().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 260));
   await btn(/Return part|^Return$/).click().catch(() => st('no Return part button')); await p.waitForTimeout(2500); st('return window: ' + (await dlgText()));
