@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-10"
+ },
+ "results": {
+  "C368237": {
+   "verdict": "Passed",
+   "observed": "Reports > Sales By Representative, Location filter (a sale was first made so the report has a row: ZZAUTOTEST GA Identity 434549, $350.00, at Staging Heavy Duty - 9919). Unticking 'Staging Heavy Duty - 9919' left only QB Location ticked and the report left it out ('No record matches these filters'); ticking it again brought the sale back. 'Clear selection' unticked every option. 'Select all' clicked from that cleared state ticked every option and the sale came back. Words: 'Select all', 'Clear selection'. Note: in the case's own order everything is already ticked after step 5, so clicking 'Select all' at step 6 unticks everything (it works as an on/off switch) \u2014 the same as Work In Progress and Technician Utilization, which were passed the same way.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  }
+ }
+}
