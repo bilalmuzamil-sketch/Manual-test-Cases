@@ -1,6 +1,6 @@
 TITLE: Schedule – Dropped Shift Is Saved Six Hours After the Hour It Was Dropped On
 TYPE: Story Defect · PARENT: SV-10047 (Ready for QA, read 10 Oct 2026 — my reading of the owning story; regression item, confirm) · PRIORITY: Medium · LABEL: board-tech-view
-MY READING: REAL DEFECT on this branch. Production (shop on UTC) puts the shift where it is dropped; this branch's shop is on Mountain time and the shift lands 6 hours later. Picture is 1x — recapture at 2x before filing (Rule 116).
+MY READING: REAL DEFECT on this branch. RELATED (QA lead to decide whether it belongs here): on the Timesheets list a clock-in made minutes ago shows six hours ahead (10:01 AM when the shop's time was ~4:01 AM), and editing it is refused with 'Start date cannot be set in the future. Please try to resolve this.' (C368177, S10043-18865; SV-11087 covers that test's line move). Production (shop on UTC) puts the shift where it is dropped; this branch's shop is on Mountain time and the shift lands 6 hours later. Picture is 1x — recapture at 2x before filing (Rule 116).
 
 h2. Description
 

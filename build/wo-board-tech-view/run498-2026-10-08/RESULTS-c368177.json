@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-10"
+ },
+ "results": {
+  "C368177": {
+   "verdict": "Failed",
+   "observed": "S10043-18865 (ZZAUTOTEST Move Labor), Lines tab: Esther Howard clocked in on Line 1 and out ~2 minutes later; the Timesheets list shows her row 'Today 10:01 AM \u2013 10:03 AM' (the shop's real time was about 4:01 AM \u2014 the times show six hours ahead). Hovering the row shows the pencil; the Edit Timesheet window opened and offered Line 1 and Line 2; picking '2 Replace - Suspension air bag' and clicking Save was REFUSED with 'Start date cannot be set in the future. Please try to resolve this.' After a reload Line 2's Labor row still reads 'Unassigned' and Line 1 keeps Esther Howard. Same result with the test browser on UTC and on the shop's own zone (America/Edmonton), so the browser's clock is not the cause. Step 4 expects the move to save with no error; step 5 expects Line 2 to show Esther Howard \u2014 neither happened.",
+   "not_observed": "Whether Line 2 takes the technician once a save goes through (that part is what SV-11087 reports) \u2014 the save never went through today.",
+   "ticket": "Existing ticket https://shopview.atlassian.net/browse/SV-11087 (In Progress, not mine) covers this test. Today the save is refused earlier, with the \"future\" message; that symptom is added to the prepared, HELD ticket D19 (six-hour time jump) for the QA lead to decide.",
+   "todo": "Retest once SV-11087 is fixed; the QA lead decides whether the \"future\" refusal joins the held six-hour ticket."
+  }
+ }
+}
