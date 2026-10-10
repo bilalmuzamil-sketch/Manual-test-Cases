@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-10"
+ },
+ "results": {
+  "C97012": {
+   "verdict": "Passed",
+   "observed": "Two browsers: the dispatcher (the Tech quick-login, put on the role 'ZZAUTOTEST WO View Only' with Work orders View + Create & Edit added) on Board View, search 'ZZAUTOTEST F3 Stale Drop'; the Admin in the other. Step 4-5: Admin invoiced Alpha Co; without refreshing, the dispatcher dragged Alpha Co from Ana's column to Ben's: refused \u2014 the alert read 'Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid.' and the card stayed in Ana's column. Step 6: after a refresh Alpha Co is Invoiced with Lead Technician ZZAUTOTEST Ana Alpha. Step 7-8: Admin removed Create & Edit from the role; without refreshing, the dispatcher dragged Bravo Co to Ben's column: the app answered 'Session expired, please log in again.' and went to the sign-in page (written down, as the case asks). Step 9: Bravo Co still has Lead Technician ZZAUTOTEST Ana Alpha. The lead was unchanged in both cases, so the check passes. The role and the technician's own role were put back afterwards.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  }
+ }
+}
