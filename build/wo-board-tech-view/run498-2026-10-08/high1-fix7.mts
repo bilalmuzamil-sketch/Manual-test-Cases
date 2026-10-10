@@ -231,7 +231,10 @@ async function setEstimate(w: any, lineIdx: number, hours: string) { await page(
 async function goRange(target: string | null) { if (!target) return null; await p.getByRole('button', { name: /^\s*Today\s*$/ }).first().click().catch(() => {}); await p.waitForTimeout(3000);
   for (let i = 0; i < 21; i++) { const r = (await p.locator('[data-test-id="text_schedule_range"]').innerText().catch(() => '')).trim(); if (r === target) return r; await p.locator('[data-test-id="button_schedule_next"]').click(); await p.waitForTimeout(2500); } return null; }
 async function workingDay(staff: string) { // go to the next day the technician works (the row does not read "Not working")
-  for (let i = 0; i < 7; i++) { await p.locator('[data-test-id="button_schedule_next"]').click(); await p.waitForTimeout(3000); await laneOf(staff); const txt = await p.locator(`[data-staff-id="${staff}"]`).first().innerText().catch(() => ''); const r = await p.locator('[data-test-id="text_schedule_range"]').innerText().catch(() => ''); if (!/Not working/i.test(txt) && !/Sat|Sun/.test(r)) return r; }
+  /* FIX 9 (2026-10-10): earlier runs left same-named shifts piled on the first working days, which hid this run's shift
+     ("+3 more"); WOB_SCHED_SKIP=n skips n working days to land on an empty day */
+  let skip = Number(process.env.WOB_SCHED_SKIP || 0);
+  for (let i = 0; i < 7 + skip * 2; i++) { await p.locator('[data-test-id="button_schedule_next"]').click(); await p.waitForTimeout(3000); await laneOf(staff); const txt = await p.locator(`[data-staff-id="${staff}"]`).first().innerText().catch(() => ''); const r = await p.locator('[data-test-id="text_schedule_range"]').innerText().catch(() => ''); if (!/Not working/i.test(txt) && !/Sat|Sun/.test(r)) { if (skip-- > 0) continue; return r; } }
   return null; }
 /** FIX 5: the shifts of work order w in the Schedule's own data (the same call the Schedule page makes), with start and end */
 async function shiftsOf(w: any) { const d0 = new Date(); const out: any[] = []; for (let k = 0; k < 14; k++) { const d = new Date(d0.getTime() + k * 86400000); const from = d.toISOString().slice(0, 10) + 'T06:00:00.000Z'; const to = new Date(d.getTime() + 86400000).toISOString().slice(0, 10) + 'T06:00:00.000Z';
