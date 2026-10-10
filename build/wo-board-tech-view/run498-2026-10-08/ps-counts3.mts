@@ -14,14 +14,15 @@ import { HEAVY, LETH } from './staff.mts';
 const { browser, page: p } = await open('/parts/part-sales'); p.setDefaultTimeout(25_000); const a = api(p); const o: any = {}; const stamp = Date.now() % 100000;
 const st = (r: any) => `${r.status}${r.status >= 300 ? ' ' + JSON.stringify(r.body).slice(0, 160) : ''}`;
 async function partSale(name: string) { const c: any = await customer(a, name, 'PSC-1'); const r = await a.post('/api/part-sales', { company_id: c.company_id }); const id = r.body?.data?.[0]?.id ?? r.body?.data?.id; return { id, number: (await a.get(`/api/work-orders/view/${id}`)).body?.data?.work_order?.number, create: st(r) }; }
-async function addPart(id: string, term: string) { await p.goto(APP + `/parts/part-sale/${id}/part-requests`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
-  for (let i = 0; i < 3 && await p.locator('.q-dialog').count(); i++) { await p.keyboard.press('Escape'); await p.waitForTimeout(700); }
-  await p.locator('[data-test-id="button_add_part"]').first().click(); const d = p.locator('.q-dialog').last(); await d.waitFor({ timeout: 15_000 });
-  const sel = d.locator('[data-test-id="select_part"]').first(); for (let i = 0; i < 15 && !(await sel.count()); i++) await p.waitForTimeout(1000);
-  await sel.click(); await p.keyboard.type(term, { delay: 60 }); const opt = p.locator('.q-menu .q-item:not(.disabled)').first(); await opt.waitFor({ timeout: 15_000 }).catch(() => {});
-  if (!(await opt.count())) { await p.keyboard.press('Escape'); return `no option for ${term}`; } const label = (await opt.innerText()).replace(/\s+/g, ' ').slice(0, 60); await opt.click(); await p.waitForTimeout(1500);
-  const q = d.locator('[data-test-id^="input_bin_quantity_"], [data-test-id="input_workorder_part_quantity"]').first(); if (await q.count()) await q.fill('1');
-  await d.getByRole('button', { name: /Save & Close/i }).first().click(); await p.waitForTimeout(3500); return label; }
+async function addPart(id: string, term: string) { await p.goto(APP + `/parts/part-sale/${id}/part-requests`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000);
+  /* FIX 2 (2026-10-10): a new part sale OPENS the Add Part window by itself and Escape does not close it — it covered the
+     Add Part button. Use the open window; open it with the button only when none is showing. */
+  let d = p.locator('.q-dialog').filter({ hasText: 'Add Part' }).last(); if (!(await d.isVisible().catch(() => false))) { await p.locator('[data-test-id="button_add_part"]').first().click(); d = p.locator('.q-dialog').filter({ hasText: 'Add Part' }).last(); await d.waitFor({ timeout: 15_000 }); }
+  await p.waitForTimeout(1500); const sel0 = d.locator('[data-test-id="select_part"]').first(); const pn = (await sel0.count()) ? sel0 : d.locator('.q-field').filter({ hasText: /Part Number/ }).first();
+  await pn.click(); await p.keyboard.type(term, { delay: 70 }); const opt = p.locator('.q-menu .q-item:not(.disabled)').first(); await opt.waitFor({ timeout: 15_000 }).catch(() => {});
+  if (!(await opt.count())) { return `no option for ${term}`; } const label = (await opt.innerText()).replace(/\s+/g, ' ').slice(0, 60); await opt.click(); await p.waitForTimeout(2000);
+  const q0 = d.locator('[data-test-id^="input_bin_quantity_"], [data-test-id="input_workorder_part_quantity"]').first(); const q = (await q0.count()) ? q0 : d.locator('.q-field').filter({ hasText: /^\s*Quantity/ }).locator('input').first(); await q.fill('1').catch(() => {});
+  await d.getByRole('button', { name: /Save & Close/i }).first().click(); await p.waitForTimeout(4000); return label + (await p.locator('.q-dialog').filter({ hasText: 'Add Part' }).count() ? ' (window still open)' : ''); }
 const parts = async (id: string) => { const d = (await a.get(`/api/work-orders/lines/${id}`)).body?.data; const c = Array.isArray(d) ? d : d?.collection ?? []; return c.flatMap((l: any) => [...(l.part_requests ?? []), ...(l.parts ?? [])]); };
 async function listRow(num: string) { await p.goto(APP + '/parts/part-sales', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
   const box = p.locator('[data-test-id="page_search_input"]'); if (!(await box.isVisible().catch(() => false))) { await p.locator('[data-test-id="page_search_toggle"]').click().catch(() => {}); if (!(await box.isVisible().catch(() => false))) await p.getByText('Search', { exact: true }).first().click().catch(() => {}); }
