@@ -1,0 +1,119 @@
+# **Setup: Billing Efficiency adds up all hours first, not an average of advisors**
+
+Test case: [C88638](https://shopview.testrail.io/index.php?/cases/view/88638), Dashboard. Part 1 is for the manual QA tester. Part 2 is for a Claude session that prepares the case on its own. Both create the starting state listed in the test case's Preconditions; the numbers below match that list.
+
+## **What must be true before you start**
+
+1.  User: you are signed in as an Admin (the Admin role has every permission, including Reports).
+2.  Location: you are in a fresh test location made for this run, so nothing else is invoiced, credited or clocked there; on the Dashboard, the Billing Efficiency tile on This Week shows no percentage (a grey "-").
+3.  Timing: you run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.
+4.  Data: a test customer with one contact and one asset that uses that contact (for example ZZAUTOTEST Dash Customer 1, contact Dana Test, unit ZZ-101).
+5.  People: Technician 1 is you (Admin ShopView, Time Clock on): in a fresh location you are the technician offered in Add Technician, and you clock time yourself.
+6.  People (Advisor A): you (Admin ShopView); the Service Advisor in the work order's left panel shows your name by default.
+7.  People (Advisor B): a second, different name in the Service Advisor list.
+8.  Data: Work order A (low efficiency, many hours), invoiced, not sent, not paid: Service Advisor Advisor A, one labor line ZZAUTOTEST A, Technician 1, $100.00 an hour, Estimated Time 1.00, Tech Time 1.00, with exactly 4.00 hours clocked.
+9.  Data: Work order B (high efficiency, few hours), invoiced, not sent, not paid: Service Advisor Advisor B, one labor line ZZAUTOTEST B, Technician 1, $100.00 an hour, Estimated Time 2.00, Tech Time 2.00, with exactly 1.00 hour clocked.
+
+# **Part 1. Setup for manual QA tester**
+
+Each line says which precondition it sets up. Where a precondition is not listed, it needs no setup.
+
+  - **For precondition 1:**
+
+<!-- end list -->
+
+1.  On the QA site's sign-in page, in the DEV MODE — QUICK LOGIN panel, click Admin (this signs you in as Admin ShopView).
+2.  To use another role, check it has Reports: profile icon \> Settings \> Roles & Permissions \> edit icon on the role \> Reports is switched on.
+
+<!-- end list -->
+
+  - **For precondition 2:**
+
+<!-- end list -->
+
+1.  Create a fresh location for every run (use a new name each time, for example ZZAUTOTEST Quiet plus today's date and a letter): profile icon \> Settings \> Locations \> New Location: Name, Address 1, City, State/Province, ZIP/Postal Code, Timezone, Telephone, Shop Supplies Charge 0 \> Save & Close.
+2.  Switch to it: click your profile icon (your initials, top right, beside the current location name) \> under Change Location: click the orange button showing the current location \> pick the location from the list.
+3.  While you are in it, add the labor rate this test uses (rates belong to each location): profile icon \> Settings \> Labor Rates \> New Labor Rate: Name (for example ZZAUTOTEST Rate 100, Rate 100) \> Save & Close.
+4.  Check: Dashboard \> Billing Efficiency tile \> range pill \> This Week: it shows no percentage (a grey "-").
+
+<!-- end list -->
+
+  - **For precondition 4:**
+
+<!-- end list -->
+
+1.  Customers \> New Customer \> Name \> Save
+2.  On its Contacts tab: New Contact
+3.  Add an asset (Add beside Asset in the New Work Order window, or the customer's Assets tab) and pick that contact in the asset's Contact field.
+
+<!-- end list -->
+
+  - **For precondition 5:**
+
+<!-- end list -->
+
+1.  Nothing to set up.
+2.  To clock time: on the line's Labor row click Start, then Stop \> Clock Out (same browser).
+
+<!-- end list -->
+
+  - **For precondition 6 and 7:**
+
+<!-- end list -->
+
+1.  The Service Advisor is in the work order's left panel
+2.  Pick another name there for a second advisor.
+
+<!-- end list -->
+
+  - **For precondition 8:**
+
+<!-- end list -->
+
+1.  Work Orders \> Create Work Order \> in the New Work Order window pick the Customer and an Asset (Add beside either if needed) \> Save (if a Confirmation says the customer is over their credit limit, click Create)
+2.  Set Service Advisor to Advisor A in the left panel
+3.  In the New Line window (\> New Line on the Lines tab for each further line): What Are You Doing? ZZAUTOTEST A, Add Technician Technician 1, Labor Rate the $100 rate you added in this location (for example ZZAUTOTEST Rate 100), Estimated Time 1 and Tech Time 1, tick Line Approved \> Save & Close
+4.  As Technician 1 (yourself): on the line's Labor row click Start, then Stop \> Clock Out
+5.  As Admin make the clocked time exactly 4.00 hours: three dots at the top right of the Lines tab \> Timesheets (1) \> edit the record (if it cannot be edited there or in Reports \> Timesheet Activities, keep the real time and use the hours Timesheet Activities shows in every sum)
+6.  On the line click Story (Add tech story for this line) \> type a short story \> Update
+7.  Click Complete (if a Missing Details window asks for Mileage, enter one \> Complete All Lines)
+8.  Click Mark Reviewed
+9.  Finance tab \> Create Invoice
+10. Close the New Customer Payment window without paying (do not send or pay the invoice).
+
+<!-- end list -->
+
+  - **For precondition 9:**
+
+<!-- end list -->
+
+1.  The same, with Service Advisor Advisor B: Work Orders \> Create Work Order \> in the New Work Order window pick the Customer and an Asset (Add beside either if needed) \> Save (if a Confirmation says the customer is over their credit limit, click Create)
+2.  Set Service Advisor to Advisor B in the left panel
+3.  In the New Line window (\> New Line on the Lines tab for each further line): What Are You Doing? ZZAUTOTEST B, Add Technician Technician 1, Labor Rate the $100 rate you added in this location (for example ZZAUTOTEST Rate 100), Estimated Time 2 and Tech Time 2, tick Line Approved \> Save & Close
+4.  As Technician 1 (yourself): on the line's Labor row click Start, then Stop \> Clock Out
+5.  As Admin make the clocked time exactly 1.00 hours: three dots at the top right of the Lines tab \> Timesheets (1) \> edit the record (if it cannot be edited there or in Reports \> Timesheet Activities, keep the real time and use the hours Timesheet Activities shows in every sum)
+6.  On the line click Story (Add tech story for this line) \> type a short story \> Update
+7.  Click Complete (if a Missing Details window asks for Mileage, enter one \> Complete All Lines)
+8.  Click Mark Reviewed
+9.  Finance tab \> Create Invoice
+10. Close the New Customer Payment window without paying (do not send or pay the invoice).
+
+# **Part 2. Setup for Claude session**
+
+Prepare the same starting state by carrying out Part 1 in a browser with Playwright. Record the real values you used, the build marker and screenshots in the Manual-test-Cases repository, and judge pass or fail against the test case's Expected results only.
+
+## **Environment**
+
+  - Dashboard QA site: app https://sv490.qa.shopview.com, API https://sv490api.qa.shopview.com.
+  - Record the build marker (app-version on the app page) before you start.
+  - Browser: Chromium at /opt/pw-browsers/chromium through Playwright. Do not run "playwright install".
+
+## **Access**
+
+  - Sign in with the QA site's quick login: node build/testing-tools/qa-branch-boot.mjs (see build/APP-ACTIONS-PLAYBOOK.md section A). Carry the sv\_sso\_session cookie only, scoped to the host.
+  - Keep cookies in /tmp only, with file mode 600. Never write a cookie into a document, a commit or a log.
+  - Change location through the profile icon (your initials, top right) \> Change Location.
+
+## **Test data**
+
+Name anything you create with ZZAUTOTEST at the start. Leave all test data in place; nothing is deleted afterwards.
