@@ -1,3 +1,17 @@
+# UPDATE 10 Oct 09:50 UTC
+**Recorded today:** C368233/C368234/C368235 Failed (case outcome 1) — production behaves the same, so NO ticket (not a
+regression of this work); the test's steps describe the other filter style — for the QA lead. C368179 Failed — a shift dropped
+under 1 PM is saved 07:00–09:00 PM (six hours later, in either browser zone); production (shop on UTC) saved 12:00–14:00; ticket
+**D19 prepared and HELD** (`defect-drafts/tickets/D19-C368179-ticket.wiki`, picture 1x — recapture at 2x before filing).
+**Tickets:** SV-11123 and SV-11125 now carry their 2x pictures, inserted into the QA lead's edited text (he added "Do not
+pick this up - I need to double check it in the evening today" to both — never overwrite a filed description, L0308).
+**Queues r7–r10:** r7 C368177 (hover the pencil) + C368178/C368192/C368190 on an empty day (`WOB_SCHED_SKIP=8`); r8 make a
+staff member a sales rep (branch had none) + invoice + C368237; r9 C97012 (scroll to Ana's column; steps 5/6/9 already seen
+correct); r10 C368217 (use the Add Part window a new part sale opens by itself).
+**SV-11087** (In Progress, someone else's) is exactly C368177's subject — if C368177 fails, no new ticket: name SV-11087.
+
+---
+
 # Run 498 — RESUME HERE — STATE 10 Oct 2026 09:15 UTC (newest first; older notes below)
 
 **Run 498 live:** passed 213 · failed 13 · blocked 9 · untested 16 (C97012 C97022 C368177 C368178 C368179 C368190 C368217
