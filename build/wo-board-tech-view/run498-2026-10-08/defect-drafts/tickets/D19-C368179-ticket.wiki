@@ -1,0 +1,44 @@
+TITLE: Schedule – Dropped Shift Is Saved Six Hours After the Hour It Was Dropped On
+TYPE: Story Defect · PARENT: SV-10047 (Ready for QA, read 10 Oct 2026 — my reading of the owning story; regression item, confirm) · PRIORITY: Medium · LABEL: board-tech-view
+MY READING: REAL DEFECT on this branch. Production (shop on UTC) puts the shift where it is dropped; this branch's shop is on Mountain time and the shift lands 6 hours later. Picture is 1x — recapture at 2x before filing (Rule 116).
+
+h2. Description
+
+A shift made by dragging a work order onto the *Schedule* should start at the hour it is dropped on.
+
+For example,
+* dropped under *1 PM* on a technician's row, the shift is saved as *07:00 PM – 09:00 PM*
+* dropped under *9 AM*, the shift is drawn at *3 PM*
+
+h2. Steps to Reproduce
+
+# Click *Schedule* in the top menu and click the *>* arrow next to *Today* to go to a working day.
+# In *Search work orders* (left) type a work order that has estimated hours left, and find its card.
+# Drag the card onto a technician's row and drop it under *1 PM*.
+# In the window, click *Choose lines*, tick one line, set *Hours* to *2h* and click *Create shift · 1 line · 2h*.
+#* *Shift scheduled.* shows, with no error.
+# Reload the page, go to the same day and click the new shift on that row.
+
+*Actual Result:*
+* The shift's *TIME* reads *07:00 PM – 09:00 PM* and it is drawn under *7 PM*.
+
+*Expected Result:*
+* The shift reads *1:00 PM – 3:00 PM* and is drawn under *1 PM*, where it was dropped.
+
+!D19-C368179-annotated.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/schedule]
+* *Location:* Staging Heavy Duty - 9919 (time zone America/Edmonton) · *User:* Admin (quick-login)
+* *Example:* work order S10043-18806, Esther Howard's row, Mon Oct 12 2026
+
+h2. Sources
+
+* Developer regression list (8 Oct 2026), High 3:
+{quote}Creating shifts by dragging onto the schedule should still work.{quote}
+* For comparison, production (app.shopview.com, v26.40.14-7a55f9c, 10 Oct 2026): a shift dropped under 1 PM was saved 12:00 – 14:00, over the hour it was dropped on. (Production's test shop runs on UTC.)
+
+h2. Test case
+
+* [C368179 Dragging a work order onto the Schedule with Choose lines makes a line shift|https://shopview.testrail.io/index.php?/cases/view/368179]
