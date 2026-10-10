@@ -18,3 +18,13 @@ the details should be in that file."*
   People / Data). Wording otherwise unchanged. Steps, Expected, markers, stamps untouched (checked on write).
 - `gen.py` builds `docs/C<id>.html` + `pre/C<id>.json`; `write_pre.py` = guarded write of Preconditions only.
 - Pilot 10 Oct: C351706, C88601, C88641 — Docs created, written, display check fr-view, links verified.
+
+## Change 10 Oct: ONE Doc, a heading per test (QA lead: "One doc with the heading per test")
+- Combined Doc `1qjMO77Hv5prqm6aZNl_NEGQy-cux7qWIBkDspQRl6kQ` ("Setup (manual QA tester and Claude session) - Dashboard
+  (all tests)"), built by `gen_one.py` → `dashboard-setup-all.html`; Contents list links every heading, which is what makes
+  Google give each heading a bookmark id (an HTML import without internal links exports no heading ids — checked).
+- Read back via export: text identical to the file (175,500 chars); 70 contents links in test order → `heading-links.json`
+  (`…/edit#bookmark=id.…`).
+- Trial C351706, C88601, C88641 relinked to their headings; display fr-view; links verified on the served page.
+- Now unused in Drive (not deleted, QA lead to decide): 3 per-test trial Docs, the first combined Doc without contents
+  (`13X4jdSup0k5LKKgU43MpSJaMgjPF9i1U7p0lsajKwuI`), scratch check Doc `1I8U8BQzXg4GhFkjDlwztJDryiaUxEk2RP0BQixrZPA8`.
