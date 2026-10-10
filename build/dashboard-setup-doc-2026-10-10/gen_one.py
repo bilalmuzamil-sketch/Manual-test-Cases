@@ -11,11 +11,19 @@ def body(i):
     must=re.search(r'<h2>What must be true before you start</h2>(<ol>.*?</ol>)',doc,re.S).group(1)
     setup=re.search(r'<h1>Part 1\. Setup for manual QA tester</h1><p>[^<]*</p>(<ul>.*?</ul>)<h1>Part 2',doc,re.S)
     setup=setup.group(1) if setup else '<p>No setup needed beyond the list above.</p>'
-    return (f'<h2>{html.escape(live[i]["title"])}</h2>'
+    return (f'<h2 id="c{i}">{html.escape(live[i]["title"])}</h2>'
             f'<p>Test case: <a href="https://shopview.testrail.io/index.php?/cases/view/{i}">C{i}</a></p>'
             f'<h3>What must be true before you start</h3>{must}<h3>Setup for manual QA tester</h3>{setup}')
 out=['<html><body><h1>Dashboard tests: what must be true and how to set it up</h1>',
  '<p>One heading per test, in the same order as TestRail. Each test\'s Preconditions box links straight to its heading. Under each heading: the list of what must be true before you start (the same list as in the test), then the setup: for each numbered line that needs work, the clicks to set it up. Lines not listed need no setup.</p>']
+toc=['<h1>Contents</h1>'];cs=None
+for i in ids:
+    s=live[i]['section_id']
+    if s!=cs:
+        if cs is not None: toc.append('</ul>')
+        toc.append(f'<p><strong>{html.escape(secs[s]["name"])}</strong></p><ul>'); cs=s
+    toc.append(f'<li><a href="#c{i}">{html.escape(live[i]["title"])}</a></li>')
+toc.append('</ul>'); out+=toc
 cur=None
 for i in ids:
     s=live[i]['section_id']
