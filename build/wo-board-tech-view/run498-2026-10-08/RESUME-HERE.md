@@ -56,3 +56,10 @@ C368237 (Sales By Representative has no data — seed a sale with a sales repres
 
 ### Batch 3 judged 9 Oct 19:58: C368172, C368188, C368189 Passed; C368149 Failed (merge of two reorders, no alert) — reconcile with PRD S4-N11 before asking.
 NOT judged, re-run needed: C368177 (labor move not performed by the script) · C368178, C368179, C368190, C368192 (Schedule shift not created after Create — instrument or app, decide first) · C97003 (column order read incomplete; Tech View drag found no handle) · C97012 (script error: technician not found) · C368217 (Add Part box not found) · C368240 (sign-out: Reports click timed out) · C368238, C368239 (hung 3 times — propose MANUAL).
+
+## 10 Oct 2026 — QA lead: "I need everything done today … get done with ALL the test cases and prepare the defects for the failed ones"
+- sv10043 backend down from ~06:xx UTC (quick-login HTTP 503; /api/version returns the web page). Watcher `wait_up.sh` (scratchpad) writes branch-UP.
+- D12 (C368149) drafted: PRD S9-R11 "the later save wins" broken (merge). Pictures to RETAKE at 2x (`c368149-two.mts`, WOB_SCALE=2) when the branch is up.
+- C368221 (Return credits): source is a dev note only ("pages that remember filters and settings … check that it's kept"); the filter WAS kept, only the tab went back to Returns → put to the QA lead as "not a defect?".
+- Blocked 9 reviewed: all legitimately blocked (case-instructed PO questions C368162/C368160/C368164/C96977/C154887; analytics ruling C97026/C97033/C97034; Q1 C368170).
+- Next on the branch, in order: s9-fix8 C97003 (viewer pins the 3 techs), C97012, C97022 (judge what can be judged), C368177, shifts C368178/C368179/C368190 (+C368192 setup), C368217, filters C368224/225/226/230/231/237, C368246 dashboard, D12 pictures, C368240 sign-out LAST.
