@@ -1,5 +1,21 @@
 # Run 498 — ready list for STAGING, then PRODUCTION (Rule 126; generated 12 Oct 2026)
 
+## ⚡ ONE COMMAND (added 12 Oct 2026 evening — use this, do not rediscover anything)
+1. **Sign-in:** ask the QA lead for a fresh staging `sv_sso_session` (Google sign-in; the 5 Oct cookie had EXPIRED when tried
+   12 Oct — "the Google session has expired"). Put it in `/tmp/shopview/app.env` as `SV_SSO_SESSION=…` (chmod 600, never committed).
+2. **Time zone first (Rule 125):** staging location to Asia/Karachi and prove it (`qa-set-tz.mjs` / `tz-match-check.mjs`, pointed at
+   staging) before any time-of-day script.
+3. **Run everything:** `GS_APP=https://app.staging.shopview.com WOB_API=https://api.staging.shopview.com ./staging-all.sh staging-2026-10-14`
+   — writes `profiles/app.staging.shopview.com.json` on first run, then runs all 44 batch scripts (214 tests) with `ONLY=<their tests>`,
+   logs + result JSON per script in `evidence/staging-2026-10-14/`, skips finished scripts on a re-run. `ONLY_SCRIPTS="a b"` for a subset.
+4. **Record:** results go to the STAGING run (not run 498) with `push_results_to_run.py --run <staging run>`; same bullet style (Rules 122/123).
+5. **Traps already known (do not rediscover):** the wob harness shows times in UTC (L0312 — never judge a displayed time through it;
+   use `qa-branch-boot`/`bootOrigin` with `TZ=Asia/Karachi`); `wob-run.sh` passes only listed env vars (L0315 — PHASE etc. are listed);
+   analytics checks need no Google Analytics (L0314, `ga-week.mts` + `ga_calc.py`); imported work orders stay in List (PRD v48).
+6. **Not needed on staging:** the 14 ad-hoc re-check scripts below with the QA address written in — every test is covered by a batch
+   script in the table, and those follow `GS_APP`.
+
+
 **How to run a script on another environment:** `GS_APP=https://<host> ./wob-run.sh discover-profile.mts` once (writes `profiles/<host>.json`: API address, organisation, the two locations), then `GS_APP=https://<host> ./wob-run.sh <script>`. Sign-in values go in `/tmp/shopview/<host-key>.env` (never committed).
 **Before any time-related script:** Rule 125 — set the location to Asia/Karachi and run `tz-match-check.mjs` (exit 0) on that environment.
 **Data:** every script makes its own `ZZAUTOTEST` data by name; nothing depends on a QA-branch id.
