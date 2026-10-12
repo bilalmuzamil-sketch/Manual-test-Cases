@@ -5449,3 +5449,17 @@ The sign-out test "froze the test browser" for three days and was parked as manu
 debugger (CDP Debugger.pause) showed them looping in app code, triggered by MY harness's init script rewriting the session on
 every page load. A clean context made the test pass in one run. Rule 104's "what would make this MY fault" includes the
 harness's own injected scripts — test without them before parking a check.
+
+## L0312 — 2026-10-12 — The harness shows QA-branch times in UTC: never judge a displayed time through it
+Two tickets were filed from the run 498 harness (SV-11229 Schedule drop "six hours late", SV-11230 time entry "six hours
+ahead, refused as future"). The QA lead's own recording, signed in normally, kept the 1 PM drop at 1 PM and obsoleted
+SV-11229 within 20 minutes. Proof: signed in the way a person does (`qa-branch-boot.mjs`, quick-login button, nothing
+injected), the same records read correctly — the entry made at 09:22 UTC lists as 1:22 PM in a Dubai shop, the "7 PM" shift
+sits at 1 PM Mountain time — and the same entry moved to line 2 with no refusal. The records were SAVED right; the harness
+(global-search `boot.ts` + `session.mts`/`runner.mts`, any browser zone, with or without Switch user) DISPLAYS them in UTC,
+and a form re-saving a displayed time then sends a wrong one. Not the browser zone (UTC and Karachi alike), not Switch user
+(Admin without switching alike), not the injected user copy (it already carries America/Edmonton). RULE OF THUMB: any check
+whose verdict is a displayed date or time on a QA branch is judged in a `qa-branch-boot.mjs` browser, never the harness —
+and a time fault is compared against a normally-signed-in browser BEFORE it is put to the QA lead (Rule 104 proof 7).
+Evidence `build/wo-board-tech-view/run498-2026-10-08/evidence/clean-tz-2026-10-12/`, scripts `clean-tz-check.mjs`,
+`clean-labor-read.mjs`, `tz-harness-probe.mts`.

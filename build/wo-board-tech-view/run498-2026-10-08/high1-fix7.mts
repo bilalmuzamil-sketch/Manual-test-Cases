@@ -29,7 +29,9 @@ import { candidates } from './data.mts';
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
 const { browser, page: p0 } = await open('/workorders?tab=all');
-const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p;
+/* WOB_NORUNNER=1 (12 Oct 2026): stay signed in as Admin ShopView, NO Switch user — to tell a product fault from one that only
+ *  shows while switched to another user (the QA lead's own recording of the Schedule drop, signed in normally, kept 1 PM). */
+const RUN: any = process.env.WOB_NORUNNER ? { p: p0, a: api(p0), id: '', toRunner: async () => {}, end: async () => {} } : await asRunner(browser, p0, api(p0)); const p = RUN.p;
 p.setDefaultTimeout(30_000);
 const a = api(p);
 const R: Record<string, any> = { runner: RUN.id.slice(0, 8) };

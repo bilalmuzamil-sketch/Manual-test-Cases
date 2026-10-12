@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C368177": {
+   "verdict": "Failed",
+   "observed": "Seen again 12 Oct 2026 on S10043-19183 (ZZAUTOTEST Move Labor): Esther Howard clocked in on line 1 and out about two minutes later; Timesheets lists the row as 'Today 09:03 AM \u2013 09:05 AM' while the shop's time was about 3:03 AM (six hours ahead). The row's pencil opened Edit Timesheet; picking line 2 and clicking Save was refused with 'Start date cannot be set in the future. Please try to resolve this.' and the Timesheets section showed 'Something went wrong loading this section'. After a reload line 2's Labor row still reads 'Unassigned' and line 1 keeps Esther Howard. Step 4 expects the move to save with no error; step 5 expects line 2 to show Esther Howard \u2014 neither happened. Production (app.shopview.com, 12 Oct 2026, test location set to the same time zone America/Edmonton, three runs): an entry made at 02:49 AM is listed 02:49 AM \u2013 02:50 AM and moves to line 2 after Confirm, with no refusal \u2014 so this is a regression on this build.",
+   "not_observed": "Whether line 2 takes the technician once a save goes through (that part is what SV-11087 reports) \u2014 the save never went through.",
+   "ticket": "Tickets: SV-11230 \u2014 Timesheets \u2013 Recent Entry Listed Six Hours Ahead and Refused When Moved \u2014 https://shopview.atlassian.net/browse/SV-11230 (Story Defect under SV-10228, filed 12 Oct 2026 with the QA lead's approval); also SV-11087 \u2014 https://shopview.atlassian.net/browse/SV-11087 (In Progress, Ahtasham's: the technician stays on the old line after a move).",
+   "todo": "Developers: fix SV-11230 (and SV-11087), then retest this case."
+  }
+ }
+}
