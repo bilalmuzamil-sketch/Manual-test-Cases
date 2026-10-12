@@ -29,3 +29,10 @@ What would unblock it (only someone with Google access can give it):
 - Or a one-off PowerTools session cookie (only useful if Feature Insights shows these Story 12 figures — not confirmed).
 - Or Milos (report owner) confirms the reports exist and shares them / reads them.
 - Or the QA lead reads them (checklist already sent).
+
+## 12 Oct 2026, 17:15 UTC — read-only Google key from the QA lead
+The QA lead made a read-only Analytics key (OAuth Playground, analytics.readonly). Key proven valid (tokeninfo: scope
+analytics.readonly, ~55 min left; Admin API answered 200). Result: accountSummaries and accounts both EMPTY — the Google
+account behind the key has no access to any Google Analytics account or property. Key deleted from /tmp right after.
+Tool kept for next time: build/testing-tools/ga_api.py (token only ever in /tmp/google/ga-token.json).
+Next: ticket to Stefan Mitrovic (QA lead's instruction) asking to set the three checks aside or give read access.

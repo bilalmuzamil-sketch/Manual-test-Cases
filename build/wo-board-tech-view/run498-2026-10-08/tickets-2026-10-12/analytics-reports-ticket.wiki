@@ -1,0 +1,43 @@
+h2. Description
+
+Three test cases for the Work Orders analytics story (SV-10593) can only be judged by reading the *Story 12 reports in Google Analytics*. QA has no access to Google Analytics, so these three checks are *blocked*. Everything else in the story is tested: the events the Work Orders page sends were checked and *passed*.
+
+[~accountid:STEFAN_ID], could you please let us know which of these applies?
+* *These three checks can be set aside for now.* We will close them for this release and pick them up when the reports are available.
+* *Or QA can be given a way to read the reports.* For example, read-only (Viewer) access to the Google Analytics property the QA and staging builds send to ({{G-CMYCXL13C9}}) for {{bilal.muzamil@shopview.com}}, or the name of the person who can read the three reports for our test dates.
+
+h2. What we need to test
+
+||#||Check||What the PRD asks||What QA has done||When the report can be read||
+|1|Default and saved settings show as separate groups|S12-R12|A brand-new user and the dispatcher opened Board View on *9 Oct 2026*|Now|
+|2|Field selection rate is one combined share across all users|S12-R10, S12-R7, S12-R13|Four test users turn fields on/off on *12 and 13 Oct 2026*. Expected: VIN/Serial *50%*, Total price *66.7%*|From *19 Oct 2026*|
+|3|Weekly use and density count each user once|S12-R4, S12-R11, S12-R13|Four test users open the page and pick displays and density this week. Expected: List *4*, Tech View *2*, Board View *1*; Compact, Comfortable, Regular *1* each|From *19 Oct 2026*|
+
+h2. What blocks us
+
+* The PRD makes Milos Vasic the owner of these reports, and they live in Google Analytics.
+* QA cannot open Google Analytics. A read-only Google key made from the QA lead's account on *12 Oct 2026* showed *no Analytics accounts or properties* for that account.
+* No copy of the reports was found elsewhere: not in Confluence, not in Google Drive. PowerTools' Feature Insights also needs a Google sign-in.
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Google Analytics property:* {{G-CMYCXL13C9}} (QA and staging share it; production is {{G-Q8V1RLY7LK}}, per [Feature Insights v2 — where every number comes from|https://shopview.atlassian.net/wiki/spaces/~7120201f21c3b6c1834d4695617b79f0e197ab/pages/865894403])
+* *Test users:* {{ZZAUTOTEST Newbie}} (check 1); {{ZZAUTOTEST GA FS1 878767}} to {{FS4 878767}} (check 2); {{ZZAUTOTEST GA WK1 878767}} to {{WK4 878767}} (check 3), location Staging Heavy Duty - 9919
+
+h2. Sources
+
+* [PRD — Work Orders Board View & Tech View Display Options|https://shopview.atlassian.net/wiki/spaces/~7120207b6068952672480db1a06bd810e23ba1/pages/845185030], version 47, Story 12, read 12 Oct 2026:
+{quote}Report owner: Milos Vasic owns building and maintaining the reports in S12-R4 and S12-R10 to S12-R12. Engineering’s part of this story ends at sending the events; Story 12 is complete when both are done.{quote}
+{quote}S12-R4: Report weekly display usage by distinct users.{quote}
+{quote}S12-R10: Report field selection rate by field and display: distinct exposed users selecting the field divided by distinct users exposed to that available field.{quote}
+{quote}S12-R11: Report density distribution.{quote}
+{quote}S12-R12: Separate default, saved, and fallback preference cohorts in reports.{quote}
+{quote}S12-R13: Do not count repeated events from one user as additional users.{quote}
+{quote}S12-R7: Exclude unavailable financial fields from field-exposure measurement and its denominator.{quote}
+
+h2. Test cases
+
+* [C97026 Default and saved settings show as separate groups in the reports|https://shopview.testrail.io/index.php?/cases/view/97026]
+* [C97033 Field selection rate is one combined share across all users, not an average|https://shopview.testrail.io/index.php?/cases/view/97033]
+* [C97034 Weekly use and density spread count each user once|https://shopview.testrail.io/index.php?/cases/view/97034]
