@@ -1,0 +1,41 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C96960": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed \u2014 re-run on 12 Oct 2026 by THIS test case's own steps, not by the ticket attached to it.",
+    "Set up exactly as the case says: a new work order led by Esther Howard with six lines \u2014 one with no technician, one following Esther, one given to Dana Ortiz, one Complete, one with logged time, one with Esther's clock running.",
+    "Board View: the card was dragged from Esther Howard's column into Ralph Edwards' column; the message read \"Lead technician updated\".",
+    "Lines tab afterwards: the line with no technician and the line that followed Esther now show Ralph Edwards.",
+    "Dana Ortiz's line still shows Dana Ortiz; the Complete line, the line with logged time and the line with the running clock still show Esther Howard.",
+    "Timesheets: Esther's clock on that line still reads \"Active\" (still running).",
+    "So exactly 2 of the 6 lines moved \u2014 every expected result in this case is met.",
+    "About the earlier Failed mark: its ticket (SV-11128, Open) describes a different situation \u2014 a work order already booked on today's Schedule before the lead is changed. That still happens and stays with its ticket; it is not what this test case checks.",
+    "Annotated pictures attached."
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368136": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed \u2014 re-run on 12 Oct 2026 by THIS test case's own steps, not by the ticket attached to it.",
+    "Set up exactly as the case says: a new work order led by Esther Howard, with her whole-work-order shift tomorrow 8:00\u201312:00 (shop and browser both on Pakistan time, and the Schedule clock checked against the browser first).",
+    "The question \"Clear Esther Howard's scheduled shifts?\" opened all 4 times: Board View drag, Board View Reassign lead technician, Tech View drag, Tech View Reassign lead technician (each answered Keep shifts).",
+    "Work order page: the Lead technician is read-only there on this build, so the lead cannot be changed on that page and no question appears \u2014 as the case expects.",
+    "List: the rows have no More actions, so there is no way to change the lead there and no question \u2014 as the case expects.",
+    "Schedule for tomorrow: Esther Howard's 8 AM\u201312 PM shift is still there.",
+    "About the earlier Failed mark: its ticket (SV-11126, Open) describes a different situation \u2014 a shift later TODAY that has not started yet. That still happens and stays with its ticket; this test case checks a shift booked for tomorrow.",
+    "Annotated pictures attached."
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ }
+}

@@ -4908,3 +4908,12 @@ branches would then need to run on staging and then on prod. So you should alway
    it is one queue (`run_queue.sh`), not a re-discovery.
 4. Rule 125 is part of every environment's set-up (location zone = browser zone), and Rule 121 production comparisons are
    reused, not redone, where nothing changed.
+
+## RULE 124 — AMENDMENT 2026-10-12 (QA lead: *"before we say that Ahtasham's failed test cases … are really failed, go through those test cases again and not by looking at the tickets commented in those test cases"*)
+
+**The re-test follows the TEST CASE's own preconditions and steps and is judged against ITS expected result — never the
+attached ticket's scenario.** A ticket can describe a different situation from the case it was attached to (12 Oct 2026:
+SV-11128 = a work order already on today's Schedule, C96960 = a plain drag between technicians; SV-11126 = a shift later
+today, C368136 = a shift tomorrow). The ticket keeps its own life; the case is marked by what the case says. Clause 1's
+"their ticket's steps" is superseded by this. Worked example: C96960 and C368136 Passed by their own steps (pictures
+attached), C96968 still Failed by its own steps.
