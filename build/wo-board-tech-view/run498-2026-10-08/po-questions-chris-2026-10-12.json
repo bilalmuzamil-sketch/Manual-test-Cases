@@ -1,0 +1,21 @@
+{
+ "path": "build/wo-board-tech-view/run498-2026-10-08/Work Orders Board View and Tech View - Questions for Chris - 12 Oct 2026.xlsx",
+ "title": "Work Orders: Board View and Tech View — two quick questions for Chris (12 Oct 2026)",
+ "intro": "Dear Sir, while testing the new Board View and Tech View on the Work Orders page, we found two things that the current test version does not have yet, so we cannot check them. Could you please pick one option for each question in the last column (\"Your answer\")? Your answer tells us whether to wait for the change or to remove the check. Thank you, Sir.",
+ "sheets": [
+  {"name": "Questions for Chris", "rows": [
+   {"topic": "Work Orders page, Tech View — one button to close or open all technician groups",
+    "now": "In Tech View, the work orders are grouped under each technician's name. Each group can only be closed or opened with the small arrow next to that person's name. There is no single button that closes all the groups at once (\"Collapse all\") or opens them all again (\"Expand all\").",
+    "question": "Sir, should Tech View have one button that closes or opens all the groups at once, as part of this release?",
+    "options": "A) Yes, in this release — we will wait for it and test it then.\nB) Yes, but in a later release — we will put this check on hold until then.\nC) No, it is not needed — we will remove this check."},
+   {"topic": "Work Orders page, Board View and Tech View — work orders with the status \"Imported\"",
+    "now": "Work orders brought in from another system show the status \"Imported\". They show in the List, but not in Board View or Tech View: in those two views the \"Imported\" choice in the Status filter is greyed out. So nobody can see whether \"Reassign lead technician\" is blocked for them there, with the message \"The lead technician can't be changed on an imported work order.\"",
+    "question": "Sir, should imported work orders also appear in Board View and Tech View?",
+    "options": "A) Yes — they should appear there, with \"Reassign lead technician\" greyed out and that message. We will wait for the change and test it.\nB) No — they stay in the List only, as today. We will remove this check."}
+  ]}
+ ],
+ "internal": [
+  ["1", "C368162 (run 498)", "Tech View collapse controls (design: \"Collapse all\")", "Not in the build; no developer statement that it is out of this release."],
+  ["2", "C154887 (run 498)", "Story 4; Review Decisions DR-37 (Chris Ward, 29 Sep 2026)", "The case itself says to mark it Blocked when imported work orders cannot be shown on the board: an open product question, not a fault."]
+ ]
+}
