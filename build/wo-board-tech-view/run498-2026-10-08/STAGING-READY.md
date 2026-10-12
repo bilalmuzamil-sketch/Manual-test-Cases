@@ -12,6 +12,9 @@
 5. **Traps already known (do not rediscover):** the wob harness shows times in UTC (L0312 — never judge a displayed time through it;
    use `qa-branch-boot`/`bootOrigin` with `TZ=Asia/Karachi`); `wob-run.sh` passes only listed env vars (L0315 — PHASE etc. are listed);
    analytics checks need no Google Analytics (L0314, `ga-week.mts` + `ga_calc.py`); imported work orders stay in List (PRD v48).
+6a. **Must-check on staging (cannot be judged on a QA branch):** C96968 — drag a card with the computer OFFLINE (Board View and
+   Tech View): card goes back and "Failed to update lead technician, please try again." shows; reconnect + reload: lead unchanged
+   (L0317 — QA branches redirect network errors to the sleep page). Script: `e84-ui.mts` with ONLY=offline, pointed at staging.
 6. **Not needed on staging:** the 14 ad-hoc re-check scripts below with the QA address written in — every test is covered by a batch
    script in the table, and those follow `GS_APP`.
 

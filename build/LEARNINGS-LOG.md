@@ -5498,3 +5498,11 @@ different line." while `my-current-task` showed NO running task at either locati
 Instead of chasing it: `FRESH_CLOCK=1 ONLY=C96978 ./wob-run.sh s5-batchC.mts` makes two brand-new clockable technicians with the
 same role and clocks them in (201/201) — the Clocked in field was then judged normally. Data workaround, not a product fault.
 Also: `annotate_v2.py --scale 2` takes FULL-RESOLUTION pixel positions of the source picture (2x), not screen positions.
+
+## L0317 — 2026-10-12 — An offline test on a QA branch lands on the sleep page: the QA build redirects every network error
+Retesting C96968 (SV-11074) with the browser really offline, the page jumped to Chrome's "No internet", then to
+sleep.qa.shopview.com. The app's own code (QA builds only, `env === "qa"`): any request failing with "Network Error" and no
+response shows "QA env is sleeping — Redirecting…" and sets window.location to the sleep page. So on a QA branch an offline
+check can prove "nothing was replayed after reconnect" and, with the request refused instead, "card back + exact alert", but
+NOT the offline alert itself — that is checked on staging/production, where the redirect does not exist. Never call the
+redirect a product fault; never call the offline alert "verified" from a QA branch.

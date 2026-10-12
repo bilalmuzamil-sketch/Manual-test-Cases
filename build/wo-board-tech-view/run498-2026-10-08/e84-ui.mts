@@ -35,8 +35,12 @@ try {
   if (only.includes('offline')) { const o: any = (R.offline = {});   // SV-11074 / C96968
     await board(S.offline.customer); await toColumn(p, S.ES); await p.evaluate(`document.querySelector('[data-test-id="board_column_unassigned"]')?.scrollIntoView({ inline: 'nearest', block: 'nearest' })`); await p.waitForTimeout(800);
     o.before = await leadOf(S.offline.customer); await shot('offline-1-before');
+    o.nav = []; p.on('framenavigated', (fr) => { if (fr === p.mainFrame()) o.nav.push(`${new Date().toISOString().slice(11, 19)} ${fr.url().replace(/[0-9a-f-]{36}/g, '<id>')}`); });
+    o.cardVisibleBefore = await p.locator(`[data-test-id="board_card_${S.offline.id}"]`).isVisible().catch(() => false);
+    o.reqs = []; p.on('request', (r) => { if (/board-move|lead-technician|work-orders\//.test(r.url())) o.reqs.push(`${r.method()} ${r.url().replace(/https:\/\/[^/]+/, '').replace(/[0-9a-f-]{36}/g, '<id>').slice(0, 90)}`); });
     await ctx.setOffline(true); await p.waitForTimeout(1000);
     await drag(p, `[data-test-id="board_card_${S.offline.id}"]`, `[data-test-id="board_column_${S.ES}"]`).catch((e) => { o.dragError = String(e).slice(0, 120); });
+    await p.waitForTimeout(1500); o.afterDragUrl = p.url().replace(/[0-9a-f-]{36}/g, '<id>'); o.alertsAt1s = await p.evaluate(`[...document.querySelectorAll('.q-notification, [role=alert]')].map(e => e.innerText.replace(/\\s+/g, ' ').slice(0, 140))`).catch(() => []); await shot('offline-1b-1s-after-drag');
     await p.waitForTimeout(10000); await shot('offline-2-after-10s-offline');
     o.cardIn = await p.evaluate(`(() => { const c = document.querySelector('[data-test-id="board_card_${S.offline.id}"]'); const col = c?.closest('[data-test-id^="board_column_"]'); return col ? col.getAttribute('data-test-id') : null; })()`);
     o.toastsOffline = await toasts(p); o.alerts = await p.evaluate(`[...document.querySelectorAll('[role=alert], .q-banner, .q-dialog')].map(e => e.innerText.replace(/\\s+/g, ' ').slice(0, 140))`);

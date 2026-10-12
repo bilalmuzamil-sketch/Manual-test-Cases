@@ -6046,3 +6046,8 @@ three wrong characterisations before it was found — see learning **L0233**.
   rename both for the next build so earlier evidence is kept). Avatar hover (C96938): `avatar-check.mjs` reads every Tech View
   header avatar's `title`. A stuck technician clock: `FRESH_CLOCK=1` (L0316). **Run `build/testing-tools/ensure_bridge.sh` before
   every normal-browser script — the bridge dropped three times on 12 Oct (`ERR_PROXY_CONNECTION_FAILED`).**
+- **(12 Oct 2026) QA branches turn ANY network error into the sleep page (L0317).** Offline tests (`ctx.setOffline(true)`) on a
+  QA branch end on sleep.qa.shopview.com — QA-build-only code. Judge offline alerts on staging/production; on the QA branch use
+  a refused request (`route.abort`/fulfil 500, as s4-batchD does) for the "card back + alert" part.
+- **(12 Oct 2026, Slavcho) From v26.40.14-e84b3d1, Board/Tech View cards name the lead like the column header (the ACCOUNT name);
+  the List still shows the staff-record name.** On QA data the two differ for most technicians (scrambled data) — expected, not a fault.

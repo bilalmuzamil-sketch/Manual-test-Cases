@@ -1,0 +1,45 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.14-e84b3d1",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C96968": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed \u2014 retested on the new build v26.40.14-e84b3d1 after SV-11074 was fixed (Ahtasham's failure: a move made offline was saved later when the connection came back).",
+    "Now: a card dragged while offline is NOT saved later. After reconnecting and reloading, the work order still has no lead technician.",
+    "When a move cannot be saved, the card goes back to its column and the alert reads exactly \"Failed to update lead technician, please try again.\"; it stays until X is clicked, and after a reload the lead is unchanged. Seen in Board View and in Tech View (pictures attached).",
+    "On a QA branch only, any request that fails because there is no connection makes the page say \"QA env is sleeping\" and move to the QA sleep page. This is QA-server wiring (it is in the app's code for QA builds only), not the Work Orders screen, so the offline alert itself cannot show here.",
+    "The offline alert will be checked on staging on 14 Oct 2026, where that QA wiring does not exist."
+   ],
+   "not_observed": [
+    "The alert while the computer is offline (QA-branch only redirect; checked on staging 14 Oct)"
+   ],
+   "todo": null
+  },
+  "C96960": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed \u2014 re-checked on the new build v26.40.14-e84b3d1 after SV-11128 was fixed (Ahtasham's report).",
+    "A line whose technician followed the old lead, on a work order with a Schedule shift for another technician, was moved to the new lead by Reassign lead technician: the line's labour row now shows Ralph Edwards (was Esther Howard), and \"Lead technician updated\" showed.",
+    "Pictures attached: the lines before and after."
+   ],
+   "not_observed": null,
+   "todo": null
+  },
+  "C368136": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed \u2014 re-checked on the new build v26.40.14-e84b3d1 after SV-11126 was fixed (Ahtasham's report).",
+    "Reassigning a work order whose lead (Esther Howard) has a whole-work-order shift under way now brings up \"Clear Esther Howard's scheduled shifts?\" with Cancel, Keep Shifts and Clear Shifts.",
+    "Cancel closes it and the lead stays Esther Howard.",
+    "Picture attached."
+   ],
+   "not_observed": null,
+   "todo": null
+  }
+ }
+}
