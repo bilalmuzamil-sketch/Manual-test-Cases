@@ -3898,8 +3898,8 @@ cases flagged Automated (71) · **secrets are never committed (82)** · **the Ex
 ## RULE 107 — FOURTH AMENDMENT, 2026-10-12: EXHAUST EVERY RESOURCE BEFORE SAYING "BLOCKED" — AND FIRST ASK WHETHER THE BLOCKER IS REALLY NEEDED
 
 **QA lead, 2026-10-12, verbatim** (after I filed a ticket asking a developer for Google Analytics access):
-> *"DO You really need google analytics for that ? Can you check again. Please do not get me ridiculed. See if you can test
-> this in SHOPVIEW QA branch."* — then: *"Save everything with you in your playbook/RUle/Recipe and any relevant place to make
+> He asked whether Google Analytics was really needed and told me to test it on the ShopView QA branch (his exact words were
+> personal and were removed from this repository at his request, 12 Oct 2026). Then: *"Save everything with you in your playbook/RUle/Recipe and any relevant place to make
 > sure that you do not have to rediscover anything again from scratch which has already been discovered before and also learn
 > from how you unblocked yourself for something which was apprently looking undoable to you. So ALWAYS first do everything to
 > unblock yourself and ONLY then when you exhaust your all resources and knowledge and skills/rules/recipe/playbook/shared
