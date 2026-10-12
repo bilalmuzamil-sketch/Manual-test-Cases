@@ -117,10 +117,21 @@ def comment_for(rec, todo, header, footer=None, lead=None):
     blocks = []
     if lead:
         blocks.append('<p>%s</p>' % esc(lead.strip()))
-    blocks += ['<p>%s</p>' % esc(header), '<p>%s</p>' % esc(rec['observed'].strip())]
-    nobs = (rec.get('not_observed') or '').strip()
-    if nobs and nobs.lower() != 'none':
-        blocks.append('<p>Not observed this run: %s</p>' % esc(nobs))
+    # Rule 122 (QA lead 2026-10-12): the comment is short plain bullet points a non-technical reader
+    # can follow. `observed` / `not_observed` may be a LIST of points -> one <ul><li> each (block
+    # tags only, never <br>, per the TestRail formatting rule). A string still renders as before.
+    def bullets(v):
+        return '<ul>%s</ul>' % ''.join('<li>%s</li>' % esc(str(x).strip()) for x in v if str(x).strip())
+    obs = rec['observed']
+    blocks += ['<p>%s</p>' % esc(header), bullets(obs) if isinstance(obs, list) else '<p>%s</p>' % esc(obs.strip())]
+    nobs = rec.get('not_observed') or ''
+    if isinstance(nobs, list):
+        if nobs:
+            blocks += ['<p>Not checked this time:</p>', bullets(nobs)]
+    else:
+        nobs = nobs.strip()
+        if nobs and nobs.lower() != 'none':
+            blocks.append('<p>Not observed this run: %s</p>' % esc(nobs))
     ticket = (rec.get('ticket') or '').strip()
     if ticket:
         blocks.append('<hr />')

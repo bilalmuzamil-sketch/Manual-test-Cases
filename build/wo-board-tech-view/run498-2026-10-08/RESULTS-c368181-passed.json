@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C368181": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed, on the QA lead's ruling of 12 Oct 2026 \u2014 this is not a regression.",
+    "On the test branch, a truck's page shows the Work Orders tab with no count, and no count above or below the list.",
+    "Production shows exactly the same: its truck page (2017 Westernstar, unit T 987) lists four work orders with no count on the Work Orders tab, while the Invoices tab reads \"Invoices (1)\".",
+    "Same on production means it is not something this build broke (standing rule since 12 Oct 2026).",
+    "The test's expected result (\"the count reads 3 and the table has 3 rows\") is left unchanged; the build simply matches production.",
+    "Ahtasham's ticket SV-11110 (https://shopview.atlassian.net/browse/SV-11110, Open) is left as it is; it is his to keep or close.",
+    "Picture attached: production on top, test branch below, both annotated."
+   ],
+   "not_observed": null,
+   "todo": "Nothing for the tester."
+  }
+ }
+}

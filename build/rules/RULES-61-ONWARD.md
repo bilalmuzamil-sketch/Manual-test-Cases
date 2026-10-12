@@ -4800,3 +4800,23 @@ regression."*
 5. This narrows L0303 (production is for comparison only) for regression checks: here the comparison DECIDES whether it is
    a regression. For a PRD/story check the PRD still wins (57) and production stays a comparison.
 Worked example: C368233–C368235 (10 Oct 2026) — the "All …" report filters behave the same on production v26.40.14.
+
+---
+
+## RULE 122 — EVERY TESTRAIL RUN COMMENT IS SHORT PLAIN BULLET POINTS A NON-TECHNICAL READER CAN FOLLOW (QA lead 2026-10-12)
+
+Verbatim: *"mark it as your rule going forward that your comment in the Testrail test runs for each case, should be human
+readable in bullet points easier for the readers not technical people to understand."*
+
+1. **Every result comment in a TestRail run is a list of short bullet points**, never a paragraph. One fact per point:
+   the verdict and why, what a person sees on screen, what production does (where checked), the ticket with its link and
+   status, and what (if anything) the tester must do.
+2. **Plain words for a non-technical reader** (Rule 103 applies to the comment, not only to chat): the screen's own labels,
+   no endpoints, status codes, selectors, field names or internal tool names. Ids and technical detail, where truly
+   needed, go in the separate `technical` block at the very end (the tool already puts it after a rule).
+3. **Mechanism:** `build/testing-tools/push_results_to_run.py` accepts `observed` (and `not_observed`) as a **list** of
+   points and renders them as `<ul><li>` (block tags only — the TestRail formatting rule still holds: never `<br>`).
+   A plain string still works for old result files, but **new results are written as lists**.
+4. **A picture that decides the verdict is attached to the result** (`add_attachment_to_result`) when the QA lead asks for
+   one — e.g. the production-vs-test-branch comparison for a Rule 121 call.
+Worked example: C368181, run 498, 12 Oct 2026 — seven bullet points plus the annotated production/test-branch picture.
