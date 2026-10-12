@@ -4869,3 +4869,42 @@ Ahtasham's own steps and left Failed (`build/wo-board-tech-view/run498-2026-10-0
 
 Every production comparison made for a result — above all in a regression folder — is **attached to that result as an
 annotated screenshot** (production beside the test branch), not only described in words. Worked example: C368181.
+
+---
+
+## RULE 125 — BEFORE ANYTHING ABOUT TIME OR TIME ZONES: THE LOCATION'S ZONE IS SET TO MATCH MY BROWSER (PAKISTAN), AND PROVED (QA lead 2026-10-12)
+
+Verbatim: *"Change its time to Pakistan time whatever it is. For any bug issue related to time, make sure that the timezone of
+the location is first set to pakistan time or its time should 100% match YOUR browser time. Ideally the location timezone
+MUST MATCH YOUR BROWSER TIME. ALWAYS SAVE IT AS A PERMANENT RULE TO DO BEFORE TESTING ANYTHING RELATED TO TIME AND TIMEZONE."*
+
+1. **Before any check whose verdict involves a time, date, shift, clock-in, timesheet, schedule or time zone:** open
+   Administration > Locations, and set the test location's **Timezone to `Asia/Karachi`** (edit > Timezone > Save & Close —
+   the button answers a DOM click; `qa-set-tz.mjs`), and read it back after a reload.
+2. **The browser runs on the same zone:** `TZ=Asia/Karachi` for every browser used for the check, and a **normal sign-in**
+   (`qa-branch-boot.mjs`, L0312 — never the injected harness for a displayed time).
+3. **Prove it before judging:** `TZ=Asia/Karachi node build/wo-board-tech-view/run498-2026-10-08/tz-match-check.mjs` must exit
+   0 — the Schedule's blue "now" pill equals the browser's clock (±2 min) and the signed-in user's zone equals the browser's.
+   Exit 1 ⇒ fix the set-up, never judge the product.
+4. Data made through the app's own API takes the location's zone too; after step 1 it is Pakistan time like everything else.
+5. Applies on every environment (QA branch, staging, production test account), every time; a location another session
+   changed back is set again — no asking (107).
+Worked example: sv10043 "Staging Heavy Duty - 9919" was Asia/Dubai (someone's change); set to Asia/Karachi 12 Oct 2026,
+pill 3:51 PM = browser 3:51 PM.
+
+## RULE 126 — EVERY PASS ON A QA BRANCH IS THEN RUN ON STAGING, THEN ON PRODUCTION — BE READY, AND BE QUICK (QA lead 2026-10-12)
+
+Verbatim: *"we would need and always need to run the same tests on staging afterwards so be ready and make sure that on staging
+you run those tests quickly without wasting much time. This will be our regular practice that the tests once ran on QA
+branches would then need to run on staging and then on prod. So you should always be prepared for this thing."*
+
+1. **Order: QA branch → staging → production.** A run is not finished on the QA branch; plan the staging and production
+   passes from the start.
+2. **Write every script environment-ready from day one:** the host, sign-in and location come from settings
+   (`GS_APP` / `qa-branch-boot.mjs <branch|staging>` / `PROD_ENVF`), never hard-wired; seed data by name, not by a QA-branch
+   id; record per run which checks need data made first.
+3. **Keep a ready list per run** (`STAGING-READY.md` beside the run): every check, the script that runs it, the data it
+   needs, and anything that cannot run on that environment (e.g. a QA-branch-only feature, a production write). On the day,
+   it is one queue (`run_queue.sh`), not a re-discovery.
+4. Rule 125 is part of every environment's set-up (location zone = browser zone), and Rule 121 production comparisons are
+   reused, not redone, where nothing changed.
