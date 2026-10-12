@@ -5443,3 +5443,9 @@ deletes on this instance (playbook).
 ## L0310 — 2026-10-12 — Same on production ⇒ not a regression (now Rule 121)
 QA lead: "any issue which is the same on production too is not a regression." Every regression-folder failure is checked on
 production BEFORE it is put to him as a defect. Recorded as Standing Rule 121.
+
+## L0311 — 2026-10-12 — A freeze that only my browser shows: pause it and read the stack before blaming anything
+The sign-out test "froze the test browser" for three days and was parked as manual. Pausing both frozen tabs with the
+debugger (CDP Debugger.pause) showed them looping in app code, triggered by MY harness's init script rewriting the session on
+every page load. A clean context made the test pass in one run. Rule 104's "what would make this MY fault" includes the
+harness's own injected scripts — test without them before parking a check.

@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C368240": {
+   "verdict": "Passed",
+   "observed": "Tab 1: Work Orders > All, 70 work orders showing. Tab 2 (same browser, same site): profile menu > Logout -> the sign-in page. Back in tab 1: it had already moved to the sign-in page by itself (/login?redirect=/workorders?tab=all) \u2014 so Reports > Inventory Value could not be clicked, the sign-in page was showing instead, as the case allows ('Tab 1 takes you to the sign-in page'). No red error messages; no work orders or report rows left on screen (picture). Signed in again with the Admin button: Work Orders opened with 70 rows of current data, no error.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  }
+ }
+}

@@ -6007,3 +6007,10 @@ three wrong characterisations before it was found — see learning **L0233**.
   Register page makes) now answers **404 "'resource' was not found."**; `GET /api/organizations` lists only "Staging Foothills
   Group Inc". Supersedes the 9 Oct "send the form's own request" note for this branch. Tenant-isolation tests are Blocked here
   until a developer adds a second organisation (C368175, C154650).
+- **⚠️ "The browser freezes after a sign-out / user switch" was the HARNESS (2026-10-12, C368240; days lost on it).** The
+  sign-in helper (`global-search/e2e/fixtures/boot.ts`) adds an init script that writes the session into localStorage on EVERY
+  page load. After a sign-out with TWO tabs open, both tabs then loop (both paused in the app's `getOrganizationFeatures`,
+  read with CDP `Debugger.pause`) and stop answering — screenshots and even `evaluate('1')` time out. One tab alone does not
+  freeze. Fix: for any sign-out / switch-user / session-change check, open a CLEAN context from the same signed-in state —
+  `browser.newContext({ storageState: await page.context().storageState() })` — and use only it (`signout-fix6.mts`,
+  `freeze-diag4.mts`). Diagnosis kit: `freeze-diag.mts` (pending requests + liveness), `freeze-diag3.mts` (debugger stacks).
