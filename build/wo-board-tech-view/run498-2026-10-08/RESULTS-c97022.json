@@ -1,0 +1,18 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C97022": {
+   "verdict": "Failed",
+   "observed": "Followed the case's steps on Board View, keyboard only (read 9 Oct, build v26.40.8-7a95011, recorded 12 Oct). Step 4: after 'Reassign lead technician' was closed with Escape, focus returned to the card's more-actions button, with a visible outline \u2014 fine. Step 5: with Status = Approved, focus on the Golf Co card; the second browser set Golf Co to In Progress; the board did NOT remove the card by itself (live updates on, waited); after the case's 'refresh your board' focus was on the page itself (top of the page, nothing outlined); one Tab press then landed on a visible 'Skip to main content' link. Step 6: focus on Ben's column; the second browser deactivated Ben; the column stayed until the refresh; after the refresh focus was again on the page itself, and one Tab went to 'Skip to main content'. Against the case's words ('Fail if focus disappears (for example back to the top of the page)') steps 5 and 6 fail \u2014 but a refresh puts focus at the top of any page, so this is for the QA lead to decide.",
+   "not_observed": "Focus when the card or column leaves WITHOUT a refresh \u2014 the board did not remove them by itself in the time waited.",
+   "ticket_held": true,
+   "ticket": "Held with the QA lead (not filed, and possibly not a product fault): the case's own \"refresh your board\" step always puts focus at the top of the page.",
+   "todo": "QA lead to decide in the one-by-one defect review: ticket, or change the test's steps."
+  }
+ }
+}
