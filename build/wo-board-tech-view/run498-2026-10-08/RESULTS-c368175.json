@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C368175": {
+   "verdict": "Retest",
+   "observed": "Organisation B ('DearTeem') holds technician 'ZZAUTOTEST F3 Scope OrgB Tech'. Signed in to organisation A at Staging Heavy Duty - 9919, work order 'ZZAUTOTEST Other Org Lists'. Step 2 (New Line, typed line, Add Technician, typed 'OrgB'): 'No results' \u2014 not offered. Control: typing an organisation-A name lists 30 technicians. Step 6 (line's three-dots > Edit labor > Technician): the full list (23 names, ending with 'ZZAUTOTEST Ana Alpha', control 'Ralph Edwards' present) has no 'OrgB' name. Step 4 (Edit Line > Add Technician, typed 'OrgB'): this list has no search box \u2014 typing does not narrow it (a control name did not narrow it either), and the list is too long for the test script to read to its end (it stops before the 'ZZ\u2026' names, where the organisation-B technician would sort), so it is NOT checked. The server's refusal of another organisation's technician sent outside the screens: not checked by hand (as the case allows).",
+   "not_observed": "Step 4: whether 'ZZAUTOTEST F3 Scope OrgB Tech' is offered in Edit Line > Add Technician \u2014 needs a person to scroll that list to the end (about 2 minutes).",
+   "ticket": "",
+   "todo": "A person: open work order 'ZZAUTOTEST Other Org Lists' at Staging Heavy Duty - 9919, Lines tab, click the line's name (Edit Line), click Add Technician, scroll to the end of the list: pass if no 'OrgB' name is in it. Then mark this test Passed or Failed."
+  }
+ }
+}

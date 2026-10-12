@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C368239": {
+   "verdict": "Passed",
+   "observed": "As Admin ShopView in a clean browser window: started using the app as Esther Howard; Work Orders with Assigned to me on listed her work order S10043-19173 (made for this test, led by her). Opened the Schedule (a Technician has no Reports link, so the slow page used is the Schedule \u2014 its board was still loading, spinner showing) and clicked Exit in the orange 'Account Access Mode' bar while it loaded. Only a green message: 'Successfully exited impersonation, restored user \"Admin ShopView\".' \u2014 no red message. The top bar shows my own user again (no Account Access Mode bar; Reports back in the menu). Step 4: Work Orders, Assigned to me on, no search: 30 work orders over every page, and S10043-19173 / S10043-19168 (Esther's) are not among them; control: with Assigned to me off the same reader finds S10043-19173. Nothing of Esther Howard's is left on screen.",
+   "not_observed": "Reports > Work In Progress as the loading page \u2014 a Technician cannot open Reports, so the Schedule was used.",
+   "ticket": "",
+   "todo": "Nothing to do."
+  }
+ }
+}
