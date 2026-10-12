@@ -12,6 +12,7 @@ import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
 
+process.env.WOB_FRESH_GA = '1';
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
 const { browser, page: p0 } = await open('/workorders?tab=all');

@@ -17,7 +17,10 @@ export async function viewAs(browser: Browser, main: Page, a: Api, userId: strin
   await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' });
   const fe = (await a.get('/api/auth/me/fe-permissions')).body?.data ?? null;
   const user = s.body?.data ?? null;
-  const ctx = await browser.newContext({ storageState: await main.context().storageState(), viewport: { width: 1600, height: 1000 }, deviceScaleFactor: Number(process.env.WOB_SCALE || 1), ignoreHTTPSErrors: true });
+  const st = await main.context().storageState();
+  // WOB_FRESH_GA=1: each person gets their own Google Analytics browser id, as a real person on their own computer would
+  if (process.env.WOB_FRESH_GA) st.cookies = st.cookies.filter((c) => !/^_ga/.test(c.name));
+  const ctx = await browser.newContext({ storageState: st, viewport: { width: 1600, height: 1000 }, deviceScaleFactor: Number(process.env.WOB_SCALE || 1), ignoreHTTPSErrors: true });
   // WOB_LIVE=1 lets the live-update channel (mercure) through, for checks that need the board to update by itself
   const blockBase = process.env.WOB_GA ? /maps\.googleapis|intercom|sentry\.io|mercure\.qa|hotjar|fullstory/i : /maps\.googleapis|intercom|sentry\.io|mercure\.qa|googletagmanager|google-analytics|hotjar|fullstory/i;
   const block = process.env.WOB_LIVE ? new RegExp(blockBase.source.replace('mercure\\.qa|', ''), 'i') : blockBase;
