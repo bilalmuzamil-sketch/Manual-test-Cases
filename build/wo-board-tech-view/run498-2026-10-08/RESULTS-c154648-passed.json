@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C154648": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed \u2014 Chris (Product Owner) confirmed on 12 Oct 2026 that imported work orders open in List only, and the PRD now says so (version 48, S1-R13a and S1-R13b).",
+    "Checked on the QA branch on 12 Oct 2026 in a normal browser: in List, with \"Imported\" ticked in Status, the imported work orders are listed (e.g. ZZAUTOTEST-IMP-20705, ZZIMP-1001).",
+    "With \"Imported\" ticked, the Board View and Tech View buttons are greyed out and the tooltip reads \"Not available while Imported is selected.\", exactly as S1-R13a says.",
+    "In Board View and in Tech View, \"Imported\" is greyed out in the Status filter and cannot be ticked; the tooltip reads \"Imported work orders open in List.\", exactly as S1-R13b says.",
+    "Every other status in the same menu can be ticked, and both buttons work again after \"Clear selection\".",
+    "Pictures attached: the greyed-out buttons in List, and the greyed-out \"Imported\" in Board View's Status filter."
+   ],
+   "not_observed": null,
+   "todo": null
+  }
+ }
+}

@@ -20,3 +20,15 @@ Reading: the build does exactly what Sasha approved on 24 Sep. Chris's 12 Oct an
 Related cases: C154887 (Retest; Chris's Q2), C154648 (Passed 9 Oct; asserts the Sasha behaviour, so it disagrees with Chris's answer).
 
 Q1/Q3 (Collapse all; Columns count / Show all / Reset to default / Find a column): PRD v47 contains none of these words; each case cites them to Branko's design export of 8 Oct only. Answers Chris's doubt: they were in the design, never in the PRD.
+
+## RESOLVED 12 Oct 2026 (evening)
+Chris (sheet 1qOK9…, answer B): "Keep what Sasha agreed: imported work orders open in List only. My earlier answer was wrong.
+… The PRD is now updated to match (v48: S1-R13a and S1-R13b, with the two messages exactly as built; S4-N9 removed). Please
+close this check; nothing to raise with Slavcho."
+PRD 845185030 v48 (2026-10-12 16:43 UTC), read live: S1-R13a "Imported work orders open in List only. While "Imported" is
+selected in the Status filter in List, the Board View and Tech View options are greyed out with the tooltip "Not available while
+Imported is selected."" · S1-R13b "In Board View and Tech View, "Imported" is greyed out in the Status filter with the tooltip
+"Imported work orders open in List."" · S4-N2 no longer lists Imported · S4-N9 removed.
+Actions: C154648 Passed (2 pictures attached); C154887 deleted with the QA lead's go-ahead (copy in case-deletes-2026-10-12/).
+No ticket. Note for the record (Expected left as is, Rule 114): C96963, C97009 and C368158 quote the OLD S4-N2 wording that
+still lists "Imported"; what they test (Invoiced / Paid) is unchanged in v48.
