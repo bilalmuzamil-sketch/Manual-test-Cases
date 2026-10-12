@@ -3947,7 +3947,9 @@ put the ruling's word by wor[d]."* Rule choice: **any ruling — the Product Own
 
 **THE STANDING INSTRUCTION.** Whenever a test is marked Passed because of a ruling (Product Owner or QA lead) while the test as
 written would make a tester mark it Failed or Blocked: (1) list those tests with their run links and the count FIRST and wait for
-his go (he asked for the list before any change, 12 Oct); (2) then rewrite the test — preconditions, steps AND expected results —
+his go (he asked for the list before any change, 12 Oct); **(1a) ONE AT A TIME (QA lead 12 Oct: "Make sure that you do not edit any
+test cases, you will tell me and we will go on by one after I approve each."): show him ONE test — current text and the exact proposed
+text — and edit it only after HE APPROVES THAT ONE; never a batch;** (2) then rewrite the test — preconditions, steps AND expected results —
 so a new tester reaches the same result without knowing the ruling; (3) the expected result quotes the ruling **word for word**
 (who, date, where it was given, link) and/or the updated source (PRD version and line) — the 114(a) quote rule still applies, the
 ruling is now a source; (4) Rule 41: re-verify the whole case after the edit; Rules 65/71: tell Vlad if the case is Automated;
