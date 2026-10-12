@@ -1,0 +1,91 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C368162": {
+   "verdict": "Blocked",
+   "observed": [
+    "Still blocked (checked 8 Oct 2026; reviewed with the QA lead 12 Oct 2026).",
+    "The test checks a single button that closes every Tech View group at once (\"Collapse all\") and opens them again (\"Expand all\").",
+    "This build has no such button; each group can only be closed with its own arrow.",
+    "Waiting on: the Product Owner to say whether this button is coming in this release (question sheet sent 12 Oct 2026).",
+    "When it ships \u2014 Passed if every group closes together (headers and counts stay), stays closed after a refresh, and opens again together; Failed if any group does not follow the button."
+   ],
+   "not_observed": null,
+   "todo": "Re-run when the Product Owner answers or the button appears."
+  },
+  "C154887": {
+   "verdict": "Blocked",
+   "observed": [
+    "Still blocked (checked 8 Oct 2026; reviewed with the QA lead 12 Oct 2026).",
+    "The test checks that \"Reassign lead technician\" is greyed out on an imported work order, with its tooltip.",
+    "Imported work orders never appear in Board View or Tech View (the Imported choice in the Status filter is greyed out there), so the action cannot be reached.",
+    "The test itself says to mark it Blocked in this situation: it is an open product question, not a failure.",
+    "Waiting on: the Product Owner to say whether imported work orders should appear on the board (question sheet sent 12 Oct 2026).",
+    "If they should \u2014 Passed if the action is greyed out with \"The lead technician can't be changed on an imported work order.\"; Failed otherwise."
+   ],
+   "not_observed": null,
+   "todo": "Re-run when the Product Owner answers."
+  },
+  "C368160": {
+   "verdict": "Blocked",
+   "observed": [
+    "Still blocked (checked 9 Oct 2026; reviewed with the QA lead 12 Oct 2026).",
+    "The test checks the Tech View Columns menu's count (\"10 of 10 shown\"), \"Show all\" and \"Reset to default\".",
+    "This build's Column Selection menu has none of these; the developer says they are not in this release.",
+    "When they ship \u2014 Passed if the count is right, unticking a column hides it at once, Show all ticks everything and Reset to default restores the start; Failed otherwise."
+   ],
+   "not_observed": null,
+   "todo": "Re-run when the controls ship."
+  },
+  "C368164": {
+   "verdict": "Blocked",
+   "observed": [
+    "Still blocked (checked 9 Oct 2026; reviewed with the QA lead 12 Oct 2026).",
+    "The test checks a \"Find a column\" search box in the Tech View Columns menu (and the same in Board View's Fields to display).",
+    "Neither menu has a search box in this build; the developer says it is not in this release.",
+    "When it ships \u2014 Passed if typing \"ass\" (or \"ASS\") leaves only Asset and Assigned Techs, \"zzqx\" shows a no-match message, and ticks never change; Failed otherwise."
+   ],
+   "not_observed": null,
+   "todo": "Re-run when the search box ships."
+  },
+  "C97026": {
+   "verdict": "Blocked",
+   "observed": [
+    "Still blocked \u2014 the last step is read in the Google Analytics reports, which this session cannot open.",
+    "Steps 1 and 2 were checked in the browser on 9 Oct 2026 and were right: a brand-new user's settings were sent as \"default\", the dispatcher's density as \"saved\".",
+    "Waiting on: someone with Google Analytics access to open the Story 12 density and field reports for 9 Oct 2026.",
+    "Passed if \"default\" and \"saved\" show as separate groups, with ZZAUTOTEST Newbie under default and the dispatcher's density under saved; Failed if they are one combined group or users are in the wrong group."
+   ],
+   "not_observed": null,
+   "todo": "Someone with Google Analytics access reads the report, then mark the result."
+  },
+  "C97033": {
+   "verdict": "Blocked",
+   "observed": [
+    "Still blocked \u2014 judged on the weekly Board View field selection report in Google Analytics.",
+    "Day 1 done on 12 Oct 2026: ZZAUTOTEST GA FS1 878767 turned VIN/Serial on, off and on (all three changes reached Google).",
+    "Day 2 is scheduled for 13 Oct 2026: FS2 turns VIN/Serial on, FS3 turns Total price off, FS4 (no financial data) only opens Board View.",
+    "After the week (from 19 Oct 2026), someone with Google Analytics access reads the report for these four users.",
+    "Passed if VIN/Serial reads 50% and Total price reads 66.7% (or 67%); Failed for any other figure, especially 66.7% for VIN/Serial."
+   ],
+   "not_observed": null,
+   "todo": "Read the weekly field selection report after 19 Oct 2026."
+  },
+  "C97034": {
+   "verdict": "Blocked",
+   "observed": [
+    "Still blocked \u2014 judged on the weekly display use and density reports in Google Analytics.",
+    "All the steps were done on 12 Oct 2026 (this week): WK1 opened Work Orders 5 times in Board View and set Compact; WK2 twice in Tech View, Comfortable; WK3 once, stayed on List; WK4 once, Tech View, left Regular (users ZZAUTOTEST GA WK1\u2013WK4 878767). Every event reached Google.",
+    "After the week (from 19 Oct 2026), someone with Google Analytics access reads the two reports for these four users.",
+    "Passed if display use reads List 4, Tech View 2, Board View 1, and density reads Compact 1, Comfortable 1, Regular 1 (33.3% each) with nobody counted twice; Failed otherwise."
+   ],
+   "not_observed": null,
+   "todo": "Read the weekly reports after 19 Oct 2026."
+  }
+ }
+}
