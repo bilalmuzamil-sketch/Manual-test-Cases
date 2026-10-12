@@ -1,0 +1,28 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C368179": {
+   "verdict": "Passed",
+   "observed": "Shift dropped under 1 PM stays at 1 PM. The QA lead's own recording on this branch (12 Oct 2026, 13:57 PKT, signed in normally, Staging Heavy Duty - 9919): S2-5750 dropped on Esther Howard's row under 1 PM was saved 01:00 PM, drawn under 1 PM. Read again in a normally signed-in browser (sign-in page quick-login, nothing injected): the harness's S10043-19188 shift, shown by the harness as 07:00 PM, is stored at 1 PM Mountain time (it sits at 11 PM in a Dubai-time shop = 19:00 UTC = 13:00 America/Edmonton). Earlier Failed results on this test came from the test harness, not the product: the harness shows QA-branch times in UTC instead of the shop's time zone (learning L0312). SV-11229 / SV-11230 were raised from that and are Obsolete.",
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368178": {
+   "verdict": "Passed",
+   "observed": "Same as C368179 for the Entire work order drop: the QA lead's recording used Entire work order (5h) dropped under 1 PM and it was saved 01:00 PM \u2013 06:00 PM, where it was dropped. Earlier Failed results on this test came from the test harness, not the product: the harness shows QA-branch times in UTC instead of the shop's time zone (learning L0312). SV-11229 / SV-11230 were raised from that and are Obsolete.",
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368177": {
+   "verdict": "Passed",
+   "observed": "In a normally signed-in browser (12 Oct 2026): S10043-19185's time entry for Esther Howard on line 1 listed at the right time (1:22 PM in the Dubai-time shop the quick-login landed in = 09:22 UTC); the row's pencil > Line > '2 Replace - Suspension air bag' > Save went through with no error message; Timesheets now lists it on line 2, and after a reload line 2's Labor row shows Esther Howard (step 5). Line 1's Labor row also still shows Esther Howard \u2014 the symptom Ahtasham's SV-11087 (https://shopview.atlassian.net/browse/SV-11087, In Progress) describes; this case's expected result asks only that the receiving line take the technician. Earlier Failed results on this test came from the test harness, not the product: the harness shows QA-branch times in UTC instead of the shop's time zone (learning L0312). SV-11229 / SV-11230 were raised from that and are Obsolete.",
+   "not_observed": null,
+   "todo": "None for this case; SV-11087 is followed on its own."
+  }
+ }
+}
