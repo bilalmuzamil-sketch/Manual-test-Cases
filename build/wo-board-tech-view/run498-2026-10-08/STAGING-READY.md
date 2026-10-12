@@ -2,7 +2,7 @@
 
 ## ⚡ ONE COMMAND (added 12 Oct 2026 evening — use this, do not rediscover anything)
 1. **Sign-in:** ask the QA lead for a fresh staging `sv_sso_session` (Google sign-in; the 5 Oct cookie had EXPIRED when tried
-   12 Oct — "the Google session has expired"). Put it in `/tmp/shopview/app.env` as `SV_SSO_SESSION=…` (chmod 600, never committed).
+   12 Oct — "the Google session has expired"). Put it in `/tmp/shopview/app.env` as THREE lines `SV_SSO_SESSION=…`, `PHPSESSID=…`, `CF_CLEARANCE=…` (all three are needed on staging; chmod 600, never committed). **Proven 12 Oct 18:19 UTC**: staging sign-in works with them (quick-login as admin, build v26.40.14-f92c26c); `wob-run.sh` now hands that file to the sign-in for non-QA hosts and passes WOB_ORG/WOB_LOC1/WOB_LOC2. Profile written: `profiles/app.staging.shopview.com.json` (org proved). The QA lead's cookies last ~24 hours.
 2. **Time zone first (Rule 125):** staging location to Asia/Karachi and prove it (`qa-set-tz.mjs` / `tz-match-check.mjs`, pointed at
    staging) before any time-of-day script.
 3. **Run everything:** `GS_APP=https://app.staging.shopview.com WOB_API=https://api.staging.shopview.com ./staging-all.sh staging-2026-10-14`

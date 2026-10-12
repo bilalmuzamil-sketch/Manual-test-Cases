@@ -6,8 +6,10 @@ set -u
 HERE="$(cd "$(dirname "$0")" && pwd)"; APP="${GS_APP:-https://sv10043.qa.shopview.com}"; KEY="$(echo "$APP" | sed -E 's#https?://([^.]+)\..*#\1#')"
 ENVF="/tmp/shopview/${KEY}.env"; [ -f "$ENVF" ] || { echo "missing $ENVF (put SV_SSO_SESSION=… there, chmod 600)"; exit 2; }
 set -a; . "$ENVF"; set +a
+# staging/production need all three cookies (sv_sso_session, PHPSESSID, cf_clearance) from the same file; QA branches need only the first
+case "$APP" in *.qa.shopview.com*) STENVF=/dev/null ;; *) STENVF="$ENVF" ;; esac
 cd "$HERE/../../global-search/e2e"
 env -i HOME="$HOME" PATH="$PATH" HTTPS_PROXY="${HTTPS_PROXY:-}" https_proxy="${https_proxy:-}" NO_PROXY="${NO_PROXY:-}" \
-  PLAYWRIGHT_BROWSERS_PATH="${PLAYWRIGHT_BROWSERS_PATH:-/opt/pw-browsers}" GS_APP="$APP" GS_SSO="${SV_SSO_SESSION:-}" WOB_API="${WOB_API:-}" \
-  WOB_SCHED_SKIP="${WOB_SCHED_SKIP:-}" NOSHIFT="${NOSHIFT:-}" TZ="${WOB_TZ:-UTC}" ONLY="${ONLY:-}" WOB_SCALE="${WOB_SCALE:-}" WOB_EV="${WOB_EV:-}" WOB_LIVE="${WOB_LIVE:-}" WOB_NOBLOCK="${WOB_NOBLOCK:-}" SKIP_D1="${SKIP_D1:-}" PHASE="${PHASE:-}" FRESH_CLOCK="${FRESH_CLOCK:-}" WOB_GA="${WOB_GA:-}" WOB_FRESH_GA="${WOB_FRESH_GA:-}" GS_STAGING_ENVF=/dev/null \
+  PLAYWRIGHT_BROWSERS_PATH="${PLAYWRIGHT_BROWSERS_PATH:-/opt/pw-browsers}" GS_APP="$APP" GS_SSO="${SV_SSO_SESSION:-}" WOB_API="${WOB_API:-}" WOB_ORG="${WOB_ORG:-}" WOB_LOC1="${WOB_LOC1:-}" WOB_LOC2="${WOB_LOC2:-}" \
+  WOB_SCHED_SKIP="${WOB_SCHED_SKIP:-}" NOSHIFT="${NOSHIFT:-}" TZ="${WOB_TZ:-UTC}" ONLY="${ONLY:-}" WOB_SCALE="${WOB_SCALE:-}" WOB_EV="${WOB_EV:-}" WOB_LIVE="${WOB_LIVE:-}" WOB_NOBLOCK="${WOB_NOBLOCK:-}" SKIP_D1="${SKIP_D1:-}" PHASE="${PHASE:-}" FRESH_CLOCK="${FRESH_CLOCK:-}" WOB_GA="${WOB_GA:-}" WOB_FRESH_GA="${WOB_FRESH_GA:-}" GS_STAGING_ENVF="$STENVF" \
   npx tsx "$HERE/$1" 2>&1 | sed -u -E 's/[0-9a-f]{32,}/<hidden>/g'
