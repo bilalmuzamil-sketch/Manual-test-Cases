@@ -5463,3 +5463,13 @@ whose verdict is a displayed date or time on a QA branch is judged in a `qa-bran
 and a time fault is compared against a normally-signed-in browser BEFORE it is put to the QA lead (Rule 104 proof 7).
 Evidence `build/wo-board-tech-view/run498-2026-10-08/evidence/clean-tz-2026-10-12/`, scripts `clean-tz-check.mjs`,
 `clean-labor-read.mjs`, `tz-harness-probe.mts`.
+
+## L0313 — 2026-10-12 — Re-test another tester's failure with THEIR route; and read the shop's own time zone first
+Re-testing Ahtasham's three failures: with shifts made behind the scenes (API create, then moved to an exact moment) two of
+them did NOT happen (the line followed the new lead; the Clear shifts question appeared). Made his way — dragging the work
+order onto the Schedule for later today — both DID happen. The route that makes the data is part of the test. Separately,
+**Staging Heavy Duty - 9919 on sv10043 is now set to Asia/Dubai** (Administration > Locations, read 12 Oct; it was
+America/Edmonton): shifts created with a start date and time then land in Dubai time, and the Schedule's "now" line reads
+Dubai time. Before any time-of-day check, compare the Schedule's "now" line with the shop's zone read off Locations. Changing
+location with `iam/change-location` alone does not change what the screen shows (playbook, already recorded — search first).
+A one-line work order dropped on a technician's Schedule row creates the shift at once, with no window.

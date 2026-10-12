@@ -4842,3 +4842,30 @@ understand."*
    ticket text carries a `browse/SV-…` link, after the batched results (read back: newest first).
 Worked example: run 498, 12 Oct 2026 — C96938, C96960, C96968, C368136, C96978, C96983
 (`build/wo-board-tech-view/run498-2026-10-08/failed-comments-2026-10-12/`).
+
+---
+
+## RULE 124 — ANOTHER TESTER'S FAILED MARK IS RE-TESTED; ONLY A FAILURE THAT DOES NOT HAPPEN IS TURNED TO PASSED (QA lead 2026-10-12)
+
+Verbatim: *"Test them again and mark them as passed if Ahtasham mistakenly moved them to failed. If you find any test to be
+passed and mistakenly marked as failed by Ahtasham make sure that you put very clear comment about how it is passed with
+annotated screenshots and bullet point comments in those test cases for a layman to easily understand. Always do that for a
+similar situation if it happens again. However if the test is still failed do nothing and leave the test cases as failed
+otherwise mark them as passed."*
+
+1. When another tester marks one of our run's tests Failed, **re-test it following THEIR ticket's steps exactly** (their
+   preconditions, their route — e.g. a shift made by dragging onto the Schedule, not created behind the scenes), in a
+   normally signed-in browser (L0312), with the screen's clock checked against the shop's own time zone first.
+2. **The failure happens ⇒ do nothing.** Leave the test Failed with their ticket; add no comment.
+3. **The failure does not happen ⇒ mark it Passed** with (a) Rule 122/123 plain bullet points saying how it passed and how
+   their steps were followed, and (b) **annotated screenshots attached to the result**.
+4. Before calling their failure "not happening", rule out my own set-up (Rule 104): a different way of creating the data, a
+   stale clock or shop, an earlier test block in the way. A first attempt that passes is not enough when it did not follow
+   their steps.
+Worked example: run 498, 12 Oct 2026 — C96960 / SV-11128, C368136 / SV-11126, C96968 / SV-11074: all three reproduced with
+Ahtasham's own steps and left Failed (`build/wo-board-tech-view/run498-2026-10-08/evidence/ah-retest-2026-10-12/`).
+
+## RULE 121 — AMENDMENT 2026-10-12 (QA lead: *"Anything that requires comparison with prod you must do that and add its screenshot there too specially for the tests in the REGRESSION related folders"*)
+
+Every production comparison made for a result — above all in a regression folder — is **attached to that result as an
+annotated screenshot** (production beside the test branch), not only described in words. Worked example: C368181.

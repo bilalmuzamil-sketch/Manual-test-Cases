@@ -1,0 +1,36 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C96977": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed, on the QA lead's ruling of 12 Oct 2026.",
+    "What the requirement asks: the work order number, unit number and status are always on the card and can't be turned off.",
+    "In Board View > Fields to display, these three are not in the list at all, so there is no way to turn them off.",
+    "With every other field turned off, the card still showed the work order number (S10043-17989), the status (Approved) and the unit (TRK-118).",
+    "So the requirement is met.",
+    "Small difference, accepted: the test expected the menu to list the three as locked 'always on' fields; the menu leaves them out instead."
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368170": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed, on the QA lead's ruling of 12 Oct 2026.",
+    "What the test protects: once a lead change is refused, none of the other changes made in the same save go through.",
+    "This build has no single edit window that saves the lead, mileage, engine hours and PO together.",
+    "On an invoiced work order, the Lead Technician, Mileage and Engine Hours can't be changed at all; after a reload they still read Esther Howard, 123,456 and 3,420.",
+    "The Customer PO on the Finance tab is saved on its own (a separate save), so it isn't 'another edit in the same save'.",
+    "So nothing the test protects can change once the work order is invoiced."
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ }
+}
