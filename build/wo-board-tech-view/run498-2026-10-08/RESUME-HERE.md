@@ -125,3 +125,8 @@ NOT judged, re-run needed: C368177 (labor move not performed by the script) · C
 SV-11098 C96923 · SV-11104 C368138 · SV-11106 C96978 · SV-11117 C96983 · SV-11118 C368204 · SV-11119 C368149 · SV-11120 C368165 ·
 SV-11121 C368247 · SV-11122 C368181 · SV-11123 C368216 · SV-11124 C368242 · SV-11125 C368221 · (SV-11075 C96938, someone else's)
 Pictures still to add (2x, after the branch is back: caps2x + twopics steps of resume2.sh): SV-11119..SV-11125.
+
+
+## 12 Oct 2026 — priority 2, defects one by one
+- **Defect 1 DONE:** Rule 121 production check (prod-tz-check.mjs, evidence/prod-2026-10-12) ⇒ regression; filed [SV-11229](https://shopview.atlassian.net/browse/SV-11229) under SV-10228 (his choice); posted into run 498 on C368179 + C368178. C368175 marked Passed by the QA lead himself (video).
+- **Next: Defect 2** — C97022 keyboard focus after a refresh (held, no ticket). Then Defect 3 C368177 (SV-11087 covers it), then the filed open tickets, then priority 3 (9 blocked).

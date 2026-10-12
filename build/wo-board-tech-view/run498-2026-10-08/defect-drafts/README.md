@@ -255,3 +255,8 @@ Recapture on a FRESH line with NO technician: adding Dana Ortiz in Edit Line DID
 | C368216 | [SV-11123](https://shopview.atlassian.net/browse/SV-11123) | SV-10047 | to add at 2x when the branch is back |
 | C368242 | [SV-11124](https://shopview.atlassian.net/browse/SV-11124) | SV-10050 | to add at 2x when the branch is back |
 | C368221 | [SV-11125](https://shopview.atlassian.net/browse/SV-11125) | SV-10048 | to add at 2x when the branch is back |
+
+## Filed 12 Oct 2026 (one at a time, QA lead's approval per ticket)
+| Report | Ticket | Cases | Notes |
+|---|---|---|---|
+| D19 — a shift dragged onto the Schedule is saved six hours after the hour it was dropped on | [SV-11229](https://shopview.atlassian.net/browse/SV-11229) (Story Defect, Open, under SV-10228 *Verify Phase 9 — Drag and drop, board move, shift prompt*, TESTING QA read live 12 Oct; relates to SV-10228; label board-tech-view) | C368179, C368178 | Rule 121 check first: production with its location on America/Edmonton keeps a 1 PM drop at 13:00–15:00 (twice) ⇒ regression. Parent chosen by the QA lead (SV-10047 in the old draft was the wrong subject). Picture recaptured at 2x (S10043-19182), inline full-width, ends with the case links. Ticket posted into run 498 on both tests (`RESULTS-sv11229.json`). |

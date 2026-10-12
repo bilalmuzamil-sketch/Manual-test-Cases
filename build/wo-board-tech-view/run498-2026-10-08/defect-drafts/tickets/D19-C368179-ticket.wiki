@@ -1,6 +1,6 @@
 TITLE: Schedule – Dropped Shift Is Saved Six Hours After the Hour It Was Dropped On
-TYPE: Story Defect · PARENT: SV-10047 (Ready for QA, read 10 Oct 2026 — my reading of the owning story; regression item, confirm) · PRIORITY: Medium · LABEL: board-tech-view
-MY READING: REAL DEFECT on this branch. RELATED (QA lead to decide whether it belongs here): on the Timesheets list a clock-in made minutes ago shows six hours ahead (10:01 AM when the shop's time was ~4:01 AM), and editing it is refused with 'Start date cannot be set in the future. Please try to resolve this.' (C368177, S10043-18865; SV-11087 covers that test's line move). RULE 121 CHECK (12 Oct 2026, twice each): production with its test location set to America/Edmonton (this branch's zone) saved a 1 PM drop as 13:00–15:00, exactly where dropped => the six-hour jump is NOT on production => REGRESSION. Separate, pre-existing on production: with the location on its own zone Africa/Bangui (UTC+1) the same drop saved 12:00–14:00, one hour early (not a regression; reported, not filed). OWNING STORY OPEN: SV-10047 read live 12 Oct = Ready for QA but it is 'Reassign or unassign the lead technician', not the Schedule drag — ask the QA lead which story to parent under. Picture is 1x — recapture at 2x before filing (Rule 116).
+TYPE: Story Defect · PARENT: SV-10228 Verify Phase 9 — Drag and drop, board move, shift prompt (TESTING QA, read live 12 Oct 2026; chosen by the QA lead 12 Oct) · PRIORITY: Medium · LABEL: board-tech-view
+MY READING: REAL DEFECT on this branch. RELATED (QA lead to decide whether it belongs here): on the Timesheets list a clock-in made minutes ago shows six hours ahead (10:01 AM when the shop's time was ~4:01 AM), and editing it is refused with 'Start date cannot be set in the future. Please try to resolve this.' (C368177, S10043-18865; SV-11087 covers that test's line move). RULE 121 CHECK (12 Oct 2026, twice each): production with its test location set to America/Edmonton (this branch's zone) saved a 1 PM drop as 13:00–15:00, exactly where dropped => the six-hour jump is NOT on production => REGRESSION. Separate, pre-existing on production: with the location on its own zone Africa/Bangui (UTC+1) the same drop saved 12:00–14:00, one hour early (not a regression; reported, not filed). OWNING STORY OPEN: SV-10047 read live 12 Oct = Ready for QA but it is 'Reassign or unassign the lead technician', not the Schedule drag — ask the QA lead which story to parent under. Picture recaptured at 2x on 12 Oct 2026 (S10043-19182).
 
 h2. Description
 
@@ -31,7 +31,7 @@ h2. Environment
 
 * *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/schedule]
 * *Location:* Staging Heavy Duty - 9919 (time zone America/Edmonton) · *User:* Admin (quick-login)
-* *Examples:* S10043-18806 (one line, dropped under 1 PM, Mon Oct 12 2026) and S10043-18818 (whole work order, dropped under 9 AM, Tue Oct 20 2026), both on Esther Howard's row
+* *Examples:* S10043-19182 (one line, dropped under 1 PM, Fri Oct 16 2026 — seen again 12 Oct 2026, pictured above), S10043-18806 (one line, dropped under 1 PM, Mon Oct 12 2026) and S10043-18818 (whole work order, dropped under 9 AM, Tue Oct 20 2026), all on Esther Howard's row
 
 h2. Sources
 
