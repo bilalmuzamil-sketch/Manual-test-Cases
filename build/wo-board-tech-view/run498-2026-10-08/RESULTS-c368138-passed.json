@@ -1,0 +1,16 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C368138": {
+   "verdict": "Passed",
+   "observed": "QA lead's ruling, 12 Oct 2026: Passed. Dropping a card next to one another person had just moved was not saved, the card went back to where it was, and the alert showed the expected sentence 'The card you dropped this next to has moved. Refresh the board and try again.' \u2014 under a general headline 'Couldn't save the new order. Please try again.', which is accepted. The case's expected result ('an alert reading exactly \u2026', PRD S4-N11) is left unchanged; the extra headline is the only difference. Production has no Board View, so there is nothing to compare. SV-11104 (https://shopview.atlassian.net/browse/SV-11104) is to be obsoleted by the QA lead.",
+   "not_observed": null,
+   "todo": "None."
+  }
+ }
+}
