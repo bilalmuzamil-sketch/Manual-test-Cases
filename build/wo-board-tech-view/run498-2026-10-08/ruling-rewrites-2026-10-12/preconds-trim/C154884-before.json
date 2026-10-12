@@ -1,0 +1,348 @@
+{
+ "case": {
+  "id": 154884,
+  "title": "Assigned to me shows the same matching work orders in every display",
+  "section_id": 13236,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": null,
+  "created_by": 3,
+  "created_on": 1790779419,
+  "updated_by": 1,
+  "updated_on": 1791830117,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 16,
+  "is_deleted": 0,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 1,
+  "custom_preconds": "Dev-layer test \u2014 be-functional. Existing coverage: ViewWorkOrderBoardTest.php:215 (List vs board parity); merged into E2E C96911\n\n<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 1 browser \u00b7 about 15 minutes.</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).</li><li>[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit. [User-A] is also a lead technician: active, Time Clock on, this location picked in Location.</li><li>Desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); everything below is created in this location.</li><li>[Tech-A]: one other eligible technician at this location. A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.</li><li>Customer \"ZZAUTOTEST F1 Assigned To Me\" (used by this case only) with four Approved work orders: [WO-1] and [WO-2] led by you ([User-A]), [WO-3] led by [Tech-A], [WO-4] with no lead.</li><li>Names and numbers are examples; what must hold: within this customer, exactly two work orders are led by you.</li></ul><p><strong>Setup</strong></p><ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Check the location in the top bar next to the bell; to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>To make yourself a lead technician: Settings &gt; Staff &gt; your own row's edit icon &gt; Time Clock on, Active, with this location picked in Location &gt; Save.</li><li>Settings (your initials at the top right &gt; Settings) &gt; Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member &gt; First Name and Last Name, an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close. Record them as [Tech-A] (the expected results call it \"Ralph Edwards\").</li><li>Create the customer used only by this case: top menu Customers &gt; New Customer &gt; Name \"ZZAUTOTEST F1 Assigned To Me\" &gt; Save. On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit \"TRK-118\") &gt; Save. Make is required; Unit can be left empty.</li><li>Create these work orders for \"ZZAUTOTEST F1 Assigned To Me\": Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer and its Asset &gt; Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in \"What Are You Doing?\" pick a ready-made line (e.g. \"Replace - Brake pot\"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save &amp; Close. Write down the number the build gives the work order (on a QA branch they look like \"S10043-17581\"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.<ul><li>[WO-1] (the expected results call it \"S1-702\"): Lead Technician = [User-A].</li><li>[WO-2] (the expected results call it \"S1-644\"): Lead Technician = [User-A].</li><li>[WO-3] (the expected results call it \"S1-691\"): Lead Technician = [Tech-A].</li><li>[WO-4] (the expected results call it \"S1-352\"): no lead (Lead Technician left empty).</li></ul></li><li>Then make sure only [WO-1] and [WO-2] have you as Service Advisor: open [WO-3], and in the card on the left of the work order page, under Service Advisor, pick someone other than you (e.g. [Tech-A]); do the same for [WO-4]. Whoever creates a work order becomes its Service Advisor, and Assigned to me also shows work orders where you are the Service Advisor, so without this step all four work orders would show.</li><li>Check the setup worked: Work Orders &gt; All tab &gt; Search \"ZZAUTOTEST F1 Assigned To Me\" shows [WO-1] and [WO-2] (lead: you), [WO-3] (lead [Tech-A]) and [WO-4] (no lead). If your own name is not in the Lead Technician dropdown, redo the \"make yourself a lead technician\" step; then clear the search.</li></ol>",
+  "custom_steps": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In List, click Search and type ZZAUTOTEST F1 Assigned To Me.</li><li>In List, turn on Assigned to me.</li><li>Write down every work order shown (with this setup: [WO-1] and [WO-2], 2 rows).</li><li>In the display switcher at the right of the toolbar, click Tech View (tooltip \"Tech View\").</li><li>Write down every work order shown and the groups they are in.</li><li>In the display switcher at the right of the toolbar, click Board View (tooltip \"Board View\").</li><li>Write down every card shown and the columns they are in.</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Tech View and Board View show exactly the work orders List shows with Assigned to me on (example: S1-702 and S1-644, 2 in each display) and no others.</li><li>S1-691 (Ralph Edwards) and S1-352 (no lead) do not appear in any display.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S1-R13, read 8 Oct 2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S1-R13:</strong> &ldquo;With Assigned to me enabled, show only the work orders that match the existing Assigned to me rules, in every display option.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: READY</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": []
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 8,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": [
+   {
+    "id": 27230,
+    "type_id": 6,
+    "created_on": 1790790583,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Seed: at a location with &gt;=3 eligible lead technicians (Clockable, Active, role not Office/Time Clock), create several work orders across leads with some Unassigned, via Work Orders &gt; New. Open Work Orders and enable a display option. Assign some work orders to yourself; be able to toggle \"Assigned to me\".</li></ol>",
+      "new_value": "<ol><li>You are on the Work Orders page on the build under test, signed in with Work Orders view permission.</li><li>The current location has at least 3 lead technicians shown as groups/columns. (A technician is eligible when they are Clockable, Active, and their role is not Office or not Time Clock User.) Add technicians if fewer show.</li><li>Create several work orders across different lead technicians, leaving some Unassigned, via New Work Order (for example S2-17578, S2-17579, S2-17580).</li><li>Assign a few of those work orders to yourself, the signed-in user, so \"Assigned to me\" has matches.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Enable \"Assigned to me\".</li><li>Switch through List, Tech View and Board View and read which work orders show.</li></ol>",
+      "new_value": "<ol><li>Open the Work Orders page and switch to List.</li><li>Turn on the \"Assigned to me\" filter.</li><li>Read which work orders are listed.</li><li>Switch to Tech View, then to Board View, and read which work orders show in each.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 29743,
+    "type_id": 6,
+    "created_on": 1791429707,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Assigned to me shows only my matching work orders in every display",
+      "new_value": "Assigned to me shows the same matching work orders in every display"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>You are on the Work Orders page on the build under test, signed in with Work Orders view permission.</li><li>The current location has at least 3 lead technicians shown as groups/columns. (A technician is eligible when they are Clockable, Active, and their role is not Office or not Time Clock User.) Add technicians if fewer show.</li><li>Create several work orders across different lead technicians, leaving some Unassigned, via New Work Order (for example S2-17578, S2-17579, S2-17580).</li><li>Assign a few of those work orders to yourself, the signed-in user, so \"Assigned to me\" has matches.</li></ol>",
+      "new_value": "<ol><li>Sign in to the build under test as a user whose role has Work Orders view (check in Settings &gt; Roles &amp; Permissions &gt; open your role &gt; Work Orders section). The Admin role has both.</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>In the top bar, choose the location you will test in (e.g. \"Heavy Duty\"). Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. \"Esther Howard\", \"Ralph Edwards\" and yourself). A person only counts as a technician here when the staff record is Active, Clockable is on, the role is neither Office nor Time Clock User, and they are enrolled at this location. To add one:<ul><li>Settings &gt; Staff &gt; add a staff member &gt; enter the first and last name (e.g. Esther Howard), role Technician, Clockable on, Active, enrolled at this location &gt; Save.</li></ul></li><li>Create the work orders this case uses and set their lead technician (e.g. S1-702 and S1-644 led by you, S1-691 led by Ralph Edwards, S1-352 with no lead):<ul><li>Work Orders &gt; New Work Order &gt; choose a customer (e.g. \"Fibridge Commercial\") and an asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Create. Write down the number the build gives the work order (the numbers in this case are examples).</li><li>On the work order page set Lead Technician (e.g. Esther Howard) and save. Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li><li>To make yourself a lead technician: Settings &gt; Staff &gt; open your own staff record &gt; Clockable on, Active, enrolled at this location &gt; Save.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Open the Work Orders page and switch to List.</li><li>Turn on the \"Assigned to me\" filter.</li><li>Read which work orders are listed.</li><li>Switch to Tech View, then to Board View, and read which work orders show in each.</li></ol>",
+      "new_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In List, turn on Assigned to me.</li><li>Write down every work order shown (e.g. S1-702 and S1-644: 2 rows).</li><li>In the display switcher at the right of the toolbar, click Tech View (in the design its tooltip reads \"By Lead Tech\").</li><li>Write down every work order shown and the groups they are in.</li><li>In the display switcher at the right of the toolbar, click Board View (in the design its tooltip reads \"Board\").</li><li>Write down every card shown and the columns they are in.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>With \"Assigned to me\" enabled, every display option shows only the work orders that match the existing Assigned to me rules.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043 (Work Orders &mdash; Board View &amp; Tech View Display Options). Story reference: SV-10044 &mdash; Switch between display options. Spec: Confluence page 845185030 &ldquo;Work Orders &mdash; Board View &amp; Tech View Display Options&rdquo;, PRD v33 (2026-09-28), requirement(s) S1-R13 (read 30 Sep 2026). Review decisions/answers: Confluence page 853901313 where cited. Source-verified on 30 September 2026; not yet build-verified.</p><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S1-R13:</strong> &ldquo;With Assigned to me enabled, show only the work orders that match the existing Assigned to me rules, in every display option.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Tech View and Board View show exactly the work orders List shows with Assigned to me on (example: S1-702 and S1-644, 2 in each display) and no others.</li><li>S1-691 (Ralph Edwards) and S1-352 (no lead) do not appear in any display.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S1-R13, read 8 Oct 2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S1-R13:</strong> &ldquo;With Assigned to me enabled, show only the work orders that match the existing Assigned to me rules, in every display option.&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 29987,
+    "type_id": 6,
+    "created_on": 1791448814,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Sign in to the build under test as a user whose role has Work Orders view (check in Settings &gt; Roles &amp; Permissions &gt; open your role &gt; Work Orders section). The Admin role has both.</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>In the top bar, choose the location you will test in (e.g. \"Heavy Duty\"). Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. \"Esther Howard\", \"Ralph Edwards\" and yourself). A person only counts as a technician here when the staff record is Active, Clockable is on, the role is neither Office nor Time Clock User, and they are enrolled at this location. To add one:<ul><li>Settings &gt; Staff &gt; add a staff member &gt; enter the first and last name (e.g. Esther Howard), role Technician, Clockable on, Active, enrolled at this location &gt; Save.</li></ul></li><li>Create the work orders this case uses and set their lead technician (e.g. S1-702 and S1-644 led by you, S1-691 led by Ralph Edwards, S1-352 with no lead):<ul><li>Work Orders &gt; New Work Order &gt; choose a customer (e.g. \"Fibridge Commercial\") and an asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Create. Write down the number the build gives the work order (the numbers in this case are examples).</li><li>On the work order page set Lead Technician (e.g. Esther Howard) and save. Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li><li>To make yourself a lead technician: Settings &gt; Staff &gt; open your own staff record &gt; Clockable on, Active, enrolled at this location &gt; Save.</li></ol>",
+      "new_value": "<ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. \"Esther Howard\", \"Ralph Edwards\" and yourself). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field. To add one:<ul><li>Settings (your initials at the top right &gt; Settings) &gt; Staff &gt; New Staff Member &gt; First Name and Last Name (e.g. Esther Howard), an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close.</li></ul></li><li>Create the work orders this case uses and set their lead technician (e.g. S1-702 and S1-644 led by you, S1-691 led by Ralph Edwards, S1-352 with no lead):<ul><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer (e.g. \"Fibridge Commercial\") and the Asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Save. Write down the number the build gives the work order (the numbers in this case are examples; on a QA branch they look like \"S10043-17581\").</li><li>Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (e.g. Esther Howard); it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li><li>To make yourself a lead technician: Settings &gt; Staff &gt; your own row's edit icon &gt; Time Clock on, Active, with this location picked in Location &gt; Save.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In List, turn on Assigned to me.</li><li>Write down every work order shown (e.g. S1-702 and S1-644: 2 rows).</li><li>In the display switcher at the right of the toolbar, click Tech View (in the design its tooltip reads \"By Lead Tech\").</li><li>Write down every work order shown and the groups they are in.</li><li>In the display switcher at the right of the toolbar, click Board View (in the design its tooltip reads \"Board\").</li><li>Write down every card shown and the columns they are in.</li></ol>",
+      "new_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In List, turn on Assigned to me.</li><li>Write down every work order shown (e.g. S1-702 and S1-644: 2 rows).</li><li>In the display switcher at the right of the toolbar, click Tech View (tooltip \"Tech View\").</li><li>Write down every work order shown and the groups they are in.</li><li>In the display switcher at the right of the toolbar, click Board View (tooltip \"Board View\").</li><li>Write down every card shown and the columns they are in.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Tech View and Board View show exactly the work orders List shows with Assigned to me on (example: S1-702 and S1-644, 2 in each display) and no others.</li><li>S1-691 (Ralph Edwards) and S1-352 (no lead) do not appear in any display.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S1-R13, read 8 Oct 2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S1-R13:</strong> &ldquo;With Assigned to me enabled, show only the work orders that match the existing Assigned to me rules, in every display option.&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Tech View and Board View show exactly the work orders List shows with Assigned to me on (example: S1-702 and S1-644, 2 in each display) and no others.</li><li>S1-691 (Ralph Edwards) and S1-352 (no lead) do not appear in any display.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S1-R13, read 8 Oct 2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S1-R13:</strong> &ldquo;With Assigned to me enabled, show only the work orders that match the existing Assigned to me rules, in every display option.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 30127,
+    "type_id": 6,
+    "created_on": 1791454006,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. \"Esther Howard\", \"Ralph Edwards\" and yourself). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field. To add one:<ul><li>Settings (your initials at the top right &gt; Settings) &gt; Staff &gt; New Staff Member &gt; First Name and Last Name (e.g. Esther Howard), an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close.</li></ul></li><li>Create the work orders this case uses and set their lead technician (e.g. S1-702 and S1-644 led by you, S1-691 led by Ralph Edwards, S1-352 with no lead):<ul><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer (e.g. \"Fibridge Commercial\") and the Asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Save. Write down the number the build gives the work order (the numbers in this case are examples; on a QA branch they look like \"S10043-17581\").</li><li>Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (e.g. Esther Howard); it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li><li>To make yourself a lead technician: Settings &gt; Staff &gt; your own row's edit icon &gt; Time Clock on, Active, with this location picked in Location &gt; Save.</li></ol>",
+      "new_value": "<ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. \"Esther Howard\", \"Ralph Edwards\" and yourself). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field. To add one:<ul><li>Settings (your initials at the top right &gt; Settings) &gt; Staff &gt; New Staff Member &gt; First Name and Last Name (e.g. Esther Howard), an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close.</li></ul></li><li>Create the work orders this case uses and set their lead technician (e.g. S1-702 and S1-644 led by you, S1-691 led by Ralph Edwards, S1-352 with no lead):<ul><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer (e.g. \"Fibridge Commercial\") and the Asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Save. The example customer and unit are not on the test site, so create them first: top menu Customers &gt; New Customer &gt; Name (e.g. \"Fibridge Commercial\") &gt; Save. On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) &gt; Save. Make is required; Unit can be left empty. Write down the number the build gives the work order (the numbers in this case are examples; on a QA branch they look like \"S10043-17581\").</li><li>Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (e.g. Esther Howard); it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li><li>To make yourself a lead technician: Settings &gt; Staff &gt; your own row's edit icon &gt; Time Clock on, Active, with this location picked in Location &gt; Save.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 30269,
+    "type_id": 6,
+    "created_on": 1791457248,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. \"Esther Howard\", \"Ralph Edwards\" and yourself). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field. To add one:<ul><li>Settings (your initials at the top right &gt; Settings) &gt; Staff &gt; New Staff Member &gt; First Name and Last Name (e.g. Esther Howard), an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close.</li></ul></li><li>Create the work orders this case uses and set their lead technician (e.g. S1-702 and S1-644 led by you, S1-691 led by Ralph Edwards, S1-352 with no lead):<ul><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer (e.g. \"Fibridge Commercial\") and the Asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Save. The example customer and unit are not on the test site, so create them first: top menu Customers &gt; New Customer &gt; Name (e.g. \"Fibridge Commercial\") &gt; Save. On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) &gt; Save. Make is required; Unit can be left empty. Write down the number the build gives the work order (the numbers in this case are examples; on a QA branch they look like \"S10043-17581\").</li><li>Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (e.g. Esther Howard); it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li><li>To make yourself a lead technician: Settings &gt; Staff &gt; your own row's edit icon &gt; Time Clock on, Active, with this location picked in Location &gt; Save.</li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 1 browser \u00b7 about 15 minutes.</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).</li><li>[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit. [User-A] is also a lead technician: active, Time Clock on, this location picked in Location.</li><li>Desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); everything below is created in this location.</li><li>[Tech-A]: one other eligible technician at this location. A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.</li><li>Customer \"ZZAUTOTEST F1 Assigned To Me\" (used by this case only) with four Approved work orders: [WO-1] and [WO-2] led by you ([User-A]), [WO-3] led by [Tech-A], [WO-4] with no lead.</li><li>Names and numbers are examples; what must hold: within this customer, exactly two work orders are led by you.</li></ul><p><strong>Setup</strong></p><ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Check the location in the top bar next to the bell; to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>To make yourself a lead technician: Settings &gt; Staff &gt; your own row's edit icon &gt; Time Clock on, Active, with this location picked in Location &gt; Save.</li><li>Settings (your initials at the top right &gt; Settings) &gt; Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member &gt; First Name and Last Name, an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close. Record them as [Tech-A] (the expected results call it \"Ralph Edwards\").</li><li>Create the customer used only by this case: top menu Customers &gt; New Customer &gt; Name \"ZZAUTOTEST F1 Assigned To Me\" &gt; Save. On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit \"TRK-118\") &gt; Save. Make is required; Unit can be left empty.</li><li>Create these work orders for \"ZZAUTOTEST F1 Assigned To Me\": Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer and its Asset &gt; Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in \"What Are You Doing?\" pick a ready-made line (e.g. \"Replace - Brake pot\"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save &amp; Close. Write down the number the build gives the work order (on a QA branch they look like \"S10043-17581\"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.<ul><li>[WO-1] (the expected results call it \"S1-702\"): Lead Technician = [User-A].</li><li>[WO-2] (the expected results call it \"S1-644\"): Lead Technician = [User-A].</li><li>[WO-3] (the expected results call it \"S1-691\"): Lead Technician = [Tech-A].</li><li>[WO-4] (the expected results call it \"S1-352\"): no lead (Lead Technician left empty).</li></ul></li><li>Check the setup worked: Work Orders &gt; All tab &gt; Search \"ZZAUTOTEST F1 Assigned To Me\" shows [WO-1] and [WO-2] (lead: you), [WO-3] (lead [Tech-A]) and [WO-4] (no lead). If your own name is not in the Lead Technician dropdown, redo the \"make yourself a lead technician\" step; then clear the search.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In List, turn on Assigned to me.</li><li>Write down every work order shown (e.g. S1-702 and S1-644: 2 rows).</li><li>In the display switcher at the right of the toolbar, click Tech View (tooltip \"Tech View\").</li><li>Write down every work order shown and the groups they are in.</li><li>In the display switcher at the right of the toolbar, click Board View (tooltip \"Board View\").</li><li>Write down every card shown and the columns they are in.</li></ol>",
+      "new_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In List, click Search and type ZZAUTOTEST F1 Assigned To Me.</li><li>In List, turn on Assigned to me.</li><li>Write down every work order shown (with this setup: [WO-1] and [WO-2], 2 rows).</li><li>In the display switcher at the right of the toolbar, click Tech View (tooltip \"Tech View\").</li><li>Write down every work order shown and the groups they are in.</li><li>In the display switcher at the right of the toolbar, click Board View (tooltip \"Board View\").</li><li>Write down every card shown and the columns they are in.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 31726,
+    "type_id": 6,
+    "created_on": 1791797284,
+    "user_id": 1,
+    "changes": [
+     {
+      "type_id": 1,
+      "old_text": " Not Automated",
+      "new_text": " Automated",
+      "label": "Automation status",
+      "options": {
+       "is_required": true,
+       "default_value": "1",
+       "items": "1, Not Automated\n2, Cannot be automated\n3, Automated\n4, Pending",
+       "format": "markdown"
+      },
+      "field": "custom_atmstatus",
+      "old_value": 1,
+      "new_value": 3
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 31831,
+    "type_id": 6,
+    "created_on": 1791829335,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 1 browser \u00b7 about 15 minutes.</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).</li><li>[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit. [User-A] is also a lead technician: active, Time Clock on, this location picked in Location.</li><li>Desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); everything below is created in this location.</li><li>[Tech-A]: one other eligible technician at this location. A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.</li><li>Customer \"ZZAUTOTEST F1 Assigned To Me\" (used by this case only) with four Approved work orders: [WO-1] and [WO-2] led by you ([User-A]), [WO-3] led by [Tech-A], [WO-4] with no lead.</li><li>Names and numbers are examples; what must hold: within this customer, exactly two work orders are led by you.</li></ul><p><strong>Setup</strong></p><ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Check the location in the top bar next to the bell; to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>To make yourself a lead technician: Settings &gt; Staff &gt; your own row's edit icon &gt; Time Clock on, Active, with this location picked in Location &gt; Save.</li><li>Settings (your initials at the top right &gt; Settings) &gt; Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member &gt; First Name and Last Name, an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close. Record them as [Tech-A] (the expected results call it \"Ralph Edwards\").</li><li>Create the customer used only by this case: top menu Customers &gt; New Customer &gt; Name \"ZZAUTOTEST F1 Assigned To Me\" &gt; Save. On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit \"TRK-118\") &gt; Save. Make is required; Unit can be left empty.</li><li>Create these work orders for \"ZZAUTOTEST F1 Assigned To Me\": Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer and its Asset &gt; Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in \"What Are You Doing?\" pick a ready-made line (e.g. \"Replace - Brake pot\"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save &amp; Close. Write down the number the build gives the work order (on a QA branch they look like \"S10043-17581\"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.<ul><li>[WO-1] (the expected results call it \"S1-702\"): Lead Technician = [User-A].</li><li>[WO-2] (the expected results call it \"S1-644\"): Lead Technician = [User-A].</li><li>[WO-3] (the expected results call it \"S1-691\"): Lead Technician = [Tech-A].</li><li>[WO-4] (the expected results call it \"S1-352\"): no lead (Lead Technician left empty).</li></ul></li><li>Check the setup worked: Work Orders &gt; All tab &gt; Search \"ZZAUTOTEST F1 Assigned To Me\" shows [WO-1] and [WO-2] (lead: you), [WO-3] (lead [Tech-A]) and [WO-4] (no lead). If your own name is not in the Lead Technician dropdown, redo the \"make yourself a lead technician\" step; then clear the search.</li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 1 browser \u00b7 about 15 minutes.</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).</li><li>[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit. [User-A] is also a lead technician: active, Time Clock on, this location picked in Location.</li><li>Desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); everything below is created in this location.</li><li>[Tech-A]: one other eligible technician at this location. A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.</li><li>Customer \"ZZAUTOTEST F1 Assigned To Me\" (used by this case only) with four Approved work orders: [WO-1] and [WO-2] led by you ([User-A]), [WO-3] led by [Tech-A], [WO-4] with no lead.</li><li>Names and numbers are examples; what must hold: within this customer, exactly two work orders are led by you.</li></ul><p><strong>Setup</strong></p><ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Check the location in the top bar next to the bell; to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>To make yourself a lead technician: Settings &gt; Staff &gt; your own row's edit icon &gt; Time Clock on, Active, with this location picked in Location &gt; Save.</li><li>Settings (your initials at the top right &gt; Settings) &gt; Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member &gt; First Name and Last Name, an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close. Record them as [Tech-A] (the expected results call it \"Ralph Edwards\").</li><li>Create the customer used only by this case: top menu Customers &gt; New Customer &gt; Name \"ZZAUTOTEST F1 Assigned To Me\" &gt; Save. On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit \"TRK-118\") &gt; Save. Make is required; Unit can be left empty.</li><li>Create these work orders for \"ZZAUTOTEST F1 Assigned To Me\": Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer and its Asset &gt; Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in \"What Are You Doing?\" pick a ready-made line (e.g. \"Replace - Brake pot\"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save &amp; Close. Write down the number the build gives the work order (on a QA branch they look like \"S10043-17581\"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.<ul><li>[WO-1] (the expected results call it \"S1-702\"): Lead Technician = [User-A].</li><li>[WO-2] (the expected results call it \"S1-644\"): Lead Technician = [User-A].</li><li>[WO-3] (the expected results call it \"S1-691\"): Lead Technician = [Tech-A].</li><li>[WO-4] (the expected results call it \"S1-352\"): no lead (Lead Technician left empty).</li></ul></li><li>Then make sure only [WO-1] and [WO-2] have you as Service Advisor: open [WO-3], and in the card on the left of the work order page, under Service Advisor, pick someone other than you (e.g. [Tech-A]); do the same for [WO-4]. Whoever creates a work order becomes its Service Advisor, and Assigned to me also shows work orders where you are the Service Advisor, so without this step all four work orders would show.</li><li>Check the setup worked: Work Orders &gt; All tab &gt; Search \"ZZAUTOTEST F1 Assigned To Me\" shows [WO-1] and [WO-2] (lead: you), [WO-3] (lead [Tech-A]) and [WO-4] (no lead). If your own name is not in the Lead Technician dropdown, redo the \"make yourself a lead technician\" step; then clear the search.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 31857,
+    "type_id": 6,
+    "created_on": 1791830117,
+    "user_id": 1,
+    "changes": [
+     {
+      "type_id": 1,
+      "old_text": " Automated",
+      "new_text": " Not Automated",
+      "label": "Automation status",
+      "options": {
+       "is_required": true,
+       "default_value": "1",
+       "items": "1, Not Automated\n2, Cannot be automated\n3, Automated\n4, Pending",
+       "format": "markdown"
+      },
+      "field": "custom_atmstatus",
+      "old_value": 3,
+      "new_value": 1
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 1 browser \u00b7 about 15 minutes.</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).</li><li>[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit. [User-A] is also a lead technician: active, Time Clock on, this location picked in Location.</li><li>Desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); everything below is created in this location.</li><li>[Tech-A]: one other eligible technician at this location. A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.</li><li>Customer \"ZZAUTOTEST F1 Assigned To Me\" (used by this case only) with four Approved work orders: [WO-1] and [WO-2] led by you ([User-A]), [WO-3] led by [Tech-A], [WO-4] with no lead.</li><li>Names and numbers are examples; what must hold: within this customer, exactly two work orders are led by you.</li></ul><p><strong>Setup</strong></p><ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Check the location in the top bar next to the bell; to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>To make yourself a lead technician: Settings &gt; Staff &gt; your own row's edit icon &gt; Time Clock on, Active, with this location picked in Location &gt; Save.</li><li>Settings (your initials at the top right &gt; Settings) &gt; Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member &gt; First Name and Last Name, an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close. Record them as [Tech-A] (the expected results call it \"Ralph Edwards\").</li><li>Create the customer used only by this case: top menu Customers &gt; New Customer &gt; Name \"ZZAUTOTEST F1 Assigned To Me\" &gt; Save. On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit \"TRK-118\") &gt; Save. Make is required; Unit can be left empty.</li><li>Create these work orders for \"ZZAUTOTEST F1 Assigned To Me\": Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer and its Asset &gt; Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in \"What Are You Doing?\" pick a ready-made line (e.g. \"Replace - Brake pot\"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save &amp; Close. Write down the number the build gives the work order (on a QA branch they look like \"S10043-17581\"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.<ul><li>[WO-1] (the expected results call it \"S1-702\"): Lead Technician = [User-A].</li><li>[WO-2] (the expected results call it \"S1-644\"): Lead Technician = [User-A].</li><li>[WO-3] (the expected results call it \"S1-691\"): Lead Technician = [Tech-A].</li><li>[WO-4] (the expected results call it \"S1-352\"): no lead (Lead Technician left empty).</li></ul></li><li>Then make sure only [WO-1] and [WO-2] have you as Service Advisor: open [WO-3], and in the card on the left of the work order page, under Service Advisor, pick someone other than you (e.g. [Tech-A]); do the same for [WO-4]. Whoever creates a work order becomes its Service Advisor, and Assigned to me also shows work orders where you are the Service Advisor, so without this step all four work orders would show.</li><li>Check the setup worked: Work Orders &gt; All tab &gt; Search \"ZZAUTOTEST F1 Assigned To Me\" shows [WO-1] and [WO-2] (lead: you), [WO-3] (lead [Tech-A]) and [WO-4] (no lead). If your own name is not in the Lead Technician dropdown, redo the \"make yourself a lead technician\" step; then clear the search.</li></ol>",
+      "new_value": "Dev-layer test \u2014 be-functional. Existing coverage: ViewWorkOrderBoardTest.php:215 (List vs board parity); merged into E2E C96911\n\n<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 1 browser \u00b7 about 15 minutes.</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).</li><li>[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit. [User-A] is also a lead technician: active, Time Clock on, this location picked in Location.</li><li>Desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); everything below is created in this location.</li><li>[Tech-A]: one other eligible technician at this location. A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.</li><li>Customer \"ZZAUTOTEST F1 Assigned To Me\" (used by this case only) with four Approved work orders: [WO-1] and [WO-2] led by you ([User-A]), [WO-3] led by [Tech-A], [WO-4] with no lead.</li><li>Names and numbers are examples; what must hold: within this customer, exactly two work orders are led by you.</li></ul><p><strong>Setup</strong></p><ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Check the location in the top bar next to the bell; to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>To make yourself a lead technician: Settings &gt; Staff &gt; your own row's edit icon &gt; Time Clock on, Active, with this location picked in Location &gt; Save.</li><li>Settings (your initials at the top right &gt; Settings) &gt; Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member &gt; First Name and Last Name, an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close. Record them as [Tech-A] (the expected results call it \"Ralph Edwards\").</li><li>Create the customer used only by this case: top menu Customers &gt; New Customer &gt; Name \"ZZAUTOTEST F1 Assigned To Me\" &gt; Save. On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit \"TRK-118\") &gt; Save. Make is required; Unit can be left empty.</li><li>Create these work orders for \"ZZAUTOTEST F1 Assigned To Me\": Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer and its Asset &gt; Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in \"What Are You Doing?\" pick a ready-made line (e.g. \"Replace - Brake pot\"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save &amp; Close. Write down the number the build gives the work order (on a QA branch they look like \"S10043-17581\"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.<ul><li>[WO-1] (the expected results call it \"S1-702\"): Lead Technician = [User-A].</li><li>[WO-2] (the expected results call it \"S1-644\"): Lead Technician = [User-A].</li><li>[WO-3] (the expected results call it \"S1-691\"): Lead Technician = [Tech-A].</li><li>[WO-4] (the expected results call it \"S1-352\"): no lead (Lead Technician left empty).</li></ul></li><li>Then make sure only [WO-1] and [WO-2] have you as Service Advisor: open [WO-3], and in the card on the left of the work order page, under Service Advisor, pick someone other than you (e.g. [Tech-A]); do the same for [WO-4]. Whoever creates a work order becomes its Service Advisor, and Assigned to me also shows work orders where you are the Service Advisor, so without this step all four work orders would show.</li><li>Check the setup worked: Work Orders &gt; All tab &gt; Search \"ZZAUTOTEST F1 Assigned To Me\" shows [WO-1] and [WO-2] (lead: you), [WO-3] (lead [Tech-A]) and [WO-4] (no lead). If your own name is not in the Lead Technician dropdown, redo the \"make yourself a lead technician\" step; then clear the search.</li></ol>"
+     }
+    ],
+    "comments": []
+   }
+  ]
+ }
+}

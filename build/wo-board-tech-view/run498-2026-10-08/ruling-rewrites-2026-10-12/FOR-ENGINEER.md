@@ -16,3 +16,9 @@ All four sit in run 498: https://shopview.testrail.io/index.php?/runs/view/498
 
 Not automated, also rewritten the same day (for completeness): C368138, C97022, C368169, C368170, C368171, C368218,
 C368219, C368223, C368233, C368234, C368235, C97026, C97034, C97033. C96923 needed no change.
+
+## Update, 12 Oct 2026 (later the same evening)
+At the QA lead's request the Preconditions/Setup of all four automated cases (and the other rewritten cases) were
+shortened: repeated text, the old build number and the role-checking route were removed. **The data each test builds is
+unchanged** (same customers, work orders, technicians and leads), so automations that seed their own data need no change
+for this; only automations that read the precondition text itself would notice.

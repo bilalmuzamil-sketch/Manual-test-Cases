@@ -1,0 +1,395 @@
+{
+ "case": {
+  "id": 97034,
+  "title": "Weekly use and density spread count each user once",
+  "section_id": 55300,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": null,
+  "created_by": 3,
+  "created_on": 1790157854,
+  "updated_by": 3,
+  "updated_on": 1791833102,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 8,
+  "is_deleted": 0,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 1,
+  "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>About 30 minutes, in one sitting (all four users within the same week, Monday to Sunday).</li><li>Sign in on the QA branch (sv10043) with the Admin quick-login button on the sign-in page. Use a desktop browser window at least 1024 px wide (narrower windows show only the List).</li><li>Work in one location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"). To change it: your initials at the top right &gt; Change Location.</li><li>No Google Analytics access is needed. You read what the Work Orders page sends to Google Analytics in the browser's own developer tools (Chrome or Edge): press F12, click the Network tab, tick Preserve log, and type <strong>collect</strong> in the filter box. Each analytics message shows as a request named collect; click it and open its Payload tab. Each event in it lists: <strong>en</strong> (the event name), <strong>ep.element_location</strong> (the display: list, tech_view or board_view), <strong>ep.element_label</strong> (the field or the density), <strong>ep.setting_source</strong> (default = never changed, saved = chosen earlier) and <strong>uid</strong> (the user). One request can hold several events, one per line.</li><li>Turn off any ad blocker or privacy extension for this site, and use a new private window for each user, so the messages are not stopped or mixed up.</li><li>Events to look for: work_orders_display_view (sent each time a display is shown; ep.element_location names it), work_orders_density_load and work_orders_density_change (ep.element_label names the density).</li></ul><p><strong>Setup</strong></p><ol><li>Settings &gt; Staff: add four new users at this location with a role that has Work Orders View, and finish each invite so they can sign in (e.g. \"ZZAUTOTEST F3 Weekly U1\" to \"U4\"). They must be new, so none has used Tech View or Board View before. Do not open either view as them before the steps.</li></ol>",
+  "custom_steps": "<ol><li>For each user below use a new private window with the browser tools open as described in the Preconditions (F12 &gt; Network &gt; Preserve log &gt; filter collect). After each user, write down from the collect requests every work_orders_display_view event (ep.element_location and uid) and the last density event (ep.element_label and uid). Then sign out and close the window.</li><li>U1: open Work Orders 5 times (reload the page between visits); each time switch to Board View. Set density to Compact.</li><li>U2: open Work Orders twice; switch to Tech View. Set density to Comfortable.</li><li>U3: open Work Orders once and stay on List.</li><li>U4: open Work Orders once and switch to Tech View. Leave density as it is (Regular).</li><li>Work out the weekly figures from your notes, counting each user (uid) once: for each display (list, tech_view, board_view), how many different uids have a work_orders_display_view event for it; and, among the users who used Tech View or Board View, how many have each density.</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Weekly display usage by distinct users: List 4 (every user opened the page on List first), Tech View 2 (U2, U4), Board View 1 (U1). U1's five visits count as 1 user.</li><li>Density spread across users who used Tech View or Board View: Compact 1 (U1), Comfortable 1 (U2), Regular 1 (U4), so 1 \u00f7 3 = 33.3% each. No user appears twice and U3 (List only) is not in it.</li><li>Check the user totals add up: 1 + 1 + 1 = 3 users in the density figures, and 4 different uids in all.</li><li>The report page itself is built by the report owner inside Google Analytics, outside ShopView, and is not part of this test (QA lead's ruling below).</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong></p><ul><li>Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S12-R4, S12-R11, S12-R13, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names.</li><li>QA lead's ruling, 12 Oct 2026 17:22 UTC, in the QA session chat, after he asked for these checks to be tested on the ShopView QA branch. Question put to him: &ldquo;How should I record the analytics tests, now that everything ShopView sends checks out on the QA branch?&rdquo; His answer, word for word: &ldquo;Pass on QA-branch data (Recommended)&rdquo;. The steps were changed on 12 Oct 2026 under Rule 114(d) to read the events in the browser and work the figures out with the PRD's own rules, instead of opening the Google Analytics report.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S12-R4:</strong> &ldquo;Report weekly display usage by distinct users.&rdquo;</li><li><strong>S12-R11:</strong> &ldquo;Report density distribution.&rdquo;</li><li><strong>S12-R13:</strong> &ldquo;Do not count repeated events from one user as additional users.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/12/2026.</p><p>AUTOMATION: READY</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": []
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 11,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": [
+   {
+    "id": 27179,
+    "type_id": 6,
+    "created_on": 1790759776,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Density distribution and weekly display usage are counted by distinct users without double counting",
+      "new_value": "Density and weekly usage counted by distinct users, no double count"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p>Build: the Work Orders QA build with the Board View / Tech View display options enabled (feature ships without a feature flag).</p><p>Access to the analytics report; a seeded week where one user produces repeated events.</p><p>AUTOMATION note: verify the counts against the raw events with engineering.</p>",
+      "new_value": "<p><strong>Seed / setup:</strong> On the Work Orders QA build, seed a KNOWN set of work orders across statuses (some Approved, In Progress, Ready for Review, and some in excluded statuses) and across several lead technicians, so the header counts and the N-open dialog count can be computed by hand (Rule 14, Rule 116).</p><p>Build: the Work Orders QA build with the Board View / Tech View display options enabled (feature ships without a feature flag).</p><p>Access to the analytics report; a seeded week where one user produces repeated events.</p><p>AUTOMATION note: verify the counts against the raw events with engineering.</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 27355,
+    "type_id": 6,
+    "created_on": 1790791624,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Seed / setup:</strong> On the Work Orders QA build, seed a KNOWN set of work orders across statuses (some Approved, In Progress, Ready for Review, and some in excluded statuses) and across several lead technicians, so the header counts and the N-open dialog count can be computed by hand (Rule 14, Rule 116).</p><p>Build: the Work Orders QA build with the Board View / Tech View display options enabled (feature ships without a feature flag).</p><p>Access to the analytics report; a seeded week where one user produces repeated events.</p><p>AUTOMATION note: verify the counts against the raw events with engineering.</p>",
+      "new_value": "<ol><li>You are signed in on the Work Orders build under test with Work Orders view permission; the Board View and Tech View display options are on.</li><li>The current location has at least 3 lead technicians shown as groups/columns (a technician is eligible when they are Clockable, Active, and their role is not Office or Time Clock User).</li><li>On the Work Orders QA build, seed a KNOWN set of work orders across statuses (some Approved, In Progress, Ready for Review, and some in excluded statuses) and across several lead technicians, so the header counts and the N-open dialog count can be computed by hand (Rule 14, Rule 116).</li><li>Access to the analytics report; a seeded week where one user produces repeated events.</li><li>AUTOMATION note: verify the counts against the raw events with engineering.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 29427,
+    "type_id": 6,
+    "created_on": 1791367317,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Density and weekly usage counted by distinct users, no double count",
+      "new_value": "Density and weekly use are counted per user, never twice"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 29854,
+    "type_id": 6,
+    "created_on": 1791429900,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Density and weekly use are counted per user, never twice",
+      "new_value": "Weekly use and density spread count each user once"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>You are signed in on the Work Orders build under test with Work Orders view permission; the Board View and Tech View display options are on.</li><li>The current location has at least 3 lead technicians shown as groups/columns (a technician is eligible when they are Clockable, Active, and their role is not Office or Time Clock User).</li><li>On the Work Orders QA build, seed a KNOWN set of work orders across statuses (some Approved, In Progress, Ready for Review, and some in excluded statuses) and across several lead technicians, so the header counts and the N-open dialog count can be computed by hand (Rule 14, Rule 116).</li><li>Access to the analytics report; a seeded week where one user produces repeated events.</li><li>AUTOMATION note: verify the counts against the raw events with engineering.</li></ol>",
+      "new_value": "<ol><li>In the top bar, choose the location you test in (e.g. \"Heavy Duty\"). Every technician and work order below belongs to this location.</li><li>Use a desktop browser window at least 1024 px wide (the display switcher only shows at 1024 px and wider).</li><li>You can open Google Analytics for the property the QA build reports to, at Admin &gt; DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write \"not checked by hand\" in the result comment and pass or fail on what you can see on the Work Orders page.</li><li>Four test users at this location with Work Orders view (Settings &gt; Staff): U1, U2, U3, U4. None of them has used Tech View or Board View before.</li><li>You can open the Story 12 weekly display usage and density reports in Google Analytics.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>For a seeded week, hand-count distinct users per display option and per density.</li><li>Confirm weekly display usage is reported by distinct users and matches your count.</li><li>Confirm the density distribution matches.</li><li>Confirm a single user who produced many events is counted once (no inflation of the user denominator).</li></ol>",
+      "new_value": "<ol><li>U1: open Work Orders 5 times this week, switch to Board View each time, and set density Compact.</li><li>U2: open Work Orders twice, switch to Tech View, and set density Comfortable.</li><li>U3: open Work Orders once and stay on List.</li><li>U4: open Work Orders once, switch to Tech View, and leave density as it is (Regular).</li><li>After the week, open the weekly display usage report and the density report for these users.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Weekly display usage is reported by distinct users.</li><li>Density distribution is reported.</li><li>Repeated events from one user do not count that user more than once.</li></ul><p></p><p><strong>Source \u2014 where this behaviour comes from</strong><br>Epic SV-10043 (Work Orders \u2014 Board View &amp; Tech View Display Options). Story reference: SV-TBD (Story 12 has no Jira story yet) \u2014 Story 12 Google Analytics for display and field usage. Spec: Confluence page 845185030 &ldquo;Work Orders \u2014 Board View &amp; Tech View Display Options (Draft Spec)&rdquo;, Draft v0.9, requirement(s) S12-R4, S12-R11, S12-R13 (read 23 Sep 2026). Review decisions/answers: Confluence page 853901313 where cited. Source-verified on 23 September 2026; not yet build-verified.</p><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S12-R4:</strong> &ldquo;Report weekly display usage by distinct users.&rdquo;</li><li><strong>S12-R11:</strong> &ldquo;Report density distribution.&rdquo;</li><li><strong>S12-R13:</strong> &ldquo;Do not count repeated events from one user as additional users.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Weekly display usage by distinct users: List 4 (every user opened the page on List first), Tech View 2 (U2, U4), Board View 1 (U1). U1's five visits count as 1 user.</li><li>Density spread across users who used Tech View or Board View: Compact 1 (U1), Comfortable 1 (U2), Regular 1 (U4), so 1 \u00f7 3 = 33.3% each. No user appears twice and U3 (List only) is not in it.</li><li>Check the report's user totals add up: 1 + 1 + 1 = 3 users in the density report.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S12-R4, S12-R11, S12-R13, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S12-R4:</strong> &ldquo;Report weekly display usage by distinct users.&rdquo;</li><li><strong>S12-R11:</strong> &ldquo;Report density distribution.&rdquo;</li><li><strong>S12-R13:</strong> &ldquo;Do not count repeated events from one user as additional users.&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 29982,
+    "type_id": 6,
+    "created_on": 1791448796,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>In the top bar, choose the location you test in (e.g. \"Heavy Duty\"). Every technician and work order below belongs to this location.</li><li>Use a desktop browser window at least 1024 px wide (the display switcher only shows at 1024 px and wider).</li><li>You can open Google Analytics for the property the QA build reports to, at Admin &gt; DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write \"not checked by hand\" in the result comment and pass or fail on what you can see on the Work Orders page.</li><li>Four test users at this location with Work Orders view (Settings &gt; Staff): U1, U2, U3, U4. None of them has used Tech View or Board View before.</li><li>You can open the Story 12 weekly display usage and density reports in Google Analytics.</li></ol>",
+      "new_value": "<ol><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Every technician and work order below belongs to this location.</li><li>Use a desktop browser window at least 1024 px wide (the display switcher only shows at 1024 px and wider).</li><li>You can open Google Analytics for the property the QA build reports to, at Admin &gt; DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write \"not checked by hand\" in the result comment and pass or fail on what you can see on the Work Orders page.</li><li>Four test users at this location with Work Orders view (Settings &gt; Staff): U1, U2, U3, U4. None of them has used Tech View or Board View before.</li><li>You can open the Story 12 weekly display usage and density reports in Google Analytics.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Weekly display usage by distinct users: List 4 (every user opened the page on List first), Tech View 2 (U2, U4), Board View 1 (U1). U1's five visits count as 1 user.</li><li>Density spread across users who used Tech View or Board View: Compact 1 (U1), Comfortable 1 (U2), Regular 1 (U4), so 1 \u00f7 3 = 33.3% each. No user appears twice and U3 (List only) is not in it.</li><li>Check the report's user totals add up: 1 + 1 + 1 = 3 users in the density report.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S12-R4, S12-R11, S12-R13, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S12-R4:</strong> &ldquo;Report weekly display usage by distinct users.&rdquo;</li><li><strong>S12-R11:</strong> &ldquo;Report density distribution.&rdquo;</li><li><strong>S12-R13:</strong> &ldquo;Do not count repeated events from one user as additional users.&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Weekly display usage by distinct users: List 4 (every user opened the page on List first), Tech View 2 (U2, U4), Board View 1 (U1). U1's five visits count as 1 user.</li><li>Density spread across users who used Tech View or Board View: Compact 1 (U1), Comfortable 1 (U2), Regular 1 (U4), so 1 \u00f7 3 = 33.3% each. No user appears twice and U3 (List only) is not in it.</li><li>Check the report's user totals add up: 1 + 1 + 1 = 3 users in the density report.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S12-R4, S12-R11, S12-R13, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S12-R4:</strong> &ldquo;Report weekly display usage by distinct users.&rdquo;</li><li><strong>S12-R11:</strong> &ldquo;Report density distribution.&rdquo;</li><li><strong>S12-R13:</strong> &ldquo;Do not count repeated events from one user as additional users.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: HOLD - not manually testable (developer/automated check only)</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 30265,
+    "type_id": 6,
+    "created_on": 1791457235,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Every technician and work order below belongs to this location.</li><li>Use a desktop browser window at least 1024 px wide (the display switcher only shows at 1024 px and wider).</li><li>You can open Google Analytics for the property the QA build reports to, at Admin &gt; DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write \"not checked by hand\" in the result comment and pass or fail on what you can see on the Work Orders page.</li><li>Four test users at this location with Work Orders view (Settings &gt; Staff): U1, U2, U3, U4. None of them has used Tech View or Board View before.</li><li>You can open the Story 12 weekly display usage and density reports in Google Analytics.</li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 4 users \u00b7 1 browser \u00b7 Google Analytics report access \u00b7 steps spread over one week, report read after the week \u00b7 about 20 minutes of work</li><li>Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).</li><li>Location: one location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Every technician and work order below belongs to this location.</li><li>Analytics access: you can open Google Analytics for the property the QA build reports to, at Admin &gt; DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write \"not checked by hand\" in the result comment and pass or fail on what you can see on the Work Orders page.</li><li>Four test users at this location with Work Orders view (Settings &gt; Staff): U1, U2, U3, U4. None of them has used Tech View or Board View before.</li><li>You can open the Story 12 weekly display usage and density reports in Google Analytics.</li></ul><p><strong>Setup</strong></p><ol><li>Settings &gt; Staff: add four new users at this location (e.g. \"ZZAUTOTEST F3 Weekly U1\" \u2026 \"ZZAUTOTEST F3 Weekly U4\") with a role that has Work Orders View, and finish each invite so they can sign in. Do not open Tech View or Board View as them before the steps. Record them as U1, U2, U3, U4.</li><li>Check the setup worked: each of U1\u2013U4 can sign in. New users are used so that none has used Tech View or Board View before; if a user already has, replace them with a new one.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 30627,
+    "type_id": 6,
+    "created_on": 1791478555,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "old_text": "Counts and data accuracy (Rule 116)",
+      "new_text": "Not runnable for now",
+      "field": "section_id",
+      "old_value": 13248,
+      "new_value": 55300
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 31805,
+    "type_id": 6,
+    "created_on": 1791823827,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 4 users \u00b7 1 browser \u00b7 Google Analytics report access \u00b7 steps spread over one week, report read after the week \u00b7 about 20 minutes of work</li><li>Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).</li><li>Location: one location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Every technician and work order below belongs to this location.</li><li>Analytics access: you can open Google Analytics for the property the QA build reports to, at Admin &gt; DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write \"not checked by hand\" in the result comment and pass or fail on what you can see on the Work Orders page.</li><li>Four test users at this location with Work Orders view (Settings &gt; Staff): U1, U2, U3, U4. None of them has used Tech View or Board View before.</li><li>You can open the Story 12 weekly display usage and density reports in Google Analytics.</li></ul><p><strong>Setup</strong></p><ol><li>Settings &gt; Staff: add four new users at this location (e.g. \"ZZAUTOTEST F3 Weekly U1\" \u2026 \"ZZAUTOTEST F3 Weekly U4\") with a role that has Work Orders View, and finish each invite so they can sign in. Do not open Tech View or Board View as them before the steps. Record them as U1, U2, U3, U4.</li><li>Check the setup worked: each of U1\u2013U4 can sign in. New users are used so that none has used Tech View or Board View before; if a user already has, replace them with a new one.</li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>About 20 minutes, within one week (Monday to Sunday); the reports are read after that week ends.</li><li>Sign in on the QA branch (sv10043) with the Admin quick-login button on the sign-in page. Use a desktop browser window at least 1024 px wide (narrower windows show only the List).</li><li>Work in one location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"). To change it: your initials at the top right &gt; Change Location.</li><li>Google Analytics: you can open the analytics property the QA build sends to (QA and staging share it) and the Story 12 reports Milos Vasic builds there. If you cannot open Google Analytics, mark the case Blocked and write why in the comment.</li></ul><p><strong>Setup</strong></p><ol><li>Settings &gt; Staff: add four new users at this location with a role that has Work Orders View, and finish each invite so they can sign in (e.g. \"ZZAUTOTEST F3 Weekly U1\" to \"U4\"). They must be new, so none has used Tech View or Board View before. Do not open either view as them before the steps.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>U1: open Work Orders 5 times this week, switch to Board View each time, and set density Compact.</li><li>U2: open Work Orders twice, switch to Tech View, and set density Comfortable.</li><li>U3: open Work Orders once and stay on List.</li><li>U4: open Work Orders once, switch to Tech View, and leave density as it is (Regular).</li><li>After the week, open the weekly display usage report and the density report for these users.</li></ol>",
+      "new_value": "<ol><li>U1: open Work Orders 5 times this week; each time switch to Board View. Set density to Compact.</li><li>U2: open Work Orders twice; switch to Tech View. Set density to Comfortable.</li><li>U3: open Work Orders once and stay on List.</li><li>U4: open Work Orders once and switch to Tech View. Leave density as it is (Regular).</li><li>After the week ends, open the weekly display usage report and the density report for these four users.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 31808,
+    "type_id": 6,
+    "created_on": 1791823845,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Preconditions</strong></p><ul><li>About 20 minutes, within one week (Monday to Sunday); the reports are read after that week ends.</li><li>Sign in on the QA branch (sv10043) with the Admin quick-login button on the sign-in page. Use a desktop browser window at least 1024 px wide (narrower windows show only the List).</li><li>Work in one location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"). To change it: your initials at the top right &gt; Change Location.</li><li>Google Analytics: you can open the analytics property the QA build sends to (QA and staging share it) and the Story 12 reports Milos Vasic builds there. If you cannot open Google Analytics, mark the case Blocked and write why in the comment.</li></ul><p><strong>Setup</strong></p><ol><li>Settings &gt; Staff: add four new users at this location with a role that has Work Orders View, and finish each invite so they can sign in (e.g. \"ZZAUTOTEST F3 Weekly U1\" to \"U4\"). They must be new, so none has used Tech View or Board View before. Do not open either view as them before the steps.</li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>About 20 minutes, within one week (Monday to Sunday); the reports are read after that week ends.</li><li>Sign in on the QA branch (sv10043) with the Admin quick-login button on the sign-in page. Use a desktop browser window at least 1024 px wide (narrower windows show only the List).</li><li>Work in one location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"). To change it: your initials at the top right &gt; Change Location.</li><li>Google Analytics: you can open the analytics property the QA build sends to (QA and staging share it) (Admin &gt; DebugView shows each event within seconds, because the QA build sends in debug mode) and the Story 12 reports Milos Vasic builds there. If you cannot open DebugView, write \"not checked by hand\" for the event checks and pass or fail on what you can see on the Work Orders page.</li></ul><p><strong>Setup</strong></p><ol><li>Settings &gt; Staff: add four new users at this location with a role that has Work Orders View, and finish each invite so they can sign in (e.g. \"ZZAUTOTEST F3 Weekly U1\" to \"U4\"). They must be new, so none has used Tech View or Board View before. Do not open either view as them before the steps.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 31863,
+    "type_id": 6,
+    "created_on": 1791830265,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Preconditions</strong></p><ul><li>About 20 minutes, within one week (Monday to Sunday); the reports are read after that week ends.</li><li>Sign in on the QA branch (sv10043) with the Admin quick-login button on the sign-in page. Use a desktop browser window at least 1024 px wide (narrower windows show only the List).</li><li>Work in one location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"). To change it: your initials at the top right &gt; Change Location.</li><li>Google Analytics: you can open the analytics property the QA build sends to (QA and staging share it) (Admin &gt; DebugView shows each event within seconds, because the QA build sends in debug mode) and the Story 12 reports Milos Vasic builds there. If you cannot open DebugView, write \"not checked by hand\" for the event checks and pass or fail on what you can see on the Work Orders page.</li></ul><p><strong>Setup</strong></p><ol><li>Settings &gt; Staff: add four new users at this location with a role that has Work Orders View, and finish each invite so they can sign in (e.g. \"ZZAUTOTEST F3 Weekly U1\" to \"U4\"). They must be new, so none has used Tech View or Board View before. Do not open either view as them before the steps.</li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>About 30 minutes, in one sitting (all four users within the same week, Monday to Sunday).</li><li>Sign in on the QA branch (sv10043) with the Admin quick-login button on the sign-in page. Use a desktop browser window at least 1024 px wide (narrower windows show only the List).</li><li>Work in one location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"). To change it: your initials at the top right &gt; Change Location.</li><li>No Google Analytics access is needed. You read what the Work Orders page sends to Google Analytics in the browser's own developer tools (Chrome or Edge): press F12, click the Network tab, tick Preserve log, and type <strong>collect</strong> in the filter box. Each analytics message shows as a request named collect; click it and open its Payload tab. Each event in it lists: <strong>en</strong> (the event name), <strong>ep.element_location</strong> (the display: list, tech_view or board_view), <strong>ep.element_label</strong> (the field or the density), <strong>ep.setting_source</strong> (default = never changed, saved = chosen earlier) and <strong>uid</strong> (the user). One request can hold several events, one per line.</li><li>Turn off any ad blocker or privacy extension for this site, and use a new private window for each user, so the messages are not stopped or mixed up.</li><li>Events to look for: work_orders_display_view (sent each time a display is shown; ep.element_location names it), work_orders_density_load and work_orders_density_change (ep.element_label names the density).</li></ul><p><strong>Setup</strong></p><ol><li>Settings &gt; Staff: add four new users at this location with a role that has Work Orders View, and finish each invite so they can sign in (e.g. \"ZZAUTOTEST F3 Weekly U1\" to \"U4\"). They must be new, so none has used Tech View or Board View before. Do not open either view as them before the steps.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>U1: open Work Orders 5 times this week; each time switch to Board View. Set density to Compact.</li><li>U2: open Work Orders twice; switch to Tech View. Set density to Comfortable.</li><li>U3: open Work Orders once and stay on List.</li><li>U4: open Work Orders once and switch to Tech View. Leave density as it is (Regular).</li><li>After the week ends, open the weekly display usage report and the density report for these four users.</li></ol>",
+      "new_value": "<ol><li>For each user below use a new private window with the browser tools open as described in the Preconditions (F12 &gt; Network &gt; Preserve log &gt; filter collect). After each user, write down from the collect requests every work_orders_display_view event (ep.element_location and uid) and the last density event (ep.element_label and uid). Then sign out and close the window.</li><li>U1: open Work Orders 5 times (reload the page between visits); each time switch to Board View. Set density to Compact.</li><li>U2: open Work Orders twice; switch to Tech View. Set density to Comfortable.</li><li>U3: open Work Orders once and stay on List.</li><li>U4: open Work Orders once and switch to Tech View. Leave density as it is (Regular).</li><li>Work out the weekly figures from your notes, counting each user (uid) once: for each display (list, tech_view, board_view), how many different uids have a work_orders_display_view event for it; and, among the users who used Tech View or Board View, how many have each density.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Weekly display usage by distinct users: List 4 (every user opened the page on List first), Tech View 2 (U2, U4), Board View 1 (U1). U1's five visits count as 1 user.</li><li>Density spread across users who used Tech View or Board View: Compact 1 (U1), Comfortable 1 (U2), Regular 1 (U4), so 1 \u00f7 3 = 33.3% each. No user appears twice and U3 (List only) is not in it.</li><li>Check the report's user totals add up: 1 + 1 + 1 = 3 users in the density report.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S12-R4, S12-R11, S12-R13, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S12-R4:</strong> &ldquo;Report weekly display usage by distinct users.&rdquo;</li><li><strong>S12-R11:</strong> &ldquo;Report density distribution.&rdquo;</li><li><strong>S12-R13:</strong> &ldquo;Do not count repeated events from one user as additional users.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: HOLD - not manually testable (developer/automated check only)</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Weekly display usage by distinct users: List 4 (every user opened the page on List first), Tech View 2 (U2, U4), Board View 1 (U1). U1's five visits count as 1 user.</li><li>Density spread across users who used Tech View or Board View: Compact 1 (U1), Comfortable 1 (U2), Regular 1 (U4), so 1 \u00f7 3 = 33.3% each. No user appears twice and U3 (List only) is not in it.</li><li>Check the user totals add up: 1 + 1 + 1 = 3 users in the density figures, and 4 different uids in all.</li><li>The report page itself is built by the report owner inside Google Analytics, outside ShopView, and is not part of this test (QA lead's ruling below).</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong></p><ul><li>Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S12-R4, S12-R11, S12-R13, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names.</li><li>QA lead's instruction, 12 Oct 2026 17:19 UTC, in the QA session chat, word for word: &ldquo;DO You really need google analytics for that ? Can you check again. Please do not get me ridiculed. See if you can test this in SHOPVIEW QA branch.&rdquo; Then his ruling at 17:22 UTC. Question put to him: &ldquo;How should I record the analytics tests, now that everything ShopView sends checks out on the QA branch?&rdquo; His answer, word for word: &ldquo;Pass on QA-branch data (Recommended)&rdquo;. The steps were changed on 12 Oct 2026 under Rule 114(d) to read the events in the browser and work the figures out with the PRD's own rules, instead of opening the Google Analytics report.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S12-R4:</strong> &ldquo;Report weekly display usage by distinct users.&rdquo;</li><li><strong>S12-R11:</strong> &ldquo;Report density distribution.&rdquo;</li><li><strong>S12-R13:</strong> &ldquo;Do not count repeated events from one user as additional users.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/12/2026.</p><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 31866,
+    "type_id": 6,
+    "created_on": 1791833102,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Weekly display usage by distinct users: List 4 (every user opened the page on List first), Tech View 2 (U2, U4), Board View 1 (U1). U1's five visits count as 1 user.</li><li>Density spread across users who used Tech View or Board View: Compact 1 (U1), Comfortable 1 (U2), Regular 1 (U4), so 1 \u00f7 3 = 33.3% each. No user appears twice and U3 (List only) is not in it.</li><li>Check the user totals add up: 1 + 1 + 1 = 3 users in the density figures, and 4 different uids in all.</li><li>The report page itself is built by the report owner inside Google Analytics, outside ShopView, and is not part of this test (QA lead's ruling below).</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong></p><ul><li>Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S12-R4, S12-R11, S12-R13, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names.</li><li>QA lead's instruction, 12 Oct 2026 17:19 UTC, in the QA session chat, word for word: &ldquo;DO You really need google analytics for that ? Can you check again. Please do not get me ridiculed. See if you can test this in SHOPVIEW QA branch.&rdquo; Then his ruling at 17:22 UTC. Question put to him: &ldquo;How should I record the analytics tests, now that everything ShopView sends checks out on the QA branch?&rdquo; His answer, word for word: &ldquo;Pass on QA-branch data (Recommended)&rdquo;. The steps were changed on 12 Oct 2026 under Rule 114(d) to read the events in the browser and work the figures out with the PRD's own rules, instead of opening the Google Analytics report.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S12-R4:</strong> &ldquo;Report weekly display usage by distinct users.&rdquo;</li><li><strong>S12-R11:</strong> &ldquo;Report density distribution.&rdquo;</li><li><strong>S12-R13:</strong> &ldquo;Do not count repeated events from one user as additional users.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/12/2026.</p><p>AUTOMATION: READY</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Weekly display usage by distinct users: List 4 (every user opened the page on List first), Tech View 2 (U2, U4), Board View 1 (U1). U1's five visits count as 1 user.</li><li>Density spread across users who used Tech View or Board View: Compact 1 (U1), Comfortable 1 (U2), Regular 1 (U4), so 1 \u00f7 3 = 33.3% each. No user appears twice and U3 (List only) is not in it.</li><li>Check the user totals add up: 1 + 1 + 1 = 3 users in the density figures, and 4 different uids in all.</li><li>The report page itself is built by the report owner inside Google Analytics, outside ShopView, and is not part of this test (QA lead's ruling below).</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong></p><ul><li>Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S12-R4, S12-R11, S12-R13, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names.</li><li>QA lead's ruling, 12 Oct 2026 17:22 UTC, in the QA session chat, after he asked for these checks to be tested on the ShopView QA branch. Question put to him: &ldquo;How should I record the analytics tests, now that everything ShopView sends checks out on the QA branch?&rdquo; His answer, word for word: &ldquo;Pass on QA-branch data (Recommended)&rdquo;. The steps were changed on 12 Oct 2026 under Rule 114(d) to read the events in the browser and work the figures out with the PRD's own rules, instead of opening the Google Analytics report.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S12-R4:</strong> &ldquo;Report weekly display usage by distinct users.&rdquo;</li><li><strong>S12-R11:</strong> &ldquo;Report density distribution.&rdquo;</li><li><strong>S12-R13:</strong> &ldquo;Do not count repeated events from one user as additional users.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/12/2026.</p><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   }
+  ]
+ }
+}
