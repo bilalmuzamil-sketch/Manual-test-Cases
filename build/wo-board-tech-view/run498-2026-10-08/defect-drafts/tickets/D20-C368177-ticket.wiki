@@ -1,0 +1,46 @@
+TITLE: Timesheets – Recent Entry Listed Six Hours Ahead and Refused When Moved
+TYPE: Story Defect · PARENT: SV-10228 Verify Phase 9 — Drag and drop, board move, shift prompt (TESTING QA, read live 12 Oct 2026; the QA lead chose a separate ticket under the same story as SV-11229, 12 Oct) · PRIORITY: Medium · LABEL: board-tech-view
+MY READING: REGRESSION. Production (12 Oct 2026, location set to America/Edmonton, three runs) lists a fresh entry at the real time (02:49 AM) and moves it to line 2 without any refusal. Likely the same six-hour fault as SV-11229, showing on another screen. Related, not a duplicate: SV-11087 (In Progress, Ahtasham) is about the technician staying on the old line after a move goes through. Picture 2x (S10043-19183, 12 Oct 2026).
+
+h2. Description
+
+A time entry should be listed at the time it was made, and it should be possible to move it to another line of the same work order.
+
+For example,
+* an entry made at about *3:03 AM* shop time is listed as *09:03 AM – 09:05 AM*, six hours ahead
+* moving that entry to another line is refused with *Start date cannot be set in the future. Please try to resolve this.*, and the *Timesheets* section stops loading
+
+h2. Steps to Reproduce
+
+# Open a work order that has two lines, click the *Lines* tab and click the clock button on *line 1* to clock in a technician. Wait a minute, click the clock button again and click *Clock Out*.
+# Click the three-dots button at the top right of the tabs and click *Timesheets*.
+#* The new row's *Start Time* and *End Time* are six hours later than the shop's time.
+# Point at the row and click the pencil icon at its right. In the *Edit Timesheet* window, open *Line*, pick *line 2* and click *Save*.
+#* The red message *Start date cannot be set in the future.* shows, and the section reads *Something went wrong loading this section*.
+# Click the *Lines* tab and reload the page.
+
+*Actual Result:*
+* The entry is listed six hours ahead of the shop's time.
+* The move is refused as being in the future; line 2's *Labor* row still reads *Unassigned* and line 1 keeps the technician.
+
+*Expected Result:*
+* The entry is listed at the time it was made.
+* The move saves with no error and line 2's *Labor* row shows the technician.
+
+!D20-C368177-annotated.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.8-7a95011}} on the QA branch [sv10043|https://sv10043.qa.shopview.com/workorders]
+* *Location:* Staging Heavy Duty - 9919 (time zone America/Edmonton) · *User:* Admin (quick-login), clocking in as Esther Howard
+* *Examples:* S10043-19183 (12 Oct 2026, entry listed 09:03 AM – 09:05 AM at about 3:03 AM shop time) and S10043-18865 (10 Oct 2026)
+
+h2. Sources
+
+* Developer regression list (8 Oct 2026), High 2:
+{quote}Move a labor task from one line to another: the target line takes the technician.{quote}
+* For comparison, production (app.shopview.com, 12 Oct 2026) with its test location set to the same time zone (America/Edmonton): an entry made at 02:49 AM is listed *02:49 AM – 02:50 AM* and moves to line 2 after *Confirm*, with no refusal.
+
+h2. Test case
+
+* [C368177 Moving labor to another line gives that line the technician|https://shopview.testrail.io/index.php?/cases/view/368177]
