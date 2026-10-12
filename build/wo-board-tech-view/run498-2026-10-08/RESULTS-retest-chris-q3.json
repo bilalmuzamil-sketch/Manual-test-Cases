@@ -1,0 +1,29 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-12"},
+ "results": {
+  "C368160": {
+   "verdict": "Retest",
+   "observed": [
+    "Result: Retest — waiting on the Product Owner's (Chris) answer.",
+    "The test checks the Tech View \"Column Selection\" menu: a count such as \"10 of 10 shown\", a \"Show all\" button and a \"Reset to default\" button.",
+    "This build's \"Column Selection\" menu has none of these; the developer says they are not in this release.",
+    "Question 3 is for Chris: should the count, \"Show all\", \"Reset to default\" and \"Find a column\" come in this release? Questions sheet: https://docs.google.com/spreadsheets/d/1cDba13YuN4ZS9tiu38DP8OjInCtYHWyOkGOuv6f9_P8/edit",
+    "Once he answers: if they are coming, test them when they appear (Passed if the count is right, unticking a column hides it at once, \"Show all\" ticks everything and \"Reset to default\" restores the start); if not, the check is removed."
+   ],
+   "not_observed": null,
+   "todo": "Re-run when Chris answers question 3 in https://docs.google.com/spreadsheets/d/1cDba13YuN4ZS9tiu38DP8OjInCtYHWyOkGOuv6f9_P8/edit"
+  },
+  "C368164": {
+   "verdict": "Retest",
+   "observed": [
+    "Result: Retest — waiting on the Product Owner's (Chris) answer.",
+    "The test checks a \"Find a column\" search box in the Tech View \"Column Selection\" menu, and the same in Board View's \"Fields to display\".",
+    "Neither menu has a search box on this build; the developer says it is not in this release.",
+    "Question 3 is for Chris: should the count, \"Show all\", \"Reset to default\" and \"Find a column\" come in this release? Questions sheet: https://docs.google.com/spreadsheets/d/1cDba13YuN4ZS9tiu38DP8OjInCtYHWyOkGOuv6f9_P8/edit",
+    "Once he answers: if it is coming, test it when it appears (Passed if typing \"ass\" leaves only Asset and Assigned Techs, \"zzqx\" shows a no-match message, and ticks never change); if not, the check is removed."
+   ],
+   "not_observed": null,
+   "todo": "Re-run when Chris answers question 3 in https://docs.google.com/spreadsheets/d/1cDba13YuN4ZS9tiu38DP8OjInCtYHWyOkGOuv6f9_P8/edit"
+  }
+ }
+}

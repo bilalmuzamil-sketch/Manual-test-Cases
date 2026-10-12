@@ -139,3 +139,8 @@ Pictures still to add (2x, after the branch is back: caps2x + twopics steps of r
 - **12 Oct, evening:** Heavy Duty set to Asia/Karachi (Rule 125, gate `tz-match-check.mjs`). C96960 and C368136 re-run BY THEIR OWN CASE STEPS → Passed with annotated pictures (Rule 124 amendment: judge the case, not the attached ticket); C96968 still Failed by its own steps. Run 498 = 233 passed · 4 failed (C96938, C96968, C96978, C96983) · 7 blocked. `STAGING-READY.md` generated (Rule 126).
 - **12 Oct:** PO questions as a Google Sheet for Chris (owner bilal.muzamil@shopview.com; domain-wide edit to be switched on by the QA lead — the Drive connector shares only with a person or group): https://docs.google.com/spreadsheets/d/1cDba13YuN4ZS9tiu38DP8OjInCtYHWyOkGOuv6f9_P8/edit
 - **12 Oct:** C368162 and C154887 moved Blocked → Retest (waiting on Chris; the Google Sheet link is in each comment).
+
+## 12 Oct 2026 — blocked tests, after the QA lead's choices
+- C368160 (test 3762381) and C368164 (test 3763435) moved Blocked -> Retest (QA lead: anything blocked on Chris goes to Retest with the reason and the sheet link). Comments name question 3 and the sheet link. Run now: 233 passed · 4 failed · 3 blocked · 4 retest.
+- OPEN: question 3 is NOT yet in Chris's Google Sheet — no Google Sheets editing connector in this chat. Asked the QA lead to turn it on (or paste the drafted row himself). Do not recreate the sheet.
+- Analytics C97026 / C97033 / C97034 stay Blocked (not on Chris). QA lead reads the reports; checklist sent 12 Oct. C97026 readable now; C97033/C97034 after 19 Oct. Day-2 steps scheduled 13 Oct 06:00 UTC (`PHASE=day2 ./wob-run.sh ga-week.mts`).
