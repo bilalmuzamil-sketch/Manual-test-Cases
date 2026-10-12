@@ -1,6 +1,6 @@
 TITLE: Schedule – Dropped Shift Is Saved Six Hours After the Hour It Was Dropped On
 TYPE: Story Defect · PARENT: SV-10047 (Ready for QA, read 10 Oct 2026 — my reading of the owning story; regression item, confirm) · PRIORITY: Medium · LABEL: board-tech-view
-MY READING: REAL DEFECT on this branch. RELATED (QA lead to decide whether it belongs here): on the Timesheets list a clock-in made minutes ago shows six hours ahead (10:01 AM when the shop's time was ~4:01 AM), and editing it is refused with 'Start date cannot be set in the future. Please try to resolve this.' (C368177, S10043-18865; SV-11087 covers that test's line move). Production (shop on UTC) puts the shift where it is dropped; this branch's shop is on Mountain time and the shift lands 6 hours later. Picture is 1x — recapture at 2x before filing (Rule 116).
+MY READING: REAL DEFECT on this branch. RELATED (QA lead to decide whether it belongs here): on the Timesheets list a clock-in made minutes ago shows six hours ahead (10:01 AM when the shop's time was ~4:01 AM), and editing it is refused with 'Start date cannot be set in the future. Please try to resolve this.' (C368177, S10043-18865; SV-11087 covers that test's line move). RULE 121 CHECK (12 Oct 2026, twice each): production with its test location set to America/Edmonton (this branch's zone) saved a 1 PM drop as 13:00–15:00, exactly where dropped => the six-hour jump is NOT on production => REGRESSION. Separate, pre-existing on production: with the location on its own zone Africa/Bangui (UTC+1) the same drop saved 12:00–14:00, one hour early (not a regression; reported, not filed). OWNING STORY OPEN: SV-10047 read live 12 Oct = Ready for QA but it is 'Reassign or unassign the lead technician', not the Schedule drag — ask the QA lead which story to parent under. Picture is 1x — recapture at 2x before filing (Rule 116).
 
 h2. Description
 
@@ -37,7 +37,7 @@ h2. Sources
 
 * Developer regression list (8 Oct 2026), High 3:
 {quote}Creating shifts by dragging onto the schedule should still work.{quote}
-* For comparison, production (app.shopview.com, v26.40.14-7a55f9c, 10 Oct 2026): a shift dropped under 1 PM was saved 12:00 – 14:00, over the hour it was dropped on. (Production's test shop runs on UTC.)
+* For comparison, production (app.shopview.com, 12 Oct 2026) with its test location set to the same time zone (America/Edmonton): a shift dropped under 1 PM is saved *1:00 PM – 3:00 PM*, where it was dropped.
 
 h2. Test case
 

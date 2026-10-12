@@ -6014,3 +6014,7 @@ three wrong characterisations before it was found — see learning **L0233**.
   freeze. Fix: for any sign-out / switch-user / session-change check, open a CLEAN context from the same signed-in state —
   `browser.newContext({ storageState: await page.context().storageState() })` — and use only it (`signout-fix6.mts`,
   `freeze-diag4.mts`). Diagnosis kit: `freeze-diag.mts` (pending requests + liveness), `freeze-diag3.mts` (debugger stacks).
+
+### Schedule drop-time on production vs QA, by location time zone (measured 12 Oct 2026, Rule 121)
+- Production `Administration > Locations > Truck Hill 1 > edit_note > Timezone`, then **Save & Close** — the button only answers a DOM click (`[...document.querySelectorAll('.q-dialog button')]` text `Save & Close` → `.click()`); Playwright `getByRole`/`getByText` time out on it. Script: `build/wo-board-tech-view/run498-2026-10-08/prod-tz-check.mjs` (`TZ_TARGET=<zone>`; reverts to Africa/Bangui in `finally`, read back).
+- Production, location America/Edmonton: 1 PM drop → 13:00–15:00 (correct). Location Africa/Bangui (UTC+1): 1 PM drop → 12:00–14:00 (one hour early — pre-existing production fault). QA sv10043, America/Edmonton: 1 PM drop → 19:00–21:00 (six hours late — not on production ⇒ regression).
