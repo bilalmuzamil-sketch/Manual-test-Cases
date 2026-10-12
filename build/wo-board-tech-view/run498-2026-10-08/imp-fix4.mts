@@ -46,7 +46,7 @@ async function myList(find: string) { step(`myList ${find}`);
 }
 async function wipWhile(act: () => Promise<void>, gapMs = 400) { step('wipWhile');
   await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000);
-  await p.locator('[data-test-id="button_desktop_nav_link"]').filter({ hasText: 'Reports' }).first().click(); await p.waitForTimeout(2500);
+  const rep = p.locator('[data-test-id="button_desktop_nav_link"]').filter({ hasText: 'Reports' }).first(); if (await rep.count()) { await rep.click(); await p.waitForTimeout(2500); }   /* FIX 5: a Technician has no Reports link at all */
   const pending: string[] = []; const onReq = (q: any) => { if (/\/api\/(reports|schedul)/i.test(q.url())) pending.push(q.url().replace(/^https:\/\/[^/]+/, '').slice(0, 80)); }; p.on('request', onReq);
   let used = 'Reports > Work In Progress';
   const wip = p.getByText('Work In Progress', { exact: true }).last();

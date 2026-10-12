@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C368238": {
+   "verdict": "Passed",
+   "observed": "As Admin ShopView: Work Orders > All, Assigned to me on. Opened Reports > Work In Progress and 0.4 s later started using the app as Esther Howard (account access). No red message appeared (watched 10 s). The top bar shows 'Account Access Mode: Esther Howard in Staging Foothills Group Inc.' with Exit, and her initials (EH). Work Orders with Assigned to me on lists her work order S10043-19168 (made for this test, led by her); nothing from Admin ShopView's session is left on screen. Run in a clean browser window (the earlier hangs were the test harness, not the app).",
+   "not_observed": "Whether the report had begun fetching data at the moment of the switch (no report request was seen yet; the switch came 0.4 s after the click).",
+   "ticket": "",
+   "todo": "Nothing to do."
+  }
+ }
+}
