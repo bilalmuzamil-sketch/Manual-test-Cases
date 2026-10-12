@@ -4820,3 +4820,25 @@ readable in bullet points easier for the readers not technical people to underst
 4. **A picture that decides the verdict is attached to the result** (`add_attachment_to_result`) when the QA lead asks for
    one — e.g. the production-vs-test-branch comparison for a Rule 121 call.
 Worked example: C368181, run 498, 12 Oct 2026 — seven bullet points plus the annotated production/test-branch picture.
+
+---
+
+## RULE 123 — A FAILED TEST CARRIES TWO COMMENTS: THE WHY, THEN "Follow the status here <ticket link>" ON TOP; A PASSED TEST SAYS WHY IT PASSED (QA lead 2026-10-12)
+
+Verbatim: *"ensure that all of them has a ticket in the new comment like this: Follow the status here {{ticket link}} … mark it
+as a permanent rule for the failed test cases to have a separate comment at the top as I mentioned and before that comment
+the other comment should tell in clean way with bullet point as to why this is a failed test cases. Similarly the passed test
+cases should also have a clear comment for why this is a passed test case with bullet points for a lay man to easily
+understand."*
+
+1. **Failed test, comment 1 (posted first):** bullet points (Rule 122) saying WHY it failed — what should happen (the
+   requirement, in plain words), what happens instead, who found it if it was not us, and the ticket.
+2. **Failed test, comment 2 (posted second, so it shows at the TOP of the test's history):** exactly
+   `Follow the status here <ticket link>` — nothing else. Its defect field carries the ticket key.
+3. **A failure whose ticket is held** (no ticket yet, Rule 113) gets comment 2 the moment the ticket is filed.
+4. **Passed test:** bullet points saying WHY it passed — what the requirement asks, what was seen that matches it, and
+   (where it applies) the production comparison or the QA lead's ruling. Never a bare "Passed".
+5. **Mechanism:** `build/testing-tools/push_results_to_run.py` posts comment 2 automatically for every Failed result whose
+   ticket text carries a `browse/SV-…` link, after the batched results (read back: newest first).
+Worked example: run 498, 12 Oct 2026 — C96938, C96960, C96968, C368136, C96978, C96983
+(`build/wo-board-tech-view/run498-2026-10-08/failed-comments-2026-10-12/`).

@@ -1,0 +1,48 @@
+{
+ "C96938": {"test": 3481882, "ticket": "SV-11075", "why": [
+  "Result: Failed.",
+  "In Tech View, each technician's group heading shows a round picture (their initials) and their name.",
+  "Pointing at the name shows the technician's name, as it should.",
+  "Pointing at the round picture shows nothing.",
+  "The requirement says pointing at the heading or the picture shows the technician's name.",
+  "Already reported by Ahtasham Amjad (SV-11075), so no second ticket was raised.",
+  "Test again once SV-11075 is fixed."]},
+ "C96960": {"test": 3481904, "ticket": "SV-11128", "why": [
+  "Result: Failed — marked by Ahtasham Amjad on 12 Oct 2026.",
+  "Our own run on 8 Oct passed for a work order with no shift on the Schedule: the lines that followed the old lead moved to the new lead.",
+  "Ahtasham found the case where it breaks: the work order is already on the Schedule as a whole-work-order shift for today that hasn't finished.",
+  "In that case, after the lead is changed in Board View, the line still shows the old technician instead of following the new lead.",
+  "The requirement says lines that follow the lead move to the new lead.",
+  "Test again once SV-11128 is fixed."]},
+ "C96968": {"test": 3481912, "ticket": "SV-11074", "why": [
+  "Result: Failed — marked by Ahtasham Amjad on 12 Oct 2026.",
+  "When a move cannot be saved, the card should go back to where it was and the alert \"Failed to update lead technician, please try again.\" should show.",
+  "Our own run on 8 Oct passed when the save was refused by the server.",
+  "Ahtasham found the case where it breaks: with the computer offline, a card dragged from Unassigned to a technician stays there and no alert shows.",
+  "When the connection comes back, the move is saved anyway.",
+  "Test again once SV-11074 is fixed."]},
+ "C368136": {"test": 3761657, "ticket": "SV-11126", "why": [
+  "Result: Failed — marked by Ahtasham Amjad on 12 Oct 2026.",
+  "When the old lead has a whole-work-order shift, changing the lead in Board View or Tech View should first ask \"Clear <name>'s scheduled shifts?\".",
+  "Our own run on 8 Oct passed with a shift booked for the next day.",
+  "Ahtasham found the case where it breaks: when the shift is today and hasn't finished, changing the lead in Board View shows no question at all.",
+  "Test again once SV-11126 is fixed."]},
+ "C96978": {"test": 3481922, "ticket": "SV-11106", "why": [
+  "Result: Failed.",
+  "Board View > Fields to display offers 13 optional fields for the cards.",
+  "With all 13 turned on, 12 show the right value on the card.",
+  "Estimated hours never shows on any card, even when the work order's lines have estimated time (for example 0.3 + 1.5 + 0.4 hours).",
+  "On production, a work order's estimated hours is the total of its lines' estimates, so there is a value to show.",
+  "The requirement says the optional fields use their existing production meaning.",
+  "Reported as SV-11106; the QA lead decided on 12 Oct 2026 to keep it.",
+  "Test again once SV-11106 is fixed."]},
+ "C96983": {"test": 3481927, "ticket": "SV-11117", "why": [
+  "Result: Failed.",
+  "If your saved Work Orders choices fail to load, Board View and Tech View correctly fall back to their default fields — that part works.",
+  "But the next field you turn on is not saved: after a reload it is gone again.",
+  "The requirement says: \"Save the user's next field selection after a preference-load failure.\"",
+  "A normal field change a moment earlier did save, so the saving itself works.",
+  "To repeat it, a developer has to make the saved choices fail to load.",
+  "Reported as SV-11117; the QA lead decided on 12 Oct 2026 to keep it.",
+  "Test again once SV-11117 is fixed."]}
+}

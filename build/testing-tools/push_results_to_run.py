@@ -271,6 +271,22 @@ def main():
         sys.exit('add_results_for_cases failed: %s %s' % (s, r))
     print('add_results_for_cases ->', s, '| written:', len(r) if isinstance(r, list) else r)
 
+    # --- 3b. Rule 123 (QA lead 2026-10-12): every Failed result that has a ticket gets a SEPARATE comment on
+    # top reading exactly "Follow the status here <ticket link>" — posted after the why-it-failed comment, so it
+    # shows first in the test's history. A held ticket (no link yet) gets it when the ticket is filed.
+    import re as _re
+    for p_ in payload:
+        if p_.get('status_id') != 5:
+            continue
+        m = _re.search(r'https://shopview\.atlassian\.net/browse/SV-\d+', p_.get('comment') or '')
+        if not m:
+            continue
+        url = m.group(0)
+        s2, _ = t.post('add_result_for_case/%d/%d' % (a.run, p_['case_id']),
+                       {'status_id': 5, 'defects': url.rsplit('/', 1)[1],
+                        'comment': '<p>Follow the status here <a href="%s">%s</a></p>' % (url, url)})
+        print('  C%d: "Follow the status here" comment ->' % p_['case_id'], s2)
+
     # --- 4. read it back (a 200 is not evidence a human can read it)
     s, run = t.get('get_run/%d' % a.run)
     print('run now: untested %s | passed %s | failed %s | blocked %s | retest %s'
