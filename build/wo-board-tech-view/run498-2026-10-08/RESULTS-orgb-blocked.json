@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C368175": {
+   "verdict": "Blocked",
+   "observed": "Blocked: this QA branch has only ONE organisation (read 12 Oct 2026: the organisations list holds only 'Staging Foothills Group Inc'), and a second one cannot be made here: the registration service the app calls answers 'resource not found' (404) on this build, creating an organisation directly is not allowed (405), and no other organisation's staff exist to search for. Routes tried: the repo's notes (playbook \u00a7X and the 9 Oct note), the refusal itself, the registration page (needs the same service), direct creation, and a check that the reader works (it lists organisation A correctly). What could be read: the New Line, Edit Line and Edit labor technician lists offer no 'OrgB' name \u2014 expected, since no organisation-B staff exist, so it proves nothing.",
+   "not_observed": "Whether another organisation's technician is offered \u2014 there is none on this branch.",
+   "ticket": "",
+   "todo": "Unblock: a developer adds a second organisation with one technician to this QA branch (or turns the registration service back on), then this test runs as written. Or the QA lead chooses another branch that already has two organisations."
+  },
+  "C154650": {
+   "verdict": "Blocked",
+   "observed": "Blocked: this QA branch has only ONE organisation (read 12 Oct 2026: the organisations list holds only 'Staging Foothills Group Inc'), and a second one cannot be made here: the registration service the app calls answers 'resource not found' (404) on this build, creating an organisation directly is not allowed (405), and no other organisation's staff exist to search for. Routes tried: the repo's notes (playbook \u00a7X and the 9 Oct note), the refusal itself, the registration page (needs the same service), direct creation, and a check that the reader works (it lists organisation A correctly). The other-location half (step 5) does not need organisation B; an earlier read (9 Oct) found the Lethbridge work order absent at Staging Heavy Duty, but that read's own control did not show either, so it is not counted.",
+   "not_observed": "Steps 2-4 and 6 (organisation B work order, group, column and technician) \u2014 no organisation B exists.",
+   "ticket": "",
+   "todo": "Unblock as for the line-technician test: a second organisation with a technician and a work order on this branch. Step 5 can be re-read on its own at any time."
+  }
+ }
+}

@@ -6003,3 +6003,7 @@ three wrong characterisations before it was found — see learning **L0233**.
   was left. Treat ANY `delete_case` call as the real delete: snapshot the case body to the repo first (Rule 87), check
   `created_by` and `custom_atmstatus != 3` (Automated, Rule 71), then read back `get_case` → 400 "not a valid test case",
   with a positive control on a case that still exists. Record: `build/wo-board-tech-view/run498-2026-10-08/case-deletes-2026-10-12/`.
+- **Second organisation on v26.40.8 (2026-10-12): NOT possible on sv10043.** `POST /api/register` (the call the app's own
+  Register page makes) now answers **404 "'resource' was not found."**; `GET /api/organizations` lists only "Staging Foothills
+  Group Inc". Supersedes the 9 Oct "send the form's own request" note for this branch. Tenant-isolation tests are Blocked here
+  until a developer adds a second organisation (C368175, C154650).
