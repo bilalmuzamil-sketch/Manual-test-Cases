@@ -22,3 +22,7 @@ At the QA lead's request the Preconditions/Setup of all four automated cases (an
 shortened: repeated text, the old build number and the role-checking route were removed. **The data each test builds is
 unchanged** (same customers, work orders, technicians and leads), so automations that seed their own data need no change
 for this; only automations that read the precondition text itself would notice.
+
+## Automation status read live, 12 Oct 2026 ~19:45 UTC
+C368135 and C368181 are still Automated. C154884 and C96977 were switched back to Not Automated by Vladimir Tomovic at
+18:35 UTC on 12 Oct (he had set them to Automated at 09:28 UTC the same day), after they were rewritten.
