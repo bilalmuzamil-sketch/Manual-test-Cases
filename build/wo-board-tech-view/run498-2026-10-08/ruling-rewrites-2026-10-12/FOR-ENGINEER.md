@@ -15,4 +15,4 @@ every field are in this folder as `C<id>-before.json` / `C<id>-after.json`).
 All four sit in run 498: https://shopview.testrail.io/index.php?/runs/view/498
 
 Not automated, also rewritten the same day (for completeness): C368138, C97022, C368169, C368170, C368171, C368218,
-C368219, C368223, C368233, C368234, C368235, C97026, C97034; C97033 follows after its day-2 check. C96923 needed no change.
+C368219, C368223, C368233, C368234, C368235, C97026, C97034, C97033. C96923 needed no change.

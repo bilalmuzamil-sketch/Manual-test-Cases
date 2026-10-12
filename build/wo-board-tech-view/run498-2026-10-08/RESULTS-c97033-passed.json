@@ -1,0 +1,19 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.14-e84b3d1", "date": "2026-10-13"},
+ "results": {
+  "C97033": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed, tested on the QA branch by recording what each test user's visits sent to Google Analytics, and working out the week's figures with the PRD's own rules (distinct users; one person counts once; the whole week, not an average of days).",
+    "Day 1 (12 Oct, Pakistan time): user 1 turned VIN/Serial on and off several times and ended with it on.",
+    "Day 2 (13 Oct, just after midnight Pakistan time, as you chose): user 2 turned VIN/Serial on; user 3 turned Total price off; user 4, who cannot see financial data, only opened Board View and was never offered Total price.",
+    "VIN/Serial: 4 users saw it and 2 have it on, so 2 of 4 = 50%, exactly as expected (not the 66.7% an average of the two days would give).",
+    "Total price: only the 3 users who can see financial data count, and 2 have it on, so 2 of 3 = 66.7%, exactly as expected.",
+    "Each user kept the same user id on both days. The setting that hid financial data from user 4 was put back afterwards.",
+    "ShopView has no report screen for this: the report page itself is built by Milos in Google Analytics, outside ShopView, and was not looked at."
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ }
+}

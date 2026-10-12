@@ -1,0 +1,341 @@
+{
+ "case": {
+  "id": 97033,
+  "title": "Field selection rate is one combined share across all users, not an average",
+  "section_id": 55300,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": null,
+  "created_by": 3,
+  "created_on": 1790157853,
+  "updated_by": 3,
+  "updated_on": 1791823843,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 7,
+  "is_deleted": 0,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 1,
+  "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>About 20 minutes, spread over two days of the same week (Monday to Sunday); the report is read after that week ends.</li><li>Sign in on the QA branch (sv10043) with the Admin quick-login button on the sign-in page. Use a desktop browser window at least 1024 px wide (narrower windows show only the List).</li><li>Work in one location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"). To change it: your initials at the top right &gt; Change Location.</li><li>Google Analytics: you can open the analytics property the QA build sends to (QA and staging share it) (Admin &gt; DebugView shows each event within seconds, because the QA build sends in debug mode) and the Story 12 reports Milos Vasic builds there. If you cannot open DebugView, write \"not checked by hand\" for the event checks and pass or fail on what you can see on the Work Orders page.</li><li>Board View starts every new user with VIN/Serial off and Total price on.</li></ul><p><strong>Setup</strong></p><ol><li>Settings &gt; Roles &amp; Permissions: create a role with Work Orders View but without See financial data (e.g. \"ZZAUTOTEST No Money\").</li><li>Settings &gt; Staff: add four new users at this location and finish each invite so they can sign in (e.g. \"ZZAUTOTEST F3 Rate U1\" to \"U4\"). U1, U2 and U3 get a role with Work Orders View and See financial data; U4 gets the role from step 1.</li><li>Check: as U4, Board View &gt; Fields to display does not offer Total price.</li></ol>",
+  "custom_steps": "<ol><li>Day 1: sign in as U1, open Work Orders &gt; Board View &gt; Fields to display, and turn VIN/Serial on, off, then on again.</li><li>Day 2: sign in as U2, open Board View and turn VIN/Serial on.</li><li>Day 2: sign in as U3, open Board View and turn Total price off.</li><li>Day 2: sign in as U4 and open Board View. Change nothing.</li><li>After the week ends, open the Board View field selection report for that week (filtered to U1 to U4 if the report allows).</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>VIN/Serial: 4 users saw it (U1 to U4) and 2 have it on (U1, U2), so the rate is 2 \u00f7 4 = 50%. U1 counts once however many times they toggled.</li><li>The report must not show the average of daily rates. Day 1 = 1 \u00f7 1 = 100% and day 2 = 1 \u00f7 3 = 33.3%, so their average of 66.7% would be wrong. The correct figure is 50%.</li><li>Total price: only U1, U2 and U3 could see it (U4 has no financial data). U1 and U2 have it on (default) and U3 turned it off, so the rate is 2 \u00f7 3 = 66.7%, not 2 \u00f7 4 = 50%.</li><li>Rounding: write down how the report rounds (e.g. 66.7% or 67%). The number must round from 2 \u00f7 3.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S12-R10, S12-R7, S12-R13, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names. Tech plan (revised 24 Sep 2026) section 3.21 and Phase 10.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S12-R10:</strong> &ldquo;Report field selection rate by field and display: distinct exposed users selecting the field divided by distinct users exposed to that available field.&rdquo;</li><li><strong>S12-R7:</strong> &ldquo;Exclude unavailable financial fields from field-exposure measurement and its denominator.&rdquo;</li><li><strong>S12-R13:</strong> &ldquo;Do not count repeated events from one user as additional users.&rdquo;</li><li><strong>Tech plan Phase 10 sample calculation:</strong> &ldquo;Each needs a named owner (product analytics, not engineering) and a sample calculation checked against a seeded week (S12-E2).&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: HOLD - not manually testable (developer/automated check only)</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": []
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 10,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": [
+   {
+    "id": 27178,
+    "type_id": 6,
+    "created_on": 1790759775,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Field selection rate is computed as distinct selectors over distinct exposed (a pooled ratio, not an average of rates)",
+      "new_value": "Field selection rate is a pooled ratio (distinct selectors / exposed)"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p>Build: the Work Orders QA build with the Board View / Tech View display options enabled (feature ships without a feature flag).</p><p>Access to the analytics report and a small seeded population where the rate can be computed by hand.</p><p>AUTOMATION note: verify the reporting calculation from event data with engineering; the manual check is the arithmetic.</p>",
+      "new_value": "<p><strong>Seed / setup:</strong> On the Work Orders QA build, seed a KNOWN set of work orders across statuses (some Approved, In Progress, Ready for Review, and some in excluded statuses) and across several lead technicians, so the header counts and the N-open dialog count can be computed by hand (Rule 14, Rule 116).</p><p>Build: the Work Orders QA build with the Board View / Tech View display options enabled (feature ships without a feature flag).</p><p>Access to the analytics report and a small seeded population where the rate can be computed by hand.</p><p>AUTOMATION note: verify the reporting calculation from event data with engineering; the manual check is the arithmetic.</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 27354,
+    "type_id": 6,
+    "created_on": 1790791623,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Seed / setup:</strong> On the Work Orders QA build, seed a KNOWN set of work orders across statuses (some Approved, In Progress, Ready for Review, and some in excluded statuses) and across several lead technicians, so the header counts and the N-open dialog count can be computed by hand (Rule 14, Rule 116).</p><p>Build: the Work Orders QA build with the Board View / Tech View display options enabled (feature ships without a feature flag).</p><p>Access to the analytics report and a small seeded population where the rate can be computed by hand.</p><p>AUTOMATION note: verify the reporting calculation from event data with engineering; the manual check is the arithmetic.</p>",
+      "new_value": "<ol><li>You are signed in on the Work Orders build under test with Work Orders view permission; the Board View and Tech View display options are on.</li><li>The current location has at least 3 lead technicians shown as groups/columns (a technician is eligible when they are Clockable, Active, and their role is not Office or Time Clock User).</li><li>On the Work Orders QA build, seed a KNOWN set of work orders across statuses (some Approved, In Progress, Ready for Review, and some in excluded statuses) and across several lead technicians, so the header counts and the N-open dialog count can be computed by hand (Rule 14, Rule 116).</li><li>Access to the analytics report and a small seeded population where the rate can be computed by hand.</li><li>AUTOMATION note: verify the reporting calculation from event data with engineering; the manual check is the arithmetic.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 29426,
+    "type_id": 6,
+    "created_on": 1791367301,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Field selection rate is a pooled ratio (distinct selectors / exposed)",
+      "new_value": "Field selection rate is the share of users who chose a field"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 29853,
+    "type_id": 6,
+    "created_on": 1791429898,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Field selection rate is the share of users who chose a field",
+      "new_value": "Field selection rate is one combined share across all users, not an average"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>You are signed in on the Work Orders build under test with Work Orders view permission; the Board View and Tech View display options are on.</li><li>The current location has at least 3 lead technicians shown as groups/columns (a technician is eligible when they are Clockable, Active, and their role is not Office or Time Clock User).</li><li>On the Work Orders QA build, seed a KNOWN set of work orders across statuses (some Approved, In Progress, Ready for Review, and some in excluded statuses) and across several lead technicians, so the header counts and the N-open dialog count can be computed by hand (Rule 14, Rule 116).</li><li>Access to the analytics report and a small seeded population where the rate can be computed by hand.</li><li>AUTOMATION note: verify the reporting calculation from event data with engineering; the manual check is the arithmetic.</li></ol>",
+      "new_value": "<ol><li>In the top bar, choose the location you test in (e.g. \"Heavy Duty\"). Every technician and work order below belongs to this location.</li><li>Use a desktop browser window at least 1024 px wide (the display switcher only shows at 1024 px and wider).</li><li>You can open Google Analytics for the property the QA build reports to, at Admin &gt; DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write \"not checked by hand\" in the result comment and pass or fail on what you can see on the Work Orders page.</li><li>Four test users at this location with Work Orders view (Settings &gt; Staff): U1, U2 and U3 with see financial data, U4 without.</li><li>You can open the Story 12 field selection report in Google Analytics (built and kept by Milos Vasic).</li><li>Do the steps on two different days of the same week (Monday to Sunday).</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>For one field/display, from the events count the distinct users exposed to that available field and the distinct exposed users who selected it.</li><li>Compute the rate by hand as selectors / exposed (a single pooled ratio).</li><li>Confirm the report shows the same value and does NOT average per-user or per-day rates.</li><li>Confirm unavailable financial fields are excluded from both numerator and denominator.</li></ol>",
+      "new_value": "<ol><li>Day 1: sign in as U1, open Work Orders &gt; Board View &gt; Fields to display, turn VIN/Serial on, then off, then on again.</li><li>Day 2: sign in as U2 and turn VIN/Serial on in Board View.</li><li>Day 2: sign in as U3, open Board View and turn Total price off.</li><li>Day 2: sign in as U4 and open Board View (change nothing).</li><li>After the week, open the field selection report for Board View for that week, filtered to these four users if the report allows.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Field selection rate is reported per field and display as distinct exposed users who selected the field divided by distinct users exposed to that available field.</li></ul><p></p><p><strong>Source \u2014 where this behaviour comes from</strong><br>Epic SV-10043 (Work Orders \u2014 Board View &amp; Tech View Display Options). Story reference: SV-TBD (Story 12 has no Jira story yet) \u2014 Story 12 Google Analytics for display and field usage. Spec: Confluence page 845185030 &ldquo;Work Orders \u2014 Board View &amp; Tech View Display Options (Draft Spec)&rdquo;, Draft v0.9, requirement(s) S12-R10 (read 23 Sep 2026). Review decisions/answers: Confluence page 853901313 where cited. Source-verified on 23 September 2026; not yet build-verified.</p><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S12-R10:</strong> &ldquo;Report field selection rate by field and display: distinct exposed users selecting the field divided by distinct users exposed to that available field.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>VIN/Serial: 4 users saw it (U1 to U4) and 2 have it on (U1, U2), so the rate is 2 \u00f7 4 = 50%. U1 counts once however many times they toggled.</li><li>The report must not show the average of daily rates. Day 1 = 1 \u00f7 1 = 100% and day 2 = 1 \u00f7 3 = 33.3%, so their average of 66.7% would be wrong. The correct figure is 50%.</li><li>Total price: only U1, U2 and U3 could see it (U4 has no financial data). U1 and U2 have it on (default) and U3 turned it off, so the rate is 2 \u00f7 3 = 66.7%, not 2 \u00f7 4 = 50%.</li><li>Rounding: write down how the report rounds (e.g. 66.7% or 67%). The number must round from 2 \u00f7 3.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S12-R10, S12-R7, S12-R13, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names. Tech plan (revised 24 Sep 2026) section 3.21 and Phase 10.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S12-R10:</strong> &ldquo;Report field selection rate by field and display: distinct exposed users selecting the field divided by distinct users exposed to that available field.&rdquo;</li><li><strong>S12-R7:</strong> &ldquo;Exclude unavailable financial fields from field-exposure measurement and its denominator.&rdquo;</li><li><strong>S12-R13:</strong> &ldquo;Do not count repeated events from one user as additional users.&rdquo;</li><li><strong>Tech plan Phase 10 sample calculation:</strong> &ldquo;Each needs a named owner (product analytics, not engineering) and a sample calculation checked against a seeded week (S12-E2).&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 29981,
+    "type_id": 6,
+    "created_on": 1791448792,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>In the top bar, choose the location you test in (e.g. \"Heavy Duty\"). Every technician and work order below belongs to this location.</li><li>Use a desktop browser window at least 1024 px wide (the display switcher only shows at 1024 px and wider).</li><li>You can open Google Analytics for the property the QA build reports to, at Admin &gt; DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write \"not checked by hand\" in the result comment and pass or fail on what you can see on the Work Orders page.</li><li>Four test users at this location with Work Orders view (Settings &gt; Staff): U1, U2 and U3 with see financial data, U4 without.</li><li>You can open the Story 12 field selection report in Google Analytics (built and kept by Milos Vasic).</li><li>Do the steps on two different days of the same week (Monday to Sunday).</li></ol>",
+      "new_value": "<ol><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Every technician and work order below belongs to this location.</li><li>Use a desktop browser window at least 1024 px wide (the display switcher only shows at 1024 px and wider).</li><li>You can open Google Analytics for the property the QA build reports to, at Admin &gt; DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write \"not checked by hand\" in the result comment and pass or fail on what you can see on the Work Orders page.</li><li>Four test users at this location with Work Orders view (Settings &gt; Staff): U1, U2 and U3 with see financial data, U4 without.</li><li>You can open the Story 12 field selection report in Google Analytics (built and kept by Milos Vasic).</li><li>Do the steps on two different days of the same week (Monday to Sunday).</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>VIN/Serial: 4 users saw it (U1 to U4) and 2 have it on (U1, U2), so the rate is 2 \u00f7 4 = 50%. U1 counts once however many times they toggled.</li><li>The report must not show the average of daily rates. Day 1 = 1 \u00f7 1 = 100% and day 2 = 1 \u00f7 3 = 33.3%, so their average of 66.7% would be wrong. The correct figure is 50%.</li><li>Total price: only U1, U2 and U3 could see it (U4 has no financial data). U1 and U2 have it on (default) and U3 turned it off, so the rate is 2 \u00f7 3 = 66.7%, not 2 \u00f7 4 = 50%.</li><li>Rounding: write down how the report rounds (e.g. 66.7% or 67%). The number must round from 2 \u00f7 3.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S12-R10, S12-R7, S12-R13, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names. Tech plan (revised 24 Sep 2026) section 3.21 and Phase 10.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S12-R10:</strong> &ldquo;Report field selection rate by field and display: distinct exposed users selecting the field divided by distinct users exposed to that available field.&rdquo;</li><li><strong>S12-R7:</strong> &ldquo;Exclude unavailable financial fields from field-exposure measurement and its denominator.&rdquo;</li><li><strong>S12-R13:</strong> &ldquo;Do not count repeated events from one user as additional users.&rdquo;</li><li><strong>Tech plan Phase 10 sample calculation:</strong> &ldquo;Each needs a named owner (product analytics, not engineering) and a sample calculation checked against a seeded week (S12-E2).&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>VIN/Serial: 4 users saw it (U1 to U4) and 2 have it on (U1, U2), so the rate is 2 \u00f7 4 = 50%. U1 counts once however many times they toggled.</li><li>The report must not show the average of daily rates. Day 1 = 1 \u00f7 1 = 100% and day 2 = 1 \u00f7 3 = 33.3%, so their average of 66.7% would be wrong. The correct figure is 50%.</li><li>Total price: only U1, U2 and U3 could see it (U4 has no financial data). U1 and U2 have it on (default) and U3 turned it off, so the rate is 2 \u00f7 3 = 66.7%, not 2 \u00f7 4 = 50%.</li><li>Rounding: write down how the report rounds (e.g. 66.7% or 67%). The number must round from 2 \u00f7 3.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S12-R10, S12-R7, S12-R13, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names. Tech plan (revised 24 Sep 2026) section 3.21 and Phase 10.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S12-R10:</strong> &ldquo;Report field selection rate by field and display: distinct exposed users selecting the field divided by distinct users exposed to that available field.&rdquo;</li><li><strong>S12-R7:</strong> &ldquo;Exclude unavailable financial fields from field-exposure measurement and its denominator.&rdquo;</li><li><strong>S12-R13:</strong> &ldquo;Do not count repeated events from one user as additional users.&rdquo;</li><li><strong>Tech plan Phase 10 sample calculation:</strong> &ldquo;Each needs a named owner (product analytics, not engineering) and a sample calculation checked against a seeded week (S12-E2).&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: HOLD - not manually testable (developer/automated check only)</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 30126,
+    "type_id": 6,
+    "created_on": 1791453994,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Day 1: sign in as U1, open Work Orders &gt; Board View &gt; Fields to display, turn VIN/Serial on, then off, then on again.</li><li>Day 2: sign in as U2 and turn VIN/Serial on in Board View.</li><li>Day 2: sign in as U3, open Board View and turn Total price off.</li><li>Day 2: sign in as U4 and open Board View (change nothing).</li><li>After the week, open the field selection report for Board View for that week, filtered to these four users if the report allows.</li></ol>",
+      "new_value": "<ol><li>Day 1: sign in as U1, open Work Orders &gt; Board View &gt; the Fields to display menu, turn VIN/Serial on, then off, then on again.</li><li>Day 2: sign in as U2 and turn VIN/Serial on in Board View.</li><li>Day 2: sign in as U3, open Board View and turn Total price off.</li><li>Day 2: sign in as U4 and open Board View (change nothing).</li><li>After the week, open the field selection report for Board View for that week, filtered to these four users if the report allows.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 30264,
+    "type_id": 6,
+    "created_on": 1791457232,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Every technician and work order below belongs to this location.</li><li>Use a desktop browser window at least 1024 px wide (the display switcher only shows at 1024 px and wider).</li><li>You can open Google Analytics for the property the QA build reports to, at Admin &gt; DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write \"not checked by hand\" in the result comment and pass or fail on what you can see on the Work Orders page.</li><li>Four test users at this location with Work Orders view (Settings &gt; Staff): U1, U2 and U3 with see financial data, U4 without.</li><li>You can open the Story 12 field selection report in Google Analytics (built and kept by Milos Vasic).</li><li>Do the steps on two different days of the same week (Monday to Sunday).</li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 4 users \u00b7 1 browser \u00b7 Google Analytics access \u00b7 steps on two days of one week, report read after the week \u00b7 about 20 minutes of work</li><li>Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).</li><li>Location: one location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Every technician and work order below belongs to this location.</li><li>Analytics access: you can open Google Analytics for the property the QA build reports to, at Admin &gt; DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write \"not checked by hand\" in the result comment and pass or fail on what you can see on the Work Orders page.</li><li>Four test users at this location with Work Orders view (Settings &gt; Staff): U1, U2 and U3 with see financial data, U4 without. Each has the default Board View fields (VIN/Serial off, Total price on).</li><li>You can open the Story 12 field selection report in Google Analytics (built and kept by Milos Vasic).</li><li>Do the steps on two different days of the same week (Monday to Sunday).</li></ul><p><strong>Setup</strong></p><ol><li>Settings &gt; Staff: add four users at this location (e.g. \"ZZAUTOTEST F3 Rate U1\" \u2026 \"ZZAUTOTEST F3 Rate U4\") and finish each invite so they can sign in. U1, U2 and U3 get a role with Work Orders View and see financial data; U4 a role with Work Orders View but not see financial data (Settings &gt; Roles &amp; Permissions &gt; create a custom role, e.g. \"ZZAUTOTEST No Money\"). Record them as U1, U2, U3, U4.</li><li>Check the setup worked: each of U1\u2013U4 can sign in and open Work Orders; as U4, Board View's Fields to display does not offer Total price. If a user cannot sign in, finish the invite first.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 30626,
+    "type_id": 6,
+    "created_on": 1791478555,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "old_text": "Counts and data accuracy (Rule 116)",
+      "new_text": "Not runnable for now",
+      "field": "section_id",
+      "old_value": 13248,
+      "new_value": 55300
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 31804,
+    "type_id": 6,
+    "created_on": 1791823825,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 4 users \u00b7 1 browser \u00b7 Google Analytics access \u00b7 steps on two days of one week, report read after the week \u00b7 about 20 minutes of work</li><li>Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).</li><li>Location: one location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Every technician and work order below belongs to this location.</li><li>Analytics access: you can open Google Analytics for the property the QA build reports to, at Admin &gt; DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write \"not checked by hand\" in the result comment and pass or fail on what you can see on the Work Orders page.</li><li>Four test users at this location with Work Orders view (Settings &gt; Staff): U1, U2 and U3 with see financial data, U4 without. Each has the default Board View fields (VIN/Serial off, Total price on).</li><li>You can open the Story 12 field selection report in Google Analytics (built and kept by Milos Vasic).</li><li>Do the steps on two different days of the same week (Monday to Sunday).</li></ul><p><strong>Setup</strong></p><ol><li>Settings &gt; Staff: add four users at this location (e.g. \"ZZAUTOTEST F3 Rate U1\" \u2026 \"ZZAUTOTEST F3 Rate U4\") and finish each invite so they can sign in. U1, U2 and U3 get a role with Work Orders View and see financial data; U4 a role with Work Orders View but not see financial data (Settings &gt; Roles &amp; Permissions &gt; create a custom role, e.g. \"ZZAUTOTEST No Money\"). Record them as U1, U2, U3, U4.</li><li>Check the setup worked: each of U1\u2013U4 can sign in and open Work Orders; as U4, Board View's Fields to display does not offer Total price. If a user cannot sign in, finish the invite first.</li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>About 20 minutes, spread over two days of the same week (Monday to Sunday); the report is read after that week ends.</li><li>Sign in on the QA branch (sv10043) with the Admin quick-login button on the sign-in page. Use a desktop browser window at least 1024 px wide (narrower windows show only the List).</li><li>Work in one location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"). To change it: your initials at the top right &gt; Change Location.</li><li>Google Analytics: you can open the analytics property the QA build sends to (QA and staging share it) and the Story 12 reports Milos Vasic builds there. If you cannot open Google Analytics, mark the case Blocked and write why in the comment.</li><li>Board View starts every new user with VIN/Serial off and Total price on.</li></ul><p><strong>Setup</strong></p><ol><li>Settings &gt; Roles &amp; Permissions: create a role with Work Orders View but without See financial data (e.g. \"ZZAUTOTEST No Money\").</li><li>Settings &gt; Staff: add four new users at this location and finish each invite so they can sign in (e.g. \"ZZAUTOTEST F3 Rate U1\" to \"U4\"). U1, U2 and U3 get a role with Work Orders View and See financial data; U4 gets the role from step 1.</li><li>Check: as U4, Board View &gt; Fields to display does not offer Total price.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Day 1: sign in as U1, open Work Orders &gt; Board View &gt; the Fields to display menu, turn VIN/Serial on, then off, then on again.</li><li>Day 2: sign in as U2 and turn VIN/Serial on in Board View.</li><li>Day 2: sign in as U3, open Board View and turn Total price off.</li><li>Day 2: sign in as U4 and open Board View (change nothing).</li><li>After the week, open the field selection report for Board View for that week, filtered to these four users if the report allows.</li></ol>",
+      "new_value": "<ol><li>Day 1: sign in as U1, open Work Orders &gt; Board View &gt; Fields to display, and turn VIN/Serial on, off, then on again.</li><li>Day 2: sign in as U2, open Board View and turn VIN/Serial on.</li><li>Day 2: sign in as U3, open Board View and turn Total price off.</li><li>Day 2: sign in as U4 and open Board View. Change nothing.</li><li>After the week ends, open the Board View field selection report for that week (filtered to U1 to U4 if the report allows).</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 31807,
+    "type_id": 6,
+    "created_on": 1791823843,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Preconditions</strong></p><ul><li>About 20 minutes, spread over two days of the same week (Monday to Sunday); the report is read after that week ends.</li><li>Sign in on the QA branch (sv10043) with the Admin quick-login button on the sign-in page. Use a desktop browser window at least 1024 px wide (narrower windows show only the List).</li><li>Work in one location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"). To change it: your initials at the top right &gt; Change Location.</li><li>Google Analytics: you can open the analytics property the QA build sends to (QA and staging share it) and the Story 12 reports Milos Vasic builds there. If you cannot open Google Analytics, mark the case Blocked and write why in the comment.</li><li>Board View starts every new user with VIN/Serial off and Total price on.</li></ul><p><strong>Setup</strong></p><ol><li>Settings &gt; Roles &amp; Permissions: create a role with Work Orders View but without See financial data (e.g. \"ZZAUTOTEST No Money\").</li><li>Settings &gt; Staff: add four new users at this location and finish each invite so they can sign in (e.g. \"ZZAUTOTEST F3 Rate U1\" to \"U4\"). U1, U2 and U3 get a role with Work Orders View and See financial data; U4 gets the role from step 1.</li><li>Check: as U4, Board View &gt; Fields to display does not offer Total price.</li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>About 20 minutes, spread over two days of the same week (Monday to Sunday); the report is read after that week ends.</li><li>Sign in on the QA branch (sv10043) with the Admin quick-login button on the sign-in page. Use a desktop browser window at least 1024 px wide (narrower windows show only the List).</li><li>Work in one location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"). To change it: your initials at the top right &gt; Change Location.</li><li>Google Analytics: you can open the analytics property the QA build sends to (QA and staging share it) (Admin &gt; DebugView shows each event within seconds, because the QA build sends in debug mode) and the Story 12 reports Milos Vasic builds there. If you cannot open DebugView, write \"not checked by hand\" for the event checks and pass or fail on what you can see on the Work Orders page.</li><li>Board View starts every new user with VIN/Serial off and Total price on.</li></ul><p><strong>Setup</strong></p><ol><li>Settings &gt; Roles &amp; Permissions: create a role with Work Orders View but without See financial data (e.g. \"ZZAUTOTEST No Money\").</li><li>Settings &gt; Staff: add four new users at this location and finish each invite so they can sign in (e.g. \"ZZAUTOTEST F3 Rate U1\" to \"U4\"). U1, U2 and U3 get a role with Work Orders View and See financial data; U4 gets the role from step 1.</li><li>Check: as U4, Board View &gt; Fields to display does not offer Total price.</li></ol>"
+     }
+    ],
+    "comments": []
+   }
+  ]
+ }
+}

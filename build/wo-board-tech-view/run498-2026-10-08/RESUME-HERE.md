@@ -2,8 +2,8 @@
 Done, one at a time, each with `build/testing-tools/safe_case_edit.py` + served-page scan before and after (all clean;
 write log `ruling-rewrites-2026-10-12/write-log.jsonl`, before/after copies beside it): C154884, C368135, C368138, C96977,
 C97022, C368181, C368169, C368170, C368171, C368218, C368219, C368223, C368233, C368234, C368235, C97026, C97034.
-C96923 needed no change. LEFT: C97033 — rewrite after its day-2 result (trigger trig_01TXWEUtko3vhjXQ7i7gS8qh, 19:05 UTC,
-prompt carries the rewrite step; pattern = `C97034-new.json` + `HOWTO.html`). Automated ones for the engineer:
+C96923 needed no change. C97033 rewritten 19:15 UTC after its day-2 result (Passed, 2/4 = 50%, 2/3 = 66.7%). ALL 19 DONE.
+Run 498 now: 240 tests, 240 Passed. Automated ones for the engineer:
 C154884, C368135, C96977, C368181 — `ruling-rewrites-2026-10-12/FOR-ENGINEER.md`. Then: staging run 14 Oct (STAGING-READY.md).
 
 # 12 Oct 2026 — test cases of the QA lead's Obsolete tickets
