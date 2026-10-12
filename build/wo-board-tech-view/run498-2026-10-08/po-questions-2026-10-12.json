@@ -1,0 +1,21 @@
+{
+ "path": "build/wo-board-tech-view/run498-2026-10-08/Work Orders Board and Tech View - Product Owner questions - 12 Oct 2026.xlsx",
+ "title": "Work Orders: Board View and Tech View — two questions for the Product Owner (12 Oct 2026)",
+ "intro": "Two parts of the new Work Orders Board View and Tech View cannot be tested yet, because the requirements describe them but the current test build does not have them. Please tick one option for each, in the last column. Your answer decides whether we wait for the change or close the test.",
+ "sheets": [
+  {"name": "Board and Tech View", "rows": [
+   {"topic": "Work Orders > Tech View — a single \"Collapse all / Expand all\" button",
+    "now": "In Tech View, each technician's group can be closed only with its own small arrow. There is no single button at the left of the column headings that closes every group at once (\"Collapse all\") or opens them all again (\"Expand all\").",
+    "question": "Is the \"Collapse all / Expand all\" button meant to be part of this release?",
+    "options": "A) Yes, it is coming in this release — we wait for it and test it then.\nB) No, it is planned for a later release — we keep the test on hold until then.\nC) No, it has been dropped — we close the test."},
+   {"topic": "Work Orders > Board View and Tech View — imported work orders",
+    "now": "Work orders brought in from another system (status \"Imported\") never appear in Board View or Tech View: the \"Imported\" choice in the Status filter is greyed out there. They do appear in the List. So the rule that their \"Reassign lead technician\" action is greyed out (with the message \"The lead technician can't be changed on an imported work order.\") cannot be seen anywhere.",
+    "question": "Should imported work orders appear in Board View and Tech View?",
+    "options": "A) Yes — imported work orders should show on the board and in Tech View, with \"Reassign lead technician\" greyed out. We wait for that change and test it.\nB) No — imported work orders stay in the List only, as now. We close the test, because there is nothing to check on the board."}
+  ]}
+ ],
+ "internal": [
+  ["1", "C368162 (run 498, test 3763433)", "Story 3/2 Tech View collapse controls (design: \"Collapse all\")", "Not in the build; no developer statement that it is out of this release (unlike the Columns count and Find a column, which the developer confirmed are out)."],
+  ["2", "C154887 (run 498, test 3481980)", "Story 4, S4-N9; Review Decisions DR-37 (Chris Ward, 29 Sep 2026)", "The case itself instructs Blocked when imported work orders cannot be shown on the board: an open product question, not a failure."]
+ ]
+}
