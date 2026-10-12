@@ -5,4 +5,5 @@ you followed"*; scope *"These two and 70 dashboard tests too"* (C368136, C96960 
   (`labels.py`, maps in `map/`). Wording, source block, stamp and AUTOMATION marker byte-identical (checked by exact
   inverse on every write). A bullet that already names its step in its own words is left as is (C88635, C88640 first bullet).
 - Done: C368136, C96960 (written, display fr-view); Dashboard trial C88601, C88635, C351706 (written, display fr-view).
-  Remaining 67 Dashboard: maps ready, dry-checked; waiting for the QA lead's OK on the trial.
+  QA lead OK on the trial ("Yes please"): remaining 67 Dashboard written. All 72 re-read live: removing the labels gives
+  back the earlier Expected exactly; Steps, Preconditions, title and automation fields unchanged; display fr-view 72/72.
