@@ -6031,7 +6031,7 @@ three wrong characterisations before it was found — see learning **L0233**.
   `_ga` browser id (`viewas.mts`); (3) `python3 run498-2026-10-08/ga_calc.py` applies the PRD formulas (S12-R4/R10/R11/R13,
   R7) and writes `evidence/ga-week-2026-10-12/report-figures.json`. Say in the result that the report page itself (the
   report owner's work in Google Analytics) was not looked at. Phases: `PHASE=day1|day2|c97026|fs1fix ./wob-run.sh ga-week.mts`
-  (PHASE is REQUIRED; wob-run.sh passes it since 12 Oct — L0315).
+  (PHASE is REQUIRED; wob-run.sh passes it since 12 Oct — L0315). A "different day" step must be different in EVERY likely time zone of the Analytics property (unknown): run it at or after 09:00 UTC the next day.
 - **(12 Oct 2026) Google Analytics facts, if the report page itself is ever needed.** Properties: QA + staging share
   `G-CMYCXL13C9`, production `G-Q8V1RLY7LK` (Confluence 865894403). Google sign-in from an automated browser is refused;
   PowerTools (`powertools.shopview.com`) redirects to Google sign-in; no test copy of PowerTools exists. A read-only key can be
