@@ -1,0 +1,34 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C368162": {
+   "verdict": "Retest",
+   "observed": [
+    "Result: Retest \u2014 waiting on the Product Owner's (Chris) answer.",
+    "The test checks one button that closes every Tech View group at once (\"Collapse all\") and opens them all again (\"Expand all\").",
+    "This build has no such button; each group can only be closed with the arrow next to the technician's name.",
+    "Question 1 has been put to Chris: is this button coming in this release? Questions sheet: https://docs.google.com/spreadsheets/d/1cDba13YuN4ZS9tiu38DP8OjInCtYHWyOkGOuv6f9_P8/edit",
+    "Once he answers: if it is coming, test it when it appears; if not, the check is removed."
+   ],
+   "not_observed": null,
+   "todo": "Re-run when Chris answers question 1 in https://docs.google.com/spreadsheets/d/1cDba13YuN4ZS9tiu38DP8OjInCtYHWyOkGOuv6f9_P8/edit"
+  },
+  "C154887": {
+   "verdict": "Retest",
+   "observed": [
+    "Result: Retest \u2014 waiting on the Product Owner's (Chris) answer.",
+    "The test checks that \"Reassign lead technician\" is greyed out on an imported work order, with the message \"The lead technician can't be changed on an imported work order.\"",
+    "Imported work orders never show in Board View or Tech View on this build (the \"Imported\" choice in the Status filter is greyed out there), so the action cannot be reached.",
+    "Question 2 has been put to Chris: should imported work orders appear in Board View and Tech View? Questions sheet: https://docs.google.com/spreadsheets/d/1cDba13YuN4ZS9tiu38DP8OjInCtYHWyOkGOuv6f9_P8/edit",
+    "Once he answers: if yes, test it when the change is in; if no, the check is removed."
+   ],
+   "not_observed": null,
+   "todo": "Re-run when Chris answers question 2 in https://docs.google.com/spreadsheets/d/1cDba13YuN4ZS9tiu38DP8OjInCtYHWyOkGOuv6f9_P8/edit"
+  }
+ }
+}
