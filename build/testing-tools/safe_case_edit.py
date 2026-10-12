@@ -14,7 +14,18 @@ assert set(new) <= allowed, set(new) - allowed
 for k, v in new.items():
     if k != 'title': assert '<br' not in v.lower(), f'{k}: no <br> from the API (playbook §J)'
 st2, hist = tr_client.get(f'get_history_for_case/{cid}')
-json.dump({'case': before, 'history': hist}, open(os.path.join(OUT, f'C{cid}-before.json'), 'w'), indent=1)
+# Personal remarks the QA lead asked to keep out of this public repository (12 Oct 2026) are blanked in every snapshot;
+# TestRail's own history still holds them, so without this they would come back with each saved history.
+import re as _re
+_REDACT = [_re.compile(r'[^"<>]{0,160}get me r\w{3,8}d[^"<>]{0,160}', _re.I)]
+def _clean(o):
+    if isinstance(o, str):
+        for rx in _REDACT: o = rx.sub("[personal remark removed at the QA lead's request]", o)
+        return o
+    if isinstance(o, list): return [_clean(x) for x in o]
+    if isinstance(o, dict): return {k: _clean(v) for k, v in o.items()}
+    return o
+json.dump(_clean({'case': before, 'history': hist}), open(os.path.join(OUT, f'C{cid}-before.json'), 'w'), indent=1)
 ust, ub = tr_client.post(f'update_case/{cid}', new)
 st3, after = tr_client.get(f'get_case/{cid}')
 res = {'case': cid, 'update_http': ust, 'sent': sorted(new)}
