@@ -5491,3 +5491,10 @@ VIN/Serial back off and adding visits for WK1. Fixed three ways: wob-run.sh now 
 ga-week.mts refuses to run without an explicit PHASE (no default); FS1 put back with `PHASE=fs1fix`. Rule of thumb: a new
 env setting for a harness script must be added to the launcher's env -i list, and a destructive phase must never be a default.
 Also: `pkill -f <pattern>` kills your own shell if the pattern is in its command line — use `pgrep` then kill by PID.
+
+## L0316 — 2026-10-12 — "Already clocked into different line" with no clock to stop: use fresh clockable technicians
+Retesting C96978 on v26.40.14-e84b3d1, clocking in Esther Howard / Ralph Edwards answered 400 "You are already clocked into
+different line." while `my-current-task` showed NO running task at either location (so there is nothing to clock out).
+Instead of chasing it: `FRESH_CLOCK=1 ONLY=C96978 ./wob-run.sh s5-batchC.mts` makes two brand-new clockable technicians with the
+same role and clocks them in (201/201) — the Clocked in field was then judged normally. Data workaround, not a product fault.
+Also: `annotate_v2.py --scale 2` takes FULL-RESOLUTION pixel positions of the source picture (2x), not screen positions.

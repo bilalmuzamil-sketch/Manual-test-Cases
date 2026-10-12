@@ -6039,3 +6039,10 @@ three wrong characterisations before it was found — see learning **L0233**.
   `analytics.readonly` → Authorize → Exchange → access token (1 hour). Store ONLY in `/tmp/google/ga-token.json` (chmod 600),
   read with `build/testing-tools/ga_api.py`, delete after. The QA lead's account (12 Oct) had NO Analytics accounts, so that
   route needs someone with Analytics access. The session's safety check asks for the user's explicit go before a pasted key is used.
+- **(12 Oct 2026) Retesting run 498 after a new build — what to reuse (no rediscovery).** Per failed test, run its own batch
+  script with `ONLY=<C-id> WOB_SCALE=2 ./wob-run.sh <script>.mts` (script per test: `STAGING-READY.md` table). Ahtasham's on-screen
+  scenarios (offline drag SV-11074, Clear-shifts prompt SV-11126, line follows new lead SV-11128): `./wob-run.sh e84-seed.mts` then
+  `cd build/global-search/e2e && TZ=Asia/Karachi QA_DPR=2 npx tsx ../../wo-board-tech-view/run498-2026-10-08/e84-ui.mts` (copy and
+  rename both for the next build so earlier evidence is kept). Avatar hover (C96938): `avatar-check.mjs` reads every Tech View
+  header avatar's `title`. A stuck technician clock: `FRESH_CLOCK=1` (L0316). **Run `build/testing-tools/ensure_bridge.sh` before
+  every normal-browser script — the bridge dropped three times on 12 Oct (`ERR_PROXY_CONNECTION_FAILED`).**

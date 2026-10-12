@@ -25,7 +25,12 @@ const a = api(p);
 const R: Record<string, any> = { runner: { id: RUN.id.slice(0, 8), perms: RUN.perms, who: RUN.who, log: RUN.log } };
 const D = '@staging.shopview.local';
 const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
-const ES = await sid('esther.howard'), RE = await sid('ralph.edwards');
+let ES = await sid('esther.howard'), RE = await sid('ralph.edwards');
+// FRESH_CLOCK=1 (12 Oct 2026): Esther/Ralph's clock-in was refused ("already clocked into different line") with no current task
+// to clock out; two brand-new clockable technicians with the same role are used instead, so the Clocked in field can be judged.
+if (process.env.FRESH_CLOCK) { const { person } = await import('./staff.mts'); const st = Date.now() % 100000;
+  ES = (await person(a, 'ZZAUTOTEST', `Clock A ${st}`, { role: ES.role_id, email: `zz.wob.clocka.${st}${D}`, clockable: true })).row;
+  RE = (await person(a, 'ZZAUTOTEST', `Clock B ${st}`, { role: RE.role_id, email: `zz.wob.clockb.${st}${D}`, clockable: true })).row; }
 const PREF = '/api/users/me/preferences/work-orders-list';
 const prefGet = async () => (await a.get(PREF)).body?.data?.value ?? {};
 const ORIGINAL = await prefGet(); fs.writeFileSync(path.join(EV, 'S5-admin-pref-before.json'), JSON.stringify(ORIGINAL, null, 1));

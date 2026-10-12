@@ -1,0 +1,45 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.14-e84b3d1",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C96938": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed \u2014 retested on the new build v26.40.14-e84b3d1 (Slavcho's QA round 1 fixes, 12 Oct 2026) after SV-11075 was fixed.",
+    "Before: in Tech View, pointing at a technician's round picture (initials) in the group heading showed nothing.",
+    "Now: every technician's round picture carries their name as its hover text: all 34 technician headings checked in a normal browser, e.g. Maximiliana Fitzgerald-Montgomery.",
+    "Pointing at the technician's name still shows the name, as before. \"Unassigned\" has no name, which is correct.",
+    "Picture attached (browsers do not draw their own hover text in screenshots, so the text read from the page is written on the picture)."
+   ],
+   "not_observed": null,
+   "todo": null
+  },
+  "C96978": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed \u2014 retested on the new build v26.40.14-e84b3d1 after SV-11106 was fixed.",
+    "Board View > Fields to display offers the 13 optional fields; with all 13 on, every one shows the right value on the card.",
+    "Estimated hours now shows: \"Est. 2.2 hrs\", which is the work order's lines added up (18 + 90 + 24 minutes = 132 minutes). Before the fix it never showed.",
+    "Clocked in shows the technician on the clock and \"+1\"; pointing at it lists both names. (Two new test technicians were used for the clock, because the usual ones were refused a clock-in by leftover test data; the product itself worked.)",
+    "Picture attached."
+   ],
+   "not_observed": null,
+   "todo": null
+  },
+  "C96983": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed \u2014 retested on the new build v26.40.14-e84b3d1 after SV-11117 was fixed.",
+    "With the saved Work Orders choices made unreadable, Board View fell back to its default fields (lead technician, customer, asset, progress, total price), as the test expects.",
+    "The next field turned on during that failure (On-site) was saved, and after a reload it was still on. Before the fix it was lost on reload.",
+    "A normal field change without any failure also saves (control)."
+   ],
+   "not_observed": null,
+   "todo": null
+  }
+ }
+}
