@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C154650": {
+   "verdict": "Passed",
+   "observed": "Organisation B ('DearTeem', made by the QA lead) holds technician 'ZZAUTOTEST F3 Scope OrgB Tech' and work order S-4 for customer 'ZZAUTOTEST F3 Scope OrgB Customer' led by that technician. Signed in to organisation A (Staging Foothills Group Inc) at Staging Heavy Duty - 9919. Steps 2-4: Work Orders > All, Search 'F3 Scope OrgB': Tech View and Board View both show 'No work orders match the search \"F3 Scope OrgB\".' \u2014 no work order, group or column from organisation B. Control: searching this location's own test work orders shows them (1 row in Tech View, 8 cards in Board View). Step 5: the work order made at Staging Lethbridge - 4310 for 'ZZAUTOTEST F3 Scope Loc2 Customer', led by a technician enrolled only there, does not appear here in either view. Step 6: a card's more-actions > 'Reassign lead technician', search 'OrgB': 'No technicians match \"OrgB\"'; searching 'Loc2 Tech' also finds nobody; control: an organisation-A technician (Ben) is found. Cancelled.",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do."
+  }
+ }
+}

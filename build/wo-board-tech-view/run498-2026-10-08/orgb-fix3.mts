@@ -106,7 +106,7 @@ async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 2600));
-  fs.writeFileSync(path.join(EV, 'orgb-fix3.json'), JSON.stringify(R, null, 1));
+  fs.writeFileSync(path.join(EV, 'orgb-fix4.json'), JSON.stringify(R, null, 1));
 }
 const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.staff_id };
 
@@ -191,21 +191,21 @@ await run('REGISTER', async () => { const o: any = {}; R.REGISTER = o;
   const users = (await a.get(`/api/users?search=${encodeURIComponent('OrgB Tech')}`)).body?.data; const list = Array.isArray(users) ? users : users?.collection ?? users?.users ?? []; o.visibleInApi = list.filter((u: any) => /OrgB Tech/.test(`${u.first_name ?? u.firstName} ${u.last_name ?? u.lastName}`)).length; });
 
 const scanList = async (pg: Page) => { const seen = new Set<string>(); for (let i = 0; i < 80; i++) { for (const t of await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])) seen.add(t.replace(/^check\s*/, '').replace(/\s+/g, ' ').trim()); const moved = await pg.evaluate(`(() => { const m = document.querySelector('.q-menu .q-virtual-scroll, .q-menu'); if (!m) return false; const b = m.scrollTop; m.scrollTop = b + 400; return m.scrollTop !== b; })()`); await pg.waitForTimeout(200); if (!moved) break; } return [...seen]; };
-const optsFor = async (pg: Page, term: string) => { await pg.keyboard.type(term, { delay: 40 }); await pg.waitForTimeout(2000); return (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()); };
+const optsFor = async (pg: Page, term: string) => { await pg.keyboard.press('Control+A').catch(() => {}); await pg.keyboard.press('Backspace').catch(() => {}); await pg.keyboard.type(term, { delay: 60 }); await pg.waitForTimeout(4500);   /* FIX 4: clear first, wait longer — the lists filter slowly */ return (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()); };
 await run('C368175', async () => { const w = await one('ZZAUTOTEST Other Org Lists', ANA, 1); const o: any = {};
   await page(w.id); await p.locator('[data-test-id="button_new_line"]').click(); await p.waitForTimeout(2500); let d = dlg();
   await d.locator('[data-test-id="select_line_canned_line"]').click(); await p.keyboard.type('ZZAUTOTEST Typed line zq', { delay: 30 }); await p.waitForTimeout(2000); await p.keyboard.press('Enter'); await p.waitForTimeout(1500);
   await d.locator('[data-test-id="select_line_roster_add_technician"]').click().catch(() => {}); await p.waitForTimeout(700); { const all = await scanList(p); o.newLineCount = all.length; o.newLineOrgB = all.filter((x) => /OrgB/i.test(x)); o.newLineHasAna = all.some((x) => /Ana Alpha/.test(x)); } o.newLineAna = (await optsFor(p, '').catch(() => [])).length; o.newLineTypedOrgB = await optsFor(p, 'OrgB').catch((e: any) => ['err ' + String(e).slice(0, 60)]);   /* FIX 3: type 'OrgB', as the case says */ await shot(p, 'C368175-newline');
   await p.keyboard.press('Escape'); await d.locator('[data-test-id="button_close_dialog"]').click().catch(() => {}); await p.waitForTimeout(1200);
   await p.getByText(lineName(1), { exact: false }).first().click(); await p.waitForTimeout(2500); d = dlg(); await d.locator('[data-test-id="select_line_roster_add_technician"]').click().catch(async () => { await d.locator('.q-field').filter({ hasText: /Add Technician/ }).first().click(); });
-  await p.waitForTimeout(700); { const all = await scanList(p); o.editLineCount = all.length; o.editLineOrgB = all.filter((x) => /OrgB/i.test(x)); o.editLineHasAna = all.some((x) => /Ana Alpha/.test(x)); } o.editLineTypedOrgB = await optsFor(p, 'OrgB').catch((e: any) => ['err ' + String(e).slice(0, 60)]); await shot(p, 'C368175-editline'); await p.keyboard.press('Escape'); await d.locator('[data-test-id="button_close_dialog"], button:has(i:text-is("close"))').first().click().catch(() => {}); await p.waitForTimeout(1200);
+  await p.waitForTimeout(700); { const all = await scanList(p); o.editLineCount = all.length; o.editLineOrgB = all.filter((x) => /OrgB/i.test(x)); o.editLineHasAna = all.some((x) => /Ana Alpha/.test(x)); } o.editLineTypedOrgB = await optsFor(p, 'OrgB').catch((e: any) => ['err ' + String(e).slice(0, 60)]); o.editLineControlRalph = await optsFor(p, 'Ralph').catch((e: any) => ['err ' + String(e).slice(0, 60)]); await shot(p, 'C368175-editline'); await p.keyboard.press('Escape'); await d.locator('[data-test-id="button_close_dialog"], button:has(i:text-is("close"))').first().click().catch(() => {}); await p.waitForTimeout(1200);
   // positive control: the same lists DO find an organisation-A technician by part of the name
   await p.getByText(lineName(1), { exact: false }).first().click(); await p.waitForTimeout(2500); d = dlg(); await d.locator('[data-test-id="select_line_roster_add_technician"]').click().catch(() => {}); await p.waitForTimeout(700); o.controlAna = (await optsFor(p, 'ZZAUTOTEST Ana')).length; await p.keyboard.press('Escape'); await d.locator('[data-test-id="button_close_dialog"], button:has(i:text-is("close"))').first().click().catch(() => {}); await p.waitForTimeout(1000);
   // Edit labor (line menu)
   // FIX: 'the three-dots button left of the line name' is line_number_<lineId> (its menu holds Edit labor)
   await p.locator(`[data-test-id="line_number_${w.ls[0]}"]`).click().catch(() => {}); await p.waitForTimeout(1000);
   o.laborMenu = (await p.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ')); const ed = p.locator('.q-menu .q-item').filter({ hasText: /Edit labor/i }).first();
-  if (await ed.count()) { await ed.click(); await p.waitForTimeout(2000); d = dlg(); const tf = d.locator('.q-field').filter({ has: p.locator('.q-field__label', { hasText: /Technician/ }) }).first(); await tf.click(); await p.waitForTimeout(700); { const all = await scanList(p); o.editLaborCount = all.length; o.editLaborOrgB = all.filter((x) => /OrgB/i.test(x)); } o.editLaborTypedOrgB = await optsFor(p, 'OrgB').catch((e: any) => ['err ' + String(e).slice(0, 60)]); await shot(p, 'C368175-editlabor'); await p.keyboard.press('Escape'); }
+  if (await ed.count()) { await ed.click(); await p.waitForTimeout(2000); d = dlg(); const tf = d.locator('.q-field').filter({ has: p.locator('.q-field__label', { hasText: /Technician/ }) }).first(); await tf.click(); await p.waitForTimeout(700); { const all = await scanList(p); o.editLaborCount = all.length; o.editLaborOrgB = all.filter((x) => /OrgB/i.test(x)); } o.editLaborTypedOrgB = await optsFor(p, 'OrgB').catch((e: any) => ['err ' + String(e).slice(0, 60)]); o.editLaborControlRalph = await optsFor(p, 'Ralph').catch((e: any) => ['err ' + String(e).slice(0, 60)]); await shot(p, 'C368175-editlabor'); await p.keyboard.press('Escape'); }
   o.note = "server refusal of another organisation's technician: not checked by hand"; R.C368175 = o; });
 
 await run('C154650', async () => { const o: any = {}; await p.setViewportSize({ width: 2560, height: 1100 });
@@ -227,5 +227,5 @@ await run('C154650', async () => { const o: any = {}; await p.setViewportSize({ 
   o.notObserved = 'an organisation-B work order: nobody can sign in to the new organisation from the branch (playbook §X), so it holds none'; R.C154650 = o; });
 
 await a.put(PREF, { value: ORIGINAL }); R.restored = true;
-fs.writeFileSync(path.join(EV, 'orgb-fix3.json'), JSON.stringify(R, null, 1));
+fs.writeFileSync(path.join(EV, 'orgb-fix4.json'), JSON.stringify(R, null, 1));
 await RUN.end(); await done(browser);
