@@ -1,0 +1,16 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C97022": {
+   "verdict": "Passed",
+   "observed": "Followed the case's steps on Board View, keyboard only (read 9 Oct, build v26.40.8-7a95011, recorded 12 Oct). Step 4: after 'Reassign lead technician' was closed with Escape, focus returned to the card's more-actions button, with a visible outline \u2014 fine. Step 5: with Status = Approved, focus on the Golf Co card; the second browser set Golf Co to In Progress; the board did NOT remove the card by itself (live updates on, waited); after the case's 'refresh your board' focus was on the page itself (top of the page, nothing outlined); one Tab press then landed on a visible 'Skip to main content' link. Step 6: focus on Ben's column; the second browser deactivated Ben; the column stayed until the refresh; after the refresh focus was again on the page itself, and one Tab went to 'Skip to main content'. Against the case's words ('Fail if focus disappears (for example back to the top of the page)') steps 5 and 6 fail \u2014 but the case's own 'refresh your board' step puts focus at the top of any page. QA lead's ruling, 12 Oct 2026: mark Passed, no ticket \u2014 focus was always visible and the keyboard user could carry on (one Tab reached a visible link); the PRD leaves where focus goes to design (S11-R6, S11-E1, S11-E2: \"Design must define \u2026\"). Production (app.shopview.com, v26.40.16-2f213f3, 12 Oct 2026) has no Board View or Tech View on Work Orders, so this cannot be compared there.",
+   "not_observed": "Focus when the card or column leaves WITHOUT a refresh \u2014 the board did not remove them by itself in the time waited.",
+   "todo": "None. Note: the case's 'Fail if focus \u2026 back to the top of the page' goes further than the PRD; its expected result is left unchanged."
+  }
+ }
+}
