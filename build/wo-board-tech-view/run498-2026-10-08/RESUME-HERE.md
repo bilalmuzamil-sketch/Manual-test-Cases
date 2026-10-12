@@ -2,8 +2,8 @@
 Obsolete by the QA lead (change history read live): SV-11099, SV-11101, SV-11107, SV-11118, SV-11119, SV-11120, SV-11121,
 SV-11123, SV-11124, SV-11125. SV-11122 was marked Obsolete by **Ahtasham Amjad**, not him (my 10 Oct report said otherwise —
 corrected). On his choice (12 Oct) DELETED: C368149 (SV-11119), C368216 (SV-11123), C368242 (SV-11124), C368221 (SV-11125) —
-bodies saved in `case-deletes-2026-10-12/`. Already gone before: C368211 (SV-11099), C368247 (SV-11121). KEPT on his choice:
-C368204 (SV-11118) and C368165 (SV-11120), both flagged Automated, still Failed in the run; C96929 (SV-11101) and C96962
+bodies saved in `case-deletes-2026-10-12/`. Already gone before: C368211 (SV-11099), C368247 (SV-11121). Then, on his second instruction (12 Oct), DELETED too: C368204 (SV-11118) and C368165 (SV-11120), both ours and flagged
+Automated — the case history shows Vladimir Tomovic set the flag on 9 Oct (the QA lead said Ahtasham automated them). KEPT: C96929 (SV-11101) and C96962
 (SV-11107), both Passed. Held drafts D12/D16/D17/D18 are closed (their tickets obsolete, cases deleted).
 
 # STATE 10 Oct 10:30 UTC — scripted testing finished
