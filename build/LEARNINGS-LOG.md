@@ -5439,3 +5439,7 @@ Asked to delete the test cases of the tickets the QA lead marked Obsolete, I had
 SV-11122 Obsolete — the change history shows Ahtasham Amjad did. Read `/rest/api/2/issue/{key}/changelog` (the status item
 whose toString is OBSOLETE, and its author) before attributing an action to anyone. Also: TestRail `delete_case&soft=1`
 deletes on this instance (playbook).
+
+## L0310 — 2026-10-12 — Same on production ⇒ not a regression (now Rule 121)
+QA lead: "any issue which is the same on production too is not a regression." Every regression-folder failure is checked on
+production BEFORE it is put to him as a defect. Recorded as Standing Rule 121.

@@ -4780,3 +4780,23 @@ test case link at the bottom of the ticket. Make it a permanent rule"*. Surfaced
 
 ⛔ **Supersedes** `build/skills/06-DEFECT-PREP.md` §7 (*"NO TEST CASES SECTION IN THE TICKET — HE REMOVED IT
 2026-09-17"*), kept there visible and dated.
+
+---
+
+## RULE 121 — AN ISSUE THAT PRODUCTION HAS TOO IS NOT A REGRESSION (QA lead 2026-10-12, *"remember with yourself forever"*)
+
+Verbatim: *"When you were going through the regression folder, any issue which is the same on production too is not a
+regression."*
+
+1. **Applies to every test in a regression folder / every check whose source is a regression list** ("should still work",
+   "check that X still works", a developer's regression item). Before any failure there is put to him as a defect, do the
+   same steps on **production** and record what production does (version, date, the screen's own words).
+2. **Production behaves the same ⇒ NOT a regression ⇒ no regression ticket.** Report it as "same on production — not caused
+   by this work", say what the test case then needs (its steps describe behaviour the product never had), and leave the
+   Expected as written (114).
+3. **Production behaves differently (it works there) ⇒ a regression**, filed under the normal rules (62/112/113/120).
+4. **Production cannot show it** (the state cannot be made there, or a setting differs, e.g. the shop's time zone) ⇒ say so
+   plainly; never call it a regression or a non-regression on a guess (12, 104).
+5. This narrows L0303 (production is for comparison only) for regression checks: here the comparison DECIDES whether it is
+   a regression. For a PRD/story check the PRD still wins (57) and production stays a comparison.
+Worked example: C368233–C368235 (10 Oct 2026) — the "All …" report filters behave the same on production v26.40.14.
