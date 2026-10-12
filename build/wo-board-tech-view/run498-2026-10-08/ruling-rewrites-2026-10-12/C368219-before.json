@@ -1,0 +1,116 @@
+{
+ "case": {
+  "id": 368219,
+  "title": "Vendors keeps a chosen filter after a reload",
+  "section_id": 55300,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": null,
+  "created_by": 3,
+  "created_on": 1791450544,
+  "updated_by": 3,
+  "updated_on": 1791478057,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 20,
+  "is_deleted": 0,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 1,
+  "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 1 browser \u00b7 about 5 minutes</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.</li><li>Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders &gt; View and Create &amp; Edit (check: your initials (top right) &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; edit).</li><li>Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials &gt; Change Location).</li><li>Parts in the top menu opens the parts area; its left menu lists Part Sales, Inventory, Catalog, Returns, Purchase Orders, Vendor Invoices, Vendors.</li><li>Needs no test data of its own beyond what the page already lists; filters you change here are restored at the end.</li></ul><p><strong>Setup</strong></p><ol><li>Click Parts in the top menu &gt; Vendors.</li><li>Check the setup worked: the Vendors page lists rows. Look at the toolbar for a State/Province filter button; on build v26.40.8-7a95011 there was none.</li></ol>",
+  "custom_steps": "<ol><li>Click Parts in the top menu, then Vendors in the left menu.</li><li>Open the State/Province filter and tick one value (e.g. the first one listed). Write down the value.</li><li>Close the filter (Escape or click outside it) and write down the rows shown.</li><li>Reload the page.</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>After the reload the filter still shows the value you ticked and the same rows show as before the reload.</li><li>No error message appears.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, Medium 6; QA handoff test plan (generated 2026-10-08), hotspot 5; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted. Source-verified 8 October 2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>Dev reply 6:</strong> &ldquo;Pages that remember filters and settings: Orders, Vendors, Return Requests, Return Credits, Part Sales, Deliveries, Parts Catalogue, Inventory, and the report pages.&rdquo;</li><li><strong>Dev reply 6:</strong> &ldquo;Set a filter, reload, and check that it's kept.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: HOLD - the page has no filter on this build; needs a decision from the QA lead</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": []
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 2,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": [
+   {
+    "id": 30448,
+    "type_id": 6,
+    "created_on": 1791468325,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Sign in to the Work Orders build under test as an Admin (the Admin role can see every page used below).</li><li>Use a desktop browser window at least 1024 px wide.</li><li>In the top bar, pick the location you will test in (e.g. \"Heavy Duty\") and stay in it for the whole case.</li><li>Parts in the top menu holds Part Sales, Inventory, Catalog, Returns, Purchase Orders, Deliveries and Vendors.</li><li>At least two vendors in different states or provinces (Parts &gt; Vendors &gt; New Vendor if needed).</li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 1 browser \u00b7 about 5 minutes</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.</li><li>Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders &gt; View and Create &amp; Edit (check: your initials (top right) &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; edit).</li><li>Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials &gt; Change Location).</li><li>Parts in the top menu opens the parts area; its left menu lists Part Sales, Inventory, Catalog, Returns, Purchase Orders, Vendor Invoices, Vendors.</li><li>Needs no test data of its own beyond what the page already lists; filters you change here are restored at the end.</li></ul><p><strong>Setup</strong></p><ol><li>Click Parts in the top menu &gt; Vendors.</li><li>Check the setup worked: the Vendors page lists rows. Look at the toolbar for a State/Province filter button; on build v26.40.8-7a95011 there was none.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Click Parts in the top menu, then Vendors.</li><li>Open the State/Province filter and tick one value (e.g. the first one listed). Write down the value.</li><li>Close the filter and write down the rows shown.</li><li>Reload the page.</li></ol>",
+      "new_value": "<ol><li>Click Parts in the top menu, then Vendors in the left menu.</li><li>Open the State/Province filter and tick one value (e.g. the first one listed). Write down the value.</li><li>Close the filter (Escape or click outside it) and write down the rows shown.</li><li>Reload the page.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>After the reload the filter still shows the value you ticked and the same rows show as before the reload.</li><li>No error message appears.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, Medium 6; QA handoff test plan (generated 2026-10-08), hotspot 5; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted. Source-verified 8 October 2026; not yet build-verified.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>Dev reply 6:</strong> &ldquo;Pages that remember filters and settings: Orders, Vendors, Return Requests, Return Credits, Part Sales, Deliveries, Parts Catalogue, Inventory, and the report pages.&rdquo;</li><li><strong>Dev reply 6:</strong> &ldquo;Set a filter, reload, and check that it's kept.&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>After the reload the filter still shows the value you ticked and the same rows show as before the reload.</li><li>No error message appears.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, Medium 6; QA handoff test plan (generated 2026-10-08), hotspot 5; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted. Source-verified 8 October 2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>Dev reply 6:</strong> &ldquo;Pages that remember filters and settings: Orders, Vendors, Return Requests, Return Credits, Part Sales, Deliveries, Parts Catalogue, Inventory, and the report pages.&rdquo;</li><li><strong>Dev reply 6:</strong> &ldquo;Set a filter, reload, and check that it's kept.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: HOLD - the page has no filter on this build; needs a decision from the QA lead</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 30615,
+    "type_id": 6,
+    "created_on": 1791478057,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "old_text": "Medium \u2014 shared plumbing (Part Sales, saved filters, report filters, impersonation, avatars)",
+      "new_text": "Not runnable for now",
+      "field": "section_id",
+      "old_value": 47111,
+      "new_value": 55300
+     }
+    ],
+    "comments": []
+   }
+  ]
+ }
+}
