@@ -41,3 +41,6 @@ the details should be in that file."*
   (`links-70.txt`).
 - Unused in Drive, not deleted (QA lead to decide): see `unused-docs.txt` (C88641 first per-test Doc, two combined Docs,
   scratch Doc).
+
+## 12 Oct: unused files binned (QA lead answered "1" = yes)
+Moved to the Drive bin (restorable): 1rSbkn8h… (old C88641 Doc), 13X4jdSu… and 1qjMO77H… (combined Docs), 1I8U8BQz… (scratch). Checked first: no Dashboard test links to any of them; C88641 links to 1klYsfM3….
