@@ -1,0 +1,30 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-12"},
+ "results": {
+  "C154887": {
+   "verdict": "Retest",
+   "observed": [
+    "Result: Retest — waiting on Chris (Product Owner) to settle a conflict between two product decisions.",
+    "Chris answered on 12 Oct 2026: imported work orders should appear in Board View and Tech View, and the greyed-out \"Imported\" choice there is a gap in the build.",
+    "But on 24 Sep 2026, in the PRD comments, Sasha approved the opposite: while \"Imported\" is ticked, Board View and Tech View are unavailable, and \"Imported\" is greyed out in their Status filter.",
+    "The build does exactly what Sasha approved (re-checked 12 Oct 2026): with \"Imported\" ticked in the List, Board View and Tech View are greyed with the message \"Not available while Imported is selected.\"; in Board View and Tech View, \"Imported\" is greyed with \"Imported work orders open in List.\"",
+    "A follow-up question quoting Sasha's approval is going to Chris in the questions sheet: https://docs.google.com/spreadsheets/d/1cDba13YuN4ZS9tiu38DP8OjInCtYHWyOkGOuv6f9_P8/edit",
+    "Once he answers: if imported work orders must appear, a ticket is raised and this test is re-run after the fix; if Sasha's decision stands, this test cannot apply and is closed."
+   ],
+   "not_observed": null,
+   "todo": "Re-run when Chris answers the follow-up question about imported work orders"
+  },
+  "C154648": {
+   "verdict": "Retest",
+   "observed": [
+    "Result: Retest — this test passed on 9 Oct 2026, but the decision it checks is now being questioned.",
+    "The test checks that while \"Imported\" is ticked, Board View and Tech View are unavailable, and that \"Imported\" is greyed out in their Status filter. That is what Sasha approved on 24 Sep 2026, and the build still does it (re-checked 12 Oct 2026).",
+    "On 12 Oct 2026 Chris (Product Owner) said the opposite: imported work orders should appear in Board View and Tech View.",
+    "A follow-up question quoting Sasha's approval is going to Chris in the questions sheet: https://docs.google.com/spreadsheets/d/1cDba13YuN4ZS9tiu38DP8OjInCtYHWyOkGOuv6f9_P8/edit",
+    "Once he answers: if Sasha's decision stands, this test is Passed again; if imported work orders must appear, this test checks the old behaviour and is reported to the QA lead."
+   ],
+   "not_observed": null,
+   "todo": "Re-judge when Chris answers the follow-up question about imported work orders"
+  }
+ }
+}
