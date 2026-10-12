@@ -1,0 +1,116 @@
+{
+ "case": {
+  "id": 368170,
+  "title": "A refused lead change in Edit Work Order saves none of the other edits",
+  "section_id": 55300,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 3,
+  "milestone_id": null,
+  "refs": null,
+  "created_by": 3,
+  "created_on": 1791450471,
+  "updated_by": 3,
+  "updated_on": 1791478057,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 15,
+  "is_deleted": 0,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 1,
+  "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 2 tabs of the same browser \u00b7 about 15 minutes</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.</li><li>Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders &gt; View and Create &amp; Edit (check: your initials (top right) &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; edit).</li><li>Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials &gt; Change Location).</li><li>2 technicians eligible at this location: active, Role Technician, at least one Department, Location Staging Heavy Duty - 9919, Time Clock on. Names are examples (\"Esther Howard\", \"Ralph Edwards\").</li><li>Customer \"ZZAUTOTEST Edit WO Refused\" (used by this case only) with one contact and one asset.</li><li>One work order [WO-1] with one completed line, Lead Technician = [Tech-A], Mileage 120,000, Engine Hours 3,420, Customer PO \"PO-100\", status Complete (reviewed, not invoiced).</li><li>Two tabs of the same browser window, both signed in as Admin ShopView. Names and numbers are examples.</li></ul><p><strong>Setup</strong></p><ol><li>Your initials (top right) &gt; Settings &gt; Staff: if no suitable technician exists, click New Staff Member &gt; First Name, Last Name, Email &gt; Role = Technician &gt; Departments = any one (at least one Department is required) &gt; Location = Staging Heavy Duty - 9919 &gt; turn Time Clock on &gt; Save &amp; Close. Record the technician as [Tech-A] (the expected results call this technician \"Esther Howard\").</li><li>Your initials (top right) &gt; Settings &gt; Staff: if no suitable technician exists, click New Staff Member &gt; First Name, Last Name, Email &gt; Role = Technician &gt; Departments = any one (at least one Department is required) &gt; Location = Staging Heavy Duty - 9919 &gt; turn Time Clock on &gt; Save &amp; Close. Record the technician as [Tech-B] (the expected results call this technician \"Ralph Edwards\"). Use a second, different technician.</li><li>Customers &gt; New Customer &gt; Name \"ZZAUTOTEST Edit WO Refused\" &gt; Save (the customer page opens). Contacts tab &gt; New Contact &gt; First Name \"ZZAUTOTEST\", Last Name \"Contact\" &gt; Save. Assets tab &gt; New Asset &gt; Contact = ZZAUTOTEST Contact &gt; Year 2022 &gt; Make: type \"Freight\" and pick Freightliner &gt; Model: type \"M2\" and pick it &gt; Unit \"TRK-118\" &gt; Save (Contact and Make are required).</li><li>Work Orders &gt; Create Work Order &gt; New Work Order: Customer = \"ZZAUTOTEST Edit WO Refused\" &gt; Asset = its asset &gt; Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-1] (the expected results call it \"S1-714\").</li><li>In New Line &gt; What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\" (it has no parts) &gt; turn Line Approved on &gt; Save &amp; Close.</li><li>On [WO-1], on the status card at the left, click Lead Technician and pick [Tech-A]. (Lead Technician is a dropdown only once the work order is Approved; while it is an Estimate it reads \"Unassigned\" and cannot be changed.) The choice saves at once.</li><li>On the status card type Mileage 120000 and Engine Hours 3420 (each saves when you leave the field). On the Finance tab type \"PO-100\" in Customer PO.</li><li>Bring it to Complete: on the Lines tab click Complete on the line &gt; Tech Story: type any text &gt; if a \"Missing Details (1)\" step shows, click it and type a Mileage &gt; Complete Line (or Complete All Lines). The message \"Work order sent to review.\" appears and the status reads Review. Click Mark Reviewed; if a Mark as reviewed window asks for VIN, type any 17 characters (e.g. 1FVACWDT1BDAZ0001) &gt; Confirm Review. The status reads Complete.</li><li>Check the setup worked: reload [WO-1]. Status Complete, Lead Technician [Tech-A], Mileage 120,000, Engine Hours 3,420, Customer PO \"PO-100\".</li></ol>",
+  "custom_steps": "<ol><li>In tab 1, open [WO-1] and open its edit window (Edit Work Order). Leave it open.</li><li>In tab 2, open [WO-1], click the Finance tab and click Create Invoice so the work order is Invoiced. Close the New Customer Payment window (X) without paying.</li><li>In tab 1, change the lead technician to [Tech-B].</li><li>Change Mileage to 120,500.</li><li>Change Engine Hours to 3,470.</li><li>Change the PO number to \"PO-200\".</li><li>Save.</li><li>Read the message that appears.</li><li>Reload tab 1 and read Lead Technician, Mileage, Engine Hours and the PO number (Finance tab &gt; Customer PO).</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 8: an error message appears (write down its words) and the save does not go through.</li><li>Step 9: Lead Technician still reads \"Esther Howard\", Mileage 120,000, Engine Hours 3,420 and PO \"PO-100\". None of the four edits was saved (0 of 4).</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 1; QA handoff test plan (generated 2026-10-08), \u00a77; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (\u00a74 Key Decisions). Source-verified 8 October 2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>Dev reply High 1:</strong> &ldquo;If the lead change is refused, the other edits in the same save (mileage, engine hours, PO) are not saved either.&rdquo;</li><li><strong>QA handoff \u00a77:</strong> &ldquo;Edit Work Order on a Paid work order, with a different lead and a changed mileage, is refused&rdquo;</li><li><strong>PRD \u00a74 Key Decisions (lead lock):</strong> &ldquo;Lead technician cannot be changed once a work order is Invoiced or Paid. This is a product rule, not only a screen rule, so it must hold on every path that changes the lead technician \u2014 board drag, Reassign dialog, and the work order detail page.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: HOLD - no way to open the Edit Work Order window was found on this build; waiting for the QA lead</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": []
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 2,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": [
+   {
+    "id": 30593,
+    "type_id": 6,
+    "created_on": 1791476104,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Sign in to the Work Orders build under test as a user whose role has Work Orders view and Work Orders create and edit. To check: Settings &gt; Roles &amp; Permissions &gt; open the role &gt; Work Orders (an Owner or Admin role has both).</li><li>Use a desktop browser window at least 1024 px wide.</li><li>In the top bar, pick the location you will test in (e.g. \"Heavy Duty\") and stay in it for the whole case.</li><li>At least 2 technicians are eligible at this location (e.g. \"Esther Howard\", \"Ralph Edwards\"). A staff member is eligible when Clockable is on, the staff record is Active, the role is neither Office nor Time Clock User, and they are enrolled at this location. To add one:<ul><li>Settings &gt; Staff &gt; add a staff member, enter a first and last name (e.g. \"Ralph Edwards\") and an email.</li><li>Pick a role that is not Office or Time Clock User (e.g. \"Technician\"), turn Clockable on, keep the record Active, enrol the staff member at this location, then Save.</li></ul></li><li>Create a customer used only by this case: Customers &gt; New Customer, name (e.g. \"ZZAUTOTEST Regression Co\"), add an asset with a unit number and year/make/model (e.g. unit \"TRK-118\", \"2022 Freightliner M2\"), then Save.</li><li>To create a work order: Work Orders &gt; Create Work Order &gt; pick the case customer and its asset &gt; create it, and write down the number the build gives it (the numbers in this case are examples, e.g. \"S1-702\").</li><li>How to reach each status: a new work order starts as Estimate. Approved = click each line's Approve (check) button. In Progress, Review (Ready for Review) and Complete = the status control on the work order page. Invoiced = Finance tab &gt; Create Invoice (the work order needs a contact person). Paid = record a payment for the full amount on that invoice. Set the lead technician before invoicing.</li><li>A second browser (or a private window) where you can sign in at the same location.</li><li>Create one work order for the case customer with a contact person (e.g. \"S1-714\"), set Lead Technician to \"Esther Howard\", enter a mileage (e.g. 120,000), engine hours (e.g. 3,420) and a PO number (e.g. \"PO-100\"), add one line and approve it so the status reads Approved.</li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 2 tabs of the same browser \u00b7 about 15 minutes</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.</li><li>Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders &gt; View and Create &amp; Edit (check: your initials (top right) &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; edit).</li><li>Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials &gt; Change Location).</li><li>2 technicians eligible at this location: active, Role Technician, at least one Department, Location Staging Heavy Duty - 9919, Time Clock on. Names are examples (\"Esther Howard\", \"Ralph Edwards\").</li><li>Customer \"ZZAUTOTEST Edit WO Refused\" (used by this case only) with one contact and one asset.</li><li>One work order [WO-1] with one completed line, Lead Technician = [Tech-A], Mileage 120,000, Engine Hours 3,420, Customer PO \"PO-100\", status Complete (reviewed, not invoiced).</li><li>Two tabs of the same browser window, both signed in as Admin ShopView. Names and numbers are examples.</li></ul><p><strong>Setup</strong></p><ol><li>Your initials (top right) &gt; Settings &gt; Staff: if no suitable technician exists, click New Staff Member &gt; First Name, Last Name, Email &gt; Role = Technician &gt; Departments = any one (at least one Department is required) &gt; Location = Staging Heavy Duty - 9919 &gt; turn Time Clock on &gt; Save &amp; Close. Record the technician as [Tech-A] (the expected results call this technician \"Esther Howard\").</li><li>Your initials (top right) &gt; Settings &gt; Staff: if no suitable technician exists, click New Staff Member &gt; First Name, Last Name, Email &gt; Role = Technician &gt; Departments = any one (at least one Department is required) &gt; Location = Staging Heavy Duty - 9919 &gt; turn Time Clock on &gt; Save &amp; Close. Record the technician as [Tech-B] (the expected results call this technician \"Ralph Edwards\"). Use a second, different technician.</li><li>Customers &gt; New Customer &gt; Name \"ZZAUTOTEST Edit WO Refused\" &gt; Save (the customer page opens). Contacts tab &gt; New Contact &gt; First Name \"ZZAUTOTEST\", Last Name \"Contact\" &gt; Save. Assets tab &gt; New Asset &gt; Contact = ZZAUTOTEST Contact &gt; Year 2022 &gt; Make: type \"Freight\" and pick Freightliner &gt; Model: type \"M2\" and pick it &gt; Unit \"TRK-118\" &gt; Save (Contact and Make are required).</li><li>Work Orders &gt; Create Work Order &gt; New Work Order: Customer = \"ZZAUTOTEST Edit WO Refused\" &gt; Asset = its asset &gt; Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-1] (the expected results call it \"S1-714\").</li><li>In New Line &gt; What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\" (it has no parts) &gt; turn Line Approved on &gt; Save &amp; Close.</li><li>On [WO-1], on the status card at the left, click Lead Technician and pick [Tech-A]. (Lead Technician is a dropdown only once the work order is Approved; while it is an Estimate it reads \"Unassigned\" and cannot be changed.) The choice saves at once.</li><li>On the status card type Mileage 120000 and Engine Hours 3420 (each saves when you leave the field). On the Finance tab type \"PO-100\" in Customer PO.</li><li>Bring it to Complete: on the Lines tab click Complete on the line &gt; Tech Story: type any text &gt; if a \"Missing Details (1)\" step shows, click it and type a Mileage &gt; Complete Line (or Complete All Lines). The message \"Work order sent to review.\" appears and the status reads Review. Click Mark Reviewed; if a Mark as reviewed window asks for VIN, type any 17 characters (e.g. 1FVACWDT1BDAZ0001) &gt; Confirm Review. The status reads Complete.</li><li>Check the setup worked: reload [WO-1]. Status Complete, Lead Technician [Tech-A], Mileage 120,000, Engine Hours 3,420, Customer PO \"PO-100\".</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>In browser 1, open \"S1-714\" and open its edit window (Edit Work Order). Leave it open.</li><li>In browser 2, open \"S1-714\", click the Finance tab and click Create Invoice so the work order is Invoiced.</li><li>In browser 1, change the lead technician to \"Ralph Edwards\".</li><li>Change Mileage to 120,500.</li><li>Change Engine Hours to 3,470.</li><li>Change the PO number to \"PO-200\".</li><li>Save.</li><li>Read the message that appears.</li><li>Reload browser 1 and read Lead Technician, Mileage, Engine Hours and the PO number.</li></ol>",
+      "new_value": "<ol><li>In tab 1, open [WO-1] and open its edit window (Edit Work Order). Leave it open.</li><li>In tab 2, open [WO-1], click the Finance tab and click Create Invoice so the work order is Invoiced. Close the New Customer Payment window (X) without paying.</li><li>In tab 1, change the lead technician to [Tech-B].</li><li>Change Mileage to 120,500.</li><li>Change Engine Hours to 3,470.</li><li>Change the PO number to \"PO-200\".</li><li>Save.</li><li>Read the message that appears.</li><li>Reload tab 1 and read Lead Technician, Mileage, Engine Hours and the PO number (Finance tab &gt; Customer PO).</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 8: an error message appears (write down its words) and the save does not go through.</li><li>Step 9: Lead Technician still reads \"Esther Howard\", Mileage 120,000, Engine Hours 3,420 and PO \"PO-100\". None of the four edits was saved (0 of 4).</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 1; QA handoff test plan (generated 2026-10-08), \u00a77; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (\u00a74 Key Decisions). Source-verified 8 October 2026; not yet build-verified.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>Dev reply High 1:</strong> &ldquo;If the lead change is refused, the other edits in the same save (mileage, engine hours, PO) are not saved either.&rdquo;</li><li><strong>QA handoff \u00a77:</strong> &ldquo;Edit Work Order on a Paid work order, with a different lead and a changed mileage, is refused&rdquo;</li><li><strong>PRD \u00a74 Key Decisions (lead lock):</strong> &ldquo;Lead technician cannot be changed once a work order is Invoiced or Paid. This is a product rule, not only a screen rule, so it must hold on every path that changes the lead technician \u2014 board drag, Reassign dialog, and the work order detail page.&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 8: an error message appears (write down its words) and the save does not go through.</li><li>Step 9: Lead Technician still reads \"Esther Howard\", Mileage 120,000, Engine Hours 3,420 and PO \"PO-100\". None of the four edits was saved (0 of 4).</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 1; QA handoff test plan (generated 2026-10-08), \u00a77; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (\u00a74 Key Decisions). Source-verified 8 October 2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>Dev reply High 1:</strong> &ldquo;If the lead change is refused, the other edits in the same save (mileage, engine hours, PO) are not saved either.&rdquo;</li><li><strong>QA handoff \u00a77:</strong> &ldquo;Edit Work Order on a Paid work order, with a different lead and a changed mileage, is refused&rdquo;</li><li><strong>PRD \u00a74 Key Decisions (lead lock):</strong> &ldquo;Lead technician cannot be changed once a work order is Invoiced or Paid. This is a product rule, not only a screen rule, so it must hold on every path that changes the lead technician \u2014 board drag, Reassign dialog, and the work order detail page.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: HOLD - no way to open the Edit Work Order window was found on this build; waiting for the QA lead</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 30609,
+    "type_id": 6,
+    "created_on": 1791478057,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "old_text": "High \u2014 shares code that changed behaviour (developer items 1\u20134 and the rebuilt List)",
+      "new_text": "Not runnable for now",
+      "field": "section_id",
+      "old_value": 47110,
+      "new_value": 55300
+     }
+    ],
+    "comments": []
+   }
+  ]
+ }
+}
