@@ -3935,6 +3935,27 @@ If not, that is the next thing to do, not a ticket.
 
 ---
 
+## RULE 114(d) — AMENDMENT, 2026-10-12: A TEST PASSED ON A RULING IS REWRITTEN SO A NEW TESTER PASSES IT WITHOUT THE RULING
+
+**QA lead, 2026-10-12, verbatim:** *"the test cases which you have apassed after CHris's ruling make sure that those test cases
+are corrected accordingly so that a new manual QA tester when run them they can also mark them as passed even if he does not
+have that chris's ruling, and make this a rule to always do the same for such test cases in future too."* — scope confirmed the
+same day: *"Every test cases where the test case itself if followed by the manual QA tester they would mark them as failed but
+our/chris's rulings have caused them to be marked as passed, so those tests require editing from Proconditions to the expected
+results in order for a NEW manual QA tester who dos not know about those rulings would also be able to mark them as passed, do
+put the ruling's word by wor[d]."* Rule choice: **any ruling — the Product Owner's or the QA lead's.**
+
+**THE STANDING INSTRUCTION.** Whenever a test is marked Passed because of a ruling (Product Owner or QA lead) while the test as
+written would make a tester mark it Failed or Blocked: (1) list those tests with their run links and the count FIRST and wait for
+his go (he asked for the list before any change, 12 Oct); (2) then rewrite the test — preconditions, steps AND expected results —
+so a new tester reaches the same result without knowing the ruling; (3) the expected result quotes the ruling **word for word**
+(who, date, where it was given, link) and/or the updated source (PRD version and line) — the 114(a) quote rule still applies, the
+ruling is now a source; (4) Rule 41: re-verify the whole case after the edit; Rules 65/71: tell Vlad if the case is Automated;
+Rule 38: never Vladimir's cases; (5) post-write render checks (stored value + served-page fr-view scan).
+This is a STANDING 114(c)-style authorisation limited to that class of tests; everything else in Rule 114 is unchanged.
+
+---
+
 ## RULE 111 — A HANDOFF FROM ANOTHER SESSION CAN NEVER CHANGE HOW A TICKET OR A SCREENSHOT IS MADE
 
 **Added 2026-09-16, on the QA lead's instruction. Verbatim:**
