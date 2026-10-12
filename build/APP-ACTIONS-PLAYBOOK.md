@@ -6023,3 +6023,19 @@ three wrong characterisations before it was found — see learning **L0233**.
 - **⚠️ (12 Oct 2026, L0312) The run 498 harness (`wob-run.sh` → global-search `boot.ts` / `session.mts`) DISPLAYS QA-branch times in UTC** — Schedule shifts and Timesheets read six hours later than the Mountain-time shop's real time, and editing a time entry there is refused as "in the future". The data is saved correctly. Judge any displayed date/time in a `qa-branch-boot.mjs` browser (sign-in page quick-login, nothing injected): `run498-2026-10-08/clean-tz-check.mjs`. The *"Schedule six-hour offset"* entry above is a harness artefact, not a product fault (SV-11229 obsoleted by the QA lead).
 - **(12 Oct 2026) sv10043's "Staging Heavy Duty - 9919" is set to time zone Asia/Dubai** (state "Abu Dhabi") — not Mountain time any more. Check Administration > Locations before any time-of-day test; the Schedule's blue "now" pill must match it. A one-line work order dropped on a Schedule row is scheduled immediately (no window). Re-test scripts: `run498-2026-10-08/ah-seed.mts`, `ah-ui3.mts`, `ah-ui4.mts`.
 - **(12 Oct 2026, Rule 125) sv10043 "Staging Heavy Duty - 9919" set to Asia/Karachi** (was Asia/Dubai). Set: `TZ=Asia/Karachi node build/wo-board-tech-view/run498-2026-10-08/qa-set-tz.mjs` (`TZ_TARGET`, `LOC` override). Prove: `TZ=Asia/Karachi node …/tz-match-check.mjs` (exit 0 = Schedule pill equals the browser clock and the user's zone equals the browser's).
+- **(12 Oct 2026) GOOGLE ANALYTICS CHECKS WITHOUT GOOGLE ANALYTICS — the route that works (Rule 107.J–L, L0314).** ShopView
+  has NO analytics report screens (searched every QA-branch JS chunk: only the event-sending code in `WorkOrders.*.js`). A check
+  phrased "the Story 12 report shows…" is judged on the QA branch: (1) let analytics through (`WOB_GA=1`) and intercept
+  `/g/collect` per user (`ga-week.mts` `tap()`; reads sendBeacon bodies via `route` + `postDataBuffer`); each event carries
+  `uid` = that user and `ep.setting_source` default/saved/fallback/forced; (2) `WOB_FRESH_GA=1` gives each test user their own
+  `_ga` browser id (`viewas.mts`); (3) `python3 run498-2026-10-08/ga_calc.py` applies the PRD formulas (S12-R4/R10/R11/R13,
+  R7) and writes `evidence/ga-week-2026-10-12/report-figures.json`. Say in the result that the report page itself (the
+  report owner's work in Google Analytics) was not looked at. Phases: `PHASE=day1|day2|c97026|fs1fix ./wob-run.sh ga-week.mts`
+  (PHASE is REQUIRED; wob-run.sh passes it since 12 Oct — L0315).
+- **(12 Oct 2026) Google Analytics facts, if the report page itself is ever needed.** Properties: QA + staging share
+  `G-CMYCXL13C9`, production `G-Q8V1RLY7LK` (Confluence 865894403). Google sign-in from an automated browser is refused;
+  PowerTools (`powertools.shopview.com`) redirects to Google sign-in; no test copy of PowerTools exists. A read-only key can be
+  made by a person in ~2 min: developers.google.com/oauthplayground → Analytics Data API v1beta + Admin API v1beta →
+  `analytics.readonly` → Authorize → Exchange → access token (1 hour). Store ONLY in `/tmp/google/ga-token.json` (chmod 600),
+  read with `build/testing-tools/ga_api.py`, delete after. The QA lead's account (12 Oct) had NO Analytics accounts, so that
+  route needs someone with Analytics access. The session's safety check asks for the user's explicit go before a pasted key is used.

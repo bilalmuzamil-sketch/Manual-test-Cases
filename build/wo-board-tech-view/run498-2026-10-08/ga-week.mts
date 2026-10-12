@@ -180,7 +180,8 @@ async function withUser(u: any, f: (pg: Page, ev: Ev[]) => Promise<void>) { cons
 
 const UF = path.join(path.dirname(new URL(import.meta.url).pathname), 'evidence', 'ga-week-2026-10-12', 'ga-week-users.json'); fs.mkdirSync(path.dirname(UF), { recursive: true });
 const U: any = fs.existsSync(UF) ? JSON.parse(fs.readFileSync(UF, 'utf8')) : {};
-const PHASE = process.env.PHASE || 'day1';
+const PHASE = process.env.PHASE || '';
+if (!['day1', 'day2', 'c97026', 'fs1fix'].includes(PHASE)) { console.log('PHASE must be set (day1|day2|c97026|fs1fix) — refusing to guess'); process.exit(2); }
 const fieldIds = async (pg: Page) => pg.evaluate(`[...document.querySelectorAll('[data-test-id^="toggle_board_field_"]')].map(e => e.getAttribute('data-test-id').replace('toggle_board_field_', '') + '=' + (e.getAttribute('aria-checked') ?? e.querySelector('[aria-checked]')?.getAttribute('aria-checked') ?? e.className.includes('truthy')))`) as Promise<string[]>;
 const fieldsMenu = async (pg: Page) => { await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900); };
 const toggle = async (pg: Page, re: RegExp) => { const ids = await fieldIds(pg); const k = ids.map((x) => x.split('=')[0]).find((x) => re.test(x)); if (!k) return `no field ${re}`; await pg.locator(`[data-test-id="toggle_board_field_${k}"]`).click(); await pg.waitForTimeout(1500); return k; };
@@ -207,6 +208,22 @@ if (PHASE === 'day2') {
   { const orig = (await roleRead(VIEW_ROLE))?.cross_toggles?.seeFinancialData; R.finOff = await setFin(VIEW_ROLE, false);
     try { const u = await user('FS4', VIEW_ROLE); await withUser(u, async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await settle(pg, 5000); await fieldsMenu(pg); R.fs4fields = await fieldIds(pg); await pg.keyboard.press('Escape'); log('FS4', ev); }); }
     finally { R.finBack = await setFin(VIEW_ROLE, !!orig); } }
+}
+if (PHASE === 'fs1fix') {
+  // 12 Oct 17:24 a launcher fault (PHASE dropped) re-ran day 1 and left FS1's VIN/Serial OFF; put it back ON (one toggle)
+  const u = await user('FS1'); await withUser(u, async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await settle(pg, 4000); await fieldsMenu(pg);
+    const before = (await fieldIds(pg)).find((x) => x.startsWith('vin=')); R.fs1fixBefore = before;
+    if (before && !/=true/.test(before)) R.fs1fix = await toggle(pg, /vin/i);
+    R.fs1fixAfter = (await fieldIds(pg)).find((x) => x.startsWith('vin=')); await pg.keyboard.press('Escape'); await settle(pg); log('FS1', ev); }); }
+if (PHASE === 'c97026') {
+  // C97026 steps 1-2 re-run 12 Oct 2026 with raw events kept: a brand-new user, and a dispatcher who saved a density earlier
+  const raw: any = {};
+  { const u = await user('NEWBIE'); await withUser(u, async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await settle(pg, 5000); log('NEWBIE', ev); raw.newbie = ev.filter(WO); }); }
+  { const u = await user('DISP');
+    await withUser(u, async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await settle(pg, 4000); await pg.locator('[data-test-id="button_density"]').click(); await pg.waitForTimeout(800); await pg.locator('[data-test-id="option_density_comfortable"]').click(); await pg.keyboard.press('Escape'); await settle(pg); raw.dispSetup = ev.filter(WO); });
+    await withUser(u, async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await settle(pg, 5000); await shot(pg, 'C97026-dispatcher-board'); log('DISP', ev); raw.disp = ev.filter(WO); }); }
+  fs.writeFileSync(path.join(path.dirname(UF), 'c97026-raw-events.json'), JSON.stringify(raw, null, 1));
+  R.c97026 = { newbie: raw.newbie.map(brief), disp: raw.disp.map(brief), uids: [raw.newbie[0]?.uid, raw.disp[0]?.uid] };
 }
 R.users = Object.fromEntries(Object.entries(U).map(([k, v]: any) => [k, { name: v.name, uid: v.uid, events: (v.events ?? []).length }]));
 fs.writeFileSync(path.join(path.dirname(UF), `ga-week-${PHASE}.json`), JSON.stringify(R, null, 1)); console.log('GAWEEK', JSON.stringify(R).slice(0, 3000));

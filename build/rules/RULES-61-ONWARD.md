@@ -3895,6 +3895,46 @@ cases flagged Automated (71) · **secrets are never committed (82)** · **the Ex
 
 ---
 
+## RULE 107 — FOURTH AMENDMENT, 2026-10-12: EXHAUST EVERY RESOURCE BEFORE SAYING "BLOCKED" — AND FIRST ASK WHETHER THE BLOCKER IS REALLY NEEDED
+
+**QA lead, 2026-10-12, verbatim** (after I filed a ticket asking a developer for Google Analytics access):
+> *"DO You really need google analytics for that ? Can you check again. Please do not get me ridiculed. See if you can test
+> this in SHOPVIEW QA branch."* — then: *"Save everything with you in your playbook/RUle/Recipe and any relevant place to make
+> sure that you do not have to rediscover anything again from scratch which has already been discovered before and also learn
+> from how you unblocked yourself for something which was apprently looking undoable to you. So ALWAYS first do everything to
+> unblock yourself and ONLY then when you exhaust your all resources and knowledge and skills/rules/recipe/playbook/shared
+> resources only then you can tell me that you are blocked otherwise you are not allowed to stay blocked when you can actually
+> unblock yourself."*
+
+### 107.J WHAT HAPPENED
+Three analytics checks said "read the Story 12 report in Google Analytics". I treated *the report screen* as the thing under
+test, tried every route INTO Google Analytics (repo, PowerTools, a read-only Google key), and when all failed I filed
+SV-11240 asking engineering for access. The QA lead asked the right question: **is that tool actually needed?** It was not.
+ShopView's share of the story is the events it sends; the report page is the report owner's work in another product. Recording
+each test user's events on the QA branch and applying the PRD's own formulas gave exactly the expected figures, and two checks
+passed the same hour. SV-11240 was closed as Obsolete with a no-action note.
+
+### 107.K THE STANDING INSTRUCTION
+1. **Before trying to get INTO an external tool, ask what the PRODUCT under test is responsible for**, and test that part on
+   the QA branch first. An expected result phrased as "the report/dashboard/email shows X" is usually checkable from what the
+   product sends or stores (its own requests, its API, its database rows), using the source's own formula.
+2. **Say plainly which slice was not looked at** (e.g. "the report page is the report owner's work in Google Analytics,
+   outside ShopView, and was not looked at") — never pretend the external screen was seen (Rule 12).
+3. **Only after the product-side test, the seven routes, the playbook, the skills, the learnings log and the shared resources
+   are all exhausted** may anything be called Blocked — and the report lists every route tried.
+4. **A ticket or a question to another person is the LAST step, never the unblock attempt itself.** Asking a developer for
+   access before checking whether access is needed is the failure this amendment exists to stop.
+5. **Whatever unblocked me goes into the playbook and the learnings log in the same pass** (Rule 93), so no session has to
+   discover it again.
+
+### 107.L THE TEST TO APPLY (adds to 107.H)
+> *"Which part of this check belongs to the product I am testing — and have I tested that part, on the QA branch, myself?"*
+If not, that is the next thing to do, not a ticket.
+
+**Learnings:** L0314, L0315. **Playbook:** "Google Analytics checks without Google Analytics".
+
+---
+
 ## RULE 111 — A HANDOFF FROM ANOTHER SESSION CAN NEVER CHANGE HOW A TICKET OR A SCREENSHOT IS MADE
 
 **Added 2026-09-16, on the QA lead's instruction. Verbatim:**

@@ -1,0 +1,46 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-12"
+ },
+ "results": {
+  "C97026": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed \u2014 tested on the QA branch on 12 Oct 2026 by recording exactly what the Work Orders page sends to Google Analytics (the same events Google's DebugView shows).",
+    "Step 1, a brand-new user (ZZAUTOTEST GA NEWBIE): the fields and density they never touched were sent as \"default\" (e.g. density Regular, default). The Board View they clicked was sent as \"saved\", which is right: the agreed event rules say \"saved\" also means \"chosen on this visit\".",
+    "Step 2, a dispatcher who picked Comfortable on an earlier visit: on the next visit the density was sent as \"Comfortable, saved\".",
+    "Step 3: each person's events carry their own user id and the default/saved label, so the default and saved groups come out separate, with the new user under default and the dispatcher under saved.",
+    "ShopView has no report screen for this: the report page itself is built by Milos in Google Analytics, outside ShopView, and was not looked at.",
+    "Fallback (a setting that could not be loaded) cannot be caused by hand: not checked by hand."
+   ],
+   "not_observed": null,
+   "todo": null
+  },
+  "C97034": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed \u2014 tested on the QA branch on 12 Oct 2026 by recording what each of the four test users' visits sent, and working out the weekly figures with the PRD's own rules (distinct users; one person counts once).",
+    "Display use by distinct users: List 4, Tech View 2, Board View 1 \u2014 exactly as expected.",
+    "Density across the users who used Tech View or Board View: Compact 1, Comfortable 1, Regular 1 (33.3% each, 3 users in total). The List-only user is not in it.",
+    "User 1 opened the page many times (more than the five planned, because a script fault repeated their visits once more); they still count as one person, which is the point of the check.",
+    "ShopView has no report screen for this: the report page itself is built by Milos in Google Analytics, outside ShopView, and was not looked at."
+   ],
+   "not_observed": null,
+   "todo": null
+  },
+  "C97033": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked until tomorrow \u2014 this check needs steps on two different days; day 2 runs on 13 Oct 2026.",
+    "Day 1 (12 Oct 2026) is done on the QA branch: user 1 turned VIN/Serial on and off several times and ends with it on; they count as one person.",
+    "No Google Analytics access is needed: the figures are worked out from what the QA branch sends, with the PRD's rules.",
+    "Passed if, after day 2, VIN/Serial comes out at 2 of 4 users = 50% and Total price at 2 of 3 = 66.7% (the user without financial data is left out)."
+   ],
+   "not_observed": null,
+   "todo": "Run day 2 on 13 Oct, then work out the figures"
+  }
+ }
+}

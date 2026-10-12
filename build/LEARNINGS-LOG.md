@@ -5473,3 +5473,21 @@ America/Edmonton): shifts created with a start date and time then land in Dubai 
 Dubai time. Before any time-of-day check, compare the Schedule's "now" line with the shop's zone read off Locations. Changing
 location with `iam/change-location` alone does not change what the screen shows (playbook, already recorded — search first).
 A one-line work order dropped on a technician's Schedule row creates the shift at once, with no window.
+
+## L0314 — 2026-10-12 — "Read it in Google Analytics" is not a blocker: test the product's half on the QA branch
+Three analytics checks (C97026, C97033, C97034) said "open the Story 12 report in Google Analytics". I chased access to
+Google Analytics (PowerTools, a read-only Google key from the QA lead — his account had no Analytics access at all) and filed
+SV-11240 asking a developer. The QA lead asked "do you really need Google Analytics?" — no. ShopView's share of Story 12 is
+the events it sends (PRD: "Engineering's part of this story ends at sending the events"). Recording each test user's events
+on the QA branch (`ga-week.mts`, events intercepted at /g/collect) and applying the PRD's formulas (`ga_calc.py`) gave the
+expected figures exactly: C97034 List 4 / Tech View 2 / Board View 1, density 1/1/1; C97026 default vs saved. Both Passed the
+same hour; SV-11240 closed Obsolete. Lesson: ask what the product under test owns, test that, and name the slice not seen.
+Now Rule 107 fourth amendment (107.J–L). Also: the agreed event rules (SV-10593, Slavcho/Milos 6 Oct) define "saved" as
+"came from their account or was chosen on this visit", so a new user's Board View click is correctly "saved".
+
+## L0315 — 2026-10-12 — `wob-run.sh` runs with `env -i`: any setting it does not list is silently dropped
+`PHASE=c97026 ./wob-run.sh ga-week.mts` ran the DAY-1 steps again (PHASE fell back to its default), toggling test user FS1's
+VIN/Serial back off and adding visits for WK1. Fixed three ways: wob-run.sh now passes PHASE, WOB_GA and WOB_FRESH_GA;
+ga-week.mts refuses to run without an explicit PHASE (no default); FS1 put back with `PHASE=fs1fix`. Rule of thumb: a new
+env setting for a harness script must be added to the launcher's env -i list, and a destructive phase must never be a default.
+Also: `pkill -f <pattern>` kills your own shell if the pattern is in its command line — use `pgrep` then kill by PID.
