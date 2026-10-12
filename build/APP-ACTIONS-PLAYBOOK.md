@@ -5998,3 +5998,8 @@ three wrong characterisations before it was found — see learning **L0233**.
   move to `/login` on its own in one of two runs. Treat as a manual check; do not call it a product fault.
 - **Jira search moved (2026-10-10):** `GET /rest/api/2/search` now answers **410 Gone**. Use
   `GET /rest/api/3/search/jql?jql=…&fields=status,summary&maxResults=50` through `jira.sh`.
+- **⚠️ TestRail `delete_case/{id}&soft=1` DELETES on this instance (2026-10-12).** Sent as a "preview the impact" call before
+  the real delete, it returned `{}` and the case was already gone — the follow-up `delete_case` answered 400 because nothing
+  was left. Treat ANY `delete_case` call as the real delete: snapshot the case body to the repo first (Rule 87), check
+  `created_by` and `custom_atmstatus != 3` (Automated, Rule 71), then read back `get_case` → 400 "not a valid test case",
+  with a positive control on a case that still exists. Record: `build/wo-board-tech-view/run498-2026-10-08/case-deletes-2026-10-12/`.

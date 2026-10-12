@@ -5433,3 +5433,9 @@ Before adding pictures to SV-11123 and SV-11125 I compared the live description 
 ("Do not pick this up - I need to double check it in the evening today"). Re-sending the draft would have erased his note.
 Rule of thumb: after filing, a description is changed only by INSERTING into the live text (the picture line above
 Environment), never by replacing it with a local copy. `defect-drafts/addpics.sh` now works that way.
+
+## L0309 — 2026-10-12 — "Which tickets did HE mark Obsolete" is read from the change history, never assumed
+Asked to delete the test cases of the tickets the QA lead marked Obsolete, I had already told him on 10 Oct that he marked
+SV-11122 Obsolete — the change history shows Ahtasham Amjad did. Read `/rest/api/2/issue/{key}/changelog` (the status item
+whose toString is OBSOLETE, and its author) before attributing an action to anyone. Also: TestRail `delete_case&soft=1`
+deletes on this instance (playbook).
