@@ -1,0 +1,118 @@
+# **Setup: Reassigning by drag moves only open lines that follow the old lead**
+
+Test case: [C96960](https://shopview.testrail.io/index.php?/cases/view/96960), WO Board and Tech View. Part 1 is for the manual QA tester. Part 2 is for a Claude session that prepares the case on its own. Both create the starting state listed in the test case's Preconditions.
+
+How to read this document: a name in square brackets, such as \[Tech-A\], stands for a person or record you create or pick; it is defined in the list below and used the same way in the test case. Write down the real value you used for each name, because the test steps refer to it.
+
+## **What must be true before you start**
+
+1.  Needs: 2 users · 2 browsers · about 30 minutes.
+2.  Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+3.  User: \[User-A\] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders \> View and Work orders \> Create & Edit.
+4.  People: \[Tech-A\] can also sign in (a staff record with an email you can open and an accepted invite), in a second browser.
+5.  Browser: desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+6.  Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+7.  People: three eligible technicians at this location: \[Tech-A\] "Esther Howard", \[Tech-B\] "Ralph Edwards", \[Tech-C\] "Dana Ortiz". A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+8.  Data: customer "ZZAUTOTEST F1 Drag Moves Open Lines" (used by this case only) with one work order \[WO-1\], created on this build, Approved, Lead Technician \[Tech-A\], and six lines: Line 1 Unassigned (no technician) · Line 2 Implicit (follows the lead) · Line 3 Explicit (its own technician \[Tech-C\]) · Line 4 Complete (follows the lead, status Complete) · Line 5 Logged (follows the lead, has logged labor) · Line 6 Clocked (follows the lead, \[Tech-A\]'s time clock running, no earlier labor).
+9.  Note: the technician names are used in the expected results and stay as written; the line names are only labels, and the number is an example.
+
+# **Part 1. Setup for manual QA tester**
+
+Do these steps in order.
+
+1.  Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView").
+
+<!-- end list -->
+
+  - The Admin role holds Work orders \> View and Work orders \> Create & Edit (to check: your initials at the top right \> Settings \> Roles & Permissions \> Admin \> Work orders).
+
+<!-- end list -->
+
+1.  Use one location for the whole case: it is shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919")
+
+<!-- end list -->
+
+  - To change it click your initials at the top right \> Change Location.
+
+<!-- end list -->
+
+1.  Settings (your initials at the top right \> Settings) \> Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location
+
+<!-- end list -->
+
+  - Otherwise add one: New Staff Member \> First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on \> Save & Close.
+  - Record them as \[Tech-A\] = "Esther Howard" (use exactly this name: the expected results name it), \[Tech-B\] = "Ralph Edwards" (use exactly this name: the expected results name it), \[Tech-C\] = "Dana Ortiz" (use exactly this name: the expected results name it).
+  - Give \[Tech-A\] an email you can open, accept the invite and set a password, so \[Tech-A\] can sign in.
+
+<!-- end list -->
+
+1.  Create the customer used only by this case: top menu Customers \> New Customer \> Name "ZZAUTOTEST F1 Drag Moves Open Lines" \> Save.
+
+<!-- end list -->
+
+  - On the customer page click the Contacts tab \> New Contact \> First Name and Last Name \> Save (a new asset needs a contact).
+  - Then click the Assets tab \> New Asset \> pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") \> Save.
+  - Make is required
+  - Unit can be left empty.
+
+<!-- end list -->
+
+1.  Create a new work order on this build (lines created before this release follow the old rule): Work Orders \> Create Work Order \> pick Customer "ZZAUTOTEST F1 Drag Moves Open Lines" and an Asset \> Save.
+
+<!-- end list -->
+
+  - Record its number as \[WO-1\] (e.g. "S1-702").
+
+<!-- end list -->
+
+1.  Line names in this case (such as "Line 1") are only labels for you: the New Line form's "What Are You Doing?" box only offers ready-made lines (typed text finds no results), so pick any ready-made line for each one (e.g. "Replace - Brake pot") and write down which is which.
+2.  On the Lines tab add four lines with no technician: "Line 2 Implicit", "Line 4 Complete", "Line 5 Logged", "Line 6 Clocked".
+3.  Add "Line 3 Explicit", click its name to open the Edit Line dialog and choose Technicians = \[Tech-C\] (a line given its own technician).
+4.  Click Approve (check) on these five lines so the work order reads Approved (the Lead Technician dropdown only appears once the work order is Approved).
+5.  Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page and choose \[Tech-A\].
+
+<!-- end list -->
+
+  - Lines 2, 4, 5 and 6 now show \[Tech-A\] in their Labor row (they follow the lead).
+
+<!-- end list -->
+
+1.  Add "Line 1 Unassigned".
+
+<!-- end list -->
+
+  - If its Labor row shows a technician, use the Labor row's More actions \> Edit labor to clear it, so it reads Unassigned.
+  - Click Approve (check) on it too, so all six lines are approved (the work order reads Approved).
+
+<!-- end list -->
+
+1.  Line 4: enter a tech story (e.g. "Done") and complete the line, so its status is Complete.
+2.  Line 5: in a second browser signed in as \[Tech-A\], click Start time clock on Line 5's Labor row, wait at least 1 minute, then click Stop time clock, so Line 5 has logged labor.
+3.  Line 6: still as \[Tech-A\], click Start time clock on Line 6's Labor row and leave it running (no earlier labor on this line).
+4.  Check the setup worked: write down each line's Labor technician: Line 1 Unassigned, Line 2 \[Tech-A\], Line 3 \[Tech-C\], Line 4 \[Tech-A\], Line 5 \[Tech-A\], Line 6 \[Tech-A\] (clock running)
+
+<!-- end list -->
+
+  - Line 4 is Complete
+  - Search "ZZAUTOTEST F1 Drag Moves Open Lines" on Work Orders \> All shows \[WO-1\] in \[Tech-A\]'s column.
+  - If any line differs, fix it as described above (or create a fresh work order) before starting.
+
+# **Part 2. Setup for Claude session**
+
+Prepare the same starting state by carrying out Part 1 in a browser with Playwright. Record the real values you used, the build marker and screenshots in the Manual-test-Cases repository, and judge pass or fail against the test case's Expected results only.
+
+## **Environment**
+
+  - Work Orders QA site: app https://sv10043.qa.shopview.com, API https://sv10043api.qa.shopview.com (the build named in the test case's Preconditions).
+  - Record the build marker (app-version on the app page) before you start.
+  - Browser: Chromium at /opt/pw-browsers/chromium through Playwright. Do not run "playwright install".
+
+## **Access**
+
+  - Sign in with the QA site's quick login: node build/testing-tools/qa-branch-boot.mjs (see build/APP-ACTIONS-PLAYBOOK.md section A). Carry the sv\_sso\_session cookie only, scoped to the host.
+  - Keep cookies in /tmp only, with file mode 600. Never write a cookie into a document, a commit or a log.
+  - Change location through the profile icon (your initials, top right) \> Change Location.
+
+## **Test data**
+
+Name anything you create with ZZAUTOTEST at the start. Leave all test data in place; nothing is deleted afterwards.

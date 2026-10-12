@@ -5,3 +5,4 @@ QA lead: *"Please do the same for these test cases"* — C368136, C96960 (WO Boa
 Expected, title, automation fields unchanged (re-read). The WO Board suite-wide structure conversion stays PAUSED —
 only these two tests were touched.
 - Docs: `docs-created.jsonl`. Display fr-view 2/2, links open the right Doc, check_tester_runnable PASS.
+- Read back: both Docs match their files word for word (readback/).
