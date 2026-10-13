@@ -22,7 +22,7 @@ const cookieDomain = env => env==='branch' ? '.qa.shopview.com' : '.shopview.com
 
 function port(dir){ return fs.readFileSync(dir+'/port.txt','utf8').trim(); }
 
-export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, pw='analyst1',
+export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, pw=(process.env.SV_PROD_PW||(()=>{try{return fs.readFileSync('/tmp/sv-prod-pw.txt','utf8').trim()}catch(e){return ''}})()),
                             cookies=null, vp={width:1900,height:1100}, dpr=1, quiet=true, record=null, quick='admin'}={}){
   // quick: which dev quick-login button to press on staging/branches ('admin' | 'tech'). Added 2026-10-08:
   // the option was being passed by callers but silently ignored, so a 'tech' run was really an admin run.
