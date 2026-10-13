@@ -43,6 +43,7 @@ for a thing (Vendor, VIN number).
 | The QA lead **names a project** and there is no `build/<project-slug>/` folder | **§1–§6 — the NEW-PROJECT path.** |
 | The QA lead **names a project that already exists in this workspace** | **§7 — the REVIVAL path.** It is a **RECONCILIATION**, never a fresh authoring run. |
 | The named project is a **V2 / upgrade / re-work of an existing feature** | **§1a type (ii)** — the intake runs as normal **and TRIGGERS `17-REGRESSION-IMPACT-V1-TO-V2.md` (Rule 96)**, which needs three extra inputs. |
+| **Before any of the above: RECALL (Rule 127)** | `python3 build/testing-tools/recall.py "<feature words>"` + the matching rows of `build/KNOWLEDGE-MAP.md`; open the `PROJECT-STATE.md` of the nearest suite in its "Suites done" table and reuse its tools, data recipes and traps. Name what you are reusing in the first status. |
 | **Before any of the above: ASK THE PROJECT TYPE** (input **0**, §1a) | The answer routes the pass. **Never inferred from the project's name.** |
 | No project has been named | **You are not in this skill yet.** Sit at the Rule-92 scope gate and wait. |
 

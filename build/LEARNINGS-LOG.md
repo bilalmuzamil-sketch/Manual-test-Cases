@@ -21,8 +21,10 @@
 
 ## 🔎 HOW TO RETRIEVE — get ALL learnings, or just the ones you need
 
-- **All learnings, newest first:** read this file top-to-bottom (it is kept small — details live behind
-  the pointers, not inline).
+- **FIRST: `python3 build/testing-tools/recall.py "<words>"` (Rule 127, 2026-10-13).** This file is ~410 KB and can no
+  longer be read top-to-bottom; the tool searches it (and the playbook, skills, rules, project files and tools) and prints
+  `file:line` for the best matches. Since L0040 or so, entries are appended at the BOTTOM as `## L0nnn — date — title`;
+  `grep -n "^## L0" build/LEARNINGS-LOG.md | tail` lists the newest.
 - **By topic:** `git grep -n "#access" build/LEARNINGS-LOG.md` — every entry carries `#tags`.
 - **Common tags:** `#access` `#testrail` `#shopview-app` `#roles-permissions` `#build-verify`
   `#source-verify` `#cookies` `#deadlock` `#methodology` `#rule` `#mistake-corrected`.
@@ -5513,3 +5515,40 @@ personal remark. He asked for the remark to be removed everywhere and then: "In 
 you". Rule (13 Oct, his words): his own ruling = "a short dated line saying what you decided, never our chat"; someone else's
 ruling = quoted word for word. Also: `safe_case_edit.py` saves TestRail's case history into the repo, and that history keeps
 every old wording — it now blanks the personal remark automatically; check any other sensitive text before committing snapshots.
+
+## L0319 — 2026-10-12 — Edit a TestRail case with `safe_case_edit.py`, then scan the served page (make its folder first)
+`python3 build/testing-tools/safe_case_edit.py <id> <fields.json>` is the one-case editor: ours only (created_by 3, never
+Vladimir's), snapshot + history saved first, only the named fields sent, read-back must equal what was sent, untouched fields
+and automation flags must be unchanged (exit 1 otherwise). Then `IDFILE=<ids.json> OUT=<dir> node
+build/inline-add-edit-parts/build-verify-2026-09-01/tools/served_page_scan.mjs` — it crashes with ENOENT unless `<dir>/evidence/`
+exists, and with ERR_PROXY_CONNECTION_FAILED unless `ensure_bridge.sh` ran. The stored-value checker (`check_case_render.py`)
+flags `<strong>` headings that render fine in a `fr-view` container — the served-page scan ("literal tags visible: 0") is the
+judge. #testrail #tools → KNOWLEDGE-MAP "Recording results and changing test cases"
+
+## L0320 — 2026-10-12 — The Automated flag moves: read it live (and its history) before telling the engineer
+Vladimir Tomovic set C154884 and C96977 to Automated at 09:28 UTC and back to Not Automated at 18:35 UTC the same day — after I
+had listed them as "automated, rewritten". `python3 build/testing-tools/automated_edit_scan.py <run>` reads every case's
+history and lists our text edits made while a case was Automated (TestRail rate-limits bulk history reads — it retries).
+#testrail #automation #rule-65 → `build/testing-tools/automated_edit_scan.py`
+
+## L0321 — 2026-10-12 — TestRail case history keeps every old wording, so a saved snapshot can leak what was removed
+After a personal remark was taken out of three tests, `safe_case_edit.py`'s history snapshots (pushed to this public repo)
+still carried it, because TestRail's history holds old versions forever and only a TestRail admin can clear it. The tool now
+blanks that remark in every snapshot; for anything else sensitive, grep the snapshot before committing. #testrail #secrets #mistake-corrected
+
+## L0322 — 2026-10-12 — A "different day" test must differ in the zone the measurement uses, not only in Pakistan time
+C97033's day 2 ran at 00:07 PKT on 13 Oct = 19:07 UTC on 12 Oct, so both "days" were the same UTC date. ShopView's part (each
+user's events, ids and on/off values) was unaffected, but if the day split is ever judged, pick a time that is a different
+date in UTC AND the shop's zone AND PKT (e.g. after 09:00 UTC next day, as first planned). #analytics #timezone
+
+## L0323 — 2026-10-12 — Run comments: `push_results_to_run.py` printed a stray "None." under Passed results
+A Passed result with `todo: "None."` rendered "None." after a rule line. Fixed: "none / nothing / n/a / nothing for the tester"
+is no longer printed. #testrail #tools
+
+## L0324 — 2026-10-13 — Finding what was learned before: `recall.py` + `KNOWLEDGE-MAP.md` (Rule 127)
+The QA lead asked for a mechanism that tells a session instantly, on a NEW suite, that something similar was done and where it
+is written. The learnings log (~410 KB) and playbook (~535 KB) can no longer be read whole. Now: `python3
+build/testing-tools/recall.py "<words>"` searches learnings, playbook, map, skills, rules, project files and tool headers and
+prints the best blocks with file:line; `build/KNOWLEDGE-MAP.md` lists "I am about to …" tasks with the file to open and the
+suites done. Every project keeps a `PROJECT-STATE.md` (WO Board's was missing — written 13 Oct). The QA lead's earlier answers
+in a session: `build/testing-tools/find_ruling.py "<words>"`. #methodology #retrieval #rule → Rule 127

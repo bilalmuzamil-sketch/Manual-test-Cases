@@ -3,6 +3,10 @@
 > **Read this FIRST, then the skill you were called for.** Every skill file (`01`–`07`) points here
 > instead of repeating this material, so a fix lands in one place instead of seven.
 >
+> **🧠 RULE 127 — RECALL BEFORE NEW WORK:** `python3 build/testing-tools/recall.py "<words>"` searches every learning, playbook
+> entry, skill, rule, project file and tool header and prints file:line; `build/KNOWLEDGE-MAP.md` maps "I am about to …" to the
+> file that answers it. The learnings log (~410 KB) and playbook (~535 KB) are too big to read whole — search them.
+>
 > **📒 ALSO READ / KEEP CURRENT: `build/LEARNINGS-LOG.md`** — the continuous, retrievable ledger of every
 > durable learning (traps, fixes, access facts, corrected mistakes, QA-lead rulings). **Skim it at
 > cold-start** (or `git grep -n "#tag" build/LEARNINGS-LOG.md` for a topic), and **append to it the moment

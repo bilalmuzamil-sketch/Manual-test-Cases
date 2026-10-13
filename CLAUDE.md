@@ -20,6 +20,8 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
+**🧠 RULE 127 — BEFORE ANY NEW SUITE, TASK, PROBE OR "BLOCKED": RECALL FIRST.** Run `python3 build/testing-tools/recall.py "<feature or problem words>"` and read the matching row of `build/KNOWLEDGE-MAP.md` (every "I am about to …" task → the file that already answers it; every suite done → its `PROJECT-STATE.md`). Reuse, never rediscover. Anything new you learn is saved in the same pass where the map says it belongs.
+
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **118 numbered Standing Rules** (108 and 109 are cited across the repo but have no text yet — see rule 110’s recorded gap).
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
@@ -562,6 +564,7 @@ rule. Generated from the split files' own headers.
 | **124** | **ANOTHER TESTER'S FAILED MARK IS RE-TESTED WITH THEIR OWN STEPS** (QA lead 2026-10-12) — failure still happens ⇒ leave it Failed, add nothing; it does not happen ⇒ mark Passed with plain bullets AND annotated screenshots on the result. Rule 121 amended the same day: every production comparison is attached as an annotated screenshot |
 | **125** | **BEFORE ANYTHING ABOUT TIME OR TIME ZONES, SET THE LOCATION'S ZONE TO MATCH MY BROWSER (Asia/Karachi) AND PROVE IT** (QA lead 2026-10-12) — Locations > edit > Timezone; browser `TZ=Asia/Karachi`, normal sign-in; `tz-match-check.mjs` must exit 0 (Schedule "now" pill = browser clock) before any verdict |
 | **126** | **EVERY QA-BRANCH PASS IS THEN RUN ON STAGING, THEN PRODUCTION — BE READY AND QUICK** (QA lead 2026-10-12) — environment-ready scripts from day one; a `STAGING-READY.md` per run listing each check, its script, its data and what cannot run there |
+| **127** | **EVERY LEARNING IS SAVED WHERE IT BELONGS AND RECALLED BEFORE NEW WORK** (QA lead 2026-10-13) — save in the same pass (learnings log · playbook · rules · skill · the suite's `PROJECT-STATE.md` · a tool with a first-line comment) and keep `build/KNOWLEDGE-MAP.md` leading to it; before any new suite/task/probe/blocker run `recall.py "<words>"` + read the map row; `find_ruling.py` for what was said earlier |
 | **117** | **A CASE THAT RELIES ON DATA ALREADY SEEDED ON THE BRANCH CARRIES THE GENERAL INSTRUCTION AND THE EXAMPLE TOGETHER, IN THE SAME STEP** — never `Type: Oknokwo` (the example alone, which dies when the record does) and never `Type a misspelling of a contact's name` (the instruction alone, which makes the tester go hunting). Preconditions the same: what you NEED, then an example that satisfies it. Prefer seeded `ZZAUTOTEST` data for the example, and add the fallback in the same step where the record is not guaranteed. Steps and preconditions only — `custom_expected` is still never edited (114) |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →

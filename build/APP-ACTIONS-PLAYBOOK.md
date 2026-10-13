@@ -6051,3 +6051,16 @@ three wrong characterisations before it was found — see learning **L0233**.
   a refused request (`route.abort`/fulfil 500, as s4-batchD does) for the "card back + alert" part.
 - **(12 Oct 2026, Slavcho) From v26.40.14-e84b3d1, Board/Tech View cards name the lead like the column header (the ACCOUNT name);
   the List still shows the staff-record name.** On QA data the two differ for most technicians (scrambled data) — expected, not a fault.
+- **(12 Oct 2026) Analytics checks a MANUAL tester can run, no Google Analytics access.** Chrome/Edge F12 → Network → tick
+  Preserve log → filter `collect` → click a request → Payload. Events list `en` (name), `ep.element_location` (list / tech_view /
+  board_view), `ep.element_label` (field or density, e.g. `vin`, `total_price`, `comfortable`), `ep.setting_value` (on/off),
+  `ep.setting_source` (default/saved), `uid` (the user). One request can hold several events. Ad blockers stop them; use a new
+  private window per user. Worked text: `build/wo-board-tech-view/run498-2026-10-08/ruling-rewrites-2026-10-12/HOWTO.html`
+  (used in C97026, C97033, C97034). Automated version: `ga-week.mts` + `ga_calc.py` (entry above).
+- **(12 Oct 2026) Changing a TestRail case: `safe_case_edit.py`, one case at a time (L0319).** `python3
+  build/testing-tools/safe_case_edit.py <id> <json with any of custom_preconds/custom_steps/custom_expected/title>` → guarded
+  write + read-back; then `served_page_scan.mjs` with `<OUT>/evidence/` created and the bridge up. Plain-English setup blocks for
+  ShopView data (technician eligibility, customer + asset, Approved work order + lead, bring to Complete):
+  `build/wo-board-tech-view/run498-2026-10-08/ruling-rewrites-2026-10-12/preconds-trim/build_preconds.py`. Which of a run's
+  cases we edited while Automated: `automated_edit_scan.py <run>` (L0320). What the QA lead answered earlier in this session:
+  `find_ruling.py "<words>"`.

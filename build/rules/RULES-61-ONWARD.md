@@ -4994,3 +4994,32 @@ SV-11128 = a work order already on today's Schedule, C96960 = a plain drag betwe
 today, C368136 = a shift tomorrow). The ticket keeps its own life; the case is marked by what the case says. Clause 1's
 "their ticket's steps" is superseded by this. Worked example: C96960 and C368136 Passed by their own steps (pictures
 attached), C96968 still Failed by its own steps.
+
+---
+
+## RULE 127 — EVERY LEARNING IS SAVED WHERE IT BELONGS, AND RECALLED BEFORE ANY NEW WORK STARTS (QA lead 2026-10-13)
+
+**QA lead, 2026-10-13, verbatim:** *"make sure that whatever you learned while testing the site "WO Board and Tech view" is saved
+with you as your learning in whichever files they should be saved in whether they are playbook/recipe/rules/skill or anything and
+this learning is retrievable for you when you need it again for yourself. You always have to keep saving your learning and make
+sure it is always retrievable and there should be a mechanism for you to know instantly while working on some NEW testing suite
+that you have done something similar before and where it is saved for you to utilize the learning from there instead of
+rediscovering something again."*
+
+**1 · SAVE, IN THE SAME PASS, IN THE RIGHT PLACE.** A dated lesson → `build/LEARNINGS-LOG.md` (new `## L0nnn` entry, newest at the
+bottom). A how-to → `build/APP-ACTIONS-PLAYBOOK.md`. A must / must-not → `build/rules/` (his words; Rule 72 for my own proposals).
+A procedure → the skill. Suite facts (sources, people, environments, runs, data, scripts, open items) → that suite's
+`build/<project>/PROJECT-STATE.md` — **every suite has one**. A reusable script → `build/testing-tools/` with a first comment
+line saying what it does. If no row of `build/KNOWLEDGE-MAP.md` would lead to it, add or extend one.
+
+**2 · RECALL BEFORE STARTING — the mechanism.** Before ANY new suite, task, probe, fix or "blocked": run
+`python3 build/testing-tools/recall.py "<feature / screen / problem / error words>"` and read the matching row of
+`build/KNOWLEDGE-MAP.md`; open only what they point at, and reuse it. On a new suite, also open the PROJECT-STATE of the nearest
+suite in the map's "Suites done" table. For something the QA lead or the PO said earlier in a session:
+`python3 build/testing-tools/find_ruling.py "<words>"`. Searching another branch is for FACTS only (Rule 119): `recall.py --ref <branch>`.
+
+**3 · SAY IT.** The first status of a new piece of work names what was recalled ("done before in <suite>, reusing <file>") or
+that the search found nothing — and then the new learning is saved by point 1.
+
+Sits with Rules 27 (reuse recipes), 93 (learning loop), 97 (search before declaring a blocker) and 119 (facts may be shared).
+Worked first application: WO Board & Tech View (L0300–L0324, `build/wo-board-tech-view/PROJECT-STATE.md`).
