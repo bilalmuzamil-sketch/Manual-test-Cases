@@ -1,0 +1,93 @@
+{
+ "role": "Sales Representative",
+ "role_id": "224da903-6f11-4c79-98f2-d1bd3c4ea892",
+ "t": "2026-10-13T11:12:27.724Z",
+ "reset": {
+  "n0": 8,
+  "n1": 8,
+  "added": [],
+  "removed": [],
+  "log": [
+   "tab via /administration/settings -> https://sv10628.qa.shopview.com/administration/roles-permissions",
+   "reset confirmed",
+   "save enabled=false"
+  ]
+ },
+ "perms": [
+  "customersCreateAndEdit",
+  "customersView",
+  "partSalesView",
+  "reportsPageAccess",
+  "seeApArData",
+  "seeFinancialData",
+  "woFullViewMode",
+  "workOrdersView"
+ ],
+ "assign": {
+  "status": 201,
+  "body": "{\"data\":{\"id\":\"d2cb20a6-90a8-4884-ac50-022ff2fb9313\",\"name\":\"Tech ShopView\",\"hasEmailUpdate\":false,\"clockableChanged\":false}}"
+ },
+ "fe": [
+  "customersCreateAndEdit",
+  "customersView",
+  "partSalesView",
+  "reportsPageAccess",
+  "seeApArData",
+  "seeFinancialData",
+  "woFullViewMode",
+  "workOrdersView"
+ ],
+ "sfd": true,
+ "who": "tech@shopview.com",
+ "docs": [
+  {
+   "kind": "part sale",
+   "parts": [
+    {
+     "pn": "FF5324",
+     "src": "vendor",
+     "present": true,
+     "disabled": true,
+     "before": "24.70",
+     "afterReload": "24.70"
+    },
+    {
+     "pn": "FS19593",
+     "src": "inventory",
+     "present": true,
+     "disabled": true,
+     "before": "56.66",
+     "afterReload": "56.66"
+    }
+   ],
+   "num": "P2-243",
+   "status0": "Complete",
+   "sellCol": true,
+   "status1": "Complete"
+  },
+  {
+   "kind": "service WO",
+   "parts": [
+    {
+     "pn": "68399093AB",
+     "src": "vendor",
+     "present": false
+    },
+    {
+     "pn": "SH550057739",
+     "src": "inventory",
+     "present": false
+    }
+   ],
+   "num": "S3-15003",
+   "status0": "Complete",
+   "sellCol": false,
+   "status1": "Complete"
+  }
+ ],
+ "marker": {
+  "version": "v26.40.17-ec15c08",
+  "lastModified": "Tue, 13 Oct 2026 09:50:38 GMT",
+  "etag": "W/\"a2504bd37807a666f5c6339310e37f3b\""
+ }
+}

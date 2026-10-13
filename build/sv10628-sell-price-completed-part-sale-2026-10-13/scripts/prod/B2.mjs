@@ -1,0 +1,23 @@
+import {op,J} from './lib.mjs'; import fs from 'fs';
+const s=await op({dpr:2,user:'bilal.muzamil+tech@shopview.com'}); const p=s.page; const PS='49a1cb6d-0ae0-4166-a156-420ca2d5c1b3', PR='6e241f2b-2ce9-4388-9ec8-e99d5c689299';
+const out={};
+const reqs=[]; p.on('response',async r=>{ if(r.request().method()!=='GET' && /\/api\//.test(r.url()) && !/analytics|sentry/.test(r.url())){ let b=''; try{b=(await r.text()).slice(0,300);}catch(e){} reqs.push(r.status()+' '+r.request().method()+' '+new URL(r.url()).pathname+' :: '+(r.request().postData()||'').slice(0,300)+' => '+b);} });
+await s.api('/api/iam/change-location',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({workplace_id:'b617914c-16e9-4485-8e8b-193cd86aa416',workplace_timezone:'Africa/Accra'})});
+await p.evaluate(()=>{localStorage.setItem('location',JSON.stringify('b617914c-16e9-4485-8e8b-193cd86aa416')); localStorage.setItem('timezone',JSON.stringify('Africa/Accra'));});
+out.fe=(await s.api('/api/auth/me/fe-permissions')).json.data.fe_permissions.length;
+await s.go('/parts/part-sale/'+PS+'/part-requests'); await p.waitForTimeout(5000);
+let b=await s.box('profile_menu_button'); if(b){ await p.mouse.click(b.x,b.y); await p.waitForTimeout(1000); out.who=await p.evaluate(()=>document.querySelector('[data-test-id="profile_menu_profile"]')?.innerText.replace(/\s+/g,' ')); out.loc=await p.evaluate(()=>document.querySelector('[data-test-id="select_location"]')?.innerText.replace(/\s+/g,' ')); await p.keyboard.press('Escape'); await p.waitForTimeout(600);}
+const val=()=>p.evaluate(t=>document.querySelector(`[data-test-id="${t}"]`)?.value,'input_sell_price_'+PR);
+out.price_before=await val(); out.status=await p.evaluate(()=>document.querySelector('[data-test-id="badge_wo_status"]')?.innerText); out.num=await p.evaluate(()=>document.querySelector('[data-test-id="text_wo_number"]')?.innerText);
+out.part_status=await p.evaluate(t=>document.querySelector(`[data-test-id="${t}"]`)?.innerText,'badge_part_request_status_'+PR);
+await p.screenshot({path:'ev/prod-before-1.png'});
+const geo=id=>p.evaluate(t=>{const e=document.querySelector(`[data-test-id="${t}"]`); if(!e) return null; const r=e.getBoundingClientRect(); return [r.x,r.y,r.width,r.height];},id);
+out.geo1={price:await geo('input_sell_price_'+PR),status:await geo('badge_wo_status'),num:await geo('text_wo_number'),pstat:await geo('badge_part_request_status_'+PR)};
+const inp=p.locator(`[data-test-id="input_sell_price_${PR}"]`); await inp.click(); await inp.press('Control+a');
+out.typed=(parseFloat(out.price_before)+1).toFixed(2); await inp.pressSequentially(out.typed,{delay:90}); await p.waitForTimeout(400); await inp.press('Enter'); await p.waitForTimeout(3500);
+out.toast=await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(e=>e.innerText.replace(/\s+/g,' ')).join(' ## '));
+out.geo2={toast:await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(e=>{const r=e.getBoundingClientRect(); return [r.x,r.y,r.width,r.height];})), price:await geo('input_sell_price_'+PR)};
+await p.screenshot({path:'ev/prod-before-2.png'});
+await p.reload(); await p.waitForTimeout(5000); out.price_after_reload=await val(); out.status_after=await p.evaluate(()=>document.querySelector('[data-test-id="badge_wo_status"]')?.innerText);
+out.marker=await s.marker(); out.reqs=reqs; fs.writeFileSync('before-out.json',JSON.stringify(out,null,1)); console.log(JSON.stringify(out,null,1).slice(0,2500));
+await s.close();

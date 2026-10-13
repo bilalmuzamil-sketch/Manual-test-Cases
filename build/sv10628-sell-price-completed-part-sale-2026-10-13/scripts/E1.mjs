@@ -1,0 +1,11 @@
+import {ob,J} from './lib.mjs'; import fs from 'fs';
+const s=await ob({dpr:1});
+console.log('marker',J(await s.marker()));
+const ls=await s.page.evaluate(()=>JSON.parse(localStorage.getItem('user')||'{}')); console.log('me',ls?.data?.details?.email, 'loc',await s.page.evaluate(()=>localStorage.getItem('location')));
+const set=(await s.api('/api/organizations/settings')).json.data; console.log('org',set.organizationId);
+const wps=(await s.api('/api/staff/my-workplaces')).json.data.collection.map(w=>[w.id,w.name,w.timezone]); console.log('wps',J(wps,600));
+const st=(await s.api('/api/staff?limit=200')).json; const l=st.collection||st.data?.collection||st.data; 
+console.log('staff',l.length, l.map(x=>x.role_label+':'+x.email).slice(0,30).join(' | '));
+const ps=(await s.api('/api/part-sales?limit=100&rowsPerPage=100')).json.data.partSales; const c={}; for(const x of ps) c[x.status]=(c[x.status]||0)+1; console.log('ps',J(c));
+fs.writeFileSync('env.json',JSON.stringify({org:set.organizationId,wps,staff:l},null,1));
+await s.close();

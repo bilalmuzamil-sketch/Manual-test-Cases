@@ -1,0 +1,10 @@
+import {op,J} from './lib.mjs'; import fs from 'fs'; import {resetRole,assignRole} from './roles.mjs';
+const s=await op({dpr:1});
+const rt=await resetRole(s,'31e70dbe-8d9f-485b-9e32-457acd069743'); console.log('Technician reset',J({n0:rt.before.length,n1:rt.after.length,added:rt.added,removed:rt.removed,log:rt.log},800));
+fs.writeFileSync('reset-tech.json',JSON.stringify(rt,null,1));
+const t=JSON.parse(fs.readFileSync('tech-before.json'));
+console.log('assign',J(await assignRole(s,t,'31e70dbe-8d9f-485b-9e32-457acd069743')));
+const l=(await s.api('/api/staff?limit=200')).json; const now=(l.collection||l.data?.collection||l.data).find(x=>x.email===t.email);
+const keys=['role_label','role_id','workplace_id','job_title','salary_type','salary','billable','clockable','is_sales_rep','is_active','departments','first_name','last_name'];
+console.log('diff vs before:',keys.filter(k=>JSON.stringify(now[k])!==JSON.stringify(t[k])).map(k=>k+': '+J(t[k],60)+' -> '+J(now[k],60)).join(' | ')||'none');
+await s.close();

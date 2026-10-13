@@ -1,0 +1,18 @@
+import {op,J} from './lib.mjs'; import fs from 'fs';
+const s=await op({dpr:2,user:'bilal.muzamil+tech@shopview.com'}); const p=s.page; const WO='fe72110c-7ff6-47f8-8f83-e3ea447a5280';
+const out={}; const reqs=[]; p.on('response',async r=>{ if(r.request().method()!=='GET' && /\/api\/work-orders/.test(r.url())){ let b=''; try{b=(await r.text()).slice(0,200);}catch(e){} reqs.push(r.status()+' '+new URL(r.url()).pathname+' :: '+(r.request().postData()||'').slice(0,250)+' => '+b);} });
+await s.api('/api/iam/change-location',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({workplace_id:'b617914c-16e9-4485-8e8b-193cd86aa416',workplace_timezone:'Africa/Accra'})});
+await p.evaluate(()=>{localStorage.setItem('location',JSON.stringify('b617914c-16e9-4485-8e8b-193cd86aa416')); localStorage.setItem('timezone',JSON.stringify('Africa/Accra'));});
+await s.go('/workorders/'+WO+'/lines'); await p.waitForTimeout(3000);
+let b=await s.box('link_part_requests_tab'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(4000); out.url=p.url();
+const pid=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id^="input_sell_price_"]')].map(e=>e.getAttribute('data-test-id').replace('input_sell_price_',''))); out.pids=pid;
+const PR=pid[0]; const val=()=>p.evaluate(t=>document.querySelector(`[data-test-id="${t}"]`)?.value,'input_sell_price_'+PR);
+out.price_before=await val(); out.status=await p.evaluate(()=>document.querySelector('[data-test-id="badge_wo_status"]')?.innerText); out.num=await p.evaluate(()=>document.querySelector('[data-test-id="text_wo_number"]')?.innerText);
+out.disabled=await p.evaluate(t=>{const e=document.querySelector(`[data-test-id="${t}"]`); return e?.disabled||e?.readOnly;},'input_sell_price_'+PR);
+const inp=p.locator(`[data-test-id="input_sell_price_${PR}"]`); await inp.click(); await inp.press('Control+a'); out.typed=(parseFloat(out.price_before)+1).toFixed(2); await inp.pressSequentially(out.typed,{delay:90}); await inp.press('Enter'); await p.waitForTimeout(3500);
+out.toast=await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(e=>e.innerText.replace(/\s+/g,' ')).join(' ## '));
+out.geo={price:await p.evaluate(t=>{const r=document.querySelector(`[data-test-id="${t}"]`).getBoundingClientRect(); return [r.x,r.y,r.width,r.height];},'input_sell_price_'+PR), toast:await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(e=>{const r=e.getBoundingClientRect(); return [r.x,r.y,r.width,r.height];})), status:await p.evaluate(()=>{const r=document.querySelector('[data-test-id="badge_wo_status"]').getBoundingClientRect(); return [r.x,r.y,r.width,r.height];})};
+await p.screenshot({path:'ev/prod-before-wo.png'});
+await p.reload(); await p.waitForTimeout(5000); out.price_after_reload=await val();
+out.reqs=reqs; fs.writeFileSync('before-wo-out.json',JSON.stringify(out,null,1)); console.log(JSON.stringify(out).slice(0,1600));
+await s.close();

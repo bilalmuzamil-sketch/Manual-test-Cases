@@ -1,0 +1,61 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on the QA branch *sv10628* (build *v26.40.17-ec15c08*) on *13 October 2026*, logged in as a non-Admin user, which is the situation the customer was in.
+
+A Parts Manager can now change the Sell Price of a part on a *Complete* part sale. There is no error, the new price is kept, the part sale stays Complete and the totals follow. The same works on a Complete service work order. Users who are not allowed to edit still can't.
+
+h3. Before and after
+!sv10628-01-part-sale-before-after.png|width=900,height=1288!
+_Before (production, 13 Oct): a Parts Manager changing the Sell Price on Complete part sale P2-70 gets "Cannot change part on completed work order." and the price does not change, the same as the customer's P-21059. After (QA branch): the same role changes the Sell Price on Complete part sale P2-209 with no error, and Financial Info updates._
+
+!sv10628-02-work-order-before-after.png|width=900,height=1083!
+_The same before and after on a Complete service work order (production S2-810 vs QA branch S3-15003)._
+
+h3. What I checked
+||#||Check||Result||
+|1|The customer's flow: a Parts Manager changes the Sell Price of a *Received vendor part* in the Parts grid of a *Complete* part sale. No error, and the price is still there after a page reload (P2-209, P2-243)|PASSED|
+|2|The same for a part taken from *Inventory* on a Complete part sale (P2-243)|PASSED|
+|3|The part sale stays *Complete* after the change; nothing has to be added or returned first|PASSED|
+|4|Financial Info follows the new price (P2-209: Parts $153.17 -> $187.41, Total $160.84 -> $196.79, quantity 4 x $8.56 more)|PASSED|
+|5|Complete *service work order*, Parts tab grid: Sell Price changes are saved (S3-15003, vendor part and inventory part)|PASSED|
+|6|Complete service work order, Lines tab -> click the part -> *Edit Part* -> change Sell Price -> *Save & Close*: saved, work order stays Complete|PASSED|
+|7|Every role, each one reset to its template first, then tested (table below): every role that is allowed to edit part sales or work orders can now change the Sell Price on the completed document|PASSED|
+|8|Roles that are not allowed to edit that screen still see the Sell Price greyed out. That covers Foreman, Sales Representative and Office User on part sales, Parts Technician, Sales Representative and Office User on work orders, and a test role that can only view part sales|PASSED|
+|9|Roles that cannot see money (Technician, Time Clock User) never see a Sell Price. A Technician can now change a part's *description* in Edit Part on a Complete work order, and the price is left as it was|PASSED|
+|10|A *Paid* part sale is still locked: Sell Price greyed out|PASSED|
+|11|Before the fix (production v26.40.17-f5bf8f4): the same steps give the customer's error on a Complete part sale and on a Complete service work order|Reproduced|
+
+h3. Results by role
+||Role||Complete part sale||Complete service work order||
+|Admin|Saved|Saved|
+|Parts Manager|Saved|Saved|
+|Service Manager|Saved|Saved|
+|Senior Service Advisor|Saved|Saved|
+|Service Advisor|Saved|Saved|
+|Parts Technician|Saved|Greyed out (role cannot edit work orders)|
+|Foreman|Greyed out (role cannot edit part sales)|Saved|
+|Sales Representative|Greyed out (role cannot edit part sales)|No Sell Price column (role cannot edit work orders)|
+|Office User|Greyed out (role cannot edit part sales)|No Sell Price column (role cannot edit work orders)|
+|Technician|No access to part sales|No Sell Price (role cannot see money)|
+|Time Clock User|No access to part sales|No Sell Price (role cannot see money)|
+
+h3. More evidence
+!sv10628-03-edit-part-dialog.png|width=900,height=521!
+_Edit Part on a Complete service work order: the Sell Price can be changed and saved._
+
+!sv10628-04-still-locked.png|width=900,height=661!
+_Still locked where it should be: a Paid part sale, and a user who can only view part sales._
+
+h3. How to see it
+# Open the QA branch: [https://sv10628.qa.shopview.com/|https://sv10628.qa.shopview.com/]. On the login page click the *Tech* button. On this branch the Tech user has the *Parts Manager* role.
+# At the top of the page, click the search box ({{Search customers, work orders, parts...}}), type {{209}}, then click the {{Part sales}} tab in the search window.
+# Click the result *Una Truck Center* (status Complete). It opens part sale *P2-209*. (Another way in: top menu {{Parts}} -> left menu {{Part Sales}} -> click the blue {{Status: Estimate, +1}} filter -> {{Clear selection}} -> tick {{Completed}} -> click *P2-209*.)
+# You are on the {{Parts (3)}} tab. In the first row (Part Number {{95749}}), click the {{Sell Price}} box, type a new price and press Enter.
+# No error appears. Reload the page: the new price is still there, the part sale still says *Complete* at the top left, and {{Financial Info}} on the left shows the new Parts and Total.
+
+*Fastest way to see it:* open [P2-209 directly|https://sv10628.qa.shopview.com/parts/part-sale/e71fd04b-aa1c-4b9a-b895-857803117877/part-requests] after clicking *Tech* on the login page, then do step 4.
+
+h3. Screen recording
+!sv10628-recording.mp4|width=1280,alt="sv10628-recording.mp4"!
+_QA branch sv10628, build v26.40.17-ec15c08, 13 October 2026, logged in as tech@shopview.com with the Parts Manager role. On Complete part sale P2-209, part CUK 26 009 goes from $42.31 to $47.31 with no error. After a reload it is kept, the sale is still Complete, and Parts goes from $207.41 to $212.41. Then on Complete service work order S3-15003, Edit Part changes $58.05 to $63.05, and the work order is still Complete after a reload._

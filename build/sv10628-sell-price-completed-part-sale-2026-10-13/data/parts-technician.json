@@ -1,0 +1,153 @@
+{
+ "role": "Parts Technician",
+ "role_id": "7bcb00b6-38d6-4868-b770-ffd9fc4e2448",
+ "t": "2026-10-13T11:08:05.378Z",
+ "reset": {
+  "n0": 28,
+  "n1": 19,
+  "added": [
+   "timesheetsView"
+  ],
+  "removed": [
+   "catalogInventoryDelete",
+   "customersDelete",
+   "partSalesDelete",
+   "reportsPageAccess",
+   "seeApArData",
+   "woReviewWorkOrders",
+   "workOrderLinesCreateAndEdit",
+   "workOrderLinesDelete",
+   "workOrdersCreateAndEdit",
+   "workOrdersDelete"
+  ],
+  "log": [
+   "tab via /administration/settings -> https://sv10628.qa.shopview.com/administration/roles-permissions",
+   "reset confirmed",
+   "save enabled=true",
+   "save confirmed"
+  ]
+ },
+ "perms": [
+  "catalogInventoryCreateAndEdit",
+  "catalogInventoryView",
+  "customersCreateAndEdit",
+  "customersView",
+  "invoicingPaymentsCreateAndEdit",
+  "invoicingPaymentsView",
+  "partSalesCreateAndEdit",
+  "partSalesView",
+  "scheduleView",
+  "seeFinancialData",
+  "timesheetsView",
+  "vendorOrderManagementCreateAndEdit",
+  "vendorOrderManagementDelete",
+  "vendorOrderManagementView",
+  "viewHistoryLogs",
+  "woFullViewMode",
+  "woOrderParts",
+  "woPickParts",
+  "workOrdersView"
+ ],
+ "assign": {
+  "status": 201,
+  "body": "{\"data\":{\"id\":\"d2cb20a6-90a8-4884-ac50-022ff2fb9313\",\"name\":\"Tech ShopView\",\"hasEmailUpdate\":false,\"clockableChanged\":false}}"
+ },
+ "fe": [
+  "catalogInventoryCreateAndEdit",
+  "catalogInventoryView",
+  "customersCreateAndEdit",
+  "customersView",
+  "invoicingPaymentsCreateAndEdit",
+  "invoicingPaymentsView",
+  "partSalesCreateAndEdit",
+  "partSalesView",
+  "scheduleView",
+  "seeFinancialData",
+  "timesheetsView",
+  "vendorOrderManagementCreateAndEdit",
+  "vendorOrderManagementDelete",
+  "vendorOrderManagementView",
+  "viewHistoryLogs",
+  "woFullViewMode",
+  "woOrderParts",
+  "woPickParts",
+  "workOrdersView"
+ ],
+ "sfd": true,
+ "who": "tech@shopview.com",
+ "docs": [
+  {
+   "kind": "part sale",
+   "parts": [
+    {
+     "pn": "FF5324",
+     "src": "vendor",
+     "present": true,
+     "disabled": false,
+     "before": "23.70",
+     "typed": "24.70",
+     "toast": "",
+     "net": [
+      {
+       "st": 201,
+       "req": "{\"id\":\"ec5d2a82-993d-47f0-83b5-6811f8ba0a13\",\"work_order_id\":\"6c6bb614-e7b0-4f48-aa76-053f7b29d33b\",\"part_category_id\":\"d64e8f1b-31e7-4c39-bedf-0846d97963cc\",\"description\":\"FUEL FILTER\",\"quantity\":1,\"sell_price\":24.7,\"margin\":32.96,\"discount\":0,\"core_charge\":0",
+       "res": "{\"data\":{\"part_id\":\"ec5d2a82-993d-47f0-83b5-6811f8ba0a13\"}}"
+      }
+     ],
+     "afterReload": "24.70"
+    },
+    {
+     "pn": "FS19593",
+     "src": "inventory",
+     "present": true,
+     "disabled": false,
+     "before": "55.66",
+     "typed": "56.66",
+     "toast": "",
+     "net": [
+      {
+       "st": 201,
+       "req": "{\"id\":\"2f2979e7-df84-4839-b75d-7442d2edeffe\",\"work_order_id\":\"6c6bb614-e7b0-4f48-aa76-053f7b29d33b\",\"part_category_id\":\"d64e8f1b-31e7-4c39-bedf-0846d97963cc\",\"description\":\"Fuel/Water Separator Filter\",\"quantity\":1,\"sell_price\":56.66,\"margin\":25.64,\"discount\":",
+       "res": "{\"data\":{\"part_id\":\"2f2979e7-df84-4839-b75d-7442d2edeffe\"}}"
+      }
+     ],
+     "afterReload": "56.66"
+    }
+   ],
+   "num": "P2-243",
+   "status0": "Complete",
+   "sellCol": true,
+   "status1": "Complete"
+  },
+  {
+   "kind": "service WO",
+   "parts": [
+    {
+     "pn": "68399093AB",
+     "src": "vendor",
+     "present": true,
+     "disabled": true,
+     "before": "50.05",
+     "afterReload": "50.05"
+    },
+    {
+     "pn": "SH550057739",
+     "src": "inventory",
+     "present": true,
+     "disabled": true,
+     "before": "16.52",
+     "afterReload": "16.52"
+    }
+   ],
+   "num": "S3-15003",
+   "status0": "Complete",
+   "sellCol": true,
+   "status1": "Complete"
+  }
+ ],
+ "marker": {
+  "version": "v26.40.17-ec15c08",
+  "lastModified": "Tue, 13 Oct 2026 09:50:38 GMT",
+  "etag": "W/\"a2504bd37807a666f5c6339310e37f3b\""
+ }
+}

@@ -1,0 +1,169 @@
+{
+ "role": "Service Advisor",
+ "role_id": "2c04abb3-f348-4349-81e2-f934afe33e91",
+ "t": "2026-10-13T11:02:25.466Z",
+ "reset": {
+  "n0": 25,
+  "n1": 25,
+  "added": [],
+  "removed": [],
+  "log": [
+   "tab via /administration/settings -> https://sv10628.qa.shopview.com/administration/roles-permissions",
+   "reset confirmed",
+   "save enabled=false"
+  ]
+ },
+ "perms": [
+  "catalogInventoryCreateAndEdit",
+  "catalogInventoryView",
+  "customerPortalPageAccess",
+  "customersCreateAndEdit",
+  "customersView",
+  "invoicingPaymentsCreateAndEdit",
+  "invoicingPaymentsView",
+  "partSalesCreateAndEdit",
+  "partSalesView",
+  "scheduleCreateAndEdit",
+  "scheduleDelete",
+  "scheduleView",
+  "seeFinancialData",
+  "timesheetsView",
+  "vendorOrderManagementCreateAndEdit",
+  "vendorOrderManagementView",
+  "viewHistoryLogs",
+  "woFullViewMode",
+  "woOrderParts",
+  "woPickParts",
+  "woReviewWorkOrders",
+  "workOrderLinesCreateAndEdit",
+  "workOrderLinesDelete",
+  "workOrdersCreateAndEdit",
+  "workOrdersView"
+ ],
+ "assign": {
+  "status": 201,
+  "body": "{\"data\":{\"id\":\"d2cb20a6-90a8-4884-ac50-022ff2fb9313\",\"name\":\"Tech ShopView\",\"hasEmailUpdate\":false,\"clockableChanged\":false}}"
+ },
+ "fe": [
+  "catalogInventoryCreateAndEdit",
+  "catalogInventoryView",
+  "customerPortalPageAccess",
+  "customersCreateAndEdit",
+  "customersView",
+  "invoicingPaymentsCreateAndEdit",
+  "invoicingPaymentsView",
+  "partSalesCreateAndEdit",
+  "partSalesView",
+  "scheduleCreateAndEdit",
+  "scheduleDelete",
+  "scheduleView",
+  "seeFinancialData",
+  "timesheetsView",
+  "vendorOrderManagementCreateAndEdit",
+  "vendorOrderManagementView",
+  "viewHistoryLogs",
+  "woFullViewMode",
+  "woOrderParts",
+  "woPickParts",
+  "woReviewWorkOrders",
+  "workOrderLinesCreateAndEdit",
+  "workOrderLinesDelete",
+  "workOrdersCreateAndEdit",
+  "workOrdersView"
+ ],
+ "sfd": true,
+ "who": "tech@shopview.com",
+ "docs": [
+  {
+   "kind": "part sale",
+   "parts": [
+    {
+     "pn": "FF5324",
+     "src": "vendor",
+     "present": true,
+     "disabled": false,
+     "before": "22.70",
+     "typed": "23.70",
+     "toast": "",
+     "net": [
+      {
+       "st": 201,
+       "req": "{\"id\":\"ec5d2a82-993d-47f0-83b5-6811f8ba0a13\",\"work_order_id\":\"6c6bb614-e7b0-4f48-aa76-053f7b29d33b\",\"part_category_id\":\"d64e8f1b-31e7-4c39-bedf-0846d97963cc\",\"description\":\"FUEL FILTER\",\"quantity\":1,\"sell_price\":23.7,\"margin\":30.13,\"discount\":0,\"core_charge\":0",
+       "res": "{\"data\":{\"part_id\":\"ec5d2a82-993d-47f0-83b5-6811f8ba0a13\"}}"
+      }
+     ],
+     "afterReload": "23.70"
+    },
+    {
+     "pn": "FS19593",
+     "src": "inventory",
+     "present": true,
+     "disabled": false,
+     "before": "54.66",
+     "typed": "55.66",
+     "toast": "",
+     "net": [
+      {
+       "st": 201,
+       "req": "{\"id\":\"2f2979e7-df84-4839-b75d-7442d2edeffe\",\"work_order_id\":\"6c6bb614-e7b0-4f48-aa76-053f7b29d33b\",\"part_category_id\":\"d64e8f1b-31e7-4c39-bedf-0846d97963cc\",\"description\":\"Fuel/Water Separator Filter\",\"quantity\":1,\"sell_price\":55.66,\"margin\":24.31,\"discount\":",
+       "res": "{\"data\":{\"part_id\":\"2f2979e7-df84-4839-b75d-7442d2edeffe\"}}"
+      }
+     ],
+     "afterReload": "55.66"
+    }
+   ],
+   "num": "P2-243",
+   "status0": "Complete",
+   "sellCol": true,
+   "status1": "Complete"
+  },
+  {
+   "kind": "service WO",
+   "parts": [
+    {
+     "pn": "68399093AB",
+     "src": "vendor",
+     "present": true,
+     "disabled": false,
+     "before": "49.05",
+     "typed": "50.05",
+     "toast": "",
+     "net": [
+      {
+       "st": 201,
+       "req": "{\"id\":\"3ccf9522-4bd2-4ace-9504-a8a3dd3f8284\",\"work_order_id\":\"288cddba-f3ca-491d-8927-e86412a2ca24\",\"part_category_id\":\"b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d\",\"description\":\"Inner Tie Rod Boot \",\"quantity\":1,\"sell_price\":50.05,\"margin\":32.91,\"discount\":0,\"core_",
+       "res": "{\"data\":{\"part_id\":\"3ccf9522-4bd2-4ace-9504-a8a3dd3f8284\"}}"
+      }
+     ],
+     "afterReload": "50.05"
+    },
+    {
+     "pn": "SH550057739",
+     "src": "inventory",
+     "present": true,
+     "disabled": false,
+     "before": "15.52",
+     "typed": "16.52",
+     "toast": "",
+     "net": [
+      {
+       "st": 201,
+       "req": "{\"id\":\"35384adb-8ec8-4798-9a8c-7a320436df4f\",\"work_order_id\":\"288cddba-f3ca-491d-8927-e86412a2ca24\",\"part_category_id\":\"38c10b9b-5841-4500-b972-91e179895486\",\"description\":\"COOLANT, RED HD (4L)\",\"quantity\":2,\"sell_price\":16.52,\"margin\":50.06,\"discount\":0,\"core",
+       "res": "{\"data\":{\"part_id\":\"35384adb-8ec8-4798-9a8c-7a320436df4f\"}}"
+      }
+     ],
+     "afterReload": "16.52"
+    }
+   ],
+   "num": "S3-15003",
+   "status0": "Complete",
+   "sellCol": true,
+   "status1": "Complete"
+  }
+ ],
+ "marker": {
+  "version": "v26.40.17-ec15c08",
+  "lastModified": "Tue, 13 Oct 2026 09:50:38 GMT",
+  "etag": "W/\"a2504bd37807a666f5c6339310e37f3b\""
+ }
+}

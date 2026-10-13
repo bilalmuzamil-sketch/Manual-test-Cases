@@ -1,0 +1,66 @@
+{
+ "fe": 31,
+ "who": "T1 Technician 1 bilal.muzamil+tech@shopvi.. Edit Profile",
+ "loc": "Truck Hill 1",
+ "price_before": "25.00",
+ "status": "Complete",
+ "num": "P2-70",
+ "part_status": "Received",
+ "geo1": {
+  "price": [
+   851.84375,
+   180,
+   30,
+   40
+  ],
+  "status": [
+   194.140625,
+   103.484375,
+   71.515625,
+   21.015625
+  ],
+  "num": [
+   41,
+   98,
+   149.140625,
+   32
+  ],
+  "pstat": [
+   1451.875,
+   189.484375,
+   67.90625,
+   21.015625
+  ]
+ },
+ "typed": "26.00",
+ "toast": "warning Cannot change part on completed work order. Please try to resolve this. Close",
+ "geo2": {
+  "toast": [
+   [
+    1100,
+    913.53125,
+    400,
+    76.46875
+   ]
+  ],
+  "price": [
+   851.84375,
+   180,
+   30,
+   40
+  ]
+ },
+ "price_after_reload": "25.00",
+ "status_after": "Complete",
+ "marker": {
+  "version": "v26.40.17-f5bf8f4",
+  "lastModified": "Tue, 13 Oct 2026 08:42:45 GMT",
+  "etag": "W/\"a8b1d386343fcfcd075d97fac9e9cd10\""
+ },
+ "reqs": [
+  "200 POST /api/iam/change-location :: {\"workplace_id\":\"b617914c-16e9-4485-8e8b-193cd86aa416\",\"workplace_timezone\":\"Africa/Accra\"} => {\"data\":{\"bookkeeping_enabled\":true}}",
+  "204 POST /api/user/recent-entities/touch :: {\"type\":\"part_sales\",\"id\":\"49a1cb6d-0ae0-4166-a156-420ca2d5c1b3\"} => ",
+  "400 POST /api/work-orders/parts/change :: {\"id\":\"6e241f2b-2ce9-4388-9ec8-e99d5c689299\",\"work_order_id\":\"49a1cb6d-0ae0-4166-a156-420ca2d5c1b3\",\"part_category_id\":\"00e200b1-59fe-4c4a-88a1-952a6d38fee0\",\"description\":\"ZZAUTOTEST ZZ9565-P1\",\"quantity\":1,\"sell_price\":26,\"margin\":61.54,\"discount\":0,\"core_charge\":0,\"status\":\"Authorized\"} => {\"errors\":[{\"error\":\"Cannot change part on completed work order.\"}]}",
+  "204 POST /api/user/recent-entities/touch :: {\"type\":\"part_sales\",\"id\":\"49a1cb6d-0ae0-4166-a156-420ca2d5c1b3\"} => "
+ ]
+}
