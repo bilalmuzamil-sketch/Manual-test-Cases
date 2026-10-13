@@ -5506,3 +5506,10 @@ response shows "QA env is sleeping — Redirecting…" and sets window.location 
 check can prove "nothing was replayed after reconnect" and, with the request refused instead, "card back + exact alert", but
 NOT the offline alert itself — that is checked on staging/production, where the redirect does not exist. Never call the
 redirect a product fault; never call the offline alert "verified" from a QA branch.
+
+## L0318 — 2026-10-13 — The QA lead's own rulings go into a test as one dated decision line, never as our chat
+On 12 Oct the rewritten tests quoted the QA lead's chat with this session (questions, answers, option labels), and one carried a
+personal remark. He asked for the remark to be removed everywhere and then: "In these test cases do not add my conversation with
+you". Rule (13 Oct, his words): his own ruling = "a short dated line saying what you decided, never our chat"; someone else's
+ruling = quoted word for word. Also: `safe_case_edit.py` saves TestRail's case history into the repo, and that history keeps
+every old wording — it now blanks the personal remark automatically; check any other sensitive text before committing snapshots.

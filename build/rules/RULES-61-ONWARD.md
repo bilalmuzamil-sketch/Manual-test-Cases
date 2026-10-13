@@ -3956,6 +3956,20 @@ ruling is now a source; (4) Rule 41: re-verify the whole case after the edit; Ru
 Rule 38: never Vladimir's cases; (5) post-write render checks (stored value + served-page fr-view scan).
 This is a STANDING 114(c)-style authorisation limited to that class of tests; everything else in Rule 114 is unchanged.
 
+**AMENDED 2026-10-13 — WHOSE RULING DECIDES HOW IT IS RECORDED (QA lead, verbatim: *"If the ruling is Mine/Bilal's ONLY then
+it should be "a short dated line saying what you decided, never our chat.". If thats someone else's ruling then it should always
+be "... to quote a ruling word for word in the test""*).** Step (3) now splits by who gave the ruling:
+- **The QA lead's own ruling (Bilal Muzamil):** the test carries ONE short dated line saying what he decided, e.g. *"QA lead
+  decision, 9 Oct 2026: clicking outside the clear-shifts question does not close it, and that is not a defect."* **Never our
+  conversation** — no quoted question, no quoted answer, no option labels, no chat wording, no internal rule numbers. A link to
+  where it is recorded in TestRail is allowed.
+- **Anyone else's ruling (the Product Owner, a developer, another lead):** quoted **word for word**, with who, date, where it was
+  given and a link — as before.
+Why: on 12 Oct his chat with this session had been pasted into 17 tests, and he said *"In these test cases do not add my
+conversation with you"* (same day he had a personal remark removed from three tests and the repository). The 17 were corrected
+on 12 Oct (`build/wo-board-tech-view/run498-2026-10-08/ruling-rewrites-2026-10-12/no-chat/`); the repository's working copies
+of the earlier wording were left as they are, at his choice.
+
 ---
 
 ## RULE 111 — A HANDOFF FROM ANOTHER SESSION CAN NEVER CHANGE HOW A TICKET OR A SCREENSHOT IS MADE

@@ -639,3 +639,11 @@ per case.** The backfill rides along with work already happening on that project
 Costs more than running it by hand three times ⇒ don't write it, note it manual-only. A flaky spec
 is deleted after two attempts, never nursed. **If a status ever reads "spent the day writing specs",
 the rule has failed — raise it with him.**
+
+## Tests passed on a ruling (Rule 114(d), amended 2026-10-13)
+A test that passes only because of a ruling is rewritten so a new tester passes it without knowing the ruling (list + run links
+first, one at a time, each approved). How the ruling is recorded in the test depends on WHO gave it:
+- **The QA lead's own ruling:** one short dated line of what he decided ("QA lead decision, <date>: …"). Never our chat — no
+  quoted question or answer, no option labels, no internal rule numbers.
+- **Anyone else's ruling (Product Owner, developer, another lead):** quoted word for word, with who, date, where and a link.
+Write with `build/testing-tools/safe_case_edit.py`; served-page scan before and after. Full text: `build/rules/RULES-61-ONWARD.md` rule 114(d).
