@@ -1016,7 +1016,7 @@
     "Fastest reliable route: drive Part 1 in the browser with Playwright, using the labels in Part 1; no request shape below has been observed on a Part Lifecycle build.",
     "UNVERIFIED: after release a new part is created with POST /api/inventory/parts/create carrying partNumber, description and isTracked instead of catalogPartId (tech plan §5). Record the request the dialog sends and reuse it for further parts.",
     "UNVERIFIED: a status change is sent as PATCH /api/inventory/parts/status with partIds, status (\"active\" or \"inactive\") and note (tech plan §5), for the dialog and the bulk bar alike. Record what the confirmation sends.",
-    "UNVERIFIED: the credit picker reads GET /api/part-sales/{invoice id}/list-credit-available-parts, whose rows gain isInventoryPartInactive (tech plan §5). Judge from the pill on screen.",
+    "UNVERIFIED: the credit picker reads GET /api/part-sales/<invoice id>/list-credit-available-parts, whose rows gain isInventoryPartInactive (tech plan §5). Judge from the pill on screen.",
     "Issue Credit sits in the invoice ⋮ menu on the Finance tab (playbook, Issue credit).",
     "Evidence: take a screenshot at every step that has an expected result, and record the build marker before you start."
    ],
@@ -3817,7 +3817,7 @@
     "Close the dialog with ×."
    ],
    "results": [
-    "Step 2: The invoice offers no part lookup of its own on its lines. If this build does offer one, type the start of {Part-A} in it: no row for {Part-A} may be offered.",
+    "Step 2: The invoice offers no part lookup of its own on its lines. If this build does offer one, type the start of {Part-A} in it: no row for {Part-A} is offered.",
     "Step 4: There is no barcode or scan button. If this build has one, scanning or entering {Part-A} through it must not offer {Part-A}.",
     "Steps 2 and 4: If either control exists, write its name in the result comment so the case can be extended."
    ],
