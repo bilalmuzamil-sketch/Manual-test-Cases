@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/build/testing-tools/session_start_recall.sh\" 2>/dev/null || true",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/build/testing-tools/learning_gate.py\"",
+            "timeout": 20,
+            "statusMessage": "Checking that today's learning is saved (Rule 127)"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**🧠 RULE 127 — BEFORE ANY NEW SUITE, TASK, PROBE OR "BLOCKED": RECALL FIRST.** Run `python3 build/testing-tools/recall.py "<feature or problem words>"` and read the matching row of `build/KNOWLEDGE-MAP.md` (every "I am about to …" task → the file that already answers it; every suite done → its `PROJECT-STATE.md`). Reuse, never rediscover. Anything new you learn is saved in the same pass where the map says it belongs.
+**🧠 RULE 127 — BEFORE ANY NEW SUITE, TASK, PROBE OR "BLOCKED": RECALL FIRST.** Run `python3 build/testing-tools/recall.py "<feature or problem words>"` and read the matching row of `build/KNOWLEDGE-MAP.md` (every "I am about to …" task → the file that already answers it; every suite done → its `PROJECT-STATE.md`). Reuse, never rediscover. **Anything new you learn is saved in the same pass where the map says it belongs — automatically, never only when asked (amended 2026-10-13); a Stop hook (`learning_gate.py`) blocks stopping when work was committed without it.**
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **118 numbered Standing Rules** (108 and 109 are cited across the repo but have no text yet — see rule 110’s recorded gap).
 Count them in the index below. If you are

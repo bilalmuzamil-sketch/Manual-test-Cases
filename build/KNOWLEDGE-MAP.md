@@ -21,6 +21,7 @@ How the stores divide (each fact lives in ONE place; this map and `recall.py` fi
 | start a NEW suite / feature | `build/skills/15-NEW-PROJECT-INTAKE.md`; then `recall.py "<feature words>"`; then the "Suites done" table below for the nearest match and its `PROJECT-STATE.md` |
 | run an existing suite on a new build or a new environment | that suite's `PROJECT-STATE.md` → its `run*/STAGING-READY.md` / `RESUME-HERE.md`; WO Board: `build/wo-board-tech-view/run498-2026-10-08/staging-all.sh` + `wob-run.sh` |
 | decide the scope of a task | Rule 110 in `build/rules/RULES-61-ONWARD.md` (ask: replacement or general scope) |
+| save what I just learned (always, unasked — Rule 127) | the store this map names for that kind of thing; the Stop hook `build/testing-tools/learning_gate.py` checks it (`--status`, `--ack "<why>"`); hooks live in `.claude/settings.json` |
 | write a status / report for the QA lead | Rules 98, 99, 103; `python3 build/testing-tools/plain_check.py <draft>` before sending |
 
 ## Getting in

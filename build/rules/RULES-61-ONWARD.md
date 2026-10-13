@@ -5023,3 +5023,16 @@ that the search found nothing — and then the new learning is saved by point 1.
 
 Sits with Rules 27 (reuse recipes), 93 (learning loop), 97 (search before declaring a blocker) and 119 (facts may be shared).
 Worked first application: WO Board & Tech View (L0300–L0324, `build/wo-board-tech-view/PROJECT-STATE.md`).
+
+**RULE 127 — AMENDMENT 2026-10-13 (same day): SAVING LEARNING IS AUTOMATIC, NEVER ON REQUEST.** QA lead, verbatim: *"All learning
+and Ho Tos for playbook and anything else for any other file that helps you become efficient as you work day to day should be a
+auto saving process for you without me asking you to save your learning and making them retrievable, rather it should always be
+like that even when I don't ask you to learn from what you are doing or from what you have already done."*
+- **Point 1 runs on every piece of work, unasked.** At the end of each stretch of work — and before every report — ask: what did
+  this teach that would save time or avoid a mistake next time (a trap, a route, a fix, a tool, a site fact, a ruling, a faster way)?
+  Save each where the map says, commit, push. "He did not ask me to save it" is never a reason it is not saved.
+- **Enforced by the harness, not by memory** (`.claude/settings.json`, committed, so every session on this repository gets it):
+  **SessionStart** → `build/testing-tools/session_start_recall.sh` puts this rule, the recall command, the suites with a
+  PROJECT-STATE and the 8 newest learnings into the session's context. **Stop** → `build/testing-tools/learning_gate.py` blocks the
+  stop once when work was committed since the last learning save and no learning store changed; it clears when a store is updated,
+  or with `learning_gate.py --ack "<why nothing new>"` when genuinely nothing was learned. `--status` shows what it sees.

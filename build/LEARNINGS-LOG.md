@@ -5552,3 +5552,11 @@ build/testing-tools/recall.py "<words>"` searches learnings, playbook, map, skil
 prints the best blocks with file:line; `build/KNOWLEDGE-MAP.md` lists "I am about to …" tasks with the file to open and the
 suites done. Every project keeps a `PROJECT-STATE.md` (WO Board's was missing — written 13 Oct). The QA lead's earlier answers
 in a session: `build/testing-tools/find_ruling.py "<words>"`. #methodology #retrieval #rule → Rule 127
+
+## L0325 — 2026-10-13 — Learning is saved automatically: a Stop hook checks it, a SessionStart hook recalls it (Rule 127 amendment)
+The QA lead: learning must be saved and made retrievable without him asking, every time. A rule alone depends on remembering it,
+so it is now enforced by project hooks in `.claude/settings.json` (committed): `learning_gate.py` (Stop) blocks once when work was
+committed with no learning-store change since the last save — proved on a copy of the repo at the 12 Oct "engineer note" commit,
+where it would have caught a reusable tool left in a run folder; `session_start_recall.sh` (SessionStart) puts Rule 127, the
+recall command and the newest learnings into every new session. Acknowledge a stretch with nothing new:
+`python3 build/testing-tools/learning_gate.py --ack "<why>"`. #methodology #retrieval #hooks → Rule 127 amendment
