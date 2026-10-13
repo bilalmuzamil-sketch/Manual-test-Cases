@@ -128,19 +128,36 @@ def doc_html(key, title, p):
             "<h1>Part 1. Setup for manual QA tester</h1>" + par(p["doc_part1"], True) +
             "<h1>Part 2. Setup for Claude session</h1>" + par(p["doc_part2"], False) +
             open(CFG.get("PART2_COMMON", f"{H}/part2-common.html")).read() + "</body></html>")
+NEWIDS = f"{H}/applied/new-case-ids.json"
+newids = json.load(open(NEWIDS)) if os.path.exists(NEWIDS) else {}
+if "--add-new-first" in sys.argv:
+    # New cases are added BEFORE their setup docs, so each doc can name its case number (13 Oct 2026 lesson: docs made
+    # first said "(new case)" and had to be recreated). The doc link is added by --apply.
+    os.makedirs(f"{H}/applied", exist_ok=True); log = open(f"{H}/applied/apply-log.jsonl", "a")
+    for key, sec, p, pay in news:
+        if key in newids: continue
+        pay = dict(pay, custom_preconds="<p><strong>Preconditions</strong></p>" + ul(p["preconditions"]))
+        r = api(f"add_case/{sec}", dict(pay, custom_automation_type=2, custom_atmstatus=1)); a = api(f"get_case/{r['id']}")
+        json.dump(a, open(f"{H}/applied/C{r['id']}-new.json", "w"), indent=1)
+        newids[key] = r["id"]; json.dump(newids, open(NEWIDS, "w"), indent=1)
+        log.write(json.dumps({"op": "add_case", "key": key, "case": f"C{r['id']}", "section": sec,
+                              "ok": all((a.get(x) or "") == v for x, v in pay.items()), "why": p.get("why", "")}) + "\n"); log.flush()
+    print(len(newids), "new cases added")
 if "--docs" in sys.argv:
     os.makedirs(f"{H}/docs", exist_ok=True); lst = []
     for cid, p, pay in plans:
         open(f"{H}/docs/C{cid}.html", "w").write(doc_html(cid, p["title"], p)); lst.append(f"C{cid}\tSetup (manual QA tester and Claude session) - C{cid} {p['title']}")
     for key, sec, p, pay in news:
-        open(f"{H}/docs/{key}.html", "w").write(doc_html(key, p["title"], p)); lst.append(f"{key}\tSetup (manual QA tester and Claude session) - {p['title']}")
+        k = newids.get(key, key)
+        open(f"{H}/docs/{'C' if key in newids else ''}{k}.html", "w").write(doc_html(k, p["title"], p))
+        lst.append(f"{'C' if key in newids else ''}{k}\tSetup (manual QA tester and Claude session) - {'C' + str(k) + ' ' if key in newids else ''}{p['title']}")
     open(f"{H}/docs/LIST.tsv", "w").write("\n".join(lst) + "\n"); print(len(lst), "doc files written")
 if "--apply" in sys.argv:
     docs = {}
     for f in glob.glob(f"{H}/doc-ids-*.jsonl"):
         for line in open(f):
             if line.strip(): r = json.loads(line); docs[str(r["id"])] = f"https://docs.google.com/document/d/{r['doc']}/edit"
-    need = [f"C{c}" for c, _, _ in plans] + [k for k, *_ in news]
+    need = [f"C{c}" for c, _, _ in plans] + [f"C{newids[k]}" if k in newids else k for k, *_ in news]
     lacking = [k for k in need if k not in docs]
     if lacking: sys.exit(f"no doc yet for {len(lacking)}: {lacking[:10]}")
     os.makedirs(f"{H}/applied", exist_ok=True); log = open(f"{H}/applied/apply-log.jsonl", "a")
@@ -157,6 +174,16 @@ if "--apply" in sys.argv:
         json.dump(a, open(f"{H}/applied/C{cid}-after.json", "w"), indent=1)
         L(op="update_case", case=f"C{cid}", ok=all((a.get(x) or "") == v for x, v in pay.items()) and a["section_id"] == c["section_id"], why=p.get("change_summary", ""))
     for key, sec, p, pay in news:
+        if key in newids:   # added earlier by --add-new-first: only the doc link is added now (edit lock on the add snapshot)
+            cid = newids[key]
+            if f"C{cid}-link" in done: continue
+            b = json.load(open(f"{H}/applied/C{cid}-new.json")); c = api(f"get_case/{cid}")
+            if c["updated_on"] != b["updated_on"] or c.get("updated_by") != 3:
+                L(op="skip", case=f"C{cid}", why="changed since it was added"); continue
+            pre = preconds(p, docs[f"C{cid}"]); api(f"update_case/{cid}", {"custom_preconds": pre}); a = api(f"get_case/{cid}")
+            json.dump(a, open(f"{H}/applied/C{cid}-after.json", "w"), indent=1)
+            L(op="link_doc", key=key, case=f"C{cid}-link", doc=docs[f"C{cid}"], ok=a["custom_preconds"] == pre and all(a.get(x) == c.get(x) for x in ("title", "custom_steps", "custom_expected", "section_id")))
+            continue
         if key in done: continue
         pay = dict(pay, custom_preconds=preconds(p, docs[key]))
         r = api(f"add_case/{sec}", dict(pay, custom_automation_type=2, custom_atmstatus=1)); a = api(f"get_case/{r['id']}")
