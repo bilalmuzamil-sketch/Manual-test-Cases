@@ -1,0 +1,46 @@
+{
+ "copy": [
+  {
+   "tag": "SPAN",
+   "text": "Content is user-generated and unverified.",
+   "transform": "none"
+  },
+  {
+   "tag": "H2",
+   "text": "Sign in to view this page",
+   "transform": "none"
+  },
+  {
+   "tag": "A",
+   "text": "Sign in",
+   "transform": "none"
+  },
+  {
+   "tag": "SCRIPT",
+   "text": "(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.nonce='GlH4BHwqU66Y5NtQ4QXOrA==';d.innerHTML=\"window.__CF$cv$params={r:'a49fa1eb4d36ca2b',t:'MTc5MTkwODAxNQ=='};var a=document.createElement('script');a.nonce='GlH4BHwqU66Y5NtQ4QXOrA==';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);\";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();",
+   "transform": "none"
+  }
+ ],
+ "probe": {
+  "withSk": {
+   "url": "/api/frame/ba1eb0d4-8a8d-4438-86e4-65d98e314e6f?via=user_open&sk=VdwhqSXNj79W1gN-9Xe8qg&bk=initial&actor=id&vt=1",
+   "status": 404,
+   "body": "{\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"Not found\"},\"request_id\":\"req_011CfzXrNFdTPB754UXoY1US\"}"
+  },
+  "withoutSk": {
+   "url": "/api/frame/ba1eb0d4-8a8d-4438-86e4-65d98e314e6f?via=user_open&bk=initial&actor=id&vt=1",
+   "status": 404,
+   "body": "{\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"Not found\"},\"request_id\":\"req_011CfzXrNk9NCQDmM9p36VjZ\"}"
+  },
+  "badSk": {
+   "url": "/api/frame/ba1eb0d4-8a8d-4438-86e4-65d98e314e6f?via=user_open&sk=AAAAAAAAAAAAAAAAAAAAAA&bk=initial&actor=id&vt=1",
+   "status": 404,
+   "body": "{\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"Not found\"},\"request_id\":\"req_011CfzXrP8DRCaLZRVnSE2iV\"}"
+  },
+  "account": {
+   "url": "/api/account",
+   "status": 403,
+   "body": "{\"error\":{\"details\":{\"error_code\":\"account_session_invalid\",\"error_visibility\":\"user_facing\"},\"message\":\"Invalid authorization\",\"type\":\"permission_error\"},\"request_id\":\"req_011CfzXrPUJgZUQJdLqXw1jj\",\"type\":\"error\"}\n"
+  }
+ }
+}
