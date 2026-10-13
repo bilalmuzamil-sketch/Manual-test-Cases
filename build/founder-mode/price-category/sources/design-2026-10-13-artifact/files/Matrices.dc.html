@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Nunito Sans', system-ui, sans-serif; background: #ffffff; }
+    a { color: #175cd3; } a:hover { color: #123f92; }
+    .row { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e8eaed; padding: 10px 0; }
+    .cell { font-size: 13.5px; color: #3f4a5a; }
+    .hdr { font-size: 13.5px; font-weight: 700; color: #1d2129; padding: 9px 0; border-bottom: 1px solid #d7dbe0; display: flex; align-items: center; gap: 6px; }
+    .tab { font-size: 14px; color: #3f4a5a; }
+    .tabOn { font-size: 14px; color: #2276DA; font-weight: 600; }
+    .badge { background: #2276DA; color: #ffffff; font-size: 10.5px; font-weight: 600; padding: 2px 7px; border-radius: 3px; margin-left: 8px; }
+    .acts { display: flex; align-items: center; gap: 14px; }
+  </style>
+</helmet>
+
+<div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 18px;">
+
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <div style="font-size: 17px; font-weight: 700; color: #1d2129;">Pricing Matrices</div>
+    <div style="font-size: 13px; color: #5b6472;">The smallest of the three changes: this list is already alphabetical, and its default already sorts with everything else.</div>
+  </div>
+
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center; gap: 22px;">
+      <div class="tabOn">Pricing matrices (22)</div>
+      <div class="tab">Fixed rules (30)</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px;">
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="20" y1="20" x2="16.2" y2="16.2"></line></svg>
+        <div style="font-size: 13.5px; color: #3f4a5a;">Search</div>
+      </div>
+      <div style="background: #2276DA; color: #ffffff; font-size: 13.5px; font-weight: 600; padding: 8px 16px; border-radius: 5px;">New Price Matrix</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="hdr">
+      Matrix Category
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2276DA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 15 12 9 18 15"></polyline></svg>
+    </div>
+    <div class="row"><div class="cell">70% override</div><div class="acts">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M4 12h7M4 17h5"></path><path d="M15 17l5-5"></path></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C10015" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"></path></svg>
+    </div></div>
+    <div class="row"><div class="cell">AUTO-07/12/2023</div><div class="acts">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M4 12h7M4 17h5"></path><path d="M15 17l5-5"></path></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C10015" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"></path></svg>
+    </div></div>
+    <div class="row"><div class="cell">COC matrix 10/29/2024</div><div class="acts">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M4 12h7M4 17h5"></path><path d="M15 17l5-5"></path></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C10015" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"></path></svg>
+    </div></div>
+    <div class="row"><div class="cell" style="display: flex; align-items: center;">Default matrix 07/12/2023<span class="badge">Default</span></div><div class="acts">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M4 12h7M4 17h5"></path><path d="M15 17l5-5"></path></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C10015" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"></path></svg>
+    </div></div>
+    <div class="row"><div class="cell">HD - Engine Comp.</div><div class="acts">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M4 12h7M4 17h5"></path><path d="M15 17l5-5"></path></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C10015" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"></path></svg>
+    </div></div>
+    <div class="row" style="border-bottom: none;"><div class="cell">HD-Dynamic 55</div><div class="acts">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M4 12h7M4 17h5"></path><path d="M15 17l5-5"></path></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C10015" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"></path></svg>
+    </div></div>
+  </div>
+
+  <div style="background: #f8f9fb; border: 1px solid #e8eaed; border-radius: 6px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;">
+    <div style="font-size: 12px; font-weight: 700; color: #1d2129;">What changes, and what does not</div>
+    <div style="font-size: 12.5px; color: #3d4654; line-height: 1.55;"><strong>Changes:</strong> the header sorts and shows its arrow, the sort survives an edit, and the tab label gains a space before the count.</div>
+    <div style="font-size: 12.5px; color: #3d4654; line-height: 1.55;"><strong>Does not change:</strong> the order itself. This list already opens alphabetically and its Default matrix already sits at D rather than pinned on top. Categories pins its Default row and this tab does not, and that difference is deliberate: both lists keep the behavior they have in production today.</div>
+    <div style="font-size: 12px; color: #7b8595; line-height: 1.5; border-top: 1px solid #eef1f4; padding-top: 8px;">The column is labeled <strong>Matrix Category</strong> but holds the matrix name. Drawn as it is rather than quietly corrected.</div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

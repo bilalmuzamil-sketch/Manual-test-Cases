@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Nunito Sans', system-ui, sans-serif; background: #ffffff; }
+    a { color: #175cd3; } a:hover { color: #123f92; }
+    .row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); border-bottom: 1px solid #e8eaed; }
+    .cellL { padding: 11px 0; font-size: 13.5px; color: #3f4a5a; }
+    .cellR { padding: 11px 0; font-size: 13.5px; color: #3f4a5a; }
+    .hdr { font-size: 13.5px; font-weight: 700; color: #1d2129; padding: 10px 0; }
+    .badge { background: #2276DA; color: #ffffff; font-size: 10.5px; font-weight: 600; padding: 2px 7px; border-radius: 3px; margin-left: 8px; }
+    .empty { color: #a7afba; }
+  </style>
+</helmet>
+
+<div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 16px;">
+
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <div style="background: #e7f6ec; border-radius: 4px; padding: 3px 9px; font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #1a7f37;">After &middot; Story 1</div>
+  </div>
+
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <div style="font-size: 24px; font-weight: 700; color: #1d2129;">Categories</div>
+    <div style="display: flex; align-items: center; gap: 18px;">
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="20" y1="20" x2="16.2" y2="16.2"></line></svg>
+        <div style="font-size: 14px; color: #3f4a5a;">Search</div>
+      </div>
+      <div style="background: #2276DA; color: #ffffff; font-size: 13.5px; font-weight: 600; padding: 9px 18px; border-radius: 5px;">New Category</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="row" style="border-bottom: 1px solid #d7dbe0;">
+      <div class="hdr" style="display: flex; align-items: center; gap: 6px;">
+        Name
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2276DA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 15 12 9 18 15"></polyline></svg>
+      </div>
+      <div class="hdr" style="display: flex; align-items: center; gap: 7px;">
+        <svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#2CA01C"></circle><text x="12" y="16" font-size="11" fill="#ffffff" text-anchor="middle" font-family="system-ui" font-weight="700">qb</text></svg>
+        QuickBooks Products And Services
+      </div>
+    </div>
+    <div class="row" style="background: #f7fafd;"><div class="cellL" style="display: flex; align-items: center;">Uncategorized<span class="badge">Default</span></div><div class="cellR">Part</div></div>
+    <div class="row"><div class="cellL">70%override</div><div class="cellR">Part</div></div>
+    <div class="row"><div class="cellL">Auto-Freight</div><div class="cellR">Part</div></div>
+    <div class="row"><div class="cellL">Auto-Sublet</div><div class="cellR">Sublet</div></div>
+    <div class="row"><div class="cellL">COC-Proposal</div><div class="cellR">Part</div></div>
+    <div class="row"><div class="cellL">COCtest</div><div class="cellR">Part</div></div>
+    <div class="row"><div class="cellL">HD-ABS Comp</div><div class="cellR">Part</div></div>
+    <div class="row"><div class="cellL">HD-Air Brakes &amp; Air Suspension</div><div class="cellR">Part</div></div>
+    <div class="row"><div class="cellL">HD-Batteries</div><div class="cellR">Part</div></div>
+    <div class="row" style="border-bottom: none;"><div class="cellL">HD-Belts, Pulleys &amp; Tensioners</div><div class="cellR">Part</div></div>
+  </div>
+
+  <div style="background: #f8f9fb; border: 1px solid #e8eaed; border-radius: 6px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;">
+    <div style="font-size: 12px; font-weight: 700; color: #1d2129;">What changes, and what does not</div>
+    <div style="font-size: 12.5px; color: #3d4654; line-height: 1.55;"><strong>Name sorts, and says so.</strong> The header carries an arrow for the direction applied, ascending on open.</div>
+    <div style="font-size: 12.5px; color: #3d4654; line-height: 1.55;"><strong>The QuickBooks column sorts too.</strong> A category that has never been mapped shows Parts there and sorts under P with everything else; no row is moved to the bottom (S1-R17).</div>
+    <div style="font-size: 12.5px; color: #3d4654; line-height: 1.55;"><strong>Default stays pinned, exactly as it is today.</strong> &ldquo;Uncategorized&rdquo; is the first row under every sort and in both directions, and the rest of the list sorts beneath it. That is the one row whose position this feature must not change.</div>
+    <div style="font-size: 12px; color: #7b8595; line-height: 1.5; border-top: 1px solid #eef1f4; padding-top: 8px;">Worth knowing for whoever builds it: the pin comes from the server today. A sort written as a plain comparison over all the rows will move this row and nobody will notice in review. Spec rule S1-R19.</div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

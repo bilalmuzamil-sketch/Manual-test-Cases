@@ -1,0 +1,115 @@
+{
+  "artboards": [
+    {
+      "file": "DialogBefore.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 560,
+      "h": 780,
+      "page": "page-1",
+      "title": "New Line - before"
+    },
+    {
+      "file": "Main.dc.html",
+      "x": 660,
+      "y": 0,
+      "w": 560,
+      "h": 800,
+      "page": "page-1",
+      "title": "New Line - after"
+    },
+    {
+      "file": "QuickBooks.dc.html",
+      "x": 1320,
+      "y": 0,
+      "w": 900,
+      "h": 860,
+      "page": "page-1",
+      "title": "What reaches QuickBooks"
+    },
+    {
+      "file": "EditBefore.dc.html",
+      "x": 0,
+      "y": 980,
+      "w": 560,
+      "h": 880,
+      "page": "page-1",
+      "title": "Edit Line - before"
+    },
+    {
+      "file": "EditAfter.dc.html",
+      "x": 660,
+      "y": 980,
+      "w": 560,
+      "h": 900,
+      "page": "page-1",
+      "title": "Edit Line - after"
+    },
+    {
+      "file": "EdgeCases.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1180,
+      "h": 900,
+      "page": "page-2",
+      "title": "Awkward inputs"
+    },
+    {
+      "file": "Truncation.dc.html",
+      "x": 1280,
+      "y": 0,
+      "w": 900,
+      "h": 820,
+      "page": "page-2",
+      "title": "The long end"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "note-scope",
+      "x": 0,
+      "y": -170,
+      "w": 560,
+      "page": "page-1",
+      "text": "Spec: Confluence 845348896, locked 2026-09-15.\nTwo dialogs carry these fields: New Line, which has the canned-line picker, and Edit Line, which does not. Both drawn from staging."
+    },
+    {
+      "id": "note-case",
+      "x": 1320,
+      "y": -170,
+      "w": 900,
+      "page": "page-1",
+      "text": "Staging renders the questions in Title Case. The spec and the branch both say sentence case, so the after boards read \"What are you doing?\". That normalisation is not called out in the spec."
+    },
+    {
+      "id": "note-open",
+      "x": 1280,
+      "y": -170,
+      "w": 900,
+      "page": "page-2",
+      "text": "Both questions on this page are now answered. The byte-based cut splitting an accented character became S3-R7 and S3-R7a on 2026-09-16: shorten from the end until it fits, never stopping inside a character. The semicolon-inside-a-description question closed itself once the semicolon stopped being the separator."
+    },
+    {
+      "id": "note-format",
+      "x": 0,
+      "y": -300,
+      "w": 1180,
+      "page": "page-2",
+      "text": "LOCKED IN THE PRD, 2026-09-16. Title, description and the technician's narrative, joined by a spaced hyphen, no labels and no semicolons. A separator appears only between two things that are both present, so a line with no narrative ends after the description with no trailing hyphen. Whether a line has a narrative at all depends on Administration, Work Order Settings, Require Tech Story, which is off by default."
+    }
+  ],
+  "launch": {
+    "view": "canvas",
+    "page": "page-1"
+  },
+  "pages": [
+    {
+      "id": "page-1",
+      "name": "Before and after"
+    },
+    {
+      "id": "page-2",
+      "name": "Extreme cases"
+    }
+  ]
+}
