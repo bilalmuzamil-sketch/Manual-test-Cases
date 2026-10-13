@@ -76,3 +76,7 @@ Catalog→Part Library rename, editable part number.
 ## 9 Oct 2026 — Chris's answers received; spec page changed
 - Chris Ward answered all 13 product questions (`po-answers-2026-10-09/ANSWERS-Chris-Ward-2026-10-09.md`) and edited the PRD (Confluence 829227015, last modified 9 Oct 2026): new S7-N5a, S7-N5c, S9-R10b, S10-R12a, S11-E4; S13-R4a and S13-R13 updated; S5-R14 and S9-E12 removed; overview line on Inventory Value past dates.
 - Full update pass against the changed PRD: offered; QA lead said **"Wait"** (9 Oct). Not started. Cases still follow PRD v26.
+
+## 13 Oct 2026 — QA lead decisions after the update
+- **Dedicated Part Lifecycle test run: "NO".** The cases live in the automatic Nightly runs only.
+- **Replaced setup docs: "Yes and do NOT ask for my permission."** The 257 setup docs of 9 Oct, replaced by the 13 Oct docs and linked from no case, are moved to the Drive trash (`update-2026-10-13/docs/trash-old-2026-10-09.tsv`, log `docs/trash-old-log.jsonl`). Replaced setup docs that no case links to any more are trashed without asking.
