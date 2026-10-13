@@ -77,3 +77,11 @@ Evidence: `build/dashboard-simplify-2026-10-09/probe/sv490/` (probe-*.json, *.pn
 - **Create Custom Role:** `Choose a template` (Admin, Foreman, Office User, Parts Manager, Parts Technician, Sales Representative, Senior Service Advisor, Service Advisor, Service Manager, Technician, Time Clock User) · `Skip` / `Apply` → page `Basic Details`: `Role Name*` · `Description` · `Permissions` (… `Page Access`: `Reports` · `Customer portal` · `Settings` · `Billing Portal`; `Cross-Cutting Toggles`: `See Financial Data` · `View and Manage AP/AR Data`) · `Reset To Template` · `Cancel` · `Create`.
 - **The test site sleeps:** when idle, the address redirects to "Environment Sleeping … Wake Up"; clicking Wake Up brings it back in about a minute.
 - **Staff on sv490 for the Dashboard tester:** `Ayesha Tech` (Technician, ayesha.khan@…, location ZZAUTOTEST Dashboard Quiet) and `Ayesha Khan` (Admin).
+
+## 2026-10-13 — sv490 build v26.40.8-754bd3a (site rebuilt: locations now QB Location, New Test Location, Staging Heavy Duty - 9919, Staging Lethbridge - 4310)
+Evidence: `build/dashboard/build-verify-2026-10-13/probe/` (02-new-test-location-tiles.json, 05-labels.json, 06-dashboard-text.txt, screenshots).
+- Top menu: `ShopHub` · `Work Orders` · `Schedule` · `Customers` · `Parts` · `Reports` · `Dashboard` · `Clock In` (timer) · location name + initials.
+- Tiles: `Revenue` · `Billing Efficiency` · `Technician Efficiency` · `Technician Utilization` · `Sales by Customer` · `At Risk Customers` (pill `120 Days`); `View details` on all six; report link on the five KPI/count tiles (not At Risk).
+- Range pill: `Last 12 Months` · `This Year` · `Last Year` · `This Quarter` · `Last Quarter` · `This Month` · `Last Month` · `This Week` · `Last Week` · calendar readout `Range: N days` · `Today` · `Apply`.
+- Profile menu: `Edit Profile` · `Change Location:` · `My Timesheets` · `Customer Portal` · `Billing` · `What's New` · `Settings` · `Logout` · theme `Light` / `Dark`.
+- **Design row 15 is BUILT:** a ratio tile with no hours shows the headline `-` in grey (rgb 159,166,188); a tile with nothing to plot shows the empty-chart placeholder — dashed border rgb(203,208,221), radius 6px, no fill, `show_chart` icon, role img, aria-label `No data to chart` (seen on Technician Utilization and At Risk Customers at New Test Location); tiles with data draw their trend line.
