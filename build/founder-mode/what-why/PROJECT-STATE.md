@@ -9,7 +9,13 @@ Title / Description and strip our field names from the text that reaches QuickBo
 **Branch:** `claude/slack-session-setup-7v5itm`
 **Build:** ❌ No QA branch yet → every case `AUTOMATION: HOLD`, source-verified only (Rule 85).
 
-## What was created — 19 cases, Rule 117, 40 anchors covered 1:1
+## 🟢 CURRENT STATE — 13 Oct 2026 (full update, Rule 122) — read this first
+- **Epic now SV-11257** (split out of SV-9667). PRD 845348896 unchanged in substance since 30 Sep (40 codes). Tech plan received 13 Oct (`sources/tech-plan-Title-and-Description-2026-10-13.md`).
+- **QA build exists:** sv10130.qa.shopview.com (qb1.qa.shopview.com for QuickBooks), PR #3553 — not yet build-verified.
+- **Suite:** 37 cases = 19 rewritten + 18 new (C549075–C549092), current layout, one setup doc each; 40/40 codes. All 37 in Nightly run 538.
+- **Record:** `update-2026-10-13/FULL-UPDATE-2026-10-13.md` (8 PO questions for after build verification); design proof `update-2026-10-13/DESIGN-COVERAGE-2026-10-13.md`.
+
+## (HISTORY, 30 Sep) What was created — 19 cases, Rule 117, 40 anchors covered 1:1
 | Story | Sub-folder (section) | Cases | Case ids |
 |---|---|---|---|
 | S1 The Work Order Line Dialog | 20461 | 4 | C154707–C154710 |
