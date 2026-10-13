@@ -38,7 +38,8 @@ TP = ws(open(f"{S}/tech-plan-Parts-Lifecycle-Update-shared-2026-10-08.md").read(
 JIRA = ws(open(f"{S}/jira-2026-10-13/STORIES-2026-10-13.md").read())
 ANCH = json.load(open(f"{H}/anchor-quotes-current.json"))
 def esc(t): return html.escape(t, quote=False)
-def ul(x, tag="ul"): return f"<{tag}>" + "".join(f"<li>{esc(re.sub(r'^\d+\.\s+', '', i.strip()))}</li>" for i in x) + f"</{tag}>"
+NUM = re.compile(r"^\d+\.\s+")
+def ul(x, tag="ul"): return f"<{tag}>" + "".join("<li>" + esc(NUM.sub("", i.strip())) + "</li>" for i in x) + f"</{tag}>"
 def preconds(p, doc): return (f'<p><strong><a href="{doc}">{LINK}</a></strong></p><p></p>'
                               "<p><strong>Preconditions</strong></p>" + ul(p["preconditions"]))
 def expected(p):
@@ -112,7 +113,7 @@ if problems: sys.exit(1)
 def doc_html(key, title, p):
     case = f"C{key}" if str(key).isdigit() else "(new case)"
     link = f'<a href="https://shopview.testrail.io/index.php?/cases/view/{key}">{case}</a>' if str(key).isdigit() else case
-    par = lambda items, num: "".join(f"<p>{n}. {esc(re.sub(r'^\d+\.\s+', '', i))}</p>" if num else f"<p>• {esc(i)}</p>"
+    par = lambda items, num: "".join((f"<p>{n}. " + esc(NUM.sub("", i)) + "</p>") if num else ("<p>• " + esc(i) + "</p>")
                                      for n, i in enumerate(items, 1))
     return ("<html><body>" f"<h1>Setup: {esc(title)}</h1>"
             f"<p>Test case: {link}, Founder Mode / Part Lifecycle. Part 1 is for a manual QA tester. Part 2 is for a Claude "
