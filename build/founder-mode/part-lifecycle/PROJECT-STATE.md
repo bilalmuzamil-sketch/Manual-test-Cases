@@ -10,7 +10,15 @@ Catalog→Part Library rename, editable part number.
 **Build:** ❌ No QA branch yet. **PROVISIONAL — the spec is in review**; every case is
 `AUTOMATION: HOLD` naming the in-review status (Rules 49/85).
 
-## 🟢 CURRENT STATE — 8 Oct 2026 (full update, Rule 122) — read this first
+## 🟢 CURRENT STATE — 13 Oct 2026 (full update against PRD v27, Rule 122) — read this first
+- **Sources:** PRD Confluence 829227015 **v27** (edited 9 Oct with Chris Ward's 13 answers); tech plan 7 Oct; Jira stories now match v27 word for word; design canvas 13 Oct copy (`sources/design-2026-10-13-artifact/`).
+- **Suite:** 264 cases written 13 Oct (257 rewritten + 7 new, C540877–C540883), every one read back; 264 new setup docs (one per case). **290/290** requirement codes covered. Layout: Rule 117 with all eight 8 Oct amendments.
+- **Retire OR retest (54275):** 10 cases — C154761 (proposed for retirement), C425759 and C425639 (Critical Reorder, removed from the PRD; moved 13 Oct on the QA lead's "Yes"), and the 7 not-hand-runnable cases (rewritten).
+- **Runs:** no dedicated Part Lifecycle run; all 267 cases are in the open Nightly runs (538, 537 checked 13 Oct).
+- **Record:** `update-2026-10-13/FULL-UPDATE-2026-10-13.md` (sources, writes, design gates, 11 PO questions to send AFTER build verification).
+- **Build:** none yet (Rule 85).
+
+## (SUPERSEDED 13 Oct) STATE — 8 Oct 2026 (full update, Rule 122) — read this first
 - **Sources:**
   - PRD Confluence 829227015 **v26 "Ready for dev"** (Product sign-off 8 Oct 13:17 UTC);
   - tech plan 7 Oct (first copy, `sources/tech-plan-…`);
