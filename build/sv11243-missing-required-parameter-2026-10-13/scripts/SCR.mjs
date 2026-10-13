@@ -1,0 +1,12 @@
+import {op,J,setLoc} from './lib.mjs'; import fs from 'fs';
+const W=JSON.parse(fs.readFileSync('wo1.json'));
+const src=fs.readFileSync('/home/user/Manual-test-Cases/build/sv11243-missing-required-parameter-2026-10-13/client-console-script.js','utf8').replace("const PART_NUMBER = '920183';","const PART_NUMBER = 'ZZ11243-920183';");
+const s=await op({dpr:1}); const p=s.page; await setLoc(s); const logs=[]; p.on('console',m=>logs.push(m.text().slice(0,300)));
+await s.go('/workorders/'+W.wo+'/lines'); await p.waitForTimeout(4000);
+await p.evaluate(src); await p.waitForTimeout(6000);
+const rep=await p.evaluate(()=>window.__sv11243report); console.log('REPORT',J({linesHttp:rep.linesHttp,lineCount:rep.lineCount,lines:rep.lines,matching:rep.partsMatching.map(x=>[x.kind,x.id.slice(0,8),x.status,x.quantity,x.part_category_id?.slice(0,8)]),empty:rep.partsWithAnEmptyRequiredField.length,categories:rep.categories,inv:rep.inventoryMatches.length},1500));
+await p.locator('[data-test-id="button_edit_part_0a74138e-151f-4556-b7ce-11a0e1fd1c19"]').click(); await p.waitForSelector('[data-test-id="button_workorder_part_save"]'); await p.waitForTimeout(1200);
+await p.locator('[data-test-id="button_workorder_part_save"]').click(); await p.waitForTimeout(3500);
+const saves=await p.evaluate(()=>window.__sv11243saves); console.log('SAVES',J(saves,700));
+console.log('console lines',logs.filter(l=>/SV-11243/.test(l)).map(l=>l.slice(0,80)).join(' | '));
+await s.close();

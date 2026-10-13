@@ -1,0 +1,25 @@
+import {op,J,post,setLoc} from './lib.mjs'; import fs from 'fs';
+const W=JSON.parse(fs.readFileSync('wo1.json')); const PN='ZZ11243-920183'; const PID=process.argv[2]||'07cfefaa-e77a-49b4-9810-45c181f94a34'; const PICK=process.argv[3]||'Inventory'; const TAG=process.argv[4]||'a2'; const AMT=process.argv[5]??'';
+const s=await op({dpr:2}); const p=s.page; await setLoc(s); const net=[]; const out={};
+p.on('response',async r=>{ const u=new URL(r.url()).pathname; if(r.request().method()!=='GET'&&/\/api\/work-orders|\/api\/inventory/.test(u)){ let b=''; try{b=(await r.text()).slice(0,500);}catch(e){} net.push({st:r.status(),url:u,req:(r.request().postData()||'').slice(0,2000),res:b}); } });
+const dlgT=()=>p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(d=>d.innerText.replace(/\s+/g,' ').slice(0,700)).join(' ## '));
+const toast=()=>p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(e=>e.innerText.replace(/\s+/g,' ')).join(' / '));
+await s.go('/workorders/'+W.wo+'/lines'); await p.waitForTimeout(4000);
+await p.locator(`[data-test-id="button_edit_part_${PID}"]`).click(); await p.waitForSelector(".q-dialog",{timeout:15000}); await p.waitForTimeout(1500);
+out.dialog0=await dlgT(); await p.screenshot({path:`ev/${TAG}-1-dialog-open.png`});
+const sel=p.locator('.q-dialog [data-test-id="select_part"]'); await sel.click(); await p.waitForTimeout(800);
+await p.keyboard.press('Control+a'); await p.keyboard.type(PN,{delay:60}); await p.waitForTimeout(4000);
+out.options=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>e.innerText.replace(/\s+/g,' ').slice(0,120)));
+await p.screenshot({path:`ev/${TAG}-2-options.png`});
+const opt=p.locator('.q-menu .q-item').filter({hasText:new RegExp(PICK==='Inventory'?'Inventory Qty':'Catalog')}).first(); out.optCount=await opt.count(); await opt.click(); await p.waitForTimeout(3000);
+out.dialog1=await dlgT(); out.fields=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog input')].map(i=>(i.getAttribute('data-test-id')||i.getAttribute('aria-label')||'?')+'='+i.value+(i.disabled?'(dis)':'')));
+await p.screenshot({path:`ev/${TAG}-3-after-pick.png`});
+await p.locator('.q-dialog').getByText(/^Edit Part/).first().click(); await p.waitForTimeout(800);
+out.amountInputs=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog input')].filter(i=>i.closest('tr')||/amount|bin/i.test(i.getAttribute('data-test-id')||'')).map(i=>(i.getAttribute('data-test-id')||'?')+'='+i.value));
+if(AMT!==''){ const a=p.locator('.q-dialog tr input, .q-dialog [data-test-id^="input_bin_quantity"]').first(); await a.click(); await a.fill(AMT); await p.waitForTimeout(600); await p.locator('.q-dialog').getByText(/^Edit Part/).first().click(); await p.waitForTimeout(600); }
+out.fields2=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog input')].map(i=>(i.getAttribute('data-test-id')||i.getAttribute('aria-label')||'?')+'='+i.value));
+await p.screenshot({path:`ev/${TAG}-3b-before-save.png`});
+const save=p.locator('[data-test-id="button_workorder_part_save"]'); out.saveBtn=await save.count(); await save.click(); await p.waitForTimeout(4000);
+out.toast=await toast(); out.dialogStillOpen=await p.evaluate(()=>document.querySelectorAll('.q-dialog').length); await p.screenshot({path:`ev/${TAG}-4-after-save.png`});
+fs.writeFileSync(`${TAG}.json`,JSON.stringify({out,net},null,1)); console.log(J(out,3000)); console.log(net.map(n=>n.st+' '+n.url+' :: '+n.req.slice(0,900)+' => '+n.res.slice(0,250)).join('\n'));
+await s.close();

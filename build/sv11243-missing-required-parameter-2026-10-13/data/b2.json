@@ -1,0 +1,49 @@
+{
+ "out": {
+  "dialog0": "Edit Part Request close Part Number arrow_drop_down Description Quantity Source Vendor arrow_drop_down Category Uncategorized arrow_drop_down Vendor arrow_drop_down $ Cost $ Core Charge $ Sell Price Margin % Cancel Order Save & Close",
+  "options": [
+   "ZZAUTOTEST Round jacketed 2 wire cable ft ZZ11243-920183 Inventory Qty: -28 EA Location57 -28",
+   "ZZAUTOTEST Round jacketed 2 wire cable ft ZZ11243-920183 Catalog Location57 -28"
+  ],
+  "optCount": 1,
+  "dialog1": "Edit Part Request close Part Number arrow_drop_down Description Source Inventory arrow_drop_down Category Uncategorized arrow_drop_down Vendor Delete Test arrow_drop_down $ Cost $ Core Charge $ Sell Price Margin % Inventory Bin name Quantity in stock Amount Location57 Default -28 Cancel Order Save & Close",
+  "fields": [
+   "select_part=ZZ11243-920183",
+   "input_workorder_part_description=ZZAUTOTEST Round jacketed 2 wire cable ft(dis)",
+   "Source=Inventory",
+   "select_part_category=",
+   "select_part_vendor=(dis)",
+   "input_part_cost=0.84000(dis)",
+   "input_workorder_part_core_charge=(dis)",
+   "input_workorder_part_sell_price=7.56",
+   "input_workorder_part_margin=88.88889",
+   "input_bin_quantity_1295e623-479b-11f1-9bed-020a144de1a3="
+  ],
+  "amountInputs": [
+   "input_bin_quantity_1295e623-479b-11f1-9bed-020a144de1a3="
+  ],
+  "fields2": [
+   "select_part=ZZ11243-920183",
+   "input_workorder_part_description=ZZAUTOTEST Round jacketed 2 wire cable ft",
+   "Source=Inventory",
+   "select_part_category=",
+   "select_part_vendor=",
+   "input_part_cost=0.84000",
+   "input_workorder_part_core_charge=",
+   "input_workorder_part_sell_price=7.56",
+   "input_workorder_part_margin=88.88889",
+   "input_bin_quantity_1295e623-479b-11f1-9bed-020a144de1a3=30"
+  ],
+  "saveBtn": 1,
+  "toast": "",
+  "dialogStillOpen": 0
+ },
+ "net": [
+  {
+   "st": 200,
+   "url": "/api/work-orders/part/change-request",
+   "req": "{\"id\":\"8733f9a3-5d1c-4478-8420-ef0d3628009b\",\"value\":\"d7ac7efe-2852-4345-9659-4928cc679c5a\",\"name\":\"ZZAUTOTEST Round jacketed 2 wire cable ft\",\"part_number\":\"ZZ11243-920183\",\"description\":\"ZZAUTOTEST Round jacketed 2 wire cable ft\",\"line_id\":\"cbb42291-46c2-4827-8beb-34e2f4623085\",\"part_source_type\":\"inventory\",\"inventory_part_id\":\"d7ac7efe-2852-4345-9659-4928cc679c5a\",\"vendor_id\":\"f9618e14-2255-470d-afc7-b20c8e7fc33d\",\"cost\":0.84,\"cost_decimal\":0,\"sell_price\":7.56,\"core_charge\":null,\"status\":\"authorized_to_order\",\"quantity\":30,\"quantity_remaining\":30,\"binAllocations\":[],\"part_category\":\"requested\",\"part_category_id\":\"00e200b1-59fe-4c4a-88a1-952a6d38fee0\",\"core_part_id\":null,\"purchase_price\":0.84,\"fixed_sell_price\":null,\"environmental_charge\":null,\"catalogue_part\":\"f847f790-7fd9-4303-a33d-449ee1fb1a9a\",\"nameSortable\":\"zzautotest round jacketed 2 wire cable ft\",\"measurement\":null,\"category\":\"00e200b1-59fe-4c4a-88a1-952a6d38fee0\",\"vendor\":\"Delete Test\",\"manufacturer\":null,\"tags\":[],\"is_fixed_price\":false,\"part_type\":\"inventory_part\",\"optionKey\":\"d7ac7efe-2852-4345-9659-4928cc679c5a-inventory_part\",\"catalogue_part_id\":null,\"margin\":88.88889,\"another\":false,\"line\":\"cbb42291-46c2-4827-8beb-34e2f4623085\",\"work_order\":\"4b2e1143-122d-471f-a045-7fdf89e6a404\",\"bins\":[{\"id\":\"1295e623-479b-11f1-9bed-020a144de1a3\",\"name\":\"Location57\",\"quantity\":30}]}",
+   "res": "{\"data\":{\"status\":\"in_stock\",\"statusLabel\":\"In stock\",\"partRequestStatusLabel\":\"In stock\",\"receivedLater\":false,\"sellPrice\":7.56,\"margin\":88.89,\"disableCost\":true,\"disableCategoriesSelect\":false,\"disableSourceSelect\":true,\"disablePartNumber\":true,\"lineRow\":{\"id\":\"8733f9a3-5d1c-4478-8420-ef0d3628009b\",\"line_id\":\"cbb42291-46c2-4827-8beb-34e2f4623085\",\"work_order_id\":\"4b2e1143-122d-471f-a045-7fdf89e6a404\",\"status\":\"in_stock\",\"part_request_status_label\":\"In stock\",\"received_later\":false,\"description"
+  }
+ ]
+}

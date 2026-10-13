@@ -1,0 +1,27 @@
+{
+ "out": {
+  "rowIds": [
+   "part_number_07cfefaa-e77a-49b4-9810-45c181f94a34=(ZZ11243-920183)\nZZAUTOTEST Round jacketed 2 wire cable ft\nedit\nmore_vert",
+   "button_edit_part_07cfefaa-e77a-49b4-9810-45c181f94a34=edit",
+   "button_requested_part_context_menu_07cfefaa-e77a-49b4-9810-45c181f94a34_line_cbb42291-46c2-4827-8beb-34e2f4623085=more_vert",
+   "part_quantity_07cfefaa-e77a-49b4-9810-45c181f94a34=30",
+   "badge_part_status_07cfefaa-e77a-49b4-9810-45c181f94a34=In Stock",
+   "button_part_request_action=Pick",
+   "part_sell_price_07cfefaa-e77a-49b4-9810-45c181f94a34=$7.56",
+   "part_total_sell_price_07cfefaa-e77a-49b4-9810-45c181f94a34=$226.80"
+  ],
+  "pick": 1,
+  "dialog": "",
+  "fields": [],
+  "btns": [],
+  "toast": ""
+ },
+ "net": [
+  {
+   "st": 201,
+   "url": "/api/work-orders/part/perform-request-status-action",
+   "req": "{\"part_request_id\":\"07cfefaa-e77a-49b4-9810-45c181f94a34\",\"workOrderId\":\"4b2e1143-122d-471f-a045-7fdf89e6a404\",\"sellPrice\":7.56}",
+   "res": "{\"data\":{\"partRequestId\":\"07cfefaa-e77a-49b4-9810-45c181f94a34\",\"workOrderId\":\"4b2e1143-122d-471f-a045-7fdf89e6a404\",\"lineId\":\"cbb42291-46c2-4827-8beb-34e2f4623085\",\"statusLabel\":\"Received\",\"status\":\"received\",\"removeFromPartRequests\":true,\"orderId\":null,\"orderItemId\":null}}"
+  }
+ ]
+}
