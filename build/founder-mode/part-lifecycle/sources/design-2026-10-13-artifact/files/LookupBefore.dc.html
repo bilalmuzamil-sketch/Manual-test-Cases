@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Nunito Sans', system-ui, sans-serif; background: #ffffff; color: #1f2430; }
+    .nav { background: #ffffff; border-bottom: 1px solid #eceef1; padding: 0 18px; height: 46px; display: flex; align-items: center; gap: 20px; }
+    .navlink { font-size: 12.5px; color: #3d4654; }
+    .navon { font-size: 12.5px; color: #1f2430; background: #eef0f3; border-radius: 6px; padding: 5px 11px; }
+    .navsearch { width: 230px; background: #ffffff; border: 1px solid #e2e5ea; border-radius: 6px; padding: 4px 9px; font-size: 11.5px; color: #9aa2ad; display: flex; justify-content: space-between; align-items: center; }
+    .kbd { background: #f2f4f7; border: 1px solid #e2e5ea; border-radius: 3px; font-size: 9.5px; padding: 1px 4px; color: #6b7480; }
+    .clock { font-size: 10.5px; color: #21a45c; line-height: 1.25; text-align: right; }
+    .locpill { background: #f2f4f7; border-radius: 16px; padding: 3px 4px 3px 11px; display: flex; align-items: center; gap: 8px; }
+    .locname { font-size: 11px; color: #1f2430; font-weight: 600; }
+    .lochrs { font-size: 9px; color: #9aa2ad; }
+    .avatar { width: 22px; height: 22px; border-radius: 50%; background: #2b3444; color: #fff; font-size: 9px; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+    .side { width: 158px; flex: 0 0 158px; background: #ffffff; padding: 14px 0; }
+    .sidehd { padding: 12px 16px 5px; font-size: 9px; font-weight: 700; letter-spacing: 0.09em; color: #9aa2ad; }
+    .sideitem { padding: 6px 16px; font-size: 11.5px; color: #3d4654; display: flex; align-items: center; gap: 8px; }
+    .sideon { padding: 6px 16px; font-size: 11.5px; color: #2563EB; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+    .dot { width: 11px; height: 11px; border-radius: 2px; background: #c6ccd4; flex: 0 0 11px; }
+    .doton { width: 11px; height: 11px; border-radius: 2px; background: #2563EB; flex: 0 0 11px; }
+    .ptitle { font-size: 16px; font-weight: 700; color: #1f2430; }
+    .ctrl { font-size: 11.5px; color: #3d4654; display: flex; align-items: center; gap: 5px; }
+    .primary { background: #2563EB; color: #ffffff; font-size: 11.5px; font-weight: 600; border-radius: 6px; padding: 7px 14px; }
+    .tbl { width: 100%; border-collapse: collapse; background: #ffffff; }
+    .tbl th { text-align: left; font-size: 10.5px; font-weight: 700; color: #3d4654; padding: 8px 10px; border-bottom: 1px solid #eceef1; white-space: nowrap; }
+    .tbl td { font-size: 11px; color: #1f2430; padding: 8px 10px; border-bottom: 1px solid #f4f5f7; white-space: nowrap; }
+    .qty { display: inline-block; background: #E98B3A; color: #ffffff; border-radius: 4px; padding: 2px 7px; font-size: 9.5px; font-weight: 700; }
+    .qty--ok { background: #1FA65A; }
+    .untracked { font-size: 10.5px; color: #9aa2ad; }
+    .bin { display: inline-flex; align-items: center; border: 1px solid #e2e5ea; border-radius: 4px; overflow: hidden; font-size: 9.5px; color: #3d4654; }
+    .bin span { padding: 2px 6px; }
+    .bin span + span { border-left: 1px solid #e2e5ea; }
+    .cbox { width: 12px; height: 12px; border: 1px solid #aeb5bf; border-radius: 2px; display: inline-block; }
+    .cboxon { width: 12px; height: 12px; border-radius: 2px; background: #2563EB; display: inline-block; }
+    .link { color: #2563EB; }
+    .tab { font-size: 12px; color: #6b7480; margin-right: 18px; display: inline-block; }
+    .tabon { font-size: 12px; color: #2563EB; margin-right: 18px; display: inline-block; }
+    .modal { background: #ffffff; border-radius: 8px; box-shadow: 0 8px 30px rgba(20,24,33,0.16); padding: 20px 22px 18px; display: flex; flex-direction: column; gap: 13px; }
+    .mhd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
+    .mtitle { font-size: 17px; font-weight: 700; color: #1f2430; }
+    .field { border: 1px solid #d8dce2; border-radius: 5px; padding: 15px 12px 8px; font-size: 13px; color: #1f2430; background: #ffffff; position: relative; min-height: 17px; }
+    .field--req { border-color: #2563EB; }
+    .flabel { position: absolute; top: 4px; left: 12px; font-size: 9.5px; color: #6b7480; }
+    .flabel--req { color: #2563EB; }
+    .caret { position: absolute; right: 11px; top: 17px; }
+    .btn { font-size: 13px; font-weight: 600; padding: 8px 18px; border-radius: 5px; display: inline-block; }
+    .btn--primary { background: #2563EB; color: #ffffff; }
+    .btn--danger { background: #D32F2F; color: #ffffff; }
+    .btn--ok { background: #1FA65A; color: #ffffff; }
+    .btn--flat { color: #3d4654; }
+    .btn--out { border: 1px solid #2563EB; color: #2563EB; }
+    .secthd { font-size: 15px; font-weight: 700; color: #1f2430; margin-top: 4px; }
+    .pill { display: inline-block; border-radius: 4px; padding: 3px 9px; font-size: 11px; font-weight: 700; color: #ffffff; }
+    .cap { font-size: 12px; color: #5b6472; line-height: 1.6; }
+    .note { background: #f8f9fb; border: 1px solid #eceef1; border-radius: 6px; padding: 13px 15px; font-size: 12px; color: #5b6472; line-height: 1.6; }
+    .sect { border: 1px solid #e6e9ed; border-radius: 6px; padding: 12px 13px; }
+    .secttitle { font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #6b7480; margin-bottom: 9px; }
+    .tracktitle { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #2563EB; margin-bottom: 11px; }
+    .trackhint { font-size: 11.5px; color: #2563EB; margin-top: 7px; }
+    .colhd { font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #9aa2ad; }
+    .badgebar { padding: 10px 20px 0; }
+    .badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 3px; color: #ffffff; }
+    .badge--before { background: #C10015; }
+    .badge--after { background: #1FA65A; }
+    .badge--new { background: #2563EB; }
+  </style>
+</helmet>
+
+
+<div class="badgebar"><span class="badge badge--before">BEFORE &middot; WHAT IS ON STAGING TODAY</span></div>
+
+<div style="padding: 14px 20px 22px; display: flex; flex-direction: column; gap: 14px;">
+
+  <div>
+    <div class="ptitle">New Part Request, on a work order</div>
+    <div class="cap" style="margin-top: 3px;">The part number field is the lookup. This is the screen the whole feature is for: everything else exists so that this list gets shorter.</div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); gap: 26px; align-items: start;">
+
+    <div class="modal">
+      <div class="mhd">
+        <div class="mtitle">New Part Request</div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      </div>
+
+      <div style="background: #eceef1; border-bottom: 2px solid #2563EB; border-radius: 4px 4px 0 0; padding: 9px 11px 7px; position: relative;">
+        <span style="position: absolute; top: 3px; left: 11px; font-size: 9px; color: #2563EB;">Part Number</span>
+        <div style="font-size: 13px; color: #1f2430;">oil filter</div>
+        <svg class="caret" style="top: 14px;" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6b7480" stroke-width="2.4" stroke-linecap="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+      </div>
+
+      <div style="border: 1px solid #e2e5ea; border-radius: 0 0 6px 6px; box-shadow: 0 6px 18px rgba(20,24,33,0.10);">
+        <div style="padding: 11px 13px; border-bottom: 1px solid #f4f5f7;">
+          <div style="display: flex; justify-content: space-between; gap: 14px;"><span style="font-size: 13px; color: #1f2430;">ENGINE OIL FILTER, CUMMINS 6BT</span><span style="font-size: 13px; color: #1f2430; white-space: nowrap;">LF3349</span></div>
+          <div style="display: flex; justify-content: space-between; gap: 14px; margin-top: 4px;"><span style="font-size: 12px; color: #8a6d3b;">Inventory Qty: 12 EA</span><span style="font-size: 12px; color: #8a6d3b; white-space: nowrap;">Butautas&#039; Truck &amp; Trailer Repair LLC</span></div>
+        </div>
+        <div style="padding: 11px 13px; border-bottom: 1px solid #f4f5f7;">
+          <div style="display: flex; justify-content: space-between; gap: 14px;"><span style="font-size: 13px; color: #1f2430;">OIL FILTER, SPIN-ON</span><span style="font-size: 13px; color: #1f2430; white-space: nowrap;">LF9009</span></div>
+          <div style="display: flex; justify-content: space-between; gap: 14px; margin-top: 4px;"><span style="font-size: 12px; color: #8a6d3b;">Inventory Qty: 4 EA</span><span style="font-size: 12px; color: #8a6d3b; white-space: nowrap;">Stillwater Diesel Repair</span></div>
+        </div>
+        <div style="padding: 11px 13px; border-bottom: 1px solid #f4f5f7;">
+          <div style="display: flex; justify-content: space-between; gap: 14px;"><span style="font-size: 13px; color: #1f2430;">OIL FILTER, SUPERSEDED HOUSING</span><span style="font-size: 13px; color: #1f2430; white-space: nowrap;">LF9009-A</span></div>
+          <div style="display: flex; justify-content: space-between; gap: 14px; margin-top: 4px;"><span style="font-size: 12px; color: #8a6d3b;">Catalog</span><span style="font-size: 12px; color: #8a6d3b; white-space: nowrap;">Revere Truck and Trailer Repair</span></div>
+        </div>
+        <div style="padding: 11px 13px; border-bottom: 1px solid #f4f5f7;">
+          <div style="display: flex; justify-content: space-between; gap: 14px;"><span style="font-size: 13px; color: #1f2430;">OIL FILTER, OBSOLETE HOUSING</span><span style="font-size: 13px; color: #1f2430; white-space: nowrap;">LF9009-OLD</span></div>
+          <div style="display: flex; justify-content: space-between; gap: 14px; margin-top: 4px;"><span style="font-size: 12px; color: #8a6d3b;">Catalog</span><span style="font-size: 12px; color: #8a6d3b; white-space: nowrap;">Revere Truck and Trailer Repair</span></div>
+        </div>
+        <div style="padding: 11px 13px;">
+          <div style="display: flex; justify-content: space-between; gap: 14px;"><span style="font-size: 13px; color: #1f2430;">OIL FILTER WRENCH, 93MM 36 FLUTE</span><span style="font-size: 13px; color: #1f2430; white-space: nowrap;">NOFW-93</span></div>
+          <div style="display: flex; justify-content: space-between; gap: 14px; margin-top: 4px;"><span style="font-size: 12px; color: #8a6d3b;">Catalog</span><span style="font-size: 12px; color: #8a6d3b; white-space: nowrap;">Butautas&#039; Truck &amp; Trailer Repair LLC</span></div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 9px; margin-top: 4px;">
+        <div class="btn btn--out">Save &amp; Add Part</div>
+        <div class="btn btn--out">Save &amp; Add Line</div>
+        <div class="btn btn--primary">Save &amp; Close</div>
+      </div>
+    </div>
+
+    <div class="cap">
+      <p style="margin-top: 0;"><strong style="color: #7a1020;">Everything the shop has ever created is offered.</strong> Two superseded housings nobody has stocked in years sit in the same list, in exactly the same styling, as the filters in use. Nothing marks them out: the shading on this drawing is not in the product. A service writer under time pressure picks one, and the mistake is found at invoicing, or not at all.</p>
+      <p><strong style="color: #7a1020;">Nothing on a row says the part is dead.</strong> The second line carries the source or the inventory quantity on the left and the vendor on the right. Neither answers &ldquo;should I be using this&rdquo;, and a part with no stock looks exactly like a part that was retired on purpose.</p>
+      <p style="margin-bottom: 0;">The rest of the dialog, the Description, Quantity, Source, Category, Vendor, Cost, Core Charge, Sell Price and Margin fields below this one, and all three Save buttons, are not touched by this work.</p>
+    </div>
+
+  </div>
+</div>
+
+</x-dc>
+</body>
+</html>
