@@ -1,0 +1,23 @@
+import {op,J,post,setLoc} from './lib.mjs'; import fs from 'fs';
+const W=JSON.parse(fs.readFileSync('wo1.json')); const PN='ZZ11243-920183'; const QTY=process.argv[2]||'30'; const TAG=process.argv[3]||'in1';
+const s=await op({dpr:2}); const p=s.page; await setLoc(s); const net=[]; const out={};
+p.on('response',async r=>{ const u=new URL(r.url()).pathname; if(r.request().method()!=='GET'&&/\/api\/work-orders|\/api\/inventory/.test(u)){ let b=''; try{b=(await r.text()).slice(0,400);}catch(e){} net.push({st:r.status(),url:u,req:(r.request().postData()||'').slice(0,2000),res:b}); } });
+await s.go('/workorders/'+W.wo+'/lines'); await p.waitForTimeout(4000);
+await p.locator('[data-test-id="button_add_part"]').click(); await p.waitForTimeout(1500);
+out.inlineIds=await p.evaluate(()=>{const a=document.activeElement; let n=a; for(let i=0;i<6&&n;i++) n=n.parentElement; return [...(n||document).querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')).slice(0,30);});
+await p.keyboard.type(PN,{delay:70}); await p.waitForTimeout(3500);
+out.options=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>e.innerText.replace(/\s+/g,' ').slice(0,120)));
+await p.screenshot({path:`ev/${TAG}-1-options.png`});
+const opt=p.locator('.q-menu .q-item').filter({hasText:/Catalog/}).first(); out.optCount=await opt.count(); if(out.optCount){ await opt.click(); await p.waitForTimeout(2000); }
+out.rowAfterPick=await p.evaluate(()=>{const a=document.activeElement; let n=a; for(let i=0;i<6&&n;i++) n=n.parentElement; return [...(n||document).querySelectorAll('input')].map(i=>(i.getAttribute('data-test-id')||i.getAttribute('aria-label')||i.placeholder||'?')+'='+i.value);});
+await p.screenshot({path:`ev/${TAG}-2-row-after-pick.png`});
+const q=p.locator('[data-test-id="input_inline_part_quantity"]'); await q.click(); await q.fill(QTY); await p.waitForTimeout(500);
+const before=new Set(await p.evaluate(()=>[...document.querySelectorAll('[data-test-id^="part_number_"]')].map(e=>e.getAttribute('data-test-id'))));
+await p.locator('[data-test-id="button_save_inline_part"]').click(); await p.waitForTimeout(4500);
+out.toastInline=await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(e=>e.innerText.replace(/\s+/g,' ')).join(' / '));
+await p.reload(); await p.waitForTimeout(4500);
+const all=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id^="part_number_"]')].map(e=>[e.getAttribute('data-test-id'),e.closest('div.row,tr')?.innerText.replace(/\s+/g,' ').slice(0,140)]));
+out.rows=all; const nw=all.find(a=>!before.has(a[0])); out.newId=nw?nw[0].replace('part_number_',''):null;
+fs.writeFileSync('catreq.txt',out.newId||'');
+fs.writeFileSync(`${TAG}.json`,JSON.stringify({out,net},null,1)); console.log(J(out,2500)); console.log(net.map(n=>n.st+' '+n.url+' :: '+n.req.slice(0,700)+' => '+n.res.slice(0,200)).join('\n'));
+await s.close();

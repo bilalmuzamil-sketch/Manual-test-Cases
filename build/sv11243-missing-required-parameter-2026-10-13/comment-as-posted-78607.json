@@ -1,0 +1,827 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "mention",
+     "attrs": {
+      "id": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "text": "@Chris Ward",
+      "accessLevel": ""
+     }
+    },
+    {
+     "type": "text",
+     "text": " I was able to reproduce this on production."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What is happening:",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " on a work order, a part that was first added from the "
+    },
+    {
+     "type": "text",
+     "text": "Catalog",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " (to be ordered from a vendor) cannot be switched to the "
+    },
+    {
+     "type": "text",
+     "text": "Inventory",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " version of the same part number. Clicking "
+    },
+    {
+     "type": "text",
+     "text": "Save & Close",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " shows \"Missing required parameter. Please try to resolve this.\" and nothing is saved."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Steps to reproduce"
+    }
+   ]
+  },
+  {
+   "type": "orderedList",
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Log in to production (app.shopview.com) and make sure the location at the top right reads "
+        },
+        {
+         "type": "text",
+         "text": "Trucks Hill 2",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": "."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open work order "
+        },
+        {
+         "type": "text",
+         "text": "S2-968",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " ("
+        },
+        {
+         "type": "text",
+         "text": "direct link",
+         "marks": [
+          {
+           "type": "link",
+           "attrs": {
+            "href": "https://app.shopview.com/workorders/4b2e1143-122d-471f-a045-7fdf89e6a404/lines"
+           }
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ") and stay on the "
+        },
+        {
+         "type": "text",
+         "text": "Lines",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " tab."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Under "
+        },
+        {
+         "type": "text",
+         "text": "Parts",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ", click "
+        },
+        {
+         "type": "text",
+         "text": "+ Add Part",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ". In "
+        },
+        {
+         "type": "text",
+         "text": "Part number",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " type "
+        },
+        {
+         "type": "text",
+         "text": "ZZ11243-920183",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " and choose the option that says "
+        },
+        {
+         "type": "text",
+         "text": "Catalog",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " under the name (not the one that says \"Inventory Qty\"). In "
+        },
+        {
+         "type": "text",
+         "text": "Qty",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " type "
+        },
+        {
+         "type": "text",
+         "text": "25",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ", then click the blue "
+        },
+        {
+         "type": "text",
+         "text": "Save",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " button at the right end of that row."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "The new part row reads "
+        },
+        {
+         "type": "text",
+         "text": "Auth To Order",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " with a blue "
+        },
+        {
+         "type": "text",
+         "text": "Order",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " button and $0.00. Click the part number "
+        },
+        {
+         "type": "text",
+         "text": "ZZ11243-920183",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " on that row."
+        }
+       ]
+      },
+      {
+       "type": "mediaSingle",
+       "attrs": {
+        "layout": "center"
+       },
+       "content": [
+        {
+         "type": "media",
+         "attrs": {
+          "type": "file",
+          "id": "f7466f4a-a5b0-4086-b37e-230bd14dcbce",
+          "collection": "",
+          "height": 360,
+          "width": 1280
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "A pop-up titled "
+        },
+        {
+         "type": "text",
+         "text": "Edit Part Request",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " opens. Click the "
+        },
+        {
+         "type": "text",
+         "text": "Part Number",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " field. The list shows the same part twice. Choose the one that says "
+        },
+        {
+         "type": "text",
+         "text": "Inventory Qty",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": "."
+        }
+       ]
+      },
+      {
+       "type": "mediaSingle",
+       "attrs": {
+        "layout": "center"
+       },
+       "content": [
+        {
+         "type": "media",
+         "attrs": {
+          "type": "file",
+          "id": "36161901-c954-4f8d-aef7-ffd520dc6f53",
+          "collection": "",
+          "height": 691,
+          "width": 608
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "The title changes to "
+        },
+        {
+         "type": "text",
+         "text": "Edit Part",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " and an "
+        },
+        {
+         "type": "text",
+         "text": "Inventory",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " section appears at the bottom. Type "
+        },
+        {
+         "type": "text",
+         "text": "1",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " under "
+        },
+        {
+         "type": "text",
+         "text": "Amount",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ", then click "
+        },
+        {
+         "type": "text",
+         "text": "Save & Close",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": "."
+        }
+       ]
+      },
+      {
+       "type": "mediaSingle",
+       "attrs": {
+        "layout": "center"
+       },
+       "content": [
+        {
+         "type": "media",
+         "attrs": {
+          "type": "file",
+          "id": "a9d99d12-26c2-4e0b-9091-a1b258ac073d",
+          "collection": "",
+          "height": 842,
+          "width": 608
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "A red message appears at the bottom right: \"Missing required parameter. Please try to resolve this.\" The pop-up stays open. Close it and reload the page: the part is unchanged (still Auth To Order, $0.00)."
+        }
+       ]
+      },
+      {
+       "type": "mediaSingle",
+       "attrs": {
+        "layout": "center"
+       },
+       "content": [
+        {
+         "type": "media",
+         "attrs": {
+          "type": "file",
+          "id": "5319e43c-92d8-43e3-b55b-59bdf760d3ff",
+          "collection": "",
+          "height": 976,
+          "width": 1008
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Fastest way:",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " open the "
+    },
+    {
+     "type": "text",
+     "text": "S2-968 link",
+     "marks": [
+      {
+       "type": "link",
+       "attrs": {
+        "href": "https://app.shopview.com/workorders/4b2e1143-122d-471f-a045-7fdf89e6a404/lines"
+       }
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " (location Trucks Hill 2) and start at step 4. Any of the four "
+    },
+    {
+     "type": "text",
+     "text": "Auth To Order",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " rows for ZZ11243-920183 on that work order will do."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Current and expected behaviour"
+    }
+   ]
+  },
+  {
+   "type": "bulletList",
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Current:",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " the change is not saved, and the message does not say which field is the problem."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Expected",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " (from this ticket): \"The system should successfully save the updated part when all required information is present. If a required parameter is missing or invalid, the error message should clearly identify the affected field so the user can correct it.\""
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "What makes it happen"
+    }
+   ]
+  },
+  {
+   "type": "bulletList",
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "It happens only when the part was first added from the "
+        },
+        {
+         "type": "text",
+         "text": "Catalog",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " option and is then switched to the "
+        },
+        {
+         "type": "text",
+         "text": "Inventory",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " option of the "
+        },
+        {
+         "type": "text",
+         "text": "same",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " part number. That matches the customer's note that part #920183 \"appears in both Inventory and Catalog\"."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "The "
+        },
+        {
+         "type": "text",
+         "text": "Amount",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " doesn't matter: 1, 25 and leaving it empty all give the same error."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "If the part was first added under a "
+        },
+        {
+         "type": "text",
+         "text": "different",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " part number (a generic one) and then replaced with an Inventory part, it saves without an error. That may be why it could not be reproduced before."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Environment"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Production app.shopview.com, build v26.40.17-f5bf8f4, 13 October 2026, location Trucks Hill 2, work order S2-968, part ZZ11243-920183, logged in with our production test account (bilal.muzamil@shopview.com). Reproduced 4 times; the last time was just before posting this comment."
+    }
+   ]
+  }
+ ]
+}

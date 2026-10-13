@@ -1,0 +1,10 @@
+import {op,J,setLoc} from './lib.mjs';
+const s=await op({});
+console.log('marker',J(await s.marker(),300));
+await setLoc(s);
+const w=JSON.parse((await import('fs')).readFileSync('wo1.json','utf8'));
+const r=await s.api(`/api/work-orders/lines/${w.line||'cbb42291-46c2-4827-8beb-34e2f4623085'}`);
+const parts=(r.data?.parts||r.data?.data?.parts||r.data?.line?.parts||[]);
+console.log('nparts',parts.length, J(Object.keys(r.data||{}),200));
+for(const p of parts) console.log(p.id.slice(0,8),p.part_number||p.partNumber,p.part_category||p.partCategory,p.status,p.quantity,p.sell_price??p.sellPrice);
+await s.close();

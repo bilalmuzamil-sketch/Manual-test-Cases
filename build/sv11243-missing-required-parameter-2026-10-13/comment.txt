@@ -1,0 +1,30 @@
+[~accountid:712020:aa00b8d6-a71f-4259-8919-82a304227c20] I was able to reproduce this on production.
+
+*What is happening:* on a work order, a part that was first added from the *Catalog* (to be ordered from a vendor) cannot be switched to the *Inventory* version of the same part number. Clicking *Save & Close* shows "Missing required parameter. Please try to resolve this." and nothing is saved.
+
+h3. Steps to reproduce
+# Log in to production (app.shopview.com) and make sure the location at the top right reads *Trucks Hill 2*.
+# Open work order *S2-968* ([direct link|https://app.shopview.com/workorders/4b2e1143-122d-471f-a045-7fdf89e6a404/lines]) and stay on the *Lines* tab.
+# Under *Parts*, click *+ Add Part*. In *Part number* type *ZZ11243-920183* and choose the option that says *Catalog* under the name (not the one that says "Inventory Qty"). In *Qty* type *25*, then click the blue *Save* button at the right end of that row.
+# The new part row reads *Auth To Order* with a blue *Order* button and $0.00. Click the part number *ZZ11243-920183* on that row.
+!sv11243-01-lines-hd.png|width=1280,height=360!
+# A pop-up titled *Edit Part Request* opens. Click the *Part Number* field. The list shows the same part twice. Choose the one that says *Inventory Qty*.
+!sv11243-02-pick-inventory-hd.png|width=608,height=691!
+# The title changes to *Edit Part* and an *Inventory* section appears at the bottom. Type *1* under *Amount*, then click *Save & Close*.
+!sv11243-03-amount-1-hd.png|width=608,height=842!
+# A red message appears at the bottom right: "Missing required parameter. Please try to resolve this." The pop-up stays open. Close it and reload the page: the part is unchanged (still Auth To Order, $0.00).
+!sv11243-04-error-hd.png|width=1008,height=976!
+
+*Fastest way:* open the [S2-968 link|https://app.shopview.com/workorders/4b2e1143-122d-471f-a045-7fdf89e6a404/lines] (location Trucks Hill 2) and start at step 4. Any of the four *Auth To Order* rows for ZZ11243-920183 on that work order will do.
+
+h3. Current and expected behaviour
+* *Current:* the change is not saved, and the message does not say which field is the problem.
+* *Expected* (from this ticket): "The system should successfully save the updated part when all required information is present. If a required parameter is missing or invalid, the error message should clearly identify the affected field so the user can correct it."
+
+h3. What makes it happen
+* It happens only when the part was first added from the *Catalog* option and is then switched to the *Inventory* option of the *same* part number. That matches the customer's note that part #920183 "appears in both Inventory and Catalog".
+* The *Amount* doesn't matter: 1, 25 and leaving it empty all give the same error.
+* If the part was first added under a *different* part number (a generic one) and then replaced with an Inventory part, it saves without an error. That may be why it could not be reproduced before.
+
+h3. Environment
+Production app.shopview.com, build v26.40.17-f5bf8f4, 13 October 2026, location Trucks Hill 2, work order S2-968, part ZZ11243-920183, logged in with our production test account (bilal.muzamil@shopview.com). Reproduced 4 times; the last time was just before posting this comment.
