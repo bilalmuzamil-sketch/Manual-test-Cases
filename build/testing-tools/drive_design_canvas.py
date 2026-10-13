@@ -60,15 +60,21 @@ async def main():
         await pg.goto(pathlib.Path(a.board).resolve().as_uri()); await pg.wait_for_timeout(5000)
 
         # page list from the menu
+        # page list from the menu. A canvas with one page has no "N pages" menu (13 Oct 2026: Price/Category), and page
+        # names need not be numbered (What/Why: "Before and after", "Extreme cases"), so take every name the menu lists.
         menu = pg.locator("button", has_text="pages").first
-        await menu.click(); await pg.wait_for_timeout(600)
-        page_names = await pg.evaluate("[...document.querySelectorAll('span.flex-1.truncate')].map(e=>e.innerText.trim()).filter(t=>/^\\d+\\./.test(t))")
-        await pg.keyboard.press("Escape"); await pg.wait_for_timeout(300)
+        if await pg.locator("button", has_text="pages").count():
+            await menu.click(); await pg.wait_for_timeout(600)
+            page_names = await pg.evaluate("[...document.querySelectorAll('span.flex-1.truncate')].map(e=>e.innerText.trim()).filter(t=>t)")
+            await pg.keyboard.press("Escape"); await pg.wait_for_timeout(300)
+        else:
+            page_names = [None]
         rec(action="pages_menu", pages=page_names)
 
         for pi, pname in enumerate(page_names):
-            await menu.click(); await pg.wait_for_timeout(500)
-            await pg.get_by_text(pname, exact=True).first.click(); await pg.wait_for_timeout(1500)
+            if pname is not None:
+                await menu.click(); await pg.wait_for_timeout(500)
+                await pg.get_by_text(pname, exact=True).first.click(); await pg.wait_for_timeout(1500)
             counts["page_select"] += 1
             shot = out / "shots" / f"page-{pi+1}.png"; await pg.screenshot(path=str(shot), full_page=True)
             body = await texts(pg)
@@ -130,7 +136,7 @@ async def main():
                 else:
                     await pg.keyboard.press("Escape"); await pg.wait_for_timeout(500)
                     # make sure we are back on this page of the canvas
-                    if pname.split('.')[0] and not await pg.locator("button[aria-label='Play artboard']").count():
+                    if (pname is None or pname.split('.')[0]) and not await pg.locator("button[aria-label='Play artboard']").count():
                         await pg.go_back(); await pg.wait_for_timeout(1500)
                 # export: the button opens a format menu (no download); record every option it offers, then close it
                 try:
