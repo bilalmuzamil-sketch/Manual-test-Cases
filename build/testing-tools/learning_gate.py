@@ -25,7 +25,7 @@ def git(*a):
     return subprocess.run(['git', '-C', ROOT, *a], capture_output=True, text=True).stdout.strip()
 
 def is_store(p):
-    return p in STORE or p.endswith('/PROJECT-STATE.md') or p.startswith('build/rules/') or p.startswith('build/skills/')
+    return p in STORE or p.endswith('/PROJECT-STATE.md') or p.startswith(('build/rules/', 'build/skills/', 'build/kb/'))
 
 def state():
     head = git('rev-parse', 'HEAD')
@@ -58,6 +58,14 @@ def main():
     if inp.get('stop_hook_active'): return 0
     head, mark, work, stores = state()
     if not head: return 0
+    # Rule 128: a store that has grown past its budget is split before it becomes unreadable
+    hc = subprocess.run([sys.executable, os.path.join(ROOT, 'build/testing-tools/knowledge_health.py'), '--check'],
+                        capture_output=True, text=True)
+    if hc.returncode == 1:
+        sys.stderr.write('Rule 128 (no file may grow too big to use): a knowledge store is over its size budget:\n' + hc.stdout +
+                         'Split it now (byte-verified, the index stays at the same path): python3 build/testing-tools/knowledge_health.py '
+                         'shard <file>, then commit and push.\n')
+        return 2
     if mark is None or stores or not work:
         write_mark(head); return 0          # first run, learning already saved, or nothing worked on
     n = len(set(git('log', '--format=%h', f'{mark}..{head}').split()))

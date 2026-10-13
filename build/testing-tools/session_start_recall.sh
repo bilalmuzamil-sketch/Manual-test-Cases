@@ -10,6 +10,9 @@ Suites with a PROJECT-STATE.md: ${suites}
 Newest learnings (build/LEARNINGS-LOG.md):
 ${newest}
 Whenever something is learned (trap, route, fix, tool, site fact, ruling), save it in the same pass where the map says; a Stop hook (learning_gate.py) checks this."
+over=$(python3 build/testing-tools/knowledge_health.py 2>/dev/null | grep " OVER " | awk '{print $1" ("$2" "$3")"}' | tr '\n' ' ')
+[ -n "$over" ] && ctx="${ctx}
+RULE 128 — files over their size budget (never read them whole; recall.py finds the block, --rule N / --section \"<heading>\" --file F prints just that part; split stores with knowledge_health.py shard F): ${over}"
 python3 - "$ctx" <<'PY'
 import json, sys
 print(json.dumps({"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": sys.argv[1]}}))

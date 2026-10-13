@@ -84,8 +84,8 @@ def read(path, ref):
 
 def files(ref):
     pats = {
-        'learning': ['build/LEARNINGS-LOG.md'],
-        'playbook': ['build/APP-ACTIONS-PLAYBOOK.md'],
+        'learning': ['build/LEARNINGS-LOG.md', 'build/kb/LEARNINGS-LOG/[0-9]*.md', 'build/kb/LEARNINGS-LOG/INDEX.md'],
+        'playbook': ['build/APP-ACTIONS-PLAYBOOK.md', 'build/kb/APP-ACTIONS-PLAYBOOK/[0-9]*.md'],
         'map': ['build/KNOWLEDGE-MAP.md'],
         'skill': ['build/skills/*.md'],
         'rule': ['build/rules/RULES-*.md'],
@@ -140,14 +140,45 @@ def score(qws, phrase, title, body):
     # every query word matched counts more than many hits of one word
     return s + (2 if len(set(hit)) == len(set(qws)) and len(qws) > 1 else 0), set(hit)
 
+def print_sections(a):
+    """Print whole sections by heading, so a file of ANY size is read one section at a time (Rule 128)."""
+    if a.rule:
+        rx = re.compile(r'^(#{1,4}) .*\b(?:RULE|Rule|Standing Rule)\s+' + re.escape(a.rule) + r'(?![0-9])')
+        paths = sorted(glob.glob(os.path.join(ROOT, 'build/rules/RULES-*.md')))
+    else:
+        if not a.file: sys.exit('--section needs --file')
+        stem = os.path.splitext(os.path.basename(a.file))[0]
+        paths = [os.path.join(ROOT, a.file)] + sorted(glob.glob(os.path.join(ROOT, 'build/kb', stem, '[0-9]*.md')))
+        ws = words(a.section)
+    n = 0
+    for path in paths:
+        lines = read(path, None).split('\n'); i = 0
+        while i < len(lines):
+            m = re.match(r'^(#{1,4}) ', lines[i])
+            hit = m and ((a.rule and rx.match(lines[i])) or (a.section and all(w in lines[i].lower() for w in ws)))
+            if hit:
+                lvl = len(m.group(1)); j = i + 1
+                while j < len(lines) and not (re.match(r'^(#{1,4}) ', lines[j]) and len(re.match(r'^(#{1,4}) ', lines[j]).group(1)) <= lvl):
+                    j += 1
+                print(f'===== {os.path.relpath(path, ROOT)}:{i+1}'); print('\n'.join(lines[i:j]).rstrip()); print(); n += 1; i = j
+            else: i += 1
+    if not n: print('no matching heading — try fewer words, or recall.py "<words>" to find where it lives')
+    return 0
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('query', nargs='+')
+    ap.add_argument('query', nargs='*')
     ap.add_argument('--top', type=int, default=15)
     ap.add_argument('--kind', help='comma list: learning,playbook,map,skill,rule,project,tool')
     ap.add_argument('--ref', help='search another branch (git ref) instead of the working tree — facts only (Rule 119)')
     ap.add_argument('--min', type=int, default=2, help='minimum score to show')
+    ap.add_argument('--show', type=int, default=0, help='also print the text of the best N blocks (up to 80 lines each)')
+    ap.add_argument('--rule', help='print rule N in full with EVERY amendment, wherever it sits in the rule files (no size limit)')
+    ap.add_argument('--section', help='print the section(s) whose heading contains these words; use with --file')
+    ap.add_argument('--file', help='file for --section (a split store is searched across its parts too)')
     a = ap.parse_args()
+    if a.rule or a.section: return print_sections(a)
+    if not a.query: ap.error('give search words, or --rule N, or --section "<heading>" --file <path>')
     q = ' '.join(a.query); qws = words(q); phrase = q.lower().strip() if len(qws) > 1 else ''
     kinds = set(a.kind.split(',')) if a.kind else None
     res = []
@@ -171,6 +202,10 @@ def main():
     for s, kind, rel, line, title, snip in res[:a.top]:
         print(f'{s:>3} {kind:<8} {rel}:{line}  {title}')
         if snip and snip != title: print(f'             ↳ {snip}')
+    for s, kind, rel, line, title, snip in res[:a.show]:
+        lines = read(os.path.join(ROOT, rel), None).split('\n')[line - 1:]
+        end = next((k for k, l in enumerate(lines[1:], 1) if HEAD.match(l)), len(lines))
+        print(f'\n===== {rel}:{line}'); print('\n'.join(lines[:min(end, 80)]).rstrip())
     return 0
 
 if __name__ == '__main__':

@@ -6,8 +6,8 @@ Reuse what is found; never rediscover it. When something NEW is learned, write i
 names for that kind of thing **in the same pass**, then add or extend a row here if no row would lead to it.
 
 How the stores divide (each fact lives in ONE place; this map and `recall.py` find it):
-- **`build/LEARNINGS-LOG.md`** — every dated lesson, newest at the bottom (`## L0nnn — date — title`). ~400 KB: never read whole; `recall.py --kind learning` or `grep -n "^## L0" build/LEARNINGS-LOG.md`.
-- **`build/APP-ACTIONS-PLAYBOOK.md`** — HOW to do things on ShopView / TestRail / Jira (recipes, traps). ~530 KB: search it.
+- **`build/LEARNINGS-LOG.md`** — every dated lesson; the last 14 days in full, older entries moved byte-verified to `build/kb/LEARNINGS-LOG/` (titles in its `INDEX.md`). New entries go at the BOTTOM as `## L0nnn — date — title`.
+- **`build/APP-ACTIONS-PLAYBOOK.md`** — HOW to do things on ShopView / TestRail / Jira. Now a small index of every section heading → its part in `build/kb/APP-ACTIONS-PLAYBOOK/`. Add a new recipe to the index file; the size check splits it again when needed.
 - **`build/rules/RULES-*.md`** — what we MUST / MUST NOT do. **`build/skills/*.md`** — the procedure per kind of job.
 - **`build/<project>/PROJECT-STATE.md`** — per suite: sources, people, environments, runs, data, scripts, open items.
 - **`build/testing-tools/`** — shared tools (each starts with a comment saying what it does). Per-run scripts live in `build/<project>/run*/`.
@@ -34,6 +34,7 @@ How the stores divide (each fact lives in ONE place; this map and `recall.py` fi
 | reach TestRail / Jira / Confluence | `build/skills/14-ACCESS-RESILIENCE.md`; `build/ATLASSIAN-JIRA-ACCESS-METHOD.md`; `/tmp/testrail/creds.json` keys are `email`, `password`, `host`; `build/testing-tools/tr_client.py` |
 | the browser cannot connect (ERR_PROXY_CONNECTION_FAILED) | `bash build/testing-tools/ensure_bridge.sh` before EVERY normal-browser script, the TestRail page scan included |
 | the QA branch went to sleep / is down | L0307 (watch the real thing); L0317 (network error → sleep page); `build/testing-tools/wake_branch.mjs`, `wait_branch_up.sh` |
+| read a file that is too big to read whole (Rule 128) | `recall.py "<words>" --show 3` (the blocks themselves) · `recall.py --rule N` (a rule + all its amendments) · `recall.py --section "<heading>" --file <path>` · `python3 build/testing-tools/knowledge_health.py` (sizes vs budgets) · `knowledge_health.py shard <file>` / `verify` / `logical` |
 | store a secret | `/tmp` only, chmod 600; `python3 build/testing-tools/scan_secrets.py --staged` before every commit (Rule 82) |
 
 ## Making the data a test needs

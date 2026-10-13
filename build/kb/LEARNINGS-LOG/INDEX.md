@@ -1,0 +1,322 @@
+# LEARNINGS-LOG — every moved entry, by part (titles only; recall.py searches the parts)
+
+## build/kb/LEARNINGS-LOG/001-L0036-L0080.md
+- L0036 · 2026-09-10 · #staging #build-verify #pdf #print #seeFinancialData #custom-roles #automation #methodology
+- L0035 · 2026-09-10 · #staging #access #cookies #cloudflare #roles #methodology
+- L0034 · 2026-09-10 · #testrail #mistake-corrected #steps-format #diagnosis
+- L0033 · 2026-09-10 · #shopview-app #api #probe #harness #mistake-corrected
+- L0032 · 2026-09-10 · #playwright #harness #mistake-corrected
+- L0031 · 2026-09-10 · #shopview-app #build-verify #labels #mistake-corrected #rule-57
+- L0030 · 2026-09-10 · #shopview-app #roles-permissions #route #build-verify
+- L0029 · 2026-09-10 · #methodology #defects #never-bite #qa-lead
+- L0028 · 2026-09-09 · #testrail #fr-view #build-verify #re-stamp #efficiency #methodology #deadlock
+- L0027 · 2026-09-09 · #rule #build-verify #expected #build-glossary #tester-ready #qa-lead
+- L0026 · 2026-09-09 · #rule #authenticity #five-dimensions #source-verify #close-out-gate #tooling #never-bite
+- L0025 · 2026-09-09 · #mistake-corrected #rule-41 #titles #preconds-steps #source-verify #harness #testrail
+- L0024 · 2026-09-09 · #mistake-corrected #rule-57 #source-of-truth #qa-lead #methodology
+- L0023 · 2026-09-09 · #testrail #playwright #harness #mistake-corrected #automated #methodology
+- L0022 · 2026-09-09 · #mistake-corrected #lanes #build-verify #test-execution #scope #methodology
+- L0021 · 2026-09-09 · #rule #source-verify #qa-lead #methodology
+- L0020 · 2026-09-09 · #rule #testrail #test-runs #qa-lead
+- L0019 · 2026-09-09 · #mistake-corrected #build-verify #ui-walk #rule-97 #self-unblock
+- L0018 · 2026-09-09 · #testrail #runnable-gate #skill-18
+- L0019 · 2026-09-10 · #rule #qa-lead #methodology
+- L0017 · 2026-09-09 · #playwright #testrail #bridge #mistake-corrected
+- L0016 · 2026-09-09 · #shopview-app #roles-permissions #build-verify #route
+- L0017 · 2026-09-09 · #probe #playwright #mistake-corrected
+- L0018 · 2026-09-09 · #probe #shopview-app #mistake-corrected
+- L0015 · 2026-09-09 · #mistake-corrected #source-verify #methodology #provenance
+- L0015 · 2026-09-09 · #methodology #probe #mistake-corrected
+- L0016 · 2026-09-09 · #probe #playwright #shopview-app
+- L0013 · 2026-09-08 · #rule #test-execution #qa-lead
+- L0014 · 2026-09-08 · #mistake-corrected #source-currency #test-execution
+- L0011 · 2026-09-08 · #testrail #render #api #mistake-corrected
+- L0012 · 2026-09-08 · #testrail #froala #methodology
+- L0010 · 2026-09-08 · #testrail #deadlock #methodology
+- L0009 · 2026-09-08 · #build-verify #rule #testrail
+- L0008 · 2026-09-08 · #roles-permissions #shopview-app #rule
+- L0007 · 2026-09-08 · #shopview-app #build-verify #roles-permissions
+- L0006 · 2026-09-08 · #roles-permissions #shopview-app #mistake-corrected #rule
+- L0005 · 2026-09-08 · #methodology #shopview-app #build-verify
+- L0004 · 2026-09-08 · #testrail #deadlock #build-verify
+- L0003 · 2026-09-08 · #access #cookies #shopview-app
+- L0002 · 2026-09-08 · #source-verify #build-verify #rule
+- L0001 · 2026-09-08 · #methodology #mistake-corrected
+- L0034 — 2026-09-10 · a probe that mutates shared state must restore it in a `finally`, and the restore must not need a fresh login
+- L0035 — 2026-09-10 · a work order LINE is a table row, not an expansion panel — and it has its own test-ids
+- L0036 — 2026-09-10 · work order lines are EXPANDED BY DEFAULT, so clicking "expand" collapses them
+- L0036 — 2026-09-10 · FIVE FALSE BLOCKERS IN ONE SESSION, ALL THE SAME MISTAKE: MY INSTRUMENT BROKE AND I BLAMED THE PRODUCT
+- L0037 — 2026-09-10 · the chain went idle between steps and the QA lead had to ask
+- L0038 — 2026-09-10 · Rule 103 said "ask", so a STATUS line slipped through in shorthand
+- L0039 — 2026-09-10 · a defect was drafted quoting spec rules I had never opened
+- L0040 — 2026-09-10 · the printout is BUILT ON DEMAND into `#wo-print-root`; print media alone shows the ordinary screen
+- L0041 — 2026-09-10 · standing authorisation to unblock, and the seven routes that clear almost everything
+- L0042 — 2026-09-10 · the QA lead had to show me the line operations; they are now written down
+- L0043 — 2026-09-10 · a refusal names its precondition, and a reading names its element
+- L0044 — 2026-09-10 · a case number without its run makes him hunt
+- L0045 — 2026-09-10 · the ticket tool is MARKDOWN, and a ticket without pictures is not a ticket
+- L0046 — 2026-09-10 · he had told me the ticket shape before, and I wrote my own anyway
+- L0047 — 2026-09-10 · he gave the ticket order; I had invented one an hour earlier
+- L0048 — 2026-09-10 · "no message appeared" is a negative claim and needs its own control
+- L0049 — 2026-09-10 · a requirement read literally against a case it was not written for
+- L0050 — 2026-09-11 · a tab is a surface, and lazily-loaded code cannot be grepped before you click
+- L0051 — 2026-09-11 — A SHARED BRANCH MOVES UNDER YOU: GUARD EVERY READING, DO NOT TRUST ONE
+- L0052 — 2026-09-11 — TWO TEMPLATES PRINT THE SAME MONEY IN A DIFFERENT ORDER: COMPARE THE SET, NOT THE LIST
+- L0053 — 2026-09-11 — RUN THE POSITIVE CONTROL IN THE SAME PROBE, NOT AS A SEPARATE ERRAND
+- L0054 — 2026-09-11 — ROUTES AND MECHANICS LEARNED ON sv9872 (Invoice Design Selection)
+- L0055 — 2026-09-11 — ONE BRANCH CAN HOST MORE THAN ONE ORGANISATION, AND THE DEV LOGIN REACHES ONLY ONE
+- L0056 — 2026-09-11 — `iam/change-location` IS NOT A SAFE WAY TO SWITCH LOCATION — AND REPEATING A KNOWN-BROKEN CALL IS THE REAL FAULT
+- L0057 — 2026-09-11 — `limit=N` IS SILENTLY IGNORED ON THIS API; IT CAPS AT 100
+- L0058 — 2026-09-11 — CREDIT MEMOS: WHERE THEY LIVE AND WHAT "RAISED AGAINST" MEANS
+- L0059 — 2026-09-11 — SEEDING AN IMPORTED INVOICE (two traps, both cost a round each)
+- L0056 — 2026-09-11 — ONE BRANCH CAN HOLD TWO ORGANISATIONS, AND THE DEV LOGIN ONLY REACHES ONE
+- L0057 — 2026-09-11 — A SESSION THAT READS IS NOT A SESSION THAT CLICKS
+- L0058 — 2026-09-11 — WHEN WALKING STALLS, GREP THE SERVED BUNDLE; DO NOT GUESS URLS
+- L0059 — 2026-09-11 — AN EVIDENCE AUDIT IS DELIVERED ONCE, AND HIS RULING CLOSES IT
+- L0060 — 2026-09-12 — A CONTAINER EXCLUDED BY CLASS *SUBSTRING* CAN SWALLOW THE WHOLE PAGE
+- L0061 — 2026-09-12 — THE CUSTOMER PORTAL'S "PDF" IS THE BROWSER'S OWN PRINT OF A PREVIEW PAGE
+- L0062 — 2026-09-12 — THE STAGING COOKIE IS A ~24-HOUR WINDOW, AND THE DEV-MODE PANEL DOES NOT REOPEN IT
+- L0063 — 2026-09-12 — A POSITIVE SIGNAL THAT COMES OUT OF YOUR OWN FILENAME IS NOT EVIDENCE
+- L0064 — 2026-09-12 — THE DEV-MODE QUICK-LOGIN PANEL ON STAGING *DOES* WORK — WITH A LIVE COOKIE
+- L0065 — 2026-09-12 — "THE CONTROL ISN'T THERE" IS USUALLY "THIS RECORD DOESN'T QUALIFY FOR IT"
+- L0066 — 2026-09-12 — REWRITING SOMEONE ELSE'S TICKET: SNAPSHOT FIRST, TWO API VERSIONS, ONE CHANGE ONLY
+- L0067 — 2026-09-12 — "ANOTHER COMPANY'S NAME" WAS THIS COMPANY'S OWN NAME, ONE FIELD AWAY
+- L0068 — 2026-09-12 — REPORT ON A CADENCE HE CAN PREDICT, NOT WHEN I HAPPEN TO FINISH A BATCH
+- L0069 — 2026-09-12 — CHECK YOU ARE ON THE PAGE YOU THINK YOU ARE ON, BEFORE BLAMING A CONTROL
+- L0070 — "the control offers nothing" is usually "this record does not qualify" (second instance in two days)
+- L0071 — three guesses at a route cost more than one listener
+- L0072 — strip `<style>` before matching anything in a rendered document
+- L0073 — a reversed invoice stops existing; capture before you destroy
+- L0074 — the run badge counts every environment, so it cannot answer "did you test this on production?"
+- L0075 — "there is no screen for that" is a claim about my walking, not about the product
+- L0076 — an error message can name the wrong cause
+- L0077 — prove the search before trusting its zero
+- L0078 — reuse the committed harness before hand-rolling a browser
+- L0079 — 🛑 A COUNT IS NOT A RESULT. CLICK THE THING THE USER CLICKS.
+- L0080 — "everything is zero" can mean the service is down, not that nothing matched
+
+## build/kb/LEARNINGS-LOG/002-L0081-L0164.md
+- L0081 — a Story Defect cannot be converted from a Task over the API
+- L0082 — the search modal REMEMBERS its scope tab across close/reopen, so the "All" view must be selected, never assumed
+- L0083 — read the app's OWN network response; a cross-check you issue yourself can answer a different question
+- L0084 — a visibility filter turns "further down the list" into "missing"
+- L0085 — a declarative seed manifest is the positive control you already have
+- L0086 — reconcile the execution plan against the run's own membership before judging anything
+- L0087 — settle the SCOPED view too, or the harness manufactures the very defect it is hunting
+- L0088 — `+` is a space in a query string, and `decodeURIComponent` will not tell you
+- L0089 — check whether the flaw actually bit before rewriting the conclusions
+- L0090 — a case that says "create a record, then search for it" is not a search case
+- L0091 — read the record's WHOLE field set; a guessed key list hides the null that changes the verdict
+- L0092 — a missing `await` reads as a product capability loss
+- L0093 — "we can only sign in as Admin or Tech" is a fact about quick-login, not about the branch
+- L0094 — a fixture gap detector is blind wherever the write name and the read name differ
+- L0095 — never judge from a results file a run is still writing
+- L0096 — seeding the missing value is what tells a real miss from a data gap, and it cuts both ways
+- L0097 — the refusal names the cause; read it before calling the route closed
+- L0098 — "none found" from a lookup that never ran is the same sentence as "none exist"
+- L0099 — I judged 41 cases against text my own extractor had truncated
+- L0100 — deleting a state file mid-run just hands the old code a clean slate
+- L0101 — a 201 over a silent no-op, and the field you send is not always the field it reads
+- L0102 — after changing who you are, ask the SERVER who you are
+- L0103 — the fourth wall in front of the same twelve cases, and it was mine too
+- L0104 — take the query apart before reporting that a search is broken
+- L0105 — THE SYNTHESIS OF 2026-09-14: almost every false finding came from a check that could not run and did not say so
+- L0106 — build the undo before the do, and let it refuse
+- L0107 — the queue runner reads its file as it goes, so rewriting it mid-run splices garbage into the run
+- L0108 — `pgrep -f "X"` from a script whose own command line contains X waits for itself, for ever
+- L0109 — the tab strip renders its TOTAL before its breakdown, and a settle that accepts either reads a zero
+- L0110 — Quasar's select opens on **mousedown**, so `element.click()` from `page.evaluate` never opens it
+- L0111 — the table BEHIND a dialog is itself `.q-item` rows, so an unscoped option selector reads it as the dropdown
+- L0112 — a ruling supersedes a case's "Blocked until the Product Owner has ruled", and the gate has to know that
+- L0113 — before filing, search for ADJACENT tickets, not just duplicates
+- L0114 — a loose option match picks the WRONG option, and "saved with no error" hides it
+- L0115 — a repeat that reuses the same INPUT is not an independent observation when the app remembers the input
+- L0116 — an index into a list must be clamped, or a test that never ran reports as a negative
+- L0117 — THE POINTER IS PART OF THE INSTRUMENT: a mouse left where it clicked keeps hovering
+- L0118 — a long ticket is not a rigorous ticket; it is an unread one
+- L0119 — "not reproducible any more" is QA Complete, not a withdrawal
+- L0120 — when a rule has to be repeated three times, the fix is a command, not better recall
+- L0121 — the index to 2026-09-15: one mistake wearing eleven costumes
+- L0122 — the two standards live in the same run, and mixing them fails silently
+- L0123 — a false PASS is worse than a false defect, and only a pre-check catches it
+- L0124 — a control that cannot be reached by subtraction has to be BUILT
+- L0125 — name a thing the same way when you click it as when you read it
+- L0126 — becoming someone else changes who asks the next question
+- L0127 — an empty column is not the application's view of the thing
+- L0128 — the verify that fails on every case may be measuring the wrong thing
+- L0129 — the pre-check paid for itself the day it was written
+- L0130 — A picture in a Jira ticket only reads without clicking if the media node carries its TRUE size and spans the description (2026-09-15, approved by the QA
+- L0131 — A report that no longer reproduces is KEPT, corrected and left for the QA lead to pass — never closed by us (2026-09-15)
+- L0132 — A framed comparison picture is not an annotated one (2026-09-15)
+- L0133 — A branch whose API is asleep does not look asleep; and sv9160's sign-in changed on 16 September (2026-09-16)
+- L0134 — Three corrections from the QA lead, 16 September 2026: the product's words, and never rewrite a report into the past
+- L0135 — Two named scopes, and the scope question comes before the work (2026-09-16)
+- L0136 — A `401 sso_required` ON THE API HOST IS A STATEMENT ABOUT MY COOKIE JAR, NEVER ABOUT THE PRODUCT (2026-09-16)
+- L0137 — A HANDOFF IS A WORK LIST; THE STANDARD IS MINE (2026-09-16, Rule 111)
+- L0138 — A DEFECT AGAINST AN UNFINISHED STORY IS NOISE; THE CASE IS **BLOCKED**, NOT FAILED (2026-09-16, Rule 112)
+- L0139 — THE ENVIRONMENT LINE MOVED TO SECOND-TO-LAST (2026-09-16)
+- L0140 — MY CAUTION RESTED ON A PREMISE I NEVER CHECKED: `app.shopview.com` IS NOT A LIVE BUSINESS (2026-09-16)
+- L0141 — "IT DOES NOT ROTATE" AND "IT NEVER GOES STALE" ARE DIFFERENT CLAIMS (2026-09-17)
+- L0142 — THE 20 IS PER SECTION, NOT A CEILING ON THE WHOLE BOX (2026-09-17)
+- L0143 — HE REWROTE MY TICKET AND THE LESSON WAS VOICE, NOT LAYOUT (2026-09-17)
+- L0144 — I DREW THE WRONG LESSON FROM HIS EDIT, AND THAT IS ITS OWN MISTAKE (2026-09-17)
+- L0145 — MY TICKETS WERE NOT WRITTEN FOR THE PEOPLE WHO HAVE TO USE THEM (2026-09-17)
+- L0146 — NO CASE IDS OR RUN LINKS IN A JIRA DESCRIPTION (2026-09-17)
+- L0147 — EXAMPLES: ONE, OR TWO FOR A CONTRAST. MORE IS PADDING (2026-09-17)
+- L0148 — IF THE TEXT MAKES A COMPARISON, THE PICTURE MUST SHOW BOTH SIDES (2026-09-17)
+- L0149 — A SCREENSHOT IS A DELIVERABLE, NOT A DUMP (2026-09-17)
+- L0150 — I ALMOST FILED A DEFECT AGAINST WORKING CODE, AND THE CAUSE WAS MY OWN WAIT (2026-09-17)
+- L0151 — "THERE IS ONLY ONE ORGANISATION ON THIS BRANCH" WAS FALSE; THE PRODUCT SHIPS A PAGE THAT MAKES ANOTHER (2026-09-17)
+- L0152 — THE LIST-PAGE SEARCH AND THE MAIN SEARCH ARE DIFFERENT ENGINES, AND THE SCREEN SAYS SO (2026-09-17)
+- L0153 — THREE SMALL DURABLE FACTS FROM THE SAME PASS (2026-09-17)
+- L0154 — I SCANNED THE FIRST SCREENFUL AND CALLED THE REST ABSENT — TWICE IN ONE HOUR (2026-09-17)
+- L0155 — THE "FAULT" WAS THE RECOGNISED PATTERN, AND ONE READ OF THE MARKUP SETTLED IT (2026-09-17)
+- L0156 — THE PRECONDITION READ BACK AS GONE, AND IT WAS MY WAIT AGAIN (2026-09-17)
+- L0157 — I QUOTED THE SPEC IN FIVE TICKETS AND THEN TOLD MYSELF I WAS NOT ALLOWED TO READ IT (2026-09-17)
+- L0158 — "WORK ORDER", NEVER "JOB" — THE PRODUCT'S OWN WORD, AND I HAD DRIFTED (2026-09-17)
+- L0159 — WHEN THE STATE CANNOT BE MADE, THE PRODUCT'S OWN TABLE IS BETTER EVIDENCE THAN NONE (2026-09-17)
+- L0160 — TWO DIFFERENT PARTS CAN SHARE A PART NUMBER, AND IT NEARLY COST TWO FALSE DEFECTS (2026-09-17)
+- L0161 — A NARROWED WINDOW IS NOT A PHONE, AND SAYING "TESTED ON MOBILE" WITHOUT SAYING WHICH IS A HALF-TRUTH (2026-09-17)
+- L0162 — A BLOCKED CASE IS A QUESTION ABOUT THE DATA, AND TWO OF THREE ANSWERED YES (2026-09-17)
+- L0163 — THE SCOPE TAB CAUGHT ME AGAIN, IN A HELPER I WROTE MYSELF (2026-09-17)
+- L0164 — 2026-09-17 — A RANKING SIGNAL IS ISOLATED BY BUILDING THE PAIR, NOT BY WAITING FOR ONE
+
+## build/kb/LEARNINGS-LOG/003-L0165-L0277.md
+- L0165 — 2026-09-17 — A PASS INHERITED FROM A SIGN-OFF IS AN UNVERIFIED PASS; RE-RUN IT THE HOUR THE BRANCH COMES BACK
+- L0166 — 2026-09-18 — PROVE A RANKING SIGNAL BY REMOVING IT, BUT NEVER WITH A STATUS YOU CANNOT UNDO
+- L0167 — 2026-09-18 — THE SIMPLIFIED TICKET SHAPE (LEARNED FROM THE QA LEAD'S CHATGPT REWRITE OF SV-10238)
+- L0168 — A comment on a developer's ticket is picture-led and quotes the spec, never our own vocabulary (2026-09-20)
+- L0169 — A bare number is jargon, and an invented synonym is not plain English (2026-09-20)
+- L0170 — No metaphors, and no single "Reference" dump at the end of a message (2026-09-20)
+- L0171 — A permission list is data; the dependencies between permissions are rules, and they live on the settings screen (2026-09-20)
+- L0172 — A comment is held to the same bar as a ticket: a picture, annotated, and the spec quoted (2026-09-20)
+- L0173 — Our own recorded passes ARE the before-and-after; search them before claiming none exists (2026-09-20)
+- L0174 — A ranking comparison is only evidence when every other signal is held equal (2026-09-20)
+- L0175 — Report the gap, do not prescribe the fix; and keep every picture under the steps that produced it (2026-09-20)
+- L0176 — The Expected behaviour is never changed. Not ever. (2026-09-21)
+- L0177 — The Expected behaviour IS the source's exact quote (2026-09-21)
+- L0178 — A clamped number in a response is not evidence about ordering (2026-09-21)
+- L0179 — Never raise a defect from an internal field; only from behaviour a source requires (2026-09-21)
+- L0180 — 2026-09-21 — A RAW CALL TO THE SEARCH SERVICE CANNOT OBSERVE PAGE CONTEXT, SO IT CAN NEVER DISPROVE A CONTEXT RULE
+- L0181 — 2026-09-21 — THE FIVE WRONG CALLS WERE ONE MISTAKE FIVE TIMES: JUDGING THE PRODUCT FROM A PROXY
+- L0182 — 2026-09-21 — THE API-VERSUS-SCREEN LESSON NOW HAS ITS OWN FILE, WITH TWELVE MEASURED CASES
+- L0183 — 2026-09-22 — THE BLOCKER WAS MINE. CAUTION IS NOT A BLOCKED REASON.
+- L0184 — 2026-09-22 — five self-imposed blockers, cleared by the QA lead in one message
+- L0185 — 2026-09-22 — a work order assignment write returns 201 and saves nothing
+- L0186 — 2026-09-22 — the branch now needs TWO cookies; the boot script said one, in capitals
+- L0187 — 2026-09-22 — a branch sign-in lasts about an hour, and says so two different ways
+- L0188 — 2026-09-22 — the probes were all in /tmp, one restart from gone
+- L0189 — 2026-09-22 — A tie-break check on the Parts tab must be built on INVENTORY parts, never catalogue parts
+- L0190 — 2026-09-22 — Seven routes named before "not proved", and the refusal text is the map
+- L0191 — 2026-09-22 — A ticket picture is sized in THREE places, and `|width=N!` is only one of them
+- L0192 — 2026-09-23 — A step that gives only the example dies with the data; one that gives only the instruction is research, not a step
+- L0193 — A system role saves nothing, and the control that proves it costs one minute (2026-09-24)
+- L0194 — "No record is changed by this switch" is the product answering the question (2026-09-24)
+- L0195 — Judge an absence only with every menu open and the row hovered (2026-09-24)
+- L0196 — A dialog backdrop reads exactly like a dead button (2026-09-24)
+- L0197 — Look for the login that already exists before building a person (2026-09-24)
+- L0198 — A recorded credential is a claim about the past, not the present (2026-09-24)
+- L0199 — Use the product's own word, not a word I coined for it (2026-09-25)
+- L0200 — An authorised exception is authorised once, for what was named (2026-09-25)
+- L0201 — A title is read by a person, so write it the way the neighbours are written (2026-09-25)
+- L0202 — A cached body file is not the live case (2026-09-25)
+- L0203 — Reset a role to its default and SAVE before you assign it to anyone (QA lead, 2026-09-25)
+- L0204 — A row can carry several three-dot menus, and `.first()` picks the wrong one
+- L0205 — Hunting for a control I expected, instead of reading what is there
+- L0206 — Never hand-compute annotation coordinates; have the browser measure them (2026-09-25)
+- L0207 — A build note inside a test case is a claim about the past, never evidence about today (QA lead, 2026-09-25)
+- L0208 — Reconcile my own verdict file against the live run before quoting any count (2026-09-25)
+- L0209 — "The spec will be updated" turns every open finding in that area into a question, not a defect
+- L0210 — Use the product's own word: Vendor, never "supplier" (QA lead, 2026-09-25)
+- L0211 — When a whole feature looks missing, suspect the ROUTE before the product (2026-09-25)
+- L0212 — An icon button's label is in its aria-label and tooltip, NEVER in its text (2026-09-28)
+- L0213 — A work order lives in a WORKPLACE, and the wrong one silently redirects to the list (2026-09-28)
+- L0214 — A setting that cascades does not take effect until its warning is confirmed (2026-09-28)
+- L0215 — A tool that silently builds the WRONG thing is worse than one that fails (2026-09-28)
+- L0216 — Seeding order matters: running a flow consumes the states later checks need (2026-09-28)
+- L0217 — 2026-09-28 — A confirming button RE-LABELS ITSELF; one click is half a press
+- L0218 — 2026-09-28 — The reorder call, and which ids it wants
+- L0219 — 2026-09-28 — Reordering on an invoiced work order, and the two-person race
+- L0220 — 2026-09-28 — `run_probe.sh` resolves the probe against the CURRENT directory
+- L0221 — 2026-09-28 — "Receive Later" is a PERMISSION, and its absence looks like a missing feature
+- L0222 — 2026-09-28 — Cores belong to STOCK parts; ordered parts cannot carry one
+- L0223 — 2026-09-28 — Deferring and then receiving a part: the route
+- L0224 — 2026-09-28 — Creating an inventory part: two required fields the form does not mark
+- L0225 — 2026-09-28 — The role editor: matrix rows, switches, and the order clicks must go in
+- L0226 — 2026-09-28 — Never call a button "offered" without reading its disabled state
+- L0227 — 2026-09-28 — The permission names in `fe-permissions` are not the names in the editor
+- L0228 — 2026-09-28 — Reusing one supplier invoice number across two of a supplier's orders is refused
+- L0229 — 2026-09-28 — The QA lead ruled the supplier invoice number is UNIQUE; the spec is wrong
+- L0230 — 2026-09-28 — Two tooling repairs made while doing that
+- L0231 — 2026-09-28 — Global Search moved to staging; four false readings before one true one
+- L0232 — 2026-09-28 — Five Global Search checks now fail against tickets the team closed OBSOLETE
+- L0233 — the pointer is part of the fixture, and forgetting it nearly produced a duplicate ticket
+- L0234 — the front end keeps the location in browser storage, so switching it behind the screen proves nothing
+- L0235 — a tool that calls process.exit steals the caller's cleanup
+- L0236 — ids and state belong to an environment, and a hard-coded one lies quietly
+- L0237 — a result the QA lead has already judged is HIS; do not overwrite it, surface the conflict
+- L0238 — the local bridge dies on its own, and its symptom looks exactly like a dead site
+- L0239 — the gate for this already existed and I never ran it; a gate nobody runs is not a gate
+- L0240 — A CSS ELLIPSIS IS INVISIBLE TO `innerText`, SO A CUT-OFF ROW READS BACK AS WHOLE
+- L0241 — THE SEARCH PANEL IS A FIXED 640px, SO A TRUNCATION FINDING IS NOT A WINDOW-SIZE ARTEFACT
+- L0242 — A CASE'S OWN SEARCH TERM CAN MAKE IT IMPOSSIBLE TO FAIL
+- L0243 — A SHARED SHELL TOOL MUST RESOLVE ITS PATHS FROM ITSELF, NOT FROM THE CALLER
+- L0244 — "VISIBLE" IS A CHARACTER-LEVEL QUESTION; PER-ELEMENT VISIBILITY INVENTS DEFECTS
+- L0245 — `pkill -f "<pattern>"` MATCHES THE SHELL THAT RUNS IT (exit 144), AND KNOWING THAT WAS NOT ENOUGH
+- L0246 — A CORRECTION THAT LIVES ONLY IN THE RESULT IS TEMPORARY; IT MUST GO INTO THE TEST
+- L0247 — "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE"
+- L0248 — A PARSER THAT SILENTLY DROPS ROWS IS WORSE THAN ONE THAT CRASHES
+- L0249 — SEARCH WHAT WE ALREADY KNOW BEFORE CALLING SOMETHING BROKEN, NOT JUST BEFORE CALLING IT BLOCKED
+- L0250
+- L0251
+- L0252
+- L0253
+- L0254
+- L0255
+- L0256 — `typeQuery` ALREADY closes and reopens the panel, and does NOT wait for the search (2026-10-01)
+- L0257 — the app URL variable is `GS_APP`, not `APP` — a wrong name fails SILENTLY (2026-10-01)
+- L0258 — a dead bridge reads as `bridge error: TypeError: fetch failed` IN THE PAGE (2026-10-01)
+- L0259 — a FROZEN anchor file cannot survive a shared environment; harvest anchors LIVE (2026-10-01)
+- L0260 — the identifier field is NOT named the same on every endpoint (2026-10-01)
+- L0261 — `api()` PREPENDS the API host; pass a PATH, and set `GS_API` for production (2026-10-01)
+- L0262 — the scope tab is STICKY and scopes the NEXT test's search (2026-10-01)
+- L0263 — a recent record shows a RELATIVE date ("Today"), not a calendar one (2026-10-01)
+- L0264 — one ranking cannot serve both anchor needs (2026-10-01)
+- L0265 — "All" always carries a count, so counting it tests nothing (2026-10-01)
+- L0266 — `GS_VW`/`GS_VH` DO NOT reach the production session (2026-10-01)
+- L0267 — the panel REMEMBERS its query, so reopening shows results, not recent activity (2026-10-01)
+- L0268 — a test that opens a record leaves the NEXT test on that record's page (2026-10-01)
+- L0269 — never pipe a long run through `grep`: it buffers, and the output is lost if it is killed (2026-10-01)
+- L0270 — a data hunt seeded from the SCREEN finds nothing when the screen is empty (2026-10-01)
+- L0271 — "a prefix match" means the NAME begins with the query, not that any word does (2026-10-01)
+- L0272 — count only the marks inside the element you are measuring (2026-10-01)
+- L0273 — never assume the shape of an API response inside `beforeAll` (2026-10-01)
+- L0274 — `/customers` also matches `/customers/<id>`, so a record page looked like the list page (2026-10-01)
+- L0275 — make the failure happen rather than waiting to observe one (2026-10-01)
+- L0276 — COUNT FROM TESTRAIL, NOT FROM A FILE THAT SAYS WHAT TESTRAIL SAID (2026-10-02)
+- L0277 — A 405 NAMES THE WAY IN; THE APP'S OWN FORM NAMES IT EXACTLY (2026-10-02)
+
+## build/kb/LEARNINGS-LOG/004-L0278-L0300.md
+- L0278 — TWO ACCOUNTS BEAT EDITING A ROLE, AND HE HAD ALREADY SAID SO (2026-10-02)
+- L0279 — DERIVING A PERMISSION FROM A TAB'S NAME IS A GUESS (2026-10-02)
+- L0280 — THE DOCUMENTED PERMISSION SET WAS STALE, AND READING IT LIVE SAVED THE RUN (2026-10-02)
+- L0281 — THE OLDER SPECS NAMED STAGING'S RECORDS, AND A WHOLE FILE WENT RED FOR IT (2026-10-02)
+- L0282 — A CONFIG READ AT MODULE LOAD FAILS THE SUITE AT COLLECTION TIME (2026-10-02)
+- L0283
+- L0284
+- L0285
+- L0286
+- L0287
+- L0288
+- L0289
+- L0290
+- L0291
+- L0292
+- L0293
+- L0294
+- L0295
+- L0296
+- L0297
+- L0298
+- L0299
+- L0300

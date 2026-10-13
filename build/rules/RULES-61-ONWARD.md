@@ -5036,3 +5036,41 @@ like that even when I don't ask you to learn from what you are doing or from wha
   PROJECT-STATE and the 8 newest learnings into the session's context. **Stop** → `build/testing-tools/learning_gate.py` blocks the
   stop once when work was committed since the last learning save and no learning store changed; it clears when a store is updated,
   or with `learning_gate.py --ack "<why nothing new>"` when genuinely nothing was learned. `--status` shows what it sees.
+
+---
+
+## RULE 128 — NO FILE IS EVER TOO BIG TO USE: THE MORE WE KNOW, THE FASTER WE WORK (QA lead 2026-10-13)
+
+**QA lead, 2026-10-13, verbatim:** *"you should have a permanent solution for something you told me earlier where you confessed
+to me that a few files are too large for you to read. You have to have a mechanism for that too because eventually as you work
+every file has to become large and you will reach to such dead end in future when you would have a lot of learning to take
+advantage from but you wont be able to take advantage because those files would be too large for you. You should have a
+mechanism to tackle this future threat efficiently so that the more you have in your learning and files the more you become
+efficient regardless of the file size issue, you have to beat this problem with your strategy and better strategy to never face
+an issue due to files being over large."*
+
+**THE STRATEGY — four layers; growth makes us faster, never blocked.**
+1. **NEVER READ A WHOLE FILE TO FIND SOMETHING — RETRIEVE THE BLOCK.** `recall.py "<words>"` ranks blocks (a learning entry, a
+   playbook section, a rule, a map row) across every store and its parts, and `--show N` prints the best blocks themselves. A rule
+   is read whole with ALL its amendments by `recall.py --rule N`; one section of any file by `recall.py --section "<heading>"
+   --file <path>`. Cost is the size of the answer, not the size of the file — so file size stops mattering.
+2. **EVERY STORE HAS A SIZE BUDGET, AND AN OVER-BUDGET STORE IS SPLIT, NOT ENDURED.** `knowledge_health.py` measures every
+   knowledge file against its budget (read-first files — skills, PROJECT-STATE, RESUME-HERE — 100 KB; stores 150 KB; reference
+   200 KB). `knowledge_health.py shard <file>` moves the bulk into parts of ≤ 120 KB under `build/kb/<stem>/`, **byte-verified**
+   (original, moved region and re-joined parts hashed in `build/kb/<stem>/INTEGRITY.md`; nothing is deleted), and leaves a
+   small index AT THE SAME PATH that keeps every section heading with a pointer — so every existing link, "§J"-style reference and
+   grep still lands. Learning entries newer than 14 days stay in the main file; older ones move by entry with a titles list in
+   `build/kb/LEARNINGS-LOG/INDEX.md`. First application 2026-10-13: playbook 524 KB → 28 KB index + 55 parts; learnings log 405 KB
+   → 23 KB + 4 parts; both verified.
+3. **A FILE THAT TOOLS READ WHOLE IS NOT SPLIT UNTIL THOSE TOOLS READ THE LOGICAL FILE.** The rule files and the core skill are
+   parsed by `automation_markers.py`, `scan_secrets.py`, `check_rule_amendments.py`, `verify_suite.py`, `check_tester_readiness.py`;
+   until each is switched to `knowledge_health.py logical <file>`, those files are read per rule / per section (layer 1), never
+   whole. Big PROJECT-STATE / skill files: move dated history sections into a dated file beside them and leave a pointer.
+4. **DISTIL AS WE GO, SO WHAT MUST BE READ STAYS SMALL WHILE WHAT IS KNOWN GROWS.** When a topic has collected several learnings,
+   write (or refresh) its digest: the current best way, in a few lines — a `build/KNOWLEDGE-MAP.md` row, a suite's PROJECT-STATE
+   "What we learned" table, or a playbook recipe — pointing at the raw entries. The digest is read; the raw entries are evidence.
+   A newer learning that supersedes an older one says so (the log is append-only).
+
+**ENFORCED BY THE HARNESS, NOT MEMORY** (`.claude/settings.json`): the SessionStart hook lists every over-budget file with how to
+read it; the Stop hook (`learning_gate.py`) blocks once when a splittable store has crossed its budget, until it is split.
+Sits with Rules 88 (never bulk-read), 100 (measure on disk) and 127 (save and recall learning).
