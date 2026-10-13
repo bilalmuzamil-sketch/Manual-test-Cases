@@ -9,3 +9,10 @@ needed"*; *"ALl these test cases need to be made Automation: Ready if they are r
   (`flip_ready.py`, `write-log.txt`); nothing else changed; display fr-view 14/14; check_tester_runnable PASS;
   check_runnable_cases clean.
 - C88606: Automated + E2E, last edited by Nebojsa — NOT changed (Rule 71); same reason, also built; QA lead to decide.
+
+## Second set (QA lead: "Just work on those tests which are having Automation: Hold when they are actually Not")
+- C88606: QA lead "No" — stays on hold. C88631 (not manually testable) — the reason still holds, left.
+- The 12 "HOLD - not yet build-verified" tests: every screen their steps use observed on v26.40.8-754bd3a
+  (probe/07–11; labels in OBSERVED-UI-LABELS-sv490.md). Marker → stamp + `AUTOMATION: READY` (`flip_ready2.py`,
+  `write-log-2.txt`). C351704 step 2 reworded to the Issue Credit window's labels (same step count). Expected untouched.
+  Display fr-view 12/12; check_tester_runnable PASS; check_runnable_cases: only C351724 R3, unchanged from before.
