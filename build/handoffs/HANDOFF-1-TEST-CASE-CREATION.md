@@ -519,7 +519,7 @@ anything else.
 git fetch origin                        # STEP 0 — ALWAYS FIRST, NEVER SKIPPED
 grep -rn "<exact error string>" build/ --include=*.md | head -20
 git grep -n "<exact error string>" origin/claude/slack-session-0sxnd9 -- build/ | head -20
-grep -rn "<endpoint/tool/symptom>" build/APP-ACTIONS-PLAYBOOK.md build/skills/ | head -20
+grep -rn "<endpoint/tool/symptom>" build/APP-ACTIONS-PLAYBOOK.md build/kb/ build/skills/ | head -20
 ls build/BLOCKED-*.md
 ls build/*DIAGNOSIS*.md build/*/FINDINGS.md
 git log --all --oneline --grep="<keyword>" | head -20

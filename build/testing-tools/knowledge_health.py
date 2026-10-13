@@ -4,7 +4,7 @@
 Growth is expected; reading a whole file never is. This tool keeps every knowledge file usable at any size:
 
   python3 build/testing-tools/knowledge_health.py                 report: every knowledge file vs its size budget + remedy
-  python3 build/testing-tools/knowledge_health.py --check         exit 1 if a shardable store is over budget (used by hooks)
+  python3 build/testing-tools/knowledge_health.py --check         exit 10 if a shardable store is over budget (used by hooks)
   python3 build/testing-tools/knowledge_health.py shard <file>    split an over-budget store into byte-verified parts,
                                                                   leaving a small index at the SAME path (links keep working)
   python3 build/testing-tools/knowledge_health.py verify <file>   re-prove that index + parts == the original bytes
@@ -75,7 +75,7 @@ def report(check=False):
             r = 'OVER — read per section: recall.py --section "<heading>" --file ' + f + '; move history/archive sections to a dated file'
         print(f'{f:<62} {kb(n):>8} {b:>4} KB  {r}')
     if check:
-        return 1 if over_shardable else 0
+        return 10 if over_shardable else 0   # 10 = over budget (1 would be confused with a crash)
     return 0
 
 def split_sections(text):

@@ -221,7 +221,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   `git show`). **"Not on this branch" is NEVER a reason to conclude something does not
   exist.** Before reporting anything as impossible, blocked, unavailable or unreconstructable — **and
   before the FIRST PROBE of any environment, not after the first failure** — **grep the workspace using
-  the EXACT ERROR TEXT**, plus `grep -n "<the thing>" build/APP-ACTIONS-PLAYBOOK.md` and
+  the EXACT ERROR TEXT**, plus `grep -rn "<the thing>" build/APP-ACTIONS-PLAYBOOK.md build/kb/APP-ACTIONS-PLAYBOOK/` and
   `ls build/testing-tools/`. **A committed harness is reused, never rebuilt.** Four places, in order:
   `build/APP-ACTIONS-PLAYBOOK.md` · `build/skills/14-ACCESS-RESILIENCE.md` ·
   `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` · `build/rules/RULES-*.md` (grep, never read whole). Also

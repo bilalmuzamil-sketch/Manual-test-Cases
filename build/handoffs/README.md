@@ -54,7 +54,7 @@ full**, because **a session must not have to open another file to learn how to s
 carries: the QA-lead directive verbatim (2026-08-28); the rule that **nothing is reported as impossible,
 blocked, unavailable or unreconstructable until the workspace has been searched with the EXACT ERROR
 TEXT**; the **search drill** (`grep -rn "<exact error string>" build/ --include=*.md` ·
-`grep -rn "<endpoint/tool/symptom>" build/APP-ACTIONS-PLAYBOOK.md build/skills/` · `ls build/BLOCKED-*.md`
+`grep -rn "<endpoint/tool/symptom>" build/APP-ACTIONS-PLAYBOOK.md build/kb/ build/skills/` · `ls build/BLOCKED-*.md`
 — **several are marked RESOLVED with the cause** — · `ls build/*DIAGNOSIS*.md build/*/FINDINGS.md` ·
 `git log --all --oneline --grep="<keyword>"`); **the four places in order** (`build/APP-ACTIONS-PLAYBOOK.md`
 · `../skills/14-ACCESS-RESILIENCE.md` · `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` · `build/rules/RULES-*.md`,

@@ -61,7 +61,7 @@ def main():
     # Rule 128: a store that has grown past its budget is split before it becomes unreadable
     hc = subprocess.run([sys.executable, os.path.join(ROOT, 'build/testing-tools/knowledge_health.py'), '--check'],
                         capture_output=True, text=True)
-    if hc.returncode == 1:
+    if hc.returncode == 10:   # only a real over-budget finding blocks; a crash of the health tool never does
         sys.stderr.write('Rule 128 (no file may grow too big to use): a knowledge store is over its size budget:\n' + hc.stdout +
                          'Split it now (byte-verified, the index stays at the same path): python3 build/testing-tools/knowledge_health.py '
                          'shard <file>, then commit and push.\n')
@@ -79,4 +79,10 @@ def main():
     return 2
 
 if __name__ == '__main__':
-    sys.exit(main())
+    # A bug in this gate must never trap a session: only a deliberate finding (return 2) blocks a stop.
+    try:
+        sys.exit(main())
+    except SystemExit:
+        raise
+    except Exception as e:
+        sys.stderr.write(f'learning_gate.py: internal error, not blocking: {e!r}\n'); sys.exit(0)

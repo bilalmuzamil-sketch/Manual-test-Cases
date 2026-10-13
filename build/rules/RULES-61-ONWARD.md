@@ -3127,7 +3127,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     git fetch origin                        # STEP 0 — ALWAYS FIRST, NEVER SKIPPED
     grep -rn "<exact error string>" build/ --include=*.md | head -20
     git grep -n "<exact error string>" origin/claude/slack-session-0sxnd9 -- build/ | head -20
-    grep -rn "<endpoint/tool/symptom>" build/APP-ACTIONS-PLAYBOOK.md build/skills/ | head -20
+    grep -rn "<endpoint/tool/symptom>" build/APP-ACTIONS-PLAYBOOK.md build/kb/ build/skills/ | head -20
     ls build/BLOCKED-*.md
     ls build/*DIAGNOSIS*.md build/*/FINDINGS.md
     git log --all --oneline --grep="<keyword>" | head -20
@@ -3199,7 +3199,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     time: carry `sv_sso_session` only, and scope cookies host-only.
 
     **⇒ BEFORE THE FIRST PROBE OF ANY ENVIRONMENT — not before the first complaint about it:**
-    1. `grep -n "<the thing you are about to try>" build/APP-ACTIONS-PLAYBOOK.md`
+    1. `grep -rn "<the thing you are about to try>" build/APP-ACTIONS-PLAYBOOK.md build/kb/APP-ACTIONS-PLAYBOOK/`
     2. `ls build/testing-tools/` — **a committed harness is reused, never rebuilt** (Rule 27).
     3. Only then write a probe, and write it as a *use* of the recipe, not a rediscovery of it.
 

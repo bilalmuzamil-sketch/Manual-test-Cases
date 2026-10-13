@@ -197,7 +197,7 @@ QA-branch login (point 7 — prod is not a prerequisite), which needs only `sv_s
 ## The sequencing lesson (QA lead point 9)
 
 I probed the environment before searching the repo. Rule 97 as amended 2026-09-02 requires
-`grep -n "<the thing>" build/APP-ACTIONS-PLAYBOOK.md` and `ls build/testing-tools/` **before the first
+`grep -rn "<the thing>" build/APP-ACTIONS-PLAYBOOK.md build/kb/APP-ACTIONS-PLAYBOOK/` and `ls build/testing-tools/` **before the first
 probe**, not after the first failure. **§K held the whole production-access answer, dated 2026-07-29**,
 and §N held the whole sv8582 reporting recipe. Reading them first would have skipped the entire
 staging / Google-SSO / forged-blob detour.

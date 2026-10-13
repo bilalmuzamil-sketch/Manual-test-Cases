@@ -310,7 +310,7 @@ Keeping both duplicates the whole search drill.
   is NEVER a reason to conclude something does not exist.** Before reporting anything as impossible,
   blocked, unavailable or unreconstructable — **and before the FIRST PROBE of any environment, not after
   the first failure** — **grep the workspace using the EXACT ERROR TEXT**, plus
-  `grep -n "<the thing>" build/APP-ACTIONS-PLAYBOOK.md` and `ls build/testing-tools/`. **A committed
+  `grep -rn "<the thing>" build/APP-ACTIONS-PLAYBOOK.md build/kb/APP-ACTIONS-PLAYBOOK/` and `ls build/testing-tools/`. **A committed
   harness is reused, never rebuilt.** Four places, in order: `build/APP-ACTIONS-PLAYBOOK.md` ·
   `build/skills/14-ACCESS-RESILIENCE.md` · `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` ·
   `build/rules/RULES-*.md` (grep, never read whole). Also `ls build/BLOCKED-*.md` — **several are marked
@@ -330,7 +330,7 @@ Keeping both duplicates the whole search drill.
 | L135 | "not on this branch" is never a reason to conclude something does not exist | sentence 2 |
 | L135 | grep the workspace using the EXACT ERROR TEXT before reporting impossible/blocked/unavailable/unreconstructable | sentence 3 |
 | **L158** | **the amendment: search before the FIRST PROBE, not after the first failure** | sentence 3, merged into the same clause |
-| **L158** | `grep -n "<the thing>" build/APP-ACTIONS-PLAYBOOK.md` and `ls build/testing-tools/` before probing an environment | sentence 3 |
+| **L158** | `grep -rn "<the thing>" build/APP-ACTIONS-PLAYBOOK.md build/kb/APP-ACTIONS-PLAYBOOK/` and `ls build/testing-tools/` before probing an environment | sentence 3 |
 | **L158** | a committed harness is reused, never rebuilt | sentence 4 |
 | L135 | the four places, in order | sentence 5 |
 | L135 | `ls build/BLOCKED-*.md`, several marked RESOLVED with the cause; `git log --all --grep=` | sentence 6 |

@@ -25,7 +25,7 @@
   (Rule 128, split byte-verified 2026-10-13); the tool searches it (and the playbook, skills, rules, project files and tools) and prints
   `file:line` for the best matches. Since L0040 or so, entries are appended at the BOTTOM as `## L0nnn — date — title`;
   `grep -n "^## L0" build/LEARNINGS-LOG.md | tail` lists the newest.
-- **By topic:** `git grep -n "#access" build/LEARNINGS-LOG.md` — every entry carries `#tags`.
+- **By topic:** `git grep -n "#access" build/LEARNINGS-LOG.md build/kb/LEARNINGS-LOG/` — every entry carries `#tags`.
 - **Common tags:** `#access` `#testrail` `#shopview-app` `#roles-permissions` `#build-verify`
   `#source-verify` `#cookies` `#deadlock` `#methodology` `#rule` `#mistake-corrected`.
 - **From a cold start:** CLAUDE.md §4 (Skills index) and §5 point here; skill `00-COMMON-CORE.md` names it
