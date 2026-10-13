@@ -1,0 +1,106 @@
+30 Sep copy (/home/user/Manual-test-Cases/build/founder-mode/price-category/sources/CONFLUENCE-578781186-PriceCategory-Sorting-2026-09-30.md): requirement-code lines found = 0 (the 30 Sep file is a capture SUMMARY, not a verbatim page copy)
+30 Sep baseline used instead: /home/user/Manual-test-Cases/build/founder-mode/price-category/anchor-quotes.json = 63 verbatim anchor quotes captured 2026-09-30
+2026-10-13 page copy: 63 requirement codes
+Jira story descriptions (2026-10-13 capture): 61 requirement codes
+
+PRD 30 Sep anchors -> PRD 13 Oct: ADDED 0: []
+REMOVED 0: []
+UNCHANGED (byte-identical) 60
+REWORDED 3: ['S1-N3', 'S2-N2', 'S3-N2']
+
+--- S1-N3
+OLD (30 Sep anchor): If the user does not have the Settings - Parts permission, the user cannot open the Categories page.
+NEW (13 Oct page):   If the user does not have the **Settings - Parts** permission, the user cannot open the Categories page.
+   insert: '' -> '**'
+   insert: '' -> '**'
+
+--- S2-N2
+OLD (30 Sep anchor): If the user does not have the Settings - Parts permission, the user cannot open the Pricing page.
+NEW (13 Oct page):   If the user does not have the **Settings - Parts** permission, the user cannot open the Pricing page.
+   insert: '' -> '**'
+   insert: '' -> '**'
+
+--- S3-N2
+OLD (30 Sep anchor): If the user does not have the Settings - Parts permission, the user cannot open the Pricing page.
+NEW (13 Oct page):   If the user does not have the **Settings - Parts** permission, the user cannot open the Pricing page.
+   insert: '' -> '**'
+   insert: '' -> '**'
+
+
+===== Jira story text vs 13 Oct PRD =====
+In PRD but not in any Jira story: ['S3-R18', 'S3-R19']
+In Jira but not in PRD: []
+Identical text: 43 ['S1-N2', 'S1-R1', 'S1-R2', 'S1-R4', 'S1-R5', 'S1-R6', 'S1-R7', 'S1-R8', 'S1-R9', 'S1-R10', 'S1-R11', 'S1-R12', 'S1-R13', 'S1-R14', 'S1-R15', 'S1-R16', 'S1-R18', 'S1-R21', 'S2-R1', 'S2-R2', 'S2-R3', 'S2-R4', 'S2-R5', 'S2-R6', 'S2-R7', 'S2-R8', 'S2-R9', 'S2-R11', 'S2-R12', 'S3-R1', 'S3-R2', 'S3-R3', 'S3-R4', 'S3-R5', 'S3-R7', 'S3-R8', 'S3-R9', 'S3-R10', 'S3-R11', 'S3-R12a', 'S3-R14', 'S3-R16', 'S3-R17']
+Different text: 18 ['S1-N1', 'S1-N3', 'S1-N5', 'S1-R3', 'S1-R17', 'S1-R19', 'S1-R20', 'S2-N1', 'S2-N2', 'S2-R10', 'S2-R13', 'S3-N1', 'S3-N2', 'S3-R6', 'S3-R12', 'S3-R12b', 'S3-R13', 'S3-R15']
+
+~~ S1-N1
+PRD:  If the shop is not connected to QuickBooks, the QuickBooks Products and Services column is not shown, and no sort is available for it.
+JIRA: If the shop is not connected to QuickBooks, the QuickBooks Products and Services column is not shown and no sort is available for it.
+
+~~ S1-N3
+PRD:  If the user does not have the **Settings - Parts** permission, the user cannot open the Categories page.
+JIRA: If the user does not have the Settings - Parts permission, the user cannot open the Categories page.
+
+~~ S1-N5
+PRD:  If the connection cannot be checked, the column is not shown and the user is told once: "Unable to check QuickBooks connection. Please try again." That is the only message shown for the failure: the app's generic error message for the same failed request is suppressed, so the user never sees two. The list itself still loads and the Name column still sorts.
+JIRA: If the QuickBooks connection cannot be checked, the column is not shown and the user is told once: "Unable to check QuickBooks connection. Please try again." The list still loads and the Name column still sorts.
+
+~~ S1-R3
+PRD:  The name sort ignores whether letters are upper case or lower case, and compares numbers inside a name as numbers, so `Tier 9` comes before `Tier 10`.
+JIRA: The name sort ignores whether letters are upper case or lower case, and compares numbers inside a name as numbers, so "Tier 9" comes before "Tier 10".
+
+~~ S1-R17
+PRD:  Every category shows a value in the QuickBooks Products and Services column. A category that has never been mapped shows the word Parts there, which is what the page shows today and does not change. That column therefore has no empty state, no row is moved to the bottom of it, and a category showing Parts because it is unmapped sorts under P in the same run as a category whose mapping is genuinely named Parts. The two are indistinguishable in the list, by design.
+JIRA: Every category shows a value in the QuickBooks Products and Services column. A category that has never been mapped shows the word Parts there, which is what the page shows today and does not change. That column has no empty state and no row is moved to the bottom of it.
+
+~~ S1-R19
+PRD:  The Default category is always the first row in the list. It holds that position under the Name sort and under the QuickBooks Products and Services sort, in ascending and in descending order alike, and it holds it after a reload in place. When a search term is typed it is first whenever it is among the matching rows; a term that does not match its name leaves it out of the results, as today, and it is never forced into them. This is the behavior the Categories list has in production today and it does not change.
+JIRA: The Default category is always the first row in the list, under either sort, in both directions, and after a reload in place or a search. This is production behaviour and it does not change.
+
+~~ S1-R20
+PRD:  Every category other than the Default category sorts beneath it, following the rules in S1-R2 through S1-R18. The Default category is not compared against the other rows; it is placed first and the remainder are sorted.
+JIRA: Every category other than the Default category sorts beneath it. The Default category is not compared against the other rows; it is placed first and the remainder are sorted.
+
+~~ S2-N1
+PRD:  If no pricing matrices exist, the Matrix Category column header still renders as sortable and still shows the ascending arrow. The table shows its standard empty state.
+JIRA: If no pricing matrices exist, the Matrix Category column header still renders as sortable and still shows the ascending arrow, and the table shows its standard empty state.
+
+~~ S2-N2
+PRD:  If the user does not have the **Settings - Parts** permission, the user cannot open the Pricing page.
+JIRA: If the user does not have the Settings - Parts permission, the user cannot open the Pricing page.
+
+~~ S2-R10
+PRD:  The tab label reads `Pricing matrices (N)`.
+JIRA: The tab label reads "Pricing matrices (N)".
+
+~~ S2-R13
+PRD:  The default pricing matrix is not pinned. It sorts in the position its name gives it, in both directions, and keeps its Default badge there. This is the behavior the Pricing Matrices tab has in production today and it does not change. It is deliberately different from the Categories list, where the Default row is pinned first per S1-R19.
+JIRA: The default pricing matrix is not pinned. It sorts in the position its name gives it, in both directions, and keeps its Default badge there. This is production behaviour and it does not change. It is deliberately different from the Categories list, where the Default row is pinned first per S1-R19.
+
+~~ S3-N1
+PRD:  If no fixed rules exist, the three column headers still render as sortable. The table shows its standard empty state.
+JIRA: If no fixed rules exist, the three column headers still render as sortable and the table shows its standard empty state.
+
+~~ S3-N2
+PRD:  If the user does not have the **Settings - Parts** permission, the user cannot open the Pricing page.
+JIRA: If the user does not have the Settings - Parts permission, the user cannot open the Pricing page.
+
+~~ S3-R6
+PRD:  Part number sorts alphabetically, ignores whether letters are upper case or lower case, and compares numbers inside a part number as numbers: `BRK-9`, then `BRK-10`, then `BRK-100`.
+JIRA: Part number sorts alphabetically, ignores whether letters are upper case or lower case, and compares numbers inside a part number as numbers: BRK-9, then BRK-10, then BRK-100.
+
+~~ S3-R12
+PRD:  The list opens sorted by Part number ascending (numeric-aware, per S3-R6), and that header shows the ascending arrow.
+JIRA: When the tab first opens, the list is sorted by Part number in ascending order and that header shows the ascending arrow.
+
+~~ S3-R12b
+PRD:  The tab lists only fixed rules whose part has a category, as it does today. A fixed rule whose part has no category is not listed; across every shop in production that is 3 rules. Listing them would change what the server sends, which this PRD rules out, so they are left for a separate ticket. If an empty Category value ever does reach the list, it sorts last in the Category column in both directions.
+JIRA: A fixed rule with no category sorts last in the Category column, whether that column is sorted ascending or descending.
+
+~~ S3-R13
+PRD:  Every fixed rule the tab lists (S3-R12b) loads when the tab opens.
+JIRA: All fixed rules load when the tab opens.
+
+~~ S3-R15
+PRD:  The tab label reads `Fixed rules (N)`.
+JIRA: The tab label reads "Fixed rules (N)".

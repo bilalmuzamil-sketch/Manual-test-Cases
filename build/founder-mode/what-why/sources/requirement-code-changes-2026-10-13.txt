@@ -1,0 +1,121 @@
+30 Sep copy (/home/user/Manual-test-Cases/build/founder-mode/what-why/sources/CONFLUENCE-845348896-WhatWhy-Update-v1-2026-09-30.md): requirement-code lines found = 0 (the 30 Sep file is a capture SUMMARY, not a verbatim page copy)
+30 Sep baseline used instead: /home/user/Manual-test-Cases/build/founder-mode/what-why/anchor-quotes.json = 40 verbatim anchor quotes captured 2026-09-30
+2026-10-13 page copy: 40 requirement codes
+Jira story descriptions (2026-10-13 capture): 37 requirement codes
+
+PRD 30 Sep anchors -> PRD 13 Oct: ADDED 0: []
+REMOVED 0: []
+UNCHANGED (byte-identical) 37
+REWORDED 3: ['S1-R5', 'S4-R1', 'S4-R2']
+
+--- S1-R5
+OLD (30 Sep anchor): The canned-line picker at the top of the dialog is labeled "Title" and carries the placeholder "What are you doing?" in its typeahead box, the same as the free-text Title field. The dialog focuses this field on open, so the placeholder is visible the moment the dialog appears and clears as soon as the user types or picks a canned line.
+NEW (13 Oct page):   The canned-line picker at the top of the dialog is labeled "Title" and carries the placeholder "What are you doing?" in its typeahead box, the same as the free-text Title field. The dialog focuses this field on open, so the placeholder is visible the moment the dialog appears and clears as soon as the user types or picks a canned line. (Corrected 2026-09-10: the first build gave the picker no placeholder, so the prompt never appeared on a new line.)
+   insert: '' -> ' (Corrected 2026-09-10: the first build gave the picker no placeholder, so the prompt never appeared on a new line.)'
+
+--- S4-R1
+OLD (30 Sep anchor): Withdrawn. There is no separate work order import. The only live import carrying these columns is Administration → Invoices, which writes to the imported work order history and is covered by S4-R2. The column names this requirement renamed exist only in code nothing calls, and nothing ships for them.
+NEW (13 Oct page):   **Withdrawn.** There is no separate work order import. The only live import carrying these columns is Administration → Invoices, which writes to the imported work order history and is covered by S4-R2. The column names this requirement renamed exist only in code nothing calls, and nothing ships for them.
+   insert: '' -> '**'
+   insert: '' -> '**'
+
+--- S4-R2
+OLD (30 Sep anchor): The historical invoice import's two columns (Administration → Invoices) are named "*Line Title" and "Line Description", replacing "*Line Title - What are you doing" and "Line Description - Why are you doing it".
+NEW (13 Oct page):   The historical invoice import's two columns (Administration → Invoices) are named "\\\*Line Title" and "Line Description", replacing "\\\*Line Title - What are you doing" and "Line Description - Why are you doing it".
+   insert: '' -> '\\\\\\'
+   insert: '' -> '\\\\\\'
+
+
+===== Jira story text vs 13 Oct PRD =====
+In PRD but not in any Jira story: ['S3-E1', 'S3-E2', 'S3-E3']
+In Jira but not in PRD: []
+Identical text: 15 ['S1-N1', 'S1-R3', 'S1-R7', 'S2-R3', 'S3-N1', 'S3-N2', 'S3-R1', 'S3-R2', 'S3-R4', 'S3-R12', 'S4-N1', 'S4-R4', 'S4-R5', 'S4-R6', 'S4-R7']
+Different text: 22 ['S1-R1', 'S1-R2', 'S1-R4', 'S1-R5', 'S1-R6', 'S2-R1', 'S2-R2', 'S3-N3', 'S3-R3', 'S3-R5', 'S3-R6', 'S3-R6a', 'S3-R7', 'S3-R7a', 'S3-R8', 'S3-R9', 'S3-R9a', 'S3-R10', 'S3-R11', 'S4-R1', 'S4-R2', 'S4-R3']
+
+~~ S1-R1
+PRD:  The first field is labeled exactly "Title".
+JIRA: The first field is labelled exactly "Title".
+
+~~ S1-R2
+PRD:  The second field is labeled exactly "Description".
+JIRA: The second field is labelled exactly "Description".
+
+~~ S1-R4
+PRD:  The label does not change with the state of the field. It reads "Title" whether the canned-line picker is empty or filled, which replaces a rule that swapped the label between the question and "Title" depending on that state.
+JIRA: The label does not change with the state of the field. It reads "Title" whether the canned-line picker is empty or filled, replacing a rule that swapped the label between the question and "Title" depending on that state.
+
+~~ S1-R5
+PRD:  The canned-line picker at the top of the dialog is labeled "Title" and carries the placeholder "What are you doing?" in its typeahead box, the same as the free-text Title field. The dialog focuses this field on open, so the placeholder is visible the moment the dialog appears and clears as soon as the user types or picks a canned line. (Corrected 2026-09-10: the first build gave the picker no placeholder, so the prompt never appeared on a new line.)
+JIRA: The canned-line picker at the top of the dialog is labelled "Title" and carries the placeholder "What are you doing?" in its typeahead box, the same as the free-text Title field. The dialog focuses this field on open, so the placeholder is visible the moment the dialog appears and clears as soon as the user types or picks a canned line.
+
+~~ S1-R6
+PRD:  Leaving Title empty blocks the save with the message "Title is a required field", replacing "Line Name is a required field". Every required-field message in the app uses the "X is a required field" form, and this one keeps it.
+JIRA: Leaving Title empty blocks the save with the message "Title is required", replacing "Line name is required".
+
+~~ S2-R1
+PRD:  The line builder's two text fields are labeled "Title" and "Description".
+JIRA: The line builder's two text fields are labelled "Title" and "Description".
+
+~~ S2-R2
+PRD:  Both carry the same placeholders as S1-R3.
+JIRA: Both carry the same placeholders as S1-R3: "What are you doing?" on Title and "Why are you doing it?" on Description.
+
+~~ S3-N3
+PRD:  A parts line, a shop supplies line and a fee or discount line are unaffected: none of them carries a title-and-description pair.
+JIRA: A parts line, a shop supplies line and a fee or discount line are unaffected: none carries a title-and-description pair.
+
+~~ S3-R3
+PRD:  A separator appears only between two segments that are both present. A line with no description joins the title straight to the narrative. A line with no narrative ends after the description. A line with neither carries the title alone. In every case there is no trailing separator and no trailing space.
+JIRA: A separator appears only between two segments that are both present. A line with no description joins the title straight to the narrative; a line with no narrative ends after the description; a line with neither carries the title alone. In every case there is no trailing separator and no trailing space.
+
+~~ S3-R5
+PRD:  The technician's narrative is the third and last segment. It carries no label of any kind, and no semicolon appears anywhere in the line text. The reasoning is in §2.
+JIRA: The technician's narrative is the third and last segment. It carries no label of any kind, and no semicolon appears anywhere in the line text.
+
+~~ S3-R6
+PRD:  A line with no narrative ends after the description, with no trailing hyphen and no trailing space. A narrative is absent when the value is empty, or when it is the literal placeholder "Tech story missing." that the line dialog writes when nothing was typed; the two are treated identically, and neither reaches QuickBooks.
+JIRA: A narrative is absent when the value is empty, or when it is the literal placeholder "Tech story missing." that the line dialog writes when nothing was typed. The two are treated identically and neither reaches QuickBooks.
+
+~~ S3-R6a
+PRD:  A narrative is absent legitimately, not only exceptionally. The organization setting Administration, Work Order Settings, Require Tech Story governs whether the completion gate gets in the way, so a shop with it switched off invoices completed lines with no narrative as a matter of course.
+JIRA: A narrative is absent legitimately, not only exceptionally. The organization setting Administration, Work Order Settings, Require Tech Story governs whether the completion gate demands one, and it is off by default.
+
+~~ S3-R7
+PRD:  When the joined text is longer than 4,000 bytes it is shortened from the end to fit, and it is never cut in the middle of a character. The live sync and the downloadable report are both cut at that same limit, so S3-R4 holds on a long line too. Today only the live sync cuts, and it cuts by bytes without regard for where a character ends; the report has no cut at all. Because the title leads and the narrative trails, the title always survives and the narrative is what gets clipped first.
+JIRA: When the joined text is too long for QuickBooks it is shortened from the end before it is sent, and it is never cut in the middle of a character. Because the title leads and the narrative trails, the title always survives and the narrative is clipped first.
+
+~~ S3-R7a
+PRD:  The limit is a storage limit rather than a count of what a reader sees, so a line written with accented or non-Latin characters may be shortened more than an English line that looks the same length on screen. Two lines that look equally long can therefore be cut at different points. That is correct behavior and not a defect.
+JIRA: The limit is a storage limit rather than a count of what a reader sees, so a line written with accented or non-Latin characters may be shortened more than an English line that looks the same length on screen. That is correct behaviour and not a defect.
+
+~~ S3-R8
+PRD:  The values themselves are unchanged. Nothing is trimmed, truncated, re-cased or escaped that is not trimmed, truncated, re-cased or escaped today, other than the shortening described in S3-R7.
+JIRA: The values themselves are unchanged. Nothing is trimmed, truncated, re-cased or escaped that is not trimmed, truncated, re-cased or escaped today, other than the shortening in S3-R7.
+
+~~ S3-R9
+PRD:  A title, a description or a narrative that itself contains a hyphen, including a spaced hyphen, is carried as written. The separator is not escaped and the text is not quoted, so a reader cannot always tell our separator from theirs. This is accepted deliberately: the alternative is printing a field name to mark the join, which is the thing being removed.
+JIRA: A title, a description or a narrative that itself contains a hyphen is carried as written. The separator is not escaped and the text is not quoted.
+
+~~ S3-R9a
+PRD:  A semicolon typed inside any of the three values is ordinary punctuation and is carried through untouched. It was ambiguous only while the semicolon was the separator.
+JIRA: A semicolon typed inside any of the three values is ordinary punctuation and is carried through untouched.
+
+~~ S3-R10
+PRD:  For a user who cannot see financial data, the downloaded report masks its money columns (rate, amount, tax and average cost) as it does today. The line text is not a money value and is not masked, so the same words reach every reader of the file.
+JIRA: For a user who cannot see financial data, the downloaded report masks its money columns as it does today. The line text is not a money value and is not masked.
+
+~~ S3-R11
+PRD:  No other report or export reads this line text. Changing it changes these two routes and nothing else.
+JIRA: No other report or export reads this line text.
+
+~~ S4-R1
+PRD:  **Withdrawn.** There is no separate work order import. The only live import carrying these columns is Administration → Invoices, which writes to the imported work order history and is covered by S4-R2. The column names this requirement renamed exist only in code nothing calls, and nothing ships for them.
+JIRA: The work order import's two columns are named "Title" and "Description", replacing "What are you doing" and "Why are you doing it".
+
+~~ S4-R2
+PRD:  The historical invoice import's two columns (Administration → Invoices) are named "\\\*Line Title" and "Line Description", replacing "\\\*Line Title - What are you doing" and "Line Description - Why are you doing it".
+JIRA: The historical invoice import's two columns are named "\*Line Title" and "Line Description", replacing "\*Line Title - What are you doing" and "Line Description - Why are you doing it".
+
+~~ S4-R3
+PRD:  The importer accepts the old column names as well as the new ones. A file carrying either spelling validates and imports identically.
+JIRA: Both importers accept the old column names as well as the new ones. A file carrying either spelling validates and imports identically.
