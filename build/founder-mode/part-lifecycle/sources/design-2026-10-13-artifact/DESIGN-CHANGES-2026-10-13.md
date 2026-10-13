@@ -25,3 +25,10 @@ Raw page `artifact-raw.html`: 10,412,871 bytes (8 Oct: 10,170,839). 53 embedded 
 - Canvas note "saving any untracked part needs Delete" → now S8-R7 / S8-N1a wording (resolved).
 - Board 2.6 narrowed columns → note now says production widths are kept and the build must be fixed (resolved in the design; a build check).
 - "Total Quantity" vs "Total Qty" → boards now say "Total Qty", like the PRD (resolved).
+
+## Trap (13 Oct 2026): the saved page needs re-escaping before a browser can open it
+The Artifact tool's saved raw page (`artifact-raw.html`) holds the design's files as JSON inside
+`<script type="application/json" id="appifact-doc">`. In this copy, 51 `</script` sequences inside that JSON were saved
+unescaped, so the browser ends the script early and the canvas renders as loose text (0 buttons). The 8 Oct copy had them
+escaped. Fix: replace `</` with `<\/` inside that JSON only (the JSON value is unchanged, checked by script). The working
+page is `artifact-page.html` (16 buttons, 8 frames, same as 8 Oct); `artifact-raw.html` is kept as received.
