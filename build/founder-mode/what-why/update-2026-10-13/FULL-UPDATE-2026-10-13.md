@@ -34,3 +34,6 @@
 7. The Title message now shows under the field (SV-10130 developer) — is that a validation change under S1-R7?
 8. Is Require Tech Story off by default (Jira, design note and tech plan say so; the PRD does not)?
 Design note: New Line board shows "Title *"; the SV-10130 developer says no asterisk ships; cases follow the PRD's "Title".
+
+## Display check
+37 of 37 cases "RESULT OK" (`hs_repair_one.mjs`, logs `render-0.log`, `render-1.log`); none needed repair.
