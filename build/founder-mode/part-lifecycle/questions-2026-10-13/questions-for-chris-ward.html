@@ -1,0 +1,76 @@
+<html><body>
+<h1>Part Lifecycle – a few questions for Chris Ward</h1>
+<p>Dear Sir,</p>
+<p>Thank you for answering our last set of questions. We have now updated all the Part Lifecycle test cases to your page as you edited it on 9 October, and the design you updated as well.</p>
+<p>While doing that, we found a few points the page doesn't settle. They are small, but each one decides what a tester should mark as pass or fail. Could you please write your answer under each question? A short answer is perfect.</p>
+<p>Page: <a href="https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/829227015/Parts+Lifecycle+Update">Parts Lifecycle Update</a>. The codes in brackets point to the line in your page.</p>
+
+<h2>1. Saving a Part Library entry that was deleted in another tab</h2>
+<p><b>What the page says:</b> if someone deletes an entry while its page is open in another tab, saving that page is refused with "Part Library entry not found." (S11-E4). Separately, a failed save of an entry shows "Failed to save library part." (S12-R4).</p>
+<p><b>Question:</b> in this case, should the user see only "Part Library entry not found.", or both messages together?</p>
+<p><b>Answer:</b> </p>
+
+<h2>2. Which lookup results count as "special-order" results</h2>
+<p><b>What the page says:</b> a special-order lookup result shows its source as "Part Library · {vendor}" (S12-R14).</p>
+<p><b>Question:</b> which results are these? Our understanding, from the engineering comment of 7 October, is parts that were recently ordered as a special order from a vendor. Is that right?</p>
+<p><b>Answer:</b> </p>
+
+<h2>3. Importing parts from a file</h2>
+<p>Three small points about the parts import (Settings → Data Import → Inventory):</p>
+<p>a) If a file adds a tracked part with no bin location, should the import refuse that row, or give the part a default bin? Today it gives the part an "Unassigned" bin marked Default.</p>
+<p>b) Does the import run the same duplicate-number check as the part window (S7-N3)? For example, can a file add a part whose number matches another part at the same location once case and punctuation are ignored?</p>
+<p>c) Is the import one of the "other routes" in S7-N6? If a file row has an empty description or part number, should the import show "Description is required." / "Part number is required."?</p>
+<p><b>Answer:</b> </p>
+
+<h2>4. Export and the search box</h2>
+<p><b>What the page says:</b> Export exports the parts on the tab that shows, active or inactive (S1-R9).</p>
+<p><b>Question:</b> if the user has typed something in the search box or picked a filter, should Export include only the parts on screen, or every part on that tab?</p>
+<p><b>Answer:</b> </p>
+
+<h2>5. A part with bins but no default bin</h2>
+<p><b>What the page says:</b> when tracking is turned on for a part that has bins but none is the default, the window marks the first bin as the default (S5-R8).</p>
+<p><b>Question:</b> how does a part end up with bins but no default bin in normal use? We need to create one to test this. If it can't happen any more, we will test it only where such a part already exists.</p>
+<p><b>Answer:</b> </p>
+
+<h2>6. Where can a user see a part's core?</h2>
+<p><b>What the page says:</b> a core is tracked or untracked together with its part (S5-R9); renaming a part also renames its core to "Core for {description}" (S13-R15); a bulk change can report "A core follows its part. Activate or deactivate the part instead." (S10-R13a).</p>
+<p><b>Question:</b> where in the app can a user see a core on its own: its tracking state, its new name, and whether it has its own row on the Inventory list that could be ticked? Today we can see cores in the Inventory "Core" column and as "Core for …" rows on Parts → Returns.</p>
+<p><b>Answer:</b> </p>
+
+<h2>7. The dashboard's inventory figure</h2>
+<p><b>What the page says:</b> Inventory Value, Parts Velocity and the dashboard keep inactive parts (S9-E11), and the dashboard's inventory figure keeps untracked stock (section 2, Accounting). You also told us that Dashboard v1 ships first.</p>
+<p><b>Question:</b> will Dashboard v1 show an inventory value figure? If yes, where on the dashboard is it?</p>
+<p><b>Answer:</b> </p>
+
+<h2>8. Wording for one part when bringing it back</h2>
+<p><b>What the page says:</b> when one part is deactivated, the confirmation says "This part won't show up …" and "Existing records that use it …" (S10-R5). When one part is reactivated, it says "This part can be added to new work again." but keeps "Existing records that use them stay as they are." (S10-R8).</p>
+<p><b>Question:</b> for one part on reactivation, should it read "use it" as well?</p>
+<p><b>Answer:</b> </p>
+
+<h2>9. The canned job warning with more than one part</h2>
+<p><b>What the page says:</b> "These parts are inactive and were not added: {part numbers}." (S9-R10).</p>
+<p><b>Question:</b> when two or more parts are left out, in what order should they be listed, and separated by a comma?</p>
+<p><b>Answer:</b> </p>
+
+<h2>10. Vendor returns without the View permission</h2>
+<p><b>What the page says:</b> picking parts on a vendor return or vendor credit needs 'Part Library &amp; Inventory → View'; without it, the part search there shows the standard access error (S9-N3).</p>
+<p><b>Question:</b> which permissions does a role need to open a vendor return at all, so we can set up a role that can open one but doesn't have View?</p>
+<p><b>Answer:</b> </p>
+
+<h2>11. A Part Library entry pointing to a manufacturer that no longer exists</h2>
+<p><b>What the page says:</b> an entry has a manufacturer only when it points to one that exists in the organization; an entry that points to none takes the one picked in the window (S7-R6d).</p>
+<p><b>Question:</b> can an entry still point to a deleted manufacturer after the release, or is this only in old data? We can't create it from the screens.</p>
+<p><b>Answer:</b> </p>
+
+<h2>12. Delete on the Part Library entry page</h2>
+<p><b>What the page says:</b> clicking a row opens the entry's page, "where it can be edited and deleted" (S11-R3).</p>
+<p><b>What the design shows:</b> board 7.2 shows the entry's page with no Delete button.</p>
+<p><b>Question:</b> should the entry's page have a Delete button, or is delete inside the edit window?</p>
+<p><b>Answer:</b> </p>
+
+<h2>Just for your information</h2>
+<p>The verification ticket SV-11041 still lists the Critical Reorder checks (S5-R14 and S9-E12) that you removed from the page on 9 October. We have moved those two test cases out of the active folder.</p>
+
+<p>Thank you very much, Sir.</p>
+<p>Bilal Muzamil</p>
+</body></html>

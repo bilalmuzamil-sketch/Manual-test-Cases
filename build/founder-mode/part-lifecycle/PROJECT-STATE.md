@@ -80,3 +80,4 @@ Catalog→Part Library rename, editable part number.
 ## 13 Oct 2026 — QA lead decisions after the update
 - **Dedicated Part Lifecycle test run: "NO".** The cases live in the automatic Nightly runs only.
 - **Replaced setup docs: "Yes and do NOT ask for my permission."** The 257 setup docs of 9 Oct, replaced by the 13 Oct docs and linked from no case, are moved to the Drive trash (`update-2026-10-13/docs/trash-old-2026-10-09.tsv`, log `docs/trash-old-log.jsonl`). Replaced setup docs that no case links to any more are trashed without asking.
+- **Questions for Chris Ward (13 Oct, QA lead's request):** Google Doc https://docs.google.com/document/d/1pkAPGqWVTdtYorNN4SVNl9HkHxuuB9czro_y2DbUeEM/edit — 12 questions plus one FYI (SV-11041), written before build verification at the QA lead's request; source HTML `questions-2026-10-13/questions-for-chris-ward.html`. The QA lead shares it.
