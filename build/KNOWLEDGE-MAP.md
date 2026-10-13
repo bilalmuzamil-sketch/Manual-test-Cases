@@ -35,6 +35,7 @@ How the stores divide (each fact lives in ONE place; this map and `recall.py` fi
 | the browser cannot connect (ERR_PROXY_CONNECTION_FAILED) | `bash build/testing-tools/ensure_bridge.sh` before EVERY normal-browser script, the TestRail page scan included |
 | the QA branch went to sleep / is down | L0307 (watch the real thing); L0317 (network error → sleep page); `build/testing-tools/wake_branch.mjs`, `wait_branch_up.sh` |
 | read a file that is too big to read whole (Rule 128) | `recall.py "<words>" --show 3` (the blocks themselves) · `recall.py --rule N` (a rule + all its amendments) · `recall.py --section "<heading>" --file <path>` · `python3 build/testing-tools/knowledge_health.py` (sizes vs budgets) · `knowledge_health.py shard <file>` / `verify` / `logical` |
+| change a shared tool, hook, rule, skill, store or a suite's runner (Rule 129) | first `git grep` what depends on it; `python3 build/testing-tools/selftest_workspace.py` before and after (`--compare <ref>` for regressions); break it on a throwaway worktree to prove the guard; add a self-test check for anything newly load-bearing |
 | store a secret | `/tmp` only, chmod 600; `python3 build/testing-tools/scan_secrets.py --staged` before every commit (Rule 82) |
 
 ## Making the data a test needs

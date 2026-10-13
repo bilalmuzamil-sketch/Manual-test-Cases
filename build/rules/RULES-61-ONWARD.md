@@ -5074,3 +5074,28 @@ an issue due to files being over large."*
 **ENFORCED BY THE HARNESS, NOT MEMORY** (`.claude/settings.json`): the SessionStart hook lists every over-budget file with how to
 read it; the Stop hook (`learning_gate.py`) blocks once when a splittable store has crossed its budget, until it is split.
 Sits with Rules 88 (never bulk-read), 100 (measure on disk) and 127 (save and recall learning).
+
+---
+
+## RULE 129 — A CHANGE MADE TO IMPROVE THINGS MUST BE PROVED NOT TO MAKE ANYTHING WORSE — NOW OR LATER (QA lead 2026-10-13)
+
+**QA lead, 2026-10-13, verbatim:** *"Note your work should never bite me and nothing which you just did and will do similar in
+future should fail you in your current or upcoming tasks for this session. Whenever you change something like you just did you
+have to 100% make sure that while changing something or in an attempt to make something better you do not end up doing the
+opposite by making it worst than before and not setting up the failure for you and me for the present and future."*
+
+**WHAT EVERY CHANGE TO SHARED THINGS GETS** (tools, hooks, rules, skills, handoffs, the knowledge stores, a suite's runners):
+(1) **Find everything that depends on it before changing it** — `git grep` the file/function name across tools, skills,
+handoffs, rules and suite folders; a tool that reads a file whole, an instruction that searches it, a script that runs it.
+(2) **Prove it before and after** — `python3 build/testing-tools/selftest_workspace.py` (hooks, stores and parts, search, map,
+every tool parses, rule/skill parsers, every "ready to run" suite) before and after; `--compare <ref>` lists anything that
+passed before and fails now. Compare a parser's OUTPUT before and after, not just its exit code.
+(3) **Prove the safety paths with a deliberate failure** — on a throwaway worktree, break the thing on purpose and see the guard
+catch it (positive control, Rule 104); and run a hook from OUTSIDE the repo — a missing script must never block anyone.
+(4) **Add a check to the self-test** whenever something new becomes load-bearing, so the next change is guarded too.
+(5) **Report what was checked and what it found**, including anything the change made worse and how it was fixed.
+**ENFORCED:** the Stop hook (`learning_gate.py`) re-runs the self-test whenever a commit touched shared machinery since the last
+passing run, and blocks the stop on any FAIL, naming it. Worked first application, 13 Oct 2026: the recheck found that splitting
+the playbook had made the Rule 97 search drill (and four handoffs, the core skill) search only the small index — fixed — and that
+the Stop hook would have blocked every turn in a session started outside the repo — fixed; then 20 checks, 0 regressions against
+the state before the day's changes.

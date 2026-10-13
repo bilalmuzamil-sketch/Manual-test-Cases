@@ -17,8 +17,8 @@
           {
             "type": "command",
             "command": "R=$(git rev-parse --show-toplevel 2>/dev/null) && [ -f \"$R/build/testing-tools/learning_gate.py\" ] && exec python3 \"$R/build/testing-tools/learning_gate.py\"; exit 0",
-            "timeout": 20,
-            "statusMessage": "Checking that today's learning is saved (Rule 127)"
+            "timeout": 180,
+            "statusMessage": "Checking learning is saved and nothing got worse (Rules 127-129)"
           }
         ]
       }

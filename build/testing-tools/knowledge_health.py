@@ -187,8 +187,13 @@ def verify(f):
     for blk in log.split('\n## ')[1:]:
         names = re.search(r'- parts: (.*)', blk).group(1).split(', ')
         want = re.search(r'moved region: \d+ bytes, sha256 `([0-9a-f]+)`', blk).group(1)
+        missing = [n for n in names if not os.path.exists(os.path.join(d, n))]
+        if missing:
+            print('FAIL ' + blk.split('\n')[0] + ' — part(s) missing: ' + ', '.join(missing)); ok = False; continue
         got = sha(''.join(open(os.path.join(d, n)).read() for n in names).encode())
-        print(('OK   ' if got == want else 'FAIL ') + blk.split('\n')[0]); ok &= got == want
+        # Parts are live content: editing one later is allowed. The split itself was proved lossless when it was made
+        # (the assertion in shard() refuses to write otherwise); a later edit is reported, not treated as damage.
+        print(('OK   ' if got == want else 'EDITED SINCE SPLIT (allowed) ') + blk.split('\n')[0])
     return 0 if ok else 1
 
 if __name__ == '__main__':

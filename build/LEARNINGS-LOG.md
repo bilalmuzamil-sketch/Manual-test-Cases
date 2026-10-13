@@ -256,3 +256,12 @@ amendment, `--section … --file …`) so cost follows the answer, not the file;
 over-budget stores into `build/kb/<stem>/` parts with sha256 proof, leaving an index of every heading at the same path (playbook →
 28 KB + 55 parts, log → 23 KB + 4 parts). Files that tools parse whole (rules, core skill) stay whole until those tools read
 `knowledge_health.py logical`. Hooks warn at session start and block a stop while a store is over budget. #methodology #retrieval #rule → Rule 128
+
+## L0327 — 2026-10-13 — An improvement can break what it touches: find the dependants, prove before/after, add a self-test (Rule 129)
+The recheck the QA lead asked for found two things today's improvements had made worse: (1) after the playbook/log split, the
+Rule 97 drill, four handoffs and the core skill still said `grep … build/APP-ACTIONS-PLAYBOOK.md`, which now searches only the
+index — a session would miss a recipe and rediscover it; (2) the Stop hook, run from outside the repo, could not find its script
+and python's exit 2 counts as BLOCK — every turn would have been stopped. Both fixed; hooks now exit 0 on a missing script or a
+crash; over-budget uses exit 10 so a crash is never read as a finding. `selftest_workspace.py` (20 checks, ~5 s; `--compare
+<ref>`) now guards the shared machinery and the Stop hook runs it after any shared change. Proved by deleting a part on a
+throwaway worktree: the stop was blocked and the missing part named. #methodology #regression #hooks → Rule 129

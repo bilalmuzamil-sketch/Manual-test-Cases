@@ -58,6 +58,27 @@ def main():
     if inp.get('stop_hook_active'): return 0
     head, mark, work, stores = state()
     if not head: return 0
+    # Rule 129: a change to shared machinery must not make anything worse — re-run the self-test when one was committed
+    smark = MARK.replace('learning-gate-marker', 'selftest-marker')
+    sprev = open(smark).read().strip() if os.path.exists(smark) else ''
+    shared = ('build/testing-tools/', '.claude/', 'CLAUDE.md', 'build/rules/', 'build/skills/', 'build/kb/', 'build/handoffs/',
+              'build/KNOWLEDGE-MAP.md', 'build/APP-ACTIONS-PLAYBOOK.md', 'build/LEARNINGS-LOG.md')
+    if not sprev or git('cat-file', '-t', sprev) != 'commit':
+        changed_shared = True
+    else:
+        ch = [f for f in git('diff', '--name-only', f'{sprev}..{head}').split('\n') if f]
+        changed_shared = any(f.startswith(shared) or ('/run' in f and f.endswith(('STAGING-READY.md', '.sh'))) for f in ch)
+    if changed_shared:
+        st = subprocess.run([sys.executable, os.path.join(ROOT, 'build/testing-tools/selftest_workspace.py'), '--quick'],
+                            capture_output=True, text=True, timeout=150)
+        if st.returncode == 1:
+            fails = '\n'.join(l for l in st.stdout.splitlines() if l.startswith('FAIL '))
+            sys.stderr.write('Rule 129 (a change must never make anything worse): the workspace self-test FAILS after a change to '
+                             'shared tools/hooks/knowledge files:\n' + fails + '\nFix it (or revert the change), re-run '
+                             'python3 build/testing-tools/selftest_workspace.py, commit and push.\n')
+            return 2
+        if st.returncode == 0:
+            with open(smark, 'w') as fh: fh.write(head + '\n')
     # Rule 128: a store that has grown past its budget is split before it becomes unreadable
     hc = subprocess.run([sys.executable, os.path.join(ROOT, 'build/testing-tools/knowledge_health.py'), '--check'],
                         capture_output=True, text=True)
