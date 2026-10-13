@@ -104,3 +104,7 @@ numeric/date-accuracy cases (Rule 116, DATA folder). Not spec-dumps.
 
 ## 2026-10-07 — plain-language titles (QA lead)
 - 204 of 209 titles rewritten so a manual QA tester understands them; still 80 characters or less, screen labels, one check each, no semicolons. Title only; read back 204/204. List: `title-fix-2026-10-07/TITLE-CHANGES-2026-10-07.md`.
+
+## 13 Oct 2026 — HANDED OVER: do not touch these cases
+- **QA lead, 13 Oct 2026:** "Do not touch maintenance reminder test cases anymore they are being taken care of Vladimir and Nebojsa for everything at the moment."
+- No reads-for-edit, rewrites, moves, run changes or setup docs on any Maintenance Reminders case (Chunk 1 group 19397 and Chunk 2 group 26635) until the QA lead says otherwise.
