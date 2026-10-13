@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **BEFORE GIVING ANY ROLE TO ANY STAFF, RESET THAT ROLE TO TEMPLATE FIRST (Standing Rule 105).**
 > - **AFTER ANY CONFIRM CLICK, RE-READ THE DIALOG — ShopView often asks twice ("Yes" → orange "Are You Sure?") (Standing Rule 102); never call a control "does nothing" before that.**
 > - **BEFORE CALLING A TICKET OUTSTANDING, RE-OPEN IT LIVE: status + last comment (Standing Rule 103).**
 > - **SCREEN RECORDING ON A QA COMMENT ONLY IF THE QA LEAD SAYS YES — ASK ON EVERY TICKET FIRST; no yes = no recording (Standing Rule 104; method playbook §AK).**
@@ -5382,6 +5383,22 @@ deliver the 7-tab management report.
     Method + tools: playbook §AK, `build/testing-tools/qa-session.mjs` (`record`, `caption`, `glideClick`, `pointBeside`,
     `confirm`) and `build/testing-tools/finish_recording.py`; standard §11. Ties to Standing Rules 12, 13, 22, 64, 65, 68,
     72 (the pre-post gate checks the permission was asked, and — only if he said yes — that the recording is attached, decodes and is embedded last), 73, 81, 83, 97 and 102.
+
+105. **BEFORE ASSIGNING ANY ROLE TO ANY STAFF MEMBER, RESET THAT ROLE TO ITS TEMPLATE FIRST — every time, on every
+    environment (all projects).**
+    USER DIRECTIVE (2026-10-13, verbatim): *"Make sure and always make it a rule for yourself, that whenever you assigning
+    a role to any staff make sure that first you reset the role and then assign that role to the staff because sometimes
+    it happens that someone changes the role settings and does not revert it back and then it causes the tests to fail."*
+    **THE RULE:** the order is fixed — **(1) reset the role to template** (Settings → Roles & Permissions → pencil →
+    Reset to Template → confirm **Reset** → **Save** → confirm the **"Confirm Permission Updates"** dialog; playbook
+    "RESET TO TEMPLATE FIRST"), **(2) read the role back and record its permissions** (before → after is a finding
+    when it moved), **(3) only then assign it to the staff member**, **(4) test**. It applies whether the role is
+    being given to a test user, to the staff member a test logs in as, or **back** to someone at the end of a test —
+    restoring a person's original role means resetting that role first too. Applies on QA branches, staging AND
+    production. If the role drifts again mid-test, reset again and carry on (Rule 26a).
+    **WHY:** other testers and sessions change role settings on shared orgs and don't always put them back, so a role
+    with the right name can carry the wrong permissions and make a correct build look broken (or a broken one look
+    fine). Ties to Standing Rules 5, 12, 26/26a and 68.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
