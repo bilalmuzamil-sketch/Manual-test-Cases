@@ -119,7 +119,9 @@ def shard(f):
     if not mode: sys.exit(f'{f}: not a shardable store (see STORES in this tool)')
     raw = open(p, 'rb').read(); text = raw.decode('utf-8')
     stem = os.path.splitext(os.path.basename(f))[0]; d = os.path.join(KB, stem); os.makedirs(d, exist_ok=True)
-    existing = sorted(glob.glob(os.path.join(d, '[0-9][0-9][0-9]-*.md'))); n0 = len(existing)
+    existing = sorted(glob.glob(os.path.join(d, '[0-9][0-9][0-9]-*.md')))
+    # number AFTER the highest existing part (never by count: a removed part would make the next split overwrite another)
+    n0 = max([int(os.path.basename(x)[:3]) for x in existing] or [0])
     if mode == 'sections':
         pre, secs = split_sections(text)
         # a previous shard left pointer stubs: only real sections (with body beyond a pointer) move
@@ -164,8 +166,10 @@ def shard(f):
     # the moved region + what stays must account for every byte of the original
     if mode == 'entries':
         assert pre + region + tail == text, 'entries split lost bytes'
+    clash = [n for n, _ in out_parts if os.path.exists(os.path.join(d, n))]
+    if clash: sys.exit(f'REFUSED: part file(s) already exist, nothing written: {clash}')
     for name, b in out_parts:
-        with open(os.path.join(d, name), 'w') as fh: fh.write(b)
+        with open(os.path.join(d, name), 'x') as fh: fh.write(b)   # 'x' = never overwrite
     with open(p, 'w') as fh: fh.write(new_index)
     with open(os.path.join(d, 'INTEGRITY.md'), 'a') as fh:
         fh.write(f'\n## {datetime.datetime.utcnow():%Y-%m-%d %H:%M} UTC — shard of `{f}` ({mode})\n'

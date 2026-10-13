@@ -18,6 +18,8 @@ import glob, json, os, re, subprocess, sys, tempfile
 ROOT = subprocess.run(['git', 'rev-parse', '--show-toplevel'], capture_output=True, text=True).stdout.strip() or os.getcwd()
 T = os.path.join(ROOT, 'build/testing-tools')
 RESULTS = []
+import shutil, time
+HAVE = {x: bool(shutil.which(x)) for x in ('node', 'bash', 'git')}
 
 def run(cmd, cwd=None, inp=None, timeout=120):
     try:
@@ -26,8 +28,12 @@ def run(cmd, cwd=None, inp=None, timeout=120):
     except subprocess.TimeoutExpired:
         return 124, 'timeout'
 
-def check(name, ok, detail=''):
-    RESULTS.append((name, bool(ok), detail))
+def check(name, ok, detail='', level='FAIL'):
+    """level FAIL blocks; WARN is printed but never blocks (slow drift, sizes); SKIP when this machine lacks the tool."""
+    RESULTS.append((name, bool(ok), detail, level))
+
+def skip(name, why):
+    RESULTS.append((name, True, why, 'SKIP'))
 
 def main(quick=False):
     # 1 · hooks: valid JSON, and they never block when the repo or a script is missing
@@ -68,8 +74,10 @@ def main(quick=False):
     # 5 · every shared tool still parses
     bad = [os.path.basename(f) for f in glob.glob(f'{T}/*.py') if run(['python3', '-m', 'py_compile', f])[0]]
     check('tools: every Python tool compiles', not bad, ', '.join(bad))
-    bad = [os.path.basename(f) for f in glob.glob(f'{T}/*.mjs') if run(['node', '--check', f])[0]]
-    check('tools: every Node tool parses', not bad, ', '.join(bad))
+    if HAVE['node']:
+        bad = [os.path.basename(f) for f in glob.glob(f'{T}/*.mjs') if run(['node', '--check', f])[0]]
+        check('tools: every Node tool parses', not bad, ', '.join(bad))
+    else: skip('tools: every Node tool parses', 'node is not installed on this machine')
     bad = [os.path.relpath(f, ROOT) for f in glob.glob(f'{T}/*.sh') + glob.glob(os.path.join(ROOT, 'build/*/run*/*.sh')) if run(['bash', '-n', f])[0]]
     check('tools: every shell script parses (shared + suite runners)', not bad, ', '.join(bad))
     # 6 · tools that read the rules / core skill whole still work
@@ -81,9 +89,27 @@ def main(quick=False):
         d = os.path.dirname(ready); names = set(re.findall(r'`([A-Za-z0-9_.-]+\.(?:mts|mjs|sh|py))`', open(ready).read()))
         missing = sorted(n for n in names if not os.path.exists(os.path.join(d, n)) and not os.path.exists(os.path.join(T, n)))
         check(f'suites: every script named in {os.path.relpath(ready, ROOT)} exists', not missing, ', '.join(missing[:8]))
-    for name, ok, detail in RESULTS:
+    # 8 · scale and drift (warnings: they never block, they say what to do before it hurts)
+    t0 = time.time(); run(['python3', f'{T}/recall.py', 'staging sign in cookie', '--top', '3'])
+    dt = time.time() - t0
+    check('scale: a search answers in under 15 s (else give recall.py a cached index)', dt < 15, f'{dt:.1f} s', level='WARN')
+    cm = os.path.getsize(os.path.join(ROOT, 'CLAUDE.md'))
+    check('scale: CLAUDE.md under 150 KB so it loads whole (it was once truncated at 738 KB)', cm < 150 * 1024, f'{cm/1024:.0f} KB', level='WARN')
+    idx = open(os.path.join(ROOT, 'CLAUDE.md')).read()
+    hi = max(int(x) for x in re.findall(r'^\| \*\*(\d+)\*\* \|', idx, re.M))
+    tail = re.findall(r'^## RULE (\d+) ', open(os.path.join(ROOT, 'build/rules/RULES-61-ONWARD.md')).read(), re.M)
+    newest = max(int(x) for x in tail)
+    check(f'index: CLAUDE.md lists the newest rule ({newest})', hi >= newest, f'index stops at {hi}')
+    for stem in ('APP-ACTIONS-PLAYBOOK', 'LEARNINGS-LOG'):
+        nums = [os.path.basename(x)[:3] for x in glob.glob(os.path.join(ROOT, 'build/kb', stem, '[0-9][0-9][0-9]-*.md'))]
+        check(f'knowledge: part numbers of {stem} are unique', len(nums) == len(set(nums)), str(sorted(n for n in set(nums) if nums.count(n) > 1)))
+    hot = len(re.findall(r'^#{2,3} L\d{4}', open(os.path.join(ROOT, 'build/LEARNINGS-LOG.md')).read(), re.M))
+    check('knowledge: the learnings log still holds recent entries for the session-start summary', hot > 0, f'{hot} entries', level='WARN')
+    for name, ok, detail, level in RESULTS:
+        if level == 'SKIP': print(f'SKIP {name}  — {detail}'); continue
+        if level == 'WARN' and not ok: print(f'WARN {name}  — {detail}'); continue
         print(('PASS ' if ok else 'FAIL ') + name + (f'  — {detail}' if detail and not ok else ''))
-    fails = [r for r in RESULTS if not r[1]]
+    fails = [r for r in RESULTS if not r[1] and r[3] == 'FAIL']
     print(f'\n{len(RESULTS) - len(fails)} passed, {len(fails)} failed')
     return 1 if fails else 0
 
