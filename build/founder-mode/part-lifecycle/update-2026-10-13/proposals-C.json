@@ -64,17 +64,18 @@
     "At {Location-A}, go to Parts → Inventory and click New Inventory Part.",
     "Type {Description-B} in Description.",
     "Type {Part-A} in Part Number, with exactly the same characters and the same upper and lower case.",
-    "Pick any Category (for example Uncategorized) and type a Cost (for example 10.00).",
+    "Pick any Category (for example Uncategorized).",
+    "Type a Cost (for example 10.00).",
     "Click Save.",
     "Type {Part-A} in the Inventory search.",
     "Go to Parts → Part Library and type {Part-A} in the search.",
     "Click the {Part-A} row."
    ],
    "results": [
-    "Step 5: the window closes and a green message reads exactly \"Part created. Linked to {Part-A} in the Part Library. Its description \"{Description-A}\" was kept.\" It goes away on its own.",
-    "Step 6: one row shows Part Number {Part-A} with Description {Description-A}, the Part Library description, not {Description-B}.",
-    "Step 7: still exactly one row for {Part-A}, with Description {Description-A}: no second entry was made.",
-    "Step 8: the entry's page lists two workplaces under Parts, {Location-B} and {Location-A}, and Total parts reads 2 (1 before + 1 new = 2)."
+    "Step 6: the window closes and a green message reads exactly \"Part created. Linked to {Part-A} in the Part Library. Its description \"{Description-A}\" was kept.\" It goes away on its own.",
+    "Step 7: one row shows Part Number {Part-A} with Description {Description-A}, the Part Library description, not {Description-B}.",
+    "Step 8: still exactly one row for {Part-A}, with Description {Description-A}: no second entry was made.",
+    "Step 9: the entry's page lists two workplaces under Parts, {Location-B} and {Location-A}, and Total parts reads 2 (1 before + 1 new = 2)."
    ],
    "source": "Epic SV-10647; story SV-10820 (Story 7, Create a Part by Typing Its Number and Description); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S7-R4, S7-R5, S7-R6, S7-R9, §8 User Feedback Summary, read 13 Oct 2026; design canvas board 1.3 (Number and description typed), board 1.4 (Saved and linked to the Part Library entry), board 7.2 (An entry opens its detail page), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -113,7 +114,7 @@
     "Switch location in the top bar, or with POST /api/iam/change-location (workplace_id and workplace_timezone, taken from GET /api/staff/my-workplaces).",
     "Create each part in the New Inventory Part window exactly as Part 1 says. UNVERIFIED: the tech plan of 7 Oct 2026 says POST /api/inventory/parts/create now takes partNumber, description and isTracked instead of a Part Library id; record the request the window really sends before scripting it, and use only that.",
     "Create {Part-A} while switched to {Location-B}, then switch back to {Location-A} before step 1.",
-    "Step 5: capture the green message text exactly; it must name {Part-A} and {Description-A}. UNVERIFIED: the tech plan says the create response carries linkedToExistingEntry and libraryDescriptionKept; record them if present.",
+    "Step 6: capture the green message text exactly; it must name {Part-A} and {Description-A}. UNVERIFIED: the tech plan says the create response carries linkedToExistingEntry and libraryDescriptionKept; record them if present.",
     "The Part Library list is Parts → Part Library (address /parts/parts-catalogue, unchanged by this release); click a row to open the entry's page, which lists each Workplace that stocks it and Total parts.",
     "Trap: the link is exact. Paste {Part-A} from the written-down value; any change in upper or lower case gives the new part its own entry and no message."
    ],
@@ -133,15 +134,16 @@
     "At {Location-A}, go to Parts → Inventory and click New Inventory Part.",
     "Type {Description-C} in Description.",
     "Type {Number-A} in Part Number, exactly as written down.",
-    "Pick any Category (for example Uncategorized) and type a Cost (for example 10.00).",
+    "Pick any Category (for example Uncategorized).",
+    "Type a Cost (for example 10.00).",
     "Click Save.",
     "Go to Parts → Part Library and type {Number-A} in the search.",
     "Go to Parts → Inventory and type {Number-A} in the search."
    ],
    "results": [
-    "Step 5: the part is saved and the window closes. No message about the Part Library appears (no \"Linked to … in the Part Library\" message).",
-    "Step 6: three rows now show {Number-A}: the two old entries with {Description-A} and {Description-B}, unchanged, and a new one with Description {Description-C} (2 + 1 = 3).",
-    "Step 7: one row at {Location-A} shows {Number-A} with Description {Description-C}."
+    "Step 6: the part is saved and the window closes. No message about the Part Library appears (no \"Linked to … in the Part Library\" message).",
+    "Step 7: three rows now show {Number-A}: the two old entries with {Description-A} and {Description-B}, unchanged, and a new one with Description {Description-C} (2 + 1 = 3).",
+    "Step 8: one row at {Location-A} shows {Number-A} with Description {Description-C}."
    ],
    "source": "Epic SV-10647; story SV-10820 (Story 7, Create a Part by Typing Its Number and Description); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S7-R8, S7-R10, Story 7 context note, read 13 Oct 2026; design canvas board 1.4 (Saved and linked to the Part Library entry), board 7.1 (Part Library), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -192,7 +194,8 @@
     "Replace the spaces in Description with {Description-A}.",
     "Click Save.",
     "Replace the spaces in Part Number with {Part-A}.",
-    "Pick any Category (for example Uncategorized) and type a Cost (for example 10.00).",
+    "Pick any Category (for example Uncategorized).",
+    "Type a Cost (for example 10.00).",
     "Click Save.",
     "Type {Part-A} in the Inventory search."
    ],
@@ -200,8 +203,8 @@
     "Step 2: Description is outlined in red with \"Description is a required field\" under it, and Part Number is outlined in red with \"Part number is a required field\" under it, both at the same time. The window stays open and nothing is saved. (Category and Cost may also show their own required messages, as they do today; those are not part of this check.)",
     "Step 5: both messages still show: a field holding only spaces counts as empty. Nothing is saved.",
     "Step 7: the Description message has gone. \"Part number is a required field\" still shows under Part Number, and nothing is saved.",
-    "Step 10: the window closes and the part is saved.",
-    "Step 11: one row shows {Part-A} with Description {Description-A}."
+    "Step 11: the window closes and the part is saved.",
+    "Step 12: one row shows {Part-A} with Description {Description-A}."
    ],
    "source": "Epic SV-10647; story SV-10820 (Story 7, Create a Part by Typing Its Number and Description); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S7-N1, S7-N2, §8 User Feedback Summary, read 13 Oct 2026; design canvas board 1.2 (Save with nothing filled), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -230,9 +233,9 @@
    ],
    "doc_part2": [
     "Nothing to seed. Check with GET /api/inventory/parts?search=<{Part-A}> that the number is unused.",
-    "Steps 2, 5 and 7: record the text under each field (the field's error line) and whether the window stayed open; no request that saves a part may be sent before step 10 (watch the browser's network log).",
+    "Steps 2, 5 and 7: record the text under each field (the field's error line) and whether the window stayed open; no request that saves a part may be sent before step 11 (watch the browser's network log).",
     "UNVERIFIED: the tech plan of 7 Oct 2026 says the window trims the value before checking it; a build that only checks for an empty string would save the spaces at step 5, which is a failure.",
-    "Evidence: screenshots after steps 2, 5, 7 and 11."
+    "Evidence: screenshots after steps 2, 5, 7 and 12."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; no requirement change."
   },
@@ -248,7 +251,8 @@
     "Go to Parts → Inventory and click New Inventory Part.",
     "In Description, type three spaces, then {Description-A}, then three spaces.",
     "In Part Number, type three spaces, then {Part-A}, then three spaces.",
-    "Pick any Category (for example Uncategorized) and type a Cost (for example 10.00).",
+    "Pick any Category (for example Uncategorized).",
+    "Type a Cost (for example 10.00).",
     "Click Save.",
     "Type {Part-A} in the Inventory search.",
     "Click the {Part-A} row.",
@@ -257,12 +261,12 @@
     "Go to Parts → Part Library and type {Part-A} in the search."
    ],
    "results": [
-    "Step 5: the part is saved and the window closes.",
-    "Step 6: one row shows Description {Description-A} and Part Number {Part-A}, with no spaces before or after them.",
-    "Step 7: Edit Inventory Part shows Description {Description-A} and Part Number {Part-A}, with no spaces before or after them.",
-    "Step 8: Backspace removes the last character of {Part-A} (for example the final \"1\"), which shows that no space was kept at the end.",
-    "Step 9: the window closes without saving.",
-    "Step 10: one entry shows Part Number {Part-A} and Description {Description-A}, with no spaces around them."
+    "Step 6: the part is saved and the window closes.",
+    "Step 7: one row shows Description {Description-A} and Part Number {Part-A}, with no spaces before or after them.",
+    "Step 8: Edit Inventory Part shows Description {Description-A} and Part Number {Part-A}, with no spaces before or after them.",
+    "Step 9: Backspace removes the last character of {Part-A} (for example the final \"1\"), which shows that no space was kept at the end.",
+    "Step 10: the window closes without saving.",
+    "Step 11: one entry shows Part Number {Part-A} and Description {Description-A}, with no spaces around them."
    ],
    "source": "Epic SV-10647; story SV-10820 (Story 7, Create a Part by Typing Its Number and Description); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S7-R3, read 13 Oct 2026; design canvas board 1.3 (Number and description typed), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -279,8 +283,8 @@
    ],
    "doc_part2": [
     "Nothing to seed. Type the spaces with the keyboard in the browser (Playwright keyboard.type), not by setting the field value, so the window sees them.",
-    "Steps 6 and 10: read the saved values from GET /api/inventory/parts?search=<{Part-A}> as well as from the screen, and check there is no leading or trailing space in part number and description.",
-    "Evidence: screenshots after steps 6, 8 and 10."
+    "Steps 7 and 11: read the saved values from GET /api/inventory/parts?search=<{Part-A}> as well as from the screen, and check there is no leading or trailing space in part number and description.",
+    "Evidence: screenshots after steps 7, 9 and 11."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; no requirement change."
   },
@@ -298,14 +302,16 @@
     "At {Location-A}, go to Parts → Inventory and click New Inventory Part.",
     "Type a Description (for example ZZAUTOTEST PL Tags Library).",
     "Type {Part-A} in Part Number, exactly as written down.",
-    "Click Tags, type {Tag-C} and press Enter.",
-    "Pick any Category (for example Uncategorized) and type a Cost (for example 10.00).",
+    "Click Tags.",
+    "Type {Tag-C} and press Enter.",
+    "Pick any Category (for example Uncategorized).",
+    "Type a Cost (for example 10.00).",
     "Click Save.",
     "Go to Parts → Part Library and type {Part-A} in the search."
    ],
    "results": [
-    "Step 6: the part is saved and the window closes.",
-    "Step 7: the one {Part-A} row shows three tags, {Tag-A}, {Tag-B} and {Tag-C} (2 kept + 1 added = 3). None was removed."
+    "Step 8: the part is saved and the window closes.",
+    "Step 9: the one {Part-A} row shows three tags, {Tag-A}, {Tag-B} and {Tag-C} (2 kept + 1 added = 3). None was removed."
    ],
    "source": "Epic SV-10647; story SV-10820 (Story 7, Create a Part by Typing Its Number and Description); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S7-R6a, read 13 Oct 2026; design canvas board 1.3 (Number and description typed), board 7.1 (Part Library), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -329,7 +335,7 @@
     "Create each part in the New Inventory Part window exactly as Part 1 says. UNVERIFIED: the tech plan of 7 Oct 2026 says POST /api/inventory/parts/create now takes partNumber, description and isTracked instead of a Part Library id; record the request the window really sends before scripting it, and use only that.",
     "Create {Part-A} at {Location-B} with the two tags, then switch back to {Location-A}.",
     "The Part Library list is Parts → Part Library (address /parts/parts-catalogue, unchanged by this release); click a row to open the entry's page, which lists each Workplace that stocks it and Total parts.",
-    "Step 7: read the Tags cell of the {Part-A} row; if the cell shows a \"...\" overflow pill, open the entry's page to read every tag.",
+    "Step 9: read the Tags cell of the {Part-A} row; if the cell shows a \"...\" overflow pill, open the entry's page to read every tag.",
     "Trap: type the same description as the entry at step 2, so no description message distracts from the tag check."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; no requirement change."
@@ -349,13 +355,14 @@
     "Type a Description (for example ZZAUTOTEST PL Mfr Empty).",
     "Type {Part-A} in Part Number, exactly as written down.",
     "Open Manufacturer and pick {Manufacturer-A}.",
-    "Pick any Category (for example Uncategorized) and type a Cost (for example 10.00).",
+    "Pick any Category (for example Uncategorized).",
+    "Type a Cost (for example 10.00).",
     "Click Save.",
     "Go to Parts → Part Library and type {Part-A} in the search."
    ],
    "results": [
-    "Step 6: the part is saved and the window closes.",
-    "Step 7: the one {Part-A} row now shows Manufacturer {Manufacturer-A}."
+    "Step 7: the part is saved and the window closes.",
+    "Step 8: the one {Part-A} row now shows Manufacturer {Manufacturer-A}."
    ],
    "source": "Epic SV-10647; story SV-10820 (Story 7, Create a Part by Typing Its Number and Description); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S7-R6b, S7-R6d, read 13 Oct 2026; design canvas board 1.3 (Number and description typed), board 7.1 (Part Library), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -402,13 +409,14 @@
     "Type a Description (for example ZZAUTOTEST PL Mfr Keep).",
     "Type {Part-A} in Part Number, exactly as written down.",
     "Open Manufacturer and pick {Manufacturer-B}.",
-    "Pick any Category (for example Uncategorized) and type a Cost (for example 10.00).",
+    "Pick any Category (for example Uncategorized).",
+    "Type a Cost (for example 10.00).",
     "Click Save.",
     "Go to Parts → Part Library and type {Part-A} in the search."
    ],
    "results": [
-    "Step 6: the part is saved and the window closes.",
-    "Step 7: the one {Part-A} row still shows Manufacturer {Manufacturer-A}, not {Manufacturer-B}."
+    "Step 7: the part is saved and the window closes.",
+    "Step 8: the one {Part-A} row still shows Manufacturer {Manufacturer-A}, not {Manufacturer-B}."
    ],
    "source": "Epic SV-10647; story SV-10820 (Story 7, Create a Part by Typing Its Number and Description); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S7-R6b, S7-R6d, read 13 Oct 2026; design canvas board 1.3 (Number and description typed), board 7.1 (Part Library), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -503,13 +511,14 @@
     "At {Location-A}, go to Parts → Inventory and click New Inventory Part.",
     "In Description, type two spaces, then {Description-B}, then two spaces.",
     "Type {Part-A} in Part Number, exactly as written down.",
-    "Pick any Category (for example Uncategorized) and type a Cost (for example 10.00).",
+    "Pick any Category (for example Uncategorized).",
+    "Type a Cost (for example 10.00).",
     "Click Save.",
     "Go to Parts → Part Library and type {Part-A} in the search."
    ],
    "results": [
-    "Step 5: the part is saved and the window closes. No message about the Part Library appears (no \"Part created. Linked to … was kept.\" message).",
-    "Step 6: one row for {Part-A}, with the Description still {Description-A}."
+    "Step 6: the part is saved and the window closes. No message about the Part Library appears (no \"Part created. Linked to … was kept.\" message).",
+    "Step 7: one row for {Part-A}, with the Description still {Description-A}."
    ],
    "source": "Epic SV-10647; story SV-10820 (Story 7, Create a Part by Typing Its Number and Description); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S7-R9, S7-R10, read 13 Oct 2026; design canvas board 1.4 (Saved and linked to the Part Library entry), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -536,7 +545,7 @@
     "Switch location in the top bar, or with POST /api/iam/change-location (workplace_id and workplace_timezone, taken from GET /api/staff/my-workplaces).",
     "Create each part in the New Inventory Part window exactly as Part 1 says. UNVERIFIED: the tech plan of 7 Oct 2026 says POST /api/inventory/parts/create now takes partNumber, description and isTracked instead of a Part Library id; record the request the window really sends before scripting it, and use only that.",
     "Create {Part-A} at {Location-B}, then switch back to {Location-A}.",
-    "Step 5: watch the screen for at least 5 seconds after Save and record every message that shows; none may mention the Part Library. UNVERIFIED: the tech plan says the create response's libraryDescriptionKept is false here; record it."
+    "Step 6: watch the screen for at least 5 seconds after Save and record every message that shows; none may mention the Part Library. UNVERIFIED: the tech plan says the create response's libraryDescriptionKept is false here; record it."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; no requirement change."
   },
@@ -552,15 +561,16 @@
     "Go to Parts → Inventory and click New Inventory Part.",
     "Type {Description-A} in Description.",
     "Type {Part-A} in Part Number.",
-    "Pick any Category (for example Uncategorized) and type a Cost (for example 10.00).",
+    "Pick any Category (for example Uncategorized).",
+    "Type a Cost (for example 10.00).",
     "Click Save.",
     "Go to Parts → Part Library and type {Part-A} in the search.",
     "Click the {Part-A} row."
    ],
    "results": [
-    "Step 5: the part is saved and the window closes. No message about the Part Library appears.",
-    "Step 6: exactly one entry shows Part Number {Part-A} and Description {Description-A}.",
-    "Step 7: the entry's page lists one workplace, {Location-A}, and Total parts reads 1."
+    "Step 6: the part is saved and the window closes. No message about the Part Library appears.",
+    "Step 7: exactly one entry shows Part Number {Part-A} and Description {Description-A}.",
+    "Step 8: the entry's page lists one workplace, {Location-A}, and Total parts reads 1."
    ],
    "source": "Epic SV-10647; story SV-10820 (Story 7, Create a Part by Typing Its Number and Description); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S7-R7, S7-R10, read 13 Oct 2026; design canvas board 7.1 (Part Library), board 7.2 (An entry opens its detail page), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -581,8 +591,8 @@
    ],
    "doc_part2": [
     "Nothing to seed. The Part Library list is Parts → Part Library (address /parts/parts-catalogue, unchanged by this release); click a row to open the entry's page, which lists each Workplace that stocks it and Total parts.",
-    "Step 5: record every message shown for 5 seconds after Save; none may mention the Part Library.",
-    "Evidence: screenshots after steps 5, 6 and 7."
+    "Step 6: record every message shown for 5 seconds after Save; none may mention the Part Library.",
+    "Evidence: screenshots after steps 6, 7 and 8."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; no requirement change."
   },
@@ -601,15 +611,16 @@
     "At {Location-A}, go to Parts → Inventory and click New Inventory Part.",
     "Type {Description-B} in Description.",
     "Type {Number-A} in Part Number.",
-    "Pick any Category (for example Uncategorized) and type a Cost (for example 10.00).",
+    "Pick any Category (for example Uncategorized).",
+    "Type a Cost (for example 10.00).",
     "Click Save.",
     "Go to Parts → Part Library and type {Part-A} in the search.",
     "Go to Parts → Inventory and type {Number-A} in the search."
    ],
    "results": [
-    "Step 5: the part is saved and the window closes. No \"Linked to … in the Part Library\" message appears.",
-    "Step 6: two separate entries now show: {Part-A} with {Description-A}, and {Number-A}, saved in lower case exactly as typed, with {Description-B} (1 + 1 = 2).",
-    "Step 7: at {Location-A} one row shows {Number-A} with {Description-B}."
+    "Step 6: the part is saved and the window closes. No \"Linked to … in the Part Library\" message appears.",
+    "Step 7: two separate entries now show: {Part-A} with {Description-A}, and {Number-A}, saved in lower case exactly as typed, with {Description-B} (1 + 1 = 2).",
+    "Step 8: at {Location-A} one row shows {Number-A} with {Description-B}."
    ],
    "source": "Epic SV-10647; story SV-10820 (Story 7, Create a Part by Typing Its Number and Description); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S7-R4, S7-R7, §4 Key Decisions, read 13 Oct 2026; design canvas board 1.4 (Saved and linked to the Part Library entry), board 7.1 (Part Library), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -641,7 +652,7 @@
     "Create each part in the New Inventory Part window exactly as Part 1 says. UNVERIFIED: the tech plan of 7 Oct 2026 says POST /api/inventory/parts/create now takes partNumber, description and isTracked instead of a Part Library id; record the request the window really sends before scripting it, and use only that.",
     "Create {Part-A} at {Location-B}, then switch back to {Location-A}.",
     "The Part Library list is Parts → Part Library (address /parts/parts-catalogue, unchanged by this release); click a row to open the entry's page, which lists each Workplace that stocks it and Total parts.",
-    "Step 6: the Part Library search may ignore case, so both rows are expected to show; read each row's Part Number exactly and check the lower-case one kept its case."
+    "Step 7: the Part Library search may ignore case, so both rows are expected to show; read each row's Part Number exactly and check the lower-case one kept its case."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; no requirement change."
   },
@@ -658,7 +669,8 @@
     "Go to Parts → Inventory and click New Inventory Part.",
     "Type a Description (for example ZZAUTOTEST PL Dup Try).",
     "Type {Number-A} in Part Number.",
-    "Pick any Category (for example Uncategorized) and type a Cost (for example 10.00).",
+    "Pick any Category (for example Uncategorized).",
+    "Type a Cost (for example 10.00).",
     "Click Save.",
     "Replace the Part Number with {Number-B}.",
     "Click Save.",
@@ -666,10 +678,10 @@
     "Type {Part-A} in the Inventory search."
    ],
    "results": [
-    "Step 5: the part is not saved. A red message reads \"{Part-A} already exists at this location.\" It names the number of the part already there, in that part's own upper and lower case, not {Number-A} as typed. A second, smaller line under it reads \"Please try to resolve this.\" The message goes away after about 3 seconds, and the window stays open with the typed values.",
-    "Step 7: the same red message \"{Part-A} already exists at this location.\" appears: hyphens, asterisks, periods and spaces make no difference.",
-    "Step 8: the window closes.",
-    "Step 9: still exactly one row, {Part-A}."
+    "Step 6: the part is not saved. A red message reads \"{Part-A} already exists at this location.\" It names the number of the part already there, in that part's own upper and lower case, not {Number-A} as typed. A second, smaller line under it reads \"Please try to resolve this.\" The message goes away after about 3 seconds, and the window stays open with the typed values.",
+    "Step 8: the same red message \"{Part-A} already exists at this location.\" appears: hyphens, asterisks, periods and spaces make no difference.",
+    "Step 9: the window closes.",
+    "Step 10: still exactly one row, {Part-A}."
    ],
    "source": "Epic SV-10647; story SV-10820 (Story 7, Create a Part by Typing Its Number and Description); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S7-N3, S7-N5, §4 Key Decisions, §8 User Feedback Summary, read 13 Oct 2026; design canvas board 1.5 (The same number again, in lower case), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -705,7 +717,7 @@
     "Create each part in the New Inventory Part window exactly as Part 1 says. UNVERIFIED: the tech plan of 7 Oct 2026 says POST /api/inventory/parts/create now takes partNumber, description and isTracked instead of a Part Library id; record the request the window really sends before scripting it, and use only that.",
     "Find each part and its id with GET /api/inventory/parts?search=<part number> from the signed-in session, and record {Part-A id} (and {Part-B id} where there is a second part) before step 1.",
     "Messages: take a screenshot while each message shows and copy its text exactly, including any second, smaller line. Error messages that fade go away after about 3 seconds, so capture them at once.",
-    "Steps 5 and 7: the window must stay open after each refusal; GET /api/inventory/parts?search=<{Part-A}> must still return one part afterwards.",
+    "Steps 6 and 8: the window must stay open after each refusal; GET /api/inventory/parts?search=<{Part-A}> must still return one part afterwards.",
     "Trap: the message names the part already stocked, so it reads {Part-A} in upper case even though {Number-A} was typed in lower case."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; no requirement change."
@@ -722,17 +734,18 @@
     "Go to Parts → Inventory, stay on the Active tab and click New Inventory Part.",
     "Type a Description (for example ZZAUTOTEST PL Dup Try).",
     "Type {Number-A} in Part Number.",
-    "Pick any Category (for example Uncategorized) and type a Cost (for example 10.00).",
+    "Pick any Category (for example Uncategorized).",
+    "Type a Cost (for example 10.00).",
     "Click Save.",
     "Click Cancel.",
     "Type {Part-A} in the search on the Active tab.",
     "Click the Inactive tab."
    ],
    "results": [
-    "Step 5: the part is not saved. A red message reads \"{Part-A} already exists at this location and is inactive. Activate it from the Inactive tab.\" with a second, smaller line \"Please try to resolve this.\" It goes away after about 3 seconds, and the window stays open.",
-    "Step 6: the window closes.",
-    "Step 7: the Active tab shows no row.",
-    "Step 8: the Inactive tab shows the one row {Part-A}."
+    "Step 6: the part is not saved. A red message reads \"{Part-A} already exists at this location and is inactive. Activate it from the Inactive tab.\" with a second, smaller line \"Please try to resolve this.\" It goes away after about 3 seconds, and the window stays open.",
+    "Step 7: the window closes.",
+    "Step 8: the Active tab shows no row.",
+    "Step 9: the Inactive tab shows the one row {Part-A}."
    ],
    "source": "Epic SV-10647; story SV-10820 (Story 7, Create a Part by Typing Its Number and Description); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S7-N4, S7-N5, §8 User Feedback Summary, read 13 Oct 2026; design canvas board 1.5 (The same number again, in lower case), board 3.5 (The Inactive tab), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -766,7 +779,7 @@
     "Find each part and its id with GET /api/inventory/parts?search=<part number> from the signed-in session, and record {Part-A id} (and {Part-B id} where there is a second part) before step 1.",
     "To set a part inactive quickly: UNVERIFIED, from the tech plan of 7 Oct 2026, PATCH /api/inventory/parts/status with partIds set to the part's id and status set to inactive; otherwise use the part window as Part 1 says.",
     "Messages: take a screenshot while each message shows and copy its text exactly, including any second, smaller line. Error messages that fade go away after about 3 seconds, so capture them at once.",
-    "Step 5: the message must be the inactive one, naming {Part-A} (the stocked part's number), not {Number-A}."
+    "Step 6: the message must be the inactive one, naming {Part-A} (the stocked part's number), not {Number-A}."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; no requirement change."
   },
@@ -784,13 +797,14 @@
     "At {Location-A}, go to Parts → Inventory, stay on the Active tab and click New Inventory Part.",
     "Type a Description (for example ZZAUTOTEST PL Both Try).",
     "Type {Number-A} in Part Number.",
-    "Pick any Category (for example Uncategorized) and type a Cost (for example 10.00).",
+    "Pick any Category (for example Uncategorized).",
+    "Type a Cost (for example 10.00).",
     "Click Save.",
     "Click Cancel."
    ],
    "results": [
-    "Step 5: the part is not saved. The red message is the one for an active part and names the active part's number: \"{Part-A} already exists at this location.\" A second, smaller line reads \"Please try to resolve this.\" It is not the message \"{Part-B} already exists at this location and is inactive. Activate it from the Inactive tab.\", and it does not name {Part-B}.",
-    "Step 6: the window closes."
+    "Step 6: the part is not saved. The red message is the one for an active part and names the active part's number: \"{Part-A} already exists at this location.\" A second, smaller line reads \"Please try to resolve this.\" It is not the message \"{Part-B} already exists at this location and is inactive. Activate it from the Inactive tab.\", and it does not name {Part-B}.",
+    "Step 7: the window closes."
    ],
    "source": "Epic SV-10647; story SV-10820 (Story 7, Create a Part by Typing Its Number and Description); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S7-N5a, S7-N3, S7-N5, §2 Out of scope (parts CSV import matching), §8 User Feedback Summary, read 13 Oct 2026; design canvas board 1.5 (The same number again, in lower case), 13 Oct copy. Product's 9 Oct answer (Chris Ward, question 4). Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -824,7 +838,7 @@
     "Go to Parts → Inventory and click New Inventory Part. Type the Description (for example ZZAUTOTEST PL Both Second) and the Part Number {Part-B} (for example ZZAUTOTESTPLBOTH01). This part is {Part-B}. Pick any Category (for example Uncategorized), type a Cost (for example 10.00) and a Sell Price (for example 20.00), keep the default bin row with a Quantity (for example 3) and click Save. It gets its own Part Library entry, because its number is not an exact match of {Part-A}.",
     "Pick {Location-A} in the location switcher in the top bar.",
     "Go to Settings → Data Import → Inventory and download the template the screen offers. Fill one row: Part Number {Part-B}, Description ZZAUTOTEST PL Both Import, and the other columns the template requires (for example Category Uncategorized, Cost 10.00, Quantity 1). Upload the file and run the import. This is meant to place {Part-B} at {Location-A} on {Part-B}'s own Part Library entry.",
-    "At {Location-A}: Set {Part-B} inactive: on the Active tab type {Part-B} in the search, click its row, pick Inactive under Part Status, click Save, then click Deactivate in the \"Deactivate part?\" window.",
+    "At {Location-A}, set {Part-B} inactive: on the Active tab type {Part-B} in the search, click its row, pick Inactive under Part Status, click Save, then click Deactivate in the \"Deactivate part?\" window.",
     "Write down {Number-A} (for example zz autotest pl both 01).",
     "Check the setup worked: at {Location-A}, the Active tab searched for {Part-A} lists {Part-A} only, and the Inactive tab searched for {Part-B} lists {Part-B} only. If the import refused the row or updated {Part-A} instead, mark the case Blocked with the comment \"could not place two matching numbers at one location\"."
    ],
@@ -835,7 +849,7 @@
     "UNVERIFIED: placing two parts whose numbers match (ignoring case and punctuation) at one location relies on the parts CSV import adding a part on an entry that is not yet stocked here without running the duplicate check of S7-N3. The PRD does not say whether the import runs that check. Record exactly what the import screen reports. If it refuses the row or updates {Part-A}, use two parts that already matched at one location before the release instead, or mark the case Blocked.",
     "To set a part inactive quickly: UNVERIFIED, from the tech plan of 7 Oct 2026, PATCH /api/inventory/parts/status with partIds set to the part's id and status set to inactive; otherwise use the part window as Part 1 says.",
     "Messages: take a screenshot while each message shows and copy its text exactly, including any second, smaller line. Error messages that fade go away after about 3 seconds, so capture them at once.",
-    "Step 5: the PRD (S7-N5a, reworded 9 Oct) requires the message to name the active part's number, {Part-A}; record the exact text and whether it names {Part-A} or {Part-B}."
+    "Step 6: the PRD (S7-N5a, reworded 9 Oct) requires the message to name the active part's number, {Part-A}; record the exact text and whether it names {Part-A} or {Part-B}."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; S7-N5a reworded 9 Oct (the message names the active part's number): expected result now firm on {Part-A}."
   },
@@ -967,12 +981,13 @@
     "Go to Parts → Inventory and click New Inventory Part.",
     "Type three spaces in Description.",
     "Type three spaces in Part Number.",
-    "Pick any Category (for example Uncategorized) and type a Cost (for example 10.00).",
+    "Pick any Category (for example Uncategorized).",
+    "Type a Cost (for example 10.00).",
     "Click Save."
    ],
    "results": [
-    "Step 5: the window itself refuses the save: \"Description is a required field\" shows under Description and \"Part number is a required field\" under Part Number, and nothing is saved.",
-    "Step 5: when a blank description or part number arrives some other way than this window, the system refuses it with a red message \"Description is required.\" or \"Part number is required.\" that goes away after about 3 seconds. This part cannot be checked by hand; write \"not checked by hand\" in the result comment."
+    "Step 6: the window itself refuses the save: \"Description is a required field\" shows under Description and \"Part number is a required field\" under Part Number, and nothing is saved.",
+    "Step 6: when a blank description or part number arrives some other way than this window, the system refuses it with a red message \"Description is required.\" or \"Part number is required.\" that goes away after about 3 seconds. This part cannot be checked by hand; write \"not checked by hand\" in the result comment."
    ],
    "source": "Epic SV-10647; story SV-10820 (Story 7, Create a Part by Typing Its Number and Description); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S7-N6, S7-N1, S7-N2, §8 User Feedback Summary, read 13 Oct 2026; design canvas board 1.2 (Save with nothing filled), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -1003,7 +1018,7 @@
     "Check the setup worked: Parts → Inventory opens and shows the New Inventory Part button."
    ],
    "doc_part2": [
-    "Run steps 1 to 5 in the browser; no request that saves a part may be sent (watch the browser's network log).",
+    "Run steps 1 to 6 in the browser; no request that saves a part may be sent (watch the browser's network log).",
     "For the second result (a Claude session may check it; a manual tester cannot): UNVERIFIED, from the tech plan of 7 Oct 2026, send POST /api/inventory/parts/create from the signed-in session with partNumber set to three spaces and then with description set to three spaces; expect a 400 refusal whose message is exactly \"Part number is required.\" or \"Description is required.\", and confirm no part was created. Record the requests and answers in the verification folder.",
     "Trap: do not report the API answer as the manual tester's result; the TestRail result comment still says \"not checked by hand\" unless the QA lead decides otherwise."
    ],
@@ -1965,7 +1980,8 @@
     "Pick {Location-B} in the location switcher.",
     "Go to Parts → Purchase Orders and open {Purchase-order-D}.",
     "Pick {Location-A} in the location switcher.",
-    "Open {Purchase-order-A} and click Receive.",
+    "Open {Purchase-order-A}.",
+    "Click Receive.",
     "Fill the invoice number {Invoice-B}, a cost (for example 10.00), a sell price (for example 20.00) and a received quantity of 2.",
     "Click Receive.",
     "Go to Parts → Inventory and type {Number-A} in the search."
@@ -1977,8 +1993,8 @@
     "Step 7: the hand-typed {Purchase-order-C} line still reads {Part-A}: it only shares the old number.",
     "Step 8: the accepted vendor invoice {Invoice-A} still reads {Part-A}.",
     "Step 10: the open {Purchase-order-D} line at {Location-B} reads {Number-A}: the rename reaches every location.",
-    "Step 14: receiving finds the renamed part and the delivery is accepted.",
-    "Step 15: {Number-A} shows 4 + 2 = 6 on hand."
+    "Step 15: receiving finds the renamed part and the delivery is accepted.",
+    "Step 16: {Number-A} shows 4 + 2 = 6 on hand."
    ],
    "source": "Epic SV-10647; story SV-10826 (Story 13, The Part Dialog); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S13-R19, S13-R19a, S13-R19b, §4 Key Decisions, §5 Terminology, Story 13 context note, read 13 Oct 2026; design canvas board 2.3 (Saved: the list shows the new values), 13 Oct copy. Tech plan §1 Clarifications Q15 and §6 Phase 6 open-work table. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -2123,15 +2139,16 @@
     "Click Save.",
     "Open {Work-order-1} and go to its Parts tab.",
     "Click New Line.",
-    "Type {Canned-job-A} in Title and pick it.",
+    "Type {Canned-job-A} in Title.",
+    "Pick {Canned-job-A} in the list.",
     "Click Save & Close.",
     "Read the part row on the new line."
    ],
    "results": [
     "Step 4: the rename is saved and the window closes.",
     "Step 5: the part already picked onto {Work-order-1}, a completed record, still reads {Part-A}.",
-    "Step 8: the canned job is added and finds the renamed part: no part is left out and no warning appears.",
-    "Step 9: the part on the new line reads {Number-A}."
+    "Step 9: the canned job is added and finds the renamed part: no part is left out and no warning appears.",
+    "Step 10: the part on the new line reads {Number-A}."
    ],
    "source": "Epic SV-10647; story SV-10826 (Story 13, The Part Dialog); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S13-R19, §4 Key Decisions, Story 13 context note, read 13 Oct 2026; design canvas board 6.4 (A canned job that holds it), 13 Oct copy. Tech plan §6 Phase 6 open-work table. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -2261,7 +2278,8 @@
     "In tab 2, go to Parts → Inventory and type {Number-A} in the search.",
     "In tab 2, go to Parts → Part Library and type {Part-A} in the search.",
     "In tab 2, go to Parts → Vendor Invoices and open {Invoice-A}.",
-    "In tab 2, go to Parts → Purchase Orders, open {Purchase-order-B} and click Receive.",
+    "In tab 2, go to Parts → Purchase Orders and open {Purchase-order-B}.",
+    "In tab 2, click Receive.",
     "Fill the invoice number {Invoice-B}, a cost (for example 10.00), a sell price (for example 20.00) and a received quantity of 1.",
     "Click Receive.",
     "Go to Parts → Vendor Invoices and open {Invoice-B}."
@@ -2272,7 +2290,7 @@
     "Step 10: {Number-A} shows 3 + 2 = 5 on hand.",
     "Step 11: no Part Library entry has the old number {Part-A}: the receipt made none.",
     "Step 12: the invoice line reads {Number-A}, even though the Receive screen was opened before the rename.",
-    "Step 16: the hand-typed line was received under its own number: the invoice line reads {Part-A}."
+    "Step 17: the hand-typed line was received under its own number: the invoice line reads {Part-A}."
    ],
    "source": "Epic SV-10647; story SV-10826 (Story 13, The Part Dialog); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S13-R19c, S13-R19a, read 13 Oct 2026; design canvas: no board shows this behaviour (13 Oct copy). Tech plan §3 D30. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -2305,7 +2323,7 @@
     "Purchase orders: create them on screen and record each id from its address; GET /api/inventory/orders/<id> lists each item's part_number. Receiving goes through the Receive screen (Receive on the purchase order), which sends POST /api/inventory/orders/accept; the Receive button stays disabled until vendor, invoice number, part number, cost and a sell price above 0 are filled. Cost and invoice edits there are not kept if the screen is reloaded.",
     "Two tabs: use two pages of one browser context so both share the session. Open the Receive screen in tab 1 and keep it unsubmitted while the rename is saved in tab 2.",
     "Step 12: read the delivery's line from GET /api/inventory/deliveries as well as on screen; record its part number.",
-    "Trap: step 11 must run before step 15, because receiving the hand-typed line under {Part-A} may itself create a Part Library entry for {Part-A}."
+    "Trap: step 11 must run before step 16, because receiving the hand-typed line under {Part-A} may itself create a Part Library entry for {Part-A}."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; no requirement change."
   },
@@ -2321,12 +2339,13 @@
     "On the Active tab, type {Part-A} in the search.",
     "Click the {Part-A} row.",
     "Click Cancel.",
-    "Click the Inactive tab and type {Part-B} in the search.",
+    "Click the Inactive tab.",
+    "Type {Part-B} in the search.",
     "Click the {Part-B} row."
    ],
    "results": [
     "Step 2: under Part Number a \"Part Status\" choice offers two options, Active and Inactive, with Active selected.",
-    "Step 5: Part Status has Inactive selected."
+    "Step 6: Part Status has Inactive selected."
    ],
    "source": "Epic SV-10647; story SV-10826 (Story 13, The Part Dialog); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S13-R20, read 13 Oct 2026; design canvas board 3.1 (Part Status in the dialog), board 3.6 (Opening the inactive part), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -2347,7 +2366,7 @@
     "Create each part in the New Inventory Part window exactly as Part 1 says. UNVERIFIED: the tech plan of 7 Oct 2026 says POST /api/inventory/parts/create now takes partNumber, description and isTracked instead of a Part Library id; record the request the window really sends before scripting it, and use only that.",
     "Find each part and its id with GET /api/inventory/parts?search=<part number> from the signed-in session, and record {Part-A id} (and {Part-B id} where there is a second part) before step 1.",
     "To set a part inactive quickly: UNVERIFIED, from the tech plan of 7 Oct 2026, PATCH /api/inventory/parts/status with partIds set to the part's id and status set to inactive; otherwise use the part window as Part 1 says.",
-    "Steps 2 and 5: screenshot the Part Status choice. UNVERIFIED: the tech plan names the options radio_part_status_active and radio_part_status_inactive."
+    "Steps 2 and 6: screenshot the Part Status choice. UNVERIFIED: the tech plan names the options radio_part_status_active and radio_part_status_inactive."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; no requirement change."
   },
@@ -2457,15 +2476,16 @@
     "Click the {Part-A} row.",
     "Click the Inactive option.",
     "Click Cancel.",
-    "Click the Inactive tab and type {Part-B} in the search.",
+    "Click the Inactive tab.",
+    "Type {Part-B} in the search.",
     "Click the {Part-B} row.",
     "Click the Active option.",
     "Click Cancel."
    ],
    "results": [
     "Step 3: the title row pill still reads \"Active\" in green.",
-    "Step 7: the title row pill still reads \"Inactive\" in grey.",
-    "Steps 4 and 8: the window closes without saving."
+    "Step 8: the title row pill still reads \"Inactive\" in grey.",
+    "Steps 4 and 9: the window closes without saving."
    ],
    "source": "Epic SV-10647; story SV-10826 (Story 13, The Part Dialog); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S13-R25, read 13 Oct 2026; design canvas board 3.2 (Inactive picked), board 3.7 (Bringing it back), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -2486,7 +2506,7 @@
     "Create each part in the New Inventory Part window exactly as Part 1 says. UNVERIFIED: the tech plan of 7 Oct 2026 says POST /api/inventory/parts/create now takes partNumber, description and isTracked instead of a Part Library id; record the request the window really sends before scripting it, and use only that.",
     "Find each part and its id with GET /api/inventory/parts?search=<part number> from the signed-in session, and record {Part-A id} (and {Part-B id} where there is a second part) before step 1.",
     "To set a part inactive quickly: UNVERIFIED, from the tech plan of 7 Oct 2026, PATCH /api/inventory/parts/status with partIds set to the part's id and status set to inactive; otherwise use the part window as Part 1 says.",
-    "Steps 3 and 7: screenshot the title row after picking; record the pill text and colour."
+    "Steps 3 and 8: screenshot the title row after picking; record the pill text and colour."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; no requirement change."
   },
@@ -2594,7 +2614,8 @@
     "Inactive part {Part-A} (for example ZZAUTOTEST-PL-REACT-01), with Sell Price $20.00, is stocked at {Location-A}."
    ],
    "steps": [
-    "Click the Inactive tab and type {Part-A} in the search.",
+    "Click the Inactive tab.",
+    "Type {Part-A} in the search.",
     "Click the {Part-A} row.",
     "Change the Sell Price to 27.00.",
     "Click the Active option.",
@@ -2605,11 +2626,11 @@
     "Click the {Part-A} row."
    ],
    "results": [
-    "Step 5: a confirmation titled \"Activate part?\" opens.",
-    "Step 6: both windows close, and a green message \"Part activated.\" appears and goes away on its own.",
-    "Step 7: the Inactive tab shows no row.",
-    "Step 8: the Active tab shows one row, {Part-A}.",
-    "Step 9: Sell Price reads $27.00 and the title row pill reads \"Active\"."
+    "Step 6: a confirmation titled \"Activate part?\" opens.",
+    "Step 7: both windows close, and a green message \"Part activated.\" appears and goes away on its own.",
+    "Step 8: the Inactive tab shows no row.",
+    "Step 9: the Active tab shows one row, {Part-A}.",
+    "Step 10: Sell Price reads $27.00 and the title row pill reads \"Active\"."
    ],
    "source": "Epic SV-10647; story SV-10826 (Story 13, The Part Dialog); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S13-R22, §8 User Feedback Summary, read 13 Oct 2026; design canvas board 3.7 (Bringing it back), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -2731,22 +2752,30 @@
     "Active part {Part-A} (for example ZZAUTOTEST-PL-REFUSED-01), with Sell Price $20.00, is stocked at {Location-A}."
    ],
    "steps": [
-    "In tab 1, type {Part-A} in the search and click the {Part-A} row.",
+    "In tab 1, type {Part-A} in the Inventory search.",
+    "In tab 1, click the {Part-A} row.",
     "In tab 1, change the Sell Price to 25.00.",
     "In tab 1, click the Inactive option.",
-    "In tab 2, type {Part-A} in the search and click the {Part-A} row.",
-    "In tab 2, click Inactive, click Save, then click Deactivate.",
+    "In tab 2, type {Part-A} in the Inventory search.",
+    "In tab 2, click the {Part-A} row.",
+    "In tab 2, click the Inactive option.",
+    "In tab 2, click Save.",
+    "In tab 2, click Deactivate.",
     "In tab 1, click Save.",
     "In tab 1, click Deactivate.",
-    "In tab 1, wait 10 seconds without closing anything.",
+    "In tab 1, wait 10 seconds. Do not close anything.",
     "In tab 1, close the red message.",
-    "In tab 1, click Cancel in the confirmation, then Cancel on the part window.",
-    "In tab 1, click the Inactive tab, type {Part-A} in the search and click the {Part-A} row."
+    "In tab 1, click Cancel in the confirmation.",
+    "In tab 1, click Cancel on the part window.",
+    "In tab 1, click the Inactive tab.",
+    "In tab 1, type {Part-A} in the search.",
+    "In tab 1, click the {Part-A} row."
    ],
    "results": [
-    "Step 7: the confirmation stays open. A red message reads \"This part could not be deactivated\" with the reason \"Part is already in that state.\"",
-    "Step 8: the red message is still showing: it stays until it is closed.",
-    "Step 11: {Part-A} is inactive and its Sell Price reads $25.00: the form was saved before the status change was refused."
+    "Step 9: in tab 2 the part is deactivated and \"Part deactivated.\" shows.",
+    "Step 11: in tab 1 the confirmation stays open. A red message reads \"This part could not be deactivated\" with the reason \"Part is already in that state.\"",
+    "Step 12: the red message is still showing: it stays until it is closed.",
+    "Step 18: the title row pill reads \"Inactive\" and the Sell Price reads $25.00: the form was saved before the status change was refused."
    ],
    "source": "Epic SV-10647; story SV-10826 (Story 13, The Part Dialog); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S13-N4, S13-R22, S10-R13a, §8 User Feedback Summary, read 13 Oct 2026; design canvas board 3.3 (Save asks first), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -2757,6 +2786,10 @@
     [
      "S13-R22",
      "Confirming saves every change in the dialog, then applies the status, and closes the dialog with \"Part deactivated.\" or \"Part activated.\"."
+    ],
+    [
+     "PRD §8 User Feedback Summary (Part deactivated from the part dialog)",
+     "\"Part deactivated.\" | Success toast, fades on its own"
     ],
     [
      "S10-R13a",
@@ -2777,10 +2810,10 @@
    "doc_part2": [
     "Create each part in the New Inventory Part window exactly as Part 1 says. UNVERIFIED: the tech plan of 7 Oct 2026 says POST /api/inventory/parts/create now takes partNumber, description and isTracked instead of a Part Library id; record the request the window really sends before scripting it, and use only that.",
     "Find each part and its id with GET /api/inventory/parts?search=<part number> from the signed-in session, and record {Part-A id} (and {Part-B id} where there is a second part) before step 1.",
-    "Two tabs: two pages of one browser context. Tab 2 can instead set the part inactive with the status request (P2 below) between steps 3 and 6.",
+    "Two tabs: two pages of one browser context. Instead of steps 5 to 9, tab 2's change can be made with the status request below, after step 4 and before step 10.",
     "To set a part inactive quickly: UNVERIFIED, from the tech plan of 7 Oct 2026, PATCH /api/inventory/parts/status with partIds set to the part's id and status set to inactive; otherwise use the part window as Part 1 says.",
     "Messages: take a screenshot while each message shows and copy its text exactly, including any second, smaller line. Error messages that fade go away after about 3 seconds, so capture them at once.",
-    "Step 8: this message stays until closed (not a fading one); screenshot it at 10 seconds."
+    "Step 12: this message stays until it is closed (it does not fade); take a screenshot at 10 seconds."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; steps split into one action each; no requirement change."
   },
@@ -2993,16 +3026,21 @@
    ],
    "steps": [
     "In tab 1, type {Part-A} in the Inventory search.",
-    "In tab 1, click the {Part-A} row and leave the window open.",
-    "In tab 2, open {Work-order-1}, click ⋮ on {Line-1} and click Request part.",
-    "In tab 2, pick the {Part-A} result that shows an Inventory Qty, take 1 and click Save Part.",
+    "In tab 1, click the {Part-A} row.",
+    "Leave that window open in tab 1. Do not close it.",
+    "In tab 2, open {Work-order-1}.",
+    "In tab 2, click ⋮ on {Line-1}.",
+    "In tab 2, click Request part.",
+    "In tab 2, pick the {Part-A} result that shows an Inventory Qty.",
+    "In tab 2, take 1 from its bin.",
+    "In tab 2, click Save Part.",
     "In tab 1, click Delete Part.",
     "In tab 1, close the window.",
     "In tab 1, type {Part-A} in the search."
    ],
    "results": [
-    "Step 5: the delete is refused with a red message \"Inventory part that has a work order part cannot be deleted.\", with the second, smaller line \"Please try to resolve this.\" It goes away after about 3 seconds. No other error message appears.",
-    "Step 7: {Part-A} is still listed."
+    "Step 10: the delete is refused with a red message \"Inventory part that has a work order part cannot be deleted.\", with the second, smaller line \"Please try to resolve this.\" It goes away after about 3 seconds. No other error message appears.",
+    "Step 12: {Part-A} is still listed."
    ],
    "source": "Epic SV-10647; story SV-10826 (Story 13, The Part Dialog); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S13-N6, §8 User Feedback Summary, read 13 Oct 2026; design canvas board 2.1 (The part as it stands), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -3032,7 +3070,7 @@
     "Work order and line: create them on screen as Part 1 says (a line created without a canned job answers 500 through POST /api/work-orders/lines/create, so use the New Line window). Request a part on the line with the line's ⋮ menu → Request part; record {Work-order-1 id} from the work order's address.",
     "Two tabs: two pages of one browser context. Tab 2 can instead add the part with POST /api/work-orders/part/make-request (part_source_type inventory; part_category_id is required).",
     "Messages: take a screenshot while each message shows and copy its text exactly, including any second, smaller line. Error messages that fade go away after about 3 seconds, so capture them at once.",
-    "Step 5: exactly one message may show; record every message text visible within 5 seconds."
+    "Step 10: exactly one message may show; record every message text visible within 5 seconds."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; no requirement change."
   },
@@ -3047,16 +3085,20 @@
    ],
    "steps": [
     "In tab 1, type {Part-A} in the Inventory search.",
-    "In tab 1, click the {Part-A} row and leave the window open.",
-    "In tab 2, go to Parts → Returns → Create Return, pick {Vendor-A}, pick {Part-A} and set Qty To Return 1.",
+    "In tab 1, click the {Part-A} row.",
+    "Leave that window open in tab 1. Do not close it.",
+    "In tab 2, go to Parts → Returns and click Create Return.",
+    "In tab 2, pick {Vendor-A} as the Vendor.",
+    "In tab 2, pick {Part-A} in Part Number.",
+    "In tab 2, set Qty To Return to 1.",
     "In tab 2, click Save Return.",
     "In tab 1, click Delete Part.",
     "In tab 1, close the window.",
     "In tab 1, type {Part-A} in the search."
    ],
    "results": [
-    "Step 5: the delete is refused with a red message \"Inventory part with an open return or a pending credit cannot be deleted.\", with the second, smaller line \"Please try to resolve this.\" It goes away after about 3 seconds. No other error message appears.",
-    "Step 7: {Part-A} is still listed."
+    "Step 9: the delete is refused with a red message \"Inventory part with an open return or a pending credit cannot be deleted.\", with the second, smaller line \"Please try to resolve this.\" It goes away after about 3 seconds. No other error message appears.",
+    "Step 11: {Part-A} is still listed."
    ],
    "source": "Epic SV-10647; story SV-10826 (Story 13, The Part Dialog); PRD \"Parts Lifecycle Update\", Confluence 829227015, as edited 9 Oct 2026 (Ready for dev), S13-N6, §8 User Feedback Summary, read 13 Oct 2026; design canvas board 6.6 (Vendor return: still offered, tagged), 13 Oct copy. Source-verified 13 October 2026; not yet build-verified (no Part Lifecycle QA build exists).",
    "quotes": [
@@ -3085,7 +3127,7 @@
     "Create each part in the New Inventory Part window exactly as Part 1 says. UNVERIFIED: the tech plan of 7 Oct 2026 says POST /api/inventory/parts/create now takes partNumber, description and isTracked instead of a Part Library id; record the request the window really sends before scripting it, and use only that.",
     "Two tabs: two pages of one browser context.",
     "Messages: take a screenshot while each message shows and copy its text exactly, including any second, smaller line. Error messages that fade go away after about 3 seconds, so capture them at once.",
-    "Step 5: exactly one message may show; record every message text visible within 5 seconds."
+    "Step 9: exactly one message may show; record every message text visible within 5 seconds."
    ],
    "change_summary": "Full rewrite to the 8 Oct case standard ({Name-A} placeholders, examples, Step N results) against the PRD as edited 9 Oct 2026; no requirement change."
   },
