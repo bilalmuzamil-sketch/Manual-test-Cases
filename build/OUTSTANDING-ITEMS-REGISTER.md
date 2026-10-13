@@ -2965,3 +2965,67 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **CO-6 (both) — BUILD VERIFICATION BLOCKED (Rule 85):** neither suite has a QA build/environment yet, so build verification cannot start. Both are SOURCE-VERIFIED ONLY. Run skill 11 when a build lands.
 
 </details>
+
+---
+
+## 2026-10-13 — "What Are You Doing / Why Are You Doing It" — four things I need from you before I can carry on
+
+The new job you named today. I have read the epic, read the spec and counted what is already in
+TestRail. **I wrote nothing into TestRail and raised nothing in Jira.** The record is in
+`build/what-why/`. Four things are waiting on you.
+
+### WW-1. Is this a brand-new feature, a second version of something we already ship, or picking up work we paused? — **I cannot choose this for you**
+
+**Why it matters.** The three answers need three different jobs. If it is a second version of
+something already shipped, the spec only describes what *changes* and says nothing about the much
+larger set of things that must *stay the same* — and the spec here is unusually explicit that the
+customer's own invoice, the stored values, the credit memos and everything already in the customer's
+accounting records must not move. Testing only the changes would let a build break one of those with
+every test still passing.
+
+**What I found.** The spec has a before-and-after table covering seven places in the product, so
+something is clearly being changed rather than built from nothing. It is also not a fresh start for
+us: **nineteen of our own tests for this feature have been sitting in TestRail since 30 September**,
+and nothing in our own records mentioned them until today.
+
+**If you say nothing:** I stop here, because the answer decides the method.
+
+### WW-2. What should happen to the nineteen tests that already exist?
+
+Reconcile them against today's spec and report what has moved, add to them, or leave them alone.
+**Two things in them are already out of date**: every one says there is no test environment yet
+(there has been one since 8 October), and every one names the old parent ticket rather than the new
+one created this morning. Correcting either means editing the tests, which needs your go-ahead.
+
+### WW-3. Five places where the spec and the tickets say different things — and four of them change the exact words a tester has to see
+
+I have not picked a side on any of them. The full text of both versions is in
+`build/what-why/requirements.md`.
+
+1. When someone saves without a title, does the message read **"Title is a required field"** or
+   **"Title is required"**? The spec says one, the ticket says the other.
+2. **Is there a second import at all?** The spec withdrew it and says it does not exist; the ticket
+   still describes renaming its columns and still tests it twice.
+3. Is the length at which a long line gets shortened **4,000** of anything, or just "too long"? The
+   spec gives the number, the ticket does not.
+4. Is the "tech story" setting off by default? The ticket says yes; the spec does not say.
+5. When an import file has an unrecognised column, must the rejection message **name** the column?
+   The ticket says yes, the spec only says it is rejected.
+
+**Cost of saying nothing:** a tester types the wrong words, reports a fault against a product that is
+working, and we spend a day proving it was our test.
+
+### WW-4. Can I have the engineering plan? And has the hold on raising tickets lifted?
+
+The engineering plan exists — it is linked on one of the tickets — but it sits behind a Google login
+I cannot pass. It contains **twenty-two numbered requirements** that all four of the dev team's own
+verification tickets refer to, and I cannot see a single one of them. An export or a paste is enough.
+
+Separately: the dev team has already written up **three problems** in the ticket comments, including
+one where this change newly exposes a spreadsheet-formula risk in a downloaded file. They say they
+are drafting tickets for all three. **I have raised nothing**, because your hold from 10 August is
+still the last word I have. Tell me if that has changed.
+
+*Reference: epic SV-11257; spec page 845348896 at version 13; TestRail group 20437 (19 tests, all
+ours, none anyone else's); test environments sv10130 and qb1. Detail: `build/what-why/PROJECT-STATE.md`
+and `build/what-why/INTAKE-2026-10-13.md`.*
