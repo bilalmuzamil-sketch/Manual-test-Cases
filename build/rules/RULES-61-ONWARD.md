@@ -4845,15 +4845,15 @@ test case link at the bottom of the ticket. Make it a permanent rule"*. Surfaced
 2026-09-17 ruling (*"Also do not mention the test cases at the bottom."*); he chose the new rule, and chose
 **"Case link only"** over "case link + run link".
 
-1. **The last thing in every Jira description is a `Test case` heading** placed after Sources, with the TestRail
+(1) **The last thing in every Jira description is a `Test case` heading** placed after Sources, with the TestRail
    **case link** of each case the ticket covers: `https://shopview.testrail.io/index.php?/cases/view/<id>`.
-2. **Case link only.** No run link, no `/tests/view/` link and no test result in the ticket. (Rule 8 still
+(2) **Case link only.** No run link, no `/tests/view/` link and no test result in the ticket. (Rule 8 still
    governs what HE reads: case + run together in chat and deliverables.)
-3. **Only a case that exists.** A case deleted from TestRail (`get_case` refuses it) is left off, and the report
+(3) **Only a case that exists.** A case deleted from TestRail (`get_case` refuses it) is left off, and the report
    to him says so.
-4. **The other direction stays (Rule 113):** the ticket number is still appended to the case's result in the
+(4) **The other direction stays (Rule 113):** the ticket number is still appended to the case's result in the
    run. The link now goes both ways.
-5. **Applies to tickets already filed in the pass where he gave it** (he chose "add it now" for SV-11098).
+(5) **Applies to tickets already filed in the pass where he gave it** (he chose "add it now" for SV-11098).
 
 ⛔ **Supersedes** `build/skills/06-DEFECT-PREP.md` §7 (*"NO TEST CASES SECTION IN THE TICKET — HE REMOVED IT
 2026-09-17"*), kept there visible and dated.
@@ -4865,14 +4865,14 @@ test case link at the bottom of the ticket. Make it a permanent rule"*. Surfaced
 Verbatim: *"When you were going through the regression folder, any issue which is the same on production too is not a
 regression."*
 
-1. **Applies to every test in a regression folder / every check whose source is a regression list** ("should still work",
+(1) **Applies to every test in a regression folder / every check whose source is a regression list** ("should still work",
    "check that X still works", a developer's regression item). Before any failure there is put to him as a defect, do the
    same steps on **production** and record what production does (version, date, the screen's own words).
-2. **Production behaves the same ⇒ NOT a regression ⇒ no regression ticket.** Report it as "same on production — not caused
+(2) **Production behaves the same ⇒ NOT a regression ⇒ no regression ticket.** Report it as "same on production — not caused
    by this work", say what the test case then needs (its steps describe behaviour the product never had), and leave the
    Expected as written (114).
-3. **Production behaves differently (it works there) ⇒ a regression**, filed under the normal rules (62/112/113/120).
-4. **Production cannot show it** (the state cannot be made there, or a setting differs, e.g. the shop's time zone) ⇒ say so
+(3) **Production behaves differently (it works there) ⇒ a regression**, filed under the normal rules (62/112/113/120).
+(4) **Production cannot show it** (the state cannot be made there, or a setting differs, e.g. the shop's time zone) ⇒ say so
    plainly; never call it a regression or a non-regression on a guess (12, 104).
 5. This narrows L0303 (production is for comparison only) for regression checks: here the comparison DECIDES whether it is
    a regression. For a PRD/story check the PRD still wins (57) and production stays a comparison.
@@ -4885,16 +4885,16 @@ Worked example: C368233–C368235 (10 Oct 2026) — the "All …" report filters
 Verbatim: *"mark it as your rule going forward that your comment in the Testrail test runs for each case, should be human
 readable in bullet points easier for the readers not technical people to understand."*
 
-1. **Every result comment in a TestRail run is a list of short bullet points**, never a paragraph. One fact per point:
+(1) **Every result comment in a TestRail run is a list of short bullet points**, never a paragraph. One fact per point:
    the verdict and why, what a person sees on screen, what production does (where checked), the ticket with its link and
    status, and what (if anything) the tester must do.
-2. **Plain words for a non-technical reader** (Rule 103 applies to the comment, not only to chat): the screen's own labels,
+(2) **Plain words for a non-technical reader** (Rule 103 applies to the comment, not only to chat): the screen's own labels,
    no endpoints, status codes, selectors, field names or internal tool names. Ids and technical detail, where truly
    needed, go in the separate `technical` block at the very end (the tool already puts it after a rule).
-3. **Mechanism:** `build/testing-tools/push_results_to_run.py` accepts `observed` (and `not_observed`) as a **list** of
+(3) **Mechanism:** `build/testing-tools/push_results_to_run.py` accepts `observed` (and `not_observed`) as a **list** of
    points and renders them as `<ul><li>` (block tags only — the TestRail formatting rule still holds: never `<br>`).
    A plain string still works for old result files, but **new results are written as lists**.
-4. **A picture that decides the verdict is attached to the result** (`add_attachment_to_result`) when the QA lead asks for
+(4) **A picture that decides the verdict is attached to the result** (`add_attachment_to_result`) when the QA lead asks for
    one — e.g. the production-vs-test-branch comparison for a Rule 121 call.
 Worked example: C368181, run 498, 12 Oct 2026 — seven bullet points plus the annotated production/test-branch picture.
 
@@ -4908,14 +4908,14 @@ the other comment should tell in clean way with bullet point as to why this is a
 cases should also have a clear comment for why this is a passed test case with bullet points for a lay man to easily
 understand."*
 
-1. **Failed test, comment 1 (posted first):** bullet points (Rule 122) saying WHY it failed — what should happen (the
+(1) **Failed test, comment 1 (posted first):** bullet points (Rule 122) saying WHY it failed — what should happen (the
    requirement, in plain words), what happens instead, who found it if it was not us, and the ticket.
-2. **Failed test, comment 2 (posted second, so it shows at the TOP of the test's history):** exactly
+(2) **Failed test, comment 2 (posted second, so it shows at the TOP of the test's history):** exactly
    `Follow the status here <ticket link>` — nothing else. Its defect field carries the ticket key.
-3. **A failure whose ticket is held** (no ticket yet, Rule 113) gets comment 2 the moment the ticket is filed.
-4. **Passed test:** bullet points saying WHY it passed — what the requirement asks, what was seen that matches it, and
+(3) **A failure whose ticket is held** (no ticket yet, Rule 113) gets comment 2 the moment the ticket is filed.
+(4) **Passed test:** bullet points saying WHY it passed — what the requirement asks, what was seen that matches it, and
    (where it applies) the production comparison or the QA lead's ruling. Never a bare "Passed".
-5. **Mechanism:** `build/testing-tools/push_results_to_run.py` posts comment 2 automatically for every Failed result whose
+(5) **Mechanism:** `build/testing-tools/push_results_to_run.py` posts comment 2 automatically for every Failed result whose
    ticket text carries a `browse/SV-…` link, after the batched results (read back: newest first).
 Worked example: run 498, 12 Oct 2026 — C96938, C96960, C96968, C368136, C96978, C96983
 (`build/wo-board-tech-view/run498-2026-10-08/failed-comments-2026-10-12/`).
@@ -4933,8 +4933,8 @@ otherwise mark them as passed."*
 1. When another tester marks one of our run's tests Failed, **re-test it following THEIR ticket's steps exactly** (their
    preconditions, their route — e.g. a shift made by dragging onto the Schedule, not created behind the scenes), in a
    normally signed-in browser (L0312), with the screen's clock checked against the shop's own time zone first.
-2. **The failure happens ⇒ do nothing.** Leave the test Failed with their ticket; add no comment.
-3. **The failure does not happen ⇒ mark it Passed** with (a) Rule 122/123 plain bullet points saying how it passed and how
+(2) **The failure happens ⇒ do nothing.** Leave the test Failed with their ticket; add no comment.
+(3) **The failure does not happen ⇒ mark it Passed** with (a) Rule 122/123 plain bullet points saying how it passed and how
    their steps were followed, and (b) **annotated screenshots attached to the result**.
 4. Before calling their failure "not happening", rule out my own set-up (Rule 104): a different way of creating the data, a
    stale clock or shop, an earlier test block in the way. A first attempt that passes is not enough when it did not follow
@@ -4955,12 +4955,12 @@ Verbatim: *"Change its time to Pakistan time whatever it is. For any bug issue r
 the location is first set to pakistan time or its time should 100% match YOUR browser time. Ideally the location timezone
 MUST MATCH YOUR BROWSER TIME. ALWAYS SAVE IT AS A PERMANENT RULE TO DO BEFORE TESTING ANYTHING RELATED TO TIME AND TIMEZONE."*
 
-1. **Before any check whose verdict involves a time, date, shift, clock-in, timesheet, schedule or time zone:** open
+(1) **Before any check whose verdict involves a time, date, shift, clock-in, timesheet, schedule or time zone:** open
    Administration > Locations, and set the test location's **Timezone to `Asia/Karachi`** (edit > Timezone > Save & Close —
    the button answers a DOM click; `qa-set-tz.mjs`), and read it back after a reload.
-2. **The browser runs on the same zone:** `TZ=Asia/Karachi` for every browser used for the check, and a **normal sign-in**
+(2) **The browser runs on the same zone:** `TZ=Asia/Karachi` for every browser used for the check, and a **normal sign-in**
    (`qa-branch-boot.mjs`, L0312 — never the injected harness for a displayed time).
-3. **Prove it before judging:** `TZ=Asia/Karachi node build/wo-board-tech-view/run498-2026-10-08/tz-match-check.mjs` must exit
+(3) **Prove it before judging:** `TZ=Asia/Karachi node build/wo-board-tech-view/run498-2026-10-08/tz-match-check.mjs` must exit
    0 — the Schedule's blue "now" pill equals the browser's clock (±2 min) and the signed-in user's zone equals the browser's.
    Exit 1 ⇒ fix the set-up, never judge the product.
 4. Data made through the app's own API takes the location's zone too; after step 1 it is Pakistan time like everything else.
@@ -4975,12 +4975,12 @@ Verbatim: *"we would need and always need to run the same tests on staging after
 you run those tests quickly without wasting much time. This will be our regular practice that the tests once ran on QA
 branches would then need to run on staging and then on prod. So you should always be prepared for this thing."*
 
-1. **Order: QA branch → staging → production.** A run is not finished on the QA branch; plan the staging and production
+(1) **Order: QA branch → staging → production.** A run is not finished on the QA branch; plan the staging and production
    passes from the start.
-2. **Write every script environment-ready from day one:** the host, sign-in and location come from settings
+(2) **Write every script environment-ready from day one:** the host, sign-in and location come from settings
    (`GS_APP` / `qa-branch-boot.mjs <branch|staging>` / `PROD_ENVF`), never hard-wired; seed data by name, not by a QA-branch
    id; record per run which checks need data made first.
-3. **Keep a ready list per run** (`STAGING-READY.md` beside the run): every check, the script that runs it, the data it
+(3) **Keep a ready list per run** (`STAGING-READY.md` beside the run): every check, the script that runs it, the data it
    needs, and anything that cannot run on that environment (e.g. a QA-branch-only feature, a production write). On the day,
    it is one queue (`run_queue.sh`), not a re-discovery.
 4. Rule 125 is part of every environment's set-up (location zone = browser zone), and Rule 121 production comparisons are
@@ -5050,11 +5050,11 @@ efficient regardless of the file size issue, you have to beat this problem with 
 an issue due to files being over large."*
 
 **THE STRATEGY — four layers; growth makes us faster, never blocked.**
-1. **NEVER READ A WHOLE FILE TO FIND SOMETHING — RETRIEVE THE BLOCK.** `recall.py "<words>"` ranks blocks (a learning entry, a
+(1) **NEVER READ A WHOLE FILE TO FIND SOMETHING — RETRIEVE THE BLOCK.** `recall.py "<words>"` ranks blocks (a learning entry, a
    playbook section, a rule, a map row) across every store and its parts, and `--show N` prints the best blocks themselves. A rule
    is read whole with ALL its amendments by `recall.py --rule N`; one section of any file by `recall.py --section "<heading>"
    --file <path>`. Cost is the size of the answer, not the size of the file — so file size stops mattering.
-2. **EVERY STORE HAS A SIZE BUDGET, AND AN OVER-BUDGET STORE IS SPLIT, NOT ENDURED.** `knowledge_health.py` measures every
+(2) **EVERY STORE HAS A SIZE BUDGET, AND AN OVER-BUDGET STORE IS SPLIT, NOT ENDURED.** `knowledge_health.py` measures every
    knowledge file against its budget (read-first files — skills, PROJECT-STATE, RESUME-HERE — 100 KB; stores 150 KB; reference
    200 KB). `knowledge_health.py shard <file>` moves the bulk into parts of ≤ 120 KB under `build/kb/<stem>/`, **byte-verified**
    (original, moved region and re-joined parts hashed in `build/kb/<stem>/INTEGRITY.md`; nothing is deleted), and leaves a
@@ -5062,11 +5062,11 @@ an issue due to files being over large."*
    grep still lands. Learning entries newer than 14 days stay in the main file; older ones move by entry with a titles list in
    `build/kb/LEARNINGS-LOG/INDEX.md`. First application 2026-10-13: playbook 524 KB → 28 KB index + 55 parts; learnings log 405 KB
    → 23 KB + 4 parts; both verified.
-3. **A FILE THAT TOOLS READ WHOLE IS NOT SPLIT UNTIL THOSE TOOLS READ THE LOGICAL FILE.** The rule files and the core skill are
+(3) **A FILE THAT TOOLS READ WHOLE IS NOT SPLIT UNTIL THOSE TOOLS READ THE LOGICAL FILE.** The rule files and the core skill are
    parsed by `automation_markers.py`, `scan_secrets.py`, `check_rule_amendments.py`, `verify_suite.py`, `check_tester_readiness.py`;
    until each is switched to `knowledge_health.py logical <file>`, those files are read per rule / per section (layer 1), never
    whole. Big PROJECT-STATE / skill files: move dated history sections into a dated file beside them and leave a pointer.
-4. **DISTIL AS WE GO, SO WHAT MUST BE READ STAYS SMALL WHILE WHAT IS KNOWN GROWS.** When a topic has collected several learnings,
+(4) **DISTIL AS WE GO, SO WHAT MUST BE READ STAYS SMALL WHILE WHAT IS KNOWN GROWS.** When a topic has collected several learnings,
    write (or refresh) its digest: the current best way, in a few lines — a `build/KNOWLEDGE-MAP.md` row, a suite's PROJECT-STATE
    "What we learned" table, or a playbook recipe — pointing at the raw entries. The digest is read; the raw entries are evidence.
    A newer learning that supersedes an older one says so (the log is append-only).
