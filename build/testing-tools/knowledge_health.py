@@ -66,7 +66,10 @@ def report(check=False):
             if not check: print(f'{f:<62} {kb(n):>8} {b:>4} KB  ok')
             continue
         if f in STORES and STORES[f][1]:
-            over_shardable.append(f); r = f'OVER — run: knowledge_health.py shard {f}'
+            if movable(f):
+                over_shardable.append(f); r = f'OVER — run: knowledge_health.py shard {f}'
+            else:
+                r = 'OVER, NOTHING LEFT TO MOVE — the index itself is too big: split it into topic indexes (warning, not a block)'
         elif f in PARSED:
             r = f'OVER — read per rule/section with recall.py; parsed whole by {PARSED[f]} (switch them to `logical` before splitting)'
         elif f.startswith('build/rules/'):
@@ -77,6 +80,13 @@ def report(check=False):
     if check:
         return 10 if over_shardable else 0   # 10 = over budget (1 would be confused with a crash)
     return 0
+
+def movable(f):
+    """Would a shard move anything? (only then may a hook block on this file)"""
+    text = open(os.path.join(ROOT, f)).read()
+    if STORES[f][1] == 'sections':
+        return any('→ part `build/kb/' not in b for _, b in split_sections(text)[1])
+    return bool(split_entries(text, datetime.date.today())[1])
 
 def split_sections(text):
     lines = text.split('\n'); cut = [i for i, l in enumerate(lines) if l.startswith('## ')]
@@ -102,6 +112,10 @@ def split_entries(text, today):
         m = DATE.search(lines[starts[k]])
         if m and datetime.date.fromisoformat(m.group()) >= cutoff: hot_from = k
         else: break
+    # a burst of learning: if the recent entries alone exceed half the budget, move the older of them as well
+    limit = STORES['build/LEARNINGS-LOG.md'][0] * 1024 // 2
+    while hot_from < len(starts) - 1 and len('\n'.join(lines[starts[hot_from]:]).encode()) > limit:
+        hot_from += 1
     if hot_from == 0: return text, [], ''
     pre = '\n'.join(lines[:starts[0]]) + '\n'
     tail_start = starts[hot_from] if hot_from < len(starts) else len(lines)
@@ -109,7 +123,7 @@ def split_entries(text, today):
     entries = []
     for k in range(hot_from):
         i = starts[k]; j = starts[k + 1] if k + 1 < len(starts) else len(lines)
-        entries.append((lines[i], '\n'.join(lines[i:j]) + '\n'))
+        entries.append((lines[i], '\n'.join(lines[i:j]) + ('\n' if j < len(lines) else '')))   # the file's last entry keeps the file's own ending
     return pre, entries, tail
 
 def slug(s): return re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')[:40] or 'part'

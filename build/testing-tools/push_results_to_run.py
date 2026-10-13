@@ -137,7 +137,7 @@ def comment_for(rec, todo, header, footer=None, lead=None):
         blocks.append('<hr />')
         blocks.append('<p>%s</p>' % esc(ticket))
     # A Passed result's "nothing to do" note is not shown: it rendered as a stray "None." line under the bullets (12 Oct 2026).
-    if todo and todo.strip().rstrip('.').strip().lower() not in ('none', 'nothing for the tester', 'n/a', 'nothing'):
+    if todo and (rec.get('verdict') != 'Passed' or todo.strip().rstrip('.').strip().lower() not in ('none', 'nothing for the tester', 'n/a', 'nothing')):
         blocks.append('<hr />')
         blocks.append('<p>%s</p>' % esc(todo.strip()))
     tech = (rec.get('technical') or '').strip()

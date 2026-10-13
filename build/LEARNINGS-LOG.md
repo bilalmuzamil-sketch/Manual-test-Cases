@@ -265,3 +265,13 @@ and python's exit 2 counts as BLOCK — every turn would have been stopped. Both
 crash; over-budget uses exit 10 so a crash is never read as a finding. `selftest_workspace.py` (20 checks, ~5 s; `--compare
 <ref>`) now guards the shared machinery and the Stop hook runs it after any shared change. Proved by deleting a part on a
 throwaway worktree: the stop was blocked and the missing part named. #methodology #regression #hooks → Rule 129
+
+## L0328 — 2026-10-13 — Fail-safe pass over the day's changes: scenarios, not just checks (Rule 129 amendment)
+Asked to be "better than today and not worse", the day's changes were run through the situations the workspace actually meets.
+Found and fixed: (1) the split tool numbered new parts by COUNT — after a lost part the next split would have overwritten another
+(now: after the highest number, and files are opened 'x', never overwritten); (2) a learnings log with no entry for 14 days
+would have made the split crash on the file's last newline (now lossless at +15 days, +10 years and odd endings); (3) a burst of
+learning inside 14 days could leave nothing to move, so the Stop hook would block every turn (now the hot window shrinks to half
+the budget, and a file nothing can shrink is a WARNING, never a block); (4) the run-comment "None." filter must apply to Passed
+only. Proved: fresh checkout + new session, a machine without node (skipped, not failed), search of another branch, a lost
+part + new split. Every scenario is now a self-test check (30 checks, ~6 s). #methodology #regression #failsafe → Rule 129

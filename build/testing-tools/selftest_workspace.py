@@ -89,6 +89,35 @@ def main(quick=False):
         d = os.path.dirname(ready); names = set(re.findall(r'`([A-Za-z0-9_.-]+\.(?:mts|mjs|sh|py))`', open(ready).read()))
         missing = sorted(n for n in names if not os.path.exists(os.path.join(d, n)) and not os.path.exists(os.path.join(T, n)))
         check(f'suites: every script named in {os.path.relpath(ready, ROOT)} exists', not missing, ', '.join(missing[:8]))
+    # 7b · scenarios that once broke or could break the split (each proved lossless on today's real files)
+    try:
+        import importlib.util, datetime as _dt
+        sp = importlib.util.spec_from_file_location('kh', f'{T}/knowledge_health.py'); kh = importlib.util.module_from_spec(sp); sp.loader.exec_module(kh)
+        log = open(os.path.join(ROOT, 'build/LEARNINGS-LOG.md')).read(); pb = open(os.path.join(ROOT, 'build/APP-ACTIONS-PLAYBOOK.md')).read()
+        ok = True
+        for days in (0, 15, 3650):                                   # today, after the hot window, ten years on
+            for txt in (log, log.rstrip('\n'), log + '\n\n'):          # normal / odd file endings
+                pre, ent, tail = kh.split_entries(txt, _dt.date.today() + _dt.timedelta(days=days))
+                ok &= pre + ''.join(b for _, b in ent) + tail == txt
+        burst = log + ''.join(f'\n## L{9000+i} — {_dt.date.today()} — burst\n' + 'x' * 1500 + '\n' for i in range(200))
+        pre, ent, tail = kh.split_entries(burst, _dt.date.today())
+        ok &= pre + ''.join(b for _, b in ent) + tail == burst and len(tail.encode()) < kh.STORES['build/LEARNINGS-LOG.md'][0] * 1024
+        for txt in (pb, pb.rstrip('\n'), pb + '\n## X\nnew\n'):
+            pre, secs = kh.split_sections(txt); ok &= pre + ''.join(b for _, b in secs) == txt
+        check('scenarios: splits are lossless (today, +15 d, +10 y, odd endings, a 200-entry burst)', ok)
+        src = open(f'{T}/knowledge_health.py').read()
+        check('scenarios: the split never overwrites a part and numbers after the highest', "'x')" in src and 'max([int(' in src)
+    except Exception as e:
+        check('scenarios: splits are lossless', False, repr(e)[:160])
+    # 7c · recording results: a Passed "None." is hidden, nothing is ever hidden on Failed/Blocked
+    try:
+        sp = importlib.util.spec_from_file_location('pr', f'{T}/push_results_to_run.py'); pr = importlib.util.module_from_spec(sp)
+        _argv = sys.argv; sys.argv = ['x']; sp.loader.exec_module(pr); sys.argv = _argv
+        c = [('None.' in pr.comment_for({'verdict': v, 'observed': ['a']}, td, 'H')) == want for v, td, want in
+             [('Passed', 'None.', False), ('Blocked', 'None.', True), ('Failed', 'None.', True)]]
+        check('results: run comments hide a Passed "None." and never hide a Failed/Blocked to-do', all(c), str(c))
+    except Exception as e:
+        check('results: run comments', False, repr(e)[:160])
     # 8 · scale and drift (warnings: they never block, they say what to do before it hurts)
     t0 = time.time(); run(['python3', f'{T}/recall.py', 'staging sign in cookie', '--top', '3'])
     dt = time.time() - t0

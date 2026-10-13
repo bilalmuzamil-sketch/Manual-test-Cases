@@ -5099,3 +5099,18 @@ passing run, and blocks the stop on any FAIL, naming it. Worked first applicatio
 the playbook had made the Rule 97 search drill (and four handoffs, the core skill) search only the small index — fixed — and that
 the Stop hook would have blocked every turn in a session started outside the repo — fixed; then 20 checks, 0 regressions against
 the state before the day's changes.
+
+**RULE 129 — AMENDMENT 2026-10-13 (same day): BETTER THAN TODAY, NEVER WORSE — PROVE IT BY SCENARIO, NOT ONLY BY CHECK.** QA lead,
+verbatim: *"The end of story is that you MUST be better than today and not worse than today. So do everything to make sure that
+your changes have made you flawless and fail safe for current and future work and that you have not setup a failure for me and
+yourself for current and future work. You may think of different scenarios or use cases and make yourself failsafe for every use
+case you previously handled in last one year or can handle in next 100 years and make yourself compatible with that and fail safe
+for current and future tasks."*
+- **Run the change through the scenarios the workspace meets**, not only through its own happy path: a fresh container / new
+  session; another machine (a tool missing → SKIP, never FAIL); another session's branch; a file moved, deleted or edited later;
+  months or years of growth (dates far ahead, a burst of entries, an index that can no longer shrink); odd input (file endings,
+  missing dates); every daily job the change touches (sign-in, seeding, recording results, editing cases, tickets, the staging run).
+- **A guard may block only on a real, fixable finding.** Missing tools are skipped; slow drift and sizes nothing can fix are
+  WARNINGS; a crash in a guard never blocks. A guard that can trap a session is itself a defect.
+- **Every scenario proved becomes a self-test check** in `selftest_workspace.py`, so it is re-proved after every later change.
+- **Report the scenarios run and what each found.** Worked application: L0328.
