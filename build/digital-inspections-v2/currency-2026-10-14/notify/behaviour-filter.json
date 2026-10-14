@@ -1,0 +1,559 @@
+{
+ "generated": "2026-10-14",
+ "instruction": "QA lead 14 Oct 2026: only changes that actually require the test case to change (expected behaviour changes due to source changes), not wording.",
+ "inputs": {
+  "rows": "notify/DVI-V2-changes-for-Vladimir-and-Viktoria.xlsx tab 'Cases to update' (58 rows) and 'Later Jira decisions' (3 rows)",
+  "rule_texts": "PRD-DIFF-2026-09-22-vs-2026-10-14.json old/new",
+  "case_bodies": "snapshots-before/C<id>.json, title + custom_preconds + custom_steps + custom_expected read in full for all 41 cases"
+ },
+ "rows": [
+  {
+   "case": 88507,
+   "rule": "S1-R2",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The rule now also turns 'Note required if Monitor / Not OK' on for checkbox fields in the starter templates, and this case is the one that checks that default but only on a field the tester adds by hand, so a build that leaves starter fields off would still pass.",
+   "case_says_now": "That option is on by default for a newly added checkbox field.",
+   "should_say": "Also check that a template created from a starter template has 'Note required if Monitor / Not OK' already turned on for its checkbox fields."
+  },
+  {
+   "case": 88513,
+   "rule": "S2-R15",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The rule that an unusable destination stays in the menu with a reason was removed; step 4 and the expected result still require it, so a correct build would now fail.",
+   "case_says_now": "A destination that cannot take lines keeps its place in the menu and says why, rather than silently disappearing.",
+   "should_say": "Remove step 4: when the inspection's own work order cannot take lines it is not listed in the destination menu at all (no greyed-out entry with a reason); the menu offers only a new work order."
+  },
+  {
+   "case": 88513,
+   "rule": "S2-R4",
+   "decision": "drop",
+   "quote_only": true,
+   "reason": "The added 'and no invoice exists' condition was already in the case through the old S2-R5 (an invoice makes the work order ineligible), so the behaviour the case checks does not change; only the quoted S2-R4 sentence is out of date.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88513,
+   "rule": "S2-R5",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "For an ineligible work order the destination menu now still opens and offers only a new work order, while step 3 and the expected result say a new work order is created without asking.",
+   "case_says_now": "When the run-on work order is not eligible (Complete, Invoiced, Paid, Declined, or an invoice already exists), a new work order is created without asking.",
+   "should_say": "When the run-on work order is not eligible (Complete, Invoiced, Paid, Declined, or it already has an invoice), pressing the build action still opens the destination menu and it offers only a new work order; picking it goes to drafting for a new work order with the same customer and asset."
+  },
+  {
+   "case": 88514,
+   "rule": "S2-R1",
+   "decision": "drop",
+   "quote_only": true,
+   "reason": "The added sentence only points to the drafting-failure rule (S15-E2), which this happy-path case does not exercise; its steps and results stay correct.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88515,
+   "rule": "S2-R13",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "Building is now allowed only once: there is no 'confirm a second set' prompt any more, which is exactly what step 4 and the expected result check.",
+   "case_says_now": "If lines were already added from this inspection, the user is asked to confirm before adding a second set, checked when Add Lines is pressed.",
+   "should_say": "After lines have been added, the build action is no longer offered: the completed inspection, the work order note and the asset row show the outcome with a link to the work order that got the lines. If the inspection was built from elsewhere while a draft was open, pressing Add Lines adds nothing and tells the user where the lines went."
+  },
+  {
+   "case": 88518,
+   "rule": "S2-E6",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "When two users both press Add Lines, only the first now adds lines and the second is told where they went; the case still expects both sets to be added ('accepted and recoverable').",
+   "case_says_now": "If two users draft from the same inspection at once, the drafting itself duplicates nothing; duplication happens only if both press Add Lines, which is accepted and recoverable.",
+   "should_say": "If two users draft from the same inspection at once, drafting duplicates nothing; when both press Add Lines, only the first adds lines and the second adds nothing and is told where the lines went."
+  },
+  {
+   "case": 88518,
+   "rule": "S2-E12",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "After the run-on work order is deleted, only an inspection with a report survives (read-only) and it no longer counts as needing a work order; the case expects it to survive regardless and to need a work order again.",
+   "case_says_now": "If the run-on work order is deleted, the inspection survives it and stays listed on the asset with a dash in its work order column; any lines added to that work order are gone with it and the inspection counts as needing a work order again.",
+   "should_say": "If the run-on work order is deleted, an inspection that has a report survives as a read-only record (one with no report is deleted with the work order); lines added to that work order are gone with it; the inspection does not count as needing a work order and cannot be built from."
+  },
+  {
+   "case": 88518,
+   "rule": "S5-R21",
+   "decision": "drop",
+   "quote_only": false,
+   "reason": "This case only touches the deleted-work-order situation, which is handled by the S2-E12 row; it does not change a work order's asset or merge assets, so the new 'tab follows the work order' behaviour is not exercised here.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88520,
+   "rule": "S3-R4",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The findings list now has one entry per flagged row with all its flagged positions and readings, instead of one entry per flagged position, so step 1 and the expected result describe the old layout.",
+   "case_says_now": "The screen leads with a summary card: the completion line, a count per verdict, and a findings list naming each flagged position (field, axle, row, position) with the reading that earned it.",
+   "should_say": "The findings list has one entry per flagged row, naming the field, axle and row, followed by every flagged position on that row with its reading (for example 'Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi')."
+  },
+  {
+   "case": 88520,
+   "rule": "S3-R6",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The footer rule gains a new outcome this footer case does not cover: when the run-on work order has been deleted the footer offers View PDF only, with no plain line, with or without ShopCoach.",
+   "case_says_now": "With ShopCoach the card footer offers View PDF, Go to work order and Build lines with the product named once above it; without ShopCoach it offers View PDF and Go to work order plus a plain line pointing to the customer report, the work order note feed and where the lines are added.",
+   "should_say": "Add: when the run-on work order has been deleted, the footer offers View PDF only (with or without ShopCoach) and no plain line, and it shows the outcome if the lines went onto another work order that still exists."
+  },
+  {
+   "case": 88521,
+   "rule": "S3-N4",
+   "decision": "drop",
+   "quote_only": true,
+   "reason": "Wording only ('nothing else' became 'no build action'); what the tester sees and checks is the same.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88522,
+   "rule": "S2-R13",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "Step 2 checks a re-build confirmation that no longer exists, because an inspection can now be built from only once.",
+   "case_says_now": "In a second browser signed in as another user, build from the same inspection while this screen is still open in the first; check the re-build confirmation reflects the current state, not the state when the screen loaded.",
+   "should_say": "After the other user has added lines, pressing Add Lines on this still-open screen adds nothing and tells the user where the lines went; the build action is replaced by the outcome with a link to the work order that got the lines."
+  },
+  {
+   "case": 88522,
+   "rule": "S3-E1",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "With the run-on work order deleted, no build action is offered at all now, but step 1 and the expected result say only 'create a new work order' is offered.",
+   "case_says_now": "If the run-on work order has been deleted, only the option to create a new work order is offered.",
+   "should_say": "If the run-on work order has been deleted, no build action is offered; if lines were built before the deletion, the footer shows that outcome instead."
+  },
+  {
+   "case": 88522,
+   "rule": "S3-E2",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The concurrent-build check is no longer a confirmation but the built-once check, so the expected result still describes a confirmation prompt that will not appear.",
+   "case_says_now": "If another user builds from the same inspection while this screen is open, the re-build confirmation is based on the current state rather than the state when the screen loaded.",
+   "should_say": "If another user builds from the same inspection while this screen is open, the built-once check uses the current state: pressing Add Lines here adds nothing and the user is told where the lines went (no confirmation prompt)."
+  },
+  {
+   "case": 88524,
+   "rule": "S4-R3",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The rule this case is built on (the confirmation judged on the inspection's current state) was removed; the case's whole expectation is a warning that no longer exists.",
+   "case_says_now": "The re-build confirmation is based on the inspection's current state rather than on the note, so a build done elsewhere afterwards still triggers the warning.",
+   "should_say": "The note judges the inspection as it is now: once it has been built from elsewhere, the note offers no Build lines action and shows the outcome with a link to the work order that got the lines."
+  },
+  {
+   "case": 88524,
+   "rule": "S4-E2",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "Removed rule: building from the note after a build elsewhere no longer asks to confirm, yet the expected result requires the prompt.",
+   "case_says_now": "If the inspection was already built from through another entry point, the user is asked to confirm.",
+   "should_say": "If the inspection was already built from through another entry point, the note shows the outcome instead of Build lines; if the build elsewhere happened while this build was open, Add Lines adds nothing and says where the lines went."
+  },
+  {
+   "case": 88524,
+   "rule": "S2-R13",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "Same built-once change: step 2 checks a confirmation prompt that the new rule replaces with the outcome and a link.",
+   "case_says_now": "Confirm the confirmation prompt is based on the inspection's current state rather than on the note's snapshot.",
+   "should_say": "Confirm the note shows the outcome with a link to the work order that got the lines, with no Build lines action and no confirmation prompt."
+  },
+  {
+   "case": 88525,
+   "rule": "S4-N2",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The case checks the deleted-inspection note but not the new outcome: removing the inspection from its line (or deleting the line) deletes it, the note is marked 'Inspection deleted' and the inspection leaves the asset's Inspections tab.",
+   "case_says_now": "If the inspection has been deleted, the note remains as a record but the action is not shown.",
+   "should_say": "Delete the inspection by removing it from its line (or deleting the line): the note stays on the work order marked 'Inspection deleted' with no Build lines action, and the inspection no longer appears on the asset's Inspections tab."
+  },
+  {
+   "case": 88527,
+   "rule": "S5-R9",
+   "decision": "drop",
+   "quote_only": true,
+   "reason": "The added sentence only says the same 'WO created' / 'Lines added' wording is used elsewhere; the action-column states this case checks are unchanged.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88528,
+   "rule": "S5-R10",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The filter row (All, Needs action, With issues, Not started) no longer exists; step 1 and the expected result check it, so a correct build would fail.",
+   "case_says_now": "A filter row offers All, Needs action, With issues and Not started, each count taken from the full list rather than the filtered view.",
+   "should_say": "The tab has no filter row; the Inspection, Status and Completed columns can be sorted, and by default the most recently completed inspection comes first."
+  },
+  {
+   "case": 88528,
+   "rule": "S5-R11",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The summary text changed, so step 2 and the expected result check the old words.",
+   "case_says_now": "A summary reads \"N of M need a work order\".",
+   "should_say": "The summary reads \"N of M have findings with no lines yet\"."
+  },
+  {
+   "case": 88528,
+   "rule": "S5-R12",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "Pre-release inspections are now found by being listed on the tab with their issues shown, not under a 'With issues' filter, which no longer exists.",
+   "case_says_now": "An inspection needs action when it was completed after this release, has at least one Monitor or Not OK finding, and has not been built from; a pre-release inspection is never flagged but stays reachable under With issues.",
+   "should_say": "An inspection needs action when it was completed after this release, has at least one Monitor or Not OK finding, and has not been built from; a pre-release inspection is never flagged but stays listed on the tab with its issues shown."
+  },
+  {
+   "case": 88529,
+   "rule": "S5-R16",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The phone rule for the filter row was removed with the filter row; step 2 and the expected result still check it.",
+   "case_says_now": "The filter row wraps on a phone rather than scrolling out of view, and keeps its counts.",
+   "should_say": "Remove the filter-row check; on a phone, check only that every column's information stays reachable and the page does not scroll sideways."
+  },
+  {
+   "case": 88529,
+   "rule": "S5-R21",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The tab now follows the work order's current asset (asset change or merge), the opposite of what step 3 and the expected result say ('not a view that follows a later work-order asset change').",
+   "case_says_now": "An inspection records the asset it was run on, stored on the inspection at creation rather than derived through its work order, and pre-release inspections are backfilled from their work order's asset at migration.",
+   "should_say": "Change a work order's asset (or merge two assets) and check its inspections move with it to the new or surviving asset; pre-release inspections are backfilled from their work order's asset; when the work order has been deleted the inspection stays on the stored asset (Jira SV-10960, later than the spec, says the asset the work order had when it was deleted)."
+  },
+  {
+   "case": 88530,
+   "rule": "S5-R17",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "Unsure: the 'field is visible' condition was dropped from the counting rule, and this case seeds hidden fields and checks they are not counted; the spec has no other mention of hidden fields, so this may only be a clean-up, but a tester following step 1 today could fail a build that counts them.",
+   "case_says_now": "Confirm a response counts once toward Pass, Monitor or Needs attention only when the field is visible, is a checkbox or measurement, and the response is Pass/Monitor/Not OK.",
+   "should_say": "A checkbox or measurement response of Pass, Monitor or Not OK counts once toward exactly one of Pass, Monitor or Needs attention; remove the 'field is visible' condition and the hidden-field check (or ask the PO whether hidden fields still exist)."
+  },
+  {
+   "case": 88530,
+   "rule": "S5-R20",
+   "decision": "drop",
+   "quote_only": true,
+   "reason": "The 'worst verdict per axle' addition is a cross-reference to S8-R14, which already said an axle takes the worst of its positions; the case's three-axle example and counts stay correct.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88532,
+   "rule": "S5-E3",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "After the run-on work order is deleted, only an inspection with a report stays, read-only, cannot be built from, and the Action column shows the outcome or a dash; the case expects the row to stay listed and 'usable' in all cases.",
+   "case_says_now": "If the run-on work order has been deleted, the inspection stays listed, the work order column shows a dash rather than a broken link, and the row stays usable.",
+   "should_say": "If the run-on work order is deleted, an inspection with a report stays on the tab as a read-only record with a dash in the Work order column; the Action column shows the outcome only while the work order it points to exists (for example 'WO created S-200'), otherwise a dash; it can be opened and its latest report downloaded but not built from, reopened or regenerated; a reopened one shows Completed with its latest report's date and opens that report; an inspection with no report is deleted with the work order."
+  },
+  {
+   "case": 88533,
+   "rule": "S2-R15",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The rule that an unusable destination keeps its place and says why was removed; step 3 and the expected result still require it.",
+   "case_says_now": "The run-on work order is offered as a target only while it is an eligible build target (judged by its status on the row); when it is not, the target keeps its place and says why.",
+   "should_say": "When the run-on work order is not eligible, it is not listed in the menu; the menu still opens and offers only a new work order."
+  },
+  {
+   "case": 88533,
+   "rule": "S2-R5",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "An ineligible run-on work order now leaves the menu, which still opens offering only a new work order; the case expects the target to stay listed with a reason.",
+   "case_says_now": "The run-on work order is offered as a target only while it is an eligible build target (judged by its status on the row); when it is not, the target keeps its place and says why.",
+   "should_say": "When the run-on work order is not eligible (for example Complete), the destination menu still opens and offers only a new work order."
+  },
+  {
+   "case": 88533,
+   "rule": "S6-R4",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "When it is not eligible, the inspection's own work order is now left out of the menu instead of staying with a reason, which is what step 3 and the expected result check.",
+   "case_says_now": "The run-on work order is offered as a target only while it is an eligible build target (judged by its status on the row); when it is not, the target keeps its place and says why.",
+   "should_say": "The run-on work order is offered only while it is eligible (judged by its status on the row); when it is not, it is not offered."
+  },
+  {
+   "case": 88534,
+   "rule": "S6-R7",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "There is no Needs action filter any more; step 3 and the expected result check that the row leaves it.",
+   "case_says_now": "After a successful build, the row leaves the Needs action filter and the counts and summary update with it.",
+   "should_say": "After a successful build, the row shows its outcome in place of the build action, and the counts and the summary line update with it."
+  },
+  {
+   "case": 88536,
+   "rule": "S6-E1",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "With the run-on work order deleted, the row now offers no build action (dash, or the outcome if built before), but the case expects the new-work-order target to be offered.",
+   "case_says_now": "If the run-on work order has been deleted, only the new-work-order target is offered.",
+   "should_say": "If the run-on work order has been deleted, the row offers no build action; its action cell shows a dash, or the outcome if it was built from before the deletion."
+  },
+  {
+   "case": 88536,
+   "rule": "S6-E3",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The explanation about 'Work orders - Create & Edit' was dropped; the row only shows a dash, so a correct build would fail step 3.",
+   "case_says_now": "A user who can fill inspections but cannot create work orders, on a row whose work order is closed, sees a dash with an explanation that creating a work order requires 'Work orders - Create & Edit', readable on a phone.",
+   "should_say": "A user who can fill inspections but cannot create work orders, on a row whose work order is closed, sees a dash and no build action (no permission explanation is required)."
+  },
+  {
+   "case": 88537,
+   "rule": "S7-R2",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The note-link rule gains a new outcome this case does not check: if the run-on work order is deleted after the build, the note shows its number as text tagged 'Work order deleted', with no link.",
+   "case_says_now": "When the lines went onto a new work order, the note links back to the work order the inspection was run on.",
+   "should_say": "Add: delete the run-on work order after a build onto a new work order, and check the note shows that work order's number as plain text tagged 'Work order deleted', with no link."
+  },
+  {
+   "case": 88538,
+   "rule": "S7-R5",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The Audit Log rule gains a new outcome this case does not check: if the run-on work order is deleted after the build, its number is shown as text with no link.",
+   "case_says_now": "The Audit Log entry names the inspection, links to it, and names the work order the inspection was run on.",
+   "should_say": "Add: delete the run-on work order after the build, and check the Audit Log entry shows its number as plain text with no link."
+  },
+  {
+   "case": 88539,
+   "rule": "S7-R7",
+   "decision": "drop",
+   "quote_only": true,
+   "reason": "The added sentence covers only the case where one record failed to write, which cannot be forced by hand and is covered by the write-failure case; when both records exist (what this case checks) nothing changes.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88539,
+   "rule": "S7-R8",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The asset row no longer reads '3 lines added'; the case still expects a count on the asset row, so a correct build ('Lines added') would fail.",
+   "case_says_now": "Both records state how many lines were created, and the asset row reads for example \"3 lines added\" rather than \"Lines added\".",
+   "should_say": "Both the note and the Audit Log entry state how many lines were created; remove the asset-row check (the asset row reads 'Lines added' or 'WO created', with no count)."
+  },
+  {
+   "case": 88540,
+   "rule": "S7-E4",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "When a line with an inspection is split onto a new work order, the inspection's report notes now move with it, which the case's split check ('the new work order carries no inspection provenance') does not allow for and could fail.",
+   "case_says_now": "If the work order is later split, the note and the Audit Log entry stay on the original, and the new work order carries no inspection provenance.",
+   "should_say": "If the work order is later split, the 'built from inspection' note and Audit Log entry stay on the original; when a line with an inspection is split onto the new work order, that inspection's report notes move with the line and are removed from the original (work orders split before this change keep their notes where they are)."
+  },
+  {
+   "case": 88542,
+   "rule": "S15-R6",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "Where ShopCoach is named changed: now in the completed-card note and the Line Builder panel title, not at the destination step, which is what step 3 and the expected result check.",
+   "case_says_now": "ShopCoach is named once, at the step where the destination is chosen, and nowhere else in the flow.",
+   "should_say": "ShopCoach is named in the note on the completed inspection card and in the Line Builder panel's title; the build action and the destination menu do not name it."
+  },
+  {
+   "case": 88548,
+   "rule": "S15-E2",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The drafting-failure rule gains new outcomes this case covers but does not check: the user can try again, and no empty lines are created.",
+   "case_says_now": "If the call to ShopCoach fails, the user is told that it failed, and is never left with an empty panel.",
+   "should_say": "If the call to ShopCoach fails, the user is told that it failed and can try again, is never left with an empty panel, and no empty lines are created."
+  },
+  {
+   "case": 88548,
+   "rule": "S15-E5",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "Findings now reach ShopCoach one per flagged row (with its flagged positions), not one per flagged position, so step 4 ('a separate proposed line per flagged position') and the expected result describe the old behaviour.",
+   "case_says_now": "If the same field is flagged on several axles, each flagged position reaches ShopCoach with its own axle and row so they are not collapsed into one line.",
+   "should_say": "If the same field is flagged on several axles, each flagged row reaches ShopCoach as its own finding, with its axle, its row and its flagged positions, so rows on different axles are not merged into one line."
+  },
+  {
+   "case": 88571,
+   "rule": "S12-E1",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The rule gains a new outcome this case does not check: after the last section is deleted, the starting points (starter templates) are not offered again.",
+   "case_says_now": "If the last section is deleted, the canvas still offers a way to add one back.",
+   "should_say": "If the last section is deleted, the canvas still offers a way to add one back, and the starting points are not offered again."
+  },
+  {
+   "case": 88572,
+   "rule": "S13-R0",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The printed per-axle layout changed completely (one block per axle with the result in the axle header, scope sub-headings, icons, grey dash, no per-row status column); step 1 and the expected result check the removed status column.",
+   "case_says_now": "A per-axle field prints each row's values per position, with a status column carrying the row's derived verdict.",
+   "should_say": "A per-axle field prints one block per axle, never split across a page, with each row's values per position and the axle's result in the axle header; sub-tables are headed 'OUTER + INNER' and '1 PER SIDE'; a flagged value shows a triangle (Needs attention) or clock (Monitor) icon as well as its colour; an unmeasured position prints a grey dash; there is no per-row status column."
+  },
+  {
+   "case": 88578,
+   "rule": "S14-R6",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "The rule now states that nothing blocks finishing a section (missing answers, notes, photos and acknowledgements only raise the count; all are collected at submit), an outcome this case's section-count check does not cover.",
+   "case_says_now": "Outstanding required work is surfaced on the action that completes the section, carrying a count, rather than as a separate banner competing with the fields.",
+   "should_say": "Outstanding required work shows as a count on the action that completes the section; leaving answers, notes or photos missing does not stop the technician finishing the section, it only raises the count, and everything outstanding is collected at submit."
+  },
+  {
+   "case": 88578,
+   "rule": "S14-R7",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "Selecting an outstanding item now goes to that item's field, with a separate 'Go to the first one' action; step 3 and the expected result say it goes to the first field needing an answer.",
+   "case_says_now": "Selecting an outstanding item moves to the first field that still needs an answer, rather than to a summary of what is missing.",
+   "should_say": "Selecting an outstanding item moves to that item's field; a 'Go to the first one' action moves to the first item in the list."
+  },
+  {
+   "case": 88511,
+   "rule": "S11-R9",
+   "decision": "drop",
+   "quote_only": false,
+   "reason": "The case never names TIFF; it checks HEIC and 'a format that cannot be rendered in place', which stays correct.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88523,
+   "rule": "S2-R5",
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "For an ineligible work order the build no longer creates a new work order straight away; the destination menu opens offering only a new work order, so step 3 as written would also pass the old behaviour.",
+   "case_says_now": "If the work order is not an eligible build target, the build creates a new work order and the note stays where it is.",
+   "should_say": "If the work order is not an eligible build target (Complete, Invoiced, Paid or Declined, or already invoiced), pressing Build lines on the note opens the destination menu offering only a new work order; choosing it builds onto a new work order and the note stays where it is."
+  },
+  {
+   "case": 88531,
+   "rule": "S5-R9",
+   "decision": "drop",
+   "quote_only": false,
+   "reason": "The case checks the asset Inspections tab's permissions and empty state, not the outcome wording, so the added sentence does not affect it.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88554,
+   "rule": "S5-R20",
+   "decision": "drop",
+   "quote_only": false,
+   "reason": "The case already says an axle contributes one count carrying the worst verdict of its positions, which is the new text.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88554,
+   "rule": "S13-R0",
+   "decision": "drop",
+   "quote_only": false,
+   "reason": "This case checks the completed on-screen view and only mentions that the printed report follows S13-R0 (checked manually elsewhere), so the new report layout does not change its steps or results.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88558,
+   "rule": "S19-R19",
+   "decision": "drop",
+   "quote_only": false,
+   "reason": "The case already checks the new behaviour (the name is a hyperlink, no separate button) for the reference file; the follow-up file is not part of it.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88564,
+   "rule": "S8-R7",
+   "decision": "drop",
+   "quote_only": false,
+   "reason": "The case already checks that adding a row offers only the missing row types and the add control is hidden when all four are present.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88568,
+   "rule": "S12-R29",
+   "decision": "drop",
+   "quote_only": false,
+   "reason": "The case already checks Add Axle stopping at 8 and delete at 1, which matches the new 1 to 8 range; it does not check the Axles control's range in the builder.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88583,
+   "rule": "S12-R31",
+   "decision": "drop",
+   "quote_only": false,
+   "reason": "The case only checks that Preview offers no Mark OK, which is unchanged.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88590,
+   "rule": "S14-R6",
+   "decision": "drop",
+   "quote_only": false,
+   "reason": "The case already says an unacknowledged follow-up does not block finishing a section and that items are listed at submit, which matches the new text.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88591,
+   "rule": "S12-R31",
+   "decision": "drop",
+   "quote_only": false,
+   "reason": "The case already says the follow-up file is shown in Preview but cannot be opened, which is the new behaviour.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88592,
+   "rule": "S5-R17",
+   "decision": "drop",
+   "quote_only": false,
+   "reason": "The case only checks that an acknowledgement carries no count, which the removal of the 'visible' condition does not affect.",
+   "case_says_now": "",
+   "should_say": ""
+  }
+ ],
+ "later_jira": [
+  {
+   "case": 88575,
+   "decision": "keep",
+   "quote_only": false,
+   "reason": "Jira SV-10960 (Milos Vasic, 8 Oct 2026, later than the spec) adds report behaviour on this case's exact topic: changing a work order's asset or merging assets never regenerates an existing report, and a manual regenerate uses the work order's current asset; the case does not check either, so a build that silently regenerates would still pass.",
+   "case_says_now": "Regenerating a report produces a new version rather than replacing the previous one, every link resolves to the most recent, and earlier versions remain retrievable so a report already handed to a customer cannot change.",
+   "should_say": "Also check: after changing the work order's asset (or merging the asset into another), the existing report is not regenerated and still shows the earlier asset; pressing regenerate by hand then produces a new version that shows the work order's current asset (the ticket adds that the inspected date does not move). The part of the decision about a deleted work order belongs to the asset Inspections tab cases, not this one."
+  },
+  {
+   "case": 88561,
+   "decision": "drop",
+   "quote_only": false,
+   "reason": "Unsure: SV-11103's '…' plus hover tooltip covers template, section, field-label and measurement-row names (builder, fill screen, work order row, template dropdown), not attached file names, which is all this case's long-name step checks; the step's 'shortened rather than breaking the layout' stays correct.",
+   "case_says_now": "",
+   "should_say": ""
+  },
+  {
+   "case": 88579,
+   "decision": "drop",
+   "quote_only": false,
+   "reason": "Unsure: this is a phone case and a phone has no hover, so the tooltip cannot be checked here; ending with '…' is a form of the shortening step 3 already checks, the ticket's tester notes say the phone was already fine, and file names are not in the ticket's scope.",
+   "case_says_now": "",
+   "should_say": ""
+  }
+ ]
+}

@@ -78,7 +78,7 @@ for cid, t, who, dec, spec in rows:
                "The decision is later than the spec, so the latest decision wins. Add it to the case."])
 body(lj)
 # ---- No case yet
-nc = wb.create_sheet("No case yet")
+nc = wb.create_sheet("New behaviour, no case yet")
 header(nc, ["Spec rule or ticket", "What it says", "When it was added or decided", "Source", "What to do"], [16, 70, 24, 16, 40])
 covered = {x[1] for x in d["out"] if x[2]}
 for code in sorted(set(p["added"]) - covered):
@@ -101,13 +101,13 @@ lines = [
  ("What is in each tab", ""),
  ("Cases to update", "Only changes that alter what a case should check. One row per case and spec rule: what the spec said before and now, the sentence in the case that is no longer right, what it should check now, and when the spec changed it (from the spec's own change log). Wording-only changes are left out."),
  ("Later Jira decisions", "Decisions made in Jira after the spec text was written. The latest decision wins, so the case should follow it."),
- ("No case yet", "New rules, or later decisions, that no case covers yet."),
+ ("New behaviour, no case yet", "New behaviour in the spec, or decided later in Jira, that no existing case checks. A new case is needed if it should be tested."),
  ("", ""),
  ("At a glance", ""),
  ("Case rows to update", "=COUNTA('Cases to update'!A2:A)"),
  ("Rows on automated cases", "=COUNTIF('Cases to update'!C2:C,\"Yes\")"),
  ("Later Jira decisions", "=COUNTA('Later Jira decisions'!A2:A)"),
- ("Rules with no case yet", "=COUNTA('No case yet'!A2:A)"),
+ ("Rules with no case yet", "=COUNTA('New behaviour, no case yet'!A2:A)"),
  ("", ""),
  ("Sources", ""),
  ("The spec", link(PRD, "Confluence page 768507905, Digital Inspections V2, version 43 (13 Oct 2026)")),
