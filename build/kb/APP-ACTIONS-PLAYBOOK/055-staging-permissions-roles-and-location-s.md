@@ -434,3 +434,10 @@ three wrong characterisations before it was found — see learning **L0233**.
   is 405 (POST only = create). Roles are read from staff rows (`role_label`/`role_id`, staff.mts `roleIds`) or created on
   screen (Settings → Roles & Permissions → Create custom role). "ZZAUTOTEST WO View Only" and the location "ZZAUTOTEST F2 Empty
   Shop" exist only on sv10043 — on staging they are made by the second-pass set-up (`stg-setup-*.mts`).
+- **(14 Oct 2026) Staging Administration routes:** Roles = `/administration/roles-permissions` (not `/settings/...`) → Create
+  Custom Role → template modal **Skip** → `role_name_input` + permission switches `area_<area>_<view|createandedit|delete>`
+  (e.g. `area_workorders_view`) → **Create** ("Role created successfully."). See Financial Data is off unless switched on.
+  Locations = `/administration/locations` → **New Location**: Name, Address 1, City, State/Province (select), ZIP/Postal Code and
+  **Telephone are all required** (the dialog stays open, no toast, red "… is a required field" under each); fields are found by
+  their label (`getByLabel('Address 1')`, `/ZIP/`, `/Telephone/`). The creating admin can switch to the new location at once.
+  Recipe: `run498-2026-10-08/stg-setup.mts` (idempotent).
