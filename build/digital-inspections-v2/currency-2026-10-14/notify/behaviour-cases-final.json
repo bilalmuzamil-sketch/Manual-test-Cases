@@ -1,0 +1,929 @@
+{
+ "cases": [
+  {
+   "case": 88513,
+   "case_title": "Choose which work order gets the lines, or a new one, before drafting",
+   "automated": true,
+   "why": "For a work order that cannot take lines, the menu now still opens and offers only a new work order, instead of creating one without asking or listing the old work order with a reason.",
+   "proof": "Before (22 Sep spec): on an inspection whose work order is Complete, Invoiced, Paid or Declined, pressing Build lines created a new work order straight away ('the system will create a new work order without asking'); another line of the same spec said a destination that cannot take lines 'will keep its place in the menu and say why'. Now (14 Oct spec): 'the destination menu still opens and offers only a new work order', and the keep-its-place rule is deleted ('a target that cannot be used is not shown'). Same action, different screen and outcome: the tester now sees a menu offering only 'A new work order', and nothing is created until they choose it.",
+   "note": "Decided by the product manager on 29 Sep. The 22 Sep spec contradicted itself (one line said no menu, another implied the old work order stayed in the menu with a reason); the new rule differs from both readings, so this is a change either way. The last expected line is unchanged and kept only to finish the flow.",
+   "rules": [
+    {
+     "code": "S2-R5",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    },
+    {
+     "code": "S2-R15",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    }
+   ],
+   "steps_before": [
+    "3. On the ineligible-work-order inspection, confirm a new work order is created without asking, for the same customer and asset.",
+    "4. Confirm an ineligible destination keeps its place in the menu and states why."
+   ],
+   "expected_before": [
+    "When the run-on work order is not eligible (Complete, Invoiced, Paid, Declined, or an invoice already exists), a new work order is created without asking.",
+    "A destination that cannot take lines keeps its place in the menu and says why, rather than silently disappearing."
+   ],
+   "steps_now": [
+    "1. Open the completed inspection whose work order is not eligible (for example Complete, or already invoiced).",
+    "2. Press Build lines.",
+    "3. Read the destination menu that opens.",
+    "4. Check the inspection's own work order is not in the menu and only a new work order is offered.",
+    "5. Choose the new work order.",
+    "6. Check a new work order is created for the same customer and asset and the drafting starts on it."
+   ],
+   "expected_now": [
+    "On the inspection whose work order is not eligible (Complete, Invoiced, Paid or Declined, or it already has an invoice), pressing Build lines still opens the destination menu; no new work order is created without asking.",
+    "The menu offers only a new work order. The inspection's own work order is not listed at all: it is not shown greyed out and no reason is given.",
+    "Choosing the new work order creates it for the same customer and asset and the drafting starts there (unchanged)."
+   ]
+  },
+  {
+   "case": 88515,
+   "case_title": "After building you land on Lines, the finding is marked done, rebuild asks",
+   "automated": false,
+   "why": "Lines can now be built from an inspection only once: a second Add Lines adds nothing and says where the lines went, no confirmation is asked, and the completed inspection and the work order note show the outcome instead of Build lines.",
+   "proof": "Before (22 Sep spec): 'If lines have already been added from this inspection, the user will be asked to confirm before adding a second set.' The tester was asked to confirm, and a second set was then added. Now (14 Oct spec): 'An inspection is built from once ... no entry point offers the build action again: the completed inspection, the work order note and the asset row show the outcome instead ... if the inspection was built from elsewhere in the meantime, nothing is added and the user is told where the lines went.' There is no confirmation; a second Add Lines adds nothing and says where the lines went, and Build lines is no longer offered.",
+   "note": "Decided on 29 Sep ('an inspection is built from once'); the decision on two users building at the same time was reworded on 7 Oct. The asset's Inspections tab row already showed the outcome after a build on 22 Sep, so it is not part of this change and is left out.",
+   "rules": [
+    {
+     "code": "S2-R13",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    },
+    {
+     "code": "S3-R8",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    },
+    {
+     "code": "S4-R5",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    },
+    {
+     "code": "S5-R9",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    }
+   ],
+   "steps_before": [
+    "4. Press Add Lines a second time from the same inspection; confirm you are asked to confirm before a second set is added."
+   ],
+   "expected_before": [
+    "If lines were already added from this inspection, the user is asked to confirm before adding a second set, checked when Add Lines is pressed."
+   ],
+   "steps_now": [
+    "1. Open the same completed inspection (one not yet built from) in two browser tabs.",
+    "2. In the first tab, press Build lines, choose This work order and wait for the proposed lines.",
+    "3. In the second tab, press Build lines, choose This work order and wait for the proposed lines.",
+    "4. In the first tab, press Add Lines.",
+    "5. In the second tab, press Add Lines.",
+    "6. Check nothing is added from the second tab, a message says where the lines went, and no question asks you to confirm adding a second set.",
+    "7. Open the completed inspection and the work order's inspection report note.",
+    "8. Check neither offers Build lines and each shows the outcome with a link to the work order that got the lines."
+   ],
+   "expected_now": [
+    "After an inspection's lines have been added, the completed inspection and the work order's inspection report note no longer offer Build lines; each shows the outcome instead ('WO created …' or 'Lines added …') with a link to the work order that got the lines.",
+    "If a second set of proposed lines was already open for the same inspection, pressing Add Lines there adds nothing and tells you where the lines went.",
+    "No question asking you to confirm a second set appears at any point."
+   ]
+  },
+  {
+   "case": 88518,
+   "case_title": "Building lines with long notes, many findings, or a deleted work order",
+   "automated": true,
+   "why": "A second Add Lines no longer adds a duplicate set, and after the run-on work order is deleted the inspection no longer goes back to needing a work order.",
+   "proof": "Two users: before (22 Sep spec), 'Duplication happens only if both press Add Lines, which is accepted and recoverable', so the second press added a duplicate set. Now (14 Oct spec): 'When both press Add Lines, only the first adds lines; the second adds nothing and the user is told where the lines went.' Deleted run-on work order: before, where the lines had been added to that work order, 'the inspection counts as needing a work order again', so it was counted in the summary and could be built from again. Now: 'an inspection that has a report survives it as a read-only record ... The inspection does not count as needing a work order, because it can no longer be built from.' It is not counted and offers no Build lines.",
+   "note": "Product manager decisions of 6 and 7 Oct; the developer confirmed on 8 Oct that such an inspection is not counted in 'N of M have findings with no lines yet'. Lines added to the deleted work order going with it is unchanged, so it is left out. What happens to an inspection with no report when its work order is deleted is covered by another case, not here.",
+   "rules": [
+    {
+     "code": "S2-E6",
+     "date": "2026-10-07",
+     "entry": "Leftovers from the built-once rule; file limit; submit name"
+    },
+    {
+     "code": "S2-E12",
+     "date": "2026-10-06",
+     "entry": "Deleted work orders, removed inspections and splits"
+    },
+    {
+     "code": "S5-E3",
+     "date": "2026-10-06",
+     "entry": "Deleted work orders, removed inspections and splits"
+    }
+   ],
+   "steps_before": [
+    "4. Repeat, using the second browser to reopen the inspection, and to delete the built lines versus delete the work order; check each result against the expected result below."
+   ],
+   "expected_before": [
+    "If two users draft from the same inspection at once, the drafting itself duplicates nothing; duplication happens only if both press Add Lines, which is accepted and recoverable.",
+    "If the run-on work order is deleted, the inspection survives it and stays listed on the asset with a dash in its work order column; any lines added to that work order are gone with it and the inspection counts as needing a work order again."
+   ],
+   "steps_now": [
+    "1. Build from a completed inspection with findings, choose This work order (the work order it was run on), and press Add Lines.",
+    "2. Open the asset's Inspections tab and note N in the summary line 'N of M have findings with no lines yet'.",
+    "3. In the second browser, delete that work order.",
+    "4. Reload the asset's Inspections tab and find the inspection.",
+    "5. Check it is still listed, with a dash in the Work order column and no Build lines.",
+    "6. Check N in the summary line has not gone up.",
+    "7. In both browsers, open the completed screen of another completed inspection with findings that has not been built from, press Build lines, choose This work order and wait for the proposed lines.",
+    "8. Press Add Lines in the first browser.",
+    "9. Press Add Lines in the second browser.",
+    "10. Check only one set of lines is added to the work order and the second browser shows a message saying where the lines went."
+   ],
+   "expected_now": [
+    "If two users draft from the same inspection at once, the drafting duplicates nothing. When both press Add Lines, only the first adds lines; the second adds nothing and is told where the lines went.",
+    "If the work order the inspection was run on is deleted, a completed inspection (one that has a report) stays listed on the asset's Inspections tab as a read-only record with a dash in the Work order column.",
+    "The inspection does not count as needing a work order again: it offers no Build lines and is not counted in the summary line, because it can no longer be built from."
+   ]
+  },
+  {
+   "case": 88520,
+   "case_title": "The summary card, counts per verdict, and the section review",
+   "automated": true,
+   "why": "The findings list now shows one entry per flagged row with all its flagged positions, instead of one entry per flagged position.",
+   "proof": "Before (22 Sep spec): the findings list named 'each flagged position as field, axle, row and position with the reading that earned it', so two flagged tires on one row gave two entries. Now (14 Oct spec): it names 'each flagged row as field, axle and row, followed by every flagged position on it with its reading', for example 'Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi'. The same two tires now give one entry listing both; a list with one entry per tire now fails.",
+   "note": "Decided on 29 Sep ('one finding per flagged row'). The 22 Sep spec was inconsistent: elsewhere it already said a flagged row produces its own finding. The old check would also pass a list with one entry per tire, which the new one fails. A flagged checkbox field being its own entry is unchanged and is left out.",
+   "rules": [
+    {
+     "code": "S3-R4",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    }
+   ],
+   "steps_before": [
+    "1. Read the summary card: completion line, a count per verdict, and the findings list naming each flagged position as field, axle, row and position with its reading."
+   ],
+   "expected_before": [
+    "The screen leads with a summary card: the completion line, a count per verdict, and a findings list naming each flagged position (field, axle, row, position) with the reading that earned it."
+   ],
+   "steps_now": [
+    "1. Add a Per axle field to the template next to the checkbox fields.",
+    "2. While filling, on Axle 1 Tire pressure, flag two positions (for example left outer 42 psi and right outer 40 psi, Not OK).",
+    "3. Complete the inspection and open its completed screen.",
+    "4. Read the findings list on the summary card.",
+    "5. Check the two flagged tires appear in one entry for Axle 1 · Tire pressure, listing both positions with their readings."
+   ],
+   "expected_now": [
+    "The findings list has one entry per flagged measurement row, not one entry per flagged tire or brake.",
+    "Each entry names the field, the axle and the row, followed by every flagged position on that row with its reading, for example 'Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi'."
+   ]
+  },
+  {
+   "case": 88522,
+   "case_title": "Building lines when the work order is deleted, built twice, or reopened",
+   "automated": true,
+   "why": "With its work order deleted the inspection can no longer be built from at all and its footer offers View PDF only, and a build by someone else is no longer followed by a 'build again?' confirmation because an inspection is built from once.",
+   "proof": "Deleted run-on work order: before (22 Sep spec), 'only the option to create a new work order is offered', so the tester saw Build lines (with 'A new work order') and Go to work order. Now (14 Oct spec): 'no build action is offered' and 'the footer offers View PDF only, with or without ShopCoach, and no plain line; it also shows the outcome when the lines went onto another work order that still exists'. Another user building while the screen is open: before, this led to the confirmation to build again; now 'the check' means built once, so nothing is added, the tester is told where the lines went, and the footer then shows the outcome ('WO created S-235' or 'Lines added S-58') instead of Build lines.",
+   "note": "Decided by the product manager on 6 and 7 Oct in answer to the developer's questions. Steps 8 to 10 need an organisation without ShopCoach.",
+   "rules": [
+    {
+     "code": "S3-E1",
+     "date": "2026-10-06",
+     "entry": "Deleted work orders, removed inspections and splits"
+    },
+    {
+     "code": "S3-R6",
+     "date": "2026-10-07",
+     "entry": "Deleted work order: outcome, footer, reopened, merge (SV-10965)"
+    },
+    {
+     "code": "S3-E2",
+     "date": "2026-10-07",
+     "entry": "Leftovers from the built-once rule; file limit; submit name"
+    },
+    {
+     "code": "S2-R13",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    },
+    {
+     "code": "S3-R8",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    }
+   ],
+   "steps_before": [
+    "1. Delete the run-on work order, then open the completed inspection; confirm only 'create a new work order' is offered.",
+    "2. In a second browser signed in as another user, build from the same inspection while this screen is still open in the first; check the re-build confirmation reflects the current state, not the state when the screen loaded."
+   ],
+   "expected_before": [
+    "If the run-on work order has been deleted, only the option to create a new work order is offered.",
+    "If another user builds from the same inspection while this screen is open, the re-build confirmation is based on the current state rather than the state when the screen loaded."
+   ],
+   "steps_now": [
+    "1. Delete the work order that a completed, not yet built-from inspection with findings was run on.",
+    "2. Open the asset's Inspections tab and open that inspection.",
+    "3. Check its footer offers View PDF only: no Build lines, no Go to work order and no line about the work order note feed.",
+    "4. Complete another inspection with a Not OK finding, press Build lines, choose A new work order and press Add Lines.",
+    "5. Delete the work order that inspection was run on (not the new one).",
+    "6. Open the asset's Inspections tab and open that inspection.",
+    "7. Check its footer offers View PDF and the outcome 'WO created …' linking to the new work order, with no Build lines and no Go to work order.",
+    "8. In an organisation without ShopCoach, delete the work order a completed inspection was run on.",
+    "9. Open that inspection from the asset's Inspections tab.",
+    "10. Check its footer offers View PDF only, with no Go to work order and no plain line about the customer report and the work order note feed.",
+    "11. Back in the organisation with ShopCoach, open the completed screen of a third completed inspection with findings in the first browser.",
+    "12. In the second browser, signed in as another user, build from the same inspection and press Add Lines.",
+    "13. In the first browser, without reloading, press Build lines, choose a target and, if proposed lines appear, press Add Lines.",
+    "14. Check nothing is added a second time, you are told where the lines went, and no confirmation to build again appears.",
+    "15. Reload the completed screen.",
+    "16. Check the footer shows the outcome with a link instead of Build lines."
+   ],
+   "expected_now": [
+    "With the run-on work order deleted, the completed inspection offers no build action at all: no Build lines and no new-work-order option.",
+    "Its footer offers View PDF only, with or without ShopCoach: no Go to work order and no line about the work order note feed.",
+    "If lines had been built onto another work order that still exists before the deletion, the footer also shows that outcome (for example 'WO created S-235'), linking to it.",
+    "If another user adds lines from the same inspection while your screen is open, the check uses the inspection as it is now: nothing is added a second time and you are told where the lines went. No confirmation to build again appears.",
+    "After that, the screen no longer offers Build lines; its footer shows the outcome ('WO created …' or 'Lines added …') with a link."
+   ]
+  },
+  {
+   "case": 88523,
+   "case_title": "Build lines from the report note, on a phone and on an ineligible work order",
+   "automated": true,
+   "why": "For a work order that cannot take lines, the note's Build lines now opens the menu offering only a new work order, instead of creating one without asking.",
+   "proof": "The note's own rule still says the build 'creates a new work order ... and the note stays where it is', but the rule it points to changed. Before (22 Sep spec): 'the system will create a new work order without asking', so pressing Build lines on the note of a Complete work order created a new work order straight away. Now (14 Oct spec): 'the destination menu still opens and offers only a new work order', so a menu opens with only 'A new work order' and nothing is created until the user chooses it.",
+   "note": "Decided on 29 Sep. The note rule's own wording did not change; the rule it refers to did. The last expected line (new work order created, note stays put) is unchanged and kept only to finish the flow.",
+   "rules": [
+    {
+     "code": "S2-R5",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    }
+   ],
+   "steps_before": [
+    "3. On a note whose work order status is not eligible (Complete, Invoiced, Paid or Declined), check a new work order is created and the note stays put."
+   ],
+   "expected_before": [
+    "If the work order is not an eligible build target, the build creates a new work order and the note stays where it is."
+   ],
+   "steps_now": [
+    "1. On the note whose work order is Complete, Invoiced, Paid or Declined, press Build lines.",
+    "2. Check the destination menu opens and offers only a new work order.",
+    "3. Choose the new work order.",
+    "4. Check a new work order is created for the same customer and asset.",
+    "5. Check the note is still on the original work order."
+   ],
+   "expected_now": [
+    "On the note of a work order that is not eligible (Complete, Invoiced, Paid or Declined, or already invoiced), pressing Build lines opens the destination menu; it does not create a work order without asking.",
+    "The menu offers only a new work order; this work order is not listed.",
+    "Choosing it builds onto a new work order for the same customer and asset, and the note stays where it is (unchanged)."
+   ]
+  },
+  {
+   "case": 88524,
+   "case_title": "Building again asks to confirm, based on the inspection as it is now",
+   "automated": false,
+   "why": "Building again from the note with a confirmation is gone: once built from anywhere, the note shows the outcome instead of Build lines, and a stale Add Lines started from the note adds nothing.",
+   "proof": "Before (22 Sep spec): on the note of an inspection already built from elsewhere, Build lines was present and pressing it led to a confirmation ('If the inspection was already built from through another entry point, the user is asked to confirm'). Now (14 Oct spec) those rules are deleted and 'Once the inspection has been built from, the note shows the outcome in place of Build lines': there is no Build lines, only a 'WO created …' or 'Lines added …' link, and an Add Lines pressed on lines drafted before the other build adds nothing and says where the lines went.",
+   "note": "Decided on 29 Sep ('an inspection is built from once').",
+   "rules": [
+    {
+     "code": "S4-R3",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    },
+    {
+     "code": "S4-E2",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    },
+    {
+     "code": "S2-R13",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    },
+    {
+     "code": "S4-R5",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    }
+   ],
+   "steps_before": [
+    "1. From the note, press Build lines on an inspection that has already been built from elsewhere.",
+    "2. Confirm the confirmation prompt is based on the inspection's current state rather than on the note's snapshot."
+   ],
+   "expected_before": [
+    "The re-build confirmation is based on the inspection's current state rather than on the note, so a build done elsewhere afterwards still triggers the warning.",
+    "If the inspection was already built from through another entry point, the user is asked to confirm."
+   ],
+   "steps_now": [
+    "1. In the first browser tab, open the work order's Notes tab, find the inspection report note, press Build lines, choose This work order and wait for the proposed lines.",
+    "2. In a second browser tab, open the same inspection's completed screen, press Build lines, choose a target and press Add Lines.",
+    "3. Back in the first tab, press Add Lines.",
+    "4. Check nothing is added, a message says where the lines went, and no question asks you to confirm building again.",
+    "5. Open the work order's Notes tab and find the inspection report note.",
+    "6. Check the note shows the outcome ('WO created …' or 'Lines added …') and no Build lines.",
+    "7. Click the outcome link.",
+    "8. Check it opens the work order that got the lines."
+   ],
+   "expected_now": [
+    "The note of an inspection already built from elsewhere does not offer Build lines. In its place it shows the outcome, 'WO created …' or 'Lines added …', linking to the work order that got the lines.",
+    "The note shows the inspection as it is now, even though the note was posted before the build.",
+    "No confirmation to build again is shown.",
+    "If the proposed lines from the note were already open when the other build happened, pressing Add Lines adds nothing and says where the lines went."
+   ]
+  },
+  {
+   "case": 88528,
+   "case_title": "Inspections tab filters, summary line and needs-action counts",
+   "automated": true,
+   "why": "The filter row was removed (three columns sort instead) and the summary line has new words.",
+   "proof": "Before (22 Sep spec): 'A filter row will offer All, Needs action, With issues and Not started, each with a count taken from the full list' and 'A summary will read \"N of M need a work order\"'. Now (14 Oct spec): 'The table has no filter row. The Inspection, Status and Completed columns can be sorted' and 'A summary will read \"N of M have findings with no lines yet\"'. The tester now sees no filter row, sortable column headers and different summary words.",
+   "note": "The filter row was removed on 5 Oct. The new summary wording has no change-log entry; it first appears in a developer task on 2 Oct. The 22 Sep design already showed no filter chips and the new summary wording, but the 22 Sep spec did not, and the case followed the spec. The default order (most recently completed first) and the rule that a pre-release inspection is never flagged are unchanged and are left out.",
+   "rules": [
+    {
+     "code": "S5-R10",
+     "date": "2026-10-05",
+     "entry": "Developer and QA questions answered"
+    },
+    {
+     "code": "S5-R11",
+     "date": "between 2026-09-29 and 2026-10-02",
+     "entry": "Not named in the change log; Jira SV-10792 (2 Oct 2026) already quotes the new text"
+    },
+    {
+     "code": "S5-R12",
+     "date": "2026-10-07",
+     "entry": "Filter leftovers removed"
+    }
+   ],
+   "steps_before": [
+    "1. Read the filter row (All, Needs action, With issues, Not started) and confirm each count is taken from the full list, not the filtered view.",
+    "2. Read the summary 'N of M need a work order'.",
+    "3. Confirm an inspection shows Needs action only when it was completed after this release, has a Monitor or Not OK finding, and has not been built from; a pre-release inspection is never flagged but stays reachable under With issues."
+   ],
+   "expected_before": [
+    "A filter row offers All, Needs action, With issues and Not started, each count taken from the full list rather than the filtered view.",
+    "A summary reads \"N of M need a work order\".",
+    "An inspection needs action when it was completed after this release, has at least one Monitor or Not OK finding, and has not been built from; a pre-release inspection is never flagged but stays reachable under With issues."
+   ],
+   "steps_now": [
+    "1. Open the asset's Inspections tab.",
+    "2. Check there is no filter row.",
+    "3. Click the Inspection column header and check the list sorts.",
+    "4. Click the Status column header and check the list sorts.",
+    "5. Click the Completed column header and check the list sorts.",
+    "6. Read the summary line and check it reads 'N of M have findings with no lines yet'."
+   ],
+   "expected_now": [
+    "The tab has no filter row: no All, Needs action, With issues or Not started.",
+    "The Inspection, Status and Completed columns can be sorted.",
+    "The summary reads \"N of M have findings with no lines yet\"."
+   ]
+  },
+  {
+   "case": 88529,
+   "case_title": "Inspections tab links and buttons, phone use, and the inspection's asset",
+   "automated": true,
+   "why": "The tab no longer has a filter row, and it now follows a work order when its asset is changed or assets are merged, instead of staying on the asset first inspected.",
+   "proof": "Phone: the rule 'The filter row will wrap on a phone rather than scrolling out of view, and will keep its counts' is deleted, because the tab has no filter row. Asset: before (22 Sep spec), the asset was 'stored on the inspection when it is created rather than derived through its work order ... this tab is a record of what was inspected rather than a view that follows a later correction', so after changing a work order's asset the inspection stayed on the old asset's tab. Now (14 Oct spec): 'The tab lists the inspections whose work order is on this asset now, so it follows the work order when the work order's asset is changed or two assets are merged.' It moves to the new asset's tab and leaves the old one.",
+   "note": "Decided on 5 Oct. The 22 Sep spec said nothing about merging assets; under its rule an inspection stayed with the asset it was run on. Not covered here: a later product manager ruling (8 Oct, not yet in the 14 Oct spec) that an inspection whose work order is deleted takes the asset that work order has at that moment. Pre-release inspections being listed on their work order's asset, and every column staying reachable on a phone, are unchanged and are left out.",
+   "rules": [
+    {
+     "code": "S5-R16",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    },
+    {
+     "code": "S5-R10",
+     "date": "2026-10-05",
+     "entry": "Developer and QA questions answered"
+    },
+    {
+     "code": "S5-R21",
+     "date": "2026-10-05",
+     "entry": "Developer and QA questions answered"
+    }
+   ],
+   "steps_before": [
+    "2. On a phone, confirm every column's information stays reachable and the page does not scroll sideways; the filter row wraps and keeps its counts.",
+    "3. Confirm the tab shows what was inspected (asset stored on the inspection at creation), not a view that follows a later work-order asset change; confirm a pre-release inspection was backfilled from its work order's asset."
+   ],
+   "expected_before": [
+    "The filter row wraps on a phone rather than scrolling out of view, and keeps its counts.",
+    "An inspection records the asset it was run on, stored on the inspection at creation rather than derived through its work order, and pre-release inspections are backfilled from their work order's asset at migration."
+   ],
+   "steps_now": [
+    "1. On a phone, open the asset's Inspections tab.",
+    "2. Check there is no filter row.",
+    "3. On desktop, open the work order of one inspection and change its asset to another asset.",
+    "4. Open the new asset's Inspections tab and check the inspection is listed there.",
+    "5. Open the old asset's Inspections tab and check the inspection is no longer listed.",
+    "6. Merge two assets of the same customer (for example by editing one asset's VIN to the other's and answering Yes to merge).",
+    "7. Check the inspections of both are listed on the surviving asset."
+   ],
+   "expected_now": [
+    "The tab has no filter row, so on a phone there is no filter row to wrap.",
+    "The tab lists the inspections whose work order is on this asset now. When a work order's asset is changed, its inspections move to the new asset's Inspections tab and leave the old one.",
+    "When two assets are merged, the inspections move to the surviving asset, as the work orders do."
+   ]
+  },
+  {
+   "case": 88530,
+   "case_title": "How findings are counted, once per axle",
+   "automated": false,
+   "why": "The Needs action filter step 4 checks no longer exists; the counts are now followed by the tab's summary line instead.",
+   "proof": "Before (22 Sep spec): the counting rule said 'the asset list, the report summary and the Needs action filter all follow it', and step 4 of the case checked that filter. Now (14 Oct spec): 'the asset list, the report summary and the summary line on the tab all follow it', and 'The table has no filter row.' The counts themselves come out the same; the only difference a tester sees is that the Needs action filter is gone and the summary line takes its place.",
+   "note": "The case's Expected results have no line for step 4; the old expectation is in the step itself. This is a knock-on of removing the filter row on 5 Oct; the counting rules give the same counts as before. Separate from this change: the precondition 'some hidden fields' cannot be met in either version and should be fixed when the case is rewritten.",
+   "rules": [
+    {
+     "code": "S5-R10",
+     "date": "2026-10-05",
+     "entry": "Developer and QA questions answered"
+    },
+    {
+     "code": "S5 counting note",
+     "date": "2026-10-07",
+     "entry": "Filter leftovers removed"
+    }
+   ],
+   "steps_before": [
+    "4. Confirm the asset list, report summary and Needs action filter all follow this same count."
+   ],
+   "expected_before": [],
+   "steps_now": [
+    "Steps 1 to 3 of the case are unchanged.",
+    "4. Open the asset's Inspections tab for these inspections.",
+    "5. Check there is no Needs action filter on the tab.",
+    "6. Check each row's findings match the counts you confirmed in steps 1 to 3.",
+    "7. Open each inspection's report and check its summary shows the same counts.",
+    "8. Read the summary line 'N of M have findings with no lines yet' and check it agrees with these inspections."
+   ],
+   "expected_now": [
+    "There is no Needs action filter on the asset's Inspections tab.",
+    "The asset list, the report summary and the summary line on the tab ('N of M have findings with no lines yet') all follow the same counting."
+   ]
+  },
+  {
+   "case": 88532,
+   "case_title": "Inspections tab with not-started, all N/A, deleted, moved and many inspections",
+   "automated": true,
+   "why": "After the run-on work order is deleted, only an inspection with a report is kept, as a read-only record that can no longer be built from, reopened or regenerated; a reopened one shows as Completed and opens its latest report.",
+   "proof": "Before (22 Sep spec): 'the inspection remains listed, the work order column shows a dash rather than a broken link, and the row remains usable' - an unfinished inspection stayed listed, a kept row could still be built from onto a new work order, and a reopened one read In progress. Now (14 Oct spec): 'an inspection that has a report stays ... as a read-only record ... It cannot be built from, reopened or regenerated. A reopened inspection survives as its latest report: Status reads Completed, Completed shows the date of that report, and opening the row opens that report ... An inspection with no report ... is deleted with its work order.' The unfinished one is gone, the kept row is read-only with View PDF only, and a reopened one reads Completed and opens its report.",
+   "note": "Product manager decisions of 6 and 7 Oct; the developer built it on 8 Oct. The spec also deletes an inspection that was submitted but whose report was never generated; that state cannot be produced by hand, so it is left out. The last check (lines put on another work order that is then deleted, while the inspection's own work order still exists) is unchanged and is kept so the case does not lose it.",
+   "rules": [
+    {
+     "code": "S5-E3",
+     "date": "2026-10-06",
+     "entry": "Deleted work orders, removed inspections and splits"
+    },
+    {
+     "code": "S3-R6",
+     "date": "2026-10-07",
+     "entry": "Deleted work order: outcome, footer, reopened, merge (SV-10965)"
+    },
+    {
+     "code": "SV-10965",
+     "date": "2026-10-07",
+     "entry": "Milos Vasic in Jira"
+    }
+   ],
+   "steps_before": [
+    "3. Delete the run-on work order and confirm the inspection stays listed with a dash in the work order column and remains usable; delete a different work order the lines were built onto and confirm the row returns to Needs action."
+   ],
+   "expected_before": [
+    "If the run-on work order has been deleted, the inspection stays listed, the work order column shows a dash rather than a broken link, and the row stays usable."
+   ],
+   "steps_now": [
+    "1. On one work order for this asset, complete one inspection with a Not OK finding, complete and then reopen a second, and leave a third unfinished.",
+    "2. Delete the work order.",
+    "3. Open the asset's Inspections tab.",
+    "4. Check the completed and the reopened inspections are still listed, each with a dash in the Action column, and the unfinished one is gone.",
+    "5. Check the reopened one reads Completed, with the date of its latest report.",
+    "6. Open the completed one and check it is read-only and its footer offers View PDF only: no Build lines, no Reopen and no way to regenerate the report.",
+    "7. Click the reopened one's row and check its latest report opens, not its answers.",
+    "8. On a different work order for this asset, complete an inspection with a Not OK finding, press Build lines, choose A new work order and press Add Lines.",
+    "9. Delete the work order that inspection was run on (not the new one).",
+    "10. On the asset's Inspections tab, check that row shows 'WO created …' in the Action column, linking to the new work order.",
+    "11. On a work order you keep, complete another inspection with a Not OK finding, press Build lines, choose A new work order and press Add Lines.",
+    "12. Delete the new work order that got the lines.",
+    "13. On the asset's Inspections tab, check that inspection's row needs action again: its Action column offers the build action."
+   ],
+   "expected_now": [
+    "Only an inspection that has a report (completed, or completed and then reopened) stays listed on the asset's Inspections tab after its work order is deleted. One with no report, such as an unfinished one, is deleted with the work order.",
+    "The kept row is a read-only record: it cannot be built from, reopened or regenerated, and its completed screen offers View PDF only.",
+    "The Action column shows the outcome (for example 'WO created S-200') only while the work order it points to still exists; otherwise it shows a dash.",
+    "A reopened inspection shows Status 'Completed' with the date of its latest report, and opening the row opens that report rather than the answers.",
+    "If the lines went onto a different work order and that work order is deleted while the work order the inspection was run on still exists, the row returns to Needs action and offers the build action again (unchanged)."
+   ]
+  },
+  {
+   "case": 88533,
+   "case_title": "Build lines from a needs-action row, with the same work order choice",
+   "automated": true,
+   "why": "A work order that cannot take lines is now left out of the menu instead of being listed with a reason.",
+   "proof": "Before (22 Sep spec): 'When it is not [eligible], the target keeps its place and says why', so the menu listed the Complete work order, greyed out with a reason. Now (14 Oct spec): 'When it is not, it is not offered', and the change log says 'a target that cannot be used is not shown'. The Complete work order is absent and only 'A new work order' is listed.",
+   "note": "Decided on 29 Sep. On 22 Sep the Complete work order already could not be chosen; the only change is that it is no longer shown at all. The eligible work order being listed by number and status is unchanged and is left out.",
+   "rules": [
+    {
+     "code": "S6-R4",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    },
+    {
+     "code": "S2-R15",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    },
+    {
+     "code": "S2-R5",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    }
+   ],
+   "steps_before": [
+    "3. Check the run-on work order is offered only while its status is eligible; when it is not, the target stays listed and says why."
+   ],
+   "expected_before": [
+    "The run-on work order is offered as a target only while it is an eligible build target (judged by its status on the row); when it is not, the target keeps its place and says why."
+   ],
+   "steps_now": [
+    "1. On the Needs action row whose work order is Complete, press the build action.",
+    "2. Check the menu opens and offers only a new work order, with no entry for the Complete work order."
+   ],
+   "expected_now": [
+    "When the row's work order is not eligible (for example Complete), the menu still opens but does not list that work order at all - not greyed out and with no reason given; it offers only a new work order."
+   ]
+  },
+  {
+   "case": 88534,
+   "case_title": "After building, the row shows the result and the counts update",
+   "automated": false,
+   "why": "There is no Needs action filter any more; after a build the row shows its outcome and the summary line updates.",
+   "proof": "Before (22 Sep spec): 'the row will leave the Needs action filter and the counts and summary will update with it', and the summary read 'N of M need a work order'. Now (14 Oct spec): 'the row will show its outcome instead of the action, and the counts and the summary line will update with it'; there is no filter row and the summary reads 'N of M have findings with no lines yet'. The row showing its outcome after a build is not new.",
+   "note": "A knock-on of removing the filter row (5 Oct) and the new summary wording. The row showing its outcome instead of the build action is unchanged and is left out.",
+   "rules": [
+    {
+     "code": "S6-R7",
+     "date": "2026-10-07",
+     "entry": "Filter leftovers removed"
+    },
+    {
+     "code": "S5-R10",
+     "date": "2026-10-05",
+     "entry": "Developer and QA questions answered"
+    }
+   ],
+   "steps_before": [
+    "3. Confirm the row leaves the Needs action filter and the counts and summary update with it."
+   ],
+   "expected_before": [
+    "After a successful build, the row leaves the Needs action filter and the counts and summary update with it."
+   ],
+   "steps_now": [
+    "1. Open the asset's Inspections tab and check there is no Needs action filter.",
+    "2. Note the summary line 'N of M have findings with no lines yet'.",
+    "3. Build from the Needs action row and press Add Lines.",
+    "4. Return to the asset's Inspections tab.",
+    "5. Check N in the summary line has gone down by one."
+   ],
+   "expected_now": [
+    "There is no Needs action filter for the row to leave.",
+    "After a successful build the summary line, which reads 'N of M have findings with no lines yet', updates with it: N goes down by one."
+   ]
+  },
+  {
+   "case": 88536,
+   "case_title": "Row build with a deleted work order, per row, or a row you can't start",
+   "automated": true,
+   "why": "With the run-on work order deleted the row can no longer be built from at all, and the fill-only user's dash no longer carries a permission explanation.",
+   "proof": "Deleted run-on work order: before (22 Sep spec), 'only the new-work-order target is offered', so the row showed a build button with 'A new work order'. Now (14 Oct spec): 'the row offers no build action and its action cell shows a dash'. Fill-only user on a closed work order: before, 'The row will show a dash with an explanation that creating a work order requires \"Work Orders — Create & Edit\". The explanation must be readable on a phone'; now 'has no available action. The row shows a dash.'",
+   "note": "The change for the fill-only user has no change-log entry; it happened somewhere between 22 Sep and 13 Oct. That the explanation must not appear is inferred from the spec's general rule that no explanatory text is added unless a requirement asks for it; the new spec simply drops the explanation. The spec also says a row built from before the deletion shows its outcome; that cannot happen to a row that needs action, so it is left out.",
+   "rules": [
+    {
+     "code": "S6-E1",
+     "date": "2026-10-06",
+     "entry": "Deleted work orders, removed inspections and splits"
+    },
+    {
+     "code": "S6-E3",
+     "date": "between 2026-09-29 and 2026-10-13",
+     "entry": "not in the change log"
+    },
+    {
+     "code": "S5-E3",
+     "date": "2026-10-06",
+     "entry": "Deleted work orders, removed inspections and splits"
+    }
+   ],
+   "steps_before": [
+    "1. With the run-on work order deleted, confirm only the new-work-order target is offered.",
+    "3. As the fill-only user on a closed-work-order row, confirm the row shows a dash with an explanation that creating a work order requires 'Work orders - Create & Edit', readable on a phone with no hover."
+   ],
+   "expected_before": [
+    "If the run-on work order has been deleted, only the new-work-order target is offered.",
+    "A user who can fill inspections but cannot create work orders, on a row whose work order is closed, sees a dash with an explanation that creating a work order requires 'Work orders - Create & Edit', readable on a phone."
+   ],
+   "steps_now": [
+    "1. Delete the run-on work order of a Needs action row.",
+    "2. Open the asset's Inspections tab.",
+    "3. Check that row offers no build action and its action cell shows a dash.",
+    "4. Sign in as the fill-only user and open the asset's Inspections tab.",
+    "5. Find the row whose work order is closed.",
+    "6. Check its action cell shows only a dash, with no build action and no explanation text."
+   ],
+   "expected_now": [
+    "With the run-on work order deleted, the row offers no build action at all; its action cell shows a dash.",
+    "For a user who can fill inspections but cannot create work orders, a row whose work order is closed shows just a dash, with no explanation about permissions."
+   ]
+  },
+  {
+   "case": 88539,
+   "case_title": "The work order note and Audit Log match, including the line count",
+   "automated": true,
+   "why": "The asset row no longer shows the number of lines ('3 lines added'); it reads 'Lines added' or 'WO created'.",
+   "proof": "Before (22 Sep spec): 'Both records will state how many lines were created, and the asset row will read \"3 lines added\" rather than \"Lines added\"'. Now (14 Oct spec): 'Both records will state how many lines were created' - the asset-row clause is deleted, and the asset row uses the same outcome words as everywhere else ('WO created …' or 'Lines added …'). The tester now sees 'Lines added …' with no count instead of '3 lines added'.",
+   "note": "No change-log entry. The 22 Sep spec was inconsistent (another line already said 'Lines added'), and the 22 Sep design showed 'Lines added' with the work order number; the new spec matches the design. The note and the Audit Log entry stating how many lines were created is unchanged and is left out.",
+   "rules": [
+    {
+     "code": "S7-R8",
+     "date": "between 2026-09-29 and 2026-10-13",
+     "entry": "not in the change log"
+    },
+    {
+     "code": "S5-R9",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    }
+   ],
+   "steps_before": [
+    "3. Confirm both state how many lines were created, and the asset row reads e.g. '3 lines added' rather than 'Lines added'."
+   ],
+   "expected_before": [
+    "Both records state how many lines were created, and the asset row reads for example \"3 lines added\" rather than \"Lines added\"."
+   ],
+   "steps_now": [
+    "1. Open the asset's Inspections tab and find the inspection's row.",
+    "2. Check the row reads 'Lines added' (or 'WO created') with no line count, and links to the work order."
+   ],
+   "expected_now": [
+    "The asset's Inspections tab row shows the outcome without a count: 'Lines added' when the lines went onto the existing work order, or 'WO created' when a new one was created, linking to that work order."
+   ]
+  },
+  {
+   "case": 88540,
+   "case_title": "Lines are kept if the note or Audit Log fails, deleted records handled",
+   "automated": true,
+   "why": "When the line carrying the inspection is split onto a new work order, the inspection's report note now moves with it, while the build note and Audit Log entry stay on the original.",
+   "proof": "Before (22 Sep spec): after a split, 'the note and the Audit Log entry stay on the original. The new work order carries no inspection provenance', so the inspection report note stayed on the original. Now (14 Oct spec) adds: 'The inspection's report notes are not records of the build: when a line with an inspection is split onto a new work order, those notes move with the line and are removed from the original.' After splitting the line that carries the inspection, the report note is on the new work order and gone from the original.",
+   "note": "Decided by the product manager on 6 Oct and written into the spec the same day. Use a fresh split: work orders split before this rule keep their notes where they are. The first expected line is unchanged and kept so the tester can tell the two notes apart.",
+   "rules": [
+    {
+     "code": "S7-E4",
+     "date": "2026-10-06",
+     "entry": "Deleted work orders, removed inspections and splits"
+    },
+    {
+     "code": "SV-10913",
+     "date": "2026-10-06",
+     "entry": "Milos Vasic in Jira"
+    }
+   ],
+   "steps_before": [
+    "4. Split the work order; confirm the note and Audit Log entry stay on the original and the new work order carries no inspection provenance."
+   ],
+   "expected_before": [
+    "If the work order is later split, the note and the Audit Log entry stay on the original, and the new work order carries no inspection provenance."
+   ],
+   "steps_now": [
+    "1. On the work order with the build, select the line that carries the inspection.",
+    "2. Split it onto a new work order.",
+    "3. Open the original work order's Notes tab and Audit Log.",
+    "4. Check the 'built from inspection' note and the Audit Log entry are still there.",
+    "5. Check the inspection report note is no longer on the original work order.",
+    "6. Open the new work order's Notes tab and Audit Log.",
+    "7. Check the inspection report note is there, and there is no 'built from inspection' note or Audit Log entry."
+   ],
+   "expected_now": [
+    "After a split, the 'built from inspection' note and the Audit Log entry stay on the original work order; the new work order gets neither (unchanged).",
+    "When the line that carries the inspection is split onto the new work order, the inspection's report note moves with it: it appears on the new work order's Notes tab and is removed from the original."
+   ]
+  },
+  {
+   "case": 88542,
+   "case_title": "ShopCoach drafts lines with no typing, and its instructions are kept",
+   "automated": true,
+   "why": "The proposed-lines panel title now names ShopCoach; the 22 Sep spec said ShopCoach is named once, at the destination step, and nowhere else.",
+   "proof": "Before (22 Sep spec): 'ShopCoach will be named once, at the step where the destination is chosen, and nowhere else in the flow', so a proposed-lines panel whose title named ShopCoach failed. Now (14 Oct spec): 'ShopCoach is named in the note on the completed inspection card and in the Line Builder panel's existing title', so that title is required.",
+   "note": "Not in the change log. Only the panel title is a proven change. ShopCoach being named in the note on the completed inspection card was already required on 22 Sep, and the Build lines label not naming it is unchanged. Whether the destination menu changed depends on how the 22 Sep wording is read (the 22 Sep design already named ShopCoach only in the note), so it is not claimed here.",
+   "rules": [
+    {
+     "code": "S15-R6",
+     "date": "between 2026-09-29 and 2026-10-13",
+     "entry": "not in the change log"
+    }
+   ],
+   "steps_before": [
+    "3. Confirm ShopCoach is named once, at the destination-choice step, and nowhere else."
+   ],
+   "expected_before": [
+    "ShopCoach is named once, at the step where the destination is chosen, and nowhere else in the flow."
+   ],
+   "steps_now": [
+    "1. Open the completed inspection and press Build lines.",
+    "2. Choose a target.",
+    "3. Read the title of the proposed-lines panel.",
+    "4. Check the title names ShopCoach."
+   ],
+   "expected_now": [
+    "The title of the proposed-lines panel (the Line Builder) names ShopCoach."
+   ]
+  },
+  {
+   "case": 88548,
+   "case_title": "ShopCoach with no results, failures, leaving the page and several axles",
+   "automated": true,
+   "why": "Two flagged tires on the same row now reach ShopCoach as one finding instead of one per tire, and a draft that fails a second time no longer leaves one empty line per finding.",
+   "proof": "Row as one finding: before (22 Sep spec), 'each flagged position reaches ShopCoach with its own axle and row', so two flagged tires on Axle 1 Tire pressure were two findings (two skeleton rows while drafting). Now (14 Oct spec): 'each flagged row reaches ShopCoach as its own finding, with its axle, its row and its flagged positions' - one finding, one skeleton row. Failure: before, 'When the assistant call fails the user is offered a retry, and after a second failure one empty line per finding'. Now: the user 'can try again ... No empty lines are created.' The difference shows only after a second failure: before, one empty line per finding; now none.",
+   "note": "Decided on 29 Sep. Drafting failure cannot be forced by hand, and the difference shows only on a second failure, so that part is a developer or automated check; a tester can check it by hand only if the failure happens on its own (for example when ShopCoach cannot be reached). Being told it failed and offered Try Again was already true on 22 Sep. The spec requires at least one line per finding and does not stop ShopCoach proposing more than one line for a finding, so 'not one line per tire' is not expected. A developer has said one line may cover several findings and that the system adds a plain line for any finding left uncovered; that has no product manager sign-off and sits uneasily with 'no empty lines are created', so it is an open product question and is not part of the expected result. Flagged rows on different axles staying separate is unchanged and is left out.",
+   "rules": [
+    {
+     "code": "S15-E2",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    },
+    {
+     "code": "S15-E5",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    }
+   ],
+   "steps_before": [
+    "1. Note for the tester: forcing ShopCoach to return nothing or to fail cannot be done by hand — it is a developer/automated check. By hand, if an empty or failed result occurs naturally, confirm the user is told plainly and the work order is unchanged (never a blank panel).",
+    "4. Check a field flagged on several axles produces a separate proposed line per flagged position (its own axle and row), not one merged line, and that a Monitor finding appears as a watch item rather than work to do now."
+   ],
+   "expected_before": [
+    "If the call to ShopCoach fails, the user is told that it failed, and is never left with an empty panel.",
+    "If the same field is flagged on several axles, each flagged position reaches ShopCoach with its own axle and row so they are not collapsed into one line."
+   ],
+   "steps_now": [
+    "1. Fill the per-axle field so Axle 1 Tire pressure has two flagged tires (for example left outer and right outer Not OK) and Axle 2 Tire pressure has one.",
+    "2. Complete the inspection, press Build lines and choose a target.",
+    "3. While drafting, count the skeleton rows: one for each flagged field and one for each flagged row, so Axle 1 Tire pressure, with two flagged tires, adds one row, not two.",
+    "4. When the proposed lines arrive, check they name one Axle 1 · Tire pressure finding that lists both flagged tires.",
+    "5. If drafting fails, read the message shown and check it says the drafting failed and offers Try Again.",
+    "6. Press Try Again; if it fails again, check no empty lines appear and nothing is added to the work order."
+   ],
+   "expected_now": [
+    "Each flagged measurement row is one finding: two flagged tires on the same row and axle go to ShopCoach as one finding naming the axle, the row and both flagged positions. While drafting there is one skeleton row for that finding, and the proposed line names that row's finding.",
+    "If drafting fails, you are told it failed and can try again with Try Again (unchanged).",
+    "If it fails again, no empty lines are created and nothing is added to the work order."
+   ]
+  },
+  {
+   "case": 88571,
+   "case_title": "Deleting the last section or the selected field, long names, live preview",
+   "automated": false,
+   "why": "Long names are now cut with '…' and show the full name when you hover over them.",
+   "proof": "The spec line is the same in both versions: 'A very long field or section name is shortened in the canvas, the outline and the properties panel rather than breaking the layout.' The later decision is the designer's, on 12 Oct: 'Let's truncate text with \"…\" and show tooltip on hover which displays full text', built on 12-13 Oct ('Builder: field rows, section heading and outline names end with \"…\" with the full name on hover'). Hovering over a shortened name: before, nothing was required; now a tooltip shows the full name. Neither the 22 Sep spec nor the 22 Sep design has a full-name tooltip.",
+   "note": "Designer-only source: the tooltip was decided by the designer on 12 Oct and built on 12-13 Oct. The 14 Oct spec still says only 'shortened', and no product manager sign-off is recorded (he was only copied). It adds to the old expectation rather than contradicting it; consider asking the product owner to confirm it. The decision does not mention the properties panel, so no tooltip is expected there.",
+   "rules": [
+    {
+     "code": "SV-11103",
+     "date": "2026-10-12",
+     "entry": "Branko Cicovic (designer) in Jira"
+    }
+   ],
+   "steps_before": [
+    "3. Confirm a very long field or section name is shortened in the canvas, the outline and the properties panel rather than breaking the layout."
+   ],
+   "expected_before": [
+    "A very long field or section name is shortened in the canvas, the outline and the properties panel rather than breaking the layout."
+   ],
+   "steps_now": [
+    "1. Give a field and a section very long names.",
+    "2. Check each is shortened with '…' on the canvas and in the outline.",
+    "3. Hover over the shortened field name on the canvas.",
+    "4. Check a tooltip shows the full name.",
+    "5. Hover over the shortened section heading on the canvas.",
+    "6. Check a tooltip shows the full name.",
+    "7. Hover over the shortened name in the outline.",
+    "8. Check a tooltip shows the full name."
+   ],
+   "expected_now": [
+    "A very long field or section name is shortened with '…' on the canvas and in the outline, without breaking the layout (unchanged).",
+    "Hovering over a shortened name - a field row or section heading on the canvas, or a name in the outline - shows the full name in a tooltip."
+   ]
+  },
+  {
+   "case": 88572,
+   "case_title": "What the customer report says, and what it no longer shows",
+   "automated": true,
+   "why": "The report now prints each axle as one block with the axle's result in its header and no per-row status column, with icons as well as colour.",
+   "proof": "Before (22 Sep spec): 'A per-axle field will print each row's values per position, with a status column carrying the row's derived verdict.' Now (14 Oct spec): 'A per-axle field will print one block per axle, never split across a page: each row's values per position, and the axle's result in the axle header. The sub-tables are headed by scope, 'OUTER + INNER' and '1 PER SIDE'. A flagged value carries ... a triangle for Needs attention and a clock for Monitor, as well as its colour ... A position nobody measured prints a grey dash. There is no per-row status column.' The report now has no status column, shows the result in each axle header, and adds the icons, the scope headings and the grey dash.",
+   "note": "The change is the layout: one block per axle with the axle's result in its header, no per-row status column, icons as well as colour, and a grey dash for unmeasured positions (decided 5 Oct). The result words ATTENTION, MONITOR and PASS are not new. The 22 Sep design brief also planned a per-row status column, so the old expectation was consistent across sources.",
+   "rules": [
+    {
+     "code": "S13-R0",
+     "date": "2026-10-05",
+     "entry": "Developer and QA questions answered"
+    }
+   ],
+   "steps_before": [
+    "1. Confirm a per-axle field prints each row's values per position with a status column carrying the row's derived verdict."
+   ],
+   "expected_before": [
+    "A per-axle field prints each row's values per position, with a status column carrying the row's derived verdict."
+   ],
+   "steps_now": [
+    "1. Make sure the per-axle field has a tire row on 'Outer + inner', a row on '1 per side', Monitor and Not OK values, at least one empty position, and enough axles that the field runs past the first page of the report (for example 8).",
+    "2. Open the inspection's report.",
+    "3. Check each axle prints as one block that is not split across pages.",
+    "4. Check each axle header shows the axle's result as ATTENTION, MONITOR or PASS (unchanged wording), and there is no status column per row.",
+    "5. Check the sub-tables are headed 'OUTER + INNER' and '1 PER SIDE'.",
+    "6. Check each flagged value has a triangle (Needs attention) or a clock (Monitor) as well as its colour.",
+    "7. Check the empty position prints a grey dash."
+   ],
+   "expected_now": [
+    "A per-axle field prints one block per axle, never split across a page.",
+    "Each block shows each row's values per position, and the axle's result in the axle header, in the report's words: ATTENTION, MONITOR or PASS (this wording itself is unchanged; the report already never printed Not OK).",
+    "There is no status column per row.",
+    "The sub-tables are headed 'OUTER + INNER' and '1 PER SIDE'.",
+    "A flagged value carries an icon as well as its colour: a triangle for Needs attention, a clock for Monitor.",
+    "A position nobody measured prints a grey dash."
+   ]
+  },
+  {
+   "case": 88575,
+   "case_title": "The customer report stays correct when regenerated or republished",
+   "automated": false,
+   "why": "Regenerating a report must now keep the first-completion inspected date and must not post another note on the work order.",
+   "proof": "The 22 Sep spec only said 'The inspected date will show without a time' and said nothing about notes when a report is regenerated. Now (14 Oct spec): 'The inspected date is the date the inspection was first completed. Regenerating a report does not move it' and 'Regenerating a report does not post another note on the work order.' After a regenerate the tester must now find the same number of report notes and the same inspected date.",
+   "note": "Added requirement - the 22 Sep spec was silent on both points, so these are new requirements, not reversed ones. Decided by the product manager on 5 Oct in answer to questions raised during the build. Nothing shows whether the product already behaved this way. A new version being produced, every link opening the newest version, the existing note pointing at the newest version and earlier versions staying retrievable are unchanged and are left out.",
+   "rules": [
+    {
+     "code": "S13-R14",
+     "date": "2026-10-05",
+     "entry": "Developer and QA questions answered"
+    },
+    {
+     "code": "S13-R15",
+     "date": "2026-10-05",
+     "entry": "Developer and QA questions answered"
+    }
+   ],
+   "steps_before": [
+    "1. Regenerate the report and confirm a new version is produced rather than replacing the previous one, every link resolves to the most recent, and earlier versions remain retrievable so a report already handed to a customer cannot change."
+   ],
+   "expected_before": [
+    "Regenerating a report produces a new version rather than replacing the previous one, every link resolves to the most recent, and earlier versions remain retrievable so a report already handed to a customer cannot change."
+   ],
+   "steps_now": [
+    "1. Open a completed inspection that was first completed on an earlier day (for example yesterday) and has not been reopened since.",
+    "2. Note the inspected date on its report.",
+    "3. Count the inspection report notes on the work order's Notes tab.",
+    "4. Regenerate the report.",
+    "5. Check no new note was added to the Notes tab.",
+    "6. Open the report (View PDF) and check it shows the same inspected date as before."
+   ],
+   "expected_now": [
+    "Regenerating a report does not post another note on the work order.",
+    "Regenerating does not change the inspected date: it stays the date the inspection was first completed."
+   ]
+  },
+  {
+   "case": 88578,
+   "case_title": "On a phone: reference files, outstanding work and the back button",
+   "automated": false,
+   "why": "Selecting an outstanding item now goes to that item's field, and a separate 'Go to the first one' action goes to the first.",
+   "proof": "Before (22 Sep spec): 'Selecting an outstanding item will move to the first field that still needs an answer, rather than to a summary of what is missing.' Now (14 Oct spec): 'Selecting an outstanding item will move to that field. A 'Go to the first one' action moves to the first item in the list.' Selecting the third item: before, the tester landed on the first unanswered field; now on that item's own field, and a 'Go to the first one' action appears.",
+   "note": "Not in the change log. The 22 Sep follow-up design already showed selecting a row going to that field and a 'Go to the first one' action, but the 22 Sep spec and user story said the first unfilled field, and the case followed the spec.",
+   "rules": [
+    {
+     "code": "S14-R7",
+     "date": "between 2026-09-29 and 2026-10-13",
+     "entry": "not in the change log"
+    }
+   ],
+   "steps_before": [
+    "3. Select an outstanding item and confirm it moves to the first field that still needs an answer, not to a summary of what is missing."
+   ],
+   "expected_before": [
+    "Selecting an outstanding item moves to the first field that still needs an answer, rather than to a summary of what is missing."
+   ],
+   "steps_now": [
+    "1. On the phone, leave at least three required fields unanswered, in different sections.",
+    "2. Press 'Submit & Generate Report' to open the list of outstanding items.",
+    "3. Select the third item in the list.",
+    "4. Check the screen moves to that item's field.",
+    "5. Open the list again and press 'Go to the first one'.",
+    "6. Check the screen moves to the first item in the list."
+   ],
+   "expected_now": [
+    "Selecting an outstanding item moves to that item's own field, not to the first unanswered field.",
+    "A 'Go to the first one' action moves to the first item in the list."
+   ]
+  }
+ ],
+ "dropped": [
+  {
+   "case": 88525,
+   "reason": "Wording only, no behaviour change. The case checks that a deleted inspection's note stays as a record without Build lines; that sentence is word for word the same on 22 Sep and 14 Oct. The 14 Oct spec adds that removing an inspection from its line deletes it, that it leaves the asset's Inspections tab and that its note is marked 'Inspection deleted'. That behaviour already existed before 22 Sep: the developer wrote on 6 Oct that the 'Inspection deleted' marking (greyed card, View PDF and Download disabled) was existing behaviour that had stopped showing because of a bug, removing an inspection from its line deleting it is long-standing behaviour, and the asset tab already left it out on 2 Oct. Doing what the case does on the same build gives the same pass or fail as before. Borderline: the greyed card and disabled View PDF and Download come only from the developer, not the spec; they can be offered as an optional addition to the case, not as a behaviour change."
+  }
+ ]
+}
