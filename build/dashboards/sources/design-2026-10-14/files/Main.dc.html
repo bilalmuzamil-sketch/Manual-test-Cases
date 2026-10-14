@@ -1,0 +1,123 @@
+<style>
+:root {
+  --ink: #111827;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --card: #ffffff;
+  --bg: #f4f6f8;
+  --before: #6b7280;
+  --after: #2563eb;
+  --wo: #b45309;
+  --new: #047857;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ink);
+}
+.board {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 18px 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.chip {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: #fff;
+  white-space: nowrap;
+}
+.chip--before { background: var(--before); }
+.chip--after { background: var(--after); }
+.chip--wo { background: var(--wo); }
+.chip--new { background: var(--new); }
+h2 { font-size: 15px; font-weight: 700; margin: 0; }
+.sub { font-size: 12.5px; line-height: 1.5; color: var(--muted); margin: 0; }
+.shots { display: flex; flex-direction: column; gap: 10px; }
+.shot { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #fff; }
+.shot img { display: block; width: 100%; height: auto; margin: 0 auto; }
+.shot-label {
+  font-size: 11px;
+  color: var(--muted);
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--line);
+  background: #fafafa;
+}
+.note {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: #f9fafb;
+  border-left: 3px solid var(--after);
+  padding: 8px 10px;
+  border-radius: 0 6px 6px 0;
+  margin: 0;
+}
+.note--before { border-left-color: var(--before); }
+.note--wo { border-left-color: var(--wo); }
+.cover { padding: 34px 38px; }
+.cover h1 { font-size: 30px; margin: 0 0 6px; letter-spacing: -0.01em; }
+.cover .lede { font-size: 14px; color: var(--muted); margin: 0 0 20px; max-width: 760px; line-height: 1.6; }
+.meta { display: grid; grid-template-columns: 120px 1fr; gap: 6px 16px; font-size: 13px; margin-bottom: 22px; }
+.meta dt { color: var(--muted); }
+.meta dd { margin: 0; font-weight: 600; }
+.legend { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.scope { border-top: 1px solid var(--line); padding-top: 16px; }
+.scope h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin: 0 0 10px; }
+.scope ol { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.85; }
+.scope b { font-weight: 650; }
+
+</style>
+
+<div class="board cover">
+  <h1>Dashboard v1</h1>
+  <p class="lede">Every screen this PR touches, before and after. Every board is a screenshot, not a drawing, except row 15, which is drawn from the approved empty-state design.
+  <b>Before</b> is production's code as it ships today; <b>after</b> is this PR's build. Both ran on the same
+  local QA Testing data, so the figures can be read side by side.</p>
+  <dl class="meta">
+    <dt>PRD</dt><dd>Dashboards</dd>
+    <dt>Ticket</dt><dd>SV-8311</dd>
+    <dt>Branch</dt><dd>SV-8311-dashboard-v1</dd>
+    <dt>Owner</dt><dd>Chris Ward</dd>
+    <dt>Status</dt><dd>Built, in PR review</dd>
+  </dl>
+  <div class="legend">
+    <span class="chip chip--before">Before &middot; production</span>
+    <span class="chip chip--after">After &middot; this build</span>
+    <span class="chip chip--new">New &middot; no before exists</span>
+  </div>
+  <div class="scope">
+    <h3>What this covers</h3>
+    <ol>
+      <li><b>The dashboard as it opens</b>: six cards on one screen, each on its default range, every visit</li>
+      <li><b>Every card on Last 12 Months</b>: the same comparison with the ranges matched</li>
+      <li><b>Choosing a date range</b>: a pill per card, same presets</li>
+      <li><b>Revenue</b>: the chart opens under its row instead of on a second page, and hovering it</li>
+      <li><b>Billing Efficiency</b>: chart and Advisor Analysis table, hovering a month and a name</li>
+      <li><b>Technician Efficiency</b>: chart and table, hovering a month and a name</li>
+      <li><b>Technician Utilization</b>: chart and table, hovering a month and a name</li>
+      <li><b>Sales by Customer</b>: new card</li>
+      <li><b>At Risk Customers</b>: table under its card, and the inactivity window</li>
+      <li><b>Sales report</b>: chart above the details, shown, hidden and hovered</li>
+      <li><b>Service Advisor Analysis report</b>: chart above the details, shown, hidden and hovered</li>
+      <li><b>Technician Efficiency report</b>: chart above the details, shown, hidden and hovered</li>
+      <li><b>Technician Utilization report</b>: chart above the details, shown, hidden and hovered</li>
+      <li><b>On a phone</b>: stacked cards with View Report</li>
+      <li><b>Tiles with no data</b>: a grey dash and an empty-chart placeholder (approved design, to build)</li>
+    </ol>
+  </div>
+  <p class="sub" style="margin-top:18px">Before: <b>main</b> at d7fdcd7, production's code; no dashboard code changed between release v26.39.1 and main.
+  After: SV-8311 merged with develop at 88d2825. The wider search box in the top bar comes from develop, not from this PR.
+  Captured 2026-09-28 at 1920 wide, and 390 wide for the phone.</p>
+</div>

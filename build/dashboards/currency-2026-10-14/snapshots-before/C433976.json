@@ -1,0 +1,78 @@
+{
+ "id": 433976,
+ "title": "Embedded report chart leaves room for the report table after arriving from the Dashboard and after a window resize",
+ "section_id": 12166,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 3,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1791477873,
+ "updated_by": 1,
+ "updated_on": 1791479806,
+ "estimate": null,
+ "estimate_forecast": null,
+ "suite_id": 1,
+ "display_order": 4,
+ "is_deleted": 0,
+ "is_ai_generated": false,
+ "is_ai_automated": false,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "<p>Signed in as owner/admin with the Reports permission.<br />Browser storage holds no report_visualization_open_techEfficiencySeries key, so the report chart opens on its default (shown).<br />Browser window 1536x730.<br />No report data needs to be seeded: the chart box is the same size whether it shows data or \"No data for selected date range\".</p>\n",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "<p>Open the Dashboard and wait for its tiles to load.</p>",
+   "expected": "<p>The Dashboard is shown.</p>",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  },
+  {
+   "content": "<p>Use the Reports navigation to open Technician Efficiency, without reloading the page.</p>",
+   "expected": "<p>The report loads with the chart shown above the table, and the chart has finished loading (a drawn chart or \"No data for selected date range\").</p>",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  },
+  {
+   "content": "<p>Look at the chart area.</p>",
+   "expected": "<p>The chart card is no taller than the chart itself (well under 300px at this window height), with no large empty white area below the chart.</p>",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  },
+  {
+   "content": "<p>Look at the report table under the chart.</p>",
+   "expected": "<p>The table has at least 160px of visible body on screen, not just its header or Totals row.</p>",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  },
+  {
+   "content": "<p>Enlarge the browser window to 1536x1100.</p>",
+   "expected": "<p>The chart grows taller, up to its 345px maximum.</p>",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  },
+  {
+   "content": "<p>Shrink the browser window back to 1536x730.</p>",
+   "expected": "<p>The chart shrinks back to the height it had in step 3, and the table again has at least 160px of visible body.</p>",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": [],
+ "version": 2
+}
