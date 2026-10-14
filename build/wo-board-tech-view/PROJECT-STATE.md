@@ -111,3 +111,8 @@ Design driving: served over local HTTP (react/react-dom/babel localized into `so
 - **No test run created** yet (Rule 34) — create/sync one at execution time, union-only.
 - **PO questions** above (Story 11 keyboard, MF-3 dialog, FF-2 sort/status matrix, FF-4 prompt details, FF-6/V-2
   perf & mobile, SQ-2/10/11, OQ-2) and the six design-vs-spec divergences need the PO/design authority.
+
+## 14 Oct 2026 (night) — PO design defects SV-11317–SV-11326 and the incident review
+PRD now v52 (v51/v52 written today from Sasha's staging review against Branko's design: 14 new or rewritten rules). Our cases
+caught 0 of the 10; C96927 and C96979 assert the old S5-R4. Review, root causes and proposed prevention:
+`po-defects-2026-10-14/INCIDENT-REVIEW-2026-10-14.md`; lesson L-01 in `build/LESSONS-REGISTER.md`. No TestRail or Jira write yet.
