@@ -1,0 +1,27 @@
+{
+ "added": {
+  "S1-R9a": "The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View every other icon is the design’s Lucide icon too: density (`row-height` in Tech View, `card-height` in Board View), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and empty states (`clipboard-list`). List’s icons are unchanged.",
+  "S1-R9b": "The switcher’s hover tooltip opens above the switcher, so it never covers the table’s column header row.",
+  "S1-R15": "In Tech View and Board View the filter bar also offers a **Technician** filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location’s technicians (the same people who get a group or column, S9-R4), by first name then last name. Choosing one or more shows only those technicians’ groups or columns; every other group or column, pinned ones included, is hidden. It filters by lead technician only.",
+  "S1-R15a": "The Technician filter combines with every other filter and with Assigned to me: a work order shows only if it matches all of them. When nothing matches, the empty state of S1-N1a applies, and Clear all filters also clears the Technician filter.",
+  "S1-R15b": "List does not offer the Technician filter and stays as in production. Switching to List while technicians are chosen shows List as if none were chosen; switching back to Tech View or Board View brings the choice back. The choice is remembered the same way as the other filters.",
+  "S2-R19": "Tech View’s Status column is the same status pill List shows in production, with the same red service-actions count and blue parts-actions count on it. Its size follows density (S6-R2a).",
+  "S2-R20": "Tech View’s cells follow the design: the work order number shows as a link in the accent color; Progress shows as a thin bar with the percentage beside it; Service Advisor shows the advisor’s avatar before the name. Clocked In keeps List’s display (S5-R11).",
+  "S2-R21": "Tech View’s column header labels are 12px, medium weight (500), in the secondary text color, as in the design. Labels never overlap a neighboring label.",
+  "S2-R22": "Tech View’s table runs edge to edge on white, with no side gutter and no card or panel around it, as in the design.",
+  "S3-R23": "Board View runs full width, with no grey rounded panel around the columns, as in the design.",
+  "S6-R2a": "In Tech View the status pill is 18px tall at Compact and Regular and 22px tall at Comfortable, the design’s two badge sizes. List’s status pill is unchanged.",
+  "S9-R1a": "In Tech View every work order row and every group header, Unassigned included, shows the design’s six-dot drag grip at its left edge, to users who can drag (S4-N1). The whole row still drags (S2-R8); the grip shows that it can."
+ },
+ "removed": {},
+ "changed": {
+  "S5-R4": {
+   "v49": "Until the user changes Tech View’s columns, Tech View shows the current production List default columns.",
+   "now": "Until the user changes Tech View’s columns, Tech View shows these columns, in this order, as in the design: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price (Total price subject to financial permission). On Site, VIN/Serial # and Lead Technician are off by default; each can be added with the column chooser (S2-R4). List’s columns are unchanged."
+  },
+  "S7-R7": {
+   "v49": "In Tech View the Assigned Techs column sits immediately after Lines, matching the design. It stays optional and is added through the column chooser (S2-R4).",
+   "now": "In Tech View the Assigned Techs column sits immediately after Lines, matching the design. It is on by default (S5-R4) and can be removed through the column chooser (S2-R4)."
+  }
+ }
+}

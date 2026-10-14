@@ -1,0 +1,76 @@
+--- 
++++ 
+@@ -1,18 +0,0 @@
+-# Work Orders — Board View & Tech View Display Options — PRD (source capture 2026-10-14, second read)
+-
+-**Confluence page:** 845185030 · https://shopview.atlassian.net/wiki/spaces/~7120207b6068952672480db1a06bd810e23ba1/pages/845185030/
+-**Version:** 49 (created 2026-10-14T15:34:20.751Z by Chris Ward — author id 712020:aa00b8d6…, the same author as v43–v48 — message "Bilal QA 14 Oct: S4-R28 approved lines; S3-R20c; S4-N5; S5-R11a/b; S1-R13c; Out of Scope; Status; Change Log from dev start (v34)") · **lastModified:** 2026-10-14T15:34:20Z
+-**Status line on the page:** "In development: PRD v49, 2026-10-14. Every change since development started is listed in the Change Log (section 10)."
+-**Owner:** Sasha Grosman · **Epic:** SV-10043 · **Captured:** 2026-10-14 (verbatim markdown body, Confluence version API `getConfluenceContentVersion` v49; byte-identical to the current-page body read at the same time, 66,098 characters; read-only).
+-Supersedes `CONFLUENCE-845185030-2026-10-14.md` (page v48, 2026-10-12T16:43:37Z). Diff: https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=48&selectedPageVersions=49
+-
+----
+-
+-| **Epic** | [SV-10043](https://shopview.atlassian.net/browse/SV-10043) |
+-| --- | --- |
+-| **Owner** | Sasha Grosman |
+-| **Status** | In development: PRD v49, 2026-10-14. Every change since development started is listed in the Change Log (section 10). |
+-| **Design** | [Claude Design — Work Orders](https://claude.ai/design/p/787fef1a-9523-43cc-bd06-f88765051d21?file=Work+Orders.dc.html&via=share) (Branko Cicovic) |
+-| **Design authority** | Sasha Grosman |
+-| **Sources** | Design Review 2026-09-01 (Sasha, Branko, Fabian) · Branko/Sasha 2026-09-03 · Fabian/Sasha 2026-08-26 · Design Review 2026-08-25 · #fs-global-search brief 2026-08-27 |
+-
+@@ -27 +9 @@
+-This spec adds two new **display options** to the Work Orders page — a **Tech View** (the familiar table, grouped under each lead technician) and a **Board View** (one column per lead technician) — plus the shared controls that make them usable: choosing which fields appear, choosing density, and reassigning the lead technician by drag-and-drop. Shops pick the display option that fits their size. List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.
++This spec adds two new **display options** to the Work Orders page — a **Tech View** (a table grouped under each lead technician, laid out as in the design) and a **Board View** (one column per lead technician) — plus the shared controls that make them usable: choosing which fields appear, choosing density, and reassigning the lead technician by drag-and-drop. Shops pick the display option that fits their size. List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.
+@@ -34 +16 @@
+-- The existing **filter views** (the tabs on the left — All, Work Orders, Estimates, Completed) and the filter bar (search, status, assigned to me, and so on) apply the same way in every display option. Switching display option never changes *which* work orders are shown, only *how* they are laid out. Imported work orders are the one exception: they open in List only (S1-R13a, S1-R13b).
++- The existing **filter views** (the tabs on the left — All, Work Orders, Estimates, Completed) and the filter bar (search, status, assigned to me, and so on) apply the same way in every display option. Switching display option never changes *which* work orders are shown, only *how* they are laid out. Imported work orders are one exception: they open in List only (S1-R13a, S1-R13b). The Technician filter is the other: Tech View and Board View offer it and List does not (S1-R15).
+@@ -47,0 +30,3 @@
++- A Department filter. The design shows one, but a work order’s department is not shown or editable on any work order screen today, so users could not see why a work order matches. Revisit once the work order shows its department.
++- The Customer and Service Advisor filter chips production retired in the redesign (SV-8785) are not brought back.
++- Rank numbers (1, 2, 3, and so on) beside each Tech View row, as the design shows. The drag order already shows priority, and card position numbers were left out of Board View on 2026-10-01.
+@@ -126,0 +112,2 @@
++- **S1-R9a:** The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View every other icon is the design’s Lucide icon too: density (`row-height` in Tech View, `card-height` in Board View), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and empty states (`clipboard-list`). List’s icons are unchanged.
++- **S1-R9b:** The switcher’s hover tooltip opens above the switcher, so it never covers the table’s column header row.
+@@ -137,0 +125,3 @@
++- **S1-R15:** In Tech View and Board View the filter bar also offers a **Technician** filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location’s technicians (the same people who get a group or column, S9-R4), by first name then last name. Choosing one or more shows only those technicians’ groups or columns; every other group or column, pinned ones included, is hidden. It filters by lead technician only.
++- **S1-R15a:** The Technician filter combines with every other filter and with Assigned to me: a work order shows only if it matches all of them. When nothing matches, the empty state of S1-N1a applies, and Clear all filters also clears the Technician filter.
++- **S1-R15b:** List does not offer the Technician filter and stays as in production. Switching to List while technicians are chosen shows List as if none were chosen; switching back to Tech View or Board View brings the choice back. The choice is remembered the same way as the other filters.
+@@ -183,0 +174,4 @@
++- **S2-R19:** Tech View’s Status column is the same status pill List shows in production, with the same red service-actions count and blue parts-actions count on it. Its size follows density (S6-R2a).
++- **S2-R20:** Tech View’s cells follow the design: the work order number shows as a link in the accent color; Progress shows as a thin bar with the percentage beside it; Service Advisor shows the advisor’s avatar before the name. Clocked In keeps List’s display (S5-R11).
++- **S2-R21:** Tech View’s column header labels are 12px, medium weight (500), in the secondary text color, as in the design. Labels never overlap a neighboring label.
++- **S2-R22:** Tech View’s table runs edge to edge on white, with no side gutter and no card or panel around it, as in the design.
+@@ -243,0 +238 @@
++- **S3-R23:** Board View runs full width, with no grey rounded panel around the columns, as in the design.
+@@ -388 +383 @@
+-- **S5-R4:** Until the user changes Tech View’s columns, Tech View shows the current production List default columns.
++- **S5-R4:** Until the user changes Tech View’s columns, Tech View shows these columns, in this order, as in the design: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price (Total price subject to financial permission). On Site, VIN/Serial # and Lead Technician are off by default; each can be added with the column chooser (S2-R4). List’s columns are unchanged.
+@@ -426,0 +422 @@
++- **S6-R2a:** In Tech View the status pill is 18px tall at Compact and Regular and 22px tall at Comfortable, the design’s two badge sizes. List’s status pill is unchanged.
+@@ -456 +452 @@
+-- **S7-R7:** In Tech View the Assigned Techs column sits immediately after Lines, matching the design. It stays optional and is added through the column chooser (S2-R4).
++- **S7-R7:** In Tech View the Assigned Techs column sits immediately after Lines, matching the design. It is on by default (S5-R4) and can be removed through the column chooser (S2-R4).
+@@ -516,0 +513 @@
++- **S9-R1a:** In Tech View every work order row and every group header, Unassigned included, shows the design’s six-dot drag grip at its left edge, to users who can drag (S4-N1). The whole row still drags (S2-R8); the grip shows that it can.
+@@ -665 +662,19 @@
+-
++| 2026-10-14 | Chris Ward | Status row uses the standard stage wording (In development - 2026-09-28). No requirement changed. | Milan asked to standardize the Status row. |
++| 2026-10-14 | Chris Ward | Overview: Tech View is described as "a table grouped under each lead technician, laid out as in the design" (was "the familiar table, grouped under each lead technician", which let Tech View ship as the List’s table). v51. | Staging review by Sasha, 2026-10-14; audit with local click-through against Branko’s design file. Chris ruling. |
++| 2026-10-14 | Chris Ward | S5-R4 rewritten: Tech View’s default columns are the design’s 13, in order: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price. On Site, VIN/Serial # and Lead Technician are off by default (was: the production List default columns, 14 columns that ran off screen). v51. | Staging review by Sasha, 2026-10-14; audit with local click-through against Branko’s design file. Chris ruling. |
++| 2026-10-14 | Chris Ward | S7-R7: Assigned Techs is on by default in Tech View and can be removed (was: optional, added through the column chooser). v51. | Staging review by Sasha, 2026-10-14; audit with local click-through against Branko’s design file. Chris ruling. |
++| 2026-10-14 | Chris Ward | New S1-R9a: switcher icons are Lucide list, user-round, square-kanban at 20px (were Material view_list, person, view_kanban); every other Tech View and Board View icon is the design’s Lucide icon (density, chevron, pin, lock, Unassigned, empty states). List icons unchanged. v51. | Staging review by Sasha, 2026-10-14; audit with local click-through against Branko’s design file. Chris ruling. |
++| 2026-10-14 | Chris Ward | New S1-R9b: the switcher tooltip opens above the switcher and never covers the column header row. v51. | Staging review by Sasha, 2026-10-14; audit with local click-through against Branko’s design file. Chris ruling. |
++| 2026-10-14 | Chris Ward | New S2-R19: Tech View keeps List’s production status pill with its red service-actions and blue parts-actions counts. v51. | Staging review by Sasha, 2026-10-14; audit with local click-through against Branko’s design file. Chris ruling. |
++| 2026-10-14 | Chris Ward | New S6-R2a: Tech View status pill is 18px tall at Compact and Regular, 22px at Comfortable (was one size at every density). List unchanged. v51. | Staging review by Sasha, 2026-10-14; audit with local click-through against Branko’s design file. Chris ruling. |
++| 2026-10-14 | Chris Ward | New S2-R20: Tech View cells follow the design: number as an accent-color link, Progress as a thin bar with percentage, Service Advisor with avatar. Clocked In stays as List (S5-R11). v51. | Staging review by Sasha, 2026-10-14; audit with local click-through against Branko’s design file. Chris ruling. |
++| 2026-10-14 | Chris Ward | New S2-R21: Tech View column header labels are 12px, weight 500, secondary text color; labels never overlap (were bold black, and two labels collided). v51. | Staging review by Sasha, 2026-10-14; audit with local click-through against Branko’s design file. Chris ruling. |
++| 2026-10-14 | Chris Ward | New S2-R22: Tech View runs edge to edge on white, no side gutter or panel. v51. | Staging review by Sasha, 2026-10-14; audit with local click-through against Branko’s design file. Chris ruling. |
++| 2026-10-14 | Chris Ward | New S3-R23: Board View runs full width, no grey rounded panel. v51. | Staging review by Sasha, 2026-10-14; audit with local click-through against Branko’s design file. Chris ruling. |
++| 2026-10-14 | Chris Ward | New S9-R1a: a six-dot drag grip on every Tech View work order row and group header, Unassigned included, for users who can drag (rows had none). v51. | Staging review by Sasha, 2026-10-14; audit with local click-through against Branko’s design file. Chris ruling. |
++| 2026-10-14 | Chris Ward | Out of Scope: rank numbers beside Tech View rows. v51. | Staging review by Sasha, 2026-10-14; audit with local click-through against Branko’s design file. Chris ruling. |
++| 2026-10-14 | Chris Ward | New S1-R15, S1-R15a, S1-R15b: a Technician filter (lead technician, multi-select, Unassigned first, then the location’s technicians) in Tech View and Board View only; it combines with the other filters; List does not offer it and is unchanged. v52. | Sasha’s staging review follow-up, 2026-10-14. Chris ruling, from the design file, production and the PRD. |
++| 2026-10-14 | Chris Ward | Overview: the filter sentence now names the Technician filter as the second exception to "filters apply the same way in every display option" (Imported was the only one). v52. | Sasha’s staging review follow-up, 2026-10-14. Chris ruling, from the design file, production and the PRD. |
++| 2026-10-14 | Chris Ward | Out of Scope: Department filter deferred (a work order’s department is not shown anywhere on the work order); retired Customer and Service Advisor chips stay retired. v52. | Sasha’s staging review follow-up, 2026-10-14. Chris ruling, from the design file, production and the PRD. |
++| 2026-10-14 | Chris Ward | No change for the design’s Status filter: it is production’s existing Status chip, shown on the All tab only, already in every display option. v52. | Sasha’s staging review follow-up, 2026-10-14. Chris ruling, from the design file, production and the PRD. |
++
