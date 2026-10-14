@@ -3097,3 +3097,51 @@ currency check V1 (V1 is how you used to do the currency check before today)."* 
 5. **File names** carry the feature squad's name and the name of the person the file is for (QA lead, 14 Oct 2026:
    "The name of each file should be after the feature Squad name and the name of person it is for").
 6. When he asks for the difference between V1 and V2, answer as in the skill's section 1.
+
+## 126 · A DESIGN IS COVERED ONLY WHEN ITS LOOK IS COVERED — DESIGN CASES LIVE IN THEIR OWN "DESIGN" SUBFOLDER (all projects, permanent)
+
+Ordered by the QA lead, 14 Oct 2026, after the PO filed ten design defects on WO Board & Tech View (SV-11317 to SV-11326) that
+none of our cases would have caught (lesson L-01, `build/LESSONS-REGISTER.md`; full record
+`build/wo-board-tech-view/po-defects-2026-10-14/INCIDENT-REVIEW-2026-10-14.md`). Verbatim: *"Yes, do everything scientific and
+correct to ensure that this mistake is never repeated."* and *"make a rule and save it with you that there shiuld be a separate
+subfolder for design related cases for every testing suite you create and manage the tests for ... So there should not be a
+second ticket now which chris will report or anyone in future for a new testing suite someone else reports and we do not have a
+test case for that."* Operator form: `build/skills/21-DESIGN-DRIVE-PROTOCOL.md` §4b and §6b.
+
+1. **Every suite has a separate design subfolder.** In TestRail, a section named **"Design — how it looks"** directly under the
+   suite's top section holds every case whose purpose is that the screen looks as the design shows. Locally the case sources
+   live in `build/<project>/cases/design/`. Behaviour cases stay where they are. This applies to every suite we create or
+   manage from 14 Oct 2026, and to existing suites the next time we touch them.
+2. **The look is in scope, not only the words.** For every screen and every state the design shows (each display option,
+   density, theme, width, empty / loading / error / filtered / permission state, hover, open menu, drag), the design's visible
+   attributes are checked: default columns and their order; every icon (by the design's own icon name); handles and grips;
+   cell styles (link, bar, avatar, pill, badge); header and label style; page frame (edge to edge, panels, cards, gutters,
+   backgrounds); sizes that change with a setting (density); tooltip and menu position and what they must not cover; no
+   overlap or clipping at 1440 and 1536 px wide and at the design's other widths; colours in light and dark.
+3. **Visual inventory beside the text inventory (amends Rule 124 point 1 and point 5).** A design is not "driven" until the
+   VISUAL INVENTORY also passes: every icon, component, container, size and default the design's files and screenshots show is
+   COVERED by a case or classified (DATA / OUT-OF-SCOPE with the written source that puts it out / SPEC-CONFLICT with the PO
+   question sent / CASE-NEEDED), zero unclassified. Tool: `build/testing-tools/design_visual_inventory.py`. The proof file
+   reports both inventories.
+4. **The design library is in scope when the screens are built from it.** Every "always / never / must / should" sentence in
+   a design-system library the design uses becomes a check or a classified item; a blanket OUT-OF-SCOPE for the library folder
+   is barred.
+5. **Source of the expected look (amends Rule 124 point 4 for the look only; Rules 57 and 113 otherwise unchanged).** Where the
+   spec has a sentence about the look, the case quotes the spec. Where the spec is silent, the design IS the source (Rule 57
+   lists it): the expected result is what the tester sees compared against a named design screenshot or board, and the quote
+   block cites the design's own words where it has any (board caption, note, library sentence) or names the design element as
+   the design names it (for example the icon "user-round" on board X). Design code values (pixel sizes, colours) may be
+   stated as the design's values. Where design and spec disagree: the case follows the spec AND a PO question goes out the same
+   day (point 6); the case never silently drops the design difference.
+6. **No drafted question stays unsent.** Every design-vs-spec difference goes into the project's divergence register with a
+   "sent on" date; every completion report states the number unsent, which must be zero before the suite is called complete.
+7. **A ruling covers only what it names.** An out-of-scope or keep-as-is decision about one screen, view or element is never
+   applied to another without asking.
+8. **Runnable by a manual tester (Rules 114, 117).** Design cases follow the Ideal-Test-Case Standard in full. Each names the
+   design screenshot or board to compare against and states each visible attribute as a plain observation ("a six-dot grip
+   shows at the left of every row, Unassigned included"). Pixel-exact values a person cannot judge by eye are stated with the
+   design value and checked side by side with the screenshot at 100% zoom; anything that truly needs a tool is marked
+   `AUTOMATION: READY` (an automatable visual check), never left as an uncarryable manual instruction.
+9. **The completion gate.** A suite is not complete, and nothing goes to build verification, until: every PO-reported and
+   tester-reported design defect on the feature maps to a case in the Design subfolder; the visual inventory has zero
+   unclassified; and the unsent-question count is zero.

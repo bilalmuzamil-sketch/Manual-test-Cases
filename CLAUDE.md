@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109–125** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109–126** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -63,6 +63,13 @@ These are stated here **in full** because a session that gets only this far must
   committed. Image-only designs: transcribe every image's words. Expected results still come only from the spec;
   nothing invented. The exhaustive crawl and shortcut audit are retired. Nothing is handed to build verification
   before the gates pass. Skill `build/skills/21-DESIGN-DRIVE-PROTOCOL.md`.
+- **🔴 READ `build/LESSONS-REGISTER.md` FIRST, AND A DESIGN IS COVERED ONLY WHEN ITS LOOK IS COVERED (126, 14 Oct 2026).**
+  Every past incident and what to do about it is in the register; apply it before starting any suite, design drive or
+  currency check. Every suite keeps its design cases in its own TestRail section **"Design — how it looks"**. The design's
+  look (default columns, icons, grips, cell styles, header style, page frame, sizes per density, tooltip position, no
+  overlap at 1440/1536 px) is checked, not only its words; a VISUAL inventory passes beside the text inventory; design-library
+  "always/never" sentences are in scope; no design-vs-spec question stays unsent; a ruling covers only what it names. Why:
+  the PO filed 10 design defects on WO Board on 14 Oct that no case of ours would have caught (L-01).
 - **🔴 KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS (123).** New and changed cases go into the project's run in the
   same pass, union only (34). Before editing a case someone else created: give the QA lead the list with C-ids, links,
   who created each and when, and ask permission. No edit until he says yes.
@@ -485,6 +492,11 @@ a Google Sheet of the real behaviour gaps for the owning QA and automation owner
 sheet for the PO). PO question files, for anything, use the colour-coded format first made for Milos Vasic. File names
 carry the feature squad's name and the person the file is for.
 
+**🔴 Rule 126 (a design is covered only when its look is covered; design cases in their own "Design — how it looks"
+subfolder)** was ordered by the QA lead **2026-10-14** and lives at the end of `build/rules/RULES-61-96.md`, after 125;
+operator form `build/skills/21-DESIGN-DRIVE-PROTOCOL.md` §4b and §6b. It amends Rule 124 (a visual inventory passes beside the
+text inventory; for the look, the design is the source where the spec is silent). Lessons: `build/LESSONS-REGISTER.md` (L-01).
+
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.
@@ -573,6 +585,7 @@ job.** Each file is a complete cold-start specification.
 | `build/skills/20-FEATURE-DATA-SEEDING.md` | **The feature's cases need data the environment does not hold** — the project-agnostic method for seeding AND reseeding any area of the app. **The engine is generic; only the manifest is per-feature**, so the second feature area costs a fraction of the first. Nine steps (read the CASES not a summary · measure before creating · write the DESIGN RULE first · a keyword that cannot collide · manifest with `serves` and `_why` · seed and VERIFY as separate steps · prove idempotence by running it three times · reconcile server-assigned identifiers · write the traps down), the five-point reseed contract, thirteen feature-independent traps with the symptom each presents as, and what is NEVER seedable. Scaffold: `python3 build/testing-tools/seeding/scaffold_seeding.py <slug> "<Feature>"` · schema: `build/testing-tools/seeding/MANIFEST-SCHEMA.md` · reference implementation: `build/global-search/seeding/` |
 | `build/skills/21-DESIGN-DRIVE-PROTOCOL.md` | **Any design is provided or changes (Rule 124, amended 9 Oct 2026)** — get the export, read every file, one-click sweep, the text inventory of the design's files (zero unclassified), the targeted flow drive, the proof file; nothing handed to build verification before it passes |
 | `build/skills/22-TESTING-SUITE-CURRENCY-CHECK-V2.md` | **Any currency check, or "are the tests outdated against the sources?" (Rule 125)** — ask V1 or V2 first; V2 = full source check, no TestRail edits, a gap sheet for the owning QA and a colour-coded question sheet for the PO; how to build and verify the Google Sheets |
+| `build/LESSONS-REGISTER.md` | **Before any suite, design drive or currency check (Rule 126)** — every past incident, its root cause and what to do every time now |
 | `build/skills/IDEAL-TEST-CASE-STANDARD.md` | **The LOCKED shape of every case (Rule 117)** — concise title · seed values as examples beside the standard QA steps · runnable in the build's own glossary · Expected = runnable observations with the verbatim quote kept for reproducibility. Worked example C154586. Read before authoring/editing any case |
 | `build/skills/COVERAGE-MATRIX.md` | Checking that a session learning is actually carried by a skill |
 | `build/skills/STATE.md` | Resuming work ON the skills themselves |

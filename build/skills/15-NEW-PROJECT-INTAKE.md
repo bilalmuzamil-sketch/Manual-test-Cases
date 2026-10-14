@@ -11,6 +11,11 @@
 
 ---
 
+## 00 · FIRST, READ THE LESSONS REGISTER (Rule 126, 14 Oct 2026)
+Open `build/LESSONS-REGISTER.md` and apply every row's "Do this every time now" to this project before anything else.
+Create the TestRail section **"Design — how it looks"** under the suite's top section and `build/<project>/cases/design/` at
+scaffolding, so design cases have their own subfolder from day one.
+
 ## 0 · WHEN THIS RUNS
 
 | Situation | What to do |

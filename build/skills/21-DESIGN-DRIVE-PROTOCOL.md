@@ -44,6 +44,16 @@ python3 build/testing-tools/design_text_inventory.py --design <package folder> -
   **Figma:** take the text from the file through the Figma connector.
 - Run `--include-docs` too when the package's readmes describe behaviour; they are read in full under step 2 either way.
 
+## 4b · Visual inventory — the look is covered too (Rule 126, 14 Oct 2026, permanent)
+Run `build/testing-tools/design_visual_inventory.py` on the package. It renders every board / screen / state the sweep and
+flows reach (each display option, density, theme, width, empty / filtered / permission state, open menu, hover), and lists per
+screen: default columns and order, every icon by its design name, handles and grips, cell renderers (link, bar, avatar, pill,
+badge), header and label style (size, weight, colour), page frame (edge to edge, panel, card, gutter, background), sizes per
+density, tooltip and menu position, and any overlap or clipping at 1440 / 1536 px. Every row is COVERED (case id) or classified
+DATA / OUT-OF-SCOPE (with the written source) / SPEC-CONFLICT (PO question sent, with date) / CASE-NEEDED. Zero unclassified.
+Every "always / never / must" sentence in the design library is a row too — never a blanket OUT-OF-SCOPE for the library.
+Before starting, read `build/LESSONS-REGISTER.md` (L-01 is why this section exists).
+
 ## 5 · Targeted flow drive (about 30 minutes per board)
 From the files, list every multi-step flow: dialogs with a search, drag and drop, a menu inside a view, confirm or
 undo, empty and error states behind an action. Click each through, two or three levels deep, by hand in a browser or
@@ -62,8 +72,17 @@ confirm; it is not a gate and never runs open-ended.
   data only; no record from another environment (e.g. a production workplace) used as an example.
 - New/changed cases: write, read back, display-check (`hs_repair_one.mjs`), add to the run (Rule 123).
 
+## 6b · Design cases — their own subfolder (Rule 126)
+Every suite has a TestRail section **"Design — how it looks"** under its top section, and `build/<project>/cases/design/`
+locally. One case per screen-and-state group, each naming the design screenshot or board to compare against and listing every
+visible attribute as a plain observation. Spec sentence exists → quote it. Spec silent → the design is the source (quote the
+design's own words or name the element as the design names it). Design and spec disagree → the case follows the spec and the
+PO question goes out the same day; the divergence register records "sent on". Every defect anyone reports on the design must
+map to a case here before the suite is called complete.
+
 ## 7 · Hand-over gate
-Only when steps 2–6 are done: commit `DESIGN-COVERAGE-<date>.md` (the file-reading table; the sweep totals; the
+Only when steps 2–6 (including 4b and 6b) are done: commit `DESIGN-COVERAGE-<date>.md` (the file-reading table; the sweep totals; the
+VISUAL inventory counts and the unsent-question count, which must be 0 (Rule 126); the text
 inventory counts — texts found, already in a case, and each class; the flows driven and any not driven, with the
 reason), then tell the QA lead the cases are ready for build verification, quoting those numbers.
 

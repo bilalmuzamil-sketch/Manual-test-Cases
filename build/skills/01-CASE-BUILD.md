@@ -135,6 +135,11 @@ one thing that would make it worthless.
 
 ---
 
+## DESIGN CASES (Rule 126, 14 Oct 2026 — read `build/LESSONS-REGISTER.md` L-01 first)
+A suite is not complete while only the design's WORDS are covered. The look of every screen and state (default columns,
+icons, grips, cell styles, header style, page frame, sizes per density, tooltip position, no overlap at 1440 / 1536 px)
+gets cases in the suite's own **"Design — how it looks"** section; method in `21-DESIGN-DRIVE-PROTOCOL.md` §4b and §6b.
+
 ## THE STEPS
 
 ### 1 · Complete inputs FIRST — do not start on a half-spec (Rule 1)
