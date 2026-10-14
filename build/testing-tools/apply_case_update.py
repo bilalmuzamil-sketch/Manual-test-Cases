@@ -22,7 +22,7 @@ def ws(s): return re.sub(r"\s+", " ", s.replace("**", "").replace("\\", "")).str
 if "--anchors" in sys.argv:
     anch, fb = {}, {}
     for line in open(PRDF):
-        m = re.match(r"^\s*[-*]\s+\*\*(S\d+-[A-Z]+\d+[a-z]?):\*\*\s*(.*)$", line.rstrip("\n"))
+        m = re.match(r"^\s*\\?[-*]\s+\*\*(S\d+-[A-Z]+\d+[a-z]?):\*\*\s*(.*)$", line.rstrip("\n"))
         if m: anch[m.group(1)] = ws(m.group(2))
     whole = open(PRDF).read()
     sec8 = whole.split("User Feedback Summary", 1)[1].split("\n## ", 1)[0] if "User Feedback Summary" in whole else ""
