@@ -12,3 +12,12 @@
 New process: Rule 125 / skill 22 (Testing Suite Currency Check V2). QA lead: do not ask about the feature-squad policy until next week.
 Outstanding on the QA lead: nothing urgent; come back later (his words, 14 Oct).
 Next: WO Board and Tech View Currency Check V2 (QA lead chose V2, 14 Oct): TestRail run 498 / group 13204, PRD Confluence 845185030, epic SV-10043, design = upload Work_Orders_Page_3.zip (14 Oct). Project folder `build/wo-board-tech-view/`.
+
+## Update 14 Oct 2026 (later) — QA lead's answers
+- Jira tickets are another session's job: give him the bug DETAILS only (Dashboard S9-R10 legend "avg"; WO Board S5-R11b staff name).
+- WO Board: "Yes" — update his own cases (created_by 3) in TestRail directly from Chris's answers; never Vladimir's.
+- C368133 note to Ahtasham/Vladimir: already sent by the QA lead. The six run 498 tests: already build-verified (QA lead).
+- Dashboard sheet already shared with Ayesha, Vladimir and Nebojsa (QA lead).
+- Waiting on: Chris (What/Why, Price/Category), Milos (DVI V2), Milan (Price/Category tech plan) — the QA lead will say when.
+- Feature-squad policy: do NOT ask or remind before next week.
+- In progress: impact of Chris's answers (Dashboard 15, WO Board 11) on the test cases.
