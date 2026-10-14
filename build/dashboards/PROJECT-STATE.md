@@ -10,8 +10,8 @@ Link: https://shopview.testrail.io/index.php?/suites/view/1&group_id=12166
   design unchanged since 7 Oct · tech plan unchanged. QA env the squad uses: **sv490** (PRD header still says sv8311).
 - **Owner:** squad QA **Ayesha Khan**; automation: Vladimir Tomovic (tracks: Nebojsa A, Ayesha B). PO Chris Ward.
 - **Sheets (not yet shared):** QA file https://docs.google.com/spreadsheets/d/1fC6Fn9664Rraf9NL7MPmitnwNsDeexowd7CHRBJVKUg/edit
-  (4 cases to update: C88619, C88620, C351717, C88632 · 3 new tests · 8 waiting on PO) · PO file
-  https://docs.google.com/spreadsheets/d/10Bgu1k2Dzxd2kAvIlEBVWSDIIs00G55VgFoImMU9SjY/edit (14 questions; supersedes
+  (4 cases to update: C88619, C88620, C351717, C88632 · 3 new tests · 9 waiting on PO; renamed to include Nebojsa) · PO file
+  https://docs.google.com/spreadsheets/d/10Bgu1k2Dzxd2kAvIlEBVWSDIIs00G55VgFoImMU9SjY/edit (15 questions; supersedes
   sending D-1..D-10 separately — D-1, D-3, D-4, D-10 are in it; D-11, D-12, D-14 are new).
 - **Live suite:** 106 cases (97 ours + 9 Vladimir's); 74 touched by others since 7 Oct (mostly automation status).
 

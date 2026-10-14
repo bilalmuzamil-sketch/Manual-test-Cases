@@ -45,3 +45,14 @@ Flat trend line level (Slack 9 Oct) · release-note "can go up" line · "Today"/
 link (C540783) · expanded Revenue monthly bars (SV-10886) · expanded-chart empty month (design D-14) · report link on
 technician tiles with no data (D-11) · At Risk revenue measure (D-12) · At Risk at zero (D-4) · two inactivity controls
 (D-3) · "Last updated" footer (D-10) · legend average (D-1) · eight layout defects · two spec tidy-ups (§7, sv8311 header).
+
+## Changes after the first build (14 Oct, later)
+- QA lead: "Yes for dashboard Nebojsa should be there." QA file renamed in place (same link) to "Dashboard Feature Squad –
+  Test cases with changed behaviour – for Ayesha Khan, Vladimir Tomovic and Nebojsa Glavinic (14 Oct 2026)"; Read me
+  greeting and two sentences updated to address Nebojsa (read back).
+- Design gates finished (`../design-drive-2026-10-14/DESIGN-COVERAGE-2026-10-14.md`): 102 files read, 437/437 canvas
+  elements, 50/50 boards, 15/15 flows, 648 texts / 0 unclassified. One new item from its label check: Vladimir's
+  C433976 and C137997 expect "No data for selected date range" — in neither PRD v44, Jira nor the design → **PO question 15**
+  added (row 20, same formatting) and a 9th row on "Need product decision first"; Read me count now 9 and "15 questions"
+  (read back).
+- PO file now 15 questions; QA file: 4 to update · 3 new · 9 waiting on PO.
