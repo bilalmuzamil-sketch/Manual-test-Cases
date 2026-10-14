@@ -10,7 +10,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, switchLocUI } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY, LETH } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
@@ -236,11 +236,11 @@ await run('C368156', async () => { const o: any = {};
   o.heavyPins = named((await prefFor()).pinnedTechnicianIds ?? [], IDS); await toColumn(p, DAN.staff_id); const d4 = p.locator(`[data-test-id="button_board_pin_${DAN.staff_id}"]`);
   o.fourth = { disabled: await d4.isDisabled().catch(() => null), cls: await d4.getAttribute('class').catch(() => null) }; await d4.hover().catch(() => {}); await p.waitForTimeout(1200); o.fourth.tip = await p.evaluate(`[...document.querySelectorAll('.q-tooltip')].map(e => e.innerText).join(' | ')`);
   await shot(p, 'C368156-heavy-cap');
-  await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }); await goP(p, 'Board View', ''); o.loc2pinnedCols = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="button_board_pin_"] i')].filter(i => /push_pin/.test(i.innerText) && i.closest('button').className.includes('text-primary')).length`);
+  if (process.env.WOB_LOC_SELECT) await switchLocUI(p, 'Lethbridge'); else await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }); await goP(p, 'Board View', ''); o.loc2pinnedCols = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="button_board_pin_"] i')].filter(i => /push_pin/.test(i.innerText) && i.closest('button').className.includes('text-primary')).length`);
   o.loc2Cols = named((await allCols(p)).slice(0, 6), { ...IDS, Xia: XIA.staff_id, Yan: YAN.staff_id, Zoe: ZOE.staff_id });
   for (const x of [XIA, YAN, ZOE]) { await toColumn(p, x.staff_id).catch(() => {}); const b = p.locator(`[data-test-id="button_board_pin_${x.staff_id}"]`); o[`pin ${x.first_name ?? x.staff_id.slice(0, 4)}`] = (await b.count()) ? { disabled: await b.isDisabled() } : 'no column'; if (await b.count()) { await b.click().catch(() => {}); await p.waitForTimeout(1200); } }
   o.loc2Pref = await prefFor(); o.loc2Toasts = await toastsOn(p); await shot(p, 'C368156-loc2');
-  await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); await goP(p, 'Board View', ''); o.heavyAfter = named((await allCols(p)).slice(0, 5), IDS); o.heavyPref = await prefFor();
+  if (process.env.WOB_LOC_SELECT) await switchLocUI(p, 'Staging Heavy Duty'); else await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); await goP(p, 'Board View', ''); o.heavyAfter = named((await allCols(p)).slice(0, 5), IDS); o.heavyPref = await prefFor();
   R.C368156 = o; });
 
 async function staffAccess(name: string) { await p.goto(APP + '/settings/staff', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);

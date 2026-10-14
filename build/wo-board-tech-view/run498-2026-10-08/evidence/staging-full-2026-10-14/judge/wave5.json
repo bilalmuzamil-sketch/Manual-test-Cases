@@ -1,0 +1,345 @@
+{
+ "results": {
+  "C97028": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Blocked Analytics, with every Google Analytics / Tag Manager request blocked in the browser.",
+    "Board View loaded normally.",
+    "Turning VIN/Serial on in Fields to display and choosing Compact applied at once.",
+    "Alpha Co dragged from Ana's column to Ben's column: it moved there and \"Lead technician updated\" appeared.",
+    "After a refresh: still Board View, VIN/Serial still shown, still Compact, and Alpha Co still in Ben's column with Ben Bravo as lead. Blocking analytics made no difference."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368154": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "A brand-new user with no saved choices opened Work Orders: List was the active display.",
+    "In Board View the density control had Regular selected.",
+    "Fields to display had exactly these on: Lead technician, Customer, Asset, Progress and Total price. Number, unit and status always show on a card. These are the standard Board View defaults.",
+    "Everything else (VIN/serial, service advisor, clocked in, line count, line technicians, estimated hours, on-site, created date) was off."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368154-fresh-start.png",
+    "evidence/staging-full-2026-10-14/C368154-fields.png"
+   ]
+  },
+  "C97031": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Count After Move; Board View: Unassigned 2, Ana 3, Ben 2, Cal 0 (total 7). Each count equals the cards in the column.",
+    "Alpha Co dragged from Ana to Cal: at once, with no reload, Ana 2 and Cal 1; the others unchanged; total 7.",
+    "Bravo Co reassigned to Unassigned through More actions: Ana 1, Unassigned 3; total 7.",
+    "Golf Co reordered inside Unassigned, and the refused move of the Invoiced Echo Co from Ben to Cal (it stayed with Ben): no count changed.",
+    "Tech View: Unassigned 3, Ana 1, Ben 2, Cal 1 (total 7), the same before and after a refresh."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C154649": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Board View was chosen at full width.",
+    "At about 900 pixels wide the page showed the phone List of work order cards: no display switcher, no density control, no Fields to display picker, no board.",
+    "After a refresh at that width it was still the phone List.",
+    "Back at full width the page opened in Board View again (the saved choice stayed Board View), with the display switcher (List, Tech View, Board View), density control and Fields to display back."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C154649-narrow.png",
+    "evidence/staging-full-2026-10-14/C154649-wide.png"
+   ]
+  },
+  "C368158": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Invoiced On Site: Inv Co is Invoiced, led by Ana Alpha, and was not on site.",
+    "In List, clicking the On Site toggle in the Inv Co row was accepted with no error message.",
+    "After a refresh the work order is on site: the new value was kept.",
+    "Lead Technician is still Ana Alpha."
+   ],
+   "not_observed": "The On Site value and the lead after the refresh were read from the saved work order (the same details its page shows), not by opening the page on screen.",
+   "todo": "None.",
+   "pictures": []
+  },
+  "C97030": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Header Counts: List shows 7 rows.",
+    "Tech View: Unassigned 2, Ana 3, Ben 2, Cal 0. Each count equals the rows under it (total 7). Board View: the same counts, each equal to the cards in its column.",
+    "With Status set to Approved only (the chip reads \"Status: Approved\"): Unassigned 1, Ana 2, Ben 0, Cal 0 (total 3) in both Board View and Tech View, and List shows the same 3 rows.",
+    "With the filter cleared and the Estimates tab chosen: Unassigned 1, Ana 1, Ben 0, Cal 0 in both views. Each count equals what is listed under it."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C97030-approved-only.png"
+   ]
+  },
+  "C368157": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Board View: Cal's column stood at position 133 among the technicians.",
+    "After pinning Cal, his column moved into the pinned area, right after Unassigned.",
+    "After unpinning him, he went back to exactly his previous place (position 133, between the same neighbours).",
+    "Tech View showed the same technician order as Board View (142 groups and 142 columns, no difference)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368157-tech.png"
+   ]
+  },
+  "C368180": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST Asset Tab List > Assets > TRK-201 > Work Orders tab (tabs: Work Orders, Invoices, Notes, Inspections).",
+    "The table lists exactly S2-35652, S2-35653 and S2-35654 (A, B and C, 3 rows) and nothing else.",
+    "D (S2-35655, on TRK-202) is not listed.",
+    "No error message appeared and the table finished loading."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368180-tab.png"
+   ]
+  },
+  "C368182": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST Asset Tab Progress > Assets > TRK-201 > Work Orders tab.",
+    "B's Progress reads 0% on the asset's Work Orders tab.",
+    "The Work Orders List shows the same 0% for B."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368183": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST Asset Tab Sort > Assets > TRK-201 > Work Orders tab.",
+    "The first click on the Number header put the 3 rows in number order, highest first: S2-35654, S2-35653, S2-35652.",
+    "The second click gave the same 3 rows in the reverse order: S2-35652, S2-35653, S2-35654.",
+    "No row was missing or repeated."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368184": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST Customer Tab List > Work Orders tab (label \"Work Orders (4)\").",
+    "The table lists exactly S2-35656, S2-35657, S2-35658 and S2-35659 (A, B, C and D, 4 rows) and no other customer's work orders.",
+    "No error message appeared and the table finished loading."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368184-tab.png"
+   ]
+  },
+  "C368185": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST Customer Tab Count > Work Orders tab.",
+    "The tab label reads \"Work Orders (4)\".",
+    "The table has 4 rows: the two numbers are the same."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368186": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST Customer Tab Progress > Work Orders tab.",
+    "B's Progress reads 0% on the customer's Work Orders tab.",
+    "The Work Orders List shows the same 0% for B."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368187": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST Customer Tab Sort > Work Orders tab.",
+    "The first click on the Number header put the 4 rows in number order: S2-35656, S2-35657, S2-35658, S2-35659.",
+    "The second click gave the same rows in reverse order: S2-35659, S2-35658, S2-35657, S2-35656.",
+    "No row was missing or repeated."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368166": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work order led by Esther Howard; on the status card Lead Technician was changed to Ralph Edwards.",
+    "Lead Technician then read \"Ralph Edwards\" and no error message appeared.",
+    "After a reload it still read \"Ralph Edwards\"."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368166-after.png"
+   ]
+  },
+  "C368167": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "S2-35661, led by Esther Howard, was open in the page while it was invoiced elsewhere; the page was not reloaded.",
+    "Picking Ralph Edwards in Lead Technician was refused with the message: \"The lead technician can't be changed once a work order is Invoiced or Paid. Please try to resolve this.\"",
+    "The page then showed the work order as Invoiced, with Lead technician reading \"Esther Howard\" as plain text that can no longer be changed.",
+    "After a reload Lead Technician still reads \"Esther Howard\": the change was not saved."
+   ],
+   "not_observed": "The work order was invoiced with the same save the Finance tab makes, not by clicking Create Invoice in a second tab.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368167-message.png"
+   ]
+  },
+  "C368168": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Line 1 followed the lead (Esther Howard); Line 2 was given to Dana Ortiz in Edit Line.",
+    "On the status card Lead Technician was changed from Esther Howard to Ralph Edwards. No clear-shifts question appeared.",
+    "After a reload the Lines tab shows Line 1 \"Ralph Edwards\" and Line 2 still \"Dana Ortiz\": 1 of 2 lines moved."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368168-lines.png"
+   ]
+  },
+  "C368172": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "New Line: \"ZZAUTOTEST Oil change zq\" typed until the list read \"No results\", then Enter; Estimated Time 1.",
+    "In Technicians, Add Technician > Dana Ortiz. (Esther Howard was already listed when the window opened, and stayed.)",
+    "Save & Close saved the line with no error message.",
+    "After a reload the new line's Labor row shows \"Dana Ortiz\"."
+   ],
+   "not_observed": "The line was saved with Esther Howard as well as Dana Ortiz, because Esther Howard was already in Technicians when the window opened.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368172-form.png"
+   ]
+  },
+  "C368174": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Line 1: three-dots > Edit labor > Technician changed from Esther Howard to Ralph Edwards > Save & Close, with no error message. The same was done on Line 2.",
+    "After a reload both lines' Labor rows show \"Ralph Edwards\" (2 of 2)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368174-fix2-1.png",
+    "evidence/staging-full-2026-10-14/C368174-fix2-2.png"
+   ]
+  },
+  "C368188": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST Asset Tab Toggle Lead > Assets > TRK-201 > Work Orders tab.",
+    "In S2-35669's row the Asset on Site toggle flipped from not on site to on site, with no error message.",
+    "After a reload it is still on site.",
+    "Lead Technician still reads Ana Alpha."
+   ],
+   "not_observed": "The value after the reload and the lead were read from the saved work order (the same details its page shows).",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368188-after.png"
+   ]
+  },
+  "C368189": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST Asset Tab Old Page: the asset's Work Orders tab was left open in tab 1.",
+    "S2-35673's lead was then changed to Ben Bravo elsewhere.",
+    "In tab 1, without reloading, the Asset on Site toggle in S2-35673's row was clicked; no error message appeared.",
+    "Lead Technician reads Ben Bravo (the older page did not put Ana Alpha back), and the Asset on Site change is kept."
+   ],
+   "not_observed": "The lead change in tab 2 was made with the same save the work order page makes, and the final lead and on-site value were read from the saved work order.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368189-after.png"
+   ]
+  },
+  "C368192": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "S2-35668 at phone width; Line 1 has Jenny Wilson scheduled on the Schedule.",
+    "Line 1's card was expanded (its button now reads \"Collapse\").",
+    "Assigned Technicians reads \"Jenny Wilson\".",
+    "No \"Needs techs\" badge appears."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368192-phone.png"
+   ]
+  },
+  "C368202": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work Orders > All > Create Work Order: customer \"ZZAUTOTEST New WO Listed\" and its asset > Save. The new work order is S2-35677; the New Line window was closed.",
+    "Clicked Work Orders in the top menu (no reload), the All tab, and searched \"ZZAUTOTEST New WO Listed\".",
+    "S2-35677 is listed straight away, without a manual reload."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368202-list.png"
+   ]
+  }
+ },
+ "redo": {
+  "C154648": "Superseded by the stg6 run, which already passed it today on staging by its current steps. This reading is incomplete: the Tech View and Board View buttons were greyed out with \"Not available while Imported is selected.\" and clicking them stayed on List. But the List showed 0 Imported work orders at this location, and the Imported option's own tooltip in Tech View and Board View was not read.",
+  "C368159": "The script stopped when it tried to pick \"Ben Bravo\" in the work order page's Lead Technician list (not found by that name), so nothing was read.",
+  "C97032": "Ben's open count read \"4 open\", stayed 4 under the Estimate filter, and became 5 after his Estimate was approved. But the set-up did not match the case: the \"Review\" work order was Complete instead of Ready for Review, and no work order at the other location was made. So two of the expected exclusions and inclusions were not tested.",
+  "C368156": "The location switch did not happen: the top bar still read Staging Heavy Duty - 9919 on the \"second location\" board, and Xia, Yan and Zoe had no columns there. Heavy Duty's part held (three pinned, the fourth pin control disabled with \"You can pin up to 3 technicians.\").",
+  "C368181": "TRK-201's Work Orders tab has 3 rows and no count on this build. The case says no count is correct only if production also shows none, and production was not checked.",
+  "C368176": "Clocking in on the unassigned line gave it Esther Howard (the Labor row then read \"Esther Howard\"). But the script did not finish the Stop step: its final button is \"Clock Out\", which the script did not press. Esther Howard's clock was left running, and the line was read before any clock-out. Re-run pressing Clock Out after at least a minute.",
+  "C368173": "The starting state was wrong: the line from the previous check had both Dana Ortiz and Esther Howard on it (Esther was pre-filled when it was made). After removing Dana and adding Ralph Edwards the line holds Esther Howard and Ralph Edwards, and its Labor row reads \"Esther Howard\". Re-run on a line that has only Dana Ortiz. Note for the re-run: the Labor row shows only one name when a line has two technicians.",
+  "C368177": "The Timesheets step was not done: the Edit Timesheet window was not identified, so the labor was never moved to Line 2 (Line 2 still reads Unassigned). The clock left running by the previous check also got in the way.",
+  "C368178": "The Entire work order window opened (Hours 3.5h by default), was set to 2h, and Create 1 shift was clicked with no error. But the script found no shift afterwards, and that reading is not reliable: the same reading also found no shift for C368192, whose Lines tab nevertheless showed the scheduled technician. Re-run reading the shift on the Schedule screen.",
+  "C368179": "The scheduling window did not open as expected after the drop (no window text, no Choose lines), so no line shift was made.",
+  "C368190": "Line 1 read \"Jenny Wilson\" at the start, but the script looked for her shift on the Schedule on the wrong day (Mon, Oct 26), did not find it and deleted nothing, so Line 1 still read Jenny Wilson.",
+  "C368191": "The \"deleted staff member\" state could not be made: deleting ZZAUTOTEST Gone Tech was refused (\"Staff is being used elsewhere\"), so the line still shows his name rather than \"Deleted user\". This case is in the \"Not runnable for now\" folder."
+ },
+ "failed": {},
+ "doubt": {}
+}

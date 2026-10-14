@@ -44,3 +44,11 @@ Re-run: C97003 C97012 C368147 C97020 (view-only role — now made by stg-setup.m
 seed first) · C97013 (In progress set-up failed) · C97011 (Tech View repeat not done) · C97005 (real sign-out + technician drag
 not done) · C97010 (second-tab invoice not done) · C368148 (read while loading — wait) · C368146 (board read stops at 125
 columns — pin Aaron/Ezra or scroll to the end).
+
+## Wave 5 judged (14 Oct 22:00 UTC) — `judge/wave5.json`: 23 Passed, 12 to re-run, 0 Failed
+Re-run (added to second-pass-plan.txt): C368156 (rest-batch — location now via the screen) · C368159 ("Ben Bravo" not in the lead
+list) · C97032 (Review work order set-up was Complete; no other-location work order) · C368176 (Clock Out never pressed) ·
+C368181 (needs the production comparison) · C368173 (line started with two technicians) · C368177 (Edit Timesheet move not
+done) · C368178 (shift reading unreliable — read on screen) · C368179 (scheduling window did not open) · C368190 (looked on the
+wrong day) · C368191 ("Not runnable for now": deleting the staff member is refused — "Staff is being used elsewhere") ·
+C154648 (superseded by stg6.mts).
