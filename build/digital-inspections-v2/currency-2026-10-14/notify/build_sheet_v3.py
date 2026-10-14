@@ -35,6 +35,25 @@ for row in ws.iter_rows(min_row=2):
     for c in row:
         c.font = Font(name=F, color="1155CC", underline="single") if str(c.value).startswith("=HYPERLINK") else Font(name=F)
         c.alignment = Alignment(wrap_text=True, vertical="top"); c.border = Border(bottom=thin)
+# ---- New test cases needed
+NT = json.load(open(f"{H}/new-tests.json"))["tests"] if os.path.exists(f"{H}/new-tests.json") else []
+nt = wb.create_sheet("New test cases needed")
+ncols = ["Proposed new test case", "Why it is needed (which change)", "Spec rule and when the spec changed it", "Preconditions", "Steps", "Expected behaviour", "Next to existing case", "Confirm with product first?"]
+nw = [32, 42, 34, 40, 46, 46, 13, 30]
+nt.append(ncols)
+for i, w in enumerate(nw, 1):
+    c = nt.cell(row=1, column=i); c.font = Font(name=F, bold=True, color="FFFFFF"); c.fill = HDR
+    c.alignment = Alignment(wrap_text=True, vertical="top"); nt.column_dimensions[c.column_letter].width = w
+nt.freeze_panes = "A2"
+for t in NT:
+    rules = "\n".join(f"{x['code']}: {nice(x.get('date',''))}" + (f" ({x['entry']})" if x.get("entry") else "") for x in t["rules"])
+    rc = t.get("related_case")
+    nt.append([t["title"], t["why_needed"], rules, "\n".join(t["preconditions"]), "\n".join(f"{i}. {x}" for i, x in enumerate(t["steps"], 1)),
+               "\n".join(t["expected"]), link(TR(rc), f"C{rc}") if rc else "", t.get("needs_confirmation") or "No"])
+for row in nt.iter_rows(min_row=2):
+    for c in row:
+        c.font = Font(name=F, color="1155CC", underline="single") if str(c.value).startswith("=HYPERLINK") else Font(name=F)
+        c.alignment = Alignment(wrap_text=True, vertical="top"); c.border = Border(bottom=thin)
 rd.column_dimensions["A"].width = 30; rd.column_dimensions["B"].width = 100
 L = [("DVI V2 test cases whose expected behaviour has changed", ""), ("", ""),
      ("Hi Viktoria and Vladimir,", ""),
@@ -45,6 +64,8 @@ L = [("DVI V2 test cases whose expected behaviour has changed", ""), ("", ""),
      ("", ""),
      ("Test cases to update", "=COUNTA('Test cases to update'!A2:A)"),
      ("Of which automated", "=COUNTIF('Test cases to update'!C2:C,\"Yes\")"),
+     ("New test cases needed", "=COUNTA('New test cases needed'!A2:A)"),
+     ("", "The tab \"New test cases needed\" lists behaviour that changed or was added and that no existing test case checks, with the change that makes each one necessary."),
      ("", ""),
      ("The spec", link(PRD, "Confluence page 768507905, Digital Inspections V2, version 43 (13 Oct 2026)")),
      ("When each rule changed", "From the Change Log at the end of the spec. Where a rule is not named in the change log, a date range is given."),
