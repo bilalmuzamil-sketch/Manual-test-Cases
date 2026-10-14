@@ -3227,3 +3227,6 @@ Source and screenshots described in `build/founder-mode/part-lifecycle/po-answer
 - **New global search:** on by default for every account, QA branches included.
 - **Part Library entry with no stock:** delete the part in Parts → Inventory; it is still in Parts → Catalog.
 - **Cores:** Parts → Inventory "Core" column; Parts → Returns rows "Core for <part>" and the "Show cores only" filter.
+
+## Jira description edits that keep images (learned 14 Oct 2026)
+The Atlassian and Atlassian_Rovo connectors return and write descriptions as Markdown only, which DROPS inline media (screenshots, videos) on write-back. For any description with media use the Atlassian_MCP connector: `getJiraIssue` with `responseContentFormat: html` (lossless) and `editJiraIssue` with `contentFormat: html`, passing the body back unchanged plus the addition. Check the media `data-id` values are the same after the write. Worked example: `build/wo-board-tech-view/po-defects-2026-10-14/ticket-footer-backups/README.md`.
