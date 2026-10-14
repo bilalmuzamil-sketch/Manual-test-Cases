@@ -1,0 +1,1923 @@
+{
+ "height": 900,
+ "themes": {
+  "light": {
+   "color_scheme": "light",
+   "eval": [
+    "window.ShopviewTheme && ShopviewTheme.set('light')"
+   ]
+  },
+  "dark": {
+   "color_scheme": "dark",
+   "eval": [
+    "window.ShopviewTheme && ShopviewTheme.set('dark')"
+   ]
+  }
+ },
+ "token_prefer": [
+  "--sv-text-",
+  "--sv-accent",
+  "--sv-surface",
+  "--sv-border-",
+  "--sv-success",
+  "--sv-warning",
+  "--sv-danger",
+  "--sv-info",
+  "--sv-cat-",
+  "--sv-elev-",
+  "--sv-"
+ ],
+ "icon_registry_js": "window.SV_LUCIDE",
+ "icon_registry_files": [
+  {
+   "file": "lucide-icons.js",
+   "var": "SV_LUCIDE"
+  }
+ ],
+ "token_prefer_bg": [
+  "--sv-surface",
+  "--sv-accent",
+  "--sv-border-",
+  "--sv-success",
+  "--sv-warning",
+  "--sv-danger",
+  "--sv-info",
+  "--sv-cat-",
+  "--sv-elev-",
+  "--sv-text-",
+  "--sv-"
+ ],
+ "regions": [
+  [
+   "tooltip",
+   "[role=tooltip]"
+  ],
+  [
+   "row menu",
+   "[role=menu]"
+  ],
+  [
+   "dialog",
+   "[role=dialog]"
+  ],
+  [
+   "toast",
+   "[role=status]"
+  ],
+  [
+   "open popover",
+   ".sv-popover, #__open_popover"
+  ],
+  [
+   "display switcher",
+   "[role=group][aria-label=View]"
+  ],
+  [
+   "toolbar",
+   "div[data-popover-host][style*='padding: 16px 24px']"
+  ],
+  [
+   "app header",
+   "header"
+  ],
+  [
+   "Tech View column header row",
+   "div[style*='grid-template-columns'][style*='position: sticky']"
+  ],
+  [
+   "Tech View group header",
+   "section[data-group-id] > div[data-gdrag]"
+  ],
+  [
+   "Tech View work order row",
+   "div[data-wo][style*='grid-template-columns']"
+  ],
+  [
+   "Board column header",
+   "section[data-group-id] > div > div[data-gdrag]"
+  ],
+  [
+   "Board card",
+   "div[data-wo][style*='flex-direction: column']"
+  ],
+  [
+   "Board column",
+   "section[data-group-id]"
+  ],
+  [
+   "minimap",
+   "[data-mm]"
+  ],
+  [
+   "List table header",
+   "thead"
+  ],
+  [
+   "List row",
+   "tbody tr"
+  ],
+  [
+   "drag drop line / refusal pill",
+   "div[style*='z-index: 350'], div[style*='z-index: 400']"
+  ]
+ ],
+ "column_header_rows": [
+  "thead tr",
+  "div[style*='grid-template-columns'][style*='position: sticky']"
+ ],
+ "cell_rows": [
+  "tbody tr",
+  "div[data-wo][style*='grid-template-columns']"
+ ],
+ "row_types": {
+  "Tech View group header": "section[data-group-id] > div[data-gdrag]",
+  "Tech View work order row": "div[data-wo][style*='grid-template-columns']",
+  "Board column header": "section[data-group-id] > div > div[data-gdrag]",
+  "Board card": "div[data-wo][style*='flex-direction: column']",
+  "Empty group or column": "section[data-group-id] div[style*='dashed'], section[data-group-id] > div[style*='justify-content: center']",
+  "Empty / first-run state": "div[style*='min-height: 420px'], div[style*='min-height: 320px'], div[style*='padding: 32px 24px']",
+  "List row": "tbody tr",
+  "Filter chip": "div[data-popover-host] button[aria-expanded], div[data-popover-host] > div > div > button",
+  "Toolbar button": "button[title='Columns'], button[title='Row height'], button[title='Card size']"
+ },
+ "frame_targets": [
+  {
+   "name": "Tech View table (column header row)",
+   "selector": "div[style*='grid-template-columns'][style*='position: sticky']"
+  },
+  {
+   "name": "Tech View first group header",
+   "selector": "section[data-group-id] > div[data-gdrag]"
+  },
+  {
+   "name": "Board View column strip",
+   "selector": "div[style*='width: max-content'][style*='gap: 16px']"
+  },
+  {
+   "name": "Board View first column",
+   "selector": "section[data-group-id] > div[style*='border-radius: 12px']"
+  },
+  {
+   "name": "List table",
+   "selector": "table"
+  },
+  {
+   "name": "Toolbar",
+   "selector": "div[data-popover-host][style*='padding: 16px 24px']"
+  },
+  {
+   "name": "Empty state block",
+   "selector": "div[style*='min-height: 320px'], div[style*='min-height: 420px']"
+  }
+ ],
+ "overlay_selectors": [
+  "[role=tooltip]",
+  "[role=menu]",
+  "[role=dialog]",
+  ".sv-popover",
+  "#__open_popover",
+  "span[style*='bottom: calc(100% + 6px)']",
+  "[role=status]",
+  "div[style*='z-index: 400']",
+  "div[style*='z-index: 350']"
+ ],
+ "sticky_probes": [
+  {
+   "name": "Tech View column header row (scroll down 400)",
+   "selector": "div[style*='grid-template-columns'][style*='position: sticky']",
+   "dy": 400
+  },
+  {
+   "name": "Tech View 'Esther Howard' group header (scroll down 200)",
+   "selector": "section[data-group-id='esther'] > div[data-gdrag]",
+   "dy": 200
+  },
+  {
+   "name": "Tech View Unassigned group header (scroll down 200)",
+   "selector": "section[data-group-id='unassigned'] > div[data-gdrag]",
+   "dy": 200
+  },
+  {
+   "name": "Board 'Unassigned' column (scroll right 800)",
+   "selector": "section[data-group-id='unassigned']",
+   "dx": 800,
+   "dy": 0
+  },
+  {
+   "name": "Board 'Esther Howard' column header (scroll its cards down 300)",
+   "selector": "section[data-group-id='esther'] > div > div[data-gdrag]",
+   "dy": 300
+  }
+ ],
+ "accent_token": "--sv-accent",
+ "max_rows": 40,
+ "row_key_attr": "data-wo",
+ "matrix": [
+  {
+   "id": "core",
+   "boards": [
+    "Work Orders.dc.html",
+    "Work Orders -no page-fix-.dc.html",
+    "Work Orders Details.dc.html"
+   ],
+   "themes": [
+    "light",
+    "dark"
+   ],
+   "widths": [
+    1440,
+    1536
+   ],
+   "variants": [
+    {
+     "id": "list",
+     "meta": {
+      "view": "List",
+      "density": "Medium (List row height)"
+     },
+     "actions": []
+    },
+    {
+     "id": "tech-compact",
+     "props": {
+      "rowHeight": "small"
+     },
+     "meta": {
+      "view": "Tech View",
+      "density": "Compact (design: Small)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      }
+     ]
+    },
+    {
+     "id": "tech-regular",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      }
+     ]
+    },
+    {
+     "id": "tech-comfortable",
+     "props": {
+      "rowHeight": "large"
+     },
+     "meta": {
+      "view": "Tech View",
+      "density": "Comfortable (design: Large)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      }
+     ]
+    },
+    {
+     "id": "board-detailed",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      }
+     ]
+    },
+    {
+     "id": "board-compact",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Compact card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "click": "button[title='Card size']"
+      },
+      {
+       "click_text": "Compact"
+      }
+     ]
+    }
+   ],
+   "sticky": true
+  },
+  {
+   "id": "widths",
+   "boards": [
+    "Work Orders.dc.html"
+   ],
+   "themes": [
+    "light"
+   ],
+   "widths": [
+    768,
+    1024,
+    1280,
+    1366,
+    1920
+   ],
+   "variants": [
+    {
+     "id": "list",
+     "meta": {
+      "view": "List",
+      "density": "Medium (List row height)"
+     },
+     "actions": []
+    },
+    {
+     "id": "tech-regular",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      }
+     ]
+    },
+    {
+     "id": "tech-comfortable",
+     "props": {
+      "rowHeight": "large"
+     },
+     "meta": {
+      "view": "Tech View",
+      "density": "Comfortable (design: Large)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      }
+     ]
+    },
+    {
+     "id": "board-detailed",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      }
+     ]
+    },
+    {
+     "id": "tech-all-columns",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button[title='Columns']"
+      },
+      {
+       "click_text": "Show all"
+      },
+      {
+       "press": "Escape"
+      },
+      {
+       "mouse": [
+        5,
+        400
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "states",
+   "boards": [
+    "Work Orders.dc.html"
+   ],
+   "themes": [
+    "light",
+    "dark"
+   ],
+   "widths": [
+    1440
+   ],
+   "variants": [
+    {
+     "id": "tech-all-columns",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button[title='Columns']"
+      },
+      {
+       "click_text": "Show all"
+      },
+      {
+       "press": "Escape"
+      },
+      {
+       "mouse": [
+        5,
+        400
+       ]
+      }
+     ]
+    },
+    {
+     "id": "tech-all-columns-compact",
+     "meta": {
+      "view": "Tech View",
+      "density": "Compact (design: Small)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button[title='Columns']"
+      },
+      {
+       "click_text": "Show all"
+      },
+      {
+       "press": "Escape"
+      },
+      {
+       "mouse": [
+        5,
+        400
+       ]
+      }
+     ],
+     "props": {
+      "rowHeight": "small"
+     }
+    },
+    {
+     "id": "tech-all-columns-comfortable",
+     "meta": {
+      "view": "Tech View",
+      "density": "Comfortable (design: Large)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button[title='Columns']"
+      },
+      {
+       "click_text": "Show all"
+      },
+      {
+       "press": "Escape"
+      },
+      {
+       "mouse": [
+        5,
+        400
+       ]
+      }
+     ],
+     "props": {
+      "rowHeight": "large"
+     }
+    },
+    {
+     "id": "tech-columns-menu",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button[title='Columns']"
+      }
+     ],
+     "probe": {
+      "host": "button[title='Columns']"
+     }
+    },
+    {
+     "id": "tech-density-menu",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button[title='Row height']"
+      }
+     ],
+     "probe": {
+      "host": "button[title='Row height']"
+     }
+    },
+    {
+     "id": "board-density-menu",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "click": "button[title='Card size']"
+      }
+     ],
+     "probe": {
+      "host": "button[title='Card size']"
+     }
+    },
+    {
+     "id": "list-columns-menu",
+     "meta": {
+      "view": "List",
+      "density": ""
+     },
+     "actions": [
+      {
+       "click": "button[title='Columns']"
+      }
+     ],
+     "probe": {
+      "host": "button[title='Columns']"
+     }
+    },
+    {
+     "id": "list-density-menu",
+     "meta": {
+      "view": "List",
+      "density": ""
+     },
+     "actions": [
+      {
+       "click": "button[title='Row height']"
+      }
+     ],
+     "probe": {
+      "host": "button[title='Row height']"
+     }
+    },
+    {
+     "id": "tech-hover-switch-list",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "hover": "button[aria-label='Table']"
+      }
+     ],
+     "probe": {
+      "host": "button[aria-label='Table']"
+     }
+    },
+    {
+     "id": "tech-hover-switch-tech",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "hover": "button[aria-label='By Lead Tech']"
+      }
+     ],
+     "probe": {
+      "host": "button[aria-label='By Lead Tech']"
+     }
+    },
+    {
+     "id": "tech-hover-switch-board",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "hover": "button[aria-label='Board']"
+      }
+     ],
+     "probe": {
+      "host": "button[aria-label='Board']"
+     }
+    },
+    {
+     "id": "board-hover-switch-board",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "hover": "button[aria-label='Board']"
+      }
+     ],
+     "probe": {
+      "host": "button[aria-label='Board']"
+     }
+    },
+    {
+     "id": "tech-group-count-tooltip",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "dispatch": [
+        "section[data-group-id='esther'] > div[data-gdrag] [data-tip]",
+        "mouseover"
+       ]
+      }
+     ],
+     "probe": {
+      "host": "section[data-group-id='esther'] > div[data-gdrag] [data-tip]"
+     }
+    },
+    {
+     "id": "tech-unassigned-count-tooltip",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "dispatch": [
+        "section[data-group-id='unassigned'] > div[data-gdrag] [data-tip]",
+        "mouseover"
+       ]
+      }
+     ],
+     "probe": {
+      "host": "section[data-group-id='unassigned'] > div[data-gdrag] [data-tip]"
+     }
+    },
+    {
+     "id": "board-count-tooltip",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "dispatch": [
+        "section[data-group-id='esther'] [data-gdrag] [data-tip]",
+        "mouseover"
+       ]
+      }
+     ],
+     "probe": {
+      "host": "section[data-group-id='esther'] [data-gdrag] [data-tip]"
+     }
+    },
+    {
+     "id": "tech-lock-tooltip",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "eval": "document.querySelector(\"[data-wo='S1-511']\").scrollIntoView({block: 'center'})"
+      },
+      {
+       "dispatch": [
+        "[data-wo='S1-511'] [data-tip-text]",
+        "mouseover"
+       ]
+      }
+     ],
+     "probe": {
+      "host": "[data-wo='S1-511'] [data-tip-text]"
+     }
+    },
+    {
+     "id": "board-lock-tooltip",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "eval": "document.querySelector(\"[data-wo='S1-511']\").scrollIntoView({block: 'center', inline: 'center'})"
+      },
+      {
+       "dispatch": [
+        "[data-wo='S1-511'] [data-tip-text]",
+        "mouseover"
+       ]
+      }
+     ],
+     "probe": {
+      "host": "[data-wo='S1-511'] [data-tip-text]"
+     }
+    },
+    {
+     "id": "tech-avatar-stack-hover",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "hover": "[data-wo='S1-644'] img"
+      }
+     ],
+     "probe": {
+      "host": "[data-wo='S1-644'] img"
+     }
+    },
+    {
+     "id": "board-avatar-stack-hover",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "hover": "[data-wo='S1-644'] img"
+      }
+     ],
+     "probe": {
+      "host": "[data-wo='S1-644'] img"
+     }
+    },
+    {
+     "id": "tech-row-hover",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      }
+     ],
+     "hover_diff": "[data-wo='S1-702']"
+    },
+    {
+     "id": "tech-group-header-hover",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      }
+     ],
+     "hover_diff": "section[data-group-id='esther'] > div[data-gdrag]"
+    },
+    {
+     "id": "board-card-hover",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      }
+     ],
+     "hover_diff": "[data-wo='S1-702']"
+    },
+    {
+     "id": "board-card-hover-locked",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      }
+     ],
+     "hover_diff": "[data-wo='S1-511']"
+    },
+    {
+     "id": "list-row-hover",
+     "meta": {
+      "view": "List",
+      "density": ""
+     },
+     "actions": [],
+     "hover_diff": "tbody tr"
+    },
+    {
+     "id": "tech-row-menu",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "hover": "[data-wo='S1-702']"
+      },
+      {
+       "click": "[data-menu='S1-702']"
+      }
+     ],
+     "probe": {
+      "host": "[data-menu='S1-702']"
+     }
+    },
+    {
+     "id": "tech-row-menu-locked",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "hover": "[data-wo='S1-511']"
+      },
+      {
+       "click": "[data-menu='S1-511']"
+      }
+     ],
+     "probe": {
+      "host": "[data-menu='S1-511']"
+     }
+    },
+    {
+     "id": "tech-row-menu-unassigned",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "hover": "[data-wo='S1-352']"
+      },
+      {
+       "click": "[data-menu='S1-352']"
+      }
+     ],
+     "probe": {
+      "host": "[data-menu='S1-352']"
+     }
+    },
+    {
+     "id": "board-card-menu",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "hover": "[data-wo='S1-702']"
+      },
+      {
+       "click": "[data-menu='S1-702']"
+      }
+     ],
+     "probe": {
+      "host": "[data-menu='S1-702']"
+     }
+    },
+    {
+     "id": "board-card-menu-button-over-badge",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "hover": "[data-wo='S1-702']"
+      }
+     ],
+     "probe": {
+      "host": "[data-menu='S1-702']"
+     }
+    },
+    {
+     "id": "tech-reassign-dialog",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "hover": "[data-wo='S1-702']"
+      },
+      {
+       "click": "[data-menu='S1-702']"
+      },
+      {
+       "click": "[role=menuitem] >> nth=0"
+      }
+     ]
+    },
+    {
+     "id": "board-reassign-dialog",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "hover": "[data-wo='S1-702']"
+      },
+      {
+       "click": "[data-menu='S1-702']"
+      },
+      {
+       "click": "[role=menuitem] >> nth=0"
+      }
+     ]
+    },
+    {
+     "id": "tech-status-chip",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button:has-text('Status') >> nth=0"
+      }
+     ]
+    },
+    {
+     "id": "tech-technician-chip",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button:has-text('Technician') >> nth=0"
+      }
+     ]
+    },
+    {
+     "id": "board-technician-chip",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "click": "button:has-text('Technician') >> nth=0"
+      }
+     ]
+    },
+    {
+     "id": "list-chips",
+     "meta": {
+      "view": "List",
+      "density": ""
+     },
+     "actions": []
+    },
+    {
+     "id": "tech-technician-chosen",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button:has-text('Technician') >> nth=0"
+      },
+      {
+       "click_text": "Esther Howard"
+      },
+      {
+       "press": "Escape"
+      },
+      {
+       "mouse": [
+        5,
+        400
+       ]
+      }
+     ]
+    },
+    {
+     "id": "board-technician-chosen",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "click": "button:has-text('Technician') >> nth=0"
+      },
+      {
+       "click_text": "Esther Howard"
+      },
+      {
+       "press": "Escape"
+      },
+      {
+       "mouse": [
+        5,
+        400
+       ]
+      }
+     ]
+    },
+    {
+     "id": "tech-assigned-to-me",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button:has-text('Assigned to me') >> nth=0"
+      },
+      {
+       "mouse": [
+        5,
+        400
+       ]
+      }
+     ]
+    },
+    {
+     "id": "board-assigned-to-me",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "click": "button:has-text('Assigned to me') >> nth=0"
+      },
+      {
+       "mouse": [
+        5,
+        400
+       ]
+      }
+     ]
+    },
+    {
+     "id": "tech-filtered-empty",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button:has-text('Status') >> nth=0"
+      },
+      {
+       "click_text": "Paid"
+      },
+      {
+       "press": "Escape"
+      },
+      {
+       "click": "div[data-popover-host][style*='padding: 16px 24px'] >> text=Search"
+      },
+      {
+       "type": "zzzz",
+       "_wait": 900
+      }
+     ]
+    },
+    {
+     "id": "board-filtered-empty",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "click": "button:has-text('Status') >> nth=0"
+      },
+      {
+       "click_text": "Paid"
+      },
+      {
+       "press": "Escape"
+      },
+      {
+       "click": "div[data-popover-host][style*='padding: 16px 24px'] >> text=Search"
+      },
+      {
+       "type": "zzzz",
+       "_wait": 900
+      }
+     ]
+    },
+    {
+     "id": "tech-search-empty",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "div[data-popover-host][style*='padding: 16px 24px'] >> text=Search"
+      },
+      {
+       "type": "zzzz",
+       "_wait": 900
+      }
+     ]
+    },
+    {
+     "id": "board-search-empty",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "click": "div[data-popover-host][style*='padding: 16px 24px'] >> text=Search"
+      },
+      {
+       "type": "zzzz",
+       "_wait": 900
+      }
+     ]
+    },
+    {
+     "id": "list-filtered-empty",
+     "meta": {
+      "view": "List",
+      "density": ""
+     },
+     "actions": [
+      {
+       "click": "button:has-text('Status') >> nth=0"
+      },
+      {
+       "click_text": "Paid"
+      },
+      {
+       "press": "Escape"
+      },
+      {
+       "click": "div[data-popover-host][style*='padding: 16px 24px'] >> text=Search"
+      },
+      {
+       "type": "zzzz",
+       "_wait": 900
+      }
+     ]
+    },
+    {
+     "id": "tech-no-technicians",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      }
+     ],
+     "props": {
+      "emptyState": "no-technicians"
+     }
+    },
+    {
+     "id": "board-no-technicians",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      }
+     ],
+     "props": {
+      "emptyState": "no-technicians"
+     }
+    },
+    {
+     "id": "tech-no-work-orders",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      }
+     ],
+     "props": {
+      "emptyState": "no-work-orders"
+     }
+    },
+    {
+     "id": "board-no-work-orders",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      }
+     ],
+     "props": {
+      "emptyState": "no-work-orders"
+     }
+    },
+    {
+     "id": "tech-nothing",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      }
+     ],
+     "props": {
+      "emptyState": "nothing"
+     }
+    },
+    {
+     "id": "tech-view-only",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      }
+     ],
+     "props": {
+      "canAssign": false
+     }
+    },
+    {
+     "id": "board-view-only",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      }
+     ],
+     "props": {
+      "canAssign": false
+     }
+    },
+    {
+     "id": "tech-no-financial",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      }
+     ],
+     "props": {
+      "showFinancials": false
+     }
+    },
+    {
+     "id": "board-no-financial",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      }
+     ],
+     "props": {
+      "showFinancials": false
+     }
+    },
+    {
+     "id": "board-pinned-two",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "click": "button[data-pin='esther']"
+      },
+      {
+       "click": "button[data-pin='ralph']"
+      },
+      {
+       "mouse": [
+        5,
+        400
+       ]
+      }
+     ]
+    },
+    {
+     "id": "board-pinned-limit",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "click": "button[data-pin='esther']"
+      },
+      {
+       "click": "button[data-pin='ralph']"
+      },
+      {
+       "click": "button[data-pin='jenny']"
+      },
+      {
+       "click": "button[data-pin='theresa']"
+      },
+      {
+       "click": "button[data-pin='kristin']"
+      },
+      {
+       "hover": "button[data-pin='cameron']"
+      }
+     ],
+     "probe": {
+      "host": "button[data-pin='cameron']"
+     }
+    },
+    {
+     "id": "tech-collapsed-one",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button[data-tech='esther']"
+      },
+      {
+       "mouse": [
+        5,
+        400
+       ]
+      }
+     ]
+    },
+    {
+     "id": "tech-collapsed-all",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button[title='Collapse all']"
+      },
+      {
+       "mouse": [
+        5,
+        400
+       ]
+      }
+     ]
+    },
+    {
+     "id": "tech-drag-allowed",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "eval": "(() => { const s = document.querySelector('[data-wo=\"S1-352\"]'); const t = document.querySelector('[data-group-id=\"esther\"] [data-gdrag]'); const dt = new DataTransfer(); const o = {bubbles: true, cancelable: true, dataTransfer: dt}; const r = t.getBoundingClientRect(); s.dispatchEvent(new DragEvent('dragstart', o)); t.dispatchEvent(new DragEvent('dragover', Object.assign({clientX: r.left + 20, clientY: r.top + 10}, o))); })()"
+      }
+     ]
+    },
+    {
+     "id": "tech-drag-refused-locked",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "eval": "(() => { const s = document.querySelector('[data-wo=\"S1-511\"]'); const t = document.querySelector('[data-group-id=\"ralph\"] [data-gdrag]'); const dt = new DataTransfer(); const o = {bubbles: true, cancelable: true, dataTransfer: dt}; const r = t.getBoundingClientRect(); s.dispatchEvent(new DragEvent('dragstart', o)); t.dispatchEvent(new DragEvent('dragover', Object.assign({clientX: r.left + 20, clientY: r.top + 10}, o))); })()"
+      }
+     ]
+    },
+    {
+     "id": "tech-drag-reorder",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "eval": "(() => { const s = document.querySelector('[data-wo=\"S1-702\"]'); const t = document.querySelector('[data-wo=\"S1-644\"]'); const dt = new DataTransfer(); const o = {bubbles: true, cancelable: true, dataTransfer: dt}; const r = t.getBoundingClientRect(); s.dispatchEvent(new DragEvent('dragstart', o)); t.dispatchEvent(new DragEvent('dragover', Object.assign({clientX: r.left + 30, clientY: r.top + r.height - 4}, o))); })()"
+      }
+     ]
+    },
+    {
+     "id": "tech-drag-technician-group",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "eval": "(() => { const s = document.querySelector('[data-group-id=\"esther\"] [data-gdrag]'); const t = document.querySelector('[data-group-id=\"ralph\"] [data-gdrag]'); const dt = new DataTransfer(); const o = {bubbles: true, cancelable: true, dataTransfer: dt}; const r = t.getBoundingClientRect(); s.dispatchEvent(new DragEvent('dragstart', o)); t.dispatchEvent(new DragEvent('dragover', Object.assign({clientX: r.left + r.width / 2 + 5, clientY: r.top + r.height / 2 + 5}, o))); })()"
+      }
+     ]
+    },
+    {
+     "id": "board-drag-allowed",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "eval": "(() => { const s = document.querySelector('[data-wo=\"S1-352\"]'); const t = document.querySelector('[data-group-id=\"esther\"] [data-gdrag]'); const dt = new DataTransfer(); const o = {bubbles: true, cancelable: true, dataTransfer: dt}; const r = t.getBoundingClientRect(); s.dispatchEvent(new DragEvent('dragstart', o)); t.dispatchEvent(new DragEvent('dragover', Object.assign({clientX: r.left + 20, clientY: r.top + 10}, o))); })()"
+      }
+     ]
+    },
+    {
+     "id": "board-drag-refused-locked",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "eval": "(() => { const s = document.querySelector('[data-wo=\"S1-511\"]'); const t = document.querySelector('[data-group-id=\"ralph\"] [data-gdrag]'); const dt = new DataTransfer(); const o = {bubbles: true, cancelable: true, dataTransfer: dt}; const r = t.getBoundingClientRect(); s.dispatchEvent(new DragEvent('dragstart', o)); t.dispatchEvent(new DragEvent('dragover', Object.assign({clientX: r.left + 20, clientY: r.top + 10}, o))); })()"
+      }
+     ]
+    },
+    {
+     "id": "board-drag-refused-no-permission",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "eval": "(() => { const s = document.querySelector('[data-wo=\"S1-352\"]'); const t = document.querySelector('[data-group-id=\"esther\"] [data-gdrag]'); const dt = new DataTransfer(); const o = {bubbles: true, cancelable: true, dataTransfer: dt}; const r = t.getBoundingClientRect(); s.dispatchEvent(new DragEvent('dragstart', o)); t.dispatchEvent(new DragEvent('dragover', Object.assign({clientX: r.left + 20, clientY: r.top + 10}, o))); })()"
+      }
+     ],
+     "props": {
+      "canAssign": false
+     }
+    },
+    {
+     "id": "board-drag-column",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "eval": "(() => { const s = document.querySelector('[data-group-id=\"esther\"] [data-gdrag]'); const t = document.querySelector('[data-group-id=\"ralph\"] [data-gdrag]'); const dt = new DataTransfer(); const o = {bubbles: true, cancelable: true, dataTransfer: dt}; const r = t.getBoundingClientRect(); s.dispatchEvent(new DragEvent('dragstart', o)); t.dispatchEvent(new DragEvent('dragover', Object.assign({clientX: r.left + r.width / 2 + 5, clientY: r.top + r.height / 2 + 5}, o))); })()"
+      }
+     ]
+    },
+    {
+     "id": "board-scrolled-right",
+     "meta": {
+      "view": "Board View",
+      "density": "design: Detailed card"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='Board']"
+      },
+      {
+       "eval": "(() => { const e = Array.from(document.querySelectorAll('div')).find(d => d.scrollWidth > d.clientWidth + 8 && /(auto|scroll)/.test(getComputedStyle(d).overflowX)); if (e) e.scrollLeft = 900; })()"
+      },
+      {
+       "wait": 400
+      }
+     ]
+    },
+    {
+     "id": "tech-scrolled-down",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "eval": "(() => { const e = Array.from(document.querySelectorAll('div')).find(d => d.scrollHeight > d.clientHeight + 8 && /(auto|scroll)/.test(getComputedStyle(d).overflowY)); if (e) e.scrollTop = 520; })()"
+      },
+      {
+       "wait": 400
+      }
+     ]
+    },
+    {
+     "id": "tech-toast-after-reassign",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "hover": "[data-wo='S1-702']"
+      },
+      {
+       "click": "[data-menu='S1-702']"
+      },
+      {
+       "click": "[role=menuitem] >> nth=0"
+      },
+      {
+       "click": "[role=dialog] button:has-text('Ralph Edwards')"
+      }
+     ]
+    },
+    {
+     "id": "tech-frame-columns",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      }
+     ],
+     "props": {
+      "frame": "columns"
+     }
+    },
+    {
+     "id": "list-frame-settings",
+     "meta": {
+      "view": "List",
+      "density": ""
+     },
+     "actions": [],
+     "props": {
+      "frame": "settings"
+     }
+    }
+   ]
+  },
+  {
+   "id": "states1536",
+   "boards": [
+    "Work Orders.dc.html"
+   ],
+   "themes": [
+    "light"
+   ],
+   "widths": [
+    1536
+   ],
+   "variants": [
+    {
+     "id": "tech-all-columns",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button[title='Columns']"
+      },
+      {
+       "click_text": "Show all"
+      },
+      {
+       "press": "Escape"
+      },
+      {
+       "mouse": [
+        5,
+        400
+       ]
+      }
+     ]
+    },
+    {
+     "id": "tech-all-columns-compact",
+     "meta": {
+      "view": "Tech View",
+      "density": "Compact (design: Small)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button[title='Columns']"
+      },
+      {
+       "click_text": "Show all"
+      },
+      {
+       "press": "Escape"
+      },
+      {
+       "mouse": [
+        5,
+        400
+       ]
+      }
+     ],
+     "props": {
+      "rowHeight": "small"
+     }
+    },
+    {
+     "id": "tech-all-columns-comfortable",
+     "meta": {
+      "view": "Tech View",
+      "density": "Comfortable (design: Large)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button[title='Columns']"
+      },
+      {
+       "click_text": "Show all"
+      },
+      {
+       "press": "Escape"
+      },
+      {
+       "mouse": [
+        5,
+        400
+       ]
+      }
+     ],
+     "props": {
+      "rowHeight": "large"
+     }
+    },
+    {
+     "id": "tech-columns-menu",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "click": "button[title='Columns']"
+      }
+     ],
+     "probe": {
+      "host": "button[title='Columns']"
+     }
+    },
+    {
+     "id": "tech-hover-switch-list",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "hover": "button[aria-label='Table']"
+      }
+     ],
+     "probe": {
+      "host": "button[aria-label='Table']"
+     }
+    },
+    {
+     "id": "tech-hover-switch-tech",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "hover": "button[aria-label='By Lead Tech']"
+      }
+     ],
+     "probe": {
+      "host": "button[aria-label='By Lead Tech']"
+     }
+    },
+    {
+     "id": "tech-hover-switch-board",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "hover": "button[aria-label='Board']"
+      }
+     ],
+     "probe": {
+      "host": "button[aria-label='Board']"
+     }
+    },
+    {
+     "id": "tech-group-count-tooltip",
+     "meta": {
+      "view": "Tech View",
+      "density": "Regular (design: Medium)"
+     },
+     "actions": [
+      {
+       "click": "button[aria-label='By Lead Tech']"
+      },
+      {
+       "dispatch": [
+        "section[data-group-id='esther'] > div[data-gdrag] [data-tip]",
+        "mouseover"
+       ]
+      }
+     ],
+     "probe": {
+      "host": "section[data-group-id='esther'] > div[data-gdrag] [data-tip]"
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,299 @@
+{
+ "for": "Sasha Grosman (PRD owner), Chris Ward (PO), Branko Cicovic (design)",
+ "format": "colour-coded PO question format (Rule 125) — main session builds the sheet",
+ "new_questions_not_sent": [
+  {
+   "id": "PQ-V01",
+   "for": "Chris Ward / Sasha Grosman",
+   "question": "In Tech View and Board View, should the filter chips and Search use the design's icons too?",
+   "context": "The PRD says every other icon in Tech View and Board View is the design's icon, and List's icons are unchanged. The filter chips and Search are shared with List. In the design they show a spinner-like icon (Status), a clipboard (Assigned to me), a wrench (Technician) and a truck (Asset on site).",
+   "options": [
+    "(a) Chips and Search keep production's icons in every view (only the icons S1-R9a lists change).",
+    "(b) In Tech View and Board View the chips and Search use the design's icons; List keeps production's (the icons change when you switch view)."
+   ],
+   "spec_quotes": [
+    "S1-R9a: “The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View every other icon is the design’s Lucide icon too: density (`row-height` in Tech View, `card-height` in Board View), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and empty states (`clipboard-list`). List’s icons are unchanged.”"
+   ],
+   "cases": [
+    "DC-01"
+   ],
+   "tickets": [],
+   "sent_on": null
+  },
+  {
+   "id": "PQ-V02",
+   "for": "Chris Ward",
+   "question": "Is sideways scrolling in Tech View at 1440 px wide acceptable?",
+   "context": "With the design's 13 default columns the Tech View table needs about 1,790 px, so in the design itself it scrolls sideways at 1440 and 1536 px. SV-11317 lists \"at 1440px wide the table runs off the right edge\" as part of the defect.",
+   "options": [
+    "(a) Yes — sideways scrolling is fine, as in the design.",
+    "(b) No — the 13 default columns must fit at 1440 px without scrolling (the design needs narrower columns)."
+   ],
+   "spec_quotes": [
+    "S5-R4: “Until the user changes Tech View’s columns, Tech View shows these columns, in this order, as in the design: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price (Total price subject to financial permission). On Site, VIN/Serial # and Lead Technician are off by default; each can be added with the column chooser (S2-R4). List’s columns are unchanged.”"
+   ],
+   "cases": [
+    "DC-03",
+    "DC-04",
+    "DC-17"
+   ],
+   "tickets": [
+    "SV-11317"
+   ],
+   "sent_on": null
+  },
+  {
+   "id": "PQ-V03",
+   "for": "Sasha Grosman",
+   "question": "Which header words ship for two Tech View columns: \"Unit\" / \"Assigned Techs\" or the design's \"Unit #\" / \"Assigned Tech\"?",
+   "context": "The PRD lists Unit and Assigned Techs; the design's header row reads Unit # and Assigned Tech.",
+   "options": [
+    "(a) The PRD's words: Unit, Assigned Techs.",
+    "(b) The design's words: Unit #, Assigned Tech."
+   ],
+   "spec_quotes": [
+    "S5-R4: “Until the user changes Tech View’s columns, Tech View shows these columns, in this order, as in the design: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price (Total price subject to financial permission). On Site, VIN/Serial # and Lead Technician are off by default; each can be added with the column chooser (S2-R4). List’s columns are unchanged.”",
+    "S7-R7: “In Tech View the Assigned Techs column sits immediately after Lines, matching the design. It is on by default (S5-R4) and can be removed through the column chooser (S2-R4).”"
+   ],
+   "cases": [
+    "DC-04"
+   ],
+   "tickets": [
+    "SV-11317"
+   ],
+   "sent_on": null
+  },
+  {
+   "id": "PQ-V04",
+   "for": "Chris Ward / Branko Cicovic",
+   "question": "Tech View status pill at Compact and Regular: 18 px (PRD) or 16 px (as the design draws it)?",
+   "context": "The PRD calls 18 px and 22 px \"the design's two badge sizes\". The design's small pill actually renders 16 px tall (22 px at Comfortable is right).",
+   "options": [
+    "(a) 18 px as the PRD says (the design is updated).",
+    "(b) 16 px as the design draws it (the PRD is updated)."
+   ],
+   "spec_quotes": [
+    "S6-R2a: “In Tech View the status pill is 18px tall at Compact and Regular and 22px tall at Comfortable, the design’s two badge sizes. List’s status pill is unchanged.”"
+   ],
+   "cases": [
+    "DC-06"
+   ],
+   "tickets": [
+    "SV-11318"
+   ],
+   "sent_on": null
+  },
+  {
+   "id": "PQ-V05",
+   "for": "Chris Ward",
+   "question": "Does a view-only user see the six-dot grip on Tech View group headers?",
+   "context": "The PRD shows the grip only to users who can drag, but a view-only user may still reorder technician groups. The design also shows the grips on rows to a view-only user.",
+   "options": [
+    "(a) Group-header grips show to everyone who can reorder groups (view-only included); row grips only to users with Create & Edit.",
+    "(b) No grips at all for a view-only user."
+   ],
+   "spec_quotes": [
+    "S9-R1a: “In Tech View every work order row and every group header, Unassigned included, shows the design’s six-dot drag grip at its left edge, to users who can drag (S4-N1). The whole row still drags (S2-R8); the grip shows that it can.”",
+    "S9-R2: “Users with Work Orders view permission can reorder technician groups and columns. The order is saved per user.”"
+   ],
+   "cases": [
+    "DC-07"
+   ],
+   "tickets": [
+    "SV-11320"
+   ],
+   "sent_on": null
+  },
+  {
+   "id": "PQ-V06",
+   "for": "Branko Cicovic / Sasha Grosman",
+   "question": "Filtered-empty state icon: magnifier (as List and the design) or clipboard (S1-R9a)?",
+   "context": "S1-R9a says empty states use the clipboard icon; S1-N1 says the filtered-empty state is the same as List's. The design's filtered-empty state uses List's magnifier.",
+   "options": [
+    "(a) Magnifier, same as List (S1-N1).",
+    "(b) Clipboard icon (S1-R9a)."
+   ],
+   "spec_quotes": [
+    "S1-R9a: “The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View every other icon is the design’s Lucide icon too: density (`row-height` in Tech View, `card-height` in Board View), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and empty states (`clipboard-list`). List’s icons are unchanged.”",
+    "S1-N1: “When the active filters or a search return no work orders, Tech View and Board View show the same empty state as the List, with the same messages and action.”"
+   ],
+   "cases": [
+    "DC-13"
+   ],
+   "tickets": [
+    "SV-11319"
+   ],
+   "sent_on": null
+  },
+  {
+   "id": "PQ-V07",
+   "for": "Chris Ward",
+   "question": "At Comfortable the design adds the hours under the progress bar — allowed?",
+   "context": "The PRD says density never changes which values are shown. The design shows \"0.8 / 8.0 hrs\" under the progress bar only at its largest row size.",
+   "options": [
+    "(a) No — the same values show at every density (the hours line is dropped or shown at every density).",
+    "(b) Yes — Comfortable may add the hours line."
+   ],
+   "spec_quotes": [
+    "S6-R6: “Changing density never changes which fields, columns, or values are displayed.”"
+   ],
+   "cases": [
+    "DC-19"
+   ],
+   "tickets": [],
+   "sent_on": null
+  },
+  {
+   "id": "PQ-V08",
+   "for": "Branko Cicovic",
+   "question": "Is the 14 Oct Reassign dialog the final design?",
+   "context": "The PRD still lists the Reassign dialog's content, search, grouping, avatars and \"N open\" count as design work. The 14 Oct design has a dialog without an Unassigned row and without grouping.",
+   "options": [
+    "(a) Yes — test the dialog as drawn (plus the PRD's Unassigned row).",
+    "(b) No — hold the dialog look until the design is final."
+   ],
+   "spec_quotes": [
+    "S4-R12: “The dialog offers eligible active technicians in the current location and Unassigned.”"
+   ],
+   "cases": [
+    "DC-20"
+   ],
+   "tickets": [],
+   "sent_on": null
+  },
+  {
+   "id": "PQ-V09",
+   "for": "Branko Cicovic",
+   "question": "The design's Tech View group headers scroll away; the PRD keeps them on screen. Update the design?",
+   "context": "S2-E1 and S2-R18 keep the group header (and Unassigned's header) visible while scrolling. In the design only the column header row stays at the top.",
+   "options": [
+    "(a) Keep the PRD: group headers stay on screen (design to be updated).",
+    "(b) Follow the design: only the column header row stays."
+   ],
+   "spec_quotes": [
+    "S2-E1: “Keep the technician group header visible while scrolling within a tall group.”",
+    "S2-R18: “Unassigned opens expanded unless the user collapsed it (S2-R13), and its header stays on screen while scrolling so it can be collapsed from anywhere. When it holds more work orders than fit on screen, which on the All tab can be thousands, it loads them in pages as the user scrolls, as List does, never all at once.”"
+   ],
+   "cases": [
+    "DC-22"
+   ],
+   "tickets": [],
+   "sent_on": null
+  },
+  {
+   "id": "PQ-V10",
+   "for": "Chris Ward",
+   "question": "Does the Work Orders page chrome take the design's look (pill tabs, two-row toolbar, \"New Work Order\")?",
+   "context": "The PRD says the only addition to the Work Orders page is the switcher. The design restyles the filter-view tabs as grey pills, puts the chips on a second row and names the button \"New Work Order\" (production: \"Create Work Order\").",
+   "options": [
+    "(a) No — production's tabs, toolbar and button stay; only the switcher is added.",
+    "(b) Yes — the page chrome follows the design."
+   ],
+   "spec_quotes": [
+    "PRD v52 §3 Goals: “List remains the default and is unchanged from production; the only addition to the Work Orders page is the display switcher.”"
+   ],
+   "cases": [
+    "DC-01"
+   ],
+   "tickets": [],
+   "sent_on": null
+  },
+  {
+   "id": "PQ-V13",
+   "for": "Chris Ward",
+   "question": "Board View card status badge: the design's badge or List's production pill?",
+   "context": "S2-R19 makes Tech View's status the List's production pill with its red and blue counts. It names Tech View only. The design's Board card badge is a 22 px tinted pill with the design's colours (Approved teal) and no counts.",
+   "options": [
+    "(a) Board cards use the same production pill as List and Tech View (with the counts).",
+    "(b) Board cards keep the design's badge."
+   ],
+   "spec_quotes": [
+    "S2-R19: “Tech View’s Status column is the same status pill List shows in production, with the same red service-actions count and blue parts-actions count on it. Its size follows density (S6-R2a).”",
+    "S3-R5: “Keep each card’s status badge in a fixed position.”"
+   ],
+   "cases": [
+    "DC-11"
+   ],
+   "tickets": [],
+   "sent_on": null
+  }
+ ],
+ "existing_register_questions_not_sent": [
+  {
+   "id": "W-1",
+   "topic": "switcher words",
+   "sent_on": null,
+   "register": "build/OUTSTANDING-ITEMS-REGISTER.md (2026-10-08 WO block)"
+  },
+  {
+   "id": "W-2",
+   "topic": "Tech View column chooser / locked columns",
+   "sent_on": null,
+   "register": "build/OUTSTANDING-ITEMS-REGISTER.md (2026-10-08 WO block)"
+  },
+  {
+   "id": "W-5",
+   "topic": "minimap and position numbers",
+   "sent_on": null,
+   "register": "build/OUTSTANDING-ITEMS-REGISTER.md (2026-10-08 WO block)"
+  },
+  {
+   "id": "W-11",
+   "topic": "13 px text at Compact",
+   "sent_on": null,
+   "register": "build/OUTSTANDING-ITEMS-REGISTER.md (2026-10-08 WO block)"
+  },
+  {
+   "id": "W-12",
+   "topic": "keyboard / focus look",
+   "sent_on": null,
+   "register": "build/OUTSTANDING-ITEMS-REGISTER.md (2026-10-08 WO block)"
+  },
+  {
+   "id": "W-13",
+   "topic": "search-only empty words",
+   "sent_on": null,
+   "register": "build/OUTSTANDING-ITEMS-REGISTER.md (2026-10-08 WO block)"
+  },
+  {
+   "id": "W-15",
+   "topic": "Dark theme in scope",
+   "sent_on": null,
+   "register": "build/OUTSTANDING-ITEMS-REGISTER.md (2026-10-08 WO block)"
+  },
+  {
+   "id": "W-16",
+   "topic": "Clocked In names vs time",
+   "sent_on": null,
+   "register": "build/OUTSTANDING-ITEMS-REGISTER.md (2026-10-08 WO block)"
+  }
+ ],
+ "already_sent": [
+  {
+   "id": "AA-1",
+   "sent": "Ahtasham Amjad, Slack, 14 Oct 2026",
+   "question": "PRD S2-R11 keeps pinning in Tech View, but the design's Tech View group header shows no pin icon — keep the pin as staging has it?",
+   "spec_quotes": [
+    "S2-R11: “Allow up to three pinned technician groups in Tech View.”"
+   ],
+   "cases": [
+    "DC-08"
+   ],
+   "how_the_case_handles_it": "case follows the PRD (pinning offered in Tech View) and names the divergence"
+  },
+  {
+   "id": "AA-2",
+   "sent": "Ahtasham Amjad, Slack, 14 Oct 2026",
+   "question": "On a Board card, More actions (hover / keyboard focus) covers part of the status badge; the design does not show this state — acceptable, or should the badge stay fully visible?",
+   "spec_quotes": [
+    "S3-R13: “Reveal the card’s more-actions overlay on hover or keyboard focus.”",
+    "S3-R5: “Keep each card’s status badge in a fixed position.”"
+   ],
+   "cases": [
+    "DC-12"
+   ],
+   "how_the_case_handles_it": "SPEC-CONFLICT / design-silent: no expected result is set for the covered badge"
+  }
+ ],
+ "unsent_count": 19
+}
