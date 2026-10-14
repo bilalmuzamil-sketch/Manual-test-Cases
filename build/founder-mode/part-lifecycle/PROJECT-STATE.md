@@ -10,7 +10,10 @@ Catalog→Part Library rename, editable part number.
 **Build:** ❌ No QA branch yet. **PROVISIONAL — the spec is in review**; every case is
 `AUTOMATION: HOLD` naming the in-review status (Rules 49/85).
 
-## 🟢 CURRENT STATE — 13 Oct 2026 (full update against PRD v27, Rule 122) — read this first
+## 🟢 CURRENT STATE — 14 Oct 2026 (PRD v29 + Product's answers) — read this first
+- PRD v29 (Chris Ward wrote his 13 Oct answers into it): 302 codes. All 262 cases re-read and re-written, 19 new (C573668–C573686); 302/302 covered; 57 new setup docs (224 kept). Retire proposals: C425659, C425758 (dashboard figure removed). All 281 in Nightly run 539. Record: `update-2026-10-14/FULL-UPDATE-2026-10-14.md`.
+
+## (SUPERSEDED 14 Oct) STATE — 13 Oct 2026 (full update against PRD v27, Rule 122) — read this first
 - **Sources:** PRD Confluence 829227015 **v27** (edited 9 Oct with Chris Ward's 13 answers); tech plan 7 Oct; Jira stories now match v27 word for word; design canvas 13 Oct copy (`sources/design-2026-10-13-artifact/`).
 - **Suite:** 264 cases written 13 Oct (257 rewritten + 7 new, C540877–C540883), every one read back; 264 new setup docs (one per case). **290/290** requirement codes covered. Layout: Rule 117 with all eight 8 Oct amendments.
 - **Retire OR retest (54275):** 10 cases — C154761 (proposed for retirement), C425759 and C425639 (Critical Reorder, removed from the PRD; moved 13 Oct on the QA lead's "Yes"), and the 7 not-hand-runnable cases (rewritten).
