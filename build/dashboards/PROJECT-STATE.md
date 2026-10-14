@@ -4,7 +4,18 @@
 **TestRail:** group **12166** "Dashboard (Sep 2026)", suite 1 — empty at start (0 subfolders, 0 cases).
 Link: https://shopview.testrail.io/index.php?/suites/view/1&group_id=12166
 
-## 🟢 CURRENT STATE — 7 Oct 2026 full update (read this first)
+## 🟢 CURRENT STATE — 14 Oct 2026 Currency Check V2 (read this first)
+- **Run as V2 (QA lead's choice): no TestRail write.** Record: `currency-2026-10-14/CURRENCY-CHECK-V2-2026-10-14.md`.
+- **Sources now:** PRD **v44** (13 Oct; adds S8-R5a, S8-N1a, S4-R11a) · release notes Confluence 931069964 (10 Oct) ·
+  design unchanged since 7 Oct · tech plan unchanged. QA env the squad uses: **sv490** (PRD header still says sv8311).
+- **Owner:** squad QA **Ayesha Khan**; automation: Vladimir Tomovic (tracks: Nebojsa A, Ayesha B). PO Chris Ward.
+- **Sheets (not yet shared):** QA file https://docs.google.com/spreadsheets/d/1fC6Fn9664Rraf9NL7MPmitnwNsDeexowd7CHRBJVKUg/edit
+  (4 cases to update: C88619, C88620, C351717, C88632 · 3 new tests · 8 waiting on PO) · PO file
+  https://docs.google.com/spreadsheets/d/10Bgu1k2Dzxd2kAvIlEBVWSDIIs00G55VgFoImMU9SjY/edit (14 questions; supersedes
+  sending D-1..D-10 separately — D-1, D-3, D-4, D-10 are in it; D-11, D-12, D-14 are new).
+- **Live suite:** 106 cases (97 ours + 9 Vladimir's); 74 touched by others since 7 Oct (mostly automation status).
+
+## (previous) 7 Oct 2026 full update
 - **Sources now:** PRD **v42** (`sources/CONFLUENCE-788430850-Dashboard-v1-2026-10-07-v42.md`, read 100%) · PO Slack
   decision on empty states (Chris Ward, 7 Oct 2026: grey "-" instead of "n/a"; empty-chart placeholder; real zeros stay)
   · **design = the canvas** https://claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge (50 boards, saved in
