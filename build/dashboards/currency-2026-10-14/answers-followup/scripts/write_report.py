@@ -131,7 +131,7 @@ for cid, why in [
  ("88632", "Already in our earlier \"to update\" list; its row is corrected in §6 (the published note changed)."),
 ]:
     A(f"- {c(cid)} — {why}")
-A("- Every other case (the remaining 87) exercises nothing the new or changed rules touch (S3-N2, S12-R6..R12 have no case today → new tests).")
+A("- All other cases exercise nothing the new or changed rules touch (S3-N2, S12-R6..R12 have no case today → new tests).")
 A("")
 A("## 5 · New tests needed (14)")
 A("")
@@ -184,6 +184,8 @@ A("| Release notes 928121200 v6 | 24,061-byte body (414 lines) | 100% (all four 
 A("| PO answers | 15 answers | 100% |")
 A("| TestRail cases | 106 cases (15 sections) | 100% snapshotted; 100% of plain expected results read (55 KB); 100% of preconditions/steps/expected scanned by script; 16 candidate cases read step by step; 106 of 106 histories read |")
 A("| Earlier deliverables | CURRENCY-CHECK-V2, SOURCE-CHECK, PRD-DIFF-v42, sheet-data.json, build_dash_v2.py, PO-ANSWERS | 100% |")
+A("")
+A("**Secret scan:** `python3 build/testing-tools/scan_secrets.py` on answers-followup/, snapshots-after-answers/, the v46 PRD copy, PRD-DIFF-v44-vs-now.md/.json and RELEASE-NOTES-DASHBOARD-2026-10-14b.md, with 33 fingerprints of the real credentials loaded: clean, exit 0. No e-mail address in any output.")
 A("")
 A("## OUTSTANDING — what I need from you")
 A("")
