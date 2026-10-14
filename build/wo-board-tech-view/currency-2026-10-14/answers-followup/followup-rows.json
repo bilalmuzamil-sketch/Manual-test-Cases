@@ -1,0 +1,161 @@
+{
+ "update": [
+  [
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/96970\",\"C96970\")",
+   "Nothing can be dropped on an inactive or unenrolled technician",
+   "No (manual)",
+   "Bilal Muzamil (OURS, created_by 3)",
+   "The spec now says the column of a technician who is no longer at this location takes no drops, refuses them with an exact message, shows no inactive marker, and goes away once it is empty.",
+   "Dropping on [Tech-C]'s column or group must now show the message \"This technician can't be assigned work orders.\", and [Tech-C]'s header must not be marked inactive. Today the case passes a build that shows no message, another message, or an inactive marker on [Tech-C] (the case's own source line says such technicians are \"treated like inactive\").",
+   "Spec, Story 3, new rule S3-R20c, and Story 4, rule S4-N5 (widened to name a technician not enrolled at this location), both in version 49 by Chris Ward on 14 Oct 2026, from his answer 2 of 14 Oct. Before (version 48, 12 Oct): S4-N5 named inactive technicians only, and no message was in the spec (a developer gave it in a comment on 7 Oct).",
+   "Esther Howard's column/group is still shown with her work order and is marked inactive.\nNeither drop is accepted: \"S1-698\" returns to Ralph Edwards' column and its lead stays Ralph Edwards. The same happens in Tech View.",
+   "Esther Howard's column/group is still shown with her work order and is marked inactive. (unchanged)\n[Tech-C]'s column/group is shown with [WO-3] and has no inactive marker, because [Tech-C] is not deactivated.\nNeither drop is accepted: \"S1-698\" returns to Ralph Edwards' column and its lead stays Ralph Edwards. The drop onto [Tech-C] shows \"This technician can't be assigned work orders.\" The same happens in Tech View.",
+   "Before you start: After the work orders were created: [Tech-A]'s staff record is Inactive; [Tech-C] is still Active but no longer enrolled at this location.\n3. Find [Tech-A]'s column and [Tech-C]'s column (they stay because they lead matching work) and read their headers.\n5. Drag [WO-2] onto [Tech-C]'s column.",
+   "Before you start: the same, and before [Tech-C] is removed from this location, pin [Tech-C] in Board View (the pin icon in the column header).\n3. Find [Tech-A]'s column and [Tech-C]'s column (they stay because they lead matching work) and read their headers. (unchanged)\n5. Drag [WO-2] onto [Tech-C]'s column and read the message that appears.",
+   "The new rule is written for a pinned technician who is no longer at this location and still leads work here (that was our question 2), so pinning [Tech-C] makes the case match it exactly; the spec says such a column is shown as a normal, unpinned column. That the column goes away once it holds no work orders is already checked in C368131 (step 9), so it is not added here.",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=48&selectedPageVersions=49\",\"Spec change, version 49 (14 Oct)\")"
+  ],
+  [
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/236975\",\"C236975\")",
+   "Owner drags a work order to another technician on Board View and clears the outgoing lead shifts",
+   "Yes (automated)",
+   "Vladimir Tomovic (Vladimir's, created_by 1)",
+   "The spec now says outright that on a work order with one line, a shift on that line counts as a whole-work-order shift.",
+   "The work order has only one line, so its \"line-level\" shift counts as a whole-work-order shift and Clear shifts removes it too. The last step expects it to remain, so the case fails a correct build.",
+   "Spec, Story 4, rule S4-R28, reworded in version 49 by Chris Ward on 14 Oct 2026, from his answer 1 of 14 Oct: \"A work-order-level shift is one that covers every approved line of the work order, judged at the moment the lead changes [...] On a work order with one line, a shift on that line counts\". Before: version 47 (12 Oct) said \"covers every current line\", which left the one-line work order open (our question 1 of 14 Oct).",
+   "The whole-work-order shift is gone; the line-level shift still exists, unchanged.",
+   "The whole-work-order shift is gone and the shift on one of the two lines remains (once the work order has two approved lines and that shift covers only one of them).",
+   "Before you start: A work order for a unique customer with lead technician A and one line authorized for repair.\nBefore you start: A line-level shift for A on the authorized line, tomorrow 07:00 shop time.",
+   "Before you start: a work order for a unique customer with lead technician A and two lines authorized for repair (both approved).\nBefore you start: a line-level shift for A on one of the two lines only, tomorrow 07:00 shop time.",
+   "Same fix as the row sent on 14 Oct; it is now settled by the spec rather than waiting on question 1. Only the setup data changes. The QA lead said on 14 Oct not to edit Vladimir's cases, so this stays a note for the owner (automated, Ahtasham Amjad).",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=48&selectedPageVersions=49\",\"Spec change, version 49 (14 Oct)\")"
+  ],
+  [
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/236976\",\"C236976\")",
+   "Owner reassigns the lead from a Tech View row and clears the outgoing lead shifts",
+   "Yes (automated)",
+   "Vladimir Tomovic (Vladimir's, created_by 1)",
+   "The spec now says outright that on a work order with one line, a shift on that line counts as a whole-work-order shift.",
+   "The work order has only one line, so its \"line-level\" shift counts as a whole-work-order shift and Clear shifts removes it too. The last step expects it to remain, so the case fails a correct build.",
+   "Spec, Story 4, rule S4-R28, reworded in version 49 by Chris Ward on 14 Oct 2026, from his answer 1 of 14 Oct: \"A work-order-level shift is one that covers every approved line of the work order, judged at the moment the lead changes [...] On a work order with one line, a shift on that line counts\". Before: version 47 (12 Oct) said \"covers every current line\", which left the one-line work order open (our question 1 of 14 Oct).",
+   "The whole-work-order shift is gone and the line-level shift remains\nReassigning from the dialog with Clear removes only the outgoing lead's whole-work-order shift, and the change persists",
+   "The whole-work-order shift is gone and the shift on one of the two lines remains (once the work order has two approved lines and that shift covers only one of them).",
+   "Before you start: A work order for a unique customer with lead technician A and one line authorized for repair\nBefore you start: A line-level shift for A on the authorized line, tomorrow 07:00 shop time",
+   "Before you start: a work order for a unique customer with lead technician A and two lines authorized for repair (both approved).\nBefore you start: a line-level shift for A on one of the two lines only, tomorrow 07:00 shop time.",
+   "Same fix as the row sent on 14 Oct; it is now settled by the spec rather than waiting on question 1. Only the setup data changes. The QA lead said on 14 Oct not to edit Vladimir's cases, so this stays a note for the owner (automated, Ahtasham Amjad).",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=48&selectedPageVersions=49\",\"Spec change, version 49 (14 Oct)\")"
+  ]
+ ],
+ "new": [
+  [
+   "The clear-shifts question counts only approved lines",
+   "The spec now says only approved lines count when deciding whether a shift covers the whole work order: lines not yet approved and declined lines are ignored, and a Choose lines shift that ticks every approved line counts. No case has a line that is not approved, or declined, at a lead change.",
+   "Spec, Story 4, rule S4-R28, reworded in version 49 by Chris Ward on 14 Oct 2026 (his answer 1 of 14 Oct). Before (version 47, 12 Oct): \"covers every current line of the work order\", with nothing about approved, declined or added lines.",
+   "Signed in as an Owner/Admin user with Schedule access, desktop window at least 1024 px wide. Technicians A and B at this location (for example Esther Howard and Ralph Edwards). For one test customer (for example \"ZZAUTOTEST S4R28 Approved Lines\"), three Approved work orders led by A: work order 1 with Line 1 approved and Line 2 not approved (Line Approved left off); work order 2 with Line 1 approved and Line 2 declined; work order 3 with two approved lines. On the Schedule, tomorrow 8:00–12:00: A has a shift on Line 1 only of work orders 1 and 2 (Choose lines, tick Line 1; if the Schedule books it at once without the Choose lines window, that is fine), and a Choose lines shift on work order 3 with both lines ticked.",
+   "1. Open Work Orders > All tab > Board View and search for the test customer.\n2. Drag work order 1 from A's column into B's column and note whether a question opens (if it does, click Keep shifts).\n3. Do the same with work order 2.\n4. Do the same with work order 3.",
+   "Steps 2 to 4: each drag opens the question \"Clear Esther Howard's scheduled shifts?\" (with A's name), because each shift covers every approved line. After Keep shifts each work order is in B's column and A's shifts are still on the Schedule.",
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/368133\",\"C368133\")",
+   "C368133 and C96965 have only approved lines, so they stay as they are."
+  ],
+  [
+   "An Entire work order shift stops counting once a new line is approved",
+   "The spec now judges the shift at the moment the lead changes: an Entire work order shift no longer counts once a line has been added and approved after it was made. No case adds a line after the shift.",
+   "Spec, Story 4, rule S4-R28, reworded in version 49 by Chris Ward on 14 Oct 2026 (his answer 1 of 14 Oct). Before (version 47, 12 Oct): \"covers every current line of the work order\", with nothing about approved, declined or added lines.",
+   "Signed in as an Owner/Admin user with Schedule access, desktop window at least 1024 px wide. Technicians A and B at this location (for example Esther Howard and Ralph Edwards). For one test customer (for example \"ZZAUTOTEST S4R28 Line Added\"), two Approved work orders led by A, each with two approved lines. On the Schedule, A has an Entire work order shift tomorrow 8:00–12:00 on each. Only after the shifts were made: on work order 1 add a third line and turn Line Approved on; on work order 2 add a third line and leave Line Approved off.",
+   "1. Open Work Orders > All tab > Board View and search for the test customer.\n2. Drag work order 1 from A's column into B's column and note whether a question opens.\n3. Drag work order 2 from A's column into B's column and note whether a question opens (if it does, click Keep shifts).",
+   "Step 2: no question opens; the lead changes at once with \"Lead technician updated\" (the shift now covers only some of the approved lines).\nStep 3: the question \"Clear Esther Howard's scheduled shifts?\" opens, because the new line is not approved and is ignored.",
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/96965\",\"C96965\")",
+   ""
+  ],
+  [
+   "A card's estimated hours match the work order page's Total Hours, without declined lines",
+   "The spec now says a card's estimated hours is the total of the work order's lines with declined lines left out, the same figure as the work order page's Total Hours (up to 0.1 hours apart from rounding), and that it can differ from the List. The only case that checks the figure (C96978) compares it with the List and has no declined line.",
+   "Spec, Story 5, new rule S5-R11a, added in version 49 by Chris Ward on 14 Oct 2026 (his answer 3 of 14 Oct). Before (version 48) the spec said only \"existing production meaning\"; a developer had said the same on 12 Oct (Jira SV-11106), without product sign-off.",
+   "Signed in as an Owner/Admin user, desktop window at least 1024 px wide. One Approved work order for a test customer (for example \"ZZAUTOTEST S5R11a Card Hours\") with four lines that carry estimated time: three approved (for example 0.30, 1.50 and 0.40 hours) and one declined (for example 2.00 hours).",
+   "1. Open the work order and read Total Hours on the work order page.\n2. Open Work Orders > All tab > Board View, open Fields to display and turn on Estimated hours.\n3. Search for the test customer and read the card's estimated hours.",
+   "Step 1: Total Hours reads 2.2 hrs in the example (0.30 + 1.50 + 0.40; the declined 2.00 is left out).\nStep 3: the card shows the same figure as the work order page (2.2 in the example). A difference of up to 0.1 hours is accepted, so 2.1 to 2.3 passes; 4.2 (the declined line counted) fails. The List's Estimated Hours is not part of the check: it keeps its production figure and may differ.",
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/96978\",\"C96978\")",
+   "C96978 is left as it is: with its data (whole hours, no declined line) the card and the work order page should both read 8.0, so a tester sees no difference there."
+  ],
+  [
+   "Cards and headers name a technician by the staff record name, as the List does",
+   "The spec now says every technician name on a card, a Tech View group header and a Board View column header is the staff record name, the same as the List's Lead Technician column. No case compares the headers with the List.",
+   "Spec, Story 5, new rule S5-R11b, added in version 49 by Chris Ward on 14 Oct 2026 (his answer 4 of 14 Oct). Before, the spec did not say which name; the developer said on 12 Oct (Slack) that cards and headers use the account name.",
+   "Signed in as an Owner/Admin user, desktop window at least 1024 px wide. A work order led by a technician whose sign-in account name differs from the name on their staff record (on the QA build most technicians qualify: the developer noted on 12 Oct that the data is scrambled and the two names differ), with one line given to a second technician in Edit Line. In Fields to display, Lead technician name and Line technicians are on.",
+   "1. Open Settings > Staff and write down the staff record name of both technicians.\n2. Open Work Orders > All tab > List, search for the work order and read Lead Technician.\n3. Click Board View and read the card's lead technician name, its line technicians (hover to see the names) and the lead's column header.\n4. Click Tech View and read the lead's group header.",
+   "Steps 2 to 4: the List, the card (lead and line technicians), the Board View column header and the Tech View group header all show the staff record names written down in step 1 (for example \"Esther Howard\"), never a different name.",
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/96978\",\"C96978\")",
+   "Chris Ward (14 Oct): the build shows the account name today, so this is expected to fail on the current build; he asked for a bug, which is waiting for the QA lead's permission. C96978 already expects the card's lead name to match the List, which is right."
+  ],
+  [
+   "Opening Board View with Imported already selected opens List instead",
+   "The spec now says a link or saved filter that would open Board View or Tech View with Imported selected opens the page in List, with Imported still selected and both views greyed out, and the user's saved display is kept. No case opens the page this way (C154648 ticks Imported inside List).",
+   "Spec, Story 1, new rule S1-R13c, added in version 49 by Chris Ward on 14 Oct 2026 (his answer 7 of 14 Oct). Before: not covered by the spec; the tech plan (24 Sep) said \"A saved filter that contains Imported opens in List.\"",
+   "Signed in as an Owner/Admin user, desktop window at least 1024 px wide. At least one Imported work order and one ordinary work order at this location.",
+   "1. Open Work Orders > All tab > List. Tick Imported in Status and copy the page address from the address bar.\n2. In Status click Clear selection, then click Board View (your saved display is now Board View).\n3. Open a new browser tab, paste the copied address and open it.\n4. Hover Board View and Tech View in the display switcher.\n5. In Status click Clear selection, then click Work Orders in the top menu.",
+   "Step 3: the page opens in List, not Board View, with Imported still ticked and the Imported work orders listed.\nStep 4: both are greyed out with the tooltip \"Not available while Imported is selected.\"\nStep 5: the page opens in Board View, because the saved display was not changed.",
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/154648\",\"C154648\")",
+   "Step 1 assumes the List keeps its filters in the page address, as it does for the tab and Assigned to me (C368203 uses ?tab=estimate&assigned_to_me=1). If the address does not change when Imported is ticked, this route cannot be made by hand: use a saved filter that contains Imported, or ask the QA lead. Not yet checked on a build."
+  ]
+ ],
+ "resolved_hold": [
+  [
+   "The clear-shifts question on a work order with one line",
+   "Answer 1",
+   "Resolved: in the spec (version 49, S4-R28). One line: a shift on it counts. Choose lines ticking every approved line: counts. Lines not approved or declined: ignored. Entire work order shift after a new line is approved: no longer counts.",
+   "C368133 and C96965 as edited on 14 Oct (two approved lines, shift on one) stay correct. C236975/C236976 (Vladimir's, one line) now fail a correct build: two-line fix stands. C154888, C154889, C154890, C368134, C368135, C368136 and C96966 (one approved line, whole-work-order shift, question expected) are confirmed correct. Two new tests for the approved-line and added-line parts."
+  ],
+  [
+   "Dropping work on a technician removed from this location",
+   "Answer 2",
+   "Resolved: in the spec (version 49, new S3-R20c; S4-N5 widened). The drop is refused with \"This technician can't be assigned work orders.\", no inactive marker, the column goes once empty.",
+   "C96970 needs the message and the no-marker check (update row). C368131 already checks that the column goes away once empty. C97010 (inactive only) is unchanged."
+  ],
+  [
+   "Estimated hours on a card",
+   "Answer 3",
+   "Resolved: in the spec (version 49, new S5-R11a). Declined lines left out, same as the work order page's Total Hours, 0.1 hours tolerance, the List may differ.",
+   "No case to update (C96978's data has no declined line and whole hours, so its result does not change); one new test."
+  ],
+  [
+   "Technician name on cards",
+   "Answer 4",
+   "Resolved: in the spec (version 49, new S5-R11b): the staff record name on cards and headers, as in the List. Chris's request to log a bug is not in the spec (sheet answer only).",
+   "C96978 already expects the card's lead name to match the List: correct, and expected to fail on today's build. One new test for the headers. Bug facts prepared; filing waits for the QA lead."
+  ],
+  [
+   "Board View opened with Imported already ticked",
+   "Answer 7",
+   "Resolved: in the spec (version 49, new S1-R13c): opens in List with Imported selected, both views greyed out, saved display kept.",
+   "C154648 (edited 14 Oct) is unaffected. One new test."
+  ],
+  [
+   "Clicking a List row opens a work order preview panel",
+   "Answer 9",
+   "Resolved: in the spec (version 49, Out of Scope): not in this release; a List row opens the work order page as in production.",
+   "C368200, C368201, C368214, C96932 and C96946 stay as they are."
+  ]
+ ],
+ "corrections": [
+  [
+   "C368133, C96965 (ours)",
+   "Their expected results still quote S4-R28 as worded in version 47 and their source lines still call the one-line question open. Behaviour is unchanged (every line approved, the shift on one of two lines), so they are not listed for update; the quote should be refreshed to version 49 when the cases are next touched (the expected quote changes only when the source changes, which it now has)."
+  ],
+  [
+   "C154648, C368133, C96965, C581889, C581890, C581891 (ours)",
+   "After our write at 14:12 UTC these six were changed again at 15:16–15:21 UTC by our TestRail account (user 3) by another session: an \"Asset on Site shows no choice\" precondition, \"Last checked against build v26.40.17-ddb9ba1 (staging) on 10/14/2026.\", and AUTOMATION: HOLD → READY on C581889–C581891. Nothing else in group 13204 changed since the morning snapshots. No record of that session is on this branch."
+  ],
+  [
+   "C368131",
+   "The 14 Oct record calls C368131 Vladimir's; it was created by us (created_by 3) and last edited by Vladimir on 9 Oct."
+  ],
+  [
+   "Hold row \"Technician name on cards\" (14 Oct)",
+   "It pointed at C96978 as at risk; under the answer C96978's name check is right as written."
+  ],
+  [
+   "Jira stories",
+   "SV-10044, SV-10046, SV-10047 and SV-10048 were not yet re-synced to PRD version 49 when read (SV-10048 last updated 13 Oct, \"to match PRD v42\"). Latest wins: the PRD version 49."
+  ]
+ ]
+}
