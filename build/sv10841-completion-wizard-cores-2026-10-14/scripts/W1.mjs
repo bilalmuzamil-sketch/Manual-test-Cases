@@ -1,0 +1,10 @@
+import {ob,J} from './lib.mjs'; import {loc} from './seed.mjs'; import fs from 'fs';
+const A=JSON.parse(fs.readFileSync(process.argv[2]+'.json')); const s=await ob(); const p=s.page; await loc(s);
+const errs=[]; p.on('console',m=>{ if(['error','warning'].includes(m.type())) errs.push(m.type()+': '+m.text().slice(0,160)); });
+await s.go('/workorders/'+A.work_order_id+'/lines'); await p.waitForTimeout(4500);
+await p.locator(`[data-test-id="button_action_complete_line_${A.line.line_id}"]`).click(); await p.waitForTimeout(3000);
+const dlg=async(tag)=>{ const d=await p.evaluate(()=>{const ds=[...document.querySelectorAll('.q-dialog')]; const d=ds.pop(); return d?{text:d.innerText.replace(/\s+/g,' ').slice(0,1500),tids:[...d.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')+'|'+(e.innerText||'').trim().replace(/\s+/g,' ').slice(0,40))}:null;});
+  console.log(tag,J(d,3500)); await p.screenshot({path:`ev/${A.tag}-${tag}.png`}); return d; };
+await dlg('wiz1');
+fs.writeFileSync('errs-'+A.tag+'.txt',errs.join('\n'));
+await s.close();

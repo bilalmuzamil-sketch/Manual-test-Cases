@@ -1,0 +1,11 @@
+import {ob,J} from './lib.mjs'; import {loc} from './seed.mjs'; import {openWizard,dlgButtons} from './wiz.mjs'; import fs from 'fs';
+const A=JSON.parse(fs.readFileSync(process.argv[2]+'.json')); const s=await ob(); const p=s.page; await loc(s);
+await openWizard(s,A);
+const ta=p.locator('[data-test-id^="input_tech_story_"]').first(); console.log('tag',await ta.evaluate(e=>e.tagName)); console.log('ta',await ta.count());
+await ta.click(); await p.keyboard.type('ZZAUTOTEST tech story',{delay:20}); await p.keyboard.press('Tab'); await p.waitForTimeout(2500);
+console.log('after tab',J(await dlgButtons(p),400)); console.log('writes',J(s.writes.filter(w=>!/sentry/i.test(w)).slice(-4),500));
+await p.screenshot({path:'ev/S1-story-typed.png'});
+await p.locator('[data-test-id="pill_step_resolve-cores"]').click(); await p.waitForTimeout(2000);
+console.log('after pill title',await p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].pop()?.querySelector('[data-test-id="dialog_title"]')?.innerText),J(await dlgButtons(p),400));
+await p.screenshot({path:'ev/S1-after-pill.png'});
+await s.close();

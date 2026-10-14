@@ -1,0 +1,14 @@
+import {op as ob,J} from './lib.mjs'; import {loc} from './seed.mjs'; import fs from 'fs';
+const A=JSON.parse(fs.readFileSync(process.argv[2]+'.json')); const s=await ob(); const p=s.page; await loc(s);
+await s.go('/workorders/'+A.work_order_id+'/lines'); await p.waitForTimeout(5000);
+const rows=await p.evaluate(()=>{const out=[]; document.querySelectorAll('tr, .q-item, [class*="row"]').forEach(r=>{const t=r.innerText?.replace(/\s+/g,' ').trim(); if(t&&/Core for|cored part/.test(t)&&t.length<220) out.push(t);}); return [...new Set(out)];});
+console.log('screen rows',J(rows,1500));
+console.log('status',await p.locator('[data-test-id="badge_wo_status"]').innerText().catch(()=>'?'));
+const geo=await p.evaluate(()=>[...document.querySelectorAll('*')].filter(e=>e.children.length===0&&/Returned|Core for/.test(e.innerText||'')&&e.offsetParent).map(e=>{const r=e.getBoundingClientRect();return [e.innerText.trim().slice(0,60),Math.round(r.x),Math.round(r.y),Math.round(r.width),Math.round(r.height)]}));
+console.log('geo',J(geo,1200)); fs.writeFileSync(`geo-${A.tag}-lines.json`,JSON.stringify(geo));
+await p.screenshot({path:`ev/${A.tag}-lines-after.png`});
+const reqs=(await s.api(`/api/work-orders/${A.work_order_id}/parts/list-requests-by-line?search=&filters[0][field]=work_order&filters[0][value]=${A.work_order_id}`)).json?.data?.collection||[];
+console.log('requests',J(reqs.flatMap(x=>x.part_requests||[]).map(p=>[p.description,p.quantity,p.status,p.is_core_charge,p.core_charge,p.sell_price,p.total||p.total_price]),1200));
+const lines=await s.api('/api/work-orders/lines/'+A.work_order_id); const L=lines.json?.data?.collection||[];
+console.log('line parts',J(L.flatMap(l=>(l.parts||[]).map(x=>[x.description,x.quantity,x.sell_price,x.total,x.status,x.core_status||x.is_core_ok])),1500));
+await s.close();
