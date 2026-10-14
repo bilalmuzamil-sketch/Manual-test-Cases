@@ -48,4 +48,5 @@ Scripts: `stg6.mts` (all six, own data, normal sign-in), `stg6-sched2.mts` (C969
   (`surgical_replace.mjs`; the API route is refused because the fields carry UI-made line breaks); Froala also turned one empty
   setup paragraph into a blank line. C368133 (Automated — tell Vlad) and C581890 hit a TestRail database lock and were done on the retry (17:08 UTC); all six read back without the sentence, nothing else changed, display scan clean —
   see `staging-6-sentence-removal-2026-10-14/`.
+- 14 Oct ~17:45 UTC: QA lead said YES to screenshots (Rule 130) — 14 annotated pictures attached to the six results (read back).
 - Run 498 now has 248 tests: 243 Passed, 5 Untested — the 5 were added by someone else today, not part of this job.
