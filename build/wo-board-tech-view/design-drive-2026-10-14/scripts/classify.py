@@ -34,10 +34,13 @@ for b in BOARDS:
 ap = (pkg / "wo-details/Add Part.html").read_text(encoding="utf-8")
 for m in re.finditer(r"\{ code:'([^']+)', desc:'([^']+)', stock:'([^']+)'.*?cat:'([^']+)'(.*?)\}\s*,?\s*$", ap, re.M):
     vocab.update([m.group(1), m.group(2), m.group(3), m.group(4)]); vocab.update(re.findall(r"name:'([^']+)'", m.group(5)))
+BUNDLE = pkg / "_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"
+for line in BUNDLE.read_text(encoding="utf-8").splitlines()[3427:3434]:
+    vocab.update(re.findall(r'"([^"]{2,})"', line))
 vocab.update(["Aaron Keating", "James Smith", "Floyd Miles", "Brenda Martinez", "Cameron Williamson", "Esther Howard", "Ralph Edwards",
               "Jenny Wilson", "Theresa Webb", "Kristin Watson", "Truck Shop", "Trailer Shop", "Mobile Service", "Welding"])
 STATUS = {"Approved", "Estimate", "In progress", "In Progress", "Invoiced", "Paid", "Declined", "Imported", "Review", "Complete", "Ready for Review"}
-TOKEN = re.compile(r"^(?:\d+|[A-Z][a-z]{2} \d{1,2}(?:, \d{4})?…?|\$[\d,.]+…|S\d-\d+|[A-Z]{2,4}-\d+|\$?[\d,]+(?:\.\d+)?%?|−?\$[\d,]+\.\d\d|[A-Z][a-z]{2} \d{1,2}, \d{4}|\d+:\d\d|\d+(?:\.\d)? / \d+(?:\.\d)? hrs|[A-Z]{2}|\d+ (?:EA|L)|[-—·]|\d+ parts?|[A-HJ-NPR-Z0-9]{17})$")
+TOKEN = re.compile(r"^(?:\d+…|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|\d{1,2},|\d{4}|\d+\.\d+|/|hrs|parts?|BM|TW|JW|KW|EH|RE|AK|\d+|[A-Z][a-z]{2} \d{1,2}(?:, \d{4})?…?|\$[\d,.]+…|S\d-\d+|[A-Z]{2,4}-\d+|\$?[\d,]+(?:\.\d+)?%?|−?\$[\d,]+\.\d\d|[A-Z][a-z]{2} \d{1,2}, \d{4}|\d+:\d\d|\d+(?:\.\d)? / \d+(?:\.\d)? hrs|[A-Z]{2}|\d+ (?:EA|L)|[-—·]|\d+ parts?|[A-HJ-NPR-Z0-9]{17})$")
 
 
 def is_data(t):
@@ -66,7 +69,7 @@ def k(texts, cls, reason, cids=()):
 PEEK = ("NEW 14 Oct: List row-click preview panel. " + SPEC + " §3 Goals: \"List remains the default and is unchanged from production; the only "
         "addition to the Work Orders page is the display switcher.\" The panel changes List → PO question PQ-14-1 (TRIAGE file)")
 k(["Work Order Peek", "Work order preview", "Close preview", "Close (Esc)", "Loading work order", "Open Work Order", "Opening", "wide", "narrow",
-   "Esc"], "SPEC-CONFLICT", PEEK, [96932, 96946, 368200, 368201, 368214])
+   ], "SPEC-CONFLICT", PEEK, [96932, 96946, 368200, 368201, 368214])
 k(["Opening {…}"], "SPEC-CONFLICT", PEEK + " (toast after 'Open Work Order')", [96932, 96946, 368200, 368201, 368214])
 k(["Service - PM-A inspection", "Full PM-A per fleet schedule. Check DEF system, brakes, lights.", "Repair - Brake chamber, rear axle",
    "Pushrod stroke over limit on axle 2. Replace chamber and adjust slack.", "Diagnostic - Check engine light", "Pull codes, verify complaint on road test.",
@@ -80,7 +83,8 @@ k(["Details"], "OUT-OF-SCOPE", "Hidden 'Details' display (showDetailsView false;
 k(["Row height", "Small", "Medium", "Large", "Card size", "Compact", "Detailed", "Card detail", "Number, customer, status", "Adds hours, progress, totals", "detailed", "medium", "large", "small"],
   "SPEC-CONFLICT", "KNOWN (PROJECT-STATE divergence 1, register): 'Row height Small/Medium/Large' and 'Card size Compact/Detailed' vs spec 'Compact, Regular (default), or Comfortable'. Still in this export", [96955, 96987, 96992])
 k(["Columns"], "COVERED", "Columns picker (S5); Board View has no Fields to display picker — KNOWN divergence 2 (UX-12)", [96927, 96975, 96979])
-k(["Find a column", "No columns match", "Show all", "Reset to default", "Always shown"], "CASE-NEEDED",
+k(["Always shown"], "OUT-OF-SCOPE", "Columns dropdown section for always-on columns — the Work Orders screen passes hideLocked (bundle L11938), so no board shows it")
+k(["Find a column", "No columns match", "Show all", "Reset to default"], "CASE-NEEDED",
   "Columns menu search/no-match/Show all/Reset — design-only, no spec wording. 8 Oct cases C368160 and C368164 are NOT in today's 258 snapshots (deleted or moved?) — lead session to confirm; developer handoff 8 Oct: not in this release (Blocked, not Failed)")
 k(["Collapse all", "Expand all"], "CASE-NEEDED", "Tech View 'Collapse all / Expand all' — design-only (spec S2-R5 per group). 8 Oct case C368162 is NOT in today's snapshots — lead session to confirm; developer handoff: not in this release")
 k(["Collapse", "Expand"], "COVERED", "Per-group collapse/expand control tooltip (S2-R5)", [96928, 228762, 368125])
@@ -115,7 +119,8 @@ k(["Imported · review before assigning"], "SPEC-CONFLICT",
 k(["You don't have permission to assign technicians"], "COVERED", "No-permission refusal while dragging (Story 9: dragging needs Work Orders create and edit)", [96967, 368147])
 k(["page for “", "” — not built in this prototype", "{…} page for “{…}” — not built in this prototype"], "OUT-OF-SCOPE", "Global search 'Show all' placeholder toast — another feature (Global Search)")
 # --- page chrome / filters
-k(["Work Orders", "Schedule", "Customers", "Parts", "Reports", "Heavy Duty", "User menu", "Primary", "AK", "K", "Search customers, work orders, parts...", "Search customers, work orders, parts...⌘K", "New Work Order"],
+k(["Work Orders"], "COVERED", "'Work Orders' filter-view tab (S1-R3) — also the header navigation item", [96913])
+k(["Schedule", "Customers", "Parts", "Reports", "Heavy Duty", "User menu", "Primary", "AK", "K", "Search customers, work orders, parts...", "Search customers, work orders, parts...⌘K", "New Work Order"],
   "OUT-OF-SCOPE", "Page chrome (header navigation, location, user menu, global search) — not this feature")
 k(["All", "Estimates", "Completed"], "COVERED", "Filter-view tabs work in every display (S1-R3)", [96913])
 k(["Search", "Status", "Assigned to me", "Asset on site"], "COVERED", "Existing toolbar filters applied in every display (S1-R3, S1-R11, S1-R13)", [96911, 96914])
@@ -141,6 +146,39 @@ k(["Work Order", "Advisor", "Created", "Created On", "Total", "EH", "RE", "s1-45
 k(["НЛМК"], "DATA", "Logo on a stock photo's hard hat (avatar photo)")
 k(["SV-7330"], "OUT-OF-SCOPE", "Unrelated ticket number behind the minimap crop (designer screenshot)")
 k(["Howard", "oment", "mmercial", "3", "5", "6"], "DATA", "Cropped record text in a designer crop")
+
+k(["No results for “", "No results for"], "SPEC-CONFLICT", "Search-only empty-state heading fragment — see 'No results for “{…}”' (S1-N1b; W-13 answered by the spec, design lags)")
+k(["Clear search", "Type to search"], "COVERED", "Existing toolbar search box (clear X / placeholder) used in every display (S1-R3, S1-R11)", [96911, 96914])
+k(["Search customer", "Account settings", "Servi"], "OUT-OF-SCOPE", "Page chrome / truncated header text / a filter variant not on the Work Orders toolbar")
+k(["in stock", "ready to order", "awaiting authorization"], "COVERED", "Hover text of List's optional Parts / Auth cells (8 Oct triage F-25); Tech View offers List's columns", [96927])
+k(["Roles & Permissions...", "Shopview"], "OUT-OF-SCOPE", "Browser bookmark bar in a 31 Aug designer screenshot — not product UI")
+k(["Up to", "pinned columns"], "SPEC-CONFLICT", "Fragment of the pin-limit message 'Up to 5 pinned columns — unpin one first' — KNOWN pin limit 5 vs three (S2-R11)", [96939, 96949])
+k(["work order", "work orders", "{…} work order", "{…} work orders"], "COVERED", "Group/column count hover text ('4 work orders') — repeats the count, covered by the count cases", [96924])
+k(["Waiting on"], "NOT-ON-SCREEN", "waitLabel fragment — computed but bound to no template in this export")
+k(["No work orders match", "Work order details"], "OUT-OF-SCOPE", "Old hidden 'Details' display (Work Orders.dc.html L259–290): empty list text / iframe title — display not offered (showDetailsView false) and removed in the Details board")
+k(["Edit profile", "Log out", "Theme", "Light", "Dark", "Shop"], "OUT-OF-SCOPE", "User menu in the page header (page chrome). Dark theme = open PO question W-15")
+k(["assigned to me"], "COVERED", "'Assigned to me' filter text (S1-R13)", [96911, 96914])
+k(["Invoiced Date", "Days open"], "COVERED", "List Columns menu options (existing List columns); Tech View offers List's columns — omission from the design's Tech View menu is KNOWN (W-2)", [96927])
+k(["Clear all", "Clear selection"], "COVERED", "Existing filter chip / Status dropdown clear controls — the existing filters work the same in every display", [96914])
+k(["Opening"], "OUT-OF-SCOPE", "Bare fragment of the global-search and first-run placeholder toasts ('Opening ' + title); the preview's 'Opening S1-…' is classified on its own row")
+k(["Card detail", "Number, customer, status", "Adds hours, progress, totals"], "OUT-OF-SCOPE", "Superseded card-size menu in an older screenshot (02-compact.png) — not in any current file; the current menu ('Card size' Compact/Detailed) is KNOWN divergence 1")
+k(["BEFORE — forked wo-details/colors_and_type.css", "AFTER — shared _ds tokens + components.css", "AFTER — light", "AFTER — dark (data-theme=\"dark\")"], "OUT-OF-SCOPE", "Designer before/after labels on comparison screenshots of the work order page")
+RX = [
+    (r"^S\d-\d+ · [A-Z][^·]+$", ("COVERED", "Reassign dialog subtitle 'work order number · customer' (cited in C368163's source line)", [368163])),
+    (r"^S\d-\d+ (assigned to|lead technician set to) .+$|^S\d-\d+ moved to Unassigned$", ("SPEC-CONFLICT", "KNOWN (register): drag/assign toast vs S4-R5 “Lead technician updated” / “Lead technician removed”", [96957])),
+    (r"^.+ (pinned|unpinned)$", ("COVERED", "Pin / unpin message (optional observation in C96947)", [96947])),
+    (r"^Opening S\d-\d+$", ("SPEC-CONFLICT", PEEK + " (toast after 'Open Work Order')", [96932, 96946, 368200, 368201, 368214])),
+    (r"^No technicians match “.*”$", ("COVERED", "Reassign dialog no-match", [368163])),
+    (r"^No results for “.*”( in .+)?$", ("SPEC-CONFLICT", "Search-only empty state 'No results for “…”' vs S1-N1b “No work orders match the search \"{search}\".” (W-13 answered by the spec on 8 Oct; design lags)", [])),
+    (r"^(All|Assets|Customers|Parts|Part Sales|Part sales|Purchase Orders|Purchase orders|Vendor Invoices|Vendor invoices|Vendors|Work Orders|Work orders) \(\d+\)$|^Show all \d+$|^-\d{3} |^PAST |^Past |^Recent searches$|^Search all sources with$|^Search work orders, customers, parts and more$", ("OUT-OF-SCOPE", "Global Search modal (⌘K) — another feature", [])),
+    (r"^(Started|Total Hours): ", ("OUT-OF-SCOPE", "Work order page field inside the preview (demo value) — other feature; the preview itself is PQ-14-1", [])),
+    (r"^[A-Z]{2}: ", ("DATA", "Demo tech story with the technician's initials (LINE_POOL / DEMO_LINES) inside the preview", [])),
+    (r"^On Site Status ", ("COVERED", "List / Tech View table heading row — Tech View offers List's columns (S2-R4)", [96927, 96979])),
+    (r"^(Typed by|Added by|Matched to|No catalog match) ", ("OUT-OF-SCOPE", "Work order page (wo-details/Add Part.html) Add Part form — other feature", [])),
+    (r"^# .* visible text per page", ("NOT-ON-SCREEN", "Header line written by the sweep tool into its page-text file", [])),
+    (r"^[A-Z][a-z]+ [A-Z][a-z]+(, [A-Z][a-z]+ [A-Z][a-z]+)+$", ("DATA", "Crew names (avatar-group hover) — sample people", [])),
+]
+ADD_PART_TEMPLATES = []
 
 # region / pattern rules (applied when no curated entry matches)
 ADD_PART_KEEP = {"Labor": ("COVERED", "Lines tab Labor row (S7-R8–R10)", [368142, 368143]), "Story": ("COVERED", "Tech story row with no check mark (S8-R1)", [96997]),
@@ -171,6 +209,7 @@ LIB_GROUPS = {
     "bundle:work-orders": ("OUT-OF-SCOPE", "Work Orders product layer text no board was seen showing (demo rows, user menu)"),
     "lucide-icons.js": ("OUT-OF-SCOPE", "Icon group names"),
 }
+BOARD_GROUPS = ("bundle:work-orders", "bundle:columns-dropdown", "bundle:filter-dropdown", "bundle:filter-chip", "bundle:sv-components", "bundle:filter-bar")
 SECT = [(11, 'ai-agent-icon'), (232, 'badge'), (347, 'columns-dropdown'), (661, 'sv-components'), (1768, 'tokens'), (2007, 'design-canvas'), (3425, 'filter-bar'),
         (5027, 'filter-chip'), (5199, 'filter-dropdown'), (5817, 'global-search'), (7133, 'index'), (7286, 'lucide-icons'), (7455, 'mobile-filters'),
         (7573, 'mobile-global-search'), (8118, 'mobile-work-orders'), (9134, 'theme-toggle'), (9203, 'tweaks-panel'), (9899, 'work-orders')]
@@ -200,28 +239,38 @@ ON_BOARD = False
 
 
 def classify(t, where, in_case):
-    key = t.replace("’", "'")
-    if key in K:
-        c, r, ids = K[key]; return c, r, ids or ci.find(t, 5)
-    if key in EXTRA:
-        c, r, ids = EXTRA[key]; return c, r, ids or (ci.find(t, 5) if c == "COVERED" else [])
+    key = t.replace("\u2019", "'")
     g = group(where)
-    if CODEISH.search(t) or re.match(r"^s (header|scroll|native)", t) or (SUPPLEMENTARY_ROW and "Add Part.html" not in where and re.fullmatch(r"[a-z][a-z0-9]*", t)):
-        return "NOT-ON-SCREEN", "Code fragment / selector / comment picked up by the extractor — not displayed", []
-    if "Add Part.html" in where:
+    is_lib = g.startswith("bundle:") or g in LIB_GROUPS
+    for rx, (c, r, ids) in RX:
+        if re.search(rx, t):
+            return c, r, ids
+    if any(re.fullmatch(tp, t) for tp in ADD_PART_TEMPLATES) or "Add Part" in where:
         if key in ADD_PART_KEEP:
             return ADD_PART_KEEP[key]
+        if CODEISH.search(t):
+            return "NOT-ON-SCREEN", "Code fragment / selector picked up by the extractor — not displayed", []
         return OOS_ADD_PART + ([],)
+    if key in K:
+        c, r, ids = K[key]; return c, r, ids or (ci.find(t, 5) if c == "COVERED" else [])
+    if key in EXTRA:
+        c, r, ids = EXTRA[key]; return c, r, ids or (ci.find(t, 5) if c == "COVERED" else [])
+    if CODEISH.search(t) or re.match(r"^s (header|scroll|native)", t) or (SUPPLEMENTARY_ROW and re.fullmatch(r"[a-z][a-z0-9]*", t)):
+        return "NOT-ON-SCREEN", "Code fragment / selector / comment / identifier picked up by the extractor — not displayed", []
+    if g in LIB_GROUPS and (not ON_BOARD or g not in BOARD_GROUPS):
+        c, r = LIB_GROUPS[g]; return c, r, []
     if re.match(r"^DATA", t) or is_data(t):
         return "DATA", "Prototype sample record value (customer, asset, unit, number, person, status, date, amount, hours) or a row/card made only of them", []
-    ids = ci.find(t, 5) if (" " in t.strip() or len(t) >= 8) else []
-    if in_case or ids:
-        return "COVERED", "Text already appears in a case", ids
-    if g in LIB_GROUPS and not ON_BOARD:
-        c, r = LIB_GROUPS[g]; return c, r, []
+    if not is_lib:
+        ids = ci.find(t, 5) if (" " in t.strip() or len(t) >= 8) else []
+        if in_case or ids:
+            return "COVERED", "Text already appears in a case", ids
     return None, None, []
 
 
+for r in inv["rows"]:
+    if "Add Part.html" in r["where"] and len(r["text"]) >= 8:
+        ADD_PART_TEMPLATES.append(re.escape(r["text"]).replace(re.escape("{…}"), ".*"))
 rows = []
 for r in inv["rows"]:
     rows.append({"text": r["text"], "where": r["where"], "source": "inventory" + (" (library)" if r["library"] else ""), "on_a_board": r["on_a_board"], "in_a_case": r["in_a_case"], "pre": r["class"]})
@@ -238,6 +287,8 @@ for r in rows:
         c, why, ids = "DATA", "Date, amount, VIN or time (pre-marked by the tool)", []
     elif r["source"] == "image":
         c, why, ids = classify(r["text"], r["where"], False)
+        if c == "NOT-ON-SCREEN":
+            c, why, ids = "OUT-OF-SCOPE", "Value shown in a designer screenshot's Claude Design prop bar / comparison label — not product UI", []
         if c is None and "17.26.41" in r["where"]:
             c, why, ids = "OUT-OF-SCOPE", "Browser / macOS / bookmark chrome around a designer screenshot (31 Aug) — not product UI", []
         if c is None and "14.29.45" in r["where"]:
@@ -250,23 +301,41 @@ for r in rows:
     r.update({"class": c, "reason": why, "cids": ids})
     (un if c is None else out).append(r)
 
-json.dump(out + un, open(stem + ".json", "w"), indent=1, ensure_ascii=False)
+PFX = "build/wo-board-tech-view/sources/design-2026-10-14-upload/"
+def short(w):
+    return w.replace(PFX, "").replace("_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/", "_ds/…/")
+reasons = sorted({r["reason"] for r in out + un if r["reason"]})
+rid = {x: i for i, x in enumerate(reasons)}
+json.dump({"reasons": reasons, "columns": ["text", "where", "source", "class", "reason_id", "cids"],
+           "rows": [[r["text"], short(r["where"]), r["source"], r["class"], rid.get(r["reason"]), r["cids"]] for r in out + un]},
+          open(stem + ".json", "w"), ensure_ascii=False, separators=(",", ":"))
 cnt = collections.Counter(r["class"] for r in out)
 bysrc = collections.Counter((r["source"].split(" ")[0], r["class"]) for r in out)
 with open(stem + ".md", "w") as o:
     o.write("# Design text inventory — classified (14 Oct 2026 export)\n\n")
-    o.write(f"Rows: {len(rows)} · classified {len(out)} · **unclassified {len(un)}**\n\n| Class | Rows |\n|---|---|\n")
+    o.write(f"Rows: {len(rows)} · classified {len(out)} · **unclassified {len(un)}**. Every row is in `{pathlib.Path(stem).name}.json` "
+            "(text, file:line, source, class, reason, C-ids). Sources: inventory = design_text_inventory.py (board files, library, sweep and flow "
+            "texts); supplementary = texts the tool's word filter drops; image = hand transcription of every image.\n\n| Class | Rows |\n|---|---|\n")
     for k2, v in sorted(cnt.items()):
         o.write(f"| {k2} | {v} |\n")
     o.write("\n| Source | Class | Rows |\n|---|---|---|\n")
-    for (s, c2), v in sorted(bysrc.items()):
-        o.write(f"| {s} | {c2} | {v} |\n")
-    for sect in ["SPEC-CONFLICT", "CASE-NEEDED", "COVERED", "OUT-OF-SCOPE", "DATA", "NOT-ON-SCREEN"]:
+    for (s2, c2), v in sorted(bysrc.items()):
+        o.write(f"| {s2} | {c2} | {v} |\n")
+    for sect in ["SPEC-CONFLICT", "CASE-NEEDED", "COVERED"]:
         rs = [r for r in out if r["class"] == sect]
-        o.write(f"\n## {sect} ({len(rs)})\n\n| # | Text | Where | Source | Reason | Cases |\n|---|---|---|---|---|---|\n")
+        o.write(f"\n## {sect} ({len(rs)}) — every row\n\n| # | Text | Where | Source | Reason | Cases |\n|---|---|---|---|---|---|\n")
         for i, r in enumerate(rs):
-            o.write(f"| {i} | {r['text'][:110].replace('|', '/')} | {r['where'].split('/')[-1][:60]} | {r['source']} | {r['reason'][:260].replace('|', '/')} | "
+            o.write(f"| {i} | {r['text'][:110].replace('|', '/')} | {short(r['where'])[:70]} | {r['source']} | {r['reason'][:240].replace('|', '/')} | "
                     f"{', '.join(ci.link(x) for x in r['cids'][:5])} |\n")
+    for sect in ["OUT-OF-SCOPE", "DATA", "NOT-ON-SCREEN"]:
+        rs = [r for r in out if r["class"] == sect]
+        grp = collections.defaultdict(list)
+        for r in rs:
+            grp[r["reason"]].append(r)
+        o.write(f"\n## {sect} ({len(rs)}) — grouped by reason (every row in the JSON)\n\n| Reason | Rows | Examples |\n|---|---|---|\n")
+        for reason, lst in sorted(grp.items(), key=lambda x: -len(x[1])):
+            ex = "; ".join(x["text"][:50].replace("|", "/") for x in lst[:6])
+            o.write(f"| {reason[:260].replace('|', '/')} | {len(lst)} | {ex} |\n")
 print(dict(cnt), "unclassified", len(un))
 un.sort(key=lambda r: r["where"])
 for r in un:
