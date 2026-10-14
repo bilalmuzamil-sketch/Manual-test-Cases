@@ -1,0 +1,91 @@
+{
+ "new": [],
+ "updates": [
+  {
+   "case_id": 581895,
+   "title": "Cards and headers show the technician's staff record name, as the List does",
+   "preconditions": [
+    "You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.",
+    "Technician {Technician-A} (for example ZZAUTOTEST Staffname Ana) is an active technician at {Location-A} with a sign-in account, and the staff record was renamed after the account was made, so the name in Settings > Staff differs from the account name (for example ZZAUTOTEST Account Ana).",
+    "Technician {Technician-B} (for example ZZAUTOTEST Staffname Ben) is an active technician at {Location-A} with a sign-in account, and the staff record was renamed after the account was made, so the name in Settings > Staff differs from the account name (for example ZZAUTOTEST Account Ben).",
+    "Customer {Customer-A} (for example \"ZZAUTOTEST S5R11b Staff Names\") is used by this case only.",
+    "Approved work order {Work-order-1} (for example S10043-17671) for {Customer-A} is led by {Technician-A} and has two approved lines, {Line-1} (for example \"Service - Full grease service\") and {Line-2} (for example \"Service - Adjust clutch\").",
+    "{Line-2} has {Technician-B} as its technician, set through Edit Line.",
+    "In Board View, Fields to display has Lead technician and Line technicians turned on.",
+    "In Tech View the Assigned Techs column is shown (it is on by default).",
+    "The List shows the Lead Technician column.",
+    "On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty."
+   ],
+   "steps": [
+    "Click your initials (top right) and open Settings > Staff.",
+    "Write down the names shown for {Technician-A} and {Technician-B}.",
+    "Open Work Orders, click the All tab and click List in the display switcher.",
+    "Type the name of {Customer-A} in Search.",
+    "Read the Lead Technician of {Work-order-1}.",
+    "Click Board View in the display switcher.",
+    "Read the lead technician name on {Work-order-1}'s card.",
+    "Hover each avatar in the card's line technicians and read each name.",
+    "Read the header of the column that holds {Work-order-1}.",
+    "Click Tech View in the display switcher.",
+    "Read the header of the group that holds {Work-order-1}.",
+    "Hover each avatar in {Work-order-1}'s Assigned Techs cell and read each name."
+   ],
+   "results": [
+    "Step 5: the List's Lead Technician shows {Technician-A}'s staff record name written down in step 2 (for example ZZAUTOTEST Staffname Ana).",
+    "Step 7: the card names its lead technician with the same staff record name, not any other name (for example not ZZAUTOTEST Account Ana).",
+    "Step 8: hovering the avatars shows the staff record names of {Technician-A} and {Technician-B} written down in step 2.",
+    "Step 9: the Board View column header shows {Technician-A}'s staff record name.",
+    "Step 11: the Tech View group header shows {Technician-A}'s staff record name.",
+    "Step 12: hovering each avatar shows a name for each technician, {Technician-A} and {Technician-B}. Write down which name shows (the staff record name from step 2 or the account name)."
+   ],
+   "source": "Epic SV-10043; story SV-10048 (Story 5, Choose what is shown); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S5-R11b (added in version 49 from Chris Ward's answer 4 of 14 Oct 2026 to our question sheet), S7-R6, S3-R12 and S2-R12, read 14 Oct 2026. Before version 49 the PRD did not say which name is shown. Covers the design defect SV-11336 (reported 14 Oct 2026 by Ahtasham Amjad). Source-verified 14 October 2026.",
+   "divergence": "S5-R11b names cards, group headers and column headers but not the avatars in a Tech View row, which SV-11336 also reports; until the product owner says which name a row's avatars show, step 12 checks only that every technician can be found by name (S7-R6) and records which name shows.",
+   "checked": "Last checked against build v26.40.17-ddb9ba1 (staging) on 10/14/2026. Step 12 was added on 14 Oct 2026 and has not yet been checked against a build.",
+   "quotes": [
+    [
+     "S5-R11b",
+     "Wherever a technician is named on a card, a group header or a column header, the name is the technician's staff record name, the same name the List's Lead Technician column shows."
+    ],
+    [
+     "S7-R6",
+     "Keep every involved technician discoverable by name."
+    ],
+    [
+     "S3-R12",
+     "Each column header shows the technician’s name, avatar, and a count of the work orders currently shown in that column, after the filter view and filters are applied, so the count always matches the cards listed."
+    ],
+    [
+     "S2-R12",
+     "Each group header shows the technician’s name, avatar, and a count of the work orders currently shown in that group, after the filter view and filters are applied, so the count always matches the rows listed."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "doc_part1": [
+    "Sign in as an Owner or Admin user. On a QA site click the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\". To check the permissions: your initials (top right) > Settings > Roles & Permissions > Admin > Work orders: View and Create & Edit are on.",
+    "Pick one location for the whole case; it is shown in the top bar next to the bell (to change it: your initials > Change Location). This is {Location-A} (for example Staging Heavy Duty - 9919). Create everything below at {Location-A}.",
+    "Use a desktop browser window at least 1024 px wide (narrower windows show only the List, with no display switcher).",
+    "Your initials > Settings > Staff > New Staff Member: First Name and Last Name (for example ZZAUTOTEST Account Ana), an Email you can open, Role Technician, a Department, Location {Location-A}, Time Clock on > Save & Close. Accept the invitation email and set a password, so the person has a sign-in account. Then open the staff record again (edit icon) and change First Name and Last Name to a different name (for example ZZAUTOTEST Staffname Ana) > Save. This is {Technician-A}.",
+    "Do the same for a second person (for example created as ZZAUTOTEST Account Ben, renamed ZZAUTOTEST Staffname Ben). This is {Technician-B}.",
+    "Top menu Customers > New Customer > Name (for example \"ZZAUTOTEST S5R11b Staff Names\") > Save. This is {Customer-A}; use it for this case only. On the customer page click Contacts > New Contact > First Name and Last Name (for example ZZAUTOTEST Contact) > Save. Then Assets > New Asset > pick the contact, Year (for example 2022), Make (type \"Freight\" and pick Freightliner), Model (for example M2), Unit (for example TRK-118) > Save. Contact and Make are required.",
+    "Work Orders > Create Work Order > in the New Work Order window pick {Customer-A} and its asset > Save (if a Confirmation about the credit limit appears, click Create). The work order opens on its Lines tab with the New Line form. In What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\", turn Line Approved on and click Save & Add Line. In the next New Line form type \"clutch\" and pick the ready-made line \"Service - Adjust clutch\", turn Line Approved on and click Save & Close. Write down the number shown at the top left (for example S10043-17671). This is {Work-order-1}, with {Line-1} and {Line-2}.",
+    "Click {Line-2}'s name to open Edit Line, choose Technicians {Technician-B} and save.",
+    "On the work order page pick the technician in the Lead Technician dropdown; it saves at once. Choose {Technician-A}.",
+    "Work Orders > All > Board View > Fields to display: turn on Lead technician and Line technicians. Then click Tech View and, if the Assigned Techs column is not shown, turn it on in Tech View's column chooser. Then click List and, if the Lead Technician column is not shown, turn it on in the List's column chooser.",
+    "Check the setup worked: Settings > Staff shows {Technician-A} and {Technician-B} under their new names. Work Orders > All > List with {Customer-A}'s name in Search shows {Work-order-1} with a Lead Technician, and Tech View shows two avatars in its Assigned Techs cell. If a person could not be renamed, the case cannot start: mark it Blocked and write why. Clear the search before you start."
+   ],
+   "doc_part2": [
+    "Goal: a work order whose lead and line technician each have a staff record name that differs from the name of their sign-in account, so a screen that shows the account name is easy to spot.",
+    "UNVERIFIED on the Work Orders QA site: whether renaming a staff record also renames the sign-in account. Read both back after the rename (GET /api/staff for the staff record; the person's own account name as shown after signing in as them) and record them. If the rename changes both, pick instead an existing technician whose two names already differ: the developer noted on 12 Oct 2026 (Slack, #fs-board-tech-view) that on the QA data the two names differ for most technicians.",
+    "Create {Customer-A}, its contact and asset, and {Work-order-1} on screen as in Part 1. Record {Work-order-1 id}, {Line-1 id} and {Line-2 id}.",
+    "Steps 5 to 12: read every name on screen exactly; for steps 8 and 12 hover each avatar with Playwright and read the tooltip text.",
+    "Step 12 (added 14 Oct 2026 for SV-11336, design-case pass): the PRD (S5-R11b) names cards, group headers and column headers, not a Tech View row's avatars; record which name each row avatar shows. Pass if every technician is named; report the name source to the QA lead.",
+    "Context: SV-11336 (Ahtasham Amjad, 14 Oct 2026) reports that the staging build shows the account name in the Tech View group header and row and the Board column header and card. That is not evidence about the build you test; judge only what you see.",
+    "Evidence: a screenshot after each step that has an expected result, the build marker, and the real value of every brace name."
+   ],
+   "change_summary": "SV-11336 addition: precondition (Assigned Techs shown in Tech View), step 12 and its result added; Rule 41 full re-check: quotes re-verified verbatim against PRD v52, Source re-stamped to version 52 and the contradicting 'Not yet checked against a build.' removed (the case was build-checked on 14 Oct); build sentence kept and says step 12 is not yet checked; new setup doc v2 (Assigned Techs on; step 12 notes)."
+  }
+ ],
+ "retire": [],
+ "anchors_covered": {}
+}
