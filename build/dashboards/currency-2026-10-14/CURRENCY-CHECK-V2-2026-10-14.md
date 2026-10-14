@@ -77,3 +77,20 @@ technician tiles with no data (D-11) · At Risk revenue measure (D-12) · At Ris
   automated script may use the removed "Inactive for" box — tell him separately if wanted).
 - Our six with behaviour changes (C88632, C351723, C351734, C88606, C88647, C351729) + 17 new tests: being written to
   TestRail (record `apply/`).
+
+## One sheet to work from (14 Oct 2026, late evening) — `one-sheet/`
+- QA lead: "this file needs to be super simplified posting the test cases ONLY Those whose behavior have been changed and they
+  have not yet been updated … keep the same format … should not have unecessary tabs" and "Yes there should be one sheet to work on."
+- https://docs.google.com/spreadsheets/d/1fC6Fn9664Rraf9NL7MPmitnwNsDeexowd7CHRBJVKUg/edit renamed (same link) to
+  "Dashboard Feature Squad – Test cases to update and retest (14 Oct 2026)". Tabs Read me, New test cases needed, Need product
+  decision first and After Chris's answers deleted; one tab "Test cases to update": short header, the same 12 columns plus
+  "Who updates it" and a Done tick box, 7 rows: C88610, C88619, C88620, C88628, C351708, C351714, C351717 (all Nebojsa's; live
+  text re-checked unchanged against `snapshots-after-answers/` just before the write). Ayesha and Vladimir: none.
+- Versus the earlier NV sheet: C88610 added (S4-R11b, v45: line shows direction, not level); C88628 gains S6-R8a (amount links to
+  the Sales report; walk-in / $0.00 plain text); C351708 now states the answer-16 result ("No data for selected date range").
+- Read back: 1 tab, 9 rows x 14 columns, every cell as written (`one-sheet/one-sheet-values.json`), Done = tick boxes.
+- NV sheet 1NdmC6… : pink first row "Please do not use this sheet any more … click here to open it" linking to 1fC6 (read back);
+  no Done box had been ticked there. Its title row had been edited by someone else to "Nebojsa and Ayesha"; left as is.
+- Left out on purpose (wording only, not behaviour): C88630 old S5-R9 quote, example values (C88609, C88612, C88613, C351724,
+  C351735), board names in references. Design triage of the re-shared canvas (`../design-drive-2026-10-14b/TRIAGE-2026-10-14b.md`
+  §C) found no further case whose behaviour contradicts the new design.
