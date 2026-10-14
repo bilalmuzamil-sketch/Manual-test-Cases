@@ -69,6 +69,7 @@ def expected(p):
     out += f"<p><strong>Source &mdash; where this behaviour comes from</strong><br>{esc(p['source'])}</p>"
     out += "<p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul>" + "".join(
         f"<li><strong>{esc(a)}:</strong> &ldquo;{esc(q.replace('**', ''))}&rdquo;</li>" for a, q in p["quotes"]) + "</ul>"
+    if p.get("stamp"): out += f"<p>{esc(p['stamp'])}</p>"   # v49 pass: an existing build-verification stamp kept as is (C97010)
     return out + f"<p>{esc(p['marker'])}</p>"
 
 SHORT = re.compile(r"\b(S\d+-[RNE]\d+[a-z]?|parity|normali[sz]ed|endpoint|payload|anchor|route|Rule \d+|delta)\b|;", re.I)
@@ -118,6 +119,9 @@ for f in files:
             if kind == "upd": plans.append((int(p["case_id"]), p, payload))
             else: news.append((p["key"], p["section_id"], p, payload))
 live = {c["id"]: c for c in json.load(open(f"{H}/snapshots-before/live-cases.json"))}
+if "--lock-dir" in sys.argv:   # v49 pass: edit lock against a later snapshot (e.g. snapshots-after-v49) for cases this pass already wrote
+    _ld = sys.argv[sys.argv.index("--lock-dir") + 1]
+    for _f in glob.glob(f"{_ld}/C*.json"): _c = json.load(open(_f)); live[_c["id"]] = _c
 ids = [c for c, _, _ in plans] + [int(r["case_id"]) for r in retires]
 if len(ids) != len(set(ids)): problems.append("a case is proposed twice (or both updated and retired)")
 keys = [k for k, *_ in news]
@@ -174,6 +178,9 @@ if "--docs" in sys.argv:
         lst.append(f"{'C' if key in newids else ''}{k}\tSetup (manual QA tester and Claude session) - {'C' + str(k) + ' ' if key in newids else ''}{p['title']}")
     open(f"{H}/docs/LIST.tsv", "w").write("\n".join(lst) + "\n"); print(len(lst), "doc files written")
 if "--apply" in sys.argv:
+    # v49 pass: --log NAME keeps a separate per-batch log, so a case written earlier in this pass is not skipped as "done"
+    LOGF = f"{H}/applied/" + (sys.argv[sys.argv.index("--log") + 1] if "--log" in sys.argv else "apply-log.jsonl")
+    open(LOGF, "a").close()
     docs = {}
     for f in glob.glob(f"{H}/doc-ids-*.jsonl"):
         for line in open(f):
@@ -181,8 +188,8 @@ if "--apply" in sys.argv:
     need = [f"C{c}" for c, _, _ in plans] + [f"C{newids[k]}" if k in newids else k for k, *_ in news]
     lacking = [k for k in need if k not in docs]
     if lacking: sys.exit(f"no doc yet for {len(lacking)}: {lacking[:10]}")
-    os.makedirs(f"{H}/applied", exist_ok=True); log = open(f"{H}/applied/apply-log.jsonl", "a")
-    done = {json.loads(l).get("case") or json.loads(l).get("key") for l in open(f"{H}/applied/apply-log.jsonl")} if os.path.getsize(f"{H}/applied/apply-log.jsonl") else set()
+    os.makedirs(f"{H}/applied", exist_ok=True); log = open(LOGF, "a")
+    done = {json.loads(l).get("case") or json.loads(l).get("key") for l in open(LOGF)} if os.path.getsize(LOGF) else set()
     def L(**k): log.write(json.dumps(k) + "\n"); log.flush(); print(k)
     for cid, p, pay in plans:
         if f"C{cid}" in done: continue
