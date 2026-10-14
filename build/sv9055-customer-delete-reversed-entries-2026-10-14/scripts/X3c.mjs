@@ -1,0 +1,12 @@
+import {ob,J} from './lib.mjs'; import {loc} from './seed.mjs'; import fs from 'fs';
+const s=await ob(); const p=s.page; await loc(s); const X=JSON.parse(fs.readFileSync('X3.json'));
+await s.go('/customers/'+X.company_id+'/invoices'); await p.waitForTimeout(4500);
+console.log('ic',J(await p.locator('[data-test-id="button_issue_credit_customer"]').evaluate(e=>e.className.includes('disabled')),20));
+await p.locator('.q-tab',{hasText:'Deposits'}).click(); await p.waitForTimeout(3000);
+console.log('dep btns',J(await p.evaluate(()=>[...document.querySelectorAll('button')].map(e=>(e.getAttribute('data-test-id')||'-')+'|'+e.innerText.trim()+(e.className.includes('disabled')?'(dis)':'')).filter(x=>/deposit|new|add/i.test(x))),300));
+await s.go('/customers/'+X.company_id+'/invoices'); await p.waitForTimeout(4000);
+await p.locator('[data-test-id="button_issue_credit_customer"]').click(); await p.waitForTimeout(2500);
+console.log('ic dialog',J(await p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].pop()?.innerText.replace(/\s+/g,' ').slice(0,500)),600));
+console.log('ic ids',J(await p.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id]')].map(e=>e.getAttribute('data-test-id'))),600));
+await p.screenshot({path:'ev/X3-2-issuecredit.png'});
+await s.close();

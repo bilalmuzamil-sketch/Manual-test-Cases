@@ -27,3 +27,20 @@
 | B6 | Open credit (Issue Credit) on the account | Blocked (active entry) — confirm | "anything still active" |
 | M | Error text on every blocked case | Report what it says; description asks it to name the blocker | description pt 2, Chris 77567 |
 | H | Reversed history kept after the delete; payment/report screens still load | Kept, no errors | "reversed history is not removed" |
+
+## 2026-10-14 ~06:30Z — follow-up work after the QA lead's answers
+
+### SV-11276 filed (QA lead: "Raise a ticket")
+- **Production, v26.40.17-f5bf8f4.** Try 1: S2-973, invoiced and paid ($100 cheque ZZ9055-NT1). Its menu offered only Audit Log / Timesheets (0) / Print Work Order. The pasted console request returned 201; the work order is now "Not found"; the payment is still on the customer's Payments tab. Try 2: an invoiced, unpaid work order was deleted the same way, and its invoice is gone from the customer's Invoices tab too.
+- The server's own record for a paid work order says `deletable:false`, `deletable_reason:"Paid work order cannot be deleted."`, and it deletes anyway.
+- Ready example left on production: customer *ZZAUTOTEST SV9055 paid-WO example 94302*, work order S2-975 (paid, $100 cheque ZZ9055-EX).
+- Duplicate search: 8 JQL queries, none matching. SV-9706 (parts held) and SV-10190 (line delete) are related, not duplicates.
+- Fields: Bug, Medium, Product Area Customers (copied from SV-9055), parentless like SV-9055, Relates SV-9055. Read back: 9 steps numbered continuously, 2 images as file attachments, console line in step 6.
+
+### Message variant matrix (description point 2 / Chris 77567)
+| Blocker left on the customer | Branch v26.40.17-f88c11c | Production v26.40.17-f5bf8f4 |
+|---|---|---|
+| Work order / asset / contact | Delete greyed out; the tooltip names them (B2) | same (PRW) |
+| Open store credit only (made on screen with Issue Credit) — X3 *ZZAUTOTEST SV9055 X3 payment-on-account 93666*, CM9055-4189 −$20 | **Refused: "This customer has open credit. Reverse it from the location that issued it, then delete the customer."** | **Customer deleted** (201) — PX3 |
+| Leftover payment $199.04 + held deposit DEP-4705 $25, no work order (X2) — only reachable by deleting the paid work order through the server (SV-11276) | "You cant delete company with existing transactions" (walked live again 06:20Z, one confirm click) | n/a |
+- No on-screen path found to a state where Delete is enabled and the generic message appears. New Payment is greyed out on a customer with no invoices; the Deposits tab has no add button.

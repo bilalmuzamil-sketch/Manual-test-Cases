@@ -1,0 +1,37 @@
+Found while testing [SV-9055|https://shopview.atlassian.net/browse/SV-9055]
+
+h3. Summary
+Once a work order is invoiced or paid, its menu no longer offers *Delete* — but the work order can still be deleted by sending the delete request straight from the browser. The work order and its invoice disappear, while the payment stays on the customer with nothing behind it. On the SV-9055 QA branch a leftover payment like this stopped the customer from being deleted, with the vague "existing transactions" message that SV-9055 is about.
+
+h3. Steps to reproduce
+Open production: https://app.shopview.com (location *Trucks Hill 2*, switch it at the top right if needed).
+# In the top menu click *Customers*.
+# Search for *ZZAUTOTEST SV9055 paid-WO example 94302* and open it.
+# On the *Work Orders* tab click work order *S2-975*. It shows a green *Paid* label.
+# Click the three dots just left of the *Customer PO* box (top right). The menu shows only *Audit Log*, *Timesheets (0)* and *Print Work Order* — there is no Delete:
+!nt-01-paid-no-delete-hd.png|width=1600,height=1115!
+# Press *F12* (Chrome) and click the *Console* tab.
+# Paste the line below and press *Enter*:
+{code:javascript}fetch('https://api.shopview.com/api/work-orders/delete',{method:'POST',credentials:'include',headers:{'content-type':'application/json'},body:JSON.stringify({work_order_id:location.pathname.split('/')[2]})}).then(r=>r.text()).then(console.log){code}
+# The console prints {{\{"data":\{"work_order_id":"..."\}\}}} — the delete was accepted.
+# Close the developer tools and reload the page. The app says *Not found*.
+# Go back to *Customers* and open the same customer. The *Work Orders* tab is empty, but the *Payments* tab still shows the $100.00 payment *ZZ9055-EX*:
+!nt-02-after-delete-hd.png|width=1600,height=1115!
+_(Pictures are from the first try, work order S2-973 and payment ZZ9055-NT1; the example above is the same set-up, left ready.)_
+
+h3. Expected behaviour
+A paid or invoiced work order cannot be deleted in any way, the same as on screen — the delete request should be refused and nothing should change.
+*Where this comes from:*
+* The work order screen: once a work order is paid, its menu has no *Delete*.
+* The app's own record for work order S2-975 marks it as not deletable, with the reason: _"Paid work order cannot be deleted."_
+* [SV-10190|https://shopview.atlassian.net/browse/SV-10190] (Done): the same kind of gap on a work order line — Delete was offered on a line holding a received part and the delete went through — was treated as a defect and fixed.
+
+h3. Current behaviour
+The delete request is accepted. The work order and its invoice are removed; the payment is left on the customer with no work order or invoice behind it.
+
+It happened on both tries:
+||Try||Work order||Before||After the request||
+|1|S2-973, invoiced and paid ($100.00 cheque ZZ9055-NT1), customer _ZZAUTOTEST SV9055 delete-paid-WO 68638_|Paid, no Delete in the menu|Work order gone ("Not found"); the $100.00 payment is still on the customer's Payments tab|
+|2|Invoiced, not paid, customer _ZZAUTOTEST SV9055 delete-invoiced-WO 34542_|Invoiced, no Delete in the menu|Work order gone; its invoice is gone from the customer's Invoices tab too|
+
+Tested on production (app.shopview.com), 14 October 2026.

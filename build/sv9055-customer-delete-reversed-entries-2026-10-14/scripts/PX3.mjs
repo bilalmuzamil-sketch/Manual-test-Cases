@@ -1,0 +1,13 @@
+import {op,J,post} from './lib.mjs'; import {loc} from './seed.mjs'; import fs from 'fs';
+const s=await op(); const p=s.page; await loc(s);
+const name='ZZAUTOTEST SV9055 PROD credit-only '+Date.now()%100000;
+const c=await post(s,'/api/customers/create',{name}); const id=c.json?.data?.company_id; console.log('cust',c.status,name);
+fs.writeFileSync('PX3.json',JSON.stringify({company_id:id,name}));
+await s.go('/customers/'+id+'/invoices'); await p.waitForTimeout(4500);
+await p.locator('[data-test-id="button_issue_credit_customer"]').click(); await p.waitForTimeout(2000);
+await p.locator('[data-test-id="input_credit_memo_amount"]').fill('20');
+await p.locator('[data-test-id="radio_credit_memo_outcome_hold"]').click(); await p.waitForTimeout(500);
+await p.locator('[data-test-id="input_credit_memo_reason"]').fill('ZZAUTOTEST SV9055 store credit');
+const n=s.writes.length; await p.locator('.q-dialog [data-test-id="button_confirm_dialog"]').click(); await p.waitForTimeout(3000);
+console.log('writes',J(s.writes.slice(n).filter(w=>!/sentry/i.test(w)),300));
+await s.close();
