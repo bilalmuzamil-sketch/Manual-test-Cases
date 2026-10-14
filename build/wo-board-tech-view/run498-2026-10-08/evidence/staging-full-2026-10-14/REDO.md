@@ -52,3 +52,9 @@ C368181 (needs the production comparison) · C368173 (line started with two tech
 done) · C368178 (shift reading unreliable — read on screen) · C368179 (scheduling window did not open) · C368190 (looked on the
 wrong day) · C368191 ("Not runnable for now": deleting the staff member is refused — "Staff is being used elsewhere") ·
 C154648 (superseded by stg6.mts).
+
+## Wave 6 judged (14 Oct 22:45 UTC) — `judge/wave6.json`: 12 Passed, 11 to re-run, 0 Failed
+Re-run (added to the plan): C368206 C368207 C368208 (view-only role — now made) · C368201 (work order went straight to Complete —
+needs one that goes to Review) · C368209 (card order not read) · C368212 (Lethbridge switch — now via the screen) · C368196
+(only two headers read) · C368217 (Part Number field not found) · C368241 C368243 C368244 (test photos were not in the run
+folder — copied there).

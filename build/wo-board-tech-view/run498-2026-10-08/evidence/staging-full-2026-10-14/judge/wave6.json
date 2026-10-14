@@ -1,0 +1,177 @@
+{
+ "results": {
+  "C368193": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work Orders > All: Search held \"ZZAUTOTEST Tab Clears Search\".",
+    "Clicking the Estimates tab emptied the search box.",
+    "The Estimates tab showed its own work orders without the search: a full page of 30 rows, all Estimates."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368194": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work Orders > All > Column Selection: Days open was off; it was switched on and the menu closed.",
+    "The List then showed a Days Open column.",
+    "After a reload Days Open was still shown."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368195": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "A brand-new user with no saved choices opened Work Orders > List > All.",
+    "Columns shown: On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price, Created On.",
+    "Column Selection had exactly five off: Waiting On Parts, Invoiced Date, Days open, Parts and Returns. They are not shown in the List.",
+    "Every other column is on."
+   ],
+   "not_observed": "The other columns were not compared side by side with production in this pass.",
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368198": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work Orders > All, Status Invoiced only, Invoiced Date turned on, Search \"ZZAUTOTEST Invoice Order\".",
+    "Y (S2-35680) is listed above X (S2-35679): the rows are in Invoiced Date order, newest first."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368199": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work Orders > All, then Estimates, Completed, Work Orders and Completed clicked in quick succession.",
+    "The page settled on the Completed tab and showed only Completed-tab work orders (every row reads Complete).",
+    "No error message appeared.",
+    "Not checked by hand: the requests stopped on the way (a developer check)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368199.png"
+   ]
+  },
+  "C368200": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work Orders > All > Search \"ZZAUTOTEST Row Toggle\".",
+    "Clicking the Asset on Site toggle in the work order's row left the page on the Work Orders List (the work order did not open).",
+    "The toggle flipped from not on site to on site."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368203": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "The Work Orders address was opened with ?tab=estimate&assigned_to_me=1 at the end.",
+    "The Estimates tab was selected.",
+    "Assigned to me was on."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368203.png"
+   ]
+  },
+  "C368205": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "The Work Orders address was opened with ?vehicleHere=2 at the end.",
+    "The Asset on Site filter had nothing selected (its options read Yes, No, Clear selection, none ticked).",
+    "The same number of work orders showed as before (a full page of 30), and no error message appeared."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368205-filter.png"
+   ]
+  },
+  "C368210": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Phone width, Work Orders > All.",
+    "Without scrolling, 30 distinct work order cards showed (one page).",
+    "Scrolling to the bottom brought more cards in: 390 after scrolling, with no repeats."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368214": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work Orders tab: no Status filter on this tab (no Status button shows), so that step was skipped as the case says.",
+    "Search \"ZZAUTOTEST Back Forward\": the List showed S2-35685. Clicking it opened the work order.",
+    "Back: the Work Orders tab, the search text \"ZZAUTOTEST Back Forward\" and the same row S2-35685 came back. The search text is kept.",
+    "Forward: the work order S2-35685 opened again.",
+    "Back again: the same tab, search and row as before."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368213": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST WO Parts Counts: S2-35689 with two part requests and one part return made for this check.",
+    "Column Selection: Parts and Returns turned on.",
+    "S2-35689's row reads Parts 2 and Returns 1, the requests created. Nothing from other work orders or locations is added."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368213-list.png"
+   ]
+  },
+  "C368215": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Parts > Part Sales > P2-2320 opened.",
+    "The status card shows P2-2320 at the top, the status Estimate, \"Started: Today\", and Sales Representative \"Unassigned\" with a dropdown arrow (it can be opened to pick a person).",
+    "It shows no Lead technician, Service advisor or progress bar.",
+    "No empty box, missing field or error message."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368215-part-sale.png"
+   ]
+  }
+ },
+ "redo": {
+  "C368201": "The work order went straight to Complete when its line was completed (no \"Work order sent to review.\" message), so the Review state the case needs was not reached. After Back, the List row did read the new status, \"Complete\", with no reload. Re-run on a work order that goes to Review.",
+  "C368206": "The script stopped at the start: the \"ZZAUTOTEST WO View Only\" role it uses for the test user is missing on staging, so the user was never made.",
+  "C368207": "The script stopped at the start: the \"ZZAUTOTEST WO View Only\" role it uses for the test user is missing on staging, so the user was never made.",
+  "C368208": "The script stopped at the start: the \"ZZAUTOTEST WO View Only\" role it uses for the test user is missing on staging, so the user was never made.",
+  "C368209": "After the reload the sort still had Customer A-Z ticked, but the card order was not read (the reading picked up icons instead of customer names), so \"cards in customer name order\" was not seen.",
+  "C368212": "Steps 2 and 3 held: the Lethbridge work order S3-35684 did not appear at Staging Heavy Duty - 9919, by \"Loc2\" or by its number. But the switch to Staging Lethbridge - 4310 did not take effect on screen (the top bar still read Staging Heavy Duty - 9919), so step 4 was not done.",
+  "C368196": "This run read only the On Site and Clocked In headers. Clocked In sorted one way then the other; for On Site the reading cannot tell the icons apart. The Number header and every other sortable header were not read on staging.",
+  "C368217": "The script stopped while making the part requests (the Part Number field was not found in the window), so the counts were not read.",
+  "C368241": "The script could not upload a photo: its red/blue test picture files were missing from the run folder. Nothing was read.",
+  "C368243": "The script could not upload a photo: its red/blue test picture files were missing from the run folder. Nothing was read.",
+  "C368244": "The script could not upload a photo: its red/blue test picture files were missing from the run folder. Nothing was read."
+ },
+ "failed": {},
+ "doubt": {}
+}
