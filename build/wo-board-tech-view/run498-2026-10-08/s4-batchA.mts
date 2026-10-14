@@ -30,7 +30,7 @@ const bv = async (pg: Page, n: string, d = 'Board View') => { await pg.goto(APP 
 const leadOf = async (n: string) => (await workOrders(a, n)).map((w: any) => `${w.number} lead=${w.techAssignedFirstName ? w.techAssignedFirstName + ' ' + w.techAssignedLastName : 'none'}`);
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
-  try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
+  try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 2000));
   fs.writeFileSync(path.join(EV, 's4-batchA.json'), JSON.stringify(R, null, 1));
 }

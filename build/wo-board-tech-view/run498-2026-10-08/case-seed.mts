@@ -43,7 +43,7 @@ const myTask = async () => JSON.stringify((await a.get('/api/technician-tasks/my
 const lead = async (n: string) => Object.fromEntries((await workOrders(a, n)).map((w: any) => [w.number, w.techAssignedFirstName ? `${w.techAssignedFirstName} ${w.techAssignedLastName}` : 'none']));
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
-  try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
+  try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 2400));
   fs.writeFileSync(path.join(EV, 's4-batchE.json'), JSON.stringify(R, null, 1));
 }

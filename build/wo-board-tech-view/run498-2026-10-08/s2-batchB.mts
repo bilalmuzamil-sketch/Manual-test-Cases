@@ -25,7 +25,7 @@ const HEAVY = 'b3c8c820-f815-4cf1-8938-10956c5ee71a';
 const tv = async (name: string) => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, 'All'); await display(p, 'Tech View'); if (name) await search(p, name); };
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
-  try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
+  try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 1800));
   fs.writeFileSync(path.join(EV, 's2-batchB.json'), JSON.stringify(R, null, 1));
 }

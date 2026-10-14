@@ -34,7 +34,7 @@ const bv = async (n: string) => { await p.goto(APP + '/workorders?tab=all', { wa
 const mineCols = (cs: any[], ids: string[]) => cs.filter((c) => c.id === 'unassigned' || ids.includes(c.id)).map((c) => ({ name: c.name, count: c.count, cards: c.cards, pinned: c.pinned, empty: c.empty }));
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
-  try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
+  try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 1800));
   fs.writeFileSync(path.join(EV, 's3-batchA.json'), JSON.stringify(R, null, 1));
 }

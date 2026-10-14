@@ -32,7 +32,7 @@ export async function asRunner(browser: Browser, main: Page, a0: Api) {
     if (s.status >= 300) throw new Error(`switch to runner ${s.status}`);
     await via.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
   };
-  const v = await viewAs(browser, main, a0, row.id, me?.id ?? '', toRunner);
+  const v = await viewAs(browser, main, a0, row.id, me?.id ?? '', toRunner); (await import('./session.mts')).registerShotPage(v.page);
   via = api(v.page);
   await v.page.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await v.page.waitForTimeout(4000);
   // 2026-10-09: a batch that ticks a Status filter leaves it SAVED on this user, and every later list check then starts

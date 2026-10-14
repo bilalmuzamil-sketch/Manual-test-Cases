@@ -57,7 +57,7 @@ const second_old = async () => { const st = await p.context().storageState(); co
   await ctx.route((u) => /maps\.googleapis|intercom|sentry\.io|mercure\.qa|googletagmanager|google-analytics|hotjar|fullstory/i.test(u.toString()), (r) => r.abort()).catch(() => {}); return { ctx, pg: await ctx.newPage() }; };
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
-  try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
+  try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 2600));
   fs.writeFileSync(path.join(EV, 's5-batchA4.json'), JSON.stringify(R, null, 1));
 }

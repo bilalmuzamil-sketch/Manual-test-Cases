@@ -31,7 +31,7 @@ const tA = techs.find((x) => x.name !== 'Admin ShopView')!;
 console.log(t(), 'technicians', techs.length, '| me', !!me, '| Tech-A', tA?.name);
 
 async function run(id: string, f: () => Promise<void>) {
-  try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
+  try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 1400));
 }
 

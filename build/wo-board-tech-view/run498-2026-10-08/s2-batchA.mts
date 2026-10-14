@@ -25,7 +25,7 @@ const tv = async (name: string) => { await p.goto(APP + '/workorders?tab=all', {
 const mine = (gs: any[], ids: string[]) => gs.filter((g) => ids.includes(g.id) || g.id === 'unassigned');
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
-  try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
+  try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 1800));
   fs.writeFileSync(path.join(EV, 's2-batchA.json'), JSON.stringify(R, null, 1));
 }

@@ -114,7 +114,7 @@ const statusItem = (label: string) => pg.locator('.q-menu .q-item, .q-menu .q-ch
 const itemState = (label: string) => statusItem(label).evaluate((e) => ({ disabled: e.getAttribute('aria-disabled') === 'true' || e.classList.contains('disabled') || e.classList.contains('q-item--disabled') || !!e.querySelector('[aria-disabled=true]'), ticked: !!e.querySelector('[aria-checked=true], .q-checkbox__inner--truthy') })).catch(() => null);
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
-  try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 500) }; await shot(`${id}-error`); }
+  try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 500) }; await shot(`${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 3000));
   fs.writeFileSync(OUT, JSON.stringify(R, null, 1));
 }

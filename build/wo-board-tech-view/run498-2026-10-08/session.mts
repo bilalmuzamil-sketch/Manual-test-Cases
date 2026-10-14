@@ -36,6 +36,12 @@ async function quiet(page: Page) {
     console.log(t(), 'BRANCH ASLEEP — pressing Wake Up; readings around this line are void');
     await page.getByRole('button', { name: /Wake Up/i }).first().click({ timeout: 10_000 }).catch(() => {}); });
 }
+
+/** 15 Oct 2026 (Rule 130): by default (WOB_SHOT_EACH=0 turns it off) photographs the current screen at the end of every test as <id>-end.png, so each
+ *  result has a picture even where a script took none. The page is the last one opened (open() or asRunner's runner page). */
+export function registerShotPage(pg: Page) { (globalThis as any).__wobPage = pg;
+  (globalThis as any).__shotEach = async (id: string) => { if (process.env.WOB_SHOT_EACH === '0') return; const p2 = (globalThis as any).__wobPage as Page | undefined; if (!p2) return;
+    const dir = process.env.WOB_EV || new URL('./evidence/', import.meta.url).pathname; await p2.screenshot({ path: `${dir.replace(/\/$/, '')}/${id}-end.png` }).catch(() => {}); }; }
 export async function open(route = '/workorders'): Promise<{ browser: Browser; page: Page }> {
   // 14 Oct 2026 (Rule 125, L0312/L0330): WOB_NORMAL_SIGNIN=1 signs in through the sign-in page (bootOrigin, quick-login), the
   // way a person does — the harness sign-in below shows the Schedule clock in UTC. Cookies: WOB_SSO_FILE (+ its -full.json).
@@ -55,7 +61,7 @@ export async function open(route = '/workorders'): Promise<{ browser: Browser; p
         return { ids: ids.length, put: put.status }; })()`).catch((e) => ({ error: String(e).slice(0, 100) }));
       console.log(t(), 'pinned for this run', JSON.stringify(r2));
     }
-    return { browser: r.browser, page: r.page };
+    registerShotPage(r.page); return { browser: r.browser, page: r.page };
   }
   if (fs.existsSync(STATE)) {
     console.log(t(), 'trying the saved session');
@@ -76,7 +82,7 @@ export async function open(route = '/workorders'): Promise<{ browser: Browser; p
   const scale = Number(process.env.WOB_SCALE || 1);
   if (scale !== 1) { const ctx2 = await s.browser.newContext({ storageState: STATE, viewport: { width: 1600, height: 1000 }, deviceScaleFactor: scale, ignoreHTTPSErrors: true }); const pg2 = await ctx2.newPage(); await quiet(pg2);
     await pg2.goto(APP + route, { waitUntil: 'domcontentloaded', timeout: 45_000 }).catch(() => {}); await pg2.waitForTimeout(3000); await s.ctx.close().catch(() => {}); return { browser: s.browser, page: pg2 }; }
-  return { browser: s.browser, page: s.page };
+  registerShotPage(s.page); return { browser: s.browser, page: s.page };
 }
 
 /** End a script: closing the browser can hang on this network, so it is capped and the process exits. */

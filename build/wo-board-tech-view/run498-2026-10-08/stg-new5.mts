@@ -58,7 +58,7 @@ const dragTo = (woId: string, target: string) => drag(p, `[data-test-id="board_c
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   R[id] = {};
-  try { await f(); } catch (e: any) { R[id].error = String(e?.message || e).slice(0, 500); await shot(`${id}-error`); }
+  try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id].error = String(e?.message || e).slice(0, 500); await shot(`${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 2500));
   fs.writeFileSync(OUT, JSON.stringify(R, null, 1));
 }

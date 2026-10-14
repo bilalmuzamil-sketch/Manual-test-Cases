@@ -12,7 +12,7 @@ import { EV, t, shot, display, tab } from './wob.mts';
 import { HEAVY } from './staff.mts';
 const { browser, page: p } = await open('/workorders?tab=all'); p.setDefaultTimeout(30_000); const a = api(p);
 const R: any = {}; const ONLYS = (process.env.ONLY || '').split(',').filter(Boolean);
-async function run(id: string, f: () => Promise<void>) { if (ONLYS.length && !ONLYS.includes(id)) return; try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 300) }; await shot(p, `${id}-error`); } console.log(t(), id, JSON.stringify(R[id] ?? null).slice(0, 2500)); fs.writeFileSync(path.join(EV, 'd28-pics.json'), JSON.stringify(R, null, 1)); }
+async function run(id: string, f: () => Promise<void>) { if (ONLYS.length && !ONLYS.includes(id)) return; try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 300) }; await shot(p, `${id}-error`); } console.log(t(), id, JSON.stringify(R[id] ?? null).slice(0, 2500)); fs.writeFileSync(path.join(EV, 'd28-pics.json'), JSON.stringify(R, null, 1)); }
 const assigned = () => p.locator('button:has-text("Assigned to me")').first();
 const where = () => p.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`);
 

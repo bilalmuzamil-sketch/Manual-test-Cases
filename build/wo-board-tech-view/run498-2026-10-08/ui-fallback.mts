@@ -21,7 +21,7 @@ const sends: string[] = []; p.on('request', (q) => { if (q.method() !== 'GET' &&
 const where = () => p.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`) as Promise<string | null>;
 const PREF = '/api/users/me/preferences/work-orders-list';
 const ONLYS = (process.env.ONLY || '').split(',').filter(Boolean);
-async function run(id: string, f: () => Promise<void>) { if (ONLYS.length && !ONLYS.includes(id)) return; try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 300) }; await shot(p, `${id}-error`); }
+async function run(id: string, f: () => Promise<void>) { if (ONLYS.length && !ONLYS.includes(id)) return; try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 300) }; await shot(p, `${id}-error`); }
   R[id] = { ...(R[id] || {}), sent: sends.splice(0).slice(0, 8) }; console.log(t(), id, JSON.stringify(R[id]).slice(0, 3000)); fs.writeFileSync(path.join(EV, 'ui-fallback.json'), JSON.stringify(R, null, 1)); }
 /** pick in a Quasar select inside the open dialog by its label: click, type, choose the first option containing `want` */
 async function pick(label: RegExp, typeText: string, want: RegExp | string) {

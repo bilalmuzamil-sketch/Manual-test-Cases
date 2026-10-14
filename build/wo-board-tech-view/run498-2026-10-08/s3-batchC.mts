@@ -28,7 +28,7 @@ const bv = async (pg: Page, n: string) => { await pg.goto(APP + '/workorders?tab
 const col = async (pg: Page, id: string) => { await toColumn(pg, id); return (await boardCols(pg)).find((c) => c.id === id) ?? null; };
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
-  try { await f(); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
+  try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 2000));
   fs.writeFileSync(path.join(EV, 's3-batchC.json'), JSON.stringify(R, null, 1));
 }

@@ -22,7 +22,7 @@ const R: Record<string, any> = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(O
 const shotOn = (pg: Page, n: string) => pg.screenshot({ path: path.join(EV, `${n}.png`) }).catch(() => {});
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id) || process.env.PROD_ONLY) return; R[id] = {};
-  try { await f(); } catch (e: any) { R[id].error = String(e?.message || e).slice(0, 400); await shotOn(p, `${id}-error`); }
+  try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id].error = String(e?.message || e).slice(0, 400); await shotOn(p, `${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 2500)); fs.writeFileSync(OUT, JSON.stringify(R, null, 1));
 }
 const H = (pg: Page) => ({
