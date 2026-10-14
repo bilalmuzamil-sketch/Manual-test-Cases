@@ -1,0 +1,436 @@
+===== C96927 | Tech View offers List's columns plus Assigned Techs in its own Columns menu | atm 1 | sec 13237
+--PRE
+Preconditions
+• Needs: 1 user · 1 browser · about 10 minutes
+• Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.
+• [User-A]: an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+• One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+• One technician at this location: [Tech-A] (e.g. "Esther Howard"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+• Customer "ZZAUTOTEST F2 Tech Columns" (used by this case only), with one contact and one asset, so this case's work orders are kept apart from every other work order at the location.
+• One Approved work order for that customer, [WO-1], led by [Tech-A], so Tech View has a row to show columns on.
+• Names and numbers are examples.
+Setup
+• Sign in with the Admin quick-login button on the sign-in page (you appear as "Admin ShopView"). Check the location in the top bar next to the bell; to change it click your initials at the top right > Change Location.
+• Settings (your initials at the top right > Settings) > Staff: confirm each technician below is active at this location with Time Clock on, or add it: New Staff Member > First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on > Save & Close. Record them as [Tech-A] (e.g. Esther Howard).
+• Top menu Customers > New Customer > Name "ZZAUTOTEST F2 Tech Columns" > Save (if it already exists, open it instead). On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) > Save. Make is required; Unit can be left empty.
+• Work Orders > Create Work Order > in the New Work Order window pick Customer "ZZAUTOTEST F2 Tech Columns" and its asset > Save. The work order opens on its Lines tab with the New Line form open: in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; the build offers only ready-made lines), turn Line Approved on > Save & Close; the work order becomes Approved. Repeat for one work order only; record its number as [WO-1] (e.g. S1-702) (numbers on this site look like "S10043-17581").
+• Set the leads: on an Approved work order pick the technician in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned. Here: [WO-1] = [Tech-A].
+• Check the setup worked: Work Orders > All tab > Search ZZAUTOTEST F2 Tech Columns — [WO-1] shows with Lead Technician [Tech-A]. If not, set the lead before starting.
+--STEPS
+• Open Work Orders.
+• Click the All tab, click Search and type ZZAUTOTEST F2 Tech Columns.
+• In List, click the Column Selection button (tooltip "Column Selection") and write down every column name in the menu.
+• Close the menu.
+• In the display switcher at the right of the toolbar, click Tech View (tooltip "Tech View").
+• Click the Column Selection button and write down every column name.
+• Turn on Assigned Techs if it is off and close the menu.
+--EXP
+Expected results
+• Tech View has its own Columns button that opens a column menu.
+• Every column offered in List's menu is also offered in Tech View's menu, and Tech View's menu also offers Assigned Techs.
+• List's menu does not offer Assigned Techs.
+• After turning it on, an Assigned Techs column shows in the Tech View table.
+• The design's Tech View menu offers 10 columns and leaves out some List columns (e.g. VIN/Serial #, On Site, Lead Technician): if the build matches the design rather than List, it is a fail, write down the missing columns.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10045 (Story 2, Tech View — table grouped by lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S2-R4, read 8 Oct 2026. Design: Claude Design export of 8 Oct 2026 (Work Orders.dc.html), Columns menu in Table and By Lead Tech; on-screen labels only.
+Exact quotes from the source (for reproducibility)
+• S2-R4: “Tech View offers the same columns as List, plus the Assigned Techs column (Story 7), through its own column chooser (Story 5).”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY
+--DOC None
+
+===== C96979 | Tech View starts with List's default columns and saved List choices stay | atm 1 | sec 13240
+--PRE
+Preconditions
+• Needs: 2 users · 2 browsers · about 15 minutes
+• Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.
+• [User-A]: an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+• [User-B] = "Nora New" (the expected results name her, so keep this name): a brand-new user who has never changed any Work Orders columns, created under Settings > Staff with an Admin role, signed in in a second browser.
+• One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+• Customer "ZZAUTOTEST F2 Tech Default Columns" (used by this case only), with one contact and one asset, so this case's work orders are kept apart from every other work order at the location.
+• One Approved work order for that customer, [WO-1], with one line and Lead Technician left empty.
+• [User-A]'s List may start with any columns; the steps set them.
+Setup
+• Sign in with the Admin quick-login button on the sign-in page (you appear as "Admin ShopView"). Check the location in the top bar next to the bell; to change it click your initials at the top right > Change Location.
+• Settings (your initials at the top right > Settings) > Staff > New Staff Member with an email you can open for "Nora New", role = Admin, at least one Department (required), with this location picked in Location > Save & Close, then accept the invitation and set a password. Keep her signed in in a second browser.
+• Top menu Customers > New Customer > Name "ZZAUTOTEST F2 Tech Default Columns" > Save (if it already exists, open it instead). On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) > Save. Make is required; Unit can be left empty.
+• Create the work order: Work Orders > Create Work Order > in the New Work Order window pick Customer "ZZAUTOTEST F2 Tech Default Columns" and its Asset > Save, and record its number as [WO-1] (e.g. "S1-702"). Leave Lead Technician empty. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save & Close.
+• Check the setup worked: Nora New can sign in and opens Work Orders without having changed any column; Work Orders > All tab > Search ZZAUTOTEST F2 Tech Default Columns shows [WO-1], status Approved, with no lead. If Nora New already existed and changed columns, create a fresh user instead.
+--STEPS
+• As Nora New open Work Orders in List and write down every column shown.
+• Pick Tech View and write down every column shown.
+• Open Tech View's Column Selection menu and read whether Assigned Techs is on.
+• As your own user, open List, turn Service Advisor off and Created on on, then reload.
+• Pick Tech View, change any column there, pick List again and reload.
+--EXP
+Expected results
+• Nora New's Tech View shows exactly the same columns as her List default (the production List defaults); Assigned Techs is off until she turns it on.
+• Your List keeps Service Advisor off and Created on on after every switch and reload: saved List choices stay exactly as they are. (Choices saved before this release cannot be recreated by hand; write 'pre-release List choice not checked' unless you have such a user.)
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10048 (Story 5, Fields to display (Board View) and columns (Tech View)); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S5-R4, S5-R12, read 8 Oct 2026. Review Decisions FF-7 / DR-21. Tech plan §3.9 records the production default List columns. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+• S5-R4: “Until the user changes Tech View’s columns, Tech View shows the current production List default columns.”
+• S5-R12: “Existing saved List column selections stay exactly as they are.”
+• Tech plan §3.9 (default List columns): “Default List columns = every non-required column except `invoicedDate`, `daysOpen`, `partRequestsCount`, `partReturnRequestsCount`, `unreceivedPartRequestsCount`.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY
+--DOC None
+
+===== C96983 | If saved field choices can't load, the defaults show and the next change saves | atm 1 | sec 13240
+--PRE
+Preconditions
+• Needs: 1 user · 1 browser · a developer-forced load failure for steps 4 and 5 · about 10 minutes
+• Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.
+• [User-A]: an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+• One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+• This case needs the user's saved field and column choices to fail to load. That cannot be caused from the product. Run it only on a test site where a developer has made the saved choices fail to load; otherwise run steps 1 to 3 only and write 'load failure not checked by hand' in the result comment.
+• Customer "ZZAUTOTEST F2 Saved Choice Failure" (used by this case only), with one contact and one asset, so this case's work orders are kept apart from every other work order at the location.
+• One Approved work order for that customer, [WO-1], with one line and Lead Technician left empty (it shows in Unassigned).
+• Created date is off in Board View's Fields to display at the start.
+Setup
+• Sign in with the Admin quick-login button on the sign-in page (you appear as "Admin ShopView"). Check the location in the top bar next to the bell; to change it click your initials at the top right > Change Location.
+• Top menu Customers > New Customer > Name "ZZAUTOTEST F2 Saved Choice Failure" > Save (if it already exists, open it instead). On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) > Save. Make is required; Unit can be left empty.
+• Create the work order: Work Orders > Create Work Order > in the New Work Order window pick Customer "ZZAUTOTEST F2 Saved Choice Failure" and its Asset > Save, and record its number as [WO-1] (e.g. "S1-702"). Leave Lead Technician empty. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save & Close.
+• Check the setup worked: Work Orders > All tab > Search ZZAUTOTEST F2 Saved Choice Failure shows [WO-1], status Approved, with no lead; Board View > Fields to display shows Created date off (turn it off if it is on).
+--STEPS
+• Open Work Orders, pick Board View and open Fields to display; write down the fields that are on.
+• Pick Tech View and write down the columns shown.
+• Turn one Board View field on (e.g. Created date), reload and read whether it stayed on.
+• (Only with a forced load failure) reload Board View and Tech View and read the fields and columns shown.
+• (Only with a forced load failure) change one field, then reload once the failure is removed.
+--EXP
+Expected results
+• With the saved choices unreadable, Board View shows its default fields (lead technician name, work order number, customer, unit number, asset, progress, total price, status) and Tech View shows its starting columns (the List default columns).
+• The next field choice made after the failure is saved and is still there after the reload. Without a forced failure only step 3 (a normal save) can be seen.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10048 (Story 5, Fields to display (Board View) and columns (Tech View)); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S5-N2, S5-N3, read 8 Oct 2026. Tech plan Phase 4 (after a failed preference load the next save re-reads and merges). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+• S5-N2: “If field preferences cannot load, use Tech View’s starting columns (S5-R4) or Board View’s default fields for the current display.”
+• S5-N3: “Save the user’s next field selection after a preference-load failure.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY
+--DOC None
+
+===== C96975 | Tech View keeps its own column choice, separate from List, for each user | atm 1 | sec 13240
+--PRE
+Preconditions
+• Needs: 1 user · 2 browsers · about 15 minutes
+• Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.
+• [User-A]: an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+• One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+• A second location [Loc-2] you can switch to (your initials at the top right > Change Location), e.g. "Staging Lethbridge - 4310" (the case's earlier example was "Trailer Shop", which does not exist on this site); your user is enrolled at both.
+• One technician at this location: [Tech-A] (e.g. "Esther Howard"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+• Customer "ZZAUTOTEST F2 Tech Own Columns" (used by this case only), with one contact and one asset, so this case's work orders are kept apart from every other work order at the location.
+• One Approved work order for that customer, [WO-1], led by [Tech-A], so List and Tech View have a row.
+• A second browser or computer is available.
+Setup
+• Sign in with the Admin quick-login button on the sign-in page (you appear as "Admin ShopView"). Check the location in the top bar next to the bell; to change it click your initials at the top right > Change Location.
+• Settings (your initials at the top right > Settings) > Staff > New Staff Member, enter First Name and Last Name (e.g. "Esther Howard") and an email. Pick a Role that is not Office User or Time Clock User (e.g. "Technician"), pick at least one Department (required), set Location to this location and turn Time Clock on, then click Save & Close. Record as [Tech-A].
+• Create a customer used only by this case so a search shows only its work orders: top menu Customers > New Customer, Name "ZZAUTOTEST F2 Tech Own Columns" > Save. On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty.
+• Create the work order: Work Orders > Create Work Order > in the New Work Order window pick Customer "ZZAUTOTEST F2 Tech Own Columns" and its Asset > Save, and record its number as [WO-1] (e.g. "S1-702"). The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save & Close.
+• Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page and choose [Tech-A] (e.g. "Esther Howard"). (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.)
+• Check the setup worked: Work Orders > All tab > Search ZZAUTOTEST F2 Tech Own Columns — [WO-1] shows, status Approved, led by [Tech-A]; your initials at the top right > Change Location lists [Loc-2]. If [Loc-2] is missing, add it to your own staff record (Settings > Staff > your own row's edit icon > Location).
+--STEPS
+• Open Work Orders in List, open Column Selection and write down which columns are on.
+• Pick Tech View, open its Column Selection menu, turn Service Advisor off and Assigned Techs on.
+• Pick List and read whether Service Advisor and Assigned Techs changed there.
+• In List turn Progress off.
+• Pick Tech View and read whether Progress changed there.
+• Log out, log back in and open Tech View.
+• In the second browser sign in as the same user and open Tech View.
+• Switch to [Loc-2] (your initials at the top right > Change Location) and open Tech View.
+• Open List in each of the above and read its columns.
+--EXP
+Expected results
+• Tech View's choice does not touch List: after step 3 List still shows Service Advisor (and has no Assigned Techs). List's choice does not touch Tech View: after step 5 Tech View still shows Progress.
+• Tech View keeps Service Advisor off and Assigned Techs on after logging back in, in the second browser and at the second location. List keeps its own columns (Progress off) exactly as it saves them today.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10048 (Story 5, Fields to display (Board View) and columns (Tech View)); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S5-R1, S5-R8, read 8 Oct 2026. Review Decisions DR-33 (Tech View's column selection separate from List both ways). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+• S5-R1: “Tech View has its own optional-column selection, separate from List. Changing columns in Tech View never changes List, and changing columns in List never changes Tech View.”
+• S5-R8: “Save the Tech View column selection per user across logout/login, devices, and locations. List keeps saving its columns exactly as it does today.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY
+--DOC None
+
+===== C96993 | Cards and Tech View's Assigned Techs show the lead and line technicians | atm 3 | sec 13242
+--PRE
+Preconditions
+• Needs: 1 user · 1 browser · Schedule access · about 20 minutes
+• Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+• Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+• Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+• Technicians: 4 eligible technicians at this location, named as the expected results name them: "Esther Howard", "Ralph Edwards", "Dana Ortiz", "Jenny Wilson". A technician is eligible when Time Clock is on, the staff member is active (not deactivated), the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+• Customer "ZZAUTOTEST F3 Avatar Group" (used by this case only), with one contact and one asset.
+• Work order [WO-1] for this customer: status Approved; Lead Technician Esther Howard; three lines — "Line 1" given to Ralph Edwards, "Line 2" given to Dana Ortiz, "Line 3" with no labor technician; Jenny Wilson holds a Schedule shift on Line 3 (tomorrow 8:00–10:00).
+• What must hold: 4 different people are on [WO-1] (1 lead, 2 line technicians, 1 scheduled technician). The work order number and the line names are examples.
+Setup
+• Settings (your initials at the top right > Settings) > Staff: confirm each technician below exists and is eligible, or add them with New Staff Member: First Name and Last Name ("Esther Howard", "Ralph Edwards", "Dana Ortiz", "Jenny Wilson") and an email; a Role that is not Office User or Time Clock User (e.g. "Technician"); at least one Department (required); Location = this location; Time Clock on > Save & Close.
+• Top menu Customers > New Customer, Name "ZZAUTOTEST F3 Avatar Group" > Save (skip if it already exists). On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty. Record the customer as [Cust-1].
+• Create a work order with three lines: Work Orders > Create Work Order > in New Work Order pick Customer [Cust-1] and its Asset > Save. The work order opens on its Lines tab with the New Line form open: in "What Are You Doing?" pick a ready-made line, turn Line Approved on (this makes the work order Approved) > Save & Add Line for the next line or Save & Close. Record the number shown as [WO-1] (e.g. "S1-644"). Line names in this case (such as "Line 1") are only labels for you: the New Line form's "What Are You Doing?" box only offers ready-made lines (typed text finds no results), so pick any ready-made line for each one (e.g. "Replace - Brake pot") and write down which is which.
+• On [WO-1] pick Lead Technician "Esther Howard". Lead Technician on the work order page is read-only while the work order is an Estimate; once it is Approved it is a Lead Technician dropdown.
+• Give "Line 1" to Ralph Edwards and "Line 2" to Dana Ortiz (Edit Line > Technicians). Leave "Line 3" with no labor technician.
+• On the Schedule, give "Jenny Wilson" a shift on [WO-1] tomorrow 8:00–10:00: Schedule > go to that day > drag the work order from the work order list onto Jenny Wilson's row at the start time > in the picker choose Choose lines and tick Line 3 > set the end time > save.
+• Check the setup worked: Work Orders > All tab > List > type "ZZAUTOTEST F3 Avatar Group" in Search — exactly [WO-1] shows, Approved, Lead Technician Esther Howard; on its Lines tab Line 1 shows Ralph Edwards, Line 2 Dana Ortiz, Line 3 no labor technician; on the Schedule Jenny Wilson's shift on [WO-1] is there tomorrow. If it does not match, fix the work order (or create it again) before starting.
+--STEPS
+• Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip "Board View").
+• Type [Cust-1] ("ZZAUTOTEST F3 Avatar Group") in Search.
+• Open Fields to display and turn line technicians on.
+• Read the avatar group on the card and hover each avatar.
+• Pick Tech View, open Column Selection and turn Assigned Techs on.
+• Read the avatar group in the row.
+• Pick List and open its Column Selection menu.
+--EXP
+Expected results
+• The card shows a compact avatar group of 4: Esther Howard (lead) plus Ralph Edwards, Dana Ortiz and Jenny Wilson (the scheduled technician on Line 3 counts as that line's technician).
+• Tech View's Assigned Techs column shows the same 4-avatar group.
+• List does not offer an Assigned Techs column.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10050 (Story 7, Show line technicians on cards and rows); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S7-R1, read 8 Oct 2026. PRD Story 7 context note (scheduled technicians count as the line's technicians). Review Decisions DR-33. Design export of 8 Oct 2026 (Claude Design project 787fef1a, Work Orders.dc.html): List's Columns shows an "Assigned Tech" column; the PRD (no column in List) is followed. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+• S7-R1: “Board View cards (when the line technicians field is on) and a new optional Assigned Techs column in Tech View show a compact avatar group: the lead technician plus the distinct technicians assigned to work order lines. List does not get this column.”
+• Story 7 context note: “this feature counts technicians scheduled on a line as that line’s technicians (S7-R1).”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY
+--DOC None
+
+===== C96994 | The lead comes first and each technician shows only once | atm 3 | sec 13242
+--PRE
+Preconditions
+• Needs: 1 user · 1 browser · about 15 minutes
+• Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+• Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+• Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+• Technicians: 2 eligible technicians at this location, named as the expected results name them: "Esther Howard", "Ralph Edwards". A technician is eligible when Time Clock is on, the staff member is active (not deactivated), the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+• Customer "ZZAUTOTEST F3 Lead First Once" (used by this case only), with one contact and one asset.
+• Work order [WO-1] for this customer: status Approved; Lead Technician Esther Howard; three lines — "Line 1" given to Esther Howard, "Line 2" and "Line 3" both given to Ralph Edwards.
+• What must hold: Esther Howard is both lead and a line technician; Ralph Edwards is on two lines. The line names are examples.
+Setup
+• Settings (your initials at the top right > Settings) > Staff: confirm each technician below exists and is eligible, or add them with New Staff Member: First Name and Last Name ("Esther Howard", "Ralph Edwards") and an email; a Role that is not Office User or Time Clock User (e.g. "Technician"); at least one Department (required); Location = this location; Time Clock on > Save & Close.
+• Top menu Customers > New Customer, Name "ZZAUTOTEST F3 Lead First Once" > Save (skip if it already exists). On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty. Record the customer as [Cust-1].
+• Create a work order with three lines: Work Orders > Create Work Order > in New Work Order pick Customer [Cust-1] and its Asset > Save. The work order opens on its Lines tab with the New Line form open: in "What Are You Doing?" pick a ready-made line, turn Line Approved on (this makes the work order Approved) > Save & Add Line for the next line or Save & Close. Record the number shown as [WO-1]. Line names in this case (such as "Line 1") are only labels for you: the New Line form's "What Are You Doing?" box only offers ready-made lines (typed text finds no results), so pick any ready-made line for each one (e.g. "Replace - Brake pot") and write down which is which.
+• On [WO-1] pick Lead Technician "Esther Howard". Lead Technician on the work order page is read-only while the work order is an Estimate; once it is Approved it is a Lead Technician dropdown.
+• Give "Line 1" to Esther Howard, and "Line 2" and "Line 3" both to Ralph Edwards (Edit Line > Technicians).
+• Check the setup worked: Work Orders > All tab > List > type "ZZAUTOTEST F3 Lead First Once" in Search — exactly [WO-1] shows, Approved, Lead Technician Esther Howard; on its Lines tab Line 1 shows Esther Howard and Lines 2 and 3 show Ralph Edwards. If it does not match, fix the work order (or create it again) before starting.
+--STEPS
+• Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip "Board View").
+• Type [Cust-1] ("ZZAUTOTEST F3 Lead First Once") in Search.
+• Turn line technicians on in Fields to display.
+• Read the avatars in order and hover each one.
+• Pick Tech View with Assigned Techs on (Column Selection > Assigned Techs) and do the same.
+--EXP
+Expected results
+• The group shows 2 avatars: Esther Howard first, then Ralph Edwards.
+• Esther Howard appears once although she is lead and on a line, and Ralph Edwards appears once although he is on two lines.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10050 (Story 7, Show line technicians on cards and rows); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S7-R3, S7-R5, S7-E1, read 8 Oct 2026. Review Decisions FF-8 / DR-11. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+• S7-R3: “Place the lead technician first in the avatar group.”
+• S7-R5: “Show each technician once, even when they are both lead and assigned to lines.”
+• S7-E1: “A technician assigned to several lines of the same work order appears once.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY
+--DOC None
+
+===== C96995 | Extra technicians show as +N and every name can be found by hovering | atm 3 | sec 13242
+--PRE
+Preconditions
+• Needs: 1 user · 1 browser · about 25 minutes
+• Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+• Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+• Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+• Technicians: 6 eligible technicians at this location, named as the expected results name them: "Esther Howard", "Ralph Edwards", "Dana Ortiz", "Jenny Wilson", "Kristin Watson", "Theresa Webb". A technician is eligible when Time Clock is on, the staff member is active (not deactivated), the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+• Customer "ZZAUTOTEST F3 Plus N Avatars" (used by this case only), with one contact and one asset.
+• Work order [WO-1] for this customer: status Approved; Lead Technician Esther Howard; five lines, each given to a different technician: Ralph Edwards, Dana Ortiz, Jenny Wilson, Kristin Watson, Theresa Webb (6 people in all).
+• What must hold: 6 different people on [WO-1], so the avatar group cannot show them all.
+Setup
+• Settings (your initials at the top right > Settings) > Staff: confirm each technician below exists and is eligible, or add them with New Staff Member: First Name and Last Name ("Esther Howard", "Ralph Edwards", "Dana Ortiz", "Jenny Wilson", "Kristin Watson", "Theresa Webb") and an email; a Role that is not Office User or Time Clock User (e.g. "Technician"); at least one Department (required); Location = this location; Time Clock on > Save & Close.
+• Top menu Customers > New Customer, Name "ZZAUTOTEST F3 Plus N Avatars" > Save (skip if it already exists). On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty. Record the customer as [Cust-1].
+• Create a work order with five lines: Work Orders > Create Work Order > in New Work Order pick Customer [Cust-1] and its Asset > Save. The work order opens on its Lines tab with the New Line form open: in "What Are You Doing?" pick a ready-made line, turn Line Approved on (this makes the work order Approved) > Save & Add Line for the next line or Save & Close. Record the number shown as [WO-1]. Line names in this case (such as "Line 1") are only labels for you: the New Line form's "What Are You Doing?" box only offers ready-made lines (typed text finds no results), so pick any ready-made line for each one (e.g. "Replace - Brake pot") and write down which is which.
+• On [WO-1] pick Lead Technician "Esther Howard". Lead Technician on the work order page is read-only while the work order is an Estimate; once it is Approved it is a Lead Technician dropdown.
+• Give each line to a different technician (Edit Line > Technicians): Ralph Edwards, Dana Ortiz, Jenny Wilson, Kristin Watson, Theresa Webb.
+• Check the setup worked: Work Orders > All tab > List > type "ZZAUTOTEST F3 Plus N Avatars" in Search — exactly [WO-1] shows, Approved, Lead Technician Esther Howard; its Lines tab shows the five lines with the five different technicians. If it does not match, fix the work order (or create it again) before starting.
+--STEPS
+• Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip "Board View").
+• Type [Cust-1] ("ZZAUTOTEST F3 Plus N Avatars") in Search.
+• Turn line technicians on in Fields to display.
+• Count the avatars shown and read the +N indicator.
+• Hover each visible avatar, one at a time, and read the name shown.
+• Hover the +N indicator and read what it shows.
+• Pick Tech View with Assigned Techs on (Column Selection > Assigned Techs) and repeat steps 4 to 6.
+--EXP
+Expected results
+• If not all 6 fit, the first avatars are shown followed by +N, and shown avatars + N = 6 (e.g. 4 avatars and "+2").
+• Hovering an avatar shows that avatar's own name, only while the pointer is on that avatar.
+• Every one of the 6 technicians can be found by name, including those behind +N (e.g. hovering +2 lists Kristin Watson and Theresa Webb).
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10050 (Story 7, Show line technicians on cards and rows); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S7-R4, S7-R6, S7-R2, read 8 Oct 2026. Design export of 8 Oct 2026 (Claude Design project 787fef1a, Work Orders.dc.html) / design system TechStack: up to 5 avatars, else 4 avatars + "+N"; hovering +N lists the hidden names. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+• S7-R4: “When avatars exceed available space, show the first avatars followed by a +N overflow indicator.”
+• S7-R6: “Keep every involved technician discoverable by name.”
+• S7-R2: “Use each visible avatar’s own visible area as its hover target.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY
+--DOC None
+
+===== C96996 | The technician field is blank only with no lead and no line technician | atm 3 | sec 13242
+--PRE
+Preconditions
+• Needs: 1 user · 1 browser · about 20 minutes
+• Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+• Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+• Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+• Technicians: 2 eligible technicians at this location, named as the expected results name them: "Esther Howard", "Ralph Edwards". A technician is eligible when Time Clock is on, the staff member is active (not deactivated), the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+• Customer "ZZAUTOTEST F3 Blank Technician" (used by this case only), with one contact and one asset.
+• Three Approved work orders for this customer: (a) [WO-a] no lead and no line technician; (b) [WO-b] no lead, one line given to Ralph Edwards; (c) [WO-c] lead Esther Howard and no line technician.
+• What must hold: exactly these three work orders for this customer.
+Setup
+• Settings (your initials at the top right > Settings) > Staff: confirm each technician below exists and is eligible, or add them with New Staff Member: First Name and Last Name ("Esther Howard", "Ralph Edwards") and an email; a Role that is not Office User or Time Clock User (e.g. "Technician"); at least one Department (required); Location = this location; Time Clock on > Save & Close.
+• Top menu Customers > New Customer, Name "ZZAUTOTEST F3 Blank Technician" > Save (skip if it already exists). On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty. Record the customer as [Cust-1].
+• Create three work orders, each with one line: Work Orders > Create Work Order > in New Work Order pick Customer [Cust-1] and its Asset > Save. The work order opens on its Lines tab with the New Line form open: in "What Are You Doing?" pick a ready-made line, turn Line Approved on (this makes the work order Approved) > Save & Add Line for the next line or Save & Close. Record the numbers shown as [WO-a], [WO-b], [WO-c]. Pick any ready-made line (e.g. "Replace - Brake pot").
+• On [WO-b] give the line to Ralph Edwards (Edit Line > Technicians); leave its Lead Technician Unassigned.
+• On [WO-c] pick Lead Technician "Esther Howard" (the dropdown appears once the work order is Approved); leave its line with no technician.
+• Leave [WO-a] with no lead and no line technician.
+• Check the setup worked: Work Orders > All tab > List > type "ZZAUTOTEST F3 Blank Technician" in Search — exactly [WO-a], [WO-b] and [WO-c] show, all Approved; only [WO-c] has a Lead Technician (Esther Howard). If it does not match, fix the work order (or create it again) before starting.
+--STEPS
+• Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip "Board View").
+• Type [Cust-1] ("ZZAUTOTEST F3 Blank Technician") in Search.
+• Turn line technicians on in Fields to display and read the field on each of the three cards.
+• Pick Tech View with Assigned Techs on (Column Selection > Assigned Techs) and read the column for the three rows.
+--EXP
+Expected results
+• (a) is blank. (b) shows Ralph Edwards. (c) shows Esther Howard. So only 1 of the 3 is blank. A "-" in an empty cell counts as blank.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10050 (Story 7, Show line technicians on cards and rows); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S7-N1, read 8 Oct 2026. Design export of 8 Oct 2026 (Claude Design project 787fef1a, Work Orders.dc.html): an empty group renders "-"; write down whether blank shows as empty or as a dash. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+• S7-N1: “The field/column is blank only when there is no lead technician and no assigned line technician.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY
+--DOC None
+
+===== C368141 | Tech View's Assigned Techs column sits right after Lines | atm 1 | sec 13242
+--PRE
+Dev-layer test — fe-unit. Existing coverage: techViewColumns.spec.ts:36,65
+Preconditions
+• Needs: 1 user · 1 browser · about 10 minutes
+• Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+• Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+• Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+• Technician: 1 eligible technician at this location to lead the work order (e.g. "Esther Howard"), recorded as [Tech-A]. A technician is eligible when Time Clock is on, the staff member is active (not deactivated), the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+• Customer "ZZAUTOTEST F3 Assigned Techs Column" (used by this case only), with one contact and one asset.
+• Work order [WO-1] for this customer: status Approved, Lead Technician [Tech-A].
+• Tech View Column Selection: Assigned Techs may start on or off (step 3 reads it). Names and numbers are examples.
+Setup
+• Settings (your initials at the top right > Settings) > Staff: confirm each technician below exists and is eligible, or add them with New Staff Member: First Name and Last Name (e.g. "Esther Howard"; record as [Tech-A]) and an email; a Role that is not Office User or Time Clock User (e.g. "Technician"); at least one Department (required); Location = this location; Time Clock on > Save & Close.
+• Top menu Customers > New Customer, Name "ZZAUTOTEST F3 Assigned Techs Column" > Save (skip if it already exists). On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty. Record the customer as [Cust-1].
+• Create the work order: Work Orders > Create Work Order > in the New Work Order window pick Customer [Cust-1] and its Asset > Save, and write down its number as [WO-1] (e.g. "S1-702"). The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results), turn on Line Approved and click Save & Close, so the work order status reads Approved (or use the line's approve control on the Lines tab).
+• Once the work order is Approved, pick [Tech-A] in the Lead Technician dropdown on the work order page. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.)
+• Check the setup worked: Work Orders > All tab > List > type "ZZAUTOTEST F3 Assigned Techs Column" in Search — exactly [WO-1] shows, Approved, Lead Technician [Tech-A]. If it does not match, fix the work order (or create it again) before starting.
+--STEPS
+• Open Work Orders, click the All tab and pick Tech View in the display switcher (tooltip "Tech View").
+• Type [Cust-1] ("ZZAUTOTEST F3 Assigned Techs Column") in Search.
+• Open the Column Selection menu and read whether Assigned Techs is on.
+• Turn Lines on if it is off, then turn Assigned Techs on.
+• Read which column is directly to the right of Lines.
+• Turn Assigned Techs off again.
+--EXP
+Expected results
+• Assigned Techs is optional: it is added from the column chooser and can be turned off again.
+• When on, the Assigned Techs column is immediately after Lines, as in the design.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10050 (Story 7, Show line technicians on cards and rows); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S7-R7, read 8 Oct 2026. PO answer Chris Ward 2 Oct 2026 thread ("right after Lines"). Design export of 8 Oct 2026 (Claude Design project 787fef1a, Work Orders.dc.html): Tech View column order … Lines, Assigned Tech, Created on, Total price. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+• S7-R7: “In Tech View the Assigned Techs column sits immediately after Lines, matching the design. It stays optional and is added through the column chooser (S2-R4).”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY
+--DOC None
+
+===== C96911 | Switching display keeps the same tab, search, filters and work orders | atm 3 | sec 13236
+--PRE
+Preconditions
+• Needs: 1 user · 1 browser · about 20 minutes.
+• Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+• [User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+• Desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.
+• One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+• [Tech-A], [Tech-B] and [Tech-C]: three eligible technicians at this location. A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+• Customer "ZZAUTOTEST Fibridge" with exactly three Approved work orders: [WO-1] led by [Tech-A], [WO-2] led by [Tech-B], [WO-3] with no lead.
+• Customer "ZZAUTOTEST Fisquare" with one Approved work order [WO-4] (any lead).
+• The two customer names are named in the expected results and stay as written; technician names and numbers are examples. What must hold: a search for ZZAUTOTEST Fibridge finds exactly [WO-1], [WO-2] and [WO-3] and not [WO-4].
+Setup
+• Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+• Check the location in the top bar next to the bell; to change it click your initials at the top right > Change Location. Create everything below in this location.
+• Settings (your initials at the top right > Settings) > Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member > First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on > Save & Close. Record them as [Tech-A] (the expected results call it "Esther Howard"), [Tech-B] (the expected results call it "Ralph Edwards"), [Tech-C] (e.g. Jenny Wilson).
+• Create the customer used only by this case: top menu Customers > New Customer > Name "ZZAUTOTEST Fibridge" > Save. On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty.
+• Create the customer used only by this case: top menu Customers > New Customer > Name "ZZAUTOTEST Fisquare" > Save. On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRL-903") > Save. Make is required; Unit can be left empty.
+• Create these work orders for "ZZAUTOTEST Fibridge": Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save & Close. Write down the number the build gives the work order (on a QA branch they look like "S10043-17581"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.• [WO-1] (e.g. S1-702): Lead Technician = [Tech-A].
+• [WO-2] (e.g. S1-691): Lead Technician = [Tech-B].
+• [WO-3] (e.g. S1-352): no lead (Lead Technician left empty).
+• Create these work orders for "ZZAUTOTEST Fisquare": Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save & Close. Write down the number the build gives the work order (on a QA branch they look like "S10043-17581"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.• [WO-4]: any lead.
+• Check the setup worked: Work Orders > All tab > Search "ZZAUTOTEST Fibridge" shows exactly 3 rows, [WO-1] (lead [Tech-A]), [WO-2] (lead [Tech-B]) and [WO-3] (no lead), all Approved, and not [WO-4]. If more work orders show (e.g. left from an earlier run), change the status of each extra one to Declined with the status control on the work order page, so the Approved filter in step 4 leaves it out. Then clear the search.
+--STEPS
+• Open Work Orders.
+• Click the All tab on the left of the toolbar.
+• Click Search and type ZZAUTOTEST Fibridge.
+• Open the Status filter, tick Approved (the status the setup gave your test work orders) and close the filter.
+• In List, write down every work order number shown ([WO-1], [WO-2], [WO-3]: 3 rows).
+• In the display switcher at the right of the toolbar, click Tech View (tooltip "Tech View").
+• Write down the work order numbers shown and each group header count.
+• In the display switcher at the right of the toolbar, click Board View (tooltip "Board View").
+• Write down the work order numbers on the cards and each column header count.
+• In the display switcher, click List (tooltip "List").
+--EXP
+Expected results
+• The layout changes straight away on each click, without a page reload.
+• After every switch the All tab is still selected, the search box still reads ZZAUTOTEST Fibridge and the Status filter still shows the status you ticked.
+• The same work orders appear in all three displays. With the example data: List shows 3 rows, Tech View shows the same 3 (Unassigned 1 + Esther Howard 1 + Ralph Edwards 1 = 3) and Board View shows the same 3 cards. The ZZAUTOTEST Fisquare work order appears in none of them.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S1-R3, Feature Overview, read 8 Oct 2026.
+Exact quotes from the source (for reproducibility)
+• S1-R3: “Switching display options immediately re-lays out the current results without changing the filter view, search text, or filters.”
+• Feature Overview: “The existing filter views (the tabs on the left — All, Work Orders, Estimates, Completed) and the filter bar (search, status, assigned to me, and so on) apply the same way in every display option.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY
+--DOC None
+
+===== C96913 | The four tabs All, Work Orders, Estimates, Completed work in every display | atm 1 | sec 13236
+--PRE
+Dev-layer test — be-functional. Existing coverage: ViewWorkOrderBoardTest.php:215 (List vs board parity); merged into E2E C96911
+Preconditions
+• Needs: 1 user · 1 browser · about 15 minutes.
+• Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+• [User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+• Desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.
+• One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+• [Tech-A]: one eligible technician at this location. A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+• Customer "ZZAUTOTEST F1 Tabs" (used by this case only) with three work orders, all led by [Tech-A]: [WO-1] in Estimate, [WO-2] in Approved, [WO-3] in Complete.
+• Names and numbers are examples; what must hold: one work order in each of Estimate, Approved and Complete, all led by the same technician.
+Setup
+• Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+• Check the location in the top bar next to the bell; to change it click your initials at the top right > Change Location. Create everything below in this location.
+• Settings (your initials at the top right > Settings) > Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member > First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on > Save & Close. Record them as [Tech-A] (e.g. Esther Howard).
+• Create the customer used only by this case: top menu Customers > New Customer > Name "ZZAUTOTEST F1 Tabs" > Save. On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty.
+• Create three work orders for "ZZAUTOTEST F1 Tabs": Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results) and click Save & Close. Write down the number the build gives each work order (on a QA branch they look like "S10043-17581"). Put three of your work orders in different statuses (open each one and change its status with the status control on the work order page):• [WO-1] (the expected results call it "S1-352"): left in Estimate (do not turn on Line Approved). Its Lead technician is read-only on the work order page while it is an Estimate, so give it its lead from Board View: the card's More actions (…) > Reassign lead technician > pick [Tech-A] > Reassign.
+• [WO-2] (the expected results call it "S1-702"): moved to Approved (turn on Line Approved in the New Line form before saving, or use the line's approve control on the Lines tab), then Lead Technician dropdown = [Tech-A] (it saves at once).
+• [WO-3] (the expected results call it "S1-689"): approved and given Lead Technician [Tech-A] the same way, then moved to Complete with the status control on the work order page.
+• Check the setup worked: Work Orders > All tab > Search "ZZAUTOTEST F1 Tabs" shows exactly [WO-1] (Estimate), [WO-2] (Approved) and [WO-3] (Complete), each with lead [Tech-A]. If a status or lead is wrong, fix it on the work order page (or from Board View for the Estimate) before starting.
+--STEPS
+• Open Work Orders and stay in List.
+• Click each tab in turn: All, Work Orders, Estimates, Completed. For each tab write down which of your three work orders ([WO-1], [WO-2], [WO-3]) appear.
+• In the display switcher at the right of the toolbar, click Tech View (tooltip "Tech View").
+• Click each tab in turn again and write down which of your three work orders appear under [Tech-A].
+• In the display switcher at the right of the toolbar, click Board View (tooltip "Board View").
+• Click each tab in turn again and write down which of your three work orders appear in [Tech-A]'s column.
+--EXP
+Expected results
+• All four tabs (All, Work Orders, Estimates, Completed) are shown in every display.
+• Each tab shows the same work orders in List, Tech View and Board View. With the example data: All shows 3 (S1-352, S1-702, S1-689), Work Orders shows S1-702, Estimates shows S1-352, Completed shows S1-689.
+• This case does not check which tab opens first: the default tab was taken out of scope and stays as production has it today.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), Feature Overview, Key Decisions, read 8 Oct 2026. PO decision Chris Ward, PRD footer comment 25 Sep 2026 ("The default-tab change is out too"). Review Decisions 853901313 DR-33.
+Exact quotes from the source (for reproducibility)
+• Feature Overview: “The existing filter views (the tabs on the left — All, Work Orders, Estimates, Completed) and the filter bar (search, status, assigned to me, and so on) apply the same way in every display option.”
+• Key Decisions: “Permissions. Work Orders view permits viewing all four filter tabs and reordering technician groups/columns.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY
+--DOC None
