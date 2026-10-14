@@ -5,6 +5,20 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
 H = os.path.dirname(os.path.abspath(__file__))
 B = json.load(open(f"{H}/behaviour-cases.json"))
+VC = {v["case"]: v for v in json.load(open(f"{H}/verify-cases.json"))["cases"]}
+VT = {v["title"]: v for v in json.load(open(f"{H}/verify-new-tests.json"))["tests"]}
+def norm(t): return re.sub(r"\s+", " ", t or "").strip()
+def apply_fix(items, v):
+    if isinstance(items, str): items = [items]
+    rem = {norm(x) for x in v.get("remove_items", [])}
+    fixes = {}
+    for c in v.get("corrections", []):
+        if " -> " in c: a, b = c.split(" -> ", 1); fixes[norm(a)] = b.strip()
+    out = []
+    for x in items:
+        if norm(x) in rem: continue
+        out.append(fixes.get(norm(x), x))
+    return out
 PRD = "https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=768507905"
 SLACK = "https://shopview.slack.com/archives/C0C39T5MLMB/p1791807912692899"
 TR = lambda c: f"https://shopview.testrail.io/index.php?/cases/view/{c}"
@@ -18,18 +32,21 @@ def nice(t):
 def lines(x): return "\n".join(x) if isinstance(x, list) else (x or "")
 wb = Workbook(); rd = wb.active; rd.title = "Read me"
 ws = wb.create_sheet("Test cases to update")
-cols = ["Case", "Case title", "Automated?", "What changed in behaviour", "Spec rule and when the spec changed it",
+cols = ["Case", "Case title", "Automated?", "What changed in behaviour", "What a tester sees differently (proof)", "Spec rule and when the spec changed it",
         "Expected behaviour before", "Expected behaviour now", "Steps before", "Steps now", "Source"]
-widths = [11, 32, 11, 38, 34, 50, 50, 50, 50, 12]
+widths = [11, 32, 11, 38, 45, 34, 50, 50, 50, 50, 12]
 ws.append(cols)
 for i, w in enumerate(widths, 1):
     c = ws.cell(row=1, column=i); c.font = Font(name=F, bold=True, color="FFFFFF"); c.fill = HDR
     c.alignment = Alignment(wrap_text=True, vertical="top"); ws.column_dimensions[c.column_letter].width = w
 ws.freeze_panes = "A2"
 for r in sorted(B["cases"], key=lambda r: r["case"]):
+    v = VC.get(r["case"], {})
+    if v.get("verdict") not in ("REAL", "PARTIAL"): continue
+    for k in ("expected_now", "steps_now"): r[k] = apply_fix(r[k], v)
     rules = "\n".join(f"{x['code']}: {nice(x.get('date',''))}" + (f" ({x['entry']})" if x.get("entry") else "") for x in r["rules"])
     src = link(f"https://shopview.atlassian.net/browse/{r['rules'][0]['code']}", "Jira") if r["rules"] and r["rules"][0]["code"].startswith("SV-") else link(PRD, "Spec page")
-    ws.append([link(TR(r["case"]), f"C{r['case']}"), r["case_title"], "Yes" if r.get("automated") else "No", r["why"], rules,
+    ws.append([link(TR(r["case"]), f"C{r['case']}"), r["case_title"], "Yes" if r.get("automated") else "No", r["why"], v.get("proof", ""), rules,
                lines(r["expected_before"]), lines(r["expected_now"]), lines(r["steps_before"]), lines(r["steps_now"]), src])
 for row in ws.iter_rows(min_row=2):
     for c in row:
@@ -46,6 +63,11 @@ for i, w in enumerate(nw, 1):
     c.alignment = Alignment(wrap_text=True, vertical="top"); nt.column_dimensions[c.column_letter].width = w
 nt.freeze_panes = "A2"
 for t in NT:
+    vt = VT.get(t["title"], {})
+    if vt.get("verdict") in ("NOT A CHANGE", "ALREADY COVERED"): continue
+    if vt.get("verdict") == "FIX":
+        for k in ("preconditions", "steps", "expected"): t[k] = apply_fix(t[k], {"corrections": vt.get("corrections", [])})
+    if vt.get("verdict") == "NEEDS PRODUCT" and not t.get("needs_confirmation"): t["needs_confirmation"] = vt.get("notes") or "Yes: rests on a developer statement without a product decision."
     rules = "\n".join(f"{x['code']}: {nice(x.get('date',''))}" + (f" ({x['entry']})" if x.get("entry") else "") for x in t["rules"])
     rc = t.get("related_case")
     nt.append([t["title"], t["why_needed"], rules, "\n".join(t["preconditions"]), "\n".join(f"{i}. {x}" for i, x in enumerate(t["steps"], 1)),
@@ -78,4 +100,4 @@ for row in rd.iter_rows():
         c.alignment = Alignment(wrap_text=True, vertical="top")
         c.font = Font(name=F, color="1155CC", underline="single") if str(c.value).startswith("=HYPERLINK") else Font(name=F, bold=(c.column == 1 and bool(c.value)))
 rd["A1"].font = Font(name=F, bold=True, size=14)
-out = f"{H}/DVI-V2-test-cases-with-changed-behaviour.xlsx"; wb.save(out); print(len(B["cases"]), "cases ->", out)
+out = f"{H}/DVI-V2-test-cases-with-changed-behaviour.xlsx"; wb.save(out); print(ws.max_row - 1, "cases;", nt.max_row - 1, "new tests ->", out)
