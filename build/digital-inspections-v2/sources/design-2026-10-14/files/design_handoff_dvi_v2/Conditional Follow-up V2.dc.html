@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="../_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<script src="../_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+<style>
+  body { margin:0; background:#EEF2F6; font-family:'Inter',system-ui,sans-serif; }
+  a { color:#175CD3; text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .divider { display:flex; align-items:baseline; gap:14px; padding:0 0 4px; border-bottom:2px solid #202939; }
+  .dnum { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; flex:none; border-radius:8px; background:#202939; color:#fff; font-size:12px; font-weight:700; }
+  .dtitle { font-size:19px; font-weight:600; color:#202939; }
+  .dids { margin-left:auto; font-size:11px; font-weight:600; letter-spacing:0.06em; color:#697586; }
+  /* Conditional follow-up */
+  .sc-ci .board { background:#F8FAFC; border:1px solid #E3E8EF; border-radius:12px; box-shadow:0 1px 2px rgba(11,23,51,0.05); overflow:hidden; }
+  .sc-ci .board div, .sc-ci .board input { min-width:0; }
+  .sc-ci .badge { display:inline-flex; align-items:center; height:22px; padding:0 8px; border-radius:9999px; background:#202939; color:#fff; font-size:11px; font-weight:600; }
+  .sc-ci .cap { display:flex; align-items:baseline; gap:12px; }
+  .sc-ci .cap .t { font-size:16px; font-weight:600; color:#202939; }
+  .sc-ci .cap .s { font-size:13px; color:#697586; }
+  .sc-ci .glab { font-size:10px; font-weight:600; letter-spacing:0.06em; color:#697586; }
+  .sc-ci .note { font-size:12px; line-height:18px; color:#697586; max-width:420px; text-wrap:pretty; }
+  .sc-ci .panel { width:360px; flex:none; box-sizing:border-box; background:#fff; border:1px solid #E3E8EF; border-radius:12px; box-shadow:0 1px 2px rgba(11,23,51,0.05); display:flex; flex-direction:column; overflow:hidden; }
+  .sc-ci .psec { padding:13px 16px; border-bottom:1px solid #EEF2F6; display:flex; flex-direction:column; gap:9px; }
+  .sc-ci .inp { height:32px; padding:0 10px; border:1px solid #CDD5DF; border-radius:8px; font-family:inherit; font-size:14px; color:#202939; background:#fff; width:100%; box-sizing:border-box; }
+  .sc-ci .ta { width:100%; box-sizing:border-box; padding:9px 10px; border:1px solid #CDD5DF; border-radius:8px; font-family:inherit; font-size:13px; line-height:18px; color:#202939; resize:none; }
+  .sc-ci .addfu { display:inline-flex; align-items:center; gap:5px; height:32px; flex:none; padding:0 2px; border:0; background:none; font-family:inherit; font-size:13px; font-weight:600; color:#175CD3; cursor:pointer; white-space:nowrap; }
+  .sc-ci .hasfu { display:inline-flex; align-items:center; gap:5px; height:32px; flex:none; padding:0 9px; border:1px solid #BEDFFF; border-radius:8px; background:#E9F5FF; font-family:inherit; font-size:11px; font-weight:600; color:#175CD3; cursor:pointer; white-space:nowrap; }
+  .sc-ci .fublk { display:flex; flex-direction:column; gap:7px; padding:9px; border:1px solid #E3E8EF; border-radius:8px; background:#F8FAFC; }
+  .sc-ci .fublk.on { border-color:#BEDFFF; background:#fff; box-shadow:0 1px 2px rgba(11,23,51,0.05); }
+  .sc-ci .fuchk { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:500; color:#697586; cursor:pointer; }
+  .sc-ci .fuchk.on { color:#175CD3; font-weight:600; }
+  .sc-ci .cbx { width:16px; height:16px; flex:none; border:1px solid #CDD5DF; border-radius:4px; background:#fff; display:inline-flex; align-items:center; justify-content:center; }
+  .sc-ci .cbx.on { border-color:#257CFF; background:#257CFF; color:#fff; }
+  .sc-ci .ta.off { background:#F1F4F8; border-color:#E3E8EF; color:#9AA4B2; }
+  .sc-ci .ta.off::placeholder { color:#9AA4B2; }
+  .sc-ci .btn2.off { border-color:#E3E8EF; background:#F1F4F8; color:#9AA4B2; align-self:flex-start; }
+  .sc-ci .ackn { display:inline-flex; align-items:center; height:20px; flex:none; padding:0 7px; border:1px solid #E3E8EF; border-radius:9999px; background:#fff; font-size:10px; font-weight:600; color:#9AA4B2; white-space:nowrap; }
+  .sc-ci .ackn.on { border-color:#BEDFFF; background:#E9F5FF; color:#175CD3; }
+  .sc-ci .dot { width:8px; height:8px; border-radius:50%; flex:none; }
+  .sc-ci .icb { width:30px; height:30px; flex:none; border:1px solid #CDD5DF; border-radius:8px; background:#fff; color:#697586; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; }
+  .sc-ci .icb.on { border-color:#BEDFFF; background:#E9F5FF; color:#175CD3; }
+  .sc-ci .tog { width:40px; height:24px; flex:none; border-radius:9999px; background:#CDD5DF; padding:2px; display:flex; box-sizing:border-box; }
+  .sc-ci .tog.on { background:#257CFF; justify-content:flex-end; }
+  .sc-ci .knob { width:20px; height:20px; border-radius:50%; background:#fff; }
+  .sc-ci .btn2 { display:inline-flex; align-items:center; justify-content:center; gap:6px; height:32px; padding:0 12px; border:1px solid #CDD5DF; border-radius:8px; background:#fff; font-family:inherit; font-size:12px; font-weight:600; color:#364152; cursor:pointer; white-space:nowrap; }
+  .sc-ci .seg { display:flex; height:44px; max-width:520px; border:1px solid #CDD5DF; border-radius:8px; overflow:hidden; background:#fff; }
+  .sc-ci .seg button { border:0; background:#fff; font-family:inherit; font-size:13px; font-weight:600; color:#4B5565; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:6px; border-left:1px solid #CDD5DF; }
+  .sc-ci .seg button:first-child { border-left:0; }
+  .sc-ci .seg .on-ok { background:#099250; color:#fff; font-weight:700; }
+  .sc-ci .seg .on-mon { background:#DC6803; color:#fff; font-weight:700; }
+  .sc-ci .seg .on-bad { background:#D92D20; color:#fff; font-weight:700; }
+  .sc-ci .seg .on-na { background:#697586; color:#fff; font-weight:700; }
+  .sc-ci .card { background:#fff; border:1px solid #E3E8EF; border-radius:12px; box-shadow:0 1px 2px rgba(11,23,51,0.05); overflow:hidden; max-width:1020px; }
+  .sc-ci .foot { display:flex; align-items:center; gap:10px; padding:10px 20px; background:#F8FAFC; border-top:1px solid #EEF2F6; }
+  .sc-ci .ins { border:1px solid #BEDFFF; border-radius:8px; background:#E9F5FF; display:flex; flex-direction:column; gap:10px; padding:12px; }
+  .sc-ci .instxt { font-size:13px; line-height:19px; color:#202939; text-wrap:pretty; margin:0; }
+  .sc-ci .fileline { display:flex; align-items:center; gap:10px; padding:8px 10px; background:#fff; border:1px solid #BEDFFF; border-radius:8px; }
+  .sc-ci .fname { font-size:12px; font-weight:600; color:#175CD3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-decoration:underline; text-underline-offset:2px; cursor:pointer; }
+  .sc-ci .stamp { display:inline-flex; align-items:center; gap:8px; min-height:32px; padding:6px 12px; border:1px solid #CDD5DF; border-radius:8px; background:#fff; font-size:12px; font-weight:600; color:#364152; }
+  .sc-ci .req { display:inline-flex; align-items:center; height:20px; padding:0 8px; border-radius:9999px; font-size:11px; font-weight:700; white-space:nowrap; }
+  .sc-ci .tip { position:relative; display:inline-flex; }
+  .sc-ci .tipbox { position:absolute; top:26px; left:-8px; width:236px; padding:8px 10px; border-radius:8px; background:#202939; color:#fff; font-size:11px; line-height:16px; font-weight:500; box-shadow:0 12px 24px rgba(11,23,51,0.10); z-index:2; }
+  .sc-ci .phone { width:402px; flex:none; box-sizing:border-box; background:#F8FAFC; border:1px solid #E3E8EF; border-radius:20px; overflow:hidden; box-shadow:0 12px 24px rgba(11,23,51,0.10); display:flex; flex-direction:column; }
+  .sc-ci .phone > div { flex:none; }
+  .sc-ci .abar { display:flex; align-items:center; gap:10px; padding:12px 14px; background:#fff; border-bottom:1px solid #E3E8EF; }
+  .sc-ci .micb { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; flex:none; border:1px solid #E3E8EF; border-radius:8px; background:#F8FAFC; color:#4B5565; cursor:pointer; }
+  .sc-ci .fcard { background:#fff; border:1px solid #E3E8EF; border-radius:12px; overflow:hidden; }
+  .sc-ci .num { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; flex:none; border-radius:7px; background:#EEF2F6; color:#4B5565; font-size:12px; font-weight:600; }
+  .sc-ci .num.on { background:#257CFF; color:#fff; }
+  .sc-ci .mbtn { display:inline-flex; align-items:center; justify-content:center; gap:8px; height:52px; padding:0 14px; border:1px solid #CDD5DF; border-radius:8px; background:#fff; font-family:inherit; font-size:14px; font-weight:600; color:#364152; cursor:pointer; }
+  .sc-ci .seg4 { display:flex; height:52px; border:1px solid #CDD5DF; border-radius:8px; overflow:hidden; background:#fff; }
+  .sc-ci .seg4 button { border:0; border-left:1px solid #E3E8EF; background:#fff; font-family:inherit; font-size:14px; font-weight:600; color:#4B5565; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:6px; }
+  .sc-ci .seg4 button:first-child { border-left:0; }
+  .sc-ci .seg4 .on-ok { background:#099250; color:#fff; font-weight:700; }
+  .sc-ci .seg4 .on-bad { background:#D92D20; color:#fff; font-weight:700; }
+  .sc-ci .orow { display:flex; align-items:center; gap:10px; min-height:56px; padding:8px 12px; border:1px solid #E3E8EF; border-radius:8px; background:#fff; font-family:inherit; cursor:pointer; text-align:left; }
+  .sc-ci .otile { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:none; border-radius:8px; }
+  .sc-ci .okind { font-size:14px; font-weight:600; color:#202939; }
+  .sc-ci .owhere { font-size:11px; color:#4B5565; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+</style>
+</helmet>
+
+<section style="display:flex;flex-direction:column;gap:32px;padding:48px;background:#EEF2F6">
+  <div style="display:flex;align-items:baseline;gap:12px;max-width:900px">
+    <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">SV-8181 · DIGITAL INSPECTIONS V2 · SECTION 5</span>
+    <a href="Digital%20Inspections%20V2%20-%20All%20Screens.dc.html" style="margin-left:auto;font-size:12px;font-weight:600">← Sections 1 – 4</a>
+  </div>
+  <section id="sc-ci" class="sc-ci" data-screen-label="5 Conditional follow-up" style="display:flex;flex-direction:column;gap:28px">
+    <div class="divider"><span class="dnum">5</span><span class="dtitle">Conditional follow-up on a response</span><span class="dids">CI1b – CI9</span></div>
+  <div style="display:flex;flex-direction:column;gap:8px;max-width:880px">
+    <div class="glab">SV-8181 · DIGITAL INSPECTIONS V2 · CONDITIONAL FOLLOW-UP</div>
+    <h2 style="font-size:24px;line-height:32px;font-weight:600;color:#202939;margin:0">A follow-up attached to one response</h2>
+    <p style="font-size:14px;line-height:20px;color:#4B5565;margin:0;text-wrap:pretty">The reference file on a checkbox field is unconditional: the technician sees it whatever they answer. A follow-up is the same content, text plus one optional file, tied to a single response and shown only when that response is given. The technician reads it on the card as an instruction; the builder calls it a follow-up, because that is what the author is adding. Acknowledgement is offered on <strong style="font-weight:600;color:#364152">Monitor</strong> and <strong style="font-weight:600;color:#364152">Not OK</strong> only, on by default, and the author can turn it off. Follow-ups on <strong style="font-weight:600;color:#364152">OK</strong> and <strong style="font-weight:600;color:#364152">N/A</strong> are read-only and never need acknowledging. Where it is on, the inspection cannot be submitted until the technician has confirmed they read it. It carries no colour of its own. The blue already used for the reference file marks it as something to read, and the acknowledgement pill takes the colour of the response that triggered it, so red and amber keep meaning what they mean. Per axle fields do not carry follow-ups: a verdict there belongs to a position, and a follow-up would have no single position to sit on.</p>
+  </div>
+
+  <!-- ═════ CI1c · one enabling toggle, a checkbox per response ═════ -->
+  <div id="ci1c" data-screen-label="CI1c Enabling toggle per-response checkbox" style="display:flex;flex-direction:column;gap:12px">
+    <div class="cap"><span class="badge">CI1c</span><span class="t">One toggle turns follow-ups on, then a checkbox per response enables its own fields</span><span class="s">the toggles move out of the response list into RESPONSE SETTINGS · nothing is hidden behind a click, the fields are on the surface and only switch from off to on</span></div>
+    <div class="board" style="width:1608px;padding:24px;display:flex;gap:24px;align-items:flex-start;background:#EEF2F6;border:0;box-shadow:none">
+
+      <!-- a · master toggle off -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">FOLLOW-UPS OFF · THE PANEL AS IT IS TODAY</span>
+        <div class="panel">
+          <div style="display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid #E3E8EF;background:#F8FAFC">
+            <span style="width:28px;height:28px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;display:inline-flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+            <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">Field properties</span><span style="font-size:15px;font-weight:600;color:#202939">Checkbox</span></div>
+          </div>
+          <div class="psec"><span class="glab">LABEL</span><input class="inp" value="Brake chamber condition"></div>
+          <div class="psec">
+            <span class="glab">RESPONSE OPTIONS</span>
+            <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#16B364"></span><input class="inp" value="OK"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+            <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#F79009"></span><input class="inp" value="Monitor"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+            <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#F04438"></span><input class="inp" value="Not OK"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+            <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#9AA4B2"></span><input class="inp" value="N/A"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+          </div>
+          <div class="psec">
+            <span class="glab">RESPONSE SETTINGS</span>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog on"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Include Monitor option</span></div>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Add follow-up to a response</span></div>
+          </div>
+          <div class="psec" style="border-bottom:0"><span class="glab">GENERAL REFERENCE FILE</span><button class="btn2" style="align-self:flex-start"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button></div>
+        </div>
+        <span class="note">Both toggles leave the response list and sit in their own RESPONSE SETTINGS section, so the list is four rows and nothing else. Each row gains a pencil, the same rename affordance the rest of the builder uses. Off, the panel is the height it is today.</span>
+      </div>
+
+      <!-- b · master on, nothing checked -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">ON · NOTHING CHECKED YET</span>
+        <div class="panel">
+          <div class="psec">
+            <span class="glab">RESPONSE OPTIONS</span>
+
+            <div class="fublk">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#16B364"></span><input class="inp" value="OK"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk"><span class="cbx"></span>Follow-up for this response</label>
+              <textarea class="ta off" rows="2" disabled placeholder="Instruction the technician sees"></textarea>
+              <button class="btn2 off" disabled><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+            </div>
+
+            <div class="fublk">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#F79009"></span><input class="inp" value="Monitor"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk"><span class="cbx"></span>Follow-up for this response</label>
+              <textarea class="ta off" rows="2" disabled placeholder="Instruction the technician sees"></textarea>
+              <button class="btn2 off" disabled><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+                          <div style="display:flex;align-items:center;gap:9px"><div class="tog" style="width:34px;height:20px"><div class="knob" style="width:16px;height:16px"></div></div><span style="font-size:12px;color:#9AA4B2">Require acknowledgement</span><span style="display:inline-flex;color:#9AA4B2;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+            </div>
+
+            <div class="fublk">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#F04438"></span><input class="inp" value="Not OK"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk"><span class="cbx"></span>Follow-up for this response</label>
+              <textarea class="ta off" rows="2" disabled placeholder="Instruction the technician sees"></textarea>
+              <button class="btn2 off" disabled><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+                          <div style="display:flex;align-items:center;gap:9px"><div class="tog" style="width:34px;height:20px"><div class="knob" style="width:16px;height:16px"></div></div><span style="font-size:12px;color:#9AA4B2">Require acknowledgement</span><span style="display:inline-flex;color:#9AA4B2;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+            </div>
+
+            <div class="fublk">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#9AA4B2"></span><input class="inp" value="N/A"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk"><span class="cbx"></span>Follow-up for this response</label>
+              <textarea class="ta off" rows="2" disabled placeholder="Instruction the technician sees"></textarea>
+              <button class="btn2 off" disabled><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+            </div>
+
+          </div>
+          <div class="psec">
+            <span class="glab">RESPONSE SETTINGS</span>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog on"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Include Monitor option</span></div>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog on"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Add follow-up to a response</span></div>
+          </div>
+        </div>
+        <span class="note">The author can see what a follow-up consists of before committing to one: a box of text and one file. The checkbox is the condition, and it only switches the two fields under it from off to on. Monitor and Not OK carry Require acknowledgement, on by default. OK and N/A have no acknowledgement toggle.</span>
+      </div>
+
+      <!-- c · one checked -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">ON · NOT OK CHECKED</span>
+        <div class="panel">
+          <div class="psec">
+            <span class="glab">RESPONSE OPTIONS</span>
+
+            <div class="fublk">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#16B364"></span><input class="inp" value="OK"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk"><span class="cbx"></span>Follow-up for this response</label>
+              <textarea class="ta off" rows="2" disabled placeholder="Instruction the technician sees"></textarea>
+              <button class="btn2 off" disabled><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+            </div>
+
+            <div class="fublk">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#F79009"></span><input class="inp" value="Monitor"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk"><span class="cbx"></span>Follow-up for this response</label>
+              <textarea class="ta off" rows="2" disabled placeholder="Instruction the technician sees"></textarea>
+              <button class="btn2 off" disabled><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+                          <div style="display:flex;align-items:center;gap:9px"><div class="tog" style="width:34px;height:20px"><div class="knob" style="width:16px;height:16px"></div></div><span style="font-size:12px;color:#9AA4B2">Require acknowledgement</span><span style="display:inline-flex;color:#9AA4B2;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+            </div>
+
+            <div class="fublk on">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#F04438"></span><input class="inp" value="Not OK"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk on"><span class="cbx on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Follow-up for this response</label>
+              <textarea class="ta" rows="4">Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.</textarea>
+              <div class="fileline" style="background:#fff">
+                <span style="width:26px;height:26px;flex:none;border-radius:7px;background:#E9F5FF;color:#175CD3;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+                <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+                <button class="icb" style="width:24px;height:24px;border:0;background:none;color:#364152;flex:none"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+              </div>
+                          <div style="display:flex;align-items:center;gap:9px"><div class="tog on" style="width:34px;height:20px"><div class="knob" style="width:16px;height:16px"></div></div><span style="font-size:12px;color:#364152">Require acknowledgement</span><span style="display:inline-flex;color:#9AA4B2;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+            </div>
+
+            <div class="fublk">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#9AA4B2"></span><input class="inp" value="N/A"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk"><span class="cbx"></span>Follow-up for this response</label>
+              <textarea class="ta off" rows="2" disabled placeholder="Instruction the technician sees"></textarea>
+              <button class="btn2 off" disabled><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+            </div>
+
+          </div>
+          <div class="psec">
+            <span class="glab">RESPONSE SETTINGS</span>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog on"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Include Monitor option</span></div>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog on"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Add follow-up to a response</span><span style="display:inline-flex;color:#9AA4B2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+          </div>
+        </div>
+        <span class="note">The checked block is the only one with a white ground and a blue edge. Its text area grows to four rows once it can be typed in, and Attach File is replaced by the file it took. Unchecking it keeps what was written until the field is saved, so a mis-click is not a loss.</span>
+      </div>
+
+      <!-- d · monitor off -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">ON · INCLUDE MONITOR OFF</span>
+        <div class="panel">
+          <div class="psec">
+            <span class="glab">RESPONSE OPTIONS</span>
+
+            <div class="fublk">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#16B364"></span><input class="inp" value="OK"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk"><span class="cbx"></span>Follow-up for this response</label>
+              <textarea class="ta off" rows="2" disabled placeholder="Instruction the technician sees"></textarea>
+              <button class="btn2 off" disabled><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+            </div>
+
+            <div class="fublk on">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#F04438"></span><input class="inp" value="Not OK"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk on"><span class="cbx on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Follow-up for this response</label>
+              <textarea class="ta" rows="4">Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.</textarea>
+              <div class="fileline" style="background:#fff">
+                <span style="width:26px;height:26px;flex:none;border-radius:7px;background:#E9F5FF;color:#175CD3;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+                <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+                <button class="icb" style="width:24px;height:24px;border:0;background:none;color:#364152;flex:none"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+              </div>
+                          <div style="display:flex;align-items:center;gap:9px"><div class="tog on" style="width:34px;height:20px"><div class="knob" style="width:16px;height:16px"></div></div><span style="font-size:12px;color:#364152">Require acknowledgement</span><span style="display:inline-flex;color:#9AA4B2;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+            </div>
+
+            <div class="fublk">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#9AA4B2"></span><input class="inp" value="N/A"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk"><span class="cbx"></span>Follow-up for this response</label>
+              <textarea class="ta off" rows="2" disabled placeholder="Instruction the technician sees"></textarea>
+              <button class="btn2 off" disabled><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+            </div>
+
+          </div>
+          <div class="psec">
+            <span class="glab">RESPONSE SETTINGS</span>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Include Monitor option</span></div>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog on"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Add follow-up to a response</span><span style="display:inline-flex;color:#9AA4B2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+          </div>
+        </div>
+        <span class="note">With Include Monitor option off, the Monitor row and its whole block go: three responses, three blocks. Text written against Monitor is kept and comes back with the row, and Not OK keeps its own acknowledgement setting.</span>
+      </div>
+    </div>
+    <span class="note" style="max-width:1020px">The cost is height: four blocks make the response list about 990 px instead of 280, which is why it sits behind a toggle that is off by default. Turning the toggle off again with one checked asks first, since there is text to lose. Include Monitor option sits beside it because both change which responses exist, not how one is validated. The two panels that hid the fields behind an Add Follow-up click are gone: neither showed the author what a follow-up is before they committed to making one, and neither carried the per-response acknowledgement toggle.</span>
+  </div>
+
+  <!-- ═════ CI1b · the builder screen it sits in ═════ -->
+  <div id="ci1b" data-screen-label="CI1b Builder screen with follow-ups" style="display:flex;flex-direction:column;gap:12px">
+    <div class="cap"><span class="badge">CI1b</span><span class="t">The same panel in the builder it belongs to</span><span class="s">the canvas lists the follow-ups a field carries, on every field and not only the selected one</span></div>
+    <div class="board" style="width:1280px">
+      <div style="display:flex;align-items:center;gap:12px;height:52px;padding:0 20px;background:#fff;border-bottom:1px solid #E3E8EF">
+        <span class="icb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+        <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">Admin · Inspection templates</span><span style="font-size:14px;font-weight:600;color:#202939">Brake &amp; Axle PM</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+          <div style="display:flex;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden;height:34px;margin-right:2px"><span style="display:inline-flex;align-items:center;gap:6px;padding:0 12px;font-size:13px;font-weight:600;background:#364152;color:#fff"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>Edit</span><span style="display:inline-flex;align-items:center;gap:6px;padding:0 12px;border-left:1px solid #CDD5DF;font-size:13px;font-weight:600;background:#fff;color:#697586"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>Preview</span></div>
+          <span style="display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:9999px;background:#FFFAEB;color:#B54708;font-size:12px;font-weight:600">Draft · unsaved</span>
+          <button style="height:34px;padding:0 16px;border:0;border-radius:8px;background:#257CFF;color:#fff;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer">Publish</button>
+        </div>
+      </div>
+      <div style="display:flex;min-height:1080px">
+        <div style="width:184px;flex:none;padding:14px 12px;background:#F8FAFC;border-right:1px solid #E3E8EF;display:flex;flex-direction:column;gap:10px">
+          <span class="glab">OUTLINE</span>
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:8px;background:#E9F5FF"><span style="font-size:12px;font-weight:600;color:#175CD3">Section 1</span><span style="margin-left:auto;font-size:12px;color:#697586">3</span></div>
+        </div>
+        <div style="flex:1;min-width:0;padding:22px 28px;background:#F8FAFC;display:flex;justify-content:center">
+          <div style="width:100%;max-width:520px;align-self:flex-start;border:1px solid #E3E8EF;border-radius:12px;background:#fff;overflow:hidden">
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:#F8FAFC;border-bottom:1px solid #E3E8EF"><span style="width:22px;height:22px;border-radius:6px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565;display:inline-flex;align-items:center;justify-content:center">1</span><span style="font-size:14px;font-weight:600;color:#202939">Section 1</span><span style="margin-left:auto;font-size:12px;color:#697586">3 fields</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #EEF2F6"><div style="display:flex;flex-direction:column"><span style="font-size:13px;font-weight:600;color:#202939">Brake &amp; tire measurements</span><span style="font-size:11px;color:#697586">Per axle · Tire pressure (psi), Tread depth (in.), Brake lining (in.)</span></div></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #EEF2F6;background:#F4FAFF;border-left:3px solid #257CFF">
+              <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                <span style="font-size:13px;font-weight:600;color:#175CD3">Brake chamber condition</span>
+                <span style="font-size:11px;color:#4B5565;text-wrap:pretty">Checkbox · OK / Monitor / Not OK / N/A · reference file · note required if Monitor / Not OK</span>
+                <div style="display:flex;flex-direction:column;gap:4px;padding-top:3px;min-width:0">
+                  <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">FOLLOW-UPS</span>
+                  <div style="display:flex;align-items:center;gap:7px;min-width:0"><span class="dot" style="background:#F79009"></span><span style="font-size:11px;font-weight:600;color:#B54708;flex:none">Monitor</span><span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Re-check at the next PM and record the reading.</span></div>
+                  <div style="display:flex;align-items:center;gap:7px;min-width:0"><span class="dot" style="background:#F04438"></span><span style="font-size:11px;font-weight:600;color:#B42318;flex:none">Not OK</span><span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Tag the unit out of service and tell the foreman in person.</span><span style="display:inline-flex;flex:none;color:#697586"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg></span></div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #EEF2F6"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><span style="font-size:13px;font-weight:600;color:#202939">Air-brake system leak check</span><span style="font-size:11px;color:#697586">Checkbox · OK / Monitor / Not OK / N/A</span><div style="display:flex;flex-direction:column;gap:4px;padding-top:3px;min-width:0"><span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">FOLLOW-UPS</span><div style="display:flex;align-items:center;gap:7px;min-width:0"><span class="dot" style="background:#F04438"></span><span style="font-size:11px;font-weight:600;color:#B42318;flex:none">Not OK</span><span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Leak down test before the unit leaves the bay.</span></div></div></div></div>
+            <div style="padding:9px 14px"><button style="height:32px;border:0;background:none;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer">+ Add Field</button></div>
+          </div>
+        </div>
+        <div class="panel" style="width:328px;border:0;border-left:1px solid #E3E8EF;border-radius:0;box-shadow:none">
+          <div style="display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid #E3E8EF;background:#F8FAFC">
+            <span style="width:28px;height:28px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;display:inline-flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+            <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">Field properties</span><span style="font-size:15px;font-weight:600;color:#202939">Checkbox</span></div>
+          </div>
+          <div class="psec"><span class="glab">LABEL</span><input class="inp" value="Brake chamber condition"></div>
+          <div class="psec">
+            <span class="glab">RESPONSE OPTIONS</span>
+
+            <div class="fublk">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#16B364"></span><input class="inp" value="OK"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk"><span class="cbx"></span>Follow-up for this response</label>
+              <textarea class="ta off" rows="2" disabled placeholder="Instruction the technician sees"></textarea>
+              <button class="btn2 off" disabled><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+            </div>
+
+            <div class="fublk on">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#F79009"></span><input class="inp" value="Monitor"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk on"><span class="cbx on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Follow-up for this response</label>
+              <textarea class="ta" rows="2">Re-check at the next PM and record the reading.</textarea>
+              <button class="btn2" style="align-self:flex-start"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+                          <div style="display:flex;align-items:center;gap:9px"><div class="tog on" style="width:34px;height:20px"><div class="knob" style="width:16px;height:16px"></div></div><span style="font-size:12px;color:#364152">Require acknowledgement</span><span style="display:inline-flex;color:#9AA4B2;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+            </div>
+
+            <div class="fublk on">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#F04438"></span><input class="inp" value="Not OK"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk on"><span class="cbx on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Follow-up for this response</label>
+              <textarea class="ta" rows="4">Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.</textarea>
+              <div class="fileline" style="background:#fff">
+                <span style="width:26px;height:26px;flex:none;border-radius:7px;background:#E9F5FF;color:#175CD3;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+                <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+                <button class="icb" style="width:24px;height:24px;border:0;background:none;color:#364152;flex:none"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+              </div>
+                          <div style="display:flex;align-items:center;gap:9px"><div class="tog on" style="width:34px;height:20px"><div class="knob" style="width:16px;height:16px"></div></div><span style="font-size:12px;color:#364152">Require acknowledgement</span><span style="display:inline-flex;color:#9AA4B2;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+            </div>
+
+            <div class="fublk">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#9AA4B2"></span><input class="inp" value="N/A"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk"><span class="cbx"></span>Follow-up for this response</label>
+              <textarea class="ta off" rows="2" disabled placeholder="Instruction the technician sees"></textarea>
+              <button class="btn2 off" disabled><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+            </div>
+
+          </div>
+          <div class="psec">
+            <span class="glab">RESPONSE SETTINGS</span>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog on"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Include Monitor option</span></div>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog on"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Add follow-up to a response</span><span style="display:inline-flex;color:#9AA4B2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+          </div>
+          <div class="psec">
+            <span class="glab">GENERAL REFERENCE FILE</span>
+            <div class="fileline">
+              <span style="width:28px;height:28px;flex:none;border-radius:8px;background:#fff;color:#175CD3;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+              <div style="display:flex;flex-direction:column;min-width:0;flex:1"><span class="fname">Bendix-chamber-service.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+              <button class="icb" style="width:24px;height:24px;border:0;background:none;color:#364152;flex:none"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+            </div>
+          </div>
+          <div class="psec" style="border-bottom:0">
+            <span class="glab">VALIDATION</span>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Required to complete</span></div>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Photo required if Not OK</span></div>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog on"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Note required if Monitor / Not OK</span></div>
+          </div>
+          <div style="margin-top:auto;display:flex;gap:8px;padding:12px 16px;border-top:1px solid #E3E8EF;background:#F8FAFC">
+            <button style="flex:1;height:36px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#364152;cursor:pointer">Duplicate Field</button>
+            <button style="flex:1;height:36px;border:1px solid #FDA29B;border-radius:8px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#B42318;cursor:pointer">Delete Field</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="note" style="max-width:1020px">The canvas row gains a short list: one line per follow-up, the response in its own colour, the first line of the text, and a clip where a file is attached. It sits on every field that has one, selected or not, so an author reviewing a long template reads what the template does without clicking through it field by field. Lines shorten; they do not wrap. Everything above the response list, and the general reference file and validation below it, are unchanged from <a href="Digital%20Inspections%20V2%20-%20All%20Screens.dc.html#tb3">TB3</a>.</span>
+  </div>
+
+  <div id="ci1e" data-screen-label="CI1e Builder follow-up with only a file" style="display:flex;flex-direction:column;gap:12px">
+    <div class="cap"><span class="badge">CI1e</span><span class="t">Builder: a follow-up with only a file</span></div>
+    <div class="board" style="width:1280px">
+      <div style="display:flex;align-items:center;gap:12px;height:52px;padding:0 20px;background:#fff;border-bottom:1px solid #E3E8EF">
+        <span class="icb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+        <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">Admin · Inspection templates</span><span style="font-size:14px;font-weight:600;color:#202939">Brake &amp; Axle PM</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+          <div style="display:flex;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden;height:34px;margin-right:2px"><span style="display:inline-flex;align-items:center;gap:6px;padding:0 12px;font-size:13px;font-weight:600;background:#364152;color:#fff"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>Edit</span><span style="display:inline-flex;align-items:center;gap:6px;padding:0 12px;border-left:1px solid #CDD5DF;font-size:13px;font-weight:600;background:#fff;color:#697586"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>Preview</span></div>
+          <span style="display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:9999px;background:#FFFAEB;color:#B54708;font-size:12px;font-weight:600">Draft · unsaved</span>
+          <button style="height:34px;padding:0 16px;border:0;border-radius:8px;background:#257CFF;color:#fff;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer">Publish</button>
+        </div>
+      </div>
+      <div style="display:flex;min-height:1080px">
+        <div style="width:184px;flex:none;padding:14px 12px;background:#F8FAFC;border-right:1px solid #E3E8EF;display:flex;flex-direction:column;gap:10px">
+          <span class="glab">OUTLINE</span>
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:8px;background:#E9F5FF"><span style="font-size:12px;font-weight:600;color:#175CD3">Section 1</span><span style="margin-left:auto;font-size:12px;color:#697586">3</span></div>
+        </div>
+        <div style="flex:1;min-width:0;padding:22px 28px;background:#F8FAFC;display:flex;justify-content:center">
+          <div style="width:100%;max-width:520px;align-self:flex-start;border:1px solid #E3E8EF;border-radius:12px;background:#fff;overflow:hidden">
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:#F8FAFC;border-bottom:1px solid #E3E8EF"><span style="width:22px;height:22px;border-radius:6px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565;display:inline-flex;align-items:center;justify-content:center">1</span><span style="font-size:14px;font-weight:600;color:#202939">Section 1</span><span style="margin-left:auto;font-size:12px;color:#697586">3 fields</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #EEF2F6"><div style="display:flex;flex-direction:column"><span style="font-size:13px;font-weight:600;color:#202939">Brake &amp; tire measurements</span><span style="font-size:11px;color:#697586">Per axle · Tire pressure (psi), Tread depth (in.), Brake lining (in.)</span></div></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #EEF2F6;background:#F4FAFF;border-left:3px solid #257CFF">
+              <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                <span style="font-size:13px;font-weight:600;color:#175CD3">Brake chamber condition</span>
+                <span style="font-size:11px;color:#4B5565;text-wrap:pretty">Checkbox · OK / Monitor / Not OK / N/A · reference file · note required if Monitor / Not OK</span>
+                <div style="display:flex;flex-direction:column;gap:4px;padding-top:3px;min-width:0">
+                  <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">FOLLOW-UPS</span>
+                  <div style="display:flex;align-items:center;gap:7px;min-width:0"><span class="dot" style="background:#F79009"></span><span style="font-size:11px;font-weight:600;color:#B54708;flex:none">Monitor</span><span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Air-leak-test-steps.pdf</span><span style="display:inline-flex;flex:none;color:#697586"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg></span></div>
+                  <div style="display:flex;align-items:center;gap:7px;min-width:0"><span class="dot" style="background:#F04438"></span><span style="font-size:11px;font-weight:600;color:#B42318;flex:none">Not OK</span><span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Tag the unit out of service and tell the foreman in person.</span><span style="display:inline-flex;flex:none;color:#697586"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg></span></div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #EEF2F6"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><span style="font-size:13px;font-weight:600;color:#202939">Air-brake system leak check</span><span style="font-size:11px;color:#697586">Checkbox · OK / Monitor / Not OK / N/A</span><div style="display:flex;flex-direction:column;gap:4px;padding-top:3px;min-width:0"><span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">FOLLOW-UPS</span><div style="display:flex;align-items:center;gap:7px;min-width:0"><span class="dot" style="background:#F04438"></span><span style="font-size:11px;font-weight:600;color:#B42318;flex:none">Not OK</span><span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Leak down test before the unit leaves the bay.</span></div></div></div></div>
+            <div style="padding:9px 14px"><button style="height:32px;border:0;background:none;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer">+ Add Field</button></div>
+          </div>
+        </div>
+        <div class="panel" style="width:328px;border:0;border-left:1px solid #E3E8EF;border-radius:0;box-shadow:none">
+          <div style="display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid #E3E8EF;background:#F8FAFC">
+            <span style="width:28px;height:28px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;display:inline-flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+            <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">Field properties</span><span style="font-size:15px;font-weight:600;color:#202939">Checkbox</span></div>
+          </div>
+          <div class="psec"><span class="glab">LABEL</span><input class="inp" value="Brake chamber condition"></div>
+          <div class="psec">
+            <span class="glab">RESPONSE OPTIONS</span>
+
+            <div class="fublk">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#16B364"></span><input class="inp" value="OK"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk"><span class="cbx"></span>Follow-up for this response</label>
+              <textarea class="ta off" rows="2" disabled placeholder="Instruction the technician sees"></textarea>
+              <button class="btn2 off" disabled><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+            </div>
+
+            <div class="fublk on">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#F79009"></span><input class="inp" value="Monitor"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk on"><span class="cbx on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Follow-up for this response</label>
+              <textarea class="ta" rows="2" placeholder="Instruction the technician sees"></textarea>
+              <div class="fileline" style="background:#fff">
+                <span style="width:26px;height:26px;flex:none;border-radius:7px;background:#E9F5FF;color:#175CD3;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+                <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname">Air-leak-test-steps.pdf</span><span style="font-size:11px;color:#4B5565">640 KB</span></div>
+                <button class="icb" style="width:24px;height:24px;border:0;background:none;color:#364152;flex:none"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+              </div>
+                          <div style="display:flex;align-items:center;gap:9px"><div class="tog on" style="width:34px;height:20px"><div class="knob" style="width:16px;height:16px"></div></div><span style="font-size:12px;color:#364152">Require acknowledgement</span><span style="display:inline-flex;color:#9AA4B2;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+            </div>
+
+            <div class="fublk on">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#F04438"></span><input class="inp" value="Not OK"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk on"><span class="cbx on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Follow-up for this response</label>
+              <textarea class="ta" rows="4">Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.</textarea>
+              <div class="fileline" style="background:#fff">
+                <span style="width:26px;height:26px;flex:none;border-radius:7px;background:#E9F5FF;color:#175CD3;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+                <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+                <button class="icb" style="width:24px;height:24px;border:0;background:none;color:#364152;flex:none"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+              </div>
+                          <div style="display:flex;align-items:center;gap:9px"><div class="tog on" style="width:34px;height:20px"><div class="knob" style="width:16px;height:16px"></div></div><span style="font-size:12px;color:#364152">Require acknowledgement</span><span style="display:inline-flex;color:#9AA4B2;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+            </div>
+
+            <div class="fublk">
+              <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#9AA4B2"></span><input class="inp" value="N/A"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+              <label class="fuchk"><span class="cbx"></span>Follow-up for this response</label>
+              <textarea class="ta off" rows="2" disabled placeholder="Instruction the technician sees"></textarea>
+              <button class="btn2 off" disabled><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+            </div>
+
+          </div>
+          <div class="psec">
+            <span class="glab">RESPONSE SETTINGS</span>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog on"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Include Monitor option</span></div>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog on"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Add follow-up to a response</span><span style="display:inline-flex;color:#9AA4B2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+          </div>
+          <div class="psec">
+            <span class="glab">GENERAL REFERENCE FILE</span>
+            <div class="fileline">
+              <span style="width:28px;height:28px;flex:none;border-radius:8px;background:#fff;color:#175CD3;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+              <div style="display:flex;flex-direction:column;min-width:0;flex:1"><span class="fname">Bendix-chamber-service.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+              <button class="icb" style="width:24px;height:24px;border:0;background:none;color:#364152;flex:none"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+            </div>
+          </div>
+          <div class="psec" style="border-bottom:0">
+            <span class="glab">VALIDATION</span>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Required to complete</span></div>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Photo required if Not OK</span></div>
+            <div style="display:flex;align-items:center;gap:10px"><div class="tog on"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Note required if Monitor / Not OK</span></div>
+          </div>
+          <div style="margin-top:auto;display:flex;gap:8px;padding:12px 16px;border-top:1px solid #E3E8EF;background:#F8FAFC">
+            <button style="flex:1;height:36px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#364152;cursor:pointer">Duplicate Field</button>
+            <button style="flex:1;height:36px;border:1px solid #FDA29B;border-radius:8px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#B42318;cursor:pointer">Delete Field</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════ CI1d · the three tooltips ═════ -->
+  <div id="ci1d" data-screen-label="CI1d Tooltips" style="display:flex;flex-direction:column;gap:12px">
+    <div class="cap"><span class="badge">CI1d</span><span class="t">The tooltips, shown alone</span><span class="s">on the section toggle, and on the acknowledgement toggle inside a follow-up</span></div>
+    <div class="board" style="width:1200px;padding:24px;display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;background:#EEF2F6;border:0;box-shadow:none">
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span class="glab">ON THE TOGGLE</span>
+        <div style="width:376px;box-sizing:border-box;padding:14px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px"><div class="tog on"><div class="knob"></div></div><span style="font-size:13px;color:#364152">Add follow-up to a response</span><span style="display:inline-flex;color:#175CD3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+          <span style="width:250px;padding:8px 10px;border-radius:8px;background:#202939;color:#fff;font-size:11px;line-height:16px;font-weight:500;box-shadow:0 12px 24px rgba(11,23,51,0.10)">Adds text and one file to a single response. The technician sees it only when they give that response.</span>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span class="glab">ON REQUIRE ACKNOWLEDGEMENT</span>
+        <div style="width:376px;box-sizing:border-box;padding:14px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:9px"><div class="tog on" style="width:34px;height:20px"><div class="knob" style="width:16px;height:16px"></div></div><span style="font-size:12px;color:#364152">Require acknowledgement</span><span style="display:inline-flex;color:#175CD3;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+          <span style="width:250px;padding:8px 10px;border-radius:8px;background:#202939;color:#fff;font-size:11px;line-height:16px;font-weight:500;box-shadow:0 12px 24px rgba(11,23,51,0.10)">The technician confirms they have read this follow-up before the inspection can be submitted. On by default for Monitor and Not OK.</span>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span class="glab">NOT OFFERED ON OK AND N/A</span>
+        <div style="width:376px;box-sizing:border-box;padding:14px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#16B364"></span><input class="inp" value="OK"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+          <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:#9AA4B2"></span><input class="inp" value="N/A"><button class="icb" title="Rename response"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button></div>
+        </div>
+        <span class="note" style="max-width:340px">A follow-up on OK or N/A is a read, so those responses have no acknowledgement toggle.</span>
+      </div>
+    </div>
+    <span class="note" style="max-width:1020px">Two tooltips, one per thing a first-time author would otherwise guess at: what a follow-up is, and what acknowledging one means. The response no longer carries a badge saying it is acknowledged, because the toggle in its block says it and can be changed.
+  </div>
+
+  <!-- ═════ CI3 · field card, desktop ═════ -->
+  <div id="ci3" data-screen-label="CI3 Field card desktop follow-up states" style="display:flex;flex-direction:column;gap:12px">
+    <div class="cap"><span class="badge">CI3</span><span class="t">Filling, desktop: marker, acknowledgement, the checked state, the error, no instruction, and a very long one</span><span class="s">the marker sits with Add Photo and Add Note · the note and the instruction stack full width under the response</span></div>
+    <div class="board" style="width:1440px;padding:24px 32px;display:flex;flex-direction:column;gap:20px">
+
+      <!-- 1 collapsed -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:600;color:#697586">1 · Answered OK, and OK carries a follow-up: a marker on the footer, nothing blocked</span>
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span>
+              <span style="font-size:12px;color:#697586">Checkbox · note required if Monitor or Not OK</span>
+            </div>
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:#9AA4B2">CHECKBOX</span>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div class="seg"><button class="on-ok" style="flex:1"><span class="dot" style="width:7px;height:7px;background:#fff"></span>OK</button><button style="flex:1.15"><span class="dot" style="width:7px;height:7px;background:#F79009"></span>Monitor</button><button style="flex:1.1"><span class="dot" style="width:7px;height:7px;background:#F04438"></span>Not OK</button><button style="flex:0.7">N/A</button></div>
+          </div>
+          <div class="foot">
+            <button class="btn2" style="border-color:#BEDFFF;background:#E9F5FF;color:#175CD3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg>Instruction</button>
+            <button class="btn2">Add Photo</button>
+            <button class="btn2">Add Note</button>
+          </div>
+        </div>
+        <span class="note" style="max-width:1020px">One word and the icon. The marker is blue because it is something to read, the same blue the reference file uses, and it opens the block in place.</span>
+      </div>
+
+      <!-- 2 open, unacknowledged -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:600;color:#697586">2 · Not OK: the follow-up opens itself and holds submit until it is acknowledged</span>
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span>
+              <span style="font-size:12px;color:#697586">Checkbox · note required if Monitor or Not OK</span>
+            </div>
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:#9AA4B2">CHECKBOX</span>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div class="seg"><button style="flex:1"><span class="dot" style="width:7px;height:7px;background:#16B364"></span>OK</button><button style="flex:1.15"><span class="dot" style="width:7px;height:7px;background:#F79009"></span>Monitor</button><button class="on-bad" style="flex:1.1"><span class="dot" style="width:7px;height:7px;background:#fff"></span>Not OK</button><button style="flex:0.7">N/A</button></div>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div style="padding:12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:8px"><span class="glab" style="color:#364152">NOTE</span><span class="req" style="background:#FEE4E2;color:#B42318">Required</span></div>
+              <textarea placeholder="Describe the problem and the recommended repair" style="min-height:76px;width:100%;padding:9px 10px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:13px;line-height:19px;color:#202939;resize:none;box-sizing:border-box"></textarea>
+            </div>
+          </div>
+          <div class="ins" style="margin:0 20px 16px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="display:inline-flex;color:#175CD3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+              <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#175CD3">INSTRUCTION</span>
+              <span class="req" style="background:#FEE4E2;color:#B42318">Required</span>
+            </div>
+            <p class="instxt">Tag the unit out of service before it leaves the bay and tell the foreman in person, not over the radio. Record the chamber part number and the date code from the canister tag, and photograph the clamp band from both sides. If the leak is at the push-rod seal, check the slack adjuster travel on the same wheel end before you close the card. Do not release the unit for road test until the replacement chamber is fitted and the system has held 90 psi for five minutes with the engine off.</p>
+            <div class="fileline">
+              <span style="width:28px;height:28px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+              <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+              <label style="flex:none;display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 4px;cursor:pointer"><span class="cbx"></span><span style="font-size:12px;font-weight:600;color:#364152">Acknowledge</span></label>
+            </div>
+            </div>
+          <div class="foot">
+            <button class="btn2">Add Photo</button>
+          </div>
+        </div>
+        <span class="note" style="max-width:1020px">Answering Not OK opens the note by itself, because the note is required and the technician would have opened it next anyway. The note and the instruction are stacked, the note first directly under the response and the instruction below it at full width. The body here runs about 500 characters, which is the worst case an author can write; the other states show a short one. The acknowledgement sits on the file row beside the file name, where there is room for it once the file name shortens. The pill takes the colour of the response that triggered it: red here, amber on Monitor. The file opens full screen and closes back to this position, as the reference file does in <a href="Digital%20Inspections%20V2%20-%20All%20Screens.dc.html#d4">D4</a>.</span>
+      </div>
+
+      <!-- 3 acknowledged -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:600;color:#697586">3 · Acknowledged: the box is checked and green, and nothing else on the card moves</span>
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span>
+              <span style="font-size:12px;color:#697586">Checkbox · note required if Monitor or Not OK</span>
+            </div>
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:#9AA4B2">CHECKBOX</span>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div class="seg"><button style="flex:1"><span class="dot" style="width:7px;height:7px;background:#16B364"></span>OK</button><button style="flex:1.15"><span class="dot" style="width:7px;height:7px;background:#F79009"></span>Monitor</button><button class="on-bad" style="flex:1.1"><span class="dot" style="width:7px;height:7px;background:#fff"></span>Not OK</button><button style="flex:0.7">N/A</button></div>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div style="padding:12px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:6px">
+              <span class="glab" style="color:#364152">NOTE</span>
+              <span style="font-size:13px;line-height:19px;color:#202939">Right rear chamber leaking at the clamp band, unit tagged and foreman told.</span>
+            </div>
+          </div>
+          <div class="ins" style="margin:0 20px 16px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="display:inline-flex;color:#175CD3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+              <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#175CD3">INSTRUCTION</span>
+            </div>
+            <p class="instxt">Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.</p>
+            <div class="fileline">
+              <span style="width:28px;height:28px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+              <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+              <label style="flex:none;display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 4px"><span class="cbx" style="border-color:#16B364;background:#16B364;color:#fff"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-size:12px;font-weight:600;color:#087443">Acknowledged</span></label>
+            </div>
+            </div>
+          <div class="foot">
+            <button class="btn2">Add Photo</button>
+            <button class="btn2">Edit Note</button>
+          </div>
+        </div>
+        <span class="note" style="max-width:1020px">Checked, the box turns green and the Required pill in the instruction header goes. Who checked it and when is recorded against the inspection, not printed on the card. Changing the response away from Not OK drops both the instruction and its acknowledgement, and answering Not OK again asks for it afresh.</span>
+      </div>
+
+      <!-- 4 error -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:600;color:#697586">4 · Submit &amp; Generate Report pressed with the box unchecked</span>
+        <div class="card" style="border-color:#FDA29B">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span>
+              <span style="font-size:12px;color:#697586">Checkbox · note required if Monitor or Not OK</span>
+            </div>
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:#9AA4B2">CHECKBOX</span>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div class="seg"><button style="flex:1"><span class="dot" style="width:7px;height:7px;background:#16B364"></span>OK</button><button style="flex:1.15"><span class="dot" style="width:7px;height:7px;background:#F79009"></span>Monitor</button><button class="on-bad" style="flex:1.1"><span class="dot" style="width:7px;height:7px;background:#fff"></span>Not OK</button><button style="flex:0.7">N/A</button></div>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div style="padding:12px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:6px">
+              <span class="glab" style="color:#364152">NOTE</span>
+              <span style="font-size:13px;line-height:19px;color:#202939">Right rear chamber leaking at the clamp band, unit tagged and foreman told.</span>
+            </div>
+          </div>
+          <div class="ins" style="margin:0 20px 16px;border-color:#FDA29B">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="display:inline-flex;color:#175CD3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+              <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#175CD3">INSTRUCTION</span>
+              <span class="req" style="background:#FEE4E2;color:#B42318">Required</span>
+            </div>
+            <p class="instxt">Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.</p>
+            <div class="fileline">
+              <span style="width:28px;height:28px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+              <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+              <label style="flex:none;display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 4px;cursor:pointer"><span class="cbx" style="border-color:#D92D20;border-width:2px"></span><span style="font-size:12px;font-weight:600;color:#B42318">Acknowledge</span></label>
+            </div>
+            <span style="display:flex;align-items:center;gap:7px;font-size:12px;font-weight:500;color:#B42318"><span style="display:inline-flex;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4M12 16h.01"></path></svg></span>Read the instruction and check Acknowledge to complete this inspection.</span>
+            </div>
+          <div class="foot" style="background:#FEF3F2;border-top-color:#FEE4E2">
+            <button class="btn2">Add Photo</button>
+            <button class="btn2">Edit Note</button>
+          </div>
+        </div>
+        <span class="note" style="max-width:1020px">Pressing Submit &amp; Generate Report with one unchecked does not raise a dialog: it opens the outstanding list in <a href="#ci5">CI5</a> and marks the fields it is waiting on, and this is what the technician lands on. The error is red because it is an error, not because Not OK is: the box, its label and one line under the file row, and nothing about the instruction itself changes colour.</span>
+      </div>
+
+      <!-- 5 note required, no instruction -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:600;color:#697586">5 · Monitor, and Monitor carries no instruction: the note takes the whole width</span>
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:15px;font-weight:600;color:#202939">Air-brake system leak check</span>
+              <span style="font-size:12px;color:#697586">Checkbox · note required if Monitor or Not OK</span>
+            </div>
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:#9AA4B2">CHECKBOX</span>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div class="seg"><button style="flex:1"><span class="dot" style="width:7px;height:7px;background:#16B364"></span>OK</button><button class="on-mon" style="flex:1.15"><span class="dot" style="width:7px;height:7px;background:#fff"></span>Monitor</button><button style="flex:1.1"><span class="dot" style="width:7px;height:7px;background:#F04438"></span>Not OK</button><button style="flex:0.7">N/A</button></div>
+          </div>
+          <div style="padding:0 20px 16px">
+            <div style="padding:12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:8px"><span class="glab" style="color:#364152">NOTE</span><span class="req" style="background:#FEF0C7;color:#B54708">Required</span></div>
+              <textarea placeholder="Describe what to watch and why" style="min-height:76px;width:100%;padding:9px 10px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:13px;line-height:19px;color:#202939;resize:none;box-sizing:border-box"></textarea>
+            </div>
+          </div>
+          <div class="foot">
+            <button class="btn2">Add Photo</button>
+          </div>
+        </div>
+        <span class="note" style="max-width:1020px">The two-column row is there because the instruction is: with nothing to put beside it, the note runs the full width rather than leaving half the card empty. The Required pill is amber here, because Monitor is what made the note required, and nothing has to be acknowledged.</span>
+      </div>
+
+
+      <!-- 6 a very long body -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:600;color:#697586">6 · A body about twenty lines long, which is as far as an author is likely to go</span>
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span>
+              <span style="font-size:12px;color:#697586">Checkbox · note required if Monitor or Not OK</span>
+            </div>
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:#9AA4B2">CHECKBOX</span>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div class="seg"><button style="flex:1"><span class="dot" style="width:7px;height:7px;background:#16B364"></span>OK</button><button style="flex:1.15"><span class="dot" style="width:7px;height:7px;background:#F79009"></span>Monitor</button><button class="on-bad" style="flex:1.1"><span class="dot" style="width:7px;height:7px;background:#fff"></span>Not OK</button><button style="flex:0.7">N/A</button></div>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div style="padding:12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:8px"><span class="glab" style="color:#364152">NOTE</span><span class="req" style="background:#FEE4E2;color:#B42318">Required</span></div>
+              <textarea placeholder="Describe the problem and the recommended repair" style="min-height:76px;width:100%;padding:9px 10px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:13px;line-height:19px;color:#202939;resize:none;box-sizing:border-box"></textarea>
+            </div>
+          </div>
+          <div class="ins" style="margin:0 20px 16px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="display:inline-flex;color:#175CD3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+              <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#175CD3">INSTRUCTION</span>
+              <span class="req" style="background:#FEE4E2;color:#B42318">Required</span>
+            </div>
+            <p class="instxt" style="white-space:pre-line">Before you touch the chamber, chock the wheels, cage the spring brake on that wheel end and drain the wet tank until the gauge reads zero. Do not crack the supply line while the system is charged.
+
+Tag the unit out of service before it leaves the bay and tell the foreman in person, not over the radio. If the foreman is not on site, call the service advisor and write the time of the call in the note.
+
+Record the chamber part number and the date code from the canister tag. Photograph the clamp band from both sides, the push-rod at rest and the push-rod at full stroke, and put all three on this field.
+
+If the leak is at the push-rod seal rather than the clamp band, check the slack adjuster travel on the same wheel end and measure the lining at the same time, because a seal that has been weeping will usually have taken the shoe with it.
+
+Replace the chamber as an assembly. Do not reuse the clamp band, the mounting nuts or the push-rod yoke pin, and torque the mounting nuts to the value on the axle decal, not the generic value in the manual.
+
+Do not release the unit for road test until the replacement chamber is fitted, the system has held 90 psi for five minutes with the engine off, and the brake has been stroked ten times with no drop beyond the allowance in the attached procedure.
+
+If any of the above cannot be completed on this visit, answer Not OK, say in the note exactly what is outstanding, and leave the unit tagged.</p>
+            <div class="fileline">
+              <span style="width:28px;height:28px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+              <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+              <label style="flex:none;display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 4px;cursor:pointer"><span class="cbx"></span><span style="font-size:12px;font-weight:600;color:#364152">Acknowledge</span></label>
+            </div>
+          </div>
+          <div class="foot">
+            <button class="btn2">Add Photo</button>
+          </div>
+        </div>
+        <span class="note" style="max-width:1020px">Nothing truncates and nothing scrolls inside the block: the card takes whatever the author wrote and the page scrolls as it always has. Paragraph breaks the author typed are kept. The file row and the acknowledgement stay at the bottom of the block, so on a laptop a body this long puts them below the fold, which is the argument for writing short ones rather than a limit the field imposes.</span>
+      </div>
+
+      <!-- 7 file only -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:600;color:#697586">7 · Not OK, and the follow-up is only a file</span>
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span>
+              <span style="font-size:12px;color:#697586">Checkbox · note required if Monitor or Not OK</span>
+            </div>
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:#9AA4B2">CHECKBOX</span>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div class="seg"><button style="flex:1"><span class="dot" style="width:7px;height:7px;background:#16B364"></span>OK</button><button style="flex:1.15"><span class="dot" style="width:7px;height:7px;background:#F79009"></span>Monitor</button><button class="on-bad" style="flex:1.1"><span class="dot" style="width:7px;height:7px;background:#fff"></span>Not OK</button><button style="flex:0.7">N/A</button></div>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div style="padding:12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:8px"><span class="glab" style="color:#364152">NOTE</span><span class="req" style="background:#FEE4E2;color:#B42318">Required</span></div>
+              <textarea placeholder="Describe the problem and the recommended repair" style="min-height:76px;width:100%;padding:9px 10px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:13px;line-height:19px;color:#202939;resize:none;box-sizing:border-box"></textarea>
+            </div>
+          </div>
+          <div class="ins" style="margin:0 20px 16px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="display:inline-flex;color:#175CD3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+              <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#175CD3">INSTRUCTION</span>
+              <span class="req" style="background:#FEE4E2;color:#B42318">Required</span>
+            </div>
+            <div class="fileline">
+              <span style="width:28px;height:28px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+              <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+              <label style="flex:none;display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 4px;cursor:pointer"><span class="cbx"></span><span style="font-size:12px;font-weight:600;color:#364152">Acknowledge</span></label>
+            </div>
+            </div>
+          <div class="foot">
+            <button class="btn2">Add Photo</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═════ CI4 · field card, phone ═════ -->
+  <div id="ci4" data-screen-label="CI4 Field card phone follow-up states" style="display:flex;flex-direction:column;gap:12px">
+    <div class="cap"><span class="badge">CI4</span><span class="t">Filling, phone: the same five states at 402 px</span><span class="s">52 px acknowledge row · the error and the no-instruction state included · the note opens under the response, as on <a href="#ci3">CI3</a></span></div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+
+      <!-- collapsed -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">OK · MARKER ONLY</span>
+        <div class="phone" style="min-height:560px">
+          <div class="abar">
+            <span class="micb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+            <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">1234 · FOR CLODISU</span><span style="font-size:14px;font-weight:600;color:#202939">Work Order · V2</span></div>
+            <span class="micb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="micb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+          </div>
+          <div style="padding:14px;display:flex;flex-direction:column;gap:10px">
+            <div class="fcard">
+              <div style="display:flex;align-items:center;gap:10px;padding:14px 12px 8px">
+                <span class="num on">2</span>
+                <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span><span style="font-size:11px;color:#087443;font-weight:600">OK</span></div>
+                <span class="micb" style="margin-left:auto;background:#E9F5FF;border-color:#BEDFFF;color:#175CD3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg></span>
+              </div>
+              <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:10px">
+                <div class="seg4"><button class="on-ok" style="flex:1"><span class="dot" style="background:#fff"></span>OK</button><button style="flex:1.2"><span class="dot" style="background:#F79009"></span>Monitor</button><button style="flex:1.2"><span class="dot" style="background:#F04438"></span>Not OK</button><button style="flex:0.8">N/A</button></div>
+                <div style="display:flex;gap:8px">
+                  <button class="mbtn" style="flex:1;border-color:#BEDFFF;background:#E9F5FF;color:#175CD3;font-size:13px;padding:0 10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg>Instruction</button>
+                  <button class="mbtn" style="flex:1;font-size:13px;padding:0 10px">Photo</button>
+                  <button class="mbtn" style="flex:1;font-size:13px;padding:0 10px">Note</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="note">Three footer buttons at 52 px, so the marker is a thumb target and not a link inside a label. Add Photo and Add Note shorten to Photo and Note at this width, as they already do elsewhere on the phone.</span>
+      </div>
+
+      <!-- open, unacknowledged -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">NOT OK · WAITING FOR ACKNOWLEDGEMENT</span>
+        <div class="phone" style="min-height:700px">
+          <div class="abar">
+            <span class="micb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+            <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">1234 · FOR CLODISU</span><span style="font-size:14px;font-weight:600;color:#202939">Work Order · V2</span></div>
+            <span class="micb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="micb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+          </div>
+          <div style="padding:14px;display:flex;flex-direction:column;gap:10px">
+            <div class="fcard" style="border-color:#BEDFFF">
+              <div style="display:flex;align-items:center;gap:10px;padding:14px 12px 8px">
+                <span class="num on">2</span>
+                <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span><span style="font-size:11px;color:#B42318;font-weight:600">NOT OK</span></div>
+                <span class="micb" style="margin-left:auto;background:#E9F5FF;border-color:#BEDFFF;color:#175CD3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg></span>
+              </div>
+              <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:10px">
+                <div class="seg4"><button style="flex:1"><span class="dot" style="background:#16B364"></span>OK</button><button style="flex:1.2"><span class="dot" style="background:#F79009"></span>Monitor</button><button class="on-bad" style="flex:1.2"><span class="dot" style="background:#fff"></span>Not OK</button><button style="flex:0.8">N/A</button></div>
+                <div style="padding:12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:8px">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span class="glab" style="color:#364152">NOTE</span>
+                    <span class="req" style="background:#FEE4E2;color:#B42318">Required</span>
+                  </div>
+                  <textarea rows="2" placeholder="Describe the problem and the recommended repair" style="width:100%;padding:10px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;color:#202939;resize:none;box-sizing:border-box"></textarea>
+                </div>
+                <div class="ins">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span style="display:inline-flex;color:#175CD3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+                    <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#175CD3">INSTRUCTION</span>
+                    <span class="req" style="background:#FEE4E2;color:#B42318;margin-left:auto">Required</span>
+                  </div>
+                  <p class="instxt">Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.</p>
+                  <div class="fileline" style="min-height:52px">
+                    <span style="width:32px;height:32px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+                    <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+                    <span style="display:inline-flex;color:#175CD3;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+                  </div>
+                  <label style="width:100%;box-sizing:border-box;display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 2px;cursor:pointer"><span class="cbx" style="width:22px;height:22px;border-radius:5px"></span><span style="font-size:14px;font-weight:600;color:#364152">Acknowledge</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="note">The note opens by itself under the response and the instruction follows it, the same order as <a href="#ci3">CI3</a>, and both are inside the card. The acknowledgement keeps a full-width row of its own rather than joining the file row: at 402 px the file row has no width to spare, and a 52 px target is worth more here than a saved line. The file row is a 52 px target that opens the viewer full screen; the file name truncates, the instruction text does not.</span>
+      </div>
+
+      <!-- acknowledged -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">NOT OK · ACKNOWLEDGED</span>
+        <div class="phone" style="min-height:560px">
+          <div class="abar">
+            <span class="micb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+            <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">1234 · FOR CLODISU</span><span style="font-size:14px;font-weight:600;color:#202939">Work Order · V2</span></div>
+            <span class="micb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="micb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+          </div>
+          <div style="padding:14px;display:flex;flex-direction:column;gap:10px">
+            <div class="fcard">
+              <div style="display:flex;align-items:center;gap:10px;padding:14px 12px 8px">
+                <span class="num on">2</span>
+                <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span><span style="font-size:11px;color:#B42318;font-weight:600">NOT OK</span></div>
+                <span class="micb" style="margin-left:auto;background:#E9F5FF;border-color:#BEDFFF;color:#175CD3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg></span>
+              </div>
+              <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:10px">
+                <div class="seg4"><button style="flex:1"><span class="dot" style="background:#16B364"></span>OK</button><button style="flex:1.2"><span class="dot" style="background:#F79009"></span>Monitor</button><button class="on-bad" style="flex:1.2"><span class="dot" style="background:#fff"></span>Not OK</button><button style="flex:0.8">N/A</button></div>
+                <div class="ins">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span style="display:inline-flex;color:#175CD3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+                    <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#175CD3">INSTRUCTION</span>
+                  </div>
+                  <p class="instxt">Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.</p>
+                  <div class="fileline" style="min-height:52px">
+                    <span style="width:32px;height:32px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+                    <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+                    <span style="display:inline-flex;color:#175CD3;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+                  </div>
+                  <label style="width:100%;box-sizing:border-box;display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 2px"><span class="cbx" style="width:22px;height:22px;border-radius:5px;border-color:#16B364;background:#16B364;color:#fff"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-size:14px;font-weight:600;color:#087443">Acknowledged</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="note">The checked box keeps the row it had, so nothing on the card moves. Green and checked is the whole of the acknowledged state on both surfaces.</span>
+      </div>
+
+      <!-- error -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">NOT OK · COMPLETE PRESSED, NOT ACKNOWLEDGED</span>
+        <div class="phone" style="min-height:700px">
+          <div class="abar">
+            <span class="micb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+            <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">WO 1234 · Unit 8842</span><span style="font-size:14px;font-weight:600;color:#202939">Brake &amp; Axle PM</span></div>
+            <span class="micb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="micb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+          </div>
+          <div style="padding:14px;display:flex;flex-direction:column;gap:10px">
+            <div class="fcard" style="border-color:#FDA29B">
+              <div style="display:flex;align-items:center;gap:10px;padding:14px 12px 8px">
+                <span class="num on">2</span>
+                <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span><span style="font-size:11px;color:#B42318;font-weight:600">NOT OK</span></div>
+              </div>
+              <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:10px">
+                <div class="seg4"><button style="flex:1"><span class="dot" style="background:#16B364"></span>OK</button><button style="flex:1.2"><span class="dot" style="background:#F79009"></span>Monitor</button><button class="on-bad" style="flex:1.2"><span class="dot" style="background:#fff"></span>Not OK</button><button style="flex:0.8">N/A</button></div>
+                <div style="padding:12px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:6px">
+                  <span class="glab" style="color:#364152">NOTE</span>
+                  <span style="font-size:14px;line-height:20px;color:#202939">Right rear chamber leaking at the clamp band, unit tagged and foreman told.</span>
+                </div>
+                <div class="ins" style="border-color:#FDA29B">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span style="display:inline-flex;color:#175CD3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+                    <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#175CD3">INSTRUCTION</span>
+                    <span class="req" style="background:#FEE4E2;color:#B42318;margin-left:auto">Required</span>
+                  </div>
+                  <p class="instxt">Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.</p>
+                  <div class="fileline" style="min-height:52px">
+                    <span style="width:32px;height:32px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+                    <div style="display:flex;flex-direction:column;min-width:0;flex:1"><span class="fname">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+                    <span style="display:inline-flex;color:#175CD3;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+                  </div>
+                  <label style="width:100%;box-sizing:border-box;display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 2px;cursor:pointer"><span class="cbx" style="width:22px;height:22px;border-radius:5px;border-color:#D92D20;border-width:2px"></span><span style="font-size:14px;font-weight:600;color:#B42318">Acknowledge</span></label>
+                  <span style="display:flex;align-items:flex-start;gap:7px;font-size:12px;line-height:17px;font-weight:500;color:#B42318"><span style="display:inline-flex;flex:none;padding-top:1px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4M12 16h.01"></path></svg></span>Read the instruction and check Acknowledge to complete this inspection.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="note">Reached from the outstanding list in <a href="#ci6">CI6</a>, which is what the section action opens instead of an error dialog. Same two red marks as the desktop: the box and one line under it.</span>
+      </div>
+
+      <!-- note required, no instruction -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">MONITOR · NOTE REQUIRED, NO INSTRUCTION</span>
+        <div class="phone" style="min-height:520px">
+          <div class="abar">
+            <span class="micb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+            <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">WO 1234 · Unit 8842</span><span style="font-size:14px;font-weight:600;color:#202939">Brake &amp; Axle PM</span></div>
+            <span class="micb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="micb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+          </div>
+          <div style="padding:14px;display:flex;flex-direction:column;gap:10px">
+            <div class="fcard">
+              <div style="display:flex;align-items:center;gap:10px;padding:14px 12px 8px">
+                <span class="num on">3</span>
+                <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:15px;font-weight:600;color:#202939">Air-brake system leak check</span><span style="font-size:11px;color:#B54708;font-weight:600">MONITOR</span></div>
+              </div>
+              <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:10px">
+                <div class="seg4"><button style="flex:1"><span class="dot" style="background:#16B364"></span>OK</button><button class="on-mon" style="flex:1.2"><span class="dot" style="background:#fff"></span>Monitor</button><button style="flex:1.2"><span class="dot" style="background:#F04438"></span>Not OK</button><button style="flex:0.8">N/A</button></div>
+                <div style="padding:12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:8px">
+                  <div style="display:flex;align-items:center;gap:8px"><span class="glab" style="color:#364152">NOTE</span><span class="req" style="background:#FEF0C7;color:#B54708">Required</span></div>
+                  <textarea rows="2" placeholder="Describe what to watch and why" style="width:100%;padding:10px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;color:#202939;resize:none;box-sizing:border-box"></textarea>
+                </div>
+                <button class="mbtn" style="align-self:stretch;font-size:13px">Photo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="note">On the phone the note is full width in every state, so a field with no instruction is the same card with one block fewer. The Required pill is amber, because Monitor is what made the note required.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════ CI5 · outstanding items, desktop ═════ -->
+  <div id="ci5" data-screen-label="CI5 Outstanding items desktop" style="display:flex;flex-direction:column;gap:12px">
+    <div class="cap"><span class="badge">CI5</span><span class="t">Outstanding items, desktop: a count on the submit bar, opening the list above it</span><span class="s">drawn for the first time · an unacknowledged instruction is one of the kinds it lists</span></div>
+    <div class="board" style="width:1200px;padding:0;display:flex;flex-direction:column">
+      <div style="flex:1;min-height:480px;padding:24px 28px;background:#F8FAFC;display:flex;flex-direction:column;align-items:center;gap:14px;position:relative">
+        <div style="width:100%;max-width:880px;display:flex;flex-direction:column;gap:10px;opacity:0.5">
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:13px;font-weight:600;color:#364152">Brake &amp; Axle PM</span><span style="font-size:12px;color:#697586">Section 2 of 2 · 3 fields</span></div>
+          <div style="height:1px;background:#E3E8EF"></div>
+          <div style="height:96px;border:1px solid #E3E8EF;border-radius:12px;background:#fff"></div>
+          <div style="height:96px;border:1px solid #E3E8EF;border-radius:12px;background:#fff"></div>
+        </div>
+        <div style="position:absolute;right:28px;bottom:16px;width:440px;box-sizing:border-box;padding:14px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 12px 24px rgba(11,23,51,0.10),0 4px 8px rgba(11,23,51,0.05);display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:15px;font-weight:600;color:#202939">4 items before submitting</span>
+            <button class="icb" style="margin-left:auto;border:0;background:none"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <button class="orow">
+              <span class="otile" style="background:#FEE4E2;color:#B42318"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+              <span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span class="okind">Acknowledgement</span><span class="owhere">Section 1 · Brake chamber condition · Not OK</span></span>
+              <span style="margin-left:auto;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+            </button>
+            <button class="orow">
+              <span class="otile" style="background:#FEF0C7;color:#B54708"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+              <span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span class="okind">Acknowledgement</span><span class="owhere">Section 2 · Air-brake system leak check · Monitor</span></span>
+              <span style="margin-left:auto;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+            </button>
+            <button class="orow">
+              <span class="otile" style="background:#FEE4E2;color:#B42318"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span>
+              <span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span class="okind">Note</span><span class="owhere">Section 1 · Brake chamber condition</span></span>
+              <span style="margin-left:auto;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+            </button>
+            <button class="orow">
+              <span class="otile" style="background:#EEF2F6;color:#4B5565"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"></path><circle cx="12" cy="12" r="10"></circle></svg></span>
+              <span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span class="okind">Answer</span><span class="owhere">Section 2 · Trailer axle measurements · 8 positions</span></span>
+              <span style="margin-left:auto;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+            </button>
+          </div>
+          <button class="btn2" style="height:38px;border-color:#BEDFFF;background:#E9F5FF;color:#175CD3;font-size:13px">Go to the first one</button>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 20px;background:#fff;border-top:1px solid #E3E8EF">
+        <button class="btn2" style="height:38px;font-size:13px">Save &amp; Exit</button>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:12px">
+          <button style="display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 14px;border:1px solid #FEDF89;border-radius:8px;background:#FFFAEB;font-family:inherit;font-size:13px;font-weight:600;color:#B54708;cursor:pointer"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;border-radius:9999px;background:#DC6803;color:#fff;font-size:11px;font-weight:700">4</span>Outstanding</button>
+          <button style="height:38px;padding:0 18px;border:0;border-radius:8px;background:#257CFF;color:#fff;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer">Submit &amp; Generate Report</button>
+        </div>
+      </div>
+    </div>
+    <span class="note" style="max-width:1020px">The count is a button beside submit, not a blocker in front of it: pressing submit with items left opens the same list rather than raising an error. Rows are grouped by section and read kind first, then where it is, because the technician is looking for the next thing to do, not for a category. The tile colour is the verdict that caused the item, so an acknowledgement on Monitor is amber and one on Not OK is red.</span>
+  </div>
+
+  <!-- ═════ CI6 · outstanding items, phone ═════ -->
+  <div id="ci6" data-screen-label="CI6 Outstanding items phone" style="display:flex;flex-direction:column;gap:12px">
+    <div class="cap"><span class="badge">CI6</span><span class="t">Outstanding items, phone: carried on the action that completes the section</span><span class="s">settles the list that was marked unreviewed in <a href="Digital%20Inspections%20V2%20-%20All%20Screens.dc.html#m3">M3</a></span></div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">THE COUNT RIDES ON THE SECTION ACTION</span>
+        <div class="phone" style="min-height:420px">
+          <div class="abar">
+            <span class="micb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+            <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">1234 · FOR CLODISU</span><span style="font-size:14px;font-weight:600;color:#202939">Work Order · V2</span></div>
+            <span class="micb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="micb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+          </div>
+          <div style="flex:1;padding:14px;display:flex;flex-direction:column;gap:10px;background:#F8FAFC">
+            <div style="height:72px;border:1px solid #E3E8EF;border-radius:12px;background:#fff;opacity:0.55"></div>
+            <div style="height:72px;border:1px solid #E3E8EF;border-radius:12px;background:#fff;opacity:0.55"></div>
+          </div>
+          <div style="margin-top:auto;background:#fff;border-top:1px solid #E3E8EF;padding:10px 14px 12px;display:flex;gap:10px">
+            <button class="mbtn" style="flex:1;border-color:#FEDF89;background:#FFFAEB;color:#B54708"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:9999px;background:#DC6803;color:#fff;font-size:12px;font-weight:700">3</span>Next: Section 2</button>
+          </div>
+        </div>
+        <span class="note">Every section action carries the count, not only the last one, so the number is not saved up for the end. Tapping the badge opens the list; tapping the label moves on and leaves the items where they are.</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">THE LIST</span>
+        <div class="phone" style="height:760px;position:relative">
+          <div class="abar">
+            <span class="micb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+            <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">1234 · FOR CLODISU</span><span style="font-size:14px;font-weight:600;color:#202939">Work Order · V2</span></div>
+            <span class="micb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="micb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+          </div>
+          <div style="flex:1;background:rgba(15,17,26,0.5);display:flex;flex-direction:column;justify-content:flex-end">
+            <div style="background:#fff;border-radius:16px 16px 0 0;padding:16px 14px 18px;display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;align-items:flex-start;gap:10px">
+                <span style="font-size:16px;font-weight:600;color:#202939">3 items before submitting</span>
+                <span class="micb" style="margin-left:auto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <button class="orow" style="min-height:64px">
+                  <span class="otile" style="background:#FEE4E2;color:#B42318"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+                  <span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span class="okind">Acknowledgement</span><span class="owhere">Section 1 · Brake chamber condition · Not OK</span></span>
+                  <span style="margin-left:auto;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+                </button>
+                <button class="orow" style="min-height:64px">
+                  <span class="otile" style="background:#FEE4E2;color:#B42318"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span>
+                  <span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span class="okind">Note</span><span class="owhere">Section 1 · Brake chamber condition</span></span>
+                  <span style="margin-left:auto;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+                </button>
+                <button class="orow" style="min-height:64px">
+                  <span class="otile" style="background:#EEF2F6;color:#4B5565"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"></path><circle cx="12" cy="12" r="10"></circle></svg></span>
+                  <span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span class="okind">Answer</span><span class="owhere">Section 2 · Trailer axle measurements · 8 positions</span></span>
+                  <span style="margin-left:auto;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+                </button>
+              </div>
+              <button class="mbtn" style="border-color:#BEDFFF;background:#E9F5FF;color:#175CD3">Go to the first one</button>
+            </div>
+          </div>
+        </div>
+        <span class="note">Rows are 64 px and go straight to the field, opening the instruction block if that is what is missing. The wording is the same as the desktop list, so a technician who moves between the two reads one thing.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════ CI7 · preview ═════ -->
+  <div id="ci7" data-screen-label="CI7 Follow-up in preview" style="display:flex;flex-direction:column;gap:12px">
+    <div class="cap"><span class="badge">CI7</span><span class="t">Preview: the instruction is there, and takes no input</span><span class="s">the file is shown and is not a link</span></div>
+    <div class="board" style="width:1000px;padding:24px 28px;background:#F8FAFC;display:flex;justify-content:center">
+      <div style="width:100%;max-width:880px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font-size:13px;font-weight:600;color:#364152">Brake &amp; Axle PM</span><span style="font-size:12px;color:#697586">Preview · Section 1 of 2</span></div>
+        <div class="card" style="max-width:none">
+          <div style="display:flex;align-items:flex-start;gap:16px;padding:16px 20px 12px">
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:16px;font-weight:600;color:#202939">Brake chamber condition</span>
+              <span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565;align-self:flex-start">Checkbox</span>
+            </div>
+          </div>
+          <div style="height:1px;background:#EEF2F6"></div>
+          <div style="padding:16px 20px;display:flex;flex-direction:column;gap:14px">
+            <div class="seg"><button style="flex:1"><span class="dot" style="width:7px;height:7px;background:#16B364"></span>OK</button><button style="flex:1.15"><span class="dot" style="width:7px;height:7px;background:#F79009"></span>Monitor</button><button style="flex:1.1"><span class="dot" style="width:7px;height:7px;background:#F04438"></span>Not OK</button><button style="flex:0.7">N/A</button></div>
+            <div class="ins" style="max-width:660px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="display:inline-flex;color:#175CD3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+                <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#175CD3">INSTRUCTION</span>
+                <span class="req" style="background:#fff;border:1px solid #BEDFFF;color:#175CD3"><span class="dot" style="width:7px;height:7px;background:#F04438;margin-right:5px"></span>On Not OK</span>
+              </div>
+              <p class="instxt">Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.</p>
+              <div class="fileline">
+                <span style="width:28px;height:28px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+                <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname" style="text-decoration:none;cursor:default;color:#364152">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+              </div>
+              <label style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 4px"><span class="cbx" style="border-color:#CDD5DF;background:#F1F4F8"></span><span style="font-size:12px;font-weight:600;color:#9AA4B2">Acknowledge</span></label>
+            </div>
+          </div>
+          <div class="foot">
+            <button class="btn2" style="border-color:#BEDFFF;background:#E9F5FF;color:#175CD3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg>Instruction</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="note" style="max-width:1020px">No response can be given in Preview, so every configured instruction on the field is shown at once, each naming the response it belongs to. The acknowledgement is the same checkbox the fill screen uses, drawn in the neutral treatment the verdict controls already use here, and it takes no input. There is no banner saying so.</span>
+  </div>
+
+  <!-- ═════ CI8 · phone, filling, the whole page ═════ -->
+  <div id="ci8" data-screen-label="CI8 Phone filling full page" style="display:flex;flex-direction:column;gap:12px">
+    <div class="cap"><span class="badge">CI8</span><span class="t">Phone, filling: the whole page, not the card on its own</span><span class="s">the follow-up in the run of an inspection · the count on the section action falls as it is cleared</span></div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+
+      <!-- 1 · awaiting -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">NOT OK ANSWERED · 3 OUTSTANDING</span>
+        <div class="phone" style="height:1020px">
+          <div class="abar">
+            <span class="micb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+            <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:11px;color:#697586">WO 1234 · Unit 8842</span><span style="font-size:14px;font-weight:600;color:#202939">Brake &amp; Axle PM</span></div>
+            <span class="micb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="micb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+          </div>
+          <div style="padding:10px 14px;background:#fff;border-bottom:1px solid #E3E8EF;display:flex;flex-direction:column;gap:7px">
+            <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:12px;font-weight:600;color:#364152">Section 1 of 2</span><span style="margin-left:auto;font-size:12px;color:#697586">2 of 3 answered</span></div>
+            <div style="height:5px;border-radius:9999px;background:#EEF2F6;overflow:hidden"><div style="width:66%;height:100%;background:#257CFF"></div></div>
+          </div>
+          <div style="flex:1;overflow:hidden;padding:14px;background:#F8FAFC;display:flex;flex-direction:column;gap:10px">
+
+            <div class="fcard">
+              <div style="display:flex;align-items:center;gap:10px;padding:12px">
+                <span class="num on">1</span>
+                <div style="display:flex;flex-direction:column;min-width:0;flex:1"><span style="font-size:15px;font-weight:600;color:#202939">Brake &amp; tire measurements</span><span style="font-size:11px;color:#087443;font-weight:600">8 of 8 positions</span></div>
+                <span class="micb" style="flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
+              </div>
+            </div>
+
+            <div class="fcard" style="border-color:#BEDFFF">
+              <div style="display:flex;align-items:center;gap:10px;padding:12px 12px 8px">
+                <span class="num on">2</span>
+                <div style="display:flex;flex-direction:column;min-width:0;flex:1"><span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span><span style="font-size:11px;color:#B42318;font-weight:600">NOT OK</span></div>
+                <span class="micb" style="flex:none;background:#E9F5FF;border-color:#BEDFFF;color:#175CD3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg></span>
+              </div>
+              <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:10px">
+                <div class="seg4"><button style="flex:1"><span class="dot" style="background:#16B364"></span>OK</button><button style="flex:1.2"><span class="dot" style="background:#F79009"></span>Monitor</button><button class="on-bad" style="flex:1.2"><span class="dot" style="background:#fff"></span>Not OK</button><button style="flex:0.8">N/A</button></div>
+                <div style="padding:12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:8px">
+                  <div style="display:flex;align-items:center;gap:8px"><span class="glab" style="color:#364152">NOTE</span><span class="req" style="background:#FEE4E2;color:#B42318">Required</span></div>
+                  <textarea rows="2" placeholder="Describe the problem and the recommended repair" style="width:100%;padding:10px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;color:#202939;resize:none;box-sizing:border-box"></textarea>
+                </div>
+                <div class="ins">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span style="display:inline-flex;color:#175CD3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+                    <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#175CD3">INSTRUCTION</span>
+                    <span class="req" style="background:#FEE4E2;color:#B42318;margin-left:auto">Required</span>
+                  </div>
+                  <p class="instxt">Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.</p>
+                  <div class="fileline" style="min-height:52px">
+                    <span style="width:32px;height:32px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+                    <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+                    <span style="display:inline-flex;color:#175CD3;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+                  </div>
+                  <label style="width:100%;box-sizing:border-box;display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 2px;cursor:pointer"><span class="cbx" style="width:22px;height:22px;border-radius:5px"></span><span style="font-size:14px;font-weight:600;color:#364152">Acknowledge</span></label>
+                </div>
+                <div style="display:flex;gap:8px">
+                  <button class="mbtn" style="flex:1;font-size:13px;padding:0 10px">Photo</button>
+                  <button class="mbtn" style="flex:1;font-size:13px;padding:0 10px">Note</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="fcard">
+              <div style="display:flex;align-items:center;gap:10px;padding:12px">
+                <span class="num">3</span>
+                <div style="display:flex;flex-direction:column;min-width:0;flex:1"><span style="font-size:15px;font-weight:600;color:#202939">Air-brake system leak check</span><span style="font-size:11px;color:#697586">Not answered</span></div>
+                <span class="micb" style="flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
+              </div>
+            </div>
+          </div>
+          <div style="background:#fff;border-top:1px solid #E3E8EF;padding:10px 14px 12px;display:flex;gap:10px">
+            <button class="mbtn" style="flex:1;border-color:#FEDF89;background:#FFFAEB;color:#B54708"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:9999px;background:#DC6803;color:#fff;font-size:12px;font-weight:700">3</span>Next: Section 2</button>
+          </div>
+        </div>
+        <span class="note">The note opens under the response and the instruction follows it, so the run of the page is unchanged: one card per field, one action at the bottom. Acknowledge, the note and the unanswered field three are the three the count is holding.</span>
+      </div>
+
+      <!-- 2 · acknowledged -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">ACKNOWLEDGED · 2 OUTSTANDING</span>
+        <div class="phone" style="height:1020px">
+          <div class="abar">
+            <span class="micb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+            <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:11px;color:#697586">WO 1234 · Unit 8842</span><span style="font-size:14px;font-weight:600;color:#202939">Brake &amp; Axle PM</span></div>
+            <span class="micb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="micb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+          </div>
+          <div style="padding:10px 14px;background:#fff;border-bottom:1px solid #E3E8EF;display:flex;flex-direction:column;gap:7px">
+            <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:12px;font-weight:600;color:#364152">Section 1 of 2</span><span style="margin-left:auto;font-size:12px;color:#697586">2 of 3 answered</span></div>
+            <div style="height:5px;border-radius:9999px;background:#EEF2F6;overflow:hidden"><div style="width:66%;height:100%;background:#257CFF"></div></div>
+          </div>
+          <div style="flex:1;overflow:hidden;padding:14px;background:#F8FAFC;display:flex;flex-direction:column;gap:10px">
+
+            <div class="fcard">
+              <div style="display:flex;align-items:center;gap:10px;padding:12px">
+                <span class="num on">1</span>
+                <div style="display:flex;flex-direction:column;min-width:0;flex:1"><span style="font-size:15px;font-weight:600;color:#202939">Brake &amp; tire measurements</span><span style="font-size:11px;color:#087443;font-weight:600">8 of 8 positions</span></div>
+                <span class="micb" style="flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
+              </div>
+            </div>
+
+            <div class="fcard" style="border-color:#BEDFFF">
+              <div style="display:flex;align-items:center;gap:10px;padding:12px 12px 8px">
+                <span class="num on">2</span>
+                <div style="display:flex;flex-direction:column;min-width:0;flex:1"><span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span><span style="font-size:11px;color:#B42318;font-weight:600">NOT OK</span></div>
+                <span class="micb" style="flex:none;background:#E9F5FF;border-color:#BEDFFF;color:#175CD3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg></span>
+              </div>
+              <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:10px">
+                <div class="seg4"><button style="flex:1"><span class="dot" style="background:#16B364"></span>OK</button><button style="flex:1.2"><span class="dot" style="background:#F79009"></span>Monitor</button><button class="on-bad" style="flex:1.2"><span class="dot" style="background:#fff"></span>Not OK</button><button style="flex:0.8">N/A</button></div>
+                <div style="padding:12px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:6px">
+                  <span class="glab" style="color:#364152">NOTE</span>
+                  <span style="font-size:14px;line-height:20px;color:#202939">Right rear chamber leaking at the clamp band, unit tagged and foreman told.</span>
+                </div>
+                <div class="ins">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span style="display:inline-flex;color:#175CD3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+                    <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#175CD3">INSTRUCTION</span>
+                  </div>
+                  <p class="instxt">Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.</p>
+                  <div class="fileline" style="min-height:52px">
+                    <span style="width:32px;height:32px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+                    <div style="display:flex;flex-direction:column;min-width:120px;flex:1"><span class="fname">Bendix-chamber-out-of-service-procedure.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+                    <span style="display:inline-flex;color:#175CD3;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+                  </div>
+                  <label style="width:100%;box-sizing:border-box;display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 2px"><span class="cbx" style="width:22px;height:22px;border-radius:5px;border-color:#16B364;background:#16B364;color:#fff"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-size:14px;font-weight:600;color:#087443">Acknowledged</span></label>
+                </div>
+                <div style="display:flex;gap:8px">
+                  <button class="mbtn" style="flex:1;font-size:13px;padding:0 10px">Photo</button>
+                  <button class="mbtn" style="flex:1;font-size:13px;padding:0 10px">Edit Note</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="fcard">
+              <div style="display:flex;align-items:center;gap:10px;padding:12px">
+                <span class="num">3</span>
+                <div style="display:flex;flex-direction:column;min-width:0;flex:1"><span style="font-size:15px;font-weight:600;color:#202939">Air-brake system leak check</span><span style="font-size:11px;color:#697586">Not answered</span></div>
+                <span class="micb" style="flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
+              </div>
+            </div>
+          </div>
+          <div style="background:#fff;border-top:1px solid #E3E8EF;padding:10px 14px 12px;display:flex;gap:10px">
+            <button class="mbtn" style="flex:1;border-color:#FEDF89;background:#FFFAEB;color:#B54708"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:9999px;background:#DC6803;color:#fff;font-size:12px;font-weight:700">2</span>Next: Section 2</button>
+          </div>
+        </div>
+        <span class="note">The checked box keeps the row it had, so nothing below it moves. The count falls from three to two and the card keeps its blue edge, because the field is answered Not OK either way.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════ CI9 · phone, building, the whole page ═════ -->
+  <div id="ci9" data-screen-label="CI9 Phone building full page" style="display:flex;flex-direction:column;gap:12px">
+    <div class="cap"><span class="badge">CI9</span><span class="t">Phone, building: the same two toggles in a properties sheet</span><span class="s">the <a href="#ci1c">CI1c</a> treatment at 402 px · the sheet scrolls, the response blocks do not shrink</span></div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">THE TEMPLATE · A FIELD CARRYING TWO FOLLOW-UPS</span>
+        <div class="phone" style="height:700px">
+          <div class="abar">
+            <span class="micb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+            <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:11px;color:#697586">Inspection templates</span><span style="font-size:14px;font-weight:600;color:#202939">Brake &amp; Axle PM</span></div>
+            <span style="margin-left:auto;display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:9999px;background:#FFFAEB;color:#B54708;font-size:12px;font-weight:600;flex:none">Draft</span>
+          <span class="micb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="micb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+        </div>
+          <div style="display:flex;padding:10px 14px;background:#fff;border-bottom:1px solid #E3E8EF"><div style="display:flex;flex:1;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden;height:40px"><span style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:600;background:#364152;color:#fff"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>Edit</span><span style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;border-left:1px solid #CDD5DF;font-size:13px;font-weight:600;background:#fff;color:#697586"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>Preview</span></div></div>
+          <div style="flex:1;padding:14px;background:#F8FAFC;display:flex;flex-direction:column;gap:10px">
+            <div class="fcard">
+              <div style="display:flex;align-items:center;gap:10px;padding:11px 12px;background:#F8FAFC;border-bottom:1px solid #E3E8EF"><span class="num">1</span><span style="font-size:14px;font-weight:600;color:#202939">Section 1</span><span style="margin-left:auto;font-size:12px;color:#697586">3 fields</span></div>
+              <div style="display:flex;align-items:center;gap:10px;padding:12px;border-bottom:1px solid #EEF2F6"><div style="display:flex;flex-direction:column;min-width:0;flex:1"><span style="font-size:14px;font-weight:600;color:#202939">Brake &amp; tire measurements</span><span style="font-size:11px;color:#697586">Per axle · 3 measurements</span></div><span class="micb" style="flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span></div>
+              <div style="display:flex;align-items:center;gap:10px;padding:12px;border-bottom:1px solid #EEF2F6;background:#F4FAFF;border-left:3px solid #257CFF">
+                <div style="display:flex;flex-direction:column;gap:5px;min-width:0;flex:1">
+                  <span style="font-size:14px;font-weight:600;color:#175CD3">Brake chamber condition</span>
+                  <span style="font-size:11px;color:#4B5565">Checkbox · OK / Monitor / Not OK / N/A</span>
+                  <div style="display:flex;flex-direction:column;gap:4px;padding-top:3px;min-width:0">
+                    <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">FOLLOW-UPS</span>
+                    <div style="display:flex;align-items:center;gap:7px;min-width:0"><span class="dot" style="background:#F79009"></span><span style="font-size:11px;font-weight:600;color:#B54708;flex:none">Monitor</span><span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Re-check at the next PM.</span></div>
+                    <div style="display:flex;align-items:center;gap:7px;min-width:0"><span class="dot" style="background:#F04438"></span><span style="font-size:11px;font-weight:600;color:#B42318;flex:none">Not OK</span><span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Tag the unit out of service.</span><span style="display:inline-flex;flex:none;color:#697586"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg></span></div>
+                  </div>
+                </div>
+                <span class="micb" style="flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding:12px"><div style="display:flex;flex-direction:column;gap:3px;min-width:0;flex:1"><span style="font-size:14px;font-weight:600;color:#202939">Air-brake system leak check</span><span style="font-size:11px;color:#697586">Checkbox</span><div style="display:flex;flex-direction:column;gap:4px;padding-top:3px;min-width:0"><span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">FOLLOW-UPS</span><div style="display:flex;align-items:center;gap:7px;min-width:0"><span class="dot" style="background:#F04438"></span><span style="font-size:11px;font-weight:600;color:#B42318;flex:none">Not OK</span><span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Leak down test before the unit leaves.</span></div></div></div><span class="micb" style="flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span></div>
+            </div>
+            <button class="mbtn" style="border-color:#BEDFFF;background:#E9F5FF;color:#175CD3">+ Add Field</button>
+          </div>
+          <div style="background:#fff;border-top:1px solid #E3E8EF;padding:10px 14px 12px;display:flex;gap:10px">
+            <button class="mbtn" style="flex:none;padding:0 16px">Save Draft</button>
+            <button class="mbtn" style="flex:1;border:0;background:#257CFF;color:#fff">Publish</button>
+          </div>
+        </div>
+        <span class="note">The same list the desktop canvas carries, shortened to the width a phone has. Tapping the row opens the properties sheet.</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">PROPERTIES SHEET · MONITOR ON</span>
+        <div class="phone" style="height:1470px">
+          <div class="abar" style="opacity:0.45">
+            <span class="micb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+            <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:11px;color:#697586">Inspection templates</span><span style="font-size:14px;font-weight:600;color:#202939">Brake &amp; Axle PM</span></div>
+          <span class="micb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="micb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+        </div>
+          <div style="flex:1;background:rgba(15,17,26,0.5);display:flex;flex-direction:column;justify-content:flex-end">
+            <div style="background:#fff;border-radius:16px 16px 0 0;display:flex;flex-direction:column;overflow:hidden">
+              <div style="display:flex;align-items:center;gap:10px;padding:14px;border-bottom:1px solid #E3E8EF">
+                <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:11px;color:#697586">Field properties</span><span style="font-size:16px;font-weight:600;color:#202939">Checkbox</span></div>
+                <span class="micb" style="margin-left:auto;flex:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></span>
+              </div>
+              <div style="padding:14px;display:flex;flex-direction:column;gap:12px">
+                <div style="display:flex;flex-direction:column;gap:7px"><span class="glab">LABEL</span><input style="height:48px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;color:#202939;box-sizing:border-box" value="Brake chamber condition"></div>
+                <span class="glab">RESPONSE OPTIONS</span>
+
+                <div class="fublk" style="gap:9px;padding:11px">
+                  <div style="display:flex;align-items:center;gap:9px"><span class="dot" style="background:#16B364"></span><input style="flex:1;min-width:0;height:44px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;color:#202939;box-sizing:border-box" value="OK"><span class="micb" style="flex:none;width:44px;height:44px" title="Rename response"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span></div>
+                  <label class="fuchk" style="min-height:44px;font-size:14px"><span class="cbx" style="width:22px;height:22px;border-radius:5px"></span>Follow-up for this response</label>
+                </div>
+
+                <div class="fublk" style="gap:9px;padding:11px">
+                  <div style="display:flex;align-items:center;gap:9px"><span class="dot" style="background:#F79009"></span><input style="flex:1;min-width:0;height:44px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;color:#202939;box-sizing:border-box" value="Monitor"><span class="micb" style="flex:none;width:44px;height:44px" title="Rename response"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span></div>
+                  <label class="fuchk on" style="min-height:44px;font-size:14px"><span class="cbx on" style="width:22px;height:22px;border-radius:5px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Follow-up for this response</label>
+                  <textarea rows="2" style="width:100%;padding:10px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;line-height:22px;color:#202939;resize:none;box-sizing:border-box">Re-check at the next PM and record the reading.</textarea>
+                  <button class="mbtn" style="align-self:stretch;font-size:13px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+                                  <div style="display:flex;align-items:center;gap:10px;min-height:44px"><div class="tog" style="width:44px;height:26px"><div class="knob" style="width:22px;height:22px"></div></div><span style="font-size:13px;color:#9AA4B2">Require acknowledgement</span><span style="display:inline-flex;color:#9AA4B2;flex:none"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+                </div>
+
+                <div class="fublk on" style="gap:9px;padding:11px">
+                  <div style="display:flex;align-items:center;gap:9px"><span class="dot" style="background:#F04438"></span><input style="flex:1;min-width:0;height:44px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;color:#202939;box-sizing:border-box" value="Not OK"><span class="micb" style="flex:none;width:44px;height:44px" title="Rename response"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span></div>
+                  <label class="fuchk on" style="min-height:44px;font-size:14px"><span class="cbx on" style="width:22px;height:22px;border-radius:5px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Follow-up for this response</label>
+                  <textarea rows="4" style="width:100%;padding:10px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;line-height:22px;color:#202939;resize:none;box-sizing:border-box">Tag the unit out of service and tell the foreman before it leaves the bay.</textarea>
+                  <div class="fileline" style="min-height:52px;background:#fff">
+                    <span style="width:32px;height:32px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+                    <div style="display:flex;flex-direction:column;min-width:0;flex:1"><span class="fname">Bendix-chamber-out-of-service.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+                    <span class="micb" style="flex:none;border:0;background:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></span>
+                  </div>
+                                  <div style="display:flex;align-items:center;gap:10px;min-height:44px"><div class="tog on" style="width:44px;height:26px"><div class="knob" style="width:22px;height:22px"></div></div><span style="font-size:13px;color:#364152">Require acknowledgement</span><span style="display:inline-flex;color:#9AA4B2;flex:none"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+                </div>
+
+                <div class="fublk" style="gap:9px;padding:11px">
+                  <div style="display:flex;align-items:center;gap:9px"><span class="dot" style="background:#9AA4B2"></span><input style="flex:1;min-width:0;height:44px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;color:#202939;box-sizing:border-box" value="N/A"><span class="micb" style="flex:none;width:44px;height:44px" title="Rename response"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span></div>
+                  <label class="fuchk" style="min-height:44px;font-size:14px"><span class="cbx" style="width:22px;height:22px;border-radius:5px"></span>Follow-up for this response</label>
+                </div>
+
+                <span class="glab">RESPONSE SETTINGS</span>
+                <div style="display:flex;align-items:center;gap:12px;min-height:44px"><div class="tog on" style="width:48px;height:28px"><div class="knob" style="width:24px;height:24px"></div></div><span style="font-size:14px;color:#364152">Include Monitor option</span></div>
+                                <div style="display:flex;align-items:center;gap:12px;min-height:44px"><div class="tog on" style="width:48px;height:28px"><div class="knob" style="width:24px;height:24px"></div></div><span style="font-size:14px;color:#364152">Add follow-up to a response</span><span style="display:inline-flex;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="note">Every target in the sheet is at least 44 px and every value input is 16 px, so focusing one does not zoom the page. An unchecked block is two rows, which is what keeps four responses reachable by scrolling rather than by hunting.</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span class="glab">PROPERTIES SHEET · MONITOR OFF</span>
+        <div class="phone" style="height:1150px">
+          <div class="abar" style="opacity:0.45">
+            <span class="micb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+            <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:11px;color:#697586">Inspection templates</span><span style="font-size:14px;font-weight:600;color:#202939">Brake &amp; Axle PM</span></div>
+          <span class="micb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="micb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+        </div>
+          <div style="flex:1;background:rgba(15,17,26,0.5);display:flex;flex-direction:column;justify-content:flex-end">
+            <div style="background:#fff;border-radius:16px 16px 0 0;display:flex;flex-direction:column;overflow:hidden">
+              <div style="display:flex;align-items:center;gap:10px;padding:14px;border-bottom:1px solid #E3E8EF">
+                <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:11px;color:#697586">Field properties</span><span style="font-size:16px;font-weight:600;color:#202939">Checkbox</span></div>
+                <span class="micb" style="margin-left:auto;flex:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></span>
+              </div>
+              <div style="padding:14px;display:flex;flex-direction:column;gap:12px">
+                <div style="display:flex;flex-direction:column;gap:7px"><span class="glab">LABEL</span><input style="height:48px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;color:#202939;box-sizing:border-box" value="Brake chamber condition"></div>
+                <span class="glab">RESPONSE OPTIONS</span>
+
+                <div class="fublk" style="gap:9px;padding:11px">
+                  <div style="display:flex;align-items:center;gap:9px"><span class="dot" style="background:#16B364"></span><input style="flex:1;min-width:0;height:44px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;color:#202939;box-sizing:border-box" value="OK"><span class="micb" style="flex:none;width:44px;height:44px" title="Rename response"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span></div>
+                  <label class="fuchk" style="min-height:44px;font-size:14px"><span class="cbx" style="width:22px;height:22px;border-radius:5px"></span>Follow-up for this response</label>
+                </div>
+
+                <div class="fublk on" style="gap:9px;padding:11px">
+                  <div style="display:flex;align-items:center;gap:9px"><span class="dot" style="background:#F04438"></span><input style="flex:1;min-width:0;height:44px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;color:#202939;box-sizing:border-box" value="Not OK"><span class="micb" style="flex:none;width:44px;height:44px" title="Rename response"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span></div>
+                  <label class="fuchk on" style="min-height:44px;font-size:14px"><span class="cbx on" style="width:22px;height:22px;border-radius:5px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Follow-up for this response</label>
+                  <textarea rows="4" style="width:100%;padding:10px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;line-height:22px;color:#202939;resize:none;box-sizing:border-box">Tag the unit out of service and tell the foreman before it leaves the bay.</textarea>
+                  <div class="fileline" style="min-height:52px;background:#fff">
+                    <span style="width:32px;height:32px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span>
+                    <div style="display:flex;flex-direction:column;min-width:0;flex:1"><span class="fname">Bendix-chamber-out-of-service.pdf</span><span style="font-size:11px;color:#4B5565">1.2 MB</span></div>
+                    <span class="micb" style="flex:none;border:0;background:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></span>
+                  </div>
+                                  <div style="display:flex;align-items:center;gap:10px;min-height:44px"><div class="tog on" style="width:44px;height:26px"><div class="knob" style="width:22px;height:22px"></div></div><span style="font-size:13px;color:#364152">Require acknowledgement</span><span style="display:inline-flex;color:#9AA4B2;flex:none"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+                </div>
+
+                <div class="fublk" style="gap:9px;padding:11px">
+                  <div style="display:flex;align-items:center;gap:9px"><span class="dot" style="background:#9AA4B2"></span><input style="flex:1;min-width:0;height:44px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;color:#202939;box-sizing:border-box" value="N/A"><span class="micb" style="flex:none;width:44px;height:44px" title="Rename response"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span></div>
+                  <label class="fuchk" style="min-height:44px;font-size:14px"><span class="cbx" style="width:22px;height:22px;border-radius:5px"></span>Follow-up for this response</label>
+                </div>
+
+                <span class="glab">RESPONSE SETTINGS</span>
+                <div style="display:flex;align-items:center;gap:12px;min-height:44px"><div class="tog" style="width:48px;height:28px"><div class="knob" style="width:24px;height:24px"></div></div><span style="font-size:14px;color:#364152">Include Monitor option</span></div>
+                                <div style="display:flex;align-items:center;gap:12px;min-height:44px"><div class="tog on" style="width:48px;height:28px"><div class="knob" style="width:24px;height:24px"></div></div><span style="font-size:14px;color:#364152">Add follow-up to a response</span><span style="display:inline-flex;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="note">Monitor off takes its row, its checkbox and its text with it, the same as <a href="#ci1c">CI1c</a> on the desktop. The sheet gets shorter, which on the phone is the difference between one scroll and two.</span>
+      </div>
+    </div>
+  </div>
+
+  </section>
+</section>
+</x-dc>
+</body>
+</html>

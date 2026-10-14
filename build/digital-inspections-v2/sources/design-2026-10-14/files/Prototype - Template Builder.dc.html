@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+<style>
+body { margin:0; background:#EEF2F6; font-family:'Inter',system-ui,sans-serif; color:#202939; }
+a { color:#175CD3; text-decoration:none; } a:hover { text-decoration:underline; }
+input, textarea, select, button { font-family:inherit; }
+input:focus, textarea:focus, select:focus { outline:none; border-color:#257CFF !important; box-shadow:0 0 0 4px rgba(37,124,255,0.24); }
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:16px;padding:16px 24px 40px;box-sizing:border-box">
+  <div style="width:100%;max-width:1440px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+    <a href="Prototype - Hub.dc.html" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>Prototype hub</a>
+    <span style="font-size:13px;color:#697586">Template builder · checkbox and per axle are live, the other field types are disabled</span>
+    <div style="margin-left:auto;display:flex;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden;height:32px;background:#fff">
+      <button onClick="{{ toDesktop }}" style="{{ deskBtn }}">Desktop</button>
+      <button onClick="{{ toPhone }}" style="{{ phoneBtn }}">Phone</button>
+    </div>
+  </div>
+
+  <div style="{{ frameStyle }}">
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:24px;height:56px;padding:0 20px;background:#fff;border-bottom:1px solid #E3E8EF;flex:none">
+        <div style="width:26px;height:26px;border-radius:6px;background:#257CFF"></div>
+        <div style="display:flex;gap:20px;font-size:14px;font-weight:500;color:#4B5565"><span>Work Orders</span><span>Schedule</span><span>Customers</span><span>Parts</span><span>Reports</span><span style="color:#175CD3;font-weight:600">Admin</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px;height:36px;padding:0 4px 0 12px;border-radius:9999px;background:#F8FAFC;border:1px solid #E3E8EF;font-size:13px;font-weight:500;color:#364152;white-space:nowrap;flex:none">Staging Heavy Duty - 9919<span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#202939;color:#fff;font-size:11px;font-weight:600">AS</span></div>
+      </div>
+    </sc-if>
+
+    <div style="{{ subbarStyle }}">
+      <span style="display:inline-flex;color:#4B5565;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+      <div style="display:flex;flex-direction:column;min-width:0;flex:1"><span style="font-size:11px;color:#697586;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Admin · Inspection templates</span><span style="font-size:14px;font-weight:600;color:#202939;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Brake &amp; Axle PM</span></div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex:none">
+        <div style="display:flex;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden;height:34px">
+          <button onClick="{{ toEdit }}" style="{{ editBtn }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>Edit</button>
+          <button onClick="{{ toPreview }}" style="{{ previewBtn }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>Preview</button>
+        </div>
+        <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><span style="{{ statusStyle }}">{{ statusText }}</span></sc-if>
+        <button onClick="{{ onPublish }}" style="height:34px;padding:0 16px;border:0;border-radius:8px;background:#257CFF;color:#fff;font-size:13px;font-weight:600;cursor:pointer" style-hover="background:#1570EF">Publish</button>
+      </div>
+    </div>
+
+    <div style="{{ bodyStyle }}">
+      <sc-if value="{{ showRail }}" hint-placeholder-val="{{ true }}">
+        <div style="width:236px;flex:none;padding:16px 14px;background:#F8FAFC;border-right:1px solid #E3E8EF;display:flex;flex-direction:column;gap:6px;box-sizing:border-box">
+          <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586;padding:0 4px 6px">OUTLINE</span>
+          <sc-for list="{{ sections }}" as="s" hint-placeholder-count="2">
+            <div style="{{ s.outlineStyle }}"><span style="{{ s.outlineText }}">{{ s.name }}</span><span style="margin-left:auto;font-size:12px;color:#697586">{{ s.count }}</span></div>
+          </sc-for>
+          <button onClick="{{ onAddSection }}" style="margin-top:6px;height:32px;border:0;background:none;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer;text-align:left;padding:0 6px">+ Add Section</button>
+        </div>
+      </sc-if>
+
+      <div style="{{ canvasStyle }}">
+        <sc-if value="{{ isEdit }}" hint-placeholder-val="{{ true }}">
+          <div style="width:100%;max-width:560px;display:flex;flex-direction:column;gap:14px">
+            <sc-for list="{{ sections }}" as="s" hint-placeholder-count="2">
+              <div style="border:1px solid #E3E8EF;border-radius:12px;background:#fff">
+                <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:#F8FAFC;border-bottom:1px solid #E3E8EF;border-radius:12px 12px 0 0">
+                  <span style="width:22px;height:22px;border-radius:6px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565;display:inline-flex;align-items:center;justify-content:center">{{ s.num }}</span>
+                  <input value="{{ s.name }}" onChange="{{ s.onName }}" style="flex:1;min-width:0;height:28px;padding:0 6px;border:1px solid transparent;border-radius:6px;background:transparent;font-size:14px;font-weight:600;color:#202939">
+                  <span style="font-size:12px;color:#697586;white-space:nowrap">{{ s.countText }}</span>
+                </div>
+                <sc-for list="{{ s.fields }}" as="f" hint-placeholder-count="2">
+                  <div onClick="{{ f.onSelect }}" style="{{ f.rowStyle }}" style-hover="background:#F8FAFC">
+                    <span style="color:#9AA4B2;flex:none;padding-top:2px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h.01M9 12h.01M9 18h.01M15 6h.01M15 12h.01M15 18h.01"></path></svg></span>
+                    <div style="display:flex;flex-direction:column;gap:3px;flex:1;min-width:0">
+                      <span style="{{ f.labelStyle }}">{{ f.label }}</span>
+                      <span style="font-size:11px;line-height:15px;color:#697586;text-wrap:pretty">{{ f.sub }}</span>
+                      <sc-for list="{{ f.fus }}" as="u" hint-placeholder-count="0">
+                        <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#4B5565;min-width:0"><span style="{{ u.dotStyle }}"></span><span style="font-weight:600;flex:none">{{ u.name }}</span><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0">{{ u.text }}</span><sc-if value="{{ u.hasFile }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;color:#175CD3;flex:none"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg></span></sc-if></div>
+                      </sc-for>
+                    </div>
+                    <button onClick="{{ f.onDelete }}" title="Delete Field" style="width:28px;height:28px;flex:none;border:0;border-radius:6px;background:none;color:#B42318;cursor:pointer;display:inline-flex;align-items:center;justify-content:center" style-hover="background:#FEF3F2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path></svg></button>
+                  </div>
+                </sc-for>
+                <div style="padding:9px 14px;position:relative">
+                  <button onClick="{{ s.onTogglePicker }}" style="height:32px;border:0;background:none;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer;padding:0">+ Add Field</button>
+                  <sc-if value="{{ s.pickerOpen }}" hint-placeholder-val="{{ false }}">
+                    <div style="margin-top:8px;padding:10px;border:1px solid #E3E8EF;border-radius:12px;background:#fff;box-shadow:0 12px 24px rgba(11,23,51,0.10),0 4px 8px rgba(11,23,51,0.05);display:flex;flex-direction:column;gap:8px">
+                      <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">FIELD TYPE</span>
+                      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">
+                        <sc-for list="{{ s.types }}" as="t" hint-placeholder-count="6">
+                          <button onClick="{{ t.onPick }}" title="{{ t.title }}" style="{{ t.style }}">{{ t.label }}</button>
+                        </sc-for>
+                      </div>
+                    </div>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-for>
+            <sc-if value="{{ isPhone }}" hint-placeholder-val="{{ false }}"><button onClick="{{ onAddSection }}" style="height:44px;border:1px dashed #CDD5DF;border-radius:12px;background:#fff;font-size:14px;font-weight:600;color:#175CD3;cursor:pointer">+ Add Section</button></sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isPreview }}" hint-placeholder-val="{{ false }}">
+          <div style="width:100%;max-width:1040px;display:flex;flex-direction:column;gap:14px">
+            <sc-for list="{{ preview }}" as="s" hint-placeholder-count="2">
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div style="display:flex;flex-direction:column;gap:2px;padding-top:6px"><span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">{{ s.eyebrow }}</span><span style="font-size:20px;font-weight:600;color:#202939">{{ s.name }}</span></div>
+                <sc-for list="{{ s.cards }}" as="c" hint-placeholder-count="2">
+                  <div onClick="{{ c.onEdit }}" style="background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);cursor:pointer;transition:border-color 140ms ease-out, box-shadow 140ms ease-out" style-hover="border-color:#257CFF;box-shadow:0 4px 8px rgba(11,23,51,0.08),0 1px 2px rgba(11,23,51,0.05)">
+                    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:16px 20px 12px;flex-wrap:wrap">
+                      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:16px;font-weight:600;color:#202939">{{ c.label }}</span><span style="align-self:flex-start;display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565">{{ c.typeLabel }}</span></div>
+                      <span style="font-size:12px;color:#697586">{{ c.rules }}</span>
+                    </div>
+                    <sc-if value="{{ c.ref }}" hint-placeholder-val="{{ false }}">
+                      <div style="margin:0 20px 12px;display:flex;align-items:center;gap:10px;padding:9px 10px;border:1px solid #BEDFFF;border-radius:8px;background:#E9F5FF"><span style="width:28px;height:28px;flex:none;border-radius:7px;background:#fff;color:#175CD3;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span><span style="font-size:12px;font-weight:600;color:#175CD3;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ c.refName }}</span><span style="margin-left:auto;font-size:12px;font-weight:600;color:#175CD3;flex:none">Open</span></div>
+                    </sc-if>
+                    <sc-if value="{{ c.isCb }}" hint-placeholder-val="{{ true }}">
+                      <div style="padding:0 20px 16px"><div style="display:flex;height:44px;max-width:520px;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden;background:#fff">
+                        <sc-for list="{{ c.responses }}" as="r" hint-placeholder-count="4"><span style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;border-left:1px solid #E3E8EF;font-size:13px;font-weight:600;color:#4B5565"><span style="{{ r.dotStyle }}"></span>{{ r.name }}</span></sc-for>
+                      </div></div>
+                    </sc-if>
+                    <sc-if value="{{ c.isAx }}" hint-placeholder-val="{{ false }}">
+                      <div style="padding:0 20px 16px;display:flex;flex-direction:column;gap:10px">
+                        <div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ c.axles }}" as="a" hint-placeholder-count="3"><span style="{{ a.style }}">{{ a.label }}</span></sc-for><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border:1px dashed #CDD5DF;border-radius:8px;font-size:12px;font-weight:600;color:#697586;white-space:nowrap;flex:none">+ Axle</span></div>
+                        <div style="display:flex;gap:20px;align-items:flex-start">
+                        <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+                          <div style="width:170px;flex:none;padding:14px 12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:10px;box-sizing:border-box">
+                            <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">TOP VIEW</span>
+                            <div style="width:80px;height:24px;border-radius:6px;background:#E3E8EF"></div>
+                            <sc-for list="{{ c.top }}" as="t" hint-placeholder-count="3">
+                              <div style="display:flex;align-items:center;gap:8px"><div style="display:flex;gap:3px"><div style="width:12px;height:28px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div><div style="width:12px;height:28px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div></div><div style="{{ t.style }}">{{ t.num }}</div><div style="display:flex;gap:3px"><div style="width:12px;height:28px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div><div style="width:12px;height:28px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div></div></div>
+                            </sc-for>
+                            <span style="font-size:11px;line-height:15px;color:#697586;text-align:center">Tap a tire to jump to its value. Tint follows that tire’s verdict.</span>
+                          </div>
+                        </sc-if>
+                        <div style="flex:1;min-width:0;border:1px solid #E3E8EF;border-radius:12px;overflow:hidden">
+                          <sc-for list="{{ c.rows }}" as="r" hint-placeholder-count="4">
+                            <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #EEF2F6;flex-wrap:wrap">
+                              <span style="font-size:13px;font-weight:500;color:#364152;min-width:150px;flex:1">{{ r.name }} <span style="font-size:11px;color:#697586">{{ r.unit }}</span></span>
+                              <div style="display:flex;gap:8px;flex:2;min-width:220px"><sc-for list="{{ r.cells }}" as="x" hint-placeholder-count="4"><span style="flex:1;height:34px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;display:inline-flex;align-items:center;padding:0 8px;font-size:11px;font-weight:600;letter-spacing:0.04em;color:#9AA4B2;min-width:0">{{ x }}</span></sc-for></div>
+                            </div>
+                          </sc-for>
+                        </div>
+                        </div>
+                      </div>
+                    </sc-if>
+                    <div style="display:flex;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6;border-radius:0 0 12px 12px"><span style="display:inline-flex;align-items:center;height:30px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-size:12px;font-weight:600;color:#364152;white-space:nowrap">Add Photo</span><span style="display:inline-flex;align-items:center;height:30px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-size:12px;font-weight:600;color:#364152;white-space:nowrap">Add Note</span></div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+
+      <sc-if value="{{ showScrim }}" hint-placeholder-val="{{ false }}"><div onClick="{{ closeSheet }}" style="position:absolute;inset:0;background:rgba(18,25,38,0.45);z-index:20"></div></sc-if>
+
+      <sc-if value="{{ showPanel }}" hint-placeholder-val="{{ true }}">
+        <div style="{{ panelStyle }}">
+          <sc-if value="{{ isPhone }}" hint-placeholder-val="{{ false }}"><div style="display:flex;justify-content:center;padding:8px 0 0"><span style="width:36px;height:4px;border-radius:9999px;background:#CDD5DF"></span></div></sc-if>
+          <sc-if value="{{ selNone }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:40px 20px;font-size:13px;color:#697586;text-align:center">Select a field to edit its properties.</div>
+          </sc-if>
+          <sc-if value="{{ selAny }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid #E3E8EF;background:#F8FAFC">
+              <span style="width:28px;height:28px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;display:inline-flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+              <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">Field properties</span><span style="font-size:15px;font-weight:600;color:#202939">{{ selTypeLabel }}</span></div>
+              <sc-if value="{{ isPhone }}" hint-placeholder-val="{{ false }}"><button onClick="{{ closeSheet }}" style="margin-left:auto;height:44px;padding:0 14px;border:0;background:none;font-size:15px;font-weight:600;color:#175CD3;cursor:pointer">Done</button></sc-if>
+            </div>
+            <div style="padding:14px 16px;border-bottom:1px solid #E3E8EF;display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">LABEL</span>
+              <input value="{{ selLabel }}" onChange="{{ onSelLabel }}" style="{{ inpStyle }}">
+            </div>
+            <div style="padding:14px 16px;border-bottom:1px solid #E3E8EF;display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">TYPE</span>
+              <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px">
+                <sc-for list="{{ typeGrid }}" as="t" hint-placeholder-count="6"><button onClick="{{ t.onPick }}" title="{{ t.title }}" style="{{ t.style }}">{{ t.label }}</button></sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ selCb }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:14px 16px;border-bottom:1px solid #E3E8EF;display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">RESPONSE OPTIONS</span>
+              <sc-for list="{{ cbResponses }}" as="r" hint-placeholder-count="4">
+                <div style="{{ r.blockStyle }}">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span style="{{ r.dotStyle }}"></span>
+                    <input value="{{ r.name }}" readOnly="{{ r.locked }}" onChange="{{ r.onName }}" onBlur="{{ r.onDoneRename }}" ref="{{ r.ref }}" style="{{ r.inpStyle }}">
+                    <button onClick="{{ r.onRename }}" title="Rename response" style="width:30px;height:30px;flex:none;border:0;border-radius:6px;background:none;color:#364152;cursor:pointer;display:inline-flex;align-items:center;justify-content:center" style-hover="background:#EEF2F6"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button>
+                  </div>
+                  <sc-if value="{{ r.showFu }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-direction:column;gap:8px">
+                      <label onClick="{{ r.onToggleFu }}" style="display:inline-flex;align-items:center;gap:8px;min-height:28px;cursor:pointer;font-size:12px;font-weight:600;color:#364152"><span style="{{ r.cbxStyle }}"><sc-if value="{{ r.fuOn }}" hint-placeholder-val="{{ false }}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if></span>Follow-up for this response</label>
+                      <textarea rows="3" value="{{ r.text }}" onChange="{{ r.onText }}" disabled="{{ r.fuOff }}" placeholder="Instruction the technician sees" style="{{ r.taStyle }}"></textarea>
+                      <sc-if value="{{ r.hasFile }}" hint-placeholder-val="{{ false }}">
+                        <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid #BEDFFF;border-radius:8px;background:#fff"><span style="width:26px;height:26px;flex:none;border-radius:7px;background:#E9F5FF;color:#175CD3;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span><div style="display:flex;flex-direction:column;min-width:0;flex:1"><span style="font-size:12px;font-weight:600;color:#175CD3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.fileName }}</span><span style="font-size:11px;color:#4B5565">{{ r.fileSize }}</span></div><button onClick="{{ r.onRemoveFile }}" title="Remove file" style="width:26px;height:26px;flex:none;border:0;border-radius:6px;background:none;color:#364152;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div>
+                      </sc-if>
+                      <sc-if value="{{ r.noFile }}" hint-placeholder-val="{{ true }}">
+                        <button onClick="{{ r.onAttach }}" disabled="{{ r.fuOff }}" style="{{ r.attachStyle }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+                      </sc-if>
+                      <sc-if value="{{ r.canAck }}" hint-placeholder-val="{{ false }}">
+                        <div onClick="{{ r.onToggleAck }}" style="{{ r.ackRowStyle }}"><div style="{{ r.ackTrack }}"><div style="{{ r.ackKnob }}"></div></div><span style="{{ r.ackLabel }}">Require acknowledgement</span></div>
+                      </sc-if>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+            <div style="padding:14px 16px;border-bottom:1px solid #E3E8EF;display:flex;flex-direction:column;gap:10px">
+              <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">RESPONSE SETTINGS</span>
+              <div onClick="{{ onToggleMonitor }}" style="display:flex;align-items:center;gap:10px;cursor:pointer;min-height:28px"><div style="{{ monTrack }}"><div style="{{ monKnob }}"></div></div><span style="font-size:13px;color:#364152">Include Monitor option</span></div>
+              <div onClick="{{ onToggleFus }}" style="display:flex;align-items:center;gap:10px;cursor:pointer;min-height:28px"><div style="{{ fusTrack }}"><div style="{{ fusKnob }}"></div></div><span style="font-size:13px;color:#364152">Add follow-up to a response</span></div>
+              <span style="font-size:11px;line-height:16px;color:#697586;text-wrap:pretty">A follow-up is text and one file, shown to the technician only when they give that response.</span>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ selAx }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:14px 16px;border-bottom:1px solid #E3E8EF;display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">MEASUREMENT ROWS · EVERY AXLE</span>
+              <sc-for list="{{ axRows }}" as="r" hint-placeholder-count="4">
+                <div style="display:flex;flex-direction:column;gap:8px;padding:10px;border:1px solid #E3E8EF;border-radius:8px;background:#fff">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span style="color:#9AA4B2;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h.01M9 12h.01M9 18h.01M15 6h.01M15 12h.01M15 18h.01"></path></svg></span>
+                    <input value="{{ r.name }}" onChange="{{ r.onName }}" style="flex:1;min-width:0;height:32px;padding:0 8px;border:1px solid #CDD5DF;border-radius:8px;font-size:13px;font-weight:500;color:#202939;background:#fff">
+                    <button onClick="{{ r.onDelete }}" title="Delete row" style="width:28px;height:28px;flex:none;border:0;border-radius:6px;background:none;color:#B42318;cursor:pointer;display:inline-flex;align-items:center;justify-content:center" style-hover="background:#FEF3F2"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path></svg></button>
+                  </div>
+                  <div style="display:flex;gap:8px;padding-left:22px">
+                    <select value="{{ r.unit }}" onChange="{{ r.onUnit }}" style="flex:1;min-width:0;height:30px;padding:0 6px;border:1px solid #CDD5DF;border-radius:8px;font-size:12px;color:#364152;background:#fff"><option value="psi">psi</option><option value="32nds">32nds</option><option value="in.">in.</option><option value="mm">mm</option><option value="ft-lb">ft-lb</option></select>
+                    <select value="{{ r.scope }}" onChange="{{ r.onScope }}" style="flex:1.3;min-width:0;height:30px;padding:0 6px;border:1px solid #CDD5DF;border-radius:8px;font-size:12px;color:#364152;background:#fff"><option value="tire">Every tire</option><option value="side">Each side</option></select>
+                  </div>
+                </div>
+              </sc-for>
+              <button onClick="{{ onAddRow }}" style="align-self:flex-start;height:32px;border:0;background:none;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer;padding:0">+ Add Measurement Row</button>
+              <div style="display:flex;align-items:center;gap:10px;padding:10px;border:1px solid #E3E8EF;border-radius:8px;background:#fff">
+                <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0"><span style="font-size:13px;font-weight:600;color:#202939">Axles</span><span style="font-size:11px;color:#697586">Select # of axles to start with</span></div>
+                <select value="{{ axCount }}" onChange="{{ onAxCount }}" style="width:104px;height:32px;padding:0 8px;border:1px solid #CDD5DF;border-radius:8px;font-size:13px;font-weight:600;color:#364152;background:#fff"><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ selAny }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:14px 16px;border-bottom:1px solid #E3E8EF;display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">GENERAL REFERENCE FILE</span>
+              <sc-if value="{{ refHas }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border:1px solid #BEDFFF;border-radius:8px;background:#E9F5FF"><span style="width:28px;height:28px;flex:none;border-radius:7px;background:#fff;color:#175CD3;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span><div style="display:flex;flex-direction:column;min-width:0;flex:1"><span style="font-size:12px;font-weight:600;color:#175CD3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ refName }}</span><span style="font-size:11px;color:#4B5565">{{ refSize }} · not in the customer report</span></div><button onClick="{{ onRefRemove }}" title="Remove file" style="width:26px;height:26px;flex:none;border:0;border-radius:6px;background:none;color:#364152;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div>
+              </sc-if>
+              <sc-if value="{{ refNone }}" hint-placeholder-val="{{ true }}">
+                <span style="font-size:11px;color:#697586">PDF, JPG or PNG · up to 10 MB</span>
+                <button onClick="{{ onRefAttach }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-size:13px;font-weight:600;color:#364152;cursor:pointer"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Attach File</button>
+              </sc-if>
+            </div>
+            <div style="padding:14px 16px;border-bottom:1px solid #E3E8EF;display:flex;flex-direction:column;gap:10px">
+              <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">VALIDATION</span>
+              <sc-for list="{{ valRules }}" as="v" hint-placeholder-count="4">
+                <div onClick="{{ v.onToggle }}" style="display:flex;align-items:center;gap:10px;cursor:pointer;min-height:28px"><div style="{{ v.track }}"><div style="{{ v.knob }}"></div></div><span style="font-size:13px;color:#364152">{{ v.label }}</span></div>
+              </sc-for>
+              <span style="font-size:12px;line-height:17px;color:#4B5565;text-wrap:pretty">{{ valSummary }}</span>
+            </div>
+            <div style="display:flex;gap:8px;padding:12px 16px;background:#F8FAFC">
+              <button onClick="{{ onDuplicate }}" style="flex:1;height:36px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-size:13px;font-weight:600;color:#364152;cursor:pointer">Duplicate Field</button>
+              <button onClick="{{ onDeleteSel }}" style="flex:1;height:36px;border:1px solid #FDA29B;border-radius:8px;background:#fff;font-size:13px;font-weight:600;color:#B42318;cursor:pointer">Delete Field</button>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ toastOn }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:40;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;background:#202939;color:#fff;font-size:13px;font-weight:500;box-shadow:0 12px 24px rgba(11,23,51,0.18);white-space:nowrap">{{ toastText }}</div>
+      </sc-if>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const DOT = { ok:'#16B364', mon:'#F79009', bad:'#F04438', na:'#9AA4B2' };
+const KEYS = ['ok','mon','bad','na'];
+const TYPES = [['checkbox','Checkbox',true],['text','Text',false],['meas','Measurement',false],['axle','Per axle',true],['photo','Photo',false],['instr','Instructions',false]];
+const FILES = [['Chamber-replacement-procedure.pdf','1.4 MB'],['Leak-test-steps.pdf','820 KB'],['Slack-adjuster-spec.pdf','2.1 MB'],['Bendix-chamber-service.pdf','1.2 MB']];
+const VAL = [['req','Required to complete'],['photo','Photo required'],['photoBad','Photo required if Not OK'],['noteBad','Note required if Monitor / Not OK']];
+let uid = 100, fileN = 0;
+const nextFile = () => FILES[(fileN++) % FILES.length];
+const fu = ack => ({ on:false, text:'', file:null, ack:!!ack });
+function cbField(label, over) {
+  return Object.assign({ type:'checkbox', label, names:{ ok:'OK', mon:'Monitor', bad:'Not OK', na:'N/A' }, monitor:true, fuOn:false,
+    fu:{ ok:fu(), mon:fu(true), bad:fu(true), na:fu() }, ref:null, val:{ req:false, photo:false, photoBad:false, noteBad:true } }, over || {});
+}
+function axField(label) {
+  return { type:'axle', label, axles:3, ref:null, val:{ req:true, photo:false, photoBad:false, noteBad:true },
+    rows:[ { id:'r'+(uid++), name:'Tire pressure', unit:'psi', scope:'tire' }, { id:'r'+(uid++), name:'Tread depth', unit:'32nds', scope:'tire' },
+           { id:'r'+(uid++), name:'Brake lining', unit:'in.', scope:'side' }, { id:'r'+(uid++), name:'Push-rod travel', unit:'in.', scope:'side' } ] };
+}
+const track = on => 'width:36px;height:20px;flex:none;border-radius:9999px;padding:2px;box-sizing:border-box;display:flex;transition:background 140ms ease-out;justify-content:' + (on ? 'flex-end' : 'flex-start') + ';background:' + (on ? '#257CFF' : '#CDD5DF');
+const knob = 'width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(11,23,51,0.2)';
+const dot = (c, s) => 'width:' + (s||8) + 'px;height:' + (s||8) + 'px;border-radius:50%;flex:none;background:' + c;
+
+class Component extends DCLogic {
+  state = (() => {
+    const f2 = cbField('Brake chamber condition', { fuOn:true, ref:FILES[3] });
+    f2.fu.bad = { on:true, text:'Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.', file:FILES[0], ack:true };
+    f2.fu.ok = { on:true, text:'Check the dust boot is seated before closing the card.', file:null, ack:false };
+    const f3 = cbField('Air-brake system leak check', { fuOn:true });
+    f3.fu.mon = { on:true, text:'Re-check at the next PM and record the reading.', file:null, ack:true };
+    return {
+      device:'desktop', mode:'edit', selected:'f2', sheet:false, picker:null, renaming:null, dirty:false, toast:null,
+      sections:[ { id:'s1', name:'Brakes', fields:['f1','f2'] }, { id:'s2', name:'Air system', fields:['f3','f4'] } ],
+      fields:{ f1:axField('Brake & tire measurements'), f2, f3, f4:cbField('Low-air warning buzzer') }
+    };
+  })();
+  refs = {};
+
+  upd(id, fn) { this.setState(s => { const f = JSON.parse(JSON.stringify(s.fields[id])); fn(f); return { fields:Object.assign({}, s.fields, { [id]:f }), dirty:true }; }); }
+  toast(t) { this.setState({ toast:t }); clearTimeout(this._t); this._t = setTimeout(() => this.setState({ toast:null }), 2200); }
+  addField(sid, type) {
+    const id = 'f' + (uid++);
+    const f = type === 'axle' ? axField('Per axle measurements') : cbField('New checkbox');
+    this.setState(s => ({ fields:Object.assign({}, s.fields, { [id]:f }), sections:s.sections.map(x => x.id === sid ? Object.assign({}, x, { fields:x.fields.concat(id) }) : x), selected:id, picker:null, dirty:true, sheet:s.device === 'phone' }));
+  }
+  delField(id) {
+    this.setState(s => ({ sections:s.sections.map(x => Object.assign({}, x, { fields:x.fields.filter(i => i !== id) })), selected:s.selected === id ? null : s.selected, sheet:false, dirty:true }));
+  }
+  dupField(id) {
+    const nid = 'f' + (uid++);
+    this.setState(s => {
+      const f = JSON.parse(JSON.stringify(s.fields[id])); f.label += ' (copy)';
+      return { fields:Object.assign({}, s.fields, { [nid]:f }), sections:s.sections.map(x => { const i = x.fields.indexOf(id); if (i < 0) return x; const a = x.fields.slice(); a.splice(i+1, 0, nid); return Object.assign({}, x, { fields:a }); }), selected:nid, dirty:true };
+    });
+  }
+  changeType(id, type) {
+    this.setState(s => {
+      const old = s.fields[id]; if (old.type === type) return {};
+      const f = type === 'axle' ? axField(old.label) : cbField(old.label);
+      return { fields:Object.assign({}, s.fields, { [id]:f }), dirty:true };
+    });
+  }
+  subFor(f) {
+    if (f.type === 'axle') return 'Per axle · ' + f.rows.map(r => r.name + ' (' + r.unit + ')').join(', ') + ' · ' + f.axles + ' axles';
+    const names = KEYS.filter(k => k !== 'mon' || f.monitor).map(k => f.names[k]).join(' / ');
+    const bits = ['Checkbox · ' + names];
+    if (f.ref) bits.push('reference file');
+    if (f.val.noteBad) bits.push('note required if ' + (f.monitor ? f.names.mon + ' / ' : '') + f.names.bad);
+    return bits.join(' · ');
+  }
+  summary(f) {
+    const p = [];
+    if (f.val.req) p.push('an answer');
+    if (f.val.photo) p.push('a photo on every answer'); else if (f.val.photoBad) p.push('a photo when Not OK');
+    if (f.val.noteBad) p.push('a note when Monitor or Not OK');
+    return p.length ? 'The technician must provide ' + p.join(', ') + '.' : 'Nothing is enforced; the technician can leave this field untouched.';
+  }
+  typeBtns(onPick, current, big) {
+    return TYPES.map(([k, l, en]) => ({
+      label:l, title: en ? l : l + ' is not part of this prototype',
+      onPick: en ? () => onPick(k) : () => {},
+      style:'height:' + (big ? '40' : '32') + 'px;border-radius:8px;font-size:12px;font-weight:600;cursor:' + (en ? 'pointer' : 'not-allowed') + ';opacity:' + (en ? '1' : '0.4') + ';border:1px solid ' + (current === k ? '#257CFF' : '#CDD5DF') + ';background:' + (current === k ? '#E9F5FF' : '#fff') + ';color:' + (current === k ? '#175CD3' : '#364152')
+    }));
+  }
+
+  renderVals() {
+    const s = this.state, phone = s.device === 'phone', edit = s.mode === 'edit';
+    const segBtn = on => 'border:0;white-space:nowrap;padding:0 ' + (phone ? '10px' : '14px') + ';font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;background:' + (on ? '#364152' : '#fff') + ';color:' + (on ? '#fff' : '#697586');
+    const sections = s.sections.map((sec, si) => ({
+      id:sec.id, name:sec.name, num:si+1, count:sec.fields.length, countText:sec.fields.length + ' field' + (sec.fields.length === 1 ? '' : 's'),
+      outlineStyle:'display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:8px;background:' + (sec.fields.indexOf(s.selected) > -1 ? '#E9F5FF' : 'transparent'),
+      outlineText:'font-size:12px;font-weight:600;color:' + (sec.fields.indexOf(s.selected) > -1 ? '#175CD3' : '#364152'),
+      onName: e => { const v = e.target.value; this.setState(st => ({ sections:st.sections.map(x => x.id === sec.id ? Object.assign({}, x, { name:v }) : x), dirty:true })); },
+      pickerOpen: s.picker === sec.id,
+      onTogglePicker: () => this.setState(st => ({ picker: st.picker === sec.id ? null : sec.id })),
+      types: this.typeBtns(k => this.addField(sec.id, k), null, true),
+      fields: sec.fields.map(id => {
+        const f = s.fields[id], sel = s.selected === id;
+        const fus = f.type === 'checkbox' && f.fuOn ? KEYS.filter(k => f.fu[k].on && (k !== 'mon' || f.monitor)).map(k => ({ name:f.names[k], dotStyle:dot(DOT[k], 7), text:(f.fu[k].text || 'No text yet').split('\n')[0], hasFile:!!f.fu[k].file })) : [];
+        return { id, label:f.label, sub:this.subFor(f), fus,
+          rowStyle:'display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border-top:1px solid #EEF2F6;cursor:pointer;border-left:3px solid ' + (sel ? '#257CFF' : 'transparent') + ';background:' + (sel ? '#F4FAFF' : '#fff'),
+          labelStyle:'font-size:13px;font-weight:600;color:' + (sel ? '#175CD3' : '#202939'),
+          onSelect: () => this.setState({ selected:id, sheet:phone, picker:null }),
+          onDelete: e => { e.stopPropagation(); this.delField(id); } };
+      })
+    }));
+
+    const preview = s.sections.map((sec, si) => ({
+      name:sec.name, eyebrow:'SECTION ' + (si+1) + ' OF ' + s.sections.length,
+      cards: sec.fields.map(id => {
+        const f = s.fields[id];
+        const base = { label:f.label, onEdit: () => this.setState({ mode:'edit', selected:id, sheet:phone }), ref:!!f.ref, refName:f.ref ? f.ref[0] : '', rules:f.val.noteBad ? 'Note required if Monitor or Not OK' : '' };
+        if (f.type === 'checkbox') return Object.assign(base, { isCb:true, isAx:false, typeLabel:'Checkbox', responses:KEYS.filter(k => k !== 'mon' || f.monitor).map(k => ({ name:f.names[k], dotStyle:dot(DOT[k], 7) })) });
+        return Object.assign(base, { isCb:false, isAx:true, typeLabel:'Per axle',
+          axles:Array.from({ length:f.axles }, (_, i) => ({ label:'Axle ' + (i+1), style:'display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:8px;font-size:12px;font-weight:600;white-space:nowrap;flex:none;' + (i === 0 ? 'background:#257CFF;color:#fff' : 'background:#fff;border:1px solid #CDD5DF;color:#364152') })),
+          top:Array.from({ length:f.axles }, (_, i) => ({ num:i+1, style:'display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:#fff;font-size:11px;font-weight:600;' + (i === 0 ? 'border:1.5px solid #257CFF;color:#175CD3' : 'border:1px solid #CDD5DF;color:#4B5565') })),
+          rows:f.rows.map(r => ({ name:r.name, unit:r.unit, cells: r.scope === 'tire' ? ['L OUTER','L INNER','R INNER','R OUTER'] : ['LEFT','RIGHT'] })) });
+      })
+    }));
+
+    const f = s.selected ? s.fields[s.selected] : null;
+    const id = s.selected;
+    const out = {
+      isDesktop:!phone, isPhone:phone, isEdit:edit, isPreview:!edit,
+      toDesktop: () => this.setState({ device:'desktop', sheet:false }), toPhone: () => this.setState({ device:'phone', sheet:false }),
+      deskBtn:segBtn(!phone), phoneBtn:segBtn(phone),
+      toEdit: () => this.setState({ mode:'edit' }), toPreview: () => this.setState({ mode:'preview', sheet:false, picker:null }),
+      editBtn:segBtn(edit), previewBtn:segBtn(!edit),
+      statusText: s.dirty ? 'Draft · unsaved' : 'Published',
+      statusStyle:'display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:9999px;font-size:12px;font-weight:600;white-space:nowrap;' + (s.dirty ? 'background:#FFFAEB;color:#B54708' : 'background:#EDFCF2;color:#087443'),
+      onPublish: () => { this.setState({ dirty:false }); this.toast('Template published · new inspections use this version'); },
+      frameStyle: phone
+        ? 'width:402px;height:844px;flex:none;background:#fff;border:1px solid #CDD5DF;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 12px 24px rgba(11,23,51,0.10)'
+        : 'width:100%;max-width:1440px;min-height:880px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(11,23,51,0.05)',
+      subbarStyle:'display:flex;align-items:center;gap:12px;flex:none;background:#fff;border-bottom:1px solid #E3E8EF;' + (phone ? 'height:60px;padding:0 12px' : 'height:56px;padding:0 20px'),
+      bodyStyle:'flex:1;min-height:0;display:flex;position:relative;' + (phone ? 'flex-direction:column;overflow:hidden' : ''),
+      showRail: !phone && edit,
+      canvasStyle:'flex:1;min-width:0;background:#F8FAFC;display:flex;flex-direction:column;align-items:center;overflow:auto;box-sizing:border-box;' + (phone ? 'padding:14px 12px 24px' : 'padding:24px 28px'),
+      showPanel: edit && (!phone || s.sheet),
+      showScrim: phone && edit && s.sheet,
+      closeSheet: () => this.setState({ sheet:false }),
+      panelStyle: phone
+        ? 'position:absolute;left:0;right:0;bottom:0;height:88%;z-index:30;background:#fff;border-radius:16px 16px 0 0;overflow:auto;display:flex;flex-direction:column;box-shadow:0 -12px 24px rgba(11,23,51,0.12)'
+        : 'width:360px;flex:none;border-left:1px solid #E3E8EF;background:#fff;display:flex;flex-direction:column;overflow:auto',
+      sections, preview, onAddSection: () => this.setState(st => ({ sections:st.sections.concat({ id:'s' + (uid++), name:'Section ' + (st.sections.length + 1), fields:[] }), dirty:true })),
+      selNone:!f, selAny:!!f, selCb:!!f && f.type === 'checkbox', selAx:!!f && f.type === 'axle',
+      toastOn:!!s.toast, toastText:s.toast || '',
+      inpStyle:'width:100%;box-sizing:border-box;height:' + (phone ? '44px;font-size:16px' : '36px;font-size:13px') + ';padding:0 10px;border:1px solid #CDD5DF;border-radius:8px;color:#202939;background:#fff'
+    };
+    if (!f) return out;
+
+    Object.assign(out, {
+      selTypeLabel: f.type === 'axle' ? 'Per axle' : 'Checkbox', selLabel:f.label,
+      onSelLabel: e => { const v = e.target.value; this.upd(id, x => { x.label = v; }); },
+      typeGrid: this.typeBtns(k => this.changeType(id, k), f.type, false),
+      refHas:!!f.ref, refNone:!f.ref, refName:f.ref ? f.ref[0] : '', refSize:f.ref ? f.ref[1] : '',
+      onRefAttach: () => this.upd(id, x => { x.ref = nextFile(); }), onRefRemove: () => this.upd(id, x => { x.ref = null; }),
+      valRules: VAL.map(([k, l]) => ({ label:l, track:track(f.val[k]), knob, onToggle: () => this.upd(id, x => { x.val[k] = !x.val[k]; if (k === 'photo' && x.val.photo) x.val.photoBad = false; if (k === 'photoBad' && x.val.photoBad) x.val.photo = false; }) })),
+      valSummary:this.summary(f),
+      onDuplicate: () => this.dupField(id), onDeleteSel: () => this.delField(id)
+    });
+
+    if (f.type === 'checkbox') {
+      Object.assign(out, {
+        monTrack:track(f.monitor), monKnob:knob, onToggleMonitor: () => this.upd(id, x => { x.monitor = !x.monitor; }),
+        fusTrack:track(f.fuOn), fusKnob:knob, onToggleFus: () => this.upd(id, x => { x.fuOn = !x.fuOn; }),
+        cbResponses: KEYS.filter(k => k !== 'mon' || f.monitor).map(k => {
+          const u = f.fu[k], ren = s.renaming === id + k, canAck = k === 'mon' || k === 'bad';
+          if (!this.refs[k]) this.refs[k] = React.createRef();
+          return {
+            name:f.names[k], dotStyle:dot(DOT[k]), locked:!ren, ref:this.refs[k],
+            inpStyle:'flex:1;min-width:0;height:' + (phone ? '44px;font-size:16px' : '34px;font-size:13px') + ';padding:0 10px;border-radius:8px;color:#202939;border:1px solid ' + (ren ? '#257CFF' : '#CDD5DF') + ';background:' + (ren ? '#fff' : '#F8FAFC'),
+            onRename: () => { this.setState({ renaming:id + k }, () => { const el = this.refs[k].current; if (el) { el.focus(); el.select(); } }); },
+            onDoneRename: () => this.setState({ renaming:null }),
+            onName: e => { const v = e.target.value; this.upd(id, x => { x.names[k] = v; }); },
+            showFu:f.fuOn, fuOn:u.on, fuOff:!u.on,
+            blockStyle: f.fuOn ? 'display:flex;flex-direction:column;gap:8px;padding:10px;border-radius:8px;border:1px solid ' + (u.on ? '#BEDFFF' : '#E3E8EF') + ';background:' + (u.on ? '#F4FAFF' : '#fff') : 'display:flex;flex-direction:column',
+            cbxStyle:'width:18px;height:18px;flex:none;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;' + (u.on ? 'background:#257CFF;border:0' : 'background:#fff;border:1.5px solid #CDD5DF'),
+            onToggleFu: e => { e.preventDefault(); this.upd(id, x => { x.fu[k].on = !x.fu[k].on; }); },
+            text:u.text, onText: e => { const v = e.target.value; this.upd(id, x => { x.fu[k].text = v; }); },
+            taStyle:'width:100%;box-sizing:border-box;padding:8px 10px;border-radius:8px;resize:vertical;line-height:18px;font-size:' + (phone ? '16px' : '13px') + ';border:1px solid ' + (u.on ? '#CDD5DF' : '#E3E8EF') + ';background:' + (u.on ? '#fff' : '#F8FAFC') + ';color:' + (u.on ? '#202939' : '#9AA4B2'),
+            hasFile:!!u.file, noFile:!u.file, fileName:u.file ? u.file[0] : '', fileSize:u.file ? u.file[1] : '',
+            onAttach: () => this.upd(id, x => { x.fu[k].file = nextFile(); }), onRemoveFile: () => this.upd(id, x => { x.fu[k].file = null; }),
+            attachStyle:'align-self:flex-start;display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-size:12px;font-weight:600;color:#364152;cursor:' + (u.on ? 'pointer' : 'not-allowed') + ';opacity:' + (u.on ? '1' : '0.4'),
+            canAck, ackTrack:track(u.on && u.ack), ackKnob:knob,
+            ackRowStyle:'display:flex;align-items:center;gap:9px;min-height:28px;cursor:' + (u.on ? 'pointer' : 'default') + ';opacity:' + (u.on ? '1' : '0.5'),
+            ackLabel:'font-size:12px;color:' + (u.on ? '#364152' : '#9AA4B2'),
+            onToggleAck: () => { if (u.on) this.upd(id, x => { x.fu[k].ack = !x.fu[k].ack; }); }
+          };
+        })
+      });
+    } else {
+      Object.assign(out, {
+        axCount:String(f.axles), onAxCount: e => { const v = +e.target.value; this.upd(id, x => { x.axles = v; }); },
+        onAddRow: () => this.upd(id, x => { x.rows.push({ id:'r' + (uid++), name:'New measurement', unit:'in.', scope:'side' }); }),
+        axRows: f.rows.map((r, i) => ({ name:r.name, unit:r.unit, scope:r.scope,
+          onName: e => { const v = e.target.value; this.upd(id, x => { x.rows[i].name = v; }); },
+          onUnit: e => { const v = e.target.value; this.upd(id, x => { x.rows[i].unit = v; }); },
+          onScope: e => { const v = e.target.value; this.upd(id, x => { x.rows[i].scope = v; }); },
+          onDelete: () => this.upd(id, x => { x.rows.splice(i, 1); }) }))
+      });
+    }
+    return out;
+  }
+}
+</script>
+</body>
+</html>

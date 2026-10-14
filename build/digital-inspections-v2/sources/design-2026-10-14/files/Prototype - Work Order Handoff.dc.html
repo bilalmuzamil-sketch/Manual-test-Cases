@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+<style>
+body { margin:0; background:#EEF2F6; font-family:'Inter',system-ui,sans-serif; color:#202939; }
+a { color:#175CD3; text-decoration:none; } a:hover { text-decoration:underline; }
+input, button { font-family:inherit; }
+input:focus { outline:none; border-color:#257CFF !important; }
+@keyframes svspin { to { transform:rotate(360deg); } }
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:16px;padding:16px 24px 40px;box-sizing:border-box">
+  <div style="width:100%;max-width:1440px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+    <a href="Prototype - Hub.dc.html" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>Prototype hub</a>
+    <span style="font-size:13px;color:#697586">Completed inspection → work order</span>
+    <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+      <span style="font-size:12px;font-weight:600;color:#4B5565">ShopCoach</span>
+      <div onClick="{{ onToggleCoach }}" style="{{ coachTrack }}"><div style="width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(11,23,51,0.2)"></div></div>
+    </div>
+    <button onClick="{{ onReset }}" style="height:30px;padding:0 10px;border:0;background:none;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer">Reset</button>
+    <div style="display:flex;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden;height:32px;background:#fff">
+      <button onClick="{{ toDesktop }}" style="{{ deskBtn }}">Desktop</button>
+      <button onClick="{{ toPhone }}" style="{{ phoneBtn }}">Phone</button>
+    </div>
+  </div>
+
+  <div style="{{ frameStyle }}">
+    <div style="{{ appbarStyle }}">
+      <div style="width:26px;height:26px;border-radius:6px;background:#257CFF;flex:none"></div>
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;gap:20px;font-size:14px;font-weight:500">
+          <button onClick="{{ goWo }}" style="{{ navWo }}">Work Orders</button><span style="color:#4B5565">Schedule</span><button onClick="{{ goAsset }}" style="{{ navCust }}">Customers</button><span style="color:#4B5565">Parts</span><span style="color:#4B5565">Reports</span>
+        </div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px;height:36px;padding:0 4px 0 12px;border-radius:9999px;background:#F8FAFC;border:1px solid #E3E8EF;font-size:13px;font-weight:500;color:#364152;white-space:nowrap;flex:none">Staging Heavy Duty - 9919<span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#202939;color:#fff;font-size:11px;font-weight:600">KB</span></div>
+      </sc-if>
+      <sc-if value="{{ isPhone }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:6px;margin-left:auto">
+          <button onClick="{{ goWo }}" style="{{ navWo }}">Work Order</button><button onClick="{{ goAsset }}" style="{{ navCust }}">Asset</button>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="flex:1;min-height:0;overflow:auto;background:#F8FAFC;position:relative">
+
+      <sc-if value="{{ vInspection }}" hint-placeholder-val="{{ true }}">
+        <div style="{{ subbarStyle }}">
+          <button onClick="{{ backFromInspection }}" style="display:inline-flex;border:0;background:none;color:#4B5565;cursor:pointer;padding:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></button>
+          <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:11px;color:#697586">S-81 · ABC Truck Lines · Inspection</span><span style="font-size:14px;font-weight:600;color:#202939">Brake &amp; Axle PM</span></div>
+          <span style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:9999px;background:#EEF2F6;color:#4B5565;font-size:12px;font-weight:600;white-space:nowrap">Locked · read only</span>
+        </div>
+        <div style="{{ pagePad }}">
+          <div style="width:100%;max-width:880px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05)">
+            <div style="padding:18px 20px;display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:28px;height:28px;border-radius:50%;background:#D3F8DF;color:#087443;display:inline-flex;align-items:center;justify-content:center;flex:none"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><div style="display:flex;flex-direction:column"><span style="font-size:16px;font-weight:600;color:#202939">Inspection completed</span><span style="font-size:12px;color:#697586">Today 06:28 AM · William Johns · report posted to the work order</span></div></div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:9999px;background:#EDFCF2;color:#087443;font-size:12px;font-weight:700"><span style="width:6px;height:6px;border-radius:50%;background:#16B364"></span>9 OK</span>
+                <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:9999px;background:#FFFAEB;color:#B54708;font-size:12px;font-weight:700"><span style="width:6px;height:6px;border-radius:50%;background:#F79009"></span>1 Monitor</span>
+                <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:9999px;background:#FEF3F2;color:#B42318;font-size:12px;font-weight:700"><span style="width:6px;height:6px;border-radius:50%;background:#F04438"></span>2 Not OK</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">FINDINGS</span>
+                <sc-for list="{{ findings }}" as="f" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #EEF2F6;border-radius:8px;flex-wrap:wrap">
+                    <span style="{{ f.chip }}">{{ f.verdict }}</span>
+                    <span style="font-size:13px;color:#364152;flex:1;min-width:180px">{{ f.where }}</span>
+                    <span style="font-size:13px;font-weight:600;color:#202939">{{ f.value }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <sc-if value="{{ coach }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;align-items:flex-start;gap:10px;padding:12px;border-radius:8px;background:#F4F3FF;border:1px solid #D9D6FE">
+                  <span style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:20px;padding:0 6px;border-radius:6px;background:#6938EF;color:#fff;font-size:10px;font-weight:700">AI</span>
+                  <span style="font-size:13px;line-height:19px;color:#364152;text-wrap:pretty">ShopCoach can turn these 3 findings into work order lines with labor and parts. You review everything before it is added.</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{ noCoach }}" hint-placeholder-val="{{ false }}">
+                <span style="font-size:13px;color:#4B5565">The report is on the work order. Build the lines from the findings there.</span>
+              </sc-if>
+            </div>
+            <div style="{{ actionsStyle }}">
+              <button onClick="{{ onPdf }}" style="{{ btn2 }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path></svg>View PDF</button>
+              <button onClick="{{ goWo }}" style="{{ goWoStyle }}">Go to work order</button>
+              <sc-if value="{{ coach }}" hint-placeholder-val="{{ true }}">
+                <div style="position:relative;display:flex">
+                  <button onClick="{{ onOpenTargets }}" style="{{ btnPrimary }}"><span style="display:inline-flex;align-items:center;justify-content:center;height:18px;padding:0 5px;border-radius:5px;background:rgba(255,255,255,0.22);font-size:10px;font-weight:700">AI</span>Build lines</button>
+                  <sc-if value="{{ menuDesk }}" hint-placeholder-val="{{ false }}">
+                    <div style="position:absolute;right:0;bottom:48px;width:280px;padding:6px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 12px 24px rgba(11,23,51,0.10),0 4px 8px rgba(11,23,51,0.05);z-index:10;display:flex;flex-direction:column;gap:2px">
+                      <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#828A98;padding:6px 10px 4px">BUILD THE LINES ON</span>
+                      <sc-for list="{{ targets }}" as="t" hint-placeholder-count="2"><button onClick="{{ t.onPick }}" style="display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:8px 10px;border:0;border-radius:8px;background:#fff;cursor:pointer;text-align:left" style-hover="background:#F4FAFF"><span style="font-size:13px;font-weight:600;color:#202939">{{ t.title }}</span><span style="font-size:12px;color:#697586">{{ t.sub }}</span></button></sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+
+          <div style="width:100%;max-width:880px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">WHAT WAS ENTERED</span><span style="font-size:12px;color:#697586">every answer, section by section · read only</span></div>
+            <sc-for list="{{ entered }}" as="s" hint-placeholder-count="2">
+              <div style="background:#fff;border:1px solid #E3E8EF;border-radius:12px">
+                <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:#F8FAFC;border-bottom:1px solid #E3E8EF;border-radius:12px 12px 0 0"><span style="width:22px;height:22px;border-radius:6px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565;display:inline-flex;align-items:center;justify-content:center">{{ s.num }}</span><span style="font-size:14px;font-weight:600;color:#202939">{{ s.name }}</span></div>
+                <sc-for list="{{ s.rows }}" as="r" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid #EEF2F6;flex-wrap:wrap"><span style="font-size:13px;color:#364152;flex:1;min-width:180px">{{ r.where }}</span><span style="font-size:13px;font-weight:600;color:#202939">{{ r.value }}</span><span style="{{ r.chip }}">{{ r.verdict }}</span></div>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ vWo }}" hint-placeholder-val="{{ false }}">
+        <div style="{{ woHeadStyle }}">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <span style="font-size:11px;color:#697586">S-81 · Open · ABC Truck Lines · Unit 6130M</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <span style="font-size:20px;font-weight:600;color:#202939">Work Order S-81</span>
+            <span style="display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:9999px;background:#EDFCF2;color:#087443;font-size:11px;font-weight:600">Approved</span>
+            <button style="margin-left:auto;height:36px;padding:0 14px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-size:13px;font-weight:600;color:#364152;cursor:pointer;white-space:nowrap;flex:none">New Line</button>
+          </div>
+          <div style="display:flex;gap:4px;overflow-x:auto;margin:0 -4px">
+            <sc-for list="{{ woTabs }}" as="t" hint-placeholder-count="6"><button onClick="{{ t.onGo }}" style="{{ t.style }}">{{ t.label }}</button></sc-for>
+          </div>
+        </div>
+        <div style="{{ pagePad }}">
+          <sc-if value="{{ tLines }}" hint-placeholder-val="{{ true }}">
+            <sc-if value="{{ stGenerating }}" hint-placeholder-val="{{ false }}">
+              <div style="width:100%;max-width:1100px;background:#fff;border:1px solid #D9D6FE;border-radius:12px;padding:20px;display:flex;align-items:center;gap:14px;box-sizing:border-box">
+                <span style="width:22px;height:22px;flex:none;border-radius:50%;border:2.5px solid #D9D6FE;border-top-color:#6938EF;animation:svspin 900ms linear infinite;box-sizing:border-box"></span>
+                <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:600;color:#202939">Drafting lines from Brake &amp; Axle PM</span><span style="font-size:12px;color:#697586">3 findings · labor and parts from your catalog</span></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ stReview }}" hint-placeholder-val="{{ false }}">
+              <div style="width:100%;max-width:1100px;background:#fff;border:1px solid #D9D6FE;border-radius:12px;box-sizing:border-box">
+                <div style="padding:16px 20px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid #EEF2F6">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;justify-content:center;height:18px;padding:0 5px;border-radius:5px;background:#6938EF;color:#fff;font-size:10px;font-weight:700">AI</span><span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#5925DC">SHOPCOACH LINE BUILDER</span></div>
+                  <span style="font-size:16px;font-weight:600;color:#202939">{{ reviewTitle }}</span>
+                  <span style="font-size:13px;color:#4B5565">Edit any title, description or labor. Uncheck a line to leave it out.</span>
+                </div>
+                <sc-for list="{{ drafts }}" as="d" hint-placeholder-count="3">
+                  <div style="{{ d.rowStyle }}">
+                    <label onClick="{{ d.onToggle }}" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;flex:none;cursor:pointer"><span style="{{ d.box }}"><sc-if value="{{ d.on }}" hint-placeholder-val="{{ true }}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if></span></label>
+                    <div style="display:flex;flex-direction:column;gap:6px;flex:2;min-width:200px">
+                      <input value="{{ d.title }}" onChange="{{ d.onTitle }}" style="height:34px;padding:0 8px;border:1px solid #E3E8EF;border-radius:8px;font-size:14px;font-weight:600;color:#202939;background:#fff">
+                      <span style="font-size:12px;color:#697586;padding-left:2px">{{ d.source }}</span>
+                      <input value="{{ d.desc }}" onChange="{{ d.onDesc }}" style="height:32px;padding:0 8px;border:1px solid #E3E8EF;border-radius:8px;font-size:13px;color:#364152;background:#fff">
+                    </div>
+                    <div style="display:flex;align-items:center;gap:6px;flex:none"><input value="{{ d.labor }}" onChange="{{ d.onLabor }}" inputMode="decimal" style="width:56px;height:34px;padding:0 8px;border:1px solid #E3E8EF;border-radius:8px;font-size:13px;font-weight:600;color:#202939;text-align:right"><span style="font-size:12px;color:#697586">hrs</span></div>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;flex:1;min-width:160px">
+                      <sc-for list="{{ d.parts }}" as="p" hint-placeholder-count="1"><span style="display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 9px;border-radius:9999px;background:#EEF2F6;font-size:12px;font-weight:600;color:#364152">{{ p }}</span></sc-for>
+                      <sc-if value="{{ d.noParts }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:#697586;align-self:center">No parts</span></sc-if>
+                    </div>
+                  </div>
+                </sc-for>
+                <div style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-top:1px solid #EEF2F6;flex-wrap:wrap">
+                  <span style="font-size:13px;color:#4B5565">{{ reviewTotals }}</span>
+                  <button onClick="{{ onDiscard }}" style="margin-left:auto;height:38px;padding:0 14px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-size:13px;font-weight:600;color:#364152;cursor:pointer">Discard</button>
+                  <button onClick="{{ onAddLines }}" style="{{ addLinesStyle }}">{{ addLinesLabel }}</button>
+                </div>
+              </div>
+            </sc-if>
+            <div style="width:100%;max-width:1100px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-sizing:border-box">
+              <div style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid #EEF2F6"><span style="font-size:14px;font-weight:600;color:#202939">Lines</span><span style="font-size:12px;color:#697586">{{ linesMeta }}</span></div>
+              <sc-if value="{{ noLines }}" hint-placeholder-val="{{ true }}"><div style="padding:28px 16px;text-align:center;font-size:13px;color:#697586">No lines on this work order yet.</div></sc-if>
+              <sc-for list="{{ lines }}" as="l" hint-placeholder-count="0">
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-top:1px solid #EEF2F6;flex-wrap:wrap">
+                  <span style="font-size:12px;font-weight:600;color:#697586;width:24px">{{ l.n }}</span>
+                  <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:180px"><span style="font-size:14px;font-weight:600;color:#202939">{{ l.title }}</span><span style="font-size:12px;color:#697586">{{ l.desc }}</span></div>
+                  <span style="font-size:13px;color:#364152">{{ l.labor }}</span>
+                  <span style="display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:9999px;background:#FFFAEB;color:#B54708;font-size:11px;font-weight:600">Estimate</span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ tNotes }}" hint-placeholder-val="{{ false }}">
+            <div style="width:100%;max-width:1100px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-sizing:border-box">
+              <div style="padding:16px 20px;display:flex;flex-direction:column;gap:10px">
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:9999px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:600">Inspection</span><span style="font-size:14px;font-weight:600;color:#202939">Brake &amp; Axle PM · completed</span><span style="font-size:12px;color:#697586">Today 06:28 AM · William Johns</span></div>
+                <span style="font-size:13px;line-height:19px;color:#364152">9 OK · 1 Monitor · 2 Not OK. Findings: tire pressure left outer 42 psi, tread depth left outer 4/32nds, slack adjuster travel on Monitor.</span>
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <button onClick="{{ openInspection }}" style="{{ btn2 }}">Open Inspection</button>
+                  <button onClick="{{ onPdf }}" style="{{ btn2 }}">View PDF</button>
+                  <sc-if value="{{ coachCanBuild }}" hint-placeholder-val="{{ true }}"><button onClick="{{ buildHere }}" style="{{ btn2Ai }}"><span style="display:inline-flex;align-items:center;justify-content:center;height:16px;padding:0 4px;border-radius:4px;background:#6938EF;color:#fff;font-size:9px;font-weight:700">AI</span>Build lines</button></sc-if>
+                </div>
+              </div>
+            </div>
+            <div style="width:100%;max-width:1100px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;padding:16px 20px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;font-weight:600;color:#202939">Customer called about pickup</span><span style="font-size:12px;color:#697586">Yesterday · Kimberly Barnes</span></div>
+          </sc-if>
+
+          <sc-if value="{{ tOther }}" hint-placeholder-val="{{ false }}">
+            <div style="width:100%;max-width:1100px;padding:40px 16px;text-align:center;font-size:13px;color:#697586;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-sizing:border-box">This tab is not part of the prototype.</div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ vAsset }}" hint-placeholder-val="{{ false }}">
+        <div style="{{ woHeadStyle }}">
+          <span style="font-size:11px;color:#697586">Customers · Kustoms, LLC</span>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="font-size:20px;font-weight:600;color:#202939">2020 Kenworth T680 · 6130M</span></div>
+          <div style="display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:#697586"><span><span style="font-weight:600;color:#364152">VIN</span> 1XKYD49X8LJ123456</span><span><span style="font-weight:600;color:#364152">Mileage</span> 100,000</span><span><span style="font-weight:600;color:#364152">Licence plate</span> —</span></div>
+          <div style="display:flex;gap:4px;overflow-x:auto;margin:0 -4px"><span style="height:38px;padding:0 12px;display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:#697586">Work Orders</span><span style="height:38px;padding:0 12px;display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:#697586">Invoices (3)</span><span style="height:38px;padding:0 12px;display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:#175CD3;border-bottom:2px solid #257CFF;box-sizing:border-box">Inspections (5)</span></div>
+        </div>
+        <div style="{{ pagePad }}">
+          <div style="width:100%;max-width:1100px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-sizing:border-box">
+            <div style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid #EEF2F6;flex-wrap:wrap"><span style="font-size:14px;font-weight:600;color:#202939">Inspections</span><span style="font-size:12px;color:#B54708;font-weight:600">{{ assetMeta }}</span></div>
+            <sc-for list="{{ assetRows }}" as="r" hint-placeholder-count="5">
+              <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-top:1px solid #EEF2F6;flex-wrap:wrap">
+                <div style="display:flex;flex-direction:column;gap:2px;flex:2;min-width:180px"><span style="font-size:14px;font-weight:600;color:#202939">{{ r.name }}</span><span style="font-size:12px;color:#697586">{{ r.meta }}</span></div>
+                <div style="display:flex;gap:6px;flex:1;min-width:140px;flex-wrap:wrap"><sc-for list="{{ r.chips }}" as="c" hint-placeholder-count="2"><span style="{{ c.style }}">{{ c.text }}</span></sc-for></div>
+                <span style="font-size:13px;color:#364152;width:70px">{{ r.wo }}</span>
+                <div style="display:flex;gap:8px;flex:none">
+                  <button onClick="{{ r.onView }}" style="{{ btn2 }}">View</button>
+                  <sc-if value="{{ r.canBuild }}" hint-placeholder-val="{{ false }}"><button onClick="{{ r.onBuild }}" style="{{ btn2Ai }}"><span style="display:inline-flex;align-items:center;justify-content:center;height:16px;padding:0 4px;border-radius:4px;background:#6938EF;color:#fff;font-size:9px;font-weight:700">AI</span>Build lines</button></sc-if>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+
+    <sc-if value="{{ sheetOpen }}" hint-placeholder-val="{{ false }}">
+      <div onClick="{{ closeTargets }}" style="position:absolute;inset:0;background:rgba(18,25,38,0.45);z-index:40"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;z-index:41;background:#fff;border-radius:16px 16px 0 0;padding:8px 12px 24px;display:flex;flex-direction:column;gap:4px">
+        <div style="display:flex;justify-content:center;padding-bottom:6px"><span style="width:36px;height:4px;border-radius:9999px;background:#CDD5DF"></span></div>
+        <span style="font-size:15px;font-weight:600;color:#202939;padding:4px 8px 8px">Build the lines on</span>
+        <sc-for list="{{ targets }}" as="t" hint-placeholder-count="2"><button onClick="{{ t.onPick }}" style="display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;min-height:56px;padding:0 12px;border:0;border-radius:8px;background:#fff;cursor:pointer;text-align:left"><span style="font-size:16px;font-weight:600;color:#202939">{{ t.title }}</span><span style="font-size:13px;color:#697586">{{ t.sub }}</span></button></sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ pdfOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;inset:0;z-index:60;background:#121926;display:flex;flex-direction:column">
+        <div style="display:flex;align-items:center;gap:12px;height:56px;padding:0 16px;color:#fff;flex:none"><span style="font-size:14px;font-weight:600">Brake &amp; Axle PM.pdf</span><button onClick="{{ closePdf }}" style="margin-left:auto;height:36px;padding:0 12px;border:1px solid #4B5565;border-radius:8px;background:none;color:#fff;font-size:13px;font-weight:600;cursor:pointer">Close</button></div>
+        <div style="flex:1;overflow:auto;display:flex;justify-content:center;padding:16px"><div style="width:100%;max-width:640px;min-height:760px;background:#fff;border-radius:4px;padding:40px 36px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px"><span style="font-size:18px;font-weight:600;color:#202939">Inspection report · S-81</span><div style="height:10px;width:70%;background:#EEF2F6;border-radius:3px"></div><div style="height:10px;width:90%;background:#EEF2F6;border-radius:3px"></div><div style="height:10px;width:80%;background:#EEF2F6;border-radius:3px"></div></div></div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ toastOn }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:50;padding:10px 14px;border-radius:8px;background:#202939;color:#fff;font-size:13px;font-weight:500;box-shadow:0 12px 24px rgba(11,23,51,0.18);white-space:nowrap">{{ toastText }}</div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const CH = { ok:['#EDFCF2','#087443','OK'], mon:['#FFFAEB','#B54708','Monitor'], bad:['#FEF3F2','#B42318','Not OK'], none:['#EEF2F6','#4B5565','—'] };
+const chip = k => 'display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:9999px;font-size:11px;font-weight:700;white-space:nowrap;background:' + CH[k][0] + ';color:' + CH[k][1];
+const FINDINGS = [ ['bad','Brake & tire measurements · Axle 1 · Tire pressure · left outer','42 psi'], ['bad','Brake & tire measurements · Axle 1 · Tread depth · left outer','4/32nds'], ['mon','Air-brake system leak check','Note attached'] ];
+const ENTERED = [ { name:'Brakes', rows:[ ['Axle 1 · Tire pressure · left outer','42 psi','bad'], ['Axle 1 · Tire pressure · left inner','98 psi','ok'], ['Axle 1 · Tread depth · left outer','4/32nds','bad'], ['Brake chamber condition','—','ok'] ] },
+  { name:'Air system', rows:[ ['Air-brake system leak check','—','mon'], ['Low-air warning buzzer','—','ok'] ] } ];
+const DRAFTS = () => [
+  { on:true, title:'Replace left outer steer tire', source:'Axle 1 · Tread depth · left outer', desc:'Tread at 4/32nds, below the 5/32nds minimum.', labor:'1.2', parts:['Steer tire × 1','Valve stem × 1'] },
+  { on:true, title:'Inflate left outer to spec', source:'Axle 1 · Tire pressure · left outer', desc:'42 psi against 100 psi spec; check for a leak while replacing.', labor:'0.3', parts:[] },
+  { on:true, title:'Leak-down test, air system', source:'Air-brake system leak check · Monitor', desc:'Loss above spec at idle; confirm source before release.', labor:'1', parts:['Gladhand seal × 2'] } ];
+const init = () => ({ device:'desktop', coach:true, view:'inspection', tab:'lines', from:'inspection', menu:false, stage:null, target:'This work order', drafts:DRAFTS(), lines:[], built:false, pdf:false, toast:null });
+
+class Component extends DCLogic {
+  state = init();
+  componentWillUnmount() { clearTimeout(this._g); clearTimeout(this._t); }
+  toast(t) { this.setState({ toast:t }); clearTimeout(this._t); this._t = setTimeout(() => this.setState({ toast:null }), 2400); }
+  build(target) {
+    clearTimeout(this._g);
+    this.setState({ menu:false, view:'wo', tab:'lines', stage:'gen', target, drafts:DRAFTS() });
+    this._g = setTimeout(() => this.setState({ stage:'review' }), 1800);
+  }
+  updDraft(i, patch) { this.setState(s => ({ drafts:s.drafts.map((d, j) => j === i ? Object.assign({}, d, patch) : d) })); }
+
+  renderVals() {
+    const s = this.state, phone = s.device === 'phone';
+    const segBtn = on => 'border:0;padding:0 14px;font-size:13px;font-weight:600;cursor:pointer;background:' + (on ? '#364152' : '#fff') + ';color:' + (on ? '#fff' : '#697586');
+    const nav = on => 'border:0;background:none;padding:0;cursor:pointer;font-size:' + (phone ? '13px' : '14px') + ';font-weight:' + (on ? '600' : '500') + ';color:' + (on ? '#175CD3' : '#4B5565') + ';white-space:nowrap' + (phone ? ';height:32px;padding:0 10px;border-radius:8px;background:' + (on ? '#E9F5FF' : 'transparent') : '');
+    const sel = s.drafts.filter(d => d.on), hrs = sel.reduce((n, d) => n + (parseFloat(d.labor) || 0), 0), parts = sel.reduce((n, d) => n + d.parts.length, 0);
+    const btn2 = 'display:inline-flex;align-items:center;justify-content:center;gap:6px;height:38px;padding:0 14px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-size:13px;font-weight:600;color:#364152;cursor:pointer;white-space:nowrap';
+    const targets = [
+      { title:'This work order', sub:'S-81 · Approved', onPick: () => this.build('This work order') },
+      { title:'A new work order', sub:'Seeded with this customer & unit', onPick: () => this.build('A new work order') } ];
+    const tabs = [['lines','Lines (' + s.lines.length + ')'],['parts','Parts (' + (s.built ? parts : 0) + ')'],['notes','Notes (2)'],['time','Timesheets'],['fin','Finance']];
+    const needsLines = s.coach && !s.built;
+    return {
+      isDesktop:!phone, isPhone:phone, coach:s.coach, noCoach:!s.coach, coachCanBuild:needsLines,
+      coachTrack:'width:36px;height:20px;border-radius:9999px;padding:2px;box-sizing:border-box;display:flex;cursor:pointer;justify-content:' + (s.coach ? 'flex-end' : 'flex-start') + ';background:' + (s.coach ? '#257CFF' : '#CDD5DF'),
+      onToggleCoach: () => this.setState(st => ({ coach:!st.coach, menu:false })),
+      onReset: () => { clearTimeout(this._g); this.setState(Object.assign(init(), { device:s.device, coach:s.coach })); },
+      toDesktop: () => this.setState({ device:'desktop', menu:false }), toPhone: () => this.setState({ device:'phone', menu:false }), deskBtn:segBtn(!phone), phoneBtn:segBtn(phone),
+      frameStyle: phone
+        ? 'width:402px;height:844px;flex:none;background:#fff;border:1px solid #CDD5DF;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 12px 24px rgba(11,23,51,0.10)'
+        : 'width:100%;max-width:1440px;height:900px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 1px 2px rgba(11,23,51,0.05)',
+      appbarStyle:'display:flex;align-items:center;gap:24px;flex:none;background:#fff;border-bottom:1px solid #E3E8EF;' + (phone ? 'height:52px;padding:0 14px' : 'height:56px;padding:0 20px'),
+      subbarStyle:'display:flex;align-items:center;gap:12px;background:#fff;border-bottom:1px solid #E3E8EF;' + (phone ? 'min-height:60px;padding:8px 14px' : 'height:56px;padding:0 20px'),
+      woHeadStyle:'display:flex;flex-direction:column;gap:8px;background:#fff;border-bottom:1px solid #E3E8EF;' + (phone ? 'padding:14px 14px 0' : 'padding:16px 24px 0'),
+      pagePad:'display:flex;flex-direction:column;align-items:center;gap:16px;box-sizing:border-box;' + (phone ? 'padding:14px 12px 28px' : 'padding:24px 32px 40px'),
+      navWo:nav(s.view !== 'asset'), navCust:nav(s.view === 'asset'),
+      goWo: () => this.setState({ view:'wo', menu:false }), goAsset: () => this.setState({ view:'asset', menu:false }),
+      vInspection:s.view === 'inspection', vWo:s.view === 'wo', vAsset:s.view === 'asset',
+      backFromInspection: () => this.setState({ view:s.from === 'asset' ? 'asset' : 'wo', tab:'notes' }),
+      openInspection: () => this.setState({ view:'inspection', from:'wo' }),
+      findings: FINDINGS.map(([v, w, val]) => ({ chip:chip(v), verdict:CH[v][2], where:w, value:val })),
+      entered: ENTERED.map((x, i) => ({ num:i+1, name:x.name, rows:x.rows.map(([w, val, v]) => ({ where:w, value:val, chip:chip(v), verdict:CH[v][2] })) })),
+      actionsStyle:'display:flex;gap:10px;padding:12px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6;border-radius:0 0 12px 12px;' + (phone ? 'flex-direction:column-reverse;align-items:stretch' : 'justify-content:flex-end;align-items:center'),
+      btn2, btn2Ai:btn2.replace('#CDD5DF', '#D9D6FE').replace('color:#364152', 'color:#5925DC'),
+      goWoStyle: s.coach ? btn2 : 'display:inline-flex;align-items:center;justify-content:center;height:38px;padding:0 16px;border:0;border-radius:8px;background:#257CFF;color:#fff;font-size:13px;font-weight:600;cursor:pointer',
+      btnPrimary:'display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 16px;border:0;border-radius:8px;background:#257CFF;color:#fff;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap' + (phone ? ';width:100%' : ''),
+      onOpenTargets: () => this.setState(st => ({ menu:!st.menu })), closeTargets: () => this.setState({ menu:false }),
+      menuDesk: s.menu && !phone, sheetOpen: s.menu && phone, targets,
+      onPdf: () => this.setState({ pdf:true }), closePdf: () => this.setState({ pdf:false }), pdfOpen:s.pdf,
+      woTabs: tabs.map(([k, l]) => ({ label:l, onGo: () => this.setState({ tab:k }), style:'flex:none;height:38px;padding:0 12px;border:0;background:none;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;border-bottom:2px solid ' + (s.tab === k ? '#257CFF' : 'transparent') + ';color:' + (s.tab === k ? '#175CD3' : '#697586') })),
+      tLines:s.tab === 'lines', tNotes:s.tab === 'notes', tOther:['parts','time','fin'].indexOf(s.tab) > -1,
+      stGenerating:s.stage === 'gen', stReview:s.stage === 'review',
+      reviewTitle: s.drafts.length + ' lines drafted from Brake & Axle PM · review before adding' + (s.target === 'A new work order' ? ' to a new work order' : ''),
+      drafts: s.drafts.map((d, i) => ({ on:d.on, title:d.title, source:d.source, desc:d.desc, labor:d.labor, parts:d.parts, noParts:!d.parts.length,
+        rowStyle:'display:flex;align-items:flex-start;gap:12px;padding:14px 20px;border-top:1px solid #EEF2F6;flex-wrap:wrap;opacity:' + (d.on ? '1' : '0.5'),
+        box:'width:18px;height:18px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;' + (d.on ? 'background:#257CFF' : 'background:#fff;border:1.5px solid #CDD5DF'),
+        onToggle: e => { e.preventDefault(); this.updDraft(i, { on:!d.on }); },
+        onTitle: e => this.updDraft(i, { title:e.target.value }), onDesc: e => this.updDraft(i, { desc:e.target.value }), onLabor: e => this.updDraft(i, { labor:e.target.value }) })),
+      reviewTotals: sel.length + ' of ' + s.drafts.length + ' selected · ' + hrs.toFixed(1) + ' hrs labor · ' + parts + ' parts · nothing on the work order yet',
+      addLinesLabel: 'Add ' + sel.length + ' Line' + (sel.length === 1 ? '' : 's'),
+      addLinesStyle:'height:38px;padding:0 16px;border:0;border-radius:8px;background:#257CFF;color:#fff;font-size:13px;font-weight:600;cursor:' + (sel.length ? 'pointer' : 'not-allowed') + ';opacity:' + (sel.length ? '1' : '0.4'),
+      onAddLines: () => { if (!sel.length) return; this.setState(st => ({ lines:st.lines.concat(sel.map(d => ({ title:d.title, desc:d.desc, labor:d.labor }))), stage:null, built:true })); this.toast(sel.length + ' lines added to ' + (s.target === 'A new work order' ? 'new work order S-82' : 'S-81')); },
+      onDiscard: () => this.setState({ stage:null }),
+      buildHere: () => this.build('This work order'),
+      noLines:!s.lines.length, linesMeta: s.lines.length ? s.lines.length + ' lines' : '',
+      lines: s.lines.map((l, i) => ({ n:i+1, title:l.title, desc:l.desc, labor:(parseFloat(l.labor) || 0).toFixed(1) + ' hrs' })),
+      assetMeta: needsLines ? '1 of 5 has findings with no lines yet' : '',
+      assetRows: [
+        { name:'Brake & Axle PM', meta:'Today · William Johns · template v2', chips:[{ text:'2 Not OK', style:chip('bad') }, { text:'1 Monitor', style:chip('mon') }], wo:'S-81', canBuild:needsLines, onView: () => this.setState({ view:'inspection', from:'asset' }), onBuild: () => this.build('This work order') },
+        { name:'Pre-trip DOT', meta:'12 Sep · Sasha Reyes · template v1', chips:[{ text:'All OK', style:chip('ok') }], wo:'S-74', canBuild:false, onView: () => this.setState({ view:'inspection', from:'asset' }) },
+        { name:'Brake & Axle PM', meta:'28 Aug · William Johns · template v1', chips:[{ text:'1 Not OK', style:chip('bad') }], wo:'S-69', canBuild:false, onView: () => this.setState({ view:'inspection', from:'asset' }) },
+        { name:'Annual DOT', meta:'3 Jun · Sasha Reyes · template v1', chips:[{ text:'1 Monitor', style:chip('mon') }], wo:'S-52', canBuild:false, onView: () => this.setState({ view:'inspection', from:'asset' }) },
+        { name:'Pre-trip DOT', meta:'14 May · Omar Diaz · template v1', chips:[{ text:'All OK', style:chip('ok') }], wo:'S-47', canBuild:false, onView: () => this.setState({ view:'inspection', from:'asset' }) } ],
+      toastOn:!!s.toast, toastText:s.toast || ''
+    };
+  }
+}
+</script>
+</body>
+</html>

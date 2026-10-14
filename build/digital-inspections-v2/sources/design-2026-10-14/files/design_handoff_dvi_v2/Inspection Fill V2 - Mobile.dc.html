@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="../_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<script src="../_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+<style>
+  body { margin:0; background:#EEF2F6; font-family:'Inter',system-ui,sans-serif; }
+  a { color:#175CD3; text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .phone { width:402px; flex:none; background:#F8FAFC; border:1px solid #E3E8EF; border-radius:20px; overflow:hidden; box-shadow:0 12px 24px rgba(11,23,51,0.10); display:flex; flex-direction:column; }
+  .phone > div { flex:none; }
+  .abar { display:flex; align-items:center; gap:10px; padding:12px 14px; background:#fff; border-bottom:1px solid #E3E8EF; }
+  .shead { padding:12px 14px 14px; background:#fff; border-bottom:1px solid #E3E8EF; display:flex; flex-direction:column; gap:8px; }
+  .scroll { flex:1; min-height:0; overflow:hidden; padding:14px; display:flex; flex-direction:column; gap:10px; }
+  .scroll > * { flex:none; }
+  .nav { margin-top:auto; background:#fff; border-top:1px solid #E3E8EF; display:flex; flex-direction:column; }
+  .navrow { display:flex; gap:10px; padding:10px 14px 12px; }
+  .navback { flex:1; display:inline-flex; align-items:center; justify-content:center; gap:8px; height:52px; border:1px solid #CDD5DF; border-radius:8px; background:#fff; font-family:inherit; font-size:14px; font-weight:600; color:#364152; cursor:pointer; }
+  .navnext { flex:1; width:100%; display:inline-flex; align-items:center; justify-content:center; gap:8px; height:52px; border:0; border-radius:8px; background:#257CFF; color:#fff; font-family:inherit; font-size:14px; font-weight:600; cursor:pointer; }
+  .fcard { background:#fff; border:1px solid #E3E8EF; border-radius:12px; overflow:hidden; }
+  .fcoll { display:flex; align-items:center; gap:10px; padding:14px 12px; }
+  .num { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; flex:none; border-radius:7px; background:#EEF2F6; color:#4B5565; font-size:12px; font-weight:600; }
+  .num.on { background:#257CFF; color:#fff; }
+  .icb { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; flex:none; border:1px solid #E3E8EF; border-radius:8px; background:#F8FAFC; color:#4B5565; cursor:pointer; }
+  .chip { display:inline-flex; align-items:center; gap:6px; height:26px; padding:0 10px; border-radius:9999px; font-size:12px; font-weight:700; white-space:nowrap; }
+  .dot { width:7px; height:7px; border-radius:50%; flex:none; }
+  .seg4 { display:flex; height:52px; border:1px solid #CDD5DF; border-radius:8px; overflow:hidden; background:#fff; }
+  .seg4 button { border:0; border-left:1px solid #E3E8EF; background:#fff; font-family:inherit; font-size:14px; font-weight:600; color:#4B5565; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:6px; }
+  .seg4 button:first-child { border-left:0; }
+  .on-ok { background:#099250 !important; color:#fff !important; font-weight:700 !important; }
+  .on-mon { background:#DC6803 !important; color:#fff !important; font-weight:700 !important; }
+  .on-bad { background:#D92D20 !important; color:#fff !important; font-weight:700 !important; }
+  .on-na { background:#697586 !important; color:#fff !important; font-weight:700 !important; }
+  .plab { font-size:11px; font-weight:600; letter-spacing:0.02em; color:#4B5565; }
+  .grp { display:flex; height:52px; border-radius:8px; overflow:hidden; background:#fff; }
+  .grp input { flex:1; width:0; min-width:0; height:100%; padding:0 12px; border:0; font-family:inherit; font-size:17px; font-weight:600; color:#202939; background:transparent; }
+  .grp > button { width:52px; flex:none; border:0; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:2px; }
+  .unit { display:inline-flex; align-items:center; gap:4px; height:30px; padding:0 10px; border:1px solid #E3E8EF; border-radius:9999px; background:#F8FAFC; font-family:inherit; font-size:12px; font-weight:600; color:#4B5565; cursor:pointer; }
+  .rowcard { background:#fff; border:1px solid #E3E8EF; border-radius:12px; overflow:hidden; }
+  .rowhead { display:flex; align-items:center; gap:8px; padding:12px 12px 10px; }
+  .vgrid { display:grid; grid-template-columns:1fr 1fr; gap:12px 10px; padding:0 12px 12px; }
+  .mbtn { display:inline-flex; align-items:center; justify-content:center; gap:6px; height:44px; padding:0 14px; border:1px solid #CDD5DF; border-radius:8px; background:#fff; font-family:inherit; font-size:14px; font-weight:600; color:#364152; cursor:pointer; }
+  .badge { display:inline-flex; align-items:center; height:22px; padding:0 8px; border-radius:9999px; background:#202939; color:#fff; font-size:11px; font-weight:600; }
+  .cap { display:flex; align-items:baseline; gap:10px; }
+  .cap span.t { font-size:15px; font-weight:600; color:#202939; }
+  .glab { font-size:10px; font-weight:600; letter-spacing:0.06em; color:#697586; }
+  .note { font-size:12px; color:#697586; max-width:402px; }
+</style>
+</helmet>
+
+<section style="display:flex;flex-direction:column;gap:40px;padding:48px;background:#EEF2F6">
+
+  <div style="display:flex;flex-direction:column;gap:8px;max-width:860px">
+    <div class="glab">SV-8181 · DIGITAL INSPECTIONS V2 · MOBILE ARTBOARDS</div>
+    <h2 style="font-size:24px;line-height:32px;font-weight:600;color:#202939;margin:0">Fill screen: phone, 402 px</h2>
+    <p style="font-size:14px;line-height:20px;color:#4B5565;margin:0;text-wrap:pretty">The footer is section navigation and nothing else, Back: Section 1 and Next: Section 2, naming where each goes. Axle switching happens only in the sub-header chips, which swap the page to that axle. What is outstanding rides on the action as a count badge, and tapping it lists the items, each one going straight to the field, not to a summary. Verdict dots are gone: the field is already coloured. A tire takes the worst verdict entered for it so far and stays grey until one arrives. Marking OK in bulk exists at the same three levels as on desktop: the app-bar menu for the whole inspection, a 44 px row at the foot of the section header for the section, and the axle-set card header for one field. OK only, verdicts only, and it never overwrites a verdict already picked.</p>
+  </div>
+
+  <!-- row 1, section shell -->
+  <div style="display:flex;gap:32px;flex-wrap:wrap">
+
+    <!-- M1 -->
+    <div id="m1" data-screen-label="M1 Section 1 field list" style="display:flex;flex-direction:column;gap:10px">
+      <div class="cap"><span class="badge">M1</span><span class="t">Section 1: field list</span></div>
+      <span class="note">One card per field, the open one expanded. One full-width primary action, naming where it goes. Android draws the back gesture, so the footer does not.</span>
+      <div class="phone" style="min-height:840px">
+        <div class="abar">
+          <span class="icb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+          <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">1234 · FOR CLODISU</span><span style="font-size:14px;font-weight:600;color:#202939">Work Order · V2</span></div>
+          <span class="icb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="icb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+        </div>
+        <div class="shead">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span class="glab">SECTION 1 OF 2</span>
+            <span style="font-size:12px;font-weight:600;color:#697586">0 / 3 fields</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><span style="font-size:20px;font-weight:600;color:#202939">Section 1</span><button title="Collapse section" style="width:44px;height:44px;margin:-8px -10px -8px 0;flex:none;border:0;border-radius:8px;background:none;color:#4B5565;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+          <div style="height:4px;border-radius:9999px;background:#E3E8EF"></div>
+          <span style="font-size:12px;color:#697586">Photos: 0.0 MB of 10 MB</span><button style="display:flex;align-items:center;justify-content:center;gap:8px;height:44px;width:100%;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark section OK</button>
+        </div>
+
+        <div class="scroll">
+          <div class="fcard" style="border-color:#BEDFFF;box-shadow:0 1px 2px rgba(11,23,51,0.05)">
+            <div class="fcoll" style="padding-bottom:6px">
+              <span class="num on">1</span>
+              <div style="display:flex;flex-direction:column"><span style="font-size:15px;font-weight:600;color:#202939">Unit reading</span><span style="font-size:11px;color:#697586">TEXT</span></div>
+              <span class="icb" style="margin-left:auto;background:#E9F5FF;border-color:#BEDFFF;color:#175CD3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg></span>
+            </div>
+            <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:10px">
+              <input placeholder="Enter the odometer reading" style="height:52px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:17px;font-weight:500;color:#202939;background:#fff">
+              <div style="display:flex;gap:8px"><button class="mbtn" style="flex:1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"></path><circle cx="12" cy="13" r="3"></circle></svg>Add Photo</button><button class="mbtn" style="flex:1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>Add Note</button></div>
+            </div>
+          </div>
+
+          <div class="fcard">
+            <div class="fcoll">
+              <span class="num">2</span>
+              <div style="display:flex;flex-direction:column"><span style="font-size:15px;font-weight:600;color:#202939">Brake &amp; tire measurements</span><span style="font-size:11px;color:#697586">PER AXLE · 2 axles</span></div>
+              <span class="icb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </div>
+          </div>
+
+          <div class="fcard">
+            <div class="fcoll">
+              <span class="num">3</span>
+              <div style="display:flex;flex-direction:column"><span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span><span style="font-size:11px;color:#697586">CHECKBOX · reference file</span></div>
+              <span class="icb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav">
+          <div style="padding:8px 14px 0;display:flex;justify-content:center"><span style="font-size:11px;color:#697586">3 fields still open; you can return any time</span></div>
+          <div class="navrow">
+            <button class="navnext">Next: Section 2<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 -->
+    <div id="m2" data-screen-label="M2 Section 2 last section" style="display:flex;flex-direction:column;gap:10px">
+      <div class="cap"><span class="badge">M2</span><span class="t">Section 2: the last one</span></div>
+      <span class="note">On the final section the action becomes Submit &amp; Generate Report, carrying a count of what is still outstanding. Tapping it opens the list in <a href="#m3">M3</a>. The inspection-level Mark all OK lives in the app-bar menu, the only place it appears on the phone, drawn on its own below so it covers nothing.</span><div style="display:flex;flex-direction:column;gap:8px"><span class="glab">APP-BAR MENU · WHOLE INSPECTION</span><div style="width:402px;box-sizing:border-box;display:flex;align-items:flex-start;gap:12px;padding:12px;background:#fff;border:1px solid #E3E8EF;border-radius:12px"><span class="icb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span><div style="width:262px;flex:none;padding:6px;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 12px 24px rgba(11,23,51,0.10),0 4px 8px rgba(11,23,51,0.05);display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#828A98;padding:6px 8px 2px">WHOLE INSPECTION</span><button style="display:flex;align-items:center;gap:8px;height:44px;padding:0 10px;border:0;border-radius:8px;background:#fff;font-family:inherit;font-size:14px;font-weight:600;color:#175CD3;text-align:left;cursor:pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark all OK</button><span style="font-size:11px;line-height:15px;color:#697586;padding:6px 8px 4px;border-top:1px solid #EEF2F6;margin-top:4px">34 items are still Not inspected. Only those are marked OK; verdicts already picked stay, and values are never filled in.</span></div></div></div>
+      <div class="phone" style="min-height:840px">
+        <div class="abar">
+          <span class="icb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+          <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">1234 · FOR CLODISU</span><span style="font-size:14px;font-weight:600;color:#202939">Work Order · V2</span></div>
+          <span class="icb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="icb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+        </div>
+        <div class="shead">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span class="glab">SECTION 2 OF 2</span>
+            <span style="font-size:12px;font-weight:600;color:#697586">2 / 3 fields</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><span style="font-size:20px;font-weight:600;color:#202939">Section 2</span><button title="Collapse section" style="width:44px;height:44px;margin:-8px -10px -8px 0;flex:none;border:0;border-radius:8px;background:none;color:#4B5565;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+          <div style="height:4px;border-radius:9999px;background:#E3E8EF;overflow:hidden"><div style="width:66%;height:4px;background:#257CFF"></div></div><button style="display:flex;align-items:center;justify-content:center;gap:8px;height:44px;width:100%;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark section OK</button>
+        </div>
+
+        <div class="scroll">
+          <div class="fcard">
+            <div class="fcoll">
+              <span class="num">1</span>
+              <div style="display:flex;flex-direction:column"><span style="font-size:15px;font-weight:600;color:#202939">Air-brake leak check</span><span style="font-size:11px;color:#087443;font-weight:600">OK</span></div>
+              <span class="icb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </div>
+          </div>
+
+          <div class="fcard" style="border-color:#BEDFFF">
+            <div class="fcoll" style="padding-bottom:6px">
+              <span class="num on">2</span>
+              <div style="display:flex;flex-direction:column"><span style="font-size:15px;font-weight:600;color:#202939">Slack adjuster travel</span><span style="font-size:11px;color:#697586">MEASUREMENT</span></div>
+              <span class="icb" style="margin-left:auto;background:#E9F5FF;border-color:#BEDFFF;color:#175CD3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg></span>
+            </div>
+            <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="flex:1;display:flex;height:52px;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden;background:#fff"><input value="1.9" style="flex:1;min-width:0;border:0;padding:0 12px;font-family:inherit;font-size:17px;font-weight:600;color:#202939;background:transparent"><span style="display:inline-flex;align-items:center;padding:0 12px;font-size:13px;font-weight:600;color:#697586;border-left:1px solid #E3E8EF">in.</span></div>
+              </div>
+              <div class="seg4"><button style="flex:1"><span class="dot" style="background:#16B364"></span>OK</button><button class="on-mon" style="flex:1.2"><span class="dot" style="background:#fff"></span>Monitor</button><button style="flex:1.2"><span class="dot" style="background:#F04438"></span>Not OK</button><button style="flex:0.8">N/A</button></div>
+              <div style="padding:12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span class="glab" style="color:#364152">NOTE</span>
+                  <span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#FEF0C7;color:#B54708;font-size:11px;font-weight:700">Required</span>
+                </div>
+                <textarea rows="2" placeholder="Why it is being monitored" style="width:100%;padding:10px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;color:#202939;resize:none;box-sizing:border-box"></textarea>
+              <div style="display:flex;gap:8px;justify-content:flex-end">
+                <button style="width:48px;height:44px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;color:#364152;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+                <button style="width:48px;height:44px;border:0;border-radius:8px;background:#257CFF;color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+              </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fcard">
+            <div class="fcoll">
+              <span class="num">3</span>
+              <div style="display:flex;flex-direction:column"><span style="font-size:15px;font-weight:600;color:#202939">Trailer axle measurements</span><span style="font-size:11px;color:#697586">PER AXLE · 1 axle</span></div>
+              <span class="icb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav">
+          <div class="navrow">
+            <button aria-label="Back" style="width:52px;height:52px;flex:none;display:inline-flex;align-items:center;justify-content:center;border:1px solid #CDD5DF;border-radius:8px;background:#fff;color:#364152;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg></button><button class="navnext" style="flex:1;min-width:0;white-space:nowrap;padding:0 12px;background:#fff;border:1px solid #FEDF89;color:#B54708"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:9999px;background:#DC6803;color:#fff;font-size:12px;font-weight:700">1</span>Submit &amp; Generate Report<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"></path><circle cx="12" cy="12" r="10"></circle></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M3 -->
+    <div id="m3" data-screen-label="M3 What is missing" style="display:flex;flex-direction:column;gap:10px">
+      <div class="cap"><span class="badge">M3</span><span class="t">What is still missing</span></div>
+      <span class="note">Reached by tapping the badge on Submit &amp; Generate Report. Each row goes straight to that field with the cursor in it, never to a summary.</span>
+      <div class="phone" style="height:840px;position:relative">
+        <div class="abar">
+          <span class="icb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+          <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">1234 · FOR CLODISU</span><span style="font-size:14px;font-weight:600;color:#202939">Work Order · V2</span></div>
+          <span class="icb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="icb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+        </div>
+        <div style="flex:1;background:rgba(15,17,26,0.5);display:flex;flex-direction:column;justify-content:flex-end">
+          <div style="background:#fff;border-radius:16px 16px 0 0;padding:16px 14px 18px;display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;align-items:flex-start;gap:10px">
+              <div style="display:flex;flex-direction:column;gap:2px">
+                <span style="font-size:16px;font-weight:600;color:#202939">5 items before submitting</span>
+                <span style="font-size:12px;color:#697586">Tap one to go straight to it</span>
+              </div>
+              <span class="icb" style="margin-left:auto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <button style="display:flex;align-items:center;gap:10px;height:64px;padding:0 12px;border:1px solid #E3E8EF;border-radius:8px;background:#fff;font-family:inherit;cursor:pointer;text-align:left">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;flex:none;border-radius:8px;background:#FEE4E2;color:#B42318"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span>
+                <span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span style="font-size:14px;font-weight:600;color:#202939">Note</span><span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Section 1 · Tire pressure · left outer</span></span>
+                <span style="margin-left:auto;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+              </button>
+              <button style="display:flex;align-items:center;gap:10px;height:64px;padding:0 12px;border:1px solid #E3E8EF;border-radius:8px;background:#fff;font-family:inherit;cursor:pointer;text-align:left">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;flex:none;border-radius:8px;background:#FEE4E2;color:#B42318"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"></path><circle cx="12" cy="13" r="3"></circle></svg></span>
+                <span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span style="font-size:14px;font-weight:600;color:#202939">Photo</span><span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Section 1 · Tire pressure · left outer</span></span>
+                <span style="margin-left:auto;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+              </button>
+              <button style="display:flex;align-items:center;gap:10px;height:64px;padding:0 12px;border:1px solid #E3E8EF;border-radius:8px;background:#fff;font-family:inherit;cursor:pointer;text-align:left">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;flex:none;border-radius:8px;background:#FEE4E2;color:#B42318"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span>
+                <span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span style="font-size:14px;font-weight:600;color:#202939">Note</span><span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Section 1 · Tread depth · left outer</span></span>
+                <span style="margin-left:auto;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+              </button>
+              <button style="display:flex;align-items:center;gap:10px;height:64px;padding:0 12px;border:1px solid #E3E8EF;border-radius:8px;background:#fff;font-family:inherit;cursor:pointer;text-align:left">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;flex:none;border-radius:8px;background:#FEF0C7;color:#B54708"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span>
+                <span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span style="font-size:14px;font-weight:600;color:#202939">Note</span><span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Section 2 · Slack adjuster travel</span></span>
+                <span style="margin-left:auto;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+              </button>
+              <button style="display:flex;align-items:center;gap:10px;height:64px;padding:0 12px;border:1px solid #E3E8EF;border-radius:8px;background:#fff;font-family:inherit;cursor:pointer;text-align:left">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;flex:none;border-radius:8px;background:#EEF2F6;color:#4B5565"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"></path><circle cx="12" cy="12" r="10"></circle></svg></span>
+                <span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span style="font-size:14px;font-weight:600;color:#202939">Answer</span><span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Section 2 · Trailer axle measurements · 8 positions</span></span>
+                <span style="margin-left:auto;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+              </button>
+            </div>
+            <button class="mbtn" style="height:48px;border-color:#BEDFFF;background:#E9F5FF;color:#175CD3">Go to the first one</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- row 2, per axle -->
+  <div style="display:flex;gap:32px;flex-wrap:wrap">
+
+    <!-- M4 -->
+    <div id="m4" data-screen-label="M4 Axle set not inspected" style="display:flex;flex-direction:column;gap:10px">
+      <div class="cap"><span class="badge">M4</span><span class="t">Per axle: nothing inspected</span></div>
+      <span class="note">Tapping an axle in the sub-header swaps the page to it; the footer stays on the section. Labels are 11 px and value rows 52 px, so left outer and left inner are separately tappable.</span>
+      <div class="phone" style="min-height:900px">
+        <div class="abar">
+          <span class="icb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+          <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">1234 · FOR CLODISU</span><span style="font-size:14px;font-weight:600;color:#202939">Work Order · V2</span></div>
+          <span class="icb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="icb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+        </div>
+        <div class="shead">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span class="glab">SECTION 1 OF 2 · FIELD 2 OF 3</span>
+            
+          </div>
+          <div style="display:flex;align-items:center;gap:10px"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><span style="font-size:20px;font-weight:600;color:#202939">Brake &amp; tire measurements</span><button title="Collapse section" style="width:44px;height:44px;margin:-8px -10px -8px 0;flex:none;border:0;border-radius:8px;background:none;color:#4B5565;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><button style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark field OK</button></div>
+          <div style="height:4px;border-radius:9999px;background:#E3E8EF"></div>
+        </div>
+
+        <div class="scroll">
+          <div style="display:flex;gap:8px;overflow-x:auto">
+            <button style="display:inline-flex;align-items:center;flex:none;white-space:nowrap;height:44px;padding:0 16px;border:1.5px solid #257CFF;border-radius:9999px;background:#E9F5FF;font-family:inherit;font-size:14px;font-weight:600;color:#175CD3;cursor:pointer">Axle 1</button>
+            <button style="display:inline-flex;align-items:center;flex:none;white-space:nowrap;height:44px;padding:0 16px;border:1px solid #CDD5DF;border-radius:9999px;background:#fff;font-family:inherit;font-size:14px;font-weight:600;color:#4B5565;cursor:pointer">Axle 2</button>
+            <button style="display:inline-flex;align-items:center;flex:none;white-space:nowrap;height:44px;padding:0 14px;border:1px dashed #CDD5DF;border-radius:9999px;background:#fff;font-family:inherit;font-size:14px;font-weight:600;color:#175CD3;cursor:pointer">+ Axle</button>
+          </div>
+
+          <div style="background:#fff;border:1px solid #E3E8EF;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px">
+            <span style="font-size:15px;font-weight:600;color:#202939">Axle 1</span>
+            <div style="display:flex;gap:8px">
+              <div style="flex:1;display:flex;height:48px;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden">
+                <button style="flex:1;border:0;background:#364152;color:#fff;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Drum</button>
+                <button style="flex:1;border:0;border-left:1px solid #CDD5DF;background:#fff;color:#697586;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Disc</button>
+              </div>
+              <div style="flex:1;display:flex;height:48px;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden">
+                <button style="flex:1;border:0;background:#fff;color:#697586;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Single</button>
+                <button style="flex:1;border:0;border-left:1px solid #CDD5DF;background:#364152;color:#fff;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Dual</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="rowcard">
+            <div class="rowhead">
+              <span style="font-size:15px;font-weight:600;color:#202939">Tire pressure</span><button class="unit">psi <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button>
+              <span style="margin-left:auto;font-size:11px;font-weight:600;color:#9AA4B2">NOT INSPECTED</span>
+            </div>
+            <div class="vgrid">
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab">Left outer</span><div class="grp" style="border:1px solid #CDD5DF"><input placeholder="—"><button style="background:#F8FAFC;border-left:1px solid #E3E8EF;color:#697586"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab">Left inner</span><div class="grp" style="border:1px solid #CDD5DF"><input placeholder="—"><button style="background:#F8FAFC;border-left:1px solid #E3E8EF;color:#697586"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab">Right inner</span><div class="grp" style="border:1px solid #CDD5DF"><input placeholder="—"><button style="background:#F8FAFC;border-left:1px solid #E3E8EF;color:#697586"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab">Right outer</span><div class="grp" style="border:1px solid #CDD5DF"><input placeholder="—"><button style="background:#F8FAFC;border-left:1px solid #E3E8EF;color:#697586"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+            </div>
+          </div>
+
+          <div class="rowcard">
+            <div class="rowhead">
+              <span style="font-size:15px;font-weight:600;color:#202939">Tread depth</span><button class="unit">in. <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button>
+              <span style="margin-left:auto;font-size:11px;font-weight:600;color:#9AA4B2">NOT INSPECTED</span>
+            </div>
+            <div class="vgrid">
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab">Left outer</span><div class="grp" style="border:1px solid #CDD5DF"><input placeholder="—"><button style="background:#F8FAFC;border-left:1px solid #E3E8EF;color:#697586"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab">Left inner</span><div class="grp" style="border:1px solid #CDD5DF"><input placeholder="—"><button style="background:#F8FAFC;border-left:1px solid #E3E8EF;color:#697586"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab">Right inner</span><div class="grp" style="border:1px solid #CDD5DF"><input placeholder="—"><button style="background:#F8FAFC;border-left:1px solid #E3E8EF;color:#697586"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab">Right outer</span><div class="grp" style="border:1px solid #CDD5DF"><input placeholder="—"><button style="background:#F8FAFC;border-left:1px solid #E3E8EF;color:#697586"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="nav">
+          <div class="navrow">
+            <button class="navback" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-family:inherit;font-size:14px;font-weight:600;color:#364152;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg>Back: Section 1</button>
+            <button class="navnext">Next: Section 2<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M5 -->
+    <div id="m5" data-screen-label="M5 Axle set mixed verdicts" style="display:flex;flex-direction:column;gap:10px">
+      <div class="cap"><span class="badge">M5</span><span class="t">Left outer Not OK, left inner OK</span></div>
+      <span class="note">Each position states its own verdict above its value, so the block reads without opening anything. A row holding any Not OK position turns its Add note and Add photo labels red, and the count rides on the footer action.</span>
+      <div class="phone" style="min-height:900px">
+        <div class="abar">
+          <span class="icb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+          <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">1234 · FOR CLODISU</span><span style="font-size:14px;font-weight:600;color:#202939">Work Order · V2</span></div>
+          <span class="icb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="icb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+        </div>
+        <div class="shead">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span class="glab">SECTION 1 OF 2 · FIELD 2 OF 3</span>
+            
+          </div>
+          <div style="display:flex;align-items:center;gap:4px 10px;flex-wrap:wrap"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><span style="font-size:20px;font-weight:600;color:#202939">Brake &amp; tire measurements</span><button title="Collapse section" style="width:44px;height:44px;margin:-8px -10px -8px 0;flex:none;border:0;border-radius:8px;background:none;color:#4B5565;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span class="chip" style="background:#FEF3F2;color:#B42318;flex:none;white-space:nowrap"><span class="dot" style="background:#F04438"></span>2 positions Not OK · 1 Monitor</span><button style="display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark field OK</button></div></div>
+          <div style="height:4px;border-radius:9999px;background:#E3E8EF;overflow:hidden"><div style="width:50%;height:4px;background:#257CFF"></div></div>
+        </div>
+
+        <div class="scroll">
+          <div style="display:flex;gap:8px;overflow-x:auto">
+            <button style="display:inline-flex;align-items:center;flex:none;white-space:nowrap;height:44px;padding:0 16px;border:1.5px solid #257CFF;border-radius:9999px;background:#E9F5FF;font-family:inherit;font-size:14px;font-weight:600;color:#175CD3;cursor:pointer">Axle 1</button>
+            <button style="display:inline-flex;align-items:center;flex:none;white-space:nowrap;height:44px;padding:0 16px;border:1px solid #CDD5DF;border-radius:9999px;background:#fff;font-family:inherit;font-size:14px;font-weight:600;color:#4B5565;cursor:pointer">Axle 2</button>
+            <button style="display:inline-flex;align-items:center;flex:none;white-space:nowrap;height:44px;padding:0 14px;border:1px dashed #CDD5DF;border-radius:9999px;background:#fff;font-family:inherit;font-size:14px;font-weight:600;color:#175CD3;cursor:pointer">+ Axle</button>
+          </div>
+
+          <div style="background:#fff;border:1px solid #E3E8EF;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span style="font-size:15px;font-weight:600;color:#202939">Axle 1</span><span class="chip" style="background:#FEF3F2;color:#B42318"><span class="dot" style="background:#F04438"></span>Axle: Not OK</span></div>
+            <div style="display:flex;gap:8px">
+              <div style="flex:1;display:flex;height:48px;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden">
+                <button style="flex:1;border:0;background:#364152;color:#fff;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Drum</button>
+                <button style="flex:1;border:0;border-left:1px solid #CDD5DF;background:#fff;color:#697586;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Disc</button>
+              </div>
+              <div style="flex:1;display:flex;height:48px;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden">
+                <button style="flex:1;border:0;background:#fff;color:#697586;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Single</button>
+                <button style="flex:1;border:0;border-left:1px solid #CDD5DF;background:#364152;color:#fff;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Dual</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rowcard">
+            <div class="rowhead">
+              <span style="font-size:15px;font-weight:600;color:#202939">Tire pressure</span><button class="unit" style="background:#fff">psi <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button>
+              <span style="margin-left:auto;font-size:11px;font-weight:700;color:#B42318">NOT OK</span>
+            </div>
+            <div class="vgrid">
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab" style="color:#B42318">Left outer · Not OK</span><div class="grp" style="border:1.5px solid #F04438"><input value="42"><button style="background:#FEE4E2;border-left:1px solid #FECDCA;color:#B42318"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab" style="color:#087443">Left inner · OK</span><div class="grp" style="border:1.5px solid #16B364"><input value="98"><button style="background:#EDFCF2;border-left:1px solid #AAF0C4;color:#087443"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab" style="color:#087443">Right inner · OK</span><div class="grp" style="border:1.5px solid #16B364"><input value="101"><button style="background:#EDFCF2;border-left:1px solid #AAF0C4;color:#087443"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab" style="color:#B54708">Right outer · Monitor</span><div class="grp" style="border:1.5px solid #F79009"><input value="99"><button style="background:#FFFAEB;border-left:1px solid #FEDF89;color:#B54708"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+            </div>
+            <div style="padding:12px;background:#F8FAFC;border-top:1px solid #EEF2F6;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;gap:8px">
+                <button style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;height:48px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-family:inherit;font-size:14px;font-weight:600;color:#B42318;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>Add note</button>
+                <button style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;height:48px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-family:inherit;font-size:14px;font-weight:600;color:#B42318;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"></path><circle cx="12" cy="13" r="3"></circle></svg>Add photo</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rowcard">
+            <div class="rowhead">
+              <span style="font-size:15px;font-weight:600;color:#202939">Tread depth</span><button class="unit" style="background:#fff">in. <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button>
+              <span style="margin-left:auto;font-size:11px;font-weight:700;color:#B42318">NOT OK</span>
+            </div>
+            <div class="vgrid">
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab" style="color:#B42318">Left outer · Not OK</span><div class="grp" style="border:1.5px solid #F04438"><input value="0.13"><button style="background:#FEE4E2;border-left:1px solid #FECDCA;color:#B42318"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab" style="color:#087443">Left inner · OK</span><div class="grp" style="border:1.5px solid #16B364"><input value="0.28"><button style="background:#EDFCF2;border-left:1px solid #AAF0C4;color:#087443"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab" style="color:#087443">Right inner · OK</span><div class="grp" style="border:1.5px solid #16B364"><input value="0.31"><button style="background:#EDFCF2;border-left:1px solid #AAF0C4;color:#087443"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab" style="color:#087443">Right outer · OK</span><div class="grp" style="border:1.5px solid #16B364"><input value="0.31"><button style="background:#EDFCF2;border-left:1px solid #AAF0C4;color:#087443"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+            </div>
+            <div style="padding:12px;background:#F8FAFC;border-top:1px solid #EEF2F6;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;gap:8px">
+                <button style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;height:48px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-family:inherit;font-size:14px;font-weight:600;color:#B42318;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>Add note</button>
+                <button style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;height:48px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-family:inherit;font-size:14px;font-weight:600;color:#B42318;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"></path><circle cx="12" cy="13" r="3"></circle></svg>Add photo</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rowcard">
+            <div class="rowhead">
+              <span style="font-size:15px;font-weight:600;color:#202939">Brake lining</span><button class="unit">in. <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button>
+              <span style="margin-left:auto;font-size:11px;font-weight:700;color:#087443">OK</span>
+            </div>
+            <div class="vgrid">
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab" style="color:#087443">Left brake · OK</span><div class="grp" style="border:1.5px solid #16B364"><input value="0.31"><button style="background:#EDFCF2;border-left:1px solid #AAF0C4;color:#087443"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><span class="plab" style="color:#087443">Right brake · OK</span><div class="grp" style="border:1.5px solid #16B364"><input value="0.34"><button style="background:#EDFCF2;border-left:1px solid #AAF0C4;color:#087443"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav">
+          <div class="navrow">
+            <button class="navnext" style="background:#fff;border:1px solid #FECDCA;color:#B42318"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:9999px;background:#D92D20;color:#fff;font-size:12px;font-weight:700">4</span>2 notes, 2 photos required<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></button>
+          </div>
+          <div class="navrow" style="padding-top:0">
+            <button class="navback" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-family:inherit;font-size:14px;font-weight:600;color:#364152;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg>Back: Section 1</button>
+            <button class="navnext">Next: Section 2<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M6 -->
+    <div id="m6" data-screen-label="M6 Position verdict sheet" style="display:flex;flex-direction:column;gap:10px">
+      <div class="cap"><span class="badge">M6</span><span class="t">Verdict sheet: names the position</span></div>
+      <span class="note">The dropdown on a value opens a sheet titled with the position, the measurement and the value entered.</span>
+      <div class="phone" style="height:900px;position:relative">
+        <div class="abar">
+          <span class="icb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+          <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">1234 · FOR CLODISU</span><span style="font-size:14px;font-weight:600;color:#202939">Work Order · V2</span></div>
+          <span class="icb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="icb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+        </div>
+        <div style="flex:1;background:rgba(15,17,26,0.5);display:flex;flex-direction:column;justify-content:flex-end">
+          <div style="background:#fff;border-radius:16px 16px 0 0;padding:16px 14px 18px;display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;align-items:flex-start;gap:10px">
+              <div style="display:flex;flex-direction:column;gap:2px">
+                <span style="font-size:16px;font-weight:600;color:#202939">Left outer</span>
+                <span style="font-size:12px;color:#697586">Axle 1 · Tire pressure · 42 psi entered</span>
+              </div>
+              <span class="icb" style="margin-left:auto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <button style="display:flex;align-items:center;gap:10px;height:56px;padding:0 14px;border:1px solid #E3E8EF;border-radius:8px;background:#fff;font-family:inherit;font-size:16px;font-weight:600;color:#364152;cursor:pointer"><span class="dot" style="width:10px;height:10px;background:#16B364"></span>OK</button>
+              <button style="display:flex;align-items:center;gap:10px;height:56px;padding:0 14px;border:1px solid #E3E8EF;border-radius:8px;background:#fff;font-family:inherit;font-size:16px;font-weight:600;color:#364152;cursor:pointer"><span class="dot" style="width:10px;height:10px;background:#F79009"></span>Monitor</button>
+              <button style="display:flex;align-items:center;gap:10px;height:56px;padding:0 14px;border:1.5px solid #F04438;border-radius:8px;background:#FEF3F2;font-family:inherit;font-size:16px;font-weight:700;color:#B42318;cursor:pointer"><span class="dot" style="width:10px;height:10px;background:#F04438"></span>Not OK<svg style="margin-left:auto" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+              <button style="display:flex;align-items:center;gap:10px;height:56px;padding:0 14px;border:1px solid #E3E8EF;border-radius:8px;background:#fff;font-family:inherit;font-size:16px;font-weight:600;color:#364152;cursor:pointer"><span class="dot" style="width:10px;height:10px;background:#9AA4B2"></span>N/A</button>
+            </div>
+            <span style="font-size:11px;line-height:16px;color:#697586">Not OK on any position makes the row and the axle Not OK, and the field needs a note.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- row 3, checkbox + sheets -->
+  <div style="display:flex;gap:32px;flex-wrap:wrap">
+
+    <!-- M7 -->
+    <div id="m7" data-screen-label="M7 Checkbox reference file" style="display:flex;flex-direction:column;gap:10px">
+      <div class="cap"><span class="badge">M7</span><span class="t">Checkbox: reference file, not answered</span></div>
+      <span class="note">The reference file is always there, whatever the answer will be. It sits above the response row, so it never competes with it.</span>
+      <div class="phone" style="min-height:840px">
+        <div class="abar">
+          <span class="icb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+          <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">1234 · FOR CLODISU</span><span style="font-size:14px;font-weight:600;color:#202939">Work Order · V2</span></div>
+          <span class="icb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="icb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+        </div>
+        <div class="shead">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span class="glab">SECTION 1 OF 2 · FIELD 3 OF 3</span>
+            <span style="font-size:12px;font-weight:600;color:#697586">2 / 3 fields</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><span style="font-size:20px;font-weight:600;color:#202939">Section 1</span><button title="Collapse section" style="width:44px;height:44px;margin:-8px -10px -8px 0;flex:none;border:0;border-radius:8px;background:none;color:#4B5565;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+          <div style="height:4px;border-radius:9999px;background:#E3E8EF;overflow:hidden"><div style="width:66%;height:4px;background:#257CFF"></div></div><button style="display:flex;align-items:center;justify-content:center;gap:8px;height:44px;width:100%;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark section OK</button>
+        </div>
+
+        <div class="scroll">
+          <div class="fcard">
+            <div class="fcoll"><span class="num">1</span><div style="display:flex;flex-direction:column"><span style="font-size:15px;font-weight:600;color:#202939">Unit reading</span><span style="font-size:11px;color:#697586">184,220 mi</span></div><span class="icb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></div>
+          </div>
+          <div class="fcard">
+            <div class="fcoll"><span class="num">2</span><div style="display:flex;flex-direction:column"><span style="font-size:15px;font-weight:600;color:#202939">Brake &amp; tire measurements</span><span style="font-size:11px;color:#B42318;font-weight:600">2 positions Not OK</span></div><span class="icb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></div>
+          </div>
+
+          <div class="fcard" style="border-color:#BEDFFF">
+            <div class="fcoll" style="padding-bottom:6px">
+              <span class="num on">3</span>
+              <div style="display:flex;flex-direction:column"><span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span><span style="font-size:11px;color:#697586">CHECKBOX</span></div>
+              <span class="icb" style="margin-left:auto;background:#E9F5FF;border-color:#BEDFFF;color:#175CD3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg></span>
+            </div>
+            <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#E9F5FF;border:1px solid #BEDFFF;border-radius:8px">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;flex:none;border-radius:8px;background:#fff;color:#175CD3;font-size:10px;font-weight:700">PDF</span>
+                <div style="display:flex;flex-direction:column;min-width:0">
+                  <span style="font-size:13px;font-weight:600;color:#175CD3">Reference file</span>
+                  <a href="Digital%20Inspections%20V2%20-%20All%20Screens.dc.html#d4" style="font-size:12px;font-weight:600;color:#175CD3;text-decoration:underline;text-underline-offset:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px">Bendix-chamber-service.pdf</a>
+                </div>
+              </div>
+              <div class="seg4"><button style="flex:1"><span class="dot" style="background:#16B364"></span>OK</button><button style="flex:1.2"><span class="dot" style="background:#F79009"></span>Monitor</button><button style="flex:1.2"><span class="dot" style="background:#F04438"></span>Not OK</button><button style="flex:0.8">N/A</button></div>
+              <div style="display:flex;gap:8px"><button class="mbtn" style="flex:1">Add Photo</button><button class="mbtn" style="flex:1">Add Note</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav">
+          <div class="navrow">
+            <button class="navnext">Next: Section 2<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M8 -->
+    <div id="m8" data-screen-label="M8 Checkbox Not OK requirements" style="display:flex;flex-direction:column;gap:10px">
+      <div class="cap"><span class="badge">M8</span><span class="t">Checkbox: Not OK, note and photo required</span></div>
+      <span class="note">What used to be a follow-up branch is now validation. Not OK turns on both rules the template set, and the count rides on the footer action.</span>
+      <div class="phone" style="min-height:840px">
+        <div class="abar">
+          <span class="icb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+          <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">1234 · FOR CLODISU</span><span style="font-size:14px;font-weight:600;color:#202939">Work Order · V2</span></div>
+          <span class="icb" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span>
+          <span class="icb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></span>
+        </div>
+        <div class="shead">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span class="glab">SECTION 1 OF 2 · FIELD 3 OF 3</span>
+            <span style="font-size:12px;font-weight:600;color:#697586">2 / 3 fields</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><span style="font-size:20px;font-weight:600;color:#202939">Section 1</span><button title="Collapse section" style="width:44px;height:44px;margin:-8px -10px -8px 0;flex:none;border:0;border-radius:8px;background:none;color:#4B5565;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+          <div style="height:4px;border-radius:9999px;background:#E3E8EF;overflow:hidden"><div style="width:66%;height:4px;background:#257CFF"></div></div><button style="display:flex;align-items:center;justify-content:center;gap:8px;height:44px;width:100%;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark section OK</button>
+        </div>
+
+        <div class="scroll">
+          <div class="fcard">
+            <div class="fcoll" style="padding-bottom:6px">
+              <span class="num on">3</span>
+              <div style="display:flex;flex-direction:column"><span style="font-size:15px;font-weight:600;color:#202939">Brake chamber condition</span><span style="font-size:11px;color:#697586">CHECKBOX</span></div>
+            </div>
+            <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#E9F5FF;border:1px solid #BEDFFF;border-radius:8px">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;flex:none;border-radius:8px;background:#fff;color:#175CD3;font-size:10px;font-weight:700">PDF</span>
+                <div style="display:flex;flex-direction:column;min-width:0">
+                  <span style="font-size:13px;font-weight:600;color:#175CD3">Reference file</span>
+                  <span style="font-size:11px;color:#4B5565;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px">Bendix-chamber-service.pdf</span>
+                </div>
+                <button style="margin-left:auto;height:36px;padding:0 12px;border:1px solid #BEDFFF;border-radius:8px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer">Open</button>
+              </div>
+              <div class="seg4"><button style="flex:1"><span class="dot" style="background:#16B364"></span>OK</button><button style="flex:1.2"><span class="dot" style="background:#F79009"></span>Monitor</button><button class="on-bad" style="flex:1.2"><span class="dot" style="background:#fff"></span>Not OK</button><button style="flex:0.8">N/A</button></div>
+
+              <div style="padding:12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span class="glab" style="color:#364152">NOTE</span>
+                  <span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#FEE4E2;color:#B42318;font-size:11px;font-weight:700">Required</span>
+                </div>
+                <textarea rows="3" placeholder="Describe the problem and the recommended repair" style="width:100%;padding:10px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:16px;color:#202939;resize:none;box-sizing:border-box"></textarea>
+              <div style="display:flex;gap:8px;justify-content:flex-end">
+                <button style="width:48px;height:44px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;color:#364152;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+                <button style="width:48px;height:44px;border:0;border-radius:8px;background:#257CFF;color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+              </div>
+                <span style="font-size:11px;color:#697586">Goes to the customer report.</span>
+              </div>
+
+              <div style="padding:12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span class="glab" style="color:#364152">PHOTO</span>
+                  <span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#FEE4E2;color:#B42318;font-size:11px;font-weight:700">Required when Not OK</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <button class="mbtn" style="flex:1;height:52px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"></path><circle cx="12" cy="13" r="3"></circle></svg>Add Photo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav">
+          <div class="navrow">
+            <button class="navnext" style="background:#fff;border:1px solid #FECDCA;color:#B42318"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:9999px;background:#D92D20;color:#fff;font-size:12px;font-weight:700">2</span>1 note, 1 photo required<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></button>
+          </div>
+          <div class="navrow" style="padding-top:0">
+            <button class="navnext">Next: Section 2<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+</x-dc>
+</body>
+</html>

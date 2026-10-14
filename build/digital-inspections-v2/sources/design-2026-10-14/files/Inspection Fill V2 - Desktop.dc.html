@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+<style>
+  body { margin:0; background:#EEF2F6; font-family:'Inter',system-ui,sans-serif; }
+  a { color:#175CD3; text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .seg { display:flex; height:36px; border:1px solid #CDD5DF; border-radius:8px; overflow:hidden; background:#fff; }
+  .seg button { border:0; background:#fff; font-family:inherit; font-size:12px; font-weight:600; color:#4B5565; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:5px; border-left:1px solid #E3E8EF; }
+  .seg button:first-child { border-left:0; }
+  .seg .on-ok { background:#099250; color:#fff; font-weight:700; }
+  .seg .on-mon { background:#DC6803; color:#fff; font-weight:700; }
+  .seg .on-bad { background:#D92D20; color:#fff; font-weight:700; }
+  .seg .on-na { background:#697586; color:#fff; font-weight:700; }
+  .dot { width:6px; height:6px; border-radius:50%; }
+  .unit { display:inline-flex; align-items:center; gap:3px; height:22px; padding:0 7px; border:1px solid #E3E8EF; border-radius:9999px; background:#F8FAFC; font-family:inherit; font-size:11px; font-weight:600; color:#4B5565; cursor:pointer; }
+  .val { width:100%; height:36px; padding:0 10px; border:1px solid #CDD5DF; border-radius:8px; background:#fff; font-family:inherit; font-size:14px; font-weight:500; color:#202939; }
+  .grid4 { display:grid; grid-template-columns:186px minmax(0,1fr) minmax(0,1fr) 250px; align-items:center; padding:10px 14px; }
+  .grid4 input.val { min-width:0; }
+  .grid4 > div { min-width:0; }
+  .colhead { font-size:10px; font-weight:600; letter-spacing:0.06em; color:#697586; }
+  .sub { font-size:9px; font-weight:600; letter-spacing:0.06em; color:#9AA4B2; }
+  .board div, .board input { min-width:0; }
+  .grp { display:flex; height:36px; border-radius:8px; overflow:hidden; background:#fff; flex:1; min-width:0; }
+  .grp input { flex:1; width:0; min-width:0; height:100%; padding:0 8px; border:0; font-family:inherit; font-size:14px; font-weight:500; color:#202939; background:transparent; }
+  .grp > button { width:38px; flex:none; border:0; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:2px; }
+  .rollup { display:flex; flex-direction:column; gap:1px; align-items:flex-start; }
+  .axgrid { display:grid; grid-template-columns:196px minmax(0,1fr) minmax(0,1fr); align-items:center; padding:11px 14px; }
+  .legrow { display:flex; align-items:center; gap:8px; width:100%; }
+  .lename { font-size:11px; font-weight:500; color:#4B5565; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .board { background:#F8FAFC; border:1px solid #E3E8EF; border-radius:12px; box-shadow:0 1px 2px rgba(11,23,51,0.05); overflow:hidden; }
+  .badge { display:inline-flex; align-items:center; height:22px; padding:0 8px; border-radius:9999px; background:#202939; color:#fff; font-size:11px; font-weight:600; }
+  .chip { display:inline-flex; align-items:center; gap:6px; height:26px; padding:0 10px; border-radius:9999px; font-size:12px; font-weight:700; }
+  .btn2 { display:inline-flex; align-items:center; gap:6px; height:36px; padding:0 12px; border:1px solid #CDD5DF; border-radius:8px; background:#fff; font-family:inherit; font-size:13px; font-weight:600; color:#364152; cursor:pointer; }
+  .pair { display:flex; border:1px solid #CDD5DF; border-radius:8px; overflow:hidden; height:30px; }
+  .pair button { border:0; background:#fff; color:#697586; font-family:inherit; font-size:12px; font-weight:600; padding:0 12px; cursor:pointer; border-left:1px solid #CDD5DF; white-space:nowrap; }
+  .pair button:first-child { border-left:0; }
+  .pair .on { background:#364152; color:#fff; }
+</style>
+</helmet>
+
+<section style="display:flex;flex-direction:column;gap:56px;padding:48px;background:#EEF2F6">
+
+  <div style="display:flex;flex-direction:column;gap:8px;max-width:820px">
+    <div style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">SV-8181 · DIGITAL INSPECTIONS V2 · DESKTOP ARTBOARDS</div>
+    <h2 style="font-size:24px;line-height:32px;font-weight:600;color:#202939;margin:0">Fill screen: desktop</h2>
+    <p style="font-size:14px;line-height:20px;color:#4B5565;margin:0;text-wrap:pretty">A dual axle records four tire pressures, so it needs four verdicts. Each value carries its own: a dropdown attached to the input it judges, so left outer can be Not OK while left inner is OK. That grid is the whole record: no status column, no per-row legend, no axle roll-up badge, no counters. Colour lives on the value that earned it and on the control you press. A tire in the top view takes the worst verdict entered for it so far and stays grey until one arrives; nothing is ever auto-filled. Switching Single / Dual asks nothing; typed values come back if you switch back. Marking OK in bulk exists at three levels: the inspection row, the section row, and every field&rsquo;s own card header, whatever its type. Mark all OK, Mark section OK and Mark field OK are the same quiet action on the same right edge, so the level is read from the row it sits on rather than from the label. Each fills only what is still Not inspected, never overwrites a verdict already picked, and never writes a value.</p>
+  </div>
+
+  <!-- ═════ A1 · dual axle, nothing inspected ═════ -->
+  <div id="a1" data-screen-label="A1 Dual axle not inspected" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:baseline;gap:12px">
+      <span class="badge">A1</span>
+      <span style="font-size:16px;font-weight:600;color:#202939">Dual axle: nothing inspected yet</span>
+      <span style="font-size:13px;color:#697586">every position starts Not inspected · hollow marker, no colour</span>
+    </div>
+    <div class="board" style="width:1440px">
+      <div style="display:flex;align-items:center;gap:24px;height:56px;padding:0 20px;background:#fff;border-bottom:1px solid #E3E8EF">
+        <div style="width:26px;height:26px;border-radius:6px;background:#257CFF"></div>
+        <div style="display:flex;gap:20px;font-size:14px;font-weight:500;color:#4B5565"><span>Work Orders</span><span>Schedule</span><span>Customers</span><span>Parts</span><span>Reports</span></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 20px;background:#fff;border-bottom:1px solid #E3E8EF">
+        <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">Work order · v1</span><span style="font-size:14px;font-weight:600;color:#202939">For Clodisu</span></div>
+        <span style="font-size:12px;font-weight:600;color:#087443">All changes saved</span>
+      </div>
+      <div style="display:flex;min-height:700px">
+        <div style="width:236px;flex:none;padding:20px 16px;background:#F8FAFC;border-right:1px solid #E3E8EF;display:flex;flex-direction:column;gap:14px">
+          <div class="colhead">SECTIONS</div>
+          
+          <div style="height:4px;border-radius:9999px;background:#E3E8EF"></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:#E9F5FF">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:#257CFF;color:#fff;font-size:11px;font-weight:600">1</span>
+            <span style="font-size:13px;font-weight:600;color:#175CD3;white-space:nowrap">Section 1</span>
+            <span style="margin-left:auto;font-size:12px;color:#697586">0/2</span>
+          </div>
+        </div>
+        <div style="flex:1;padding:24px 32px;background:#F8FAFC;display:flex;flex-direction:column;align-items:center;gap:14px"><div style="width:100%;max-width:1040px;display:flex;flex-direction:column;gap:10px"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:13px;font-weight:600;color:#364152;white-space:nowrap">Brake &amp; Axle PM</span><span style="font-size:12px;color:#697586">Inspection · 2 sections · 5 fields · nothing inspected yet</span><button style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark all OK</button></div><div style="height:1px;background:#E3E8EF"></div><div style="display:flex;align-items:flex-end;gap:10px"><button title="Collapse section" style="width:28px;height:28px;flex:none;align-self:center;border:0;border-radius:6px;background:none;color:#4B5565;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button><div style="display:flex;flex-direction:column;gap:2px"><span class="colhead">SECTION 1 OF 2</span><span style="font-size:20px;font-weight:600;color:#202939">Section 1</span></div><span style="font-size:12px;color:#697586;padding-bottom:4px;white-space:nowrap">2 fields · 0 of 24 positions</span><button style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark section OK</button></div></div>
+          <div style="width:100%;max-width:1040px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);overflow:hidden">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 20px 14px">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <span style="font-size:16px;font-weight:600;color:#202939">Brake &amp; tire measurements</span>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565">Per axle</span>
+                  
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px"><button style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark field OK</button></div>
+            </div>
+            <div style="height:1px;background:#EEF2F6"></div>
+            <div style="display:flex;gap:20px;padding:20px">
+              <div style="width:186px;flex:none;padding:14px 12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:12px;align-self:flex-start">
+                <span class="colhead">TOP VIEW</span>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+                  <div style="width:88px;height:26px;border-radius:6px;background:#E3E8EF"></div>
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div></div>
+                    <div style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#fff;border:1.5px solid #257CFF;font-size:12px;font-weight:600;color:#175CD3">1</div>
+                    <div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div></div>
+                  </div><div style="display:flex;align-items:center;gap:8px"><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div></div><div style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#fff;border:1px solid #CDD5DF;font-size:12px;font-weight:600;color:#4B5565">2</div><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div></div></div>
+                </div>
+                <span style="font-size:11px;line-height:15px;color:#697586;text-align:center">Tap a tire to jump to its value. Tint follows that tire&rsquo;s verdict.</span>
+                
+              </div>
+              <div style="flex:1;min-width:0;border:1px solid #E3E8EF;border-radius:12px;overflow:hidden">
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#F8FAFC;border-bottom:1px solid #E3E8EF">
+                  <span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:#257CFF;color:#fff;font-size:12px;font-weight:600">1</span>
+                  <span style="font-size:14px;font-weight:600;color:#202939">Axle 1</span>
+                  <div class="pair"><button class="on">Drum</button><button>Disc</button></div>
+                  <div class="pair"><button>Single</button><button class="on">Dual</button></div>
+                  <div style="margin-left:auto;display:flex;align-items:center;gap:12px">
+                    
+                    
+                  </div>
+                </div>
+                <div class="axgrid" style="align-items:end;padding:8px 14px 6px;border-bottom:1px solid #E3E8EF">
+                  <span class="colhead">MEASUREMENT</span>
+                  <div style="display:flex;flex-direction:column;gap:2px;padding-left:2px"><span class="colhead">LEFT</span><div style="display:flex;gap:10px;padding-right:10px"><span class="sub" style="flex:1">OUTER</span><span class="sub" style="flex:1">INNER</span></div></div>
+                  <div style="display:flex;flex-direction:column;gap:2px;padding-left:2px"><span class="colhead">RIGHT</span><div style="display:flex;gap:10px;padding-right:12px"><span class="sub" style="flex:1">INNER</span><span class="sub" style="flex:1">OUTER</span></div></div>
+                </div>
+                <div class="axgrid" style="border-bottom:1px solid #EEF2F6">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Tire pressure</span><button class="unit">psi <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+                  <div style="display:flex;gap:10px;padding-right:10px"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  <div style="display:flex;gap:10px;padding-right:12px"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  
+                </div>
+                <div class="axgrid" style="border-bottom:1px solid #EEF2F6">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Tread depth</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+                  <div style="display:flex;gap:10px;padding-right:10px"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  <div style="display:flex;gap:10px;padding-right:12px"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  
+                </div>
+                <div class="axgrid" style="border-bottom:1px solid #EEF2F6">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Brake lining</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+                  <div style="padding-right:10px;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  <div style="padding-right:12px;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  
+                </div>
+                <div class="axgrid" style="">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Push-rod travel</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+                  <div style="padding-right:10px;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  <div style="padding-right:12px;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  
+                </div>
+                
+              </div>
+            </div>
+            <div style="padding:0 20px 20px"><button style="width:100%;height:40px;border:1px dashed #CDD5DF;border-radius:8px;background:#F8FAFC;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer">+ Add Axle</button></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6"><button class="btn2" style="height:32px;font-size:12px">Add Photo</button><button class="btn2" style="height:32px;font-size:12px">Add Note</button></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════ A2 · filling, dropdown open ═════ -->
+  <div id="a2" data-screen-label="A2 Verdict dropdown open" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:baseline;gap:12px">
+      <span class="badge">A2</span>
+      <span style="font-size:16px;font-weight:600;color:#202939">Mid-fill: the dropdown names the tire it judges</span>
+      <span style="font-size:13px;color:#697586">left outer already Not OK, left inner being set</span>
+    </div>
+    <div class="board" style="width:1120px;background:#fff;padding:24px;display:flex;gap:24px;align-items:flex-start">
+      <div style="flex:1;min-width:0;border:1px solid #E3E8EF;border-radius:12px">
+                <div class="axgrid" style="align-items:end;padding:8px 14px 6px;border-bottom:1px solid #E3E8EF">
+                  <span class="colhead">MEASUREMENT</span>
+                  <div style="display:flex;flex-direction:column;gap:2px;padding-left:2px"><span class="colhead">LEFT</span><div style="display:flex;gap:10px;padding-right:10px"><span class="sub" style="flex:1">OUTER</span><span class="sub" style="flex:1">INNER</span></div></div>
+                  <div style="display:flex;flex-direction:column;gap:2px;padding-left:2px"><span class="colhead">RIGHT</span><div style="display:flex;gap:10px;padding-right:12px"><span class="sub" style="flex:1">INNER</span><span class="sub" style="flex:1">OUTER</span></div></div>
+                </div>
+        <div class="axgrid" style="border-bottom:1px solid #EEF2F6">
+          <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Tire pressure</span><button class="unit" style="background:#fff">psi <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+          <div style="display:flex;gap:10px;padding-right:10px"><div class="grp" style="border:1.5px solid #F04438"><input value="42"><button style="border-left:1px solid #F04438;background:#FEF3F2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#F04438"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="flex:1;min-width:0;position:relative;display:flex"><div class="grp" style="border:1px solid #CDD5DF;border:2px solid #257CFF;box-shadow:0 0 0 4px rgba(37,124,255,0.24)"><input value="98"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+            <div style="position:absolute;top:42px;left:0;width:206px;padding:6px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 12px 24px rgba(11,23,51,0.10),0 4px 8px rgba(11,23,51,0.05);z-index:6;display:flex;flex-direction:column;gap:2px">
+              <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#828A98;padding:6px 8px 2px">LEFT INNER TIRE · 98 psi</span>
+              <button style="display:flex;align-items:center;gap:8px;height:34px;padding:0 10px;border:0;border-radius:6px;background:#F4FAFF;font-family:inherit;font-size:13px;font-weight:600;color:#364152;text-align:left;cursor:pointer"><span class="dot" style="width:8px;height:8px;background:#16B364"></span>OK</button>
+              <button style="display:flex;align-items:center;gap:8px;height:34px;padding:0 10px;border:0;border-radius:6px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#364152;text-align:left;cursor:pointer"><span class="dot" style="width:8px;height:8px;background:#F79009"></span>Monitor</button>
+              <button style="display:flex;align-items:center;gap:8px;height:34px;padding:0 10px;border:0;border-radius:6px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#364152;text-align:left;cursor:pointer"><span class="dot" style="width:8px;height:8px;background:#F04438"></span>Not OK</button>
+              <button style="display:flex;align-items:center;gap:8px;height:34px;padding:0 10px;border:0;border-radius:6px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#364152;text-align:left;cursor:pointer"><span class="dot" style="width:8px;height:8px;background:#9AA4B2"></span>N/A</button>
+            </div>
+          </div></div>
+          <div style="display:flex;gap:10px;padding-right:12px"><div class="grp" style="border:1px solid #CDD5DF"><input value="101"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1px solid #CDD5DF"><input value="99"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+          
+        </div>
+                <div class="axgrid" style="border-bottom:1px solid #EEF2F6">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Tread depth</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+                  <div style="display:flex;gap:10px;padding-right:10px"><div class="grp" style="border:1.5px solid #16B364"><input value="0.28"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1.5px solid #16B364"><input value="0.28"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  <div style="display:flex;gap:10px;padding-right:12px"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  
+                </div>
+                <div class="axgrid" style="">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Brake lining</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+                  <div style="padding-right:10px;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  <div style="padding-right:12px;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  
+                </div>
+                
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- ═════ A3 · complete, positions disagree ═════ -->
+  <div id="a3" data-screen-label="A3 Complete mixed verdicts" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:baseline;gap:12px">
+      <span class="badge">A3</span>
+      <span style="font-size:16px;font-weight:600;color:#202939">Complete, left outer Not OK, left inner OK</span>
+      <span style="font-size:13px;color:#697586">the case the old single row verdict could not record</span>
+    </div>
+    <div class="board" style="width:1440px;padding:24px 32px">
+      <div style="display:flex;justify-content:center">
+        <div style="width:100%;max-width:1080px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);overflow:hidden">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 20px 14px">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <span style="font-size:16px;font-weight:600;color:#202939">Brake &amp; tire measurements</span>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565">Per axle</span>
+                  
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px"><span class="chip" style="background:#FEF3F2;color:#B42318"><span class="dot" style="background:#F04438"></span>2 positions Not OK · 1 Monitor</span><button style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark field OK</button></div>
+            </div>
+            <div style="height:1px;background:#EEF2F6"></div>
+          <div style="display:flex;gap:20px;padding:20px">
+              <div style="width:186px;flex:none;padding:14px 12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:12px;align-self:flex-start">
+                <span class="colhead">TOP VIEW</span>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+                  <div style="width:88px;height:26px;border-radius:6px;background:#E3E8EF"></div>
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#FEE4E2;border:1.5px solid #F04438"></div><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div></div>
+                    <div style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#fff;border:1.5px solid #257CFF;font-size:12px;font-weight:600;color:#175CD3">1</div>
+                    <div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div><div style="width:13px;height:30px;border-radius:4px;background:#FEF0C7;border:1.5px solid #F79009"></div></div>
+                  </div><div style="display:flex;align-items:center;gap:8px"><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div></div><div style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#fff;border:1px solid #CDD5DF;font-size:12px;font-weight:600;color:#4B5565">2</div><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div></div></div>
+                </div>
+                <span style="font-size:11px;line-height:15px;color:#697586;text-align:center">Each tire takes the worst verdict of the rows measuring it. Clicking one opens the same dropdown.</span>
+                
+              </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:14px">
+              <div style="border:1.5px solid #257CFF;border-radius:12px;overflow:hidden">
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#F8FAFC;border-bottom:1px solid #E3E8EF">
+                  <span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:#257CFF;color:#fff;font-size:12px;font-weight:600">1</span>
+                  <span style="font-size:14px;font-weight:600;color:#202939">Axle 1</span>
+                  <div class="pair"><button class="on">Drum</button><button>Disc</button></div>
+                  <div class="pair"><button>Single</button><button class="on">Dual</button></div>
+                  <div style="margin-left:auto;display:flex;align-items:center;gap:12px">
+                    
+                    
+                  </div>
+                </div>
+                <div class="axgrid" style="align-items:end;padding:8px 14px 6px;border-bottom:1px solid #E3E8EF">
+                  <span class="colhead">MEASUREMENT</span>
+                  <div style="display:flex;flex-direction:column;gap:2px;padding-left:2px"><span class="colhead">LEFT</span><div style="display:flex;gap:10px;padding-right:10px"><span class="sub" style="flex:1">OUTER</span><span class="sub" style="flex:1">INNER</span></div></div>
+                  <div style="display:flex;flex-direction:column;gap:2px;padding-left:2px"><span class="colhead">RIGHT</span><div style="display:flex;gap:10px;padding-right:12px"><span class="sub" style="flex:1">INNER</span><span class="sub" style="flex:1">OUTER</span></div></div>
+                </div>
+                <div class="axgrid" style="border-bottom:1px solid #EEF2F6">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Tire pressure</span><button class="unit" style="background:#fff">psi <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+                  <div style="display:flex;gap:10px;padding-right:10px"><div class="grp" style="border:1.5px solid #F04438"><input value="42"><button style="border-left:1px solid #F04438;background:#FEF3F2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#F04438"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1.5px solid #16B364"><input value="98"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  <div style="display:flex;gap:10px;padding-right:12px"><div class="grp" style="border:1.5px solid #16B364"><input value="101"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1.5px solid #F79009"><input value="99"><button style="border-left:1px solid #F79009;background:#FFFAEB;color:#697586"><span class="dot" style="width:8px;height:8px;background:#F79009"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  
+                </div>
+                <div class="axgrid" style="border-bottom:1px solid #EEF2F6">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Tread depth</span><button class="unit" style="background:#fff">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+                  <div style="display:flex;gap:10px;padding-right:10px"><div class="grp" style="border:1.5px solid #F04438"><input value="0.13"><button style="border-left:1px solid #F04438;background:#FEF3F2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#F04438"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1.5px solid #16B364"><input value="0.28"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  <div style="display:flex;gap:10px;padding-right:12px"><div class="grp" style="border:1.5px solid #16B364"><input value="0.31"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1.5px solid #16B364"><input value="0.31"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  
+                </div>
+                <div class="axgrid" style="border-bottom:1px solid #EEF2F6">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Brake lining</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+                  <div style="padding-right:10px;display:flex"><div class="grp" style="border:1.5px solid #16B364"><input value="0.31"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  <div style="padding-right:12px;display:flex"><div class="grp" style="border:1.5px solid #16B364"><input value="0.34"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  
+                </div>
+                <div class="axgrid" style="">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Push-rod travel</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+                  <div style="padding-right:10px;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="—"><button style="border-left:1px solid #CDD5DF;background:#EEF2F6;color:#697586"><span class="dot" style="width:8px;height:8px;background:#9AA4B2"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  <div style="padding-right:12px;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="—"><button style="border-left:1px solid #CDD5DF;background:#EEF2F6;color:#697586"><span class="dot" style="width:8px;height:8px;background:#9AA4B2"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  
+                </div>
+                
+              </div>
+              <div style="border:1px solid #E3E8EF;border-radius:12px;background:#fff">
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 14px">
+                  <span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:#EEF2F6;color:#4B5565;font-size:12px;font-weight:600">2</span>
+                  <span style="font-size:14px;font-weight:600;color:#202939">Axle 2</span>
+                  <span style="font-size:12px;color:#697586">Drum · Dual · 12 of 12 positions</span>
+                  <div style="margin-left:auto;display:flex;align-items:center;gap:12px"><span class="chip" style="background:#EDFCF2;color:#087443"><span class="dot" style="background:#16B364"></span>Axle: OK</span><span style="display:inline-flex;color:#697586"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></div>
+                </div>
+              </div>
+              <button style="height:40px;border:1px dashed #CDD5DF;border-radius:8px;background:#F8FAFC;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer">+ Add Axle</button>
+            </div>
+          </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6"><button class="btn2" style="height:32px;font-size:12px">Add Photo</button><button class="btn2" style="height:32px;font-size:12px">Add Note</button></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="a3b" data-screen-label="A3b Complete brake Not OK" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:baseline;gap:12px">
+      <span class="badge">A3b</span>
+      <span style="font-size:16px;font-weight:600;color:#202939">Complete, left brake Not OK</span>
+    </div>
+    <div class="board" style="width:1440px;padding:24px 32px">
+      <div style="display:flex;justify-content:center">
+        <div style="width:100%;max-width:1080px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);overflow:hidden">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 20px 14px">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <span style="font-size:16px;font-weight:600;color:#202939">Brake &amp; tire measurements</span>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565">Per axle</span>
+                  
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px"><span class="chip" style="background:#FEF3F2;color:#B42318"><span class="dot" style="background:#F04438"></span>1 position Not OK</span><button style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark field OK</button></div>
+            </div>
+            <div style="height:1px;background:#EEF2F6"></div>
+          <div style="display:flex;gap:20px;padding:20px">
+              <div style="width:186px;flex:none;padding:14px 12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:12px;align-self:flex-start">
+                <span class="colhead">TOP VIEW</span>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+                  <div style="width:88px;height:26px;border-radius:6px;background:#E3E8EF"></div>
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1.5px solid #16B364"></div><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div></div>
+                    <div style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#fff;border:1.5px solid #257CFF;font-size:12px;font-weight:600;color:#175CD3">1</div>
+                    <div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1.5px solid #16B364"></div></div>
+                  </div><div style="display:flex;align-items:center;gap:8px"><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div></div><div style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#fff;border:1px solid #CDD5DF;font-size:12px;font-weight:600;color:#4B5565">2</div><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div></div></div>
+                </div>
+                <span style="font-size:11px;line-height:15px;color:#697586;text-align:center">Each tire takes the worst verdict of the rows measuring it. Clicking one opens the same dropdown.</span>
+                
+              </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:14px">
+              <div style="border:1.5px solid #257CFF;border-radius:12px;overflow:hidden">
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#F8FAFC;border-bottom:1px solid #E3E8EF">
+                  <span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:#257CFF;color:#fff;font-size:12px;font-weight:600">1</span>
+                  <span style="font-size:14px;font-weight:600;color:#202939">Axle 1</span>
+                  <div class="pair"><button class="on">Drum</button><button>Disc</button></div>
+                  <div class="pair"><button>Single</button><button class="on">Dual</button></div>
+                  <div style="margin-left:auto;display:flex;align-items:center;gap:12px">
+                    
+                    
+                  </div>
+                </div>
+                <div class="axgrid" style="align-items:end;padding:8px 14px 6px;border-bottom:1px solid #E3E8EF">
+                  <span class="colhead">MEASUREMENT</span>
+                  <div style="display:flex;flex-direction:column;gap:2px;padding-left:2px"><span class="colhead">LEFT</span><div style="display:flex;gap:10px;padding-right:10px"><span class="sub" style="flex:1">OUTER</span><span class="sub" style="flex:1">INNER</span></div></div>
+                  <div style="display:flex;flex-direction:column;gap:2px;padding-left:2px"><span class="colhead">RIGHT</span><div style="display:flex;gap:10px;padding-right:12px"><span class="sub" style="flex:1">INNER</span><span class="sub" style="flex:1">OUTER</span></div></div>
+                </div>
+                <div class="axgrid" style="border-bottom:1px solid #EEF2F6">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Tire pressure</span><button class="unit" style="background:#fff">psi <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+                  <div style="display:flex;gap:10px;padding-right:10px"><div class="grp" style="border:1.5px solid #16B364"><input value="102"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1.5px solid #16B364"><input value="98"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  <div style="display:flex;gap:10px;padding-right:12px"><div class="grp" style="border:1.5px solid #16B364"><input value="101"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1.5px solid #16B364"><input value="100"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  
+                </div>
+                <div class="axgrid" style="border-bottom:1px solid #EEF2F6">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Tread depth</span><button class="unit" style="background:#fff">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+                  <div style="display:flex;gap:10px;padding-right:10px"><div class="grp" style="border:1.5px solid #16B364"><input value="0.28"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1.5px solid #16B364"><input value="0.28"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  <div style="display:flex;gap:10px;padding-right:12px"><div class="grp" style="border:1.5px solid #16B364"><input value="0.31"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1.5px solid #16B364"><input value="0.31"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  
+                </div>
+                <div class="axgrid" style="border-bottom:1px solid #EEF2F6">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Brake lining</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+                  <div style="padding-right:10px;display:flex"><div class="grp" style="border:1.5px solid #F04438"><input value="0.12"><button style="border-left:1px solid #F04438;background:#FEF3F2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#F04438"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  <div style="padding-right:12px;display:flex"><div class="grp" style="border:1.5px solid #16B364"><input value="0.34"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  
+                </div>
+                <div class="axgrid" style="">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Push-rod travel</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+                  <div style="padding-right:10px;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="—"><button style="border-left:1px solid #CDD5DF;background:#EEF2F6;color:#697586"><span class="dot" style="width:8px;height:8px;background:#9AA4B2"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  <div style="padding-right:12px;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="—"><button style="border-left:1px solid #CDD5DF;background:#EEF2F6;color:#697586"><span class="dot" style="width:8px;height:8px;background:#9AA4B2"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div>
+                  
+                </div>
+                
+              </div>
+              <div style="border:1px solid #E3E8EF;border-radius:12px;background:#fff">
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 14px">
+                  <span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:#EEF2F6;color:#4B5565;font-size:12px;font-weight:600">2</span>
+                  <span style="font-size:14px;font-weight:600;color:#202939">Axle 2</span>
+                  <span style="font-size:12px;color:#697586">Drum · Dual · 12 of 12 positions</span>
+                  <div style="margin-left:auto;display:flex;align-items:center;gap:12px"><span class="chip" style="background:#EDFCF2;color:#087443"><span class="dot" style="background:#16B364"></span>Axle: OK</span><span style="display:inline-flex;color:#697586"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></div>
+                </div>
+              </div>
+              <button style="height:40px;border:1px dashed #CDD5DF;border-radius:8px;background:#F8FAFC;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer">+ Add Axle</button>
+            </div>
+          </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6"><button class="btn2" style="height:32px;font-size:12px">Add Photo</button><button class="btn2" style="height:32px;font-size:12px">Add Note</button></div></div>
+      </div>
+    </div>
+  </div>
+
+  
+<!-- ═════ A5; the real form, full screen ═════ -->
+  <div id="a5" data-screen-label="A5 Full screen real form" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:baseline;gap:12px">
+      <span class="badge">A5</span>
+      <span style="font-size:16px;font-weight:600;color:#202939">The form as it is filled, section 1 of 2, three field types</span>
+      <span style="font-size:13px;color:#697586">Mark OK at inspection, section and field level · every field carries its own · nothing in the app chrome</span>
+    </div>
+    <div class="board" style="width:1440px">
+      <div style="display:flex;align-items:center;gap:24px;height:56px;padding:0 20px;background:#fff;border-bottom:1px solid #E3E8EF">
+        <div style="width:26px;height:26px;border-radius:6px;background:#257CFF"></div>
+        <div style="display:flex;gap:20px;font-size:14px;font-weight:500;color:#4B5565"><span>Work Orders</span><span>Schedule</span><span>Customers</span><span>Parts</span><span>Reports</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:10px;height:36px;padding:0 12px;width:260px;border:1px solid #E3E8EF;border-radius:8px;background:#F8FAFC;font-size:13px;color:#9AA4B2">Search<span style="margin-left:auto;font-size:11px;padding:1px 5px;border:1px solid #E3E8EF;border-radius:4px;background:#fff">⌘K</span></div>
+        <span style="font-size:13px;font-weight:500;color:#4B5565;white-space:nowrap">Clock In</span>
+        <div style="display:flex;align-items:center;gap:8px;height:36px;padding:0 4px 0 12px;border-radius:9999px;background:#F8FAFC;border:1px solid #E3E8EF;font-size:13px;font-weight:500;color:#364152">Staging Heavy Duty - 9919<span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#202939;color:#fff;font-size:11px;font-weight:600">AS</span></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;height:56px;padding:0 20px;background:#fff;border-bottom:1px solid #E3E8EF">
+        <span style="display:inline-flex;color:#4B5565"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+        <div style="display:flex;flex-direction:column"><span style="font-size:11px;color:#697586">Work order · v1</span><span style="font-size:14px;font-weight:600;color:#202939">Testing Design</span></div>
+        <span style="margin-left:auto;font-size:12px;font-weight:600;color:#087443">All changes saved</span>
+      </div>
+      <div style="display:flex;min-height:1160px">
+        <div style="width:236px;flex:none;padding:20px 16px;background:#F8FAFC;border-right:1px solid #E3E8EF;display:flex;flex-direction:column;gap:14px">
+          <div class="colhead">SECTIONS</div>
+          <div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:28px;line-height:32px;font-weight:600;color:#202939">0</span><span style="font-size:13px;color:#697586;white-space:nowrap">/ 5 fields complete</span></div>
+          <div style="height:4px;border-radius:9999px;background:#E3E8EF"></div>
+          <span style="font-size:12px;color:#4B5565">Photos: 0.0 MB of 10 MB</span>
+          <div style="height:1px;background:#E3E8EF"></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:#E9F5FF"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:#257CFF;color:#fff;font-size:11px;font-weight:600">1</span><span style="font-size:13px;font-weight:600;color:#175CD3;white-space:nowrap">Section 1</span><span style="margin-left:auto;font-size:12px;color:#175CD3">0/3</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:transparent"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:#EEF2F6;color:#4B5565;font-size:11px;font-weight:600">2</span><span style="font-size:13px;font-weight:600;color:#364152;white-space:nowrap">Section 2</span><span style="margin-left:auto;font-size:12px;color:#697586">0/2</span></div>
+          <div style="margin-top:auto;padding-top:14px;border-top:1px solid #E3E8EF;display:flex;flex-direction:column;gap:6px;font-size:12px;color:#697586"><span><span style="font-weight:600;color:#364152">Tech:</span> William Johns</span><span><span style="font-weight:600;color:#364152">Advisor:</span> Kimberly Barnes</span><span><span style="font-weight:600;color:#364152">Started:</span> N/A</span></div>
+        </div>
+        <div style="flex:1;padding:24px 32px;background:#F8FAFC;display:flex;flex-direction:column;align-items:center;gap:14px">
+          <div style="width:100%;max-width:1040px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:center;gap:10px"><span style="font-size:13px;font-weight:600;color:#364152;white-space:nowrap">Testing Design</span><span style="font-size:12px;color:#697586">Inspection · 2 sections · 5 fields · nothing inspected yet</span><button style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark all OK</button></div>
+            <div style="height:1px;background:#E3E8EF"></div>
+            <div style="display:flex;align-items:flex-end;gap:10px"><button title="Collapse section" style="width:28px;height:28px;flex:none;align-self:center;border:0;border-radius:6px;background:none;color:#4B5565;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button><div style="display:flex;flex-direction:column;gap:2px"><span class="colhead">SECTION 1 OF 2</span><span style="font-size:20px;font-weight:600;color:#202939">Section 1</span></div><span style="font-size:12px;color:#697586;padding-bottom:4px;white-space:nowrap">3 fields · 0 of 38 positions</span><button style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark section OK</button></div>
+          </div>
+          <div style="width:100%;max-width:1040px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);overflow:hidden"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 20px 14px"><div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:16px;font-weight:600;color:#202939">Brake &amp; tire measurements</span><div style="display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565">Per axle</span></div></div><button style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark field OK</button></div><div style="height:1px;background:#EEF2F6"></div><div style="display:flex;gap:20px;padding:20px"><div style="width:186px;flex:none;padding:14px 12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:12px;align-self:flex-start"><span class="colhead">TOP VIEW</span><div style="display:flex;flex-direction:column;align-items:center;gap:10px"><div style="width:88px;height:26px;border-radius:6px;background:#E3E8EF"></div><div style="display:flex;align-items:center;gap:8px"><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div></div><div style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#fff;border:1.5px solid #257CFF;font-size:12px;font-weight:600;color:#175CD3">1</div><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div></div></div><div style="display:flex;align-items:center;gap:8px"><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div></div><div style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#fff;border:1px solid #CDD5DF;font-size:12px;font-weight:600;color:#4B5565">2</div><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div></div></div><div style="display:flex;align-items:center;gap:8px"><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div></div><div style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#fff;border:1px solid #CDD5DF;font-size:12px;font-weight:600;color:#4B5565">3</div><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div><div style="width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF"></div></div></div></div><span style="font-size:11px;line-height:15px;color:#697586;text-align:center">Tap a tire to jump to its value. Tint follows that tire&rsquo;s verdict.</span></div><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:14px"><div style="border:1.5px solid #257CFF;border-radius:12px;overflow:hidden"><div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#F8FAFC;border-bottom:1px solid #E3E8EF"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:#257CFF;color:#fff;font-size:12px;font-weight:600">1</span><span style="font-size:14px;font-weight:600;color:#202939">Axle 1</span><div class="pair"><button class="on">Drum</button><button>Disc</button></div><div class="pair"><button>Single</button><button class="on">Dual</button></div><div style="margin-left:auto;display:flex;align-items:center;gap:12px"></div></div><div class="axgrid" style="align-items:end;padding:8px 14px 6px;border-bottom:1px solid #E3E8EF"><span class="colhead">MEASUREMENT</span><div style="display:flex;flex-direction:column;gap:2px;padding-left:2px"><span class="colhead">LEFT</span><div style="display:flex;gap:10px;padding-right:10px"><span class="sub" style="flex:1">OUTER</span><span class="sub" style="flex:1">INNER</span></div></div><div style="display:flex;flex-direction:column;gap:2px;padding-left:2px"><span class="colhead">RIGHT</span><div style="display:flex;gap:10px;padding-right:12px"><span class="sub" style="flex:1">INNER</span><span class="sub" style="flex:1">OUTER</span></div></div></div><div class="axgrid" style="border-bottom:1px solid #EEF2F6"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Tire pressure</span><button class="unit">psi <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="display:flex;gap:10px;padding-right:10px"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div><div style="display:flex;gap:10px;padding-right:12px"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div></div><div class="axgrid" style="border-bottom:1px solid #EEF2F6"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Tread depth</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="display:flex;gap:10px;padding-right:10px"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div><div style="display:flex;gap:10px;padding-right:12px"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div></div><div class="axgrid" style="border-bottom:1px solid #EEF2F6"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Brake lining</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="padding-right:10px;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div><div style="padding-right:12px;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div></div><div class="axgrid" style=""><div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Push-rod travel</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="padding-right:10px;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div><div style="padding-right:12px;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div></div></div><div style="border:1px solid #E3E8EF;border-radius:12px;background:#fff"><div style="display:flex;align-items:center;gap:12px;padding:12px 14px"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:#EEF2F6;color:#4B5565;font-size:12px;font-weight:600">2</span><span style="font-size:14px;font-weight:600;color:#202939">Axle 2</span><span style="font-size:12px;color:#697586">Drum · Dual · nothing inspected</span><span style="margin-left:auto;display:inline-flex;color:#697586"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></div></div><div style="border:1px solid #E3E8EF;border-radius:12px;background:#fff"><div style="display:flex;align-items:center;gap:12px;padding:12px 14px"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:#EEF2F6;color:#4B5565;font-size:12px;font-weight:600">3</span><span style="font-size:14px;font-weight:600;color:#202939">Axle 3</span><span style="font-size:12px;color:#697586">Drum · Dual · nothing inspected</span><span style="margin-left:auto;display:inline-flex;color:#697586"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></div></div><button style="height:40px;border:1px dashed #CDD5DF;border-radius:8px;background:#F8FAFC;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer">+ Add Axle</button></div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6"><button class="btn2" style="height:32px;font-size:12px">Add Photo</button><button class="btn2" style="height:32px;font-size:12px">Add Note</button></div></div>
+          <div style="width:100%;max-width:1040px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);overflow:hidden"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 20px 14px"><div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:16px;font-weight:600;color:#202939">Air-brake system leak check</span><div style="display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565">Checkbox</span></div></div><button style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark field OK</button></div><div style="height:1px;background:#EEF2F6"></div><div style="padding:16px 20px"><div class="seg" style="height:44px;max-width:520px"><button style="flex:1;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#16B364"></span>OK</button><button style="flex:1.15;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#F79009"></span>Monitor</button><button style="flex:1.1;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#F04438"></span>Not OK</button><button style="flex:0.7;font-size:13px">N/A</button></div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6"><button class="btn2" style="height:32px;font-size:12px">Add Photo</button><button class="btn2" style="height:32px;font-size:12px">Add Note</button></div></div>
+          <div style="width:100%;max-width:1040px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);overflow:hidden"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 20px 14px"><div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:16px;font-weight:600;color:#202939">Low-air warning pressure</span><div style="display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565">Measurement</span></div></div><button style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark field OK</button></div><div style="height:1px;background:#EEF2F6"></div><div style="padding:16px 20px;display:flex;align-items:center;gap:10px"><div style="width:220px;flex:none;display:flex"><div class="grp" style="border:1px solid #CDD5DF"><input value="" placeholder="—"><button style="border-left:1px solid #CDD5DF;background:#F8FAFC;color:#697586"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div><button class="unit">psi <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6"><button class="btn2" style="height:32px;font-size:12px">Add Photo</button><button class="btn2" style="height:32px;font-size:12px">Add Note</button></div></div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 24px;background:#fff;border-top:1px solid #E3E8EF">
+        <button class="btn2" style="height:40px;padding:0 18px;font-size:14px">Save &amp; Exit</button>
+        <button style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 18px;border:0;border-radius:8px;background:#257CFF;color:#fff;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap">Submit &amp; Generate Report</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═════ A5b, after Mark section OK ═════ -->
+  <div id="a5b" data-screen-label="A5b After Mark section OK" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:baseline;gap:12px">
+      <span class="badge">A5b</span>
+      <span style="font-size:16px;font-weight:600;color:#202939">After Mark section OK: the section row reports what it did</span>
+      <span style="font-size:13px;color:#697586">values were typed first, the press set the verdicts · the row pressed counts fields, each field below counts its positions · Undo on the row pressed</span>
+    </div>
+    <div class="board" style="width:1120px;background:#F8FAFC;padding:24px 40px;display:flex;flex-direction:column;align-items:center;gap:14px">
+      <div style="width:100%;max-width:1040px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font-size:13px;font-weight:600;color:#364152;white-space:nowrap">Testing Design</span><span style="font-size:12px;color:#697586">Inspection · 2 sections · 5 fields · 3 of 5 inspected</span><button style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark all OK</button></div>
+        <div style="height:1px;background:#E3E8EF"></div>
+        <div style="display:flex;align-items:flex-end;gap:10px"><button title="Collapse section" style="width:28px;height:28px;flex:none;align-self:center;border:0;border-radius:6px;background:none;color:#4B5565;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button><div style="display:flex;flex-direction:column;gap:2px"><span class="colhead">SECTION 1 OF 2</span><span style="font-size:20px;font-weight:600;color:#202939">Section 1</span></div><span style="font-size:12px;color:#697586;padding-bottom:4px;white-space:nowrap">3 fields · 38 of 38 positions</span><div style="margin-left:auto;display:flex;align-items:center;gap:10px;padding-bottom:2px"><span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#087443;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>3 fields marked OK</span><button style="display:inline-flex;align-items:center;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer">Undo</button></div></div>
+      </div>
+      <div style="width:100%;max-width:1040px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);overflow:hidden"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 20px 14px"><div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:16px;font-weight:600;color:#202939">Brake &amp; tire measurements</span><div style="display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565">Per axle</span></div></div><span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;font-size:12px;font-weight:600;color:#087443;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>36 positions marked OK</span></div><div style="height:1px;background:#EEF2F6"></div><div style="display:flex;gap:20px;padding:20px"><div style="width:186px;flex:none;padding:14px 12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:12px;align-self:flex-start"><span class="colhead">TOP VIEW</span><div style="display:flex;flex-direction:column;align-items:center;gap:10px"><div style="width:88px;height:26px;border-radius:6px;background:#E3E8EF"></div><div style="display:flex;align-items:center;gap:8px"><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div></div><div style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#fff;border:1.5px solid #257CFF;font-size:12px;font-weight:600;color:#175CD3">1</div><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div></div></div><div style="display:flex;align-items:center;gap:8px"><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div></div><div style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#fff;border:1px solid #CDD5DF;font-size:12px;font-weight:600;color:#4B5565">2</div><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div></div></div><div style="display:flex;align-items:center;gap:8px"><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div></div><div style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#fff;border:1px solid #CDD5DF;font-size:12px;font-weight:600;color:#4B5565">3</div><div style="display:flex;gap:3px"><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div><div style="width:13px;height:30px;border-radius:4px;background:#D3F8DF;border:1px solid #16B364"></div></div></div></div><span style="font-size:11px;line-height:15px;color:#697586;text-align:center">Every tire took OK from the press. Change one and only that tire changes.</span></div><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:14px"><div style="border:1.5px solid #257CFF;border-radius:12px;overflow:hidden"><div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#F8FAFC;border-bottom:1px solid #E3E8EF"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:#257CFF;color:#fff;font-size:12px;font-weight:600">1</span><span style="font-size:14px;font-weight:600;color:#202939">Axle 1</span><div class="pair"><button class="on">Drum</button><button>Disc</button></div><div class="pair"><button>Single</button><button class="on">Dual</button></div><div style="margin-left:auto;display:flex;align-items:center;gap:12px"></div></div><div class="axgrid" style="align-items:end;padding:8px 14px 6px;border-bottom:1px solid #E3E8EF"><span class="colhead">MEASUREMENT</span><div style="display:flex;flex-direction:column;gap:2px;padding-left:2px"><span class="colhead">LEFT</span><div style="display:flex;gap:10px;padding-right:10px"><span class="sub" style="flex:1">OUTER</span><span class="sub" style="flex:1">INNER</span></div></div><div style="display:flex;flex-direction:column;gap:2px;padding-left:2px"><span class="colhead">RIGHT</span><div style="display:flex;gap:10px;padding-right:12px"><span class="sub" style="flex:1">INNER</span><span class="sub" style="flex:1">OUTER</span></div></div></div><div class="axgrid" style="border-bottom:1px solid #EEF2F6"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Tire pressure</span><button class="unit">psi <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="display:flex;gap:10px;padding-right:10px"><div class="grp" style="border:1.5px solid #16B364"><input value="104"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1.5px solid #16B364"><input value="102"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div><div style="display:flex;gap:10px;padding-right:12px"><div class="grp" style="border:1.5px solid #16B364"><input value="103"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1.5px solid #16B364"><input value="104"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div></div><div class="axgrid" style="border-bottom:1px solid #EEF2F6"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Tread depth</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="display:flex;gap:10px;padding-right:10px"><div class="grp" style="border:1.5px solid #16B364"><input value="0.34"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1.5px solid #16B364"><input value="0.31"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div><div style="display:flex;gap:10px;padding-right:12px"><div class="grp" style="border:1.5px solid #16B364"><input value="0.31"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="grp" style="border:1.5px solid #16B364"><input value="0.34"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div></div><div class="axgrid" style="border-bottom:1px solid #EEF2F6"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Brake lining</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="padding-right:10px;display:flex"><div class="grp" style="border:1.5px solid #16B364"><input value="0.38"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div><div style="padding-right:12px;display:flex"><div class="grp" style="border:1.5px solid #16B364"><input value="0.36"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div></div><div class="axgrid" style=""><div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">Push-rod travel</span><button class="unit">in. <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="padding-right:10px;display:flex"><div class="grp" style="border:1.5px solid #16B364"><input value="1.25"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div><div style="padding-right:12px;display:flex"><div class="grp" style="border:1.5px solid #16B364"><input value="1.31"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div></div></div><div style="border:1px solid #E3E8EF;border-radius:12px;background:#fff"><div style="display:flex;align-items:center;gap:12px;padding:12px 14px"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:#EEF2F6;color:#4B5565;font-size:12px;font-weight:600">2</span><span style="font-size:14px;font-weight:600;color:#202939">Axle 2</span><span style="font-size:12px;color:#697586">Drum · Dual</span><span style="margin-left:auto;display:inline-flex;color:#697586"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></div></div><div style="border:1px solid #E3E8EF;border-radius:12px;background:#fff"><div style="display:flex;align-items:center;gap:12px;padding:12px 14px"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:#EEF2F6;color:#4B5565;font-size:12px;font-weight:600">3</span><span style="font-size:14px;font-weight:600;color:#202939">Axle 3</span><span style="font-size:12px;color:#697586">Drum · Dual</span><span style="margin-left:auto;display:inline-flex;color:#697586"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></div></div><button style="height:40px;border:1px dashed #CDD5DF;border-radius:8px;background:#F8FAFC;font-family:inherit;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer">+ Add Axle</button></div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6"><button class="btn2" style="height:32px;font-size:12px">Add Photo</button><button class="btn2" style="height:32px;font-size:12px">Add Note</button></div></div>
+      <div style="width:100%;max-width:1040px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);overflow:hidden"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 20px 14px"><div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:16px;font-weight:600;color:#202939">Air-brake system leak check</span><div style="display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565">Checkbox</span></div></div><span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;font-size:12px;font-weight:600;color:#087443;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Marked OK</span></div><div style="height:1px;background:#EEF2F6"></div><div style="padding:16px 20px"><div class="seg" style="height:44px;max-width:520px"><button class="on-ok" style="flex:1;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#fff"></span>OK</button><button style="flex:1.15;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#F79009"></span>Monitor</button><button style="flex:1.1;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#F04438"></span>Not OK</button><button style="flex:0.7;font-size:13px">N/A</button></div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6"><button class="btn2" style="height:32px;font-size:12px">Add Photo</button><button class="btn2" style="height:32px;font-size:12px">Add Note</button></div></div>
+      <div style="width:100%;max-width:1040px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);overflow:hidden"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 20px 14px"><div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:16px;font-weight:600;color:#202939">Low-air warning pressure</span><div style="display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#EEF2F6;font-size:11px;font-weight:600;color:#4B5565">Measurement</span></div></div><span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;font-size:12px;font-weight:600;color:#087443;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>1 position marked OK</span></div><div style="height:1px;background:#EEF2F6"></div><div style="padding:16px 20px;display:flex;align-items:center;gap:10px"><div style="width:220px;flex:none;display:flex"><div class="grp" style="border:1.5px solid #16B364"><input value="62"><button style="border-left:1px solid #16B364;background:#EDFCF2;color:#697586"><span class="dot" style="width:8px;height:8px;background:#16B364"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div></div><button class="unit">psi <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6"><button class="btn2" style="height:32px;font-size:12px">Add Photo</button><button class="btn2" style="height:32px;font-size:12px">Add Note</button></div></div>
+    </div>
+  </div>
+
+  <!-- ═════ A6 · live, clickable ═════ -->
+  <div id="a6" data-screen-label="A6 Live clickable axle" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:baseline;gap:12px">
+      <span class="badge">A6</span>
+      <span style="font-size:16px;font-weight:600;color:#202939">Live, click a marker to pick a verdict</span>
+      <span style="font-size:13px;color:#697586">Single / Dual switches with no dialog · hover Mark field OK for its tooltip, press it for the report and Undo</span>
+    </div>
+    <div class="board" style="width:1240px;background:#fff;padding:24px;display:flex;gap:20px;align-items:flex-start;position:relative">
+
+
+      <div style="width:186px;flex:none;padding:14px 12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:12px">
+        <span class="colhead">TOP VIEW</span>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div style="width:88px;height:26px;border-radius:6px;background:#E3E8EF"></div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="display:flex;gap:3px">
+              <sc-for list="{{ wheels.left }}" as="w" hint-placeholder-count="2"><div style="{{ w.style }}"></div></sc-for>
+            </div>
+            <div style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#fff;border:1.5px solid #257CFF;font-size:12px;font-weight:600;color:#175CD3">1</div>
+            <div style="display:flex;gap:3px">
+              <sc-for list="{{ wheels.right }}" as="w" hint-placeholder-count="2"><div style="{{ w.style }}"></div></sc-for>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+
+      <div style="flex:1;min-width:0;border:1px solid #E3E8EF;border-radius:12px">
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#F8FAFC;border-bottom:1px solid #E3E8EF;border-radius:12px 12px 0 0">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:#257CFF;color:#fff;font-size:12px;font-weight:600">1</span>
+          <span style="font-size:14px;font-weight:600;color:#202939">Axle 1</span>
+          <div class="pair"><button class="on">Drum</button><button>Disc</button></div>
+          <div style="display:flex;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden;height:30px">
+            <button style="{{ singleBtnStyle }}" onClick="{{ setSingle }}">Single</button>
+            <button style="{{ dualBtnStyle }}" onClick="{{ setDual }}">Dual</button>
+          </div><div style="margin-left:auto;display:flex;align-items:center;gap:10px"><sc-if value="{{ flagShow }}" hint-placeholder-val="{{ true }}"><span class="chip" style="{{ flagStyle }}"><span class="dot" style="{{ flagDot }}"></span>{{ flagText }}</span></sc-if><sc-if value="{{ bulkNone }}" hint-placeholder-val="{{ true }}"><div style="position:relative;display:flex"><button onClick="{{ onSetOk }}" onMouseEnter="{{ onTipIn }}" onMouseLeave="{{ onTipOut }}" style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark field OK</button><sc-if value="{{ tipOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:34px;right:0;z-index:9;display:flex;flex-direction:column;align-items:flex-end"><div style="width:250px;padding:8px 10px;background:#202939;color:#fff;font-size:12px;line-height:16px;border-radius:8px;box-shadow:0 12px 24px rgba(11,23,51,0.10),0 4px 8px rgba(11,23,51,0.05);text-wrap:pretty">{{ tipText }}</div></div></sc-if></div></sc-if><sc-if value="{{ bulkOpen }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;gap:10px"><span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#087443;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>{{ bulkText }}</span><button onClick="{{ onUndo }}" style="display:inline-flex;align-items:center;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer">Undo</button></div></sc-if></div>
+        </div>
+
+        <div class="axgrid" style="align-items:end;padding:8px 14px 6px;border-bottom:1px solid #E3E8EF">
+          <span class="colhead">MEASUREMENT</span>
+          <div style="display:flex;flex-direction:column;gap:2px;padding-left:2px">
+            <span class="colhead">LEFT</span>
+            <sc-if value="{{ dual }}" hint-placeholder-val="{{ true }}"><div style="display:flex;gap:10px;padding-right:10px"><span class="sub" style="flex:1">OUTER</span><span class="sub" style="flex:1">INNER</span></div></sc-if>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px;padding-left:2px">
+            <span class="colhead">RIGHT</span>
+            <sc-if value="{{ dual }}" hint-placeholder-val="{{ true }}"><div style="display:flex;gap:10px;padding-right:12px"><span class="sub" style="flex:1">INNER</span><span class="sub" style="flex:1">OUTER</span></div></sc-if>
+          </div>
+        </div>
+
+        <sc-for list="{{ rows }}" as="row" hint-placeholder-count="4">
+          <div class="axgrid" style="{{ row.rowStyle }}">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">{{ row.name }}</span>
+              <button class="unit">{{ row.unit }}</button>
+            </div>
+            <div style="display:flex;gap:10px;padding-right:10px">
+              <sc-for list="{{ row.left }}" as="c" hint-placeholder-count="2">
+                <div style="flex:1;min-width:0;position:relative;display:flex">
+                  <div style="{{ c.groupStyle }}">
+                    <input value="{{ c.value }}" onChange="{{ c.onInput }}" placeholder="—" style="flex:1;width:0;min-width:0;height:100%;padding:0 8px;border:0;font-family:inherit;font-size:14px;font-weight:500;color:#202939;background:transparent">
+                    <button style="{{ c.btnStyle }}" onClick="{{ c.onToggle }}">
+                      <sc-if value="{{ c.judged }}" hint-placeholder-val="{{ true }}"><span style="{{ c.dotStyle }}"></span></sc-if>
+                      <sc-if value="{{ c.unjudged }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg></sc-if>
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                    </button>
+                  </div>
+                  <sc-if value="{{ c.open }}" hint-placeholder-val="{{ false }}">
+                    <div style="{{ c.menuStyle }}">
+                      <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#828A98;padding:6px 8px 2px">{{ c.menuHead }}</span>
+                      <sc-for list="{{ c.options }}" as="o" hint-placeholder-count="5">
+                        <button style="{{ o.rowStyle }}" onClick="{{ o.onPick }}"><span style="{{ o.dotStyle }}"></span>{{ o.label }}</button>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:10px;padding-right:12px">
+              <sc-for list="{{ row.right }}" as="c" hint-placeholder-count="2">
+                <div style="flex:1;min-width:0;position:relative;display:flex">
+                  <div style="{{ c.groupStyle }}">
+                    <input value="{{ c.value }}" onChange="{{ c.onInput }}" placeholder="—" style="flex:1;width:0;min-width:0;height:100%;padding:0 8px;border:0;font-family:inherit;font-size:14px;font-weight:500;color:#202939;background:transparent">
+                    <button style="{{ c.btnStyle }}" onClick="{{ c.onToggle }}">
+                      <sc-if value="{{ c.judged }}" hint-placeholder-val="{{ true }}"><span style="{{ c.dotStyle }}"></span></sc-if>
+                      <sc-if value="{{ c.unjudged }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2"><circle cx="12" cy="12" r="8"></circle></svg></sc-if>
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                    </button>
+                  </div>
+                  <sc-if value="{{ c.open }}" hint-placeholder-val="{{ false }}">
+                    <div style="{{ c.menuStyle }}">
+                      <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#828A98;padding:6px 8px 2px">{{ c.menuHead }}</span>
+                      <sc-for list="{{ c.options }}" as="o" hint-placeholder-count="5">
+                        <button style="{{ o.rowStyle }}" onClick="{{ o.onPick }}"><span style="{{ o.dotStyle }}"></span>{{ o.label }}</button>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════ D3 · field cards ═════ -->
+  <div id="d3" data-screen-label="D3 Field card states" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:baseline;gap:12px">
+      <span class="badge">D3</span>
+      <span style="font-size:16px;font-weight:600;color:#202939">Field card, reference file, response, note, photo</span>
+      <span style="font-size:13px;color:#697586">response row · evidence row · note block</span>
+    </div>
+
+    <div class="board" style="width:1440px;padding:24px 32px;display:flex;flex-direction:column;gap:20px">
+
+      <!-- baseline -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:600;color:#697586">1 · Clean card, nothing answered</span>
+        <div style="max-width:1020px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);overflow:hidden">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:15px;font-weight:600;color:#202939">Air-brake system leak check</span>
+              <span style="font-size:12px;color:#697586">Checkbox · required to complete</span>
+            </div>
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:#9AA4B2">CHECKBOX</span>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div class="seg" style="height:44px;max-width:520px"><button style="flex:1;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#16B364"></span>OK</button><button style="flex:1.15;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#F79009"></span>Monitor</button><button style="flex:1.1;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#F04438"></span>Not OK</button><button style="flex:0.7;font-size:13px">N/A</button></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6">
+            <button class="btn2" style="height:32px;font-size:12px">Add Photo</button>
+            <button class="btn2" style="height:32px;font-size:12px">Add Note</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- reference file present -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:600;color:#697586">2 · Template attached a procedure; it sits above the response, not beside it</span>
+        <div style="max-width:1020px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);overflow:hidden">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:15px;font-weight:600;color:#202939">Slack adjuster travel</span>
+              <span style="font-size:12px;color:#697586">Checkbox · note required if Monitor or Not OK</span>
+            </div>
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:#9AA4B2">CHECKBOX</span>
+          </div>
+          <div style="margin:0 20px 12px;display:flex;align-items:center;gap:10px;padding:10px 12px;background:#E9F5FF;border:1px solid #BEDFFF;border-radius:8px">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:#fff;color:#175CD3;font-size:12px;font-weight:700">PDF</span>
+            <div style="display:flex;flex-direction:column;min-width:0">
+              <span style="font-size:13px;font-weight:600;color:#175CD3">Recommended procedure</span>
+              <a href="#d4" style="font-size:12px;font-weight:600;color:#175CD3;text-decoration:underline;text-underline-offset:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Bendix-slack-adjuster-service-bulletin-2024.pdf</a>
+            </div>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div class="seg" style="height:44px;max-width:520px"><button class="on-ok" style="flex:1;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#fff"></span>OK</button><button style="flex:1.15;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#F79009"></span>Monitor</button><button style="flex:1.1;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#F04438"></span>Not OK</button><button style="flex:0.7;font-size:13px">N/A</button></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6">
+            <button class="btn2" style="height:32px;font-size:12px">Add Photo</button>
+            <button class="btn2" style="height:32px;font-size:12px">Add Note</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- optional note opened -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:600;color:#697586">3 · Add Note pressed: the block opens in place, nothing required</span>
+        <div style="max-width:1020px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);overflow:hidden">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:15px;font-weight:600;color:#202939">Air-brake system leak check</span>
+              <span style="font-size:12px;color:#697586">Checkbox · required to complete</span>
+            </div>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div class="seg" style="height:44px;max-width:520px"><button class="on-ok" style="flex:1;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#fff"></span>OK</button><button style="flex:1.15;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#F79009"></span>Monitor</button><button style="flex:1.1;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#F04438"></span>Not OK</button><button style="flex:0.7;font-size:13px">N/A</button></div>
+          </div>
+          <div style="margin:0 20px 16px;padding:12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#364152">NOTE</span>
+              <span style="margin-left:auto;font-size:11px;color:#697586">Goes to the customer report</span>
+            </div>
+            <textarea rows="3" style="width:100%;padding:10px;border:2px solid #257CFF;border-radius:8px;box-shadow:0 0 0 4px rgba(37,124,255,0.24);font-family:inherit;font-size:14px;color:#202939;resize:vertical;box-sizing:border-box">Held 90 psi for two minutes, no measurable drop.</textarea>
+            <div style="display:flex;gap:8px;justify-content:flex-end">
+              <button style="width:38px;height:38px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;color:#364152;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+              <button style="width:38px;height:38px;border:0;border-radius:8px;background:#257CFF;color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6">
+            <button class="btn2" style="height:32px;font-size:12px">Add Photo</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- optional photo opened -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:600;color:#697586">4 · Add Photo pressed; same block, thumbnails beside the target once files land</span>
+        <div style="max-width:1020px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);overflow:hidden">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:15px;font-weight:600;color:#202939">Air-brake system leak check</span>
+              <span style="font-size:12px;color:#697586">Checkbox · required to complete</span>
+            </div>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div class="seg" style="height:44px;max-width:520px"><button class="on-ok" style="flex:1;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#fff"></span>OK</button><button style="flex:1.15;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#F79009"></span>Monitor</button><button style="flex:1.1;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#F04438"></span>Not OK</button><button style="flex:0.7;font-size:13px">N/A</button></div>
+          </div>
+          <div style="margin:0 20px 16px;padding:12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#364152">PHOTO</span>
+              <span style="margin-left:auto;font-size:11px;color:#697586">2 photos · 1.4 MB</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:stretch">
+              <div style="display:flex;gap:8px">
+                <div style="width:104px;height:104px;flex:none;border-radius:8px;background:#E3E8EF;border:1px solid #CDD5DF;position:relative">
+                  <button style="position:absolute;top:5px;right:5px;width:22px;height:22px;border:0;border-radius:6px;background:rgba(255,255,255,0.92);color:#364152;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+                </div>
+                <div style="width:104px;height:104px;flex:none;border-radius:8px;background:#E3E8EF;border:1px solid #CDD5DF;position:relative">
+                  <button style="position:absolute;top:5px;right:5px;width:22px;height:22px;border:0;border-radius:6px;background:rgba(255,255,255,0.92);color:#364152;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+                </div>
+              </div>
+              <div style="flex:1;min-width:0;min-height:104px;border:1px dashed #CDD5DF;border-radius:8px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:#E5EDFF;color:#175CD3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"></path><circle cx="12" cy="13" r="3"></circle></svg></span>
+                <span style="font-size:13px;font-weight:600;color:#364152">Drop a photo here</span>
+                <span style="font-size:11px;color:#697586">or upload from your computer · JPG, PNG or HEIC</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6">
+            <button class="btn2" style="height:32px;font-size:12px">Add Note</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Not OK, note required, photo -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:600;color:#697586">5 · Not OK: a note and a photo are both required, each badged on its own block</span>
+        <div style="max-width:1020px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);overflow:hidden">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:15px;font-weight:600;color:#202939">Slack adjuster travel</span>
+              <span style="font-size:12px;color:#697586">Checkbox · note required if Monitor or Not OK</span>
+            </div>
+          </div>
+          <div style="margin:0 20px 12px;display:flex;align-items:center;gap:10px;padding:10px 12px;background:#E9F5FF;border:1px solid #BEDFFF;border-radius:8px">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:#fff;color:#175CD3;font-size:12px;font-weight:700">PDF</span>
+            <div style="display:flex;flex-direction:column;min-width:0">
+              <span style="font-size:13px;font-weight:600;color:#175CD3">Recommended procedure</span>
+              <a href="#d4" style="font-size:12px;font-weight:600;color:#175CD3;text-decoration:underline;text-underline-offset:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Bendix-slack-adjuster-service-bulletin-2024.pdf</a>
+            </div>
+          </div>
+          <div style="padding:0 20px 14px">
+            <div class="seg" style="height:44px;max-width:520px"><button style="flex:1;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#16B364"></span>OK</button><button style="flex:1.15;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#F79009"></span>Monitor</button><button class="on-bad" style="flex:1.1;font-size:13px"><span class="dot" style="width:7px;height:7px;background:#fff"></span>Not OK</button><button style="flex:0.7;font-size:13px">N/A</button></div>
+          </div>
+          <div style="display:flex;gap:12px;margin:0 20px 16px;align-items:stretch">
+            <div style="flex:1;min-width:0;padding:12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#364152">NOTE</span>
+                <span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#FEE4E2;color:#B42318;font-size:11px;font-weight:700">Required</span>
+              </div>
+              <textarea rows="4" placeholder="Describe the problem and the recommended repair" style="width:100%;flex:1;padding:10px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:14px;color:#202939;resize:none;box-sizing:border-box"></textarea>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="font-size:11px;color:#697586">Goes to the customer report</span>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                  <button style="width:38px;height:38px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;color:#364152;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+                  <button style="width:38px;height:38px;border:0;border-radius:8px;background:#257CFF;color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                </div>
+              </div>
+            </div>
+            <div style="width:340px;flex:none;padding:12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:8px;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#364152">PHOTO</span>
+                <span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;background:#FEE4E2;color:#B42318;font-size:11px;font-weight:700">Required</span>
+              </div>
+              <div style="flex:1;min-height:132px;border:1px dashed #CDD5DF;border-radius:8px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:8px;background:#E5EDFF;color:#175CD3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"></path><circle cx="12" cy="13" r="3"></circle></svg></span>
+                <span style="font-size:13px;font-weight:600;color:#364152">Drop a photo here</span>
+                <span style="font-size:11px;color:#697586">or upload from your computer · JPG, PNG or HEIC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═════ D4 · attachment viewer ═════ -->
+  <div id="d4" data-screen-label="D4 Attachment viewer" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:baseline;gap:12px">
+      <span class="badge">D4</span>
+      <span style="font-size:16px;font-weight:600;color:#202939">Attachment viewer</span>
+      <span style="font-size:13px;color:#697586">full-page modal · the document gets the whole window, scroll to page through</span>
+    </div>
+    <div class="board" style="width:1440px;padding:0;background:rgba(15,17,26,0.5)">
+      <div style="width:100%;height:860px;background:#fff;display:flex;flex-direction:column">
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid #E3E8EF;flex:none">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex:none;border-radius:7px;background:#E9F5FF;color:#175CD3;font-size:9px;font-weight:700">PDF</span>
+          <span style="font-size:14px;font-weight:600;color:#202939;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Bendix-slack-adjuster-service-bulletin-2024.pdf</span>
+          <span style="font-size:12px;color:#697586;white-space:nowrap">· Slack adjuster travel</span>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+            <div style="display:flex;align-items:center;gap:4px;padding:3px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:9999px">
+              <button style="width:28px;height:28px;border:0;border-radius:9999px;background:#fff;color:#4B5565;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path></svg></button>
+              <span style="font-size:12px;font-weight:600;color:#364152;padding:0 4px">Fit width</span>
+              <button style="width:28px;height:28px;border:0;border-radius:9999px;background:#fff;color:#4B5565;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></button>
+            </div>
+            <button class="btn2" style="height:32px;font-size:12px">Download</button>
+            <button style="width:32px;height:32px;flex:none;border:1px solid #CDD5DF;border-radius:8px;background:#fff;color:#4B5565;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+          </div>
+        </div>
+        <div style="flex:1;min-height:0;background:#EEF2F6;overflow-y:auto;display:flex;justify-content:center;padding:24px 0">
+          <div style="display:flex;flex-direction:column;align-items:flex-start;gap:24px">
+                <div style="width:620px;flex:0 0 auto;background:#fff;box-shadow:0 4px 8px rgba(11,23,51,0.08);padding:52px 56px;display:flex;flex-direction:column;gap:18px">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:14px;border-bottom:2px solid #202939">
+                    <span style="font-size:15px;font-weight:700;letter-spacing:0.04em;color:#202939">SERVICE BULLETIN</span>
+                    <span style="font-size:11px;color:#697586">Page 1 of 3</span>
+                  </div>
+                  <span style="font-size:24px;line-height:30px;font-weight:600;color:#202939">Slack Adjuster Travel, Measurement Procedure</span>
+                  <span style="font-size:12px;color:#697586">Applies to air-brake foundation assemblies on tractors and trailers.</span>
+                  <p style="margin:0;font-size:13px;line-height:20px;color:#364152;text-wrap:pretty">Free stroke and applied stroke must both be measured with the system at full reservoir pressure. Chock the wheels and release the parking brake before beginning.</p>
+                  <span style="font-size:13px;font-weight:700;color:#202939;padding-top:4px">Before you start</span>
+                  <p style="margin:0;font-size:13px;line-height:20px;color:#364152;text-wrap:pretty">Air pressure at or above 90 psi. Engine off. Wheels chocked. Parking brake released and the transmission in neutral.</p>
+                  <span style="font-size:13px;font-weight:700;color:#202939;padding-top:4px">Measuring free stroke</span>
+                  <div style="display:flex;gap:10px"><span style="width:20px;height:20px;flex:none;border-radius:50%;background:#EEF2F6;color:#364152;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">1</span><span style="font-size:13px;line-height:20px;color:#364152;text-wrap:pretty">Mark the push rod where it leaves the chamber with the brakes fully released.</span></div>
+                  <div style="display:flex;gap:10px"><span style="width:20px;height:20px;flex:none;border-radius:50%;background:#EEF2F6;color:#364152;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">2</span><span style="font-size:13px;line-height:20px;color:#364152;text-wrap:pretty">Using a lever, move the slack adjuster until the shoes contact the drum.</span></div>
+                  <div style="display:flex;gap:10px"><span style="width:20px;height:20px;flex:none;border-radius:50%;background:#EEF2F6;color:#364152;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">3</span><span style="font-size:13px;line-height:20px;color:#364152;text-wrap:pretty">Measure between the mark and the chamber face. Free stroke should read between 3/8 in. and 5/8 in.</span></div>
+                  <span style="font-size:13px;font-weight:700;color:#202939;padding-top:4px">Measuring applied stroke</span>
+                  <div style="display:flex;gap:10px"><span style="width:20px;height:20px;flex:none;border-radius:50%;background:#EEF2F6;color:#364152;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">4</span><span style="font-size:13px;line-height:20px;color:#364152;text-wrap:pretty">Have an assistant make a full brake application and hold it.</span></div>
+                  <div style="display:flex;gap:10px"><span style="width:20px;height:20px;flex:none;border-radius:50%;background:#EEF2F6;color:#364152;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">5</span><span style="font-size:13px;line-height:20px;color:#364152;text-wrap:pretty">Measure the total travel of the push rod. Compare against the chamber size table on page 2.</span></div>
+                  <p style="margin:0;font-size:13px;line-height:20px;color:#364152;text-wrap:pretty">Record both figures on the inspection. Travel beyond the readjustment limit is an out-of-service condition under FMCSA Appendix G.</p>
+                </div>
+                <div style="width:620px;flex:0 0 auto;background:#fff;box-shadow:0 4px 8px rgba(11,23,51,0.08);padding:52px 56px;display:flex;flex-direction:column;gap:18px">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:14px;border-bottom:2px solid #202939">
+                    <span style="font-size:15px;font-weight:700;letter-spacing:0.04em;color:#202939">SERVICE BULLETIN</span>
+                    <span style="font-size:11px;color:#697586">Page 2 of 3</span>
+                  </div>
+                  <span style="font-size:13px;font-weight:700;color:#202939;padding-top:4px">Readjustment limits by chamber size</span>
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding-bottom:6px;border-bottom:1px solid #CDD5DF"><span style="font-size:10px;font-weight:700;letter-spacing:0.06em;color:#697586">CHAMBER</span><span style="font-size:10px;font-weight:700;letter-spacing:0.06em;color:#697586">OUTSIDE DIA.</span><span style="font-size:10px;font-weight:700;letter-spacing:0.06em;color:#697586">LIMIT</span></div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0;border-bottom:1px solid #EEF2F6"><span style="font-size:12px;color:#364152">Type 12</span><span style="font-size:12px;color:#364152">4 21/32 in.</span><span style="font-size:12px;font-weight:600;color:#202939">1 3/8 in.</span></div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0;border-bottom:1px solid #EEF2F6"><span style="font-size:12px;color:#364152">Type 16</span><span style="font-size:12px;color:#364152">5 1/4 in.</span><span style="font-size:12px;font-weight:600;color:#202939">1 3/4 in.</span></div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0;border-bottom:1px solid #EEF2F6"><span style="font-size:12px;color:#364152">Type 20</span><span style="font-size:12px;color:#364152">5 1/2 in.</span><span style="font-size:12px;font-weight:600;color:#202939">1 3/4 in.</span></div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0;border-bottom:1px solid #EEF2F6"><span style="font-size:12px;color:#364152">Type 24</span><span style="font-size:12px;color:#364152">5 25/32 in.</span><span style="font-size:12px;font-weight:600;color:#202939">1 3/4 in.</span></div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0;border-bottom:1px solid #EEF2F6"><span style="font-size:12px;color:#364152">Type 30</span><span style="font-size:12px;color:#364152">6 3/8 in.</span><span style="font-size:12px;font-weight:600;color:#202939">2 in.</span></div>
+                  <p style="margin:0;font-size:13px;line-height:20px;color:#364152;text-wrap:pretty">Measure the outside diameter of the chamber to identify the type when the stamping is not legible. If the reading is within 1/8 in. of the limit, mark the position Monitor and note the figure so the next PM can compare.</p>
+                  <span style="font-size:13px;font-weight:700;color:#202939;padding-top:4px">Common causes of excessive travel</span>
+                  <p style="margin:0;font-size:13px;line-height:20px;color:#364152;text-wrap:pretty">Worn brake lining, a stretched or misaligned push rod, a seized automatic slack adjuster, or a chamber diaphragm that has begun to leak. Replace the adjuster rather than attempting to free a seized unit.</p>
+                </div>
+                <div style="width:620px;flex:0 0 auto;background:#fff;box-shadow:0 4px 8px rgba(11,23,51,0.08);padding:52px 56px;display:flex;flex-direction:column;gap:18px">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:14px;border-bottom:2px solid #202939">
+                    <span style="font-size:15px;font-weight:700;letter-spacing:0.04em;color:#202939">SERVICE BULLETIN</span>
+                    <span style="font-size:11px;color:#697586">Page 3 of 3</span>
+                  </div>
+                  <span style="font-size:13px;font-weight:700;color:#202939;padding-top:4px">Recording the result</span>
+                  <p style="margin:0;font-size:13px;line-height:20px;color:#364152;text-wrap:pretty">Enter both figures on the inspection against the axle and position measured. A position beyond the readjustment limit is Not OK, requires a note describing the cause, and requires a photograph of the assembly.</p>
+                  <span style="font-size:13px;font-weight:700;color:#202939;padding-top:4px">Out-of-service criteria</span>
+                  <p style="margin:0;font-size:13px;line-height:20px;color:#364152;text-wrap:pretty">Under FMCSA Appendix G a vehicle is placed out of service when 20 percent or more of the brakes on the unit are defective. A single brake beyond the adjustment limit counts as defective for that calculation.</p>
+                  <span style="font-size:13px;font-weight:700;color:#202939;padding-top:4px">Torque values</span>
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0;border-bottom:1px solid #EEF2F6"><span style="font-size:12px;color:#364152">Clamp band</span><span style="font-size:12px;color:#364152">—</span><span style="font-size:12px;font-weight:600;color:#202939">25–30 ft-lbs</span></div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0;border-bottom:1px solid #EEF2F6"><span style="font-size:12px;color:#364152">Chamber mounting nuts</span><span style="font-size:12px;color:#364152">—</span><span style="font-size:12px;font-weight:600;color:#202939">85–115 ft-lbs</span></div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0;border-bottom:1px solid #EEF2F6"><span style="font-size:12px;color:#364152">Slack adjuster clevis</span><span style="font-size:12px;color:#364152">—</span><span style="font-size:12px;font-weight:600;color:#202939">35–40 ft-lbs</span></div>
+                  <p style="margin:0;font-size:13px;line-height:20px;color:#364152;text-wrap:pretty">Re-check free stroke after any adjuster or chamber replacement, and again after a short road test.</p>
+                  <span style="font-size:11px;color:#9AA4B2;padding-top:8px">Bulletin SB-2024-11 · supersedes SB-2019-04 · for reference only, always follow the manufacturer&rsquo;s current service literature.</span>
+                </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+    </div>
+
+  </section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const VMETA = {
+  none: { label:'Not inspected', border:'1px solid #CDD5DF', divider:'#CDD5DF', bg:'#F8FAFC', dot:null,      chipBg:'#EEF2F6', chipFg:'#4B5565', chipDot:'#9AA4B2', wheelBg:'#fff',    wheelBorder:'1px solid #CDD5DF',   wash:'' },
+  ok:   { label:'OK',            border:'1.5px solid #16B364', divider:'#16B364', bg:'#EDFCF2', dot:'#16B364', chipBg:'#EDFCF2', chipFg:'#087443', chipDot:'#16B364', wheelBg:'#D3F8DF', wheelBorder:'1px solid #16B364',   wash:'' },
+  mon:  { label:'Monitor',       border:'1.5px solid #F79009', divider:'#F79009', bg:'#FFFAEB', dot:'#F79009', chipBg:'#FFFAEB', chipFg:'#B54708', chipDot:'#F79009', wheelBg:'#FEF0C7', wheelBorder:'1.5px solid #F79009', wash:'#FFFCF5' },
+  bad:  { label:'Not OK',        border:'1.5px solid #F04438', divider:'#F04438', bg:'#FEF3F2', dot:'#F04438', chipBg:'#FEF3F2', chipFg:'#B42318', chipDot:'#F04438', wheelBg:'#FEE4E2', wheelBorder:'1.5px solid #F04438', wash:'#FFFBFA' },
+  na:   { label:'N/A',           border:'1px solid #CDD5DF', divider:'#CDD5DF', bg:'#EEF2F6', dot:'#9AA4B2', chipBg:'#EEF2F6', chipFg:'#4B5565', chipDot:'#9AA4B2', wheelBg:'#EEF2F6', wheelBorder:'1px solid #CDD5DF',   wash:'' }
+};
+const ORDER = ['bad','mon','ok','na'];
+const POS_NAME = { lo:'Left outer', li:'Left inner', ri:'Right inner', ro:'Right outer', l:'Left', r:'Right' };
+const POS_LABEL = { lo:'OUTER', li:'INNER', ri:'INNER', ro:'OUTER', l:'LEFT', r:'RIGHT' };
+
+class Component extends DCLogic {
+  state = {
+    dual: true,
+    open: null,
+    rows: [
+      { id:'tp', name:'Tire pressure', unit:'psi',   perTire:true,
+        dualVals:{ lo:'42', li:'98', ri:'101', ro:'99' }, dualV:{ lo:'bad', li:'ok', ri:'ok', ro:'mon' },
+        singleVals:{ l:'104', r:'103' },                  singleV:{ l:'ok', r:'ok' } },
+      { id:'td', name:'Tread depth', unit:'in.', perTire:true,
+        dualVals:{ lo:'0.13', li:'0.28', ri:'0.31', ro:'0.31' },     dualV:{ lo:'bad', li:'ok', ri:'ok', ro:'ok' },
+        singleVals:{ l:'0.25', r:'0.16' },                       singleV:{ l:'ok', r:'mon' } },
+      { id:'bl', name:'Brake lining', unit:'in.',  perTire:false,
+        dualVals:{ l:'0.31', r:'0.34' },                   dualV:{ l:'ok', r:'ok' },
+        singleVals:{ l:'0.33', r:'0.35' },                 singleV:{ l:'ok', r:'ok' } },
+      { id:'pr', name:'Push-rod travel', unit:'in.', perTire:false,
+        dualVals:{ l:'', r:'' },                           dualV:{ l:'none', r:'none' },
+        singleVals:{ l:'', r:'' },                         singleV:{ l:'none', r:'none' } }
+    ]
+  };
+
+  positions(row) {
+    if (row.perTire && this.state.dual) return { left:['lo','li'], right:['ri','ro'] };
+    return { left:['l'], right:['r'] };
+  }
+  store(row) {
+    const dual = row.perTire && this.state.dual;
+    return { vals: dual ? row.dualVals : row.singleVals, verds: dual ? row.dualV : row.singleV };
+  }
+  worst(list) {
+    if (!list.length) return 'none';
+    if (list.indexOf('none') > -1) return 'none';
+    for (const v of ORDER) if (list.indexOf(v) > -1) return v;
+    return 'none';
+  }
+  setVerdict(rowId, pos, v) {
+    this.setState(s => ({
+      open: null, bulk: null,
+      rows: s.rows.map(r => {
+        if (r.id !== rowId) return r;
+        const dual = r.perTire && s.dual;
+        const key = dual ? 'dualV' : 'singleV';
+        return Object.assign({}, r, { [key]: Object.assign({}, r[key], { [pos]: v }) });
+      })
+    }));
+  }
+  setValue(rowId, pos, value) {
+    this.setState(s => ({
+      bulk: null,
+      rows: s.rows.map(r => {
+        if (r.id !== rowId) return r;
+        const dual = r.perTire && s.dual;
+        const key = dual ? 'dualVals' : 'singleVals';
+        return Object.assign({}, r, { [key]: Object.assign({}, r[key], { [pos]: value }) });
+      })
+    }));
+  }
+  setRow(rowId, v) {
+    this.setState(s => ({
+      open: null,
+      rows: s.rows.map(r => {
+        if (r.id !== rowId) return r;
+        const dual = r.perTire && s.dual;
+        const key = dual ? 'dualV' : 'singleV';
+        const next = {};
+        Object.keys(r[key]).forEach(k => { next[k] = v; });
+        return Object.assign({}, r, { [key]: next });
+      })
+    }));
+  }
+
+  pendingCount(s) {
+    return s.rows.reduce((n, r) => {
+      const p = this.positions(r), st = this.store(r);
+      return n + p.left.concat(p.right).filter(k => (st.verds[k] || 'none') === 'none').length;
+    }, 0);
+  }
+  markSetOk() {
+    this.setState(s => {
+      const changed = [];
+      const rows = s.rows.map(r => {
+        const dual = r.perTire && s.dual;
+        const key = dual ? 'dualV' : 'singleV';
+        const next = Object.assign({}, r[key]);
+        Object.keys(next).forEach(k => { if (!next[k] || next[k] === 'none') { next[k] = 'ok'; changed.push(r.id + ':' + k); } });
+        return Object.assign({}, r, { [key]: next });
+      });
+      return { open: null, tip: false, rows, bulk: changed.length ? { changed } : null };
+    });
+  }
+  undoBulk() {
+    this.setState(s => {
+      if (!s.bulk) return {};
+      const rows = s.rows.map(r => {
+        const dual = r.perTire && s.dual;
+        const key = dual ? 'dualV' : 'singleV';
+        const next = Object.assign({}, r[key]);
+        Object.keys(next).forEach(k => { if (s.bulk.changed.indexOf(r.id + ':' + k) > -1) next[k] = 'none'; });
+        return Object.assign({}, r, { [key]: next });
+      });
+      return { bulk: null, rows };
+    });
+  }
+
+  cell(row, pos, wide) {
+    const st = this.store(row);
+    const v = st.verds[pos] || 'none';
+    const meta = VMETA[v];
+    const key = row.id + ':' + pos;
+    const isOpen = this.state.open === key;
+    return {
+      key,
+      label: POS_LABEL[pos],
+      value: st.vals[pos] || '',
+      judged: !!meta.dot,
+      unjudged: !meta.dot,
+      groupStyle: 'flex:1;min-width:0;height:36px;display:flex;border-radius:8px;overflow:hidden;background:#fff;border:' + (isOpen ? '2px solid #257CFF' : meta.border) + (isOpen ? ';box-shadow:0 0 0 4px rgba(37,124,255,0.24)' : ''),
+      btnStyle: 'width:38px;flex:none;border:0;border-left:1px solid ' + meta.divider + ';background:' + meta.bg + ';color:#697586;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:2px',
+      dotStyle: 'width:8px;height:8px;border-radius:50%;background:' + (meta.dot || '#9AA4B2'),
+      open: isOpen,
+      menuHead: POS_NAME[pos] + (row.perTire ? ' tire' : ' brake') + ' · ' + (st.vals[pos] ? st.vals[pos] + ' ' + row.unit : 'no value yet'),
+      menuStyle: 'position:absolute;top:42px;' + (wide ? 'right:0' : 'left:0') + ';width:206px;padding:6px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 12px 24px rgba(11,23,51,0.10),0 4px 8px rgba(11,23,51,0.05);z-index:8;display:flex;flex-direction:column;gap:2px',
+      onToggle: () => this.setState(s => ({ open: s.open === key ? null : key })),
+      onInput: e => this.setValue(row.id, pos, e.target.value),
+      options: ['ok','mon','bad','na'].map(opt => ({
+        label: VMETA[opt].label,
+        divider: opt === 'none',
+        rowStyle: 'display:flex;align-items:center;gap:8px;height:34px;padding:0 10px;border:0;border-radius:6px;background:' + (v === opt ? '#F4FAFF' : '#fff') + ';font-family:inherit;font-size:13px;font-weight:' + (opt === 'none' ? '500' : '600') + ';color:' + (opt === 'none' ? '#697586' : '#364152') + ';text-align:left;cursor:pointer;width:100%',
+        dotStyle: 'width:8px;height:8px;border-radius:50%;background:' + (VMETA[opt].dot || '#CDD5DF'),
+        onPick: () => this.setVerdict(row.id, pos, opt)
+      }))
+    };
+  }
+
+  innerEntries() {
+    const out = [];
+    this.state.rows.forEach(r => {
+      if (!r.perTire) return;
+      [['li','Left inner'], ['ri','Right inner']].forEach(([k, name]) => {
+        const val = r.dualVals[k] || '';
+        const v = r.dualV[k] || 'none';
+        if (!val && v === 'none') return;
+        const meta = VMETA[v];
+        out.push({
+          text: r.name + ' · ' + name,
+          detail: (val ? val + ' ' + r.unit : 'no value') + ' · ' + meta.label,
+          dotStyle: 'width:6px;height:6px;border-radius:50%;flex:none;background:' + (meta.dot || '#CDD5DF')
+        });
+      });
+    });
+    return out;
+  }
+
+  renderVals() {
+    const dual = this.state.dual;
+    const rows = this.state.rows.map(row => {
+      const p = this.positions(row);
+      const st = this.store(row);
+      const all = p.left.concat(p.right);
+      const rollV = this.worst(all.map(k => st.verds[k] || 'none'));
+      const meta = VMETA[rollV];
+      const kind = row.perTire ? 'tire' : 'brake';
+      const judgedCount = all.filter(k => (st.verds[k] || 'none') !== 'none').length;
+      let sub;
+      if (judgedCount < all.length) sub = judgedCount + ' of ' + all.length + ' ' + kind + 's';
+      else if (rollV === 'ok') sub = all.length === 2 ? 'both ' + kind + 's OK' : 'all ' + all.length + ' ' + kind + 's OK';
+      else if (rollV === 'na') sub = 'not applicable';
+      else sub = 'worst of ' + all.length + ' ' + kind + 's';
+      return {
+        id: row.id, name: row.name, unit: row.unit,
+        rowStyle: 'border-bottom:1px solid #EEF2F6',
+        left: p.left.map(k => this.cell(row, k, false)),
+        right: p.right.map(k => this.cell(row, k, true)),
+        rollChipStyle: 'display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:9999px;font-size:12px;font-weight:700;white-space:nowrap;background:' + meta.chipBg + ';color:' + meta.chipFg,
+        rollDotStyle: 'width:6px;height:6px;border-radius:50%;background:' + meta.chipDot,
+        legendStyle: 'margin-left:auto;font-size:11px;font-weight:700;white-space:nowrap;color:' + meta.chipFg,
+        rollLabel: meta.label, rollSub: sub,
+        onAllOk: () => this.setRow(row.id, 'ok'),
+        onAllNone: () => this.setRow(row.id, 'none')
+      };
+    });
+
+    const flagCount = {bad:{tire:0,brake:0},mon:{tire:0,brake:0}};
+    this.state.rows.forEach(r => { const p = this.positions(r), st = this.store(r); p.left.concat(p.right).forEach(k => { const v = st.verds[k]; if (flagCount[v]) flagCount[v][r.perTire ? 'tire' : 'brake']++; }); });
+    const unitText = c => { const n = c.tire + c.brake; return n + (n === 1 ? ' position' : ' positions'); };
+    const nBad = flagCount.bad.tire + flagCount.bad.brake, nMon = flagCount.mon.tire + flagCount.mon.brake;
+    const flagText = nBad ? unitText(flagCount.bad) + ' Not OK' + (nMon ? ' · ' + nMon + ' Monitor' : '') : (nMon ? unitText(flagCount.mon) + ' Monitor' : '');
+    const flagMeta = nBad ? ['#FEF3F2','#B42318','#F04438'] : ['#FFFAEB','#B54708','#F79009'];
+    const wheelFor = pos => {
+      const list = this.state.rows.filter(r => r.perTire).map(r => (this.store(r).verds[pos] || 'none'));
+      const entered = list.filter(v => v !== 'none');
+      if (!entered.length) return { style: 'width:13px;height:30px;border-radius:4px;background:#fff;border:1px solid #CDD5DF' };
+      const meta = VMETA[this.worst(entered)];
+      const partial = entered.length < list.length;
+      return { style: 'width:13px;height:30px;border-radius:4px;background:' + meta.wheelBg + ';border:1.5px ' + (partial ? 'dashed' : 'solid') + ' ' + meta.chipDot };
+    };
+    const wheels = dual
+      ? { left:[wheelFor('lo'), wheelFor('li')], right:[wheelFor('ri'), wheelFor('ro')] }
+      : { left:[wheelFor('l')], right:[wheelFor('r')] };
+
+    const axleV = this.worst(rows.map(r => VMETA[r.rollLabel] ? r.rollLabel : 'none').map((_, i) => {
+      const row = this.state.rows[i], p = this.positions(row), st = this.store(row);
+      return this.worst(p.left.concat(p.right).map(k => st.verds[k] || 'none'));
+    }));
+    const am = VMETA[axleV];
+    const totalPos = this.state.rows.reduce((n, r) => { const p = this.positions(r); return n + p.left.length + p.right.length; }, 0);
+    const donePos = this.state.rows.reduce((n, r) => {
+      const p = this.positions(r), st = this.store(r);
+      return n + p.left.concat(p.right).filter(k => (st.verds[k] || 'none') !== 'none').length;
+    }, 0);
+
+    return {
+      flagShow: !!flagText, flagText,
+      flagStyle: 'background:' + flagMeta[0] + ';color:' + flagMeta[1],
+      flagDot: 'background:' + flagMeta[2],
+      rows, wheels, dual, single: !dual,
+      onSetOk: () => this.markSetOk(),
+      onUndo: () => this.undoBulk(),
+      bulkOpen: !!this.state.bulk,
+      bulkNone: !this.state.bulk,
+      bulkText: (this.state.bulk ? this.state.bulk.changed.length : 0) + ' position' + (this.state.bulk && this.state.bulk.changed.length === 1 ? '' : 's') + ' marked OK',
+      tipOpen: !!this.state.tip,
+      tipText: 'Marks every position in this field OK. ' + this.pendingCount(this.state) + ' still Not inspected. Verdicts already picked stay. Values are never filled in.',
+      onTipIn: () => this.setState({ tip:true }),
+      onTipOut: () => this.setState({ tip:false }),
+      axleChipStyle: 'display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:9999px;font-size:12px;font-weight:700;white-space:nowrap;background:' + am.chipBg + ';color:' + am.chipFg,
+      axleDotStyle: 'width:6px;height:6px;border-radius:50%;background:' + am.chipDot,
+      axleLabel: 'Axle: ' + am.label,
+      axleSub: donePos + ' of ' + totalPos + ' positions inspected',
+      singleBtnStyle: 'flex:1;border:0;border-right:1px solid #CDD5DF;font-family:inherit;font-size:12px;font-weight:600;padding:0 12px;cursor:pointer;background:' + (dual ? '#fff' : '#364152') + ';color:' + (dual ? '#697586' : '#fff'),
+      dualBtnStyle: 'flex:1;border:0;font-family:inherit;font-size:12px;font-weight:600;padding:0 12px;cursor:pointer;background:' + (dual ? '#364152' : '#fff') + ';color:' + (dual ? '#fff' : '#697586'),
+      setSingle: () => this.setState({ dual:false, open:null, bulk:null }),
+      setDual: () => this.setState({ dual:true, open:null, bulk:null }),
+      closeAll: () => this.setState({ open:null }),
+      confirmOpen: this.state.confirm,
+      confirmLines: this.innerEntries(),
+      confirmCount: this.innerEntries().length,
+      onCancelSwitch: () => this.setState({ confirm:false }),
+      onDiscardInner: () => this.setState(s => ({
+        confirm: false, dual: false, open: null,
+        rows: s.rows.map(r => {
+          if (!r.perTire) return r;
+          return Object.assign({}, r, {
+            singleVals: { l: r.dualVals.lo || '', r: r.dualVals.ro || '' },
+            singleV: { l: r.dualV.lo || 'none', r: r.dualV.ro || 'none' },
+            dualVals: Object.assign({}, r.dualVals, { li:'', ri:'' }),
+            dualV: Object.assign({}, r.dualV, { li:'none', ri:'none' })
+          });
+        })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

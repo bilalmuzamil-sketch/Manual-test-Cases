@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+<style>
+body { margin:0; background:#EEF2F6; font-family:'Inter',system-ui,sans-serif; color:#202939; }
+a { color:#175CD3; text-decoration:none; } a:hover { text-decoration:underline; }
+input, textarea, button { font-family:inherit; }
+input:focus, textarea:focus { outline:none; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:16px;padding:16px 24px 40px;box-sizing:border-box">
+  <div style="width:100%;max-width:1440px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+    <a href="Prototype - Hub.dc.html" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>Prototype hub</a>
+    <span style="font-size:13px;color:#697586">Filling an inspection · fixed template, Brake &amp; Axle PM</span>
+    <button onClick="{{ onReset }}" style="height:30px;padding:0 10px;border:0;background:none;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer">Reset</button>
+    <div style="margin-left:auto;display:flex;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden;height:32px;background:#fff">
+      <button onClick="{{ toDesktop }}" style="{{ deskBtn }}">Desktop</button>
+      <button onClick="{{ toPhone }}" style="{{ phoneBtn }}">Phone</button>
+    </div>
+  </div>
+
+  <div style="{{ frameStyle }}">
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:24px;height:56px;padding:0 20px;background:#fff;border-bottom:1px solid #E3E8EF;flex:none">
+        <div style="width:26px;height:26px;border-radius:6px;background:#257CFF"></div>
+        <div style="display:flex;gap:20px;font-size:14px;font-weight:500;color:#4B5565"><span style="color:#175CD3;font-weight:600">Work Orders</span><span>Schedule</span><span>Customers</span><span>Parts</span><span>Reports</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px;height:36px;padding:0 4px 0 12px;border-radius:9999px;background:#F8FAFC;border:1px solid #E3E8EF;font-size:13px;font-weight:500;color:#364152;white-space:nowrap;flex:none">Staging Heavy Duty - 9919<span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#202939;color:#fff;font-size:11px;font-weight:600">WJ</span></div>
+      </div>
+    </sc-if>
+    <div style="{{ subbarStyle }}">
+      <span style="display:inline-flex;color:#4B5565;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+      <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:11px;color:#697586">S-81 · ABC Truck Lines · Unit 6130M</span><span style="font-size:14px;font-weight:600;color:#202939;white-space:nowrap">Brake &amp; Axle PM</span></div>
+      <span style="margin-left:auto;font-size:12px;font-weight:600;color:#087443;white-space:nowrap">All changes saved</span>
+    </div>
+
+    <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;background:#F8FAFC;padding:32px 20px">
+        <div style="max-width:440px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center">
+          <span style="width:48px;height:48px;border-radius:50%;background:#D3F8DF;color:#087443;display:inline-flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+          <span style="font-size:20px;font-weight:600;color:#202939">Inspection submitted</span>
+          <span style="font-size:14px;line-height:20px;color:#4B5565;text-wrap:pretty">{{ doneText }}</span>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+            <button onClick="{{ onReset }}" style="height:40px;padding:0 16px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-size:14px;font-weight:600;color:#364152;cursor:pointer">Start Again</button>
+            <a href="Prototype - Work Order Handoff.dc.html" style="display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:8px;background:#257CFF;color:#fff;font-size:14px;font-weight:600;text-decoration:none">View Completed Inspection</a>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isFill }}" hint-placeholder-val="{{ true }}">
+      <div style="flex:1;min-height:0;display:flex;position:relative">
+        <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+          <div style="width:236px;flex:none;padding:20px 16px;background:#F8FAFC;border-right:1px solid #E3E8EF;display:flex;flex-direction:column;gap:14px;box-sizing:border-box">
+            <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">SECTIONS</span>
+            <div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:28px;line-height:32px;font-weight:600;color:#202939">{{ doneCount }}</span><span style="font-size:13px;color:#697586;white-space:nowrap">/ {{ totalCount }} fields complete</span></div>
+            <div style="height:4px;border-radius:9999px;background:#E3E8EF;overflow:hidden"><div style="{{ progStyle }}"></div></div>
+            <div style="height:1px;background:#E3E8EF"></div>
+            <sc-for list="{{ railSections }}" as="r" hint-placeholder-count="2">
+              <div onClick="{{ r.onGo }}" style="{{ r.style }}"><span style="{{ r.numStyle }}">{{ r.num }}</span><span style="{{ r.nameStyle }}">{{ r.name }}</span><span style="{{ r.countStyle }}">{{ r.count }}</span></div>
+            </sc-for>
+            <div style="margin-top:auto;padding-top:14px;border-top:1px solid #E3E8EF;display:flex;flex-direction:column;gap:6px;font-size:12px;color:#697586"><span><span style="font-weight:600;color:#364152">Tech:</span> William Johns</span><span><span style="font-weight:600;color:#364152">Advisor:</span> Kimberly Barnes</span></div>
+          </div>
+        </sc-if>
+
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;position:relative">
+          <div ref="{{ scrollRef }}" style="{{ canvasStyle }}">
+            <div style="width:100%;max-width:1040px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap">
+                <button onClick="{{ onToggleSec }}" title="{{ secToggleTitle }}" style="width:32px;height:32px;flex:none;align-self:center;border:0;border-radius:6px;background:none;color:#4B5565;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0" style-hover="background:#EEF2F6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="{{ secChevron }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+                <div onClick="{{ onToggleSec }}" style="display:flex;flex-direction:column;gap:2px;cursor:pointer"><span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">{{ secEyebrow }}</span><span style="font-size:20px;font-weight:600;color:#202939">{{ secName }}</span></div>
+                <span style="font-size:12px;color:#697586;padding-bottom:4px">{{ secMeta }}</span>
+                <sc-if value="{{ secBulkNone }}" hint-placeholder-val="{{ true }}"><button onClick="{{ onSectionOk }}" style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark section OK</button></sc-if>
+                <sc-if value="{{ secBulkOn }}" hint-placeholder-val="{{ false }}"><div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#087443;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>{{ secBulkText }}</span><button onClick="{{ onUndo }}" style="height:30px;padding:0 8px;border:0;background:none;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer">Undo</button></div></sc-if>
+              </div>
+              <div style="height:1px;background:#E3E8EF"></div>
+            </div>
+
+            <sc-if value="{{ secCollapsed }}" hint-placeholder-val="{{ false }}"><button onClick="{{ onToggleSec }}" style="width:100%;max-width:1040px;height:48px;flex:none;border:1px dashed #CDD5DF;border-radius:12px;background:#fff;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer">{{ secCollapsedText }}</button></sc-if>
+            <sc-for list="{{ cardsShown }}" as="c" hint-placeholder-count="2">
+              <div id="{{ c.domId }}" style="{{ c.cardStyle }}">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:16px 20px 12px;flex-wrap:wrap">
+                  <div style="display:flex;flex-direction:column;gap:5px;min-width:0">
+                    <span style="font-size:16px;font-weight:600;color:#202939">{{ c.label }}</span>
+                    <span style="font-size:12px;color:#697586">{{ c.sub }}</span>
+                  </div>
+                  <sc-if value="{{ c.errShow }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:9999px;background:#FEE4E2;color:#B42318;font-size:11px;font-weight:600">{{ c.errText }}</span></sc-if>
+                </div>
+                <sc-if value="{{ c.hasRef }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin:0 20px 12px;display:flex;align-items:center;gap:10px;padding:9px 10px;border:1px solid #BEDFFF;border-radius:8px;background:#E9F5FF"><span style="width:28px;height:28px;flex:none;border-radius:7px;background:#fff;color:#175CD3;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span><div style="display:flex;flex-direction:column;min-width:0;flex:1"><span style="font-size:12px;font-weight:600;color:#175CD3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.refName }}</span><span style="font-size:11px;color:#4B5565">Reference file · always available on this field</span></div><button onClick="{{ c.onOpenRef }}" style="height:32px;padding:0 12px;border:1px solid #BEDFFF;border-radius:8px;background:#fff;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer;flex:none">Open</button></div>
+                </sc-if>
+
+                <sc-if value="{{ c.isCb }}" hint-placeholder-val="{{ true }}">
+                  <div style="padding:0 20px 14px">
+                    <div style="{{ c.segStyle }}">
+                      <sc-for list="{{ c.opts }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.onPick }}" style="{{ o.style }}"><span style="{{ o.dotStyle }}"></span>{{ o.label }}</button></sc-for>
+                    </div>
+                  </div>
+                  <sc-if value="{{ c.noteShow }}" hint-placeholder-val="{{ false }}">
+                    <div style="padding:0 20px 14px">
+                      <div style="{{ c.noteBox }}">
+                        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#364152">NOTE</span><sc-if value="{{ c.noteReq }}" hint-placeholder-val="{{ false }}"><span style="{{ c.pillStyle }}">Required</span></sc-if></div>
+                        <textarea value="{{ c.note }}" onChange="{{ c.onNote }}" placeholder="Describe the problem and the recommended repair" style="{{ c.noteTa }}"></textarea>
+                      </div>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ c.insShow }}" hint-placeholder-val="{{ false }}">
+                    <div style="margin:0 20px 16px;padding:12px;border:1px solid #BEDFFF;border-radius:8px;background:#F4FAFF;display:flex;flex-direction:column;gap:10px">
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <span style="display:inline-flex;color:#175CD3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg></span>
+                        <span style="font-size:12px;font-weight:600;letter-spacing:0.04em;color:#175CD3">INSTRUCTION</span>
+                        <sc-if value="{{ c.insPill }}" hint-placeholder-val="{{ false }}"><span style="{{ c.pillStyle }}">Required</span></sc-if>
+                        <sc-if value="{{ c.insCollapsible }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.onToggleIns }}" style="margin-left:auto;height:28px;padding:0 8px;border:0;background:none;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer">Hide</button></sc-if>
+                      </div>
+                      <p style="margin:0;font-size:14px;line-height:21px;color:#202939;white-space:pre-line;text-wrap:pretty">{{ c.insText }}</p>
+                      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                        <sc-if value="{{ c.insFile }}" hint-placeholder-val="{{ false }}">
+                          <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:200px"><span style="width:28px;height:28px;flex:none;border-radius:8px;background:#E9F5FF;color:#175CD3;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">PDF</span><div style="display:flex;flex-direction:column;min-width:0;flex:1"><span onClick="{{ c.onOpenIns }}" style="font-size:12px;font-weight:600;color:#175CD3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:underline;text-underline-offset:2px;cursor:pointer">{{ c.insFileName }}</span><span style="font-size:11px;color:#4B5565">{{ c.insFileSize }}</span></div></div>
+                        </sc-if>
+                        <sc-if value="{{ c.insAck }}" hint-placeholder-val="{{ false }}">
+                          <label onClick="{{ c.onAck }}" style="{{ c.ackRow }}"><span style="{{ c.ackBox }}"><sc-if value="{{ c.acked }}" hint-placeholder-val="{{ false }}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if></span><span style="{{ c.ackText }}">Acknowledge</span></label>
+                        </sc-if>
+                      </div>
+                    </div>
+                  </sc-if>
+                </sc-if>
+
+                <sc-if value="{{ c.isAx }}" hint-placeholder-val="{{ false }}">
+                  <div style="padding:0 20px 16px;display:flex;flex-direction:column;gap:12px">
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+                      <sc-for list="{{ ax.tabs }}" as="t" hint-placeholder-count="3"><button onClick="{{ t.onGo }}" style="{{ t.style }}"><span style="{{ t.dotStyle }}"></span>{{ t.label }}</button></sc-for>
+                      <button onClick="{{ ax.onAdd }}" style="height:32px;padding:0 10px;border:1px dashed #CDD5DF;border-radius:8px;background:#fff;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap;flex:none">+ Add Axle</button>
+                    </div>
+                    <div style="display:flex;gap:20px;align-items:flex-start">
+                      <sc-if value="{{ showTop }}" hint-placeholder-val="{{ true }}">
+                        <div style="width:170px;flex:none;padding:14px 12px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:10px;box-sizing:border-box">
+                          <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">TOP VIEW</span>
+                          <div style="width:80px;height:24px;border-radius:6px;background:#E3E8EF"></div>
+                          <sc-for list="{{ ax.top }}" as="a" hint-placeholder-count="3">
+                            <div onClick="{{ a.onGo }}" style="display:flex;align-items:center;gap:8px;cursor:pointer">
+                              <div style="display:flex;gap:3px"><sc-for list="{{ a.left }}" as="w" hint-placeholder-count="2"><div style="{{ w }}"></div></sc-for></div>
+                              <div style="{{ a.numStyle }}">{{ a.num }}</div>
+                              <div style="display:flex;gap:3px"><sc-for list="{{ a.right }}" as="w" hint-placeholder-count="2"><div style="{{ w }}"></div></sc-for></div>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </sc-if>
+                      <div style="flex:1;min-width:0;border:1px solid #E3E8EF;border-radius:12px">
+                        <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:#F8FAFC;border-bottom:1px solid #E3E8EF;border-radius:12px 12px 0 0;flex-wrap:wrap">
+                          <span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:#257CFF;color:#fff;font-size:12px;font-weight:600">{{ ax.num }}</span>
+                          <span style="font-size:14px;font-weight:600;color:#202939">{{ ax.title }}</span>
+                          <div style="display:flex;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden;height:30px">
+                            <button onClick="{{ ax.setSingle }}" style="{{ ax.singleBtn }}">Single</button>
+                            <button onClick="{{ ax.setDual }}" style="{{ ax.dualBtn }}">Dual</button>
+                          </div>
+                          <span style="{{ ax.chipStyle }}"><span style="{{ ax.chipDot }}"></span>{{ ax.chipText }}</span>
+                          <div style="margin-left:auto;display:flex;align-items:center;gap:6px">
+                            <sc-if value="{{ ax.bulkNone }}" hint-placeholder-val="{{ true }}"><button onClick="{{ ax.onFieldOk }}" style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 8px;border:0;border-radius:8px;background:none;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer;white-space:nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Mark axle OK</button></sc-if>
+                            <sc-if value="{{ ax.bulkOn }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;font-weight:600;color:#087443;white-space:nowrap">{{ ax.bulkText }}</span><button onClick="{{ onUndo }}" style="height:30px;padding:0 8px;border:0;background:none;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer">Undo</button></sc-if>
+                            <sc-if value="{{ ax.canRemove }}" hint-placeholder-val="{{ false }}"><button onClick="{{ ax.onRemove }}" title="Remove this axle" style="width:30px;height:30px;border:0;border-radius:6px;background:none;color:#B42318;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path></svg></button></sc-if>
+                          </div>
+                        </div>
+                        <sc-for list="{{ ax.rows }}" as="row" hint-placeholder-count="4">
+                          <div style="{{ row.style }}">
+                            <div style="{{ row.nameBox }}">
+                              <span style="font-size:13px;font-weight:500;color:#364152;white-space:nowrap">{{ row.name }}</span>
+                              <span style="display:inline-flex;align-items:center;height:22px;padding:0 7px;border:1px solid #E3E8EF;border-radius:9999px;background:#F8FAFC;font-size:11px;font-weight:600;color:#4B5565">{{ row.unit }}</span>
+                              <span style="{{ row.rollStyle }}"><span style="{{ row.rollDot }}"></span>{{ row.rollText }}</span>
+                            </div>
+                            <div style="{{ row.sidesBox }}">
+                            <sc-for list="{{ row.sides }}" as="side" hint-placeholder-count="2">
+                              <div style="flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:4px">
+                                <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#697586">{{ side.label }}</span>
+                                <div style="display:flex;gap:8px">
+                                  <sc-for list="{{ side.cells }}" as="c2" hint-placeholder-count="2">
+                                    <div style="flex:1;min-width:0;position:relative;display:flex;flex-direction:column;gap:2px">
+                                      <sc-if value="{{ c2.sub }}" hint-placeholder-val="{{ false }}"><span style="font-size:9px;font-weight:600;letter-spacing:0.06em;color:#9AA4B2;white-space:nowrap;overflow:hidden">{{ c2.sub }}</span></sc-if>
+                                      <div style="{{ c2.groupStyle }}">
+                                        <input value="{{ c2.value }}" onChange="{{ c2.onInput }}" placeholder="—" inputMode="decimal" style="{{ c2.inputStyle }}">
+                                        <button onClick="{{ c2.onToggle }}" style="{{ c2.btnStyle }}"><span style="{{ c2.dotStyle }}"></span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button>
+                                      </div>
+                                      <sc-if value="{{ c2.menuOpen }}" hint-placeholder-val="{{ false }}">
+                                        <div style="{{ c2.menuStyle }}">
+                                          <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;color:#828A98;padding:6px 8px 2px">{{ c2.menuHead }}</span>
+                                          <sc-for list="{{ c2.options }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.onPick }}" style="{{ o.style }}"><span style="{{ o.dotStyle }}"></span>{{ o.label }}</button></sc-for>
+                                        </div>
+                                      </sc-if>
+                                    </div>
+                                  </sc-for>
+                                </div>
+                              </div>
+                            </sc-for>
+                            </div>
+                          </div>
+                        </sc-for>
+                      </div>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:#F8FAFC;border-top:1px solid #EEF2F6;border-radius:0 0 12px 12px;flex-wrap:wrap">
+                  <sc-if value="{{ c.marker }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.onToggleIns }}" style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border:1px solid #BEDFFF;border-radius:8px;background:#E9F5FF;font-size:12px;font-weight:600;color:#175CD3;cursor:pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h6"></path></svg>Instruction</button></sc-if>
+                  <button onClick="{{ c.onPhoto }}" style="height:32px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-size:12px;font-weight:600;color:#364152;cursor:pointer;white-space:nowrap">{{ c.photoLabel }}</button>
+                  <sc-if value="{{ c.noteBtn }}" hint-placeholder-val="{{ true }}"><button onClick="{{ c.onShowNote }}" style="height:32px;padding:0 12px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-size:12px;font-weight:600;color:#364152;cursor:pointer;white-space:nowrap">Add Note</button></sc-if>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+          <sc-if value="{{ outOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="{{ outStyle }}">
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="font-size:15px;font-weight:600;color:#202939">{{ outTitle }}</span>
+                <button onClick="{{ onCloseOut }}" style="margin-left:auto;width:32px;height:32px;border:0;border-radius:6px;background:none;color:#364152;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:320px;overflow:auto">
+                <sc-for list="{{ outItems }}" as="o" hint-placeholder-count="3">
+                  <button onClick="{{ o.onGo }}" style="display:flex;align-items:center;gap:10px;min-height:48px;padding:6px 8px;border:0;border-radius:8px;background:#fff;cursor:pointer;text-align:left" style-hover="background:#F8FAFC">
+                    <span style="{{ o.tile }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"></path><circle cx="12" cy="12" r="10"></circle></svg></span>
+                    <span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span style="font-size:13px;font-weight:600;color:#202939">{{ o.kind }}</span><span style="font-size:12px;color:#4B5565">{{ o.where }}</span></span>
+                    <span style="margin-left:auto;color:#9AA4B2;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+                  </button>
+                </sc-for>
+              </div>
+              <button onClick="{{ onGoFirst }}" style="height:40px;border:1px solid #BEDFFF;border-radius:8px;background:#E9F5FF;font-size:13px;font-weight:600;color:#175CD3;cursor:pointer">Go to the first one</button>
+            </div>
+          </sc-if>
+
+          <div style="{{ footStyle }}">
+            <sc-if value="{{ showBack }}" hint-placeholder-val="{{ false }}"><button onClick="{{ onBack }}" style="{{ secBtn }}">Back</button></sc-if>
+            <sc-if value="{{ showSave }}" hint-placeholder-val="{{ true }}"><button onClick="{{ onSaveExit }}" style="{{ secBtn }}">Save &amp; Exit</button></sc-if>
+            <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+              <sc-if value="{{ outCount }}" hint-placeholder-val="{{ true }}"><button onClick="{{ onToggleOut }}" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid #FEDF89;border-radius:8px;background:#FFFAEB;font-size:13px;font-weight:600;color:#B54708;cursor:pointer;white-space:nowrap"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;border-radius:9999px;background:#DC6803;color:#fff;font-size:11px;font-weight:700;box-sizing:border-box">{{ outCount }}</span>{{ outBtnLabel }}</button></sc-if>
+              <button onClick="{{ onPrimary }}" style="{{ primaryStyle }}">{{ primaryLabel }}</button>
+            </div>
+          </div>
+        </div>
+
+        <sc-if value="{{ sheetOpen }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ closeMenu }}" style="position:absolute;inset:0;background:rgba(18,25,38,0.45);z-index:40"></div>
+          <div style="position:absolute;left:0;right:0;bottom:0;z-index:41;background:#fff;border-radius:16px 16px 0 0;padding:8px 12px 20px;display:flex;flex-direction:column;gap:4px">
+            <div style="display:flex;justify-content:center;padding-bottom:6px"><span style="width:36px;height:4px;border-radius:9999px;background:#CDD5DF"></span></div>
+            <span style="font-size:15px;font-weight:600;color:#202939;padding:4px 8px 8px">{{ sheetHead }}</span>
+            <sc-for list="{{ sheetOpts }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.onPick }}" style="{{ o.sheetStyle }}"><span style="{{ o.dotStyle }}"></span>{{ o.label }}</button></sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ viewerOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;inset:0;z-index:60;background:#121926;display:flex;flex-direction:column">
+        <div style="display:flex;align-items:center;gap:12px;height:56px;padding:0 16px;color:#fff;flex:none">
+          <span style="font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0">{{ viewerName }}</span>
+          <button onClick="{{ onCloseViewer }}" style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;border:1px solid #4B5565;border-radius:8px;background:none;color:#fff;font-size:13px;font-weight:600;cursor:pointer">Close</button>
+        </div>
+        <div style="flex:1;overflow:auto;display:flex;justify-content:center;padding:16px">
+          <div style="width:100%;max-width:640px;min-height:760px;background:#fff;border-radius:4px;padding:40px 36px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px">
+            <span style="font-size:18px;font-weight:600;color:#202939">{{ viewerName }}</span>
+            <div style="height:10px;width:70%;background:#EEF2F6;border-radius:3px"></div><div style="height:10px;width:92%;background:#EEF2F6;border-radius:3px"></div><div style="height:10px;width:84%;background:#EEF2F6;border-radius:3px"></div><div style="height:160px;background:#F8FAFC;border:1px solid #E3E8EF;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#697586">Diagram</div><div style="height:10px;width:88%;background:#EEF2F6;border-radius:3px"></div><div style="height:10px;width:60%;background:#EEF2F6;border-radius:3px"></div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const V = {
+  none:{ label:'Not inspected', dot:'#9AA4B2', bd:'1px solid #CDD5DF', div:'#CDD5DF', bg:'#F8FAFC', chipBg:'#EEF2F6', chipFg:'#4B5565', wheel:'#fff' },
+  ok:  { label:'OK', dot:'#16B364', bd:'1.5px solid #16B364', div:'#16B364', bg:'#EDFCF2', chipBg:'#EDFCF2', chipFg:'#087443', wheel:'#D3F8DF', on:'#099250' },
+  mon: { label:'Monitor', dot:'#F79009', bd:'1.5px solid #F79009', div:'#F79009', bg:'#FFFAEB', chipBg:'#FFFAEB', chipFg:'#B54708', wheel:'#FEF0C7', on:'#DC6803' },
+  bad: { label:'Not OK', dot:'#F04438', bd:'1.5px solid #F04438', div:'#F04438', bg:'#FEF3F2', chipBg:'#FEF3F2', chipFg:'#B42318', wheel:'#FEE4E2', on:'#D92D20' },
+  na:  { label:'N/A', dot:'#9AA4B2', bd:'1px solid #CDD5DF', div:'#CDD5DF', bg:'#EEF2F6', chipBg:'#EEF2F6', chipFg:'#4B5565', wheel:'#EEF2F6', on:'#697586' }
+};
+const ORDER = ['bad','mon','ok','na'];
+const ROWS = [ { id:'tp', name:'Tire pressure', unit:'psi', tire:true }, { id:'td', name:'Tread depth', unit:'32nds', tire:true }, { id:'bl', name:'Brake lining', unit:'in.', tire:false }, { id:'pr', name:'Push-rod travel', unit:'in.', tire:false } ];
+const PN = { lo:'Left outer', li:'Left inner', ri:'Right inner', ro:'Right outer', l:'Left', r:'Right' };
+const SECTIONS = [
+  { name:'Brakes', fields:[
+    { id:'ax', type:'axle', label:'Brake & tire measurements', sub:'Per axle · a verdict on every position' },
+    { id:'bc', type:'cb', label:'Brake chamber condition', sub:'Checkbox · note required if Monitor or Not OK', ref:'Bendix-chamber-service.pdf',
+      fu:{ ok:{ text:'Check the dust boot is seated before closing the card.', ack:false },
+           bad:{ text:'Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number and the date code from the canister tag.\n\nDo not release the unit for road test until the replacement chamber is fitted and the system has held 90 psi for five minutes with the engine off.', file:['Bendix-chamber-out-of-service-procedure.pdf','1.2 MB'], ack:true } } } ] },
+  { name:'Air system', fields:[
+    { id:'lk', type:'cb', label:'Air-brake system leak check', sub:'Checkbox · note required if Monitor or Not OK',
+      fu:{ mon:{ text:'Re-check at the next PM and record the reading. Book the unit for a leak-down test if the loss is above 3 psi a minute.', file:['Leak-test-steps.pdf','820 KB'], ack:true } } },
+    { id:'bz', type:'cb', label:'Low-air warning buzzer', sub:'Checkbox · note required if Monitor or Not OK' } ] }
+];
+const FIELDS = {}; SECTIONS.forEach((s, si) => s.fields.forEach(f => { FIELDS[f.id] = Object.assign({ si }, f); }));
+let aid = 10;
+const newAxle = () => { const vals = {}, verd = {}; ROWS.forEach(r => { vals[r.id] = {}; verd[r.id] = {}; }); return { id:'a' + (aid++), dual:true, vals, verd }; };
+const initial = () => {
+  const a1 = newAxle(), a2 = newAxle(), a3 = newAxle(); a3.dual = false;
+  Object.assign(a1.vals.tp, { lo:'42', li:'98' }); Object.assign(a1.verd.tp, { lo:'bad', li:'ok' });
+  return { device:'desktop', sec:0, view:'fill', axles:[a1, a2, a3], active:0, menu:null, cb:{ bc:{}, lk:{}, bz:{} }, out:false, errors:false, bulk:null, viewer:null };
+};
+const dot = (c, s) => 'width:' + (s||8) + 'px;height:' + (s||8) + 'px;border-radius:50%;flex:none;background:' + c;
+
+class Component extends DCLogic {
+  state = initial();
+  scrollRef = React.createRef();
+  onResize = () => this.setState({ vw:window.innerWidth });
+  componentDidMount() { window.addEventListener('resize', this.onResize); this.onResize(); }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
+
+  posFor(ax, row) { return row.tire && ax.dual ? ['lo','li','ri','ro'] : ['l','r']; }
+  worst(list) { if (!list.length || list.indexOf(undefined) > -1 || list.indexOf('none') > -1) return 'none'; for (const v of ORDER) if (list.indexOf(v) > -1) return v; return 'none'; }
+  axleVerdicts(ax) { const out = []; ROWS.forEach(r => this.posFor(ax, r).forEach(p => out.push(ax.verd[r.id][p] || 'none'))); return out; }
+  pendingAxle() { return this.state.axles.reduce((n, a) => n + this.axleVerdicts(a).filter(v => v === 'none').length, 0); }
+  cbIssues(id) {
+    const f = FIELDS[id], c = this.state.cb[id] || {}, out = [];
+    if (!c.v) { out.push({ kind:'Answer', tone:'none' }); return out; }
+    if ((c.v === 'mon' || c.v === 'bad') && !(c.note || '').trim()) out.push({ kind:'Note', tone:c.v });
+    const u = f.fu && f.fu[c.v];
+    if (u && u.ack && !c.ack) out.push({ kind:'Acknowledgement', tone:c.v });
+    return out;
+  }
+  issues() {
+    const list = [];
+    SECTIONS.forEach((s, si) => s.fields.forEach(f => {
+      if (f.type === 'axle') { const n = this.pendingAxle(); if (n) list.push({ id:f.id, si, kind:'Answer', tone:'none', where:'Section ' + (si+1) + ' · ' + f.label + ' · ' + n + ' position' + (n === 1 ? '' : 's') }); }
+      else this.cbIssues(f.id).forEach(i => list.push(Object.assign({ id:f.id, si, where:'Section ' + (si+1) + ' · ' + f.label + (i.tone !== 'none' ? ' · ' + V[i.tone].label : '') }, i)));
+    }));
+    const rank = { Acknowledgement:0, Note:1, Answer:2 };
+    return list.sort((a, b) => a.si - b.si || rank[a.kind] - rank[b.kind]);
+  }
+  setCb(id, patch) { this.setState(s => ({ cb:Object.assign({}, s.cb, { [id]:Object.assign({}, s.cb[id], patch) }) })); }
+  pick(id, v) {
+    const c = this.state.cb[id] || {};
+    if (c.v === v) return;
+    this.setCb(id, { v, ack:false, insOpen:false });
+  }
+  updAxle(i, fn) { this.setState(s => { const axles = s.axles.slice(); const a = JSON.parse(JSON.stringify(axles[i])); fn(a); axles[i] = a; return { axles, bulk:null }; }); }
+  markOk(scope) {
+    this.setState(s => {
+      const changed = { axles:[], cb:[] };
+      const axles = s.axles.map((a, i) => {
+        if (scope === 'axle' && i !== s.active) return a;
+        if (scope === 'section' && s.sec !== 0) return a;
+        const b = JSON.parse(JSON.stringify(a));
+        ROWS.forEach(r => this.posFor(b, r).forEach(p => { if (!b.verd[r.id][p] || b.verd[r.id][p] === 'none') { b.verd[r.id][p] = 'ok'; changed.axles.push([i, r.id, p]); } }));
+        return b;
+      });
+      const cb = Object.assign({}, s.cb);
+      if (scope === 'section') SECTIONS[s.sec].fields.forEach(f => { if (f.type === 'cb' && !(cb[f.id] || {}).v) { cb[f.id] = Object.assign({}, cb[f.id], { v:'ok', ack:false }); changed.cb.push(f.id); } });
+      const n = changed.axles.length + changed.cb.length;
+      return { axles, cb, bulk: n ? { scope, sec:s.sec, changed, text: scope === 'axle' ? changed.axles.length + ' positions marked OK' : n + ' answer' + (n === 1 ? '' : 's') + ' marked OK' } : null };
+    });
+  }
+  undo() {
+    this.setState(s => {
+      if (!s.bulk) return {};
+      const axles = s.axles.map(a => JSON.parse(JSON.stringify(a)));
+      s.bulk.changed.axles.forEach(([i, r, p]) => { axles[i].verd[r][p] = 'none'; });
+      const cb = Object.assign({}, s.cb); s.bulk.changed.cb.forEach(id => { cb[id] = Object.assign({}, cb[id], { v:null }); });
+      return { axles, cb, bulk:null };
+    });
+  }
+  goTo(item) {
+    this.setState(st => ({ sec:item.si, out:false, errors:true, collapsed:Object.assign({}, st.collapsed, { [item.si]:false }) }), () => setTimeout(() => {
+      const el = document.getElementById('card-' + item.id), box = this.scrollRef.current;
+      if (el && box) box.scrollTop = el.offsetTop - box.offsetTop - 12;
+    }, 30));
+  }
+
+  cell(ai, ax, row, p, phone, right) {
+    const v = ax.verd[row.id][p] || 'none', m = V[v], key = ai + ':' + row.id + ':' + p, open = this.state.menu === key;
+    const opts = ['ok','mon','bad','na'].map(o => ({ label:V[o].label, dotStyle:dot(V[o].dot),
+      style:'display:flex;align-items:center;gap:8px;height:34px;padding:0 10px;border:0;border-radius:6px;font-size:13px;font-weight:600;color:#364152;text-align:left;cursor:pointer;width:100%;background:' + (v === o ? '#F4FAFF' : '#fff'),
+      sheetStyle:'display:flex;align-items:center;gap:10px;height:52px;padding:0 12px;border:0;border-radius:8px;font-size:16px;font-weight:600;color:#364152;text-align:left;cursor:pointer;background:' + (v === o ? '#F4FAFF' : '#fff'),
+      onPick: () => { this.updAxle(ai, a => { a.verd[row.id][p] = o; }); this.setState({ menu:null }); } }));
+    const head = PN[p] + (row.tire ? ' tire' : ' brake') + ' · ' + row.name + (ax.vals[row.id][p] ? ' · ' + ax.vals[row.id][p] + ' ' + row.unit : '');
+    return {
+      sub: row.tire && ax.dual ? (p === 'lo' || p === 'ro' ? 'OUTER' : 'INNER') : '',
+      value: ax.vals[row.id][p] || '',
+      onInput: e => { const val = e.target.value; this.updAxle(ai, a => { a.vals[row.id][p] = val; }); },
+      groupStyle:'display:flex;border-radius:8px;overflow:hidden;background:#fff;height:' + (phone ? '44px' : '36px') + ';border:' + (open ? '2px solid #257CFF;box-shadow:0 0 0 4px rgba(37,124,255,0.24)' : m.bd),
+      inputStyle:'flex:1;width:0;min-width:0;height:100%;padding:0 8px;border:0;font-size:' + (phone ? '16px' : '14px') + ';font-weight:500;color:#202939;background:transparent',
+      btnStyle:'width:' + (phone ? '40px' : '36px') + ';flex:none;border:0;border-left:1px solid ' + m.div + ';background:' + m.bg + ';color:#697586;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:2px',
+      dotStyle: v === 'none' ? 'width:8px;height:8px;border-radius:50%;flex:none;border:1.5px solid #9AA4B2;box-sizing:border-box' : dot(m.dot),
+      onToggle: () => this.setState(s => ({ menu: s.menu === key ? null : key, menuHead:head, menuOpts:opts })),
+      menuOpen: open && !phone, menuHead:head, options:opts,
+      menuStyle:'position:absolute;top:' + (row.tire && ax.dual ? '56px' : '42px') + ';' + (right ? 'right:0' : 'left:0') + ';width:210px;padding:6px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 12px 24px rgba(11,23,51,0.10),0 4px 8px rgba(11,23,51,0.05);z-index:20;display:flex;flex-direction:column;gap:2px'
+    };
+  }
+
+  axleVals(phone) {
+    const s = this.state, ai = Math.min(s.active, s.axles.length - 1), ax = s.axles[ai];
+    const chip = v => 'display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:9999px;font-size:12px;font-weight:700;white-space:nowrap;background:' + V[v].chipBg + ';color:' + V[v].chipFg;
+    const axV = a => { const l = this.axleVerdicts(a), done = l.filter(v => v !== 'none'); return done.length === 0 ? 'none' : done.length < l.length ? 'part' : this.worst(l); };
+    const wheel = (a, p) => { const l = ROWS.filter(r => r.tire).map(r => a.verd[r.id][p] || 'none'), e = l.filter(v => v !== 'none'); if (!e.length) return 'width:12px;height:28px;border-radius:4px;background:#fff;border:1px solid #CDD5DF'; const w = V[this.worst(e)]; return 'width:12px;height:28px;border-radius:4px;background:' + w.wheel + ';border:1.5px ' + (e.length < l.length ? 'dashed' : 'solid') + ' ' + w.dot; };
+    const vals = this.axleVerdicts(ax), done = vals.filter(v => v !== 'none').length, rv = this.worst(vals);
+    const bulk = s.bulk && s.bulk.scope === 'axle';
+    return {
+      num:ai + 1, title:'Axle ' + (ai + 1),
+      tabs: s.axles.map((a, i) => { const v = axV(a); return { label:'Axle ' + (i+1), onGo: () => this.setState({ active:i, menu:null }),
+        dotStyle: v === 'none' ? 'width:7px;height:7px;border-radius:50%;border:1.5px solid ' + (i === ai ? '#fff' : '#9AA4B2') + ';box-sizing:border-box' : v === 'part' ? 'width:7px;height:7px;border-radius:50%;background:' + (i === ai ? '#fff' : '#9AA4B2') : dot(V[v].dot, 7) + ';box-shadow:0 0 0 1.5px #fff',
+        style:'display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 12px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;flex:none;' + (i === ai ? 'border:0;background:#257CFF;color:#fff' : 'border:1px solid #CDD5DF;background:#fff;color:#364152') }; }),
+      top: s.axles.map((a, i) => { const tire = a.dual ? [['lo','li'],['ri','ro']] : [['l'],['r']]; return { num:i+1, onGo: () => this.setState({ active:i }), left:tire[0].map(p => wheel(a, p)), right:tire[1].map(p => wheel(a, p)),
+        numStyle:'display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;font-size:11px;font-weight:600;' + (i === ai ? 'background:#fff;border:1.5px solid #257CFF;color:#175CD3' : 'background:#fff;border:1px solid #CDD5DF;color:#4B5565') }; }),
+      onAdd: () => this.setState(st => ({ axles:st.axles.concat(newAxle()), active:st.axles.length, bulk:null })),
+      canRemove: s.axles.length > 1, onRemove: () => this.setState(st => ({ axles:st.axles.filter((_, i) => i !== ai), active:Math.max(0, ai - 1), bulk:null, menu:null })),
+      singleBtn:'border:0;border-right:1px solid #CDD5DF;font-size:12px;font-weight:600;padding:0 12px;cursor:pointer;background:' + (ax.dual ? '#fff' : '#364152') + ';color:' + (ax.dual ? '#697586' : '#fff'),
+      dualBtn:'border:0;font-size:12px;font-weight:600;padding:0 12px;cursor:pointer;background:' + (ax.dual ? '#364152' : '#fff') + ';color:' + (ax.dual ? '#fff' : '#697586'),
+      setSingle: () => this.updAxle(ai, a => { if (!a.dual) return; a.dual = false; ROWS.filter(r => r.tire).forEach(r => { a.vals[r.id].l = a.vals[r.id].l || a.vals[r.id].lo; a.vals[r.id].r = a.vals[r.id].r || a.vals[r.id].ro; a.verd[r.id].l = a.verd[r.id].l || a.verd[r.id].lo; a.verd[r.id].r = a.verd[r.id].r || a.verd[r.id].ro; }); }),
+      setDual: () => this.updAxle(ai, a => { a.dual = true; }),
+      chipStyle:chip(done < vals.length ? 'none' : rv), chipDot:dot(V[done < vals.length ? 'none' : rv].dot, 6),
+      chipText: done < vals.length ? done + ' of ' + vals.length + ' positions' : 'Axle: ' + V[rv].label,
+      bulkNone:!bulk, bulkOn:!!bulk, bulkText: bulk ? s.bulk.text : '', onFieldOk: () => this.markOk('axle'),
+      rows: ROWS.map(r => {
+        const ps = this.posFor(ax, r), l = ps.map(p => ax.verd[r.id][p] || 'none'), d = l.filter(v => v !== 'none').length, w = this.worst(l);
+        const half = ps.length / 2;
+        const rv2 = d < l.length ? 'none' : w;
+        return { name:r.name, unit:r.unit,
+          style: phone ? 'display:flex;flex-direction:column;gap:10px;padding:12px;border-bottom:1px solid #EEF2F6' : 'display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 16px;padding:10px 14px;border-bottom:1px solid #EEF2F6',
+          sidesBox: phone ? 'display:flex;flex-direction:column;gap:10px;width:100%' : 'flex:2 1 460px;min-width:0;display:flex;gap:16px',
+          nameBox: phone ? 'display:flex;align-items:center;gap:8px;flex-wrap:wrap' : 'flex:1 1 200px;min-width:200px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-bottom:7px',
+          rollStyle:chip(rv2) + ';height:20px;font-size:11px;padding:0 8px', rollDot:dot(V[rv2].dot, 6), rollText: d < l.length ? d + '/' + l.length : V[w].label,
+          sides:[ { label:'LEFT', cells:ps.slice(0, half).map(p => this.cell(ai, ax, r, p, phone, false)) }, { label:'RIGHT', cells:ps.slice(half).map(p => this.cell(ai, ax, r, p, phone, true)) } ] };
+      })
+    };
+  }
+
+  cardFor(f, phone, issues) {
+    const s = this.state, mine = issues.filter(i => i.id === f.id), err = s.errors && mine.length > 0;
+    const base = { domId:'card-' + f.id, label:f.label, sub:f.sub, hasRef:!!f.ref, refName:f.ref || '', onOpenRef: () => this.setState({ viewer:f.ref }),
+      cardStyle:'width:100%;max-width:1040px;background:#fff;border-radius:12px;box-shadow:0 1px 2px rgba(11,23,51,0.05);flex:none;border:' + (err ? '1.5px solid #F04438' : '1px solid #E3E8EF'),
+      errShow:err, errText: mine.length === 1 ? mine[0].kind + ' missing' : mine.length + ' items missing',
+      photoLabel:'Add Photo', onPhoto: () => {}, marker:false, noteBtn:true, onShowNote: () => this.setCb(f.id, { noteOpen:true }), onToggleIns: () => {} };
+    if (f.type === 'axle') return Object.assign(base, { isCb:false, isAx:true, noteBtn:false, errText:(mine[0] || {}).where ? this.pendingAxle() + ' positions not inspected' : '' });
+    const c = s.cb[f.id] || {}, v = c.v, u = v && f.fu ? f.fu[v] : null;
+    const ackNeeded = !!(u && u.ack), insOpen = !!u && (ackNeeded || c.insOpen);
+    const noteReq = v === 'mon' || v === 'bad', noteShow = noteReq || c.noteOpen;
+    const ackErr = err && ackNeeded && !c.ack, noteErr = err && noteReq && !(c.note || '').trim();
+    const pillTone = v === 'mon' ? 'background:#FEF0C7;color:#B54708' : 'background:#FEE4E2;color:#B42318';
+    return Object.assign(base, {
+      isCb:true, isAx:false,
+      segStyle:'display:flex;height:' + (phone ? '52px' : '44px') + ';max-width:560px;border-radius:8px;overflow:hidden;background:#fff;border:' + (err && !v ? '1.5px solid #F04438' : '1px solid #CDD5DF'),
+      opts:['ok','mon','bad','na'].map((k, i) => { const on = v === k; return { label:V[k].label, onPick: () => this.pick(f.id, k), dotStyle: k === 'na' ? 'display:none' : dot(on ? '#fff' : V[k].dot, 7),
+        style:'flex:' + (k === 'na' ? '0.7' : '1') + ';border:0;' + (i ? 'border-left:1px solid #E3E8EF;' : '') + 'font-size:13px;font-weight:' + (on ? '700' : '600') + ';cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;background:' + (on ? V[k].on : '#fff') + ';color:' + (on ? '#fff' : '#4B5565') }; }),
+      noteShow, noteReq, note:c.note || '', onNote: e => this.setCb(f.id, { note:e.target.value }), pillStyle:'display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;font-size:11px;font-weight:600;' + pillTone,
+      noteBox:'padding:12px;border-radius:8px;display:flex;flex-direction:column;gap:8px;background:#F8FAFC;border:1px solid ' + (noteErr ? '#F04438' : '#E3E8EF'),
+      noteTa:'min-height:72px;width:100%;padding:9px 10px;border-radius:8px;font-size:' + (phone ? '16px' : '13px') + ';line-height:19px;color:#202939;resize:vertical;box-sizing:border-box;border:1px solid ' + (noteErr ? '#F04438' : '#CDD5DF'),
+      noteBtn:!noteShow,
+      marker: !!u && !ackNeeded && !c.insOpen,
+      onToggleIns: () => this.setCb(f.id, { insOpen:!c.insOpen }),
+      insShow:insOpen, insPill: ackNeeded && !c.ack, insCollapsible: !ackNeeded, insText:u ? u.text : '',
+      insFile:!!(u && u.file), insFileName:u && u.file ? u.file[0] : '', insFileSize:u && u.file ? u.file[1] : '', onOpenIns: () => this.setState({ viewer:u.file[0] }),
+      insAck:ackNeeded, acked:!!c.ack, onAck: e => { e.preventDefault(); this.setCb(f.id, { ack:!c.ack }); },
+      ackRow:'flex:none;display:inline-flex;align-items:center;gap:8px;min-height:' + (phone ? '44px' : '32px') + ';padding:0 4px;cursor:pointer',
+      ackBox:'width:18px;height:18px;flex:none;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;' + (c.ack ? 'background:#257CFF;border:0' : 'background:#fff;border:1.5px solid ' + (ackErr ? '#F04438' : '#CDD5DF')),
+      ackText:'font-size:13px;font-weight:600;color:' + (ackErr ? '#B42318' : '#364152')
+    });
+  }
+
+  renderVals() {
+    const s = this.state, phone = s.device === 'phone', sec = SECTIONS[s.sec], last = s.sec === SECTIONS.length - 1;
+    const issues = this.issues(), segBtn = on => 'border:0;padding:0 14px;font-size:13px;font-weight:600;cursor:pointer;background:' + (on ? '#364152' : '#fff') + ';color:' + (on ? '#fff' : '#697586');
+    const fieldDone = f => f.type === 'axle' ? this.pendingAxle() === 0 : this.cbIssues(f.id).length === 0;
+    const all = SECTIONS.reduce((a, x) => a.concat(x.fields), []), doneCount = all.filter(fieldDone).length;
+    const tile = t => 'width:32px;height:32px;flex:none;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;' + (t === 'bad' ? 'background:#FEE4E2;color:#B42318' : t === 'mon' ? 'background:#FEF0C7;color:#B54708' : 'background:#EEF2F6;color:#4B5565');
+    const secBulk = s.bulk && s.bulk.scope === 'section' && s.bulk.sec === s.sec;
+    const menuKey = s.menu;
+    return {
+      isDesktop:!phone, isPhone:phone, isFill:s.view === 'fill', isDone:s.view === 'done',
+      toDesktop: () => this.setState({ device:'desktop', menu:null }), toPhone: () => this.setState({ device:'phone', menu:null }), deskBtn:segBtn(!phone), phoneBtn:segBtn(phone),
+      onReset: () => this.setState(Object.assign(initial(), { device:s.device })),
+      frameStyle: phone
+        ? 'width:402px;height:844px;flex:none;background:#fff;border:1px solid #CDD5DF;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 12px 24px rgba(11,23,51,0.10)'
+        : 'width:100%;max-width:1440px;height:900px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 1px 2px rgba(11,23,51,0.05)',
+      subbarStyle:'display:flex;align-items:center;gap:12px;flex:none;background:#fff;border-bottom:1px solid #E3E8EF;' + (phone ? 'height:60px;padding:0 14px' : 'height:56px;padding:0 20px'),
+      canvasStyle:'flex:1;min-height:0;overflow:auto;background:#F8FAFC;display:flex;flex-direction:column;align-items:center;gap:14px;box-sizing:border-box;' + (phone ? 'padding:16px 12px 24px' : 'padding:24px 32px'),
+      scrollRef:this.scrollRef,
+      doneCount, totalCount:all.length, progStyle:'height:100%;background:#16B364;border-radius:9999px;width:' + Math.round(doneCount / all.length * 100) + '%',
+      railSections: SECTIONS.map((x, i) => { const on = i === s.sec, d = x.fields.filter(fieldDone).length; return { num:i+1, name:x.name, count:d + '/' + x.fields.length, onGo: () => this.setState({ sec:i, menu:null, out:false }),
+        style:'display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;background:' + (on ? '#E9F5FF' : 'transparent'),
+        numStyle:'display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;font-size:11px;font-weight:600;' + (on ? 'background:#257CFF;color:#fff' : 'background:#EEF2F6;color:#4B5565'),
+        nameStyle:'font-size:13px;font-weight:600;white-space:nowrap;color:' + (on ? '#175CD3' : '#364152'), countStyle:'margin-left:auto;font-size:12px;color:' + (on ? '#175CD3' : '#697586') }; }),
+      secEyebrow:'SECTION ' + (s.sec + 1) + ' OF ' + SECTIONS.length, secName:sec.name, secMeta:sec.fields.length + ' fields · ' + sec.fields.filter(fieldDone).length + ' complete',
+      secBulkNone:!secBulk, secBulkOn:!!secBulk, secBulkText: secBulk ? s.bulk.text : '', onSectionOk: () => this.markOk('section'), onUndo: () => this.undo(),
+      cardsShown: (s.collapsed || {})[s.sec] ? [] : sec.fields.map(f => this.cardFor(FIELDS[f.id], phone, issues)),
+      secCollapsed: !!(s.collapsed || {})[s.sec], secCollapsedText:'Show ' + sec.fields.length + ' fields',
+      secToggleTitle: (s.collapsed || {})[s.sec] ? 'Expand section' : 'Collapse section',
+      secChevron:'transition:transform 140ms ease-out;transform:rotate(' + ((s.collapsed || {})[s.sec] ? '-90deg' : '0deg') + ')',
+      onToggleSec: () => this.setState(st => ({ collapsed:Object.assign({}, st.collapsed, { [st.sec]:!(st.collapsed || {})[st.sec] }), menu:null })),
+      ax: this.axleVals(phone), showTop: !phone && (s.vw || window.innerWidth) >= 1320,
+      outOpen:s.out && issues.length > 0, outTitle: issues.length + ' item' + (issues.length === 1 ? '' : 's') + ' before submitting',
+      outStyle: phone
+        ? 'position:absolute;left:10px;right:10px;bottom:84px;z-index:30;padding:14px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 12px 24px rgba(11,23,51,0.14);display:flex;flex-direction:column;gap:10px'
+        : 'position:absolute;right:24px;bottom:76px;width:440px;z-index:30;padding:14px;box-sizing:border-box;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 12px 24px rgba(11,23,51,0.10),0 4px 8px rgba(11,23,51,0.05);display:flex;flex-direction:column;gap:10px',
+      outItems: issues.map(i => ({ kind:i.kind, where:i.where, tile:tile(i.tone), onGo: () => this.goTo(i) })),
+      onCloseOut: () => this.setState({ out:false }), onToggleOut: () => this.setState(st => ({ out:!st.out })),
+      onGoFirst: () => issues[0] && this.goTo(issues[0]),
+      outCount: issues.length || 0, outBtnLabel: phone ? '' : 'Outstanding',
+      footStyle:'display:flex;align-items:center;gap:10px;flex:none;background:#fff;border-top:1px solid #E3E8EF;' + (phone ? 'padding:12px 12px 20px' : 'padding:12px 24px'),
+      secBtn:'height:40px;padding:0 16px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;font-size:14px;font-weight:600;color:#364152;cursor:pointer;white-space:nowrap',
+      showBack: s.sec > 0, showSave: s.sec === 0 && !phone, onBack: () => this.setState({ sec:s.sec - 1, out:false, menu:null }), onSaveExit: () => {},
+      primaryLabel: last ? (phone ? 'Review & Sign' : 'Submit & Generate Report') : 'Next: ' + SECTIONS[s.sec + 1].name,
+      primaryStyle:'height:40px;padding:0 18px;border:0;border-radius:8px;background:#257CFF;color:#fff;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;' + (phone ? 'flex:1' : ''),
+      onPrimary: () => {
+        if (!last) { this.setState({ sec:s.sec + 1, out:false, menu:null }, () => { if (this.scrollRef.current) this.scrollRef.current.scrollTop = 0; }); return; }
+        if (issues.length) { this.setState({ out:true, errors:true }); return; }
+        this.setState({ view:'done', out:false });
+      },
+      doneText:'The report is on work order S-81 and the inspection is locked. ' + all.length + ' fields, ' + s.axles.length + ' axles.',
+      sheetOpen: phone && !!menuKey, sheetHead:s.menuHead || '', sheetOpts:s.menuOpts || [], closeMenu: () => this.setState({ menu:null }),
+      viewerOpen:!!s.viewer, viewerName:s.viewer || '', onCloseViewer: () => this.setState({ viewer:null })
+    };
+  }
+}
+</script>
+</body>
+</html>
