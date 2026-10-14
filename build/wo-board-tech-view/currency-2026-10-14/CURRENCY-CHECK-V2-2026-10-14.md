@@ -33,3 +33,9 @@ new lead (S4-R8 note, v46). Not proposed: C368149 concurrency (deleted 12 Oct on
 Obsolete); SV-11087 timesheet rules (bugfix release); C368160/62/64 design-only controls (→ PO question 11).
 W-1..W-16 (8 Oct register) NOT folded in: handed to the build verification session on 8 Oct; W-3 and W-13 now answered by
 the spec (design still differs → PO question 10).
+
+## After the check (14 Oct, later)
+- PO sheet shared with Chris Ward (chris.w@shopview.com — Slack profile; NOT chris@shopview.com, which is Chris Amani), edit access.
+- QA lead, verbatim: "Do not touch the test cases created by Vladimir, but yes create new and edit which were created by me
+  even if they are automated." → applying: edit C154648, C368133 (automated), C96965; create 3 new; run 498 union-only.
+  C236975 and C236976 (Vladimir's) stay as they are. Record of the write: `apply/`.
