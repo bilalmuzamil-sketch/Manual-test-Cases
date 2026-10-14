@@ -110,7 +110,8 @@ export const boardCols = (p: Page) => p.evaluate(`[...document.querySelectorAll(
 export async function allBoardCols(p: Page) {
   const seen = new Map<string, any>();
   await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller').scrollLeft = 0`); await p.waitForTimeout(600);
-  for (let i = 0; i < 40; i++) {
+  // 14 Oct 2026: staging's Heavy Duty has ~119+ technicians (≈ 40 000 px of columns); 40 steps of 900 px stopped at ~125 columns
+  for (let i = 0; i < 200; i++) {
     for (const c of await boardCols(p)) if (!seen.has(c.id)) seen.set(c.id, c);
     const moved = await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); const b = h.scrollLeft; h.scrollLeft += 900; return h.scrollLeft !== b; })()`);
     await p.waitForTimeout(400); if (!moved) { for (const c of await boardCols(p)) if (!seen.has(c.id)) seen.set(c.id, c); break; }
