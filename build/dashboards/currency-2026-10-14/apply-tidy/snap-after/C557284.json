@@ -1,0 +1,64 @@
+{
+ "id": 557284,
+ "title": "On a phone, a long date range on a dashboard tile never makes the page scroll sideways",
+ "section_id": 12178,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 3,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1791919993,
+ "updated_by": 1,
+ "updated_on": 1791921322,
+ "estimate": null,
+ "estimate_forecast": null,
+ "suite_id": 1,
+ "display_order": 7,
+ "is_deleted": 0,
+ "is_ai_generated": false,
+ "is_ai_automated": false,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "Signed in as owner/admin with the Reports permission.\nThe browser is phone-sized (about 390 x 844 pixels).\nBrowser storage holds no remembered tile date ranges.",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "Open the Dashboard.",
+   "expected": "The tiles stand in one column, each within the screen width, and the page does not scroll sideways.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "On a tile with a long name (Technician Utilization), open the date pill, click \"Today\", then \"Apply\".",
+   "expected": "The pill shows the full date range (e.g. \"Oct 13, 2026 - Oct 13, 2026\"). When it does not fit beside the tile name it moves onto its own line under the name; it stays inside the tile.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Set \"Today\" the same way on the Revenue tile and try to drag the page left and right.",
+   "expected": "The page does not scroll sideways; every tile is still no wider than the screen.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Change the Technician Utilization tile back to \"This Month\".",
+   "expected": "The pill shows \"This Month\" on the same line as the tile name, and the page still does not scroll sideways.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": [],
+ "version": 2
+}
