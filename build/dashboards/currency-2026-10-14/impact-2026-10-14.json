@@ -1,0 +1,243 @@
+{
+ "source": "PRD v44 vs v42 + decisions after 2026-10-07; snapshots-before (106 cases)",
+ "changes": [
+  {
+   "change": "S8-R5a + S8-N1a (PRD v44, Chris Ward Slack 2026-10-13): table under the expanded chart follows the Technician/Advisor filter; hidden when every technician is deselected",
+   "cases_not_reflecting": [
+    {
+     "case": "C88619",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88619",
+     "title": "Technician filter on the expanded technician charts",
+     "last_edited_by": "Nebojsa Glavinic",
+     "last_edited_on": "2026-10-14",
+     "created_by": "us (Bilal)",
+     "automation": "Automated",
+     "why": "checks only chart lines/legend after keeping two technicians; never checks the table under the chart"
+    },
+    {
+     "case": "C88620",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88620",
+     "title": "Unticking every technician hides the technician chart",
+     "last_edited_by": "Nebojsa Glavinic",
+     "last_edited_on": "2026-10-14",
+     "created_by": "us (Bilal)",
+     "automation": "Automated",
+     "why": "checks only that the chart is hidden; silent on the table"
+    },
+    {
+     "case": "C351717",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/351717",
+     "title": "Advisor filter on the expanded Billing Efficiency chart",
+     "last_edited_by": "Nebojsa Glavinic",
+     "last_edited_on": "2026-10-14",
+     "created_by": "us (Bilal)",
+     "automation": "Pending automation",
+     "why": "checks only the chart line for one advisor; silent on the Advisor Analysis table"
+    }
+   ],
+   "cases_already_reflecting": [
+    {
+     "case": "C499827",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/499827",
+     "title": "Technician filter on the expanded Technician Efficiency chart offers the technicians in its table, including non-billable ones",
+     "last_edited_by": "Vladimir Tomovic",
+     "last_edited_on": "2026-10-13",
+     "created_by": "Vladimir Tomovic",
+     "automation": "Automated",
+     "why": "Technician Efficiency only: table narrows to the selection and chart+table hidden when all deselected"
+    }
+   ],
+   "new_tests_needed": [
+    "Advisor filter narrows the Advisor Analysis table to the chosen advisor; cleared filter lists every advisor (S8-R5a)",
+    "Technician Utilization table follows the Technician filter, and is hidden with the chart when every technician is unticked (S8-R5a, S8-N1a) \u2014 C499827 covers Technician Efficiency only"
+   ]
+  },
+  {
+   "change": "S4-R11a (PRD v43/v44; Chris Ward SV-11076 2026-10-09): on Revenue and count tiles a no-sales bucket is a point at 0; only a ratio tile \"-\" leaves a gap",
+   "cases_not_reflecting": [],
+   "cases_already_reflecting": [
+    {
+     "case": "C351709",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/351709",
+     "title": "Revenue with sales on one day only still draws its trend line",
+     "last_edited_by": "Nebojsa Glavinic",
+     "last_edited_on": "2026-10-14",
+     "created_by": "us (Bilal)",
+     "automation": "Pending automation",
+     "why": "Revenue with sales on one day: line flat at zero on other days"
+    },
+    {
+     "case": "C351715",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/351715",
+     "title": "Sales by Customer with sales in one month only still draws its trend line",
+     "last_edited_by": "Nebojsa Glavinic",
+     "last_edited_on": "2026-10-14",
+     "created_by": "us (Bilal)",
+     "automation": "Pending automation",
+     "why": "Sales by Customer one month: flat at zero for eleven months"
+    },
+    {
+     "case": "C88606",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88606",
+     "title": "The small trend line uses days, weeks, months or quarters by range length",
+     "last_edited_by": "us (Bilal)",
+     "last_edited_on": "2026-10-13",
+     "created_by": "us (Bilal)",
+     "automation": "Automated",
+     "why": "gap only on the ratio (Billing Efficiency) day with no clocked time \u2014 consistent"
+    },
+    {
+     "case": "C88647",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88647",
+     "title": "Trend line splits the range by day, week, month or quarter correctly",
+     "last_edited_by": "us (Bilal)",
+     "last_edited_on": "2026-10-13",
+     "created_by": "us (Bilal)",
+     "automation": "Manual/none",
+     "why": "gap only on the day with no clocked time \u2014 consistent"
+    }
+   ],
+   "new_tests_needed": [
+    "Revenue trend line with two sales days separated by no-sales days is one continuous line through $0 (the SV-11076 comment 78345 scenario); today only the one-sales-day case (C351709) exists"
+   ]
+  },
+  {
+   "change": "Release note published (Confluence 931069964, Chris Ward, 2026-10-10) \u2014 wording differs from the tech-plan-only expectation in C88632",
+   "cases_not_reflecting": [
+    {
+     "case": "C88632",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88632",
+     "title": "Sales and Advisor Analysis reports drop a voided invoice and keep its re-invoice",
+     "last_edited_by": "us (Bilal)",
+     "last_edited_on": "2026-10-12",
+     "created_by": "us (Bilal)",
+     "automation": "Manual/none",
+     "why": "Step 14 expects the note to mention that a voided-then-reinvoiced figure can move up; that comes only from tech plan NFR-010 (developer). The published note says: Sales totals can drop, voided invoices no longer counted, invoices with no customer now included, Service Advisor Analysis changes the same way, walk-in sales count. No void-then-reinvoice line. Step 13 says sources do not say where notes are published \u2014 they are now on Confluence 931069964 (draft for release 26.43.0)."
+    }
+   ],
+   "new_tests_needed": []
+  }
+ ],
+ "observations_not_from_a_source_change": [
+  {
+   "what": "Setup text says \"(the dashboard remembers your choices[ in this browser])\" after setting date pills back \u2014 contradicts S7-R8 (unchanged since v42: ranges are not remembered)",
+   "cases": [
+    {
+     "case": "C88604",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88604",
+     "title": "Revenue and Billing Efficiency tiles show the right headline and line",
+     "last_edited_by": "Nebojsa Glavinic",
+     "last_edited_on": "2026-10-09",
+     "created_by": "us (Bilal)",
+     "automation": "Automated"
+    },
+    {
+     "case": "C88606",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88606",
+     "title": "The small trend line uses days, weeks, months or quarters by range length",
+     "last_edited_by": "us (Bilal)",
+     "last_edited_on": "2026-10-13",
+     "created_by": "us (Bilal)",
+     "automation": "Automated"
+    },
+    {
+     "case": "C88607",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88607",
+     "title": "KPI tiles show exact figures with no change indicator",
+     "last_edited_by": "Nebojsa Glavinic",
+     "last_edited_on": "2026-10-09",
+     "created_by": "us (Bilal)",
+     "automation": "Automated"
+    },
+    {
+     "case": "C88612",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88612",
+     "title": "View details opens each tile's own chart and table",
+     "last_edited_by": "us (Bilal)",
+     "last_edited_on": "2026-10-09",
+     "created_by": "us (Bilal)",
+     "automation": "Automated"
+    },
+    {
+     "case": "C88614",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88614",
+     "title": "Only one tile's details are open at a time",
+     "last_edited_by": "Nebojsa Glavinic",
+     "last_edited_on": "2026-10-09",
+     "created_by": "us (Bilal)",
+     "automation": "Automated"
+    },
+    {
+     "case": "C88616",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88616",
+     "title": "On a small screen tiles show View Report instead of View details",
+     "last_edited_by": "Nebojsa Glavinic",
+     "last_edited_on": "2026-10-09",
+     "created_by": "us (Bilal)",
+     "automation": "Automated"
+    },
+    {
+     "case": "C88617",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88617",
+     "title": "A tile's date range pill offers nine presets and changes only that tile",
+     "last_edited_by": "us (Bilal)",
+     "last_edited_on": "2026-10-09",
+     "created_by": "us (Bilal)",
+     "automation": "Automated"
+    },
+    {
+     "case": "C88623",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88623",
+     "title": "Each tile's report link opens its matching report on the tile's dates",
+     "last_edited_by": "us (Bilal)",
+     "last_edited_on": "2026-10-09",
+     "created_by": "us (Bilal)",
+     "automation": "Automated"
+    },
+    {
+     "case": "C88627",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88627",
+     "title": "Expanded KPI tables show the expected columns",
+     "last_edited_by": "Nebojsa Glavinic",
+     "last_edited_on": "2026-10-09",
+     "created_by": "us (Bilal)",
+     "automation": "Automated"
+    },
+    {
+     "case": "C88628",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/88628",
+     "title": "Expanded Sales by Customer and At Risk tables show the expected columns",
+     "last_edited_by": "Nebojsa Glavinic",
+     "last_edited_on": "2026-10-09",
+     "created_by": "us (Bilal)",
+     "automation": "Automated"
+    }
+   ]
+  },
+  {
+   "what": "Foreign cases (Vladimir Tomovic) asserting behaviour with no PRD sentence found",
+   "cases": [
+    {
+     "case": "C540783",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/540783",
+     "title": "At Risk customer's 12-month revenue link opens the Sales report for that customer",
+     "last_edited_by": "Vladimir Tomovic",
+     "last_edited_on": "2026-10-13",
+     "created_by": "Vladimir Tomovic",
+     "automation": "Automated",
+     "why": "At Risk table 12-month revenue is a link that opens the Sales report filtered to the customer \u2014 no PRD/release-note/Jira/Slack statement found"
+    },
+    {
+     "case": "C557284",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/557284",
+     "title": "On a phone, a long date range on a dashboard tile never makes the page scroll sideways",
+     "last_edited_by": "Vladimir Tomovic",
+     "last_edited_on": "2026-10-13",
+     "created_by": "Vladimir Tomovic",
+     "automation": "Automated",
+     "why": "uses a \"Today\" option in the tile date pill; PRD S7-R2 and the release notes list nine presets only"
+    }
+   ]
+  }
+ ]
+}
