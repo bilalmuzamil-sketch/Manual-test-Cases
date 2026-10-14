@@ -19,3 +19,15 @@ profile menu → select_location: C96912 C96923), `seed-staff.mts` first (Aaron 
 the long-named technician: C96926 C96930 C96938 C368161). Still to look at: C368130 (needs a location with no technicians —
 "ZZAUTOTEST Empty Shop" exists only on the QA branch), C96937 (Service Advisor set-up), C96936 C96929 (empty readings), C96927
 C368125 C368127 (partial readings), C96913 C154884 (data order).
+
+## Wave 2 judged (14 Oct 19:45 UTC) — `judge/wave2.json`: 12 Passed, 17 to re-run, 0 Failed, 1 doubt (C96973)
+- **Fix shipped (case outcome 3 — tell the QA lead):** C368134, C368136, C154889 — the "what you should see today" note says the
+  shift question does not appear; on staging it appears and behaves as the expected results say.
+- **C96973 — for the QA lead:** after reassigning the only card away with Assigned to me on, the board shows the filter empty
+  state ("No work orders match these filters") instead of your column with 0. The PRD's newer S1-N1/S1-N1a (v43) say an empty
+  filtered result shows that empty state; the case says "your column count goes from 1 to 0". Case vs newer source — report,
+  Expected untouched (114).
+- Re-run: C96943 C154886 C368132 (s3-batchB crashed) · C96950 C368131 C96967 C96970 (missing staff — seed-staff.mts first) ·
+  C96957 C96959 (pin limit full from leftover pins — clear pins first: WOB_PIN_NAMES=" ") · C96961 C96962 C368140 (off screen —
+  pin) · C96956 C96966 (partial readings) · C368133 C96965 (covered by stg6.mts on the current build) · C154888 (ran at 00:23 shop
+  time — re-run away from shop midnight).

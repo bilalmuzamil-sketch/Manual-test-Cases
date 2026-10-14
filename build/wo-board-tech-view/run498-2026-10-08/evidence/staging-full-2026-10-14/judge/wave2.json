@@ -1,0 +1,224 @@
+{
+ "results": {
+  "C96969": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Same Lead Again: S2-35468 led by Esther Howard, with two lines that have no technician of their own.",
+    "Board View: More actions > Reassign lead technician, picked Esther Howard (the current lead) and confirmed.",
+    "No \"Lead technician updated\" message or any other reassignment message appeared.",
+    "Nothing changed: Lead Technician is still Esther Howard, both lines still have no technician (they read Unassigned), and the change history gained no new entry.",
+    "As a check, a real lead change on the same work order does add a \"Lead tech changed\" entry to its history."
+   ],
+   "not_observed": "The work order's lead, lines and history were read from the saved work order (the same details its page shows), not by opening the page on screen.",
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368163": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Dialog Search: S2-35470 led by Esther Howard.",
+    "The Reassign lead technician dialog names the work order under its title, \"S2-35470 · ZZAUTOTEST F1 Dialog Search\", and marks Esther Howard \"Current\" with a check mark. The list offers Unassigned and the location's eligible technicians (120 choices).",
+    "Typing \"Ral\" in the \"Search technicians\" box left only names containing it: Ralph Edwards and Gerald Pitts (which also contains \"ral\"), with Unassigned kept at the top. Esther Howard and the others disappeared. Lower-case \"ral\" gave the same list.",
+    "Typing \"Olive\" (Olive Office, who has the Office role; this staging site has no \"Owen Office\") and typing \"zzqx\" each listed no technician, and the dialog read: No technicians match \"Olive\" / No technicians match \"zzqx\".",
+    "Clearing the box brought back the whole list. Cancel changed nothing: no message, lead still Esther Howard. Reopened, the search box was empty.",
+    "Tech View, using the row's More actions, behaved exactly the same, and the row stayed with Esther Howard."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368163-board.png"
+   ]
+  },
+  "C96958": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Lead Notifications: S2-35474.",
+    "Before anything, the Notifications pages of Esther Howard, Ralph Edwards and Dana Ortiz each read \"There are no notifications\".",
+    "Work order page, Lead Technician changed Esther Howard to Ralph Edwards: neither of them received a notification.",
+    "Board View, card dragged from Ralph Edwards to Dana Ortiz (\"Lead technician updated\"): neither received a notification.",
+    "Tech View, More actions > Reassign lead technician, back to Esther Howard (\"Lead technician updated\"): neither Dana Ortiz nor Esther Howard received a notification.",
+    "So the board, the Tech View and the work order page all produce the same result: no notification, as the product owner says."
+   ],
+   "not_observed": "Email was not checked: the test technicians' addresses are not real mailboxes. Only the in-app notifications were checked.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96958-wo-page.png"
+   ]
+  },
+  "C96960": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "A work order with six lines led by Esther Howard: Line 1 with no technician, Line 2 following the lead, Line 3 given to Dana Ortiz, Line 4 Complete, Line 5 with logged time, Line 6 with Esther Howard's clock running.",
+    "Board View: the card was dragged from Esther Howard's column to Ralph Edwards' column (Keep shifts), and \"Lead technician updated\" appeared.",
+    "Line 1 and Line 2 now show Ralph Edwards: exactly 2 of the 6 lines moved.",
+    "Line 3 still shows Dana Ortiz; Lines 4, 5 and 6 still show Esther Howard.",
+    "Esther Howard's clock on Line 6 is still running (the same clock entry as before the drag)."
+   ],
+   "not_observed": "The lines' technicians were read from the saved work order (the same details its Lines tab shows), not by opening the Lines tab on screen.",
+   "todo": "None.",
+   "pictures": []
+  },
+  "C96963": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Invoiced Paid Locked: S2-35480 (Invoiced) and S2-35481 (Paid) led by Esther Howard, S2-35482 (Invoiced, no lead), S2-35483 (Declined), S2-35484 (Complete), S2-35479 (Approved).",
+    "Board View and Tech View: dragging S2-35480 or S2-35481 to Ralph Edwards or to Unassigned did not move them; they stayed with Esther Howard, who is still their lead. S2-35482 could not be moved out of Unassigned.",
+    "S2-35480 and S2-35481 could be moved within Esther Howard's column and kept their new place after a reload; S2-35482 could be reordered inside Unassigned.",
+    "The Declined S2-35483 and the Complete S2-35484 moved to Ralph Edwards normally, with \"Lead technician updated\" (and back to Esther Howard in Tech View the same way).",
+    "On the work order page of S2-35480, Lead technician shows Esther Howard as plain text, with no way to change it.",
+    "Server refusal not checked by hand. (A change sent outside the screens was also refused, with \"The lead technician can't be changed once a work order is Invoiced or Paid.\")"
+   ],
+   "not_observed": "In Tech View, reordering S2-35482 inside Unassigned was not repeated; it was checked in Board View only.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96963-BV-W2-inv-Ralph-after.png",
+    "evidence/staging-full-2026-10-14/C96963-BV-W2-inv-reorder.png",
+    "evidence/staging-full-2026-10-14/C96963-wo-page.png"
+   ]
+  },
+  "C96972": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Invoiced Elsewhere: S2-35485 led by Esther Howard; the board showed it as Complete.",
+    "It was invoiced elsewhere; the board, not reloaded, still showed Complete.",
+    "Dragging it to Ralph Edwards' column was refused: the card went back to Esther Howard's column.",
+    "The alert read: \"Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+    "After a reload the card is in Esther Howard's column and she is still the lead."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96972-alert.png"
+   ]
+  },
+  "C96964": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Locked Lead Tooltip: S2-35486 (Invoiced) and S2-35487 (Paid), both led by Esther Howard.",
+    "In Board View each card carries a lock icon next to its number, labelled \"The lead technician can't be changed once a work order is Invoiced or Paid.\"; in Tech View each row carries the same lock icon. Hovering the lock showed no extra tooltip.",
+    "On both cards and both rows, More actions shows Reassign lead technician disabled.",
+    "Hovering it shows the tooltip: \"The lead technician can't be changed once a work order is Invoiced or Paid.\""
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96964-BoardView-WO-1-menu.png",
+    "evidence/staging-full-2026-10-14/C96964-BoardView-WO-1-lock.png",
+    "evidence/staging-full-2026-10-14/C96964-TechView-WO-2-menu.png"
+   ]
+  },
+  "C368134": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Prompt Wording: S2-35488 led by Esther Howard, who has a shift for the whole work order. The card was dragged to Ralph Edwards' column.",
+    "The question's title reads: \"Clear Esther Howard's scheduled shifts?\"",
+    "Its text reads: \"Esther Howard has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change.\"",
+    "Its three buttons read Cancel, Keep Shifts and Clear Shifts, plus a close (X). On screen \"Shifts\" has a capital S; capital letters alone are not a word difference.",
+    "After Keep shifts: \"Lead technician updated\", Ralph Edwards is the lead and Esther Howard's shift is still on the Schedule.",
+    "No-name title not checked by hand.",
+    "This is the expected behaviour rather than the \"what you should see today\" note, so the change has shipped: tell the QA lead."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368134-prompt.png"
+   ]
+  },
+  "C368135": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Prompt Cancel: led by Esther Howard, who has a whole-work-order shift tomorrow 8:00-12:00.",
+    "Board View: after Cancel, after the close (X) and after Escape, the question closed, the card went back to Esther Howard's column and no \"Lead technician updated\" message appeared.",
+    "Clicking outside the question left it open, which the case says is expected.",
+    "Through More actions > Reassign lead technician > Ralph Edwards > confirm, Cancel in the question went back to the Reassign lead technician dialog with Ralph Edwards still chosen.",
+    "In the end the lead is still Esther Howard and her 8:00-12:00 shift tomorrow is still on the Schedule.",
+    "Tech View behaved exactly the same way."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368135-board-dialog-after-cancel.png",
+    "evidence/staging-full-2026-10-14/C368135-tech-dialog-after-cancel.png"
+   ]
+  },
+  "C368136": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Prompt Where: led by Esther Howard, who has a whole-work-order shift tomorrow 8:00-12:00.",
+    "The question opened 4 times: Board View drag, Board View Reassign dialog, Tech View drag and Tech View Reassign dialog (Keep shifts each time).",
+    "Changing Lead Technician on the work order page (to Ralph Edwards) did not show the question.",
+    "List rows offer no way to change the lead, so no question appears there.",
+    "Esther Howard's 8:00-12:00 shift tomorrow is still on the Schedule.",
+    "This is the expected behaviour rather than the \"what you should see today\" note, so the change has shipped: tell the QA lead."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368136-wo-page.png"
+   ]
+  },
+  "C154889": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Remove Lead Prompt: S2-35491 and S2-35492 led by Esther Howard, who has whole-work-order shifts tomorrow 8:00-12:00.",
+    "Dragging S2-35491 to the Unassigned column opened the question \"Clear Esther Howard's scheduled shifts?\" with Cancel, Keep shifts and Clear shifts (plus a close X).",
+    "More actions > Reassign lead technician > Unassigned > confirm on S2-35492 opened the same question.",
+    "After Keep shifts both work orders have no lead (they sit in Unassigned) and Esther Howard's shifts on both are still on the Schedule.",
+    "This is the expected behaviour rather than the \"what you should see today\" note, so the change has shipped: tell the QA lead."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C154890": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Clear Fails: S2-35495 led by Esther Howard, who has a shift tomorrow 8:00-12:00.",
+    "The card was dragged to Ralph Edwards' column and the question opened. Saving was then made to fail, and Clear shifts was clicked.",
+    "The alert read \"Failed to update lead technician, please try again.\"",
+    "The card went back to Esther Howard's column. After reconnecting she is still the lead and her 8:00-12:00 shift tomorrow is still on the Schedule: nothing was half done.",
+    "Clearing-only failure not checked by hand."
+   ],
+   "not_observed": "The save was made to fail by having the server refuse it, not by switching the network off.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C154890-after-failed-save.png"
+   ]
+  }
+ },
+ "redo": {
+  "C96943": "The script stopped before any check: a view-only staff member it needs does not exist on staging. Nothing was read.",
+  "C154886": "The script stopped before any check: a view-only staff member it needs does not exist on staging. Nothing was read.",
+  "C368132": "The script stopped before any check: a view-only staff member it needs does not exist on staging. Nothing was read.",
+  "C96950": "Only the first half ran: for your own user, Jenny Wilson's empty column and the empty Unassigned column each read \"Drag a work order here to assign it\". The script then stopped because the view-only second user does not exist on staging, so what a view-only user sees was not read.",
+  "C368131": "The script stopped at the start: a staff member its setup needs does not exist on staging. Nothing was read.",
+  "C96956": "Partly read: the dialog offered Reassign lead technician and listed Unassigned plus 120 choices including Esther Howard, Ralph Edwards and Jenny Wilson, and not Olive Office, Tim Clockuser, Ina Active or Nick Noclock. Picking Ralph Edwards gave \"Lead technician updated\" with the card in his column; picking Unassigned gave \"Lead technician removed\" with the card in Unassigned; Cancel changed nothing. Not read: the Lead Technician box on the work order page (reading empty), the Tech View repeat of the dialog, and whether \"Ella Elsewhere\" (the other-location technician) exists on staging.",
+  "C96957": "The script could not pin Ralph Edwards to put the two columns side by side: the pin control was disabled because three technicians were already pinned (pins left from earlier checks). Nothing was dragged.",
+  "C96959": "Before the change the headers read Esther Howard 3, Ralph Edwards 1, Unassigned 0. The script then stopped for the same reason as C96957: the pin limit was already reached. Clear the old pins and re-run.",
+  "C96967": "The script stopped at the start: the view-only staff member (Vera Viewonly) does not exist on staging.",
+  "C96970": "The script stopped at the start: a staff member its setup needs does not exist on staging.",
+  "C96961": "The six-line work order was made, but the script could not find its card on the board (Esther Howard's column was not on screen), so the lead was never removed.",
+  "C96962": "The script could not find the work order's card on the board (the target column was off screen), so no lead change was made and no history was read.",
+  "C368140": "The dialog gave \"Lead technician updated\", and the lines came out as expected: Line 1 now Ralph Edwards, Line 2 still Dana Ortiz, Line 3 (Complete) still Unassigned. But whether the card moved into Ralph Edwards' column was not read (his column was not on screen), so the first expected point was not observed.",
+  "C96966": "The shift moves, shortening and handover to Dana Ortiz left the lead as Esther Howard and the status In Progress; after the board drag the lead became Ralph Edwards, the status stayed In Progress, the work order's total time was unchanged (18) and Esther Howard's clock was still running. Not read: the line's own Actual hours (reading empty) and any locked entry. Also, the three Schedule changes were made with the same save the Schedule uses, not by dragging on the Schedule screen.",
+  "C368133": "Setup was wrong: the shifts on these six work orders (left over from an earlier run) belong to no technician, so on the Schedule they sit as Unassigned rather than as Esther Howard's. With no shift of the old lead, no question opening on any of the six proves nothing. Re-seed with Esther Howard's shifts in the Service department.",
+  "C96965": "Setup was wrong in the same way as C368133: the shifts on these work orders (left over from an earlier run) belong to no technician, so no question opened and the expected effects of Clear shifts / Keep shifts could not be seen. Re-seed with real shifts for Esther Howard and Dana Ortiz.",
+  "C154888": "The check ran just after midnight shop time (00:23). The shift meant to be under way was booked for \"today\" at 23:15, which was nearly a day ahead, not an hour ago. So it was a future shift and was rightly removed, and trimming a running shift was never tested. Yesterday's 8:00-12:00 shift stayed and tomorrow's was removed, as expected. Re-run away from midnight, with the running shift starting an hour before now."
+ },
+ "failed": {},
+ "doubt": {
+  "C96973": "With Assigned to me on, only my own column (Admin ShopView, 1) was shown. The Reassign dialog offered Ralph Edwards and Jenny Wilson although their columns were not on screen. After picking Ralph Edwards: \"Lead technician updated\", and the work order disappeared from the board without a reload. The doubt: instead of my column staying with a count of 0, as the case words it (\"your column count goes from 1 to 0\"), the whole board switched to \"No work orders match these filters / Try removing a filter to widen your results / Clear all filters\" with no columns. Other cases say other rules apply when nothing matches the filters, so this may be correct. The QA lead should decide whether the empty-results screen satisfies the case. Also, the case names Dana Ortiz as the second outside technician; the script checked Jenny Wilson."
+ }
+}
