@@ -4,7 +4,7 @@ Run as **V2** (QA lead's choice). **No TestRail write.** Skill: `build/skills/22
 Owner (QA lead, 14 Oct): "For this testing suite: I own ALL the test cases as it is mainly my Testing Suite. No matter what
 Vladimir comments in the stories, I have to make sure that all the test cases are in good shape and current."
 
-## Deliverables (Google Sheets, read back: 249 of 249 filled cells as written — QA 164, PO 67 + headers/titles)
+## Deliverables (Google Sheets, read back: 231 of 231 filled cells as written — QA 164, PO 67)
 - **QA file:** "WO Board and Tech View Feature Squad – Test cases with changed behaviour – for Bilal Muzamil (14 Oct 2026)"
   https://docs.google.com/spreadsheets/d/16BP5SASXHUGsGZAXMdJ9Efy8Z8MDJfnHmGORY2b3x6c/edit
   Read me · Test cases to update (5) · New test cases needed (3) · Need product decision first (6).
