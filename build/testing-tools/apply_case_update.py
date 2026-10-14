@@ -169,6 +169,8 @@ if "--apply" in sys.argv:
         c = api(f"get_case/{cid}")
         if c["created_by"] != 3 or c["updated_on"] != live[cid]["updated_on"] or c.get("updated_by") != 3:
             L(op="skip", case=f"C{cid}", why="changed since the 13 Oct snapshot or not ours"); continue
+        if all((c.get(x) or "") == v for x, v in pay.items()):   # re-read and found right: nothing to write
+            L(op="unchanged", case=f"C{cid}", why=p.get("change_summary", "")); continue
         json.dump(c, open(f"{H}/applied/C{cid}-before.json", "w"), indent=1)
         api(f"update_case/{cid}", pay); a = api(f"get_case/{cid}")
         json.dump(a, open(f"{H}/applied/C{cid}-after.json", "w"), indent=1)
