@@ -1,0 +1,24 @@
+# Price/Category: setup docs of 9 Oct replaced on 14 Oct (for deleting by hand; the QA lead said 14 Oct to ignore this item)
+
+- https://docs.google.com/document/d/12F-lenMyNWh-Ha-QhJcAUQBJ-XH_Vbz_dLhvg6iVUNQ/edit
+- https://docs.google.com/document/d/12pV1ryDU6FqVjOAVZq1TZEaB22g4cuL3M8QM-rTwfM8/edit
+- https://docs.google.com/document/d/13Dt3OCToZ6j0F2Il4y9JLdAdqEtMJhj0wWRwcj7aA-c/edit
+- https://docs.google.com/document/d/16UF0hiSoi_dfT3RruyNt7Eu3KKddHqN6b5t3GCVygAM/edit
+- https://docs.google.com/document/d/17chYG5_uTl9-acfB8RpgTdQfrYLSUNGPlxNsUGiIhQY/edit
+- https://docs.google.com/document/d/17fwR1RThhLMJyxXOlq7RiDzzCm5f67ro9wHDZnCSU5s/edit
+- https://docs.google.com/document/d/19G9WnYoFYzxoCYfc8Pkjk12oP6mTNnu-Lceh9rTq_Rg/edit
+- https://docs.google.com/document/d/1Bo0ZJqlIa5RN1zxRah52ndiivUM9Drud08L3mxNpH-s/edit
+- https://docs.google.com/document/d/1BvbloXnhKgEYa6jsCmOAbWKFMVt4FfatUNmfC9ogEEo/edit
+- https://docs.google.com/document/d/1EKPVLjMC93mJgtey5su8yJVakjGQx1_iht0I5cVtnTo/edit
+- https://docs.google.com/document/d/1N5Vnp37KkvSz1Fop5Ukc2IrsE4ol0Qd3XZVm6q_Y8C8/edit
+- https://docs.google.com/document/d/1QmFpJE6cGrbeyEq1anyECNuGn0isTgKSTIo6IiCBgbs/edit
+- https://docs.google.com/document/d/1Rnd6navUvh0t_sgJqd3HqAnn1c2ThjDonIiNwG-6s8E/edit
+- https://docs.google.com/document/d/1UKLaQpVHwCPG9CT9DESQtJrsLxkT9zZgimsiUi66j70/edit
+- https://docs.google.com/document/d/1UWOm91mAj5O9jfplbF-7yrBzC2Qraa9_ICw34jKDjPQ/edit
+- https://docs.google.com/document/d/1VD049tU_1hyYUcM9Jw6Tofklj2mIUzD_E5_L6IA7Lh8/edit
+- https://docs.google.com/document/d/1jE3UokXtxfMeZGDw9g4AKbDrQaa5hn5WXU-iiItidn0/edit
+- https://docs.google.com/document/d/1lEDOdZhH1UcG5-knIJRCBTSZ9x2ljKHTQ4ffVs9u3T8/edit
+- https://docs.google.com/document/d/1lGFPtUFJdnZyoOj7GVvAPz_20632KRU_2utGHhclmMI/edit
+- https://docs.google.com/document/d/1mTpqug6JOnJAl2Osg6Mv-tGDSREZRctkw0XjVFQu7Ik/edit
+- https://docs.google.com/document/d/1nziDcIvfDJXf9zmOXT4NDO3ZS9QOnsodfhmHRBGFkz8/edit
+- https://docs.google.com/document/d/1o1BPXbbFTBZljo4801KJvfweRZIETFSq2BahBNLEPVk/edit
