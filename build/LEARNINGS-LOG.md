@@ -348,3 +348,11 @@ nothing. `WOB_PIN_NAMES="Ayesha Khan,…"` pins them at sign-in (session.mts) so
 (3) Judging ~250 readings: a helper agent per wave with strict rules (empty reading / script error = re-run, never Failed;
 Failed needs quoted evidence and a ruled-out script fault) found the redeploy and every script-side cause in one pass.
 #staging #build #rerun #judging → Rules 101, 104, 126
+
+## L0336 — 2026-10-14 — Two staging timing/state traps: leftover pins, and shop midnight under Asia/Karachi
+(1) **Pins are per user and capped at 3.** Checks that pin technicians leave them pinned; the next check that needs to pin
+someone finds the limit full and its pin silently does nothing (C96957, C96959). Start such scripts with the pins cleared
+(`WOB_PIN_NAMES=" "` empties the list at sign-in) or the named ones pinned. (2) **With the shop on Asia/Karachi (Rule 125),
+19:00 UTC is midnight shop time.** A script that books a shift "under way now" from the shop's date can put it on the wrong
+day after 19:00 UTC (C154888 at 00:23 shop time booked 23:15 the next evening — a future shift). Run the running-shift checks
+between 04:00 and 18:00 UTC, or book with the shop's current date AND time. #staging #pins #timezone → Rule 125, L0322
