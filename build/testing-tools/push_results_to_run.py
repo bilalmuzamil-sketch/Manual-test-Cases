@@ -235,6 +235,12 @@ def main():
                 if a.dry_run:
                     print('  [dry-run] %s result %d <- %s' % (cid, rows[0]['id'], pth)); continue
                 print('  %s result %d <- %s: %s' % (cid, rows[0]['id'], pth, attach(rows[0]['id'], pth)[0]))
+            if not a.dry_run:
+                # read back: get_attachments_for_test lists each attachment TWICE (same id) — count distinct ids on this result
+                s2, ra = t.get('get_attachments_for_test/%d' % tid)
+                ra = ra.get('attachments', ra) if isinstance(ra, dict) else ra
+                got = {x['id'] for x in (ra if isinstance(ra, list) else []) if x.get('entity_id') == rows[0]['id']}
+                print('  %s read back: %d picture(s) on result %d (expected at least %d)' % (cid, len(got), rows[0]['id'], len(r['pictures'])))
         return
 
     # --- gate: Rule 7, no bare status on a Failed/Blocked result

@@ -81,3 +81,5 @@ the paragraphs collapsed.** Same discipline as §J's served-page container scan.
 QA lead *"Do you want the annotated screenshots added with the result comments?"*, then
 `push_results_to_run.py … --screenshots yes` (writes, then `add_attachment_to_result` per picture) or `--screenshots no`.
 No answer ⇒ the tool refuses. Results already in the run: `--attach-only --screenshots yes` (latest result of each case).
+Read-back of pictures: `get_attachments_for_result` does NOT exist (400 "Unknown method"); use
+`get_attachments_for_test/<test id>` and count DISTINCT ids whose `entity_id` is the result id — the list shows each one twice.
