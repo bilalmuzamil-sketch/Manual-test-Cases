@@ -65,3 +65,15 @@ technician tiles with no data (D-11) · At Risk revenue measure (D-12) · At Ris
   first-column read-back matches row by row); "Need product decision first" got column F "Answered by Chris (14 Oct)".
 - PO sheet: question 16 added as a pink row (QA lead: "Yes add and make the row pink") — expanded Revenue chart with no sales.
 - Bug facts for the ticket session: legend " · avg" vs S9-R10, owning story SV-9581, no existing ticket.
+
+## Sheet for Nebojsa and Vladimir (14 Oct 2026, evening)
+- QA lead: "give me a new sheet for Nebojsa and Vladimir to tell them about the behavioral changes in their test cases that
+  need to be updated and retested" → then "keep the same sheet … simplest for them to take action on" → "just One tab".
+- "Dashboard Feature Squad – Test cases to update and retest after Chris's answers – for Nebojsa Glavinic and Vladimir
+  Tomovic (14 Oct 2026)" https://docs.google.com/spreadsheets/d/1NdmC6fntiEctsxH3CzmnJWVKVI7glfqRND50Kh6V8Uo/edit
+  — one tab "Update and retest": 6 rows (C88619, C88620, C351717, C88628, C351714, C351708 — all last updated by Nebojsa;
+  live text re-checked unchanged at 17:00 UTC), exact new step/expected text, why + spec-change link, Done tick box.
+  Read back: all 66 cells as written. Not shared yet. Vladimir's C540783 left out (its case text is still correct; only its
+  automated script may use the removed "Inactive for" box — tell him separately if wanted).
+- Our six with behaviour changes (C88632, C351723, C351734, C88606, C88647, C351729) + 17 new tests: being written to
+  TestRail (record `apply/`).

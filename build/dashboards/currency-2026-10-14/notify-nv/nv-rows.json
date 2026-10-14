@@ -1,0 +1,136 @@
+{
+ "H": [
+  "Test case",
+  "Test case title",
+  "Automated?",
+  "What changed",
+  "What a tester now sees differently",
+  "Where this comes from, and when it changed",
+  "Expected behaviour before",
+  "Expected behaviour now",
+  "Steps before",
+  "Steps now",
+  "Note",
+  "Link to the spec"
+ ],
+ "rows": [
+  [
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/88619\",\"C88619\")",
+   "Technician filter on the expanded technician charts",
+   "Yes (automated)",
+   "The table under a technician chart must now follow the Technician filter too.",
+   "After keeping two technicians, the table under the chart lists only those two. Before, only the chart narrowed.",
+   "Dashboard spec, version 44, Story 8 (rules S8-R5a and S8-N1a), saved on 13 Oct 2026 (13:37 UTC) by Chris Ward with the note \"the table follows the chart filter (Ayesha)\". The spec's change log, filled in on 14 Oct (version 46), lists it under 2026-10-13. Page change: https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=788430850&selectedPageVersions=43&selectedPageVersions=44. Before that (version 42, 7 Oct) the spec said only that the chart reloads.",
+   "Steps 6 and 8: After keeping two technicians the chart reloads and shows only those two: the legend names only them and only two lines are drawn.",
+   "Steps 6 and 8: After keeping two technicians the chart reloads and shows only those two: the legend names only them and only two lines are drawn. (unchanged)\nSteps 6 and 8: The table under the chart now lists only those two technicians: every other technician's row is gone. (new)",
+   "6. Close the list and read the chart's legend and lines.\n8. Repeat the last four steps on the Technician Utilization chart.",
+   "6. Close the list and read the chart's legend and lines, and the table under the chart.\n8. Repeat the last four steps on the Technician Utilization chart. (unchanged)",
+   "The rest of the case is unchanged. Vladimir's C499827 already checks this for Technician Efficiency only; this case covers both technician charts.",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/788430850/Dashboard\",\"Dashboard spec, Story 8\")"
+  ],
+  [
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/88620\",\"C88620\")",
+   "Unticking every technician hides the technician chart",
+   "Yes (automated)",
+   "When every technician is unticked, the table under the chart must now be hidden as well.",
+   "With no technician ticked, the Technician Efficiency table disappears together with the chart. Before, only the chart had to disappear.",
+   "Dashboard spec, version 44, Story 8 (rules S8-R5a and S8-N1a), saved on 13 Oct 2026 (13:37 UTC) by Chris Ward with the note \"the table follows the chart filter (Ayesha)\". The spec's change log, filled in on 14 Oct (version 46), lists it under 2026-10-13. Page change: https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=788430850&selectedPageVersions=43&selectedPageVersions=44. Before that (version 42, 7 Oct) the spec said only that the chart reloads.",
+   "Step 5: With no technician ticked the chart is hidden: no empty chart box or empty axes are shown in its place.\nStep 6: As soon as one technician is ticked again the chart comes back with that technician's line.",
+   "Step 5: With no technician ticked the chart is hidden and the table under it is hidden too: no empty chart box, no empty axes, and no table with no rows.\nStep 6: As soon as one technician is ticked again the chart comes back with that technician's line, and the table comes back listing that technician.",
+   "5. Close the list and look at where the chart was.\n6. Tick one technician again (any one in the list).",
+   "5. Close the list and look at where the chart and the table under it were.\n6. Tick one technician again (any one in the list). (unchanged)",
+   "Section 7 of the spec (\"User Feedback Summary\") now says the chart and the table under it are hidden together (changed 14 Oct 2026, version 45, after our question 14).",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/788430850/Dashboard\",\"Dashboard spec, Story 8\")"
+  ],
+  [
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/351717\",\"C351717\")",
+   "Advisor filter on the expanded Billing Efficiency chart",
+   "Waiting to be automated",
+   "The Advisor Analysis table under the Billing Efficiency chart must now follow the Advisor filter too.",
+   "With one advisor chosen, the Advisor Analysis table lists only that advisor; with no advisor chosen it lists every advisor. Before, only the chart changed.",
+   "Dashboard spec, version 44, Story 8 (rules S8-R5a and S8-N1a), saved on 13 Oct 2026 (13:37 UTC) by Chris Ward with the note \"the table follows the chart filter (Ayesha)\". The spec's change log, filled in on 14 Oct (version 46), lists it under 2026-10-13. Page change: https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=788430850&selectedPageVersions=43&selectedPageVersions=44. Before that (version 42, 7 Oct) the spec said only that the chart reloads.",
+   "Step 3: Before anything is chosen, the chart shows every advisor (the legend lists all of them).\nStep 7: With one advisor chosen the chart reloads and shows only that advisor's line.\nStep 8: With the choice cleared, all advisors show again.",
+   "Step 3: Before anything is chosen, the chart shows every advisor (the legend lists all of them) and the Advisor Analysis table under it lists every advisor.\nStep 7: With one advisor chosen the chart reloads and shows only that advisor's line, and the Advisor Analysis table lists only that advisor.\nStep 8: With the choice cleared, all advisors show again, in the chart and in the table.",
+   "3. Read the filter button at the top right of the Billing Efficiency chart and the chart's legend.\n7. Read the chart's legend and lines.\n8. Clear the advisor choice so no advisor is chosen.",
+   "3. Read the filter button at the top right of the Billing Efficiency chart, the chart's legend, and the Advisor Analysis table under the chart.\n7. Read the chart's legend and lines, and the Advisor Analysis table.\n8. Clear the advisor choice so no advisor is chosen, then read the chart and the table again.",
+   "The rest of the case is unchanged.",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/788430850/Dashboard\",\"Dashboard spec, Story 8\")"
+  ],
+  [
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/88628\",\"C88628\")",
+   "Expanded Sales by Customer and At Risk tables show the expected columns",
+   "Yes (automated)",
+   "The At Risk Customers panel no longer has its own \"Inactive for\" box. The only inactivity control is the pill on the At Risk Customers tile, and the table follows it.",
+   "A correct build shows no \"Inactive for\" box at the top right of the At Risk Customers panel. Today's expected result asks for that box, so it would fail a correct build.",
+   "Dashboard spec, Story 5, rule S5-N3, added in version 45 on 14 Oct 2026 by Chris Ward, in answer to our question 10 of 14 Oct (his answer sheet, same day). The spec's change log, filled in later the same day (version 46), lists it under 2026-10-14. Page change: https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=788430850&selectedPageVersions=44&selectedPageVersions=45",
+   "At Risk Customers: a table titled \"At Risk Customers\" with columns Customer, Last Invoice Date, Lifetime Invoices, Revenue (12 Mo). There is no \"Last Work (Days)\" column, and an \"Inactive for\" window select (e.g. \"120 Days\") sits at the panel's top right.",
+   "At Risk Customers: a table titled \"At Risk Customers\" with columns Customer, Last Invoice Date, Lifetime Invoices, Revenue (12 Mo). There is no \"Last Work (Days)\" column. (unchanged)\nAt Risk Customers: the panel has no inactivity control of its own: no \"Inactive for\" box at its top right or anywhere else in the panel. The days are chosen only with the pill on the At Risk Customers tile. (new)",
+   "5. Read the panel title, the control at its top right and the column headings.",
+   "5. Read the panel title and the column headings, and look for any control in the panel for choosing the number of days.",
+   "That the table follows the tile's pill is already checked by C88609 (\"Changing the window updates … the open table together\"). The rest of this case is unchanged.",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/788430850/Dashboard\",\"Dashboard spec, Story 5\")"
+  ],
+  [
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/351714\",\"C351714\")",
+   "Sales by Customer and At Risk at zero show an empty chart outline",
+   "Waiting to be automated",
+   "The spec now says what the line under the At Risk number reads when no customer is at risk: \"$0.00 (12mo) · 0 customers\". The line never disappears.",
+   "Today the case only asks the tester to write down the line, so a build that drops the line or shows other words would still pass. The tester now checks the exact words.",
+   "Dashboard spec, Story 5, rule S5-R9 (reworded), added in version 45 on 14 Oct 2026 by Chris Ward, in answer to our question 9 of 14 Oct (his answer sheet, same day). The spec's change log, filled in later the same day (version 46), lists it under 2026-10-14. Page change: https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=788430850&selectedPageVersions=44&selectedPageVersions=45",
+   "Step 2: The supporting lines do not change because of the outline (the approved design shows \"$0.00 (12mo) · 0 customers\" on At Risk and no line on Sales by Customer). Write down what you see.",
+   "Step 2: The At Risk Customers supporting line reads exactly \"$0.00 (12mo) · 0 customers\". It is not empty and not hidden.\nStep 2: The Sales by Customer supporting line is not changed by the outline: write down what you see. (unchanged)",
+   "2. Read both headlines and their supporting lines.",
+   "2. Read both headlines and their supporting lines. (unchanged)",
+   "The rest of the case is unchanged.",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/788430850/Dashboard\",\"Dashboard spec, Story 5\")"
+  ],
+  [
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/351708\",\"C351708\")",
+   "Revenue of $0.00 keeps its headline above an empty chart outline",
+   "Waiting to be automated",
+   "The expanded Revenue chart now follows the tile's date range: on This Month it shows one bar per day, not months. An expanded chart with nothing to show reads \"No data for selected date range\".",
+   "Today's step 4 expects \"month labels\" under the chart. On This Month a correct build shows days, not months, so the case would fail a correct build. What the chart shows for a location with no sales at all is not yet clear (see note).",
+   "Dashboard spec, Story 6 rule S6-R3a and Story 9 rule S9-R11, both added in version 45 on 14 Oct 2026 by Chris Ward (answers to our questions 5 and 15). Change log row 2026-10-14 (version 46). Page change: https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=788430850&selectedPageVersions=44&selectedPageVersions=45",
+   "Step 4: The full Revenue chart in the expanded panel looks as before (axis and month labels with no bars). It does not turn into the outline.",
+   "Step 4: The Revenue chart in the expanded panel does not turn into the dashed outline with the chart icon. (unchanged)\nStep 4: It covers This Month day by day: it does not show month labels. (new)\nStep 4: Whether it shows an empty day-by-day chart or the words \"No data for selected date range\" is waiting on Chris Ward (new question). Until he answers, write down which one you see and do not fail on it.",
+   "4. Click View details on the Revenue tile and look at the Revenue chart that opens.",
+   "4. Click View details on the Revenue tile and look at the Revenue chart that opens. (unchanged)",
+   "The rest of the case is unchanged.",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/788430850/Dashboard\",\"Dashboard spec, Story 6\")"
+  ]
+ ],
+ "applied": [
+  [
+   "C88632",
+   "What a tester now sees differently"
+  ],
+  [
+   "C88632",
+   "Where this comes from, and when it changed"
+  ],
+  [
+   "C88632",
+   "Expected behaviour now"
+  ],
+  [
+   "C88632",
+   "Note"
+  ],
+  [
+   "C88620",
+   "Note"
+  ],
+  [
+   "C88619",
+   "Where this comes from, and when it changed"
+  ],
+  [
+   "C88620",
+   "Where this comes from, and when it changed"
+  ],
+  [
+   "C351717",
+   "Where this comes from, and when it changed"
+  ]
+ ]
+}
