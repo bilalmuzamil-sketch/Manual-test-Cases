@@ -1,0 +1,17 @@
+import {ob,J,post} from './lib.mjs'; import {loc} from './seed.mjs'; import fs from 'fs';
+const A=JSON.parse(fs.readFileSync('A1.json')); const s=await ob(); const p=s.page; await loc(s);
+const W=()=>s.writes.filter(w=>/customer-account|invoices|deposits|customers\//.test(w));
+await s.go('/customers/'+A.company_id+'/payments'); await p.waitForTimeout(3500);
+await p.locator('[data-test-id^="button_remove_payment_"]').first().click(); await p.waitForTimeout(1500);
+const c=await s.confirm('button_confirm_dialog',{shotPrefix:'ev/s9pay'}); console.log('confirm',J(c,500));
+await p.waitForTimeout(1500); console.log('W1',W().join(' || '));
+await s.go('/workorders/'+A.work_order_id+'/finance'); await p.waitForTimeout(3500);
+await p.locator('[data-test-id="button_wo_invoice_menu"]').click(); await p.waitForTimeout(1000);
+const items=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item, .q-menu [data-test-id]')].map(e=>(e.getAttribute('data-test-id')||'')+'|'+e.innerText.trim().slice(0,30)));
+console.log('menu',J(items,500));
+const rv=p.locator('.q-menu .q-item').filter({hasText:/^\s*Reverse/i}).first(); await rv.click(); await p.waitForTimeout(1500);
+console.log('dlg',J(await p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(d=>d.innerText.replace(/\s+/g,' ').slice(0,250))),400));
+const c2=await s.confirm('button_confirm_dialog',{shotPrefix:'ev/s9inv'}); console.log('confirm2',J(c2,500));
+await p.waitForTimeout(2000); console.log('W2',W().join(' || '));
+const v=await s.api('/api/work-orders/view/'+A.work_order_id); console.log('wo',v.json?.data?.work_order?.status);
+await s.close();

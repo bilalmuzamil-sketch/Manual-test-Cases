@@ -1,0 +1,18 @@
+import {ob,J,post} from './lib.mjs'; import {loc} from './seed.mjs'; import fs from 'fs';
+const s=await ob(); const p=s.page; await loc(s);
+const c=await post(s,'/api/customers/create',{name:'ZZAUTOTEST SV9055 B3 active-credit '+Date.now()%100000}); const A={company_id:c.json.data.company_id};
+await s.go('/customers/'+A.company_id+'/invoices'); await p.waitForTimeout(3500);
+let full=null; p.on('request',r=>{ if(/create-customer-payment/.test(r.url())) full=r.postData(); });
+await p.locator('[data-test-id="button_new_payment"]').first().click().catch(async()=>{ await p.getByRole('button',{name:'New Payment'}).click(); }); await p.waitForTimeout(2000);
+await p.locator('[data-test-id="select_payment_method"]').click(); await p.waitForTimeout(800);
+const items=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>e.innerText.trim()));
+await p.locator('.q-menu .q-item').nth(items.findIndex(t=>/^(cheque|check)$/i.test(t))).click(); await p.waitForTimeout(500);
+await p.locator('[data-test-id="input_reference_number"]').fill('ZZ9055-B3');
+await p.locator('[data-test-id="input_manually_entered_credit"]').fill('25'); await p.keyboard.press('Tab'); await p.waitForTimeout(800);
+const n=s.writes.length; await p.locator('[data-test-id="button_make_payment"]').click(); await p.waitForTimeout(3500);
+console.log('pay',s.writes.slice(n).filter(x=>/customer-account|payment|deposit/.test(x)).join(' || ').slice(0,300));
+console.log('full',(full||'').slice(0,500));
+const v=await s.api('/api/customers/view/'+A.company_id); const co=v.json.data.company; A.customer_account_id=co.customer_account_id;
+const d=await s.api('/api/customer-deposits/list?accountId='+co.customer_account_id); console.log('deposits',J(d.json?.data,400));
+console.log('counts',J(Object.fromEntries(Object.entries(co).filter(([k])=>/count|deletable|balance/.test(k))),300));
+fs.writeFileSync('B3.json',JSON.stringify(A)); await s.close();

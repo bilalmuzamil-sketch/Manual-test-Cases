@@ -1,0 +1,45 @@
+// usage: node DEL.mjs <state.json> <tag>   -> deletes the customer on screen, records everything
+import {ob,J} from './lib.mjs'; import {loc} from './seed.mjs'; import fs from 'fs';
+const A=JSON.parse(fs.readFileSync(process.argv[2])); const TAG=process.argv[3]; const s=await ob(); const p=s.page; await loc(s);
+const W=()=>s.writes.filter(w=>/customers\/|companies|customer-account/.test(w));
+const box=async sel=>p.evaluate(sel=>{const e=document.querySelector(sel); if(!e) return null; const r=e.getBoundingClientRect(); return [r.x,r.y,r.width,r.height];},sel);
+const out={tag:TAG,company_id:A.company_id,steps:[]};
+await s.go('/customers/'+A.company_id+'/work-orders'); await p.waitForTimeout(3500);
+out.name=await p.locator('[data-test-id="text_customer_name"]').innerText().catch(()=>null);
+out.geo={pencil:await box('[data-test-id="button_base"]'),name:await box('[data-test-id="text_customer_name"]')};
+await p.screenshot({path:`ev/${TAG}-0-customer.png`});
+await p.locator('[data-test-id="button_base"]').click(); await p.waitForTimeout(1500);
+const btns=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog button')].map(e=>(e.getAttribute('data-test-id')||'-')+'|'+e.innerText.trim()));
+out.modalButtons=btns;
+const del=(btns.find(x=>/\|Delete$/i.test(x))||'').split('|')[0];
+await p.evaluate(t=>document.querySelector(`[data-test-id="${t}"]`)?.scrollIntoView({block:'center'}),del); await p.waitForTimeout(500);
+out.geo.modal=await box('.q-dialog .q-card'); out.geo.del=await box(`[data-test-id="${del}"]`); out.geo.title=await box('.q-dialog .q-card');
+await p.screenshot({path:`ev/${TAG}-1-edit-modal.png`});
+out.delDisabled=await p.evaluate(t=>document.querySelector(`[data-test-id="${t}"]`)?.disabled,del);
+if(out.delDisabled){ const b=out.geo.del; await p.mouse.move(b[0]+b[2]/2,b[1]+b[3]/2); await p.waitForTimeout(1200);
+  out.tooltip=await p.evaluate(()=>[...document.querySelectorAll('.q-tooltip')].map(e=>e.innerText.trim()));
+  out.geo.tooltip=await p.evaluate(()=>[...document.querySelectorAll('.q-tooltip')].map(e=>{const r=e.getBoundingClientRect(); return [r.x,r.y,r.width,r.height];}));
+  await p.screenshot({path:`ev/${TAG}-1b-disabled-tooltip.png`});
+  const v=await s.api('/api/customers/view/'+A.company_id); out.counts=Object.fromEntries(Object.entries(v.json.data.company).filter(([k])=>/count|deletable|balance/.test(k)));
+  fs.writeFileSync(`${TAG}.result.json`,JSON.stringify(out,null,1));
+  console.log(TAG,'| DELETE DISABLED | tooltip',J(out.tooltip,300),'| counts',J(out.counts,300)); await s.close(); process.exit(0); }
+await p.locator(`[data-test-id="${del}"]`).click(); await p.waitForTimeout(1500);
+out.confirmText=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(d=>d.innerText.replace(/\s+/g,' ').slice(0,250)));
+out.confirmButtons=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog button')].map(e=>(e.getAttribute('data-test-id')||'-')+'|'+e.innerText.trim()));
+out.geo.confirmCard=await p.evaluate(()=>{const c=[...document.querySelectorAll('.q-dialog .q-card')].pop(); if(!c) return null; const r=c.getBoundingClientRect(); return [r.x,r.y,r.width,r.height];});
+await p.screenshot({path:`ev/${TAG}-2-confirm.png`});
+const last=[...out.confirmButtons].reverse().find(x=>/\|(Delete|Yes|Confirm)$/i.test(x)); const ctid=(last||'').split('|')[0];
+out.confirmTid=ctid;
+const c=await s.confirm(ctid,{shotPrefix:`ev/${TAG}-3`}); out.confirm=c;
+await p.waitForTimeout(1500);
+out.toasts=await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(e=>e.innerText.replace(/\s+/g,' ').trim()));
+out.geo.toasts=await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(e=>{const r=e.getBoundingClientRect(); return [r.x,r.y,r.width,r.height];}));
+out.url=p.url(); out.writes=W();
+await p.screenshot({path:`ev/${TAG}-4-after.png`});
+// read back after reload
+const v=await s.api('/api/customers/view/'+A.company_id); out.after={status:v.status,body:J(v.json,200)};
+await s.go('/customers'); await p.waitForTimeout(2500);
+fs.writeFileSync(`${TAG}.result.json`,JSON.stringify(out,null,1));
+console.log(TAG,'| toasts',J(out.toasts,300),'| writes',out.writes.join(' || ').slice(0,500),'| url',out.url.replace(/https:\/\/[^/]+/,''),'| view-after',out.after.status,out.after.body.slice(0,140));
+console.log('modal',J(out.modalButtons,300),'| confirm',J(out.confirmText,200),J(out.confirmButtons,200),'| steps',J(out.confirm,300));
+await s.close();

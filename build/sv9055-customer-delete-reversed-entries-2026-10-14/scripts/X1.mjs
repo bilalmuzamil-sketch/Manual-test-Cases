@@ -1,0 +1,12 @@
+import {ob,J,post} from './lib.mjs'; import {loc,invoiced,payUI,reversePaymentUI,reverseInvoiceUI} from './seed.mjs'; import {clearWO,clearAssetContact} from './teardown.mjs'; import fs from 'fs';
+const s=await ob(); await loc(s);
+const A=await invoiced(s,'ZZAUTOTEST SV9055 X1 overpaid-then-reversed '+Date.now()%100000); fs.writeFileSync('X1.json',JSON.stringify(A));
+await payUI(s,A,'ZZ9055-X1',25);
+const dep=async t=>{const d=await s.api('/api/customer-deposits/list?accountId='+A.customer_account_id); console.log(t,J((d.json?.data?.collection||[]).map(x=>[x.creditNumber||x.credit_number,x.amount,x.status,x.reason||x.source||x.depositType]),300),'held',d.json?.data?.totalHeld);};
+await dep('dep after pay');
+await reversePaymentUI(s,A); await dep('dep after payment reversed');
+await reverseInvoiceUI(s,A);
+await clearWO(s,A); await clearAssetContact(s,A);
+const co=(await s.api('/api/customers/view/'+A.company_id)).json.data.company;
+console.log('counts',J(Object.fromEntries(Object.entries(co).filter(([k])=>/count|deletable|balance/.test(k))),300));
+await s.close();

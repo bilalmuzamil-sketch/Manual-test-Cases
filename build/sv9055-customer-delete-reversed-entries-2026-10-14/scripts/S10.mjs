@@ -1,0 +1,13 @@
+import {ob,J,post} from './lib.mjs'; import {loc} from './seed.mjs'; import fs from 'fs';
+const A=JSON.parse(fs.readFileSync('A1.json')); const s=await ob(); const p=s.page; await loc(s);
+const W=()=>s.writes.filter(w=>/customer-account|invoices|deposits|customers\//.test(w));
+await s.go('/workorders/'+A.work_order_id+'/finance'); await p.waitForTimeout(3500);
+await p.locator('[data-test-id="button_wo_invoice_menu"]').click(); await p.waitForTimeout(1000);
+await p.locator('[data-test-id="menu_item_reverse"]').click(); await p.waitForTimeout(1500);
+const b=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog button')].map(e=>(e.getAttribute('data-test-id')||'-')+'|'+e.innerText.trim()));
+console.log('btns',J(b,400));
+const tid=(b.find(x=>/\|Reverse$/.test(x))||'').split('|')[0];
+const c=await s.confirm(tid,{shotPrefix:'ev/s10inv'}); console.log('confirm',J(c,400));
+await p.waitForTimeout(2000); console.log('W',W().join(' || '));
+const v=await s.api('/api/work-orders/view/'+A.work_order_id); console.log('wo',v.json?.data?.work_order?.status);
+await s.close();

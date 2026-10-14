@@ -1,0 +1,11 @@
+import {ob,J,post} from './lib.mjs'; import {loc,customer,wo,deposit,reverseDeposit} from './seed.mjs'; import {clearAssetContact} from './teardown.mjs'; import fs from 'fs';
+const s=await ob(); await loc(s);
+const c=await customer(s,'ZZAUTOTEST SV9055 A3 reversed-deposit '+Date.now()%100000); const w=await wo(s,c);
+const lines=await s.api('/api/work-orders/lines/'+w.work_order_id); const line_id=lines.json.data.collection[0].line_id;
+const A={...c,work_order_id:w.work_order_id,line_id};
+const d=await deposit(s,A); A.deposit_id=d; console.log('depid',d);
+await reverseDeposit(s,d);
+console.log('delete line',(await post(s,'/api/work-orders/lines/delete',{line_id,work_order_id:A.work_order_id})).status);
+const dw=await post(s,'/api/work-orders/delete',{work_order_id:A.work_order_id}); console.log('delete wo',dw.status,J(dw.json,200));
+await clearAssetContact(s,A); fs.writeFileSync('A3.json',JSON.stringify(A));
+await s.close();

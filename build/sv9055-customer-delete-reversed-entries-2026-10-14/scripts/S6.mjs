@@ -1,0 +1,15 @@
+import {ob,J,post} from './lib.mjs'; import {loc} from './seed.mjs'; import fs from 'fs';
+const A=JSON.parse(fs.readFileSync('A1.json')); const s=await ob(); const p=s.page; await loc(s);
+await s.go('/workorders/'+A.work_order_id+'/finance'); await p.waitForTimeout(3500);
+await p.locator('[data-test-id="button_new_payment"]').click(); await p.waitForTimeout(2000);
+await p.locator('[data-test-id="select_payment_method"]').click(); await p.waitForTimeout(800);
+const opts=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>e.innerText.trim()));
+console.log('methods',J(opts,400));
+const ch=p.locator('.q-menu .q-item').filter({hasText:/che(que|ck)/i}).first(); await ch.click(); await p.waitForTimeout(500);
+await p.locator('[data-test-id="input_reference_number"]').fill('ZZ9055-A1'); 
+s.writes.length=0;
+await p.locator('[data-test-id="button_make_payment"]').click(); await p.waitForTimeout(3000);
+console.log('writes',s.writes.join('\n'));
+console.log('dlg after',J(await p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(d=>d.innerText.replace(/\s+/g,' ').slice(0,200))),300));
+await p.screenshot({path:'ev/s6.png'});
+await s.close();

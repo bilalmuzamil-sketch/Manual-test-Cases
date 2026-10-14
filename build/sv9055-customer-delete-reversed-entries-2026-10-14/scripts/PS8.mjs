@@ -1,0 +1,16 @@
+import {ob,J} from './lib.mjs'; import {loc} from './seed.mjs'; import fs from 'fs';
+const A=JSON.parse(fs.readFileSync('A2.json')); const s=await ob(); const p=s.page; await loc(s);
+await s.go('/parts/part-sale/'+A.ps_id+'/part-requests'); await p.waitForTimeout(3500);
+await p.locator('[data-test-id="button_part_sale_nav_bar_menu"]').click(); await p.waitForTimeout(800);
+await p.locator('[data-test-id="menu_item_set_status"]').click(); await p.waitForTimeout(1200);
+let n=s.writes.length; await p.locator('[data-test-id="menu_item_status_authorization_required"]').click(); await p.waitForTimeout(1500);
+console.log('dlg',J(await p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(d=>d.innerText.replace(/\s+/g,' ').slice(0,200))),300));
+const b=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog button')].map(e=>(e.getAttribute('data-test-id')||'-')+'|'+e.innerText.trim()));
+const yes=(b.find(x=>/\|(Yes|Confirm|OK|Set)/i.test(x))||'').split('|')[0]; if(yes){ await s.confirm(yes); } await p.waitForTimeout(2500);
+console.log('setstatus',s.writes.slice(n).filter(x=>/work-orders/.test(x)).join(' || ').slice(0,300));
+const v=await s.api('/api/work-orders/view/'+A.ps_id); console.log('ps status',v.json?.data?.work_order?.status);
+await s.go('/parts/part-sale/'+A.ps_id+'/part-requests'); await p.waitForTimeout(3000);
+console.log('row tids',J(await p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].filter(e=>e.offsetParent).map(e=>e.getAttribute('data-test-id')+(e.disabled?'(dis)':'')+'|'+e.innerText.trim().slice(0,15)).filter(t=>/part_request|action/.test(t))),600));
+await p.locator('[data-test-id^="button_part_request_menu_"]').first().click(); await p.waitForTimeout(1000);
+console.log('part menu',J(await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>(e.getAttribute('data-test-id')||'-')+'|'+e.innerText.trim())),500));
+await s.close();

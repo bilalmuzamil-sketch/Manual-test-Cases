@@ -1,0 +1,21 @@
+import {ob,J,post} from './lib.mjs'; import {loc,reversePaymentUI} from './seed.mjs'; import fs from 'fs';
+const A=JSON.parse(fs.readFileSync('A2.json')); const s=await ob(); const p=s.page; await loc(s);
+await s.go('/customers/'+A.company_id+'/invoices'); await p.waitForTimeout(3500);
+await p.locator('[data-test-id^="checkbox_transaction_"]').first().click(); await p.waitForTimeout(800);
+await p.locator('[data-test-id="button_new_payment"]').first().click(); await p.waitForTimeout(2000);
+await p.locator('[data-test-id="select_payment_method"]').click(); await p.waitForTimeout(800);
+const items=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>e.innerText.trim()));
+await p.locator('.q-menu .q-item').nth(items.findIndex(t=>/^(cheque|check)$/i.test(t))).click(); await p.waitForTimeout(500);
+await p.locator('[data-test-id="input_reference_number"]').fill('ZZ9055-A2');
+let n=s.writes.length; await p.locator('[data-test-id="button_make_payment"]').click(); await p.waitForTimeout(3500);
+console.log('pay',s.writes.slice(n).filter(x=>/customer-account/.test(x)).join(' || ').slice(0,250));
+await reversePaymentUI(s,A);
+await s.go('/parts/part-sale/'+A.ps_id+'/finance'); await p.waitForTimeout(3500);
+const m=p.locator('[data-test-id="button_wo_invoice_menu"]');
+if(await m.count()){ await m.click(); await p.waitForTimeout(1000); await p.locator('[data-test-id="menu_item_reverse"]').click(); await p.waitForTimeout(1500);
+  const btns=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog button')].map(e=>(e.getAttribute('data-test-id')||'-')+'|'+e.innerText.trim())); console.log('revdlg',J(btns,300));
+  const tid=(btns.find(x=>/\|Reverse$/.test(x))||'').split('|')[0]; n=s.writes.length; await s.confirm(tid); await p.waitForTimeout(2000);
+  console.log('revinv',s.writes.slice(n).filter(x=>/invoices/.test(x)).join(' || ').slice(0,250)); }
+else console.log('no invoice menu on part sale finance');
+const v=await s.api('/api/work-orders/view/'+A.ps_id); console.log('ps status',v.json?.data?.work_order?.status);
+await s.close();

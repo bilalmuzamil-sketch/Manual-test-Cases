@@ -1,0 +1,112 @@
+{
+ "tag": "X2",
+ "company_id": "6f7f4082-34c7-493d-bc0e-9cf9dc1ab981",
+ "steps": [],
+ "name": "ZZAUTOTEST SV9055 X2 paid-invoice-reversed-only 97639",
+ "geo": {
+  "pencil": [
+   232.65625,
+   113.734375,
+   32,
+   32
+  ],
+  "name": [
+   47,
+   94,
+   180.65625,
+   71.484375
+  ],
+  "modal": [
+   496,
+   24,
+   608,
+   952
+  ],
+  "del": [
+   694.34375,
+   915,
+   183.328125,
+   35.546875
+  ],
+  "title": [
+   496,
+   24,
+   608,
+   952
+  ],
+  "confirmCard": [
+   496,
+   395.453125,
+   608,
+   201.09375
+  ],
+  "toasts": [
+   [
+    1100,
+    913.53125,
+    400,
+    76.46875
+   ]
+  ]
+ },
+ "modalButtons": [
+  "button_close_dialog|close",
+  "button_delete_customer|Delete",
+  "button_save_customer|Save"
+ ],
+ "delDisabled": false,
+ "confirmText": [
+  "Edit Customer close Name * Phone Address 1 Address 2 City ZIP/Postal Code State/Province arrow_drop_down Country Canada arrow_drop_down Credit Terms COD arrow_drop_down $ Credit Limit Sales Representative arrow_drop_down Default Labor Rate arrow_drop",
+  "Confirmation close Are you sure you want to delete this company? Cancel Delete"
+ ],
+ "confirmButtons": [
+  "button_close_dialog|close",
+  "button_delete_customer|Delete",
+  "button_save_customer|Save",
+  "button_close_dialog|close",
+  "button_cancel_dialog|Cancel",
+  "button_confirm_dialog|Delete"
+ ],
+ "confirmTid": "button_confirm_dialog",
+ "confirm": {
+  "steps": [
+   [
+    "close [button_close_dialog]",
+    "Delete [button_delete_customer]",
+    "Save [button_save_customer]",
+    "close [button_close_dialog]",
+    "Cancel [button_cancel_dialog]",
+    "Delete [button_confirm_dialog]"
+   ],
+   [
+    "close [button_close_dialog]",
+    "Delete [button_delete_customer]",
+    "Save [button_save_customer]",
+    "close [button_close_dialog]",
+    "Cancel [button_cancel_dialog]",
+    "Delete [button_confirm_dialog]"
+   ],
+   [
+    "close [button_close_dialog]",
+    "Delete [button_delete_customer]",
+    "Save [button_save_customer]",
+    "close [button_close_dialog]",
+    "Cancel [button_cancel_dialog]",
+    "Delete [button_confirm_dialog]"
+   ]
+  ]
+ },
+ "toasts": [
+  "warning You cant delete company with existing transactions Please try to resolve this. Close 3"
+ ],
+ "url": "https://sv9055.qa.shopview.com/customers/6f7f4082-34c7-493d-bc0e-9cf9dc1ab981/work-orders",
+ "writes": [
+  "POST 400 /api/customers/delete :: {\"company_id\":\"6f7f4082-34c7-493d-bc0e-9cf9dc1ab981\"}",
+  "POST 400 /api/customers/delete :: {\"company_id\":\"6f7f4082-34c7-493d-bc0e-9cf9dc1ab981\"}",
+  "POST 400 /api/customers/delete :: {\"company_id\":\"6f7f4082-34c7-493d-bc0e-9cf9dc1ab981\"}"
+ ],
+ "after": {
+  "status": 200,
+  "body": "{\"data\":{\"company\":{\"id\":\"6f7f4082-34c7-493d-bc0e-9cf9dc1ab981\",\"name\":\"ZZAUTOTEST SV9055 X2 paid-invoice-reversed-only 97639\",\"address_1\":null,\"address_2\":null,\"state_or_province\":null,\"city\":null,\"p"
+ }
+}

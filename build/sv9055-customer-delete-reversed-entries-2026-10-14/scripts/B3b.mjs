@@ -1,0 +1,10 @@
+import {ob,J,post} from './lib.mjs'; import {loc} from './seed.mjs'; import fs from 'fs';
+const s=await ob(); await loc(s);
+const c=await post(s,'/api/customers/create',{name:'ZZAUTOTEST SV9055 B3 active-credit '+Date.now()%100000}); const A={company_id:c.json.data.company_id};
+let co=(await s.api('/api/customers/view/'+A.company_id)).json.data.company; A.customer_account_id=co.customer_account_id;
+const r=await post(s,'/api/customer-account/create-customer-payment',{account_id:A.customer_account_id,payment_date:new Date().toISOString(),payment_method:'CHEQUE',reference_number:'ZZ9055-B3',description:null,transactions:[],primary_id:null,new_credit:25,new_deposit:0,applied_credits:[],applied_deposits:[],ibs_batch_id:null,payment_amount:25});
+console.log('pay',r.status,J(r.json,300));
+const d=await s.api('/api/customer-deposits/list?accountId='+A.customer_account_id); console.log('deposits',J(d.json?.data,400));
+co=(await s.api('/api/customers/view/'+A.company_id)).json.data.company;
+console.log('counts',J(Object.fromEntries(Object.entries(co).filter(([k])=>/count|deletable|balance/.test(k))),300));
+fs.writeFileSync('B3.json',JSON.stringify(A)); await s.close();

@@ -1,0 +1,12 @@
+import {ob,J,post} from './lib.mjs'; import {loc,reverseDeposit} from './seed.mjs'; import {clearAssetContact} from './teardown.mjs'; import fs from 'fs';
+const s=await ob(); await loc(s);
+const A={company_id:'0c605c79-2ca6-4321-ae76-6af765d96062',deposit_id:'04295572-472e-4a23-8efd-a7cb8e47aae3'};
+const v=await s.api('/api/customers/view/'+A.company_id); const co=v.json.data.company; A.contact_id=co.contacts?.[0]?.id||co.contacts?.[0]?.contact_id;
+const veh=await s.api('/api/vehicles?company_id='+A.company_id); const V=(veh.json?.data?.collection||veh.json?.data||[]); A.vehicle_id=V[0]?.id;
+const wos=await s.api(`/api/work-orders?limit=20&filters[0][field]=company_id&filters[0][value]=${A.company_id}`); 
+console.log('ids',A.contact_id,A.vehicle_id,J(wos.json?.data?.work_orders?.map(w=>[w.id,w.status]),200));
+await reverseDeposit(s,A.deposit_id);
+A.work_order_id=JSON.parse(fs.readFileSync('A3.json')).work_order_id;
+const dw=await post(s,'/api/work-orders/delete',{work_order_id:A.work_order_id}); console.log('delete wo',dw.status,J(dw.json,200));
+await clearAssetContact(s,A); fs.writeFileSync('A3.json',JSON.stringify(A));
+await s.close();

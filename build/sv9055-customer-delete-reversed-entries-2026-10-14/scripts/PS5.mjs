@@ -1,0 +1,14 @@
+import {ob,J,post} from './lib.mjs'; import {loc} from './seed.mjs'; import {clearAssetContact} from './teardown.mjs'; import fs from 'fs';
+const A=JSON.parse(fs.readFileSync('A2.json')); const s=await ob(); await loc(s);
+const ok=(t,r)=>{console.log(t,r.status,J(r.json,250)); return r;};
+ok('revinv',await post(s,'/api/invoices/reverse-invoice',{id:A.invoice_id}));
+let v=await s.api('/api/work-orders/view/'+A.ps_id); console.log('ps status',v.json?.data?.work_order?.status);
+const L=(await s.api('/api/work-orders/'+A.ps_id+'/parts/list-requests-by-line')).json.data.collection[0].part_requests[0];
+console.log('part',J(Object.fromEntries(Object.entries(L).filter(([k])=>/id$|status|quantity/.test(k))),400));
+ok('return',await post(s,'/api/work-orders/part/make-return-request',{partId:L.work_order_part_id,quantity:1,returnReason:'ZZ9055 test return'}));
+const L2=(await s.api('/api/work-orders/'+A.ps_id+'/parts/list-requests-by-line')).json.data.collection[0].part_requests; console.log('parts after',J(L2.map(x=>[x.status,x.quantity]),200));
+ok('delete ps',await post(s,'/api/work-orders/delete',{work_order_id:A.ps_id}));
+await clearAssetContact(s,A);
+const co=(await s.api('/api/customers/view/'+A.company_id)).json.data.company;
+console.log('counts',J(Object.fromEntries(Object.entries(co).filter(([k])=>/count|deletable|balance/.test(k))),300));
+await s.close();
