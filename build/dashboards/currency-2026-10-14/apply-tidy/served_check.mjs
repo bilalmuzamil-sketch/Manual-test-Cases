@@ -1,0 +1,83 @@
+// Copied from build/invoice-design-selection/hs_repair_one.mjs and made READ-ONLY (no repair path).
+// Targeted single-case fr-view repair. Reads the CURRENT live field HTML from the API and
+// re-saves each field verbatim through Froala (html.set, no keystroke autoformat), flipping any
+// escaping container to fr-view WITHOUT changing content. Idempotent: if already fr-view + no
+// literal tags, records OK and edits nothing. CID via env CID=53537.
+import pkg from '/opt/node22/lib/node_modules/playwright/index.js';
+const { chromium } = pkg;
+import fs from 'fs';
+const CID = (process.env.CID || '').trim();
+if (!CID) { console.error('set CID'); process.exit(2); }
+const C = JSON.parse(fs.readFileSync('/tmp/testrail/creds.json', 'utf8'));
+const UI = JSON.parse(fs.readFileSync('/tmp/testrail/creds-ui.json', 'utf8'));
+const HOST = 'https://shopview.testrail.io';
+const API = `${HOST}/index.php?/api/v2`;
+const AUTH = 'Basic ' + Buffer.from(`${C.email||C.user}:${C.password}`).toString('base64');
+const port = fs.readFileSync('/tmp/atlassian/bridge-port.txt', 'utf8').trim();
+const log = (...a) => console.log(new Date().toISOString().slice(11, 19), ...a);
+const LITERAL = /<\s*\/?\s*(p|br|div|span|ul|ol|li|strong|em|b|i|hr)\b[^>]*>/i;
+async function api(path) {
+  const r = await fetch(`${API}/${path}`, { headers: { Authorization: AUTH, 'Content-Type': 'application/json' } });
+  return [r.status, await r.json().catch(() => null)];
+}
+const [st, live] = await api(`get_case/${CID}`);
+if (st !== 200) { log('pre-GET failed', st); process.exit(2); }
+const FIELDS = ['custom_preconds', 'custom_steps', 'custom_expected'];
+const wantHtml = {}; for (const f of FIELDS) wantHtml[f] = live[f] || '';
+
+const browser = await chromium.launch({
+  executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+  proxy: { server: `http://127.0.0.1:${port}` },
+  args: ['--ignore-certificate-errors', '--no-first-run', '--no-default-browser-check'],
+});
+const ctx = await browser.newContext({ ignoreHTTPSErrors: true });
+const page = await ctx.newPage();
+await page.goto(`${HOST}/index.php?/auth/login/`, { waitUntil: 'domcontentloaded' });
+await page.fill('#name', UI.email); await page.fill('#password', UI.password);
+await page.click('#button_primary'); await page.waitForLoadState('networkidle');
+if (/auth\/login/.test(page.url())) { log('LOGIN FAILED'); await browser.close(); process.exit(2); }
+
+async function readView() {
+  await page.goto(`${HOST}/index.php?/cases/view/${CID}`, { waitUntil: 'networkidle' });
+  return await page.evaluate(() => {
+    const ds = [...document.querySelectorAll('div[class^="markdown"]')].filter(d => !d.id);
+    const out = { _count: ds.length };
+    ['custom_preconds', 'custom_steps', 'custom_expected'].forEach((f, i) => {
+      if (ds[i]) out[f] = { cls: ds[i].className.trim(), text: ds[i].innerText };
+    });
+    return out;
+  });
+}
+function problems(view) {
+  const p = [];
+  for (const f of FIELDS) {
+    const v = view[f];
+    if (!v) { p.push(`${f}: no container`); continue; }
+    if (!/\bfr-view\b/.test(v.cls)) p.push(`${f}: "${v.cls}" escaping`);
+    if (LITERAL.test(v.text)) p.push(`${f}: literal tag visible`);
+    if (/&(mdash|rsquo|amp|lt|gt|nbsp|rarr|#\d+);/.test(v.text)) p.push(`${f}: entity visible`);
+  }
+  const exp = view.custom_expected ? view.custom_expected.text.trim() : '';
+  // The AUTOMATION marker must be unique and effectively last. QA lead 2026-10-01: an optional
+  // trailing "Note from the author" block (with its em-dash separator) may follow it and still counts
+  // as last — the marker stays the single machine literal the arithmetic counter greps for.
+  const _al = exp.split('\n').filter(Boolean);
+  const _am = _al.filter(l => l.startsWith('AUTOMATION:'));
+  if (_am.length === 0) p.push('AUTOMATION marker missing');
+  else if (_am.length > 1) p.push('AUTOMATION marker not unique');
+  else {
+    const _after = _al.slice(_al.findIndex(l => l.startsWith('AUTOMATION:')) + 1);
+    const _ok = _after.every(l => /^[\s—–-]+$/.test(l) || /Note from the author/.test(l) || /Where this stands for testing/.test(l));
+    if (!_ok) p.push('AUTOMATION not last (trailing content is not the author note / testing-standing note)');
+  }
+  return p;
+}
+const titleBefore = live.title, atmBefore = live.custom_atmstatus;
+// READ-ONLY copy for the Dashboard apply pass (14 Oct 2026): it never edits; it reports what the served case page shows.
+const view = await readView();
+const probs = problems(view);
+const [st2, after] = await api(`get_case/${CID}`);
+if (after.title !== titleBefore || after.custom_atmstatus !== atmBefore || after.updated_on !== live.updated_on) probs.push('case changed during the check');
+log(probs.length ? ('RESULT FAIL: ' + probs.join(' | ')) : 'RESULT OK (read-only) — all fr-view, no literal tags, no visible entities, marker unique and last');
+await browser.close();
+process.exit(probs.length ? 1 : 0);
