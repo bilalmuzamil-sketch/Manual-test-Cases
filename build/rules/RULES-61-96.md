@@ -3141,7 +3141,14 @@ test case for that."* Operator form: `build/skills/21-DESIGN-DRIVE-PROTOCOL.md` 
    design screenshot or board to compare against and states each visible attribute as a plain observation ("a six-dot grip
    shows at the left of every row, Unassigned included"). Pixel-exact values a person cannot judge by eye are stated with the
    design value and checked side by side with the screenshot at 100% zoom; anything that truly needs a tool is marked
-   `AUTOMATION: READY` (an automatable visual check), never left as an uncarryable manual instruction.
+   `AUTOMATION: READY` (an automatable visual check), never left as an uncarryable manual instruction. QA lead, 14 Oct 2026,
+   verbatim: *"Make sure that these design test cases are runnable by the manual QA tester and they should always be like
+   that."* So every attribute is written as an eye comparison against the named design screenshot at 100% zoom ("a light-grey
+   circle with dark initials, not solid blue"; "visibly shorter at Compact than at Comfortable"); a tester never needs devtools,
+   computed styles or a ruler.
+10. **Every reported design defect names its case.** Each design-defect ticket on the feature (whoever filed it) gets, at the
+   bottom of its description after a line break, the test case(s) that cover it (C-id and TestRail link), once the QA lead has
+   confirmed the ticket edit (Rule 38 makes others' tickets hands-off unless he says otherwise).
 9. **The completion gate.** A suite is not complete, and nothing goes to build verification, until: every PO-reported and
    tester-reported design defect on the feature maps to a case in the Design subfolder; the visual inventory has zero
    unclassified; and the unsent-question count is zero.

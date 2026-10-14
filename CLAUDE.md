@@ -73,6 +73,9 @@ These are stated here **in full** because a session that gets only this far must
 - **🔴 KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS (123).** New and changed cases go into the project's run in the
   same pass, union only (34). Before editing a case someone else created: give the QA lead the list with C-ids, links,
   who created each and when, and ask permission. No edit until he says yes.
+- **🔴 NEVER POST A MESSAGE ON SLACK — EVER (QA lead, 14 Oct 2026, verbatim: *"Do not ever post a message on slack
+  channel"*).** Slack is read-only for every session: no message, reply, reaction, draft, scheduled message or canvas edit in any
+  channel or DM. Anything that needs saying goes to the QA lead in chat.
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
