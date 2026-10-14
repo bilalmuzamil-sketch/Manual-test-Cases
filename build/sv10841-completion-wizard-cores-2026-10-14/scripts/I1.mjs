@@ -1,0 +1,13 @@
+import {ob,J,post} from './lib.mjs'; import {loc,customer,wo} from './seed.mjs'; import fs from 'fs';
+const tag=process.argv[2]||'S9i';
+const s=await ob(); await loc(s);
+const r=(await s.api(`/api/inventory/parts?limit=100&page=1`)).json?.data?.collection||[];
+const p=r.find(x=>+x.quantity>=5 && !x.is_core && x.catalogue_part_id && (x.binLocations||[]).length);
+console.log('pick',J([p.id,p.part_number,p.name,p.quantity,p.category,p.binLocations],600));
+const d=(await s.api('/api/inventory/parts/'+p.id)).json?.data?.part; 
+const body={id:p.id,catalog_part_id:p.catalogue_part_id,category_id:p.category,quantity:+p.quantity,purchase_price:+(p.purchase_price_value??p.purchase_price??10),sell_price:+(p.sell_price||20),vendor_id:p.vendor_id,min:p.min,max:p.max,tags:(p.tags||[]).map(t=>t.id||t),bins:(p.binLocations||[]).map(b=>({id:b.binLocationId||b.id||b.bin_id,quantity:+b.quantity,isDefault:!!(b.is_default??b.isDefault)})),core:true,core_charge:7};
+const c1=await post(s,'/api/inventory/parts/change',body); console.log('change',c1.status,J(c1.json,400));
+const p2=(await s.api(`/api/inventory/parts?limit=100&page=1&search=${encodeURIComponent(p.part_number)}`)).json?.data?.collection?.find(x=>x.id===p.id);
+console.log('after',J([p2?.is_core,p2?.core_charge,p2?.core_part_id,p2?.quantity],300));
+fs.writeFileSync('inv.json',JSON.stringify({id:p.id,pn:p.part_number,name:p.name,cat:p.category,core_part_id:p2?.core_part_id}));
+await s.close();

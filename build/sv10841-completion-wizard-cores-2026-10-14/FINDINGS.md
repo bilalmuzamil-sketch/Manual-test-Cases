@@ -15,22 +15,22 @@ Every row is driven on screen (the completion wizard) unless marked setup.
 
 | # | Case | Source | Branch | Production |
 |---|---|---|---|---|
-| 1a | qty 3 core $25 received 1 + 2 on two vendor invoices → two rows, "0 / 2 resolved" | desc + handoff §1 | | |
-| 1b | row amounts $25.00 and $50.00 with "2 × $25.00"; subtitles carry part #, line, each invoice number, different | handoff §1 | | |
-| 1c | row1 OK → "no charge", row2 Not OK → "added to invoice", total "+$50.00", "2 / 2" | handoff §1 | | |
-| 1d | finish → Lines tab: OK core Returned, Not OK core billed $50.00 | handoff §1 | | |
-| 1e | swapped (row1 Not OK, row2 OK) → "+$25.00", $25 billed | handoff §1 | | |
-| 1f | both Not OK → "+$75.00", $75 billed | handoff §1 | | |
-| 2 | three deliveries 1+1+3 of a $10 core → 3 rows $10/$10/$30, all Not OK "+$50.00" | handoff §2 | | |
-| 3 | two deliveries, one core resolved first → reopen, other core still listed | handoff §3 | | |
-| 4a | qty 1, one delivery → "Core $25.00", no "×"; OK "no charge"; Not OK "+$25.00"; "1 / 1"; billed matches | handoff §4 / dev comment | | |
-| 4b | qty 3, one delivery → one row "Core $75.00 · 3 × $25.00"; Not OK bills $75 | handoff §4 | | |
-| 5 | special order qty 5 $3 core, received 1 + 2, 2 owed → inventory rows $3/$6 with invoice #; pending row $6; all Not OK "+$15.00"; billed matches | handoff §5 | | |
-| 6 | inventory cored part not yet picked: mark OK before pick → kept after pick, not asked again, Returned | handoff §6 | | |
-| 7 | Back to Resolve cores after deciding → each decision/subtitle/amount kept, nothing duplicated or missing | handoff §7 | | |
-| 8 | OK / Not OK buttons' aria-label includes the subtitle with invoice #; no red console errors / duplicate-key warnings | handoff §8 | | |
-| 9 | org setting auto-pick inventory parts ON → cored inventory part listed once, right amount, resolves | handoff §9 | | |
-| R | regression: WO with no cored parts — wizard as before | handoff "not impacted" | | |
+| 1a | qty 3 core $25 received 1 + 2 on two vendor invoices → two rows, "0 / 2 resolved" | desc + handoff §1 | PASS — S10841-17580 (ZZ10841-S1-12343, qty 3, $25 core, received 1 on ZZ10841-A1 + 2 on ZZ10841-A2): "INVENTORY CORES · 2", "0 / 2 resolved" | FAIL (before) — S2-976: one row only, "0 / 1 resolved" |
+| 1b | row amounts $25.00 and $50.00 with "2 × $25.00"; subtitles carry part #, line, each invoice number, different | handoff §1 | PASS — "Core $25.00" (…· ZZ10841-A1) and "Core $50.00" (…· ZZ10841-A2 · 2 × $25.00); invoice numbers differ | FAIL (before) — "Core $25.00", no invoice #, no × |
+| 1c | row1 OK → "no charge", row2 Not OK → "added to invoice", total "+$50.00", "2 / 2" | handoff §1 | PASS — notes "no charge" / "added to invoice", "+$50.00 to invoice", "2 / 2 resolved" | not run |
+| 1d | finish → Lines tab: OK core Returned, Not OK core billed $50.00 | handoff §1 | PASS — handle-cores sent both part ids; Lines: qty-1 core "Returned", qty-2 core $25.00 × 2 = $50; status Review | not run |
+| 1e | swapped (row1 Not OK, row2 OK) → "+$25.00", $25 billed | handoff §1 | PASS — S10841-17581: "+$25.00"; billed $25 on the qty-1 core, qty-2 core Returned | not run |
+| 1f | both Not OK → "+$75.00", $75 billed | handoff §1 | PASS — S10841-17582: "+$75.00"; billed $50 + $25 | not run |
+| 2 | three deliveries 1+1+3 of a $10 core → 3 rows $10/$10/$30, all Not OK "+$50.00" | handoff §2 | PASS — S10841-17583 (qty 5, $10 core, ZZ10841-D1/D2/D3 = 1+1+3): 3 rows $10/$10/"3 × $10.00" $30, "+$50.00"; billed $10+$10+$30 | not run |
+| 3 | two deliveries, one core resolved first → reopen, other core still listed | handoff §3 | PASS, both paths — (a) S10841-17584: Ok on the qty-1 core from the Lines tab → wizard lists only the other core ("Resolve cores (1)", $50.00), Lines shows the first Returned. (b) S10841-17593: K1 marked OK then "Continue Without Resolving" → Mark Reviewed reopens Resolve cores with BOTH K1 $25.00 and K2 $50.00, "0 / 2 resolved" (see observation O1) | not run |
+| 4a | qty 1, one delivery → "Core $25.00", no "×"; OK "no charge"; Not OK "+$25.00"; "1 / 1"; billed matches | handoff §4 / dev comment | PASS — S10841-17585 (qty 1): one row "Core $25.00", no "×"; OK "no charge" (no total), Not OK "+$25.00", "1 / 1 resolved"; billed $25 | not run |
+| 4b | qty 3, one delivery → one row "Core $75.00 · 3 × $25.00"; Not OK bills $75 | handoff §4 | PASS — S10841-17586 (qty 3, one delivery G1): one row "… · ZZ10841-G1 · 3 × $25.00", "Core $75.00"; Not OK "+$75.00"; billed $25 × 3 = $75 | not run |
+| 5 | special order qty 5 $3 core, received 1 + 2, 2 owed → inventory rows $3/$6 with invoice #; pending row $6; all Not OK "+$15.00"; billed matches | handoff §5 | PASS — S10841-17587 (special order qty 5, $3 core, H1=1, H2=2, 2 owed): Inventory cores · 2 ($3.00 H1, $6.00 H2 "2 × $3.00"), Special order cores · 1 "2 × $3.00" $6.00; all Not OK "+$15.00"; Save Core Decisions → Receive parts step; after receiving the 2 owed on ZZ10841-H3 the WO completed to Review with no new prompt; billed $6 + $3 + $6 = $15 | not run |
+| 6 | inventory cored part not yet picked: mark OK before pick → kept after pick, not asked again, Returned | handoff §6 | PASS — P550848 given a $7 core (inventory/parts/change). S10841-17588/17589: Resolve cores opened before Pick parts, OK → "no charge", Pick All (`pick-inventory-parts`) → row now keyed by the new core part id, still OK/"no charge"/"1 / 1"; finish sent `handle-cores {partId:<new core part>, isCoreOk:true}`; Lines "Returned", Review | not run |
+| 7 | Back to Resolve cores after deciding → each decision/subtitle/amount kept, nothing duplicated or missing | handoff §7 | PASS — S10841-17587: Save Core Decisions → Receive parts → "Resolve cores" step button → all three cores listed once each with subtitle, amount and "Not OK · keep + charge" | not run |
+| 8 | OK / Not OK buttons' aria-label includes the subtitle with invoice #; no red console errors / duplicate-key warnings | handoff §8 | PASS — every OK/Not OK aria-label reads "Mark Core for … (<part #> · Line 1 · <invoice #>[ · n × $x]) returned|kept"; 0 console errors and 0 warnings on every wizard run (S1–S11, R) | not run |
+| 9 | org setting auto-pick inventory parts ON → cored inventory part listed once, right amount, resolves | handoff §9 | PASS — autoPickInventoryParts set true (only that key changed), S10841-17590: part auto-picked, one row "P550848 · Line 1 · 2 × $7.00" Core $14.00, Not OK "+$14.00", billed $7 × 2 = $14, Review; setting restored to false | not run |
+| R | regression: WO with no cored parts — wizard as before | handoff "not impacted" | PASS — S10841-17592 (uncored vendor part, qty 2): wizard shows only Tech stories, no Resolve cores step, no handle-cores call; simple-complete → Review | not run |
 
 ## Results
 (filled in as observed)

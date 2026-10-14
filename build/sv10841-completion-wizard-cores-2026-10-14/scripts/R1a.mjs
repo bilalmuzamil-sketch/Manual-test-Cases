@@ -1,0 +1,16 @@
+import {ob,J,post} from './lib.mjs'; import {loc,customer,wo} from './seed.mjs'; import fs from 'fs';
+const s=await ob(); await loc(s);
+const cats=(await s.api('/api/inventory/categories?limit=500')).json?.data?.collection||[]; const cat=cats.find(c=>/^parts?$/i.test(c.label))||cats[0]; console.log('cat',J(cat,100),cats.length);
+const st=(await s.api('/api/organizations/settings')).json?.data; console.log('settings',J(st,500));
+const tag=process.argv[2]||'S1', qty=+(process.argv[3]||3), core=+(process.argv[4]||25);
+const c=await customer(s,`ZZAUTOTEST SV10841 ${tag} `+Date.now()%100000); const w=await wo(s,c);
+const pn='ZZ10841-'+tag+'-'+Date.now()%100000;
+const r=await post(s,'/api/work-orders/part/make-request',{work_order:w.work_order_id,line:w.line.line_id||w.line.id||w.line,description:'ZZ cored part '+tag,quantity:qty,part_source_type:'vendor',part_number:pn,part_category_id:cat.value,cost:50,sell_price:80,is_core:false});
+console.log('make',r.status,J(r.json,300));
+const reqs=(await s.api(`/api/work-orders/${w.work_order_id}/parts/list-requests-by-line?search=&filters[0][field]=work_order&filters[0][value]=${w.work_order_id}`)).json?.data?.collection||[];
+const prs=reqs.flatMap(x=>x.part_requests||[]); console.log('requests',J(prs.map(p=>[p.id,p.description,p.quantity,p.status,p.is_core_charge,p.core_charge]),600));
+const main=prs.find(p=>!p.is_core_charge);
+const o=await post(s,'/api/work-orders/part/perform-request-status-action',{part_request_id:main.id,action:'order'}); console.log('order',o.status,J(o.json,300));
+const out={...c,...w,tag,pn,qty,core,main_pr:main.id,orderId:o.json?.data?.orderId||o.json?.data?.order_id};
+fs.writeFileSync(tag+'.json',JSON.stringify(out)); console.log('saved',J(out,500));
+await s.close();

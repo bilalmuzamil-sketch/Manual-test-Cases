@@ -1,0 +1,11 @@
+import {ob,J,post} from './lib.mjs'; import {loc,customer,wo} from './seed.mjs'; import fs from 'fs';
+const tag=process.argv[2]||'S9', qty=+(process.argv[3]||2); const I=JSON.parse(fs.readFileSync('inv.json'));
+const s=await ob(); await loc(s);
+const c=await customer(s,`ZZAUTOTEST SV10841 ${tag} `+Date.now()%100000); const w=await wo(s,c);
+const r=await post(s,'/api/work-orders/part/make-request',{work_order:w.work_order_id,line:w.line.line_id||w.line.id||w.line,description:I.name,quantity:qty,part_source_type:'inventory',inventory_part_id:I.id,part_number:I.pn,part_category_id:I.cat});
+console.log('make',r.status,J(r.json,300));
+const reqs=(await s.api(`/api/work-orders/${w.work_order_id}/parts/list-requests-by-line?search=&filters[0][field]=work_order&filters[0][value]=${w.work_order_id}`)).json?.data?.collection||[];
+const prs=reqs.flatMap(x=>x.part_requests||[]); console.log('requests',J(prs.map(p=>[p.id,p.description,p.quantity,p.status,p.is_core_charge,p.core_charge]),600));
+fs.writeFileSync(tag+'.json',JSON.stringify({...c,...w,tag,pn:I.pn,qty,core:7,main_pr:prs.find(p=>!p.is_core_charge)?.id}));
+const wd=(await s.api('/api/work-orders/'+w.work_order_id)).json?.data; console.log('wo',wd?.work_order?.number||wd?.number);
+await s.close();
