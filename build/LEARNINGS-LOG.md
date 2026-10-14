@@ -356,3 +356,12 @@ someone finds the limit full and its pin silently does nothing (C96957, C96959).
 19:00 UTC is midnight shop time.** A script that books a shift "under way now" from the shop's date can put it on the wrong
 day after 19:00 UTC (C154888 at 00:23 shop time booked 23:15 the next evening — a future shift). Run the running-shift checks
 between 04:00 and 18:00 UTC, or book with the shop's current date AND time. #staging #pins #timezone → Rule 125, L0322
+
+## L0337 — 2026-10-14 — The second pass is a plan file, and every board reader had a hidden 125-column ceiling
+(1) After a full pass, `run498-2026-10-08/second-pass-plan.txt` lists `script | ONLY=<the tests to redo> | extra settings`
+and `run-second.sh` runs it (logs2/, a `.done` per finished script so a restart skips them). The plan is generated from the
+judge files (`judge/wave*.json` "redo" + "doubt") with `rerun-map.json` naming each test's script. (2) A setting that must
+mean "clear" cannot be empty — `env X=` passes an empty string the script reads as "unset"; use a sentinel (`WOB_PIN_NAMES=-`).
+(3) Fifty scripts read Board View columns with `for (i < 40) scrollLeft += 900` — fine for ~30 technicians on the QA branch,
+silently stopping at ~125 columns on staging. All now take 200 steps; any such loop must read to the END (`moved === false`).
+#staging #rerun #scripts → L0334, L0335
