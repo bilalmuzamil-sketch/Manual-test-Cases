@@ -131,7 +131,7 @@
  "S9-R8": "Every chart's vertical axis starts at 0, on percentage charts and dollar charts alike. The one exception: when any drawn value in the selected range is below 0, the axis extends below 0 far enough to show that value in full. (@chris ruling, 2026-09-24.)",
  "S9-R9": "In an expanded chart, a month with no value is drawn as a dashed line joining the points on either side of it. This is how these charts already draw in production. A gap in the line applies only to the sparkline on a tile (S4-R11).",
  "S9-R10": "Hovering a name in a chart legend shows that person's most recent value and the month it is from, for example \"120% · Aug 2026\". It shows no average; the table beside the chart gives the figure for the whole range.",
- "S9-R11": "An expanded chart with nothing to show for the selected range reads \"No data for selected date range\", the message these charts already use in production. The dashed empty-chart outline is only for the sparkline on a tile (S4-R12 to S4-R18).",
+ "S9-R11": "An expanded chart with nothing to show for the selected range reads \"No data for selected date range\", the message these charts already use in production. The dashed empty-chart outline is only for the sparkline on a tile (S4-R12 to S4-R18). A chart has nothing to show when no point in the range has a value, or when every point is zero, the same test the tile uses (S4-R13). On Revenue that includes a range with no sales at all; a range with some sales still draws its $0.00 days as real points (S4-R11a).",
  "S10-R1": "Each KPI tile and the Sales by Customer tile shows a report link.",
  "S10-R2": "Selecting a tile's report link opens that tile's matching report.",
  "S10-R3": "The report opens with the date range the tile currently shows.",
