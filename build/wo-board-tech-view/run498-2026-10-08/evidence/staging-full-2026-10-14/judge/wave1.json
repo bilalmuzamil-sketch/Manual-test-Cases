@@ -1,0 +1,428 @@
+{
+ "results": {
+  "C96909": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work Orders, All tab: the display switcher at the right of the toolbar offers exactly three options, List, Tech View and Board View.",
+    "Hovering the buttons shows the labels \"List\", \"Tech View\" and \"Board View\".",
+    "At the start only List is highlighted.",
+    "After clicking Tech View only Tech View is highlighted; after clicking Board View only Board View is highlighted; after clicking List, List is highlighted again."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/C96909-TechView.png",
+    "evidence/C96909-BoardView.png",
+    "evidence/C96909-List.png"
+   ]
+  },
+  "C154885": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Board View was chosen with the window full width.",
+    "With the window narrowed to 900 pixels the display switcher is gone and the page shows the narrow (phone) layout of the List: tabs across the top, the Search box, the sort button, the Status, Assigned to me and Asset on Site filters.",
+    "Back at full width the switcher is offered again and Board View is still the highlighted choice, so the narrow window did not change the saved choice.",
+    "Edge not checked by hand."
+   ],
+   "not_observed": "The optional sideways-tablet check was not done. In the narrow window a search left over from an earlier check matched nothing, so the List showed its \"No work orders match the search\" message rather than work order cards.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/C154885-narrow-900.png",
+    "evidence/C154885-wide-1600.png"
+   ]
+  },
+  "C96921": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Two Tabs, one Approved work order.",
+    "Work Orders was open in tab A and tab B. In tab A, Tech View was clicked; a few seconds later, in tab B, Board View was clicked.",
+    "After refreshing, tab A opened in Board View and tab B opened in Board View.",
+    "A new tab C opened Work Orders in Board View, the last choice made.",
+    "No warning or conflict message appeared in either tab."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/C96921-tabA.png",
+    "evidence/C96921-tabB.png",
+    "evidence/C96921-tabC.png"
+   ]
+  },
+  "C96911": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "All tab, Search \"ZZAUTOTEST Fibridge\", Status filter set to Approved. On staging this customer already had eight Approved work orders from earlier runs: S2-34149 led by Advisor Analysis and seven with no lead.",
+    "List showed those eight. Switching to Tech View, then Board View, then back to List changed the layout each time in about 3 seconds, with no page reload.",
+    "After every switch the All tab was still selected, the Search box still read \"ZZAUTOTEST Fibridge\" and the filter still read \"Status: Approved\".",
+    "Tech View showed the same eight: Unassigned 7 and Advisor Analysis 1. Board View showed the same eight cards in the Unassigned (7) and Advisor Analysis (1) columns.",
+    "The ZZAUTOTEST Fisquare work orders (S2-34154, S2-34155) appeared in none of the three displays."
+   ],
+   "not_observed": "The example split across three groups (one per technician plus Unassigned) was not reproduced: on staging the matching work orders sat in two groups, Unassigned and Advisor Analysis.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96911-List.png",
+    "evidence/staging-full-2026-10-14/C96911-TechView.png",
+    "evidence/staging-full-2026-10-14/C96911-BoardView.png"
+   ]
+  },
+  "C96910": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "[User-B] is a Service Advisor at Staging Heavy Duty - 9919 who had never chosen a display (no saved choice existed).",
+    "Signed in as [User-B] and opened Work Orders: the page opened in List, the ordinary table (33 rows), with no technician groups and no columns of cards.",
+    "In the display switcher, List was the highlighted option.",
+    "After a refresh the page was still in List."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96910-userB-first.png",
+    "evidence/staging-full-2026-10-14/C96910-userB-refresh.png"
+   ]
+  },
+  "C96919": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Control check: Board View was chosen and the page refreshed; it opened in Board View.",
+    "Not checked by hand (as the case says). As an extra, the saved setting was made unreadable by having the server answer with an error: the page then opened in List with a general \"Ooooops! An error occurred\" message.",
+    "Once the setting could be read again, a refresh opened Board View."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96919-unreadable.png"
+   ]
+  },
+  "C96924": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Tech Grouping: Ayesha Khan leads S2-35253, S2-35254 (Approved) and S2-35255 (Estimate); Bilal Muzamil leads S2-35256 and S2-35257; S2-35258 has no lead.",
+    "Tech View, searched by the customer name: the table is split into groups, one per lead technician, with a thin line between groups.",
+    "Ayesha Khan's header shows her initials \"AK\", her name and the number 3, with 3 rows under it. Bilal Muzamil shows 2 with 2 rows; Unassigned shows 1 with 1 row.",
+    "With the Status filter on Approved only, Ayesha Khan's number became 2, with 2 rows (S2-35253, S2-35254)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96924-all.png",
+    "evidence/staging-full-2026-10-14/C96924-approved.png"
+   ]
+  },
+  "C96928": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Collapse Memory: one work order each for Ayesha Khan, Bilal Muzamil and Branko Cicovic; all three groups expanded at the start.",
+    "Clicking the arrow on Bilal Muzamil's header collapsed his group to its header only: no rows, header and count (1) still shown.",
+    "After a refresh, in a new browser tab, and after a brand-new sign-in in a separate browser that opened Work Orders afresh, his group was still collapsed and the other two were still expanded.",
+    "Clicking the arrow again expanded it and showed its row (S2-35264)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96928-collapsed.png",
+    "evidence/staging-full-2026-10-14/C96928-new-signin.png"
+   ]
+  },
+  "C96931": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 No Work Text: S2-35266 led by Ayesha Khan, S2-35267 by Bilal Muzamil, S2-35268 with no lead; Branko Cicovic leads none of them.",
+    "Searched by the customer name: Branko Cicovic still has a group, count 0, showing \"No work orders\".",
+    "Searched by the number S2-35266: Ayesha Khan's group lists S2-35266, and Bilal Muzamil's group, Branko Cicovic's group and Unassigned each show \"No work orders\"."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96931-by-name.png",
+    "evidence/staging-full-2026-10-14/C96931-by-number.png"
+   ]
+  },
+  "C96939": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Tech Pin Limit, one work order each for five technicians; Tech View, searched by the customer name.",
+    "Every technician group header has a pin control.",
+    "Bilal Muzamil, Advisor Analysis and Ahtasham Admin were pinned (3 pins; their controls now read \"Unpin ...\").",
+    "The pin controls on Ayesha Khan's and Branko Cicovic's headers were then disabled, and hovering one showed \"You can pin up to 3 technicians.\"",
+    "Clicking a disabled control pinned nobody: still 3 pins."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96939-three-pinned.png"
+   ]
+  },
+  "C368128": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 No Pin Assigned; Tech View, searched by the customer name.",
+    "With Assigned to me off, every technician group header shows a pin control (Unassigned has none).",
+    "With Assigned to me on, the groups still shown (Admin ShopView and Bilal Muzamil) show no pin control.",
+    "Board View with Assigned to me on showed no pin control on any column header either.",
+    "Turning Assigned to me off brought the pin controls back on every technician group header."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368128-assigned-on.png"
+   ]
+  },
+  "C96934": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Ralph Edwards was deactivated through Settings > Staff > his edit icon > Deactivate Account.",
+    "Work Orders > All > Search \"ZZAUTOTEST F2 Inactive Lead\" > Tech View: Ralph Edwards' group is still shown with both his work orders (S2-35329 and S2-35330), count 2.",
+    "His header carries an \"Inactive\" label next to his name.",
+    "Afterwards he was set active again (read back: active)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96934-inactive.png"
+   ]
+  },
+  "C96940": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Board Columns: Esther Howard leads three work orders (two Approved, one Estimate), Ralph Edwards two, two have no lead, Jenny Wilson none.",
+    "Board View, searched by the customer name: one column for each of the 119 eligible technicians plus Unassigned (120 columns).",
+    "Each header shows the name, the avatar (Esther Howard \"EH\") and a number equal to its cards: Unassigned 2, Esther Howard 3, Ralph Edwards 2, Jenny Wilson 0 (her column reads \"Drag a work order here to assign it\").",
+    "With the Status filter on Approved, Esther Howard's header shows 2, with 2 cards (S2-35343, S2-35344)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96940-board.png"
+   ]
+  },
+  "C96941": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Sticky Unassigned; Board View, searched by the customer name.",
+    "Unassigned is the first column.",
+    "Scrolling the board sideways (by 1,200 and then 3,000 pixels) left Unassigned fixed at the same spot at the left edge while the technician columns moved past behind it."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96941-scrolled.png"
+   ]
+  },
+  "C96942": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Sticky Column Header: 20 work orders led by Esther Howard; Board View, searched by the customer name.",
+    "Scrolling down inside her column (600 and then 2,000 pixels) kept her header (name, \"EH\" and 20) at the top of the column the whole time.",
+    "The other column headers stayed at the same height too, so it was always clear whose column it is."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96942-scrolled.png"
+   ]
+  },
+  "C96944": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Badge Spot: three cards (S2-35373, S2-35374, S2-35375) with different customer name lengths.",
+    "On every card the status badge sits at the top-right, level with the work order number, at exactly the same spot on all three cards.",
+    "The badge stays in that same spot on all three cards at Compact, Regular and Comfortable.",
+    "Hovering a card did not move the badge."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96944-compact.png",
+    "evidence/staging-full-2026-10-14/C96944-comfortable.png",
+    "evidence/staging-full-2026-10-14/C96944-hover.png"
+   ]
+  },
+  "C96945": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Card Menu; Board View, searched by the customer name.",
+    "Hovering the card shows its more-actions button (three dots) over the card.",
+    "The menu offers \"Reassign lead technician\" (the design says \"Reassign Lead Tech\"; a different label alone is not a fail). On a card with no lead the label is also \"Reassign lead technician\" (the design says \"Assign Tech\").",
+    "When the card had keyboard focus the more-actions button was shown without hovering.",
+    "Note: on this build the more-actions button is visible on every card even without hovering or focus."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96945-hover.png",
+    "evidence/staging-full-2026-10-14/C96945-menu.png"
+   ]
+  },
+  "C96946": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Card Click; Board View, searched by the customer name.",
+    "Clicking the customer name on the card opened the work order (its Lines page).",
+    "After pressing Back, clicking an empty part of the card opened the same work order.",
+    "Clicking the card's more-actions button opened its menu (\"Reassign lead technician\") and did not open the work order."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C96947": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Board Pin Order; Board View, searched by the customer name; no pins at the start.",
+    "Every technician column header has a pin control.",
+    "Start order: Unassigned, Esther Howard, Jenny Wilson, Kristin Watson, Ralph Edwards.",
+    "After pinning Ralph Edwards: Unassigned, Ralph Edwards, Esther Howard, Jenny Wilson, Kristin Watson.",
+    "After pinning Esther Howard: Unassigned, Ralph Edwards, Esther Howard, Jenny Wilson, Kristin Watson, so the newer pin went after the first one."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96947-board.png"
+   ]
+  },
+  "C96948": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Pins Follow User; Ralph Edwards and Jenny Wilson were pinned in Board View.",
+    "Tech View showed both pinned, right after Unassigned (Unassigned, Ralph Edwards, Jenny Wilson, then Admin ShopView), without pinning them again.",
+    "A brand-new sign-in as the same user in a separate browser (covering both \"sign in again\" and \"the second browser\") showed the same two pinned right after Unassigned.",
+    "[User-B] has no pins and sees none of them: the board starts Unassigned, Admin ShopView, Advisor Analysis, Ahtasham Admin."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96948-new-signin.png"
+   ]
+  },
+  "C96951": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Board Assigned; Jenny Wilson pinned; Board View, searched by the customer name.",
+    "With Assigned to me on, Board View shows only Unassigned (holding S2-35394) and my own column, Admin ShopView (holding S2-35392).",
+    "Ralph Edwards, Esther Howard and the pinned Jenny Wilson are hidden, and neither column shown offers a pin control.",
+    "Turning Assigned to me off brought back every column (120) and the pin controls, with Jenny Wilson still pinned right after Unassigned."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96951-assigned-on.png"
+   ]
+  },
+  "C96952": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Inactive Pinned: S2-35395 and S2-35396 led by Ralph Edwards, who was pinned and then deactivated.",
+    "His column is still shown, still pinned right after Unassigned, with both cards (count 2).",
+    "His header shows an \"Inactive\" label next to his name.",
+    "He could be unpinned; his column then left the pinned area (the board started Unassigned, Admin ShopView, Advisor Analysis).",
+    "He was set active again afterwards (read back: active)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96952-inactive-pinned.png"
+   ]
+  },
+  "C96953": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Column Scroll: 25 work orders with no lead, 20 led by Esther Howard, one each for Ralph Edwards and Jenny Wilson; Board View, searched by the customer name.",
+    "Scrolling inside Unassigned moved only its cards: the next column and every header stayed where they were.",
+    "The mouse wheel over the empty area below a short column did not scroll the page.",
+    "Esther Howard's column scrolled on its own the same way, while Unassigned and the columns beside her stayed put (see picture).",
+    "Sideways scrolling reached every technician: 119 technician columns, equal to the 119 eligible technicians."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96953-columns.png"
+   ]
+  },
+  "C96954": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customers ZZAUTOTEST F2 Card Reach (10 work orders) and ZZAUTOTEST F2 Card Reach Commercial Transport Services (5), all led by Esther Howard; Board View; the fields in Fields to display were switched on.",
+    "At Comfortable, Regular and Compact, scrolling Esther Howard's column to the end reached the last card, S2-35459.",
+    "The last card was fully visible at every density, with space to spare above the bottom of the column.",
+    "Every field shown on it (customer, unit, VIN, progress, line technicians, lead technician, total price) was fully visible; nothing was cut off."
+   ],
+   "not_observed": "The Fields to display list itself was not read back, so it was not confirmed field by field that every option in it was on.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96954-comfortable.png",
+    "evidence/staging-full-2026-10-14/C96954-regular.png",
+    "evidence/staging-full-2026-10-14/C96954-compact.png"
+   ]
+  },
+  "C96955": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Shared Density; Board View.",
+    "Board View has a Density control offering Compact, Regular and Comfortable, with Regular selected at the start.",
+    "After choosing Compact in Board View, Tech View's Density menu showed Compact selected.",
+    "After choosing Comfortable in Tech View, Board View's Density menu showed Comfortable selected: one setting shared by both displays.",
+    "It was set back to Regular afterwards."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  }
+ },
+ "redo": {
+  "C96913": "The check ran before its test customer (ZZAUTOTEST F1 Tabs) and its three work orders existed on staging (a later step makes them), so every tab read empty. The later step's own reading cannot be used either: clicking a tab clears the Search box and the search was not typed again, so it read the whole location. Re-run now that the data exists, typing the search after each tab click.",
+  "C154884": "The check ran before its customer (ZZAUTOTEST F1 Assigned To Me) existed, so it read nothing. The later reading showed the same four work orders in List, Tech View and Board View, but that is because you are the Service Advisor on all four; the case needs the work order led by the other technician and the one with no lead to have a different Service Advisor. Re-run with that setup step.",
+  "C96912": "Change Location did not work for the script: the location menu showed no option for Staging Lethbridge - 4310 (three tries), so the \"second location\" step never happened. Re-run switching location through the profile menu the way the staging location checks do.",
+  "C96923": "Same location-menu fault: the script could not pick the other location (no options found), and then the Tech View click timed out. No location change was made, so nothing about it can be judged.",
+  "C96914": "The search part matched in all three displays (only S2-35192 in each). For the Asset on Site filter, Board View was read only from the columns on screen; the column holding the matching work order (Ayesha Khan's) was off to the right among about 119 technician columns, so nothing was read there. Re-run with that technician pinned or scrolled into view.",
+  "C96915": "The List part matched (sorted by Created On, newest first, before and after). But the drag in Tech View did not happen: Ayesha Khan's group sits far down the list among about 119 technician groups and was off screen, so the order did not change and Board View read nothing. Re-run with her group pinned or scrolled into view first.",
+  "C96916": "The script stopped in Board View: Ayesha Khan's long column was off to the right, so no card was on screen to open and the Back-button check never ran.",
+  "C96917": "Only the sideways position was checked in Board View (back to the far left after a tab click and after Schedule; unchanged after clicking Work Orders while on the page), and only up/down in Tech View. Ayesha Khan's long column was off screen, so the script never scrolled down inside it and \"every column starts at its first card\" was not checked.",
+  "C96925": "Unassigned was first, holding exactly the two work orders with no lead (S2-35259, S2-35260). But the drag of Ayesha Khan's group could not be confirmed: her group sits far down among about 119 groups, and after the drag only the first four groups were read and her group was not on screen.",
+  "C96932": "Clicking the customer name opened the work order, the more-actions menu opened without opening it, and a clear movement started a drag (seen in the picture). The click on an empty part of the row and the tiny-movement press were made after going back and searching again; neither opened anything, most likely because the row was then below the visible part of the table (her group is far down among about 119 groups). Re-run with the row scrolled into view before each click.",
+  "C96933": "Unassigned was shown first with \"No work orders\" (count 0), but the drag from Ayesha Khan's group onto Unassigned did not land: her group was far below Unassigned among about 119 groups, nothing moved and no message appeared. Re-run with her group pinned so both are on screen.",
+  "C96935": "The scroll went through other technicians' empty groups and never reached Ayesha Khan's 25 rows (her group sits far down among about 119 groups), so the sticky header was never looked at. Re-run starting the scroll at her group.",
+  "C96937": "Setup step missing: the work order led by Bilal Muzamil still had you as its Service Advisor, so Assigned to me rightly included it in List (3 rows instead of 2) and in Tech View. The case needs that work order's Service Advisor changed to Bilal Muzamil first. Re-run with that step.",
+  "C368129": "List ends with its total row ($0.00). In Tech View no footer total was found, but Ayesha Khan's group and the bottom of the table were never on screen (her group is far down among about 119 groups), so \"nothing after her group or after the last group\" was not looked at.",
+  "C96936": "The lead change was saved (S2-35333 moved to Bilal Muzamil) and before the refresh tab A still showed it under Ayesha Khan, but the reading after the refresh came back empty, so the main point was not read.",
+  "C368126": "Tech View was correct: start Unassigned, Ahtsham Foreman, Ahtsham Parts Manger, Ayesha Khan, Bilal Muzamil; after pinning Ayesha Khan she moved right after Unassigned; after pinning Ahtsham Foreman he went after her, not by name. Board View was read only for the first four columns, which matched; Bilal Muzamil's column was further right and not read. Re-run reading all five columns.",
+  "C368130": "The script could not switch to the location ZZAUTOTEST Empty Shop (the option was not found in the location menu), so Tech View and Board View were never looked at there.",
+  "C96926": "The five test technicians (Aaron Baker, Aaron Zed, Brenda Martinez and the two Chris Lee) were not found at this location on staging, so none of them had a group to read. They need creating at Staging Heavy Duty - 9919 first.",
+  "C96927": "Tech View has its own Column Selection button, Assigned Techs could be switched on there, and an Assigned Techs column then showed in the table. But the two menus' lists were not read on staging, so \"every List column is also offered in Tech View\" and \"List's menu does not offer Assigned Techs\" were not checked.",
+  "C96929": "All readings came back empty (List, Tech View and Board View order of Carol Neal's three work orders were not read).",
+  "C96930": "Billy Nobill does not exist on staging (the script found no such staff member), so whether he gets a group and column was not checked; that Nick Noclock and Ella Elsewhere exist was not confirmed either, so their \"no group\" reading proves nothing. Create the missing staff and re-run.",
+  "C96938": "The script stopped before the first step: a technician record it needed (the long-named technician) was missing on staging.",
+  "C368125": "Esther Howard's group was collapsed before the search, but the script stopped when it tried to expand the group (the expand control was not found), so the count during the search and the expanded row were not read.",
+  "C368127": "Unassigned's header stayed on screen while deep in its rows and clicking its arrow there collapsed it. But whether Unassigned opened expanded was not recorded, and the List count for the comparison stopped at 5,500 rows (the location has more), so the header count (3,287) was compared with an incomplete List figure (3,226). Re-run counting all List rows.",
+  "C368161": "The script stopped while giving the work order's line to Aaron Baker: he is not offered as a technician at this location on staging (staff member missing). Nothing about the avatars was read.",
+  "C96949": "Board View was correct: with Ralph Edwards, Theresa Webb and Jenny Wilson pinned, Kristin Watson's pin control was disabled and showed \"You can pin up to 3 technicians.\"; clicking it pinned nobody; after unpinning Jenny Wilson, Esther Howard could be pinned; Tech View showed the same three pins. But Kristin Watson's group was not on screen in Tech View, so her disabled control there was not looked at."
+ },
+ "failed": {},
+ "doubt": {
+  "C96920": "With the network off, clicking Tech View did not switch the display: the whole Work Orders area was replaced by \"Something went wrong loading this section\" with a Retry button and a red \"Part of the page failed to load. Your connection may have dropped.\" message, the switcher disappeared and List could not be clicked. The other two points held: after reconnecting and refreshing the page opened in Board View, and Tech View chosen online was kept after the next refresh. Why I do not call it Failed: the screen part that draws Tech View had to be downloaded while offline (that download is what failed), and staging was redeployed during this run (app version v26.40.17-ddb9ba1 at 17:40, v26.40.17-a5c4210 by 18:05; this check ran at 17:53), which would make the browser fetch fresh files instead of using copies it already had. A person following the case on a stable build may well have that part already in the browser. Re-run on a stable build, by hand or with the page loaded once in Tech View before going offline, and only then decide."
+ }
+}

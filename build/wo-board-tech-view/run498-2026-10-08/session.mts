@@ -43,6 +43,18 @@ export async function open(route = '/workorders'): Promise<{ browser: Browser; p
     const { bootOrigin } = await import('../../testing-tools/qa-branch-boot.mjs') as any;
     const r = await bootOrigin({ app: APP, apiHost: new URL(API).host, ssoFile: process.env.WOB_SSO_FILE || '/tmp/qa-cookies/staging-sso.txt', label: APP, route, key: 'admin' });
     await quiet(r.page);
+    // WOB_PIN_NAMES="Ayesha Khan,…" (14 Oct 2026, staging has ~119 technicians at Heavy Duty): pin them for this user first,
+    // so their Tech View group / Board View column sits right after Unassigned. A script that sets its own pins still wins.
+    if (process.env.WOB_PIN_NAMES) {
+      const r2 = await r.page.evaluate(`(async () => { const H = { 'Content-Type': 'application/json', Accept: 'application/json' }; const A = ${JSON.stringify(API)};
+        const want = ${JSON.stringify(process.env.WOB_PIN_NAMES.split(',').map((x) => x.trim()))};
+        const c = await (await fetch(A + '/api/work-orders/lead-technician-candidates', { credentials: 'include', headers: H })).json();
+        const ids = (c?.data?.technicians ?? []).filter(t => want.includes(((t.firstName || '') + ' ' + (t.lastName || '')).trim())).map(t => t.staffId).slice(0, 3);
+        const pv = (await (await fetch(A + '/api/users/me/preferences/work-orders-list', { credentials: 'include', headers: H })).json())?.data?.value ?? {};
+        const put = await fetch(A + '/api/users/me/preferences/work-orders-list', { method: 'PUT', credentials: 'include', headers: H, body: JSON.stringify({ value: { ...pv, pinnedTechnicianIds: ids } }) });
+        return { ids: ids.length, put: put.status }; })()`).catch((e) => ({ error: String(e).slice(0, 100) }));
+      console.log(t(), 'pinned for this run', JSON.stringify(r2));
+    }
     return { browser: r.browser, page: r.page };
   }
   if (fs.existsSync(STATE)) {

@@ -131,6 +131,14 @@ async function changeLocationUI(target: string, pg: Page = p) {
     if ((await where())?.startsWith(target)) { steps.push(`at ${target} (attempt ${attempt})`); break; }
     await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(500);
     if (attempt === 3) { await pg.reload({ waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); steps.push('reloaded before attempt 3'); }
+    // 14 Oct 2026 (L0333): on staging the route is the profile menu -> select_location -> the location's item
+    if (process.env.WOB_LOC_SELECT) {
+      await pg.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await pg.waitForTimeout(1200);
+      await pg.locator('[data-test-id="select_location"]').click().catch(() => {}); await pg.waitForTimeout(1200);
+      const o2 = pg.locator('.q-menu .q-item').filter({ hasText: target }); steps.push(`attempt ${attempt}: select_location options for ${target} = ${await o2.count()}`);
+      await o2.first().click().catch((e) => steps.push('pick failed ' + String(e.message).slice(0, 60))); await pg.waitForTimeout(6000);
+      await pg.keyboard.press('Escape').catch(() => {}); continue;
+    }
     await pg.locator('header').getByText(/^[A-Z]{2}$/).last().click().catch(() => {}); await pg.waitForTimeout(1500);
     const cur = pg.locator('.q-menu').getByText(/ - \d{3,5}$/).first();
     if (!(await cur.isVisible().catch(() => false))) { steps.push(`menu did not open (attempt ${attempt})`); continue; }

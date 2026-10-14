@@ -38,6 +38,12 @@ export async function asRunner(browser: Browser, main: Page, a0: Api) {
   // 2026-10-09: a batch that ticks a Status filter leaves it SAVED on this user, and every later list check then starts
   // filtered (an 'Imported' filter hid every work order for an hour). Every batch starts with no saved list filters.
   { const PREF = '/api/users/me/preferences/work-orders-list'; const pv = (await via.get(PREF).catch(() => ({ body: null } as any))).body?.data?.value; if (pv?.filters && Object.keys(pv.filters).length) { await via.put(PREF, { value: { ...pv, filters: {} } }); await v.page.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await v.page.waitForTimeout(3000); } }
+  // 14 Oct 2026 (staging, ~119 technicians at Heavy Duty): WOB_PIN_NAMES="Ayesha Khan,…" pins those technicians for the runner
+  // so their Tech View group / Board View column sits right after Unassigned instead of far off screen. Unset = unchanged.
+  if (process.env.WOB_PIN_NAMES) { const PREF = '/api/users/me/preferences/work-orders-list'; const want = process.env.WOB_PIN_NAMES.split(',').map((x) => x.trim());
+    const ids = (await candidates(via)).filter((c) => want.includes(c.name)).map((c) => c.id).slice(0, 3);
+    const pv = (await via.get(PREF).catch(() => ({ body: null } as any))).body?.data?.value ?? {};
+    await via.put(PREF, { value: { ...pv, pinnedTechnicianIds: ids } }); await v.page.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await v.page.waitForTimeout(3000); }
   const who = (await api(v.page).get('/api/auth/me/fe-permissions')).status;
   return { p: v.page, a: api(v.page), id: row.id as string, staffId: row.staff_id as string, me, toRunner, perms: v.perms, who, log,
     end: async () => { await via.post('/api/exit-switch-user', {}); } };
