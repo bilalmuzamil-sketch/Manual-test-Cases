@@ -194,15 +194,19 @@ if (want('C368127') || want('C368126') || want('C96929')) await asUserB(async ()
 
 await run('C368130', async () => {
   const n = 'ZZAUTOTEST F2 No Tech Location';
-  const EMPTY = '4775b927-423d-49e4-9066-8409c4bc82ef';
-  await a.post('/api/iam/change-location', { workplace_id: EMPTY, workplace_timezone: 'Africa/Abidjan' });
+  // 14 Oct 2026: on staging the empty location is "ZZAUTOTEST F2 Empty Shop" (made by stg-setup.mts), looked up by name
+  const EMPTY_NAME = process.env.WOB_EMPTY_LOC || 'ZZAUTOTEST Empty Shop';
+  const ew = ((await a.get('/api/workplaces')).body?.data?.collection ?? []).find((x: any) => x.name === EMPTY_NAME);
+  const EMPTY = ew?.id ?? '4775b927-423d-49e4-9066-8409c4bc82ef';
+  await a.post('/api/iam/change-location', { workplace_id: EMPTY, workplace_timezone: ew?.timezone ?? 'Africa/Abidjan' });
   R.C368130 = { candidatesThere: (await candidates(a)).map((x) => x.name) };
   try { await seedCase(a, n, 'ZZF2NL', [{ lead: null }, { lead: null }]); } finally { await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); }
   R.C368130.note = 'the screen is switched to ZZAUTOTEST Empty Shop through the location menu below';
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000);
+  if (process.env.WOB_LOC_SELECT) await switchLocUI(p, EMPTY_NAME); else {
   await p.locator('header').getByText(/^[A-Z]{2}$/).last().click(); await p.waitForTimeout(1500);
   await p.locator('.q-menu').getByText(/ - \d{3,5}$|ZZAUTOTEST Empty Shop/).first().click(); await p.waitForTimeout(1500);
-  await p.locator('.q-menu').filter({ hasText: 'Staging Lethbridge' }).locator('.q-item').filter({ hasText: 'ZZAUTOTEST Empty Shop' }).first().click(); await p.waitForTimeout(6000);
+  await p.locator('.q-menu').filter({ hasText: 'Staging Lethbridge' }).locator('.q-item').filter({ hasText: 'ZZAUTOTEST Empty Shop' }).first().click(); await p.waitForTimeout(6000); }
   await p.keyboard.press('Escape').catch(() => {});
   R.C368130.location = await p.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => /Empty Shop| - \\d{3,5}$/.test(l)) || null`);
   await tab(p, 'All'); await display(p, 'Tech View');

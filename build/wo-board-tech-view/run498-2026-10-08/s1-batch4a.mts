@@ -175,7 +175,7 @@ await run('C96923', async () => {
   // Board View → Loc-2
   await display(p, 'Board View'); if ((await assigned().getAttribute('aria-pressed')) !== 'true') { await assigned().click(); await p.waitForTimeout(2000); }
   R.C96923.boardBefore = await state();
-  R.C96923.boardSteps = await changeLocationUI('ZZAUTOTEST Empty Shop'); R.C96923.boardAfter = await state(); R.C96923.boardPref = await pref(); await shot(p, 'C96923-board-after-change');
+  R.C96923.boardSteps = await changeLocationUI(process.env.WOB_EMPTY_LOC || 'ZZAUTOTEST Empty Shop'); R.C96923.boardAfter = await state(); R.C96923.boardPref = await pref(); await shot(p, 'C96923-board-after-change');
   // Tech View → back to the first location
   if (!/workorders/.test(p.url())) await go();
   await display(p, 'Tech View'); if ((await assigned().getAttribute('aria-pressed')) !== 'true') { await assigned().click(); await p.waitForTimeout(2000); }
