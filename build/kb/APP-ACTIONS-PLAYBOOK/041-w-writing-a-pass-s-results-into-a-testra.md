@@ -76,3 +76,8 @@ A `200` is not evidence a human can read what you wrote. The tool prints a test 
 count `<p>` and `<br>` in the container holding the comment. **One `<p>` and no line breaks means
 the paragraphs collapsed.** Same discipline as §J's served-page container scan.
 
+
+**Rule 130 (2026-10-14) — screenshots.** Every result in the RESULTS json carries `"pictures": [annotated png paths]`. Ask the
+QA lead *"Do you want the annotated screenshots added with the result comments?"*, then
+`push_results_to_run.py … --screenshots yes` (writes, then `add_attachment_to_result` per picture) or `--screenshots no`.
+No answer ⇒ the tool refuses. Results already in the run: `--attach-only --screenshots yes` (latest result of each case).

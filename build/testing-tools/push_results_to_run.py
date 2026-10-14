@@ -82,6 +82,22 @@ import sys
 sys.path.insert(0, 'build/testing-tools')
 import tr_client as t
 
+def attach(result_id, path):
+    """Rule 130 (QA lead 2026-10-14): put one annotated picture on a result (add_attachment_to_result, multipart)."""
+    import mimetypes, os, uuid, urllib.request, urllib.error
+    bnd = uuid.uuid4().hex
+    body = (('--%s\r\nContent-Disposition: form-data; name="attachment"; filename="%s"\r\nContent-Type: %s\r\n\r\n'
+             % (bnd, os.path.basename(path), mimetypes.guess_type(path)[0] or 'image/png')).encode()
+            + open(path, 'rb').read() + ('\r\n--%s--\r\n' % bnd).encode())
+    rq = urllib.request.Request(t._BASE + 'add_attachment_to_result/%d' % result_id, data=body, method='POST')
+    rq.add_header('Authorization', 'Basic ' + t._AUTH); rq.add_header('Content-Type', 'multipart/form-data; boundary=' + bnd)
+    try:
+        with urllib.request.urlopen(rq, timeout=120) as r:
+            return r.status, json.loads(r.read().decode() or 'null')
+    except urllib.error.HTTPError as e:
+        return e.code, e.read().decode()[:200]
+
+
 STATUS = {'Passed': 1, 'Blocked': 2, 'Untested': 3, 'Retest': 4, 'Failed': 5}
 
 
@@ -179,11 +195,43 @@ def main():
                                      '(e.g. the QA-branch / retest-on-Staging note)')
     ap.add_argument('--lead', help='sentence placed at the VERY TOP of every result comment, before '
                                    'the build/date header (QA lead, 2026-09-09)')
+    # Rule 130 (QA lead 2026-10-14): every pass/fail carries annotated screenshots as evidence — but he decides, per batch,
+    # whether they go on the result. ASK HIM FIRST and pass his answer here; a write without it is refused.
+    ap.add_argument('--screenshots', choices=['yes', 'no'],
+                    help="the QA lead's answer to 'add the annotated screenshots with the result comments?' (Rule 130). "
+                         "yes = every result needs a non-empty \"pictures\" list of annotated images, attached after writing")
+    ap.add_argument('--attach-only', action='store_true',
+                    help='Rule 130: attach each result\'s "pictures" to its LATEST existing result in the run; writes no new result')
     a = ap.parse_args()
 
     res = json.load(open(a.results))['results']
     todos = json.load(open(a.todo)) if a.todo else {}
     header = 'Tested on %s, build %s, on %s.' % (a.env, a.build_marker, a.date)
+
+    # --- gate: Rule 130 — his answer on screenshots is recorded before anything is written
+    if not a.dry_run and not a.screenshots:
+        sys.exit('REFUSING (Rule 130): ask the QA lead "Do you want the annotated screenshots added with the result comments?" '
+                 'and pass his answer as --screenshots yes|no.')
+    if a.screenshots == 'yes' or a.attach_only:
+        import os as _os
+        bad = sorted(c for c, r in res.items() if not r.get('pictures') or not all(_os.path.isfile(x) for x in r['pictures']))
+        if bad:
+            sys.exit('REFUSING (Rule 130): --screenshots yes but no annotated picture file for %s ("pictures": [paths])' % ', '.join(bad))
+    if a.attach_only:
+        if a.screenshots != 'yes':
+            sys.exit('REFUSING (Rule 130): --attach-only needs --screenshots yes (his confirmation)')
+        tests = {x['case_id']: x['id'] for x in paged_tests(a.run)}
+        for cid, r in sorted(res.items()):
+            tid = tests[int(cid[1:])]
+            s_, rr = t.get('get_results/%d&limit=1' % tid)
+            rows = rr.get('results', rr) if isinstance(rr, dict) else rr
+            if not rows:
+                sys.exit('no result yet on %s (test %d)' % (cid, tid))
+            for pth in r['pictures']:
+                if a.dry_run:
+                    print('  [dry-run] %s result %d <- %s' % (cid, rows[0]['id'], pth)); continue
+                print('  %s result %d <- %s: %s' % (cid, rows[0]['id'], pth, attach(rows[0]['id'], pth)[0]))
+        return
 
     # --- gate: Rule 7, no bare status on a Failed/Blocked result
     missing = [c for c, r in res.items()
@@ -271,6 +319,16 @@ def main():
     if s != 200:
         sys.exit('add_results_for_cases failed: %s %s' % (s, r))
     print('add_results_for_cases ->', s, '| written:', len(r) if isinstance(r, list) else r)
+
+    # --- 3a. Rule 130: the annotated pictures go on the result just written (his answer was yes)
+    if a.screenshots == 'yes' and isinstance(r, list):
+        by_test = {x['id']: x['case_id'] for x in paged_tests(a.run)}
+        for row in r:
+            cid = 'C%d' % by_test.get(row['test_id'], 0)
+            for pth in res.get(cid, {}).get('pictures', []):
+                print('  %s result %d <- %s: %s' % (cid, row['id'], pth, attach(row['id'], pth)[0]))
+    elif a.screenshots == 'no':
+        print('  screenshots: not attached — the QA lead said no for this batch (Rule 130)')
 
     # --- 3b. Rule 123 (QA lead 2026-10-12): every Failed result that has a ticket gets a SEPARATE comment on
     # top reading exactly "Follow the status here <ticket link>" — posted after the why-it-failed comment, so it

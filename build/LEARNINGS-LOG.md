@@ -304,3 +304,9 @@ fails: run `recall.py` before the first probe, every time. (5) Status filter opt
 `.q-menu .q-item`; and work order numbers differ per location (`SMQ1-…` at QB Location) — never match `S\d+-`.
 (6) The Schedule's own "Search schedule…" box (magnifier, `input_schedule_search`) + clicking a shift shows its technician,
 time and lines — the fastest on-screen read. #staging #schedule #setup #ruling → Rules 107, 113, 125
+
+## L0331 — 2026-10-14 — Results went into the run with no annotated screenshots (Rule 130)
+Six staging results were posted as text only; the QA lead: annotated screenshots are the proof of a pass or a fail, always —
+but ask him first whether they go on the result. Now: the pictures are made with every pass (`annotate_v2.py`, listed per case as
+`"pictures"`), the ask is one plain question per batch, and `push_results_to_run.py` refuses to write without his answer
+(`--screenshots yes|no`); `--attach-only` adds pictures to results already posted. #results #screenshots #evidence → Rule 130

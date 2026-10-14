@@ -118,6 +118,10 @@ def main(quick=False):
         check('results: run comments hide a Passed "None." and never hide a Failed/Blocked to-do', all(c), str(c))
     except Exception as e:
         check('results: run comments', False, repr(e)[:160])
+    # 7d · Rule 130 (2026-10-14): results are refused until the QA lead's screenshot answer is recorded; "yes" attaches pictures
+    src_pr = open(f'{T}/push_results_to_run.py').read()
+    check('results: a write without his screenshot answer is refused, and "yes" attaches the pictures (Rule 130)',
+          "if not a.dry_run and not a.screenshots" in src_pr and "add_attachment_to_result" in src_pr and "'pictures'" in src_pr)
     # 8 · scale and drift (warnings: they never block, they say what to do before it hurts)
     t0 = time.time(); run(['python3', f'{T}/recall.py', 'staging sign in cookie', '--top', '3'])
     dt = time.time() - t0

@@ -399,6 +399,7 @@ running it:
 
 > **🛠️ THE TOOL DOES STEPS 1, 2 AND 4 FOR YOU, AND WRITES THE RESULTS TOO —
 > `build/testing-tools/push_results_to_run.py` (proven live 2026-09-07, run R417, 120 cases).**
+> **📸 Rule 130 (2026-10-14): make annotated screenshots for every Passed/Failed (`"pictures"` per case), ASK the QA lead whether to add them with the result comments, and pass his answer as `--screenshots yes|no` — the tool refuses without it; `--attach-only` adds pictures to results already posted.**
 > It computes the union and **asserts it never shrinks**, emits block `<p>` paragraphs so the comment
 > does not collapse into a wall of text, and **REFUSES to write** if a Failed/Blocked result has no
 > plain "What needs to be done" (Rule 7) or if a non-Passed result is headed for a shared run without

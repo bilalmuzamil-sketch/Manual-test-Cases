@@ -5114,3 +5114,30 @@ for current and future tasks."*
   WARNINGS; a crash in a guard never blocks. A guard that can trap a session is itself a defect.
 - **Every scenario proved becomes a self-test check** in `selftest_workspace.py`, so it is re-proved after every later change.
 - **Report the scenarios run and what each found.** Worked application: L0328.
+
+---
+
+## RULE 130 — EVERY PASS OR FAIL CARRIES ANNOTATED SCREENSHOTS AS EVIDENCE — AND HE IS ASKED FIRST WHETHER THEY GO ON THE RESULT (QA lead 2026-10-14)
+
+Verbatim: *"How can you forget adding the annotated screenshot as a proof of pass or fail with your comments in the test run?
+Make sure you set it in your permanent rule to always add annotated screenshots as an evidence of pass or fail, but for the
+screenshots ask me first whether with the result comments I want to add the annotated screenshots or not and then after my
+confirmation proceed accordingly."*
+
+(1) **Every Passed or Failed result is backed by annotated screenshots** of what decided it: captured while the check runs (2×
+   where possible), annotated with `build/testing-tools/annotate_v2.py` (green box = matches the test, red = does not; a
+   sentence beside each box, so the picture alone explains the verdict), saved beside the results file and listed per case
+   as `"pictures": [paths]` in the RESULTS json. Preparing them is never skipped and never waits for anyone.
+(2) **Before the results go into the run, ASK HIM:** *"Do you want the annotated screenshots added with the result comments?"*
+   — once per batch, in plain words, with the pictures ready. Then do exactly what he says: **yes** ⇒ attach them to the result
+   (`add_attachment_to_result`); **no** ⇒ post the comments only, and keep the pictures in the repo.
+   (A Blocked result may carry them too; the ask covers whatever is in the batch.)
+(3) **Mechanism, enforced:** `push_results_to_run.py` REFUSES any write without `--screenshots yes|no` (his answer), refuses
+   `yes` when a result has no picture file, and attaches each picture to the result it has just written. Results already
+   posted get theirs with `--attach-only --screenshots yes` (on the latest result of each case; no new result is written).
+   Self-test check 7d keeps the gate in place.
+(4) **The ask does not hold anything else up (105):** the comments can be prepared, the pictures made, and other checks run
+   while the answer is awaited; only the attach waits.
+Relation to other rules: widens Rule 122 (4) ("a picture … attached … when the QA lead asks") — the picture is now always
+made, and his choice is asked every time instead of waited for; Rule 124's re-test pictures and Rule 121's production
+comparisons are cases of this rule. Worked miss: run 498, 14 Oct 2026 — six staging results posted with no pictures.
