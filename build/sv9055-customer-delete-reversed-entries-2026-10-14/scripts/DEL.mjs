@@ -1,6 +1,6 @@
 // usage: node DEL.mjs <state.json> <tag>   -> deletes the customer on screen, records everything
-import {ob,J} from './lib.mjs'; import {loc} from './seed.mjs'; import fs from 'fs';
-const A=JSON.parse(fs.readFileSync(process.argv[2])); const TAG=process.argv[3]; const s=await ob(); const p=s.page; await loc(s);
+import {ob,op,J} from './lib.mjs'; import {loc} from './seed.mjs'; import fs from 'fs';
+const A=JSON.parse(fs.readFileSync(process.argv[2])); const TAG=process.argv[3]; const s=process.env.ENV==='prod'?await op():await ob(); const p=s.page; await loc(s);
 const W=()=>s.writes.filter(w=>/customers\/|companies|customer-account/.test(w));
 const box=async sel=>p.evaluate(sel=>{const e=document.querySelector(sel); if(!e) return null; const r=e.getBoundingClientRect(); return [r.x,r.y,r.width,r.height];},sel);
 const out={tag:TAG,company_id:A.company_id,steps:[]};

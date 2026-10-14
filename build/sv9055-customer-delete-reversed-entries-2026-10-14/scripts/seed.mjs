@@ -1,7 +1,7 @@
 import {J,post} from './lib.mjs';
-export const WP='b3c8c820-f815-4cf1-8938-10956c5ee71a', CANNED='3a212080-8c00-4981-a46d-de91db43f3e7';
+export const WP=process.env.WP||'b3c8c820-f815-4cf1-8938-10956c5ee71a', CANNED=process.env.CANNED||'3a212080-8c00-4981-a46d-de91db43f3e7', TZ=process.env.TZ_LOC||'America/Edmonton';
 const ok=(tag,r)=>{ console.log(tag,r.status,J(r.json,220)); return r.json; };
-export async function loc(s){ await post(s,'/api/iam/change-location',{workplace_id:WP,workplace_timezone:'America/Edmonton'}); }
+export async function loc(s){ await post(s,'/api/iam/change-location',{workplace_id:WP,workplace_timezone:TZ}); }
 export async function customer(s,name){
   const c=ok('cust',await post(s,'/api/customers/create',{name})); const company_id=c.data?.company_id||c.data?.id;
   const ct=ok('contact',await post(s,'/api/contacts/create',{company_id,first_name:'ZZ',last_name:name.slice(-6)})); const contact_id=ct.data?.contact_id;
@@ -20,9 +20,9 @@ export async function invoiced(s,name){
   const lines=await s.api('/api/work-orders/lines/'+w.work_order_id); const line_id=lines.json.data.collection[0].line_id;
   ok('complete',await post(s,'/api/work-orders/lines/change-status',{line_id,work_order_id:w.work_order_id,status:'complete'}));
   await s.go('/workorders/'+w.work_order_id+'/lines'); await p.waitForTimeout(3000);
-  await p.locator('[data-test-id="button_mark_reviewed"]').click(); await p.waitForTimeout(2500);
+  const mr=p.locator('[data-test-id="button_mark_reviewed"]'); if(await mr.count()){ await mr.click(); await p.waitForTimeout(2500); }
   const inv=ok('invoice',await post(s,'/api/invoices/create',{work_order_id:w.work_order_id}));
-  return {...c,work_order_id:w.work_order_id,line_id,invoice_id:inv.json?.data?.invoice_id,customer_account_id:inv.json?.data?.customer_account_id};
+  return {...c,work_order_id:w.work_order_id,line_id,invoice_id:inv?.data?.invoice_id,customer_account_id:inv?.data?.customer_account_id};
 }
 export async function payUI(s,A,ref,extra=0){
   const p=s.page; await s.go('/workorders/'+A.work_order_id+'/finance'); await p.waitForTimeout(3500);
