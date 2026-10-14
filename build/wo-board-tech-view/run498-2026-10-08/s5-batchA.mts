@@ -151,7 +151,7 @@ await run('loc2', async () => {
   await go('Tech View'); R.loc2.tech = onKeys(await menu('Tech View')); await close();
   await display(p, 'Board View'); R.loc2.board = onKeys(await menu('Board View')); await close();
   await display(p, 'List'); R.loc2.list = onKeys(await menu('List')); await close(); await shot(p, 'S5-loc2');
-  await a.post('/api/iam/change-location', { workplace_id: 'b3c8c820-f815-4cf1-8938-10956c5ee71a', workplace_timezone: 'America/Edmonton' });
+  await a.post('/api/iam/change-location', { workplace_id: 'b3c8c820-f815-4cf1-8938-10956c5ee71a', workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
 });
 
 const BACK = ORIGINAL; await a.put(PREF, { value: BACK }); R.restored = JSON.stringify(await prefGet()) === JSON.stringify(BACK);

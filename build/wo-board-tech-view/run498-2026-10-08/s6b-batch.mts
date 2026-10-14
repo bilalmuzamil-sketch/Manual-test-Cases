@@ -135,7 +135,7 @@ await run('C96989', async () => {
   await p.keyboard.press('Escape').catch(() => {});
   R.C96989.at = await where(p);
   if (/lethbridge/i.test(String(R.C96989.at))) { await go('Tech View'); R.C96989.tech = (await density()).selected; await display(p, 'Board View'); await p.waitForTimeout(1500); R.C96989.board = (await density()).selected; await shot(p, 'C96989-lethbridge'); }
-  R.C96989.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' }));
+  R.C96989.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
 });
 
 const BACK = ORIGINAL; await a.put(PREF, { value: BACK }); R.restored = JSON.stringify(await prefGet()) === JSON.stringify(BACK);

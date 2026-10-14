@@ -30,7 +30,7 @@ export async function asRunner(browser: Browser, main: Page, a0: Api) {
     let s = await via.post('/api/switch-user', { user_id: row.id });
     if (s.status >= 300) { await via.post('/api/exit-switch-user', {}); s = await via.post('/api/switch-user', { user_id: row.id }); }
     if (s.status >= 300) throw new Error(`switch to runner ${s.status}`);
-    await via.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' });
+    await via.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
   };
   const v = await viewAs(browser, main, a0, row.id, me?.id ?? '', toRunner);
   via = api(v.page);

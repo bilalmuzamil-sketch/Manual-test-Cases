@@ -69,11 +69,11 @@ console.log(t(), 'User-B', JSON.stringify(R.userB), JSON.stringify(R.userBCreate
 async function asUserB<T>(f: () => Promise<T>): Promise<T> {
   const s = await a.post('/api/switch-user', { user_id: userB.id ?? userB.staff_id });
   if (s.status >= 300) throw new Error(`switch to User-B: ${s.status} ${JSON.stringify(s.body).slice(0, 200)}`);
-  await p.waitForTimeout(800); await toLoc({ id: HEAVY, timezone: 'America/Edmonton' });
+  await p.waitForTimeout(800); await toLoc({ id: HEAVY, timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
   try { return await f(); } finally {
     const e = await a.post('/api/exit-switch-user', {});
     if (e.status >= 300) await a.post('/api/switch-user', { user_id: adminStaff });
-    await p.waitForTimeout(800); await toLoc({ id: HEAVY, timezone: 'America/Edmonton' });
+    await p.waitForTimeout(800); await toLoc({ id: HEAVY, timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
   }
 }
 
@@ -111,7 +111,7 @@ await run('C96912', async () => {
   R.C96912.locSteps = await changeLocationUI(loc2.name, s2.page);
   if (!/workorders/.test(s2.page.url())) { await s2.page.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await s2.page.waitForTimeout(5000); }
   R.C96912.loc2 = { url: s2.page.url().replace(APP, ''), location: await s2.page.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`), display: await active(s2.page) }; await shot(s2.page, 'C96912-loc2');
-  await changeLocationUI('Staging Heavy Duty', s2.page).catch(() => a2.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' }));
+  await changeLocationUI('Staging Heavy Duty', s2.page).catch(() => a2.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
   // the first browser: is it still signed in, and what does it show now?
   await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(5000);
   R.C96912.firstBrowser = { url: p.url().replace(APP, ''), display: await active(p) };
@@ -155,7 +155,7 @@ await run('C96923', async () => {
   // [Loc-2] needs a work order of its own
   await toLoc(loc2);
   if (!(await workOrders(a, name + ' 2')).length) { try { await workOrder(a, await customer(a, name + ' 2', 'ZZLR-2'), 'approved', null); } catch (e: any) { R.C96923loc2seed = String(e.message).slice(0, 200); } }
-  await toLoc({ id: HEAVY, timezone: 'America/Edmonton' });
+  await toLoc({ id: HEAVY, timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
   R.C96923 = { loc2: loc2?.name };
   await go(); R.C96923.start = await changeLocationUI('Staging Heavy Duty - 9919'); await go();
   // today's List behaviour first (the note the case compares with)
@@ -180,6 +180,6 @@ await run('C96923', async () => {
   await display(p, 'List');
 });
 
-await toLoc({ id: HEAVY, timezone: 'America/Edmonton' }).catch(() => {});
+await toLoc({ id: HEAVY, timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }).catch(() => {});
 fs.writeFileSync(path.join(EV, 's1-batch4a.json'), JSON.stringify(R, null, 1));
 await done(browser);

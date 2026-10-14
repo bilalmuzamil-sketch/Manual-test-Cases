@@ -45,7 +45,7 @@ async function pin(id: string) { await toColumn(p, id); await p.locator(`[data-t
 const UB = 'zzautotest.wob.userb.1008@staging.shopview.local';
 async function as<T>(userId: string, f: () => Promise<T>): Promise<T> {
   const s = await a.post('/api/switch-user', { user_id: userId }); if (s.status >= 300) throw new Error(`switch ${s.status} ${JSON.stringify(s.body).slice(0, 160)}`);
-  await p.waitForTimeout(800); await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' });
+  await p.waitForTimeout(800); await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
   try { return await f(); } finally { const e = await a.post('/api/exit-switch-user', {}); if (e.status >= 300) await a.post('/api/switch-user', { user_id: me.id }); await p.waitForTimeout(800); }
 }
 

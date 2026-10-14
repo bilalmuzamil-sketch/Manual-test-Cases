@@ -275,7 +275,7 @@ await run('C368217', async () => { const ps = await partSale(`ZZAUTOTEST Part Sa
   await p.goto(page, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); o.setupCheck = { tab: await p.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Parts/ }).first().innerText().catch(() => null), rows: (await p.locator('tbody').first().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 260) }; await shot(p, 'C368217-setup-check');
   // the second location's part sale with two parts
   await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }).catch(() => {}); const ps2 = await partSale(`ZZAUTOTEST Part Sale Counts L2 ${RUNNO}`); o.l2id = ps2.id;
-  o.l2parts = [await addPartManual(ps2.id, 'Brake Pads'), await addPartManual(ps2.id, 'Brake Pads')]; await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' });
+  o.l2parts = [await addPartManual(ps2.id, 'Brake Pads'), await addPartManual(ps2.id, 'Brake Pads')]; await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
   // the list, filtered by the page's own Search (right of the header)
   await p.goto(APP + '/parts/part-sales', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.topBar = (await p.locator('header').innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 160);
   const box = p.locator('[data-test-id="page_search_input"]'); if (!(await box.isVisible().catch(() => false))) await p.locator('[data-test-id="page_search_toggle"]').click().catch(() => st('no page search toggle'));

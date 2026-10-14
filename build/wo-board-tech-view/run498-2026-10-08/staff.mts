@@ -8,9 +8,16 @@
 import type { Api } from './data.mts';
 import { HEAVY, LETH } from './profile.mts';
 export { HEAVY, LETH };
+// 14 Oct 2026 (staging, L0330): Esther Howard, Ralph Edwards, Dana Ortiz and Jenny Wilson were first made in "Service/Parts" (no
+// Schedule row) and an account email cannot be changed, so the right ones carry ".svc" emails. WOB_STAFF_ALIAS=".svc" makes a
+// lookup of the suite's usual email find the ".svc" person and hand the row back under the usual email. Unset = unchanged.
+const ALIASED = ['esther.howard', 'ralph.edwards', 'dana.ortiz', 'jenny.wilson'];
 export async function staffRows(a: Api, q = ''): Promise<any[]> {
-  const r = await a.get(`/api/staff?limit=200${q ? '&search=' + encodeURIComponent(q) : ''}`);
-  return r.body?.data?.collection ?? [];
+  const AL = process.env.WOB_STAFF_ALIAS || ''; const m = /^zz\.wob\.([a-z]+\.[a-z]+)(@.+)$/.exec(q);
+  const qq = AL && m && ALIASED.includes(m[1]) ? `zz.wob.${m[1]}${AL}${m[2]}` : q;
+  const r = await a.get(`/api/staff?limit=200${qq ? '&search=' + encodeURIComponent(qq) : ''}`);
+  const rows = r.body?.data?.collection ?? [];
+  return qq === q ? rows : rows.map((x: any) => (String(x.email).toLowerCase() === qq ? { ...x, email: q } : x));
 }
 export async function roleIds(a: Api): Promise<Record<string, string>> {
   const m: Record<string, string> = {};
@@ -22,7 +29,7 @@ export async function person(a: Api, first: string, last: string, opts: { role: 
   const log: string[] = [];
   if (!row) {
     const deps = (await a.get('/api/departments')).body?.data; const dl = Array.isArray(deps) ? deps : deps?.collection ?? [];
-    const c = await a.post('/api/iam/create', { email: opts.email, first_name: first, last_name: last, role_id: opts.role, departments: dl.slice(0, 1).map((d: any) => d.id), workplace_id: opts.workplace ?? HEAVY });
+    const c = await a.post('/api/iam/create', { email: opts.email, first_name: first, last_name: last, role_id: opts.role, departments: [(dl.find((d: any) => (d.name ?? d.label) === 'Service') ?? dl[0])].filter(Boolean).map((d: any) => d.id)  /* 14 Oct: EXACTLY Service — the Schedule shows no other technician department (L0330) */, workplace_id: opts.workplace ?? HEAVY });
     log.push(`create ${c.status}${c.status >= 300 ? ' ' + JSON.stringify(c.body).slice(0, 160) : ''}`);
     row = (await staffRows(a, opts.email)).find((x) => String(x.email).toLowerCase() === opts.email.toLowerCase());
   }

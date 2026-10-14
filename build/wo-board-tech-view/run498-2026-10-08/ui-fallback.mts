@@ -71,7 +71,7 @@ await run('loc2', async () => {
     await display(p, 'Board View'); R.loc2.board = await sw('button_board_fields_selection'); R.loc2.boardDensity = await dens();
     await display(p, 'List'); R.loc2.list = await sw('button_column_selection'); await shot(p, 'ui-loc2-lethbridge');
   }
-  await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' }); await a.put(PREF, { value: before });
+  await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); await a.put(PREF, { value: before });
 });
 
 /** New Asset through the customer page */

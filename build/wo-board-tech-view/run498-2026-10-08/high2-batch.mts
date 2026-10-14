@@ -260,10 +260,10 @@ await run('C368211', async () => { await phone(); await p.goto(APP + '/workorder
 
 await run('C368212', async () => { const o: any = {}; o.toLeth = say(await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }));
   const s = await mkSet('ZZAUTOTEST Loc2 Customer', [{ co: 'WO', lead: null }]).catch((e) => { o.createError = String(e).slice(0, 160); return null as any; });
-  o.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' }));
+  o.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
   if (s) { const num = s.w['WO'].number; o.num = num; await goList(p, 'Loc2'); o.heavyLoc2 = (await rowsList()).includes(num); await search(p, num); o.heavyByNumber = (await rowsList()).includes(num);
     await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }); await goList(p, 'Loc2'); o.lethLoc2 = (await rowsList()).includes(num); o.lethTopBar = await p.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`);
-    await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' }); }
+    await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); }
   R.C368212 = o; });
 
 await run('C368214', async () => { const s = await mkSet('ZZAUTOTEST Back Forward', [{ co: 'One Co', lead: ANA }]); const num = s.w['One Co'].number; const o: any = {};

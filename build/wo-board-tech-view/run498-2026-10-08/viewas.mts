@@ -14,7 +14,7 @@ export async function viewAs(browser: Browser, main: Page, a: Api, userId: strin
   let s = await a.post('/api/switch-user', { user_id: userId });
   if (s.status >= 300) { await a.post('/api/exit-switch-user', {}); s = await a.post('/api/switch-user', { user_id: userId }); }
   if (s.status >= 300) throw new Error(`switch ${s.status} ${JSON.stringify(s.body).slice(0, 160)}`);
-  await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' });
+  await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
   const fe = (await a.get('/api/auth/me/fe-permissions')).body?.data ?? null;
   const user = s.body?.data ?? null;
   const st = await main.context().storageState();

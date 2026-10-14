@@ -131,7 +131,7 @@ await run('C96989', async () => {
   R.C96989.move = say(await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }));
   const s2 = await second(); try { await s2.pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await s2.pg.waitForTimeout(6000); await tab(s2.pg, 'All'); await display(s2.pg, 'Tech View');
     R.C96989.loc2 = { at: await where(s2.pg), tech: (await density(s2.pg)).selected }; await shot(s2.pg, 'C96989-loc2'); } finally { await s2.ctx.close(); }
-  R.C96989.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' }));
+  R.C96989.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
 });
 
 await run('C96990', async () => {

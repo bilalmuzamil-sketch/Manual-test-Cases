@@ -37,6 +37,14 @@ async function quiet(page: Page) {
     await page.getByRole('button', { name: /Wake Up/i }).first().click({ timeout: 10_000 }).catch(() => {}); });
 }
 export async function open(route = '/workorders'): Promise<{ browser: Browser; page: Page }> {
+  // 14 Oct 2026 (Rule 125, L0312/L0330): WOB_NORMAL_SIGNIN=1 signs in through the sign-in page (bootOrigin, quick-login), the
+  // way a person does — the harness sign-in below shows the Schedule clock in UTC. Cookies: WOB_SSO_FILE (+ its -full.json).
+  if (process.env.WOB_NORMAL_SIGNIN) {
+    const { bootOrigin } = await import('../../testing-tools/qa-branch-boot.mjs') as any;
+    const r = await bootOrigin({ app: APP, apiHost: new URL(API).host, ssoFile: process.env.WOB_SSO_FILE || '/tmp/qa-cookies/staging-sso.txt', label: APP, route, key: 'admin' });
+    await quiet(r.page);
+    return { browser: r.browser, page: r.page };
+  }
   if (fs.existsSync(STATE)) {
     console.log(t(), 'trying the saved session');
     const browser = await chromium.launch();

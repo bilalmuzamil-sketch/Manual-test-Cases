@@ -133,7 +133,7 @@ const EMAIL = 'zzautotest.wob.userb.1008@staging.shopview.local';
 const ub = ((await a.get('/api/staff?search=' + encodeURIComponent(EMAIL))).body?.data?.collection ?? []).find((x: any) => x.email === EMAIL);
 async function asUserB<T>(f: () => Promise<T>): Promise<T> {
   const s = await a.post('/api/switch-user', { user_id: ub.id }); if (s.status >= 300) throw new Error(`switch to User-B ${s.status} ${JSON.stringify(s.body).slice(0, 200)}`);
-  await p.waitForTimeout(800); await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' });
+  await p.waitForTimeout(800); await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
   try { return await f(); } finally { const e = await a.post('/api/exit-switch-user', {}); if (e.status >= 300) await a.post('/api/switch-user', { user_id: me.id }); await p.waitForTimeout(800); }
 }
 if (want('C368127') || want('C368126') || want('C96929')) await asUserB(async () => {
@@ -197,7 +197,7 @@ await run('C368130', async () => {
   const EMPTY = '4775b927-423d-49e4-9066-8409c4bc82ef';
   await a.post('/api/iam/change-location', { workplace_id: EMPTY, workplace_timezone: 'Africa/Abidjan' });
   R.C368130 = { candidatesThere: (await candidates(a)).map((x) => x.name) };
-  try { await seedCase(a, n, 'ZZF2NL', [{ lead: null }, { lead: null }]); } finally { await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' }); }
+  try { await seedCase(a, n, 'ZZF2NL', [{ lead: null }, { lead: null }]); } finally { await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); }
   R.C368130.note = 'the screen is switched to ZZAUTOTEST Empty Shop through the location menu below';
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000);
   await p.locator('header').getByText(/^[A-Z]{2}$/).last().click(); await p.waitForTimeout(1500);

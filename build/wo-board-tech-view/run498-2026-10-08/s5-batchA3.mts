@@ -131,7 +131,7 @@ await run('loc2', async () => {
     await display(p, 'List'); await p.waitForTimeout(1500); R.loc2.list = onKeys(await menu('List')); await close(); await shot(p, 'S5-loc2');
     R.loc2.density = (await prefGet()).density;
   }
-  R.loc2.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' }));
+  R.loc2.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
 });
 
 const BACK = ORIGINAL; await a.put(PREF, { value: BACK }); R.restored = JSON.stringify(await prefGet()) === JSON.stringify(BACK);

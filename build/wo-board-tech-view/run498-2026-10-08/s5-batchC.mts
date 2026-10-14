@@ -115,7 +115,7 @@ await run('C96978', async () => {
   // Esther clocked in on Line 1, Ralph on Line 2
   const clockIn = async (who: any, line: string) => { let s = await a.post('/api/switch-user', { user_id: who.id }); if (s.status >= 300) { await a.post('/api/exit-switch-user', {}); s = await a.post('/api/switch-user', { user_id: who.id }); }
     try { const tk = ((await linesRaw(wo)).find((l: any) => l.line_id === line)?.tasks ?? []).find((x: any) => x.tech_assigned_id === who.staff_id)?.id;
-      await a.post('/api/iam/change-location', { workplace_id: 'b3c8c820-f815-4cf1-8938-10956c5ee71a', workplace_timezone: 'America/Edmonton' });
+      await a.post('/api/iam/change-location', { workplace_id: 'b3c8c820-f815-4cf1-8938-10956c5ee71a', workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
       return say(await a.post('/api/technician-tasks/check-in', { task_id: tk, line_id: line, work_order_id: wo, refresh_lines: true })); } finally { await RUN.toRunner(); } };
   R.C96978.clock = [await clockIn(ES, ls[0]), await clockIn(RE, ls[1])];
   const lines = await linesRaw(wo); R.C96978.lineEstimates = lines.map((l: any) => l.time_estimate); R.C96978.sumEstimateMinutes = lines.reduce((s: number, l: any) => s + (+l.time_estimate || 0), 0);

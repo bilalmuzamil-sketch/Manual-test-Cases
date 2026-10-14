@@ -12,5 +12,5 @@ while read -r s; do [ -z "$s" ] && continue
   ids=$(python3 -c "import json;print(','.join('C%d'%c for c in json.load(open('$HERE/rerun-map.json'))['$s']))")
   extra=""; case "$s" in kbd-fix2.mts|kbd-fix3.mts|kbd-fix4.mts|s9-fix2.mts|s9-fix7.mts|c368149-two.mts) extra="WOB_LIVE=1";; esac
   echo "$(date +%H:%M:%S) $s ($ids)"; env ONLY="$ids" $extra timeout 3600 "$HERE/wob-run.sh" "$s" > "$LOG/${s%.mts}.log" 2>&1; echo "EXIT=$?" >> "$LOG/${s%.mts}.log"
-done < "$HERE/rerun-order.txt"
+done < "$HERE/${ORDER_FILE:-rerun-order.txt}"   # ORDER_FILE (14 Oct): e.g. rerun-order-staging.txt = everything but sign-out
 echo "done — logs in $LOG"

@@ -240,7 +240,7 @@ await run('C368156', async () => { const o: any = {};
   o.loc2Cols = named((await allCols(p)).slice(0, 6), { ...IDS, Xia: XIA.staff_id, Yan: YAN.staff_id, Zoe: ZOE.staff_id });
   for (const x of [XIA, YAN, ZOE]) { await toColumn(p, x.staff_id).catch(() => {}); const b = p.locator(`[data-test-id="button_board_pin_${x.staff_id}"]`); o[`pin ${x.first_name ?? x.staff_id.slice(0, 4)}`] = (await b.count()) ? { disabled: await b.isDisabled() } : 'no column'; if (await b.count()) { await b.click().catch(() => {}); await p.waitForTimeout(1200); } }
   o.loc2Pref = await prefFor(); o.loc2Toasts = await toastsOn(p); await shot(p, 'C368156-loc2');
-  await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' }); await goP(p, 'Board View', ''); o.heavyAfter = named((await allCols(p)).slice(0, 5), IDS); o.heavyPref = await prefFor();
+  await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); await goP(p, 'Board View', ''); o.heavyAfter = named((await allCols(p)).slice(0, 5), IDS); o.heavyPref = await prefFor();
   R.C368156 = o; });
 
 async function staffAccess(name: string) { await p.goto(APP + '/settings/staff', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);

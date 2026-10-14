@@ -34,7 +34,7 @@ const linesRaw = async (wo: string) => { const d = (await a.get(`/api/work-order
 const taskOf = async (wo: string, line: string, staff: string) => ((await linesRaw(wo)).find((l: any) => l.line_id === line)?.tasks ?? []).find((x: any) => x.tech_assigned_id === staff)?.id;
 async function asTech<T>(userId: string, f: () => Promise<T>): Promise<T> {
   let s = await a.post('/api/switch-user', { user_id: userId }); if (s.status >= 300) { await a.post('/api/exit-switch-user', {}); s = await a.post('/api/switch-user', { user_id: userId }); } if (s.status >= 300) throw new Error(`switch ${s.status}`);
-  await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' });
+  await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
   try { return await f(); } finally { await RUN.toRunner(); }
 }
 async function completeLine(wo: string, line: string) {

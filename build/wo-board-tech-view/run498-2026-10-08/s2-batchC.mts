@@ -107,7 +107,7 @@ const UB = 'zzautotest.wob.userb.1008@staging.shopview.local';
 const ub = (await staffRows(a, UB)).find((x) => x.email === UB);
 async function asUserB<T>(f: () => Promise<T>): Promise<T> {
   const s = await a.post('/api/switch-user', { user_id: ub.id }); if (s.status >= 300) throw new Error(`switch ${s.status}`);
-  await p.waitForTimeout(800); await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' });
+  await p.waitForTimeout(800); await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
   try { return await f(); } finally { const e = await a.post('/api/exit-switch-user', {}); if (e.status >= 300) await a.post('/api/switch-user', { user_id: me.id }); await p.waitForTimeout(800); }
 }
 async function scrollToGroup(id: string) {
