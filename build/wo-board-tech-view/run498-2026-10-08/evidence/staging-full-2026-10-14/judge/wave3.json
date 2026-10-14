@@ -1,0 +1,360 @@
+{
+ "results": {
+  "C96968": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Reassign Offline: S2-35505 led by Esther Howard. In Board View the card was dragged to Ralph Edwards' column while saving was failing.",
+    "The card went back to Esther Howard's column.",
+    "The alert read exactly \"Failed to update lead technician, please try again.\" It was still on screen after 10 seconds and went away when its Close button was clicked.",
+    "After a reload the lead is still Esther Howard.",
+    "Tech View behaved the same way: the row went back to Esther Howard's group with the same alert, which stayed until closed."
+   ],
+   "not_observed": "Saving was made to fail by having the server refuse it, not by switching the network off. Whether a real network drop shows different words was therefore not seen.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96968-board-alert.png",
+    "evidence/staging-full-2026-10-14/C96968-tech-alert.png"
+   ]
+  },
+  "C368137": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Reorder Offline: Esther Howard's column held S2-35506, S2-35507, S2-35508 in that order.",
+    "The last card was dragged to the top while saving was failing. The alert read exactly \"Couldn't save the new order. Please try again.\"",
+    "The card went back: the order was again S2-35506, S2-35507, S2-35508, and it stayed so after a reload. No lead change message appeared.",
+    "Tech View behaved the same way, with the same alert and the same order before and after the reload."
+   ],
+   "not_observed": "Saving was made to fail by having the server refuse it, not by switching the network off.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368137-board.png",
+    "evidence/staging-full-2026-10-14/C368137-tech.png"
+   ]
+  },
+  "C96971": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Later Reassign Wins, led by Esther Howard; Board View open in two windows.",
+    "Window 1: More actions > Reassign lead technician > Ralph Edwards: the lead became Ralph Edwards.",
+    "Window 2, without reloading (card still shown under Esther Howard): Reassign lead technician > Dana Ortiz: \"Lead technician updated\", and the lead became Dana Ortiz.",
+    "After reloading both windows, both show the card in Dana Ortiz's column. Dana Ortiz, the later change, is the final lead."
+   ],
+   "not_observed": "The two windows were two tabs of one browser with the same user. The final lead was read from the saved work order (the same detail its page shows), not by opening the page in each window.",
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368138": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Moved Neighbour; Board View open in two windows.",
+    "Window 2 dragged S2-35511 to Ralph Edwards' column.",
+    "Window 1, not reloaded, dropped S2-35512 directly above S2-35511 (still shown there under Esther Howard). The alert read: \"Couldn't save the new order. Please try again. The card you dropped this next to has moved. Refresh the board and try again.\" The required sentence is there; the headline above it is allowed.",
+    "S2-35512 went back to where it was in Esther Howard's column.",
+    "After reloading window 1 the board matches window 2: S2-35511 is under Ralph Edwards, and S2-35510 and S2-35512 are under Esther Howard."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368138-browser1.png"
+   ]
+  },
+  "C368139": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Board Busy; Board View open in two windows.",
+    "Five times, S2-35513 and S2-35514 were dropped on Ralph Edwards' column from the two windows at the same moment.",
+    "Every drop saved: both windows showed \"Lead technician updated\" each time. Busy alert not reproduced by hand.",
+    "No card was lost or shown twice: after reloading both windows, S2-35513 and S2-35514 each appear once, in Ralph Edwards' column."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C96977": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Card Always On; Board View.",
+    "Fields to display lists 13 fields: Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date. Work order number, Unit number and Status are not in the list, so they cannot be turned off.",
+    "With every listed field turned off, the card still shows its number \"S2-35518\", its unit \"TRK-118\" and its status \"Approved\"."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96977-menu.png",
+    "evidence/staging-full-2026-10-14/C96977-card.png"
+   ]
+  },
+  "C96981": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Fields No Reload: three cards (S2-35519, S2-35520, S2-35521), each showing the customer.",
+    "In Fields to display, Created date was turned on and Customer turned off.",
+    "All 3 cards straight away showed \"Created date Today\" and no longer showed the customer.",
+    "The page did not reload: the search box still read \"ZZAUTOTEST F2 Fields No Reload\" and the board stayed where it was."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96981-after.png"
+   ]
+  },
+  "C96985": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Empty Fields Hidden: S2-35523 has no service advisor, no VIN and nobody clocked in.",
+    "Fields to display: service advisor, VIN/serial and clocked in were turned on (with lead technician, customer and progress).",
+    "The card leaves out service advisor, VIN/serial and clocked in entirely: no label, no blank, no dash.",
+    "Its other fields still show: S2-35523, Approved, the customer, unit ZZF2EH, Progress 0% and Lead technician Esther Howard."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96985-card.png"
+   ]
+  },
+  "C96979": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "A brand-new user who had never saved a choice (\"Nora New\") opened Work Orders. List showed: On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price, Created On.",
+    "Her Tech View showed exactly the same columns, and Assigned Techs was off.",
+    "As my own user, List with Service Advisor off and Created on on: after a reload Service Advisor was still off and Created on still on.",
+    "After changing a Tech View column, going back to List and reloading, List still had Service Advisor off and Created on on.",
+    "Pre-release List choice not checked."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96979-nora-techview.png"
+   ]
+  },
+  "C96982": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Required Only: made through the screens with two assets, a 2022 Freightliner M2 with unit TRK-118, and a 1999 Ford Explorer with no unit.",
+    "With every optional field in Fields to display turned off:",
+    "S2-35528 shows only its number, its status \"Approved\" and \"TRK-118\".",
+    "S2-35529 shows only its number, its status \"Approved\" and, in the unit's place, \"1999 Ford Explorer\"."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/ui-C96982-cards.png"
+   ]
+  },
+  "C96984": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Unit Fallback; Board View with line count, total price and progress turned on (defaults kept on).",
+    "(a) S2-35530 shows \"TRK-118 · 2022 Freightliner M2\": its unit and its asset.",
+    "(b) S2-35531 shows \"1999 Ford Explorer\" where the unit would be.",
+    "(d) Every card shows its zero values as values: \"0 lines\", \"0%\" and \"$0.00\"."
+   ],
+   "not_observed": "(c), a work order whose asset has neither a unit nor a make and model, could not be made (the case allows three cards in that situation); the third card here has unit ZZTMP.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/ui-C96984-cards.png"
+   ]
+  },
+  "C96987": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "A brand-new user who had never chosen a density opened Work Orders.",
+    "List has no density control.",
+    "Tech View's density control offers Compact, Regular and Comfortable, with Regular selected.",
+    "Board View's density control offers the same three, with Regular selected."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96987-tech.png"
+   ]
+  },
+  "C96990": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "List row text was measured as normal body text (smallest text in a row about 11 pixels).",
+    "Tech View set to Compact: the smallest text in a row is the same size as in List, so nothing is smaller.",
+    "Board View at Compact: the smallest text on a card is also the same size as in List.",
+    "Compact only made rows and cards tighter (Tech View row 40 pixels high, against 48 for a List row)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96990-tech-compact.png",
+    "evidence/staging-full-2026-10-14/C96990-board-compact.png"
+   ]
+  },
+  "C96991": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Tech View set to Comfortable; after a normal reload Comfortable was still selected.",
+    "With the saved setting made unreadable, Tech View opened with Regular selected.",
+    "Board View, under the same failure, also showed Regular.",
+    "The saved choice itself was still Comfortable once the failure was removed."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96991-fail-tech.png"
+   ]
+  },
+  "C96988": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Density Content: S2-35536 with 3 lines; on the card: line count, estimated hours, progress and total price.",
+    "At Compact, Regular and Comfortable the card shows exactly the same: S2-35536, Approved, ZZF6CT, \"3 lines\", \"Est. 2.2 hrs\", \"Progress 0%\", \"$435.27\".",
+    "Only the spacing changed: the card grew from Compact to Comfortable (about 172, 186, then 204 pixels tall) with more padding.",
+    "Tech View: the same 14 columns and the same row values at every density; only the row height changed (40, 48, then 64 pixels)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96988-board-compact.png",
+    "evidence/staging-full-2026-10-14/C96988-board-regular.png",
+    "evidence/staging-full-2026-10-14/C96988-board-comfortable.png"
+   ]
+  },
+  "C96993": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Avatar Group: led by Esther Howard; Ralph Edwards and Dana Ortiz on lines; Jenny Wilson scheduled on Line 3.",
+    "Board View with Line technicians on: the card shows an avatar group of 4, \"EH RE DO JW\". Hovering each shows Esther Howard, Ralph Edwards, Dana Ortiz and Jenny Wilson.",
+    "Tech View with Assigned Techs on: the row shows the same 4 avatars with the same names.",
+    "List's Column Selection menu does not offer Assigned Techs."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96993-board.png",
+    "evidence/staging-full-2026-10-14/C96993-tech.png"
+   ]
+  },
+  "C96994": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Lead First Once: Esther Howard is lead and on a line; Ralph Edwards is on two lines.",
+    "Board View: the group shows 2 avatars, \"EH\" (Esther Howard) first, then \"RE\" (Ralph Edwards).",
+    "Each appears only once.",
+    "Tech View's Assigned Techs shows the same two, in the same order."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96994-board.png",
+    "evidence/staging-full-2026-10-14/C96994-tech.png"
+   ]
+  },
+  "C96995": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Plus N Avatars: 6 technicians on the work order.",
+    "Board View: 4 avatars (EH, RE, DO, JW) followed by \"+2\"; 4 + 2 = 6.",
+    "Hovering each avatar showed only that avatar's own name: Esther Howard, Ralph Edwards, Dana Ortiz, Jenny Wilson.",
+    "Hovering \"+2\" listed \"Kristin Watson, Theresa Webb\".",
+    "Tech View's Assigned Techs behaved exactly the same."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96995-board.png",
+    "evidence/staging-full-2026-10-14/C96995-tech.png"
+   ]
+  },
+  "C96996": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Blank Technician: three work orders, S2-35540 (a), S2-35541 (b) and S2-35542 (c).",
+    "(a), with no lead and no line technician: the card has no technician field at all, and Tech View's Assigned Techs cell is empty.",
+    "(b) shows Ralph Edwards (\"RE\") on the card and in Tech View.",
+    "(c) shows Esther Howard (\"EH\") on the card and in Tech View. So only 1 of the 3 is blank."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96996-board.png",
+    "evidence/staging-full-2026-10-14/C96996-tech.png"
+   ]
+  },
+  "C368141": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Assigned Techs Column; Tech View.",
+    "At the start Assigned Techs was off in the Column Selection menu.",
+    "Once turned on, the Assigned Techs column sits immediately after Lines (Lines, Assigned Techs, Total Price, Created On).",
+    "It could be turned off again."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368141-on.png"
+   ]
+  },
+  "C368142": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work order with three lines: Line 2 has Jenny Wilson scheduled; Line 3 has Ralph Edwards and Dana Ortiz scheduled.",
+    "Lines tab: Line 2's Labor row reads \"Jenny Wilson\" instead of \"Unassigned\".",
+    "Line 3's Labor row reads \"Dana Ortiz, Ralph Edwards\" (2 names).",
+    "Neither row shows a \"Needs techs\" badge or any other badge."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368142-lines.png"
+   ]
+  },
+  "C368143": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Same kind of work order: Line 1 has no labor technician and nobody scheduled.",
+    "Lines tab: Line 1's Labor row reads \"Unassigned\".",
+    "After Line 1 was given Ralph Edwards as its labor technician, the row reads \"Ralph Edwards\"."
+   ],
+   "not_observed": "Ralph Edwards was given to Line 1 with the same save the Edit labor screen makes, not by clicking through that screen.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368143-lines.png",
+    "evidence/staging-full-2026-10-14/C368143-after.png"
+   ]
+  }
+ },
+ "redo": {
+  "C96974": "Partly read: Nina Newtech's open count read \"5 open\" on both the All and Work Orders tabs. That matches the rule for the work orders actually made: two Approved (the one meant to be Invoiced could not be invoiced and stayed Approved), one In Progress, one Ready for Review and one Complete; Estimate, Paid and Declined were not counted. Not seen: an Invoiced work order being left out, and work at another location. Re-run with a properly invoiced work order and one at the second location.",
+  "C96975": "Most of it held: Tech View kept Service Advisor off and Assigned Techs on in a fresh sign-in; List still had Service Advisor and no Assigned Techs; List's Progress off did not touch Tech View (Progress still on there). The second-location check was never done (the page stayed at Staging Heavy Duty - 9919).",
+  "C96976": "Most of it held: with Customer off and VIN/serial on, card S2-35516 dropped the customer and showed \"VIN ZZWOB179200672011\", and the same in a fresh sign-in. The second-location check was never done (the page stayed at Staging Heavy Duty - 9919), and the picker's place in the toolbar was not compared with Tech View's.",
+  "C96983": "Board View held: with the saved choices unreadable it showed its defaults (lead technician, customer, asset, progress, total price, plus number, unit and status), and a field turned on during the failure (On-site) was still on after the reload. Not read: Tech View's columns while the saved choices were unreadable.",
+  "C96978": "Fields to display offers exactly the 13 listed fields, and every card value matched the List row (customer, unit, VIN, Progress 0%, service advisor and lead Esther Howard, 3 lines, $435.27, on site, created Today, estimated 2.2 hrs). Not seen: the clocked-in \"first name +N\" form and the hover list of names, because only one technician (Ralph Edwards) could be clocked in. The second clock-in was refused: \"You are already clocked into different line\". Re-run with two different technicians clocked in.",
+  "C96980": "The script stopped before reading anything: the view-only role it uses for Nate Nofinance (\"ZZAUTOTEST WO View Only\") was not found on staging, so neither test user was made.",
+  "C96986": "The script stopped before reading anything: the view-only role it needs for Nate Nofinance was not found on staging.",
+  "C96989": "Density was set to Comfortable, but nothing after that was read: the location menu was not found, so the second location was never reached, and the shared, after-sign-in and second-browser checks were not recorded.",
+  "C96992": "Only the Customers table was compared (48 pixels a row before and after changing density). Tech View rows, Board View cards and the List row height were not read in this check.",
+  "C96997": "No script reading: the script logged nothing for this case.",
+  "C96999": "No script reading: the script logged nothing for this case.",
+  "C97000": "No script reading: the script logged nothing for this case.",
+  "C96998": "Adding \"First note\" and editing it to \"First note, edited\" both saved and showed. But the try at completing Line 2 without a story was stopped by a different message, \"Receive parts … 3 parts waiting to receive … Need to 'Receive Parts' first\", because the line had parts waiting. So the tech-story message was never reached. With a story the line did complete (\"1 line completed\"). Re-run on a line with no parts waiting."
+ },
+ "failed": {},
+ "doubt": {}
+}

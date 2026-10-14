@@ -31,3 +31,10 @@ C368125 C368127 (partial readings), C96913 C154884 (data order).
   C96957 C96959 (pin limit full from leftover pins — clear pins first: WOB_PIN_NAMES=" ") · C96961 C96962 C368140 (off screen —
   pin) · C96956 C96966 (partial readings) · C368133 C96965 (covered by stg6.mts on the current build) · C154888 (ran at 00:23 shop
   time — re-run away from shop midnight).
+
+## Wave 3 judged (14 Oct 20:30 UTC) — `judge/wave3.json`: 22 Passed, 13 to re-run, 0 Failed
+Re-run: C96974 (Invoiced work order not made; other-location work not made) · C96975 C96976 (second location — location route) ·
+C96983 (Tech View columns not read) · C96978 (two technicians must be clocked in — use two different fresh technicians) ·
+C96980 C96986 (role "ZZAUTOTEST WO View Only" + its users missing on staging — create) · C96989 (location route) · C96992 (only
+Customers table compared) · C96997 C96999 C97000 (by hand on the QA branch — no script reading; script or walk them) · C96998
+(the canned line has parts waiting, so "Receive parts" stopped the completion — use a line with no parts).
