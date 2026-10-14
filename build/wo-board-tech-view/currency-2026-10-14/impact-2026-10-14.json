@@ -1,0 +1,416 @@
+{
+ "generated": "2026-10-14",
+ "scope": "258 live cases (snapshots-before, 240 ours + 18 Vladimir Tomovic) checked behaviour-first against every source change since 7 Oct 2026",
+ "method": "scripted search of every case body for each changed behaviour, then a full read of every hit; listed only when a tester following the case today would fail a correct build or pass one that still works the old way",
+ "source_changes": [
+  {
+   "id": "CH-1",
+   "what": "Empty state: the List's messages and button (S1-N1 reworded, S1-N1a and S1-N1b added)",
+   "when": "PRD v43, 2026-10-08 22:11 UTC (Chris Ward), after Ahtasham's question in Slack that day",
+   "link": "https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=42&selectedPageVersions=43",
+   "impacted_cases": [],
+   "new_tests": [
+    "NT-1",
+    "NT-2"
+   ]
+  },
+  {
+   "id": "CH-2",
+   "what": "Pinned technician not enrolled here gets no column (S3-R20b); S3-R20a now deactivated only",
+   "when": "PRD v44, 2026-10-09 13:29 UTC",
+   "link": "https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=43&selectedPageVersions=44",
+   "impacted_cases": [],
+   "already_updated": [
+    "C368131"
+   ],
+   "po": [
+    "PQ-2"
+   ]
+  },
+  {
+   "id": "CH-3",
+   "what": "Assigned to me stays as set on a location change (S1-E3 reversed)",
+   "when": "PRD v45, 2026-10-12 13:08 UTC (SV-11098)",
+   "link": "https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=44&selectedPageVersions=45",
+   "impacted_cases": [],
+   "already_updated": [
+    "C96923"
+   ]
+  },
+  {
+   "id": "CH-4",
+   "what": "A line held only through a Schedule shift follows the new lead (S4-R8 context note)",
+   "when": "PRD v46, 2026-10-12 13:11 UTC (SV-11128)",
+   "link": "https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=45&selectedPageVersions=46",
+   "impacted_cases": [],
+   "new_tests": [
+    "NT-3"
+   ]
+  },
+  {
+   "id": "CH-5",
+   "what": "Work-order-level shift = covers every current line (S4-R28)",
+   "when": "PRD v47, 2026-10-12 13:11 UTC (SV-11126)",
+   "link": "https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=46&selectedPageVersions=47",
+   "impacted_cases": [
+    "C368133",
+    "C96965",
+    "C236975",
+    "C236976"
+   ],
+   "po": [
+    "PQ-1"
+   ]
+  },
+  {
+   "id": "CH-6",
+   "what": "Imported is List-only with exact tooltips (S1-R13a/b); S4-N9 removed; S4-N2 no longer lists Imported",
+   "when": "PRD v48, 2026-10-12 16:43 UTC",
+   "link": "https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=47&selectedPageVersions=48",
+   "impacted_cases": [
+    "C154648"
+   ],
+   "po": [
+    "PQ-6",
+    "PQ-7"
+   ]
+  },
+  {
+   "id": "CH-7",
+   "what": "Timesheet move removes only app-added labor rows (SV-11087)",
+   "when": "Jira, Chris Ward, 9–13 Oct; bugfix release, not SV-10043",
+   "link": "https://shopview.atlassian.net/browse/SV-11087",
+   "impacted_cases": [],
+   "new_tests": [
+    "NT-5"
+   ]
+  }
+ ],
+ "impacted_cases": [
+  {
+   "case": "C154648",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/154648",
+   "title": "Tech View and Board View are unavailable while Imported is selected",
+   "section_id": 20449,
+   "created_by": "Bilal Muzamil (our account)",
+   "automated": false,
+   "change": "CH-6 (PRD v48, 12 Oct): Imported is List-only, with two exact tooltips (S1-R13a, S1-R13b)",
+   "what_tester_sees_differently": "The PRD now fixes both tooltips word for word: on the display switcher while Imported is ticked in List, \"Not available while Imported is selected.\"; on the greyed-out Imported option in the Status filter in Board View and Tech View, \"Imported work orders open in List.\" The case accepts any tooltip (\"write down its words\") and does not check the Status-filter tooltip at all, so it passes a build that shows other words or no tooltip there.",
+   "expected_before": "Step 4: while Imported is selected, Tech View and Board View cannot be chosen. A tooltip explains why (write down its words). The List keeps showing the Imported work orders.\nStep 7: in Tech View the Imported option in Status is disabled and cannot be ticked.\nStep 9: in Board View the Imported option is disabled too.",
+   "expected_now": "Step 4: Tech View and Board View are greyed out and cannot be chosen; hovering them shows \"Not available while Imported is selected.\"; the List keeps showing the Imported work orders. Step 7 (Tech View) and Step 9 (Board View): \"Imported\" is greyed out in Status, cannot be ticked, and hovering it shows \"Imported work orders open in List.\"",
+   "source": "PRD 845185030 v48 (2026-10-12 16:43 UTC, Chris Ward), S1-R13a, S1-R13b — https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=47&selectedPageVersions=48",
+   "quotes": [
+    "S1-R13a: “Imported work orders open in List only. While \"Imported\" is selected in the Status filter in List, the Board View and Tech View options are greyed out with the tooltip \"Not available while Imported is selected.\"”",
+    "S1-R13b: “In Board View and Tech View, \"Imported\" is greyed out in the Status filter with the tooltip \"Imported work orders open in List.\"”"
+   ],
+   "note": "The case cites only the tech plan and says the PRD does not cover Imported; since v48 the PRD does. Another session passed it on 12 Oct (commit 668349b48, facts only), against the build of that day."
+  },
+  {
+   "case": "C368133",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/368133",
+   "title": "The clear-shifts question appears only for the old lead's unfinished shifts",
+   "section_id": 13239,
+   "created_by": "Bilal Muzamil (our account)",
+   "automated": true,
+   "change": "CH-5 (PRD v47, 12 Oct): S4-R28 defines a work-order-level shift as one that covers every current line",
+   "what_tester_sees_differently": "Work order C has a single line, \"Line 1\". A shift that covers its only line covers every current line, so under v47 it is a work-order-level shift and the clear-shifts question must open for C. The case expects no question for C, so a tester fails a correct build. The setup also cannot be followed as written: on a one-line work order the Schedule books the drop at once, without the Entire work order / Choose lines window (C368178 records this).",
+   "expected_before": "Only A opens the \"Clear Esther Howard's scheduled shifts?\" prompt (1 of 6).\nB (no shift), C (only a line shift), D (only an ended shift), E (only Dana Ortiz's shift) and F (Esther Howard's shift is on another work order) change lead straight away with \"Lead technician updated\" and no prompt (5 of 6).",
+   "expected_now": "Only A opens the \"Clear Esther Howard's scheduled shifts?\" question; C must be a work order with at least two lines and Esther Howard's shift on only one of them, and then C changes lead with no question. (Whether a shift on the only line of a one-line work order shows the question: yes, by the v47 definition — see PO question PQ-1.)",
+   "source": "PRD 845185030 v47 (2026-10-12 13:11 UTC, Chris Ward), S4-R28 — https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=46&selectedPageVersions=47 · Jira SV-11126 (Done 13 Oct)",
+   "quotes": [
+    "S4-R28: “The shift-clearing prompt (S4-R11, S4-R26) shows only when the outgoing lead has a work-order-level shift on this work order that has not ended. A work-order-level shift is one that covers every current line of the work order, which is what the Schedule’s Entire work order drop creates. A shift on only some lines does not show the prompt.”"
+   ],
+   "note": "Automated in TestRail (tell the automation owner). Its \"What you should see today\" note (no question ever shows) is out of date since build e84b3d1 (12 Oct, SV-11126 fixed), so outcome (3) applies."
+  },
+  {
+   "case": "C96965",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/96965",
+   "title": "Clear shifts removes only the old lead's whole-work-order shifts",
+   "section_id": 13239,
+   "created_by": "Bilal Muzamil (our account)",
+   "automated": false,
+   "change": "CH-5 (PRD v47, 12 Oct): S4-R28 defines a work-order-level shift as one that covers every current line",
+   "what_tester_sees_differently": "[WO-1] and [WO-2] each have one line, \"Line 1\". Esther Howard's 13:00–15:00 \"Line 1\" shift covers every current line, so under v47 it is a work-order-level shift: Clear shifts on [WO-1] removes it too. The case expects it to survive (\"the prompt never clears line shifts\"), so a tester fails a correct build. The \"Choose lines\" setup step also cannot be done on a one-line work order (the Schedule books it at once).",
+   "expected_before": "Both drags open a prompt asking whether to clear Esther Howard's scheduled shifts for the whole work order.\nAfter Clear shifts: \"S1-702\" is led by Ralph Edwards, Esther Howard's 8:00–12:00 whole-work-order shift on it is gone, Dana Ortiz's 8:00–10:00 shift on it is still there, and Esther Howard's shift on \"S1-691\" is untouched.\nAfter Keep shifts: \"S1-698\" is led by Ralph Edwards and both Esther Howard shifts on it are still there.\nEsther Howard's 13:00–15:00 Line 1 shifts are still there on both work orders: the prompt never clears line shifts.",
+   "expected_now": "Same results, with [WO-1] and [WO-2] given at least two lines and the 13:00–15:00 shift on Line 1 only: after Clear shifts the 8:00–12:00 whole-work-order shift is gone and the Line 1 shift stays.",
+   "source": "PRD 845185030 v47 (2026-10-12 13:11 UTC), S4-R28 — https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=46&selectedPageVersions=47",
+   "quotes": [
+    "S4-R28: “… A work-order-level shift is one that covers every current line of the work order, which is what the Schedule’s Entire work order drop creates. A shift on only some lines does not show the prompt.”",
+    "S4-R24: “Never clear shifts scheduled against individual work order lines through this prompt.”"
+   ],
+   "note": "Vladimir Tomovic edited this case on 12 Oct 13:32 UTC: he added the v47 S4-R28 quote but left the one-line work orders, so the conflict remains."
+  },
+  {
+   "case": "C236975",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/236975",
+   "title": "Owner drags a work order to another technician on Board View and clears the outgoing lead shifts",
+   "section_id": 13239,
+   "created_by": "Vladimir Tomovic",
+   "automated": true,
+   "change": "CH-5 (PRD v47, 12 Oct): S4-R28 defines a work-order-level shift as one that covers every current line",
+   "what_tester_sees_differently": "The work order has \"one line authorized for repair\" and a \"line-level shift for A on the authorized line\". If that is the only line, the shift covers every current line, so it is work-order-level under v47 and Clear shifts removes it; step 5 expects it to stay. Likely to fail a correct build (depends on whether the work order has other, unauthorized lines — PO question PQ-1).",
+   "expected_before": "Step 5: Read A's shifts back. → The whole-work-order shift is gone; the line-level shift still exists, unchanged.",
+   "expected_now": "Give the work order two lines and put the line-level shift on one of them; then step 5 holds as written.",
+   "source": "PRD 845185030 v47 (2026-10-12 13:11 UTC), S4-R28 — https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=46&selectedPageVersions=47",
+   "quotes": [
+    "S4-R28: “A work-order-level shift is one that covers every current line of the work order … A shift on only some lines does not show the prompt.”"
+   ],
+   "note": "Created by Vladimir Tomovic and automated: hands-off for us (Rule 38); for its owner."
+  },
+  {
+   "case": "C236976",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/236976",
+   "title": "Owner reassigns the lead from a Tech View row and clears the outgoing lead shifts",
+   "section_id": 13239,
+   "created_by": "Vladimir Tomovic",
+   "automated": true,
+   "change": "CH-5 (PRD v47, 12 Oct): S4-R28 defines a work-order-level shift as one that covers every current line",
+   "what_tester_sees_differently": "Same set-up as C236975 (one authorized line with a line-level shift on it), so step 6 (\"the line-level shift remains\") likely fails a correct build.",
+   "expected_before": "Step 6: Read A's shifts back → The whole-work-order shift is gone and the line-level shift remains\nReassigning from the dialog with Clear removes only the outgoing lead's whole-work-order shift, and the change persists",
+   "expected_now": "Give the work order two lines and put the line-level shift on one of them; then step 6 holds as written.",
+   "source": "PRD 845185030 v47 (2026-10-12 13:11 UTC), S4-R28 — https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=46&selectedPageVersions=47",
+   "quotes": [
+    "S4-R28: “A work-order-level shift is one that covers every current line of the work order … A shift on only some lines does not show the prompt.”"
+   ],
+   "note": "Created by Vladimir Tomovic and automated: hands-off for us (Rule 38); for its owner."
+  }
+ ],
+ "already_updated_by_others": [
+  {
+   "case": "C96923",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/96923",
+   "change": "CH-3 S1-E3 (v45)",
+   "by": "Vladimir Tomovic, 12 Oct 13:32 UTC — expected now \"Assigned to me stays as you set it: on.\"",
+   "verdict": "up to date"
+  },
+  {
+   "case": "C368131",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/368131",
+   "change": "CH-2 S3-R20a/S3-R20b (v44)",
+   "by": "Vladimir Tomovic, 9 Oct 14:01 UTC — adds the not-enrolled pinned technician (no column; unpinned column while leading work)",
+   "verdict": "up to date"
+  },
+  {
+   "case": "C154884",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/154884",
+   "change": "Assigned to me matches lead, service advisor or line technician (Chris Ward, Slack 12 Oct; production rule)",
+   "by": "Bilal Muzamil, 12–13 Oct (setup only)",
+   "verdict": "up to date"
+  }
+ ],
+ "deleted_since_8_oct": [
+  {
+   "case": "C154887",
+   "title": "An Imported work order's Reassign lead technician is disabled with its tooltip",
+   "why": "S4-N9 removed in v48; deleted 12 Oct (commit 668349b48, another session — facts only)"
+  },
+  {
+   "case": "C368247",
+   "title": "An imported work order's lead technician cannot be changed",
+   "why": "deleted between 8 and 12 Oct (deleter not recorded in Slack or Jira); consistent with v48"
+  },
+  {
+   "case": "C96918",
+   "title": "No-match search shows 'No work orders match your filters' in every display",
+   "why": "Ahtasham Amjad updated it on 9 Oct for the new messages (Slack), then it was deleted by 12 Oct (\"isn't a valid TestRail ID\", Ahtasham, #qa-automation 12 Oct). Leaves S1-N1/N1a/N1b untested — see NT-1, NT-2"
+  },
+  {
+   "case": "C368211",
+   "title": "On a phone a no-match search shows the empty state with Clear filters",
+   "why": "\"got deleted in TestRail as it was no longer valid\" (Ahtasham, #fs-board-tech-view, 9 Oct)"
+  },
+  {
+   "case": "C368149",
+   "title": "When two dispatchers reorder the same technician, the later drop wins",
+   "why": "deleted 12 Oct on the QA lead's instruction because ticket SV-11119 was obsolete (commit fb87e8cbe). Leaves S9-R11 concurrency untested — see NT-4"
+  },
+  {
+   "case": "C368165, C368204",
+   "title": "Paid page lead lock; link then top menu shows saved view",
+   "why": "deleted 12 Oct on the QA lead's instruction (Slack DM to Ahtasham 12 Oct; commit 5df994cbd)"
+  },
+  {
+   "case": "C368216, C368221, C368242",
+   "title": "part sale status-card person; Return credits filter; Staff list photo",
+   "why": "deleted 12 Oct on the QA lead's instruction, tickets obsolete (commit fb87e8cbe) — regression coverage removed, not a PRD change"
+  },
+  {
+   "case": "C368160, C368162, C368164",
+   "title": "Tech View Columns menu count/Show all/Reset; Collapse all/Expand all; Find a column",
+   "why": "deleted 12 Oct as design-only controls (commit 152fcbd4e); Slavcho had listed them as \"features that aren't in this release\" (SV-10043 comment 78208, 8 Oct)"
+  }
+ ],
+ "checked_not_impacted": [
+  {
+   "case": "C368130",
+   "why": "quotes the old \"Design updates\" line (v43 wording change); the case tests the no-technician panel, which did not change"
+  },
+  {
+   "case": "C96963, C97009, C368158",
+   "why": "quote the old S4-N2 text that listed Imported (v48 wording); each tests Invoiced/Paid only, which did not change"
+  },
+  {
+   "case": "C96970",
+   "why": "its un-enrolled [Tech-C] leads work here, so she still has an (unpinned) column and the refused drop is unchanged under S3-R20b; see PQ-2 on whether that column takes drops"
+  },
+  {
+   "case": "C368156",
+   "why": "pins at another location stay hidden and free the slots — consistent with S3-R20b"
+  },
+  {
+   "case": "C96960, C96961",
+   "why": "no line in them is held only through a Schedule shift, so the v46 note does not change their results (the new rule needs its own test, NT-3)"
+  },
+  {
+   "case": "C368177",
+   "why": "checks only that Line 2 takes the technician; the SV-11087 decisions (13 Oct) are about the source line and ship in the bugfix release, not on sv10043"
+  },
+  {
+   "case": "C96978",
+   "why": "estimated hours and lead-name meanings were stated by the developer only (SV-11106, Slack 12 Oct) — held as PQ-3 and PQ-4, not treated as a change"
+  }
+ ],
+ "new_tests": [
+  {
+   "id": "NT-1",
+   "title": "With a filter on and no match, Tech View and Board View show the List's filtered empty state",
+   "why": "S1-N1 reworded and S1-N1a added (v43, 8 Oct 22:11 UTC); the only case for it (C96918) was deleted by 12 Oct",
+   "source": "PRD v43 S1-N1, S1-N1a — https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=42&selectedPageVersions=43 · Chris Ward, #fs-board-tech-view, 8 Oct 22:12 UTC https://shopview.slack.com/archives/C0C41RV3T3L/p1791497536300869",
+   "before_you_start": "A location with some work orders; desktop window 1024 px or wider.",
+   "steps": [
+    "Work Orders > All > Board View.",
+    "Tick a Status that no work order at this location has (or combine filters until nothing matches).",
+    "Read the page.",
+    "Type any text in Search as well and read the page.",
+    "Switch to Tech View and read the page."
+   ],
+   "you_should_see": [
+    "\"No work orders match these filters\", then \"Try removing a filter to widen your results.\", and a Clear all filters button — in Board View and in Tech View, with or without the search.",
+    "Clear all filters brings the work orders back. The page never shows a set of empty columns or groups instead."
+   ],
+   "related": "C96918 (deleted)"
+  },
+  {
+   "id": "NT-2",
+   "title": "A search alone that matches nothing shows the search empty state with no button",
+   "why": "S1-N1b added (v43, 8 Oct)",
+   "source": "PRD v43 S1-N1b — https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=42&selectedPageVersions=43",
+   "before_you_start": "No filter ticked.",
+   "steps": [
+    "Work Orders > All > Board View.",
+    "Type ZZNOMATCH123 in Search.",
+    "Read the page.",
+    "Switch to Tech View and read the page."
+   ],
+   "you_should_see": [
+    "\"No work orders match the search \"ZZNOMATCH123\".\" in both displays, with no button."
+   ],
+   "related": "C96918 (deleted); obsolete ticket SV-11099"
+  },
+  {
+   "id": "NT-3",
+   "title": "A line held only through a Schedule shift follows the new lead",
+   "why": "S4-R8 context note added (v46, 12 Oct 13:11 UTC; SV-11128)",
+   "source": "PRD v46 S4-R8 context note — https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=45&selectedPageVersions=46 · SV-11128 (Done 13 Oct)",
+   "before_you_start": "An Approved work order led by Technician A with two lines and no labor: Line 1 has no technician of its own; Technician B has a Schedule shift on Line 1 only (Choose lines). Line 2 has Technician C set through Edit Line.",
+   "steps": [
+    "Board View > card More actions > Reassign lead technician > Technician D > Reassign (Keep shifts if asked).",
+    "Open the work order > Lines tab, then Edit Line on Line 1."
+   ],
+   "you_should_see": [
+    "Line 1 now follows Technician D (the shift technician B does not keep it as an explicit assignment) and B is still listed among Line 1's technicians.",
+    "Line 2 still shows Technician C."
+   ],
+   "related": "C96960, C96961"
+  },
+  {
+   "id": "NT-4",
+   "title": "When two people reorder the same technician at once, the later save wins without a warning",
+   "why": "S9-R11 is unchanged, but its only case (C368149) was deleted on 12 Oct",
+   "source": "PRD S9-R11 (unchanged since v33) — https://shopview.atlassian.net/wiki/spaces/~7120207b6068952672480db1a06bd810e23ba1/pages/845185030/",
+   "before_you_start": "Two users signed in in two browsers; one technician leads three work orders (Alpha Co, Bravo Co, Charlie Co) at the same location.",
+   "steps": [
+    "Browser 1: Board View, drag Charlie Co to the top of the column.",
+    "Browser 2 (not refreshed): drag Bravo Co to the top of the same column.",
+    "Refresh both browsers."
+   ],
+   "you_should_see": [
+    "Neither browser shows a warning.",
+    "After the refresh both show browser 2's order: Bravo Co, Alpha Co, Charlie Co."
+   ],
+   "related": "C97005; C368149 (deleted); obsolete SV-11119"
+  },
+  {
+   "id": "NT-5 (optional, other release)",
+   "title": "Moving a timesheet entry off a line removes only the labor row the app added",
+   "why": "Chris Ward's product decisions on SV-11087 (9, 12 and 13 Oct); ships in the bugfix release via PR #3619, not in SV-10043; testable on sv11087",
+   "source": "SV-11087 comments 78396, 78407, 78508, 78592 (Chris Ward) and 78675 (Slavcho, test steps)",
+   "before_you_start": "sv11087.qa.shopview.com (build dc2c8a0); labor rows created after the fix.",
+   "steps": [
+    "As in SV-11087 comment 78675, steps 1–6."
+   ],
+   "you_should_see": [
+    "An app-added row leaves the source line; a technician added through Edit Line stays at 0.00 h; a line whose empty row was filled by Start goes back to Unassigned; a plain Edit Line save does not count as on purpose."
+   ],
+   "related": "C368177"
+  }
+ ],
+ "po_questions": [
+  {
+   "id": "PQ-1",
+   "topic": "Clear-shifts question (S4-R28)",
+   "question": "(a) Does a shift on the only line of a one-line work order count as a work-order-level shift, so the question opens? (b) Does a \"Choose lines\" shift that ticks every line count? (c) Do unapproved or declined lines count as \"current lines\"? (d) If a line is added after an Entire work order shift was made, is that shift still work-order-level?",
+   "what_we_know": "v47 says \"covers every current line … which is what the Schedule's Entire work order drop creates\"; Slavcho (SV-11126, 12 Oct) describes it as \"a shift created with the Schedule's Entire work order option\"; on a one-line work order the Schedule books the drop at once with no choice. Four cases depend on the answer (C368133, C96965, C236975, C236976).",
+   "where": "PRD v47 S4-R28; SV-11126"
+  },
+  {
+   "id": "PQ-2",
+   "topic": "Un-enrolled technician who still leads work here (S3-R20b)",
+   "question": "(a) Can work be dropped onto this \"normal, unpinned column\"? (b) Does it show the inactive marker? (c) What does it say when it becomes empty?",
+   "what_we_know": "S3-R20b says \"a normal, unpinned column\"; Sasha (24 Sep) agreed to treat such technicians like inactive (no drops); Slavcho (7 Oct) says a drop there is refused with \"This technician can't be assigned work orders.\"",
+   "where": "PRD v44 S3-R20b; footer comments 886374410 (24 Sep), 925204483 (7 Oct)"
+  },
+  {
+   "id": "PQ-3",
+   "topic": "Estimated hours on a card",
+   "question": "Should the card's Estimated hours leave out declined lines, and may it differ from the work order page by 0.1 hrs because of rounding?",
+   "what_we_know": "PRD S5-R11: \"existing production meaning\". Only the developer says \"the sum of its lines' estimates, leaving out declined lines … can differ from the work order page by 0.1 hrs\" (SV-11106, 12 Oct).",
+   "where": "SV-11106 comment 78518"
+  },
+  {
+   "id": "PQ-4",
+   "topic": "Which technician name cards show",
+   "question": "Should Board View and Tech View cards and headers show the account name while the List shows the staff record name?",
+   "what_we_know": "Slavcho (#fs-board-tech-view, 12 Oct): \"Board and Tech View cards name the lead like the column header (the account name). The List still shows the staff record name\". No product statement. C96978 expects each card field to match the List.",
+   "where": "https://shopview.slack.com/archives/C0C41RV3T3L/p1791816487158519"
+  },
+  {
+   "id": "PQ-5",
+   "topic": "Review Decisions page out of date",
+   "question": "Could the Review Decisions page be refreshed, or marked as replaced by the PRD?",
+   "what_we_know": "It is still v13 of 29 Sep: DR-47 puts a removed lead at the bottom of Unassigned (PRD S9-R14 changed this on 1 Oct), SQ-11 is still open (answered in PRD v44), and it does not mention S1-N1a/N1b, S1-R13a/b or the S4-R28 definition.",
+   "where": "Confluence 853901313 v13"
+  },
+  {
+   "id": "PQ-6",
+   "topic": "Release notes and Imported",
+   "question": "The combined release notes (10 Oct) say \"the lead technician can't change on Invoiced, Paid or Imported work orders\"; since v48 Imported work orders open only in List and S4-N2 no longer lists Imported. Should the release notes say this instead?",
+   "what_we_know": "Release 26.43.0, pre-release comms planned for 15 Oct (Chris, 9 Oct).",
+   "where": "Confluence 931069964; PRD v48"
+  },
+  {
+   "id": "PQ-7",
+   "topic": "Imported reached from a link while in Board View",
+   "question": "If a saved filter or link opens Board View or Tech View with \"Imported\" already ticked, what should happen: switch to List, untick Imported, or something else?",
+   "what_we_know": "S1-R13a covers List with Imported ticked; S1-R13b greys out Imported inside Board View and Tech View. Neither says what a link or saved filter does.",
+   "where": "PRD v48 S1-R13a, S1-R13b"
+  },
+  {
+   "id": "PQ-8",
+   "topic": "PRD status line",
+   "question": "Could the status line be brought up to date? It still reads \"PRD v33, 2026-09-28\" while the page is at version 48, and the Change Log table is empty.",
+   "what_we_know": "Dates for every change had to come from the page history.",
+   "where": "PRD header, section 10"
+  }
+ ]
+}
