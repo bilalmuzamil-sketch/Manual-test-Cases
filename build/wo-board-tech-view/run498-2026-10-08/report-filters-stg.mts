@@ -21,7 +21,7 @@ const OUT = path.join(EV, 'report-filters-stg.json');
 const R: Record<string, any> = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : {};
 const shotOn = (pg: Page, n: string) => pg.screenshot({ path: path.join(EV, `${n}.png`) }).catch(() => {});
 async function run(id: string, f: () => Promise<void>) {
-  if (!want(id)) return; R[id] = {};
+  if (!want(id) || process.env.PROD_ONLY) return; R[id] = {};
   try { await f(); } catch (e: any) { R[id].error = String(e?.message || e).slice(0, 400); await shotOn(p, `${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 2500)); fs.writeFileSync(OUT, JSON.stringify(R, null, 1));
 }
@@ -110,5 +110,28 @@ if (ALLBOX.some(([id]) => want(id))) {
       console.log(t(), id, 'production', JSON.stringify(R[id].production).slice(0, 1500)); fs.writeFileSync(OUT, JSON.stringify(R, null, 1)); }
     await prod.browser.close().catch(() => {}); }
 }
+// PROD_TICK=1 (15 Oct 2026, Rule 121): the untick / tick / Select all / Clear steps of C368232 C368236 C368237 on production too
+if (process.env.PROD_TICK) {
+  const TICK = [['C368232', 'Work In Progress', 'Location'], ['C368236', 'Technician Utilization', 'Technician'], ['C368237', 'Sales By Representative', 'Location']] as const;
+  let prod: any = null; try { prod = await bootProdLogin('/workorders', {}); } catch (e: any) { for (const [id] of TICK) if (want(id)) R[id] = { ...(R[id] || {}), production: { error: String(e?.message || e).slice(0, 200) } }; }
+  if (prod) { const pp: Page = prod.page; const ver = await pp.evaluate(`document.querySelector('meta[name="app-version"]')?.content || null`).catch(() => null);
+    for (const [id, rep, label] of TICK) { if (!want(id)) continue; R[id] = R[id] || {}; try { await H(pp).nav(PROD, 'Reports', rep); R[id].production = { build: ver, ...(await tickSelectClear(pp, `${id}-production`, label)) }; } catch (e: any) { R[id].production = { error: String(e?.message || e).slice(0, 300) }; }
+      console.log(t(), id, 'production', JSON.stringify(R[id].production).slice(0, 1500)); fs.writeFileSync(OUT, JSON.stringify(R, null, 1)); }
+    await prod.browser.close().catch(() => {}); } }
+// PROD_SBR=1 (15 Oct 2026, Rule 121(4)): production's Sales By Representative had no rows for "This month"; widen the date
+// to a range with rows, then read the report with every location ticked and with no location ticked (C368237 step 4/7).
+if (process.env.PROD_SBR) { let prod: any = null; try { prod = await bootProdLogin('/workorders', {}); } catch (e: any) { R.C368237 = { ...(R.C368237 || {}), productionWide: { error: String(e).slice(0, 200) } }; }
+  if (prod) { const pp: Page = prod.page; const h = H(pp); const o: any = { build: await pp.evaluate(`document.querySelector('meta[name="app-version"]')?.content || null`).catch(() => null) };
+    try { await h.nav(PROD, 'Reports', 'Sales By Representative');
+      const dt = pp.locator('.q-page-container, main').first().locator('button, .q-btn, .q-chip').filter({ hasText: /Date:/ }).first(); o.dateChip = (await dt.innerText().catch(() => '')).replace(/\s+/g, ' ');
+      await dt.click().catch(() => {}); await pp.waitForTimeout(1200); o.dateOptions = await pp.locator('.q-menu:visible .q-item').allInnerTexts().catch(() => []); o.datePanel = await pp.evaluate(`[...document.querySelectorAll('.q-menu, .q-dialog, [role=dialog], .q-popup-proxy')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.replace(/\\s+/g, ' ').slice(0, 400))`); await shotOn(pp, 'C368237-production-date-panel');
+      for (const want of ['This year', 'Last year', 'Last 12 months', 'All time']) { const it = pp.locator('.q-menu:visible, .q-dialog').locator('.q-item, button, .q-btn, .q-chip, div').filter({ hasText: new RegExp('^\\s*' + want + '\\s*$', 'i') }).first(); if (await it.count()) { await it.click(); o.datePicked = want; break; } }
+      await pp.keyboard.press('Escape'); await pp.waitForTimeout(5000); o.allTicked = await h.table(); await shotOn(pp, 'C368237-production-wide-all');
+      const f = h.filterEl('Location'); await f.click(); await pp.waitForTimeout(1500); o.locStart = await h.state();
+      const clr = pp.locator('.q-menu:visible').locator('.q-item, button').filter({ hasText: /^\s*Clear( selection)?\s*$/i }).first(); if (await clr.count()) { await clr.click(); await pp.waitForTimeout(3500); }
+      o.locCleared = await h.state(); o.noneTicked = await h.table(); await shotOn(pp, 'C368237-production-wide-none'); await h.close();
+      const sel = (await f.click().then(() => pp.waitForTimeout(1200)), pp.locator('.q-menu:visible').locator('.q-item, .q-checkbox').filter({ hasText: /^\s*Select all\s*$/i }).first()); if (await sel.count()) { await sel.click(); await pp.waitForTimeout(2500); } o.restored = await h.state(); await h.close();
+    } catch (e: any) { o.error = String(e?.message || e).slice(0, 300); await shotOn(pp, 'C368237-production-wide-error'); }
+    R.C368237 = { ...(R.C368237 || {}), productionWide: o }; console.log(t(), 'C368237 productionWide', JSON.stringify(o).slice(0, 2000)); await prod.browser.close().catch(() => {}); } }
 fs.writeFileSync(OUT, JSON.stringify(R, null, 1));
 await done(browser);
