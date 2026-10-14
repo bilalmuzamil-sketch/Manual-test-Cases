@@ -52,30 +52,30 @@ for row in ws.iter_rows(min_row=2):
     for c in row:
         c.font = Font(name=F, color="1155CC", underline="single") if str(c.value).startswith("=HYPERLINK") else Font(name=F)
         c.alignment = Alignment(wrap_text=True, vertical="top"); c.border = Border(bottom=thin)
-# ---- New test cases needed
-NT = json.load(open(f"{H}/new-tests.json"))["tests"] if os.path.exists(f"{H}/new-tests.json") else []
-nt = wb.create_sheet("New test cases needed")
-ncols = ["Proposed new test case", "Why it is needed (which change)", "Spec rule and when the spec changed it", "Preconditions", "Steps", "Expected behaviour", "Next to existing case", "Confirm with product first?"]
-nw = [32, 42, 34, 40, 46, 46, 13, 30]
-nt.append(ncols)
-for i, w in enumerate(nw, 1):
-    c = nt.cell(row=1, column=i); c.font = Font(name=F, bold=True, color="FFFFFF"); c.fill = HDR
-    c.alignment = Alignment(wrap_text=True, vertical="top"); nt.column_dimensions[c.column_letter].width = w
-nt.freeze_panes = "A2"
-for t in NT:
-    vt = VT.get(t["title"], {})
-    if vt.get("verdict") in ("NOT A CHANGE", "ALREADY COVERED"): continue
-    if vt.get("verdict") == "FIX":
-        for k in ("preconditions", "steps", "expected"): t[k] = apply_fix(t[k], {"corrections": vt.get("corrections", [])})
-    if vt.get("verdict") == "NEEDS PRODUCT" and not t.get("needs_confirmation"): t["needs_confirmation"] = vt.get("notes") or "Yes: rests on a developer statement without a product decision."
-    rules = "\n".join(f"{x['code']}: {nice(x.get('date',''))}" + (f" ({x['entry']})" if x.get("entry") else "") for x in t["rules"])
+# ---- New test cases needed (verified and corrected)
+NTF = json.load(open(f"{H}/new-tests-final.json"))
+def mk(title, cols, widths):
+    t = wb.create_sheet(title); t.append(cols)
+    for i, w in enumerate(widths, 1):
+        c = t.cell(row=1, column=i); c.font = Font(name=F, bold=True, color="FFFFFF"); c.fill = HDR
+        c.alignment = Alignment(wrap_text=True, vertical="top"); t.column_dimensions[c.column_letter].width = w
+    t.freeze_panes = "A2"; return t
+def rl(rules): return "\n".join(f"{x['code']}: {nice(x.get('date',''))}" + (f" ({x['entry']})" if x.get("entry") else "") for x in rules)
+nt = mk("New test cases needed", ["Proposed new test case", "Why it is needed (which change)", "Spec rule or decision, and when it changed", "Preconditions", "Steps", "Expected behaviour", "Next to existing case", "Note"],
+        [32, 42, 34, 40, 46, 46, 13, 30])
+for t in NTF["ready"]:
     rc = t.get("related_case")
-    nt.append([t["title"], t["why_needed"], rules, "\n".join(t["preconditions"]), "\n".join(f"{i}. {x}" for i, x in enumerate(t["steps"], 1)),
-               "\n".join(t["expected"]), link(TR(rc), f"C{rc}") if rc else "", t.get("needs_confirmation") or "No"])
-for row in nt.iter_rows(min_row=2):
-    for c in row:
-        c.font = Font(name=F, color="1155CC", underline="single") if str(c.value).startswith("=HYPERLINK") else Font(name=F)
-        c.alignment = Alignment(wrap_text=True, vertical="top"); c.border = Border(bottom=thin)
+    nt.append([t["title"], t["why_needed"], rl(t["rules"]), "\n".join(t["preconditions"]), "\n".join(f"{i}. {x}" for i, x in enumerate(t["steps"], 1)),
+               "\n".join(t["expected"]), link(TR(rc), f"C{rc}") if rc else "", t.get("notes", "")])
+npq = mk("Need product decision first", ["Possible new test", "Question for product (Milos)", "What the sources say today", "Spec rule or decision, and when", "Next to existing case"], [32, 50, 50, 34, 13])
+for t in NTF["needs_product"]:
+    rc = t.get("related_case")
+    npq.append([t["title"], t["question"], t["source_says"], rl(t.get("rules", [])), link(TR(rc), f"C{rc}") if rc else ""])
+for sh in (nt, npq):
+    for row in sh.iter_rows(min_row=2):
+        for c in row:
+            c.font = Font(name=F, color="1155CC", underline="single") if str(c.value).startswith("=HYPERLINK") else Font(name=F)
+            c.alignment = Alignment(wrap_text=True, vertical="top"); c.border = Border(bottom=thin)
 rd.column_dimensions["A"].width = 30; rd.column_dimensions["B"].width = 100
 L = [("DVI V2 test cases whose expected behaviour has changed", ""), ("", ""),
      ("Hi Viktoria and Vladimir,", ""),
@@ -87,7 +87,8 @@ L = [("DVI V2 test cases whose expected behaviour has changed", ""), ("", ""),
      ("Test cases to update", "=COUNTA('Test cases to update'!A2:A)"),
      ("Of which automated", "=COUNTIF('Test cases to update'!C2:C,\"Yes\")"),
      ("New test cases needed", "=COUNTA('New test cases needed'!A2:A)"),
-     ("", "The tab \"New test cases needed\" lists behaviour that changed or was added and that no existing test case checks, with the change that makes each one necessary."),
+     ("Need a product decision first", "=COUNTA('Need product decision first'!A2:A)"),
+     ("", "\"New test cases needed\" lists behaviour that changed or was added since 22 September and that no existing test case checks, with the change that makes each one necessary. \"Need product decision first\" lists possible tests that rest only on a developer's description or the technical plan; please do not write them until product confirms."),
      ("", ""),
      ("The spec", link(PRD, "Confluence page 768507905, Digital Inspections V2, version 43 (13 Oct 2026)")),
      ("When each rule changed", "From the Change Log at the end of the spec. Where a rule is not named in the change log, a date range is given."),

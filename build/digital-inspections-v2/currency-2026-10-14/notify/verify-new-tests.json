@@ -1,0 +1,175 @@
+{
+ "generated": "2026-10-14",
+ "task": "Adversarial check of new-tests.json: (A) rests on a real behaviour change since 22 Sep by product/design; (B) no existing or planned case already checks it; expected results faithful; steps runnable by hand.",
+ "counts": {
+  "KEEP": 3,
+  "FIX": 7,
+  "NOT A CHANGE": 3,
+  "ALREADY COVERED": 0,
+  "NEEDS PRODUCT": 4
+ },
+ "tests": [
+  {
+   "title": "New template from a starter: note required is on, photo if Not OK is off",
+   "verdict": "FIX",
+   "proof": "Only the photo half is a change. 22 Sep Key Decision: \"Note required on a flagged response, and photo required on a Not OK response to a checkbox, are on by default for newly created templates.\" A template started from a starter is a newly created template, so on 22 Sep BOTH defaults were already on for starters. v43 Key Decision: \"Note required on a flagged response is on by default for newly created templates, starters included. Photo required on a Not OK response to a checkbox is off by default.\" v43 S17-R2: \"The option will be off by default for newly added checkbox fields, starters included\" (22 Sep S17-R2: \"on by default\"). So: note on for starters = unchanged since 22 Sep (wording clarification, the same reason behaviour-cases.json excluded C88507); photo OFF for starters = real change (on -> off), product statement = Milos Vasic rewrote SV-9440 'On by default' -> 'OFF by default' on 2 Oct 2026 (jira-2026-10-14.md header). Coverage: C88510 checks the photo default only on a checkbox field added by hand (step 1); C88507 only on a hand-added field; C88569 checks starters' required-to-complete only. No case opens a starter and reads the photo option, so the photo half is not covered.",
+   "corrections": [
+    "why_needed 'both checkbox defaults apply to starters too' -> 'Photo required if Not OK changed from on (22 Sep Key Decision: on by default for newly created templates) to off, starters included (S17-R2). Note required was already on for starters on 22 Sep (same Key Decision); v43 only adds the words \"starters included\", so step 4 is an unchanged-behaviour check, not a change.'",
+    "rules S1-R2 entry 'not in the change log' -> 'clarification only - 22 Sep Key Decision already made it on by default for newly created templates (starters are newly created templates)'",
+    "rules SV-10789 'Stefan Vukovic (developer) in Jira' -> 'SV-9440 description rewritten from On by default to OFF by default by Milos Vasic (PM), 2026-10-02; SV-10789 (Viktoria Videnovic, 2 Oct; fixed 5 Oct) is the defect history, not the decision'"
+   ],
+   "notes": "Steps are runnable in the product UI; expected results quote S1-R2 and S17-R2 faithfully. Keep the note check as an invariant if wanted, but the case should be justified by S17-R2 only."
+  },
+  {
+   "title": "Deleting the last section does not bring back the starting points",
+   "verdict": "NOT A CHANGE",
+   "proof": "v43 S12-E1 adds \"Starting points are not offered again\" (no change-log entry). The 22 Sep spec already said this: S12-R1 (22 Sep) \"A brand-new template will show only the choice of starting point\" under 'Requirements: the first screen', and S12-N1 (22 Sep) \"A starting point cannot be applied twice, or to a template that already has sections, because starting points are offered only on the empty first screen\". A template whose last section was deleted is not a brand-new template, so on 22 Sep starting points were already offered only on the first screen of a new template; v43 states the edge explicitly. Coverage: C88571 step 1 already deletes the last section and checks 'the canvas still offers a way to add one back' (the first expected result of this proposal duplicates it); nothing checks the starting points stay hidden.",
+   "corrections": [
+    "If the QA lead wants the gap closed, add one observation to C88571 step 1 ('the start-from-a-template / build-from-scratch choice is not shown again') instead of a new case; label it a coverage gap, not a change"
+   ],
+   "notes": "Counter-argument tested: 22 Sep S12-N1 says 'to a template that already has sections', which a template with every section deleted no longer has; but the same sentence gives the reason 'offered only on the empty first screen', and the first screen is defined for a brand-new template (S12-R1). The v43 sentence settles wording, not behaviour."
+  },
+  {
+   "title": "Completing a reopened inspection again gives the report a new inspected date",
+   "verdict": "KEEP",
+   "proof": "22 Sep S13 says only S13-R7 \"The inspected date will show without a time\"; it never says which date. v43 adds S13-R14 \"The inspected date is the date the inspection was first completed. Regenerating a report does not move it; reopening the inspection and completing it again gives it a new date, which is how a newer version is told apart\" - decided by Milos Vasic (PM), change log 2026-10-05 'Developer and QA questions answered'. Coverage: C88575 (planned update in behaviour-cases.json) checks only that regenerating keeps the date; C88573 checks only 'without a time'. No case reopens and completes again and reads the new date.",
+   "corrections": [],
+   "notes": "Expected results match S13-R14. The reopen-gives-new-date half may well be how the product already behaved (the 5 Oct change-log line stresses the regenerate half), but it was never written before 5 Oct, so it is a spec addition with no case. Setup needs an inspection completed at least one day before the run (a tester cannot back-date a completion) - say so in the preconditions."
+  },
+  {
+   "title": "Changing or merging the asset does not regenerate the inspection report",
+   "verdict": "FIX",
+   "proof": "Rests on a product decision after 22 Sep: Milos Vasic (PM), SV-10960, 2026-10-08: \"Changing a work order's asset or merging assets doesn't regenerate existing reports. If the shop wants the new asset on the report, it regenerates it manually; the new version takes the work order's current asset, and the inspected date doesn't move (S13-R14). I'll add this to the PRD.\" Not in PRD v43. 22 Sep had only S13-R12 (a report already handed to a customer cannot change) and S5-R21 (asset stored on the inspection, tab does not follow a later correction); it said nothing about which asset a regenerated report shows. Coverage: C88575 planned update covers regenerate date and no new note only; C88529 planned update covers the asset tab following an asset change/merge, not the report. Not covered.",
+   "corrections": [
+    "preconditions: 'Customers — View' only -> add 'and you can edit the customer's assets' (step 6 edits asset B's VIN and confirms the merge, which View cannot do)",
+    "preconditions 'the right to regenerate a report' -> name the regenerate control and the role that grants it as they appear on the build (the spec names neither); do not invent a permission",
+    "preconditions asset C -> 'asset C (for example unit 3003) has a VIN (for example …), on the same customer' - step 6 needs C's VIN",
+    "expected Step 3 'and no new version was made by the asset change' -> 'it still shows asset A' (a tester cannot see a version list; the spec does not say where earlier versions are listed, so only what the report shows is observable)"
+   ],
+   "notes": "Expected Step 5 (current asset, inspected date unchanged) and Step 7 (merge does not regenerate) are faithful to the PM's words. Shares its source with test 9; both disclose that the PRD was not updated."
+  },
+  {
+   "title": "The report never prints Not OK: results read ATTENTION, MONITOR or PASS",
+   "verdict": "NOT A CHANGE",
+   "proof": "The v43 Key Decision itself says it is not a change: \"Verdict wording is inherited from the current release and differs by surface on purpose. ... The customer report never prints Not OK: it uses its standard terms, Pass, Monitor and Needs attention, and its results read ATTENTION, MONITOR or PASS ... N/A and Not inspected are not counted.\" The change log calls it documentation: 29 Sep 'Verdict wording per surface is stated'. 22 Sep already had: Key Decision \"the customer report always uses the standard wording so reports stay comparable across shops\"; S12-R15 (tooltip, report wording unchanged); S5-R17 counts named Pass, Monitor, Needs attention; S5-R19 \"N/A and unanswered responses contribute nothing\"; S5-R6 asset tab \"1 Not OK in red and 3 Monitor in amber\". Coverage: C88530 (counts, N/A not counted, report summary - planned update step 3), C88527 (asset findings column '1 Not OK'), C88565 (report-wording tooltip), C88572 planned update (per-axle result reads ATTENTION/MONITOR/PASS, 'the report never prints Not OK'). Residual gap only: per-checkbox result wording on the report.",
+   "corrections": [
+    "why_needed 'The spec now states verdict wording per surface' -> 'The spec now writes down the wording inherited from the current release (Key Decision: \"inherited from the current release\")'; if wanted, add the checkbox-result check to C88572 as an unchanged-behaviour (invariant) check rather than a new 'change' case"
+   ],
+   "notes": "Expected results are faithful and runnable (the precondition correctly keeps the standard answer labels). It is a valid regression invariant, not a change since 22 Sep."
+  },
+  {
+   "title": "A new work order stays, empty, when its drafting is cancelled",
+   "verdict": "FIX",
+   "proof": "v43 adds S15-E7 \"When the target is a new work order, it is created as soon as it is chosen (S2-R11). If the drafting is cancelled, fails, returns nothing, or the user leaves, that work order stays, empty. Nothing is deleted automatically. The inspection stays Needs action, no provenance note is written, and a retry runs on the same work order\" (PRD, Milos Vasic; quoted by SV-10792 on 2 Oct). 22 Sep already implied part of it: S2-R11 (arrive on the target's Lines tab as soon as it is chosen), S15-R10 (\"Cancelling during the drafting will leave the work order exactly as it was\"), S2-R12 (\"a draft the user abandoned left the findings unactioned\"), S7-R1 (note written when lines land). New since 22 Sep: the empty new work order is explicitly kept, never auto-deleted, and a retry uses the same work order. Coverage: C88515 step 2 already checks 'draft but abandon -> still needs a work order'; C88543 step 3 checks cancel leaves the work order as it was but never names the new-work-order target. The kept empty new work order is not covered.",
+   "corrections": [
+    "step 8 'If drafting fails at any point and Try Again is offered, press Try Again and note which work order it drafts on' -> remove from the manual steps: a drafting failure cannot be forced by hand, so the step may never run; record 'a retry runs on the same work order' as AUTOMATION: HOLD - drafting failure cannot be forced by hand (Rule 114), and drop expected 'Step 8'",
+    "why_needed -> say that 'stays Needs action' and 'no provenance note' were already 22 Sep behaviour (S2-R12, S7-R1; C88515 step 2) and that the new part is the empty new work order being kept and the retry on the same work order"
+   ],
+   "notes": "Expected results 2, 5, 6 and 7 match S15-E7, S2-R11 and S5-R11. S15-E7 is on the SV-11084 ShopCoach-blocked list (verify on Staging)."
+  },
+  {
+   "title": "Drafted lines come from the note, not from the photo",
+   "verdict": "FIX",
+   "proof": "Real change: 22 Sep Key Decision \"Measured values and photographs reach ShopCoach in the brief.\" v43 Key Decision \"Measured values reach ShopCoach in the brief; photos are not sent.\" and new S15-N6 \"Photos are not sent to ShopCoach; the technician's note is the only evidence it reads\" (PRD, Milos Vasic, after 22 Sep, not named in the change log). Coverage: C88541 lists what the brief contains but never mentions photos; no case checks that a photo does not shape a line.",
+   "corrections": [
+    "preconditions: Lights is Not OK 'with a photo and no note' -> add 'and \"Note required if Monitor / Not OK\" is turned off on Lights' - the option is on by default for new checkbox fields (S1-R2), so as written the inspection cannot be submitted and the precondition is unreachable",
+    "preconditions: Lights photo content is unspecified -> give it something distinctive (for example a photo of a flat tire), and expected Step 5 -> 'the Lights line does not mention the flat tire, which is only in the photo'; 'anything that is only in the photo' is not something a tester can judge without knowing what the photo shows",
+    "notes/needs_confirmation -> record that the S15 status panel in v43 says 'the Key Decisions on the brief ... are provisional until then' and 'Until it lands, builds use the existing ShopCoach line builder assistant'; the photo Key Decision is one of those, so the expectation may move when the new brief lands"
+   ],
+   "notes": "The test is a falsification proxy (a line that mentions the mirror proves a photo was read); it cannot prove the negative on its own. S15-N6 is on the SV-11084 ShopCoach-blocked list (Staging only)."
+  },
+  {
+   "title": "Original work order deleted after a build: its number shows as plain text",
+   "verdict": "KEEP",
+   "proof": "22 Sep S7-R2 \"When the lines went onto a new work order, the note will link back to the work order the inspection was run on\" and S7-R5 \"... name the work order the inspection was run on\" - silent on a deleted run-on work order. v43 adds to S7-R2 \"If that work order was deleted after the build, the note shows its number as text, tagged 'Work order deleted', with no link\" and to S7-R5 \"If that work order was deleted after the build, its number is shown as text, with no link\" - change log 2026-10-07 'Deleted work order after a build' (Milos Vasic, PM). Coverage: C88537 and C88538 never delete a work order (behaviour-cases.json excluded them for exactly that reason); C88540's planned update covers splits only. Not covered.",
+   "corrections": [],
+   "notes": "Expected results quote S7-R2/S7-R5 faithfully (tag only on the note, none on the Audit Log). Runnable by hand with delete rights. Build-onto-new-work-order needs ShopCoach (Staging, SV-11084)."
+  },
+  {
+   "title": "A kept inspection follows its work order's asset at deletion and on merge",
+   "verdict": "FIX",
+   "proof": "Real changes after 22 Sep: (a) v43 S5-R21 (7 Oct, SV-10965 ruling) \"Merging assets moves such inspections to the surviving asset\"; (b) v43 S5-E3 (6 Oct) \"Deleting a work order must not delete such an inspection, its photos or its report\"; (c) Milos Vasic (PM), SV-10960, 2026-10-08: \"when the work order is deleted, the surviving inspection takes the asset the work order has at that moment ... I'll add this to the PRD\" - built per SV-10965 (Stefan Vukovic, 8 Oct, step 8). 22 Sep S5-R21 instead said the asset is \"stored on the inspection when it is created\" and the tab is \"a record of what was inspected rather than a view that follows a later correction\". Coverage: C88532 planned update covers kept/reopened inspections after deletion but not an asset change before deletion, a merge after it, or photos; C88529 planned update covers asset change/merge for work orders that still exist. Not covered.",
+   "corrections": [
+    "needs_confirmation '' -> 'PRD v43 S5-R21 still reads \"When the work order has been deleted, the stored asset is used (S5-E3)\"; expected Steps 3-4 follow Milos Vasic's later SV-10960 ruling (8 Oct), which he said he would add to the PRD but v43 (13 Oct, S15-only edit) does not carry. The case must carry a divergence sentence (Rule 56) and the PM should be asked to update S5-R21.'",
+    "expected Step 7 -> 'the inspection is listed on asset C, which survives the merge because asset B's VIN was edited to C's' (so the tester knows which asset should survive)"
+   ],
+   "notes": "Steps are runnable in the UI (VIN edit + 'Yes' to merge is the route SV-10965 step 9 documents). Expected Step 5 is faithful to v43 S5-E3."
+  },
+  {
+   "title": "Split line with an inspection: the moved note offers Build lines",
+   "verdict": "NEEDS PRODUCT",
+   "proof": "Only the note move is product-signed: Milos Vasic, SV-10913, 6 Oct: \"Expectd wound be for new lines that we are moving over to carry the notes , and to be removed from the old WO\", written into v43 S7-E4 (\"those notes move with the line and are removed from the original\"). That part is ALREADY COVERED by the C88540 planned update (steps_now 5-7). What this test adds - Build lines offered on the moved note (step 4), View PDF/Download working (step 3) and the asset row linking to the new work order (step 5) - comes from Viktoria Videnovic's proposal items 3-4 and Stefan Vukovic's (developer) ready-for-QA notes of 7 Oct; the PM did not answer those points. 22 Sep S7-E4 said a split 'moves lines and does not copy records' and nothing about report notes.",
+   "corrections": [
+    "remove the parts already in C88540 (note moves to the new work order, gone from the original) so the case does not duplicate it",
+    "hold steps 3-5 until the PM confirms Build lines on a moved note and the asset row's work-order link after a split"
+   ],
+   "notes": "The analyst already flagged this in needs_confirmation, correctly. I kept the NEEDS PRODUCT label so it stays visible and is not written before the answer. Partly arguable from v43 S4-R1 / S5-R21 (the note is an inspection report note; the tab follows the work order), but neither says what the inspection's 'run-on' work order is after a split."
+  },
+  {
+   "title": "On a phone, missing answers, notes or photos never stop a section",
+   "verdict": "NOT A CHANGE",
+   "proof": "v43 S14-R6 adds \"Nothing blocks finishing a section: missing answers, notes, photos and acknowledgements only raise the count. Everything outstanding is collected at submit\" (no change-log entry). 22 Sep already said it: S14-R6 (outstanding work 'surfaced on the action that completes the section, carrying a count, rather than as a separate banner'); S19-R26 (22 Sep) \"An unacknowledged follow-up will not block the action that completes a section. The count on that action rises and the technician may move on, per S14-R6\" - i.e. 22 Sep S14-R6 was already the not-blocking rule; S1-R4/R5 and S17-R4/R5 (22 Sep) put enforcement at submit with outstanding items listed 'before submit'. Coverage: C88578 step 2 (count on the section action), C88590 step 4 (moving on with an item outstanding). Gap only: no case presses the section action with a missing answer, note and photo.",
+   "corrections": [
+    "preconditions: Tires has 'Photo required if Not OK' on but 'Note required if Monitor / Not OK' is not turned off; it is on by default (S1-R2), so answering Tires Not OK leaves a missing note AND a missing photo -> either turn the note option off on Tires, or change expected Step 4/7 to a count of 4 and '4 items before submitting'",
+    "if kept, fold into C88578 step 2 as a coverage-gap check rather than a 'change' case"
+   ],
+   "notes": "Counter-argument tested: 22 Sep S14-R6 alone does not say 'not blocked' (a disabled Next with a count would satisfy its words), but S19-R26 of the same day reads S14-R6 as letting the technician move on. Treat as clarification; the count error must be fixed before any use."
+  },
+  {
+   "title": "Anyone who can open the inspection can open its reference and follow-up files",
+   "verdict": "FIX",
+   "proof": "Real change by the PM: 22 Sep S11 prerequisite \"Opening the file requires 'Work Orders — View' enabled\" and S19 prerequisite \"Opening an attached file requires 'Work Orders — View' enabled\"; v43 S11 \"Anyone who can view the inspection can open its reference files; the file is part of the inspection\" and S19 \"Anyone who can view the inspection can open the files attached to it; they are part of the inspection\"; change log 2026-09-29 (Milos Vasic) \"Reference files open for anyone who can view the inspection.\" Coverage: C88558's precondition gives the tester 'Work orders - View'; C88589 does not vary permissions. Not covered.",
+   "corrections": [
+    "preconditions 'A user who can open and fill that inspection but does not have Work Orders — View (for example a technician role with Work Order Lines — Create & Edit only)' -> first prove on the build that such a user can reach and open the inspection at all (inspections are opened from a work order's line; the spec names no route that avoids viewing the work order). The role example is an assumption, not a source fact. If no user without 'Work Orders — View' can open an inspection, the precondition is unreachable and the change has nothing a tester can observe - drop the case and tell the QA lead"
+   ],
+   "notes": "Expected results are faithful (file names are hyperlinks per S11-R11 / S19-R19). Answering Not OK without submitting is fine even with the default note rule on."
+  },
+  {
+   "title": "Long names end with '…' and show the full name on hover",
+   "verdict": "KEEP",
+   "proof": "22 Sep said only 'shortened' and only for some surfaces: S11-E3 (file names), S12-E3 (builder canvas, outline, properties panel), S14-E2 (phone). Nothing on the desktop fill screen, the work order row, Start Inspection, the completed screen or the asset tab, and no hover. Later design decision: Branko Cicovic (designer), SV-11103, 2026-10-12: \"Let's truncate text with \"…\" and show tooltip on hover which displays full text.\" Built across the builder, fill screen, work order row, template dropdown, completed screen and asset tab (Stefan Vukovic, 12-13 Oct). Coverage: C88571 planned update covers the builder only; C88561 (file names) and C88579 (phone, no hover) do not check the tooltip. Not covered.",
+   "corrections": [],
+   "notes": "The designer's decision is general; the surface list and 'View PDF and Go to work order keep their normal shape' / 'Open stays visible' come from the defect's expected result (Viktoria Videnovic) and the developer's fix notes, which is acceptable here because they apply the design decision rather than add behaviour. SV-11103 is still in TESTING STAGE. Precondition names a long field label that no step checks - harmless."
+  },
+  {
+   "title": "On a phone, Save & exit keeps your answers",
+   "verdict": "FIX",
+   "proof": "Product agreed after 22 Sep: Milos Vasic (PM), SV-10938, 2026-10-09: \"if we can improve this to work similar as desktop ( save and exit ) that can be great\"; built by Stefan Vukovic 9 Oct. PRD v43 and 22 Sep are silent (SOURCE-CHECK L14). Coverage: no DVI V2 case checks saving on a phone. Only steps 1-4 (phone Save & exit keeps the answer) rest on the PM; step 5-6 ('the Lights answer is not kept' after a reload without saving) and step 7 (no ⋮ menu on a completed or invoiced work order) are the developer's description of SV-10938.",
+   "corrections": [
+    "split the case: keep steps 1-4 and expected Steps 3-4 as the product-agreed part; hold steps 5-7 and expected Steps 6-7 until the PM confirms them (already flagged in needs_confirmation) - a case that expects answers to be LOST must not ship on a developer's statement",
+    "expected Step 3 'with no Unsaved changes prompt' -> cite it as the developer's description (SV-10938, 9 Oct); the PM only said 'similar as desktop'"
+   ],
+   "notes": "Out-of-PRD behaviour in a ticket under the epic; a V1 case (C26697, per SV-10938) also needs its title changed - not ours to edit (Rule 38)."
+  },
+  {
+   "title": "An inspection on a completed line can still be submitted",
+   "verdict": "NEEDS PRODUCT",
+   "proof": "Rests only on a developer statement: Stefan Vukovic, SV-10937, 2026-10-09 (\"An inspection on a completed line can now be filled in and submitted\"); QA pass by Mudassir Qamar 2026-10-12. No PM statement on the ticket; PRD 22 Sep and v43 are silent. It reverses V1 behaviour (\"Inspection is in read only mode. Uncomplete the line to submit it.\"), so under Rule 96 it is an invariant change that needs a product decision. The PM did say on the related SV-8128 (9 Oct) 'lets disregard this one for now' about tying line completion to inspection state - not a sign-off for this change.",
+   "corrections": [
+    "do not write until the PM confirms; if confirmed, cite the PM's statement, not the developer's"
+   ],
+   "notes": "Already flagged by the analyst in needs_confirmation; the flag is correct and I kept the label so the hold stays visible. Steps and expected results match the developer's and QA's notes and are runnable by hand."
+  },
+  {
+   "title": "With many findings, each proposed line lists the findings it covers",
+   "verdict": "NEEDS PRODUCT",
+   "proof": "The parts backed by the spec are not changes and are already covered: 22 Sep S2-E3 (\"thirty flagged findings is built without a cap ... the run is split rather than the surplus findings being dropped\") and S15-R14 (\"Every flagged finding will be represented by at least one proposed line\") - covered by C88518 step 2 and C88544 step 4 (expected Step 4 here duplicates them). The new part rests only on Stefan Vukovic (developer), SV-10910, 2026-10-07: \"A single line may cover more than one finding ... our backend adds a plain line for any finding still uncovered\". It conflicts with v43 S15-R13 \"Each proposed line will name the finding it came from\", S15-R21 \"carry the identifier of the finding it came from\" and the Key Decision \"No empty lines are created. There is no non-AI line builder to fall back to\". SOURCE-CHECK L18 already logs it as a PO question.",
+   "corrections": [
+    "expected Step 3 'one line may cover more than one finding' -> hold until the PM rules; the spec's current wording is one finding named per proposed line",
+    "expected Step 4 -> drop from this case (already C88518 step 2 / C88544 step 4)"
+   ],
+   "notes": "Already flagged by the analyst; kept as NEEDS PRODUCT so it stays visible. SV-10910 itself is Blocked."
+  },
+  {
+   "title": "Each per-axle field starts with its own axles, set to Dual",
+   "verdict": "NEEDS PRODUCT",
+   "proof": "Rests on the technical plan, a developer document (Dusan Radulovic, revision 23 Sep, copy received 30 Sep): per-field axle lists and starting axles 'seeded Dual, brake type blank', the latter marked 'confirm at Phase 5 build' (SOURCE-CHECK section 4 items 1-2, L22-L23). PRD 22 Sep and v43 say nothing on either. Part is not a change: the starting axle count (expected Step 2) is 22 Sep S8-R9 (\"The template will hold how many axles the technician starts with\") and S12-R29, already exercised by C88550 step 3 / C88569 step 3; 'no values or verdicts are filled in' is covered by C154647 (DFR-003, no seeded verdicts). SOURCE-CHECK L23 notes the design artboard draws the untouched axle as Dual, which supports but does not decide the default.",
+   "corrections": [
+    "expected Step 2 (axle counts 3 and 2) -> not a change; keep only as setup proof",
+    "hold expected Step 3 (Dual, no brake type) and Step 6 (separate axle lists) until the PM confirms; cite the tech plan as 'informs, never overrules' (Rule 30) in the meantime"
+   ],
+   "notes": "Already flagged by the analyst; kept as NEEDS PRODUCT so it stays visible. Steps are runnable by hand."
+  }
+ ],
+ "reading_coverage": "Read in full, every line, as data: notify/new-tests.json (30,598 B; all 17 tests, every field, dumped by script and read whole); sources/CONFLUENCE-768507905-live-2026-09-22.md (99,118 B, 951 lines, read 1-951 incl. Key Decisions, Assumptions and Change Log; 22 Sep has no Glossary); currency-2026-10-14/CONFLUENCE-768507905-2026-10-14.md (v43, 112,566 B, 977 lines, read 1-977 incl. Glossary, Key Decisions and Change Log), plus the S15 status panel from CONFLUENCE-768507905-2026-10-14-fetch-with-panels.md (grep of 'provisional', lines 91-118 and 504-511 read); currency-2026-10-14/jira-2026-10-14.md (233,523 B, 3,514 lines, read 1-3,514); currency-2026-10-14/SOURCE-CHECK-2026-10-14.md (48,550 B, 355 lines, read 1-355 incl. section 7 latest-wins table L1-L25 and section 8); all 91 case snapshots snapshots-before/C*.json (HTML stripped by script to 249,729 characters / 2,365 lines; read 1-2,365: title, preconditions, steps, expected for every case); notify/behaviour-cases.json (50,146 B, 944 lines; all 23 cases' why, steps_now, expected_now, rules, plus excluded_from_first_pass and reading_coverage, dumped by script and read whole). Also read for context (not required): notify/behaviour-filter.json (all 58 rows + 3 later-Jira rows). Not read: PRD-DIFF files, change-dates.json, tech plan, design files (not named as inputs; tech-plan facts taken from SOURCE-CHECK section 4). 100% of the named inputs read; nothing sampled."
+}
