@@ -1,0 +1,16 @@
+import {os,J,post} from './lib.mjs'; import fs from 'fs';
+const MR=process.argv[2], CM=process.argv[3];
+const s=await os(); const p=s.page; await post(s,'/api/iam/change-location',{workplace_id:'b3c8c820-f815-4cf1-8938-10956c5ee71a',workplace_timezone:'America/Edmonton'});
+const W=[]; p.on('request',r=>{ if(r.method()!=='GET'&&/\/api\//.test(r.url())&&!/envelope/.test(r.url())) W.push(r.method()+' '+r.url().replace(/.*\/api/,'/api')+' :: '+(r.postData()||'').slice(0,500)); });
+p.on('response',async r=>{ if(r.request().method()!=='GET'&&/\/api\/(inventory|part)/.test(r.url())) W.push('  <- '+r.status()+' '+(await r.text().catch(()=>'')).slice(0,300)); });
+const tids=async()=>p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].filter(e=>e.offsetParent).map(e=>e.getAttribute('data-test-id')+'|'+(e.innerText||e.value||'').trim().replace(/\s+/g,' ').slice(0,30)));
+await s.go('/parts/returns'); await p.waitForTimeout(4500);
+const t=(await tids()).filter(x=>x.includes(MR.slice(0,8))||/receive_credit|checkbox/.test(x)); console.log('returns tids',J(t,800));
+const cb=p.locator(`[data-test-id*="${MR}"]`).filter({hasNot:p.locator('xx')}); console.log('mr elems',await cb.count());
+const box=p.locator(`[data-test-id="return_request_checkbox_${MR}"]`); if(await box.count()) await box.click(); else console.log('no checkbox for',MR);
+await p.waitForTimeout(800); await p.screenshot({path:'ev/RC-0-ticked.png'});
+await p.locator('[data-test-id="button_receive_credit"]').click(); await p.waitForTimeout(4500); console.log('url',p.url());
+console.log('confirm tids',J((await tids()).filter(x=>/input|button|select|date/.test(x)),1500)); await p.screenshot({path:'ev/RC-1-process.png'});
+await p.locator('[data-test-id="input_credit_memo_number"]').fill(CM); await p.waitForTimeout(500);
+await p.locator('[data-test-id="button_post_credit"]').click(); await p.waitForTimeout(4500); await p.screenshot({path:'ev/RC-2-posted.png'});
+console.log('writes',J(W,2500)); console.log('url',p.url()); await s.close();

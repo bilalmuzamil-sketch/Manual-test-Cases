@@ -1,0 +1,15 @@
+import {os,op,J,post} from './lib.mjs'; import fs from 'fs';
+const s=await op(); const p=s.page; await post(s,'/api/iam/change-location',{workplace_id:'b617914c-16e9-4485-8e8b-193cd86aa416',workplace_timezone:'Africa/Accra'});
+const W=[]; p.on('request',r=>{ if(r.method()!=='GET'&&/\/api\//.test(r.url())&&!/envelope/.test(r.url())) W.push(r.method()+' '+r.url().replace(/.*\/api/,'/api')+' :: '+(r.postData()||'').slice(0,400)); });
+p.on('response',async r=>{ if(r.request().method()!=='GET'&&/\/api\/(inventory|part)/.test(r.url())) W.push('  <- '+r.status()+' '+(await r.text().catch(()=>'')).slice(0,300)); });
+const tids=async()=>p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].filter(e=>e.offsetParent).map(e=>e.getAttribute('data-test-id')+'|'+(e.innerText||e.value||'').trim().replace(/\s+/g,' ').slice(0,30)));
+await s.go('/parts/create-return'); await p.waitForTimeout(4000); console.log('tids',J(await tids(),1500)); await p.screenshot({path:'ev/PCR-0.png'});
+const pick=async(tid,text)=>{ const el=p.locator(`[data-test-id="${tid}"]`).first(); await el.click(); await p.keyboard.type(text,{delay:40}); await p.waitForTimeout(2500);
+  const items=await p.locator('.q-menu .q-item').allInnerTexts(); console.log(tid,'options',J(items.slice(0,6).map(x=>x.replace(/\s+/g,' ')),600));
+  const i=items.findIndex(x=>x.includes(text)); await p.locator('.q-menu .q-item').nth(i<0?0:i).click(); await p.waitForTimeout(1500); };
+await pick('select_vendor','Limited View');
+await pick('create_return_part_select','1754925');
+console.log('tids2',J((await tids()).filter(x=>/input|button|select/.test(x)),1500));
+const q=p.locator('[data-test-id="input_return_qty_0_0"]'); await q.fill('1'); await p.waitForTimeout(800); await p.screenshot({path:'ev/PCR-1-filled.png'});
+await p.locator('[data-test-id="button_save_manual_return"]').click(); await p.waitForTimeout(4000); await p.screenshot({path:'ev/PCR-2-saved.png'});
+console.log('writes',J(W,2500)); console.log('url',p.url()); await s.close();

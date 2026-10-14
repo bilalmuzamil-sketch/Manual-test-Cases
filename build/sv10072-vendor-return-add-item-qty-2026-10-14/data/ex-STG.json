@@ -1,0 +1,138 @@
+{
+ "env": "staging",
+ "pn": "201.6215",
+ "pid": "18658006-86a7-4ef0-934c-4668995722bf",
+ "rid": "1b285dfe-0259-427f-a3b3-527850aea3b9",
+ "qty": "2",
+ "script": "fetch('https://api.staging.shopview.com/api/inventory/returns/add-item',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({return_id:'1b285dfe-0259-427f-a3b3-527850aea3b9',inventory_part_id:'18658006-86a7-4ef0-934c-4668995722bf',quantity:'2',credits:10})}).then(async r=>({status:r.status,body:await r.text()}))",
+ "t0": "2026-10-14T14:05:50.724Z",
+ "res": {
+  "status": 201,
+  "body": "{\"data\":[]}"
+ },
+ "before": {
+  "row": {
+   "name": {
+    "t": "WHEEL STUD (E-11719, 09002184)",
+    "b": [
+     288,
+     185,
+     170,
+     48
+    ]
+   },
+   "stock": {
+    "t": "11 Available",
+    "b": [
+     1214,
+     197,
+     77,
+     23
+    ]
+   },
+   "hist": {
+    "t": "history",
+    "b": [
+     260,
+     194,
+     28,
+     31
+    ]
+   }
+  },
+  "h": [
+   {
+    "t": "",
+    "b": [
+     335,
+     185,
+     1235,
+     0
+    ]
+   },
+   {
+    "t": "Admin ShopView Oct 14, 2026 07:59 AM Returned qty 3 from WO # Qty: 14 → 11 (-3)",
+    "b": [
+     335,
+     185,
+     1235,
+     56
+    ]
+   },
+   {
+    "t": "Admin ShopView Oct 14, 2026 07:59 AM Returned qty 2 from WO # Qty: 16 → 14 (-2)",
+    "b": [
+     335,
+     241,
+     1235,
+     55
+    ]
+   }
+  ]
+ },
+ "after": {
+  "row": {
+   "name": {
+    "t": "WHEEL STUD (E-11719, 09002184)",
+    "b": [
+     288,
+     185,
+     170,
+     48
+    ]
+   },
+   "stock": {
+    "t": "9 Available",
+    "b": [
+     1214,
+     197,
+     71,
+     23
+    ]
+   },
+   "hist": {
+    "t": "history",
+    "b": [
+     260,
+     194,
+     28,
+     31
+    ]
+   }
+  },
+  "h": [
+   {
+    "t": "",
+    "b": [
+     335,
+     185,
+     1235,
+     0
+    ]
+   },
+   {
+    "t": "Admin ShopView Oct 14, 2026 08:06 AM Returned qty 2 from WO # Qty: 11 → 9 (-2)",
+    "b": [
+     335,
+     185,
+     1235,
+     56
+    ]
+   },
+   {
+    "t": "Admin ShopView Oct 14, 2026 07:59 AM Returned qty 3 from WO # Qty: 14 → 11 (-3)",
+    "b": [
+     335,
+     241,
+     1235,
+     56
+    ]
+   }
+  ]
+ },
+ "marker": {
+  "version": "v26.40.17-ddb9ba1",
+  "lastModified": "Wed, 14 Oct 2026 13:54:24 GMT",
+  "etag": "W/\"4c5153a244d4dba98262d8896ac7b784\""
+ }
+}

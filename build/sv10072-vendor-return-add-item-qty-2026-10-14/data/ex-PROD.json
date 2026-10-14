@@ -1,0 +1,121 @@
+{
+ "env": "prod",
+ "pn": "1238231",
+ "pid": "18c3cf07-27f3-4599-81b2-ec5d7440d6f0",
+ "rid": "7fa2f858-83ae-4ee4-bb15-8aa5dbb706ab",
+ "qty": "2",
+ "script": "fetch('https://api.shopview.com/api/inventory/returns/add-item',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({return_id:'7fa2f858-83ae-4ee4-bb15-8aa5dbb706ab',inventory_part_id:'18c3cf07-27f3-4599-81b2-ec5d7440d6f0',quantity:'2',credits:10})}).then(async r=>({status:r.status,body:await r.text()}))",
+ "t0": "2026-10-14T14:12:49.297Z",
+ "res": {
+  "status": 201,
+  "body": "{\"data\":[]}"
+ },
+ "before": {
+  "row": {
+   "name": {
+    "t": "A445",
+    "b": [
+     288,
+     185,
+     170,
+     48
+    ]
+   },
+   "stock": {
+    "t": "88 Available",
+    "b": [
+     1214,
+     197,
+     77,
+     23
+    ]
+   },
+   "hist": null
+  },
+  "h": [
+   {
+    "t": "",
+    "b": [
+     335,
+     185,
+     1235,
+     0
+    ]
+   },
+   {
+    "t": "",
+    "b": [
+     335,
+     185,
+     1235,
+     0
+    ]
+   }
+  ]
+ },
+ "after": {
+  "row": {
+   "name": {
+    "t": "A445",
+    "b": [
+     288,
+     185,
+     170,
+     48
+    ]
+   },
+   "stock": {
+    "t": "86 Available",
+    "b": [
+     1214,
+     197,
+     77,
+     23
+    ]
+   },
+   "hist": {
+    "t": "history",
+    "b": [
+     260,
+     194,
+     28,
+     31
+    ]
+   }
+  },
+  "h": [
+   {
+    "t": "",
+    "b": [
+     335,
+     185,
+     1235,
+     0
+    ]
+   },
+   {
+    "t": "Bilal Muzammil Oct 14, 2026 02:13 PM Returned qty 2 from WO # Qty: 88 → 86 (-2)",
+    "b": [
+     335,
+     185,
+     1235,
+     55
+    ]
+   },
+   {
+    "t": "",
+    "b": [
+     335,
+     240,
+     1235,
+     0
+    ]
+   }
+  ]
+ },
+ "marker": {
+  "version": "v26.40.17-f5bf8f4",
+  "lastModified": "Tue, 13 Oct 2026 08:42:45 GMT",
+  "etag": "W/\"a8b1d386343fcfcd075d97fac9e9cd10\""
+ }
+}

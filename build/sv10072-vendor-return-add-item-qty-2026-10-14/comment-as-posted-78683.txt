@@ -1,0 +1,46 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on *staging* (build *v26.40.17-ddb9ba1*) on *14 October 2026*, and ran the same check on production (build *v26.40.17-f5bf8f4*).
+
+* Adding a stock part to a vendor return now takes exactly the quantity sent off stock, whatever the part's id looks like. Part History records the same correct numbers.
+* Production gives the same correct result, so the fix is already live there and there is no older build left to compare against.
+
+h3. On screen
+!sv10072-01-staging-before-after-hd.png|width=1380,height=662!
+_Staging: part 201.6215 WHEEL STUD went from 11 to 9 Available after 2 were added to a vendor return, and Part History shows "Qty: 11 → 9 (-2)". With the old code this part would have lost 18,658,006._
+
+h3. What I checked
+||#||Check||Result||
+|1|Part whose id starts with eight digits (201.6215 WHEEL STUD): sent 2, stock 16 → 14 (the old code would have taken 18,658,006)|PASSED|
+|2|Part whose id starts with one digit (N79-038): sent 2, stock 19 → 17|PASSED|
+|3|Part whose id starts with zeros (MD668D ATF): sent 2, stock 280 → 278 (the old code would have taken 19)|PASSED|
+|4|Part whose id starts with a letter (ZLWMS-18 lockwasher): sent 2, stock 43 → 41 (the old code would have taken nothing)|PASSED|
+|5|Decimal quantity (SH550045136 engine oil): sent 1.5, stock 39.7 → 38.2|PASSED|
+|6|Quantity sent as a number instead of text: sent 3, stock 14 → 11|PASSED|
+|7|The same part added twice to one return: 16 → 14 → 11, then 11 → 9 with the browser-console steps below|PASSED|
+|8|Part History records every one of these with the right before and after quantities ("Returned qty")|PASSED|
+|9|The vendor return lists each added part with the quantity sent (2, 2, 2, 3, 1.5, 2)|PASSED|
+|10|The normal return flow on screen still works: *Parts → Create Return* (ZLWMS-18 × 1, vendor Stillwater Diesel Repair) then *Receive Credit* (credit memo ZZ10072-CM1) took stock 44 → 43, once|PASSED|
+|11|Production: part 1238231 (A445), sent 2, stock 88 → 86 (the old code would have taken 18)|PASSED|
+
+!sv10072-03-part-history-hd.png|width=1380,height=1239!
+_Rows 1, 3, 4, 5, 6 and 8 on the Part History page. The "Cycle count" line at the top of each is me putting the staging stock back afterwards._
+
+!sv10072-02-production-before-after-hd.png|width=1380,height=661!
+_Row 11: production already takes exactly 2 off (88 → 86)._
+
+h3. How to see it
+No screen in the app adds an item to an existing vendor return, so this needs one line pasted into the browser console.
+# Open https://app.staging.shopview.com and log in as *Admin*. The location at the top right should read *Staging Heavy Duty - 9919*.
+# In the top menu click {{Parts}}. The Inventory page opens ({{Inventory}} is highlighted in the left-hand menu under PARTS). If a {{Bin Location}} filter chip shows above the list, click the small ⊗ on it to clear it. Above the list, on the right, click {{Search}} (the magnifying glass) and type {{201.6215}}. The *WHEEL STUD* row shows *16 Available* in the {{Total Qty}} column.
+# Press F12, open the *Console* tab, paste this and press Enter:
+{code:javascript}
+fetch('https://api.staging.shopview.com/api/inventory/returns/add-item',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({return_id:'1b285dfe-0259-427f-a3b3-527850aea3b9',inventory_part_id:'18658006-86a7-4ef0-934c-4668995722bf',quantity:'2',credits:10})}).then(r=>console.log(r.status))
+{code}
+It prints *201*.
+# Refresh the page and search {{201.6215}} again: *14 Available*.
+# Click the clock icon at the left of the row: the top line reads *Returned qty 2 … Qty: 16 → 14 (-2)*.
+
+h3. What I could not check
+Chris asked for a look at production for past returns that went through this path. We can only see our own test organisation on production, not customers' shops, so that check needs someone with database access.
