@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+"""Quote refresh (Rule 113: the quote changes when the source changes) for C368133 and C96965, PRD v48 -> v49, 14 Oct 2026.
+Only custom_expected changes, and inside it only: (1) the S4-R28 quote, replaced by the v49 text copied by code from the saved PRD;
+(2) the Source line's PRD version and S4-R28 note, and its sentence that called the one-line question open (answered in v49).
+The build-verification stamp, the marker and every other byte stay as they are. Edit lock: the live case must equal
+snapshots-after-answers on EVERY field, re-read immediately before the write.
+  python3 refresh_quote.py            dry run: prints the planned text changes
+  python3 refresh_quote.py --apply    writes, re-reads, verifies, logs to applied/apply-log.jsonl"""
+import json, sys, os, html, difflib
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from trlib import api, LAST
+H = "build/wo-board-tech-view/currency-2026-10-14/apply-v49"
+SNAP = "build/wo-board-tech-view/currency-2026-10-14/snapshots-after-answers"
+ANCH = json.load(open(f"{H}/anchor-quotes-current.json"))
+OLD_R28 = ("The shift-clearing prompt (S4-R11, S4-R26) shows only when the outgoing lead has a work-order-level shift on this work order that "
+           "has not ended. A work-order-level shift is one that covers every current line of the work order, which is what the Schedule's "
+           "Entire work order drop creates. A shift on only some lines does not show the prompt.")
+NEW_R28 = ANCH["S4-R28"]
+assert NEW_R28 != OLD_R28 and "every approved line" in NEW_R28
+def esc(t): return html.escape(t, quote=False)
+SRC_OLD = ("version 48 (12 Oct 2026, Chris Ward), ", "S4-R28 (reworded in version 47 on 12 Oct 2026 after SV-11126: a work-order-level shift is one that covers every current line)")
+SRC_NEW = ("version 49 (14 Oct 2026, Chris Ward), ", "S4-R28 (reworded in version 49 on 14 Oct 2026 from Chris Ward's answer 1 of 14 Oct 2026: a work-order-level shift is one that covers every approved line, judged at the moment the lead changes; first defined in version 47 after SV-11126)")
+OPEN = {368133: (", and whether a shift on the only line of a one-line work order counts is an open question to the PO (14 Oct 2026).",
+                 ". On a one-line work order a shift on that line counts (version 49, S4-R28)."),
+        96965: ("; whether a shift on the only line of a one-line work order counts is an open question to the PO (14 Oct 2026).",
+                ". On a one-line work order a shift on that line counts (version 49, S4-R28).")}
+def plan(cid, exp):
+    new = exp
+    pairs = [(esc(OLD_R28), esc(NEW_R28)), (SRC_OLD[0], SRC_NEW[0]), (SRC_OLD[1], SRC_NEW[1]), OPEN[cid]]
+    for a, b in pairs:
+        n = new.count(a)
+        if n != 1: raise SystemExit(f"C{cid}: expected exactly one occurrence, found {n}: {a[:90]}")
+        new = new.replace(a, b)
+    return new
+os.makedirs(f"{H}/applied", exist_ok=True)
+log = open(f"{H}/applied/apply-log.jsonl", "a")
+DONE = {json.loads(l)["case"] for l in open(f"{H}/applied/apply-log.jsonl") if '"op": "update_case"' in l and '"fields_written": {"custom_expected": true}' in l}
+for cid in (368133, 96965):
+    if f"C{cid}" in DONE: print(f"C{cid} already written; skipped"); continue
+    snap = json.load(open(f"{SNAP}/C{cid}.json"))
+    live = api(f"get_case/{cid}"); st0 = LAST["status"]
+    diff = sorted(k for k in set(live) | set(snap) if live.get(k) != snap.get(k))
+    if live["created_by"] != 3 or diff:
+        rec = {"op": "refused_edit_lock", "case": f"C{cid}", "http": st0, "why": f"live differs from snapshots-after-answers in {diff}"}
+        print(rec); log.write(json.dumps(rec) + "\n") if "--apply" in sys.argv else None; continue
+    new_exp = plan(cid, live["custom_expected"])
+    # Rule 41 whole-case re-read: every other quoted code in this case must still be verbatim in v49
+    import re
+    others = re.findall(r"<strong>(S\d+-[A-Z]+\d+[a-z]?):</strong> &ldquo;(.*?)&rdquo;</li>", new_exp)
+    stale = [c for c, t in others if c in ANCH and html.unescape(t) != ANCH[c]]
+    if stale: raise SystemExit(f"C{cid}: other quotes not verbatim in v49: {stale}")
+    if "--apply" not in sys.argv:
+        print(f"== C{cid} dry run; all other quotes verbatim in v49: {[c for c, _ in others]}")
+        for l in difflib.unified_diff(live["custom_expected"].replace("</li>", "</li>\n").replace("</p>", "</p>\n").splitlines(),
+                                      new_exp.replace("</li>", "</li>\n").replace("</p>", "</p>\n").splitlines(), lineterm="", n=0):
+            print(l[:700])
+        continue
+    json.dump(live, open(f"{H}/applied/C{cid}-before.json", "w"), indent=1)
+    api(f"update_case/{cid}", {"custom_expected": new_exp}); st = LAST["status"]
+    a = api(f"get_case/{cid}")
+    json.dump(a, open(f"{H}/applied/C{cid}-after.json", "w"), indent=1)
+    untouched = [k for k in live if k not in ("custom_expected", "updated_on", "updated_by", "version") and a.get(k) != live.get(k)]
+    ok = a["custom_expected"] == new_exp and not untouched and a["updated_by"] == 3
+    rec = {"op": "update_case", "case": f"C{cid}", "http": st, "fields_written": {"custom_expected": a["custom_expected"] == new_exp},
+           "untouched_changed": untouched, "atmstatus_before": live["custom_atmstatus"], "atmstatus_after": a["custom_atmstatus"],
+           "automation_type_before": live["custom_automation_type"], "automation_type_after": a["custom_automation_type"],
+           "stamp_kept": "Last checked against build v26.40.17-ddb9ba1 (staging) on 10/14/2026." in a["custom_expected"],
+           "marker_kept": a["custom_expected"].endswith("<p>AUTOMATION: READY</p>"), "ok": ok,
+           "why": "S4-R28 quote refreshed to PRD v49 (copied from the saved v49 text); Source line moved to v49 and its open-question sentence "
+                  "replaced by the v49 answer. Re-verified whole against PRD v49 (14 Oct 2026): every work order has two approved lines, so "
+                  "behaviour, steps and results are unchanged; other quotes verbatim in v49. Not re-run on a build (a quote refresh is not a build check)."}
+    print(rec); log.write(json.dumps(rec) + "\n"); log.flush()
+    if not ok: raise SystemExit("STOP: write did not verify")
