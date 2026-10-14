@@ -45,7 +45,7 @@ In short:
    every click" style). Otherwise add a new case. Each case still checks ONE behaviour.
 4. Re-read every remaining case against v21 for anything else that moved (diff file), and fix it.
 5. `notes`: replace stale v20 notes; list every story-vs-PRD, design-vs-PRD and tech-plan-vs-PRD difference that remains.
-6. Write the result to `proposals-A.json` (overwrite; the v20 copy is kept as `proposals-A-v20-2026-10-13.json`). Validate with
+6. Write the result to `proposals-A.json` (overwrite; the v20 copy is kept as `v20-copy-proposals-A-2026-10-13.json`). Validate with
    `python3 build/testing-tools/apply_case_update.py --config build/founder-mode/price-category/update-2026-10-13/config.json --only build/founder-mode/price-category/update-2026-10-13/proposals-A.json`
    (run from the repo root) until it prints no PROBLEM, and coverage is 67/67.
 7. Report: counts (updated, new, retire), which cases changed in substance and why, the new-code placement, notes, and your
