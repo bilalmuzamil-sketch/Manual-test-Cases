@@ -38,3 +38,9 @@ C96983 (Tech View columns not read) · C96978 (two technicians must be clocked i
 C96980 C96986 (role "ZZAUTOTEST WO View Only" + its users missing on staging — create) · C96989 (location route) · C96992 (only
 Customers table compared) · C96997 C96999 C97000 (by hand on the QA branch — no script reading; script or walk them) · C96998
 (the canned line has parts waiting, so "Receive parts" stopped the completion — use a line with no parts).
+
+## Wave 4 judged (14 Oct 21:10 UTC) — `judge/wave4.json`: 13 Passed, 11 to re-run, 0 Failed
+Re-run: C97003 C97012 C368147 C97020 (view-only role — now made by stg-setup.mts) · C97007 ("Ben Bravo" not in the lead list —
+seed first) · C97013 (In progress set-up failed) · C97011 (Tech View repeat not done) · C97005 (real sign-out + technician drag
+not done) · C97010 (second-tab invoice not done) · C368148 (read while loading — wait) · C368146 (board read stops at 125
+columns — pin Aaron/Ezra or scroll to the end).

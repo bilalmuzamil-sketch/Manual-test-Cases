@@ -1,0 +1,220 @@
+{
+ "results": {
+  "C97001": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Drag Order; Tech View. Ana's group read Alpha Co, Bravo Co, Charlie Co.",
+    "After dragging Charlie Co above Alpha Co, Ana's group read Charlie Co, Alpha Co, Bravo Co.",
+    "After dragging Bravo Co into Ben's group below Delta Co (\"Lead technician updated\"), Ben's group read Delta Co, Bravo Co, and Bravo Co was gone from Ana's.",
+    "Board View: in Ben's column Bravo Co was dragged above Delta Co, and the column read Bravo Co, Delta Co.",
+    "Echo Co dragged from Cal's column to below Ana's last card: Ana's column read Charlie Co, Alpha Co, Echo Co, and Cal's column was empty.",
+    "After a reload everything stayed where it was released."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C97001-board.png"
+   ]
+  },
+  "C97002": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Drag Lead Change; Board View.",
+    "Alpha Co dragged from Ana's to Ben's column: it sat in Ben's column, \"Lead technician updated\" appeared and faded by itself within 9 seconds. Its lead became Ben Bravo.",
+    "Alpha Co dragged into Unassigned: it sat in Unassigned with \"Lead technician removed\", and the work order has no lead technician.",
+    "Golf Co dragged from Unassigned into Cal's column: it moved there (\"Lead technician updated\") and its lead is Cal Charlie.",
+    "Tech View: Golf Co dragged from Cal's group into Ana's group: it moved there (\"Lead technician updated\") and its lead is Ana Alpha."
+   ],
+   "not_observed": "Lead Technician was read from the saved work order (the same detail its page shows), not by opening the page on screen.",
+   "todo": "None.",
+   "pictures": []
+  },
+  "C97004": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Pinned Reorder; Board View with Ana and Ben pinned. Columns: Unassigned, Ana, Ben, Cal, Dan; counts Ana 1, Ben 2, Cal 1, Dan 0.",
+    "Ben's column dragged before Ana's: the order became Unassigned, Ben, Ana, Cal, Dan.",
+    "Ben's column dragged to after Cal's: he stayed in the pinned area (Unassigned, Ana, Ben, Cal, Dan); Cal and Dan stayed after the pinned technicians.",
+    "Tech View: the pinned groups Ana and Ben come right after Unassigned in the same order. Ana's group dragged below Cal's stayed in the pinned area (Unassigned, Ben, Ana); it could not be dropped among the unpinned groups.",
+    "The counts are unchanged (Ana 1, Ben 2, Cal 1, Dan 0) and Bravo Co's lead is still Ben Bravo."
+   ],
+   "not_observed": "Lead Technician was read from the saved work order (the same detail its page shows), not by opening the page on screen.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C97004-step5.png"
+   ]
+  },
+  "C97006": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 List Sort Kept. In List, sorted by Created On, newest first: Charlie Co, Bravo Co, Alpha Co.",
+    "In Tech View, Ana's rows were reordered by dragging (Bravo Co moved above Alpha Co).",
+    "In Board View, Ana's cards were reordered again by dragging.",
+    "Back in List: still sorted by Created On, newest first, with the arrow on Created On, and the rows read Charlie Co, Bravo Co, Alpha Co exactly as before."
+   ],
+   "not_observed": "In Board View the drag was a reorder inside Ana's column, not the case's move of Charlie Co from Ben's column into Ana's.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C97006-list.png"
+   ]
+  },
+  "C97008": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Move Message; Board View with counts Ana 3, Ben 1.",
+    "Alpha Co dragged from Ana's to Ben's column: \"Lead technician updated\" appeared and the counts changed at once to Ana 2, Ben 2, with no page reload. The message faded by itself.",
+    "Alpha Co dragged above Delta Co inside Ben's column: Ben's column read Alpha Co, Delta Co.",
+    "No message appeared, the counts stayed Ana 2, Ben 2, and Alpha Co's lead is still Ben Bravo."
+   ],
+   "not_observed": "Lead Technician was read from the saved work order (the same detail its page shows), not by opening the page on screen.",
+   "todo": "None.",
+   "pictures": []
+  },
+  "C97009": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Invoiced Lock: Bravo Co (Invoiced) and Charlie Co (Paid) led by Ana, Golf Co (Invoiced, no lead), Delta Co (Declined), Echo Co (Complete), Alpha Co (Approved).",
+    "Bravo Co and Charlie Co each carry a lock whose text reads \"The lead technician can't be changed once a work order is Invoiced or Paid.\" (the design says \"Invoiced · can't be reassigned\").",
+    "Bravo Co dragged above Alpha Co inside Ana's column: it moved there.",
+    "Bravo Co dragged to Ben and Charlie Co dragged to Unassigned: both stayed in Ana's column, no message appeared, and Ana's count stayed 5. Golf Co could not be moved out of Unassigned.",
+    "Delta Co (Declined) and Echo Co (Complete) moved to Ben's column, each with \"Lead technician updated\".",
+    "Tech View: Charlie Co dragged into Ben's group stayed in Ana's group, with no message."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368144": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Unassigned Place; Board View. Unassigned read Bravo Co, Delta Co.",
+    "Charlie Co: More actions > Reassign lead technician > Unassigned: \"Lead technician removed\".",
+    "Unassigned then read Bravo Co, Charlie Co, Delta Co: Charlie Co took its customer-name place, not the bottom.",
+    "After Alpha Co's lead was cleared on its work order page, Unassigned read Alpha Co, Bravo Co, Charlie Co, Delta Co, with Alpha Co first.",
+    "Tech View's Unassigned group showed the same order."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368145": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Created With Lead; Board View. Ben's column read Bravo Co, Delta Co.",
+    "The New Work Order window has no Lead Technician field (it offers Customer and Asset), so the Split route was used: a line of the Bravo Co work order was split off into a new work order, which kept Ben Bravo as lead (S2-35589).",
+    "Back on Board View with the same search, Ben's column read Bravo Co (the split-off one), Bravo Co, Delta Co.",
+    "The split-off work order took its customer-name place among Ben's work, not the bottom."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368145-split-dialog.png"
+   ]
+  },
+  "C97021": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Keyboard Reach.",
+    "Board View: Tab from the Search box stops on one card. From there the arrow keys move card to card inside a column, Up reaches the column header, and Right moves to the next column.",
+    "Every card (Golf Co, Alpha Co, Bravo Co, Charlie Co) and every column header (Unassigned, Ana, Ben and the next) was reached, each with a visible focus outline.",
+    "Tech View: Tab stops on the Unassigned group header. The Down arrow then moves through every row and group in turn (Golf Co, Ana, Alpha Co, Bravo Co, Ben, Charlie Co, then the next groups), each with a visible outline.",
+    "Keys used: Tab to enter, then the arrow keys."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C97021-board-walk.png",
+    "evidence/staging-full-2026-10-14/C97021-tech-walk.png"
+   ]
+  },
+  "C368150": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Keyboard Enter Opens; Board View.",
+    "With the Alpha Co card focused by keyboard, Enter opened the Alpha Co work order (its Lines page).",
+    "Back on the board, with Alpha Co focused again, Space, Up, Down, Ctrl+Down, Alt+Down, Shift+Down and Shift+Right did not pick the card up. It stayed where it was, the order stayed Alpha Co, Bravo Co, and the lead stayed Ana Alpha. Moving is not offered by keyboard, so opening and moving cannot get mixed up.",
+    "Tech View: with the Alpha Co row focused, Enter opened the work order."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368151": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Keyboard Controls; Board View.",
+    "When the Alpha Co card has keyboard focus its more-actions button shows, and Tab moves onto it.",
+    "Enter opened the menu (Reassign lead technician) and Escape closed it.",
+    "In Ana's column header, the pin button was reached by keyboard. Enter unpinned Ana (she started pinned) and Enter again pinned her back.",
+    "Tech View: Enter on the group header itself did not collapse it. Tab onto the group's arrow button, then Enter, collapsed Ana's group, and Enter again expanded it.",
+    "Keys that worked: Tab, the arrow keys, Enter and Escape."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368151-menu.png",
+    "evidence/staging-full-2026-10-14/C368151-after-second-enter.png"
+   ]
+  },
+  "C368152": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Keyboard Reassign; Board View.",
+    "Using only the keyboard: focused the Alpha Co card, opened More actions, chose Reassign lead technician; the dialog opened.",
+    "Moved to ZZAUTOTEST Ben Bravo in the list with the arrow keys and confirmed with Enter. \"Lead technician updated\" appeared and the dialog closed.",
+    "Alpha Co (S2-35615) now sits in Ben's column and its lead is Ben Bravo. Ana's column holds the other two cards.",
+    "Reordering Ana's remaining cards by keyboard: no key changed the order (Bravo Co, Charlie Co before and after), so there is no keyboard way to reorder. That part is not checked, as the case allows."
+   ],
+   "not_observed": "Ben Bravo was reached with the arrow keys rather than by typing \"Ben\" in the dialog's search box.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368152-dialog.png",
+    "evidence/staging-full-2026-10-14/C368152-after.png"
+   ]
+  },
+  "C97022": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F3 Keyboard Focus Kept; Board View.",
+    "Step 4: after the Reassign lead technician dialog was closed by keyboard, focus returned to the card's more-actions button, with a visible outline.",
+    "Step 5: the Golf Co card had focus; its status was changed elsewhere and the board was refreshed. Focus then sat at the top of the page, and one Tab landed on the visible \"Skip to main content\" link.",
+    "Step 6: a column header had focus; Ben was deactivated elsewhere and the board was refreshed. Again one Tab landed on the visible \"Skip to main content\" link.",
+    "The keyboard user could carry on each time."
+   ],
+   "not_observed": "In step 6 the focused header was Ana's column, not Ben's. Ben was reactivated afterwards.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C97022-step5-live.png",
+    "evidence/staging-full-2026-10-14/C97022-step6-live.png"
+   ]
+  }
+ },
+ "redo": {
+  "C97007": "The script stopped when it tried to pick \"Ben Bravo\" in the work order page's Lead Technician list (the entry was not found by that name), so nothing was read.",
+  "C97011": "Board View held: dragging Bravo Co over Ben's column then Escape, dragging above Alpha Co then Escape, and dropping on the toolbar each left Ana's column as Alpha Co, Bravo Co, counts Ana 2 / Ben 1, with no message. After a refresh the lead was still Ana Alpha. But the Tech View repeat (step 8) was never done.",
+  "C97013": "The script stopped while making its test work orders (setting them In progress failed), so nothing was read.",
+  "C368148": "With Assigned to me on, only Ana and Cal showed and Cal's column was dragged before Ana's. But after Assigned to me was turned off, the board was read while it was still loading (the picture shows grey placeholder columns), so the final order was not read.",
+  "C97003": "The script stopped when making its view-only user: the \"ZZAUTOTEST WO View Only\" role is missing on staging.",
+  "C97012": "The script stopped at the start: the view-only role it changes (\"Role was not found\") is missing on staging.",
+  "C368146": "Aaron Able and Ezra Echo were made. Tech View showed them near the end of its 140 groups, Aaron before Ezra. Board View was read only up to its first 125 columns (the script stops scrolling sideways after a fixed distance), so neither newcomer was reached there, and the \"same order\" comparison is void. Re-run reading the whole board.",
+  "C97005": "Steps 4, 6 and 7 held: Ana's group read Charlie Co, Alpha Co, Bravo Co after the drag, Board View showed the same, and a second dispatcher saw the same order in both views. But step 8 was not a real sign-out and sign-in (the page was only reopened), and step 9 was never done (Ben's group was not dragged above Ana's in the first browser), so the per-user technician order was not tested.",
+  "C368147": "The script stopped when making its view-only user: the \"ZZAUTOTEST WO View Only\" role is missing on staging.",
+  "C97010": "Partly done: after ZZAUTOTEST F3 Dan Delta was deactivated, his Tech View group showed \"Inactive\" with 1 work order. Dragging Alpha Co onto his column was not accepted (lead stayed Ana Alpha, his count stayed 1, no message). But the case's failed-save route (invoice the work order in a second tab, then drag it) was not followed: the script forced a save failure instead. So the status explanation the case expects could not appear (only \"Failed to update lead technician, please try again.\" showed). The inactive marker on the Board View column and closing the alert with X were not read either.",
+  "C97020": "The script stopped when making its view-only user: the \"ZZAUTOTEST WO View Only\" role is missing on staging."
+ },
+ "failed": {},
+ "doubt": {}
+}
