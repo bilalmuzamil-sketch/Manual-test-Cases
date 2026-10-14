@@ -1,0 +1,590 @@
+{
+ "generated": "2026-10-14",
+ "request": "QA lead 14 Oct 2026: 'Also include if new tests need to be added based on which change etc'. Behaviours changed or added since 22 Sep (PRD v43 + later winning decisions) that no existing case checks, neither as it is nor once the 23 behaviour cases are updated.",
+ "tests": [
+  {
+   "title": "New template from a starter: note required is on, photo if Not OK is off",
+   "why_needed": "The spec now says both checkbox defaults apply to starters too ('starters included'), and the photo default changed from on to off; the existing cases only check a checkbox field the tester adds by hand, never one that comes with a starter.",
+   "rules": [
+    {
+     "code": "S1-R2",
+     "date": "between 2026-09-29 and 2026-10-13",
+     "entry": "not in the change log"
+    },
+    {
+     "code": "S17-R2",
+     "date": "between 2026-09-29 and 2026-10-02",
+     "entry": "Not named in the change log; Jira SV-10789 (2 Oct 2026) already quotes the new text"
+    },
+    {
+     "code": "SV-10789",
+     "date": "2026-10-05",
+     "entry": "Stefan Vukovic (developer) in Jira"
+    }
+   ],
+   "preconditions": [
+    "You are signed in as a user with 'Settings — Service'.",
+    "The starter templates are offered when you create a new template."
+   ],
+   "steps": [
+    "Go to Settings > Inspection Templates and create a new template.",
+    "Choose to start from a template and pick a starter (for example Air-Brake Inspection).",
+    "Select a checkbox field that came with the starter.",
+    "Read the 'Note required if Monitor / Not OK' option in its properties.",
+    "Read the 'Photo required if Not OK' option in its properties.",
+    "Create another new template from a different starter (for example Trailer Inspection) and repeat steps 3 to 5."
+   ],
+   "expected": [
+    "Step 4: 'Note required if Monitor / Not OK' is already on for the starter's checkbox field.",
+    "Step 5: 'Photo required if Not OK' is off for the starter's checkbox field.",
+    "Step 6: the second starter's checkbox field shows the same: note required on, photo if Not OK off."
+   ],
+   "related_case": 88507,
+   "needs_confirmation": ""
+  },
+  {
+   "title": "Deleting the last section does not bring back the starting points",
+   "why_needed": "The spec now adds that after the last section is deleted the starting points are not offered again; the case on deleting the last section checks only that a section can be added back.",
+   "rules": [
+    {
+     "code": "S12-E1",
+     "date": "between 2026-09-29 and 2026-10-13",
+     "entry": "not in the change log"
+    }
+   ],
+   "preconditions": [
+    "You are signed in as a user with 'Settings — Service'.",
+    "A draft template with exactly one section (for example a new template built from scratch with one section and one field)."
+   ],
+   "steps": [
+    "Open the draft template in the builder.",
+    "Delete its only section and confirm.",
+    "Look at the canvas."
+   ],
+   "expected": [
+    "Step 3: the canvas still offers a way to add a section back.",
+    "Step 3: the starting-point choice (start from a template, or build from scratch) is not shown again."
+   ],
+   "related_case": 88571,
+   "needs_confirmation": ""
+  },
+  {
+   "title": "Completing a reopened inspection again gives the report a new inspected date",
+   "why_needed": "New in the spec: the inspected date is the first completion date and only reopening and completing again gives a new date; the updated regenerate case checks that regenerating keeps the date, but nothing checks that completing again changes it.",
+   "rules": [
+    {
+     "code": "S13-R14",
+     "date": "2026-10-05",
+     "entry": "Developer and QA questions answered"
+    }
+   ],
+   "preconditions": [
+    "You are signed in with 'Work Order Lines — Create & Edit' and 'Work Orders — View'.",
+    "A completed inspection on an open work order, first completed on an earlier day (for example yesterday), with its report."
+   ],
+   "steps": [
+    "Open the inspection's report and note the inspected date.",
+    "Open the completed inspection and reopen it.",
+    "Change one answer.",
+    "Press 'Submit & Generate Report' and finish the sign-off.",
+    "Open the newest report from the inspection report note on the work order.",
+    "Read the inspected date."
+   ],
+   "expected": [
+    "Step 1: the inspected date is the day the inspection was first completed (for example yesterday).",
+    "Step 6: the newest report shows today's date as the inspected date, so it can be told apart from the earlier version."
+   ],
+   "related_case": 88575,
+   "needs_confirmation": ""
+  },
+  {
+   "title": "Changing or merging the asset does not regenerate the inspection report",
+   "why_needed": "The PM decided on 8 Oct, after the spec, that an asset change or merge never regenerates existing reports and that a manual regenerate takes the work order's current asset; no case checks this, so a build that silently regenerates would pass.",
+   "rules": [
+    {
+     "code": "SV-10960",
+     "date": "2026-10-08",
+     "entry": "Milos Vasic in Jira"
+    }
+   ],
+   "preconditions": [
+    "You are signed in with 'Work Orders — Create & Edit', 'Customers — View' and the right to regenerate a report.",
+    "A customer with three assets: asset A (for example unit 1001), asset B (for example unit 2002) and asset C (for example unit 3003).",
+    "A work order on asset A with a completed inspection and its report."
+   ],
+   "steps": [
+    "Open the report and note the asset and the inspected date it shows.",
+    "On the work order, change the asset from asset A to asset B and save.",
+    "Open the report from the inspection report note.",
+    "Regenerate the report.",
+    "Open the newest version of the report.",
+    "Edit asset B's VIN to asset C's VIN and answer Yes to merge with the existing asset.",
+    "Open the report from the inspection report note again."
+   ],
+   "expected": [
+    "Step 3: the report is unchanged: it still shows asset A and no new version was made by the asset change.",
+    "Step 5: the regenerated version shows asset B, the work order's current asset.",
+    "Step 5: its inspected date is the same as in step 1.",
+    "Step 7: the merge did not make a new version; the report is the same as in step 5."
+   ],
+   "related_case": 88575,
+   "needs_confirmation": ""
+  },
+  {
+   "title": "The report never prints Not OK: results read ATTENTION, MONITOR or PASS",
+   "why_needed": "The spec now states verdict wording per surface: the app says Not OK (asset tab included) while the report uses Pass, Monitor and Needs attention and results ATTENTION, MONITOR or PASS, with N/A not counted; only the per-axle part of the report is checked by an existing case.",
+   "rules": [
+    {
+     "code": "Key Decision: verdict wording per surface",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    },
+    {
+     "code": "Key Decision: verdict wording per surface",
+     "date": "2026-10-05",
+     "entry": "Developer and QA questions answered"
+    }
+   ],
+   "preconditions": [
+    "You are signed in with 'Work Order Lines — Create & Edit', 'Customers — View' and 'Work Orders — View'.",
+    "A template with four checkbox fields that keep their standard answer labels (for example Brakes, Lights, Wipers, Horn).",
+    "An inspection from it where Brakes is Not OK, Lights is Monitor, Wipers is OK and Horn is N/A, completed with its report."
+   ],
+   "steps": [
+    "Open the completed inspection and read the answers shown.",
+    "Open the asset's Inspections tab and read the inspection's findings.",
+    "Open the inspection's report.",
+    "Read the summary counts.",
+    "Read the result shown for each of the four fields.",
+    "Look for the words 'Not OK' anywhere on the report."
+   ],
+   "expected": [
+    "Step 1: the app shows the answers as Not OK, Monitor, OK and N/A.",
+    "Step 2: the findings read Not OK and Monitor, for example '1 Not OK' and '1 Monitor'.",
+    "Step 4: the counts are headed Pass, Monitor and Needs attention and read 1, 1 and 1; the N/A answer is not counted.",
+    "Step 5: Brakes reads ATTENTION, Lights reads MONITOR and Wipers reads PASS.",
+    "Step 6: 'Not OK' does not appear anywhere on the report."
+   ],
+   "related_case": 88572,
+   "needs_confirmation": ""
+  },
+  {
+   "title": "A new work order stays, empty, when its drafting is cancelled",
+   "why_needed": "New in the spec: a new work order is created as soon as it is chosen and stays, empty, when drafting is cancelled, fails, returns nothing or the user leaves, with no note and a retry on the same work order; the existing cases only check cancelling on the inspection's own work order.",
+   "rules": [
+    {
+     "code": "S15-E7",
+     "date": "between 2026-09-29 and 2026-10-02",
+     "entry": "Not named in the change log; Jira SV-10792 (2 Oct 2026) already quotes the new text"
+    }
+   ],
+   "preconditions": [
+    "The shop has ShopCoach and at least one labor type.",
+    "You are signed in with 'Work Order Lines — Create & Edit' and 'Work Orders — Create & Edit'.",
+    "A completed inspection with a Not OK finding, completed after this release and not yet built from, so its row on the asset's Inspections tab offers the build action."
+   ],
+   "steps": [
+    "Open the completed inspection.",
+    "Press Build lines and choose A new work order.",
+    "Note the new work order's number (for example S1-2301).",
+    "While the lines are still drafting, press Cancel.",
+    "Open the new work order's Lines tab and Notes tab.",
+    "Open the asset's Inspections tab and find the inspection's row.",
+    "Open the completed inspection again.",
+    "If drafting fails at any point and Try Again is offered, press Try Again and note which work order it drafts on."
+   ],
+   "expected": [
+    "Step 2: the new work order is created at once and you land on its Lines tab.",
+    "Step 5: the new work order still exists, with no lines added; it was not deleted.",
+    "Step 5: there is no note saying lines were built from the inspection.",
+    "Step 6: the row still offers the build action and is counted in 'N of M have findings with no lines yet'.",
+    "Step 7: the completed inspection still offers Build lines.",
+    "Step 8: Try Again drafts on the same new work order."
+   ],
+   "related_case": 88543,
+   "needs_confirmation": ""
+  },
+  {
+   "title": "Drafted lines come from the note, not from the photo",
+   "why_needed": "New in the spec: photos are not sent to ShopCoach and the technician's note is the only evidence it reads; no case checks that a photo does not shape the proposed lines.",
+   "rules": [
+    {
+     "code": "S15-N6",
+     "date": "between 2026-09-29 and 2026-10-13",
+     "entry": "not in the change log"
+    }
+   ],
+   "preconditions": [
+    "The shop has ShopCoach and at least one labor type.",
+    "You are signed in with 'Work Order Lines — Create & Edit'.",
+    "A completed inspection with two Not OK checkbox findings: Wipers (for example), with the note 'Left wiper blade torn' and a photo of something else (for example a cracked mirror); and Lights (for example), with a photo and no note."
+   ],
+   "steps": [
+    "Open the completed inspection.",
+    "Press Build lines and choose This work order.",
+    "Wait for the proposed lines.",
+    "Read the proposed line for Wipers.",
+    "Read the proposed line for Lights."
+   ],
+   "expected": [
+    "Step 4: the Wipers line is about the torn wiper blade from the note; nothing in it describes what is only in the photo (the cracked mirror).",
+    "Step 5: the Lights line is drafted without anything that is only in the photo."
+   ],
+   "related_case": 88541,
+   "needs_confirmation": ""
+  },
+  {
+   "title": "Original work order deleted after a build: its number shows as plain text",
+   "why_needed": "The spec now says that when the work order the inspection was run on is deleted after a build onto a new work order, the build note and the Audit Log entry show its number as text with no link; the note and Audit Log cases never delete a work order.",
+   "rules": [
+    {
+     "code": "S7-R2",
+     "date": "2026-10-07",
+     "entry": "Deleted work order after a build"
+    },
+    {
+     "code": "S7-R5",
+     "date": "2026-10-07",
+     "entry": "Deleted work order after a build"
+    }
+   ],
+   "preconditions": [
+    "The shop has ShopCoach and at least one labor type.",
+    "You are signed in with 'Work Order Lines — Create & Edit', 'Work Orders — Create & Edit' and 'View History Logs', and you can delete work orders.",
+    "A completed inspection with a Not OK finding, on a work order you can delete (for example S1-2252)."
+   ],
+   "steps": [
+    "Open the completed inspection, press Build lines and choose A new work order.",
+    "Wait for the proposed lines and press Add Lines.",
+    "Note the new work order's number (for example S1-2301).",
+    "Delete the original work order (S1-2252 in the example).",
+    "Open the new work order's Notes tab and find the note saying the lines were built from the inspection.",
+    "Open the new work order's Audit Log and find the 'Built from inspection' entry."
+   ],
+   "expected": [
+    "Step 5: the note shows the original work order's number as plain text, tagged 'Work order deleted', with no link.",
+    "Step 6: the Audit Log entry shows the original work order's number as plain text, with no link."
+   ],
+   "related_case": 88537,
+   "needs_confirmation": ""
+  },
+  {
+   "title": "A kept inspection follows its work order's asset at deletion and on merge",
+   "why_needed": "PRD v43 says a kept inspection uses its stored asset, but the PM's later decision (8 Oct, SV-10960, not yet in the PRD) says it takes the asset the work order has when it is deleted, and merges then move it; no case changes the asset before deleting, merges a kept inspection, or checks its photos survive.",
+   "rules": [
+    {
+     "code": "SV-10960",
+     "date": "2026-10-08",
+     "entry": "Milos Vasic in Jira"
+    },
+    {
+     "code": "S5-R21",
+     "date": "2026-10-07",
+     "entry": "Deleted work order: outcome, footer, reopened, merge (SV-10965)"
+    },
+    {
+     "code": "S5-E3",
+     "date": "2026-10-06",
+     "entry": "Deleted work orders, removed inspections and splits"
+    }
+   ],
+   "preconditions": [
+    "You are signed in with 'Customers — View', 'Work Orders — View' and 'Work Orders — Create & Edit', and you can delete work orders and edit assets.",
+    "A customer with three assets: asset A (for example unit 1001), asset B (for example unit 2002) and asset C (for example unit 3003, with a known VIN).",
+    "A work order on asset A with a completed inspection and its report; one answer in it carries a photo."
+   ],
+   "steps": [
+    "On the work order, change the asset from asset A to asset B and save.",
+    "Delete the work order.",
+    "Open asset B's Inspections tab.",
+    "Open asset A's Inspections tab.",
+    "On asset B's tab, open the kept inspection and look at the answer that had a photo.",
+    "Edit asset B's VIN to asset C's VIN and answer Yes to merge with the existing asset.",
+    "Open asset C's Inspections tab."
+   ],
+   "expected": [
+    "Step 3: the inspection is listed on asset B, the asset the work order had when it was deleted, with a dash in the Work order column.",
+    "Step 4: the inspection is not listed on asset A.",
+    "Step 5: the inspection opens read-only and the photo is still there.",
+    "Step 7: after the merge the inspection is listed on asset C, the surviving asset."
+   ],
+   "related_case": 88532,
+   "needs_confirmation": ""
+  },
+  {
+   "title": "Split line with an inspection: the moved note offers Build lines",
+   "why_needed": "Since 6 Oct a split moves the inspection's report note with the line; the developer's build also offers Build lines on the moved note and points the asset row at the new work order, which no case checks (the updated split case only checks where the notes go).",
+   "rules": [
+    {
+     "code": "S7-E4",
+     "date": "2026-10-06",
+     "entry": "Deleted work orders, removed inspections and splits"
+    },
+    {
+     "code": "SV-10913",
+     "date": "2026-10-06",
+     "entry": "Milos Vasic in Jira"
+    },
+    {
+     "code": "SV-10913",
+     "date": "2026-10-07",
+     "entry": "Stefan Vukovic (developer) in Jira"
+    }
+   ],
+   "preconditions": [
+    "The shop has ShopCoach and at least one labor type.",
+    "You are signed in with 'Work Order Lines — Create & Edit' and 'Work Orders — Create & Edit'.",
+    "A work order with two lines; line 1 carries a completed inspection with a Not OK finding that has not been built from."
+   ],
+   "steps": [
+    "On the Lines tab, select line 1 and split it onto a new work order.",
+    "Open the new work order's Notes tab and find the inspection report note.",
+    "Press View PDF, then Download.",
+    "Look for Build lines on the note.",
+    "Open the asset's Inspections tab and click the inspection's work order link."
+   ],
+   "expected": [
+    "Step 3: the report opens and downloads.",
+    "Step 4: the note offers Build lines.",
+    "Step 5: the link opens the new work order."
+   ],
+   "related_case": 88540,
+   "needs_confirmation": "Product (Milos Vasic, 6 Oct) confirmed only that the report notes move with the split line. That the moved note offers Build lines and that the asset row then links to the new work order comes from the QA proposal and the developer's build notes on SV-10913; confirm with product before writing these expectations."
+  },
+  {
+   "title": "On a phone, missing answers, notes or photos never stop a section",
+   "why_needed": "The spec now says nothing blocks finishing a section: missing answers, notes and photos only raise the count and are collected at submit; existing cases check this only for an unacknowledged follow-up.",
+   "rules": [
+    {
+     "code": "S14-R6",
+     "date": "between 2026-09-29 and 2026-10-13",
+     "entry": "not in the change log"
+    }
+   ],
+   "preconditions": [
+    "You are signed in on a phone as a technician with 'Work Order Lines — Create & Edit'.",
+    "A template with two sections; section 1 has a required checkbox field (for example Horn), a checkbox field with 'Note required if Monitor / Not OK' on (for example Brakes) and a checkbox field with 'Photo required if Not OK' on (for example Tires).",
+    "An inspection from that template open on a work order."
+   ],
+   "steps": [
+    "In section 1, leave Horn unanswered.",
+    "Answer Brakes Not OK and leave the note empty.",
+    "Answer Tires Not OK and add no photo.",
+    "Read the count on the section's action at the bottom.",
+    "Press the section's action.",
+    "On the last section, press 'Submit & Generate Report'.",
+    "Read the list that opens."
+   ],
+   "expected": [
+    "Step 4: the section's action carries a count of 3 outstanding items (one answer, one note, one photo).",
+    "Step 5: you move on to the next section; nothing stops you.",
+    "Step 7: the list titled '3 items before submitting' names the missing answer on Horn, the missing note on Brakes and the missing photo on Tires."
+   ],
+   "related_case": 88578,
+   "needs_confirmation": ""
+  },
+  {
+   "title": "Anyone who can open the inspection can open its reference and follow-up files",
+   "why_needed": "The spec changed on 29 Sep: opening a reference file or a follow-up file no longer needs 'Work Orders — View'; anyone who can view the inspection can open them. The file cases are all run by a user who has that permission.",
+   "rules": [
+    {
+     "code": "S11 prerequisites",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    },
+    {
+     "code": "S19 prerequisites",
+     "date": "2026-09-29",
+     "entry": "QA contradiction pass answered"
+    }
+   ],
+   "preconditions": [
+    "A template with a checkbox field (for example Brakes) that carries a general reference file (for example brake-procedure.pdf) and a Not OK follow-up with an attached file (for example adjust-slack.pdf), used in an inspection on a work order line.",
+    "A user who can open and fill that inspection but does not have 'Work Orders — View' (for example a technician role with 'Work Order Lines — Create & Edit' only)."
+   ],
+   "steps": [
+    "Sign in as that user and open the inspection.",
+    "Click the reference file's name on Brakes.",
+    "Close the viewer.",
+    "Answer Brakes Not OK.",
+    "Click the follow-up file's name."
+   ],
+   "expected": [
+    "Step 2: the reference file opens in the viewer.",
+    "Step 5: the follow-up file opens in the viewer.",
+    "Steps 2 and 5: both open although the user does not have 'Work Orders — View'."
+   ],
+   "related_case": 88558,
+   "needs_confirmation": ""
+  },
+  {
+   "title": "Long names end with '…' and show the full name on hover",
+   "why_needed": "The designer decided on 12 Oct that long names are cut with '…' and show the full name on hover; the updated builder case covers only the builder, so the fill screen, the work order row, Start Inspection, the completed screen and the asset tab are not checked.",
+   "rules": [
+    {
+     "code": "SV-11103",
+     "date": "2026-10-12",
+     "entry": "Branko Cicovic (designer) in Jira"
+    }
+   ],
+   "preconditions": [
+    "You are signed in on a desktop with 'Settings — Service' and 'Work Order Lines — Create & Edit'.",
+    "A published template with a very long name (for example 150 characters), a section with a long name, a field with a long label and a per-axle field with a measurement row renamed to a long name.",
+    "A work order with a line to add the inspection to."
+   ],
+   "steps": [
+    "On the work order line, open Start Inspection and pick the long-named template.",
+    "Hover over the selected template name.",
+    "Start the inspection and look at the inspection name, the section heading and the long row name on the fill screen.",
+    "Hover over each of them.",
+    "Go back to the work order and look at the inspection's row.",
+    "Hover over the name and then click Open.",
+    "Complete the inspection and look at the completed screen.",
+    "Open the asset's Inspections tab and hover over the inspection's name."
+   ],
+   "expected": [
+    "Steps 2, 4, 6 and 8: each long name ends with '…' and hovering shows the full name.",
+    "Step 6: Open stays visible, in line, and opens the inspection.",
+    "Step 7: View PDF and Go to work order keep their normal shape.",
+    "Step 8: the page does not scroll sideways and the other columns stay in place."
+   ],
+   "related_case": 88571,
+   "needs_confirmation": ""
+  },
+  {
+   "title": "On a phone, Save & exit keeps your answers",
+   "why_needed": "Product agreed on 9 Oct (SV-10938) that the phone gets Save & exit like the desktop; the spec is silent and no case checks it (the phone cases date from when the phone had no save).",
+   "rules": [
+    {
+     "code": "SV-10938",
+     "date": "2026-10-09",
+     "entry": "Milos Vasic in Jira"
+    },
+    {
+     "code": "SV-10938",
+     "date": "2026-10-09",
+     "entry": "Stefan Vukovic (developer) in Jira"
+    }
+   ],
+   "preconditions": [
+    "You are signed in on a phone as a technician with 'Work Order Lines — Create & Edit'.",
+    "A template with two checkbox fields (for example Brakes and Lights), added to a line on an open work order.",
+    "A completed or invoiced work order that also carries an inspection."
+   ],
+   "steps": [
+    "Open the inspection on the open work order.",
+    "Answer Brakes.",
+    "Open the ⋮ menu at the top right and tap Save & exit.",
+    "Open the inspection again.",
+    "Answer Lights and reload the page without using Save & exit.",
+    "Look at Lights.",
+    "Open the inspection on the completed or invoiced work order and look for the ⋮ menu."
+   ],
+   "expected": [
+    "Step 3: Save & exit saves the answers and takes you back to the work order with no 'Unsaved changes' prompt.",
+    "Step 4: Brakes still shows your answer.",
+    "Step 6: the Lights answer is not kept.",
+    "Step 7: there is no ⋮ menu, so no Save & exit."
+   ],
+   "related_case": 88578,
+   "needs_confirmation": "Product agreed only to Save & exit on the phone, working as on the desktop. That answers are not kept without saving and that the menu is absent on a completed or invoiced work order is the developer's description on SV-10938; confirm."
+  },
+  {
+   "title": "An inspection on a completed line can still be submitted",
+   "why_needed": "A developer change (SV-10937, built 9 Oct, passed QA 12 Oct) lets an inspection on a completed line be filled and submitted, which used to be read-only until the line was uncompleted; nothing in the spec or the cases covers it.",
+   "rules": [
+    {
+     "code": "SV-10937",
+     "date": "2026-10-09",
+     "entry": "Stefan Vukovic (developer) in Jira"
+    }
+   ],
+   "preconditions": [
+    "You are signed in with 'Work Order Lines — Create & Edit'.",
+    "A work order that is still open (for example In Progress) with an inspection added to a line, not yet submitted; the line is approved and then marked Complete.",
+    "A second work order that is completed or invoiced and carries an inspection."
+   ],
+   "steps": [
+    "Open the inspection on the completed line.",
+    "Answer the fields.",
+    "Press 'Submit & Generate Report' and finish the sign-off.",
+    "Look at the line on the work order.",
+    "Try to add a new inspection to the completed line.",
+    "Open the inspection on the completed or invoiced work order."
+   ],
+   "expected": [
+    "Step 1: the inspection is not read-only; there is no 'Uncomplete the line to submit it' banner.",
+    "Step 3: the inspection is submitted and its report is generated.",
+    "Step 4: the line stays Complete.",
+    "Step 5: adding a new inspection to a completed line is not offered.",
+    "Step 6: that inspection is still read-only."
+   ],
+   "related_case": null,
+   "needs_confirmation": "Developer change only; no product statement on SV-10937. Before it an inspection on a completed line was read-only until the line was uncompleted. Confirm with product that this change is wanted before writing the case."
+  },
+  {
+   "title": "With many findings, each proposed line lists the findings it covers",
+   "why_needed": "The developer stated on 7 Oct (SV-10910) that one proposed line may cover several findings and that the system adds a plain line for any finding ShopCoach leaves out; the cases expect each line to name the one finding it came from.",
+   "rules": [
+    {
+     "code": "SV-10910",
+     "date": "2026-10-07",
+     "entry": "Stefan Vukovic (developer) in Jira"
+    }
+   ],
+   "preconditions": [
+    "The shop has ShopCoach and at least one labor type.",
+    "You are signed in with 'Work Order Lines — Create & Edit'.",
+    "A completed inspection with 32 Not OK findings (for example a template with 32 checkbox fields, all answered Not OK)."
+   ],
+   "steps": [
+    "Open the completed inspection, press Build lines and choose This work order.",
+    "Wait for all the proposed lines.",
+    "For each proposed line, read the findings it lists.",
+    "Tick each of the 32 findings off against the lines."
+   ],
+   "expected": [
+    "Step 3: each proposed line lists the finding or findings it covers; one line may cover more than one finding.",
+    "Step 4: every one of the 32 findings appears under at least one proposed line."
+   ],
+   "related_case": 88544,
+   "needs_confirmation": "Only the developer states this. The spec says each proposed line names the finding it came from and that no empty lines are created; confirm with product whether one line may cover several findings and whether a system-made plain line for a left-out finding is allowed."
+  },
+  {
+   "title": "Each per-axle field starts with its own axles, set to Dual",
+   "why_needed": "The technical plan (revision of 23 Sep) says two per-axle fields on one template keep separate axles and that starting axles are Dual with no brake type; the spec is silent and no case checks either.",
+   "rules": [
+    {
+     "code": "Tech plan: axle list per per-axle field",
+     "date": "2026-09-23",
+     "entry": "Dusan Radulovic in the technical plan (copy received 30 Sep 2026)"
+    },
+    {
+     "code": "Tech plan: starting axles seeded Dual",
+     "date": "2026-09-23",
+     "entry": "Dusan Radulovic in the technical plan (copy received 30 Sep 2026)"
+    }
+   ],
+   "preconditions": [
+    "You are signed in as a technician with 'Work Order Lines — Create & Edit'.",
+    "A published template with two per-axle fields (for example Tractor axles with Axles set to 3, and Trailer axles with Axles set to 2), started as an inspection on a work order."
+   ],
+   "steps": [
+    "Open the inspection.",
+    "Count the axles on Tractor axles and on Trailer axles.",
+    "Read each starting axle's Single/Dual and Drum/Disc setting.",
+    "On Tractor axles, press Add Axle.",
+    "On Tractor axles, switch Axle 1 to Single.",
+    "Look at Trailer axles."
+   ],
+   "expected": [
+    "Step 2: Tractor axles shows 3 axles and Trailer axles shows 2.",
+    "Step 3: every starting axle is set to Dual, Drum or Disc is not chosen, and no values or verdicts are filled in.",
+    "Step 6: Trailer axles still has 2 axles and its Axle 1 is still Dual."
+   ],
+   "related_case": 88551,
+   "needs_confirmation": "Comes from the technical plan, not the spec, which says nothing on either point; the plan itself marks the Dual start 'confirm at Phase 5 build'. Confirm with product."
+  }
+ ],
+ "reading_coverage": "Read in full, every line: all 91 case snapshots (snapshots-before/C*.json, title, preconditions, steps, expected; HTML stripped by script to 245,433 characters / 2,364 lines, read lines 1-2,364); notify/behaviour-cases.json (50,146 B, 944 lines, 1-944: the 23 cases' steps_now/expected_now, excluded_from_first_pass) and notify/behaviour-filter.json (all 58 rows + 3 later-Jira rows, dumped and read in full, for the changes dropped from cases); PRD v43 CONFLUENCE-768507905-2026-10-14.md (112,566 B, 977 lines, 1-977 incl. Glossary, Key Decisions and Change Log); PRD-DIFF-2026-09-22-vs-2026-10-14.md (55,693 B, 380 lines, 1-380); PRD-DIFF .json (135,588 B) checked by script against the .md: every added/removed/reworded code's old and new text present, 298 'same' codes identical; notify/change-dates.json (83 entries, all read); SOURCE-CHECK-2026-10-14.md (48,550 B, 355 lines, 1-355, incl. section 7 latest-wins table, all ★ rows); jira-2026-10-14.md (233,523 B, 3,514 lines, 1-3,514); design-drive-2026-10-14/DESIGN-COVERAGE-2026-10-14.md (13,257 B, 140 lines, 1-140, CASE-NEEDED CN-01/CN-02). 100% of the named inputs read; nothing sampled."
+}
