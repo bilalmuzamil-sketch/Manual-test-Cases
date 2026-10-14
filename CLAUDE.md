@@ -103,6 +103,7 @@
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
 > - **BEFORE GIVING ANY ROLE TO ANY STAFF, RESET THAT ROLE TO TEMPLATE FIRST (Standing Rule 105).**
+> - **NO VERDICT (OR VERDICT QUESTION) UNTIL EVERY POINT'S MATRIX IS FINISHED, AND A FAILING EXAMPLE MUST BE ONE A USER CAN BUILD ON SCREEN (Standing Rule 106).** Write down how each failing example was made; if any step was a server-only request, it proves nothing against the ticket.
 > - **AFTER ANY CONFIRM CLICK, RE-READ THE DIALOG — ShopView often asks twice ("Yes" → orange "Are You Sure?") (Standing Rule 102); never call a control "does nothing" before that.**
 > - **BEFORE CALLING A TICKET OUTSTANDING, RE-OPEN IT LIVE: status + last comment (Standing Rule 103).**
 > - **SCREEN RECORDING ON A QA COMMENT ONLY IF THE QA LEAD SAYS YES — ASK ON EVERY TICKET FIRST; no yes = no recording (Standing Rule 104; method playbook §AK).**
@@ -4095,6 +4096,7 @@ deliver the 7-tab management report.
     there is NO "Technical details for developers" section unless the QA lead approved one for this
     ticket (Rule 84 — check the section is absent)**; priority Medium on any ticket created/edited
     (the priority rule).
+    **(7b) THE VERDICT RESTS ON A FINISHED MATRIX (Rule 106)** — every point's cells observed, and every failing example was built using screens only (how it was built is written in the findings doc).
     **(8) READ IT BACK AFTER POSTING** — re-fetch the posted comment/ticket and verify the first line,
     the media count AND order, and the row counts against what was sent (the write response only echoes
     the request). A wrong post is corrected **in place** via `commentId`, never stacked (the one-complete-
@@ -5208,7 +5210,7 @@ deliver the 7-tab management report.
     **HONESTY:** when the matrix finds that a verdict already given was wider than its evidence, **say so to the QA
     lead plainly and first**, with what was and was not covered — never soften it, never let him find it from someone
     else. Canonical record: `build/sv8552-point4-recheck-2026-10-03/FINDINGS.md` (the matrix that should have existed
-    on 2 Oct). Ties to Standing Rules 12, 17, 40, 50, 66, 68, 72, 76, 77, 80, 85, 87 and 91.
+    on 2 Oct). **Rule 106 extends this: no verdict QUESTION to the QA lead either until the matrix is finished, and a failing example only counts if a user can build it on screen.** Ties to Standing Rules 12, 17, 40, 50, 66, 68, 72, 76, 77, 80, 85, 87 and 91.
 
 97. **GREEN "OVERALL QA STATUS: PASSED" ONLY FOR A 100% VERIFIED FIX — ANYTHING LESS IS "PARTIALLY PASSED", THE
     REMAINING ISSUES GO IN A SEPARATE COMMENT, AND THERE IS NO "NOT TREATED AS A FAULT" SECTION (all projects).**
@@ -5399,6 +5401,36 @@ deliver the 7-tab management report.
     **WHY:** other testers and sessions change role settings on shared orgs and don't always put them back, so a role
     with the right name can carry the wrong permissions and make a correct build look broken (or a broken one look
     fine). Ties to Standing Rules 5, 12, 26/26a and 68.
+
+106. **NO VERDICT — AND NO VERDICT QUESTION TO THE QA LEAD — UNTIL EVERY POINT'S VARIANT MATRIX IS FINISHED; AND A
+    FAILING EXAMPLE COUNTS ONLY IF A USER CAN BUILD IT ON SCREEN (all projects).**
+    USER DIRECTIVE (2026-10-14, verbatim, after I wrote *"I said partially passed earlier because I hadn't checked enough
+    cases; the extra checks below changed my answer"*): *"Before moving forward make sure that you save your learning with
+    you in a way that helps you NOT to make similar mistakes again."*
+    **(a) A VERDICT IS OFFERED ONLY AFTER THE WHOLE MATRIX IS OBSERVED.** That includes the options I put in front of the
+    QA lead in a question (*"Partially passed / Passed?"*): offering him a choice built on an unfinished matrix is the
+    same mistake as posting one, because he decides from what I show him. If cells are still empty, the honest answer is
+    *"not finished yet — N cells left"*, and I finish them first (Rules 91/96).
+    **(b) RECORD HOW EVERY FAILING EXAMPLE WAS BUILT, STEP BY STEP, AND CHECK EACH STEP IS SOMETHING A SCREEN OFFERS.**
+    If any step was a request no screen sends (a server-only delete, a hand-written state, an API-only field), the
+    example does not count against the ticket: it shows only that the server allows that path, which is a separate
+    finding (Rule 94 — report it, ask, file only on a yes). **Then rebuild the failing state using screens only.** If it
+    can't be built that way, a user can't reach it, and it is not a failure of the ticket.
+    **(c) FOR A "TELL THE USER WHAT IS WRONG" REQUIREMENT (an error message, a tooltip, a disabled-button reason), LIST
+    EVERY KIND OF BLOCKER A USER CAN CREATE ON SCREEN AND OBSERVE EACH ONE**, on the branch and on production side by
+    side. For a customer that means: work order, part sale, contact, asset, note, invoice, payment, deposit, store
+    credit, fee/discount. One example is not the message; the matrix is.
+    **(d) WHEN FINISHING THE MATRIX OVERTURNS A RECOMMENDATION I ALREADY GAVE, SAY SO FIRST AND PLAINLY** — that the
+    earlier answer was wrong and why — before asking him to decide again. Never let him act on it silently.
+    **RATIONALE, 2026-10-14 (SV-9055, my mistake):** I offered *"Partially passed"* as the recommended verdict because one
+    customer (X2) still showed the vague *"existing transactions"* message. Two things were wrong. X2 had been built by
+    deleting a paid work order **through the server**, which no screen allows (it became its own ticket, SV-11276). And
+    I had not tried the other blockers. When I did, a store credit gave a new, clear message; a work order, contact,
+    asset or part sale greyed Delete out with a tooltip naming it; and a note did not block at all. Every case a user
+    can reach was handled, so the ticket was a PASS. The QA lead accepted my *"Partially passed"*, then had to ask
+    *"Tell me clearly if the ticket is actually passed"*. Ties to Standing Rules 12, 50, 61, 68, 85, 89 (the screen
+    decides), 91, 93, 94 (API-only paths are a separate finding), 96 (the variant matrix) and 97 (green only for a full
+    fix — and, by this rule, not withheld from a full fix either).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
