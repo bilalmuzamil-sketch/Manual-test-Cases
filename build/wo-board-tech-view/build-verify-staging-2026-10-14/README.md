@@ -28,3 +28,13 @@ C581892 (3974848) · C581893 (3974849) · C581894 (3974850) · C581895 (3974851)
 - Checks: display fr-view 8/8 (served-8.json, served-96970.json); check_tester_runnable PASS 8/8; check_runnable_cases 8/8.
 - Not seen (outside lane, no import made): the message after a successful invoice import, quoted in the C581896 Doc.
 - Out of scope, same wording issue: the C368132 setup Doc still says "click Create 1 shift" in Choose lines mode.
+
+## Third set — 3 tests (run 498), 14 Oct 2026
+QA lead: "More cases for the same testing suite to build verify on staging". Tests: C581891 (test 3973197) · C97010 (3481954) · C368131 (3761652).
+- Observed on staging v26.40.17-ddb9ba1 (probe/14-20; OBSERVED-UI-LABELS-staging.md "third set"). Screens only; no test run, no data built.
+- C581891: verified in the first set; since then only its source note changed (authoring session, 16:22 and 17:06). Steps 9 and 12 "Read its Technicians." → "Read the names in its Technicians field." (gate R4).
+- C97010: re-stamped from the Work Orders QA build (v26.40.8-7a95011, 10/8) to staging; nothing else changed.
+- C368131: stamp + READY. Staging's Edit Staff Member Location takes one location and saves with "Save & Close", so the precondition puts {Technician-C} at {Location-A} with {Location-B} another location (e.g. Staging Lethbridge - 4310), and step 3 reads "change her Location from {Location-A} to {Location-B} and click Save & Close". Steps 13 and 15 name what to read (gate R4). Expected unchanged.
+- Setup Docs: C368131 (Technician-C/Location-B wording; role creation "Create Custom Role > Skip > Role Name > under Work orders turn on View, leave Create & Edit off > Create"; Part 2 note). C97010 ("click the Finance tab and click Mark Reviewed; in the Mark as reviewed window fill Mileage or Engine Hours if asked and click Confirm review"). Read back.
+- Checks: display fr-view 3/3 (served-3.json, served-3b.json); check_tester_runnable PASS; check_runnable_cases 3/3.
+- Not seen on screen (would need data built or a failure provoked): the Deactivate Account confirmation, the alert's dismiss X, the inactive marker on a column header (present in the build's code).
