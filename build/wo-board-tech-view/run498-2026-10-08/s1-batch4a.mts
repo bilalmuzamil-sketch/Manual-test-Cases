@@ -10,7 +10,7 @@ import type { Page } from 'playwright';
 import { open, done, APP, API } from './session.mts';
 import { signIn } from '../../global-search/e2e/fixtures/auth.js';
 import { api, candidates, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, active, tab, activeTab } from './wob.mts';
+import { EV, t, shot, display, active, tab, activeTab, switchLocUI } from './wob.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);

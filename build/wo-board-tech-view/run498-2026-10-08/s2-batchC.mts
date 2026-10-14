@@ -9,7 +9,7 @@ import path from 'node:path';
 import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { api, candidates, seedCase, workOrders, customer, workOrder } from './data.mts';
-import { EV, t, shot, display, tab, search, groups, toggleGroup, read } from './wob.mts';
+import { EV, t, shot, display, tab, search, groups, toggleGroup, read, switchLocUI } from './wob.mts';
 import { staffRows, person, HEAVY } from './staff.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);

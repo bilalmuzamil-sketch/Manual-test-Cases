@@ -14,7 +14,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, searchValue, expandSmallGroups } from './wob.mts';
+import { EV, t, shot, display, tab, search, searchValue, expandSmallGroups, switchLocUI } from './wob.mts';
 import { staffRows } from './staff.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -145,8 +145,9 @@ await run('C96983', async () => {
 await run('loc2', async () => {
   const where = () => p.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`) as Promise<string | null>;
   await go('List'); await p.locator('header').getByText(/^[A-Z]{2}$/).last().click(); await p.waitForTimeout(1500);
+  if (process.env.WOB_LOC_SELECT) { await p.keyboard.press('Escape').catch(() => {}); await switchLocUI(p, 'Lethbridge'); } else {
   await p.locator('.q-menu').getByText(/ - \d{3,5}$/).first().click(); await p.waitForTimeout(1500);
-  await p.locator('.q-menu').filter({ hasText: 'ZZAUTOTEST Empty Shop' }).locator('.q-item').filter({ hasText: 'Lethbridge' }).first().click(); await p.waitForTimeout(6000);
+  await p.locator('.q-menu').filter({ hasText: 'ZZAUTOTEST Empty Shop' }).locator('.q-item').filter({ hasText: 'Lethbridge' }).first().click(); await p.waitForTimeout(6000); }
   R.loc2 = { at: await where() };
   await go('Tech View'); R.loc2.tech = onKeys(await menu('Tech View')); await close();
   await display(p, 'Board View'); R.loc2.board = onKeys(await menu('Board View')); await close();

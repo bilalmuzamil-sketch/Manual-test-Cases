@@ -8,7 +8,7 @@ import path from 'node:path';
 import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { api, candidates, seedCase, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, groups, toggleGroup, read, columnHeads } from './wob.mts';
+import { EV, t, shot, display, tab, search, groups, toggleGroup, read, columnHeads, switchLocUI } from './wob.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);

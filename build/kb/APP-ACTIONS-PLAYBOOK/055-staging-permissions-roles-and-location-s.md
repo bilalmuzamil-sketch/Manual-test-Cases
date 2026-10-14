@@ -430,3 +430,7 @@ three wrong characterisations before it was found — see learning **L0233**.
 - Empty-filter state: QB Location (no Estimate / In progress / Declined work orders); switch on screen, switch back after.
 - Read a work order's shifts on screen: Schedule → arrow beside Today → magnifier → `input_schedule_search` = number → click
   each shift (`stg6-sched2.mts`).
+- **(14 Oct 2026) Staging role list:** `GET /api/organizations/<org>/roles` answers 200 with an EMPTY collection, `GET /api/roles`
+  is 405 (POST only = create). Roles are read from staff rows (`role_label`/`role_id`, staff.mts `roleIds`) or created on
+  screen (Settings → Roles & Permissions → Create custom role). "ZZAUTOTEST WO View Only" and the location "ZZAUTOTEST F2 Empty
+  Shop" exist only on sv10043 — on staging they are made by the second-pass set-up (`stg-setup-*.mts`).

@@ -153,3 +153,16 @@ export async function pickLead(p: Page, targetId: string, action: 'confirm' | 'c
   await p.locator(action === 'confirm' ? '[data-test-id="button_confirm_reassign_lead_technician"]' : '[data-test-id="button_cancel_reassign_lead_technician"]').click();
   return action === 'confirm' ? await shiftPrompt(p) : null;
 }
+/** 14 Oct 2026 (staging, L0333): switch location ON SCREEN — profile menu -> select_location -> the location's item; read the
+ *  header back. Works on staging (and the QA branch, which has the same control). Returns the header text after the switch. */
+export async function switchLocUI(p: Page, name: string) {
+  const header = () => p.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => '');
+  for (let i = 0; i < 2; i++) {
+    if ((await header()).includes(name)) return await header();
+    await p.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await p.waitForTimeout(1200);
+    await p.locator('[data-test-id="select_location"]').click().catch(() => {}); await p.waitForTimeout(1200);
+    await p.locator('.q-menu .q-item').filter({ hasText: name }).first().click().catch(() => {}); await p.waitForTimeout(6000);
+    await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(800);
+  }
+  return await header();
+}

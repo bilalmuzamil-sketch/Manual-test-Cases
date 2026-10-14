@@ -12,7 +12,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, searchValue, expandSmallGroups } from './wob.mts';
+import { EV, t, shot, display, tab, search, searchValue, expandSmallGroups, switchLocUI } from './wob.mts';
 import { staffRows, HEAVY, LETH } from './staff.mts';
 import { RUNNER_EMAIL } from './runner.mts';
 
@@ -119,9 +119,11 @@ await run('loc2', async () => {
   if (lethDeps.length && meRow) R.loc2.enrol = say(await a.post(`/api/staff/${meRow.staff_id}/change`, { first_name: meRow.first_name, last_name: meRow.last_name, email: meRow.email, role_id: meRow.role_id, workplace_id: meRow.workplace_id ?? HEAVY, job_title: meRow.job_title, salary_type: meRow.salary_type, salary: meRow.salary, billable: !!meRow.billable, clockable: false, departments: ids }));
   R.loc2.runnerDepsAfter = (await staffRows(a, RUNNER_EMAIL)).find((x) => x.email === RUNNER_EMAIL)?.departments;
   // switch through the screen: initials > Change Location > Lethbridge
-  await go('List'); await p.locator('header').getByText(/^[A-Z]{2}$/).last().click(); await p.waitForTimeout(1500);
+  await go('List');
+  if (process.env.WOB_LOC_SELECT) R.loc2.switched = await switchLocUI(p, 'Lethbridge');
+  else await p.locator('header').getByText(/^[A-Z]{2}$/).last().click(); await p.waitForTimeout(1500);
   const cur = p.locator('.q-menu').getByText(/ - \d{3,5}$/).first(); R.loc2.menuButton = await cur.count();
-  if (await cur.count()) { await cur.click(); await p.waitForTimeout(1500); R.loc2.options = await p.locator('.q-menu .q-item').allInnerTexts();
+  if (!process.env.WOB_LOC_SELECT && await cur.count()) { await cur.click(); await p.waitForTimeout(1500); R.loc2.options = await p.locator('.q-menu .q-item').allInnerTexts();
     await p.locator('.q-menu .q-item').filter({ hasText: 'Lethbridge' }).first().click().catch((e) => { R.loc2.pickError = String(e).slice(0, 120); }); await p.waitForTimeout(6000); }
   await p.keyboard.press('Escape').catch(() => {});
   R.loc2.at = await where(p); await shot(p, 'S5-loc2-switch');
@@ -131,7 +133,7 @@ await run('loc2', async () => {
     await display(p, 'List'); await p.waitForTimeout(1500); R.loc2.list = onKeys(await menu('List')); await close(); await shot(p, 'S5-loc2');
     R.loc2.density = (await prefGet()).density;
   }
-  R.loc2.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
+  R.loc2.back = process.env.WOB_LOC_SELECT ? await switchLocUI(p, 'Staging Heavy Duty') : say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
 });
 
 const BACK = ORIGINAL; await a.put(PREF, { value: BACK }); R.restored = JSON.stringify(await prefGet()) === JSON.stringify(BACK);
