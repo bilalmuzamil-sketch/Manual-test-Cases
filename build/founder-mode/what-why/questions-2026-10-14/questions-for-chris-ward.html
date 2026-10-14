@@ -1,0 +1,59 @@
+<html><body>
+<h1>What/Why (Title and Description) – a few questions for Chris Ward</h1>
+<p>Dear Sir,</p>
+<p>We have updated all the What/Why test cases to your page, the design, the four stories and the engineering plan. They cover the renamed line fields, the new invoice line text sent to QuickBooks, and the renamed import columns.</p>
+<p>While doing that, we found a few points your page doesn't settle. In most of them, the engineering plan or a developer's note says one thing and your page says nothing or something slightly different. Each one decides what a tester should mark as pass or fail. Could you please write your answer under each question? A short answer is perfect.</p>
+<p>Page: <a href="https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845348896">What Are You Doing / Why Are You Doing It? – Update</a>. The codes in brackets point to the line in your page.</p>
+
+<h2>1. A tech story that is only spaces</h2>
+<p><b>What the page says:</b> a line has no tech story when it is empty, or when it is the sentence "Tech story missing." (S3-R6). Then the invoice line ends after the description.</p>
+<p><b>What the engineering plan says:</b> a tech story made only of spaces also counts as no tech story.</p>
+<p><b>Question:</b> if a technician types only spaces as the tech story, should the invoice line end after the description, the same as an empty one?</p>
+<p><b>Answer:</b> </p>
+
+<h2>2. Spaces at the very end of the invoice line</h2>
+<p><b>What the page says:</b> the line has no space at its end (S3-R6). It also says nothing in the values is trimmed (S3-R8).</p>
+<p><b>What the engineering plan says:</b> spaces or a new line at the very end of the whole invoice line are removed; nothing else is touched.</p>
+<p><b>Question:</b> if the tech story ends with spaces or an empty line, should those be removed from the end of the invoice line?</p>
+<p><b>Answer:</b> </p>
+
+<h2>3. Where the field labels sit</h2>
+<p><b>What the page says:</b> nothing else about the line window changes (S1-R7).</p>
+<p><b>What the engineering plan and the verification ticket say:</b> the labels "Title" and "Description" now always sit above their boxes, so the grey prompt can show underneath. Before, the label sat inside an empty box.</p>
+<p><b>Question:</b> is this new label position part of the change, so testers should expect it?</p>
+<p><b>Answer:</b> </p>
+
+<h2>4. Old import column names in different capital letters</h2>
+<p><b>What the page says:</b> the invoice import accepts the old column names as well as the new ones (S4-R3).</p>
+<p><b>What the engineering plan says:</b> the old names are matched whatever the capital letters, for example "line description - why are you doing it".</p>
+<p><b>Question:</b> can shops rely on this? Should a file with the old name in different capital letters import without an error?</p>
+<p><b>Answer:</b> </p>
+
+<h2>5. The downloadable Customer Invoice report for an older invoice</h2>
+<p><b>What the page says:</b> invoices already in QuickBooks keep the text they were sent with (S3-N1). The live sync and the downloadable Customer Invoice report always use the same text (S3-R4).</p>
+<p><b>Question:</b> after the release, if someone downloads the Customer Invoice report for an invoice made before the release, should it show the old wording ("What are you doing?: …") or the new wording?</p>
+<p><b>Answer:</b> </p>
+
+<h2>6. When the line window writes "Tech story missing."</h2>
+<p><b>What the page says:</b> the line window writes "Tech story missing." when nothing was typed (S3-R6).</p>
+<p><b>Question:</b> when exactly does that happen? For example, on any save of a line with no tech story, or only when the line is completed? We need to know how a tester makes a line that holds this sentence.</p>
+<p><b>Answer:</b> </p>
+
+<h2>7. Where the "Title is a required field" message shows</h2>
+<p><b>What the page says:</b> leaving Title empty blocks the save with "Title is a required field" (S1-R6), and the validation is otherwise unchanged (S1-R7).</p>
+<p><b>What the developer's test notes say:</b> the message shows under the Title box.</p>
+<p><b>Question:</b> is the message showing under the Title box what you expect, and is that the same place it showed before?</p>
+<p><b>Answer:</b> </p>
+
+<h2>8. Is Require Tech Story off by default?</h2>
+<p><b>What the page says:</b> the setting Administration → Work Order Settings → Require Tech Story decides whether a tech story is needed (S3-R6a). It does not say whether it starts on or off.</p>
+<p><b>What the Jira story, the design note and the engineering plan say:</b> it is off by default.</p>
+<p><b>Question:</b> is it off by default for every shop, including new ones?</p>
+<p><b>Answer:</b> </p>
+
+<h2>Just for your information</h2>
+<p>The design shows the Title box as "Title *" (with a star). The developer says no star ships, because the field never had one and the page says nothing else changes. Our test cases follow your page: "Title", with no star.</p>
+
+<p>Thank you very much, Sir.</p>
+<p>Bilal Muzamil</p>
+</body></html>
