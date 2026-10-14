@@ -126,7 +126,7 @@ for cid, last in (("236975", 5), ("236976", 6)):
         "Before you start: " + pre_line(cid, "A work order for a unique customer").rstrip(".") + "\nBefore you start: " + pre_line(cid, "A line-level shift").rstrip("."),
         "Before you start: a work order for a unique customer with lead technician A and two lines authorized for repair.\n"
         "Before you start: a line-level shift for A on one of the two lines only, tomorrow 07:00 shop time.",
-        "Only the setup data changes. " + NOTE_R28.split(". ")[1] + ".",
+        "Only the setup data changes. " + NOTE_R28.split(". ")[1],
         f'=HYPERLINK("{DIFF.format(a=46, b=47)}","Spec change, version 47 (12 Oct)")',
     ])
 
@@ -172,7 +172,9 @@ hold = [
      f'=HYPERLINK("{SLACK_NAME}","Slack, 12 Oct 2026")', link("96978")],
     ["Board View opened with Imported already ticked", "Question 7",
      "What happens when a link or a saved filter opens Board View or Tech View with Imported already ticked.",
-     f'=HYPERLINK("{DIFF.format(a=47, b=48)}","Spec change, version 48")', link("154648")],
+     f'=HYPERLINK("{DIFF.format(a=47, b=48)}","Spec change, version 48")', link("154648")],    ["Clicking a List row opens a work order preview panel", "Question 9",
+     "Whether clicking a List row should open the new \"Work order preview\" panel shown in the 14 Oct design, or open the work order as today.",
+     f'=HYPERLINK("{SPEC}","Spec, section 3 (Goals)")', link("368200")],
 ]
 
 po = [
@@ -207,7 +209,18 @@ po = [
     ["The spec's header and change log",
      "The spec's status line still reads \"PRD v33\" and its Change Log table is empty, although the page is at version 48. Could they be brought up to date, so everyone can see what changed and when?",
      "We dated every change from the page history instead.",
-     "", f'=HYPERLINK("{SPEC}","The spec")'],
+     "", f'=HYPERLINK("{SPEC}","The spec")'],    ["Work order preview panel in the List (new in the design)",
+     "The design shared on 14 Oct adds a \"Work order preview\" panel: clicking a List row opens the work order in a side panel (with Open Work Order and a close X), instead of opening the work order page. The spec says: \"List remains the default and is unchanged from production; the only addition to the Work Orders page is the display switcher.\"\n(a) The panel is part of this release (the spec needs a new section).\n(b) The panel is a later idea; for now a List row opens the work order as today.",
+     "Only List rows open it in the design; Tech View rows and Board cards do not. While open, it covers the display switcher and the New Work Order button. Several test cases expect a List row click to open the work order page.",
+     "", f'=HYPERLINK("{SPEC}","Spec, section 3 (Goals); design export of 14 Oct")'],
+    ["\"No results\" message in the design",
+     "Since 8 Oct the spec gives exact \"no results\" messages for Tech View and Board View (\"No work orders match these filters\" with a Clear all filters button, or \"No work orders match the search …\" for a search alone). The design still shows its older \"No results for …\" messages, with no Clear all filters button. It also still shows Imported work orders in Tech View and Board View, which the spec removed on 12 Oct.\n(a) The spec is right; the design will be updated (please let Branko know).\n(b) The design is right; the spec will change.",
+     "Test cases follow the spec. We list this so the build and the design do not drift apart.",
+     "", f'=HYPERLINK("{DIFF.format(a=42, b=43)}","Spec change, version 43 (8 Oct)")'],
+    ["Extra Columns menu and group controls",
+     "The design has \"Collapse all\" / \"Expand all\" for the technician groups, and a Columns menu with \"Find a column\", \"Show all\" and \"Reset to default\". The developers said on 8 Oct these are not in this release, and their test cases have since been removed. Can you confirm they are not part of release 26.43.0?\n(a) Confirmed, not in this release.\n(b) They are in this release.",
+     "The spec does not mention them.",
+     "", f'=HYPERLINK("{SPEC}","The spec; design export of 14 Oct")'],
 ]
 
 json.dump({"update": update, "new": new, "hold": hold, "po": po}, open(os.path.join(D, "sheet-data.json"), "w"), indent=1, ensure_ascii=False)

@@ -2,11 +2,16 @@
 
 **Created:** 2026-09-23 · **PO / spec owner:** Sasha Grosman · **Status:** ACTIVE — source-verified authoring complete, not yet build-verified.
 
-## 🟢 CURRENT STATE — 14 Oct 2026 Currency Check V2 (in progress)
+## 🟢 CURRENT STATE — 14 Oct 2026 Currency Check V2 (done)
 - **Owner (QA lead, 14 Oct 2026, verbatim):** "For this testing suite: I own ALL the test cases as it is mainly my Testing
   Suite. No matter what Vladimir comments in the stories, I have to make sure that all the test cases are in good shape and
   current." (Vladimir's story comments of 8 Oct assign manual cases to Bilal and automated Critical/High to Ahtasham Amjad.)
 - Run as **V2** (QA lead's choice): no TestRail write. Record: `currency-2026-10-14/`. PRD now **v48** (12 Oct).
+- **Sheets (not yet shared):** QA file for Bilal https://docs.google.com/spreadsheets/d/16BP5SASXHUGsGZAXMdJ9Efy8Z8MDJfnHmGORY2b3x6c/edit
+  (5 to update: C154648, C368133, C96965, C236975, C236976 · 3 new · 6 waiting on PO) · PO file for Chris Ward (11 questions)
+  https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU/edit. Record `currency-2026-10-14/CURRENCY-CHECK-V2-2026-10-14.md`.
+- Live suite 258 (240 ours + 18 Vladimir's); run 498 = 240 tests (Vladimir's 18 not in it). Cases gone since 8 Oct:
+  C96918, C154887, C368149, C368160, C368162, C368164 (+7 more per the source check).
 
 ## (previous) 8 Oct 2026 full update written
 - **Suite:** 130 ours rewritten in full + 40 new = **170 ours** (+18 Vladimir's, untouched). Run **498** = 170 tests.
