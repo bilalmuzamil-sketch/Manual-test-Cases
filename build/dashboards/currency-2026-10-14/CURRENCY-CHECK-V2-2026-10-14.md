@@ -56,3 +56,12 @@ technician tiles with no data (D-11) · At Risk revenue measure (D-12) · At Ris
   added (row 20, same formatting) and a 9th row on "Need product decision first"; Read me count now 9 and "15 questions"
   (read back).
 - PO file now 15 questions; QA file: 4 to update · 3 new · 9 waiting on PO.
+
+## After Chris Ward's answers (14 Oct 2026, later) — `answers-followup/`, `PO-ANSWERS-CHRIS-WARD-2026-10-14.md`
+- PRD now v46 (v45 15:06 UTC = all rule changes; v46 = Change Log). 18 codes added, S5-R9 reworded; §7 and sv490 links.
+- Impact (V2, no TestRail write): 8 cases to update (C88628, C351714, C351723, C351734, C88606, C88647, C351729, C351708),
+  14 new tests, 9 hold rows resolved, 12 corrections to rows already sent.
+- QA sheet (shared with Ayesha, Vladimir, Nebojsa by the QA lead): new tab "After Chris's answers (14 Oct)" (pink tab, 57 rows,
+  first-column read-back matches row by row); "Need product decision first" got column F "Answered by Chris (14 Oct)".
+- PO sheet: question 16 added as a pink row (QA lead: "Yes add and make the row pink") — expanded Revenue chart with no sales.
+- Bug facts for the ticket session: legend " · avg" vs S9-R10, owning story SV-9581, no existing ticket.
