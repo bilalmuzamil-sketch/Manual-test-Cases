@@ -29,3 +29,10 @@ Next: WO Board and Tech View Currency Check V2 (QA lead chose V2, 14 Oct): TestR
   reduced to one tab, same row format, ONLY cases whose behaviour changed and are not yet updated (Nebojsa/Ayesha/Vladimir),
   every such case included. The newer Nebojsa+Vladimir sheet (1NdmC6…) gets a note pointing to it.
 - Our Dashboard cases: reference tidy-up approved (v48, boards, "remembers your choices" line). Nebojsa's/Vladimir's: don't touch.
+
+## 14 Oct 2026, night — state saved before moving to WO Board / Tech View
+- Dashboard: done for now. One sheet 1fC6… (7 of Nebojsa's cases, one tab). NV sheet 1NdmC6… points to it. PO sheet 10Bgu1k2…
+  now 18 questions (17–18 pink, unanswered). C581906/C581907 design sentence corrected. Records: `build/dashboards/currency-2026-10-14/`.
+- Waiting (no reminders): Chris's answers 17–18, What/Why + Price/Category answers, Milos (DVI V2), Milan's tech plan.
+- NEXT: WO Board / Tech View. Chris (PO) filed 10 design defects SV-11317…SV-11326. QA lead asks: did our cases catch them; if not,
+  root cause, prevention, take-away, and how the lesson is saved so it is not relearned.
