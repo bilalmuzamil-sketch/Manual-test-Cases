@@ -1,0 +1,945 @@
+# ShopCoach Line Builder V2.dc.html — visible text per page (hidden tooltip text excluded; it is listed per interaction)
+
+
+======================== PAGE _header_or_outside  ========================
+SV-8181 · DIGITAL INSPECTIONS V2 · INSPECTION → WORK ORDER
+The hand-off
+
+Building work order lines from an inspection is a ShopCoach capability, so the same completed inspection is two different screens. Without ShopCoach the inspection reports what is wrong and a human builds the work order; no build action anywhere, not disabled and not explained. With ShopCoach the action is purple and carries the AI badge, so nothing else needs saying. Pressing it asks nothing: the technician lands on the work order with the lines already proposed and pre-selected, reviewing rather than instructing. The same action and the same panel appear wherever a finished inspection is met, on the inspection itself, on the work order’s Notes tab, in the unit’s Inspections list, and started from the work order with no inspection at all.
+A
+Completed inspection: no ShopCoach
+two actions: Go to work order, View PDF
+Work Orders
+Schedule
+Customers
+Parts
+Reports
+QA Testing
+OD
+S-81 · ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo · report posted to the work order
+9 OK
+1 Monitor
+2 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+Not OK
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+Monitor
+Slack adjuster travel
+Note attached
+Three findings are on the customer report and in the work order note feed. Add the lines on the work order.
+Brake & Axle PM.pdf
+View PDF
+Go to work order
+B
+Completed inspection: with ShopCoach
+the card answers what happened, the sections below it what was entered · targets in B2, opened the same way from Notes and Asset › Inspections
+S-81 · ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo · report posted to the work order
+9 OK
+1 Monitor
+2 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+Not OK
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+Monitor
+Slack adjuster travel
+Note attached
+AI
+ShopCoach can turn these 3 findings into work order lines with labor and parts. You review everything before it is added.
+Brake & Axle PM.pdf
+View PDF
+Reopen
+Go to work order
+AI
+Build lines
+WHAT WAS ENTERED
+every answer, section by section · read only
+1
+Brakes
+Brake & tire measurements
+Per axle
+Not OK
+Axle 1
+Drum · Dual
+Not OK
+LEFT OUTER
+LEFT INNER
+RIGHT INNER
+RIGHT OUTER
+Tire pressure
+42 psi
+Not OK
+103 psi
+OK
+104 psi
+OK
+40 psi
+Not OK
+Tread depth
+0.13 in.
+Not OK
+0.34 in.
+OK
+0.38 in.
+OK
+0.31 in.
+OK
+LEFT
+RIGHT
+Brake lining
+9/32 in.
+OK
+10/32 in.
+OK
+Brake chamber condition
+Checkbox
+OK
+2
+Air system
+Slack adjuster travel
+Measurement
+1.94 in.
+Monitor
+Low-air warning pressure
+Measurement
+62 psi
+OK
+The card above answers what happened; these sections answer what was entered. Without them a locked inspection has no readable record outside the PDF.
+B3
+Completed inspection: lines already added
+S-81 · ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo · report posted to the work order
+9 OK
+1 Monitor
+2 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+Not OK
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+Monitor
+Slack adjuster travel
+Note attached
+Brake & Axle PM.pdf
+View PDF
+Reopen
+Go to work order
+WO created
+S-235
+WHAT WAS ENTERED
+every answer, section by section · read only
+1
+Brakes
+Brake & tire measurements
+Per axle
+Not OK
+Axle 1
+Drum · Dual
+Not OK
+LEFT OUTER
+LEFT INNER
+RIGHT INNER
+RIGHT OUTER
+Tire pressure
+42 psi
+Not OK
+103 psi
+OK
+104 psi
+OK
+40 psi
+Not OK
+Tread depth
+0.13 in.
+Not OK
+0.34 in.
+OK
+0.38 in.
+OK
+0.31 in.
+OK
+LEFT
+RIGHT
+Brake lining
+9/32 in.
+OK
+10/32 in.
+OK
+Brake chamber condition
+Checkbox
+OK
+2
+Air system
+Slack adjuster travel
+Measurement
+1.94 in.
+Monitor
+Low-air warning pressure
+Measurement
+62 psi
+OK
+The card above answers what happened; these sections answer what was entered. Without them a locked inspection has no readable record outside the PDF.
+B4
+Completed inspection: work order deleted
+ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo
+9 OK
+1 Monitor
+2 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+Not OK
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+Monitor
+Slack adjuster travel
+Note attached
+Brake & Axle PM.pdf
+View PDF
+B4b
+Completed inspection: work order deleted, lines on a new work order
+ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo
+9 OK
+1 Monitor
+2 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+Not OK
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+Monitor
+Slack adjuster travel
+Note attached
+Brake & Axle PM.pdf
+View PDF
+WO created
+S-200
+B2
+Build targets: menu open
+shown alone so it does not cover the findings it acts on · the same menu opens from all three entry points: this screen, work order › Notes, and Asset › Inspections
+AI
+Build lines
+BUILD THE LINES ON
+This work order
+S-81 · Approved
+A new work order
+Seeded with this customer & unit
+Either target skips straight to C1; no prompt in between.
+B2b
+Build targets: the work order cannot take lines
+Complete, Invoiced, Paid, Declined, or an invoice exists
+AI
+Build lines
+BUILD THE LINES ON
+A new work order
+Seeded with this customer & unit
+C1
+The moment in between
+on the work order already · nothing to fill in, nothing to confirm
+S-81 · Open · ABC Truck Lines
+Work Order S-81
+New Line
+Lines (0)
+Parts (0)
+Part Returns
+Notes (2)
+Timesheets
+Finance
+AI
+SHOPCOACH LINE BUILDER
+Drafting lines from 3 findings
+Brake & Axle PM · Today 06:28 AM · about 10 seconds
+Cancel
+	Title	Description	Labor	Parts
+
+	
+	
+	
+	
+
+
+	
+	
+	
+	
+
+
+	
+	
+	
+	
+Nothing is added until you press Add Lines.
+Three skeleton rows, one per finding; the count is known before the drafting is. The work order is usable while it runs, and Cancel leaves it untouched.
+C2
+Where it lands: already finished, waiting to be reviewed
+no prompt, no query box · rows pre-selected and editable
+S-81 · Open · ABC Truck Lines
+Work Order S-81
+New Line
+Lines (0)
+Parts (0)
+Part Returns
+Notes (2)
+Timesheets
+Finance
+AI
+SHOPCOACH LINE BUILDER
+3 lines drafted from Brake & Axle PM
+Review before adding
+Click any title, description, labor or part to edit it. Uncheck a line to leave it out.
+3 of 3 selected
+	Title	Description	Labor	Parts
+
+	
+Replace axle 1 left outer tire
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+	Tread at 0.13 in., below the 0.16 in. minimum.	1.2 hrs	
+Steer tire ( 1 )
+Valve stem ( 1 )
++ Add
+
+
+	
+Inflate axle 1 outer tires to spec
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+	42 and 40 psi against 100 psi spec; check for a leak while replacing.	0.3 hrs	
+No parts
++ Add
+
+
+	
+Adjust slack adjuster
+Slack adjuster travel · Monitor
+	Travel out of range; confirm chamber and adjuster.	1 hr	
+Slack adjuster ( 1 )
++ Add
+Add Lines
+2.5 hrs labor · 3 parts
+C3
+ShopCoach call failed
+S-81 · Open · ABC Truck Lines
+Work Order S-81
+New Line
+Lines (0)
+Parts (0)
+Part Returns
+Notes (2)
+Timesheets
+Finance
+AI
+SHOPCOACH LINE BUILDER
+ShopCoach could not draft lines
+Nothing was added to the work order. Try again, or add lines by hand.
+Close
+Try again
+C4
+No lines drafted
+S-81 · Open · ABC Truck Lines
+Work Order S-81
+New Line
+Lines (0)
+Parts (0)
+Part Returns
+Notes (2)
+Timesheets
+Finance
+AI
+SHOPCOACH LINE BUILDER
+No lines to propose
+ShopCoach found nothing in this inspection to turn into a line. The work order was not changed.
+Close
+D
+Started from the work order
+same panel, same treatment · entered from the Lines tab instead of an inspection
+S-81 · Open · ABC Truck Lines
+Work Order S-81
+New Line
+AI
+Build lines
+Lines (2)
+Parts (3)
+Part Returns
+Notes (1)
+Timesheets
+Finance
+Title	Description	Labor	Parts
+Annual DOT inspection	Federal annual, all systems.	2.0 hrs	No parts
+Replace wiper blades	Customer request.	0.3 hrs	
+Wiper blade ( 2 )
+AI
+SHOPCOACH LINE BUILDER
+2 lines drafted from this work order
+Review before adding
+Drafted from the unit's history and the 2 lines already on this work order; no inspection needed.
+2 of 2 selected
+	Title	Description	Labor	Parts
+
+	
+Replace air dryer cartridge
+Last replaced 118,000 mi ago
+	Service interval reached; do it while the unit is on the lift.	0.8 hrs	
+Dryer cartridge ( 1 )
++ Add
+
+
+	
+Grease chassis fittings
+Bundled with the DOT inspection
+	Standard PM add-on for this unit class.	0.4 hrs	
+No parts
++ Add
+Add Lines
+1.2 hrs labor · 1 part · nothing added yet
+E2
+Work order · Notes: lines already added from this inspection
+Work Orders
+Schedule
+Customers
+Parts
+Reports
+QA Testing
+OD
+S1-238
+Approved
+Over Limit
+Started: Today
+Progress
+0%
+Service Advisor
+Owner Demo
+Alfa Cargo Llc
+VIN / Serial #
+123223
+Mileage
+123,123
+Engine Hours
+12,312
+Lines (1)
+Parts (1)
+Notes (1)
+Stats
+Finance
+1 NOTE
+Newest first
+New Note
+OD
+Owner Demo
+Auto-posted
+10:46 AM, Today
+Completed inspection 1234 · v2 · 2 sections, 6 fields
+PDF
+1234.pdf
+19.96 kB · 0 photos
+2 OK
+3 Monitor
+4 Not OK
+View PDF
+Download
+Lines added
+S-58
+E3
+Work order S-200 · Notes: built from an inspection whose work order was deleted
+Work Orders
+Schedule
+Customers
+Parts
+Reports
+QA Testing
+OD
+S-200
+Approved
+Over Limit
+Started: Today
+Progress
+0%
+Service Advisor
+Owner Demo
+Alfa Cargo Llc
+VIN / Serial #
+123223
+Mileage
+123,123
+Engine Hours
+12,312
+Lines (1)
+Parts (1)
+Notes (1)
+Stats
+Finance
+1 NOTE
+Newest first
+New Note
+OD
+Owner Demo
+Auto-posted
+10:46 AM, Today
+Lines built from inspection 1234 · v2 · from work order S-100
+Work order deleted
+PDF
+1234.pdf
+19.96 kB · 0 photos
+2 OK
+3 Monitor
+4 Not OK
+View PDF
+Download
+P1
+Completed inspection on a phone: with ShopCoach
+the summary card leads: completion line, a count per verdict, then every flagged position as field · axle · row · position with the reading that earned it · the section review stays below it
+Brake & Axle PM
+S-81 · ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo · report posted to the work order
+9 OK
+1 Monitor
+2 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+Not OK
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+Monitor
+Note attached
+Slack adjuster travel
+AI
+ShopCoach can turn these 3 findings into work order lines with labor and parts. You review everything before it is added.
+AI
+Build lines
+Go to work order
+View PDF
+Reopen
+WHAT WAS ENTERED
+read only
+1
+Brakes
+2 fields
+Brake & tire measurements
+Per axle
+Not OK
+Axle 1
+Drum · Dual
+Not OK
+Tire pressure
+LEFT OUTER
+42 psi
+Not OK
+LEFT INNER
+103 psi
+OK
+RIGHT INNER
+104 psi
+OK
+RIGHT OUTER
+40 psi
+Not OK
+Tread depth
+LEFT OUTER
+0.13 in.
+Not OK
+LEFT INNER
+0.34 in.
+OK
+RIGHT INNER
+0.38 in.
+OK
+RIGHT OUTER
+0.31 in.
+OK
+Brake lining
+LEFT
+9/32 in.
+OK
+RIGHT
+10/32 in.
+OK
+Brake chamber condition
+Checkbox
+OK
+2
+Air system
+2 fields
+Slack adjuster travel
+Measurement
+1.94 in.
+Monitor
+Low-air warning pressure
+Measurement
+62 psi
+OK
+P1b
+Completed inspection on a phone: lines already added
+Brake & Axle PM
+S-81 · ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo · report posted to the work order
+9 OK
+1 Monitor
+2 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+Not OK
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+Monitor
+Note attached
+Slack adjuster travel
+Lines added
+S-58
+Go to work order
+View PDF
+Reopen
+WHAT WAS ENTERED
+read only
+1
+Brakes
+2 fields
+Brake & tire measurements
+Per axle
+Not OK
+Axle 1
+Drum · Dual
+Not OK
+Tire pressure
+LEFT OUTER
+42 psi
+Not OK
+LEFT INNER
+103 psi
+OK
+RIGHT INNER
+104 psi
+OK
+RIGHT OUTER
+40 psi
+Not OK
+Tread depth
+LEFT OUTER
+0.13 in.
+Not OK
+LEFT INNER
+0.34 in.
+OK
+RIGHT INNER
+0.38 in.
+OK
+RIGHT OUTER
+0.31 in.
+OK
+Brake lining
+LEFT
+9/32 in.
+OK
+RIGHT
+10/32 in.
+OK
+Brake chamber condition
+Checkbox
+OK
+2
+Air system
+2 fields
+Slack adjuster travel
+Measurement
+1.94 in.
+Monitor
+Low-air warning pressure
+Measurement
+62 psi
+OK
+P2
+Build lines: target sheet
+the same two targets as the desktop menu, as a bottom sheet · 56px rows
+Brake & Axle PM
+BUILD THE LINES ON
+This work order
+S-81 · Approved
+A new work order
+Seeded with this customer & unit
+Cancel
+P2b
+Build lines: target sheet, the work order cannot take lines
+Brake & Axle PM
+BUILD THE LINES ON
+A new work order
+Seeded with this customer & unit
+Cancel
+P3
+Drafted lines, on the phone
+the technician finishes the build on the device they read the inspection on; rows pre-selected, editable, nothing added until Add Lines
+S-81 · Lines
+AI
+3 lines drafted from Brake & Axle PM. Review before adding; edit or deselect any of them.
+Replace axle 1 left outer tire
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+1.2 hr labor
+·
+2 parts
+Inflate axle 1 outer tires to spec
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+0.3 hr labor
+·
+no parts
+Adjust slack adjuster
+Slack adjuster travel · Monitor
+1 hr labor
+·
+1 part
+3 of 3 selected · 2.5 hr labor · 3 parts
+Add 3 Lines to S-81
+P4
+Completed inspection on a phone: without ShopCoach
+two actions and a plain line in place of the ShopCoach note · and the zero rule: this inspection has no Monitor findings, so no Monitor count is drawn
+Brake & Axle PM
+S-81 · ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo · report posted to the work order
+11 OK
+1 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 2 · Tread depth: right outer 0.09 in.
+This finding is on the customer report and in the work order note feed. The lines are added on the work order.
+Go to work order
+View PDF
+
+
+======================== PAGE e — Notes tab ========================
+E
+Work order · Notes: the completed inspection lands here
+the report is the note · Build lines carries the same purple treatment
+Work Orders
+Schedule
+Customers
+Parts
+Reports
+QA Testing
+OD
+S1-238
+Approved
+Over Limit
+Started: Today
+Progress
+0%
+Service Advisor
+Owner Demo
+Alfa Cargo Llc
+VIN / Serial #
+123223
+Mileage
+123,123
+Engine Hours
+12,312
+Lines (1)
+Parts (1)
+Notes (1)
+Stats
+Finance
+1 NOTE
+Newest first
+New Note
+OD
+Owner Demo
+Auto-posted
+10:46 AM, Today
+Completed inspection 1234 · v2 · 2 sections, 6 fields
+PDF
+1234.pdf
+19.96 kB · 0 photos
+2 OK
+3 Monitor
+4 Not OK
+View PDF
+Download
+AI
+Build lines
+The note is the report: counts on the card, so the advisor does not open a PDF to learn whether anything failed. Build lines is the same purple, badged control as on the completed inspection: one action, one appearance, wherever it is met. Without ShopCoach the card shows View PDF and Download only.
+
+
+======================== PAGE f — Inspections list ========================
+F
+Customer · Asset · Inspections
+every inspection this unit has had · the action column is the point of the table
+Work Orders
+Schedule
+Customers
+Parts
+Reports
+QA Testing
+OD
+2020 1/off Kustoms, Llc 6130M
+VIN / Serial #
+123-45678
+Year
+2020
+Mileage
+100,000
+Licence Plate
+—
+Milos Vasic Company
+Address
+Austin Avenue, Toronto
+Phone
+(512) 798 - 0932
+Work Orders
+Invoices (3)
+Notes
+Inspections (18)
+2 of 18 have findings with no lines yet
+Inspection
+	Status
+	Completed
+	Technician	Issues	Work order	Report	Action
+
+Sasha Template
+v1
+	
+Completed	2 days ago	Owner Demo	
+4 Not OK
+5 Monitor
+	
+S-81
+Approved
+	
+PDF	
+WO created
+S-235
+
+
+Testing Design
+v1
+	
+Completed	Aug 10, 2026	Owner Demo	
+1 Not OK
+2 Monitor
+	
+S-83
+Approved
+	
+PDF	
+AI
+Build lines
+
+
+Dule / Milos
+v1
+	
+Completed	Aug 10, 2026	Owner Demo	
+1 Not OK
+1 Monitor
+	
+S-233
+Approved
+	
+PDF	
+AI
+Build lines
+
+
+Testing Live With The Team
+v1
+	
+Completed	Aug 6, 2026	Owner Demo	
+2 Not OK
+1 Monitor
+	
+S-229
+Approved
+	
+PDF	
+WO created
+S-233
+
+
+Axle Test
+v5
+	
+Completed	Jul 15, 2026	Owner Demo	
+1 Not OK
+1 Monitor
+	
+S-58
+Approved
+	
+PDF	
+Lines added
+S-58
+
+
+Pre-trip Check
+v3
+	
+Completed	Jun 2, 2026	Owner Demo	
+1 Monitor
+	—	
+PDF	—
+
+Brake & Axle PM
+v2
+	
+Completed	May 14, 2026	Owner Demo	
+2 Not OK
+	—	
+PDF	
+WO created
+S-200
+
+
+Brake & Axle PM
+v2
+	
+Completed	Apr 22, 2026	Owner Demo	
+1 Not OK
+	—	
+PDF	—
+
+DOT Annual Inspection
+v4
+	
+Completed	Mar 9, 2026	Owner Demo	
+2 Monitor
+	—	
+PDF	—
+
+1234
+v2
+	
+Not started	—	—	—	
+S-237
+Approved
+	—	—
+
+Anteres Testing
+v2
+	
+Not started	—	—	—	
+S-73
+Approved
+	—	—
+Sorted by most recently completed first, and the same purple Build lines action sits in the action column. Once lines exist the cell states which work order got them, so the row never offers the same work twice. A not-started inspection has no action at all; there is nothing to build from.

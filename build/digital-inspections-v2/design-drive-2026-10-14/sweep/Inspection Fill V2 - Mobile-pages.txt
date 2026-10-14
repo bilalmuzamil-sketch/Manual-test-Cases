@@ -1,0 +1,239 @@
+# Inspection Fill V2 - Mobile.dc.html — visible text per page (hidden tooltip text excluded; it is listed per interaction)
+
+
+======================== PAGE _header_or_outside  ========================
+
+
+
+======================== PAGE sec-1 — SV-8181 · DIGITAL INSPECTIONS V2 · MOBILE ARTBOARDS / Fill screen: phone, 402 px ========================
+SV-8181 · DIGITAL INSPECTIONS V2 · MOBILE ARTBOARDS
+Fill screen: phone, 402 px
+
+The footer is section navigation and nothing else, Back: Section 1 and Next: Section 2, naming where each goes. Axle switching happens only in the sub-header chips, which swap the page to that axle. What is outstanding rides on the action as a count badge, and tapping it lists the items, each one going straight to the field, not to a summary. Verdict dots are gone: the field is already coloured. A tire takes the worst verdict entered for it so far and stays grey until one arrives. Marking OK in bulk exists at the same three levels as on desktop: the app-bar menu for the whole inspection, a 44 px row at the foot of the section header for the section, and the axle-set card header for one field. OK only, verdicts only, and it never overwrites a verdict already picked.
+
+
+======================== PAGE sec-2 — M1 / Section 1: field list ========================
+M1
+Section 1: field list
+One card per field, the open one expanded. One full-width primary action, naming where it goes. Android draws the back gesture, so the footer does not.
+1234 · FOR CLODISU
+Work Order · V2
+SECTION 1 OF 2
+0 / 3 fields
+Section 1
+Photos: 0.0 MB of 10 MB
+Mark section OK
+1
+Unit reading
+TEXT
+Add Photo
+Add Note
+2
+Brake & tire measurements
+PER AXLE · 2 axles
+3
+Brake chamber condition
+CHECKBOX · reference file
+3 fields still open; you can return any time
+Next: Section 2
+M2
+Section 2: the last one
+On the final section the action becomes Submit & Generate Report, carrying a count of what is still outstanding. Tapping it opens the list in M3. The inspection-level Mark all OK lives in the app-bar menu, the only place it appears on the phone, drawn on its own below so it covers nothing.
+APP-BAR MENU · WHOLE INSPECTION
+WHOLE INSPECTION
+Mark all OK
+34 items are still Not inspected. Only those are marked OK; verdicts already picked stay, and values are never filled in.
+1234 · FOR CLODISU
+Work Order · V2
+SECTION 2 OF 2
+2 / 3 fields
+Section 2
+Mark section OK
+1
+Air-brake leak check
+OK
+2
+Slack adjuster travel
+MEASUREMENT
+in.
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+3
+Trailer axle measurements
+PER AXLE · 1 axle
+1
+Submit & Generate Report
+M3
+What is still missing
+Reached by tapping the badge on Submit & Generate Report. Each row goes straight to that field with the cursor in it, never to a summary.
+1234 · FOR CLODISU
+Work Order · V2
+5 items before submitting
+Tap one to go straight to it
+Note
+Section 1 · Tire pressure · left outer
+Photo
+Section 1 · Tire pressure · left outer
+Note
+Section 1 · Tread depth · left outer
+Note
+Section 2 · Slack adjuster travel
+Answer
+Section 2 · Trailer axle measurements · 8 positions
+Go to the first one
+
+
+======================== PAGE sec-3 — M4 / Per axle: nothing inspected ========================
+M4
+Per axle: nothing inspected
+Tapping an axle in the sub-header swaps the page to it; the footer stays on the section. Labels are 11 px and value rows 52 px, so left outer and left inner are separately tappable.
+1234 · FOR CLODISU
+Work Order · V2
+SECTION 1 OF 2 · FIELD 2 OF 3
+Brake & tire measurements
+Mark field OK
+Axle 1
+Axle 2
++ Axle
+Axle 1
+Drum
+Disc
+Single
+Dual
+Tire pressure
+psi
+NOT INSPECTED
+Left outer
+Left inner
+Right inner
+Right outer
+Tread depth
+in.
+NOT INSPECTED
+Left outer
+Left inner
+Right inner
+Right outer
+Back: Section 1
+Next: Section 2
+M5
+Left outer Not OK, left inner OK
+Each position states its own verdict above its value, so the block reads without opening anything. A row holding any Not OK position turns its Add note and Add photo labels red, and the count rides on the footer action.
+1234 · FOR CLODISU
+Work Order · V2
+SECTION 1 OF 2 · FIELD 2 OF 3
+Brake & tire measurements
+2 positions Not OK · 1 Monitor
+Mark field OK
+Axle 1
+Axle 2
++ Axle
+Axle 1
+Axle: Not OK
+Drum
+Disc
+Single
+Dual
+Tire pressure
+psi
+NOT OK
+Left outer · Not OK
+Left inner · OK
+Right inner · OK
+Right outer · Monitor
+Add note
+Add photo
+Tread depth
+in.
+NOT OK
+Left outer · Not OK
+Left inner · OK
+Right inner · OK
+Right outer · OK
+Add note
+Add photo
+Brake lining
+in.
+OK
+Left brake · OK
+Right brake · OK
+4
+2 notes, 2 photos required
+Back: Section 1
+Next: Section 2
+M6
+Verdict sheet: names the position
+The dropdown on a value opens a sheet titled with the position, the measurement and the value entered.
+1234 · FOR CLODISU
+Work Order · V2
+Left outer
+Axle 1 · Tire pressure · 42 psi entered
+OK
+Monitor
+Not OK
+N/A
+Not OK on any position makes the row and the axle Not OK, and the field needs a note.
+
+
+======================== PAGE sec-4 — M7 / Checkbox: reference file, not answered ========================
+M7
+Checkbox: reference file, not answered
+The reference file is always there, whatever the answer will be. It sits above the response row, so it never competes with it.
+1234 · FOR CLODISU
+Work Order · V2
+SECTION 1 OF 2 · FIELD 3 OF 3
+2 / 3 fields
+Section 1
+Mark section OK
+1
+Unit reading
+184,220 mi
+2
+Brake & tire measurements
+2 positions Not OK
+3
+Brake chamber condition
+CHECKBOX
+PDF
+Reference file
+Bendix-chamber-service.pdf
+OK
+Monitor
+Not OK
+N/A
+Add Photo
+Add Note
+Next: Section 2
+M8
+Checkbox: Not OK, note and photo required
+What used to be a follow-up branch is now validation. Not OK turns on both rules the template set, and the count rides on the footer action.
+1234 · FOR CLODISU
+Work Order · V2
+SECTION 1 OF 2 · FIELD 3 OF 3
+2 / 3 fields
+Section 1
+Mark section OK
+3
+Brake chamber condition
+CHECKBOX
+PDF
+Reference file
+Bendix-chamber-service.pdf
+Open
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+Goes to the customer report.
+PHOTO
+Required when Not OK
+Add Photo
+2
+1 note, 1 photo required
+Next: Section 2

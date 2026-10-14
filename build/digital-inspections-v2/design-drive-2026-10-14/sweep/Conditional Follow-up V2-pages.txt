@@ -1,0 +1,649 @@
+# Conditional Follow-up V2.dc.html — visible text per page (hidden tooltip text excluded; it is listed per interaction)
+
+
+======================== PAGE _whole_board  ========================
+SV-8181 · DIGITAL INSPECTIONS V2 · SECTION 5
+← Sections 1 – 4
+5
+Conditional follow-up on a response
+CI1b – CI9
+SV-8181 · DIGITAL INSPECTIONS V2 · CONDITIONAL FOLLOW-UP
+A follow-up attached to one response
+
+The reference file on a checkbox field is unconditional: the technician sees it whatever they answer. A follow-up is the same content, text plus one optional file, tied to a single response and shown only when that response is given. The technician reads it on the card as an instruction; the builder calls it a follow-up, because that is what the author is adding. Acknowledgement is offered on Monitor and Not OK only, on by default, and the author can turn it off. Follow-ups on OK and N/A are read-only and never need acknowledging. Where it is on, the inspection cannot be submitted until the technician has confirmed they read it. It carries no colour of its own. The blue already used for the reference file marks it as something to read, and the acknowledgement pill takes the colour of the response that triggered it, so red and amber keep meaning what they mean. Per axle fields do not carry follow-ups: a verdict there belongs to a position, and a follow-up would have no single position to sit on.
+
+CI1c
+One toggle turns follow-ups on, then a checkbox per response enables its own fields
+the toggles move out of the response list into RESPONSE SETTINGS · nothing is hidden behind a click, the fields are on the surface and only switch from off to on
+FOLLOW-UPS OFF · THE PANEL AS IT IS TODAY
+Field properties
+Checkbox
+LABEL
+RESPONSE OPTIONS
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+GENERAL REFERENCE FILE
+Attach File
+Both toggles leave the response list and sit in their own RESPONSE SETTINGS section, so the list is four rows and nothing else. Each row gains a pencil, the same rename affordance the rest of the builder uses. Off, the panel is the height it is today.
+ON · NOTHING CHECKED YET
+RESPONSE OPTIONS
+Follow-up for this response
+Attach File
+Follow-up for this response
+Attach File
+Require acknowledgement
+Follow-up for this response
+Attach File
+Require acknowledgement
+Follow-up for this response
+Attach File
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+The author can see what a follow-up consists of before committing to one: a box of text and one file. The checkbox is the condition, and it only switches the two fields under it from off to on. Monitor and Not OK carry Require acknowledgement, on by default. OK and N/A have no acknowledgement toggle.
+ON · NOT OK CHECKED
+RESPONSE OPTIONS
+Follow-up for this response
+Attach File
+Follow-up for this response
+Attach File
+Require acknowledgement
+Follow-up for this response
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Require acknowledgement
+Follow-up for this response
+Attach File
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+The checked block is the only one with a white ground and a blue edge. Its text area grows to four rows once it can be typed in, and Attach File is replaced by the file it took. Unchecking it keeps what was written until the field is saved, so a mis-click is not a loss.
+ON · INCLUDE MONITOR OFF
+RESPONSE OPTIONS
+Follow-up for this response
+Attach File
+Follow-up for this response
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Require acknowledgement
+Follow-up for this response
+Attach File
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+With Include Monitor option off, the Monitor row and its whole block go: three responses, three blocks. Text written against Monitor is kept and comes back with the row, and Not OK keeps its own acknowledgement setting.
+The cost is height: four blocks make the response list about 990 px instead of 280, which is why it sits behind a toggle that is off by default. Turning the toggle off again with one checked asks first, since there is text to lose. Include Monitor option sits beside it because both change which responses exist, not how one is validated. The two panels that hid the fields behind an Add Follow-up click are gone: neither showed the author what a follow-up is before they committed to making one, and neither carried the per-response acknowledgement toggle.
+CI1b
+The same panel in the builder it belongs to
+the canvas lists the follow-ups a field carries, on every field and not only the selected one
+Admin · Inspection templates
+Brake & Axle PM
+Edit
+Preview
+Draft · unsaved
+Publish
+OUTLINE
+Section 1
+3
+1
+Section 1
+3 fields
+Brake & tire measurements
+Per axle · Tire pressure (psi), Tread depth (in.), Brake lining (in.)
+Brake chamber condition
+Checkbox · OK / Monitor / Not OK / N/A · reference file · note required if Monitor / Not OK
+FOLLOW-UPS
+Monitor
+Re-check at the next PM and record the reading.
+Not OK
+Tag the unit out of service and tell the foreman in person.
+Air-brake system leak check
+Checkbox · OK / Monitor / Not OK / N/A
+FOLLOW-UPS
+Not OK
+Leak down test before the unit leaves the bay.
++ Add Field
+Field properties
+Checkbox
+LABEL
+RESPONSE OPTIONS
+Follow-up for this response
+Attach File
+Follow-up for this response
+Attach File
+Require acknowledgement
+Follow-up for this response
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Require acknowledgement
+Follow-up for this response
+Attach File
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+GENERAL REFERENCE FILE
+PDF
+Bendix-chamber-service.pdf
+1.2 MB
+VALIDATION
+Required to complete
+Photo required if Not OK
+Note required if Monitor / Not OK
+Duplicate Field
+Delete Field
+The canvas row gains a short list: one line per follow-up, the response in its own colour, the first line of the text, and a clip where a file is attached. It sits on every field that has one, selected or not, so an author reviewing a long template reads what the template does without clicking through it field by field. Lines shorten; they do not wrap. Everything above the response list, and the general reference file and validation below it, are unchanged from TB3.
+CI1e
+Builder: a follow-up with only a file
+Admin · Inspection templates
+Brake & Axle PM
+Edit
+Preview
+Draft · unsaved
+Publish
+OUTLINE
+Section 1
+3
+1
+Section 1
+3 fields
+Brake & tire measurements
+Per axle · Tire pressure (psi), Tread depth (in.), Brake lining (in.)
+Brake chamber condition
+Checkbox · OK / Monitor / Not OK / N/A · reference file · note required if Monitor / Not OK
+FOLLOW-UPS
+Monitor
+Air-leak-test-steps.pdf
+Not OK
+Tag the unit out of service and tell the foreman in person.
+Air-brake system leak check
+Checkbox · OK / Monitor / Not OK / N/A
+FOLLOW-UPS
+Not OK
+Leak down test before the unit leaves the bay.
++ Add Field
+Field properties
+Checkbox
+LABEL
+RESPONSE OPTIONS
+Follow-up for this response
+Attach File
+Follow-up for this response
+PDF
+Air-leak-test-steps.pdf
+640 KB
+Require acknowledgement
+Follow-up for this response
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Require acknowledgement
+Follow-up for this response
+Attach File
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+GENERAL REFERENCE FILE
+PDF
+Bendix-chamber-service.pdf
+1.2 MB
+VALIDATION
+Required to complete
+Photo required if Not OK
+Note required if Monitor / Not OK
+Duplicate Field
+Delete Field
+CI1d
+The tooltips, shown alone
+on the section toggle, and on the acknowledgement toggle inside a follow-up
+ON THE TOGGLE
+Add follow-up to a response
+Adds text and one file to a single response. The technician sees it only when they give that response.
+ON REQUIRE ACKNOWLEDGEMENT
+Require acknowledgement
+The technician confirms they have read this follow-up before the inspection can be submitted. On by default for Monitor and Not OK.
+NOT OFFERED ON OK AND N/A
+A follow-up on OK or N/A is a read, so those responses have no acknowledgement toggle.
+Two tooltips, one per thing a first-time author would otherwise guess at: what a follow-up is, and what acknowledging one means. The response no longer carries a badge saying it is acknowledged, because the toggle in its block says it and can be changed.
+CI3
+Filling, desktop: marker, acknowledgement, the checked state, the error, no instruction, and a very long one
+the marker sits with Add Photo and Add Note · the note and the instruction stack full width under the response
+1 · Answered OK, and OK carries a follow-up: a marker on the footer, nothing blocked
+Brake chamber condition
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+Instruction
+Add Photo
+Add Note
+One word and the icon. The marker is blue because it is something to read, the same blue the reference file uses, and it opens the block in place.
+2 · Not OK: the follow-up opens itself and holds submit until it is acknowledged
+Brake chamber condition
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+INSTRUCTION
+Required
+
+Tag the unit out of service before it leaves the bay and tell the foreman in person, not over the radio. Record the chamber part number and the date code from the canister tag, and photograph the clamp band from both sides. If the leak is at the push-rod seal, check the slack adjuster travel on the same wheel end before you close the card. Do not release the unit for road test until the replacement chamber is fitted and the system has held 90 psi for five minutes with the engine off.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+Add Photo
+Answering Not OK opens the note by itself, because the note is required and the technician would have opened it next anyway. The note and the instruction are stacked, the note first directly under the response and the instruction below it at full width. The body here runs about 500 characters, which is the worst case an author can write; the other states show a short one. The acknowledgement sits on the file row beside the file name, where there is room for it once the file name shortens. The pill takes the colour of the response that triggered it: red here, amber on Monitor. The file opens full screen and closes back to this position, as the reference file does in D4.
+3 · Acknowledged: the box is checked and green, and nothing else on the card moves
+Brake chamber condition
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Right rear chamber leaking at the clamp band, unit tagged and foreman told.
+INSTRUCTION
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledged
+Add Photo
+Edit Note
+Checked, the box turns green and the Required pill in the instruction header goes. Who checked it and when is recorded against the inspection, not printed on the card. Changing the response away from Not OK drops both the instruction and its acknowledgement, and answering Not OK again asks for it afresh.
+4 · Submit & Generate Report pressed with the box unchecked
+Brake chamber condition
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Right rear chamber leaking at the clamp band, unit tagged and foreman told.
+INSTRUCTION
+Required
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+Read the instruction and check Acknowledge to complete this inspection.
+Add Photo
+Edit Note
+Pressing Submit & Generate Report with one unchecked does not raise a dialog: it opens the outstanding list in CI5 and marks the fields it is waiting on, and this is what the technician lands on. The error is red because it is an error, not because Not OK is: the box, its label and one line under the file row, and nothing about the instruction itself changes colour.
+5 · Monitor, and Monitor carries no instruction: the note takes the whole width
+Air-brake system leak check
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+Add Photo
+The two-column row is there because the instruction is: with nothing to put beside it, the note runs the full width rather than leaving half the card empty. The Required pill is amber here, because Monitor is what made the note required, and nothing has to be acknowledged.
+6 · A body about twenty lines long, which is as far as an author is likely to go
+Brake chamber condition
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+INSTRUCTION
+Required
+
+Before you touch the chamber, chock the wheels, cage the spring brake on that wheel end and drain the wet tank until the gauge reads zero. Do not crack the supply line while the system is charged.
+
+Tag the unit out of service before it leaves the bay and tell the foreman in person, not over the radio. If the foreman is not on site, call the service advisor and write the time of the call in the note.
+
+Record the chamber part number and the date code from the canister tag. Photograph the clamp band from both sides, the push-rod at rest and the push-rod at full stroke, and put all three on this field.
+
+If the leak is at the push-rod seal rather than the clamp band, check the slack adjuster travel on the same wheel end and measure the lining at the same time, because a seal that has been weeping will usually have taken the shoe with it.
+
+Replace the chamber as an assembly. Do not reuse the clamp band, the mounting nuts or the push-rod yoke pin, and torque the mounting nuts to the value on the axle decal, not the generic value in the manual.
+
+Do not release the unit for road test until the replacement chamber is fitted, the system has held 90 psi for five minutes with the engine off, and the brake has been stroked ten times with no drop beyond the allowance in the attached procedure.
+
+If any of the above cannot be completed on this visit, answer Not OK, say in the note exactly what is outstanding, and leave the unit tagged.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+Add Photo
+Nothing truncates and nothing scrolls inside the block: the card takes whatever the author wrote and the page scrolls as it always has. Paragraph breaks the author typed are kept. The file row and the acknowledgement stay at the bottom of the block, so on a laptop a body this long puts them below the fold, which is the argument for writing short ones rather than a limit the field imposes.
+7 · Not OK, and the follow-up is only a file
+Brake chamber condition
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+INSTRUCTION
+Required
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+Add Photo
+CI4
+Filling, phone: the same five states at 402 px
+52 px acknowledge row · the error and the no-instruction state included · the note opens under the response, as on CI3
+OK · MARKER ONLY
+1234 · FOR CLODISU
+Work Order · V2
+2
+Brake chamber condition
+OK
+OK
+Monitor
+Not OK
+N/A
+Instruction
+Photo
+Note
+Three footer buttons at 52 px, so the marker is a thumb target and not a link inside a label. Add Photo and Add Note shorten to Photo and Note at this width, as they already do elsewhere on the phone.
+NOT OK · WAITING FOR ACKNOWLEDGEMENT
+1234 · FOR CLODISU
+Work Order · V2
+2
+Brake chamber condition
+NOT OK
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+INSTRUCTION
+Required
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+The note opens by itself under the response and the instruction follows it, the same order as CI3, and both are inside the card. The acknowledgement keeps a full-width row of its own rather than joining the file row: at 402 px the file row has no width to spare, and a 52 px target is worth more here than a saved line. The file row is a 52 px target that opens the viewer full screen; the file name truncates, the instruction text does not.
+NOT OK · ACKNOWLEDGED
+1234 · FOR CLODISU
+Work Order · V2
+2
+Brake chamber condition
+NOT OK
+OK
+Monitor
+Not OK
+N/A
+INSTRUCTION
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledged
+The checked box keeps the row it had, so nothing on the card moves. Green and checked is the whole of the acknowledged state on both surfaces.
+NOT OK · COMPLETE PRESSED, NOT ACKNOWLEDGED
+WO 1234 · Unit 8842
+Brake & Axle PM
+2
+Brake chamber condition
+NOT OK
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Right rear chamber leaking at the clamp band, unit tagged and foreman told.
+INSTRUCTION
+Required
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+Read the instruction and check Acknowledge to complete this inspection.
+Reached from the outstanding list in CI6, which is what the section action opens instead of an error dialog. Same two red marks as the desktop: the box and one line under it.
+MONITOR · NOTE REQUIRED, NO INSTRUCTION
+WO 1234 · Unit 8842
+Brake & Axle PM
+3
+Air-brake system leak check
+MONITOR
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+Photo
+On the phone the note is full width in every state, so a field with no instruction is the same card with one block fewer. The Required pill is amber, because Monitor is what made the note required.
+CI5
+Outstanding items, desktop: a count on the submit bar, opening the list above it
+drawn for the first time · an unacknowledged instruction is one of the kinds it lists
+Brake & Axle PM
+Section 2 of 2 · 3 fields
+4 items before submitting
+Acknowledgement
+Section 1 · Brake chamber condition · Not OK
+Acknowledgement
+Section 2 · Air-brake system leak check · Monitor
+Note
+Section 1 · Brake chamber condition
+Answer
+Section 2 · Trailer axle measurements · 8 positions
+Go to the first one
+Save & Exit
+4
+Outstanding
+Submit & Generate Report
+The count is a button beside submit, not a blocker in front of it: pressing submit with items left opens the same list rather than raising an error. Rows are grouped by section and read kind first, then where it is, because the technician is looking for the next thing to do, not for a category. The tile colour is the verdict that caused the item, so an acknowledgement on Monitor is amber and one on Not OK is red.
+CI6
+Outstanding items, phone: carried on the action that completes the section
+settles the list that was marked unreviewed in M3
+THE COUNT RIDES ON THE SECTION ACTION
+1234 · FOR CLODISU
+Work Order · V2
+3
+Next: Section 2
+Every section action carries the count, not only the last one, so the number is not saved up for the end. Tapping the badge opens the list; tapping the label moves on and leaves the items where they are.
+THE LIST
+1234 · FOR CLODISU
+Work Order · V2
+3 items before submitting
+Acknowledgement
+Section 1 · Brake chamber condition · Not OK
+Note
+Section 1 · Brake chamber condition
+Answer
+Section 2 · Trailer axle measurements · 8 positions
+Go to the first one
+Rows are 64 px and go straight to the field, opening the instruction block if that is what is missing. The wording is the same as the desktop list, so a technician who moves between the two reads one thing.
+CI7
+Preview: the instruction is there, and takes no input
+the file is shown and is not a link
+Brake & Axle PM
+Preview · Section 1 of 2
+Brake chamber condition
+Checkbox
+OK
+Monitor
+Not OK
+N/A
+INSTRUCTION
+On Not OK
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+Instruction
+No response can be given in Preview, so every configured instruction on the field is shown at once, each naming the response it belongs to. The acknowledgement is the same checkbox the fill screen uses, drawn in the neutral treatment the verdict controls already use here, and it takes no input. There is no banner saying so.
+CI8
+Phone, filling: the whole page, not the card on its own
+the follow-up in the run of an inspection · the count on the section action falls as it is cleared
+NOT OK ANSWERED · 3 OUTSTANDING
+WO 1234 · Unit 8842
+Brake & Axle PM
+Section 1 of 2
+2 of 3 answered
+1
+Brake & tire measurements
+8 of 8 positions
+2
+Brake chamber condition
+NOT OK
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+INSTRUCTION
+Required
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+Photo
+Note
+3
+Air-brake system leak check
+Not answered
+3
+Next: Section 2
+The note opens under the response and the instruction follows it, so the run of the page is unchanged: one card per field, one action at the bottom. Acknowledge, the note and the unanswered field three are the three the count is holding.
+ACKNOWLEDGED · 2 OUTSTANDING
+WO 1234 · Unit 8842
+Brake & Axle PM
+Section 1 of 2
+2 of 3 answered
+1
+Brake & tire measurements
+8 of 8 positions
+2
+Brake chamber condition
+NOT OK
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Right rear chamber leaking at the clamp band, unit tagged and foreman told.
+INSTRUCTION
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledged
+Photo
+Edit Note
+3
+Air-brake system leak check
+Not answered
+2
+Next: Section 2
+The checked box keeps the row it had, so nothing below it moves. The count falls from three to two and the card keeps its blue edge, because the field is answered Not OK either way.
+CI9
+Phone, building: the same two toggles in a properties sheet
+the CI1c treatment at 402 px · the sheet scrolls, the response blocks do not shrink
+THE TEMPLATE · A FIELD CARRYING TWO FOLLOW-UPS
+Inspection templates
+Brake & Axle PM
+Draft
+Edit
+Preview
+1
+Section 1
+3 fields
+Brake & tire measurements
+Per axle · 3 measurements
+Brake chamber condition
+Checkbox · OK / Monitor / Not OK / N/A
+FOLLOW-UPS
+Monitor
+Re-check at the next PM.
+Not OK
+Tag the unit out of service.
+Air-brake system leak check
+Checkbox
+FOLLOW-UPS
+Not OK
+Leak down test before the unit leaves.
++ Add Field
+Save Draft
+Publish
+The same list the desktop canvas carries, shortened to the width a phone has. Tapping the row opens the properties sheet.
+PROPERTIES SHEET · MONITOR ON
+Inspection templates
+Brake & Axle PM
+Field properties
+Checkbox
+LABEL
+RESPONSE OPTIONS
+Follow-up for this response
+Follow-up for this response
+Attach File
+Require acknowledgement
+Follow-up for this response
+PDF
+Bendix-chamber-out-of-service.pdf
+1.2 MB
+Require acknowledgement
+Follow-up for this response
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+Every target in the sheet is at least 44 px and every value input is 16 px, so focusing one does not zoom the page. An unchecked block is two rows, which is what keeps four responses reachable by scrolling rather than by hunting.
+PROPERTIES SHEET · MONITOR OFF
+Inspection templates
+Brake & Axle PM
+Field properties
+Checkbox
+LABEL
+RESPONSE OPTIONS
+Follow-up for this response
+Follow-up for this response
+PDF
+Bendix-chamber-out-of-service.pdf
+1.2 MB
+Require acknowledgement
+Follow-up for this response
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+Monitor off takes its row, its checkbox and its text with it, the same as CI1c on the desktop. The sheet gets shorter, which on the phone is the difference between one scroll and two.

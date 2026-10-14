@@ -1,0 +1,54 @@
+# Inspection Template Builder V2 - Desktop.dc.html
+
+texts new=169 old=178 added=9 removed=18
+
+## screen labels added: ['TB2b Per axle add row menu']
+## screen labels removed: []
+
+### + [(file header)] (1)
+  + line between the name and its options, costing one line of height; every field has a general reference file that is always available, with its accepted types stated before the upload, and Monitor and Not OK responses can
+
+### + [TB2 Per axle selected] (1)
+  + PDF, JPG, PNG, HEIC, Word or Excel
+
+### + [TB2b Per axle add row menu] (4)
+  + 3 rows
+  + PDF, JPG, PNG, HEIC, Word or Excel
+  + Per axle: Push-rod travel removed, add menu open
+  + TB2b Per axle add row menu
+
+### + [TB3 Checkbox selected] (1)
+  + Per axle · Tire pressure (psi), Tread depth (in.), Brake lining (in.), Push-rod travel (in.)
+
+### + [TB7 Preview mode] (3)
+  + Read only. The only live controls are + Add Axle and delete axle, which Axle 1 never has; adding or deleting an axle writes the count back to the draft. Drum or Disc and Single or Dual are shown and do not change. No val
+  + TOP VIEW
+  + Tap a tire to jump to its value. Tint follows that tire’s verdict.
+
+### - [(file header)] (1)
+  - line between the name and its options, costing one line of height; conditional follow-up is gone, replaced by a reference file that is always available, with its accepted types and size limit stated before the upload rat
+
+### - [TB1 Empty template] (1)
+  - + Add Section
+
+### - [TB2 Per axle selected] (1)
+  - PDF, JPG or PNG · up to 10 MB
+
+### - [TB3 Checkbox selected] (1)
+  - Per axle · Tire pressure (psi), Tread depth (32nds), Brake lining (in.), Push-rod travel (in.)
+
+### - [TB7 Preview mode] (14)
+  - , so returning to Edit shows the new number on the
+  - Disc
+  - Drum
+  - Dual
+  - PSI
+  - Read-only, with one exception:
+  - Save & Exit
+  - Single
+  - Submit & Generate Report
+  - adding or deleting an axle writes the count back to the draft
+  - bar: that belongs to an inspection, not a template. Clicking a field here returns to
+  - control. Preview is where an author first sees the field at full size and works out that three is not enough; carrying that number back by hand would be the round trip this mode removes. Nothing else takes input: no valu
+  - the panel steps aside so the canvas has the width · no answers are saved, though the axle count writes back to the draft · click a field to go back and edit it · no Mark OK actions, no per-field edit pill
+  - with that field selected in the panel, which is the loop that otherwise means publishing, opening a work order and starting an inspection as a technician.

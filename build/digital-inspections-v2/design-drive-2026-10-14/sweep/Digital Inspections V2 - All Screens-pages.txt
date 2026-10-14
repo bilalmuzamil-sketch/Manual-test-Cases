@@ -1,0 +1,2779 @@
+# Digital Inspections V2 - All Screens.dc.html — visible text per page (hidden tooltip text excluded; it is listed per interaction)
+
+
+======================== PAGE _header_or_outside  ========================
+SV-8181 · DIGITAL INSPECTIONS V2
+Digital Inspections V2
+
+Every screen in one document, in the order the work happens: a manager builds the template, a technician fills it on a laptop or a phone, and the findings become work order lines. Two rules run through all of it. Nothing is required, so nothing is auto-filled; the neutral state is Not inspected and it stays that way until someone says otherwise. And a verdict belongs to the smallest thing it describes: one tire position. Every roll-up above that is derived, never stored.
+
+1
+Template builder, desktop
+TB1 · TB2 · TB2b · TB3 · TB7
+2
+Filling an inspection, desktop
+A1 · A2 · A3 · A3b · A5 · A5b · A6 · D3 · D4
+3
+Filling an inspection, phone
+M1 · M2 · M3 · M4 · M5 · M6 · M7 · M8
+4
+Inspection to work order
+A · B · B2 · B2b · B3 · B4 · B4b · C1 · C2 · C3 · C4 · D · E · E2 · E3 · F · P1 · P1b · P2 · P2b · P3 · P4
+5
+Conditional follow-up on a response
+CI1b · CI1c · CI1d · CI1e · CI3 · CI4 · CI5 · CI6 · CI7 · CI8 · CI9
+6
+Customer report PDF
+R1
+
+
+======================== PAGE sc-bd — 1Template builder, desktopTB1 · TB2 · TB2b · TB3 · TB7 ========================
+1
+Template builder, desktop
+TB1 · TB2 · TB2b · TB3 · TB7
+SV-8181 · DIGITAL INSPECTIONS V2 · TEMPLATE BUILDER, FULL SCREENS
+Template builder: whole screens
+
+Whole screens, so each state can be read in place. Three changes: a measurement row is called what it is; the unit left the name and became a light Defaults line between the name and its options, costing one line of height; every field has a general reference file that is always available, with its accepted types stated before the upload, and Monitor and Not OK responses can each carry a follow-up, an instruction with text, a file or both (section 5); and one rule arrives on for new templates: a note when Monitor or Not OK; the photo rules are opt-in. Renaming happens on the field, with a check to keep it and an X to drop it. TB7 is Preview mode: the template rendered as the technician gets it, in the canvas, without publishing it first.
+
+TB1
+New template: nothing added yet
+five starters with content · an equipment slot pending · or pick a field type
+Work Orders
+Schedule
+Customers
+Parts
+Reports
+QA Testing
+OD
+Admin · Inspection templates
+Untitled Template
+Draft · unsaved
+Save Draft
+Publish
+OUTLINE
+TEMPLATE NAME
+Untitled template
+DESCRIPTION
+Add a short description (optional)
+Start from a template
+Select a template to start building the inspection.
+Class 8 Tractor PM Inspection
+DOT Annual Federal Inspection
+Air Brake Inspection
+Trailer Inspection
+Light Duty PM
+Equipment starter
+PENDING
+Or build from scratch
+Select a field type to begin. You can reorder and edit it after.
+Checkbox
+OK / Monitor / Not OK / N/A
+Text
+Text answer that grows as you type
+Measurement
+Number + unit (default in.)
+Per axle
+Measurement rows repeated per axle
+Photo
+Required photo evidence
+Instructions
+Read-only callout for the tech
+Click any field on the canvas to edit its properties here.
+TB2
+Per axle selected: rows editor
+unit and scope per row · defaults on their own line
+Admin · Inspection templates
+Brake & Axle PM
+Edit
+Preview
+Draft · unsaved
+Save Draft
+Publish
+OUTLINE
+Section 1
+2
+Tires
+1
+TEMPLATE NAME
+Brake & Axle PM
+Require technician signature
+1
+Section 1
+2 fields
+Brake & tire measurements
+Per axle · 4 rows · verdict per tire
+Air-brake leak check
+Checkbox · OK / Monitor / Not OK / N/A
++ Add Field
+Field properties
+Per axle
+LABEL
+TYPE
+Checkbox
+Text
+Measurement
+Per axle
+Photo
+Instructions
+MEASUREMENT ROWS · EVERY AXLE
+4 rows
+Every row is recorded left and right, with a verdict per position. Outer + inner rows split when the tech sets an axle to Dual; 1 per side rows do not.
+Defaults
+psi
+1 per side
+Outer + inner
+Tread Depth
+Defaults
+in.
+1 per side
+Outer + inner
+Brake Lining
+Defaults
+in.
+1 per side
+Push-Rod Travel
+Defaults
+in.
+1 per side
+Axles
+Select # of axles to start with
+3
+REFERENCE FILE
+Attach File
+PDF, JPG, PNG, HEIC, Word or Excel
+The technician can open this while answering. Not included in the customer report.
+Duplicate Field
+Delete Field
+TB2b
+Per axle: Push-rod travel removed, add menu open
+Admin · Inspection templates
+Brake & Axle PM
+Edit
+Preview
+Draft · unsaved
+Save Draft
+Publish
+OUTLINE
+Section 1
+2
+Tires
+1
+TEMPLATE NAME
+Brake & Axle PM
+Require technician signature
+1
+Section 1
+2 fields
+Brake & tire measurements
+Per axle · 4 rows · verdict per tire
+Air-brake leak check
+Checkbox · OK / Monitor / Not OK / N/A
++ Add Field
+Field properties
+Per axle
+LABEL
+TYPE
+Checkbox
+Text
+Measurement
+Per axle
+Photo
+Instructions
+MEASUREMENT ROWS · EVERY AXLE
+3 rows
+Every row is recorded left and right, with a verdict per position. Outer + inner rows split when the tech sets an axle to Dual; 1 per side rows do not.
+Defaults
+psi
+1 per side
+Outer + inner
+Tread Depth
+Defaults
+in.
+1 per side
+Outer + inner
+Brake Lining
+Defaults
+in.
+1 per side
+Axles
+Select # of axles to start with
+3
++ Add Measurement Row
+Push-rod travel
+REFERENCE FILE
+Attach File
+PDF, JPG, PNG, HEIC, Word or Excel
+The technician can open this while answering. Not included in the customer report.
+Duplicate Field
+Delete Field
+TB3
+Checkbox selected: responses, reference file, validation
+Add follow-up to a response off, which is the default · the general reference file is always there
+Admin · Inspection templates
+Brake & Axle PM
+Edit
+Preview
+Draft · unsaved
+Publish
+OUTLINE
+Section 1
+3
+1
+Section 1
+3 fields
+Brake & tire measurements
+Per axle · Tire pressure (psi), Tread depth (in.), Brake lining (in.), Push-rod travel (in.)
+Brake chamber condition
+Checkbox · OK / Monitor / Not OK / N/A · reference file · note required if Monitor / Not OK
++ Add Field
+Field properties
+Checkbox
+LABEL
+TYPE
+Checkbox
+Text
+Measurement
+Per axle
+Photo
+Instructions
+RESPONSE OPTIONS
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+GENERAL REFERENCE FILE
+PDF
+Bendix-chamber-service.pdf
+1.2 MB · not in the customer report
+VALIDATION
+Required to complete
+Photo required
+Photo required if Not OK
+Note required if Monitor / Not OK
+The note rule is on by default for new templates; the photo rule is not. Existing templates keep what they have.
+Duplicate Field
+Delete Field
+TB7
+Preview: the template as the technician gets it, without leaving the builder
+Read only. The only live controls are + Add Axle and delete axle, which Axle 1 never has; adding or deleting an axle writes the count back to the draft. Drum or Disc and Single or Dual are shown and do not change. No values, verdicts, Add Note or Add Photo, and no Mark OK actions. A reference file is shown and does not open.
+Admin · Inspection templates
+Brake & Axle PM
+Edit
+Preview
+Save Draft
+Publish
+OUTLINE
+Section 1
+2
+Tires
+1
+The outline stays, so you can preview one section at a time.
+Brake & Axle PM
+Inspection · 2 sections · 3 fields · nothing inspected yet
+SECTION 1 OF 2
+Section 1
+2 fields · 0 of 36 positions
+Brake & tire measurements
+Per axle
+TOP VIEW
+1
+2
+3
+Tap a tire to jump to its value. Tint follows that tire’s verdict.
+1
+Axle 1
+Drum · Dual
+MEASUREMENT
+LEFT
+OUTER
+INNER
+RIGHT
+INNER
+OUTER
+Tire pressure
+psi
+—
+—
+—
+—
+Tread depth
+in.
+—
+—
+—
+—
+Brake lining
+in.
+—
+—
+Push-rod travel
+in.
+—
+—
+2
+Axle 2
+Drum · Dual
+3
+Axle 3
+Drum · Dual
++ Add Axle
+Add Photo
+Add Note
+Air-brake system leak check
+Checkbox
+OK
+Monitor
+Not OK
+N/A
+Add Photo
+Add Note
+PREVIEW · PHONE
+Brake & Axle PM
+SECTION 1 OF 2
+Section 1
+2 fields · 0 of 36 positions
+Brake & tire measurements
+Axle 1
+Axle 2
+Axle 3
+Air-brake system leak check
+OK
+Monitor
+Not OK
+N/A
+The same preview at phone width, because a template that reads well on a desktop can still be wrong in a technician’s hand. Preview follows the width it is opened at, so the phone rendering needs no separate control.
+
+
+======================== PAGE sc-fd — 2Filling an inspection, desktopA1 · A2 · A3 · A3b · A5 · A5b · A6 · D3 · D4 ========================
+2
+Filling an inspection, desktop
+A1 · A2 · A3 · A3b · A5 · A5b · A6 · D3 · D4
+SV-8181 · DIGITAL INSPECTIONS V2 · DESKTOP ARTBOARDS
+Fill screen: desktop
+
+A dual axle records four tire pressures, so it needs four verdicts. Each value carries its own: a dropdown attached to the input it judges, so left outer can be Not OK while left inner is OK. That grid is the whole record: no status column, no per-row legend, no axle roll-up badge, no counters. Colour lives on the value that earned it and on the control you press. A tire in the top view takes the worst verdict entered for it so far and stays grey until one arrives; nothing is ever auto-filled. Switching Single / Dual asks nothing; typed values come back if you switch back. Marking OK in bulk exists at three levels: the inspection row, the section row, and every field’s own card header, whatever its type. Mark all OK, Mark section OK and Mark field OK are the same quiet action on the same right edge, so the level is read from the row it sits on rather than from the label. Each fills only what is still Not inspected, never overwrites a verdict already picked, and never writes a value.
+
+A1
+Dual axle: nothing inspected yet
+every position starts Not inspected · hollow marker, no colour
+Work Orders
+Schedule
+Customers
+Parts
+Reports
+Work order · v1
+For Clodisu
+All changes saved
+SECTIONS
+1
+Section 1
+0/2
+Brake & Axle PM
+Inspection · 2 sections · 5 fields · nothing inspected yet
+Mark all OK
+SECTION 1 OF 2
+Section 1
+2 fields · 0 of 24 positions
+Mark section OK
+Brake & tire measurements
+Per axle
+Mark field OK
+TOP VIEW
+1
+2
+Tap a tire to jump to its value. Tint follows that tire’s verdict.
+1
+Axle 1
+Drum
+Disc
+Single
+Dual
+MEASUREMENT
+LEFT
+OUTER
+INNER
+RIGHT
+INNER
+OUTER
+Tire pressure
+psi
+Tread depth
+in.
+Brake lining
+in.
+Push-rod travel
+in.
++ Add Axle
+Add Photo
+Add Note
+A2
+Mid-fill: the dropdown names the tire it judges
+left outer already Not OK, left inner being set
+MEASUREMENT
+LEFT
+OUTER
+INNER
+RIGHT
+INNER
+OUTER
+Tire pressure
+psi
+LEFT INNER TIRE · 98 psi
+OK
+Monitor
+Not OK
+N/A
+Tread depth
+in.
+Brake lining
+in.
+A3
+Complete, left outer Not OK, left inner OK
+the case the old single row verdict could not record
+Brake & tire measurements
+Per axle
+2 positions Not OK · 1 Monitor
+Mark field OK
+TOP VIEW
+1
+2
+Each tire takes the worst verdict of the rows measuring it. Clicking one opens the same dropdown.
+1
+Axle 1
+Drum
+Disc
+Single
+Dual
+MEASUREMENT
+LEFT
+OUTER
+INNER
+RIGHT
+INNER
+OUTER
+Tire pressure
+psi
+Tread depth
+in.
+Brake lining
+in.
+Push-rod travel
+in.
+2
+Axle 2
+Drum · Dual · 12 of 12 positions
+Axle: OK
++ Add Axle
+Add Photo
+Add Note
+A3b
+Complete, left brake Not OK
+Brake & tire measurements
+Per axle
+1 position Not OK
+Mark field OK
+TOP VIEW
+1
+2
+Each tire takes the worst verdict of the rows measuring it. Clicking one opens the same dropdown.
+1
+Axle 1
+Drum
+Disc
+Single
+Dual
+MEASUREMENT
+LEFT
+OUTER
+INNER
+RIGHT
+INNER
+OUTER
+Tire pressure
+psi
+Tread depth
+in.
+Brake lining
+in.
+Push-rod travel
+in.
+2
+Axle 2
+Drum · Dual · 12 of 12 positions
+Axle: OK
++ Add Axle
+Add Photo
+Add Note
+A5
+The form as it is filled, section 1 of 2, three field types
+Mark OK at inspection, section and field level · every field carries its own · nothing in the app chrome
+Work Orders
+Schedule
+Customers
+Parts
+Reports
+Search
+⌘K
+Clock In
+Staging Heavy Duty - 9919
+AS
+Work order · v1
+Testing Design
+All changes saved
+SECTIONS
+0
+/ 5 fields complete
+Photos: 0.0 MB of 10 MB
+1
+Section 1
+0/3
+2
+Section 2
+0/2
+Tech: William Johns
+Advisor: Kimberly Barnes
+Started: N/A
+Testing Design
+Inspection · 2 sections · 5 fields · nothing inspected yet
+Mark all OK
+SECTION 1 OF 2
+Section 1
+3 fields · 0 of 38 positions
+Mark section OK
+Brake & tire measurements
+Per axle
+Mark field OK
+TOP VIEW
+1
+2
+3
+Tap a tire to jump to its value. Tint follows that tire’s verdict.
+1
+Axle 1
+Drum
+Disc
+Single
+Dual
+MEASUREMENT
+LEFT
+OUTER
+INNER
+RIGHT
+INNER
+OUTER
+Tire pressure
+psi
+Tread depth
+in.
+Brake lining
+in.
+Push-rod travel
+in.
+2
+Axle 2
+Drum · Dual
+3
+Axle 3
+Drum · Dual
++ Add Axle
+Add Photo
+Add Note
+Air-brake system leak check
+Checkbox
+Mark field OK
+OK
+Monitor
+Not OK
+N/A
+Add Photo
+Add Note
+Low-air warning pressure
+Measurement
+Mark field OK
+psi
+Add Photo
+Add Note
+Save & Exit
+Submit & Generate Report
+A5b
+After Mark section OK: the section row reports what it did
+values were typed first, the press set the verdicts · the row pressed counts fields, each field below counts its positions · Undo on the row pressed
+Testing Design
+Inspection · 2 sections · 5 fields · 3 of 5 inspected
+Mark all OK
+SECTION 1 OF 2
+Section 1
+3 fields · 38 of 38 positions
+3 fields marked OK
+Undo
+Brake & tire measurements
+Per axle
+36 positions marked OK
+TOP VIEW
+1
+2
+3
+Every tire took OK from the press. Change one and only that tire changes.
+1
+Axle 1
+Drum
+Disc
+Single
+Dual
+MEASUREMENT
+LEFT
+OUTER
+INNER
+RIGHT
+INNER
+OUTER
+Tire pressure
+psi
+Tread depth
+in.
+Brake lining
+in.
+Push-rod travel
+in.
+2
+Axle 2
+Drum · Dual
+3
+Axle 3
+Drum · Dual
++ Add Axle
+Add Photo
+Add Note
+Air-brake system leak check
+Checkbox
+Marked OK
+OK
+Monitor
+Not OK
+N/A
+Add Photo
+Add Note
+Low-air warning pressure
+Measurement
+1 position marked OK
+psi
+Add Photo
+Add Note
+A6
+Live, click a marker to pick a verdict
+Single / Dual switches with no dialog · hover Mark field OK for its tooltip, press it for the report and Undo
+TOP VIEW
+1
+1
+Axle 1
+Drum
+Disc
+Single
+Dual
+2 positions Not OK · 1 Monitor
+Mark field OK
+MEASUREMENT
+LEFT
+OUTER
+INNER
+RIGHT
+INNER
+OUTER
+Tire pressure
+psi
+Tread depth
+in.
+Brake lining
+in.
+Push-rod travel
+in.
+D3
+Field card, reference file, response, note, photo
+response row · evidence row · note block
+1 · Clean card, nothing answered
+Air-brake system leak check
+Checkbox · required to complete
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+Add Photo
+Add Note
+2 · Template attached a procedure; it sits above the response, not beside it
+Slack adjuster travel
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+PDF
+Recommended procedure
+Bendix-slack-adjuster-service-bulletin-2024.pdf
+OK
+Monitor
+Not OK
+N/A
+Add Photo
+Add Note
+3 · Add Note pressed: the block opens in place, nothing required
+Air-brake system leak check
+Checkbox · required to complete
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Goes to the customer report
+Add Photo
+4 · Add Photo pressed; same block, thumbnails beside the target once files land
+Air-brake system leak check
+Checkbox · required to complete
+OK
+Monitor
+Not OK
+N/A
+PHOTO
+2 photos · 1.4 MB
+Drop a photo here
+or upload from your computer · JPG, PNG or HEIC
+Add Note
+5 · Not OK: a note and a photo are both required, each badged on its own block
+Slack adjuster travel
+Checkbox · note required if Monitor or Not OK
+PDF
+Recommended procedure
+Bendix-slack-adjuster-service-bulletin-2024.pdf
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+Goes to the customer report
+PHOTO
+Required
+Drop a photo here
+or upload from your computer · JPG, PNG or HEIC
+D4
+Attachment viewer
+full-page modal · the document gets the whole window, scroll to page through
+PDF
+Bendix-slack-adjuster-service-bulletin-2024.pdf
+· Slack adjuster travel
+Fit width
+Download
+SERVICE BULLETIN
+Page 1 of 3
+Slack Adjuster Travel, Measurement Procedure
+Applies to air-brake foundation assemblies on tractors and trailers.
+
+Free stroke and applied stroke must both be measured with the system at full reservoir pressure. Chock the wheels and release the parking brake before beginning.
+
+Before you start
+
+Air pressure at or above 90 psi. Engine off. Wheels chocked. Parking brake released and the transmission in neutral.
+
+Measuring free stroke
+1
+Mark the push rod where it leaves the chamber with the brakes fully released.
+2
+Using a lever, move the slack adjuster until the shoes contact the drum.
+3
+Measure between the mark and the chamber face. Free stroke should read between 3/8 in. and 5/8 in.
+Measuring applied stroke
+4
+Have an assistant make a full brake application and hold it.
+5
+Measure the total travel of the push rod. Compare against the chamber size table on page 2.
+
+Record both figures on the inspection. Travel beyond the readjustment limit is an out-of-service condition under FMCSA Appendix G.
+
+SERVICE BULLETIN
+Page 2 of 3
+Readjustment limits by chamber size
+CHAMBER
+OUTSIDE DIA.
+LIMIT
+Type 12
+4 21/32 in.
+1 3/8 in.
+Type 16
+5 1/4 in.
+1 3/4 in.
+Type 20
+5 1/2 in.
+1 3/4 in.
+Type 24
+5 25/32 in.
+1 3/4 in.
+Type 30
+6 3/8 in.
+2 in.
+
+Measure the outside diameter of the chamber to identify the type when the stamping is not legible. If the reading is within 1/8 in. of the limit, mark the position Monitor and note the figure so the next PM can compare.
+
+Common causes of excessive travel
+
+Worn brake lining, a stretched or misaligned push rod, a seized automatic slack adjuster, or a chamber diaphragm that has begun to leak. Replace the adjuster rather than attempting to free a seized unit.
+
+SERVICE BULLETIN
+Page 3 of 3
+Recording the result
+
+Enter both figures on the inspection against the axle and position measured. A position beyond the readjustment limit is Not OK, requires a note describing the cause, and requires a photograph of the assembly.
+
+Out-of-service criteria
+
+Under FMCSA Appendix G a vehicle is placed out of service when 20 percent or more of the brakes on the unit are defective. A single brake beyond the adjustment limit counts as defective for that calculation.
+
+Torque values
+Clamp band
+—
+25–30 ft-lbs
+Chamber mounting nuts
+—
+85–115 ft-lbs
+Slack adjuster clevis
+—
+35–40 ft-lbs
+
+Re-check free stroke after any adjuster or chamber replacement, and again after a short road test.
+
+Bulletin SB-2024-11 · supersedes SB-2019-04 · for reference only, always follow the manufacturer’s current service literature.
+
+
+======================== PAGE sc-fm — 3Filling an inspection, phoneM1 · M2 · M3 · M4 · M5 · M6 · M7 · M8 ========================
+3
+Filling an inspection, phone
+M1 · M2 · M3 · M4 · M5 · M6 · M7 · M8
+SV-8181 · DIGITAL INSPECTIONS V2 · MOBILE ARTBOARDS
+Fill screen: phone, 402 px
+
+The footer is section navigation and nothing else, Back: Section 1 and Next: Section 2, naming where each goes. Axle switching happens only in the sub-header chips, which swap the page to that axle. What is outstanding rides on the action as a count badge, and tapping it lists the items, each one going straight to the field, not to a summary. Verdict dots are gone: the field is already coloured. A tire takes the worst verdict entered for it so far and stays grey until one arrives. Marking OK in bulk exists at the same three levels as on desktop: the app-bar menu for the whole inspection, a 44 px row at the foot of the section header for the section, and the axle-set card header for one field. OK only, verdicts only, and it never overwrites a verdict already picked.
+
+M1
+Section 1: field list
+One card per field, the open one expanded. One full-width primary action, naming where it goes. Android draws the back gesture, so the footer does not.
+1234 · FOR CLODISU
+Work Order · V2
+SECTION 1 OF 2
+0 / 3 fields
+Section 1
+Photos: 0.0 MB of 10 MB
+Mark section OK
+1
+Unit reading
+TEXT
+Add Photo
+Add Note
+2
+Brake & tire measurements
+PER AXLE · 2 axles
+3
+Brake chamber condition
+CHECKBOX · reference file
+3 fields still open; you can return any time
+Next: Section 2
+M2
+Section 2: the last one
+On the final section the action becomes Submit & Generate Report, carrying a count of what is still outstanding. Tapping it opens the list in M3. The inspection-level Mark all OK lives in the app-bar menu, the only place it appears on the phone, drawn on its own below so it covers nothing.
+APP-BAR MENU · WHOLE INSPECTION
+WHOLE INSPECTION
+Mark all OK
+34 items are still Not inspected. Only those are marked OK; verdicts already picked stay, and values are never filled in.
+1234 · FOR CLODISU
+Work Order · V2
+SECTION 2 OF 2
+2 / 3 fields
+Section 2
+Mark section OK
+1
+Air-brake leak check
+OK
+2
+Slack adjuster travel
+MEASUREMENT
+in.
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+3
+Trailer axle measurements
+PER AXLE · 1 axle
+1
+Submit & Generate Report
+M3
+What is still missing
+Reached by tapping the badge on Submit & Generate Report. Each row goes straight to that field with the cursor in it, never to a summary.
+1234 · FOR CLODISU
+Work Order · V2
+5 items before submitting
+Tap one to go straight to it
+Note
+Section 1 · Tire pressure · left outer
+Photo
+Section 1 · Tire pressure · left outer
+Note
+Section 1 · Tread depth · left outer
+Note
+Section 2 · Slack adjuster travel
+Answer
+Section 2 · Trailer axle measurements · 8 positions
+Go to the first one
+M4
+Per axle: nothing inspected
+Tapping an axle in the sub-header swaps the page to it; the footer stays on the section. Labels are 11 px and value rows 52 px, so left outer and left inner are separately tappable.
+1234 · FOR CLODISU
+Work Order · V2
+SECTION 1 OF 2 · FIELD 2 OF 3
+Brake & tire measurements
+Mark field OK
+Axle 1
+Axle 2
++ Axle
+Axle 1
+Drum
+Disc
+Single
+Dual
+Tire pressure
+psi
+NOT INSPECTED
+Left outer
+Left inner
+Right inner
+Right outer
+Tread depth
+in.
+NOT INSPECTED
+Left outer
+Left inner
+Right inner
+Right outer
+Back: Section 1
+Next: Section 2
+M5
+Left outer Not OK, left inner OK
+Each position states its own verdict above its value, so the block reads without opening anything. A row holding any Not OK position turns its Add note and Add photo labels red, and the count rides on the footer action.
+1234 · FOR CLODISU
+Work Order · V2
+SECTION 1 OF 2 · FIELD 2 OF 3
+Brake & tire measurements
+2 positions Not OK · 1 Monitor
+Mark field OK
+Axle 1
+Axle 2
++ Axle
+Axle 1
+Axle: Not OK
+Drum
+Disc
+Single
+Dual
+Tire pressure
+psi
+NOT OK
+Left outer · Not OK
+Left inner · OK
+Right inner · OK
+Right outer · Monitor
+Add note
+Add photo
+Tread depth
+in.
+NOT OK
+Left outer · Not OK
+Left inner · OK
+Right inner · OK
+Right outer · OK
+Add note
+Add photo
+Brake lining
+in.
+OK
+Left brake · OK
+Right brake · OK
+4
+2 notes, 2 photos required
+Back: Section 1
+Next: Section 2
+M6
+Verdict sheet: names the position
+The dropdown on a value opens a sheet titled with the position, the measurement and the value entered.
+1234 · FOR CLODISU
+Work Order · V2
+Left outer
+Axle 1 · Tire pressure · 42 psi entered
+OK
+Monitor
+Not OK
+N/A
+Not OK on any position makes the row and the axle Not OK, and the field needs a note.
+M7
+Checkbox: reference file, not answered
+The reference file is always there, whatever the answer will be. It sits above the response row, so it never competes with it.
+1234 · FOR CLODISU
+Work Order · V2
+SECTION 1 OF 2 · FIELD 3 OF 3
+2 / 3 fields
+Section 1
+Mark section OK
+1
+Unit reading
+184,220 mi
+2
+Brake & tire measurements
+2 positions Not OK
+3
+Brake chamber condition
+CHECKBOX
+PDF
+Reference file
+Bendix-chamber-service.pdf
+OK
+Monitor
+Not OK
+N/A
+Add Photo
+Add Note
+Next: Section 2
+M8
+Checkbox: Not OK, note and photo required
+What used to be a follow-up branch is now validation. Not OK turns on both rules the template set, and the count rides on the footer action.
+1234 · FOR CLODISU
+Work Order · V2
+SECTION 1 OF 2 · FIELD 3 OF 3
+2 / 3 fields
+Section 1
+Mark section OK
+3
+Brake chamber condition
+CHECKBOX
+PDF
+Reference file
+Bendix-chamber-service.pdf
+Open
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+Goes to the customer report.
+PHOTO
+Required when Not OK
+Add Photo
+2
+1 note, 1 photo required
+Next: Section 2
+
+
+======================== PAGE sc-ho — 4Inspection to work orderA · B · B2 · B2b · B3 · B4 · B4b · C1 · C2 · C3 · C4 · D · E · E2 · E3 · F · P1 · P1b · P2 · P2b · P3 · P4 ========================
+4
+Inspection to work order
+A · B · B2 · B2b · B3 · B4 · B4b · C1 · C2 · C3 · C4 · D · E · E2 · E3 · F · P1 · P1b · P2 · P2b · P3 · P4
+SV-8181 · DIGITAL INSPECTIONS V2 · INSPECTION → WORK ORDER
+The hand-off
+
+Building work order lines from an inspection is a ShopCoach capability, so the same completed inspection is two different screens. Without ShopCoach the inspection reports what is wrong and a human builds the work order; no build action anywhere, not disabled and not explained. With ShopCoach the action is purple and carries the AI badge, so nothing else needs saying. Pressing it asks nothing: the technician lands on the work order with the lines already proposed and pre-selected, reviewing rather than instructing. The same action and the same panel appear wherever a finished inspection is met, on the inspection itself, on the work order’s Notes tab, in the unit’s Inspections list, and started from the work order with no inspection at all.
+
+A
+Completed inspection: no ShopCoach
+two actions: Go to work order, View PDF
+Work Orders
+Schedule
+Customers
+Parts
+Reports
+QA Testing
+OD
+S-81 · ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo · report posted to the work order
+9 OK
+1 Monitor
+2 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+Not OK
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+Monitor
+Slack adjuster travel
+Note attached
+Three findings are on the customer report and in the work order note feed. Add the lines on the work order.
+Brake & Axle PM.pdf
+View PDF
+Go to work order
+B
+Completed inspection: with ShopCoach
+the card answers what happened, the sections below it what was entered · targets in B2, opened the same way from Notes and Asset › Inspections
+S-81 · ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo · report posted to the work order
+9 OK
+1 Monitor
+2 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+Not OK
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+Monitor
+Slack adjuster travel
+Note attached
+AI
+ShopCoach can turn these 3 findings into work order lines with labor and parts. You review everything before it is added.
+Brake & Axle PM.pdf
+View PDF
+Reopen
+Go to work order
+AI
+Build lines
+WHAT WAS ENTERED
+every answer, section by section · read only
+1
+Brakes
+Brake & tire measurements
+Per axle
+Not OK
+Axle 1
+Drum · Dual
+Not OK
+LEFT OUTER
+LEFT INNER
+RIGHT INNER
+RIGHT OUTER
+Tire pressure
+42 psi
+Not OK
+103 psi
+OK
+104 psi
+OK
+40 psi
+Not OK
+Tread depth
+0.13 in.
+Not OK
+0.34 in.
+OK
+0.38 in.
+OK
+0.31 in.
+OK
+LEFT
+RIGHT
+Brake lining
+9/32 in.
+OK
+10/32 in.
+OK
+Brake chamber condition
+Checkbox
+OK
+2
+Air system
+Slack adjuster travel
+Measurement
+1.94 in.
+Monitor
+Low-air warning pressure
+Measurement
+62 psi
+OK
+The card above answers what happened; these sections answer what was entered. Without them a locked inspection has no readable record outside the PDF.
+B3
+Completed inspection: lines already added
+S-81 · ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo · report posted to the work order
+9 OK
+1 Monitor
+2 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+Not OK
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+Monitor
+Slack adjuster travel
+Note attached
+Brake & Axle PM.pdf
+View PDF
+Reopen
+Go to work order
+WO created
+S-235
+WHAT WAS ENTERED
+every answer, section by section · read only
+1
+Brakes
+Brake & tire measurements
+Per axle
+Not OK
+Axle 1
+Drum · Dual
+Not OK
+LEFT OUTER
+LEFT INNER
+RIGHT INNER
+RIGHT OUTER
+Tire pressure
+42 psi
+Not OK
+103 psi
+OK
+104 psi
+OK
+40 psi
+Not OK
+Tread depth
+0.13 in.
+Not OK
+0.34 in.
+OK
+0.38 in.
+OK
+0.31 in.
+OK
+LEFT
+RIGHT
+Brake lining
+9/32 in.
+OK
+10/32 in.
+OK
+Brake chamber condition
+Checkbox
+OK
+2
+Air system
+Slack adjuster travel
+Measurement
+1.94 in.
+Monitor
+Low-air warning pressure
+Measurement
+62 psi
+OK
+The card above answers what happened; these sections answer what was entered. Without them a locked inspection has no readable record outside the PDF.
+B4
+Completed inspection: work order deleted
+ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo
+9 OK
+1 Monitor
+2 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+Not OK
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+Monitor
+Slack adjuster travel
+Note attached
+Brake & Axle PM.pdf
+View PDF
+B4b
+Completed inspection: work order deleted, lines on a new work order
+ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo
+9 OK
+1 Monitor
+2 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+Not OK
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+Monitor
+Slack adjuster travel
+Note attached
+Brake & Axle PM.pdf
+View PDF
+WO created
+S-200
+B2
+Build targets: menu open
+shown alone so it does not cover the findings it acts on · the same menu opens from all three entry points: this screen, work order › Notes, and Asset › Inspections
+AI
+Build lines
+BUILD THE LINES ON
+This work order
+S-81 · Approved
+A new work order
+Seeded with this customer & unit
+Either target skips straight to C1; no prompt in between.
+B2b
+Build targets: the work order cannot take lines
+Complete, Invoiced, Paid, Declined, or an invoice exists
+AI
+Build lines
+BUILD THE LINES ON
+A new work order
+Seeded with this customer & unit
+C1
+The moment in between
+on the work order already · nothing to fill in, nothing to confirm
+S-81 · Open · ABC Truck Lines
+Work Order S-81
+New Line
+Lines (0)
+Parts (0)
+Part Returns
+Notes (2)
+Timesheets
+Finance
+AI
+SHOPCOACH LINE BUILDER
+Drafting lines from 3 findings
+Brake & Axle PM · Today 06:28 AM · about 10 seconds
+Cancel
+	Title	Description	Labor	Parts
+
+	
+	
+	
+	
+
+
+	
+	
+	
+	
+
+
+	
+	
+	
+	
+Nothing is added until you press Add Lines.
+Three skeleton rows, one per finding; the count is known before the drafting is. The work order is usable while it runs, and Cancel leaves it untouched.
+C2
+Where it lands: already finished, waiting to be reviewed
+no prompt, no query box · rows pre-selected and editable
+S-81 · Open · ABC Truck Lines
+Work Order S-81
+New Line
+Lines (0)
+Parts (0)
+Part Returns
+Notes (2)
+Timesheets
+Finance
+AI
+SHOPCOACH LINE BUILDER
+3 lines drafted from Brake & Axle PM
+Review before adding
+Click any title, description, labor or part to edit it. Uncheck a line to leave it out.
+3 of 3 selected
+	Title	Description	Labor	Parts
+
+	
+Replace axle 1 left outer tire
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+	Tread at 0.13 in., below the 0.16 in. minimum.	1.2 hrs	
+Steer tire ( 1 )
+Valve stem ( 1 )
++ Add
+
+
+	
+Inflate axle 1 outer tires to spec
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+	42 and 40 psi against 100 psi spec; check for a leak while replacing.	0.3 hrs	
+No parts
++ Add
+
+
+	
+Adjust slack adjuster
+Slack adjuster travel · Monitor
+	Travel out of range; confirm chamber and adjuster.	1 hr	
+Slack adjuster ( 1 )
++ Add
+Add Lines
+2.5 hrs labor · 3 parts
+C3
+ShopCoach call failed
+S-81 · Open · ABC Truck Lines
+Work Order S-81
+New Line
+Lines (0)
+Parts (0)
+Part Returns
+Notes (2)
+Timesheets
+Finance
+AI
+SHOPCOACH LINE BUILDER
+ShopCoach could not draft lines
+Nothing was added to the work order. Try again, or add lines by hand.
+Close
+Try again
+C4
+No lines drafted
+S-81 · Open · ABC Truck Lines
+Work Order S-81
+New Line
+Lines (0)
+Parts (0)
+Part Returns
+Notes (2)
+Timesheets
+Finance
+AI
+SHOPCOACH LINE BUILDER
+No lines to propose
+ShopCoach found nothing in this inspection to turn into a line. The work order was not changed.
+Close
+D
+Started from the work order
+same panel, same treatment · entered from the Lines tab instead of an inspection
+S-81 · Open · ABC Truck Lines
+Work Order S-81
+New Line
+AI
+Build lines
+Lines (2)
+Parts (3)
+Part Returns
+Notes (1)
+Timesheets
+Finance
+Title	Description	Labor	Parts
+Annual DOT inspection	Federal annual, all systems.	2.0 hrs	No parts
+Replace wiper blades	Customer request.	0.3 hrs	
+Wiper blade ( 2 )
+AI
+SHOPCOACH LINE BUILDER
+2 lines drafted from this work order
+Review before adding
+Drafted from the unit's history and the 2 lines already on this work order; no inspection needed.
+2 of 2 selected
+	Title	Description	Labor	Parts
+
+	
+Replace air dryer cartridge
+Last replaced 118,000 mi ago
+	Service interval reached; do it while the unit is on the lift.	0.8 hrs	
+Dryer cartridge ( 1 )
++ Add
+
+
+	
+Grease chassis fittings
+Bundled with the DOT inspection
+	Standard PM add-on for this unit class.	0.4 hrs	
+No parts
++ Add
+Add Lines
+1.2 hrs labor · 1 part · nothing added yet
+E
+Work order · Notes: the completed inspection lands here
+the report is the note · Build lines carries the same purple treatment
+Work Orders
+Schedule
+Customers
+Parts
+Reports
+QA Testing
+OD
+S1-238
+Approved
+Over Limit
+Started: Today
+Progress
+0%
+Service Advisor
+Owner Demo
+Alfa Cargo Llc
+VIN / Serial #
+123223
+Mileage
+123,123
+Engine Hours
+12,312
+Lines (1)
+Parts (1)
+Notes (1)
+Stats
+Finance
+1 NOTE
+Newest first
+New Note
+OD
+Owner Demo
+Auto-posted
+10:46 AM, Today
+Completed inspection 1234 · v2 · 2 sections, 6 fields
+PDF
+1234.pdf
+19.96 kB · 0 photos
+2 OK
+3 Monitor
+4 Not OK
+View PDF
+Download
+AI
+Build lines
+The note is the report: counts on the card, so the advisor does not open a PDF to learn whether anything failed. Build lines is the same purple, badged control as on the completed inspection: one action, one appearance, wherever it is met. Without ShopCoach the card shows View PDF and Download only.
+E2
+Work order · Notes: lines already added from this inspection
+Work Orders
+Schedule
+Customers
+Parts
+Reports
+QA Testing
+OD
+S1-238
+Approved
+Over Limit
+Started: Today
+Progress
+0%
+Service Advisor
+Owner Demo
+Alfa Cargo Llc
+VIN / Serial #
+123223
+Mileage
+123,123
+Engine Hours
+12,312
+Lines (1)
+Parts (1)
+Notes (1)
+Stats
+Finance
+1 NOTE
+Newest first
+New Note
+OD
+Owner Demo
+Auto-posted
+10:46 AM, Today
+Completed inspection 1234 · v2 · 2 sections, 6 fields
+PDF
+1234.pdf
+19.96 kB · 0 photos
+2 OK
+3 Monitor
+4 Not OK
+View PDF
+Download
+Lines added
+S-58
+E3
+Work order S-200 · Notes: built from an inspection whose work order was deleted
+Work Orders
+Schedule
+Customers
+Parts
+Reports
+QA Testing
+OD
+S-200
+Approved
+Over Limit
+Started: Today
+Progress
+0%
+Service Advisor
+Owner Demo
+Alfa Cargo Llc
+VIN / Serial #
+123223
+Mileage
+123,123
+Engine Hours
+12,312
+Lines (1)
+Parts (1)
+Notes (1)
+Stats
+Finance
+1 NOTE
+Newest first
+New Note
+OD
+Owner Demo
+Auto-posted
+10:46 AM, Today
+Lines built from inspection 1234 · v2 · from work order S-100
+Work order deleted
+PDF
+1234.pdf
+19.96 kB · 0 photos
+2 OK
+3 Monitor
+4 Not OK
+View PDF
+Download
+F
+Customer · Asset · Inspections
+every inspection this unit has had · the action column is the point of the table
+Work Orders
+Schedule
+Customers
+Parts
+Reports
+QA Testing
+OD
+2020 1/off Kustoms, Llc 6130M
+VIN / Serial #
+123-45678
+Year
+2020
+Mileage
+100,000
+Licence Plate
+—
+Milos Vasic Company
+Address
+Austin Avenue, Toronto
+Phone
+(512) 798 - 0932
+Work Orders
+Invoices (3)
+Notes
+Inspections (18)
+2 of 18 have findings with no lines yet
+Inspection
+	Status
+	Completed
+	Technician	Issues	Work order	Report	Action
+
+Sasha Template
+v1
+	
+Completed	2 days ago	Owner Demo	
+4 Not OK
+5 Monitor
+	
+S-81
+Approved
+	
+PDF	
+WO created
+S-235
+
+
+Testing Design
+v1
+	
+Completed	Aug 10, 2026	Owner Demo	
+1 Not OK
+2 Monitor
+	
+S-83
+Approved
+	
+PDF	
+AI
+Build lines
+
+
+Dule / Milos
+v1
+	
+Completed	Aug 10, 2026	Owner Demo	
+1 Not OK
+1 Monitor
+	
+S-233
+Approved
+	
+PDF	
+AI
+Build lines
+
+
+Testing Live With The Team
+v1
+	
+Completed	Aug 6, 2026	Owner Demo	
+2 Not OK
+1 Monitor
+	
+S-229
+Approved
+	
+PDF	
+WO created
+S-233
+
+
+Axle Test
+v5
+	
+Completed	Jul 15, 2026	Owner Demo	
+1 Not OK
+1 Monitor
+	
+S-58
+Approved
+	
+PDF	
+Lines added
+S-58
+
+
+Pre-trip Check
+v3
+	
+Completed	Jun 2, 2026	Owner Demo	
+1 Monitor
+	—	
+PDF	—
+
+Brake & Axle PM
+v2
+	
+Completed	May 14, 2026	Owner Demo	
+2 Not OK
+	—	
+PDF	
+WO created
+S-200
+
+
+Brake & Axle PM
+v2
+	
+Completed	Apr 22, 2026	Owner Demo	
+1 Not OK
+	—	
+PDF	—
+
+DOT Annual Inspection
+v4
+	
+Completed	Mar 9, 2026	Owner Demo	
+2 Monitor
+	—	
+PDF	—
+
+1234
+v2
+	
+Not started	—	—	—	
+S-237
+Approved
+	—	—
+
+Anteres Testing
+v2
+	
+Not started	—	—	—	
+S-73
+Approved
+	—	—
+Sorted by most recently completed first, and the same purple Build lines action sits in the action column. Once lines exist the cell states which work order got them, so the row never offers the same work twice. A not-started inspection has no action at all; there is nothing to build from.
+P1
+Completed inspection on a phone: with ShopCoach
+the summary card leads: completion line, a count per verdict, then every flagged position as field · axle · row · position with the reading that earned it · the section review stays below it
+Brake & Axle PM
+S-81 · ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo · report posted to the work order
+9 OK
+1 Monitor
+2 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+Not OK
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+Monitor
+Note attached
+Slack adjuster travel
+AI
+ShopCoach can turn these 3 findings into work order lines with labor and parts. You review everything before it is added.
+AI
+Build lines
+Go to work order
+View PDF
+Reopen
+WHAT WAS ENTERED
+read only
+1
+Brakes
+2 fields
+Brake & tire measurements
+Per axle
+Not OK
+Axle 1
+Drum · Dual
+Not OK
+Tire pressure
+LEFT OUTER
+42 psi
+Not OK
+LEFT INNER
+103 psi
+OK
+RIGHT INNER
+104 psi
+OK
+RIGHT OUTER
+40 psi
+Not OK
+Tread depth
+LEFT OUTER
+0.13 in.
+Not OK
+LEFT INNER
+0.34 in.
+OK
+RIGHT INNER
+0.38 in.
+OK
+RIGHT OUTER
+0.31 in.
+OK
+Brake lining
+LEFT
+9/32 in.
+OK
+RIGHT
+10/32 in.
+OK
+Brake chamber condition
+Checkbox
+OK
+2
+Air system
+2 fields
+Slack adjuster travel
+Measurement
+1.94 in.
+Monitor
+Low-air warning pressure
+Measurement
+62 psi
+OK
+P1b
+Completed inspection on a phone: lines already added
+Brake & Axle PM
+S-81 · ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo · report posted to the work order
+9 OK
+1 Monitor
+2 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+Not OK
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+Monitor
+Note attached
+Slack adjuster travel
+Lines added
+S-58
+Go to work order
+View PDF
+Reopen
+WHAT WAS ENTERED
+read only
+1
+Brakes
+2 fields
+Brake & tire measurements
+Per axle
+Not OK
+Axle 1
+Drum · Dual
+Not OK
+Tire pressure
+LEFT OUTER
+42 psi
+Not OK
+LEFT INNER
+103 psi
+OK
+RIGHT INNER
+104 psi
+OK
+RIGHT OUTER
+40 psi
+Not OK
+Tread depth
+LEFT OUTER
+0.13 in.
+Not OK
+LEFT INNER
+0.34 in.
+OK
+RIGHT INNER
+0.38 in.
+OK
+RIGHT OUTER
+0.31 in.
+OK
+Brake lining
+LEFT
+9/32 in.
+OK
+RIGHT
+10/32 in.
+OK
+Brake chamber condition
+Checkbox
+OK
+2
+Air system
+2 fields
+Slack adjuster travel
+Measurement
+1.94 in.
+Monitor
+Low-air warning pressure
+Measurement
+62 psi
+OK
+P2
+Build lines: target sheet
+the same two targets as the desktop menu, as a bottom sheet · 56px rows
+Brake & Axle PM
+BUILD THE LINES ON
+This work order
+S-81 · Approved
+A new work order
+Seeded with this customer & unit
+Cancel
+P2b
+Build lines: target sheet, the work order cannot take lines
+Brake & Axle PM
+BUILD THE LINES ON
+A new work order
+Seeded with this customer & unit
+Cancel
+P3
+Drafted lines, on the phone
+the technician finishes the build on the device they read the inspection on; rows pre-selected, editable, nothing added until Add Lines
+S-81 · Lines
+AI
+3 lines drafted from Brake & Axle PM. Review before adding; edit or deselect any of them.
+Replace axle 1 left outer tire
+Brake & tire measurements · Axle 1 · Tread depth: left outer 0.13 in.
+1.2 hr labor
+·
+2 parts
+Inflate axle 1 outer tires to spec
+Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi
+0.3 hr labor
+·
+no parts
+Adjust slack adjuster
+Slack adjuster travel · Monitor
+1 hr labor
+·
+1 part
+3 of 3 selected · 2.5 hr labor · 3 parts
+Add 3 Lines to S-81
+P4
+Completed inspection on a phone: without ShopCoach
+two actions and a plain line in place of the ShopCoach note · and the zero rule: this inspection has no Monitor findings, so no Monitor count is drawn
+Brake & Axle PM
+S-81 · ABC Truck Lines · Inspection
+Brake & Axle PM
+Locked · read only
+Inspection completed
+Today 06:28 AM · O. Demo · report posted to the work order
+11 OK
+1 Not OK
+FINDINGS
+Not OK
+Brake & tire measurements · Axle 2 · Tread depth: right outer 0.09 in.
+This finding is on the customer report and in the work order note feed. The lines are added on the work order.
+Go to work order
+View PDF
+
+
+======================== PAGE sc-ci — 5Conditional follow-up on a responseCI1b · CI1c · CI1d · CI1e · CI3 · CI4 · CI5 · CI6 · CI7 · CI8 · CI9 ========================
+5
+Conditional follow-up on a response
+CI1b · CI1c · CI1d · CI1e · CI3 · CI4 · CI5 · CI6 · CI7 · CI8 · CI9
+SV-8181 · DIGITAL INSPECTIONS V2 · CONDITIONAL FOLLOW-UP
+A follow-up attached to one response
+
+The reference file on a checkbox field is unconditional: the technician sees it whatever they answer. A follow-up is the same content, text plus one optional file, tied to a single response and shown only when that response is given. The technician reads it on the card as an instruction; the builder calls it a follow-up, because that is what the author is adding. Acknowledgement is offered on Monitor and Not OK only, on by default, and the author can turn it off. Follow-ups on OK and N/A are read-only and never need acknowledging. Where it is on, the inspection cannot be submitted until the technician has confirmed they read it. It carries no colour of its own. The blue already used for the reference file marks it as something to read, and the acknowledgement pill takes the colour of the response that triggered it, so red and amber keep meaning what they mean. Per axle fields do not carry follow-ups: a verdict there belongs to a position, and a follow-up would have no single position to sit on.
+
+CI1c
+One toggle turns follow-ups on, then a checkbox per response enables its own fields
+the toggles move out of the response list into RESPONSE SETTINGS · nothing is hidden behind a click, the fields are on the surface and only switch from off to on
+FOLLOW-UPS OFF · THE PANEL AS IT IS TODAY
+Field properties
+Checkbox
+LABEL
+RESPONSE OPTIONS
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+GENERAL REFERENCE FILE
+Attach File
+Both toggles leave the response list and sit in their own RESPONSE SETTINGS section, so the list is four rows and nothing else. Each row gains a pencil, the same rename affordance the rest of the builder uses. Off, the panel is the height it is today.
+ON · NOTHING CHECKED YET
+RESPONSE OPTIONS
+Follow-up for this response
+Attach File
+Follow-up for this response
+Attach File
+Require acknowledgement
+Follow-up for this response
+Attach File
+Require acknowledgement
+Follow-up for this response
+Attach File
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+The author can see what a follow-up consists of before committing to one: a box of text and one file. The checkbox is the condition, and it only switches the two fields under it from off to on. Monitor and Not OK carry Require acknowledgement, on by default. OK and N/A have no acknowledgement toggle.
+ON · NOT OK CHECKED
+RESPONSE OPTIONS
+Follow-up for this response
+Attach File
+Follow-up for this response
+Attach File
+Require acknowledgement
+Follow-up for this response
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Require acknowledgement
+Follow-up for this response
+Attach File
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+The checked block is the only one with a white ground and a blue edge. Its text area grows to four rows once it can be typed in, and Attach File is replaced by the file it took. Unchecking it keeps what was written until the field is saved, so a mis-click is not a loss.
+ON · INCLUDE MONITOR OFF
+RESPONSE OPTIONS
+Follow-up for this response
+Attach File
+Follow-up for this response
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Require acknowledgement
+Follow-up for this response
+Attach File
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+With Include Monitor option off, the Monitor row and its whole block go: three responses, three blocks. Text written against Monitor is kept and comes back with the row, and Not OK keeps its own acknowledgement setting.
+The cost is height: four blocks make the response list about 990 px instead of 280, which is why it sits behind a toggle that is off by default. Turning the toggle off again with one checked asks first, since there is text to lose. Include Monitor option sits beside it because both change which responses exist, not how one is validated. The two panels that hid the fields behind an Add Follow-up click are gone: neither showed the author what a follow-up is before they committed to making one, and neither carried the per-response acknowledgement toggle.
+CI1b
+The same panel in the builder it belongs to
+the canvas lists the follow-ups a field carries, on every field and not only the selected one
+Admin · Inspection templates
+Brake & Axle PM
+Edit
+Preview
+Draft · unsaved
+Publish
+OUTLINE
+Section 1
+3
+1
+Section 1
+3 fields
+Brake & tire measurements
+Per axle · Tire pressure (psi), Tread depth (in.), Brake lining (in.)
+Brake chamber condition
+Checkbox · OK / Monitor / Not OK / N/A · reference file · note required if Monitor / Not OK
+FOLLOW-UPS
+Monitor
+Re-check at the next PM and record the reading.
+Not OK
+Tag the unit out of service and tell the foreman in person.
+Air-brake system leak check
+Checkbox · OK / Monitor / Not OK / N/A
+FOLLOW-UPS
+Not OK
+Leak down test before the unit leaves the bay.
++ Add Field
+Field properties
+Checkbox
+LABEL
+RESPONSE OPTIONS
+Follow-up for this response
+Attach File
+Follow-up for this response
+Attach File
+Require acknowledgement
+Follow-up for this response
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Require acknowledgement
+Follow-up for this response
+Attach File
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+GENERAL REFERENCE FILE
+PDF
+Bendix-chamber-service.pdf
+1.2 MB
+VALIDATION
+Required to complete
+Photo required if Not OK
+Note required if Monitor / Not OK
+Duplicate Field
+Delete Field
+The canvas row gains a short list: one line per follow-up, the response in its own colour, the first line of the text, and a clip where a file is attached. It sits on every field that has one, selected or not, so an author reviewing a long template reads what the template does without clicking through it field by field. Lines shorten; they do not wrap. Everything above the response list, and the general reference file and validation below it, are unchanged from TB3.
+CI1e
+Builder: a follow-up with only a file
+Admin · Inspection templates
+Brake & Axle PM
+Edit
+Preview
+Draft · unsaved
+Publish
+OUTLINE
+Section 1
+3
+1
+Section 1
+3 fields
+Brake & tire measurements
+Per axle · Tire pressure (psi), Tread depth (in.), Brake lining (in.)
+Brake chamber condition
+Checkbox · OK / Monitor / Not OK / N/A · reference file · note required if Monitor / Not OK
+FOLLOW-UPS
+Monitor
+Air-leak-test-steps.pdf
+Not OK
+Tag the unit out of service and tell the foreman in person.
+Air-brake system leak check
+Checkbox · OK / Monitor / Not OK / N/A
+FOLLOW-UPS
+Not OK
+Leak down test before the unit leaves the bay.
++ Add Field
+Field properties
+Checkbox
+LABEL
+RESPONSE OPTIONS
+Follow-up for this response
+Attach File
+Follow-up for this response
+PDF
+Air-leak-test-steps.pdf
+640 KB
+Require acknowledgement
+Follow-up for this response
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Require acknowledgement
+Follow-up for this response
+Attach File
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+GENERAL REFERENCE FILE
+PDF
+Bendix-chamber-service.pdf
+1.2 MB
+VALIDATION
+Required to complete
+Photo required if Not OK
+Note required if Monitor / Not OK
+Duplicate Field
+Delete Field
+CI1d
+The tooltips, shown alone
+on the section toggle, and on the acknowledgement toggle inside a follow-up
+ON THE TOGGLE
+Add follow-up to a response
+Adds text and one file to a single response. The technician sees it only when they give that response.
+ON REQUIRE ACKNOWLEDGEMENT
+Require acknowledgement
+The technician confirms they have read this follow-up before the inspection can be submitted. On by default for Monitor and Not OK.
+NOT OFFERED ON OK AND N/A
+A follow-up on OK or N/A is a read, so those responses have no acknowledgement toggle.
+Two tooltips, one per thing a first-time author would otherwise guess at: what a follow-up is, and what acknowledging one means. The response no longer carries a badge saying it is acknowledged, because the toggle in its block says it and can be changed.
+CI3
+Filling, desktop: marker, acknowledgement, the checked state, the error, no instruction, and a very long one
+the marker sits with Add Photo and Add Note · the note and the instruction stack full width under the response
+1 · Answered OK, and OK carries a follow-up: a marker on the footer, nothing blocked
+Brake chamber condition
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+Instruction
+Add Photo
+Add Note
+One word and the icon. The marker is blue because it is something to read, the same blue the reference file uses, and it opens the block in place.
+2 · Not OK: the follow-up opens itself and holds submit until it is acknowledged
+Brake chamber condition
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+INSTRUCTION
+Required
+
+Tag the unit out of service before it leaves the bay and tell the foreman in person, not over the radio. Record the chamber part number and the date code from the canister tag, and photograph the clamp band from both sides. If the leak is at the push-rod seal, check the slack adjuster travel on the same wheel end before you close the card. Do not release the unit for road test until the replacement chamber is fitted and the system has held 90 psi for five minutes with the engine off.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+Add Photo
+Answering Not OK opens the note by itself, because the note is required and the technician would have opened it next anyway. The note and the instruction are stacked, the note first directly under the response and the instruction below it at full width. The body here runs about 500 characters, which is the worst case an author can write; the other states show a short one. The acknowledgement sits on the file row beside the file name, where there is room for it once the file name shortens. The pill takes the colour of the response that triggered it: red here, amber on Monitor. The file opens full screen and closes back to this position, as the reference file does in D4.
+3 · Acknowledged: the box is checked and green, and nothing else on the card moves
+Brake chamber condition
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Right rear chamber leaking at the clamp band, unit tagged and foreman told.
+INSTRUCTION
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledged
+Add Photo
+Edit Note
+Checked, the box turns green and the Required pill in the instruction header goes. Who checked it and when is recorded against the inspection, not printed on the card. Changing the response away from Not OK drops both the instruction and its acknowledgement, and answering Not OK again asks for it afresh.
+4 · Submit & Generate Report pressed with the box unchecked
+Brake chamber condition
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Right rear chamber leaking at the clamp band, unit tagged and foreman told.
+INSTRUCTION
+Required
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+Read the instruction and check Acknowledge to complete this inspection.
+Add Photo
+Edit Note
+Pressing Submit & Generate Report with one unchecked does not raise a dialog: it opens the outstanding list in CI5 and marks the fields it is waiting on, and this is what the technician lands on. The error is red because it is an error, not because Not OK is: the box, its label and one line under the file row, and nothing about the instruction itself changes colour.
+5 · Monitor, and Monitor carries no instruction: the note takes the whole width
+Air-brake system leak check
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+Add Photo
+The two-column row is there because the instruction is: with nothing to put beside it, the note runs the full width rather than leaving half the card empty. The Required pill is amber here, because Monitor is what made the note required, and nothing has to be acknowledged.
+6 · A body about twenty lines long, which is as far as an author is likely to go
+Brake chamber condition
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+INSTRUCTION
+Required
+
+Before you touch the chamber, chock the wheels, cage the spring brake on that wheel end and drain the wet tank until the gauge reads zero. Do not crack the supply line while the system is charged.
+
+Tag the unit out of service before it leaves the bay and tell the foreman in person, not over the radio. If the foreman is not on site, call the service advisor and write the time of the call in the note.
+
+Record the chamber part number and the date code from the canister tag. Photograph the clamp band from both sides, the push-rod at rest and the push-rod at full stroke, and put all three on this field.
+
+If the leak is at the push-rod seal rather than the clamp band, check the slack adjuster travel on the same wheel end and measure the lining at the same time, because a seal that has been weeping will usually have taken the shoe with it.
+
+Replace the chamber as an assembly. Do not reuse the clamp band, the mounting nuts or the push-rod yoke pin, and torque the mounting nuts to the value on the axle decal, not the generic value in the manual.
+
+Do not release the unit for road test until the replacement chamber is fitted, the system has held 90 psi for five minutes with the engine off, and the brake has been stroked ten times with no drop beyond the allowance in the attached procedure.
+
+If any of the above cannot be completed on this visit, answer Not OK, say in the note exactly what is outstanding, and leave the unit tagged.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+Add Photo
+Nothing truncates and nothing scrolls inside the block: the card takes whatever the author wrote and the page scrolls as it always has. Paragraph breaks the author typed are kept. The file row and the acknowledgement stay at the bottom of the block, so on a laptop a body this long puts them below the fold, which is the argument for writing short ones rather than a limit the field imposes.
+7 · Not OK, and the follow-up is only a file
+Brake chamber condition
+Checkbox · note required if Monitor or Not OK
+CHECKBOX
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+INSTRUCTION
+Required
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+Add Photo
+CI4
+Filling, phone: the same five states at 402 px
+52 px acknowledge row · the error and the no-instruction state included · the note opens under the response, as on CI3
+OK · MARKER ONLY
+1234 · FOR CLODISU
+Work Order · V2
+2
+Brake chamber condition
+OK
+OK
+Monitor
+Not OK
+N/A
+Instruction
+Photo
+Note
+Three footer buttons at 52 px, so the marker is a thumb target and not a link inside a label. Add Photo and Add Note shorten to Photo and Note at this width, as they already do elsewhere on the phone.
+NOT OK · WAITING FOR ACKNOWLEDGEMENT
+1234 · FOR CLODISU
+Work Order · V2
+2
+Brake chamber condition
+NOT OK
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+INSTRUCTION
+Required
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+The note opens by itself under the response and the instruction follows it, the same order as CI3, and both are inside the card. The acknowledgement keeps a full-width row of its own rather than joining the file row: at 402 px the file row has no width to spare, and a 52 px target is worth more here than a saved line. The file row is a 52 px target that opens the viewer full screen; the file name truncates, the instruction text does not.
+NOT OK · ACKNOWLEDGED
+1234 · FOR CLODISU
+Work Order · V2
+2
+Brake chamber condition
+NOT OK
+OK
+Monitor
+Not OK
+N/A
+INSTRUCTION
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledged
+The checked box keeps the row it had, so nothing on the card moves. Green and checked is the whole of the acknowledged state on both surfaces.
+NOT OK · COMPLETE PRESSED, NOT ACKNOWLEDGED
+WO 1234 · Unit 8842
+Brake & Axle PM
+2
+Brake chamber condition
+NOT OK
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Right rear chamber leaking at the clamp band, unit tagged and foreman told.
+INSTRUCTION
+Required
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+Read the instruction and check Acknowledge to complete this inspection.
+Reached from the outstanding list in CI6, which is what the section action opens instead of an error dialog. Same two red marks as the desktop: the box and one line under it.
+MONITOR · NOTE REQUIRED, NO INSTRUCTION
+WO 1234 · Unit 8842
+Brake & Axle PM
+3
+Air-brake system leak check
+MONITOR
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+Photo
+On the phone the note is full width in every state, so a field with no instruction is the same card with one block fewer. The Required pill is amber, because Monitor is what made the note required.
+CI5
+Outstanding items, desktop: a count on the submit bar, opening the list above it
+drawn for the first time · an unacknowledged instruction is one of the kinds it lists
+Brake & Axle PM
+Section 2 of 2 · 3 fields
+4 items before submitting
+Acknowledgement
+Section 1 · Brake chamber condition · Not OK
+Acknowledgement
+Section 2 · Air-brake system leak check · Monitor
+Note
+Section 1 · Brake chamber condition
+Answer
+Section 2 · Trailer axle measurements · 8 positions
+Go to the first one
+Save & Exit
+4
+Outstanding
+Submit & Generate Report
+The count is a button beside submit, not a blocker in front of it: pressing submit with items left opens the same list rather than raising an error. Rows are grouped by section and read kind first, then where it is, because the technician is looking for the next thing to do, not for a category. The tile colour is the verdict that caused the item, so an acknowledgement on Monitor is amber and one on Not OK is red.
+CI6
+Outstanding items, phone: carried on the action that completes the section
+settles the list that was marked unreviewed in M3
+THE COUNT RIDES ON THE SECTION ACTION
+1234 · FOR CLODISU
+Work Order · V2
+3
+Next: Section 2
+Every section action carries the count, not only the last one, so the number is not saved up for the end. Tapping the badge opens the list; tapping the label moves on and leaves the items where they are.
+THE LIST
+1234 · FOR CLODISU
+Work Order · V2
+3 items before submitting
+Acknowledgement
+Section 1 · Brake chamber condition · Not OK
+Note
+Section 1 · Brake chamber condition
+Answer
+Section 2 · Trailer axle measurements · 8 positions
+Go to the first one
+Rows are 64 px and go straight to the field, opening the instruction block if that is what is missing. The wording is the same as the desktop list, so a technician who moves between the two reads one thing.
+CI7
+Preview: the instruction is there, and takes no input
+the file is shown and is not a link
+Brake & Axle PM
+Preview · Section 1 of 2
+Brake chamber condition
+Checkbox
+OK
+Monitor
+Not OK
+N/A
+INSTRUCTION
+On Not OK
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+Instruction
+No response can be given in Preview, so every configured instruction on the field is shown at once, each naming the response it belongs to. The acknowledgement is the same checkbox the fill screen uses, drawn in the neutral treatment the verdict controls already use here, and it takes no input. There is no banner saying so.
+CI8
+Phone, filling: the whole page, not the card on its own
+the follow-up in the run of an inspection · the count on the section action falls as it is cleared
+NOT OK ANSWERED · 3 OUTSTANDING
+WO 1234 · Unit 8842
+Brake & Axle PM
+Section 1 of 2
+2 of 3 answered
+1
+Brake & tire measurements
+8 of 8 positions
+2
+Brake chamber condition
+NOT OK
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Required
+INSTRUCTION
+Required
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledge
+Photo
+Note
+3
+Air-brake system leak check
+Not answered
+3
+Next: Section 2
+The note opens under the response and the instruction follows it, so the run of the page is unchanged: one card per field, one action at the bottom. Acknowledge, the note and the unanswered field three are the three the count is holding.
+ACKNOWLEDGED · 2 OUTSTANDING
+WO 1234 · Unit 8842
+Brake & Axle PM
+Section 1 of 2
+2 of 3 answered
+1
+Brake & tire measurements
+8 of 8 positions
+2
+Brake chamber condition
+NOT OK
+OK
+Monitor
+Not OK
+N/A
+NOTE
+Right rear chamber leaking at the clamp band, unit tagged and foreman told.
+INSTRUCTION
+
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number from the canister tag.
+
+PDF
+Bendix-chamber-out-of-service-procedure.pdf
+1.2 MB
+Acknowledged
+Photo
+Edit Note
+3
+Air-brake system leak check
+Not answered
+2
+Next: Section 2
+The checked box keeps the row it had, so nothing below it moves. The count falls from three to two and the card keeps its blue edge, because the field is answered Not OK either way.
+CI9
+Phone, building: the same two toggles in a properties sheet
+the CI1c treatment at 402 px · the sheet scrolls, the response blocks do not shrink
+THE TEMPLATE · A FIELD CARRYING TWO FOLLOW-UPS
+Inspection templates
+Brake & Axle PM
+Draft
+Edit
+Preview
+1
+Section 1
+3 fields
+Brake & tire measurements
+Per axle · 3 measurements
+Brake chamber condition
+Checkbox · OK / Monitor / Not OK / N/A
+FOLLOW-UPS
+Monitor
+Re-check at the next PM.
+Not OK
+Tag the unit out of service.
+Air-brake system leak check
+Checkbox
+FOLLOW-UPS
+Not OK
+Leak down test before the unit leaves.
++ Add Field
+Save Draft
+Publish
+The same list the desktop canvas carries, shortened to the width a phone has. Tapping the row opens the properties sheet.
+PROPERTIES SHEET · MONITOR ON
+Inspection templates
+Brake & Axle PM
+Field properties
+Checkbox
+LABEL
+RESPONSE OPTIONS
+Follow-up for this response
+Follow-up for this response
+Attach File
+Require acknowledgement
+Follow-up for this response
+PDF
+Bendix-chamber-out-of-service.pdf
+1.2 MB
+Require acknowledgement
+Follow-up for this response
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+Every target in the sheet is at least 44 px and every value input is 16 px, so focusing one does not zoom the page. An unchecked block is two rows, which is what keeps four responses reachable by scrolling rather than by hunting.
+PROPERTIES SHEET · MONITOR OFF
+Inspection templates
+Brake & Axle PM
+Field properties
+Checkbox
+LABEL
+RESPONSE OPTIONS
+Follow-up for this response
+Follow-up for this response
+PDF
+Bendix-chamber-out-of-service.pdf
+1.2 MB
+Require acknowledgement
+Follow-up for this response
+RESPONSE SETTINGS
+Include Monitor option
+Add follow-up to a response
+Monitor off takes its row, its checkbox and its text with it, the same as CI1c on the desktop. The sheet gets shorter, which on the phone is the difference between one scroll and two.
+
+
+======================== PAGE sc-pdf — 6Customer report PDFR1 ========================
+6
+Customer report PDF
+R1
+The report generated when an inspection is submitted
+
+Header, customer and asset panel, and the three count tiles stay as the report is today. Per axle fields print one block per axle that never splits across a page: single axles as Left and Right, dual axles as a Tires table (Left and Right, each Outer and Inner) and a Brakes table (Left and Right). Out-of-spec values are coloured with a dot; the axle header carries the result. Checkbox follow-ups print the instruction text and the acknowledgement, with no file link. Source: Inspection Report PDF.
+
+R1
+Completed inspection report, letter size
+per axle, checkbox with follow-up, measurement, short answer
+Northline Truck & Trailer Repair · Work Order S1-10482
+Powered by ShopView
+Northline Truck & Trailer Repair
+4180 Industrial Parkway
+Unit 6
+Columbus, Ohio 43228
+(614) 555 - 0172
+INSPECTION REPORT
+WORK ORDER NO.
+S1-10482
+Inspected Sep 24, 2026
+BRAKE & AXLE PM
+Inspection results
+CUSTOMER
+Ridgeway Freight Lines
+2250 Harmon Avenue
+Columbus, Ohio 43223
+(614) 555 - 0148
+CONTACT
+Dana Pruitt
+ASSET
+2021 Freightliner Cascadia 126
+UNIT
+214
+VIN/SERIAL
+3AKJHHDR5MSMF4412
+PLATE
+PRT-4471
+MILEAGE
+412,806 mi
+HOURS
+9,214 hrs
+NEEDS ATTENTION
+3
+MONITOR
+2
+PASS
+30
+01
+Brakes
+Brake & tire measurements
+ATTENTION
+Per axle · 3 axles · 32 positions
+Axle 1
+Single · Disc
+ATTENTION
+	LEFT	RIGHT
+Tire pressure	82 psi
+	108 psi
+Tread depth	0.13 in.
+	0.19 in.
+
+Brake pad	0.38 in.	0.36 in.
+Push-rod travel	1.6 in.	1.5 in.
+Axle 2
+Dual · Drum
+PASS
+OUTER + INNER	LEFT	RIGHT
+	OUTER	INNER	INNER	OUTER
+Tire pressure	104 psi	105 psi	103 psi	104 psi
+Tread depth	0.34 in.	0.38 in.	0.38 in.	0.34 in.
+1 PER SIDE	LEFT	RIGHT
+Brake lining	0.42 in.	0.44 in.
+Push-rod travel	1.7 in.	1.8 in.
+Axle 3
+Dual · Drum
+PASS
+OUTER + INNER	LEFT	RIGHT
+	OUTER	INNER	INNER	OUTER
+Tire pressure	102 psi	104 psi	—	103 psi
+Tread depth	0.31 in.	0.34 in.	0.34 in.	0.31 in.
+1 PER SIDE	LEFT	RIGHT
+Brake lining	0.40 in.	0.41 in.
+Push-rod travel	1.7 in.	1.7 in.
+Axle 1 left tire is low and worn below the 0.16 in. minimum at the outer shoulder. Recommend replacing before the asset returns to service. The right tire is legal but wearing; plan at next PM.
+Axle 1 left, tread
+Axle 1 left, gauge
+Brake chamber condition
+ATTENTION
+Axle 3 right service chamber has a cracked diaphragm housing and is leaking at the clamp. Chamber part number MGM 3030; date code 0419.
+Axle 3 right chamber
+INSTRUCTION FOR NOT OK
+Tag the unit out of service and tell the foreman before it leaves the bay. Record the chamber part number and the date code from the canister tag.
+Acknowledged by Marcus Bell · Sep 24, 2026 9:24 AM
+02
+Air system
+Air-brake system leak check
+MONITOR
+Lost 3 psi in one minute with the engine off. Leak sounds like it is near the rear service chamber on axle 3. Within limit today; recommend a leak-down test at the next PM.
+Rear chamber, axle 3
+INSTRUCTION FOR MONITOR
+Re-check at the next PM and record the reading. Book the unit for a leak-down test if the loss is above 3 psi a minute.
+Acknowledged by Marcus Bell · Sep 24, 2026 9:31 AM
+Low-air warning buzzer
+PASS
+Governor cut-out pressure
+PASS
+Measured: 125 psi
+Technician comments
+NO STATUS
+Unit came in for the 90-day PM. Driver reported a slight pull to the left under braking; nothing found beyond the axle 1 left tire.
+INSPECTING TECHNICIAN
+Marcus Bell
+Marcus Bell · Signed Sep 24, 2026 9:42 AM
+CUSTOMER ACKNOWLEDGMENT
+By signing, customer acknowledges receipt of this report and authorizes the work marked Approved.
+
+This report is generated by ShopView and is not a guarantee of vehicle condition outside the inspected items.
+Sign by replying to the email link, or in-person at pickup
