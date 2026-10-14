@@ -323,3 +323,11 @@ against `git show HEAD:` (`stg_compare.py`), then move the new files to the run'
 committing. Several scripts keep only part of their readings in the JSON — the LOG is the full record. (5) **Sign-out last** —
 `rerun-order-staging.txt` leaves `signout-fix.mts` out (it can end the shared sign-in); run it after everything else.
 All five are set by `source run498-2026-10-08/stg-env.sh`. #staging #rerun #scripts → Rules 125, 126, 129
+
+## L0333 — 2026-10-14 — The suite's location picker finds no options on staging; use `select_location`
+`s1-batch4a.mts` (C96912, C96923) switches location by opening the menu and looking for the location as a menu option —
+on staging it found 0 options three times and stayed put. The route that works on staging is the profile menu
+(`profile_menu_button`) → `select_location` → `.q-menu .q-item` with the name (stg6.mts `switchLoc`, L0234). Such checks go on
+`evidence/staging-full-2026-10-14/REDO.md` and are re-run, never judged from a switch that did not happen.
+Staging output is committed as it arrives (scripts write over the QA-branch copies; the QA versions stay at efdc034e4, which
+`stg_compare.py` reads). #staging #location #rerun → L0234, L0332
