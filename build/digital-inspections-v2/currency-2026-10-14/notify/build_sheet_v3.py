@@ -4,7 +4,7 @@ import json, os, datetime, re
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
 H = os.path.dirname(os.path.abspath(__file__))
-B = json.load(open(f"{H}/behaviour-cases.json"))
+B = json.load(open(f"{H}/behaviour-cases-final.json"))
 VC = {v["case"]: v for v in json.load(open(f"{H}/verify-cases.json"))["cases"]}
 VT = {v["title"]: v for v in json.load(open(f"{H}/verify-new-tests.json"))["tests"]}
 def norm(t): return re.sub(r"\s+", " ", t or "").strip()
@@ -33,21 +33,18 @@ def lines(x): return "\n".join(x) if isinstance(x, list) else (x or "")
 wb = Workbook(); rd = wb.active; rd.title = "Read me"
 ws = wb.create_sheet("Test cases to update")
 cols = ["Case", "Case title", "Automated?", "What changed in behaviour", "What a tester sees differently (proof)", "Spec rule and when the spec changed it",
-        "Expected behaviour before", "Expected behaviour now", "Steps before", "Steps now", "Source"]
-widths = [11, 32, 11, 38, 45, 34, 50, 50, 50, 50, 12]
+        "Expected behaviour before", "Expected behaviour now", "Steps before", "Steps now", "Note", "Source"]
+widths = [11, 32, 11, 38, 45, 34, 50, 50, 50, 50, 30, 12]
 ws.append(cols)
 for i, w in enumerate(widths, 1):
     c = ws.cell(row=1, column=i); c.font = Font(name=F, bold=True, color="FFFFFF"); c.fill = HDR
     c.alignment = Alignment(wrap_text=True, vertical="top"); ws.column_dimensions[c.column_letter].width = w
 ws.freeze_panes = "A2"
 for r in sorted(B["cases"], key=lambda r: r["case"]):
-    v = VC.get(r["case"], {})
-    if v.get("verdict") not in ("REAL", "PARTIAL"): continue
-    for k in ("expected_now", "steps_now"): r[k] = apply_fix(r[k], v)
     rules = "\n".join(f"{x['code']}: {nice(x.get('date',''))}" + (f" ({x['entry']})" if x.get("entry") else "") for x in r["rules"])
     src = link(f"https://shopview.atlassian.net/browse/{r['rules'][0]['code']}", "Jira") if r["rules"] and r["rules"][0]["code"].startswith("SV-") else link(PRD, "Spec page")
-    ws.append([link(TR(r["case"]), f"C{r['case']}"), r["case_title"], "Yes" if r.get("automated") else "No", r["why"], v.get("proof", ""), rules,
-               lines(r["expected_before"]), lines(r["expected_now"]), lines(r["steps_before"]), lines(r["steps_now"]), src])
+    ws.append([link(TR(r["case"]), f"C{r['case']}"), r["case_title"], "Yes" if r.get("automated") else "No", r["why"], r.get("proof", ""), rules,
+               lines(r["expected_before"]), lines(r["expected_now"]), lines(r["steps_before"]), lines(r["steps_now"]), r.get("note", ""), src])
 for row in ws.iter_rows(min_row=2):
     for c in row:
         c.font = Font(name=F, color="1155CC", underline="single") if str(c.value).startswith("=HYPERLINK") else Font(name=F)

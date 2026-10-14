@@ -1,0 +1,245 @@
+{
+ "generated": "2026-10-14",
+ "purpose": "Adversarial check of notify/behaviour-cases.json. Each of the 23 claims was assumed to be wording-only until a difference a tester can observe was proven against the 22 Sep spec, the v43 spec and the dated Jira decisions.",
+ "verdict_rules": "REAL: an observable difference is proven, and every expected_now and steps_now item is supported; corrections at most mark items that have not changed. PARTIAL: an observable difference is proven, but some item is unsupported or overclaimed, is never exercised by any step, or steps_now drops coverage of a rule that has not changed. WORDING: no observable difference, so remove the case.",
+ "counts": {
+  "REAL": 17,
+  "PARTIAL": 5,
+  "WORDING": 1
+ },
+ "cases": [
+  {
+   "case": 88513,
+   "verdict": "REAL",
+   "proof": "22 Sep S2-R5: 'When the work order the inspection was run on is not an eligible build target, the system will create a new work order without asking.' 22 Sep S2-R15: 'A destination that cannot take lines will keep its place in the menu and say why.' v43 S2-R5: 'When the work order the inspection was run on is not an eligible build target, the destination menu still opens and offers only a new work order.' S2-R15 is deleted; change log 2026-09-29: 'The destination menu always opens, and a target that cannot be used is not shown.' Same build, same action (Build lines on an inspection whose work order is Complete): before, a new work order was created at once with no menu (S2-R5), or the old work order was listed with a reason (S2-R15). Now the menu opens and lists only 'A new work order'. The screen and the outcome are different.",
+   "remove_items": [],
+   "corrections": [
+    "'Choosing the new work order creates it for the same customer and asset and the drafting starts there.' -> keep it, but mark it '(unchanged: 22 Sep S2-R6 and S2-R14)'. It is the context the new steps need, not a change."
+   ],
+   "notes": "The 22 Sep spec contradicted itself (S2-R5 says no menu; S2-R15 and S6-N2 imply a menu entry with a reason). v43 differs from both readings, so the change holds either way. Decided by the PM on 2026-09-29 (change log)."
+  },
+  {
+   "case": 88515,
+   "verdict": "REAL",
+   "proof": "22 Sep S2-R13: 'If lines have already been added from this inspection, the user will be asked to confirm before adding a second set.' v43 S2-R13: 'An inspection is built from once. After lines have been added from it ... no entry point offers the build action again: the completed inspection, the work order note and the asset row show the outcome instead ... if the inspection was built from elsewhere in the meantime, nothing is added and the user is told where the lines went.' New S3-R8 and S4-R5 put the outcome in place of Build lines, and the Key Decision reads 'An inspection is built from once'. Before: the tester was asked to confirm and a second set was then added. Now there is no confirmation: a stale second Add Lines adds nothing and shows where the lines went, and Build lines is no longer offered.",
+   "remove_items": [],
+   "corrections": [
+    "'... the completed inspection, the work order note and the asset's Inspections tab row no longer offer Build lines; each shows the outcome ...' -> mark the asset-row part '(unchanged: 22 Sep S5-R9 and S6-R6 already showed the outcome on a built row)'. The change is on the completed inspection screen and the note."
+   ],
+   "notes": "Decided on 2026-09-29 (change log, 'An inspection is built from once'). The Key Decision on concurrent builds was rewritten on 2026-10-07."
+  },
+  {
+   "case": 88518,
+   "verdict": "PARTIAL",
+   "proof": "S2-E6. 22 Sep: 'Duplication happens only if both press Add Lines, which is accepted and recoverable.' v43: 'When both press Add Lines, only the first adds lines; the second adds nothing and the user is told where the lines went (S2-R13).' Before, the second press added a duplicate set. Now it adds nothing and shows a message. S2-E12. 22 Sep: '...the inspection survives it (S5-R21) and stays listed on the asset with a dash ... Where the lines had been added to that same work order they are gone with it, and the inspection counts as needing a work order again.' v43: 'an inspection that has a report survives it as a read-only record (S5-E3) ... The inspection does not count as needing a work order, because it can no longer be built from.' Before, after the run-on work order was deleted, the row was counted in the summary and could still be built from (22 Sep S6-E1 offered the new-work-order target). Now it is not counted and offers no Build lines.",
+   "remove_items": [],
+   "corrections": [
+    "'If the work order the inspection was run on is deleted, a completed inspection (one that has a report) stays listed on the asset's Inspections tab as a read-only record with a dash in the Work order column. An inspection with no report is deleted with the work order.' -> 'If the work order the inspection was run on is deleted, a completed inspection (one that has a report) stays listed on the asset's Inspections tab as a read-only record with a dash in the Work order column.' Drop the second sentence: no step in steps_now deletes a work order that holds an unfinished inspection. That scenario belongs to C88532.",
+    "'Lines that had been added to the deleted work order are gone with it.' -> mark '(unchanged: 22 Sep S2-E12 said the same)'."
+   ],
+   "notes": "PM decisions of 2026-10-06 and 2026-10-07 (change log). The developer confirmed the built behaviour in SV-10896 on 2026-10-08 ('neither is counted in N of M have findings with no lines yet')."
+  },
+  {
+   "case": 88520,
+   "verdict": "REAL",
+   "proof": "22 Sep S3-R4: '...a findings list naming each flagged position as field, axle, row and position with the reading that earned it.' v43 S3-R4: '...a findings list naming each flagged row as field, axle and row, followed by every flagged position on it with its reading, for example \"Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi\".' Change log 2026-09-29: 'One finding per flagged row.' Two flagged tires on one row: before, one entry per position (two entries) met the rule. Now exactly one entry must list both. A list with one entry per position now fails.",
+   "remove_items": [],
+   "corrections": [
+    "'A flagged checkbox field is its own entry.' -> mark '(unchanged)'. The v43 Glossary only restates it ('Finding: a flagged row or a flagged field')."
+   ],
+   "notes": "The 22 Sep spec was inconsistent: S8-R26 and a Key Decision already said 'a flagged row produces its own finding', while S3-R4 listed positions. Also, a v43-style entry would have satisfied the old S3-R4 wording, so the old case cannot catch a build that lists per position. That is why the case needs the change. The change is real but only works in one direction."
+  },
+  {
+   "case": 88522,
+   "verdict": "PARTIAL",
+   "proof": "S3-E1. 22 Sep: 'If the work order the inspection was run on has been deleted, only the option to create a new work order is offered.' v43: 'no build action is offered (S5-E3).' v43 S3-R6 adds: 'When the work order the inspection was run on has been deleted, the footer offers View PDF only, with or without ShopCoach, and no plain line.' Before, after the deletion the tester saw Build lines (with 'A new work order') and Go to work order. Now they see View PDF only. S3-E2 changes from 'the confirmation in S2-R13' to 'the check in S2-R13', which now means built once. Before, a concurrent build led to a re-build confirmation. Now nothing is added, the tester is told where the lines went, and the footer then shows the outcome (new S3-R8).",
+   "remove_items": [],
+   "corrections": [
+    "'If lines had been built onto another work order that still exists before the deletion, the footer also shows that outcome (for example \"WO created S-235\"), linking to it.' -> no step in steps_now exercises this, because step 1 deletes the work order of an inspection that was never built from. Either add steps (build onto 'A new work order', press Add Lines, delete the run-on work order, open the completed inspection, check View PDF plus a 'WO created …' link) or drop the item from this case."
+   ],
+   "notes": "The PM answered the developer's questions in SV-10965 on 2026-10-07 and wrote the answers into PRD v42. S3-E1 changed on 2026-10-06 and was refined on 2026-10-07."
+  },
+  {
+   "case": 88523,
+   "verdict": "REAL",
+   "proof": "v43 kept the text of S4-E1 ('the build creates a new work order per S2-R5 and the note stays where it is'), but the rule it points to changed. 22 Sep S2-R5: 'the system will create a new work order without asking.' v43 S2-R5: 'the destination menu still opens and offers only a new work order.' On a note whose work order is Complete: before, pressing Build lines created a new work order straight away with no menu. Now a menu opens with only 'A new work order', and nothing is created until the user chooses it.",
+   "remove_items": [],
+   "corrections": [
+    "'Choosing it builds onto a new work order for the same customer and asset, and the note stays where it is.' -> mark '(unchanged: 22 Sep S2-R6 and S4-E1)'."
+   ],
+   "notes": "Decided on 2026-09-29."
+  },
+  {
+   "case": 88524,
+   "verdict": "PARTIAL",
+   "proof": "v43 deletes S4-R3 ('The confirmation in S2-R13 will be based on the inspection's current state rather than on the note ...') and S4-E2 ('If the inspection was already built from through another entry point, the user is asked to confirm'). It adds S4-R5: 'Once the inspection has been built from, the note shows the outcome in place of Build lines, worded as in S3-R8 (S2-R13).' On the note of an inspection already built from elsewhere: before, Build lines was present and pressing it led to a confirmation. Now there is no Build lines, only a 'WO created …' or 'Lines added …' link.",
+   "remove_items": [],
+   "corrections": [
+    "'If the proposed lines from the note were already open when the other build happened, pressing Add Lines adds nothing and says where the lines went.' -> steps_now 1-5 never open proposed lines from the note before the other build, so nothing exercises this. Either add steps (from the note press Build lines and wait for the proposed lines; build and Add Lines from the completed screen; press Add Lines in the note's panel; check nothing is added and a message says where the lines went) or drop the item."
+   ],
+   "notes": "Decided on 2026-09-29 ('An inspection is built from once')."
+  },
+  {
+   "case": 88525,
+   "verdict": "WORDING",
+   "proof": "This case checks the first sentence of S4-N2, which is identical in both versions. 22 Sep: 'If the inspection has been deleted, the note remains as a record but the action will not be shown.' v43 has the same sentence and adds: 'Removing an inspection from its line, or deleting the line, deletes the inspection on purpose: it leaves the asset's Inspections tab, and its note stays on the work order marked \"Inspection deleted\".' The added sentence describes behaviour that already existed. In SV-10788 (2026-10-06) the developer wrote: 'A deleted state already exists: SV-7648 marks the note \"Inspection deleted\", greys out the card and disables View PDF and Download. It never showed because the step that finds the note never found it' (broken since v3.0 on 2026-07-16). So the marking predates 22 Sep, and under Rule 96 it was an unchanged invariant that the 22 Sep spec did not mention. That removing an inspection from its line deletes it is V1 behaviour (SV-10788 cites V1 S6-R10). The asset tab not listing a deleted inspection was already how the build behaved on 2026-10-02 (SV-10788 P.S.), and 22 Sep S5-R2 lists inspections, which a deleted one no longer is. On the same build, doing what the case does, the tester sees the same pass or fail as before.",
+   "remove_items": [
+    "the whole case: remove C88525 from the behaviour-change sheet"
+   ],
+   "corrections": [],
+   "notes": "This is a borderline call. If the QA lead treats a detail that was silent and is now written down as a change, the 'Inspection deleted' marking becomes a new check. The evidence, however, is that the behaviour did not change. 'View PDF and Download disabled, card greyed out' comes only from the developer (Stefan Vukovic, 2026-10-06): there is no PM sign-off and it is not in the PRD. These checks can be offered as an optional enhancement to the case, not as a behaviour change."
+  },
+  {
+   "case": 88528,
+   "verdict": "REAL",
+   "proof": "S5-R10. 22 Sep: 'A filter row will offer All, Needs action, With issues and Not started, each with a count taken from the full list ...' v43: 'The table has no filter row. The Inspection, Status and Completed columns can be sorted.' S5-R11. 22 Sep: 'A summary will read \"N of M need a work order\".' v43: 'A summary will read \"N of M have findings with no lines yet\".' The tester now sees no filter row (there were four filters with counts), sortable headers, and different summary text.",
+   "remove_items": [],
+   "corrections": [
+    "'The Inspection, Status and Completed columns can be sorted. By default the most recently completed inspection comes first.' -> mark the second sentence '(unchanged: 22 Sep S5-R2 \"most recently completed first\")'. steps_now step 6 checks something that has not changed.",
+    "'An inspection needs action only when ... A pre-release inspection is never flagged; it stays listed on the tab with its issues shown.' -> mark it '(unchanged except that there is no With issues filter any more)'. It is a knock-on of S5-R10, not a separate change."
+   ],
+   "notes": "The 22 Sep design handoff (sources/DESIGN-HANDOFF-README.md §F) already showed 'No filter chips' and '2 of 14 have findings with no lines yet'. On 22 Sep the PRD and the design disagreed, and the case followed the PRD. The filter was removed on 2026-10-05 (v32, per the 2026-10-07 change-log note). The S5-R11 text change has no change-log entry: its first appearance in Jira is SV-10792 on 2026-10-02, a developer task."
+  },
+  {
+   "case": 88529,
+   "verdict": "REAL",
+   "proof": "S5-R16 ('The filter row will wrap on a phone ... and will keep its counts') is deleted, and v43 S5-R10 says there is no filter row. S5-R21. 22 Sep: 'stored on the inspection when it is created rather than derived through its work order ... this tab is a record of what was inspected rather than a view that follows a later correction.' v43: 'The tab lists the inspections whose work order is on this asset now, so it follows the work order when the work order's asset is changed or two assets are merged.' When the tester changes a work order's asset: before, the inspection stayed on the old asset's tab. Now it moves to the new asset's tab and leaves the old one.",
+   "remove_items": [],
+   "corrections": [
+    "'Inspections from before the release are listed on their work order's asset.' -> mark '(unchanged: the 22 Sep backfill from the work order's asset gives the same result)'."
+   ],
+   "notes": "Decided on 2026-10-05. The 22 Sep spec said nothing about merging assets. Not exercised here: the later Jira ruling SV-10960 (Milos Vasic, 2026-10-08) that an inspection whose work order is deleted takes the work order's asset at the moment of deletion. That ruling is not in PRD v43."
+  },
+  {
+   "case": 88530,
+   "verdict": "REAL",
+   "proof": "This is a narrow change. Step 4 of the case checks that 'the asset list, report summary and Needs action filter all follow this same count'. The 22 Sep counting heading said 'the asset list, the report summary and the Needs action filter all follow it'. v43 says 'the asset list, the report summary and the summary line on the tab all follow it', and v43 S5-R10 says 'The table has no filter row.' The only observable difference is that the Needs action filter step 4 checks no longer exists. The counting rules (S5-R17, R19, R20) give the same counts: the reworded S5-R20 and the 'when the field is visible' clause dropped from S5-R17 are wording-only.",
+   "remove_items": [],
+   "corrections": [],
+   "notes": "This is a knock-on of the filter removal (S5-R10, 2026-10-05). It does not come from the 2026-10-07 'Filter leftovers removed' rewording, which the PM himself describes as cleaning up wording. If the QA lead wants only cases whose own subject changed, group this case and C88534 as 'filter-removal knock-on'. A separate issue, not a behaviour change: the precondition 'some hidden fields' cannot be met in either version, so fix it in the rewrite."
+  },
+  {
+   "case": 88532,
+   "verdict": "PARTIAL",
+   "proof": "S5-E3. 22 Sep: 'the inspection remains listed, the work order column shows a dash rather than a broken link, and the row remains usable.' v43: 'an inspection that has a report stays ... as a read-only record ... It cannot be built from, reopened or regenerated ... A reopened inspection survives as its latest report: Status reads Completed, Completed shows the date of that report, and opening the row opens that report ... An inspection with no report ... is deleted with its work order.' After the work order is deleted: an unfinished inspection was listed before and is gone now. A kept row could be used before (a build onto a new work order, 22 Sep S6-E1) and is read-only now, with no Build lines or Reopen and View PDF only. A reopened inspection was In progress before; now it reads Completed with the report's date and opens the PDF.",
+   "remove_items": [],
+   "corrections": [
+    "steps_now replaces old step 3 entirely and loses its second half: 'delete a different work order the lines were built onto and confirm the row returns to Needs action'. That is S5-E7, which is unchanged in v43. Keep it as a step in the new version, otherwise the case loses that coverage."
+   ],
+   "notes": "PM decisions in SV-10965 (2026-10-07) and the change log of 2026-10-06 and 2026-10-07. The developer built it on 2026-10-08."
+  },
+  {
+   "case": 88533,
+   "verdict": "REAL",
+   "proof": "S6-R4. 22 Sep: 'When it is not, the target keeps its place and says why (S2-R15).' v43: 'When it is not, it is not offered (S2-R5)'. S2-R15 is deleted. Change log 2026-09-29: 'a target that cannot be used is not shown.' For a row whose work order is Complete: before, the menu listed that work order greyed out with a reason. Now it is absent and only 'A new work order' is listed.",
+   "remove_items": [],
+   "corrections": [
+    "'When the row's work order is eligible (Estimate, Approved, In Progress or Review, with no invoice), the menu lists it by number and status, plus a new work order.' -> mark '(unchanged: an existing invoice already made it ineligible in 22 Sep S2-R5)'."
+   ],
+   "notes": "22 Sep S6-N2 ('only the new-work-order target will be offered') already meant the work order could not be chosen. The only change is that it is no longer shown."
+  },
+  {
+   "case": 88534,
+   "verdict": "REAL",
+   "proof": "This is a narrow change. S6-R7. 22 Sep: 'the row will leave the Needs action filter and the counts and summary will update with it.' v43: 'the row will show its outcome instead of the action, and the counts and the summary line will update with it.' What the tester sees differently: the Needs action filter is gone (S5-R10), and the summary text reads 'N of M have findings with no lines yet' instead of 'N of M need a work order' (S5-R11). The row showing its outcome is not new. It was already 22 Sep S6-R6 and is already this case's first expected result.",
+   "remove_items": [],
+   "corrections": [
+    "'After a successful build, the row shows its outcome (\"WO created …\" or \"Lines added …\") in place of the build action.' -> mark '(unchanged: 22 Sep S6-R6 and S5-R9; already in this case)'."
+   ],
+   "notes": "The PM labels the 2026-10-07 S6-R7 rewording 'Filter leftovers removed', which is a wording change. The behaviour behind it is the removal of the filter on 2026-10-05 and the new summary text. This is a filter-removal knock-on, like C88530."
+  },
+  {
+   "case": 88536,
+   "verdict": "REAL",
+   "proof": "S6-E1. 22 Sep: 'only the new-work-order target is offered.' v43: 'the row offers no build action and its action cell shows a dash, or the outcome if it was built from before the deletion (S5-E3).' S6-E3. 22 Sep: 'The row will show a dash with an explanation that creating a work order requires \"Work Orders — Create & Edit\". The explanation must be readable on a phone.' v43: 'has no available action. The row shows a dash.' The Key Decision in both versions says 'Explanatory subtext is not added unless a requirement asks for it'. Since no requirement asks for the explanation any more, it must not appear. Before, a row whose work order was deleted showed a build button with the new-work-order target. Now it shows a dash. Before, the fill-only user saw a dash with explanation text. Now they see a dash only.",
+   "remove_items": [],
+   "corrections": [],
+   "notes": "The S6-E3 change has no change-log entry, so its date is unknown (somewhere between 2026-09-22 and 2026-10-13, on the PM's page). The clause 'or the outcome' cannot occur for a Needs action row, which has never been built from, so it is context only. That the explanation must be absent is inferred from the Key Decision on subtext, because v43 just drops the requirement."
+  },
+  {
+   "case": 88539,
+   "verdict": "REAL",
+   "proof": "S7-R8. 22 Sep: 'Both records will state how many lines were created, and the asset row will read \"3 lines added\" rather than \"Lines added\".' v43: 'Both records will state how many lines were created.' The asset-row clause is deleted. v43 S5-R9 says the row reads '\"WO created\" ... \"Lines added\" ... The same wording is used wherever the outcome replaces the build action', with the S3-R8 examples 'WO created S-235' and 'Lines added S-58'. On the asset row the tester now sees 'Lines added …' with no count, instead of '3 lines added'.",
+   "remove_items": [],
+   "corrections": [
+    "'The note and the Audit Log entry each state how many lines were created (for example 3 lines).' -> mark '(unchanged)'."
+   ],
+   "notes": "The S7-R8 change has no change-log entry. The 22 Sep spec was inconsistent: S5-R9 already said 'Lines added', and S7-R8 overrode it. The 22 Sep design showed '✓ Lines added S-58'. So v43 brings the PRD into line with the design."
+  },
+  {
+   "case": 88540,
+   "verdict": "REAL",
+   "proof": "S7-E4. 22 Sep: 'the note and the Audit Log entry stay on the original. The new work order carries no inspection provenance.' v43 adds: 'The inspection's report notes are not records of the build: when a line with an inspection is split onto a new work order, those notes move with the line and are removed from the original.' After splitting the line that carries the inspection: before, the report note stayed on the original and the new work order had none. Now the report note is on the new work order and gone from the original.",
+   "remove_items": [],
+   "corrections": [
+    "'After a split, the \"built from inspection\" note and the Audit Log entry stay on the original work order; the new work order gets neither.' -> mark '(unchanged)'."
+   ],
+   "notes": "Decided by the PM (Milos Vasic) in SV-10913 on 2026-10-06 and written into the PRD the same day. Use a fresh split: v43 says 'Work orders split before this rule keep their notes where they are'."
+  },
+  {
+   "case": 88542,
+   "verdict": "REAL",
+   "proof": "S15-R6. 22 Sep: 'ShopCoach will be named once, at the step where the destination is chosen, and nowhere else in the flow.' v43: 'ShopCoach is named in the note on the completed inspection card (S3-R6) and in the Line Builder panel's existing title. The build action and the destination menu do not name it.' Proven difference: under 22 Sep, a proposed-lines panel whose title names ShopCoach failed 'nowhere else in the flow'. Under v43 that title is required.",
+   "remove_items": [],
+   "corrections": [
+    "'ShopCoach is named in the note on the completed inspection card and in the existing title of the proposed-lines (Line Builder) panel.' -> 'The proposed-lines (Line Builder) panel title names ShopCoach [the change]. The note on the completed inspection card names ShopCoach [unchanged: 22 Sep S3-R6 \"a note above it will name the product once\"].'",
+    "'The Build lines action and the destination menu do not name ShopCoach; the purple look and the AI badge mark them instead.' -> mark it '(Build lines label: unchanged, 22 Sep S15-R5; destination menu: matches the 22 Sep design \"ShopCoach is named once, in the note before the run\", so it is not a proven change)'."
+   ],
+   "notes": "The S15-R6 change has no change-log entry. Whether the menu differs from the 22 Sep PRD depends on how 'at the step where the destination is chosen' is read, so it cannot be proven. Only the panel title is a proven difference."
+  },
+  {
+   "case": 88548,
+   "verdict": "PARTIAL",
+   "proof": "S15-E5. 22 Sep: 'each flagged position reaches ShopCoach with its own axle and row.' v43: 'each flagged row reaches ShopCoach as its own finding, with its axle, its row and its flagged positions.' Change log 2026-09-29: 'One finding per flagged row.' With two flagged tires on Axle 1 Tire pressure, there were two findings before and there is one now. A tester can see this: S15-R8 shows 'one skeleton row per finding', and each line names its finding. Failure. 22 Sep Key Decision: 'When the assistant call fails the user is offered a retry, and after a second failure one empty line per finding.' v43 Key Decision and S15-E2: 'can try again ... No empty lines are created.' The difference shows only after a second failure: before, one empty line per finding; now, none.",
+   "remove_items": [
+    "'rather than one line per tire' (steps_now step 5) and 'so they are not one proposed line per tire' (expected_now item 2): not supported by the source"
+   ],
+   "corrections": [
+    "'If drafting fails, you are told it failed and can try again (Try Again). No empty lines are created and nothing is added to the work order.' -> 'If drafting fails, you are told it failed and can try again (Try Again) [unchanged: 22 Sep Key Decision already offered a retry]. If it fails again, no empty lines are created (before: one empty line per finding) and nothing is added to the work order.'",
+    "steps_now 1-2 -> add 'Press Try Again; if it fails again, check that no empty lines appear.' The change only shows on a second failure, which cannot be forced by hand, so the check is developer or automated.",
+    "'Each flagged measurement row is one finding: two flagged tires on the same row and axle go to ShopCoach as one finding naming the axle, the row and both flagged positions, so they are not one proposed line per tire.' -> '... go to ShopCoach as one finding naming the axle, the row and both flagged positions. While drafting there is one skeleton row for that finding, and the proposed line names that row's finding.' 'Not one proposed line per tire' goes further than the source: S2-R1 and S15-R14 require at least one line per finding and do not stop ShopCoach proposing more than one.",
+    "step 5 'Check the proposed line for Axle 1 · Tire pressure names that row once, with both flagged tires, rather than one line per tire.' -> 'While drafting, count the skeleton rows (Axle 1 Tire pressure counts as one finding). Check the proposed line(s) name one Axle 1 · Tire pressure finding that lists both flagged tires.'",
+    "'Flagged rows on different axles stay separate findings and are not merged into one line.' -> mark '(unchanged)'."
+   ],
+   "notes": "A developer comment in SV-10910 (Stefan Vukovic, 2026-10-07) says 'our backend adds a plain line for any finding still uncovered' and 'A single line may cover more than one finding'. That is a developer statement with no PM sign-off, and it does not sit well with 'No empty lines are created'. It is a PO question and correctly kept out of expected_now. The 22 Sep spec was inconsistent here too: S8-R26 counted per row, S15-E5 per position."
+  },
+  {
+   "case": 88571,
+   "verdict": "REAL",
+   "proof": "PRD S12-E3 is unchanged in v43: 'A very long field or section name is shortened in the canvas, the outline and the properties panel rather than breaking the layout.' The later decision is in Jira SV-11103. Branko Cicovic (designer), 2026-10-12: 'Let's truncate text with \"…\" and show tooltip on hover which displays full text.' Stefan Vukovic built it on 2026-10-12/13: 'Builder: field rows, section heading and outline names end with \"…\" with the full name on hover.' Hovering over a shortened name: before, nothing was required; now a tooltip shows the full name. Neither the 22 Sep spec nor the 22 Sep design handoff has a full-name tooltip anywhere.",
+   "remove_items": [],
+   "corrections": [
+    "'A very long field or section name ends with \"…\" in the canvas (field rows and section heading) and the outline, and the layout does not break.' -> mark '(unchanged: \"…\" is how the build shows \"shortened\")'.",
+    "'Hovering over the shortened name shows the full name in a tooltip.' -> add the source label: '(designer decision in Jira SV-11103, 2026-10-12; PRD v43 S12-E3 unchanged; no PM sign-off recorded, Milos Vasic was only copied)'."
+   ],
+   "notes": "This is a designer decision, not a PM one, and the PRD says nothing about a tooltip. It adds to the old expected result rather than contradicting it. Disclose it as a later design decision (Rule 56) and consider asking the PO to confirm it. The ticket is in TESTING STAGE."
+  },
+  {
+   "case": 88572,
+   "verdict": "REAL",
+   "proof": "S13-R0. 22 Sep: 'A per-axle field will print each row's values per position, with a status column carrying the row's derived verdict.' v43: 'A per-axle field will print one block per axle, never split across a page: each row's values per position, and the axle's result in the axle header. The sub-tables are headed by scope, \"OUTER + INNER\" and \"1 PER SIDE\". A flagged value carries ... a triangle for Needs attention and a clock for Monitor ... A position nobody measured prints a grey dash. There is no per-row status column.' The report the tester reads now has no Status column, shows the result in the axle header, and adds the icons, the scope headings and the grey dash. The 22 Sep design brief also planned a per-row STATUS column, so the old expectation was consistent across sources.",
+   "remove_items": [],
+   "corrections": [],
+   "notes": "Decided on 2026-10-05 (change log; Key Decision 'Verdict wording ... differs by surface')."
+  },
+  {
+   "case": 88575,
+   "verdict": "REAL",
+   "proof": "v43 adds S13-R14: 'The inspected date is the date the inspection was first completed. Regenerating a report does not move it.' It also adds S13-R15: 'Regenerating a report does not post another note on the work order. The existing note keeps pointing at the most recent version.' The 22 Sep spec only had S13-R7, 'The inspected date will show without a time', and nothing on notes at regeneration. I found nothing in the 22 Sep spec or design handoff that states either rule. After a regenerate, the tester must now find the same number of report notes and the same inspected date. Both are new requirements.",
+   "remove_items": [],
+   "corrections": [
+    "'Regenerating a report does not post another note on the work order; the existing report note keeps pointing at the newest version.' -> mark the second half '(unchanged: 22 Sep S13-R12 \"every link will resolve to the most recent\")'."
+   ],
+   "notes": "This is a borderline call. The 22 Sep spec was silent rather than different, so these are added requirements, not reversed ones. The PM decided them on 2026-10-05 ('Answered the developer, QA and design questions from the build'), which suggests the build had raised the question. Nothing in the inputs shows whether the product already behaved this way."
+  },
+  {
+   "case": 88578,
+   "verdict": "REAL",
+   "proof": "S14-R7. 22 Sep: 'Selecting an outstanding item will move to the first field that still needs an answer, rather than to a summary of what is missing.' v43: 'Selecting an outstanding item will move to that field. A \"Go to the first one\" action moves to the first item in the list.' When the tester selects the third outstanding item: before, they landed on the first unanswered field; now they land on that item's field. A new 'Go to the first one' action appears.",
+   "remove_items": [],
+   "corrections": [],
+   "notes": "Not in the change log. The 22 Sep follow-up design (sources/FOLLOWUP-handoff.md §5) already said 'selecting a row navigates to the field' and showed 'Go to the first one' at the foot of the list. The 22 Sep PRD and user story FM-04 said the first unfilled field. So the 22 Sep sources disagreed, and the case followed the PRD."
+  }
+ ],
+ "reading_coverage": "Read in full: notify/behaviour-cases.json (50,146 B; all 23 case objects and every top-level key). The 23 case snapshots snapshots-before/C<id>.json (HTML stripped to 588 lines, 62,729 characters; lines 1-588 read; I also checked by script that every steps_before and expected_before string appears verbatim in its case). sources/CONFLUENCE-768507905-live-2026-09-22.md (99,118 B, 952 lines, lines 1-952). currency-2026-10-14/CONFLUENCE-768507905-2026-10-14.md (v43; 112,566 B, 977 lines, lines 1-977, including Glossary, Key Decisions and Change Log). currency-2026-10-14/jira-2026-10-14.md (233,523 B, 3,514 lines, lines 1-3,514, every issue and comment). PRD-DIFF-2026-09-22-vs-2026-10-14.json (135,588 B): the added (8), removed (4), reworded (71) and same (298) lists were read in full. Its old (373) and new (377) rule-text maps were checked by script to be byte-identical to the rule texts of the two spec files read in full above, so their content is 100% covered. 100% of the named inputs were read. Beyond the named inputs, to test 'was it already there on 22 Sep', I searched the 22 Sep design-handoff files in sources/ (DESIGN-HANDOFF-README.md, DVI-V2-PRD.md, DVI-V2-build-spec.md, DVI-V2-user-stories.md, DVI-V2-design-brief.md, CLAUDE-CODE-HANDOFF.md, FOLLOWUP-handoff.md, PREVIEW-MODE-handover.md, DVI-V2-Technical-Implementation-Plan.md) for about 40 specific terms, and read FOLLOWUP-handoff.md lines 170-215 in full. Those files were searched, not read in full."
+}
