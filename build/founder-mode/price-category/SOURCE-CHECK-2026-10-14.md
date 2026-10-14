@@ -100,3 +100,9 @@ Comments: each story has 1 comment (Vladimir Tomovic, 2026-10-07), already in th
 | Jira epic SV-11258 | 1 issue | 100% read |
 
 Not done: the "Default Sorting" decision cited by the two new Key Decisions is a separate document and is not in our sources. Fetching it is outside this task.
+
+## Follow-up checks, 14 Oct 2026 (main session)
+- **"Default Sorting" decision (cited by the two new Key Decisions):** searched Confluence (title and text, CQL), Jira (summary/text "Default Sorting"; only old, unrelated tickets such as SV-9056, SV-3497) and public Slack (after 1 Oct). **No such decision document exists in any source we can reach.** The PRD v21 states both rules in full (no third state; Fixed price opens on the highest price), so the cases quote the PRD.
+- **Design:** https://claude.ai/artifact/UMNdojKWhYhRyJrjdgZa4P re-read 14 Oct; all 6 files byte-identical to the 13 Oct copy (md5 match). The design does not show a Fixed price sort direction, so it does not conflict with v21.
+- **Tech plan (13 Oct):** FR-018 ("first click on an unsorted header sorts ascending") and FR-020 ("lowest first ascending") now conflict with PRD v21 (S3-R4, S3-R8: Fixed price first click highest first). The PRD is newer and wins (Rules 30/57); the affected cases carry a divergence sentence (Rule 56). Raised as an outstanding item: an updated tech plan, if one exists.
+- **Anchors rebuilt** from v21: 67 codes (`update-2026-10-13/anchor-quotes-current.json`; v20 copy `anchor-quotes-2026-10-13-v20.json`). Validator against v21 flagged exactly C154742, C154745, C154751 (S3-R4/R5/R8/R9 quotes) and the 4 new codes uncovered.
