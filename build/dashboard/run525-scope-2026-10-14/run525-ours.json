@@ -1,0 +1,972 @@
+[
+ {
+  "case": 88594,
+  "test": 3698711,
+  "title": "Dashboard link sits after Reports and is the first screen after login",
+  "atm": 3,
+  "type": 1,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88595,
+  "test": 3698712,
+  "title": "Dashboard link shows for anyone with the Reports permission",
+  "atm": 3,
+  "type": 1,
+  "last": 3,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88596,
+  "test": 3698713,
+  "title": "Without the Reports permission there is no Dashboard link",
+  "atm": 3,
+  "type": 1,
+  "last": 3,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88597,
+  "test": 3698714,
+  "title": "The shop logo in the top bar does nothing when clicked",
+  "atm": 3,
+  "type": 1,
+  "last": 3,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88598,
+  "test": 3698715,
+  "title": "Switching workplace reloads the dashboard figures",
+  "atm": 3,
+  "type": 1,
+  "last": 3,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88599,
+  "test": 3698716,
+  "title": "The six tiles always show in the same order for every user",
+  "atm": 3,
+  "type": 1,
+  "last": 3,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88600,
+  "test": 3698717,
+  "title": "The dashboard has no way to add, remove, move or hide tiles",
+  "atm": 3,
+  "type": 1,
+  "last": 3,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88601,
+  "test": 3698718,
+  "title": "Each tile shows the same figure as its matching report",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88602,
+  "test": 3698719,
+  "title": "Each tile's figure matches a hand calculation from known records",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88603,
+  "test": 3698720,
+  "title": "Ratio tiles with no clocked hours show a grey dash, not 0.00%",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351704,
+  "test": 3742890,
+  "title": "Revenue shows a negative figure when credits exceed sales",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351705,
+  "test": 3742891,
+  "title": "A voided invoice is left out of every dashboard figure",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "blocked"
+ },
+ {
+  "case": 88604,
+  "test": 3698721,
+  "title": "Revenue and Billing Efficiency tiles show the right headline and line",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88605,
+  "test": 3698722,
+  "title": "Technician Efficiency and Utilization tiles show the right headline and line",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88606,
+  "test": 3698723,
+  "title": "The small trend line uses days, weeks, months or quarters by range length",
+  "atm": 3,
+  "type": 1,
+  "last": 3,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88607,
+  "test": 3698724,
+  "title": "KPI tiles show exact figures with no change indicator",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 351706,
+  "test": 3742892,
+  "title": "Ratio tiles with no clocked hours show an empty chart outline",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351707,
+  "test": 3742893,
+  "title": "A ratio tile with hours on one day only shows an empty chart outline",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351708,
+  "test": 3742894,
+  "title": "Revenue of $0.00 keeps its headline above an empty chart outline",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351709,
+  "test": 3742895,
+  "title": "Revenue with sales on one day only still draws its trend line",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351710,
+  "test": 3742896,
+  "title": "The empty chart outline keeps the tile the same height",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351711,
+  "test": 3742897,
+  "title": "The empty chart outline is a grey dashed box with a chart icon",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351712,
+  "test": 3742898,
+  "title": "A screen reader reads the empty chart outline as No data to chart",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "blocked"
+ },
+ {
+  "case": 351713,
+  "test": 3742899,
+  "title": "A tile still loading shows the loading placeholder, not the chart outline",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88608,
+  "test": 3698725,
+  "title": "Sales by Customer tile counts customers and names the top one",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88609,
+  "test": 3698726,
+  "title": "At Risk Customers tile updates when the inactivity window changes",
+  "atm": 3,
+  "type": 1,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88610,
+  "test": 3698727,
+  "title": "At Risk count, its twelve-month trend line and the remembered window",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88611,
+  "test": 3698728,
+  "title": "Count tiles show 0 when there is nothing to count",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88630,
+  "test": 3698747,
+  "title": "At Risk revenue figure covers every at-risk customer",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 351714,
+  "test": 3742900,
+  "title": "Sales by Customer and At Risk at zero show an empty chart outline",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351715,
+  "test": 3742901,
+  "title": "Sales by Customer with sales in one month only still draws its trend line",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88612,
+  "test": 3698729,
+  "title": "View details opens each tile's own chart and table",
+  "atm": 3,
+  "type": 1,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88613,
+  "test": 3698730,
+  "title": "At Risk table lists customers by 12-month revenue, highest first",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88614,
+  "test": 3698731,
+  "title": "Only one tile's details are open at a time",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88615,
+  "test": 3698732,
+  "title": "Tiles load on their own and remember choices in this browser",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88616,
+  "test": 3698733,
+  "title": "On a small screen tiles show View Report instead of View details",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88627,
+  "test": 3698744,
+  "title": "Expanded KPI tables show the expected columns",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88628,
+  "test": 3698745,
+  "title": "Expanded Sales by Customer and At Risk tables show the expected columns",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88617,
+  "test": 3698734,
+  "title": "A tile's date range pill offers nine presets and changes only that tile",
+  "atm": 3,
+  "type": 1,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88618,
+  "test": 3698735,
+  "title": "Each tile opens on its default date range on every visit",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 351716,
+  "test": 3742902,
+  "title": "This Month's figure and trend line both include today's sales",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88619,
+  "test": 3698736,
+  "title": "Technician filter on the expanded technician charts",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88620,
+  "test": 3698737,
+  "title": "Unticking every technician hides the technician chart",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 351717,
+  "test": 3742903,
+  "title": "Advisor filter on the expanded Billing Efficiency chart",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "retest"
+ },
+ {
+  "case": 351718,
+  "test": 3742904,
+  "title": "A chart's filter choice is still set on your next visit",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88621,
+  "test": 3698738,
+  "title": "One very high value caps the percentage axis at 200%",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88622,
+  "test": 3698739,
+  "title": "Billing Efficiency chart draws one line per advisor and nothing else",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 204097,
+  "test": 3698773,
+  "title": "Chart value axis starts at 0 unless a value is below 0",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351719,
+  "test": 3742905,
+  "title": "Percentage axis fits the data when no value is above 200%",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351720,
+  "test": 3742906,
+  "title": "Axis rises above 200% when the shown values are mostly high",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351721,
+  "test": 3742907,
+  "title": "Hovering the Billing Efficiency chart shows each advisor's percent and ELR",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "blocked"
+ },
+ {
+  "case": 351722,
+  "test": 3742908,
+  "title": "Technician charts draw one line per ticked technician and nothing else",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351723,
+  "test": 3742909,
+  "title": "Hovering a name in a dashboard chart legend shows latest month and average",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "blocked"
+ },
+ {
+  "case": 351724,
+  "test": 3742910,
+  "title": "Hovering a month on the Revenue and technician charts lists its values",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88623,
+  "test": 3698740,
+  "title": "Each tile's report link opens its matching report on the tile's dates",
+  "atm": 3,
+  "type": 1,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351725,
+  "test": 3742911,
+  "title": "Report opens with the tile's preset selected, not Custom",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351726,
+  "test": 3742912,
+  "title": "Report opened from a tile covers exactly the tile's dates",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351727,
+  "test": 3742913,
+  "title": "Sales, Service Advisor Analysis and Technician Efficiency offer Last 12 months",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351728,
+  "test": 3742914,
+  "title": "Last 12 months runs from the 1st of the month eleven months back to today",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351729,
+  "test": 3742915,
+  "title": "A report without the tile's preset opens on the same dates as Custom",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88624,
+  "test": 3698741,
+  "title": "Each of the four reports shows its chart above the report table",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 88625,
+  "test": 3698742,
+  "title": "The chart on a report page has no controls of its own",
+  "atm": 3,
+  "type": 1,
+  "last": 2,
+  "nebojsa_ever": true,
+  "result": "passed"
+ },
+ {
+  "case": 204098,
+  "test": 3698774,
+  "title": "Hide chart sits on the report's filter row, right of the filters",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351730,
+  "test": 3742916,
+  "title": "Hide chart and Show chart put the report chart away and bring it back",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351731,
+  "test": 3742917,
+  "title": "The report chart follows the report's date and person filters",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351732,
+  "test": 3742918,
+  "title": "The report chart shows the same figures as the report table",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351733,
+  "test": 3742919,
+  "title": "The show or hide choice is remembered for each report",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351734,
+  "test": 3742920,
+  "title": "Hovering a name in a report chart legend shows latest month and average",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351735,
+  "test": 3742921,
+  "title": "Hovering a month on a report chart lists every line's value",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88626,
+  "test": 3698743,
+  "title": "Desktop shows four KPI tiles in a row and two count tiles below",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88629,
+  "test": 3698746,
+  "title": "Each tile header shows its name, report icon and blue date pill",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351736,
+  "test": 3742922,
+  "title": "Tile text reads near-black in light theme and near-white in dark",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351737,
+  "test": 3742923,
+  "title": "Count tile headlines are larger than KPI tile headlines",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351738,
+  "test": 3742924,
+  "title": "Below 1024 pixels wide the tiles stack in one column",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 351739,
+  "test": 3742925,
+  "title": "View details opens one panel under the tile's row, pointing at the tile",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88631,
+  "test": 3698748,
+  "title": "Dashboard tiles load quickly and one slow tile does not hold up the others",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88632,
+  "test": 3698749,
+  "title": "Sales and Advisor Analysis reports drop a voided invoice and keep its re-invoice",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88633,
+  "test": 3698750,
+  "title": "Revenue tile shows the exact amount to the cent and equals the Sales report",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88634,
+  "test": 3698751,
+  "title": "Revenue tile shows a negative amount when credits are larger than sales",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88635,
+  "test": 3698752,
+  "title": "Revenue tile leaves out a reversed or voided invoice, like the Sales report",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88636,
+  "test": 3698753,
+  "title": "Revenue tile shows Parts and Labor as whole percentages, or the invoice count",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88637,
+  "test": 3698754,
+  "title": "Billing Efficiency shows the exact percentage and equals Advisor Analysis",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88638,
+  "test": 3698755,
+  "title": "Billing Efficiency adds up all hours first, not an average of advisors",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88639,
+  "test": 3698756,
+  "title": "Technician Efficiency shows the exact percentage and equals its report",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88640,
+  "test": 3698757,
+  "title": "Technician Efficiency shares a line's hours by each technician's clocked time",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88641,
+  "test": 3698758,
+  "title": "Technician Utilization shows the exact percentage and equals its report",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88642,
+  "test": 3698759,
+  "title": "Sales by Customer counts each customer once and leaves out undone invoices",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88643,
+  "test": 3698760,
+  "title": "At Risk Customers counts the right customers for the chosen days",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88644,
+  "test": 3698761,
+  "title": "At Risk Customers counts days in the location's own time zone",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88645,
+  "test": 3698762,
+  "title": "At Risk trend line has twelve monthly points and the last equals the count",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88646,
+  "test": 3698763,
+  "title": "Ratio tiles with no hours show a grey dash, never 0.00%",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88647,
+  "test": 3698764,
+  "title": "Trend line splits the range by day, week, month or quarter correctly",
+  "atm": 1,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88648,
+  "test": 3698765,
+  "title": "Each tile equals its report on every one of the nine date ranges",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88649,
+  "test": 3698766,
+  "title": "A chart filtered to one advisor or technician equals the filtered report",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88650,
+  "test": 3698767,
+  "title": "Tile figure, trend line and expanded table all add up to the same numbers",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88651,
+  "test": 3698768,
+  "title": "Every tile shows only the selected location's figures",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ },
+ {
+  "case": 88652,
+  "test": 3698769,
+  "title": "A tile equals its report straight after new data is added",
+  "atm": 4,
+  "type": 2,
+  "last": 3,
+  "nebojsa_ever": false,
+  "result": "passed"
+ }
+]
