@@ -94,3 +94,10 @@ technician tiles with no data (D-11) · At Risk revenue measure (D-12) · At Ris
 - Left out on purpose (wording only, not behaviour): C88630 old S5-R9 quote, example values (C88609, C88612, C88613, C351724,
   C351735), board names in references. Design triage of the re-shared canvas (`../design-drive-2026-10-14b/TRIAGE-2026-10-14b.md`
   §C) found no further case whose behaviour contradicts the new design.
+- Design gates on the re-shared canvas finished (`../design-drive-2026-10-14b/DESIGN-COVERAGE-2026-10-14b.md`): 100 files read,
+  428/428 canvas elements, 49/49 boards, 15/15 flows, 715 texts / 0 unclassified. Every design change matches PRD v48. Its case
+  list was taken from a snapshot older than today's edits; re-checked live: C351723/C351734 already say "no average", C88609
+  already carries the new S5-R9 quote, our 17 board references already tidied; C88628/C351714 are Nebojsa's and on the one sheet;
+  C88630 and Nebojsa's nine 15_Empty_* references are wording only. S11-E2 is covered by Vladimir's C137997 step 3. Still open
+  for the PO (not sent): D-13 (board 01 caption says the At Risk window resets each visit; S5-R14 says remembered) and D-4b
+  (Sales by Customer at 0 customers: the spec does not say what its supporting line reads).
