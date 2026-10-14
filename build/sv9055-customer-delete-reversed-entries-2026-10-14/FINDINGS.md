@@ -44,3 +44,7 @@
 | Open store credit only (made on screen with Issue Credit) — X3 *ZZAUTOTEST SV9055 X3 payment-on-account 93666*, CM9055-4189 −$20 | **Refused: "This customer has open credit. Reverse it from the location that issued it, then delete the customer."** | **Customer deleted** (201) — PX3 |
 | Leftover payment $199.04 + held deposit DEP-4705 $25, no work order (X2) — only reachable by deleting the paid work order through the server (SV-11276) | "You cant delete company with existing transactions" (walked live again 06:20Z, one confirm click) | n/a |
 - No on-screen path found to a state where Delete is enabled and the generic message appears. New Payment is greyed out on a customer with no invoices; the Deposits tab has no add button.
+| Note only (X4) | Deletes (201) — notes do not block | — |
+| Contact + part sale in Estimate (X5) | Delete greyed out; tooltip: "has related contacts., is linked to existing part sales." | — |
+
+**Verdict reasoning (given to the QA lead 2026-10-14):** point 1 is fixed (every reversed-only shape deletes; every active shape is still refused). Point 2: every blocker a shop can create on screen is now named, either by the Delete tooltip or by the new open-credit message. The only case still showing "existing transactions" (X2) needs a paid work order deleted through the server, which is SV-11276. The QA lead previously chose "Partially passed" and then asked for a clear answer; awaiting his confirmation before posting.
