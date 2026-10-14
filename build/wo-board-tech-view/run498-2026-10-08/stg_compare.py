@@ -5,6 +5,7 @@ what DIFFERS after masking things that are expected to differ (work order number
 unrelated rows). Same readings => the staging behaviour matches the QA-branch Passed result; a difference is judged by hand.
 Usage: python3 stg_compare.py <script.json> [C-id ...]"""
 import json, re, subprocess, sys
+QA_REF = 'efdc034e4'   # last commit holding the QA-branch evidence (staging output is committed over it from 14 Oct 17:35)
 MASK = [(re.compile(r'\b[A-Z]{1,4}\d*-\d{3,}\b'), '<WO>'), (re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'), '<ID>'),
         (re.compile(r'\b\d{8,}\b'), '<N>'), (re.compile(r'\$[\d,]+\.\d\d'), '<$>'), (re.compile(r'\b(20\d\d-\d\d-\d\d|\w{3} \d{1,2}, 20\d\d)\b'), '<DATE>'),
         (re.compile(r'\b\d{1,2}:\d\d( ?[AP]M)?\b'), '<TIME>'), (re.compile(r'(ZZAUTOTEST[^"|,;]*?) \d{3,}'), r'\1 <S>')]
@@ -21,7 +22,7 @@ def flat(x, p=''):
     else: yield p, mask(x)
 f = sys.argv[1]; want = set(sys.argv[2:])
 stg = json.load(open(f))
-try: qa = json.loads(subprocess.run(['git', 'show', f'HEAD:build/wo-board-tech-view/run498-2026-10-08/{f}'], capture_output=True, text=True).stdout or '{}')
+try: qa = json.loads(subprocess.run(['git', 'show', f'{QA_REF}:build/wo-board-tech-view/run498-2026-10-08/{f}'], capture_output=True, text=True).stdout or '{}')
 except Exception: qa = {}
 for cid in sorted(k for k in stg if k.startswith('C') and (not want or k in want)):
     a, b = dict(flat(qa.get(cid, {}))), dict(flat(stg[cid]))
