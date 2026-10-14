@@ -37,3 +37,6 @@ wrote them into the PRD (v27 → v29). Answers verbatim: `../po-answers-2026-10-
 5. What does a user without the Vendor Order Management permissions see?
 6. Bin Locations is under "Administration" in the PRD but "Settings" on screen.
 7. SV-10380 "5 Available" for bins +5 and −2 (still from the ticket's own text).
+
+## Display check
+281 of 281 cases "RESULT OK" (`render-0/1/2.log`). Repaired by the checker: none
