@@ -1,5 +1,16 @@
 # Founder Mode → Price/Category (Settings sorting) — PROJECT-STATE
 
+## CURRENT STATE — 14 Oct 2026 (read this first)
+- **Full update done** to PRD **version 21** (Confluence 578781186, 14 Oct; Fixed price now opens on the highest price; no third state). Record: `update-2026-10-13/FULL-UPDATE-2026-10-14.md`.
+- **37 cases:** C154726–C154751 (26, rewritten) + C573687–C573697 (11 new). Coverage 67/67. Display check 37/37. All in Nightly run 539. Marker HOLD (no QA build).
+- **Epic:** SV-11258 (Ready for Development). **Tech plan** (13 Oct) conflicts with v21 on Fixed price direction; PRD wins.
+- **10 PO questions** for Chris Ward in the FULL-UPDATE file (send after build verification unless the QA lead says now).
+- **Decisions:** no dedicated run; old setup docs: QA lead said ignore (list kept).
+- Everything below this line is the 30 Sep history.
+
+---
+
+
 **Feature:** Settings "Pricing" and "Categories" sorting — make the sort controls on three Settings →
 Parts lists actually work, with a predictable default order and a sort that survives reload/search.
 **Epic:** SV-9667 · **Spec:** Confluence 578781186 (*Locked for build 2026-09-15*, read 2026-09-30)
