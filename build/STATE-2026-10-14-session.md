@@ -21,3 +21,11 @@ Next: WO Board and Tech View Currency Check V2 (QA lead chose V2, 14 Oct): TestR
 - Waiting on: Chris (What/Why, Price/Category), Milos (DVI V2), Milan (Price/Category tech plan) — the QA lead will say when.
 - Feature-squad policy: do NOT ask or remind before next week.
 - In progress: impact of Chris's answers (Dashboard 15, WO Board 11) on the test cases.
+
+## QA lead, 14 Oct 2026 (evening) — standing instruction
+- "Everything you do should be done keeping in mind that Human beings are involved with your work to keep things simple friendly
+  understandable authentic and your work should never bite me."
+- Dashboard: ONE sheet to work on = https://docs.google.com/spreadsheets/d/1fC6Fn9664Rraf9NL7MPmitnwNsDeexowd7CHRBJVKUg/edit
+  reduced to one tab, same row format, ONLY cases whose behaviour changed and are not yet updated (Nebojsa/Ayesha/Vladimir),
+  every such case included. The newer Nebojsa+Vladimir sheet (1NdmC6…) gets a note pointing to it.
+- Our Dashboard cases: reference tidy-up approved (v48, boards, "remembers your choices" line). Nebojsa's/Vladimir's: don't touch.
