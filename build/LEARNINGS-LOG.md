@@ -331,3 +331,10 @@ on staging it found 0 options three times and stayed put. The route that works o
 `evidence/staging-full-2026-10-14/REDO.md` and are re-run, never judged from a switch that did not happen.
 Staging output is committed as it arrives (scripts write over the QA-branch copies; the QA versions stay at efdc034e4, which
 `stg_compare.py` reads). #staging #location #rerun → L0234, L0332
+
+## L0334 — 2026-10-14 — On a fresh environment the suite's scripts depend on each other's data: plan a second pass
+On the QA branch every customer the scripts read ("ZZAUTOTEST F1 Tabs" …) already existed, so the run order did not matter.
+On staging `s1-batch2b` (C96913, C154884) read customers that `s1-batch2` creates — and ran first, so its readings came back
+EMPTY. An empty reading is the script's set-up, never a product verdict. Rule for any new environment: run the whole order
+once, then re-run every script with an empty reading, an error, or a data dependency (list kept in the run's `REDO.md`).
+#staging #rerun #data → Rules 107, 126
