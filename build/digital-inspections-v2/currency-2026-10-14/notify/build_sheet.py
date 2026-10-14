@@ -24,8 +24,18 @@ def body(ws):
         for c in row:
             c.font = Font(name=F, color="1155CC", underline="single") if str(c.value).startswith("=HYPERLINK") else Font(name=F)
             c.alignment = Alignment(wrap_text=True, vertical="top"); c.border = Border(bottom=thin)
+import datetime
+def nice(t):
+    def one(v):
+        try: return datetime.date.fromisoformat(v).strftime("%-d %b %Y")
+        except Exception: return v
+    return re.sub(r"\d{4}-\d{2}-\d{2}", lambda m: one(m.group(0)), t or "")
 def when(code):
-    x = dates.get(code, {}); return x.get("date", ""), x.get("entry", ""), {"named": "The change log entry names this rule", "topic": "The change log entry describes this change", "not in the change log": "Not named in the change log; changed between 29 Sep and 13 Oct"}.get(x.get("basis", ""), x.get("basis", "")), x.get("what_changed", ""), x.get("jira", "")
+    x = dates.get(code, {})
+    entry = (f"{nice(x['date'])}: \"{x['entry']}\"" if x.get("entry") else "")
+    also = "; ".join(f"{nice(a.get('date',''))}: \"{a.get('entry','')}\"" for a in x.get("also", []) if a.get("entry"))
+    if also: entry += ("\nAlso: " if entry else "Also: ") + also
+    return nice(x.get("date", "")), entry, {"named": "The change log entry names this rule", "topic": "The change log entry describes this change", "not in the change log": "Not named in the change log; changed between 29 Sep and 13 Oct"}.get(x.get("basis", ""), x.get("basis", "")), x.get("what_changed", ""), x.get("jira", "")
 wb = Workbook(); rd = wb.active; rd.title = "Read me"
 # ---- Cases to update
 ws = wb.create_sheet("Cases to update")

@@ -1,0 +1,681 @@
+{
+ "S3-R8": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "New: once lines have been built from an inspection, the completed inspection's footer shows the result in place of Build lines, for example 'WO created S-235' or 'Lines added S-58', linking to that work order."
+ },
+ "S4-R5": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "New: once lines have been built from an inspection, its note on the work order shows the same result wording in place of Build lines."
+ },
+ "S11-R11": {
+  "date": "2026-10-07",
+  "entry": "Files open from a hyperlinked name",
+  "basis": "named",
+  "jira": "",
+  "what_changed": "New: while filling, the general reference file is shown by its name, and clicking the name opens it in the viewer; there is no separate Open or View button, and the file inside a follow-up opens the same way."
+ },
+ "S12-N4": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "New: the Text field has no single-line or multi-line setting; the answer box grows with the answer."
+ },
+ "S13-R14": {
+  "date": "2026-10-05",
+  "entry": "Developer and QA questions answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "New: the inspected date is the date the inspection was first completed; regenerating the report does not change it, while reopening and completing the inspection again gives it a new date."
+ },
+ "S13-R15": {
+  "date": "2026-10-05",
+  "entry": "Developer and QA questions answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "New: regenerating a report does not post another note on the work order; the existing note keeps pointing at the latest version."
+ },
+ "S15-N6": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "New: photos are not sent to ShopCoach; the technician's note is the only evidence it reads."
+ },
+ "S15-E7": {
+  "date": "between 2026-09-29 and 2026-10-02",
+  "entry": "",
+  "basis": "Not named in the change log; Jira SV-10792 (2 Oct 2026) already quotes the new text",
+  "jira": "",
+  "what_changed": "New: when the user picks a new work order, it is created straight away; if drafting is cancelled, fails, returns nothing or the user leaves, that work order stays, empty, nothing is deleted, the inspection still needs action, no note is written, and trying again uses the same work order."
+ },
+ "S2-R15": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "Removed: a destination that cannot take lines no longer stays in the menu with a reason; it is simply not shown."
+ },
+ "S4-R3": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "Removed: the rule that the 'add a second set?' confirmation is based on the inspection's current state, because lines can now be built from an inspection only once."
+ },
+ "S4-E2": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "Removed: building from the work order note after the inspection was already built from elsewhere no longer asks the user to confirm, because lines can now be built from an inspection only once."
+ },
+ "S5-R16": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "also": [
+   {
+    "date": "2026-10-07",
+    "entry": "Filter leftovers removed"
+   }
+  ],
+  "jira": "",
+  "what_changed": "Removed: the phone rule that the filter row on the asset's Inspections tab wraps and keeps its counts, because the tab no longer has a filter row."
+ },
+ "S1-R2": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "The 'note required' option being on by default for newly added checkbox fields now also applies to the fields in the starter templates."
+ },
+ "S2-R1": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "Adds that when ShopCoach drafting fails, the failure rule applies instead of every flagged finding getting a line."
+ },
+ "S2-R4": {
+  "date": "between 2026-09-29 and 2026-10-02",
+  "entry": "",
+  "basis": "Not named in the change log; Jira SV-10792 (2 Oct 2026) already quotes the new text",
+  "jira": "",
+  "what_changed": "The inspection's own work order is offered only if it is Estimate, Approved, In Progress or Review and also has no invoice (the 'no invoice' condition is new in this rule)."
+ },
+ "S2-R5": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "When the inspection's own work order cannot take lines, the destination menu still opens and offers only a new work order, instead of a new work order being created without asking."
+ },
+ "S2-R13": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "named",
+  "jira": "",
+  "what_changed": "Lines can be built from an inspection only once: instead of asking to confirm a second set, every place shows the result with a link to the work order that got the lines, and a late second Add Lines adds nothing and tells the user where the lines went."
+ },
+ "S2-E6": {
+  "date": "2026-10-07",
+  "entry": "Leftovers from the built-once rule; file limit; submit name",
+  "basis": "named",
+  "jira": "",
+  "what_changed": "When two users both press Add Lines on the same inspection, only the first adds lines; the second adds nothing and is told where the lines went (before, both sets were added)."
+ },
+ "S2-E12": {
+  "date": "2026-10-06",
+  "entry": "Deleted work orders, removed inspections and splits",
+  "basis": "topic",
+  "also": [
+   {
+    "date": "2026-10-07",
+    "entry": "Deleted work order after a build"
+   }
+  ],
+  "jira": "",
+  "what_changed": "When the inspection's work order is deleted, only an inspection that has a report survives, as a read-only record; it no longer counts as needing a work order, because it can no longer be built from (before, it counted as needing one again)."
+ },
+ "S3-R4": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "The findings list on the completed screen now names each flagged row (field, axle and row) followed by every flagged position on it with its reading, instead of one entry per flagged position."
+ },
+ "S3-R6": {
+  "date": "2026-10-07",
+  "entry": "Deleted work order: outcome, footer, reopened, merge (SV-10965)",
+  "basis": "topic",
+  "also": [
+   {
+    "date": "2026-10-07",
+    "entry": "Deleted work order after a build"
+   }
+  ],
+  "jira": "SV-10965",
+  "what_changed": "When the inspection's work order has been deleted, the completed screen's footer offers only View PDF, with or without ShopCoach and with no explanatory line, and also shows the result if the lines went onto another work order that still exists."
+ },
+ "S3-N4": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "Wording only: without ShopCoach the screen offers View PDF, a link to the work order and 'no build action' instead of 'nothing else'."
+ },
+ "S3-E1": {
+  "date": "2026-10-06",
+  "entry": "Deleted work orders, removed inspections and splits",
+  "basis": "topic",
+  "also": [
+   {
+    "date": "2026-10-07",
+    "entry": "Deleted work order after a build"
+   }
+  ],
+  "jira": "",
+  "what_changed": "When the inspection's work order has been deleted, no build action is offered at all (before, only 'a new work order' was offered); if lines were built before the deletion, the footer shows the result instead."
+ },
+ "S3-E2": {
+  "date": "2026-10-07",
+  "entry": "Leftovers from the built-once rule; file limit; submit name",
+  "basis": "named",
+  "jira": "",
+  "what_changed": "Wording: when another user builds while the screen is open, the built-once check (not a confirmation) is based on the current state rather than the state when the screen loaded."
+ },
+ "S4-N2": {
+  "date": "2026-10-06",
+  "entry": "Deleted work orders, removed inspections and splits",
+  "basis": "named",
+  "jira": "",
+  "what_changed": "Adds that removing an inspection from its line, or deleting the line, deletes the inspection on purpose: it leaves the asset's Inspections tab and its note stays on the work order marked 'Inspection deleted'."
+ },
+ "S5-R9": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "Adds that the same result wording ('WO created' / 'Lines added') is used everywhere the result replaces the build action."
+ },
+ "S5-R10": {
+  "date": "2026-10-05",
+  "entry": "Developer and QA questions answered",
+  "basis": "topic",
+  "also": [
+   {
+    "date": "2026-09-29",
+    "entry": "QA contradiction pass answered"
+   },
+   {
+    "date": "2026-10-07",
+    "entry": "Filter leftovers removed"
+   }
+  ],
+  "jira": "",
+  "what_changed": "The asset's Inspections tab no longer has a filter row (All, Needs action, With issues, Not started); instead the Inspection, Status and Completed columns can be sorted, with the most recently completed inspection first by default."
+ },
+ "S5-R11": {
+  "date": "between 2026-09-29 and 2026-10-02",
+  "entry": "",
+  "basis": "Not named in the change log; Jira SV-10792 (2 Oct 2026) already quotes the new text",
+  "jira": "",
+  "what_changed": "The summary line now reads 'N of M have findings with no lines yet' instead of 'N of M need a work order'."
+ },
+ "S5-R12": {
+  "date": "2026-10-07",
+  "entry": "Filter leftovers removed",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "Inspections completed before the release now stay listed on the tab with their issues shown, instead of being reachable through the With issues filter."
+ },
+ "S5-R17": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "The counting rule no longer says the field must be visible: a checkbox or measurement answer of Pass, Monitor or Not OK counts once."
+ },
+ "S5-R20": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "Adds that each axle's single count carries that axle's worst verdict."
+ },
+ "S5-R21": {
+  "date": "2026-10-05",
+  "entry": "Developer and QA questions answered",
+  "basis": "topic",
+  "also": [
+   {
+    "date": "2026-10-07",
+    "entry": "Deleted work order: outcome, footer, reopened, merge (SV-10965)"
+   }
+  ],
+  "jira": "SV-10965",
+  "what_changed": "The asset's Inspections tab now lists the inspections whose work order is on this asset now, so it follows the work order when its asset is changed or assets are merged; the asset stored on the inspection is kept as a record and used when the work order has been deleted, and merging assets moves such inspections to the surviving asset."
+ },
+ "S5-E3": {
+  "date": "2026-10-06",
+  "entry": "Deleted work orders, removed inspections and splits",
+  "basis": "topic",
+  "also": [
+   {
+    "date": "2026-10-07",
+    "entry": "Deleted work order after a build"
+   },
+   {
+    "date": "2026-10-07",
+    "entry": "Deleted work order: outcome, footer, reopened, merge (SV-10965)"
+   }
+  ],
+  "jira": "SV-10965",
+  "what_changed": "When the work order is deleted, only an inspection with a report stays on the tab, read-only, with a dash for the work order; the Action column shows the result only while the work order it points to exists; it can be opened and its latest report downloaded but not built from, reopened or regenerated; a reopened one shows as Completed on its latest report's date and opens that report; an inspection with no report is deleted with the work order."
+ },
+ "S6-R4": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "When the inspection's own work order cannot take lines, it is now left out of the menu instead of staying there with a reason."
+ },
+ "S6-R7": {
+  "date": "2026-10-07",
+  "entry": "Filter leftovers removed",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "After a build, the row now shows its result in place of the build action (instead of leaving the Needs action filter), and the counts and the summary line update."
+ },
+ "S6-E1": {
+  "date": "2026-10-06",
+  "entry": "Deleted work orders, removed inspections and splits",
+  "basis": "topic",
+  "also": [
+   {
+    "date": "2026-10-07",
+    "entry": "Deleted work order after a build"
+   }
+  ],
+  "jira": "",
+  "what_changed": "When the inspection's work order has been deleted, the row offers no build action and shows a dash, or the result if it was built from before the deletion (before, only the new work order target was offered)."
+ },
+ "S6-E3": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "For a user who can fill inspections but cannot create work orders, a row whose work order is closed now just shows a dash; the explanation about the 'Work Orders — Create & Edit' permission (readable on a phone) is dropped."
+ },
+ "S7-R2": {
+  "date": "2026-10-07",
+  "entry": "Deleted work order after a build",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "Adds that if the original work order was deleted after the build, the note shows its number as plain text tagged 'Work order deleted', with no link."
+ },
+ "S7-R5": {
+  "date": "2026-10-07",
+  "entry": "Deleted work order after a build",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "Adds that if the original work order was deleted after the build, the Audit Log entry shows its number as plain text, with no link."
+ },
+ "S7-R7": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "Adds that the note and the Audit Log entry must match only when both exist; if one could not be written, the other stands alone, the failure is logged and the user is not told."
+ },
+ "S7-R8": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "The asset row no longer reads '3 lines added' instead of 'Lines added'; the note and the Audit Log entry still state how many lines were created."
+ },
+ "S7-E4": {
+  "date": "2026-10-06",
+  "entry": "Deleted work orders, removed inspections and splits",
+  "basis": "named",
+  "jira": "SV-10913",
+  "what_changed": "Adds that when a line with an inspection is split onto a new work order, the inspection's report notes move with the line and are removed from the original; work orders split before this rule keep their notes where they are."
+ },
+ "S8-R2": {
+  "date": "2026-10-07",
+  "entry": "Per-axle rows are four fixed types (SV-10877)",
+  "basis": "topic",
+  "jira": "SV-10877",
+  "what_changed": "Adds that the four pre-filled rows (tire pressure, tread depth, brake lining, push-rod travel) are the only row types, and each can appear only once."
+ },
+ "S8-R3": {
+  "date": "2026-10-06",
+  "entry": "Deleted work orders, removed inspections and splits",
+  "basis": "named",
+  "jira": "",
+  "what_changed": "Wording only: the tire pressure unit is written 'psi' instead of 'PSI'."
+ },
+ "S8-R4": {
+  "date": "2026-10-07",
+  "entry": "Per-axle rows are four fixed types (SV-10877)",
+  "basis": "topic",
+  "also": [
+   {
+    "date": "2026-09-29",
+    "entry": "QA contradiction pass answered"
+   }
+  ],
+  "jira": "SV-10877",
+  "what_changed": "Each row now has one of four fixed types; the two tire rows have a '1 per side' or 'Outer + inner' setting, defaulting to Outer + inner, and the two brake rows are always '1 per side' (before, each row said whether it was measured per tire or per brake)."
+ },
+ "S8-R5": {
+  "date": "2026-10-07",
+  "entry": "Per-axle rows are four fixed types (SV-10877)",
+  "basis": "topic",
+  "also": [
+   {
+    "date": "2026-09-29",
+    "entry": "QA contradiction pass answered"
+   }
+  ],
+  "jira": "SV-10877",
+  "what_changed": "The author now sets the tire rows' scope in the builder, brake rows have no scope control, and the technician cannot change a row's scope while filling; an 'Outer + inner' row records four values on a Dual axle and two on a Single axle, and a '1 per side' row always records two."
+ },
+ "S8-R6": {
+  "date": "2026-10-07",
+  "entry": "Per-axle rows are four fixed types (SV-10877)",
+  "basis": "topic",
+  "jira": "SV-10877",
+  "what_changed": "Adds that renaming a row changes only its label; the row keeps its type."
+ },
+ "S8-R7": {
+  "date": "2026-10-07",
+  "entry": "Per-axle rows are four fixed types (SV-10877)",
+  "basis": "topic",
+  "jira": "SV-10877",
+  "what_changed": "Adding a row now offers only the row types the field does not already have, and the add control is not shown when all four are present."
+ },
+ "S8-R11": {
+  "date": "2026-10-07",
+  "entry": "Per-axle rows are four fixed types (SV-10877)",
+  "basis": "topic",
+  "also": [
+   {
+    "date": "2026-09-29",
+    "entry": "QA contradiction pass answered"
+   }
+  ],
+  "jira": "SV-10877",
+  "what_changed": "Value counts now follow the row's scope: a tire row on 'Outer + inner' records four values on a Dual axle and two on a Single axle, while a tire row on '1 per side' and every brake row record two, left and right."
+ },
+ "S8-R14": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "The worst-verdict rule now ranks N/A below OK, a position with nothing entered does not affect its row, and a row or axle with nothing entered is Not inspected."
+ },
+ "S8-R24": {
+  "date": "2026-10-05",
+  "entry": "Developer and QA questions answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "The completed read-only view now shows each field's verdict and, for a per-axle field, each position's value and verdict and the axle's verdict, with no verdict for a measurement row; the phone shows the same as the desktop; the report is covered by its own rule."
+ },
+ "S8-R25": {
+  "date": "2026-10-05",
+  "entry": "Developer and QA questions answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "Adds one exception to per-axle counting: the per-axle field's header on the fill screen counts flagged positions for the technician, for example '2 positions Not OK · 1 Monitor', without naming tires or brakes."
+ },
+ "S8-R26": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "Adds that each flagged row's finding names every flagged position on that row with its reading."
+ },
+ "S11-R2": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "named",
+  "jira": "",
+  "what_changed": "Accepted reference file types are now listed as PDF, JPG, PNG, HEIC, Word (DOC, DOCX) and Excel (XLS, XLSX); GIF, WEBP, TIFF and video are refused."
+ },
+ "S11-R3": {
+  "date": "2026-10-07",
+  "entry": "Leftovers from the built-once rule; file limit; submit name",
+  "basis": "named",
+  "also": [
+   {
+    "date": "2026-09-29",
+    "entry": "QA contradiction pass answered"
+   }
+  ],
+  "jira": "",
+  "what_changed": "The size limit is no longer shown before upload; a file over it is rejected with a message stating the limit, and the limit is 20 MB (the 10 MB alternative is gone)."
+ },
+ "S11-R9": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "TIFF is removed from the list of files the viewer cannot show, since TIFF is no longer accepted."
+ },
+ "S12-R1": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "Adds that a brand-new template's first screen also shows no Edit / Preview control."
+ },
+ "S12-R4": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "The starter list no longer gives section and field counts, and adds that starters are checked visually, one to one, against the forms they come from."
+ },
+ "S12-R8": {
+  "date": "2026-10-07",
+  "entry": "Per-axle rows are four fixed types (SV-10877)",
+  "basis": "topic",
+  "jira": "SV-10877",
+  "what_changed": "Row cards now show the scope setting only on a tire row, and a brake row shows no scope control (before, each card showed whether the row is measured on the tire or on the brake)."
+ },
+ "S12-R9": {
+  "date": "2026-10-07",
+  "entry": "Per-axle rows are four fixed types (SV-10877)",
+  "basis": "topic",
+  "jira": "SV-10877",
+  "what_changed": "Adding a measurement row now opens a menu of the row types the field does not already have, instead of a new row opening ready to be renamed."
+ },
+ "S12-R10": {
+  "date": "2026-10-07",
+  "entry": "Per-axle rows are four fixed types (SV-10877)",
+  "basis": "topic",
+  "jira": "SV-10877",
+  "what_changed": "The full-width add control now adds one of the missing row types and is hidden when all four are present."
+ },
+ "S12-R24": {
+  "date": "2026-10-07",
+  "entry": "Per-axle rows are four fixed types (SV-10877)",
+  "basis": "topic",
+  "jira": "SV-10877",
+  "what_changed": "The Per axle explanation now says the author picks which of the four measurement rows the field carries, instead of defining the rows."
+ },
+ "S12-R28": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "Wording only: 'a 77-field template' becomes 'the largest starter'; the default required settings are unchanged."
+ },
+ "S12-R29": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "named",
+  "jira": "",
+  "what_changed": "The Axles control now offers 1 to 8 axles instead of 2 to 5; the default is still 3."
+ },
+ "S12-R31": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "named",
+  "jira": "",
+  "what_changed": "In Preview only Add Axle and delete axle work (the first axle is never deleted, the count stays between 1 and 8) and they write the count back to the draft; Single/Dual and Drum/Disc also take no input, and a reference file is shown but cannot be opened (before, it opened)."
+ },
+ "S12-R32": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "Clicking anywhere on a field in Preview returns to Edit with that field selected, except on the axle count controls."
+ },
+ "S12-N1": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "Wording: a starting point cannot be applied to a template that already has content (was 'already has sections')."
+ },
+ "S12-E1": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "Adds that after the last section is deleted, the starting points are not offered again."
+ },
+ "S13-R0": {
+  "date": "2026-10-05",
+  "entry": "Developer and QA questions answered",
+  "basis": "named",
+  "jira": "",
+  "what_changed": "The report now prints one block per axle, never split across a page, with the axle's result in the axle header, sub-tables headed 'OUTER + INNER' and '1 PER SIDE', a triangle or clock icon beside flagged values as well as colour, a grey dash for unmeasured positions, and no per-row status column."
+ },
+ "S14-R6": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "Adds that nothing blocks finishing a section: missing answers, notes, photos and acknowledgements only raise the count, and everything outstanding is collected at submit."
+ },
+ "S14-R7": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "Selecting an outstanding item now goes to that item's field, and a 'Go to the first one' action goes to the first item in the list (before, selecting went to the first field still needing an answer)."
+ },
+ "S15-R6": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "ShopCoach is now named in the note on the completed inspection card and in the Line Builder panel's title, and not on the build action or the destination menu (before, it was named once, where the destination is chosen)."
+ },
+ "S15-E2": {
+  "date": "2026-10-13",
+  "entry": "Link to the proposed ShopCoach brief",
+  "basis": "named",
+  "also": [
+   {
+    "date": "2026-09-29",
+    "entry": "QA contradiction pass answered"
+   }
+  ],
+  "jira": "",
+  "what_changed": "When ShopCoach drafting fails, the user is told it failed and can now try again, and no empty lines are created."
+ },
+ "S15-E5": {
+  "date": "2026-09-29",
+  "entry": "QA contradiction pass answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "When the same field is flagged on several axles, each flagged row (not each flagged position) goes to ShopCoach as its own finding, with its axle, its row and its flagged positions."
+ },
+ "S17-R2": {
+  "date": "between 2026-09-29 and 2026-10-02",
+  "entry": "",
+  "basis": "Not named in the change log; Jira SV-10789 (2 Oct 2026) already quotes the new text",
+  "jira": "",
+  "what_changed": "'Photo required if Not OK' is now off by default for newly added checkbox fields, starters included (it was on)."
+ },
+ "S18-R1": {
+  "date": "2026-10-05",
+  "entry": "Developer and QA questions answered",
+  "basis": "named",
+  "jira": "",
+  "what_changed": "The Mark OK labels now name their level, 'Mark all OK', 'Mark section OK' and 'Mark field OK', and there is no axle level (before, every level used the same wording)."
+ },
+ "S18-R10": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "Adds the phone caption for the inspection level: '34 items are still Not inspected. Only those are marked OK; verdicts already picked stay, and values are never filled in.'"
+ },
+ "S18-R11": {
+  "date": "2026-10-05",
+  "entry": "Developer and QA questions answered",
+  "basis": "named",
+  "jira": "",
+  "what_changed": "Adds that on a phone, on the last section the footer keeps Back as a small arrow button beside 'Submit & Generate Report', which is never cut short."
+ },
+ "S19-R5": {
+  "date": "between 2026-09-29 and 2026-10-13",
+  "entry": "",
+  "basis": "not in the change log",
+  "jira": "",
+  "what_changed": "A follow-up can now be a text, a file, or both (was one text and at most one file); it still has at most one file."
+ },
+ "S19-R19": {
+  "date": "2026-10-07",
+  "entry": "Follow-up file opens from its name (SV-10794)",
+  "basis": "named",
+  "also": [
+   {
+    "date": "2026-10-07",
+    "entry": "Files open from a hyperlinked name"
+   }
+  ],
+  "jira": "SV-10794",
+  "what_changed": "The follow-up file now opens by clicking its name, which is a link; there is no 'View Instruction' button."
+ },
+ "S19-R25": {
+  "date": "2026-10-07",
+  "entry": "Leftovers from the built-once rule; file limit; submit name",
+  "basis": "named",
+  "also": [
+   {
+    "date": "2026-09-29",
+    "entry": "QA contradiction pass answered"
+   }
+  ],
+  "jira": "",
+  "what_changed": "Adds that Submit is never disabled, is named 'Submit & Generate Report' everywhere, the list opened is titled 'N items before submitting', and the sign-off step keeps its current labels."
+ },
+ "S19-R28": {
+  "date": "2026-10-07",
+  "entry": "Files open from a hyperlinked name",
+  "basis": "named",
+  "jira": "",
+  "what_changed": "In Preview the follow-up file is now shown but cannot be opened (before, it opened)."
+ },
+ "S19-N3": {
+  "date": "2026-10-05",
+  "entry": "Developer and QA questions answered",
+  "basis": "topic",
+  "jira": "",
+  "what_changed": "The customer report now shows the follow-up instruction text and its acknowledgement, with who acknowledged it and when, but not the attached file (before, neither appeared on the report)."
+ }
+}
