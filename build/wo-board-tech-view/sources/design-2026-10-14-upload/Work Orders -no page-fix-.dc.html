@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="lucide-icons.js?v=4"></script>
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/theme-toggle.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: var(--sv-surface-sunken); font-family: var(--sv-font-ui); }
+  button, input { font-family: inherit; }
+  a { color: var(--sv-accent); }
+  a:hover { color: var(--sv-accent-hover); }
+  @keyframes svToastBar { from { width: 100% } to { width: 0% } }
+  @keyframes svPulse { 0%, 100% { opacity: 1 } 50% { opacity: 0.35 } }
+  nav::-webkit-scrollbar { display: none; }
+</style>
+</helmet>
+<div data-screen-label="Work Orders" style="width: 100%; height: 100vh; overflow: hidden;">
+  <x-import component-from-global-scope="SVWorkOrdersPageFix" dc-props="{{ pageProps }}" hint-size="100%,100%">
+
+    <div ref="{{ boardRef }}" onDragStart="{{ dragStart }}" onDragOver="{{ dragOver }}" onDrop="{{ drop }}" onDragEnd="{{ dragEnd }}" style="min-height: 100%; display: flex; flex-direction: column;">
+
+      <sc-if value="{{ isRows }}" hint-placeholder-val="{{ true }}">
+        <div style="min-width: {{ rowsMinWidth }}; flex: 1; padding-bottom: 20px; background: var(--sv-surface);">
+          <div style="display: grid; grid-template-columns: {{ gridCols }}; align-items: center; gap: 12px; padding: 12px 16px; position: sticky; top: 0; z-index: 2; background: var(--sv-surface); border-bottom: 1px solid var(--sv-border-default); font-size: 12px; font-weight: 500; color: var(--sv-text-secondary); white-space: nowrap;">
+            <button onClick="{{ toggleAll }}" title="{{ allLabel }}" style="all: unset; cursor: pointer; width: 28px; height: 28px; margin: -6px 0; justify-self: center; display: grid; place-items: center; border-radius: 8px; color: var(--sv-text-secondary);" style-hover="background: var(--sv-border-default); color: var(--sv-text-primary);">{{ allIcon }}</button><span title="Priority" style="display: grid; place-items: center; color: var(--sv-text-muted);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="6" x2="21" y2="6"></line><line x1="10" y1="12" x2="21" y2="12"></line><line x1="10" y1="18" x2="21" y2="18"></line><path d="M4 6h1v4"></path><path d="M4 10h2"></path><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"></path></svg></span><span>Status</span><sc-if value="{{ cWaiting }}" hint-placeholder-val="{{ true }}"><span>Waiting On Parts</span></sc-if><span>Number</span><span>Customer</span><sc-if value="{{ cUnit }}" hint-placeholder-val="{{ true }}"><span>Unit #</span></sc-if><sc-if value="{{ cAsset }}" hint-placeholder-val="{{ true }}"><span>Asset</span></sc-if><sc-if value="{{ cProgress }}" hint-placeholder-val="{{ true }}"><span>Progress</span></sc-if><sc-if value="{{ cAdv }}" hint-placeholder-val="{{ true }}"><span>Service Advisor</span></sc-if><sc-if value="{{ cClocked }}" hint-placeholder-val="{{ true }}"><span>Clocked In</span></sc-if><sc-if value="{{ cLines }}" hint-placeholder-val="{{ true }}"><span>Lines</span></sc-if><sc-if value="{{ cTechs }}" hint-placeholder-val="{{ true }}"><span>Assigned Tech</span></sc-if><sc-if value="{{ cCreated }}" hint-placeholder-val="{{ true }}"><span>Created on</span></sc-if><sc-if value="{{ cTotal }}" hint-placeholder-val="{{ true }}"><span style="text-align: right;">Total price</span></sc-if>
+          </div>
+
+          <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+            <section data-group-id="{{ g.id }}" style="background: var(--sv-surface);">
+              <div draggable="true" data-gdrag="{{ g.id }}" style="display: flex; align-items: center; gap: 12px; height: {{ groupH }}; transition: height 140ms ease-out; box-sizing: border-box; padding: 0 16px; background: var(--sv-surface); margin-top: -1px; border-top: 3px double var(--sv-border-default); border-bottom: 1px solid var(--sv-border-subtle); position: relative; z-index: 1; cursor: grab;">
+                <span title="Drag to reorder technicians" style="width: 28px; flex: none; display: grid; place-items: center; color: var(--sv-text-muted);">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="9" cy="18" r="1.5"></circle><circle cx="15" cy="18" r="1.5"></circle></svg>
+                </span>
+                <button onClick="{{ toggle }}" data-tech="{{ g.id }}" title="{{ g.toggleLabel }}" style="all: unset; cursor: pointer; flex: none; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 8px; color: var(--sv-text-secondary);" style-hover="background: var(--sv-border-default); color: var(--sv-text-primary);">
+                  <sc-if value="{{ g.open }}" hint-placeholder-val="{{ true }}">{{ icoChevDown }}</sc-if>
+                  <sc-if value="{{ g.closed }}" hint-placeholder-val="{{ false }}">{{ icoChevRight }}</sc-if>
+                </button>
+                <sc-if value="{{ g.isTech }}" hint-placeholder-val="{{ true }}">
+                  <x-import component-from-global-scope="SVAvatarFix" name="{{ g.name }}" size="{{ groupAv }}" hint-size="28px,28px"></x-import>
+                </sc-if>
+                <sc-if value="{{ g.isUnassigned }}" hint-placeholder-val="{{ false }}">
+                  <span style="width: {{ groupAvPx }}; height: {{ groupAvPx }}; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--sv-grey-100); color: var(--sv-text-secondary);">
+                    {{ icoUser }}
+                  </span>
+                </sc-if>
+                <span style="font-size: 14px; font-weight: 600; color: var(--sv-text-primary); margin-right: -12px;">{{ g.name }}</span>
+                <span aria-hidden="true" style="width: 1px; height: 16px; background: var(--sv-border-default); margin: 0 16px; flex: none;"></span><span data-tip="{{ g.id }}" data-tip-text="{{ g.countTitle }}" onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" style="position: relative; margin-left: -12px; flex: none; display: inline-flex; align-items: center; gap: 6px; font-size: var(--sv-body-size); font-weight: 500; line-height: var(--sv-body-lh); color: var(--sv-text-secondary); font-variant-numeric: tabular-nums; white-space: nowrap;">{{ icoWo }}<span style="display: inline-flex; align-items: center; line-height: 1;">{{ g.count }}</span></span></span>
+              </div>
+
+              <sc-for list="{{ g.items }}" as="wo" hint-placeholder-count="3">
+                <div draggable="{{ wo.drag }}" data-wo="{{ wo.uid }}" data-group="{{ wo.gid }}" onMouseEnter="{{ cardEnter }}" onMouseLeave="{{ cardLeave }}" style="display: grid; grid-template-columns: {{ gridCols }}; align-items: center; gap: 12px; height: {{ rowH }}; transition: height 140ms ease-out; box-sizing: border-box; padding: 0 16px; border-bottom: 1px solid var(--sv-border-subtle); background: var(--sv-surface); cursor: {{ wo.cardCursor }}; white-space: nowrap;" style-hover="background: var(--sv-surface-hover);">
+                  <span style="display: grid; place-items: center; color: var(--sv-text-muted);">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="9" cy="18" r="1.5"></circle><circle cx="15" cy="18" r="1.5"></circle></svg>
+                  </span>
+                  <span style="display: grid; place-items: center; font-size: {{ cellFs }}; font-weight: 500; color: var(--sv-text-secondary); font-variant-numeric: tabular-nums;">{{ wo.rank }}</span>
+                  <span style="display: flex; align-items: center;">
+                    <x-import component-from-global-scope="SVBadgeFix" tone="{{ wo.tone }}" size="{{ badgeSize }}" hint-size="auto,22px">{{ wo.status }}</x-import>
+                  </span>
+                  <sc-if value="{{ cWaiting }}" hint-placeholder-val="{{ true }}">
+                    <span style="font-size: {{ cellFs }}; font-weight: 500; min-width: 0;">
+                      <sc-if value="{{ wo.waiting }}" hint-placeholder-val="{{ false }}">
+                        <a href="#" style="color: var(--sv-accent); font-weight: 500; text-decoration: none;" style-hover="text-decoration: underline;">{{ wo.waitCell }}</a>
+                      </sc-if>
+                      <sc-if value="{{ wo.noWait }}" hint-placeholder-val="{{ true }}">
+                        <span style="color: var(--sv-text-muted);">-</span>
+                      </sc-if>
+                    </span>
+                  </sc-if>
+                  <span style="display: flex; align-items: center; gap: 6px; min-width: 0; font-size: {{ cellFs }}; font-weight: 500; color: {{ wo.idColor }};">
+                    <span>{{ wo.id }}</span>
+                    <sc-if value="{{ wo.locked }}" hint-placeholder-val="{{ false }}">
+                      <span data-tip="{{ wo.uid }}" data-tip-text="{{ wo.lockReason }}" onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" style="display: grid; place-items: center; color: var(--sv-text-muted);">{{ icoLock12 }}</span>
+                    </sc-if>
+                  </span>
+                  <span style="font-size: {{ cellFs }}; font-weight: 500; color: {{ wo.titleColor }}; overflow: hidden; text-overflow: ellipsis;">{{ wo.cust }}</span>
+                  <sc-if value="{{ cUnit }}" hint-placeholder-val="{{ true }}">
+                    <span style="font-size: {{ cellFs }}; font-weight: 500; color: var(--sv-text-primary); overflow: hidden; text-overflow: ellipsis;">
+                      <sc-if value="{{ wo.hasUnit }}" hint-placeholder-val="{{ true }}"><span>{{ wo.unit }}</span></sc-if>
+                      <sc-if value="{{ wo.noUnit }}" hint-placeholder-val="{{ false }}"><span style="color: var(--sv-text-muted);">-</span></sc-if>
+                    </span>
+                  </sc-if>
+                  <sc-if value="{{ cAsset }}" hint-placeholder-val="{{ true }}">
+                    <span style="font-size: {{ cellFs }}; font-weight: 500; color: var(--sv-text-primary); overflow: hidden; text-overflow: ellipsis;">{{ wo.asset }}</span>
+                  </sc-if>
+                  <sc-if value="{{ cProgress }}" hint-placeholder-val="{{ true }}">
+                    <span style="display: flex; flex-direction: column; gap: 6px;">
+                      <span style="display: flex; align-items: center; gap: 8px;">
+                        <span style="display: block; width: {{ barW }}; height: {{ barH }}; border-radius: 999px; background: var(--sv-border-subtle); overflow: hidden; flex: none;">
+                          <span data-bar="{{ wo.uid }}" style="display: block; width: 0; height: 100%; border-radius: 999px; background: var(--sv-accent);"></span>
+                        </span>
+                        <span style="font-size: 12px; color: var(--sv-text-secondary); font-variant-numeric: tabular-nums;">{{ wo.pctLabel }}</span>
+                      </span>
+                      <sc-if value="{{ rowLarge }}" hint-placeholder-val="{{ false }}">
+                        <span style="font-size: 12px; color: var(--sv-text-secondary); font-variant-numeric: tabular-nums;">{{ wo.hoursLabel }}</span>
+                      </sc-if>
+                    </span>
+                  </sc-if>
+                  <sc-if value="{{ cAdv }}" hint-placeholder-val="{{ true }}">
+                    <span style="display: flex; align-items: center; gap: 8px; min-width: 0; font-size: {{ cellFs }}; font-weight: 500; color: var(--sv-text-primary);">
+                      <x-import component-from-global-scope="SVAvatarFix" name="{{ wo.adv }}" size="{{ crewSize }}" hint-size="24px,24px"></x-import>
+                      <span style="overflow: hidden; text-overflow: ellipsis;">{{ wo.adv }}</span>
+                    </span>
+                  </sc-if>
+                  <sc-if value="{{ cClocked }}" hint-placeholder-val="{{ true }}">
+                    <span style="display: flex; align-items: center;">
+                      <sc-if value="{{ wo.hasClocked }}" hint-placeholder-val="{{ true }}">
+                        <x-import component-from-global-scope="SVBadgeFix" tone="neutral" shape="square" size="{{ badgeSize }}" hint-size="auto,22px">{{ wo.clockedLabel }}</x-import>
+                      </sc-if>
+                      <sc-if value="{{ wo.noClocked }}" hint-placeholder-val="{{ false }}">
+                        <span style="font-size: {{ cellFs }}; font-weight: 500; color: var(--sv-text-muted);">-</span>
+                      </sc-if>
+                    </span>
+                  </sc-if>
+                  <sc-if value="{{ cLines }}" hint-placeholder-val="{{ true }}">
+                    <span style="font-size: {{ cellFs }}; font-weight: 500; color: var(--sv-text-primary); font-variant-numeric: tabular-nums;">{{ wo.lines }}</span>
+                  </sc-if>
+                  <sc-if value="{{ cTechs }}" hint-placeholder-val="{{ true }}">
+                    <span style="display: flex; align-items: center; min-width: 0;">
+                      <x-import component-from-global-scope="SVTechStack" names="{{ wo.crewNames }}" size="{{ crewSize }}" hint-size="auto,24px"></x-import>
+                    </span>
+                  </sc-if>
+                  <sc-if value="{{ cCreated }}" hint-placeholder-val="{{ true }}">
+                    <span style="font-size: {{ cellFs }}; font-weight: 500; color: var(--sv-text-primary);">{{ wo.created }}</span>
+                  </sc-if>
+                  <sc-if value="{{ cTotal }}" hint-placeholder-val="{{ true }}">
+                    <span style="font-size: {{ cellFs }}; font-weight: 500; text-align: right; color: var(--sv-text-primary); font-variant-numeric: tabular-nums;">{{ wo.total }}</span>
+                  </sc-if>
+                  <span style="display: {{ wo.menuDisplay }}; place-items: center;">
+                    <button onClick="{{ openMenu }}" data-menu="{{ wo.uid }}" data-menu-group="{{ wo.gid }}" title="{{ wo.assignLabel }}" aria-label="{{ wo.assignLabel }}" style="all: unset; cursor: pointer; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 6px; color: var(--sv-text-muted); opacity: {{ wo.menuOpacity }};" style-hover="background: var(--sv-grey-100); color: var(--sv-text-secondary);">{{ icoMore }}</button>
+                  </span>
+                </div>
+              </sc-for>
+              <sc-if value="{{ g.showEmpty }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; height: {{ rowH }}; box-sizing: border-box; padding: 0 16px; border-bottom: 1px solid var(--sv-border-subtle); background: var(--sv-surface); font-size: 14px; font-weight: 500; color: var(--sv-text-muted); white-space: nowrap;">
+                  <span style="display: grid; place-items: center;">{{ icoWo }}</span>
+                  <span>No work orders assigned</span>
+                </div>
+              </sc-if>
+            </section>
+          </sc-for>
+          <div style="position: sticky; left: 0; width: min(100%, 100vw); box-sizing: border-box; padding: 24px 16px 4px;">
+          <sc-if value="{{ noTechInline }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 32px 24px; border-radius: 12px; border: 1px dashed var(--sv-border-strong); background: var(--sv-surface); text-align: center;">
+              <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--sv-grey-100); color: var(--sv-text-secondary);">{{ icoUser20 }}</span>
+              <span style="font-size: 16px; font-weight: 600; line-height: 24px; color: var(--sv-text-primary);">No technicians yet</span>
+              <span style="font-size: 14px; font-weight: 400; line-height: 20px; color: var(--sv-text-secondary); max-width: 320px; text-wrap: pretty;">Add technicians to assign work orders. Until then, every work order stays in Unassigned.</span>
+              <button onClick="{{ frAddTech }}" style="all: unset; cursor: pointer; box-sizing: border-box; margin-top: 8px; height: 36px; padding: 0 16px; display: inline-flex; align-items: center; gap: 8px; border-radius: var(--sv-radius-md); border: 1px solid var(--sv-border-strong); background: var(--sv-surface); box-shadow: var(--sv-shadow-sm); font-size: 14px; font-weight: 600; color: var(--sv-text-primary);" style-hover="background: var(--sv-grey-50); border-color: var(--sv-grey-400);"><span>Add Technician</span></button>
+            </div>
+          </sc-if>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isCols }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; align-items: flex-start; gap: 16px; width: max-content; min-width: 100%; box-sizing: border-box; padding: 20px 16px 88px; background: var(--sv-surface-sunken);">
+          <sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+            <section data-group-id="{{ g.id }}" style="width: 288px; flex: none; align-self: {{ g.pinAlign }}; position: {{ g.pin }}; left: {{ g.pinLeft }}; z-index: {{ g.pinZ }};">
+              <sc-if value="{{ g.sticky }}" hint-placeholder-val="{{ false }}">
+                <div aria-hidden="true" style="position: absolute; top: -20px; bottom: -88px; left: -16px; right: -16px; background: var(--sv-surface-sunken); z-index: -1;"></div>
+              </sc-if>
+              <div style="display: flex; flex-direction: column; gap: 8px; padding: 0 12px 12px; box-sizing: border-box; border-radius: 12px; background: var(--sv-elev-1-bg); box-shadow: var(--sv-elev-1-shadow); position: {{ g.wrapPos }}; top: 20px; max-height: {{ g.colMaxH }}; overflow-y: {{ g.colOverflow }}; scrollbar-width: thin; scrollbar-color: var(--sv-border-strong) transparent;">
+              <div draggable="{{ g.canDrag }}" data-gdrag="{{ g.id }}" style="display: flex; align-items: center; gap: 8px; margin: 0 -12px; padding: 12px 16px; position: sticky; top: 0; z-index: 2; background: var(--sv-elev-1-bg); border-radius: 12px 12px 0 0; border-bottom: 1px solid var(--sv-border-default); cursor: {{ g.pinDrag }};">
+                <sc-if value="{{ g.canDrag }}" hint-placeholder-val="{{ true }}">
+                  <span title="Drag to reorder technicians" style="display: grid; place-items: center; color: var(--sv-text-muted);">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="9" cy="18" r="1.5"></circle><circle cx="15" cy="18" r="1.5"></circle></svg>
+                  </span>
+                </sc-if>
+                <sc-if value="{{ g.isTech }}" hint-placeholder-val="{{ true }}">
+                  <x-import component-from-global-scope="SVAvatarFix" dc-props="{{ g.avatar }}" hint-size="28px,28px"></x-import>
+                </sc-if>
+                <sc-if value="{{ g.isUnassigned }}" hint-placeholder-val="{{ false }}">
+                  <span style="width: 28px; height: 28px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--sv-grey-100); color: var(--sv-text-secondary);">
+                    {{ icoUser }}
+                  </span>
+                </sc-if>
+                <span style="flex: 1; min-width: 0; font-size: 14px; font-weight: 600; color: var(--sv-text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: -8px;">{{ g.name }}</span>
+                <sc-if value="{{ g.canPin }}" hint-placeholder-val="{{ true }}">
+                  <button onClick="{{ togglePin }}" data-pin="{{ g.id }}" title="{{ g.pinLabel }}" aria-label="{{ g.pinLabel }}" style="all: unset; cursor: pointer; flex: none; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 6px; color: {{ g.pinColor }}; opacity: {{ g.pinOpacity }};" style-hover="background: var(--sv-grey-100);">{{ g.pinIcon }}</button>
+                </sc-if>
+                <span aria-hidden="true" style="width: 1px; height: 16px; background: var(--sv-border-default); margin: 0 12px 0 4px; flex: none;"></span><span data-tip="{{ g.id }}" data-tip-text="{{ g.countTitle }}" onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" style="position: relative; margin-left: -8px; flex: none; display: inline-flex; align-items: center; gap: 6px; font-size: var(--sv-body-size); font-weight: 500; line-height: var(--sv-body-lh); color: var(--sv-text-secondary); font-variant-numeric: tabular-nums; white-space: nowrap;">{{ icoWo }}<span style="display: inline-flex; align-items: center; line-height: 1;">{{ g.count }}</span></span>
+              </div>
+              <sc-for list="{{ g.allItems }}" as="wo" hint-placeholder-count="3">
+                <div draggable="{{ wo.drag }}" data-wo="{{ wo.uid }}" data-group="{{ wo.gid }}" onMouseEnter="{{ cardEnter }}" onMouseLeave="{{ cardLeave }}" style="display: flex; flex-direction: column; gap: {{ cardGap }}; padding: {{ cardPad }}; border-radius: 8px; border: 1px solid var(--sv-border-default); background: var(--sv-surface); cursor: {{ wo.cardCursor }};" style-hover="border-color: {{ wo.cardHoverBorder }}; box-shadow: {{ wo.cardHoverShadow }};">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 12px; font-weight: 500; color: var(--sv-text-secondary); font-variant-numeric: tabular-nums;">{{ wo.rank }}</span>
+                    <span style="flex: 1; display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; font-weight: 500; color: {{ wo.idColor }};">
+                      <span>{{ wo.id }}</span>
+                      <sc-if value="{{ wo.locked }}" hint-placeholder-val="{{ false }}">
+                        <span data-tip="{{ wo.uid }}" data-tip-text="{{ wo.lockReason }}" onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" style="display: grid; place-items: center; color: var(--sv-text-muted);">{{ icoLock12 }}</span>
+                      </sc-if>
+                    </span>
+                    <span style="position: relative; flex: none; display: flex; align-items: center;">
+                      <x-import component-from-global-scope="SVBadgeFix" tone="{{ wo.tone }}" hint-size="auto,22px">{{ wo.status }}</x-import>
+                      <span style="display: {{ wo.menuDisplay }};"><button onClick="{{ openMenu }}" data-menu="{{ wo.uid }}" data-menu-group="{{ wo.gid }}" title="{{ wo.assignLabel }}" aria-label="{{ wo.assignLabel }}" style="all: unset; cursor: pointer; position: absolute; right: -2px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; display: grid; place-items: center; border-radius: 6px; color: var(--sv-text-secondary); background: var(--sv-surface); border: 1px solid var(--sv-grey-200); box-shadow: 0 0 0 4px var(--sv-surface); opacity: {{ wo.menuOpacity }};" style-hover="background: var(--sv-grey-100); box-shadow: 0 0 0 4px var(--sv-surface); color: var(--sv-text-primary);">{{ icoMore }}</button></span>
+                    </span>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 2px;">
+                    <span style="font-size: 14px; font-weight: 500; color: {{ wo.titleColor }}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wo.cust }}</span>
+                    <span style="font-size: 12px; font-weight: 500; color: var(--sv-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wo.assetLine }}</span>
+                  </div>
+                  <sc-if value="{{ dDetailed }}" hint-placeholder-val="{{ true }}">
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px;">
+                      <span style="font-size: 12px; font-weight: 500; color: var(--sv-text-secondary); font-variant-numeric: tabular-nums;">{{ wo.hoursLabel }}</span>
+                      <span style="font-size: 12px; font-weight: 500; color: var(--sv-text-secondary);">{{ wo.created }}</span>
+                    </div>
+                    <span style="position: relative; height: 4px; border-radius: 2px; background: var(--sv-border-default); overflow: hidden;">
+                      <span data-bar="{{ wo.uid }}" style="position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--sv-accent);"></span>
+                    </span>
+                  </div>
+                  </sc-if>
+                  <sc-if value="{{ showMoney }}" hint-placeholder-val="{{ true }}">
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 8px; border-top: 1px solid var(--sv-border-subtle);">
+                      <x-import component-from-global-scope="SVTechStack" dc-props="{{ wo.crewProps }}" hint-size="auto,24px"></x-import>
+                      <span style="font-size: 14px; font-weight: 500; color: var(--sv-text-primary); font-variant-numeric: tabular-nums;">{{ wo.total }}</span>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-for>
+              <sc-if value="{{ g.showEmpty }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 140px; padding: 20px 16px; border-radius: 8px; border: 1px dashed var(--sv-border-strong); background: var(--sv-surface); text-align: center;">
+                  <span style="width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--sv-grey-100); color: var(--sv-text-secondary);">{{ icoWo }}</span>
+                  <span style="font-size: 14px; font-weight: 500; color: var(--sv-text-primary);">No work orders assigned</span>
+                  <span style="font-size: 12px; font-weight: 500; color: var(--sv-text-secondary);">Drag a work order here to assign it</span>
+                </div>
+              </sc-if>
+              </div>
+            </section>
+          </sc-for>
+          <sc-if value="{{ noTechInline }}" hint-placeholder-val="{{ false }}">
+            <section style="width: 288px; flex: none; align-self: stretch; display: flex; margin-bottom: -68px; min-height: calc(100vh - 220px);">
+              <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 8px; padding: 40px 24px; border-radius: 12px; background: var(--sv-grey-200); text-align: center;">
+                <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--sv-surface); color: var(--sv-text-secondary);">{{ icoUser20 }}</span>
+                <span style="font-size: 16px; font-weight: 600; line-height: 24px; color: var(--sv-text-primary);">No technicians yet</span>
+                <span style="font-size: 14px; font-weight: 400; line-height: 20px; color: var(--sv-text-secondary); max-width: 240px; text-wrap: pretty;">Add technicians to assign work orders. Until then, every work order stays in Unassigned.</span>
+                <button onClick="{{ frAddTech }}" style="all: unset; cursor: pointer; box-sizing: border-box; margin-top: 8px; height: 36px; padding: 0 16px; display: inline-flex; align-items: center; gap: 8px; border-radius: var(--sv-radius-md); border: 1px solid var(--sv-border-strong); background: var(--sv-surface); box-shadow: var(--sv-shadow-sm); font-size: 14px; font-weight: 600; color: var(--sv-text-primary);" style-hover="background: var(--sv-grey-50); border-color: var(--sv-grey-400);"><span>Add Technician</span></button>
+              </div>
+            </section>
+          </sc-if>
+        </div>
+        <div data-mm style="position: fixed; right: 24px; bottom: 20px; z-index: 60; display: none;">
+          <div data-mm-track style="position: relative; display: flex; gap: 4px; padding: 6px; border-radius: 12px; background: var(--sv-surface); border: 1px solid var(--sv-border-default); box-shadow: var(--sv-shadow-lg);">
+            <sc-for list="{{ mmCols }}" as="m" hint-placeholder-count="5">
+              <span style="width: 14px; height: 36px; border-radius: 4px; background: var(--sv-grey-100); flex: none;"></span>
+            </sc-for>
+            <span data-mm-thumb onPointerDown="{{ mmDown }}" title="Drag to scroll" style="position: absolute; top: 3px; bottom: 3px; left: 3px; width: 40px; border: 2px solid var(--sv-accent); border-radius: 12px; background: transparent; cursor: grab;"></span>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isDetails }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; align-items: stretch; gap: 16px; height: {{ detailsH }}; box-sizing: border-box; padding: 20px 16px 0; background: var(--sv-surface-sunken);">
+          <section style="width: 288px; flex: none; display: flex; flex-direction: column; min-height: 0; border-radius: 12px 12px 0 0; background: var(--sv-elev-1-bg); box-shadow: var(--sv-elev-1-shadow);">
+            <div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--sv-border-default);">
+              <span style="flex: 1; font-size: 14px; font-weight: 600; color: var(--sv-text-primary);">Work Orders</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px; font-size: var(--sv-body-size); font-weight: 500; color: var(--sv-text-secondary); font-variant-numeric: tabular-nums;">{{ icoWo }}<span>{{ detailCount }}</span></span>
+            </div>
+            <div style="flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding: 12px; scrollbar-width: thin; scrollbar-color: var(--sv-border-strong) transparent;">
+              <sc-for list="{{ detailItems }}" as="wo" hint-placeholder-count="4">
+                <div onClick="{{ pickDetail }}" data-detail="{{ wo.uid }}" style="display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 8px; border: 1px solid {{ wo.selBorder }}; box-shadow: {{ wo.selShadow }}; background: var(--sv-surface); cursor: pointer;" style-hover="border-color: var(--sv-grey-400);">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="flex: 1; display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; font-weight: 500; color: {{ wo.idColor }};">
+                      <span>{{ wo.id }}</span>
+                    </span>
+                    <x-import component-from-global-scope="SVBadgeFix" tone="{{ wo.tone }}" size="sm" hint-size="auto,18px">{{ wo.status }}</x-import>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 2px;">
+                    <span style="font-size: 14px; font-weight: 500; color: {{ wo.titleColor }}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wo.cust }}</span>
+                    <span style="font-size: 12px; font-weight: 500; color: var(--sv-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wo.asset }}</span>
+                  </div>
+                </div>
+              </sc-for>
+              <sc-if value="{{ detailEmpty }}" hint-placeholder-val="{{ false }}">
+                <div style="padding: 32px 16px; text-align: center; font-size: 14px; font-weight: 500; color: var(--sv-text-secondary);">No work orders match</div>
+              </sc-if>
+            </div>
+          </section>
+          <div style="flex: 1; min-width: 0; background: var(--sv-surface-sunken);">
+            <iframe ref="{{ detailFrame }}" onLoad="{{ detailReady }}" src="wo-details/Add Part.html?embed=1" title="Work order details" style="display: block; width: 100%; height: 100%; border: 0; background: transparent;" allowtransparency="true"></iframe>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ firstRun }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; flex: 1; min-height: 420px; padding: 72px 24px; text-align: center; background: var(--sv-surface); font-family: var(--sv-font-ui);">
+          <span aria-hidden="true" style="width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; margin-bottom: 4px; background: var(--sv-border-subtle); color: var(--sv-text-secondary);">{{ frIcon }}</span>
+          <span style="font-size: 17px; font-weight: 600; line-height: 24px; color: var(--sv-text-primary); max-width: 360px;">{{ frTitle }}</span>
+          <span style="font-size: 14px; font-weight: 400; line-height: 20px; color: var(--sv-text-secondary); max-width: 360px; text-wrap: pretty;">{{ frBody }}</span>
+          <div style="display: flex; gap: 12px; margin-top: 12px;">
+            <sc-if value="{{ frWoBtn }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ frNewWo }}" style="all: unset; cursor: pointer; box-sizing: border-box; height: 36px; padding: 0 16px; display: inline-flex; align-items: center; gap: 8px; border-radius: var(--sv-radius-md); background: var(--sv-accent); font-size: 14px; font-weight: 600; color: var(--sv-text-on-accent);" style-hover="background: var(--sv-accent-hover);"><span>New Work Order</span></button>
+            </sc-if>
+            <sc-if value="{{ frTechBtn }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ frAddTech }}" style="all: unset; cursor: pointer; box-sizing: border-box; height: 36px; padding: 0 16px; display: inline-flex; align-items: center; gap: 8px; border-radius: var(--sv-radius-md); border: 1px solid var(--sv-border-strong); background: var(--sv-surface); box-shadow: var(--sv-shadow-sm); font-size: 14px; font-weight: 600; color: var(--sv-text-primary);" style-hover="background: var(--sv-grey-50); border-color: var(--sv-grey-400);"><span>Add Technician</span></button>
+            </sc-if>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ techEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 32px 16px; background: var(--sv-surface-sunken); min-height: 320px;">
+          <x-import component-from-global-scope="SVEmptyState" dc-props="{{ emptyProps }}" hint-size="100%,240px"></x-import>
+        </div>
+      </sc-if>
+    </div>
+
+  </x-import>
+</div>
+<sc-if value="{{ hasLine }}" hint-placeholder-val="{{ false }}">
+  <div aria-hidden="true" style="position: fixed; left: {{ lineX }}; top: {{ lineY }}; width: {{ lineW }}; height: {{ lineH }}; border-radius: 2px; background: var(--sv-primary-500); pointer-events: none; z-index: 350;"></div>
+</sc-if>
+<sc-if value="{{ deniedOn }}" hint-placeholder-val="{{ false }}">
+  <div style="position: fixed; left: {{ deniedX }}; top: {{ deniedY }}; transform: translate(-50%, 0); z-index: 400; pointer-events: none; display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 6px; background: var(--sv-surface-inverse); color: var(--sv-text-inverse); font-size: 12px; font-weight: 500; line-height: 16px; white-space: nowrap; box-shadow: var(--sv-shadow-md);">{{ icoBan }}<span>{{ deniedText }}</span></div>
+</sc-if>
+<sc-if value="{{ hasTip }}" hint-placeholder-val="{{ false }}">
+  <div role="tooltip" style="position: fixed; left: {{ tipX }}; top: {{ tipY }}; transform: translate(-50%, -100%); padding: 6px 10px; border-radius: var(--sv-radius-md); background: var(--sv-surface-inverse); color: var(--sv-text-on-inverse); box-shadow: var(--sv-shadow-lg); font-size: var(--sv-body2-size); font-weight: var(--sv-body2-weight); line-height: var(--sv-body2-lh); letter-spacing: var(--sv-body2-tracking); white-space: nowrap; pointer-events: none; z-index: 400;">{{ tipText }}<span style="position: absolute; top: 100%; left: {{ tipArrowX }}; width: 8px; height: 8px; margin: -4px 0 0 -4px; transform: rotate(45deg); background: var(--sv-surface-inverse);"></span></div>
+</sc-if>
+<sc-if value="{{ hasMenu }}" hint-placeholder-val="{{ false }}">
+  <div style="position: fixed; inset: 0; z-index: 280;">
+    <div onClick="{{ closeMenu }}" style="position: absolute; inset: 0;"></div>
+    <div role="menu" style="position: absolute; left: {{ menuX }}; top: {{ menuY }}; transform: translateX(-100%); width: 216px; padding: 4px; border-radius: var(--sv-radius-md); background: var(--sv-surface); border: 1px solid var(--sv-border-subtle); box-shadow: var(--sv-shadow-lg);">
+      <sc-for list="{{ menuItems }}" as="mi" hint-placeholder-count="2">
+        <button onClick="{{ mi.pick }}" role="menuitem" style="all: unset; cursor: {{ mi.cursor }}; box-sizing: border-box; display: flex; align-items: center; gap: 10px; width: 100%; padding: 9px 10px; border-radius: 6px; font-size: 14px; font-weight: 500; color: {{ mi.color }};" style-hover="background: {{ mi.hoverBg }};">
+          <span style="flex: none; display: grid; place-items: center; color: {{ mi.color }};">{{ mi.icon }}</span>
+          <span style="flex: 1;">{{ mi.name }}</span>
+        </button>
+      </sc-for>
+      <sc-if value="{{ menuLocked }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; align-items: flex-start; gap: 8px; margin: 4px -4px -4px; padding: 10px 14px; border-top: 1px solid var(--sv-border-subtle); background: var(--sv-grey-50); border-radius: 0 0 var(--sv-radius-md) var(--sv-radius-md); font-size: 12px; font-weight: 500; line-height: 16px; color: var(--sv-text-secondary); text-wrap: pretty;">
+          <span style="margin-top: 1px; color: var(--sv-text-muted);">{{ icoLock }}</span>
+          <span>{{ menuLockText }}</span>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+<sc-if value="{{ hasAssign }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-modal="true" style="position: fixed; inset: 0; z-index: 320; display: grid; place-items: center; padding: 24px; background: rgba(15, 17, 26, 0.5);">
+    <div onClick="{{ closeAssign }}" style="position: absolute; inset: 0;"></div>
+    <div style="position: relative; width: 480px; max-width: 100%; max-height: 78vh; display: flex; flex-direction: column; border-radius: 12px; background: var(--sv-surface); box-shadow: var(--sv-shadow-lg); overflow: hidden;">
+      <div style="display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px 16px;">
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 18px; font-weight: 600; line-height: 26px; color: var(--sv-text-primary);">{{ assignTitle }}</span>
+          <span style="font-size: 14px; font-weight: 400; line-height: 20px; color: var(--sv-text-secondary);">{{ assignSub }}</span>
+        </div>
+        <button onClick="{{ closeAssign }}" aria-label="Close" style="all: unset; cursor: pointer; flex: none; width: 32px; height: 32px; margin: -4px -8px 0 0; display: grid; place-items: center; border-radius: 6px; color: var(--sv-text-muted);" style-hover="background: var(--sv-grey-100); color: var(--sv-text-primary);">{{ icoX20 }}</button>
+      </div>
+      <div style="padding: 0 24px 16px;">
+        <label style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; border-radius: var(--sv-radius-md); border: 1px solid var(--sv-border-strong); background: var(--sv-surface); box-shadow: var(--sv-shadow-sm);">
+          <span style="flex: none; display: grid; place-items: center; color: var(--sv-text-muted);">{{ icoSearch }}</span>
+          <input value="{{ assignQuery }}" onChange="{{ setAssignQuery }}" placeholder="Search technicians" style="all: unset; flex: 1; min-width: 0; font-family: var(--sv-font-ui); font-size: 14px; font-weight: 500; color: var(--sv-text-primary);" />
+        </label>
+      </div>
+      <div style="flex: 1; min-height: 0; overflow-y: auto; padding: 0 12px 8px;">
+        <sc-for list="{{ assignItems }}" as="ai" hint-placeholder-count="6">
+          <button onClick="{{ ai.pick }}" style="all: unset; cursor: pointer; box-sizing: border-box; display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 12px; border-radius: 8px; background: {{ ai.bg }};" style-hover="background: var(--sv-grey-50);">
+            <x-import component-from-global-scope="SVAvatarFix" name="{{ ai.name }}" size="{{ av32 }}" hint-size="32px,32px"></x-import>
+            <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; text-align: left;">
+              <span style="font-size: 14px; font-weight: {{ ai.weight }}; color: var(--sv-text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ ai.name }}</span>
+              <span style="font-size: 12px; font-weight: 500; color: var(--sv-text-secondary);">{{ ai.meta }}</span>
+            </span>
+            <sc-if value="{{ ai.current }}" hint-placeholder-val="{{ false }}">
+              <span style="flex: none; display: grid; place-items: center; color: var(--sv-accent);">{{ icoCheck }}</span>
+            </sc-if>
+          </button>
+        </sc-for>
+        <sc-if value="{{ assignEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="padding: 24px 12px; text-align: center; font-size: 14px; font-weight: 500; color: var(--sv-text-secondary);">{{ assignEmptyText }}</div>
+        </sc-if>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 12px; padding: 16px 24px; border-top: 1px solid var(--sv-border-subtle);">
+        <button onClick="{{ closeAssign }}" style="all: unset; cursor: pointer; box-sizing: border-box; height: 40px; padding: 0 16px; display: grid; place-items: center; border-radius: var(--sv-radius-md); border: 1px solid var(--sv-border-strong); background: var(--sv-surface); box-shadow: var(--sv-shadow-sm); font-family: var(--sv-font-ui); font-size: 14px; font-weight: 600; color: var(--sv-text-primary);" style-hover="background: var(--sv-grey-50); border-color: var(--sv-grey-400);">Cancel</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+<x-import component-from-global-scope="SVGlobalSearchModalFix" dc-props="{{ modalProps }}" hint-size="1px,1px"></x-import>
+<sc-if value="{{ toastUndo }}" hint-placeholder-val="{{ false }}">
+  <div role="status" style="position: fixed; right: 24px; bottom: 24px; z-index: 300; width: 400px; max-width: calc(100vw - 48px); box-sizing: border-box; display: flex; align-items: flex-start; gap: 12px; padding: 16px; border-radius: 12px; background: var(--sv-surface); border: 1px solid var(--sv-border-subtle); box-shadow: 0 4px 6px -2px rgba(16,24,40,0.03), 0 12px 16px -4px rgba(16,24,40,0.08); font-family: var(--sv-font-ui);">
+    <span style="width: 40px; height: 40px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--sv-success-fill); color: var(--sv-success-text);">{{ toastIcon }}</span>
+    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column;">
+      <span style="font-size: 14px; font-weight: 700; line-height: 20px; color: var(--sv-text-primary);">{{ toastMsg }}</span>
+      <div style="display: flex; gap: 12px; margin-top: 12px;">
+        <button onClick="{{ toastUndoClick }}" style="all: unset; cursor: pointer; box-sizing: border-box; height: 36px; padding: 0 16px; display: inline-flex; align-items: center; border-radius: var(--sv-radius-md); border: 1px solid var(--sv-border-strong); background: var(--sv-surface); box-shadow: var(--sv-shadow-sm); font-size: 14px; font-weight: 600; color: var(--sv-text-primary);" style-hover="background: var(--sv-grey-50); border-color: var(--sv-grey-400);">Undo</button>
+      </div>
+    </div>
+    <button onClick="{{ toastClose }}" aria-label="Dismiss" style="all: unset; cursor: pointer; flex: none; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 4px; color: var(--sv-text-muted);" style-hover="color: var(--sv-text-primary);">{{ icoX }}</button>
+  </div>
+</sc-if>
+<sc-if value="{{ toastCompact }}" hint-placeholder-val="{{ false }}">
+  <div role="status" style="position: fixed; right: 24px; bottom: 24px; z-index: 300; display: flex; align-items: center; gap: 12px; min-width: 260px; padding: 10px 16px; overflow: hidden; border-radius: 12px; background: var(--sv-surface); border: 1px solid var(--sv-border-subtle); box-shadow: 0 4px 6px -2px rgba(16,24,40,0.03), 0 12px 16px -4px rgba(16,24,40,0.08);">
+    <span style="width: 20px; height: 20px; flex: none; display: grid; place-items: center; color: {{ toastColor }};">{{ toastIcon }}</span>
+    <span style="flex: 1; font-size: 14px; font-weight: 600; line-height: 20px; color: var(--sv-text-primary); white-space: nowrap;">{{ toastMsg }}</span>
+    <button onClick="{{ toastClose }}" aria-label="Dismiss" style="all: unset; cursor: pointer; flex: none; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 4px; color: var(--sv-text-muted);" style-hover="color: var(--sv-text-primary);">{{ icoX }}</button>
+    <span aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 3px; overflow: hidden;"><span style="display: block; height: 100%; background: {{ toastColor }}; animation: svToastBar 2600ms linear forwards;"></span></span>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;frame&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;default&quot;,&quot;columns&quot;,&quot;settings&quot;],&quot;default&quot;:&quot;default&quot;,&quot;tsType&quot;:&quot;\&quot;default\&quot; | \&quot;columns\&quot; | \&quot;settings\&quot;&quot;,&quot;section&quot;:&quot;Review&quot;},&quot;emptyState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;off&quot;,&quot;no-work-orders&quot;,&quot;no-technicians&quot;,&quot;nothing&quot;],&quot;default&quot;:&quot;off&quot;,&quot;tsType&quot;:&quot;\&quot;off\&quot; | \&quot;no-work-orders\&quot; | \&quot;no-technicians\&quot; | \&quot;nothing\&quot;&quot;,&quot;section&quot;:&quot;Review&quot;},&quot;defaultView&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;list&quot;,&quot;tech&quot;,&quot;details&quot;],&quot;default&quot;:&quot;list&quot;,&quot;tsType&quot;:&quot;\&quot;list\&quot; | \&quot;tech\&quot; | \&quot;details\&quot;&quot;,&quot;section&quot;:&quot;View&quot;},&quot;detailsView&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;View&quot;},&quot;overviewLayout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;columns&quot;,&quot;summary&quot;],&quot;default&quot;:&quot;columns&quot;,&quot;tsType&quot;:&quot;\&quot;columns\&quot; | \&quot;summary\&quot;&quot;,&quot;section&quot;:&quot;View&quot;},&quot;rowHeight&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;small&quot;,&quot;medium&quot;,&quot;large&quot;],&quot;default&quot;:&quot;medium&quot;,&quot;tsType&quot;:&quot;\&quot;small\&quot; | \&quot;medium\&quot; | \&quot;large\&quot;&quot;,&quot;section&quot;:&quot;View&quot;},&quot;canAssign&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;},&quot;showFinancials&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;View&quot;},&quot;persistQuery&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Search&quot;},&quot;showAI&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Search&quot;}}">
+const WO_ROWS = [
+  { id: "S1-702", est: "Approved", est_color: "ok", dept: "Truck Shop", cust: "Fibridge Commercial", unit: "TRK-118", asset: "2022 Freightliner M2", vin: "1FD0W5HY2EEA05499", adv: "James Smith", tech: "Esther Howard", lines: 9, total: "$8,412.30", waiting: false, pct: 15, clocked: "0:48", created: "Apr 29, 2026", invoiced: "", daysopen: 4, returns: 0, authLines: 1, partsOrdered: 21, partsReady: 6 },
+  { id: "S1-698", est: "Approved", est_color: "ok", dept: "Truck Shop", cust: "Fibrook Supply", unit: "TRK-231", asset: "2018 Kenworth T880", vin: "1FD0W5HY2EEA05499", adv: "Esther Howard", tech: "Theresa Webb", lines: 6, total: "$4,960.00", waiting: false, pct: 40, clocked: "2:10", created: "Apr 28, 2026", invoiced: "", daysopen: 5, returns: 0, authLines: 0, partsOrdered: 6, partsReady: 0 },
+  { id: "S1-691", est: "Approved", est_color: "ok", dept: "Trailer Shop", cust: "Fibridge Mining", unit: "TRL-904", asset: "2020 Great Dane Reefer", vin: "1FD0W5HY2EEA05499", adv: "Jenny Wilson", tech: "Ralph Edwards", lines: 4, total: "$1,275.40", waiting: false, pct: 0, clocked: "", created: "Apr 28, 2026", invoiced: "", daysopen: 5, returns: 0, authLines: 1, partsOrdered: 0, partsReady: 0 },
+  { id: "S1-687", est: "Approved", est_color: "ok", dept: "Welding", cust: "Fisquare Farms", unit: "EXC-11", asset: "Caterpillar 336 Excavator", vin: "1FD0W5HY2EEA05499", adv: "Floyd Miles", tech: "Kristin Watson", lines: 7, total: "$11,830.15", waiting: false, pct: 30, clocked: "1:25", created: "Apr 27, 2026", invoiced: "", daysopen: 6, returns: 0, authLines: 3, partsOrdered: 1, partsReady: 0 },
+  { id: "S1-680", est: "Approved", est_color: "ok", dept: "Mobile Service", cust: "Fibrook Equipment", unit: "TRK-077", asset: "2015 Volvo VNL", vin: "1FD0W5HY2EEA05499", adv: "Theresa Webb", tech: "Jenny Wilson", lines: 3, total: "$690.00", waiting: false, pct: 0, clocked: "", created: "Apr 27, 2026", invoiced: "", daysopen: 6, returns: 0, authLines: 0, partsOrdered: 0, partsReady: 0 },
+  { id: "S1-644", est: "Approved", est_color: "ok", dept: "Truck Shop", cust: "Fibridge Commercial", unit: "TRK-204", asset: "Freightliner M2", vin: "1FD0W5HY2EEA05499", adv: "James Smith", tech: "Esther Howard", lines: 8, total: "$7,240.55", waiting: false, pct: 20, clocked: "1:12", created: "Apr 27, 2026", invoiced: "", daysopen: 6, parts: 3, returns: 0 },
+  { id: "S1-578", est: "Estimate", est_color: "ok", dept: "Trailer Shop", cust: "Fibridge Commercial", unit: "TRL-882", asset: "2019 Utility Trailer", vin: "1FD0W5HY2EEA05499", adv: "James Smith", tech: "Ralph Edwards", lines: 4, total: "$1,915.00", waiting: true, waitingParts: 2, pct: 0, clocked: "", created: "Apr 27, 2026", invoiced: "", daysopen: 6, parts: 2, returns: 0 },
+  { id: "S1-511", est: "Invoiced", est_color: "ok", dept: "Mobile Service", cust: "Fisquare Farms", asset: "John Deere 6120M", vin: "1FD0W5HY2EEA05499", adv: "Esther Howard", tech: "Jenny Wilson", lines: 11, total: "$12,004.80", waiting: false, pct: 100, clocked: "4:30", created: "Apr 12, 2026", invoiced: "Apr 24, 2026", daysopen: 12, parts: 6, returns: 1 },
+  { id: "S1-498", est: "In progress", est_color: "ok", dept: "Truck Shop", cust: "Fibridge Mining", unit: "TRK-119", asset: "2007 Peterbuilt", vin: "1FD0W5HY2EEA05499", adv: "Ralph Edwards", tech: "Theresa Webb", lines: 9, total: "$5,318.90", waiting: false, pct: 55, clocked: "2:48", created: "Apr 22, 2026", invoiced: "", daysopen: 10, parts: 5, returns: 0 },
+  { id: "S1-472", est: "Approved", est_color: "ok", dept: "Truck Shop", cust: "Fibrook Equipment", asset: "1999 Ford Explorer", vin: "1FD0W5HY2EEA05499", adv: "Jenny Wilson", tech: "Kristin Watson", lines: 6, total: "$3,462.10", waiting: true, waitingParts: 1, pct: 10, clocked: "", created: "Apr 19, 2026", invoiced: "", daysopen: 14, parts: 4, returns: 0 },
+  { id: "S1-455", est: "Estimate", est_color: "err", dept: "Welding", cust: "Fibridge Commercial", unit: "TRK-337", asset: "2014 Kenworth T680", vin: "1FD0W5HY2EEA05499", adv: "Theresa Webb", tech: "Esther Howard", lines: 3, total: "$884.25", waiting: false, pct: 0, clocked: "", created: "Apr 16, 2026", invoiced: "", daysopen: 17, parts: 1, returns: 0 },
+  { id: "S1-431", est: "Invoiced", est_color: "ok", dept: "Truck Shop", cust: "Fibrook Supply", unit: "TRK-410", asset: "2016 Mack Anthem", vin: "1FD0W5HY2EEA05499", adv: "Esther Howard", tech: "Kristin Watson", lines: 7, total: "$2,110.40", waiting: false, pct: 100, clocked: "3:05", created: "Apr 09, 2026", invoiced: "Apr 20, 2026", daysopen: 21, parts: 3, returns: 0 },
+  { id: "S1-402", est: "Estimate", est_color: "ok", dept: "Mobile Service", cust: "Fibridge Mining", unit: "TRK-256", asset: "2011 Volvo VNL", vin: "1FD0W5HY2EEA05499", adv: "Floyd Miles", tech: "Ralph Edwards", lines: 5, total: "$4,780.65", waiting: false, pct: 0, clocked: "0:36", created: "Apr 02, 2026", invoiced: "", daysopen: 28, parts: 2, returns: 1 }
+];
+
+// By-lead-tech view data. Estimated hours are not on the list rows; added here for the progress bar.
+const TECH_WO = [
+  { id: "S1-644", techs: ["Esther Howard", "Theresa Webb"], status: "Approved", dept: "Truck Shop", cust: "Fibridge Commercial", unit: "TRK-204", asset: "Freightliner M2", adv: "James Smith", tech: "Esther Howard", lines: 8, total: "$7,240.55", waiting: false, pct: 20, clocked: 1.2, est: 6.0, created: "Apr 27, 2026", daysopen: 6 },
+  { id: "S1-455", status: "Estimate", dept: "Welding", cust: "Fibridge Commercial", unit: "TRK-337", asset: "2014 Kenworth T680", adv: "Theresa Webb", tech: "Esther Howard", lines: 3, total: "$884.25", waiting: false, pct: 0, clocked: 0, est: 2.5, created: "Apr 16, 2026", daysopen: 17 },
+  { id: "S1-341", techs: ["Esther Howard", "Kristin Watson"], status: "Approved", dept: "Welding", cust: "Fibridge Mining", unit: "EXC-07", asset: "Caterpillar 320 Excavator", adv: "Floyd Miles", tech: "Esther Howard", lines: 6, total: "$8,120.30", waiting: true, waitingParts: 1, pct: 0, clocked: 0, est: 9.0, created: "Apr 25, 2026", daysopen: 2 },
+  { id: "S1-578", status: "Estimate", dept: "Trailer Shop", cust: "Fibridge Commercial", unit: "TRL-882", asset: "2019 Utility Trailer", adv: "James Smith", tech: "Ralph Edwards", lines: 4, total: "$1,915.00", waiting: true, waitingParts: 2, pct: 0, clocked: 0, est: 3.0, created: "Apr 27, 2026", daysopen: 6 },
+  { id: "S1-402", status: "Estimate", dept: "Mobile Service", cust: "Fibridge Mining", unit: "TRK-256", asset: "2011 Volvo VNL", adv: "Floyd Miles", tech: "Ralph Edwards", lines: 5, total: "$4,780.65", waiting: false, pct: 10, clocked: 0.6, est: 7.5, created: "Apr 02, 2026", daysopen: 28 },
+  { id: "S1-511", techs: ["Jenny Wilson", "Esther Howard"], status: "Invoiced", dept: "Mobile Service", cust: "Fisquare Farms", asset: "John Deere 6120M", adv: "Esther Howard", tech: "Jenny Wilson", lines: 11, total: "$12,004.80", waiting: false, pct: 100, clocked: 4.5, est: 5.0, created: "Apr 12, 2026", daysopen: 12 },
+  { id: "S1-472", status: "Approved", dept: "Truck Shop", cust: "Fibrook Equipment", asset: "1999 Ford Explorer", adv: "Jenny Wilson", tech: "Kristin Watson", lines: 6, total: "$3,462.10", waiting: true, waitingParts: 1, pct: 10, clocked: 0.4, est: 4.0, created: "Apr 19, 2026", daysopen: 14 },
+  { id: "S1-498", status: "In progress", dept: "Truck Shop", cust: "Fibridge Mining", unit: "TRK-119", asset: "2007 Peterbuilt", adv: "Ralph Edwards", tech: "Theresa Webb", lines: 9, total: "$5,318.90", waiting: false, pct: 55, clocked: 2.8, est: 5.0, created: "Apr 22, 2026", daysopen: 10 },
+  { id: "S1-389", techs: ["Theresa Webb", "Ralph Edwards", "Kristin Watson"], status: "In progress", dept: "Truck Shop", cust: "Fibridge Commercial", unit: "TRK-512", asset: "2020 Freightliner Cascadia", adv: "Floyd Miles", tech: "Theresa Webb", lines: 12, total: "$9,860.00", waiting: true, waitingParts: 3, pct: 35, clocked: 5.2, est: 12.0, created: "Apr 18, 2026", daysopen: 9 },
+  { id: "S1-366", status: "Paid", dept: "Mobile Service", cust: "Fisquare Farms", asset: "Case IH Magnum 340", adv: "James Smith", tech: "Kristin Watson", lines: 5, total: "$6,415.75", waiting: false, pct: 100, clocked: 6.2, est: 6.5, created: "Apr 23, 2026", daysopen: 5 },
+  { id: "S1-431", status: "Invoiced", dept: "Truck Shop", cust: "Fibrook Supply", unit: "TRK-410", asset: "2016 Mack Anthem", adv: "Esther Howard", tech: "Kristin Watson", lines: 7, total: "$2,110.40", waiting: false, pct: 100, clocked: 3.1, est: 4.5, created: "Apr 09, 2026", daysopen: 21 },
+  { id: "S1-352", status: "Estimate", dept: "Trailer Shop", cust: "Fibrook Equipment", unit: "TRL-903", asset: "2013 Great Dane Reefer", adv: "Theresa Webb", tech: null, lines: 2, total: "$640.00", waiting: false, pct: 0, clocked: 0, est: 1.5, created: "Apr 24, 2026", daysopen: 3 },
+  { id: "S1-354", status: "Approved", dept: "Truck Shop", cust: "Northline Haulage", unit: "TRK-512", asset: "2020 Volvo VNL 760", adv: "James Smith", tech: "Brenda Martinez", lines: 4, total: "$2,380.00", waiting: false, pct: 25, clocked: 1.2, est: 4, created: "Apr 25, 2026", daysopen: 2 },
+  { id: "S1-355", status: "Approved", dept: "Trailer Shop", cust: "Fibridge Commercial", unit: "TRL-118", asset: "2017 Wabash Dry Van", adv: "Esther Howard", tech: null, lines: 3, total: "$1,120.50", waiting: true, waitingParts: 2, pct: 0, clocked: 0, est: 2.5, created: "Apr 25, 2026", daysopen: 2 },
+  { id: "S1-357", status: "Estimate", dept: "Mobile Service", cust: "Fisquare Farms", asset: "John Deere 8R 410", adv: "Theresa Webb", tech: null, lines: 1, total: "$410.00", waiting: false, pct: 0, clocked: 0, est: 1, created: "Apr 26, 2026", daysopen: 1 },
+  { id: "S1-358", status: "Approved", dept: "Truck Shop", cust: "RF Heavy", unit: "TRK-077", asset: "2019 Peterbilt 579", adv: "James Smith", tech: null, lines: 6, total: "$5,860.25", waiting: false, pct: 0, clocked: 0, est: 7.5, created: "Apr 26, 2026", daysopen: 1 },
+  { id: "S1-359", status: "Declined", dept: "Trailer Shop", cust: "Transload Trucking", unit: "TRL-220", asset: "2015 Utility Reefer", adv: "Esther Howard", tech: null, lines: 2, total: "$980.00", waiting: false, pct: 0, clocked: 0, est: 2, created: "Apr 27, 2026", daysopen: 0 },
+  { id: "S1-360", status: "Imported", dept: "Truck Shop", cust: "Hard Rock Industries LLC", unit: "TRK-301", asset: "2021 Kenworth T680", adv: "Theresa Webb", tech: null, lines: 3, total: "$1,745.00", waiting: false, pct: 0, clocked: 0, est: 3, created: "Apr 27, 2026", daysopen: 0 }
+];
+
+const PIN_LIMIT = 5;
+
+// Demo line items for the Details view (first work orders in the list); others fall back to a generic set.
+const DEMO_LINES = {
+  "S1-352": [
+    { title: "Estimate - Reefer unit not holding temp", story: "TW: Customer reports box temp drifting +6F on long hauls. Needs diagnostic on Carrier unit.", total: "$640.00", parts: false }
+  ],
+  "S1-354": [
+    { title: "Service - PM-A inspection, 2020 Volvo VNL", story: "JS: Full PM-A per fleet schedule. Check DEF system, brakes, lights.", total: "$980.00", parts: true },
+    { title: "Repair - Replace air dryer cartridge", total: "$412.00", parts: true },
+    { title: "Repair - Steer tire rotation", total: "$188.00", parts: false },
+    { title: "Inspection - Annual DOT", total: "$800.00", parts: false }
+  ],
+  "S1-355": [
+    { title: "Repair - Roll-up door cable, driver side", story: "EH: Cable frayed at drum. Waiting on 2 parts from Whiting.", total: "$620.50", parts: true },
+    { title: "Repair - Landing gear crank handle", total: "$260.00", parts: true },
+    { title: "Service - Lube fifth-wheel plate", total: "$240.00", parts: false }
+  ],
+  "S1-357": [
+    { title: "Mobile - Hydraulic hose leak, 8R 410", story: "TW: On-site at Fisquare north field. Pressure line to loader valve leaking at fitting.", total: "$410.00", parts: true }
+  ],
+  "S1-358": [
+    { title: "Repair - Aftertreatment fault codes SPN 3364", story: "JS: Active DEF quality code, derate warning. Pull DEF sample and test.", total: "$1,860.25", parts: true },
+    { title: "Repair - Replace DEF doser injector", total: "$1,240.00", parts: true },
+    { title: "Repair - Replace NOx sensor, outlet", total: "$980.00", parts: true },
+    { title: "Service - Forced DPF regen", total: "$420.00", parts: false },
+    { title: "Repair - Coolant leak at EGR cooler", total: "$1,360.00", parts: true }
+  ]
+};
+const DEMO_LINES_DEFAULT = [
+  { title: "Service - Perform LOF and inspection", story: "SK: Brought unit in. Set up wheel lifts. Completed LOF and inspection. Greased unit. Job completed.", total: "$495.50", parts: true, done: true },
+  { title: "Service - Replace marker lamps, driver side", total: "$142.36", parts: true }
+];
+
+// Statuses that freeze assignment, with the reason shown on the card and in its menu.
+// Reorder within a group is always allowed; only moving to another technician is frozen.
+const LOCK_REASON = {
+  "Invoiced": "Invoiced \u00B7 can\u2019t be reassigned",
+  "Paid": "Paid \u00B7 can\u2019t be reassigned",
+  "Declined": "Declined \u00B7 can\u2019t be reassigned",
+  "Imported": "Imported \u00B7 review before assigning"
+};
+const NO_PERMISSION = "You don\u2019t have permission to assign technicians";
+
+const TECHS = [
+  { id: "esther", name: "Esther Howard" },
+  { id: "ralph", name: "Ralph Edwards" },
+  { id: "jenny", name: "Jenny Wilson" },
+  { id: "theresa", name: "Theresa Webb" },
+  { id: "kristin", name: "Kristin Watson" },
+  { id: "cameron", name: "Cameron Williamson" },
+  { id: "brenda", name: "Brenda Martinez" }
+];
+
+// Technicians that actually appear in the data — the filter's option list.
+const TECH_NAMES = Array.from(new Set(
+  TECHS.map(t => t.name).concat(TECH_WO.map(w => w.tech), WO_ROWS.map(w => w.tech)).filter(Boolean)
+)).sort();
+
+const DEFAULT_TECH_ORDER = ["unassigned", "brenda"].concat(TECHS.filter(t => t.id !== "brenda").map(t => t.id));
+
+function initials(n) { return n.split(" ").map(w => w[0]).join("").slice(0, 2); }
+
+// Every technician assigned to a work order sees it in their list; w.tech is the lead.
+function assignedTo(w) {
+  const names = (w.techs && w.techs.length ? w.techs : [w.tech]).filter(Boolean);
+  if (w.tech && !names.includes(w.tech)) names.unshift(w.tech);
+  return names;
+}
+
+function buildOrder() {
+  const map = { unassigned: [] };
+  TECHS.forEach(t => { map[t.id] = []; });
+  // S1-354 heads the Unassigned list (it's the richest Details demo).
+  TECH_WO.slice().sort((a, b) => (a.id === "S1-354" ? -1 : b.id === "S1-354" ? 1 : 0)).forEach(w => {
+    const t = TECHS.find(t => t.name === w.tech);
+    map[t ? t.id : "unassigned"].push(w.id);
+  });
+  return map;
+}
+
+class Component extends DCLogic {
+  state = { open: false, query: "", picked: null, nav: null, toast: null, view: null, order: buildOrder(), collapsed: {}, layout: null, cols: null, q: "", tab: "All", filters: {}, techOrder: null, pinned: {}, menu: null, hoverUid: null, assign: null, assignQ: "", density: null, tip: null, gline: null };
+
+  // Table/tech search text, pushed up from the page toolbar so both views share one query.
+  setQuery = (v) => this.setState(s => (s.q === v ? null : { q: v }));
+
+  // Toolbar filters, mirrored from the page so the tech view honours the same chips.
+  setFilters = (f) => this.setState(s => (JSON.stringify(s.filters) === JSON.stringify(f) ? null : { filters: f }));
+
+  // Active page tab, mirrored up so the by-tech view scopes to the same statuses as the table.
+  setTab = (t) => this.setState(s => (s.tab === t ? null : { tab: t }));
+
+  setCols = (cols) => this.setState(s => (s.cols && s.cols.join() === cols.join()) ? null : { cols });
+
+  boardRef = React.createRef();
+  detailFrame = React.createRef();
+  // Details view: the embedded work order page mirrors the selected card.
+  pickDetail = (e) => {
+    const el = e.target.closest("[data-detail]");
+    if (!el) return;
+    this.setState({ sel: el.dataset.detail }, () => this.pushDetail());
+  };
+  detailReady = () => { this._frameReady = true; this.pushDetail(); };
+  pushDetail() {
+    const f = this.detailFrame.current;
+    const w = this.currentDetail();
+    if (!f || !f.contentWindow || !w || !this._frameReady) return;
+    f.contentWindow.postMessage({ type: "sv:wo", wo: {
+      id: w.id, status: w.status, cust: w.cust, asset: w.asset, unit: w.unit || "", adv: w.adv, tech: w.tech,
+      created: w.created, hours: (w.clocked || 0).toFixed(2) + " hrs", pct: w.pct,
+      lines: DEMO_LINES[w.id] || DEMO_LINES_DEFAULT, ov: this.props.overviewLayout || "columns"
+    } }, "*");
+  }
+  currentDetail() {
+    const id = this.state.sel;
+    const first = this._detailFirst || (this._groups ? (this._groups.flatMap(g => g.allItems)[0] || {}).uid : null);
+    return (id && TECH_WO.find(x => x.id === id)) || (first && TECH_WO.find(x => x.id === first)) || TECH_WO[0] || null;
+  }
+  // The board's scroll pane is the shell's content area; its height caps the Unassigned column.
+  watchScroller() {
+    const el = this.boardRef.current && this.boardRef.current.parentElement;
+    if (!el || this._ro) return;
+    const measure = () => { const h = el.clientHeight; if (h && h !== this.state.viewH) this.setState({ viewH: h }); };
+    this._ro = new ResizeObserver(measure);
+    this._ro.observe(el);
+    measure();
+  }
+
+  // Stable handlers for the page shell — new closures per render made its effects re-fire every pass.
+  setDensity = (d) => this.setState(s => (s.density === d ? null : { density: d }));
+  setRowDensity = (d) => this.setState(s => {
+    const key = (s.view ?? (this.props.defaultView === "tech" ? "tech" : "list")) === "tech" ? "techRows" : "list";
+    if (s.rowDensity && s.rowDensity[key] === d) return null;
+    return { rowDensity: { ...(s.rowDensity || {}), [key]: d } };
+  });
+  setView = (v) => this.setState(s => (s.view === v ? null : { view: v }));
+  setLayout = (v) => this.setState(s => (s.layout === v ? null : { layout: v }));
+  openSearch = () => this.setState((st) => ({ open: true, query: this.persist() ? st.query : "" }));
+  closeSearch = () => this.setState({ open: false });
+  setSearchQuery = (v) => this.setState({ query: v });
+  pickResult = (r) => this.flash({ picked: r }, "picked");
+  showAll = (group, q) => {
+    this.setState({ open: false });
+    if (group.type === "work-order") {
+      this.setState({ nav: { query: q, tab: "All", key: Date.now() } });
+    } else {
+      this.flash({ toast: group.label + " page for \u201C" + q + "\u201D \u2014 not built in this prototype" }, "toast");
+    }
+    return true;
+  };
+
+  componentDidMount() {
+    this._onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        this.setState((s) => ({ open: !s.open, query: (!s.open && !this.persist()) ? "" : s.query }));
+      }
+    };
+    window.addEventListener("keydown", this._onKey);
+    window.addEventListener("resize", this.mmSync);
+    this.paintBars();
+    this.mmSync();
+    this.watchScroller();
+  }
+  componentDidUpdate(prev) {
+    this.paintBars(); this.mmSync(); this.watchScroller();
+    if (prev && prev.overviewLayout !== this.props.overviewLayout) this.pushDetail();
+  }
+  componentWillUnmount() {
+    if (this._ro) this._ro.disconnect();
+    window.removeEventListener("keydown", this._onKey);
+    window.removeEventListener("resize", this.mmSync);
+  }
+
+  mmScroller() {
+    if (this._mmSc && this._mmSc.isConnected) return this._mmSc;
+    let el = document.querySelector("[data-group-id]");
+    while (el) {
+      const cs = getComputedStyle(el);
+      if (/(auto|scroll)/.test(cs.overflowX) && el.scrollWidth > el.clientWidth) break;
+      el = el.parentElement;
+    }
+    this._mmSc = el;
+    if (el && !el.dataset.mmBound) {
+      el.dataset.mmBound = "1";
+      el.addEventListener("scroll", this.mmSync, { passive: true });
+    }
+    return el;
+  }
+
+  mmSync = () => {
+    const wrap = document.querySelector("[data-mm]");
+    if (!wrap) return;
+    const sc = this.mmScroller();
+    const max = sc ? sc.scrollWidth - sc.clientWidth : 0;
+    if (!sc || max < 8) { wrap.style.display = "none"; return; }
+    wrap.style.display = "block";
+    const track = wrap.querySelector("[data-mm-track]");
+    const thumb = wrap.querySelector("[data-mm-thumb]");
+    if (!track || !thumb) return;
+    const inner = track.clientWidth - 6;
+    const w = Math.max(24, Math.round(inner * sc.clientWidth / sc.scrollWidth));
+    const x = (inner - w) * (sc.scrollLeft / max);
+    thumb.style.width = w + "px";
+    thumb.style.left = (3 + x) + "px";
+  };
+
+  mmDown = (e) => {
+    const sc = this.mmScroller();
+    const track = document.querySelector("[data-mm-track]");
+    const thumb = document.querySelector("[data-mm-thumb]");
+    if (!sc || !track || !thumb) return;
+    const inner = track.clientWidth - 6;
+    const w = thumb.getBoundingClientRect().width;
+    const span = Math.max(1, inner - w);
+    const max = sc.scrollWidth - sc.clientWidth;
+    const startX = e.clientX;
+    const startLeft = parseFloat(thumb.style.left || "3") - 3;
+    thumb.style.cursor = "grabbing";
+    const move = (ev) => {
+      const nx = Math.max(0, Math.min(span, startLeft + (ev.clientX - startX)));
+      sc.scrollLeft = max * (nx / span);
+    };
+    const up = () => {
+      thumb.style.cursor = "grab";
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+    };
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+    e.preventDefault();
+  };
+
+  paintBars() {
+    TECH_WO.forEach(w => {
+      document.querySelectorAll('[data-bar="' + w.id + '"]').forEach(b => { b.style.width = w.pct + "%"; });
+    });
+  }
+
+  persist() { return this.props.persistQuery ?? true; }
+
+  flash(patch, key) {
+    clearTimeout(this._t);
+    this.setState(patch);
+    const ms = patch.toast && patch.toast.undo ? 5000 : 2600;
+    this._t = setTimeout(() => this.setState({ [key]: null }), ms);
+  }
+
+  clearMark() {
+    if (this._marked) { this._marked.style.boxShadow = this._markPrev || ""; this._marked = null; }
+  }
+
+  // For a group drag the pointer is often in the gap between cards, so the nearest
+  // group by pointer position wins rather than requiring a hit on a section.
+  nearestGroup(e) {
+    const secs = Array.from(e.currentTarget.querySelectorAll("[data-group-id]"))
+      .filter(el => el.dataset.groupId !== this._drag.gid);
+    const horiz = this.isColumns();
+    let best = null, dist = Infinity;
+    secs.forEach(el => {
+      const r = el.getBoundingClientRect();
+      const c = horiz ? r.left + r.width / 2 : r.top + r.height / 2;
+      const p = horiz ? e.clientX : e.clientY;
+      const d = Math.abs(p - c);
+      if (d < dist) { dist = d; best = { el, after: p > c }; }
+    });
+    return best;
+  }
+
+  // Two independent drags: a work order within its own technician's list, and a
+  // technician group among the other groups (park a vacationing tech at the bottom).
+  dragStart = (e) => {
+    const row = e.target.closest("[data-wo]");
+    if (row) {
+      this._drag = { kind: "wo", uid: row.dataset.wo, gid: row.dataset.group, el: row };
+    } else {
+      const head = e.target.closest("[data-gdrag]");
+      if (!head) return;
+      this._drag = { kind: "group", gid: head.dataset.gdrag, el: head.closest("[data-group-id]") || head };
+    }
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text/plain", this._drag.uid || this._drag.gid);
+    const el = this._drag.el;
+    setTimeout(() => { if (this._drag) el.style.opacity = "0.4"; }, 0);
+  };
+
+  // A work order can land on another row (reorder / reassign at position) or on a
+  // technician's header (reassign to the end of that tech's list).
+  woTarget(e) {
+    const row = e.target.closest("[data-wo]");
+    if (row) return { kind: "row", gid: row.dataset.group, tgt: row.dataset.wo, el: row };
+    const sec = e.target.closest("[data-group-id]");
+    if (sec) return { kind: "head", gid: sec.dataset.groupId, tgt: null, el: sec.querySelector("[data-gdrag]") || sec };
+    return null;
+  }
+
+  dragOver = (e) => {
+    if (!this._drag) return;
+    const wo = this._drag.kind === "wo";
+    let el, after, horizontal = false;
+    if (wo) {
+      const t = this.woTarget(e);
+      if (!t) return;
+      if (t.kind === "head" && t.gid === this._drag.gid) return;
+      if (t.gid !== this._drag.gid) {
+        const why = this.moveBlock(this.findRec(this._drag.uid));
+        if (why) {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = "none";
+          const sec = e.target.closest("[data-group-id]") || t.el;
+          const r = sec.getBoundingClientRect();
+          const d = { text: why, x: r.left + r.width / 2, y: r.top + 12 };
+          const c = this.state.denied;
+          if (!c || c.text !== d.text || c.x !== d.x || c.y !== d.y) this.setState({ denied: d, gline: null });
+          return;
+        }
+      }
+      if (this.state.denied) this.setState({ denied: null });
+      el = t.el;
+      const r = el.getBoundingClientRect();
+      after = t.kind === "head" ? true : e.clientY > r.top + r.height / 2;
+    } else {
+      const near = this.nearestGroup(e);
+      if (!near) return;
+      el = near.el;
+      after = near.after;
+      horizontal = this.isColumns();
+    }
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+    this._after = after;
+    if (wo) {
+      const rw = el.getBoundingClientRect();
+      const off = this.isColumns() ? 4 : 0;
+      const gw = { x: rw.left, y: (after ? rw.bottom + off : rw.top - off) - 1.5, w: rw.width, h: 3 };
+      const c0 = this.state.gline;
+      if (!c0 || c0.x !== gw.x || c0.y !== gw.y || c0.w !== gw.w || c0.h !== gw.h) this.setState({ gline: gw });
+      return;
+    }
+    const r = el.getBoundingClientRect();
+    const g = horizontal
+      ? { x: (after ? r.right + 8 : r.left - 8) - 1.5, y: r.top, w: 3, h: r.height }
+      : { x: r.left, y: (after ? r.bottom : r.top) - 1.5, w: r.width, h: 3 };
+    const cur = this.state.gline;
+    if (!cur || cur.x !== g.x || cur.y !== g.y || cur.w !== g.w || cur.h !== g.h) this.setState({ gline: g });
+  };
+
+  drop = (e) => {
+    if (!this._drag) return;
+    const wo = this._drag.kind === "wo";
+    let el, wt = null;
+    if (wo) {
+      wt = this.woTarget(e);
+      if (!wt) return;
+      if (wt.kind === "head" && wt.gid === this._drag.gid) return;
+      el = wt.el;
+    } else {
+      const near = this.nearestGroup(e);
+      if (!near) return;
+      el = near.el;
+      this._after = near.after;
+    }
+    e.preventDefault();
+    const after = this._after;
+    if (wo && wt.gid !== this._drag.gid && this.moveBlock(this.findRec(this._drag.uid))) { this.dragEnd(); return; }
+    if (wo && wt.gid !== this._drag.gid) {
+      // Cross-technician drop: silent reassignment of the lead technician + toast.
+      const srcGid = this._drag.gid, srcId = this._drag.uid, dstGid = wt.gid, tgtId = wt.tgt;
+      const rec = TECH_WO.find(x => x.id === srcId);
+      const t = TECHS.find(x => x.id === dstGid);
+      const srcTech = (TECHS.find(x => x.id === srcGid) || {}).name;
+      const crew = rec ? assignedTo(rec) : [];
+      const wasCrew = !!t && crew.includes(t.name);
+      const undo = this.snapshot(rec);
+      // The card lives with its lead tech, so it always leaves the source column.
+      if (rec) {
+        const keep = crew.filter(n => n !== rec.tech && n !== (t ? t.name : null));
+        rec.tech = t ? t.name : null;
+        rec.techs = t ? [t.name].concat(keep) : keep;
+      }
+      this.setState(s => {
+        const src = (s.order[srcGid] || []).filter(x => x !== srcId);
+        const dst = (s.order[dstGid] || []).filter(x => x !== srcId);
+        let to = tgtId ? dst.indexOf(tgtId) : dst.length;
+        if (to < 0) to = dst.length; else if (after) to += 1;
+        dst.splice(to, 0, srcId);
+        return { order: { ...s.order, [srcGid]: src, [dstGid]: dst } };
+      });
+      this.flash({ toast: { label: !t ? srcId + " moved to Unassigned" : (wasCrew ? srcId + " lead technician set to " + t.name : srcId + " assigned to " + t.name), tone: "success", undo } }, "toast");
+    } else if (wo) {
+      const gid = this._drag.gid, srcId = this._drag.uid, tgtId = wt.tgt;
+      if (!tgtId) { this.dragEnd(); return; }
+      this.setState(s => {
+        const list = s.order[gid].slice();
+        const from = list.indexOf(srcId);
+        if (from < 0) return null;
+        list.splice(from, 1);
+        let to = list.indexOf(tgtId);
+        if (to < 0) return null;
+        if (after) to += 1;
+        list.splice(to, 0, srcId);
+        return { order: { ...s.order, [gid]: list } };
+      });
+    } else {
+      const srcGid = this._drag.gid, tgtGid = el.dataset.groupId;
+      this.setState(s => {
+        const list = (s.techOrder || DEFAULT_TECH_ORDER).slice();
+        const from = list.indexOf(srcGid);
+        if (from < 0) return null;
+        list.splice(from, 1);
+        let to = list.indexOf(tgtGid);
+        if (to < 0) return null;
+        if (after) to += 1;
+        list.splice(to, 0, srcGid);
+        return { techOrder: list };
+      });
+    }
+    this.dragEnd();
+  };
+
+  dragEnd = () => {
+    if (this.state.denied) this.setState({ denied: null });
+    this.clearMark();
+    if (this.state.gline) this.setState({ gline: null });
+    if (this._drag) { this._drag.el.style.opacity = ""; this._drag = null; }
+  };
+
+  // Hover reveals the row menu button directly in the DOM — a state change here re-rendered the whole list.
+  cardEnter = (e) => {
+    const el = e.currentTarget.dataset ? e.currentTarget : e.target.closest("[data-wo]");
+    const b = el && el.querySelector("[data-menu]");
+    if (b) b.style.opacity = "1";
+  };
+  cardLeave = (e) => {
+    const el = e.currentTarget.dataset ? e.currentTarget : e.target.closest("[data-wo]");
+    const b = el && el.querySelector("[data-menu]");
+    if (b && !(this.state.menu && this.state.menu.uid === el.dataset.wo)) b.style.opacity = "0";
+  };
+
+  openMenu = (e) => {
+    const el = e.target.closest("[data-menu]");
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    this.setState({ menu: { uid: el.dataset.menu, gid: el.dataset.menuGroup, x: r.right, y: r.bottom + 6 } });
+    e.stopPropagation();
+    e.preventDefault();
+  };
+  closeMenu = () => this.setState({ menu: null });
+
+  openAssign = (uid) => this.setState({ menu: null, assign: uid, assignQ: "" });
+  closeAssign = () => this.setState({ assign: null, assignQ: "" });
+  setAssignQuery = (e) => this.setState({ assignQ: e.target.value });
+
+  // Table rows share the card menu; the button rect anchors the dropdown.
+  rowMenu = (r, rect) => {
+    this._rows = this._rows || {};
+    this._rows[r.id] = r;
+    this.setState({ menu: { uid: r.id, gid: null, x: rect.right, y: rect.bottom + 6 } });
+  };
+
+  // Work orders live in two datasets (tech board + table rows); resolve from either.
+  findRec(uid) {
+    return TECH_WO.find(x => x.id === uid) || (this._rows && this._rows[uid]) || null;
+  }
+
+  // Same reassignment as a cross-column drop, driven from the card menu.
+  assignTech = (uid, techId) => {
+    const rec = this.findRec(uid);
+    if (!rec || this.moveBlock(rec)) return;
+    const onBoard = TECH_WO.indexOf(rec) >= 0;
+    const crew = assignedTo(rec);
+    const t = techId ? TECHS.find(x => x.id === techId) : null;
+    if (t && rec.tech === t.name) { this.setState({ menu: null, assign: null, assignQ: "" }); return; }
+    const wasCrew = !!t && crew.indexOf(t.name) >= 0;
+    const undo = this.snapshot(rec);
+    // Unassign clears the whole crew; reassigning a lead keeps the assisting techs.
+    const keep = t ? crew.filter(n => n !== rec.tech && n !== t.name) : [];
+    rec.tech = t ? t.name : null;
+    rec.techs = t ? [t.name].concat(keep) : keep;
+    if (!onBoard) {
+      this.setState({ menu: null, assign: null, assignQ: "" });
+      this.flash({ toast: { label: !t ? uid + " moved to Unassigned" : uid + " lead technician set to " + t.name, tone: "success", undo } }, "toast");
+      return;
+    }
+    const ids = [(TECHS.find(x => x.name === rec.tech) || {}).id].filter(Boolean);
+    this.setState(s => {
+      const order = {};
+      Object.keys(s.order).forEach(k => {
+        const want = ids.length ? ids.indexOf(k) >= 0 : k === "unassigned";
+        const has = s.order[k].indexOf(uid) >= 0;
+        order[k] = want ? (has ? s.order[k].slice() : s.order[k].concat([uid]))
+                        : s.order[k].filter(x => x !== uid);
+      });
+      return { order, menu: null, assign: null, assignQ: "" };
+    });
+    this.flash({ toast: { label: !t ? uid + " moved to Unassigned" : (wasCrew ? uid + " lead technician set to " + t.name : uid + " assigned to " + t.name), tone: "success", undo } }, "toast");
+  };
+
+  // Undo for assignment toasts: restores the record's crew and the board order from before the change.
+  snapshot(rec) {
+    const tech = rec.tech, techs = (rec.techs || []).slice();
+    const order = {};
+    Object.keys(this.state.order).forEach(k => { order[k] = this.state.order[k].slice(); });
+    const fn = () => {
+      rec.tech = tech; rec.techs = techs.slice();
+      clearTimeout(this._t);
+      this.setState({ order, toast: { label: "Assignment undone", tone: "info" }, picked: null });
+      this._t = setTimeout(() => this.setState({ toast: null }), 2600);
+    };
+    return fn;
+  }
+
+  tipOn = (e) => {
+    const el = e.target.closest("[data-tip]");
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const text = el.dataset.tipText;
+    const cx = r.left + r.width / 2;
+    const c = this._tc || (this._tc = document.createElement("canvas").getContext("2d"));
+    c.font = "500 12px Inter, system-ui, sans-serif";
+    const w = Math.ceil(c.measureText(text).width) + 20; // 10px padding each side
+    const half = w / 2, pad = 8, vw = window.innerWidth;
+    const shift = Math.max(pad + half - cx, 0) - Math.max(cx + half - (vw - pad), 0);
+    this.setState({ tip: { text, x: cx + shift, arrowX: half - shift, y: r.top - 8 } });
+  };
+  tipOff = () => this.setState({ tip: null });
+
+  // Locked by status, or for everyone when the user lacks the assign permission.
+  lockReason(rec) { return LOCK_REASON[rec.status || rec.est] || null; }
+  canAssign() { return this.props.canAssign ?? true; }
+  // Why a work order can't leave its group, or null when it can.
+  moveBlock(rec) {
+    if (!this.canAssign()) return NO_PERMISSION;
+    return rec ? this.lockReason(rec) : null;
+  }
+
+  isColumns() { return (this.state.layout ?? this.props.techLayout ?? "rows") === "columns"; }
+
+  toggleAll = () => {
+    const ids = (this._groups || this.techGroups(false)).map(g => g.id);
+    const anyOpen = ids.some(id => !this.state.collapsed[id]);
+    const next = {};
+    ids.forEach(id => { next[id] = anyOpen; });
+    this.setState({ collapsed: next });
+  };
+
+  // Pinned technician columns stick to the left of the board, after Unassigned.
+  togglePin = (e) => {
+    const el = e.target.closest("[data-pin]");
+    if (!el) return;
+    const id = el.dataset.pin;
+    const name = (TECHS.find(t => t.id === id) || {}).name || id;
+    let on = false, full = false;
+    this.setState(s => {
+      const next = { ...s.pinned };
+      if (next[id]) { delete next[id]; }
+      else if (Object.keys(next).length >= PIN_LIMIT) { full = true; return null; }
+      else { next[id] = true; }
+      on = !!next[id];
+      return full ? null : { pinned: next };
+    }, () => this.flash({ toast: full
+      ? { label: "Up to " + PIN_LIMIT + " pinned columns \u2014 unpin one first", tone: "warning" }
+      : { label: on ? name + " pinned" : name + " unpinned", tone: "info" } }, "toast"));
+    e.stopPropagation();
+  };
+
+  toggle = (e) => {
+    const el = e.target.closest("[data-tech]");
+    if (!el) return;
+    const id = el.dataset.tech;
+    this.setState(s => ({ collapsed: { ...s.collapsed, [id]: !s.collapsed[id] } }));
+  };
+
+  techGroups(showWaiting = true) {
+    const tones = window.STATUS_TONE || {};
+    const q = (this.state.q || "").trim();
+    const f = this.state.filters || {};
+    const stF = f.status || [], techF = f.tech || [], deptF = f.dept || [];
+    const tab = this.state.tab || "All";
+    const tabSets = window.WO_TAB_STATUS || {};
+    const tabStatuses = tab === "Work Orders" ? tabSets.workOrders : tab === "Estimates" ? tabSets.estimates : tab === "Completed" ? tabSets.completed : null;
+    const match = (w) => {
+      if (tabStatuses && !tabStatuses.includes(w.status)) return false;
+      if (stF.length && !stF.includes(w.status)) return false;
+      if (techF.length && !assignedTo(w).some(n => techF.includes(n))) return false;
+      if (deptF.length && !deptF.includes(w.dept)) return false;
+      if (q && window.svRowMatches && !window.svRowMatches({ ...w, tech: w.tech || "Unassigned" }, q)) return false;
+      return true;
+    };
+    const filtering = !!q || stF.length > 0 || techF.length > 0 || deptF.length > 0;
+    const hideEmpty = filtering || !!tabStatuses;
+    const byId = {};
+    TECH_WO.forEach(w => { byId[w.id] = w; });
+    const dense = this.state.density ?? this.props.cardDensity ?? "detailed";
+    const mk = (gid, ids) => ids.map((id, i) => {
+      const w = byId[id];
+      const gTech = (TECHS.find(t => t.id === gid) || {}).name;
+      const crew = assignedTo(w);
+      const isLead = !gTech || w.tech === gTech;
+      const menuOn = this.state.menu && this.state.menu.uid === w.id;
+      const lockReason = this.lockReason(w);
+      const locked = !!lockReason;
+      return {
+        locked, unlocked: !locked,
+        lockReason: lockReason || "",
+        drag: "true",
+        cardCursor: "grab",
+        cardHoverBorder: "var(--sv-grey-400)",
+        cardHoverShadow: "var(--sv-shadow-md)",
+        titleColor: "var(--sv-text-primary)",
+        idColor: "var(--sv-accent)",
+        menuDisplay: this.canAssign() ? "grid" : "none",
+        showWait: !!w.waiting && dense === "detailed",
+        assignLabel: locked ? lockReason : (w.tech ? "Reassign Lead Tech" : "Assign Tech"),
+        menuOpacity: menuOn ? 1 : 0,
+        isLead, isAssist: !isLead,
+        multi: crew.length > 1,
+        crewLabel: crew.length > 1 ? (isLead ? "Lead" : "Assisting") : "",
+        crewTip: crew.length > 1 ? (isLead ? "Lead technician \u00B7 crew: " + crew.join(", ") : "Lead: " + w.tech + " \u00B7 crew: " + crew.join(", ")) : "",
+        uid: w.id, gid, rank: i + 1, id: w.id, cust: w.cust, adv: w.adv,
+        crewProps: { names: crew, size: 24 },
+        crewNames: crew,
+        asset: w.asset,
+        unit: w.unit || "",
+        hasUnit: !!w.unit,
+        noUnit: !w.unit,
+        assetLine: w.unit ? w.unit + " \u00B7 " + w.asset : w.asset,
+        status: w.status, tone: tones[w.status] || "neutral",
+        waiting: !!w.waiting,
+        showWaiting: !!w.waiting && showWaiting,
+        waitCell: w.waiting ? w.waitingParts + (w.waitingParts === 1 ? " part" : " parts") : "",
+        noWait: !w.waiting,
+        waitLabel: w.waiting ? "Waiting on " + w.waitingParts + (w.waitingParts === 1 ? " part" : " parts") : "",
+        created: w.created,
+        clockedLabel: w.clocked ? (Math.floor(w.clocked) + ":" + String(Math.round((w.clocked % 1) * 60)).padStart(2, "0")) : "",
+        hasClocked: !!w.clocked,
+        noClocked: !w.clocked,
+        linesLabel: w.lines + " lines",
+        lines: w.lines,
+        hoursLabel: w.clocked.toFixed(1) + " / " + w.est.toFixed(1) + " hrs",
+        pctLabel: w.pct + "%",
+        total: w.total
+      };
+    });
+    const defs = [{ id: "unassigned", name: "Unassigned", isUnassigned: true }]
+      .concat(TECHS.map(t => ({ id: t.id, name: t.name, isTech: true, initials: initials(t.name), avatar: { name: t.name, size: 28 } })));
+    const gorder = this.state.techOrder || DEFAULT_TECH_ORDER;
+    const kanban = this.isColumns();
+    const pins = this.state.pinned || {};
+    const pinCount = Object.keys(pins).length;
+    let stickyIdx = 0;
+    return defs
+      .slice()
+      // On the board: Unassigned first, then pinned technicians, then the rest.
+      .sort((a, b) => {
+        if (!kanban) return gorder.indexOf(a.id) - gorder.indexOf(b.id);
+        const rank = (g) => g.isUnassigned ? 0 : (pins[g.id] ? 1 : 2);
+        return rank(a) - rank(b) || gorder.indexOf(a.id) - gorder.indexOf(b.id);
+      })
+      .filter(g => !(g.isUnassigned && (this.state.order.unassigned || []).length === 0))
+      .map(g => {
+        const ids = this.state.order[g.id] || [];
+        const all = mk(g.id, ids);
+        const items = all.filter(it => match(byId[it.uid]));
+        const n = items.length;
+        // A search or filter opens every group that still has a hit, so results aren't hidden behind a collapsed header.
+        const open = filtering ? true : !this.state.collapsed[g.id];
+        // Unassigned alone stays sticky; pinned technicians just sort to the front and scroll.
+        const pinned = kanban && !!g.isUnassigned;
+        const stickyOffset = pinned ? (stickyIdx++) * 304 : 0;
+        return {
+          pin: pinned ? "sticky" : "static",
+          pinZ: pinned ? 20 - stickyOffset / 304 : 0,
+          pinAlign: pinned ? "stretch" : "flex-start",
+          pinLeft: (pinned ? stickyOffset + 16 : 0) + "px",
+          isPinned: kanban && !!pins[g.id],
+          canPin: kanban && !!g.isTech,
+          pinLabel: pins[g.id] ? "Unpin column" : (pinCount >= PIN_LIMIT ? "Up to " + PIN_LIMIT + " pinned columns" : "Pin column"),
+          pinOpacity: (pins[g.id] || pinCount < PIN_LIMIT) ? 1 : 0.4,
+          pinColor: pins[g.id] ? "var(--sv-accent)" : "var(--sv-text-muted)",
+          pinIcon: React.createElement("svg", {
+            width: 16, height: 16, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor",
+            strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true",
+            style: { display: "block" },
+            dangerouslySetInnerHTML: { __html: pins[g.id]
+              ? '<path d="M12 17v5"/><path d="M15 9.34V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H7.89"/><path d="m2 2 20 20"/><path d="M9 9v1.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h11"/>'
+              : '<path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/>' }
+          }),
+          sticky: pinned,
+          wrapPos: pinned ? "sticky" : "static",
+          colMaxH: pinned ? (this.state.viewH ? (this.state.viewH - 40) + "px" : "calc(100vh - 220px)") : "none",
+          colOverflow: pinned ? "auto" : "visible",
+          pinDrag: (pinned || pins[g.id]) ? "default" : "grab",
+          canDrag: !pinned && !pins[g.id],
+          id: g.id, name: g.name, initials: g.initials || "", avatar: g.avatar,
+          isTech: !!g.isTech, isUnassigned: !!g.isUnassigned,
+          open, closed: !open, count: n,
+          toggleLabel: open ? "Collapse" : "Expand",
+          countTitle: n + (n === 1 ? " work order" : " work orders"),
+          countLabel: filtering
+            ? n + (n === 1 ? " match" : " matches")
+            : n + (n === 1 ? " work order" : " work orders"),
+          items: open ? items : [], allItems: items,
+          isEmpty: n === 0,
+          showEmpty: n === 0 && open && !!g.isTech
+        };
+      })
+      .filter(g => !hideEmpty || g.count > 0);
+  }
+
+  renderVals() {
+    const p = this.props, s = this.state;
+    const menuRec = s.menu ? this.findRec(s.menu.uid) : null;
+    const menuItems = [];
+    const menuLock = menuRec ? this.lockReason(menuRec) : null;
+    if (menuRec) {
+      const off = !!menuLock;
+      menuItems.push({
+        name: menuRec.tech ? "Reassign Lead Tech" : "Assign Tech",
+        color: off ? "var(--sv-text-muted)" : "var(--sv-text-primary)",
+        cursor: off ? "not-allowed" : "pointer",
+        hoverBg: off ? "transparent" : "var(--sv-grey-50)",
+        icon: window.svIcon("user-round", 16),
+        pick: off ? null : () => this.openAssign(menuRec.id)
+      });
+      if (menuRec.tech) menuItems.push({
+        name: "Unassign", color: off ? "var(--sv-text-muted)" : "var(--sv-error-text)",
+        cursor: off ? "not-allowed" : "pointer",
+        hoverBg: off ? "transparent" : "var(--sv-grey-50)",
+        icon: window.svIcon("x", 16),
+        pick: off ? null : () => this.assignTech(menuRec.id, null)
+      });
+    }
+    const asgRec = s.assign ? this.findRec(s.assign) : null;
+    const asgQ = (s.assignQ || "").trim().toLowerCase();
+    const asgTechs = TECHS.filter(t => !asgQ || t.name.toLowerCase().indexOf(asgQ) >= 0);
+    const asgItems = asgRec ? asgTechs.map(t => ({
+      name: t.name,
+      meta: (this.state.order[t.id] || []).length + " open",
+      current: asgRec.tech === t.name,
+      weight: asgRec.tech === t.name ? 600 : 500,
+      bg: asgRec.tech === t.name ? "var(--sv-info-fill)" : "transparent",
+      pick: () => this.assignTech(asgRec.id, t.id)
+    })) : [];
+    const rawToast = s.picked ? { label: "Opening " + s.picked.title, tone: "info" } : (typeof s.toast === "string" ? { label: s.toast, tone: "info" } : s.toast);
+    const toastTones = { success: "var(--sv-success-text)", info: "var(--sv-info-text)", warning: "var(--sv-warning-text)", error: "var(--sv-error-text)" };
+    const toastColor = rawToast ? (toastTones[rawToast.tone] || toastTones.info) : "";
+    const detailsOn = p.detailsView ?? false;
+    let view = s.view ?? (p.defaultView === "tech" ? "tech" : p.defaultView === "details" ? "details" : "list");
+    if (view === "details" && !detailsOn) view = "list";
+    const isDetails = view === "details";
+    const rdKey = view === "tech" ? "techRows" : "list";
+    const rowDensity = (s.rowDensity && s.rowDensity[rdKey]) ?? p.rowHeight ?? "medium";
+    const layout = s.layout ?? p.techLayout ?? "rows";
+    const density = s.density ?? p.cardDensity ?? "detailed";
+    const cols = s.cols ?? window.DEFAULT_COLUMNS ?? [];
+    const has = (k) => cols.includes(k);
+    // [track, min px] — the min widths add up to the scroller width so no column gets clipped.
+    const colDefs = [["28px", 28], ["28px", 28], ["132px", 132],
+      has("waiting") ? ["116px", 116] : null,
+      ["88px", 88], ["minmax(150px, 1fr)", 150],
+      has("unit") ? ["96px", 96] : null,
+      has("asset") ? ["minmax(160px, 1.1fr)", 160] : null,
+      has("progress") ? ["116px", 116] : null,
+      has("adv") ? ["124px", 124] : null,
+      has("clocked") ? ["96px", 96] : null,
+      has("lines") ? ["64px", 64] : null,
+      has("techs") ? (rowDensity === "large" ? ["140px", 140] : rowDensity === "small" ? ["108px", 108] : ["124px", 124]) : null,
+      has("created") ? ["112px", 112] : null,
+      has("total") ? ["104px", 104] : null,
+      ["40px", 40]].filter(Boolean);
+    const gridCols = colDefs.map(c => c[0]).join(" ");
+    // column mins + 12px gaps + 32px row padding + 32px section margins
+    const rowsMinWidth = (colDefs.reduce((n, c) => n + c[1], 0) + (colDefs.length - 1) * 12 + 32) + "px";
+    const noTechOnly = (this.props.emptyState ?? "off") === "no-technicians";
+    // No technicians yet: only the Unassigned group renders; an inline empty state follows it.
+    const groups = this._groups = this.techGroups(false).filter(g => !(noTechOnly && g.isTech));
+    // Details list: assigned work orders first (S1-354 leading), Unassigned last, then interleave so techs are visible up top.
+    const detailSrc = isDetails ? (() => {
+      const tech = groups.filter(g => g.isTech).flatMap(g => g.allItems);
+      const un = groups.filter(g => !g.isTech).flatMap(g => g.allItems);
+      const lead = tech.filter(x => x.uid === "S1-354");
+      const rest = tech.filter(x => x.uid !== "S1-354");
+      const out = lead.slice();
+      const n = Math.max(rest.length, un.length);
+      for (let i = 0; i < n; i++) { if (rest[i]) out.push(rest[i]); if (un[i]) out.push(un[i]); }
+      return out;
+    })() : [];
+    this._detailFirst = detailSrc.length ? detailSrc[0].uid : null;
+    const selId = (this.currentDetail() || {}).id;
+    const detailItems = detailSrc.map(it => Object.assign({}, it, {
+      selBorder: it.uid === selId ? "var(--sv-accent)" : "var(--sv-border-default)",
+      selShadow: it.uid === selId ? "0 0 0 1px var(--sv-accent)" : "none"
+    }));
+    const techCount = groups.reduce((n, g) => n + g.count, 0);
+    // Review tweak: first-run empty states for the tech views (no work orders / no technicians / neither).
+    const es = p.emptyState ?? "off";
+    const noWo = es === "no-work-orders" || es === "nothing";
+    const noTech = es === "no-technicians" || es === "nothing";
+    const firstRun = view === "tech" && noWo;
+    const noTechInline = view === "tech" && noTech && !noWo;
+    const techEmpty = view === "tech" && techCount === 0 && !firstRun;
+    const frTitle = noWo && noTech ? "Nothing here yet" : noWo ? "No work orders yet" : "No technicians yet";
+    const frBody = noWo && noTech
+      ? "Add technicians and create your first work order to track work by tech."
+      : noWo ? "Create a work order and assign a technician to see it here."
+      : "Add technicians to assign work orders. Until then, every work order stays in Unassigned.";
+    const frToast = (label) => { clearTimeout(this._t); this.setState({ toast: { label, tone: "info" } }); this._t = setTimeout(() => this.setState({ toast: null }), 2600); };
+    // Review frames: "columns" turns Auth + Parts on; "settings" opens the column panel (both unchecked).
+    const frame = p.frame ?? "default";
+    window.SV_EXTRA_COLUMNS = frame === "columns" ? ["auth", "partsReady"] : [];
+    window.SV_COLUMNS_OPEN = frame === "settings";
+    return {
+      pageProps: {
+        frame,
+        onSearchClick: this.openSearch,
+        searchValue: this.persist() ? s.query : "",
+        extraRows: WO_ROWS,
+        onRowMenu: this.rowMenu,
+        cardDensity: density,
+        onCardDensityChange: this.setDensity,
+        rowDensity,
+        onRowDensityChange: this.setRowDensity,
+        search: s.nav,
+        view,
+        onViewChange: this.setView,
+        techLayout: layout,
+        onTechLayoutChange: this.setLayout,
+        showDetailsView: detailsOn,
+        onColumnsChange: this.setCols,
+        onQueryChange: this.setQuery,
+        onFiltersChange: this.setFilters,
+        onTabChange: this.setTab,
+        techOptions: TECH_NAMES,
+        techCount: noWo ? 0 : techCount
+      },
+      groups,
+      showMoney: (p.showFinancials ?? true) && density === "detailed",
+      av24: 24,
+      cAsset: has("asset"), cUnit: has("unit"), cClocked: has("clocked"), cLines: has("lines"), cAdv: has("adv"), cTechs: has("techs"), cStatus: true,
+      cCreated: has("created"), cProgress: has("progress"), cTotal: has("total"), cWaiting: has("waiting"),
+      gridCols: gridCols,
+      dDetailed: density === "detailed",
+      rowH: rowDensity === "large" ? "64px" : rowDensity === "small" ? "36px" : "48px",
+      rowLarge: rowDensity === "large",
+      rowSmall: rowDensity === "small",
+      cellFs: rowDensity === "small" ? "13px" : "14px",
+      barW: rowDensity === "small" ? "48px" : "64px",
+      barH: rowDensity === "small" ? "4px" : "6px",
+      badgeSize: rowDensity === "large" ? "md" : "sm",
+      crewSize: rowDensity === "large" ? 32 : rowDensity === "small" ? 20 : 24,
+      groupH: rowDensity === "large" ? "56px" : rowDensity === "small" ? "36px" : "44px",
+      groupAv: rowDensity === "large" ? 36 : rowDensity === "small" ? 24 : 28,
+      groupAvPx: rowDensity === "large" ? "36px" : rowDensity === "small" ? "24px" : "28px",
+      cardPad: density === "detailed" ? "12px" : "10px 12px",
+      cardGap: density === "detailed" ? "8px" : "6px",
+      rowsMinWidth,
+      toggleAll: this.toggleAll,
+      allLabel: groups.some(g => g.open) ? "Collapse all" : "Expand all",
+      allIcon: React.createElement("span", {
+        style: { display: "grid", transform: groups.some(g => g.open) ? "none" : "rotate(-90deg)" }
+      }, window.svIcon("chevron-down", 16)),
+      mmCols: groups.map(g => ({ id: g.id })),
+      mmDown: this.mmDown,
+      isRows: view === "tech" && layout === "rows" && !techEmpty && !firstRun,
+      isCols: view === "tech" && layout === "columns" && !techEmpty && !firstRun,
+      isDetails,
+      detailsH: (s.viewH ? s.viewH : 640) + "px",
+      detailItems,
+      detailCount: detailItems.length,
+      detailEmpty: isDetails && detailItems.length === 0,
+      detailed: density === "detailed",
+      showMoneyDetailed: (p.showFinancials ?? true) && density === "detailed",
+      pickDetail: this.pickDetail,
+      detailFrame: this.detailFrame,
+      detailReady: this.detailReady,
+      techEmpty,
+      firstRun,
+      noTechInline,
+      frTitle, frBody,
+      frIcon: window.svIcon(noWo ? "clipboard-list" : "user-round", 24),
+      frTechBtn: noTech,
+      frWoBtn: noWo,
+      frAddTech: () => frToast("Opening Add Technician"),
+      frNewWo: () => frToast("Opening New Work Order"),
+      icoPlus: window.svIcon("plus", 16),
+      icoUser20: window.svIcon("user-round", 20),
+      emptyProps: { query: this.state.q, hasFilters: Object.values(this.state.filters || {}).some(v => v && v.length) },
+      icoChevDown: React.createElement("span", { style: { display: "grid" } }, window.svIcon("chevron-down", 16)),
+      icoChevRight: React.createElement("span", { style: { display: "grid", transform: "rotate(-90deg)" } }, window.svIcon("chevron-down", 16)),
+      icoUser: window.svIcon("user-round", 14),
+      icoUsers: window.svIcon("user-round", 12, { style: { display: "block", flexShrink: 0 } }),
+      tipOn: this.tipOn, tipOff: this.tipOff,
+      hasLine: !!s.gline,
+      lineX: s.gline ? s.gline.x + "px" : "0px",
+      lineY: s.gline ? s.gline.y + "px" : "0px",
+      lineW: s.gline ? s.gline.w + "px" : "0px",
+      lineH: s.gline ? s.gline.h + "px" : "0px",
+      hasMenu: !!s.menu,
+      menuX: s.menu ? s.menu.x + "px" : "0px",
+      menuY: s.menu ? s.menu.y + "px" : "0px",
+      menuTitle: menuRec && menuRec.tech ? "Reassign Lead Tech" : "Assign Tech",
+      menuItems,
+      menuLocked: !!menuLock,
+      menuLockText: menuLock || "",
+      icoLock: window.svIcon("lock", 14, { style: { display: "block", flexShrink: 0 } }),
+      icoLock12: window.svIcon("lock", 12, { style: { display: "block", flexShrink: 0 } }),
+      closeMenu: this.closeMenu,
+      icoMore: window.svIcon("ellipsis", 16),
+      icoX20: window.svIcon("x", 20),
+      icoSearch: window.svIcon("search", 16),
+      av32: 32,
+      hasAssign: !!asgRec,
+      assignTitle: asgRec ? (asgRec.tech ? "Reassign Lead Tech" : "Assign Tech") : "",
+      assignSub: asgRec ? asgRec.id + " \u00B7 " + asgRec.cust : "",
+      assignQuery: s.assignQ || "",
+      setAssignQuery: this.setAssignQuery,
+      closeAssign: this.closeAssign,
+      assignItems: asgItems,
+      assignEmpty: !!asgRec && asgItems.length === 0,
+      assignEmptyText: "No technicians match \u201C" + (s.assignQ || "") + "\u201D",
+      icoCheck: window.svIcon("check", 16),
+      cardEnter: this.cardEnter,
+      cardLeave: this.cardLeave,
+      openMenu: this.openMenu,
+      deniedOn: !!s.denied,
+      deniedText: s.denied ? s.denied.text : "",
+      deniedX: s.denied ? s.denied.x + "px" : "0px",
+      deniedY: s.denied ? s.denied.y + "px" : "0px",
+      icoBan: window.svIcon("ban", 14, { style: { display: "block", flexShrink: 0 } }),
+      hasTip: !!s.tip,
+      tipText: s.tip ? s.tip.text : "",
+      tipX: s.tip ? s.tip.x + "px" : "0px",
+      tipY: s.tip ? s.tip.y + "px" : "0px",
+      tipArrowX: s.tip && s.tip.arrowX != null ? s.tip.arrowX + "px" : "50%",
+      icoWo: window.svIcon("clipboard-list", 16, { style: { display: "block", flexShrink: 0 } }),
+      boardRef: this.boardRef,
+      dragStart: this.dragStart, dragOver: this.dragOver, drop: this.drop, dragEnd: this.dragEnd,
+      toggle: this.toggle,
+      togglePin: this.togglePin,
+      modalProps: {
+        open: s.open,
+        onClose: this.closeSearch,
+        firstTime: p.firstTime ?? false,
+        showAI: p.showAI ?? true,
+        maxPerSection: p.maxPerSection ?? 5,
+        query: s.query,
+        setQuery: this.setSearchQuery,
+        onSelect: this.pickResult,
+        onShowAll: this.showAll
+      },
+      hasToast: !!rawToast,
+      toastMsg: rawToast ? rawToast.label : "",
+      toastUndo: !!(rawToast && rawToast.undo),
+      toastCompact: !!rawToast && !rawToast.undo,
+      toastUndoClick: rawToast && rawToast.undo ? rawToast.undo : null,
+      toastColor,
+      toastIcon: window.svIcon(rawToast && rawToast.tone === "success" ? "circle-check" : "info", 20),
+      toastClose: () => { clearTimeout(this._t); this.setState({ toast: null, picked: null }); },
+      icoX: window.svIcon("x", 16)
+    };
+  }
+}
+</script>
+</body>
+</html>
