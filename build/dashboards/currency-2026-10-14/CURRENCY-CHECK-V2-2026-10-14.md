@@ -101,3 +101,17 @@ technician tiles with no data (D-11) · At Risk revenue measure (D-12) · At Ris
   C88630 and Nebojsa's nine 15_Empty_* references are wording only. S11-E2 is covered by Vladimir's C137997 step 3. Still open
   for the PO (not sent): D-13 (board 01 caption says the At Risk window resets each visit; S5-R14 says remembered) and D-4b
   (Sales by Customer at 0 customers: the spec does not say what its supporting line reads).
+
+## QA lead's answers, 14 Oct 2026 (night)
+- "2. Yes please" → PO sheet 10Bgu1k2… rows 22–23 = questions 17 (D-13, At Risk days choice remembered vs board 01 caption,
+  confirm only) and 18 (D-4b, Sales by Customer supporting line at 0 customers); pink like question 16; read back (text and colour).
+- "3. After tidying them did anything change in them that can cause them to fail…?" → word-for-word diff of the 11 Automated cases
+  (`apply-tidy/snap-start` vs `snap-after`): titles, steps and plain expected results unchanged in all 11. Changes: source lines
+  (PRD v42→v48, design re-dated) in all 11; S5-R9 quote re-copied (C88609); S6-R3a quote added (C88612); the bracketed note in
+  setup "(the dashboard remembers your choices…)" → "(date ranges are not remembered: every visit opens on the defaults)" in C88612,
+  C88617, C88623 — the tester's action (set the pill back to This Month) is the same; the note now matches S7-R8. Nothing can make
+  them fail.
+- "4. Do what os scientifically correct." → the re-shared design now agrees with the PRD on both points, so the divergence sentence
+  was false. C581906: replaced with "board 15_Empty_After … shows the report link on every tile … the design now agrees with the PRD"
+  (also "confirmed by from" → "confirmed by"). C581907: replaced with "shows no "Last updated" line … the design now agrees with the
+  PRD". custom_expected only; other fields read back unchanged (`apply-c4/`). Both are ours, manual, created today; already in run 525.
