@@ -4,7 +4,22 @@
 **TestRail:** group **12166** "Dashboard (Sep 2026)", suite 1 — empty at start (0 subfolders, 0 cases).
 Link: https://shopview.testrail.io/index.php?/suites/view/1&group_id=12166
 
-## 🟢 CURRENT STATE — 14 Oct 2026 Currency Check V2 (read this first)
+## 🟢 14 Oct 2026 (evening) — AUTHORISED TestRail write landed (read this first)
+- QA lead: "update ALL the test cases which Nebojsa or Vladimir have not last updated" → "Only the 6 with behaviour changes" + "Yes,
+  create all 17"; coordinator added C88645 and C351716 from the full audit (same authorisation). Tools and logs:
+  `currency-2026-10-14/apply/` (apply_dash.py, build_proposals_dash.py, readback_dash.py, doc_readback.py, served_check.mjs,
+  run525_sync.py; logs in `applied/`).
+- **PRD now v48** (14 Oct 17:09 UTC; S9-R11 reworded after PO answer 16), saved `currency-2026-10-14/CONFLUENCE-788430850-v48-2026-10-14c.md`.
+  All quotes in this write copied by script from v48 (release notes 931069964 v7 / 928121200 v6; tech plan 16 Sep).
+- **8 of ours rewritten in full** to the 8 Oct Rule 117 layout, each with a NEW public setup doc (old docs left in place):
+  C88632, C351723, C351734, C88606 (Automated, atm 3 kept), C88647, C351729, C88645, C351716. Markers READY kept; build stamps kept.
+- **17 new** C581897–C581913 (sections 12169/12170/12172–12176/12178), marker `AUTOMATION: HOLD - not yet build-verified`.
+- Read-back: 25/25 cases field-by-field OK; 98 other cases byte-identical; 25/25 docs word-identical via public export; 25/25
+  served pages OK. Run 525: 101 → 118 tests, union only, nothing dropped, no status changed.
+- Not build-verified (build verification session's job). The 8 edited cases still carry their old run-525 results (7 Passed,
+  C351723 Blocked) from the previous wording.
+
+## (previous) 14 Oct 2026 Currency Check V2
 - **Run as V2 (QA lead's choice): no TestRail write.** Record: `currency-2026-10-14/CURRENCY-CHECK-V2-2026-10-14.md`.
 - **Sources now:** PRD **v44** (13 Oct; adds S8-R5a, S8-N1a, S4-R11a) · release notes Confluence 931069964 (10 Oct) ·
   design unchanged since 7 Oct · tech plan unchanged. QA env the squad uses: **sv490** (PRD header still says sv8311).

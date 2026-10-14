@@ -215,14 +215,14 @@
     "Set the Billing Efficiency pill to This Month and look at its trend line at {Day-A}."
    ],
    "results": [
-    "Step 3: 31 days draws one point per day (up to 31 points).",
+    "Step 3: 31 days draws exactly 31 points, one for every day, including days with no sales: on Revenue a day with no sales is a point at $0, not a gap.",
     "Step 4: 32 days draws one point per week (about 5 points).",
     "Step 5: 182 days still draws one point per week (about 26 points).",
     "Step 6: 183 days draws one point per month (about 7 points).",
     "Steps 7 and 8: On Last 12 Months the trend line has 12 points, and they rise and fall exactly like the 12 monthly bars in the expanded Revenue chart. No point disagrees with the bar for the same month.",
     "Step 9: At {Day-A} the Billing Efficiency line has a gap: it breaks and resumes. It is not drawn down to zero and the days either side are not joined across the gap."
    ],
-   "source": "Epic SV-490; story SV-9576 (Story 4, KPI Hero Tiles), with SV-9579 (Story 7), SV-9578 (Story 6) and SV-9581 (Story 9); Dashboard v1 PRD, Confluence 788430850, version 48 (14 Oct 2026, 17:09 UTC, Chris Ward), S4-R10 and S4-R11 (unchanged since version 42), S7-R2a, S6-R3a and S9-R9 (added in version 45 on 14 Oct 2026 (15:06 UTC) by Chris Ward; the spec's change log (version 46) lists it under 2026-10-14); read 14 Oct 2026. The 731-day and 732-day ranges were removed because a tile's calendar now allows at most 366 days (S7-R2a, Chris Ward's answer 3 of 14 Oct 2026), so the switch to one point per quarter cannot be reached from a tile. Design canvas board 03_Range_After for the date pill, calendar and \"Range: N days\" readout. Source-verified 14 October 2026. This version of the case has not yet been checked against a build.",
+   "source": "Epic SV-490; story SV-9576 (Story 4, KPI Hero Tiles), with SV-9579 (Story 7), SV-9578 (Story 6) and SV-9581 (Story 9); Dashboard v1 PRD, Confluence 788430850, version 48 (14 Oct 2026, 17:09 UTC, Chris Ward), S4-R10 and S4-R11 (unchanged since version 42), S4-R11a (added in version 43 on 9 Oct 2026), S7-R2a, S6-R3a and S9-R9 (added in version 45 on 14 Oct 2026 (15:06 UTC) by Chris Ward; the spec's change log (version 46) lists it under 2026-10-14); read 14 Oct 2026. The 731-day and 732-day ranges were removed because a tile's calendar now allows at most 366 days (S7-R2a, Chris Ward's answer 3 of 14 Oct 2026), so the switch to one point per quarter cannot be reached from a tile. Design canvas board 03_Range_After for the date pill, calendar and \"Range: N days\" readout. Source-verified 14 October 2026. This version of the case has not yet been checked against a build.",
    "quotes": [
     [
      "S4-R10",
@@ -231,6 +231,10 @@
     [
      "S4-R11",
      "The sparkline draws one point per bucket, and the bucket size is chosen from the length of the selected range: a range of 31 days or fewer buckets by day; 32 to 182 days by week; 183 to 731 days by month; anything longer by quarter. Each point is the measure recomputed over that bucket using the same calculation as the headline, so a point can never disagree with the tile it sits in. A bucket for which the measure has no value (S3-E3) contributes no point, and interior gaps are preserved rather than closed up or drawn as zero. When fewer than two points have values, no line is drawn and the tile shows the empty-chart placeholder instead (S4-R12)."
+    ],
+    [
+     "S4-R11a",
+     "On Revenue and the count tiles, a bucket with no sales is a point at 0. Only a ratio tile's \"-\" (S3-E3) contributes no point."
     ],
     [
      "S7-R2a",
@@ -260,7 +264,7 @@
     "Steps 2 to 6: pick the dates in the calendar on screen and read the \"Range: N days\" readout before Apply; count the points of the trend line from its drawn path (record how you counted).",
     "Evidence: a screenshot after each step that has an expected result, the build marker, and the real value of every brace name."
    ],
-   "change_summary": "Title now \"days, weeks or months\" (quarters cannot be reached from a tile any more). Rewritten in full to the 8 Oct layout (setup doc link, Preconditions with {placeholders}; the old Setup block and the \"how to set a custom range\" precondition moved into the steps and the doc). Old step 4 (731 and 732 days) and its result removed (S7-R2a: at most 366 days); preconditions now need one year of invoices, not two; each step split to one action; every result tied to its step; the untied result about fewer than two points removed (covered by C351707); quotes S4-R10, S4-R11 re-copied and S7-R2a, S6-R3a, S9-R9 added from v46."
+   "change_summary": "Title now \"days, weeks or months\" (quarters cannot be reached from a tile any more). Rewritten in full to the 8 Oct layout (setup doc link, Preconditions with {placeholders}; the old Setup block and the \"how to set a custom range\" precondition moved into the steps and the doc). Old step 4 (731 and 732 days) and its result removed (S7-R2a: at most 366 days); preconditions now need one year of invoices, not two; step 3 now expects exactly 31 points, a no-sales day being a point at $0 (S4-R11a, v43), so a line that skips no-sales days fails; each step split to one action; every result tied to its step; the untied result about fewer than two points removed (covered by C351707); quotes S4-R10, S4-R11 re-copied and S7-R2a, S6-R3a, S9-R9 added from v46."
   },
   {
    "case_id": 88647,
@@ -401,6 +405,126 @@
     "Evidence: a screenshot after each step that has an expected result, the build marker, and the real value of every brace name."
    ],
    "change_summary": "Title now names the custom range. Rewritten in full to the 8 Oct layout. The custom range on the tile calendar is now done every time (steps 2 to 5, first) and is required: a build without it fails instead of being marked Blocked (S7-R2a, v45). The preset scan moved after it (steps 6 to 8). Duplicate S10-E1 quote removed; S7-R2a and S10-R3 added; quotes from v46."
+  },
+  {
+   "case_id": 88645,
+   "title": "At Risk trend line has twelve monthly points and the last equals the count",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), whose role has the Reports permission and can reverse an invoice, at location {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is at least 1024 pixels wide at 100% zoom (a maximised laptop or desktop window).",
+    "{Location-A} has invoices going back more than a year, with many customers.",
+    "The At Risk Customers tile's window pill reads 120 Days.",
+    "Customer {Customer-A} (for example ZZAUTOTEST Lapsed Fleet) is at risk on 120 days: its newest invoice, on work order {Work-order-1} (for example S490-1180), is 2 to 6 months old, and it also has an older invoice.",
+    "{Work-order-1}'s invoice has no payment, so it can be reversed."
+   ],
+   "steps": [
+    "Click Dashboard in the top bar.",
+    "Take a screenshot of the At Risk Customers tile and read its headline.",
+    "Count the points on the At Risk Customers trend line, from left to right.",
+    "Hover over each point and write down the month and the value it shows.",
+    "Click Work Orders, open {Work-order-1}, click the Finance tab, click the invoice's three dots, click Reverse and confirm.",
+    "Click Dashboard in the top bar and check the At Risk Customers pill still reads 120 Days.",
+    "Hover over each point again, write down the month and the value, and read the headline."
+   ],
+   "results": [
+    "Step 3: The trend line has twelve points, one per month, for the last twelve months.",
+    "Step 4: The right-most point's value equals the headline from step 2 (for example both 12).",
+    "Step 7: At least one earlier month's value differs from what you wrote down in step 4, not only the last one: every point is worked out again from today's data rather than kept from the past.",
+    "Step 7: The right-most point's value still equals the headline.",
+    "Steps 4 and 7: If the points show no value when you hover them, the values cannot be checked by hand, because the line's height does not show the count (each tile draws its line between its own lowest and highest point). Write \"point values not checked by hand\" in the result comment and mark the case Blocked."
+   ],
+   "source": "Epic SV-490; story SV-9577 (Story 5, Count Tiles), with SV-9576 (Story 4); Dashboard v1 PRD, Confluence 788430850, version 48 (14 Oct 2026, 17:09 UTC, Chris Ward), S5-R13 (unchanged since version 42) and S4-R11b (added in version 45 on 14 Oct 2026 (15:06 UTC) by Chris Ward, from Chris Ward's answer 1 of 14 Oct 2026 to our question sheet; the spec's change log (version 46) lists it under 2026-10-14); read 14 Oct 2026. Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge) boards 01_Opens_After and 09_AtRisk_After, used for on-screen labels only. Source-verified 14 October 2026. This version of the case has not yet been checked against a build (the previous version was last checked against build v26.39.1-09be696 on 10/2/2026).",
+   "quotes": [
+    [
+     "S5-R13",
+     "The At Risk Customers sparkline shows the at-risk count over the trailing twelve months as twelve monthly points. Each historical point is the at-risk count as of the last day of that month in the workplace's timezone, using the inactivity window the tile currently shows. The twelfth point is computed as of now, rather than as of a month end that has not happened yet, so it always equals the headline. Every point is recomputed from current data, so a later void changes the past points: recording the count as it stood at the time would contradict S3-E2, which excludes a voided invoice even when deciding a customer's most recent invoice."
+    ],
+    [
+     "S4-R11b",
+     "The sparkline shows direction, not level. Each tile scales its line between its own lowest and highest point, so a figure that never changes over the range (for example Technician Utilization at 100% on every day) draws as a flat line along the bottom of the trend area, whatever the figure is. The headline carries the actual value. The start-at-0 axis of S9-R8 applies to the expanded and report charts, which have an axis, not to the sparkline."
+    ]
+   ],
+   "stamp": "Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "marker": "AUTOMATION: READY",
+   "doc_part1": [
+    "Sign in as an Admin user: on the QA site's sign-in page, in the DEV MODE - QUICK LOGIN panel, click Admin (you appear as Admin ShopView). This is {User-A}. To use another role instead, check it has Reports: your initials (top right) > Settings > Roles & Permissions > edit icon on the role > Reports is switched on.",
+    "Pick the location: click your initials (top right, beside the current location name) > under Change Location click the orange button showing the current location > pick the location. On the QA site start with Staging Heavy Duty - 9919. This is {Location-A}; use it for the whole case.",
+    "Use a desktop browser window at least 1024 pixels wide at 100% zoom.",
+    "Find the customer: on the Dashboard set the At Risk Customers pill to 120 Days and click View details. Pick a customer whose Last Invoice Date is 2 to 6 months ago and whose Lifetime Invoices is 2 or more; write it down as {Customer-A}. Customers > {Customer-A} > Invoices tab (turn Open only off): its newest invoice's work order is {Work-order-1}; write down both invoice dates. Prefer a ZZAUTOTEST customer; this case reverses its newest invoice. At-risk customers need months-old invoices, which cannot be created by hand.",
+    "If {Work-order-1}'s invoice has a payment, reverse the payment first: Customers > {Customer-A} > Payments > the payment's three dots > Reverse.",
+    "Check the setup worked: {Customer-A} is listed in the At Risk Customers table on 120 Days, and {Work-order-1}'s Finance tab offers Reverse in the invoice's three dots."
+   ],
+   "doc_part2": [
+    "Goal: an at-risk customer on 120 days whose newest invoice (2 to 6 months old, unpaid) can be reversed, plus an older invoice.",
+    "This case reads history (earlier days or months). Invoices and clocked time cannot be back-dated by hand, so use a location that already holds it, prove it with Part 1's check and record the location and the real values in the case's verification folder.",
+    "Steps 4 and 7: read each point's month and value from its hover tooltip; record all twelve both times and compare month by month.",
+    "Trap (tech plan section 7): Reverse deletes the invoice rather than voiding it. Either way the point values must be worked out again from today's data (S5-R13); record which months changed.",
+    "Evidence: a screenshot after each step that has an expected result, the build marker, and the real value of every brace name."
+   ],
+   "change_summary": "Rewritten in full to the 8 Oct layout (setup doc link, Preconditions with {Customer-A} and {Work-order-1}). The fallback \"compare heights\" / \"judge from the two screenshots\" removed: under S4-R11b (v45) the line is drawn between its own lowest and highest point, so heights cannot show the count; without hover values the case is now Blocked instead. Added a check that the last point still equals the headline after the reversal; steps split to one action; quotes S5-R13 and S4-R11b from v48."
+  },
+  {
+   "case_id": 351716,
+   "title": "This Month's figure and trend line both include today's sales",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), whose role has the Reports permission, at location {Location-A} (for example ZZAUTOTEST Today Sales 14 Oct A).",
+    "Your browser window is at least 1024 pixels wide at 100% zoom (a maximised laptop or desktop window).",
+    "{Location-A} is a fresh location made for this run: before today nothing was invoiced or credited there.",
+    "Today is not the 1st of the month.",
+    "Work order {Work-order-1} (for example S490-1310) for customer {Customer-A} (for example ZZAUTOTEST Today Sales Fleet) was invoiced today at {Location-A}, with no discount and a Subtotal of (for example) $250.00 (2.50 hours at $100.00 an hour)."
+   ],
+   "steps": [
+    "Click Dashboard in the top bar (the Revenue tile opens on This Month).",
+    "Read the Revenue headline.",
+    "Look at the Revenue trend line.",
+    "Hover the right-hand end of the trend line and read the date and value shown, if any."
+   ],
+   "results": [
+    "Step 2: The Revenue headline equals {Work-order-1}'s invoice Subtotal (for example $250.00): the This Month figure runs from the 1st of the month up to and including today.",
+    "Step 3: A trend line is drawn, not the dashed empty-chart outline. It runs flat along the bottom for the earlier days of this month, which had no sales, and rises at its right-hand end, today, the only day with sales.",
+    "Step 4: The last point is today and reads the same amount as the headline (for example $250.00). If hovering shows no value, write \"point values not checked by hand\" in the result comment; step 3 still decides pass or fail."
+   ],
+   "source": "Epic SV-490; story SV-9579 (Story 7, Per-Tile Date Ranges), with SV-9576 (Story 4); Dashboard v1 PRD, Confluence 788430850, version 48 (14 Oct 2026, 17:09 UTC, Chris Ward), S7-E1, S4-R2 and S4-E3 (since version 42), S4-R11a (added in version 43 on 9 Oct 2026) and S4-R11b (added in version 45 on 14 Oct 2026 (15:06 UTC) by Chris Ward, from Chris Ward's answer 1 of 14 Oct 2026 to our question sheet); read 14 Oct 2026. Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge) board 01_Opens_After, used for on-screen labels only. Source-verified 14 October 2026. This version of the case has not yet been checked against a build (the previous version was last checked against build v26.39.1-09be696 on 10/2/2026).",
+   "quotes": [
+    [
+     "S7-E1",
+     "If the selected range has not finished, the tile's headline and sparkline both describe the same partial window."
+    ],
+    [
+     "S4-R2",
+     "The Revenue tile headline is the total revenue for the selected range, shown as a dollar amount to the cent."
+    ],
+    [
+     "S4-R11a",
+     "On Revenue and the count tiles, a bucket with no sales is a point at 0. Only a ratio tile's \"-\" (S3-E3) contributes no point."
+    ],
+    [
+     "S4-R11b",
+     "The sparkline shows direction, not level. Each tile scales its line between its own lowest and highest point, so a figure that never changes over the range (for example Technician Utilization at 100% on every day) draws as a flat line along the bottom of the trend area, whatever the figure is. The headline carries the actual value. The start-at-0 axis of S9-R8 applies to the expanded and report charts, which have an axis, not to the sparkline."
+    ],
+    [
+     "S4-E3",
+     "A range where every point is zero except one shows the sparkline, because not every point is zero."
+    ]
+   ],
+   "stamp": "Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "marker": "AUTOMATION: READY",
+   "doc_part1": [
+    "Sign in as an Admin user: on the QA site's sign-in page, in the DEV MODE - QUICK LOGIN panel, click Admin (you appear as Admin ShopView). This is {User-A}. To use another role instead, check it has Reports: your initials (top right) > Settings > Roles & Permissions > edit icon on the role > Reports is switched on.",
+    "Create a fresh location for this run, with a new name each time (for example ZZAUTOTEST Today Sales 14 Oct A): your initials (top right) > Settings > Locations > New Location: Name, Address 1, City, State/Province, ZIP/Postal Code, Timezone, Telephone, Shop Supplies Charge 0 > Save & Close. Switch to it: your initials > Change Location > pick it. This is {Location-A}. Nothing else is invoiced or clocked there.",
+    "While in {Location-A}, add a labor rate (rates belong to each location): your initials > Settings > Labor Rates > New Labor Rate: Name (for example ZZAUTOTEST Rate 100), Rate 100 > Save & Close.",
+    "Customers > New Customer > Name (for example \"ZZAUTOTEST Today Sales Fleet\") > Save. On its Contacts tab click New Contact, enter a First Name and Last Name > Save. On its Assets tab click New Asset, pick the contact and fill Year, Make and Unit (for example 2022, Freightliner, ZZ-101) > Save. This is {Customer-A}; use it for this case only.",
+    "Use a desktop browser window at least 1024 pixels wide at 100% zoom.",
+    "Today, create and invoice one work order for {Customer-A}: Work Orders > Create Work Order > in the New Work Order window pick {Customer-A} and its asset > Save (if a Confirmation says the customer is over their credit limit, click Create). In the New Line window: What Are You Doing? (for example \"ZZAUTOTEST Line 1\"), Add Technician (yourself), Labor Rate (the $100 rate of this location), Estimated Time 2.50 and Tech Time 2.50, tick Line Approved > Save & Close. On the line's Labor row click Start, wait a minute, then Stop > Clock Out. On the line click Story > type a short story > Update. Click Complete (if a Missing Details window asks for Mileage, enter one > Complete All Lines), then Mark Reviewed. Finance tab > Create Invoice, and close the New Customer Payment window without paying. This is {Work-order-1}; write down its number and the Subtotal (for example $250.00).",
+    "Check the setup worked: Reports > Sales, Date This month, at {Location-A} lists only {Work-order-1}'s invoice, dated today."
+   ],
+   "doc_part2": [
+    "Goal: a fresh location whose only invoice this month is today's.",
+    "Prepare the data on screen exactly as Part 1. No API recipe for this case's data has been proven on the Dashboard QA site (UNVERIFIED); if you try one, confirm the result on screen with Part 1's check before step 1.",
+    "Step 3: record the trend line's drawn points; every point before today must sit at the bottom edge and today's at the top edge (the line is drawn between its own lowest and highest point).",
+    "Evidence: a screenshot after each step that has an expected result, the build marker, and the real value of every brace name."
+   ],
+   "change_summary": "Rewritten in full to the 8 Oct layout (setup doc link, Preconditions with {placeholders}, a fresh location so the headline before the invoice is $0.00). \"Its last point has risen compared with before the invoice\" replaced: under S4-R11b (v45) the line shows direction, not level, so the check is now that a line is drawn, flat on the earlier no-sales days (S4-R11a) and rising at today, with the hovered last point equal to the headline. Duplicate S7-E1 quote replaced by S7-E1, S4-R2, S4-R11a, S4-R11b and S4-E3 from v48."
   }
  ],
  "new": [
@@ -1304,6 +1428,11 @@
    88647,
    "N07"
   ],
+  "S4-R11a": [
+   88606,
+   351716,
+   "N03"
+  ],
   "S7-R2a": [
    88606,
    88647,
@@ -1343,6 +1472,25 @@
   "S10-E1": [
    351729
   ],
+  "S5-R13": [
+   88645
+  ],
+  "S4-R11b": [
+   88645,
+   351716,
+   "N03",
+   "N04"
+  ],
+  "S7-E1": [
+   351716
+  ],
+  "S4-R2": [
+   351716
+  ],
+  "S4-E3": [
+   351716,
+   "N03"
+  ],
   "S8-N1": [
    "N01"
   ],
@@ -1362,16 +1510,6 @@
   ],
   "S6-R16": [
    "N02"
-  ],
-  "S4-R11a": [
-   "N03"
-  ],
-  "S4-R11b": [
-   "N03",
-   "N04"
-  ],
-  "S4-E3": [
-   "N03"
   ],
   "S4-R8": [
    "N04"
