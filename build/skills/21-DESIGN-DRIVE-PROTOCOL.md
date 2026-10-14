@@ -53,6 +53,10 @@ density, tooltip and menu position, and any overlap or clipping at 1440 / 1536 p
 DATA / OUT-OF-SCOPE (with the written source) / SPEC-CONFLICT (PO question sent, with date) / CASE-NEEDED. Zero unclassified.
 Every "always / never / must" sentence in the design library is a row too — never a blanket OUT-OF-SCOPE for the library.
 Before starting, read `build/LESSONS-REGISTER.md` (L-01 is why this section exists).
+Trap (14 Oct 2026): never leave a copy of a design package under `/tmp` (scratchpad included) — the secret-scan
+fingerprint builder reads every `/tmp/**/*token*` file, so the design's public `tokens.js` turns its colour names into
+"known secrets" and blocks the commit. Work on a copy outside `/tmp`, or delete it, then run `scan_secrets.py
+--build-fingerprints` again.
 
 ## 5 · Targeted flow drive (about 30 minutes per board)
 From the files, list every multi-step flow: dialogs with a search, drag and drop, a menu inside a view, confirm or

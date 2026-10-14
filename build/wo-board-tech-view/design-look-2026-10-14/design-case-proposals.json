@@ -1,0 +1,2202 @@
+{
+ "generated": "2026-10-14",
+ "prd": "PRD Confluence 845185030 version 52 (14 Oct 2026, Chris Ward), saved build/wo-board-tech-view/po-defects-2026-10-14/CONFLUENCE-845185030-now-2026-10-14.md",
+ "design": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+ "rule": "Rule 126 / skill 21 §4b-§6b; Ideal-Test-Case Standard (Rule 117); runnable by a manual tester with the product UI and the named design picture at 100% zoom",
+ "cases": [
+  {
+   "key": "DC-01",
+   "title": "Toolbar icons in Tech View and Board View match the design",
+   "title_length": 58,
+   "section": "Design — how it looks",
+   "screen_and_state": "Work Orders toolbar — List, Tech View, Board View (light)",
+   "tickets": [
+    "SV-11319"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-01-toolbar-tech-view-light-1440.png",
+     "design_state": "states__work-orders__tech-density-menu__light__1440 (toolbar, Tech View)",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-01-toolbar-board-view-light-1440.png",
+     "design_state": "core__work-orders__board-detailed__light__1440 (toolbar, Board View)",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case)."
+   ],
+   "steps": [
+    "Open Work Orders from the top menu and click the All tab.",
+    "Look at the display switcher at the right of the toolbar while List is selected.",
+    "Click Tech View in the display switcher.",
+    "Look at the display switcher, the density button and the column chooser button.",
+    "Click the density button.",
+    "Press Escape.",
+    "Click Board View in the display switcher.",
+    "Look at the display switcher and the density button.",
+    "Click List in the display switcher.",
+    "Look at the toolbar icons."
+   ],
+   "expected": [
+    "Step 2: the switcher shows three outline line icons, about 20 px, side by side in a light-grey rounded track: a bulleted list (List), a person head and shoulders (Tech View) and a square board with three bars of different lengths (Board View) — the same three drawings as the design picture. They are thin-stroke outline icons, not filled Material-style icons.",
+    "Step 4: the selected Tech View button sits on a white raised segment; the other two are flat. The density button shows lines with an up-and-down arrow on the right (the design's \"row-height\" drawing) and the column chooser shows a rectangle split into three columns, as in the picture.",
+    "Step 5: the density menu opens below its button, aligned to the button's right edge, with a check mark (✓) beside the selected option.",
+    "Step 8: Board View's button is now the white raised segment and the density button shows a small card with an up-and-down arrow (the design's \"card-height\" drawing), different from Tech View's; there is no column chooser button in Board View, as in the picture.",
+    "Step 10: List's toolbar icons are the same as in production before this release (only the switcher is new).",
+    "Every icon in steps 2 to 8 is drawn in a thin outline style of the same weight; no icon is a filled glyph, an emoji or a text character."
+   ],
+   "sources": [
+    {
+     "attribute": "switcher icons, 20 px",
+     "source": "PRD v52 S1-R9a",
+     "quote": "S1-R9a: “The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View every other icon is the design’s Lucide icon too: density (`row-height` in Tech View, `card-height` in Board View), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and empty states (`clipboard-list`). List’s icons are unchanged.”"
+    },
+    {
+     "attribute": "density and other icons",
+     "source": "PRD v52 S1-R9a",
+     "quote": "S1-R9a: “The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View every other icon is the design’s Lucide icon too: density (`row-height` in Tech View, `card-height` in Board View), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and empty states (`clipboard-list`). List’s icons are unchanged.”"
+    },
+    {
+     "attribute": "List unchanged",
+     "source": "PRD v52 S1-R9a",
+     "quote": "S1-R9a: “The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View every other icon is the design’s Lucide icon too: density (`row-height` in Tech View, `card-height` in Board View), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and empty states (`clipboard-list`). List’s icons are unchanged.”"
+    },
+    {
+     "attribute": "selected segment white/raised, column chooser icon, menu position, check mark",
+     "source": "DESIGN",
+     "quote": "SV.ViewSwitch (aria-label \"View\"), ChromeBtn \"Columns\" icon columns-3, DensityMenu check icon — _ds_bundle.js work-orders.jsx"
+    },
+    {
+     "attribute": "outline icons, never emoji or a glyph",
+     "source": "LIBRARY",
+     "quote": "README.md \"Never emoji. Never a unicode glyph as an icon. SVG with `currentColor`, never\""
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "PQ-V01 (chip icons in Tech View / Board View)",
+    "W-1 (switcher words Table / By Lead Tech / Board vs List / Tech View / Board View)",
+    "register: density labels Row height / Card size vs Density"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 82,
+   "inventory_row_ids_sample": [
+    "V0042",
+    "V0043",
+    "V0044",
+    "V0050",
+    "V0057",
+    "V0059",
+    "V0060",
+    "V0062",
+    "V0068",
+    "V0069",
+    "V0076",
+    "V0077"
+   ]
+  },
+  {
+   "key": "DC-02",
+   "title": "Display switcher tooltip opens above and never covers the header row",
+   "title_length": 68,
+   "section": "Design — how it looks",
+   "screen_and_state": "Display switcher hover — Tech View and Board View (light, 1440 and 1536)",
+   "tickets": [
+    "SV-11322"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-02-tech-view-header-row-1440.png",
+     "design_state": "core__work-orders__tech-regular__light__1440 (the header row that must stay readable)",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case)."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Tech View in the display switcher.",
+    "Hover the List button in the display switcher and wait for its tooltip.",
+    "Hover the Tech View button and wait for its tooltip.",
+    "Hover the Board View button and wait for its tooltip.",
+    "Click Board View in the display switcher.",
+    "Hover each of the three switcher buttons in turn.",
+    "Make the window 1536 px wide and repeat steps 2 to 6."
+   ],
+   "expected": [
+    "Steps 2 to 4: each tooltip appears above the switcher (between the switcher and the page header), not below it. The column header row of the table (Status, Waiting On Parts, Number …) stays fully readable while the tooltip shows; no part of the tooltip lies over it.",
+    "Step 6: in Board View each tooltip also appears above the switcher and covers none of the technician column headers.",
+    "Step 7: the same at 1536 px.",
+    "Note for the tester: the design shows only the browser's own hover label here (\"Table\", \"By Lead Tech\", \"Board\"); the position rule comes from the PRD."
+   ],
+   "sources": [
+    {
+     "attribute": "tooltip above, never over header row",
+     "source": "PRD v52 S1-R9b",
+     "quote": "S1-R9b: “The switcher’s hover tooltip opens above the switcher, so it never covers the table’s column header row.”"
+    },
+    {
+     "attribute": "tooltip words",
+     "source": "PRD v52 S1-R1",
+     "quote": "S1-R1: “The Work Orders toolbar offers List, Tech View, and Board View display options.”"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "W-1 (tooltip words)"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 4,
+   "inventory_row_ids_sample": [
+    "V0131",
+    "V0937",
+    "V0938",
+    "V0939"
+   ]
+  },
+  {
+   "key": "DC-03",
+   "title": "Tech View table runs edge to edge on white with no side gutter",
+   "title_length": 62,
+   "section": "Design — how it looks",
+   "screen_and_state": "Tech View page frame — Regular, light, 1440 and 1536",
+   "tickets": [
+    "SV-11324"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-03-tech-view-regular-light-1440.png",
+     "design_state": "core__work-orders__tech-regular__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-03-tech-view-regular-light-1536.png",
+     "design_state": "core__work-orders__tech-regular__light__1536",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case)."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Tech View in the display switcher.",
+    "Look at the left and right edges of the table, the column header row and the group headers.",
+    "Scroll the table down a few screens.",
+    "Scroll the table sideways to its far right.",
+    "Make the window 1536 px wide and look again.",
+    "Click List in the display switcher and look at the table edges."
+   ],
+   "expected": [
+    "Step 2: the table sits on a white background and runs from the left edge of the page to the right edge: the column header row, every group header and every row start at the page's left edge (no grey strip, gap or margin on either side) and there is no card, panel, rounded corner or shadow around the table. Compare with the picture: the white table meets the browser edge on the left.",
+    "Step 2: groups are separated by a double grey line above each group header, as in the picture.",
+    "Step 3: the column header row stays fixed at the top of the table while the rows scroll under it.",
+    "Step 4: when the columns are wider than the window the table scrolls sideways inside the page (a horizontal scrollbar shows); the header labels stay above their own columns while you scroll.",
+    "Step 5: the same edge-to-edge white table at 1536 px.",
+    "Step 6: List's table looks as in production before this release."
+   ],
+   "sources": [
+    {
+     "attribute": "edge to edge, no gutter, no panel",
+     "source": "PRD v52 S2-R22",
+     "quote": "S2-R22: “Tech View’s table runs edge to edge on white, with no side gutter and no card or panel around it, as in the design.”"
+    },
+    {
+     "attribute": "visible separators between groups",
+     "source": "PRD v52 S2-R1",
+     "quote": "S2-R1: “Group work orders by lead technician with visible separators.”"
+    },
+    {
+     "attribute": "List unchanged",
+     "source": "PRD v52 S2-R22",
+     "quote": "S2-R22: “Tech View’s table runs edge to edge on white, with no side gutter and no card or panel around it, as in the design.”"
+    },
+    {
+     "attribute": "sticky column header row; double line separator; horizontal scroll",
+     "source": "DESIGN",
+     "quote": "Tech View header row is position sticky, top 0; group header border-top 3px double; rows container min-width = sum of column widths (1,790 px at the default columns) — Work Orders.dc.html lines 30-31, 1205-1214"
+    },
+    {
+     "attribute": "library rule",
+     "source": "LIBRARY",
+     "quote": "README.md L30 \"runs **edge to edge on white** (never inside a card on grey)\"; SKILL.md \"A list screen is white and the table runs edge to edge. No card around the table, no padding on its sides.\""
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "PQ-V02 (default columns need ~1,790 px, so Tech View scrolls sideways at 1440 and 1536 in the design too)"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 38,
+   "inventory_row_ids_sample": [
+    "V0781",
+    "V0782",
+    "V0783",
+    "V0784",
+    "V0785",
+    "V0786",
+    "V0787",
+    "V0788",
+    "V0789",
+    "V0790",
+    "V0791",
+    "V0792"
+   ]
+  },
+  {
+   "key": "DC-04",
+   "title": "Tech View opens on the design's 13 columns with grey 12px header labels",
+   "title_length": 71,
+   "section": "Design — how it looks",
+   "screen_and_state": "Tech View column header row — default columns, all optional columns, Compact / Regular / Comfortable, 1440 and 1536",
+   "tickets": [
+    "SV-11317",
+    "SV-11321"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-04-tech-view-header-row-1440.png",
+     "design_state": "core__work-orders__tech-regular__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-04-tech-view-all-columns-1440.png",
+     "design_state": "states__work-orders__tech-all-columns__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case).",
+    "{User-A} has never changed Tech View's columns (or, as a fresh user, {User-C} (for example ZZAUTOTEST Fresh Columns) with the same role has never opened Tech View).",
+    "User {User-D} (for example ZZAUTOTEST No Money) has the same role but without See financial data."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Tech View in the display switcher.",
+    "Read the column header labels from left to right.",
+    "Look at the style of the header labels and the space between each pair of neighbouring labels.",
+    "Click the column chooser button and look at the optional columns offered.",
+    "Turn on every optional column offered, including On Site, VIN/Serial # and Lead Technician.",
+    "Press Escape and look at the header labels again, scrolling sideways to see them all.",
+    "Set density to Compact, then Comfortable, and look at the header labels each time.",
+    "Make the window 1536 px wide and repeat steps 3 and 6.",
+    "Sign in as {User-D}, open Tech View and read the header labels.",
+    "Click List in the display switcher and read List's header labels."
+   ],
+   "expected": [
+    "Step 2: the columns are, in this order: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price. On Site, VIN/Serial # and Lead Technician are not shown. There is no position-number column and no \"collapse all\" arrow at the left of the header row (the design picture shows both; the PRD leaves them out).",
+    "Step 3: every header label is small (12 px in the design, visibly smaller than the 14 px row text below it), medium weight (not bold) and grey (lighter than the black row text) — as in the picture. No label touches or overlaps its neighbour; there is clear space between every pair.",
+    "Step 4: On Site, VIN/Serial # and Lead Technician can be added from the column chooser.",
+    "Step 6: with every optional column on, no label touches or overlaps its neighbour and no label is cut off; the table scrolls sideways.",
+    "Step 7: the header labels keep the same size, weight and colour at every density.",
+    "Step 8: the same at 1536 px.",
+    "Step 9: Total price is not in the header for a user without See financial data.",
+    "Step 10: List's columns are as in production before this release."
+   ],
+   "sources": [
+    {
+     "attribute": "default columns and order",
+     "source": "PRD v52 S5-R4",
+     "quote": "S5-R4: “Until the user changes Tech View’s columns, Tech View shows these columns, in this order, as in the design: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price (Total price subject to financial permission). On Site, VIN/Serial # and Lead Technician are off by default; each can be added with the column chooser (S2-R4). List’s columns are unchanged.”"
+    },
+    {
+     "attribute": "Assigned Techs on by default after Lines",
+     "source": "PRD v52 S7-R7",
+     "quote": "S7-R7: “In Tech View the Assigned Techs column sits immediately after Lines, matching the design. It is on by default (S5-R4) and can be removed through the column chooser (S2-R4).”"
+    },
+    {
+     "attribute": "header label style, no overlap",
+     "source": "PRD v52 S2-R21",
+     "quote": "S2-R21: “Tech View’s column header labels are 12px, medium weight (500), in the secondary text color, as in the design. Labels never overlap a neighboring label.”"
+    },
+    {
+     "attribute": "no rank numbers",
+     "source": "OUT OF SCOPE",
+     "quote": "\"Rank numbers (1, 2, 3, and so on) beside each Tech View row, as the design shows.\""
+    },
+    {
+     "attribute": "no Collapse all",
+     "source": "OUT OF SCOPE",
+     "quote": "\"Collapse all and Expand all controls for the technician groups. Groups collapse one at a time (S2-R5, S2-R13).\""
+    },
+    {
+     "attribute": "financial",
+     "source": "PRD v52 S5-E2",
+     "quote": "S5-E2: “Without see financial data permission, hide all dollar-amount fields from displays, filters, and field/column pickers.”"
+    },
+    {
+     "attribute": "12 px / 500 / secondary in the design",
+     "source": "DESIGN",
+     "quote": "Tech View header row style \"font-size: 12px; font-weight: 500; color: var(--sv-text-secondary)\" — Work Orders.dc.html line 30; rendered 12px / 500 / --sv-text-secondary at every density"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "W-2 (design's Tech View chooser does not offer On Site, VIN/Serial #, Lead Technician)",
+    "PQ-V03 (header words \"Unit #\" / \"Assigned Tech\" in the design vs \"Unit\" / \"Assigned Techs\" in S5-R4)",
+    "C96927 and C96979 still assert the old S5-R4 — the main session rewrites them"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 7,
+   "inventory_row_ids_sample": [
+    "V0769",
+    "V0826",
+    "V0832",
+    "V0898",
+    "V0899",
+    "V0902",
+    "V0920"
+   ]
+  },
+  {
+   "key": "DC-05",
+   "title": "Tech View cells: number link, progress bar, advisor avatar, lock",
+   "title_length": 64,
+   "section": "Design — how it looks",
+   "screen_and_state": "Tech View rows — cell styles per column, Regular, light",
+   "tickets": [
+    "SV-11325",
+    "SV-11319"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-05-tech-view-rows-regular-light-1440.png",
+     "design_state": "core__work-orders__tech-regular__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case)."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Tech View in the display switcher.",
+    "Look at {Work-order-1}'s row cell by cell, from Status to Total price.",
+    "Hover the work order number of {Work-order-1}.",
+    "Click the work order number of {Work-order-1}.",
+    "Go back to Tech View.",
+    "Look at {Work-order-2}'s row next to its number.",
+    "Hover the small icon next to {Work-order-2}'s number.",
+    "Hover each avatar in {Work-order-1}'s Assigned Techs cell.",
+    "Look at {Work-order-3}'s Unit and Waiting On Parts cells where it has no value.",
+    "Click List and look at the same work orders' Number, Progress, Service Advisor and Clocked In cells."
+   ],
+   "expected": [
+    "Step 2: Number shows in the accent blue of links (the same blue as \"2 parts\" in the picture), not in black. Progress shows a thin rounded bar (in the design 64 × 6 px: about as long as the word \"Progress\" and much thinner than the text) with the percentage beside it in small grey text; the filled part is blue. Service Advisor shows the advisor's round avatar (photo, or initials on a light-grey circle) before the name. Assigned Techs shows overlapping round avatars, the lead technician first. Total price is right-aligned. Customer, Unit, Asset, Lines and Created on are plain dark text of the same size.",
+    "Step 3: the number stays in the accent blue while hovered.",
+    "Step 4: the work order opens.",
+    "Step 6: a small padlock outline icon sits right after the number, as in the picture's S1-359 row.",
+    "Step 7: a dark tooltip opens above the padlock explaining that the lead technician cannot be changed.",
+    "Step 8: each avatar shows that technician's name when hovered; the name bubble opens above the avatars.",
+    "Step 9: empty cells show a grey dash (-), not a blank.",
+    "Step 10: in List these cells look as in production (List is unchanged); Clocked In looks the same in Tech View as in List."
+   ],
+   "sources": [
+    {
+     "attribute": "number link, thin bar with %, advisor avatar, Clocked In as List",
+     "source": "PRD v52 S2-R20",
+     "quote": "S2-R20: “Tech View’s cells follow the design: the work order number shows as a link in the accent color; Progress shows as a thin bar with the percentage beside it; Service Advisor shows the advisor’s avatar before the name. Clocked In keeps List’s display (S5-R11).”"
+    },
+    {
+     "attribute": "lock icon",
+     "source": "PRD v52 S1-R9a",
+     "quote": "S1-R9a: “The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View every other icon is the design’s Lucide icon too: density (`row-height` in Tech View, `card-height` in Board View), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and empty states (`clipboard-list`). List’s icons are unchanged.”"
+    },
+    {
+     "attribute": "only reorder visual for Invoiced/Paid",
+     "source": "PRD v52 S4-N7",
+     "quote": "S4-N7: “Visually indicate that an Invoiced or Paid work order can only be reordered within its current technician, not moved to another one.”"
+    },
+    {
+     "attribute": "lock tooltip words",
+     "source": "PRD v52 S4-N6",
+     "quote": "S4-N6: “The disabled Reassign lead technician action on an Invoiced or Paid work order shows this tooltip: “The lead technician can’t be changed once a work order is Invoiced or Paid.””"
+    },
+    {
+     "attribute": "avatar group lead first, names on hover",
+     "source": "PRD v52 S7-R3",
+     "quote": "S7-R3: “Place the lead technician first in the avatar group.”"
+    },
+    {
+     "attribute": "every technician discoverable by name",
+     "source": "PRD v52 S7-R6",
+     "quote": "S7-R6: “Keep every involved technician discoverable by name.”"
+    },
+    {
+     "attribute": "bar 64×6 (48×4 Compact), accent fill; advisor avatar 24 px (20 Compact, 32 Comfortable); dash for empty; total right-aligned",
+     "source": "DESIGN",
+     "quote": "Work Orders.dc.html lines 66-128 and renderVals barW/barH/crewSize; rendered values in visual-inventory"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "W-16 (Clocked In: design shows a time badge like \"0:48\"; PRD S5-R11 says names) — the case follows the PRD: Clocked In looks as in List",
+    "design locks Declined and Imported too (register) — the case checks Invoiced/Paid only"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 192,
+   "inventory_row_ids_sample": [
+    "V0504",
+    "V0505",
+    "V0506",
+    "V0507",
+    "V0508",
+    "V0509",
+    "V0510",
+    "V0511",
+    "V0512",
+    "V0513",
+    "V0514",
+    "V0515"
+   ]
+  },
+  {
+   "key": "DC-06",
+   "title": "Tech View status pill is the List pill, shorter at Compact/Regular",
+   "title_length": 66,
+   "section": "Design — how it looks",
+   "screen_and_state": "Tech View Status column — Compact / Regular / Comfortable, light",
+   "tickets": [
+    "SV-11318"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-06-tech-view-compact-light-1440.png",
+     "design_state": "core__work-orders__tech-compact__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-06-tech-view-regular-light-1440.png",
+     "design_state": "core__work-orders__tech-regular__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-06-tech-view-comfortable-light-1440.png",
+     "design_state": "core__work-orders__tech-comfortable__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case).",
+    "{Work-order-1} has at least one open service action and one open parts action, so List shows a red and a blue count on its status pill."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and stay in List.",
+    "Look at {Work-order-1}'s status pill and the red and blue counts on it.",
+    "Click Tech View in the display switcher.",
+    "Look at {Work-order-1}'s status pill.",
+    "Hover the red count, then the blue count.",
+    "Set density to Compact and look at the status pills.",
+    "Set density to Comfortable and look at the status pills.",
+    "Set density back to Regular."
+   ],
+   "expected": [
+    "Step 4: the pill is the same pill as in List — same colours, same word, same rounded shape — with the same red and blue counts on it.",
+    "Step 5: each count shows the same tooltip as in List.",
+    "Steps 6 and 8: at Compact and at Regular the pills are the same height as each other (18 px in the PRD).",
+    "Step 7: at Comfortable the pills are visibly taller than at Regular (22 px in the PRD) and the text inside is a little larger, as in the Comfortable design picture.",
+    "In List the pill size never changes with Tech View's density."
+   ],
+   "sources": [
+    {
+     "attribute": "same pill as List with red/blue counts",
+     "source": "PRD v52 S2-R19",
+     "quote": "S2-R19: “Tech View’s Status column is the same status pill List shows in production, with the same red service-actions count and blue parts-actions count on it. Its size follows density (S6-R2a).”"
+    },
+    {
+     "attribute": "18 / 18 / 22 px",
+     "source": "PRD v52 S6-R2a",
+     "quote": "S6-R2a: “In Tech View the status pill is 18px tall at Compact and Regular and 22px tall at Comfortable, the design’s two badge sizes. List’s status pill is unchanged.”"
+    },
+    {
+     "attribute": "two badge sizes in the design",
+     "source": "DESIGN",
+     "quote": "Tech View badge size \"sm\" at Small/Medium row height and \"md\" at Large — Work Orders.dc.html renderVals badgeSize; rendered heights 16 px (sm) and 22 px (md)"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "PQ-V04 (the design renders the small pill 16 px, not 18 px as S6-R2a says)",
+    "the design's pill has no red/blue counts — S2-R19 (v51) already decides"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 29,
+   "inventory_row_ids_sample": [
+    "V0621",
+    "V0622",
+    "V0623",
+    "V0624",
+    "V0625",
+    "V0626",
+    "V0627",
+    "V0628",
+    "V0629",
+    "V0630",
+    "V0631",
+    "V0632"
+   ]
+  },
+  {
+   "key": "DC-07",
+   "title": "Six-dot grip on every Tech View row and group header, incl. Unassigned",
+   "title_length": 70,
+   "section": "Design — how it looks",
+   "screen_and_state": "Tech View rows and group headers — user who can drag and view-only user",
+   "tickets": [
+    "SV-11320"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-07-tech-view-row-hover-light-1440.png",
+     "design_state": "states__work-orders__tech-row-hover__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-07-tech-view-view-only-light-1440.png",
+     "design_state": "states__work-orders__tech-view-only__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case).",
+    "User {User-B} (for example ZZAUTOTEST Viewer) has Work orders > View but not Work orders > Create & Edit, at {Location-A}."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Tech View in the display switcher.",
+    "Look at the left edge of every group header, Unassigned included, and of every row.",
+    "Hover {Work-order-1}'s row.",
+    "Drag {Work-order-1}'s row by a point in its Customer cell a short way down inside its group and drop it.",
+    "Click {Work-order-1}'s Customer cell without moving the mouse.",
+    "Go back to Tech View, sign out and sign in as {User-B}.",
+    "Open Tech View and look at the left edge of the rows and group headers."
+   ],
+   "expected": [
+    "Step 2: every row and every group header — the Unassigned group header too — shows a six-dot grip (two columns of three dots, grey) at its left edge, as in the picture.",
+    "Step 3: the row's background turns light grey and the mouse pointer shows a grab hand; the grip stays visible.",
+    "Step 4: the whole row drags (not only the grip) and lands where dropped.",
+    "Step 5: the work order opens; the click did not start a drag.",
+    "Step 7: a view-only user sees no grip on the work order rows."
+   ],
+   "sources": [
+    {
+     "attribute": "grip on every row and group header incl. Unassigned, to users who can drag; whole row drags",
+     "source": "PRD v52 S9-R1a",
+     "quote": "S9-R1a: “In Tech View every work order row and every group header, Unassigned included, shows the design’s six-dot drag grip at its left edge, to users who can drag (S4-N1). The whole row still drags (S2-R8); the grip shows that it can.”"
+    },
+    {
+     "attribute": "click vs drag",
+     "source": "PRD v52 S2-R8",
+     "quote": "S2-R8: “Clicking anywhere on a row, outside its own controls, opens the work order. A drag starts only after the pointer has moved a few pixels, so a click never turns into a drag.”"
+    },
+    {
+     "attribute": "drag needs Create & Edit",
+     "source": "PRD v52 S4-N1",
+     "quote": "S4-N1: “Require Work Orders create and edit permission to drag work orders or access Reassign lead technician.”"
+    },
+    {
+     "attribute": "six-dot grip drawing, grey (text-muted); row hover light grey; grab cursor",
+     "source": "DESIGN",
+     "quote": "inline six-circle grip in Tech View rows and group headers (title \"Drag to reorder technicians\" on the header grip) — Work Orders.dc.html lines 36-38, 62-64; row style-hover var(--sv-surface-hover); cursor grab"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "PQ-V05 (does a view-only user, who may reorder technician groups, see the grip on group headers?)",
+    "design shows the row grips to a view-only user too (canAssign off) — the case follows S9-R1a"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 88,
+   "inventory_row_ids_sample": [
+    "V0671",
+    "V0672",
+    "V0673",
+    "V0674",
+    "V0675",
+    "V0676",
+    "V0677",
+    "V0678",
+    "V0679",
+    "V0680",
+    "V0681",
+    "V0682"
+   ]
+  },
+  {
+   "key": "DC-08",
+   "title": "Tech View group header: grip, chevron, grey initials avatar, name, count",
+   "title_length": 72,
+   "section": "Design — how it looks",
+   "screen_and_state": "Tech View group headers — Unassigned, technician with photo, technician without photo; Compact / Regular / Comfortable; collapsed",
+   "tickets": [
+    "SV-11338",
+    "SV-11319"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-08-tech-view-group-headers-light-1440.png",
+     "design_state": "core__work-orders__tech-regular__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-08-tech-view-collapsed-light-1440.png",
+     "design_state": "states__work-orders__tech-collapsed-one__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-08-tech-view-count-tooltip-light-1440.png",
+     "design_state": "states__work-orders__tech-group-count-tooltip__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case)."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Tech View in the display switcher.",
+    "Look at the Unassigned group header from left to right.",
+    "Look at {Technician-B}'s group header (no photo).",
+    "Look at {Technician-A}'s group header (with photo).",
+    "Hover the count at the right of {Technician-A}'s header.",
+    "Click the arrow in {Technician-A}'s header.",
+    "Click it again.",
+    "Set density to Compact, then Comfortable, and look at the headers."
+   ],
+   "expected": [
+    "Step 2: from left to right: the six-dot grip, a down-pointing chevron (thin outline arrow), a round light-grey avatar holding a grey outline person icon (head and shoulders), the word Unassigned in dark semibold text, a short grey vertical divider, a clipboard-with-list outline icon and the count.",
+    "Step 3: the avatar is a light-grey circle with the technician's initials in dark grey (for example \"BM\"), not a solid blue circle with white initials. The name is dark and semibold, the same size as the row text (14 px in the design).",
+    "Step 4: the avatar is the technician's round photo.",
+    "Step 5: a dark tooltip opens above the count, reading the count in words (for example \"4 work orders\"), and covers no column header label.",
+    "Step 6: the group closes and the chevron turns to point right.",
+    "Step 7: the group opens and the chevron points down again.",
+    "Step 8: header height and avatar size follow density (smaller at Compact, larger at Comfortable); the name stays the same size."
+   ],
+   "sources": [
+    {
+     "attribute": "name, avatar and count",
+     "source": "PRD v52 S2-R12",
+     "quote": "S2-R12: “Each group header shows the technician’s name, avatar, and a count of the work orders currently shown in that group, after the filter view and filters are applied, so the count always matches the rows listed.”"
+    },
+    {
+     "attribute": "Unassigned avatar user-round, chevron-down",
+     "source": "PRD v52 S1-R9a",
+     "quote": "S1-R9a: “The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View every other icon is the design’s Lucide icon too: density (`row-height` in Tech View, `card-height` in Board View), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and empty states (`clipboard-list`). List’s icons are unchanged.”"
+    },
+    {
+     "attribute": "hover reveals the name",
+     "source": "PRD v52 S2-R10",
+     "quote": "S2-R10: “Hovering a technician header or avatar reveals the technician’s name.”"
+    },
+    {
+     "attribute": "collapse per group",
+     "source": "PRD v52 S2-R5",
+     "quote": "S2-R5: “Allow each technician group to be collapsed or expanded.”"
+    },
+    {
+     "attribute": "initials avatar look: light-grey circle, dark-grey initials; photo where one exists",
+     "source": "DESIGN",
+     "quote": "SV.StaffAvatar \"Photo when we have one, initials otherwise\" — background var(--sv-surface-sunken), colour var(--sv-text-secondary); rendered \"BM\" on a light-grey 28 px circle"
+    },
+    {
+     "attribute": "name 14 px semibold; header heights 36 / 44 / 56 and avatars 24 / 28 / 36 px by density; count tooltip above",
+     "source": "DESIGN",
+     "quote": "Work Orders.dc.html lines 34-57 and renderVals groupH/groupAv; tooltip translate(-50%,-100%) above the host"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "SV-11338 says the design name is about 16 px; the 14 Oct design renders it 14 px semibold (same as the build Ahtasham measured) — the case checks the avatar look and states the design's 14 px",
+    "PRD S2-R11 keeps pinning in Tech View; the design's Tech View header has no pin icon — Ahtasham asked Chris on Slack, 14 Oct 2026 (SENT)"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 35,
+   "inventory_row_ids_sample": [
+    "V0845",
+    "V0846",
+    "V0854",
+    "V0855",
+    "V0887",
+    "V0929",
+    "V0930",
+    "V0933",
+    "V0934",
+    "V0957",
+    "V0978",
+    "V0979"
+   ]
+  },
+  {
+   "key": "DC-09",
+   "title": "Board View runs full width with no grey rounded panel around the columns",
+   "title_length": 72,
+   "section": "Design — how it looks",
+   "screen_and_state": "Board View page frame — light, 1440 and 1536",
+   "tickets": [
+    "SV-11323"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-09-board-view-detailed-light-1440.png",
+     "design_state": "core__work-orders__board-detailed__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-09-board-view-detailed-light-1536.png",
+     "design_state": "core__work-orders__board-detailed__light__1536",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case)."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Board View in the display switcher.",
+    "Look at the area behind the technician columns and its edges.",
+    "Scroll the board sideways to the far right.",
+    "Scroll down inside {Technician-A}'s column.",
+    "Make the window 1536 px wide and look again."
+   ],
+   "expected": [
+    "Step 2: the columns sit directly on the page's light-grey background, which runs from the left edge of the page to the right edge under the toolbar; there is no extra grey rounded box, inset panel or margin wrapped around the set of columns. Each column is its own white card with rounded corners and a soft shadow, with even gaps between columns, as in the picture.",
+    "Step 3: the Unassigned column stays in place at the left while the technician columns slide past under it.",
+    "Step 4: the column header (name and count) stays at the top of the column; only the cards scroll.",
+    "Step 5: the same frame at 1536 px."
+   ],
+   "sources": [
+    {
+     "attribute": "full width, no grey rounded panel",
+     "source": "PRD v52 S3-R23",
+     "quote": "S3-R23: “Board View runs full width, with no grey rounded panel around the columns, as in the design.”"
+    },
+    {
+     "attribute": "Unassigned fixed",
+     "source": "PRD v52 S3-R2",
+     "quote": "S3-R2: “The Unassigned column is the first column and is **fixed**: it stays in place while the user scrolls the technician columns horizontally.”"
+    },
+    {
+     "attribute": "headers stay at top",
+     "source": "PRD v52 S3-R3",
+     "quote": "S3-R3: “Column headers (technician names and counts) stay pinned at the top of the board while the user scrolls vertically, so long columns never hide whose column is being viewed.”"
+    },
+    {
+     "attribute": "columns 288 px white cards, 12 px corners, elev-1 shadow, 16 px gaps on the light-grey page",
+     "source": "DESIGN",
+     "quote": "Work Orders.dc.html lines 164-171"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "W-5 (minimap at bottom right)"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 25,
+   "inventory_row_ids_sample": [
+    "V0002",
+    "V0003",
+    "V0004",
+    "V0005",
+    "V0006",
+    "V0007",
+    "V0008",
+    "V0009",
+    "V0010",
+    "V0011",
+    "V0012",
+    "V0013"
+   ]
+  },
+  {
+   "key": "DC-10",
+   "title": "Board column header: grip, avatar, name, pin and count as in the design",
+   "title_length": 71,
+   "section": "Design — how it looks",
+   "screen_and_state": "Board View column headers — Unassigned, technician with/without photo, pinned, pin limit",
+   "tickets": [
+    "SV-11319",
+    "SV-11338"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-10-board-column-headers-light-1440.png",
+     "design_state": "core__work-orders__board-detailed__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-10-board-pinned-light-1440.png",
+     "design_state": "states__work-orders__board-pinned-two__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case).",
+    "{Location-A} has at least five active technicians so the pin limit can be reached."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Board View in the display switcher.",
+    "Look at the Unassigned column header from left to right.",
+    "Look at {Technician-B}'s column header (no photo) from left to right.",
+    "Click the pin icon in {Technician-B}'s header.",
+    "Look at the pin icon in that header now.",
+    "Pin two more technicians, then hover the pin icon on a fourth technician's header.",
+    "Unpin the three technicians."
+   ],
+   "expected": [
+    "Step 2: a round light-grey avatar with a grey outline person icon, the word Unassigned (dark, semibold), a short grey divider, a clipboard-with-list outline icon and the count. There is no grip and no pin on Unassigned.",
+    "Step 3: the six-dot grip, a light-grey circle with dark-grey initials (not a solid blue circle with white initials), the name (dark, semibold), a grey outline pin icon, a short divider, the clipboard icon and the count.",
+    "Step 5: the pinned technician's header shows the unpin icon (a pin with a slash through it), in the accent blue, as in the pinned design picture.",
+    "Step 6: the other pin icons look faded (disabled) and the hover text reads: You can pin up to 3 technicians.",
+    "Step 7: every header shows the grey outline pin again."
+   ],
+   "sources": [
+    {
+     "attribute": "name, avatar, count",
+     "source": "PRD v52 S3-R12",
+     "quote": "S3-R12: “Each column header shows the technician’s name, avatar, and a count of the work orders currently shown in that column, after the filter view and filters are applied, so the count always matches the cards listed.”"
+    },
+    {
+     "attribute": "pin / pin-off, Unassigned user-round",
+     "source": "PRD v52 S1-R9a",
+     "quote": "S1-R9a: “The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View every other icon is the design’s Lucide icon too: density (`row-height` in Tech View, `card-height` in Board View), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and empty states (`clipboard-list`). List’s icons are unchanged.”"
+    },
+    {
+     "attribute": "pin cap message",
+     "source": "PRD v52 S3-R8",
+     "quote": "S3-R8: “At three pinned technicians, disable other pin controls with: “You can pin up to 3 technicians.””"
+    },
+    {
+     "attribute": "pin from header",
+     "source": "PRD v52 S3-R7",
+     "quote": "S3-R7: “Allow users to pin a technician from the column header.”"
+    },
+    {
+     "attribute": "initials avatar light-grey, pinned icon in accent, faded at the limit (40%)",
+     "source": "DESIGN",
+     "quote": "Work Orders.dc.html lines 172-189 and pinColor/pinOpacity; SV.StaffAvatar"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "design pin limit is 5 with message \"Up to 5 pinned columns\" (register: pin limit 5 vs 3) — the case follows S3-R8"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 39,
+   "inventory_row_ids_sample": [
+    "V0054",
+    "V0064",
+    "V0065",
+    "V0066",
+    "V0082",
+    "V0083",
+    "V0084",
+    "V0088",
+    "V0089",
+    "V0096",
+    "V0112",
+    "V0122"
+   ]
+  },
+  {
+   "key": "DC-11",
+   "title": "Board card layout and text sizes match the design at each density",
+   "title_length": 65,
+   "section": "Design — how it looks",
+   "screen_and_state": "Board View cards — Detailed (Regular) and Compact card size, light",
+   "tickets": [
+    "SV-11337"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-11-board-card-detailed-light-1440.png",
+     "design_state": "core__work-orders__board-detailed__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-11-board-card-compact-light-1440.png",
+     "design_state": "core__work-orders__board-compact__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case).",
+    "In Board View, Fields to display shows the default fields (lead technician name, work order number, customer, unit number, asset, progress, total price; status always)."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Board View in the display switcher.",
+    "Look at {Work-order-1}'s card from top to bottom.",
+    "Compare the size and weight of the number, the customer, the unit · asset line and the total price.",
+    "Look at {Work-order-2}'s card next to its number.",
+    "Set density to Compact and look at the same card.",
+    "Set density to Comfortable and look at the same card."
+   ],
+   "expected": [
+    "Step 2: top line: the work order number in accent blue at the left and the status pill at the right (a tinted pill with a darker word and a thin border). Below it the customer name in dark text, then a smaller grey line \"unit · asset\" (for example TRK-118 · 2022 Freightliner M2). Then a thin blue progress bar across the card. A thin divider, then the line technicians as overlapping round avatars at the left and the total price at the right. The card is white with rounded corners and a thin grey border.",
+    "Step 3: in the design the number, the customer and the total price are the same size as each other (14 px) and the same weight (medium, not bold); the unit · asset line is clearly smaller (12 px) and grey. Compare with the picture side by side: the customer name is not bolder than the number.",
+    "Step 4: a small padlock outline icon sits right after the number.",
+    "Step 5: the card is shorter (less space around the content) but shows the same fields and values; the text sizes do not change.",
+    "Step 6: the card has more space around the content; the text sizes do not change."
+   ],
+   "sources": [
+    {
+     "attribute": "mandatory fields",
+     "source": "PRD v52 S5-R3",
+     "quote": "S5-R3: “Work order number, unit number when present, and status are mandatory and cannot be deselected.”"
+    },
+    {
+     "attribute": "default fields",
+     "source": "PRD v52 S5-R13",
+     "quote": "S5-R13: “Board View’s default selection is lead technician name, work order number, customer, unit number, asset, progress, total price, and mandatory status, subject to financial permission.”"
+    },
+    {
+     "attribute": "badge fixed spot",
+     "source": "PRD v52 S3-R5",
+     "quote": "S3-R5: “Keep each card’s status badge in a fixed position.”"
+    },
+    {
+     "attribute": "density never hides fields",
+     "source": "PRD v52 S6-R6",
+     "quote": "S6-R6: “Changing density never changes which fields, columns, or values are displayed.”"
+    },
+    {
+     "attribute": "density spacing and size",
+     "source": "PRD v52 S6-R2",
+     "quote": "S6-R2: “Density adjusts spacing and the size of rows, cards, and their elements.”"
+    },
+    {
+     "attribute": "card typography: number 14/500 accent, customer 14/500, unit · asset 12/500 grey, total 14/500; identical at both design card sizes",
+     "source": "DESIGN",
+     "quote": "Work Orders.dc.html lines 194-223; rendered and measured 14 Oct (visual-inventory Board card rows) — matches Chris Ward's own design screenshot D1-design-board_view-1440.png pixel for pixel"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "SV-11337 says the design's number is ~15 px, customer 15-16 px weight 600, unit · asset ~13 px and total ~16 px weight 600; the 14 Oct design (and Chris's D1 screenshot of it) shows 14 / 14 / 12 / 14 px at weight 500 — the same values the ticket reports for the build. QA lead to ask Ahtasham what he measured against before this case is final.",
+    "design \"Compact\" card hides hours, progress and money (register: Card size vs Density; S6-R6)",
+    "rank numbers on cards are out of scope (left out 2026-10-01)"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 68,
+   "inventory_row_ids_sample": [
+    "V0078",
+    "V0079",
+    "V0080",
+    "V0081",
+    "V0107",
+    "V0125",
+    "V0128",
+    "V0134",
+    "V0158",
+    "V0159",
+    "V0160",
+    "V0161"
+   ]
+  },
+  {
+   "key": "DC-12",
+   "title": "Card and row More actions button and menu look as in the design",
+   "title_length": 63,
+   "section": "Design — how it looks",
+   "screen_and_state": "More actions on Board card and Tech View row — hover, open menu, locked menu",
+   "tickets": [],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-12-board-card-menu-light-1440.png",
+     "design_state": "states__work-orders__board-card-menu__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-12-board-card-hover-button-light-1440.png",
+     "design_state": "states__work-orders__board-card-menu-button-over-badge__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-12-tech-row-menu-locked-light-1440.png",
+     "design_state": "states__work-orders__tech-row-menu-locked__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case)."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Board View in the display switcher.",
+    "Hover {Work-order-1}'s card.",
+    "Click the More actions button that appears.",
+    "Press Escape, click Tech View and hover {Work-order-1}'s row.",
+    "Click the More actions button at the end of the row.",
+    "Press Escape, hover {Work-order-2}'s row and click its More actions button."
+   ],
+   "expected": [
+    "Step 2: the card's border darkens and a soft shadow appears; a small white square button with three dots appears at the card's top-right, over the right end of the status pill (as in the design picture). Without hover the button is not shown.",
+    "Step 3: a white menu opens below the button, aligned to the button's right edge, with Reassign lead technician (person icon) as its first item.",
+    "Step 4: the row turns light grey and a three-dot button appears at the right end of the row.",
+    "Step 5: the same menu opens below the button.",
+    "Step 6: the menu's item is greyed out and cannot be chosen; a lock icon and the reason show (tooltip text per S4-N6)."
+   ],
+   "sources": [
+    {
+     "attribute": "more-actions overlay on hover or focus",
+     "source": "PRD v52 S3-R13",
+     "quote": "S3-R13: “Reveal the card’s more-actions overlay on hover or keyboard focus.”"
+    },
+    {
+     "attribute": "Reassign in the menu",
+     "source": "PRD v52 S3-R14",
+     "quote": "S3-R14: “Include Reassign lead technician in the card’s more-actions menu.”"
+    },
+    {
+     "attribute": "disabled action tooltip",
+     "source": "PRD v52 S4-N6",
+     "quote": "S4-N6: “The disabled Reassign lead technician action on an Invoiced or Paid work order shows this tooltip: “The lead technician can’t be changed once a work order is Invoiced or Paid.””"
+    },
+    {
+     "attribute": "badge fixed spot",
+     "source": "PRD v52 S3-R5",
+     "quote": "S3-R5: “Keep each card’s status badge in a fixed position.”"
+    },
+    {
+     "attribute": "button 24 px white with border over the badge's right end; menu 216 px below, right-aligned; locked note with lock icon",
+     "source": "DESIGN",
+     "quote": "Work Orders.dc.html lines 201-203, 321-339"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "Ahtasham Amjad asked Chris on Slack 14 Oct 2026 (SENT) whether More actions covering part of the status badge is acceptable — the design does not show the focus state; no expected result is set for what the badge looks like under the button",
+    "design menu labels \"Reassign Lead Tech\" / \"Assign Tech\" / \"Unassign\" (register; cases follow the PRD words)"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 24,
+   "inventory_row_ids_sample": [
+    "V0053",
+    "V0072",
+    "V0073",
+    "V0099",
+    "V0102",
+    "V0109",
+    "V0121",
+    "V0132",
+    "V0836",
+    "V0837",
+    "V0838",
+    "V0862"
+   ]
+  },
+  {
+   "key": "DC-13",
+   "title": "Empty and no-technician states show the design's icons and layout",
+   "title_length": 65,
+   "section": "Design — how it looks",
+   "screen_and_state": "Empty group / column, filtered-empty, search-empty, no technicians — Tech View and Board View",
+   "tickets": [
+    "SV-11319"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-13-tech-search-empty-light-1440.png",
+     "design_state": "states__work-orders__tech-search-empty__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-13-board-empty-column-light-1440.png",
+     "design_state": "states__work-orders__board-technician-chosen__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-13-tech-no-technicians-light-1440.png",
+     "design_state": "states__work-orders__tech-no-technicians__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case).",
+    "Technician {Technician-D} (for example ZZAUTOTEST Idle Tech) is an active technician at {Location-A} who leads no work orders.",
+    "Location {Location-B} (for example ZZAUTOTEST Empty Shop) has work orders but no technicians, and {User-A} can switch to it."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Tech View in the display switcher.",
+    "Look at {Technician-D}'s empty group.",
+    "Click Board View and look at {Technician-D}'s empty column.",
+    "Click Status, tick Paid, and type zzzz in Search.",
+    "Look at the empty state in Board View, then click Tech View and look again.",
+    "Click Clear all filters, then type zzzz in Search only.",
+    "Look at the empty state.",
+    "Clear Search, change location to {Location-B} and look at Tech View and Board View."
+   ],
+   "expected": [
+    "Step 2: the group shows the text \"No work orders\" (grey, centred) with the clipboard-with-list outline icon.",
+    "Step 3: the empty column shows a dashed rounded box with a small grey circle holding the clipboard-with-list icon and the text for a user who can reassign: \"Drag a work order here to assign it\".",
+    "Step 5: both views show the same empty state as List: a round grey icon, the title, the hint line and the Clear all filters button, centred on the page.",
+    "Step 7: the search-only message shows with no button.",
+    "Step 8: only Unassigned shows, holding the work orders; the empty-state icons are thin outline icons, no illustrations."
+   ],
+   "sources": [
+    {
+     "attribute": "empty group text",
+     "source": "PRD v52 S2-R15",
+     "quote": "S2-R15: “A technician group with no work orders under the current filters, and an empty Unassigned group, show the text “No work orders”.”"
+    },
+    {
+     "attribute": "empty column texts",
+     "source": "PRD v52 S3-R20",
+     "quote": "S3-R20: “A technician column with no work orders under the current filters, and an empty Unassigned column, show “Drag a work order here to assign it” to a user who can reassign work orders (S4-N1), and “No work orders” to everyone else.”"
+    },
+    {
+     "attribute": "empty state icon clipboard-list",
+     "source": "PRD v52 S1-R9a",
+     "quote": "S1-R9a: “The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View every other icon is the design’s Lucide icon too: density (`row-height` in Tech View, `card-height` in Board View), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and empty states (`clipboard-list`). List’s icons are unchanged.”"
+    },
+    {
+     "attribute": "filtered empty = List's",
+     "source": "PRD v52 S1-N1",
+     "quote": "S1-N1: “When the active filters or a search return no work orders, Tech View and Board View show the same empty state as the List, with the same messages and action.”"
+    },
+    {
+     "attribute": "filtered empty words",
+     "source": "PRD v52 S1-N1a",
+     "quote": "S1-N1a: “With filters active, with or without a search, the empty state reads “No work orders match these filters”, then “Try removing a filter to widen your results.”, with a Clear all filters button.”"
+    },
+    {
+     "attribute": "search-only",
+     "source": "PRD v52 S1-N1b",
+     "quote": "S1-N1b: “With only a search active, the empty state reads “No work orders match the search \"{search}\".” and shows no button.”"
+    },
+    {
+     "attribute": "no technicians",
+     "source": "PRD v52 S2-R2",
+     "quote": "S2-R2: “Keep Unassigned, containing work orders without a lead technician, fixed before all technician groups.”"
+    },
+    {
+     "attribute": "dashed box, grey circle icon; text-only empty states",
+     "source": "DESIGN",
+     "quote": "Work Orders.dc.html lines 141-146, 228-234; LIBRARY: SKILL.md \"Empty-state illustrations are a deliberate omission — Shopview empty states are text only.\""
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "design empty texts \"No work orders assigned\" + \"Drag a work order here to assign it\" both shown (register; cases follow S2-R15 / S3-R20)",
+    "W-13 / S1-N1b search-only words (design \"No results for …\")",
+    "design filtered-empty icon is a magnifier (List's) while S1-R9a says empty states use clipboard-list — PQ-V06"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 35,
+   "inventory_row_ids_sample": [
+    "V0033",
+    "V0034",
+    "V0035",
+    "V0036",
+    "V0067",
+    "V0095",
+    "V0098",
+    "V0140",
+    "V0141",
+    "V0144",
+    "V0237",
+    "V0238"
+   ]
+  },
+  {
+   "key": "DC-14",
+   "title": "Drag shows a blue drop line, and a refused drop shows a dark message",
+   "title_length": 68,
+   "section": "Design — how it looks",
+   "screen_and_state": "Drag affordances — Tech View and Board View: allowed drop, reorder, refused (Invoiced, no permission), technician reorder",
+   "tickets": [],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-14-board-drag-allowed-light-1440.png",
+     "design_state": "states__work-orders__board-drag-allowed__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-14-board-drag-refused-light-1440.png",
+     "design_state": "states__work-orders__board-drag-refused-locked__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-14-tech-drag-reorder-light-1440.png",
+     "design_state": "states__work-orders__tech-drag-reorder__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case).",
+    "User {User-B} (for example ZZAUTOTEST Viewer) has Work orders > View but not Work orders > Create & Edit, at {Location-A}."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Board View in the display switcher.",
+    "Start dragging {Work-order-3}'s card and hold it over {Technician-A}'s column without dropping.",
+    "Drop it.",
+    "Start dragging {Work-order-2}'s card and hold it over {Technician-C}'s column without dropping.",
+    "Drop it.",
+    "Click Tech View and drag {Work-order-1}'s row between two rows of its own group without dropping, then drop it.",
+    "Drag {Technician-A}'s group header by its grip below {Technician-C}'s group without dropping, then drop it."
+   ],
+   "expected": [
+    "Step 2: the dragged card fades and a thin blue line shows where it will land.",
+    "Step 3: the card lands where the line was.",
+    "Step 4: no blue line shows; a small dark message with a no-entry (circle with a slash) icon appears at the top of the column saying why it cannot move there.",
+    "Step 5: the card stays where it was.",
+    "Step 6: a thin blue horizontal line shows between the two rows where the row will land.",
+    "Step 7: a thin blue line shows between groups where the group will land."
+   ],
+   "sources": [
+    {
+     "attribute": "Invoiced/Paid only reorder, visible",
+     "source": "PRD v52 S4-N7",
+     "quote": "S4-N7: “Visually indicate that an Invoiced or Paid work order can only be reordered within its current technician, not moved to another one.”"
+    },
+    {
+     "attribute": "drag rules",
+     "source": "PRD v52 S9-R1",
+     "quote": "S9-R1: “Allow dragging work orders within or between technician groups/columns in Tech View and Board View.”"
+    },
+    {
+     "attribute": "drop refusal",
+     "source": "PRD v52 S4-N2",
+     "quote": "S4-N2: “Do not allow the lead technician to change in Invoiced or Paid status. An Invoiced or Paid work order can still be dragged to reorder it within its current technician (or within Unassigned), but it cannot be moved to another technician, to Unassigned, or out of Unassigned. Declined and Complete work orders can be moved freely, as today.”"
+    },
+    {
+     "attribute": "technician reorder",
+     "source": "PRD v52 S9-R2",
+     "quote": "S9-R2: “Users with Work Orders view permission can reorder technician groups and columns. The order is saved per user.”"
+    },
+    {
+     "attribute": "40% fade, 3 px accent drop line, dark refusal pill with ban icon",
+     "source": "DESIGN",
+     "quote": "Work Orders.dc.html dragStart opacity 0.4, gline 3 px var(--sv-accent), denied pill var(--sv-surface-inverse) with icon \"ban\" — lines 315-320, 727-786"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "design refusal words \"Invoiced · can’t be reassigned\" (register; cases follow S4-N6 / S4-N2)"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 10,
+   "inventory_row_ids_sample": [
+    "V0055",
+    "V0071",
+    "V0113",
+    "V0114",
+    "V0126",
+    "V0129",
+    "V0130",
+    "V0861",
+    "V0932",
+    "V0936"
+   ]
+  },
+  {
+   "key": "DC-15",
+   "title": "Hover looks: row turns light grey, card border darkens, tooltips are dark",
+   "title_length": 73,
+   "section": "Design — how it looks",
+   "screen_and_state": "Hover states — Tech View row and group header, Board card, avatars, tooltips",
+   "tickets": [],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-15-tech-row-hover-light-1440.png",
+     "design_state": "states__work-orders__tech-row-hover__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-15-board-card-hover-light-1440.png",
+     "design_state": "states__work-orders__board-card-hover__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-15-avatar-hover-light-1440.png",
+     "design_state": "states__work-orders__tech-avatar-stack-hover__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case)."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Tech View in the display switcher.",
+    "Hover {Work-order-1}'s row.",
+    "Hover the first avatar in its Assigned Techs cell.",
+    "Click Board View and hover {Work-order-1}'s card.",
+    "Hover the first avatar on the card."
+   ],
+   "expected": [
+    "Step 2: the row background turns light grey; nothing in the row moves or grows.",
+    "Step 3: a small dark bubble with white text shows the technician's name above the avatar.",
+    "Step 4: the card's border darkens and a soft shadow appears; the card does not grow or move.",
+    "Step 5: the same dark name bubble above the avatar."
+   ],
+   "sources": [
+    {
+     "attribute": "names on hover",
+     "source": "PRD v52 S7-R2",
+     "quote": "S7-R2: “Use each visible avatar’s own visible area as its hover target.”"
+    },
+    {
+     "attribute": "more-actions on hover",
+     "source": "PRD v52 S3-R13",
+     "quote": "S3-R13: “Reveal the card’s more-actions overlay on hover or keyboard focus.”"
+    },
+    {
+     "attribute": "hover is a colour shift plus a lift, never a scale",
+     "source": "LIBRARY",
+     "quote": "README.md \"Hover is a colour shift plus a lift (elev-1 → elev-2), never a scale.\""
+    },
+    {
+     "attribute": "row hover surface-hover; card hover border-strong + shadow; TechStack bubble dark above",
+     "source": "DESIGN",
+     "quote": "Work Orders.dc.html style-hover; SV.TechStack tip bottom calc(100% + 6px)"
+    }
+   ],
+   "spec_conflicts_and_notes": [],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 9,
+   "inventory_row_ids_sample": [
+    "V0048",
+    "V0049",
+    "V0108",
+    "V0133",
+    "V0829",
+    "V0830",
+    "V0940",
+    "V0959",
+    "V0961"
+   ]
+  },
+  {
+   "key": "DC-16",
+   "title": "Tech View and Board View in the Dark theme look as in the design",
+   "title_length": 64,
+   "section": "Design — how it looks",
+   "screen_and_state": "Dark theme — Tech View and Board View",
+   "tickets": [],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-16-tech-view-dark-1440.png",
+     "design_state": "core__work-orders__tech-regular__dark__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-16-board-view-dark-1440.png",
+     "design_state": "core__work-orders__board-detailed__dark__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case)."
+   ],
+   "steps": [
+    "(held until W-15 is answered)"
+   ],
+   "expected": [
+    "HELD — the PRD does not say whether Tech View and Board View must support the Dark theme the design offers (PO question W-15, drafted 8 Oct, NOT SENT). No expected result is written until it is answered."
+   ],
+   "sources": [
+    {
+     "attribute": "dark theme",
+     "source": "DESIGN",
+     "quote": "ShopviewTheme dark; LIBRARY: SKILL.md \"Rendered and checked in **both** themes (`ShopviewTheme.set('dark')`).\""
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "W-15 (unsent)"
+   ],
+   "automation": "AUTOMATION: HOLD - waiting for the PO's answer to W-15 (is Dark theme in scope)",
+   "inventory_rows": 70,
+   "inventory_row_ids_sample": [
+    "V0016",
+    "V0029",
+    "V0037",
+    "V0038",
+    "V0045",
+    "V0047",
+    "V0070",
+    "V0075",
+    "V0135",
+    "V0138",
+    "V0139",
+    "V0142"
+   ]
+  },
+  {
+   "key": "DC-17",
+   "title": "No overlapping or cut-off labels at 1024 to 1920 px wide",
+   "title_length": 56,
+   "section": "Design — how it looks",
+   "screen_and_state": "Widths 1024, 1280, 1366, 1440, 1536, 1920 — toolbar, Tech View header row, Board column headers",
+   "tickets": [
+    "SV-11321"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-17-tech-view-1024-light.png",
+     "design_state": "widths__work-orders__tech-regular__light__1024",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-17-board-view-1280-light.png",
+     "design_state": "widths__work-orders__board-detailed__light__1280",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case)."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Tech View in the display switcher.",
+    "Set the window to 1024 px wide and look at the toolbar and the column header row.",
+    "Repeat at 1280, 1366, 1440, 1536 and 1920 px.",
+    "Click Board View and repeat steps 2 and 3, looking at the toolbar and the column headers."
+   ],
+   "expected": [
+    "Steps 2 to 4: at every width no label touches or overlaps another label, in the toolbar, the column header row or the column headers; where space runs out, the toolbar wraps onto a second line (as in the design) and long names end with \"…\" rather than running into the next label.",
+    "At every width the Tech View table and the board scroll sideways when they are wider than the window."
+   ],
+   "sources": [
+    {
+     "attribute": "labels never overlap",
+     "source": "PRD v52 S2-R21",
+     "quote": "S2-R21: “Tech View’s column header labels are 12px, medium weight (500), in the secondary text color, as in the design. Labels never overlap a neighboring label.”"
+    },
+    {
+     "attribute": "display options at 1024 px and wider",
+     "source": "PRD v52 S1-R14",
+     "quote": "S1-R14: “The display options follow the same screen-width switch the List uses in production today. On a screen narrower than 1024px, the Work Orders page shows List exactly as it does today (the phone card layout), with no display switcher. At 1024px and wider, Tech View and Board View are offered, whatever the device: a tablet held sideways at 1024px or wider gets them too. The switch is by screen width only; the app never detects the device type.”"
+    },
+    {
+     "attribute": "toolbar wraps; names truncate with an ellipsis",
+     "source": "DESIGN",
+     "quote": "toolbar flex-wrap: wrap (_ds_bundle.js WorkOrdersScreen); header names text-overflow: ellipsis (Work Orders.dc.html line 186)"
+    }
+   ],
+   "spec_conflicts_and_notes": [],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 17,
+   "inventory_row_ids_sample": [
+    "V0104",
+    "V0105",
+    "V0116",
+    "V0117",
+    "V0900",
+    "V0901",
+    "V0907",
+    "V0908",
+    "V0909",
+    "V0912",
+    "V0913",
+    "V0914"
+   ]
+  },
+  {
+   "key": "DC-18",
+   "title": "Technician filter chip sits after Assigned to me in Tech and Board View",
+   "title_length": 71,
+   "section": "Design — how it looks",
+   "screen_and_state": "Filter bar — Technician chip closed, open, with a choice; Tech View and Board View; List",
+   "tickets": [
+    "SV-11326"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-18-tech-technician-chip-open-light-1440.png",
+     "design_state": "states__work-orders__tech-technician-chip__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-18-tech-technician-chosen-light-1440.png",
+     "design_state": "states__work-orders__tech-technician-chosen__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case)."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Tech View in the display switcher.",
+    "Look at the filter chips from left to right.",
+    "Click the Technician chip.",
+    "Tick {Technician-A}, then press Escape.",
+    "Look at the Technician chip.",
+    "Click Board View and look at the chips.",
+    "Click List and look at the chips."
+   ],
+   "expected": [
+    "Step 2: the Technician chip shows a wrench outline icon, the word Technician and a down chevron, placed right after Assigned to me; there is no Department chip.",
+    "Step 3: a dropdown opens below the chip listing Unassigned first, then the location's technicians by first then last name, each with a tick box (in the design the dropdown also has a \"Search technician\" box at the top and \"Clear selection\" at the bottom; it opens over the column header row, which is fine for a menu).",
+    "Step 5: the chip shows the choice in its label (for example \"Technician: Esther Howard\") and an x to clear it.",
+    "Step 6: Board View shows the same chip with the same choice.",
+    "Step 7: List shows no Technician chip and its chips look as in production."
+   ],
+   "sources": [
+    {
+     "attribute": "Technician filter after Assigned to me; Unassigned first",
+     "source": "PRD v52 S1-R15",
+     "quote": "S1-R15: “In Tech View and Board View the filter bar also offers a **Technician** filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location’s technicians (the same people who get a group or column, S9-R4), by first name then last name. Choosing one or more shows only those technicians’ groups or columns; every other group or column, pinned ones included, is hidden. It filters by lead technician only.”"
+    },
+    {
+     "attribute": "combines; clear all",
+     "source": "PRD v52 S1-R15a",
+     "quote": "S1-R15a: “The Technician filter combines with every other filter and with Assigned to me: a work order shows only if it matches all of them. When nothing matches, the empty state of S1-N1a applies, and Clear all filters also clears the Technician filter.”"
+    },
+    {
+     "attribute": "List does not offer it",
+     "source": "PRD v52 S1-R15b",
+     "quote": "S1-R15b: “List does not offer the Technician filter and stays as in production. Switching to List while technicians are chosen shows List as if none were chosen; switching back to Tech View or Board View brings the choice back. The choice is remembered the same way as the other filters.”"
+    },
+    {
+     "attribute": "no Department filter",
+     "source": "OUT OF SCOPE",
+     "quote": "\"A Department filter. The design shows one, but a work order’s department is not shown or editable on any work order screen today, so users could not see why a work order matches. Revisit once the work order shows its department.\""
+    },
+    {
+     "attribute": "wrench icon; chip label shows the value; dropdown below the chip",
+     "source": "DESIGN",
+     "quote": "WorkOrdersFilterBar item tech icon ICON_WRENCH (\"wrench\"), valueText — _ds_bundle.js work-orders.jsx"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "design's Technician list has no Unassigned and filters by any assigned technician — S1-R15 (v52) is newer and decides"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 14,
+   "inventory_row_ids_sample": [
+    "V0051",
+    "V0063",
+    "V0100",
+    "V0111",
+    "V0119",
+    "V0271",
+    "V0272",
+    "V0834",
+    "V0850",
+    "V0893",
+    "V0906",
+    "V0923"
+   ]
+  },
+  {
+   "key": "DC-19",
+   "title": "Density changes Tech View row, header, avatar and bar sizes",
+   "title_length": 59,
+   "section": "Design — how it looks",
+   "screen_and_state": "Tech View — Compact / Regular / Comfortable sizes",
+   "tickets": [
+    "SV-11318"
+   ],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-06-tech-view-compact-light-1440.png",
+     "design_state": "core__work-orders__tech-compact__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-06-tech-view-regular-light-1440.png",
+     "design_state": "core__work-orders__tech-regular__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-06-tech-view-comfortable-light-1440.png",
+     "design_state": "core__work-orders__tech-comfortable__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case)."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Tech View in the display switcher.",
+    "Set density to Compact and look at the rows, group headers, avatars and progress bars.",
+    "Set density to Regular and look again.",
+    "Set density to Comfortable and look again."
+   ],
+   "expected": [
+    "Step 2: rows are at their shortest (36 px in the design), row text slightly smaller (13 px), avatars smaller and the progress bar shorter and thinner (48 × 4 px), as in the Compact picture; text is never smaller than List's body text.",
+    "Step 3: rows 48 px, text 14 px, bar 64 × 6 px, as in the Regular picture.",
+    "Step 4: rows tallest (64 px), avatars larger (32 px), and the Progress cell shows the hours (for example \"0.8 / 8.0 hrs\") under the bar, as in the Comfortable picture.",
+    "Steps 2 to 4: the same columns and values show at every density."
+   ],
+   "sources": [
+    {
+     "attribute": "density adjusts spacing and size",
+     "source": "PRD v52 S6-R2",
+     "quote": "S6-R2: “Density adjusts spacing and the size of rows, cards, and their elements.”"
+    },
+    {
+     "attribute": "never changes what is shown",
+     "source": "PRD v52 S6-R6",
+     "quote": "S6-R6: “Changing density never changes which fields, columns, or values are displayed.”"
+    },
+    {
+     "attribute": "minimum text size",
+     "source": "PRD v52 S6-R4",
+     "quote": "S6-R4: “Compact density must not reduce text below the application’s minimum body text size.”"
+    },
+    {
+     "attribute": "36/48/64 rows, 13/14 px text, 48×4 / 64×6 bars, 20/24/32 avatars, hours under the bar at Large",
+     "source": "DESIGN",
+     "quote": "Work Orders.dc.html renderVals rowH/cellFs/barW/barH/crewSize, line 89 (hoursLabel at Large)"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "W-11 (13 px text at Compact vs minimum body size)",
+    "design shows hours under the bar only at Comfortable — S6-R6 says density never changes what is shown: PQ-V07"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 6,
+   "inventory_row_ids_sample": [
+    "V1101",
+    "V1102",
+    "V1103",
+    "V1105",
+    "V1106",
+    "V1107"
+   ]
+  },
+  {
+   "key": "DC-20",
+   "title": "Reassign lead technician dialog looks as in the design",
+   "title_length": 54,
+   "section": "Design — how it looks",
+   "screen_and_state": "Reassign dialog — Tech View and Board View",
+   "tickets": [],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-20-reassign-dialog-light-1440.png",
+     "design_state": "states__work-orders__tech-reassign-dialog__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case)."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Tech View in the display switcher.",
+    "Hover {Work-order-1}'s row, click More actions and click Reassign lead technician.",
+    "Look at the dialog from top to bottom.",
+    "Type the first letters of {Technician-C}'s name in the dialog's search box."
+   ],
+   "expected": [
+    "Step 3: a white dialog with rounded corners on a dimmed page: a title and below it the work order number and customer in grey; an X at the top right; a search box with a magnifier icon; a list of technicians, each row with a round avatar, the name and a grey \"N open\" line; the current lead's row tinted light blue with a blue check mark; a Cancel button at the bottom right.",
+    "Step 4: the list narrows to matching technicians."
+   ],
+   "sources": [
+    {
+     "attribute": "dialog offers technicians and Unassigned; N open",
+     "source": "PRD v52 S4-R12",
+     "quote": "S4-R12: “The dialog offers eligible active technicians in the current location and Unassigned.”"
+    },
+    {
+     "attribute": "N open statuses",
+     "source": "PRD v52 S4-R15",
+     "quote": "S4-R15: “The dialog’s N open count includes Approved, In Progress, Ready for Review, and Complete work orders.”"
+    },
+    {
+     "attribute": "dialog layout",
+     "source": "DESIGN",
+     "quote": "Work Orders.dc.html lines 341-378 (480 px dialog, search \"Search technicians\", avatar 32 px, current row var(--sv-info-fill) with check icon)"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "the PRD's Design updates list still names \"Reassign dialog content, search, grouping, avatars, and exact N open count\" as design work — PQ-V08 (is the 14 Oct dialog the final design?)",
+    "design has no Unassigned row in the dialog (S4-R12 requires it) — case follows the PRD"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 12,
+   "inventory_row_ids_sample": [
+    "V0052",
+    "V0058",
+    "V0086",
+    "V0101",
+    "V0110",
+    "V0120",
+    "V0835",
+    "V0841",
+    "V0875",
+    "V0894",
+    "V0904",
+    "V0924"
+   ]
+  },
+  {
+   "key": "DC-21",
+   "title": "Success toast after a lead change looks as in the design",
+   "title_length": 56,
+   "section": "Design — how it looks",
+   "screen_and_state": "Toast after reassign — Tech View / Board View",
+   "tickets": [],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-21-toast-light-1440.png",
+     "design_state": "states__work-orders__tech-toast-after-reassign__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case)."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Board View in the display switcher.",
+    "Drag {Work-order-3}'s card into {Technician-A}'s column and confirm any prompt.",
+    "Look at the message that appears and wait."
+   ],
+   "expected": [
+    "Step 3: a white message box with rounded corners appears at the bottom right with a green check-in-a-circle icon and the text \"Lead technician updated\", and an X to close it; it disappears by itself after a few seconds."
+   ],
+   "sources": [
+    {
+     "attribute": "toast text and auto-dismiss",
+     "source": "PRD v52 S4-R5",
+     "quote": "S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”"
+    },
+    {
+     "attribute": "auto-dismiss",
+     "source": "PRD v52 S4-R16",
+     "quote": "S4-R16: “Success toasts dismiss automatically.”"
+    },
+    {
+     "attribute": "bottom-right white toast, success icon circle-check, close X",
+     "source": "DESIGN",
+     "quote": "Work Orders.dc.html lines 382-401 (compact toast)"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "design's assignment toast has an Undo button (ruled out, register)"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 6,
+   "inventory_row_ids_sample": [
+    "V0074",
+    "V0103",
+    "V0839",
+    "V0851",
+    "V0897",
+    "V0928"
+   ]
+  },
+  {
+   "key": "DC-22",
+   "title": "Tech View column header row and group headers stay in view when scrolling",
+   "title_length": 73,
+   "section": "Design — how it looks",
+   "screen_and_state": "Scroll — Tech View column header row, group headers; Board Unassigned column and column headers",
+   "tickets": [],
+   "compare_with": [
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-22-tech-scrolled-light-1440.png",
+     "design_state": "states__work-orders__tech-scrolled-down__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    },
+    {
+     "picture": "build/wo-board-tech-view/design-look-2026-10-14/compare/DC-22-board-scrolled-right-light-1440.png",
+     "design_state": "states__work-orders__board-scrolled-right__light__1440",
+     "how_to_reach_it_in_the_design": "Open sources/design-2026-10-14-upload/Work Orders.dc.html in Claude Design (or served locally) — state id parts: <matrix>__<board>__<state>__<theme>__<width>"
+    }
+   ],
+   "design_board": "Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\"",
+   "preconditions": [
+    "You are signed in as {User-A} (for example Admin ShopView), a user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide at 100% browser zoom (for example a full-screen 1440 × 900 laptop window); steps that say 1536 px use a window 1536 px wide.",
+    "Technician {Technician-A} (for example Esther Howard) is an active technician at {Location-A} with a profile photo.",
+    "Technician {Technician-B} (for example Brenda Martinez) is an active technician at {Location-A} with no profile photo.",
+    "Technician {Technician-C} (for example Ralph Edwards) is an active technician at {Location-A}.",
+    "Work order {Work-order-1} (for example S2-17435) is Approved, led by {Technician-A}, has progress above 0% (for example 15%), a service advisor (for example James Smith) and one line, {Line-1} (for example \"Service - PM-A inspection\"), whose technician is {Technician-C}.",
+    "Work order {Work-order-2} (for example S2-17440) is Invoiced and led by {Technician-B}.",
+    "Work order {Work-order-3} (for example S2-17441) is an Estimate with no lead technician, so the Unassigned group holds at least one work order.",
+    "Work order {Work-order-4} (for example S2-17442) is In progress, led by {Technician-C}, with a technician clocked in to one of its lines.",
+    "Density is Regular (the default) and no filter, search or Assigned to me is active on the Work Orders page.",
+    "The design picture named in this case is open beside the app at 100% zoom (it is attached to the case).",
+    "{Technician-A} leads enough work orders (for example 25) that their group is taller than the window."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Tech View in the display switcher.",
+    "Scroll down slowly through {Technician-A}'s group."
+   ],
+   "expected": [
+    "Step 2: the column header row stays at the top, and {Technician-A}'s group header stays visible under it while you scroll through the group's rows (PRD S2-E1). Note: in the design only the column header row stays put — the group header scrolls away; the PRD rule wins."
+   ],
+   "sources": [
+    {
+     "attribute": "group header stays visible",
+     "source": "PRD v52 S2-E1",
+     "quote": "S2-E1: “Keep the technician group header visible while scrolling within a tall group.”"
+    },
+    {
+     "attribute": "Unassigned header stays on screen",
+     "source": "PRD v52 S2-R18",
+     "quote": "S2-R18: “Unassigned opens expanded unless the user collapsed it (S2-R13), and its header stays on screen while scrolling so it can be collapsed from anywhere. When it holds more work orders than fit on screen, which on the All tab can be thousands, it loads them in pages as the user scrolls, as List does, never all at once.”"
+    },
+    {
+     "attribute": "column header row sticky",
+     "source": "DESIGN",
+     "quote": "Tech View header row position sticky top 0 (Work Orders.dc.html line 30)"
+    }
+   ],
+   "spec_conflicts_and_notes": [
+    "PQ-V09 (the design's group headers do not stay on screen while scrolling; S2-E1 and S2-R18 say they do) — already covered for behaviour by C96935 and C368127"
+   ],
+   "automation": "AUTOMATION: READY",
+   "inventory_rows": 3,
+   "inventory_row_ids_sample": [
+    "V1132",
+    "V1133",
+    "V1134"
+   ]
+  }
+ ],
+ "ticket_map": [
+  {
+   "ticket": "SV-11317",
+   "reported_by": "Chris",
+   "what": "Tech View opens on the design's 13 columns",
+   "design_evidence": "Work Orders.dc.html, Tech View header row (states core…tech-*): Status, Waiting On Parts, Number, Customer, Unit #, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Tech, Created on, Total price (plus the design's collapse arrow and rank column, both PRD out of scope); the table needs ≈1,790 px",
+   "prd": "S5-R4, S7-R7",
+   "inventory_class": "CASE-NEEDED",
+   "case_proposals": "DC-04 (+ DC-03, DC-17)",
+   "existing_case": "C96927 / C96979 assert the OLD rule — rewrite"
+  },
+  {
+   "ticket": "SV-11318",
+   "reported_by": "Chris",
+   "what": "Status pill 18 / 18 / 22 px by density",
+   "design_evidence": "Tech View Status cells: 16 px at Small and Medium, 22 px at Large (SV.Badge sm / md)",
+   "prd": "S6-R2a, S2-R19",
+   "inventory_class": "CASE-NEEDED + SPEC-CONFLICT PQ-V04 (16 vs 18)",
+   "case_proposals": "DC-06 (+ DC-19)",
+   "existing_case": "—"
+  },
+  {
+   "ticket": "SV-11319",
+   "reported_by": "Chris",
+   "what": "Lucide icons in switcher and views",
+   "design_evidence": "switcher list / user-round / square-kanban 20 px; toolbar row-height, card-height, columns-3; headers chevron-down, user-round (Unassigned), clipboard-list (count); rows lock; Board pin (inline Lucide pin / pin-off); empty clipboard-list",
+   "prd": "S1-R9a",
+   "inventory_class": "CASE-NEEDED (+ PQ-V01 chip icons, PQ-V06 empty icon)",
+   "case_proposals": "DC-01, DC-05, DC-08, DC-10, DC-13",
+   "existing_case": "—"
+  },
+  {
+   "ticket": "SV-11320",
+   "reported_by": "Chris",
+   "what": "Six-dot grip on every Tech View row and group header, Unassigned included",
+   "design_evidence": "inline six-circle grip on 100% of Tech View rows and group headers incl. Unassigned (row-type rows); title \"Drag to reorder technicians\" on header grips",
+   "prd": "S9-R1a, S2-R8, S4-N1",
+   "inventory_class": "CASE-NEEDED (+ PQ-V05 view-only header grip)",
+   "case_proposals": "DC-07",
+   "existing_case": "C96925 / C97003 use the grip as a tool only"
+  },
+  {
+   "ticket": "SV-11321",
+   "reported_by": "Chris",
+   "what": "Header labels 12 px / 500 / secondary; no overlap",
+   "design_evidence": "Tech View header labels 12px / 500 / --sv-text-secondary at every density and theme; label gaps ≥ 4 px at 1440 and 1536, with all columns too",
+   "prd": "S2-R21",
+   "inventory_class": "CASE-NEEDED",
+   "case_proposals": "DC-04, DC-17",
+   "existing_case": "—"
+  },
+  {
+   "ticket": "SV-11322",
+   "reported_by": "Chris",
+   "what": "Switcher tooltip opens above, never over the header row",
+   "design_evidence": "the design has only the browser's title text on the switcher (\"Table\" / \"By Lead Tech\" / \"Board\"); its own tooltips (counts, lock) open above the host",
+   "prd": "S1-R9b",
+   "inventory_class": "CASE-NEEDED (rule from the PRD)",
+   "case_proposals": "DC-02",
+   "existing_case": "—"
+  },
+  {
+   "ticket": "SV-11323",
+   "reported_by": "Chris",
+   "what": "Board View full width, no grey rounded panel",
+   "design_evidence": "column strip starts at the left edge on the light-grey page; each column is its own white 12 px-radius card with elev-1 shadow, 16 px gaps; no wrapper panel",
+   "prd": "S3-R23",
+   "inventory_class": "CASE-NEEDED",
+   "case_proposals": "DC-09",
+   "existing_case": "—"
+  },
+  {
+   "ticket": "SV-11324",
+   "reported_by": "Chris",
+   "what": "Tech View edge to edge on white, no gutter",
+   "design_evidence": "Tech View header row and group headers at gap 0 from the left edge, white (--sv-surface), no card/panel ancestor; library README \"runs edge to edge on white (never inside a card on grey)\"",
+   "prd": "S2-R22",
+   "inventory_class": "CASE-NEEDED",
+   "case_proposals": "DC-03",
+   "existing_case": "—"
+  },
+  {
+   "ticket": "SV-11325",
+   "reported_by": "Chris",
+   "what": "Number link, Progress bar, advisor avatar",
+   "design_evidence": "Number accent blue (--sv-accent) 14/500; Progress bar 64×6 (48×4 Compact) + % in 12 px grey; Service Advisor avatar 24 px (20 / 32) before the name",
+   "prd": "S2-R20",
+   "inventory_class": "CASE-NEEDED (+ W-16 Clocked In)",
+   "case_proposals": "DC-05",
+   "existing_case": "—"
+  },
+  {
+   "ticket": "SV-11326",
+   "reported_by": "Chris",
+   "what": "Technician filter in Tech View and Board View",
+   "design_evidence": "toolbar chip \"Technician\" with Lucide wrench after Assigned to me (Tech View and Board View; hidden in List); dropdown below the chip",
+   "prd": "S1-R15, S1-R15a, S1-R15b",
+   "inventory_class": "CASE-NEEDED",
+   "case_proposals": "DC-18",
+   "existing_case": "C96914 was wrongly counted as covering it in the text inventory (List-only ruling stretched)"
+  },
+  {
+   "ticket": "SV-11336",
+   "reported_by": "Ahtasham",
+   "what": "Staff record name on headers, rows and cards",
+   "design_evidence": "names come from the same record everywhere in the design",
+   "prd": "S5-R11b",
+   "inventory_class": "COVERED",
+   "case_proposals": "—",
+   "existing_case": "C581895 (group header, column header, card lead name, card avatar names). Small gap: it does not hover the Tech View row's Assigned Techs avatars — one extra step proposed"
+  },
+  {
+   "ticket": "SV-11337",
+   "reported_by": "Ahtasham",
+   "what": "Board card typography and density",
+   "design_evidence": "Board card: number 14/500 accent, customer 14/500, unit · asset 12/500 grey, total 14/500 — identical at both design card sizes; our render matches Chris Ward's own design screenshot D1-design-board_view-1440.png pixel for pixel",
+   "prd": "(no PRD sentence) S6-R2, S6-R6",
+   "inventory_class": "CASE-NEEDED — but the ticket's 'design' sizes (15/16 px, weight 600) are NOT what the 14 Oct design shows",
+   "case_proposals": "DC-11",
+   "existing_case": "—"
+  },
+  {
+   "ticket": "SV-11338",
+   "reported_by": "Ahtasham",
+   "what": "Header avatar without photo: light-grey circle, dark initials; name size",
+   "design_evidence": "Tech View and Board headers: initials avatar on --sv-surface-sunken (light grey) with --sv-text-secondary initials (\"BM\"); header name 14 px / 600 at every density (not ~16 px)",
+   "prd": "S2-R12, S3-R12 (no style sentence)",
+   "inventory_class": "CASE-NEEDED (avatar look); name-size claim does not match the design",
+   "case_proposals": "DC-08, DC-10",
+   "existing_case": "C368161 checks only that initials show, not their look"
+  }
+ ],
+ "existing_case_additions": [
+  {
+   "case": "C581895",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/581895",
+   "ticket": "SV-11336",
+   "proposal": "Add one step after step 11: in Tech View turn on Assigned Techs (if off) and hover each avatar in {Work-order-1}'s row; expected: each shows the staff record name written down in step 2 (S5-R11b, S7-R6). The case already covers the group header, the column header and the card."
+  }
+ ],
+ "unsent_question_count": 19
+}
