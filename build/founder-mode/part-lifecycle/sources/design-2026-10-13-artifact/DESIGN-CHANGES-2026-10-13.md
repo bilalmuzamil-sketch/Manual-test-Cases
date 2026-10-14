@@ -32,3 +32,4 @@ The Artifact tool's saved raw page (`artifact-raw.html`) holds the design's file
 unescaped, so the browser ends the script early and the canvas renders as loose text (0 buttons). The 8 Oct copy had them
 escaped. Fix: replace `</` with `<\/` inside that JSON only (the JSON value is unchanged, checked by script). The working
 page is `artifact-page.html` (16 buttons, 8 frames, same as 8 Oct); `artifact-raw.html` is kept as received.
+- 14 Oct 2026: design re-read with the Artifact tool; all 53 embedded files have the same md5 as the 13 Oct copy (unchanged), so the 13 Oct copy and its drive results stand.
