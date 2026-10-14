@@ -365,3 +365,8 @@ mean "clear" cannot be empty — `env X=` passes an empty string the script read
 (3) Fifty scripts read Board View columns with `for (i < 40) scrollLeft += 900` — fine for ~30 technicians on the QA branch,
 silently stopping at ~125 columns on staging. All now take 200 steps; any such loop must read to the END (`moved === false`).
 #staging #rerun #scripts → L0334, L0335
+
+## L0338 — 2026-10-14 — Fixture files follow WOB_EV: copy them into a new run folder first
+The part-sale photo checks (C368241, C368243, C368244) upload `zz-photo-red.png` / `zz-photo-blue.png` from the evidence
+folder. With `WOB_EV` pointing at a new run folder they were missing, so nothing was uploaded and three checks read nothing.
+Before a run with a new `WOB_EV`, copy the fixtures: `cp evidence/zz-photo-*.png "$WOB_EV"/`. #staging #rerun #fixtures → L0332
