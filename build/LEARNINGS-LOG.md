@@ -338,3 +338,13 @@ On staging `s1-batch2b` (C96913, C154884) read customers that `s1-batch2` create
 EMPTY. An empty reading is the script's set-up, never a product verdict. Rule for any new environment: run the whole order
 once, then re-run every script with an empty reading, an error, or a data dependency (list kept in the run's `REDO.md`).
 #staging #rerun #data → Rules 107, 126
+
+## L0335 — 2026-10-14 — Staging can be redeployed mid-run, and its Heavy Duty has ~119 technicians
+(1) Staging went from v26.40.17-ddb9ba1 to v26.40.17-a5c4210 between 17:40 and 18:05 UTC while the suite ran. Every sign-in
+prints `app-version=`; grep the logs for it after a run (`grep -ho "app-version=[^ |]*" logs/*.log | sort -u`) and re-run what ran
+on the old build, so a whole run names ONE build. (2) Staging's Heavy Duty location has ~119 technicians (other teams' E2E staff),
+so a test technician's Tech View group / Board View column is far off screen and a script that reads only what is on screen reads
+nothing. `WOB_PIN_NAMES="Ayesha Khan,…"` pins them at sign-in (session.mts) so they sit right after Unassigned.
+(3) Judging ~250 readings: a helper agent per wave with strict rules (empty reading / script error = re-run, never Failed;
+Failed needs quoted evidence and a ruled-out script fault) found the redeploy and every script-side cause in one pass.
+#staging #build #rerun #judging → Rules 101, 104, 126
