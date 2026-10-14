@@ -1,0 +1,539 @@
+{
+ "updates": [
+  {
+   "case_id": 154648,
+   "title": "Tech View and Board View are unavailable while Imported is selected",
+   "preconditions": [
+    "You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.",
+    "Imported work order {Work-order-1} (for example ZZIMP-154648-1) exists at {Location-A} for customer {Customer-A} (for example \"ZZAUTOTEST C154648 Imported\"); it came from an invoice import, so it is listed only when Imported is ticked in Status.",
+    "Ordinary work order {Work-order-2} (for example S10043-17581) for {Customer-A} exists at {Location-A}.",
+    "On the Work Orders page nothing is ticked in the Status filter."
+   ],
+   "steps": [
+    "Open Work Orders from the top menu and click the All tab.",
+    "Click List in the display switcher at the right of the toolbar.",
+    "Click Status and tick \"Imported\".",
+    "Hover the Tech View button in the display switcher and read its tooltip.",
+    "Click the Tech View button.",
+    "Hover the Board View button in the display switcher and read its tooltip.",
+    "Click the Board View button.",
+    "Click Status and click \"Clear selection\".",
+    "Click Tech View in the display switcher.",
+    "Click Status.",
+    "Hover the \"Imported\" option and read its tooltip.",
+    "Try to tick \"Imported\".",
+    "Click Board View in the display switcher.",
+    "Click Status.",
+    "Hover the \"Imported\" option and read its tooltip.",
+    "Try to tick \"Imported\"."
+   ],
+   "results": [
+    "Step 3: the List shows the Imported work orders, including {Work-order-1}.",
+    "Steps 4 and 6: the Tech View and Board View buttons are greyed out. Hovering each shows the tooltip \"Not available while Imported is selected.\"",
+    "Steps 5 and 7: neither button opens its display. The page stays on List and keeps showing {Work-order-1}.",
+    "Step 9: with Imported no longer selected, Tech View opens.",
+    "Steps 11 and 12: in Tech View the \"Imported\" option in Status is greyed out with the tooltip \"Imported work orders open in List.\" It cannot be ticked.",
+    "Steps 15 and 16: in Board View the \"Imported\" option in Status is greyed out with the same tooltip, \"Imported work orders open in List.\" It cannot be ticked."
+   ],
+   "source": "Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 48 (12 Oct 2026, Chris Ward), S1-R1, S1-R13a and S1-R13b (added in version 48) with their context note (engineering proposal 17 Sep 2026, agreed by Sasha Grosman 24 Sep 2026, confirmed by Chris Ward 12 Oct 2026), read 14 Oct 2026. Secondary: Work Orders Board View & Tech View Display Options Technical Implementation Plan (revised 24 Sep 2026, uploaded 8 Oct 2026), section 1.4 (follow-up A3) and section 3.26. Source-verified 14 October 2026. This version of the case has not yet been checked against a build (the previous version was last checked against build v26.40.8-7a95011 on 10/8/2026).",
+   "quotes": [
+    [
+     "S1-R13a",
+     "Imported work orders open in List only. While \"Imported\" is selected in the Status filter in List, the Board View and Tech View options are greyed out with the tooltip \"Not available while Imported is selected.\""
+    ],
+    [
+     "S1-R1",
+     "The Work Orders toolbar offers List, Tech View, and Board View display options."
+    ],
+    [
+     "S1-R13b",
+     "In Board View and Tech View, \"Imported\" is greyed out in the Status filter with the tooltip \"Imported work orders open in List.\""
+    ],
+    [
+     "Tech plan 3.26 Imported",
+     "Imported is excluded from the board displays (follow-up A3). While the Imported status chip is selected, Tech View and Board View are disabled in the switcher with a tooltip; while in Tech View or Board View, the Imported option in the Status filter is disabled."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "doc_part1": [
+    "Sign in as an Owner or Admin user. On a QA site click the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\". To check the permissions: your initials (top right) > Settings > Roles & Permissions > Admin > Work orders: View and Create & Edit are on.",
+    "Pick one location for the whole case; it is shown in the top bar next to the bell (to change it: your initials > Change Location). This is {Location-A} (for example Staging Heavy Duty - 9919). Create everything below at {Location-A}.",
+    "Use a desktop browser window at least 1024 px wide (narrower windows show only the List, with no display switcher).",
+    "Top menu Customers > New Customer > Name (for example \"ZZAUTOTEST C154648 Imported\") > Save. This is {Customer-A}; use it for this case only. On the customer page click Contacts > New Contact > First Name and Last Name (for example ZZAUTOTEST Contact) > Save. Then Assets > New Asset > pick the contact, Year (for example 2022), Make (type \"Freight\" and pick Freightliner), Model (for example M2), Unit (for example TRK-118) > Save. Contact and Make are required.",
+    "Create the Imported work order from an invoice import: your initials > Settings > Invoices (in the IMPORTS group; on some builds Settings > Data Import > Invoices) > Download Template. Fill one row and keep the heading row (the columns marked * are required): Shop Location = the name of {Location-A}, Customer = the name of {Customer-A}, Invoice Number (for example ZZIMP-154648-1), Invoice Date as month/day/year (for example 10/14/2026), Item Labor, a Line Title (for example ZZAUTOTEST labor), Qty 1, Rate 100, Total 100, Tax Amount 5.",
+    "Save the file as .csv, click Select CSV File, pick the file and click Import Invoices. The message reads \"All invoices have been imported successfully.\" The imported work order's number is the Invoice Number you typed. This is {Work-order-1}.",
+    "Work Orders > Create Work Order > in the New Work Order window pick {Customer-A} and its asset > Save (if a Confirmation about the credit limit appears, click Create). The work order opens on its Lines tab with the New Line form. In What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\", turn Line Approved on and click Save & Add Line. In the next New Line form type \"clutch\", pick \"Service - Adjust clutch\", turn Line Approved on and click Save & Close. Write down the number shown at the top left (for example S10043-17581). This is {Work-order-2}.",
+    "Go to Work Orders > All > List, click Status and, if anything is ticked, click \"Clear selection\".",
+    "Check the setup worked: Work Orders > All > List: with Status > \"Imported\" ticked, {Work-order-1} is listed. With the selection cleared, {Work-order-2} is listed and {Work-order-1} is not. Leave nothing ticked in Status. If no Imported work order can be made, the case cannot start: mark it Blocked and write why."
+   ],
+   "doc_part2": [
+    "Goal: an Imported work order {Work-order-1} and an ordinary work order {Work-order-2} at {Location-A}, then the case's steps on screen.",
+    "Create {Customer-A}, then the import file as in Part 1. UNVERIFIED on the Work Orders QA site: whether the import also creates a customer that does not exist yet; create {Customer-A} first so it does not matter.",
+    "Record {Work-order-1} (the Invoice Number) and {Work-order-2} (the number on its page). Check in List with Status > Imported ticked that {Work-order-1} is listed, then clear the selection.",
+    "Steps 4 and 6: hover each display button with Playwright and read the tooltip text exactly; compare it character for character with \"Not available while Imported is selected.\" Steps 5 and 7: click each button and confirm the address and the table did not change.",
+    "Steps 11 and 15: open Status, hover the Imported option and read its tooltip exactly (\"Imported work orders open in List.\"); steps 12 and 16: click it and confirm it did not become ticked.",
+    "UNVERIFIED: the design export of 14 Oct shows Imported work orders inside Tech View and Board View's Unassigned with a lock and no greyed switcher; the PRD (version 48) wins. A build that still behaves like the design fails this case.",
+    "Evidence: a screenshot after each step that has an expected result, the build marker, and the real value of every brace name."
+   ],
+   "change_summary": "Rewritten in full to the 8 Oct layout; expects the exact tooltips \"Not available while Imported is selected.\" and \"Imported work orders open in List.\" (S1-R13a/S1-R13b, PRD v48), quotes the PRD instead of only the tech plan; steps split one action per line with tooltip reads; placeholders {Work-order-1}/{Work-order-2}/{Customer-A}; setup moved to the doc."
+  },
+  {
+   "case_id": 368133,
+   "title": "The clear-shifts question appears only for the old lead's unfinished shifts",
+   "preconditions": [
+    "You are signed in as an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and Schedule access, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.",
+    "Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.",
+    "Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.",
+    "Technician {Technician-C} (for example Dana Ortiz) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.",
+    "Customer {Customer-A} (for example \"ZZAUTOTEST F1 Prompt Only Unfinished\") is used by this case only.",
+    "Six Approved work orders for {Customer-A}, {Work-order-1} to {Work-order-6} (for example S10043-17581 to S10043-17586), are led by {Technician-A}, and each has two approved lines (for example \"Service - Full grease service\" and \"Service - Adjust clutch\").",
+    "On {Work-order-3} the two lines are {Line-1} (for example \"Service - Full grease service\") and {Line-2} (for example \"Service - Adjust clutch\").",
+    "Approved work order {Work-order-7} (for example S10043-17587) for {Customer-A} is led by {Technician-B}.",
+    "Work order {Work-order-1} has a shift for {Technician-A} tomorrow 8:00–12:00 covering the entire work order.",
+    "Work order {Work-order-2} has no shifts at all.",
+    "Work order {Work-order-3} has a shift for {Technician-A} tomorrow 8:00–12:00 on {Line-1} only, not on {Line-2}.",
+    "Work order {Work-order-4} has a shift for {Technician-A} covering the entire work order that has already ended (for example yesterday 8:00–12:00).",
+    "Work order {Work-order-5} has a shift for {Technician-C} tomorrow 8:00–12:00 covering the entire work order, and none for {Technician-A}.",
+    "Work order {Work-order-6} has no shifts, while {Technician-A} has a shift tomorrow 13:00–15:00 covering the entire work order {Work-order-7}.",
+    "No other shift is booked on {Work-order-1} to {Work-order-6}."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Board View in the display switcher.",
+    "Type the name of {Customer-A} in Search.",
+    "Drag {Work-order-1} from {Technician-A}'s column into {Technician-B}'s column.",
+    "Read the title of the question that opens.",
+    "Click Keep shifts.",
+    "Drag {Work-order-2} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts).",
+    "Drag {Work-order-3} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts).",
+    "Drag {Work-order-4} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts).",
+    "Drag {Work-order-5} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts).",
+    "Drag {Work-order-6} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts)."
+   ],
+   "results": [
+    "Step 4: dragging {Work-order-1} opens the question \"Clear {Technician-A}'s scheduled shifts?\" (with the example name: \"Clear Esther Howard's scheduled shifts?\").",
+    "Steps 6 to 10: {Work-order-2} (no shift), {Work-order-3} (a shift on {Line-1} only, not on every line), {Work-order-4} (only an ended shift), {Work-order-5} (only {Technician-C}'s shift) and {Work-order-6} ({Technician-A}'s shift is on another work order) each move to {Technician-B}'s column straight away with the message \"Lead technician updated\" and no question.",
+    "Steps 3 to 10: the question opened for 1 of the 6 work orders ({Work-order-1}) and for none of the other 5."
+   ],
+   "source": "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 48 (12 Oct 2026, Chris Ward), S4-R28 (reworded in version 47 on 12 Oct 2026 after SV-11126: a work-order-level shift is one that covers every current line), S4-R29 and S4-R5, read 14 Oct 2026. PO answer to engineering, Sasha Grosman 24 Sep 2026 (only the outgoing lead's whole-work-order shifts that have not ended), as recorded in the Technical Implementation Plan section 1.4. Every work order has two lines because the Schedule books a one-line work order at once as a whole, and whether a shift on the only line of a one-line work order counts is an open question to the PO (14 Oct 2026). Source-verified 14 October 2026. This version of the case has not yet been checked against a build (the previous version was last checked against build v26.40.8-7a95011 on 10/8/2026).",
+   "quotes": [
+    [
+     "S4-R29",
+     "The prompt reads: title “Clear {Name}'s scheduled shifts?” (with no name: “Clear the lead technician's scheduled shifts?”); text “{Name} has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change.”; buttons “Keep shifts”, “Clear shifts” and “Cancel”."
+    ],
+    [
+     "S4-R28",
+     "The shift-clearing prompt (S4-R11, S4-R26) shows only when the outgoing lead has a work-order-level shift on this work order that has not ended. A work-order-level shift is one that covers every current line of the work order, which is what the Schedule's Entire work order drop creates. A shift on only some lines does not show the prompt."
+    ],
+    [
+     "S4-R5",
+     "After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”."
+    ],
+    [
+     "Tech plan 1.4 (FF-4 shift scope)",
+     "Confirmed: only the outgoing lead's whole-work-order shifts that have not ended"
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "doc_part1": [
+    "Sign in as an Owner or Admin user. On a QA site click the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\". To check the permissions: your initials (top right) > Settings > Roles & Permissions > Admin > Work orders: View and Create & Edit are on. Your role also needs Schedule access (Settings > Roles & Permissions > Admin > Schedule: View and Create & Edit).",
+    "Pick one location for the whole case; it is shown in the top bar next to the bell (to change it: your initials > Change Location). This is {Location-A} (for example Staging Heavy Duty - 9919). Create everything below at {Location-A}.",
+    "Use a desktop browser window at least 1024 px wide (narrower windows show only the List, with no display switcher).",
+    "Your initials > Settings > Staff. Reuse a staff member only if they are active, have Time Clock on, the Service department, {Location-A} in Location and a Role other than Office User or Time Clock User. Otherwise click New Staff Member and enter First Name and Last Name (for example Esther Howard), an Email, Role Technician, Departments Service (only Service technicians get a row on the Schedule), Location {Location-A}, turn Time Clock on, then Save & Close. This is {Technician-A}.",
+    "Your initials > Settings > Staff. Reuse a staff member only if they are active, have Time Clock on, the Service department, {Location-A} in Location and a Role other than Office User or Time Clock User. Otherwise click New Staff Member and enter First Name and Last Name (for example Ralph Edwards), an Email, Role Technician, Departments Service (only Service technicians get a row on the Schedule), Location {Location-A}, turn Time Clock on, then Save & Close. This is {Technician-B}.",
+    "Your initials > Settings > Staff. Reuse a staff member only if they are active, have Time Clock on, the Service department, {Location-A} in Location and a Role other than Office User or Time Clock User. Otherwise click New Staff Member and enter First Name and Last Name (for example Dana Ortiz), an Email, Role Technician, Departments Service (only Service technicians get a row on the Schedule), Location {Location-A}, turn Time Clock on, then Save & Close. This is {Technician-C}.",
+    "Top menu Customers > New Customer > Name (for example \"ZZAUTOTEST F1 Prompt Only Unfinished\") > Save. This is {Customer-A}; use it for this case only. On the customer page click Contacts > New Contact > First Name and Last Name (for example ZZAUTOTEST Contact) > Save. Then Assets > New Asset > pick the contact, Year (for example 2022), Make (type \"Freight\" and pick Freightliner), Model (for example M2), Unit (for example TRK-118) > Save. Contact and Make are required.",
+    "Work Orders > Create Work Order > in the New Work Order window pick {Customer-A} and its asset > Save (if a Confirmation about the credit limit appears, click Create). The work order opens on its Lines tab with the New Line form. In What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\", turn Line Approved on and click Save & Add Line. In the next New Line form type \"clutch\", pick \"Service - Adjust clutch\", turn Line Approved on and click Save & Close. The status reads Approved. Write down the number shown at the top left (for example S10043-17581). Repeat this seven times. Number them {Work-order-1} to {Work-order-7} in the order you create them.",
+    "On {Work-order-3} write down which line is {Line-1} (for example \"Service - Full grease service\") and which is {Line-2} (for example \"Service - Adjust clutch\").",
+    "On the work order page pick the technician in the Lead Technician dropdown; it saves at once. Give {Work-order-1} to {Work-order-6} the lead {Technician-A}, and {Work-order-7} the lead {Technician-B}.",
+    "Schedule (top menu) > use the arrows next to Today until the date reads tomorrow > in Search work orders (left) type the number of {Work-order-1} > drag its card onto {Technician-A}'s row and drop it under 8 AM > in the window that opens keep Entire work order selected > use − / + until Hours reads 4h > click Create 1 shift.",
+    "Book nothing on {Work-order-2}.",
+    "Schedule (top menu) > use the arrows next to Today until the date reads tomorrow > in Search work orders (left) type the number of {Work-order-3} > drag its card onto {Technician-A}'s row and drop it under 8 AM > in the window that opens choose Choose lines and tick {Line-1} only (leave the other line unticked) > use − / + until Hours reads 4h > click Create 1 shift.",
+    "Schedule (top menu) > use the arrows next to Today until the date reads yesterday > in Search work orders (left) type the number of {Work-order-4} > drag its card onto {Technician-A}'s row and drop it under 8 AM > in the window that opens keep Entire work order selected > use − / + until Hours reads 4h > click Create 1 shift. If the Schedule does not let you book in the past, book it earlier today so that it has already ended before you start (for example today 6 AM for 1h, if it is now later than 7 AM).",
+    "Schedule (top menu) > use the arrows next to Today until the date reads tomorrow > in Search work orders (left) type the number of {Work-order-5} > drag its card onto {Technician-C}'s row and drop it under 8 AM > in the window that opens keep Entire work order selected > use − / + until Hours reads 4h > click Create 1 shift.",
+    "Schedule (top menu) > use the arrows next to Today until the date reads tomorrow > in Search work orders (left) type the number of {Work-order-7} > drag its card onto {Technician-A}'s row and drop it under 1 PM > in the window that opens keep Entire work order selected > use − / + until Hours reads 2h > click Create 1 shift.",
+    "Book nothing on {Work-order-6}.",
+    "Check the setup worked: Work Orders > All > Board View with {Customer-A}'s name in Search shows {Work-order-1} to {Work-order-6} in {Technician-A}'s column and {Work-order-7} in {Technician-B}'s column. On the Schedule, tomorrow shows exactly: {Technician-A} 8:00–12:00 on {Work-order-1} and on {Work-order-3} (naming {Line-1} only), {Technician-C} 8:00–12:00 on {Work-order-5}, {Technician-A} 13:00–15:00 on {Work-order-7}; the ended {Work-order-4} shift is on the day you booked it. Fix any missing or extra shift before you start, then clear the search."
+   ],
+   "doc_part2": [
+    "Goal: the seven work orders and five shifts of the Preconditions, then drags on Board View with the outcome of each drag recorded.",
+    "GET /api/staff lists staff; each row has both id and staff_id, and the Schedule's staffId and the working-hours calls use staff_id.",
+    "Create {Customer-A}, its contact and asset, then {Work-order-1} to {Work-order-7} on screen as in Part 1 (two approved lines each). Record each work order's number and id ({Work-order-1 id} … {Work-order-7 id}) and, on {Work-order-3}, {Line-1 id} and {Line-2 id} from the Lines tab requests.",
+    "Faster route for shifts, UNVERIFIED on the Work Orders QA site (proven only on the Schedule QA site sv8685, build v3.5-7ec992f): POST /api/schedule/shifts with workOrderId, lineIds (every line id for an entire-work-order shift, the chosen line ids otherwise), staffId, startDate, startTime, spreadMode \"single\", totalMinutes, perDayMinutes and isAllDay false; 201 means created. If it is refused, use the Schedule screen as in Part 1 and record what the screen sent.",
+    "Read shifts back with GET /api/schedule/board?from=<ISO instant>&to=<ISO instant> (full instants such as 2026-10-15T00:00:00Z; a bare date or a range over 62 days is refused). Compare each shift's start and end with the location's time zone before deciding a shift is wrong (SV-11229, a shift saved six hours off, was closed Obsolete on 12 Oct 2026).",
+    "Trap: on the Schedule a work order with only one line is booked at once as a whole, with no Entire work order / Choose lines window (recorded in C368178). That is why every work order in this case has two lines.",
+    "Run the steps on Board View with Playwright drag-and-drop from the card to the target column. After each drop, wait for either the question (title text starting \"Clear \") or the \"Lead technician updated\" message, and record which appeared; on a question click Keep shifts.",
+    "Context: the developer reported on 12 Oct 2026 (SV-11126, build e84b3d1) that the question now opens for an Entire work order shift and not for a shift on only some lines. That is not evidence about the build you test; judge only what you see.",
+    "Evidence: a screenshot after each step that has an expected result, the build marker, and the real value of every brace name."
+   ],
+   "change_summary": "Rewritten in full to the 8 Oct layout. {Work-order-3} (was C) now has two lines and its shift covers {Line-1} only, so it stays a some-lines shift under S4-R28 (PRD v47/v48); every work order has two lines so the Schedule window always opens; the shift elsewhere is on a named seventh work order; results unchanged (only {Work-order-1} prompts, 1 of 6); quotes PRD v48 S4-R28/S4-R29/S4-R5; removed the 8 Oct \"What you should see today\" block (no live backing: no ticket named, the only ticket for that symptom, SV-11126, is Done; Rule 61). Automation fields untouched."
+  },
+  {
+   "case_id": 96965,
+   "title": "Clear shifts removes only the old lead's whole-work-order shifts",
+   "preconditions": [
+    "You are signed in as an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and Schedule access, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.",
+    "Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.",
+    "Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.",
+    "Technician {Technician-C} (for example Dana Ortiz) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.",
+    "Customer {Customer-A} (for example \"ZZAUTOTEST F1 Clear Shifts Scope\") is used by this case only.",
+    "Approved work order {Work-order-1} (for example S10043-17581) for {Customer-A} is led by {Technician-A} and has two approved lines, {Line-1} (for example \"Service - Full grease service\") and {Line-2} (for example \"Service - Adjust clutch\").",
+    "Approved work order {Work-order-2} (for example S10043-17582) for {Customer-A} is led by {Technician-A} and has two approved lines, {Line-3} (for example \"Service - Full grease service\") and {Line-4} (for example \"Service - Adjust clutch\").",
+    "Approved work order {Work-order-3} (for example S10043-17583) for {Customer-A} is led by {Technician-A} and has two approved lines (for example \"Service - Full grease service\" and \"Service - Adjust clutch\").",
+    "{Work-order-1} has three shifts tomorrow: {Technician-A} 8:00–12:00 covering the entire work order, {Technician-A} 13:00–15:00 on {Line-1} only, and {Technician-C} 8:00–10:00 covering the entire work order.",
+    "{Work-order-2} has two shifts tomorrow: {Technician-A} 8:00–12:00 covering the entire work order, and {Technician-A} 13:00–15:00 on {Line-3} only.",
+    "{Work-order-3} has one shift the day after tomorrow: {Technician-A} 8:00–12:00 covering the entire work order."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Board View in the display switcher.",
+    "Type the name of {Customer-A} in Search.",
+    "Drag {Work-order-1} from {Technician-A}'s column into {Technician-B}'s column.",
+    "Read the question that opens.",
+    "Click Clear shifts.",
+    "Drag {Work-order-2} from {Technician-A}'s column into {Technician-B}'s column.",
+    "In the question that opens, click Keep shifts.",
+    "Click Schedule in the top menu.",
+    "Use the arrow next to Today to go to tomorrow.",
+    "Read every shift on {Work-order-1} and {Work-order-2}.",
+    "Use the arrow again to go to the day after tomorrow.",
+    "Read the shift on {Work-order-3}."
+   ],
+   "results": [
+    "Steps 4 and 7: both drags open the question \"Clear {Technician-A}'s scheduled shifts?\" (with the example name: \"Clear Esther Howard's scheduled shifts?\").",
+    "Step 5: {Work-order-1} moves to {Technician-B}'s column.",
+    "Step 10: on {Work-order-1}, {Technician-A}'s 8:00–12:00 shift covering the entire work order is gone, and {Technician-C}'s 8:00–10:00 shift is still there.",
+    "Step 12: {Technician-A}'s 8:00–12:00 shift on {Work-order-3} is still there, unchanged.",
+    "Steps 7 and 10: {Work-order-2} is now in {Technician-B}'s column, and both of {Technician-A}'s shifts on it (8:00–12:00 and 13:00–15:00) are still there.",
+    "Step 10: {Technician-A}'s 13:00–15:00 shifts on {Line-1} of {Work-order-1} and on {Line-3} of {Work-order-2} are still there: the question never clears a shift on only some lines."
+   ],
+   "source": "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 48 (12 Oct 2026, Chris Ward), S4-R11, S4-R22, S4-R23, S4-R24, S4-R28 (reworded in version 47 on 12 Oct 2026 after SV-11126: a work-order-level shift is one that covers every current line) and S4-R29, read 14 Oct 2026. Review Decisions DR-31 (optional whole-work-order shift clearing). Schedule shift window labels \"Entire work order\" / \"Choose lines\" from the Schedule suite. Each work order has two lines so that the 13:00–15:00 shift covers only some of them; whether a shift on the only line of a one-line work order counts is an open question to the PO (14 Oct 2026). Source-verified 14 October 2026. This version of the case has not yet been checked against a build (the previous version was last checked against build v26.40.8-7a95011 on 10/8/2026).",
+   "quotes": [
+    [
+     "S4-R11",
+     "When changing the lead technician in Board View or Tech View, ask whether to clear the outgoing lead’s work-order-level scheduled shifts."
+    ],
+    [
+     "S4-R29",
+     "The prompt reads: title “Clear {Name}'s scheduled shifts?” (with no name: “Clear the lead technician's scheduled shifts?”); text “{Name} has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change.”; buttons “Keep shifts”, “Clear shifts” and “Cancel”."
+    ],
+    [
+     "S4-R22",
+     "If the user chooses to clear shifts, remove only the outgoing lead’s shifts scheduled against that whole work order."
+    ],
+    [
+     "S4-R23",
+     "If the user chooses to keep shifts, change the lead technician and retain the existing shifts."
+    ],
+    [
+     "S4-R24",
+     "Never clear shifts scheduled against individual work order lines through this prompt."
+    ],
+    [
+     "S4-R28",
+     "The shift-clearing prompt (S4-R11, S4-R26) shows only when the outgoing lead has a work-order-level shift on this work order that has not ended. A work-order-level shift is one that covers every current line of the work order, which is what the Schedule's Entire work order drop creates. A shift on only some lines does not show the prompt."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "doc_part1": [
+    "Sign in as an Owner or Admin user. On a QA site click the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\". To check the permissions: your initials (top right) > Settings > Roles & Permissions > Admin > Work orders: View and Create & Edit are on. Your role also needs Schedule access (Settings > Roles & Permissions > Admin > Schedule: View and Create & Edit).",
+    "Pick one location for the whole case; it is shown in the top bar next to the bell (to change it: your initials > Change Location). This is {Location-A} (for example Staging Heavy Duty - 9919). Create everything below at {Location-A}.",
+    "Use a desktop browser window at least 1024 px wide (narrower windows show only the List, with no display switcher).",
+    "Your initials > Settings > Staff. Reuse a staff member only if they are active, have Time Clock on, the Service department, {Location-A} in Location and a Role other than Office User or Time Clock User. Otherwise click New Staff Member and enter First Name and Last Name (for example Esther Howard), an Email, Role Technician, Departments Service (only Service technicians get a row on the Schedule), Location {Location-A}, turn Time Clock on, then Save & Close. This is {Technician-A}.",
+    "Your initials > Settings > Staff. Reuse a staff member only if they are active, have Time Clock on, the Service department, {Location-A} in Location and a Role other than Office User or Time Clock User. Otherwise click New Staff Member and enter First Name and Last Name (for example Ralph Edwards), an Email, Role Technician, Departments Service (only Service technicians get a row on the Schedule), Location {Location-A}, turn Time Clock on, then Save & Close. This is {Technician-B}.",
+    "Your initials > Settings > Staff. Reuse a staff member only if they are active, have Time Clock on, the Service department, {Location-A} in Location and a Role other than Office User or Time Clock User. Otherwise click New Staff Member and enter First Name and Last Name (for example Dana Ortiz), an Email, Role Technician, Departments Service (only Service technicians get a row on the Schedule), Location {Location-A}, turn Time Clock on, then Save & Close. This is {Technician-C}.",
+    "Top menu Customers > New Customer > Name (for example \"ZZAUTOTEST F1 Clear Shifts Scope\") > Save. This is {Customer-A}; use it for this case only. On the customer page click Contacts > New Contact > First Name and Last Name (for example ZZAUTOTEST Contact) > Save. Then Assets > New Asset > pick the contact, Year (for example 2022), Make (type \"Freight\" and pick Freightliner), Model (for example M2), Unit (for example TRK-118) > Save. Contact and Make are required.",
+    "Work Orders > Create Work Order > in the New Work Order window pick {Customer-A} and its asset > Save (if a Confirmation about the credit limit appears, click Create). The work order opens on its Lines tab with the New Line form. In What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\", turn Line Approved on and click Save & Add Line. In the next New Line form type \"clutch\", pick \"Service - Adjust clutch\", turn Line Approved on and click Save & Close. The status reads Approved. Write down the number shown at the top left (for example S10043-17581). Repeat this three times. Number them {Work-order-1}, {Work-order-2} and {Work-order-3} in the order you create them.",
+    "Write down the lines: on {Work-order-1} {Line-1} (for example \"Service - Full grease service\") and {Line-2} (for example \"Service - Adjust clutch\"); on {Work-order-2} {Line-3} (for example \"Service - Full grease service\") and {Line-4} (for example \"Service - Adjust clutch\").",
+    "On the work order page pick the technician in the Lead Technician dropdown; it saves at once. Give all three the lead {Technician-A}.",
+    "Schedule (top menu) > use the arrows next to Today until the date reads tomorrow > in Search work orders (left) type the number of {Work-order-1} > drag its card onto {Technician-A}'s row and drop it under 8 AM > in the window that opens keep Entire work order selected > use − / + until Hours reads 4h > click Create 1 shift.",
+    "Schedule (top menu) > use the arrows next to Today until the date reads tomorrow > in Search work orders (left) type the number of {Work-order-1} > drag its card onto {Technician-A}'s row and drop it under 1 PM > in the window that opens choose Choose lines and tick {Line-1} only (leave the other line unticked) > use − / + until Hours reads 2h > click Create 1 shift.",
+    "Schedule (top menu) > use the arrows next to Today until the date reads tomorrow > in Search work orders (left) type the number of {Work-order-1} > drag its card onto {Technician-C}'s row and drop it under 8 AM > in the window that opens keep Entire work order selected > use − / + until Hours reads 2h > click Create 1 shift.",
+    "Schedule (top menu) > use the arrows next to Today until the date reads tomorrow > in Search work orders (left) type the number of {Work-order-2} > drag its card onto {Technician-A}'s row and drop it under 8 AM > in the window that opens keep Entire work order selected > use − / + until Hours reads 4h > click Create 1 shift.",
+    "Schedule (top menu) > use the arrows next to Today until the date reads tomorrow > in Search work orders (left) type the number of {Work-order-2} > drag its card onto {Technician-A}'s row and drop it under 1 PM > in the window that opens choose Choose lines and tick {Line-3} only (leave the other line unticked) > use − / + until Hours reads 2h > click Create 1 shift.",
+    "Schedule (top menu) > use the arrows next to Today until the date reads the day after tomorrow > in Search work orders (left) type the number of {Work-order-3} > drag its card onto {Technician-A}'s row and drop it under 8 AM > in the window that opens keep Entire work order selected > use − / + until Hours reads 4h > click Create 1 shift.",
+    "Check the setup worked: On the Schedule for tomorrow, {Technician-A}'s row shows 8:00–12:00 and 13:00–15:00 on {Work-order-1} and on {Work-order-2} (the 13:00–15:00 ones naming {Line-1} and {Line-3} only), and {Technician-C}'s row shows 8:00–10:00 on {Work-order-1}. The day after tomorrow {Technician-A} has 8:00–12:00 on {Work-order-3}. Work Orders > All > Board View with {Customer-A}'s name in Search shows the three work orders in {Technician-A}'s column. Fix any missing or wrong shift before you start, then clear the search."
+   ],
+   "doc_part2": [
+    "Goal: the three work orders and six shifts of the Preconditions, then two drags on Board View and a read of the Schedule.",
+    "GET /api/staff lists staff; each row has both id and staff_id, and the Schedule's staffId and the working-hours calls use staff_id.",
+    "Create {Customer-A}, its contact and asset, then {Work-order-1} to {Work-order-3} on screen as in Part 1 (two approved lines each). Record {Work-order-1 id}, {Work-order-2 id}, {Work-order-3 id}, {Line-1 id} and {Line-3 id} from the Lines tab requests.",
+    "Faster route for shifts, UNVERIFIED on the Work Orders QA site (proven only on the Schedule QA site sv8685, build v3.5-7ec992f): POST /api/schedule/shifts with workOrderId, lineIds (every line id for an entire-work-order shift, the chosen line ids otherwise), staffId, startDate, startTime, spreadMode \"single\", totalMinutes, perDayMinutes and isAllDay false; 201 means created. If it is refused, use the Schedule screen as in Part 1 and record what the screen sent.",
+    "Read shifts back with GET /api/schedule/board?from=<ISO instant>&to=<ISO instant> (full instants such as 2026-10-15T00:00:00Z; a bare date or a range over 62 days is refused). Compare each shift's start and end with the location's time zone before deciding a shift is wrong (SV-11229, a shift saved six hours off, was closed Obsolete on 12 Oct 2026).",
+    "Trap: on the Schedule a work order with only one line is booked at once as a whole, with no Entire work order / Choose lines window (recorded in C368178). That is why every work order in this case has two lines.",
+    "Steps 3 to 7: Playwright drag-and-drop from the card to {Technician-B}'s column; read the question's title exactly, then click Clear shifts (first drag) or Keep shifts (second drag).",
+    "Steps 8 to 12: read the Schedule on screen, and confirm with the board read above that exactly the shifts in the expected results remain (record each shift's technician, work order, lines and times).",
+    "Evidence: a screenshot after each step that has an expected result, the build marker, and the real value of every brace name."
+   ],
+   "change_summary": "Rewritten in full to the 8 Oct layout. {Work-order-1} and {Work-order-2} now have two lines each and the 13:00–15:00 shifts cover {Line-1} / {Line-3} only, so they stay some-lines shifts under S4-R28 (PRD v47/v48); {Work-order-3} also has two lines so the Schedule window opens; results unchanged in meaning (\"the question never clears a shift on only some lines\"); quotes re-copied from PRD v48 (adds S4-R29); removed the 8 Oct \"What you should see today\" block (no live backing; Rule 61)."
+  }
+ ],
+ "new": [
+  {
+   "key": "A-01",
+   "section_id": 13236,
+   "title": "Board View and Tech View show the filter message when no work order matches",
+   "preconditions": [
+    "You are signed in as an Owner or Admin user whose role has Work orders > View, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.",
+    "Approved work order {Work-order-1} (for example S10043-17590) for customer {Customer-A} (for example \"ZZAUTOTEST NT1 Filtered Empty\") exists at {Location-A}, and it is {Customer-A}'s only work order.",
+    "No work order at {Location-A} is in status {Status-A} (for example Paid). Pick a status other than Imported and Approved.",
+    "On the Work Orders page nothing is ticked in Status, Assigned to me is off and Search is empty."
+   ],
+   "steps": [
+    "Open Work Orders and click the All tab.",
+    "Click Board View in the display switcher.",
+    "Click Status and tick {Status-A}.",
+    "Click outside the Status list to close it.",
+    "Read the board.",
+    "Type the name of {Customer-A} in Search.",
+    "Read the board.",
+    "Click Tech View in the display switcher.",
+    "Read the page.",
+    "Click List in the display switcher.",
+    "Read the page.",
+    "Click Tech View in the display switcher.",
+    "Click Clear all filters.",
+    "Read the page."
+   ],
+   "results": [
+    "Steps 5 and 7: instead of work order cards, the board shows \"No work orders match these filters\", then \"Try removing a filter to widen your results.\", with a Clear all filters button, both without and with the search text.",
+    "Step 9: Tech View shows the same two lines of text and the Clear all filters button.",
+    "Step 11: the List shows the same empty state, with the same two lines of text and the same button.",
+    "Steps 13 and 14: {Status-A} is no longer ticked in Status and {Work-order-1} shows again in Tech View."
+   ],
+   "source": "Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 48 (12 Oct 2026, Chris Ward), S1-N1 (reworded) and S1-N1a (added) in version 43 (8 Oct 2026, Chris Ward, after his Slack answer of 8 Oct that the earlier wording was out of date), and the User Feedback Summary row \"No work orders match filters\", read 14 Oct 2026. Replaces the removed C96918. Design export of 14 Oct differs (no button in Tech View and Board View; the search message when a filter and a search are both on); the PRD wins and the difference is with the PO and design. Source-verified 14 October 2026. Not yet checked against a build.",
+   "quotes": [
+    [
+     "S1-N1a",
+     "With filters active, with or without a search, the empty state reads “No work orders match these filters”, then “Try removing a filter to widen your results.”, with a Clear all filters button."
+    ],
+    [
+     "S1-N1",
+     "When the active filters or a search return no work orders, Tech View and Board View show the same empty state as the List, with the same messages and action."
+    ],
+    [
+     "PRD §9 User Feedback Summary (No work orders match filters)",
+     "Existing List empty state and clear-filter behavior in all display options"
+    ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+   "doc_part1": [
+    "Sign in as an Owner or Admin user. On a QA site click the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\". To check the permissions: your initials (top right) > Settings > Roles & Permissions > Admin > Work orders: View and Create & Edit are on.",
+    "Pick one location for the whole case; it is shown in the top bar next to the bell (to change it: your initials > Change Location). This is {Location-A} (for example Staging Heavy Duty - 9919). Create everything below at {Location-A}.",
+    "Use a desktop browser window at least 1024 px wide (narrower windows show only the List, with no display switcher).",
+    "Top menu Customers > New Customer > Name (for example \"ZZAUTOTEST NT1 Filtered Empty\") > Save. This is {Customer-A}; use it for this case only. On the customer page click Contacts > New Contact > First Name and Last Name (for example ZZAUTOTEST Contact) > Save. Then Assets > New Asset > pick the contact, Year (for example 2022), Make (type \"Freight\" and pick Freightliner), Model (for example M2), Unit (for example TRK-118) > Save. Contact and Make are required.",
+    "Work Orders > Create Work Order > in the New Work Order window pick {Customer-A} and its asset > Save (if a Confirmation about the credit limit appears, click Create). The work order opens on its Lines tab with the New Line form. In What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\", turn Line Approved on and click Save & Add Line. In the next New Line form type \"clutch\", pick \"Service - Adjust clutch\", turn Line Approved on and click Save & Close. The status reads Approved. Write down the number shown at the top left (for example S10043-17590). This is {Work-order-1}.",
+    "Choose {Status-A}: Work Orders > All > List > Status, tick one status (for example Paid; not Imported and not Approved) and nothing else. If the List shows no work order, that status is {Status-A}. Otherwise try another status (for example Declined, Review). Then click Clear selection.",
+    "Turn Assigned to me off and empty Search.",
+    "Check the setup worked: Searching {Customer-A}'s name with no status ticked shows only {Work-order-1}; with only {Status-A} ticked and no search, the List shows no work order. Leave nothing ticked and Search empty."
+   ],
+   "doc_part2": [
+    "Goal: one work order {Work-order-1} for {Customer-A}, and a status {Status-A} that no work order at {Location-A} has.",
+    "Find {Status-A} on screen as in Part 1 (List, one status ticked, no rows). Record the status and the time you checked it: on a shared QA site another session can create a work order in that status later, so re-check just before step 3 of the test.",
+    "Read the empty-state texts with Playwright as exact strings: \"No work orders match these filters\" and \"Try removing a filter to widen your results.\", and look for a button labelled exactly \"Clear all filters\" in each display.",
+    "UNVERIFIED: the design export of 14 Oct shows the two lines with no button in Tech View and Board View, and shows the search message (\"No results for …\") when a filter and a search are both on. The PRD wins; a build that follows the design fails this case.",
+    "Older builds of the List read \"No work orders match your filters\" (playbook section on Work Orders labels); that wording is out of date since PRD version 43.",
+    "Evidence: a screenshot after each step that has an expected result, the build marker, and the real value of every brace name."
+   ],
+   "why": "S1-N1 (reworded) and S1-N1a (added, PRD v43): filtered empty state in Board View and Tech View, with and without a search; the only case for it, C96918, was removed."
+  },
+  {
+   "key": "A-02",
+   "section_id": 13236,
+   "title": "A search alone that matches nothing shows the search message with no button",
+   "preconditions": [
+    "You are signed in as an Owner or Admin user whose role has Work orders > View, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.",
+    "No work order at {Location-A} matches the search text {Search-A} (for example ZZAUTOTEST-NOMATCH-A02).",
+    "On the Work Orders page nothing is ticked in Status, Assigned to me is off and Search is empty."
+   ],
+   "steps": [
+    "Open Work Orders and click the All tab.",
+    "Click Board View in the display switcher.",
+    "Type {Search-A} in Search.",
+    "Read the board.",
+    "Click Tech View in the display switcher.",
+    "Read the page.",
+    "Click List in the display switcher.",
+    "Read the page."
+   ],
+   "results": [
+    "Step 4: the board shows \"No work orders match the search \"{Search-A}\".\" with the text you typed (for example: No work orders match the search \"ZZAUTOTEST-NOMATCH-A02\".), and no button.",
+    "Step 6: Tech View shows the same message with the text you typed, and no button.",
+    "Step 8: the List shows the same message, and no button."
+   ],
+   "source": "Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 48 (12 Oct 2026, Chris Ward), S1-N1 (reworded) and S1-N1b (added) in version 43 (8 Oct 2026, Chris Ward), read 14 Oct 2026. Design export of 14 Oct shows \"No results for …\" with other text; the PRD wins (design follow-up). Source-verified 14 October 2026. Not yet checked against a build.",
+   "quotes": [
+    [
+     "S1-N1b",
+     "With only a search active, the empty state reads “No work orders match the search \"{search}\".” and shows no button."
+    ],
+    [
+     "S1-N1",
+     "When the active filters or a search return no work orders, Tech View and Board View show the same empty state as the List, with the same messages and action."
+    ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+   "doc_part1": [
+    "Sign in as an Owner or Admin user. On a QA site click the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\". To check the permissions: your initials (top right) > Settings > Roles & Permissions > Admin > Work orders: View and Create & Edit are on.",
+    "Pick one location for the whole case; it is shown in the top bar next to the bell (to change it: your initials > Change Location). This is {Location-A} (for example Staging Heavy Duty - 9919). Create everything below at {Location-A}.",
+    "Use a desktop browser window at least 1024 px wide (narrower windows show only the List, with no display switcher).",
+    "Pick the search text {Search-A} (for example ZZAUTOTEST-NOMATCH-A02). Check it matches nothing: Work Orders > All > List with nothing ticked in Status, type {Search-A} in Search; no work order is listed. Then empty Search.",
+    "Turn Assigned to me off and make sure nothing is ticked in Status.",
+    "Check the setup worked: With nothing ticked in Status, Assigned to me off and {Search-A} in Search, the List shows no work order. Empty Search before you start."
+   ],
+   "doc_part2": [
+    "Goal: no records are needed; only a search text {Search-A} that matches nothing at {Location-A}, with every filter off.",
+    "Read the message with Playwright as an exact string and compare it with \"No work orders match the search \"{Search-A}\".\" filled with the real text; confirm that no button sits in the empty state of each display.",
+    "UNVERIFIED: whether the All tab itself counts as an active filter on the build. The PRD calls the tabs filter views (predefined status sets); this case treats All with nothing ticked as no filter. If the build shows the filter message here, record it as a question, not a pass.",
+    "UNVERIFIED: the design export of 14 Oct shows \"No results for …\" and \"Check the spelling, or search by work order number, customer, unit or VIN.\" The PRD wins; a build that follows the design fails this case.",
+    "Evidence: a screenshot after each step that has an expected result, the build marker, and the real value of every brace name."
+   ],
+   "why": "S1-N1b (added, PRD v43): search-only empty state with no button, in Board View and Tech View, same as List (S1-N1)."
+  },
+  {
+   "key": "A-03",
+   "section_id": 13239,
+   "title": "A line with only a Schedule shift technician follows the new lead technician",
+   "preconditions": [
+    "You are signed in as an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and Schedule access, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.",
+    "Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.",
+    "Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.",
+    "Technician {Technician-C} (for example Dana Ortiz) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.",
+    "Technician {Technician-D} (for example Jenny Wilson) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.",
+    "Customer {Customer-A} (for example \"ZZAUTOTEST NT3 Shift Line Follows\") is used by this case only.",
+    "Approved work order {Work-order-1} (for example S10043-17595) for {Customer-A} is led by {Technician-A} and has two approved lines, {Line-1} (for example \"Service - Full grease service\") and {Line-2} (for example \"Service - Adjust clutch\"). It has no recorded time and nobody is clocked in to it.",
+    "{Line-1} has no technician set through Edit Line; its labor follows the lead {Technician-A}.",
+    "{Line-2} has {Technician-C} as its technician, set through Edit Line.",
+    "{Technician-B} has a shift tomorrow 9:00–11:00 on {Line-1} only, made on the Schedule.",
+    "{Technician-A} has no shift on {Work-order-1}."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Board View in the display switcher.",
+    "Type the name of {Customer-A} in Search.",
+    "On {Work-order-1}'s card in {Technician-A}'s column, open More actions (…) and click Reassign lead technician.",
+    "Choose {Technician-D} and click Reassign.",
+    "Click {Work-order-1}'s card to open the work order.",
+    "Go to its Lines tab.",
+    "Read the Labor row of {Line-1} and of {Line-2}.",
+    "Click {Line-1}'s name to open Edit Line.",
+    "Read its Technicians.",
+    "Close Edit Line without saving.",
+    "Click {Line-2}'s name to open Edit Line.",
+    "Read its Technicians.",
+    "Close Edit Line without saving."
+   ],
+   "results": [
+    "Step 4: the lead changes at once with the message \"Lead technician updated\" and no \"Clear … scheduled shifts?\" question ({Technician-A} has no shift on this work order); the card moves to {Technician-D}'s column.",
+    "Steps 7 and 9: {Line-1} now follows {Technician-D}, and {Technician-B} is still listed among {Line-1}'s technicians.",
+    "Steps 7 and 12: {Line-2} still has {Technician-C} as its technician; it did not move to {Technician-D}."
+   ],
+   "source": "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 48 (12 Oct 2026, Chris Ward), the context note under S4-R8 (added in version 46, 12 Oct 2026, after SV-11128), the S4-R8 line table, S4-R5 and S4-R28, read 14 Oct 2026. Source-verified 14 October 2026. Not yet checked against a build.",
+   "quotes": [
+    [
+     "S4-R5",
+     "After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”."
+    ],
+    [
+     "S4-R28",
+     "The shift-clearing prompt (S4-R11, S4-R26) shows only when the outgoing lead has a work-order-level shift on this work order that has not ended. A work-order-level shift is one that covers every current line of the work order, which is what the Schedule's Entire work order drop creates. A shift on only some lines does not show the prompt."
+    ],
+    [
+     "S4-R8 context note (SV-11128)",
+     "\"Explicitly assigned\" means the line's own technician, set through Edit Line. A technician who is on a line only because of a Schedule shift, whether the shift was dropped on that line or on the entire work order, does not count: the line follows the incoming lead like any other line, and the shift technician stays on the line's technician list."
+    ],
+    [
+     "S4-R8 table: explicit",
+     "Explicitly assigned to a different technician | No — the explicit assignment is preserved"
+    ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+   "doc_part1": [
+    "Sign in as an Owner or Admin user. On a QA site click the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\". To check the permissions: your initials (top right) > Settings > Roles & Permissions > Admin > Work orders: View and Create & Edit are on. Your role also needs Schedule access (Settings > Roles & Permissions > Admin > Schedule: View and Create & Edit).",
+    "Pick one location for the whole case; it is shown in the top bar next to the bell (to change it: your initials > Change Location). This is {Location-A} (for example Staging Heavy Duty - 9919). Create everything below at {Location-A}.",
+    "Use a desktop browser window at least 1024 px wide (narrower windows show only the List, with no display switcher).",
+    "Your initials > Settings > Staff. Reuse a staff member only if they are active, have Time Clock on, the Service department, {Location-A} in Location and a Role other than Office User or Time Clock User. Otherwise click New Staff Member and enter First Name and Last Name (for example Esther Howard), an Email, Role Technician, Departments Service (only Service technicians get a row on the Schedule), Location {Location-A}, turn Time Clock on, then Save & Close. This is {Technician-A}.",
+    "Your initials > Settings > Staff. Reuse a staff member only if they are active, have Time Clock on, the Service department, {Location-A} in Location and a Role other than Office User or Time Clock User. Otherwise click New Staff Member and enter First Name and Last Name (for example Ralph Edwards), an Email, Role Technician, Departments Service (only Service technicians get a row on the Schedule), Location {Location-A}, turn Time Clock on, then Save & Close. This is {Technician-B}.",
+    "Your initials > Settings > Staff. Reuse a staff member only if they are active, have Time Clock on, the Service department, {Location-A} in Location and a Role other than Office User or Time Clock User. Otherwise click New Staff Member and enter First Name and Last Name (for example Dana Ortiz), an Email, Role Technician, Departments Service (only Service technicians get a row on the Schedule), Location {Location-A}, turn Time Clock on, then Save & Close. This is {Technician-C}.",
+    "Your initials > Settings > Staff. Reuse a staff member only if they are active, have Time Clock on, the Service department, {Location-A} in Location and a Role other than Office User or Time Clock User. Otherwise click New Staff Member and enter First Name and Last Name (for example Jenny Wilson), an Email, Role Technician, Departments Service (only Service technicians get a row on the Schedule), Location {Location-A}, turn Time Clock on, then Save & Close. This is {Technician-D}.",
+    "Top menu Customers > New Customer > Name (for example \"ZZAUTOTEST NT3 Shift Line Follows\") > Save. This is {Customer-A}; use it for this case only. On the customer page click Contacts > New Contact > First Name and Last Name (for example ZZAUTOTEST Contact) > Save. Then Assets > New Asset > pick the contact, Year (for example 2022), Make (type \"Freight\" and pick Freightliner), Model (for example M2), Unit (for example TRK-118) > Save. Contact and Make are required.",
+    "Work Orders > Create Work Order > in the New Work Order window pick {Customer-A} and its asset > Save (if a Confirmation about the credit limit appears, click Create). The work order opens on its Lines tab with the New Line form. In What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\", turn Line Approved on and click Save & Add Line. In the next New Line form type \"clutch\", pick \"Service - Adjust clutch\", turn Line Approved on and click Save & Close. The status reads Approved. Write down the number shown at the top left (for example S10043-17595). This is {Work-order-1}. The first line is {Line-1} and the second is {Line-2}.",
+    "Click {Line-2}'s name to open Edit Line, choose Technicians {Technician-C} and save.",
+    "On the work order page pick the technician in the Lead Technician dropdown; it saves at once. Choose {Technician-A}. {Line-1}'s Labor row now shows {Technician-A} (it follows the lead); {Line-2} still shows {Technician-C}.",
+    "Schedule (top menu) > use the arrows next to Today until the date reads tomorrow > in Search work orders (left) type the number of {Work-order-1} > drag its card onto {Technician-B}'s row and drop it under 9 AM > in the window that opens choose Choose lines and tick {Line-1} only (leave the other line unticked) > use − / + until Hours reads 2h > click Create 1 shift.",
+    "Do not clock in to {Work-order-1} and do not log any time on it.",
+    "Check the setup worked: On the Lines tab {Line-1}'s Labor row shows {Technician-A} and {Line-2}'s shows {Technician-C}; neither shows recorded time. On the Schedule for tomorrow {Technician-B} has 9:00–11:00 on {Work-order-1} naming {Line-1} only, and {Technician-A} has nothing on {Work-order-1}. Work Orders > All > Board View with {Customer-A}'s name in Search shows {Work-order-1} in {Technician-A}'s column. If anything differs, create a fresh work order."
+   ],
+   "doc_part2": [
+    "Goal: one work order with an implicit {Line-1} that also carries a Schedule shift for {Technician-B}, and an Edit Line {Line-2} for {Technician-C}; then a reassign to {Technician-D}.",
+    "GET /api/staff lists staff; each row has both id and staff_id, and the Schedule's staffId and the working-hours calls use staff_id.",
+    "Create {Customer-A}, its contact and asset, and {Work-order-1} on screen as in Part 1. Record {Work-order-1 id}, {Line-1 id} and {Line-2 id} from the Lines tab requests.",
+    "Faster route for shifts, UNVERIFIED on the Work Orders QA site (proven only on the Schedule QA site sv8685, build v3.5-7ec992f): POST /api/schedule/shifts with workOrderId, lineIds (every line id for an entire-work-order shift, the chosen line ids otherwise), staffId, startDate, startTime, spreadMode \"single\", totalMinutes, perDayMinutes and isAllDay false; 201 means created. If it is refused, use the Schedule screen as in Part 1 and record what the screen sent. For this case lineIds holds {Line-1 id} only.",
+    "Read shifts back with GET /api/schedule/board?from=<ISO instant>&to=<ISO instant> (full instants such as 2026-10-15T00:00:00Z; a bare date or a range over 62 days is refused). Compare each shift's start and end with the location's time zone before deciding a shift is wrong (SV-11229, a shift saved six hours off, was closed Obsolete on 12 Oct 2026).",
+    "Trap: on the Schedule a work order with only one line is booked at once as a whole, with no Entire work order / Choose lines window (recorded in C368178). That is why every work order in this case has two lines.",
+    "Steps 3 and 4: open the card's More actions (…) on hover, click Reassign lead technician, pick {Technician-D} and click Reassign. Record whether a question opened (none is expected) and the message text.",
+    "Steps 7 to 13: read the Labor rows and each line's Edit Line Technicians on screen; close Edit Line with Cancel or the close button, never Save. UNVERIFIED: where the build shows a Schedule-shift technician on a line that also has a labor technician (the Labor row, the Edit Line Technicians, or both). Record every place {Technician-B} appears for {Line-1}.",
+    "Context: the developer reported on 12 Oct 2026 (SV-11128, build e84b3d1) that a line held only through a Schedule shift now follows the new lead. That is not evidence about the build you test; judge only what you see.",
+    "Evidence: a screenshot after each step that has an expected result, the build marker, and the real value of every brace name."
+   ],
+   "why": "S4-R8 context note (PRD v46, SV-11128): a line held only through a Schedule shift follows the new lead and the shift technician stays listed; C96960/C96961 cover the other kinds of line."
+  }
+ ],
+ "retire": [],
+ "notes": [
+  "C368133 and C96965 (and C236975/C236976, Vladimir's, not touched): whether a shift on the only line of a one-line work order counts as work-order-level is PO question PQ-1 (14 Oct). The cases now use two-line work orders so they hold whatever the answer.",
+  "Design export of 14 Oct vs PRD v48 (cases follow the PRD): Tech View and Board View filtered-empty state has no Clear all filters button (PQ-14-2); a filter plus a search shows the search message (PQ-14-3); search-only shows \"No results for …\" (design follow-up); Imported work orders sit in Unassigned with a lock and no greyed switcher (design follow-up).",
+  "C368133 and C96965 carried an 8 Oct \"What you should see today\" block naming no ticket; the only ticket for that symptom, SV-11126, is Done (fix reported on build e84b3d1, QA Passed 13 Oct). Under Rule 61 an unbacked block comes off; the marker stays AUTOMATION: READY.",
+  "A-02 assumes the All tab with nothing ticked is not an active filter (PRD calls tabs filter views). Recorded as UNVERIFIED in its doc."
+ ],
+ "anchors_covered": {
+  "S1-R13a": [
+   154648
+  ],
+  "S1-R13b": [
+   154648
+  ],
+  "S1-R1": [
+   154648
+  ],
+  "S4-R28": [
+   368133,
+   96965,
+   "A-03"
+  ],
+  "S4-R29": [
+   368133,
+   96965
+  ],
+  "S4-R5": [
+   368133,
+   "A-03"
+  ],
+  "S4-R11": [
+   96965
+  ],
+  "S4-R22": [
+   96965
+  ],
+  "S4-R23": [
+   96965
+  ],
+  "S4-R24": [
+   96965
+  ],
+  "S1-N1": [
+   "A-01",
+   "A-02"
+  ],
+  "S1-N1a": [
+   "A-01"
+  ],
+  "S1-N1b": [
+   "A-02"
+  ]
+ },
+ "reading_coverage": "PRD v48 CONFLUENCE-845185030-2026-10-14.md 61,729 B, lines 1-651 read 100%; tech plan lines 110-126 and 199-203 (the parts quoted; whole file read in full on 8 Oct, unchanged by sha256 per SOURCE-CHECK 14 Oct)."
+}

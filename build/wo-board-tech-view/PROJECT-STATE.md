@@ -3,6 +3,8 @@
 **Created:** 2026-09-23 · **PO / spec owner:** Sasha Grosman · **Status:** ACTIVE — source-verified authoring complete, not yet build-verified.
 
 ## 🟢 CURRENT STATE — 14 Oct 2026 Currency Check V2 (done)
+- **14 Oct write (QA lead's go-ahead):** C154648, C368133, C96965 edited; new C581889, C581890, C581891; run 498 = 243.
+  Vladimir's C236975/C236976 untouched (their two-line fix is in the QA sheet). Record `currency-2026-10-14/apply/`.
 - **Owner (QA lead, 14 Oct 2026, verbatim):** "For this testing suite: I own ALL the test cases as it is mainly my Testing
   Suite. No matter what Vladimir comments in the stories, I have to make sure that all the test cases are in good shape and
   current." (Vladimir's story comments of 8 Oct assign manual cases to Bilal and automated Critical/High to Ahtasham Amjad.)

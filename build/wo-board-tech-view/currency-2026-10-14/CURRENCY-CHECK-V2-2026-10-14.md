@@ -39,3 +39,14 @@ the spec (design still differs → PO question 10).
 - QA lead, verbatim: "Do not touch the test cases created by Vladimir, but yes create new and edit which were created by me
   even if they are automated." → applying: edit C154648, C368133 (automated), C96965; create 3 new; run 498 union-only.
   C236975 and C236976 (Vladimir's) stay as they are. Record of the write: `apply/`.
+
+## TestRail write done (14 Oct 2026) — record `apply/`
+- Edited (ours): C154648 (exact Imported tooltips, PRD v48), C368133 (all six work orders two lines; C's shift Line 1 only;
+  8 Oct "what you should see today" block removed — SV-11126 Done, QA Passed 13 Oct), C96965 (two-line work orders).
+- New: C581889 (filter message, S1-N1/S1-N1a), C581890 (search-only message, S1-N1b), C581891 (Schedule-shift line follows
+  the new lead, S4-R8 note v46). Marker on new: "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build".
+- Edit lock passed on all three; read-back field by field OK; served-page display OK on all six; six public setup docs.
+- Run 498: 240 → 243 (union, nothing dropped). C368133 automation fields unchanged (atmstatus 3, type 2).
+- Vladimir's C236975 / C236976 untouched (byte-identical).
+- Rule 63/71 note: C368133 (Automated) edited without build verification in the same pass — on the QA lead's explicit
+  ruling of 14 Oct: "edit which were created by me even if they are automated." Rule 65: automation owner to be told.
