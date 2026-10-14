@@ -1,0 +1,274 @@
+{
+ "results": {
+  "C368220": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Parts > Returns (Returns tab): in the Vendor filter, \"4Refuel\" was chosen; the filter then read \"4Refuel\".",
+    "After a reload the filter still showed that choice, ticked.",
+    "The same rows showed before and after the reload.",
+    "No error message appeared."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368220-before-reload.png",
+    "evidence/staging-full-2026-10-14/C368220-after-reload.png"
+   ]
+  },
+  "C368222": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Parts > Part Sales: in the Status filter, \"Completed\" was chosen; the filter then read \"Completed\".",
+    "After a reload the filter still showed that choice, ticked.",
+    "The same rows showed before and after the reload.",
+    "The filter read \"Status: Estimate, +2\" (Estimate and Approved were already ticked) before and after the reload.",
+    "No error message appeared."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368222-before-reload.png",
+    "evidence/staging-full-2026-10-14/C368222-after-reload.png"
+   ]
+  },
+  "C368227": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Reports > Sales By Customer: in the Customer filter, \"7 Star Truck Repair\" was chosen; the filter then read \"7 Star Truck Repair\".",
+    "After a reload the filter still showed that choice, ticked.",
+    "The same rows showed before and after the reload.",
+    "The report narrowed to 7 Star Truck Repair (1 row and its Totals) and showed the same after the reload.",
+    "No error message appeared."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368227-before-reload.png",
+    "evidence/staging-full-2026-10-14/C368227-after-reload.png"
+   ]
+  },
+  "C368228": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Reports > Parts Velocity: in the Vendor filter, \"4Refuel\" was chosen; the filter then read \"4Refuel\".",
+    "After a reload the filter still showed that choice, ticked.",
+    "The same rows showed before and after the reload.",
+    "No error message appeared."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368228-before-reload.png",
+    "evidence/staging-full-2026-10-14/C368228-after-reload.png"
+   ]
+  },
+  "C368229": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Reports > Inventory Value: in the Category filter, \".Brake Parts\" was chosen; the filter then read \".Brake Parts\".",
+    "After a reload the filter still showed that choice, ticked.",
+    "The same rows showed before and after the reload.",
+    "No error message appeared."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368229-before-reload.png",
+    "evidence/staging-full-2026-10-14/C368229-after-reload.png"
+   ]
+  },
+  "C368230": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Reports > Technician Utilization: Dana Ortiz was unticked in the Technician filter, which then read \"Technician: 6 technicians\".",
+    "After a reload the filter still read \"6 technicians\", with Dana Ortiz unticked.",
+    "The report showed the same 7 technician rows before and after the reload, without Dana Ortiz.",
+    "The only difference was Daniel Montoya's hours, which went up by 0.01 because his clock was running. That is live time, not the filter.",
+    "No error message appeared."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368230-before-reload.png",
+    "evidence/staging-full-2026-10-14/C368230-after-reload.png"
+   ]
+  },
+  "C368245": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customers: the first page showed 30 rows with no error message.",
+    "After clicking the Customer Name header the rows were in name order (4 Star Truck Repair, 7 Star Truck Repair, A & J Truck & Trailer Repair, Aberdeen Diesel Services LLC, ...).",
+    "Scrolling to the bottom loaded the next rows (68 in all): different customers, still in name order, with no repeats."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368245.png"
+   ]
+  },
+  "C97023": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "What the browser sent to Google Analytics was read for this session.",
+    "On opening Work Orders: exactly 1 display view, for List on the All tab.",
+    "Tech View, then Board View: 1 more each, naming Tech View, then Board View (3 in all).",
+    "Estimates tab, then All tab: 1 more each, naming Estimates, then All (5 in all).",
+    "Loading more rows, searching, filtering and narrowing then widening the window added no display view. Total: 5."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C97024": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "What the browser sent to Google Analytics was read for this session.",
+    "Board View sent 13 field events, one per optional field. VIN/Serial showed \"on\" with source \"saved\"; all the others showed source \"default\". It also sent one density event (Regular, default).",
+    "Tech View then sent 15 field events, one per optional column, plus one density event.",
+    "Board View, List and Board View again sent no new field or density events.",
+    "Total field events in the session: 13 + 15 = 28."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C97027": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work Orders searched for \"ZZAUTOTEST Bravo\"; Tech View, then Board View; VIN/Serial turned on and the density changed.",
+    "All 35 Work Orders events the browser sent to Google Analytics in this session were read, parameter by parameter.",
+    "Every value was only a field or setting name or its value (for example board_view, tech_view, total_price, on, off, compact, regular, default, saved).",
+    "No customer name, technician name, work order number, VIN, the search text or a dollar amount appeared anywhere."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368155": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Board View, then a card was clicked to open its work order, then Back.",
+    "The Work Orders display-view events and the existing work order view event sent to Google Analytics carry the same ShopView user ID.",
+    "No new user or customer identifier appears on the Work Orders events (they carry no extra user properties)."
+   ],
+   "not_observed": "The check ran as a switched-in user; its user ID was the one on both events.",
+   "todo": "None.",
+   "pictures": []
+  },
+  "C368171": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST Edit WO Card Audit (S2-35694, two lines following the lead). The Audit Log had 1 \"Lead tech changed\" entry.",
+    "Lead Technician was changed from Esther Howard to Ralph Edwards on the status card (at 03:46 AM shop time).",
+    "The Audit Log then had exactly 2: the new one reads \"Lead tech changed — ZZ WOB Runner — Lead tech: Esther Howard → Ralph Edwards — Oct 15, 2026 03:46 AM\".",
+    "No separate entries appeared for the two lines that followed the lead."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368171-audit.png"
+   ]
+  },
+  "C368170": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "S2-35695 invoiced; after a reload its status reads Invoiced.",
+    "Lead Technician shows \"Esther Howard\" as plain text, with no list of technicians to pick from.",
+    "Mileage and Engine Hours are read-only and could not be edited.",
+    "After a reload the status card still reads Esther Howard, Mileage 123,456 and Engine Hours 3,420: none of the edits was saved.",
+    "The Customer PO on the Finance tab has its own save and is not part of this check."
+   ],
+   "not_observed": "The starting Mileage was 123,456 (set while the work order was being completed for this check), not the case's 120,000. It was unchanged before and after.",
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368170-invoiced-card.png",
+    "evidence/staging-full-2026-10-14/C368170-card.png"
+   ]
+  },
+  "C368218": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Parts > Purchase Orders: the list showed 30 rows.",
+    "Typing \"S2-34986\" in the Search box in the page header narrowed the list to the 1 matching row.",
+    "After a reload the Search box still read \"S2-34986\" and the same row showed.",
+    "No error message appeared."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368218-filtered.png",
+    "evidence/staging-full-2026-10-14/C368218-after-reload.png"
+   ]
+  },
+  "C368219": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Parts > Vendors: the list showed 30 rows.",
+    "Typing \"Carolina Truck & Trailer Repair\" in the Search box in the page header narrowed the list to the 1 matching row.",
+    "After a reload the Search box still read \"Carolina Truck & Trailer Repair\" and the same row showed.",
+    "No error message appeared."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368219-filtered.png",
+    "evidence/staging-full-2026-10-14/C368219-after-reload.png"
+   ]
+  },
+  "C368223": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Parts > Vendor Invoices: the list showed 30 rows.",
+    "Typing \"ZZINV63657\" in the Search box in the page header narrowed the list to the 1 matching row.",
+    "After a reload the Search box still read \"ZZINV63657\" and the same row showed.",
+    "No error message appeared."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368223-filtered.png",
+    "evidence/staging-full-2026-10-14/C368223-after-reload.png"
+   ]
+  }
+ },
+ "redo": {
+  "C368224": "The script clicked \"All manufacturers\" instead of a single manufacturer. That unticked everything, and after the reload the page was back on All manufacturers. No single value was tested. Re-run ticking one manufacturer.",
+  "C368225": "The script clicked \"All categories\" instead of a single category, so no single value was tested. Re-run ticking one category (e.g. Uncategorized).",
+  "C368226": "The Work In Progress report showed no Location filter for the test account (only As of, Advisor, Customer and Asset), so nothing could be ticked. The account most likely has only one location. Re-run with a user who has both Heavy Duty and Lethbridge.",
+  "C368231": "The Sales By Representative report showed no Location filter for the test account, so nothing could be ticked. Re-run with a user who has both locations.",
+  "C368232": "The Work In Progress report showed no Location filter for the test account, so nothing was read. Re-run with a user who has both locations.",
+  "C368237": "The Sales By Representative report showed no Location filter for the test account, so nothing was read. Re-run with a user who has both locations.",
+  "C368233": "Partly read: with \"All customers\" ticked, clicking 7 Star Truck Repair ticked only it and narrowed the report; clicking it again went back to \"All customers\"; there is no Clear selection button. Not read: clicking the ticked \"All customers\" box to clear the selection, and the production comparison the case requires.",
+  "C368234": "Partly read: clicking 4Refuel ticked only it, clicking again went back to \"All vendors\", and there is no Clear selection button. Not read: clicking the ticked \"All vendors\" box to clear, and the production comparison. The report rows read after the click had not yet refreshed.",
+  "C368235": "Partly read: clicking .Brake Parts ticked only it, clicking again went back to \"All categories\", and there is no Clear selection button. Not read: clicking the ticked \"All categories\" box to clear, and the production comparison.",
+  "C368236": "Steps 4, 5 and 7 held: unticking Dana Ortiz left her out of the report; ticking her again brought her back (every box ticked); \"Clear selection\" unticked every option. But step 6, clicking \"Select all\" while everything is already ticked (the step this case's known fault is about), was not done. The clear button reads \"Clear selection\"; \"Select all\" is the first box in the list.",
+  "C368246": "The Dashboard's cards show their tables only after \"View details\" is opened, and the script did not open them, so no table rows or sorting were read.",
+  "C97025": "What the browser sent arrived late: no field-change events had been sent at step 3 and no density change at step 5, and the one density change (\"compact\") only showed up by step 8. Google Analytics sends events in batches, so the per-step counts cannot be judged from this reading. Re-run waiting for each batch to be sent before counting. Field-change events do get sent (C97035 caught 3).",
+  "C97029": "The script stopped at the start while making its fresh test user (the role lookup came back empty), so nothing was read.",
+  "C368153": "The script stopped at the start: the \"ZZAUTOTEST WO View Only\" role it switches financial data off on is missing on staging, so the test user was never made.",
+  "C368169": "Lead Technician was changed to Ralph Edwards and stayed after a reload. But the script never tried to edit Mileage (its own switch for this step was never set), so \"both saved together\" was not tested.",
+  "C368197": "No reading: the script could not sign in to staging (the quick sign-in fell through to the Google sign-in page three times).",
+  "C368238": "No reading: the script could not sign in to staging (the quick sign-in fell through to the Google sign-in page three times).",
+  "C368239": "No reading: the script could not sign in to staging (the quick sign-in fell through to the Google sign-in page three times)."
+ },
+ "failed": {},
+ "doubt": {
+  "C97035": "The browser sent display views 5, field changes 3 and density changes 1, as expected. But it sent only 25 field-load events (expected 28) and 1 density-load event (expected 2): 35 events in all, not 39. Why I do not call it Failed: in the same run C97025 showed Google Analytics sending events late, in batches, so some may simply not have been sent yet when the script counted. C97024, which loads the same two displays, did see all 28 field loads and both density loads. Re-run, waiting for the last batch to be sent before counting. Only if it is still short should it be called a fault."
+ }
+}

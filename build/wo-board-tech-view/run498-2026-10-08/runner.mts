@@ -15,7 +15,7 @@ const ORG = (await import('./profile.mts')).ORG;
 export const RUNNER_EMAIL = 'zz.wob.runner@staging.shopview.local';
 export async function asRunner(browser: Browser, main: Page, a0: Api) {
   await a0.post('/api/exit-switch-user', {});
-  const roles: any[] = ((await a0.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data?.collection ?? []);
+  const roles: any[] = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a0.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data) /* 15 Oct 2026: staging answers a plain list (L0339) */;
   // the organisation's role list sometimes comes back empty; staff records carry role_label + role_id too
   const fromStaff = await roleIds(a0);
   const admin = roles.find((r) => /^admin(istrator)?$/i.test(r.label ?? r.name ?? ''))?.id ?? Object.entries(fromStaff).find(([l]) => /^admin(istrator)?$/i.test(l))?.[1];

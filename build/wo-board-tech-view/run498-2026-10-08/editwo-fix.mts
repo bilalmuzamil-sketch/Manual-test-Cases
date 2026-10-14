@@ -117,7 +117,7 @@ const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.
 
 const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
 const ORG = (await import('./profile.mts')).ORG;
-const rolesL: any[] = ((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data?.collection ?? []);
+const rolesL: any[] = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data) /* 15 Oct 2026: staging answers a plain list (L0339) */;
 const RI = await roleIds(a);
 const roleId = (re: RegExp) => rolesL.find((r) => re.test(r.label ?? r.name ?? ''))?.id ?? Object.entries(RI).find(([l]) => re.test(l))?.[1];
 const ADMIN_ROLE = roleId(/^admin(istrator)?$/i);
@@ -209,7 +209,7 @@ const setPO = async (id: string, po: string) => { await page(id, 'finance'); con
 
 await run('C368169', async () => { const w = await one('ZZAUTOTEST Edit WO Card Lead Mileage', ES); const o: any = { wo: w.number };
   await page(w.id); o.before = { lead: await leadText(), mileage: await cardVal('input_vehicle_mileage') };
-  o.picked = await pickLeadOnPage2(/Ralph Edwards/); o.mileage = o.mileageEditable ? await cardInput('input_vehicle_mileage', '120500') : 'locked: the Mileage box is read-only on the Invoiced work order'; o.toasts = await toastsOn(p); await shot(p, 'C368169-card');
+  o.picked = await pickLeadOnPage2(/Ralph Edwards/); o.mileageEditable = await p.locator('[data-test-id="input_vehicle_mileage"]').first().evaluate((e: any) => !(e.disabled || e.readOnly)).catch(() => false) /* 15 Oct 2026: was never set, so the Mileage edit was skipped (wave 7) */; o.mileage = o.mileageEditable ? await cardInput('input_vehicle_mileage', '120500') : 'locked: the Mileage box is read-only on the Invoiced work order'; o.toasts = await toastsOn(p); await shot(p, 'C368169-card');
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.afterReload = { lead: await leadText(), mileage: await cardVal('input_vehicle_mileage') }; o.api = { lead: await leadName(w.id), ...(await vehOf(w.id)) }; await shot(p, 'C368169-after-reload'); R.C368169 = o; });
 
 await run('C368171', async () => { const w = await one('ZZAUTOTEST Edit WO Card Audit', ES, 2); const o: any = { wo: w.number };

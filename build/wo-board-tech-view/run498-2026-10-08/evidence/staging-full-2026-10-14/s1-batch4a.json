@@ -1,6 +1,7 @@
 {
  "workplaces": [
   "QB Location 25a0d576-b371-4b82-bef4-41ba977f31c2 America/Vancouver",
+  "ZZAUTOTEST F2 Empty Shop 8a0d9904-c35d-449a-8bc2-3acf9134b4da Asia/Karachi",
   "Staging Heavy Duty - 9919 b3c8c820-f815-4cf1-8938-10956c5ee71a Asia/Karachi",
   "Staging Lethbridge - 4310 f8a8b802-7780-4b16-bf10-343caeb616b2 America/Edmonton"
  ],
@@ -10,14 +11,16 @@
    "tab",
    "sortBy",
    "columns",
+   "density",
    "display",
    "filters",
    "descending",
+   "boardFields",
    "collapsedGroups",
    "pinnedTechnicianIds"
   ],
   "display": "list",
-  "filters": "{\"status\":[],\"vehicleHere\":[],\"assigned_to_me\":[]}"
+  "filters": "{\"vehicleHere\":[\"1\"]}"
  },
  "C96919": {
   "control": "Board View",
@@ -27,11 +30,6 @@
    "warning\nOoooops! An error occurred\nClose"
   ],
   "afterRestore": "Board View"
- },
- "userBCreate": {
-  "role": "Service Advisor",
-  "status": 201,
-  "body": "{\"data\":{\"message\":\"created\",\"user_id\":\"6b2afae5-ae34-4eda-bf11-996f54001c0e\"}}"
  },
  "userB": {
   "id": "5ec3f0b7-b1e2-42d7-8eaa-fab389b9665d",
@@ -43,23 +41,41 @@
   "who": 26,
   "prefBefore": {
    "status": 200,
-   "keys": null,
-   "display": null,
-   "filters": null
+   "keys": [
+    "tab",
+    "sortBy",
+    "columns",
+    "display",
+    "filters",
+    "descending",
+    "collapsedGroups",
+    "pinnedTechnicianIds"
+   ],
+   "display": "board_view",
+   "filters": "[]"
   },
-  "first": "List",
+  "first": "Board View",
   "firstUrl": "/workorders",
   "layout": {
    "techGroups": 0,
-   "boardColumns": 0,
-   "tableRows": 33
+   "boardColumns": 87,
+   "tableRows": 0
   },
-  "afterRefresh": "List",
+  "afterRefresh": "Board View",
   "prefAfter": {
    "status": 200,
-   "keys": null,
-   "display": null,
-   "filters": null
+   "keys": [
+    "tab",
+    "sortBy",
+    "columns",
+    "display",
+    "filters",
+    "descending",
+    "collapsedGroups",
+    "pinnedTechnicianIds"
+   ],
+   "display": "board_view",
+   "filters": "[]"
   }
  },
  "C96912": {
@@ -69,14 +85,16 @@
     "tab",
     "sortBy",
     "columns",
+    "density",
     "display",
     "filters",
     "descending",
+    "boardFields",
     "collapsedGroups",
     "pinnedTechnicianIds"
    ],
    "display": "board_view",
-   "filters": "{\"status\":[],\"vehicleHere\":[],\"assigned_to_me\":[]}"
+   "filters": "{\"vehicleHere\":[\"1\"]}"
   },
   "pageAtStart": "Board View",
   "chosen": "Board View",
@@ -86,14 +104,16 @@
     "tab",
     "sortBy",
     "columns",
+    "density",
     "display",
     "filters",
     "descending",
+    "boardFields",
     "collapsedGroups",
     "pinnedTechnicianIds"
    ],
    "display": "board_view",
-   "filters": "{\"status\":[],\"vehicleHere\":[],\"assigned_to_me\":[]}"
+   "filters": "{\"vehicleHere\":[\"1\"]}"
   },
   "prefSeenBy2": {
    "status": 200,
@@ -101,30 +121,26 @@
     "tab",
     "sortBy",
     "columns",
+    "density",
     "display",
     "filters",
     "descending",
+    "boardFields",
     "collapsedGroups",
     "pinnedTechnicianIds"
    ],
    "display": "board_view",
-   "filters": "{\"status\":[],\"vehicleHere\":[],\"assigned_to_me\":[]}"
+   "filters": "{\"vehicleHere\":[\"1\"]}"
   },
   "newSignIn": "Board View",
   "locSteps": [
-   "attempt 1: top bar Staging Heavy Duty - 9919 | menu button Staging Heavy Duty - 9919",
-   "attempt 1: options for Staging Lethbridge - 4310 = 0",
-   "pick failed locator.click: Timeout 60000ms exceeded.\nCall log:\n  - waiti",
-   "menu did not open (attempt 2)",
-   "reloaded before attempt 3",
-   "attempt 3: top bar Staging Heavy Duty - 9919 | menu button Staging Heavy Duty - 9919",
-   "attempt 3: options for Staging Lethbridge - 4310 = 0",
-   "pick failed locator.click: Timeout 60000ms exceeded.\nCall log:\n  - waiti",
-   "now: Staging Heavy Duty - 9919"
+   "attempt 1: select_location options for Staging Lethbridge - 4310 = 1",
+   "at Staging Lethbridge - 4310 (attempt 2)",
+   "now: Staging Lethbridge - 4310"
   ],
   "loc2": {
    "url": "/workorders?tab=all",
-   "location": "Staging Heavy Duty - 9919",
+   "location": "Staging Lethbridge - 4310",
    "display": "Board View"
   },
   "firstBrowser": {
@@ -132,43 +148,48 @@
    "display": "Board View"
   },
   "puts": [
-   "17:42:55 browser1 display=list",
-   "17:44:58 browser1 display=list",
-   "17:45:13 browser1 display=board_view",
-   "17:45:16 browser1 display=board_view"
+   "23:29:25 browser1 display=list",
+   "23:29:51 browser1 display=list",
+   "23:30:16 browser1 display=board_view",
+   "23:30:19 browser1 display=board_view",
+   "23:30:56 browser1 display=tech_view",
+   "23:31:09 browser1 display=list"
   ],
   "userB": {
-   "display": "List",
+   "display": "Board View",
    "pref": {
     "status": 200,
-    "keys": null,
-    "display": null,
-    "filters": null
+    "keys": [
+     "tab",
+     "sortBy",
+     "columns",
+     "display",
+     "filters",
+     "descending",
+     "collapsedGroups",
+     "pinnedTechnicianIds"
+    ],
+    "display": "board_view",
+    "filters": "[]"
    }
   }
  },
  "C96923": {
   "loc2": "Staging Lethbridge - 4310",
   "start": [
-   "attempt 1: top bar Staging Lethbridge - 4310 | menu button Staging Lethbridge - 4310",
-   "attempt 1: options for Staging Heavy Duty - 9919 = 0",
-   "pick failed locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiti",
-   "menu did not open (attempt 2)",
-   "reloaded before attempt 3",
-   "attempt 3: top bar Staging Lethbridge - 4310 | menu button Staging Lethbridge - 4310",
-   "attempt 3: options for Staging Heavy Duty - 9919 = 0",
-   "pick failed locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiti",
-   "now: Staging Lethbridge - 4310"
+   "at Staging Heavy Duty - 9919 (attempt 1)",
+   "now: Staging Heavy Duty - 9919"
   ],
   "listBefore": {
    "url": "/workorders?assigned_to_me=1",
    "tab": "All",
    "display": "List",
    "assignedToMe": "true",
-   "location": "Staging Lethbridge - 4310"
+   "location": "Staging Heavy Duty - 9919"
   },
   "listSteps": [
-   "at Staging Lethbridge - 4310 (attempt 1)",
+   "attempt 1: select_location options for Staging Lethbridge - 4310 = 1",
+   "at Staging Lethbridge - 4310 (attempt 2)",
    "now: Staging Lethbridge - 4310"
   ],
   "listAfter": {
@@ -193,22 +214,18 @@
    "location": "Staging Lethbridge - 4310"
   },
   "boardSteps": [
-   "attempt 1: top bar Staging Lethbridge - 4310 | menu button Staging Lethbridge - 4310",
-   "attempt 1: options for ZZAUTOTEST Empty Shop = 0",
-   "pick failed locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiti",
-   "menu did not open (attempt 2)",
+   "attempt 1: select_location options for ZZAUTOTEST F2 Empty Shop = 1",
+   "attempt 2: select_location options for ZZAUTOTEST F2 Empty Shop = 2",
    "reloaded before attempt 3",
-   "attempt 3: top bar Staging Lethbridge - 4310 | menu button Staging Lethbridge - 4310",
-   "attempt 3: options for ZZAUTOTEST Empty Shop = 0",
-   "pick failed locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiti",
-   "now: Staging Lethbridge - 4310"
+   "attempt 3: select_location options for ZZAUTOTEST F2 Empty Shop = 2",
+   "now: null"
   ],
   "boardAfter": {
    "url": "/workorders?assigned_to_me=1",
    "tab": "All",
    "display": "Board View",
    "assignedToMe": "true",
-   "location": "Staging Lethbridge - 4310"
+   "location": null
   },
   "boardPref": {
    "status": 200,
@@ -216,15 +233,52 @@
     "tab",
     "sortBy",
     "columns",
+    "density",
     "display",
     "filters",
     "descending",
+    "boardFields",
     "collapsedGroups",
     "pinnedTechnicianIds"
    ],
    "display": "board_view",
    "filters": "{\"assigned_to_me\":[\"1\"]}"
   },
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[aria-label=\"Tech View\"]').first()\n    - locator resolved to <button tabindex=\"0\" type=\"button\" filled=\"true\" data-v-68e00a17=\"\" data-v-7fbee06f=\"\" aria-pressed=\"false\" aria-label=\"Tech View\" data-test-id=\"display_option_tech_view\" class=\"q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-7 q"
+  "techBefore": {
+   "url": "/workorders?assigned_to_me=1",
+   "tab": "All",
+   "display": "Tech View",
+   "assignedToMe": "true",
+   "location": null
+  },
+  "techSteps": [
+   "attempt 1: select_location options for Staging Lethbridge - 4310 = 1",
+   "at Staging Lethbridge - 4310 (attempt 2)",
+   "now: Staging Lethbridge - 4310"
+  ],
+  "techAfter": {
+   "url": "/workorders?assigned_to_me=1",
+   "tab": "All",
+   "display": "Tech View",
+   "assignedToMe": "true",
+   "location": "Staging Lethbridge - 4310"
+  },
+  "techPref": {
+   "status": 200,
+   "keys": [
+    "tab",
+    "sortBy",
+    "columns",
+    "density",
+    "display",
+    "filters",
+    "descending",
+    "boardFields",
+    "collapsedGroups",
+    "pinnedTechnicianIds"
+   ],
+   "display": "tech_view",
+   "filters": "{\"assigned_to_me\":[\"1\"]}"
+  }
  }
 }

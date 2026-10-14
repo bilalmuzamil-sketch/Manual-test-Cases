@@ -441,3 +441,9 @@ three wrong characterisations before it was found — see learning **L0233**.
   **Telephone are all required** (the dialog stays open, no toast, red "… is a required field" under each); fields are found by
   their label (`getByLabel('Address 1')`, `/ZIP/`, `/Telephone/`). The creating admin can switch to the new location at once.
   Recipe: `run498-2026-10-08/stg-setup.mts` (idempotent).
+- **(15 Oct 2026, L0339) Staging API shapes and names.** `GET /api/organizations/d55bc308-…/roles?pagination[rowsPerPage]=1000`
+  → `data` is a plain list (32 roles; "ZZAUTOTEST WO View Only" = `8e20d1b6-83e5-4996-8d2b-54d2cd0c4e32`); `GET /api/roles/<id>`
+  reads one. Board/Tech View headers = `GET /api/work-orders/board?tab=all` (`groups[].technician.firstName/lastName`); every
+  staging technician's account name equals the staff name — to make them differ, account access as the technician
+  (`/impersonate-user/<user id>`) then `POST /api/iam/change-name`, exit with `POST /api/exit-switch-user`. Staff screen:
+  `/administration/staff`. Production comparisons: `build/testing-tools/prod-login-boot.mjs` (`bootProdLogin`).

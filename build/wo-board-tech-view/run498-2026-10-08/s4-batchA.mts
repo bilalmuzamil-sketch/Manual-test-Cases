@@ -21,7 +21,7 @@ const a = api(p);
 const R: Record<string, any> = { clearedSwitch: (await a.post('/api/exit-switch-user', {})).status };
 const D = '@staging.shopview.local', ORG = (await import('./profile.mts')).ORG;
 const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
-const roles: any[] = ((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data?.collection ?? []);
+const roles: any[] = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data) /* 15 Oct 2026: staging answers a plain list (L0339) */;
 R.nina = (await person(a, 'Nina', 'Newtech', { role: roles.find((r) => (r.label ?? r.name) === 'Technician')?.id, email: `zz.wob.nina.newtech${D}`, clockable: true })).log; console.log(t(), 'roles', roles.length, 'nina', JSON.stringify(R.nina));
 const ES = await sid('esther.howard'), RE = await sid('ralph.edwards'), JW = await sid('jenny.wilson'), NN = await sid('nina.newtech'), VO = await sid('viewonly'), NK = await sid('nick.noclock');
 const techs = await candidates(a);

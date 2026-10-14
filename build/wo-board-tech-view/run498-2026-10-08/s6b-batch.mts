@@ -96,7 +96,7 @@ const listRowSizes = (pg: Page, num: string) => pg.evaluate(`(() => { const tr =
   return { h: Math.round(tr.getBoundingClientRect().height), minFont: Math.min(...texts), maxFont: Math.max(...texts) }; })()`);
 const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
 const ORG = (await import('./profile.mts')).ORG;
-const roles: any[] = ((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data?.collection ?? []);
+const roles: any[] = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data) /* 15 Oct 2026: staging answers a plain list (L0339) */;
 const ADMIN_ROLE = roles.find((r) => /^admin(istrator)?$/i.test(r.label ?? r.name ?? ''))?.id ?? Object.entries(await roleIds(a)).find(([l]) => /^admin(istrator)?$/i.test(l))?.[1];
 
 

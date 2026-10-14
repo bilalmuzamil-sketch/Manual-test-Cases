@@ -2,7 +2,7 @@
  "C96911": {
   "fibridge": [
    "S2-34850 complete Ayesha",
-   "S2-34149 approved Advisor",
+   "S2-34149 approved Aaron",
    "S2-34147 complete none",
    "S2-34148 invoiced none",
    "S2-34145 declined none",
@@ -45,7 +45,7 @@
     "S2-34135": "list",
     "S2-34150": "list"
    },
-   "ms": 3087
+   "ms": 3081
   },
   "Tech View": {
    "active": "Tech View",
@@ -61,13 +61,13 @@
     "S2-34137": "Unassigned",
     "S2-34135": "Unassigned",
     "S2-34150": "Unassigned",
-    "S2-34149": "Advisor Analysis"
+    "S2-34149": "Aaron Baker"
    },
    "counts": {
     "Unassigned": 7,
-    "Advisor Analysis": 1
+    "Aaron Baker": 1
    },
-   "ms": 3129
+   "ms": 3115
   },
   "Board View": {
    "active": "Board View",
@@ -83,13 +83,13 @@
     "S2-34137": "board_column_unassigned",
     "S2-34135": "board_column_unassigned",
     "S2-34150": "board_column_unassigned",
-    "S2-34149": "board_column_1bdce760-77df-4f45-b520-25fc96393623"
+    "S2-34149": "board_column_c57d19d7-dc2b-4472-a11d-984c61b01c0e"
    },
    "counts": {
     "board_column_unassigned": "person | Unassigned | assignment",
-    "board_column_1bdce760-77df-4f45-b520-25fc96393623": "drag_indicator | AA | Advisor Analysis"
+    "board_column_c57d19d7-dc2b-4472-a11d-984c61b01c0e": "drag_indicator | AB | Aaron Baker"
    },
-   "ms": 3126
+   "ms": 3138
   },
   "List (back)": {
    "active": "List",
@@ -107,7 +107,7 @@
     "S2-34135": "list",
     "S2-34150": "list"
    },
-   "ms": 3113
+   "ms": 3111
   }
  },
  "C96914": {
@@ -142,7 +142,9 @@
    },
    "Board View": {
     "chip": "Asset on Site: Yes\nkeyboard_arrow_down\ncancel",
-    "wos": {}
+    "wos": {
+     "S2-35191": "board_column_ac802dc7-e45f-479b-a7d3-8e999e27770b"
+    }
    }
   },
   "roundTrip": {
@@ -152,7 +154,7 @@
     "display": "Board View",
     "chip": "Asset on Site: Yes\nkeyboard_arrow_down\ncancel",
     "search": null,
-    "wos": 25
+    "wos": 26
    },
    "Tech View": {
     "scheduleUrl": "/schedule",
@@ -175,8 +177,8 @@
  "C96920": {
   "start": "Board View",
   "failed": [
+   "GET /js/WorkOrdersTechViewDisplay.B5xTgl4e.js",
    "GET /css/WorkOrdersTechViewDisplay.Dkzw81Ju.css",
-   "GET /js/WorkOrdersTechViewDisplay.Cdh2I7FB.js",
    "POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%",
    "POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%",
    "PUT /api/users/me/preferences/work-orders-list"
@@ -190,7 +192,7 @@
   ],
   "offline": false,
   "offlineTech": null,
-  "bodyText": "Skip to main content\nShopHub\nexpand_more\nWork Orders\nSchedule\nCustomers\nParts\nReports\nsearch\nSearch customers, work orders, parts...\nCtrl\nK\ntimer\nClock In\nnotifications\n1\nStaging Heavy Duty - 9919\n19.73 Hrs Today\nAS\nerror_outline\nSomething went wrong loading this section\nrefresh\nRetry\nwarning\nPart o",
+  "bodyText": "Skip to main content\nShopHub\nexpand_more\nWork Orders\nSchedule\nCustomers\nParts\nReports\nDashboard\nsearch\nSearch customers, work orders, parts...\nCtrl\nK\ntimer\nClock In\nnotifications\n1\nStaging Heavy Duty - 9919\nAS\nerror_outline\nSomething went wrong loading this section\nrefresh\nRetry\nwarning\nPart of the ",
   "listClick": "locator.click: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator('[aria",
   "offlineList": null,
   "offlineMessages": [
@@ -224,12 +226,16 @@
   ],
   "rowAttrs": "draggable=null class=cursor-pointer grip=false",
   "techAfter": [
+   "S2-35198",
    "S2-35196",
-   "S2-35197",
-   "S2-35198"
+   "S2-35197"
   ],
   "toasts": [],
-  "board": [],
+  "board": [
+   "S2-35198",
+   "S2-35196",
+   "S2-35197"
+  ],
   "listBack": [
    "S2-35198",
    "S2-35197",
@@ -238,13 +244,11 @@
   "headerBack": "text-left sortable sorted sort-desc | aria-sort=null | Created Onarrow_drop_up"
  },
  "prefCalls": [
-  "GET /js/usePagePreferences.DKG5UL8P.js ",
+  "GET /js/usePagePreferences.J7fUFCiv.js ",
   "GET /api/users/me/preferences/work-orders-list ",
-  "PUT /api/users/me/preferences/work-orders-list {\"value\":{\"tab\":\"all\",\"filters\":{\"assigned_to_me\":[\"1\"]},\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":true,\"progress\":true,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"totalPrice\":true,\"in",
-  "PUT /api/users/me/preferences/work-orders-list {\"value\":{\"tab\":\"all\",\"filters\":{\"status\":[\"approved\"]},\"columns\":{\"unreceivedPartRequestsCount\":true,\"vehicle\":true,\"vin\":true,\"progress\":true,\"serviceAdvisor\":true,\"technician\":true,\"clockedInTechni",
-  "PUT /api/users/me/preferences/work-orders-list {\"value\":{\"tab\":\"all\",\"filters\":{\"status\":[\"approved\"]},\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":true,\"progress\":true,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"totalPrice\":true,\"inv",
+  "PUT /api/users/me/preferences/work-orders-list {\"value\":{\"tab\":\"all\",\"filters\":{\"assigned_to_me\":[],\"status\":[\"approved\"]},\"columns\":{\"unreceivedPartRequestsCount\":true,\"vehicle\":true,\"vin\":true,\"progress\":true,\"serviceAdvisor\":true,\"technician\":t",
+  "PUT /api/users/me/preferences/work-orders-list {\"value\":{\"tab\":\"all\",\"filters\":{\"status\":[\"approved\"],\"assigned_to_me\":[]},\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":true,\"progress\":true,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"t",
   "PUT /api/users/me/preferences/work-orders-list {\"value\":{\"tab\":\"all\",\"filters\":{\"vehicleHere\":[\"1\"]},\"columns\":{\"unreceivedPartRequestsCount\":true,\"vehicle\":true,\"vin\":true,\"progress\":true,\"serviceAdvisor\":true,\"technician\":true,\"clockedInTechnici",
-  "PUT /api/users/me/preferences/work-orders-list {\"value\":{\"tab\":\"all\",\"filters\":{\"vehicleHere\":[\"1\"]},\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":true,\"progress\":true,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"totalPrice\":true,\"invoi",
-  "GET /js/usePagePreferences.J7fUFCiv.js "
+  "PUT /api/users/me/preferences/work-orders-list {\"value\":{\"tab\":\"all\",\"filters\":{\"vehicleHere\":[\"1\"]},\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":true,\"progress\":true,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"totalPrice\":true,\"invoi"
  ]
 }

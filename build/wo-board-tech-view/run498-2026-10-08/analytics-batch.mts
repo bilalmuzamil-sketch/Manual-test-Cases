@@ -113,7 +113,7 @@ const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.
 
 const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
 const ORG = (await import('./profile.mts')).ORG;
-const rolesL: any[] = ((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data?.collection ?? []);
+const rolesL: any[] = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data) /* 15 Oct 2026: staging answers a plain list (L0339) */;
 const RI = await roleIds(a);
 const roleId = (re: RegExp) => rolesL.find((r) => re.test(r.label ?? r.name ?? ''))?.id ?? Object.entries(RI).find(([l]) => re.test(l))?.[1];
 const ADMIN_ROLE = roleId(/^admin(istrator)?$/i);
@@ -160,7 +160,7 @@ process.env.WOB_GA = '1';
 await p.context().unrouteAll({ behavior: 'ignoreErrors' }).catch(() => {});
 await p.context().route((u) => /maps\.googleapis|intercom|sentry\.io|mercure\.qa|hotjar|fullstory/i.test(u.toString()), (r) => r.abort()).catch(() => {});
 type Ev = { en: string; ep: Record<string, string>; uid: string | null; t: number };
-function tap(pg: Page) { const ev: Ev[] = [];
+function tap(pg: Page) { const ev: Ev[] = []; (pg as any).__ev = ev;  // 15 Oct 2026: settle() waits on this list (L0339)
   const grab = (url: string, body: string | null) => { if (!/\/g\/collect|google-analytics\.com\/.*collect/.test(url)) return;
     for (const l of (body ? body.split('\n') : [''])) { const q = new URLSearchParams((url.split('?')[1] ?? '') + '&' + l); const en = q.get('en'); if (en) ev.push({ en, ep: Object.fromEntries([...q.entries()].filter(([k]) => /^(ep|epn|up|upn)\./.test(k))), uid: q.get('uid'), t: Date.now() }); } };
   // playbook: a sendBeacon body is not always exposed to a request listener, so intercept the collect route and read
@@ -172,7 +172,11 @@ function tap(pg: Page) { const ev: Ev[] = [];
 const WO = (e: Ev) => /^work_orders_/.test(e.en);
 const evs = (ev: Ev[], en: string, from = 0) => ev.slice(from).filter((e) => e.en === en);
 const brief = (e: Ev) => `${e.en} ${e.ep['ep.element_location'] ?? ''} ${e.ep['ep.element_label'] ?? ''} ${e.ep['ep.setting_value'] ?? ''} ${e.ep['ep.setting_source'] ?? ''}`.trim();
-const settle = (pg: Page, ms = 6000) => pg.waitForTimeout(ms);
+// 15 Oct 2026 (wave 7, C97025/C97035): Google Analytics sends events in batches, seconds after the action, so a fixed wait
+// split one step's events across the next step. settle() now waits the given time AND until no new event has arrived for
+// 10 s (at most 45 s more), so each step's events are all in before they are counted.
+const settle = async (pg: Page, ms = 6000) => { await pg.waitForTimeout(ms); const ev = (pg as any).__ev as Ev[] | undefined; if (!ev) return;
+  const end = Date.now() + 45000; let n = ev.length, quietSince = Date.now(); while (Date.now() < end) { await pg.waitForTimeout(1000); if (ev.length !== n) { n = ev.length; quietSince = Date.now(); } else if (Date.now() - quietSince >= 10000) break; } };
 const fresh = async (tag: string, role = ADMIN_ROLE) => mkUser('ZZAUTOTEST', `GA ${tag} ${stamp}`, role, `ga${tag.toLowerCase()}`);
 const roleRead = async (id: string) => (await a.get(`/api/roles/${id}`)).body?.data;
 async function setFin(id: string, on: boolean) { const r = await roleRead(id); const w = await a.put(`/api/roles/${id}`, { name: r.name, description: r.description, view_mode: r.view_mode, template_id: r.template_id, fe_permissions: (r.fe_permissions ?? []).map((x: any) => x.id), cross_toggles: { ...(r.cross_toggles ?? {}), seeFinancialData: on } }); return `${w.status} now ${(await roleRead(id))?.cross_toggles?.seeFinancialData}`; }

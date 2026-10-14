@@ -66,7 +66,7 @@ const seed = async (name: string, unit: string, leads: (string | null)[]) => { l
 
 
 const ORG = (await import('./profile.mts')).ORG;
-const roles: any[] = ((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data?.collection ?? []);
+const roles: any[] = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data) /* 15 Oct 2026: staging answers a plain list (L0339) */;
 const fromStaff = await roleIds(a);
 const rid = (re: RegExp) => roles.find((r) => re.test(r.label ?? r.name ?? ''))?.id ?? Object.entries(fromStaff).find(([l]) => re.test(l))?.[1];
 const ADMIN_ROLE = rid(/^admin(istrator)?$/i), VIEW_ROLE = rid(/^ZZAUTOTEST WO View Only$/) ?? (await sid('viewonly'))?.role_id;

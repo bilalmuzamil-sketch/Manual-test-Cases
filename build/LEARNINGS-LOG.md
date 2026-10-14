@@ -370,3 +370,18 @@ silently stopping at ~125 columns on staging. All now take 200 steps; any such l
 The part-sale photo checks (C368241, C368243, C368244) upload `zz-photo-red.png` / `zz-photo-blue.png` from the evidence
 folder. With `WOB_EV` pointing at a new run folder they were missing, so nothing was uploaded and three checks read nothing.
 Before a run with a new `WOB_EV`, copy the fixtures: `cp evidence/zz-photo-*.png "$WOB_EV"/`. #staging #rerun #fixtures → L0332
+
+## L0339 — 2026-10-15 — Staging's role list is a plain list; staging names are identical everywhere; GA needs a quiet wait
+(1) **`GET /api/organizations/<org>/roles` answers `{"data":[…]}` on staging, not `{"data":{"collection":[…]}}`.** Fifty-six
+scripts read `.data.collection`, got nothing, and fell back to roles that some staff member carries — so a custom role with
+no users ("ZZAUTOTEST WO View Only", id 8e20d1b6… on staging) was "missing" and C97029, C368153 crashed on `undefined.name`.
+All now read either shape (`Array.isArray(d) ? d : d?.collection`); `probe-rolecheck.mts` proves it. (2) **On staging every
+technician's ACCOUNT name equals the STAFF record name** (`probe-boardnames.mts`: 155 board-header names, 264 staff, 0
+differences), and renaming the staff record (`/api/staff/<id>/change`) renames both. To test S5-R11b / C581895 the difference
+is made the real way: account access as the technician (`/impersonate-user/<user id>`), `POST /api/iam/change-name`, exit
+(`/api/exit-switch-user`) — `stg-fix-new3.mts`. Headers come from `GET /api/work-orders/board` (`technician.firstName`), the
+List from `techAssignedFirstName`. (3) **Google Analytics posts events in batches seconds later**, so counting after a fixed
+wait splits a step's events across steps (C97025, C97035). `analytics-batch.mts` `settle()` now waits until no event has
+arrived for 10 s (max 45 s). (4) **A Schedule shift made by API with `lineIds: []` may not equal the screen's "Entire work
+order" drop** — before calling a lead-change prompt a fault (C581893), make the shift on the Schedule screen and capture its
+POST. #staging #roles #names #analytics #shifts → L0332, Rule 104
