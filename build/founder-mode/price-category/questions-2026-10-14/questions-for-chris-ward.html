@@ -1,0 +1,69 @@
+<html><body>
+<h1>Pricing and Categories sorting – a few questions for Chris Ward</h1>
+<p>Dear Sir,</p>
+<p>We have updated all the Pricing and Categories sorting test cases to your page as you edited it on 14 October: the Fixed price column now opens on the highest price, and every further click flips the order. We also used the design, the stories and the engineering plan.</p>
+<p>While doing that, we found a few points your page doesn't settle. In most of them, the engineering plan or a Jira ticket says one thing and your page says nothing. Each one decides what a tester should mark as pass or fail. Could you please write your answer under each question? A short answer is perfect.</p>
+<p>Page: <a href="https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/578781186/Settings+Pricing+And+Categories+Sorting">Settings "Pricing" And "Categories" Sorting</a>. The codes in brackets point to the line in your page.</p>
+
+<h2>1. The arrow after the first Fixed price click</h2>
+<p><b>What the page says:</b> the arrow points up for ascending and down for descending. The first click on Fixed price puts the highest price first (S3-R8).</p>
+<p><b>Question:</b> after that first click, should the arrow point down? Our cases expect down, because highest first is the descending order.</p>
+<p><b>Answer:</b> </p>
+
+<h2>2. An arrow when hovering a column that isn't sorted</h2>
+<p><b>What the page says:</b> only the column being sorted shows an arrow. A column that cannot be sorted gives no hover effect.</p>
+<p><b>What Jira (SV-10394) and the engineering plan say:</b> hovering a sortable column that isn't sorted makes a faint arrow appear.</p>
+<p><b>Question:</b> is that faint arrow on hover expected?</p>
+<p><b>Answer:</b> </p>
+
+<h2>3. Switching between the Pricing matrices and Fixed rules tabs</h2>
+<p><b>What the page says:</b> nothing about switching tabs. It defines only "reload in place" (the sort is kept) and "fresh open" (the sort resets).</p>
+<p><b>What Jira (SV-10395) and the engineering plan say:</b> each tab keeps its own sort when you switch back and forth.</p>
+<p><b>Question:</b> is that right?</p>
+<p><b>Answer:</b> </p>
+
+<h2>4. Switching location</h2>
+<p><b>What the engineering plan says:</b> switching location while on the page keeps the sort. But if the QuickBooks column is sorted and the new location has no QuickBooks connection, the list goes back to Name, A to Z.</p>
+<p><b>Question:</b> is that what you expect?</p>
+<p><b>Answer:</b> </p>
+
+<h2>5. Refreshing the browser</h2>
+<p><b>What the page says:</b> a fresh open is arriving at the page again, having been somewhere else.</p>
+<p><b>What the engineering plan says:</b> a browser refresh (or going back) also resets the sort, but keeps what was typed in the search box.</p>
+<p><b>Question:</b> should a browser refresh reset the sort?</p>
+<p><b>Answer:</b> </p>
+
+<h2>6. One search box for both Pricing tabs</h2>
+<p><b>What the page says:</b> search on Pricing matrices keeps working exactly as it does today, and search on Fixed rules now works (S3-R18).</p>
+<p><b>What the engineering plan says:</b> the two tabs share one search term, so a word typed on Fixed rules also filters Pricing matrices, and the other way round.</p>
+<p><b>Question:</b> is the shared search term fine?</p>
+<p><b>Answer:</b> </p>
+
+<h2>7. When the QuickBooks check fails</h2>
+<p><b>What the page says:</b> the user is told once, "Unable to check QuickBooks connection. Please try again.", and that is the only message for the failure (S1-N5).</p>
+<p><b>What the engineering plan says:</b> some failures, such as an expired sign-in, may still show their own message as well.</p>
+<p><b>Question:</b> should every kind of failure show only that one message?</p>
+<p><b>Answer:</b> </p>
+
+<h2>8. Clicking Name while the QuickBooks column is sorted</h2>
+<p><b>What the page says:</b> what a Name click does while Name is sorted (S1-R5, S1-R6), but not when another column is sorted.</p>
+<p><b>Question:</b> if the QuickBooks column is sorted and the user clicks Name, should Name sort A to Z?</p>
+<p><b>Answer:</b> </p>
+
+<h2>9. A shop with no categories or no pricing matrices</h2>
+<p><b>What the page says:</b> with no categories, the Name header still shows as sortable with its arrow (S1-N2); the same for no pricing matrices (S2-N1).</p>
+<p><b>Question:</b> can a shop actually have no categories, given the Default category always exists, or no pricing matrices? If not, we will test these only where such a shop already exists.</p>
+<p><b>Answer:</b> </p>
+
+<h2>10. A fixed rule with no category</h2>
+<p><b>What the page says:</b> such rules are not listed (S3-R12b), but if one ever reaches the list, an empty Category sorts last.</p>
+<p><b>Question:</b> can a user create a fixed rule with no category after the release? The screens don't let us save a part without a category, so we can't create one to test.</p>
+<p><b>Answer:</b> </p>
+
+<h2>Just for your information</h2>
+<p>The verification ticket SV-10396 and the engineering plan (13 October) still say Fixed price sorts lowest first on the first click. Our test cases follow your page: highest first.</p>
+<p>The page's Key Decisions cite a ShopView-wide "Default Sorting" decision. We couldn't find it in Confluence, Jira or Slack. Your page spells out both rules, so we followed the page.</p>
+
+<p>Thank you very much, Sir.</p>
+<p>Bilal Muzamil</p>
+</body></html>
