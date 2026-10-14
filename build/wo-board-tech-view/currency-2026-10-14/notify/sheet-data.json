@@ -1,0 +1,206 @@
+{
+ "update": [
+  [
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/154648\",\"C154648\")",
+   "Tech View and Board View are unavailable while Imported is selected",
+   "No (manual)",
+   "Bilal Muzamil",
+   "The spec now gives the exact words of both Imported tooltips.",
+   "A tooltip with other words (or no tooltip) now fails. Before, any tooltip passed because the case only asked you to write its words down.",
+   "Spec, Story 1, rules S1-R13a and S1-R13b, added in version 48 by Chris Ward on 12 Oct 2026. Before, the rule came only from the tech plan, which gave no tooltip words.",
+   "Step 4: while Imported is selected, Tech View and Board View cannot be chosen. A tooltip explains why (write down its words). The List keeps showing the Imported work orders.\nStep 7: in Tech View the Imported option in Status is disabled and cannot be ticked.\nStep 9: in Board View the Imported option is disabled too.",
+   "Step 4: while Imported is selected in List, Tech View and Board View are greyed out and cannot be chosen. Hovering them shows the tooltip \"Not available while Imported is selected.\" The List keeps showing the Imported work orders.\nStep 7: in Tech View the Imported option in Status is greyed out and cannot be ticked. Hovering it shows the tooltip \"Imported work orders open in List.\"\nStep 9: in Board View the Imported option is greyed out with the same tooltip, \"Imported work orders open in List.\"",
+   "4. Hover the Tech View and Board View buttons in the display switcher and try to click each.\n7. Click Status and look at the \"Imported\" option. Try to tick it.\n9. Click Status and try to tick \"Imported\".",
+   "4. Hover the Tech View and Board View buttons in the display switcher and try to click each. (unchanged)\n7. Click Status, hover the \"Imported\" option and read its tooltip. Try to tick it.\n9. Click Status, hover \"Imported\", read its tooltip and try to tick it.",
+   "The case can now quote the spec instead of the tech plan.",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=47&selectedPageVersions=48\",\"Spec change, version 48 (12 Oct)\")"
+  ],
+  [
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/368133\",\"C368133\")",
+   "The clear-shifts question appears only for the old lead's unfinished shifts",
+   "Yes (automated)",
+   "Bilal Muzamil",
+   "The spec now says a shift that covers every current line counts as a whole-work-order shift.",
+   "Work order C has only one line, so its \"Line 1 only\" shift covers every line: the question should now open for C too. The case expects no question for C.",
+   "Spec, Story 4, rule S4-R28, version 47, changed by Chris Ward on 12 Oct 2026 (after Jira SV-11126). It now adds: \"A work-order-level shift is one that covers every current line of the work order, which is what the Schedule's Entire work order drop creates. A shift on only some lines does not show the prompt.\" Before (version 42, 7 Oct) the spec did not say what a work-order-level shift is. The change log is empty; the date is from the page history.",
+   "Only A opens the \"Clear Esther Howard's scheduled shifts?\" prompt (1 of 6).\nB (no shift), C (only a line shift), D (only an ended shift), E (only Dana Ortiz's shift) and F (Esther Howard's shift is on another work order) change lead straight away with \"Lead technician updated\" and no prompt (5 of 6).",
+   "Both results stay as they are, once work order C has two lines:\nOnly A opens the \"Clear Esther Howard's scheduled shifts?\" prompt (1 of 6).\nB (no shift), C (only a line shift), D (only an ended shift), E (only Dana Ortiz's shift) and F (Esther Howard's shift is on another work order) change lead straight away with \"Lead technician updated\" and no prompt (5 of 6). (unchanged)",
+   "Before you start: Customer \"ZZAUTOTEST F1 Prompt Only Unfinished\" (used by this case only) with six Approved work orders led by [Tech-A], each with a line \"Line 1\", known by the letters A, B, C, D, E and F.\nBefore you start: Shifts on the Schedule: A - [Tech-A] tomorrow 8:00–12:00, entire work order · B - no shifts at all · C - [Tech-A] tomorrow 8:00–12:00, Line 1 only · D - [Tech-A] yesterday 8:00–12:00, entire work order (already ended) · E - [Tech-C] tomorrow 8:00–12:00, entire work order · F - none of its own, while [Tech-A] has a shift on a different work order (not F) tomorrow 13:00–15:00.",
+   "Before you start: the same, but give work order C two lines, \"Line 1\" and \"Line 2\".\nBefore you start: C's shift for [Tech-A] tomorrow 8:00–12:00 covers Line 1 only (on the Schedule: Choose lines, tick Line 1 only). Everything else is unchanged.",
+   "On the Schedule a work order with only one line is booked at once as a whole (no Entire work order / Choose lines window; recorded in C368178), and under the 12 Oct rule a shift on the only line covers every line. Giving the work order a second line makes the case runnable and keeps its meaning whatever Chris answers to question 1.",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=46&selectedPageVersions=47\",\"Spec change, version 47 (12 Oct)\")"
+  ],
+  [
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/96965\",\"C96965\")",
+   "Clear shifts removes only the old lead's whole-work-order shifts",
+   "No (manual)",
+   "Bilal Muzamil",
+   "The spec now says a shift that covers every current line counts as a whole-work-order shift.",
+   "[WO-1] and [WO-2] have only one line, so the 13:00–15:00 \"Line 1\" shift covers every line and Clear shifts removes it on [WO-1]. The case expects it to stay.",
+   "Spec, Story 4, rule S4-R28, version 47, changed by Chris Ward on 12 Oct 2026 (after Jira SV-11126). It now adds: \"A work-order-level shift is one that covers every current line of the work order, which is what the Schedule's Entire work order drop creates. A shift on only some lines does not show the prompt.\" Before (version 42, 7 Oct) the spec did not say what a work-order-level shift is. The change log is empty; the date is from the page history.",
+   "Esther Howard's 13:00–15:00 Line 1 shifts are still there on both work orders: the prompt never clears line shifts.",
+   "Esther Howard's 13:00–15:00 Line 1 shifts are still there on both work orders: the prompt never clears a shift on only some lines. (Valid once [WO-1] and [WO-2] have two lines.)",
+   "Before you start: Customer \"ZZAUTOTEST F1 Clear Shifts Scope\" (used by this case only) with three Approved work orders led by [Tech-A]: [WO-1] and [WO-2], each with a line \"Line 1\", and [WO-3].\nBefore you start: Shifts on the Schedule: [WO-1] - [Tech-A] tomorrow 8:00–12:00 (entire work order) and 13:00–15:00 (Line 1), [Tech-C] tomorrow 8:00–10:00 (entire work order). [WO-2] - the same two [Tech-A] shifts as [WO-1]. [WO-3] - [Tech-A] the day after tomorrow 8:00–12:00 (entire work order).",
+   "Before you start: the same, but give [WO-1] and [WO-2] two lines each, \"Line 1\" and \"Line 2\".\nBefore you start: the 13:00–15:00 shift covers Line 1 only (Choose lines, tick Line 1 only). Everything else is unchanged.",
+   "On the Schedule a work order with only one line is booked at once as a whole (no Entire work order / Choose lines window; recorded in C368178), and under the 12 Oct rule a shift on the only line covers every line. Giving the work order a second line makes the case runnable and keeps its meaning whatever Chris answers to question 1. Vladimir already updated this case's source to version 47 on 12 Oct, but its work orders still have one line.",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=46&selectedPageVersions=47\",\"Spec change, version 47 (12 Oct)\")"
+  ],
+  [
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/236975\",\"C236975\")",
+   "Owner drags a work order to another technician on Board View and clears the outgoing lead shifts",
+   "Yes (automated)",
+   "Vladimir Tomovic",
+   "The spec now says a shift that covers every current line counts as a whole-work-order shift.",
+   "The work order has only one line, so the \"line-level\" shift covers every line and Clear shifts removes it too. The last step expects it to remain.",
+   "Spec, Story 4, rule S4-R28, version 47, changed by Chris Ward on 12 Oct 2026 (after Jira SV-11126). It now adds: \"A work-order-level shift is one that covers every current line of the work order, which is what the Schedule's Entire work order drop creates. A shift on only some lines does not show the prompt.\" Before (version 42, 7 Oct) the spec did not say what a work-order-level shift is. The change log is empty; the date is from the page history.",
+   "The whole-work-order shift is gone; the line-level shift still exists, unchanged.",
+   "The whole-work-order shift is gone and the shift on one line remains, once the work order has two lines and that shift covers one of them.",
+   "Before you start: A work order for a unique customer with lead technician A and one line authorized for repair\nBefore you start: A line-level shift for A on the authorized line, tomorrow 07:00 shop time",
+   "Before you start: a work order for a unique customer with lead technician A and two lines authorized for repair.\nBefore you start: a line-level shift for A on one of the two lines only, tomorrow 07:00 shop time.",
+   "Only the setup data changes. Giving the work order a second line makes the case runnable and keeps its meaning whatever Chris answers to question 1..",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=46&selectedPageVersions=47\",\"Spec change, version 47 (12 Oct)\")"
+  ],
+  [
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/236976\",\"C236976\")",
+   "Owner reassigns the lead from a Tech View row and clears the outgoing lead shifts",
+   "Yes (automated)",
+   "Vladimir Tomovic",
+   "The spec now says a shift that covers every current line counts as a whole-work-order shift.",
+   "The work order has only one line, so the \"line-level\" shift covers every line and Clear shifts removes it too. The last step expects it to remain.",
+   "Spec, Story 4, rule S4-R28, version 47, changed by Chris Ward on 12 Oct 2026 (after Jira SV-11126). It now adds: \"A work-order-level shift is one that covers every current line of the work order, which is what the Schedule's Entire work order drop creates. A shift on only some lines does not show the prompt.\" Before (version 42, 7 Oct) the spec did not say what a work-order-level shift is. The change log is empty; the date is from the page history.",
+   "The whole-work-order shift is gone and the line-level shift remains",
+   "The whole-work-order shift is gone and the shift on one line remains, once the work order has two lines and that shift covers one of them.",
+   "Before you start: A work order for a unique customer with lead technician A and one line authorized for repair\nBefore you start: A line-level shift for A on the authorized line, tomorrow 07:00 shop time",
+   "Before you start: a work order for a unique customer with lead technician A and two lines authorized for repair.\nBefore you start: a line-level shift for A on one of the two lines only, tomorrow 07:00 shop time.",
+   "Only the setup data changes. Giving the work order a second line makes the case runnable and keeps its meaning whatever Chris answers to question 1..",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=46&selectedPageVersions=47\",\"Spec change, version 47 (12 Oct)\")"
+  ]
+ ],
+ "new": [
+  [
+   "With a filter on and nothing matching, Tech View and Board View show the List's filter message",
+   "The spec now gives the exact empty-state words. The only case for it (C96918) was removed from TestRail, so nothing checks this today.",
+   "Spec, Story 1, rules S1-N1 (reworded), S1-N1a and S1-N1b (added) in version 43 by Chris Ward on 8 Oct 2026, after his Slack answer of 8 Oct (\"S1-N1's quoted wording is out of date\"). Before: \"No work orders match your filters\" with Clear filters.",
+   "Signed in as an Owner/Admin user, desktop window at least 1024 px wide, at a location with work orders.",
+   "1. Open Work Orders > All tab > Board View.\n2. Click Status and tick a status no work order has.\n3. Read the board.\n4. Type any text in Search as well and read the board again.\n5. Switch to Tech View and read the page.\n6. Click Clear all filters.",
+   "Steps 3 to 5: instead of empty columns or groups, the page shows \"No work orders match these filters\", then \"Try removing a filter to widen your results.\", with a Clear all filters button, in both displays, with or without the search.\nStep 6: the filters are cleared and the work orders come back.",
+   "",
+   "The deleted case was C96918."
+  ],
+  [
+   "A search alone that matches nothing shows the search message with no button",
+   "The spec now gives a separate message for a search with no filters. No case checks it.",
+   "Spec, Story 1, rules S1-N1 (reworded), S1-N1a and S1-N1b (added) in version 43 by Chris Ward on 8 Oct 2026, after his Slack answer of 8 Oct (\"S1-N1's quoted wording is out of date\"). Before: \"No work orders match your filters\" with Clear filters.",
+   "Signed in as an Owner/Admin user, desktop window at least 1024 px wide, no filter ticked.",
+   "1. Open Work Orders > All tab > Board View.\n2. Type text no work order has in Search (for example ZZNOMATCH123).\n3. Read the board.\n4. Switch to Tech View and read the page.",
+   "Steps 3 and 4: the page shows \"No work orders match the search \"ZZNOMATCH123\".\" (with the text you typed) and no button, in both displays.",
+   "",
+   ""
+  ],
+  [
+   "A line held only through a Schedule shift follows the new lead",
+   "The spec now says a technician who is on a line only because of a Schedule shift does not keep that line: the line follows the new lead, and the shift technician stays listed. No case has such a line at a lead change.",
+   "Spec, Story 4, note under rule S4-R8, added in version 46 by Chris Ward on 12 Oct 2026, after Jira SV-11128. Before (version 42) the spec did not say how a Schedule-shift technician counts.",
+   "Signed in as an Owner/Admin user, desktop window at least 1024 px wide. An Approved work order led by Technician A with two lines and no recorded time: Line 1 has no technician of its own and a Schedule shift for Technician B on Line 1 only (Choose lines, tick Line 1); Line 2 was given Technician C in Edit Line.",
+   "1. Open Work Orders > Board View and find the work order in A's column.\n2. More actions > Reassign lead technician > choose Technician D > Reassign (click Keep shifts if asked).\n3. Open the work order's Lines tab and read Line 1 and Line 2.",
+   "Step 3: Line 1 now follows Technician D, and Technician B is still listed on Line 1. Line 2 still shows Technician C.",
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/96960\",\"C96960\")",
+   "C96960 and C96961 check the other kinds of line; this adds the Schedule-shift kind."
+  ]
+ ],
+ "hold": [
+  [
+   "The clear-shifts question on a work order with one line",
+   "Question 1",
+   "Whether a shift on the only line of a one-line work order counts as a whole-work-order shift (and the other edge cases in question 1).",
+   "=HYPERLINK(\"https://shopview.atlassian.net/browse/SV-11126\",\"Jira SV-11126\")",
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/368133\",\"C368133\")"
+  ],
+  [
+   "Dropping work on a technician removed from this location",
+   "Question 2",
+   "Whether the column of a technician who is no longer at this location (but still leads work here) accepts drops, and what it shows.",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=43&selectedPageVersions=44\",\"Spec change, version 44\")",
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/96970\",\"C96970\")"
+  ],
+  [
+   "Estimated hours on a card",
+   "Question 3",
+   "Whether a card's estimated hours leave out declined lines, and whether they may differ from the work order page.",
+   "=HYPERLINK(\"https://shopview.atlassian.net/browse/SV-11106\",\"Jira SV-11106\")",
+   ""
+  ],
+  [
+   "Technician name on cards",
+   "Question 4",
+   "Whether cards and column headers show the account name or the staff record name used by the List.",
+   "=HYPERLINK(\"https://shopview.slack.com/archives/C0C41RV3T3L/p1791816487158519\",\"Slack, 12 Oct 2026\")",
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/96978\",\"C96978\")"
+  ],
+  [
+   "Board View opened with Imported already ticked",
+   "Question 7",
+   "What happens when a link or a saved filter opens Board View or Tech View with Imported already ticked.",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=47&selectedPageVersions=48\",\"Spec change, version 48\")",
+   "=HYPERLINK(\"https://shopview.testrail.io/index.php?/cases/view/154648\",\"C154648\")"
+  ]
+ ],
+ "po": [
+  [
+   "The \"Clear shifts\" question",
+   "Since 12 Oct the spec says a shift counts as a whole-work-order shift when it \"covers every current line\".\n(a) A work order with only one line: does a shift on that line count as a whole-work-order shift?\n(b) A shift made with Choose lines that ticks every line: does it count?\n(c) Do lines that are not approved, or are declined, count as \"current lines\"?\n(d) If a line is added after an Entire work order shift was made, does that shift still count?",
+   "On the Schedule a one-line work order is booked at once as a whole. Four test cases depend on (a).",
+   "",
+   "=HYPERLINK(\"https://shopview.atlassian.net/browse/SV-11126\",\"Spec change, version 47; Jira SV-11126\")"
+  ],
+  [
+   "A technician removed from this location",
+   "A pinned technician who is no longer at this location but still leads work here now appears as a normal, unpinned column holding that work.\n(a) Can work be dropped onto that column?\n(b) Does it show the inactive marker?\n(c) What does it show once it is empty?",
+   "On 24 Sep Sasha said to treat such technicians like inactive ones. On 7 Oct a developer said a drop there is refused with \"This technician can't be assigned work orders.\"",
+   "",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=43&selectedPageVersions=44\",\"Spec change, version 44 (9 Oct)\")"
+  ],
+  [
+   "Estimated hours on a card",
+   "(a) Should a card's estimated hours leave out declined lines?\n(b) May the figure differ from the work order page by 0.1 hours?",
+   "Only a developer has said so (12 Oct). The spec says estimated hours keep their existing meaning.",
+   "",
+   "=HYPERLINK(\"https://shopview.atlassian.net/browse/SV-11106\",\"Jira SV-11106\")"
+  ],
+  [
+   "Technician name on cards",
+   "Should cards and column headers show the person's account name while the List shows the staff record name?\n(a) Yes, they may differ.\n(b) No, they should match the List.",
+   "Only a developer has said so (Slack, 12 Oct). One test case expects the card to match the List.",
+   "",
+   "=HYPERLINK(\"https://shopview.slack.com/archives/C0C41RV3T3L/p1791816487158519\",\"Slack #fs-board-tech-view, 12 Oct 2026\")"
+  ],
+  [
+   "The Review Decisions page",
+   "The Review Decisions page (29 Sep) still lists some points as open or with older answers (for example the Imported lock and the empty-state words).\n(a) Will it be refreshed?\n(b) Or should we treat the main spec as replacing it?",
+   "The main spec has moved on since 29 Sep (versions 43 to 48).",
+   "",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/spaces/~7120207b6068952672480db1a06bd810e23ba1/pages/853901313/Review+Decisions+and+Open+Questions\",\"Review Decisions page\")"
+  ],
+  [
+   "Release notes",
+   "The release notes say the lead technician \"can't change on Invoiced, Paid or Imported work orders\". Since 12 Oct Imported work orders open only in List, and the rule names Invoiced and Paid only. Should the release notes be updated?",
+   "Release 26.43.0; the notes are already published.",
+   "",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=931069964\",\"Release notes\")"
+  ],
+  [
+   "Imported ticked from a link or saved filter",
+   "If a link or a saved filter opens Board View or Tech View with \"Imported\" already ticked, what should happen?\n(a) The page opens in List instead.\n(b) The view opens and Imported is unticked.\n(c) Something else (please write it).",
+   "The spec covers ticking Imported in List and the greyed option inside the views, but not this route.",
+   "",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=845185030&selectedPageVersions=47&selectedPageVersions=48\",\"Spec change, version 48 (12 Oct)\")"
+  ],
+  [
+   "The spec's header and change log",
+   "The spec's status line still reads \"PRD v33\" and its Change Log table is empty, although the page is at version 48. Could they be brought up to date, so everyone can see what changed and when?",
+   "We dated every change from the page history instead.",
+   "",
+   "=HYPERLINK(\"https://shopview.atlassian.net/wiki/spaces/~7120207b6068952672480db1a06bd810e23ba1/pages/845185030/Work+Orders+Kanban+Tech+View+Display+Options+Draft+Spec\",\"The spec\")"
+  ]
+ ]
+}
