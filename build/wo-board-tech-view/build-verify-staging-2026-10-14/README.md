@@ -8,5 +8,5 @@ C581890 (3973196) · C581891 (3973197).
   ("shows no choice; if its chip shows Yes or No, click the x"). Steps and Expected unchanged.
 - Checks: display fr-view 5/5; check_tester_runnable PASS; check_runnable_cases flags only the authors' own "Read the
   board." / "Read its Technicians." steps (untouched).
-- Open: C368133 needs the same stamp + Asset on Site line (QA lead's go-ahead, Automated); the setup Docs' "What must be
+- C368133 (Automated): same stamp + Asset on Site line applied after the QA lead's YES (14 Oct); he passes it to the automation engineer. Open: the setup Docs' "What must be
   true" lists do not yet carry the Asset on Site line.
