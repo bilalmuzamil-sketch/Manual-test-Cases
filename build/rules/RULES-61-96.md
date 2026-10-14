@@ -3071,3 +3071,29 @@ fed a case.
    targeted drive, but it is no longer a gate and never runs open-ended.
 
 Worked example and evidence: `build/wo-board-tech-view/source-update-2026-10-08/text-inventory-trial/`.
+
+## 125 · TESTING SUITE CURRENCY CHECK — ALWAYS ASK V1 OR V2 FIRST (all projects, permanent)
+
+Ordered by the QA lead, 2026-10-14, after the Digital Inspection V2 currency check, verbatim: *"going forward whenever
+we do the currency check ask me the questions whether we want to update the test cases or we want to just inform the QA
+who is owning this testing suite. And for the questions for anything create similar files as you have created for
+Milos. Lets call this process the Testing Suite Currency check V2. So if I ask you to do the currency check or to see if
+the tests are outdated against the Sources. Ask me if they needs to be checked against the currency check V2 or the
+currency check V1 (V1 is how you used to do the currency check before today)."* Operator form:
+`build/skills/22-TESTING-SUITE-CURRENCY-CHECK-V2.md`.
+
+1. **Ask first.** Any request for a currency check, or to see whether a suite's tests are outdated against the sources,
+   is answered first with one question: **V1** (we update the test cases ourselves) or **V2** (we inform the QA who owns
+   the suite, and the PO if anything is blocked on them). No work starts before he answers.
+2. **V1** is the process used before 14 Oct 2026: full source check, then a full update of the suite in TestRail
+   (Rules 117, 122, 123, 124 and the rest), PO questions at the end.
+3. **V2** was devised on 14 Oct 2026, when it was decided that the feature squad's QA owns writing and updating the
+   test cases. Same full source check, **no TestRail edits**; deliverables are a Google Sheet of the real behaviour
+   gaps (before/now expected behaviour and steps, with the date each change was made in the spec, plus the new tests
+   needed) for the owning QA and the automation owner, and a friendly colour-coded Google Sheet of questions for the PO.
+4. **Questions for the PO, for anything:** the friendly colour-coded sheet format first used for Milos Vasic on
+   14 Oct 2026 (colour guide, plain questions split into (a)/(b)/(c), a yellow answer column, references in a small
+   grey column).
+5. **File names** carry the feature squad's name and the name of the person the file is for (QA lead, 14 Oct 2026:
+   "The name of each file should be after the feature Squad name and the name of person it is for").
+6. When he asks for the difference between V1 and V2, answer as in the skill's section 1.
