@@ -1,5 +1,7 @@
 # Run 498 — ready list for STAGING, then PRODUCTION (Rule 126; generated 12 Oct 2026)
 
+## ⚡⚡ 14 Oct 2026 — USE THIS: `source stg-env.sh && ORDER_FILE=rerun-order-staging.txt ./run-all.sh <logdir>`, then `stg-new5.mts` (the five v49 cases), then `signout-fix.mts` LAST. Why each setting exists: L0332. Judge with `stg_compare.py` + the logs.
+
 ## ⚡ ONE COMMAND (added 12 Oct 2026 evening — use this, do not rediscover anything)
 1. **Sign-in:** ask the QA lead for a fresh staging `sv_sso_session` (Google sign-in; the 5 Oct cookie had EXPIRED when tried
    12 Oct — "the Google session has expired"). Put it in `/tmp/shopview/app.env` as THREE lines `SV_SSO_SESSION=…`, `PHPSESSID=…`, `CF_CLEARANCE=…` (all three are needed on staging; chmod 600, never committed). **Proven 12 Oct 18:19 UTC**: staging sign-in works with them (quick-login as admin, build v26.40.14-f92c26c); `wob-run.sh` now hands that file to the sign-in for non-QA hosts and passes WOB_ORG/WOB_LOC1/WOB_LOC2. Profile written: `profiles/app.staging.shopview.com.json` (org proved). The QA lead's cookies last ~24 hours.

@@ -310,3 +310,16 @@ Six staging results were posted as text only; the QA lead: annotated screenshots
 but ask him first whether they go on the result. Now: the pictures are made with every pass (`annotate_v2.py`, listed per case as
 `"pictures"`), the ask is one plain question per batch, and `push_results_to_run.py` refuses to write without his answer
 (`--screenshots yes|no`); `--attach-only` adds pictures to results already posted. #results #screenshots #evidence → Rule 130
+
+## L0332 — 2026-10-14 — Running the whole WO Board suite on staging: five things the QA-branch scripts assumed
+(1) **Location zone hard-coded** — 20 scripts switched to Heavy Duty with `workplace_timezone: 'America/Edmonton'`; after Rule 125
+put it on Asia/Karachi they now read `process.env.WOB_LOC_TZ` (default unchanged). (2) **Sign-in** — `session.mts` takes
+`WOB_NORMAL_SIGNIN=1` (bootOrigin, the sign-in page) because the harness sign-in shows the Schedule in UTC (L0312).
+(3) **Technicians** — `staff.mts` now picks the department EXACTLY "Service"; an account email can never be changed (staff
+change → "Email already associated with another account"), so the wrong-department four were renamed "ZZOLD …" and
+`WOB_STAFF_ALIAS=.svc` maps the suite's usual emails to the ".svc" people. (4) **Evidence** — most scripts write to a fixed
+`evidence/` (not `WOB_EV`), so a run on a new environment OVERWRITES the QA-branch JSON/PNGs in the working tree: compare
+against `git show HEAD:` (`stg_compare.py`), then move the new files to the run's folder and `git checkout -- evidence/` before
+committing. Several scripts keep only part of their readings in the JSON — the LOG is the full record. (5) **Sign-out last** —
+`rerun-order-staging.txt` leaves `signout-fix.mts` out (it can end the shared sign-in); run it after everything else.
+All five are set by `source run498-2026-10-08/stg-env.sh`. #staging #rerun #scripts → Rules 125, 126, 129
