@@ -56,3 +56,10 @@ only for now; Rule 85).
 ## Task in progress
 **Source verification** of all 43 cases (Rule 101 full; Rule 108 whole-doc + links; Rule 113 Expected =
 verbatim source quote). Working dir: `build/digital-inspections-v2/source-verify-2026-09-22/`.
+
+## 🔴 14 Oct 2026 — currency check (read this first)
+- **PRD now v43** (Confluence 768507905, 13 Oct, Milos Vasic): 8 codes added, 4 removed, 71 reworded since our 22 Sep copy. Record: `currency-2026-10-14/SOURCE-CHECK-2026-10-14.md`.
+- **Ownership (Slack, Milos Vasic, 12 Oct, https://shopview.slack.com/archives/C0C39T5MLMB/p1791807912692899):** "QA on the feature squad owns writing and updating test cases." Staging 13 Oct (https://shopview.slack.com/archives/C0C39T5MLMB/p1791892327032259); production planned Thu 15 Oct (Project Plan, Confluence 902660109).
+- **Others on the suite:** build-verified 1 Oct on sv8181 (v26.36.8-2a64085) by the build-verification session; Vladimir flagged 30 Automated + 2 Pending; Viktoria Videnovic edited 19 cases 5–13 Oct. List: `currency-2026-10-14/PERMISSION-ASK-2026-10-14.md`; her diffs: `OTHERS-EDITS-2026-10-14.md`.
+- **We have NOT edited any case.** Notification for Vladimir and Viktoria (27 outdated cases, 11 to check, 3 later Jira decisions, 8 uncovered items): Google Doc https://docs.google.com/document/d/14x7FWO4X6sVvUoxTi1v5dRpS8hok7B6kcDPiQEvKTH0/edit (source HTML `currency-2026-10-14/notify/`). The QA lead shares it.
+- **Waiting on the QA lead:** whether we still update this suite at all (ownership).
