@@ -48,3 +48,21 @@
 | Contact + part sale in Estimate (X5) | Delete greyed out; tooltip: "has related contacts., is linked to existing part sales." | — |
 
 **Verdict reasoning (given to the QA lead 2026-10-14):** point 1 is fixed (every reversed-only shape deletes; every active shape is still refused). Point 2: every blocker a shop can create on screen is now named, either by the Delete tooltip or by the new open-credit message. The only case still showing "existing transactions" (X2) needs a paid work order deleted through the server, which is SV-11276. The QA lead previously chose "Partially passed" and then asked for a clear answer; awaiting his confirmation before posting.
+
+## 2026-10-14 07:20Z — posted (QA lead: "OK to post as passed")
+- **SV-9055 comment 78633** — green PASSED, 15 checks, 4 attachments (01 before/after, 02 customer empty, 03 still blocked, 05 open-credit before/after). Read back: panel first, 4 file media in order, 16 table rows, 7 numbered steps, no fingerprint/jargon hits. Ticket status left for the QA lead (TESTING QA).
+- Ready example left on the branch: **ZZAUTOTEST SV9055 ready-to-delete 253** (reported state, not deleted).
+- Production credit-only (PX4, *ZZAUTOTEST SV9055 PROD credit-only 12678*, CM2-4400 −$20): deleted with its credit; search finds nothing.
+- Pre-post gate: both markers unchanged (branch v26.40.17-f88c11c, prod v26.40.17-f5bf8f4); SV-9055 still TESTING QA, last comment 78140; example customer present.
+
+## SV-11276 closed OBSOLETE (QA lead: mark obsolete if it can't be replicated on the UI)
+Checked on production with paid S2-975, before closing:
+- ⋮ menu on Finance and Lines tabs: Audit Log / Timesheets (0) / Print Work Order only.
+- Ticking the line on the Lines tab: "No actions available for this selection".
+- Work Orders list and the customer's Work Orders tab: no actions column on the rows.
+- Reversing the invoice of a paid work order from the Finance tab left it Paid (X2 run).
+Transition id 8 "Close" → OBSOLETE (resolution Done); the comment sent with the transition did not attach, so it was posted separately as **78632** and read back.
+
+## Learning check (Rule 95 B)
+- Rule 106 added (verdict only on a finished matrix; failing examples must be buildable on screen).
+- New recipe: a comment sent in a Jira transition's `update.comment` was silently dropped on SV-11276 (204 returned) — post the comment separately and read it back. Added to playbook §AO.

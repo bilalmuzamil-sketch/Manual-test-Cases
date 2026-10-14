@@ -1,0 +1,50 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on the QA branch *sv9055* (build *v26.40.17-f88c11c*) on *14 October 2026*, and compared it with production (build *v26.40.17-f5bf8f4*).
+
+* A customer whose only history is entries that were *reversed* (a reversed payment, a reversed invoice or a reversed deposit) can now be deleted. On production the same customer still gets _"You cant delete company with existing transactions"_.
+* A customer with anything still *active* on it is still protected, and the screen says what is blocking it.
+
+h3. Before and after
+!sv9055-01-before-after-hd.png|width=1600,height=1630!
+_Before (production): Dipesh's steps from his comment, ending with the payment and invoice reversed and the work order, asset and contact deleted. Delete gives "You cant delete company with existing transactions". After (QA branch): the same steps on a new customer, and Delete goes through. Searching its name finds nothing._
+
+!sv9055-02-customer-empty-hd.png|width=1600,height=490!
+_The branch customer just before Delete: no contacts or assets, balance $0.00, and nothing on the Invoices tab even with Open only switched off._
+
+h3. What I checked
+||#||Check||Result||
+|1|Dipesh's service work order flow (invoice, pay, reverse payment, reverse invoice, delete work order, asset and contact): the customer deletes (_ZZAUTOTEST SV9055 A1 18575_, _AFTER-2 70540_)|PASSED|
+|2|Dipesh's part sale flow (invoice, pay, reverse both, return the part, delete the part sale): the customer deletes (_A2 part-sale 35862_)|PASSED|
+|3|A customer whose only history is a deposit that was reversed: deletes (_A3 reversed-deposit 58553_)|PASSED|
+|4|An overpaid invoice (the extra $25.00 became a held deposit), then the payment and invoice reversed: deletes (_X1 overpaid-then-reversed 74743_)|PASSED|
+|5|A brand-new customer that was never used: deletes (_A5 never-used 91859_)|PASSED|
+|6|A paid work order is still there: *Delete* is greyed out and hovering it says why (_B2 paid 16650_). Production shows the same|PASSED|
+|7|The payment was reversed but the invoice is still open: still blocked (_B4 pay-reversed-invoice-open 7963_)|PASSED|
+|8|A deposit is still held: still blocked (_B3 held-deposit 97882_)|PASSED|
+|9|The payment was reversed but a deposit is still held: still blocked (_B5 reversed-payment+held-deposit 583_)|PASSED|
+|10|Only an open $20.00 store credit is left: Delete is refused with _"This customer has open credit. Reverse it from the location that issued it, then delete the customer."_ (_X3 payment-on-account 93666_). *On production the same customer is deleted, credit and all* (picture below)|PASSED|
+|11|A contact and a part sale in Estimate: *Delete* greyed out, hovering it says _"has related contacts., is linked to existing part sales."_ (_X5 part-sale-only 44544_)|PASSED|
+|12|Only a note on the customer: deletes (notes don't block) (_X4 note-only 44544_)|PASSED|
+|13|The error tells the user what is blocking the delete: for everything a shop can leave on a customer from the screens, the user is told what it is: a work order (also when it has an open invoice or a held deposit), a part sale, a contact or an asset is named in the greyed-out Delete's hover text, and a store credit in the open-credit message|PASSED|
+|14|The reversed history is kept after the customer is deleted: the reversed deposits DEP-4703 and DEP-4704 are still recorded (no screen lists reversed entries, so this was checked through the server)|Checked|
+|15|Reports still open after the deletes, with no errors: Sales, Sales By Customer, Sales Tax, A/R Aging Summary, A/R Aging Detail, A/R Collection, IBS Batches|PASSED|
+
+!sv9055-03-still-blocked-hd.png|width=1600,height=1115!
+_Row 6: a customer with a paid work order. Delete is greyed out and hovering it explains why._
+
+!sv9055-05-open-credit-before-after-hd.png|width=1600,height=1978!
+_Row 10: a customer whose only item is an open $20.00 store credit. Production deletes it, credit and all; the QA branch refuses and says why._
+
+One case still shows the old _"existing transactions"_ message: a customer left with a payment and no work order. I could only build that by deleting a paid work order with a request typed into the browser console, which no screen allows ([SV-11276|https://shopview.atlassian.net/browse/SV-11276], closed for that reason), so it is not part of this ticket.
+
+h3. How to see it
+Open the QA branch https://sv9055.qa.shopview.com and click *Admin* on the login page. The customer below is already in the reported state: payment and invoice reversed, work order, asset and contact deleted.
+# In the top menu click {{Customers}}.
+# Above the list, on the right, click {{Search}} (the magnifying glass) and type {{ready-to-delete 253}}.
+# Click *ZZAUTOTEST SV9055 ready-to-delete 253*. Every tab is empty.
+# In the customer card at the top left, click the pencil icon next to the name.
+# At the bottom of the {{Edit Customer}} pop-up, click the red {{Delete}} button.
+# In the {{Confirmation}} pop-up, click {{Delete}}.
+# The Customers list opens. Search {{ready-to-delete 253}} again: _"No customers match the search"_.

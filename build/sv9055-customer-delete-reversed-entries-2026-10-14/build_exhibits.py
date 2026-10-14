@@ -40,3 +40,18 @@ msg = panel(p('X2-3-confirm-1.png'), (0, 60, 1600, 1000),
 msg.save(p('sv9055-04-message-unchanged-hd.png'))
 for n in ['01-before-after','02-customer-empty','03-still-blocked','04-message-unchanged']:
     from PIL import Image; im=Image.open(p(f'sv9055-{n}-hd.png')); print(n, im.size)
+
+# 05 - open store credit: production deletes the customer, the branch refuses with a clear message
+pc = panel(p('PX4-1-credit.png'), (0, 60, 1600, 320),
+    'BEFORE - production (build v26.40.17-f5bf8f4), 14 Oct 2026: a customer whose only item is a store credit',
+    boxes=[(47, 94, 228, 166, BLU, 1), (732, 148, 876, 178, BLU, 1), (336, 256, 1568, 290, BLU, 1)],
+    notes=[(1, BLU, 'ZZAUTOTEST SV9055 PROD credit-only 12678: one unapplied store credit CM2-4400 of $20.00, made with Issue Credit. Balance -$20.00.')])
+pg = panel(p('PX4-2-search-gone.png'), (0, 60, 1600, 460),
+    'Production: after pencil -> Delete -> Delete',
+    boxes=[(1187, 79, 1366, 115, RED, 2), (641, 342, 961, 418, RED, 2)],
+    notes=[(2, RED, 'The customer was deleted with its open $20.00 credit - searching its name finds nothing.')])
+bc = panel(p('X3-3-confirm-1.png'), (0, 60, 1600, 1000),
+    'AFTER - QA branch sv9055 (build v26.40.17-f88c11c), 14 Oct 2026: same set-up',
+    boxes=[(47, 94, 228, 166, GRN, 3), (1100, 892, 1500, 990, GRN, 3)],
+    notes=[(3, GRN, 'ZZAUTOTEST SV9055 X3 payment-on-account 93666 with store credit CM9055-4189 ($20.00): Delete is refused - "This customer has open credit. Reverse it from the location that issued it, then delete the customer." The customer stays.')])
+stack([pc, pg, bc]).save(p('sv9055-05-open-credit-before-after-hd.png'))
