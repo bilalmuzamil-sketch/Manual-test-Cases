@@ -2,7 +2,13 @@
 
 **Created:** 2026-09-23 · **PO / spec owner:** Sasha Grosman · **Status:** ACTIVE — source-verified authoring complete, not yet build-verified.
 
-## 🟢 CURRENT STATE — 8 Oct 2026 full update written (read this first)
+## 🟢 CURRENT STATE — 14 Oct 2026 Currency Check V2 (in progress)
+- **Owner (QA lead, 14 Oct 2026, verbatim):** "For this testing suite: I own ALL the test cases as it is mainly my Testing
+  Suite. No matter what Vladimir comments in the stories, I have to make sure that all the test cases are in good shape and
+  current." (Vladimir's story comments of 8 Oct assign manual cases to Bilal and automated Critical/High to Ahtasham Amjad.)
+- Run as **V2** (QA lead's choice): no TestRail write. Record: `currency-2026-10-14/`. PRD now **v48** (12 Oct).
+
+## (previous) 8 Oct 2026 full update written
 - **Suite:** 130 ours rewritten in full + 40 new = **170 ours** (+18 Vladimir's, untouched). Run **498** = 170 tests.
   Design driven in full: `source-update-2026-10-08/DESIGN-COVERAGE-2026-10-08.md`. READY for build verification (8 Oct).
 - **Regression folder 47109** (High 47110 · Medium 47111 · Low 47112): 83 cases from the developer's list + QA handoff
