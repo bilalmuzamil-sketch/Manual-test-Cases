@@ -1,44 +1,105 @@
 {
- "pass_meta": {"run": 498, "env": "app.staging.shopview.com", "build": "v26.40.17-ddb9ba1", "date": "2026-10-14"},
+ "pass_meta": {
+  "run": 498,
+  "env": "app.staging.shopview.com",
+  "build": "v26.40.17-ddb9ba1",
+  "date": "2026-10-14"
+ },
  "results": {
-  "C154648": {"verdict": "Passed", "observed": [
+  "C154648": {
+   "verdict": "Passed",
+   "observed": [
     "Result: Passed on staging, following the test's own steps.",
     "With Imported ticked in Status, the List showed the imported work orders (ZZAUTOTEST-IMP-001 and ZZAUTOTEST-IMP-002).",
     "Tech View and Board View were greyed out; pointing at each showed \"Not available while Imported is selected.\"",
     "Clicking them did nothing: the page stayed on the List and kept showing the imported work orders.",
     "After Clear selection, Tech View opened normally.",
-    "In Tech View and in Board View, \"Imported\" in Status was greyed out with \"Imported work orders open in List.\" and could not be ticked."],
-   "not_observed": null, "todo": "None."},
-  "C368133": {"verdict": "Passed", "observed": [
+    "In Tech View and in Board View, \"Imported\" in Status was greyed out with \"Imported work orders open in List.\" and could not be ticked."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-6-2026-10-14/annotated/C154648-1-imported-list.png",
+    "evidence/staging-6-2026-10-14/annotated/C154648-2-techview-status.png"
+   ]
+  },
+  "C368133": {
+   "verdict": "Passed",
+   "observed": [
     "Result: Passed on staging, following the test's own steps (six work orders led by Esther Howard, each with two lines; Ralph Edwards and Dana Ortiz as the other technicians).",
     "Dragging work order 1 (Esther's whole-work-order shift tomorrow) to Ralph's column opened \"Clear Esther Howard's scheduled shifts?\".",
     "Work orders 2 to 6 (no shift; a shift on one line only; a shift that already ended; only Dana's shift; Esther's shift on another work order) each moved straight to Ralph's column with \"Lead technician updated\" and no question.",
-    "The question opened for 1 of the 6 work orders only."],
-   "not_observed": null, "todo": "None."},
-  "C96965": {"verdict": "Passed", "observed": [
+    "The question opened for 1 of the 6 work orders only."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-6-2026-10-14/annotated/C368133-1-question.png",
+    "evidence/staging-6-2026-10-14/annotated/C368133-2-all-moved.png"
+   ]
+  },
+  "C96965": {
+   "verdict": "Passed",
+   "observed": [
     "Result: Passed on staging, following the test's own steps.",
     "Both drags opened \"Clear Esther Howard's scheduled shifts?\"; work order 1 moved to Ralph Edwards's column after Clear shifts, work order 2 after Keep shifts.",
-    "Schedule, tomorrow: on work order 1, Esther's 8:00–12:00 whole-work-order shift was gone; Dana Ortiz's 8:00–10:00 shift and Esther's 13:00–15:00 one-line shift were still there.",
-    "Schedule, tomorrow: on work order 2, both of Esther's shifts (8:00–12:00 and 13:00–15:00) were still there.",
-    "Schedule, day after tomorrow: Esther's 8:00–12:00 shift on work order 3 was still there, unchanged.",
-    "Shop and browser were both on Pakistan time, and the Schedule clock matched the browser clock."],
-   "not_observed": null, "todo": "None."},
-  "C581889": {"verdict": "Passed", "observed": [
+    "Schedule, tomorrow: on work order 1, Esther's 8:00\u201312:00 whole-work-order shift was gone; Dana Ortiz's 8:00\u201310:00 shift and Esther's 13:00\u201315:00 one-line shift were still there.",
+    "Schedule, tomorrow: on work order 2, both of Esther's shifts (8:00\u201312:00 and 13:00\u201315:00) were still there.",
+    "Schedule, day after tomorrow: Esther's 8:00\u201312:00 shift on work order 3 was still there, unchanged.",
+    "Shop and browser were both on Pakistan time, and the Schedule clock matched the browser clock."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-6-2026-10-14/annotated/C96965-1-question.png",
+    "evidence/staging-6-2026-10-14/annotated/C96965-2-wo1-tomorrow.png",
+    "evidence/staging-6-2026-10-14/annotated/C96965-3-wo2-tomorrow.png",
+    "evidence/staging-6-2026-10-14/annotated/C96965-4-wo3-dayafter.png"
+   ]
+  },
+  "C581889": {
+   "verdict": "Passed",
+   "observed": [
     "Result: Passed on staging, at QB Location (every status at Heavy Duty already has work orders; at QB Location no work order is an Estimate, so Estimate was the status used).",
     "Board View with Estimate ticked showed \"No work orders match these filters\", then \"Try removing a filter to widen your results.\", with a Clear all filters button, without and with the customer's name in Search.",
     "Tech View and the List showed the same two lines and the same button.",
-    "Clear all filters in Tech View unticked Estimate, and the customer's approved work order showed again in Tech View."],
-   "not_observed": null, "todo": "None."},
-  "C581890": {"verdict": "Passed", "observed": [
+    "Clear all filters in Tech View unticked Estimate, and the customer's approved work order showed again in Tech View."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-6-2026-10-14/annotated/C581889-1-board.png",
+    "evidence/staging-6-2026-10-14/annotated/C581889-2-cleared.png"
+   ]
+  },
+  "C581890": {
+   "verdict": "Passed",
+   "observed": [
     "Result: Passed on staging, following the test's own steps.",
     "Searching ZZAUTOTEST-NOMATCH-A02 in Board View showed: No work orders match the search \"ZZAUTOTEST-NOMATCH-A02\". and no button.",
-    "Tech View and the List showed the same message with the same text, and no button."],
-   "not_observed": null, "todo": "None."},
-  "C581891": {"verdict": "Passed", "observed": [
+    "Tech View and the List showed the same message with the same text, and no button."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-6-2026-10-14/annotated/C581890-1-board.png"
+   ]
+  },
+  "C581891": {
+   "verdict": "Passed",
+   "observed": [
     "Result: Passed on staging, following the test's own steps.",
     "Reassigning the lead from Esther Howard to Jenny Wilson changed it at once with \"Lead technician updated\" and no clear-shifts question; the card moved to Jenny's column.",
     "Line 1 (no technician set, Ralph Edwards on it only through a Schedule shift) now shows Jenny Wilson for labor, and its Edit Line still lists Ralph Edwards among its technicians.",
-    "Line 2 (Dana Ortiz set through Edit Line) still shows Dana Ortiz only; it did not move to Jenny."],
-   "not_observed": null, "todo": "None."}
+    "Line 2 (Dana Ortiz set through Edit Line) still shows Dana Ortiz only; it did not move to Jenny."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-6-2026-10-14/annotated/C581891-1-reassigned.png",
+    "evidence/staging-6-2026-10-14/annotated/C581891-2-lines.png",
+    "evidence/staging-6-2026-10-14/annotated/C581891-3-line1-technicians.png"
+   ]
+  }
  }
 }

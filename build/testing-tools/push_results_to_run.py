@@ -214,6 +214,10 @@ def main():
                  'and pass his answer as --screenshots yes|no.')
     if a.screenshots == 'yes' or a.attach_only:
         import os as _os
+        # picture paths are taken relative to the RESULTS file (where they are written), unless absolute
+        for r_ in res.values():
+            r_['pictures'] = [x if _os.path.isabs(x) else _os.path.join(_os.path.dirname(_os.path.abspath(a.results)), x)
+                              for x in (r_.get('pictures') or [])]
         bad = sorted(c for c, r in res.items() if not r.get('pictures') or not all(_os.path.isfile(x) for x in r['pictures']))
         if bad:
             sys.exit('REFUSING (Rule 130): --screenshots yes but no annotated picture file for %s ("pictures": [paths])' % ', '.join(bad))
