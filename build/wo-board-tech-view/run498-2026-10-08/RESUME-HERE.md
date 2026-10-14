@@ -1,3 +1,8 @@
+# 14 Oct 2026 15:40 UTC — six tests for STAGING (3 changed + 3 new): see `STAGING-6-CASES-2026-10-14.md`
+QA lead: build verify only, on staging. Another session already build-verified all six on staging v26.40.17-ddb9ba1 at
+~15:16 UTC (branch claude/build-verification-setup-aieu36); staging is still that build. Asked him (Rule 80) whether to
+re-walk anyway. Run 498: 243 tests, 240 Passed, 3 Untested (C581889, C581890, C581891). Fresh staging sign-in in /tmp.
+
 # 12 Oct 2026 18:40 UTC — Rule 114(d) rewrites of the 19 ruling-passed tests (QA lead approved ALL 19)
 Done, one at a time, each with `build/testing-tools/safe_case_edit.py` + served-page scan before and after (all clean;
 write log `ruling-rewrites-2026-10-12/write-log.jsonl`, before/after copies beside it): C154884, C368135, C368138, C96977,

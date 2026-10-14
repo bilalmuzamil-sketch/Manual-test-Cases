@@ -275,3 +275,13 @@ learning inside 14 days could leave nothing to move, so the Stop hook would bloc
 the budget, and a file nothing can shrink is a WARNING, never a block); (4) the run-comment "None." filter must apply to Passed
 only. Proved: fresh checkout + new session, a machine without node (skipped, not failed), search of another branch, a lost
 part + new split. Every scenario is now a self-test check (30 checks, ~6 s). #methodology #regression #failsafe → Rule 129
+
+## L0329 — 2026-10-14 — Before any build verification, check whether another session did it already today
+The QA lead sent "build verify these 6 on staging" here; another session had build-verified the same six on the same staging
+build 20 minutes earlier (branch `claude/build-verification-setup-aieu36`, stamps already on the cases). Found in two
+minutes by: TestRail `get_history_for_case` (who/when changed each case today) + `git log --all --oneline --since=<yesterday>`
++ `git grep -l <C-id> $(git for-each-ref --format='%(refname)' refs/remotes/origin) -- build` + reading the live build
+string (`curl` the app root with the three staging cookies, grep `v26\.`). Same build ⇒ the earlier check still counts
+(Rule 77): say when it was done and ASK before re-walking (Rule 80); read its evidence for FACTS only (Rules 86/119) — here it
+had left "not yet checked against a build" beside the new stamp, and its build search did not find two expected headings.
+#build-verify #cross-session #staging → Rules 77, 80, 86, 119
