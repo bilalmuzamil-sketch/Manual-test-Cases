@@ -1,7 +1,7 @@
 /** Shifts for the WO Board cases (2026-10-08): make one with POST /api/schedule/shifts (times are the location's local
  *  time, America/Edmonton at Heavy Duty) and read them back from the Schedule's own GET /api/schedule/board. */
 import type { Api } from './data.mts';
-const TZ = 'America/Edmonton';
+const TZ = process.env.WOB_LOC_TZ || 'America/Edmonton'; // 14 Oct 2026: the location's zone (Rule 125 sets Asia/Karachi); default keeps older runs unchanged
 export const localDate = (offsetDays = 0) => new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(Date.now() + offsetDays * 86400000));
 export const localTime = (d: Date) => new Intl.DateTimeFormat('en-GB', { timeZone: TZ, hour: '2-digit', minute: '2-digit', hour12: false }).format(d);
 export async function mkShift(a: Api, woId: string, staffId: string, day: number, start: string, minutes: number, lineIds: string[] = []) {

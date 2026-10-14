@@ -1,0 +1,10 @@
+import { bootOrigin } from '../../testing-tools/qa-branch-boot.mjs';
+import { api } from './data.mts';
+const { browser, page: p } = await bootOrigin({ app: 'https://app.staging.shopview.com', apiHost: 'api.staging.shopview.com', ssoFile: '/tmp/qa-cookies/staging-sso.txt', label: 'staging', route: '/schedule', key: 'admin' }) as any;
+const a = api(p);
+const b = (await a.get(`/api/schedule/board?from=2026-10-13T00:00:00.000Z&to=2026-10-18T00:00:00.000Z`)).body?.data?.board;
+const s = JSON.stringify(b);
+console.log('keys', Object.keys(b)); for (const k of Object.keys(b)) console.log(k, Array.isArray(b[k]) ? `array ${b[k].length} ${JSON.stringify(b[k][0] ?? null).slice(0, 300)}` : JSON.stringify(b[k]).slice(0, 200));
+console.log('esther staff id in board:', s.includes('94ba9c5d'), 'esther user id:', s.includes('cccfaedb'), 'Karen:', s.includes('Karen'));
+const sh = b.shifts ?? []; console.log('shifts total', sh.length, 'with staff', sh.filter((x: any) => x.staffId).length);
+await browser.close(); process.exit(0);

@@ -1,3 +1,7 @@
+# 14 Oct 2026 17:15 UTC — the six staging tests are RUN and PASSED in run 498 (`STAGING-6-CASES-2026-10-14.md`)
+C154648, C368133, C96965, C581889, C581890, C581891 Passed on staging v26.40.17-ddb9ba1. "Not yet checked" sentence removed on 4,
+retry running for C368133/C581890. Run 498: 248 tests, 243 Passed, 5 Untested (added by someone else today).
+
 # 14 Oct 2026 15:40 UTC — six tests for STAGING (3 changed + 3 new): see `STAGING-6-CASES-2026-10-14.md`
 QA lead: build verify only, on staging. Another session already build-verified all six on staging v26.40.17-ddb9ba1 at
 ~15:16 UTC (branch claude/build-verification-setup-aieu36); staging is still that build. Asked him (Rule 80) whether to

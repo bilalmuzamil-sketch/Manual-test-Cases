@@ -285,3 +285,22 @@ string (`curl` the app root with the three staging cookies, grep `v26\.`). Same 
 (Rule 77): say when it was done and ASK before re-walking (Rule 80); read its evidence for FACTS only (Rules 86/119) — here it
 had left "not yet checked against a build" beside the new stamp, and its build search did not find two expected headings.
 #build-verify #cross-session #staging → Rules 77, 80, 86, 119
+
+## L0330 — 2026-10-14 — New or rewritten cases are RUN, not asked about; and the staging set-up traps that cost an hour
+**Ruling (QA lead, 14 Oct):** three new cases never had a result and three were rewritten after a PRD change — both obviously
+need running on the new environment. Asking "re-check or accept?" was wrong: read the run (Untested = never run; a case updated
+after its result = its result is stale) and act. Results first; only then tidy the case (he: "Only removed once you add the
+results in the test run"). Staging is a dummy environment: create/change anything without asking (Rule 107).
+**Traps (staging, v26.40.17-ddb9ba1), each now handled in `run498-2026-10-08/stg6.mts`:**
+(1) The Schedule lists only some departments (Administration, E2E Test Department, Service, Work order status). A technician
+in "Service/Parts" gets NO row, and the board returns their shifts with `staffId: null` — the shift drawer says "TECHNICIAN
+Unassigned" although the shift is theirs (the clear-shifts question still names them). Make technicians in EXACTLY "Service";
+`POST /api/staff/{id}/change` IGNORES `departments`, so a wrong one means a new person. (2) The run-498 harness sign-in shows the
+Schedule clock in UTC on staging too (L0312); use the normal sign-in — `bootOrigin` now carries `cf_clearance` from
+`/tmp/qa-cookies/staging-full.json` — and prove Rule 125 with `tz-match-staging.mjs`. (3) Heavy Duty has work orders in every
+status; for "no work order in status X" use QB Location (none in Estimate / In progress / Declined on 14 Oct). (4) Switch
+location ON SCREEN only (profile menu → `select_location`) — I repeated `iam/change-location` although L0056/L0234 say why it
+fails: run `recall.py` before the first probe, every time. (5) Status filter options are read from the menu's text, not
+`.q-menu .q-item`; and work order numbers differ per location (`SMQ1-…` at QB Location) — never match `S\d+-`.
+(6) The Schedule's own "Search schedule…" box (magnifier, `input_schedule_search`) + clicking a shift shows its technician,
+time and lines — the fastest on-screen read. #staging #schedule #setup #ruling → Rules 107, 113, 125

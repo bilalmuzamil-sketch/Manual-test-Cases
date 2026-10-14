@@ -419,3 +419,14 @@ three wrong characterisations before it was found — see learning **L0233**.
   `build/wo-board-tech-view/run498-2026-10-08/ruling-rewrites-2026-10-12/preconds-trim/build_preconds.py`. Which of a run's
   cases we edited while Automated: `automated_edit_scan.py <run>` (L0320). What the QA lead answered earlier in this session:
   `find_ruling.py "<words>"`.
+
+### WO Board / Schedule on STAGING (v26.40.17-ddb9ba1, 14 Oct 2026) — set-up that works first time (L0330)
+- Technicians for Schedule checks: department EXACTLY **Service** (the Schedule shows Administration, E2E Test Department,
+  Service, Work order status only); billable + Time Clock on. Wrong department ⇒ no Schedule row and shifts read "Unassigned".
+  `/api/staff/{id}/change` does not change departments. Made by `run498-2026-10-08/stg6.mts` as `zz.wob.<first>.<last>.svc@…`.
+- Sign-in for anything showing a time: `bootOrigin` with `/tmp/qa-cookies/staging-sso.txt` + `staging-full.json`
+  (`PHPSESSID`, `cf_clearance`); prove with `TZ=Asia/Karachi node run498-2026-10-08/tz-match-staging.mjs` (exit 0).
+  Heavy Duty set to Asia/Karachi 14 Oct (`stg6-tz.mts`).
+- Empty-filter state: QB Location (no Estimate / In progress / Declined work orders); switch on screen, switch back after.
+- Read a work order's shifts on screen: Schedule → arrow beside Today → magnifier → `input_schedule_search` = number → click
+  each shift (`stg6-sched2.mts`).

@@ -125,6 +125,12 @@ export async function bootOrigin({ app, apiHost, ssoFile, label = app, route = '
         const php = { name: 'PHPSESSID', value: full.PHPSESSID, path: '/', secure: true, sameSite: 'None' };
         jar.push({ ...php, domain: APIH }, { ...php, domain: APPH });
       }
+      // 14 Oct 2026: staging sits behind Cloudflare and also needs cf_clearance (the QA lead's third value). Only when the
+      // file carries it — QA-branch files never do, so their sign-in is unchanged.
+      if (full.cf_clearance) {
+        const cf = { name: 'cf_clearance', value: full.cf_clearance, path: '/', secure: true, sameSite: 'None' };
+        jar.push({ ...cf, domain: APIH }, { ...cf, domain: APPH });
+      }
     }
   } catch (e) { /* the sso cookie alone is still tried; the liveness check below reports the truth */ }
   await ctx.addCookies(jar);

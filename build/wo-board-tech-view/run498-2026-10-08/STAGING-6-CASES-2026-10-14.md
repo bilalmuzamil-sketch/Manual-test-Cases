@@ -33,6 +33,19 @@ Run 498 (https://shopview.testrail.io/index.php?/runs/view/498): **243 tests —
    (C581890). Not proved either way (a search of the build's files, not the screen — Rule 104); it is the first thing to
    look at when those two are run. It is not a build-verification finding: the Expected comes from the PRD (Rule 57).
 
-## Next (waiting on the QA lead — Rule 80, the check was done today on this same build)
-- Re-walk the six on staging myself anyway (full, every step, by screen), or accept today's check.
-- Then, only when he says so (a different lane): run the six on staging and record results.
+## QA lead's answer (14 Oct ~16:00 UTC) and what was done
+He: the three new ones never had a result and the three old ones were rewritten after the PRD change — all six must be RUN on
+staging (asking whether to re-check was wrong — L0330); remove the "not yet checked" sentence only after the results are in.
+**All six RUN on staging v26.40.17-ddb9ba1 and recorded PASSED in run 498 (14 Oct 2026, ~17:00 UTC):**
+`RESULTS-staging-6-2026-10-14.json`, evidence `evidence/staging-6-2026-10-14/` (stg6.json + screenshots).
+Scripts: `stg6.mts` (all six, own data, normal sign-in), `stg6-sched2.mts` (C96965 Schedule read on screen), `stg6-tz.mts` +
+`tz-match-staging.mjs` (Rule 125: Heavy Duty set to Asia/Karachi, pill 9:04 PM = browser 9:04 PM).
+- C581889 ran at QB Location (every status at Heavy Duty has work orders); Status-A = Estimate.
+- Technicians made in exactly "Service" (`zz.wob.<name>.svc@…`); the first four went to Service/Parts and had no Schedule row (L0330).
+- Another session reworded C368133, C96965 and C581891 to PRD **v49** at 16:15–16:22 UTC (source notes and the quoted S4-R28
+  only — "every approved line"); steps and expected outcomes unchanged, all lines in the data were approved, so the results hold.
+- Sentence removal (his OK, after results): done on C154648, C96965, C581889, C581891 through TestRail's editor
+  (`surgical_replace.mjs`; the API route is refused because the fields carry UI-made line breaks); Froala also turned one empty
+  setup paragraph into a blank line. C368133 (Automated — tell Vlad) and C581890 hit a TestRail database lock: retried —
+  see `staging-6-sentence-removal-2026-10-14/`.
+- Run 498 now has 248 tests: 243 Passed, 5 Untested — the 5 were added by someone else today, not part of this job.

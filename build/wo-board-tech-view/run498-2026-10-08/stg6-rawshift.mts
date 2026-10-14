@@ -1,0 +1,13 @@
+import { bootOrigin } from '../../testing-tools/qa-branch-boot.mjs';
+import { api, workOrders } from './data.mts';
+const { browser, page: p } = await bootOrigin({ app: 'https://app.staging.shopview.com', apiHost: 'api.staging.shopview.com', ssoFile: '/tmp/qa-cookies/staging-sso.txt', label: 'staging', route: '/schedule', key: 'admin' }) as any;
+const a = api(p);
+const w = (await workOrders(a, 'S2-35158'))[0];
+const from = '2026-10-13T00:00:00.000Z', to = '2026-10-18T00:00:00.000Z';
+const b = (await a.get(`/api/schedule/board?from=${from}&to=${to}`)).body;
+const found: any[] = []; const walk = (x: any, pathS: string) => { if (!x || typeof x !== 'object') return; if (Array.isArray(x)) return x.forEach((y, i) => walk(y, pathS + '[' + i + ']'));
+  if (x.startsAt && x.workOrder?.id === w.id) found.push({ pathS, x }); for (const [k, v] of Object.entries(x)) walk(v, pathS + '.' + k); };
+walk(b, '');
+console.log('top keys', Object.keys(b?.data?.board ?? {}));
+for (const f of found.slice(0, 3)) console.log(f.pathS, JSON.stringify(f.x).slice(0, 900));
+await browser.close(); process.exit(0);

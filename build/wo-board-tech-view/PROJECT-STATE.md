@@ -17,12 +17,12 @@ NEW suite, run `python3 build/testing-tools/recall.py "<words>"` and read `build
 | Env | Address | Notes |
 |---|---|---|
 | QA branch | `sv10043.qa.shopview.com` | builds v26.40.8-7a95011 (8–11 Oct) → **v26.40.14-e84b3d1** (12 Oct redeploy, PR #3548); location "Staging Heavy Duty - 9919" (zone set to Asia/Karachi, Rule 125); second location Lethbridge; sleeps when idle (wake via `session.mts`); turns any network error into the sleep page (L0317) |
-| Staging | `app.staging.shopview.com` (API `api.staging.shopview.com`) | build v26.40.14-f92c26c (12 Oct) → **v26.40.17-ddb9ba1** (14 Oct, feature now on staging); sign-in needs THREE cookies (SV_SSO_SESSION, PHPSESSID, CF_CLEARANCE) in `/tmp/shopview/app.env`, ~24 h life; profile `run498-2026-10-08/profiles/app.staging.shopview.com.json` |
+| Staging | `app.staging.shopview.com` (API `api.staging.shopview.com`; Heavy Duty on Asia/Karachi since 14 Oct; Schedule technicians must be in department exactly "Service" — L0330; scripts `stg6*.mts`) | build v26.40.14-f92c26c (12 Oct) → **v26.40.17-ddb9ba1** (14 Oct, feature now on staging); sign-in needs THREE cookies (SV_SSO_SESSION, PHPSESSID, CF_CLEARANCE) in `/tmp/shopview/app.env`, ~24 h life; profile `run498-2026-10-08/profiles/app.staging.shopview.com.json` |
 | Production | `app.shopview.com` | no Board/Tech View; used for "same on production ⇒ not a regression" (Rule 121) comparisons (`run498-2026-10-08/prod-*.mjs`) |
 
 ## 3 · TestRail
 - Group **13204** "WO Board and Tech View (Sep 2026)". Run **498**: https://shopview.testrail.io/index.php?/runs/view/498
-- **State 14 Oct 2026: 243 tests — 240 Passed, 3 Untested** (new C581889, C581890, C581891; and C154648, C368133, C96965 changed 14 Oct — all six to retest on staging: `run498-2026-10-08/STAGING-6-CASES-2026-10-14.md`). 13 Oct: 240 tests, 240 Passed. 19 tests that passed on a ruling were rewritten (Rule 114(d)) — see `run498-2026-10-08/ruling-rewrites-2026-10-12/`; automated ones for the engineer in its `FOR-ENGINEER.md`.
+- **14 Oct 2026 ~17:00 UTC: the six (C154648, C368133, C96965, C581889, C581890, C581891) RUN on staging and Passed; run 498 = 248 tests, 243 Passed, 5 Untested (added by others).** Earlier 14 Oct: 243 tests — 240 Passed, 3 Untested (new C581889, C581890, C581891; and C154648, C368133, C96965 changed 14 Oct — all six to retest on staging: `run498-2026-10-08/STAGING-6-CASES-2026-10-14.md`). 13 Oct: 240 tests, 240 Passed. 19 tests that passed on a ruling were rewritten (Rule 114(d)) — see `run498-2026-10-08/ruling-rewrites-2026-10-12/`; automated ones for the engineer in its `FOR-ENGINEER.md`.
 - Cases deleted on the QA lead's instruction (snapshots kept): `run498-2026-10-08/case-deletes-2026-10-12/`.
 
 ## 4 · How to run it again (no rediscovery)
