@@ -1,0 +1,42 @@
+7c7
+< | **Status** | Locked for build - 2026-09-15 |
+---
+> | **Status** | Locked for build - 2026-10-13 |
+63a64,65
+> \- Each click on the header being sorted flips its direction. A third click gives the same order as the first click. No click clears the sort or returns the list to its opening order.
+> 
+115a118,121
+> \- **A header toggles; there is no third state.** The first click sorts the column, the second reverses it, and the third gives the first click's order again. Opening the page afresh is how a list returns to its opening order. This is the same rule as every other table in ShopView (Default Sorting, decided 2026-10-13). **Rejected:** a third click that returns the list to its opening order, which makes the same click do two different things.
+> 
+> \- **Fixed price opens on the highest price.** Its first click puts the highest price first, like every money column in ShopView (Default Sorting, decided 2026-10-06). **Rejected:** lowest first, which would make this the one money column in ShopView that opens the other way.
+> 
+135a142,143
+> \- **Default category** - the category row named "Uncategorized", which carries the "Default" badge and cannot be edited.
+> 
+193a202,203
+> \- **S1-R6a:** Every further click on the Name header flips the direction again. There is no third state.
+> 
+203a214,215
+> \- **S1-R11a:** A third click re-sorts the list A to Z, the same as the first click. Every further click flips the direction again.
+> 
+265a278,279
+> \- **S2-R6a:** Every further click flips the direction again. There is no third state.
+> 
+312c326,328
+< \- **S3-R4:** When the user clicks a sortable column header that is not currently sorted, the list sorts by that column in ascending order.
+---
+> \- **S3-R4:** When the user clicks a sortable column header that is not currently sorted, the list sorts by that column: A to Z for Part number and Category, highest first for Fixed price (S3-R8).
+> 
+> \- **S3-R5:** When the user clicks that same header again, the list re-sorts in the opposite direction.
+314c330
+< \- **S3-R5:** When the user clicks that same header again, the list re-sorts into descending order.
+---
+> \- **S3-R5a:** A third click gives the same order as the first click. Every further click flips the direction again.
+320c336
+< \- **S3-R8:** Fixed price sorts by value, lowest first when ascending.
+---
+> \- **S3-R8:** Fixed price sorts by value. Its first click puts the highest price first.
+322c338
+< \- **S3-R9:** Fixed price sorts highest first when descending.
+---
+> \- **S3-R9:** The second click on Fixed price puts the lowest price first.

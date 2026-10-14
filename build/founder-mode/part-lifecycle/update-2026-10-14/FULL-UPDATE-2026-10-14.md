@@ -40,3 +40,7 @@ wrote them into the PRD (v27 → v29). Answers verbatim: `../po-answers-2026-10-
 
 ## Display check
 281 of 281 cases "RESULT OK" (`render-0/1/2.log`). Repaired by the checker: none
+
+
+## Moved 14 Oct after the report
+- C425659 and C425758 (dashboard inventory figure) moved unchanged to "Retire OR retest" (54275) on the QA lead's "Yes", 14 Oct. Content hash identical before and after. Log: `applied-retire-move-log.jsonl`.

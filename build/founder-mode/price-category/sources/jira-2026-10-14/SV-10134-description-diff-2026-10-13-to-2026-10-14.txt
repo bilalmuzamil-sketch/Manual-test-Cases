@@ -1,0 +1,40 @@
+--- SV-10134 2026-10-13
++++ SV-10134 2026-10-14
+@@ -12,3 +12,3 @@
+ * S1-R2: When the page first opens, the list is sorted by name in ascending order, A to Z.
+-* S1-R3: The name sort ignores whether letters are upper case or lower case, and compares numbers inside a name as numbers, so "Tier 9" comes before "Tier 10".
++* S1-R3: The name sort ignores whether letters are upper case or lower case, and compares numbers inside a name as numbers, so Tier 9 comes before Tier 10.
+ * S1-R4: When the page first opens, the Name column header shows an ascending arrow.
+@@ -16,2 +16,3 @@
+ * S1-R6: When the user clicks the Name header while the sort is descending, the list re-sorts into ascending order, A to Z.
++* S1-R6a: Every further click on the Name header flips the direction again. There is no third state.
+ * S1-R7: The Name column header arrow always shows the direction that is currently applied.
+@@ -21,2 +22,3 @@
+ * S1-R11: When the user clicks that header again, the list re-sorts into descending order, Z to A.
++* S1-R11a: A third click re-sorts the list A to Z, the same as the first click. Every further click flips the direction again.
+ * S1-R12: The QuickBooks Products and Services sort ignores whether letters are upper case or lower case, and compares numbers inside a value as numbers.
+@@ -26,11 +28,11 @@
+ * S1-R16: Opening the page afresh returns the list to name ascending, whatever sort was applied last time.
+-* S1-R17: Every category shows a value in the QuickBooks Products and Services column. A category that has never been mapped shows the word Parts there, which is what the page shows today and does not change. That column has no empty state and no row is moved to the bottom of it.
++* S1-R17: Every category shows a value in the QuickBooks Products and Services column. A category that has never been mapped shows the word Parts there, which is what the page shows today and does not change. That column therefore has no empty state, no row is moved to the bottom of it, and a category showing Parts because it is unmapped sorts under P in the same run as a category whose mapping is genuinely named Parts. The two are indistinguishable in the list, by design.
+ * S1-R18: Typing a search term keeps the sort. The rows that match the term are shown in the order the current sort produces.
+-* S1-R19: The Default category is always the first row in the list, under either sort, in both directions, and after a reload in place or a search. This is production behaviour and it does not change.
+-* S1-R20: Every category other than the Default category sorts beneath it. The Default category is not compared against the other rows; it is placed first and the remainder are sorted.
++* S1-R19: The Default category is always the first row in the list. It holds that position under the Name sort and under the QuickBooks Products and Services sort, in ascending and in descending order alike, and it holds it after a reload in place. When a search term is typed it is first whenever it is among the matching rows; a term that does not match its name leaves it out of the results, as today, and it is never forced into them. This is the behavior the Categories list has in production today and it does not change.
++* S1-R20: Every category other than the Default category sorts beneath it, following the rules in S1-R2 through S1-R18. The Default category is not compared against the other rows; it is placed first and the remainder are sorted.
+ * S1-R21: The Default category keeps its Default badge in every sort.
+-* S1-N1: If the shop is not connected to QuickBooks, the QuickBooks Products and Services column is not shown and no sort is available for it.
++* S1-N1: If the shop is not connected to QuickBooks, the QuickBooks Products and Services column is not shown, and no sort is available for it.
++* S1-N5: If the connection cannot be checked, the column is not shown and the user is told once: "Unable to check QuickBooks connection. Please try again." That is the only message shown for the failure: the app's generic error message for the same failed request is suppressed, so the user never sees two. The list itself still loads and the Name column still sorts.
+ * S1-N2: If no categories exist, the Name column header still renders as sortable and still shows the ascending arrow.
+ * S1-N3: If the user does not have the Settings - Parts permission, the user cannot open the Categories page.
+-* S1-N5: If the QuickBooks connection cannot be checked, the column is not shown and the user is told once: "Unable to check QuickBooks connection. Please try again." The list still loads and the Name column still sorts.
+ 
+@@ -41,2 +43,3 @@
+ - [ ] Given the Name header is clicked, then the order reverses to Z to A, the arrow flips, and the Default category is still the first row.
++- [ ] Given the Name header is clicked repeatedly, then each click flips the order between Z to A and A to Z, the arrow follows it, and the list never returns to an unsorted state.
+ - [ ] Given a shop with more categories than one page, then the sort covers every category and not only the ones fetched so far.
+@@ -45,2 +48,3 @@
+ - [ ] Given the QuickBooks Products and Services header is clicked, then the list sorts by that column, its arrow is shown, and the Name header shows no arrow.
++- [ ] Given the QuickBooks Products and Services header has been clicked twice (A to Z, then Z to A), when it is clicked a third time, then the list is sorted A to Z again, the same order as the first click, and there is no third, unsorted state.
+ - [ ] Given a category that has never been mapped, then its QuickBooks Products and Services cell reads "Parts" and it sorts under P with any category mapped to a service of that name.

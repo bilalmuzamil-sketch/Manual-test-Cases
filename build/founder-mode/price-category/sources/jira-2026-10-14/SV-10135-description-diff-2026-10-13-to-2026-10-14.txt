@@ -1,0 +1,21 @@
+--- SV-10135 2026-10-13
++++ SV-10135 2026-10-14
+@@ -16,2 +16,3 @@
+ * S2-R6: When the user clicks the header while the sort is descending, the list re-sorts into ascending order, A to Z.
++* S2-R6a: Every further click flips the direction again. There is no third state.
+ * S2-R7: The column header arrow always shows the direction that is currently applied.
+@@ -19,7 +20,7 @@
+ * S2-R9: Opening the page afresh returns the list to matrix name ascending.
+-* S2-R10: The tab label reads "Pricing matrices (N)".
++* S2-R10: The tab label reads Pricing matrices (N).
+ * S2-R11: One space separates the label text from the opening parenthesis.
+ * S2-R12: N is the total number of pricing matrices loaded for the tab.
+-* S2-R13: The default pricing matrix is not pinned. It sorts in the position its name gives it, in both directions, and keeps its Default badge there. This is production behaviour and it does not change. It is deliberately different from the Categories list, where the Default row is pinned first per S1-R19.
+-* S2-N1: If no pricing matrices exist, the Matrix Category column header still renders as sortable and still shows the ascending arrow, and the table shows its standard empty state.
++* S2-R13: The default pricing matrix is not pinned. It sorts in the position its name gives it, in both directions, and keeps its Default badge there. This is the behavior the Pricing Matrices tab has in production today and it does not change. It is deliberately different from the Categories list, where the Default row is pinned first per S1-R19.
++* S2-N1: If no pricing matrices exist, the Matrix Category column header still renders as sortable and still shows the ascending arrow. The table shows its standard empty state.
+ * S2-N2: If the user does not have the Settings - Parts permission, the user cannot open the Pricing page.
+@@ -30,2 +31,3 @@
+ - [ ] Given the header is clicked, then the order reverses and the arrow flips.
++- [ ] Given the header has been clicked twice (Z to A, then A to Z), when it is clicked a third time, then the list is Z to A again, the same order as the first click, and there is no third, unsorted state.
+ - [ ] Given matrices whose names differ only by case, then they sort together rather than every capital ahead of every lower-case name.
