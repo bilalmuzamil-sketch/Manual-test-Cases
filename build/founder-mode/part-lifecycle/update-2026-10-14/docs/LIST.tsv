@@ -1,0 +1,281 @@
+C154752	Setup (manual QA tester and Claude session) - C154752 Inventory opens on the Active tab, with the Inactive tab beside it
+C154753	Setup (manual QA tester and Claude session) - C154753 Parts that existed before the release are active and tracked
+C425585	Setup (manual QA tester and Claude session) - C425585 Each tab lists only the parts with that status at the current location
+C425586	Setup (manual QA tester and Claude session) - C425586 Switching tabs ends bulk mode and clears the ticked rows
+C425587	Setup (manual QA tester and Claude session) - C425587 Search, filters and sort work the same way on the Inactive tab
+C425588	Setup (manual QA tester and Claude session) - C425588 Export from each tab holds only that tab's parts
+C425589	Setup (manual QA tester and Claude session) - C425589 Export shows Not Tracked for an untracked part and has no status column
+C425590	Setup (manual QA tester and Claude session) - C425590 Cycle count on the Inactive tab counts only the inactive parts
+C425591	Setup (manual QA tester and Claude session) - C425591 An empty Inactive tab says No inactive parts at this location.
+C425592	Setup (manual QA tester and Claude session) - C425592 An Inactive tab emptied by a search shows the usual no-match message
+C154754	Setup (manual QA tester and Claude session) - C154754 The actions menu offers Deactivate parts between Cycle count and Export
+C154755	Setup (manual QA tester and Claude session) - C154755 Outside bulk mode the list has no checkboxes and a row click opens the part
+C154756	Setup (manual QA tester and Claude session) - C154756 In bulk mode a click anywhere on a row ticks it instead of opening it
+C154757	Setup (manual QA tester and Claude session) - C154757 The bulk bar sits under the tabs and counts the ticked rows
+C154758	Setup (manual QA tester and Claude session) - C154758 The X on the bulk bar shows Clear selection and leaves bulk mode
+C154759	Setup (manual QA tester and Claude session) - C154759 Confirming Deactivate moves the ticked parts to the Inactive tab
+C154760	Setup (manual QA tester and Claude session) - C154760 When some parts fail, only the failed parts stay ticked
+C154762	Setup (manual QA tester and Claude session) - C154762 With nothing ticked Deactivate is disabled and its hover text says why
+C154763	Setup (manual QA tester and Claude session) - C154763 A part on an open work order can still be deactivated
+C425593	Setup (manual QA tester and Claude session) - C425593 Turning on Deactivate parts adds a checkbox column at the left edge
+C425594	Setup (manual QA tester and Claude session) - C425594 The header checkbox ticks only the rows loaded so far
+C425595	Setup (manual QA tester and Claude session) - C425595 The bulk bar is near-black in the light theme and white in the dark theme
+C425596	Setup (manual QA tester and Claude session) - C425596 More than 200 ticked parts disables Deactivate and Activate
+C425597	Setup (manual QA tester and Claude session) - C425597 Search, filters, sorting and scrolling keep working in bulk mode
+C425598	Setup (manual QA tester and Claude session) - C425598 Changing the search or a filter clears the ticks but sorting keeps them
+C425599	Setup (manual QA tester and Claude session) - C425599 In bulk mode the actions menu offers only Export
+C425600	Setup (manual QA tester and Claude session) - C425600 Bulk mode cannot be turned on while a cycle count is running
+C425601	Setup (manual QA tester and Claude session) - C425601 When every ticked part fails, nothing changes and the ticks stay
+C425603	Setup (manual QA tester and Claude session) - C425603 Deactivating a part with a core charge also deactivates its core
+C425604	Setup (manual QA tester and Claude session) - C425604 The work order lines bulk bar works as before and its X shows Clear selection
+C154764	Setup (manual QA tester and Claude session) - C154764 Activate parts on the Inactive tab opens the same bulk mode with Activate
+C154765	Setup (manual QA tester and Claude session) - C154765 Confirming Activate moves the ticked parts back to the Active tab
+C425605	Setup (manual QA tester and Claude session) - C425605 With nothing ticked Activate is disabled and its hover text says why
+C425606	Setup (manual QA tester and Claude session) - C425606 Bulk mode on the Inactive tab behaves exactly as on the Active tab
+C154828	Setup (manual QA tester and Claude session) - C154828 The Part Library page has no button that creates an entry
+C154829	Setup (manual QA tester and Claude session) - C154829 Clicking a Part Library row opens the entry's detail page
+C154830	Setup (manual QA tester and Claude session) - C154830 A new Part Library entry appears only when a new part number is used
+C154831	Setup (manual QA tester and Claude session) - C154831 Part Library entries from before the release stay listed
+C425607	Setup (manual QA tester and Claude session) - C425607 Users with and without Create & Edit see the same Part Library toolbar
+C425608	Setup (manual QA tester and Claude session) - C425608 Part Library rows can still be ticked and changed with Set category
+C425609	Setup (manual QA tester and Claude session) - C425609 Part Library search, filters, sorting and columns still work
+C425610	Setup (manual QA tester and Claude session) - C425610 Changing an entry's number on the Part Library page renames the part
+C425611	Setup (manual QA tester and Claude session) - C425611 Changing an entry's description on the Part Library page reaches every location
+C425612	Setup (manual QA tester and Claude session) - C425612 The Part Library page refuses a number that another entry already has
+C425613	Setup (manual QA tester and Claude session) - C425613 A number changed on the Part Library page reaches an open part request
+C425614	Setup (manual QA tester and Claude session) - C425614 A Part Library number over 50 characters is refused while on an open request
+C425615	Setup (manual QA tester and Claude session) - C425615 The Part Library page keeps upper and lower case in a typed part number
+C425616	Setup (manual QA tester and Claude session) - C425616 A part requested from a vendor reaches the Part Library when it is received
+C425617	Setup (manual QA tester and Claude session) - C425617 Spaces around a typed part number do not create a second Part Library entry
+C425618	Setup (manual QA tester and Claude session) - C425618 An entry with no part behind it can be edited and a new part links to it
+C154832	Setup (manual QA tester and Claude session) - C154832 The Parts menu, page title and browser tab read Part Library
+C154833	Setup (manual QA tester and Claude session) - C154833 Deleting an unused Part Library entry asks and confirms in Part Library words
+C154834	Setup (manual QA tester and Claude session) - C154834 Roles & Permissions shows the Part Library and Inventory permission group
+C154835	Setup (manual QA tester and Claude session) - C154835 An old bookmark to the Catalog page opens the Part Library
+C425619	Setup (manual QA tester and Claude session) - C425619 The edit window for a Part Library entry is titled Edit Library Part
+C425620	Setup (manual QA tester and Claude session) - C425620 Deleting a Part Library entry that a part uses is refused
+C425621	Setup (manual QA tester and Claude session) - C425621 Saving a Part Library entry that was deleted in another tab is refused
+C425623	Setup (manual QA tester and Claude session) - C425623 A part lookup result from the shared list shows Part Library as its source
+C425624	Setup (manual QA tester and Claude session) - C425624 A special-order lookup result shows Part Library and its vendor
+C425625	Setup (manual QA tester and Claude session) - C425625 Release day leaves every role's permissions as they were
+C425626	Setup (manual QA tester and Claude session) - C425626 Release day keeps saved names that contain the word Catalog
+C425602	Setup (manual QA tester and Claude session) - C425602 A server error during a bulk change shows Failed to update part status
+C425622	Setup (manual QA tester and Claude session) - C425622 Part request refusals about the Part Library use Part Library wording
+C425629	Setup (manual QA tester and Claude session) - C425629 The parts import puts a tracked part with no bin into an Unassigned bin
+C425701	Setup (manual QA tester and Claude session) - C425701 A rename through the public API carries over like a rename in the part dialog
+C425723	Setup (manual QA tester and Claude session) - C425723 Server errors in the part dialog show the failure messages
+C425755	Setup (manual QA tester and Claude session) - C425755 The public API refuses to create a part whose number already exists
+C425776	Setup (manual QA tester and Claude session) - C425776 A description changed through the public API shows Changed through: Public API
+C540877	Setup (manual QA tester and Claude session) - C540877 Receiving a typed purchase order line adds its number to the Part Library
+C154766	Setup (manual QA tester and Claude session) - C154766 New Inventory Part opens with tracking on in its own Inventory Tracking section
+C154767	Setup (manual QA tester and Claude session) - C154767 Switching tracking off hides Min and Max but keeps the bin section
+C154768	Setup (manual QA tester and Claude session) - C154768 An untracked part shows Not Tracked with its bins, Min and Max in the list
+C154769	Setup (manual QA tester and Claude session) - C154769 A tracked new part always keeps a default bin in the dialog
+C425627	Setup (manual QA tester and Claude session) - C425627 Inventory Tracking info icon shows the tracking help text
+C425628	Setup (manual QA tester and Claude session) - C425628 An untracked part saves with its bin and quantity as a shelf reference
+C425630	Setup (manual QA tester and Claude session) - C425630 Inventory Value report leaves out an untracked part
+C154770	Setup (manual QA tester and Claude session) - C154770 Turning tracking on gives a part with no bin the default bin at zero
+C154771	Setup (manual QA tester and Claude session) - C154771 Turning tracking off and back on keeps Min and Max
+C154772	Setup (manual QA tester and Claude session) - C154772 Turning tracking off on a part with stock asks for no confirmation
+C154773	Setup (manual QA tester and Claude session) - C154773 Turning tracking off keeps every bin quantity
+C425631	Setup (manual QA tester and Claude session) - C425631 Turning tracking on marks the first bin as default when none is
+C425632	Setup (manual QA tester and Claude session) - C425632 The list shows Not Tracked right after Save, without a page reload
+C425633	Setup (manual QA tester and Claude session) - C425633 Turning tracking back on shows the count as it stands now
+C425634	Setup (manual QA tester and Claude session) - C425634 A part's core turns untracked together with the part
+C425635	Setup (manual QA tester and Claude session) - C425635 A core charge added to an untracked part gives it an untracked core
+C425636	Setup (manual QA tester and Claude session) - C425636 Cycle count shows Not Tracked for an untracked part and never counts it
+C425637	Setup (manual QA tester and Claude session) - C425637 The printed count sheet leaves out an untracked part
+C425638	Setup (manual QA tester and Claude session) - C425638 Part History records Tracking turned off and Tracking turned on
+C425640	Setup (manual QA tester and Claude session) - C425640 Importing Min, Max and a bin quantity for an untracked part saves them
+C425657	Setup (manual QA tester and Claude session) - C425657 Inventory Value for an earlier date still counts a part untracked today
+C425658	Setup (manual QA tester and Claude session) - C425658 Inventory Value before the release date counts every part as tracked
+C154774	Setup (manual QA tester and Claude session) - C154774 Searching not tracked returns untracked parts plus normal matches
+C154775	Setup (manual QA tester and Claude session) - C154775 Total Qty sort puts untracked parts below tracked parts in both directions
+C425641	Setup (manual QA tester and Claude session) - C425641 Searching track or no does not find untracked parts by their tracking
+C425642	Setup (manual QA tester and Claude session) - C425642 With no untracked parts, searching not tracked returns no results
+C425643	Setup (manual QA tester and Claude session) - C425643 Sorting by Avg Cost ignores whether parts are tracked
+C425644	Setup (manual QA tester and Claude session) - C425644 With no sort chosen, tracked parts are listed before untracked parts
+C425645	Setup (manual QA tester and Claude session) - C425645 Supply filter shows an untracked part only under All
+C425656	Setup (manual QA tester and Claude session) - C425656 Global search shows Not Tracked for an untracked part
+C154780	Setup (manual QA tester and Claude session) - C154780 Without Delete, the actions menu offers no Deactivate parts or Activate parts
+C154781	Setup (manual QA tester and Claude session) - C154781 Without Delete, the tracking switch shows but cannot be changed
+C154782	Setup (manual QA tester and Claude session) - C154782 Admin, Service Manager and Parts Manager see the status and tracking controls
+C154783	Setup (manual QA tester and Claude session) - C154783 A status change is refused for a user who has just lost the right to delete
+C425646	Setup (manual QA tester and Claude session) - C425646 A user with only View sees no Inventory actions menu
+C425647	Setup (manual QA tester and Claude session) - C425647 A custom role can change part status only once Delete is granted
+C425648	Setup (manual QA tester and Claude session) - C425648 Without Delete, New Inventory Part creates only tracked parts
+C425649	Setup (manual QA tester and Claude session) - C425649 Without Delete, Part Status in the part dialog is disabled
+C425650	Setup (manual QA tester and Claude session) - C425650 Without Delete, the part dialog shows no Delete Part button
+C425651	Setup (manual QA tester and Claude session) - C425651 Without Delete, a user can still rename a part stocked at two locations
+C425652	Setup (manual QA tester and Claude session) - C425652 Without Delete, pricing and bin quantities can still be edited as before
+C425653	Setup (manual QA tester and Claude session) - C425653 Without Delete, a user can still edit an untracked part's price and bins
+C425654	Setup (manual QA tester and Claude session) - C425654 A tracking change is refused for a user who has just lost the right to delete
+C425655	Setup (manual QA tester and Claude session) - C425655 Creating an untracked part is refused for a user who has just lost Delete
+C425660	Setup (manual QA tester and Claude session) - C425660 Bins of +5 and -2 show quantity 3 and $30 in Inventory Value
+C425661	Setup (manual QA tester and Claude session) - C425661 A part with only a -2 bin shows -2 and -$20 and lowers the totals
+C425662	Setup (manual QA tester and Claude session) - C425662 Bins of +5 and -5 add nothing to the Inventory Value totals
+C425663	Setup (manual QA tester and Claude session) - C425663 Bins of +5 and +3 still show quantity 8 and $80 in Inventory Value
+C425664	Setup (manual QA tester and Claude session) - C425664 The Inventory list's available quantity still ignores a negative bin
+C425665	Setup (manual QA tester and Claude session) - C425665 The Supply filter still uses the positive bins for a part with a negative bin
+C425666	Setup (manual QA tester and Claude session) - C425666 Fractional bins of +2.5 and -1.25 show quantity 1.25 and $12.50
+C425667	Setup (manual QA tester and Claude session) - C425667 The Inventory Value export shows the same net figures as the screen
+C425668	Setup (manual QA tester and Claude session) - C425668 Inventory Value location and category filters still scope the net figures
+C540878	Setup (manual QA tester and Claude session) - C540878 Inventory Value for a day after release counts a bin below zero
+C540879	Setup (manual QA tester and Claude session) - C540879 Inventory Value for a date before release keeps its saved figures
+C154776	Setup (manual QA tester and Claude session) - C154776 New Inventory Part opens with Description then Part Number, no library pick
+C154777	Setup (manual QA tester and Claude session) - C154777 A number that exactly matches one Part Library entry links to it
+C154778	Setup (manual QA tester and Claude session) - C154778 A number held by two Part Library entries gets a new entry of its own
+C154779	Setup (manual QA tester and Claude session) - C154779 Description and Part Number must be filled to save a new part
+C425669	Setup (manual QA tester and Claude session) - C425669 Spaces before and after the number and description are removed on save
+C425670	Setup (manual QA tester and Claude session) - C425670 A linked Part Library entry keeps its tags and gains the new ones
+C425671	Setup (manual QA tester and Claude session) - C425671 A linked entry with no manufacturer takes the one picked on the new part
+C425672	Setup (manual QA tester and Claude session) - C425672 A linked entry keeps the manufacturer it already has
+C425673	Setup (manual QA tester and Claude session) - C425673 A linked entry keeps its own category
+C425674	Setup (manual QA tester and Claude session) - C425674 No Part Library message when the typed description only differs in case
+C425675	Setup (manual QA tester and Claude session) - C425675 A new number creates its own Part Library entry with no message
+C425676	Setup (manual QA tester and Claude session) - C425676 A number that differs only in upper or lower case is not linked
+C425677	Setup (manual QA tester and Claude session) - C425677 A part number already stocked here and active is refused
+C425678	Setup (manual QA tester and Claude session) - C425678 A part number already stocked here but inactive is refused
+C425679	Setup (manual QA tester and Claude session) - C425679 With active and inactive matches, the active part's number is named
+C425680	Setup (manual QA tester and Claude session) - C425680 Saving a part with its number unchanged is never refused as a duplicate
+C425681	Setup (manual QA tester and Claude session) - C425681 Changing a part's number to one already stocked here is refused
+C425682	Setup (manual QA tester and Claude session) - C425682 A blank description or number never reaches the save
+C425683	Setup (manual QA tester and Claude session) - C425683 A part that existed before the release keeps its Part Library entry
+C154836	Setup (manual QA tester and Claude session) - C154836 The part window title shows Active or Inactive beside the close X
+C154837	Setup (manual QA tester and Claude session) - C154837 Editing shows Description and Part Number as ordinary text fields
+C154838	Setup (manual QA tester and Claude session) - C154838 Saving a new part number renames the part in place
+C154839	Setup (manual QA tester and Claude session) - C154839 Changing the part number warns how many other locations it changes
+C154840	Setup (manual QA tester and Claude session) - C154840 A number that another Part Library entry has exactly is refused
+C425684	Setup (manual QA tester and Claude session) - C425684 Edit Inventory Part lists its fields in the set order
+C425685	Setup (manual QA tester and Claude session) - C425685 New Inventory Part lists its fields in the set order
+C425686	Setup (manual QA tester and Claude session) - C425686 Cost and price fields show only to a user who can see financial data
+C425687	Setup (manual QA tester and Claude session) - C425687 The part window footer shows Delete Part, Cancel and Save
+C425688	Setup (manual QA tester and Claude session) - C425688 Cancel closes the part window without saving
+C425689	Setup (manual QA tester and Claude session) - C425689 Delete Part shows only on an existing part, to a user with Delete
+C425690	Setup (manual QA tester and Claude session) - C425690 Changing the description warns how many other locations it changes
+C425691	Setup (manual QA tester and Claude session) - C425691 Saving a new description changes it at every location and on its core
+C425692	Setup (manual QA tester and Claude session) - C425692 A number that differs from another entry only in case is accepted
+C425693	Setup (manual QA tester and Claude session) - C425693 Description and Part Number cannot be left empty when editing
+C425694	Setup (manual QA tester and Claude session) - C425694 Saving with the part number unchanged leaves the number and open work alone
+C425695	Setup (manual QA tester and Claude session) - C425695 Adding spaces around the part number is not a change
+C425696	Setup (manual QA tester and Claude session) - C425696 A rename carries over to open purchase order lines at every location
+C425697	Setup (manual QA tester and Claude session) - C425697 A rename carries over to open part requests
+C425698	Setup (manual QA tester and Claude session) - C425698 A rename carries over to canned jobs that hold the part
+C425699	Setup (manual QA tester and Claude session) - C425699 A rename carries over to vendor returns that are not completed
+C425700	Setup (manual QA tester and Claude session) - C425700 A delivery opened before a rename is received under the new number
+C425702	Setup (manual QA tester and Claude session) - C425702 Part Status offers Active and Inactive, set to the saved status
+C425703	Setup (manual QA tester and Claude session) - C425703 Part Status is disabled for a user without Delete
+C425704	Setup (manual QA tester and Claude session) - C425704 Picking a different status changes nothing until Save
+C425705	Setup (manual QA tester and Claude session) - C425705 The status pill keeps the saved status while another is picked
+C425706	Setup (manual QA tester and Claude session) - C425706 Save with a different status asks for confirmation first
+C425707	Setup (manual QA tester and Claude session) - C425707 Confirming Deactivate saves the edits and shows Part deactivated.
+C425708	Setup (manual QA tester and Claude session) - C425708 Confirming Activate saves the edits and shows Part activated.
+C425709	Setup (manual QA tester and Claude session) - C425709 Cancelling the confirmation saves nothing and keeps the picked status
+C425710	Setup (manual QA tester and Claude session) - C425710 Saving with the saved status picked asks no confirmation
+C425711	Setup (manual QA tester and Claude session) - C425711 A status change refused after the save keeps the confirmation open
+C425712	Setup (manual QA tester and Claude session) - C425712 A refused save closes the confirmation and saves nothing
+C425713	Setup (manual QA tester and Claude session) - C425713 Delete Part deletes the part at once with no confirmation
+C425714	Setup (manual QA tester and Claude session) - C425714 Delete Part on a part on a work order shows why and does nothing
+C425715	Setup (manual QA tester and Claude session) - C425715 Delete Part on a part with an open return shows why and does nothing
+C425716	Setup (manual QA tester and Claude session) - C425716 Deleting a part that reached a work order meanwhile is refused
+C425717	Setup (manual QA tester and Claude session) - C425717 Deleting a part that got an open return meanwhile is refused
+C425718	Setup (manual QA tester and Claude session) - C425718 A number over 50 characters is refused while on an open part request
+C425719	Setup (manual QA tester and Claude session) - C425719 The part window offers no way to move a part to another library entry
+C425720	Setup (manual QA tester and Claude session) - C425720 The parts import never changes an entry's part number
+C425721	Setup (manual QA tester and Claude session) - C425721 Re-importing the old number of a case-only rename updates that part
+C425722	Setup (manual QA tester and Claude session) - C425722 Re-importing a fully different old number creates a separate part
+C540880	Setup (manual QA tester and Claude session) - C540880 Changing only the case or punctuation of a part's own number saves
+C540881	Setup (manual QA tester and Claude session) - C540881 Vendor always shows in the part window, for every user
+C154784	Setup (manual QA tester and Claude session) - C154784 Work order part lookup no longer offers a part once it is inactive
+C154785	Setup (manual QA tester and Claude session) - C154785 Inactive part's dialog shows a grey Inactive badge in the title row
+C154786	Setup (manual QA tester and Claude session) - C154786 A user with only the View permission can open the Inactive tab
+C154787	Setup (manual QA tester and Claude session) - C154787 A work order line keeps its inactive part and can still be edited
+C154788	Setup (manual QA tester and Claude session) - C154788 An invoiced work order with an inactive part can be viewed and printed
+C425724	Setup (manual QA tester and Claude session) - C425724 Estimate part lookup no longer offers a part once it is inactive
+C425725	Setup (manual QA tester and Claude session) - C425725 Technician charge-out does not offer or accept an inactive part
+C425726	Setup (manual QA tester and Claude session) - C425726 Technician charge-out on a phone refuses an inactive part number
+C425727	Setup (manual QA tester and Claude session) - C425727 Purchase order line lookup does not offer an inactive part
+C425728	Setup (manual QA tester and Claude session) - C425728 Re-pointing a received vendor bill line does not offer an inactive part
+C425729	Setup (manual QA tester and Claude session) - C425729 Part sale line lookup does not offer an inactive part
+C425730	Setup (manual QA tester and Claude session) - C425730 Canned job is added without its inactive parts and one warning names them
+C425731	Setup (manual QA tester and Claude session) - C425731 Canned job warning names a typed vendor part by the inactive part's number
+C425732	Setup (manual QA tester and Claude session) - C425732 Canned job leaves out the fee that belongs to an inactive part
+C425733	Setup (manual QA tester and Claude session) - C425733 Vendor return lookup offers an inactive part with a grey Inactive tag
+C425734	Setup (manual QA tester and Claude session) - C425734 Vendor credit lookup offers an inactive part with a grey Inactive tag
+C425735	Setup (manual QA tester and Claude session) - C425735 Credit on a part sale invoice lists an inactive part with its tag
+C425736	Setup (manual QA tester and Claude session) - C425736 Credit on a work order invoice lists an inactive part with its tag
+C425737	Setup (manual QA tester and Claude session) - C425737 Library entry stocked only elsewhere is hidden when it matches an inactive part
+C425738	Setup (manual QA tester and Claude session) - C425738 Typing an inactive part number in full shows the inactive message
+C425739	Setup (manual QA tester and Claude session) - C425739 Saving a part request is refused once the part was retired meanwhile
+C425740	Setup (manual QA tester and Claude session) - C425740 Saving a part sale line is refused once the part was retired meanwhile
+C425741	Setup (manual QA tester and Claude session) - C425741 Saving a purchase order line is refused once the part was retired meanwhile
+C425742	Setup (manual QA tester and Claude session) - C425742 Global search lists an inactive part with a grey Inactive tag
+C425743	Setup (manual QA tester and Claude session) - C425743 Selecting an inactive part in global search opens the Inactive tab
+C425744	Setup (manual QA tester and Claude session) - C425744 Global search shows Not Tracked for an untracked part
+C425745	Setup (manual QA tester and Claude session) - C425745 A user without the View permission sees neither Inventory tab
+C425746	Setup (manual QA tester and Claude session) - C425746 Vendor return part search without View shows the access error
+C425747	Setup (manual QA tester and Claude session) - C425747 A completed part sale line with an inactive part keeps its totals
+C425748	Setup (manual QA tester and Claude session) - C425748 Changing a line to another inactive part is refused
+C425749	Setup (manual QA tester and Claude session) - C425749 A work order holding an inactive part can still be invoiced
+C425750	Setup (manual QA tester and Claude session) - C425750 Reopening a completed work order leaves its inactive part inactive
+C425751	Setup (manual QA tester and Claude session) - C425751 A part retired while on order can still be received and picked
+C425752	Setup (manual QA tester and Claude session) - C425752 Splitting a work order moves a line that holds an inactive part
+C425753	Setup (manual QA tester and Claude session) - C425753 Parts import updates an inactive part in place and keeps it inactive
+C425754	Setup (manual QA tester and Claude session) - C425754 Parts import with a blank Manufacturer keeps the part's manufacturer
+C425756	Setup (manual QA tester and Claude session) - C425756 Inventory Value report still lists a part after it is set inactive
+C425757	Setup (manual QA tester and Claude session) - C425757 Parts Velocity report still lists an inactive part's sales
+C154789	Setup (manual QA tester and Claude session) - C154789 Saving a different Part Status asks to confirm first
+C154790	Setup (manual QA tester and Claude session) - C154790 Bulk change that partly fails lists the failed part and its reason
+C154791	Setup (manual QA tester and Claude session) - C154791 A status change records who made it and when
+C154792	Setup (manual QA tester and Claude session) - C154792 Deactivating then reactivating keeps two Part History entries
+C154793	Setup (manual QA tester and Claude session) - C154793 Part History entry wording with and without a note
+C154794	Setup (manual QA tester and Claude session) - C154794 Bulk confirmation title and first line give the count
+C154795	Setup (manual QA tester and Claude session) - C154795 Bulk deactivation confirmation shows its three lines in order
+C154796	Setup (manual QA tester and Claude session) - C154796 Reactivation confirmation from the part dialog has one line
+C154797	Setup (manual QA tester and Claude session) - C154797 Confirmation note field is labelled Note (Optional) and stops at 255
+C154798	Setup (manual QA tester and Claude session) - C154798 Part History columns keep their width for a short entry
+C154799	Setup (manual QA tester and Claude session) - C154799 Confirm button is red to deactivate and blue to activate
+C154800	Setup (manual QA tester and Claude session) - C154800 Cancelling the confirmation changes nothing
+C425760	Setup (manual QA tester and Claude session) - C425760 Part dialog confirmation names the part as typed in the form
+C425761	Setup (manual QA tester and Claude session) - C425761 Part dialog deactivation confirmation shows its three lines in order
+C425762	Setup (manual QA tester and Claude session) - C425762 Bulk reactivation confirmation shows its two lines
+C425763	Setup (manual QA tester and Claude session) - C425763 Confirmation lines use medium weight and grey as specified
+C425764	Setup (manual QA tester and Claude session) - C425764 Bulk change that succeeds shows how many parts were updated
+C425765	Setup (manual QA tester and Claude session) - C425765 Bulk change lists a part deleted meanwhile as Part not found
+C425766	Setup (manual QA tester and Claude session) - C425766 A core has no row of its own to tick in Deactivate parts
+C425767	Setup (manual QA tester and Claude session) - C425767 A note of only spaces records no note
+C425768	Setup (manual QA tester and Claude session) - C425768 Bulk change of forty parts writes forty Part History entries
+C425769	Setup (manual QA tester and Claude session) - C425769 A core's status change writes its own Part History entry
+C425770	Setup (manual QA tester and Claude session) - C425770 A status entry has Staff, Date and Time and can be searched
+C425771	Setup (manual QA tester and Claude session) - C425771 Turning tracking off and on writes two Part History entries
+C425772	Setup (manual QA tester and Claude session) - C425772 Changing Min and Max in the part dialog writes one history entry
+C425773	Setup (manual QA tester and Claude session) - C425773 Changing Min and Max through the parts import writes an Import entry
+C425774	Setup (manual QA tester and Claude session) - C425774 Changing a part number is recorded at both locations with Changed at
+C425775	Setup (manual QA tester and Claude session) - C425775 Changing a description is recorded at both locations with Changed at
+C425777	Setup (manual QA tester and Claude session) - C425777 A core gets the same number and description history entries
+C425778	Setup (manual QA tester and Claude session) - C425778 Part History search finds entries by text or staff, in any case
+C425779	Setup (manual QA tester and Claude session) - C425779 Part History search shows only the matching bin rows
+C425780	Setup (manual QA tester and Claude session) - C425780 Prices in Part History are searchable only by users who see prices
+C425781	Setup (manual QA tester and Claude session) - C425781 Bulk change where every part fails keeps the selection
+C425782	Setup (manual QA tester and Claude session) - C425782 A status change with no parts ticked cannot be sent
+C540882	Setup (manual QA tester and Claude session) - C540882 No invoice-line or scan part lookup offers an inactive part
+C540883	Setup (manual QA tester and Claude session) - C540883 Bulk change count does not count the cores that change with their parts
+C573668	Setup (manual QA tester and Claude session) - C573668 Export holds every part the search matches, including rows not yet loaded
+C573669	Setup (manual QA tester and Claude session) - C573669 Export follows the Category filter and the Supply filter
+C573670	Setup (manual QA tester and Claude session) - C573670 Export with nothing matching shows Empty export and saves no file
+C573671	Setup (manual QA tester and Claude session) - C573671 Delete is disabled while a part still uses the Part Library entry
+C573672	Setup (manual QA tester and Claude session) - C573672 A special order not yet received is not offered with its vendor
+C573673	Setup (manual QA tester and Claude session) - C573673 A special order received at another location is not offered with its vendor
+C573674	Setup (manual QA tester and Claude session) - C573674 The special-order result names the vendor of the most recent delivery
+C573675	Setup (manual QA tester and Claude session) - C573675 After its default bin is deleted, turning tracking on marks the remaining bin
+C573676	Setup (manual QA tester and Claude session) - C573676 A part's core has no row of its own on the Inventory or Part Library list
+C573677	Setup (manual QA tester and Claude session) - C573677 A core's own Part History page shows its name and its history
+C573678	Setup (manual QA tester and Claude session) - C573678 A parts import row with a number already stocked here updates that part
+C573679	Setup (manual QA tester and Claude session) - C573679 A parts import row with no part number is skipped with no message
+C573680	Setup (manual QA tester and Claude session) - C573680 An import row with no description keeps the part's description
+C573681	Setup (manual QA tester and Claude session) - C573681 A new part imported with no description takes its part number
+C573682	Setup (manual QA tester and Claude session) - C573682 An imported part with no bin location goes to the Unassigned bin
+C573683	Setup (manual QA tester and Claude session) - C573683 A linked entry whose manufacturer no longer exists takes the one picked
+C573684	Setup (manual QA tester and Claude session) - C573684 Canned job warning lists inactive parts A to Z, separated by commas
+C573685	Setup (manual QA tester and Claude session) - C573685 Without Vendor Order Management View, Returns cannot be opened
+C573686	Setup (manual QA tester and Claude session) - C573686 With Vendor Order Management View only, a new return cannot be started
