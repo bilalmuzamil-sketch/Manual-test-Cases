@@ -1,0 +1,13 @@
+import {ob,J} from './lib.mjs'; import {loc} from './seed.mjs'; import {readCores,dlgButtons} from './wiz.mjs'; import fs from 'fs';
+const A=JSON.parse(fs.readFileSync('DEMO.json')); const s=await ob(); const p=s.page; await loc(s);
+await s.go('/workorders'); await p.waitForTimeout(4000);
+const srch=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].filter(e=>/search/i.test(e.getAttribute('data-test-id'))&&e.offsetParent).map(e=>e.getAttribute('data-test-id')+'|'+e.tagName).slice(0,10)); console.log('search ctrls',J(srch,500));
+await s.go('/workorders/'+A.work_order_id+'/lines'); await p.waitForTimeout(4500);
+const btn=p.locator(`[data-test-id="button_action_complete_line_${A.line.line_id}"]`); console.log('complete btn text',await btn.innerText());
+await btn.click(); await p.waitForTimeout(2500);
+let c=await readCores(p); console.log('step1',c?.title,J(c?.pills,200));
+await p.locator('.q-dialog [data-test-id="pill_step_resolve-cores"]').click(); await p.waitForTimeout(1500);
+c=await readCores(p); console.log('rows',J(c?.rows?.map(r=>[r.subtitle,r.charge]),500),(c?.all?.match(/\d+ \/ \d+ resolved/)||[''])[0]);
+await p.screenshot({path:'ev/DEMO-walk.png'});
+await p.locator('.q-dialog [data-test-id="button_cancel_completion"]').click(); await p.waitForTimeout(1500);
+console.log('dialog closed',!(await p.locator('.q-dialog').count())); await s.close();

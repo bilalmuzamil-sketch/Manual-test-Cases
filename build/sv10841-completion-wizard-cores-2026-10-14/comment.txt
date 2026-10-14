@@ -1,0 +1,57 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on the QA branch *sv10841* (build *v26.40.17-c177759*) on *14 October 2026*, and compared it with production (build *v26.40.17-f5bf8f4*).
+
+* When a cored part arrives in two or more deliveries, the {{Resolve cores}} step now lists one core per delivery, and each delivery's core is billed or returned. On production the same work order lists only one.
+* Each row shows the amount that will be billed and its own vendor invoice number. The {{+$X to invoice}} total matched what was billed on the line every time.
+
+h3. Before and after
+!sv10841-01-before-after-hd.png|width=826,height=1497!
+_Before (production): a part with a $25.00 core, quantity 3, received 1 on one vendor invoice and 2 on another. Resolve cores lists one core. After (QA branch): the same set-up lists two, one per vendor invoice, at $50.00 and $25.00._
+
+h3. What I checked
+||#||Check||Result||
+|1|Quantity 3, $25.00 core, received 1 + 2 on two vendor invoices: two rows under {{INVENTORY CORES · 2}}, {{0 / 2 resolved}} (_S10841-17580_)|PASSED|
+|2|Row amounts {{Core $25.00}} and {{Core $50.00}} with {{2 × $25.00}}; each subtitle shows part number, line and its own vendor invoice number|PASSED|
+|3|One row OK reads "no charge", the other Not OK reads "added to invoice"; total {{+$50.00 to invoice}}, {{2 / 2 resolved}}|PASSED|
+|4|After finishing: the OK core is *Returned* on the Lines tab, the Not OK core is billed $50.00, the work order goes to Review|PASSED|
+|5|Decisions swapped: {{+$25.00 to invoice}}, $25.00 billed (_S10841-17581_)|PASSED|
+|6|Both Not OK: {{+$75.00 to invoice}}, $75.00 billed (_S10841-17582_)|PASSED|
+|7|Three deliveries (1 + 1 + 3 of a $10.00 core): three rows $10.00, $10.00, $30.00 with three different invoice numbers; all Not OK {{+$50.00 to invoice}}; $10 + $10 + $30 billed (_S10841-17583_)|PASSED|
+|8|One delivery already resolved (Ok on its core from the Lines tab): the wizard still lists the other delivery's core (_S10841-17584_)|PASSED|
+|9|Cores left undecided with {{Continue Without Resolving}}: {{Mark Reviewed}} reopens Resolve cores with both deliveries listed, {{0 / 2 resolved}} (_S10841-17593_)|PASSED|
+|10|Quantity 1, one delivery: one row {{Core $25.00}} with no "×"; OK "no charge", Not OK {{+$25.00 to invoice}}, {{1 / 1 resolved}}; $25.00 billed (_S10841-17585_)|PASSED|
+|11|Quantity 3, one delivery: one row {{Core $75.00}} with {{3 × $25.00}}; Not OK bills $75.00 (_S10841-17586_)|PASSED|
+|12|Special order of 5 ($3.00 core), received 1 + 2, 2 still owed: received rows $3.00 and $6.00 with their invoice numbers; {{SPECIAL ORDER CORES · 1}} priced for the 2 owed units only ($6.00); all Not OK {{+$15.00 to invoice}}; after receiving the last 2 the work order went to Review without asking again, $3 + $6 + $6 billed (_S10841-17587_)|PASSED|
+|13|Decision made before the part is picked (inventory part P550848 with a $7.00 core): OK chosen, then {{Pick All}}; OK still selected, not asked again, core *Returned* after finishing (_S10841-17589_)|PASSED|
+|14|Back to {{Resolve cores}} after {{Save Core Decisions}}: each core listed once with its own decision, subtitle and amount (_S10841-17587_)|PASSED|
+|15|Accessibility and console: every OK / Not OK button's label includes the subtitle with the invoice number (for example "Mark Core for ZZ cored part S1 (ZZ10841-S1-12343 · Line 1 · ZZ10841-A1) returned"); no console errors or warnings on any run|PASSED|
+|16|{{Auto-pick inventory parts}} switched on: the cored inventory part is listed once at {{Core $14.00}} ({{2 × $7.00}}), resolves normally and $14.00 is billed (_S10841-17590_). The setting was switched back off afterwards|PASSED|
+|17|Work order with no cored parts: no Resolve cores step, completes as before (_S10841-17592_)|PASSED|
+
+!sv10841-02-decide-and-bill-hd.png|width=1546,height=1354!
+_Rows 3 and 4: the wizard total ({{+$50.00}}) and what lands on the Lines tab ($50 billed, the other core Returned)._
+
+!sv10841-03-three-deliveries-hd.png|width=1546,height=698!
+_Row 7: three deliveries, three cores billed $10 + $10 + $30 = $50._
+
+!sv10841-04-special-order-hd.png|width=1546,height=1768!
+_Row 12: the owed units are priced at 2 × $3.00, and the $15.00 total matches what was billed._
+
+!sv10841-06-decided-before-pick-hd.png|width=826,height=1468!
+_Row 13: OK chosen before the part was picked is kept after Pick All._
+
+!sv10841-05-back-keeps-decisions-hd.png|width=826,height=607!
+_Row 14: back to Resolve cores, all three cores and their decisions are still there._
+
+!sv10841-07-undecided-still-listed-hd.png|width=1162,height=905!
+_Row 9: neither delivery's core hides the other._
+
+h3. How to see it
+Open the QA branch https://sv10841.qa.shopview.com and click *Admin* on the login page. Work order S10841-17594 already has its cored part received in two deliveries.
+# In the top menu click {{Work Orders}}.
+# Above the list, on the right, click {{Search}} (the magnifying glass) and type {{S10841-17594}}, then open it.
+# On the {{Lines}} tab, on the line *Service - Wheels off trailer tri-axle*, click the green {{Complete}} button in the {{Action}} column.
+# In the {{Tech stories}} pop-up, type any text in the story box and press Tab.
+# The {{Resolve cores}} step shows two rows: {{ZZ10841-DEMO-1}} at {{Core $25.00}} and {{ZZ10841-DEMO-2 · 2 × $25.00}} at {{Core $50.00}}.

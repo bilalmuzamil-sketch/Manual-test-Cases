@@ -34,3 +34,20 @@ Every row is driven on screen (the completion wizard) unless marked setup.
 
 ## Results
 (filled in as observed)
+
+## Observation O1 (same on production — not introduced by this ticket)
+Marking one core OK and then clicking **Continue Without Resolving** completes the line (`lines/bulk-status complete`) without saving that decision: both cores stay open (Ok / Not Ok on the Lines tab) and the work order goes to **Review**. Production S2-977 (customer ZZAUTOTEST SV10841 PR2, received 1 on ZZ10841-P5 + 2 on ZZ10841-P6) does exactly the same. Production also confirmed the bug a second time: its wizard listed one core ("0 / 1 resolved") for this two-delivery part. Not raised: the button says "Without Resolving" and the behaviour matches production.
+
+## Verdict
+PASSED — all 16 matrix cells pass on v26.40.17-c177759 (plus case 3's second path). No recording, no technical section (QA lead's answers).
+
+## Pre-post gate (2026-10-14 ~09:30 UTC)
+- Branch marker re-read: v26.40.17-c177759, last-modified Wed 14 Oct 2026 07:16:54 GMT — unchanged from the start of the pass. FE-only PR (handoff: BE files 0).
+- Ticket re-read live: TESTING QA, Medium, last comments 78631 / 78634 (Dipesh) — nothing new.
+- Reproduction walked live on S10841-17594 (customer ZZAUTOTEST SV10841 DEMO 27744): Complete → Tech stories → Resolve cores showed ZZ10841-DEMO-1 Core $25.00 and ZZ10841-DEMO-2 · 2 × $25.00 Core $50.00, "0 / 2 resolved"; cancelled, so the work order is left ready.
+- Voice scan: no AI / model / attribution text. No technical section. No recording.
+- Posted comment **78644** (2026-10-14T04:34:36-0500). Read back in ADF: first line "OVERALL QA STATUS: PASSED", 7 media all `type:file` in the order sent, 18 table rows (header + 17).
+
+## Learning check
+- `pgrep -f "<pattern>"` inside an `until` loop matches the loop's own shell (the pattern is in its command line), so the loop never ends — wait on a file marker instead, or match with a pattern the shell line cannot contain. Added to LESSONS-INDEX.
+- Recipes added to playbook §AP: wizard ids (`button_resolve_cores_continue` "Save Core Decisions", step pills jump ahead, production has no row ids), `inventory/parts/change` bins use `binLocationId`, and a 1000-px-high viewport cuts off a third core row.
