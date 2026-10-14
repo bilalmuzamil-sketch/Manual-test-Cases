@@ -1,0 +1,979 @@
+|  |  |
+| --- | --- |
+| **PM** | Milos Vasic |
+| **Jira Epic** | [SV-8181](https://shopview.atlassian.net/browse/SV-8181) |
+| **Design** | <custom data-type="smartlink" data-id="id-0">https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html</custom>  |
+| **QA Environment** | [https://sv8181.qa.shopview.com](https://sv8181.qa.shopview.com) ( this will be replaced with real one i used this as POC)  |
+
+# Business Case
+
+Inspections are already digital, but a finding does not lead to work. When a technician marks three items Not OK, those findings land in a PDF and stop there; somebody has to re-type each one by hand as a work order line. Anything nobody re-types never becomes work, and there is no list of inspections that found something and were never actioned. Inspections are also reachable only through the work order they were run on, so a fleet customer asking about a truck's brake history has no answer.
+
+# Feature Overview
+
+**Core ShopView**
+
+* Users with ShopCoach can turn an inspection's Monitor and Not OK findings into work order lines in one action
+* The build can be started from three places: a completed inspection, the inspection report note on a work order, and the asset's Inspections tab
+* Users choose whether the lines go on the inspection's own work order or a new one, and the choice is made before the drafting starts
+* ShopCoach drafts the lines and the user reviews and edits them; nothing reaches the work order until they are added
+* A work order that is no longer an eligible build target is never modified; the system creates a new work order instead
+* A note and an Audit Log entry record which inspection the lines came from
+* An Inspections tab on the asset record lists every inspection ever run on that asset, showing which ones still need a work order
+* Technicians can record brake and tire measurements per axle, adding axles at fill time, with a verdict on every tire rather than one for the whole row
+* Template authors can require a note on flagged responses, a photo on a Not OK response, and attach a reference file to any question
+* Template authors can attach a follow-up to a single response of a checkbox question, and require the technician to acknowledge it on a Monitor or Not OK response
+* The template builder offers starting points and a reduced empty state
+
+**Mobile**
+
+* Technicians can complete an inspection and build a work order from it on a phone
+* The asset Inspections tab and the inspection report note are usable on a phone
+
+**Out of scope**
+
+* A non-ShopCoach line builder. Building lines from an inspection requires ShopCoach; without it an inspection reports its findings and a person builds the work order
+* The Line Builder started from a work order with no inspection. That flow already exists and is not an inspection story. It is referenced only where it constrains this work, in S15-R16 and S15-N5 — and, since it reaches the same drafting, it carries the same build action appearance required by S2-R16
+* Template authoring on mobile. The builder is a desktop tool
+* Notifications for inspections that need a work order
+* Customer portal changes. The PDF report is the customer-facing artefact
+* Bulk building across several inspections at once
+
+# Jobs to be Done
+
+**When** I finish an inspection and have found problems, **I want to** turn those findings into work order lines without re-typing them, **so I can** quote and schedule the work without losing anything.
+
+**When** a customer asks what has been done to an asset over time, **I want to** see every inspection run on it in one list, **so I can** answer from history instead of hunting through work orders.
+
+**When** I am reviewing a work order weeks later, **I want to** see that its lines came from an inspection and which one, **so I can** trace the work back to the evidence for it.
+
+**When** I inspect a tractor-trailer, **I want to** record measurements per axle, left and right, **so I can** capture what I actually measured instead of forcing it into a single number.
+
+Goals:
+
+* Remove double entry between an inspection and a work order
+* Make unactioned findings visible instead of silently lost
+* Give the asset record a condition history
+* Let one template carry the procedure the technician needs while answering
+
+# Glossary
+
+* **Position:** one tire or one brake value. It carries a verdict.
+* **Row:** one measurement on one axle, for example Tire pressure on Axle 1. A flagged row is one finding.
+* **Axle:** counts once in Pass, Monitor or Needs attention, with its worst verdict.
+* **Finding:** a flagged row or a flagged field. It is what can become a work order line.
+* Count: the per-verdict numbers, on the report as Pass, Monitor and Needs attention, and in the app as OK, Monitor and Not OK.
+
+# Key Decisions
+
+* Both Monitor and Not OK findings feed the work order. Monitor items are planned work, not noise.
+* A work order that is not an eligible build target is never modified. Where an invoice exists, adding a line acts on it, and a user with line rights but no invoicing rights would silently void an invoice they cannot even open. Complete with no invoice is ineligible for a different reason: it is finished work the technician has come off, and new findings are new work. The system creates a new work order instead.
+* Building is per inspection, never batched across inspections, so the trail from an inspection to a work order stays one to one.
+* Per axle is its own field type. The Measurement field returns to a single value with a unit.
+* A verdict is recorded per position, not per row. A row's verdict and an axle's verdict are derived from the positions beneath them, worst first.
+* A count is per axle, and it is not the same unit as a finding. An axle contributes one count carrying its worst verdict, while a flagged row produces its own finding. A count answers how many things need attention; a finding says what each one is. Counting per position would make one per-axle field dwarf a seventy-question checklist and would make the same truck count differently depending on whether its axles are single or dual.
+* A unit belongs to a measurement row, and the technician can change it while filling — one row at a time, across the whole axle. The template's unit is the default, not a lock: the author cannot know whether the unit in front of the technician reads in inches or millimetres.
+* What is not supported is a unit per position. One tire in inches and the next in millimetres would make a row's readings incomparable and its roll-up meaningless.
+* Note required on a flagged response is on by default for newly created templates, starters included. Photo required on a Not OK response to a checkbox is off by default. Existing templates are never altered. The photo rule is checkbox-only: a per-axle field records a verdict per position, and there is no one position a photo of the field would belong to.
+* Building work order lines from an inspection is a ShopCoach capability. Without ShopCoach an inspection reports its findings and a person builds the work order; there is no non-AI line builder.
+* A checkbox response can carry a conditional follow-up: text and one file the technician sees only when they give that response. This reverses the earlier decision to leave conditional logic out, which was taken because a conditional note that collects nothing back was not worth building. The acknowledgement is what it collects back, and it is offered on Monitor and Not OK only. Offering it on a passing response would let the one-press Mark OK of S18 create acknowledgements in bulk that the technician never saw.
+* The author configures a follow-up and the technician reads an instruction. This is the one place the document uses two words for one thing, and it is deliberate: the author is setting a rule, the technician is reading a procedure, and Instructions is already the name of a field type the technician knows.
+* The always-visible attachment on a field is called the general reference file on every field type, so the word does not change between a checkbox that also carries follow-ups and a field that does not.
+* The Drum or Disc choice is offered on every axle at fill time rather than enabled by the template author, and may be left blank.
+* Short text and Long text merge into one Text field. The distinction was a formatting decision users should not have to make. There is no single-line or multi-line option; the field grows with the answer.
+* Verdict wording is inherited from the current release and differs by surface on purpose. A technician answers OK, Monitor, Not OK or N/A, and the app shows those words, the asset tab included. The customer report never prints Not OK: it uses its standard terms, Pass, Monitor and Needs attention, and its results read ATTENTION, MONITOR or PASS, because an author can rename the response labels while the report must stay comparable. N/A and Not inspected are not counted.
+* An inspection is built from once. After lines have been added from it, to its own work order or to a new one, no entry point offers the build again; each shows the outcome instead.
+* Response labels are editable by the author, but the customer report always uses the standard wording so reports stay comparable across shops.
+* Filter counts on the asset Inspections tab describe the inspection, not the viewer's permissions, so the counts read the same for everyone. Only the action button is permission-gated.
+* Instruction attachments are not deleted in this release. The same file is referenced by later template versions, and deleting it would break earlier published versions and the completed inspections under them. Accepted cost.
+* An inspection is built from once, even when two users build from it at the same time. The check is made when Add Lines is pressed: the second press adds nothing and the user is told where the lines went (S2-R13).
+* Navigation and drafting happen together. The user picks the destination, arrives on that work order's Lines tab, and watches the lines being drafted there rather than waiting on the inspection.
+* Nothing reaches the work order until the user presses Add Lines. Until then the proposed lines do not exist as work order lines and no state depends on them.
+* Creating a line has never required financial visibility, so building them does not either. The money is hidden rather than the capability being withheld, which is how the manual New Line form already behaves.
+* The prompts live on the ShopCoach side, one per assistant. What ShopView owns is which findings are flagged; the brief the assistant is given and the model it runs on are ShopCoach's. Provisional until the inspection line builder is done (see S15).
+* The user never types anything to get lines. No prompt, no query box, no configuration step in the inspection flow.
+* ShopCoach is named in the note on the completed inspection card and in the Line Builder panel's existing title. The build action and the destination menu do not name it; the purple treatment and the AI badge carry the meaning.
+* A bulk Mark OK stamps every position in its scope, including positions with no value entered. Skipping them would leave the technician unsure the press did anything, and the verdict is reversible until the next edit.
+* The destination for the lines is chosen on the action, not in a dialog before it. The point of the flow is that the user arrives reviewing rather than instructing.
+* The ShopCoach purple and the AI badge are a brand mark for one capability, not a status colour, and are not promoted to a semantic token.
+* "Axle set" is not used anywhere in the product. The word read as one axle's two sides and led authors to create one field per axle instead of one field for the unit.
+* Usage is described as times used. "Runs" was an internal word and no user could work out what it counted.
+* The meter reading is not a template field. The report fills Mileage and Hours from the work order, so a blank one means the work order has none — which is fixed on the work order, not by asking the technician twice.
+* The five seed templates were authored before the per-axle field existed. Where the same thing is measured on every wheel position they use one per-axle field instead of one field per position. The DOT form is left as it is, because an inspector signs against its stated items.
+* Only inspections completed after this release are flagged as needing a work order. The data cannot tell a historical finding somebody already handled by hand from one nobody actioned, so flagging them all would fill the queue with work that is already done. Older inspections stay listed on the tab, with their issues shown.
+* A Declined work order is not an eligible build target and the build creates a new one. Adding lines to an order the customer refused would revive work they declined. Review is eligible and takes lines.
+* The note rule is one option per field, not one per response. A rule per response multiplies the authoring surface for a case nobody has asked for.
+* Building requires a completed inspection, because completed means a report exists — a fixed record of what the findings were when the lines were drafted from them. Both submitted and completed inspections can be reopened, so reopening is not what the gate is for; S3-E3 covers that.
+* When the assistant call fails the user is told it failed and can try again, as the Line Builder does today. No empty lines are created. There is no non-AI line builder to fall back to.
+* Measured values reach ShopCoach in the brief; photos are not sent. ShopView does not write them into the line description itself — that is the text the assistant is asked to compose.
+* The asset Inspections tab is not exposed in the customer portal in this release. The portal has its own permission model, which this spec does not cover.
+* Parts are in scope. ShopCoach proposes them and they are editable before the lines are added. A work order built with parts enters the Parts, Inventory, Cores, Vendor/PO and QuickBooks chain, which this spec does not describe; that is accepted for this release rather than resolved by it. Provisional until the inspection line builder is done (see S15).
+* Canned lines are not used in this release. Preferring a shop's own wording and pricing over free text changes what the assistant is asked for and needs the canned-line catalogue as an input to the brief.
+* The brief's verification pass runs on the QA environment before release, owned by the PM and the ShopCoach owner together. It is not part of CI: an assistant's output cannot be asserted the way a deterministic one can.
+* A per-axle field has four row types: tire pressure, tread depth, brake lining and push-rod travel. The author chooses the scope of the two tire rows, '1 per side' or 'Outer + inner'. The two brake rows are always '1 per side' and carry no scope control, because a brake is measured once per side. The technician does not change a row's scope while filling; the row follows the template. A row's label can be renamed, but its type cannot change, so a renamed brake row is still a brake row.
+* One vocabulary for the row scope: "1 per side" and "Outer + inner", on every surface. The phone drew "Per brake" and "Per tire" for the same control; two names for one thing is worse than either name.
+* The reference-file viewer is honest about what it cannot render rather than shrinking what a shop may attach. HEIC, Word and Excel keep being accepted, and TIFF is not, because a phone photo of a procedure page and a spec table are what shops have; converting them on the server so they can be read in place is a separate ticket. Until it lands, that view says the file can only be downloaded — a stated limit rather than a blank frame.
+* An author previews the template by mounting the fill screen, not by a second renderer, a mock or a dialog. A preview that can drift from the thing it previews is worse than none, because it will be trusted. Two earlier attempts are recorded so they are not proposed again: inline in the properties panel, which failed on width, and a modal, which cost a click and could only ever show one field.
+* Preview is for seeing and setting up, not for working. The one thing an author changes there is how many axles the field starts with, because that is the judgement Preview exists to make possible. Everything else on the screen is present and read-only.
+* How many axles a per-axle field starts the technician with is a template default, never a limit. Nothing in filling, submitting or reporting compares the recorded axles against it.
+* Explanatory subtext is not added unless a requirement asks for it — no descriptor line, no hint paragraph, no helper sentence beyond what is specified. Where this document does call for an explanation it says on demand, and that means a tooltip on an information affordance rather than permanent text on the surface. This has been removed by hand from several design handoffs across different authors, so it is a default rather than a note to repeat per screen.
+
+# Assumptions
+
+* Inspections stay pinned to the template version they started on, so editing or republishing a template does not change a running or completed inspection. This is enforced in code on every write path and was verified in the technical planning pass of 2026-09-15, so the requirements below rest on a fact rather than on an assumption.
+* Digital Inspections is already released and in use. This spec extends it and does not restate Phase 1 behaviour.
+
+# Feature flag
+
+* This feature sits behind the existing Digital Inspections feature flag
+* When the flag is off, none of the stories below are available, regardless of a user's permissions
+
+---
+
+## S1: Require a note on flagged responses
+
+**As a** template author, **I want** the technician to explain any Monitor or Not OK response, **so that** the finding is actionable when it becomes a work order line.
+
+**Design:** [Digital Inspections V2 design](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html)        
+**Jira:** [SV-9099](https://shopview.atlassian.net/browse/SV-9099)
+
+**Prerequisites**
+
+* The template contains at least one checkbox or per-axle measurement field
+* The author has 'Settings — Service' enabled
+* The technician filling the inspection has 'Work Order Lines — Create & Edit' enabled
+
+**Requirements**
+
+* **S1-R1:** A checkbox field will offer an authoring option, "Note required if Monitor / Not OK"
+* **S1-R2:** The option will be on by default for newly added checkbox fields, starters included
+* **S1-R3:** When the option is on and the technician selects Monitor or Not OK, a note will be required before the inspection can be submitted
+* **S1-R4:** The system will enforce the requirement on submit, not only while the technician is filling the form
+* **S1-R5:** Before submit, the technician will see the field listed among the outstanding items, so they are not rejected by an error they could have avoided
+* **S1-R6:** The same option will apply to per-axle measurement fields
+* **S1-R7:** On a per-axle field the requirement is triggered by the verdicts recorded on the positions, not by an axle's stored roll-up. A single Not OK tire will require the note as soon as it is set
+
+**Negative cases**
+
+* **S1-N1:** If the option is off, a Monitor or Not OK response with no note will submit successfully
+* **S1-N2:** If the response is OK or N/A, no note will be required
+
+**Edge cases**
+
+* **S1-E1:** A note containing only spaces counts as empty
+* **S1-E2:** Templates created before this release are unaffected until an author opens one and turns the option on
+* **S1-E3:** If the option is turned on while an inspection is already in progress, that inspection keeps the rule it started with
+* **S1-E4:** If the technician writes a note and then changes the response to OK, the note is kept
+* **S1-E5:** On a per-axle field, the requirement triggers when any axle is marked Monitor or Not OK
+* **S1-E7:** A per-axle field whose positions all read OK will not require a note, even if an axle carried a flagged roll-up from an earlier response shape
+* **S1-E6:** If the field has no label, the outstanding-items list still identifies it by its type and position rather than showing an empty row
+
+---
+
+## S17: Require a photo on a Not OK response
+
+**As a** template author, **I want** the technician to photograph what they marked Not OK, **so that** the finding carries evidence the advisor and the customer can both look at.
+
+The note half of this rule is S1. This is its sibling, and the two are authored the same way.
+
+**Design:** [Digital Inspections V2 design](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html)        
+**Jira:** [SV-9440](https://shopview.atlassian.net/browse/SV-9440)
+
+**Prerequisites**
+
+* The template contains at least one checkbox field
+* The author has 'Settings — Service' enabled
+* Photo upload is available to the technician filling the inspection
+
+**Requirements**
+
+* **S17-R1:** A checkbox field will offer an authoring option, "Photo required if Not OK"
+* **S17-R2:** The option will be off by default for newly added checkbox fields, starters included
+* **S17-R3:** When the option is on and the technician selects Not OK, at least one photo will be required before the inspection can be submitted
+* **S17-R4:** The system will enforce the requirement on submit, not only while the technician is filling the form
+* **S17-R5:** Before submit, the technician will see the field listed among the outstanding items, so they are not rejected by an error they could have avoided
+* **S17-R6:** The option applies to checkbox fields only. A per-axle field records a verdict per position, and there is no single position a photo of the field would belong to
+* **S17-R7:** The option is separate from "Photo required", which asks for a photo whatever the response. When both are on the unconditional rule is the one the technician is held to, and the summary sentence in the builder says so
+* **S17-R8:** The photo target is offered rather than always shown. Add Photo sits in the field card footer beside Add Note and the target opens on it, or on its own the moment a response makes a photo required, so the technician never has to look for it
+* **S17-R9:** Inspection photographs will accept HEIC as well as JPEG and PNG. A phone camera producing HEIC must not be able to make S17-R3 unsatisfiable. Where the format cannot be rendered in place, the viewer says so and offers the download, as S11-R9 already does for reference files
+
+**Negative cases**
+
+* **S17-N1:** If the option is off, a Not OK response with no photo will submit successfully
+* **S17-N2:** OK, Monitor and N/A never require a photo. Monitor requires a note, not a photograph
+* **S17-N3:** Templates created before this release are unaffected until an author opens one and turns the option on
+
+**Edge cases**
+
+* **S17-E1:** If the technician attaches a photo and then changes the response to OK, the photo is kept
+* **S17-E2:** If the technician satisfies the rule and then removes the photo, the field blocks submit again
+* **S17-E3:** If the option is turned on while an inspection is already in progress, that inspection keeps the rule it started with
+* **S17-E4:** If photo upload is unavailable to the shop, the technician is told why rather than being blocked by a requirement with no visible cause
+* **S17-E5:** If the field has no label, the outstanding-items list identifies it by its type and position rather than showing an empty row
+* **S17-E6:** If a photograph is rejected for its format, the technician is told which formats are accepted at the point of failure rather than being left with a generic upload error
+
+---
+
+## S2: Turn findings into work order lines
+
+**As a** user, **I want** an inspection's findings turned into work order lines in one action, **so that** nothing is re-typed and nothing is lost.
+
+This story defines what committing the lines does: which work order they land on, how they are approved, and what the inspection's state becomes. How the lines are drafted and reviewed before that point is S15. The three places the build can be started from are S3, S4 and S6; the work order's Lines tab reaches the same drafting without an inspection and is out of scope here.
+
+**Design:** [Digital Inspections V2 design](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html)        
+**Jira:** [SV-9100](https://shopview.atlassian.net/browse/SV-9100)
+
+**Prerequisites**
+
+* The inspection is completed
+* The inspection has at least one Monitor or Not OK finding
+* User has 'Work Order Lines — Create & Edit' enabled
+* Creating a new work order additionally requires 'Work Orders — Create & Edit' enabled
+* The work order the inspection was run on can be identified
+* The shop has at least one labour type
+
+**Requirements**
+
+* **S2-R0:** Building lines requires ShopCoach. Without it the completed inspection offers the report and a link to its work order, and no build action at all
+* **S2-R1:** Every Monitor and Not OK finding will be represented by at least one line. ShopCoach composes each line's name, description, time estimate and parts; the field label, the measured value and the technician's note are inputs to that drafting rather than the line text itself (S15). When drafting fails, S15-E2 applies instead
+* **S2-R2:** A generated line will behave as an ordinary work order line from that point on, indistinguishable from one a user typed
+* **S2-R3:** The user will choose the target before any drafting starts: the work order the inspection was run on, or a new work order
+* **S2-R4:** The system will offer the work order the inspection was run on only while that work order is an eligible build target. Eligible means Estimate, Approved, In Progress or Review, and no invoice exists. This document does not describe a work order as open or closed: the platform carries several competing definitions of open, and this rule names its own predicate rather than joining them
+* **S2-R5:** When the work order the inspection was run on is not an eligible build target, the destination menu still opens and offers only a new work order. It is ineligible when its status is Complete, Invoiced, Paid or Declined, or when an invoice already exists. Declined counts as ineligible because lines added to a refused order would revive work the customer turned down
+* **S2-R6:** A new work order will be created for the same customer and asset as the work order the inspection was run on, using their current values
+* **S2-R7:** When the lines are added, they will arrive approved or awaiting authorisation according to the shop's existing setting for automatically approving work order lines, exactly as a manually added line does
+* **S2-R8:** A work order in Approved status will not require re-approval, because approval applies to lines rather than to the work order
+* **S2-R9:** A generated line will take the shop's default labour type, and where no default is set, the first labour type available to the shop. The labour rate will follow from the labour type. This is stated as a rule of its own rather than as a reference to the manual New Line form, whose fallback is behaviour of that form and not of the server
+* **S2-R10:** The time estimate ShopCoach proposes will be carried onto the line, and will be editable before the line is added. Where no estimate is proposed the line arrives at zero, to be estimated by whoever plans the work
+* **S2-R11:** The user will arrive on the target work order's Lines tab as soon as the target is chosen, before the drafting has finished, and will watch it complete there
+* **S2-R12:** Once the lines have been added, the inspection will no longer count as needing a work order. Drafting alone does not change that state, because a draft the user abandoned left the findings unactioned
+* **S2-R13:** An inspection is built from once. After lines have been added from it, to this work order or to a new one, no entry point offers the build action again: the completed inspection, the work order note and the asset row show the outcome instead, with a link to the work order that got the lines. The check is made again when Add Lines is pressed; if the inspection was built from elsewhere in the meantime, nothing is added and the user is told where the lines went
+* **S2-R14:** The destination will be chosen from a menu on the build action itself rather than from a dialog raised before it. The menu lists this work order — by number and status — and a new one seeded with the customer and unit. Either target goes straight to the drafting
+* **S2-R16:** The build action will have one appearance wherever it is met — the ShopCoach purple with the AI badge, labelled Build lines, with a chevron where it opens the destination menu
+* **S2-R17:** Every rule in this document that withholds an action is enforced by the server. A request made without the permission is refused, whatever the interface showed. Hiding a control is how a rule is presented, not how it is enforced. This is stated once and applies to every story — the build, the destination choice, the asset Inspections tab, template authoring and Preview. The precedent is SV-7932, where a view-only user could invoke the ShopCoach line builder because only the button had been hidden
+* **S2-R18:** A generated line never arrives as a Fixed Line Total line. It is an ordinary labour-and-parts line, and switching it to a fixed total stays a deliberate act afterwards. A fixed total requires labour plus parts to equal it exactly or the line cannot be saved, and a drafted line arrives carrying both figures
+
+**Negative cases**
+
+* **S2-N1:** If the inspection is not completed, the build will not be offered
+* **S2-N2:** If the inspection has no Monitor or Not OK findings, the build will not be offered
+* **S2-N3:** If the user does not have 'Work Order Lines — Create & Edit' enabled, the build will not be available from any entry point
+* **S2-N4:** If the user does not have 'Work Orders — Create & Edit' enabled, the option to create a new work order will not be shown. They will only be offered the option to add lines to the open work order
+* **S2-N5:** If the user does not have 'See Financial Data' enabled, the build is still allowed and the money is not shown. The proposed-lines panel withholds the labour rate, the labour total and the part prices, and the withholding is enforced by the server rather than by leaving the fields out of the markup. Everything else in the panel stays editable and the lines can still be added
+* **S2-N6:** If the shop has no labour types, the build will not run. A work order line cannot be created without a labour type or a fixed price, and S2-R18 forbids a generated line from being a Fixed Line Total, so the action states the reason rather than producing a line that cannot be saved
+
+_Note: S2-N5 is deliberate. Creating a line has never required financial visibility, and the build does not invent a stricter rule. What it does not do is inherit the manual New Line form by reference: that form uses two different permissions for two groups of fields and hides them rather than masking, so there is no single established rule to copy. The fields named in S2-N5 are the rule for this flow._
+
+_Note on S2-R5: where an invoice exists, adding a line acts on it — a pending invoice is voided, and for a sent or paid one a whole new work order is created — and none of that is gated by an invoicing permission. Creating a new work order keeps a user with line rights but no invoicing rights out of that position. Complete with no invoice is ineligible for a different reason, stated in Key Decisions: it is finished work the technician has come off. Related:_ [_SV-7124_](https://shopview.atlassian.net/browse/SV-7124)
+
+**Edge cases**
+
+* **S2-E2:** If a note is very long, it is given to ShopCoach whole rather than truncated before it is read
+* **S2-E3:** An inspection with thirty flagged findings is built without a cap and without an extra confirmation. If the assistant cannot draft that many in one run, the run is split rather than the surplus findings being dropped (S15-R14)
+* **S2-E4:** If the user chose to add lines to the open work order and it was closed by someone else in the meantime, the system tells the user and creates nothing
+* **S2-E5:** If the work order the inspection was run on is deleted before the user confirms, the build fails without creating a partial result
+* **S2-E6:** If two users draft from the same inspection at once, nothing is duplicated by the drafting itself, because a draft is not a work order line. When both press Add Lines, only the first adds lines; the second adds nothing and the user is told where the lines went (S2-R13)
+* **S2-E7:** If the inspection is reopened by someone else while a draft is on screen, the draft stays usable and any lines already added are kept
+* **S2-E9:** If the lines were built onto a new work order and that work order is later deleted, the inspection counts as needing a work order again. The inspection itself is unaffected, because it belongs to the work order it was run on
+* **S2-E12:** If the work order the inspection was run on is deleted, an inspection that has a report survives it as a read-only record (S5-E3). Lines that had been added to that work order are gone with it. The inspection does not count as needing a work order, because it can no longer be built from
+* **S2-E10:** Reversing an invoice does not change the inspection's state, because the work order and its lines still exist
+* **S2-E11:** If the lines built from an inspection are deleted while the work order remains, the inspection stays actioned and does not return to needing a work order. Deleting a work order is usually a correction; deleting a line is somebody who read the proposed work and decided against it, and re-raising the flag would ask them to do it again
+
+_What ShopCoach is told, how the wait is shown, and how the proposed lines are reviewed before they are added are specified in S15._
+
+---
+
+## S3: Build from a completed inspection
+
+**As a** user, **I want** to start the build from the inspection I have just read, **so that** acting on the findings is the next step rather than a separate errand.
+
+**Design:** [Digital Inspections V2 design](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html)        
+**Jira:** [SV-9101](https://shopview.atlassian.net/browse/SV-9101)
+
+**Prerequisites**
+
+* The inspection is open in its completed, read-only view
+* User has 'Work Order Lines — Create & Edit' enabled
+* The conditions in S2 are met
+
+**Requirements**
+
+* **S3-R1:** The completed inspection screen will offer a Build lines action
+* **S3-R2:** The action will run the build described in S2, including the choice of target work order
+* **S3-R3:** The action will be usable on a phone, and the technician will be able to complete the whole flow without switching device
+* **S3-R4:** The screen will lead with a summary card: the completion line, a count per verdict, and a findings list naming each flagged row as field, axle and row, followed by every flagged position on it with its reading, for example 'Brake & tire measurements · Axle 1 · Tire pressure: left outer 42 psi, right outer 40 psi'
+* **S3-R5:** A verdict with no findings under it will not be counted on the card. A zero reads as a finding at a glance, which is the opposite of what it says
+* **S3-R6:** With ShopCoach the card's footer will offer View PDF, Go to work order and Build lines, and a note above it will name the product once. Without ShopCoach the footer will offer View PDF and Go to work order, and the same space will carry a plain line saying the findings are on the customer report and in the work order note feed and that the lines are added on the work order. When the work order the inspection was run on has been deleted, the footer offers View PDF only, with or without ShopCoach, and no plain line; it also shows the outcome when the lines went onto another work order that still exists (S5-E3)
+* **S3-R7:** The section-by-section review of what the technician entered will stay below the summary card. The card answers what happened; the sections answer what was entered. The service advisor, the inspection's start time and per-section progress are not carried onto this screen: the first two belong to the work order the inspection was run on, and progress means nothing once the inspection is locked
+* **S3-R8:** Once the inspection has been built from, the footer shows the outcome in place of Build lines: 'WO created S-235' or 'Lines added S-58', linking to that work order (S2-R13)
+
+**Negative cases**
+
+* **S3-N1:** If the inspection has no Monitor or Not OK findings, the action will not be shown
+* **S3-N2:** If the user does not have 'Work Order Lines — Create & Edit' enabled, the action will not be shown. It will be absent, not disabled
+* **S3-N3:** If the inspection is not completed, the action will not be shown
+* **S3-N4:** If the organisation does not have ShopCoach, no build action is shown. The screen offers View PDF and a link to the work order and no build action — the action is absent, not disabled and not behind a tooltip (S2-R0)
+
+**Edge cases**
+
+* **S3-E1:** If the work order the inspection was run on has been deleted, no build action is offered (S5-E3). If it was built from before the deletion, the footer shows the outcome instead (S3-R8)
+* **S3-E2:** If another user builds from the same inspection while this screen is open, the check in S2-R13 is based on the current state rather than the state when the screen loaded
+* **S3-E3:** If the inspection is reopened while the screen is open, the action disappears
+
+---
+
+## S4: Build from the inspection note on a work order
+
+**As a** user reading an inspection's results on the work order, **I want** to build from there, **so that** I do not have to open the inspection again to act on what I am looking at.
+
+When an inspection completes, a note appears on the work order with the report thumbnail, the finding counts, and actions to view and download the report.
+
+**Design:** [Digital Inspections V2 design](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html)        
+**Jira:** [SV-9102](https://shopview.atlassian.net/browse/SV-9102)
+
+**Prerequisites**
+
+* The work order has an inspection report note
+* The report recorded at least one Monitor or Not OK finding
+* User has 'Work Order Lines — Create & Edit' enabled
+
+**Requirements**
+
+* **S4-R1:** The inspection report note will offer a Build lines action alongside the existing view and download actions
+* **S4-R2:** The action will run the build described in S2, including the choice of target work order
+* **S4-R4:** All actions on the note will remain reachable on a phone, wrapping rather than overflowing
+* **S4-R5:** Once the inspection has been built from, the note shows the outcome in place of Build lines, worded as in S3-R8 (S2-R13)
+
+**Negative cases**
+
+* **S4-N1:** If the report recorded only passes, the action will not be shown
+* **S4-N2:** If the inspection has been deleted, the note remains as a record but the action will not be shown. Removing an inspection from its line, or deleting the line, deletes the inspection on purpose: it leaves the asset's Inspections tab, and its note stays on the work order marked "Inspection deleted". This is different from deleting the whole work order (S5-E3)
+* **S4-N3:** If the user does not have 'Work Order Lines — Create & Edit' enabled, the action will not be shown
+* **S4-N4:** If the note is being read in the work order's history view, the action will not be shown
+* **S4-N5:** If the organisation does not have ShopCoach, the note keeps its view and download actions and offers no build action (S2-R0)
+
+**Edge cases**
+
+* **S4-E1:** If the work order itself is not an eligible build target, the build creates a new work order per S2-R5 and the note stays where it is
+
+---
+
+## S5: Inspection history on the asset record
+
+**As a** user, **I want** every inspection ever run on an asset in one list, **so that** I can see its condition history and what still needs doing.
+
+This story delivers the list. Acting on a row is S6.
+
+**Design:** [Digital Inspections V2 design](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html)        
+**Jira:** [SV-9103](https://shopview.atlassian.net/browse/SV-9103)
+
+**Prerequisites**
+
+* User has 'Customers — View' and 'Work Orders — View' enabled
+* The asset is reachable from a customer record
+
+**Requirements**
+
+* **S5-R1:** An Inspections tab will appear on the asset record, alongside Work Orders, Invoices and Notes
+* **S5-R2:** The tab will list every inspection linked to that asset, most recently completed first
+* **S5-R3:** Each row will show the inspection, its status, the completion date, the technician who signed it, the findings, the work order it was run on, the report, and an action
+* **S5-R4:** The inspection column will show the template name with its version beneath, which is what distinguishes repeated runs of the same template
+* **S5-R5:** The status column will show the inspection's own progress only, and will not also express whether work is pending
+* **S5-R6:** The findings column will show one item per finding type with a colour, such as 1 Not OK in red and 3 Monitor in amber
+* **S5-R7:** The work order column will link to the work order the inspection was run on and show its status
+* **S5-R8:** The report column will link to the report when one has been generated
+* **S5-R9:** The action column will have three states. Needs action offers the build described in S6. Done shows the outcome and links to the resulting work order, reading "WO created" when a new work order was created and "Lines added" when the lines went onto the existing one. Nothing to do shows a dash. The same wording is used wherever the outcome replaces the build action (S2-R13)
+* **S5-R10:** The table has no filter row. The Inspection, Status and Completed columns can be sorted. By default the most recently completed inspection comes first (S5-R2)
+* **S5-R11:** A summary will read "N of M have findings with no lines yet"
+* **S5-R12:** An inspection needs action when it was completed after this release, has at least one Monitor or Not OK finding, and has not been built from. An inspection completed before the release is never flagged, because the data cannot tell one somebody already handled by hand from one nobody actioned. Those stay listed on the tab, with their issues shown
+* **S5-R13:** Two users with different permissions viewing the same asset will see identical counts. Only the action button differs
+* **S5-R14:** Everything that navigates will be a link and everything that changes something will be a button
+* **S5-R15:** The tab will be usable on a phone. Every column's information will remain reachable and the page will not scroll sideways
+* **S5-R21:** The tab lists the inspections whose work order is on this asset now, so it follows the work order when the work order's asset is changed or two assets are merged. The asset an inspection was run on is also stored on the inspection when it is created, as a record. Inspections that exist before this release are backfilled from their work order's asset at migration. When the work order has been deleted, the stored asset is used (S5-E3). Merging assets moves such inspections to the surviving asset, as it moves the work orders
+
+**How findings are counted**
+
+This rule is the single definition of the counts, and the asset list, the report summary and the summary line on the tab all follow it.
+
+* **S5-R17:** A response contributes one count to exactly one of Pass, Monitor or Needs attention when the field is a checkbox or a measurement and the response is Pass, Monitor or Not OK
+* **S5-R19:** N/A and unanswered responses contribute nothing
+* **S5-R20:** A per-axle measurement field contributes one count per axle, carrying that axle's worst verdict (S8-R14). A field with three axles marked OK, Monitor and Not OK contributes one pass, one monitor and one needs-attention
+
+**Negative cases**
+
+* **S5-N1:** If the user does not have 'Work Orders — View' enabled, the Inspections tab will not appear at all. It will be absent, not empty
+* **S5-N2:** If the user has 'Work Orders — View' but not 'Customers — View', the asset record is unreachable and so is the tab. No alternative route is added
+* **S5-N3:** If the asset has no inspections, an empty state will explain so
+* **S5-N4:** If the user cannot build, the action column will show no button on any row
+* **S5-N5:** If the organisation does not have ShopCoach, the action column shows no build button on any row. The Needs action state described in S5-R9 does not arise (S2-R0)
+
+**Edge cases**
+
+* **S5-E1:** For a not-started inspection, the completion date, technician and findings show dashes and no action is offered
+* **S5-E2:** A completed inspection whose responses are all N/A reads as having no issues and never needs action
+* **S5-E3:** If the work order the inspection was run on is deleted, an inspection that has a report stays on the asset's Inspections tab as a read-only record, with a dash in the Work order column. The Action column shows the outcome only while the work order it points to exists, for example 'WO created S-200' when the lines went onto another work order; when they went onto the deleted work order itself, it shows a dash. It can be opened and its latest report downloaded. It cannot be built from, reopened or regenerated. A reopened inspection survives as its latest report: Status reads Completed, Completed shows the date of that report, and opening the row opens that report rather than the answers, which may have changed since. Deleting a work order must not delete such an inspection, its photos or its report. An inspection with no report, including one that was submitted but whose report was never generated, is deleted with its work order
+* **S5-E4:** If the asset has been moved to a different customer, all of its inspections are still listed. The tab is the asset's history
+* **S5-E5:** If the template has been archived or deleted, the row shows the template name and version as they were at the time, never "unknown"
+* **S5-E6:** If two inspections share a completion time, the order between them is stable rather than varying between loads
+* **S5-E7:** If the work order the lines were built onto is deleted and it is not the work order the inspection was run on, the row returns to Needs action rather than showing a Done state that points nowhere
+* **S5-E8:** An asset inspected weekly for three years has roughly 150 rows, which the list shows without paging. Above roughly 200 rows the list will need a date filter or paging, which is follow-up work
+
+---
+
+## S6: Build from the asset Inspections tab
+
+**As a** user, **I want** to act on an unactioned inspection from the asset's history, **so that** I do not have to find the original work order first.
+
+**Design:** [Digital Inspections V2 design](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html)        
+**Jira:** [SV-9104](https://shopview.atlassian.net/browse/SV-9104)
+
+**Prerequisites**
+
+* The asset Inspections tab is available to the user (S5)
+* The row needs action (S5-R12)
+* User has 'Work Order Lines — Create & Edit' enabled
+
+**Requirements**
+
+* **S6-R1:** A row that needs action will offer a build action
+* **S6-R2:** The action will present the target choice up front as a menu rather than opening a dialog, because the user has already decided by the time they click
+* **S6-R3:** The menu is the shared destination menu of S2-R14, so the row offers the same two targets, worded the same way as every other entry point
+* **S6-R4:** The inspection's own work order is offered as a target only while it is an eligible build target, judged by its status on the row. When it is not, it is not offered (S2-R5)
+* **S6-R5:** The action will run the build described in S2
+* **S6-R6:** A row that has been built from will show its outcome instead of the action
+* **S6-R7:** After a successful build, the row will show its outcome instead of the action, and the counts and the summary line will update with it
+* **S6-R8:** Eligibility here will be identical to S2-R5, including that Complete is not eligible
+
+**Negative cases**
+
+* **S6-N1:** If the user does not have 'Work Orders — Create & Edit' enabled, the new-work-order target will not be offered anywhere on this tab
+* **S6-N2:** If the work order the inspection was run on is not an eligible build target, only the new-work-order target will be offered
+* **S6-N3:** If the user chose "Add lines" and the work order has since been closed, the system will explain that and create nothing
+* **S6-N4:** If the user does not have 'Work Order Lines — Create & Edit' enabled, no build action will appear on any row
+* **S6-N5:** If the organisation does not have ShopCoach, neither menu option is offered on any row and no build action appears on the tab (S2-R0)
+
+**Edge cases**
+
+* **S6-E1:** If the work order the inspection was run on has been deleted, the row offers no build action and its action cell shows a dash, or the outcome if it was built from before the deletion (S5-E3)
+* **S6-E2:** If several rows on the same asset need action, each is built separately. There is no bulk build
+* **S6-E3:** A user who can fill inspections but cannot create work orders, looking at a row whose work order is closed, has no available action. The row shows a dash
+
+_Note on S6-E3: this is the one case where a row shows work the user cannot start. Excluding such rows from their counts was rejected because it would make the counts differ between viewers. Offering the user a different action, such as flagging the inspection for someone who can act on it, is the better long-term answer and is not in this release._
+
+---
+
+## S7: Record where the lines came from
+
+**As a** user looking at a work order, **I want** to see that its lines came from an inspection and which one, **so that** I can trace the work back to the evidence for it.
+
+**Design:** [Digital Inspections V2 design](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html)        
+**Jira:** [SV-9105](https://shopview.atlassian.net/browse/SV-9105)
+
+**Prerequisites**
+
+* A build has completed (S2)
+* Seeing the Audit Log entry additionally requires 'View History Logs' enabled
+
+**Requirements**
+
+* **S7-R1:** A note will be added to the work order the lines landed on, stating that it was built from the inspection
+* **S7-R2:** When the lines went onto a new work order, the note will link back to the work order the inspection was run on. If that work order was deleted after the build, the note shows its number as text, tagged 'Work order deleted', with no link
+* **S7-R3:** The Notes tab count will include the new note immediately
+* **S7-R4:** An entry reading "Built from inspection" will be added to that work order's Audit Log
+* **S7-R5:** The Audit Log entry will name the inspection, link to it, and name the work order the inspection was run on. If that work order was deleted after the build, its number is shown as text, with no link
+* **S7-R6:** Both records will be written however the build was started, from S3, S4 or S6
+* **S7-R7:** The Audit Log entry and the note will carry the same three facts: that the work order was built from an inspection, which inspection, and which work order the inspection was run on. Whichever a user opens, they get the same account. Neither may carry a fact the other lacks. This holds when both records exist. If one could not be written (S7-E1), the other stands alone and the failure is logged; the user is not told
+* **S7-R8:** Both records will state how many lines were created. The count is known when the record is written, and the scale of what was added is the first thing an advisor wants from it
+
+**Negative cases**
+
+* **S7-N1:** If the lines went onto the work order the inspection was run on, the note will not link to that work order from itself
+* **S7-N2:** If the user does not have 'View History Logs' enabled, the Audit Log is not shown to them. The entry is still recorded
+
+**Edge cases**
+
+* **S7-E1:** If either record cannot be written, the created lines are kept and the build still reports success. The lines are the valuable output
+* **S7-E2:** If a user deletes the note, the Audit Log entry remains
+* **S7-E3:** If the inspection is later deleted, the Audit Log entry keeps the inspection name as recorded, and the link fails gracefully rather than breaking the Audit Log
+* **S7-E4:** If the work order is later split, the note and the Audit Log entry stay on the original. The new work order carries no inspection provenance, because a split moves lines and does not copy records. The inspection's report notes are not records of the build: when a line with an inspection is split onto a new work order, those notes move with the line and are removed from the original. Work orders split before this rule keep their notes where they are
+
+---
+
+## S15: Draft the lines with ShopCoach
+
+**As a** technician, **I want** the lines drafted for me from what I just recorded and handed to me to correct, **so that** I am reviewing finished work rather than filling in a form.
+
+**Status: ShopCoach drafting in progress.** This story fixes the interaction: which AI build actions exist and where they appear, what the user chooses, and what happens once a build starts, from the call to ShopCoach through drafting, review and Add Lines, to cancel and failure. What ShopCoach does with the findings (the brief it is given, the model, where proposed parts come from) is being built as a dedicated inspection line builder. Until it lands, builds use the existing ShopCoach line builder assistant. This section will be updated with the brief, the rules it follows and how to test it once that work is done. S15-R1, S15-R3, S15-R19, S15-R20, S15-N3 and the Key Decisions on the brief and on parts are provisional until then. The proposed brief for the inspection line builder, its three steps and the findings ShopView sends, is in [ShopCoach assistant: inspection-line-builder](https://shopview.slack.com/files/U0AR3UT1HL4/F0C8QC8CFTK/__shopcoach_assistant__inspection-line-b.md).
+
+This story owns everything between pressing the build action and the lines existing: what ShopCoach is told, what is shown while it works, and what the user can change before anything is added. S2 owns what happens once they are added.
+
+**Design:** [Digital Inspections V2 design](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html)        
+**Jira:** [SV-9404](https://shopview.atlassian.net/browse/SV-9404)
+
+**Prerequisites**
+
+* The organisation has ShopCoach
+* The conditions in S2 are met
+* The user has chosen the target work order
+
+**Requirements**
+
+* **S15-R1:** The system will compose the brief it sends to ShopCoach from the inspection itself. For each Monitor and Not OK finding it will include the field label, its section, the measured value and its unit, the verdict, and the technician's note
+* **S15-R2:** A per-axle finding will name its axle and its measurement row, so a proposed line can be traced back to the measurement that caused it
+* **S15-R3:** The brief will state what ShopCoach may not do: invent a part it was not given, turn a passing finding into a line, or leave a flagged finding unrepresented
+* **S15-R4:** The user will never type anything to get lines. There is no prompt, no query box and no configuration step anywhere in this flow
+* **S15-R5:** The action that starts the build will read as an AI action before it is pressed, carrying the purple treatment and the AI badge. The label will not name the product
+* **S15-R6:** ShopCoach is named in the note on the completed inspection card (S3-R6) and in the Line Builder panel's existing title. The build action and the destination menu do not name it
+* **S15-R7:** Drafting will start when the destination is chosen, so the navigation and the drafting happen together rather than one after the other
+* **S15-R8:** While the lines are being drafted, the panel will show one skeleton row per finding, because the number of findings is known before the drafted lines are
+* **S15-R9:** The work order will stay usable while the drafting runs
+* **S15-R10:** Cancelling during the drafting will leave the work order exactly as it was
+* **S15-R11:** Proposed lines will arrive selected, so the default is to accept them
+* **S15-R12:** Every proposed title, description, labour figure and part will be editable in place before the lines are added
+* **S15-R13:** Each proposed line will name the finding it came from
+* **S15-R14:** Every flagged finding will be represented by at least one proposed line however many findings there are. If the assistant cannot draft the whole set in one run, the set will be split across runs rather than the surplus being dropped
+* **S15-R15:** Nothing will reach the work order until Add Lines is pressed
+* **S15-R16:** The proposed-lines panel is shared with the Line Builder that is started from a work order with no inspection. A change made for this flow lands on that one too, and must not degrade it
+* **S15-R17:** The brief will be verifiable before release. A fixed set of inspections with known findings will be run through it and the drafted lines read back against them, checking that every flagged finding is represented, that no line invents a part it was not given, and that no passing finding became a line. Without that pass the brief is a guess: an assistant's output cannot be asserted the way a deterministic one can, so the only way to know a brief works is to try it on known input
+* **S15-R18:** The brief will follow the pattern of the ShopCoach assistant that already recommends work from an asset — the asset's own data, then the material to reason about — with the inspection's flagged findings in place of that assistant's work-order history
+* **S15-R19:** The brief will state the situation before the findings: an inspection of an asset in a heavy-duty repair shop, questions authored in advance by an admin, answers recorded by a technician, and every finding sent already flagged
+* **S15-R20:** The brief will carry the schema of the answer it expects, so the format is shown rather than described
+* **S15-R21:** Each proposed line will carry the identifier of the finding it came from, so the traceability S15-R13 promises survives whatever the assistant returns
+* **S15-R22:** The model the brief runs on is part of what is specified. The verification pass will record the brief and the model together, because the output cannot be attributed to the brief alone
+* **S15-R23:** The brief and the model will be changeable on the QA environment without a release, so the verification pass can iterate
+* **S15-R24:** Two findings will never be collapsed into one proposed line because their titles match. The panel compares proposed lines by their finding identifier while it is serving this flow, and keeps its existing comparison for the Line Builder started from a work order, which has no findings and relies on it. The shared panel is told which flow it is in rather than having its behaviour changed for both (S15-R16)
+* **S15-R25:** The model the brief runs on is chosen and compared outside this epic. This story specifies that the model is recorded with the brief (S15-R22), not which model it is, and the choice must not gate this work
+* **S15-R26:** On a phone the proposed-lines panel opens as a full-screen modal rather than a side panel. Reading a drafted line and editing its title, description, labour and parts needs the width, and there is nowhere else on a phone for it to go
+
+**Negative cases**
+
+* **S15-N1:** If the organisation does not have ShopCoach, this story does not apply and no build action exists (S2-R0)
+* **S15-N2:** A passing finding never becomes a proposed line
+* **S15-N3:** No part is proposed that ShopCoach was not given
+* **S15-N4:** Deselecting every proposed line leaves Add Lines unavailable rather than adding nothing silently
+* **S15-N5:** The written brief a user can type on the Line Builder started from a work order is not removed. S15-R4 removes it from the inspection flow only. It is the only way a service advisor with no inspection to hand gets lines, and that flow is out of scope for this epic
+* **S15-N6:** Photos are not sent to ShopCoach; the technician's note is the only evidence it reads
+
+**Edge cases**
+
+* **S15-E1:** If ShopCoach returns no lines at all, the user is told so plainly and the work order is unchanged
+* **S15-E2:** If the call to ShopCoach fails, the user is told that it failed and can try again. An empty panel is not an acceptable outcome, because there is no non-AI path to fall back to. No empty lines are created
+* **S15-E3:** If the user navigates away while the drafting runs, nothing is added
+* **S15-E4:** If a finding's note is empty, the finding is still sent and still represented. An empty note is not a reason to drop it
+* **S15-E5:** If the same field is flagged on several axles, each flagged row reaches ShopCoach as its own finding, with its axle, its row and its flagged positions, so they are not collapsed into one line by accident
+* **S15-E6:** A Monitor finding does not reach the panel as work to be done now. It arrives as a watch item the advisor can read as such
+* **S15-E7:** When the target is a new work order, it is created as soon as it is chosen (S2-R11). If the drafting is cancelled, fails, returns nothing, or the user leaves, that work order stays, empty. Nothing is deleted automatically. The inspection stays Needs action, no provenance note is written, and a retry runs on the same work order
+
+_Note on S15-R1: the prompts live on the ShopCoach side, one per assistant, and the answer comes back to ShopView. An assistant that recommends work from an asset already works this way — it reads the asset's data and proposes work with labour and parts against it. This flow follows that pattern, with the inspection's flagged findings in place of that assistant's work-order history. What ShopView owns is which findings are flagged: the verdict is a product rule, and for a per-axle field it is not a stored value but a roll-up of the positions on the row. What ShopCoach owns is the brief and the model it runs on. Both are_ [_SV-9112_](https://shopview.atlassian.net/browse/SV-9112)_._
+
+---
+
+## S8: Record measurements per axle
+
+**As a** technician inspecting a heavy truck, **I want** to record brake and tire measurements per tire, **so that** the inspection matches how the vehicle is actually built and a single bad tire is not hidden behind a passing row.
+
+**Design:** [Digital Inspections V2 design](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html)        
+**Jira:** [SV-9106](https://shopview.atlassian.net/browse/SV-9106)
+
+**Prerequisites**
+
+* The template contains a Per axle field
+* The author has 'Settings — Service' enabled to add the field
+* The technician has 'Work Order Lines — Create & Edit' enabled
+
+**Requirements: authoring**
+
+* **S8-R1:** Per axle will be its own field type, offered alongside Checkbox, Text, Measurement, Photo and Instructions
+* **S8-R2:** A new per-axle field will be named "New axle measurements" and pre-filled with four measurement rows: tire pressure, tread depth, brake lining and push-rod travel. These four are the only row types, and each can appear once
+* **S8-R3:** Each row will carry a unit set by the author, which is the default the technician starts from rather than a fixed value. Defaults will be psi for tire pressure and inches for tread depth, brake lining and push-rod travel
+* **S8-R4:** Each row has a type: tire pressure, tread depth, brake lining or push-rod travel. The two tire rows have a scope, '1 per side' or 'Outer + inner', defaulting to Outer + inner. The two brake rows are always '1 per side'
+* **S8-R5:** The author sets the scope of the tire rows in the builder; the brake rows have no scope control. The technician does not change a row's scope while filling. An 'Outer + inner' row records four values on a Dual axle and two on a Single axle; a '1 per side' row always records two
+* **S8-R6:** Rows will be renamed in place, confirmed with a check and dismissed with an X, without a dialog. Renaming changes the label only; the row keeps its type
+* **S8-R7:** Rows can be removed and added back. Adding a row offers only the row types the field does not already have, and the add control is not shown when all four are present. The last row cannot be removed
+* **S8-R8:** A per-axle field will carry a reference file like any other field, as defined in S11
+* **S8-R9:** The template will hold how many axles the technician starts with, and nothing more. It is a starting point rather than a shape: the fill screen keeps Add Axle and per-axle delete, and the recorded axles are never validated against it
+* **S8-R28:** A standalone Measurement field will default to inches, and inches will be first in the unit list. Most of what a shop measures is read in inches, so the common case should not be a scroll away
+
+**Requirements: filling**
+
+* **S8-R10:** Each axle will be set to Single or Dual, and to Drum or Disc. Drum or Disc may be left blank when the axle has no brakes
+* **S8-R11:** A tire row on 'Outer + inner' records four values on a Dual axle, left outer, left inner, right inner and right outer, and two on a Single axle. A tire row on '1 per side' and a brake row always record two, left and right
+* **S8-R12:** Every value will carry its own verdict, chosen from a menu on the field: OK, Monitor, Not OK or N/A
+* **S8-R13:** The value's input will be tinted by its verdict and will stay neutral while nothing is entered
+* **S8-R14:** A row's verdict will be derived from its positions, and an axle's from all of its positions. Worst wins: Not OK over Monitor over OK over N/A. A position with nothing entered does not affect the row. A row or axle with nothing entered is Not inspected. Neither will be chosen directly
+* **S8-R15:** Nothing will be required. An empty value will stay empty and will not be converted to N/A
+* **S8-R16:** Values will accept numbers and characters, including the text N/A
+* **S8-R17:** Switching an axle between Single and Dual will preserve what was entered, with no warning and no confirmation. Switching to Single keeps the outer readings as the left and right values; switching back restores the inner readings. Preserved values will live for the session only
+* **S8-R18:** A diagram of the truck will show every axle and will tint each tire by the worst verdict of the rows measuring it. A tire will stay grey until one of its rows has a verdict
+* **S8-R19:** Selecting a tire in the diagram will move to that axle, that row and that tire
+* **S8-R20:** The first axle can never be deleted. It will carry a clear action that empties its readings and verdicts and leaves the axle in place
+* **S8-R21:** Any axle after the first can be deleted. Axles below a deleted one will move up, and the numbering will follow
+* **S8-R22:** Axles can be expanded one at a time or all at once. Opening one will not collapse another
+* **S8-R23:** Desktop and phone will be two layouts rather than one layout compressed. The phone will render one card per measurement row and will not scroll sideways
+* **S8-R27:** The technician will be able to change a row's unit while filling. The change applies to that row across the whole axle, so every position on it is read in one unit, and it does not touch the other rows or the other axles
+
+**Requirements: output**
+
+* **S8-R24:** The completed read-only view will show each field's verdict. A per-axle field shows each position's value and verdict and the axle's verdict; a measurement row has no verdict of its own. The phone shows the same as the desktop. The report follows S13-R0
+* **S8-R25:** Counting will be per axle, as S5-R20 defines it: an axle contributes one count and carries the worst verdict of the positions on it. The inspection list, the report counters and the field's own summary will report the same numbers. A count is not a finding — S8-R26 produces one finding per flagged row. A count answers how many things need attention; a finding says what each one is. The one exception is the per-axle field's header on the fill screen, which counts flagged positions for the technician, for example '2 positions Not OK · 1 Monitor'. It names no unit, because a row knows its scope but not whether it measures a tire or a brake
+* **S8-R26:** Each flagged row will produce its own finding for the work order, naming the axle and the row, so a line can be traced to the measurement that caused it. The finding names every flagged position on the row with its reading
+
+**Negative cases**
+
+* **S8-N1:** A per-axle field with no verdict anywhere counts as unanswered and blocks submit when the field is required
+* **S8-N2:** If Drum or Disc is left blank, nothing about brake type appears in the report
+* **S8-N3:** A position with a value and no verdict is not counted as a finding, and does not block submit
+
+**Edge cases**
+
+* **S8-E1:** An axle with a verdict and no measurements counts as answered. A technician may judge an axle without recording numbers
+* **S8-E2:** A value containing the text N/A and a verdict of N/A are different statements, and both survive to the report distinctly. One says the measurement does not apply, the other says the position does not apply
+* **S8-E3:** Free text in a value reaches the report as entered, without being converted or dropped
+* **S8-E4:** A road train may have seven or more axles. Both the diagram and the phone layout remain usable
+* **S8-E5:** Renaming or removing a row after values exist cannot affect a completed inspection, because the inspection keeps the template version it started on
+* **S8-E6:** Leaving the page loses any readings preserved by a Single or Dual switch, because they were only ever held for the session
+* **S8-E7:** Changing a row's unit does not convert the readings already entered. The technician is recording what the gauge shows, and silently multiplying their numbers would be worse than leaving them
+
+---
+
+## S11: Attach a reference file to a question
+
+**As a** template author, **I want** to attach the actual procedure to the question the technician is answering, **so that** they have it in front of them instead of being told to go and find it.
+
+**Design:** [Digital Inspections V2 design](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html)        
+**Jira:** [SV-9109](https://shopview.atlassian.net/browse/SV-9109)
+
+**Prerequisites**
+
+* The field is any question type
+* Uploading requires 'Settings — Service' enabled
+* Anyone who can view the inspection can open its reference files; the file is part of the inspection
+
+**Requirements**
+
+* **S11-R1:** Any question type will hold one file attachment
+* **S11-R2:** PDF, JPG, PNG, HEIC, Word (DOC, DOCX) and Excel (XLS, XLSX) files will be accepted. GIF, WEBP, TIFF and video will not be accepted
+* **S11-R3:** The author will upload from the field's properties panel, and the accepted file types will be stated there before the upload. The size limit is not stated in advance; a file over it is rejected with a message that states the limit. The limit is 20 MB. No endpoint enforces either figure today — S11 is new work, so this is the decision rather than a description of what exists
+* **S11-R4:** The technician will see the attached file while filling and will be able to open it. It will open as a full-page view in the same tab, with a close action and a download action. A PDF and a web image are readable there without downloading
+* **S11-R9:** A file the viewer cannot render — HEIC, Word, Excel — will say so in that view and offer the download, rather than opening blank or silently downloading. Converting those types on the server so they can be read in place is a separate ticket; until it lands the viewer is honest about the limit instead of pretending
+* **S11-R5:** The attached file will be visible on the canvas on the field's row
+* **S11-R6:** The upload control will read "Attach File" on every field type
+* **S11-R7:** Attached files will be available only within the shop that uploaded them
+* **S11-R8:** After a template is republished, instructions in earlier published versions will still open their attachments
+* **S11-R10:** The always-visible attachment is called the general reference file, on every field type. The file inside a follow-up block is not a reference file and carries no such label (S19-R12)
+* **S11-R11:** While filling, the general reference file is shown by its name, and the name is a hyperlink that opens it in the viewer. There is no separate "Open" or "View" button. The file inside a follow-up opens the same way (S19-R19)
+
+**Negative cases**
+
+* **S11-N1:** Video files will be rejected, with a reason shown to the author
+* **S11-N2:** A file belonging to another shop cannot be opened
+* **S11-N3:** If an attachment is removed from the field, the technician no longer sees it
+
+**Edge cases**
+
+* **S11-E1:** If an upload fails partway, no attachment is recorded and the author is told why. A recorded attachment that points at nothing is the outcome to avoid
+* **S11-E2:** Replacing a file records the new attachment. The old file is not removed
+* **S11-E3:** An unusually long file name is shortened in the interface rather than breaking the layout
+* **S11-E4:** If the stored file is missing while the field still refers to it, opening it fails with a message rather than a broken download
+
+_Note on S11-E2 and S11-R8: attachments are not deleted in this release. The same file is referenced by later template versions, so deleting it would break earlier published versions and the completed inspections under them. This means stored files accumulate, which is an accepted cost for this release._
+
+---
+
+## S12: Template builder authoring
+
+**As a** template author, **I want** a builder that gives me a starting point and stays out of the way, **so that** building a template is not an exercise in patience.
+
+**Design:** [Digital Inspections V2 design](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html)        
+**Jira:** [SV-9110](https://shopview.atlassian.net/browse/SV-9110)
+
+**Prerequisites**
+
+* The author has 'Settings — Service' enabled
+* Template authoring is a desktop screen
+
+**Requirements: the first screen**
+
+* **S12-R1:** A brand-new template will show only the choice of starting point: start from a template, or build from scratch. No section heading, field count, section menu, signature option, add-section control or Edit / Preview control
+* **S12-R2:** As soon as the author chooses either option, the full builder will appear
+* **S12-R3:** The "Require technician signature" option will be available while building, and withheld only on that first empty screen
+
+**Requirements: starting points**
+
+* **S12-R4:** The starter library will offer six slots. Five carry template content, built from the five templates the shops already run: Class 8 Tractor PM Inspection, DOT / Annual Federal Safety Inspection, Air-Brake Inspection, Trailer Inspection and Light-Duty PM Inspection. Starters are verified visually, one to one, against the output of the extension they come from. A starter card carries an icon and a name only; the name describes the template, and a second line repeating it was removed
+* **S12-R5:** The sixth slot is the equipment starter, which was asked for in review and has no name or content yet. It renders as a pending placeholder — dashed border, PENDING badge — and is not pickable. The grid is built as equal rows so a seventh and eighth entry drop in without relayout
+* **S12-R7:** A section added after the first will offer field types only, not starting points, because a starting point creates a whole template
+
+**Requirements: the field properties panel**
+
+* **S12-R8:** Measurement rows on a per-axle field will appear as cards. The row name will read as text with a control to rename it, confirmed with a check and dismissed with an X, alongside the unit and, on a tire row, its scope. A brake row shows no scope control. The defaults will be labelled as defaults, so the author does not read them as the value for a particular truck
+* **S12-R9:** Adding a measurement row opens a menu of the row types the field does not already have (S8-R7)
+* **S12-R10:** The row list will show how many rows there are, and offer a full-width control to add one of the missing row types, hidden when all four are present
+* **S12-R11:** Response options will be editable rows with their colours. An "Include Monitor option" control will turn the optional amber response on and off, and will be on by default
+* **S12-R12:** An empty response label will show an error on the row itself and will block publishing, while still allowing the author to save a draft
+* **S12-R13:** An empty measurement row name will behave the same way, with the error on the row, so the author can see which row is at fault
+* **S12-R14:** Validation rules will be explained on demand rather than as permanent text on the panel
+* **S12-R15:** The author will be told on demand — a tooltip on the response options — that the labels are theirs to edit but that the customer report always uses the standard wording, so reports stay comparable. What the report prints does not change; only where the author is told
+
+**Requirements: the canvas**
+
+* **S12-R16:** A field row will show its type, a summary line, and its markers, which will wrap rather than being cut off
+* **S12-R17:** A checkbox's summary line will list its responses
+* **S12-R18:** A per-axle field will list its measurement rows and note that the technician adds axles while filling. This is the builder's canvas row, which is how an author scans a template, and it is deliberately kept — S12-N3 removes the descriptor from the surfaces the technician sees, not from the builder's own list
+* **S12-R19:** An empty section will not offer duplicate ways to add a field, the option to duplicate itself, or the add-section control, until it has content
+
+**Requirements: one text field**
+
+* **S12-R20:** A single Text field will replace the separate short text and long text fields
+* **S12-R21:** The Text field will grow as the technician types rather than scrolling within itself
+* **S12-R22:** The field type list will offer one text option
+* **S12-R23:** Templates built with the previous short text and long text fields will keep working unchanged, with nothing for the author to migrate
+* **S12-R24:** The Per axle field type will carry an explanation on demand: one field covers the whole unit, the author picks which of the four measurement rows it carries, and the technician adds each axle while filling the inspection in
+* **S12-R25:** The builder will offer a Preview mode alongside Edit, switched from a control in the sub-header. Preview mounts **the fill screen itself** against the current draft, unsaved edits included, so what the author sees cannot drift from what the technician gets. The properties panel steps aside and the canvas takes its width — the axle grid needs 800px and the panel is 360 — while the sections rail stays, so the author previews one section at a time
+* **S12-R31:** Preview is read-only, with one exception: the axle count. Add Axle and delete axle work there (the first axle is never deleted, S8-R20) and write the count back to the draft, so returning to Edit shows the new number on the Axles control (S12-R29). Add Axle stops at 8 and delete stops at 1, so the count never leaves the range. Nothing else accepts input: no values, no verdicts, no Single/Dual, no Drum/Disc, no Mark OK, no Add Note, no Add Photo. A reference file is shown but cannot be opened. The submit bar is not drawn at all; it belongs to an inspection rather than a template
+* **S12-R32:** Preview works on a draft and never asks the author to publish first. Clicking anywhere on a field in Preview, except the axle count controls, returns to Edit with that field selected in the panel, which is the round trip the mode exists to remove
+* **S12-R33:** Preview explains nothing about itself. It draws no banner saying that nothing is saved, and no line stating how many axles the technician starts on. The Edit and Preview control already says which mode the author is in, and the Axles control explains the count where it is set (S12-R29). A mode that narrates itself is exactly the subtext this document rules out
+* **S12-R26:** The templates list will describe usage as times used, not as runs, on the summary figure and the table column alike
+* **S12-R27:** Where the same thing is measured or judged on every wheel position, a starter will use one per-axle field rather than one field per position. The seed templates were authored before the per-axle field existed, which is why they carry positional fields the new type replaces. Light-Duty PM's four tread measurements and its tire pressure become one per-axle field; Air-Brake's push-rod travel and lining thickness become one; Class 8 Tractor PM's four per-axle brake-lining checks become one; Trailer's lining thickness and tread depth become one. The DOT form keeps its own structure — an inspector signs against its stated items
+* **S12-R29:** A per-axle field will offer an Axles control in its properties panel, in the shape of a measurement row and sitting below the rows, above the control that adds one — so the panel reads top to bottom: what every axle is measured on, then how many axles to start with. It defaults to 3 and offers 1 to 8, and it is explained on demand rather than in permanent text. The rows above it are headed "Measurement rows · every axle"
+* **S12-R30:** An axle count outside the offered range is dropped back to the default rather than rejected. A template that fails to save over a starting point would be worse than one that starts at three
+* **S12-R28:** Seeded templates will arrive with checkbox fields marked required to complete, and with text, notes and measurement fields optional. A shop turns off what it does not want rather than turning on what it does. Requiring every field would put a required comment in every section of the largest starter and would fight the one-press Mark OK of S18
+
+**Negative cases**
+
+* **S12-N1:** A starting point cannot be applied twice, or to a template that already has content, because starting points are offered only on the empty first screen
+* **S12-N2:** If a response label is cleared, publishing is blocked until it is corrected
+* **S12-N3:** No surface the technician sees — the fill screen, and therefore Preview — carries a generated descriptor line summarising a field's configuration. Not "4 measurement rows · 3 axles to start · verdict per tire", nor any variant of it. An instruction the author wrote is a different thing and is shown as written
+* **S12-N4:** The Text field has no single-line or multi-line option; it grows with the answer
+
+**Edge cases**
+
+* **S12-E1:** If the last section is deleted, the canvas still offers a way to add one back. Starting points are not offered again
+* **S12-E2:** If a field is deleted while it is selected, the properties panel clears rather than showing a field that no longer exists
+* **S12-E3:** A very long field or section name is shortened in the canvas, the outline and the properties panel rather than breaking the layout
+* **S12-E4:** Changing a measurement row is reflected in the preview without republishing
+
+---
+
+## S13: Customer-facing inspection report
+
+**As a** user, **I want** a report that states facts and identifies the customer correctly, **so that** it is safe to hand to a customer.
+
+This is the only customer-facing output in this epic.
+
+**Design:** [Digital Inspections V2 design](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html)        
+**Jira:** [SV-9111](https://shopview.atlassian.net/browse/SV-9111)
+
+**Prerequisites**
+
+* The inspection is completed
+* A report has been requested
+
+**Requirements: what the report says**
+
+* **S13-R0:** A per-axle field will print one block per axle, never split across a page: each row's values per position, and the axle's result in the axle header. The sub-tables are headed by scope, 'OUTER + INNER' and '1 PER SIDE'. A flagged value carries the icon of its summary tile, a triangle for Needs attention and a clock for Monitor, as well as its colour, so the report reads in black and white. A position nobody measured prints a grey dash. There is no per-row status column
+* **S13-R1:** The report title will read "Inspection results"
+* **S13-R2:** The template version will not appear on the report
+* **S13-R3:** The introductory paragraph and the three summary blurbs will be removed. They editorialised, and they referred to trucks for assets that are not trucks
+* **S13-R4:** The advisor row will be removed
+* **S13-R5:** Per-section counts will be removed
+* **S13-R6:** The work order number will appear without a leading hash, in both the header and the running header
+* **S13-R7:** The inspected date will show without a time
+* **S13-R8:** The work order number will include its branch prefix, so S1-2252 rather than S-2252
+
+**Requirements: who the report is addressed to**
+
+* **S13-R9:** The Customer block will show the company on the work order, with its name, address, city, state, postal code and phone
+* **S13-R10:** The contact person will appear on a separate Contact row
+* **S13-R11:** Any field attributed to a user will show that person's name
+
+**Requirements: what the report must survive**
+
+* **S13-R12:** Regenerating a report will produce a new version rather than replacing the previous one, and every link will resolve to the most recent. Earlier versions remain retrievable as the record of what was sent, so a report already handed to a customer cannot change
+* **S13-R13:** Republishing the template will not alter an existing report, and the inspection will keep the template version it ran on
+* **S13-R14:** The inspected date is the date the inspection was first completed. Regenerating a report does not move it; reopening the inspection and completing it again gives it a new date, which is how a newer version is told apart
+* **S13-R15:** Regenerating a report does not post another note on the work order. The existing note keeps pointing at the most recent version (S13-R12)
+
+**Negative cases**
+
+* **S13-N1:** If the work order has no company, the Customer block is omitted rather than showing an empty frame
+* **S13-N2:** If there is no contact person, the Contact row is omitted
+
+**Edge cases**
+
+* **S13-E1:** A company with a name but no address or phone shows only its name, with no blank lines and no stray punctuation
+* **S13-E2:** A very long company name or address wraps or is shortened rather than pushing the layout out of shape
+* **S13-E3:** An inspection with no answered fields produces a report with zero counts rather than failing
+
+**Error handling**
+
+* If the report cannot be generated, the user is shown the reason where one is available, rather than a generic failure
+
+---
+
+## S14: Inspection filling on a phone
+
+**As a** technician, **I want** the inspection to be usable on the phone I actually carry, **so that** I am not squinting at a desktop layout in a bay.
+
+Most of this is the phone rendering of behaviour specified above, and this story exists so that work is tracked rather than assumed. Two requirements are genuinely new here: how outstanding work is surfaced, and where selecting it takes the technician.
+
+**Design:** [Digital Inspections V2 design](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Digital+Inspections+V2+-+All+Screens.dc.html) (mobile artboards)        
+**Jira:** [SV-9397](https://shopview.atlassian.net/browse/SV-9397)
+
+**Prerequisites**
+
+* The stories above are implemented
+* The technician has 'Work Order Lines — Create & Edit' enabled
+
+**Requirements**
+
+* **S14-R1:** The per-axle field will render one card per measurement row and will not scroll sideways at any width
+* **S14-R2:** Every target a technician taps will be large enough to hit with a gloved thumb, including the unit selector and the Drum, Disc, Single and Dual controls
+* **S14-R3:** Value inputs will not zoom the page when they take focus
+* **S14-R4:** Moving between axles will happen from a header rather than by scrolling, and the primary action will advance to the next axle
+* **S14-R5:** A reference file will open across the full screen, in the same view, and will be closable back to the exact position in the inspection
+* **S14-R6:** Outstanding required work will be surfaced on the action that completes the section, carrying a count, rather than as a separate banner competing with the fields. Nothing blocks finishing a section: missing answers, notes, photos and acknowledgements only raise the count. Everything outstanding is collected at submit
+* **S14-R7:** Selecting an outstanding item will move to that field. A 'Go to the first one' action moves to the first item in the list
+* **S14-R8:** The layout will not draw its own back control where the device already provides one
+
+**Negative cases**
+
+* **S14-N1:** No screen in the filling flow requires a horizontal scroll to reach a control
+* **S14-N2:** No control is placed where the device's own navigation overlaps it
+
+**Edge cases**
+
+* **S14-E1:** A truck with seven axles remains navigable without scrolling through every one
+* **S14-E2:** A long field label, a long row name and a long file name each shorten rather than breaking the layout
+
+---
+
+## S18: Mark a whole scope OK in one press
+
+**As a** technician, **I want** to mark everything I found in order as OK at once, **so that** a clean inspection is not a hundred identical presses.
+
+**Prerequisites**
+
+* The inspection is open and editable
+* The technician has 'Work Order Lines — Create & Edit' enabled
+
+**Requirements**
+
+* **S18-R1:** The action will be offered at three levels, the inspection, a section and a field, with the same treatment. The label names the level: 'Mark all OK', 'Mark section OK' and 'Mark field OK'. There is no axle level: an axle is part of a per-axle field, which 'Mark field OK' covers
+* **S18-R2:** It will set OK only. There is no bulk Monitor and no bulk Not OK: a bad finding stays a deliberate act
+* **S18-R3:** It will set verdicts only. A measured value is never invented
+* **S18-R4:** It will never overwrite a verdict already picked. Only positions still Not inspected change, so marking everything good and then correcting the two bad ones works in either order
+* **S18-R5:** A press will reach an untouched per-axle field. The axles it shows before anything is entered are the axles it stamps
+* **S18-R6:** After the press the row will report what it covered, counted in its own unit — fields at inspection and section level, positions on a field — and will offer Undo
+* **S18-R7:** Every level beneath the one pressed will report the same, so before and after read at a glance down the page. Undo appears only on the row that was pressed
+* **S18-R8:** The report will clear on the next edit anywhere in the inspection — a verdict, a value, or a Single/Dual switch — and the actions return
+* **S18-R9:** A scope with nothing left to mark will render inert rather than disappearing. The pattern keeps its place
+* **S18-R10:** Each level will explain its scope on demand: what it covers, what it leaves alone, and that values are never filled in. On a phone the inspection-level caption reads: '34 items are still Not inspected. Only those are marked OK; verdicts already picked stay, and values are never filled in.'
+* **S18-R11:** On a phone the three levels take three surfaces — the section header, the axle field's sub-header, and the app-bar menu. The footer stays section navigation and gains nothing. On the last section the footer keeps Back, as a compact arrow button, beside 'Submit & Generate Report', which is never truncated
+
+**Negative cases**
+
+* **S18-N1:** A field that carries no verdict — text, instructions, a photo — carries no action
+* **S18-N2:** A read-only or submitted inspection offers none of it. Neither does the builder's Preview mode, which is read-only by S12-R31 — an author sets a template up there, and marking work OK belongs to filling an inspection in
+
+**Edge cases**
+
+* **S18-E1:** A Single/Dual switch counts as an edit and ends the report
+* **S18-E2:** A field answered once rather than per position reports "Marked OK" with no count
+
+---
+
+## S19: Conditional follow-up on a checkbox response
+
+**As a** template author, **I want** to attach an instruction to a single response of a checkbox question, **so that** the technician is told what to do at the moment they find the problem, instead of being sent to look for a procedure.
+
+_Added to this epic on 2026-09-18, after the original scope and after the design review. It reverses two decisions recorded above, both of which have been rewritten rather than left to contradict it._
+
+**Design:** [Conditional Follow-up V2](https://claude.ai/design/p/0c2be389-b1b1-41f9-8b95-6dba538c69ba?file=Conditional+Follow-up+V2.dc.html)  Artboards CI1b, CI1c, CI1d, CI3 to CI9.
+
+**Jira:** [SV-10243](https://shopview.atlassian.net/browse/SV-10243)
+
+**Prerequisites**
+
+* The field is a checkbox field
+* The author has 'Settings — Service' enabled
+* Anyone who can view the inspection can open the files attached to it; they are part of the inspection
+
+**Requirements: authoring**
+
+* **S19-R1:** A checkbox field will offer a toggle, "Add follow-up to a response", sitting below "Include Monitor option" and off by default
+* **S19-R2:** While the toggle is off, the response options section is exactly as it is today apart from that one row
+* **S19-R3:** While the toggle is on, each response becomes a block carrying its response row, a checkbox reading "Follow-up for this response", a text area, and an Attach File control
+* **S19-R4:** The text area and the attach control will be rendered and disabled until the checkbox is checked, so the author sees what a follow-up consists of before committing to one. They will not be revealed only on check
+* **S19-R5:** A follow-up is a text, a file, or both, with at most one file. There is no second file and no list
+* **S19-R6:** A Monitor or Not OK block will additionally carry a "Require acknowledgement" toggle, on by default. OK and N/A blocks will not carry that toggle at all, because an acknowledgement on a passing response would be created in bulk by the one-press Mark OK of S18 without the technician ever seeing it
+* **S19-R7:** A follow-up binds to the response slot, not to its label, so renaming a label under S12-R11 does not orphan it
+* **S19-R8:** Unchecking the checkbox will retain the text and the file and render the fields disabled. Turning the section toggle off will retain every follow-up on the field. Turning "Include Monitor option" off will remove the Monitor block and retain what was in it
+* **S19-R9:** Turning the section toggle off while any follow-up is checked will ask the author to confirm, because the technician stops seeing text the author wrote
+* **S19-R10:** The canvas row of a field carrying follow-ups will list one line per follow-up, showing the response name in that response's colour, the first line of the text shortened rather than wrapped, and a clip glyph where a file is attached. The list renders whether or not the field is selected
+* **S19-R11:** Both the section toggle and the acknowledgement toggle will be explained on demand, on an information affordance. Neither will carry permanent text on the panel
+* **S19-R12:** The always-visible field attachment will be labelled "General reference file" on every field type, not only on checkbox. The file inside a follow-up block carries no such label; its control reads "Attach File" as it does everywhere else
+
+**Requirements: filling**
+
+* **S19-R13:** The technician-facing word is Instruction. Follow-up is the authoring word and appears only in the builder. The two are deliberately different: the author is configuring a rule, the technician is reading a procedure, and Instructions is already the name of a field type the technician knows
+* **S19-R14:** Where the given response carries a follow-up, the instruction will open in the field card, below the note block where a note is also required, above the footer. Both blocks are full width and never side by side
+* **S19-R15:** On Monitor and Not OK the instruction opens in place as soon as the response is given. On OK and N/A it stays collapsed and an Instruction action sits in the card footer beside Add Note and Add Photo
+* **S19-R16:** Where the follow-up requires acknowledgement and none has been given, the instruction header will carry a Required marker in the colour of the response that triggered it. The marker disappears once acknowledged
+* **S19-R17:** The acknowledgement will be a checkbox reading Acknowledge, becoming Acknowledged when set. It is not a button, not a toggle, and the technician cannot clear it
+* **S19-R18:** The acknowledgement will record who gave it and when. That record will not be printed on the field card; it is surfaced in the inspection record's field detail
+* **S19-R19:** The attached file will open full screen in the same view and close back to the exact position in the inspection, as the reference file already does. The file name is a hyperlink that opens it; there is no separate "View Instruction" button
+* **S19-R20:** Instruction text will never be truncated, and the author's paragraph breaks will be preserved. Long file names will shorten
+* **S19-R21:** Desktop and phone will be two layouts rather than one compressed. On a phone the acknowledgement takes its own full-width row below the file row, because the file row has no width to spare and the target has to be hittable with a gloved thumb
+
+**Requirements: submit and outstanding items**
+
+* **S19-R22:** An unacknowledged required follow-up will block submit
+* **S19-R23:** The block will be enforced by the server. A submit made without the acknowledgement is refused whatever the interface showed
+* **S19-R24:** An unacknowledged required follow-up will appear in the outstanding items list alongside missing answers and missing notes, naming the kind first and then the section, the field and the verdict, and coloured by the verdict that caused it
+* **S19-R25:** Pressing submit with items outstanding will open that list rather than raising an error dialog. Submit is never disabled. It is named 'Submit & Generate Report' on every surface, and the list is titled 'N items before submitting'. The rule covers the submit button only; the sign-off step keeps its current labels ('Sign & generate report', 'Sign to complete', 'Confirm & lock inspection')
+* **S19-R26:** An unacknowledged follow-up will not block the action that completes a section. The count on that action rises and the technician may move on, per S14-R6
+
+**Requirements: preview**
+
+* **S19-R27:** Preview mounts the fill screen, so no response can be given. Every configured follow-up on a field will therefore be shown at once, each naming the response it belongs to
+* **S19-R28:** In Preview the file is shown but cannot be opened, as for the general reference file (S12-R31). The acknowledgement will render in the inert treatment the verdict controls already use there and will take no input, per S12-R31
+* **S19-R29:** Preview will draw no banner explaining itself
+
+**Negative cases**
+
+* **S19-N1:** A per-axle field will not offer follow-ups. A verdict there is recorded per position and there is no single position an instruction would belong to, which is the reason S17-R6 already gives for the photo rule
+* **S19-N2:** A checked follow-up with no text and no file will block publishing, with the error on the block, as S12-R12 and S12-R13 already do for an empty response label and an empty measurement row name. A draft may still be saved
+* **S19-N3:** The customer report shows the follow-up instruction text and its acknowledgement, with who acknowledged it and when. The attached file does not appear on the report
+* **S19-N4:** Neither reaches the brief sent to ShopCoach. S15-R1 is unchanged
+* **S19-N5:** An acknowledgement is not a finding and carries no count. S5-R17 counts responses
+
+**Edge cases**
+
+* **S19-E1:** Changing the response clears the acknowledgement given on the previous one. Answering the same response again asks for it afresh
+* **S19-E2:** A follow-up added or edited after a template is republished does not reach an inspection already running, because an inspection keeps the template version it started on
+* **S19-E3:** The one-press Mark OK of S18 sets OK only and never overwrites a verdict already given, so it can reveal collapsed instructions but can never create an acknowledgement the technician has not seen
+* **S19-E4:** A very long instruction renders in full with the file row and the acknowledgement below it, unscrolled and untruncated
+* **S19-E5:** Where the stored file is missing while the follow-up still refers to it, opening it fails with a message rather than a broken download, as S11-E4 already requires
+
+---
+
+# Change Log
+
+| Date | Reporter | Change | Notes |
+| --- | --- | --- | --- |
+| 2026-09-10 | Milos Vasic | AI prd review 13 decision completed and change on the PRD  | A seam review against the system map found the document silent or self-contradictory in thirteen places, and each was decided rather than logged. S8-R25 counted per position while S5-R20 counted per axle, and both claimed to be the single definition three surfaces follow; counting is now per axle everywhere, with a sentence saying a count is not a finding so S8-R26 is not read as contradicting it. S2-N5 justified letting a user without financial visibility build lines on the grounds that money is never entered — which stopped being true when S15-R12 made the labour figure and parts editable; the build stays allowed and the panel now masks money the way the New Line form already does, server-side. S2-R17 states once, for the whole document, that these rules are enforced by the server and a request without the permission is refused; every permission rule here was written as a rule about the interface, which is how SV-7932 happened. S2-R18 keeps Fixed Line Total off generated lines, because labour plus parts must equal the fixed total or the line cannot be saved and the failure would surface only at the end of the flow. S2-E1 is deleted: a work order cannot be created without an asset. S5-R21 pins an inspection to the asset it ran on. S2-E11 says deleting the generated lines does not re-raise the flag, unlike deleting the work order. S5-R12 gains the release cut-off that had lived only in Key Decisions. S7-E4 records that a split leaves the provenance on the original. S15-R24 says the shared panel is told which flow it is in rather than having its dedupe changed for both. S15-R26 makes the review panel a full-screen modal on a phone. S12-R31 collapses to one rule: Preview is read-only except the axle control, which writes its count back to the draft; S18-N2 follows it. S12-R15 becomes a tooltip, with the report's wording unchanged. Nothing was written about shop supplies or tax: both are work-order and invoice level, not per line, so a generated line cannot diverge and S2-R2 already covers it. |
+| 2026-09-16 | Milos Vasic | Technical planning pass answered; nine corrections applied | The rulings on the technical planning pass of 2026-09-15 and its follow-up, together with the corrections that pass found. The page stops describing a work order as open or closed: S2-R4 and S2-R5 name an eligible build target instead, because the platform carries twelve competing definitions of open and this rule should name its own rather than join them. Eligible is Estimate, Approved, In Progress or Review; ineligible is Complete, Invoiced, Paid, Declined, or an invoice existing. The note under S2-R5 no longer rests on the invoice argument alone, which does not cover Complete with no invoice. S8-R1 loses the removal of an axle option that never existed. S11-R3 stops claiming an endpoint enforces 20 MB — there is no endpoint, so the limit is a decision: 20 MB where the platform upload cap is raised in the same release, 10 MB where it is not. S3-E4 is deleted, because an inspection becomes completed only by generating its report and so always has one; the Key Decision requiring a completed inspection now gives that as its reason, since both submitted and completed inspections can be reopened. S2-E8 is deleted and becomes a prerequisite and S2-N6: a line cannot be created without a labour type, so the build states the reason rather than producing a line that cannot be saved. S2-R9 states the labour-type fallback as its own rule, because the default-else-first behaviour belongs to the manual form and not to the server. S2-N5 names the withheld fields instead of inheriting the New Line form, which uses two permissions and hides rather than masks. S5-R21 becomes a schema requirement — the asset is stored on the inspection, with a backfill for existing inspections — and S5-E3, S5-E7 and S2-E9 are rewritten around an inspection that outlives its work order; S2-E12 is added for the case where the deleted work order is the one the inspection was run on. S17-R9 accepts HEIC for inspection photographs, so a phone camera cannot make S17-R3 unsatisfiable, with S17-E6 naming the accepted formats at the point of failure. The template-version pinning moves from an assumption to a verified fact. |
+| 2026-09-18 | Milos Vasic | S19 added: conditional follow-up on a checkbox response | A checkbox response can now carry a follow-up, being text and one file the technician sees only when they give that response, with an acknowledgement required on Monitor and Not OK. This reverses two decisions this document had recorded, and both were rewritten rather than left to contradict it: the Out of scope bullet ruling out conditional logic of any kind is removed, and the Key Decision that conditional follow-ups and instruction acknowledgement are out of scope is replaced. That decision was taken because a conditional note that collects nothing back was not worth building; the acknowledgement is what it collects back. It is offered on Monitor and Not OK only, because an acknowledgement on a passing response would be created in bulk by the one-press Mark OK of S18 without the technician ever seeing it. Two further decisions are recorded: the author configures a follow-up while the technician reads an instruction, which is the one deliberate place this document uses two words for one thing; and the always-visible attachment is called the general reference file on every field type, so the word does not change between a checkbox that also carries follow-ups and a field that does not. S11 gains R10 for that name. Nothing in the customer report, the ShopCoach brief or the counting rules changes. |
+| 2026-09-29 | Milos Vasic | QA contradiction pass answered | Resolved the contradictions QA found against v31. The destination menu always opens, and a target that cannot be used is not shown. An inspection is built from once. A failed draft follows the current Line Builder: an error and a retry. One finding per flagged row. Worst wins now ranks N/A, and an empty position does not affect its row. The row scope is set by the author and can be changed by the technician. Verdict wording per surface is stated. Preview accepts only the axle count, and the axle range is 1 to 8. File types are listed; TIFF, GIF and WEBP are dropped, and the size limit is not stated in advance. Reference files open for anyone who can view the inspection. Submit is never disabled and has one name. ShopCoach internals are marked provisional. A glossary is added. The case of an asset moved to another customer (C6) is still open |
+| 2026-10-05 | Milos Vasic | Developer and QA questions answered | Answered the developer, QA and design questions from the build. The inspected date is the first completion; a regenerate neither moves it nor posts another note. The asset tab lists newest completed first, sorts by Inspection, Status and Completed, and follows the work order when its asset changes or assets merge. The app says Not OK and the report never does: its results read ATTENTION, MONITOR and PASS, and flagged values carry the tile icon so the report reads in black and white. No verdict per measurement row on the completed view; the phone matches the desktop. The field header chip counts positions without naming tires or brakes. Mark OK labels name their level, and there is no axle level. The report shows a follow-up instruction and its acknowledgement but not its file. The phone keeps Back on the last section |
+| 2026-10-06 | Milos Vasic | Deleted work orders, removed inspections and splits | A completed inspection outlives a deleted work order as a read-only record: listed on the asset with a dash, viewable and downloadable, never built from, reopened or regenerated; an unfinished one goes with the work order. Because it can no longer be built from, the rules for building from it (the customer and asset taken from the inspection, the deleted number shown as text) are removed. Removing an inspection from its line, or deleting the line, deletes it on purpose. On a split, the inspection report notes move with the line; earlier splits are left as they are. Tire pressure unit written as psi |
+| 2026-10-07 | Milos Vasic | Deleted work order after a build | An inspection built onto a new work order keeps showing that outcome after its original work order is deleted, on the asset tab and its footer; the build note and Audit Log entry show the deleted number as text with no link. What survives a deleted work order is now decided by the report: an inspection with a report, completed or reopened, stays as a read-only record with its latest report; one with no report, including a submitted inspection whose report was never generated, goes with the work order |
+| 2026-10-07 | Milos Vasic | Leftovers from the built-once rule; file limit; submit name | S2-E6, S3-E2 and the Key Decision on concurrent builds still described a second build as accepted; they now follow S2-R13, where a second Add Lines adds nothing and says where the lines went. The reference file limit is 20 MB, since the platform cap is already above it. One submit name covers the submit button only; the sign-off step keeps its current labels |
+| 2026-10-07 | Milos Vasic | Filter leftovers removed | Four sentences still referred to the With issues and Needs action filters, which were removed from the asset tab in v32. They now refer to the tab listing and its summary line |
+| 2026-10-07 | Milos Vasic | Follow-up file opens from its name (SV-10794) | S19-R19 named the file action "View Instruction". The design has no button: the file name is the link that opens it in the viewer, as decided on SV-10794 |
+| 2026-10-07 | Milos Vasic | Files open from a hyperlinked name | Both the general reference file and the file inside a follow-up open from their name, a hyperlink, with no separate Open or View Instruction button (S11-R11, S19-R19). S19-R28 still said the follow-up file opens in Preview; in Preview it is shown but cannot be opened, as S12-R31 already said |
+| 2026-10-07 | Milos Vasic | Per-axle rows are four fixed types (SV-10877) | A brake row could be switched to 'Outer + inner' and recorded four values. A per-axle field now carries up to four fixed row types: tire pressure, tread depth, brake lining and push-rod travel, each at most once; adding a row offers only the missing types. The author sets the scope of the two tire rows; the two brake rows are always '1 per side' with no scope control. A row can be renamed but keeps its type. The technician no longer changes a row's scope while filling; the row follows the template. The Key Decision that kept the scope selector on every row is replaced |
+| 2026-10-07 | Milos Vasic | Deleted work order: outcome, footer, reopened, merge (SV-10965) | After a work order is deleted, an outcome is shown only while the work order it points to exists, so lines added onto the deleted work order leave a dash. The completed screen's footer offers View PDF only. A reopened inspection survives as its latest report, listed as Completed on that report's date and opening that report. Merging assets moves kept inspections to the surviving asset |
+| 2026-10-13 | Milos Vasic | Link to the proposed ShopCoach brief | The S15 status note links to the proposed brief for the inspection line builder (its three steps and the findings ShopView sends). S15-E2 reworded; its meaning is unchanged |
+
