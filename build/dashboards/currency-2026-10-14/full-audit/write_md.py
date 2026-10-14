@@ -1,0 +1,74 @@
+import json,collections
+R=json.load(open('full-audit/_rows_full.json'))
+L=lambda c:f"[{c}](https://shopview.testrail.io/index.php?/cases/view/{c[1:]})"
+EARLIER={'C88619','C88620','C351717','C88632','C88628','C351714','C351723','C351734','C88606','C88647','C351729','C351708'}
+cnt=collections.Counter()
+for r in R:
+    cnt[(r['owner'],'n')]+=1
+    for v in r['verdicts']: cnt[(r['owner'],v)]+=1
+    if set(r['verdicts'])&{'A','B'}: cnt[(r['owner'],'AB')]+=1
+O=['us','Nebojsa','Vladimir']
+md=[]
+md.append("# Dashboard — independent full audit of all 106 live cases against the current PRD (14 Oct 2026)\n")
+md.append("Read-only audit. No TestRail, Jira, Confluence, Slack or Google write; no build sign-in. Owner = who holds the case today: **Vladimir** = created by Vladimir Tomovic; **Nebojsa** = created by us, last edited by Nebojsa Glavinic (the earlier \"6 ours + 6 Nebojsa's\" split uses the same rule); **us** = created and last edited by us. Automated? = TestRail automation status.\n")
+md.append("**Current spec: PRD Confluence 788430850 version 48** (fetched 14 Oct 2026, saved as `CONFLUENCE-788430850-v48-2026-10-14c.md`). v48 differs from v46 only in: **S9-R11 reworded** (\"A chart has nothing to show when no point in the range has a value, or when every point is zero, the same test the tile uses (S4-R13). On Revenue that includes a range with no sales at all; a range with some sales still draws its $0.00 days as real points (S4-R11a).\" — PO answer 16), a new header Status row, and two 14 Oct Change Log rows. Every other line is identical after markup normalisation (script diff).\n")
+md.append("Design canvas: the PO's re-shared canvas (`sources/design-2026-10-14b/`) was compared file by file with this morning's copy; the changed and removed boards drive verdict D below.\n")
+md.append("## 1 · Summary\n")
+md.append("| Owner | Cases | A (behaviour changed) | B (cannot be done as written) | Cases needing update + retest (A or B) | C (provenance / quote refresh) | D (cites a changed or removed design board) | OK |")
+md.append("|---|---|---|---|---|---|---|---|")
+for o in O: md.append(f"| {o} | {cnt[(o,'n')]} | {cnt[(o,'A')]} | {cnt[(o,'B')]} | {cnt[(o,'AB')]} | {cnt[(o,'C')]} | {cnt[(o,'D')]} | {cnt[(o,'OK')]} |")
+md.append(f"| **Total** | **{sum(cnt[(o,'n')] for o in O)}** | **{sum(cnt[(o,'A')] for o in O)}** | **{sum(cnt[(o,'B')] for o in O)}** | **{sum(cnt[(o,'AB')] for o in O)}** | **{sum(cnt[(o,'C')] for o in O)}** | **{sum(cnt[(o,'D')] for o in O)}** | **{sum(cnt[(o,'OK')] for o in O)}** |\n")
+md.append("A case can carry several letters. **The answer to the QA lead's question:** the earlier 12 were all correctly listed, but the list was **incomplete in two ways**: (1) **3 more cases** read the tile trend line's *level*, which S4-R11b (v45, 14 Oct) makes meaningless, and (2) **one listed case (C88606) was listed for only half its problem** (it also accepts a Revenue line that drops no-sale days, against S4-R11a, v43, 9 Oct). Separately, **every one of our 97 cases is stale in its provenance**: each Source line says \"Confluence 788430850 v42, read 7 Oct 2026\" while the page is now at v48, two cases quote the old S5-R9 sentence word for word, and 73 cite design boards that the PO has just changed or removed. So the suite *will* stay stale unless the provenance refresh (C) and board re-pointing (D) are done for all 97, not only the 15 behaviour updates.\n")
+AB=[r for r in R if set(r['verdicts'])&{'A','B'}]
+md.append(f"## 2 · Cases that must be updated and retested (A and/or B) — {len(AB)}\n")
+md.append("| Case | Title | Owner | Automated? | Verdict | What changes and why (spec code · version · date) | In earlier 12? |")
+md.append("|---|---|---|---|---|---|---|")
+for r in AB:
+    v=','.join(x for x in r['verdicts'] if x in 'AB')
+    md.append(f"| {L(r['case_id'])} | {r['title']} | {r['owner']} | {r['atm']} | {v} | {r['reason'].split(' D: ')[0]} | {'yes' if r['case_id'] in EARLIER else '**NO — missed**'} |")
+md.append("")
+md.append("### 2a · What the earlier 12 MISSED\n")
+for c in ['C88610','C88645','C351716']:
+    r=next(x for x in R if x['case_id']==c)
+    md.append(f"- {L(c)} — {r['title']} ({r['owner']}, {r['atm']}). {r['reason'].split(' D: ')[0]}")
+md.append(f"- {L('C88606')} — listed earlier only for the 731/732-day ranges (B). It is also **A**: its expected \"up to 31 points\" passes a Revenue trend line that leaves out no-sale days, which S4-R11a (v43, 9 Oct 2026) forbids (every no-sale day is a point at $0). The update must change both.")
+md.append("\nThe three missed cases are **minor A**: each fails or passes wrongly only in a particular data situation (today already the highest day; the no-hover-values fallback; a judgement of \"level\"), but each asks the tester to read something S4-R11b explicitly says the trend line does not show (\"The sparkline shows direction, not level ... The headline carries the actual value\").\n")
+md.append("### 2b · Which of the earlier 12 are WRONG\n")
+md.append("**None.** Each of the 12 was re-read step by step against v48 and each still fails a correct build or passes a wrong one. Notes: C351708 is now settled by S9-R11 (v48): with no sales at all the expanded Revenue chart reads \"No data for selected date range\" (the PO question raised for it is answered). C88632 stays A: the published notes say totals \"can change\" and that a re-invoiced void \"counts only the new amount\", not that a figure \"can move up\", so the expected text must quote the published note. C88628's update should also add S6-R8a (amounts are links; walk-in and $0.00 are plain text). C351714's Sales by Customer supporting line at zero is still not defined by the spec (PO item).\n")
+md.append("### 2c · Looked at hard and kept OUT of A/B (adversarial pass in the other direction)\n")
+md.append("- C88612 — \"monthly bars, e.g. Oct 2025 to Sep 2026\" on Last 12 Months is right for a September run (S6-R3a, S10-R8); only the example drifts with the test date (C).\n- C351718, C88615 — set a technician/advisor filter and check it is remembered; the table following it (S8-R5a) is covered by the earlier new test, not by changing these.\n- C88609, C88630 — behaviour checked (one, or two or more at risk) is unchanged; only the S5-R9 quote is stale (C).\n- C88611, C88598 — read the At Risk headline \"0\" only; the zero supporting line is C351714's job.\n- C204097, C88650 — already expect daily bars on This Week / This Month, now backed by S6-R3a; C204097's week with one negative day is not \"every point zero\", so S9-R11 (v48) does not apply.\n- C88617, C88648 — the nine presets are still exactly the preset list (S7-R2a: Today is inside the calendar, not a tenth preset); custom ranges need new tests.\n- C540783 (Vladimir) — matches S6-R8a; watch item: step 2 changes the window after the panel opens, which must now be the tile pill (S5-N3).\n- C88624, C351732, C351735 — assume monthly bars on the report-page charts; no rule (old or new) sets report-chart bucketing, so nothing changed; raised as an observation (section 6).\n")
+def lst(pred,label):
+    rs=[r for r in R if pred(r)]
+    md.append(f"### {label} — {len(rs)}\n")
+    for r in rs: md.append(f"- {L(r['case_id'])} ({r['owner']}, {r['atm']}) — {r['reason'].split(' D: ')[0]}")
+    md.append("")
+md.append("## 3 · C — provenance and quote refresh (Rule 113)\n")
+md.append("Every quote in the 97 cases that carry quotes (319 quotes) was checked by script against the v48 text: **315 are still verbatim**, 2 are tech-plan quotes (correct source), and **2 are the old S5-R9 sentence** (C88609, C88630). But every one of the 97 names \"Confluence 788430850 v42, read 7 Oct 2026\" as its source, so all 97 need the version and read date re-stamped, and the cases below also need a newer code added because the behaviour they test is now written in the spec.\n")
+lst(lambda r:r['case_id'] in ('C88609','C88630'),"3a · Quote no longer matches the source (S5-R9 reworded, v45)")
+lst(lambda r:r['case_id'] in ('C88612','C88650','C204097','C351704'),"3b · Behaviour unchanged but now governed by a new code that should be quoted (S6-R3a / S7-R2a)")
+rest=[r for r in R if 'C' in r['verdicts'] and r['case_id'] not in ('C88609','C88630','C88612','C88650','C204097','C351704') and not set(r['verdicts'])&{'A','B'}]
+md.append(f"### 3c · Version stamp only (quotes verbatim in v48, Source says v42) — {len(rest)}\n")
+md.append(', '.join(L(r['case_id']) for r in rest)+"\n")
+md.append("(The 15 A/B cases also carry C; their quotes are rewritten as part of the update.)\n")
+md.append("## 4 · D — cases that cite a design board the PO has changed or removed\n")
+md.append("Changed boards (text or screenshot, 14 Oct reshoot from SV-490 at 39fb049): 01_Opens_After, 02_Last12_After, 03_Range_After, 04_Revenue_After, 04_Revenue_Hover, 05/06/07_*_After, 05/06/07_*_Legend, 08_Customers_After, 09_AtRisk_After, 09_AtRisk_Window, 11/12/13_*_Legend, 14_Phone_After, Main. **Removed: 15_Empty_Design, 15_Empty_Now and before-empty-tiles.png, replaced by 15_Empty_After.** Unchanged: every *_Before board, 05/06/07 _Hover, 08_Customers_New, all 10–13 report boards except the three legends.\n")
+rm=[r for r in R if 'removed board' in r['reason']]
+md.append(f"### 4a · Cite a REMOVED board (15_Empty_Design / 15_Empty_Now) — Source must be re-pointed to 15_Empty_After — {len(rm)}\n")
+for r in rm: md.append(f"- {L(r['case_id'])} ({r['owner']}) — {r['reason'].split(' D: ',1)[1]}")
+md.append("")
+ch=[r for r in R if 'D' in r['verdicts'] and r not in rm]
+md.append(f"### 4b · Cite a CHANGED board only — re-check labels/examples against the new board — {len(ch)}\n")
+for r in ch: md.append(f"- {L(r['case_id'])} ({r['owner']}) — {r['reason'].split(' D: ',1)[1]}")
+md.append("\nWhat the new boards now say that matters to cases: 09_AtRisk_After \"has no inactivity control of its own (S5-N3)\" (backs the C88628 update); the 05/06/07 and 11/12/13 Legend captions now say the \" · avg\" figure \"is removed by S9-R10 (build change pending)\" (backs C351723/C351734); 02_Last12_After's caption now measures At Risk revenue \"the way the Revenue tile and the Sales report do\" (S5-R15; the old \"like Sales By Customer\" caption was the drift); Main now says \"every report arrow kept\" for row 15 (PO answer 7); 04_Revenue_Hover's example changed from $2,030,953 to $180,891 (C351724's \"e.g.\" figure is now just an old example). Expected results must still come from the PRD, not the boards (Rule 57).\n")
+ok=[r for r in R if r['verdicts']==['OK']]
+md.append(f"## 5 · OK — nothing to change — {len(ok)}\n")
+for r in ok: md.append(f"- {L(r['case_id'])} ({r['owner']}, {r['atm']}) — {r['reason']}")
+md.append("\nVladimir's nine cases carry no Source or quote block, so C and D do not apply to them.\n")
+md.append("## 6 · Observations (no verdict letter)\n")
+md.append("- **Report-page chart bucketing is unspecified.** S6-R3a sets day/week/month/quarter bars for the *expanded* Revenue chart only. C88624 (\"monthly revenue bars\"), C351732 (\"this month's point/bar\" on This month) and C351735 assume monthly bars on the report pages. Jira (the Revenue-chart daily/monthly ticket in `jira-2026-10-14.md`) says the Sales report showed monthly bars on Last 12 months. Worth one PO question: does the report-page chart follow the same rule as S6-R3a?\n- **Ten cases' Setup says \"the dashboard remembers your choices\" for date pills** (C88604, C88606, C88607, C88612, C88614, C88616, C88617, C88623, C88627, C88628) — contradicts S7-R8 (unchanged since v42). Harmless to the run but wrong; fix while updating.\n- **Setup Google Docs were not read** (outside the inputs given). The PRD moved its test-site links from sv8311 to sv490; no case body names sv8311 as a site (\"SV-8311 build\" appears only as the provenance of design screenshots, in 39 cases), but the per-case setup docs should be grepped for sv8311 before release.\n- **A V1-style apply is in progress in `currency-2026-10-14/apply/`** (commit 76132b8 \"Dashboard: apply/audit work in progress\", 24 setup docs incl. new C5818xx–C5819xx). This audit covers only the 106 snapshotted cases and did not touch that work.\n- The quarter bucket (S4-R11, S6-R3a) cannot be reached from a tile any more (custom ranges stop at 366 days); spec tidy-up only.\n- C88620 and several cases quote the same sentence two to four times (e.g. S8-N1 ×3, S11-R2a ×4) — a formatting defect worth fixing during the refresh.\n")
+md.append("## 7 · Reading coverage\n")
+md.append("- **106 of 106 cases read in full**: every case's preconditions, steps (or separated steps with their expected), and expected results, converted to plain text by script (356,548 characters) and read line by line in 15 consecutive batches; no sampling. Verdicts were judged per case against the spec text, then cross-checked by keyword search across all 106 (level/flat/rise/height, gap/dashed/no data, avg, Inactive for, Last updated, custom/366/731, scroll/phone, dark, table-under-chart, Revenue (12 Mo)).\n- **PRD v46** (`CONFLUENCE-788430850-v46-2026-10-14b.md`, 552 lines, 54,253 bytes): read in full. **PRD v48** fetched live and diffed against v46 line by line by script (100% of lines compared; differences read). PRD v42: not re-read in full; compared through the two code-level diffs (v42→v44, v44→v46) and by script (every case quote checked against both v42 and v48).\n- Read in full: `PRD-DIFF-v42-vs-now.md`, `PRD-DIFF-v44-vs-now.md`, `RELEASE-NOTES-DASHBOARD-2026-10-14b.md`, `PO-ANSWERS-CHRIS-WARD-2026-10-14.md`, PO answer 16 (coordinator, verbatim), the PO's Slack summary (in the brief), `FOLLOWUP-2026-10-14.md` §4 (4a, 4b) and §7–§9, the 4 \"update\" rows of `notify/sheet-data.json` and the 8 \"update\" rows of `answers-followup/followup-rows.json`, Skill 22 and the Token-Discipline Charter.\n- Searched, not read whole: `jira-2026-10-14.md` (156 KB; grep for chart bucketing). Design canvas: all files of both extracts hashed and compared; the text of every changed board diffed by script; not driven (a separate worker runs the design gates).\n")
+md.append("## OUTSTANDING — what I need from you\n")
+md.append("1. Decide whether the three minor-A cases (C88610, C88645, C351716) join the update list (my recommendation: yes — each asks the tester to judge the trend line's level, which S4-R11b now rules out).\n2. Decide whether the provenance refresh (C, all 97 of our cases) and board re-pointing (D, 73 cases; 17 cite the removed row-15 boards) is done now or recorded as known staleness — under Rule 113 the quotes must match the current source.\n3. Optional PO question: do report-page charts bucket by range length like S6-R3a? (affects C88624, C351732, C351735).\n")
+open('full-audit/FULL-AUDIT-2026-10-14.md','w').write('\n'.join(md))
+print('ok', len(AB), len(rm), len(ch), len(rest), len(ok))

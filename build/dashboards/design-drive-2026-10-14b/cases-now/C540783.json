@@ -1,0 +1,64 @@
+{
+ "id": 540783,
+ "title": "At Risk customer's 12-month revenue link opens the Sales report for that customer",
+ "section_id": 12176,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 3,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1791855825,
+ "updated_by": 1,
+ "updated_on": 1791898224,
+ "estimate": null,
+ "estimate_forecast": null,
+ "suite_id": 1,
+ "display_order": 8,
+ "is_deleted": 0,
+ "is_ai_generated": false,
+ "is_ai_automated": false,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "Signed in as owner/admin with the Reports permission.\nA test-created customer has exactly one invoiced Work Order with a large labour total (about $1,000,000), invoiced about 90 days ago, and nothing since (seeded via API).\nBrowser storage holds no remembered At Risk window and no remembered expanded tile.",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "Open the Dashboard and click \"View details\" on the At Risk Customers tile.",
+   "expected": "The At Risk Customers table is shown.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Change the inactivity window to \"60 days\".",
+   "expected": "The seeded customer is listed, with its 12-month revenue shown as a link.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Click the seeded customer's 12-month revenue amount.",
+   "expected": "The Sales report opens in the same tab. Its URL carries the seeded customer and a custom date range from the 1st of the month eleven months ago to today (shop's local date).",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Wait for the Sales table to load.",
+   "expected": "The customer filter chip shows the seeded customer, the seeded invoice is listed as a row, and every row belongs to that customer.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": [],
+ "version": 2
+}

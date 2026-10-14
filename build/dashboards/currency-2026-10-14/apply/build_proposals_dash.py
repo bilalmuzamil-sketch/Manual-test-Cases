@@ -617,7 +617,7 @@ new("N05", 12173, "A tile's date picker offers Today and a custom range of up to
   "https://shopview.atlassian.net/wiki/pages/diffpagesbyversion.action?pageId=788430850&selectedPageVersions=44&selectedPageVersions=45. " + NOTYET),
  [q("S7-R2"), q("S7-R2a"), q("S3-R1"), q("S7-R8"), q("S7-R7")],
  [P1_SIGN, P1_LOC, P1_DESK, P1_CUST("ZZAUTOTEST Today Picker"),
-  "Today, create and invoice one work order for {Customer-A}: " + P1_INVOICE + " This is {Work-order-1}; write down its number.",
+  "Today, create and invoice one work order for {Customer-A}: " + P1_INVOICE.replace("(the $100 rate of this location)", "(any labor rate of this location)") + " This is {Work-order-1}; write down its number.",
   CHECK("Reports > Sales, Date Today (or a custom range of today only): {Work-order-1}'s invoice is listed.")],
  ["Goal: one invoice today at the location, so today's Revenue is above $0.00.", P2_SCREEN,
   "Step 8: record exactly how the picker refuses the 367th day (the day cannot be picked, Apply stays unavailable, or a message appears); any "
