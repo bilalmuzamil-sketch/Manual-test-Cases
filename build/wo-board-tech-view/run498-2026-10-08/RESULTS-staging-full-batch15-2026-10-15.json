@@ -1,0 +1,93 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 15 = wave 16: 4 Passed"
+ },
+ "results": {
+  "C368127": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Staging Heavy Duty - 9919, signed in as a brand-new Admin user who had never collapsed Unassigned (no saved choice at the start).",
+    "Tech View, All tab: Unassigned opens expanded, with its rows straight under the header.",
+    "The Unassigned header reads 3,457; List's All tab has 6,301 work orders, 3,457 of them with no lead (all 13 pages counted): the same number.",
+    "Scrolled deep into the rows, Unassigned's header (name and count) stays at the top; its arrow there reads Collapse Unassigned, and clicking it collapsed the group without scrolling back up (the collapse was also saved).",
+    "Paging not seen by hand: no loading pause or loading message was visible while scrolling (the page's loading bar element is always present, so it proves nothing either way)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368127-1-unassigned-opens-expanded.png",
+    "evidence/staging-full-2026-10-14/annotated/C368127-2-header-stays-deep-in-rows.png",
+    "evidence/staging-full-2026-10-14/annotated/C368127-3-collapsed-from-deep.png"
+   ],
+   "not_observed": "Whether rows are fetched in pages behind the scenes: paging not seen by hand.",
+   "todo": "None."
+  },
+  "C96930": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (verdict unchanged from the earlier staging run; this fifth-pass re-run was for usable pictures, judged 15 Oct against the live case text).",
+    "Staff checked this pass: Esther Howard (Technician, Time Clock on, active, Heavy Duty), Billy Nobill (same, Billable off), Ina Active (deactivated), Nick Noclock (Time Clock off), Olive Office (Office User), Tim Clockuser (Time Clock User), Ella Elsewhere (Staging Lethbridge - 4310 only).",
+    "Esther Howard and Billy Nobill each have a group in Tech View and a column in Board View, with no work orders.",
+    "Ina Active, Nick Noclock, Olive Office, Tim Clockuser and Ella Elsewhere have no group and no column (every one of the 174 groups and 124 columns read). The pictures show the gap where each would sit by name."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96930-1-tech-esther.png",
+    "evidence/staging-full-2026-10-14/annotated/C96930-2-tech-billy.png",
+    "evidence/staging-full-2026-10-14/annotated/C96930-3-board-esther.png",
+    "evidence/staging-full-2026-10-14/annotated/C96930-4-board-billy.png",
+    "evidence/staging-full-2026-10-14/annotated/C96930-5-tech-no-ina.png",
+    "evidence/staging-full-2026-10-14/annotated/C96930-6-board-no-nick.png",
+    "evidence/staging-full-2026-10-14/annotated/C96930-7-tech-no-olive.png",
+    "evidence/staging-full-2026-10-14/annotated/C96930-8-tech-no-tim.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368131": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Customer ZZAUTOTEST C368131 Pinned Gone: S2-35908 led by Aaa ZZAUTOTEST Tara Lead, S2-35909 by Aaa ZZAUTOTEST Theresa Pinned. Jenny Pinned and Theresa Pinned were pinned for the admin and for the view-only user.",
+    "Settings > Staff: Jenny Pinned deactivated with Deactivate Account; Theresa Pinned's Location changed to Staging Lethbridge - 4310 with Save & Close.",
+    "Step 7: Jenny Pinned's column stays right after Unassigned, still pinned, marked Inactive, reading \"No work orders\". Theresa Pinned is not among the pinned columns.",
+    "Step 8: Theresa Pinned's column shows as a normal column holding S2-35909, with no pin icon and no Inactive mark.",
+    "Step 9: holding S2-35908 over Jenny Pinned's column shows \"This technician can't be assigned work orders.\"; the drop is not taken and S2-35908 stays with Tara Lead.",
+    "Steps 10 and 11: over Theresa Pinned's column the same message \"This technician can't be assigned work orders.\" appears and S2-35908 stays with Tara Lead.",
+    "Steps 12 and 13: S2-35909 dragged to Unassigned: \"Lead technician removed\"; it is in Unassigned and Theresa Pinned no longer has a column.",
+    "Step 15: for the view-only user Jenny Pinned's column also reads \"No work orders\" and there is no Theresa Pinned column."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368131-1-step7-8-columns.png",
+    "evidence/staging-full-2026-10-14/annotated/C368131-2-step9-refused-inactive.png",
+    "evidence/staging-full-2026-10-14/annotated/C368131-3-step10-11-refused-moved.png",
+    "evidence/staging-full-2026-10-14/annotated/C368131-4-step13-wo2-unassigned.png",
+    "evidence/staging-full-2026-10-14/annotated/C368131-5-step15-view-only.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96970": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Customer ZZAUTOTEST C96970 Refused Drops: S2-35910 led by Aaa ZZAUTOTEST Ina Inactive (then deactivated), S2-35911 by Aaa ZZAUTOTEST Mia Holder, S2-35912 by Aaa ZZAUTOTEST Mona Moved (pinned, then moved to Staging Lethbridge - 4310).",
+    "Step 3: Ina Inactive's column is still shown with S2-35910 and marked Inactive; Mona Moved is not pinned and shows as a normal column holding S2-35912, with no Inactive mark.",
+    "Steps 4 and 5: dropping S2-35911 on Ina Inactive's column is not accepted (\"This technician can't be assigned work orders.\" while held); it stays with Mia Holder.",
+    "Steps 6 and 7: on Mona Moved's column the drop is refused with \"This technician can't be assigned work orders.\" and S2-35911 stays with Mia Holder.",
+    "Step 9: in Tech View Ina Inactive's group is still shown with S2-35910 and marked Inactive.",
+    "Steps 10 to 12: both drops in Tech View show the same refusal; S2-35911 stays in Mia Holder's group.",
+    "Step 13: S2-35911's Lead Technician still reads Aaa ZZAUTOTEST Mia Holder."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96970-1-step3-columns.png",
+    "evidence/staging-full-2026-10-14/annotated/C96970-2-step4-5-refused-inactive.png",
+    "evidence/staging-full-2026-10-14/annotated/C96970-3-step6-7-refused-moved.png",
+    "evidence/staging-full-2026-10-14/annotated/C96970-4-step9-12-tech-view.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ }
+}
