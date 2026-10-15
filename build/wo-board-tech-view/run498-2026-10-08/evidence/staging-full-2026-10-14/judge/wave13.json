@@ -1,0 +1,126 @@
+{
+ "results": {
+  "C97011": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Start: Ana Alpha's column Alpha Co, Bravo Co (count 2); Ben Bravo 1.",
+    "Escape while over Ben's column, Escape while above Alpha Co, and a drop on the toolbar: each drag was cancelled; Ana still Alpha Co, Bravo Co; counts Ana 2, Ben 1; no message.",
+    "Tech View, Escape while over Ben's group: the same, nothing moved, no message.",
+    "After a refresh nothing changed and Bravo Co's Lead Technician is still ZZAUTOTEST Ana Alpha."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97011-1-board-unchanged-after-cancels.png",
+    "evidence/staging-full-2026-10-14/annotated/C97011-2-tech-unchanged-after-cancel.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C97013": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Ana's group: Alpha Co, Bravo Co, Charlie Co, Delta Co (Alpha and Charlie In Progress).",
+    "Filtered to In progress: Alpha Co, Charlie Co. Charlie Co dragged above Alpha Co; filter cleared: Charlie, Alpha, Bravo, Delta (C, A, B, D).",
+    "Put back to A, B, C, D; filtered again, Alpha Co dragged below Charlie Co; filter cleared: Bravo, Charlie, Alpha, Delta (B, C, A, D).",
+    "Board View shows Ana's column in the same order, B, C, A, D."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97013-1-filtered-in-progress.png",
+    "evidence/staging-full-2026-10-14/annotated/C97013-2-after-clear-c-a-b-d.png",
+    "evidence/staging-full-2026-10-14/annotated/C97013-3-after-clear-b-c-a-d.png",
+    "evidence/staging-full-2026-10-14/annotated/C97013-4-board-same-order.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368148": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "With Assigned to me on, only Ana's and Cal's columns showed; Cal's column was dragged before Ana's (Cal, Ana).",
+    "With Assigned to me off, the order is Cal, Ana, Ben, Dan (after Unassigned): Cal right before Ana, and the hidden Ben and Dan kept their order."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368148-1-tech-order-after-filter.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C97005": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Ana's group started Alpha Co, Bravo Co, Charlie Co. Charlie Co dragged above Alpha Co: Charlie, Alpha, Bravo.",
+    "Board View: Charlie, Alpha, Bravo.",
+    "Second dispatcher, without doing anything: Charlie, Alpha, Bravo in both Tech View and Board View.",
+    "Step 8 was NOT a real sign-out and sign-in: it was done in a new browser window, because signing out ends the shared staging session every other test uses. In that window the order was still Charlie, Alpha, Bravo (Tech View and Board View). For the QA lead: step 8 checked by a new window only.",
+    "Step 9: the first dispatcher dragged Ben above Ana (now Ben, Ana); the second dispatcher, after refreshing, still has Ana before Ben."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97005-1-order-kept-new-window.png",
+    "evidence/staging-full-2026-10-14/annotated/C97005-2-first-dispatcher-ben-moved-up.png",
+    "evidence/staging-full-2026-10-14/annotated/C97005-3-second-dispatcher-order-unchanged.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C97010": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Dan Delta (deactivated) still has his column with S2-35947, marked \"Inactive\", count 1.",
+    "S2-35945 dragged onto Dan's column: not accepted, it stayed with Ana Alpha, Dan still 1, no \"Lead technician updated\" message.",
+    "S2-35946 invoiced in a second tab (Create Invoice pressed on screen; status now Invoiced). Back in the first tab, without refreshing, dragged to Ben: it went back to Ana's column and the alert read \"Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+    "The alert was still shown after about 10 seconds and closed only with its Close button.",
+    "After a refresh S2-35946 is in Ana's column and its Lead Technician is still ZZAUTOTEST Ana Alpha."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97010-1-inactive-column.png",
+    "evidence/staging-full-2026-10-14/annotated/C97010-2-refused-drop-alert.png",
+    "evidence/staging-full-2026-10-14/annotated/C97010-3-after-refresh.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C97020": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "The view-only role (ZZAUTOTEST WO View Only) now holds work order view only (Create & Edit off, read back).",
+    "View-only user, keyboard only on Alpha Co: Enter opened the work order (viewing, which the role allows); Space, the arrow keys and Shift/Alt/Ctrl with arrows did nothing; no More actions button; Alpha Co kept its lead Ana Alpha.",
+    "Dispatcher, keyboard only: the menu of the Invoiced Bravo Co opened, \"Reassign lead technician\" was disabled with the tooltip \"The lead technician can't be changed once a work order is Invoiced or Paid.\", and Enter opened no dialog.",
+    "Shift/Alt/Ctrl with the right arrow and Space on Bravo Co moved nothing; its Lead Technician is still ZZAUTOTEST Ana Alpha."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97020-1-reassign-disabled-invoiced.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C97032": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Set-up: \"Require Review Before Completion\" was switched on only to make the Ready for Review work order, then switched off again (read back: off).",
+    "Ben leads one work order in each status (Estimate, Approved, In Progress, Ready for Review, Complete, Invoiced, Paid, Declined), plus a line-only work order and one at Staging Lethbridge - 4310 (S3-35962).",
+    "Step 5: the dialog shows Ben with \"4 open\".",
+    "Step 6: with the page filtered to Estimate, still \"4 open\".",
+    "Step 7: right after the Estimate became Approved, \"5 open\"."
+   ],
+   "pictures": [],
+   "not_observed": null,
+   "todo": "None."
+  }
+ },
+ "redo": {
+  "C97007": "The script stopped again at the first step: \"Ben Bravo\" was not found in the Reassign list, so nothing was read. Check the name the test technician has on staging (and that he is offered at this location) before re-running.",
+  "C97012": "The card was dragged after Alpha Co was invoiced in the second browser, but the page then said \"Session expired, please log in again.\" and the script could not reload Work Orders, so neither refusal was judged. The view-only role was put back as it was. Re-run once the session is steady.",
+  "C368156": "Heavy Duty: Ana, Ben and Cal pinned, the fourth control disabled with \"You can pin up to 3 technicians.\" At Staging Lethbridge - 4310 (confirmed in the top bar) no Heavy Duty pins showed and Xia, Yan and Zoe could each be pinned (their pins are saved next to the three Heavy Duty ones). But the switch back to Heavy Duty did not take (the top bar stayed on Lethbridge), so step 5 was not seen on screen. Also, the Lethbridge board read only an Unassigned column, so make sure it was fully loaded.",
+  "C368159": "Stopped again on the work order page: Ben Bravo was not in its Lead Technician list (19 scrolls; Ana still lead), although he is offered by the dialog. So browser 2's lead change never happened; the stale On Site toggle (On Site now on, lead still Ana) proves nothing. Find how Ben is listed on the page and re-run.",
+  "C368176": "Not a fair run: Esther Howard still had a clock running on S2-35915 from an earlier test, so pressing Start on this line opened the stop window for that other work order instead of starting a clock here; the script then stopped her clock behind the screen. The line still reads Unassigned. Stop every running clock first and re-run.",
+  "C368181": "Staging: TRK-201's Work Orders tab has 3 rows and no count (tabs: Work Orders, Invoices, Notes, Inspections). But the production page read was a CUSTOMER's Work Orders tab (\"Work Orders (4)\", with Part Sales, Contacts, Assets... tabs), not an ASSET's, so the comparison is not like for like. Re-run opening an asset's page on production (Customers > customer > Assets > the asset > Work Orders)."
+ },
+ "failed": {},
+ "doubt": {}
+}
