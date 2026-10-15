@@ -1,0 +1,114 @@
+{
+ "added": {
+  "S1-R9c": "Tech View and Board View work in the application’s dark theme as well as its light theme, using the design file’s dark colors. Every rule in this PRD holds in both themes.",
+  "S3-R5a": "A Board View card’s status is the same status pill List shows in production, with the same red service-actions count and blue parts-actions count on it, as in Tech View (S2-R19), at the design’s card badge height (22px).",
+  "S5-R4a": "As in the design, Status, Number and Customer are always shown in Tech View and cannot be turned off. Every other Tech View column, Unit included, can be turned off with the column chooser."
+ },
+ "removed": {},
+ "changed": {
+  "S1-R9a": {
+   "v52": "The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View every other icon is the design’s Lucide icon too: density (`row-height` in Tech View, `card-height` in Board View), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and empty states (`clipboard-list`). List’s icons are unchanged.",
+   "now": "The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View these icons are the design’s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system’s icon set), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and the empty state when there are no work orders at all (`clipboard-list`). The filtered no-results state is the List’s, magnifier included (S1-N1). The filter chips and Search use the design file’s icons in every display option, List included, each exactly as the design file draws it; this is the only change to List. Every other List icon is unchanged."
+  },
+  "S1-R9b": {
+   "v52": "The switcher’s hover tooltip opens above the switcher, so it never covers the table’s column header row.",
+   "now": "The switcher’s hover tooltip opens above the switcher, so it never covers the table’s column header row. The tooltips read List, Tech View and Board View."
+  },
+  "S1-R8": {
+   "v52": "In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. List behaves as it does today.",
+   "now": "In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. Horizontal position comes back exactly. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position. List behaves as it does today."
+  },
+  "S2-R18": {
+   "v52": "Unassigned opens expanded unless the user collapsed it (S2-R13), and its header stays on screen while scrolling so it can be collapsed from anywhere. When it holds more work orders than fit on screen, which on the All tab can be thousands, it loads them in pages as the user scrolls, as List does, never all at once.",
+   "now": "Unassigned opens expanded unless the user collapsed it (S2-R13). While the user scrolls through Unassigned, its header stays on screen as in S2-E1, so it can be collapsed from anywhere in the group. When it holds more work orders than fit on screen, which on the All tab can be thousands, it loads them in pages as the user scrolls, as List does, never all at once."
+  },
+  "S2-R20": {
+   "v52": "Tech View’s cells follow the design: the work order number shows as a link in the accent color; Progress shows as a thin bar with the percentage beside it; Service Advisor shows the advisor’s avatar before the name. Clocked In keeps List’s display (S5-R11).",
+   "now": "Tech View’s cells follow the design: the work order number shows as a link in the accent color; Progress shows as a thin bar with the percentage beside it, with no hours line under it at any density (S6-R6); Service Advisor shows the advisor’s avatar before the name. Clocked In keeps List’s display (S5-R11)."
+  },
+  "S2-R22": {
+   "v52": "Tech View’s table runs edge to edge on white, with no side gutter and no card or panel around it, as in the design.",
+   "now": "Tech View’s table runs edge to edge on white, with no side gutter and no card or panel around it, as in the design. When the columns are wider than the screen, the table scrolls sideways, as in the design; columns keep the design’s minimum widths and are never squeezed or clipped."
+  },
+  "S2-R6": {
+   "v52": "Before a manual order is saved, use the List’s default work order sort.",
+   "now": "Before a manual order is saved, use the List’s default work order sort, ties included, exactly as the List sorts today: work orders for the same customer go by start date, newest first. The List itself does not change. A work order that gets a new lead after it was created goes to the bottom of that technician’s work instead (S9-R14)."
+  },
+  "S2-E1": {
+   "v52": "Keep the technician group header visible while scrolling within a tall group.",
+   "now": "While the user scrolls through an expanded group, that group’s header stays on screen just under the column headings. Only one group header is held at a time: when the next group’s header reaches it, the next header pushes it off and takes its place. Unassigned’s header works the same way (S2-R18)."
+  },
+  "S4-R12": {
+   "v52": "The dialog offers eligible active technicians in the current location and Unassigned.",
+   "now": "The dialog offers eligible active technicians in the current location and Unassigned. It follows the design: a Search technicians box, each technician with their avatar and N open count, no grouping. Unassigned is the first row."
+  },
+  "S5-R11b": {
+   "v52": "Wherever a technician is named on a card, a group header or a column header, the name is the technician's staff record name, the same name the List's Lead Technician column shows.",
+   "now": "Every technician name in Tech View and Board View, on cards, rows, group headers, column headers and the names shown on hover over any technician avatar (S2-R10, S7-R1), is the technician’s staff record name, the same name the List’s Lead Technician column shows."
+  },
+  "S5-R4": {
+   "v52": "Until the user changes Tech View’s columns, Tech View shows these columns, in this order, as in the design: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price (Total price subject to financial permission). On Site, VIN/Serial # and Lead Technician are off by default; each can be added with the column chooser (S2-R4). List’s columns are unchanged.",
+   "now": "Until the user changes Tech View’s columns, Tech View shows these columns, in this order, as in the design: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price (Total price subject to financial permission). On Site, VIN/Serial # and Lead Technician are off by default; each can be added with the column chooser (S2-R4). Column headings use the List’s labels for List columns (for example Unit, not Unit #) and Assigned Techs for the new column. List’s columns are unchanged."
+  },
+  "S6-R2a": {
+   "v52": "In Tech View the status pill is 18px tall at Compact and Regular and 22px tall at Comfortable, the design’s two badge sizes. List’s status pill is unchanged.",
+   "now": "In Tech View the status pill is 16px tall at Compact and Regular and 22px tall at Comfortable, the design’s small and regular badges. List’s status pill is unchanged: for the same work orders on the same page, every List pill is the same width and height as in production, including production’s matching widths down the column (for example, Approved as wide as Ready For Review when both are on the page). Tech View’s pill takes the same widths as List’s; only its height follows density."
+  },
+  "S6-R4": {
+   "v52": "Compact density must not reduce text below the application’s minimum body text size.",
+   "now": "Row and card text is 14px at every density; Compact never shrinks it. Text the design sets at 12px at every density, such as column header labels (S2-R21), the progress percentage and secondary lines, stays 12px."
+  },
+  "S9-R1a": {
+   "v52": "In Tech View every work order row and every group header, Unassigned included, shows the design’s six-dot drag grip at its left edge, to users who can drag (S4-N1). The whole row still drags (S2-R8); the grip shows that it can.",
+   "now": "In Tech View every work order row, Unassigned’s rows included, shows the design’s six-dot drag grip at its left edge to users who can drag work orders (S4-N1). Every technician group header shows the grip to every user who can reorder technicians (S9-R2), view-only users included, because the technician order is personal. The Unassigned group header shows no grip, because Unassigned cannot move (S9-R8). The whole row still drags (S2-R8); the grip shows that it can."
+  },
+  "S11-R1": {
+   "v52": "Design must define how keyboard focus enters a work order card or row.",
+   "now": "Tab moves focus onto each work order row (Tech View) or card (Board View); the focused row or card shows a visible focus ring."
+  },
+  "S11-R3": {
+   "v52": "Design must define keyboard navigation between cards/rows and technician groups/columns.",
+   "now": "Tab and Shift+Tab move through rows or cards and group or column headers in on-screen order: top to bottom in Tech View; in Board View, column by column, left to right, and top to bottom within each column."
+  },
+  "S11-R4": {
+   "v52": "Design must define what Enter activates.",
+   "now": "Enter on a focused row or card opens the work order, the same as a click."
+  },
+  "S11-R5": {
+   "v52": "Design must define how Escape cancels an interaction.",
+   "now": "Escape closes an open menu, dialog or tooltip without changing anything."
+  },
+  "S11-R6": {
+   "v52": "Design must define where focus returns after a dialog closes.",
+   "now": "When a menu or dialog closes, focus returns to the control that opened it."
+  },
+  "S11-R2": {
+   "v52": "Design must define keyboard access to the more-actions menu.",
+   "now": "Every control a mouse can use in Tech View and Board View is reachable with Tab and works with Enter or Space, as the design system’s menus and dialogs do: the more-actions button (which appears on keyboard focus, S3-R13), the Columns options, the x on a filter chip, and the display switcher. Technician names behind avatars show on keyboard focus, the same as on hover."
+  },
+  "S11-R7": {
+   "v52": "Design must define keyboard access to pin and unpin.",
+   "now": "Pin and unpin buttons are reachable with Tab and toggle with Enter or Space."
+  },
+  "S11-R8": {
+   "v52": "Design must define keyboard access to group collapse and expand.",
+   "now": "The collapse chevron on each group header is reachable with Tab and toggles with Enter or Space."
+  },
+  "S11-R9": {
+   "v52": "Design must define keyboard reorder and reassignment interactions.",
+   "now": "Reassigning by keyboard goes through the more-actions menu: Reassign lead technician opens the Reassign dialog, and Unassign is a menu item. There is no keyboard drag in this release, so reordering work orders and technicians is by mouse or touch only."
+  },
+  "S11-R10": {
+   "v52": "Design must define how opening a work order coexists with dragging.",
+   "now": "Opening a work order by keyboard is Enter (S11-R4); dragging is by mouse or touch only, so the two never conflict. A mouse click without a drag opens the work order as today (S2-R8)."
+  },
+  "S11-E1": {
+   "v52": "Design must define focus recovery when a work order leaves the filter result.",
+   "now": "When the focused work order leaves the result (for example after a filter change or a reassignment), focus moves to the next row or card in the same group or column, or to that group or column header when none is left."
+  },
+  "S11-E2": {
+   "v52": "Design must define focus recovery when a technician becomes inactive.",
+   "now": "When a technician becomes inactive and their group or column is no longer shown, focus moves to the next group or column header."
+  }
+ }
+}
