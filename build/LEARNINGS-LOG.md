@@ -789,3 +789,15 @@ needs its `.done` marker. #signout #passes #staging → L0342
 - **Keep partial readings:** set `R[id] = o` at the start of a check so a late failure keeps everything read before it (`ps-counts` C368217).
 - **Reading a control on production without changing anything (C368208, `viewonly-pin-prod.mts`):** sign in once as the lower-permission login (`/tmp/shopview/prod-login-limited.env`), read its permissions LIVE (it has drifted before), record the control's tooltip and its disabled state (disabled / aria-disabled / class / cursor / opacity) while hovered, and click it ONLY if the page itself marks it disabled — otherwise the click could change production data, so say "not clicked" and why.
 - **"Typing did not find him" needs a positive control (wave 26, C97007 / C368159 / C368169):** typing three different terms into the Lead Technician field's own box left the SAME drawn list each time — that points to a field with no type-to-search, but it is only proved when a name that IS in the first 100 is typed the same way and the list also fails to narrow. Photograph the list while it is OPEN after typing (the earlier picture was taken after Escape). `lead100-compare.mts` now does both on staging and production.
+
+## L0380 — 2026-10-15 — QA lead ruling: a distinct finding met along the way gets its OWN Story Defect
+QA lead, 15 Oct 2026: he ruled that the work order page's 100-name Lead Technician list must be its own Story Defect. **A
+problem found along the way, which blocks several tests but is not what those tests are about, is a separate ticket.** It is
+never folded into another ticket, and never left only as a "held" note. It still goes through every gate:
+- production compared (Rule 121);
+- the story's status read live (Rule 112);
+- the source quoted (Rule 106; the live read needs his go-ahead, Rule 81);
+- drafted in the house layout (skill 06);
+- asked for on its own (Rule 113).
+
+The tests it blocks carry the ticket number once it is filed. #ruling #tickets #story-defect → L0369

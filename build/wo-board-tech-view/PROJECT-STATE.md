@@ -131,3 +131,9 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
   C96958, C96962 and C368169. Pass 7 settles it: typing into the box (pickLeadTyped) and lead100-compare.mts (staging "X of N",
   plus a read-only production comparison for Rule 121). If staging still does not offer him after typing, and production does,
   it becomes a Failed result with a held ticket under SV-10047.
+
+### 15 Oct 10:35 UTC — QA lead ruling: the 100-name lead list is its own Story Defect
+- Ruling (QA lead, 15 Oct 2026): the work order page's Lead Technician list stopping at 100 names gets its own Story Defect
+  (under SV-10047), separate from the others. Draft: run498-2026-10-08/defect-drafts/tickets/D-LEAD100-staging-2026-10-15.wiki
+  (being prepared). It is held until lead100-compare's production reading (Rule 121) and his per-ticket yes. Blocks C97007,
+  C368159 and C368169.
