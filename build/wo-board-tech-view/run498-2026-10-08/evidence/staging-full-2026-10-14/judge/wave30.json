@@ -1,0 +1,45 @@
+{
+ "results": {
+  "C96966": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (ninth pass), following the test's own steps, on work order S2-36247 (ZZAUTOTEST F1 Status And Time Kept 41672).",
+    "Before: Lead Technician Esther Howard, Status In Progress, Total Hours 0.3 hrs, the line's Actual hours 0.02 of 0.30, and Esther Howard's clock running.",
+    "Step 1, on the Schedule screen, on this work order's own shift (the block was opened first and named S2-36247): the drag to 13:00 landed at 13:15 (the Schedule snaps the drop to the quarter below) and the shift was then set to 13:00–17:00; the resize to 13:00–16:00 was made on screen; the drag onto Dana Ortiz's row opened \"Reassign shift S2-36247 … Move this shift to Dana Ortiz on Fri, Oct 16?\" and was confirmed.",
+    "Step 2: Lead Technician still reads Esther Howard and the status In Progress.",
+    "Steps 3–5: on Board View the card was dragged to Ralph Edwards' column; no prompt opened and \"Lead technician updated\" showed.",
+    "Step 6: the lead is now Ralph Edwards and the status still reads In Progress.",
+    "Recorded time unchanged: Total Hours still 0.3 hrs; the line's Actual hours went 0.02, 0.07, 0.08 of 0.30, only the running clock's minutes; Esther Howard's clock still running (Active since 04:53 PM) and her earlier entry unchanged (04:52 PM to 04:53 PM, 0.02).",
+    "No locked time on this site: the work order's time entries carry no lock or approval mark."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96966-1-before-and-after-schedule.png",
+    "evidence/staging-full-2026-10-14/annotated/C96966-2-after-lead-change-and-time.png"
+   ],
+   "not_observed": "For the record: Esther Howard's other test shifts for tomorrow were deleted before the run so they could not be dragged by mistake. The move's last 15 minutes and the after-move reading were set behind the screen; the lead was read after that and after every later step.",
+   "todo": "None."
+  }
+ },
+ "redo": {
+  "C368217": "Not judged (ninth pass, P2-2366): the first expected result matches — the Part Sales list shows P2-2366 with Parts 2 and Returns 1 (one part received with \"Parts received.\", one return raised, the part sale then reads Parts (1)), read at Staging Heavy Duty - 9919 after the screen came back from Lethbridge. But the script made the second location's part sale (P3-2374 at Staging Lethbridge - 4310, 2 parts) for a different customer, \"ZZAUTOTEST Part Sale Counts L2 44647\", where the case uses the same customer for both; with a different customer the second expected result (\"Counts from the second location's part sale are not added to it\") is not really tested. Fixed in ps-counts.mts: the Lethbridge part sale is made for the same customer (name recorded). NO LATER PASS EXISTS (the tenth pass is running and ends with the sign-out) — needs a pass for ps-counts.mts | C368217 if one is added."
+ },
+ "failed": {},
+ "doubt": {
+  "C590120": {
+   "proposed": "Passed",
+   "open_point": "The test expects \"a thin blue progress bar across the card\". The bar is there — a thin rounded track 4 px high across the card with \"0%\" beside it — but this work order has no time logged, so the track is empty and grey; the blue fill could not be seen. Pass it as the bar being present, or hand it to the design rules (it would need a work order with some progress, and no later pass exists).",
+   "observed": [
+    "Ninth pass, Board View, window 1440 px at 100%, density Regular, run-numbered technicians holding only this test's two work orders; each card was scrolled into view and photographed on screen.",
+    "Step 2 (S2-36245, Approved, led by ZZAUTOTEST DC11-51754 Pia Card): the number in blue at the left and the Approved pill at the right; the customer name \"ZZAUTOTEST DC11 Board Card 51754\" in dark text; then a smaller grey line \"TRK-118 · 2022 Freightliner M2\"; the progress track and 0%; a thin divider; the line technicians as two overlapping round avatars at the left, the lead's name beside them, and the total price $173.98 at the right (on its own line, because the long technician name fills the row); a white card with rounded corners (8 px) and a thin grey border.",
+    "Step 3: the number, the customer name and the total price are all 14 px and the same medium weight (500); none is bolder or larger; the unit and asset line is 12 px and grey.",
+    "Step 4: a small padlock outline icon sits right after S2-36246's number (Invoiced).",
+    "Step 5 (Compact): less space around the content (padding 10 and 12 px instead of 12, card 212 px tall instead of 224); the same fields and values; every text the same size as at step 3.",
+    "Step 6 (Comfortable): more space (padding 16 px, card 240 px tall); the same fields and values; every text the same size as at step 3."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590120-1-card-densities-and-padlock.png"
+   ]
+  }
+ },
+ "housekeeping": "Also in logs9 (no test cases): sign-in check OK; the view-only role was already view-only (nothing to change); 61 people checked for running clocks, none stopped; the ninth pass's sign-out was skipped by its marker and runs at the end of the tenth pass."
+}

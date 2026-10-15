@@ -296,7 +296,9 @@ await run('C368217', async () => { const ps = await partSale(`ZZAUTOTEST Part Sa
   // here before the switch and put back (with the server-side location) afterwards, then the page is reloaded and the top bar read.
   const lsBefore = await p.evaluate(`(() => { const o = {}; for (const k of ['location', 'current_shop_id', 'timezone', 'user']) o[k] = localStorage.getItem(k); return o; })()`).catch(() => null) as any;
   await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }).catch(() => {}); o.l2TopBar = await switchLocUI(p, 'Staging Lethbridge');
-  const ps2 = await partSale(`ZZAUTOTEST Part Sale Counts L2 ${RUNNO}`); o.l2id = ps2.id;
+  // 15 Oct 2026 (wave 30, ninth pass): the case makes the second location's part sale for the SAME customer (that is what makes
+  // "counts from the second location are not added" a real check); the ninth pass used a separate "… L2 …" customer. Same name now.
+  const ps2 = await partSale(`ZZAUTOTEST Part Sale Counts ${RUNNO}`); o.l2id = ps2.id; o.l2customer = ps2.c?.name ?? ps2.c?.company_name ?? null;
   try { o.l2parts = [await addPartManual(ps2.id, 'Brake Pads'), await addPartManual(ps2.id, 'Brake Pads')]; o.l2PartsRead = (await partsOf(ps2.id)).length; }
   finally { await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); o.backTopBar = await switchLocUI(p, 'Staging Heavy Duty');
     if (!String(o.backTopBar).includes('Heavy Duty')) { if (lsBefore) await p.evaluate(`(() => { const s = ${JSON.stringify(lsBefore)}; for (const k of Object.keys(s)) if (s[k] !== null) localStorage.setItem(k, s[k]); })()`).catch(() => {});
