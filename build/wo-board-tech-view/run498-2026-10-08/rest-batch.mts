@@ -236,11 +236,22 @@ await run('C368156', async () => { const o: any = {};
   o.heavyPins = named((await prefFor()).pinnedTechnicianIds ?? [], IDS); await toColumn(p, DAN.staff_id); const d4 = p.locator(`[data-test-id="button_board_pin_${DAN.staff_id}"]`);
   o.fourth = { disabled: await d4.isDisabled().catch(() => null), cls: await d4.getAttribute('class').catch(() => null) }; await d4.hover().catch(() => {}); await p.waitForTimeout(1200); o.fourth.tip = await p.evaluate(`[...document.querySelectorAll('.q-tooltip')].map(e => e.innerText).join(' | ')`);
   await shot(p, 'C368156-heavy-cap');
-  if (process.env.WOB_LOC_SELECT) await switchLocUI(p, 'Lethbridge'); else await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }); await goP(p, 'Board View', ''); o.loc2pinnedCols = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="button_board_pin_"] i')].filter(i => /push_pin/.test(i.innerText) && i.closest('button').className.includes('text-primary')).length`);
+  // 15 Oct 2026 (staging second pass): the switch to the second location did not take (the board still read Heavy Duty): the test
+  // admin was not enrolled at Lethbridge, so the location menu did not offer it. Now: enrol the runner and Xia/Yan/Zoe at Lethbridge
+  // (Service, app enrolment route), switch ON SCREEN (switchLocUI), and read the top bar back before continuing — again after
+  // Work Orders opens; if the page went back to Heavy Duty, switch once more without reloading.
+  { const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
+    o.enrol = [RUN.staffId, XIA.staff_id, YAN.staff_id, ZOE.staff_id].map(String); o.enrolAnswers = [];
+    for (const sid0 of [RUN.staffId, XIA.staff_id, YAN.staff_id, ZOE.staff_id]) o.enrolAnswers.push((await a.post('/api/staff/enrollment/create', { staffId: sid0, workplaceId: LETH, departmentId: svc?.id })).status); delete o.enrol; }
+  const topBar = async () => p.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => '');
+  const toLoc = async (name: string) => { const r: any = { afterSwitch: await switchLocUI(p, name) }; await goP(p, 'Board View', ''); r.onBoard = await topBar();
+    if (!r.onBoard.includes(name)) { r.again = await switchLocUI(p, name); await tab(p, 'All'); await display(p, 'Board View'); r.onBoard = await topBar(); } return r; };
+  o.toLoc2 = await toLoc('Staging Lethbridge');
+  if (!o.toLoc2.onBoard.includes('Staging Lethbridge')) throw new Error(`the screen did not switch to Staging Lethbridge (top bar: ${o.toLoc2.onBoard})`); o.loc2pinnedCols = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="button_board_pin_"] i')].filter(i => /push_pin/.test(i.innerText) && i.closest('button').className.includes('text-primary')).length`);
   o.loc2Cols = named((await allCols(p)).slice(0, 6), { ...IDS, Xia: XIA.staff_id, Yan: YAN.staff_id, Zoe: ZOE.staff_id });
   for (const x of [XIA, YAN, ZOE]) { await toColumn(p, x.staff_id).catch(() => {}); const b = p.locator(`[data-test-id="button_board_pin_${x.staff_id}"]`); o[`pin ${x.first_name ?? x.staff_id.slice(0, 4)}`] = (await b.count()) ? { disabled: await b.isDisabled() } : 'no column'; if (await b.count()) { await b.click().catch(() => {}); await p.waitForTimeout(1200); } }
   o.loc2Pref = await prefFor(); o.loc2Toasts = await toastsOn(p); await shot(p, 'C368156-loc2');
-  if (process.env.WOB_LOC_SELECT) await switchLocUI(p, 'Staging Heavy Duty'); else await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); await goP(p, 'Board View', ''); o.heavyAfter = named((await allCols(p)).slice(0, 5), IDS); o.heavyPref = await prefFor();
+  o.toHeavy = await toLoc('Staging Heavy Duty'); o.heavyAfter = named((await allCols(p)).slice(0, 5), IDS); o.heavyPref = await prefFor();
   R.C368156 = o; });
 
 async function staffAccess(name: string) { await p.goto(APP + '/settings/staff', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
