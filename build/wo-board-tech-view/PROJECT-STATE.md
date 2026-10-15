@@ -145,3 +145,11 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
   QA lead is asked whether it is one ticket (every technician pick list on the work order page) or two.
 - The seventh pass's lead100-compare read nothing usable (status filter empty, Reassign card off screen, production 404 on the
   board-only candidates list); fixed for pass 8.
+
+### 15 Oct 11:40 UTC — view-only Asset on Site pin: same on production
+- Production (v26.40.18-163ddfa, a real view-only login with workOrdersView and no Create & Edit) and staging read the same for
+  the List's Asset on Site pin: a disabled button, cursor not-allowed, opacity 0.6, and a click changes nothing. The hover text
+  on both still says "Asset (not) here. Click to toggle status." C368208 passes. The hover wording comes from production, so it
+  is not caused by this work (Rule 121). Reading: evidence/staging-full-2026-10-14/viewonly-pin-prod.json.
+- The production view-only login is /tmp/shopview/prod-login-limited.env. Read its permissions live first (they have drifted
+  before); on 15 Oct it held 6 permissions, including workOrdersView and workOrderLinesCreateAndEdit.
