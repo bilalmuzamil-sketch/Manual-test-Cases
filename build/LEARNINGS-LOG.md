@@ -840,3 +840,10 @@ pass 8) gained the Edit Line > Add Technician reading after pass 8 had started.
    that cannot break those scripts.
 2. Never edit the script that is running at that moment.
 #passes #plans #scripts → L0350, L0378
+
+## L0385 — 2026-10-15 — `pgrep -f <name>` counts the shell that runs it: count waiters with a bracketed `ps` pattern
+`pgrep -f stg-after9.sh | wc -l` printed 2, which looked like two next-pass waiters, and two waiters would have run the ninth
+pass twice. There was only one. The other match was the tool's own `bash -c "…stg-after9.sh…"` command line.
+**Use instead:** `ps -eo pid,ppid,lstart,args | grep "[s]tg-after9"`. The bracket stops the grep from matching itself, and the
+start times show whether there really are two. Before killing a duplicate, check its parent is 1 (started with setsid) and its
+start time. Never use `pkill -f` (L0339). #processes #waiters → L0339
