@@ -182,7 +182,7 @@ export async function bootOrigin({ app, apiHost, ssoFile, label = app, route = '
   // stopped with "no DEV MODE Admin button", which reads as a dead branch and is not one.
   // Measured on sv9315, 2026-09-10: the same call succeeded on the retry every time. POLL for it.
   for (let w = 0; w < 20 && !(await btn.count()); w++) await page.waitForTimeout(1500);
-  if (!(await btn.count())) { console.log(`no DEV MODE "${btnLabel}" button on ${label} after 30s — STOP`); await browser.close(); process.exit(2); }
+  if (!(await btn.count())) { await page.screenshot({ path: '/tmp/qa-boot-fail.png' }).catch(() => {}); console.log(`no DEV MODE "${btnLabel}" button on ${label} after 30s — STOP (page ${page.url().split('?')[0]}; picture /tmp/qa-boot-fail.png)`); await browser.close(); process.exit(2); }
   // 🛑 THE QUICK-LOGIN IS RETRIED, NOT ASSERTED ONCE. Two sessions that boot close together leave the
   // page sitting on /login with `user` already in localStorage — the login itself returned 200, the
   // SPA simply did not move. Exiting there stops a whole pass on a transient race, which is what it

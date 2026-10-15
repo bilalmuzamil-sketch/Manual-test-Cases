@@ -901,3 +901,11 @@ had changed since 12 Oct. Its location id is NOT in the login data. Read it from
 zone it already has (so nothing changes), then list. Recipe: `build/wo-board-tech-view/run498-2026-10-08/prod-s13-labor-read.mjs`.
 **Also:** for a Rule 121 check, an earlier production run that already DID the same steps is reusable. Read the record it
 left (read-only) instead of repeating the whole flow; here one read settled the "Deleted user" question (SV-11398). #production #location #rule121 → L0386
+
+## L0393 — 2026-10-15 — Staging's sign-in ends within about two hours; "no DEV MODE Admin button" was Google's sign-in page
+The staging sign-in the QA lead gave at 12:27 UTC worked at 13:21 and was refused at 14:47 (`401 {"error":"sso_required"}` on
+every API call; the sign-in page redirected to `accounts.google.com/v3/signin/identifier`). `qa-branch-boot.mjs` only said
+"no DEV MODE Admin button", which reads like a timing fault. **Fix (done):** on that stop it now saves `/tmp/qa-boot-fail.png` and
+prints the page it landed on, so "Google sign-in" is visible at once. **What to do:** staging has no password sign-in (see
+`build/BLOCKED-shopview-app-session.md`), so ask the QA lead for fresh staging cookies straight away, and run staging work
+soon after he sends them. #staging #signin #sso → L0355, L0383
