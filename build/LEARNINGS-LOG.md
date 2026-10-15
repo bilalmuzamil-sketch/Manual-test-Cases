@@ -920,3 +920,13 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   folds into an icon after the first search; click "Search" before each new fill (`c581895-staff-ralph.mts`).
 - **Tech View, a group lower down:** use `findRow(p, woId, staffId)` from `wob.mts` (opens and scrolls), then read
   `tech_view_group_name_<data-group-key>`; a group not yet rendered reads null, which is not "missing". #staging #signin #staff #techview → L0393
+
+## L0395 — 2026-10-15 — Staging HAS a second company: the QA lead's "Analyst 1" login (bilal.muzamil+dako) reaches it
+- Corrects the 15 Oct report line "staging has only one company". The QA lead's login `bilal.muzamil+dako@shopview.com`
+  ("Analyst 1") signs in to a different company; with its three cookies a Playwright request context (relay proxy, Origin/Referer
+  `app.staging.shopview.com`) can write there: `stg-orgb-seed.mts` made customer "ZZAUTOTEST F3 Scope OrgB Customer" and Approved
+  work orders S-2 / S1-2; `stg-orgb-lead.mts` made its only lead candidate "Scope OrgB Tech" the lead (201, read back).
+- **Traps:** `/api/roles` answers an empty list for this user, so `person()` fails with "Role is missing" — use the company's
+  existing technician (lead candidates) instead. `/api/organizations` lists ~100 "E2E-Bootstrap-…" companies, so never pick
+  "the other company" from that list. Do company B first, then the Admin run (L0394: the Admin sign-in ends the Analyst session).
+- Unblocks C154650 and C368175 on staging. #staging #second-company #orgb → L0394
