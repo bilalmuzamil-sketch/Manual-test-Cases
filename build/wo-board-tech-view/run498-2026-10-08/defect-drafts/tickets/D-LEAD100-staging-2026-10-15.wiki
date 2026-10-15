@@ -1,9 +1,9 @@
 TITLE: Work Order Page – Lead Technician List Stops After 100 People
 TYPE: Story Defect · PARENT: SV-10047 (Ready for QA, read live 15 Oct 2026 about 10:30 UTC — RE-READ LIVE before the ask) · PRIORITY: Medium · LINK: relates to SV-10047 · LABEL: board-tech-view
 STATUS: DRAFT — NOT FILED. Its OWN Story Defect (QA lead ruling, 15 Oct 2026). Waiting for the QA lead's go-ahead (Rule 62/113).
-PRODUCTION (Rule 121): <PENDING — lead100-compare.mts, seventh pass>. This ticket goes to the QA lead ONLY if production does NOT have the same limit. If production's work order page also stops at 100 people (and its field does not search as you type), it is not caused by this work: do not file; report it instead.
+PRODUCTION (Rule 121): <PENDING — the seventh-pass lead100-compare (11:00 UTC) read nothing usable (no work order found, dialog not opened; production has no lead-candidates list, build v26.40.18-163ddfa); fixed and re-queued in the EIGHTH pass (started 11:06 UTC), near its end>. This ticket goes to the QA lead ONLY if production does NOT have the same limit. If production's work order page also stops at 100 people (and its field does not search as you type), it is not caused by this work: do not file; report it instead.
 DUPLICATE SEARCH (15 Oct 2026): JQL project = SV AND (text ~ "\"lead technician\" list" OR text ~ "100 technicians" OR text ~ "lead technician dropdown") AND created >= -60d — 37 results, none about the work order page's lead list stopping at 100 (closest: SV-10242, Service Advisor dropdown and custom role templates, Done — a different list and cause).
-OPEN BEFORE FILING: (1) lead100-compare positive control — typing a name that IS in the first 100 must also fail to narrow the list, else the typing reading is an instrument fault (Rule 104); (2) the live PRD read for the Sources needs the QA lead's go-ahead (Rule 81/106); until then the Sources quote the test cases, which quote the PRD of 7 Oct 2026; (3) swap in the lead100-compare pictures (slots below).
+OPEN BEFORE FILING: (0) decide whether Edit Line > Add Technician (same 100-name limit, wave 27 C368173: Ralph Edwards not in its 99 names, typing did not find him) joins this ticket or gets its own; (1) lead100-compare positive control — typing a name that IS in the first 100 must also fail to narrow the list, else the typing reading is an instrument fault (Rule 104); (2) the live PRD read for the Sources needs the QA lead's go-ahead (Rule 81/106); until then the Sources quote the test cases, which quote the PRD of 7 Oct 2026; (3) swap in the lead100-compare pictures (slots below).
 
 h2. Description
 
@@ -49,7 +49,7 @@ h2. Environment
 * *Build:* <read off the staging page at the re-measure before filing> on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919)
 * *Example records:* work order [S2-36155|https://app.staging.shopview.com/workorders] (ZZAUTOTEST F3 Reassign Bottom 13769 Abbey Co) — list read 15 Oct 2026 10:06 UTC; Reassign dialog picture: work order S2-35470 (ZZAUTOTEST F1 Dialog Search), 15 Oct 2026 03:42 UTC
 * *People:* *Ralph Edwards* and *ZZAUTOTEST Ben Bravo* — both active, Time Clock on, Technician role, Location Staging Heavy Duty - 9919 (read 15 Oct 2026); the Reassign dialog offers both
-* *Production:* <PENDING — lead100-compare.mts>
+* *Production:* <PENDING — lead100-compare.mts in the eighth pass; production build at 10:22 UTC: v26.40.18-163ddfa>
 
 h2. Sources
 

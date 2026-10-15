@@ -261,8 +261,11 @@ async function schedDrop2(w: any, staff: string, hourLabel: RegExp, choose: stri
       // pixels from the visible hour headings and drop a quarter-hour further right, so the start lands on the hour itself.
       const xs = (await p.evaluate(`[...document.querySelectorAll('body *')].filter(e => e.children.length === 0 && /^\\s*\\d{1,2}\\s*(AM|PM)\\s*$/.test(e.textContent || '') && e.getBoundingClientRect().width > 0 && e.getBoundingClientRect().top < 300).map(e => Math.round(e.getBoundingClientRect().left))`).catch(() => [])) as number[];
       const ds = [...new Set(xs)].sort((x, y) => x - y).map((x, i, arr) => i ? x - arr[i - 1] : 0).filter((d) => d > 20).sort((x, y) => x - y); const pxH = ds.length ? ds[Math.floor(ds.length / 2)] : null;
-      if (dropX !== null && pxH) dropX = dropX + pxH / 4 + 1;
-      o.dropAt = { ...(o.dropAt ?? {}), gridLineX: null, pxPerHour: pxH, droppedAtX: dropX, note: 'no [data-time] slot; dropped a quarter-hour right of the heading (the heading drop saved :45 before the hour)' }; } }
+      // 15 Oct 2026 (wave 27, seventh pass): +a quarter-hour (+pxH/4) over-shot — 9 AM saved 9:15 and 1 PM saved 13:15, while the
+      // heading itself (+6 px) saved 8:45/12:45. So the hour line sits just right of heading+6 and the drop snaps DOWN to the quarter:
+      // aim at the middle of the first quarter-hour, heading + 6 + pxH/8 (about 11 px at 87 px an hour).
+      if (dropX !== null && pxH) dropX = dropX + pxH / 8;
+      o.dropAt = { ...(o.dropAt ?? {}), gridLineX: null, pxPerHour: pxH, droppedAtX: dropX, note: 'no [data-time] slot; dropped an eighth of an hour right of the heading (+6 px saved :45 before the hour, +a quarter saved :15 after)' }; } }
   if (cb && lb && dropX !== null) { await p.mouse.move(cb.x + cb.width / 2, cb.y + cb.height / 2); await p.mouse.down(); await p.mouse.move(cb.x + 40, cb.y + 20, { steps: 5 }); await p.mouse.move(dropX, lb.y + lb.height / 2, { steps: 20 }); await p.mouse.up(); await p.waitForTimeout(3000); }
   const d = dlg(); o.dialogStart = (await d.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 300);
   if (/Couldn.t read/i.test(o.dialogStart)) { o.workingHoursMessage = true; }

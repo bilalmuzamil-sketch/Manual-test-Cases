@@ -3,8 +3,8 @@
 # signin-check first; no script twice.
 signin-check-stg4.mts | | 
 # wave 24: C96958 notification pictures; C96966 step 1 on screen; C368130 location picker match on a long name (skipped if the seventh pass ran them)
-s4-batchH.mts | C96958,C96966 | 
-notech-stg4.mts | C368130 | 
+# wave 27: C96958 and C368130 finished in the seventh pass; C96966 again — each block is OPENED to confirm its work order before any drag, and a dialog naming another work order is refused
+s4-batchH.mts | C96966 | 
 # wave-design2: C590120 asset change carries a VIN and is read back by it; C590123 S2-36131 back to the earlier Tia, fresh technicians, drop on the lower half of Work-order-2
 design-stg5.mts | C590120,C590123 | QA_DPR=2
 # wave 25: C368208 picture after the reload (no user switch while the view-only window is open; C368212 switch-back fallback); C368196 Total Price / Created On headers found by drawn text; C368217 second location switched on screen
@@ -15,5 +15,9 @@ ps-counts.mts | C368217 |
 viewonly-pin-prod.mts | C368208 | 
 # C368181 production half hung 17 min in the seventh pass (killed 10:39): every click/read/load capped, loops bounded (3 customers x 3 assets x 4 cells, 30 clicks), 8-minute watchdog, sign-in capped at 3 min
 high1-batch.mts | C368181 | 
+# wave 27: C368178 / C368179 Schedule drop aimed an eighth of an hour right of the heading (a quarter over-shot to :15)
+high1-fix5.mts | C368178,C368179 | 
+# wave 27: lead100-compare read nothing in the seventh pass (no work order found, dialog not opened, production has no candidates list) — fixed; 2x pictures
+lead100-compare.mts | LEAD100 | WOB_SCALE=2
 # the sign-out test signs the shared session out: LAST of all (moved here from the seventh pass, logs7/signout-fix.done = skipped)
 signout-fix.mts | C368240 | 

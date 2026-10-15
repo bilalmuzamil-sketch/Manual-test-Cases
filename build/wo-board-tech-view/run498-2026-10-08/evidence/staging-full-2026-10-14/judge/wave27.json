@@ -1,0 +1,70 @@
+{
+ "results": {
+  "C368190": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (seventh pass), work order S2-36166 (ZZAUTOTEST Sched Delete Line 74527).",
+    "Step 1: Line 1's Labor row reads Jenny Wilson (her shift tomorrow covers that line).",
+    "Step 2: Schedule, tomorrow (Fri, Oct 16): Jenny Wilson's shift on S2-36166 opened; the delete icon at the top of its details removed it at once, with no question.",
+    "Step 3: Line 1's Labor row reads Unassigned again."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368190-1-jenny-shift-details.png",
+    "evidence/staging-full-2026-10-14/annotated/C368190-2-labor-unassigned-again.png"
+   ],
+   "not_observed": "Step 1 is a reading of the Labor row (Jenny Wilson); the picture of that moment shows her shift details, not the Lines tab.",
+   "todo": "None."
+  },
+  "C96958": {
+   "verdict": "Passed",
+   "observed": [
+    "Pictures of the result (the verdict was posted earlier), from the seventh pass on S2-36168: each technician's own Notifications page photographed in their own window after each change.",
+    "After the work order page change (Esther Howard to Dana Ortiz): Esther Howard's and Dana Ortiz's pages read \"There are no notifications for selected filters\".",
+    "After the board drag (Dana Ortiz to Ralph Edwards, \"Lead technician updated\"): Dana Ortiz's and Ralph Edwards's pages read the same.",
+    "After Tech View Reassign (Ralph Edwards to Esther Howard, \"Lead technician updated\"): Ralph Edwards's and Esther Howard's pages read the same.",
+    "The pages show the \"Unread only\" view; a new notification would be unread, so it would show there."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96958-4-notifications-after-wo-page.png",
+    "evidence/staging-full-2026-10-14/annotated/C96958-5-notifications-after-board.png",
+    "evidence/staging-full-2026-10-14/annotated/C96958-6-notifications-after-tech-view.png"
+   ],
+   "not_observed": "Email was not checked (the test technicians' addresses are not real mailboxes).",
+   "todo": "None."
+  },
+  "C368130": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (seventh pass).",
+    "The screen was switched to the location ZZAUTOTEST F2 No Tech Shop (top bar read back); nobody there is a technician; its two work orders S-35901 and S-35902 have no lead.",
+    "Tech View: only the Unassigned group, holding S-35901 and S-35902; no technician groups.",
+    "Board View: only the Unassigned column, holding S-35901 and S-35902; no technician columns.",
+    "Both read \"No technicians yet\" and \"Add technicians to assign work orders. Until then, every work order stays in Unassigned.\""
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368130-1-tech-view-only-unassigned.png",
+    "evidence/staging-full-2026-10-14/annotated/C368130-2-board-view-only-unassigned.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ },
+ "redo": {
+  "C96966": "Not judged: step 1 still not done on the Schedule screen for THIS work order. Seen (S2-36167): the lead stayed Esther Howard and the status In Progress through the Schedule changes; after the board drag the lead became Ralph Edwards, the status still read In Progress, total time 18 unchanged, the line's Actual hours only grew with the running clock (0.02, 0.06, 0.08 of 0.30), Esther Howard's clock still running, no lock on the time entries. Script fault: the block found by the customer name was not this work order's — the on-screen move changed another shift (715fdca2) and the held drag to Dana Ortiz opened \"Reassign shift S2-36076 · ZZAUTOTEST Sched Lines 30846\", which the script confirmed (that other test shift now belongs to Dana Ortiz). Fixed in s4-batchH.mts: every block carrying the customer name is OPENED and its details' work order number read; only the one naming S2-36xxx of this run is dragged, and any move/reassign dialog naming another work order is cancelled. Queued in eighth-pass-plan.txt (s4-batchH.mts | C96966).",
+  "C368178": "Not judged on the time: the drop under 9 AM (Entire work order, 2h, \"Create 1 shift\") saved with no error message, but the shift reads 9:15-11:15 for S2-36164 (2 lines, whole work order), not 9:00-11:00 — the script's drop over-shot by a quarter-hour (heading +6 px saved 8:45, +a quarter saved 9:15). Fixed in high1-fix5.mts: aim an eighth of an hour right of the heading. Queued (high1-fix5.mts | C368178,C368179).",
+  "C368179": "Not judged on the time: Choose lines, Line 1 only (1 of 2), 2h, \"Create shift · 1 line · 2h\" saved with no error, covering Line 1 only, but at 13:15-15:15 instead of 13:00-15:00 — same drop offset as C368178. Same fix, same plan line.",
+  "LEAD100": "lead100-compare (seventh pass, 11:00-11:02) read nothing usable: staging \"workOrder none found\" and the Reassign dialog not opened (0 options) — its list call's status filter returned no rows and the first Board View card was off screen; production answered 404 for the lead-candidates list (production has no board feature; build v26.40.18-163ddfa). Fixed: the work order is found by search (this suite's Approved one), the dialog opened on ITS card (also types the late name in the dialog), production names come from its staff list and the late name is the first active person after the page list's last name, 2x pictures. Queued (lead100-compare.mts | LEAD100 | WOB_SCALE=2). D-LEAD100 stays open until it has run."
+ },
+ "failed": {},
+ "doubt": {
+  "C368173": {
+   "suggest": "Hold, and decide whether it joins D-LEAD100",
+   "why": [
+    "Edit Line > Add Technician lists 99 names (Aaron Baker to the Q names) and Ralph Edwards (the name the Expected quotes) is not in it; typing \"Ralph Edwards\", \"Edwards\" and \"Ralph\" into its box left the same list each time, so he could not be added.",
+    "So the line was saved with Dana Ortiz removed and nobody added: its Labor row reads Unassigned, not Ralph Edwards.",
+    "This is the same 100-name limit as the work order page's Lead Technician list (D-LEAD100), but in another list (the line's technicians). lead100-compare does not read this list."
+   ],
+   "question": "One ticket for both lists, or a second Story Defect for the Edit Line technician list? Either way the production comparison (Rule 121) is needed for this list too."
+  }
+ }
+}

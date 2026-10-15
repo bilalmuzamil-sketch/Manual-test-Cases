@@ -109,6 +109,7 @@ await run('C96966', async () => {
   const sp = await p.context().newPage(); sp.setDefaultTimeout(20_000); sp.on('request', hw);
   const sshot = (k: string) => sp.screenshot({ path: path.join(EV, `C96966-schedule-${k}.png`) }).catch(() => {});
   const confirmAny = async () => { await sp.waitForTimeout(1200); const d = sp.locator('.q-dialog').last(); if (!(await d.isVisible().catch(() => false))) return null; const txt = (await d.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 300);
+    if (/S\d*-\d+/.test(txt) && !txt.includes(num.replace(/^[A-Z]+\d*-/, ''))) { await d.locator('button').filter({ hasText: /^\s*Cancel\s*$/ }).last().click().catch(() => sp.keyboard.press('Escape')); await sp.waitForTimeout(1500); return 'REFUSED (another work order): ' + txt; }
     const btn = d.locator('button').filter({ hasText: /Save|Confirm|Move|Yes|Update|OK|Apply|Reassign|Keep/i }).last(); if (await btn.count()) { await btn.click().catch(() => {}); await sp.waitForTimeout(2500); } return txt; };
   const laneOf2 = async (staff: string) => { for (let i = 0; i < 80; i++) { if (await sp.locator(`[data-staff-id="${staff}"]`).count()) return true; const moved = await sp.evaluate(`(() => { const c = document.querySelector('[data-test-id="schedule_calendar"]'); let e = c && c.querySelector('[data-staff-id]'); while (e && !(e.scrollHeight > e.clientHeight + 10 && /auto|scroll/.test(getComputedStyle(e).overflowY))) e = e.parentElement; const s = e || c || document.scrollingElement; const b = s.scrollTop; s.scrollTop = b + 500; return s.scrollTop !== b; })()`); await sp.waitForTimeout(300); if (!moved) break; } return (await sp.locator(`[data-staff-id="${staff}"]`).count()) > 0; };
   const openTomorrow = async () => { await sp.goto(APP + '/schedule', { waitUntil: 'domcontentloaded' }); await sp.waitForTimeout(9000);
@@ -140,7 +141,18 @@ await run('C96966', async () => {
     return { how: el.classList.contains('fc-event') ? 'fc-event' : 'customer name', cls: String(el.className).slice(0, 80), x: Math.round(b.x), y: Math.round(b.y), w: Math.round(b.width), h: Math.round(b.height) }; })()`).catch((e) => String(e).slice(0, 120)));
   const S_tag: any = {};
   const block = () => sp.locator('[data-zz-block="1"]').first();
-  const blk = async () => { await tagBlock(); return block(); };
+  // 15 Oct 2026 (wave 27, seventh pass): matching by the customer name still dragged OTHER shifts — the move PATCHed shift 715fdca2 and
+  // the reassign dialog read "Reassign shift S2-36076 · ZZAUTOTEST Sched Lines 30846" (and was confirmed). Now each block whose text
+  // carries this run's customer name is OPENED and its details' work order number read; only the block whose details name this
+  // work order is tagged. The old finder is the fallback, and confirmAny() refuses any dialog that does not name this work order.
+  const digits = num.replace(/^[A-Z]+\d*-/, '');
+  const findOwn = async () => { const cands = sp.locator('.fc-event').filter({ hasText: n }); const k = Math.min(await cands.count().catch(() => 0), 6); S_tag.own = { candidates: k, read: [] as string[] };
+    for (let i = 0; i < k; i++) { const c = cands.nth(i); await c.scrollIntoViewIfNeeded({ timeout: 5000 }).catch(() => {}); await c.click({ timeout: 5000 }).catch(() => {}); await sp.waitForTimeout(1500);
+      const wn = (await sp.locator('[data-test-id="text_shift_detail_work_order"]').first().innerText({ timeout: 3000 }).catch(() => '')).replace(/\s+/g, '');
+      await sp.locator('[data-test-id="button_close_dialog"]').first().click({ timeout: 3000 }).catch(() => sp.keyboard.press('Escape').catch(() => {})); await sp.waitForTimeout(700); S_tag.own.read.push(wn || '(no details)');
+      if (wn.endsWith(digits)) { await c.evaluate((e) => { document.querySelectorAll('[data-zz-block]').forEach((x) => x.removeAttribute('data-zz-block')); e.setAttribute('data-zz-block', '1'); }).catch(() => {}); S_tag.own.picked = i; return true; } }
+    return false; };
+  const blk = async () => { if (!(await findOwn())) await tagBlock(); return block(); };
   const searchSched = async () => { if (await (await blk()).count()) return false; if (!(await sp.locator('[data-test-id="input_schedule_search"]').isVisible().catch(() => false))) { await sp.locator('button').filter({ hasText: /^\s*search\s*$/ }).last().click().catch(() => sp.mouse.click(1300, 84)); await sp.waitForTimeout(1000); }
     const sb = sp.locator('[data-test-id="input_schedule_search"]'); await sb.fill(''); await sb.fill(num); await sp.waitForTimeout(4000); if (!(await (await blk()).count())) { await sb.fill(num.replace(/^[A-Z]+\d*-/, '')); await sp.waitForTimeout(4000); }
     await sp.evaluate(`document.querySelector('.fc-event')?.scrollIntoView({ block: 'center' })`).catch(() => {}); await sp.waitForTimeout(800); return true; };
