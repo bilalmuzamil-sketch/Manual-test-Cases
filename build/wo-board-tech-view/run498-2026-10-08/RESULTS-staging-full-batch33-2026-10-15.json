@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 32b lead list Failed"
+ },
+ "results": {
+  "C368177": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: still Passed on staging. Line 2 takes Esther Howard after her time is moved, as the test expects.",
+    "But line 2 also shows a second entry, \"Deleted user\", although nobody on this work order was deleted.",
+    "Production, after the same move, lists only real people on that line, so this is new on staging.",
+    "Reported separately as its own ticket (below), so this test stays Passed."
+   ],
+   "pictures": [
+    "defect-drafts/tickets/D-DELUSER/deleted-user-staging-vs-production.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11398.",
+   "todo": "What needs to be done: nothing for this test; follow the ticket for the extra \"Deleted user\" entry."
+  }
+ }
+}

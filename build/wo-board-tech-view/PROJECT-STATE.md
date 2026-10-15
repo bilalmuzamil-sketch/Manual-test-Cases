@@ -193,3 +193,14 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
   left out to save quota (his permission).
 - Run 498: 240 Passed, 25 Failed (every one carries its ticket), 4 Blocked, 2 Untested.
 - Next session: run498-2026-10-08/NEXT-SESSION-2026-10-15.md.
+
+### 15 Oct 2026 (afternoon) — "Deleted user" entry filed as SV-11398 (QA lead: file only if production does not show it)
+- Staging (v26.40.17-a5c4210), S2-35973: after Esther Howard's time entry is moved from line 1 to line 2, line 2's Labor lists
+  Esther Howard AND "Deleted user". A fresh repeat on S2-36276 broke before the move (clock-in did not run; stop gave the
+  "Ooooops" message), so it proves nothing either way; not judged, not blocked-gated.
+- Production (v26.40.18-163ddfa), S1-3 (Truck Hill 1): the same move was done 12 Oct; line 2 read 15 Oct lists only
+  Technician 1 and Service Advisor No Reports (Admin). No "Deleted user" ⇒ new on staging ⇒ filed.
+- SV-11398 https://shopview.atlassian.net/browse/SV-11398 — Story Defect · parent SV-10228 (Testing QA, read live) · Medium ·
+  label board-tech-view · Relates SV-10228 · one full-width picture. C368177 stays Passed in run 498 (its Expected is met);
+  the ticket and picture were added to it. Draft + picture: run498-2026-10-08/defect-drafts/tickets/D-DELUSER/.
+- Side effect: the production account's active location was switched to Truck Hill 1 (dummy environment, no cleanup needed).

@@ -1,0 +1,46 @@
+h2. Description
+
+When a technician's time entry is moved to another line of the same work order, that line's *Labor* should list the people who worked on it, and only them. Nobody on the work order was deleted, so no *Deleted user* entry should appear.
+
+For example,
+* after *Esther Howard*'s time entry is moved from line 1 to line 2, line 2's *Labor* lists *Esther Howard* and a second entry, *Deleted user*
+* production, after the same move, lists only real people on the receiving line
+
+h2. Steps to Reproduce
+
+# Open a work order that has two approved lines. Click the *Lines* tab. On *line 1*, click *Start* to clock in a technician (for example Esther Howard), wait a minute, click the clock button again, type a story and click *Clock Out*.
+# Click the three-dots button at the top right of the tabs and click *Timesheets*.
+# On the technician's row (Line "1 - …"), click the pencil button at the right. The *Edit Timesheet* window opens.
+# In *Line*, pick line *2* and click *Save*.
+# Click the *Lines* tab and reload the page. Read line 2's *Labor*.
+#* *Actual Result:* line 2's *Labor* lists *Esther Howard* and also *Deleted user*.
+#* *Expected Result:* line 2's *Labor* lists *Esther Howard*, and only real people. No *Deleted user* entry.
+
+h2. Screenshots
+
+!deleted-user-staging-vs-production.png|width=1000!
+
+h2. Current behaviour
+
+* The line that received the time entry shows an extra entry named *Deleted user*.
+* No staff member on this work order was deleted. Staging refuses to delete a staff member who has logged time ("Staff is being used elsewhere").
+
+h2. Expected behaviour
+
+* The line that received the time entry lists the technician whose time was moved, as production does.
+* No *Deleted user* entry appears for people who still exist.
+
+
+h2. Environment
+
+* *Staging:* [app.staging.shopview.com|https://app.staging.shopview.com/workorders], build {{v26.40.17-a5c4210}}, location *Staging Heavy Duty - 9919*, user Admin. Example work order: *S2-35973* (customer "ZZAUTOTEST Move Labor 28477"; find it with the search box at the top), 15 Oct 2026.
+* *Production (works):* [app.shopview.com|https://app.shopview.com/workorders], build {{v26.40.18-163ddfa}}, location *Truck Hill 1*, work order *S1-3*. The time entry was moved from line 1 to line 2 on 12 Oct 2026; line 2 read on 15 Oct 2026 lists only *Technician 1* and *Service Advisor No Reports (Admin)*.
+
+h2. Sources
+
+* *Developer's regression list for this release (epic SV-10043, PR #3548), item High 2, received 8 Oct 2026, as quoted in the test case:* "Move a labor task from one line to another: the target line takes the technician."
+* *Production behaviour (the version people use today):* the receiving line lists only real people (picture, right half).
+
+h2. Test case
+
+* [C368177 — Moving labor to another line gives that line the technician|https://shopview.testrail.io/index.php?/cases/view/368177]

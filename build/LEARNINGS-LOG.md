@@ -893,3 +893,11 @@ After the restart the relay was not yet up, so the `curl` in `recover.sh` line 1
 waiters it starts after that line never came back. **Fix (done):** `curl -m 20`. **Rule for any recovery or watcher
 script:** every network call gets a time limit (`curl -m`, `timeout N`), because a recovery step that can hang is worse
 than none: it looks like it ran. Check after recovery with `ps` that memwatch and the waiters really are running. #recovery #relay #hang → L0372, L0381
+
+## L0392 — 2026-10-15 — Production's work-order list holds only the ACTIVE location's work orders: switch to the record's location first
+`GET /api/work-orders` on production answered 200 rows, all `S2-…`, and "S1-3 not in the list", because the active location
+had changed since 12 Oct. Its location id is NOT in the login data. Read it from the reply the *Locations* page itself gets
+(match `"id":"<uuid>","name":"Truck Hill 1"…"timezone":"…"`), then `POST /api/iam/change-location` with that id and the
+zone it already has (so nothing changes), then list. Recipe: `build/wo-board-tech-view/run498-2026-10-08/prod-s13-labor-read.mjs`.
+**Also:** for a Rule 121 check, an earlier production run that already DID the same steps is reusable. Read the record it
+left (read-only) instead of repeating the whole flow; here one read settled the "Deleted user" question (SV-11398). #production #location #rule121 → L0386
