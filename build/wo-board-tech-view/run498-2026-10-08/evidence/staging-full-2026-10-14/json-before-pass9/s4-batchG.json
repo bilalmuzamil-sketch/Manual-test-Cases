@@ -1,0 +1,388 @@
+{
+ "runner": {
+  "id": "3620a2b1",
+  "perms": 59,
+  "who": 200,
+  "log": []
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "C96963": {
+  "log": [
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "status now Invoiced",
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "paid 201",
+   "status now Paid",
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "status now Invoiced",
+   "declined 201",
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]"
+  ],
+  "set": {
+   "S2-35484": "complete lead=Esther Howard",
+   "S2-35483": "declined lead=Esther Howard",
+   "S2-35482": "invoiced lead=none",
+   "S2-35481": "paid lead=Esther Howard",
+   "S2-35480": "invoiced lead=Esther Howard",
+   "S2-35479": "approved lead=Esther Howard"
+  },
+  "ids": {
+   "W1": "S2-35479",
+   "W2": "S2-35480",
+   "W3": "S2-35481",
+   "W4": "S2-35482",
+   "W5": "S2-35483",
+   "W6": "S2-35484"
+  },
+  "views": {
+   "Board View": {
+    "declinedToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "completeToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "invToRalph": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "invToUnassigned": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "paidToRalph": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "paidToUnassigned": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "inv4ToEsther": {
+     "lead": "Unassigned",
+     "message": [],
+     "prompt": null
+    },
+    "W2-inv-reorder": {
+     "before": [
+      "S2-35479",
+      "S2-35480",
+      "S2-35481"
+     ],
+     "afterReload": [
+      "S2-35480",
+      "S2-35479",
+      "S2-35481"
+     ],
+     "lead": "Esther Howard",
+     "message": []
+    },
+    "W3-paid-reorder": {
+     "before": [
+      "S2-35480",
+      "S2-35479",
+      "S2-35481"
+     ],
+     "afterReload": [
+      "S2-35480",
+      "S2-35481",
+      "S2-35479"
+     ],
+     "lead": "Esther Howard",
+     "message": []
+    },
+    "W4reorderUnassigned": {
+     "before": [
+      "S2-35479",
+      "S2-35482"
+     ],
+     "after": [
+      "S2-35482",
+      "S2-35479"
+     ],
+     "lead": "Unassigned",
+     "message": []
+    }
+   },
+   "Tech View": {
+    "declinedToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "completeToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "invToRalph": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "invToUnassigned": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "paidToRalph": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "paidToUnassigned": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "inv4ToEsther": {
+     "lead": "Unassigned",
+     "message": [],
+     "prompt": null
+    },
+    "W2-inv-reorder": {
+     "before": [
+      "S2-35482",
+      "lock",
+      "S2-35480",
+      "lock",
+      "S2-35481",
+      "lock",
+      "S2-35479",
+      "S2-35483",
+      "S2-35484"
+     ],
+     "afterReload": [
+      "S2-35482",
+      "lock",
+      "S2-35481",
+      "lock",
+      "S2-35480",
+      "lock",
+      "S2-35479",
+      "S2-35483",
+      "S2-35484"
+     ],
+     "lead": "Esther Howard",
+     "message": []
+    },
+    "W3-paid-reorder": {
+     "before": [
+      "S2-35482",
+      "lock",
+      "S2-35481",
+      "lock",
+      "S2-35480",
+      "lock",
+      "S2-35479",
+      "S2-35483",
+      "S2-35484"
+     ],
+     "afterReload": [
+      "S2-35482",
+      "lock",
+      "S2-35480",
+      "lock",
+      "S2-35481",
+      "lock",
+      "S2-35479",
+      "S2-35483",
+      "S2-35484"
+     ],
+     "lead": "Esther Howard",
+     "message": []
+    },
+    "declinedBack": {
+     "lead": "Esther Howard",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "completeBack": {
+     "lead": "Esther Howard",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    }
+   }
+  },
+  "woPage": {
+   "present": 0,
+   "disabled": "n/a",
+   "text": null
+  },
+  "serverRefusal": "409 [{\"error\":\"The lead technician can't be changed once a work order is Invoiced or Paid.\"}]",
+  "final": {
+   "S2-35484": "complete lead=Esther Howard",
+   "S2-35483": "declined lead=Esther Howard",
+   "S2-35482": "invoiced lead=none",
+   "S2-35481": "paid lead=Esther Howard",
+   "S2-35480": "invoiced lead=Esther Howard",
+   "S2-35479": "approved lead=Esther Howard"
+  }
+ },
+ "C96972": {
+  "log": [
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]"
+  ],
+  "cardStatus": "Complete",
+  "invoiced": "201",
+  "statusNow": "invoiced",
+  "cardStatusStill": "Complete",
+  "message": [
+   "Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid."
+  ],
+  "column": "Esther Howard",
+  "afterReload": {
+   "lead": {
+    "S2-35485": "invoiced lead=Esther Howard"
+   },
+   "column": "Esther Howard"
+  }
+ },
+ "C96964": {
+  "log": [
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "status now Invoiced",
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "paid 201",
+   "status now Paid"
+  ],
+  "set": [
+   "S2-35486 invoiced lead=Esther",
+   "S2-35487 paid lead=Esther"
+  ],
+  "Board View WO-1 Invoiced": {
+   "icons": [
+    "|board_card_lock|The lead technician can't be changed once a work order is Invoiced or Paid.",
+    "more_horiz||"
+   ],
+   "lockTooltip": [],
+   "menuItem": {
+    "disabled": true,
+    "text": "Reassign lead technician"
+   },
+   "menuTooltip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ]
+  },
+  "Board View WO-2 Paid": {
+   "icons": [
+    "|board_card_lock|The lead technician can't be changed once a work order is Invoiced or Paid.",
+    "more_horiz||"
+   ],
+   "lockTooltip": [],
+   "menuItem": {
+    "disabled": true,
+    "text": "Reassign lead technician"
+   },
+   "menuTooltip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ]
+  },
+  "Tech View WO-1 Invoiced": {
+   "icons": [
+    "location_on||",
+    "|tech_view_row_lock|The lead technician can't be changed once a work order is Invoiced or Paid.",
+    "content_copy||",
+    "more_horiz||"
+   ],
+   "lockTooltip": [],
+   "menuItem": {
+    "disabled": true,
+    "text": "Reassign lead technician"
+   },
+   "menuTooltip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ]
+  },
+  "Tech View WO-2 Paid": {
+   "icons": [
+    "location_on||",
+    "|tech_view_row_lock|The lead technician can't be changed once a work order is Invoiced or Paid.",
+    "content_copy||",
+    "more_horiz||"
+   ],
+   "lockTooltip": [],
+   "menuItem": {
+    "disabled": true,
+    "text": "Reassign lead technician"
+   },
+   "menuTooltip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ]
+  }
+ }
+}
