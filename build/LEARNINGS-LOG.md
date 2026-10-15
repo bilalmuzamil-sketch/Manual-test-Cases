@@ -909,3 +909,14 @@ every API call; the sign-in page redirected to `accounts.google.com/v3/signin/id
 prints the page it landed on, so "Google sign-in" is visible at once. **What to do:** staging has no password sign-in (see
 `build/BLOCKED-shopview-app-session.md`), so ask the QA lead for fresh staging cookies straight away, and run staging work
 soon after he sends them. #staging #signin #sso → L0355, L0383
+
+## L0394 — 2026-10-15 — One staging Google sign-in holds ONE app session at a time; the Staff page is /administration/staff
+- **Sessions:** the QA lead sent one `sv_sso_session` with two `PHPSESSID`s (Admin, and "Analyst 1" in a second company). The
+  Analyst one answered `401 session_expired` at once, and the Admin one went `session_expired` the moment our run signed in through
+  quick-login. So each new sign-in under the same Google sign-in ends the previous app session. **To work as two users:** finish
+  everything that needs user 1 before anything signs in as user 2, and ask him not to sign in again in that browser after copying
+  the cookies. A run's own quick-login counts as a sign-in.
+- **Staff page:** `APP + '/administration/staff'` (`/settings/staff` shows "This URL is in the shop… indefinitely"). Its Search
+  folds into an icon after the first search; click "Search" before each new fill (`c581895-staff-ralph.mts`).
+- **Tech View, a group lower down:** use `findRow(p, woId, staffId)` from `wob.mts` (opens and scrolls), then read
+  `tech_view_group_name_<data-group-key>`; a group not yet rendered reads null, which is not "missing". #staging #signin #staff #techview → L0393

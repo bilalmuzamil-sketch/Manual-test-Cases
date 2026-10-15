@@ -10,7 +10,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { open, done, APP } from './session.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, display, active, tab, search, drag, toColumn, toasts, shiftPrompt } from './wob.mts';
+import { EV, t, display, active, tab, search, drag, toColumn, toasts, shiftPrompt, findRow } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { mkShift, shiftsOn } from './shifts.mts';
 
@@ -92,7 +92,7 @@ await run('C581895', async () => {
   o.lead = (await setLead(w, TA.staff_id)).status;
   const num = (await workOrders(a, n))[0]?.number; o.wo = num; o.lines = await lineStates(w);
   // step 1: Settings > Staff
-  await p.goto(APP + '/settings/staff', { waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(6000);
+  await p.goto(APP + '/administration/staff', { waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(6000);
   o.step1 = {}; for (const x of o.staff) { const sb = p.locator('input[placeholder*="Search" i]').first(); if (await sb.count()) { await sb.fill(x.name.split(' ')[0]); await p.waitForTimeout(3000); }
     o.step1[x.name] = await p.evaluate(`[...document.querySelectorAll('tbody tr, .q-item')].map(r => r.innerText.replace(/\\s+/g, ' ').trim()).filter(t => t.includes(${JSON.stringify(x.name)})).slice(0, 2)`);
     await shot(`C581895-v2-step1-staff-${x.name.split(' ')[0]}`); }
@@ -124,8 +124,11 @@ await run('C581895', async () => {
   const at = p.locator('.q-menu [role=checkbox], .q-menu .q-item').filter({ hasText: /Assigned Techs/i }).first();
   o.assignedWasOn = await at.getAttribute('aria-checked').catch(() => null); if (o.assignedWasOn === 'false') { await at.click(); await p.waitForTimeout(1500); }
   await p.keyboard.press('Escape'); await p.waitForTimeout(1000);
-  o.step7 = await p.locator(`[data-test-id="tech_view_group_name_${TA.staff_id}"]`).innerText().catch(() => null);
-  const row = p.locator(`[data-test-id="tech_view_row_${w}"]`).first(); await row.scrollIntoViewIfNeeded().catch(() => {});
+  // 15 Oct: the group sits lower down the page; findRow opens it if folded and scrolls the table until the row is there
+  o.rowGroupKey = await findRow(p, w, TA.staff_id);
+  o.step7 = await p.locator(`[data-test-id="tech_view_group_name_${o.rowGroupKey || TA.staff_id}"]`).innerText().catch(() => null);
+  await p.evaluate(`document.querySelector('[data-test-id="tech_view_group_name_${o.rowGroupKey || TA.staff_id}"]')?.scrollIntoView({ block: 'center' })`); await p.waitForTimeout(800);
+  const row = p.locator(`[data-test-id="tech_view_row_${w}"]`).first();
   o.rowInGroup = await p.locator(`[data-test-id="tech_view_group_${TA.staff_id}"] [data-test-id="tech_view_row_${w}"]`).count().catch(() => -1);
   o.techHeads = await p.evaluate(`[...document.querySelectorAll('thead th')].map(e => e.innerText.trim()).filter(Boolean)`);
   o.techRow = (await row.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 300); await shot('C581895-v2-step7-tech');

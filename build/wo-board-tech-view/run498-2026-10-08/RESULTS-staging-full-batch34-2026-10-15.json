@@ -1,0 +1,32 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 32b lead list Failed"
+ },
+ "results": {
+  "C581895": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's current steps (rewritten: the technicians' real names are used).",
+    "Technician A = Esther Howard (lead technician), Technician B = Ralph Edwards (on line 2), on work order S2-36280 for customer \"ZZAUTOTEST Staff Names 10151507\".",
+    "Step 1: Settings > Staff lists \"Esther Howard\" and \"Ralph Edwards\".",
+    "Step 3: in the List, the Lead Technician column shows \"Esther Howard\".",
+    "Steps 4-5: in Board View, the card's lead technician and its column header both show \"Esther Howard\".",
+    "Step 6: hovering the card's line-technician photos names \"Esther Howard\" and \"Ralph Edwards\".",
+    "Step 7: in Tech View, the work order sits under the group \"Esther Howard\".",
+    "Step 8: hovering the Assigned Techs photos names \"Esther Howard\" and \"Ralph Edwards\".",
+    "All names match the staff records, as the test expects."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C581895-1-list.png",
+    "evidence/staging-full-2026-10-14/annotated/C581895-2-board.png",
+    "evidence/staging-full-2026-10-14/annotated/C581895-3-tech.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing."
+  }
+ }
+}
