@@ -385,3 +385,11 @@ wait splits a step's events across steps (C97025, C97035). `analytics-batch.mts`
 arrived for 10 s (max 45 s). (4) **A Schedule shift made by API with `lineIds: []` may not equal the screen's "Entire work
 order" drop** — before calling a lead-change prompt a fault (C581893), make the shift on the Schedule screen and capture its
 POST. (5) Never `pkill -f <name>` from a tool shell — the pattern also matches that shell's own command line and kills it; find the pid with `ps -eo pid,args | grep "[n]ame"` and `kill <pid>`; restart a waiter with `setsid nohup … &`. A running bash script edited in place keeps running the OLD text (sed -i makes a new file) — restart it to apply. #staging #roles #names #analytics #shifts → L0332, Rule 104
+
+## L0340 — 2026-10-15 — An empty board has no scroller: a script error there is the empty state, not a fault
+When filters leave Board View with no cards (e.g. Assigned to me after reassigning the only card away), the board shows the
+"No work orders match these filters" empty state and `[data-test-id="board_view_scroller"]` does not exist, so every board
+reader that sets `scrollLeft` throws "Cannot set properties of null (setting 'scrollLeft')" (C96973, second pass, 15 Oct).
+Read the empty-state text before reading columns; the error is the observation "empty state shown", never a product crash
+and never a reason to re-run. Also: every test now ends with `<C-id>-end.png` (session.mts `__shotEach`, `WOB_SHOT_EACH=0`
+turns it off), so a result always has a picture to annotate (Rule 130). #board #emptystate #scripts → L0337, L0339
