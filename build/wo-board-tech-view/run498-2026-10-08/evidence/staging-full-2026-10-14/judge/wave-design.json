@@ -1,0 +1,256 @@
+{
+ "results": {
+  "C590126": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Tech View at 1024, 1280, 1366, 1440, 1536 and 1920 wide: no toolbar label and no column header label touches or overlaps another.",
+    "At 1024, 1280 and 1366 wide the density, column, switcher and Create Work Order buttons move onto a second line instead of running into the filters, as in the 1024 design picture.",
+    "Where the table is wider than the window (1024, 1280, 1366) it scrolls sideways; the last header label is simply cut at the window's edge.",
+    "Board View at 1920, 1536, 1440, 1280 and 1024 wide: no label touches another in the toolbar or the column headers.",
+    "The long technician name (ZZAUTOTEST DC17 Maximiliana Abernathy-Kowalczyk) ends with ... a little before the pin icon at every width and never runs into the pin or the count.",
+    "The board scrolls sideways at every width."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590126-1-tech-1024-two-lines.png",
+    "evidence/staging-full-2026-10-14/annotated/C590126-2-board-1280-name-ellipsis.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C590131": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Tech View, All tab: the Unassigned group opened expanded with 3,449 work orders.",
+    "After scrolling well down the group (about four screens), the column header row is still at the top of the table.",
+    "The Unassigned header, with its arrow and its count, stays just under the column header row while the group's rows pass beneath it, so it can be collapsed from there."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590131-1-headers-stay.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ },
+ "redo": {
+  "C590114": "The test's work order row (S2-35980) was read while it sat below the bottom of the window, so no picture of it was taken, the number cell read empty and the advisor, assigned techs and waiting-on-parts cells came back empty; then the row could not be clicked (timed out). The progress cell read as a grey \"0%\" label with no bar, which needs a picture before it can be judged. Scroll the row into view (or pin the technician) before reading, take a picture of the row, read each cell, then hover the avatars, click the number and continue with the second work order and List.",
+  "C590120": "The card's own sizes were never read (the card was not found, so no text sizes or weights were measured); only pictures were taken. Also the test asset has no year, make or model, so the card shows only TRK-118 and the \"unit · asset\" line cannot be judged. Give the asset a year, make and model (e.g. 2022 Freightliner M2), read the number, customer, unit/asset line and total price sizes and weights from the card, and repeat at Compact and Comfortable.",
+  "C590122": "Step 2 was not seen: the reading did not find the idle technician's group in Tech View (no header and no empty-group text), so it is not known whether the group shows \"No work orders\". Pin that technician in Tech View (or scroll to his group) and read and photograph under his header. Everything else was seen and matches the test: the empty Board View column (dashed box, clipboard icon, \"Drag a work order here to assign it\"), the filter-and-search empty state in Board View, List and Tech View (\"No work orders match these filters\", the hint and Clear all filters), and the search-only message with no button in Tech View and List.",
+  "C590123": "Steps 7 to 10 were not done: in Tech View the reading found neither work order row, so the row reorder and the group drag were never tried. Steps 2 to 5 were seen and match the test (the dragged card fades, a thin blue line shows in the technician's column and the card lands there; the Invoiced card shows no blue line, a dark message with a no-entry icon at the top of the column, and stays put). Re-run with the rows scrolled into view (or the technicians pinned) and photograph each drag while the mouse is held down.",
+  "C590128": "No row, group header, avatar or progress bar was found at any density (all read empty), so steps 3, 5 and 7 have nothing to judge; only the Board View menu was read (Comfortable is ticked there, step 8). Find the test's work order row first (scroll to it or pin its technician), then read the row height, avatar size, progress bar size and text size at Compact, Regular and Comfortable, with a picture at each.",
+  "C590129": "Nothing was read: the script stopped at the start because the three-dot button on the work order's Tech View row could not be found (timed out), and no picture of the dialog was taken. Scroll the row into view and hover it before clicking its three-dot button, then open Reassign lead technician and read and photograph the dialog."
+ },
+ "failed": {
+  "C590110": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Step 3: the switcher is a light-grey rounded track with three icons side by side, but the drawings are not the design's: List is a boxed list, not a bulleted list, and the person and board drawings are heavier than the design's thin outline icons.",
+    "Step 5: Tech View is the white raised segment. The density button shows three lines with the up-and-down arrow on the left; the design's row-height drawing has the arrow on the right. The column button shows a rectangle split into three columns.",
+    "Step 7: the density menu offers Compact, Regular and Comfortable, with Regular ticked (as the test asks).",
+    "Step 10: Board View becomes the white raised segment, but the density button shows the SAME drawing as in Tech View; the design asks for a different drawing (a card with an up-and-down arrow).",
+    "Step 12: List's other toolbar icons were not compared with production in this reading."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590110-1-tech-toolbar-icons.png",
+    "evidence/staging-full-2026-10-14/annotated/C590110-2-board-density-same-icon.png",
+    "evidence/staging-full-2026-10-14/annotated/C590110-3-density-menu.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C590111": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "The design and the PRD say the switcher's tooltip opens above the switcher, so it never covers the column header row.",
+    "Tech View, 1440 wide: the List, Tech View and Board View tooltips each open BELOW the switcher and lie over the column header labels (Clocked In, Lines, Total Price).",
+    "Board View, 1440 wide: the tooltips also open below the switcher; there they end just at the top edge of the technician columns.",
+    "Tech View, 1536 wide: the tooltips still open below the switcher and lie over the column header row."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590111-1-tooltip-covers-headers.png",
+    "evidence/staging-full-2026-10-14/annotated/C590111-2-board-tooltip-below.png",
+    "evidence/staging-full-2026-10-14/annotated/C590111-3-tooltip-1536.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C590112": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "The design and the PRD say Tech View's white table runs edge to edge, with no side gutter.",
+    "At 1440 wide the table starts about 30 points in from the left edge of the page and stops about 30 points before the right edge; a grey strip shows on both sides.",
+    "At 1536 wide it is the same: a grey strip on each side.",
+    "The column header row stays at the top while the rows scroll under it (step 4)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590112-1-side-gutters.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C590113": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Checked with a brand-new Admin user who had never opened Tech View (no saved choices).",
+    "Step 2: the PRD's default is 13 columns (Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price), with On Site, VIN/Serial # and Lead Technician off.",
+    "On screen the columns are On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price, Created On: On Site, VIN/Serial # and Lead Technician are shown, Waiting On Parts and Assigned Techs are missing, and Asset comes before Unit.",
+    "Step 3: the design asks for small, medium-weight grey header labels; on screen they are bold and black, about the same size as the row text.",
+    "Step 4: no header label touches or overlaps its neighbour; the labels keep the same look at Compact and Comfortable and at 1536 wide.",
+    "Step 6 (turning on every column) was not done in this reading."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590113-1-default-columns-and-labels.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C590115": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "The PRD says the Tech View status pill is the same height at Compact and Regular and taller at Comfortable.",
+    "Tech View rows get shorter at Compact and taller at Comfortable, so the density did change.",
+    "The status pills are the same height at all three densities; at Comfortable the pill is not taller than at Regular.",
+    "In List the pill on the test's work order shows Approved with one blue number (1 Part Ready to Order); Tech View shows the same pill and the same blue number."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590115-1-pill-same-height-all-densities.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C590116": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "The PRD says every Tech View row and every group header, Unassigned included, shows the six-dot drag grip at its left edge to a user who can drag.",
+    "As an admin, the Unassigned group header starts with the arrow; there is no six-dot grip.",
+    "The work order rows start with the On Site pin; no row shows a six-dot grip.",
+    "The view-only user (ZZAUTOTEST WO View Only role) also sees no grip on the rows (step 9).",
+    "The hover and drag steps (4 to 6) were not reached in this reading."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590116-1-no-grips.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C590117": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Step 2: the design's Unassigned group header starts with the six-dot grip; on screen there is no grip, it starts with the arrow.",
+    "The rest of the Unassigned header matches: the arrow, a light-grey round avatar with a person icon, Unassigned in dark semibold, a short grey divider, a clipboard icon and the count.",
+    "The two technicians' group headers were not reached in this reading, so steps 3 to 10 were not judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590117-1-unassigned-header-no-grip.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C590118": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "The PRD says Board View runs full width, with no grey rounded panel around the columns.",
+    "At 1440 wide the columns sit inside a grey rounded panel that starts about 30 points in from each side of the page, with a lighter strip of page outside it.",
+    "At 1536 wide it is the same.",
+    "Each column is its own white card with rounded corners, and the Unassigned column stays at the left while the other columns scroll to the far right."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590118-1-grey-panel.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C590119": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Step 2: the Unassigned column header matches: grey round avatar with a person icon, Unassigned in dark semibold, a divider, the clipboard and the count, with no grip and no pin.",
+    "Step 3: for a technician with no photo the design asks for a light-grey circle with dark grey initials; on screen it is a solid blue circle with white initials (ZD).",
+    "The rest of that header matches: six-dot grip, name in dark semibold, grey outline pin, divider, clipboard and count.",
+    "Step 4: the technician with a photo shows the round photo.",
+    "Step 9: with three technicians pinned, the other pins look faded and the hover text reads \"You can pin up to 3 technicians.\"; step 10: every header shows the grey outline pin again.",
+    "Step 6 (the pinned icon's drawing) was not read."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590119-1-unassigned-header.png",
+    "evidence/staging-full-2026-10-14/annotated/C590119-2-solid-blue-avatar.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C590121": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Step 2: without hovering, no three-dot button shows on the card.",
+    "Step 3: on hover the card's border darkens and the three-dot button appears at the top right over the end of the status pill, but no soft shadow appears around the card.",
+    "Step 4: the menu opens below the button, lined up with its right edge, with Reassign lead technician as its only item, but there is no outline icon before the item as in the design.",
+    "The Tech View steps (7 to 11) were not reached in this reading."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590121-1-card-hover-no-shadow.png",
+    "evidence/staging-full-2026-10-14/annotated/C590121-2-menu-no-icon.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C590124": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Step 5: the design says on hover the card's border darkens and a soft shadow appears.",
+    "On screen the border darkens and the card does not grow or move, but no shadow appears.",
+    "Step 6: the name bubble on the card's avatars opens below the avatars, not above them as the design shows.",
+    "The Tech View steps (2 and 3) were not reached in this reading."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590124-1-card-hover-no-shadow.png",
+    "evidence/staging-full-2026-10-14/annotated/C590124-2-name-bubble-below.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C590127": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "The PRD says Tech View and Board View offer a Technician filter right after Assigned to me.",
+    "In Tech View the filter bar reads Search, Status, Assigned to me, Asset on Site: there is no Technician filter.",
+    "There is no Department filter either (as the test expects).",
+    "So the Technician list (step 4) and Board View (step 7) could not be checked."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590127-1-no-technician-filter.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C590130": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "The design shows a white rounded message box at the bottom right with a green check-in-a-circle icon, the words and an X to close it.",
+    "On screen the message reads \"Lead technician updated\" at the bottom right, but it is a solid green box with white text, a white check icon and the word Close instead of an X.",
+    "Step 4: after ten seconds the message has gone by itself."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590130-1-green-message.png",
+    "evidence/staging-full-2026-10-14/annotated/C590130-2-gone-after-10s.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ },
+ "doubt": {
+  "C590125": "The test has no expected result yet (waiting for the product owner on whether the Dark theme is in scope, question W-15). Seen on staging: the profile menu offers Light and Dark; with Dark on, Tech View and Board View both turn dark (pictures C590125-s3-tech-dark.png and C590125-s3-board-dark.png; the Tech View picture still shows the profile menu fading out at the right). Light was put back afterwards. Decision needed: the product owner to say whether Tech View and Board View must support the Dark theme; until then the test stays without a result."
+ }
+}

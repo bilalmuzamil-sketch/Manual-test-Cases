@@ -573,3 +573,22 @@ Their latest result was still the QA-branch "Passed", so the run's status counts
 finished, or at every check-in on a long run, do this subtraction:** latest-result date < run start, minus the queued plans,
 minus the judged-and-held cases. Whatever is left is the true gap. Then re-read the run's test list for cases added after the
 run started. #run #coverage #staging → L0342, L0349
+
+## L0358 — 2026-10-15 — Judging design cases: compare against the case's own attached pictures; a row read off-screen is a redo
+- **Where:** run 498 section "Design — how it looks" (C590110–C590131), readings `design-stg5.json`, judged in
+  `evidence/staging-full-2026-10-14/judge/wave-design.json` (2 Passed, 13 Failed, 6 redo, 1 doubt).
+- **The design pictures each case names are attached to the case itself.** `get_attachments_for_case/<id>` lists them and
+  `get_attachment/<attachment id>` returns the image bytes (tr_client's `_req` decodes text, so fetch with urllib and the same
+  auth header). Download them to the scratchpad and look at them beside the staging picture before judging an icon or a layout.
+- **A Tech View row read while it sits below the window is not a reading.** On staging the Unassigned group holds ~3,450 work
+  orders; the test's row was found in the page but off screen, so cell reads came back empty, the "picture" said "off screen"
+  and the next click timed out (C590114, C590121 steps 7–11, C590123 steps 7–10, C590128, C590129). Scroll the row into view
+  (or pin its technician so its group sits right after Unassigned) BEFORE reading, and photograph it. Judge such cases redo,
+  never failed (Rule 104).
+- **When the reading and the picture disagree, the picture wins and the reading is the suspect.** C590131's reading said the
+  Unassigned header was "scrolled away", but the picture taken at the same moment shows it held just under the column headers
+  (the sticky header is drawn by a different element than the one the kit measured). Passed on the picture.
+- **One missing step does not stop a Failed.** Where an observed step already breaks the quoted design (e.g. the missing
+  six-dot grip on the Unassigned header, C590117), the case is Failed and the unreached steps are listed as "not reached in
+  this reading" in the bullets.
+#design #staging #judging #pictures → L0350, L0352, Rule 104
