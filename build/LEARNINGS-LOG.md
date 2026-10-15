@@ -413,3 +413,10 @@ field labelled Lead Technician (`wob.mts woPageLead`). (9) Readers that `slice(0
 a run filtered by `ONLY` skips helper blocks with their own id (s5-batchA3 'loc2') — run them when their cases run.
 (10) The third pass ends with `signout-fix.mts`, which signs the shared session out: the fourth pass starts with
 `signin-check-stg4.mts` and stops if sign-in no longer works. #staging #rerun #scripts #staff #location → L0332, L0335, L0337, L0339
+
+## L0342 — 2026-10-15 — On staging the sign-out test runs LAST OF ALL passes, never at the end of one pass
+C368240 (signout-fix.mts) signs the shared session out. On a QA branch the next script signs in again with quick-login; on
+STAGING sign-in needs the SSO cookie the QA lead supplies, and an unattended night cannot get a new one — so a sign-out at
+the end of pass 3 would have stranded pass 4. It now sits as the final line of the LAST pass plan, and every later pass starts
+with `signin-check-stg4.mts` (stops the pass with a plain message if sign-in fails). When adding a pass, move the sign-out
+line to the end of the new last plan. #staging #signin #rerun → L0334, L0337, L0339
