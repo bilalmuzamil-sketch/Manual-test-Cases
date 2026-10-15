@@ -195,6 +195,7 @@ await run('C97003', async () => {
   await goP(p, 'Board View', s.q); o.step12dispatcher = named((await allCols(p)).slice(0, 5), IDS); R.C97003 = o; });
 
 await run('C97012', async () => {
+  throw new Error('C97012 is run by staledrop-stg4.mts (15 Oct 2026); this old block would change the shared view-only role');
   const s = await mkSet('ZZAUTOTEST F3 Stale Drop', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: ANA }]); const o: any = { seed: s.log }; R.C97012 = o;
   const roleRead = async (id: string) => (await a.get(`/api/roles/${id}`)).body?.data;
   const orig0 = await roleRead(VIEW_ROLE); const orig = { ...orig0, fe_permissions: (orig0?.fe_permissions ?? []).filter((x: any) => x.code !== 'workOrdersCreateAndEdit' && x.name !== 'workOrdersCreateAndEdit') };   /* FIX 6: never treat a left-over Create & Edit as the role's own */ const adminRole = await roleRead(ADMIN_ROLE); const ce = (adminRole?.fe_permissions ?? []).filter((x: any) => /^workOrders(CreateAndEdit|View)$/.test(x.code));

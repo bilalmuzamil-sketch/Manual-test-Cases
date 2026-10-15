@@ -4,6 +4,9 @@
 # signout-fix.mts (C368240, signs the shared session out) was MOVED from the third pass to the very END of this one (15 Oct, main
 # session) so nothing runs after it; signin-check-stg4.mts still runs first as a guard; run-fourth.sh stops if it fails.
 signin-check-stg4.mts | | 
+# 15 Oct (wave 8b): the view-only role is put back to Work orders > View only BEFORE any view-only case (C97012's old script left
+# Create & Edit on); then the 14 wave-8b re-runs and the C368148 picture, ABOVE the sign-out line, which stays last.
+role-viewonly-stg4.mts | | 
 s1-batch2b.mts | C154884 | 
 s1-batch4a.mts | C96910,C96912,C96923 | 
 s1-batch4b.mts | C96916,C96917 | WOB_PIN_NAMES=Ayesha Khan
@@ -20,4 +23,13 @@ s4-batchD.mts | C96974 |
 s4-batchE.mts | C96962 | WOB_PIN_NAMES=Esther Howard,Ralph Edwards
 s4-batchH.mts | C96966 | 
 s5-batchA3.mts | C96975,C96976,C96983 | 
+s5-batchC.mts | C96978 | 
+s6b-batch.mts | C96989,C96992 | 
+s7-batch.mts | C96997,C96999,C97000 | 
+s8-batch.mts | C96998 | 
+s9-batchA5.mts | C97007,C97011,C97013,C368148 | 
+s9-batchB.mts | C97005 | 
+staledrop-stg4.mts | C97012 | 
+c368149-two.mts | C97010 | WOB_LIVE=1
+kbd-fix4.mts | C97020 | WOB_LIVE=1
 signout-fix.mts | C368240 | 

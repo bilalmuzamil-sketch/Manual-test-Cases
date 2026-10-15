@@ -14,7 +14,7 @@ import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders, vehicle } from './data.mts';
 import { EV, t, shot, display, tab, search, searchValue, expandSmallGroups } from './wob.mts';
-import { staffRows } from './staff.mts';
+import { staffRows, person } from './staff.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -109,15 +109,25 @@ await run('C96978', async () => {
   const wo = await workOrder(a, c, 'estimate', null, true);
   const ls = [await mkLine(wo, 1), await mkLine(wo, 2), await mkLine(wo, 3)];
   await a.post('/api/work-orders/change-status', { id: wo, status: 'approved' });
-  await a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: ES.staff_id });
-  R.C96978 = { line2: say(await a.put(`/api/work-orders/lines/${ls[1]}/technicians`, { staffIds: [RE.staff_id] })) };
+  // 15 Oct 2026 (staging second pass): the second clock-in answered "You are already clocked into different line", so only one
+  // person showed as clocked in and "first name +N" was never seen. Now TWO DIFFERENT technicians made fresh for this run
+  // (role Technician, department Service, Time Clock on, Heavy Duty) — one leads and has Line 1, the other has Line 2 — each
+  // clocked in on their own line after any clock of theirs is stopped; the session's user is checked before each clock-in.
+  const st = Date.now() % 100000;
+  const rlx = (await a.get(`/api/organizations/${(await import('./profile.mts')).ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data; const TECHR = (Array.isArray(rlx) ? rlx : rlx?.collection ?? []).find((r: any) => /^Technician$/i.test(r.label ?? r.name ?? ''))?.id;
+  const TA = (await person(a, `ZZAUTOTEST Cora${st}`, 'Clock', { role: TECHR, email: `zz.wob.cora.clock.${st}${D}`, clockable: true })).row;
+  const TB = (await person(a, `ZZAUTOTEST Rory${st}`, 'Clock', { role: TECHR, email: `zz.wob.rory.clock.${st}${D}`, clockable: true })).row;
+  if (!TA || !TB) throw new Error('fresh technicians not made');
+  await a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: TA.staff_id });
+  R.C96978 = { techs: [`${TA.first_name} ${TA.last_name}`, `${TB.first_name} ${TB.last_name}`], line1: say(await a.put(`/api/work-orders/lines/${ls[0]}/technicians`, { staffIds: [TA.staff_id] })), line2: say(await a.put(`/api/work-orders/lines/${ls[1]}/technicians`, { staffIds: [TB.staff_id] })) };
   R.C96978.advisor = say(await a.post('/api/work-orders/change-service-advisor', { work_order_id: wo, service_advisor_id: ES.staff_id }));
   // Esther clocked in on Line 1, Ralph on Line 2
   const clockIn = async (who: any, line: string) => { let s = await a.post('/api/switch-user', { user_id: who.id }); if (s.status >= 300) { await a.post('/api/exit-switch-user', {}); s = await a.post('/api/switch-user', { user_id: who.id }); }
     try { const tk = ((await linesRaw(wo)).find((l: any) => l.line_id === line)?.tasks ?? []).find((x: any) => x.tech_assigned_id === who.staff_id)?.id;
       await a.post('/api/iam/change-location', { workplace_id: 'b3c8c820-f815-4cf1-8938-10956c5ee71a', workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
-      return say(await a.post('/api/technician-tasks/check-in', { task_id: tk, line_id: line, work_order_id: wo, refresh_lines: true })); } finally { await RUN.toRunner(); } };
-  R.C96978.clock = [await clockIn(ES, ls[0]), await clockIn(RE, ls[1])];
+      const r = say(await a.post('/api/technician-tasks/check-in', { task_id: tk, line_id: line, work_order_id: wo, refresh_lines: true }));
+      return `${who.first_name}: switch ${s.status}, task ${tk ? 'found' : 'MISSING'}, check-in ${r}, now ${JSON.stringify((await a.get('/api/technician-tasks/my-current-task')).body?.data?.technician_task?.label ?? null)}`; } finally { await RUN.toRunner(); } };
+  R.C96978.clock = [await clockIn(TA, ls[0]), await clockIn(TB, ls[1])];
   const lines = await linesRaw(wo); R.C96978.lineEstimates = lines.map((l: any) => l.time_estimate); R.C96978.sumEstimateMinutes = lines.reduce((s: number, l: any) => s + (+l.time_estimate || 0), 0);
   const num = (await workOrders(a, n))[0]?.number; R.C96978.wo = num;
   await go('List', n); R.C96978.list = await listRow(num); await shot(p, 'C96978-list');
@@ -128,12 +138,14 @@ await run('C96978', async () => {
   await allOn(); R.C96978.menuAfterAllOn = onKeys(await menu('Board View')); await close(); R.C96978.card = await card(p, wo); await shot(p, 'C96978-card');
   const fld = p.locator(`[data-test-id="board_card_${wo}"] [data-test-id="board_card_field_clocked_in_technicians"]`);
   R.C96978.cardClockHover = [];
-  for (const target of [fld.getByText(/\+\d+/).first(), fld.getByText(/Ralph|Esther/).first(), fld]) {
+  for (const target of [fld.getByText(/\+\d+/).first(), fld.getByText(/Cora|Rory/).first(), fld]) {
     if (!(await target.count())) continue; await target.hover().catch(() => {}); await p.waitForTimeout(1300);
     const tt = await tooltip(); R.C96978.cardClockHover.push(tt); if (tt.length) { await shot(p, 'C96978-card-clock-hover'); break; } }
   R.C96978.estimate = { wo: (await a.get(`/api/work-orders/view/${wo}`)).body?.data?.work_order?.time_estimate ?? null, cardHasField: await p.locator(`[data-test-id="board_card_${wo}"] [data-test-id="board_card_field_time_estimate"]`).count() };
-  // stop both clocks
-  for (const who of [ES, RE]) { await a.post('/api/switch-user', { user_id: who.id }); try { const cur = (await a.get('/api/technician-tasks/my-current-task')).body?.data; if (cur?.technician_task?.id) await a.post('/api/technician-tasks/check-out', { task_id: cur.technician_task.id }); } finally { await RUN.toRunner(); } }
+  // stop both clocks, then take the fresh technicians off the board (no lead, deactivated) so they do not crowd later checks
+  for (const who of [TA, TB]) { await a.post('/api/switch-user', { user_id: who.id }); try { const cur = (await a.get('/api/technician-tasks/my-current-task')).body?.data; if (cur?.technician_task?.id) await a.post('/api/technician-tasks/check-out', { task_id: cur.technician_task.id }); } finally { await RUN.toRunner(); } }
+  await a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: null });
+  for (const who of [TA, TB]) await a.post('/api/iam/change-status', { id: who.id });
 });
 
 await run('C96982', async () => {

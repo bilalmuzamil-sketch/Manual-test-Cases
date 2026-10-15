@@ -106,7 +106,7 @@ const order = (cols: any[], ids: Record<string, string>) => cols.map((c) => Obje
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
-  console.log(t(), id, JSON.stringify(R[id]).slice(0, 2600));
+  console.log(t(), id, JSON.stringify(R[id]).slice(0, 6000));
   fs.writeFileSync(path.join(EV, 's9-batchB.json'), JSON.stringify(R, null, 1));
 }
 const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.staff_id };
@@ -186,8 +186,28 @@ await run('C97005', async () => {
   const v = await asUser(d2); try { const pg = v.page; await a.put(PREF, { value: { ...(await prefFor()), pinnedTechnicianIds: [ANA.staff_id, BEN.staff_id] } });
     await goP(pg, 'Tech View', s.q); o.step7tech = await groupRows(pg, ANA.staff_id, s);
     await display(pg, 'Board View'); await pg.waitForTimeout(2000); o.step7board = await colCards(pg, ANA.staff_id, s);
-    o.step9techOrder = named(await allCols(pg), IDS).filter((x) => x === 'Ana' || x === 'Ben'); } finally { await v.close(); }
-  await goP(p, 'Board View', s.q); o.step8 = await colCards(p, ANA.staff_id, s);
+    o.step7techOrderBefore = named(await allCols(pg), IDS).filter((x) => x === 'Ana' || x === 'Ben'); } finally { await v.close(); }
+  R.C97005 = o;
+  // 15 Oct 2026 (staging second pass): step 8 was only a reopen and step 9 was never done.
+  // STEP 8 — a real sign-out and sign-in is NOT runnable unattended on staging: signing out ends the one shared staging session
+  // that every later script uses (L0342), and no other account can sign in without the QA lead's Google sign-in cookie, so no
+  // fresh test user can do a real sign-in either. The closest unattended equivalent is done and labelled as such: a NEW browser
+  // window carrying only the sign-in (cookies + the signed-in user's record, no other page storage), which loads Work Orders
+  // from nothing as a fresh sign-in does; Ana's group is read there in Tech View with the same search.
+  { const LS = await p.evaluate(`Object.fromEntries(Object.keys(localStorage).filter(k => /^(user|fe_permissions_wrapper|token)$/.test(k)).map(k => [k, localStorage.getItem(k)]))`) as Record<string, string>;
+    const st = await p.context().storageState(); const ctx = await browser.newContext({ storageState: { cookies: st.cookies, origins: [] }, viewport: { width: 1600, height: 1000 }, ignoreHTTPSErrors: true });
+    await ctx.route((u) => /maps\.googleapis|intercom|sentry\.io|mercure\.qa|googletagmanager|google-analytics|hotjar|fullstory/i.test(u.toString()), (r) => r.abort()).catch(() => {});
+    await ctx.addInitScript((kv: Record<string, string>) => { try { if (!sessionStorage.getItem('zz_seeded')) { for (const [k, v] of Object.entries(kv)) localStorage.setItem(k, v); sessionStorage.setItem('zz_seeded', '1'); } } catch { /* */ } }, LS);
+    try { const pn = await ctx.newPage(); await goP(pn, 'Tech View', s.q); o.step8 = { how: 'new browser window, same sign-in — NOT a real sign-out/sign-in (not runnable unattended on staging, L0342)', tech: await groupRows(pn, ANA.staff_id, s) }; await shot(pn, 'C97005-step8-new-window'); }
+    finally { await ctx.close().catch(() => {}); } }
+  await goP(p, 'Board View', s.q); o.step8board = await colCards(p, ANA.staff_id, s);
+  // STEP 9 — in the first browser drag Ben's group header (its six-dot handle) above Ana's group; then the second dispatcher refreshes
+  await goP(p, 'Tech View', s.q);
+  const techOrder = async (pg: Page) => (await groups(pg)).map((g) => g.id === ANA.staff_id ? 'Ana' : g.id === BEN.staff_id ? 'Ben' : null).filter(Boolean);
+  o.step9firstBefore = await techOrder(p);
+  try { await drag(p, `[data-test-id="tech_view_group_drag_handle_${BEN.staff_id}"]`, `[data-test-id="tech_view_group_${ANA.staff_id}"]`, 2); o.step9drag = 'ok'; } catch (e: any) { o.step9drag = String(e?.message || e).slice(0, 120); }
+  await p.waitForTimeout(1500); o.step9firstAfter = await techOrder(p); await shot(p, 'C97005-step9-first');
+  { const v2 = await asUser(d2); try { await goP(v2.page, 'Tech View', s.q); o.step9second = await techOrder(v2.page); await shot(v2.page, 'C97005-step9-second'); } finally { await v2.close(); } }
   R.C97005 = o;
 });
 
@@ -236,6 +256,9 @@ await run('C97010', async () => {
 });
 
 await run('C97012', async () => {
+  // 15 Oct 2026: this block used the SHARED role "ZZAUTOTEST WO View Only" as [Role-D] and could leave Create & Edit on in it
+  // (it did in the second pass and spoiled C97020). C97012 now runs in staledrop-stg4.mts with its own role; this block never runs.
+  throw new Error('C97012 is run by staledrop-stg4.mts (15 Oct 2026); this block would change the shared view-only role');
   await pins([ANA.staff_id, BEN.staff_id]);
   const s = await mkSet('ZZAUTOTEST F3 Stale Drop', [{ co: 'Alpha Co', lead: ANA, status: 'complete' }, { co: 'Bravo Co', lead: ANA }]);
   const o: any = {};

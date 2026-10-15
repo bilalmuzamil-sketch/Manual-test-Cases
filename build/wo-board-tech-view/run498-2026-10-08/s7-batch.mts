@@ -61,7 +61,7 @@ const second = async () => { const st = await p.context().storageState(); const 
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
-  console.log(t(), id, JSON.stringify(R[id]).slice(0, 2600));
+  console.log(t(), id, JSON.stringify(R[id]).slice(0, 6000));
   fs.writeFileSync(path.join(EV, 's7-batch.json'), JSON.stringify(R, null, 1));
 }
 const seed = async (name: string, unit: string, leads: (string | null)[]) => { let w = await workOrders(a, name); if (!w.length) { const c = await customer(a, name, unit); for (const l of leads) await workOrder(a, c, 'approved', l); w = await workOrders(a, name); } return w; };
@@ -170,20 +170,34 @@ for (const id of ['C368142', 'C368143']) await run(id, async () => {
   R[id] = o;
 });
 
-// S8 look: tech story check mark — one line with a story, one without
-await run('S8', async () => {
-  const n = `ZZAUTOTEST F3 Story Check Mark ${Date.now() % 100000}`; const c = await customer(a, n, 'ZZF3SC');
-  const { w, ls } = await wo(c, 2, ES.staff_id);
-  R.S8 = { story: say(await a.post('/api/work-orders/lines/change-story', { line_id: ls[0], tech_story: 'Brought unit in. Completed inspection.', work_order_id: w })), names: [lineName(1), lineName(2)] };
-  await p.goto(`${APP}/workorders/${w}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000); await shot(p, 'S8-lines-admin');
-  R.S8.icons = await p.evaluate(`[...new Set([...document.querySelectorAll('i.q-icon, i.material-icons, svg')].filter(e => e.getBoundingClientRect().width > 0).map(e => (e.innerText || e.getAttribute('data-test-id') || e.getAttribute('aria-label') || '').trim()).filter(Boolean))]`);
-  R.S8.storyIds = await p.evaluate(`[...new Set([...document.querySelectorAll('[data-test-id]')].map(e => e.getAttribute('data-test-id').replace(/[0-9a-f-]{36}/g, '<id>')).filter(t => /story|check|note/i.test(t)))]`);
-  const v = await viewAs(browser, p, a, ES.id, me.id, RUN.toRunner);
-  try { await v.page.goto(`${APP}/workorders/${w}/lines`, { waitUntil: 'domcontentloaded' }); await v.page.waitForTimeout(7000); await shot(v.page, 'S8-lines-tech');
-    R.S8.tech = { perms: v.perms, url: v.page.url().replace(APP, ''), icons: await v.page.evaluate(`[...new Set([...document.querySelectorAll('i.q-icon, i.material-icons')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.trim()).filter(Boolean))]`) }; }
-  finally { await v.close(); }
-  R.S8.wo = (await workOrders(a, n))[0]?.number;
-});
+// 15 Oct 2026 (staging second pass): the three story cases were one block with the id 'S8', so a run filtered with
+// ONLY=C96997,C96999,C97000 skipped it and logged nothing. Each case now has its own block, its own customer (the case's name +
+// a run number), its own lines, and logs its own line: the Lines tab read on the normal page and — for C96997 / C97000 — in the
+// Tech View work order mode as Esther Howard (Technician role, her own window via viewAs). Per line: the text around its Story row,
+// every icon drawn inside the line, and any element whose test-id or class mentions story / check / required.
+const storyRead = (pg: Page) => pg.evaluate(`(() => {
+  const vis = (e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
+  const story = [...document.querySelectorAll('body *')].filter(e => vis(e) && e.children.length === 0 && /story/i.test(e.textContent || '')).map(e => { let c = e; for (let i = 0; i < 3 && c.parentElement; i++) c = c.parentElement; return c.innerText.replace(/\\s+/g, ' ').trim().slice(0, 200); });
+  const marks = [...document.querySelectorAll('[data-test-id], [class]')].filter(e => vis(e) && /story|check|required/i.test((e.getAttribute('data-test-id') || '') + ' ' + (typeof e.className === 'string' ? e.className : ''))).map(e => (e.getAttribute('data-test-id') || e.className).toString().replace(/[0-9a-f-]{36}/g, '<id>').slice(0, 80));
+  const icons = [...document.querySelectorAll('i.q-icon, i.material-icons, svg')].filter(vis).map(e => (e.innerText || e.getAttribute('data-test-id') || e.getAttribute('aria-label') || '').trim()).filter(Boolean);
+  return { storyRows: [...new Set(story)].slice(0, 8), storyOrCheckElements: [...new Set(marks)].slice(0, 20), checkIcons: icons.filter(x => /check|done|task_alt|verified/i.test(x)), icons: [...new Set(icons)].slice(0, 60) }; })()`);
+async function storyCase(id: string, name: string, unit: string, stories: (string | null)[], techToo: boolean) {
+  const n = `${name} ${Date.now() % 100000}`; const c = await customer(a, n, unit);
+  const { w, ls } = await wo(c, stories.length, ES.staff_id);
+  const o: any = { workOrder: null, lines: stories.map((st, i) => ({ line: lineName(i + 1), story: st })) };
+  for (let i = 0; i < stories.length; i++) if (stories[i]) o.lines[i].saved = say(await a.post('/api/work-orders/lines/change-story', { line_id: ls[i], tech_story: stories[i], work_order_id: w }));
+  o.workOrder = (await workOrders(a, n))[0]?.number;
+  await p.goto(`${APP}/workorders/${w}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000); await shot(p, `${id}-lines-admin`);
+  o.admin = await storyRead(p);
+  if (techToo) { const v = await viewAs(browser, p, a, ES.id, me.id, RUN.toRunner);
+    try { await v.page.goto(`${APP}/workorders/${w}/lines`, { waitUntil: 'domcontentloaded' }); await v.page.waitForTimeout(7000); await shot(v.page, `${id}-lines-tech-mode`);
+      o.techMode = { user: 'Esther Howard', perms: v.perms, url: v.page.url().replace(APP, ''), ...((await storyRead(v.page)) as any) }; }
+    finally { await v.close(); } }
+  R[id] = o;
+}
+await run('C96997', () => storyCase('C96997', 'ZZAUTOTEST F3 Story Check Mark', 'ZZF3SC', ['Brought unit in. Completed inspection.'], true));
+await run('C96999', async () => { await storyCase('C96999', 'ZZAUTOTEST F3 No Story Look', 'ZZF3NL', [null], false); R.C96999.note = 'the comparison with production / an older screenshot is made by the judge from the picture; this script does not open production'; });
+await run('C97000', () => storyCase('C97000', 'ZZAUTOTEST F3 No Story Marker', 'ZZF3NM', ['Brought unit in. Completed inspection.', null], true));
 
 const BACK = ORIGINAL; await a.put(PREF, { value: BACK }); R.restored = JSON.stringify(await prefGet()) === JSON.stringify(BACK);
 fs.writeFileSync(path.join(EV, 's7-batch.json'), JSON.stringify(R, null, 1)); console.log(t(), 'restored', R.restored);

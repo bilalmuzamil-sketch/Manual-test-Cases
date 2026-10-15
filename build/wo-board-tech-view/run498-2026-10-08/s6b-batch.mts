@@ -14,7 +14,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, searchValue, expandSmallGroups } from './wob.mts';
+import { EV, t, shot, display, tab, search, searchValue, expandSmallGroups, switchLocUI } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY, LETH } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
@@ -61,7 +61,7 @@ const second_old = async () => { const st = await p.context().storageState(); co
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
-  console.log(t(), id, JSON.stringify(R[id]).slice(0, 2600));
+  console.log(t(), id, JSON.stringify(R[id]).slice(0, 6000));
   fs.writeFileSync(path.join(EV, 's6b-batch.json'), JSON.stringify(R, null, 1));
 }
 const seed = async (name: string, unit: string, leads: (string | null)[]) => { let w = await workOrders(a, name); if (!w.length) { const c = await customer(a, name, unit); for (const l of leads) await workOrder(a, c, 'approved', l); w = await workOrders(a, name); } return w; };
@@ -118,24 +118,53 @@ await run('C96988', async () => {
   R.C96988.sameRowText = new Set(Object.values(R.C96988.tech).map((x: any) => x.size?.text)).size === 1;
 });
 
+// 15 Oct 2026 (staging second pass): C96992 compared only the Customers table, and C96989 looked for the old location menu
+// (not on staging), so nothing after "Comfortable" was recorded. Both now follow their steps; see each block.
+const rowH = (sel: string) => p.evaluate(`(() => { const r = [...document.querySelectorAll(${JSON.stringify(sel)})].find(x => x.getBoundingClientRect().height > 0); return r ? Math.round(r.getBoundingClientRect().height) : null; })()`) as Promise<number | null>;
+const cardsIn = (colId: string) => p.evaluate(`(() => { const c = document.querySelector('[data-test-id="board_column_${'${C}'}"]'); if (!c) return null; const cs = [...c.querySelectorAll('[data-test-id^="board_card_"]')].filter(e => /^board_card_[0-9a-f-]{36}$/.test(e.getAttribute('data-test-id'))).map(e => e.getBoundingClientRect()).filter(r => r.height > 0).sort((x, y) => x.top - y.top);
+  return { cards: cs.length, heights: cs.map(r => Math.round(r.height)), gaps: cs.slice(1).map((r, i) => Math.round(r.top - cs[i].bottom)), padding: getComputedStyle(c.querySelector('[data-test-id^="board_card_"]') || c).padding }; })()`.split('${C}').join(colId));
 await run('C96992', async () => {
-  await go('Tech View'); await setDensity('regular');
-  await p.goto(APP + '/customers', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); const before = await custRow(); await shot(p, 'C96992-customers-before');
-  await go('Tech View'); await setDensity('compact'); await display(p, 'Board View'); await p.waitForTimeout(1000);
-  await p.goto(APP + '/customers', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); const after = await custRow(); await shot(p, 'C96992-customers-after');
-  R.C96992 = { customersRow: { before, after } };
+  const n = 'ZZAUTOTEST F6 Density Rows'; const ws = await seed(n, 'ZZF6DR', [ES.staff_id, ES.staff_id, ES.staff_id]);
+  const o: any = { workOrders: ws.map((w: any) => w.number) };
+  // step 5's "before": another table (Customers) at the starting density
+  await go('Tech View'); await setDensity('regular'); o.start = (await density()).selected;
+  await p.goto(APP + '/customers', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); o.customersBefore = await custRow(); await shot(p, 'C96992-customers-before');
+  // step 1: List row height
+  await go('List', n); await p.waitForTimeout(1500); o.listBefore = await rowH('tbody tr'); await shot(p, 'C96992-list-before');
+  // step 2: Tech View rows at Regular, Comfortable, Compact
+  await go('Tech View', n); o.tech = { regular: await rowH('[data-test-id^="tech_view_row_"]') };
+  await setDensity('comfortable'); o.tech.comfortable = await rowH('[data-test-id^="tech_view_row_"]'); await shot(p, 'C96992-tech-comfortable');
+  await setDensity('compact'); o.tech.compact = await rowH('[data-test-id^="tech_view_row_"]'); await shot(p, 'C96992-tech-compact');
+  // step 3: Board View cards at Compact (and Regular as the reference, then back to Compact)
+  await display(p, 'Board View'); await p.waitForTimeout(1500); o.board = { selected: (await density()).selected, compact: await cardsIn(ES.staff_id) }; await shot(p, 'C96992-board-compact');
+  await setDensity('regular'); o.board.regular = await cardsIn(ES.staff_id); await setDensity('compact');
+  // step 4: List again
+  await display(p, 'List'); await p.waitForTimeout(1500); o.listAfter = await rowH('tbody tr'); await shot(p, 'C96992-list-after');
+  // step 5: Customers again
+  await p.goto(APP + '/customers', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); o.customersAfter = await custRow(); await shot(p, 'C96992-customers-after');
+  R.C96992 = o;
 });
 
 await run('C96989', async () => {
-  await go('Tech View'); await setDensity('comfortable');
-  await p.locator('header').getByText(/^[A-Z]{2}$/).last().click(); await p.waitForTimeout(1500);
-  const cur = p.locator('.q-menu').getByText(/ - \d{3,5}$/).first(); R.C96989 = { menuButton: await cur.count() };
-  if (await cur.count()) { await cur.click(); await p.waitForTimeout(1500); R.C96989.options = await p.locator('.q-menu .q-item').allInnerTexts();
-    await p.locator('.q-menu .q-item').filter({ hasText: 'Lethbridge' }).first().click().catch((e) => { R.C96989.pickError = String(e).slice(0, 120); }); await p.waitForTimeout(6000); }
-  await p.keyboard.press('Escape').catch(() => {});
-  R.C96989.at = await where(p);
-  if (/lethbridge/i.test(String(R.C96989.at))) { await go('Tech View'); R.C96989.tech = (await density()).selected; await display(p, 'Board View'); await p.waitForTimeout(1500); R.C96989.board = (await density()).selected; await shot(p, 'C96989-lethbridge'); }
-  R.C96989.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
+  const o: any = {}; R.C96989 = o;
+  // step 1-2: Comfortable in Tech View, then Board View
+  await go('Tech View'); await setDensity('comfortable'); o.techAfterSet = (await density()).selected; o.saved = (await prefGet()).density;
+  await display(p, 'Board View'); await p.waitForTimeout(1500); o.board = (await density()).selected; await shot(p, 'C96989-board');
+  // step 3-4: "log out and back in" and "a second browser" — a NEW browser window carrying only the sign-in (no page storage
+  // except the sign-in's own user record). A real sign-out would end the shared staging session for every later script (L0342).
+  const s2 = await second();
+  try { await go('Tech View', '', s2.pg); o.newWindowTech = (await density(s2.pg)).selected; await shot(s2.pg, 'C96989-new-window-tech');
+    await display(s2.pg, 'Board View'); await s2.pg.waitForTimeout(1500); o.newWindowBoard = (await density(s2.pg)).selected; await shot(s2.pg, 'C96989-new-window-board');
+  } finally { await s2.ctx.close().catch(() => {}); }
+  o.signOutNote = 'step 3 done as a new browser window, not a real sign-out: signing out ends the shared staging session (L0342)';
+  // step 5: the second location — enrol the runner at Lethbridge (app enrolment route), switch ON SCREEN (profile menu > select_location)
+  const meRow = (await staffRows(a, RUNNER_EMAIL)).find((x) => x.email === RUNNER_EMAIL);
+  const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
+  if (meRow) o.enrolLeth = say(await a.post('/api/staff/enrollment/create', { staffId: meRow.staff_id, workplaceId: LETH, departmentId: svc?.id }));
+  await go('Tech View'); o.switched = await switchLocUI(p, 'Staging Lethbridge'); o.at = await where(p);
+  if (/lethbridge/i.test(String(o.at))) { await go('Tech View'); o.atAfterOpen = await where(p); o.loc2Tech = (await density()).selected; await shot(p, 'C96989-lethbridge-tech'); await display(p, 'Board View'); await p.waitForTimeout(1500); o.loc2Board = (await density()).selected; }
+  o.backOnScreen = await switchLocUI(p, 'Staging Heavy Duty');
+  o.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
 });
 
 const BACK = ORIGINAL; await a.put(PREF, { value: BACK }); R.restored = JSON.stringify(await prefGet()) === JSON.stringify(BACK);

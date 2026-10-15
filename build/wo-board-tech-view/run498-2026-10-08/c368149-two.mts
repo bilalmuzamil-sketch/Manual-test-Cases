@@ -7,7 +7,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, woPageLead } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
@@ -98,7 +98,7 @@ const order = (cols: any[], ids: Record<string, string>) => cols.map((c) => Obje
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
-  console.log(t(), id, JSON.stringify(R[id]).slice(0, 2600));
+  console.log(t(), id, JSON.stringify(R[id]).slice(0, 6000));
   fs.writeFileSync(path.join(EV, 'c368149-two.json'), JSON.stringify(R, null, 1));
 }
 const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.staff_id };
@@ -166,27 +166,53 @@ await run('C97003', async () => {
 });
 
 await run('C97010', async () => {
+  // 15 Oct 2026 (staging second pass): the save failure was FORCED (a refused request) instead of the case's real cause — the work
+  // order invoiced in a second tab — so no status explanation could appear; the Board View inactive marker and closing the alert
+  // with X were not read. Now the case's steps, in order: WO-1 Approved (Ana), WO-2 Complete and not invoiced (Ana), WO-3 Approved
+  // led by a technician made for this run (Dan) who is then deactivated; steps 6-7 open WO-2 in a SECOND TAB and press Finance >
+  // Create Invoice on screen (the same invoice call is used only if the button cannot be pressed — written in the log); the first
+  // tab is never refreshed before step 9.
   const dan = (await person(a, 'ZZAUTOTEST F3 Dan', 'Delta', { role: TECH_ROLE, email: `zz.wob.f3dan2.${stamp}${D}`, clockable: true })).row;
-  await pins([ANA.staff_id, BEN.staff_id, dan.staff_id]);
-  const s = await mkSet('ZZAUTOTEST F3 Inactive Drop', [{ co: 'Alpha Co', lead: ANA }, { co: 'Delta Co', lead: { staff_id: dan.staff_id } }]); const o: any = {};
-  await goP(p, 'Board View', s.q); o.beforeDeactivate = (await boardCols(p)).find((c) => c.id === dan.staff_id) ?? 'not drawn';
-  o.deactivate = say(await a.post('/api/iam/change-status', { id: dan.id })); o.active = (await staffRows(a, dan.email)).find((x) => x.email === dan.email)?.is_active;
-  await goP(p, 'Board View', s.q); const all = await allCols(p); o.danInBoard = all.includes(dan.staff_id); o.pinsNow = (await prefFor()).pinnedTechnicianIds?.length;
-  o.danCol = (await boardCols(p)).find((c) => c.id === dan.staff_id) ?? 'not drawn'; await shot(p, 'C97010-after-deactivate');
-  await display(p, 'Tech View'); await p.waitForTimeout(2500); o.danGroup = await p.locator(`[data-test-id="tech_view_group_${dan.staff_id}"]`).count();
-  o.danGroupText = await p.locator(`[data-test-id="tech_view_group_${dan.staff_id}"]`).innerText().catch(() => null);
-  if (o.danInBoard) { await goP(p, 'Board View', s.q); await showCols(p, ANA.staff_id); o.visible = named(await visibleIds(p), { ...IDS, Dan: dan.staff_id });
-    o.dragToDan = await dragOn(p, card(s, 'Alpha Co'), `[data-test-id="board_column_${dan.staff_id}"]`, 120); await shiftPrompt(p, 'Keep shifts');
-    o.step5 = { lead: await leadOf(s, 'Alpha Co'), msg: await toastsOn(p), danCount: (await boardCols(p)).find((c) => c.id === dan.staff_id)?.count }; }
-  // the failed save goes back (server refuses the save; real offline triggers the branch's sleeping page)
-  await goP(p, 'Board View', s.q); const refuse = async (r: any) => { if (r.request().method() !== 'GET') await r.fulfill({ status: 500, contentType: 'application/json', body: '{"errors":[{"error":"ZZ forced failure"}]}' }); else await r.continue(); };
-  await p.route(/board-move|change-lead-technician/, refuse); await dragOn(p, card(s, 'Alpha Co'), `[data-test-id="board_column_${BEN.staff_id}"]`, 120); await shiftPrompt(p, 'Keep shifts');
-  o.step7 = { msg: await toastsOn(p), ana: await colCards(p, ANA.staff_id, s) }; await shot(p, 'C97010-alert'); await p.waitForTimeout(10000); o.step8stillThere = (await toastsOn(p)).length > 0;
-  await p.unroute(/board-move|change-lead-technician/, refuse); await goP(p, 'Board View', s.q); o.step9 = { ana: await colCards(p, ANA.staff_id, s), lead: await leadOf(s, 'Alpha Co') };
+  const s = await mkSet('ZZAUTOTEST C97010 Failed Drop', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: ANA, status: 'complete' }, { co: 'Delta Co', lead: { staff_id: dan.staff_id } }]); const o: any = { seed: s.log }; R.C97010 = o;
+  o.setup = (await workOrders(a, s.q)).map((w: any) => `${nameOf(s)(w.number)} ${w.status} lead=${w.techAssignedFirstName ?? '-'} ${w.techAssignedLastName ?? ''}`);
+  o.deactivate = say(await a.post('/api/iam/change-status', { id: dan.id })); o.danActive = (await staffRows(a, dan.email)).find((x) => x.email === dan.email)?.is_active;
+  { const pv = await prefFor(); await a.put(PREF, { value: { ...pv, pinnedTechnicianIds: [ANA.staff_id, BEN.staff_id, dan.staff_id], filters: {} } }); }
+  const header = (id: string) => p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_column_header_${'${I}'}"]'); return h ? h.innerText.replace(/\\s+/g, ' ').trim() : 'not drawn'; })()`.split('${I}').join(id));
+  // steps 1-3
+  await goP(p, 'Board View', s.q); await toColumn(p, ANA.staff_id);
+  o.step3 = { danHeader: await header(dan.staff_id), danCol: (await boardCols(p)).find((c) => c.id === dan.staff_id) ?? 'not drawn' }; await shot(p, 'C97010-step3');
+  // steps 4-5
+  o.step4 = await dragOn(p, card(s, 'Alpha Co'), `[data-test-id="board_column_${dan.staff_id}"]`, 120); await shiftPrompt(p, 'Keep shifts');
+  o.step5 = { lead: await leadOf(s, 'Alpha Co'), msg: await toastsOn(p), anaCards: await colCards(p, ANA.staff_id, s), danCount: (await boardCols(p)).find((c) => c.id === dan.staff_id)?.count }; await shot(p, 'C97010-step5');
+  // steps 6-7: a second tab, WO-2 > Finance > Create Invoice
+  { const t2 = await p.context().newPage(); t2.setDefaultTimeout(20_000);
+    try { await t2.goto(`${APP}/workorders/${s.w['Bravo Co'].id}/lines`, { waitUntil: 'domcontentloaded' }); await t2.waitForTimeout(7000);
+      await t2.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Finance\s*$/ }).first().click().catch(() => {}); await t2.waitForTimeout(3000);
+      const ci = t2.locator('button').filter({ hasText: /Create Invoice/i }).first(); o.step7 = { button: await ci.count(), disabled: await ci.isDisabled().catch(() => null) };
+      if (o.step7.button && !o.step7.disabled) { await ci.click(); await t2.waitForTimeout(4000); o.step7.how = 'Create Invoice pressed on screen'; await t2.screenshot({ path: path.join(EV, 'C97010-step7-second-tab.png') }).catch(() => {}); await t2.keyboard.press('Escape').catch(() => {}); }
+      else { o.step7.how = 'button not pressable — same invoice call from the second tab'; o.step7.api = say(await api(t2).post('/api/invoices/create', { work_order_id: s.w['Bravo Co'].id, issue_date: new Date().toISOString().slice(0, 10), due_date: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10) })); }
+    } finally { await t2.close().catch(() => {}); }
+    o.step7.statusNow = (await workOrders(a, s.q)).find((w: any) => w.id === s.w['Bravo Co'].id)?.status; }
+  // steps 8-10: back in the first tab, NOT refreshed — drag WO-2 to Ben
+  await p.bringToFront(); o.step9 = await dragOn(p, card(s, 'Bravo Co'), `[data-test-id="board_column_${BEN.staff_id}"]`, 120); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(800);
+  o.step10 = { alert: await toastsOn(p), anaCards: await colCards(p, ANA.staff_id, s), benCards: await colCards(p, BEN.staff_id, s) }; await shot(p, 'C97010-step10-alert');
+  // step 11: about ten seconds later
+  await p.waitForTimeout(10_000); o.step11 = { stillShown: await toastsOn(p) }; await shot(p, 'C97010-step11');
+  // step 12: the alert's X
+  const x = p.locator('.q-notification button').first(); o.step12 = { closeButton: await x.count() }; if (o.step12.closeButton) { await x.click().catch(() => {}); await p.waitForTimeout(1200); } o.step12.after = await toastsOn(p);
+  // steps 13-14: refresh, WO-2's place and its Lead Technician on its own page
+  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await goP(p, 'Board View', s.q); await toColumn(p, ANA.staff_id);
+  o.step13 = { anaCards: await colCards(p, ANA.staff_id, s), lead: await leadOf(s, 'Bravo Co'), danHeader: await header(dan.staff_id) }; await shot(p, 'C97010-step13');
+  o.step14 = await woPageLead(p, APP, s.w['Bravo Co'].id);
+  // clean-up: this run's deactivated Dan keeps a column while he leads WO-3 — take the lead off so no inactive column is left behind
+  o.cleanup = say(await a.post('/api/work-orders/change-lead-technician', { work_order_id: s.w['Delta Co'].id, tech_assigned_id: null }));
   R.C97010 = o;
 });
 
 await run('C97012', async () => {
+  // 15 Oct 2026: this block used the SHARED role "ZZAUTOTEST WO View Only" as [Role-D] and could leave Create & Edit on in it
+  // (it did in the second pass and spoiled C97020). C97012 now runs in staledrop-stg4.mts with its own role; this block never runs.
+  throw new Error('C97012 is run by staledrop-stg4.mts (15 Oct 2026); this block would change the shared view-only role');
   await pins([ANA.staff_id, BEN.staff_id]);
   const s = await mkSet('ZZAUTOTEST F3 Stale Drop', [{ co: 'Alpha Co', lead: ANA, status: 'complete' }, { co: 'Bravo Co', lead: ANA }]); const o: any = {};
   const roleRead = async (id: string) => (await a.get(`/api/roles/${id}`)).body?.data;

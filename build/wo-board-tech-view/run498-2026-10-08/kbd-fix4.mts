@@ -247,6 +247,14 @@ await run('C368152', async () => { await pins([ANA.staff_id, BEN.staff_id]);
 
 await run('C97020', async () => { await pins([ANA.staff_id, BEN.staff_id]);
   const s = await mkSet('ZZAUTOTEST F3 Keyboard Limits', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: ANA, status: 'invoiced' }]); const o: any = {};
+  // 15 Oct 2026 (staging second pass): the view-only role had Work orders > Create & Edit left ON by C97012 (s9-fix7), so the
+  // "view-only" user could open Reassign. The role must be Work orders > View only before the viewer part: anything else in
+  // Work orders (Create & Edit, Delete) is taken off here and the role is read back (role-viewonly-stg4.mts does the same at the
+  // start of the fourth pass; this is the second guard). Taking a permission OFF a view-only role needs no restore.
+  { const rr = (await a.get(`/api/roles/${VIEW_ROLE}`)).body?.data; const code = (x: any) => String(x?.code ?? x?.name ?? x);
+    const extra = ((rr?.fe_permissions ?? []) as any[]).filter((x) => /^workOrders/.test(code(x)) && !/^workOrdersView$/.test(code(x)));
+    if (extra.length) o.roleFixedAtStart = say(await a.put(`/api/roles/${VIEW_ROLE}`, { name: rr.name, description: rr.description, view_mode: rr.view_mode, template_id: rr.template_id, fe_permissions: ((rr.fe_permissions ?? []) as any[]).filter((x) => !extra.includes(x)).map((x) => x.id), cross_toggles: rr.cross_toggles }));
+    o.roleWorkOrderPermsBeforeViewer = (((await a.get(`/api/roles/${VIEW_ROLE}`)).body?.data?.fe_permissions ?? []) as any[]).map(code).filter((c) => /^workOrders/.test(c)); }
   const viewer = await mkUser('ZZAUTOTEST', `KbdViewer ${stamp}`, VIEW_ROLE, 'kbdviewer'); const v = await asUser(viewer);
   try { const pg = v.page; await a.put(PREF, { value: { ...(await prefFor()), pinnedTechnicianIds: [ANA.staff_id, BEN.staff_id] } }).catch(() => {}); await goP(pg, 'Board View', s.q); await toColumn(pg, ANA.staff_id).catch(() => {}); await clickSearch(pg);
     o.viewerFocused = await arrowToCard(pg, `board_card_${s.w['Alpha Co'].id}`);

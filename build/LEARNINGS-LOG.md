@@ -420,3 +420,18 @@ STAGING sign-in needs the SSO cookie the QA lead supplies, and an unattended nig
 the end of pass 3 would have stranded pass 4. It now sits as the final line of the LAST pass plan, and every later pass starts
 with `signin-check-stg4.mts` (stops the pass with a plain message if sign-in fails). When adding a pass, move the sign-out
 line to the end of the new last plan. #staging #signin #rerun → L0334, L0337, L0339
+
+## L0343 — 2026-10-15 — Wave 8b script faults: shared roles changed by a case, blocks filtered out by ONLY, parts on a "plain" line
+(1) **A case that needs a role switched must use its OWN role and restore it in `finally`.** C97012's [Role-D] is a role "used by
+this case only", but three scripts used the shared "ZZAUTOTEST WO View Only" role, switched Create & Edit on, and one stopped before
+switching it off — the next view-only check (C97020) then opened Reassign. Now `staledrop-stg4.mts` makes its own role; the old
+blocks throw before touching the shared role; a pass that runs view-only checks starts with `role-viewonly-stg4.mts` (puts the role
+back to Work orders > View only and reads it back). (2) **A block whose id is not a case id never runs under `ONLY=`** ('S8' in
+s7-batch, 'loc2' in s5-batchA3): the three story cases logged nothing. Give each case its own block. (3) **A ready-made line can
+bring parts waiting to be received**; "complete without a tech story" then stops at the Receive parts window before the story
+message — pick a line whose parts list is empty (read the line back). (4) **Two people "clocked in" must be two people**: the second
+check-in answered "already clocked into different line" — use two fresh technicians, stop any clock of theirs first, and record the
+session's user at each check-in. (5) **"Sign out and sign back in" cannot be run unattended on staging** (L0342; nobody else can
+sign in without the QA lead's Google cookie): do the nearest step — a new browser window with the same sign-in — and say so in the
+reading. (6) A case's "second tab" action (e.g. Create Invoice) is done in a real second tab, never replaced by a forced failure.
+#staging #roles #rerun #scripts → L0339, L0341, L0342

@@ -13,7 +13,10 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, findRow, toggleGroup } from './wob.mts';
+import { viewAs } from './viewas.mts';
+import { candidates } from './data.mts';
+import { HEAVY } from './staff.mts';
 import { staffRows, person, roleIds } from './staff.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -33,6 +36,18 @@ const TECH_ROLE = (await roleIds(a))['Technician'];
 const tech = async (first: string, last: string, tag: string) => (await person(a, `ZZAUTOTEST ${first}`, last, { role: TECH_ROLE, email: `zz.wob.${tag}${D}`, clockable: true })).row;
 const ANA = await tech('Ana', 'Alpha', 'ana.alpha'), BEN = await tech('Ben', 'Bravo', 'ben.bravo'), CAL = await tech('Cal', 'Charlie', 'cal.charlie'), DAN = await tech('Dan', 'Delta', 'dan.delta');
 R.techs = { ana: !!ANA?.staff_id, ben: !!BEN?.staff_id, cal: !!CAL?.staff_id, dan: !!DAN?.staff_id };
+// 15 Oct 2026 (staging second pass, C97007): "Ben Bravo" was not offered in the work order page's Lead Technician list. Each of the
+// four test technicians is made eligible here, every run: active, enrolled at Heavy Duty in Service (app enrolment route), Time
+// Clock on, Location Heavy Duty — then who is offered as a lead is read back (R.techEligible).
+{ const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
+  const fixes: string[] = [];
+  for (const [nm, tr] of [['Ana', ANA], ['Ben', BEN], ['Cal', CAL], ['Dan', DAN]] as [string, any][]) { if (!tr) continue;
+    if (!tr.is_active) fixes.push(`${nm} reactivate ${(await a.post('/api/iam/change-status', { id: tr.id })).status}`);
+    const en = await a.post('/api/staff/enrollment/create', { staffId: tr.staff_id, workplaceId: HEAVY, departmentId: svc?.id }); if (en.status < 300) fixes.push(`${nm} enrolled Heavy/Service`);
+    if (!tr.clockable || (tr.workplace_id && tr.workplace_id !== HEAVY)) fixes.push(`${nm} Time Clock/Location ${(await a.post(`/api/staff/${tr.staff_id}/change`, { first_name: tr.first_name, last_name: tr.last_name, email: tr.email, role_id: tr.role_id, workplace_id: HEAVY, job_title: tr.job_title, salary_type: tr.salary_type, salary: tr.salary, billable: !!tr.billable, clockable: true })).status}`); }
+  const cands = await candidates(a);
+  R.techEligible = { fixes, offered: Object.fromEntries([['Ana', ANA], ['Ben', BEN], ['Cal', CAL], ['Dan', DAN]].map(([nm, tr]: any) => [nm, cands.find((c) => c.id === tr?.staff_id)?.name ?? 'NOT OFFERED'])) };
+  console.log(t(), 'test technicians', JSON.stringify(R.techEligible)); }
 const canned: any[] = []; { const c = (await a.get('/api/work-orders/canned-lines')).body?.data; canned.push(...(Array.isArray(c) ? c : c?.collection ?? [])); }
 const mkLine = async (wo: string, i: number) => (await a.post(`/api/work-orders/${wo}/lines/create-from-canned-line`, { canned_line_id: canned[i % canned.length].id, status: 'authorized' })).body?.data?.line_id as string;
 const linesRaw = async (wo: string) => { const d = (await a.get(`/api/work-orders/lines/${wo}`)).body?.data; return Array.isArray(d) ? d : d?.collection ?? d?.lines ?? []; };
@@ -187,12 +202,26 @@ await run('C97007', async () => {
   await p.locator(`[data-test-id="option_lead_technician_${BEN.staff_id}"]`).click(); await p.locator('[data-test-id="button_confirm_reassign_lead_technician"]').click(); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
   o.step7 = await col(BEN.staff_id, s);
   const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${s.w['Abbey Co'].id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(6000);
-  await pg.locator('[data-test-id="select_lead_technician"]').click(); await pg.waitForTimeout(1000); await pg.keyboard.type('ZZAUTOTEST Ben'); await pg.waitForTimeout(1200);
-  await pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: 'Ben Bravo' }).first().click(); await pg.waitForTimeout(3000); await pg.close();
+  // 15 Oct 2026: the lead field found by its label when the test-id is not there (staging); type "Ben" and pick "Ben Bravo"
+  const leadSel = (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]') : pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
+  o.step8field = await leadSel.count();
+  await leadSel.click(); await pg.waitForTimeout(1000); await pg.keyboard.type('Ben', { delay: 60 }); await pg.waitForTimeout(1500);
+  o.step8options = (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).slice(0, 6);
+  await pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: 'Ben Bravo' }).first().click(); await pg.waitForTimeout(3000); await pg.screenshot({ path: path.join(EV, 'C97007-wo-page-lead.png') }).catch(() => {}); await pg.close();
+  o.step8lead = await leadOf(s, 'Abbey Co');
   await go('Board View', s.q); o.step9 = await col(BEN.staff_id, s);
   await drag(p, card(s, 'Echo Co'), card(s, 'Delta Co'), 4); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
   o.step10 = await col(BEN.staff_id, s); await shot(p, 'C97007-board');
-  await go('Tech View', s.q); o.step11 = await grp(BEN.staff_id, s);
+  await go('Tech View', s.q); o.step11 = await grp(BEN.staff_id, s); await shot(p, 'C97007-tech');
+  // step 12: a second dispatcher (a fresh Admin-role user, Time Clock off) in their own window
+  const rl2 = (await a.get(`/api/organizations/${(await import('./profile.mts')).ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data; const ADM = (Array.isArray(rl2) ? rl2 : rl2?.collection ?? []).find((r: any) => /^admin(istrator)?$/i.test(r.label ?? r.name ?? ''))?.id;
+  const d2 = (await person(a, 'ZZAUTOTEST Second', 'Dispatcher', { role: ADM, email: `zz.wob.second.dispatcher${D}`, clockable: false })).row;
+  const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView');
+  if (d2) { const v = await viewAs(browser, p, a, d2.id, me?.id ?? '', RUN.toRunner);
+    try { const pg2 = v.page; await go('Tech View', s.q, pg2); const g2 = await groups(pg2); if (g2.find((x) => x.id === BEN.staff_id)?.collapsed) await toggleGroup(pg2, BEN.staff_id);
+      o.step12 = { tech: ((await groups(pg2)).find((x) => x.id === BEN.staff_id)?.rows ?? []).map(nameOf(s)) }; await shot(pg2, 'C97007-second-dispatcher-tech');
+      await display(pg2, 'Board View'); await toColumn(pg2, BEN.staff_id); o.step12.board = ((await boardCols(pg2)).find((c) => c.id === BEN.staff_id)?.cards ?? []).map(nameOf(s)); await shot(pg2, 'C97007-second-dispatcher-board'); }
+    finally { await v.close(); } } else o.step12 = 'second dispatcher not made';
   R.C97007 = o;
 });
 
@@ -240,6 +269,16 @@ await run('C97011', async () => {
   // drop outside any column (the page header area)
   { const f = await p.locator(card(s, 'Bravo Co')).boundingBox(); if (f) { await p.mouse.move(f.x + f.width * 0.45, f.y + f.height / 2); await p.mouse.down(); await p.mouse.move(f.x + f.width * 0.45, f.y + f.height / 2 + 8, { steps: 4 }); await p.mouse.move(700, 30, { steps: 20 }); await p.waitForTimeout(400); await p.mouse.up(); await p.waitForTimeout(2500); }
     o.dropOutside = { ana: await col(ANA.staff_id, s), a: await cnt(ANA.staff_id), b: await cnt(BEN.staff_id), msg: await toasts(p) }; }
+  await shot(p, 'C97011-board');
+  // 15 Oct 2026 (staging second pass): step 8 — repeat step 5 on the Bravo Co ROW in Tech View (press, drag over Ben's group,
+  // Escape while holding, release) — was never done.
+  await display(p, 'Tech View'); await p.waitForTimeout(1500); await expandSmallGroups(p);
+  for (const gid of [ANA.staff_id, BEN.staff_id]) { const g = (await groups(p)).find((x) => x.id === gid); if (g?.collapsed) await toggleGroup(p, gid); }
+  { await findRow(p, s.w['Bravo Co'].id); const f = await p.locator(row(s, 'Bravo Co')).boundingBox(); const tb = await p.locator(`[data-test-id="tech_view_group_${BEN.staff_id}"]`).boundingBox();
+    o.techStart = { ana: await grp(ANA.staff_id, s), ben: await grp(BEN.staff_id, s) };
+    if (f && tb) { await p.mouse.move(f.x + f.width * 0.45, f.y + f.height / 2); await p.mouse.down(); await p.mouse.move(f.x + f.width * 0.45, f.y + f.height / 2 + 8, { steps: 4 });
+      await p.mouse.move(tb.x + tb.width / 2, tb.y + 10, { steps: 20 }); await p.waitForTimeout(400); await p.keyboard.press('Escape'); await p.waitForTimeout(400); await p.mouse.up(); await p.waitForTimeout(2500); }
+    const gs = await groups(p); o.techEscOverBen = { found: !!(f && tb), ana: await grp(ANA.staff_id, s), ben: await grp(BEN.staff_id, s), counts: { ana: gs.find((x) => x.id === ANA.staff_id)?.count, ben: gs.find((x) => x.id === BEN.staff_id)?.count }, msg: await toasts(p) }; await shot(p, 'C97011-tech'); }
   await go('Board View', s.q); o.afterRefresh = { ana: await col(ANA.staff_id, s), lead: await leadOf(s, 'Bravo Co') };
   R.C97011 = o;
 });
@@ -250,17 +289,25 @@ await run('C97013', async () => {
   const status = async (what: 'In progress' | 'clear') => { await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(1000);
     if (what === 'clear') await p.locator('.q-menu').getByText('Clear selection').first().click(); else await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /In progress/i }).first().click();
     await p.waitForTimeout(1500); await p.keyboard.press('Escape'); await p.waitForTimeout(1500); await expandSmallGroups(p); };
-  await go('Tech View', s.q); const o: any = { step4: await grp(ANA.staff_id, s) };
-  await status('In progress'); o.step5 = await grp(ANA.staff_id, s);
-  await drag(p, row(s, 'Charlie Co'), row(s, 'Alpha Co'), 4); await shiftPrompt(p, 'Keep shifts');
-  await status('clear'); o.step7 = await grp(ANA.staff_id, s);
+  // 15 Oct 2026 (staging second pass): stopped before any reading ("a test row was not found") and lost everything. Now: the
+  // set-up statuses are read back (Alpha Co and Charlie Co must be In progress; set again if not), readings are kept as they
+  // are taken (R.C97013 = o at once), Ana's group is opened after every filter change, and each row is brought on screen
+  // (findRow) before it is dragged.
+  const o: any = {}; R.C97013 = o;
+  for (const co of ['Alpha Co', 'Charlie Co']) { const st0 = (await workOrders(a, s.q)).find((w: any) => w.id === s.w[co].id)?.status; if (st0 !== 'in_progress') (o.statusFix ??= []).push(`${co} ${st0} -> ${say(await a.post('/api/work-orders/change-status', { id: s.w[co].id, work_order: s.w[co].id, status: 'in_progress' }))}`); }
+  o.setup = (await workOrders(a, s.q)).map((w: any) => `${nameOf(s)(w.number)} ${w.status} lead=${w.techAssignedFirstName ?? '-'}`);
+  const openAna = async () => { const g = (await groups(p)).find((x) => x.id === ANA.staff_id); if (g?.collapsed) await toggleGroup(p, ANA.staff_id); };
+  const dragRow = async (from: string, to: string, dy: number) => { await findRow(p, s.w[from].id); await findRow(p, s.w[to].id); try { await drag(p, row(s, from), row(s, to), dy); return 'ok'; } catch (e: any) { return 'drag failed: ' + String(e?.message || e).slice(0, 100); } };
+  await go('Tech View', s.q); await openAna(); o.step4 = await grp(ANA.staff_id, s);
+  await status('In progress'); await openAna(); o.step5 = await grp(ANA.staff_id, s); await shot(p, 'C97013-step5');
+  o.step6 = await dragRow('Charlie Co', 'Alpha Co', 4); await shiftPrompt(p, 'Keep shifts');
+  await status('clear'); await openAna(); o.step7 = await grp(ANA.staff_id, s); await shot(p, 'C97013-step7');
   // back to A, B, C, D
-  for (let i = 0; i < 4; i++) { const g = await grp(ANA.staff_id, s); const want = ['Alpha Co', 'Bravo Co', 'Charlie Co', 'Delta Co']; const k = want.findIndex((x, j) => g[j] !== x); if (k < 0) break; await drag(p, row(s, want[k]), row(s, g[k]), 4); await p.waitForTimeout(1200); }
+  for (let i = 0; i < 4; i++) { const g = await grp(ANA.staff_id, s); const want = ['Alpha Co', 'Bravo Co', 'Charlie Co', 'Delta Co']; const k = want.findIndex((x, j) => g[j] !== x); if (k < 0) break; await dragRow(want[k], g[k], 4); await p.waitForTimeout(1200); }
   o.step8 = await grp(ANA.staff_id, s);
-  await status('In progress'); await drag(p, row(s, 'Alpha Co'), row(s, 'Charlie Co'), await below(row(s, 'Charlie Co'))); await shiftPrompt(p, 'Keep shifts');
-  await status('clear'); o.step10 = await grp(ANA.staff_id, s);
-  await display(p, 'Board View'); await p.waitForTimeout(2000); o.step11 = await col(ANA.staff_id, s); await shot(p, 'C97013-board');
-  R.C97013 = o;
+  await status('In progress'); await openAna(); await findRow(p, s.w['Charlie Co'].id); o.step9 = await dragRow('Alpha Co', 'Charlie Co', await below(row(s, 'Charlie Co'))); await shiftPrompt(p, 'Keep shifts');
+  await status('clear'); await openAna(); o.step10 = await grp(ANA.staff_id, s); await shot(p, 'C97013-step10');
+  await display(p, 'Board View'); await p.waitForTimeout(2000); await toColumn(p, ANA.staff_id); o.step11 = await col(ANA.staff_id, s); await shot(p, 'C97013-board');
 });
 
 await run('C368144', async () => {
@@ -308,13 +355,18 @@ await run('C368148', async () => {
   // the runner is Service Advisor of every work order it creates; leave it on Alpha Co and Charlie Co only
   const other = (await staffRows(a, 'zz.wob.esther.howard@staging.shopview.local'))[0];
   for (const co of ['Bravo Co', 'Delta Co']) await a.post('/api/work-orders/change-service-advisor', { work_order_id: s.w[co].id, service_advisor_id: other.staff_id });
-  await go('Board View', s.q); const o: any = { start: order(await allBoardCols(p), IDS) };
+  // 15 Oct 2026 (Rule 130, picture only): wait for the board to finish loading and photograph the test columns, before and
+  // after, with Assigned to me OFF in the final picture — the readings are unchanged
+  const settle = async () => { for (let i = 0; i < 20; i++) { const busy = await p.locator('.q-inner-loading:visible, .q-spinner:visible, .q-linear-progress:visible').count(); const cards = await p.locator('[data-test-id="board_card_number"]').count(); if (!busy && cards) break; await p.waitForTimeout(1000); } await p.waitForTimeout(1500); };
+  await go('Board View', s.q); await settle(); const o: any = { start: order(await allBoardCols(p), IDS) };
+  await toColumn(p, ANA.staff_id); await settle(); await shot(p, 'C368148-start');
   await p.locator('[data-test-id="filter_chip_assigned_to_me"]').click(); await p.waitForTimeout(3000);
   o.assignedToMe = order(await allBoardCols(p), IDS);
   await toColumn(p, CAL.staff_id); const hdr = (id: string) => `[data-test-id="board_column_header_${id}"]`;
   o.drag = await dragHandle(hdr(CAL.staff_id), hdr(ANA.staff_id)); o.afterDrag = order(await allBoardCols(p), IDS);
   await p.locator('[data-test-id="filter_chip_assigned_to_me"]').click(); await p.waitForTimeout(3000);
-  o.step6 = order(await allBoardCols(p), IDS); await shot(p, 'C368148-after');
+  await settle(); o.step6 = order(await allBoardCols(p), IDS);
+  await toColumn(p, CAL.staff_id); await settle(); await shot(p, 'C368148-after'); (globalThis as any).__shotEach && await (globalThis as any).__shotEach('C368148');
   R.C368148 = o;
 });
 

@@ -101,9 +101,23 @@ async function story(line: string, text: string, tag: string) {
 }
 await run('C96998', async () => {
   const n = `ZZAUTOTEST F3 Story Entry ${Date.now() % 100000}`; const c = await customer(a, n, 'ZZF3SE');
-  const w = await workOrder(a, c, 'estimate', null); const l1 = await mkLine(w, 1), l2 = await mkLine(w, 2);
+  // 15 Oct 2026 (staging second pass): Line 2's ready-made line brought 3 parts waiting to be received, so "complete without a
+  // story" opened the Receive parts window and the tech-story message was never reached. Both lines now use ready-made lines
+  // that carry NO parts (read from the ready-made line list), and Line 2 is checked for waiting parts before step 3; if it still
+  // has any, its part requests are cancelled (playbook §Y) and that is written in the log.
+  const partsOf = (cl: any) => Object.entries(cl ?? {}).filter(([k, v]) => /part/i.test(k) && ((Array.isArray(v) && v.length > 0) || (typeof v === 'number' && v > 0))).map(([k]) => k);
+  const noParts = canned.map((cl, i) => ({ i, p: partsOf(cl) })).filter((x) => !x.p.length).map((x) => x.i);
+  // the list may not say which ready-made lines bring parts, so each try makes the work order and READS its lines: the first
+  // ready-made line whose line has no part requests and no parts is used for both lines (up to 10 tries, each a new work order)
+  const waiting = async (wo: string) => (await linesRaw(wo)).reduce((n: number, l: any) => n + (l.part_requests ?? l.partRequests ?? []).length + (l.parts ?? []).length, 0);
+  const order = [...noParts, ...canned.map((_, i) => i).filter((i) => !noParts.includes(i))];
+  let w = '', l1 = '', l2 = '', pick1 = order[0] ?? 1, pick2 = pick1; const tries: string[] = [];
+  for (const i of order.slice(0, 10)) { w = await workOrder(a, c, 'estimate', null); l1 = await mkLine(w, i); l2 = await mkLine(w, i); const wt = await waiting(w); tries.push(`${String(canned[i % canned.length]?.canned_line_name ?? i).trim()}: ${wt} waiting`); pick1 = pick2 = i; if (!wt) break; }
   await a.post('/api/work-orders/change-status', { id: w, status: 'approved' }); await a.post('/api/work-orders/change-lead-technician', { work_order_id: w, tech_assigned_id: ES.staff_id });
-  R.C96998 = { mileage: say(await a.post('/api/work-orders/change-mileage', { work_order_id: w, mileage: '123456' })) };
+  R.C96998 = { tries, cannedWithoutParts: noParts.length, cannedUsed: [pick1, pick2].map((i) => String(canned[i % canned.length]?.canned_line_name ?? canned[i % canned.length]?.name ?? i).trim()), mileage: say(await a.post('/api/work-orders/change-mileage', { work_order_id: w, mileage: '123456' })) };
+  { const l2row = (await linesRaw(w)).find((x: any) => x.line_id === l2) ?? {}; const reqs = (l2row.part_requests ?? l2row.partRequests ?? []) as any[];
+    R.C96998.line2PartsWaiting = reqs.length + (l2row.parts ?? []).length;
+    for (const q of reqs) (R.C96998.cancelledPartRequests ??= []).push(say(await a.post(`/api/work-orders/part/remove-request/${q.id ?? q.part_request_id}`, {}))); }
   await p.goto(`${APP}/workorders/${w}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000);
   R.C96998.add = await story(l1, 'First note', 'add');
   R.C96998.edit = await story(l1, 'First note, edited', 'edit');

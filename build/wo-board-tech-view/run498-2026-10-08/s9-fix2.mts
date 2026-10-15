@@ -187,6 +187,7 @@ await run('C97010', async () => {
 });
 
 await run('C97012', async () => {
+  throw new Error('C97012 is run by staledrop-stg4.mts (15 Oct 2026); this old block would change the shared view-only role');
   await pins([ANA.staff_id, BEN.staff_id]);
   const s = await mkSet('ZZAUTOTEST F3 Stale Drop', [{ co: 'Alpha Co', lead: ANA, status: 'complete' }, { co: 'Bravo Co', lead: ANA }]); const o: any = {};
   const roleRead = async (id: string) => (await a.get(`/api/roles/${id}`)).body?.data;
