@@ -1,0 +1,41 @@
+{
+ "claim": "On staging a technician has one name only (staff record and sign-in account), so C581895 setup cannot be made there",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "origin/claude/test-execution-defects-cdrjsq: LEARNINGS-LOG L0346(3): the same account-access route DID change the account name (banner read \"ZZAUTOTEST Account Ana\"), so the instrument changes names; L0349 then read the staff record back and it had changed too",
+   "_question": "Did the SAME method find this kind of thing somewhere else in this run?"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "origin/claude/test-execution-defects-cdrjsq: evidence/staging-full-2026-10-14/C581895-step2-staff.png, -step5-list.png, -step8-hover*.png, -step11-tech.png: staff list, List, card hovers and Tech View header all read on screen with one name",
+   "_question": "Was it reproduced the way a USER does it -- clicking the real UI?"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "origin/claude/test-execution-defects-cdrjsq: two separate passes (stg-new5.mts, stg-fix-new3.mts, 14-15 Oct) plus a population read probe-boardnames.mts: 155 board-header names vs 264 staff, 0 differences (L0339)",
+   "_question": "At least 2 attempts, and the page confirmed quiet before observing?"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "origin/claude/test-execution-defects-cdrjsq: L0346(2): account access left the page in Account Access Mode until the banner Exit was pressed; the fourth pass pressed Exit and read the banner back before reading the staff list",
+   "_question": "Did the action navigate, open a tab, or change the URL?"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "origin/claude/test-execution-defects-cdrjsq: L0349(1): after the technician renamed their own account, the staff list, lead candidates, board feed, List, card, hovers and column header all read \"ZZAUTOTEST Account Ana\"; after a staff record rename both names changed (L0339)",
+   "_question": "Was the state you claim to be testing actually built, and read back?"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "git grep renam/account name/one name on origin/claude/test-execution-defects-cdrjsq: L0339, L0346 (corrected), L0349; the C581895 setup Doc already flagged the rename behaviour as UNVERIFIED and quotes the developer (Slack 12 Oct) that differing names exist on the QA data",
+   "_question": "Rule 97: exact error text grepped across the repo, playbook, skills and BLOCKED-*.md?"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely fault: reading names while still inside account access, or a stale page (the other session hit the first, L0346(2)). Ruled out: the fourth pass exited via the banner Exit and read fresh; the 264-vs-155 population read involves no rename at all and still shows zero differences",
+   "_question": "Name the most likely way this is YOUR mistake, and say how you ruled it out."
+  }
+ }
+}

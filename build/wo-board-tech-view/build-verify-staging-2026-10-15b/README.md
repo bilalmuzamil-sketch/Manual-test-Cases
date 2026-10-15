@@ -1,0 +1,16 @@
+# WO Board & Tech View — seven tests the run session flagged ("the test's wording and staging disagree"), 15 Oct 2026
+Source of the disagreements: origin/claude/test-execution-defects-cdrjsq build/wo-board-tech-view/run498-2026-10-08/REPORT-staging-2026-10-15.md items 3–10 (facts only).
+Lane: labels/routes/setup only. Expected results are the documents' (never changed toward the build).
+| Case | Disagreement | Done here |
+|---|---|---|
+| C96916 | Back restores sideways exactly, up-down can shift ~1 row | "Build:" line -> staging; stamp -> v26.40.17-a5c4210 (staging) 10/15/2026. Verdict question left with the QA lead |
+| C96920 | Offline, a browser that never opened Tech View cannot switch to it | same as C96916. Whether to add "open Tech View once first" is a test-design question for the QA lead |
+| C97003 | Ben dropped before Unassigned lands right after it | same + review wording -> "Mark as reviewed … Confirm review". The Expected says only "cannot be placed before Unassigned; Unassigned stays first" — it does not require "nothing happens" |
+| C581895 | Staging keeps one name per technician | READY (set by me 14 Oct from labels alone) -> HOLD with the reason; claim-one-name.json PROVED from the run session's committed evidence (L0339, L0346, L0349) |
+| C96973 | Assigned-to-me board empties with a message, test says column with 0 | NOT written: Automated (Rule 71) and an Expected/source question (Rule 106) |
+| C96978 | Card shows full name +1 (as List does); test/PRD say first name +1 | NOT written: Automated (Rule 71); the PRD sentence contradicts itself (Rule 58) |
+| C590125 | Dark theme, no expected yet | NOT written: HOLD for the product owner |
+Checks: check_tester_runnable PASS; check_runnable_cases 4/4; display fr-view 4/4 (served-4.json).
+Environment note: from ~09:00 the container disk returned I/O errors (dmesg: "I/O error, dev vda") on some repo files
+(build/testing-tools/scan_secrets.py, blocker_gate.py, staging-boot2.mjs, ensure_bridge.sh …); those were run from `git show HEAD:` copies.
+The staging build marker could not be re-read after 09:00 for that reason; a5c4210 was read at 03:00 and 03:30 today.
