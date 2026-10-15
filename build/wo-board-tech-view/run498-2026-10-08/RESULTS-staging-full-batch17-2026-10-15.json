@@ -1,0 +1,118 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 17 = wave 18: 7 Passed (C368207/C368208 wait for pictures)"
+ },
+ "results": {
+  "C368201": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "The shop setting that sends completed work to review read OFF; it was turned on for this check (read back on) and put back off afterwards (read back off).",
+    "Customer ZZAUTOTEST Back Status 79638, S2-36029: the line was completed with a tech story and the Mileage asked for in Missing Details; the message \"Work order sent to review.\" appeared and the page reads Review.",
+    "Browser Back: the List row reads the new status straight away, with no reload. The List's own label for this status is \"Ready For Review\" (the work order page writes Review)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368201-1-back-shows-new-status.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368212": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "S3-36031 (customer ZZAUTOTEST Loc2 Customer 79638) was made at Staging Lethbridge - 4310.",
+    "Steps 2 and 3, at Staging Heavy Duty - 9919: it does not appear when searching \"Loc2\", nor when searching its number.",
+    "Step 4: after switching on screen to Staging Lethbridge - 4310 (top bar read back), searching \"Loc2\" lists S3-36031.",
+    "Pictures of the Heavy Duty side are queued (pictures only, seventh pass)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368212-1-second-location-shows-it.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368238": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Customer ZZAUTOTEST Impersonate Start, S2-36036 led by Esther Howard; you are neither its lead nor its service advisor. Before the switch, Assigned to me (searched for it) shows no work orders.",
+    "Account Access as Esther Howard was started while Reports > Work In Progress was still loading (its request had gone out and not yet answered).",
+    "No red error message appeared; the top bar reads \"Account Access Mode: Esther Howard\".",
+    "Work Orders with Assigned to me on, searched for S2-36036: it is listed, and only Esther Howard's work orders show.",
+    "A picture of the searched list is queued (pictures only, seventh pass); this picture shows the unsearched list."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368238-1-as-esther-assigned-to-me.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368239": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Customer ZZAUTOTEST Impersonate Exit, S2-36037 led by Esther Howard. As Esther Howard, Assigned to me lists it.",
+    "Exit was pressed while Work In Progress was still loading (opened by its address: Esther Howard has no Reports in her top menu); the request had gone out and not yet answered.",
+    "No red error message appeared (only the green \"Successfully exited impersonation, restored user Admin ShopView\"); the top bar shows your own user again.",
+    "Work Orders with Assigned to me on, searched for S2-36037: \"No work orders match these filters\"; nothing of Esther Howard's is left on screen.",
+    "A picture of the searched list is queued (pictures only, seventh pass); this picture shows the unsearched list."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368239-1-own-user-assigned-to-me.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368243": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "The photo technician (ZZAUTOTEST Photo Tech, Service department, Staging Heavy Duty - 9919) had the red photo; her Schedule row avatar showed red.",
+    "The blue photo was uploaded through her own Edit Profile (\"Click to upload a profile photo\").",
+    "After going back to the Schedule and reloading, the avatar shows the blue photo, not the old red one."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368243-1-schedule-before-red.png",
+    "evidence/staging-full-2026-10-14/annotated/C368243-2-schedule-after-blue.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368244": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "The same technician leads S2-36035 (customer ZZAUTOTEST Photo Board), so she has a Board View column; its header avatar showed the red photo.",
+    "After the blue photo was uploaded and Board View was reloaded, the avatar shows the blue photo, not the old red one."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368244-1-board-before-red.png",
+    "evidence/staging-full-2026-10-14/annotated/C368244-2-board-after-blue.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C97029": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Read from the page's own analytics requests (the events DebugView shows), every analytics post read (0 unread).",
+    "Step 1, a brand-new user: display view list with source default and 13 field events with source default (then one more display view when Board View was clicked).",
+    "Step 2, the dispatcher with saved Board View, fields and density (comfortable): display view board_view source saved; density load comfortable source saved; the 6 fields the dispatcher has saved read source saved and the 7 never changed read default.",
+    "Step 3: Tech View, then Estimates = 2 display views.",
+    "Step 4: VIN/Serial turned on = exactly 1 field change event (vin on).",
+    "Step 5, the user without See financial data: 12 field events and none for total price.",
+    "Fallback and failed save: not checked by hand."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97029-1-analytics-events.png"
+   ],
+   "not_observed": "Fallback loading and a failed save (cannot be caused by hand).",
+   "todo": "None."
+  }
+ }
+}

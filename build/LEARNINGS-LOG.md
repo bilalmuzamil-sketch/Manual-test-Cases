@@ -652,7 +652,7 @@ keep the run watched**, and each check-in must do the watcher's job by hand:
 Do not lean on a watcher in a way that leaves a gap when it is stopped. If a pass needs closer watching than 30 minutes,
 shorten the check-in interval instead. #unattended #watcher #checkin → L0355
 
-## L0365 — 2026-10-15 — Wave 18: judge from json-before-passN, photograph the right window, call toasts(p)
+## L0366 — 2026-10-15 — Wave 18: judge from json-before-passN, photograph the right window, call toasts(p)
 - **Where:** `build/wo-board-tech-view/run498-2026-10-08/` — readings in `evidence/staging-full-2026-10-14/json-before-pass6/` (the waiter copies every reading there before the next pass rewrites it), verdicts in `judge/wave18.json`, redos in `seventh-pass-plan.txt` (`run-seventh.sh`, `stg-after7.sh`, `logs6/signout-fix.done`).
 - **Once the next pass has started, judge from the copy:** `stg-afterN.sh` copies `*.json` into `json-before-passN` before pass N runs; a script that appears in both passes overwrites its file, so read the previous pass's reading from the copy.
 - **A picture must come from the window the case is about:** high2-batch's C368207/C368208 pictures were the ADMIN's page, not the view-only user's; imp-fix3 took its Assigned-to-me pictures AFTER clearing the search, so the cited work order was not on them. Photograph inside the user's own page, with the filter still applied.
