@@ -29,7 +29,7 @@ const collect = async (ms: number) => { const end = Date.now() + ms; const seen 
 const topBar = () => p.evaluate(`(document.querySelector('header')?.innerText || '').replace(/\\s+/g, ' ').slice(0, 240)`).catch(() => null);
 const bar = () => p.evaluate(`(() => { const b = document.querySelector('[data-test-id="button_exit_impersonation"]'); if (!b) return null; let e = b; for (let i = 0; i < 4 && e.parentElement; i++) e = e.parentElement; return e.innerText.replace(/\\s+/g, ' ').slice(0, 200); })()`).catch(() => null);
 const assigned = () => p.locator('button:has-text("Assigned to me"), .q-btn:has-text("Assigned to me")').first();
-async function myList(find: string) { step(`myList ${find}`);
+async function myList(find: string, shotName?: string) { step(`myList ${find}`);
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await tab(p, 'All'); await display(p, 'List').catch(() => {});
   if ((await assigned().getAttribute('aria-pressed')) !== 'true') { await assigned().click(); await p.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {}); await p.waitForTimeout(2000); }
   await p.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
@@ -38,6 +38,9 @@ async function myList(find: string) { step(`myList ${find}`);
   await search(p, find.split('-').pop()!).catch(() => {}); await p.waitForTimeout(3000);
   const rows = await p.evaluate(`[...document.querySelectorAll('tbody tr')].filter(r => r.getBoundingClientRect().height > 0).map(r => r.innerText.replace(/\\s+/g, ' ').slice(0, 90))`) as string[];
   const out = { pressed: await assigned().getAttribute('aria-pressed'), unfiltered, rows: rows.length, listsIt: rows.some((r) => r.includes('-' + find.split('-').pop() + ' ')), who: await bar(), top: await topBar(), first: rows.slice(0, 3), empty: await p.getByText(/No work orders/i).first().innerText().catch(() => null) };
+  // 15 Oct 2026 (wave 18): the step pictures were taken AFTER the search was cleared, so they showed the whole Assigned to me list,
+  // not the searched work order (or the empty result). The picture is now taken with the search still in the box.
+  if (shotName) await shot(p, shotName).catch(() => {});
   await search(p, '').catch(() => {}); return out;
 }
 /** 15 Oct 2026 (staging third pass): (1) the switch was made before the report had started loading (no report request yet) —
@@ -83,7 +86,7 @@ await run('C368238', async () => {
   o.switch = await cap(90000, wipWhile(async () => { await p.goto(`${APP}/impersonate-user/${ES.id}`, { waitUntil: 'commit' }); }), 'start while loading'); step('collect');
   /* FIX 3: every step after the switch has its own limit; a stuck step is recorded, not waited on for 10 minutes */
   o.toasts = await cap(30000, collect(10_000), 'collect').catch((e: any) => [`stuck: ${String(e).slice(0, 60)}`]); step('read'); await p.waitForTimeout(3000); o.url = p.url().replace(APP, ''); o.bar = await cap(10000, bar(), 'bar').catch(() => 'stuck'); o.top = await cap(10000, topBar(), 'top').catch(() => 'stuck'); o.state = await state(); step('shot'); await cap(20000, shot(p, 'C368238-step4'), 'shot').catch(() => {});
-  o.step5 = await myList(num); await shot(p, 'C368238-step5'); R.C368238 = o;
+  o.step5 = await myList(num, 'C368238-step5-searched'); await shot(p, 'C368238-step5'); R.C368238 = o;
 });
 
 await run('C368239', async () => {
@@ -94,7 +97,7 @@ await run('C368239', async () => {
   o.step1 = await myList(num); o.step1bar = await bar();
   o.switch = await cap(90000, wipWhile(async () => { await p.locator('[data-test-id="button_exit_impersonation"]').click({ timeout: 20000 }); }), 'exit while loading'); step('collect');
   o.toasts = await cap(30000, collect(10_000), 'collect').catch((e: any) => [`stuck: ${String(e).slice(0, 60)}`]); step('read'); await p.waitForTimeout(3000); o.url = p.url().replace(APP, ''); o.bar = await cap(10000, bar(), 'bar').catch(() => 'stuck'); o.top = await cap(10000, topBar(), 'top').catch(() => 'stuck'); o.state = await state(); step('shot'); await cap(20000, shot(p, 'C368239-step3'), 'shot').catch(() => {});
-  o.step4 = await myList(num); await shot(p, 'C368239-step4'); R.C368239 = o;
+  o.step4 = await myList(num, 'C368239-step4-searched'); await shot(p, 'C368239-step4'); R.C368239 = o;
 });
 if (await p.locator('[data-test-id="button_exit_impersonation"]').count()) await a.post('/api/exit-switch-user', {});
 fs.writeFileSync(path.join(EV, 'imp-fix3.json'), JSON.stringify(R, null, 1)); await done(browser);

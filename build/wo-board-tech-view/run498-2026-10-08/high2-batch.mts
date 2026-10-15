@@ -300,7 +300,7 @@ await run('C368211', async () => { await phone(); await p.goto(APP + '/workorder
 await run('C368212', async () => { const o: any = {}; o.toLeth = say(await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }));
   const s = await mkSet('ZZAUTOTEST Loc2 Customer', [{ co: 'WO', lead: null }]).catch((e) => { o.createError = String(e).slice(0, 160); return null as any; });
   o.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
-  if (s) { const num = s.w['WO'].number; o.num = num; await goList(p, 'Loc2'); o.heavyLoc2 = (await rowsList()).includes(num); await search(p, num); o.heavyByNumber = (await rowsList()).includes(num);
+  if (s) { const num = s.w['WO'].number; o.num = num; await goList(p, 'Loc2'); o.heavyLoc2 = (await rowsList()).includes(num); await shot(p, 'C368212-heavy-loc2'); await search(p, num); o.heavyByNumber = (await rowsList()).includes(num); await shot(p, 'C368212-heavy-by-number'); /* wave 18: pictures of steps 2 and 3 at Staging Heavy Duty - 9919 */
     // 15 Oct 2026 (staging second pass): the screen never switched to Lethbridge — the test admin was not enrolled there, so the
     // location menu did not offer it. Enrol the runner at Lethbridge (Service), switch ON SCREEN (switchLocUI), read the top bar back
     // before continuing (again after Work Orders opens, switching once more without a reload if it went back), then switch back.
