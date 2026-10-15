@@ -847,3 +847,9 @@ pass twice. There was only one. The other match was the tool's own `bash -c "…
 **Use instead:** `ps -eo pid,ppid,lstart,args | grep "[s]tg-after9"`. The bracket stops the grep from matching itself, and the
 start times show whether there really are two. Before killing a duplicate, check its parent is 1 (started with setsid) and its
 start time. Never use `pkill -f` (L0339). #processes #waiters → L0339
+
+## L0386 — 2026-10-15 — A short production list cannot answer "does production have the same list limit?": read the request's limit instead
+- Context: D-LEAD100 (run 498, wo-board-tech-view). Staging's work order page Lead Technician list stops at 100 people (101 entries of 184 who can lead); Edit Line > Add Technician stops at 97.
+- Production (v26.40.18-163ddfa) has only 18 active staff, 9 offered at the location, so both its lists (10 and 9 entries) are complete and can never reach 100. Rule 121 is then "production cannot show it" — say so, never guess.
+- The way to settle it without seeding 100 people on production: record the GET /api/ request each list makes and its limit setting on both sites (`watchRequests(pg)` in `run498-2026-10-08/lead100-compare.mts`). Same limit asked on production ⇒ the limit is older than this work.
+- Always pair a "typing does not find X" reading with a positive control (type a name that IS in the list): here neither narrowed, so the finding is "the field does not search as you type", not "X cannot be found".

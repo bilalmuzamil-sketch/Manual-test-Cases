@@ -69,6 +69,10 @@ async function readEditLineAdd(pg: Page, lines: () => Promise<any[]>, late: stri
   const cancel = d.locator('button').filter({ hasText: /^\s*Cancel\s*$/ }).first(); if (await cap(5000, cancel.count(), 0)) await cap(10_000, cancel.click({ timeout: 8000 }).catch(() => {}), undefined); else await pg.keyboard.press('Escape').catch(() => {});
   await pg.waitForTimeout(1500); if (await cap(5000, d.isVisible().catch(() => false), false)) { await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(800); } o.windowClosed = !(await cap(5000, d.isVisible().catch(() => false), false));
   o.linesAfter = techsOf(await cap(20_000, lines(), [] as any[])); o.unchanged = JSON.stringify(o.linesAfter) === JSON.stringify(o.linesBefore); return o; }
+/** 15 Oct 2026 (wave 29): which list request fills the pick lists, and with what size limit — read from the page's own requests (from
+ *  loading the work order page to closing Edit Line), on both sites. If production asks for the same limit, the limit is not new. */
+function watchRequests(pg: Page) { const seen: string[] = []; pg.on('request', (r) => { try { const u = new URL(r.url()); if (r.method() === 'GET' && /\/api\//.test(u.pathname) && seen.length < 200) seen.push((u.pathname + u.search).replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>').slice(0, 220)); } catch { /* */ } });
+  return () => { const all = [...new Set(seen)]; return { pickListLike: all.filter((x) => /staff|technician|employee|candidate|user|people|member/i.test(x)).slice(0, 25), withLimit: all.filter((x) => /limit=|per_?page=|rowsPerPage|pageSize|take=/i.test(x)).slice(0, 25), count: all.length }; }; }
 const lateOne = (names: string[]) => { const s = [...names].filter(Boolean).sort((x, y) => x.localeCompare(y, 'en', { sensitivity: 'base' })); return s.length > 100 ? s[Math.min(s.length - 1, 100 + Math.floor((s.length - 100) / 2))] : s[s.length - 1]; };
 
 // ── STAGING ──
@@ -92,7 +96,7 @@ const lateOne = (names: string[]) => { const s = [...names].filter(Boolean).sort
       if (await din.count()) { await din.fill(late0.split(' ').slice(-2).join(' ')).catch(() => {}); await p.waitForTimeout(2000); S.dialogTyped = { term: late0, offered: (await p.locator('.q-dialog [data-test-id^="option_lead_technician_"]').allInnerTexts().catch(() => [] as string[])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 8) }; }
       await shot(p, 'LEAD100-staging-dialog');
       await p.locator('[data-test-id="button_cancel_reassign_lead_technician"]').click().catch(() => p.keyboard.press('Escape')); await p.waitForTimeout(800); }
-    if (w) { await p.goto(`${APP}/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000);
+    if (w) { const reqS = watchRequests(p); await p.goto(`${APP}/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000);
       const list = await readList(p, 'LEAD100-staging-page-list'); S.pageList = { count: list.count, first: list.first, last: list.last };
       const late = c.some((x) => x.name === 'Ralph Edwards') ? 'Ralph Edwards' : lateOne(c.map((x) => x.name)); S.lateName = late;   // the ticket's named example when present S.lateInPageList = (list.all ?? []).some((x: string) => x.includes(late));
       S.typed = await typeAndRead(p, late, 'LEAD100-staging-typed');
@@ -104,7 +108,7 @@ const lateOne = (names: string[]) => { const s = [...names].filter(Boolean).sort
       // Edit Line > Add Technician on this work order's first line (wave 27): same reading, read only
       const linesS = async () => { const d0 = (await a.get(`/api/work-orders/lines/${w.id}`)).body?.data; return (Array.isArray(d0) ? d0 : d0?.collection ?? []) as any[]; };
       await p.goto(`${APP}/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(6000);
-      S.editLineAdd = await cap(240_000, readEditLineAdd(p, linesS, late, 'LEAD100-staging-editline'), 'timed out'); save(); }
+      S.editLineAdd = await cap(240_000, readEditLineAdd(p, linesS, late, 'LEAD100-staging-editline'), 'timed out'); S.requests = reqS(); save(); }
   } catch (e: any) { S.error = String(e?.message || e).slice(0, 300); }
   finally { save(); if (browser) await cap(20_000, browser.close().catch(() => {}), undefined); } }   // not done(): it ends the process before production
 
@@ -122,7 +126,7 @@ const lateOne = (names: string[]) => { const s = [...names].filter(Boolean).sort
     P.candidatesN = names.length;
     const wl = await get('/api/work-orders?pagination[rowsPerPage]=100'); const ws = (wl.body?.data?.work_orders ?? wl.body?.data?.collection ?? []) as any[]; P.listStatus = wl.status;
     const w = ws.find((x: any) => /approved|in_progress/.test(x.status) && x.techAssignedId) ?? ws.find((x: any) => /approved|in_progress/.test(x.status)) ?? null; P.workOrder = w ? `${w.number} lead=${w.techAssignedFirstName ?? '-'} ${w.techAssignedLastName ?? ''}` : 'none found';
-    if (w) { await p.goto(`https://app.shopview.com/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000);
+    if (w) { const reqP = watchRequests(p); await p.goto(`https://app.shopview.com/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000);
       const list = await readList(p, 'LEAD100-production-page-list'); P.pageList = { count: list.count, first: list.first, last: list.last };
       const listed = (list.all ?? []).map((x: string) => x.replace(/^check\s+/, '').trim()); const lastListed = listed.length > 2 ? listed[listed.length - 2] : '';
       P.lateName = [...names].sort((x, y) => x.localeCompare(y, 'en', { sensitivity: 'base' })).find((x) => x.localeCompare(lastListed, 'en', { sensitivity: 'base' }) > 0 && !listed.includes(x)) ?? lateOne(names);
@@ -135,7 +139,7 @@ const lateOne = (names: string[]) => { const s = [...names].filter(Boolean).sort
       // Edit Line > Add Technician on this work order's first line (wave 27): production has Edit Line even without the board; read only
       const linesP = async () => { const r0 = await get(`/api/work-orders/lines/${w.id}`); const d0 = r0.body?.data; return (Array.isArray(d0) ? d0 : d0?.collection ?? []) as any[]; };
       await cap(40_000, p.goto(`https://app.shopview.com/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }).catch(() => {}), undefined); await p.waitForTimeout(7000);
-      P.editLineAdd = await cap(240_000, readEditLineAdd(p, linesP, P.lateName, 'LEAD100-production-editline'), 'timed out'); save(); }
+      P.editLineAdd = await cap(240_000, readEditLineAdd(p, linesP, P.lateName, 'LEAD100-production-editline'), 'timed out'); P.requests = reqP(); save(); }
   } catch (e: any) { P.error = String(e?.message || e).slice(0, 300); }
   finally { save(); if (prod?.browser) await cap(20_000, prod.browser.close().catch(() => {}), undefined); } }
 

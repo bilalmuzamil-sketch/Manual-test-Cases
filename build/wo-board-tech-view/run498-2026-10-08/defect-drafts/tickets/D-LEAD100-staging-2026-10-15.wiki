@@ -1,9 +1,9 @@
 TITLE: Work Order Page – Lead Technician List Stops After 100 People
 TYPE: Story Defect · PARENT: SV-10047 (Ready for QA, read live 15 Oct 2026 about 10:30 UTC — RE-READ LIVE before the ask) · PRIORITY: Medium · LINK: relates to SV-10047 · LABEL: board-tech-view
-STATUS: DRAFT — NOT FILED. Its OWN Story Defect (QA lead ruling, 15 Oct 2026). Waiting for the QA lead's go-ahead (Rule 62/113).
-PRODUCTION (Rule 121): <PENDING — the seventh-pass lead100-compare (11:00 UTC) read nothing usable (no work order found, dialog not opened; production has no lead-candidates list, build v26.40.18-163ddfa); fixed and re-queued in the EIGHTH pass (started 11:06 UTC), near its end>. This ticket goes to the QA lead ONLY if production does NOT have the same limit. If production's work order page also stops at 100 people (and its field does not search as you type), it is not caused by this work: do not file; report it instead.
+STATUS: DRAFT — NOT FILED, NOT YET READY TO ASK. Its OWN Story Defect (QA lead ruling, 15 Oct 2026). Rule 121 cannot be settled from production screens (see PRODUCTION); the tenth pass reads the list request and its limit on both sites. Then the QA lead is asked (Rule 62/113): one ticket or two, and whether to file.
+PRODUCTION (Rule 121): PRODUCTION CANNOT SHOW IT — read 15 Oct 2026 11:46 UTC (eighth pass, lead100-compare), build v26.40.18-163ddfa, work order S2-968. Production has only 18 active staff in all (staff list), 9 of them offered at this location; the work order page Lead Technician list shows 10 entries (Unassigned + 9) and Edit Line > Add Technician shows 9, and both lists are complete (the last active name, ZZROWCHECK Technicianov, is in both). A list that short cannot reach 100, so production neither confirms nor rules out the same limit — said so, not guessed. Typing a name did not narrow the list on production either (the typed name was already showing). Nothing was changed on production. NEXT: the tenth pass (lead100-compare, WOB_SCALE=2) records which request each list makes and its limit setting on both sites; if production asks for the same limit, the limit is pre-existing and this is not caused by this work (do not file; report instead).
 DUPLICATE SEARCH (15 Oct 2026): JQL project = SV AND (text ~ "\"lead technician\" list" OR text ~ "100 technicians" OR text ~ "lead technician dropdown") AND created >= -60d — 37 results, none about the work order page's lead list stopping at 100 (closest: SV-10242, Service Advisor dropdown and custom role templates, Done — a different list and cause).
-OPEN BEFORE FILING: (0) Edit Line > Add Technician shows the same limit on staging (wave 27 C368173: Ralph Edwards not in its 99 names, typing did not find him); lead100-compare (eighth pass) now reads that list too on staging AND production — the QA lead then decides one ticket (all technician pick lists on the work order page) or two; (1) lead100-compare positive control — typing a name that IS in the first 100 must also fail to narrow the list, else the typing reading is an instrument fault (Rule 104); (2) the live PRD read for the Sources needs the QA lead's go-ahead (Rule 81/106); until then the Sources quote the test cases, which quote the PRD of 7 Oct 2026; (3) swap in the lead100-compare pictures (slots below).
+OPEN BEFORE FILING: (0) Edit Line > Add Technician shows the same kind of cut-off on staging (eighth pass: 97 names ending at QA PartsTechnician; Ralph Edwards not in it; typing did not narrow it) — the QA lead decides one ticket (all technician pick lists on the work order page) or two; (1) positive control DONE (eighth pass): typing a name that IS in the list (Billy Martin on the page list, Billy Nobill on Edit Line) did not narrow either list, so the field has no type-to-search and the typing reading is not an instrument fault (Rule 104); (2) the live PRD read for the Sources needs the QA lead's go-ahead (Rule 81/106); until then the Sources quote the test cases, which quote the PRD of 7 Oct 2026; (3) the tenth-pass request/limit reading (see PRODUCTION); (4) the staging pictures are 1x (the 2x setting did not reach lead100's staging session); the tenth pass re-takes them at 2x.
 
 h2. Description
 
@@ -12,7 +12,7 @@ On a work order page, *the Lead Technician list offers only the first 100 people
 For example,
 * a location has more than 100 people who can appear in the Lead Technician list
 * the list, scrolled to its end, stops after the 100th name (alphabetically), then shows the current lead
-* typing a later technician's name into the field does not find them
+* the field does not search as you type: typing any name, even one already in the list, does not narrow it, so a later technician cannot be found by typing
 * the same technician IS offered in the board's *Reassign lead technician* dialog
 
 This appears inconsistent with the lead changes defined in *Epic SV-10043* (Story *SV-10047*), which the test cases below expect to be made from the work order page.
@@ -25,31 +25,32 @@ h2. Steps to Reproduce
 #* The list ends with *QA Foreman*, then the current lead (101 entries: *Unassigned*, 100 people from *Aaron …* to the *Q* names, then the current lead).
 #* *Ralph Edwards* and *ZZAUTOTEST Ben Bravo* are not in it.
 # Type {{Ralph Edwards}} (or {{Ben Bravo}}) into the Lead Technician field.
-#* The list does not change; nobody new is offered.
+#* The list does not change; nobody new is offered. Typing a name that IS in the list (e.g. {{Billy Martin}}) does not narrow it either.
 # Go to *Work Orders* > *All* > *Board View*, open any card's *…* menu > *Reassign lead technician* and type {{Ral}} in its search box.
 #* *Ralph Edwards* is offered (58 open).
+# Back on the work order page, click a labor line's edit button to open *Edit Line*, click the *Add Technician* field and scroll the list to the end. (Only if the QA lead makes this one ticket.)
+#* The list ends at *QA PartsTechnician* (97 names); *Ralph Edwards* is not in it, and typing his name does not narrow it.
+#* Close the window without saving (do not press *Save & Close*).
 
 *Actual Result:*
 * The work order page offers only the first 100 people as lead; *Ralph Edwards* and *ZZAUTOTEST Ben Bravo* cannot be chosen there.
 * The same people are offered as lead in the *Reassign lead technician* dialog.
+* The *Edit Line* > *Add Technician* list also stops before the later names (97 names, ending at *QA PartsTechnician*).
 
 *Expected Result:*
 * A technician who can lead work at the location can be chosen as lead on the work order page, as the test cases expect: *"Step 6: Lead Technician reads "Ralph Edwards" and Mileage reads 120,500."* and *"Step 4: Lead Technician is Ben Bravo."*
 
 !D-LEAD100-1-page-list-vs-dialog.png|width=1000!
 
-<SLOT — lead100-compare pictures, to be composed landscape at 2x when the seventh pass has run:
- (a) staging work order page, Lead Technician list at its end (LEAD100-staging-page-list-end.png)
- (b) staging, a late technician typed into the field, list OPEN (LEAD100-staging-typed.png) + the positive control (LEAD100-staging-typed-control.png)
- (c) staging Reassign dialog with its option count (LEAD100-staging-dialog.png)
- (d) PRODUCTION, the same page list and typed name (LEAD100-production-page-list-end.png, LEAD100-production-typed.png) — the contrast picture if production differs>
+!D-LEAD100-2-editline-list-and-production.png|width=1000!
 
 h2. Environment
 
 * *Build:* <read off the staging page at the re-measure before filing> on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919)
 * *Example records:* work order [S2-36155|https://app.staging.shopview.com/workorders] (ZZAUTOTEST F3 Reassign Bottom 13769 Abbey Co) — list read 15 Oct 2026 10:06 UTC; Reassign dialog picture: work order S2-35470 (ZZAUTOTEST F1 Dialog Search), 15 Oct 2026 03:42 UTC
 * *People:* *Ralph Edwards* and *ZZAUTOTEST Ben Bravo* — both active, Time Clock on, Technician role, Location Staging Heavy Duty - 9919 (read 15 Oct 2026); the Reassign dialog offers both
-* *Production:* <PENDING — lead100-compare.mts in the eighth pass; production build at 10:22 UTC: v26.40.18-163ddfa>
+* *Production:* [app.shopview.com|https://app.shopview.com/workorders], build v26.40.18-163ddfa, work order S2-968, read 15 Oct 2026 11:46 UTC — only 18 active staff in all (9 offered at this location), so its lists (10 and 9 entries, both complete) cannot show a 100-person limit
+* *Eighth-pass staging reading (15 Oct 2026 11:38–11:46 UTC):* work order S2-36154 (lead ZZAUTOTEST Ben Bravo): 184 people can lead; the Lead Technician list shows 101 entries (Unassigned, 100 people from Aaron Baker to QA Foreman, then the current lead); Edit Line > Add Technician shows 97 names (Admin ShopView to QA PartsTechnician); Ralph Edwards in neither; nothing was saved
 
 h2. Sources
 

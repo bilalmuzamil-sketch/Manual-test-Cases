@@ -2,7 +2,7 @@
 
 **What a user sees (staging, 15 Oct 2026):** on a work order page, the Lead Technician list shows only the first 100 people
 (A to the Q names), then the current lead. Technicians later in the alphabet — Ralph Edwards, ZZAUTOTEST Ben Bravo — are
-not in it, and typing their name into the field finds nobody. The same people ARE offered in the board's Reassign lead
+not in it, and the field does not search as you type (typing any name, even one already in the list, does not narrow it). The same people ARE offered in the board's Reassign lead
 technician dialog. So a dispatcher cannot set those technicians as lead from the work order page.
 
 **Why it matters for the tests:** three tests (a new lead goes to the bottom of the technician's work; a stale On Site click does not undo
@@ -13,13 +13,20 @@ technician, so none of them can be finished on staging.
 the ask) · Medium. Its own ticket (QA lead's ruling). Full draft: `D-LEAD100-staging-2026-10-15.wiki`; picture:
 `../D-LEAD100-1-page-list-vs-dialog.png` (page list end beside the Reassign dialog offering Ralph Edwards).
 
-**Before it goes to the QA lead:**
-1. **Production (Rule 121):** lead100-compare.mts (seventh pass) reads the same list on production. Same limit on production ⇒
-   not caused by this work, do not file. Production offers the late technician ⇒ staging fault, ask to file.
-2. **Positive control (Rule 104):** lead100-compare also types a name that IS in the first 100; if that narrows the list and the late
-   name does not, the "typing finds nobody" line holds; if neither narrows, the line becomes "the field does not search as you type".
-3. **Live PRD read** for the Sources waits for the QA lead's go-ahead (Rule 81/106); the draft quotes the test cases meanwhile.
-4. Swap in the lead100-compare pictures (slot in the draft) and read the staging build off the page.
+**Edit Line (same page):** the Edit Line > Add Technician list stops the same way — 97 names, ending at QA PartsTechnician;
+Ralph Edwards not in it; typing does not narrow it. Picture `../D-LEAD100-2-editline-list-and-production.png` (staging Edit Line list end
+beside the production Lead Technician list). The QA lead decides: one ticket for both lists, or two.
+
+**Production (Rule 121) — PRODUCTION CANNOT SHOW IT.** Read 15 Oct 2026 11:46 UTC, build v26.40.18-163ddfa: production has only 18
+active staff in all (9 offered at that location), and both lists there are complete (10 and 9 entries), so they cannot reach 100. Production neither confirms nor rules out
+the same limit; it is not guessed. Typing did not narrow the list there either. Nothing was changed on production.
+
+**Status: NOT YET READY TO ASK.** The tenth pass records which request each list makes and its limit setting, on staging and production.
+Same limit asked on production ⇒ the limit is older than this work: do not file, report it instead. Different ⇒ ask the QA lead to file
+(and whether one ticket or two).
+
+**Still open:** the live PRD read for the Sources waits for the QA lead's go-ahead (Rule 81/106); the staging pictures are 1x and are
+re-taken at 2x in the tenth pass; read the staging build off the page at the re-measure.
 
 **Duplicate search (15 Oct 2026):** 37 recent SV issues about lead technician lists — none about this 100-person limit.
 

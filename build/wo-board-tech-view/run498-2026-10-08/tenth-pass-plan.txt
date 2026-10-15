@@ -1,0 +1,7 @@
+# 15 Oct 2026 — TENTH pass on staging (run-tenth.sh, started by stg-after10.sh after "ninth pass finished").
+# Each line = script | ONLY | extra settings. signin-check first; no script twice; the sign-out test LAST (L0342/L0378).
+signin-check-stg4.mts | | 
+# wave 29: LEAD100 — production cannot show a 100-person limit (its location lists only 9-10 people); this run records which request fills the pick lists and with what size limit, on staging AND production (read only)
+lead100-compare.mts | LEAD100 | WOB_SCALE=2
+# the sign-out test signs the shared session out: LAST of all (moved here from the ninth pass, logs9/signout-fix.done = skipped)
+signout-fix.mts | C368240 | 

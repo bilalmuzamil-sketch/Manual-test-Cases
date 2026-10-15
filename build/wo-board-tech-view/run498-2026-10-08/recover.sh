@@ -10,8 +10,9 @@ if ! pgrep -f "atlassian-login/bridge.mjs" >/dev/null; then
 fi
 echo "relay $(curl -s -o /dev/null -w '%{http_code}' -x http://127.0.0.1:$(cat /tmp/atlassian/bridge-port.txt) -k https://app.staging.shopview.com/)"
 pgrep -f memwatch.sh >/dev/null || setsid nohup ./memwatch.sh > /dev/null 2>&1 < /dev/null &
-if pgrep -f "run-sixth.sh|run-seventh.sh|run-eighth.sh|run-ninth.sh" >/dev/null; then pgrep -f stg-after8.sh >/dev/null || grep -q "eighth pass start" $A || setsid nohup ./stg-after8.sh > /dev/null 2>&1 < /dev/null &
+if pgrep -f "run-sixth.sh|run-seventh.sh|run-eighth.sh|run-ninth.sh|run-tenth.sh" >/dev/null; then pgrep -f stg-after8.sh >/dev/null || grep -q "eighth pass start" $A || setsid nohup ./stg-after8.sh > /dev/null 2>&1 < /dev/null &
   pgrep -f stg-after9.sh >/dev/null || grep -q "ninth pass start" $A || setsid nohup ./stg-after9.sh > /dev/null 2>&1 < /dev/null &
+  pgrep -f stg-after10.sh >/dev/null || grep -q "tenth pass start" $A || setsid nohup ./stg-after10.sh > /dev/null 2>&1 < /dev/null &
   echo "a pass is already running"; exit 0; fi
 if ! grep -q "sixth pass finished" $A; then
   rm -f $E/logs6/role-viewonly-stg4.done $E/logs6/clocks-stg4.done
@@ -46,5 +47,15 @@ elif ! grep -q "ninth pass finished" $A; then
   rm -f $E/logs9/signin-check-stg4.done $E/logs9/role-viewonly-stg4.done $E/logs9/clocks-stg4.done
   echo "$(date -u +%H:%M:%S) container restart — resumed by recover.sh" >> $E/logs9/run.out
   setsid nohup ./resume-ninth.sh > /dev/null 2>&1 < /dev/null &
+  pgrep -f stg-after10.sh >/dev/null || setsid nohup ./stg-after10.sh > /dev/null 2>&1 < /dev/null &
   echo "resumed the NINTH pass"
+# 15 Oct 2026 (wave 29): the TENTH pass (tenth-pass-plan.txt) follows the ninth; the sign-out test is its last line.
+elif ! grep -q "tenth pass start" $A; then
+  pgrep -f stg-after10.sh >/dev/null || setsid nohup ./stg-after10.sh > /dev/null 2>&1 < /dev/null &
+  echo "started the tenth-pass waiter"
+elif ! grep -q "tenth pass finished" $A; then
+  rm -f $E/logs10/signin-check-stg4.done
+  echo "$(date -u +%H:%M:%S) container restart — resumed by recover.sh" >> $E/logs10/run.out
+  setsid nohup ./resume-tenth.sh > /dev/null 2>&1 < /dev/null &
+  echo "resumed the TENTH pass"
 else echo "all passes finished"; fi
