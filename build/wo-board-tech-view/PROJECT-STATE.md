@@ -121,3 +121,13 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
   QA lead (card shows the full name then +N, like List; the case quotes S5-R11 as first name then +N). C368191 is on hold for the
   sixth pass's "Deleted user" reading on S2-35973.
 - The watcher stopped at its 2-hour limit; check-ins every 30 minutes now do its job (L0365).
+
+### 15 Oct 07:45 UTC — restarts, and a possible 100-name limit on the work order page's lead list
+- The machine restarted twice (about 07:21 and 07:35) during staledrop-stg4 (C97012). The cause was unbounded page reads on a
+  dead page plus a heavy message watcher (L0368); fixed, moved to the end of pass 7, memwatch.sh guards memory (L0367).
+- Possible product finding, NOT yet proven (L0369): the work order page's Lead Technician list, opened without typing, holds
+  101 entries (Unassigned + the first 100 names A–Q + the current lead). Eligible technicians past the 100th (Ben Bravo, Ralph
+  Edwards) are never offered there; the Reassign dialog does offer them. It explains the repeated misses on C97007, C368159,
+  C96958, C96962 and C368169. Pass 7 settles it: typing into the box (pickLeadTyped) and lead100-compare.mts (staging "X of N",
+  plus a read-only production comparison for Rule 121). If staging still does not offer him after typing, and production does,
+  it becomes a Failed result with a held ticket under SV-10047.
