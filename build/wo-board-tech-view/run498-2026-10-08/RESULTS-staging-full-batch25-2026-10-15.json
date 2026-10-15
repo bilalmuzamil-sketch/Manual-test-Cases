@@ -1,0 +1,58 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 25 = wave 27"
+ },
+ "results": {
+  "C368190": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (seventh pass), work order S2-36166 (ZZAUTOTEST Sched Delete Line 74527).",
+    "Step 1: Line 1's Labor row reads Jenny Wilson (her shift tomorrow covers that line).",
+    "Step 2: Schedule, tomorrow (Fri, Oct 16): Jenny Wilson's shift on S2-36166 opened; the delete icon at the top of its details removed it at once, with no question.",
+    "Step 3: Line 1's Labor row reads Unassigned again."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368190-1-jenny-shift-details.png",
+    "evidence/staging-full-2026-10-14/annotated/C368190-2-labor-unassigned-again.png"
+   ],
+   "not_observed": "Step 1 is a reading of the Labor row (Jenny Wilson); the picture of that moment shows her shift details, not the Lines tab.",
+   "todo": "None."
+  },
+  "C96958": {
+   "verdict": "Passed",
+   "observed": [
+    "Pictures of the result (the verdict was posted earlier), from the seventh pass on S2-36168: each technician's own Notifications page photographed in their own window after each change.",
+    "After the work order page change (Esther Howard to Dana Ortiz): Esther Howard's and Dana Ortiz's pages read \"There are no notifications for selected filters\".",
+    "After the board drag (Dana Ortiz to Ralph Edwards, \"Lead technician updated\"): Dana Ortiz's and Ralph Edwards's pages read the same.",
+    "After Tech View Reassign (Ralph Edwards to Esther Howard, \"Lead technician updated\"): Ralph Edwards's and Esther Howard's pages read the same.",
+    "The pages show the \"Unread only\" view; a new notification would be unread, so it would show there."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96958-4-notifications-after-wo-page.png",
+    "evidence/staging-full-2026-10-14/annotated/C96958-5-notifications-after-board.png",
+    "evidence/staging-full-2026-10-14/annotated/C96958-6-notifications-after-tech-view.png"
+   ],
+   "not_observed": "Email was not checked (the test technicians' addresses are not real mailboxes).",
+   "todo": "None."
+  },
+  "C368130": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (seventh pass).",
+    "The screen was switched to the location ZZAUTOTEST F2 No Tech Shop (top bar read back); nobody there is a technician; its two work orders S-35901 and S-35902 have no lead.",
+    "Tech View: only the Unassigned group, holding S-35901 and S-35902; no technician groups.",
+    "Board View: only the Unassigned column, holding S-35901 and S-35902; no technician columns.",
+    "Both read \"No technicians yet\" and \"Add technicians to assign work orders. Until then, every work order stays in Unassigned.\""
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368130-1-tech-view-only-unassigned.png",
+    "evidence/staging-full-2026-10-14/annotated/C368130-2-board-view-only-unassigned.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ }
+}

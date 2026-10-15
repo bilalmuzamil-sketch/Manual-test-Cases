@@ -1,0 +1,36 @@
+{
+ "runner": "3620a2b1",
+ "techs": {
+  "ana": true,
+  "ben": true,
+  "cal": true,
+  "dan": true
+ },
+ "C368181": {
+  "url": "/customers/vehicle/<id>/work-orders?companyId=<id>",
+  "tabs": [
+   "Work Orders",
+   "Invoices",
+   "Notes",
+   "Inspections"
+  ],
+  "tab": "Work Orders",
+  "bottom": null,
+  "rowCount": 3,
+  "production": {
+   "build": "v26.40.18-163ddfa",
+   "tried": [
+    "row 0 did not open an asset page (/customers/<id>/vehicles)",
+    "Work Orders rows=0",
+    "row 2 did not open an asset page (/customers/<id>/vehicles)"
+   ],
+   "error": "page.waitForTimeout: Target page, context or browser has been closed"
+  },
+  "staging": {
+   "tabLabel": "Work Orders",
+   "bottom": null,
+   "rows": 3,
+   "countShown": false
+  }
+ }
+}
