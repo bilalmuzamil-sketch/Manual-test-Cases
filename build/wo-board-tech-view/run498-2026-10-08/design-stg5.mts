@@ -589,8 +589,13 @@ await run('C590120', async (o) => { // Board View card layout and text sizes at 
     for (const q of ['M2', 'Freightliner', '']) { for (let pgN = 1; pgN <= (q ? 2 : 4) && !mm; pgN++) { const r = await a.get(`/api/vehicles?pagination[rowsPerPage]=200&pagination[page]=${pgN}${q ? '&search=' + encodeURIComponent(q) : ''}`); const rows: any[] = r.body?.data?.collection ?? r.body?.data?.vehicles ?? r.body?.data ?? []; if (!Array.isArray(rows) || !rows.length) break;
         const hit = rows.find((v) => /freightliner/i.test(nm(v.vehicle_make)) && /^m2/i.test(nm(v.vehicle_model)) && v.vehicle_maker_id && v.vehicle_model_id) ?? (q === '' ? rows.find((v) => v.vehicle_maker_id && v.vehicle_model_id) : null);
         if (hit) mm = { maker: hit.vehicle_maker_id, model: hit.vehicle_model_id, from: `${nm(hit.vehicle_make)} ${nm(hit.vehicle_model)}` }; } if (mm) break; }
-    o.assetShape = { borrowed: mm?.from ?? 'no vehicle with a make and model found', save: say(await a.post('/api/vehicles/change', { vehicle_id: c.vehicle_id, company_id: c.company_id, customer_id: c.contact_id, unit: 'TRK-118', year: 2022, vehicle_maker_id: mm?.maker ?? null, vehicle_model_id: mm?.model ?? null })) };
-    const vv = ((await a.get(`/api/vehicles?pagination[rowsPerPage]=50&search=${encodeURIComponent('TRK-118')}`)).body?.data?.collection ?? []).find((v: any) => v.id === c.vehicle_id || v.vehicle_id === c.vehicle_id);
+    // 15 Oct 2026 (wave 24, sixth pass): the change was refused "Cannot remove VIN form vehicle, update to valid one" (playbook: the
+    // change must always carry a VIN). Send a VIN with the year and make/model, and read the asset back BY THAT VIN (unique), not by
+    // the unit "TRK-118" that every earlier run's asset shares.
+    const vin = `ZZDC11${RUNNO}${Date.now() % 1000000}`.replace(/[^A-Z0-9]/gi, '').slice(0, 17).toUpperCase(); o.assetVin = vin;
+    o.assetShape = { borrowed: mm?.from ?? 'no vehicle with a make and model found', save: say(await a.post('/api/vehicles/change', { vehicle_id: c.vehicle_id, company_id: c.company_id, customer_id: c.contact_id, unit: 'TRK-118', year: 2022, vehicle_maker_id: mm?.maker ?? null, vehicle_model_id: mm?.model ?? null, vin })) };
+    const vfind = async (q: string, n: number) => ((await a.get(`/api/vehicles?pagination[rowsPerPage]=${n}&search=${encodeURIComponent(q)}`)).body?.data?.collection ?? []).find((v: any) => v.id === c.vehicle_id || v.vehicle_id === c.vehicle_id);
+    const vv = (await vfind(vin, 50)) ?? (await vfind('TRK-118', 200));
     o.assetReadBack = vv ? `${vv.unit ?? ''} · ${vv.year ?? ''} ${nm(vv.vehicle_make)} ${nm(vv.vehicle_model)}`.trim() : 'not found in the vehicle list by unit'; }
   o.prep = await prep([A.staff], 'Board View'); o.fields = await lineTechsOn();
   await toColumn(p, A.staff);
