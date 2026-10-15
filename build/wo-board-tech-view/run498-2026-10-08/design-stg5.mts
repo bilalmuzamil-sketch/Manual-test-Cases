@@ -667,7 +667,14 @@ await run('C590122', async (o) => { // empty group, empty column, no-results pag
 });
 
 await run('C590123', async (o) => { // drop line, refused drop message, reorder line
-  const A = await tech('DC14', 'Tia Drag'), B = await tech('DC14', 'Uma Drag'); const c = await cust('ZZAUTOTEST DC14 Drag Looks');
+  // 15 Oct 2026 (wave 24, sixth pass): step 7's drop 4 px below Work-order-2 landed on Uma's group header (Work-order-2 ends Tia's
+  // group) and moved S2-36131 to Uma. Put S2-36131 back to the earlier Tia first and read it back; then use FRESH technicians for this
+  // run (the earlier Tia still leads S2-35997/98/99 from the fifth pass), and drop on the LOWER HALF of Work-order-2's row (below).
+  { const oldTia = await tech('DC14', 'Tia Drag'); const prev = (await workOrders(a, 'S2-36131'))[0];
+    if (prev?.id) { o.restoreS2_36131 = { before: `${prev.techAssignedFirstName ?? ''} ${prev.techAssignedLastName ?? ''}`.trim() || 'none', save: say(await a.post('/api/work-orders/change-lead-technician', { work_order_id: prev.id, tech_assigned_id: oldTia.staff })) };
+      const back = (await workOrders(a, 'S2-36131'))[0]; o.restoreS2_36131.after = `${back?.techAssignedFirstName ?? ''} ${back?.techAssignedLastName ?? ''}`.trim(); o.restoreS2_36131.ok = back?.techAssignedId === oldTia.staff || o.restoreS2_36131.after === `${oldTia.first} ${oldTia.last}`; }
+    else o.restoreS2_36131 = 'S2-36131 not found by search'; }
+  const A = await tech(`DC14-${RUNNO}`, 'Tia Drag'), B = await tech(`DC14-${RUNNO}`, 'Uma Drag'); const c = await cust('ZZAUTOTEST DC14 Drag Looks');
   const w1 = await mkWO(c, { lead: A.staff }), w2 = await mkWO(c, { lead: A.staff }), w3 = await mkWO(c, { status: 'estimate' }), w4 = await mkWO(c, { status: 'invoiced', lead: B.staff }); o.wos = [w1, w2, w3, w4].map(brief);
   o.prep = await prep([A.staff, B.staff], 'Board View');
   o.find3 = await findCard(p, w3.id, 'unassigned', c.name);
@@ -685,7 +692,7 @@ await run('C590123', async (o) => { // drop line, refused drop message, reorder 
   const order = async () => (await groups(p)).filter((g) => [A.staff, B.staff].includes(g.id)).map((g) => `${g.name}: ${g.rows.map((n) => ({ [w1.number]: 'WO-1', [w2.number]: 'WO-2', [w3.number]: 'WO-3', [w4.number]: 'WO-4' } as any)[n] ?? n).join(',')}`);
   o.s6_find = await rowOn(p, w1.id, c.name, A.staff); o.s6_order = await order();   // 15 Oct 2026 (redo): Unassigned closed first, row centred
   { const r1 = await D(p, `__D.box(__D.rowEl(${J(w1.id)}))`), r2 = await D(p, `__D.box(__D.rowEl(${J(w2.id)}))`);
-    if (r1 && r2) { o.s7_during = await dragHold(p, { x: r1.x + r1.w * 0.45, y: r1.y + r1.h / 2 }, { x: r1.x + r1.w * 0.45, y: r2.b + 4 }, 'C590123-s7-row-reorder'); await shiftPrompt(p, 'Keep shifts'); o.s8_order = await order(); await pic(p, 'C590123-s8-after'); } else o.s7_during = `rows ${!!r1}/${!!r2}`; }
+    if (r1 && r2) { o.s7_during = await dragHold(p, { x: r1.x + r1.w * 0.45, y: r1.y + r1.h / 2 }, { x: r1.x + r1.w * 0.45, y: r2.y + r2.h * 0.75 }, 'C590123-s7-row-reorder'); await shiftPrompt(p, 'Keep shifts'); o.s8_order = await order(); await pic(p, 'C590123-s8-after'); } else o.s7_during = `rows ${!!r1}/${!!r2}`; }
   { const g = await D(p, `__D.box(__D.q('[data-test-id="tech_view_group_drag_handle_${A.staff}"]'))`);
     const below = await D(p, `(function () { var trs = __D.qa('.q-virtual-scroll__content > tr'); var inB = false, last = null; for (var i = 0; i < trs.length; i++) { var t = trs[i].getAttribute('data-test-id') || ''; if (/^tech_view_group_/.test(t) && /^tech_view_group_([0-9a-f-]{36}|unassigned)$/.test(t)) { if (inB) break; inB = t === 'tech_view_group_${B.staff}'; } if (inB) last = trs[i]; } return last ? __D.box(last) : null; })()`);
     if (g && below) { o.s9_during = await dragHold(p, { x: g.x + g.w / 2, y: g.y + g.h / 2 }, { x: g.x + 40, y: below.b + 6 }, 'C590123-s9-group-reorder'); o.s10_groupOrder = (await groups(p)).slice(0, 5).map((x) => x.name); await pic(p, 'C590123-s10-after'); }

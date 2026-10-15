@@ -10,7 +10,8 @@ if ! pgrep -f "atlassian-login/bridge.mjs" >/dev/null; then
 fi
 echo "relay $(curl -s -o /dev/null -w '%{http_code}' -x http://127.0.0.1:$(cat /tmp/atlassian/bridge-port.txt) -k https://app.staging.shopview.com/)"
 pgrep -f memwatch.sh >/dev/null || setsid nohup ./memwatch.sh > /dev/null 2>&1 < /dev/null &
-if pgrep -f "run-sixth.sh|run-seventh.sh" >/dev/null; then echo "a pass is already running"; exit 0; fi
+if pgrep -f "run-sixth.sh|run-seventh.sh|run-eighth.sh" >/dev/null; then pgrep -f stg-after8.sh >/dev/null || setsid nohup ./stg-after8.sh > /dev/null 2>&1 < /dev/null &
+  echo "a pass is already running"; exit 0; fi
 if ! grep -q "sixth pass finished" $A; then
   rm -f $E/logs6/role-viewonly-stg4.done $E/logs6/clocks-stg4.done
   echo "$(date -u +%H:%M:%S) container restart — resumed by recover.sh" >> $E/logs6/run.out
@@ -21,8 +22,18 @@ elif grep -q "seventh pass start" $A && ! grep -q "seventh pass finished" $A; th
   rm -f $E/logs7/role-viewonly-stg4.done $E/logs7/clocks-stg4.done
   echo "$(date -u +%H:%M:%S) container restart — resumed by recover.sh" >> $E/logs7/run.out
   setsid nohup ./resume-seventh.sh > /dev/null 2>&1 < /dev/null &
+  pgrep -f stg-after8.sh >/dev/null || setsid nohup ./stg-after8.sh > /dev/null 2>&1 < /dev/null &
   echo "resumed the SEVENTH pass"
 elif ! grep -q "seventh pass start" $A; then
   setsid nohup ./stg-after7.sh > /dev/null 2>&1 < /dev/null &
   echo "restarted the seventh-pass waiter"
+# 15 Oct 2026 (wave 24): the EIGHTH pass (eighth-pass-plan.txt) follows the seventh.
+elif ! grep -q "eighth pass start" $A; then
+  pgrep -f stg-after8.sh >/dev/null || setsid nohup ./stg-after8.sh > /dev/null 2>&1 < /dev/null &
+  echo "started the eighth-pass waiter"
+elif ! grep -q "eighth pass finished" $A; then
+  rm -f $E/logs8/signin-check-stg4.done
+  echo "$(date -u +%H:%M:%S) container restart — resumed by recover.sh" >> $E/logs8/run.out
+  setsid nohup ./resume-eighth.sh > /dev/null 2>&1 < /dev/null &
+  echo "resumed the EIGHTH pass"
 else echo "all passes finished"; fi
