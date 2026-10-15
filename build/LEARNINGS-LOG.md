@@ -527,3 +527,9 @@ and when it fails again the ask is "reopen the old ticket or file a new one", wi
 - **Measure sticky things against something that does not move (C96935):** the thead's bottom edge scrolled with the table, so "the top edge" went negative and nothing was ever found at it. Use the scroller's own box as the reference, read every group-header element's box and position setting at each stop, and photograph mid-scroll.
 - **A saved "collapsed" from an earlier run spoils "how it opens" (C368127):** use a brand-new user on every run, and write "paging not seen by hand" when no spinner appears.
 - **Short messages after a drop (C368131/C96970):** start a MutationObserver BEFORE the press (stg-new5's toastWatch, widened in moved-stg4's `watchStart` to any new short text), hold the drag over the target to read and photograph, then keep watching for about 5 s after the drop.
+
+## L0353 — 2026-10-15 — Two writers to the learnings log pick the same number: pull, then number at the moment of writing
+On 15 Oct a worker agent and the main session both appended "L0351" minutes apart (each had read the last number earlier),
+which breaks the self-test's "part numbers are unique" check. Whoever appends: `git pull` first, compute the next number from
+the file at that moment (`grep -o "^## L0[0-9]*" build/LEARNINGS-LOG.md | tail -1`), append and commit in the same command;
+after any merge, re-run `selftest_workspace.py` and renumber the later duplicate. #learnings #agents → Rules 127, 129
