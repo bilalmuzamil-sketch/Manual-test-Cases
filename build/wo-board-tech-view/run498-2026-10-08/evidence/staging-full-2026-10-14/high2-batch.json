@@ -6,16 +6,24 @@
   "cal": true,
   "dan": true
  },
- "C368201": {
-  "opened": "/workorders/333fcdab-0109-4cdd-9f71-41ac7fe8be3b/lines",
-  "dialog": "",
-  "toasts": [],
-  "status": "complete",
-  "backUrl": "/workorders?search=ZZAUTOTEST+Back+Status+22293",
-  "rowStatus": "Complete"
+ "C368193": {
+  "before": "ZZAUTOTEST Tab Clears Search",
+  "after": null,
+  "rows": 30,
+  "statuses": [
+   "Estimate",
+   "Estimate 3",
+   "Estimate 2",
+   "Estimate 4"
+  ]
  },
- "C368206": {
-  "off": "200",
+ "C368194": {
+  "before": [
+   "daysOpen",
+   "false"
+  ],
+  "step4": true,
+  "step5": true,
   "heads": [
    "On Site",
    "Status",
@@ -29,66 +37,116 @@
    "Lead Technician",
    "Clocked In",
    "Lines",
+   "Total Price",
+   "Created On",
+   "Days Open"
+  ]
+ },
+ "C368195": {
+  "saved": {},
+  "heads": [
+   "On Site",
+   "Status",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
    "Created On"
   ],
   "menu": [
-   "unreceivedPartRequestsCount",
-   "vehicle",
-   "vin",
-   "progress",
-   "serviceAdvisor",
-   "technician",
-   "clockedInTechnicians",
-   "linesCount",
-   "startDate",
-   "invoicedDate",
-   "daysOpen",
-   "partRequestsCount",
-   "partReturnRequestsCount"
-  ],
-  "bottom": null,
-  "dollars": [],
-  "restore": "200"
- },
- "C368207": {
-  "createButton": 1,
-  "perms": 3
- },
- "C368208": {
-  "disabled": false,
-  "before": "0",
-  "after": "0"
- },
- "C368209": {
-  "sortButton": 1,
-  "options": [
-   "Newest First",
-   "Oldest First",
-   "Customer A-Z\ncheck",
-   "Customer Z-A"
-  ],
-  "ticked": [
-   "Customer A-Z"
-  ],
-  "customers": [
-   "location_on",
-   "location_on",
-   "location_on",
-   "location_on",
-   "location_on",
-   "location_on",
-   "location_on",
-   "location_on"
+   [
+    "unreceivedPartRequestsCount",
+    "false"
+   ],
+   [
+    "vehicle",
+    "true"
+   ],
+   [
+    "vin",
+    "true"
+   ],
+   [
+    "progress",
+    "true"
+   ],
+   [
+    "serviceAdvisor",
+    "true"
+   ],
+   [
+    "technician",
+    "true"
+   ],
+   [
+    "clockedInTechnicians",
+    "true"
+   ],
+   [
+    "linesCount",
+    "true"
+   ],
+   [
+    "totalPrice",
+    "true"
+   ],
+   [
+    "startDate",
+    "true"
+   ],
+   [
+    "invoicedDate",
+    "false"
+   ],
+   [
+    "daysOpen",
+    "false"
+   ],
+   [
+    "partRequestsCount",
+    "false"
+   ],
+   [
+    "partReturnRequestsCount",
+    "false"
+   ]
   ]
  },
- "C368212": {
-  "toLeth": "200",
-  "back": "200",
-  "num": "S3-35787",
-  "heavyLoc2": false,
-  "heavyByNumber": false,
-  "lethLoc2": false,
-  "lethTopBar": "Staging Heavy Duty - 9919"
- },
- "restored": true
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "C368198": {
+  "x": "S2-35895",
+  "y": "S2-35896",
+  "rows": [
+   "S2-35896",
+   "S2-35895",
+   "S2-35680",
+   "S2-35679"
+  ],
+  "yAboveX": true,
+  "heads": [
+   "On Site",
+   "Status",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On",
+   "Invoiced Date",
+   "Days Open"
+  ]
+ }
 }
