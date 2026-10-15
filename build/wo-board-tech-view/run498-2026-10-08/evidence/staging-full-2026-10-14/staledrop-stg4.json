@@ -1,0 +1,55 @@
+{
+ "runner": "3620a2b1",
+ "C97012": {
+  "techsOffered": {
+   "ana": true,
+   "ben": true
+  },
+  "roleCreatedOnScreen": true,
+  "roleAtStart": [
+   "workOrdersCreateAndEdit",
+   "workOrdersView"
+  ],
+  "setup": {
+   "log": [
+    "Alpha Co approved 201",
+    "Alpha Co lead 201",
+    "Bravo Co approved 201",
+    "Bravo Co lead 201",
+    "mileage 201",
+    "remove part request 200",
+    "story 201",
+    "line complete 200",
+    "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+    "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+    "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]"
+   ],
+   "alpha": "S2-35943 complete lead=ZZAUTOTEST Ana Alpha",
+   "bravo": "S2-35944 approved lead=ZZAUTOTEST Ana Alpha"
+  },
+  "userAPerms": 3,
+  "start": {
+   "alphaCard": 1,
+   "bravoCard": 1
+  },
+  "step4": {
+   "invoice": "201",
+   "status": "invoiced",
+   "backToUserA": 200
+  },
+  "step5": {
+   "drag": "ok",
+   "shiftPrompt": null,
+   "alert": [
+    "priority_high Session expired, please log in again. Session expired, please log in again."
+   ],
+   "anaCards": []
+  },
+  "error": "page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://app.staging.shopview.com/workorders?tab=all\", waiting until \"domcontentloaded\"\n",
+  "roleRestore": "200",
+  "roleAfterRestore": [
+   "workOrdersCreateAndEdit",
+   "workOrdersView"
+  ]
+ }
+}
