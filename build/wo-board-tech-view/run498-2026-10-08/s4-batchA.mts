@@ -9,7 +9,7 @@ import path from 'node:path';
 import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { api, candidates, seedCase, workOrders, customer, workOrder } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, openReassign, toasts, shiftPrompt, pickLead, read } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, openReassign, toasts, shiftPrompt, pickLead, read, woPageLead, findRow } from './wob.mts';
 import { staffRows, person, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 
@@ -31,7 +31,7 @@ const leadOf = async (n: string) => (await workOrders(a, n)).map((w: any) => `${
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
-  console.log(t(), id, JSON.stringify(R[id]).slice(0, 2000));
+  console.log(t(), id, JSON.stringify(R[id]).slice(0, 6000)); // 15 Oct 2026: 2000 cut readings short
   fs.writeFileSync(path.join(EV, 's4-batchA.json'), JSON.stringify(R, null, 1));
 }
 const dialogNames = (pg: Page) => pg.evaluate(`[...document.querySelectorAll('[data-test-id^="option_lead_technician_"]')].map(e => e.innerText.replace(/\\s+/g, ' ').trim())`) as Promise<string[]>;
@@ -47,18 +47,31 @@ await run('C96956', async () => {
   await shot(p, 'C96956-dialog');
   R.C96956.toRalph = { prompt: await pickLead(p, RE.staff_id), toast: await toasts(p), lead: await leadOf(n) };
   await toColumn(p, RE.staff_id); R.C96956.inRalphColumn = (await boardCols(p)).find((c) => c.id === RE.staff_id)?.cards.includes(w.number);
+  await shot(p, 'C96956-board-in-ralph'); R.C96956.woPageLeadAfterRalph = await woPageLead(p, APP, w.id); // 15 Oct 2026
   const o2 = await openReassign(p, w.id); await o2.item.click(); await p.waitForTimeout(1200);
   R.C96956.toUnassigned = { prompt: await pickLead(p, 'unassigned'), toast: await toasts(p), lead: await leadOf(n) };
   await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"]').scrollLeft = 0`); await p.waitForTimeout(800);
   R.C96956.inUnassigned = (await boardCols(p)).find((c) => c.id === 'unassigned')?.cards.includes(w.number);
   const o3 = await openReassign(p, w.id); await o3.item.click(); await p.waitForTimeout(1200); await pickLead(p, JW.staff_id, 'cancel'); await p.waitForTimeout(1500);
   R.C96956.afterCancel = { lead: await leadOf(n), stillUnassigned: (await boardCols(p)).find((c) => c.id === 'unassigned')?.cards.includes(w.number) };
-  const page = await (await p.context()).newPage(); await page.goto(`${APP}/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }); await page.waitForTimeout(5000);
-  R.C96956.woPageLead = await page.locator('[data-test-id="select_lead_technician"]').innerText().catch(() => null); await page.close();
-  await bv(p, n, 'Tech View'); const un = (await groups(p)).find((g) => g.id === 'unassigned'); if (un?.collapsed) await p.locator('[data-test-id="button_tech_view_group_toggle_unassigned"]').click(); await p.waitForTimeout(1500);
-  const row = p.locator(`[data-test-id="tech_view_row_${w.id}"]`);
-  await row.hover(); await row.locator('[data-test-id="button_work_order_more_actions"]').click(); await p.waitForTimeout(900);
-  R.C96956.techRowMenu = await p.evaluate(`[...document.querySelectorAll('.q-menu')].map(m => m.innerText.replace(/\\s+/g, ' '))`); await p.keyboard.press('Escape');
+  // 15 Oct 2026 (staging second pass): the work order page's Lead Technician read empty (that test-id is not on staging) and
+  // the Tech View repeat only opened the menu. Now the page is read by woPageLead (wob.mts), and steps 3-13 are repeated in
+  // Tech View with the row's More actions: back to Esther Howard first (step 3 starts in [Tech-A]'s group), then Ralph Edwards,
+  // then Unassigned, then Jenny Wilson + Cancel; the row is found on screen (findRow) before each action.
+  R.C96956.woPageLead = await woPageLead(p, APP, w.id);
+  await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: ES.staff_id });
+  await bv(p, n, 'Tech View');
+  const T: any = { startGroup: await findRow(p, w.id) };
+  const rowMenu = async (grp?: string) => { await findRow(p, w.id, grp); const o = await openReassign(p, w.id, 'tech'); if (T.menuDisabled === undefined) { T.menuDisabled = o.disabled; T.menu = await p.evaluate(`[...document.querySelectorAll('.q-menu')].map(m => m.innerText.replace(/\\s+/g, ' '))`); } await o.item.click(); await p.waitForTimeout(1500); };
+  await rowMenu(); T.dialogCount = (await dialogNames(p)).length; await shot(p, 'C96956-tech-dialog');
+  T.toRalph = { prompt: await pickLead(p, RE.staff_id), toast: await toasts(p), lead: await leadOf(n) };
+  T.groupAfterRalph = await findRow(p, w.id); await shot(p, 'C96956-tech-in-ralph'); T.woPageLeadAfterRalph = await woPageLead(p, APP, w.id);
+  await rowMenu(); T.toUnassigned = { prompt: await pickLead(p, 'unassigned'), toast: await toasts(p), lead: await leadOf(n) };
+  T.groupAfterUnassigned = await findRow(p, w.id, 'unassigned'); await shot(p, 'C96956-tech-in-unassigned');
+  await rowMenu('unassigned'); await pickLead(p, JW.staff_id, 'cancel'); await p.waitForTimeout(1500);
+  T.afterCancel = { lead: await leadOf(n), group: await findRow(p, w.id, 'unassigned') };
+  T.woPageLead = await woPageLead(p, APP, w.id);
+  R.C96956.techView = T; R.C96956.techRowMenu = T.menu;
 });
 
 await run('C96957', async () => {
@@ -72,12 +85,12 @@ await run('C96957', async () => {
   const t0 = Date.now();
   await drag(p, `[data-test-id="board_card_${w.id}"]`, `[data-test-id="board_column_${RE.staff_id}"]`, 120);
   const prompt1 = await shiftPrompt(p);
-  const m1 = await toasts(p); let gone1 = -1; for (let i = 0; i < 12; i++) { await p.waitForTimeout(1000); if (!(await toasts(p)).length) { gone1 = Math.round((Date.now() - t0) / 1000); break; } }
+  const m1 = await toasts(p); await shot(p, 'C96957-message-1'); let gone1 = -1; for (let i = 0; i < 12; i++) { await p.waitForTimeout(1000); if (!(await toasts(p)).length) { gone1 = Math.round((Date.now() - t0) / 1000); break; } }
   R.C96957 = { drag1: { prompt: prompt1, message: m1, goneAfterSec: gone1, lead: await leadOf(n) } };
   const t1 = Date.now();
   await drag(p, `[data-test-id="board_card_${w.id}"]`, '[data-test-id="board_column_unassigned"]', 120);
   const prompt2 = await shiftPrompt(p);
-  const m2 = await toasts(p); let gone2 = -1; for (let i = 0; i < 12; i++) { await p.waitForTimeout(1000); if (!(await toasts(p)).length) { gone2 = Math.round((Date.now() - t1) / 1000); break; } }
+  const m2 = await toasts(p); await shot(p, 'C96957-message-2'); let gone2 = -1; for (let i = 0; i < 12; i++) { await p.waitForTimeout(1000); if (!(await toasts(p)).length) { gone2 = Math.round((Date.now() - t1) / 1000); break; } }
   R.C96957.drag2 = { prompt: prompt2, message: m2, goneAfterSec: gone2, lead: await leadOf(n) };
   for (const x of [ES, RE]) if (!pinned0.includes(x.staff_id)) { await toColumn(p, x.staff_id); await p.locator(`[data-test-id="button_board_pin_${x.staff_id}"]`).click().catch(() => {}); await p.waitForTimeout(1000); }
 });
@@ -94,11 +107,11 @@ await run('C96959', async () => {
   const w1 = wos.find((w: any) => w.techAssignedId === ES.staff_id)!;
   await drag(p, `[data-test-id="board_card_${w1.id}"]`, `[data-test-id="board_column_${RE.staff_id}"]`, 120); await shiftPrompt(p);
   const hc = async () => { const cs = await boardCols(p); const f = (id: string) => cs.find((c) => c.id === id)?.count; return { esther: f(ES.staff_id), ralph: f(RE.staff_id), unassigned: f('unassigned') }; };
-  R.C96959.afterDrag = await hc();
+  R.C96959.afterDrag = await hc(); await shot(p, 'C96959-after-drag');
   const o = await openReassign(p, w1.id); await o.item.click(); await p.waitForTimeout(1200); await pickLead(p, 'unassigned');
-  R.C96959.afterDialog = await hc();
+  R.C96959.afterDialog = await hc(); await shot(p, 'C96959-after-dialog');
   await display(p, 'Tech View'); const g = await groups(p); const f = (id: string) => g.find((x) => x.id === id)?.count;
-  R.C96959.tech = { esther: f(ES.staff_id), ralph: f(RE.staff_id), unassigned: f('unassigned') }; await display(p, 'Board View');
+  R.C96959.tech = { esther: f(ES.staff_id), ralph: f(RE.staff_id), unassigned: f('unassigned') }; await shot(p, 'C96959-tech'); await display(p, 'Board View');
   for (const x of [ES, RE]) if (!pinned0.includes(x.staff_id)) { await toColumn(p, x.staff_id); await p.locator(`[data-test-id="button_board_pin_${x.staff_id}"]`).click().catch(() => {}); await p.waitForTimeout(1000); }
 });
 

@@ -1,0 +1,208 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 2 = wave 8a: report filters + dashboard, production compared"
+ },
+ "results": {
+  "C368224": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Parts > Catalog: in the filter, \"Magnum\" was ticked; the filter then read it.",
+    "After a reload the filter still showed that choice, ticked.",
+    "The same rows showed before and after the reload.",
+    "No error message appeared.",
+    "Earlier the script had clicked \"All manufacturers\" by mistake; this time one maker was ticked."
+   ],
+   "not_observed": null,
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368224-1-maker-filter-kept.png"
+   ],
+   "note": "wave8a",
+   "todo": "None."
+  },
+  "C368225": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Parts > Inventory: in the filter, \"Uncategorized\" was ticked; the filter then read it.",
+    "After a reload the filter still showed that choice, ticked.",
+    "The same rows showed before and after the reload.",
+    "No error message appeared."
+   ],
+   "not_observed": null,
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368225-1-category-filter-kept.png"
+   ],
+   "note": "wave8a",
+   "todo": "None."
+  },
+  "C368226": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Reports > Work In Progress, Location: in the filter, \"Staging Lethbridge - 4310\" was ticked; the filter then read it.",
+    "After a reload the filter still showed that choice, ticked.",
+    "The same rows showed before and after the reload.",
+    "No error message appeared.",
+    "The filter read \"Location: 2 locations\" (Staging Heavy Duty - 9919 and Staging Lethbridge - 4310) before and after the reload."
+   ],
+   "not_observed": null,
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368226-1-location-filter-kept.png"
+   ],
+   "note": "wave8a",
+   "todo": "None."
+  },
+  "C368231": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Reports > Sales By Representative, Location: in the filter, \"Staging Lethbridge - 4310\" was ticked; the filter then read it.",
+    "After a reload the filter still showed that choice, ticked.",
+    "The same rows showed before and after the reload.",
+    "No error message appeared.",
+    "The filter read \"Location: 2 locations\" before and after the reload."
+   ],
+   "not_observed": null,
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368231-1-location-filter-kept.png"
+   ],
+   "note": "wave8a",
+   "todo": "None."
+  },
+  "C368233": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging: every step behaved the same as on production (app.shopview.com, checked the same night).",
+    "Clicking one customer made it the only ticked one and the report narrowed to it; clicking it again went back to \"All customers\".",
+    "Clicking the ticked \"All customers\" box unticked everything; the filter had no Clear selection button, on both.",
+    "Setting it back left \"Customer: All customers\". No error message appeared."
+   ],
+   "not_observed": null,
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368233-1-staging-one-customer.png",
+    "evidence/staging-full-2026-10-14/annotated/C368233-2-production-one-customer.png",
+    "evidence/staging-full-2026-10-14/annotated/C368233-3-staging-all-unticked.png",
+    "evidence/staging-full-2026-10-14/annotated/C368233-4-production-all-unticked.png"
+   ],
+   "note": "wave8a",
+   "todo": "None."
+  },
+  "C368234": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging: every step behaved the same as on production (checked the same night).",
+    "Clicking one vendor made it the only ticked one and the report narrowed to it; clicking it again went back to \"All vendors\".",
+    "Clicking the ticked \"All vendors\" box unticked everything; no Clear selection button, on both.",
+    "No error message appeared."
+   ],
+   "not_observed": null,
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368234-1-staging-one-vendor.png",
+    "evidence/staging-full-2026-10-14/annotated/C368234-2-production-one-vendor.png",
+    "evidence/staging-full-2026-10-14/annotated/C368234-3-staging-all-unticked.png",
+    "evidence/staging-full-2026-10-14/annotated/C368234-4-production-all-unticked.png"
+   ],
+   "note": "wave8a",
+   "todo": "None."
+  },
+  "C368235": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging: every step behaved the same as on production (checked the same night).",
+    "Clicking \"Uncategorized\" made it the only ticked one; clicking it again went back to \"All categories\".",
+    "Clicking the ticked \"All categories\" box unticked everything; no Clear selection button, on both.",
+    "No error message appeared."
+   ],
+   "not_observed": null,
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368235-1-staging-one-category.png",
+    "evidence/staging-full-2026-10-14/annotated/C368235-2-production-one-category.png",
+    "evidence/staging-full-2026-10-14/annotated/C368235-3-staging-all-unticked.png",
+    "evidence/staging-full-2026-10-14/annotated/C368235-4-production-all-unticked.png"
+   ],
+   "note": "wave8a",
+   "todo": "None."
+  },
+  "C368236": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed \u2014 exactly the case's \"what you should see today\", outcome (1): raise nothing new.",
+    "Steps 4 and 5 held: unticking Admin ShopView took him out of the report; ticking him again brought him back and every box was ticked.",
+    "Step 6: with every box already ticked, clicking \"Select all\" unticked every option and the report showed no rows, instead of ticking them.",
+    "Step 7: \"Clear selection\" left every option unticked. The buttons read \"Select all\" and \"Clear selection\".",
+    "Production (app.shopview.com, checked the same night) does exactly the same at step 6, so this is not caused by this work and no new ticket is raised."
+   ],
+   "not_observed": null,
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368236-1-staging-all-ticked.png",
+    "evidence/staging-full-2026-10-14/annotated/C368236-2-staging-select-all-unticks.png",
+    "evidence/staging-full-2026-10-14/annotated/C368236-3-production-select-all-unticks.png"
+   ],
+   "note": "wave8a",
+   "ticket_held": true,
+   "ticket": "No ticket: production does the same, so this is not caused by this work. What the test needs is with the QA lead.",
+   "todo": "What needs to be done: nothing to raise. The QA lead decides whether the test steps should change; the expected result stays as written."
+  },
+  "C368232": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed at step 4 only; production behaves the same, so it is not caused by this work and no ticket is raised.",
+    "The Location filter starts with only Staging Heavy Duty - 9919 ticked, so step 4 unticks the only ticked location; the report then still listed Staging Heavy Duty's work orders instead of leaving them out.",
+    "Production does the same: with no location ticked the report still lists work orders.",
+    "Step 5: ticking it again brought it back. Step 6: \"Select all\" ticked every location and the report added Staging Lethbridge's work orders. Step 7: \"Clear selection\" unticked every location.",
+    "What the test needs: step 4 cannot leave out the only ticked location; it should untick one location while another is still ticked."
+   ],
+   "not_observed": null,
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368232-1-staging-no-location-still-rows.png",
+    "evidence/staging-full-2026-10-14/annotated/C368232-2-staging-select-all-ticks.png",
+    "evidence/staging-full-2026-10-14/annotated/C368232-3-production-no-location-still-rows.png"
+   ],
+   "note": "wave8a",
+   "ticket_held": true,
+   "ticket": "No ticket: production does the same, so this is not caused by this work. What the test needs is with the QA lead.",
+   "todo": "What needs to be done: nothing to raise. The QA lead decides whether the test steps should change; the expected result stays as written."
+  },
+  "C368246": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Dashboard: each card's table opens with \"View details\". Read: Advisor Analysis (6 rows), Technician Efficiency (4), Technician Utilization (7), Sales by Customer (10), At Risk Customers (10).",
+    "Clicking a column header ordered the rows, and clicking it again reversed the order, on every one of those cards.",
+    "No error message appeared."
+   ],
+   "not_observed": null,
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368246-1-advisor-analysis-sorted.png",
+    "evidence/staging-full-2026-10-14/annotated/C368246-2-at-risk-sorted.png"
+   ],
+   "note": "wave8a",
+   "todo": "None."
+  },
+  "C368237": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed at step 4 only; production behaves the same, so it is not caused by this work and no ticket is raised.",
+    "The Location filter starts with only Staging Heavy Duty - 9919 ticked, so step 4 unticks the only ticked location; the report then still showed the same representatives instead of leaving that location out.",
+    "Production does the same: on Sales By Representative (date widened to \"This year\" so it has rows), with no location ticked the report still showed Ayesha Khan's row instead of leaving it out.",
+    "Step 5: ticking it again brought it back. Step 6: \"Select all\" ticked every location and the report added Staging Lethbridge's rows. Step 7: \"Clear selection\" unticked every location.",
+    "What the test needs: step 4 should untick one location while another is still ticked."
+   ],
+   "not_observed": null,
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368237-1-staging-no-location-still-rows.png",
+    "evidence/staging-full-2026-10-14/annotated/C368237-2-staging-select-all-ticks.png",
+    "evidence/staging-full-2026-10-14/annotated/C368237-3-production-all-locations.png",
+    "evidence/staging-full-2026-10-14/annotated/C368237-4-production-no-location-still-rows.png"
+   ],
+   "note": "wave8a",
+   "ticket_held": true,
+   "ticket": "No ticket: production does the same, so this is not caused by this work. What the test needs is with the QA lead.",
+   "todo": "What needs to be done: nothing to raise. The QA lead decides whether the test steps should change; the expected result stays as written."
+  }
+ }
+}

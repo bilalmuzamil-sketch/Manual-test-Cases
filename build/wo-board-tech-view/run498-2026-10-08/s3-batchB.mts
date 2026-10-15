@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { open, done, APP } from './session.mts';
 import { api, candidates, seedCase, workOrders, customer, workOrder, vehicle } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, toColumn } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, shiftPrompt } from './wob.mts';
 import { staffRows, HEAVY, LETH } from './staff.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -80,20 +80,30 @@ await run('C154886', async () => {
 
 await run('C368132', async () => {
   const n = 'ZZAUTOTEST F2 Empty Tech Column';
-  const wos = await seedCase(a, n, 'ZZF3ET', [{ lead: ES.staff_id }, { lead: ES.staff_id }]);
+  let wos = await seedCase(a, n, 'ZZF3ET', [{ lead: ES.staff_id }, { lead: ES.staff_id }]);
+  // 15 Oct 2026: set-up says both are led by Esther Howard — put back any that an earlier run moved
+  for (const w of wos) if (w.techAssignedId !== ES.staff_id) await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: ES.staff_id });
+  wos = await seedCase(a, n, 'ZZF3ET', []);
   await bv(n);
   const j = await col(JW.staff_id);
   R.C368132 = { jenny: j && { count: j.count, empty: j.empty } };
   R.C368132.hideControls = await p.evaluate(`[...document.querySelectorAll('button, [role=menuitem], [role=switch], label')].map(e => (e.getAttribute('aria-label') || e.innerText || '').trim()).filter(x => /hide|empty|show only/i.test(x))`);
   await p.locator(`[data-test-id="button_board_fields_selection"]`).click(); await p.waitForTimeout(800);
   R.C368132.fieldsMenuMentionsEmpty = /empty|hide/i.test(await p.evaluate(`(document.querySelector('.q-menu') || {}).innerText || ''`) as string); await p.keyboard.press('Escape');
-  const w2 = wos[wos.length - 1]; await toColumn(p, JW.staff_id);
-  const espot = await p.locator(`[data-test-id="board_column_${ES.staff_id}"]`).count();
-  if (!espot) { await toColumn(p, ES.staff_id); }
-  // both columns on screen: Esther Howard and Jenny Wilson sit near each other alphabetically
+  const w2 = wos[wos.length - 1];
+  // 15 Oct 2026 (staging second pass): Jenny Wilson's column was off screen (~119 technicians), so the drag found no target.
+  // For the drag only, Esther Howard and Jenny Wilson are pinned (saved choice, put back afterwards) so both columns sit side by
+  // side right after Unassigned; pins do not change who leads what or any count.
+  const PREF2 = '/api/users/me/preferences/work-orders-list'; const pv0 = (await a.get(PREF2)).body?.data?.value ?? {};
+  await a.put(PREF2, { value: { ...pv0, pinnedTechnicianIds: [ES.staff_id, JW.staff_id] } }); await bv(n);
+  R.C368132.before = { jenny: (await col(JW.staff_id))?.count, esther: (await col(ES.staff_id))?.count, onScreen: await p.evaluate(`[...document.querySelectorAll('[data-test-id="board_column_${ES.staff_id}"], [data-test-id="board_column_${JW.staff_id}"]')].map(e => Math.round(e.getBoundingClientRect().left))`) };
+  await shot(p, 'C368132-before-drop');
   await drag(p, `[data-test-id="board_card_${w2.id}"]`, `[data-test-id="board_column_${JW.staff_id}"]`, 120);
-  R.C368132.after = { jenny: (await col(JW.staff_id))?.count, esther: (await col(ES.staff_id))?.count };
-  await shot(p, 'C368132-after-drop');
+  R.C368132.shiftPrompt = await shiftPrompt(p, 'Keep shifts'); // the case: if a "Clear … scheduled shifts?" prompt appears, Keep shifts
+  R.C368132.toasts = await p.evaluate(`[...document.querySelectorAll('.q-notification, .q-dialog')].map(e => e.innerText.replace(/\\s+/g, ' ').slice(0, 200))`);
+  R.C368132.after = { jenny: (await col(JW.staff_id))?.count, esther: (await col(ES.staff_id))?.count, movedLeadNow: (await seedCase(a, n, 'ZZF3ET', [])).find((w: any) => w.id === w2.id)?.techAssignedFirstName ?? null };
+  await shot(p, 'C368132-after-drop'); await (globalThis as any).__shotEach?.('C368132');
+  await a.put(PREF2, { value: { ...((await a.get(PREF2)).body?.data?.value ?? {}), pinnedTechnicianIds: pv0.pinnedTechnicianIds ?? [] } });
 });
 
 await run('C368131', async () => {

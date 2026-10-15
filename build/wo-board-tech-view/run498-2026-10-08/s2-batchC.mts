@@ -322,16 +322,25 @@ await run('C96938', async () => {
   const mx = await sid('zz.wob.maximiliana' + D);
   const n = 'ZZAUTOTEST F2 Name Tooltip';
   await seedCase(a, n, 'ZZF2NT2', [{ lead: tA.id }, { lead: mx.staff_id }]);
-  await tv(n); await scrollToGroupId(tA.id); const posA = 1;
-  const tip = async (sel: string) => { await p.mouse.move(5, 5); await p.waitForTimeout(400); await p.locator(sel).first().hover(); await p.waitForTimeout(1300); return p.evaluate(`[...document.querySelectorAll('.q-tooltip')].map(e => e.innerText.trim()).join(' | ')`); };
-  R.C96938 = {
-    avatarA: await tip(`[data-test-id="tech_view_group_${tA.id}"] .q-avatar`),
-    nameLong: (await scrollToGroupId(mx.staff_id), await tip(`[data-test-id="tech_view_group_name_${mx.staff_id}"]`)),
-    avatarLong: (await scrollToGroupId(mx.staff_id), await tip(`[data-test-id="tech_view_group_${mx.staff_id}"] .q-avatar`)),
-    avatarAttrs: await p.evaluate(`(() => { const av = document.querySelector('[data-test-id="tech_view_group_${mx.staff_id}"] .q-avatar'); const chain = []; for (let e = av; e && chain.length < 8; e = e.parentElement) chain.push({ tag: e.tagName, cls: String(e.className).slice(0, 30), title: e.getAttribute('title'), aria: e.getAttribute('aria-label') }); return chain; })()`),
-    avatarAChain: await p.evaluate(`(() => { const av = document.querySelector('[data-test-id="tech_view_group_${tA.id}"] .q-avatar'); const t = []; for (let e = av; e && t.length < 8; e = e.parentElement) if (e.getAttribute('title') || e.getAttribute('aria-label')) t.push(e.tagName + ':' + (e.getAttribute('title') || e.getAttribute('aria-label'))); return t; })()`),
-    nameLongShown: await p.evaluate(`(() => { const e = document.querySelector('[data-test-id="tech_view_group_name_${mx.staff_id}"]'); return e ? { text: e.textContent.trim(), title: e.getAttribute('title'), truncated: e.scrollWidth > e.clientWidth } : null; })()`),
-  };
+  // 15 Oct 2026 (staging second pass): every hover read came back empty. The pointer is now moved onto the element's centre and
+  // held still, the page is polled up to 5 s for a drawn tooltip, a picture is taken while hovering, and the title / aria-label
+  // the browser would show (a native tooltip is not drawn in a headless picture) is read from the element under the pointer
+  // and its parents at that moment — Tech-A's avatar is read while her group is on screen (it was read after scrolling away).
+  await tv(n);
+  const tip = async (sel: string, pic: string) => { await p.mouse.move(5, 5); await p.waitForTimeout(500);
+    const el = p.locator(sel).first(); if (!(await el.count())) return { found: false };
+    await el.scrollIntoViewIfNeeded().catch(() => {}); await p.waitForTimeout(500); const bx = await el.boundingBox(); if (!bx) return { found: false };
+    const x = bx.x + bx.width / 2, y = bx.y + bx.height / 2; await p.mouse.move(x - 3, y - 2, { steps: 4 }); await p.mouse.move(x, y, { steps: 3 });
+    let tooltip = ''; for (let i = 0; i < 12 && !tooltip; i++) { await p.waitForTimeout(400); tooltip = await p.evaluate(`[...document.querySelectorAll('.q-tooltip, [role=tooltip]')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.trim()).join(' | ')`) as string; }
+    await shot(p, pic);
+    const under = await p.evaluate(`(() => { const out = []; for (let e = document.elementFromPoint(${x}, ${y}); e && out.length < 7; e = e.parentElement) { const t = e.getAttribute('title'), a = e.getAttribute('aria-label'); if (t || a) out.push(e.tagName.toLowerCase() + (t ? ' title="' + t + '"' : '') + (a ? ' aria-label="' + a + '"' : '')); } return out; })()`);
+    return { found: true, tooltip, titleUnderPointer: under }; };
+  const sA = await scrollToGroupId(tA.id);
+  R.C96938 = { techA: tA.name, reachA: sA.found, avatarA: await tip(`[data-test-id="tech_view_group_${tA.id}"] .q-avatar`, 'C96938-hover-avatar-A') };
+  const sM = await scrollToGroupId(mx.staff_id); R.C96938.reachLong = sM.found;
+  R.C96938.nameLong = await tip(`[data-test-id="tech_view_group_name_${mx.staff_id}"]`, 'C96938-hover-long-name');
+  R.C96938.avatarLong = await tip(`[data-test-id="tech_view_group_${mx.staff_id}"] .q-avatar`, 'C96938-hover-long-avatar');
+  R.C96938.nameLongShown = await p.evaluate(`(() => { const e = document.querySelector('[data-test-id="tech_view_group_name_${mx.staff_id}"]'); return e ? { text: e.textContent.trim(), title: e.getAttribute('title'), truncated: e.scrollWidth > e.clientWidth } : null; })()`);
   await shot(p, 'C96938-hover');
 });
 
@@ -352,14 +361,26 @@ await run('C96934', async () => {
 });
 
 await run('C368125', async () => {
+  // 15 Oct 2026 (staging second pass): the script used Ayesha Khan's group (the case names Esther Howard) and, once the search
+  // was typed, her group was far down among ~119 technicians and not drawn, so its toggle was never found. Now: both work orders
+  // are led by Esther Howard (set if not), Esther is pinned at sign-in (WOB_PIN_NAMES=Esther Howard, right after Unassigned), and
+  // her group is brought on screen before every read and toggle.
+  const ES = by('Esther Howard'); if (!ES) throw new Error('Esther Howard is not offered as a technician here');
+  const leads: string[] = [];
+  for (const [n, u] of [['ZZAUTOTEST F2 Collapse Kept', 'ZZF2CK'], ['ZZAUTOTEST F2 Collapse Other', 'ZZF2CO']]) {
+    await seedCase(a, n, u, [{ lead: ES.id }]);
+    for (const w of await workOrders(a, n)) { if (w.techAssignedId !== ES.id) leads.push(`${w.number} -> Esther ${(await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: ES.id })).status}`); }
+  }
   await tv('');
-  const sg = await scrollToGroup(tA.id); if (!sg.found) throw new Error('Ayesha Khan group not reached');
-  const gA = async () => (await groups(p)).find((g) => g.id === tA.id);
-  if (!(await gA())?.collapsed) await toggleGroup(p, tA.id);
-  R.C368125 = { collapsedBefore: (await gA())?.collapsed, countBefore: (await gA())?.count };
-  await search(p, 'Collapse Kept'); const d = await gA(); R.C368125.during = d && { count: d.count, collapsed: d.collapsed, rows: d.rows }; await shot(p, 'C368125-during-search');
-  await toggleGroup(p, tA.id); const e = await gA(); R.C368125.expanded = e && { count: e.count, collapsed: e.collapsed, rows: e.rows }; await shot(p, 'C368125-expanded');
+  const bring = async () => { const r = await scrollToGroup(ES.id); if (r.found) { await p.evaluate(`document.querySelector('[data-test-id="tech_view_group_${ES.id}"]')?.scrollIntoView({ block: 'center' })`); await p.waitForTimeout(800); } return r; };
+  const sg = await bring(); if (!sg.found) throw new Error('Esther Howard group not reached');
+  const gA = async () => (await groups(p)).find((g) => g.id === ES.id);
+  if (!(await gA())?.collapsed) await toggleGroup(p, ES.id);
+  R.C368125 = { leadFixes: leads, pinnedNow: (await groups(p)).filter((g) => g.pin?.pressed === 'true').map((g) => g.name), collapsedBefore: (await gA())?.collapsed, countBefore: (await gA())?.count };
+  await search(p, 'Collapse Kept'); await bring(); const d = await gA(); R.C368125.during = d ? { count: d.count, collapsed: d.collapsed, rows: d.rows } : 'group not drawn'; await shot(p, 'C368125-during-search');
+  await toggleGroup(p, ES.id); await p.waitForTimeout(800); const e = await gA(); R.C368125.expanded = e && { count: e.count, collapsed: e.collapsed, rows: e.rows }; await shot(p, 'C368125-expanded');
   R.C368125.kept = (await workOrders(a, 'ZZAUTOTEST F2 Collapse Kept')).map((w: any) => w.number); R.C368125.other = (await workOrders(a, 'ZZAUTOTEST F2 Collapse Other')).map((w: any) => w.number);
+  await (globalThis as any).__shotEach?.('C368125');
   await search(p, ''); if (sg.wasOpen) { await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await toggleGroup(p, 'unassigned').catch(() => {}); }
 });
 

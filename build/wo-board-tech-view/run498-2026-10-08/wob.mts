@@ -167,3 +167,36 @@ export async function switchLocUI(p: Page, name: string) {
   }
   return await header();
 }
+/** 15 Oct 2026 (staging second pass, C96956): `[data-test-id="select_lead_technician"]` is not on staging's work order page, so the
+ *  Lead Technician read came back empty. Open the work order in a NEW tab (the board stays as it is) and read the Lead Technician
+ *  field three ways — the q-field labelled "Lead Technician", any element whose test-id mentions "lead", and the text beside the
+ *  label — polling up to 15 s for the page to draw. */
+export async function woPageLead(p: Page, app: string, woId: string) {
+  const page = await p.context().newPage();
+  try {
+    await page.goto(`${app}/workorders/${woId}/lines`, { waitUntil: 'domcontentloaded' }).catch(() => {});
+    let o: any = null;
+    for (let i = 0; i < 15; i++) {
+      await page.waitForTimeout(1000);
+      o = await page.evaluate(`(() => { const out = {};
+        const f = [...document.querySelectorAll('.q-field')].find(x => /Lead Tech/i.test(((x.querySelector('.q-field__label') || {}).textContent || '') + ' ' + (x.getAttribute('aria-label') || '')));
+        out.field = f ? (f.querySelector('.q-field__native, .q-field__control-container') || f).innerText.replace(/\\s+/g, ' ').trim() : null;
+        out.testIds = [...document.querySelectorAll('[data-test-id*="lead" i]')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.getAttribute('data-test-id') + '=' + e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 60)).slice(0, 6);
+        const lab = [...document.querySelectorAll('body *')].find(e => e.children.length === 0 && /^\\s*Lead Technician\\s*$/i.test(e.textContent || '') && e.getBoundingClientRect().width > 0);
+        if (lab) { let a = lab.parentElement; for (let i = 0; i < 4 && a && a.innerText.replace(/\\s+/g, ' ').trim().length <= 16; i++) a = a.parentElement; out.near = a ? a.innerText.replace(/\\s+/g, ' ').trim().slice(0, 120) : null; }
+        return out; })()`);
+      if (o && (o.field || o.near || (o.testIds && o.testIds.length))) break;
+    }
+    await page.screenshot({ path: path.join(EV, `wo-page-lead-${woId.slice(0, 8)}.png`) }).catch(() => {});
+    return o;
+  } finally { await page.close().catch(() => {}); }
+}
+/** 15 Oct 2026: bring a Tech View row on screen (the table draws only rows near the screen). Expands a collapsed group the row
+ *  may sit in only when asked (Unassigned starts collapsed). Returns the group the row sits in (data-group-key) or null. */
+export async function findRow(p: Page, woId: string, openGroup?: string) {
+  if (openGroup && await p.locator(`[data-test-id="tech_view_group_${openGroup}"][data-collapsed="true"]`).count()) { await p.locator(`[data-test-id="button_tech_view_group_toggle_${openGroup}"]`).click().catch(() => {}); await p.waitForTimeout(1200); }
+  await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollTop = 0; })()`); await p.waitForTimeout(500);
+  for (let i = 0; i < 150 && !(await p.locator(`[data-test-id="tech_view_row_${woId}"]`).count()); i++) { const moved = await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (!s) return false; const b = s.scrollTop; s.scrollTop += 400; return s.scrollTop !== b; })()`); await p.waitForTimeout(300); if (!moved) break; }
+  await p.evaluate(`document.querySelector('[data-test-id="tech_view_row_${woId}"]')?.scrollIntoView({ block: 'center' })`); await p.waitForTimeout(800);
+  return p.evaluate(`(document.querySelector('[data-test-id="tech_view_row_${woId}"]') || { getAttribute: () => null }).getAttribute('data-group-key')`) as Promise<string | null>;
+}

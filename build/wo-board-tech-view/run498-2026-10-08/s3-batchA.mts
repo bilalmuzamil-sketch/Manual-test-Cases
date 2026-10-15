@@ -180,7 +180,18 @@ await run('C96949', async () => {
   await kw.click({ force: true }).catch(() => {}); await p.waitForTimeout(1500); R.C96949.afterClick = ((await prefs()).pinnedTechnicianIds ?? []).map(nameOf); await shot(p, 'C96949-limit');
   await pin(JW.staff_id); await pin(ES.staff_id); R.C96949.afterSwap = ((await prefs()).pinnedTechnicianIds ?? []).map(nameOf);
   await display(p, 'Tech View'); await search(p, n);
-  const g = await groups(p); R.C96949.tech = g.filter((x) => x.pin?.pressed === 'true').map((x) => x.name); R.C96949.techKwDisabled = g.find((x) => x.id === KW.staff_id)?.pin?.disabled ?? 'not drawn';
+  const g = await groups(p); R.C96949.tech = g.filter((x) => x.pin?.pressed === 'true').map((x) => x.name); await shot(p, 'C96949-tech-pins');
+  // 15 Oct 2026 (staging second pass): Kristin Watson's group is far down among ~119 technicians and is not drawn until scrolled
+  // to, so her pin control was never read. Collapse Unassigned, scroll the table until her group exists, centre it, then read.
+  { const u = g.find((x) => x.id === 'unassigned'); if (u && !u.collapsed) await toggleGroup(p, 'unassigned'); }
+  await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await p.waitForTimeout(500);
+  for (let i = 0; i < 150 && !(await p.locator(`[data-test-id="tech_view_group_${KW.staff_id}"]`).count()); i++) { await p.evaluate(`document.querySelector('.q-table__middle').scrollTop += 400`); await p.waitForTimeout(300); }
+  await p.evaluate(`document.querySelector('[data-test-id="tech_view_group_${KW.staff_id}"]')?.scrollIntoView({ block: 'center' })`); await p.waitForTimeout(1000);
+  R.C96949.techKwDisabled = (await groups(p)).find((x) => x.id === KW.staff_id)?.pin?.disabled ?? 'not drawn';
+  const kwT = p.locator(`[data-test-id="button_tech_view_pin_${KW.staff_id}"]`);
+  if (await kwT.count()) { await kwT.hover({ force: true }); await p.waitForTimeout(1500); R.C96949.techKwTip = await p.evaluate(`[...document.querySelectorAll('.q-tooltip')].map(e => e.innerText.trim()).join(' | ')`); await shot(p, 'C96949-tech-kristin'); }
+  await (globalThis as any).__shotEach?.('C96949-tech');
+  await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`);
   await display(p, 'Board View');
 });
 
