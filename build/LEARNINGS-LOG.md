@@ -707,3 +707,8 @@ worth having. Moving it to the end of pass 7 does no harm.
 Run it first at every check-in. It does nothing if a pass is already running. Restarts give no notice, so while they keep
 coming, check in every 15 minutes: each restart loses the script that was running plus the time until the next check-in.
 #restart #unattended #recover → L0355, L0367
+
+## L0371 — 2026-10-15 — "Switching back" to Heavy Duty never took because the helper clicked the "Change Location: …" row
+- **Where:** `build/wo-board-tech-view/run498-2026-10-08/wob.mts` `switchLocUI`; seen in C368156 (rest-batch, sixth pass), and the same "back on screen still reads Lethbridge" in C368212 (high2-batch) and C96989 (s6b-batch).
+- **Cause:** after the profile menu opens, its own row reads "Change Location: Staging Heavy Duty - 9919". `p.locator('.q-menu .q-item').filter({ hasText: name }).first()` matched THAT row when the target was Heavy Duty, so the click re-opened the picker and the location never changed. Going TO Lethbridge worked only because that row does not contain "Lethbridge".
+- **Fix:** take the option from the picker's list — `.filter({ hasNotText: /Change Location/i }).last()`. Read the top bar back after every switch (it is the only proof), and expect scripts that ran before this fix to have left the shared screen session on Lethbridge.

@@ -1,0 +1,8 @@
+{
+ "results": {},
+ "failed": [],
+ "doubt": [],
+ "redo": {
+  "C368156": "Steps 2 to 4 held again (sixth pass, 07:40-07:44): at Staging Heavy Duty - 9919 Ana, Ben and Cal pinned and the fourth pin control disabled with the tip \"You can pin up to 3 technicians.\"; at Staging Lethbridge - 4310 (top bar read back) no Heavy Duty pin showed and no pinned column appeared (14 columns drawn); Xia, Yan and Zoe could each be pinned (their controls were enabled and the saved pins now hold the three Heavy Duty and the three Lethbridge technicians). Step 5 not seen on screen: the switch back to Heavy Duty did not take twice. Cause found in the script, not the product: the shared helper switchLocUI clicked the first menu row containing the location's name, and the profile menu's own row reads \"Change Location: Staging Heavy Duty - 9919\", so it re-opened the picker instead of choosing the option (going TO Lethbridge worked because that row does not contain \"Lethbridge\"). Fixed in wob.mts switchLocUI: the option is taken from the picker's list, never the \"Change Location\" row. Seventh pass (rest-batch.mts | C368156)."
+ }
+}

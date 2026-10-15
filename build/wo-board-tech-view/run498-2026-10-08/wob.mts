@@ -162,7 +162,10 @@ export async function switchLocUI(p: Page, name: string) {
     if ((await header()).includes(name)) return await header();
     await p.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await p.waitForTimeout(1200);
     await p.locator('[data-test-id="select_location"]').click().catch(() => {}); await p.waitForTimeout(1200);
-    await p.locator('.q-menu .q-item').filter({ hasText: name }).first().click().catch(() => {}); await p.waitForTimeout(6000);
+    // 15 Oct 2026 (wave 20, C368156): switching BACK never took — the profile menu's own row reads "Change Location: Staging Heavy Duty -
+    // 9919", so `.filter({ hasText: name }).first()` clicked that row (re-opening the picker) instead of the location's option. Take the
+    // option from the picker's list: not the "Change Location" row, and the LAST match (the option menu opens after the profile menu).
+    await p.locator('.q-menu .q-item').filter({ hasText: name }).filter({ hasNotText: /Change Location/i }).last().click().catch(() => {}); await p.waitForTimeout(6000);
     await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(800);
   }
   return await header();
