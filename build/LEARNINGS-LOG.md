@@ -462,3 +462,15 @@ hour headings as "1 PM", never "13" (the mini-calendar's date). (6) The Timeshee
 only while the pointer is over the row. (7) Staging refuses to delete a staff member who ever logged labor ("Staff is being used
 elsewhere."); C368191 now also records the answer for a never-used staff member deleted at once. #staging #review #location
 #clocks #schedule #rerun → L0336, L0341, L0343
+
+## L0346 — 2026-10-15 — The Schedule's "Entire work order" drop records the approved lines; an API exit does not end Account Access on the page
+(1) **C581893 looked like a fault and was my set-up.** A shift made behind the screen with `lineIds: []` is not what the
+Schedule makes: its "Entire work order" drop POSTs `/api/schedule/shifts` with `lineIds` = every line approved AT THAT MOMENT
+(captured 15 Oct, `stg-fix-new3.json` drops.*.payload). With the shift made on screen, the build behaved exactly as S4-R28
+says (new approved line after the shift → no question; not-approved line → question; control → question). Make shifts on the
+Schedule screen (`dropEntire` in `stg-fix-new3.mts`), or POST the approved line ids, never `[]`, when the test is about
+which lines a shift covers. (2) **Account access (`/impersonate-user/<user id>`) is ended by the orange banner's Exit button
+(`button_exit_impersonation`);** `POST /api/exit-switch-user` alone left the page in Account Access Mode, so the next staff
+lookup ran as the technician and found nothing. Press Exit, then read the banner back. (3) The technician's own
+`POST /api/iam/change-name` (made in account access) DOES make the account name differ from the staff record name — the banner
+showed "ZZAUTOTEST Account Ana" while the staff record stayed "ZZAUTOTEST Staffname Ana". #shifts #impersonation #names → L0339, Rule 104

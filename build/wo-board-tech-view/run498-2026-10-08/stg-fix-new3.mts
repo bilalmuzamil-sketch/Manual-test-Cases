@@ -177,8 +177,14 @@ await run('C581895', async () => {
     if (ch.status >= 300) ch = await a.post('/api/iam/change-name', { firstName: 'ZZAUTOTEST Account', lastName: who });
     const prof = await a.get('/api/iam/view-profile/').catch(() => ({ status: 0, body: null } as any));
     await shot(`C581895-setup-${who}-profile`);
-    const ex = await a.post('/api/exit-switch-user', {}); await p.goto(`${APP}/workorders?tab=all`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
-    const back = (await staffRows(a, em))[0];
+    // 15 Oct 2026: the API exit alone left the PAGE in Account Access Mode (banner still showing) — press the banner's own Exit,
+    // then read the banner back; fall back to the API exit only if the button is missing.
+    const exitBtn = p.locator('[data-test-id="button_exit_impersonation"]').first(); let ex: any = { status: 'button' };
+    if (await exitBtn.count()) { await exitBtn.click(); await p.waitForTimeout(8000); } else ex = await a.post('/api/exit-switch-user', {});
+    await p.goto(`${APP}/workorders?tab=all`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
+    if (await p.locator('[data-test-id="button_exit_impersonation"]').count()) { ex = await a.post('/api/exit-switch-user', {}); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); }
+    const stillIn = await p.locator('[data-test-id="button_exit_impersonation"]').count(); if (stillIn) throw new Error('still in Account Access Mode after Exit');
+    const back = (await staffRows(a, em))[0]; if (!back) throw new Error(`staff ${em} not found after exit`);
     return { staff_id: back.staff_id, user_id: back.id, staffName: `${back.first_name} ${back.last_name}`, impersonatedAs: JSON.stringify(asWho.body?.data ?? asWho.body).slice(0, 160), changeName: `${ch.status} ${JSON.stringify(ch.body).slice(0, 160)}`, profileAfter: JSON.stringify(prof.body?.data ?? prof.body).slice(0, 220), exit: ex.status }; };
   const TA = await mk('Ana'), TB = await mk('Ben'); o.staff = [TA, TB];
   o.candidates = ((await a.get('/api/work-orders/lead-technician-candidates')).body?.data?.technicians ?? []).filter((x: any) => [TA.staff_id, TB.staff_id].includes(x.staffId)).map((x: any) => `${x.firstName} ${x.lastName}`);
