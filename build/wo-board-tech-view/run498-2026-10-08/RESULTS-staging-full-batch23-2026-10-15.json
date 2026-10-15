@@ -1,0 +1,53 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 23 = wave 25 (C368208 held for a production comparison)"
+ },
+ "results": {
+  "C368207": {
+   "verdict": "Passed",
+   "observed": [
+    "Pictures only (the verdict was posted earlier): the view-only user's own window (role ZZAUTOTEST WO View Only, its top menu shows only Work Orders), Work Orders > List > All.",
+    "The toolbar ends with the display switcher: there is no Create Work Order button."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368207-viewonly-list-no-create-button.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368209": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (window 390 px wide).",
+    "The sort button offers Newest First, Oldest First, Customer A-Z and Customer Z-A; Customer A-Z was picked and the page reloaded.",
+    "After the reload the sort button shows Customer A-Z ticked.",
+    "The cards run in customer name order A to Z: 4 Star Truck Repair, then 7 Star Truck Repair, then A & J Truck & Trailer Repair, then Aberdeen Diesel Services LLC and on (12 customers passed in order, 270 cards)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368209-1-after-reload-customer-a-z-ticked.png",
+    "evidence/staging-full-2026-10-14/annotated/C368209-2-cards-4-star-then-7-star.png",
+    "evidence/staging-full-2026-10-14/annotated/C368209-3-cards-then-a-and-j.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368212": {
+   "verdict": "Passed",
+   "observed": [
+    "Pictures (the verdict was posted earlier), from this run: S3-36143 (ZZAUTOTEST Loc2 Customer 76231) was made at Staging Lethbridge - 4310.",
+    "Steps 2 and 3, at Staging Heavy Duty - 9919: searching \"Loc2\" shows \"No work orders match the search \"Loc2\".\"; searching S3-36143 shows \"No work orders match the search \"S3-36143\".\"",
+    "Step 4, after Change Location > Staging Lethbridge - 4310: searching \"Loc2\" lists S3-36143."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368212-1-heavy-duty-search-loc2.png",
+    "evidence/staging-full-2026-10-14/annotated/C368212-2-heavy-duty-search-number.png",
+    "evidence/staging-full-2026-10-14/annotated/C368212-3-lethbridge-shows-it.png"
+   ],
+   "not_observed": "For the record: the script's switch back to Heavy Duty on screen did not take (the screen stayed on Lethbridge); the next script set the location again at its start. high2-batch now falls back to setting the location and reloading.",
+   "todo": "None."
+  }
+ }
+}
