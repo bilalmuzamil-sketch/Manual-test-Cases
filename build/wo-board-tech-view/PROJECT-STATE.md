@@ -211,3 +211,5 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
 - C154650 Passed — company B reached with the QA lead's "Analyst 1" login (L0395): `stg-orgb-seed.mts` + `stg-orgb-lead.mts`, then
   `orgb-fix3.mts ONLY=C154650` as Admin. Nothing from company B or the second location shows; Reassign "OrgB" finds nobody.
 - Still Blocked: C368175 (now runnable with the same company B — not yet run) and C368191 (a deleted person's line).
+- C368175 Passed on staging (15 Oct evening): no company-B technician in New Line / Edit Line / Edit labor; full `/api/technicians`
+  (253, 4 pages) holds none either (L0396). Only C368191 stays Blocked.

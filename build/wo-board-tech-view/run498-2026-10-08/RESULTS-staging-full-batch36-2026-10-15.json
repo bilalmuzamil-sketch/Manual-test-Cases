@@ -1,0 +1,28 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 32b lead list Failed"
+ },
+ "results": {
+  "C368175": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging.",
+    "Company B (the QA lead's second-company login) has the technician \"Scope OrgB Tech\". Our work order: S2-36285, customer \"ZZAUTOTEST Other Org Lists 63851\", at Staging Heavy Duty - 9919.",
+    "Steps 2, 4 and 6 (New Line > Add Technician, Edit Line > Add Technician, Edit labor > Technician): every name shown is one of our own company's staff. \"Scope OrgB Tech\" is never offered.",
+    "These lists stop at about 100 names (the Q names) and do not narrow when you type, which is the known list cut-off already reported. So the full list they are built from was also read: all 253 people, 4 pages, running to the Z names. It includes our own Ralph Edwards and Ana Alpha, and nobody from the other company.",
+    "The lead technician list (255 people) also offers nobody from the other company.",
+    "Server refusal of another company's technician sent outside the screens: not checked by hand, as the test says."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368175-1-edit-line.png",
+    "evidence/staging-full-2026-10-14/annotated/C368175-2-edit-labor.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing for this test."
+  }
+ }
+}

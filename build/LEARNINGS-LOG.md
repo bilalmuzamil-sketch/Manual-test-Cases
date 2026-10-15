@@ -930,3 +930,14 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   existing technician (lead candidates) instead. `/api/organizations` lists ~100 "E2E-Bootstrap-…" companies, so never pick
   "the other company" from that list. Do company B first, then the Admin run (L0394: the Admin sign-in ends the Analyst session).
 - Unblocks C154650 and C368175 on staging. #staging #second-company #orgb → L0394
+
+## L0396 — 2026-10-15 — The technician lists stop at 100 because the server pages at 100; a list's absence is proved from the full source
+- `GET /api/technicians` (and `?clockableOnly=1`) on staging answers `pagination {page, rowsPerPage: 100}`: 253 people over 4 pages
+  (`c368175-api.mts`, reading `page=N`). Every technician pick list on the work order page (Lead Technician, New Line / Edit Line
+  > Add Technician, Edit labor > Technician) stops at about 100 names, the Q names. So the screen very likely uses page 1 only. That
+  is useful to the developer on SV-11393 (the 100-name list ticket). It is an inference from the paging, not a code read.
+- To prove "X is never offered" in a capped list, read the FULL source list (every page) with positive controls (our own names, Z
+  names present) and the other company's ids. The capped screen alone cannot show anyone past Q.
+- Trap in `orgb-fix3.mts` C368175: for New Line, "OrgB" landed in "What Are You Doing?" (the line-name search), so its "No results"
+  is about line names, not technicians. Check the picture before using a typed-search result (L0387). Edit labor's last row is the
+  line's CURRENT technician (shown selected), not the end of the alphabet. #technician-list #paging #rule104 → L0386, L0388
