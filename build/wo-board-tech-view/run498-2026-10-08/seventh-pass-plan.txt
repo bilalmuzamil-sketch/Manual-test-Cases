@@ -16,4 +16,8 @@ ps-counts.mts | C368217 |
 imp-fix3.mts | C368238,C368239 | 
 editwo-fix.mts | C368169 | 
 c368191-read.mts | C368191 | 
+# 15 Oct 07:40 UTC: the machine restarted twice (about 07:21 and 07:35), both times while staledrop-stg4 (C97012) was running
+# in the sixth pass; it was skipped there (logs6/staledrop-stg4.done = skipped, not passed) and runs here, last before the
+# sign-out, with memwatch.sh guarding memory.
+staledrop-stg4.mts | C97012 | 
 signout-fix.mts | C368240 | 

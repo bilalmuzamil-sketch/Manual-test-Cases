@@ -660,3 +660,21 @@ shorten the check-in interval instead. #unattended #watcher #checkin → L0355
 - **A sort check needs different values in every column:** three rows with the same Service Advisor cannot show an order; give each row its own value. Match a header by its START (other icons can follow the name) and record the header texts seen.
 - **A popular first customer hides the A-Z order on a phone:** the first 40 cards were all "4 Star Truck Repair"; scroll until several customers have passed before judging the order.
 - **Lead pick lists that stop at the D names:** when the Expected quotes the name (C368169 "Ralph Edwards"), no stand-in is allowed — type into the field's own input and wait at the bottom for more names to load (`pickLazy` in editwo-fix.mts).
+
+## L0367 — 2026-10-15 — Two machine restarts during the same script: skip it, guard memory, resume — and write down how to resume
+The machine running the passes restarted at about 07:21 and again at 07:35 UTC (`uptime` showed "up 0–3 min"). Both times
+`staledrop-stg4.mts` (C97012) was running, and its log was empty. Every process died with it: the pass runner, the next-pass
+waiter and the sign-in relay. **Recovery that worked, in this order:**
+1. Restart the relay (L0355). The proxy port changes on every restart.
+2. Delete `logsN/role-viewonly-stg4.done` and `clocks-stg4.done` so the start-of-pass resets run again. The sign-in check
+   always runs.
+3. Start `resume-sixth.sh`. It runs `run-sixth.sh`, which skips scripts with `.done`, and then writes the
+   "sixth pass finished" line that the next waiter needs.
+4. Restart `stg-after7.sh`.
+
+**When the same script is running at two restarts, do not run it a third time in place.** Mark it skipped in the current pass:
+- touch its `.done` file, and note in `run.out` that it was skipped, not passed;
+- move it to the end of the next pass, just before the sign-out;
+- start `memwatch.sh`, which kills the test browsers if free memory falls under 2.5 GB, so a runaway script fails alone.
+
+On an unattended night, check `uptime` first at every check-in. A restart gives no notice. #restart #unattended #memory → L0355, L0365
