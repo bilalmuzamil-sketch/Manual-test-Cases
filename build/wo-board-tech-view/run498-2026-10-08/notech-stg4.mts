@@ -82,13 +82,19 @@ if (want('C368130')) {
       o.enrolRunner = (await a.post('/api/staff/enrollment/create', { staffId: RUN.staffId, workplaceId: w.id, departmentId: dep?.id })).status; }
     await a.post('/api/iam/change-location', { workplace_id: w.id, workplace_timezone: w.timezone ?? 'Asia/Karachi' });
     const st = await p.context().storageState();
-    const ctx = await browser.newContext({ storageState: { cookies: st.cookies, origins: [] }, viewport: { width: 1600, height: 1000 }, deviceScaleFactor: Number(process.env.WOB_SCALE || 1), ignoreHTTPSErrors: true });
+    // 15 Oct 2026 (wave 16, fifth pass): with cookies only the clean window landed on /login ("/login?redirect=/workorders?tab=all",
+    // top bar null) — the app's sign-in lives in page storage too (token / user). Carry the full storage state (as c368239-step4,
+    // imp-fix4 and orgb-fix do); the new window has NO init script, so the on-screen location switch below is not undone (the reason the
+    // clean window exists). The stored user may still name Heavy Duty at first; switchLocUI then changes it on screen.
+    o.cleanState = { cookies: st.cookies.length, origins: st.origins.length, keys: st.origins.flatMap((x: any) => (x.localStorage ?? []).map((y: any) => y.name)).slice(0, 12) };
+    const ctx = await browser.newContext({ storageState: st, viewport: { width: 1600, height: 1000 }, deviceScaleFactor: Number(process.env.WOB_SCALE || 1), ignoreHTTPSErrors: true });
     await ctx.route((u) => /maps\.googleapis|intercom|sentry\.io|mercure\.qa|googletagmanager|google-analytics|hotjar|fullstory/i.test(u.toString()), (r) => r.abort()).catch(() => {});
     const pg = await ctx.newPage(); pg.setDefaultTimeout(30_000);
     try {
       await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(7000);
       const hdr = () => pg.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => null);
       o.cleanWindowUrl = pg.url().replace(APP, ''); o.headerOnOpen = await hdr();
+      if (/\/login/.test(pg.url())) throw new Error(`the clean window opened the sign-in page (${o.cleanWindowUrl}) — not signed in, nothing read`);
       if (!(o.headerOnOpen ?? '').includes(LOC)) {
         await pg.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await pg.waitForTimeout(1200);
         await pg.locator('[data-test-id="select_location"]').click().catch(() => {}); await pg.waitForTimeout(1500);
