@@ -1,0 +1,154 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "note": "batch 6 = wave 9 (third pass) passes"
+ },
+ "results": {
+  "C368197": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST List Paging with 35 work orders; Work Orders, All tab, searched by the customer name.",
+    "This List has no rows-per-page choice: it shows 30 rows, and scrolling to the bottom loads the next ones (here the remaining 5).",
+    "The two loads together listed all 35 work orders exactly once: no number appeared twice and none was missing (the total row reads $1,827.00 = 35 \u00d7 $52.20).",
+    "Note for the case text: step 2 (pick the smallest rows-per-page choice) cannot be followed on this List; the second page is reached by scrolling."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368197-1-scrolled-to-end.png"
+   ],
+   "note": "wave9"
+  },
+  "C97023": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Analytics, judged by the events the browser sent (fresh session).",
+    "Opening Work Orders sent exactly 1 display view: List, All tab.",
+    "Tech View and then Board View each sent 1 more (running total 3); the Estimates tab and then the All tab each sent 1 more (running total 5).",
+    "Loading more cards, searching, filtering and narrowing then widening the window sent no new display view.",
+    "Total: 5 display views. The page worked as usual throughout."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97023-1-analytics-events.png"
+   ],
+   "note": "wave9"
+  },
+  "C97024": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Analytics, judged by the events the browser sent (fresh session, VIN/serial saved on beforehand).",
+    "Board View sent 13 field-load events, one per optional field; VIN/serial was on with source saved and every other field had source default. It also sent 1 density-load event.",
+    "Tech View sent 15 field-load events and 1 density-load event.",
+    "Board View, List and Board View again sent no new field or density events.",
+    "Total field-load events in the session: 13 + 15 = 28."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97024-1-analytics-events.png"
+   ],
+   "note": "wave9"
+  },
+  "C97025": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Analytics, judged by the events the browser sent, waiting for each batch to be sent before counting.",
+    "Turning Service advisor on and Customer off sent 2 field-change events: service_advisor on and company_name off.",
+    "Picking Compact sent 1 density-change event naming compact.",
+    "Picking Compact again and closing Fields to display without a change sent no new events.",
+    "Failed save: not checked by hand."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97025-1-analytics-events.png"
+   ],
+   "note": "wave9"
+  },
+  "C97027": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Analytics: search \"ZZAUTOTEST Bravo\", Tech View, Board View, VIN/serial turned on and density changed; all 35 Work Orders events of the session read.",
+    "Every parameter holds only a field or setting name and its value (for example board_view, tech_view, vin, total_price, on, off, regular, comfortable, default, saved).",
+    "No event contains the customer name, a technician name, a work order number, a VIN, the search text or a dollar amount (every value of every event was checked against that list)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97027-1-analytics-events.png"
+   ],
+   "note": "wave9"
+  },
+  "C97035": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Analytics, one session, judged by the events the browser sent after the last batch was sent.",
+    "Display views 5, field loads 28 (13 + 15), density loads 2, field changes 3 (service advisor, line count, created date, changed quickly one after another), density change 1.",
+    "Loading more cards added nothing.",
+    "Grand total 39 events, exactly as the rules give."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97035-1-analytics-events.png"
+   ],
+   "note": "wave9"
+  },
+  "C368153": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "See Financial Data was off for the test user's role.",
+    "Board View sent 12 field-load events (13 - 1) and none for total price.",
+    "Tech View sent 14 field-load events (15 - 1) and none for total price.",
+    "Fields to display does not offer Total price, and no card shows a dollar amount.",
+    "Total for this user: 12 + 14 = 26."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368153-1-no-total-price-offered.png"
+   ],
+   "note": "wave9"
+  },
+  "C368155": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Board View opened, then a card was clicked to open the work order, and Back.",
+    "The Work Orders display-view events and the existing work order view event carry the same ShopView user ID (the same one the page views carry).",
+    "No new user or customer identifier appears on the Work Orders events (they carry no extra user properties)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368155-1-analytics-events.png"
+   ],
+   "note": "wave9"
+  },
+  "C96946": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Card Click; Board View, searched by the customer name.",
+    "Clicking the customer name on the card opened the work order (its Lines page), and after Back, clicking an empty part of the card opened the same work order.",
+    "Clicking the card's more-actions button opened its menu (\"Reassign lead technician\") and did not open the work order."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96946-1-more-actions-menu.png"
+   ],
+   "note": "wave9"
+  }
+ }
+}

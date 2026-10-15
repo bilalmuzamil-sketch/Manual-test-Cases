@@ -1,0 +1,166 @@
+{
+ "results": {
+  "C368197": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST List Paging with 35 work orders; Work Orders, All tab, searched by the customer name.",
+    "This List has no rows-per-page choice: it shows 30 rows, and scrolling to the bottom loads the next ones (here the remaining 5).",
+    "The two loads together listed all 35 work orders exactly once: no number appeared twice and none was missing (the total row reads $1,827.00 = 35 \u00d7 $52.20).",
+    "Note for the case text: step 2 (pick the smallest rows-per-page choice) cannot be followed on this List; the second page is reached by scrolling."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368197-scrolled.png",
+    "evidence/staging-full-2026-10-14/C368197-end.png"
+   ]
+  },
+  "C97023": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Analytics, judged by the events the browser sent (fresh session).",
+    "Opening Work Orders sent exactly 1 display view: List, All tab.",
+    "Tech View and then Board View each sent 1 more (running total 3); the Estimates tab and then the All tab each sent 1 more (running total 5).",
+    "Loading more cards, searching, filtering and narrowing then widening the window sent no new display view.",
+    "Total: 5 display views. The page worked as usual throughout."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C97023-end.png"
+   ]
+  },
+  "C97024": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Analytics, judged by the events the browser sent (fresh session, VIN/serial saved on beforehand).",
+    "Board View sent 13 field-load events, one per optional field; VIN/serial was on with source saved and every other field had source default. It also sent 1 density-load event.",
+    "Tech View sent 15 field-load events and 1 density-load event.",
+    "Board View, List and Board View again sent no new field or density events.",
+    "Total field-load events in the session: 13 + 15 = 28."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C97024-end.png"
+   ]
+  },
+  "C97025": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Analytics, judged by the events the browser sent, waiting for each batch to be sent before counting.",
+    "Turning Service advisor on and Customer off sent 2 field-change events: service_advisor on and company_name off.",
+    "Picking Compact sent 1 density-change event naming compact.",
+    "Picking Compact again and closing Fields to display without a change sent no new events.",
+    "Failed save: not checked by hand."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C97025-end.png"
+   ]
+  },
+  "C97027": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Analytics: search \"ZZAUTOTEST Bravo\", Tech View, Board View, VIN/serial turned on and density changed; all 35 Work Orders events of the session read.",
+    "Every parameter holds only a field or setting name and its value (for example board_view, tech_view, vin, total_price, on, off, regular, comfortable, default, saved).",
+    "No event contains the customer name, a technician name, a work order number, a VIN, the search text or a dollar amount (every value of every event was checked against that list)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C97027-end.png"
+   ]
+  },
+  "C97035": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Analytics, one session, judged by the events the browser sent after the last batch was sent.",
+    "Display views 5, field loads 28 (13 + 15), density loads 2, field changes 3 (service advisor, line count, created date, changed quickly one after another), density change 1.",
+    "Loading more cards added nothing.",
+    "Grand total 39 events, exactly as the rules give."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C97035-end.png"
+   ]
+  },
+  "C368153": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "See Financial Data was off for the test user's role.",
+    "Board View sent 12 field-load events (13 - 1) and none for total price.",
+    "Tech View sent 14 field-load events (15 - 1) and none for total price.",
+    "Fields to display does not offer Total price, and no card shows a dollar amount.",
+    "Total for this user: 12 + 14 = 26."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368153-board.png"
+   ]
+  },
+  "C368155": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Board View opened, then a card was clicked to open the work order, and Back.",
+    "The Work Orders display-view events and the existing work order view event carry the same ShopView user ID (the same one the page views carry).",
+    "No new user or customer identifier appears on the Work Orders events (they carry no extra user properties)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368155-end.png"
+   ]
+  },
+  "C96946": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Card Click; Board View, searched by the customer name.",
+    "Clicking the customer name on the card opened the work order (its Lines page), and after Back, clicking an empty part of the card opened the same work order.",
+    "Clicking the card's more-actions button opened its menu (\"Reassign lead technician\") and did not open the work order."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96946-end.png"
+   ]
+  },
+  "C96955": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Shared Density; Board View.",
+    "Board View's Density control offers Compact, Regular and Comfortable (Regular selected at the start).",
+    "After choosing Compact in Board View, Tech View's Density menu showed Compact selected.",
+    "After choosing Comfortable in Tech View, Board View's Density menu showed Comfortable selected: one setting shared by both displays. It was set back to Regular afterwards."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96955-end.png"
+   ]
+  }
+ },
+ "redo": {
+  "C368238": "Not a fair reading: the test work order was already listed for you under Assigned to me before the switch (you are its Service Advisor), so seeing it afterwards proves nothing, and the account switch was not made while the report was still loading (no report request had started). No error appeared and the top bar did read Esther Howard. Re-run with a work order where you are neither lead nor advisor, starting the switch while Work In Progress is loading.",
+  "C368239": "The script stopped before any check (the Reports link was not found).",
+  "C368169": "The lead was never changed: the script did not pick Ralph Edwards (the work order still reads Esther Howard). Mileage did save (120500) with no error. Also the mileage started empty, not 120,000.",
+  "C97029": "Every point held except one: the dispatcher had no saved density, so the density event read source default and \"density shows source saved\" could not be judged. Save a density for the dispatcher first. (Everything else matched: first use default view and 13 default fields; restored saved display; 2 views for the two switches; 1 VIN/serial change; 12 field events and none for total price without financial data.)",
+  "C96969": "This picture re-run recorded only the first line's technicians (the record was cut short), so whether Line 2 still reads Unassigned was not read again. No message appeared, the lead stayed Esther Howard and the history gained no entry. The earlier run passed on every point; re-run recording Line 2.",
+  "C368163": "This picture re-run held for Board View again (work order named in the dialog, Esther Howard marked current, \"Ral\" narrowing, \"No technicians match\" messages, list back after clearing, Cancel changed nothing, empty search box on reopening), but it stopped in Tech View (the row was not found), so the Tech View repeat was not read this time. The earlier run passed on every point."
+ },
+ "failed": {},
+ "doubt": {}
+}

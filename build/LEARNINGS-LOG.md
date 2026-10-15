@@ -474,3 +474,10 @@ which lines a shift covers. (2) **Account access (`/impersonate-user/<user id>`)
 lookup ran as the technician and found nothing. Press Exit, then read the banner back. (3) The technician's own
 `POST /api/iam/change-name` (made in account access) DOES make the account name differ from the staff record name — the banner
 showed "ZZAUTOTEST Account Ana" while the staff record stayed "ZZAUTOTEST Staffname Ana". #shifts #impersonation #names → L0339, Rule 104
+
+## L0347 — 2026-10-15 — An analytics test's evidence picture is a rendering of the captured events, not a screenshot
+Rule 130 wants a picture on every Passed/Failed, but an analytics test's result (what the browser sends to Google Analytics)
+never appears on any screen, so its end-of-test screenshot proves nothing. `run498-2026-10-08/ga_readout_png.py
+<analytics-batch.json> <C-id> <out.png> "<plain title>"` renders that test's captured events (per step, with counts) under a
+banner that says plainly what it is: "What the browser sent to Google Analytics during this test (captured from the browser
+on staging, <date>)". Used for C97023, C97024, C97025, C97027, C97035, C368155 (posted 15 Oct). #analytics #evidence → Rule 130, L0339
