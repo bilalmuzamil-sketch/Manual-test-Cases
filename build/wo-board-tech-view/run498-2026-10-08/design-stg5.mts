@@ -239,10 +239,21 @@ async function findCard(pg: Page, wo: string, col: string, q: string) {
   return { found: (await pg.locator(`[data-test-id="board_card_${wo}"]`).count()) > 0, usedSearch };
 }
 /** a Tech View row on screen (findRow scrolls the table); Search by the customer only if it cannot be reached */
+/** 15 Oct 2026 (sixth pass, wave-design redo): Unassigned OPENS EXPANDED (PRD S2-R18) and on staging holds ~3,450 work orders, so the
+ *  pinned technicians' groups sit below thousands of rows: rows were "found" but read far below the window (C590114 y=1731), or not drawn
+ *  at all (C590122/C590123/C590128/C590129). collapseUn() closes Unassigned (only when the row/group needed is NOT in Unassigned; the
+ *  reading says so); centre() scrolls every scrollable box around an element until it is in the middle of the window. */
+async function collapseUn(pg: Page) { if (await pg.locator('[data-test-id="tech_view_group_unassigned"][data-collapsed="false"]').count()) { await pg.locator('[data-test-id="button_tech_view_group_toggle_unassigned"]').click().catch(() => {}); await W(1800, pg); return 'Unassigned collapsed by the script'; } return 'Unassigned already collapsed'; }
+async function centre(pg: Page, sel: string) { await pg.evaluate(`(() => { const e = document.querySelector(${JSON.stringify(sel)}); if (!e) return; e.scrollIntoView({ block: 'center' });
+    for (let a = e.parentElement; a && a !== document.documentElement; a = a.parentElement) { const s = getComputedStyle(a); if (a.scrollHeight > a.clientHeight + 4 && /auto|scroll/.test(s.overflowY)) { const ar = a.getBoundingClientRect(), er = e.getBoundingClientRect(); a.scrollTop += (er.top - ar.top) - ar.height / 2 + er.height / 2; } }
+    const er2 = e.getBoundingClientRect(); if (er2.top < 0 || er2.bottom > innerHeight) window.scrollBy(0, er2.top - innerHeight / 2); })()`).catch(() => {}); await W(900, pg); }
 async function rowOn(pg: Page, wo: string, q: string, group?: string) {
+  const un = group === 'unassigned' ? 'row is in Unassigned: left open' : await collapseUn(pg);
   let g = await findRow(pg, wo, group).catch(() => null); let usedSearch = false;
-  if (!(await pg.locator(`[data-test-id="tech_view_row_${wo}"]`).count())) { await search(pg, q); usedSearch = true; g = await findRow(pg, wo, group).catch(() => null); }
-  return { group: g, found: (await pg.locator(`[data-test-id="tech_view_row_${wo}"]`).count()) > 0, usedSearch };
+  if (!(await pg.locator(`[data-test-id="tech_view_row_${wo}"]`).count())) { await search(pg, q); usedSearch = true; if (group !== 'unassigned') await collapseUn(pg); g = await findRow(pg, wo, group).catch(() => null); }
+  await centre(pg, `[data-test-id="tech_view_row_${wo}"]`);
+  const b = await pg.locator(`[data-test-id="tech_view_row_${wo}"]`).first().boundingBox().catch(() => null); const vh = pg.viewportSize()?.height ?? 900;
+  return { group: g, found: (await pg.locator(`[data-test-id="tech_view_row_${wo}"]`).count()) > 0, onScreen: !!b && b.y >= 0 && b.y + b.height <= vh, rowTop: b ? Math.round(b.y) : null, usedSearch, unassigned: un };
 }
 /** press, move in steps, HOLD (read + picture while the mouse is down), release */
 async function dragHold(pg: Page, from: { x: number; y: number }, to: { x: number; y: number }, name: string) {
@@ -421,13 +432,21 @@ await run('C590114', async (o) => { // Tech View cells
   // Technician-B clocked in to Line-1 (as B), stopped again at the end of this case
   const tk = ((await linesRaw(w1.id)).find((l: any) => l.line_id === w1.line)?.tasks ?? []).find((x: any) => x.tech_assigned_id === B.staff)?.id;
   o.clockIn = tk ? await asTech(B.id, async () => (await a.post('/api/technician-tasks/check-in', { task_id: tk, line_id: w1.line, work_order_id: w1.id, refresh_lines: true })).status) : 'no task for Technician-B on Line-1';
+  // 15 Oct 2026 (redo): the line held no task for Technician-B after the line technician was set behind the screen ("no task"), so B was
+  // never clocked in. Fall back to the screen: in B's own window, the work order's Lines tab, press the line's Start (clock toggle) and
+  // read B's running clock back. Stopped again in the finally below.
+  if (!tk) { const v = await viewAs(browser, p, a, B.id, RUN.me?.id ?? '', RUN.toRunner); try { const pg = v.page; await pg.goto(`${APP}/workorders/${w1.id}/lines`, { waitUntil: 'domcontentloaded' }).catch(() => {}); await W(7000, pg);
+      const st = pg.locator('[data-test-id^="button_clock_toggle_task_"]').first(); o.startButtons = await pg.locator('[data-test-id^="button_clock_toggle_task_"]').count();
+      if (o.startButtons) { await st.click().catch(() => {}); await W(2500, pg); const dlgS = pg.locator('.q-dialog').last(); if (await dlgS.isVisible().catch(() => false)) { o.startDialog = (await dlgS.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 200); await dlgS.locator('textarea, input[type=text]').first().fill('ZZAUTOTEST').catch(() => {}); await dlgS.locator('button').filter({ hasText: /Start|Clock In|Confirm|Save/i }).last().click().catch(() => {}); await W(2500, pg); } }
+      o.clockInScreen = ((await api(pg).get('/api/technician-tasks/my-current-task')).body?.data?.technician_task?.label) ?? 'no clock running'; await pg.screenshot({ path: path.join(EV, 'C590114-techB-started.png') }).catch(() => {});
+    } finally { await v.close(); } if (o.clockInScreen && o.clockInScreen !== 'no clock running') clocks.push({ userId: B.id, who: B.name }); }
   if (tk) clocks.push({ userId: B.id, who: B.name });
   try {
     o.prep = await prep([A.staff, B.staff], 'Tech View'); o.find1 = await rowOn(p, w1.id, c.name, A.staff);
     o.s2_row = await D(p, `__D.row(${J(w1.id)})`);
     const cl = (lab: string) => `__D.cell(${J(w1.id)}, ${J(lab)})`;
     o.s2_number = { parts: await D(p, `__D.parts(${cl('Number')}, 8)`), link: await D(p, `__D.desc(__D.q('a', ${cl('Number')}))`) };
-    o.s2_progress = { bars: await D(p, `__D.bars(${cl('Progress')})`), parts: await D(p, `__D.parts(${cl('Progress')}, 6)`) };
+    o.s2_progress = { bars: await D(p, `__D.bars(${cl('Progress')})`), parts: await D(p, `__D.parts(${cl('Progress')}, 6)`), picture: await clip(p, 'C590114-s2-progress-cell', await D(p, `__D.box(${cl('Progress')})`), 24) };
     o.s2_advisor = await D(p, `__D.avs(${cl('Service Advisor')})`); o.s2_assigned = await D(p, `__D.avs(${cl('Assigned Techs')})`);
     o.s2_waiting = await D(p, `__D.parts(${cl('Waiting On Parts')}, 4)`); o.s2_total = { cell: await D(p, `__D.desc(${cl('Total price')}, true)`), parts: await D(p, `__D.parts(${cl('Total price')}, 4)`), header: await D(p, `(function () { var h = __D.heads(); var c = h && h.cells.filter(function (x) { return x.label === 'Total price'; })[0]; return c || null; })()`) };
     o.s2_clockedIn = { parts: await D(p, `__D.parts(${cl('Clocked In')}, 8)`), avatars: await D(p, `__D.avs(${cl('Clocked In')})`) };
@@ -446,7 +465,7 @@ await run('C590114', async (o) => { // Tech View cells
     o.s6_pic = await clip(p, 'C590114-s6-list-row', await D(p, `__D.box(__D.rowEl(${J(w1.number)}))`), 6); await pic(p, 'C590114-s6-list');
     await search(p, '');
   } finally {
-    if (tk) { o.clockOut = await asTech(B.id, async () => { const cur = (await a.get('/api/technician-tasks/my-current-task')).body?.data; return cur?.technician_task?.id ? (await a.post('/api/technician-tasks/check-out', { task_id: cur.technician_task.id })).status : 'no running clock'; }); clocks.splice(clocks.findIndex((x) => x.userId === B.id), 1); }
+    if (tk || (o.clockInScreen && o.clockInScreen !== 'no clock running')) { o.clockOut = await asTech(B.id, async () => { const cur = (await a.get('/api/technician-tasks/my-current-task')).body?.data; return cur?.technician_task?.id ? (await a.post('/api/technician-tasks/check-out', { task_id: cur.technician_task.id })).status : 'no running clock'; }); clocks.splice(clocks.findIndex((x) => x.userId === B.id), 1); }
   }
 });
 
@@ -562,13 +581,28 @@ await run('C590119', async (o) => { // Board View column header pieces and pins
 await run('C590120', async (o) => { // Board View card layout and text sizes at each density
   const A = await tech('DC11', 'Pia Card'), B = await tech('DC11', 'Quinn Card'); const c = await cust('ZZAUTOTEST DC11 Board Card', 'TRK-118');
   const w1 = await mkWO(c, { lead: A.staff, line: true, lineTech: B.staff }), w2 = await mkWO(c, { status: 'invoiced', lead: A.staff }); o.wo1 = brief(w1); o.wo2 = brief(w2);
+  // 15 Oct 2026 (redo): the asset had a unit only (no year / make / model), so the "unit · asset" line could not be judged. The work orders
+  // are made first, THEN the asset is reshaped (playbook §C: create ignores make/model; a work order cannot be made on a reshaped asset):
+  // POST /api/vehicles/change with year 2022 and the make/model ids borrowed from an existing Freightliner M2 (else any vehicle that has
+  // both); the asset is read back. If the card still does not show them, the reading says so.
+  { const nm = (x: any) => typeof x === 'string' ? x : x?.name ?? ''; let mm: any = null;
+    for (const q of ['M2', 'Freightliner', '']) { for (let pgN = 1; pgN <= (q ? 2 : 4) && !mm; pgN++) { const r = await a.get(`/api/vehicles?pagination[rowsPerPage]=200&pagination[page]=${pgN}${q ? '&search=' + encodeURIComponent(q) : ''}`); const rows: any[] = r.body?.data?.collection ?? r.body?.data?.vehicles ?? r.body?.data ?? []; if (!Array.isArray(rows) || !rows.length) break;
+        const hit = rows.find((v) => /freightliner/i.test(nm(v.vehicle_make)) && /^m2/i.test(nm(v.vehicle_model)) && v.vehicle_maker_id && v.vehicle_model_id) ?? (q === '' ? rows.find((v) => v.vehicle_maker_id && v.vehicle_model_id) : null);
+        if (hit) mm = { maker: hit.vehicle_maker_id, model: hit.vehicle_model_id, from: `${nm(hit.vehicle_make)} ${nm(hit.vehicle_model)}` }; } if (mm) break; }
+    o.assetShape = { borrowed: mm?.from ?? 'no vehicle with a make and model found', save: say(await a.post('/api/vehicles/change', { vehicle_id: c.vehicle_id, company_id: c.company_id, customer_id: c.contact_id, unit: 'TRK-118', year: 2022, vehicle_maker_id: mm?.maker ?? null, vehicle_model_id: mm?.model ?? null })) };
+    const vv = ((await a.get(`/api/vehicles?pagination[rowsPerPage]=50&search=${encodeURIComponent('TRK-118')}`)).body?.data?.collection ?? []).find((v: any) => v.id === c.vehicle_id || v.vehicle_id === c.vehicle_id);
+    o.assetReadBack = vv ? `${vv.unit ?? ''} · ${vv.year ?? ''} ${nm(vv.vehicle_make)} ${nm(vv.vehicle_model)}`.trim() : 'not found in the vehicle list by unit'; }
   o.prep = await prep([A.staff], 'Board View'); o.fields = await lineTechsOn();
   await toColumn(p, A.staff);
   const cardPic = async (id: string, name: string) => clip(p, name, await D(p, `__D.box(__D.q('[data-test-id="board_card_${id}"]'))`), 12);
-  o.s2_s3_regular = { card: await D(p, `__D.card(${J(w1.id)})`), picture: await cardPic(w1.id, 'C590120-s2-card-regular') }; await pic(p, 'C590120-s2-board');
+  /** the case's four texts, measured one by one: number, customer name, the unit · asset line, total price (size / weight / colour / box) */
+  const sizes = async () => D(p, `(function () { var c = __D.q('[data-test-id="board_card_${w1.id}"]'); if (!c) return null; var pick = function (sel) { var e = c.querySelector(sel); if (!e) return null; var s = getComputedStyle(e); return { text: e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 60), fontSize: s.fontSize, fontWeight: s.fontWeight, color: s.color, box: __D.box(e) }; };
+      var leaf = function (re) { var all = __D.parts(c, 60).filter(function (x) { return x.kind === 'text' && re.test(x.text); }); return all[0] || null; };
+      return { number: pick('[data-test-id="board_card_number"]'), customerName: leaf(/^ZZAUTOTEST DC11 Board Card/), unitAssetLine: pick('[data-test-id="board_card_unit"]') || leaf(/TRK-118/), totalPrice: leaf(/^\\$[0-9]/), cardPadding: getComputedStyle(c).padding, cardHeight: __D.box(c).h, fieldsShown: __D.qa('[data-test-id^="board_card_field_"]', c).map(function (e) { return e.getAttribute('data-test-id').replace('board_card_field_', ''); }) }; })()`);
+  o.s2_s3_regular = { card: await D(p, `__D.card(${J(w1.id)})`), sizes: await sizes(), picture: await cardPic(w1.id, 'C590120-s2-card-regular') }; await pic(p, 'C590120-s2-board');
   o.s4_wo2 = { number: await D(p, `(function () { var c = __D.q('[data-test-id="board_card_${w2.id}"]'); var n = c && c.querySelector('[data-test-id="board_card_number"]'); return n ? { number: __D.desc(n), rowParts: __D.parts(n.parentElement, 8) } : null; })()`), picture: await cardPic(w2.id, 'C590120-s4-wo2-card') };
-  for (const d of ['compact', 'comfortable'] as const) { o[`s${d === 'compact' ? 5 : 6}_${d}`] = { menu: await density(p, d), card: await D(p, `__D.card(${J(w1.id)})`), picture: await cardPic(w1.id, `C590120-${d}-card`) }; }
-  await density(p, 'regular');
+  for (const d of ['compact', 'comfortable'] as const) { o[`s${d === 'compact' ? 5 : 6}_${d}`] = { menu: await density(p, d), card: await D(p, `__D.card(${J(w1.id)})`), sizes: await sizes(), picture: await cardPic(w1.id, `C590120-${d}-card`) }; }
+  await density(p, 'regular'); o.backAtRegular = await sizes();
 });
 
 await run('C590121', async (o) => { // More actions button and menu
@@ -601,6 +635,10 @@ await run('C590121', async (o) => { // More actions button and menu
 await run('C590122', async (o) => { // empty group, empty column, no-results pages
   const A = await tech('DC13', 'Sam Idle'); o.techLeads = (await workOrders(a, 'ZZAUTOTEST DC13 Sam')).length;
   o.prep = await prep([A.staff], 'Tech View');
+  // 15 Oct 2026 (redo): Sam's empty group was not drawn — it sits after the ~3,450 rows of the open Unassigned group. Close Unassigned, then
+  // bring Sam's group header (pinned, so right after Unassigned) to the middle of the window; whether he is offered as a technician is read
+  o.unassigned = await collapseUn(p); o.samOffered = ((await a.get('/api/work-orders/lead-technician-candidates')).body?.data?.technicians ?? []).some((x: any) => x.staffId === A.staff);
+  await centre(p, `[data-test-id="tech_view_group_${A.staff}"]`); o.samGroupDrawn = await p.locator(`[data-test-id="tech_view_group_${A.staff}"]`).count();
   o.s2_group = { hdr: await D(p, `__D.groupHdr(${J(A.staff)})`), empty: await D(p, `(function () { var e = __D.q('[data-test-id="tech_view_group_empty_${A.staff}"]'); if (!e) return null; var t = e.closest('table') || document.body; var tb = t.getBoundingClientRect(), eb = e.getBoundingClientRect(); var tx = __D.parts(e, 6).filter(function (x) { return x.kind === 'text'; })[0]; return { d: __D.desc(e, true), parts: __D.parts(e, 6), tableMid: Math.round(tb.left + tb.width / 2), emptyMid: Math.round(eb.left + eb.width / 2), visibleMid: Math.round((Math.max(tb.left, 0) + Math.min(tb.right, innerWidth)) / 2), textMid: tx ? Math.round(tx.box.x + tx.box.w / 2) : null }; })()`) };
   o.s2_pic = await clip(p, 'C590122-s2-empty-group', await D(p, `__D.box(__D.grp(${J(A.staff)}))`), 60);
   await display(p, 'Board View'); await toColumn(p, A.staff); await away();
@@ -640,7 +678,7 @@ await run('C590123', async (o) => { // drop line, refused drop message, reorder 
     else o.s4_during = `WO-4 card ${!!f2} (both columns not on screen together?), column ${!!tgt}`; }
   await display(p, 'Tech View'); await away();
   const order = async () => (await groups(p)).filter((g) => [A.staff, B.staff].includes(g.id)).map((g) => `${g.name}: ${g.rows.map((n) => ({ [w1.number]: 'WO-1', [w2.number]: 'WO-2', [w3.number]: 'WO-3', [w4.number]: 'WO-4' } as any)[n] ?? n).join(',')}`);
-  o.s6_order = await order(); await findRow(p, w1.id, A.staff).catch(() => {});
+  o.s6_find = await rowOn(p, w1.id, c.name, A.staff); o.s6_order = await order();   // 15 Oct 2026 (redo): Unassigned closed first, row centred
   { const r1 = await D(p, `__D.box(__D.rowEl(${J(w1.id)}))`), r2 = await D(p, `__D.box(__D.rowEl(${J(w2.id)}))`);
     if (r1 && r2) { o.s7_during = await dragHold(p, { x: r1.x + r1.w * 0.45, y: r1.y + r1.h / 2 }, { x: r1.x + r1.w * 0.45, y: r2.b + 4 }, 'C590123-s7-row-reorder'); await shiftPrompt(p, 'Keep shifts'); o.s8_order = await order(); await pic(p, 'C590123-s8-after'); } else o.s7_during = `rows ${!!r1}/${!!r2}`; }
   { const g = await D(p, `__D.box(__D.q('[data-test-id="tech_view_group_drag_handle_${A.staff}"]'))`);
@@ -727,8 +765,9 @@ await run('C590127', async (o) => { // Technician filter after Assigned to me
 await run('C590128', async (o) => { // density sizes in Tech View
   const A = await tech('DC19', 'Zoe Density'), B = await tech('DC19', 'Abe Density'); const c = await cust('ZZAUTOTEST DC19 Density Sizes');
   const w1 = await mkWO(c, { lead: A.staff, line: true, lineTech: B.staff }); o.wo1 = brief(w1);
-  o.prep = await prep([A.staff, B.staff], 'Tech View'); await rowOn(p, w1.id, c.name, A.staff);
-  const read = async (d: string) => ({ menu: await density(p, d as any), row: await D(p, `__D.row(${J(w1.id)})`), groupHeader: await D(p, `(function () { var h = __D.groupHdr(${J(A.staff)}); return h ? { h: h.box.h, avatars: h.avatars, name: h.name && h.name.st } : null; })()`),
+  o.prep = await prep([A.staff, B.staff], 'Tech View'); o.find = await rowOn(p, w1.id, c.name, A.staff);
+  // 15 Oct 2026 (redo): a density change redraws the table, so the row is centred again after each one before it is read
+  const read = async (d: string) => ({ menu: await density(p, d as any), centred: await centre(p, `[data-test-id="tech_view_row_${w1.id}"]`), row: await D(p, `__D.row(${J(w1.id)})`), groupHeader: await D(p, `(function () { var h = __D.groupHdr(${J(A.staff)}); return h ? { h: h.box.h, avatars: h.avatars, name: h.name && h.name.st } : null; })()`),
     assigned: await D(p, `__D.avs(__D.cell(${J(w1.id)}, 'Assigned Techs'))`), advisor: await D(p, `__D.avs(__D.cell(${J(w1.id)}, 'Service Advisor'))`), progress: await D(p, `__D.bars(__D.cell(${J(w1.id)}, 'Progress'))`),
     rowText: await D(p, `__D.parts(__D.rowEl(${J(w1.id)}), 30).filter(function (x) { return x.kind === 'text'; }).map(function (x) { return x.text + ' ' + x.fontSize + '/' + x.fontWeight; })`), picture: await pic(p, `C590128-${d}`) });
   o.s3_compact = await read('compact'); o.s5_regular = await read('regular'); o.s7_comfortable = await read('comfortable');
@@ -740,7 +779,7 @@ await run('C590128', async (o) => { // density sizes in Tech View
 await run('C590129', async (o) => { // Reassign lead technician dialog look
   const A = await tech('DC20', 'Bea Dialog', true), B = await tech('DC20', 'Cal Dialog'); o.photoLog = A.log.filter((x) => /photo/.test(x));
   const c = await cust('ZZAUTOTEST DC20 Reassign Dialog'); const w1 = await mkWO(c, { lead: A.staff }); o.wo1 = brief(w1);
-  o.prep = await prep([A.staff, B.staff], 'Tech View'); await rowOn(p, w1.id, c.name, A.staff);
+  o.prep = await prep([A.staff, B.staff], 'Tech View'); o.find = await rowOn(p, w1.id, c.name, A.staff);   // 15 Oct 2026 (redo): Unassigned closed, row centred
   const rsel = `[data-test-id="tech_view_row_${w1.id}"]`; await hoverSel(p, rsel);
   await p.locator(rsel).locator('[data-test-id="button_work_order_more_actions"]').first().click(); await W(900);
   await p.locator('.q-menu .q-item').filter({ hasText: /Reassign lead technician/i }).first().click(); await W(2000);
