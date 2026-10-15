@@ -1,0 +1,9 @@
+# script | cases (ONLY) | extra settings   — 15 Oct 2026 SEVENTH pass on staging, run by stg-after7.sh after "sixth pass finished".
+# The sixth pass read its plan at 06:51 UTC, so the redos judged after that (wave 18 on) run here. signin-check-stg4.mts runs first as the
+# guard (run-seventh.sh stops if it fails); then the view-only role reset and the running-clock clean-up, as in the passes before.
+# SIGN-OUT LAST OF ALL (L0342): evidence/staging-full-2026-10-14/logs6/signout-fix.done was created at 06:59 UTC so the sixth pass
+# skips signout-fix.mts; it runs only here, as the last line. No script appears twice.
+signin-check-stg4.mts | | 
+role-viewonly-stg4.mts | | 
+clocks-stg4.mts | | 
+signout-fix.mts | C368240 | 
