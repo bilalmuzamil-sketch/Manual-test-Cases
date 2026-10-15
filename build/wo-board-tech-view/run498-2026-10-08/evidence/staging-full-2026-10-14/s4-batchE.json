@@ -1,13 +1,13 @@
 {
  "clearedSwitch": 200,
- "C96960": {
-  "wo": "S2-35475",
+ "C96961": {
+  "wo": "S2-35725",
   "clock": {
    "complete4": "200 complete",
    "in5": 201,
    "out5": 201,
    "in6": 201,
-   "running": "{\"technician_task\":{\"id\":\"61f20de1-dd9d-4c15-b82d-4a926cb07879\",\"start_date\":\"2026-10-14 18:56:04\",\"staff_id\":\"b669608e-a897-4f21-a510-8ced9d9fa982\",\"label\":\"S-35475, Service - Perform Champion X Serv"
+   "running": "{\"technician_task\":{\"id\":\"c0fcc5c4-0904-4cb7-8ec5-e6aed98cd26c\",\"start_date\":\"2026-10-15 00:07:51\",\"staff_id\":\"b669608e-a897-4f21-a510-8ced9d9fa982\",\"label\":\"S-35725, Service - Perform Champion X Serv"
   },
   "before": {
    "Line 2 Implicit": "Esther Howard (follows lead)",
@@ -18,41 +18,24 @@
    "Line 1 Unassigned": "Unassigned"
   },
   "message": [
-   "Lead technician updated"
+   "Lead technician removed"
   ],
+  "lead": "none",
+  "inUnassigned": true,
   "after": {
-   "Line 2 Implicit": "Ralph Edwards (follows lead)",
-   "Line 4 Complete": "Esther Howard (follows lead)",
-   "Line 5 Logged": "Esther Howard (follows lead)",
-   "Line 6 Clocked": "Esther Howard (follows lead)",
-   "Line 3 Explicit": "Dana Ortiz",
-   "Line 1 Unassigned": "Ralph Edwards (follows lead)"
-  },
-  "clockStillRunning": "{\"technician_task\":{\"id\":\"61f20de1-dd9d-4c15-b82d-4a926cb07879\",\"start_date\":\"2026-10-14 18:56:04\",\"staff_id\":\"b669608e-a897-4f21-a510-8ced9d9fa982\",\"label\":\"S-35475, Service - Perform Champion X Serv",
-  "stopClock": 201
- },
- "C96961": {
-  "wo": "S2-35476",
-  "clock": {
-   "complete4": "200 complete",
-   "in5": 201,
-   "out5": 201,
-   "in6": 201,
-   "running": "{\"technician_task\":{\"id\":\"60b62ebe-0eea-4560-bf94-cb6cf0793efa\",\"start_date\":\"2026-10-14 18:57:44\",\"staff_id\":\"b669608e-a897-4f21-a510-8ced9d9fa982\",\"label\":\"S-35476, Service - Perform Champion X Serv"
-  },
-  "before": {
-   "Line 2 Implicit": "Esther Howard (follows lead)",
+   "Line 2 Implicit": "Unassigned",
    "Line 4 Complete": "Esther Howard (follows lead)",
    "Line 5 Logged": "Esther Howard (follows lead)",
    "Line 6 Clocked": "Esther Howard (follows lead)",
    "Line 3 Explicit": "Dana Ortiz",
    "Line 1 Unassigned": "Unassigned"
   },
-  "error": "locator.hover: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_card_f607b5e0-4f94-4ace-a0c2-7388f09dc507\"]')\n"
+  "clockStillRunning": "{\"technician_task\":{\"id\":\"c0fcc5c4-0904-4cb7-8ec5-e6aed98cd26c\",\"start_date\":\"2026-10-15 00:07:51\",\"staff_id\":\"b669608e-a897-4f21-a510-8ced9d9fa982\",\"label\":\"S-35725, Service - Perform Champion X Serv",
+  "stopClock": 201
  },
  "C368140complete": "200 complete",
  "C368140": {
-  "wo": "S2-35477",
+  "wo": "S2-35726",
   "before": {
    "Line 1 Unassigned": "Unassigned",
    "Line 2 Explicit": "Dana Ortiz",
@@ -61,6 +44,7 @@
   "message": [
    "Lead technician updated"
   ],
+  "inRalph": true,
   "after": {
    "Line 1 Unassigned": "Ralph Edwards (follows lead)",
    "Line 2 Explicit": "Dana Ortiz",
@@ -68,8 +52,11 @@
   }
  },
  "C96962": {
-  "wo": "S2-35478",
+  "wo": "S2-35727",
   "keys": "id,eventType,eventName,workOrderId,workOrderNumber,userId,userName,workplaceId,lineId,lineName,partId,partRequestId,originalLaborTime,newLaborTime,originalTechTime,newTechTime,originalPartPrice,newPartPrice,originalStatus,newStatus,invoiceNumber,historyDate,historyTime,organizationId,organizationName,splitWorkOrderId,workOrderTotal,customerContacts,snapshotAvailable,originalPartDescription,newPartDescription,originalPartNumber,newPartNumber,originalPartCategory,newPartCategory,originalLaborRate,newLaborRate,originalLaborRateName,newLaborRateName,originalLeadTechId,newLeadTechId,originalLeadTechName,newLeadTechName,originalServiceAdvisorId,newServiceAdvisorId,originalServiceAdvisorName,newServiceAdvisorName,originalVehicleId,newVehicleId,originalVehicleInfo,newVehicleInfo,originalCustomerId,newCustomerId,originalCustomerName,newCustomerName,originalLineTechId,newLineTechId,originalLineTechName,newLineTechName,originalShopSuppliesAmount,newShopSuppliesAmount,originalTaxId,newTaxId,originalTaxName,newTaxName,originalTaxRate,newTaxRate,orderId,orderNumber,deliveryId,inventoryPartId,originalQuantity,newQuantity,returnQuantity,vendorName,historyTimestamp,creditMemoNumber,refundAmount,adjustmentId,adjustmentName,adjustmentKind,adjustmentCalculationType,adjustmentSetRate,adjustmentAppliedTo,adjustmentScope,changeReason,movedFromWorkOrderId,movedFromWorkOrderNumber,movedToWorkOrderId,movedToWorkOrderNumber,movedFromLineName,movedToLineName,movedQuantity,workOrderDisplayNumber,invoiceDisplayNumber,movedFromWorkOrderDisplayNumber,movedToWorkOrderDisplayNumber,inspectionId,inspectionName,inspectionExists,sourceWorkOrderId,sourceWorkOrderNumber,lineCount,sourceWorkOrderExists,splitWorkOrderDisplayNumber,originalSalesRepId,originalSalesRepName,newSalesRepId,newSalesRepName,depositId,depositNumber,depositAmount,depositPaymentMethod,depositDate",
-  "error": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_card_a16314ca-e0a3-4181-bdb4-76684ea14a21\"]').first()\n"
+  "drag": [
+   "Lead tech changed Esther Howard -> Ralph Edwards by Admin ShopView at 2026-10-15 00:09:03"
+  ],
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-menu .q-item').filter({ hasText: 'Dana Ortiz' }).first()\n"
  }
 }
