@@ -257,13 +257,13 @@ await run('C368206', async () => { const orig = await roleRead(VIEW_ROLE); const
   o.restore = await set(!!orig?.cross_toggles?.seeFinancialData); R.C368206 = o; });
 
 await run('C368207', async () => { const u = await mkUser('ZZAUTOTEST', `VO ${stamp}`, VIEW_ROLE, 'vo'); const v = await asUser(u); const o: any = {};
-  try { await goList(v.page); o.createButton = await v.page.locator('[data-test-id="button_new_work_order"]:visible').count(); o.perms = v.perms; } finally { await v.close(); } R.C368207 = o; });
+  try { await goList(v.page); o.createButton = await v.page.locator('[data-test-id="button_new_work_order"]:visible').count(); o.perms = v.perms; await shot(v.page, 'C368207-viewonly-list'); /* wave 18: the picture is the VIEW-ONLY user's own List (the end picture was the admin's page) */ } finally { await v.close(); } R.C368207 = o; });
 
 await run('C368208', async () => { const s = await mkSet('ZZAUTOTEST View Only Toggle', [{ co: 'One Co', lead: ANA }]); const here = async () => (await a.get(`/api/work-orders/view/${s.w['One Co'].id}`)).body?.data?.work_order?.is_vehicle_here;
   const u = await mkUser('ZZAUTOTEST', `VOT ${stamp}`, VIEW_ROLE, 'vot'); const o: any = {}; const v = await asUser(u);
   try { await goList(v.page, s.q); const tr = v.page.locator('tbody tr').filter({ hasText: s.w['One Co'].number }); const tg = tr.locator('[data-test-id="button_vehicle_here_toggle"]').first();
     o.disabled = await tg.evaluate((e) => (e as any).disabled || e.getAttribute('aria-disabled') === 'true' || e.classList.contains('disabled')).catch(() => 'no toggle'); await RUN.toRunner(); o.before = await here(); await a.post('/api/switch-user', { user_id: u.id });
-    await tg.click({ force: true }).catch(() => {}); await v.page.waitForTimeout(2500); await v.page.reload({ waitUntil: 'domcontentloaded' }); await v.page.waitForTimeout(4000); } finally { await v.close(); }
+    await shot(v.page, 'C368208-viewonly-before-click'); await tg.click({ force: true }).catch(() => {}); await v.page.waitForTimeout(2500); await shot(v.page, 'C368208-viewonly-after-click'); await v.page.reload({ waitUntil: 'domcontentloaded' }); await v.page.waitForTimeout(4000); await shot(v.page, 'C368208-viewonly-after-reload'); /* wave 18: pictures from the VIEW-ONLY user's window */ } finally { await v.close(); }
   o.after = await here(); R.C368208 = o; });
 
 // phone width
@@ -280,9 +280,13 @@ await run('C368209', async () => { await phone(); await p.goto(APP + '/workorder
   await shot(p, 'C368209-phone');
   const pick = `[...document.querySelectorAll('.q-card, [data-test-id*="card"]')].filter(c => c.getBoundingClientRect().height > 30).map(c => ({ k: (c.innerText.match(/[A-Z0-9]+-\\d+/) || [''])[0], cust: c.innerText.split('\\n').map(l => l.trim()).find(l => l.length > 2 && !/^[a-z_]+$/.test(l) && !/^[A-Z0-9]+-\\d+$/.test(l) && !/^(Estimate|Approved|In Progress|Review|Ready For Review|Complete|Invoiced|Paid|Declined|Imported|Today|Yesterday)$/i.test(l) && !/^\\$|^\\d+%$|^\\d{1,2}\\/\\d{1,2}/.test(l)) || '' }))`;
   const cards: { k: string; cust: string }[] = []; const seenK = new Set<string>();
-  for (let i = 0; i < 8 && cards.length < 40; i++) { for (const c of (await p.evaluate(pick)) as any[]) if (c.k && !seenK.has(c.k)) { seenK.add(c.k); cards.push(c); }
+  // 15 Oct 2026 (wave 18): the first 40 cards were all "4 Star Truck Repair", so no change of customer was seen. Keep scrolling (up to 40
+  // steps / 400 cards) until at least 4 different customers have been passed, photographing the screen each time a new customer appears.
+  let nCust = 0;
+  for (let i = 0; i < 40 && cards.length < 400 && new Set(cards.map((c) => c.cust).filter(Boolean)).size < 4; i++) { for (const c of (await p.evaluate(pick)) as any[]) if (c.k && !seenK.has(c.k)) { seenK.add(c.k); cards.push(c); }
+    { const nc = new Set(cards.map((c) => c.cust).filter(Boolean)).size; if (nc > nCust) { nCust = nc; await shot(p, `C368209-phone-customer-${nc}`); } }
     await p.evaluate(`(() => { const s = [...document.querySelectorAll('*')].filter(e => e.scrollHeight > e.clientHeight + 50 && /auto|scroll/.test(getComputedStyle(e).overflowY)).pop(); const el = s || document.scrollingElement; el.scrollTop += 700; window.scrollBy(0, 700); })()`); await p.waitForTimeout(1500); if (i === 2) await shot(p, 'C368209-phone-further'); }
-  o.cards = cards.slice(0, 40).map((c) => c.cust); o.customersInOrder = cards.map((c) => c.cust).filter((x, i, arr) => x && arr.indexOf(x) === i).slice(0, 15);
+  o.cardCount = cards.length; o.cards = cards.slice(0, 40).map((c) => c.cust); o.customersInOrder = cards.map((c) => c.cust).filter((x, i, arr) => x && arr.indexOf(x) === i).slice(0, 15);
   o.aToZ = o.customersInOrder.every((x: string, i: number, arr: string[]) => i === 0 || arr[i - 1].localeCompare(x, 'en', { sensitivity: 'base' }) <= 0);
   await desk(); R.C368209 = o; });
 await run('C368210', async () => { await phone(); await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await tab(p, 'All').catch(() => {}); await p.waitForTimeout(2500);

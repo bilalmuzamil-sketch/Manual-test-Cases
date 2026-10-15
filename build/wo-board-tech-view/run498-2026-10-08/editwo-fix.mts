@@ -189,6 +189,19 @@ const lineName = (i: number) => String(canned[i % canned.length].canned_line_nam
 // list reads "No results"; the line menu opens from line_number_<id> and holds "Edit labor".
 async function pickFromList(pg: Page, name: RegExp) { for (let i = 0; i < 60; i++) { const o = pg.locator('.q-menu .q-item').filter({ hasText: name }).first(); if (await o.count()) { await o.scrollIntoViewIfNeeded().catch(() => {}); await o.click(); await pg.waitForTimeout(1500); return true; }
     const moved = await pg.evaluate(`(() => { const m = document.querySelector('.q-menu .q-virtual-scroll, .q-menu'); if (!m) return false; const b = m.scrollTop; m.scrollTop = b + 350; return m.scrollTop !== b; })()`); await pg.waitForTimeout(250); if (!moved && i > 2) break; } return false; }
+async function pickLazy(pg: Page, typed: string, name: RegExp) { const o: any = { seen: 0, last: [] as string[] };
+  const fld = (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]') : pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
+  o.field = await fld.count(); if (!o.field) return { ...o, picked: false };
+  await fld.click(); await pg.waitForTimeout(1200); const inp = fld.locator('input').first(); o.input = await inp.count();
+  if (o.input) { await inp.fill(typed).catch(() => {}); await pg.waitForTimeout(2500); }
+  const opt = () => pg.locator('.q-menu .q-item').filter({ hasText: name }).first(); const seen = new Set<string>();
+  let stuck = 0;
+  for (let i = 0; i < 120 && !(await opt().count()); i++) { for (const t2 of await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [] as string[])) seen.add(t2.replace(/\s+/g, ' ').trim());
+    const moved = await pg.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); const s = m && ([m, ...m.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 4) || m); if (!s) return false; const b = s.scrollTop; s.scrollTop += 200; return s.scrollTop !== b; })()`).catch(() => false);
+    await pg.waitForTimeout(moved ? 400 : 2000); if (!moved && ++stuck > 4) break; if (moved) stuck = 0; }
+  o.seen = seen.size; o.last = [...seen].slice(-6); o.picked = (await opt().count()) > 0;
+  if (o.picked) { await opt().click(); await pg.waitForTimeout(3000); } else await pg.keyboard.press('Escape').catch(() => {});
+  return o; }
 async function pickLeadOnPage2(name: RegExp, pg: Page = p) { await leadField(pg).click(); await pg.waitForTimeout(1000); const ok = await pickFromList(pg, name); if (!ok) await pg.keyboard.press('Escape'); await pg.waitForTimeout(2000); return ok; }
 async function rosterAdd(d: any, pg: Page, name: RegExp) { await d.locator('[data-test-id="select_line_roster_add_technician"]').click(); await pg.waitForTimeout(800); return pickFromList(pg, name); }
 async function rosterRemove(d: any, staffId: string) { const b = d.locator(`[data-test-id="button_line_roster_remove_${staffId}"]`); const n = await b.count(); if (n) { await b.click(); await p.waitForTimeout(600); } return n; }
@@ -213,7 +226,11 @@ await run('C368169', async () => { const w = await one('ZZAUTOTEST Edit WO Card 
   // with wob.mts pickLeadOnPage, imported as pickLeadByLabel (the field by its label, "Ralph" typed, the options recorded).
   o.setupMileage = (await a.post('/api/work-orders/change-mileage', { work_order_id: w.id, mileage: '120000' })).status; o.ralphEligible = await ensureEligible(a, RE, 'Ralph');
   await page(w.id); o.before = { lead: await leadText(), mileage: await cardVal('input_vehicle_mileage') };
-  o.pick = await pickLeadByLabel(p, 'Ralph', 'Ralph Edwards'); o.picked = o.pick?.picked ?? false; o.mileageEditable = await p.locator('[data-test-id="input_vehicle_mileage"]').first().evaluate((e: any) => !(e.disabled || e.readOnly)).catch(() => false) /* 15 Oct 2026: was never set, so the Mileage edit was skipped (wave 7) */; o.mileage = o.mileageEditable ? await cardInput('input_vehicle_mileage', '120500') : 'locked: the Mileage box is read-only on the Invoiced work order'; o.toasts = await toastsOn(p); await shot(p, 'C368169-card');
+  // 15 Oct 2026 (wave 18, fifth pass): Ralph Edwards was again not drawn — the list stopped at the D names after 19 scroll steps (the
+  // Expected quotes "Ralph Edwards", so another person cannot stand in). pickLazy: types into the field's OWN input (the keyboard
+  // typing did not narrow the list), then scrolls with long pauses and, at the bottom, waits for more rows to load (up to 4 times),
+  // recording how many options were seen and the last ones; the first route (pickLeadByLabel) is kept as the fallback.
+  o.pick = await pickLazy(p, 'Ralph', /Ralph Edwards/); if (!o.pick.picked) o.pick.fallback = await pickLeadByLabel(p, 'Ralph', 'Ralph Edwards'); o.picked = !!(o.pick.picked || o.pick.fallback?.picked); o.mileageEditable = await p.locator('[data-test-id="input_vehicle_mileage"]').first().evaluate((e: any) => !(e.disabled || e.readOnly)).catch(() => false) /* 15 Oct 2026: was never set, so the Mileage edit was skipped (wave 7) */; o.mileage = o.mileageEditable ? await cardInput('input_vehicle_mileage', '120500') : 'locked: the Mileage box is read-only on the Invoiced work order'; o.toasts = await toastsOn(p); await shot(p, 'C368169-card');
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.afterReload = { lead: await leadText(), mileage: await cardVal('input_vehicle_mileage') }; o.api = { lead: await leadName(w.id), ...(await vehOf(w.id)) }; await shot(p, 'C368169-after-reload'); R.C368169 = o; });
 
 await run('C368171', async () => { const w = await one('ZZAUTOTEST Edit WO Card Audit', ES, 2); const o: any = { wo: w.number };

@@ -17,7 +17,6 @@ import { api, customer, workOrder, workOrders } from './data.mts';
 import { viewAs } from './viewas.mts';
 import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
-import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -190,6 +189,9 @@ await run('C368196', async () => {
   for (const x of plan) { const cst = await customer(a, `${q} ${x.co}`, x.unit); const w = await workOrder(a, cst, 'estimate', null, x.co === 'Alpha Co');   // FIX 3: Alpha Co is created ON SITE (seeded), the others not
     const ls: string[] = []; for (let i = 0; i < x.lines; i++) ls.push((await a.post(`/api/work-orders/${w}/lines/create-from-canned-line`, { canned_line_id: canned[(i + 1) % canned.length].id, status: 'authorized' })).body?.data?.line_id);
     await a.post('/api/work-orders/change-status', { id: w, status: 'approved' }); if (x.lead) await a.post('/api/work-orders/change-lead-technician', { work_order_id: w, tech_assigned_id: x.lead.staff_id });
+    /* 15 Oct 2026 (wave 18): all three rows had the same Service Advisor (ZZ WOB Runner), so that header could not show an order. Give
+       each row its own: Alpha Co -> Ana Alpha, Bravo Co -> Ben Bravo, Charlie Co -> none. */
+    o[`advisor ${x.co}`] = say(await a.post('/api/work-orders/change-service-advisor', { work_order_id: w, service_advisor_id: x.co === 'Alpha Co' ? ANA.staff_id : x.co === 'Bravo Co' ? BEN.staff_id : null }));
     const m = await makeModel(x.mk[0] as RegExp, x.mk[1] as RegExp); made[x.co] = { id: w, ls, c: cst, mm: m?.from ?? null, shape: m ? await shape(cst, cst.vehicle_id, { unit: x.unit, year: 2020, mm: m }) : 'no make found' }; }
   o.assets = Object.fromEntries(Object.entries(made).map(([k, v]: any) => [k, `${v.mm} ${v.shape}`]));
   // Clocked In: Ralph on Bravo's first line, Dana on Charlie's first line (each in their own session), Alpha nobody
@@ -213,12 +215,18 @@ await run('C368196', async () => {
   const sortMark = (h: string) => p.evaluate(`(() => { const th = [...document.querySelectorAll('thead th')].find(e => e.innerText.replace(/arrow_drop_(up|down)/g, '').trim() === ${JSON.stringify('${H}')}); return th ? (th.getAttribute('aria-sort') || '') + ' ' + (String(th.className).match(/sort(ed|able)?[^ ]*|asc|desc/g) || []).join(',') : 'no header'; })()`.split('${H}').join(h));
   try {
     for (const h of ['Number', 'On Site', 'Status', 'Customer', 'Asset', 'Unit', 'VIN/Serial #', 'Service Advisor', 'Lead Technician', 'Clocked In', 'Lines', 'Total Price', 'Created On', 'Progress']) {
-      const th = p.locator('thead th').filter({ hasText: new RegExp('^\\s*' + h.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&') + '\\s*(arrow_drop_(up|down))?\\s*$') }).first();
+      // 15 Oct 2026 (wave 18): Total Price and Created On came back "header not in the table" — the exact-text match allowed only an
+      // arrow_drop icon after the name. Match the header that STARTS with the name (any icon after it), scroll it into view, and record
+      // every header text once (headersSeen) so a missing one is a reading, not a guess.
+      if (!o.headersSeen) o.headersSeen = await p.evaluate(`[...document.querySelectorAll('thead th')].map(e => e.innerText.replace(/\\s+/g, ' ').trim())`).catch(() => []);
+      let th = p.locator('thead th').filter({ hasText: new RegExp('^\\s*' + h.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&') + '\\s*(arrow_drop_(up|down))?\\s*$') }).first();
+      if (!(await th.count())) th = p.locator('thead th').filter({ hasText: new RegExp('^\\s*' + h.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&') + '\\b') }).first();
       if (!(await th.count())) { o[h] = 'header not in the table'; continue; }
+      await th.scrollIntoViewIfNeeded().catch(() => {});
       await th.click().catch(() => {}); await p.waitForTimeout(2200); const r1 = await table(); const m1 = await sortMark(h);
       await th.click().catch(() => {}); await p.waitForTimeout(2200); const r2 = await table(); const m2 = await sortMark(h);
       o[h] = { first: r1.map((r) => `${r.Number} | ${r[h] ?? ''}`), mark1: m1, second: r2.map((r) => `${r.Number} | ${r[h] ?? ''}`), mark2: m2, orderChanged: JSON.stringify(r1.map((r) => r.Number)) !== JSON.stringify(r2.map((r) => r.Number)), distinctValues: new Set(r1.map((r) => r[h])).size };
-      if (h === 'Number' || h === 'On Site' || h === 'Clocked In') await shot(p, `C368196-${h.replace(/\W+/g, '')}`); }
+      await shot(p, `C368196-${h.replace(/\W+/g, '')}`); }   // wave 18: a picture after the second click for EVERY header
   } finally {
     o.clocksStopped = {};
     for (const tech of [RE, DO]) { if (!tech) continue; const sw = await a.post('/api/switch-user', { user_id: tech.id });

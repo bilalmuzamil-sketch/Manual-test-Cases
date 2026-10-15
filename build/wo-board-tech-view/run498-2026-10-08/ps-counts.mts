@@ -251,7 +251,7 @@ async function addPartManual(id: string, desc: string) { await p.goto(APP + `/pa
   log.desc = await fill(/^\s*Description/, desc); log.qty = await fill(/^\s*Quantity/, '1'); log.source = (await field(/^\s*Source/).innerText().catch(() => '')).replace(/\s+/g, ' ');
   log.category = await pick(/^\s*Category/, 'Uncategorized'); log.vendor = await pick(/^\s*Vendor\s*\*?\s*$/); log.cost = await fill(/^\s*Cost/, '100'); log.sell = await fill(/^\s*Sell Price/, '290.91');
   log.labelsAfter = await d.locator('.q-field__label').allInnerTexts().catch(() => []);
-  await shot(p, `C368217-add-${desc.replace(/\W+/g, '')}`); await d.getByRole('button', { name: /Save & Close/i }).first().click(); await p.waitForTimeout(3000); log.open = await p.locator('.q-dialog').count(); log.toasts = await toasts(); return log; }
+  await shot(p, `C368217-add-${desc.replace(/\W+/g, '')}`); await d.getByRole('button', { name: /Save & Close/i }).first().click(); await p.waitForTimeout(3000); log.open = await p.locator('.q-dialog').count(); log.toasts = await toasts(p); return log; }
 const partsOf = async (id: string) => { const d = (await a.get(`/api/work-orders/lines/${id}`)).body?.data; const c = Array.isArray(d) ? d : d?.collection ?? []; return c.flatMap((l: any) => [...(l.part_requests ?? []), ...(l.parts ?? [])]); };
 const psRow = async (num: string) => { const r = await a.get(`/api/part-sales?search=${encodeURIComponent(num)}&limit=50`); const d = r.body?.data; const rows = d?.partSales ?? d?.collection ?? d ?? []; return (Array.isArray(rows) ? rows : []).find((x: any) => x.number === num) ?? null; };
 
@@ -263,6 +263,8 @@ await run('C368216', async () => { const ps = R.ps ?? await partSale(`ZZAUTOTEST
   await p.goto(APP + `/parts/part-sale/${ps.id}/part-requests`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
   o.labels = await p.evaluate(`[...document.querySelectorAll('.q-field__label, label, .text-caption, .q-item__label--caption')].map(e => e.innerText.trim()).filter(x => x && x.length < 40).slice(0, 40)`);
   o.techField = o.labels.filter((x: string) => /technician|sales rep/i.test(x)); await shot(p, 'C368216-card'); R.C368216 = o; });
+// 15 Oct 2026 (wave 18, fifth pass): C368217 stopped at once with "Cannot read properties of undefined (reading 'evaluate')" — wob.mts
+// toasts() was called with no page in addPartManual and in the receive/return steps; every call now passes the page (toasts(p)).
 await run('C368217', async () => { const ps = await partSale(`ZZAUTOTEST Part Sale Counts ${RUNNO}`); const o: any = {};
   o.p1 = await addPartManual(ps.id, 'Brake Pads'); o.p2 = await addPartManual(ps.id, 'Brake Pads');
   // FIX: the part sale's number is read off its own page (the view call returned none); the setup follows the case's own clicks
@@ -280,10 +282,10 @@ await run('C368217', async () => { const ps = await partSale(`ZZAUTOTEST Part Sa
   const field = (re: RegExp) => d.getByLabel(re).first(); await field(/Vendor Invoice/i).fill('ZZINV-PS1').catch(() => st('no invoice field'));
   await d.getByLabel(/Part (Number|#)/i).first().fill('ZZPN-PS1').catch(() => st('no part number field')); await d.getByLabel(/Qty Received|Received/i).first().fill('1').catch(() => st('no qty field'));
   await d.locator('tbody .q-checkbox, tbody [role=checkbox]').first().click().catch(() => st('no row tick')); await p.waitForTimeout(800); await shot(p, 'C368217-receive-window');
-  await d.getByRole('button', { name: /Receive Parts/i }).first().click().catch(() => st('no Receive Parts button')); await p.waitForTimeout(4000); o.receiveToasts = await toasts();
+  await d.getByRole('button', { name: /Receive Parts/i }).first().click().catch(() => st('no Receive Parts button')); await p.waitForTimeout(4000); o.receiveToasts = await toasts(p);
   await p.goto(page, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); st('after receive: ' + (await p.locator('tbody').first().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 260));
   await btn(/Return part|^Return$/).click().catch(() => st('no Return part button')); await p.waitForTimeout(2500); st('return window: ' + (await dlgText()));
-  const rd = p.locator('.q-dialog').last(); await rd.getByLabel(/Return Reason|Reason/i).first().fill('ZZAUTOTEST wrong part').catch(() => st('no reason field')); await rd.getByRole('button', { name: /Save & Close/i }).first().click().catch(() => st('no Save & Close')); await p.waitForTimeout(3500); o.returnToasts = await toasts();
+  const rd = p.locator('.q-dialog').last(); await rd.getByLabel(/Return Reason|Reason/i).first().fill('ZZAUTOTEST wrong part').catch(() => st('no reason field')); await rd.getByRole('button', { name: /Save & Close/i }).first().click().catch(() => st('no Save & Close')); await p.waitForTimeout(3500); o.returnToasts = await toasts(p);
   await p.goto(page, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); o.setupCheck = { tab: await p.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Parts/ }).first().innerText().catch(() => null), rows: (await p.locator('tbody').first().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 260) }; await shot(p, 'C368217-setup-check');
   // the second location's part sale with two parts
   await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }).catch(() => {}); const ps2 = await partSale(`ZZAUTOTEST Part Sale Counts L2 ${RUNNO}`); o.l2id = ps2.id;
