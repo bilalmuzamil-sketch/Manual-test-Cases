@@ -690,3 +690,20 @@ On an unattended night, check `uptime` first at every check-in. A restart gives 
 - **Measured (sixth pass, staging):** opened without typing and read to the end (`listAllOptions`), the list holds exactly 101 entries — Unassigned, 100 people from "Aaron …" to the Q names, then the current lead. Eligible technicians later in the alphabet (Ralph Edwards, ZZAUTOTEST Ben Bravo) are not in it, although the Reassign dialog (the lead-candidates list) offers them by staff id. Keyboard typing after clicking the field did not narrow the list.
 - **What to do:** type into the field's OWN input (`pickLeadTyped(pg, ['Ben Bravo', 'Bravo', 'Ben'], 'Ben Bravo')`) and record what each term offers. Only if typing also never offers an eligible technician is it a product fault (Rule 104: the instrument must have been tried every way first); owning story SV-10047.
 - **Explains earlier misses:** C96958 / C96962 / C368169 "Ralph Edwards not drawn", and the dialog vs page difference.
+
+## L0370 — 2026-10-15 — CORRECTION to L0367: the restarts are the environment's, not the script's — recover with one command
+The third restart, at about 07:57 UTC, came during `high1-batch.mts`, not `staledrop-stg4`. `memwatch.sh` was running and
+logged nothing, so free memory never fell under 2.5 GB. After the restart `free` showed 15 GB available. So the restarts at
+07:21, 07:35 and 07:57 come from the environment, and the script that happened to be running is not to blame. L0367's
+"move the script that was running at two restarts" was a guess that this disproves. The staledrop time limits (L0368) are still
+worth having. Moving it to the end of pass 7 does no harm.
+
+**What to do:** `build/wo-board-tech-view/run498-2026-10-08/recover.sh` is the one command after any restart:
+- it restarts the relay on the new proxy port;
+- it restarts the memory guard;
+- it resumes whichever pass is unfinished, so its start-of-pass resets run again and finished scripts are skipped;
+- it restarts the next pass's waiter.
+
+Run it first at every check-in. It does nothing if a pass is already running. Restarts give no notice, so while they keep
+coming, check in every 15 minutes: each restart loses the script that was running plus the time until the next check-in.
+#restart #unattended #recover → L0355, L0367
