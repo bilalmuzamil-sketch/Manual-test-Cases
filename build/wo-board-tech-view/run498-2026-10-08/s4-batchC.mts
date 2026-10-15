@@ -191,6 +191,24 @@ await run('C154888', async () => {
   await bv(n); const at = localTime(new Date());
   await dragTo(w.id, RE.staff_id); await p.waitForTimeout(900); R.C154888.prompt = !!(await promptLoc().count()); await shiftPrompt(p, 'Clear shifts');
   R.C154888.changedAt = at; R.C154888.after = { lead: (await lead(n))[w.number], shifts: await shiftsOn(a, w.id, names) };
+  // 15 Oct 2026 (Rule 130): photograph the Schedule for yesterday, today and tomorrow, searched for this work order (the
+  // stg6-sched2.mts route: Schedule > Today > the arrows beside it > magnifier > input_schedule_search), so the picture shows
+  // the kept (ended), trimmed (running) and removed (future) shifts — reading only; nothing is changed.
+  { const sp = await p.context().newPage(); const days: Record<string, string | null> = {};
+    try {
+      await sp.goto(APP + '/schedule', { waitUntil: 'domcontentloaded' }); await sp.waitForTimeout(9000);
+      const arrow = async (k: 0 | 1) => { await sp.evaluate(`(() => { const vis = (e) => e.getBoundingClientRect().width > 0; const today = [...document.querySelectorAll('button')].find(b => vis(b) && b.innerText.trim() === 'Today'); if (!today) return; const tr = today.getBoundingClientRect();
+        const near = [...document.querySelectorAll('button')].filter(b => vis(b) && b !== today && Math.abs(b.getBoundingClientRect().top - tr.top) < 20 && b.getBoundingClientRect().left > tr.left && b.getBoundingClientRect().left < tr.right + 200).sort((x, y) => x.getBoundingClientRect().left - y.getBoundingClientRect().left); if (near[${'${k}'}]) near[${'${k}'}].click(); })()`.split('${k}').join(String(k))); await sp.waitForTimeout(5000); };
+      const look = async (tag: string) => {
+        if (!(await sp.locator('[data-test-id="input_schedule_search"]').isVisible().catch(() => false))) { await sp.locator('button').filter({ hasText: /^\s*search\s*$/ }).last().click().catch(() => sp.mouse.click(1300, 84)); await sp.waitForTimeout(1000); }
+        const sb = sp.locator('[data-test-id="input_schedule_search"]'); await sb.fill(''); await sb.fill(w.number); await sp.waitForTimeout(4000);
+        await sp.evaluate(`document.querySelector('.fc-event')?.scrollIntoView({ block: 'center' })`).catch(() => {}); await sp.waitForTimeout(800);
+        days[tag] = await sp.locator('[data-test-id="text_schedule_range"]').innerText().catch(() => null);
+        await sp.screenshot({ path: path.join(EV, `C154888-schedule-${tag}.png`) }).catch(() => {}); };
+      await sp.getByRole('button', { name: /^\s*Today\s*$/ }).first().click().catch(() => {}); await sp.waitForTimeout(3000);
+      await arrow(0); await look('yesterday'); await arrow(1); await look('today'); await arrow(1); await look('tomorrow');
+    } catch (e: any) { days.error = String(e?.message || e).slice(0, 120); } finally { await sp.close().catch(() => {}); }
+    R.C154888.schedulePictures = days; }
 });
 
 await run('C154890', async () => {

@@ -1,0 +1,21 @@
+# script | cases (ONLY) | extra settings   — 15 Oct 2026 fourth pass on staging, after the third pass (judge/wave8.json "redo": 27 tests
+# whose reading was unusable because of the SCRIPT, each fixed — see the 15 Oct comments in each script — plus 5 passed tests re-run
+# only for a usable picture: C96926, C96957, C96959, C96936, C154888). signin-check-stg4.mts runs first (the third pass ends with
+# signout-fix.mts, which signs the shared session out); run-fourth.sh stops if it fails.
+signin-check-stg4.mts | | 
+s1-batch2b.mts | C154884 | 
+s1-batch4a.mts | C96910,C96912,C96923 | 
+s1-batch4b.mts | C96916,C96917 | WOB_PIN_NAMES=Ayesha Khan
+s2-batchA.mts | C96935,C96937 | WOB_PIN_NAMES=Ayesha Khan
+s2-batchB.mts | C368126,C96936 | WOB_PIN_NAMES=-
+notech-stg4.mts | C368130 | 
+s2-batchC.mts | C368125,C368127,C96927,C96929,C96930,C96938,C96926 | WOB_PIN_NAMES=Esther Howard
+s3-batchA.mts | C96949 | WOB_PIN_NAMES=-
+s3-batchB.mts | C368132 | 
+moved-stg4.mts | C368131,C96970 | WOB_PIN_NAMES=-
+s4-batchA.mts | C96956,C96957,C96959 | WOB_PIN_NAMES=-
+s4-batchC.mts | C154888 | 
+s4-batchD.mts | C96974 | 
+s4-batchE.mts | C96962 | WOB_PIN_NAMES=Esther Howard,Ralph Edwards
+s4-batchH.mts | C96966 | 
+s5-batchA3.mts | C96975,C96976,C96983 | 

@@ -54,10 +54,14 @@ const card = (pg: Page, wo: string) => pg.evaluate(`(() => { const c = document.
 /** a second browser: the sign-in cookies only, no page storage */
 const second_old = async () => { const st = await p.context().storageState(); const ctx = await browser.newContext({ storageState: { cookies: st.cookies, origins: [] }, viewport: { width: 1600, height: 1000 }, ignoreHTTPSErrors: true });
   await ctx.route((u) => /maps\.googleapis|intercom|sentry\.io|mercure\.qa|googletagmanager|google-analytics|hotjar|fullstory/i.test(u.toString()), (r) => r.abort()).catch(() => {}); return { ctx, pg: await ctx.newPage() }; };
+// 15 Oct 2026 (staging second pass): with ONLY=C96975,C96976,… the second-location part ('loc2') never ran, so "at the second
+// location" was never checked. It now runs whenever C96975 or C96976 runs, and those two print their ONE log line after it,
+// with the second-location reading inside (secondLocation).
+const DEFER = new Set(['C96975', 'C96976']);
 async function run(id: string, f: () => Promise<void>) {
-  if (!want(id)) return;
+  if (!want(id) && !(id === 'loc2' && (want('C96975') || want('C96976')))) return;
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
-  console.log(t(), id, JSON.stringify(R[id]).slice(0, 2600));
+  if (!DEFER.has(id)) console.log(t(), id, JSON.stringify(R[id]).slice(0, 8000));
   fs.writeFileSync(path.join(EV, 's5-batchA3.json'), JSON.stringify(R, null, 1));
 }
 const seed = async (name: string, unit: string, leads: (string | null)[]) => { let w = await workOrders(a, name); if (!w.length) { const c = await customer(a, name, unit); for (const l of leads) await workOrder(a, c, 'approved', l); w = await workOrders(a, name); } return w; };
@@ -85,7 +89,11 @@ await run('C96975', async () => {
 
 await run('C96976', async () => {
   const n = 'ZZAUTOTEST F2 Board Fields Saved'; const w = await seed(n, 'ZZF2BF', [ES.staff_id]); const wo = w[0].id;
-  await go('Board View', n); R.C96976 = { set: [await setSwitch('Board View', 'company_name', false), await setSwitch('Board View', 'vin', true)], card: await card(p, wo) };
+  // 15 Oct 2026: step 1/4 — where each picker sits in the toolbar and what it holds (Tech View's Column Selection vs Board View's Fields to display)
+  await go('Tech View', n); const tm = await menu('Tech View'); await shot(p, 'C96976-tech-picker'); await close();
+  await go('Board View', n); const bm = await menu('Board View'); await shot(p, 'C96976-board-picker'); await close();
+  const place = { techViewButton: tm.box, boardViewButton: bm.box, sameSpot: !!(tm.box && bm.box && Math.abs(tm.box.x - bm.box.x) < 12 && Math.abs(tm.box.y - bm.box.y) < 12), techItems: (tm.items ?? []).length, boardItems: (bm.items ?? []).length, boardKinds: [...new Set((bm.items ?? []).map((x: any) => x[2] === null ? 'not a switch' : 'switch'))] };
+  R.C96976 = { pickerPlace: place, set: [await setSwitch('Board View', 'company_name', false), await setSwitch('Board View', 'vin', true)], card: await card(p, wo) }; await shot(p, 'C96976-card');
   const s = await second(); try { await go('Board View', n, s.pg); R.C96976.secondBrowser = { at: await where(s.pg), on: onKeys(await menu('Board View', s.pg)), card: await card(s.pg, wo) }; await close(s.pg); await shot(s.pg, 'C96976-second-browser'); } finally { await s.ctx.close(); }
 });
 
@@ -104,6 +112,9 @@ await run('C96983', async () => {
   await go('Board View', n); R.C96983.failBoard = onKeys(await menu('Board View')); await close();
   R.C96983.change = await setSwitch('Board View', 'vehicle_here', true); await p.waitForTimeout(4000);
   R.C96983.failBoardAfterChange = onKeys(await menu('Board View')); await close(); await shot(p, 'C96983-fail-after-change');
+  // 15 Oct 2026: Tech View's columns while the saved choices cannot be read (step 4) — not read before
+  await go('Tech View', n); R.C96983.failTech = { menuOn: onKeys(await menu('Tech View')) }; await close(); R.C96983.failTech.heads = await heads(); await shot(p, 'C96983-fail-tech');
+  await go('Board View', n);
   R.C96983.savesDuringFailure = saves.splice(0);
   await p.unroute(fail, handler);
   await go('Board View', n); R.C96983.afterReload = onKeys(await menu('Board View')); await close(); await shot(p, 'C96983-after-reload');
@@ -116,6 +127,10 @@ await run('loc2', async () => {
   const lethDeps = (ay?.departments ?? []).filter((d: any) => /lethbridge/i.test(JSON.stringify(d)));
   const ids = [...new Set([...(meRow?.departments ?? []), ...lethDeps].map((d: any) => d?.id ?? d?.department_id ?? d).filter((x: any) => typeof x === 'string' && /^[0-9a-f-]{36}$/.test(x)))];
   R.loc2.ids = ids.length;
+  // 15 Oct 2026: staff/change with departments does NOT add a location (playbook) — enrol the runner at Lethbridge (Service) with
+  // the app's own enrolment route first; the old call is kept after it.
+  { const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
+    if (meRow) R.loc2.enrolLeth = say(await a.post('/api/staff/enrollment/create', { staffId: meRow.staff_id, workplaceId: LETH, departmentId: svc?.id })); }
   if (lethDeps.length && meRow) R.loc2.enrol = say(await a.post(`/api/staff/${meRow.staff_id}/change`, { first_name: meRow.first_name, last_name: meRow.last_name, email: meRow.email, role_id: meRow.role_id, workplace_id: meRow.workplace_id ?? HEAVY, job_title: meRow.job_title, salary_type: meRow.salary_type, salary: meRow.salary, billable: !!meRow.billable, clockable: false, departments: ids }));
   R.loc2.runnerDepsAfter = (await staffRows(a, RUNNER_EMAIL)).find((x) => x.email === RUNNER_EMAIL)?.departments;
   // switch through the screen: initials > Change Location > Lethbridge
@@ -128,14 +143,15 @@ await run('loc2', async () => {
   await p.keyboard.press('Escape').catch(() => {});
   R.loc2.at = await where(p); await shot(p, 'S5-loc2-switch');
   if (/lethbridge/i.test(String(R.loc2.at))) {
-    await go('Tech View'); R.loc2.tech = onKeys(await menu('Tech View')); await close();
-    await display(p, 'Board View'); await p.waitForTimeout(1500); R.loc2.board = onKeys(await menu('Board View')); await close();
+    await go('Tech View'); R.loc2.atAfterOpen = await where(p); R.loc2.tech = onKeys(await menu('Tech View')); await close(); R.loc2.techHeads = await heads(); await shot(p, 'S5-loc2-tech');
+    await display(p, 'Board View'); await p.waitForTimeout(1500); R.loc2.board = onKeys(await menu('Board View')); await close(); await shot(p, 'S5-loc2-board');
     await display(p, 'List'); await p.waitForTimeout(1500); R.loc2.list = onKeys(await menu('List')); await close(); await shot(p, 'S5-loc2');
     R.loc2.density = (await prefGet()).density;
   }
   R.loc2.back = process.env.WOB_LOC_SELECT ? await switchLocUI(p, 'Staging Heavy Duty') : say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
 });
 
+for (const id of DEFER) if (want(id)) console.log(t(), id, JSON.stringify({ ...(R[id] ?? {}), secondLocation: R.loc2 ?? 'not run' }).slice(0, 8000));
 const BACK = ORIGINAL; await a.put(PREF, { value: BACK }); R.restored = JSON.stringify(await prefGet()) === JSON.stringify(BACK);
 fs.writeFileSync(path.join(EV, 's5-batchA3.json'), JSON.stringify(R, null, 1)); console.log(t(), 'restored', R.restored);
 await RUN.end();

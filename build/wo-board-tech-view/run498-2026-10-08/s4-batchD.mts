@@ -32,7 +32,7 @@ async function fresh(n: string, unit: string, k = 1) { const ws = await workOrde
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
-  console.log(t(), id, JSON.stringify(R[id]).slice(0, 2200));
+  console.log(t(), id, JSON.stringify(R[id]).slice(0, 6000)); // 15 Oct 2026: room for the set-up read-back
   fs.writeFileSync(path.join(EV, 's4-batchD.json'), JSON.stringify(R, null, 1));
 }
 const dragOn = async (pg: Page, woId: string, target: string, where: 'board' | 'tech' = 'board', dy?: number) => {
@@ -58,12 +58,70 @@ await run('C96974', async () => {
     made.lineOnly = lid ? (await a.put(`/api/work-orders/lines/${lid}/technicians`, { staffIds: [NN.staff_id] })).status : `line ${lr.status} ${JSON.stringify(lr.body).slice(0, 120)}`;
     wos = (await workOrders(a, n)).filter((w: any) => w.techAssignedId === NN.staff_id);
   }
-  R.C96974 = { made, ninaLeads: wos.map((w: any) => `${w.number} ${w.status}`) };
+  // 15 Oct 2026 (staging second pass): the set-up was incomplete — "invoiced" cannot be reached by change-status (that work order
+  // stayed Approved), the line-only work order was never made (the 8 already existed, so the seeding block was skipped), and
+  // there was no work order at a second location. Repaired here, every time, and read back:
+  //  (a) Invoiced = lines completed (story + complete), work order In Progress > Review > Complete, then POST /api/invoices/create
+  //      (the analytics-batch.mts recipe); made on the spare Approved one, or a new one if there is no spare;
+  //  (b) one Approved work order led by Esther Howard with Nina Newtech as the technician on its line;
+  //  (c) Nina enrolled at Staging Lethbridge - 4310 (Service) and one Approved work order there led by her (data made through the
+  //      server-side location, then back to Heavy Duty);
+  //  (d) Nina leads nothing else at Heavy Duty (any other work order she leads loses its lead).
+  const fix: string[] = []; const say = (r: any) => `${r.status}${r.status >= 300 ? ' ' + JSON.stringify(r.body?.message ?? r.body?.errors ?? r.body).slice(0, 140) : ''}`;
+  const canned0 = (await a.get('/api/work-orders/canned-lines')).body?.data; const cls = (Array.isArray(canned0) ? canned0 : canned0?.collection ?? []);
+  const linesRaw = async (wo: string) => { const d = (await a.get(`/api/work-orders/lines/${wo}`)).body?.data; return Array.isArray(d) ? d : d?.collection ?? d?.lines ?? []; };
+  const ninaWos = async () => (await workOrders(a, n)).filter((w: any) => w.techAssignedId === NN.staff_id);
+  const byStatus = async () => { const m: Record<string, any[]> = {}; for (const w of await ninaWos()) (m[w.status] ??= []).push(w); return m; };
+  let bs = await byStatus();
+  if (!bs.invoiced?.length) {
+    let wo = (bs.approved ?? []).length > 1 ? bs.approved[bs.approved.length - 1].id : null;
+    if (!wo) { const c = await customer(a, n, 'ZZF4OC'); wo = await workOrder(a, c, 'approved', NN.staff_id); fix.push('new work order for Invoiced'); }
+    if (!(await linesRaw(wo)).length) fix.push('line ' + say(await a.post(`/api/work-orders/${wo}/lines/create-from-canned-line`, { canned_line_id: cls[1 % cls.length].id, status: 'authorized' })));
+    fix.push('mileage ' + say(await a.post('/api/work-orders/change-mileage', { work_order_id: wo, mileage: '123456' })));
+    for (const l of await linesRaw(wo)) {
+      for (const q of (l.part_requests ?? l.partRequests ?? []) as any[]) fix.push('remove part request ' + say(await a.post(`/api/work-orders/part/remove-request/${q.id ?? q.part_request_id}`, {})));
+      fix.push('story ' + say(await a.post('/api/work-orders/lines/change-story', { line_id: l.line_id, tech_story: 'Done', work_order_id: wo })));
+      fix.push('line complete ' + say(await a.post('/api/work-orders/lines/change-status', { line_id: l.line_id, status: 'complete', workOrderId: wo })));
+    }
+    for (const st of ['in_progress', 'ready_for_review', 'complete']) fix.push(`wo ${st} ` + say(await a.post('/api/work-orders/change-status', { id: wo, work_order: wo, status: st })));
+    fix.push('invoice ' + say(await a.post('/api/invoices/create', { work_order_id: wo, issue_date: new Date().toISOString().slice(0, 10), due_date: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10) })));
+    fix.push('status now ' + (await a.get(`/api/work-orders/view/${wo}`)).body?.data?.work_order?.status);
+    bs = await byStatus();
+  }
+  let lineOnlyWo = (await workOrders(a, n)).find((w: any) => w.techAssignedId === ES.staff_id);
+  const lineTechs = async (wo: string) => (await linesRaw(wo)).map((l: any) => (l.technicians ?? l.techs ?? []).map((x: any) => `${x.first_name ?? x.firstName ?? ''} ${x.last_name ?? x.lastName ?? ''}`.trim() || x.staff_id || x.id).join('+') || JSON.stringify(Object.keys(l)).slice(0, 80));
+  if (!lineOnlyWo) {
+    const c = await customer(a, n, 'ZZF4OC'); const id = await workOrder(a, c, 'approved', ES.staff_id);
+    const lr = await a.post(`/api/work-orders/${id}/lines/create-from-canned-line`, { canned_line_id: cls[0].id, status: 'authorized' });
+    const lid = lr.body?.data?.line_id ?? lr.body?.data?.id ?? lr.body?.line_id;
+    fix.push('line-only: line ' + say(lr) + ' technicians ' + (lid ? say(await a.put(`/api/work-orders/lines/${lid}/technicians`, { staffIds: [NN.staff_id] })) : 'no line id'));
+    lineOnlyWo = (await workOrders(a, n)).find((w: any) => w.techAssignedId === ES.staff_id);
+  }
+  const wpl = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/workplaces')).body?.data);
+  const LETH = (await import('./staff.mts')).LETH, HEAVY = (await import('./staff.mts')).HEAVY;
+  const leth = wpl.find((w: any) => w.id === LETH), heavy = wpl.find((w: any) => w.id === HEAVY);
+  const deps = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = deps.find((d: any) => (d.name ?? d.label) === 'Service');
+  fix.push('enrol Nina at Lethbridge ' + say(await a.post('/api/staff/enrollment/create', { staffId: NN.staff_id, workplaceId: LETH, departmentId: svc?.id })));
+  let loc2: any = null;
+  try {
+    await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: leth?.timezone ?? 'America/Edmonton' });
+    let w2 = (await workOrders(a, n + ' L2'))[0];
+    if (!w2) { const c2 = await customer(a, n + ' L2', 'ZZF4OL'); await workOrder(a, c2, 'approved', NN.staff_id); w2 = (await workOrders(a, n + ' L2'))[0]; }
+    loc2 = { at: leth?.name, wo: w2 ? `${w2.number} ${w2.status} lead=${w2.techAssignedFirstName ?? '-'} ${w2.techAssignedLastName ?? ''}` : 'not made', ninaOfferedThere: (await candidates(a)).some((x) => x.id === NN.staff_id) };
+  } catch (e: any) { loc2 = { error: String(e?.message || e).slice(0, 160) }; }
+  finally { await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: heavy?.timezone ?? (process.env.WOB_LOC_TZ || 'America/Edmonton') }); }
+  for (let pg = 1; pg < 20; pg++) { const r = await a.get(`/api/work-orders?pagination[page]=${pg}&pagination[rowsPerPage]=200&filters[0][field]=tech_assigned_id&filters[0][value]=${NN.staff_id}`); const ws2 = r.body?.data?.work_orders ?? [];
+    for (const w of ws2) if (w.techAssignedId === NN.staff_id && !String(w.companyName ?? '').startsWith(n)) fix.push(`${w.number} (${w.companyName}) loses Nina as lead ` + say(await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: null })));
+    if (ws2.length < 200) break; }
+  wos = await ninaWos();
+  R.C96974 = { made, fix, ninaLeads: wos.map((w: any) => `${w.number} ${w.status}`), ninaLeadsByStatus: Object.fromEntries(Object.entries(await byStatus()).map(([k, v]) => [k, v.length])),
+    lineOnly: lineOnlyWo ? { wo: `${lineOnlyWo.number} ${lineOnlyWo.status} lead=${lineOnlyWo.techAssignedFirstName} ${lineOnlyWo.techAssignedLastName}`, lineTechnicians: await lineTechs(lineOnlyWo.id) } : 'not made', secondLocation: loc2 };
   const esWo = (await workOrders(a, n)).find((w: any) => w.techAssignedId === ES.staff_id);
   for (const tb of ['Work Orders', 'All']) {
     await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, tb); await display(p, 'Board View'); await search(p, n); await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"]').scrollLeft = 0`);
     const o = await openReassign(p, esWo.id); await o.item.click(); await p.waitForTimeout(1200);
     R.C96974['count_' + tb] = await p.locator(`[data-test-id="text_lead_technician_open_count_${NN.staff_id}"]`).innerText().catch(() => null);
+    await shot(p, `C96974-dialog-${tb.replace(' ', '')}`); // 15 Oct 2026: the dialog with the count, for the result's picture
     await p.locator('[data-test-id="button_cancel_reassign_lead_technician"]').click(); await p.waitForTimeout(800);
   }
   await shot(p, 'C96974-board');

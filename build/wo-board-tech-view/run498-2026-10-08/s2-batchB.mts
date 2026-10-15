@@ -118,8 +118,10 @@ await run('C96936', async () => {
   const pB = await p.context().newPage(); await pB.goto(`${APP}/workorders/${w1.id}/lines`, { waitUntil: 'domcontentloaded' }); await pB.waitForTimeout(4000);
   const r = await api(pB).post('/api/work-orders/change-lead-technician', { work_order_id: w1.id, tech_assigned_id: tB.id }); await pB.close();
   R.C96936.moved = `${w1.number} -> Bilal Muzamil (${r.status})`;
-  await p.waitForTimeout(3000); R.C96936.beforeRefresh = await pick();
-  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await search(p, n); R.C96936.afterRefresh = await pick(); await shot(p, 'C96936-after-refresh');
+  // 15 Oct 2026 (Rule 130): the pictures must show the two groups — bring each on screen (the table draws only rows near the screen)
+  const showGroups = async (k: string) => { for (const [id, nmx] of [[tA.id, 'A'], [tB.id, 'B']] as const) { await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await p.waitForTimeout(400); if (await scrollToGroup(id)) { await p.evaluate(`document.querySelector('[data-test-id="tech_view_group_${id}"]')?.scrollIntoView({ block: 'start' })`); await p.waitForTimeout(900); } await shot(p, `C96936-${k}-group${nmx}`); } };
+  await p.waitForTimeout(3000); R.C96936.beforeRefresh = await pick(); await showGroups('before-refresh');
+  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await search(p, n); R.C96936.afterRefresh = await pick(); await shot(p, 'C96936-after-refresh'); await showGroups('after-refresh');
 });
 
 await run('C96929', async () => {

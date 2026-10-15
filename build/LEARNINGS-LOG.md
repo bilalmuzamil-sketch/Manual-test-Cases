@@ -393,3 +393,23 @@ reader that sets `scrollLeft` throws "Cannot set properties of null (setting 'sc
 Read the empty-state text before reading columns; the error is the observation "empty state shown", never a product crash
 and never a reason to re-run. Also: every test now ends with `<C-id>-end.png` (session.mts `__shotEach`, `WOB_SHOT_EACH=0`
 turns it off), so a result always has a picture to annotate (Rule 130). Also (15 Oct): a large result push can lose its connection after the results are written but mid-attachment — `push_results_to_run.py` now retries a dropped upload and `--attach-only` skips pictures already on the result, so just re-run it with `--attach-only`. And: a Failed result that gets NO ticket because production does the same (Rule 121) is posted with `"ticket_held": true` and a `ticket` line that says so in plain words and contains "with the QA lead" (e.g. "No ticket: production does the same, so this is not caused by this work — what the test needs is with the QA lead."); the tool refuses any Failed without a link or that line. #board #emptystate #scripts #testrail → L0337, L0339, Rule 121
+
+## L0341 — 2026-10-15 — Fourth-pass script faults on staging: wrong person by substring, shared "new" users, far-apart drags
+Twenty-seven staging readings were unusable because of the scripts (judge/wave8.json "redo"); the causes worth not repeating:
+(1) **Find staff by the FULL unique email.** The staff-screen search for "ayesha.khan" also matched "ayesha.khan+2026@…"
+("Ayesha Tech Role"), so C368131 moved the wrong person. (2) **"A user who never chose a display / never saved a sort" is made
+new each run** (timestamped email, this organisation's role, department Service) and viewed through `viewas.mts` — the shared
+`zzautotest.wob.userb.1008` already has Board View and a sort saved by other scripts (C96910, C96912, C96929). (3) **Set-up keyed
+on QA-branch numbers silently does nothing on staging** (s1-batch2b changed advisors only on `S10043-17602/3`); select by role
+in the data (lead ≠ you), never by number. (4) **A location you create enrols YOU** (setup.json: my-workplaces lists it at once),
+so with Time Clock on you are a technician there — make a "no technicians" location as the Time-Clock-off runner
+(`notech-stg4.mts`); never edit the signed-in admin's own record. (5) **Drags between two columns ~119 technicians apart never
+have both ends on screen**: give the case's technicians names that sort first ("Aaa ZZAUTOTEST …", `moved-stg4.mts`), or pin
+both for the drag only; deactivate them with no work orders afterwards so they do not stand in front of other checks.
+(6) **Moving a technician off a location = Location field AND removing the old enrolment** (playbook D5); read who counts after
+each half. (7) **`invoiced` is not reachable by change-status** — complete the lines and the work order, then
+`POST /api/invoices/create` (s4-batchD C96974). (8) Staging's work order page has no `select_lead_technician` test-id: read the
+field labelled Lead Technician (`wob.mts woPageLead`). (9) Readers that `slice(0, 2000)` the log line cut readings off (C96916);
+a run filtered by `ONLY` skips helper blocks with their own id (s5-batchA3 'loc2') — run them when their cases run.
+(10) The third pass ends with `signout-fix.mts`, which signs the shared session out: the fourth pass starts with
+`signin-check-stg4.mts` and stops if sign-in no longer works. #staging #rerun #scripts #staff #location → L0332, L0335, L0337, L0339
