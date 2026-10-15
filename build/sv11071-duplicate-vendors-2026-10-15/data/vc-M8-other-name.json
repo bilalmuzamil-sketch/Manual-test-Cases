@@ -1,0 +1,22 @@
+{
+ "taxPicked": "Exempt (0%)",
+ "P": {
+  "tag": "M8-other-name",
+  "name": "ZZAUTOTEST Other Vendor 11071",
+  "a1": "12 Test Road",
+  "city": "Calgary",
+  "zip": "T2P 1A1"
+ },
+ "writes": [
+  "POST /api/parts-catalogue/add-vendor :: {\"name\":\"ZZAUTOTEST Other Vendor 11071\",\"email\":null,\"telephone\":null,\"address_1\":\"12 Test Road\",\"address_2\":null,\"city\":\"Calgary\",\"postal_code\":\"T2P 1A1\",\"state_or_province\":null,\"country_code\":\"CA\",\"notes\":null,\"website\":null,\"credit_term\":\"COD\",\"credit_limit\":0,\"tax_id\":\"0c47b1fb-38bb-4788-8719-6",
+  "  <- 201 {\"data\":{\"vendor_id\":\"b8ca0b10-ced8-4761-84a5-415674973359\"}}"
+ ],
+ "creates": 1,
+ "toasts": [
+  "check_circle Vendor \"ZZAUTOTEST Other Vendor 11071\" created Close"
+ ],
+ "dialogsAfterSave": [],
+ "buttons": [],
+ "answered": null,
+ "dialogsEnd": []
+}

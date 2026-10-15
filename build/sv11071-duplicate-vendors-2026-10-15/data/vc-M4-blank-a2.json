@@ -1,0 +1,30 @@
+{
+ "taxPicked": "Exempt (0%)",
+ "P": {
+  "tag": "M4-blank-a2",
+  "name": "ZZAUTOTEST Xtreme Driveline 11071",
+  "a1": "12 Test Road",
+  "a2": "   ",
+  "city": "Calgary",
+  "zip": "T2P 1A1"
+ },
+ "writes": [
+  "POST /api/parts-catalogue/add-vendor :: {\"name\":\"ZZAUTOTEST Xtreme Driveline 11071\",\"email\":null,\"telephone\":null,\"address_1\":\"12 Test Road\",\"address_2\":\"   \",\"city\":\"Calgary\",\"postal_code\":\"T2P 1A1\",\"state_or_province\":null,\"country_code\":\"CA\",\"notes\":null,\"website\":null,\"credit_term\":\"COD\",\"credit_limit\":0,\"tax_id\":\"0c47b1fb-38bb-4788-8",
+  "  <- 400 {\"errors\":[{\"error\":\"A vendor with this name and address already exists.\"}]}"
+ ],
+ "creates": 1,
+ "toasts": [
+  "warning A vendor with this name and address already exists. Please try to resolve this. Close"
+ ],
+ "dialogsAfterSave": [
+  "New Vendor close Name * Address 1 Address 2 City ZIP/Postal Code Telephone Email State/Province arrow_drop_down Country Canada arrow_drop_down Credit Terms COD arrow_drop_down $ Credit Limit Taxes Exempt arrow_drop_down "
+ ],
+ "buttons": [
+  "button_close_dialog|close",
+  "vendor_save_button|Save & Close"
+ ],
+ "answered": null,
+ "dialogsEnd": [
+  "New Vendor close Name * Address 1 Address 2 City ZIP/Postal Code Telephone Email State/Province arrow_drop_down Country Canada arrow_drop_down Credit Terms COD "
+ ]
+}

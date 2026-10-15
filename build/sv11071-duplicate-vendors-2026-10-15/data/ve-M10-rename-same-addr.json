@@ -1,0 +1,19 @@
+{
+ "P": {
+  "tag": "M10-rename-same-addr",
+  "id": "b8ca0b10-ced8-4761-84a5-415674973359",
+  "name": "ZZAUTOTEST Xtreme Driveline 11071"
+ },
+ "before": "ZZAUTOTEST Other Vendor 11071",
+ "toasts": [
+  "warning A vendor with this name and address already exists. Please try to resolve this. Close"
+ ],
+ "dialogs": [
+  "Edit Vendor close Name * Address 1 Address 2 City ZIP/Postal Code Telephone Email State/Province arrow_drop_down Country Canada arrow_drop_down Credit Terms COD arrow_drop_down $ Credit Limit Taxes Ex"
+ ],
+ "answered": null,
+ "W": [
+  "POST /api/parts-catalogue/change-vendor :: {\"name\":\"ZZAUTOTEST Xtreme Driveline 11071\",\"email\":null,\"telephone\":null,\"address_1\":\"12 Test Road\",\"address_2\":null,\"city\":\"Calgary\",\"postal_code\":\"T2P 1A1\",\"state_or_province\":null,\"country_code\":\"",
+  "  <- 400 {\"errors\":[{\"error\":\"A vendor with this name and address already exists.\"}]}"
+ ]
+}

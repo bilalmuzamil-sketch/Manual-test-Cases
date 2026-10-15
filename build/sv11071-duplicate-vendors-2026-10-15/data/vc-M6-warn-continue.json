@@ -1,0 +1,32 @@
+{
+ "taxPicked": "Exempt (0%)",
+ "P": {
+  "tag": "M6-warn-continue",
+  "name": "ZZAUTOTEST Xtreme Driveline 11071",
+  "a1": "12 Test Road",
+  "city": "Calgary",
+  "zip": "T3A 0B1",
+  "answer": "continue"
+ },
+ "writes": [
+  "POST /api/parts-catalogue/add-vendor :: {\"name\":\"ZZAUTOTEST Xtreme Driveline 11071\",\"email\":null,\"telephone\":null,\"address_1\":\"12 Test Road\",\"address_2\":null,\"city\":\"Calgary\",\"postal_code\":\"T3A 0B1\",\"state_or_province\":null,\"country_code\":\"CA\",\"notes\":null,\"website\":null,\"credit_term\":\"COD\",\"credit_limit\":0,\"tax_id\":\"0c47b1fb-38bb-4788-87",
+  "  <- 409 {\"errors\":[{\"error\":\"A vendor with this name already exists.\"}]}",
+  "POST /api/parts-catalogue/add-vendor :: {\"name\":\"ZZAUTOTEST Xtreme Driveline 11071\",\"email\":null,\"telephone\":null,\"address_1\":\"12 Test Road\",\"address_2\":null,\"city\":\"Calgary\",\"postal_code\":\"T3A 0B1\",\"state_or_province\":null,\"country_code\":\"CA\",\"notes\":null,\"website\":null,\"credit_term\":\"COD\",\"credit_limit\":0,\"acknowledge_duplicate_name\":tr",
+  "  <- 201 {\"data\":{\"vendor_id\":\"578f2b0e-fabb-440a-ac1e-c6b2ce19212c\"}}"
+ ],
+ "creates": 2,
+ "toasts": [
+  "check_circle Vendor \"ZZAUTOTEST Xtreme Driveline 11071\" created Close"
+ ],
+ "dialogsAfterSave": [
+  "New Vendor close Name * Address 1 Address 2 City ZIP/Postal Code Telephone Email State/Province arrow_drop_down Country Canada arrow_drop_down Credit Terms COD arrow_drop_down $ Credit Limit Taxes Exempt arrow_drop_down ",
+  "Confirmation close A vendor named \"ZZAUTOTEST Xtreme Driveline 11071\" already exists. Create another one? Cancel Create"
+ ],
+ "buttons": [
+  "button_close_duplicate_vendor_name|close",
+  "button_cancel_dialog|Cancel",
+  "button_confirm_dialog|Create"
+ ],
+ "answered": "Create",
+ "dialogsEnd": []
+}

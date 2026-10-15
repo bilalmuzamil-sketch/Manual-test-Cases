@@ -1,0 +1,17 @@
+M10-rename-same-addr | name before ZZAUTOTEST Other Vendor 11071 | toasts ["warning A vendor with this name and address already exists. Please try to resolve this. Close"] 
+  dialogs ["Edit Vendor close Name * Address 1 Address 2 City ZIP/Postal Code Telephone Email State/Province arrow_drop_down Country Canada arrow_drop_down Credit Terms COD arrow_drop_down $ Credit Limit Taxes Ex"] 
+  answered null 
+  writes ["POST /api/parts-catalogue/change-vendor :: {\"name\":\"ZZAUTOTEST Xtreme Driveline 11071\",\"email\":null,\"telephone\":null,\"address_1\":\"12 Test Road\",\"address_2\":null,\"city\":\"Calgary\",\"postal_code\":\"T2P 1A1\",\"state_or_province\":null,\"country_code\":\"","  <- 400 {\"errors\":[{\"error\":\"A vendor with this name and address already exists.\"}]}"]
+M11-rename-diff-addr | name before ZZAUTOTEST Rapid Save 11071 | toasts [] 
+  dialogs ["Edit Vendor close Name * Address 1 Address 2 City ZIP/Postal Code Telephone Email State/Province arrow_drop_down Country Canada arrow_drop_down Credit Terms COD arrow_drop_down $ Credit Limit Taxes Ex","Confirmation close Another vendor named \"ZZAUTOTEST Xtreme Driveline 11071\" already exists. Save anyway? Cancel Save"] 
+  answered Cancel 
+  writes ["POST /api/parts-catalogue/change-vendor :: {\"name\":\"ZZAUTOTEST Xtreme Driveline 11071\",\"email\":null,\"telephone\":null,\"address_1\":\"9 Rapid St\",\"address_2\":null,\"city\":\"Calgary\",\"postal_code\":\"T2P 2B2\",\"state_or_province\":null,\"country_code\":\"CA","  <- 409 {\"errors\":[{\"error\":\"A vendor with this name already exists.\"}]}"]
+M12-save-unchanged | name before ZZAUTOTEST Rapid Save 11071 | toasts [] 
+  dialogs [] 
+  answered null 
+  writes ["POST /api/parts-catalogue/change-vendor :: {\"name\":\"ZZAUTOTEST Rapid Save 11071\",\"email\":null,\"telephone\":null,\"address_1\":\"9 Rapid St\",\"address_2\":null,\"city\":\"Calgary\",\"postal_code\":\"T2P 2B2\",\"state_or_province\":null,\"country_code\":\"CA\",\"not","  <- 200 {\"data\":[]}"]
+M12b-save-unchanged-samename | name before ZZAUTOTEST Xtreme Driveline 11071 | toasts [] 
+  dialogs [] 
+  answered null 
+  writes ["POST /api/parts-catalogue/change-vendor :: {\"name\":\"ZZAUTOTEST Xtreme Driveline 11071\",\"email\":null,\"telephone\":null,\"address_1\":\"12 Test Road\",\"address_2\":null,\"city\":\"Calgary\",\"postal_code\":\"T2P 1A1\",\"state_or_province\":null,\"country_code\":\"","  <- 200 {\"data\":[]}"]
+BATCHE DONE

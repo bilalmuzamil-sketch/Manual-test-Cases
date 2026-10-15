@@ -1,0 +1,21 @@
+{
+ "P": {
+  "tag": "M11b-rename-diff-addr-save",
+  "id": "fa79422a-d9c8-46a6-b2e9-b53417efbd5a",
+  "name": "ZZAUTOTEST Xtreme Driveline 11071",
+  "answer": "continue"
+ },
+ "before": "ZZAUTOTEST Rapid Save 11071",
+ "toasts": [],
+ "dialogs": [
+  "Edit Vendor close Name * Address 1 Address 2 City ZIP/Postal Code Telephone Email State/Province arrow_drop_down Country Canada arrow_drop_down Credit Terms COD arrow_drop_down $ Credit Limit Taxes Ex",
+  "Confirmation close Another vendor named \"ZZAUTOTEST Xtreme Driveline 11071\" already exists. Save anyway? Cancel Save"
+ ],
+ "answered": "Save",
+ "W": [
+  "POST /api/parts-catalogue/change-vendor :: {\"name\":\"ZZAUTOTEST Xtreme Driveline 11071\",\"email\":null,\"telephone\":null,\"address_1\":\"9 Rapid St\",\"address_2\":null,\"city\":\"Calgary\",\"postal_code\":\"T2P 2B2\",\"state_or_province\":null,\"country_code\":\"CA",
+  "  <- 409 {\"errors\":[{\"error\":\"A vendor with this name already exists.\"}]}",
+  "POST /api/parts-catalogue/change-vendor :: {\"name\":\"ZZAUTOTEST Xtreme Driveline 11071\",\"email\":null,\"telephone\":null,\"address_1\":\"9 Rapid St\",\"address_2\":null,\"city\":\"Calgary\",\"postal_code\":\"T2P 2B2\",\"state_or_province\":null,\"country_code\":\"CA",
+  "  <- 200 {\"data\":[]}"
+ ]
+}

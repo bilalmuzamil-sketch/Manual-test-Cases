@@ -1,0 +1,64 @@
+{
+ "count": 1046,
+ "bad": [],
+ "zz": [
+  [
+   1042,
+   "ZZAUTOTEST Other Vendor 11071"
+  ],
+  [
+   1043,
+   "ZZAUTOTEST Xtreme Driveline 11071"
+  ],
+  [
+   1044,
+   "ZZAUTOTEST Xtreme Driveline 11071"
+  ],
+  [
+   1045,
+   "ZZAUTOTEST Xtreme Driveline 11071"
+  ]
+ ],
+ "after1": [
+  "Driveline Truck & Trailer Repair Inc | 939-893-8644 | micheal.kelly@staging.shopview.local | 48176 Tara Crossing Suite 568 | - | Adamberg",
+  "Humacao Truck and Trailer Repair | 976-239-3010 | brooke.johnston@staging.shopview.local | 6848 Gonzales Dale Apt. 447 | - | Adrianbury",
+  "East Honolulu Truck Repair | 581-190-0399 | andrea.ware@staging.shopview.local | 5892 Cassandra Summit Suite 221 | - | Alberthaven",
+  "Silverline Truck Repair 24/7 | 966-538-8175 | lauren.bowman@staging.shopview.local | 4493 Scott Estate | - | Alexandramouth"
+ ],
+ "after2": [
+  "Driveline Truck & Trailer Repair Inc | 939-893-8644 | micheal.kelly@staging.shopview.local | 48176 Tara Crossing Suite 568 | - | Adamberg",
+  "Humacao Truck and Trailer Repair | 976-239-3010 | brooke.johnston@staging.shopview.local | 6848 Gonzales Dale Apt. 447 | - | Adrianbury",
+  "East Honolulu Truck Repair | 581-190-0399 | andrea.ware@staging.shopview.local | 5892 Cassandra Summit Suite 221 | - | Alberthaven",
+  "Silverline Truck Repair 24/7 | 966-538-8175 | lauren.bowman@staging.shopview.local | 4493 Scott Estate | - | Alexandramouth"
+ ],
+ "hdr": [
+  "Namearrow_drop_up",
+  "Telephonearrow_drop_up",
+  "Emailarrow_drop_up",
+  "Address 1arrow_drop_up",
+  "Address 2arrow_drop_up",
+  "Cityarrow_drop_up [sorted asc]",
+  "State/Provincearrow_drop_up",
+  "Zip/Postal Codearrow_drop_up"
+ ],
+ "R": [
+  "GET /api/users/me/preferences/parts-vendors",
+  "GET /api/parts-catalogue/vendors?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&search=",
+  "GET /api/parts-catalogue/vendors?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=city&pagination[descending]=false&search=",
+  "PUT /api/users/me/preferences/parts-vendors :: {\"value\":{\"sortBy\":\"city\",\"descending\":false}}",
+  "--- reload ---",
+  "GET /api/users/me/preferences/parts-vendors",
+  "GET /api/parts-catalogue/vendors?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=city&pagination[descending]=false&search=",
+  "GET /api/users/me/preferences/parts-vendors"
+ ],
+ "pref": {
+  "data": {
+   "pageKey": "parts-vendors",
+   "value": {
+    "sortBy": "city",
+    "descending": false
+   },
+   "updatedAt": "2026-10-15T04:17:48Z"
+  }
+ }
+}

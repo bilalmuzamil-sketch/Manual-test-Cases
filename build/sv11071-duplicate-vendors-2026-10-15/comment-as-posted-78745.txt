@@ -1,0 +1,44 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on the QA branch *sv11071* (build *v26.40.17-5d3a257*) on *15 October 2026*, and compared it with production (build *v26.40.17-f5bf8f4*).
+
+* Saving a vendor now says it was created, and saving the same vendor again is refused, so the customer's ten copies can't happen any more.
+* The Vendors list opens in name order A to Z, so a new vendor can be found where you would expect it.
+
+h3. Before and after
+!sv11071-01-before-production-hd.png|width=1360,height=1389!
+_Production: Save closes the window with no message, the list is in no particular order, and the same vendor saved twice gives two identical vendors._
+
+!sv11071-02-after-branch-hd.png|width=1200,height=1278!
+_QA branch: the same vendor saved again is refused with "A vendor with this name and address already exists.", and a new vendor shows "Vendor "…" created"._
+
+h3. What I checked
+||#||Check||Result||
+|1|A new vendor: the message *Vendor "ZZAUTOTEST Xtreme Driveline 11071" created* appears and the vendor's page opens|PASSED|
+|2|The same name and address saved again: refused with *A vendor with this name and address already exists.*, nothing created|PASSED|
+|3|The same vendor typed with different upper/lower case and extra spaces in the name and address: refused the same way|PASSED|
+|4|Address 2 left blank versus spaces only: treated as the same, refused|PASSED|
+|5|Same name, different postal code: asks *A vendor named "…" already exists. Create another one?*; *Cancel* creates nothing|PASSED|
+|6|Same answer with *Create*: the vendor is created and the success message shows|PASSED|
+|7|Same name and address lines but a different country: the same question (not refused)|PASSED|
+|8|A different name at the same address: created, no question|PASSED|
+|9|Clicking *Save & Close* six times quickly: one vendor created|PASSED|
+|10|Editing a vendor to another vendor's name at the same address: refused with the same message|PASSED|
+|11|Editing a vendor to another vendor's name at a different address: asks *Another vendor named "…" already exists. Save anyway?*; Cancel keeps the old name, Save saves it|PASSED|
+|12|Opening a vendor and saving it without changes: saves, no question (also when another vendor has the same name)|PASSED|
+|13|The Vendors list with no sort chosen: name A to Z; all 1,046 vendors checked, none out of order, and the new vendors sit in their alphabetical place|PASSED|
+|14|A user who sorts by a column (I used *City*) still has that sort after reloading the page|PASSED|
+|15|Moving through the pages: each page carries on from the last, nothing repeated|PASSED|
+
+!sv11071-03-warning-and-order-hd.png|width=1360,height=1300!
+_Rows 5 and 13: the same-name question, and the list in name order._
+
+The ticket asks Chris to confirm three product points: what counts as an exact duplicate, the same-name question with "create anyway", and A to Z as the default order. I don't see that confirmation on the ticket yet. Everything above is tested against the rules as written in the description.
+
+h3. How to see it
+# Open https://sv11071.qa.shopview.com and click *Admin* on the login page.
+# In the top menu click {{Parts}}, then {{Vendors}} in the left-hand menu (under SUPPLY CHAIN). The list starts *5 Star Truck Repair*, *Abadi's Diesel Repair*, *AC Truck Repair - Branford* (A to Z).
+# Click the blue {{New Vendor}} button at the top right. Fill in *Name* {{ZZAUTOTEST Xtreme Driveline 11071}}, *Address 1* {{12 Test Road}}, *City* {{Calgary}}, *ZIP/Postal Code* {{T2P 1A1}}, and pick any option in {{Taxes}} (it is required).
+# Click {{Save & Close}}. A red message reads *A vendor with this name and address already exists.* and the window stays open: this vendor is already there.
+# Change *ZIP/Postal Code* to {{T1Y 6J4}} and click {{Save & Close}} again. A *Confirmation* window asks *A vendor named "ZZAUTOTEST Xtreme Driveline 11071" already exists. Create another one?* Click {{Cancel}}: you are back in the New Vendor window and nothing is created.
