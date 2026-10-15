@@ -1,0 +1,113 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "note": "batch 11 = wave 13 passes"
+ },
+ "results": {
+  "C97011": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Start: Ana Alpha's column Alpha Co, Bravo Co (count 2); Ben Bravo 1.",
+    "Escape while over Ben's column, Escape while above Alpha Co, and a drop on the toolbar: each drag was cancelled; Ana still Alpha Co, Bravo Co; counts Ana 2, Ben 1; no message.",
+    "Tech View, Escape while over Ben's group: the same, nothing moved, no message.",
+    "After a refresh nothing changed and Bravo Co's Lead Technician is still ZZAUTOTEST Ana Alpha."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97011-1-board-unchanged-after-cancels.png",
+    "evidence/staging-full-2026-10-14/annotated/C97011-2-tech-unchanged-after-cancel.png"
+   ],
+   "note": "wave13"
+  },
+  "C97013": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Ana's group: Alpha Co, Bravo Co, Charlie Co, Delta Co (Alpha and Charlie In Progress).",
+    "Filtered to In progress: Alpha Co, Charlie Co. Charlie Co dragged above Alpha Co; filter cleared: Charlie, Alpha, Bravo, Delta (C, A, B, D).",
+    "Put back to A, B, C, D; filtered again, Alpha Co dragged below Charlie Co; filter cleared: Bravo, Charlie, Alpha, Delta (B, C, A, D).",
+    "Board View shows Ana's column in the same order, B, C, A, D."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97013-1-filtered-in-progress.png",
+    "evidence/staging-full-2026-10-14/annotated/C97013-2-after-clear-c-a-b-d.png",
+    "evidence/staging-full-2026-10-14/annotated/C97013-3-after-clear-b-c-a-d.png",
+    "evidence/staging-full-2026-10-14/annotated/C97013-4-board-same-order.png"
+   ],
+   "note": "wave13"
+  },
+  "C368148": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "With Assigned to me on, only Ana's and Cal's columns showed; Cal's column was dragged before Ana's (Cal, Ana).",
+    "With Assigned to me off, the order is Cal, Ana, Ben, Dan (after Unassigned): Cal right before Ana, and the hidden Ben and Dan kept their order."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368148-1-tech-order-after-filter.png"
+   ],
+   "note": "wave13"
+  },
+  "C97005": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Ana's group started Alpha Co, Bravo Co, Charlie Co. Charlie Co dragged above Alpha Co: Charlie, Alpha, Bravo.",
+    "Board View: Charlie, Alpha, Bravo.",
+    "Second dispatcher, without doing anything: Charlie, Alpha, Bravo in both Tech View and Board View.",
+    "Step 8 was NOT a real sign-out and sign-in: it was done in a new browser window, because signing out ends the shared staging session every other test uses. In that window the order was still Charlie, Alpha, Bravo (Tech View and Board View). For the QA lead: step 8 checked by a new window only.",
+    "Step 9: the first dispatcher dragged Ben above Ana (now Ben, Ana); the second dispatcher, after refreshing, still has Ana before Ben."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97005-1-order-kept-new-window.png",
+    "evidence/staging-full-2026-10-14/annotated/C97005-2-first-dispatcher-ben-moved-up.png",
+    "evidence/staging-full-2026-10-14/annotated/C97005-3-second-dispatcher-order-unchanged.png"
+   ],
+   "note": "wave13"
+  },
+  "C97010": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Dan Delta (deactivated) still has his column with S2-35947, marked \"Inactive\", count 1.",
+    "S2-35945 dragged onto Dan's column: not accepted, it stayed with Ana Alpha, Dan still 1, no \"Lead technician updated\" message.",
+    "S2-35946 invoiced in a second tab (Create Invoice pressed on screen; status now Invoiced). Back in the first tab, without refreshing, dragged to Ben: it went back to Ana's column and the alert read \"Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+    "The alert was still shown after about 10 seconds and closed only with its Close button.",
+    "After a refresh S2-35946 is in Ana's column and its Lead Technician is still ZZAUTOTEST Ana Alpha."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97010-1-inactive-column.png",
+    "evidence/staging-full-2026-10-14/annotated/C97010-2-refused-drop-alert.png",
+    "evidence/staging-full-2026-10-14/annotated/C97010-3-after-refresh.png"
+   ],
+   "note": "wave13"
+  },
+  "C97020": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "The view-only role (ZZAUTOTEST WO View Only) now holds work order view only (Create & Edit off, read back).",
+    "View-only user, keyboard only on Alpha Co: Enter opened the work order (viewing, which the role allows); Space, the arrow keys and Shift/Alt/Ctrl with arrows did nothing; no More actions button; Alpha Co kept its lead Ana Alpha.",
+    "Dispatcher, keyboard only: the menu of the Invoiced Bravo Co opened, \"Reassign lead technician\" was disabled with the tooltip \"The lead technician can't be changed once a work order is Invoiced or Paid.\", and Enter opened no dialog.",
+    "Shift/Alt/Ctrl with the right arrow and Space on Bravo Co moved nothing; its Lead Technician is still ZZAUTOTEST Ana Alpha."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97020-1-reassign-disabled-invoiced.png"
+   ],
+   "note": "wave13"
+  }
+ }
+}
