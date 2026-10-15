@@ -8,7 +8,7 @@ if ! pgrep -f "atlassian-login/bridge.mjs" >/dev/null; then
   rm -f /tmp/atlassian/bridge-port.txt; (cd "$R" && setsid nohup node build/atlassian-login/bridge.mjs > /tmp/atlassian/bridge.log 2>&1 < /dev/null &)
   for i in $(seq 1 20); do [ -s /tmp/atlassian/bridge-port.txt ] && break; sleep 1; done
 fi
-echo "relay $(curl -s -o /dev/null -w '%{http_code}' -x http://127.0.0.1:$(cat /tmp/atlassian/bridge-port.txt) -k https://app.staging.shopview.com/)"
+echo "relay $(curl -s -m 20 -o /dev/null -w '%{http_code}' -x http://127.0.0.1:$(cat /tmp/atlassian/bridge-port.txt) -k https://app.staging.shopview.com/)"
 pgrep -f memwatch.sh >/dev/null || setsid nohup ./memwatch.sh > /dev/null 2>&1 < /dev/null &
 if pgrep -f "run-sixth.sh|run-seventh.sh|run-eighth.sh|run-ninth.sh|run-tenth.sh" >/dev/null; then pgrep -f stg-after8.sh >/dev/null || grep -q "eighth pass start" $A || setsid nohup ./stg-after8.sh > /dev/null 2>&1 < /dev/null &
   pgrep -f stg-after9.sh >/dev/null || grep -q "ninth pass start" $A || setsid nohup ./stg-after9.sh > /dev/null 2>&1 < /dev/null &

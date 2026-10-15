@@ -887,3 +887,9 @@ it. The label is added with v2 `PUT /rest/api/2/issue/{KEY}` and the body `{"upd
 On 15 Oct: SV-11101 (reopened) and SV-11393 to SV-11397 (new) all read Open with the label.
 **When reopening, also:** keep a copy of the old text first, transition "Reopen" (id 26 on SV), rewrite in the house layout
 with pictures, run size_pics, and give him the link. #tickets #labels #reopen → L0380
+
+## L0391 — 2026-10-15 — `recover.sh` hung after a container restart: its relay check `curl` had no time limit
+After the restart the relay was not yet up, so the `curl` in `recover.sh` line 11 waited forever, and memwatch and the
+waiters it starts after that line never came back. **Fix (done):** `curl -m 20`. **Rule for any recovery or watcher
+script:** every network call gets a time limit (`curl -m`, `timeout N`), because a recovery step that can hang is worse
+than none: it looks like it ran. Check after recovery with `ps` that memwatch and the waiters really are running. #recovery #relay #hang → L0372, L0381
