@@ -153,3 +153,12 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
   is not caused by this work (Rule 121). Reading: evidence/staging-full-2026-10-14/viewonly-pin-prod.json.
 - The production view-only login is /tmp/shopview/prod-login-limited.env. Read its permissions live first (they have drifted
   before); on 15 Oct it held 6 permissions, including workOrdersView and workOrderLinesCreateAndEdit.
+
+### 15 Oct 12:30 UTC — run 498 on staging: all ten passes finished; final report sent
+- Run 498 (271 tests): 244 Passed, 21 Failed (tickets held: C96929; 16 design; 4 technician-filter + C590127), 4 Blocked
+  (C368175, C154650, C368191, C581895), 2 Untested (C590120 needs one more run; C590125 has no expected result).
+- Still carrying a test-branch result: re-runs needing a fresh staging sign-in (C368156 C368178 C368179 C96962 C97012
+  C368217); held on the 100-name list (C97007 C368159 C368169 C368173); the QA lead's calls (C96916 C96920 C96973 C96978
+  C97003); C97033 day 2 (scheduled 19:10 UTC).
+- D-LEAD100 is drafted (one or two tickets). Production cannot show the ~100 cut-off (18 staff), and it is not proven old.
+- Final report: run498-2026-10-08/REPORT-staging-2026-10-15.md.

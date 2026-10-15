@@ -1,116 +1,86 @@
-# Work Orders Board and Tech View — full run on staging (DRAFT, kept current until the passes finish)
+# Work Orders Board and Tech View — full run on staging: final report
 
-Last updated 15 Oct 2026, 06:05 UTC. Everything below was done on staging only, as you asked. Production was used only to
-compare, and only where production has the same screen.
+15 October 2026, 12:30 UTC. Everything below was tested on staging only, as you asked. Production was used only to compare
+where production has the same screen. Every pass and fail in the run carries marked-up pictures.
+
+**Where the run stands: 271 tests. 244 passed, 21 failed, 4 blocked, 2 not yet run.**
+Of the 244 passed, 16 still show an older result from the test branch; those need one more staging run or your call (see Left).
 
 ## 1 · Done
 
-| What | Where it stands |
+| What | Result |
 |---|---|
-| Ran the whole test run on staging, unattended, overnight | Most tests now have a staging result with marked-up pictures on them |
-| Your 22 new design tests ("Design — how it looks") | 2 pass. 13 show the screen does not match the design (tickets held for you). 6 are being measured again. 1 has no expected result yet |
-| Three report filter tests that failed the same way on production | Those three tests have since been DELETED from TestRail (not by me) and left the run, so they no longer count. They had no ticket, because production does the same |
-| One sorting test fails on staging only | It worked on the test branch on 9 Oct; on staging the cards are not in the List's order. Ticket held for you |
-| Four tests that used to fail now pass | The fixes for the "clear the technician's shifts?" question have reached staging |
+| The whole run on staging, unattended, overnight and this morning (ten passes) | Every other test passes on staging with pictures |
+| Your 22 design tests ("Design — how it looks") | 4 pass. 16 do not match the design (tickets held for you). 1 needs one more run. 1 has no expected result yet |
+| Your 4 new technician-filter tests | All 4 fail: Tech View and Board View have no Technician filter (one ticket, held) |
+| Sorting in Tech View and Board View | Fails on staging (cards not in the List's order), though it worked on the test branch on 9 Oct (ticket held) |
+| The "clear the technician's shifts?" question | The fixes have reached staging: those tests now pass |
+| View-only user and the "Asset on Site" switch | Passes: the switch is greyed out and cannot be changed, exactly as on production |
+| Three report filter tests | They were deleted from TestRail during the run (not by me), so they left the run |
 
-## 2 · Left (running now, no action needed from you)
+## 2 · Left — what still has to run, and how
 
 | What | How it finishes |
 |---|---|
-| Re-runs of tests whose first reading was not usable | Queued in the fifth and sixth passes on staging; they start by themselves. Each reading is judged, and passes are posted with pictures |
-| Your 4 new technician-filter tests | Run: all 4 fail — there is no Technician filter yet (ticket held) |
-| The two "no staff from another company" tests | A second company is made on staging and both screens are checked against it |
-| Three analytics tests | Two pass. The third needs a second day: it runs by itself just after midnight Pakistan time (16 Oct) |
-| Six design tests whose first reading looked at the wrong part of the page | Fixed and queued in the sixth pass |
-| The sign-out test | Runs last of all, because signing out ends the staging sign-in every other test uses |
+| 7 tests whose last reading could not be used: switching back to Heavy Duty, two Schedule shifts, the lead-change history, the "Session expired" drag, the part-sale counts, one design card | Each script is fixed. Staging is signed out now (the sign-out test ran last, as it must), so they need a fresh staging sign-in from you — question 1 below. Then about 45 minutes |
+| 4 tests that cannot change the lead to someone late in the alphabet | Waiting on the 100-name list problem — question 2 |
+| The two-day analytics test | Day 2 runs by itself tonight at 19:10 UTC (just after midnight Pakistan time) and is posted then |
+| 5 tests where the test's wording and staging disagree | Waiting on your call — questions 6 to 10 |
 
 ## 3 · Blocked
 
 | What | Why | What it does NOT block |
 |---|---|---|
-| Chris's bug: a technician's card shows a different name from their staff record | On staging a technician has only ONE name: renaming the staff record renames the account too, and the other way round. So the two names cannot differ there, and the bug cannot be shown. Production does not have these screens yet, and you asked that nothing runs on a test branch | Every other test |
-| Two tests that check another company's staff and work orders are never shown | Staging has only one company and will not let a second one be made (its sign-up page is not there). So there is no other company to check against | Every other test |
-| Deleting a technician who has worked on a line | Staging refuses: "Staff is being used elsewhere". So the "Deleted user" state that one test needs cannot be made by deleting | Every other test |
+| Chris's bug: a card showing a different name from the staff record | Staging keeps one name per technician; the two names can never differ there | Every other test |
+| Another company's staff and work orders never showing (2 tests) | Staging has only one company and cannot make a second one | Every other test |
+| How a line shows work done by someone who was deleted | Staging will not delete anyone who has logged work | Every other test |
 
-## 4 · How to unblock — what I need from you
+## 4 · What I need from you
 
-1. **A sorting problem on staging that was fixed on the test branch.**
-   - **What a user sees:** in Tech View and Board View a technician's work orders are not in the same order as the List, even when the List is sorted by customer. On the test branch on 9 Oct this was fixed, and its ticket was closed as no longer needed. On staging it is broken again.
-   - **The question:** reopen the old ticket, or raise a new one?
-   - **Options:** (a) reopen the old ticket — I add the staging pictures and steps to it; (b) raise a new ticket under the Tech View story — I file it in our usual layout; (c) leave it — the test stays failed in the run.
-   - **If you say nothing:** the test stays failed with its ticket held. Nothing else waits on it.
-2. **13 places where the screen does not match the design.** Some examples:
-   - no Technician filter in Tech View or Board View — your 4 new technician-filter tests fail on this too, so it is one ticket covering all 5 tests;
-   - a grey strip down each side of the table;
-   - a new user sees the wrong columns;
-   - the success message is a solid green box instead of the design's white box with a green tick;
-   - technicians without a photo get a solid blue circle instead of a light grey one.
-   - **The question:** may I raise these as tickets, one at a time? I will show you each one first.
-   - **Options:** (a) yes, one by one — I show you the first now and wait for your yes on each; (b) some are expected differences — tell me which, and I record your ruling on the result; (c) not now — they stay failed in the run with tickets held.
-   - **If you say nothing:** they stay failed with tickets held. Nothing else waits on them.
-3. **The Lead Technician list on the work order page stops at 100 names** (its own ticket, as you asked).
-   - **What a user sees:** on a work order, the Lead Technician list shows only the first 100 people (A to about Q). Typing a name does not find anyone else, so technicians later in the alphabet can never be made lead there. The board's Reassign window does offer them.
-   - **Where it stands:** the ticket is drafted in the usual layout and held. It goes to you only if production does NOT have the same limit; if production does the same, this release did not cause it and I will tell you instead.
-   - **The question:** may I file it?
-   - **Options:** (a) yes — I file it under the lead technician story, add its number to the three tests it blocks, and post that into the run; (b) not now — the three tests stay held with the reason.
-   - **If you say nothing:** nothing is filed; the three tests stay held.
-4. **A second company on staging.**
-   - **What it is:** two tests check that technicians and work orders from ANOTHER company never show up. Staging has only one company, and a new one cannot be signed up there.
-   - **The question:** is there a second company on staging I can use, or a way to create one?
-   - **Options:** (a) you name one or give me a sign-in for it — I run both tests straight away; (b) no — both stay Blocked with this reason.
-   - **If you say nothing:** both stay Blocked. Nothing else waits on them.
-5. **Chris's name bug cannot be shown on staging** (see Blocked).
-   - **The question:** is there a way the two names can differ on staging?
-   - **Options:** (a) you know a way — I run it straight away; (b) no — I mark the test Blocked with this reason and the bug stays with Chris; (c) allow one test branch just for this — I run it there.
-   - **If you say nothing:** I mark it Blocked with the reason at the end of the run.
-6. **Moving the last work order out of "Assigned to me".**
-   - **What a user sees:** with "Assigned to me" on, giving your only work order to someone else empties the board, and it shows "No work orders match these filters" instead of your column with 0.
-   - **Why it is a question:** the test says your column should stay with a count of 0. A newer version of the product requirements says an empty filtered board shows that message.
-   - **Options:** (a) the newer requirements win — the test passes; (b) the test is right — it fails and I prepare a ticket for you to approve.
-   - **If you say nothing:** it stays unjudged.
-7. **A view-only user drops a technician before "Unassigned".**
-   - **What a user sees:** the technician lands right after Unassigned, because Unassigned always stays first. The test expects the drop to do nothing.
-   - **Options:** (a) landing next to Unassigned is fine — it passes; (b) the drop should do nothing — it fails and I prepare a ticket.
-   - **If you say nothing:** it stays unjudged.
-8. **Switching to Tech View while offline.**
-   - **What a user sees:** offline, in a browser that has never opened Tech View, the page shows "Something went wrong loading this section" instead of switching. In a browser that has opened Tech View before, it may work.
-   - **Options:** (a) test only a browser that has opened Tech View before — I run it that way; (b) a fresh browser must work offline too — it fails and I prepare a ticket.
-   - **If you say nothing:** it stays unjudged.
-9. **Coming back to the board after opening a work order.**
-   - **What a user sees:** the sideways position comes back exactly, but up-and-down can shift by about one row.
-   - **Options:** (a) one row is fine — it passes; (b) it must be exact — it fails and I prepare a ticket.
-   - **If you say nothing:** it stays unjudged.
-10. **"Sign out and sign back in" in two tests.**
-   - **What I did instead:** opened a fresh browser window. A real sign-out ends the staging sign-in every other test uses, and I cannot sign back in unattended.
-   - **Options:** (a) a fresh window is enough — both stay passed; (b) a real sign-out is needed — I run it last, once you can sign me in again afterwards.
-   - **If you say nothing:** both stay passed, and the comment says how it was done.
-11. **Dark theme test.** It has no expected result yet; it is waiting for the product owner. On staging, Dark turns both views dark.
-   - **Options:** (a) you give the expected look — I judge it against that; (b) leave it until the product owner answers.
-12. **How a line's technicians are named on a card.**
-    - **What a user sees:** a line with two technicians shows the first person's FULL name and then "+1", on the card and in the List alike, for example "Cora Clock +1".
-    - **Why it is a question:** the test, quoting the product requirements, says it should be their FIRST name and then "+1", for example "Cora +1". The card and the List agree with each other but not with that wording.
-    - **Options:** (a) the card matching the List is what matters — it passes; (b) it must be the first name only — it fails and I prepare a ticket for you to approve; (c) ask the product owner which is meant — I add it to the product owner question sheet.
-    - **If you say nothing:** it stays unjudged.
-13. **For your information, no action needed:**
-    - Four tests about the "clear the technician's shifts?" question now pass on staging, so those fixes have reached it.
-    - After moving a technician's time from one line to another, the receiving line correctly shows her name, but a second entry "Deleted user" also appears under it, although nobody on that line was deleted. The test passed on what it asks; I am telling you in case you want it looked into.
-    - On staging the shop setting "a line needs a tech story before it can be completed" was OFF, which is why a line completed without a story in last night's run. I turned it on for the test, the test passed, and I turned it off again.
+1. **A fresh staging sign-in, to finish 7 re-runs.**
+   - **What it is:** the last test of the run signs staging out. Seven tests still need one more run with their fixed scripts.
+   - **Options:** (a) send me a fresh staging sign-in — I run all seven at once and post them, about 45 minutes; (b) leave them — they keep their older test-branch results.
+   - **If you say nothing:** the seven stay as they are; nothing else waits on them.
+2. **The Lead Technician list on the work order page stops at about 100 people — may I file it?** (Its own ticket, as you asked.)
+   - **What a user sees:** on staging 255 people can lead work, but the work order page's Lead Technician list shows only the first 100 or so (to the P/Q names), and the line's Add Technician list stops at the same point. Typing a name puts no text in the box and finds no one. So technicians later in the alphabet (Ralph Edwards, Ben Bravo) can never be chosen there, although the board's Reassign window offers them.
+   - **Is it new?** I cannot tell. Production has only 18 staff, so it can never reach 100. Both sites ask for the list the same way, so the limit comes from the server, and the developer's notes for this release say these lists were changed. It may be new or it may be old.
+   - **Options:** (a) file it as ONE ticket covering both lists, under the lead technician story (Ready for QA, read today); (b) file it as TWO tickets, one per list; (c) do not file — the four tests stay waiting with this reason.
+   - **If you say nothing:** nothing is filed.
+3. **The other held tickets — one at a time, after question 2.** All are drafted in the usual layout with pictures; their stories all read "Ready for QA":
+   - no Technician filter in Tech View and Board View (covers 5 tests);
+   - sorting on staging does not follow the List (fixed on the test branch earlier and its old ticket closed as no longer needed — reopen it or file new);
+   - 16 places where the screen does not match the design (for example the grey strip down each side of the table, a black work order number instead of a blue link, no progress bar, technicians without a photo shown as a solid blue circle, the green message box).
+   - I will ask you about each one in turn once question 2 is answered.
+4. **A second company on staging.** Is there one I can use, or a way to make one? (a) yes — I run both tests at once; (b) no — they stay Blocked.
+5. **Chris's name bug.** Is there any way the two names can differ on staging? (a) yes — I run it at once; (b) no — it stays Blocked and the bug stays with Chris.
+6. **Moving your last work order out of "Assigned to me".** The board shows "No work orders match these filters" instead of your column with 0. The newer product requirements say an empty filtered board shows that message. (a) newer requirements win — pass; (b) the test is right — fail, ticket prepared.
+7. **A view-only user drops a technician before "Unassigned".** It lands right after Unassigned, which always stays first; the test expects nothing to happen. (a) fine — pass; (b) the drop should do nothing — fail, ticket prepared.
+8. **Switching to Tech View while offline.** A browser that has never opened Tech View shows "Something went wrong loading this section". (a) only test a browser that has opened it before; (b) a fresh browser must work offline too — fail, ticket prepared.
+9. **Coming back to the board after opening a work order.** The sideways position comes back exactly; up-and-down can shift by about one row. (a) fine — pass; (b) must be exact — fail, ticket prepared.
+10. **How a line's two technicians are named on a card.** It shows the first person's full name then "+1" ("Cora Clock +1"), the same as the List; the test says first name only ("Cora +1"). (a) matching the List is right — pass; (b) first name only — fail, ticket prepared; (c) ask the product owner.
+11. **Dark theme test.** It has no expected result yet (waiting for the product owner). On staging, Dark turns both views dark. (a) give me the expected look; (b) leave it.
+12. **For your information, nothing to decide:**
+    - "Sign out and sign back in" in two tests was done with a fresh browser window, because a real sign-out ends the staging sign-in; both pass, and the comment says so.
+    - After moving a technician's time to another line, a second entry "Deleted user" also appears under that line, though nobody there was deleted.
+    - The shop setting "a line needs a tech story before it can be completed" is OFF on staging; I turned it on for its test and back off.
+    - Production moved to a newer version (v26.40.18) during the morning.
+    - The testing machine restarted five times this morning when the session sat idle; a watcher now keeps it awake, and nothing finished was lost.
 
 ## 5 · Handoff-ready
 
 | Gate | State |
 |---|---|
-| Every test has a staging result | NO — passes 5 and 6 still running |
-| Every pass and fail carries marked-up pictures | YES for everything posted so far |
-| Tickets | None filed; all held for your yes, one at a time |
+| Every test has a staging result | NO — 7 need a fresh staging sign-in, 4 wait on question 2, 5 wait on your calls, 1 runs tonight |
+| Every pass and fail carries marked-up pictures | YES |
+| Tickets | None filed; every one is held for your yes, one at a time |
 | **Ready to hand off** | **NO** |
 
 ---REFERENCE---
 Run 498: https://shopview.testrail.io/index.php?/runs/view/498
-1 · C96929 https://shopview.testrail.io/index.php?/cases/view/96929 — old ticket https://shopview.atlassian.net/browse/SV-11101 (Obsolete); story https://shopview.atlassian.net/browse/SV-10045 (Ready for QA, read 15 Oct)
-2 · Design failures C590110 C590111 C590112 C590113 C590115 C590116 C590117 C590118 C590119 C590121 C590124 C590127 C590130; passes C590126 C590131; re-measuring C590114 C590120 C590122 C590123 C590128 C590129; Dark theme C590125
-5 · C581895 https://shopview.testrail.io/index.php?/cases/view/581895 — story https://shopview.atlassian.net/browse/SV-10048
-6 · C96973 · 7 · C97003 · 8 · C96920 · 9 · C96916 · 10 · C97005 step 8, C96989 · 11 · Dark theme C590125 · 12 · C96978 · 13 · C368134 C368136 C154888 C154889; tech-story setting C96998
-Deleted from TestRail during the run (not by this session): C368232 C368236 C368237. Deleted user: C368191, C368177.
-4 · Second company: C368175 C154650 · Technician filter: C581915 C581916 C581917 C581918 (with C590127)
-3 · Lead list stops at 100 (own ticket, held): C97007 C368159 C368169 — story https://shopview.atlassian.net/browse/SV-10047
+1 · Re-runs: C368156 C368178 C368179 C96962 C97012 C368217 C590120
+2 · Lead list (draft defect-drafts/tickets/D-LEAD100-staging-2026-10-15.wiki): C97007 C368159 C368169 C368173 — story SV-10047 https://shopview.atlassian.net/browse/SV-10047 (Ready for QA, read 11:53 UTC)
+3 · Technician filter: C581915 C581916 C581917 C581918 C590127 (story SV-10044 https://shopview.atlassian.net/browse/SV-10044) · Sorting: C96929 (old ticket SV-11101 https://shopview.atlassian.net/browse/SV-11101 Obsolete; story SV-10045 https://shopview.atlassian.net/browse/SV-10045) · Design: C590110 C590111 C590112 C590113 C590114 C590115 C590116 C590117 C590118 C590119 C590121 C590124 C590128 C590129 C590130
+4 · C368175 C154650 · 5 · C581895 (story SV-10048 https://shopview.atlassian.net/browse/SV-10048) · Deleted person: C368191
+6 · C96973 · 7 · C97003 · 8 · C96920 · 9 · C96916 · 10 · C96978 · 11 · C590125
+12 · Sign-out by new window: C97005 C96989 · Deleted user entry: C368177 · Tech-story setting: C96998
+Two-day analytics: C97033 (day 2 at 19:10 UTC) · Deleted from TestRail during the run: C368232 C368236 C368237
