@@ -11,9 +11,6 @@
   0,
   0,
   0,
-  0,
-  0,
-  0,
   0
  ],
  "C97023": {
@@ -118,11 +115,14 @@
   "totalFieldLoads": 28
  },
  "C97025": {
-  "step3": [],
-  "step5": [],
-  "step8": [
+  "step3": [
+   "work_orders_field_toggle board_view service_advisor on",
+   "work_orders_field_toggle board_view company_name off"
+  ],
+  "step5": [
    "work_orders_density_change board_view compact"
   ],
+  "step8": [],
   "note": "failed save: not checked by hand"
  },
  "C97027": {
@@ -167,96 +167,5 @@
   ],
   "hits": [],
   "positiveControl": "the banned list was matched against every parameter value of every Work Orders event"
- },
- "C97029": {
-  "error": "Cannot read properties of undefined (reading 'name')"
- },
- "C97035": {
-  "has service_advisor": 1,
-  "has lines_count": 1,
-  "has start_date": 1,
-  "counts": {
-   "work_orders_display_view": 5,
-   "work_orders_field_load": 25,
-   "work_orders_density_load": 1,
-   "work_orders_field_toggle": 3,
-   "work_orders_density_change": 1
-  },
-  "total": 35,
-  "step7new": [],
-  "toggles": [
-   "work_orders_field_toggle board_view service_advisor on",
-   "work_orders_field_toggle board_view lines_count on",
-   "work_orders_field_toggle board_view start_date on"
-  ],
-  "otherWOEvents": [
-   "work_orders_display_view",
-   "work_orders_field_load",
-   "work_orders_density_load",
-   "work_orders_field_toggle",
-   "work_orders_density_change"
-  ]
- },
- "C368153": {
-  "error": "Cannot read properties of undefined (reading 'name')"
- },
- "C368155": {
-  "opened": "/workorders/<id>/lines",
-  "display": [
-   {
-    "uid": "59e7a9a2",
-    "up": []
-   },
-   {
-    "uid": "59e7a9a2",
-    "up": []
-   },
-   {
-    "uid": "59e7a9a2",
-    "up": []
-   }
-  ],
-  "workOrderView": [
-   {
-    "en": "page_view"
-   },
-   {
-    "en": "page_view",
-    "uid": "59e7a9a2"
-   },
-   {
-    "en": "page_view",
-    "uid": "59e7a9a2"
-   },
-   {
-    "en": "page_view",
-    "uid": "59e7a9a2"
-   },
-   {
-    "en": "work_order_view",
-    "uid": "59e7a9a2"
-   },
-   {
-    "en": "page_view",
-    "uid": "59e7a9a2"
-   },
-   {
-    "en": "page_view",
-    "uid": "59e7a9a2"
-   }
-  ],
-  "userIdOf": {
-   "switchedUser": "59e7a9a2"
-  },
-  "allEventNames": [
-   "page_view",
-   "work_orders_display_view",
-   "work_orders_field_load",
-   "work_orders_density_load",
-   "page_search",
-   "work_order_view"
-  ],
-  "sameUid": false
- },
- "restored": true
+ }
 }
