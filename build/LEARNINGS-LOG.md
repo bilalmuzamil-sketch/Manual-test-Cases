@@ -506,3 +506,11 @@ touching the pass — used 15 Oct to keep `signout-fix.mts` from running before 
 - (L0349 addendum, 15 Oct ~03:15 UTC — QA lead ruling) **WO Board / Tech View: everything runs on STAGING; nothing for this
   suite runs on any QA branch** ("Everything needs to run on staging. Nothing for WO Board and Tech view is to run on any QA
   branch."). So S5-R11b cannot be reproduced on the QA branch either — report it as not reproducible on staging and ask.
+
+## L0350 — 2026-10-15 — Measuring a design on staging: one string-injected kit, text boxes cut to the screen, pictures taken mid-action
+- **Where:** `build/wo-board-tech-view/run498-2026-10-08/design-stg5.mts` (run 498, section "Design — how it looks", C590110–C590131), fifth pass (`fifth-pass-plan.txt`, `run-fifth.sh`, `stg-after5.sh`).
+- **Kit as a STRING, not functions:** the in-page measuring code (`LIB`, `window.__D`) is a `String.raw` expression evaluated before each read. Functions handed to `page.evaluate` from a `.mts` file can carry esbuild's `__name(...)` wrappers, which do not exist in the page; a string avoids that and survives navigations (it is re-injected when missing).
+- **Label overlap is measured on the TEXT, cut to what is visible:** `Range.getClientRects()` per text node, clipped by every ancestor whose overflow is not visible (an ellipsis-cut name otherwise "overlaps" its neighbour at full length). The kit also lists the labels that were cut.
+- **Hover, menu and drag states are photographed WHILE they are showing:** a real mouse move (then wait about 1.3 s) for tooltips and hover colours, the picture taken with the menu still open (C96987/C96991 lesson: the old helper closed the Density menu before its picture), and drags HELD with the mouse down while the drop line or refusal message is read and photographed (`dragHold`), then released.
+- **Cut-off names in an order picture (C368144):** read the order first, then let the names wrap (white-space normal, overflow visible) for the picture only, and say so in the reading. Nothing is moved, so the picture shows the order that was read.
+- **A plan line added after its pass has started is never run:** `run-*.sh` reads the plan once, at its start. Anything queued later goes into the NEXT pass's plan, together with the sign-out test, which stays last of all (L0342).
