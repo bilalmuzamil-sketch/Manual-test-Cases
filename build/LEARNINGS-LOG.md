@@ -941,3 +941,9 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 - Trap in `orgb-fix3.mts` C368175: for New Line, "OrgB" landed in "What Are You Doing?" (the line-name search), so its "No results"
   is about line names, not technicians. Check the picture before using a typed-search result (L0387). Edit labor's last row is the
   line's CURRENT technician (shown selected), not the end of the alphabet. #technician-list #paging #rule104 → L0386, L0388
+
+## L0397 — 2026-10-15 — A Jira attachment upload needs the same Origin/Referer/User-Agent headers as jira.sh, and goes BEFORE the comment that shows it
+- On SV-11393 the attachment POST without the `Referer` header answered 404, and an earlier try answered 000. It answered 200 with the exact header set
+  of `build/atlassian-login/jira.sh` (Origin, Referer, browser User-Agent, `X-Atlassian-Token: no-check`) plus `;type=image/png`.
+- Upload the picture FIRST, then post the comment or description that embeds `!name.png|width=1000!`. The comment went in first here,
+  so it briefly pointed at a missing picture. Read back `?expand=renderedBody` and count `<img`. #jira #attachment #comment → L0390
