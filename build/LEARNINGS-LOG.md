@@ -854,3 +854,13 @@ start time. Never use `pkill -f` (L0339). #processes #waiters → L0339
 - The way to settle it without seeding 100 people on production: record the GET /api/ request each list makes and its limit setting on both sites (`watchRequests(pg)` in `run498-2026-10-08/lead100-compare.mts`). Same limit asked on production ⇒ the limit is older than this work.
 - Always pair a "typing does not find X" reading with a positive control (type a name that IS in the list): here neither narrowed, so the finding is "the field does not search as you type", not "X cannot be found".
 - Instrument trap found the same day: `inp.fill(term).catch(() => {})` swallowed the error when a pick field takes no typing, so the readings said "typed, not narrowed" while the pictures show an EMPTY field. A typing reading must record how it typed, the fill error, the field's `readonly`, and the value after, and fall back to pressing the keys as a person does (`typeLikeUser` in `lead100-compare.mts`). Until then, word it as what the screen shows: "no text appears and the list does not change".
+
+## L0387 — 2026-10-15 — I told the QA lead "typing does not narrow the list" before anyone looked at the field in the picture
+From the lead100-compare reading I reported that typing a name narrowed neither list, on staging or production. The script had
+used `inp.fill(term).catch(() => {})`, and every "typed" picture showed an EMPTY field: the typing never landed. So the honest
+reading was only "no text appeared and the list did not change". I corrected it to him in my next message.
+**Rule 104 applies to a script's own negative results too:**
+- before a "typing found nothing" or "nothing narrowed" result is reported, the reading must show what the field held after
+  typing, and the picture must show the typed text;
+- a `.catch(() => {})` on an action that a negative claim rests on makes that claim unproven.
+The script now records how it typed and what the field held (`typeLikeUser`). #negative-claims #typing #rule104 → L0036, L0386
