@@ -1,0 +1,72 @@
+{
+ "results": {
+  "C581892": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work order 1 (its second line not approved), work order 2 (its second line declined) and work order 3 (a Choose lines shift ticking both approved lines): each drag opened \"Clear Esther Howard's scheduled shifts?\".",
+    "After Keep shifts each work order moved to Ralph Edwards's column with \"Lead technician updated\".",
+    "Schedule, tomorrow: Esther Howard's three shifts were still there at the same times (8:00\u201310:00, 10:00\u201312:00 and 1:00\u20133:00 PM)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C581892-WO1-question.png",
+    "evidence/staging-full-2026-10-14/C581892-WO2-question.png",
+    "evidence/staging-full-2026-10-14/C581892-board-after.png",
+    "evidence/staging-full-2026-10-14/C581892-schedule-S2-35696.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C581893": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps. Both shifts were made on the Schedule with Entire work order, as the set-up says.",
+    "Work order 1 (a third line added and approved after its shift was made): dragging it to Ralph Edwards's column opened no question; it moved at once with \"Lead technician updated\".",
+    "Work order 2 (a third line added but not approved): dragging it opened \"Clear Esther Howard's scheduled shifts?\".",
+    "After Keep shifts, work order 2 moved to Ralph Edwards's column with \"Lead technician updated\".",
+    "Check of the check: a third work order with no line added afterwards also opened the question, so the question itself works."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C581893-WO1-schedule-drop-dialog.png",
+    "evidence/staging-full-2026-10-14/C581893-step4-after.png",
+    "evidence/staging-full-2026-10-14/C581893-step6-question.png",
+    "evidence/staging-full-2026-10-14/C581893-control-WO3-question.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C581894": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "The work order has three approved lines estimated 0.30, 1.50 and 0.30 hours and a declined line of 2.00 hours (the test's example values were 0.30, 1.50 and 0.40).",
+    "The work order page read \"Total Hours: 2.1 hrs\": the declined line's 2.00 hours were left out.",
+    "With Estimated hours turned on in Fields to display, the card read \"Est. 2.1 hrs\", the same as Total Hours (4.1, with the declined line counted, would have failed)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C581894-step4-total-hours.png",
+    "evidence/staging-full-2026-10-14/C581894-step10-card.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C581896": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "The link with Imported opened the List, not Board View, with \"Status: Imported\" ticked and the imported work orders listed.",
+    "Board View and Tech View were greyed out, each with \"Not available while Imported is selected.\"",
+    "A new tab without Imported opened in Board View, so the saved display had not changed.",
+    "After ticking Imported in another tab, a new tab opened in List with Imported still ticked, Board View and Tech View greyed out."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C581896-step6-imported-link.png",
+    "evidence/staging-full-2026-10-14/C581896-step11-saved-display.png",
+    "evidence/staging-full-2026-10-14/C581896-step16-new-tab.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ },
+ "note": "wave 8e \u2014 v49 new cases (stg-new5 + stg-fix-new3), judged by the main session 15 Oct 02:00 UTC"
+}
