@@ -69,6 +69,22 @@
   }
  },
  "C96976": {
+  "pickerPlace": {
+   "techViewButton": {
+    "x": 1200,
+    "y": 86
+   },
+   "boardViewButton": {
+    "x": 1200,
+    "y": 86
+   },
+   "sameSpot": true,
+   "techItems": 15,
+   "boardItems": 13,
+   "boardKinds": [
+    "switch"
+   ]
+  },
   "set": [
    "ok",
    "ok"
@@ -129,9 +145,40 @@
    "total_price",
    "vehicle_here"
   ],
+  "failTech": {
+   "menuOn": [
+    "vehicle",
+    "vin",
+    "progress",
+    "service_advisor",
+    "technician",
+    "clocked_in_technicians",
+    "lines_count",
+    "total_price",
+    "start_date"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On"
+   ]
+  },
   "savesDuringFailure": [
    "PATCH {\"value\":{\"display\":\"board_view\"}}",
-   "PUT {\"value\":{\"tab\":\"all\",\"filters\":{},\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":false,\"progress\":false,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"totalPrice\":true,\"invoicedDate\":false,\"s"
+   "PUT {\"value\":{\"tab\":\"all\",\"filters\":{},\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":false,\"progress\":false,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"totalPrice\":true,\"invoicedDate\":false,\"s",
+   "PATCH {\"value\":{\"display\":\"tech_view\"}}",
+   "PATCH {\"value\":{\"display\":\"board_view\"}}"
   ],
   "afterReload": [
    "vehicle",
@@ -141,6 +188,89 @@
    "total_price",
    "vehicle_here"
   ]
+ },
+ "loc2": {
+  "runnerDeps": [
+   "ZZAUTOTEST F2 No Tech Shop/Service",
+   "Staging Heavy Duty - 9919/Service"
+  ],
+  "ayeshaDeps": [
+   "QB Location/Shop Time (Shop hand)",
+   "Staging Heavy Duty - 9919/Shop Time (Shop hand)",
+   "Staging Lethbridge - 4310/Shop Time (Shop hand)",
+   "Staging Heavy Duty - 9919/Work order status",
+   "Staging Heavy Duty - 9919/Foreman Duties (Calgary HD)",
+   "Staging Heavy Duty - 9919/Shop Time Approved by Gerlock",
+   "Staging Heavy Duty - 9919/Service/Parts",
+   "Staging Heavy Duty - 9919/Training",
+   "Staging Heavy Duty - 9919/Shop Time Approved by Ryan",
+   "Staging Heavy Duty - 9919/Foreman Duties (Lethbridge)",
+   "Staging Heavy Duty - 9919/Administration",
+   "Staging Heavy Duty - 9919/Shop Time Approved by James",
+   "Staging Heavy Duty - 9919/Backup foreman duties (Jimmy only - Kirk not here)",
+   "Staging Heavy Duty - 9919/Foreman duties (Eastlake)",
+   "Staging Heavy Duty - 9919/Service",
+   "Staging Heavy Duty - 9919/Backup foreman duties (Brendan only - Kirk not here)"
+  ],
+  "ayeshaWorkplace": "Staging Heavy Duty - 9919",
+  "ids": 0,
+  "enrolLeth": "201",
+  "enrol": "201",
+  "runnerDepsAfter": [
+   "ZZAUTOTEST F2 No Tech Shop/Service",
+   "Staging Heavy Duty - 9919/Service",
+   "Staging Lethbridge - 4310/Service"
+  ],
+  "switched": "Staging Lethbridge - 4310",
+  "menuButton": 0,
+  "at": "Staging Lethbridge - 4310",
+  "atAfterOpen": "Staging Lethbridge - 4310",
+  "tech": [
+   "vehicle",
+   "vin",
+   "progress",
+   "technician",
+   "clocked_in_technicians",
+   "lines_count",
+   "assigned_techs",
+   "total_price",
+   "start_date"
+  ],
+  "techHeads": [
+   "On Site",
+   "Status",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Assigned Techs",
+   "Total Price",
+   "Created On"
+  ],
+  "board": [
+   "vehicle",
+   "vin",
+   "progress",
+   "lines_count",
+   "total_price",
+   "vehicle_here"
+  ],
+  "list": [
+   "vehicle",
+   "vin",
+   "serviceAdvisor",
+   "technician",
+   "clockedInTechnicians",
+   "linesCount",
+   "totalPrice",
+   "startDate"
+  ],
+  "back": "Staging Lethbridge - 4310"
  },
  "restored": true
 }

@@ -6,11 +6,16 @@
   "log": []
  },
  "C96978": {
+  "techs": [
+   "ZZAUTOTEST Cora49379 Clock",
+   "ZZAUTOTEST Rory49379 Clock"
+  ],
+  "line1": "200",
   "line2": "200",
   "advisor": "201",
   "clock": [
-   "201",
-   "400 {\"errors\":[{\"error\":\"You are already clocked into different line.\"}]}"
+   "ZZAUTOTEST Cora49379: switch 200, task found, check-in 201, now \"S-35916, Service - Cabin air filter\"",
+   "ZZAUTOTEST Rory49379: switch 200, task MISSING, check-in 201, now \"S-35916,  Replace - Suspension air bag\""
   ],
   "lineEstimates": [
    18,
@@ -18,24 +23,26 @@
    24
   ],
   "sumEstimateMinutes": 132,
-  "wo": "S2-35729",
+  "wo": "S2-35916",
   "list": {
    "On Site": "location_on",
    "Status": "In Progress 5",
-   "Number": "S2-35729",
+   "Number": "S2-35916",
    "Customer": "ZZAUTOTEST F2 Card Field Value..",
    "Asset": "",
    "Unit": "ZZF2FV",
-   "VIN/Serial #": "ZZWOB179202358399 content_copy",
+   "VIN/Serial #": "ZZWOB179203664758 content_copy",
    "Progress": "0%",
    "Service Advisor": "Esther Howard",
-   "Lead Technician": "Esther Howard",
-   "Clocked In": "Esther Howard",
+   "Lead Technician": "ZZAUTOTEST Cora49379 Clock",
+   "Clocked In": "ZZAUTOTEST Cora49379 Clock+1",
    "Lines": "3",
    "Total Price": "$435.27",
    "Created On": "Today"
   },
-  "listClockHover": [],
+  "listClockHover": [
+   "ZZAUTOTEST Cora49379 Clock, ZZAUTOTEST Rory49379 Clock"
+  ],
   "offered": [
    "Lead technician",
    "Customer",
@@ -67,30 +74,11 @@
    "vehicle_here",
    "start_date"
   ],
-  "card": {
-   "number": "S2-35729",
-   "status": "In Progress",
-   "field_company_name": "Customer ZZAUTOTEST F2 Card Field Values 83134",
-   "unit": "ZZF2FV",
-   "field_vin": "VIN/serial VIN ZZWOB179202358399",
-   "field_service_advisor": "Service advisor support_agent Esther Howard",
-   "field_clocked_in_technicians": "Clocked in timer Esther Howard",
-   "field_lines_count": "Line count format_list_bulleted 3 lines",
-   "field_vehicle_here": "On-site local_shipping On site",
-   "field_time_estimate": "Estimated hours Est. 2.2 hrs",
-   "field_start_date": "Created date Today",
-   "field_progress": "Progress 0%",
-   "field_line_technicians": "Line technicians EH RE",
-   "field_technician": "Lead technician Esther Howard",
-   "field_total_price": "Total price $435.27"
-  },
-  "cardClockHover": [
-   [],
-   []
-  ],
+  "card": null,
+  "cardClockHover": [],
   "estimate": {
    "wo": "0.00",
-   "cardHasField": 1
+   "cardHasField": 0
   }
  },
  "restored": true
