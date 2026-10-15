@@ -1,7 +1,23 @@
-# script | cases (ONLY) | extra settings   — 15 Oct 2026 third pass on staging, after the second pass (REDO.md waves 7+)
+# script | cases (ONLY) | extra settings   — 15 Oct 2026 third pass on staging, after the second pass (REDO.md waves 7+).
+# Lines marked (pic) re-run tests that passed but have no usable picture (judge/pictures-final-passes.json "no_usable_picture");
+# every test now ends with <id>-end.png (session.mts __shotEach), so the re-run gives each result its evidence picture.
 stg-fix-new3.mts | C581893,C581894,C581895 | 
 rest2-batch.mts | C368197 | 
 imp-fix3.mts | C368238,C368239 | 
 editwo-fix.mts | C368169 | 
-analytics-batch.mts | C97025,C97029,C97035,C368153 | 
+analytics-batch.mts | C97025,C97029,C97035,C368153,C97023,C97024,C97027,C368155 | 
+s3-batchA.mts | C96946,C96955 | WOB_PIN_NAMES=-
+s4-batchA.mts | C96969,C368163 | WOB_PIN_NAMES=-
+s4-batchE.mts | C96960 | WOB_PIN_NAMES=Esther Howard,Ralph Edwards
+s4-batchC.mts | C154889 | 
+s4-batchD.mts | C96971,C368139 | 
+s4-batchH.mts | C96958 | 
+s6-batch.mts | C96987,C96991 | 
+s9-batchA5.mts | C97002,C97008,C97009,C368144,C368145 | 
+kbd-fix4.mts | C368150,C97022 | WOB_LIVE=1
+s11-batch.mts | C97028,C97031,C368158 | 
+high1-batch.mts | C368182,C368183,C368185,C368186,C368187 | 
+high1-fix5.mts | C368189 | 
+high2-batch.mts | C368193,C368194,C368195,C368198,C368200,C368210,C368214 | 
+parts-batch.mts | C368213 | 
 signout-fix.mts | C368240 | 

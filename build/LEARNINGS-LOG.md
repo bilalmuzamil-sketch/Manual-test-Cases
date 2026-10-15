@@ -384,4 +384,4 @@ List from `techAssignedFirstName`. (3) **Google Analytics posts events in batche
 wait splits a step's events across steps (C97025, C97035). `analytics-batch.mts` `settle()` now waits until no event has
 arrived for 10 s (max 45 s). (4) **A Schedule shift made by API with `lineIds: []` may not equal the screen's "Entire work
 order" drop** — before calling a lead-change prompt a fault (C581893), make the shift on the Schedule screen and capture its
-POST. #staging #roles #names #analytics #shifts → L0332, Rule 104
+POST. (5) Never `pkill -f <name>` from a tool shell — the pattern also matches that shell's own command line and kills it; find the pid with `ps -eo pid,args | grep "[n]ame"` and `kill <pid>`; restart a waiter with `setsid nohup … &`. A running bash script edited in place keeps running the OLD text (sed -i makes a new file) — restart it to apply. #staging #roles #names #analytics #shifts → L0332, Rule 104
