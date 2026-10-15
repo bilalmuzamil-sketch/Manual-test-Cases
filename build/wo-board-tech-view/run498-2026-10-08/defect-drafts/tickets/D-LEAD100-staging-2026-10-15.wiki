@@ -1,0 +1,68 @@
+TITLE: Work Order Page – Lead Technician List Stops After 100 People
+TYPE: Story Defect · PARENT: SV-10047 (Ready for QA, read live 15 Oct 2026 about 10:30 UTC — RE-READ LIVE before the ask) · PRIORITY: Medium · LINK: relates to SV-10047 · LABEL: board-tech-view
+STATUS: DRAFT — NOT FILED. Its OWN Story Defect (QA lead ruling, 15 Oct 2026). Waiting for the QA lead's go-ahead (Rule 62/113).
+PRODUCTION (Rule 121): <PENDING — lead100-compare.mts, seventh pass>. This ticket goes to the QA lead ONLY if production does NOT have the same limit. If production's work order page also stops at 100 people (and its field does not search as you type), it is not caused by this work: do not file; report it instead.
+DUPLICATE SEARCH (15 Oct 2026): JQL project = SV AND (text ~ "\"lead technician\" list" OR text ~ "100 technicians" OR text ~ "lead technician dropdown") AND created >= -60d — 37 results, none about the work order page's lead list stopping at 100 (closest: SV-10242, Service Advisor dropdown and custom role templates, Done — a different list and cause).
+OPEN BEFORE FILING: (1) lead100-compare positive control — typing a name that IS in the first 100 must also fail to narrow the list, else the typing reading is an instrument fault (Rule 104); (2) the live PRD read for the Sources needs the QA lead's go-ahead (Rule 81/106); until then the Sources quote the test cases, which quote the PRD of 7 Oct 2026; (3) swap in the lead100-compare pictures (slots below).
+
+h2. Description
+
+On a work order page, *the Lead Technician list offers only the first 100 people*, so a technician who can lead work at the location but whose name sorts later *cannot be chosen as lead from the work order page*.
+
+For example,
+* a location has more than 100 people who can appear in the Lead Technician list
+* the list, scrolled to its end, stops after the 100th name (alphabetically), then shows the current lead
+* typing a later technician's name into the field does not find them
+* the same technician IS offered in the board's *Reassign lead technician* dialog
+
+This appears inconsistent with the lead changes defined in *Epic SV-10043* (Story *SV-10047*), which the test cases below expect to be made from the work order page.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin and check the top bar shows *Staging Heavy Duty - 9919*.
+# Open any Approved work order (e.g. *Work Orders* > *All* > search {{ZZAUTOTEST F3 Reassign Bottom}} > *S2-36155*).
+# On the card at the left, click *Lead Technician* and scroll the list to the end.
+#* The list ends with *QA Foreman*, then the current lead (101 entries: *Unassigned*, 100 people from *Aaron …* to the *Q* names, then the current lead).
+#* *Ralph Edwards* and *ZZAUTOTEST Ben Bravo* are not in it.
+# Type {{Ralph Edwards}} (or {{Ben Bravo}}) into the Lead Technician field.
+#* The list does not change; nobody new is offered.
+# Go to *Work Orders* > *All* > *Board View*, open any card's *…* menu > *Reassign lead technician* and type {{Ral}} in its search box.
+#* *Ralph Edwards* is offered (58 open).
+
+*Actual Result:*
+* The work order page offers only the first 100 people as lead; *Ralph Edwards* and *ZZAUTOTEST Ben Bravo* cannot be chosen there.
+* The same people are offered as lead in the *Reassign lead technician* dialog.
+
+*Expected Result:*
+* A technician who can lead work at the location can be chosen as lead on the work order page, as the test cases expect: *"Step 6: Lead Technician reads "Ralph Edwards" and Mileage reads 120,500."* and *"Step 4: Lead Technician is Ben Bravo."*
+
+!D-LEAD100-1-page-list-vs-dialog.png|width=1000!
+
+<SLOT — lead100-compare pictures, to be composed landscape at 2x when the seventh pass has run:
+ (a) staging work order page, Lead Technician list at its end (LEAD100-staging-page-list-end.png)
+ (b) staging, a late technician typed into the field, list OPEN (LEAD100-staging-typed.png) + the positive control (LEAD100-staging-typed-control.png)
+ (c) staging Reassign dialog with its option count (LEAD100-staging-dialog.png)
+ (d) PRODUCTION, the same page list and typed name (LEAD100-production-page-list-end.png, LEAD100-production-typed.png) — the contrast picture if production differs>
+
+h2. Environment
+
+* *Build:* <read off the staging page at the re-measure before filing> on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919)
+* *Example records:* work order [S2-36155|https://app.staging.shopview.com/workorders] (ZZAUTOTEST F3 Reassign Bottom 13769 Abbey Co) — list read 15 Oct 2026 10:06 UTC; Reassign dialog picture: work order S2-35470 (ZZAUTOTEST F1 Dialog Search), 15 Oct 2026 03:42 UTC
+* *People:* *Ralph Edwards* and *ZZAUTOTEST Ben Bravo* — both active, Time Clock on, Technician role, Location Staging Heavy Duty - 9919 (read 15 Oct 2026); the Reassign dialog offers both
+* *Production:* <PENDING — lead100-compare.mts>
+
+h2. Sources
+
+* Test case C97007 (Expected, verbatim): {quote}Step 9: Ben's column reads Bravo Co, Delta Co, Aardvark Co, Abbey Co. A lead set on the work order page also goes to the bottom.{quote}
+  which quotes PRD [Work Orders — Board View & Tech View Display Options|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (page 845185030, edited 7 Oct 2026, status line "PRD v33", read 8 Oct 2026), S9-R14: {quote}A work order that gets a new lead from the Reassign lead technician dialog or from its detail page goes to the bottom of the new technician’s work, for everyone at the location, in both views.{quote}
+* Test case C368159 (Expected, verbatim): {quote}Step 4: Lead Technician is Ben Bravo. Browser 1's older page did not put Ana back when it saved On Site, and the On Site change is kept.{quote}
+  which quotes the same PRD, S4-R9: {quote}Every lead-change path records one audit entry with the previous lead, new lead, logged-in actor, and time.{quote}
+* Test case C368169 (Expected, verbatim): {quote}Step 6: Lead Technician reads "Ralph Edwards" and Mileage reads 120,500. Both changes were saved.{quote}
+  which quotes the developer's regression list (received 8 Oct 2026), High 1: {quote}Edit Work Order: the lead now goes through the new shared path.{quote}
+* The PRD has not been re-read live for this draft: that read waits for the QA lead's go-ahead (Rule 81/106). Version and date above are as the test cases give them.
+
+h2. Test case
+
+* [C97007 A work order given a new lead from Reassign or its page goes to the bottom|https://shopview.testrail.io/index.php?/cases/view/97007]
+* [C368159 Toggling On Site from a stale page does not undo another user's lead change|https://shopview.testrail.io/index.php?/cases/view/368159]
+* [C368169 Edit Work Order saves a new lead and a new mileage together|https://shopview.testrail.io/index.php?/cases/view/368169]
