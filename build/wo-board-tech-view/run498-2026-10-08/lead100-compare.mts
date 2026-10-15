@@ -22,7 +22,8 @@ import { bootProdLogin } from '../../testing-tools/prod-login-boot.mjs';
 const R: any = { staging: {}, production: {} };
 const save = () => fs.writeFileSync(path.join(EV, 'lead100-compare.json'), JSON.stringify(R, null, 1));
 const cap = <T,>(ms: number, pr: Promise<T>, fallback: any = 'timed out'): Promise<T> => Promise.race([pr, new Promise<T>((r) => setTimeout(() => r(fallback), ms))]);
-const wd = setTimeout(() => { R.watchdog = 'stopped by the 8-minute limit'; try { save(); } catch { /* */ } process.exit(5); }, 8 * 60_000); wd.unref();
+// 15 Oct 2026 (wave 27): limit raised from 8 to 14 minutes for the Edit Line > Add Technician reading added on both sites; every step stays capped
+const wd = setTimeout(() => { R.watchdog = 'stopped by the 14-minute limit'; try { save(); } catch { /* */ } process.exit(5); }, 14 * 60_000); wd.unref();
 
 const leadField = (pg: Page) => pg.locator('[data-test-id="select_lead_technician"]').count().then((n) => n ? pg.locator('[data-test-id="select_lead_technician"]') : pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first());
 /** open the field without typing, read every option to the end, close it (Escape) — nothing picked */
@@ -38,6 +39,36 @@ async function typeAndRead(pg: Page, term: string, pic: string) { const f = awai
   o.found = o.offered.some((x: string) => x.toLowerCase().includes(term.toLowerCase())); o.narrowed = o.offered.length > 0 && o.offered.every((x: string) => x.toLowerCase().includes(term.split(' ')[0].toLowerCase())); await shot(pg, pic);
   await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(500); if (o.hasInput) await inp.fill('').catch(() => {}); await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(800); return o; }
 /** the late technician: sort the candidates the way the page list runs (by full name), take one past the 100th */
+/** 15 Oct 2026 (wave 27, coordinator): the SAME reading for Edit Line > Add Technician on a line of the same work order — untyped list
+ *  read to the end (count, first/last), a late name typed into the field's own box, a control name from the first 100 typed, pictures with
+ *  the list OPEN. READ ONLY: never Save — the window is left with Cancel/Escape, and the line's technicians are read before and after.
+ *  lines(): the work order's lines from the API (each site passes its own reader). Every step is capped. */
+async function readEditLineAdd(pg: Page, lines: () => Promise<any[]>, late: string, pic: string) { const o: any = { late };
+  const techsOf = (ls: any[]) => ls.map((l: any) => `${String(l.line_name ?? l.name ?? '').trim()}: ${(l.tasks ?? []).map((t: any) => `${t.first_name ?? ''} ${t.last_name ?? ''}`.trim()).join(', ')}`);
+  const ls0 = await cap(20_000, lines(), [] as any[]); o.linesBefore = techsOf(ls0); const name = String((ls0[0] ?? {}).line_name ?? (ls0[0] ?? {}).name ?? '').trim(); o.line = name || 'no line';
+  if (!name) return o;
+  await cap(15_000, pg.getByText(name, { exact: false }).first().click({ timeout: 10_000 }).catch(() => {}), undefined); await pg.waitForTimeout(2500);
+  const d = pg.locator('.q-dialog').last(); o.windowOpen = await cap(5000, d.isVisible().catch(() => false), false); o.windowTitle = (await cap(5000, d.locator('.text-h6, [data-test-id="dialog_title"]').first().innerText().catch(() => ''), '')).replace(/\s+/g, ' ').trim();
+  const add = (await cap(5000, d.locator('[data-test-id="select_line_roster_add_technician"]').count(), 0)) ? d.locator('[data-test-id="select_line_roster_add_technician"]') : d.locator('.q-field').filter({ hasText: /Add Technician/ }).first();
+  o.addField = await cap(5000, add.count(), 0); if (!o.windowOpen || !o.addField) { await shot(pg, `${pic}-no-field`); await pg.keyboard.press('Escape').catch(() => {}); return o; }
+  // (1) untyped, read to the end
+  await cap(12_000, add.click({ timeout: 10_000 }).catch(() => {}), undefined); await pg.waitForTimeout(1500); await shot(pg, `${pic}-open`);
+  const all = await cap(75_000, listAllOptions(pg), [] as string[]); o.count = all.length; o.first = all.slice(0, 6); o.last = all.slice(-6); o.lateInList = all.some((x: string) => x.includes(late));
+  await shot(pg, `${pic}-end`); await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(700);
+  // (2) the late name and (3) a control name from the first 100, typed into the field's own box; pictures with the list open
+  // Escape can close the whole window as well as the list: reopen it (the line's name) before each typed reading, and say so
+  const ensureOpen = async () => { if (await cap(5000, d.isVisible().catch(() => false), false)) return false; await cap(15_000, pg.getByText(name, { exact: false }).first().click({ timeout: 10_000 }).catch(() => {}), undefined); await pg.waitForTimeout(2500); return true; };
+  const typed = async (term: string, tag: string) => { const r: any = { term }; r.reopened = await ensureOpen(); await cap(12_000, add.click({ timeout: 10_000 }).catch(() => {}), undefined); await pg.waitForTimeout(900);
+    const inp = add.locator('input').first(); r.hasInput = await cap(5000, inp.count(), 0); if (r.hasInput) await cap(8000, inp.fill(term).catch(() => {}), undefined); else await cap(10_000, pg.keyboard.type(term, { delay: 50 }), undefined);
+    await pg.waitForTimeout(3000); r.offered = (await cap(8000, pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [] as string[]), [] as string[])).map((x: string) => x.replace(/\s+/g, ' ').trim()).slice(0, 15);
+    r.found = r.offered.some((x: string) => x.toLowerCase().includes(term.toLowerCase())); r.narrowed = r.offered.length > 0 && r.offered.every((x: string) => x.toLowerCase().includes(term.split(' ')[0].toLowerCase()));
+    await shot(pg, `${pic}-${tag}`); await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(500); if (r.hasInput) await cap(5000, inp.fill('').catch(() => {}), undefined); return r; };
+  o.typed = await typed(late, 'typed');
+  const ctl = all.map((x: string) => x.replace(/^check\s+/, '').trim()).filter((x: string) => x && !/^Unassigned$/i.test(x))[20] ?? null; if (ctl) o.typedControl = await typed(ctl, 'typed-control');
+  // leave WITHOUT saving
+  const cancel = d.locator('button').filter({ hasText: /^\s*Cancel\s*$/ }).first(); if (await cap(5000, cancel.count(), 0)) await cap(10_000, cancel.click({ timeout: 8000 }).catch(() => {}), undefined); else await pg.keyboard.press('Escape').catch(() => {});
+  await pg.waitForTimeout(1500); if (await cap(5000, d.isVisible().catch(() => false), false)) { await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(800); } o.windowClosed = !(await cap(5000, d.isVisible().catch(() => false), false));
+  o.linesAfter = techsOf(await cap(20_000, lines(), [] as any[])); o.unchanged = JSON.stringify(o.linesAfter) === JSON.stringify(o.linesBefore); return o; }
 const lateOne = (names: string[]) => { const s = [...names].filter(Boolean).sort((x, y) => x.localeCompare(y, 'en', { sensitivity: 'base' })); return s.length > 100 ? s[Math.min(s.length - 1, 100 + Math.floor((s.length - 100) / 2))] : s[s.length - 1]; };
 
 // ── STAGING ──
@@ -69,7 +100,11 @@ const lateOne = (names: string[]) => { const s = [...names].filter(Boolean).sort
       // for it either, the field simply has no type-to-search (typing cannot reach anyone), which is the reading that matters
       const ctl = (list.all ?? []).map((x: string) => x.replace(/^check\s+/, '').trim()).filter((x: string) => x && !/^Unassigned$/i.test(x))[20] ?? null;
       if (ctl) S.typedControl = await typeAndRead(p, ctl, 'LEAD100-staging-typed-control');
-      const after = (await workOrders(a, w.number)).find((x: any) => x.id === w.id); S.leadUnchanged = (after?.techAssignedId ?? null) === (w.techAssignedId ?? null); }
+      const after = (await workOrders(a, w.number)).find((x: any) => x.id === w.id); S.leadUnchanged = (after?.techAssignedId ?? null) === (w.techAssignedId ?? null);
+      // Edit Line > Add Technician on this work order's first line (wave 27): same reading, read only
+      const linesS = async () => { const d0 = (await a.get(`/api/work-orders/lines/${w.id}`)).body?.data; return (Array.isArray(d0) ? d0 : d0?.collection ?? []) as any[]; };
+      await p.goto(`${APP}/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(6000);
+      S.editLineAdd = await cap(240_000, readEditLineAdd(p, linesS, late, 'LEAD100-staging-editline'), 'timed out'); save(); }
   } catch (e: any) { S.error = String(e?.message || e).slice(0, 300); }
   finally { save(); if (browser) await cap(20_000, browser.close().catch(() => {}), undefined); } }   // not done(): it ends the process before production
 
@@ -96,7 +131,11 @@ const lateOne = (names: string[]) => { const s = [...names].filter(Boolean).sort
       const ctl = (list.all ?? []).map((x: string) => x.replace(/^check\s+/, '').trim()).filter((x: string) => x && !/^Unassigned$/i.test(x))[20] ?? null;
       if (ctl) P.typedControl = await typeAndRead(p, ctl, 'LEAD100-production-typed-control');   // positive control, as on staging
       const w2 = ((await get('/api/work-orders?pagination[rowsPerPage]=100')).body?.data?.work_orders ?? []).find((x: any) => x.id === w.id);
-      P.leadUnchanged = (w2?.techAssignedId ?? null) === (w.techAssignedId ?? null); }
+      P.leadUnchanged = (w2?.techAssignedId ?? null) === (w.techAssignedId ?? null);
+      // Edit Line > Add Technician on this work order's first line (wave 27): production has Edit Line even without the board; read only
+      const linesP = async () => { const r0 = await get(`/api/work-orders/lines/${w.id}`); const d0 = r0.body?.data; return (Array.isArray(d0) ? d0 : d0?.collection ?? []) as any[]; };
+      await cap(40_000, p.goto(`https://app.shopview.com/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }).catch(() => {}), undefined); await p.waitForTimeout(7000);
+      P.editLineAdd = await cap(240_000, readEditLineAdd(p, linesP, P.lateName, 'LEAD100-production-editline'), 'timed out'); save(); }
   } catch (e: any) { P.error = String(e?.message || e).slice(0, 300); }
   finally { save(); if (prod?.browser) await cap(20_000, prod.browser.close().catch(() => {}), undefined); } }
 
