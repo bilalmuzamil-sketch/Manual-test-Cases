@@ -313,18 +313,29 @@ await run('C97013', async () => {
 await run('C368144', async () => {
   await pins([ANA.staff_id]);
   const s = await mkSet('ZZAUTOTEST F3 Unassigned Place', [{ co: 'Bravo Co', lead: null }, { co: 'Delta Co', lead: null }, { co: 'Alpha Co', lead: ANA }, { co: 'Charlie Co', lead: ANA }]);
-  await go('Board View', s.q); const o: any = { step4: await col('unassigned', s) };
+  // 15 Oct 2026 (wave 10): the third-pass pictures cut the customer names off ("ZZAUTOTEST F3 Unassigned Place … Alpha Co" ends in
+  // "…" on the card), so Alpha–Delta could not be told apart in the picture. AFTER each order is read, the names in the Unassigned
+  // column (Board View) / the work order rows (Tech View) are let wrap instead of being cut ("unclipped for the picture only") and that
+  // area is photographed — nothing is moved or re-sorted, so the picture shows the same order the reading records.
+  const orderPic = async (name: string, where: 'board' | 'tech') => {
+    await p.evaluate(`(() => { let n = 0; for (const e of document.querySelectorAll(${JSON.stringify(where === 'board' ? '[data-test-id="board_column_unassigned"] *' : '[data-test-id^="tech_view_row_"] td, [data-test-id^="tech_view_row_"] td *')})) { const cs = getComputedStyle(e); if (cs.textOverflow === 'ellipsis' || cs.whiteSpace === 'nowrap' || cs.overflow === 'hidden') { e.style.whiteSpace = 'normal'; e.style.overflow = 'visible'; e.style.textOverflow = 'clip'; e.style.maxWidth = 'none'; n++; } } return n; })()`).catch(() => 0);
+    await p.mouse.move(1, 1); await p.waitForTimeout(600);
+    if (where === 'board') { const c = p.locator('[data-test-id="board_column_unassigned"]').first(); if (await c.count()) { await c.screenshot({ path: path.join(EV, `${name}.png`) }).catch(() => {}); } }
+    await shot(p, `${name}-page`); return `${name}.png (names unclipped for the picture only)`; };
+  await go('Board View', s.q); const o: any = { step4: await col('unassigned', s) }; o.step4Picture = await orderPic('C368144-step4-board-unassigned', 'board');
+  await go('Board View', s.q);
   const m = await openReassign(p, s.w['Charlie Co'].id); await m.item.click(); await p.waitForTimeout(1200);
   await p.locator('[data-test-id="option_lead_technician_unassigned"]').click(); await p.locator('[data-test-id="button_confirm_reassign_lead_technician"]').click(); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1200);
-  o.step5 = await toasts(p); o.step6 = await col('unassigned', s);
+  o.step5 = await toasts(p); o.step6 = await col('unassigned', s); o.step6Picture = await orderPic('C368144-step6-board-unassigned', 'board');
   const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${s.w['Alpha Co'].id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(6000);
   { const f = pg.locator('[data-test-id="select_lead_technician"]'); const clr = f.locator('i').filter({ hasText: /^(cancel|clear|close)$/ }).first();
     if (await clr.count()) { await clr.click(); R.C368144_clearRoute = 'clear icon'; } else { await f.click(); await pg.waitForTimeout(1200); let done = false; await pg.evaluate(`(() => { const m = document.querySelector('.q-menu .q-virtual-scroll, .q-menu'); if (m) m.scrollTop = 0; })()`); await pg.waitForTimeout(600);   // FIX: the list opens scrolled to the current lead, near the bottom; Unassigned is at the TOP
       for (let i = 0; i < 40 && !done; i++) { const o = pg.locator('.q-menu .q-item').filter({ hasText: /Unassigned|None|No lead/i }).first(); if (await o.count()) { await o.click(); done = true; R.C368144_clearRoute = 'list option'; break; } await pg.evaluate(`(() => { const m = document.querySelector('.q-menu .q-virtual-scroll, .q-menu'); if (m) m.scrollTop += 350; })()`); await pg.waitForTimeout(250); }
       if (!done) { R.C368144_clearRoute = 'none found'; R.C368144_firstOptions = (await pg.locator('.q-menu .q-item').allInnerTexts()).slice(0, 5); await pg.screenshot({ path: path.join(EV, 'C368144-lead-list.png') }); await pg.keyboard.press('Escape'); } }
     await pg.waitForTimeout(3000); } await pg.close();
-  await go('Board View', s.q); o.step8 = await col('unassigned', s);
-  await go('Tech View', s.q); o.step9 = await grp('unassigned', s);
+  await go('Board View', s.q); o.step8 = await col('unassigned', s); o.step8Picture = await orderPic('C368144-step8-board-unassigned', 'board');
+  await go('Tech View', s.q); o.step9 = await grp('unassigned', s); o.step9Picture = await orderPic('C368144-step9-tech-unassigned', 'tech');
+  o.fullNames = Object.fromEntries(Object.entries(s.w).map(([k, v]: [string, any]) => [k, `${s.q} ${k} = ${v.number}`]));
   R.C368144 = o;
 });
 
