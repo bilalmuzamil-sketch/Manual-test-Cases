@@ -1,0 +1,52 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 24 = wave 26"
+ },
+ "results": {
+  "C368238": {
+   "verdict": "Passed",
+   "observed": [
+    "Pictures only (the verdict was posted earlier), from this run: S2-36149 (ZZAUTOTEST Impersonate Start), led by Esther Howard.",
+    "Before the switch, as yourself, Assigned to me searched for it showed \"No work orders match these filters\".",
+    "Account Access as Esther Howard was started while Reports > Work In Progress was still loading; no red error message appeared.",
+    "Step 5: the top bar reads \"Account Access Mode: Esther Howard\"; Work Orders > All with Assigned to me on, search 36149, lists S2-36149 (the search still in the box in the picture)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368238-step5-assigned-to-me-as-esther.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368239": {
+   "verdict": "Passed",
+   "observed": [
+    "Pictures only (the verdict was posted earlier), from this run: S2-36150 (ZZAUTOTEST Impersonate Exit), led by Esther Howard; as Esther Howard, Assigned to me listed it.",
+    "Exit was pressed while Work In Progress was still loading; only the green \"Successfully exited impersonation, restored user \"Admin ShopView\"\" message showed, no red error.",
+    "Step 4: your own user again (no Account Access Mode bar); Work Orders > All with Assigned to me on, search 36150: \"No work orders match these filters\" (the search still in the box in the picture)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368239-step4-own-user-not-listed.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368191": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging — the starting situation cannot be made.",
+    "The test needs a line whose work was done by a staff member who has since been deleted.",
+    "Staging will not delete a staff member who has logged work: deleting answers \"Staff is being used elsewhere.\", before and after deactivating them. A staff member with no logged work deletes at once.",
+    "So the line keeps showing his name (\"ZZAUTOTEST Gone Tech 80348\" in the picture) instead of a deleted person.",
+    "No existing work order on staging shows a deleted person to borrow (checked 15 Oct 2026)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368191-lines.png"
+   ],
+   "not_observed": "How a line shows work done by a person who has been deleted.",
+   "todo": "What needs to be done: a work order on staging whose line was worked by a since-deleted staff member is needed (for example a developer removes such a person directly), or the QA lead names one; then run this test again."
+  }
+ }
+}
