@@ -732,3 +732,6 @@ Record the outcome here. #restart #idle #unattended → L0365, L0370
   needs a background task kept running for as long as the passes run.** Start `/tmp/claude-0/sv/watch7.sh` with
   `run_in_background` and the 2-hour timeout, and start the next one when it exits. Check-ins alone do not keep the machine
   alive: each check-in wakes a fresh machine.
+- **Confirmed, 08:52 UTC (L0372):** with `watch7.sh` running as a background task from 08:29, `uptime` read "up 24 min" at the
+  08:52 check-in. The script that three restarts had cut off (`high1-batch.mts`) finished. **The theory holds: while a task the
+  session started is still running, the container stays up between turns.** Keep one running for as long as the passes run.
