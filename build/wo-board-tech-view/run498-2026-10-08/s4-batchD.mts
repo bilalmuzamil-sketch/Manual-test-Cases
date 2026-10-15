@@ -88,15 +88,18 @@ await run('C96974', async () => {
     fix.push('status now ' + (await a.get(`/api/work-orders/view/${wo}`)).body?.data?.work_order?.status);
     bs = await byStatus();
   }
-  let lineOnlyWo = (await workOrders(a, n)).find((w: any) => w.techAssignedId === ES.staff_id);
+  // 15 Oct 2026 (wave 12, fourth pass): the line-only work order was one left from an earlier pass and its line's technician was never
+  // read back. Now a NEW one every run (its own customer, so it is not mixed with the count set): Approved, led by Esther Howard, one
+  // ready-made line given to Nina Newtech; the line's technician is then read back two ways (the line itself and the work order's
+  // line-technicians list) before the count is read.
   const lineTechs = async (wo: string) => (await linesRaw(wo)).map((l: any) => (l.technicians ?? l.techs ?? []).map((x: any) => `${x.first_name ?? x.firstName ?? ''} ${x.last_name ?? x.lastName ?? ''}`.trim() || x.staff_id || x.id).join('+') || JSON.stringify(Object.keys(l)).slice(0, 80));
-  if (!lineOnlyWo) {
-    const c = await customer(a, n, 'ZZF4OC'); const id = await workOrder(a, c, 'approved', ES.staff_id);
-    const lr = await a.post(`/api/work-orders/${id}/lines/create-from-canned-line`, { canned_line_id: cls[0].id, status: 'authorized' });
-    const lid = lr.body?.data?.line_id ?? lr.body?.data?.id ?? lr.body?.line_id;
-    fix.push('line-only: line ' + say(lr) + ' technicians ' + (lid ? say(await a.put(`/api/work-orders/lines/${lid}/technicians`, { staffIds: [NN.staff_id] })) : 'no line id'));
-    lineOnlyWo = (await workOrders(a, n)).find((w: any) => w.techAssignedId === ES.staff_id);
-  }
+  const lnName = `ZZAUTOTEST F1 Open Count Line Only ${Date.now() % 100000}`;
+  const lc = await customer(a, lnName, 'ZZF4LO'); const lineOnlyId = await workOrder(a, lc, 'approved', ES.staff_id);
+  const lr0 = await a.post(`/api/work-orders/${lineOnlyId}/lines/create-from-canned-line`, { canned_line_id: cls[0].id, status: 'authorized' });
+  const lid0 = lr0.body?.data?.line_id ?? lr0.body?.data?.id ?? lr0.body?.line_id;
+  fix.push('line-only (new): line ' + say(lr0) + ' technicians ' + (lid0 ? say(await a.put(`/api/work-orders/lines/${lid0}/technicians`, { staffIds: [NN.staff_id] })) : 'no line id'));
+  const lineOnlyWo = (await workOrders(a, lnName)).find((w: any) => w.id === lineOnlyId);
+  const lineOnlyReadBack = { lines: await lineTechs(lineOnlyId), lineTechnicians: (((await a.get(`/api/work-orders/${lineOnlyId}/line-technicians`)).body?.data?.lineTechnicians ?? []) as any[]).map((x: any) => `${(x.technicians ?? []).map((t2: any) => `${t2.firstName ?? ''} ${t2.lastName ?? ''}`.trim()).join(', ') || 'Unassigned'}${x.derivedFromLeadTech ? ' (follows lead)' : ''}`), lead: lineOnlyWo ? `${lineOnlyWo.techAssignedFirstName ?? '-'} ${lineOnlyWo.techAssignedLastName ?? ''}`.trim() : null, number: lineOnlyWo?.number };
   const wpl = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/workplaces')).body?.data);
   const LETH = (await import('./staff.mts')).LETH, HEAVY = (await import('./staff.mts')).HEAVY;
   const leth = wpl.find((w: any) => w.id === LETH), heavy = wpl.find((w: any) => w.id === HEAVY);
@@ -115,7 +118,7 @@ await run('C96974', async () => {
     if (ws2.length < 200) break; }
   wos = await ninaWos();
   R.C96974 = { made, fix, ninaLeads: wos.map((w: any) => `${w.number} ${w.status}`), ninaLeadsByStatus: Object.fromEntries(Object.entries(await byStatus()).map(([k, v]) => [k, v.length])),
-    lineOnly: lineOnlyWo ? { wo: `${lineOnlyWo.number} ${lineOnlyWo.status} lead=${lineOnlyWo.techAssignedFirstName} ${lineOnlyWo.techAssignedLastName}`, lineTechnicians: await lineTechs(lineOnlyWo.id) } : 'not made', secondLocation: loc2 };
+    lineOnly: lineOnlyWo ? { wo: `${lineOnlyWo.number} ${lineOnlyWo.status} lead=${lineOnlyWo.techAssignedFirstName} ${lineOnlyWo.techAssignedLastName}`, lineTechnicians: await lineTechs(lineOnlyWo.id), readBack: lineOnlyReadBack } : 'not made', secondLocation: loc2 };
   const esWo = (await workOrders(a, n)).find((w: any) => w.techAssignedId === ES.staff_id);
   for (const tb of ['Work Orders', 'All']) {
     await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, tb); await display(p, 'Board View'); await search(p, n); await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"]').scrollLeft = 0`);

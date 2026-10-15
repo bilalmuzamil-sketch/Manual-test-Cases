@@ -191,12 +191,19 @@ await run('C96965', async () => {
 });
 
 await run('C154888', async () => {
-  const n = 'ZZAUTOTEST F1 Shift Trim';
+  // 15 Oct 2026 (wave 12, fourth pass): the old shared work order kept shifts from an earlier run (yesterday's and an already-ended one
+  // today), with no running and no future shift, so the question may rightly not have been asked. Now a FRESH customer and work order
+  // every run, led by Esther Howard, with exactly the case's three shifts: yesterday 08:00–12:00 (ended), today starting an hour ago
+  // for 3 hours (running), tomorrow 08:00–12:00 (future), in the shop's zone (WOB_LOC_TZ, Asia/Karachi). Today's shift must not cross
+  // the shop's midnight (19:00 UTC), so the case is only run between 01:15 and 21:45 shop time and says so otherwise.
+  const shopHour = Number(localTime(new Date()).slice(0, 2)) + Number(localTime(new Date()).slice(3, 5)) / 60;
+  if (shopHour < 1.25 || shopHour > 21.75) { R.C154888 = { notRun: `shop time ${localTime(new Date())} is too close to midnight for a running 3-hour shift today; re-run between 01:15 and 21:45 shop time` }; return; }
+  const n = `ZZAUTOTEST F1 Shift Trim ${Date.now() % 100000}`;
   const [w] = await fresh(n, 'ZZF4ST'); await setLeadApi(w.id, ES.staff_id);
   const now = new Date(); const q = 15 * 60000; const startRun = localTime(new Date(Math.floor((now.getTime() - 3600000) / q) * q));   // shifts start on a 15-minute boundary
-  if (!(await shiftsOn(a, w.id, names)).length) { await mkShift(a, w.id, ES.staff_id, -1, '08:00', 240); await mkShift(a, w.id, ES.staff_id, 1, '08:00', 240); }
-  const cur = await shiftsOn(a, w.id, names); if (!cur.some((x) => x.includes('today'))) await mkShift(a, w.id, ES.staff_id, 0, startRun, 180);
-  R.C154888 = { before: await shiftsOn(a, w.id, names) };
+  const mk: string[] = [];
+  for (const [d, st, m] of [[-1, '08:00', 240], [0, startRun, 180], [1, '08:00', 240]] as [number, string, number][]) mk.push(await mkShift(a, w.id, ES.staff_id, d, st, m).then(() => `${d} ${st} ${m}m ok`).catch((e) => `${d} ${st}: ${String(e).slice(0, 120)}`));
+  R.C154888 = { customer: n, shopTimeAtSetup: localTime(new Date()), made: mk, before: await shiftsOn(a, w.id, names) };
   await bv(n); const at = localTime(new Date());
   await dragTo(w.id, RE.staff_id); await p.waitForTimeout(900); R.C154888.prompt = !!(await promptLoc().count()); await shiftPrompt(p, 'Clear shifts');
   R.C154888.changedAt = at; R.C154888.after = { lead: (await lead(n))[w.number], shifts: await shiftsOn(a, w.id, names) };

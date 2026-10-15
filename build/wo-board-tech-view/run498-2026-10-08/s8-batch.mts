@@ -118,6 +118,26 @@ await run('C96998', async () => {
   { const l2row = (await linesRaw(w)).find((x: any) => x.line_id === l2) ?? {}; const reqs = (l2row.part_requests ?? l2row.partRequests ?? []) as any[];
     R.C96998.line2PartsWaiting = reqs.length + (l2row.parts ?? []).length;
     for (const q of reqs) (R.C96998.cancelledPartRequests ??= []).push(say(await a.post(`/api/work-orders/part/remove-request/${q.id ?? q.part_request_id}`, {}))); }
+  // 15 Oct 2026 (wave 12, fourth pass): completing Line 2 without a story was NOT stopped on staging (it went straight to Complete),
+  // while on the QA branch the same step opened the Tech stories window. Before judging, READ the shop's settings for a "tech story
+  // required" switch at Staging Heavy Duty - 9919: every key mentioning "story" in the organisation's settings
+  // (GET /api/organizations/settings — the object data.mts setRequireReview saves) and in the location's own record(s). If one that
+  // REQUIRES a story is off, it is turned on for this check only (same save as setRequireReview: the whole object back with that key
+  // changed, then read back) and put back in finally. Nothing is turned on if no such switch exists; the reading lists what was seen.
+  const storyKeys = (x: any, pth = '', out: { path: string; value: any }[] = []) => { if (!x || typeof x !== 'object') return out; for (const [k, v] of Object.entries(x)) { const pp = pth ? `${pth}.${k}` : k; if (/stor(y|ies)/i.test(k) && (typeof v !== 'object' || v === null)) out.push({ path: pp, value: v }); else if (v && typeof v === 'object') storyKeys(v, pp, out); } return out; };
+  const orgS = await a.get('/api/organizations/settings'); const orgData = orgS.body?.data ?? orgS.body;
+  const locReads: Record<string, any> = {}; for (const u of [`/api/workplaces/${HEAVY}`, `/api/workplaces/${HEAVY}/settings`, `/api/workplaces/view/${HEAVY}`]) { const r = await a.get(u); locReads[u.replace(HEAVY, '<Heavy Duty>')] = { status: r.status, storyKeys: storyKeys(r.body?.data ?? r.body) }; }
+  R.C96998.storySetting = { organisation: { status: orgS.status, storyKeys: storyKeys(orgData) }, location: locReads };
+  const reqKey = (R.C96998.storySetting.organisation.storyKeys as any[]).find((k) => /require|mandatory|enforce/i.test(k.path) && typeof k.value === 'boolean');
+  let restoreStory: null | (() => Promise<void>) = null;
+  if (reqKey && reqKey.value === false) {
+    const body = JSON.parse(JSON.stringify(orgData)); const set = (o: any, path: string[], v: any) => { let x = o; for (const k of path.slice(0, -1)) x = x[k]; x[path[path.length - 1]] = v; };
+    set(body, reqKey.path.split('.'), true); const w1 = await a.post('/api/organizations/settings/change', body);
+    const after = storyKeys((await a.get('/api/organizations/settings')).body?.data).find((k) => k.path === reqKey.path)?.value;
+    R.C96998.storySetting.turnedOnForThisCheck = { key: reqKey.path, save: say(w1), readBack: after };
+    restoreStory = async () => { const cur = JSON.parse(JSON.stringify((await a.get('/api/organizations/settings')).body?.data)); set(cur, reqKey.path.split('.'), false); const w2 = await a.post('/api/organizations/settings/change', cur); R.C96998.storySetting.putBack = { save: say(w2), readBack: storyKeys((await a.get('/api/organizations/settings')).body?.data).find((k) => k.path === reqKey.path)?.value }; };
+  } else R.C96998.storySetting.note = reqKey ? `"${reqKey.path}" is already ${reqKey.value}; nothing changed` : 'no organisation setting that requires a tech story was found (the keys mentioning "story" are listed); nothing changed';
+  try {
   await p.goto(`${APP}/workorders/${w}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000);
   R.C96998.add = await story(l1, 'First note', 'add');
   R.C96998.edit = await story(l1, 'First note, edited', 'edit');
@@ -133,6 +153,7 @@ await run('C96998', async () => {
   if (await dlg.count()) { const ok = dlg.locator('button').filter({ hasText: /complete|confirm|yes|ok/i }).last(); if (await ok.count()) { await ok.click(); await p.waitForTimeout(2500); } }
   R.C96998.completeWithStory = { toasts: await toastsNow(), status: (await linesRaw(w)).find((x: any) => x.line_id === l2)?.status }; await shot(p, 'C96998-complete-with-story');
   R.C96998.wo = (await workOrders(a, n))[0]?.number;
+  } finally { if (restoreStory) await restoreStory().catch((e) => { R.C96998.storySetting.putBack = 'FAILED ' + String(e).slice(0, 120); }); }
 });
 fs.writeFileSync(path.join(EV, 's8-batch.json'), JSON.stringify(R, null, 1));
 await RUN.end();

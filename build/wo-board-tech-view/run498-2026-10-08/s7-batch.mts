@@ -18,6 +18,7 @@ import { staffRows, HEAVY, LETH } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
 import { mkShift } from './shifts.mts';
+import { bootProdLogin } from '../../testing-tools/prod-login-boot.mjs';
 import { RUNNER_EMAIL } from './runner.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -196,7 +197,30 @@ async function storyCase(id: string, name: string, unit: string, stories: (strin
   R[id] = o;
 }
 await run('C96997', () => storyCase('C96997', 'ZZAUTOTEST F3 Story Check Mark', 'ZZF3SC', ['Brought unit in. Completed inspection.'], true));
-await run('C96999', async () => { await storyCase('C96999', 'ZZAUTOTEST F3 No Story Look', 'ZZF3NL', [null], false); R.C96999.note = 'the comparison with production / an older screenshot is made by the judge from the picture; this script does not open production'; });
+await run('C96999', async () => { await storyCase('C96999', 'ZZAUTOTEST F3 No Story Look', 'ZZF3NL', [null], false);
+  // 15 Oct 2026 (wave 12): a REAL production comparison (QA lead 15 Oct: production allowed for comparisons). Production is signed in
+  // with prod-login-boot.mjs (as report-filters-stg.mts / high1-batch.mts), READ ONLY: the most recent work orders are read through the
+  // app's own list call and the first one with a line that has NO tech story is opened on its Lines tab; the same reading as staging
+  // (storyRead) is taken there, with a picture of the page and of that line on each side. Nothing is changed on production.
+  const lineClip = async (pg: Page, name: string) => { const b = await pg.evaluate(`(() => { const e = [...document.querySelectorAll('body *')].find(x => x.children.length === 0 && /story/i.test(x.textContent || '') && x.getBoundingClientRect().width > 0); if (!e) return null; let c = e; for (let i = 0; i < 5 && c.parentElement && c.getBoundingClientRect().height < 120; i++) c = c.parentElement; const r = c.getBoundingClientRect(); return { x: r.left, y: r.top, w: r.width, h: r.height }; })()`).catch(() => null) as any;
+    if (b) await pg.screenshot({ path: path.join(EV, `${name}.png`), clip: { x: Math.max(0, b.x - 16), y: Math.max(0, b.y - 60), width: Math.min(b.w + 32, 1600), height: Math.min(b.h + 120, 900) } }).catch(() => {}); return b ? `${name}.png` : 'no story row found'; };
+  R.C96999.stagingLinePicture = await lineClip(p, 'C96999-staging-line');
+  let prod: any = null; try { prod = await bootProdLogin('/workorders', { deviceScaleFactor: Number(process.env.QA_DPR || process.env.WOB_SCALE || 1) }); } catch (e: any) { R.C96999.production = { error: 'production sign-in: ' + String(e?.message || e).slice(0, 200) }; }
+  if (prod) { const pp: Page = prod.page; const P = prod.APP; const pr: any = { build: prod.version ?? await pp.evaluate(`document.querySelector('meta[name="app-version"]')?.content || null`).catch(() => null), tried: [] };
+    try {
+      const PAPI = 'https://api.shopview.com';
+      const get = (u: string) => pp.evaluate(`fetch(${JSON.stringify(PAPI)} + ${JSON.stringify(u)}, { credentials: 'include', headers: { Accept: 'application/json' } }).then(async r => ({ status: r.status, body: await r.json().catch(() => null) }))`) as Promise<any>;
+      const list = await get('/api/work-orders?pagination[page]=1&pagination[rowsPerPage]=40&pagination[sortBy]=createdAt&pagination[descending]=true&search=');
+      pr.listStatus = list.status; const ws: any[] = list.body?.data?.work_orders ?? [];
+      for (const w of ws.filter((x) => /approved|in_progress/.test(String(x.status))).slice(0, 15)) { const d = (await get(`/api/work-orders/lines/${w.id}`)).body?.data; const ls: any[] = Array.isArray(d) ? d : d?.collection ?? d?.lines ?? [];
+        const noStory = ls.find((l) => !String(l.tech_story ?? '').trim()); pr.tried.push(`${w.number} ${w.status}: ${ls.length} line(s), ${noStory ? 'one without a story' : 'all have stories'}`); if (noStory) { pr.workOrder = w.number; pr.workOrderId = w.id; pr.line = String(noStory.line_name ?? noStory.name ?? '').trim().slice(0, 60); break; } }
+      if (pr.workOrderId) { await pp.goto(`${P}/workorders/${pr.workOrderId}/lines`, { waitUntil: 'domcontentloaded' }); await pp.waitForTimeout(9000);
+        await pp.screenshot({ path: path.join(EV, 'C96999-production-lines.png') }).catch(() => {}); pr.reading = await storyRead(pp); pr.linePicture = await lineClip(pp, 'C96999-production-line'); }
+      else pr.note = 'no recent Approved / In Progress production work order with a line without a story among the ones read';
+    } catch (e: any) { pr.error = String(e?.message || e).slice(0, 300); await pp.screenshot({ path: path.join(EV, 'C96999-production-error.png') }).catch(() => {}); }
+    finally { await prod.browser.close().catch(() => {}); }
+    R.C96999.production = pr; }
+  R.C96999.note = 'staging: C96999-lines-admin.png + C96999-staging-line.png; production: C96999-production-lines.png + C96999-production-line.png (read only)'; });
 await run('C97000', () => storyCase('C97000', 'ZZAUTOTEST F3 No Story Marker', 'ZZF3NM', ['Brought unit in. Completed inspection.', null], true));
 
 const BACK = ORIGINAL; await a.put(PREF, { value: BACK }); R.restored = JSON.stringify(await prefGet()) === JSON.stringify(BACK);

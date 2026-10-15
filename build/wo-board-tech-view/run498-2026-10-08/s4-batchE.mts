@@ -14,8 +14,8 @@ import path from 'node:path';
 import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { api, candidates, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, openReassign, toasts, shiftPrompt } from './wob.mts';
-import { staffRows, HEAVY } from './staff.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, openReassign, toasts, shiftPrompt, pickLeadOnPage } from './wob.mts';
+import { staffRows, HEAVY, ensureEligible } from './staff.mts';
 import { mkShift, shiftsOn } from './shifts.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -132,6 +132,7 @@ await run('C96962', async () => {
   const fmt = (h: any) => `${h.eventName}${h.originalLeadTechName || h.newLeadTechName ? ` ${h.originalLeadTechName ?? '-'} -> ${h.newLeadTechName ?? '-'}` : ''}${h.originalLineTechName || h.newLineTechName ? ` [line ${h.lineName?.trim()}: ${h.originalLineTechName ?? '-'} -> ${h.newLineTechName ?? '-'}]` : ''} by ${h.userName} at ${h.historyDate ?? ''} ${h.historyTime ?? ''}`;
   const since = async (n0: number) => (await hist()).slice(0, (await hist()).length - n0).map(fmt);
   R.C96962 = { wo: num, historyFields: Object.keys((await hist())[0] ?? {}).length }; // 15 Oct 2026: the field list filled the log line
+  R.C96962.danaEligible = await ensureEligible(a, DO, 'Dana'); // 15 Oct 2026 (wave 12): the line technician picked in Edit Line
   let n0 = (await hist()).length;
   await bv(n); await drag(p, `[data-test-id="board_card_${wo}"]`, `[data-test-id="board_column_${RE.staff_id}"]`, 120); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
   R.C96962.drag = await since(n0); n0 = (await hist()).length;
@@ -149,11 +150,17 @@ await run('C96962', async () => {
       for (let i = 0; i < 4 && (await chips.count()); i++) { await chips.first().locator('.q-chip__icon--remove, [aria-label*="emove" i]').first().click().catch(() => {}); await pg.waitForTimeout(700); }
       await fld.click(); await pg.waitForTimeout(800); await pg.keyboard.type('Dana', { delay: 60 }); await pg.waitForTimeout(1800);
       const opts = pg.locator('.q-menu .q-item'); R.C96962.lineOptionsAfterTyping = (await opts.allInnerTexts().catch(() => [])).slice(0, 6);
+      // 15 Oct 2026 (wave 12, fourth pass): typing did not narrow staging's list (it opened at "Ayesha …", "Bilal …") and Dana Ortiz was
+      // not drawn, so nothing was picked. Scroll the open list until she is drawn, then pick her; what the field shows is read after.
+      if (!(await opts.filter({ hasText: 'Dana Ortiz' }).count())) { for (let i = 0; i < 80 && !(await opts.filter({ hasText: 'Dana Ortiz' }).count()); i++) { R.C96962.lineListScrolled = i + 1; const mv = await pg.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].pop(); const s = m && ([m, ...m.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 4) || m); if (!s) return false; const b = s.scrollTop; s.scrollTop += 250; return s.scrollTop !== b; })()`).catch(() => false); await pg.waitForTimeout(250); if (!mv) break; } }
       const dana = opts.filter({ hasText: 'Dana Ortiz' }).first();
       if (await dana.count()) await dana.click(); else { await pg.keyboard.press('Control+A').catch(() => {}); await pg.keyboard.press('Backspace').catch(() => {}); await pg.waitForTimeout(1200); const any = pg.locator('.q-menu .q-item').filter({ hasNotText: /Esther Howard|Ralph Edwards/ }).first(); R.C96962.lineTechPickedInstead = await any.innerText().catch(() => null); await any.click().catch(() => {}); }
-      await pg.waitForTimeout(800); R.C96962.lineTechsAfter = await chips.allInnerTexts().catch(() => []);
+      await pg.waitForTimeout(800); R.C96962.lineTechsAfter = await chips.allInnerTexts().catch(() => []); R.C96962.lineFieldShows = await fld.innerText().then((x) => x.replace(/\s+/g, ' ').trim().slice(0, 120)).catch(() => null);
+      await shot(pg, 'C96962-edit-line-picked');
       await pg.locator('.q-dialog').getByText('Edit Line').first().click().catch(() => {}); await pg.locator('button:visible').filter({ hasText: 'Save & Close' }).last().click(); await pg.waitForTimeout(3000);
-      R.C96962.editLineToasts = await toasts(pg);
+      R.C96962.editLineToasts = await toasts(pg); R.C96962.dialogStillOpen = await pg.locator('.q-dialog:visible').count();
+      // read back AFTER Save: whom the server now has on each line
+      R.C96962.lineTechsReadBack = (((await a.get(`/api/work-orders/${wo}/line-technicians`)).body?.data?.lineTechnicians ?? []) as any[]).map((x: any) => `${x.lineId === l1 ? 'Line 1' : x.lineId === l2 ? 'Line 2' : x.lineId?.slice(0, 6)}: ${(x.technicians ?? []).map((t2: any) => `${t2.firstName ?? ''} ${t2.lastName ?? ''}`.trim()).join(', ') || 'Unassigned'}${x.derivedFromLeadTech ? ' (follows lead)' : ''}`);
     } else R.C96962.editLineNotOpened = true;
     await pg.close();
     // the line's OWN audit log (line number > Audit log) is a separate list from the work order's
@@ -163,9 +170,11 @@ await run('C96962', async () => {
   R.C96962.dialog = await since(n0); n0 = (await hist()).length;
   const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${wo}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000);
   // 15 Oct 2026: staging's work order page has no select_lead_technician test-id — fall back to the field labelled Lead Technician
-  const leadSel = (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]') : pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
-  R.C96962.woPageField = await leadSel.count();
-  await leadSel.click(); await pg.waitForTimeout(1000); await pg.keyboard.type('Ralph'); await pg.waitForTimeout(1200); await pg.locator('.q-menu .q-item').filter({ hasText: 'Ralph Edwards' }).first().click(); await pg.waitForTimeout(2500); await pg.screenshot({ path: path.join(EV, 'C96962-wo-page-lead.png') }).catch(() => {}); await pg.close();
+  // 15 Oct 2026 (wave 12, fourth pass): "Ralph Edwards" was not found in the page's Lead Technician list. Make him an eligible lead first
+  // (ensureEligible) and pick him with wob.mts pickLeadOnPage (field by test id or label; types, then scrolls the list until drawn).
+  R.C96962.ralphEligible = await ensureEligible(a, RE, 'Ralph'); await pg.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(6000);
+  R.C96962.woPagePick = await pickLeadOnPage(pg, 'Ralph', 'Ralph Edwards'); await pg.waitForTimeout(2500); await pg.screenshot({ path: path.join(EV, 'C96962-wo-page-lead.png') }).catch(() => {}); await pg.close();
+  R.C96962.leadAfterWoPage = (await workOrders(a, n))[0]?.techAssignedFirstName;
   R.C96962.woPage = await since(n0);
   R.C96962.whereFound = 'Work order page > the change history (GET /api/work-orders/{id}/history, the list the page shows)';
 });

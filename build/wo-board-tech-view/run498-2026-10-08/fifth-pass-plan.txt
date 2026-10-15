@@ -7,8 +7,8 @@ clocks-stg4.mts | |
 # the QA lead's new section "Design — how it looks" (section 73780): raw measurements and pictures, no verdicts (design-stg5.mts header)
 design-stg5.mts | C590110,C590111,C590112,C590113,C590114,C590115,C590116,C590117,C590118,C590119,C590120,C590121,C590122,C590123,C590124,C590125,C590126,C590127,C590128,C590129,C590130,C590131 | QA_DPR=2
 # wave 10 re-runs: C96958 (Ralph Edwards made an eligible lead, picked with pickLeadOnPage); C154889 (the question's title on both removals)
-s4-batchH.mts | C96958 | 
-s4-batchC.mts | C154889 | 
+s4-batchH.mts | C96958,C96966 | 
+s4-batchC.mts | C154888,C154889 | 
 # wave 10 pictures only (passed tests, judging unchanged): Density menu OPEN with its ticked option; Alpha–Delta readable; WO-1 page with the lead
 s6-batch.mts | C96987,C96991 | WOB_SCALE=2
 s9-batchA5.mts | C368144 | WOB_SCALE=2
@@ -20,5 +20,17 @@ s2-batchA.mts | C96935 | WOB_PIN_NAMES=Ayesha Khan
 notech-stg4.mts | C368130 | 
 s2-batchC.mts | C368127,C96930 | WOB_PIN_NAMES=Esther Howard
 moved-stg4.mts | C368131,C96970 | WOB_PIN_NAMES=-
+# wave 12 re-runs (judge/wave12.json): C96956 row found before every Tech View step; C96959 leads reset to 3/1/0 and read back;
+# C96969 Line 2 made after the lead (reads Unassigned); C96974 new line-only work order read back; C96962 Edit Line pick by scrolling
+# + read back, page lead via ensureEligible/pickLeadOnPage; C96978 the card read after its column is on screen; C96998 the shop's
+# tech-story setting read first (turned on only for the check if it exists and is off, put back). C154888 / C96966 are merged above.
+# C96999: real production comparison (read only). C96989: pictures only, Density menu open.
+s4-batchA.mts | C96956,C96959,C96969 | WOB_PIN_NAMES=-
+s4-batchD.mts | C96974 | 
+s4-batchE.mts | C96962 | WOB_PIN_NAMES=Esther Howard,Ralph Edwards
+s5-batchC.mts | C96978 | 
+s6b-batch.mts | C96989 | WOB_SCALE=2
+s7-batch.mts | C96999 | WOB_SCALE=2
+s8-batch.mts | C96998 | 
 # the sign-out test signs the shared session out: LAST of all (moved here from the fourth pass, L0342)
 signout-fix.mts | C368240 | 

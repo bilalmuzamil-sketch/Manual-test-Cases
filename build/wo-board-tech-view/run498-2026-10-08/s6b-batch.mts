@@ -79,9 +79,10 @@ const second = async () => { const st = await p.context().storageState(); const 
 
 const say = (r: any) => `${r.status}${r.status >= 300 ? ' ' + JSON.stringify(r.body).slice(0, 200) : ''}`;
 const where = (pg: Page) => pg.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`) as Promise<string | null>;
-const density = async (pg: Page = p) => {
+// 15 Oct 2026 (wave 12): `pic` = take that picture WHILE the Density menu is open, so the ticked choice shows (C96989)
+const density = async (pg: Page = p, pic?: string) => {
   const b = pg.locator('[data-test-id="button_density"]'); if (!(await b.count()) || !(await b.isVisible())) return { present: false };
-  await b.click(); await pg.waitForTimeout(1000);
+  await b.click(); await pg.waitForTimeout(1000); if (pic) { await pg.mouse.move(1, 1); await pg.waitForTimeout(300); await shot(pg, pic); }
   const opts = await pg.evaluate(`[...document.querySelectorAll('[data-test-id^="option_density_"]')].filter(e => e.getBoundingClientRect().width > 0).map(e => ({ id: e.getAttribute('data-test-id').replace('option_density_', ''), label: e.innerText.replace(/\\s+/g, ' ').trim(), selected: e.getAttribute('aria-selected') === 'true' || e.getAttribute('aria-checked') === 'true' || /active|selected/.test(e.className) || !!e.querySelector('.q-radio__inner--truthy, [aria-checked=true], i.text-primary') }))`) as any[];
   await pg.keyboard.press('Escape'); await pg.waitForTimeout(400);
   return { present: true, opts, selected: opts.filter((o) => o.selected).map((o) => o.label) };
@@ -148,13 +149,13 @@ await run('C96992', async () => {
 await run('C96989', async () => {
   const o: any = {}; R.C96989 = o;
   // step 1-2: Comfortable in Tech View, then Board View
-  await go('Tech View'); await setDensity('comfortable'); o.techAfterSet = (await density()).selected; o.saved = (await prefGet()).density;
-  await display(p, 'Board View'); await p.waitForTimeout(1500); o.board = (await density()).selected; await shot(p, 'C96989-board');
+  await go('Tech View'); await setDensity('comfortable'); o.techAfterSet = (await density(p, 'C96989-tech-density-menu-open')).selected; o.saved = (await prefGet()).density;
+  await display(p, 'Board View'); await p.waitForTimeout(1500); o.board = (await density(p, 'C96989-board-density-menu-open')).selected;
   // step 3-4: "log out and back in" and "a second browser" — a NEW browser window carrying only the sign-in (no page storage
   // except the sign-in's own user record). A real sign-out would end the shared staging session for every later script (L0342).
   const s2 = await second();
-  try { await go('Tech View', '', s2.pg); o.newWindowTech = (await density(s2.pg)).selected; await shot(s2.pg, 'C96989-new-window-tech');
-    await display(s2.pg, 'Board View'); await s2.pg.waitForTimeout(1500); o.newWindowBoard = (await density(s2.pg)).selected; await shot(s2.pg, 'C96989-new-window-board');
+  try { await go('Tech View', '', s2.pg); o.newWindowTech = (await density(s2.pg, 'C96989-new-window-tech-density-menu-open')).selected;
+    await display(s2.pg, 'Board View'); await s2.pg.waitForTimeout(1500); o.newWindowBoard = (await density(s2.pg, 'C96989-new-window-board-density-menu-open')).selected;
   } finally { await s2.ctx.close().catch(() => {}); }
   o.signOutNote = 'step 3 done as a new browser window, not a real sign-out: signing out ends the shared staging session (L0342)';
   // step 5: the second location — enrol the runner at Lethbridge (app enrolment route), switch ON SCREEN (profile menu > select_location)
@@ -162,7 +163,7 @@ await run('C96989', async () => {
   const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
   if (meRow) o.enrolLeth = say(await a.post('/api/staff/enrollment/create', { staffId: meRow.staff_id, workplaceId: LETH, departmentId: svc?.id }));
   await go('Tech View'); o.switched = await switchLocUI(p, 'Staging Lethbridge'); o.at = await where(p);
-  if (/lethbridge/i.test(String(o.at))) { await go('Tech View'); o.atAfterOpen = await where(p); o.loc2Tech = (await density()).selected; await shot(p, 'C96989-lethbridge-tech'); await display(p, 'Board View'); await p.waitForTimeout(1500); o.loc2Board = (await density()).selected; }
+  if (/lethbridge/i.test(String(o.at))) { await go('Tech View'); o.atAfterOpen = await where(p); o.loc2Tech = (await density(p, 'C96989-lethbridge-tech-density-menu-open')).selected; await display(p, 'Board View'); await p.waitForTimeout(1500); o.loc2Board = (await density(p, 'C96989-lethbridge-board-density-menu-open')).selected; }
   o.backOnScreen = await switchLocUI(p, 'Staging Heavy Duty');
   o.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
 });

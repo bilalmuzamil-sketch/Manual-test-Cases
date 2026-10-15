@@ -77,7 +77,11 @@ await run('C96966', async () => {
   const woScreen = async (id: string, k: string) => { const pg = await p.context().newPage(); try { await pg.goto(`${APP}/workorders/${id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(8000);
       const tx = ((await pg.evaluate(`(document.querySelector('main, .q-page') || document.body).innerText`)) as string).replace(/\s+/g, ' ');
       await pg.screenshot({ path: path.join(EV, `C96966-wo-page-${k}.png`) }).catch(() => {});
-      return { actualHours: (tx.match(/\d+(?:\.\d+)?\s*\/\s*\d+(?:\.\d+)?/g) || []).slice(0, 8), totalHours: (tx.match(/Total Hours[^0-9]{0,30}[\d.:]+/i) || [null])[0], status: (tx.match(/In Progress|Approved|Review|Complete/) || [null])[0], leadNear: (tx.match(/Lead Technician[^A-Za-z]{0,10}[A-Za-z]+ [A-Za-z]+/) || [null])[0] }; }
+      // 15 Oct 2026 (wave 12): the page's status was read as the first status word anywhere ("Approved" can be a LINE's word); the
+      // work order's own status card (status_card) and the status pill in it are read too, beside the record's status
+      const statusCard = await pg.locator('[data-test-id="status_card"]').first().innerText().then((x) => x.replace(/\s+/g, ' ').trim().slice(0, 200)).catch(() => null);
+      const recordStatus = (await a.get(`/api/work-orders/view/${id}`)).body?.data?.work_order?.status ?? null;
+      return { actualHours: (tx.match(/\d+(?:\.\d+)?\s*\/\s*\d+(?:\.\d+)?/g) || []).slice(0, 8), totalHours: (tx.match(/Total Hours[^0-9]{0,30}[\d.:]+/i) || [null])[0], firstStatusWordOnPage: (tx.match(/In Progress|Approved|Review|Complete/) || [null])[0], statusCard, recordStatus, leadNear: (tx.match(/Lead Technician[^A-Za-z]{0,10}[A-Za-z]+ [A-Za-z]+/) || [null])[0] }; }
     finally { await pg.close().catch(() => {}); } };
   R.C96966 = { wo: num, clock, before: await state(), screenBefore: await woScreen(wo, 'before') };
   const sh = await mkShift(a, wo, ES.staff_id, 1, '08:00', 240, []);
@@ -109,8 +113,15 @@ await run('C96966', async () => {
     await sp.waitForTimeout(6000); await laneOf2(ES.staff_id); return sp.locator('[data-test-id="text_schedule_range"]').innerText().catch(() => null); };
   const hours = async (labels: string[]) => { const first = sp.getByText(new RegExp('^\\s*' + labels[0].replace(' ', '\\s*') + '\\s*$')).first(); await first.scrollIntoViewIfNeeded().catch(() => {}); await sp.waitForTimeout(500);
     const xs: Record<string, number | null> = {}; for (const l of labels) xs[l] = (await sp.getByText(new RegExp('^\\s*' + l.replace(' ', '\\s*') + '\\s*$')).first().boundingBox().catch(() => null))?.x ?? null; return xs; };
-  const block = () => sp.locator('.fc-event').filter({ hasText: num }).first();
-  const S: any = { day: await openTomorrow() };
+  // 15 Oct 2026 (wave 12, fourth pass): the block was looked for by "S2-35915" but the Schedule writes the number as "S-35915" (the
+  // clock label reads the same), so it was never found. Now the block is matched by its digits (S<any>-35915); if it is still not
+  // drawn, the Schedule's own search (magnifier > input_schedule_search, the stg-fix-new3 / stg6-sched2 route) is used on that day.
+  const NUMRX = new RegExp(num.replace(/^[A-Z]+\d*-/, '[A-Z]+\\d*-') + '\\b');
+  const block = () => sp.locator('.fc-event').filter({ hasText: NUMRX }).first();
+  const searchSched = async () => { if (await block().count()) return false; if (!(await sp.locator('[data-test-id="input_schedule_search"]').isVisible().catch(() => false))) { await sp.locator('button').filter({ hasText: /^\s*search\s*$/ }).last().click().catch(() => sp.mouse.click(1300, 84)); await sp.waitForTimeout(1000); }
+    const sb = sp.locator('[data-test-id="input_schedule_search"]'); await sb.fill(''); await sb.fill(num); await sp.waitForTimeout(4000); if (!(await block().count())) { await sb.fill(num.replace(/^[A-Z]+\d*-/, '')); await sp.waitForTimeout(4000); }
+    await sp.evaluate(`document.querySelector('.fc-event')?.scrollIntoView({ block: 'center' })`).catch(() => {}); await sp.waitForTimeout(800); return true; };
+  const S: any = { day: await openTomorrow() }; S.searched = await searchSched(); S.blocksDrawn = await sp.locator('.fc-event').allInnerTexts().then((x) => x.map((y) => y.replace(/\s+/g, ' ').slice(0, 60)).slice(0, 6)).catch(() => []); await sshot('found');
   const ok = (want: RegExp) => async () => want.test(await shiftNow());
   // (a) move 8 AM -> 1 PM
   { const xs = await hours(['8 AM', '1 PM']); const e = block(); S.blockFound = await e.count(); await e.scrollIntoViewIfNeeded().catch(() => {}); await sp.waitForTimeout(600); const bx = await e.boundingBox();
@@ -120,7 +131,7 @@ await run('C96966', async () => {
     if (!(await ok(/T08:00:00Z|13:00/)())) { const moved = await shiftNow(); S.moveApiFallback = (await a.patch(`/api/schedule/shifts/${sh}`, { startsAt: start.toISOString(), isAllDay: false, reassign: false, changeNote: false, scope: 'shift' })).status; S.moveNote = `screen drag did not land (${moved}); api fallback`; } }
   R.C96966.move = S; R.C96966.afterMove = { shift: await shiftNow(), ...(await state()) };
   // (b) resize: end 5 PM -> 4 PM
-  { const S2: any = {}; await openTomorrow(); const xs = await hours(['4 PM', '5 PM']); const e = block(); await e.scrollIntoViewIfNeeded().catch(() => {}); await e.hover().catch(() => {}); await sp.waitForTimeout(600);
+  { const S2: any = {}; await openTomorrow(); S2.searched = await searchSched(); const xs = await hours(['4 PM', '5 PM']); const e = block(); await e.scrollIntoViewIfNeeded().catch(() => {}); await e.hover().catch(() => {}); await sp.waitForTimeout(600);
     const rz = e.locator('.fc-event-resizer-end, .fc-event-resizer').last(); S2.handle = await rz.count(); const rb = (await rz.boundingBox().catch(() => null)) ?? null; const eb = await e.boundingBox();
     if (eb && xs['4 PM'] !== null && xs['5 PM'] !== null) { const dx = xs['4 PM']! - xs['5 PM']!; const gx = rb ? rb.x + rb.width / 2 : eb.x + eb.width - 3, gy = rb ? rb.y + rb.height / 2 : eb.y + eb.height / 2;
       await sp.mouse.move(gx, gy); await sp.mouse.down(); await sp.mouse.move(gx - 6, gy, { steps: 3 }); await sp.mouse.move(gx + dx, gy, { steps: 20 }); await sp.waitForTimeout(400); await sp.mouse.up(); S2.dialog = await confirmAny(); }

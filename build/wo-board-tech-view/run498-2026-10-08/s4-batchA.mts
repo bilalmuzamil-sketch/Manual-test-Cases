@@ -62,14 +62,19 @@ await run('C96956', async () => {
   await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: ES.staff_id });
   await bv(p, n, 'Tech View');
   const T: any = { startGroup: await findRow(p, w.id) };
-  const rowMenu = async (grp?: string) => { await findRow(p, w.id, grp); const o = await openReassign(p, w.id, 'tech'); if (T.menuDisabled === undefined) { T.menuDisabled = o.disabled; T.menu = await p.evaluate(`[...document.querySelectorAll('.q-menu')].map(m => m.innerText.replace(/\\s+/g, ' '))`); } await o.item.click(); await p.waitForTimeout(1500); };
+  // 15 Oct 2026 (wave 12, fourth pass): after the move to Ralph Edwards the row was not found again (his group can open collapsed, and
+  // findRow only opens the group it is told). rowFind tries as it is, then each group the row can be in (Ralph, Esther, Jenny,
+  // Unassigned), opening it; failing that it reloads Tech View with the search and tries again. Used before EVERY Tech View step.
+  const rowFind = async () => { for (let pass = 0; pass < 2; pass++) { for (const g of [undefined, RE.staff_id, ES.staff_id, JW.staff_id, 'unassigned']) { await findRow(p, w.id, g).catch(() => null); if (await p.locator(`[data-test-id="tech_view_row_${w.id}"]`).count()) return `${pass ? 'after reload, ' : ''}${g ?? 'as it was'}`; } await bv(p, n, 'Tech View'); } return 'NOT FOUND'; };
+  T.finds = [];
+  const rowMenu = async (grp?: string) => { T.finds.push(await rowFind()); await findRow(p, w.id, grp).catch(() => null); const o = await openReassign(p, w.id, 'tech'); if (T.menuDisabled === undefined) { T.menuDisabled = o.disabled; T.menu = await p.evaluate(`[...document.querySelectorAll('.q-menu')].map(m => m.innerText.replace(/\\s+/g, ' '))`); } await o.item.click(); await p.waitForTimeout(1500); };
   await rowMenu(); T.dialogCount = (await dialogNames(p)).length; await shot(p, 'C96956-tech-dialog');
   T.toRalph = { prompt: await pickLead(p, RE.staff_id), toast: await toasts(p), lead: await leadOf(n) };
-  T.groupAfterRalph = await findRow(p, w.id); await shot(p, 'C96956-tech-in-ralph'); T.woPageLeadAfterRalph = await woPageLead(p, APP, w.id);
+  T.findAfterRalph = await rowFind(); T.groupAfterRalph = await findRow(p, w.id); await shot(p, 'C96956-tech-in-ralph'); T.woPageLeadAfterRalph = await woPageLead(p, APP, w.id);
   await rowMenu(); T.toUnassigned = { prompt: await pickLead(p, 'unassigned'), toast: await toasts(p), lead: await leadOf(n) };
-  T.groupAfterUnassigned = await findRow(p, w.id, 'unassigned'); await shot(p, 'C96956-tech-in-unassigned');
+  T.findAfterUnassigned = await rowFind(); T.groupAfterUnassigned = await findRow(p, w.id, 'unassigned'); await shot(p, 'C96956-tech-in-unassigned');
   await rowMenu('unassigned'); await pickLead(p, JW.staff_id, 'cancel'); await p.waitForTimeout(1500);
-  T.afterCancel = { lead: await leadOf(n), group: await findRow(p, w.id, 'unassigned') };
+  T.afterCancel = { lead: await leadOf(n), find: await rowFind(), group: await findRow(p, w.id, 'unassigned') }; await shot(p, 'C96956-tech-after-cancel');
   T.woPageLead = await woPageLead(p, APP, w.id);
   R.C96956.techView = T; R.C96956.techRowMenu = T.menu;
 });
@@ -97,10 +102,15 @@ await run('C96957', async () => {
 
 await run('C96959', async () => {
   const n = 'ZZAUTOTEST F1 Header Counts';
-  const wos = await seedCase(a, n, 'ZZF4HC', [{ lead: ES.staff_id }, { lead: ES.staff_id }, { lead: ES.staff_id }, { lead: RE.staff_id }]);
+  let wos = await seedCase(a, n, 'ZZF4HC', [{ lead: ES.staff_id }, { lead: ES.staff_id }, { lead: ES.staff_id }, { lead: RE.staff_id }]);
+  // 15 Oct 2026 (wave 12, fourth pass): an earlier run had left one of the four unassigned (start 2/1/1, not the case's 3/1/0). The
+  // four leads are put back first — three Esther Howard, one Ralph Edwards — and read back from the records before anything is done.
+  const resetLog = []; for (const [i, w] of wos.slice(0, 4).entries()) resetLog.push((await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: i < 3 ? ES.staff_id : RE.staff_id })).status);
+  wos = await workOrders(a, n);
+  const startLeads = { esther: wos.filter((w: any) => w.techAssignedId === ES.staff_id).length, ralph: wos.filter((w: any) => w.techAssignedId === RE.staff_id).length, unassigned: wos.filter((w: any) => !w.techAssignedId).length, total: wos.length, reset: resetLog };
   await bv(p, n);
   const counts = async () => { const all = await (await import('./wob.mts')).allBoardCols(p); const f = (id: string) => all.find((c) => c.id === id)?.count; return { esther: f(ES.staff_id), ralph: f(RE.staff_id), unassigned: f('unassigned') }; };
-  R.C96959 = { before: await counts() };
+  R.C96959 = { startLeadsFromRecords: startLeads, before: await counts() }; await shot(p, 'C96959-before');
   const pinned0: string[] = ((await a.get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {}).pinnedTechnicianIds ?? [];
   for (const x of [ES, RE]) if (!pinned0.includes(x.staff_id)) { await toColumn(p, x.staff_id); await p.locator(`[data-test-id="button_board_pin_${x.staff_id}"]`).click(); await p.waitForTimeout(1200); }
   await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"]').scrollLeft = 0`); await p.waitForTimeout(800);
@@ -116,11 +126,18 @@ await run('C96959', async () => {
 });
 
 await run('C96969', async () => {
-  const n = 'ZZAUTOTEST F1 Same Lead Again';
-  const [w] = await seedCase(a, n, 'ZZF4SL', [{ lead: ES.staff_id }]);
+  // 15 Oct 2026 (wave 12, fourth pass): Line 2 had been made BEFORE the lead was set, so it followed the lead (Esther Howard) instead of
+  // reading Unassigned. On this build a line made before the lead follows the lead, and a line made AFTER the lead is set reads
+  // Unassigned (case-seed.mts "Line 1 Unassigned"). So a FRESH work order each run: Line 1, approve, lead Esther Howard, THEN Line 2;
+  // Line 2 is read back (must be "Unassigned", not "follows lead") before the steps.
+  const n = `ZZAUTOTEST F1 Same Lead Again ${Date.now() % 100000}`;
+  const c0 = await customer(a, n, 'ZZF4SL'); const wid = await workOrder(a, c0, 'estimate', null);
   const canned = (await a.get('/api/work-orders/canned-lines')).body?.data; const cl = (Array.isArray(canned) ? canned : canned?.collection ?? []);
+  await a.post(`/api/work-orders/${wid}/lines/create-from-canned-line`, { canned_line_id: cl[0].id, status: 'authorized' });
+  await a.post('/api/work-orders/change-status', { id: wid, status: 'approved' }); await a.post('/api/work-orders/change-lead-technician', { work_order_id: wid, tech_assigned_id: ES.staff_id });
+  await a.post(`/api/work-orders/${wid}/lines/create-from-canned-line`, { canned_line_id: (cl[1] ?? cl[0]).id, status: 'authorized' });
+  const w = (await workOrders(a, n)).find((x: any) => x.id === wid)!;
   const linesRaw = async () => { const r = (await a.get(`/api/work-orders/lines/${w.id}`)).body?.data; return Array.isArray(r) ? r : r?.lines ?? r?.collection ?? []; };
-  if (!(await linesRaw()).length) { for (const c of cl.slice(0, 2)) await a.post(`/api/work-orders/${w.id}/lines/create-from-canned-line`, { canned_line_id: c.id, status: 'authorized' }); }
   const hist = async () => ((await a.get(`/api/work-orders/${w.id}/history`)).body?.data?.history ?? []).map((h: any) => h.eventName);
   // 15 Oct 2026 (third pass): the line read was a JSON text cut at 400 characters, so Line 2 was never read — now one short
   // reading per line: its name, its technicians (or "Unassigned") and whether they follow the lead

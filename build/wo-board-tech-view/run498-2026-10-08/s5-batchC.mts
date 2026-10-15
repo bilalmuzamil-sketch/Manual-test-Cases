@@ -13,7 +13,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders, vehicle } from './data.mts';
-import { EV, t, shot, display, tab, search, searchValue, expandSmallGroups } from './wob.mts';
+import { EV, t, shot, display, tab, search, searchValue, expandSmallGroups, toColumn } from './wob.mts';
 import { staffRows, person } from './staff.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -135,7 +135,16 @@ await run('C96978', async () => {
   await ci.hover().catch(() => {}); await p.waitForTimeout(1200); R.C96978.listClockHover = await tooltip();
   await display(p, 'Board View'); await p.waitForTimeout(1500);
   const m = await menu('Board View'); R.C96978.offered = (m.items ?? []).map((x: any) => x[1]); R.C96978.offeredCount = (m.items ?? []).length; await close();
-  await allOn(); R.C96978.menuAfterAllOn = onKeys(await menu('Board View')); await close(); R.C96978.card = await card(p, wo); await shot(p, 'C96978-card');
+  await allOn(); R.C96978.menuAfterAllOn = onKeys(await menu('Board View')); await close();
+  // 15 Oct 2026 (wave 12, fourth pass): the card read came back empty — the fresh technician's column ("ZZAUTOTEST Cora…") sorts far to
+  // the right and is only drawn when scrolled to. Bring her column on screen first (toColumn; the search is typed again if a display
+  // switch cleared it), then read the card: every field by its test id with its text, and the card's whole text; picture of the card.
+  if (!(await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => ''))) await search(p, n);
+  R.C96978.columnReached = await toColumn(p, TA.staff_id);
+  await p.evaluate(`document.querySelector('[data-test-id="board_card_${wo}"]')?.scrollIntoView({ block: 'center', inline: 'nearest' })`).catch(() => {}); await p.waitForTimeout(800);
+  R.C96978.card = await card(p, wo);
+  R.C96978.cardFields = await p.evaluate(`(() => { const c = document.querySelector('[data-test-id="board_card_${wo}"]'); if (!c) return null; const o = {}; for (const e of c.querySelectorAll('[data-test-id^="board_card_"]')) o[e.getAttribute('data-test-id').replace('board_card_', '')] = e.innerText.replace(/\\s+/g, ' ').trim(); o._wholeCard = c.innerText.replace(/\\s+/g, ' ').trim().slice(0, 400); return o; })()`);
+  await shot(p, 'C96978-card'); { const cb = await p.locator(`[data-test-id="board_card_${wo}"]`).boundingBox().catch(() => null); if (cb) await p.screenshot({ path: path.join(EV, 'C96978-card-close.png'), clip: { x: Math.max(0, cb.x - 12), y: Math.max(0, cb.y - 12), width: cb.width + 24, height: cb.height + 24 } }).catch(() => {}); }
   const fld = p.locator(`[data-test-id="board_card_${wo}"] [data-test-id="board_card_field_clocked_in_technicians"]`);
   R.C96978.cardClockHover = [];
   for (const target of [fld.getByText(/\+\d+/).first(), fld.getByText(/Cora|Rory/).first(), fld]) {

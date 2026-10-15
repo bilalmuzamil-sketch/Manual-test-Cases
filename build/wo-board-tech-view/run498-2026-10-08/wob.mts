@@ -207,7 +207,13 @@ export async function pickLeadOnPage(pg: Page, typed: string, name: string) {
   const o: any = { field: await sel.count() }; if (!o.field) return o;
   await sel.click(); await pg.waitForTimeout(1000); await pg.keyboard.type(typed, { delay: 60 }); await pg.waitForTimeout(1500);
   o.options = (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 8);
-  const opt = pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: name }).first(); o.picked = (await opt.count()) > 0;
+  let opt = pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: name }).first();
+  // 15 Oct 2026 (wave 12): on staging typing does not always narrow the list and a long list draws only what is on screen — scroll the
+  // open list (top to bottom) until the option is drawn; o.scrolled says how many steps it took (absent = found at once)
+  if (!(await opt.count())) { await pg.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].pop(); const s = m && ([m, ...m.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 4) || m); if (s) s.scrollTop = 0; })()`).catch(() => {}); await pg.waitForTimeout(400);
+    for (let i = 0; i < 80 && !(await opt.count()); i++) { o.scrolled = i + 1; const moved = await pg.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].pop(); const s = m && ([m, ...m.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 4) || m); if (!s) return false; const b = s.scrollTop; s.scrollTop += 250; return s.scrollTop !== b; })()`).catch(() => false); await pg.waitForTimeout(250); if (!moved) break; }
+    opt = pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: name }).first(); }
+  o.picked = (await opt.count()) > 0;
   if (o.picked) { await opt.click(); await pg.waitForTimeout(3000); } else await pg.keyboard.press('Escape').catch(() => {});
   return o;
 }
