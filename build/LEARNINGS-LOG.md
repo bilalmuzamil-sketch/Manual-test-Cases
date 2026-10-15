@@ -712,3 +712,15 @@ coming, check in every 15 minutes: each restart loses the script that was runnin
 - **Where:** `build/wo-board-tech-view/run498-2026-10-08/wob.mts` `switchLocUI`; seen in C368156 (rest-batch, sixth pass), and the same "back on screen still reads Lethbridge" in C368212 (high2-batch) and C96989 (s6b-batch).
 - **Cause:** after the profile menu opens, its own row reads "Change Location: Staging Heavy Duty - 9919". `p.locator('.q-menu .q-item').filter({ hasText: name }).first()` matched THAT row when the target was Heavy Duty, so the click re-opened the picker and the location never changed. Going TO Lethbridge worked only because that row does not contain "Lethbridge".
 - **Fix:** take the option from the picker's list — `.filter({ hasNotText: /Change Location/i }).last()`. Read the top bar back after every switch (it is the only proof), and expect scripts that ran before this fix to have left the shared screen session on Lethbridge.
+
+## L0372 — 2026-10-15 — (Being tested) The container is reclaimed when the session is idle: keep check-ins under 10 minutes
+The machine restarted four times in under an hour: about 07:21, 07:35, 07:57 and 08:14 UTC. The restarts began right after the
+last background watcher was stopped at its two-hour limit (about 07:00). For two hours before that, while it ran, there had been
+none. Each restart came 7 to 15 minutes after the last time the session did anything. It was not memory (L0370), and it was
+not one script. **Working theory:** the container is reclaimed after a short time with no session activity. Background
+processes the session started do not count; a running background task or an agent turn does. A script longer than the idle
+window, such as `high1-batch.mts` at about 15 minutes, can then never finish.
+
+**What to do:** on an unattended run, schedule a check-in (`send_later`) at least every 10 minutes. Each one runs
+`recover.sh` first. Test of the theory: if `uptime` keeps growing past 30 minutes with 10-minute check-ins, it holds.
+Record the outcome here. #restart #idle #unattended → L0365, L0370
