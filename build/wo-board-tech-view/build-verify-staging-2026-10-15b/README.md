@@ -23,3 +23,7 @@ The staging build marker could not be re-read after 09:00 for that reason; a5c42
   "(your column count goes from 1 to 0)" is not in the source (S3-N1 hides the column; S1-N1a shows the empty message). Correction
   proposed; NOT written until the QA lead says yes (Rule 71/106).
 - 5 (C590125): no action.
+
+## 15 Oct, later
+- Items 1 and 4 added as questions 30 and 31 at the bottom of Chris Ward's sheet "WO Board and Tech View Feature Squad – Questions on the spec and design – for Chris Ward (14 Oct 2026)" (Google Sheet 1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), same columns and pink format as 12–29. Read back.
+- Item 3: QA lead "Follow the requirements" -> apply3.py corrected C96973's Expected to PRD v52 (S4-E8, S3-N1, S1-N1a quoted), stamp -> staging. C96973 is AUTOMATED: TELL VLAD (Rule 65) — the expected outcome changed from "your column count goes from 1 to 0" to "your column is hidden and the board shows the No work orders match these filters message".
