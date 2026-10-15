@@ -6,51 +6,83 @@
   "cal": true,
   "dan": true
  },
- "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
- "C97020": {
-  "viewerFocused": true,
-  "viewerTabTo": "button_work_order_more_actions",
-  "viewerMenu": [
-   "Reassign lead technician"
-  ],
-  "viewerItemEnter": {
-   "dialog": 1,
-   "text": "Reassign lead technician S2-35758 · ZZAUTOTEST F3 Keyboard Limits 29280 Alpha Co close search person Unassigned AB Aaron Baker 5 open AZ Aaron Zed 0 open AS Admin ShopView 8 open AA Advisor Analysis 7",
-   "toasts": []
+ "C368150": {
+  "focused": true,
+  "keys": {
+   "Space": "stayed",
+   "ArrowDown": "stayed",
+   "ArrowUp": "stayed",
+   "Control+ArrowDown": "stayed",
+   "Alt+ArrowDown": "stayed",
+   "Shift+ArrowDown": "stayed",
+   "Shift+ArrowRight": "stayed"
   },
-  "viewerRole": {
-   "name": "ZZAUTOTEST WO View Only",
-   "count": 3,
-   "workOrderPerms": [
-    "woFullViewMode",
-    "workOrdersCreateAndEdit",
-    "workOrdersView"
-   ]
-  },
-  "viewerKeys": {
-   "Enter": "opened the work order",
-   "Space": "nothing",
-   "ArrowDown": "nothing",
-   "ArrowRight": "nothing",
-   "Shift+ArrowRight": "nothing",
-   "Shift+ArrowDown": "nothing",
-   "Alt+ArrowRight": "nothing",
-   "Control+ArrowRight": "nothing"
-  },
-  "viewerMoreActions": 1,
-  "alphaAfterViewer": {
+  "afterKeys": {
+   "ana": [
+    "Alpha Co",
+    "Bravo Co"
+   ],
+   "before": [
+    "Alpha Co",
+    "Bravo Co"
+   ],
    "lead": "ZZAUTOTEST Ana Alpha"
   },
-  "dispFocused": true,
-  "item": {
-   "found": 1,
-   "disabled": true
+  "refocused": true,
+  "enter": "/workorders/<id>/lines",
+  "enterOpenedAlpha": true,
+  "techRowFocused": true,
+  "techEnter": "/workorders/<id>/lines"
+ },
+ "C97022": {
+  "dialog": 1,
+  "step4": {
+   "tid": "button_work_order_more_actions",
+   "raw": "button_work_order_more_actions",
+   "text": "more_horiz",
+   "outline": true
   },
-  "tooltip": [
-   "The lead technician can't be changed once a work order is Invoiced or Paid."
-  ],
-  "dialogOpened": 0,
-  "bravoLead": "ZZAUTOTEST Ana Alpha"
+  "golfFocused": true,
+  "boardAfterFilter": 2,
+  "focusBefore5": "board_card_<id>",
+  "golfGoneLive": false,
+  "step5live": {
+   "tid": "board_card_<id>",
+   "raw": "board_card_beddab27-a3b3-4615-8351-ccb72f8f0015",
+   "text": "S2-35873 Approved more_horiz ZZF9 Line c",
+   "outline": true
+  },
+  "step5": {
+   "tid": "body",
+   "raw": "body"
+  },
+  "step5afterTab": {
+   "tid": "skip-to-content",
+   "raw": "skip-to-content",
+   "text": "Skip to main content",
+   "outline": true
+  },
+  "colFocus": "board_column_header_<id>",
+  "deact": "201",
+  "benGoneLive": false,
+  "step6live": {
+   "tid": "board_column_header_<id>",
+   "raw": "board_column_header_ec182619-ccd6-4fe8-a8e3-340c09cf429d",
+   "text": "drag_indicator ZA ZZAUTOTEST Ana Alpha p",
+   "outline": true
+  },
+  "step6": {
+   "tid": "body",
+   "raw": "body"
+  },
+  "step6afterTab": {
+   "tid": "skip-to-content",
+   "raw": "skip-to-content",
+   "text": "Skip to main content",
+   "outline": true
+  },
+  "react": "201",
+  "benActive": true
  },
  "restored": true
 }
