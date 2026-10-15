@@ -1,0 +1,26 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 18 = wave 21"
+ },
+ "results": {
+  "C368176": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (sixth pass reading, judged 15 Oct against the live case text).",
+    "Customer ZZAUTOTEST Clock In Line 63973, S2-36065 with no lead; step 1: Line 1's Labor row reads Unassigned.",
+    "Esther Howard had no clock running before the test (checked first, nothing to stop).",
+    "In her own window: Start on Line 1, about a minute of work (0.02 h recorded), Stop on the same work order (\"Stop working on S2-36065, Service - Cabin air filter\"), text typed, Clock Out: \"Timesheet clocked out\"; no clock left running.",
+    "Step 6, browser 1 reloaded: Line 1's Labor row shows Esther Howard (the line took the technician who clocked in); Line 2, where nobody clocked in, still reads Unassigned."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368176-1-tech-clocked-out.png",
+    "evidence/staging-full-2026-10-14/annotated/C368176-2-admin-after-reload.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ }
+}
