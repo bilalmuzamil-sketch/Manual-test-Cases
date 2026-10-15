@@ -1,0 +1,110 @@
+{
+ "results": {
+  "C154648": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "List with Status: Imported ticked showed the Imported work orders, including ZZAUTOTEST-IMP-21007.",
+    "The Tech View and Board View buttons were greyed out; hovering each showed \"Not available while Imported is selected.\"",
+    "Clicking them did not open either display: the page stayed on List showing ZZAUTOTEST-IMP-21007.",
+    "With Imported cleared, Tech View opened.",
+    "In Tech View and in Board View, \"Imported\" in the Status filter is greyed out with the tooltip \"Imported work orders open in List.\" and could not be ticked."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C154648-step4-TechView-hover.png",
+    "evidence/staging-full-2026-10-14/C154648-step11-TechView-imported-hover.png",
+    "evidence/staging-full-2026-10-14/C154648-step15-BoardView-imported-hover.png"
+   ]
+  },
+  "C368133": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Prompt Only Unfinished: six work orders led by Esther Howard, dragged to Ralph Edwards in Board View.",
+    "S2-35793 (an unfinished whole-work-order shift for Esther) opened the question \"Clear Esther Howard's scheduled shifts?\"; Keep shifts was clicked.",
+    "S2-35794 (no shift), S2-35795 (a shift on one line only), S2-35796 (only an ended shift), S2-35797 (only Dana Ortiz's shift) and S2-35798 (Esther's shift is on another work order) each moved straight away with \"Lead technician updated\" and no question.",
+    "The question opened for 1 of the 6 work orders."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368133-step4-question.png",
+    "evidence/staging-full-2026-10-14/C368133-after.png"
+   ]
+  },
+  "C96965": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F1 Clear Shifts Scope: S2-35800 and S2-35801 led by Esther Howard; S2-35802 with Esther's whole-work-order shift the day after tomorrow.",
+    "Both drags opened \"Clear Esther Howard's scheduled shifts?\". Clear Shifts was clicked for S2-35800 and Keep Shifts for S2-35801; both moved to Ralph Edwards with \"Lead technician updated\".",
+    "Schedule, tomorrow: on S2-35800 Esther's 8:00-12:00 whole-work-order shift is gone, Dana Ortiz's 8:00-10:00 shift is still there, and Esther's 13:00-15:00 shift on one line is still there.",
+    "On S2-35801 both of Esther's shifts (8:00-12:00 and 13:00-15:00) are still there.",
+    "Day after tomorrow: Esther's 8:00-12:00 shift on S2-35802 is unchanged."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96965-step4-question.png",
+    "evidence/staging-full-2026-10-14/C96965-step7-board-after.png"
+   ]
+  },
+  "C581889": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Status \"Estimate\" ticked at a location with no Estimate work order; customer ZZAUTOTEST NT1 Filtered Empty with one Approved work order, SMQ1-35792.",
+    "Board View, without and with the search text: \"No work orders match these filters\", then \"Try removing a filter to widen your results.\", with a Clear all filters button.",
+    "Tech View and List showed the same two lines and the same button.",
+    "After Clear all filters in Tech View, Estimate is no longer ticked and SMQ1-35792 shows again."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C581889-step5-board.png",
+    "evidence/staging-full-2026-10-14/C581889-step7-board-search.png",
+    "evidence/staging-full-2026-10-14/C581889-step9-tech.png",
+    "evidence/staging-full-2026-10-14/C581889-step11-list.png",
+    "evidence/staging-full-2026-10-14/C581889-step14-tech.png"
+   ]
+  },
+  "C581890": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Search ZZAUTOTEST-NOMATCH-A02 with no filter.",
+    "Board View, Tech View and List each show \"No work orders match the search \"ZZAUTOTEST-NOMATCH-A02\".\" with the text typed, and no button."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C581890-step4-board.png",
+    "evidence/staging-full-2026-10-14/C581890-step6-tech.png",
+    "evidence/staging-full-2026-10-14/C581890-step8-list.png"
+   ]
+  },
+  "C581891": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "S2-35803 led by Esther Howard: Line 1 had only Ralph Edwards from a Schedule shift on that line; Line 2 was given to Dana Ortiz in Edit Line.",
+    "Reassign lead technician > Jenny Wilson: \"Lead technician updated\", no question about shifts, and the card moved to Jenny Wilson's column.",
+    "Lines tab: Line 1's Labor row now reads Jenny Wilson, and its Edit Line lists Jenny Wilson and Ralph Edwards (still there, with the shift icon).",
+    "Line 2's Labor row and Edit Line still show only Dana Ortiz."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C581891-step4-board.png",
+    "evidence/staging-full-2026-10-14/C581891-step7-lines.png",
+    "evidence/staging-full-2026-10-14/C581891-step9-edit-line.png",
+    "evidence/staging-full-2026-10-14/C581891-step12-edit-line.png"
+   ]
+  }
+ },
+ "redo": {},
+ "failed": {},
+ "doubt": {}
+}
