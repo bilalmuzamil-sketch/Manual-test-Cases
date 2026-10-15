@@ -471,7 +471,7 @@ says (new approved line after the shift → no question; not-approved line → q
 Schedule screen (`dropEntire` in `stg-fix-new3.mts`), or POST the approved line ids, never `[]`, when the test is about
 which lines a shift covers. (2) **Account access (`/impersonate-user/<user id>`) is ended by the orange banner's Exit button
 (`button_exit_impersonation`);** `POST /api/exit-switch-user` alone left the page in Account Access Mode, so the next staff
-lookup ran as the technician and found nothing. Press Exit, then read the banner back. (3) The technician's own
+lookup ran as the technician and found nothing. Press Exit, then read the banner back. (3) ⛔ CORRECTED 15 Oct 03:05 by L0349 — the line below was WRONG: (3) The technician's own
 `POST /api/iam/change-name` (made in account access) DOES make the account name differ from the staff record name — the banner
 showed "ZZAUTOTEST Account Ana" while the staff record stayed "ZZAUTOTEST Staffname Ana". #shifts #impersonation #names → L0339, Rule 104
 
@@ -491,3 +491,15 @@ the report by its address, saying so. (3) Whoever creates a work order is its Se
 case that needs "not mine" sets another advisor first (C368238; playbook WO Board). (4) A reading kept as `JSON.stringify(x).slice(0, 400)`
 drops whatever comes after the cut (C96969 lost Line 2) — keep one short line per item instead. (5) A picture meant to show a
 menu's ticked option is taken while the menu is still open (C96955). #staging #timing #impersonation #evidence → L0343, L0345
+
+## L0349 — 2026-10-15 — Staging keeps ONE name per technician; a running pass skips a script whose .done exists
+(1) **Corrects L0346 (3).** The fourth-pass run of C581895 read back the staff list AFTER the technician's own
+`POST /api/iam/change-name`: the staff record had changed too ("ZZAUTOTEST Account Ana" everywhere — staff list, lead
+candidates, board feed, List, card, hovers, column header). With L0339 (renaming the staff record renames the account), staging
+keeps one name per technician whichever side is renamed, so the account-vs-staff-name difference S5-R11b (C581895, Chris's bug)
+is about cannot be made there through the product. The difference exists only where the two stored names were changed outside
+the app — the QA branch's scrambled data (developer, Slack 12 Oct). Reproduce S5-R11b on the QA branch, not staging.
+(2) **Deferring a script in a pass that is already running:** `run-second/third/fourth.sh` skip any script whose
+`logs<N>/<script>.done` exists, so creating that file (with a one-line reason) stops it running in this pass without
+touching the pass — used 15 Oct to keep `signout-fix.mts` from running before the design cases (moved to the fifth pass).
+#names #staging #rerun → L0339, L0342, L0346
