@@ -122,11 +122,15 @@ await run('C96969', async () => {
   const linesRaw = async () => { const r = (await a.get(`/api/work-orders/lines/${w.id}`)).body?.data; return Array.isArray(r) ? r : r?.lines ?? r?.collection ?? []; };
   if (!(await linesRaw()).length) { for (const c of cl.slice(0, 2)) await a.post(`/api/work-orders/${w.id}/lines/create-from-canned-line`, { canned_line_id: c.id, status: 'authorized' }); }
   const hist = async () => ((await a.get(`/api/work-orders/${w.id}/history`)).body?.data?.history ?? []).map((h: any) => h.eventName);
-  const linesTech = async () => { const lt = (await a.get(`/api/work-orders/${w.id}/line-technicians`)).body?.data; return { lines: (await linesRaw()).map((l: any) => (l.line_name ?? l.name ?? l.lineName ?? '').trim().slice(0, 30)), lineTechnicians: JSON.stringify(lt).slice(0, 400) }; };
+  // 15 Oct 2026 (third pass): the line read was a JSON text cut at 400 characters, so Line 2 was never read — now one short
+  // reading per line: its name, its technicians (or "Unassigned") and whether they follow the lead
+  const linesTech = async () => { const lt = (await a.get(`/api/work-orders/${w.id}/line-technicians`)).body?.data; const lines = await linesRaw(); const nm = Object.fromEntries(lines.map((l: any) => [l.line_id, (l.line_name ?? l.name ?? l.lineName ?? '').trim().slice(0, 30)]));
+    return ((lt?.lineTechnicians ?? []) as any[]).map((x: any, i: number) => `Line ${i + 1} ${nm[x.lineId] ?? x.lineId?.slice(0, 6)}: ${(x.technicians ?? []).map((t2: any) => `${t2.firstName ?? ''} ${t2.lastName ?? ''}`.trim()).join(', ') || 'Unassigned'}${x.derivedFromLeadTech ? ' (follows lead)' : ''}${x.needsTechnicians ? ' (needs technicians)' : ''}`); };
   R.C96969 = { linesBefore: await linesTech(), historyBefore: await hist() };
   await bv(p, n); await toColumn(p, ES.staff_id);
   const o = await openReassign(p, w.id); await o.item.click(); await p.waitForTimeout(1200);
   R.C96969.confirmEnabledForCurrent = await p.locator(`[data-test-id="option_lead_technician_${ES.staff_id}"]`).click().then(async () => { await p.waitForTimeout(400); return p.locator('[data-test-id="button_confirm_reassign_lead_technician"]').isEnabled(); });
+  await shot(p, 'C96969-dialog-current-picked');
   if (R.C96969.confirmEnabledForCurrent) { await p.locator('[data-test-id="button_confirm_reassign_lead_technician"]').click(); await shiftPrompt(p); } else await p.locator('[data-test-id="button_cancel_reassign_lead_technician"]').click();
   await p.waitForTimeout(1500);
   R.C96969.message = await toasts(p); R.C96969.lead = await leadOf(n); R.C96969.linesAfter = await linesTech(); R.C96969.historyAfter = await hist();
@@ -158,7 +162,7 @@ await run('C368163', async () => {
     const o = await openReassign(pg, w.id, where); await o.item.click(); await pg.waitForTimeout(1200);
     const dlg = pg.locator('.q-dialog').last(); const box = pg.locator('[data-test-id="input_reassign_lead_search"]');
     const r: any = { top: (await dlg.innerText()).split('\n').slice(0, 3).join(' | '), current: (await pg.locator(`[data-test-id="option_lead_technician_${ES.staff_id}"]`).innerText()).replace(/\s+/g, ' '), full: (await dialogNames(pg)).length, placeholder: await box.getAttribute('placeholder') };
-    for (const q of ['Ral', 'ral', 'Olive', 'zzqx']) { await box.fill(q); await pg.waitForTimeout(900); r[q] = { names: (await dialogNames(pg)).slice(0, 6), empty: (await dlg.innerText()).replace(/\s+/g, ' ').match(/No [^.]*?(match|found)[^.]*/i)?.[0] ?? null }; }
+    for (const q of ['Ral', 'ral', 'Olive', 'zzqx']) { await box.fill(q); await pg.waitForTimeout(900); r[q] = { names: (await dialogNames(pg)).slice(0, 6), empty: (await dlg.innerText()).replace(/\s+/g, ' ').match(/No [^.]*?(match|found)[^.]*/i)?.[0] ?? null }; if (q === 'Ral' || q === 'Olive') await shot(pg, `C368163-${where}-${q}`); }
     await box.fill(''); await pg.waitForTimeout(800); r.cleared = (await dialogNames(pg)).length;
     await pg.locator('[data-test-id="button_cancel_reassign_lead_technician"]').click(); await pg.waitForTimeout(1200);
     r.afterCancel = { message: await toasts(pg), lead: await leadOf(n) };
@@ -167,7 +171,9 @@ await run('C368163', async () => {
     return r;
   };
   await bv(p, n); await toColumn(p, ES.staff_id); R.C368163 = { board: await once(p, 'board') }; await shot(p, 'C368163-board');
-  await display(p, 'Tech View'); await search(p, n); R.C368163.tech = await once(p, 'tech');
+  // 15 Oct 2026 (third pass): stopped in Tech View — the row was not drawn (Esther's group collapsed / off screen). Bring it on screen
+  // first (findRow opens her group and scrolls to the row).
+  await display(p, 'Tech View'); await search(p, n); R.C368163.techRowGroup = await findRow(p, w.id, ES.staff_id); R.C368163.tech = await once(p, 'tech');
 });
 
 await run('C96967', async () => {

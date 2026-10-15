@@ -481,3 +481,13 @@ never appears on any screen, so its end-of-test screenshot proves nothing. `run4
 <analytics-batch.json> <C-id> <out.png> "<plain title>"` renders that test's captured events (per step, with counts) under a
 banner that says plainly what it is: "What the browser sent to Google Analytics during this test (captured from the browser
 on staging, <date>)". Used for C97023, C97024, C97025, C97027, C97035, C368155 (posted 15 Oct). #analytics #evidence → Rule 130, L0339
+
+## L0348 — 2026-10-15 — "While the page is still loading" means after its data request is SENT; a technician's menu has no Reports
+(1) A fixed wait (400 ms) after clicking a report did not land "while loading": no report request had even started (C368238).
+Wait for the page's own data request to be sent (`page.waitForRequest`), act at once, and record whether its answer had already
+arrived (`imp-fix3.mts wipWhile`). (2) In account access as a Technician the top menu reads "Work Orders · Schedule · Customers" —
+there is no "Reports" link to click (C368239); look for the menu's own word, then inside the "ShopHub" menu, and only then open
+the report by its address, saying so. (3) Whoever creates a work order is its Service Advisor and "Assigned to me" lists it — a
+case that needs "not mine" sets another advisor first (C368238; playbook WO Board). (4) A reading kept as `JSON.stringify(x).slice(0, 400)`
+drops whatever comes after the cut (C96969 lost Line 2) — keep one short line per item instead. (5) A picture meant to show a
+menu's ticked option is taken while the menu is still open (C96955). #staging #timing #impersonation #evidence → L0343, L0345

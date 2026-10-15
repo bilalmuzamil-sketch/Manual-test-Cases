@@ -228,7 +228,11 @@ await run('C97027', async () => { const o: any = {}; const s = await mkSet('ZZAU
 await run('C97029', async () => { const o: any = {};
   await withUser(await fresh('First'), async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await settle(pg); o.step1 = { views: evs(ev, 'work_orders_display_view').map(brief), fields: evs(ev, 'work_orders_field_load').length, sources: [...new Set(evs(ev, 'work_orders_field_load').map((e) => e.ep['ep.setting_source']))] }; });
   // restored settings: the runner has saved display (Board View), fields and density from earlier runs
-  { const pg = await p.context().newPage(); const ev = tap(pg); await a.put(PREF, { value: { ...(await prefFor()), display: 'board_view' } }).catch(() => {}); await openWO(pg); await settle(pg);
+  // 15 Oct 2026 (staging third pass): the dispatcher had NO saved density, so the density event could only read "default". A density
+  // (Comfortable) is saved together with the display before the page opens, and what was saved is read back first.
+  { const pg = await p.context().newPage(); const ev = tap(pg); const pv0 = await prefFor(); await a.put(PREF, { value: { ...pv0, display: 'board_view', density: pv0.density && pv0.density !== 'regular' ? pv0.density : 'comfortable' } }).catch(() => {});
+    { const pv = await prefFor(); o.savedBeforeStep2 = { display: pv.display ?? null, density: pv.density ?? null, boardFields: pv.boardFields ? Object.keys(pv.boardFields).length : null }; }
+    await openWO(pg); await settle(pg);
     o.step2 = { views: evs(ev, 'work_orders_display_view').map(brief), fields: evs(ev, 'work_orders_field_load').map(brief).slice(0, 20), density: evs(ev, 'work_orders_density_load').map(brief), note: ev.length ? null : 'NO analytics requests on the runner page (GA blocked in this context?)' };
     const n2 = ev.length; await display(pg, 'Tech View'); await settle(pg, 4000); await tab(pg, 'Estimates'); await settle(pg); o.step3 = evs(ev, 'work_orders_display_view', n2).map(brief);
     await display(pg, 'Board View'); await settle(pg, 3000); const n4 = ev.length; await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900); await pg.locator('[data-test-id="toggle_board_field_vin"]').click(); await pg.waitForTimeout(1500); await pg.keyboard.press('Escape'); await settle(pg);

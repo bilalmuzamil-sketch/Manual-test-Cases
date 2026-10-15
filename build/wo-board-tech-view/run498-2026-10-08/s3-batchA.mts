@@ -244,10 +244,12 @@ await run('C96955', async () => {
   const n = 'ZZAUTOTEST F2 Shared Density';
   await seedCase(a, n, 'ZZF3SD', [{ lead: ES.staff_id }]);
   await bv(n);
-  const menu = async () => { await p.locator('[data-test-id="button_density"]').click(); await p.waitForTimeout(800); const o = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="option_density_"]')].map(e => e.innerText.replace(/check/, '').trim() + (e.getAttribute('aria-checked') === 'true' || /check/.test(e.innerText) ? ' (selected)' : ''))`); return o; };
-  R.C96955 = { boardStart: await menu() }; await p.locator('[data-test-id="option_density_compact"]').click(); await p.waitForTimeout(1500);
-  await display(p, 'Tech View'); R.C96955.techAfterBoardCompact = await menu(); await p.locator('[data-test-id="option_density_comfortable"]').click(); await p.waitForTimeout(1500);
-  await display(p, 'Board View'); R.C96955.boardAfterTechComfortable = await menu(); await p.locator('[data-test-id="option_density_regular"]').click(); await p.waitForTimeout(1000);
+  // 15 Oct 2026 (Rule 130, picture only): each reading is photographed WITH the Density menu still open, so the picture shows the
+  // ticked option in that view (Board View at the start, Tech View after Compact, Board View after Comfortable); readings unchanged.
+  const menu = async (pic: string) => { await p.locator('[data-test-id="button_density"]').click(); await p.waitForTimeout(800); const o = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="option_density_"]')].map(e => e.innerText.replace(/check/, '').trim() + (e.getAttribute('aria-checked') === 'true' || /check/.test(e.innerText) ? ' (selected)' : ''))`); await shot(p, pic); return o; };
+  R.C96955 = { boardStart: await menu('C96955-board-start-menu') }; await p.locator('[data-test-id="option_density_compact"]').click(); await p.waitForTimeout(1500);
+  await display(p, 'Tech View'); R.C96955.techAfterBoardCompact = await menu('C96955-tech-after-board-compact-menu'); await p.locator('[data-test-id="option_density_comfortable"]').click(); await p.waitForTimeout(1500);
+  await display(p, 'Board View'); R.C96955.boardAfterTechComfortable = await menu('C96955-board-after-tech-comfortable-menu'); await p.locator('[data-test-id="option_density_regular"]').click(); await p.waitForTimeout(1000);
   R.C96955.saved = (await prefs()).density;
 });
 

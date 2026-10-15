@@ -13,8 +13,8 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders, vehicle } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
-import { staffRows, person, roleIds, HEAVY } from './staff.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, pickLeadOnPage as pickLeadByLabel } from './wob.mts';
+import { staffRows, person, roleIds, HEAVY, ensureEligible } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
 
@@ -208,8 +208,12 @@ const vehOf = async (id: string) => { const v = await view(id); const w = v.work
 const setPO = async (id: string, po: string) => { await page(id, 'finance'); const i = p.locator('[data-test-id$="customer_po"] input, input[data-test-id$="customer_po"], [data-test-id*="customer_po"]').first(); const n = await i.count(); if (!n) return 'no Customer PO field'; await i.click(); await i.fill(po); await p.locator('body').click({ position: { x: 5, y: 5 } }); await p.waitForTimeout(2500); return 'typed'; };
 
 await run('C368169', async () => { const w = await one('ZZAUTOTEST Edit WO Card Lead Mileage', ES); const o: any = { wo: w.number };
+  // 15 Oct 2026 (staging third pass): Mileage started empty (the case's set-up is 120,000) and Ralph Edwards was never picked. Now the
+  // set-up Mileage 120000 is saved first (and read back on the page), Ralph is made eligible (ensureEligible), and the lead is picked
+  // with wob.mts pickLeadOnPage, imported as pickLeadByLabel (the field by its label, "Ralph" typed, the options recorded).
+  o.setupMileage = (await a.post('/api/work-orders/change-mileage', { work_order_id: w.id, mileage: '120000' })).status; o.ralphEligible = await ensureEligible(a, RE, 'Ralph');
   await page(w.id); o.before = { lead: await leadText(), mileage: await cardVal('input_vehicle_mileage') };
-  o.picked = await pickLeadOnPage2(/Ralph Edwards/); o.mileageEditable = await p.locator('[data-test-id="input_vehicle_mileage"]').first().evaluate((e: any) => !(e.disabled || e.readOnly)).catch(() => false) /* 15 Oct 2026: was never set, so the Mileage edit was skipped (wave 7) */; o.mileage = o.mileageEditable ? await cardInput('input_vehicle_mileage', '120500') : 'locked: the Mileage box is read-only on the Invoiced work order'; o.toasts = await toastsOn(p); await shot(p, 'C368169-card');
+  o.pick = await pickLeadByLabel(p, 'Ralph', 'Ralph Edwards'); o.picked = o.pick?.picked ?? false; o.mileageEditable = await p.locator('[data-test-id="input_vehicle_mileage"]').first().evaluate((e: any) => !(e.disabled || e.readOnly)).catch(() => false) /* 15 Oct 2026: was never set, so the Mileage edit was skipped (wave 7) */; o.mileage = o.mileageEditable ? await cardInput('input_vehicle_mileage', '120500') : 'locked: the Mileage box is read-only on the Invoiced work order'; o.toasts = await toastsOn(p); await shot(p, 'C368169-card');
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.afterReload = { lead: await leadText(), mileage: await cardVal('input_vehicle_mileage') }; o.api = { lead: await leadName(w.id), ...(await vehOf(w.id)) }; await shot(p, 'C368169-after-reload'); R.C368169 = o; });
 
 await run('C368171', async () => { const w = await one('ZZAUTOTEST Edit WO Card Audit', ES, 2); const o: any = { wo: w.number };
