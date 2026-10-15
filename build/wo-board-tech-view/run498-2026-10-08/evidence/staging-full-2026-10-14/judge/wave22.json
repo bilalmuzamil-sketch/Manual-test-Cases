@@ -1,0 +1,26 @@
+{
+ "results": {
+  "C368177": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fourth pass move, read again read-only in the sixth pass; judged 15 Oct against the live case text).",
+    "S2-35973 (customer ZZAUTOTEST Move Labor 28477): Esther Howard clocked in on Line 1 and out (\"Timesheet clocked out\"); in Timesheets her row's pencil opened Edit Timesheet, Line \"2 Replace - Suspension air bag\" was picked and Save went through with no error message (step 4).",
+    "Step 5, after a reload: Line 2's Labor row shows Esther Howard. The line that received the labor took its technician.",
+    "Also seen, not asked for by this case: under Esther Howard, Line 2's Labor row has a second entry \"Deleted user\". Line 2's data names only Esther Howard (her staff record exists); no deleted person could be identified from the line's tasks and time records. Line 1 also still shows Esther Howard (the SV-11087 symptom)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368177-1-line2-labor.png"
+   ],
+   "not_observed": "Who the \"Deleted user\" entry belongs to (queued: c368191-read.mts now reads Line 2's raw labor lists in the seventh pass).",
+   "todo": "Tell the QA lead about the unexplained \"Deleted user\" Labor entry on Line 2 after a labor move (not this case's Expected; possible separate finding)."
+  }
+ },
+ "redo": {
+  "C368173": "Set-up correct this time (S2-36074, Line 2 with only Dana Ortiz; Dana removed with the X). Not judged: Ralph Edwards was not offered in Add Technician — the list, scrolled to its end, held 99 names (A to Q) and no Ralph (the same 100-name list as the lead field, L0369) — so nobody was added and the line read Unassigned. The Expected quotes \"Ralph Edwards\". Fixed in high1-fix5.mts: \"Ralph Edwards\" / \"Edwards\" / \"Ralph\" are typed into the field's own box first (each recorded), then the old scroll. Seventh pass.",
+  "C368178": "Not judged: Entire work order, 2h, \"Create 1 shift\" saved with no error and the shift covers both lines, but it starts 8:45 (03:45Z) not 9:00: staging has no [data-time] slots, so the drop fell back to the heading text, which lands 15 minutes early. Fixed in high1-fix5.mts: one hour is measured in pixels from the hour headings and the drop goes a quarter-hour right of the heading, so the start lands on the hour. Seventh pass.",
+  "C368179": "Half seen: Choose lines with only \"Service - Cabin air filter\" (1 of 2), 2h, \"Create shift · 1 line · 2h\", saved with no error; after reload the shift's details open (S2-36076, 0m logged / 2h est.) and it covers that one line. But it starts 12:45 (07:45Z), not 13:00, for the same 15-minute drop error. Same fix as C368178. Seventh pass.",
+  "C368190": "Not judged: Line 1 read Jenny Wilson and her 9:45-10:45 shift tomorrow is there, but the shift was not opened (no details, nothing deleted; step 3 still Jenny Wilson). The blocks were found by the first 18 letters of the customer name, which also matched earlier runs' blocks (\"ZZAUTOTEST Sched D...\"). Fixed in high1-fix5.mts: blocks are matched by the full customer name when it is drawn. Seventh pass."
+ },
+ "failed": [],
+ "doubt": []
+}
