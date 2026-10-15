@@ -13,10 +13,9 @@
    "Charlie Co": "2020 Peterbilt 579 201"
   },
   "clock Bravo Co": 1,
-  "running Bravo Co": "00:00:00 S2-35789",
+  "running Bravo Co": "00:00:02 S2-36033",
   "clock Charlie Co": 1,
-  "clockDialog Charlie Co 0": "Stop S2-35688, Service - Cabin air ... - Preventative mainten... close Line Completed? What Have You Been Doing On This Line? Start S2-35790, Service - Cabin air ... - Preventative mainten... Start",
-  "running Charlie Co": "00:00:00 S2-35790",
+  "running Charlie Co": "00:00:02 S2-36034",
   "clockedCounts": {
    "Alpha Co": 0,
    "Bravo Co": 1,
@@ -27,31 +26,203 @@
    "Bravo Co": false,
    "Charlie Co": false
   },
+  "Number": {
+   "first": [
+    "S2-36032 | S2-36032",
+    "S2-36033 | S2-36033",
+    "S2-36034 | S2-36034"
+   ],
+   "mark1": " sortable,sorted",
+   "second": [
+    "S2-36034 | S2-36034",
+    "S2-36033 | S2-36033",
+    "S2-36032 | S2-36032"
+   ],
+   "mark2": " sortable,sorted,sort-desc",
+   "orderChanged": true,
+   "distinctValues": 3
+  },
   "On Site": {
    "first": [
-    "S2-35790 location_on",
-    "S2-35789 location_on",
-    "S2-35788 location_on"
+    "S2-36033 | icon location_on  text-negative",
+    "S2-36034 | icon location_on  text-negative",
+    "S2-36032 | icon location_on  text-positive"
    ],
+   "mark1": " sortable,sorted",
    "second": [
-    "S2-35788 location_on",
-    "S2-35790 location_on",
-    "S2-35789 location_on"
+    "S2-36032 | icon location_on  text-positive",
+    "S2-36033 | icon location_on  text-negative",
+    "S2-36034 | icon location_on  text-negative"
    ],
-   "distinct": 1
+   "mark2": " sortable,sorted,sort-desc",
+   "orderChanged": true,
+   "distinctValues": 2
+  },
+  "Status": {
+   "first": [
+    "S2-36032 | Approved 1",
+    "S2-36033 | In Progress 5",
+    "S2-36034 | In Progress 4"
+   ],
+   "mark1": " sortable,sorted",
+   "second": [
+    "S2-36033 | In Progress 5",
+    "S2-36034 | In Progress 4",
+    "S2-36032 | Approved 1"
+   ],
+   "mark2": " sortable,sorted,sort-desc",
+   "orderChanged": true,
+   "distinctValues": 3
+  },
+  "Customer": {
+   "first": [
+    "S2-36032 | ZZAUTOTEST List Sort 98003 Alp..",
+    "S2-36033 | ZZAUTOTEST List Sort 98003 Bra..",
+    "S2-36034 | ZZAUTOTEST List Sort 98003 Cha.."
+   ],
+   "mark1": " sortable,sorted",
+   "second": [
+    "S2-36034 | ZZAUTOTEST List Sort 98003 Cha..",
+    "S2-36033 | ZZAUTOTEST List Sort 98003 Bra..",
+    "S2-36032 | ZZAUTOTEST List Sort 98003 Alp.."
+   ],
+   "mark2": " sortable,sorted,sort-desc",
+   "orderChanged": true,
+   "distinctValues": 3
+  },
+  "Asset": {
+   "first": [
+    "S2-36032 | Ford Explorer",
+    "S2-36033 | Freightliner M2",
+    "S2-36034 | Peterbilt 579"
+   ],
+   "mark1": " sortable,sorted",
+   "second": [
+    "S2-36034 | Peterbilt 579",
+    "S2-36033 | Freightliner M2",
+    "S2-36032 | Ford Explorer"
+   ],
+   "mark2": " sortable,sorted,sort-desc",
+   "orderChanged": true,
+   "distinctValues": 3
+  },
+  "Unit": {
+   "first": [
+    "S2-36033 | U-1",
+    "S2-36034 | U-2",
+    "S2-36032 | U-3"
+   ],
+   "mark1": " sortable,sorted",
+   "second": [
+    "S2-36032 | U-3",
+    "S2-36034 | U-2",
+    "S2-36033 | U-1"
+   ],
+   "mark2": " sortable,sorted,sort-desc",
+   "orderChanged": true,
+   "distinctValues": 3
+  },
+  "VIN/Serial #": {
+   "first": [
+    "S2-36032 | ZZSRT179204610405",
+    "S2-36033 | ZZSRT179204610888",
+    "S2-36034 | ZZSRT179204611427"
+   ],
+   "mark1": " sortable,sorted",
+   "second": [
+    "S2-36034 | ZZSRT179204611427",
+    "S2-36033 | ZZSRT179204610888",
+    "S2-36032 | ZZSRT179204610405"
+   ],
+   "mark2": " sortable,sorted,sort-desc",
+   "orderChanged": true,
+   "distinctValues": 3
+  },
+  "Service Advisor": {
+   "first": [
+    "S2-36033 | ZZ WOB Runner",
+    "S2-36034 | ZZ WOB Runner",
+    "S2-36032 | ZZ WOB Runner"
+   ],
+   "mark1": " sortable,sorted",
+   "second": [
+    "S2-36033 | ZZ WOB Runner",
+    "S2-36034 | ZZ WOB Runner",
+    "S2-36032 | ZZ WOB Runner"
+   ],
+   "mark2": " sortable,sorted,sort-desc",
+   "orderChanged": false,
+   "distinctValues": 1
+  },
+  "Lead Technician": {
+   "first": [
+    "S2-36034 | Unassigned",
+    "S2-36032 | ZZAUTOTEST Ana Alpha",
+    "S2-36033 | ZZAUTOTEST Ben Bravo"
+   ],
+   "mark1": " sortable,sorted",
+   "second": [
+    "S2-36033 | ZZAUTOTEST Ben Bravo",
+    "S2-36032 | ZZAUTOTEST Ana Alpha",
+    "S2-36034 | Unassigned"
+   ],
+   "mark2": " sortable,sorted,sort-desc",
+   "orderChanged": true,
+   "distinctValues": 3
   },
   "Clocked In": {
    "first": [
-    "S2-35788 ",
-    "S2-35790 Dana Ortiz",
-    "S2-35789 Ralph Edwards"
+    "S2-36032 | ",
+    "S2-36033 | Ralph Edwards",
+    "S2-36034 | Dana Ortiz"
    ],
+   "mark1": " sortable,sorted",
    "second": [
-    "S2-35790 Dana Ortiz",
-    "S2-35789 Ralph Edwards",
-    "S2-35788 "
+    "S2-36033 | Ralph Edwards",
+    "S2-36034 | Dana Ortiz",
+    "S2-36032 | "
    ],
-   "distinct": 3
+   "mark2": " sortable,sorted,sort-desc",
+   "orderChanged": true,
+   "distinctValues": 3
+  },
+  "Lines": {
+   "first": [
+    "S2-36032 | 1",
+    "S2-36034 | 2",
+    "S2-36033 | 3"
+   ],
+   "mark1": " sortable,sorted",
+   "second": [
+    "S2-36033 | 3",
+    "S2-36034 | 2",
+    "S2-36032 | 1"
+   ],
+   "mark2": " sortable,sorted,sort-desc",
+   "orderChanged": true,
+   "distinctValues": 3
+  },
+  "Total Price": "header not in the table",
+  "Created On": "header not in the table",
+  "Progress": {
+   "first": [
+    "S2-36033 | 2%",
+    "S2-36034 | 2%",
+    "S2-36032 | 0%"
+   ],
+   "mark1": " ",
+   "second": [
+    "S2-36033 | 2%",
+    "S2-36034 | 2%",
+    "S2-36032 | 0%"
+   ],
+   "mark2": " ",
+   "orderChanged": false,
+   "distinctValues": 2
+  },
+  "clocksStopped": {
+   "Ralph": "clock out 201, running now: no",
+   "Dana": "clock out 201, running now: no"
   }
  },
  "restored": true

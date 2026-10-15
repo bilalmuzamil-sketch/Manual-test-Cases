@@ -1,0 +1,130 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 16 = wave 17: Passed"
+ },
+ "results": {
+  "C96956": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Customer ZZAUTOTEST F1 Reassign List, S2-35462 led by Esther Howard.",
+    "Board View: the card's More actions offers Reassign lead technician and it opens the Reassign lead technician dialog.",
+    "The dialog lists Unassigned and the location's technicians (178 entries read), including Esther Howard, Ralph Edwards and Jenny Wilson; Olive Office (Office User), Tim Clockuser (Time Clock User), Ina Active (deactivated), Nick Noclock (Time Clock off) and Ella Elsewhere (other location) are not listed.",
+    "Ralph Edwards + confirm: \"Lead technician updated\", the card is in his column and the work order page reads Lead technician Ralph Edwards. Unassigned + confirm: \"Lead technician removed\", the card is in Unassigned and the page reads Lead technician Unassigned.",
+    "A technician picked, then Cancel: nothing changed; the card stays in Unassigned and the work order has no lead.",
+    "Tech View, the same with the row's More actions: the dialog (178 entries), the move to Ralph Edwards (row in his group, page reads Ralph Edwards), the move to Unassigned (row in Unassigned) and Cancel (no change, page reads Unassigned) all behaved the same."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96956-1-dialog-list.png",
+    "evidence/staging-full-2026-10-14/annotated/C96956-2-board-in-ralph.png",
+    "evidence/staging-full-2026-10-14/annotated/C96956-3-tech-after-cancel.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96959": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Customer ZZAUTOTEST F1 Header Counts; the four leads were reset first (S2-35464 to S2-35467: three Esther Howard, one Ralph Edwards).",
+    "Before the change the headers read Esther Howard 3, Ralph Edwards 1, Unassigned 0 (read off the headers; the first picture was taken before the cards had drawn, so it is not used).",
+    "Straight after dragging S2-35467 to Ralph Edwards, no reload: Esther Howard 2, Ralph Edwards 2, Unassigned 0.",
+    "Straight after Reassign lead technician > Unassigned on S2-35464: Ralph Edwards 1, Unassigned 1, Esther Howard still 2.",
+    "Tech View shows the same three numbers in its group headers."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96959-1-after-drag.png",
+    "evidence/staging-full-2026-10-14/annotated/C96959-2-after-dialog.png",
+    "evidence/staging-full-2026-10-14/annotated/C96959-3-tech-view.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96969": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Customer ZZAUTOTEST F1 Same Lead Again 91654, S2-36023 led by Esther Howard; Line 1 follows the lead, Line 2's Labor reads Unassigned.",
+    "Reassign lead technician with Esther Howard (marked Current) picked and confirmed: no \"Lead technician updated\" or any other message in the next 10 seconds.",
+    "Lead Technician is still Esther Howard, Line 2 still reads Unassigned (not given to Esther Howard), and the history is unchanged (Line created, Lead tech changed, Line created, Created).",
+    "Control: a real lead change on the same work order does add a \"Lead tech changed\" entry."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96969-1-current-lead-picked.png",
+    "evidence/staging-full-2026-10-14/annotated/C96969-2-nothing-changed.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96974": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Nina Newtech leads 8 work orders for ZZAUTOTEST F1 Open Count, one in each status: Estimate S2-35496, Invoiced S2-35497, In Progress S2-35498, Ready for Review S2-35499, Complete S2-35500, Approved S2-35501, Paid S2-35502, Declined S2-35503.",
+    "Line-only: S2-36024 is led by Esther Howard with Nina Newtech as the technician on its line (read back).",
+    "Another location: S3-35913 at Staging Lethbridge - 4310 is led by Nina Newtech.",
+    "Reassign lead technician on a card in Esther Howard's column: Nina Newtech reads \"4 open\" on the Work Orders tab, and \"4 open\" on the All tab too (Approved 1 + In Progress 1 + Review 1 + Complete 1).",
+    "The picture shows the dialog and the line-only work order; Nina's own row was further down the list, so a picture of her row is queued (pictures only, sixth pass)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96974-1-dialog-work-orders-tab.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96989": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (verdict unchanged from the earlier staging run; this fifth-pass re-run was for usable pictures, judged 15 Oct against the live case text).",
+    "Tech View set to Comfortable (ticked, saved value comfortable); Board View already shows Comfortable ticked: one shared choice.",
+    "A new browser window signed in as the same user: Tech View and Board View both show Comfortable ticked.",
+    "At Staging Lethbridge - 4310 (top bar confirmed): Tech View and Board View both show Comfortable ticked.",
+    "\"After logging back in\" was done as a new window, not a real sign-out: signing out ends the shared staging session that every other test uses."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96989-1-tech-comfortable.png",
+    "evidence/staging-full-2026-10-14/annotated/C96989-2-board-shared.png",
+    "evidence/staging-full-2026-10-14/annotated/C96989-3-new-window.png",
+    "evidence/staging-full-2026-10-14/annotated/C96989-4-second-location.png"
+   ],
+   "not_observed": "A real sign-out and sign-in (done as a new window instead).",
+   "todo": "None."
+  },
+  "C96999": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Staging: S2-36027 (ZZAUTOTEST F3 No Story Look 99757), Line 1 \"Service - Cabin air filter\" with no tech story: the Story row reads \"Add tech story for this line\" with no check mark (no check icon anywhere on the page).",
+    "Production, opened today read-only (build v26.40.17-f5bf8f4): S2-378, line \"EMpty LIne\" with no story: the same Story row and the same prompt \"Add tech story for this line\", no check mark.",
+    "The two look the same: same prompt and layout, no new mark, nothing missing."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96999-1-staging-line-no-story.png",
+    "evidence/staging-full-2026-10-14/annotated/C96999-2-production-line-no-story.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96998": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "The shop's setting first: Require tech stories read OFF at the start (organisation setting requireTechStories = false; this is why the earlier run completed a line with no story and no question). The script turned it ON for this check and read it back on, then put it back off afterwards (read back off).",
+    "S2-36028, two lines with no parts waiting, mileage entered.",
+    "Line 1: story \"First note\" added and saved, then edited to \"First note, edited\" and saved; the edited text shows.",
+    "Line 2 with no story, Complete: the Tech stories window opens asking for the story and Complete Line stays unavailable; the line is not completed.",
+    "After adding \"Second note\" Line 2 completes and reads Complete."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96998-1-story-edited.png",
+    "evidence/staging-full-2026-10-14/annotated/C96998-2-complete-blocked.png",
+    "evidence/staging-full-2026-10-14/annotated/C96998-3-complete-with-story.png"
+   ],
+   "not_observed": "With the shop's setting OFF (as staging normally has it) a line completes without a story; that is the setting doing its job, not a change.",
+   "todo": "None."
+  }
+ }
+}

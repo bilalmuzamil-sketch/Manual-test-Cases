@@ -74,7 +74,14 @@ compare, and only where production has the same screen.
    - **If you say nothing:** both stay passed, and the comment says how it was done.
 9. **Dark theme test.** It has no expected result yet; it is waiting for the product owner. On staging, Dark turns both views dark.
    - **Options:** (a) you give the expected look — I judge it against that; (b) leave it until the product owner answers.
-10. **For your information, no action needed:** four tests about the "clear the technician's shifts?" question now pass on staging, so those fixes have reached it.
+10. **How a line's technicians are named on a card.**
+    - **What a user sees:** a line with two technicians shows the first person's FULL name and then "+1", on the card and in the List alike, for example "Cora Clock +1".
+    - **Why it is a question:** the test, quoting the product requirements, says it should be their FIRST name and then "+1", for example "Cora +1". The card and the List agree with each other but not with that wording.
+    - **Options:** (a) the card matching the List is what matters — it passes; (b) it must be the first name only — it fails and I prepare a ticket for you to approve; (c) ask the product owner which is meant — I add it to the product owner question sheet.
+    - **If you say nothing:** it stays unjudged.
+11. **For your information, no action needed:**
+    - Four tests about the "clear the technician's shifts?" question now pass on staging, so those fixes have reached it.
+    - On staging the shop setting "a line needs a tech story before it can be completed" was OFF, which is why a line completed without a story in last night's run. I turned it on for the test, the test passed, and I turned it off again.
 
 ## 5 · Handoff-ready
 
@@ -90,5 +97,5 @@ Run 498: https://shopview.testrail.io/index.php?/runs/view/498
 1 · C96929 https://shopview.testrail.io/index.php?/cases/view/96929 — old ticket https://shopview.atlassian.net/browse/SV-11101 (Obsolete); story https://shopview.atlassian.net/browse/SV-10045 (Ready for QA, read 15 Oct)
 2 · Design failures C590110 C590111 C590112 C590113 C590115 C590116 C590117 C590118 C590119 C590121 C590124 C590127 C590130; passes C590126 C590131; re-measuring C590114 C590120 C590122 C590123 C590128 C590129; Dark theme C590125
 3 · C581895 https://shopview.testrail.io/index.php?/cases/view/581895 — story https://shopview.atlassian.net/browse/SV-10048
-4 · C96973 · 5 · C97003 · 6 · C96920 · 7 · C96916 · 8 · C97005 step 8, C96989 · 10 · C368134 C368136 C154888 C154889
+4 · C96973 · 5 · C97003 · 6 · C96920 · 7 · C96916 · 8 · C97005 step 8, C96989 · 10 · C96978 · 11 · C368134 C368136 C154888 C154889; tech-story setting C96998
 Same as production, no ticket: C368232 C368236 C368237. Deleted user: C368191, C368177.
