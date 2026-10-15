@@ -221,6 +221,11 @@ await run('C368196', async () => {
       if (!o.headersSeen) o.headersSeen = await p.evaluate(`[...document.querySelectorAll('thead th')].map(e => e.innerText.replace(/\\s+/g, ' ').trim())`).catch(() => []);
       let th = p.locator('thead th').filter({ hasText: new RegExp('^\\s*' + h.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&') + '\\s*(arrow_drop_(up|down))?\\s*$') }).first();
       if (!(await th.count())) th = p.locator('thead th').filter({ hasText: new RegExp('^\\s*' + h.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&') + '\\b') }).first();
+      // 15 Oct 2026 (wave 25, seventh pass): Total Price and Created On were in headersSeen (innerText "Total Pricearrow_drop_up") yet
+      // both text filters found nothing (the filters test textContent, which differs for these two). Last resort: find the header by
+      // its drawn innerText starting with the name, tag it, and use the tag.
+      if (!(await th.count())) { const tagged = await p.evaluate(`(() => { document.querySelectorAll('[data-zz-th]').forEach(e => e.removeAttribute('data-zz-th')); const t = [...document.querySelectorAll('thead th')].find(e => e.innerText.replace(/\\s+/g, ' ').trim().startsWith(${JSON.stringify(h)})); if (!t) return false; t.setAttribute('data-zz-th', '1'); return true; })()`).catch(() => false);
+        if (tagged) { th = p.locator('thead th[data-zz-th="1"]').first(); o[`${h} found by`] = 'drawn text'; } }
       if (!(await th.count())) { o[h] = 'header not in the table'; continue; }
       await th.scrollIntoViewIfNeeded().catch(() => {});
       await th.click().catch(() => {}); await p.waitForTimeout(2200); const r1 = await table(); const m1 = await sortMark(h);

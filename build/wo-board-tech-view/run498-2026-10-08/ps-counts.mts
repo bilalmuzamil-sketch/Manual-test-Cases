@@ -14,7 +14,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, switchLocUI } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY, LETH } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
@@ -265,7 +265,7 @@ await run('C368216', async () => { const ps = R.ps ?? await partSale(`ZZAUTOTEST
   o.techField = o.labels.filter((x: string) => /technician|sales rep/i.test(x)); await shot(p, 'C368216-card'); R.C368216 = o; });
 // 15 Oct 2026 (wave 18, fifth pass): C368217 stopped at once with "Cannot read properties of undefined (reading 'evaluate')" — wob.mts
 // toasts() was called with no page in addPartManual and in the receive/return steps; every call now passes the page (toasts(p)).
-await run('C368217', async () => { const ps = await partSale(`ZZAUTOTEST Part Sale Counts ${RUNNO}`); const o: any = {};
+await run('C368217', async () => { const ps = await partSale(`ZZAUTOTEST Part Sale Counts ${RUNNO}`); const o: any = {}; R.C368217 = o;   // 15 Oct (wave 25): readings kept if a later step fails
   o.p1 = await addPartManual(ps.id, 'Brake Pads'); o.p2 = await addPartManual(ps.id, 'Brake Pads');
   // FIX: the part sale's number is read off its own page (the view call returned none); the setup follows the case's own clicks
   const page = APP + `/parts/part-sale/${ps.id}/part-requests`; const st = (x: string) => { o.stages = [...(o.stages ?? []), x]; };
@@ -288,8 +288,14 @@ await run('C368217', async () => { const ps = await partSale(`ZZAUTOTEST Part Sa
   const rd = p.locator('.q-dialog').last(); await rd.getByLabel(/Return Reason|Reason/i).first().fill('ZZAUTOTEST wrong part').catch(() => st('no reason field')); await rd.getByRole('button', { name: /Save & Close/i }).first().click().catch(() => st('no Save & Close')); await p.waitForTimeout(3500); o.returnToasts = await toasts(p);
   await p.goto(page, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); o.setupCheck = { tab: await p.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Parts/ }).first().innerText().catch(() => null), rows: (await p.locator('tbody').first().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 260) }; await shot(p, 'C368217-setup-check');
   // the second location's part sale with two parts
-  await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }).catch(() => {}); const ps2 = await partSale(`ZZAUTOTEST Part Sale Counts L2 ${RUNNO}`); o.l2id = ps2.id;
-  o.l2parts = [await addPartManual(ps2.id, 'Brake Pads'), await addPartManual(ps2.id, 'Brake Pads')]; await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
+  // 15 Oct 2026 (wave 25, seventh pass): the second location was set behind the screen only, so the screen stayed at Heavy Duty and the
+  // Lethbridge part sale's page sent it back to the Part Sales list (no Add Part button; 30 s timeout). Switch the SCREEN too (Change
+  // Location, as the case says), read the top bar, and switch back the same way (behind-the-screen set + reload if the screen will not).
+  await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }).catch(() => {}); o.l2TopBar = await switchLocUI(p, 'Staging Lethbridge');
+  const ps2 = await partSale(`ZZAUTOTEST Part Sale Counts L2 ${RUNNO}`); o.l2id = ps2.id;
+  try { o.l2parts = [await addPartManual(ps2.id, 'Brake Pads'), await addPartManual(ps2.id, 'Brake Pads')]; o.l2PartsRead = (await partsOf(ps2.id)).length; }
+  finally { await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); o.backTopBar = await switchLocUI(p, 'Staging Heavy Duty');
+    if (!String(o.backTopBar).includes('Heavy Duty')) { await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(5000); o.backTopBarAfterReload = (await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); } }
   // the list, filtered by the page's own Search (right of the header)
   await p.goto(APP + '/parts/part-sales', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.topBar = (await p.locator('header').innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 160);
   const box = p.locator('[data-test-id="page_search_input"]'); if (!(await box.isVisible().catch(() => false))) await p.locator('[data-test-id="page_search_toggle"]').click().catch(() => st('no page search toggle'));

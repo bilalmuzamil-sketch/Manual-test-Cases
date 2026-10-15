@@ -260,10 +260,13 @@ await run('C368207', async () => { const u = await mkUser('ZZAUTOTEST', `VO ${st
   try { await goList(v.page); o.createButton = await v.page.locator('[data-test-id="button_new_work_order"]:visible').count(); o.perms = v.perms; await shot(v.page, 'C368207-viewonly-list'); /* wave 18: the picture is the VIEW-ONLY user's own List (the end picture was the admin's page) */ } finally { await v.close(); } R.C368207 = o; });
 
 await run('C368208', async () => { const s = await mkSet('ZZAUTOTEST View Only Toggle', [{ co: 'One Co', lead: ANA }]); const here = async () => (await a.get(`/api/work-orders/view/${s.w['One Co'].id}`)).body?.data?.work_order?.is_vehicle_here;
-  const u = await mkUser('ZZAUTOTEST', `VOT ${stamp}`, VIEW_ROLE, 'vot'); const o: any = {}; const v = await asUser(u);
+  // 15 Oct 2026 (wave 25, seventh pass): the reload picture showed the sign-in page ("Session expired") — the toggle state was read
+  // mid-window by switching back to the runner and then to the user again, which ends the view-only window's session. Read "before"
+  // FIRST (as the runner), then never switch while the window is open; v.close() returns to the runner before "after" is read.
+  const u = await mkUser('ZZAUTOTEST', `VOT ${stamp}`, VIEW_ROLE, 'vot'); const o: any = {}; o.before = await here(); const v = await asUser(u);
   try { await goList(v.page, s.q); const tr = v.page.locator('tbody tr').filter({ hasText: s.w['One Co'].number }); const tg = tr.locator('[data-test-id="button_vehicle_here_toggle"]').first();
-    o.disabled = await tg.evaluate((e) => (e as any).disabled || e.getAttribute('aria-disabled') === 'true' || e.classList.contains('disabled')).catch(() => 'no toggle'); await RUN.toRunner(); o.before = await here(); await a.post('/api/switch-user', { user_id: u.id });
-    await shot(v.page, 'C368208-viewonly-before-click'); await tg.click({ force: true }).catch(() => {}); await v.page.waitForTimeout(2500); await shot(v.page, 'C368208-viewonly-after-click'); await v.page.reload({ waitUntil: 'domcontentloaded' }); await v.page.waitForTimeout(4000); await shot(v.page, 'C368208-viewonly-after-reload'); /* wave 18: pictures from the VIEW-ONLY user's window */ } finally { await v.close(); }
+    o.disabled = await tg.evaluate((e) => (e as any).disabled || e.getAttribute('aria-disabled') === 'true' || e.classList.contains('disabled')).catch(() => 'no toggle');
+    await shot(v.page, 'C368208-viewonly-before-click'); await tg.click({ force: true }).catch(() => {}); await v.page.waitForTimeout(2500); await shot(v.page, 'C368208-viewonly-after-click'); await v.page.reload({ waitUntil: 'domcontentloaded' }); await v.page.waitForTimeout(4000); o.reloadUrl = new URL(v.page.url()).pathname; await shot(v.page, 'C368208-viewonly-after-reload'); /* wave 18: pictures from the VIEW-ONLY user's window */ } finally { await v.close(); }
   o.after = await here(); R.C368208 = o; });
 
 // phone width
@@ -310,7 +313,11 @@ await run('C368212', async () => { const o: any = {}; o.toLeth = say(await a.pos
     o.switched = await switchLocUI(p, 'Staging Lethbridge'); await goList(p, 'Loc2'); o.lethTopBar = await topBar();
     if (!o.lethTopBar.includes('Lethbridge')) { o.switchedAgain = await switchLocUI(p, 'Staging Lethbridge'); await tab(p, 'All'); await search(p, 'Loc2'); o.lethTopBar = await topBar(); }
     if (o.lethTopBar.includes('Lethbridge')) { o.lethLoc2 = (await rowsList()).includes(num); await shot(p, 'C368212-lethbridge'); } else o.lethLoc2 = 'not read: the screen did not switch';
-    o.backTopBar = await switchLocUI(p, 'Staging Heavy Duty'); }
+    o.backTopBar = await switchLocUI(p, 'Staging Heavy Duty');
+    // 15 Oct 2026 (wave 25, seventh pass): the switch back left the screen on Lethbridge (picture C368212-end). If the top bar does not
+    // read Heavy Duty, set the location the way the Schedule/API does and reload, then read the top bar again (recorded either way).
+    if (!String(o.backTopBar).includes('Heavy Duty')) { o.backApi = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
+      await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(5000); o.backTopBarAfterApi = await topBar(); } }
   R.C368212 = o; });
 
 await run('C368214', async () => { const s = await mkSet('ZZAUTOTEST Back Forward', [{ co: 'One Co', lead: ANA }]); const num = s.w['One Co'].number; const o: any = {};

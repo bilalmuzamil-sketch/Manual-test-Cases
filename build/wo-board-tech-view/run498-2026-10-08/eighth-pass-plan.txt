@@ -1,5 +1,5 @@
 # 15 Oct 2026 — EIGHTH pass on staging (run-eighth.sh, started by stg-after8.sh after "seventh pass finished").
-# Each line = script | ONLY | extra settings. A line the SEVENTH pass already ran with the same ONLY (logs7/run.out) is skipped.
+# Each line = script | ONLY | extra settings. Only s4-batchH and notech-stg4 are skipped if the SEVENTH pass already ran them with the same ONLY (logs7/run.out).
 # signin-check first; no script twice.
 signin-check-stg4.mts | | 
 # wave 24: C96958 notification pictures; C96966 step 1 on screen; C368130 location picker match on a long name (skipped if the seventh pass ran them)
@@ -7,5 +7,9 @@ s4-batchH.mts | C96958,C96966 |
 notech-stg4.mts | C368130 | 
 # wave-design2: C590120 asset change carries a VIN and is read back by it; C590123 S2-36131 back to the earlier Tia, fresh technicians, drop on the lower half of Work-order-2
 design-stg5.mts | C590120,C590123 | QA_DPR=2
+# wave 25: C368208 picture after the reload (no user switch while the view-only window is open; C368212 switch-back fallback); C368196 Total Price / Created On headers found by drawn text; C368217 second location switched on screen
+high2-batch.mts | C368208 | 
+sort-fix5.mts | C368196 | 
+ps-counts.mts | C368217 | 
 # the sign-out test signs the shared session out: LAST of all (moved here from the seventh pass, logs7/signout-fix.done = skipped)
 signout-fix.mts | C368240 | 

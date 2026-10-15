@@ -1,0 +1,76 @@
+{
+ "results": {
+  "C368207": {
+   "verdict": "Passed",
+   "observed": [
+    "Pictures only (the verdict was posted earlier): the view-only user's own window (role ZZAUTOTEST WO View Only, its top menu shows only Work Orders), Work Orders > List > All.",
+    "The toolbar ends with the display switcher: there is no Create Work Order button."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368207-viewonly-list-no-create-button.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368208": {
+   "verdict": "Passed",
+   "observed": [
+    "Pictures only (the verdict was posted earlier): the view-only user's own window, search ZZAUTOTEST View Only Toggle, work order S2-36141.",
+    "Before the click the On Site pin reads not on site; after clicking it the pin is unchanged, and the work order still reads not on site (read before and after: not on site both times; the toggle is marked disabled in the page).",
+    "Seen in the picture: when the pointer rests on the pin, its tooltip still reads \"Asset not here. Click to toggle status.\", and the pin looks like the ordinary not-on-site pin (no greyed look)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368208-1-viewonly-before-click.png",
+    "evidence/staging-full-2026-10-14/annotated/C368208-2-viewonly-after-click.png"
+   ],
+   "not_observed": "The picture after the reload shows the sign-in page (\"Session expired\"), caused by the script switching users while the window was open, so the toggle after the reload is not in a picture (the record still read not on site).",
+   "todo": "Picture after the reload: high2-batch C368208 fixed and queued in the eighth pass; the verdict does not change."
+  },
+  "C368209": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (window 390 px wide).",
+    "The sort button offers Newest First, Oldest First, Customer A-Z and Customer Z-A; Customer A-Z was picked and the page reloaded.",
+    "After the reload the sort button shows Customer A-Z ticked.",
+    "The cards run in customer name order A to Z: 4 Star Truck Repair, then 7 Star Truck Repair, then A & J Truck & Trailer Repair, then Aberdeen Diesel Services LLC and on (12 customers passed in order, 270 cards)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368209-1-after-reload-customer-a-z-ticked.png",
+    "evidence/staging-full-2026-10-14/annotated/C368209-2-cards-4-star-then-7-star.png",
+    "evidence/staging-full-2026-10-14/annotated/C368209-3-cards-then-a-and-j.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368212": {
+   "verdict": "Passed",
+   "observed": [
+    "Pictures (the verdict was posted earlier), from this run: S3-36143 (ZZAUTOTEST Loc2 Customer 76231) was made at Staging Lethbridge - 4310.",
+    "Steps 2 and 3, at Staging Heavy Duty - 9919: searching \"Loc2\" shows \"No work orders match the search \"Loc2\".\"; searching S3-36143 shows \"No work orders match the search \"S3-36143\".\"",
+    "Step 4, after Change Location > Staging Lethbridge - 4310: searching \"Loc2\" lists S3-36143."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368212-1-heavy-duty-search-loc2.png",
+    "evidence/staging-full-2026-10-14/annotated/C368212-2-heavy-duty-search-number.png",
+    "evidence/staging-full-2026-10-14/annotated/C368212-3-lethbridge-shows-it.png"
+   ],
+   "not_observed": "For the record: the script's switch back to Heavy Duty on screen did not take (the screen stayed on Lethbridge); the next script set the location again at its start. high2-batch now falls back to setting the location and reloading.",
+   "todo": "None."
+  }
+ },
+ "redo": {
+  "C368196": "Mostly seen (seventh pass, S2-36144/45/46 for ZZAUTOTEST List Sort 92825): Number gave S2-36144, S2-36145, S2-36146 then the reverse, as the case says; On Site, Status, Customer, Asset, Unit, VIN/Serial #, Service Advisor (now three different advisors), Lead Technician, Clocked In and Lines each ordered the 3 rows one way, then the other, with the header marked sorted; Progress has no sort and did not reorder. Not judged: Total Price and Created On were drawn in the header row (\"Total Pricearrow_drop_up\", \"Created Onarrow_drop_up\") but both text filters found no header to click. Fixed in sort-fix5.mts: a last-resort match on the header's drawn text, tagged and clicked. Queued in eighth-pass-plan.txt (sort-fix5.mts | C368196).",
+  "C368217": "Not judged: the setup on Staging Heavy Duty - 9919 went as the case says (P2-2324: two Brake Pads parts authorized, one ordered and received, its return raised; the setup check reads Parts (1) with one part Auth To Order), but the second location's part sale was made with the location set behind the screen only, so the screen stayed at Heavy Duty, its page sent the browser back to the Part Sales list and Add Part was never found (30 s timeout); the list was never read. Fixed in ps-counts.mts: the screen itself is switched with Change Location (top bar read), switched back the same way (with a set-and-reload fallback), and the readings are kept if a later step fails. Queued in eighth-pass-plan.txt (ps-counts.mts | C368217)."
+ },
+ "failed": {},
+ "doubt": {
+  "C368208": {
+   "question": "Is \"shown disabled\" met?",
+   "why": [
+    "The posted verdict (Passed) rests on the toggle being marked disabled in the page and the value not changing, which this run confirms again.",
+    "On screen, though, the view-only user's pin looks like the ordinary not-on-site pin and its tooltip still says \"Asset not here. Click to toggle status.\" The case's source wants List exactly as in production, and production was not compared."
+   ],
+   "suggest": "Keep Passed (the value cannot be changed), or compare the same view-only role on production's List (read-only) before deciding whether the look counts as \"shown disabled\"."
+  }
+ }
+}

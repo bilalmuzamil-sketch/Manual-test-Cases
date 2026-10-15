@@ -7,7 +7,9 @@ L=evidence/staging-full-2026-10-14/logs8; L7=evidence/staging-full-2026-10-14/lo
 grep -v '^#' eighth-pass-plan.txt | while IFS='|' read -r s only extra; do
   s=$(echo $s); only=$(echo $only); extra=$(echo "$extra" | sed 's/^ *//; s/ *$//'); [ -z "$s" ] && continue
   [ "$s" != "signin-check-stg4.mts" ] && [ -f "$L/${s%.mts}.done" ] && continue   # the sign-in check always runs
-  [ "$s" != "signin-check-stg4.mts" ] && grep -qF " $s ($only) " $L7/run.out 2>/dev/null && [ -f "$L7/${s%.mts}.done" ] && { echo "$(date -u +%H:%M:%S) $s ($only) skipped: the seventh pass ran it" >> $L/run.out; continue; }
+  # only the two lines added as the seventh pass started (they may be in its list) are skipped when the seventh pass ran them; a redo of a
+  # script the seventh pass ran on purpose (e.g. sort-fix5 with its fix) must run again
+  case " s4-batchH.mts notech-stg4.mts " in *" $s "*) ;; *) false ;; esac && grep -qF " $s ($only) " $L7/run.out 2>/dev/null && [ -f "$L7/${s%.mts}.done" ] && { echo "$(date -u +%H:%M:%S) $s ($only) skipped: the seventh pass ran it" >> $L/run.out; continue; }
   TO=3600; [ "$s" = "design-stg5.mts" ] && TO=5400   # 22 design cases with their own data and pictures: up to 90 minutes
   echo "$(date -u +%H:%M:%S) $s ($only) [$extra]" >> $L/run.out
   if [ "$extra" = "NODIRECT" ]; then

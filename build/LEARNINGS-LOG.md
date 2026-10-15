@@ -780,3 +780,10 @@ touch `logs7/signout-fix.done` before pass 7 reached it, note the skip in `logs7
 end of `eighth-pass-plan.txt`. **The check, whenever a new pass plan is written:**
 `grep -l signout-fix *-pass-plan.txt` must name only the newest plan. Each older pass that has not yet reached its sign-out line
 needs its `.done` marker. #signout #passes #staging → L0342
+
+## L0379 — 2026-10-15 — Never switch users while a "view as" window is open; a page set behind the screen is not the screen's location
+- **Where:** `build/wo-board-tech-view/run498-2026-10-08/` — `high2-batch.mts` (C368208, C368212), `ps-counts.mts` (C368217), `sort-fix5.mts` (C368196); verdicts in `evidence/staging-full-2026-10-14/judge/wave25.json`.
+- **"View as" windows share the server session:** C368208 switched back to the runner and then to the user again mid-window to read a value; the user's window then reloaded onto the sign-in page ("Session expired, please log in again."). Read anything you need as the runner BEFORE opening the window, and let `v.close()` switch back afterwards.
+- **Setting the location behind the screen does not move the screen:** `POST /api/iam/change-location` alone left the browser at Heavy Duty, so the Lethbridge part sale's page bounced to the Part Sales list (no Add Part button). Switch the screen with Change Location (`switchLocUI`) and read the top bar; to come back, if the screen will not switch, set it behind the screen AND reload.
+- **A header can be drawn but missed by a text filter:** "Total Price" / "Created On" were in the drawn header row yet `filter({ hasText: /^Total Price…/ })` found nothing (the filter tests textContent). Last resort: find the `th` by its drawn `innerText`, tag it, click the tag (`sort-fix5`).
+- **Keep partial readings:** set `R[id] = o` at the start of a check so a late failure keeps everything read before it (`ps-counts` C368217).
