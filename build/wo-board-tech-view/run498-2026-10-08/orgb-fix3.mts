@@ -6,7 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
-import { open, done, APP } from './session.mts';
+import { open, done, APP, API } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders, vehicle } from './data.mts';
 import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
@@ -176,6 +176,7 @@ async function editLine(lineName: string, remove: string | null, add: string | n
 const lineName = (i: number) => String(canned[i % canned.length].canned_line_name ?? canned[i % canned.length].name ?? '').trim();
 
 
+const orgBIds: string[] = [];   // 15 Oct 2026: filled by REGISTER, used by the lists' id checks
 const orgName = `ZZAUTOTEST F3 Scope OrgB ${RUNNO}`; const orgEmail = `zz.wob.orgb.${RUNNO}@staging.shopview.local`;
 await run('REGISTER', async () => { const o: any = {}; R.REGISTER = o;
   /* FIX 2 (2026-10-09): on v26.40 the /register form cannot be reached (signed in it goes to Work Orders, signed out to
@@ -188,7 +189,11 @@ await run('REGISTER', async () => { const o: any = {}; R.REGISTER = o;
   const body: any = {}; for (const k of keys) if (vals[k] !== undefined) body[k] = vals[k]; if (!Object.keys(body).length) Object.assign(body, { email: orgEmail, first_name: 'ZZAUTOTEST', last_name: 'OrgB Tech', company_name: orgName, work_order_start_number: start });
   o.sent = Object.keys(body); const r1 = await a.post('/api/register', body).catch((e: any) => ({ status: 0, body: String(e) })); o.register = { status: r1.status, body: JSON.stringify(r1.body).slice(0, 400) };
   const orgs = ((await a.get('/api/organizations')).body?.data ?? []); o.orgsBefore = orgsBefore; o.orgsAfter = orgs.length; o.newOrg = orgs.map((x: any) => x.name ?? x.company_name).filter((n: string) => n === orgName);
-  const users = (await a.get(`/api/users?search=${encodeURIComponent('OrgB Tech')}`)).body?.data; const list = Array.isArray(users) ? users : users?.collection ?? users?.users ?? []; o.visibleInApi = list.filter((u: any) => /OrgB Tech/.test(`${u.first_name ?? u.firstName} ${u.last_name ?? u.lastName}`)).length; });
+  const users = (await a.get(`/api/users?search=${encodeURIComponent('OrgB Tech')}`)).body?.data; const list = Array.isArray(users) ? users : users?.collection ?? users?.users ?? []; o.visibleInApi = list.filter((u: any) => /OrgB Tech/.test(`${u.first_name ?? u.firstName} ${u.last_name ?? u.lastName}`)).length;
+  // 15 Oct 2026 (staging, wave 14): the organisation-B person's ids (user and staff), read from the same cross-organisation answer, so the
+  // lists of organisation A can be checked BY ID as well as by name (any "ZZAUTOTEST OrgB Tech" from an earlier run counts too)
+  for (const u of list.filter((u: any) => /OrgB Tech/.test(`${u.first_name ?? u.firstName} ${u.last_name ?? u.lastName}`))) for (const k of ['id', 'user_id', 'staff_id', 'staffId']) { const v = u[k] ?? u.staff?.[k]; if (typeof v === 'string' && v.length > 20 && !orgBIds.includes(v)) orgBIds.push(v); }
+  o.orgBIds = orgBIds.map((x) => x.slice(0, 8)); });
 
 const scanList = async (pg: Page) => { const seen = new Set<string>(); for (let i = 0; i < 80; i++) { for (const t of await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])) seen.add(t.replace(/^check\s*/, '').replace(/\s+/g, ' ').trim()); const moved = await pg.evaluate(`(() => { const m = document.querySelector('.q-menu .q-virtual-scroll, .q-menu'); if (!m) return false; const b = m.scrollTop; m.scrollTop = b + 400; return m.scrollTop !== b; })()`); await pg.waitForTimeout(200); if (!moved) break; } return [...seen]; };
 const optsFor = async (pg: Page, term: string) => { await pg.keyboard.press('Control+A').catch(() => {}); await pg.keyboard.press('Backspace').catch(() => {}); await pg.keyboard.type(term, { delay: 60 }); await pg.waitForTimeout(4500);   /* FIX 4: clear first, wait longer — the lists filter slowly */ return (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()); };
@@ -201,9 +206,9 @@ await run('C368175', async () => { const w = await one('ZZAUTOTEST Other Org Lis
   /* FIX 5 (12 Oct): Edit Line and Edit labor are tick-box menus with no search box (typed text goes nowhere, and the scroll
      scan missed known names). Read what each list OFFERS from the app's own answer when it opens: every JSON answer from
      the API while the window is open is searched for 'OrgB' and, as the control, for 'Ana Alpha' (an organisation-A tech). */
-  const seen: { url: string; body: string }[] = []; const onResp = async (r: any) => { if (!/sv10043api/.test(r.url())) return; const ct = r.headers()['content-type'] || ''; if (!/json/.test(ct)) return; const b = await r.text().catch(() => ''); seen.push({ url: r.url().replace(/^https:\/\/[^/]+/, '').slice(0, 90), body: b }); };
+  const seen: { url: string; body: string }[] = []; const onResp = async (r: any) => { if (!r.url().includes(new URL(API).host)) return; /* 15 Oct 2026: the API host of THIS environment (was the QA branch's only) */ const ct = r.headers()['content-type'] || ''; if (!/json/.test(ct)) return; const b = await r.text().catch(() => ''); seen.push({ url: r.url().replace(/^https:\/\/[^/]+/, '').slice(0, 90), body: b }); };
   p.on('response', onResp); const mark = () => seen.length;
-  const judge = (from: number) => { const part = seen.slice(from); const staff = part.filter((x) => /first_name|staff_id|technician/i.test(x.body)); return { calls: staff.map((x) => x.url).slice(0, 6), orgB: staff.some((x) => /OrgB/i.test(x.body)), controlAna: staff.some((x) => /Ana Alpha/.test(x.body)), names: staff.reduce((n, x) => n + (x.body.match(/"first_name"/g) || []).length, 0) }; };
+  const judge = (from: number) => { const part = seen.slice(from); const staff = part.filter((x) => /first_name|staff_id|technician/i.test(x.body)); return { calls: staff.map((x) => x.url).slice(0, 6), orgB: staff.some((x) => /OrgB/i.test(x.body)), orgBById: staff.some((x) => orgBIds.some((id) => x.body.includes(id))), controlAna: staff.some((x) => /Ana Alpha/.test(x.body)), names: staff.reduce((n, x) => n + (x.body.match(/"first_name"/g) || []).length, 0) }; };
   await page(w.id); await p.locator('[data-test-id="button_new_line"]').click(); await p.waitForTimeout(2500); let d = dlg();
   await d.locator('[data-test-id="select_line_canned_line"]').click(); await p.keyboard.type('ZZAUTOTEST Typed line zq', { delay: 30 }); await p.waitForTimeout(2000); await p.keyboard.press('Enter'); await p.waitForTimeout(1500);
   const m1 = mark(); await d.locator('[data-test-id="select_line_roster_add_technician"]').click().catch(() => {}); await p.waitForTimeout(2500); o.newLineData = judge(m1); { const all = await scanList(p); o.newLineCount = all.length; o.newLineOrgB = all.filter((x) => /OrgB/i.test(x)); o.newLineHasAna = all.some((x) => /Ana Alpha/.test(x)); o.newLineHasRalph = all.some((x) => /Ralph Edwards/.test(x)); o.newLineZZ = all.filter((x) => /^ZZ/.test(x)).slice(0, 8); } o.newLineOptions = optSummary(await allOptions(p)); o.newLineAna = (await optsFor(p, '').catch(() => [])).length; o.newLineTypedOrgB = await optsFor(p, 'OrgB').catch((e: any) => ['err ' + String(e).slice(0, 60)]);   /* FIX 3: type 'OrgB', as the case says */ await shot(p, 'C368175-newline');
@@ -223,7 +228,7 @@ await run('C154650', async () => { const o: any = {}; await p.setViewportSize({ 
   const loc2Tech = (await person(a, 'ZZAUTOTEST F3 Scope', `Loc2 Tech ${RUNNO}`, { role: TECH_ROLE, email: `zz.wob.scope.loc2.${RUNNO}@staging.shopview.local`, clockable: true, workplace: LETH })).row;
   o.toLeth = say(await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' })); const c = await customer(a, `ZZAUTOTEST F3 Scope Loc2 Customer ${RUNNO}`, 'ZZL2');
   const w2 = await workOrder(a, c, 'estimate', null); await mkLine(w2, 1); await a.post('/api/work-orders/change-status', { id: w2, status: 'approved' }); o.lead = say(await a.post('/api/work-orders/change-lead-technician', { work_order_id: w2, tech_assigned_id: loc2Tech.staff_id }));
-  o.atLeth = (await workOrders(a, 'F3 Scope Loc2 Customer ' + RUNNO)).length; o.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'America/Edmonton' }));
+  o.atLeth = (await workOrders(a, 'F3 Scope Loc2 Customer ' + RUNNO)).length; o.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: process.env.WOB_LOC_TZ || 'America/Edmonton' }));   /* 15 Oct 2026: the shop's own zone on staging */
   const s = await mkSet('ZZAUTOTEST F3 Scope Here', [{ co: 'Alpha Co', lead: ANA }]);
   const emptyMsg = () => p.evaluate(`(document.body.innerText.match(/No work orders match[^\\n]*/) || [null])[0]`);
   for (const [term, key] of [['F3 Scope OrgB', 'orgB'], [`F3 Scope Loc2 Customer ${RUNNO}`, 'loc2'], [s.q, 'controlHere']] as const) { await goP(p, 'Tech View', term); o[`${key}Tech`] = { empty: await emptyMsg(), rows: await p.locator('[data-test-id^="tech_view_row_"]').count() };
@@ -235,6 +240,7 @@ await run('C154650', async () => { const o: any = {}; await p.setViewportSize({ 
     await p.locator('.q-dialog').last().waitFor({ timeout: 15000 }).catch(() => {}); o.reassignDialog = (await p.locator('.q-dialog').last().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 200); await shot(p, 'C154650-reassign');
     const inp = p.locator('.q-dialog').last().locator('input').first(); await inp.fill('OrgB'); await p.waitForTimeout(2000); o.reassignOrgB = (await p.locator('.q-dialog').innerText()).replace(/\s+/g, ' ').slice(0, 300); await inp.fill('Loc2 Tech'); await p.waitForTimeout(2000); o.reassignLoc2 = (await p.locator('.q-dialog').innerText()).replace(/\s+/g, ' ').slice(0, 300); await inp.fill('ZZAUTOTEST Ben'); await p.waitForTimeout(2000); o.reassignControlBen = /Ben Bravo/.test(await p.locator('.q-dialog').innerText()); await shot(p, 'C154650-reassign'); await p.keyboard.press('Escape'); }
   await goP(p, 'Board View', ''); { const seen = new Set<string>(); await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"]').scrollLeft = 0`).catch(() => {}); for (let i = 0; i < 400; i++) { for (const t of await p.locator('[data-test-id^="board_column_header_"]').allInnerTexts().catch(() => [])) seen.add(t.split('\n').find((x) => x.trim().length > 2) || t); const mv = await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"]'); if (!h) return false; const b = h.scrollLeft; h.scrollLeft += 1200; return h.scrollLeft !== b; })()`).catch(() => false); await p.waitForTimeout(300); if (!mv) break; } o.columnsRead = seen.size; o.orgBColumns = [...seen].filter((x) => /OrgB/i.test(x)); o.controlColumnAna = [...seen].some((x) => /Ana Alpha/.test(x)); }
+  { const cands = ((await a.get('/api/work-orders/lead-technician-candidates')).body?.data?.technicians ?? []) as any[]; o.leadListById = { offered: cands.length, orgBOffered: cands.filter((c) => orgBIds.includes(c.staffId) || orgBIds.includes(c.userId)).length, orgBIdsChecked: orgBIds.length }; }   // 15 Oct 2026: by id
   o.notObserved = 'an organisation-B work order: nobody can sign in to the new organisation from the branch (playbook §X), so it holds none'; R.C154650 = o; });
 
 await a.put(PREF, { value: ORIGINAL }); R.restored = true;

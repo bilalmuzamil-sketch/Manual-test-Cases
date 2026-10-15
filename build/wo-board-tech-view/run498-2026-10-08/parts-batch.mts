@@ -56,6 +56,9 @@ try {
   o.rows = await p.evaluate(`[...document.querySelectorAll('tbody tr')].filter(r => r.getBoundingClientRect().height > 0).map(r => [...r.cells].map(c => c.innerText.trim()))`);
   const hi = (h: string) => (o.heads as string[]).indexOf(h); const r1 = (o.rows as string[][]).find((r) => r.includes(o.api.number)) ?? null;
   o.screen = r1 ? { parts: r1[hi('Parts')], returns: r1[hi('Returns')] } : null; await shot(p, 'C368213-list');
+  // 15 Oct 2026 (wave 14, picture only): the Parts and Returns columns sit right of the window, so the picture above does not show them;
+  // scroll the table to its right end and photograph the row with both columns on screen.
+  await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollLeft = s.scrollWidth; })()`).catch(() => {}); await p.waitForTimeout(1000); await p.mouse.move(1, 1); await shot(p, 'C368213-list-parts-returns');
 } catch (e: any) { o.error = String(e?.message || e).slice(0, 400); await shot(p, 'C368213-error'); }
 R.C368213 = o; console.log(t(), 'C368213', JSON.stringify(o).slice(0, 4000));
 fs.writeFileSync(path.join(EV, 'parts-batch2.json'), JSON.stringify(R, null, 1)); await done(browser);

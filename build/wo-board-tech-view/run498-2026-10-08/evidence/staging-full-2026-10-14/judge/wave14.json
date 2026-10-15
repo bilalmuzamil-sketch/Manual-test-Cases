@@ -1,0 +1,91 @@
+{
+ "results": {
+  "C368193": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (third pass reading, judged 15 Oct against the live case text).",
+    "All tab, Search \"ZZAUTOTEST Tab Clears Search\" typed; then the Estimates tab was clicked.",
+    "After the tab change the search box is empty: only the Search button shows, with no text.",
+    "The Estimates tab lists estimates from every customer (30 rows, all Estimate), so the search is not applied."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368193-1-estimates-tab-search-cleared.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368194": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Before: Column Selection had Days open off and the List had no Days Open column.",
+    "Days open was turned on and the menu closed: the List showed a Days Open column.",
+    "After the page reload the Days Open column is still shown, with a value in each row."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368194-1-days-open-after-reload.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368200": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "All tab, Search \"ZZAUTOTEST Row Toggle\": one row (S2-35897).",
+    "The row's Asset on Site toggle was clicked.",
+    "The page stayed on the Work Orders List (address still /workorders with the search); the work order did not open.",
+    "The toggle flipped: the work order went from not on site to on site and the pin now reads \"Asset here. Click to toggle status.\""
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368200-1-toggle-row-stays-on-list.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368214": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work Orders tab: there is no Status filter on this tab on this build (\"no Status filter on this tab\", as the case says to write).",
+    "Search \"ZZAUTOTEST Back Forward\" showed one row (S2-35898); the row was opened.",
+    "Back: the Work Orders tab, the same search text (kept) and the same row S2-35898 show.",
+    "Forward: the work order S2-35898 opened again. Back again: the same tab, search and row."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368214-1-back-keeps-tab-search-rows.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368210": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (window 390 px wide, All tab).",
+    "Without scrolling: 30 work order cards (one page).",
+    "After scrolling to the bottom: 240 cards, no number repeated: more cards appeared only after the scroll."
+   ],
+   "pictures": [],
+   "not_observed": "The third pass took its picture after the window was set back to desktop width, so no phone-width picture exists yet.",
+   "todo": "Picture only: phone-width pictures before and after the scroll are queued in the sixth pass (high2-batch C368210); the verdict does not change."
+  },
+  "C368213": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work order S2-35899 (\"ZZAUTOTEST WO Parts Counts 84344\") has two part requests (one ordered and received, then returned; one Authorized To Order) and one return.",
+    "Column Selection: Parts and Returns turned on; the S2-35899 row reads Parts 2 and Returns 1.",
+    "The work order's own records agree: 2 part requests, 1 return. Search shows only that work order, so nothing from other work orders or locations is added."
+   ],
+   "pictures": [],
+   "not_observed": "The third-pass picture shows the row before the table was scrolled, so the Parts and Returns columns are off the right edge.",
+   "todo": "Picture only: parts-batch.mts now scrolls the table to the right and photographs the row with Parts and Returns (queued in the sixth pass); the verdict does not change."
+  }
+ },
+ "redo": {
+  "C368195": "Not a fair run: the case's [User-N] is a NEW user with Role = Technician, but the third pass used a new Admin-role user. Its reading showed Invoiced Date, Days open, Parts, Returns and Waiting On Parts off and every other column on, but the only picture was of the test admin's own page. Re-run with a brand-new Technician-role user and pictures from that user's window (queued: high2-batch C368195).",
+  "C368198": "Partly read: Y (S2-35896, invoiced second) was listed above X (S2-35895), but each row's Invoiced Date was not read and the only picture was taken later, with the Status list re-opened and nothing listed. Re-run reading the rows with their Invoiced Date and Status, with a picture at step 5 (queued: high2-batch C368198)."
+ },
+ "failed": [],
+ "doubt": []
+}

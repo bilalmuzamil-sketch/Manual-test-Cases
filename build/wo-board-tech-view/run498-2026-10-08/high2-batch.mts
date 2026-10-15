@@ -168,8 +168,11 @@ await run('C368194', async () => { await goList(p); const o: any = { before: (aw
   o.step4 = (await listHeads()).some((h) => /days open/i.test(h)); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
   o.step5 = (await listHeads()).some((h) => /days open/i.test(h)); o.heads = await listHeads(); R.C368194 = o; });
 
-await run('C368195', async () => { const u = await mkUser('ZZAUTOTEST', `ListNew ${stamp}`, ADMIN_ROLE, 'listnew'); const v = await asUser(u); const o: any = {};
-  try { o.saved = await prefFor(); await goList(v.page); o.heads = await listHeads(v.page); o.menu = await colMenu(v.page); } finally { await v.close(); } R.C368195 = o; });
+// 15 Oct 2026 (wave 14): the case's [User-N] is a NEW user with Role = Technician (Departments Service, Heavy Duty); the third pass used an
+// Admin-role user and its picture was the runner's page. Now a brand-new Technician-role user, and pictures from THAT user's window
+// (the List, then the Column Selection menu open).
+await run('C368195', async () => { const u = await mkUser('ZZAUTOTEST', `ListNew Tech ${stamp}`, TECH_ROLE, 'listnewtech'); const v = await asUser(u); const o: any = { userRole: u?.role_label };
+  try { o.saved = await prefFor(); await goList(v.page); o.heads = await listHeads(v.page); await shot(v.page, 'C368195-new-tech-user-list'); o.menu = await colMenu(v.page); await shot(v.page, 'C368195-new-tech-user-column-selection'); await v.page.keyboard.press('Escape').catch(() => {}); } finally { await v.close(); } R.C368195 = o; });
 
 await run('C368196', async () => {
   // three work orders that DIFFER in every column a person can set: unit, number of lines (so Lines and Total Price),
@@ -192,6 +195,13 @@ await run('C368198', async () => {
   await p.locator('[data-test-id="button_column_selection"]').click(); await p.waitForTimeout(800); const t = p.locator('[data-test-id="toggle_column_invoicedDate"]'); if ((await t.locator('[role=switch]').getAttribute('aria-checked').catch(() => null)) !== 'true') await t.click(); await p.waitForTimeout(1200); await p.keyboard.press('Escape');
   await search(p, 'ZZAUTOTEST Invoice Order'); const r = await rowsList();
   R.C368198 = { x: s.w['X Co'].number, y: s2.w['Y Co'].number, rows: r, yAboveX: r.indexOf(s2.w['Y Co'].number) >= 0 && r.indexOf(s2.w['Y Co'].number) < r.indexOf(s.w['X Co'].number), heads: await listHeads() };
+  // 15 Oct 2026 (wave 14): step 5 reads the rows AND their Invoiced Date and Status (cell by column heading), with a picture of that
+  // moment (the third pass's only picture was taken later, with the Status list re-opened and cleared)
+  R.C368198.rowsWithDates = await p.evaluate(`(() => { const hs = [...document.querySelectorAll('thead th')].map(e => e.innerText.replace('arrow_drop_up','').trim()); const ix = (h) => hs.indexOf(h);
+    return [...document.querySelectorAll('tbody tr')].filter(r => r.getBoundingClientRect().height > 0 && /S\\d+-\\d+/.test(r.innerText)).map(r => { const c = [...r.cells].map(x => x.innerText.replace(/\\s+/g, ' ').trim()); return { number: (r.innerText.match(/S\\d+-\\d+/) || [])[0], status: c[ix('Status')], invoicedDate: ix('Invoiced Date') >= 0 ? c[ix('Invoiced Date')] : 'no Invoiced Date column', customer: (c[ix('Customer')] || '').slice(0, 40) }; }); })()`);
+  R.C368198.statusChip = await p.locator('[data-test-id="filter_chip_status"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => null);
+  await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollLeft = s.scrollWidth; })()`).catch(() => {}); await p.waitForTimeout(800); await shot(p, 'C368198-step5-rows-and-invoiced-dates');
+  await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollLeft = 0; })()`).catch(() => {});
   await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); await p.locator('.q-menu').getByText('Clear selection').first().click(); await p.keyboard.press('Escape'); });
 
 await run('C368199', async () => { await goList(p); const errs: string[] = []; p.on('response', (r) => { if (r.status() >= 400 && /api\/work-orders/.test(r.url())) errs.push(`${r.status()}`); });
@@ -276,8 +286,9 @@ await run('C368209', async () => { await phone(); await p.goto(APP + '/workorder
   o.aToZ = o.customersInOrder.every((x: string, i: number, arr: string[]) => i === 0 || arr[i - 1].localeCompare(x, 'en', { sensitivity: 'base' }) <= 0);
   await desk(); R.C368209 = o; });
 await run('C368210', async () => { await phone(); await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await tab(p, 'All').catch(() => {}); await p.waitForTimeout(2500);
-  const o: any = { before: (await cardNums()).length }; for (let i = 0; i < 6; i++) { await p.evaluate(`(() => { const s = [...document.querySelectorAll('*')].filter(e => e.scrollHeight > e.clientHeight + 50 && /auto|scroll/.test(getComputedStyle(e).overflowY)).pop(); (s || document.scrollingElement).scrollTop = 1e9; window.scrollTo(0, 1e9); })()`); await p.waitForTimeout(1500); }
-  const after = await cardNums(); o.after = after.length; o.unique = new Set(after).size === after.length; await desk(); R.C368210 = o; });
+  const o: any = { before: (await cardNums()).length }; await shot(p, 'C368210-phone-first-page');   // 15 Oct 2026 (wave 14): pictures at phone width, before and after the scroll
+  for (let i = 0; i < 6; i++) { await p.evaluate(`(() => { const s = [...document.querySelectorAll('*')].filter(e => e.scrollHeight > e.clientHeight + 50 && /auto|scroll/.test(getComputedStyle(e).overflowY)).pop(); (s || document.scrollingElement).scrollTop = 1e9; window.scrollTo(0, 1e9); })()`); await p.waitForTimeout(1500); }
+  const after = await cardNums(); o.after = after.length; o.unique = new Set(after).size === after.length; await shot(p, 'C368210-phone-after-scroll'); await desk(); R.C368210 = o; });
 await run('C368211', async () => { await phone(); await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await tab(p, 'All').catch(() => {}); await search(p, 'zz-no-such-work-order');
   const o: any = { message: (await p.locator('main, .q-page').first().innerText()).split('\n').filter((l) => /match|no work orders/i.test(l)).slice(0, 3), clearFilters: await p.getByText('Clear filters').count() };
   await shot(p, 'C368211-phone'); const x = p.locator('[aria-label="Clear search"], [data-test-id="page_search_input"] ~ * i').filter({ hasText: /cancel|close|clear/ }).first(); if (await x.count()) { await x.click(); await p.waitForTimeout(2500); } o.afterClear = (await cardNums()).length; await desk(); R.C368211 = o; });

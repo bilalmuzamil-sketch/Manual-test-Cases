@@ -18,6 +18,18 @@ high1-batch.mts | C368176,C368181 |
 # made to hold ONLY Dana Ortiz first, then Ralph Edwards added by scrolling the list; C368178 dropped right of the 9:00 GRID LINE and the
 # shift read back by its id; C368177-deleted-user READ ONLY: who "Deleted user" on S2-35973's Line 2 is (runs only when named here)
 high1-fix5.mts | C368173,C368178,C368177-deleted-user | 
+# 15 Oct 05:35 coordinator — gaps no pass covered:
+# (B) the four NEW cases of section 13236 (QA lead 14 Oct 21:59), text read live 15 Oct: the Technician filter
+tech-filter-stg6.mts | C581915,C581916,C581917,C581918 | WOB_SCALE=2
+# (A) never run on staging: organisation B made through POST /api/register (playbook §X / 055), its person "ZZAUTOTEST OrgB Tech",
+# organisation A's lists read by name AND by id (C368175, C154650); the analytics user steps on staging (C97026 now; C97033 day 1 and
+# C97034 now — C97033 day 2 is due 16 Oct: PHASE=day2)
+orgb-fix3.mts | REGISTER,C368175,C154650 | 
+ga-week.mts | C97026,C97033,C97034 | PHASE=day1+c97026
+# (C) wave 14 (judge/wave14.json): redo C368195 (a new Technician-role user) and C368198 (Invoiced Date per row + picture); pictures
+# only for passed C368210 (phone width) and C368213 (Parts / Returns columns on screen)
+high2-batch.mts | C368195,C368198,C368210 | 
+parts-batch.mts | C368213 | WOB_SCALE=2
 # picture only (passed C97032): the Reassign dialog open with the open-work count
 s11-fix3.mts | C97032 | WOB_SCALE=2
 # the sign-out test signs the shared session out: LAST of all

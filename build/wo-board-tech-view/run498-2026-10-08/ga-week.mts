@@ -178,16 +178,21 @@ async function setFin(id: string, on: boolean) { const r = await roleRead(id); c
 const openWO = async (pg: Page) => { await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); };
 async function withUser(u: any, f: (pg: Page, ev: Ev[]) => Promise<void>) { const v = await asUser(u); const ev = tap(v.page); try { await f(v.page, ev); } finally { (R.unread ??= []).push((ev as any).unread); await v.close(); } }
 
-const UF = path.join(path.dirname(new URL(import.meta.url).pathname), 'evidence', 'ga-week-2026-10-12', 'ga-week-users.json'); fs.mkdirSync(path.dirname(UF), { recursive: true });
+// 15 Oct 2026 (staging, wave 14): on staging the users are staging's own (a separate file beside the staging evidence); the QA-branch
+// file is left as it was. PHASE may name several phases joined by "+" (e.g. day1+c97026) so one plan line runs them in one sign-in.
+const ON_STAGING = /staging/.test(process.env.GS_APP || '');
+const UF = ON_STAGING ? path.join(EV, 'ga-week', 'ga-week-users.json') : path.join(path.dirname(new URL(import.meta.url).pathname), 'evidence', 'ga-week-2026-10-12', 'ga-week-users.json'); fs.mkdirSync(path.dirname(UF), { recursive: true });
 const U: any = fs.existsSync(UF) ? JSON.parse(fs.readFileSync(UF, 'utf8')) : {};
-const PHASE = process.env.PHASE || '';
-if (!['day1', 'day2', 'c97026', 'fs1fix'].includes(PHASE)) { console.log('PHASE must be set (day1|day2|c97026|fs1fix) — refusing to guess'); process.exit(2); }
+const PHASE = process.env.PHASE || ''; const PHASES = PHASE.split('+').filter(Boolean);
+if (!PHASES.length || PHASES.some((x) => !['day1', 'day2', 'c97026', 'fs1fix'].includes(x))) { console.log('PHASE must be set (day1|day2|c97026|fs1fix, joined by +) — refusing to guess'); process.exit(2); }
+R.environment = ON_STAGING ? 'staging' : 'QA branch'; R.phases = PHASES; R.ranOn = new Date().toISOString();
+if (PHASES.includes('day1')) R.day2Due = `C97033 day 2 (U2, U3, U4) is due on a LATER calendar day of the same week: run PHASE=day2 on ${ON_STAGING ? 'staging' : 'the QA branch'} on 16 Oct 2026`;
 const fieldIds = async (pg: Page) => pg.evaluate(`[...document.querySelectorAll('[data-test-id^="toggle_board_field_"]')].map(e => e.getAttribute('data-test-id').replace('toggle_board_field_', '') + '=' + (e.getAttribute('aria-checked') ?? e.querySelector('[aria-checked]')?.getAttribute('aria-checked') ?? e.className.includes('truthy')))`) as Promise<string[]>;
 const fieldsMenu = async (pg: Page) => { await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900); };
 const toggle = async (pg: Page, re: RegExp) => { const ids = await fieldIds(pg); const k = ids.map((x) => x.split('=')[0]).find((x) => re.test(x)); if (!k) return `no field ${re}`; await pg.locator(`[data-test-id="toggle_board_field_${k}"]`).click(); await pg.waitForTimeout(1500); return k; };
 const user = async (key: string, role = ADMIN_ROLE) => { if (!U[key]) { const u = await fresh(key, role); U[key] = { id: u.id, name: `ZZAUTOTEST GA ${key} ${stamp}`, email: u.email }; fs.writeFileSync(UF, JSON.stringify(U, null, 1)); } return U[key]; };
 const log = (key: string, ev: any[]) => { U[key].uid = U[key].uid ?? ev.find((e) => e.uid)?.uid ?? null; (U[key].events ??= []).push(...ev.filter(WO).map((e) => `${new Date(e.t).toISOString().slice(0, 16)} ${brief(e)}`)); fs.writeFileSync(UF, JSON.stringify(U, null, 1)); };
-if (PHASE === 'day1') {
+if (PHASES.includes('day1')) {
   // C97033 day 1 — U1 turns VIN/Serial on, off, on
   { const u = await user('FS1'); await withUser(u, async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await settle(pg, 4000); await fieldsMenu(pg); R.fs1fields = await fieldIds(pg);
       R.fs1 = [await toggle(pg, /vin/i), await toggle(pg, /vin/i), await toggle(pg, /vin/i)]; await pg.keyboard.press('Escape'); await settle(pg); log('FS1', ev); }); }
@@ -201,7 +206,7 @@ if (PHASE === 'day1') {
   // C97033 day-2 users are made today so tomorrow only acts
   await user('FS2'); await user('FS3'); await user('FS4', VIEW_ROLE);
 }
-if (PHASE === 'day2') {
+if (PHASES.includes('day2')) {
   { const u = await user('FS2'); await withUser(u, async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await settle(pg, 4000); await fieldsMenu(pg); R.fs2 = await toggle(pg, /vin/i); await pg.keyboard.press('Escape'); await settle(pg); log('FS2', ev); }); }
   { const u = await user('FS3'); await withUser(u, async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await settle(pg, 4000); await fieldsMenu(pg); R.fs3 = await toggle(pg, /total|price/i); await pg.keyboard.press('Escape'); await settle(pg); log('FS3', ev); }); }
   // U4 has no financial data: the view-only role with "see financial data" off for the visit, then put back
@@ -209,13 +214,13 @@ if (PHASE === 'day2') {
     try { const u = await user('FS4', VIEW_ROLE); await withUser(u, async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await settle(pg, 5000); await fieldsMenu(pg); R.fs4fields = await fieldIds(pg); await pg.keyboard.press('Escape'); log('FS4', ev); }); }
     finally { R.finBack = await setFin(VIEW_ROLE, !!orig); } }
 }
-if (PHASE === 'fs1fix') {
+if (PHASES.includes('fs1fix')) {
   // 12 Oct 17:24 a launcher fault (PHASE dropped) re-ran day 1 and left FS1's VIN/Serial OFF; put it back ON (one toggle)
   const u = await user('FS1'); await withUser(u, async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await settle(pg, 4000); await fieldsMenu(pg);
     const before = (await fieldIds(pg)).find((x) => x.startsWith('vin=')); R.fs1fixBefore = before;
     if (before && !/=true/.test(before)) R.fs1fix = await toggle(pg, /vin/i);
     R.fs1fixAfter = (await fieldIds(pg)).find((x) => x.startsWith('vin=')); await pg.keyboard.press('Escape'); await settle(pg); log('FS1', ev); }); }
-if (PHASE === 'c97026') {
+if (PHASES.includes('c97026')) {
   // C97026 steps 1-2 re-run 12 Oct 2026 with raw events kept: a brand-new user, and a dispatcher who saved a density earlier
   const raw: any = {};
   { const u = await user('NEWBIE'); await withUser(u, async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await settle(pg, 5000); log('NEWBIE', ev); raw.newbie = ev.filter(WO); }); }
@@ -226,5 +231,5 @@ if (PHASE === 'c97026') {
   R.c97026 = { newbie: raw.newbie.map(brief), disp: raw.disp.map(brief), uids: [raw.newbie[0]?.uid, raw.disp[0]?.uid] };
 }
 R.users = Object.fromEntries(Object.entries(U).map(([k, v]: any) => [k, { name: v.name, uid: v.uid, events: (v.events ?? []).length }]));
-fs.writeFileSync(path.join(path.dirname(UF), `ga-week-${PHASE}.json`), JSON.stringify(R, null, 1)); console.log('GAWEEK', JSON.stringify(R).slice(0, 3000));
+fs.writeFileSync(path.join(path.dirname(UF), `ga-week-${PHASES.join('-')}.json`), JSON.stringify(R, null, 1)); console.log('GAWEEK', JSON.stringify(R).slice(0, 3000));
 await browser.close(); process.exit(0);

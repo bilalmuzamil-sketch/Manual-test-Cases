@@ -592,3 +592,10 @@ run started. #run #coverage #staging → L0342, L0349
   six-dot grip on the Unassigned header, C590117), the case is Failed and the unreached steps are listed as "not reached in
   this reading" in the bullets.
 #design #staging #judging #pictures → L0350, L0352, Rule 104
+
+## L0359 — 2026-10-15 — Scripts written for the QA branch can carry the QA host in a filter, and keep QA users in a file
+- **orgb-fix3.mts watched API answers only from `sv10043api`.** On staging nothing matched, so "the list's data holds no OrgB" would have been a false clean result. Any filter on host names must use the environment's own API host (`new URL(API).host`, session.mts). Before re-using a QA-branch script on staging, run `grep -n "sv10043" <script>`.
+- **ga-week.mts kept its test users in a QA-branch file.** On staging it would have tried to switch to QA-branch user ids. On staging it now uses `<WOB_EV>/ga-week/ga-week-users.json`. PHASE may join phases with "+" (`day1+c97026`), so one plan line covers them, because no script may appear twice in a plan.
+- **Checking a second organisation by id, not only by name:** organisation B's person ids come from organisation A's own `/api/users` answer (it lists other organisations' users, playbook §X). Organisation A's lists — the lead-technician list, the line technician lists' data — are then searched for those ids as well as for the name "OrgB".
+- **An end picture can show a different moment from the reading (C368198):** the script re-opened and cleared the Status list after reading, so its picture showed an empty table. A judged step needs its own picture taken at that step. `__shotEach` comes after the clean-up.
+- **Columns to the right of the window are not in the picture (C368213):** scroll `.q-table__middle` to its right end before photographing columns that were just turned on.
