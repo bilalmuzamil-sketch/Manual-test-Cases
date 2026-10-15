@@ -1,0 +1,42 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "note": "batch 4 = wave 8c passes"
+ },
+ "results": {
+  "C368206": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "See Financial Data was turned off for the second user's role, who then opened List with the All tab.",
+    "The column headings have no Total Price column (On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Created On).",
+    "Column Selection does not offer Total Price.",
+    "No total row or total figure shows at the bottom, and no dollar amount shows anywhere in the List.",
+    "The role was set back afterwards."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368206-1-list-no-total-price.png"
+   ],
+   "note": "wave8c"
+  },
+  "C368241": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Before the upload, the avatar in the top bar showed the red photo.",
+    "The blue photo was uploaded on Edit Profile (your initials > Edit Profile > the photo).",
+    "After reloading the Edit Profile page, the top-bar avatar shows the blue photo, not the old red one."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368241-1-avatar-before-after.png",
+    "evidence/staging-full-2026-10-14/annotated/C368241-2-profile-after-reload.png"
+   ],
+   "note": "wave8c"
+  }
+ }
+}

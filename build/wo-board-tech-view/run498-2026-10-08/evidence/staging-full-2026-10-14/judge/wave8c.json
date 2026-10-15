@@ -1,0 +1,60 @@
+{
+ "results": {
+  "C368206": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "See Financial Data was turned off for the second user's role, who then opened List with the All tab.",
+    "The column headings have no Total Price column (On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Created On).",
+    "Column Selection does not offer Total Price.",
+    "No total row or total figure shows at the bottom, and no dollar amount shows anywhere in the List.",
+    "The role was set back afterwards."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368206.png"
+   ]
+  },
+  "C368241": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Before the upload, the avatar in the top bar showed the red photo.",
+    "The blue photo was uploaded on Edit Profile (your initials > Edit Profile > the photo).",
+    "After reloading the Edit Profile page, the top-bar avatar shows the blue photo, not the old red one."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368241-avatar-before.png",
+    "evidence/staging-full-2026-10-14/C368241-avatar-after.png",
+    "evidence/staging-full-2026-10-14/C368241-end.png"
+   ]
+  }
+ },
+ "redo": {
+  "C368156": "The switch to the second location did not happen again: the \"second location\" board still read Staging Heavy Duty - 9919 in the top bar, so Xia, Yan and Zoe had no columns to pin. Heavy Duty's part held (three pinned, fourth control disabled with \"You can pin up to 3 technicians.\").",
+  "C368159": "The script stopped again picking \"Ben Bravo\" in the work order page's Lead Technician list (not found by that name); nothing was read.",
+  "C97032": "Same set-up gap: the \"Review\" work order was Complete, not Ready for Review, and no work order at the other location was made. The counts read 4 open, 4 under the Estimate filter, then 5 after the approval.",
+  "C368176": "The Labor row read Esther Howard, but Clock Out was again not pressed: her clock on this work order was still running when the next check started. Re-run pressing Clock Out after at least a minute.",
+  "C368181": "TRK-201's Work Orders tab has 3 rows and no count, but production was again not checked, which the case needs to judge a missing count.",
+  "C368173": "The script stopped at once: it needs the line made by C368172, which was not there.",
+  "C368177": "The Edit Timesheet window was again not found, so the labor was never moved; Line 2 still reads Unassigned.",
+  "C368178": "The shift was created with no error, but the script then looked at the wrong day (Mon, Oct 19 instead of Fri, Oct 16), so the shift was not read.",
+  "C368179": "The scheduling window did not open after the drop again (dropped under \"13\"), so no line shift was made.",
+  "C368190": "The script stopped at once: it needs the C368192 set-up, which was not there.",
+  "C368191": "The \"deleted staff member\" state still cannot be made: deleting ZZAUTOTEST Gone Tech was refused (\"Staff is being used elsewhere\"), so the line shows his name. The case is in the \"Not runnable for now\" folder.",
+  "C368201": "Same as before: completing the line took the work order straight to Complete (no \"Work order sent to review.\"), so Review was never reached. After Back the row did read the new status, Complete, with no reload.",
+  "C368207": "Not a fair run: the view-only role had Create & Edit switched on (left by C97012), so the Create Work Order button showed. Turn Create & Edit off in \"ZZAUTOTEST WO View Only\" and re-run.",
+  "C368208": "Not a fair run for the same reason (the view-only role had Create & Edit on): the toggle was not shown disabled. Re-run after turning Create & Edit off.",
+  "C368209": "After the reload the sort still had Customer A-Z ticked, but the card order was again read as icons; the picture shows only 4 Star Truck Repair cards at the top, so the A-to-Z order across customers was not seen.",
+  "C368212": "Steps 2 and 3 held (the Lethbridge work order S3-35787 is not shown at Staging Heavy Duty - 9919), but the switch to Staging Lethbridge - 4310 again did not take effect on screen, so step 4 was not done.",
+  "C368196": "Only On Site and Clocked In were read again (Clocked In sorted one way then the other; On Site cannot be told apart by icons). Number and the other headers were not read. The script also left Dana Ortiz's and Ralph Edwards' clocks running.",
+  "C368217": "The script stopped again making the part requests (the Part Number field was not found), so the counts were not read.",
+  "C368243": "The script stopped at once (a test technician was not found); nothing was read.",
+  "C368244": "The script stopped at once (a test technician was not found); nothing was read."
+ },
+ "failed": {},
+ "doubt": {}
+}
