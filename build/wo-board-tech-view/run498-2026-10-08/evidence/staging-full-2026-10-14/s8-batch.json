@@ -14,7 +14,16 @@
   "TW": true
  },
  "C96998": {
+  "tries": [
+   "HD CVIP electric brake trailer: 0 waiting"
+  ],
+  "cannedWithoutParts": 43,
+  "cannedUsed": [
+   "HD CVIP electric brake trailer",
+   "HD CVIP electric brake trailer"
+  ],
   "mileage": "201",
+  "line2PartsWaiting": 0,
   "add": {
    "opened": "story row",
    "box": 1,
@@ -36,8 +45,8 @@
   "storedLine1": "First note, edited",
   "completeNoStory": {
    "toasts": [],
-   "dialog": "Receive parts\nclose\n\nS2-35730 · ZZAUTOTEST Contact\n\ninventory_2\n\n3 parts waiting to receive\n\nNeed to \"Receive Parts\" first in order to complete the work order\n\nCancel\nReceive Parts\narrow_drop_down\nComplete Line",
-   "status": "authorized"
+   "dialog": null,
+   "status": "complete"
   },
   "add2": {
    "opened": "story row",
@@ -48,13 +57,6 @@
    "toasts": [],
    "rowNow": "Second note"
   },
-  "completeDialog": "Receive parts\nclose\n\nS2-35730 · ZZAUTOTEST Contact\n\ninventory_2\n\n3 parts waiting to receive\n\nNeed to \"Receive Parts\" first in order to complete the work order\n\nCancel\nReceive Parts\narrow_drop_down\nComplete Line",
-  "completeWithStory": {
-   "toasts": [
-    "check_circle 1 line completed. Close"
-   ],
-   "status": "complete"
-  },
-  "wo": "S2-35730"
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"button_action_complete_line_c1fd3afd-e505-4feb-92de-a33ce2517f18\"]')\n"
  }
 }
