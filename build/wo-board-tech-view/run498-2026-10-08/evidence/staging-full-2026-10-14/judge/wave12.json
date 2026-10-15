@@ -1,0 +1,174 @@
+{
+ "results": {
+  "C96957": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "S2-35463 dragged from Esther Howard to Ralph Edwards (no shift question): the message read exactly \"Lead technician updated\" and went away by itself after 9 seconds, not clicked.",
+    "Dragged on to Unassigned: the message read exactly \"Lead technician removed\" and went away by itself after 9 seconds, not clicked.",
+    "The work order's lead was Ralph Edwards after the first move and none after the second."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96957-1-lead-updated-message.png",
+    "evidence/staging-full-2026-10-14/annotated/C96957-2-lead-removed-message.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368163": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Board View, S2-35470 led by Esther Howard: the dialog names the work order \"S2-35470 \u00b7 ZZAUTOTEST F1 Dialog Search\" and marks Esther Howard \"Current\" with a check mark.",
+    "The list offers Unassigned and the location's eligible technicians (146).",
+    "\"Ral\" leaves Unassigned plus only the names containing ral: Gerald Pitts, Maximiliana Fitzgerald-Montgomery, Ralph Edwards; Esther Howard and the rest disappear. Lower-case \"ral\" gives the same list.",
+    "The office worker (Olive Office stands in for Owen Office on staging) is not offered: the dialog says No technicians match \"Olive\". \"zzqx\" gives No technicians match \"zzqx\".",
+    "Clearing the box brings back all 146. Cancel changed nothing (lead still Esther Howard, no message). Reopened, the search box is empty.",
+    "Tech View: the same on every point, and the row stayed in Esther Howard's group."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368163-1-board-dialog-ral.png",
+    "evidence/staging-full-2026-10-14/annotated/C368163-2-board-dialog-no-match.png",
+    "evidence/staging-full-2026-10-14/annotated/C368163-3-tech-view-dialog-ral.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96975": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Tech View set to Service Advisor off and Assigned Techs on; List set to Progress off.",
+    "List still shows Service Advisor and has no Assigned Techs; Tech View still shows Progress.",
+    "In a second browser (a new sign-in) Tech View kept Service Advisor off and Assigned Techs on, and List kept its own columns (Progress off, Service Advisor on).",
+    "At the second location, Staging Lethbridge - 4310 (now confirmed in the top bar), Tech View and List showed the same choices."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96975-1-list-own-columns-second-browser.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96976": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Board View's Fields to display button sits in the same toolbar spot as Tech View's column chooser and works the same way: a list of fields, each with a switch.",
+    "With Customer off and VIN/serial on, card S2-35516 shows \"VIN ZZWOB179200672011\" and no customer.",
+    "The same choice is in force in a second browser and at Staging Lethbridge - 4310.",
+    "Usage recording not checked by hand."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96976-1-tech-view-column-chooser.png",
+    "evidence/staging-full-2026-10-14/annotated/C96976-2-board-fields-to-display.png",
+    "evidence/staging-full-2026-10-14/annotated/C96976-3-card-customer-off-vin-on.png",
+    "evidence/staging-full-2026-10-14/annotated/C96976-4-second-browser-same-card.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96983": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "A normal save worked first (control).",
+    "With the saved choices made unreadable (the page showed \"Oooops! An error occurred\"), Board View showed its default card fields (lead technician, customer, asset, progress, total price, plus number, unit and status), and Tech View showed its starting columns (Service Advisor on, Assigned Techs off, as List's defaults).",
+    "The field turned on during the failure (On-site) was saved and was still on after the reload."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96983-1-board-defaults-when-load-fails.png",
+    "evidence/staging-full-2026-10-14/annotated/C96983-2-tech-starting-columns-when-load-fails.png",
+    "evidence/staging-full-2026-10-14/annotated/C96983-3-after-reload-choice-kept.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96989": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Comfortable chosen in Tech View: Board View's Density already showed Comfortable ticked (one shared choice); the account's saved value reads comfortable.",
+    "In a new browser window Tech View and Board View both showed Comfortable.",
+    "At Staging Lethbridge - 4310 (confirmed in the top bar) Tech View and Board View both showed Comfortable.",
+    "\"After logging back in\" was done as a new window, not a real sign-out: signing out ends the shared staging session that every other test uses."
+   ],
+   "pictures": [],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96992": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Tech View rows change with density: Compact 40, Regular 48, Comfortable 64 pixels.",
+    "Board View cards change with density: Compact 149 pixels tall with 10/12 pixel padding, Regular 163 with 12 pixel padding.",
+    "List rows stay 48 pixels before and after; the Customers table also stays 48 before and after."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96992-1-tech-view-compact-rows.png",
+    "evidence/staging-full-2026-10-14/annotated/C96992-2-tech-view-comfortable-rows.png",
+    "evidence/staging-full-2026-10-14/annotated/C96992-3-board-view-compact-cards.png",
+    "evidence/staging-full-2026-10-14/annotated/C96992-4-list-rows-before.png",
+    "evidence/staging-full-2026-10-14/annotated/C96992-5-list-rows-after.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96997": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "S2-35920, Line 1 with the story \"Brought unit in. Completed inspection.\".",
+    "On the work order page the line shows its story text and no check mark anywhere on the line (no check icon on the page; other icons were read, so the reading works).",
+    "In the technician's work order view (signed in as Esther Howard) the same: story shown, no check mark."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96997-1-story-no-check-mark.png",
+    "evidence/staging-full-2026-10-14/annotated/C96997-2-tech-mode-no-check-mark.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96999": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "S2-35921, Line 1 with no story: the Story row reads \"Add tech story for this line\" with no check mark or other new mark.",
+    "Production was NOT opened today. The comparison is with the record of a production work order's Lines tab taken on 12 Sep 2026, before this release (build/invoice-design-selection/production-2026-09-12/PR55.json): the same Story row and the same prompt \"Add tech story for this line\"; nothing missing and nothing added. That record is a list of the page's parts, not a picture."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96999-1-line-without-story.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C97000": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "S2-35922: Line 1 with a story, Line 2 without.",
+    "On the work order page neither line shows any icon, badge or colour about the story; Line 2 shows only the usual \"Add tech story for this line\" prompt.",
+    "Same in the technician's work order view (Esther Howard)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97000-1-no-story-marker.png",
+    "evidence/staging-full-2026-10-14/annotated/C97000-2-tech-mode-no-story-marker.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ },
+ "redo": {
+  "C96956": "Board View held on every point: the list had Unassigned and the eligible technicians (Office, Time Clock User, inactive, no-clock and other-location people not listed); Ralph Edwards then Unassigned with the right messages; Cancel changed nothing; the work order page read Ralph Edwards, then Unassigned. Tech View stopped part-way: the row's dialog opened and the move to Ralph Edwards worked, then the row was not found again (hover timed out), so the Unassigned move, Cancel and the page check were not read there.",
+  "C96959": "The counts changed correctly straight after each change (drag: Esther Howard 2 to 1, Ralph Edwards 1 to 2; dialog: Ralph Edwards 2 to 1, Unassigned 1 to 2; Tech View the same), but the start was not the case's 3 / 1 / 0: one of the four test work orders was already unassigned (start 2 / 1 / 1). Reset the four leads first and re-run.",
+  "C96969": "No message appeared, the lead stayed Esther Howard and the history gained no entry (a real change adds one: control). But Line 2 was set up following the lead (Esther Howard), not \"Unassigned\" as the case needs, so \"Line 2 is not given to Esther Howard\" could not be judged. Set Line 2's Labor to Unassigned and re-run.",
+  "C154888": "No shift question appeared and the lead changed to Ralph Edwards, but the set-up was wrong: the work order kept old shifts from an earlier run (yesterday 08:00-12:00 and today 04:00-05:04, already over at 08:43), with no shift tomorrow and no running shift, so the question may rightly not have been asked. Start from a fresh work order with an ended, a running (started an hour ago) and a future shift.",
+  "C96974": "The count read \"4 open\" on both the Work Orders and All tabs: Nina Newtech leads one work order in each of the 8 statuses (now with a real Invoiced one), and one at Staging Lethbridge - 4310. But the line-only work order (S2-35504, led by Esther Howard) was left from an earlier pass and its line's technician was not read back, so whether Nina is on that line is unproven. Read the line's technician back (or make it new) and re-run.",
+  "C96962": "The drag added one entry (\"Lead tech changed Esther Howard -> Ralph Edwards by Admin ShopView at 2026-10-15 03:47:06\") and the dialog added one (\"Ralph Edwards -> Esther Howard ... 03:47:34\"). The line's technician change in Edit Line did not take (no technician picked, no line entry), and the change on the work order page stopped (Ralph Edwards not found in the Lead Technician menu). Re-run those two parts.",
+  "C96966": "Nothing was judged: the script stopped on the Schedule before any change, because the shift card for S2-35915 was not found there (\"api fallback\" was not reached; no shift was moved, resized or handed over, by the Schedule screen or otherwise). Before that it showed: status In Progress, lead Esther Howard, her clock running, total time 18; the shift tomorrow (03:00-07:00 UTC) was made. Note the page read \"Approved\" while the record read In Progress; check which is shown.",
+  "C96978": "Fields to display offers exactly the 13 fields (lead technician, customer, asset, VIN/serial, progress, service advisor, clocked in, line count, line technicians, estimated hours, total price, on-site, created date). List shows Clocked In \"ZZAUTOTEST Cora49379 Clock+1\" with both names on hover. But the card was not read (empty reading), so the card values against List and the card's Clocked in \"+1\" and hover were not seen. Re-run reading card S2-35916.",
+  "C96998": "Adding (\"First note\") and editing (\"First note, edited\") the story worked and the edited text shows. But completing Line 2 without a story was NOT stopped on staging: the line went straight to Complete with no message (picture C96998-complete-without-story.png), while on the QA branch the same step opened the Tech stories window. Before calling this a fail, check whether the shop's setting that requires a tech story is on at Staging Heavy Duty - 9919, then re-run."
+ },
+ "failed": {},
+ "doubt": {}
+}
