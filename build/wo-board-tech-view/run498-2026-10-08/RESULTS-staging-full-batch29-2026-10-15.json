@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 29 = C581895 Blocked"
+ },
+ "results": {
+  "C581895": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging — the starting situation cannot be made.",
+    "The test needs a technician whose staff record name is different from their account (sign-in) name, to check which one the cards and headers show.",
+    "Staging keeps one name per technician: renaming the staff record renames the account too, and renaming the account renames the staff record. So the two names can never differ there.",
+    "The picture shows it: signed in as the technician, the account name reads \"ZZAUTOTEST Staffname Ana\", the same as her staff record.",
+    "Production does not have Tech View or Board View yet, and the QA lead asked that nothing runs on a test branch."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C581895-setup-Ana-profile.png"
+   ],
+   "not_observed": "Which name the cards and headers show when the staff name and account name differ.",
+   "todo": "What needs to be done: a technician whose staff name and account name differ is needed (only a developer or another environment can make one); the QA lead has been asked. Then run this test again."
+  }
+ }
+}
