@@ -579,7 +579,10 @@ await run('C590119', async (o) => { // Board View column header pieces and pins
 });
 
 await run('C590120', async (o) => { // Board View card layout and text sizes at each density
-  const A = await tech('DC11', 'Pia Card'), B = await tech('DC11', 'Quinn Card'); const c = await cust('ZZAUTOTEST DC11 Board Card', 'TRK-118');
+  // 15 Oct 2026 (wave-design3, eighth pass): the card sat below the window (Pia's column still held three older cards, S2-35993,
+  // S2-35994, S2-36129), so no card was photographed. Run-numbered technicians now hold ONLY this test's two work orders, and every card
+  // picture first scrolls the card to the middle of the window and records whether it is fully on screen.
+  const A = await tech(`DC11-${RUNNO}`, 'Pia Card'), B = await tech(`DC11-${RUNNO}`, 'Quinn Card'); const c = await cust('ZZAUTOTEST DC11 Board Card', 'TRK-118');
   const w1 = await mkWO(c, { lead: A.staff, line: true, lineTech: B.staff }), w2 = await mkWO(c, { status: 'invoiced', lead: A.staff }); o.wo1 = brief(w1); o.wo2 = brief(w2);
   // 15 Oct 2026 (redo): the asset had a unit only (no year / make / model), so the "unit · asset" line could not be judged. The work orders
   // are made first, THEN the asset is reshaped (playbook §C: create ignores make/model; a work order cannot be made on a reshaped asset):
@@ -599,7 +602,9 @@ await run('C590120', async (o) => { // Board View card layout and text sizes at 
     o.assetReadBack = vv ? `${vv.unit ?? ''} · ${vv.year ?? ''} ${nm(vv.vehicle_make)} ${nm(vv.vehicle_model)}`.trim() : 'not found in the vehicle list by unit'; }
   o.prep = await prep([A.staff], 'Board View'); o.fields = await lineTechsOn();
   await toColumn(p, A.staff);
-  const cardPic = async (id: string, name: string) => clip(p, name, await D(p, `__D.box(__D.q('[data-test-id="board_card_${id}"]'))`), 12);
+  const cardPic = async (id: string, name: string) => { await p.evaluate(`document.querySelector('[data-test-id="board_card_${id}"]')?.scrollIntoView({ block: 'center', inline: 'center' })`).catch(() => {}); await W(700);
+    const b = await D(p, `__D.box(__D.q('[data-test-id="board_card_${id}"]'))`); const vp = p.viewportSize(); (o.cardOnScreen ??= {})[name] = !!(b && vp && b.y >= 0 && b.x >= 0 && b.y + b.h <= vp.height && b.x + b.w <= vp.width);
+    return clip(p, name, b, 12); };
   /** the case's four texts, measured one by one: number, customer name, the unit · asset line, total price (size / weight / colour / box) */
   const sizes = async () => D(p, `(function () { var c = __D.q('[data-test-id="board_card_${w1.id}"]'); if (!c) return null; var pick = function (sel) { var e = c.querySelector(sel); if (!e) return null; var s = getComputedStyle(e); return { text: e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 60), fontSize: s.fontSize, fontWeight: s.fontWeight, color: s.color, box: __D.box(e) }; };
       var leaf = function (re) { var all = __D.parts(c, 60).filter(function (x) { return x.kind === 'text' && re.test(x.text); }); return all[0] || null; };

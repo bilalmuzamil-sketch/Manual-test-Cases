@@ -43,7 +43,7 @@ elif ! grep -q "ninth pass start" $A; then
   pgrep -f stg-after9.sh >/dev/null || setsid nohup ./stg-after9.sh > /dev/null 2>&1 < /dev/null &
   echo "started the ninth-pass waiter"
 elif ! grep -q "ninth pass finished" $A; then
-  rm -f $E/logs9/signin-check-stg4.done
+  rm -f $E/logs9/signin-check-stg4.done $E/logs9/role-viewonly-stg4.done $E/logs9/clocks-stg4.done
   echo "$(date -u +%H:%M:%S) container restart — resumed by recover.sh" >> $E/logs9/run.out
   setsid nohup ./resume-ninth.sh > /dev/null 2>&1 < /dev/null &
   echo "resumed the NINTH pass"

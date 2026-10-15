@@ -1,6 +1,10 @@
 # 15 Oct 2026 — NINTH pass on staging (run-ninth.sh, started by stg-after9.sh after "eighth pass finished").
 # Each line = script | ONLY | extra settings. signin-check first; no script twice; the sign-out test LAST (L0342/L0378).
 signin-check-stg4.mts | | 
+role-viewonly-stg4.mts | | 
+clocks-stg4.mts | | 
+# wave-design3: C590120 — run-numbered technicians holding only this test's two work orders; each card scrolled to the middle and checked on screen before its picture (Regular, Compact, Comfortable, the Invoiced card's padlock)
+design-stg5.mts | C590120 | QA_DPR=2
 # wave 28: C96966 — Esther Howard's other ZZAUTOTEST shifts tomorrow deleted first (they were stacked over ours and the drags grabbed them); blocks opened by mouse to read their work order before any drag
 s4-batchH.mts | C96966 | 
 # the sign-out test signs the shared session out: LAST of all (moved here from the eighth pass, logs8/signout-fix.done = skipped)
