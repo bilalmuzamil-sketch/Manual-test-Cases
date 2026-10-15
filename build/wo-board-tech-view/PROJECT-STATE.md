@@ -87,5 +87,8 @@ Technicians made for these checks (e.g. "Esther Howard", "Ralph Edwards" — nam
   (List, card, hovers, column header: "ZZAUTOTEST Account Ana"); production v26.40.17-f5bf8f4 has no Board/Tech View
   (`/api/work-orders/board` 404) and its List names match the staff list (`run498-2026-10-08/evidence/prod-names-2026-10-15/`);
   the QA branch sv10043 — the only place the two stored names differ (developer, 12 Oct) — needs a fresh sign-in cookie
-  (its 12 Oct cookie has expired; DEV MODE quick-login is gone). ASK for the QA lead: a fresh sv10043 cookie, then reproduce
-  (List lead name vs card/column/group header for a technician whose two names differ) and prepare the ticket; nothing filed.
+  (its 12 Oct cookie has expired; DEV MODE quick-login is gone). ⛔ QA lead 15 Oct ~03:15 UTC: "Everything needs to run on staging. Nothing for WO Board and Tech view is to run on any QA
+  branch." — so the QA branch is NOT a route (the one read-only sign-in attempt at 03:05 failed at the sign-in page and read
+  nothing). On staging the bug cannot appear because the product keeps one name; ASK the QA lead whether Chris or the
+  developer knows a way, on staging, for a technician's account name to differ from the staff record name; nothing filed.
+  C581895 → Blocked (its set-up — two different names — cannot be made on staging; every screen showed the one name).

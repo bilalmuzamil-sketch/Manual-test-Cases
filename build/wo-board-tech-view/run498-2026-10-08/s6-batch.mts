@@ -78,9 +78,10 @@ const second = async () => { const st = await p.context().storageState(); const 
 
 const say = (r: any) => `${r.status}${r.status >= 300 ? ' ' + JSON.stringify(r.body).slice(0, 200) : ''}`;
 const where = (pg: Page) => pg.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`) as Promise<string | null>;
-const density = async (pg: Page = p) => {
+// 15 Oct 2026 (wave 10): `pic` = take that picture WHILE the Density menu is open, so the ticked option shows (C96987, C96991)
+const density = async (pg: Page = p, pic?: string) => {
   const b = pg.locator('[data-test-id="button_density"]'); if (!(await b.count()) || !(await b.isVisible())) return { present: false };
-  await b.click(); await pg.waitForTimeout(1000);
+  await b.click(); await pg.waitForTimeout(1000); if (pic) { await pg.mouse.move(1, 1); await pg.waitForTimeout(300); await shot(pg, pic); }
   const opts = await pg.evaluate(`[...document.querySelectorAll('[data-test-id^="option_density_"]')].filter(e => e.getBoundingClientRect().width > 0).map(e => ({ id: e.getAttribute('data-test-id').replace('option_density_', ''), label: e.innerText.replace(/\\s+/g, ' ').trim(), selected: e.getAttribute('aria-selected') === 'true' || e.getAttribute('aria-checked') === 'true' || /active|selected/.test(e.className) || !!e.querySelector('.q-radio__inner--truthy, [aria-checked=true], i.text-primary') }))`) as any[];
   await pg.keyboard.press('Escape'); await pg.waitForTimeout(400);
   return { present: true, opts, selected: opts.filter((o) => o.selected).map((o) => o.label) };
@@ -103,9 +104,9 @@ await run('C96987', async () => {
   const { row: ub } = await person(a, 'ZZ Density', 'Newuser', { role: ADMIN_ROLE, email: `zz.wob.density.${Date.now() % 1000000}@staging.shopview.local` });
   const v = await viewAs(browser, p, a, ub.id, me.id, RUN.toRunner);
   try { const pg = v.page; const pref = (await a.get(PREF)).body?.data?.value ?? null;
-    await go('List', n, pg); const list = await density(pg);
-    await display(pg, 'Tech View'); await pg.waitForTimeout(1500); const tech = await density(pg); await shot(pg, 'C96987-tech');
-    await display(pg, 'Board View'); await pg.waitForTimeout(1500); const board = await density(pg);
+    await go('List', n, pg); const list = await density(pg); await shot(pg, 'C96987-list');
+    await display(pg, 'Tech View'); await pg.waitForTimeout(1500); const tech = await density(pg, 'C96987-tech-density-menu-open');
+    await display(pg, 'Board View'); await pg.waitForTimeout(1500); const board = await density(pg, 'C96987-board-density-menu-open');
     R.C96987 = { savedBefore: pref, list, tech, board };
   } finally { await v.close(); }
 });
@@ -145,12 +146,12 @@ await run('C96990', async () => {
 await run('C96991', async () => {
   const n = 'ZZAUTOTEST F1 Density Load Fail'; await seed(n, 'ZZF6LF', [null]);
   await go('Tech View', n); await setDensity('comfortable'); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
-  R.C96991 = { normalReload: (await density()).selected };
+  R.C96991 = { normalReload: (await density(p, 'C96991-normal-reload-density-menu-open')).selected };
   const fail = (u: URL) => /preferences\/work-orders-list/.test(u.toString());
   const handler = async (r: any) => { if (r.request().method() === 'GET') await r.fulfill({ status: 500, contentType: 'application/json', body: '{"errors":[{"error":"ZZ forced failure"}]}' }); else await r.continue(); };
   await p.route(fail, handler);
-  await go('Tech View', n); R.C96991.failTech = (await density()).selected; await shot(p, 'C96991-fail-tech');
-  await display(p, 'Board View'); await p.waitForTimeout(1500); R.C96991.failBoard = (await density()).selected;
+  await go('Tech View', n); R.C96991.failTech = (await density(p, 'C96991-fail-tech-density-menu-open')).selected;
+  await display(p, 'Board View'); await p.waitForTimeout(1500); R.C96991.failBoard = (await density(p, 'C96991-fail-board-density-menu-open')).selected;
   await p.unroute(fail, handler);
   R.C96991.savedStill = (await prefGet()).density;
 });

@@ -503,3 +503,6 @@ the app — the QA branch's scrambled data (developer, Slack 12 Oct). Reproduce 
 `logs<N>/<script>.done` exists, so creating that file (with a one-line reason) stops it running in this pass without
 touching the pass — used 15 Oct to keep `signout-fix.mts` from running before the design cases (moved to the fifth pass).
 #names #staging #rerun → L0339, L0342, L0346
+- (L0349 addendum, 15 Oct ~03:15 UTC — QA lead ruling) **WO Board / Tech View: everything runs on STAGING; nothing for this
+  suite runs on any QA branch** ("Everything needs to run on staging. Nothing for WO Board and Tech view is to run on any QA
+  branch."). So S5-R11b cannot be reproduced on the QA branch either — report it as not reproducible on staging and ask.
