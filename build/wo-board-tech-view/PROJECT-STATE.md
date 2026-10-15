@@ -65,3 +65,15 @@ Technicians made for these checks (e.g. "Esther Howard", "Ralph Edwards" — nam
 ## 7 · Open items
 - Run 498 on **staging** (Rule 126) — needs fresh staging sign-in values from the QA lead; one command in `STAGING-READY.md`. Must-check there: C96968 offline drag.
 - Then production, per Rule 126.
+
+## STAGING FULL RUN — status 15 Oct 2026 02:15 UTC (run 498, build v26.40.17-a5c4210)
+- **Posted to run 498 with annotated pictures:** 124 results (121 Passed, 3 Failed same-as-production, no ticket — C368232,
+  C368236, C368237). Files: `run498-2026-10-08/RESULTS-staging-full-batch{1..5}-2026-10-15.json`.
+- **Verdicts:** `evidence/staging-full-2026-10-14/judge/wave{1..8,8a..8e}.json`; pictures `judge/pictures-final-passes.json`
+  ("no_usable_picture" = re-captured in passes 3/4).
+- **Passes:** main (14 Oct 17:35–22:54) → stg-new5 → second (23:06–01:40) → third (from 01:41, `third-pass-plan.txt`, logs3) →
+  fourth (`fourth-pass-plan.txt`, logs4; starts with sign-in check, role reset, clock clean-up, then C581895; signout-fix LAST).
+- **Open for the QA lead:** C96973 (case vs newer PRD empty state), C97003 (view-only drop before Unassigned lands after it),
+  C96920 (offline Tech View never downloaded), C97005 step 8 (real sign-out cannot run unattended on staging), shipped fixes
+  C368134 / C368136 / C154889 / C154888 (case outcome 3). Chris's S5-R11b bug: waits on C581895's fourth-pass reading.
+- **Lessons:** L0339–L0346.
