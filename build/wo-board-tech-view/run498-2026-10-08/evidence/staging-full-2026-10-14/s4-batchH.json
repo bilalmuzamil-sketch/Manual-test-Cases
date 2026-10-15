@@ -10,12 +10,12 @@
   "wo": "deletable,deletable_reason,editable,id,number,display_number,engine_hours,tax,time_estimate,start_date,end_date,status_value,status,priority,workplace_id,is_vehicle_here,vin,licence_plate,customer_po,service_advisor_id,service_advisor_name,service_advisor_is_inactive,sales_rep_id,sales_rep_name,sales_rep_is_inactive,authorizer_contact_id,authorizer_full_name,authorizer_telephone,customer_id,company_id,company_name,customer_first_name,customer_last_name,company_notes,company_pin_notes,company_ibs,company_labour_type_id,customer_require_po,tech_assigned_id,technician_first_name,technician_last_name,purchase_order,mileage,vehicle,invoice_status,invoice_id,is_invoice_created,paid_balance,amount_paid,refunded_amount,total_parts_cost,total_labour_cost,total_tech_time,total_time,total_labour_cost_amount,total_tax_cost_amount,total_tax_cost,total_cost,progress,tech_progress,tech_tasks,total_clocked_time,clocked_labor,total_received_quantity,total_returned_quantity,part_request_count,part_return_request_count,notes_count,clock_ins_count,credit_term,balance,credit_limit,is_over_limit,payment_method,customer_account_id,sub_total,customer_payments,deposits,deposit_total,has_deposits,adjustments,totalAdjustments,adjustmentsSummary,invoice_balance,payments_applied,open_balance,has_part_sale_credits,invoiceCredits,reverseBlockedByCredits,reverseBlockedByLegacyCredit,cores_pending,shop_supplies_cost,work_order_shop_supplies_charge,shop_supplies_charge,max_shop_supplies_charge,min_shop_supplies_charge,invoice_shop_supplies_charge,invoice_tax,history_count,type,ibs_approval_code,invoice_shop_id"
  },
  "C96966": {
-  "wo": "S2-36167",
+  "wo": "S2-36171",
   "clock": {
    "in1": 201,
    "out1": 201,
    "in2": 201,
-   "running": "{\"technician_task\":{\"id\":\"8bd59f27-93a1-4b96-8cc0-6714bdef361f\",\"start_date\":\"2026-10-15 10:51:41\",\"staff_id\":\"b669608e-a897-4f21-a510-8ced9d9fa982\",\"label\":\"S-36167, Service - Cabin air filter\",\"hour"
+   "running": "{\"technician_task\":{\"id\":\"bdb3809b-44c5-4e2d-9242-e5c20a0d27e2\",\"start_date\":\"2026-10-15 11:08:22\",\"staff_id\":\"b669608e-a897-4f21-a510-8ced9d9fa982\",\"label\":\"S-36171, Service - Cabin air filter\",\"hour"
   },
   "before": {
    "status": "in_progress",
@@ -37,7 +37,7 @@
    "statusCard": null,
    "statusNearNumber": {
     "status": "In Progress",
-    "box": "S2-36167 In Progress"
+    "box": "S2-36171 In Progress"
    },
    "recordStatus": "In Progress",
    "leadNear": null
@@ -45,35 +45,41 @@
   "shiftMade": "Esther Howard 2026-10-16T03:00:00Z -> 2026-10-16T07:00:00Z (240 min)",
   "shiftKeys": "id,staffId,departmentId,seriesId,startsAt,endsAt,isAllDay,durationMinutes,color,note,isConflict,conflictReasons,workOrder,lines",
   "blockTags": {
+   "own": {
+    "candidates": 1,
+    "read": [
+     "(no details)"
+    ]
+   },
    "last": {
     "how": "customer name",
     "cls": "fc-timeline-event-harness",
     "x": 1136,
-    "y": 13086,
+    "y": 547,
     "w": 261,
     "h": 80
    },
-   "at1": {
+   "at2": {
     "how": "customer name",
     "cls": "fc-timeline-event-harness",
     "x": 701,
-    "y": 13086,
-    "w": 348,
-    "h": 80
-   },
-   "at2": {
-    "how": "fc-event",
-    "cls": "fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-ev",
-    "x": 1136,
-    "y": 13246,
+    "y": 547,
     "w": 348,
     "h": 80
    },
    "at3": {
     "how": "customer name",
     "cls": "fc-timeline-event-harness",
+    "x": 701,
+    "y": 547,
+    "w": 348,
+    "h": 80
+   },
+   "at4": {
+    "how": "customer name",
+    "cls": "fc-timeline-event-harness",
     "x": 1136,
-    "y": 13086,
+    "y": 547,
     "w": 261,
     "h": 80
    }
@@ -86,7 +92,7 @@
     "ZZAUTOTEST F1 Status And Time Kept 13584 ZZF4ST",
     "ZZAUTOTEST F1 Clear Shifts Scope 10150133 ZZF4CS",
     "ZZAUTOTEST F1 Status And Time Kept 27460 ZZF4ST",
-    "ZZAUTOTEST F3 Scheduled Techs Lines 31179 ZZF3SL Service - O",
+    "ZZAUTOTEST F1 Status And Time Kept 32297 ZZF4ST",
     ""
    ],
    "blockFound": 1,
@@ -128,17 +134,16 @@
   "reassign": {
    "danaLane": true,
    "bothOnScreen": false,
-   "heldScrolls": 8,
+   "heldScrolls": 6,
    "laneOnScreenAtDrop": true,
-   "dialog": "Reassign shift S2-36076 · ZZAUTOTEST Sched Lines 30846 close Move this shift to Dana Ortiz on Fri, Oct 16? The shift’s time changes from 12:45 PM – 2:45 PM to 1:00 PM – 3:00 PM. Cancel Reassign",
+   "dialog": "REFUSED (another work order): Reassign shift S2-36016 · ZZAUTOTEST Sched Lines 80348 close Move this shift to Dana Ortiz on Fri, Oct 16? The shift’s time changes from 12:45 PM – 2:45 PM to 1:00 PM – 3:00 PM. Cancel Reassign",
    "afterScreen": "Esther Howard 2026-10-16T08:00:00Z -> 2026-10-16T11:00:00Z (180 min)",
    "apiFallback": 200,
    "note": "screen drag to Dana Ortiz did not land; api fallback"
   },
   "scheduleWrites": [
-   "PATCH /api/schedule/shifts/715fdca2-936f-4a67-85cd-f9f0a8900f67 {\"startsAt\":\"2026-10-16T08:15:00.000Z\",\"isAllDay\":false,\"reassign\":false,\"changeNote\":false,\"scope\":\"shift\"}",
-   "PATCH /api/schedule/shifts/fc3ba83b-7c01-49f6-bf54-04dec2be327e {\"startsAt\":\"2026-10-16T08:00:00.000Z\",\"durationMinutes\":180,\"reassign\":false,\"changeNote\":false,\"scope\":\"shift\"}",
-   "PATCH /api/schedule/shifts/61825aa4-447f-4695-b0cc-3bd42c38f200 {\"startsAt\":\"2026-10-16T08:00:00.000Z\",\"isAllDay\":false,\"reassign\":true,\"staffId\":\"96b2ca3b-ba85-404e-a60d-b6dabe5b89e6\",\"departmentId\":null,\"changeNote\":false,\"scope\":\"shift\"}"
+   "PATCH /api/schedule/shifts/98be8b6f-24bd-4cec-973f-bdf16999ebe1 {\"startsAt\":\"2026-10-16T08:15:00.000Z\",\"isAllDay\":false,\"reassign\":false,\"changeNote\":false,\"scope\":\"shift\"}",
+   "PATCH /api/schedule/shifts/6e962e8b-5ddb-495b-8960-5b525d5020da {\"startsAt\":\"2026-10-16T08:00:00.000Z\",\"durationMinutes\":180,\"reassign\":false,\"changeNote\":false,\"scope\":\"shift\"}"
   ],
   "afterReassign": {
    "shift": "Dana Ortiz 2026-10-16T08:00:00Z -> 2026-10-16T11:00:00Z (180 min)",
@@ -154,14 +159,14 @@
   },
   "screenAfterSchedule": {
    "actualHours": [
-    "0.06 / 0.30"
+    "0.07 / 0.30"
    ],
    "totalHours": null,
    "firstStatusWordOnPage": "Approved",
    "statusCard": null,
    "statusNearNumber": {
     "status": "In Progress",
-    "box": "S2-36167 In Progress"
+    "box": "S2-36171 In Progress"
    },
    "recordStatus": "In Progress",
    "leadNear": null
@@ -184,14 +189,14 @@
   },
   "screenAfterLeadChange": {
    "actualHours": [
-    "0.08 / 0.30"
+    "0.09 / 0.30"
    ],
    "totalHours": null,
    "firstStatusWordOnPage": "Approved",
    "statusCard": null,
    "statusNearNumber": {
     "status": "In Progress",
-    "box": "S2-36167 In Progress"
+    "box": "S2-36171 In Progress"
    },
    "recordStatus": "In Progress",
    "leadNear": null
@@ -199,7 +204,7 @@
   "lockedTime": {
    "workOrderTimesheets": {
     "lockOrApprovalWords": [],
-    "text": "Lines (1) Parts (1) Notes Stats Finance more_vert Filter By Technician arrow_drop_down Namearrow_drop_up Linearrow_drop_up Description Datearrow_drop_up Start Time End Time Total Time Last Edited Esther Howard 1 - Service - Cabin air filter Today 03:51 PM Active 0.07 - Esther Howard 1 - Service - Ca"
+    "text": "Lines (1) Parts (1) Notes Stats Finance more_vert Filter By Technician arrow_drop_down Namearrow_drop_up Linearrow_drop_up Description Datearrow_drop_up Start Time End Time Total Time Last Edited Esther Howard 1 - Service - Cabin air filter Today 04:08 PM Active 0.08 - Esther Howard 1 - Service - Ca"
    },
    "timesheetActivities": {
     "lockOrApprovalWords": [
@@ -214,160 +219,7 @@
     ]
    }
   },
-  "clockStillRunning": "{\"technician_task\":{\"id\":\"8bd59f27-93a1-4b96-8cc0-6714bdef361f\",\"start_date\":\"2026-10-15 10:51:41\",\"staff_id\":\"b669608e-a897-4f21-a510-8ced9d9fa982\",\"label\":\"S-36167, Service - Cabin air filter\",\"hour",
+  "clockStillRunning": "{\"technician_task\":{\"id\":\"bdb3809b-44c5-4e2d-9242-e5c20a0d27e2\",\"start_date\":\"2026-10-15 11:08:22\",\"staff_id\":\"b669608e-a897-4f21-a510-8ced9d9fa982\",\"label\":\"S-36171, Service - Cabin air filter\",\"hour",
   "stopClock": 201
- },
- "C96958": {
-  "wo": "S2-36168",
-  "eligible": {
-   "Esther Howard": [],
-   "Ralph Edwards": [],
-   "Dana Ortiz": []
-  },
-  "candidates": [
-   "Dana Ortiz",
-   "Esther Howard",
-   "Ralph Edwards"
-  ],
-  "base": {
-   "Esther Howard": {
-    "count": 0,
-    "mentionsWo": [],
-    "top": [],
-    "empty": true,
-    "bell": [],
-    "calls": [
-     "200 /notifications",
-     "200 /js/Notifications.CrQqypIe.js",
-     "200 /css/Notifications.CFaaO7wR.css"
-    ]
-   },
-   "Ralph Edwards": {
-    "count": 0,
-    "mentionsWo": [],
-    "top": [],
-    "empty": true,
-    "bell": [],
-    "calls": [
-     "200 /notifications",
-     "200 /css/Notifications.CFaaO7wR.css",
-     "200 /js/Notifications.CrQqypIe.js"
-    ]
-   },
-   "Dana Ortiz": {
-    "count": 0,
-    "mentionsWo": [],
-    "top": [],
-    "empty": true,
-    "bell": [],
-    "calls": [
-     "200 /notifications",
-     "200 /js/Notifications.CrQqypIe.js",
-     "200 /css/Notifications.CFaaO7wR.css"
-    ]
-   }
-  },
-  "woPagePick": {
-   "field": 1,
-   "options": [
-    "check Ayesha Khan",
-    "check BIlal Muzamil",
-    "check Bilal Muzamil",
-    "check Billy Nobill",
-    "check Billy Martin",
-    "check Brandi Smith",
-    "check Brandon Jarvis",
-    "check Branko Cicovic"
-   ],
-   "picked": true
-  },
-  "leadAfterWoPage": "Dana",
-  "afterWoPage": {
-   "Esther Howard": {
-    "count": 0,
-    "mentionsWo": [],
-    "top": [],
-    "empty": true,
-    "bell": [],
-    "calls": [
-     "200 /notifications",
-     "200 /css/Notifications.CFaaO7wR.css",
-     "200 /js/Notifications.CrQqypIe.js"
-    ]
-   },
-   "Dana Ortiz": {
-    "count": 0,
-    "mentionsWo": [],
-    "top": [],
-    "empty": true,
-    "bell": [],
-    "calls": [
-     "200 /notifications",
-     "200 /css/Notifications.CFaaO7wR.css",
-     "200 /js/Notifications.CrQqypIe.js"
-    ]
-   }
-  },
-  "boardMessage": [
-   "Lead technician updated"
-  ],
-  "leadAfterBoard": "Ralph",
-  "afterBoard": {
-   "Dana Ortiz": {
-    "count": 0,
-    "mentionsWo": [],
-    "top": [],
-    "empty": true,
-    "bell": [],
-    "calls": [
-     "200 /notifications",
-     "200 /css/Notifications.CFaaO7wR.css",
-     "200 /js/Notifications.CrQqypIe.js"
-    ]
-   },
-   "Ralph Edwards": {
-    "count": 0,
-    "mentionsWo": [],
-    "top": [],
-    "empty": true,
-    "bell": [],
-    "calls": [
-     "200 /notifications",
-     "200 /css/Notifications.CFaaO7wR.css",
-     "200 /js/Notifications.CrQqypIe.js"
-    ]
-   }
-  },
-  "techRowGroup": "b51a80a5-2d2a-488a-87cd-747e8798d8ee",
-  "techMessage": [
-   "Lead technician updated"
-  ],
-  "leadAfterTech": "Esther",
-  "afterTech": {
-   "Ralph Edwards": {
-    "count": 0,
-    "mentionsWo": [],
-    "top": [],
-    "empty": true,
-    "bell": [],
-    "calls": [
-     "200 /notifications",
-     "200 /css/Notifications.CFaaO7wR.css",
-     "200 /js/Notifications.CrQqypIe.js"
-    ]
-   },
-   "Esther Howard": {
-    "count": 0,
-    "mentionsWo": [],
-    "top": [],
-    "empty": true,
-    "bell": [],
-    "calls": [
-     "200 /notifications",
-     "200 /css/Notifications.CFaaO7wR.css",
-     "200 /js/Notifications.CrQqypIe.js"
-    ]
-   }
-  }
  }
 }
