@@ -168,7 +168,9 @@ if (want('C368127') || want('C368126') || want('C96929')) await asUserB(async ()
     const k = sorted[2], e = sorted[0];      // pin a later name first, then an earlier one (the case: Kristin Watson, then Esther Howard)
     await p.locator(`[data-test-id="button_tech_view_pin_${k.id}"]`).click(); await p.waitForTimeout(1800); R.C368126.afterPin1 = { pinned: k.name, order: await order() };
     await p.locator(`[data-test-id="button_tech_view_pin_${e.id}"]`).click(); await p.waitForTimeout(1800); R.C368126.afterPin2 = { pinned: e.name, order: await order() }; await shot(p, 'C368126-tech');
-    await display(p, 'Board View'); const cols = Object.keys(await columnHeads(p)); const ids = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="board_column_"]')].map(e => e.getAttribute('data-test-id')).filter(x => /^board_column_(unassigned|[0-9a-f-]{36})$/.test(x))`) as string[];
+    // 15 Oct 2026 (staging second pass): only the columns drawn on screen were read, so Bilal Muzamil's column (further right
+    // among ~119 technicians) was missed. allBoardCols scrolls the board to its END and returns every column in board order.
+    await display(p, 'Board View'); const ids = (await (await import('./wob.mts')).allBoardCols(p)).map((c) => 'board_column_' + c.id);
     const nameOf = Object.fromEntries(techs.map((x) => ['board_column_' + x.id, x.name])); nameOf['board_column_unassigned'] = 'Unassigned';
     R.C368126.board = ids.map((i) => nameOf[i]).filter((x) => x === 'Unassigned' || four.some((f) => f.name === x)); await shot(p, 'C368126-board');
     await display(p, 'Tech View');

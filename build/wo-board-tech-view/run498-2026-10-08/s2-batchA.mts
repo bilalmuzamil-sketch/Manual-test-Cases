@@ -8,7 +8,7 @@ import path from 'node:path';
 import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { signIn } from '../../global-search/e2e/fixtures/auth.js';
-import { api, candidates, seedCase } from './data.mts';
+import { api, candidates, seedCase, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, groups, toggleGroup, drag, read } from './wob.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -26,7 +26,7 @@ const mine = (gs: any[], ids: string[]) => gs.filter((g) => ids.includes(g.id) |
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
-  console.log(t(), id, JSON.stringify(R[id]).slice(0, 1800));
+  console.log(t(), id, JSON.stringify(R[id]).slice(0, id === 'C96935' ? 30000 : 1800));
   fs.writeFileSync(path.join(EV, 's2-batchA.json'), JSON.stringify(R, null, 1));
 }
 const prefs = async () => (await a.get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {};
@@ -135,9 +135,30 @@ await run('C96935', async () => {
   await tv(n);
   for (const g of await groups(p)) if ((g.id === tA.id || g.id === tB.id) && g.collapsed) await toggleGroup(p, g.id);
   const scroller = '.q-table__middle';
-  const topGroup = () => p.evaluate(`(() => { const s = document.querySelector('${scroller}'); const th = s.querySelector('thead'); const y = (th ? th.getBoundingClientRect().bottom : s.getBoundingClientRect().top) + 6; const x = s.getBoundingClientRect().left + 200; const el = document.elementFromPoint(x, y); const tr = el && el.closest('tr'); const tid = tr && tr.getAttribute('data-test-id') || ''; return { at: tid.startsWith('tech_view_group_') ? (tr.querySelector('[data-test-id^="tech_view_group_name_"]') || {}).textContent : (tr ? 'row ' + ((tr.innerText.match(/S\\d+-\\d+/) || [''])[0]) : null), scrollTop: Math.round(s.scrollTop) }; })()`);
-  R.C96935 = { samples: [] };
-  for (const y of [0, 300, 700, 1100, 1400, 1700]) { await p.evaluate(`document.querySelector('${scroller}').scrollTop = ${y}`); await p.waitForTimeout(900); R.C96935.samples.push(await topGroup()); if (y === 700) await shot(p, 'C96935-mid-A'); if (y === 1700) await shot(p, 'C96935-in-B'); }
+  // 15 Oct 2026 (staging second pass): every reading came back empty — the header kept at the top while scrolling is a
+  // separate drawn copy, NOT a table row (playbook 2026-10-08), so `closest('tr')` found nothing. Now each sample reads the
+  // whole stack of elements at the top edge of the table body (elementsFromPoint), the text of the first one that names a
+  // group (name and count), and every visible group-name label sitting at that edge, copy or row. The scroll goes on in
+  // 250 px steps until [Tech-B]'s rows have reached the top (or the table ends), so both groups are passed through.
+  const NAMES = JSON.stringify([tA.name, tB.name, 'Unassigned']);
+  const topGroup = () => p.evaluate(`(() => { const s = document.querySelector('${scroller}'); const th = s.querySelector('thead'); const y = (th ? th.getBoundingClientRect().bottom : s.getBoundingClientRect().top) + 6; const x = s.getBoundingClientRect().left + 200;
+    const names = ${NAMES}; const tidOf = (e) => { let a = e, t = ''; while (a && !t) { t = a.getAttribute && a.getAttribute('data-test-id') || ''; a = a.parentElement; } return t; };
+    const stack = document.elementsFromPoint(x, y);
+    let named = null; for (const e of stack) { let a = e; for (let i = 0; a && i < 6; i++, a = a.parentElement) { const tx = (a.innerText || '').replace(/\\s+/g, ' ').trim(); if (tx && tx.length < 160 && names.some(n => tx.includes(n))) { named = { text: tx.slice(0, 120), tid: tidOf(a), tag: a.tagName.toLowerCase(), cls: String(a.className).slice(0, 60), inTableRow: !!a.closest('tr') }; break; } } if (named) break; }
+    const el = stack[0]; const tr = el && el.closest('tr'); const tid = tr && tr.getAttribute('data-test-id') || '';
+    const atEdge = [...document.querySelectorAll('[data-test-id^="tech_view_group_name_"], body *')].filter(e => e.children.length === 0 && names.includes((e.textContent || '').trim()))
+      .map(e => { const r = e.getBoundingClientRect(); return { name: e.textContent.trim(), top: Math.round(r.top), w: r.width, inGroupRow: !!e.closest('tr[data-test-id^="tech_view_group_"]'), tid: tidOf(e) }; })
+      .filter(o => o.w > 0 && o.top >= y - 40 && o.top <= y + 40).map(o => o.name + (o.inGroupRow ? ' (row)' : ' (copy ' + o.tid + ')') + '@' + o.top);
+    const bRow = document.querySelector('[data-test-id="tech_view_group_${tB.id}"]'); const bTop = bRow ? Math.round(bRow.getBoundingClientRect().top - y) : null;
+    return { scrollTop: Math.round(s.scrollTop), edge: Math.round(y), header: named, under: tid.startsWith('tech_view_group_') ? 'group row ' + ((tr.querySelector('[data-test-id^="tech_view_group_name_"]') || {}).textContent || '') : (tr ? 'row ' + ((tr.innerText.match(/S\\d+-\\d+/) || [''])[0]) : (el ? el.tagName.toLowerCase() + '.' + String(el.className).slice(0, 40) : null)), groupNamesAtEdge: atEdge, techBGroupRowFromEdge: bTop }; })()`) as Promise<any>;
+  R.C96935 = { techA: tA.name, techB: tB.name, samples: [] };
+  for (let y = 0, last = -1; y <= 30000; y += 250) {
+    await p.evaluate(`document.querySelector('${scroller}').scrollTop = ${y}`); await p.waitForTimeout(700);
+    const sm = await topGroup(); R.C96935.samples.push(sm);
+    if (y === 500) await shot(p, 'C96935-mid-A');
+    if (sm.scrollTop === last) break; last = sm.scrollTop;
+    if (sm.techBGroupRowFromEdge !== null && sm.techBGroupRowFromEdge < -150) { await shot(p, 'C96935-in-B'); break; }
+  }
 });
 
 await run('C368125', async () => {
@@ -214,15 +235,31 @@ await run('C96939', async () => {
 });
 await run('C96937', async () => {
   const n = 'ZZAUTOTEST F2 Assigned Groups';
-  const jw = techs.filter((x) => !['Ayesha Khan', 'Bilal Muzamil', 'Branko Cicovic', 'Admin ShopView'].includes(x.name))[2];
-  await seedCase(a, n, 'ZZF2AG', [{ lead: me.id }, { lead: tB.id }, { lead: null }]);
-  await tv(n); await unpinAll(); await pinBtn(jw.id).click(); await p.waitForTimeout(1800);
-  R.C96937 = { pinned: jw.name };
+  // 15 Oct 2026 (staging second pass): the work order led by another technician still had you as its Service Advisor (whoever
+  // creates a work order becomes it), so Assigned to me showed it too; and the pinned person was "the third other technician"
+  // (Advisor Analysis on staging), not Jenny Wilson. Now the case's own names are used where they exist: [WO-2] is led by Ralph
+  // Edwards with Ralph as its Service Advisor, [WO-3] (no lead) keeps you as advisor, and Jenny Wilson is pinned.
+  const RE = by('Ralph Edwards') ?? tB;
+  const jw = by('Jenny Wilson') ?? techs.filter((x) => !['Ayesha Khan', 'Bilal Muzamil', 'Branko Cicovic', 'Admin ShopView'].includes(x.name))[2];
+  await seedCase(a, n, 'ZZF2AG', [{ lead: me.id }, { lead: RE.id }, { lead: null }]);
+  const fix: string[] = [];
+  for (const w of await workOrders(a, n)) {
+    const lead = `${w.techAssignedFirstName ?? ''} ${w.techAssignedLastName ?? ''}`.trim();
+    if (lead && lead !== 'Admin ShopView' && lead !== RE.name) fix.push(`${w.number} lead -> ${RE.name}: ` + (await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: RE.id })).status);
+    if (lead && lead !== 'Admin ShopView') fix.push(`${w.number} advisor -> ${RE.name}: ` + (await a.post('/api/work-orders/change-service-advisor', { work_order_id: w.id, service_advisor_id: RE.id })).status);
+    if (!lead && `${w.serviceAdvisorFirstName} ${w.serviceAdvisorLastName}` !== 'Admin ShopView') fix.push(`${w.number} advisor -> you: ` + (await a.post('/api/work-orders/change-service-advisor', { work_order_id: w.id, service_advisor_id: me.id })).status);
+  }
+  const setup = (await workOrders(a, n)).map((w: any) => `${w.number} lead=${`${w.techAssignedFirstName ?? ''} ${w.techAssignedLastName ?? ''}`.trim() || '-'} advisor=${w.serviceAdvisorFirstName} ${w.serviceAdvisorLastName}`);
+  // pin ONLY Jenny Wilson (her group can be far down among ~119 technicians, so the pin is set on the saved choice, then read back on screen)
+  { const PREF = '/api/users/me/preferences/work-orders-list'; const pv = await prefs(); await a.put(PREF, { value: { ...pv, pinnedTechnicianIds: [jw.id] } }); }
+  await tv(n);
+  R.C96937 = { setupFixes: fix, setup, pinned: jw.name, pinsOnScreen: (await groups(p)).filter((g) => g.pin?.pressed === 'true').map((g) => g.name) };
   await display(p, 'List'); await p.locator('[data-test-id="filter_chip_assigned_to_me"]').click(); await p.waitForTimeout(3000);
   R.C96937.list = Object.keys(await read(p, 'List'));
   await display(p, 'Tech View'); R.C96937.tech = (await groups(p)).map((g) => `${g.name}(${g.count}) [${g.rows.join(' ')}]${g.pin?.pressed === 'true' ? ' pinned' : ''}`); await shot(p, 'C96937-assigned-on');
   await p.locator('[data-test-id="filter_chip_assigned_to_me"]').click(); await p.waitForTimeout(3000);
   const g = await groups(p); R.C96937.offCount = g.length; R.C96937.offFirst = g.slice(0, 3).map((x) => `${x.name}${x.pin?.pressed === 'true' ? ' pinned' : ''}`);
+  R.C96937.offHasRalphEstherJenny = ['Ralph Edwards', 'Esther Howard', 'Jenny Wilson'].map((nm) => `${nm}: ${g.some((x) => x.name === nm) ? 'shown' : 'not drawn (may be further down)'}`);
   await unpinAll();
 });
 // restore the pins that were there before

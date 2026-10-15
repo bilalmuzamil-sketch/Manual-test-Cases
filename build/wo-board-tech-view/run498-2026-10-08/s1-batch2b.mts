@@ -12,7 +12,7 @@ import { open, done, APP } from './session.mts';
 import { api } from './data.mts';
 
 const here = path.dirname(new URL(import.meta.url).pathname);
-const EV = path.join(here, 'evidence');
+const EV = process.env.WOB_EV || path.join(here, 'evidence'); // 15 Oct 2026: staging pictures go to the run folder (WOB_EV)
 const t = () => new Date().toISOString().slice(11, 19);
 const { browser, page: p } = await open('/workorders?tab=all');
 p.setDefaultTimeout(30_000);
@@ -61,7 +61,8 @@ async function read(d: string): Promise<Record<string, string>> {
   })()`) as any;
 }
 const raw = (await a.get('/api/work-orders/lead-technician-candidates')).body?.data?.technicians ?? [];
-const other = raw.find((x: any) => `${x.firstName} ${x.lastName}` === 'Ayesha Khan');
+// 15 Oct 2026: any technician who is not the signed-in admin will do as "someone other than you" (Ayesha Khan first, as before)
+const other = raw.find((x: any) => `${x.firstName} ${x.lastName}` === 'Ayesha Khan') ?? raw.find((x: any) => `${x.firstName} ${x.lastName}` === 'Ralph Edwards') ?? raw.find((x: any) => `${x.firstName} ${x.lastName}` !== 'Admin ShopView');
 
 // ── C96913 again: tab by tab, search typed after each tab click ─────────
 try {
@@ -89,8 +90,11 @@ try {
   R.C154884 = { asSetUp: await mine('asSetUp') };
   const list = (await a.get(`/api/work-orders?pagination[rowsPerPage]=50&search=${encodeURIComponent('ZZAUTOTEST F1 Assigned To Me')}`)).body?.data?.work_orders ?? [];
   R.C154884.changes = [];
-  for (const w of list.filter((w: any) => w.number === 'S10043-17602' || w.number === 'S10043-17603')) {
-    for (const body of [{ work_order_id: w.id, service_advisor_id: other?.userId }, { work_order_id: w.id, service_advisor_id: other?.staffId }, { id: w.id, service_advisor_id: other?.userId }]) {
+  // 15 Oct 2026 (staging second pass): the filter named the QA branch's numbers (S10043-17602/3), so on staging nothing was changed.
+  // The case's setup: every work order NOT led by you ([WO-3] other lead, [WO-4] no lead) gets another Service Advisor.
+  const notMine = (w: any) => `${w.techAssignedFirstName ?? ''} ${w.techAssignedLastName ?? ''}`.trim() !== 'Admin ShopView';
+  for (const w of list.filter(notMine)) {
+    for (const body of [{ work_order_id: w.id, service_advisor_id: other?.staffId }, { work_order_id: w.id, service_advisor_id: other?.userId }, { id: w.id, service_advisor_id: other?.userId }]) {
       const r = await a.post('/api/work-orders/change-service-advisor', body);
       R.C154884.changes.push({ n: w.number, keys: Object.keys(body).join(','), status: r.status, body: JSON.stringify(r.body).slice(0, 160) });
       if (r.status < 300) break;

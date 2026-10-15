@@ -11,6 +11,7 @@ import { open, done, APP, API } from './session.mts';
 import { signIn } from '../../global-search/e2e/fixtures/auth.js';
 import { api, candidates, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, active, tab, activeTab, switchLocUI } from './wob.mts';
+import { viewAs } from './viewas.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -31,9 +32,10 @@ const tz = (w: any) => w?.timezone ?? w?.workplace_timezone ?? 'America/Edmonton
 const toLoc = (w: any) => a.post('/api/iam/change-location', { workplace_id: w.id, workplace_timezone: tz(w) });
 const pref = async (pg = p) => { const r = await api(pg).get('/api/users/me/preferences/work-orders-list'); const v = r.body?.data?.value ?? r.body?.value ?? null; return { status: r.status, keys: v ? Object.keys(v) : null, display: v ? (v.display ?? null) : null, filters: v ? JSON.stringify(v.filters) : null }; };
 const go = async (pg = p) => { await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); };
+const OWN_END = new Set(['C96910']); // 15 Oct 2026: C96910 takes its end picture in the new user's own window
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
-  try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
+  try { await f(); if (!OWN_END.has(id)) await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 2500));
 }
 R.prefShape = await pref();
@@ -66,6 +68,30 @@ if (!userB && (want('C96910') || want('C96912'))) {
 }
 R.userB = userB ? { id: userB.id ?? userB.staff_id, role: userB.role_label, active: userB.is_active, workplace: userB.defaultWorkplaceName } : null;
 console.log(t(), 'User-B', JSON.stringify(R.userB), JSON.stringify(R.userBCreate ?? ''));
+// 15 Oct 2026 (staging second pass): the fixed User-B above is shared with s2-batchB/s2-batchC/s3-batchA, which choose displays
+// as that user, so it already had Board View saved and was no longer "a user who never chose a display" (C96910, C96912).
+// C96910 and C96912 now each make a BRAND-NEW user (timestamped email, this organisation's Service Advisor role, department
+// Service, this location) and look at Work Orders through viewAs: a new browser window carrying that user's own sign-in data,
+// as signing in as them would — not the admin's window with the server session switched.
+async function freshUser(tag: string) {
+  const ORG = (await import('./profile.mts')).ORG;
+  const rl = (await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data; const roles: any[] = Array.isArray(rl) ? rl : rl?.collection ?? [];
+  const role = roles.find((r: any) => /^service advisor$/i.test(r.label ?? r.name ?? '')) ?? roles.find((r: any) => /^admin(istrator)?$/i.test(r.label ?? r.name ?? ''));
+  const deps = (await a.get('/api/departments')).body?.data; const dl = Array.isArray(deps) ? deps : deps?.collection ?? [];
+  const email = `zzautotest.wob.never.${tag.toLowerCase()}.${Date.now()}@staging.shopview.local`;
+  const c = await a.post('/api/iam/create', { email, first_name: 'ZZAUTOTEST', last_name: `Never Chose ${tag}`, role_id: role?.id, departments: [(dl.find((d: any) => (d.name ?? d.label) === 'Service') ?? dl[0])].filter(Boolean).map((d: any) => d.id), workplace_id: HEAVY });
+  const row = await findStaff(email);
+  if (!row) throw new Error(`new User-B not made: ${c.status} ${JSON.stringify(c.body).slice(0, 200)}`);
+  return { row, info: { email, role: role?.label ?? role?.name, create: c.status, id: row.id, staffId: row.staff_id, workplace: row.defaultWorkplaceName } };
+}
+/** look at Work Orders as a brand-new user in their own window; returns what that window showed */
+async function asNewUser<T>(tag: string, f: (pg: Page) => Promise<T>): Promise<{ user: any; seen?: T; error?: string }> {
+  const { row, info } = await freshUser(tag);
+  const v = await viewAs(browser, p, a, row.id, adminStaff);
+  try { const prefNew = await pref(v.page); return { user: { ...info, perms: v.perms, prefBeforeOpening: prefNew }, seen: await f(v.page) }; }
+  catch (e: any) { return { user: info, error: String(e?.message || e).slice(0, 300) }; }
+  finally { await v.close(); await p.waitForTimeout(800); await toLoc({ id: HEAVY, timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); }
+}
 async function asUserB<T>(f: () => Promise<T>): Promise<T> {
   const s = await a.post('/api/switch-user', { user_id: userB.id ?? userB.staff_id });
   if (s.status >= 300) throw new Error(`switch to User-B: ${s.status} ${JSON.stringify(s.body).slice(0, 200)}`);
@@ -81,12 +107,13 @@ async function asUserB<T>(f: () => Promise<T>): Promise<T> {
 await run('C96910', async () => {
   const name = 'ZZAUTOTEST F1 Default List';
   if (!(await workOrders(a, name)).length) await workOrder(a, await customer(a, name, 'ZZDL-1'), 'approved', tA.id);
-  R.C96910 = await asUserB(async () => {
-    const o: any = { who: await api(p).get('/api/auth/me/fe-permissions').then((r) => (r.body?.data?.fe_permissions ?? []).length), prefBefore: await pref() };
-    await go(); o.first = await active(p); o.firstUrl = p.url().replace(APP, ''); await shot(p, 'C96910-userB-first');
-    o.layout = await p.evaluate(`({ techGroups: document.querySelectorAll('[data-test-id^="tech_view_group_"]').length, boardColumns: document.querySelectorAll('[data-test-id^="board_column_"]').length, tableRows: document.querySelectorAll('table tbody tr').length })`);
-    await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); o.afterRefresh = await active(p); await shot(p, 'C96910-userB-refresh');
-    o.prefAfter = await pref();
+  R.C96910 = await asNewUser('C96910', async (pg) => {
+    const o: any = {};
+    await go(pg); o.first = await active(pg); o.firstUrl = pg.url().replace(APP, ''); await shot(pg, 'C96910-userB-first');
+    o.layout = await pg.evaluate(`({ techGroups: document.querySelectorAll('[data-test-id^="tech_view_group_"]').length, boardColumns: document.querySelectorAll('[data-test-id^="board_column_"]').length, tableRows: document.querySelectorAll('table tbody tr').length })`);
+    await pg.reload({ waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); o.afterRefresh = await active(pg); await shot(pg, 'C96910-userB-refresh');
+    o.prefAfter = await pref(pg);
+    (globalThis as any).__wobPage = pg; await (globalThis as any).__shotEach?.('C96910'); (globalThis as any).__wobPage = p;
     return o;
   });
 });
@@ -117,7 +144,7 @@ await run('C96912', async () => {
   R.C96912.firstBrowser = { url: p.url().replace(APP, ''), display: await active(p) };
   if (/login/.test(p.url())) { await Promise.race([browser.close().catch(() => {}), new Promise((r) => setTimeout(r, 5000))]); browser = s2.browser; p = s2.page; a = api(p); R.C96912.note = 'the new sign-in ended the first browser session'; }
   R.C96912.puts = puts;
-  R.C96912.userB = await asUserB(async () => { await go(); const d = await active(p); await shot(p, 'C96912-userB'); return { display: d, pref: await pref() }; });
+  R.C96912.userB = await asNewUser('C96912', async (pg) => { await go(pg); const d = await active(pg); await shot(pg, 'C96912-userB'); return { display: d, pref: await pref(pg) }; });
   await go(); await display(p, 'List');
 });
 
@@ -164,25 +191,31 @@ await run('C96923', async () => {
   await toLoc(loc2);
   if (!(await workOrders(a, name + ' 2')).length) { try { await workOrder(a, await customer(a, name + ' 2', 'ZZLR-2'), 'approved', null); } catch (e: any) { R.C96923loc2seed = String(e.message).slice(0, 200); } }
   await toLoc({ id: HEAVY, timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
-  R.C96923 = { loc2: loc2?.name };
-  await go(); R.C96923.start = await changeLocationUI('Staging Heavy Duty - 9919'); await go();
-  // today's List behaviour first (the note the case compares with)
-  await go(); await display(p, 'List'); if ((await assigned().getAttribute('aria-pressed')) !== 'true') { await assigned().click(); await p.waitForTimeout(2000); }
+  // 15 Oct 2026 (staging second pass): the Board View change went to "ZZAUTOTEST F2 Empty Shop", which the menu would not pick
+  // (three tries, location then unknown), and the script never went back to the first location. Now it follows the case's
+  // steps between the first location (Staging Heavy Duty - 9919) and [Loc-2] (Staging Lethbridge - 4310) only:
+  // List baseline -> back to the first location, Assigned to me off -> Board View + on -> Loc-2 -> Tech View -> back to the first.
+  const LOC1 = wps.find((w) => w.id === HEAVY)?.name ?? 'Staging Heavy Duty - 9919';
+  R.C96923 = { loc1: LOC1, loc2: loc2?.name };
+  await go(); R.C96923.start = await changeLocationUI(LOC1); await go();
+  // steps 1-4: today's List behaviour (the baseline)
+  await display(p, 'List'); if ((await assigned().getAttribute('aria-pressed')) !== 'true') { await assigned().click(); await p.waitForTimeout(2000); }
   R.C96923.listBefore = await state();
   R.C96923.listSteps = await changeLocationUI(loc2.name); R.C96923.listAfter = await state(); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); R.C96923.listAfterRefresh = await state(); await shot(p, 'C96923-list-after-change');
-  // start the Board View half from a location the menu will switch away from
-  await go();
-  // Board View → Loc-2
+  // step 5: return to the first location and turn Assigned to me off
+  R.C96923.backSteps = await changeLocationUI(LOC1); if (!/workorders/.test(p.url())) await go();
+  if ((await assigned().getAttribute('aria-pressed')) === 'true') { await assigned().click(); await p.waitForTimeout(2000); }
+  R.C96923.backAtLoc1 = await state();
+  // steps 6-9: Board View, Assigned to me on, change to Loc-2
   await display(p, 'Board View'); if ((await assigned().getAttribute('aria-pressed')) !== 'true') { await assigned().click(); await p.waitForTimeout(2000); }
   R.C96923.boardBefore = await state();
-  R.C96923.boardSteps = await changeLocationUI(process.env.WOB_EMPTY_LOC || 'ZZAUTOTEST Empty Shop'); R.C96923.boardAfter = await state(); R.C96923.boardPref = await pref(); await shot(p, 'C96923-board-after-change');
-  // Tech View → back to the first location
+  R.C96923.boardSteps = await changeLocationUI(loc2.name); R.C96923.boardAfter = await state(); R.C96923.boardPref = await pref(); await shot(p, 'C96923-board-after-change');
+  // step 10: Tech View (Assigned to me should still be on from step 7 — read BEFORE touching it)
   if (!/workorders/.test(p.url())) await go();
-  await display(p, 'Tech View'); if ((await assigned().getAttribute('aria-pressed')) !== 'true') { await assigned().click(); await p.waitForTimeout(2000); }
-  R.C96923.techBefore = await state();
-  // the menu ignores a pick of the location its orange button shows (Heavy Duty, even while the top bar reads
-  // Lethbridge), so the second change goes to the third location instead of back
-  R.C96923.techSteps = await changeLocationUI(loc2.name); R.C96923.techAfter = await state(); R.C96923.techPref = await pref(); await shot(p, 'C96923-tech-after-change');
+  await display(p, 'Tech View'); R.C96923.techBefore = await state();
+  if (R.C96923.techBefore.assignedToMe !== 'true') { R.C96923.techAssignedWasOff = true; await assigned().click(); await p.waitForTimeout(2000); }
+  // steps 11-12: change back to the first location and check again
+  R.C96923.techSteps = await changeLocationUI(LOC1); R.C96923.techAfter = await state(); R.C96923.techPref = await pref(); await shot(p, 'C96923-tech-after-change');
   if (!/workorders/.test(p.url())) await go();
   if ((await assigned().getAttribute('aria-pressed')) === 'true') await assigned().click();
   await display(p, 'List');
