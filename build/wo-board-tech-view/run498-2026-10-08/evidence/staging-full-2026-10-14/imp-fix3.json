@@ -5,45 +5,115 @@
   "exit": 200
  },
  "C368238": {
-  "wo": "S-35843",
+  "wo": "S-36036",
+  "advisor": 201,
   "step1": {
    "pressed": "true",
    "unfiltered": 31,
-   "rows": 2,
-   "listsIt": true,
+   "rows": 0,
+   "listsIt": false,
    "who": null,
    "top": "ShopHub expand_more Work Orders Schedule Customers Parts Reports Dashboard search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
-   "first": [
-    "location_on Approved — S2-35843 ZZAUTOTEST Impersonate Start 8.. ZZIMP-1 ZZWOB179202890152",
-    " $0.00 "
-   ],
-   "empty": null
+   "first": [],
+   "empty": "No work orders match these filters"
   },
   "switch": {
-   "pageUsed": "Reports > Work In Progress",
-   "reportRequestsBeforeSwitch": [],
-   "spinnerShownAtSwitch": false
+   "menu": [
+    "ShopHub expand_more",
+    "Work Orders",
+    "Schedule",
+    "Customers",
+    "Parts",
+    "Reports",
+    "Dashboard",
+    "timer Clock In",
+    "notifications 1",
+    "Staging Heavy Duty - 9919 AS"
+   ],
+   "pageUsed": "Reports (top menu link) > Work In Progress",
+   "atSwitch": {
+    "requestSent": true,
+    "answeredBeforeSwitch": 0,
+    "restricted": 0
+   },
+   "reportRequests": [
+    "/api/reporting/reports/work-in-progress/filters?from=2026-10-14T19%3A00%3A00.000Z&to=2026-"
+   ],
+   "answers": []
   },
   "toasts": [],
-  "url": "/workorders",
-  "bar": "Account Access Mode: Esther Howard in Foothills Group Inc. Exit ShopHub expand_more Work Orders Schedule Customers search Search customers, work orders, parts... Ctrl K timer Clock In notifications St",
-  "top": "Account Access Mode: Esther Howard in Foothills Group Inc. Exit ShopHub expand_more Work Orders Schedule Customers search Search customers, work orders, parts... Ctrl K timer Clock In notifications Staging Heavy Duty - 9919 1.19 Hrs Today E",
+  "url": "/workorders?assigned_to_me=1",
+  "bar": "Account Access Mode: Esther Howard in Foothills Group Inc. Exit ShopHub expand_more Work Orders Schedule Customers search Search customers, work orders, parts... Ctrl K stop_circle 01:16:45 S2-36009 n",
+  "top": "Account Access Mode: Esther Howard in Foothills Group Inc. Exit ShopHub expand_more Work Orders Schedule Customers search Search customers, work orders, parts... Ctrl K stop_circle 01:16:45 S2-36009 notifications Staging Heavy Duty - 9919 3",
   "state": "200 {\"role\":{\"id\":\"af8d02b5-ecd1-4205-a82f-32a4d5bb1015\",\"fePermissions\":[{\"id\":\"3a50f7f9-1085-479c-b332-dd4fff79030a\",\"name\":\"woPickParts\"},{\"id\":\"55f5cb14-34bd-49",
   "step5": {
    "pressed": "true",
    "unfiltered": 31,
    "rows": 2,
    "listsIt": true,
-   "who": "Account Access Mode: Esther Howard in Foothills Group Inc. Exit ShopHub expand_more Work Orders Schedule Customers search Search customers, work orders, parts... Ctrl K timer Clock In notifications St",
-   "top": "Account Access Mode: Esther Howard in Foothills Group Inc. Exit ShopHub expand_more Work Orders Schedule Customers search Search customers, work orders, parts... Ctrl K timer Clock In notifications Staging Heavy Duty - 9919 1.19 Hrs Today E",
+   "who": "Account Access Mode: Esther Howard in Foothills Group Inc. Exit ShopHub expand_more Work Orders Schedule Customers search Search customers, work orders, parts... Ctrl K stop_circle 01:17:36 S2-36009 n",
+   "top": "Account Access Mode: Esther Howard in Foothills Group Inc. Exit ShopHub expand_more Work Orders Schedule Customers search Search customers, work orders, parts... Ctrl K stop_circle 01:17:36 S2-36009 notifications Staging Heavy Duty - 9919 3",
    "first": [
-    "location_on Approved S2-35843 ZZAUTOTEST Impersonate Start 8.. ZZIMP-1 ZZWOB179202890152 c",
+    "location_on Approved S2-36036 ZZAUTOTEST Impersonate Start 5.. ZZIMP-1 ZZWOB179204645218 c",
     " "
    ],
    "empty": null
   }
  },
  "C368239": {
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"button_desktop_nav_link\"]').filter({ hasText: 'Reports' }).first()\n"
+  "wo": "S-36037",
+  "advisor": 201,
+  "step1": {
+   "pressed": "true",
+   "unfiltered": 31,
+   "rows": 2,
+   "listsIt": true,
+   "who": "Account Access Mode: Esther Howard in Foothills Group Inc. Exit ShopHub expand_more Work Orders Schedule Customers search Search customers, work orders, parts... Ctrl K stop_circle 01:19:04 S2-36009 n",
+   "top": "Account Access Mode: Esther Howard in Foothills Group Inc. Exit ShopHub expand_more Work Orders Schedule Customers search Search customers, work orders, parts... Ctrl K stop_circle 01:19:04 S2-36009 notifications Staging Heavy Duty - 9919 3",
+   "first": [
+    "location_on Approved S2-36037 ZZAUTOTEST Impersonate Exit 17.. ZZIMP-2 ZZWOB179204661799 c",
+    " "
+   ],
+   "empty": null
+  },
+  "step1bar": "Account Access Mode: Esther Howard in Foothills Group Inc. Exit ShopHub expand_more Work Orders Schedule Customers search Search customers, work orders, parts... Ctrl K stop_circle 01:19:39 S2-36009 n",
+  "switch": {
+   "menu": [
+    "Exit",
+    "ShopHub expand_more",
+    "Work Orders",
+    "Schedule",
+    "Customers",
+    "stop_circle 01:19:44 S2-36009",
+    "notifications"
+   ],
+   "pageUsed": "Work In Progress by its address (no \"Reports\" in this user's top menu)",
+   "atSwitch": {
+    "requestSent": true,
+    "answeredBeforeSwitch": 0,
+    "restricted": 0
+   },
+   "reportRequests": [
+    "/api/reporting/individual-punch-clock/today?range=today"
+   ],
+   "answers": []
+  },
+  "toasts": [
+   "positive: check_circle Exited Account Personification Successfully exited impersonation, restored user \"Admin ShopView\". Close"
+  ],
+  "url": "/workorders?assigned_to_me=1",
+  "bar": null,
+  "top": "ShopHub expand_more Work Orders Schedule Customers Parts Reports Dashboard search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+  "state": "400 {\"errors\":[{\"error\":\"You are not currently impersonating a user.\"}]}",
+  "step4": {
+   "pressed": "true",
+   "unfiltered": 31,
+   "rows": 0,
+   "listsIt": false,
+   "who": null,
+   "top": "ShopHub expand_more Work Orders Schedule Customers Parts Reports Dashboard search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+   "first": [],
+   "empty": "No work orders match these filters"
+  }
  }
 }

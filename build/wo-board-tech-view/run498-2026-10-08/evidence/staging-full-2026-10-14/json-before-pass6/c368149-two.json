@@ -1,0 +1,97 @@
+{
+ "runner": "3620a2b1",
+ "techs": {
+  "ana": true,
+  "ben": true,
+  "cal": true,
+  "dan": true
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "C97010": {
+  "seed": [
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]"
+  ],
+  "setup": [
+   "Alpha Co approved lead=ZZAUTOTEST Ana Alpha",
+   "Bravo Co complete lead=ZZAUTOTEST Ana Alpha",
+   "Delta Co approved lead=ZZAUTOTEST F3 Dan Delta"
+  ],
+  "deactivate": "201",
+  "danActive": false,
+  "step3": {
+   "danHeader": "drag_indicator ZF ZZAUTOTEST F3 Dan Delta Inactive push_pin assignment 1 1 work order",
+   "danCol": {
+    "id": "6b1c7628-1c57-49de-bccb-754e8f47fdec",
+    "name": "ZZAUTOTEST F3 Dan Delta",
+    "count": 1,
+    "cards": [
+     "S2-35947"
+    ],
+    "pinned": "true",
+    "pinDisabled": false,
+    "empty": null,
+    "left": 959
+   }
+  },
+  "step4": "ok",
+  "step5": {
+   "lead": "ZZAUTOTEST Ana Alpha",
+   "msg": [],
+   "anaCards": [
+    "Alpha Co",
+    "Bravo Co"
+   ],
+   "danCount": 1
+  },
+  "step7": {
+   "button": 1,
+   "disabled": false,
+   "how": "Create Invoice pressed on screen",
+   "statusNow": "invoiced"
+  },
+  "step9": "ok",
+  "step10": {
+   "alert": [
+    "Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "anaCards": [
+    "Alpha Co",
+    "Bravo Co"
+   ],
+   "benCards": []
+  },
+  "step11": {
+   "stillShown": [
+    "Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid."
+   ]
+  },
+  "step12": {
+   "closeButton": 1,
+   "after": []
+  },
+  "step13": {
+   "anaCards": [
+    "Alpha Co",
+    "Bravo Co"
+   ],
+   "lead": "ZZAUTOTEST Ana Alpha",
+   "danHeader": "drag_indicator ZF ZZAUTOTEST F3 Dan Delta Inactive push_pin assignment 1 1 work order"
+  },
+  "step14": {
+   "field": null,
+   "testIds": [
+    "lead_technician_readonly=ZZAUTOTEST Ana Alpha"
+   ],
+   "near": "Lead technician ZZAUTOTEST Ana Alpha"
+  },
+  "cleanup": "201"
+ },
+ "restored": true
+}
