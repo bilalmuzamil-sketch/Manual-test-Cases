@@ -864,3 +864,10 @@ reading was only "no text appeared and the list did not change". I corrected it 
   typing, and the picture must show the typed text;
 - a `.catch(() => {})` on an action that a negative claim rests on makes that claim unproven.
 The script now records how it typed and what the field held (`typeLikeUser`). #negative-claims #typing #rule104 → L0036, L0386
+
+## L0388 — 2026-10-15 — A list's size cap need not be in the request: compare the request AND say what it cannot prove
+- D-LEAD100 (run 498). The tenth pass recorded the work order page's own requests on both sites (`watchRequests` in `run498-2026-10-08/lead100-compare.mts`): staging and production both send `GET /api/technicians`, `/api/technicians?clockableOnly=1` and `/api/work-orders/<id>/line-technicians` with NO limit in the address. The cut-off at about 100 people is therefore in the server's answer, not in what the page asks.
+- "Same request on production" proves the page did not change; it does not prove production's server also stops at 100 (production has 18 staff). Say both halves; the decision goes to the QA lead.
+- The list end MOVES as test staff are added during the day (QA Foreman, then QA Administrator; 184 then 255 people who can lead), so describe it as "about 100 people, in the P/Q names", never a fixed last name or exact count.
+- The Lead Technician and Add Technician fields refuse `fill()` (5 s timeout, not read-only): type by pressing keys with the field focused (`typeLikeUser`). Pressing keys shows no text and changes nothing, on both sites.
+- Wave 30, C368217: a case that checks "the second location's counts are not added" makes BOTH part sales for the SAME customer; a separate "… L2 …" customer leaves that half untested (fixed in `ps-counts.mts`).

@@ -1,8 +1,9 @@
-DRAFT — NOT FILED. Its OWN Story Defect (QA lead ruling, 15 Oct 2026). Nothing is filed until the QA lead says so, per ticket (Rule 62/113).
+VERDICT (tenth pass, 15 Oct 2026 12:03–12:11 UTC): NOT TO FILE AS IT STANDS — REPORT IT. Both sites' work order pages ask for the technician lists the SAME way: GET /api/technicians and /api/technicians?clockableOnly=1 (and /api/work-orders/<id>/line-technicians), with NO size limit in the request, on staging and on production (v26.40.18-163ddfa). So the cut-off at about 100 people is not something the page asks for; the server's answer stops there, and the page sends the same request on production. Production cannot show whether its answer would also stop at 100 (only 18 active staff) — said so, not guessed (Rule 121). Coordinator's rule: production asks the same way ⇒ older than this work, do not file. Nothing is filed; the QA lead decides (Rule 62/113). If he wants it raised anyway, the two parts below are ready.
+TENTH-PASS READINGS: staging now has 255 people who can lead (more test staff were added during the day). The Lead Technician list showed 99 entries (Unassigned, 97 people ending at QA Administrator, then the current lead) and Edit Line > Add Technician 97 names; Ralph Edwards in neither. The list end moves as staff are added (QA Foreman at 11:42, QA Administrator at 12:07), but it always stops at about 100 people, in the P/Q names. Typing, now done by pressing the keys as a person does (the field refuses direct filling): no text appears in either field and the list does not change, on staging (Ralph Edwards; control names Billy Martin / Billy Nobill) and on production (ZZROWCHECK Technicianov). Nothing was saved on either site. The staging pictures are still 1x (the 2x setting does not reach this script's staging session).
 TYPE: Story Defect · PARENT: SV-10047 (re-read live by the coordinator, 15 Oct 2026 — status as given in his message to the QA lead) · PRIORITY: Medium · LINK: relates to SV-10047 · LABEL: board-tech-view
 SPLIT: PART A (Lead Technician list on the work order page) and PART B (Edit Line > Add Technician list) are written as two complete ticket bodies. TWO TICKETS ⇒ file each part as it stands. ONE TICKET ⇒ use PART A's title "Work Order Page – Technician Lists Stop After 100 People", PART A's body, then append PART B's step, Actual/Expected bullets, picture, Environment line and Source under the same headings.
 PRODUCTION (Rule 121): Production (v26.40.18-163ddfa) — only 18 active staff, so both lists hold everyone (10 / 9 entries) and the limit CANNOT be shown there; typing does not narrow there either (so "does not search as you type" is the same as production; only the 100 cap is unproven against production).
-STILL OPEN BEFORE THE ASK: (1) the tenth pass records which request each list makes and its limit setting, on staging and production — same limit asked on production ⇒ the cap is older than this work: do not file, report it; (2) the tenth pass re-takes the staging pictures at 2x (the eighth-pass staging pictures are 1x; they are used below and never upscaled) and presses the keys as a person does (the eighth pass's typing left no visible text in the field; the reading stands as "no text appears and the list does not change"); (3) the live PRD read for Sources waits for the QA lead's go-ahead (Rule 81/106) — the Sources quote the test cases meanwhile; (4) read the staging build off the page at the re-measure.
+STILL OPEN IF HE WANTS IT RAISED: (1) DONE — the request reading is the verdict line above; (2) the staging pictures stay 1x (used below, never upscaled); typing confirmed with real key presses; (3) the live PRD read for Sources waits for the QA lead's go-ahead (Rule 81/106) — the Sources quote the test cases meanwhile; (4) read the staging build off the page at the re-measure.
 DUPLICATE SEARCH (15 Oct 2026): JQL project = SV AND (text ~ "\"lead technician\" list" OR text ~ "100 technicians" OR text ~ "lead technician dropdown") AND created >= -60d — 37 results, none about a work order page list stopping at 100 (closest: SV-10242, Service Advisor dropdown and custom role templates, Done — a different list and cause).
 
 ====================================================================================================
@@ -15,7 +16,7 @@ On a work order page, *the Lead Technician list offers only the first 100 people
 
 For example,
 * a location has 184 people who can lead work
-* the list, scrolled to its end, stops after the 100th name, then shows the current lead
+* the list, scrolled to its end, stops after about 100 people (in the P/Q names), then shows the current lead
 * the field has no search box, so scrolling is the only way to reach a name
 * the same later technicians ARE offered in the board's *Reassign lead technician* dialog
 
@@ -26,7 +27,7 @@ h2. Steps to Reproduce
 # Sign in to staging as an Admin and check the top bar shows *Staging Heavy Duty - 9919*.
 # Open any Approved work order (e.g. *Work Orders* > *All* > search {{ZZAUTOTEST F3 Reassign}} > *S2-36154*).
 # On the card at the left, click *Lead Technician* and scroll the list to the end.
-#* The list ends with *QA Foreman*, then the current lead: 101 entries in all (*Unassigned*, 100 people, then the current lead).
+#* The list ends in the *P*/*Q* names (e.g. *QA Foreman* or *QA Administrator*), then the current lead: about 100 people in all.
 #* *Ralph Edwards* is not in it.
 # Type {{Ralph Edwards}} into the Lead Technician field.
 #* No text appears in the field and the list does not change.
@@ -34,7 +35,7 @@ h2. Steps to Reproduce
 #* *Ralph Edwards* is offered.
 
 *Actual Result:*
-* The work order page offers only the first 100 people as lead; *Ralph Edwards* cannot be chosen there.
+* The work order page offers only about the first 100 people as lead; *Ralph Edwards* cannot be chosen there.
 * The same person is offered as lead in the *Reassign lead technician* dialog.
 
 *Expected Result:*
