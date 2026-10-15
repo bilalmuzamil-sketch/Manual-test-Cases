@@ -92,3 +92,8 @@ Technicians made for these checks (e.g. "Esther Howard", "Ralph Edwards" — nam
   nothing). On staging the bug cannot appear because the product keeps one name; ASK the QA lead whether Chris or the
   developer knows a way, on staging, for a technician's account name to differ from the staff record name; nothing filed.
   C581895 → Blocked (its set-up — two different names — cannot be made on staging; every screen showed the one name).
+- **15 Oct 03:50 UTC — C96929 FAILED on staging (v26.40.17-a5c4210), twice:** a technician's work orders start in creation
+  order in Tech View and Board View, not the List's customer A-Z (PRD S2-R6). On the QA branch it worked on 9 Oct and
+  SV-11101 was marked Obsolete (read live: OBSOLETE). Posted Failed with the ticket held; draft
+  `run498-2026-10-08/defect-drafts/tickets/D3-staging-C96929-2026-10-15.wiki` (Story Defect under SV-10045, Ready for QA
+  read live) — ASK the QA lead: reopen SV-11101 or file the new one. Nothing filed.

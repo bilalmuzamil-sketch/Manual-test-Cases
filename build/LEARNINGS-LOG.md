@@ -514,3 +514,10 @@ touching the pass — used 15 Oct to keep `signout-fix.mts` from running before 
 - **Hover, menu and drag states are photographed WHILE they are showing:** a real mouse move (then wait about 1.3 s) for tooltips and hover colours, the picture taken with the menu still open (C96987/C96991 lesson: the old helper closed the Density menu before its picture), and drags HELD with the mouse down while the drop line or refusal message is read and photographed (`dragHold`), then released.
 - **Cut-off names in an order picture (C368144):** read the order first, then let the names wrap (white-space normal, overflow visible) for the picture only, and say so in the reading. Nothing is moved, so the picture shows the order that was read.
 - **A plan line added after its pass has started is never run:** `run-*.sh` reads the plan once, at its start. Anything queued later goes into the NEXT pass's plan, together with the sign-out test, which stays last of all (L0342).
+
+## L0351 — 2026-10-15 — A fault "fixed" (ticket Obsolete) on the QA branch can be broken again on staging
+C96929 (group order = List default) passed on the QA branch on 9 Oct and its ticket SV-11101 was marked Obsolete; on staging
+v26.40.17-a5c4210 it fails exactly as the ticket described, twice, with a brand-new user. Staging is a different build, so a
+case passed on the strength of an Obsolete/closed ticket is re-judged on its own staging reading, never carried over (Rule 101),
+and when it fails again the ask is "reopen the old ticket or file a new one", with the old ticket's live status shown.
+#staging #regression #tickets → Rules 101, 113
