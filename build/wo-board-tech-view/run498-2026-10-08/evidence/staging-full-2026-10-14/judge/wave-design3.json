@@ -1,0 +1,32 @@
+{
+ "results": {
+  "C590123": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Checked with fresh technicians made for this run (ZZAUTOTEST DC14-44308 Tia Drag and Uma Drag), so only this test's work orders were in their groups.",
+    "Step 2: while the estimate is dragged over Tia's column, the dragged card looks faded and a thin blue line shows where it will land.",
+    "Step 3: the card lands in Tia's column where the blue line was, and \"Lead technician updated\" shows.",
+    "Step 4: while the Invoiced card is dragged over Tia's column, no blue line shows; a small dark message with a no-entry icon at the top of the column reads \"The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+    "Step 5: the Invoiced card stays in Uma's column.",
+    "Steps 7 and 8: in Tech View a thin blue line shows below Work-order-2 while Work-order-1 is held there, and after the drop Work-order-1 sits below Work-order-2 in the same group.",
+    "Steps 9 and 10: while Tia's group is dragged by its grip, a thin blue line shows below Uma's group, and after the drop Tia's group sits below Uma's group."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590123-1-board-drag-allowed.png",
+    "evidence/staging-full-2026-10-14/annotated/C590123-2-board-drag-refused.png",
+    "evidence/staging-full-2026-10-14/annotated/C590123-3-tech-row-line.png",
+    "evidence/staging-full-2026-10-14/annotated/C590123-4-tech-row-landed.png",
+    "evidence/staging-full-2026-10-14/annotated/C590123-5-tech-group-line.png",
+    "evidence/staging-full-2026-10-14/annotated/C590123-6-tech-group-landed.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ },
+ "redo": {
+  "C590120": "The asset is right this time (read back as \"TRK-118 · 2022 Freightliner M2\") and the card read from the page matches the test at every density: the number in blue at the left, the status pill at the right, the customer name, then \"TRK-118 · 2022 Freightliner M2\" in a smaller grey line; the number, customer and total price all the same size and medium weight; the padlock right after the Invoiced number; Compact and Comfortable change only the spacing, with the same fields and text sizes. But no picture of the card was taken: it sat below the bottom of the window (Pia's column still holds three older cards, S2-35993, S2-35994 and S2-36129, above it), so all three card pictures say \"off screen\", and the card pictures on disk are from the sixth pass, without the asset. Scroll the card into view (or use a run-numbered technician with only this test's two work orders) and photograph it at Regular, Compact and Comfortable, and the Invoiced card's padlock. Note for judging: with the Lead technician field on, the long technician name pushes the total price onto its own line below the avatars; on cards with short names (Aaron Baker) the price sits on the same line."
+ },
+ "failed": {},
+ "doubt": {}
+}
