@@ -879,3 +879,11 @@ The script now records how it typed and what the field held (`typeLikeUser`). #n
 - So each draft carries an "ALREADY REPORTED" line with the key, title and live status, and the queue suggests attaching the failed tests to the open report instead of a new ticket — the QA lead decides. A new ticket for one of those would be a duplicate.
 - Group by distinct finding, not by test (L0380): one test can hold two findings (C590113 columns + header labels; C590121 hover shadow + menu icon; C590124 hover shadow + name bubble), and one finding can span two tests (C590119 + C590129 blue avatars; C590121 + C590124 hover shadow). Re-read each Expected before calling something a failure: C590128 allows Compact text "the same size as at Regular or a little smaller", so that point is not a defect.
 - Drafts: `run498-2026-10-08/defect-drafts/tickets/D-TECHFILTER-*`, `D-DESIGN-1…14-*.wiki`, queue `QUEUE-2026-10-15.md`.
+
+## L0390 — 2026-10-15 — QA lead ruling: every ticket we reopen or file for this suite carries the label `board-tech-view`
+QA lead, 15 Oct 2026: a ticket that was Obsolete and is reopened gets the label `board-tech-view`. New tickets already carried
+it. The label is added with v2 `PUT /rest/api/2/issue/{KEY}` and the body `{"update":{"labels":[{"add":"board-tech-view"}]}}`
+(204), then read back.
+On 15 Oct: SV-11101 (reopened) and SV-11393 to SV-11397 (new) all read Open with the label.
+**When reopening, also:** keep a copy of the old text first, transition "Reopen" (id 26 on SV), rewrite in the house layout
+with pictures, run size_pics, and give him the link. #tickets #labels #reopen → L0380
