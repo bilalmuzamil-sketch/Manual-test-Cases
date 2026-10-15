@@ -3184,3 +3184,11 @@ Candidate PO / design questions (Sasha Grosman PRD owner; Chris Ward; Branko Cic
 
 Design-vs-spec differences (cases follow the spec; full list in the record's notes): pin limit 5 vs 3 · Declined locked in the design · drag toast "assigned to …" with Undo vs "Lead technician updated/removed" · Row height Small/Medium/Large and Card size Compact/Detailed vs Density Compact/Regular/Comfortable · no Fields to display picker · empty texts ("No work orders assigned", "No work orders match these filters") · "N open" counts every status · Unassigned goes to the bottom of Unassigned · the design opens collapsed groups on a search match · no keyboard design (Story 11 waits on it).
 Design library, fonts and photos: READ IN FULL 8 Oct on the QA lead's "Read" (`design-library-reading-2026-10-08.md`, `design-binary-files-reading-2026-10-08.md`); 2 new cases C368160, C368161 and 2 merge edits (C368135, C96996). Run 498 = 167.
+
+### WO Board & Tech View — 14/15 Oct 2026 (night): design questions sent (Rule 126 point 6: unsent count 0)
+On Chris Ward's WO Board question sheet (1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU, already shared with him), pink rows 17–34 = questions
+12–29: PQ-V01..V10, PQ-V13, the Tech View row avatar-name question, W-1, W-2 (reshaped: locked columns), W-5 (reshaped: minimap
+only), W-11, W-12, W-15. Settled, not sent: W-13 (Chris's answer 10, 14 Oct) and W-16 (PRD v51: Clocked In keeps List's display).
+Already sent by Ahtasham Amjad on Slack 14 Oct: Tech View pin icon (S2-R11 vs design) and More actions covering the card badge.
+For the QA lead (not the PO): SV-11337 and SV-11338 quote "design" sizes the design file does not have — ask Ahtasham what he measured.
+Vladimir's C228763 (not ours) expects Assigned Techs off by default; fails a correct build under PRD v51.

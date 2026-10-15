@@ -116,3 +116,14 @@ Design driving: served over local HTTP (react/react-dom/babel localized into `so
 PRD now v52 (v51/v52 written today from Sasha's staging review against Branko's design: 14 new or rewritten rules). Our cases
 caught 0 of the 10; C96927 and C96979 assert the old S5-R4. Review, root causes and proposed prevention:
 `po-defects-2026-10-14/INCIDENT-REVIEW-2026-10-14.md`; lesson L-01 in `build/LESSONS-REGISTER.md`. No TestRail or Jira write yet.
+
+## 15 Oct 2026 (early) — Rule 126 applied to WO Board & Tech View: done
+- PRD v52 behaviour: 11 of our cases rewritten in full (current Rule 117 layout, own setup docs), 4 new Technician-filter cases
+  C581915–C581918 (`update-2026-10-14-v52/APPLY-REPORT.md`).
+- Design: visual inventory of the 14 Oct package (245 states, 1,134 visual rows, 163 library sentences, 0 unclassified;
+  `design-look-2026-10-14/VISUAL-INVENTORY-2026-10-14.md`); 22 design cases C590110–C590131 in TestRail section 73780
+  "Design — how it looks", each with its own setup doc and the design pictures attached; C581895 gained the SV-11336 step
+  (`design-look-2026-10-14/apply/APPLY-REPORT.md`; local copies `cases/design/`).
+- Run 498: 248 → 274 tests (union only). All 13 reported design tickets (SV-11317…26, SV-11336…38) map to cases, and each
+  ticket's description now ends with its test case links (`po-defects-2026-10-14/ticket-footer-backups/README.md`).
+- 18 design questions added to Chris's sheet (rows 17–34). Unsent count 0.
