@@ -752,3 +752,13 @@ Record the outcome here. #restart #idle #unattended → L0365, L0370
 - **Trap 1 (tech-filter-stg6, staging):** a helper that closed menus by clicking a fixed point (40,140) hit **Create Work Order** once the toolbar wrapped on staging, opening a New Work Order dialog that then blocked every later click (15 s timeouts in C581916–C581918). **Fix:** pick the first candidate point whose `elementFromPoint` is not a button, link, field, tab, header, card or menu, then close any menu or dialog that opened anyway (`tech-filter-stg6.mts` `clickOutside`). Any "click outside" in a script must check what it is about to click.
 - **Trap 2 (ga-week, C97034/C97033):** `ga-week.mts` kept only each user's FIRST `uid`, so "each user keeps the same uid on every event" was assumed, not read. `log()` now keeps every id seen per user (`uids`). Check that each list holds ONE id before passing. `ga_calc.py` now takes the folder as an optional argument (`python3 ga_calc.py evidence/staging-full-2026-10-14/ga-week`); with no argument it reads the QA-branch folder as before.
 - **Two-day GA test (C97033):** day 2 must be a later calendar day in **Pakistan time** (the QA lead's choice), in the same Monday–Sunday week. Day 1 on staging ran 15 Oct 09:04 UTC (Thursday), so day 2 runs between 15 Oct 19:05 UTC and 18 Oct 18:59 UTC. Never put it in a pass that may run earlier than that.
+
+## L0376 — 2026-10-15 — "Just below a row" must be inside the row when that row ends its group
+- **Where:** run 498, C590123 step 7 (sixth pass, `design-stg5.mts`), judged in `judge/wave-design2.json`.
+- The script dropped Work-order-1 at "Work-order-2's bottom + 4 points". Work-order-2 was the LAST row of Tia's group, so that
+  point was Uma's group header: the blue line went to the end of Uma's group and the drop **changed the work order's lead**
+  (S2-36131 moved to Uma). For "drop just below row X", aim at the lower half of row X (e.g. 75% of its height), never past its
+  edge; check which group the blue line sits in before releasing, and read the lead back after the drop.
+- Reused technicians keep earlier passes' work orders in their groups (Tia still held S2-35997/98/99), so "WO-1 below WO-2"
+  is read among extra rows. Use run-numbered technicians, or move the old work orders away first.
+#drag #design #staging → L0350, L0360
