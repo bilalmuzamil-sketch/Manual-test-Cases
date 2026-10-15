@@ -78,17 +78,17 @@
    "status": "Approved",
    "unit": "ZZF2BF",
    "field_vin": "VIN/serial VIN ZZWOB179200672011",
+   "field_lines_count": "Line count format_list_bulleted 0 lines",
    "field_progress": "Progress 0%",
-   "field_technician": "Lead technician Esther Howard",
    "field_total_price": "Total price $0.00"
   },
   "secondBrowser": {
    "at": "Staging Heavy Duty - 9919",
    "on": [
-    "technician",
     "vehicle",
     "vin",
     "progress",
+    "lines_count",
     "total_price"
    ],
    "card": {
@@ -96,8 +96,8 @@
     "status": "Approved",
     "unit": "ZZF2BF",
     "field_vin": "VIN/serial VIN ZZWOB179200672011",
+    "field_lines_count": "Line count format_list_bulleted 0 lines",
     "field_progress": "Progress 0%",
-    "field_technician": "Lead technician Esther Howard",
     "field_total_price": "Total price $0.00"
    }
   }
@@ -107,10 +107,10 @@
    "PUT {\"value\":{\"tab\":\"all\",\"filters\":{},\"columns\":{\"unreceivedPartRequestsCount\":false,\"vehicle\":true,\"vin\":true,\"progres"
   ],
   "before": [
-   "technician",
    "vehicle",
    "vin",
    "progress",
+   "lines_count",
    "total_price"
   ],
   "failBoard": [
@@ -134,10 +134,10 @@
    "PUT {\"value\":{\"tab\":\"all\",\"filters\":{},\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":false,\"progress\":false,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"totalPrice\":true,\"invoicedDate\":false,\"s"
   ],
   "afterReload": [
-   "technician",
    "vehicle",
    "vin",
    "progress",
+   "lines_count",
    "total_price",
    "vehicle_here"
   ]
