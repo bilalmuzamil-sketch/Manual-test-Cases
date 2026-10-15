@@ -1,0 +1,17 @@
+{"path":"build/wo-board-tech-view/source-verify-2026-10-15/Work Orders Board View and Tech View - Product Owner questions - 15 Oct 2026.xlsx",
+ "title":"Work Orders — Board View and Tech View: two questions for the product owner (15 Oct 2026)",
+ "intro":"Project: Work Orders — Board View and Tech View display options. Both questions come from testing on staging. Each row says what a user sees today and offers options; please mark one in the last column.",
+ "sheets":[{"name":"Board View and Tech View","rows":[
+  {"topic":"Board View and Tech View — coming back with the browser's Back button",
+   "now":"When you open a work order from Board View or Tech View and then press the browser's Back button, the sideways position comes back exactly. The up-and-down position can come back about one row off: the column lines itself up on the nearest card, so a card that was half hidden at the top is no longer shown.",
+   "question":"The requirement says Back brings back both the up-and-down and the sideways position. Is coming back within about one row good enough, or must it be exactly where the user left it?",
+   "options":"(a) Within about one row is fine — we pass it as it is.\n(b) It must be exact — we report it to the developers as a fault.\n(c) Something else — please describe."},
+  {"topic":"Board View cards — how the names of technicians who are clocked in are shown",
+   "now":"On a Board View card, the Clocked in field shows the first clocked-in technician's full name, then +1 for each other person, for example \"Cora Clock +1\". The List's Clocked In column shows it the same way. Pointing at it lists every name.",
+   "question":"The requirement says the card shows clocked-in technicians \"the way the List's Clocked In column shows them today\", and then describes that as \"first name, then +N\" (for example \"Cora +1\"). But the List actually shows the full name. Which did you mean: the same as the List (full name, then +N), or the first name only, then +N?",
+   "options":"(a) The same as the List — full name, then +N. We pass it as it is.\n(b) First name only, then +N — we report the card to the developers (please also say whether the List should change).\n(c) Something else — please describe."}
+ ]}],
+ "internal":[
+  ["1","C96916 (Back restores the scroll position)","PRD 845185030 v52, S1-R8, read 15 Oct 2026","S1-R8 says \"restores\" with no tolerance; staging comes back up to one row off vertically. The QA lead (15 Oct) asked to put it to the product owner rather than judge it."],
+  ["2","C96978 (Fields to display, Clocked in) — Automated","PRD 845185030 v52, optional fields list and S2-R20, read 15 Oct 2026","The source contradicts itself: \"the way List's Clocked In column shows them today\" (the List shows full name +N) vs \"first name, then +N\". Rule 58: an ambiguous source is held and asked, never settled by the build. The QA lead chose to ask (15 Oct)."]
+ ]}
