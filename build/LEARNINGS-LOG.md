@@ -735,3 +735,8 @@ Record the outcome here. #restart #idle #unattended → L0365, L0370
 - **Confirmed, 08:52 UTC (L0372):** with `watch7.sh` running as a background task from 08:29, `uptime` read "up 24 min" at the
   08:52 check-in. The script that three restarts had cut off (`high1-batch.mts`) finished. **The theory holds: while a task the
   session started is still running, the container stays up between turns.** Keep one running for as long as the passes run.
+
+## L0373 — 2026-10-15 — An asset page is /customers/vehicle/<id>; the customer's own Assets tab is /customers/<id>/vehicles
+- **Where:** `build/wo-board-tech-view/run498-2026-10-08/high1-batch.mts` (C368181, production comparison); verdict in `evidence/staging-full-2026-10-14/judge/wave21.json`.
+- **Trap:** a check like `/\/vehicle/i.test(url)` is also true on the customer's Assets TAB (`/customers/<id>/vehicles`). Clicking an asset row did not open the asset there, so the next "Work Orders" tab clicked was the customer's ("Work Orders (4)", next to Part Sales / Contacts / Assets) — read twice as if it were an asset's.
+- **Rule:** an asset page's address is `/customers/vehicle/<id>…` (staging TRK-201: `/customers/vehicle/<id>/work-orders?companyId=<id>`, tabs Work Orders · Invoices · Notes · Inspections). Click the asset row's cells until the address matches that, and read the tabs to confirm (an asset page has no Part Sales / Contacts / Assets tabs).

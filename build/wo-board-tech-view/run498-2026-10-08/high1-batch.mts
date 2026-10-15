@@ -321,8 +321,13 @@ for (const [kind, ids] of [['asset', ['C368180', 'C368181', 'C368182', 'C368183'
             const nAssets = await pp.locator('tbody tr').count(); const custUrl = pp.url();
             for (let ai = 0; ai < Math.min(nAssets, 4) && !pr.found; ai++) {
               if (ai) { await pp.goto(custUrl, { waitUntil: 'domcontentloaded' }); await pp.waitForTimeout(5000); const at2 = pp.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Assets(\s*\(\d+\))?\s*$/ }).first(); if (await at2.count()) { await at2.click(); await pp.waitForTimeout(3500); } }
-              await pp.locator('tbody tr').nth(ai).click().catch(() => {}); await pp.waitForTimeout(5000);
-              if (!/\/vehicle/i.test(pp.url())) { pr.tried.push(`row ${ai} did not open an asset page (${pp.url().replace(P, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>').slice(0, 60)})`); continue; }
+              // 15 Oct 2026 (wave 21, sixth pass): the check /\/vehicle/ also matched the customer's own Assets tab address
+              // (/customers/<id>/vehicles), the row click had not opened anything, and the customer's "Work Orders (4)" tab was read again.
+              // Now each cell of the asset row is clicked in turn until the address becomes an ASSET page (/customers/vehicle/<id>…, as
+              // staging's TRK-201 page), and only then is its Work Orders tab read.
+              const row = pp.locator('tbody tr').nth(ai); const isAsset = () => /\/customers\/vehicles?\/[0-9a-f-]{8,}/i.test(pp.url()) && pp.url() !== custUrl;
+              for (let ce = 0; ce < 4 && !isAsset(); ce++) { await row.locator('td').nth(ce).click().catch(() => {}); await pp.waitForTimeout(3500); }
+              if (!isAsset()) { pr.tried.push(`row ${ai} did not open an asset page (${pp.url().replace(P, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>').slice(0, 60)})`); continue; }
               const wt = pp.locator('.q-tab, [role=tab]').filter({ hasText: /Work Orders/ }).first(); if (!(await wt.count())) continue; await wt.click(); await pp.waitForTimeout(4000);
               const rows = await pp.locator('tbody tr').filter({ hasText: /\S/ }).count(); const tabLabel = (await wt.innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
               const bottom = await pp.locator('.q-table__bottom').innerText().catch(() => null); const noData = /no data|no work orders|no results/i.test(await pp.locator('tbody').innerText().catch(() => ''));
