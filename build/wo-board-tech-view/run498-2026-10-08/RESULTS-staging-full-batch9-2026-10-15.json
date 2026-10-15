@@ -1,0 +1,29 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "note": "batch 9 = C96929 Failed, ticket held"
+ },
+ "results": {
+  "C96929": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps, as a brand-new user with no saved sort.",
+    "List (sorted by Customer, A to Z) showed Carol Neal's three work orders as Alpha Freight, Mid Trucking, Zeta Hauling.",
+    "Tech View (Carol Neal's group) and Board View (Carol Neal's column) showed them in the order they were made: Zeta Hauling, Alpha Freight, Mid Trucking \u2014 not the List's order.",
+    "The earlier staging run today failed the same way.",
+    "On the QA branch on 9 October this worked, and the ticket for it was marked Obsolete; on staging it does not work."
+   ],
+   "not_observed": null,
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96929-1-list-order-expected.png",
+    "evidence/staging-full-2026-10-14/annotated/C96929-2-tech-view-wrong-order.png",
+    "evidence/staging-full-2026-10-14/annotated/C96929-3-board-view-wrong-order.png"
+   ],
+   "ticket_held": true,
+   "ticket": "Ticket held \u2014 with the QA lead to decide: reopen SV-11101 https://shopview.atlassian.net/browse/SV-11101 (now Obsolete) or raise a new one under the story SV-10045 (Ready for QA).",
+   "todo": "What needs to be done: the QA lead decides on the ticket; then re-test this case on staging once it is fixed.",
+   "note": "wave11"
+  }
+ }
+}

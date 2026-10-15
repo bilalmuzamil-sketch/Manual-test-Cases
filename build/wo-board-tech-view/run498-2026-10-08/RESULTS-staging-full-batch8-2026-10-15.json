@@ -1,0 +1,270 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "note": "batch 8 = wave 11 (fourth pass) passes"
+ },
+ "results": {
+  "C154884": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Four test work orders are led by me (S2-35248, S2-35249, S2-35706, S2-35707); four others have me only as Service Advisor and were changed to Ayesha Khan as advisor and another lead (S2-35250, S2-35251, S2-35708, S2-35709).",
+    "List with Assigned to me on shows only the four I lead.",
+    "Tech View with Assigned to me on shows only my group, Admin ShopView, with the same four.",
+    "Board View with Assigned to me on shows only my column with the same four cards.",
+    "The work orders where I am not the lead do not appear in any of the three displays."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C154884-1-list-assigned-to-me.png",
+    "evidence/staging-full-2026-10-14/annotated/C154884-2-tech-view-assigned-to-me.png",
+    "evidence/staging-full-2026-10-14/annotated/C154884-3-board-view-assigned-to-me.png"
+   ],
+   "note": "wave11"
+  },
+  "C96910": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "A brand-new user with no saved choices opened Work Orders: the List display was selected and the List table showed (33 rows on the first load).",
+    "After refreshing the page the same user still saw List."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96910-1-new-user-opens-list.png",
+    "evidence/staging-full-2026-10-14/annotated/C96910-2-still-list-after-refresh.png"
+   ],
+   "note": "wave11"
+  },
+  "C96912": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Board View was chosen, then I signed in again in a second browser: Work Orders opened in Board View.",
+    "After changing location to Staging Lethbridge - 4310 it still opened in Board View.",
+    "A different, brand-new user opening Work Orders saw List: the choice belongs to my account only."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96912-1-board-view-after-new-signin.png",
+    "evidence/staging-full-2026-10-14/annotated/C96912-2-board-view-other-location.png",
+    "evidence/staging-full-2026-10-14/annotated/C96912-3-other-user-sees-list.png"
+   ],
+   "note": "wave11"
+  },
+  "C96923": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Baseline: List with Assigned to me on at Staging Heavy Duty - 9919, then a change to Staging Lethbridge - 4310: Work Orders opened on the All tab in List with Assigned to me still on (also after a refresh).",
+    "Back at the first location Assigned to me was turned off, Board View chosen and Assigned to me turned on again.",
+    "After changing to Staging Lethbridge - 4310: same page and All tab as the baseline, Board View still selected, Assigned to me still on.",
+    "Tech View chosen there (Assigned to me still on), then changed back to Staging Heavy Duty - 9919: same page and All tab, Tech View still selected, Assigned to me still on."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96923-1-list-after-location-change.png",
+    "evidence/staging-full-2026-10-14/annotated/C96923-2-board-view-after-location-change.png",
+    "evidence/staging-full-2026-10-14/annotated/C96923-3-tech-view-after-changing-back.png"
+   ],
+   "note": "wave11"
+  },
+  "C96917": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Board View, scrolled right and down, then Estimates and All clicked: the board was back at the top-left, Unassigned and the first technicians in view, every column at its first card.",
+    "Scrolled again, then Schedule and back through Work Orders: top-left again.",
+    "Scrolled again, then Work Orders clicked while already on the board: the board stayed exactly where it was scrolled.",
+    "Tech View did the same: back at the top-left after a tab click and after coming back from Schedule; unchanged (still scrolled down) after clicking Work Orders while already on it."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96917-1-board-top-left-after-tab.png",
+    "evidence/staging-full-2026-10-14/annotated/C96917-2-board-top-left-after-schedule.png",
+    "evidence/staging-full-2026-10-14/annotated/C96917-3-board-kept-after-same-link.png",
+    "evidence/staging-full-2026-10-14/annotated/C96917-4-tech-top-after-tab.png",
+    "evidence/staging-full-2026-10-14/annotated/C96917-5-tech-top-after-schedule.png",
+    "evidence/staging-full-2026-10-14/annotated/C96917-6-tech-kept-after-same-link.png"
+   ],
+   "note": "wave11"
+  },
+  "C96937": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Assigned Groups: S2-35313 led by me, S2-35314 led by Ralph Edwards (fixed this pass, he is also its advisor), S2-35315 with no lead and me as Service Advisor; Jenny Wilson pinned.",
+    "List with Assigned to me on showed S2-35313 and S2-35315.",
+    "Tech View with Assigned to me on showed only Unassigned (S2-35315) and my own group (S2-35313). Ralph Edwards, Esther Howard and the pinned Jenny Wilson were hidden.",
+    "Assigned to me off: the groups came back (34 drawn on screen at once instead of 2), with Unassigned first and Jenny Wilson still pinned right after it. Ralph Edwards and Esther Howard sit further down the long list and were not scrolled to."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96937-1-assigned-to-me-only-my-groups.png"
+   ],
+   "note": "wave11"
+  },
+  "C368126": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Staging keeps one name per technician, so four existing technicians stood in for the case's four: Ayesha Khan, Ahtasham Service Advisor, Ahtsham Service Manager and Bilal Muzamil.",
+    "At the start: Unassigned, Ahtasham Service Advisor, Ahtsham Service Manager, Ayesha Khan, Bilal Muzamil (by name).",
+    "After pinning Ayesha Khan she sat right after Unassigned, before every unpinned technician.",
+    "After pinning Ahtasham Service Advisor he sat after Ayesha Khan (the newer pin goes after the earlier one, not by name).",
+    "Board View showed the same order, Bilal Muzamil included."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368126-1-board-pinned-order.png"
+   ],
+   "note": "wave11"
+  },
+  "C96936": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Staging stand-ins: Ayesha Khan led 1 test work order (S2-35331) and Bilal Muzamil 4.",
+    "In a second tab the lead of S2-35331 was changed to Bilal Muzamil.",
+    "Before the refresh the first tab still showed S2-35331 under Ayesha Khan (allowed by the case).",
+    "After the refresh S2-35331 was under Bilal Muzamil: Ayesha Khan 0 (1 - 1), Bilal Muzamil 5 (4 + 1)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96936-1-before-refresh.png",
+    "evidence/staging-full-2026-10-14/annotated/C96936-2-after-refresh.png"
+   ],
+   "note": "wave11"
+  },
+  "C368125": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Esther Howard's group was collapsed (and pinned) before the search; her test work orders were S2-35906 (matches) and S2-35907 (does not).",
+    "During the search her group stayed collapsed: it did not open by itself.",
+    "Its header count showed 1.",
+    "Expanding it showed the 1 matching row, S2-35906. The groups were not all opened by the search."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368125-1-collapsed-during-search.png",
+    "evidence/staging-full-2026-10-14/annotated/C368125-2-expanded-shows-match.png"
+   ],
+   "note": "wave11"
+  },
+  "C96927": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Tech View has its own Columns button that opens a column menu.",
+    "List's menu offers: Waiting On Parts, Asset, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total price, Created on, Invoiced Date, Days open, Parts, Returns.",
+    "Tech View's menu offers every one of those plus Assigned Techs; no List column is missing (so not the design's shorter menu).",
+    "List's menu does not offer Assigned Techs.",
+    "After turning it on, an Assigned Techs column shows in the Tech View table."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96927-1-list-column-menu.png",
+    "evidence/staging-full-2026-10-14/annotated/C96927-2-tech-view-column-menu.png",
+    "evidence/staging-full-2026-10-14/annotated/C96927-3-assigned-techs-column-shown.png"
+   ],
+   "note": "wave11"
+  },
+  "C96938": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Pointer held on Ayesha Khan's avatar: the spot under the pointer carries the hover label \"Ayesha Khan\".",
+    "Pointer held on the long name and on its avatar: both carry the hover label \"Maximiliana Fitzgerald-Montgomery\".",
+    "On this screen width the long name was shown in full, not shortened.",
+    "The hover label is the browser's own, which automated pictures do not draw, so the picture shows where the pointer was, not the label itself."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96938-1-long-name-hover.png"
+   ],
+   "note": "wave11"
+  },
+  "C96926": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Five test technicians were made at Staging Heavy Duty - 9919, each leading one work order; the two Chris Lee accounts were made one after the other; the user reading the order has no pins.",
+    "Tech View: Unassigned first, then Aaron Baker, Aaron Zed, Brenda Martinez, Chris Lee (made first), Chris Lee (made second), with other technicians fitting in by name between them (Aaron Zed, Admin ShopView, Advisor Analysis, ... Brandon Jarvis, Branko Cicovic, Brenda Martinez, ... Carrie Johnson, Chris Lee, Chris Lee, Christian Wallace).",
+    "Board View columns follow the same order."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96926-1-board-column-order.png"
+   ],
+   "note": "wave11"
+  },
+  "C96949": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Board Pin Limit, one work order led by each of the five technicians; Ralph Edwards, Jenny Wilson and Theresa Webb pinned in Board View.",
+    "With three pinned, the next pin control (Kristin Watson's) is disabled and its hover text reads \"You can pin up to 3 technicians.\"",
+    "Clicking the disabled control pinned nobody: the pins stayed Ralph Edwards, Theresa Webb, Jenny Wilson.",
+    "After unpinning Jenny Wilson, Esther Howard could be pinned.",
+    "Tech View shows the same three pins (Ralph Edwards, Theresa Webb, Esther Howard), and Kristin Watson's pin control is disabled there too with the same text."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96949-1-board-fourth-pin-disabled.png",
+    "evidence/staging-full-2026-10-14/annotated/C96949-2-tech-view-same-three-pins.png",
+    "evidence/staging-full-2026-10-14/annotated/C96949-3-tech-view-pin-disabled.png"
+   ],
+   "note": "wave11"
+  },
+  "C96955": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Board View has a Density control offering Compact, Regular and Comfortable (Comfortable was selected at the start).",
+    "After choosing Compact in Board View, Tech View's Density control showed Compact selected.",
+    "After choosing Comfortable in Tech View, Board View showed Comfortable selected: one setting shared by both displays.",
+    "The design's \"Card size\" and \"Row height\" choices do not appear."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96955-1-board-density-options.png",
+    "evidence/staging-full-2026-10-14/annotated/C96955-2-tech-shows-compact.png",
+    "evidence/staging-full-2026-10-14/annotated/C96955-3-board-shows-comfortable.png"
+   ],
+   "note": "wave11"
+  },
+  "C368132": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Empty Tech Column: S2-35720 and S2-35721 led by Esther Howard, nothing led by Jenny Wilson; Assigned to me off.",
+    "Jenny Wilson's column is on the board with count 0 and \"Drag a work order here to assign it\".",
+    "No control to hide empty technician columns was found in the toolbar, the column headers or the menus.",
+    "S2-35720 dragged onto Jenny Wilson's column was accepted (\"Lead technician updated\", no shift question): Jenny Wilson now shows 1 and Esther Howard dropped from 2 to 1."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368132-1-empty-column-shown.png",
+    "evidence/staging-full-2026-10-14/annotated/C368132-2-after-drop-counts.png"
+   ],
+   "note": "wave11"
+  }
+ }
+}
