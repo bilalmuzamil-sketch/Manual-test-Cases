@@ -81,6 +81,7 @@ compare, and only where production has the same screen.
     - **If you say nothing:** it stays unjudged.
 11. **For your information, no action needed:**
     - Four tests about the "clear the technician's shifts?" question now pass on staging, so those fixes have reached it.
+    - After moving a technician's time from one line to another, the receiving line correctly shows her name, but a second entry "Deleted user" also appears under it, although nobody on that line was deleted. The test passed on what it asks; I am telling you in case you want it looked into.
     - On staging the shop setting "a line needs a tech story before it can be completed" was OFF, which is why a line completed without a story in last night's run. I turned it on for the test, the test passed, and I turned it off again.
 
 ## 5 · Handoff-ready
