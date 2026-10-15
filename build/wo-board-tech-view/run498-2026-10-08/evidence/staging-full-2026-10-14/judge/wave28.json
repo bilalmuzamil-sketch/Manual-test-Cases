@@ -1,0 +1,17 @@
+{
+ "results": {},
+ "redo": {
+  "C96966": "Not judged (eighth pass, S2-36171): step 1 again not done on THIS work order's shift. The refusal guard worked: the drag to Dana Ortiz opened \"Reassign shift S2-36016 · ZZAUTOTEST Sched Lines 80348\" and the script cancelled it. Cause found: earlier runs' own test shifts sit on Esther Howard's row tomorrow in the same hours (other \"Status And Time Kept\" work orders at 8:00-12:00, \"Sched Lines\" ones at 12:45-14:45) and are stacked over ours; opening our block to read its number gave no details (the block was clicked by its element, which opened nothing). Seen anyway, consistent with the case: lead Esther Howard and status In Progress through the Schedule changes (resize done on screen; move and reassign behind the screen); after the board drag, lead Ralph Edwards, status In Progress, total time 18 unchanged, Actual hours only grew with the clock (0.07, 0.09 of 0.30), Esther Howard's clock still running, no lock on the entries. Fixed in s4-batchH.mts: Esther Howard's other ZZAUTOTEST shifts tomorrow are deleted first (recorded), and blocks are opened with a mouse click on the block itself to read their work order. Queued in ninth-pass-plan.txt (s4-batchH.mts | C96966)."
+ },
+ "failed": {},
+ "doubt": {
+  "C368208": {
+   "hold": "Until viewonly-pin-prod (later in the eighth pass) has read the same pin on production; then judged on both readings (Rule 121).",
+   "stagingReading": [
+    "Eighth pass, view-only user's own window: the pin is a disabled button (disabled, cursor \"not-allowed\", opacity 0.6 — drawn faded), red location icon.",
+    "Its tooltip while hovered reads \"Asset not here. Click to toggle status.\"",
+    "Clicking it changed nothing (not on site before and after); the reload stayed signed in this time."
+   ]
+  }
+ }
+}

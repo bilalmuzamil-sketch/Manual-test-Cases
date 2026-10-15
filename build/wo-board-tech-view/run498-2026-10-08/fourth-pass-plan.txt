@@ -1,7 +1,7 @@
 # script | cases (ONLY) | extra settings   — 15 Oct 2026 fourth pass on staging, after the third pass (judge/wave8.json "redo": 27 tests
 # whose reading was unusable because of the SCRIPT, each fixed — see the 15 Oct comments in each script — plus 5 passed tests re-run
 # only for a usable picture: C96926, C96957, C96959, C96936, C154888). signin-check-stg4.mts runs first (the third pass ends with
-# signout-fix.mts (C368240, signs the shared session out) was MOVED from the third pass to the very END of this one (15 Oct, main
+# (note about the sign-out test removed: it runs only at the end of the newest pass plan — L0378)
 # session) so nothing runs after it; signin-check-stg4.mts still runs first as a guard; run-fourth.sh stops if it fails.
 signin-check-stg4.mts | | 
 # 15 Oct (wave 8b): the view-only role is put back to Work orders > View only BEFORE any view-only case (C97012's old script left
@@ -48,4 +48,4 @@ ps-counts.mts | C368217,C368243,C368244 |
 imp-fix3.mts | C368238,C368239 | 
 editwo-fix.mts | C368169 | 
 analytics-batch.mts | C97029 | 
-signout-fix.mts | C368240 | 
+# (the sign-out test was here; it now runs only at the end of the NEWEST pass plan — L0378)

@@ -839,3 +839,4 @@ pass 8) gained the Edit Line > Add Technician reading after pass 8 had started.
    that cannot break those scripts.
 2. Never edit the script that is running at that moment.
 #passes #plans #scripts → L0350, L0378
+- **Leftover test shifts stack over yours (wave 28, eighth pass):** earlier runs' own shifts on Esther Howard's row tomorrow, in the same hours, sat over this run's block, so every drag grabbed one of them (the refusal guard cancelled the wrong reassign this time). Before a Schedule drag test, delete that person's other ZZAUTOTEST shifts on the test day (`DELETE /api/schedule/shifts/<id>?scope=shift`, recorded), and open a block with a mouse click on the block itself — `locator.click()` on the `.fc-event` opened no details.

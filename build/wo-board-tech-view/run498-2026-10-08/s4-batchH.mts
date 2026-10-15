@@ -4,7 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
-import { open, done, APP } from './session.mts';
+import { open, done, APP, API } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, candidates, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, pickLeadOnPage, listAllOptions, findRow } from './wob.mts';
@@ -89,6 +89,20 @@ await run('C96966', async () => {
       return { actualHours: (tx.match(/\d+(?:\.\d+)?\s*\/\s*\d+(?:\.\d+)?/g) || []).slice(0, 8), totalHours: (tx.match(/Total Hours[^0-9]{0,30}[\d.:]+/i) || [null])[0], firstStatusWordOnPage: (tx.match(/In Progress|Approved|Review|Complete/) || [null])[0], statusCard, statusNearNumber, recordStatus, leadNear: (tx.match(/Lead Technician[^A-Za-z]{0,10}[A-Za-z]+ [A-Za-z]+/) || [null])[0] }; }
     finally { await pg.close().catch(() => {}); } };
   R.C96966 = { wo: num, clock, before: await state(), screenBefore: await woScreen(wo, 'before') };
+  // 15 Oct 2026 (wave 28, eighth pass): earlier runs left their own test shifts on Esther Howard's row tomorrow in the same hours
+  // (other "Status And Time Kept" work orders at 8:00-12:00, "Sched Lines" ones at 12:45-14:45), stacked over ours, so the drags kept
+  // grabbing THEIR blocks. Before making this run's shift, delete Esther Howard's other ZZAUTOTEST shifts tomorrow (staging test data,
+  // Rule 107; DELETE /api/schedule/shifts/<id>?scope=shift as the Schedule does) and record what was removed.
+  { const from = new Date(Date.now() - 86400000).toISOString().slice(0, 10) + 'T00:00:00.000Z', to = new Date(Date.now() + 3 * 86400000).toISOString().slice(0, 10) + 'T00:00:00.000Z';
+    const found: any[] = []; const walk = (x: any) => { if (!x || typeof x !== 'object') return; if (Array.isArray(x)) return x.forEach(walk); if (x.id && x.startsAt && x.staffId === ES.staff_id) { found.push(x); return; } Object.values(x).forEach(walk); };
+    walk((await a.get(`/api/schedule/board?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`)).body);
+    const tomorrow = new Date(Date.now() + 86400000).toISOString().slice(0, 10); const removed: string[] = [];
+    for (const x of found.filter((y) => String(y.startsAt).slice(0, 10) === tomorrow || String(y.endsAt).slice(0, 10) === tomorrow).slice(0, 30)) {
+      const woId = x.workOrder?.id ?? x.workOrderId ?? null; const v = woId ? (await a.get(`/api/work-orders/view/${woId}`)).body?.data?.work_order : null; const cust = String(v?.company_name ?? v?.companyName ?? v?.company?.name ?? '');
+      if (!/^ZZAUTOTEST/i.test(cust) && !/^ZZAUTOTEST/i.test(String(x.workOrder?.companyName ?? ''))) continue;
+      const st = await p.evaluate(`fetch('${API}/api/schedule/shifts/${x.id}?scope=shift', { method: 'DELETE', credentials: 'include', headers: { Accept: 'application/json' } }).then(r => r.status).catch(() => 0)`).catch(() => 0);
+      removed.push(`${String(x.id).slice(0, 8)} ${cust.slice(0, 40)} ${x.startsAt} -> ${st}`); }
+    R.C96966pre = { esthersShiftsTomorrowFound: found.length, removed }; }
   const sh = await mkShift(a, wo, ES.staff_id, 1, '08:00', 240, []);
   const nm2 = { [ES.staff_id]: 'Esther Howard', [RE.staff_id]: 'Ralph Edwards', [DO.staff_id]: 'Dana Ortiz' };
   const nmOf = (id: any) => nm2[id] ?? (id ? String(id).slice(0, 8) : 'nobody');
@@ -147,8 +161,10 @@ await run('C96966', async () => {
   // work order is tagged. The old finder is the fallback, and confirmAny() refuses any dialog that does not name this work order.
   const digits = num.replace(/^[A-Z]+\d*-/, '');
   const findOwn = async () => { const cands = sp.locator('.fc-event').filter({ hasText: n }); const k = Math.min(await cands.count().catch(() => 0), 6); S_tag.own = { candidates: k, read: [] as string[] };
-    for (let i = 0; i < k; i++) { const c = cands.nth(i); await c.scrollIntoViewIfNeeded({ timeout: 5000 }).catch(() => {}); await c.click({ timeout: 5000 }).catch(() => {}); await sp.waitForTimeout(1500);
-      const wn = (await sp.locator('[data-test-id="text_shift_detail_work_order"]').first().innerText({ timeout: 3000 }).catch(() => '')).replace(/\s+/g, '');
+    for (let i = 0; i < k; i++) { const c = cands.nth(i); await c.scrollIntoViewIfNeeded({ timeout: 5000 }).catch(() => {}); const bb = await c.boundingBox().catch(() => null);
+      // eighth pass: c.click() opened nothing ("no details"); click the block's own top-left area with the mouse, as high1-fix5 does
+      if (bb) await sp.mouse.click(bb.x + Math.min(20, bb.width / 3), bb.y + Math.min(10, bb.height / 3)); else await c.click({ timeout: 5000 }).catch(() => {}); await sp.waitForTimeout(1800);
+      const wn = ((await sp.locator('[data-test-id="text_shift_detail_work_order"]').first().innerText({ timeout: 3000 }).catch(() => '')) || ((await sp.locator('.q-dialog, .q-menu, [role=dialog]').last().innerText({ timeout: 3000 }).catch(() => '')).match(/S\d*-\d+/) || [''])[0]).replace(/\s+/g, '');
       await sp.locator('[data-test-id="button_close_dialog"]').first().click({ timeout: 3000 }).catch(() => sp.keyboard.press('Escape').catch(() => {})); await sp.waitForTimeout(700); S_tag.own.read.push(wn || '(no details)');
       if (wn.endsWith(digits)) { await c.evaluate((e) => { document.querySelectorAll('[data-zz-block]').forEach((x) => x.removeAttribute('data-zz-block')); e.setAttribute('data-zz-block', '1'); }).catch(() => {}); S_tag.own.picked = i; return true; } }
     return false; };

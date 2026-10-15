@@ -10,7 +10,8 @@ if ! pgrep -f "atlassian-login/bridge.mjs" >/dev/null; then
 fi
 echo "relay $(curl -s -o /dev/null -w '%{http_code}' -x http://127.0.0.1:$(cat /tmp/atlassian/bridge-port.txt) -k https://app.staging.shopview.com/)"
 pgrep -f memwatch.sh >/dev/null || setsid nohup ./memwatch.sh > /dev/null 2>&1 < /dev/null &
-if pgrep -f "run-sixth.sh|run-seventh.sh|run-eighth.sh" >/dev/null; then pgrep -f stg-after8.sh >/dev/null || setsid nohup ./stg-after8.sh > /dev/null 2>&1 < /dev/null &
+if pgrep -f "run-sixth.sh|run-seventh.sh|run-eighth.sh|run-ninth.sh" >/dev/null; then pgrep -f stg-after8.sh >/dev/null || grep -q "eighth pass start" $A || setsid nohup ./stg-after8.sh > /dev/null 2>&1 < /dev/null &
+  pgrep -f stg-after9.sh >/dev/null || grep -q "ninth pass start" $A || setsid nohup ./stg-after9.sh > /dev/null 2>&1 < /dev/null &
   echo "a pass is already running"; exit 0; fi
 if ! grep -q "sixth pass finished" $A; then
   rm -f $E/logs6/role-viewonly-stg4.done $E/logs6/clocks-stg4.done
@@ -35,5 +36,15 @@ elif ! grep -q "eighth pass finished" $A; then
   rm -f $E/logs8/signin-check-stg4.done
   echo "$(date -u +%H:%M:%S) container restart — resumed by recover.sh" >> $E/logs8/run.out
   setsid nohup ./resume-eighth.sh > /dev/null 2>&1 < /dev/null &
+  pgrep -f stg-after9.sh >/dev/null || setsid nohup ./stg-after9.sh > /dev/null 2>&1 < /dev/null &
   echo "resumed the EIGHTH pass"
+# 15 Oct 2026 (wave 28): the NINTH pass (ninth-pass-plan.txt) follows the eighth; the sign-out test is its last line.
+elif ! grep -q "ninth pass start" $A; then
+  pgrep -f stg-after9.sh >/dev/null || setsid nohup ./stg-after9.sh > /dev/null 2>&1 < /dev/null &
+  echo "started the ninth-pass waiter"
+elif ! grep -q "ninth pass finished" $A; then
+  rm -f $E/logs9/signin-check-stg4.done
+  echo "$(date -u +%H:%M:%S) container restart — resumed by recover.sh" >> $E/logs9/run.out
+  setsid nohup ./resume-ninth.sh > /dev/null 2>&1 < /dev/null &
+  echo "resumed the NINTH pass"
 else echo "all passes finished"; fi

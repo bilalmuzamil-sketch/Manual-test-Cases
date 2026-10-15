@@ -1,8 +1,8 @@
 # script | cases (ONLY) | extra settings   — 15 Oct 2026 SIXTH pass on staging, run by stg-after6.sh after "fifth pass finished".
 # The fifth pass read its plan at 04:58 UTC, so wave 13 (judge/wave13.json) runs here. signin-check-stg4.mts runs first as the
 # guard (run-sixth.sh stops if it fails); then the view-only role reset and the running-clock clean-up, as in the passes before.
-# SIGN-OUT LAST OF ALL (L0342): evidence/staging-full-2026-10-14/logs5/signout-fix.done was created at 04:59 UTC so the fifth pass
-# skips signout-fix.mts; it runs only here, as the last line.
+# (note about the sign-out test removed: it runs only at the end of the newest pass plan — L0378)
+# (note about the sign-out test removed: it runs only at the end of the newest pass plan — L0378)
 signin-check-stg4.mts | | 
 role-viewonly-stg4.mts | | 
 clocks-stg4.mts | | 
@@ -44,4 +44,4 @@ notech-stg4.mts | C368130 |
 # 15 Oct 2026 (wave 17): C96962 line Audit log read on screen + page change to Dana Ortiz; C96974 picture of Nina Newtech's "4 open" row
 s4-batchE.mts | C96962 | WOB_PIN_NAMES=Esther Howard,Ralph Edwards
 s4-batchD.mts | C96974 | 
-signout-fix.mts | C368240 | 
+# (the sign-out test was here; it now runs only at the end of the NEWEST pass plan — L0378)
