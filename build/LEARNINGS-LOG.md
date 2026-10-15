@@ -762,3 +762,11 @@ Record the outcome here. #restart #idle #unattended → L0365, L0370
 - Reused technicians keep earlier passes' work orders in their groups (Tia still held S2-35997/98/99), so "WO-1 below WO-2"
   is read among extra rows. Use run-numbered technicians, or move the old work orders away first.
 #drag #design #staging → L0350, L0360
+
+## L0377 — 2026-10-15 — Long location names are cut short in the picker; a name prefix matched an old run's Schedule block; hold the block while scrolling
+- **Where:** `build/wo-board-tech-view/run498-2026-10-08/` — `wob.mts` `switchLocUI` (shared), `notech-stg4.mts` (C368130), `s4-batchH.mts` (C96958, C96966); verdicts in `evidence/staging-full-2026-10-14/judge/wave24.json`.
+- **Location picker cuts long names short:** the profile menu's location list shows "ZZAUTOTEST F2 No Tech Sho..", so `hasText: 'ZZAUTOTEST F2 No Tech Shop'` never matched and the switch silently did not happen. `switchLocUI` now matches a name longer than 22 characters on its first 20 characters (picker and top bar). Read the top bar back after every switch.
+- **Never match a test record by a shortened prefix:** C96966's block finder fell back to the first 30 characters of the customer name, which matched an EARLIER run's block ("…Status And Time Kept 56957"), so the on-screen move dragged another shift. Match only this run's full name (it ends in the run number) or the number.
+- **Drag onto a Schedule row that is off screen:** hold the block (mouse down), scroll the Schedule's own scroller toward the target row in 300 px steps while nudging the mouse, and drop only once the row is on screen; record the held scrolls (`s4-batchH` C96966 step c).
+- **Same-name technicians pile up:** staging's Reassign dialog lists four "ZZAUTOTEST F3 Count Ben Bravo" from earlier runs. Identify this run's person by the **Current** mark or by staff id, never by name or position alone.
+- **The result picture of a "no notification" check is the empty Notifications page itself**, photographed in that person's own window (`s4-batchH` `read(who, tag)`).

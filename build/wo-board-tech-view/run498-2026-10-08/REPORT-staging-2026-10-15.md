@@ -9,7 +9,7 @@ compare, and only where production has the same screen.
 |---|---|
 | Ran the whole test run on staging, unattended, overnight | Most tests now have a staging result with marked-up pictures on them |
 | Your 22 new design tests ("Design — how it looks") | 2 pass. 13 show the screen does not match the design (tickets held for you). 6 are being measured again. 1 has no expected result yet |
-| Report filter tests compared with production | 3 fail the same way on production, so no ticket: the problem was already there before this work |
+| Three report filter tests that failed the same way on production | Those three tests have since been DELETED from TestRail (not by me) and left the run, so they no longer count. They had no ticket, because production does the same |
 | One sorting test fails on staging only | It worked on the test branch on 9 Oct; on staging the cards are not in the List's order. Ticket held for you |
 | Four tests that used to fail now pass | The fixes for the "clear the technician's shifts?" question have reached staging |
 
@@ -105,5 +105,5 @@ Run 498: https://shopview.testrail.io/index.php?/runs/view/498
 2 · Design failures C590110 C590111 C590112 C590113 C590115 C590116 C590117 C590118 C590119 C590121 C590124 C590127 C590130; passes C590126 C590131; re-measuring C590114 C590120 C590122 C590123 C590128 C590129; Dark theme C590125
 4 · C581895 https://shopview.testrail.io/index.php?/cases/view/581895 — story https://shopview.atlassian.net/browse/SV-10048
 5 · C96973 · 6 · C97003 · 7 · C96920 · 8 · C96916 · 9 · C97005 step 8, C96989 · 11 · C96978 · 12 · C368134 C368136 C154888 C154889; tech-story setting C96998
-Same as production, no ticket: C368232 C368236 C368237. Deleted user: C368191, C368177.
+Deleted from TestRail during the run (not by this session): C368232 C368236 C368237. Deleted user: C368191, C368177.
 3 · Second company: C368175 C154650 · Technician filter: C581915 C581916 C581917 C581918 (with C590127)
