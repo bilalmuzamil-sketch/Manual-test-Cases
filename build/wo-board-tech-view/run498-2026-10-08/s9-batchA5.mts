@@ -13,11 +13,11 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, findRow, toggleGroup } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, findRow, toggleGroup, pickLeadOnPage, listAllOptions } from './wob.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
 import { HEAVY } from './staff.mts';
-import { staffRows, person, roleIds } from './staff.mts';
+import { staffRows, person, roleIds, ensureEligible, eligibilityOf } from './staff.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -197,18 +197,31 @@ await run('C97006', async () => {
 await run('C97007', async () => {
   await pins([ANA.staff_id, BEN.staff_id, CAL.staff_id]);
   const s = await mkSet('ZZAUTOTEST F3 Reassign Bottom', [{ co: 'Bravo Co', lead: BEN }, { co: 'Delta Co', lead: BEN }, { co: 'Aardvark Co', lead: CAL }, { co: 'Abbey Co', lead: CAL }, { co: 'Echo Co', lead: CAL }]);
-  await go('Board View', s.q); const o: any = { benStart: await col(BEN.staff_id, s) };
+  await go('Board View', s.q); const o: any = { benStart: await col(BEN.staff_id, s) }; R.C97007 = o;   // kept even if a later step stops
   const m = await openReassign(p, s.w['Aardvark Co'].id); await m.item.click(); await p.waitForTimeout(1200);
   await p.locator(`[data-test-id="option_lead_technician_${BEN.staff_id}"]`).click(); await p.locator('[data-test-id="button_confirm_reassign_lead_technician"]').click(); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
   o.step7 = await col(BEN.staff_id, s);
   const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${s.w['Abbey Co'].id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(6000);
-  // 15 Oct 2026: the lead field found by its label when the test-id is not there (staging); type "Ben" and pick "Ben Bravo"
-  const leadSel = (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]') : pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
-  o.step8field = await leadSel.count();
-  await leadSel.click(); await pg.waitForTimeout(1000); await pg.keyboard.type('Ben', { delay: 60 }); await pg.waitForTimeout(1500);
-  o.step8options = (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).slice(0, 6);
-  await pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: 'Ben Bravo' }).first().click(); await pg.waitForTimeout(3000); await pg.screenshot({ path: path.join(EV, 'C97007-wo-page-lead.png') }).catch(() => {}); await pg.close();
-  o.step8lead = await leadOf(s, 'Abbey Co');
+  // 15 Oct 2026 (wave 13, fourth pass): "Ben Bravo" was still not found in the work order page's Lead Technician list although the
+  // Reassign dialog offers him. First READ WHY (eligibilityOf: active, Time Clock, role, Location, departments, enrolments, whether the
+  // lead list offers his staff id and who else has the same name); fix what is wrong (role Technician if it is Office / Time Clock User;
+  // ensureEligible) and read it back; then pick him with pickLeadOnPage (field by label, types "Ben", scrolls the list), and if he is
+  // still not drawn, record EVERY option the page's list holds (listAllOptions) so how he is listed (or that he is not) is on record.
+  o.benWhyBefore = await eligibilityOf(a, `zz.wob.ben.bravo${D}`);
+  if (/^(Office( User)?|Time Clock( User)?)$/i.test(String(o.benWhyBefore.role ?? ''))) o.benRoleFix = (await a.post(`/api/staff/${BEN.staff_id}/change`, { first_name: BEN.first_name, last_name: BEN.last_name, email: BEN.email, role_id: TECH_ROLE, workplace_id: HEAVY, job_title: BEN.job_title, salary_type: BEN.salary_type, salary: BEN.salary, billable: !!BEN.billable, clockable: true })).status;
+  o.benFixes = await ensureEligible(a, BEN, 'Ben'); o.benWhyAfter = await eligibilityOf(a, `zz.wob.ben.bravo${D}`);
+  await pg.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(7000);
+  o.step8pick = await pickLeadOnPage(pg, 'Ben', 'Ben Bravo'); await pg.waitForTimeout(2500); await pg.screenshot({ path: path.join(EV, 'C97007-wo-page-lead.png') }).catch(() => {});
+  if (!o.step8pick?.picked) { await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(500);
+    const fld = (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]') : pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
+    await fld.click().catch(() => {}); await pg.waitForTimeout(1200); const all = await listAllOptions(pg); o.step8pageList = { count: all.length, withBenOrBravo: all.filter((x) => /ben|bravo/i.test(x)), first: all.slice(0, 8), last: all.slice(-5) };
+    await pg.screenshot({ path: path.join(EV, 'C97007-wo-page-lead-list.png') }).catch(() => {});
+    const alt = all.find((x) => /\bben\b/i.test(x) && /bravo/i.test(x));   // listed under another form of his name: pick it and say which text
+    if (alt) { const opt = pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: alt }).first(); for (let i = 0; i < 80 && !(await opt.count()); i++) { await pg.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].pop(); const s = m && ([m, ...m.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 4) || m); if (s) s.scrollTop += 250; })()`).catch(() => {}); await pg.waitForTimeout(250); }
+      if (await opt.count()) { await opt.click(); await pg.waitForTimeout(3000); o.step8pickedAs = alt; await pg.screenshot({ path: path.join(EV, 'C97007-wo-page-lead.png') }).catch(() => {}); } }
+    else await pg.keyboard.press('Escape').catch(() => {}); }
+  await pg.close();
+  o.step8lead = await leadOf(s, 'Abbey Co'); o.step8leadIsThisBen = (await workOrders(a, s.q)).find((x: any) => x.id === s.w['Abbey Co'].id)?.techAssignedId === BEN.staff_id;
   await go('Board View', s.q); o.step9 = await col(BEN.staff_id, s);
   await drag(p, card(s, 'Echo Co'), card(s, 'Delta Co'), 4); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
   o.step10 = await col(BEN.staff_id, s); await shot(p, 'C97007-board');

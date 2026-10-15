@@ -14,8 +14,8 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, pickLeadOnPage } from './wob.mts';
-import { staffRows, person, roleIds, HEAVY, ensureEligible } from './staff.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, pickLeadOnPage, listAllOptions } from './wob.mts';
+import { staffRows, person, roleIds, HEAVY, ensureEligible, eligibilityOf } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
 
@@ -419,8 +419,26 @@ await run('C368159', async () => {
   const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${s.w['Site Co'].id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(6000);
   // 15 Oct 2026 (staging second pass): "Ben Bravo" was not offered — Ana and Ben are made eligible first (staff.mts ensureEligible:
   // active, Heavy Duty / Service, Time Clock on) and who is offered is read; the lead field is found by its label (wob.mts pickLeadOnPage)
-  o.page = await pickLeadOnPage(pg, 'Ben', 'Ben Bravo'); await pg.screenshot({ path: path.join(EV, 'C368159-browser2-lead.png') }).catch(() => {}); await pg.close();
-  o.leadAfterB2 = await leadOf(s, 'Site Co');
+  // 15 Oct 2026 (wave 13, fourth pass): Ben Bravo was still not in the page's list after typing "Ben" and 19 scrolls, although the Reassign
+  // dialog offers him. Now: WHY first (eligibilityOf: active, Time Clock, role, Location, departments, enrolments, offered as a lead, who
+  // else has his name), role fixed to Technician if it is Office / Time Clock User, read back; then pickLeadOnPage; if he is still not
+  // picked, the field is opened WITHOUT typing and EVERY option is read (listAllOptions). If he is listed under another form of his name
+  // (both "Ben" and "Bravo" in it), that option is picked and the text used is recorded; the lead is checked by staff id afterwards.
+  o.benWhyBefore = await eligibilityOf(a, `zz.wob.ben.bravo${D}`);
+  if (/^(Office( User)?|Time Clock( User)?)$/i.test(String(o.benWhyBefore.role ?? ''))) o.benRoleFix = (await a.post(`/api/staff/${BEN.staff_id}/change`, { first_name: BEN.first_name, last_name: BEN.last_name, email: BEN.email, role_id: TECH_ROLE, workplace_id: HEAVY, job_title: BEN.job_title, salary_type: BEN.salary_type, salary: BEN.salary, billable: !!BEN.billable, clockable: true })).status;
+  o.benWhyAfter = await eligibilityOf(a, `zz.wob.ben.bravo${D}`);
+  await pg.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(7000);
+  o.page = await pickLeadOnPage(pg, 'Ben', 'Ben Bravo');
+  if (!o.page?.picked) { await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(500);
+    const fld = (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]') : pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
+    await fld.click().catch(() => {}); await pg.waitForTimeout(1200); const all = await listAllOptions(pg);
+    o.pageList = { count: all.length, withBenOrBravo: all.filter((x) => /ben|bravo/i.test(x)), first: all.slice(0, 8), last: all.slice(-5) }; await pg.screenshot({ path: path.join(EV, 'C368159-browser2-lead-list.png') }).catch(() => {});
+    const alt = all.find((x) => /\bben\b/i.test(x) && /bravo/i.test(x));
+    if (alt) { const opt = pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: alt }).first(); for (let i = 0; i < 80 && !(await opt.count()); i++) { await pg.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].pop(); const s = m && ([m, ...m.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 4) || m); if (s) s.scrollTop += 250; })()`).catch(() => {}); await pg.waitForTimeout(250); }
+      if (await opt.count()) { await opt.click(); await pg.waitForTimeout(3000); o.pickedAs = alt; } }
+    else await pg.keyboard.press('Escape').catch(() => {}); }
+  await pg.screenshot({ path: path.join(EV, 'C368159-browser2-lead.png') }).catch(() => {}); await pg.close();
+  o.leadAfterB2 = await leadOf(s, 'Site Co'); o.leadIsThisBen = (await workOrders(a, s.q)).find((x: any) => x.id === s.w['Site Co'].id)?.techAssignedId === BEN.staff_id;
   // browser 1, stale page: toggle On Site
   const tr = p.locator('tbody tr').filter({ hasText: s.w['Site Co'].number }); await tr.locator('[data-test-id="button_vehicle_here_toggle"]').first().click(); await p.waitForTimeout(2500);
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);

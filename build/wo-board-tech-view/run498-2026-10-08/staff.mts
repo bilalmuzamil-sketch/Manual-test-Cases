@@ -51,3 +51,18 @@ export async function ensureEligible(a: Api, r: any, label = '') {
   if (!r.clockable || (r.workplace_id && r.workplace_id !== HEAVY)) out.push(`${label} Time Clock/Location ${(await a.post(`/api/staff/${r.staff_id}/change`, { first_name: r.first_name, last_name: r.last_name, email: r.email, role_id: r.role_id, workplace_id: HEAVY, job_title: r.job_title, salary_type: r.salary_type, salary: r.salary, billable: !!r.billable, clockable: true })).status}`);
   return out;
 }
+/** 15 Oct 2026 (wave 13, C97007 / C368159): WHY a test technician is or is not offered as a lead — the staff row read fresh (active, Time
+ *  Clock, role, Location, departments) and the staff view's enrolments, against the rule "active, Time Clock on, role not Office User /
+ *  Time Clock User, this location picked"; plus whether the lead list (lead-technician-candidates) offers that staff id, and under
+ *  which name(s) every person with the same name is offered. Read only. */
+export async function eligibilityOf(a: Api, email: string, workplace = HEAVY) {
+  const r = (await staffRows(a, email)).find((x) => String(x.email).toLowerCase() === email.toLowerCase());
+  if (!r) return { email, row: 'NOT FOUND' };
+  const v = (await a.get(`/api/staff/${r.staff_id}/view`)).body?.data ?? null;
+  const wps = ((v?.workplaces ?? v?.enrollments ?? v?.staff?.workplaces ?? []) as any[]).map((x: any) => `${x.name ?? x.workplace_name ?? x.workplaceName ?? x.workplace_id ?? x.workplaceId ?? '?'}${x.department_name ?? x.departmentName ? ' / ' + (x.department_name ?? x.departmentName) : ''}`);
+  const cands = ((await a.get('/api/work-orders/lead-technician-candidates')).body?.data?.technicians ?? []) as any[];
+  const name = `${r.first_name ?? ''} ${r.last_name ?? ''}`.trim();
+  return { email, name, staffId: String(r.staff_id).slice(0, 8), active: r.is_active, timeClock: r.clockable, role: r.role_label, location: r.workplace_id === workplace ? 'this location' : (r.workplace_id ?? null), departments: (r.departments ?? []).map((d: any) => d.name ?? d.label ?? d).slice(0, 4),
+    enrolments: wps.slice(0, 6), viewKeys: v ? Object.keys(v).slice(0, 30) : null,
+    offeredAsLead: cands.some((c) => c.staffId === r.staff_id), sameNameOffered: cands.filter((c) => `${c.firstName ?? ''} ${c.lastName ?? ''}`.trim() === name).map((c) => `${String(c.staffId).slice(0, 8)} open=${c.openCount}`) };
+}

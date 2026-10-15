@@ -217,3 +217,15 @@ export async function pickLeadOnPage(pg: Page, typed: string, name: string) {
   if (o.picked) { await opt.click(); await pg.waitForTimeout(3000); } else await pg.keyboard.press('Escape').catch(() => {});
   return o;
 }
+/** 15 Oct 2026 (wave 13, C97007 / C368159): every option of the open pick list (the last visible .q-menu), scrolling it top to bottom,
+ *  so a reading can say exactly how a person is listed (or that they are not). Returns the texts in list order (max 400). */
+export async function listAllOptions(pg: Page) {
+  const seen: string[] = [];
+  await pg.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); const s = m && ([m, ...m.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 4) || m); if (s) s.scrollTop = 0; })()`).catch(() => {}); await pg.waitForTimeout(400);
+  for (let i = 0; i < 120 && seen.length < 400; i++) {
+    for (const x of (await pg.locator('.q-menu .q-item, .q-menu .q-checkbox').allInnerTexts().catch(() => [])).map((y) => y.replace(/\s+/g, ' ').trim())) if (x && !seen.includes(x)) seen.push(x);
+    const moved = await pg.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); const s = m && ([m, ...m.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 4) || m); if (!s) return false; const b = s.scrollTop; s.scrollTop += 250; return s.scrollTop !== b; })()`).catch(() => false);
+    await pg.waitForTimeout(250); if (!moved) break;
+  }
+  return seen;
+}

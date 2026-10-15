@@ -248,10 +248,25 @@ await run('C368156', async () => { const o: any = {};
     if (!r.onBoard.includes(name)) { r.again = await switchLocUI(p, name); await tab(p, 'All'); await display(p, 'Board View'); r.onBoard = await topBar(); } return r; };
   o.toLoc2 = await toLoc('Staging Lethbridge');
   if (!o.toLoc2.onBoard.includes('Staging Lethbridge')) { R.C368156 = o; o.back = await toLoc('Staging Heavy Duty'); throw new Error(`the screen did not switch to Staging Lethbridge (top bar: ${o.toLoc2.onBoard})`); } o.loc2pinnedCols = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="button_board_pin_"] i')].filter(i => /push_pin/.test(i.innerText) && i.closest('button').className.includes('text-primary')).length`);
+  // 15 Oct 2026 (wave 13): the Lethbridge board read only Unassigned — wait (up to 15 s) for technician columns to be drawn before reading
+  for (let i = 0; i < 15 && (await p.locator('[data-test-id^="board_column_header_"]').count()) < 2; i++) await p.waitForTimeout(1000);
+  o.loc2ColumnsDrawn = await p.locator('[data-test-id^="board_column_header_"]').count(); await shot(p, 'C368156-loc2-board-loaded');
   o.loc2Cols = named((await allCols(p)).slice(0, 6), { ...IDS, Xia: XIA.staff_id, Yan: YAN.staff_id, Zoe: ZOE.staff_id });
   for (const x of [XIA, YAN, ZOE]) { await toColumn(p, x.staff_id).catch(() => {}); const b = p.locator(`[data-test-id="button_board_pin_${x.staff_id}"]`); o[`pin ${x.first_name ?? x.staff_id.slice(0, 4)}`] = (await b.count()) ? { disabled: await b.isDisabled() } : 'no column'; if (await b.count()) { await b.click().catch(() => {}); await p.waitForTimeout(1200); } }
   o.loc2Pref = await prefFor(); o.loc2Toasts = await toastsOn(p); await shot(p, 'C368156-loc2');
-  o.toHeavy = await toLoc('Staging Heavy Duty'); o.heavyAfter = named((await allCols(p)).slice(0, 5), IDS); o.heavyPref = await prefFor();
+  // 15 Oct 2026 (wave 13, fourth pass): the switch back to Heavy Duty did not take (top bar stayed on Lethbridge), so step 5 was not
+  // seen. Now: switchLocUI, top bar read back; if not Heavy Duty, ONE more try after reading what the location menu offers (picture);
+  // if it still has not taken, step 5 is NOT read off the screen (o.step5NotOnScreen says why) — the server is put back for later work.
+  o.toHeavy = await toLoc('Staging Heavy Duty');
+  if (!String(o.toHeavy.onBoard ?? '').includes('Staging Heavy Duty')) {
+    await p.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await p.waitForTimeout(1200); await p.locator('[data-test-id="select_location"]').click().catch(() => {}); await p.waitForTimeout(1500);
+    o.locationsOfferedOnWayBack = (await p.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 15); await shot(p, 'C368156-location-menu-way-back');
+    await p.keyboard.press('Escape').catch(() => {}); await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(800);
+    o.toHeavyRetry = await toLoc('Staging Heavy Duty'); }
+  o.topBarForStep5 = await topBar(); await shot(p, 'C368156-step5-top-bar');
+  if (String(o.topBarForStep5 ?? '').includes('Staging Heavy Duty')) { o.heavyAfter = named((await allCols(p)).slice(0, 5), IDS); o.heavyPref = await prefFor(); await shot(p, 'C368156-step5-heavy'); }
+  else { o.step5NotOnScreen = `top bar still reads "${o.topBarForStep5}" after two on-screen switches`; o.heavyPref = await prefFor();
+    o.serverBack = (await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: process.env.WOB_LOC_TZ || 'Asia/Karachi' })).status; }
   R.C368156 = o; });
 
 async function staffAccess(name: string) { await p.goto(APP + '/settings/staff', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);

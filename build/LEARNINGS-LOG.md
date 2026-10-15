@@ -542,3 +542,13 @@ after any merge, re-run `selftest_workspace.py` and renumber the later duplicate
 - **Before a check that needs particular data, reset that data and read it back first (C96959, C96974, C154888):** reset leads to the case's start (3/1/0) and read them back, or make a FRESH work order with exactly the case's shifts. A shift that must be running today must not cross the shop's midnight (19:00 UTC for Asia/Karachi).
 - **A fresh technician sorts to the far right ("ZZAUTOTEST …"):** bring their column on screen (`toColumn`) before reading their card (C96978).
 - **A production comparison is read only:** sign in with prod-login-boot.mjs, find a recent work order in the right state through the app's own list call on `api.shopview.com`, and picture the same element on each side (C96999).
+
+## L0355 — 2026-10-15 — After a container restart, restart the sign-in relay before trusting any "no DEV MODE Admin button"
+At 04:54 UTC a script on staging failed in the middle with `TypeError: Failed to fetch (api.staging.shopview.com)`, and the next six
+scripts all stopped with `no DEV MODE "Admin" button … after 30s`. It looked like the QA lead's staging cookie had expired. It had
+not: a container restart just before had moved the outgoing proxy port (`$HTTPS_PROXY` :37835 → :46407). The relay
+(`build/atlassian-login/bridge.mjs`) still sent everything to the old port, so every request through it got a 502. This is playbook
+§A trap (1). The cheapest check is `curl -x http://127.0.0.1:$(cat /tmp/atlassian/bridge-port.txt) -k https://app.staging.shopview.com/`:
+a 502 means a dead relay; restart it by its pid (never `pkill -f`) and read back a 200. **Whenever a container-restart notice
+arrives during an unattended run, restart the relay straight away.** Do not wait for scripts to fail. The scripts that lost sign-in
+are put into the next pass's plan, which works only if that pass has not started yet. #staging #signin #bridge → L0250, L0342

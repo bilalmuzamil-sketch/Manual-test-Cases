@@ -222,7 +222,14 @@ await run('C368174', async () => { const w = await one('ZZAUTOTEST Lines Tab Ass
 
 await run('C368176', async () => { const w = await one('ZZAUTOTEST Clock In Line', null, 2); const o: any = {}; R.w176 = w;
   await page(w.id); o.step1 = await laborRows(); const v = await asUser(ES);
-  try { const pg = v.page; await page(w.id, 'lines', pg); const row = pg.locator(`[data-test-id="line_labor_name_${w.ls[0]}"]`).locator('xpath=ancestor::tr[1]');
+  try { const pg = v.page;
+    // 15 Oct 2026 (wave 13, fourth pass): Esther still had a clock running on another work order (S2-35915), so Start opened the stop
+    // window for THAT work order. Before the steps, every running clock of hers is stopped (Clock Out behind the screen, up to 3 times)
+    // and read back; the steps start only from "no clock running".
+    o.clocksStoppedFirst = []; for (let i = 0; i < 3; i++) { const cur = (await api(pg).get('/api/technician-tasks/my-current-task')).body?.data; if (!cur?.technician_task?.id) break;
+      o.clocksStoppedFirst.push(`${cur.technician_task.label ?? cur.technician_task.id}: ${(await api(pg).post('/api/technician-tasks/check-out', { task_id: cur.technician_task.id })).status}`); await pg.waitForTimeout(1500); }
+    o.clockBeforeStart = ((await api(pg).get('/api/technician-tasks/my-current-task')).body?.data?.technician_task?.label) ?? 'no clock running';
+    await page(w.id, 'lines', pg); const row = pg.locator(`[data-test-id="line_labor_name_${w.ls[0]}"]`).locator('xpath=ancestor::tr[1]');
     const start = (await row.count()) ? row.locator('button').filter({ hasText: /Start/i }).first() : pg.locator('button').filter({ hasText: /^\s*Start\s*$/i }).first(); o.startFound = await start.count(); await shot(pg, 'C368176-tech-lines');
     if (o.startFound) { await start.click(); await pg.waitForTimeout(3000); o.afterStart = await toastsOn(pg); await pg.waitForTimeout(65000);
       const stop = pg.locator('button').filter({ hasText: /^\s*Stop\s*$/i }).first(); o.stopFound = await stop.count(); await stop.click().catch(() => {}); await pg.waitForTimeout(2000); const d = dlg(pg); o.stopDialog = (await d.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 200);

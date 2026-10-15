@@ -52,6 +52,21 @@ async function dragOn(pg: Page, from: string, to: string, dy = 120) {
   await pg.mouse.move(b.x + b.width / 2, b.y + dy, { steps: 20 }); await pg.waitForTimeout(400); await pg.mouse.up(); await pg.waitForTimeout(3000); return 'ok';
 }
 
+// 15 Oct 2026 (wave 13, fourth pass): after Alpha Co was invoiced on the Admin side, [User-A]'s drag got "Session expired, please log
+// in again." and Work Orders would not reload. That may be the product's real answer, or the shared session changing hands (the Admin
+// side is the runner taking the ONE staging session for a moment — playbook: switching users can sign the other window out). So it
+// is RECORDED, never retried around: (1) [User-A]'s session is probed from [User-A]'s own window (the sign-in check call) at the
+// start, right after each hand-back, and after each drag — so the reading shows WHEN it stopped working; (2) every message and new
+// short text is watched continuously from the press (MutationObserver, with the time since the press) and photographed just after the
+// drop and 3 s later; (3) whether [User-A] is signed out (page address, the sign-in check) is written down; (4) a failed reload is
+// recorded and the case stops there — no second drag.
+const watchStart = (pg: Page) => pg.evaluate(`(() => { window.__mw = []; window.__mw0 = Date.now(); if (window.__mo) window.__mo.disconnect();
+  const add = (kind, txt) => { const t = (txt || '').replace(/\\s+/g, ' ').trim(); if (!t || t.length > 200) return; if (window.__mw.some(x => x.text === t && x.kind === kind)) return; window.__mw.push({ ms: Date.now() - window.__mw0, kind, text: t }); };
+  const grab = (muts) => { for (const e of document.querySelectorAll('.q-notification, [role=alert]')) add('message', e.innerText);
+    for (const m of muts || []) for (const nd of m.addedNodes || []) { if (nd.nodeType !== 1 || !nd.getBoundingClientRect || nd.getBoundingClientRect().width === 0) continue; if (nd.closest && nd.closest('.q-notification')) continue; const tx = nd.innerText || ''; if (tx && tx.length <= 200) add(nd.closest && nd.closest('.q-dialog') ? 'dialog' : 'new text', tx); } };
+  window.__mo = new MutationObserver(grab); window.__mo.observe(document.body, { childList: true, subtree: true, characterData: true }); grab([]); })()`).catch(() => {});
+const watchRead = (pg: Page) => pg.evaluate('window.__mw || []').catch(() => 'page gone') as Promise<any>;
+const probe = (pg: Page) => pg.evaluate(`fetch(${JSON.stringify((process.env.WOB_API || 'https://api.staging.shopview.com'))} + '/api/auth/me/fe-permissions', { credentials: 'include' }).then(r => r.status).catch(e => 'error ' + String(e).slice(0, 60))`).catch((e) => 'page gone ' + String(e).slice(0, 60)) as Promise<any>;
 if (want('C97012')) {
   const o: any = {}; R.C97012 = o;
   let roleId: string | undefined; let ceIds: string[] = []; let baseIds: string[] = []; let roleBody: any = null;
@@ -110,20 +125,25 @@ if (want('C97012')) {
     try { const pg = v.page; pg.setDefaultTimeout(30_000); o.userAPerms = v.perms;
       { const pv = (await api(pg).get(PREF)).body?.data?.value ?? {}; await api(pg).put(PREF, { value: { ...pv, pinnedTechnicianIds: [ANA.staff_id, BEN.staff_id], filters: {} } }); }
       await goP(pg, q); const cardSel = (co: string) => `[data-test-id="board_card_${w[co]}"]`; await toColumn(pg, ANA.staff_id);
-      o.start = { alphaCard: await pg.locator(cardSel('Alpha Co')).count(), bravoCard: await pg.locator(cardSel('Bravo Co')).count() }; await shot(pg, 'C97012-stg4-start');
+      o.start = { alphaCard: await pg.locator(cardSel('Alpha Co')).count(), bravoCard: await pg.locator(cardSel('Bravo Co')).count(), userASession: await probe(pg) }; await shot(pg, 'C97012-stg4-start');
       // step 4: the Admin (second browser) invoices Alpha Co — a real invoice
       await RUN.toRunner(); o.step4 = { invoice: say(await a.post('/api/invoices/create', { work_order_id: w['Alpha Co'], issue_date: new Date().toISOString().slice(0, 10), due_date: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10) })), status: (await statusOf('Alpha Co'))?.status }; o.step4.backToUserA = await toUserA();
       // step 5: no refresh — drag Alpha Co to Ben
-      o.step5 = { drag: await dragOn(pg, cardSel('Alpha Co'), `[data-test-id="board_column_${BEN.staff_id}"]`) }; o.step5.shiftPrompt = await shiftPrompt(pg, 'Keep shifts'); o.step5.alert = await toasts(pg); await shot(pg, 'C97012-stg4-step5');
+      o.step4.userASessionAfterHandBack = await probe(pg);
+      await watchStart(pg); o.step5 = { drag: await dragOn(pg, cardSel('Alpha Co'), `[data-test-id="board_column_${BEN.staff_id}"]`) }; await shot(pg, 'C97012-stg4-step5-just-dropped'); o.step5.shiftPrompt = await shiftPrompt(pg, 'Keep shifts'); o.step5.alert = await toasts(pg); await shot(pg, 'C97012-stg4-step5');
+      await pg.waitForTimeout(3000); o.step5.watched = await watchRead(pg); o.step5.userASessionAfterDrag = await probe(pg); o.step5.url = pg.url().replace(APP, ''); o.step5.signedOut = /login|sign-?in/i.test(pg.url()) || o.step5.userASessionAfterDrag === 401; await shot(pg, 'C97012-stg4-step5-3s');
       o.step5.anaCards = await pg.evaluate(`[...document.querySelectorAll('[data-test-id="board_column_${ANA.staff_id}"] [data-test-id="board_card_number"]')].map(e => e.textContent.trim())`);
       await pg.locator('.q-notification button').first().click().catch(() => {}); await pg.waitForTimeout(800);
       // step 6: refresh, read Alpha Co
-      await pg.reload({ waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); await goP(pg, q); await toColumn(pg, ANA.staff_id);
+      try { await pg.reload({ waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); await goP(pg, q); await toColumn(pg, ANA.staff_id); }
+      catch (e: any) { o.step6reload = `Work Orders did not reload: ${String(e?.message || e).slice(0, 160)}; url ${pg.url().replace(APP, '')}; session ${await probe(pg)}`; await shot(pg, 'C97012-stg4-step6-reload-failed'); throw new Error('stopped after step 5: [User-A]\'s page did not reload (recorded, not retried)'); }
       o.step6 = { status: (await statusOf('Alpha Co'))?.status, lead: await lead('Alpha Co') }; await shot(pg, 'C97012-stg4-step6');
       // step 7: the Admin takes Create & Edit off [Role-D]
       await RUN.toRunner(); o.step7 = { save: await putRole(baseIds) }; o.step7.roleNow = woCodes(await roleRead(roleId)); o.step7.backToUserA = await toUserA();
       // step 8: no refresh — drag Bravo Co to Ben
-      o.step8 = { drag: await dragOn(pg, cardSel('Bravo Co'), `[data-test-id="board_column_${BEN.staff_id}"]`) }; o.step8.shiftPrompt = await shiftPrompt(pg, 'Keep shifts'); o.step8.alert = await toasts(pg); o.step8.url = pg.url().replace(APP, ''); o.step8.signedOut = /login|sign-?in/i.test(pg.url()); await shot(pg, 'C97012-stg4-step8');
+      o.step7.userASessionAfterHandBack = await probe(pg);
+      await watchStart(pg); o.step8 = { drag: await dragOn(pg, cardSel('Bravo Co'), `[data-test-id="board_column_${BEN.staff_id}"]`) }; await shot(pg, 'C97012-stg4-step8-just-dropped'); o.step8.shiftPrompt = await shiftPrompt(pg, 'Keep shifts'); o.step8.alert = await toasts(pg);
+      await pg.waitForTimeout(3000); o.step8.watched = await watchRead(pg); o.step8.userASessionAfterDrag = await probe(pg); o.step8.url = pg.url().replace(APP, ''); o.step8.signedOut = /login|sign-?in/i.test(pg.url()) || o.step8.userASessionAfterDrag === 401; await shot(pg, 'C97012-stg4-step8');
       // step 9: refresh, read Bravo Co
       await pg.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(5000); o.step9 = { lead: await lead('Bravo Co'), url: pg.url().replace(APP, '') }; await shot(pg, 'C97012-stg4-step9');
       (globalThis as any).__wobPage = pg; await (globalThis as any).__shotEach?.('C97012'); (globalThis as any).__wobPage = p;
