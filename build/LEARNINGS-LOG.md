@@ -724,3 +724,11 @@ window, such as `high1-batch.mts` at about 15 minutes, can then never finish.
 **What to do:** on an unattended run, schedule a check-in (`send_later`) at least every 10 minutes. Each one runs
 `recover.sh` first. Test of the theory: if `uptime` keeps growing past 30 minutes with 10-minute check-ins, it holds.
 Record the outcome here. #restart #idle #unattended → L0365, L0370
+- **Follow-up, 08:30 UTC (L0372):** a fifth restart came at about 08:28. Read `uptime` against the clock at every wake:
+  07:24 = "up 3 min" (a user message arrived about 07:21), 07:35:54 = "up 0 min" (check-in), 07:58:29 = "up 0 min" (check-in),
+  08:15:48 = "up 1 min" (check-in), 08:29:25 = "up 1 min" (check-in). **Every restart is the moment the session is woken.**
+  So the container does not live between turns once nothing in the session is running. The watcher was a background task the
+  session itself started, and while it ran (until about 07:00) the container stayed up through the night. **So an unattended run
+  needs a background task kept running for as long as the passes run.** Start `/tmp/claude-0/sv/watch7.sh` with
+  `run_in_background` and the 2-hour timeout, and start the next one when it exits. Check-ins alone do not keep the machine
+  alive: each check-in wakes a fresh machine.
