@@ -1,0 +1,49 @@
+TITLE: Lead Technician Updated – Message Is a Solid Green Box Instead of the Design's White Box
+TYPE: Story Defect · PARENT: SV-10047 (Reassign or unassign the lead technician from the board or grouped table; Ready for QA, read live 15 Oct 2026 12:28 UTC — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10047 · LABEL: board-tech-view
+ALREADY REPORTED: none found among the design tickets the test cases name (SV-11317 to SV-11326, SV-11338, all read live 15 Oct 2026).
+SEEN ON: staging build {{v26.40.17-a5c4210}}, 15 Oct 2026 (run 498).
+PICTURES: the existing annotated staging pictures (banner on each), landscape; most were captured at 1x, so per Rule 116 re-take them at 2x before filing and run size_pics.py after the description write.
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+
+h2. Description
+
+*After a lead change, the "Lead technician updated" message should be a white rounded box with a green check-in-a-circle icon and an X to close it.* On staging it is a solid green box with white text and a Close button.
+
+For example,
+* the message reads "Lead technician updated" at the bottom right, which is right
+* it is a solid green box with white text and a white check icon
+* it has the word Close instead of an X
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* (Story *SV-10047*), the PRD and the design.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin, check the top bar shows *Staging Heavy Duty - 9919*, and use a browser window 1440 px wide at 100% zoom.
+# Open *Work Orders*, click the *All* tab, then *Board View* in the display switcher (right side of the toolbar).
+# Drag any Approved work order card from one technician's column into another's and release.
+#* "Lead technician updated" shows at the bottom right as a solid green box with white text and *Close*.
+#* After about ten seconds it goes by itself (which is right).
+
+*Actual Result:*
+* A solid green message box with white text and Close.
+
+*Expected Result:*
+* A white message box, as the test expects: *"Step 3: a white message box with rounded corners appears at the bottom right of the page, with a green check-in-a-circle icon, the words "Lead technician updated" and an X to close it, as in the design picture."*
+
+!D-DESIGN-14-green-message.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.17-a5c4210}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 15 Oct 2026
+* *User:* Admin (on staging the Admin quick-login user), browser window 1440 px wide at 100% zoom
+
+h2. Sources
+
+* Test case C590130 (Expected, verbatim):
+{quote}Step 3: a white message box with rounded corners appears at the bottom right of the page, with a green check-in-a-circle icon, the words "Lead technician updated" and an X to close it, as in the design picture.{quote}
+* Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html" (as the test cases give it) — Work Orders.dc.html, message box:
+{quote}position: fixed; right: 24px; bottom: 24px; z-index: 300;{quote}
+
+h2. Test case
+
+* [C590130 Lead technician updated message looks as in the design|https://shopview.testrail.io/index.php?/cases/view/590130]

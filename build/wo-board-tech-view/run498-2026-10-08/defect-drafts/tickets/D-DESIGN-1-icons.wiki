@@ -1,0 +1,55 @@
+TITLE: Tech View & Board View – Switcher and Density Icons Differ From the Design
+TYPE: Story Defect · PARENT: SV-10044 (Switch between display options; Ready for QA, read live 15 Oct 2026 12:28 UTC — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10044 · relates to SV-10049 · LABEL: board-tech-view
+ALREADY REPORTED: SV-11319 "Tech View and Board View: use the design's Lucide icons (switcher and all view icons)" (Open, Bug under epic SV-10043, reported 14 Oct 2026 by Chris Ward; read live 15 Oct 2026 12:30 UTC). A new ticket would repeat it. Suggested instead: link the failed test(s) to SV-11319 and file nothing new — the QA lead decides.
+SEEN ON: staging build {{v26.40.17-a5c4210}}, 15 Oct 2026 (run 498).
+PICTURES: the existing annotated staging pictures (banner on each), landscape; most were captured at 1x, so per Rule 116 re-take them at 2x before filing and run size_pics.py after the description write.
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+
+h2. Description
+
+The *display switcher and the density button should use the design's thin outline icons*, with a different density drawing in Board View than in Tech View. On staging the drawings differ.
+
+For example,
+* the List icon is a boxed list, not a bulleted list; the person and board icons are heavier than the design's thin outline icons
+* the density button shows the up-and-down arrow on the left of the three lines; the design has it on the right
+* Board View's density button shows the same drawing as Tech View's; the design gives Board View a card with an up-and-down arrow
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* (Story *SV-10044*), the PRD and the design.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin, check the top bar shows *Staging Heavy Duty - 9919*, and use a browser window 1440 px wide at 100% zoom.
+# Open *Work Orders*, click the *All* tab, then *Tech View* in the display switcher (right side of the toolbar).
+#* Look at the switcher and the density button and compare them with the design pictures.
+# Click *Board View* in the display switcher.
+#* The density button shows the same drawing as in Tech View.
+
+*Actual Result:*
+* The switcher icons and the density icon are not the design's drawings; Board View reuses Tech View's density icon.
+
+*Expected Result:*
+* The switcher and density button use the design's icons, as the test expects: *"Step 10: the Board View button is now the white raised segment, and the density button shows a different drawing from Tech View's: a card with an up-and-down arrow (the design's "card-height" icon), as in the Board View picture."*
+
+!D-DESIGN-1-a-tech-toolbar-icons.png|width=1000!
+
+!D-DESIGN-1-b-board-density-icon.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.17-a5c4210}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 15 Oct 2026
+* *User:* Admin (on staging the Admin quick-login user), browser window 1440 px wide at 100% zoom
+
+h2. Sources
+
+* Test case C590110 (Expected, verbatim):
+{quote}Step 3: the switcher shows three outline icons side by side in a light-grey rounded track: a bulleted list (List), the head and shoulders of a person (Tech View) and a square board with three bars of different lengths (Board View), the same three drawings as in the design pictures and about the same size as in the pictures at 100% zoom (20 px in the PRD). They are thin-line outline icons of the same weight, not filled icons, emoji or text characters.{quote}
+{quote}Step 5: the Tech View button sits on a white raised segment and the other two look flat. The density button shows three lines with an up-and-down arrow at their right (the design's "row-height" icon) and the column chooser button shows a rectangle split into three columns (the design's "columns-3" icon), drawn in the same thin outline style, as in the Tech View picture.{quote}
+{quote}Step 10: the Board View button is now the white raised segment, and the density button shows a different drawing from Tech View's: a card with an up-and-down arrow (the design's "card-height" icon), as in the Board View picture.{quote}
+* [PRD – Work Orders — Board View & Tech View Display Options|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (page 845185030, version 52, 14 Oct 2026, Chris Ward — as the test cases give it; not re-read live for this draft, that read waits for the QA lead's go-ahead, Rule 81/106), S1-R9a:
+{quote}The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View every other icon is the design’s Lucide icon too: density (`row-height` in Tech View, `card-height` in Board View), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and empty states (`clipboard-list`). List’s icons are unchanged.{quote}
+* Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html" (as the test cases give it) — _ds_bundle.js (design library), density button icon:
+{quote}name: kanban ? 'card-height' : 'row-height',{quote}
+
+h2. Test case
+
+* [C590110 Display switcher and toolbar icons in Tech View and Board View match the design|https://shopview.testrail.io/index.php?/cases/view/590110]

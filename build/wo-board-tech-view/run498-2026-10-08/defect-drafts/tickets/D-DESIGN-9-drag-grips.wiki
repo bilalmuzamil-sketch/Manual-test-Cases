@@ -1,0 +1,52 @@
+TITLE: Tech View – No Six-Dot Drag Grip on Rows or Group Headers
+TYPE: Story Defect · PARENT: SV-10052 (Drag to reorder work and technician groups/columns; Ready for QA, read live 15 Oct 2026 12:28 UTC — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10052 · relates to SV-10045 · LABEL: board-tech-view
+ALREADY REPORTED: SV-11320 "Tech View: drag grip on every work order row and group header" (Open, Bug under epic SV-10043, reported 14 Oct 2026 by Chris Ward; read live 15 Oct 2026 12:30 UTC). A new ticket would repeat it. Suggested instead: link the failed test(s) to SV-11320 and file nothing new — the QA lead decides.
+SEEN ON: staging build {{v26.40.17-a5c4210}}, 15 Oct 2026 (run 498).
+PICTURES: the existing annotated staging pictures (banner on each), landscape; most were captured at 1x, so per Rule 116 re-take them at 2x before filing and run size_pics.py after the description write.
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+
+h2. Description
+
+*Every Tech View row and group header, Unassigned included, should show the six-dot drag grip at its left edge* to a user who can drag. On staging none shows.
+
+For example,
+* the Unassigned group header starts with the arrow, not the grip
+* the work order rows start with the On Site pin; no row shows a grip
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* (Story *SV-10052*), the PRD and the design.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin, check the top bar shows *Staging Heavy Duty - 9919*, and use a browser window 1440 px wide at 100% zoom.
+# Open *Work Orders*, click the *All* tab, then *Tech View* in the display switcher (right side of the toolbar).
+#* The group headers start with the arrow and the rows with the On Site pin; there is no six-dot grip anywhere.
+
+*Actual Result:*
+* No six-dot grip on any row or group header.
+
+*Expected Result:*
+* Every row and group header shows the grip, as the tests expect: *"Step 2: every group header, the Unassigned header too, shows a six-dot grip (two columns of three small grey dots) at its left edge, as in the design pictures."*
+
+!D-DESIGN-9-a-no-grips.png|width=1000!
+
+!D-DESIGN-9-b-unassigned-header.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.17-a5c4210}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 15 Oct 2026
+* *User:* Admin (on staging the Admin quick-login user), browser window 1440 px wide at 100% zoom
+
+h2. Sources
+
+* Test case C590116 (Expected, verbatim):
+{quote}Step 2: every group header, the Unassigned header too, shows a six-dot grip (two columns of three small grey dots) at its left edge, as in the design pictures.{quote}
+{quote}Step 3: every row shows the same six-dot grip at its left edge.{quote}
+* Test case C590117 (Expected, verbatim):
+{quote}Step 2: from left to right: the six-dot grip, a thin down-pointing arrow, a round light-grey avatar holding a grey outline person icon, the word Unassigned in dark semibold text, a short grey upright divider, a clipboard outline icon and the number of work orders, as in the design picture.{quote}
+* [PRD – Work Orders — Board View & Tech View Display Options|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (page 845185030, version 52, 14 Oct 2026, Chris Ward — as the test cases give it; not re-read live for this draft, that read waits for the QA lead's go-ahead, Rule 81/106), S9-R1a:
+{quote}In Tech View every work order row and every group header, Unassigned included, shows the design’s six-dot drag grip at its left edge, to users who can drag (S4-N1). The whole row still drags (S2-R8); the grip shows that it can.{quote}
+
+h2. Test case
+
+* [C590116 A six-dot grip shows on every Tech View row and group header|https://shopview.testrail.io/index.php?/cases/view/590116]
+* [C590117 Tech View group header shows grip, arrow, grey initials avatar, name and count|https://shopview.testrail.io/index.php?/cases/view/590117]

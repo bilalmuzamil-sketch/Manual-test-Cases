@@ -1,0 +1,49 @@
+TITLE: Board View – Card More Actions Menu Items Have No Icon
+TYPE: Story Defect · PARENT: SV-10046 (Board View — board by lead technician; Ready for QA, read live 15 Oct 2026 12:28 UTC — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10046 · relates to SV-10047 · LABEL: board-tech-view
+ALREADY REPORTED: none found among the design tickets the test cases name (SV-11317 to SV-11326, SV-11338, all read live 15 Oct 2026). SV-11319 ("use the design's Lucide icons … all view icons", Open) may be read as covering it; the QA lead decides.
+SEEN ON: staging build {{v26.40.17-a5c4210}}, 15 Oct 2026 (run 498).
+PICTURES: the existing annotated staging pictures (banner on each), landscape; most were captured at 1x, so per Rule 116 re-take them at 2x before filing and run size_pics.py after the description write.
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+
+h2. Description
+
+*The card's More actions menu should show an outline icon before each item.* On staging the item has no icon.
+
+For example,
+* the menu opens below the button, lined up with its right edge, which is right
+* Reassign lead technician is its only item
+* there is no outline icon before the item
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* (Story *SV-10046*), the PRD and the design.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin, check the top bar shows *Staging Heavy Duty - 9919*, and use a browser window 1440 px wide at 100% zoom.
+# Open *Work Orders*, click the *All* tab, then *Board View* in the display switcher (right side of the toolbar).
+# Rest the pointer on any card and click the three-dot *More actions* button at its top right.
+#* The menu shows *Reassign lead technician* with no icon before it.
+# Press *Escape*.
+
+*Actual Result:*
+* The menu item has no icon.
+
+*Expected Result:*
+* An outline icon before each item, as the test expects: *"Step 4: a white menu opens below the button, lined up with the button's right edge, with Reassign lead technician as its first item and an outline icon before each item, as in the menu design picture."*
+
+!D-DESIGN-12-menu-no-icon.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.17-a5c4210}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 15 Oct 2026
+* *User:* Admin (on staging the Admin quick-login user), browser window 1440 px wide at 100% zoom
+
+h2. Sources
+
+* Test case C590121 (Expected, verbatim):
+{quote}Step 4: a white menu opens below the button, lined up with the button's right edge, with Reassign lead technician as its first item and an outline icon before each item, as in the menu design picture.{quote}
+* Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html" (as the test cases give it) — Work Orders.dc.html, more-actions menu:
+{quote}transform: translateX(-100%); width: 216px; padding: 4px; border-radius: var(--sv-radius-md); background: var(--sv-surface);{quote}
+
+h2. Test case
+
+* [C590121 More actions button and menu on cards and rows look as in the design|https://shopview.testrail.io/index.php?/cases/view/590121]

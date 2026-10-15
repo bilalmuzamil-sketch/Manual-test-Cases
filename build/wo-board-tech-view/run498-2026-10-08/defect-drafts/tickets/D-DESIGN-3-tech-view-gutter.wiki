@@ -1,0 +1,48 @@
+TITLE: Tech View – Table Sits Inside Grey Side Gutters Instead of Edge to Edge
+TYPE: Story Defect · PARENT: SV-10045 (Tech View — table grouped by lead technician; Ready for QA, read live 15 Oct 2026 12:28 UTC — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10045 · LABEL: board-tech-view
+ALREADY REPORTED: SV-11324 "Tech View: run edge to edge on white, no side gutter" (Open, Bug under epic SV-10043, reported 14 Oct 2026 by Chris Ward; read live 15 Oct 2026 12:30 UTC). A new ticket would repeat it. Suggested instead: link the failed test(s) to SV-11324 and file nothing new — the QA lead decides.
+SEEN ON: staging build {{v26.40.17-a5c4210}}, 15 Oct 2026 (run 498).
+PICTURES: the existing annotated staging pictures (banner on each), landscape; most were captured at 1x, so per Rule 116 re-take them at 2x before filing and run size_pics.py after the description write.
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+
+h2. Description
+
+*Tech View's white table should run edge to edge*, with no side gutter and no panel around it. On staging a grey strip shows on both sides.
+
+For example,
+* at 1440 px the table starts about 30 points in from the left edge and stops about 30 points before the right edge
+* the same at 1536 px
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* (Story *SV-10045*), the PRD and the design.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin, check the top bar shows *Staging Heavy Duty - 9919*, and use a browser window 1440 px wide at 100% zoom.
+# Open *Work Orders*, click the *All* tab, then *Tech View* in the display switcher (right side of the toolbar).
+#* A grey strip shows to the left and right of the white table.
+
+*Actual Result:*
+* The table has a grey side gutter on both sides.
+
+*Expected Result:*
+* The table runs edge to edge, as the test expects: *"Step 2: the table is white and runs from the left edge of the page to the right edge: the column header row, every group header and every row start right at the page's left edge, with no grey strip, margin or gap on either side, and there is no card, panel, rounded corner or shadow around the table. Side by side with the 1440 px design picture, the white table meets the browser edge on the left in the same way."*
+
+!D-DESIGN-3-side-gutters.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.17-a5c4210}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 15 Oct 2026
+* *User:* Admin (on staging the Admin quick-login user), browser window 1440 px wide at 100% zoom
+
+h2. Sources
+
+* Test case C590112 (Expected, verbatim):
+{quote}Step 2: the table is white and runs from the left edge of the page to the right edge: the column header row, every group header and every row start right at the page's left edge, with no grey strip, margin or gap on either side, and there is no card, panel, rounded corner or shadow around the table. Side by side with the 1440 px design picture, the white table meets the browser edge on the left in the same way.{quote}
+* [PRD – Work Orders — Board View & Tech View Display Options|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (page 845185030, version 52, 14 Oct 2026, Chris Ward — as the test cases give it; not re-read live for this draft, that read waits for the QA lead's go-ahead, Rule 81/106), S2-R22:
+{quote}Tech View’s table runs edge to edge on white, with no side gutter and no card or panel around it, as in the design.{quote}
+* Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html" (as the test cases give it) — SKILL.md (design library), list screens:
+{quote}A list screen is white and the table runs edge to edge.{quote}
+
+h2. Test case
+
+* [C590112 Tech View table runs edge to edge on white with no side gutter|https://shopview.testrail.io/index.php?/cases/view/590112]

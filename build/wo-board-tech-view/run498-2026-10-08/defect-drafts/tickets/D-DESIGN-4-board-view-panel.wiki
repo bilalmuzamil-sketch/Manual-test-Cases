@@ -1,0 +1,48 @@
+TITLE: Board View – Columns Sit Inside a Grey Rounded Panel Instead of Full Width
+TYPE: Story Defect · PARENT: SV-10046 (Board View — board by lead technician; Ready for QA, read live 15 Oct 2026 12:28 UTC — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10046 · LABEL: board-tech-view
+ALREADY REPORTED: SV-11323 "Board View: run full width, no grey rounded panel" (Open, Bug under epic SV-10043, reported 14 Oct 2026 by Chris Ward; read live 15 Oct 2026 12:30 UTC). A new ticket would repeat it. Suggested instead: link the failed test(s) to SV-11323 and file nothing new — the QA lead decides.
+SEEN ON: staging build {{v26.40.17-a5c4210}}, 15 Oct 2026 (run 498).
+PICTURES: the existing annotated staging pictures (banner on each), landscape; most were captured at 1x, so per Rule 116 re-take them at 2x before filing and run size_pics.py after the description write.
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+
+h2. Description
+
+*Board View should run full width*, with no grey rounded panel around the columns. On staging the columns sit inside one.
+
+For example,
+* at 1440 px the columns sit inside a grey rounded panel about 30 points in from each side, with a lighter strip outside it
+* the same at 1536 px
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* (Story *SV-10046*), the PRD and the design.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin, check the top bar shows *Staging Heavy Duty - 9919*, and use a browser window 1440 px wide at 100% zoom.
+# Open *Work Orders*, click the *All* tab, then *Board View* in the display switcher (right side of the toolbar).
+#* The columns sit inside a grey rounded panel with a margin on each side.
+
+*Actual Result:*
+* A grey rounded panel with side margins surrounds the columns.
+
+*Expected Result:*
+* Board View runs full width, as the test expects: *"Step 2: the columns sit directly on the page's light-grey background, which runs from the left edge of the page to the right edge under the toolbar; there is no extra grey rounded box, inset panel or margin around the set of columns, as in the design picture."*
+
+!D-DESIGN-4-grey-panel.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.17-a5c4210}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 15 Oct 2026
+* *User:* Admin (on staging the Admin quick-login user), browser window 1440 px wide at 100% zoom
+
+h2. Sources
+
+* Test case C590118 (Expected, verbatim):
+{quote}Step 2: the columns sit directly on the page's light-grey background, which runs from the left edge of the page to the right edge under the toolbar; there is no extra grey rounded box, inset panel or margin around the set of columns, as in the design picture.{quote}
+* [PRD – Work Orders — Board View & Tech View Display Options|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (page 845185030, version 52, 14 Oct 2026, Chris Ward — as the test cases give it; not re-read live for this draft, that read waits for the QA lead's go-ahead, Rule 81/106), S3-R23:
+{quote}Board View runs full width, with no grey rounded panel around the columns, as in the design.{quote}
+* Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html" (as the test cases give it) — Work Orders.dc.html, Board View column strip:
+{quote}gap: 16px; width: max-content; min-width: 100%; box-sizing: border-box; padding: 20px 16px; background: var(--sv-surface-sunken);{quote}
+
+h2. Test case
+
+* [C590118 Board View runs full width with no grey rounded panel around the columns|https://shopview.testrail.io/index.php?/cases/view/590118]

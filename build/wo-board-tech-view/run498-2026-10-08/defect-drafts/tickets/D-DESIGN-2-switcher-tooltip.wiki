@@ -1,0 +1,50 @@
+TITLE: Display Switcher – Tooltip Opens Below and Covers the Column Headers
+TYPE: Story Defect · PARENT: SV-10044 (Switch between display options; Ready for QA, read live 15 Oct 2026 12:28 UTC — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10044 · LABEL: board-tech-view
+ALREADY REPORTED: SV-11322 "Switcher tooltip covers the column header row" (Open, Bug under epic SV-10043, reported 14 Oct 2026 by Chris Ward; read live 15 Oct 2026 12:30 UTC). A new ticket would repeat it. Suggested instead: link the failed test(s) to SV-11322 and file nothing new — the QA lead decides.
+SEEN ON: staging build {{v26.40.17-a5c4210}}, 15 Oct 2026 (run 498).
+PICTURES: the existing annotated staging pictures (banner on each), landscape; most were captured at 1x, so per Rule 116 re-take them at 2x before filing and run size_pics.py after the description write.
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+
+h2. Description
+
+The *display switcher's hover tooltip should open above the switcher*, so it never covers the column header row. On staging it opens below and lies over the headers.
+
+For example,
+* in Tech View the List, Tech View and Board View tooltips open below the switcher and cover header labels (Clocked In, Lines, Total Price)
+* the same happens at 1536 px
+* in Board View they also open below the switcher
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* (Story *SV-10044*), the PRD and the design.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin, check the top bar shows *Staging Heavy Duty - 9919*, and use a browser window 1440 px wide at 100% zoom.
+# Open *Work Orders*, click the *All* tab, then *Tech View* in the display switcher (right side of the toolbar).
+# Rest the pointer on each of the three switcher buttons.
+#* Each tooltip opens *below* the switcher and covers part of the column header row.
+
+*Actual Result:*
+* The tooltip opens below the switcher and covers the column header row.
+
+*Expected Result:*
+* The tooltip opens above the switcher, as the test expects: *"Steps 2 to 4: each tooltip opens above the switcher, between the switcher and the tabs above it, never below it. While it shows, the table's column header row (Status, Waiting On Parts, Number …) stays fully readable, as in the design picture: no part of the tooltip lies over it."*
+
+!D-DESIGN-2-a-tooltip-covers-headers.png|width=1000!
+
+!D-DESIGN-2-b-tooltip-1536.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.17-a5c4210}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 15 Oct 2026
+* *User:* Admin (on staging the Admin quick-login user), browser window 1440 px wide at 100% zoom
+
+h2. Sources
+
+* Test case C590111 (Expected, verbatim):
+{quote}Steps 2 to 4: each tooltip opens above the switcher, between the switcher and the tabs above it, never below it. While it shows, the table's column header row (Status, Waiting On Parts, Number …) stays fully readable, as in the design picture: no part of the tooltip lies over it.{quote}
+* [PRD – Work Orders — Board View & Tech View Display Options|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (page 845185030, version 52, 14 Oct 2026, Chris Ward — as the test cases give it; not re-read live for this draft, that read waits for the QA lead's go-ahead, Rule 81/106), S1-R9b:
+{quote}The switcher’s hover tooltip opens above the switcher, so it never covers the table’s column header row.{quote}
+
+h2. Test case
+
+* [C590111 Display switcher tooltips open above it and never cover the column headers|https://shopview.testrail.io/index.php?/cases/view/590111]

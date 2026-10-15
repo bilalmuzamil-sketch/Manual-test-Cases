@@ -1,0 +1,54 @@
+TITLE: Board View & Reassign Dialog – No-Photo Avatars Are Solid Blue Instead of Grey Initials
+TYPE: Story Defect · PARENT: SV-10046 (Board View — board by lead technician; Ready for QA, read live 15 Oct 2026 12:28 UTC — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10046 · relates to SV-10047 · LABEL: board-tech-view
+ALREADY REPORTED: SV-11338 "Tech/Board View – header avatars solid blue instead of the design's grey initials" (Open, Story Defect under SV-10045, reported 14 Oct 2026 by Ahtasham Amjad; read live 15 Oct 2026 12:30 UTC). A new ticket would repeat it. Suggested instead: link the failed test(s) to SV-11338 and file nothing new — the QA lead decides.
+SEEN ON: staging build {{v26.40.17-a5c4210}}, 15 Oct 2026 (run 498).
+PICTURES: the existing annotated staging pictures (banner on each), landscape; most were captured at 1x, so per Rule 116 re-take them at 2x before filing and run size_pics.py after the description write.
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+
+h2. Description
+
+*A technician without a photo should show as a light-grey circle with dark grey initials.* On staging it is a solid blue circle with white initials, in Board View column headers and in the Reassign lead technician dialog.
+
+For example,
+* a Board View column header for a technician with no photo shows a solid blue circle with white initials (e.g. "ZD")
+* in the Reassign lead technician dialog every technician without a photo shows the same solid blue circle
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* (Story *SV-10046*), the PRD and the design.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin, check the top bar shows *Staging Heavy Duty - 9919*, and use a browser window 1440 px wide at 100% zoom.
+# Open *Work Orders*, click the *All* tab, then *Board View* in the display switcher (right side of the toolbar).
+#* A column header for a technician without a photo shows a solid blue circle with white initials.
+# On any card open *More actions* (…) > *Reassign lead technician*.
+#* The technicians without a photo show solid blue circles with white initials.
+# Click *Cancel*.
+
+*Actual Result:*
+* No-photo avatars are solid blue with white initials.
+
+*Expected Result:*
+* A light-grey circle with dark grey initials, as the test expects: *"Step 3: the six-dot grip, a light-grey circle with the initials in dark grey (not a solid blue circle with white initials), the name in dark semibold text, a grey outline pin icon, a short divider, the clipboard icon and the number, as in the design picture."*
+
+!D-DESIGN-10-a-board-header-avatar.png|width=1000!
+
+!D-DESIGN-10-b-dialog-avatars.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.17-a5c4210}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 15 Oct 2026
+* *User:* Admin (on staging the Admin quick-login user), browser window 1440 px wide at 100% zoom
+
+h2. Sources
+
+* Test case C590119 (Expected, verbatim):
+{quote}Step 3: the six-dot grip, a light-grey circle with the initials in dark grey (not a solid blue circle with white initials), the name in dark semibold text, a grey outline pin icon, a short divider, the clipboard icon and the number, as in the design picture.{quote}
+* Test case C590129 (Expected, verbatim):
+{quote}Step 5: a white dialog with rounded corners sits over a dimmed page: a title, and under it the work order number and the customer in grey; an X at the top right; a search box with a magnifier icon; a list where each row has a round avatar, the name and a grey "N open" line under it ({Technician-A}'s row shows the photo, {Technician-B}'s a light-grey circle with initials); {Technician-A}'s row, the current lead, is tinted light blue with a blue check mark; Unassigned is offered too; a Cancel button at the bottom right. The layout matches the design picture.{quote}
+* Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html" (as the test cases give it) — _ds_bundle.js (design library), staff avatar without a photo:
+{quote}background: color || 'var(--sv-surface-sunken)', color: color ? 'var(--sv-accent-on-solid)' : 'var(--sv-text-secondary)',{quote}
+
+h2. Test case
+
+* [C590119 Board View column header shows grip, avatar, name, pin and count as designed|https://shopview.testrail.io/index.php?/cases/view/590119]
+* [C590129 Reassign lead technician dialog looks as in the design|https://shopview.testrail.io/index.php?/cases/view/590129]

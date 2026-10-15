@@ -1,0 +1,59 @@
+TITLE: Tech View – Number Not a Blue Link, No Progress Bar, No Advisor Avatar
+TYPE: Story Defect · PARENT: SV-10045 (Tech View — table grouped by lead technician; Ready for QA, read live 15 Oct 2026 12:28 UTC — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10045 · relates to SV-10049 · LABEL: board-tech-view
+ALREADY REPORTED: SV-11325 "Tech View: number link, progress bar and advisor avatar as in the design" (Open, Bug under epic SV-10043, reported 14 Oct 2026 by Chris Ward; read live 15 Oct 2026 12:30 UTC). A new ticket would repeat it. Suggested instead: link the failed test(s) to SV-11325 and file nothing new — the QA lead decides. C590128's missing progress bar at every density is the same fault; its group-header avatar staying one size at every density is not named in SV-11325.
+SEEN ON: staging build {{v26.40.17-a5c4210}}, 15 Oct 2026 (run 498).
+PICTURES: the existing annotated staging pictures (banner on each), landscape; most were captured at 1x, so per Rule 116 re-take them at 2x before filing and run size_pics.py after the description write.
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+
+h2. Description
+
+*Tech View's cells should follow the design*: the number as a blue link, Progress as a thin bar with the percentage beside it, and the advisor's avatar before the name. On staging none of the three shows.
+
+For example,
+* the work order number is black, not the link blue
+* Progress shows only a grey "0%" label, with no bar, at Compact, Regular and Comfortable
+* the Service Advisor cell shows the name only, with no avatar
+
+This appears inconsistent with the requirement defined in *Epic SV-10043* (Story *SV-10045*), the PRD and the design.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin, check the top bar shows *Staging Heavy Duty - 9919*, and use a browser window 1440 px wide at 100% zoom.
+# Open *Work Orders*, click the *All* tab, then *Tech View* in the display switcher (right side of the toolbar).
+#* The number (e.g. *S2-36127*) is black; Progress shows only "0%"; Service Advisor shows the name with no avatar.
+# Click the density button and choose *Compact*, then *Comfortable*.
+#* No progress bar shows at either density.
+
+*Actual Result:*
+* Black number, no progress bar at any density, no advisor avatar.
+
+*Expected Result:*
+* The cells follow the design, as the tests expect: *"Step 3: the number shows in the blue used for links, the same blue as the numbers in the design picture, not in black."* and *"Step 4: a thin rounded bar with the percentage beside it in small grey text (for example 0%), as in the picture: in the design the bar is 64 × 6 px, about as long as the word "Progress" in the header and much thinner than the text. Any filled part of the bar is blue."*
+
+!D-DESIGN-7-a-row-cells.png|width=1000!
+
+!D-DESIGN-7-b-densities.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.17-a5c4210}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 15 Oct 2026
+* *User:* Admin (on staging the Admin quick-login user), browser window 1440 px wide at 100% zoom
+
+h2. Sources
+
+* Test case C590114 (Expected, verbatim):
+{quote}Step 3: the number shows in the blue used for links, the same blue as the numbers in the design picture, not in black.{quote}
+{quote}Step 4: a thin rounded bar with the percentage beside it in small grey text (for example 0%), as in the picture: in the design the bar is 64 × 6 px, about as long as the word "Progress" in the header and much thinner than the text. Any filled part of the bar is blue.{quote}
+{quote}Step 5: a small round avatar sits before the advisor's name: the advisor's photo, or the initials on a light-grey circle.{quote}
+* Test case C590128 (Expected, verbatim):
+{quote}Step 3: the rows are at their lowest (36 px in the design), the avatars are smaller and the progress bars shorter and thinner (48 × 4 px in the design), as in the Compact picture. The row text is the same size as at Regular or a little smaller (13 px in the design); write down which.{quote}
+{quote}Step 5: the rows are taller (48 px in the design) and the progress bars 64 × 6 px, as in the Regular picture.{quote}
+* [PRD – Work Orders — Board View & Tech View Display Options|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (page 845185030, version 52, 14 Oct 2026, Chris Ward — as the test cases give it; not re-read live for this draft, that read waits for the QA lead's go-ahead, Rule 81/106), S2-R20:
+{quote}Tech View’s cells follow the design: the work order number shows as a link in the accent color; Progress shows as a thin bar with the percentage beside it; Service Advisor shows the advisor’s avatar before the name. Clocked In keeps List’s display (S5-R11).{quote}
+* Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html" (as the test cases give it) — Work Orders.dc.html, Tech View Progress cell, bar size at Regular:
+{quote}barW: rowDensity === "small" ? "48px" : "64px"{quote}
+
+h2. Test case
+
+* [C590114 Tech View cells show a blue number, a thin progress bar and the advisor's avatar|https://shopview.testrail.io/index.php?/cases/view/590114]
+* [C590128 Density changes Tech View row, avatar and progress bar sizes as designed|https://shopview.testrail.io/index.php?/cases/view/590128]
