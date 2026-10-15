@@ -20,10 +20,11 @@ staging and on production, and it does not ask for any size limit. So the cut-of
 the page asks for: the system's answer stops there. Production has too few people to show whether its answer would stop
 at 100 as well, so we cannot say; we do not guess.
 
-**What that means:** because production asks in the same way, the cut-off is most likely older than this work. We will not
-raise it as a fault of this work. We report it to you as a finding instead.
+**What that means:** we cannot tell whether this is new. Production cannot show it, because it has too few people.
+And we cannot call it old either: the developer's list of changes for this release says the technician lists on the
+Lines tab were changed. So we do not guess either way, and the choice is yours.
 
-**What we need from you:** do you want it raised anyway? If yes, say whether as one report covering both lists or two
+**What we need from you:** do you want it raised? If yes, say whether as one report covering both lists or two
 separate reports. The draft is written in two parts so either answer works without rewriting. If we hear nothing, nothing
 is raised, and the four tests that need a later-alphabet technician stay waiting on this.
 
