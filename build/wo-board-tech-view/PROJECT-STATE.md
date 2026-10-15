@@ -137,3 +137,11 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
   (under SV-10047), separate from the others. Draft: run498-2026-10-08/defect-drafts/tickets/D-LEAD100-staging-2026-10-15.wiki
   (being prepared). It is held until lead100-compare's production reading (Rule 121) and his per-ticket yes. Blocks C97007,
   C368159 and C368169.
+
+### 15 Oct 11:15 UTC — the 100-name limit is in a second list too
+- Edit Line > Add Technician on staging lists 99 names (Aaron Baker to the Q names); Ralph Edwards, the name C368173's
+  Expected quotes, is not offered, and typing does not narrow the list (wave 27). This is the same limit as the work order page's
+  Lead Technician list (D-LEAD100). lead100-compare.mts (pass 8, line 10) reads both lists on staging AND production. Then the
+  QA lead is asked whether it is one ticket (every technician pick list on the work order page) or two.
+- The seventh pass's lead100-compare read nothing usable (status filter empty, Reassign card off screen, production 404 on the
+  board-only candidates list); fixed for pass 8.

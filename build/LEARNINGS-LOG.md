@@ -828,3 +828,14 @@ record the build it read. #hang #unattended #production → L0368, L0372
 - **A block found by customer name can still be someone else's:** even with this run's full customer name, the found element was another shift — the move changed shift 715fdca2 and the held drag opened "Reassign shift S2-36076 · ZZAUTOTEST Sched Lines 30846", which the script confirmed (that other test shift now belongs to Dana Ortiz). Open each candidate block, read its details' work order number (`text_shift_detail_work_order`), and drag only the one that names YOUR work order; cancel any move/reassign dialog that names another.
 - **Schedule drop offset (staging, 87 px an hour, no `[data-time]` slots):** dropping the card at the hour heading's left edge + 6 px saved 15 minutes early (8:45 / 12:45); + a quarter-hour more saved 15 minutes late (9:15 / 13:15). The start snaps DOWN to the quarter, with the hour line just right of heading + 6 px: aim at heading + 6 + pxPerHour/8.
 - **A reading that comes back empty is a script fault until proved otherwise:** lead100-compare's first run found "no work order" (a `status=approved` list filter returns nothing) and opened no dialog (the first Board View card of thousands was off screen); production answered 404 for the lead-candidates list because the board feature is not on production — use the staff list there.
+
+## L0384 — 2026-10-15 — A running pass reads its PLAN once, but loads each SCRIPT only when its line starts
+**Plan:** `run-*.sh` reads `*-pass-plan.txt` once, at the start (L0350). A line added afterwards never runs.
+**Script:** the `.mts` file is loaded by `wob-run.sh` / `npx tsx` only when its own line begins. So a script whose line is
+still ahead can be fixed or extended while the pass runs, and the change is used. This is how `lead100-compare.mts` (line 10 of
+pass 8) gained the Edit Line > Add Technician reading after pass 8 had started.
+**Two cautions:**
+1. A shared helper (`wob.mts`, `staff.mts`) that is changed mid-pass also changes every later script. Change it only in ways
+   that cannot break those scripts.
+2. Never edit the script that is running at that moment.
+#passes #plans #scripts → L0350, L0378
