@@ -1,0 +1,41 @@
+{
+ "claim": "The Technician filter in the Work Orders toolbar (Tech View and Board View) is not on staging build v26.40.17-a5c4210",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "build/wo-board-tech-view/build-verify-staging-2026-10-15/probe/02-filter-check.json: same toolbar read found \"Assigned to me\", \"Asset on Site\", \"Status\", \"Density\", \"Column Selection\"/\"Fields to display\" in both views (tech_view_positiveControl/board_view_positiveControl true); Pin/Unpin and Collapse buttons found by the same aria-label read in 03-groups.json",
+   "_question": "Did the SAME method find this kind of thing somewhere else in this run?"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "build/wo-board-tech-view/build-verify-staging-2026-10-15/probe/04-tech_view-1920-toolbar.png and 04-board_view-1920-toolbar.png: real Work Orders page, All tab, display switcher clicked; screenshots show the filter bar with no Technician chip; 01-tech-view.png at 1440 px likewise",
+   "_question": "Was it reproduced the way a USER does it -- clicking the real UI?"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "build/wo-board-tech-view/build-verify-staging-2026-10-15/probe/02-filter-check.json tech_view_try1/try2 and board_view_try1/try2: 9 s settle then a second read 5 s later, identical; also 01-labels.json (earlier run, 1440 px) and 2026-10-14 probe/10-new-labels.json toolbarButtons on the previous staging build",
+   "_question": "At least 2 attempts, and the page confirmed quiet before observing?"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "build/wo-board-tech-view/build-verify-staging-2026-10-15/probe/02-filter-check.json: url stays https://app.staging.shopview.com/workorders?tab=all, one page in the context (no new tab)",
+   "_question": "Did the action navigate, open a tab, or change the URL?"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "build/wo-board-tech-view/build-verify-staging-2026-10-15/probe/02-filter-check.json build v26.40.17-a5c4210, location Staging Heavy Duty - 9919, signed in as Admin ShopView (profile menu in 01-labels.json); no filter chosen and Search empty when read",
+   "_question": "Was the state you claim to be testing actually built, and read back?"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "git grep \"technician filter\" in build/wo-board-tech-view: only the Reports Technician Utilization filter (sv10043 labels line 142, C368236); ls build/BLOCKED-*.md has no Work Orders technician filter entry; code crawl 900 chunks: no \"All technicians\"/\"Technician:\"/technicianIds/\"Technician\" in WorkOrders, FilterBar, FilterChip, TechView, BoardView chunks (02-filter-check.json hits)",
+   "_question": "Rule 97: exact error text grepped across the repo, playbook, skills and BLOCKED-*.md?"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely mine: the filter only shows at another width, after a horizontal scroll, or behind a feature switch for another user. Ruled out: read at 1440 and 1920 px, the bar ends at Create Work Order with nothing hidden, and the build code itself contains no technician filter strings, so no user setting can reveal it",
+   "_question": "Name the most likely way this is YOUR mistake, and say how you ruled it out."
+  }
+ }
+}
