@@ -816,3 +816,9 @@ process sat at 0% CPU. Its `timeout` is 3600 s, so it would have held the pass u
 
 Also seen: production moved to **v26.40.18-163ddfa** during the run (it was f5bf8f4 overnight). A production comparison must
 record the build it read. #hang #unattended #production → L0368, L0372
+
+## L0382 — 2026-10-15 — A production read inside a staging script needs its own limits: the 90 s default × nested loops hung for 17 minutes
+- **Where:** `build/wo-board-tech-view/run498-2026-10-08/high1-batch.mts` (C368181 production half); queued in `eighth-pass-plan.txt`.
+- **What happened:** after the production sign-in (10:22:15, app-version v26.40.18-163ddfa — production had moved from v26.40.17-f5bf8f4 since 08:39), the script sat at 0% CPU for 17 minutes and was killed (EXIT=143). `bootProdLogin` sets a 90 s default timeout, and the loops (8 customers × 4 assets × 4 cells, each click waiting up to 90 s on a cell that never opened anything) multiplied it.
+- **Fix, the L0368 pattern applied to the production half:** set the production page's own defaults (10 s per action, 30 s per load), cap every read with `Promise.race`, bound the loops (3 × 3 × 4) AND the total clicks (30), record every step with a time, wrap the whole read in an 8-minute watchdog that keeps the reading so far and closes the browser, and cap the sign-in itself (3 min).
+- **Record the production build in every production reading** — it changes during the day.

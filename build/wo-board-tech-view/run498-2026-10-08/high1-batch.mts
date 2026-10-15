@@ -307,35 +307,46 @@ for (const [kind, ids] of [['asset', ['C368180', 'C368181', 'C368182', 'C368183'
     // prod-login-boot.mjs, as report-filters-stg.mts), Customers > a customer > Assets > an asset WITH work orders > Work Orders tab;
     // whether a count shows (tab label, above/under the table) and the rows — READ ONLY, nothing is changed on production. A picture of each side.
     if (ids[1] === 'C368181') { await shot(p, 'C368181-staging');
-      let prod: any = null; try { prod = await bootProdLogin('/customers', {}); } catch (e: any) { o.production = { error: 'production sign-in: ' + String(e?.message || e).slice(0, 200) }; }
-      if (prod) { const pp: Page = prod.page; const P = prod.APP; const pr: any = { build: prod.version ?? null, tried: [] };
-        try { await pp.goto(P + '/customers', { waitUntil: 'domcontentloaded' }); await pp.waitForTimeout(7000);
-          const custRows = await pp.locator('tbody tr').count();
-          for (let ci = 0; ci < Math.min(custRows, 8) && !pr.found; ci++) {
-            await pp.goto(P + '/customers', { waitUntil: 'domcontentloaded' }); await pp.waitForTimeout(6000); await pp.locator('tbody tr').nth(ci).click().catch(() => {}); await pp.waitForTimeout(5000);
-            // 15 Oct 2026 (wave 13, fourth pass): the page read was the CUSTOMER's Work Orders tab ("Work Orders (4)", with Part Sales /
-            // Contacts / Assets tabs), not an ASSET's. Now the customer's "Assets (n)" TAB is clicked (whole label, playbook trap), an asset
-            // row is opened and the reading is taken ONLY if the page is an asset's page (address has /vehicle/, as staging's TRK-201 page:
-            // /customers/vehicle/<id>/work-orders); then its Work Orders tab. Each asset page opened is pictured; the found one too.
-            const at = pp.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Assets(\s*\(\d+\))?\s*$/ }).first(); if (!(await at.count())) continue; await at.click(); await pp.waitForTimeout(4000);
-            const nAssets = await pp.locator('tbody tr').count(); const custUrl = pp.url();
-            for (let ai = 0; ai < Math.min(nAssets, 4) && !pr.found; ai++) {
-              if (ai) { await pp.goto(custUrl, { waitUntil: 'domcontentloaded' }); await pp.waitForTimeout(5000); const at2 = pp.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Assets(\s*\(\d+\))?\s*$/ }).first(); if (await at2.count()) { await at2.click(); await pp.waitForTimeout(3500); } }
-              // 15 Oct 2026 (wave 21, sixth pass): the check /\/vehicle/ also matched the customer's own Assets tab address
-              // (/customers/<id>/vehicles), the row click had not opened anything, and the customer's "Work Orders (4)" tab was read again.
-              // Now each cell of the asset row is clicked in turn until the address becomes an ASSET page (/customers/vehicle/<id>…, as
-              // staging's TRK-201 page), and only then is its Work Orders tab read.
+      let prod: any = null; try { prod = await Promise.race([bootProdLogin('/customers', {}), new Promise((_, rej) => setTimeout(() => rej(new Error('sign-in took over 3 minutes')), 3 * 60_000))]); } catch (e: any) { o.production = { error: 'production sign-in: ' + String(e?.message || e).slice(0, 200) }; }
+      // 15 Oct 2026 (seventh pass): this production half HUNG for 17 minutes at 0% CPU after sign-in (killed at 10:39, EXIT=143): every
+      // click waited up to the 90 s default and the loops (8 customers x 4 assets x 4 cells) multiplied it. Now, as staledrop (L0368):
+      // 10 s per click/read, 30 s per page load, at most 3 customers x 3 assets x 4 cells and 30 clicks in all, every step recorded, and
+      // a whole-case watchdog (8 minutes) that keeps the reading so far and closes the production browser.
+      if (prod) { const pp: Page = prod.page; const P = prod.APP; pp.setDefaultTimeout(10_000); pp.setDefaultNavigationTimeout(30_000);
+        const pr: any = { build: prod.version ?? null, buildNote: `production build read at sign-in: ${prod.version ?? 'unknown'} (earlier today, 08:39 UTC: v26.40.17-f5bf8f4)`, tried: [], steps: [] as string[] };
+        const capP = <T,>(ms: number, x: Promise<T>, fb: any = 'timed out'): Promise<T> => Promise.race([x, new Promise<T>((r) => setTimeout(() => r(fb), ms))]);
+        const step = (x: string) => { pr.steps.push(`${new Date().toISOString().slice(11, 19)} ${x}`); if (pr.steps.length > 60) pr.steps.shift(); };
+        let clicks = 0; const click = async (l: any, what: string) => { if (clicks >= 30) { step(`click budget used up before ${what}`); return false; } clicks++; const ok = await capP(12_000, l.click({ timeout: 10_000 }).then(() => true).catch(() => false), false); step(`click ${what}: ${ok ? 'ok' : 'no'}`); return ok; };
+        const go = async (u: string) => { const ok = await capP(35_000, pp.goto(u, { waitUntil: 'domcontentloaded' }).then(() => true).catch(() => false), false); step(`open ${u.replace(P, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>').slice(0, 60)}: ${ok ? 'ok' : 'no'}`); return ok; };
+        const n = (l: any) => capP(10_000, l.count().catch(() => 0), 0) as Promise<number>;
+        const txt = (l: any) => capP(10_000, l.innerText({ timeout: 10_000 }).catch(() => ''), '') as Promise<string>;
+        const prodRead = async () => {
+          await go(P + '/customers'); await pp.waitForTimeout(7000);
+          const custRows = await n(pp.locator('tbody tr')); step(`customer rows ${custRows}`);
+          for (let ci = 0; ci < Math.min(custRows, 3) && !pr.found; ci++) {
+            await go(P + '/customers'); await pp.waitForTimeout(6000); await click(pp.locator('tbody tr').nth(ci), `customer row ${ci}`); await pp.waitForTimeout(5000);
+            // the customer's "Assets (n)" TAB (whole label, playbook trap), then an asset row opened until the address is an ASSET page
+            // (/customers/vehicle/<id>…, as staging's TRK-201 page), then its Work Orders tab
+            const at = pp.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Assets(\s*\(\d+\))?\s*$/ }).first(); if (!(await n(at))) { pr.tried.push(`customer ${ci}: no Assets tab`); continue; } await click(at, 'Assets tab'); await pp.waitForTimeout(4000);
+            const nAssets = await n(pp.locator('tbody tr')); const custUrl = pp.url();
+            for (let ai = 0; ai < Math.min(nAssets, 3) && !pr.found; ai++) {
+              if (ai) { await go(custUrl); await pp.waitForTimeout(5000); const at2 = pp.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Assets(\s*\(\d+\))?\s*$/ }).first(); if (await n(at2)) { await click(at2, 'Assets tab again'); await pp.waitForTimeout(3500); } }
               const row = pp.locator('tbody tr').nth(ai); const isAsset = () => /\/customers\/vehicles?\/[0-9a-f-]{8,}/i.test(pp.url()) && pp.url() !== custUrl;
-              for (let ce = 0; ce < 4 && !isAsset(); ce++) { await row.locator('td').nth(ce).click().catch(() => {}); await pp.waitForTimeout(3500); }
-              if (!isAsset()) { pr.tried.push(`row ${ai} did not open an asset page (${pp.url().replace(P, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>').slice(0, 60)})`); continue; }
-              const wt = pp.locator('.q-tab, [role=tab]').filter({ hasText: /Work Orders/ }).first(); if (!(await wt.count())) continue; await wt.click(); await pp.waitForTimeout(4000);
-              const rows = await pp.locator('tbody tr').filter({ hasText: /\S/ }).count(); const tabLabel = (await wt.innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
-              const bottom = await pp.locator('.q-table__bottom').innerText().catch(() => null); const noData = /no data|no work orders|no results/i.test(await pp.locator('tbody').innerText().catch(() => ''));
+              for (let ce = 0; ce < 4 && !isAsset() && clicks < 30; ce++) { await click(row.locator('td').nth(ce), `asset row ${ai} cell ${ce}`); await pp.waitForTimeout(3500); }
+              if (!isAsset()) { pr.tried.push(`customer ${ci} asset row ${ai} did not open an asset page (${pp.url().replace(P, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>').slice(0, 60)})`); continue; }
+              const wt = pp.locator('.q-tab, [role=tab]').filter({ hasText: /Work Orders/ }).first(); if (!(await n(wt))) { pr.tried.push(`customer ${ci} asset ${ai}: no Work Orders tab`); continue; } await click(wt, 'asset Work Orders tab'); await pp.waitForTimeout(4000);
+              const rows = await n(pp.locator('tbody tr').filter({ hasText: /\S/ })); const tabLabel = (await txt(wt)).replace(/\s+/g, ' ').trim();
+              const bottomRaw = await txt(pp.locator('.q-table__bottom').first()); const bottom = bottomRaw || null; const noData = /no data|no work orders|no results/i.test(await txt(pp.locator('tbody').first()));
               pr.tried.push(`${tabLabel} rows=${rows}${noData ? ' (empty)' : ''}`);
-              if (rows > 0 && !noData) { await pp.screenshot({ path: path.join(EV, 'C368181-production-asset-work-orders.png') }).catch(() => {}); pr.found = { url: pp.url().replace(P, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>'), tabs: await pp.evaluate(`[...document.querySelectorAll('.q-tab, [role=tab]')].map(e => e.innerText.replace(/\\s+/g, ' ').trim())`), tabLabel, bottom: bottom ? bottom.replace(/\s+/g, ' ').trim() : null, rows, countShown: /\(\d+\)/.test(tabLabel) || /\d+\s*(-|–)\s*\d+\s*of\s*\d+/i.test(bottom ?? '') }; await pp.screenshot({ path: path.join(EV, 'C368181-production.png') }).catch(() => {}); }
+              if (rows > 0 && !noData) { await capP(15_000, pp.screenshot({ path: path.join(EV, 'C368181-production-asset-work-orders.png') }).catch(() => {}), undefined);
+                pr.found = { url: pp.url().replace(P, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>'), tabs: await capP(10_000, pp.evaluate(`[...document.querySelectorAll('.q-tab, [role=tab]')].map(e => e.innerText.replace(/\\s+/g, ' ').trim())`), []), tabLabel, bottom: bottom ? bottom.replace(/\s+/g, ' ').trim() : null, rows, countShown: /\(\d+\)/.test(tabLabel) || /\d+\s*(-|–)\s*\d+\s*of\s*\d+/i.test(bottom ?? '') };
+                await capP(15_000, pp.screenshot({ path: path.join(EV, 'C368181-production.png') }).catch(() => {}), undefined); }
             } }
-        } catch (e: any) { pr.error = String(e?.message || e).slice(0, 200); await pp.screenshot({ path: path.join(EV, 'C368181-production-error.png') }).catch(() => {}); }
-        o.production = pr; await prod.browser.close().catch(() => {}); }
+          if (!pr.found) pr.notFound = `no asset with work orders found within the limits (${clicks} clicks)`; };
+        try { const r = await Promise.race([prodRead().then(() => 'done'), new Promise((res) => setTimeout(() => res('watchdog'), 8 * 60_000))]);
+          if (r === 'watchdog') { pr.watchdog = 'stopped by the 8-minute limit; the reading so far is kept'; await capP(15_000, pp.screenshot({ path: path.join(EV, 'C368181-production-watchdog.png') }).catch(() => {}), undefined); } }
+        catch (e: any) { pr.error = String(e?.message || e).slice(0, 200); await capP(15_000, pp.screenshot({ path: path.join(EV, 'C368181-production-error.png') }).catch(() => {}), undefined); }
+        o.production = pr; await capP(20_000, prod.browser.close().catch(() => {}), undefined); }
       o.staging = { tabLabel: o.tab, bottom: o.bottom, rows: o.rowCount, countShown: /\(\d+\)/.test(String(o.tab ?? '')) || /\d+\s*(-|–)\s*\d+\s*of\s*\d+/i.test(String(o.bottom ?? '')) }; } });
   await run(ids[2], async () => { const o: any = await open(); o.list = progList; o.tab = await p.evaluate(`([...document.querySelectorAll('tbody tr')].find(r => r.innerText.includes('${set.w.B.number}'))?.innerText.match(/\\d+%|\\d+\\s*of\\s*\\d+/) || [null])[0]`); o.bLine = set.bLine; R[ids[2]] = o; });
   await run(ids[3], async () => { await open(); const [x, y] = await sortBy(/Number/); R[ids[3]] = { first: x, second: y }; });
