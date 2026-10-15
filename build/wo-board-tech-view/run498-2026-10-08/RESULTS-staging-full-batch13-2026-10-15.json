@@ -1,0 +1,68 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 13 = wave 14 (third-pass readings judged late): 4 Passed"
+ },
+ "results": {
+  "C368193": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (third pass reading, judged 15 Oct against the live case text).",
+    "All tab, Search \"ZZAUTOTEST Tab Clears Search\" typed; then the Estimates tab was clicked.",
+    "After the tab change the search box is empty: only the Search button shows, with no text.",
+    "The Estimates tab lists estimates from every customer (30 rows, all Estimate), so the search is not applied."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368193-1-estimates-tab-search-cleared.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368194": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Before: Column Selection had Days open off and the List had no Days Open column.",
+    "Days open was turned on and the menu closed: the List showed a Days Open column.",
+    "After the page reload the Days Open column is still shown, with a value in each row."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368194-1-days-open-after-reload.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368200": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "All tab, Search \"ZZAUTOTEST Row Toggle\": one row (S2-35897).",
+    "The row's Asset on Site toggle was clicked.",
+    "The page stayed on the Work Orders List (address still /workorders with the search); the work order did not open.",
+    "The toggle flipped: the work order went from not on site to on site and the pin now reads \"Asset here. Click to toggle status.\""
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368200-1-toggle-row-stays-on-list.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368214": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work Orders tab: there is no Status filter on this tab on this build (\"no Status filter on this tab\", as the case says to write).",
+    "Search \"ZZAUTOTEST Back Forward\" showed one row (S2-35898); the row was opened.",
+    "Back: the Work Orders tab, the same search text (kept) and the same row S2-35898 show.",
+    "Forward: the work order S2-35898 opened again. Back again: the same tab, search and row."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368214-1-back-keeps-tab-search-rows.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ }
+}
