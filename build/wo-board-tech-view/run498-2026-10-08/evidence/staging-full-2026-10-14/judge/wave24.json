@@ -1,0 +1,61 @@
+{
+ "results": {
+  "C97032": {
+   "verdict": "Passed",
+   "observed": [
+    "Pictures only (the verdict was posted earlier): the Reassign lead technician dialog photographed open at each step, with the counts showing.",
+    "Step 5 (no filter, dialog from the Spare Co card): this check's Ben, ZZAUTOTEST F3 Count Ben Bravo, reads 4 open.",
+    "Step 6 (page filtered to Estimate, dialog from Ben's Estimate card): the same Ben, marked Current lead, still reads 4 open.",
+    "Step 7 (after his Estimate was approved): he reads 5 open.",
+    "Three other technicians on staging carry the same name (left by earlier runs) and read 5 open throughout; the Current-lead mark in step 6 shows which row is this check's Ben."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97032-1-step5-ben-4-open.png",
+    "evidence/staging-full-2026-10-14/annotated/C97032-2-step6-estimate-filter-still-4.png",
+    "evidence/staging-full-2026-10-14/annotated/C97032-3-step7-after-approval-5-open.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96935": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (Tech View, search ZZAUTOTEST F2 Sticky Header). [Tech-A] = Ayesha Khan (25 work orders), [Tech-B] = Bilal Muzamil (3), both pinned so his group follows hers.",
+    "Scrolling through Ayesha Khan's rows (pictures at 500 px and at her last rows, 1,000 px): her group header, with the name and the count 25, stays at the top while her rows slide under it.",
+    "Scrolling into Bilal Muzamil's group (1,375 px): his header, with the count 3, has taken the place at the top and hers has scrolled away.",
+    "Readings at every 125 px stop from 750 to 1,500 px agree: Ayesha Khan's header holds the top until her last row passes, then Bilal Muzamil's."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96935-1-mid-group-header-stays.png",
+    "evidence/staging-full-2026-10-14/annotated/C96935-2-last-rows-header-still-on-top.png",
+    "evidence/staging-full-2026-10-14/annotated/C96935-3-next-group-takes-over.png"
+   ],
+   "not_observed": "The expected results name Esther Howard and Ralph Edwards; the test's preconditions call them [Tech-A] and [Tech-B], and Ayesha Khan and Bilal Muzamil were used (Esther Howard's group on staging holds 187 other work orders).",
+   "todo": "None."
+  },
+  "C96958": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps, on S2-36138 (customer ZZAUTOTEST F1 Lead Notifications 36909). [Tech-A] = Esther Howard, [Tech-B] = Dana Ortiz, [Tech-C] = Ralph Edwards (names are examples; Ralph Edwards is not drawn in the page's Lead Technician list on staging).",
+    "Before anything, the Notifications pages of all three read \"There are no notifications\".",
+    "Step 1, work order page: Lead Technician changed from Esther Howard to Dana Ortiz on screen. Neither received a notification.",
+    "Board View: the card dragged from Dana Ortiz to Ralph Edwards (\"Lead technician updated\"). Neither received a notification.",
+    "Tech View: More actions > Reassign lead technician, back to Esther Howard (\"Lead technician updated\"). Neither Ralph Edwards nor Esther Howard received a notification.",
+    "So the work order page, Board View and Tech View all give the same result: no notification, as the product owner records."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96958-1-wo-page-lead-dana.png",
+    "evidence/staging-full-2026-10-14/annotated/C96958-2-board-drag-to-ralph.png",
+    "evidence/staging-full-2026-10-14/annotated/C96958-3-tech-view-back-to-esther.png"
+   ],
+   "not_observed": "Email was not checked (the test technicians' addresses are not real mailboxes). The technicians' own empty Notifications pages were read but not photographed in this pass.",
+   "todo": "Picture only: s4-batchH.mts now photographs each technician's Notifications page after each change; queued in the seventh pass. The verdict does not change."
+  }
+ },
+ "redo": {
+  "C96966": "Not judged: step 1 was done on the Schedule screen only in part. What was seen: the resize (to 13:00-16:00) was made on screen; the lead stayed Esther Howard and the status In Progress through all three Schedule changes; after the board drag to Ralph Edwards the status still read In Progress (beside the number), the work order's total time was unchanged (18), the line's Actual hours only grew with the running clock (0.02 then 0.05 then 0.07 of 0.30), Esther Howard's clock was still running, and the work order's Timesheets screen shows no lock or approval on the entries. Two script faults: (1) the move was dragged on screen but on an EARLIER run's block (the block finder fell back to the first 30 characters of the customer name, \"ZZAUTOTEST F1 Status And Time \", so another shift was moved) and ours was then moved behind the screen; (2) the drag onto Dana Ortiz's row missed because her row was off screen, so the reassign was made behind the screen. Fixed in s4-batchH.mts: only this run's full customer name (or the number) may match the block, and the block is held while the Schedule scrolls to Dana's row, dropped only once her row is on screen (held scrolls recorded). Queued in seventh-pass-plan.txt (s4-batchH.mts | C96958,C96966).",
+  "C368130": "Not judged: nothing was read off the board. The second window now opens signed in (the earlier fault is fixed: it opened /workorders), and the location ZZAUTOTEST F2 No Tech Shop still has no technicians and two work orders with no lead (S-35901, S-35902). But the location switch never took: the location picker shows the long name cut short, \"ZZAUTOTEST F2 No Tech Sho..\", so the helper's match on the full name never clicked it and the top bar stayed on Staging Heavy Duty - 9919. Fixed in wob.mts switchLocUI (shared): a name longer than 22 characters is matched on its first 20, in the picker and the top bar; notech-stg4.mts reads the top bar the same way. Queued in seventh-pass-plan.txt (notech-stg4.mts | C368130)."
+ },
+ "failed": {},
+ "doubt": {}
+}

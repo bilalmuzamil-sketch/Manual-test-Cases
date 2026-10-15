@@ -1,0 +1,92 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 21 = wave-design2"
+ },
+ "results": {
+  "C590122": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Step 2: under the idle technician's group header (ZZAUTOTEST DC13 Sam Idle, 0) the group shows the clipboard outline icon and \"No work orders\" in grey, centred, with no rows.",
+    "Step 4: his Board View column shows a dashed rounded box with the clipboard in a small light-grey circle and \"Drag a work order here to assign it\".",
+    "Steps 7 to 9: with Status Paid chosen and zzzz searched, Board View, List and Tech View all show the same centred empty state: a round grey icon, \"No work orders match these filters\", \"Try removing a filter to widen your results.\" and a Clear all filters button.",
+    "Steps 12 and 13: with only zzzz searched, Tech View and List both show \"No work orders match the search \"zzzz\".\" centred, with no button."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590122-1-empty-group.png",
+    "evidence/staging-full-2026-10-14/annotated/C590122-2-empty-column.png",
+    "evidence/staging-full-2026-10-14/annotated/C590122-3-tech-filters-empty.png",
+    "evidence/staging-full-2026-10-14/annotated/C590122-4-tech-search-only.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C590114": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Step 3: the design shows the work order number as a blue link; on screen the number (S2-36127) is black.",
+    "Step 4: the design shows a thin rounded progress bar with the percentage beside it; on screen there is only a grey \"0%\" label, with no bar.",
+    "Step 5: the design puts a small round avatar before the advisor's name; on screen the Service Advisor cell shows the name only.",
+    "Step 9: clicking the number opens the work order. Step 11: a small padlock outline icon sits right after the Invoiced work order's number.",
+    "Step 14: List's Clocked In cell shows the same name in the same style as Tech View's.",
+    "The Assigned Techs column is not shown by default, so step 6 and the avatar hovers (step 8) were not seen; no tooltip showed while the pointer rested on the padlock (step 12).",
+    "Production (app.shopview.com) has no Tech View or Board View, so there is nothing there to compare."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590114-1-row-cells.png",
+    "evidence/staging-full-2026-10-14/annotated/C590114-2-padlock.png"
+   ],
+   "not_observed": null,
+   "todo": "What needs to be done: the QA lead decides whether to raise the ticket; once the screen is changed to match the design, run this test again.",
+   "ticket_held": true,
+   "story": "SV-10045",
+   "ticket": "Ticket held — waiting for the QA lead's yes. It would be a Story Defect under SV-10045 (Tech View — table grouped by lead technician, Ready for QA, read 15 Oct 2026): https://shopview.atlassian.net/browse/SV-10045"
+  },
+  "C590128": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Rows are 40 points tall at Compact, 48 at Regular and 64 at Comfortable: lowest, middle and tallest, as the test asks; the group header gets taller with them.",
+    "Steps 3, 5 and 7: the design shows a progress bar that is shorter and thinner at Compact (48 by 4) and 64 by 6 at Regular; on screen there is no progress bar at any density, only a grey \"0%\" label.",
+    "The technician avatar in the group header is the same size at all three densities; the design makes the avatars smaller at Compact and larger at Comfortable. No row shows an avatar.",
+    "The row text is the same size at Compact as at Regular.",
+    "The same columns and values show at every density.",
+    "Step 8: in Board View the density menu shows Comfortable ticked.",
+    "Production (app.shopview.com) has no Tech View or Board View, so there is nothing there to compare."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590128-1-densities.png"
+   ],
+   "not_observed": null,
+   "todo": "What needs to be done: the QA lead decides whether to raise the ticket; once the screen is changed to match the design, run this test again.",
+   "ticket_held": true,
+   "story": "SV-10049",
+   "ticket": "Ticket held — waiting for the QA lead's yes. It would be a Story Defect under SV-10049 (Density in Tech View and Board View, Ready for QA, read 15 Oct 2026): https://shopview.atlassian.net/browse/SV-10049"
+  },
+  "C590129": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Step 5: a white rounded dialog sits over a dimmed page: the title \"Reassign lead technician\", the work order number and customer in grey under it, an X at the top right, a search box with a magnifier, Unassigned offered, rows with a round avatar, the name and a grey \"N open\" line, and Cancel at the bottom right (with a Reassign button beside it).",
+    "The design shows a technician without a photo as a light-grey circle with initials; on screen ZZAUTOTEST DC20 Cal Dialog (no photo) is a solid blue circle with white initials, like every other technician without a photo in the list.",
+    "Step 6: typing Cal narrows the list to Unassigned, ZZAUTOTEST Cal Charlie and ZZAUTOTEST DC20 Cal Dialog.",
+    "Step 7: Cancel closes the dialog and the work order still has ZZAUTOTEST DC20 Bea Dialog as its lead.",
+    "The current lead's row (light-blue tint and check mark) was not on the first screen of the list, so it was not seen in this reading.",
+    "Production (app.shopview.com) has no Tech View or Board View, so there is nothing there to compare."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590129-1-dialog.png",
+    "evidence/staging-full-2026-10-14/annotated/C590129-2-technician-b-blue-avatar.png"
+   ],
+   "not_observed": null,
+   "todo": "What needs to be done: the QA lead decides whether to raise the ticket; once the screen is changed to match the design, run this test again.",
+   "ticket_held": true,
+   "story": "SV-10047",
+   "ticket": "Ticket held — waiting for the QA lead's yes. It would be a Story Defect under SV-10047 (Reassign or unassign the lead technician, Ready for QA, read 15 Oct 2026): https://shopview.atlassian.net/browse/SV-10047"
+  }
+ }
+}

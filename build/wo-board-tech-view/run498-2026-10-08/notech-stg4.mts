@@ -103,7 +103,7 @@ if (want('C368130')) {
         o.header = await switchLocUI(pg, LOC);
         if (!/\/workorders/.test(pg.url())) { await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(6000); }
       }
-      o.headerOnWorkOrders = await hdr(); o.switched = (o.headerOnWorkOrders ?? '').includes(LOC);
+      o.headerOnWorkOrders = await hdr(); o.switched = (o.headerOnWorkOrders ?? '').includes(LOC.slice(0, 20)); /* 15 Oct (wave 24): the top bar may cut a long name short */
       await shot(pg, 'C368130-stg4-top-bar');
       if (!o.switched) throw new Error(`top bar still reads "${o.headerOnWorkOrders}" — nothing read off the board`);
       o.techniciansThereAfterSwitch = (await candidates(api(pg))).map((x) => x.name);

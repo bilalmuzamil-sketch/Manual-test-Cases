@@ -158,14 +158,17 @@ export async function pickLead(p: Page, targetId: string, action: 'confirm' | 'c
  *  header back. Works on staging (and the QA branch, which has the same control). Returns the header text after the switch. */
 export async function switchLocUI(p: Page, name: string) {
   const header = () => p.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => '');
+  // 15 Oct 2026 (wave 24, C368130): the picker shows a long location name cut short ("ZZAUTOTEST F2 No Tech Sho.."), so a match on the
+  // full name never clicked it. Match on the first 20 characters (unique among this shop's locations) — in the picker and the top bar.
+  const key = name.length > 22 ? name.slice(0, 20) : name;
   for (let i = 0; i < 2; i++) {
-    if ((await header()).includes(name)) return await header();
+    if ((await header()).includes(key)) return await header();
     await p.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await p.waitForTimeout(1200);
     await p.locator('[data-test-id="select_location"]').click().catch(() => {}); await p.waitForTimeout(1200);
     // 15 Oct 2026 (wave 20, C368156): switching BACK never took — the profile menu's own row reads "Change Location: Staging Heavy Duty -
     // 9919", so `.filter({ hasText: name }).first()` clicked that row (re-opening the picker) instead of the location's option. Take the
     // option from the picker's list: not the "Change Location" row, and the LAST match (the option menu opens after the profile menu).
-    await p.locator('.q-menu .q-item').filter({ hasText: name }).filter({ hasNotText: /Change Location/i }).last().click().catch(() => {}); await p.waitForTimeout(6000);
+    await p.locator('.q-menu .q-item').filter({ hasText: key }).filter({ hasNotText: /Change Location/i }).last().click().catch(() => {}); await p.waitForTimeout(6000);
     await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(800);
   }
   return await header();

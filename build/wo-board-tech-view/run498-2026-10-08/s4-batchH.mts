@@ -126,11 +126,14 @@ await run('C96966', async () => {
   // block shows the CUSTOMER name ("ZZAUTOTEST F1 Status And Time Kept 56957") and no number, so a match on the number never found it
   // and the move timed out. tagBlock() finds the block by the customer name (else the number), climbs to the block itself (a class
   // naming event/shift/block, else the last ancestor before a much wider lane) and tags it; block() returns the tagged element.
+  // 15 Oct 2026 (wave 24, sixth pass): the 30-character prefix fallback ("ZZAUTOTEST F1 Status And Time ") matched an EARLIER run's block,
+  // so the on-screen move dragged another shift (PATCH for a different shift id) and the API fallback moved ours. Only this run's
+  // full customer name (it ends in this run's number) or the work order number may match now.
   const tagBlock = async () => (S_tag.last = await sp.evaluate(`(() => { document.querySelectorAll('[data-zz-block]').forEach(e => e.removeAttribute('data-zz-block'));
     const n = ${JSON.stringify(n)}, rx = new RegExp(${JSON.stringify(NUMRX.source)}); const vis = (e) => { const b = e.getBoundingClientRect(); return b.width > 20 && b.height > 8 && b.x > 520; };
     let el = [...document.querySelectorAll('.fc-event')].find(e => vis(e) && ((e.innerText || '').includes(n) || rx.test(e.innerText || '')));
     if (!el) { const leaves = [...document.querySelectorAll('div, span, p, a')].filter(e => e.children.length <= 3 && vis(e));
-      const leaf = leaves.find(e => (e.textContent || '').trim().startsWith(n)) || leaves.find(e => (e.textContent || '').trim().startsWith(n.slice(0, 30))) || leaves.find(e => rx.test((e.textContent || '').trim().slice(0, 40)));
+      const leaf = leaves.find(e => (e.textContent || '').trim().startsWith(n)) || leaves.find(e => rx.test((e.textContent || '').trim().slice(0, 40)));
       if (leaf) { let a = leaf, named = null; for (let i = 0; i < 7 && a; i++, a = a.parentElement) if (/fc-event|event|shift|block/i.test(String(a.className))) { named = a; break; }
         if (named) el = named; else { el = leaf; while (el.parentElement) { const c = el.getBoundingClientRect(), pr = el.parentElement.getBoundingClientRect(); if (pr.height > 120 || pr.width > 1.5 * Math.max(c.width, 100)) break; el = el.parentElement; } } } }
     if (!el) return null; el.setAttribute('data-zz-block', '1'); const b = el.getBoundingClientRect();
@@ -162,7 +165,17 @@ await run('C96966', async () => {
   // (c) onto Dana Ortiz's row
   { const S3: any = {}; await openTomorrow(); S3.danaLane = await laneOf2(DO.staff_id); const e = await blk(); S_tag['at' + Object.keys(S_tag).length] = S_tag.last; await e.scrollIntoViewIfNeeded().catch(() => {}); await sp.waitForTimeout(600);
     const eb = await e.boundingBox(); const lb = await sp.locator(`[data-staff-id="${DO.staff_id}"]`).first().boundingBox().catch(() => null); S3.bothOnScreen = !!(eb && lb && lb.y > 0 && lb.y < 1000);
-    if (eb && lb) { const gx = eb.x + Math.min(30, eb.width / 3), gy = eb.y + eb.height / 2; await sp.mouse.move(gx, gy); await sp.mouse.down(); await sp.mouse.move(gx, gy + 8, { steps: 3 }); await sp.mouse.move(gx, lb.y + lb.height / 2, { steps: 25 }); await sp.waitForTimeout(400); await sp.mouse.up(); S3.dialog = await confirmAny(); }
+    // 15 Oct 2026 (wave 24, sixth pass): Dana Ortiz's row was off screen (bothOnScreen false) so the drop missed and the API fallback
+    // did the reassign. Now the block is HELD while the Schedule's own scroller is moved toward her row (at most 40 steps of 300 px),
+    // and it is dropped only once her row is on screen; the number of held scrolls and whether her row was on screen are recorded.
+    if (eb && lb) { const gx = eb.x + Math.min(30, eb.width / 3), gy = eb.y + eb.height / 2; await sp.mouse.move(gx, gy); await sp.mouse.down(); await sp.mouse.move(gx, gy + 8, { steps: 3 });
+      const onScr = (b: any) => !!(b && b.y > 140 && b.y + b.height < 950); let lb2: any = lb, tries = 0;
+      while (tries < 40) { lb2 = await sp.locator(`[data-staff-id="${DO.staff_id}"]`).first().boundingBox().catch(() => null); if (onScr(lb2)) break; tries++;
+        const dir = !lb2 || lb2.y < 140 ? -1 : 1;
+        await sp.evaluate(`(() => { const c = document.querySelector('[data-test-id="schedule_calendar"]'); let e = c && c.querySelector('[data-staff-id]'); while (e && !(e.scrollHeight > e.clientHeight + 10 && /auto|scroll/.test(getComputedStyle(e).overflowY))) e = e.parentElement; const s = e || document.scrollingElement; s.scrollTop += ${dir} * 300; })()`);
+        await sp.mouse.move(gx + (tries % 2 ? 2 : -2), gy + 8, { steps: 2 }); await sp.waitForTimeout(250); }
+      S3.heldScrolls = tries; S3.laneOnScreenAtDrop = onScr(lb2);
+      if (lb2) await sp.mouse.move(gx, lb2.y + lb2.height / 2, { steps: 25 }); await sp.waitForTimeout(400); await sp.mouse.up(); S3.dialog = await confirmAny(); }
     await sp.waitForTimeout(2000); S3.afterScreen = await shiftNow(); await sshot('after-reassign');
     if (!/^Dana Ortiz/.test(S3.afterScreen)) { const ra = await a.patch(`/api/schedule/shifts/${sh}`, { staffId: DO.staff_id, startsAt: start.toISOString(), isAllDay: false, reassign: true, changeNote: false, scope: 'shift' }); S3.apiFallback = ra.status; S3.note = 'screen drag to Dana Ortiz did not land; api fallback'; }
     R.C96966.reassign = S3; }
@@ -199,13 +212,16 @@ await run('C96958', async () => {
   // Time Clock on, Location Heavy Duty) and pick on the page with pickLeadOnPage (test-id field, else the field labelled Lead Technician).
   const eligible = { 'Esther Howard': await ensureEligible(a, ES, 'Esther'), 'Ralph Edwards': await ensureEligible(a, RE, 'Ralph'), 'Dana Ortiz': await ensureEligible(a, DO, 'Dana') };
   const people: Record<string, any> = { 'Esther Howard': ES, 'Ralph Edwards': RE, 'Dana Ortiz': DO };
-  const read = async (who: string) => {
+  // 15 Oct 2026 (wave 24): the RESULT of C96958 is the technicians' empty Notifications pages, so each read after a lead change
+  // photographs that person's own Notifications page (tag given) — the earlier passes had readings but no picture of the result.
+  const read = async (who: string, tag = '') => {
     const v = await viewAs(browser, p, a, people[who].id, me.id, RUN.toRunner); const got: string[] = [];
     v.page.on('response', (r) => { if (/note|notif|mention/i.test(r.url()) && r.request().method() === 'GET') got.push(`${r.status()} ${r.url().replace(/^https:\/\/[^/]+/, '').slice(0, 120)}`); });
     try { await v.page.goto(`${APP}/notifications`, { waitUntil: 'domcontentloaded' }); await v.page.waitForTimeout(6000);
       const tg = v.page.locator('[data-test-id="toggle_unread_only"]'); if (await tg.count() && (await tg.getAttribute('aria-checked')) === 'true') { await tg.click(); await v.page.waitForTimeout(3500); }
       const items = await v.page.evaluate(`[...document.querySelectorAll('.note-item')].map(e => e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 160))`) as string[];
       const empty = await v.page.getByText('There are no notifications').count();
+      if (tag) await shot(v.page, `C96958-notifications-${tag}-${who.split(' ')[0].toLowerCase()}`);
       const bell = await v.page.evaluate(`(() => { const b = [...document.querySelectorAll('header .q-badge, .q-header .q-badge')].map(x => x.innerText.trim()); return b; })()`);
       return { count: items.length, mentionsWo: items.filter((x) => x.includes(num) || /lead tech/i.test(x)), top: items.slice(0, 2), empty: !!empty, bell, calls: [...new Set(got)].slice(0, 3) };
     } finally { await v.close(); }
@@ -227,12 +243,12 @@ await run('C96958', async () => {
   if (R.C96958.leadAfterWoPage !== 'Dana') { R.C96958.step1NotOnScreen = `work order page did not set Dana (${JSON.stringify(R.C96958.woPagePick).slice(0, 200)}); lead set by API for steps 2+`;
     await a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: DO.staff_id }); R.C96958.leadAfterApi = (await workOrders(a, n))[0]?.techAssignedFirstName; }
   await p.waitForTimeout(20_000);
-  R.C96958.afterWoPage = { 'Esther Howard': await read('Esther Howard'), 'Dana Ortiz': await read('Dana Ortiz') };
+  R.C96958.afterWoPage = { 'Esther Howard': await read('Esther Howard', 'after-wo-page'), 'Dana Ortiz': await read('Dana Ortiz', 'after-wo-page') };
   // board drag Dana -> Ralph
   await bv(n); await drag(p, `[data-test-id="board_card_${wo}"]`, `[data-test-id="board_column_${RE.staff_id}"]`, 120); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
   R.C96958.boardMessage = await toasts(p); R.C96958.leadAfterBoard = (await workOrders(a, n))[0]?.techAssignedFirstName; await shot(p, 'C96958-board-after-drag');
   await p.waitForTimeout(20_000);
-  R.C96958.afterBoard = { 'Dana Ortiz': await read('Dana Ortiz'), 'Ralph Edwards': await read('Ralph Edwards') };
+  R.C96958.afterBoard = { 'Dana Ortiz': await read('Dana Ortiz', 'after-board'), 'Ralph Edwards': await read('Ralph Edwards', 'after-board') };
   // Tech View reassign Ralph -> Esther. Fifth pass: the row was never found (hover timed out) because Unassigned (~3,450 rows on
   // staging) opens expanded and pushes Ralph's group out of the drawn rows (L0360). Close Unassigned first, then bring the row on
   // screen in Ralph's group and centre it before hovering.
@@ -244,7 +260,7 @@ await run('C96958', async () => {
   await p.locator(`[data-test-id="option_lead_technician_${ES.staff_id}"]`).click(); await p.locator('[data-test-id="button_confirm_reassign_lead_technician"]').click(); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
   R.C96958.techMessage = await toasts(p); R.C96958.leadAfterTech = (await workOrders(a, n))[0]?.techAssignedFirstName; await shot(p, 'C96958-tech-after-reassign');
   await p.waitForTimeout(20_000);
-  R.C96958.afterTech = { 'Ralph Edwards': await read('Ralph Edwards'), 'Esther Howard': await read('Esther Howard') };
+  R.C96958.afterTech = { 'Ralph Edwards': await read('Ralph Edwards', 'after-tech-view'), 'Esther Howard': await read('Esther Howard', 'after-tech-view') };
 });
 
 await RUN.end();
