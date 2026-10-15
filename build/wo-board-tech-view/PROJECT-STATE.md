@@ -113,3 +113,11 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
 - Batch 13: Passed C368193 C368194 C368200 C368214 (wave 14). C368210, C368213 pictures re-captured in the sixth pass.
 - Story keys: S1–S9 = SV-10044…SV-10052, S10 = SV-10053 (OBSOLETE), S11 = SV-10054.
 - Report draft for the QA lead: `run498-2026-10-08/REPORT-staging-2026-10-15.md` (plain_check clean), finished when passes 5–6 end.
+
+### 15 Oct 07:00 UTC — pass 5 finished (06:50), pass 6 started (06:51)
+- Staging fact: the organisation setting `requireTechStories` (a line needs a tech story before Complete) reads OFF on staging.
+  C96998 turned it on for its check (passed) and put it back off. Any test about the tech-story gate must read it first.
+- Posted since 06:05: batch 14 (wave 15, 6 Passed), 15 (wave 16, 4 Passed), 16 (wave 17, 7 Passed). C96978 is a question for the
+  QA lead (card shows the full name then +N, like List; the case quotes S5-R11 as first name then +N). C368191 is on hold for the
+  sixth pass's "Deleted user" reading on S2-35973.
+- The watcher stopped at its 2-hour limit; check-ins every 30 minutes now do its job (L0365).

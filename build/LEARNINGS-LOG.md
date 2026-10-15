@@ -639,3 +639,15 @@ run started. #run #coverage #staging → L0342, L0349
 - **Lead pick lists on staging stop at the D names:** Ralph Edwards is never drawn in the work order page's Lead Technician list (19 scroll steps), Dana Ortiz is offered at once; use Dana where the case's name is an example (C96958, C96962).
 - **Photograph the row the verdict cites:** C96974's dialog picture showed the top of the list (A names), not Nina Newtech's "4 open" — scroll the cited element (`text_lead_technician_open_count_<staff>`) to the middle first.
 - **Clocked in, card vs List:** both show the FULL name + N ("ZZAUTOTEST Cora35022 Clock +1"), while S5-R11 describes List as "first name, then +N" — card = List, but the source's wording differs from what List shows; put it to the QA lead, never edit the Expected (114).
+
+## L0365 — 2026-10-15 — A background watcher dies at two hours; plan the night around check-ins, not around the watcher
+The watcher (`/tmp/claude-0/sv/watch6.sh`, started as a background command with the longest timeout allowed, 2 hours) was
+stopped at that limit at about 07:00 UTC. The harness says a command that already had the longest timeout must not be
+restarted. So on an unattended run longer than two hours **the scheduled check-ins (`send_later`, every 30 minutes) are what
+keep the run watched**, and each check-in must do the watcher's job by hand:
+- read the newest `logsN/run.out`;
+- find out whether the next pass has started;
+- check that the relay answers 200;
+- check that the waiter processes are alive.
+Do not lean on a watcher in a way that leaves a gap when it is stopped. If a pass needs closer watching than 30 minutes,
+shorten the check-in interval instead. #unattended #watcher #checkin → L0355
