@@ -1,7 +1,8 @@
 # script | cases (ONLY) | extra settings   — 15 Oct 2026 fourth pass on staging, after the third pass (judge/wave8.json "redo": 27 tests
 # whose reading was unusable because of the SCRIPT, each fixed — see the 15 Oct comments in each script — plus 5 passed tests re-run
 # only for a usable picture: C96926, C96957, C96959, C96936, C154888). signin-check-stg4.mts runs first (the third pass ends with
-# signout-fix.mts, which signs the shared session out); run-fourth.sh stops if it fails.
+# signout-fix.mts (C368240, signs the shared session out) was MOVED from the third pass to the very END of this one (15 Oct, main
+# session) so nothing runs after it; signin-check-stg4.mts still runs first as a guard; run-fourth.sh stops if it fails.
 signin-check-stg4.mts | | 
 s1-batch2b.mts | C154884 | 
 s1-batch4a.mts | C96910,C96912,C96923 | 
@@ -19,3 +20,4 @@ s4-batchD.mts | C96974 |
 s4-batchE.mts | C96962 | WOB_PIN_NAMES=Esther Howard,Ralph Edwards
 s4-batchH.mts | C96966 | 
 s5-batchA3.mts | C96975,C96976,C96983 | 
+signout-fix.mts | C368240 | 
