@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 19 = wave 22"
+ },
+ "results": {
+  "C368177": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fourth pass move, read again read-only in the sixth pass; judged 15 Oct against the live case text).",
+    "S2-35973 (customer ZZAUTOTEST Move Labor 28477): Esther Howard clocked in on Line 1 and out (\"Timesheet clocked out\"); in Timesheets her row's pencil opened Edit Timesheet, Line \"2 Replace - Suspension air bag\" was picked and Save went through with no error message (step 4).",
+    "Step 5, after a reload: Line 2's Labor row shows Esther Howard. The line that received the labor took its technician.",
+    "Also seen, not asked for by this case: under Esther Howard, Line 2's Labor row has a second entry \"Deleted user\". Line 2's data names only Esther Howard (her staff record exists); no deleted person could be identified from the line's tasks and time records. Line 1 also still shows Esther Howard (the SV-11087 symptom)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368177-1-line2-labor.png"
+   ],
+   "not_observed": "Who the \"Deleted user\" entry belongs to (queued: c368191-read.mts now reads Line 2's raw labor lists in the seventh pass).",
+   "todo": "Tell the QA lead about the unexplained \"Deleted user\" Labor entry on Line 2 after a labor move (not this case's Expected; possible separate finding)."
+  }
+ }
+}
