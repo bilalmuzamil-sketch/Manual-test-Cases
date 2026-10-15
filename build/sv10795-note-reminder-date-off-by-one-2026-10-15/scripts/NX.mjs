@@ -1,0 +1,12 @@
+import {ob,J,post} from './lib.mjs'; import {loc} from './seed.mjs'; import fs from 'fs';
+const A=JSON.parse(fs.readFileSync('WO1.json')); const s=await ob({tz:'America/New_York'}); const p=s.page; await loc(s);
+const W=[]; p.on('request',r=>{ if(r.method()!=='GET'&&/\/api\//.test(r.url())&&!/envelope/.test(r.url())) W.push(r.method()+' '+r.url().replace(/.*\/api/,'/api')+' :: '+(r.postData()||'').slice(0,500)); });
+await s.go('/workorders/'+A.work_order_id+'/notes'); await p.waitForTimeout(4000);
+await p.locator('[data-test-id="button_new_note"]').click(); await p.waitForTimeout(2000);
+await p.locator('[data-test-id="input_note_content"]').fill('ZZAUTOTEST NX explore');
+console.log('placeholder',await p.locator('[data-test-id="date_input_reminder_date"]').getAttribute('placeholder'));
+await p.locator('[data-test-id="date_icon_reminder_date"]').click(); await p.waitForTimeout(1500);
+const cal=await p.evaluate(()=>{const q=document.querySelector('.q-date'); if(!q) return 'no q-date'; return {head:q.querySelector('.q-date__header')?.innerText.replace(/\s+/g,' '),nav:[...q.querySelectorAll('.q-date__navigation button, .q-date__arrow button')].map(b=>b.innerText.trim()||b.getAttribute('aria-label')),today:q.querySelector('.q-date__today')?.innerText,items:[...q.querySelectorAll('.q-date__calendar-item')].slice(0,40).map(i=>i.className.replace('q-date__calendar-item','').trim()+':'+i.innerText.trim()).slice(10,25),tids:[...q.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id'))};});
+console.log('cal',J(cal,1500)); await p.screenshot({path:'ev/NX-cal.png'});
+console.log('browser now',await p.evaluate(()=>new Date().toString()));
+await s.close();

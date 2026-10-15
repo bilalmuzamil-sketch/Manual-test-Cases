@@ -23,14 +23,16 @@ const cookieDomain = env => env==='branch' ? '.qa.shopview.com' : '.shopview.com
 function port(dir){ return fs.readFileSync(dir+'/port.txt','utf8').trim(); }
 
 export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, pw=(process.env.SV_PROD_PW||(()=>{try{return fs.readFileSync('/tmp/sv-prod-pw.txt','utf8').trim()}catch(e){return ''}})()),
-                            cookies=null, vp={width:1900,height:1100}, dpr=1, quiet=true, record=null, quick='admin'}={}){
+                            cookies=null, vp={width:1900,height:1100}, dpr=1, quiet=true, record=null, quick='admin', tz=null}={}){
+  // tz: browser timezone (IANA name, e.g. 'America/New_York') -> Playwright timezoneId. Added 2026-10-15 (SV-10795:
+  // date bugs that only show when the browser is behind/ahead of UTC).
   // quick: which dev quick-login button to press on staging/branches ('admin' | 'tech'). Added 2026-10-08:
   // the option was being passed by callers but silently ignored, so a 'tech' run was really an admin run.
   // record: a folder path -> the whole session is filmed (see recording.mjs: finishRecording()).
   const H = env==='prod' ? PROD : env==='staging' ? STAGING : branch(ticket);
   const b = await chromium.launch({executablePath:CHROME, args:[
     '--proxy-server=http://127.0.0.1:'+port(dir),'--ignore-certificate-errors','--no-sandbox','--ssl-version-max=tls1.2']});
-  const ctx = await b.newContext(Object.assign({viewport:vp, deviceScaleFactor:dpr, ignoreHTTPSErrors:true},
+  const ctx = await b.newContext(Object.assign({viewport:vp, deviceScaleFactor:dpr, ignoreHTTPSErrors:true}, tz ? {timezoneId:tz} : {},
     record ? {recordVideo:{dir:record, size:vp}} : {}));
   // Recordings do not show the mouse: draw a pointer, a click ripple and a caption bar into every page.
   if (record) await ctx.addInitScript(RECORD_OVERLAY);

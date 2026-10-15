@@ -1,0 +1,72 @@
+{
+ "stored": "/api/notes?search=&reference_ids%5B0%5D=4b0a24b2-00e9-4be1-97fe-551d9706c44a&reference_ids%5B1%5D=368a7bba-3775-4cba-82dc-ec8c9429174e&filters%5B0%5D%5Bfield%5D=status&filters%5B0%5D%5Boperator%5D=neq&filters%5B0%5D%5Bvalue%5D=deleted&pagination%5BsortBy%5D=created_at&pagination%5Bdescending%5D=true {\"data\":{\"notes\":[{\"id\":\"fbdad2ce-c02e-4bbe-af7b-ad5410767616\",\"content\":\"ZZAUTOTEST T7-NY-monthend America\\/New_York cal +1\",\"createdAt\":\"2026-10-15 03:30:05\",\"userId\":\"6d71382d-4ddb-4707-a0f3-33b4bb78b0b8\",\"type\":\"work_order\",\"source\":\"user\",\"metadata\":{\"type\":\"empty\"},\"referenceId\":\"4b0a24b2-00e9-4be1-97fe-551d9706c44a\",\"status\":\"active\",\"name\":\"Admin ShopView\",\"attachments\":[],\"customerVisible\":false,\"isRead\":false,\"reminderDate\":\"2026-11-01\",\"mentions\":[],\"reference\":{\"id\":\"4b0a24b2-00e9-4be1-97fe-551d9706c44a\",\"type\":\"work_order\",\"label\":\"Work Order\",\"name\":\"Work Order: S-17580\",\"link\":\"\\/workorders\\/4b0a24b2-00e9-4be1-97fe-551d9706c44a\",\"order\":0},\"avatarUrl\":null},{\"id\":\"16e7b83a-c8da-48e6-9c88-1ca1ed1b0b97\"",
+ "noteId": "fbdad2ce-c02e-4bbe-af7b-ad5410767616",
+ "tz": "America/New_York",
+ "method": "cal",
+ "off": "1",
+ "clock": "2026-10-31T20:00:00-04:00",
+ "env": "branch",
+ "now": "Sat Oct 31 2026 20:00:26 GMT-0400 (Eastern Daylight Time)",
+ "tgt": {
+  "y": 2026,
+  "m": 11,
+  "d": 1,
+  "mon": "November"
+ },
+ "content": "ZZAUTOTEST T7-NY-monthend America/New_York cal +1",
+ "picked": "Nov 01, 2026",
+ "pickBox": {
+  "x": 769.4296875,
+  "y": 596.71875,
+  "bx": 563,
+  "by": 577,
+  "bw": 413,
+  "bh": 40
+ },
+ "writes": [
+  "POST /api/note/create :: {\"type\":\"work_order\",\"reference_id\":\"4b0a24b2-00e9-4be1-97fe-551d9706c44a\",\"content\":\"ZZAUTOTEST T7-NY-monthend America/New_York cal +1\",\"reminder_date\":\"Nov 01, 2026\",\"mentions\":null,\"customer_visible\":false}",
+  "  <- 201 {\"data\":{\"id\":\"fbdad2ce-c02e-4bbe-af7b-ad5410767616\"}}"
+ ],
+ "afterSave": {
+  "text": "AS Admin ShopView Work Order: S-17580 09:30 PM, Oct 14, 2026 notifications Nov 1, 2026 more_horiz ZZAUTOTEST T7-NY-monthend America/New_York cal +1",
+  "dates": [
+   {
+    "t": "notifications\nNov 1, 2026",
+    "color": "rgb(158, 158, 158)",
+    "b": [
+     1413,
+     215,
+     98,
+     20
+    ]
+   }
+  ],
+  "b": [
+   318,
+   195,
+   1253,
+   127
+  ]
+ },
+ "afterReload": {
+  "text": "AS Admin ShopView Work Order: S-17580 09:30 PM, Oct 14, 2026 notifications Nov 1, 2026 more_horiz ZZAUTOTEST T7-NY-monthend America/New_York cal +1",
+  "dates": [
+   {
+    "t": "notifications\nNov 1, 2026",
+    "color": "rgb(158, 158, 158)",
+    "b": [
+     1413,
+     215,
+     98,
+     20
+    ]
+   }
+  ],
+  "b": [
+   318,
+   195,
+   1253,
+   127
+  ]
+ }
+}

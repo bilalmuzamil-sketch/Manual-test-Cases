@@ -1,0 +1,72 @@
+{
+ "stored": "/api/notes?search=&reference_ids%5B0%5D=d472ec08-866f-4174-8ae0-a0571122f6c9&reference_ids%5B1%5D=0f863bd0-d492-4838-9d76-370a17473945&filters%5B0%5D%5Bfield%5D=status&filters%5B0%5D%5Boperator%5D=neq&filters%5B0%5D%5Bvalue%5D=deleted&pagination%5BsortBy%5D=created_at&pagination%5Bdescending%5D=true {\"data\":{\"notes\":[{\"id\":\"6e71b8f0-6117-4010-b606-1e598859a8b2\",\"content\":\"ZZAUTOTEST P-T1-NY America\\/New_York cal +1\",\"createdAt\":\"2026-10-15 03:22:15\",\"userId\":\"1d610634-2618-4c70-9ce4-791f8d201642\",\"type\":\"work_order\",\"source\":\"user\",\"metadata\":{\"type\":\"empty\"},\"referenceId\":\"d472ec08-866f-4174-8ae0-a0571122f6c9\",\"status\":\"active\",\"name\":\"Bilal Muzammil\",\"attachments\":[],\"customerVisible\":false,\"isRead\":false,\"reminderDate\":\"2026-10-15\",\"mentions\":[],\"reference\":{\"id\":\"d472ec08-866f-4174-8ae0-a0571122f6c9\",\"type\":\"work_order\",\"label\":\"Work Order\",\"name\":\"Work Order: S-978\",\"link\":\"\\/workorders\\/d472ec08-866f-4174-8ae0-a0571122f6c9\",\"order\":0},\"avatarUrl\":\"\\/organization\\/72b2cc90-6964-4429-a207-76e55f946936\\/avat",
+ "noteId": "6e71b8f0-6117-4010-b606-1e598859a8b2",
+ "tz": "America/New_York",
+ "method": "cal",
+ "off": "1",
+ "clock": "-",
+ "env": "prod",
+ "now": "Wed Oct 14 2026 23:22:09 GMT-0400 (Eastern Daylight Time)",
+ "tgt": {
+  "y": 2026,
+  "m": 10,
+  "d": 15,
+  "mon": "October"
+ },
+ "content": "ZZAUTOTEST P-T1-NY America/New_York cal +1",
+ "picked": "Oct 15, 2026",
+ "pickBox": {
+  "x": 769.4296875,
+  "y": 596.71875,
+  "bx": 563,
+  "by": 577,
+  "bw": 413,
+  "bh": 40
+ },
+ "writes": [
+  "POST /api/note/create :: {\"type\":\"work_order\",\"reference_id\":\"d472ec08-866f-4174-8ae0-a0571122f6c9\",\"content\":\"ZZAUTOTEST P-T1-NY America/New_York cal +1\",\"reminder_date\":\"Oct 15, 2026\",\"mentions\":null,\"customer_visible\":false}",
+  "  <- 201 {\"data\":{\"id\":\"6e71b8f0-6117-4010-b606-1e598859a8b2\"}}"
+ ],
+ "afterSave": {
+  "text": "Bilal Muzammil Work Order: S-978 03:22 AM, Today notification_important Oct 14, 2026 more_horiz ZZAUTOTEST P-T1-NY America/New_York cal +1",
+  "dates": [
+   {
+    "t": "notification_important\nOct 14, 2026",
+    "color": "rgb(229, 57, 53)",
+    "b": [
+     1408,
+     215,
+     103,
+     20
+    ]
+   }
+  ],
+  "b": [
+   318,
+   195,
+   1253,
+   127
+  ]
+ },
+ "afterReload": {
+  "text": "Bilal Muzammil Work Order: S-978 03:22 AM, Today notification_important Oct 14, 2026 more_horiz ZZAUTOTEST P-T1-NY America/New_York cal +1",
+  "dates": [
+   {
+    "t": "notification_important\nOct 14, 2026",
+    "color": "rgb(229, 57, 53)",
+    "b": [
+     1408,
+     215,
+     103,
+     20
+    ]
+   }
+  ],
+  "b": [
+   318,
+   195,
+   1253,
+   127
+  ]
+ }
+}

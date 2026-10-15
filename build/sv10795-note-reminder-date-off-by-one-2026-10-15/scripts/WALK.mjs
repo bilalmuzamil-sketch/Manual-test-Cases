@@ -1,0 +1,17 @@
+import {ob,J,post} from './lib.mjs';
+const s=await ob({tz:'America/New_York'}); const p=s.page; await post(s,'/api/iam/change-location',{workplace_id:'b3c8c820-f815-4cf1-8938-10956c5ee71a',workplace_timezone:'America/Edmonton'});
+await s.go('/workorders'); await p.waitForTimeout(3500);
+await p.locator('[data-test-id="page_search_toggle"]').click(); await p.waitForTimeout(600); await p.keyboard.type('S10795-17580',{delay:40}); await p.waitForTimeout(3500);
+const hits=await p.evaluate(()=>[...document.querySelectorAll('tbody tr')].filter(r=>r.offsetParent).map(r=>r.innerText.replace(/\s+/g,' ').slice(0,90))); console.log('search rows',J(hits,500)); await p.screenshot({path:'ev/WALK-1-search.png'});
+const link=await p.evaluate(()=>{const e=[...document.querySelectorAll('tbody tr *')].filter(x=>x.children.length===0&&x.innerText&&x.innerText.trim()==='S10795-17580')[0]; return e?(e.getAttribute('data-test-id')||e.parentElement.getAttribute('data-test-id')||e.tagName+'.'+e.className):null;}); console.log('number element',link); await p.locator('tbody tr').getByText('S10795-17580',{exact:true}).first().click(); await p.waitForTimeout(4000); console.log('url',p.url());
+await p.locator('[data-test-id="link_notes_tab"]').click(); await p.waitForTimeout(3000);
+const tabs=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id^="link_"]')].map(e=>e.innerText.trim())); console.log('tabs',J(tabs));
+console.log('new note buttons',await p.locator('[data-test-id="button_new_note"]').count()); await p.screenshot({path:'ev/WALK-2-notes.png'}); await p.locator('[data-test-id="button_new_note"]').click(); await p.waitForTimeout(1800); console.log('dialogs open',await p.locator('.q-dialog').count()); await p.screenshot({path:'ev/WALK-3-dialog.png'});
+const D=p.locator('.q-dialog').last(); await D.locator('[data-test-id="input_note_content"]').fill('ZZAUTOTEST walk');
+await D.locator('[data-test-id="date_icon_reminder_date"]').click(); await p.waitForTimeout(1200);
+const tom=await p.evaluate(()=>{const d=new Date(); d.setDate(d.getDate()+1); return d.getDate();});
+await p.locator('.q-date__calendar-item--in button').filter({hasText:new RegExp('^'+tom+'$')}).first().click(); await p.waitForTimeout(1000);
+console.log('box shows',await D.locator('[data-test-id="date_input_reminder_date"]').inputValue(),'| browser now',await p.evaluate(()=>new Date().toString().slice(0,24)));
+await D.locator('[data-test-id="button_save_note"]').click(); await p.waitForTimeout(3500);
+const top=await p.evaluate(()=>{const c=document.querySelector('[data-test-id^="note_card_"]'); return [...c.querySelectorAll('*')].filter(e=>(e.innerText||'').length<40&&/[A-Z][a-z]{2} \d{1,2}, \d{4}/.test(e.innerText)).map(e=>[e.innerText.replace(/\s+/g,' '),getComputedStyle(e).color,e.getBoundingClientRect().width]).sort((a,b)=>a[2]-b[2])[0];});
+console.log('new note shows',J(top)); console.log('marker',J(await s.marker(),200)); await s.close();

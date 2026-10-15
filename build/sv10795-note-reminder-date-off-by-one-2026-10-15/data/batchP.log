@@ -1,0 +1,25 @@
+P-T2-NY | browser now Wed Oct 14 2026 23:41:07 GMT-0400 | target 10/16/2026 | input shows Oct 16, 2026 
+ list [["notifications\nOct 15, 2026","rgb(158, 158, 158)"]] 
+ stored ["reminderDate\":\"2026-10-16\",\"mentions\":[]"]
+P-T4-NY-morning | browser now Thu Oct 15 2026 10:00:25 GMT-0400 | target 10/16/2026 | input shows Oct 16, 2026 
+ list [["notification_important\nOct 15, 2026","rgb(229, 57, 53)"]] 
+ stored ["reminderDate\":\"2026-10-16\",\"mentions\":[]"]
+P-T5-LA | browser now Wed Oct 14 2026 20:44:43 GMT-0700 | target 10/15/2026 | input shows Oct 15, 2026 
+ list [["notification_important\nOct 14, 2026","rgb(229, 57, 53)"]] 
+ stored ["reminderDate\":\"2026-10-15\",\"mentions\":[]"]
+P-T6-KHI | browser now Thu Oct 15 2026 08:46:32 GMT+0500 | target 10/16/2026 | input shows Oct 16, 2026 
+ list [["notifications\nOct 16, 2026","rgb(158, 158, 158)"]] 
+ stored ["reminderDate\":\"2026-10-16\",\"mentions\":[]"]
+P-T9-view-NY America/New_York browser now Wed Oct 14 2026 23:48:22 GMT-0400 | cards 5 with reminder 5 | match 0 mismatch 5
+   ["P-T6-KHI Asia/Karachi cal +1","2026-10-16","Oct 15, 2026","rgb(158, 158, 158)","MISMATCH"]
+   ["P-T5-LA America/Los_Angeles cal +1","2026-10-15","Oct 14, 2026","rgb(229, 57, 53)","MISMATCH"]
+   ["P-T4-NY-morning America/New_York cal +1","2026-10-16","Oct 15, 2026","rgb(158, 158, 158)","MISMATCH"]
+   ["P-T2-NY America/New_York cal +2","2026-10-16","Oct 15, 2026","rgb(158, 158, 158)","MISMATCH"]
+   ["P-T1-NY America/New_York cal +1","2026-10-15","Oct 14, 2026","rgb(229, 57, 53)","MISMATCH"]
+P-T9-view-KHI Asia/Karachi browser now Thu Oct 15 2026 08:49:58 GMT+0500 | cards 5 with reminder 5 | match 5 mismatch 0
+   ["P-T6-KHI Asia/Karachi cal +1","2026-10-16","Oct 16, 2026","rgb(158, 158, 158)","OK"]
+   ["P-T5-LA America/Los_Angeles cal +1","2026-10-15","Oct 15, 2026","rgb(229, 57, 53)","OK"]
+   ["P-T4-NY-morning America/New_York cal +1","2026-10-16","Oct 16, 2026","rgb(158, 158, 158)","OK"]
+   ["P-T2-NY America/New_York cal +2","2026-10-16","Oct 16, 2026","rgb(158, 158, 158)","OK"]
+   ["P-T1-NY America/New_York cal +1","2026-10-15","Oct 15, 2026","rgb(229, 57, 53)","OK"]
+BATCHP DONE

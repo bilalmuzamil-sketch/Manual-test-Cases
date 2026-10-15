@@ -1,0 +1,38 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on the QA branch *sv10795* (build *v26.40.17-5d3a257*) on *14–15 October 2026*, and compared it with production (build *v26.40.17-f5bf8f4*).
+
+* A reminder date now shows as the day that was picked. On production, any computer whose clock is behind UTC (every US time zone, including Jason's in New Jersey) shows it one day early, and a reminder for tomorrow turns red as if it were due today.
+* This is why support could not see it when impersonating: from a time zone ahead of UTC the date shows correctly on production too.
+
+h3. Before and after
+!sv10795-01-before-after-hd.png|width=1290,height=1002!
+_Same steps on both, with the computer set to New York time: pick tomorrow (Oct 15) and save. Production shows "Oct 14, 2026" in red; the QA branch shows "Oct 15, 2026"._
+
+!sv10795-02-morning-before-after-hd.png|width=1290,height=976!
+_Jason's exact report, at 10:00 AM New York time: tomorrow (Oct 16) shows on production as "Oct 15, 2026" in red, i.e. due today. The QA branch shows Oct 16._
+
+h3. What I checked
+||#||Check||Result||
+|1|New York, late evening: pick tomorrow → shows tomorrow, not red|PASSED|
+|2|New York: pick the day after tomorrow → shows that day|PASSED|
+|3|New York, morning: pick tomorrow → shows tomorrow, not red|PASSED|
+|4|Los Angeles and Honolulu (further behind UTC): pick tomorrow → shows tomorrow|PASSED|
+|5|UTC, Karachi, Tokyo and Kiritimati (ahead of UTC): pick tomorrow → shows tomorrow|PASSED|
+|6|Month end and the US clock change: from 31 Oct, Nov 1 shows Nov 1 and Nov 2 shows Nov 2|PASSED|
+|7|The calendar's *Today* button: saves today, shown in red (due today)|PASSED|
+|8|Red only for a reminder that is due: today's is red, later ones grey, judged by the viewer's own date|PASSED|
+|9|Reopening a saved note with *Edit note* shows the saved date; changing it (Oct 16 → Oct 19) saves and shows the new date|PASSED|
+|10|All 14 test reminders viewed from New York, Karachi and Honolulu after a fresh page load: every one shows the date that was picked (0 differences)|PASSED|
+
+The *Reminder Date* box can't be typed into; it is set with the calendar or its *Today* button, so both of those were used.
+
+h3. How to see it
+The difference only shows on a computer whose time zone is behind UTC. Set yours to US Eastern Time first (Windows: *Settings → Time & language → Date & time*, turn off *Set time zone automatically*, choose *(UTC-05:00) Eastern Time (US & Canada)*), then restart Chrome.
+# Open https://sv10795.qa.shopview.com and click *Admin* on the login page.
+# In the top menu click {{Work Orders}}, click {{Search}} (the magnifying glass above the list, on the right) and type {{S10795-17580}}, then click the work order number *S10795-17580* in the list.
+# Click the {{Notes}} tab (next to {{Parts}}), then the blue {{New Note}} button at the top right.
+# Type any text. Click the calendar icon in the {{Reminder Date}} box and click tomorrow's date. The box shows tomorrow.
+# Click {{Save}}. At the top right of the new note, next to the bell, the date is tomorrow's, in grey.
+# Do the same on production (https://app.shopview.com): the note shows the day before the one you picked, in red.

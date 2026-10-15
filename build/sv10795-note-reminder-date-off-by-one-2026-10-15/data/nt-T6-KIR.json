@@ -1,0 +1,71 @@
+{
+ "stored": "/api/notes?search=&reference_ids%5B0%5D=4b0a24b2-00e9-4be1-97fe-551d9706c44a&reference_ids%5B1%5D=368a7bba-3775-4cba-82dc-ec8c9429174e&filters%5B0%5D%5Bfield%5D=status&filters%5B0%5D%5Boperator%5D=neq&filters%5B0%5D%5Bvalue%5D=deleted&pagination%5BsortBy%5D=created_at&pagination%5Bdescending%5D=true {\"data\":{\"notes\":[{\"id\":\"16e7b83a-c8da-48e6-9c88-1ca1ed1b0b97\",\"content\":\"ZZAUTOTEST T6-KIR Pacific\\/Kiritimati cal +1\",\"createdAt\":\"2026-10-15 03:29:16\",\"userId\":\"6d71382d-4ddb-4707-a0f3-33b4bb78b0b8\",\"type\":\"work_order\",\"source\":\"user\",\"metadata\":{\"type\":\"empty\"},\"referenceId\":\"4b0a24b2-00e9-4be1-97fe-551d9706c44a\",\"status\":\"active\",\"name\":\"Admin ShopView\",\"attachments\":[],\"customerVisible\":false,\"isRead\":false,\"reminderDate\":\"2026-10-16\",\"mentions\":[],\"reference\":{\"id\":\"4b0a24b2-00e9-4be1-97fe-551d9706c44a\",\"type\":\"work_order\",\"label\":\"Work Order\",\"name\":\"Work Order: S-17580\",\"link\":\"\\/workorders\\/4b0a24b2-00e9-4be1-97fe-551d9706c44a\",\"order\":0},\"avatarUrl\":null},{\"id\":\"b6364fdd-8ef5-4ff3-9ec0-64377bace661\",\"cont",
+ "noteId": "16e7b83a-c8da-48e6-9c88-1ca1ed1b0b97",
+ "tz": "Pacific/Kiritimati",
+ "method": "cal",
+ "off": "1",
+ "env": "branch",
+ "now": "Thu Oct 15 2026 17:29:11 GMT+1400 (Line Islands Time)",
+ "tgt": {
+  "y": 2026,
+  "m": 10,
+  "d": 16,
+  "mon": "October"
+ },
+ "content": "ZZAUTOTEST T6-KIR Pacific/Kiritimati cal +1",
+ "picked": "Oct 16, 2026",
+ "pickBox": {
+  "x": 769.4296875,
+  "y": 596.71875,
+  "bx": 563,
+  "by": 577,
+  "bw": 413,
+  "bh": 40
+ },
+ "writes": [
+  "POST /api/note/create :: {\"type\":\"work_order\",\"reference_id\":\"4b0a24b2-00e9-4be1-97fe-551d9706c44a\",\"content\":\"ZZAUTOTEST T6-KIR Pacific/Kiritimati cal +1\",\"reminder_date\":\"Oct 16, 2026\",\"mentions\":null,\"customer_visible\":false}",
+  "  <- 201 {\"data\":{\"id\":\"16e7b83a-c8da-48e6-9c88-1ca1ed1b0b97\"}}"
+ ],
+ "afterSave": {
+  "text": "AS Admin ShopView Work Order: S-17580 09:29 PM, Today notifications Oct 16, 2026 more_horiz ZZAUTOTEST T6-KIR Pacific/Kiritimati cal +1",
+  "dates": [
+   {
+    "t": "notifications\nOct 16, 2026",
+    "color": "rgb(158, 158, 158)",
+    "b": [
+     1408,
+     215,
+     103,
+     20
+    ]
+   }
+  ],
+  "b": [
+   318,
+   195,
+   1253,
+   127
+  ]
+ },
+ "afterReload": {
+  "text": "AS Admin ShopView Work Order: S-17580 09:29 PM, Today notifications Oct 16, 2026 more_horiz ZZAUTOTEST T6-KIR Pacific/Kiritimati cal +1",
+  "dates": [
+   {
+    "t": "notifications\nOct 16, 2026",
+    "color": "rgb(158, 158, 158)",
+    "b": [
+     1408,
+     215,
+     103,
+     20
+    ]
+   }
+  ],
+  "b": [
+   318,
+   195,
+   1253,
+   127
+  ]
+ }
+}
