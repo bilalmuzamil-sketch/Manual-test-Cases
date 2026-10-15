@@ -1,0 +1,79 @@
+{
+ "results": {
+  "C368238": {
+   "verdict": "Passed",
+   "observed": [
+    "Pictures only (the verdict was posted earlier), from this run: S2-36149 (ZZAUTOTEST Impersonate Start), led by Esther Howard.",
+    "Before the switch, as yourself, Assigned to me searched for it showed \"No work orders match these filters\".",
+    "Account Access as Esther Howard was started while Reports > Work In Progress was still loading; no red error message appeared.",
+    "Step 5: the top bar reads \"Account Access Mode: Esther Howard\"; Work Orders > All with Assigned to me on, search 36149, lists S2-36149 (the search still in the box in the picture)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368238-step5-assigned-to-me-as-esther.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368239": {
+   "verdict": "Passed",
+   "observed": [
+    "Pictures only (the verdict was posted earlier), from this run: S2-36150 (ZZAUTOTEST Impersonate Exit), led by Esther Howard; as Esther Howard, Assigned to me listed it.",
+    "Exit was pressed while Work In Progress was still loading; only the green \"Successfully exited impersonation, restored user \"Admin ShopView\"\" message showed, no red error.",
+    "Step 4: your own user again (no Account Access Mode bar); Work Orders > All with Assigned to me on, search 36150: \"No work orders match these filters\" (the search still in the box in the picture)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368239-step4-own-user-not-listed.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ },
+ "redo": {},
+ "failed": {},
+ "doubt": {
+  "LEAD-PAGE-100": {
+   "finding": "On the work order page an eligible technician later in the alphabet cannot be chosen as lead (candidate failure, owning story SV-10047, Story 4).",
+   "seen": [
+    "Ben Bravo is eligible here (read twice in each run: active, Time Clock on, Technician, this location, Service) and the Reassign dialog offers him by staff id (1b72172f, 53-54 open).",
+    "The work order page's Lead Technician list, opened and read to the end, holds 101 entries: Unassigned, 100 people from Aaron Zed to the Q names, then the current lead. Ben Bravo is not in it (only \"Julie Benjamin\" contains Ben).",
+    "C97007 and C368159 (seventh pass): typing \"Ben Bravo\", then \"Bravo\", then \"Ben\" into the Lead Technician field's own box left the list exactly as it was (the same 30 drawn names, Marilyn Hill to Monique Turner, each time): the field does not search as you type. So Ben Bravo was not offered and could not be set on the page.",
+    "C368169 (seventh pass): the same for Ralph Edwards — typing into the field did not offer him (64 names seen, ending at the QA names); the lead stayed Esther Howard."
+   ],
+   "notYetProved": "No positive control yet: typing a name that IS in the first 100 has not been tried, so \"the field has no type-to-search\" is the likely reading but not proved, and no picture shows the list open after typing (the picture was taken after the list closed). lead100-compare.mts (later in the seventh pass, not yet run) now types such a name too, on staging and on production, with a picture of each list open.",
+   "decide": "After lead100-compare: if production's page offers the late technician (or its field narrows when typed) and staging's does not, it is a staging fault against SV-10047 (Rule 121: different on production). If production behaves the same, it is not caused by this work. Either way C97007 step 8, C368159 step 2 and C368169 step 3 cannot be done with a late-alphabet technician on staging until then."
+  },
+  "C97007": {
+   "suggest": "Hold for LEAD-PAGE-100",
+   "why": [
+    "Step 7 seen again: Aardvark Co given to Ben Bravo in the Reassign dialog (picked by his staff id) went to the bottom: Ben's column read Bravo Co, Delta Co, Aardvark Co.",
+    "Step 8 not done: Ben Bravo is not offered on the work order page (see LEAD-PAGE-100); the Abbey Co lead was not set to him, so steps 9 to 12 cannot be judged as written."
+   ]
+  },
+  "C368159": {
+   "suggest": "Hold for LEAD-PAGE-100",
+   "why": [
+    "Browser 2 could not change Site Co's lead to Ben Bravo on the work order page (not offered, typing did not find him), so there was no new lead for browser 1's stale On Site toggle to protect.",
+    "Seen anyway: browser 1's toggle saved On Site (0 to 1) and the lead stayed ZZAUTOTEST Ana Alpha."
+   ]
+  },
+  "C368169": {
+   "suggest": "Hold for LEAD-PAGE-100",
+   "why": [
+    "Mileage changed on the status card from 120,000 to 120,500 with no error and still reads 120,500 after a reload.",
+    "The lead change to Ralph Edwards (the name the Expected quotes) could not be made: he is not offered on the page and typing did not find him; Lead Technician still reads Esther Howard."
+   ]
+  },
+  "C368191": {
+   "suggest": "Blocked",
+   "why": [
+    "c368191-read (seventh pass, read only) found nothing usable: work order S2-35973's labor rows read \"Esther Howard\" (a person who still exists), no line reads \"Deleted user\", and no deleted staff member appears on any line."
+   ],
+   "blockedWording": [
+    "Blocked — this test needs a line whose labor was done by a staff member who has since been deleted.",
+    "Staging will not delete a staff member who has labor: deleting answers \"Staff is being used elsewhere.\" (before and after deactivating them), while a staff member with no labor deletes at once. So the state the test needs cannot be made on staging.",
+    "No existing work order on staging shows \"Deleted user\" to borrow (S2-35973 checked 15 Oct 2026: its labor reads Esther Howard).",
+    "To unblock: a developer removes such a person directly in the database, or the QA lead names a branch or record that already has one."
+   ]
+  }
+ }
+}

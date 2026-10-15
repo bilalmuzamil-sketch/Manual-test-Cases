@@ -35,7 +35,7 @@ async function typeAndRead(pg: Page, term: string, pic: string) { const f = awai
   await f.click(); await pg.waitForTimeout(1200); const inp = f.locator('input').first(); o.hasInput = await inp.count();
   if (o.hasInput) { await inp.fill(term).catch(() => {}); } else await pg.keyboard.type(term, { delay: 60 });
   await pg.waitForTimeout(3500); o.offered = (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [] as string[])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 15);
-  o.found = o.offered.some((x: string) => x.toLowerCase().includes(term.toLowerCase())); await shot(pg, pic);
+  o.found = o.offered.some((x: string) => x.toLowerCase().includes(term.toLowerCase())); o.narrowed = o.offered.length > 0 && o.offered.every((x: string) => x.toLowerCase().includes(term.split(' ')[0].toLowerCase())); await shot(pg, pic);
   await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(500); if (o.hasInput) await inp.fill('').catch(() => {}); await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(800); return o; }
 /** the late technician: sort the candidates the way the page list runs (by full name), take one past the 100th */
 const lateOne = (names: string[]) => { const s = [...names].filter(Boolean).sort((x, y) => x.localeCompare(y, 'en', { sensitivity: 'base' })); return s.length > 100 ? s[Math.min(s.length - 1, 100 + Math.floor((s.length - 100) / 2))] : s[s.length - 1]; };
@@ -59,6 +59,10 @@ const lateOne = (names: string[]) => { const s = [...names].filter(Boolean).sort
       const list = await readList(p, 'LEAD100-staging-page-list'); S.pageList = { count: list.count, first: list.first, last: list.last };
       const late = lateOne(c.map((x) => x.name)); S.lateName = late; S.lateInPageList = (list.all ?? []).some((x: string) => x.includes(late));
       S.typed = await typeAndRead(p, late, 'LEAD100-staging-typed');
+      // 15 Oct 2026 (wave 26): POSITIVE CONTROL (Rule 104) — type a name that IS in the page's first 100; if the list does not narrow
+      // for it either, the field simply has no type-to-search (typing cannot reach anyone), which is the reading that matters
+      const ctl = (list.all ?? []).map((x: string) => x.replace(/^check\s+/, '').trim()).filter((x: string) => x && !/^Unassigned$/i.test(x))[20] ?? null;
+      if (ctl) S.typedControl = await typeAndRead(p, ctl, 'LEAD100-staging-typed-control');
       const after = ((await a.get('/api/work-orders?pagination[rowsPerPage]=50&tab=all&status=approved')).body?.data?.work_orders ?? []).find((x: any) => x.id === w.id); S.leadUnchanged = (after?.techAssignedId ?? null) === (w.techAssignedId ?? null); }
   } catch (e: any) { S.error = String(e?.message || e).slice(0, 300); }
   finally { save(); if (browser) await cap(20_000, browser.close().catch(() => {}), undefined); } }   // not done(): it ends the process before production
@@ -76,6 +80,8 @@ const lateOne = (names: string[]) => { const s = [...names].filter(Boolean).sort
       const list = await readList(p, 'LEAD100-production-page-list'); P.pageList = { count: list.count, first: list.first, last: list.last };
       P.lateInPageList = (list.all ?? []).some((x: string) => x.includes(P.lateName));
       P.typed = await typeAndRead(p, P.lateName, 'LEAD100-production-typed');
+      const ctl = (list.all ?? []).map((x: string) => x.replace(/^check\s+/, '').trim()).filter((x: string) => x && !/^Unassigned$/i.test(x))[20] ?? null;
+      if (ctl) P.typedControl = await typeAndRead(p, ctl, 'LEAD100-production-typed-control');   // positive control, as on staging
       const w2 = ((await get('/api/work-orders?pagination[rowsPerPage]=50&tab=all&status=approved')).body?.data?.work_orders ?? []).find((x: any) => x.id === w.id);
       P.leadUnchanged = (w2?.techAssignedId ?? null) === (w.techAssignedId ?? null); }
   } catch (e: any) { P.error = String(e?.message || e).slice(0, 300); }
