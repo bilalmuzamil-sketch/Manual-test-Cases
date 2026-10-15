@@ -313,16 +313,21 @@ for (const [kind, ids] of [['asset', ['C368180', 'C368181', 'C368182', 'C368183'
           const custRows = await pp.locator('tbody tr').count();
           for (let ci = 0; ci < Math.min(custRows, 8) && !pr.found; ci++) {
             await pp.goto(P + '/customers', { waitUntil: 'domcontentloaded' }); await pp.waitForTimeout(6000); await pp.locator('tbody tr').nth(ci).click().catch(() => {}); await pp.waitForTimeout(5000);
-            const at = pp.locator('.q-tab, [role=tab]').filter({ hasText: /Assets/ }).first(); if (!(await at.count())) continue; await at.click(); await pp.waitForTimeout(4000);
+            // 15 Oct 2026 (wave 13, fourth pass): the page read was the CUSTOMER's Work Orders tab ("Work Orders (4)", with Part Sales /
+            // Contacts / Assets tabs), not an ASSET's. Now the customer's "Assets (n)" TAB is clicked (whole label, playbook trap), an asset
+            // row is opened and the reading is taken ONLY if the page is an asset's page (address has /vehicle/, as staging's TRK-201 page:
+            // /customers/vehicle/<id>/work-orders); then its Work Orders tab. Each asset page opened is pictured; the found one too.
+            const at = pp.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Assets(\s*\(\d+\))?\s*$/ }).first(); if (!(await at.count())) continue; await at.click(); await pp.waitForTimeout(4000);
             const nAssets = await pp.locator('tbody tr').count(); const custUrl = pp.url();
             for (let ai = 0; ai < Math.min(nAssets, 4) && !pr.found; ai++) {
-              if (ai) { await pp.goto(custUrl, { waitUntil: 'domcontentloaded' }); await pp.waitForTimeout(5000); }
+              if (ai) { await pp.goto(custUrl, { waitUntil: 'domcontentloaded' }); await pp.waitForTimeout(5000); const at2 = pp.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Assets(\s*\(\d+\))?\s*$/ }).first(); if (await at2.count()) { await at2.click(); await pp.waitForTimeout(3500); } }
               await pp.locator('tbody tr').nth(ai).click().catch(() => {}); await pp.waitForTimeout(5000);
+              if (!/\/vehicle/i.test(pp.url())) { pr.tried.push(`row ${ai} did not open an asset page (${pp.url().replace(P, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>').slice(0, 60)})`); continue; }
               const wt = pp.locator('.q-tab, [role=tab]').filter({ hasText: /Work Orders/ }).first(); if (!(await wt.count())) continue; await wt.click(); await pp.waitForTimeout(4000);
               const rows = await pp.locator('tbody tr').filter({ hasText: /\S/ }).count(); const tabLabel = (await wt.innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
               const bottom = await pp.locator('.q-table__bottom').innerText().catch(() => null); const noData = /no data|no work orders|no results/i.test(await pp.locator('tbody').innerText().catch(() => ''));
               pr.tried.push(`${tabLabel} rows=${rows}${noData ? ' (empty)' : ''}`);
-              if (rows > 0 && !noData) { pr.found = { url: pp.url().replace(P, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>'), tabs: await pp.evaluate(`[...document.querySelectorAll('.q-tab, [role=tab]')].map(e => e.innerText.replace(/\\s+/g, ' ').trim())`), tabLabel, bottom: bottom ? bottom.replace(/\s+/g, ' ').trim() : null, rows, countShown: /\(\d+\)/.test(tabLabel) || /\d+\s*(-|–)\s*\d+\s*of\s*\d+/i.test(bottom ?? '') }; await pp.screenshot({ path: path.join(EV, 'C368181-production.png') }).catch(() => {}); }
+              if (rows > 0 && !noData) { await pp.screenshot({ path: path.join(EV, 'C368181-production-asset-work-orders.png') }).catch(() => {}); pr.found = { url: pp.url().replace(P, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>'), tabs: await pp.evaluate(`[...document.querySelectorAll('.q-tab, [role=tab]')].map(e => e.innerText.replace(/\\s+/g, ' ').trim())`), tabLabel, bottom: bottom ? bottom.replace(/\s+/g, ' ').trim() : null, rows, countShown: /\(\d+\)/.test(tabLabel) || /\d+\s*(-|–)\s*\d+\s*of\s*\d+/i.test(bottom ?? '') }; await pp.screenshot({ path: path.join(EV, 'C368181-production.png') }).catch(() => {}); }
             } }
         } catch (e: any) { pr.error = String(e?.message || e).slice(0, 200); await pp.screenshot({ path: path.join(EV, 'C368181-production-error.png') }).catch(() => {}); }
         o.production = pr; await prod.browser.close().catch(() => {}); }

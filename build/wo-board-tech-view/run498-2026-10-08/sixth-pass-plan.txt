@@ -1,0 +1,20 @@
+# script | cases (ONLY) | extra settings   — 15 Oct 2026 SIXTH pass on staging, run by stg-after6.sh after "fifth pass finished".
+# The fifth pass read its plan at 04:58 UTC, so wave 13 (judge/wave13.json) runs here. signin-check-stg4.mts runs first as the
+# guard (run-sixth.sh stops if it fails); then the view-only role reset and the running-clock clean-up, as in the passes before.
+# SIGN-OUT LAST OF ALL (L0342): evidence/staging-full-2026-10-14/logs5/signout-fix.done was created at 04:59 UTC so the fifth pass
+# skips signout-fix.mts; it runs only here, as the last line.
+signin-check-stg4.mts | | 
+role-viewonly-stg4.mts | | 
+clocks-stg4.mts | | 
+# wave 13: C97007 / C368159 why Ben Bravo is not offered on the work order page (eligibilityOf), fixed and read back, the whole pick
+# list read (listAllOptions); C97012 the dispatcher's session probed and messages watched from the press, recorded, not retried;
+# C368156 switch back to Heavy Duty read back, one retry; C368176 Esther's clocks stopped first; C368181 an ASSET's page on production
+s9-batchA5.mts | C97007 | 
+s11-batch.mts | C368159 | 
+staledrop-stg4.mts | C97012 | 
+rest-batch.mts | C368156 | 
+high1-batch.mts | C368176,C368181 | 
+# picture only (passed C97032): the Reassign dialog open with the open-work count
+s11-fix3.mts | C97032 | WOB_SCALE=2
+# the sign-out test signs the shared session out: LAST of all
+signout-fix.mts | C368240 | 
