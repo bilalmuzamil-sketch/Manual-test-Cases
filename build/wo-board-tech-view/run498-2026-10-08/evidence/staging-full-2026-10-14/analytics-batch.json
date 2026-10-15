@@ -11,6 +11,11 @@
   0,
   0,
   0,
+  0,
+  0,
+  0,
+  0,
+  0,
   0
  ],
  "C97023": {
@@ -167,5 +172,200 @@
   ],
   "hits": [],
   "positiveControl": "the banned list was matched against every parameter value of every Work Orders event"
- }
+ },
+ "C97029": {
+  "step1": {
+   "views": [
+    "work_orders_display_view list all  default",
+    "work_orders_display_view board_view all  saved"
+   ],
+   "fields": 13,
+   "sources": [
+    "default"
+   ]
+  },
+  "step2": {
+   "views": [
+    "work_orders_display_view board_view all  saved"
+   ],
+   "fields": [
+    "work_orders_field_load board_view technician off saved",
+    "work_orders_field_load board_view company_name off saved",
+    "work_orders_field_load board_view vehicle on saved",
+    "work_orders_field_load board_view vin off default",
+    "work_orders_field_load board_view progress on saved",
+    "work_orders_field_load board_view service_advisor off default",
+    "work_orders_field_load board_view clocked_in_technicians off default",
+    "work_orders_field_load board_view lines_count on saved",
+    "work_orders_field_load board_view line_technicians off default",
+    "work_orders_field_load board_view time_estimate off default",
+    "work_orders_field_load board_view total_price on saved",
+    "work_orders_field_load board_view vehicle_here off default",
+    "work_orders_field_load board_view start_date off default"
+   ],
+   "density": [
+    "work_orders_density_load board_view regular  default"
+   ],
+   "note": null
+  },
+  "step3": [
+   "work_orders_display_view tech_view all  saved",
+   "work_orders_display_view tech_view estimates  saved"
+  ],
+  "step4": [
+   "work_orders_field_toggle board_view vin on"
+  ],
+  "finOff": "200 now false",
+  "step5": {
+   "fields": 12,
+   "totalPrice": 0,
+   "labels": [
+    "technician",
+    "company_name",
+    "vehicle",
+    "vin",
+    "progress",
+    "service_advisor",
+    "clocked_in_technicians",
+    "lines_count",
+    "line_technicians",
+    "time_estimate",
+    "vehicle_here",
+    "start_date"
+   ]
+  },
+  "finRestore": "200 now false",
+  "note": "fallback and failed save: not checked by hand"
+ },
+ "C97035": {
+  "has service_advisor": 1,
+  "has lines_count": 1,
+  "has start_date": 1,
+  "counts": {
+   "work_orders_display_view": 5,
+   "work_orders_field_load": 28,
+   "work_orders_density_load": 2,
+   "work_orders_field_toggle": 3,
+   "work_orders_density_change": 1
+  },
+  "total": 39,
+  "step7new": [],
+  "toggles": [
+   "work_orders_field_toggle board_view service_advisor on",
+   "work_orders_field_toggle board_view lines_count on",
+   "work_orders_field_toggle board_view start_date on"
+  ],
+  "otherWOEvents": [
+   "work_orders_display_view",
+   "work_orders_field_load",
+   "work_orders_density_load",
+   "work_orders_field_toggle",
+   "work_orders_density_change"
+  ]
+ },
+ "C368153": {
+  "finOff": "200 now false",
+  "step2": {
+   "n": 12,
+   "totalPrice": 0
+  },
+  "step4": {
+   "n": 14,
+   "totalPrice": 0,
+   "labels": [
+    "unreceived_part_requests_count",
+    "vehicle",
+    "vin",
+    "progress",
+    "service_advisor",
+    "technician",
+    "clocked_in_technicians",
+    "lines_count",
+    "assigned_techs",
+    "start_date",
+    "invoiced_date",
+    "days_open",
+    "part_requests_count",
+    "part_return_requests_count"
+   ]
+  },
+  "step5": {
+   "pickerHasTotal": 0,
+   "pickerItems": [
+    "technician",
+    "company_name",
+    "vehicle",
+    "vin",
+    "progress",
+    "service_advisor",
+    "clocked_in_technicians",
+    "lines_count",
+    "line_technicians",
+    "time_estimate",
+    "vehicle_here",
+    "start_date"
+   ],
+   "dollarOnCards": 0
+  },
+  "finRestore": "200 now false"
+ },
+ "C368155": {
+  "opened": "/workorders/<id>/lines",
+  "display": [
+   {
+    "uid": "46dcd9c7",
+    "up": []
+   },
+   {
+    "uid": "46dcd9c7",
+    "up": []
+   },
+   {
+    "uid": "46dcd9c7",
+    "up": []
+   }
+  ],
+  "workOrderView": [
+   {
+    "en": "page_view"
+   },
+   {
+    "en": "page_view",
+    "uid": "46dcd9c7"
+   },
+   {
+    "en": "page_view",
+    "uid": "46dcd9c7"
+   },
+   {
+    "en": "page_view",
+    "uid": "46dcd9c7"
+   },
+   {
+    "en": "work_order_view",
+    "uid": "46dcd9c7"
+   },
+   {
+    "en": "page_view",
+    "uid": "46dcd9c7"
+   },
+   {
+    "en": "page_view",
+    "uid": "46dcd9c7"
+   }
+  ],
+  "userIdOf": {
+   "switchedUser": "46dcd9c7"
+  },
+  "allEventNames": [
+   "page_view",
+   "work_orders_display_view",
+   "work_orders_field_load",
+   "work_orders_density_load",
+   "page_search",
+   "work_order_view"
+  ],
+  "sameUid": false
+ },
+ "restored": true
 }
