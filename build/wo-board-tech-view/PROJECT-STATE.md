@@ -162,3 +162,12 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
   C97003); C97033 day 2 (scheduled 19:10 UTC).
 - D-LEAD100 is drafted (one or two tickets). Production cannot show the ~100 cut-off (18 staff), and it is not proven old.
 - Final report: run498-2026-10-08/REPORT-staging-2026-10-15.md.
+
+### 15 Oct 12:30 UTC — fresh staging sign-in; QA lead: tickets first
+- QA lead, 15 Oct 2026: create the tickets for the failed tests BEFORE the re-runs. I proposed running the 7 re-runs in the
+  background at the same time, and the answer is pending.
+- He supplied a fresh staging sign-in (sso, PHPSESSID, cf_clearance). It is written to /tmp/qa-cookies/staging-sso.txt and
+  staging-full.json (chmod 600, old files kept as *.bak-1015). The sign-in check passed at 12:27 (logs11).
+- Ticket queue being drafted (defect-drafts/tickets/QUEUE-2026-10-15.md): sorting C96929 (reopen SV-11101 or new — his
+  call), D-LEAD100 (one or two), TECHFILTER (5 tests, SV-10044), design findings grouped one per distinct finding. Each is
+  asked separately (Rule 113). The live PRD read waits for his yes (Rule 81/106).
