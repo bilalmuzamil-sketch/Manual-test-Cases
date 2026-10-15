@@ -1,0 +1,86 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 32a design links"
+ },
+ "results": {
+  "C590121": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Step 2: without hovering, no three-dot button shows on the card.",
+    "Step 3: on hover the card's border darkens and the three-dot button appears at the top right over the end of the status pill, but no soft shadow appears around the card.",
+    "Step 4: the menu opens below the button, lined up with its right edge, with Reassign lead technician as its only item, but there is no outline icon before the item as in the design.",
+    "The Tech View steps (7 to 11) were not reached in this reading.",
+    "Production (app.shopview.com) has no Tech View or Board View, so there is nothing there to compare."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590121-1-card-hover-no-shadow.png",
+    "evidence/staging-full-2026-10-14/annotated/C590121-2-menu-no-icon.png"
+   ],
+   "not_observed": null,
+   "todo": "What needs to be done: follow the ticket; once it is fixed on staging, run this test again.",
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11394 and https://shopview.atlassian.net/browse/SV-11319.",
+   "story": "SV-10046"
+  },
+  "C590124": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Step 5: the design says on hover the card's border darkens and a soft shadow appears.",
+    "On screen the border darkens and the card does not grow or move, but no shadow appears.",
+    "Step 6: the name bubble on the card's avatars opens below the avatars, not above them as the design shows.",
+    "The Tech View steps (2 and 3) were not reached in this reading.",
+    "Production (app.shopview.com) has no Tech View or Board View, so there is nothing there to compare."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590124-1-card-hover-no-shadow.png",
+    "evidence/staging-full-2026-10-14/annotated/C590124-2-name-bubble-below.png"
+   ],
+   "not_observed": null,
+   "todo": "What needs to be done: follow the ticket; once it is fixed on staging, run this test again.",
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11394 and https://shopview.atlassian.net/browse/SV-11395.",
+   "story": "SV-10046"
+  },
+  "C590130": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "The design shows a white rounded message box at the bottom right with a green check-in-a-circle icon, the words and an X to close it.",
+    "On screen the message reads \"Lead technician updated\" at the bottom right, but it is a solid green box with white text, a white check icon and the word Close instead of an X.",
+    "Step 4: after ten seconds the message has gone by itself.",
+    "Production (app.shopview.com) has no Tech View or Board View, so there is nothing there to compare."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590130-1-green-message.png",
+    "evidence/staging-full-2026-10-14/annotated/C590130-2-gone-after-10s.png"
+   ],
+   "not_observed": null,
+   "todo": "What needs to be done: follow the ticket; once it is fixed on staging, run this test again.",
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11396.",
+   "story": "SV-10047"
+  },
+  "C590128": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Rows are 40 points tall at Compact, 48 at Regular and 64 at Comfortable: lowest, middle and tallest, as the test asks; the group header gets taller with them.",
+    "Steps 3, 5 and 7: the design shows a progress bar that is shorter and thinner at Compact (48 by 4) and 64 by 6 at Regular; on screen there is no progress bar at any density, only a grey \"0%\" label.",
+    "The technician avatar in the group header is the same size at all three densities; the design makes the avatars smaller at Compact and larger at Comfortable. No row shows an avatar.",
+    "The row text is the same size at Compact as at Regular.",
+    "The same columns and values show at every density.",
+    "Step 8: in Board View the density menu shows Comfortable ticked.",
+    "Production (app.shopview.com) has no Tech View or Board View, so there is nothing there to compare."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590128-1-densities.png"
+   ],
+   "not_observed": null,
+   "todo": "What needs to be done: follow the ticket; once it is fixed on staging, run this test again.",
+   "story": "SV-10049",
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11397 and https://shopview.atlassian.net/browse/SV-11325."
+  }
+ }
+}

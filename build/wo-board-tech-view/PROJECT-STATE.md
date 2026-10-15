@@ -184,3 +184,12 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
 - New tickets still to ask (one yes each): D-LEAD100 (one or two), hover shadow (C590121, C590124), name bubble below
   (C590124), green message box (C590130), avatar size by density (C590128). C590121's menu icon goes under SV-11319 if he
   agrees.
+
+### 15 Oct 13:05 UTC — every finding reported
+- QA lead approved (one reply, a yes per ticket): new SV-11393 (technician lists stop at ~100, one ticket covering both lists;
+  C97007 C368159 C368169 C368173 now Failed), SV-11394 (no card hover shadow; C590121 C590124), SV-11395 (name bubble below;
+  C590124), SV-11396 (green message box; C590130), SV-11397 (avatar size by density; C590128). C590121's menu icon goes under
+  SV-11319. Each one quotes the PRD (v52 as the cases give it) first and the design as a reference; design screenshots were
+  left out to save quota (his permission).
+- Run 498: 240 Passed, 25 Failed (every one carries its ticket), 4 Blocked, 2 Untested.
+- Next session: run498-2026-10-08/NEXT-SESSION-2026-10-15.md.

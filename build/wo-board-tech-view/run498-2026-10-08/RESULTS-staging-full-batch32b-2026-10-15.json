@@ -1,0 +1,76 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 32b lead list Failed"
+ },
+ "results": {
+  "C97007": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Steps 8–9: Ben Bravo could not be chosen on the work order page, so the steps after it could not be done.",
+    "On staging, 255 people can be made lead technician, but the work order page's Lead Technician list shows only about the first 100 (to the P/Q names); typing a name puts no text in the box and finds no one.",
+    "The board's Reassign window does offer the same person.",
+    "Production has only 18 staff, so it cannot show whether the same cut-off exists there."
+   ],
+   "pictures": [
+    "defect-drafts/D-LEAD100-1-page-list-vs-dialog.png",
+    "defect-drafts/D-LEAD100-2-lead-list-staging-vs-production.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11393.",
+   "todo": "What needs to be done: follow the ticket; once fixed on staging, run this test again."
+  },
+  "C368159": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Browser 2 could not set Ben Bravo as lead on the work order page.",
+    "On staging, 255 people can be made lead technician, but the work order page's Lead Technician list shows only about the first 100 (to the P/Q names); typing a name puts no text in the box and finds no one.",
+    "The board's Reassign window does offer the same person.",
+    "Production has only 18 staff, so it cannot show whether the same cut-off exists there."
+   ],
+   "pictures": [
+    "defect-drafts/D-LEAD100-1-page-list-vs-dialog.png",
+    "defect-drafts/D-LEAD100-2-lead-list-staging-vs-production.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11393.",
+   "todo": "What needs to be done: follow the ticket; once fixed on staging, run this test again."
+  },
+  "C368169": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Mileage saved (120,000 to 120,500), but Ralph Edwards, the name the test asks for, is not offered as lead on the page.",
+    "On staging, 255 people can be made lead technician, but the work order page's Lead Technician list shows only about the first 100 (to the P/Q names); typing a name puts no text in the box and finds no one.",
+    "The board's Reassign window does offer the same person.",
+    "Production has only 18 staff, so it cannot show whether the same cut-off exists there."
+   ],
+   "pictures": [
+    "defect-drafts/D-LEAD100-1-page-list-vs-dialog.png",
+    "defect-drafts/D-LEAD100-2-lead-list-staging-vs-production.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11393.",
+   "todo": "What needs to be done: follow the ticket; once fixed on staging, run this test again."
+  },
+  "C368173": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's own steps.",
+    "Edit Line > Add Technician lists about the first 100 people; Ralph Edwards, the name the test asks for, is not offered, and typing does not find him.",
+    "So the line could not be given Ralph Edwards and still reads Unassigned after Save.",
+    "Production has only 18 staff, so it cannot show whether the same cut-off exists there."
+   ],
+   "pictures": [
+    "defect-drafts/D-LEAD100-3-editline-staging-vs-production.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11393.",
+   "todo": "What needs to be done: follow the ticket; once fixed on staging, run this test again."
+  }
+ }
+}
