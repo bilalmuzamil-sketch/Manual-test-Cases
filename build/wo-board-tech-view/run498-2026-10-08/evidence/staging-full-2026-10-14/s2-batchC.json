@@ -43,19 +43,8 @@
   "esther.howard": 1,
   "billy.nobill": 0
  },
- "staffInputs_Ina Active": [
-  "Type to search"
- ],
- "staffRowHtml_Ina Active": "\" data-test-id=\"staff_billable_badge\">Yes</div></td><td data-v-4d443fd3=\"\" class=\"q-td q-table--col-auto-width text-right\"><button data-v-68e00a17=\"\" data-v-4d443fd3=\"\" class=\"q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text-dark q-btn--actionable q-focusable q-hoverable q-mx-xs\" tabindex=\"0\" type=\"button\" data-test-id=\"staff_edit_button\" filled=\"true\" style=\"font-size: 10px; padding: 4px; min-width: 0px; min-height: 0px;\"><span class=\"q-focus-helper\"></span><span class=\"q-btn__content text-center col items-center q-anchor--skip justify-center row\"><i class=\"q-icon notranslate material-icons\" aria-hidden=\"true\" role=\"img\">edit_note</i><!----></span></button></td></tr>",
  "C96930": {
-  "inaDeactivate": {
-   "done": true,
-   "label": "Deactivate Account",
-   "confirm": [],
-   "calls": [
-    "POST /api/iam/change-status {\"id\":\"62498d29-eb59-4f2f-b047-6d0905513662\"}"
-   ]
-  },
+  "inaDeactivate": "already deactivated",
   "inaActiveNow": false,
   "tech": {
    "Esther Howard": true,
@@ -66,7 +55,7 @@
    "Tim Clockuser": false,
    "Ella Elsewhere": false
   },
-  "techGroups": 138,
+  "techGroups": 143,
   "board": {
    "Esther Howard": true,
    "Billy Nobill": true,
@@ -77,7 +66,95 @@
    "Ella Elsewhere": false
   },
   "boardColumns": 124,
-  "inaKeptInactive": "Ina Active stays deactivated: that is her set-up for this case"
+  "inaKeptInactive": "Ina Active stays deactivated: that is her set-up for this case",
+  "staffProof": {
+   "Esther Howard": {
+    "email": "zz.wob.esther.howard@staging.shopview.local",
+    "role": "Technician",
+    "timeClock": true,
+    "active": true,
+    "billable": 1,
+    "location": "Staging Heavy Duty - 9919",
+    "workplaces": [
+     "Staging Heavy Duty - 9919/Service"
+    ]
+   },
+   "Billy Nobill": {
+    "email": "zz.wob.billy.nobill@staging.shopview.local",
+    "role": "Technician",
+    "timeClock": true,
+    "active": true,
+    "billable": 0,
+    "location": "Staging Heavy Duty - 9919",
+    "workplaces": [
+     "Staging Heavy Duty - 9919/Service"
+    ]
+   },
+   "Ina Active": {
+    "email": "zz.wob.ina.active@staging.shopview.local",
+    "role": "Technician",
+    "timeClock": true,
+    "active": false,
+    "billable": 1,
+    "location": "Staging Heavy Duty - 9919",
+    "workplaces": [
+     "Staging Heavy Duty - 9919/Service"
+    ]
+   },
+   "Nick Noclock": {
+    "email": "zz.wob.nick.noclock@staging.shopview.local",
+    "role": "Technician",
+    "timeClock": false,
+    "active": true,
+    "billable": 0,
+    "location": "Staging Heavy Duty - 9919",
+    "workplaces": [
+     "Staging Heavy Duty - 9919/Service"
+    ]
+   },
+   "Olive Office": {
+    "email": "zz.wob.olive.office@staging.shopview.local",
+    "role": "Office User",
+    "timeClock": true,
+    "active": true,
+    "billable": 0,
+    "location": "Staging Heavy Duty - 9919",
+    "workplaces": [
+     "Staging Heavy Duty - 9919/Service"
+    ]
+   },
+   "Tim Clockuser": {
+    "email": "zz.wob.tim.clockuser@staging.shopview.local",
+    "role": "Time Clock User",
+    "timeClock": true,
+    "active": true,
+    "billable": 0,
+    "location": "Staging Heavy Duty - 9919",
+    "workplaces": [
+     "Staging Heavy Duty - 9919/Service"
+    ]
+   },
+   "Ella Elsewhere": {
+    "email": "zz.wob.ella.elsewhere@staging.shopview.local",
+    "role": "Technician",
+    "timeClock": true,
+    "active": true,
+    "billable": 0,
+    "location": "Staging Lethbridge - 4310",
+    "workplaces": [
+     "Staging Lethbridge - 4310/Service"
+    ]
+   }
+  },
+  "offeredAsLead": {
+   "Esther Howard": true,
+   "Billy Nobill": true,
+   "Ina Active": false,
+   "Nick Noclock": false,
+   "Olive Office": false,
+   "Tim Clockuser": false,
+   "Ella Elsewhere": false
+  }
  },
  "C96926": {
   "pinsB": [],
@@ -126,9 +203,14 @@
    "Craig Moore",
    "Damjan Veljkovic",
    "Dana Ortiz",
+   "more_96b2ca3b-ba85-404e-a60d-b6dabe5b89e6",
    "David Haynes",
    "more_16469a2e-c167-4797-b16e-a17bdc5f32e9",
-   "dbd47cc3-568e-44eb-9110-0cb4d0bf8bac"
+   "dbd47cc3-568e-44eb-9110-0cb4d0bf8bac",
+   "more_dbd47cc3-568e-44eb-9110-0cb4d0bf8bac",
+   "Douglas Fields",
+   "more_740249f3-6e80-4e64-a8af-f24bb1838f7e",
+   "Douglas Robinson"
   ],
   "tech": [
    "Unassigned",
@@ -225,16 +307,47 @@
  },
  "C96929": {
   "lead": "Carol Neal",
-  "userBListSort": {
-   "sortBy": "companyName",
-   "descending": false
+  "seeded": {
+   "S2-35903": "Zeta Hauling",
+   "S2-35904": "Alpha Freight",
+   "S2-35905": "Mid Trucking"
   },
-  "listDefaultOrder": [],
-  "tech": [],
-  "board": []
+  "otherWorkOrdersUnassigned": [],
+  "user": {
+   "email": "zzautotest.wob.sort.1792034676627@staging.shopview.local",
+   "role": "Admin",
+   "create": 201,
+   "savedPref": null
+  },
+  "listSortHeader": [
+   "Customerarrow_drop_up "
+  ],
+  "list": [
+   "Alpha Freight",
+   "Mid Trucking",
+   "Zeta Hauling"
+  ],
+  "techGroupFound": true,
+  "tech": [
+   "Zeta Hauling",
+   "Alpha Freight",
+   "Mid Trucking"
+  ],
+  "boardColumnFound": true,
+  "board": [
+   "Zeta Hauling",
+   "Alpha Freight",
+   "Mid Trucking"
+  ]
  },
  "C368127": {
-  "count": 3363,
+  "savedCollapsedAtStart": [
+   "unassigned"
+  ],
+  "collapsedAtFirstLook": true,
+  "setupExpandedOnce": true,
+  "opensCollapsed": false,
+  "count": 3430,
   "stickyArrow": {
    "y": 210,
    "what": [
@@ -244,7 +357,7 @@
     "DIV.tech-view-group-header row no-wrap items"
    ],
    "button": "Collapse Unassigned",
-   "text": "expand_more person Unassigned assignment 3363 3363 work orders"
+   "text": "expand_more person Unassigned assignment 3430 3430 work orders"
   },
   "afterClick": {
    "collapsed": true,
@@ -253,12 +366,55 @@
    ]
   },
   "listAllTab": {
-   "rows": 5500,
-   "withoutLead": 3229
+   "rows": 6186,
+   "withoutLead": 3430,
+   "pages": 13,
+   "firstPageMeta": "{\"sortBy\":\"company_name\",\"descending\":false,\"page\":1,\"rowsPerPage\":500,\"totalWorkOrderPrice\":88844955}",
+   "matchesHeader": true
   }
  },
  "C96927": {
-  "before": "false",
+  "techViewButton": 1,
+  "listMenu": [
+   "Waiting On Parts",
+   "Asset",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total price",
+   "Created on",
+   "Invoiced Date",
+   "Days open",
+   "Parts",
+   "Returns"
+  ],
+  "techMenu": [
+   "Waiting On Parts",
+   "Asset",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Assigned Techs",
+   "Total price",
+   "Created on",
+   "Invoiced Date",
+   "Days open",
+   "Parts",
+   "Returns"
+  ],
+  "listOffersAssignedTechs": false,
+  "techOffersAssignedTechs": true,
+  "inListNotInTech": [],
+  "inTechNotInList": [
+   "Assigned Techs"
+  ],
+  "before": "true",
   "after": "true",
   "headers": [
    "On Site",
@@ -299,138 +455,35 @@
    "Returnsarrow_drop_up"
   ]
  },
- "C368161": {
-  "wo": "S2-35327",
-  "lead": "Esther Howard",
-  "lineTech": "Aaron Baker",
-  "canned": "{\"id\":\"0f9a7759-1982-4855-96d5-4a4cf1773a23\",\"canned_line_name\":\" Service - Transmission service (Automatic)\",\"descripti",
-  "linesPageText": "Lines (1) Parts (2) Notes Stats Finance AI SHOPCOACH ANALYSIS more_vert New Line expand_less Name/Description Actual/Estimate Progress Status Action Rate Margin Total expand_less 1 more_vert Service - Transmission service (Automatic) Due by mileage/ preventative maintenence 0.00 / 2.00 0% Approved C",
-  "editorOpen": 1,
-  "techOptions": [
-   "check Aaron Baker",
-   "check Aaron Jennings",
-   "check Aaron Zed",
-   "check Admin ShopView",
-   "check Advisor Analysis",
-   "check Ahtasham Admin",
-   "check Ahtasham Service Advisor",
-   "check Ahtsham Foreman"
-  ],
-  "editorButtons": [
-   "close",
-   "close",
-   "Save & Close"
-  ],
-  "lineCalls": [
-   "POST /api/work-orders/lines/change {\"assigned_techs\":[\"c57d19d7-dc2b-4472-a11d-984c61b01c0e\"],\"description\":\"Due by mileage/ preventative maintenence\",\"line_name\":\" Service - Transmission service",
-   "PUT /api/work-orders/lines/dc33ac8f-7314-44ba-83c2-36a44692029a/technicians {\"staffIds\":[\"c57d19d7-dc2b-4472-a11d-984c61b01c0e\"]}"
-  ],
-  "reach": {
-   "found": true,
-   "wasOpen": true
-  },
-  "header": {
-   "avatar": "EH",
-   "hasImg": false,
-   "text": "drag_indicator expand_more EH Esther Howard push_pin assignment 1 1 work order"
-  },
-  "rowAvatars": {
-   "avatars": [
-    "EH",
-    "AB"
-   ],
-   "brokenImg": 0
-  },
-  "boardHeader": "EH",
-  "fieldsButton": "Fields to display",
-  "fieldsMenu": [
-   "Lead technician=true",
-   "Customer=true",
-   "Asset=true",
-   "VIN/serial=false",
-   "Progress=true",
-   "Service advisor=false",
-   "Clocked in=false",
-   "Line count=false",
-   "Line technicians=true",
-   "Estimated hours=true",
-   "Total price=true",
-   "On-site=false",
-   "Created date=false"
-  ],
-  "lineTechOn": "true",
-  "cardAvatars": {
-   "avatars": [
-    "EH",
-    "AB"
-   ],
-   "text": "S2-35327 Approved more_horiz Customer ZZAUTOTEST F2 Initials Avatar ZZF2IA Estimated hours Est. 2.0 hrs Progress 0% Line technicians EH AB Lead technician Esther Howard Total price $347.96"
-  }
- },
  "C96938": {
-  "avatarA": "",
-  "nameLong": "",
-  "avatarLong": "",
-  "avatarAttrs": [
-   {
-    "tag": "DIV",
-    "cls": "q-avatar bg-primary tech-view-",
-    "title": "Maximiliana Fitzgerald-Montgomery",
-    "aria": null
-   },
-   {
-    "tag": "DIV",
-    "cls": "tech-view-group-header row no-",
-    "title": null,
-    "aria": null
-   },
-   {
-    "tag": "TD",
-    "cls": "tech-view__marker-cell q-td--n",
-    "title": null,
-    "aria": null
-   },
-   {
-    "tag": "TR",
-    "cls": "",
-    "title": null,
-    "aria": null
-   },
-   {
-    "tag": "TBODY",
-    "cls": "q-virtual-scroll__content",
-    "title": null,
-    "aria": null
-   },
-   {
-    "tag": "TABLE",
-    "cls": "q-table",
-    "title": null,
-    "aria": null
-   },
-   {
-    "tag": "DIV",
-    "cls": "q-table__middle q-virtual-scro",
-    "title": null,
-    "aria": null
-   },
-   {
-    "tag": "DIV",
-    "cls": "q-table__container q-table--ho",
-    "title": null,
-    "aria": null
-   }
-  ],
-  "avatarAChain": [],
+  "techA": "Ayesha Khan",
+  "reachA": true,
+  "avatarA": {
+   "found": true,
+   "tooltip": "",
+   "titleUnderPointer": [
+    "div title=\"Ayesha Khan\""
+   ]
+  },
+  "reachLong": true,
+  "nameLong": {
+   "found": true,
+   "tooltip": "",
+   "titleUnderPointer": [
+    "span title=\"Maximiliana Fitzgerald-Montgomery\""
+   ]
+  },
+  "avatarLong": {
+   "found": true,
+   "tooltip": "",
+   "titleUnderPointer": [
+    "div title=\"Maximiliana Fitzgerald-Montgomery\""
+   ]
+  },
   "nameLongShown": {
    "text": "Maximiliana Fitzgerald-Montgomery",
    "title": "Maximiliana Fitzgerald-Montgomery",
    "truncated": false
   }
- },
- "C368125": {
-  "collapsedBefore": true,
-  "countBefore": 89,
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"button_tech_view_group_toggle_ac802dc7-e45f-479b-a7d3-8e999e27770b\"]')\n"
  }
 }
