@@ -435,3 +435,13 @@ session's user at each check-in. (5) **"Sign out and sign back in" cannot be run
 sign in without the QA lead's Google cookie): do the nearest step — a new browser window with the same sign-in — and say so in the
 reading. (6) A case's "second tab" action (e.g. Create Invoice) is done in a real second tab, never replaced by a forced failure.
 #staging #roles #rerun #scripts → L0339, L0341, L0342
+
+## L0344 — 2026-10-15 — Leftover state from one script spoils the next: every pass starts with a clean-up step
+Three things leaked between staging scripts overnight and each spoiled later checks: (1) a script that edits the shared role
+"ZZAUTOTEST WO View Only" (C97012) left Create & Edit ON, so C97020, C368207 and C368208 were not fair runs; (2) scripts that
+start time clocks (C368196, C368176) left Dana Ortiz's, Ralph Edwards' and Esther Howard's clocks running, which refuses the
+next clock-in ("already clocked into different line"); (3) a deleted "staff used elsewhere" cannot be deleted. Fix: a role a
+script changes is restored in a `finally`; each pass begins with `role-viewonly-stg4.mts` (role back to View only, read back)
+and `clocks-stg4.mts` (stop every test technician's clock, read back); a case that needs its own role or person makes a fresh
+one rather than borrowing a shared one. When judging, a reading taken after such a leak is a re-run, never a verdict.
+#staging #cleanup #roles #clock → L0339, L0341, L0343

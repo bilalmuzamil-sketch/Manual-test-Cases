@@ -1,0 +1,72 @@
+{
+ "staff": [
+  {
+   "staff_id": "1eafe778-9b24-4068-828b-cac6a4a87f27",
+   "id": "7bdd1742-6ae4-441a-8650-18f5f4ce984a",
+   "first": "ZZAUTOTEST Staffname",
+   "last": "Ana",
+   "keys": [
+    "id",
+    "email",
+    "first_name",
+    "last_name",
+    "created_on",
+    "confirmed_invitation_on",
+    "avatar_url",
+    "is_active",
+    "role_label",
+    "staff_id",
+    "job_title",
+    "salary_type",
+    "salary",
+    "billable",
+    "clockable",
+    "is_sales_rep",
+    "is_default",
+    "departments",
+    "defaultWorkplace",
+    "defaultWorkplaceName",
+    "salary_type_label",
+    "workplace_id",
+    "deletable",
+    "role_id"
+   ]
+  }
+ ],
+ "/api/iam/users/<uid>": {
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+ },
+ "/api/users/<uid>": {
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+ },
+ "/api/iam/<uid>": {
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+ },
+ "/api/staff/<sid>": {
+  "status": 405,
+  "body": "{\"errors\":[{\"error\":\"No route found for \\\"GET http://api.staging.shopview.com/api/staff/1eafe778-9b24-4068-828b-cac6a4a87f27\\\": Method Not Allowed (Allow: DELETE)\"}]}"
+ },
+ "/api/iam/users?search=zz.wob.acct.ana": {
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+ },
+ "/api/users/me": {
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+ },
+ "woKeys": {
+  "clockedInTechnicians": "[]",
+  "vehicleModelName": "null",
+  "vehicleMakeName": "null",
+  "companyName": "\"ZZAUTOTEST S5R11b Staff Names 10142259\"",
+  "serviceAdvisorFirstName": "\"Admin\"",
+  "serviceAdvisorLastName": "\"ShopView\"",
+  "techAssignedFirstName": "\"ZZAUTOTEST Staffname\"",
+  "clockedInTechniciansCount": "0",
+  "techAssignedLastName": "\"Ana\"",
+  "techAssignedId": "\"1eafe778-9b24-4068-828b-cac6a4a87f27\""
+ }
+}
