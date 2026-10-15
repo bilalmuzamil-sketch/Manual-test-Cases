@@ -36,6 +36,17 @@ const { browser, page: p0 } = await open('/workorders?tab=all');
 const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p; p.setDefaultTimeout(30_000);
 const a = api(p);
 const R: Record<string, any> = { runner: RUN.id.slice(0, 8) };
+// 15 Oct 2026 (07:41, after two machine restarts while this script ran in the sixth pass): HARD LIMITS. (a) the whole script stops
+// itself after 10 minutes — the reading so far is written, the browser closed, exit 5; (b) every in-page read below is capped in
+// time (cap), so a page that never answers (the dispatcher's page after "Session expired" kept loading: page.goto timed out in the
+// fourth pass) can no longer hold the script — and with it that page — open for 20+ minutes; (c) the dispatcher's page counts its
+// own navigations and the case stops at once if it keeps reloading (recorded as what the page did); (d) the message watcher is a
+// light one: added nodes only (no characterData), at most 150 entries, switched off by itself after 15 s.
+const LIMIT_MS = 10 * 60_000;
+const watchdog = setTimeout(async () => { try { R.watchdog = 'stopped by the script\'s own 10-minute limit'; fs.writeFileSync(path.join(EV, 'staledrop-stg4.json'), JSON.stringify(R, null, 1)); console.log(t(), 'C97012 WATCHDOG', JSON.stringify(R.C97012 ?? {}).slice(0, 4000)); } catch { /* */ }
+  try { await Promise.race([browser.close(), new Promise((r) => setTimeout(r, 15_000))]); } catch { /* */ } process.exit(5); }, LIMIT_MS); watchdog.unref();
+/** a promise that gives up after ms with the value `fallback` (the page call itself is abandoned, never awaited again) */
+const cap = <T,>(ms: number, pr: Promise<T>, fallback: any = 'timed out'): Promise<T> => Promise.race([pr, new Promise<T>((r) => setTimeout(() => r(fallback), ms))]);
 const D = '@staging.shopview.local';
 const ORG = (await import('./profile.mts')).ORG;
 const ROLE_D = 'ZZAUTOTEST F3 Stale Drop Dispatcher Role';
@@ -60,13 +71,20 @@ async function dragOn(pg: Page, from: string, to: string, dy = 120) {
 // short text is watched continuously from the press (MutationObserver, with the time since the press) and photographed just after the
 // drop and 3 s later; (3) whether [User-A] is signed out (page address, the sign-in check) is written down; (4) a failed reload is
 // recorded and the case stops there — no second drag.
-const watchStart = (pg: Page) => pg.evaluate(`(() => { window.__mw = []; window.__mw0 = Date.now(); if (window.__mo) window.__mo.disconnect();
-  const add = (kind, txt) => { const t = (txt || '').replace(/\\s+/g, ' ').trim(); if (!t || t.length > 200) return; if (window.__mw.some(x => x.text === t && x.kind === kind)) return; window.__mw.push({ ms: Date.now() - window.__mw0, kind, text: t }); };
-  const grab = (muts) => { for (const e of document.querySelectorAll('.q-notification, [role=alert]')) add('message', e.innerText);
-    for (const m of muts || []) for (const nd of m.addedNodes || []) { if (nd.nodeType !== 1 || !nd.getBoundingClientRect || nd.getBoundingClientRect().width === 0) continue; if (nd.closest && nd.closest('.q-notification')) continue; const tx = nd.innerText || ''; if (tx && tx.length <= 200) add(nd.closest && nd.closest('.q-dialog') ? 'dialog' : 'new text', tx); } };
-  window.__mo = new MutationObserver(grab); window.__mo.observe(document.body, { childList: true, subtree: true, characterData: true }); grab([]); })()`).catch(() => {});
-const watchRead = (pg: Page) => pg.evaluate('window.__mw || []').catch(() => 'page gone') as Promise<any>;
-const probe = (pg: Page) => pg.evaluate(`fetch(${JSON.stringify((process.env.WOB_API || 'https://api.staging.shopview.com'))} + '/api/auth/me/fe-permissions', { credentials: 'include' }).then(r => r.status).catch(e => 'error ' + String(e).slice(0, 60))`).catch((e) => 'page gone ' + String(e).slice(0, 60)) as Promise<any>;
+const watchStart = (pg: Page) => cap(8_000, pg.evaluate(`(() => { window.__mw = []; window.__mw0 = Date.now(); if (window.__mo) window.__mo.disconnect();
+  const add = (kind, txt) => { if (window.__mw.length >= 150) return; const t = (txt || '').replace(/\\s+/g, ' ').trim(); if (!t || t.length > 200) return; if (window.__mw.some(x => x.text === t && x.kind === kind)) return; window.__mw.push({ ms: Date.now() - window.__mw0, kind, text: t }); };
+  const grab = (muts) => { if (window.__mw.length >= 150) { window.__mo.disconnect(); return; }
+    for (const m of muts || []) for (const nd of m.addedNodes || []) { if (nd.nodeType !== 1) continue; if (nd.childElementCount > 30) continue;
+      if (nd.matches && nd.matches('.q-notification, [role=alert]')) { add('message', nd.textContent); continue; } if (nd.closest && nd.closest('.q-notification')) continue;
+      const tx = nd.textContent || ''; if (tx && tx.length <= 200) add(nd.closest && nd.closest('.q-dialog') ? 'dialog' : 'new text', tx); } };
+  for (const e of document.querySelectorAll('.q-notification, [role=alert]')) add('message', e.textContent);
+  window.__mo = new MutationObserver(grab); window.__mo.observe(document.body, { childList: true, subtree: true });
+  setTimeout(() => { try { window.__mo.disconnect(); } catch (e) {} }, 15000); })()`).catch(() => {}), 'watch not started');
+const watchRead = (pg: Page) => cap(8_000, pg.evaluate('(() => { try { window.__mo && window.__mo.disconnect(); } catch (e) {} return window.__mw || []; })()').catch(() => 'page gone') as Promise<any>, 'page did not answer in 8 s');
+// the sign-in check from the dispatcher's own window: the fetch gives up after 8 s inside the page, the whole call after 10 s
+const probe = (pg: Page) => cap(10_000, pg.evaluate(`(() => { const c = new AbortController(); setTimeout(() => c.abort(), 8000); return fetch(${JSON.stringify((process.env.WOB_API || 'https://api.staging.shopview.com'))} + '/api/auth/me/fe-permissions', { credentials: 'include', signal: c.signal }).then(r => r.status).catch(e => 'error ' + String(e).slice(0, 60)); })()`).catch((e) => 'page gone ' + String(e).slice(0, 60)) as Promise<any>, 'page did not answer in 10 s');
+const toastsC = (pg: Page) => cap(8_000, toasts(pg).catch(() => [] as string[]), ['page did not answer in 8 s']);
+const shotC = (pg: Page, n: string) => cap(20_000, shot(pg, n), undefined);
 if (want('C97012')) {
   const o: any = {}; R.C97012 = o;
   let roleId: string | undefined; let ceIds: string[] = []; let baseIds: string[] = []; let roleBody: any = null;
@@ -122,33 +140,39 @@ if (want('C97012')) {
     const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView');
     const v = await viewAs(browser, p, a, UA.id, me?.id ?? '', RUN.toRunner);
     const toUserA = async () => { let s = await a.post('/api/switch-user', { user_id: UA.id }); if (s.status >= 300) { await a.post('/api/exit-switch-user', {}); s = await a.post('/api/switch-user', { user_id: UA.id }); } return s.status; };
-    try { const pg = v.page; pg.setDefaultTimeout(30_000); o.userAPerms = v.perms;
+    try { const pg = v.page; pg.setDefaultTimeout(30_000); pg.setDefaultNavigationTimeout(25_000); o.userAPerms = v.perms;
+      // one navigation counter for the dispatcher's page (attached once): if the page keeps reloading by itself, stop the case
+      let navs = 0; const navLog: string[] = []; pg.on('framenavigated', (fr) => { if (fr === pg.mainFrame()) { navs++; if (navLog.length < 12) navLog.push(`${t()} ${fr.url().replace(APP, '').slice(0, 80)}`); } });
+      const looping = (since: number) => navs - since > 8;
       { const pv = (await api(pg).get(PREF)).body?.data?.value ?? {}; await api(pg).put(PREF, { value: { ...pv, pinnedTechnicianIds: [ANA.staff_id, BEN.staff_id], filters: {} } }); }
       await goP(pg, q); const cardSel = (co: string) => `[data-test-id="board_card_${w[co]}"]`; await toColumn(pg, ANA.staff_id);
-      o.start = { alphaCard: await pg.locator(cardSel('Alpha Co')).count(), bravoCard: await pg.locator(cardSel('Bravo Co')).count(), userASession: await probe(pg) }; await shot(pg, 'C97012-stg4-start');
+      o.start = { alphaCard: await pg.locator(cardSel('Alpha Co')).count(), bravoCard: await pg.locator(cardSel('Bravo Co')).count(), userASession: await probe(pg) }; await shotC(pg, 'C97012-stg4-start');
       // step 4: the Admin (second browser) invoices Alpha Co — a real invoice
       await RUN.toRunner(); o.step4 = { invoice: say(await a.post('/api/invoices/create', { work_order_id: w['Alpha Co'], issue_date: new Date().toISOString().slice(0, 10), due_date: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10) })), status: (await statusOf('Alpha Co'))?.status }; o.step4.backToUserA = await toUserA();
       // step 5: no refresh — drag Alpha Co to Ben
       o.step4.userASessionAfterHandBack = await probe(pg);
-      await watchStart(pg); o.step5 = { drag: await dragOn(pg, cardSel('Alpha Co'), `[data-test-id="board_column_${BEN.staff_id}"]`) }; await shot(pg, 'C97012-stg4-step5-just-dropped'); o.step5.shiftPrompt = await shiftPrompt(pg, 'Keep shifts'); o.step5.alert = await toasts(pg); await shot(pg, 'C97012-stg4-step5');
-      await pg.waitForTimeout(3000); o.step5.watched = await watchRead(pg); o.step5.userASessionAfterDrag = await probe(pg); o.step5.url = pg.url().replace(APP, ''); o.step5.signedOut = /login|sign-?in/i.test(pg.url()) || o.step5.userASessionAfterDrag === 401; await shot(pg, 'C97012-stg4-step5-3s');
-      o.step5.anaCards = await pg.evaluate(`[...document.querySelectorAll('[data-test-id="board_column_${ANA.staff_id}"] [data-test-id="board_card_number"]')].map(e => e.textContent.trim())`);
+      const nav5 = navs; await watchStart(pg); o.step5 = { drag: await cap(30_000, dragOn(pg, cardSel('Alpha Co'), `[data-test-id="board_column_${BEN.staff_id}"]`), 'drag did not finish in 30 s') }; await shotC(pg, 'C97012-stg4-step5-just-dropped'); o.step5.shiftPrompt = await cap(15_000, shiftPrompt(pg, 'Keep shifts'), 'prompt check timed out'); o.step5.alert = await toastsC(pg); await shotC(pg, 'C97012-stg4-step5');
+      await pg.waitForTimeout(3000); o.step5.watched = await watchRead(pg); o.step5.userASessionAfterDrag = await probe(pg); o.step5.url = pg.url().replace(APP, ''); o.step5.signedOut = /login|sign-?in/i.test(pg.url()) || o.step5.userASessionAfterDrag === 401; await shotC(pg, 'C97012-stg4-step5-3s');
+      o.step5.pageNavigations = { count: navs - nav5, log: navLog.slice(-6) }; if (looping(nav5)) throw new Error(`stopped after step 5: [User-A]'s page kept reloading by itself (${navs - nav5} loads since the drag) — recorded, not retried`);
+      o.step5.anaCards = await cap(8_000, pg.evaluate(`[...document.querySelectorAll('[data-test-id="board_column_${ANA.staff_id}"] [data-test-id="board_card_number"]')].map(e => e.textContent.trim())`).catch(() => 'page gone'), 'page did not answer in 8 s');
       await pg.locator('.q-notification button').first().click().catch(() => {}); await pg.waitForTimeout(800);
       // step 6: refresh, read Alpha Co
-      try { await pg.reload({ waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); await goP(pg, q); await toColumn(pg, ANA.staff_id); }
-      catch (e: any) { o.step6reload = `Work Orders did not reload: ${String(e?.message || e).slice(0, 160)}; url ${pg.url().replace(APP, '')}; session ${await probe(pg)}`; await shot(pg, 'C97012-stg4-step6-reload-failed'); throw new Error('stopped after step 5: [User-A]\'s page did not reload (recorded, not retried)'); }
-      o.step6 = { status: (await statusOf('Alpha Co'))?.status, lead: await lead('Alpha Co') }; await shot(pg, 'C97012-stg4-step6');
+      // one bounded reload attempt (25 s navigation limit, 3 minutes for the whole re-open), never a second
+      try { await pg.reload({ waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); const r6 = await cap(180_000, (async () => { await goP(pg, q); await toColumn(pg, ANA.staff_id); return 'ok'; })(), 'timed out'); if (r6 !== 'ok') throw new Error('the board did not open again within 3 minutes'); }
+      catch (e: any) { o.step6reload = `Work Orders did not reload: ${String(e?.message || e).slice(0, 160)}; url ${pg.url().replace(APP, '')}; session ${await probe(pg)}`; await shotC(pg, 'C97012-stg4-step6-reload-failed'); throw new Error('stopped after step 5: [User-A]\'s page did not reload (recorded, not retried)'); }
+      o.step6 = { status: (await statusOf('Alpha Co'))?.status, lead: await lead('Alpha Co') }; await shotC(pg, 'C97012-stg4-step6');
       // step 7: the Admin takes Create & Edit off [Role-D]
       await RUN.toRunner(); o.step7 = { save: await putRole(baseIds) }; o.step7.roleNow = woCodes(await roleRead(roleId)); o.step7.backToUserA = await toUserA();
       // step 8: no refresh — drag Bravo Co to Ben
       o.step7.userASessionAfterHandBack = await probe(pg);
-      await watchStart(pg); o.step8 = { drag: await dragOn(pg, cardSel('Bravo Co'), `[data-test-id="board_column_${BEN.staff_id}"]`) }; await shot(pg, 'C97012-stg4-step8-just-dropped'); o.step8.shiftPrompt = await shiftPrompt(pg, 'Keep shifts'); o.step8.alert = await toasts(pg);
-      await pg.waitForTimeout(3000); o.step8.watched = await watchRead(pg); o.step8.userASessionAfterDrag = await probe(pg); o.step8.url = pg.url().replace(APP, ''); o.step8.signedOut = /login|sign-?in/i.test(pg.url()) || o.step8.userASessionAfterDrag === 401; await shot(pg, 'C97012-stg4-step8');
+      const nav8 = navs; await watchStart(pg); o.step8 = { drag: await cap(30_000, dragOn(pg, cardSel('Bravo Co'), `[data-test-id="board_column_${BEN.staff_id}"]`), 'drag did not finish in 30 s') }; await shotC(pg, 'C97012-stg4-step8-just-dropped'); o.step8.shiftPrompt = await cap(15_000, shiftPrompt(pg, 'Keep shifts'), 'prompt check timed out'); o.step8.alert = await toastsC(pg);
+      await pg.waitForTimeout(3000); o.step8.watched = await watchRead(pg); o.step8.userASessionAfterDrag = await probe(pg); o.step8.url = pg.url().replace(APP, ''); o.step8.signedOut = /login|sign-?in/i.test(pg.url()) || o.step8.userASessionAfterDrag === 401; await shotC(pg, 'C97012-stg4-step8');
+      o.step8.pageNavigations = { count: navs - nav8, log: navLog.slice(-6) }; if (looping(nav8)) throw new Error(`stopped after step 8: [User-A]'s page kept reloading by itself (${navs - nav8} loads since the drag) — recorded, not retried`);
       // step 9: refresh, read Bravo Co
-      await pg.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(5000); o.step9 = { lead: await lead('Bravo Co'), url: pg.url().replace(APP, '') }; await shot(pg, 'C97012-stg4-step9');
-      (globalThis as any).__wobPage = pg; await (globalThis as any).__shotEach?.('C97012'); (globalThis as any).__wobPage = p;
-    } finally { await v.close(); }
-  } catch (e: any) { o.error = String(e?.message || e).slice(0, 400); await shot(p, 'C97012-stg4-error'); }
+      await pg.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(5000); o.step9 = { lead: await lead('Bravo Co'), url: pg.url().replace(APP, '') }; await shotC(pg, 'C97012-stg4-step9');
+      (globalThis as any).__wobPage = pg; await cap(20_000, (globalThis as any).__shotEach?.('C97012') ?? Promise.resolve(), undefined); (globalThis as any).__wobPage = p;
+    } finally { o.closedDispatcherWindow = await cap(20_000, v.close().then(() => 'closed'), 'close timed out (context abandoned)'); }   // the dispatcher's context is always closed, with a time limit
+  } catch (e: any) { o.error = String(e?.message || e).slice(0, 400); await shotC(p, 'C97012-stg4-error'); }
   finally {
     // [Role-D] back to its starting state (View + Create & Edit), read back — every run, even after an error
     if (roleId && roleBody) { o.roleRestore = await putRole([...baseIds, ...ceIds]).catch((e: any) => String(e).slice(0, 80)); o.roleAfterRestore = woCodes(await roleRead(roleId)); }
@@ -156,5 +180,6 @@ if (want('C97012')) {
   console.log(t(), 'C97012', JSON.stringify(o).slice(0, 10000));
 }
 fs.writeFileSync(path.join(EV, 'staledrop-stg4.json'), JSON.stringify(R, null, 1));
+clearTimeout(watchdog);
 await RUN.end().catch(() => {});
 await done(browser);
