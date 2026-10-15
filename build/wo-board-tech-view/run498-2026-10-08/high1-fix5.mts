@@ -233,12 +233,16 @@ async function workingDay(staff: string) { // go to the next day the technician 
 /** FIX 5: the shifts of work order w in the Schedule's own data (the same call the Schedule page makes), with start and end */
 async function shiftsOf(w: any) { const d0 = new Date(); const out: any[] = []; for (let k = 0; k < 14; k++) { const d = new Date(d0.getTime() + k * 86400000); const from = d.toISOString().slice(0, 10) + 'T06:00:00.000Z'; const to = new Date(d.getTime() + 86400000).toISOString().slice(0, 10) + 'T06:00:00.000Z';
     const r = await a.get(`/api/schedule/board?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`).catch(() => null); const txt = JSON.stringify(r?.body ?? ''); if (!txt.includes(w.id) && !txt.includes(w.number)) continue;
-    const walk = (o: any) => { if (!o || typeof o !== 'object') return; if ((o.work_order_id === w.id || o.workOrderId === w.id || JSON.stringify(o).length < 1500 && JSON.stringify(o).includes(w.number)) && (o.start || o.starts_at || o.start_time || o.startAt)) out.push({ start: o.start ?? o.starts_at ?? o.start_time ?? o.startAt, end: o.end ?? o.ends_at ?? o.end_time ?? o.endAt, staff: o.staff_id ?? o.technician_id ?? o.staffId ?? null, lines: o.lines ?? o.task_ids ?? o.tasks ?? null }); for (const v of Object.values(o)) walk(v); };
+    const walk = (o: any) => { if (!o || typeof o !== 'object') return; if ((o.work_order_id === w.id || o.workOrderId === w.id || JSON.stringify(o).length < 1500 && JSON.stringify(o).includes(w.number)) && (o.start || o.starts_at || o.start_time || o.startAt || o.startsAt)) out.push({ start: o.start ?? o.starts_at ?? o.start_time ?? o.startAt ?? o.startsAt, end: o.end ?? o.ends_at ?? o.end_time ?? o.endAt ?? o.endsAt, staff: o.staff_id ?? o.technician_id ?? o.staffId ?? null, lines: o.lines ?? o.task_ids ?? o.tasks ?? null }); for (const v of Object.values(o)) walk(v); };
     walk(r?.body); } return out.slice(0, 6); }
 /** FIX 5: shift blocks on the grid, found by the customer name they show (right of the names column) */
 async function gridBlocks(w: any) { const name = (await a.get(`/api/work-orders/view/${w.id}`)).body?.data?.work_order?.company_name ?? ''; if (!name) return [];
   return await p.evaluate(`(() => { const n = ${JSON.stringify(name)}; return [...document.querySelectorAll('div, span, p')].filter(e => e.children.length <= 3 && (e.textContent || '').trim().startsWith(n.slice(0, 18))).map(e => e.getBoundingClientRect()).filter(b => b.x > 520 && b.width > 30 && b.width < 400 && b.height > 8).map(b => ({ x: Math.round(b.x), y: Math.round(b.y), w: Math.round(b.width) })).filter((v, i, arr) => arr.findIndex(u => Math.abs(u.x - v.x) < 4 && Math.abs(u.y - v.y) < 4) === i); })()`) as any[]; }
-async function schedDrop2(w: any, staff: string, hourLabel: RegExp, choose: string | null, wantHours = '2') { const o: any = {};
+/** 15 Oct 2026 (wave 13): the Schedule writes a work order as "S-35974" where the list says "S2-35974" — match on the digits (L0354) */
+const hasNum = (txt: string, num: string) => new RegExp(String(num).replace(/^[A-Z]+\d*-/, '[A-Z]+\\d*-') + '\\b').test(txt);
+/** 15 Oct 2026 (wave 13, C368178): opts.gridTime ("09:00:00") drops just RIGHT of that time's GRID LINE — the left edge of the grid's
+ *  own slot for that time ([data-time]), not the heading text (the text-based drop landed at 8:45) — and records where the line was. */
+async function schedDrop2(w: any, staff: string, hourLabel: RegExp, choose: string | null, wantHours = '2', opts: { gridTime?: string } = {}) { const o: any = {};
   await p.goto(`${APP}/schedule`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); await p.getByRole('button', { name: /^\s*Today\s*$/ }).first().click().catch(() => {}); await p.waitForTimeout(3000); o.range = await workingDay(staff);
   // 15 Oct 2026: the Schedule's own save is watched, so the shift made by the drop is known from its answer (start/end, lines)
   const posted: string[] = []; const hr = async (r: any) => { if (r.request().method() === 'POST' && /\/api\/schedule\/shifts/.test(r.url())) posted.push(`${r.status()} ${(await r.text().catch(() => '')).slice(0, 300)}`); }; p.on('response', hr);
@@ -248,7 +252,10 @@ async function schedDrop2(w: any, staff: string, hourLabel: RegExp, choose: stri
   /* FIX 5: the grid scrolls itself to working hours after loading; bring the heading into view, let it settle, measure last */
   await hdr.scrollIntoViewIfNeeded().catch(() => {}); await p.waitForTimeout(1200); await lane.scrollIntoViewIfNeeded().catch(() => {}); await p.waitForTimeout(800);
   const hb = await hdr.boundingBox().catch(() => null); const lb = await lane.boundingBox(); const cb = await cardL.boundingBox(); o.dropAt = hb ? { headerX: Math.round(hb.x), headerText: (await hdr.innerText().catch(() => '')).trim() } : null;
-  if (cb && lb && hb) { await p.mouse.move(cb.x + cb.width / 2, cb.y + cb.height / 2); await p.mouse.down(); await p.mouse.move(cb.x + 40, cb.y + 20, { steps: 5 }); await p.mouse.move(hb.x + 6, lb.y + lb.height / 2, { steps: 20 }); await p.mouse.up(); await p.waitForTimeout(3000); }
+  let dropX = hb ? hb.x + 6 : null;
+  if (opts.gridTime) { o.gridLine = await p.evaluate(`(() => { const els = [...document.querySelectorAll('[data-time="${opts.gridTime}"]')].filter(e => e.getBoundingClientRect().width > 0); return els.map(e => ({ tag: e.tagName.toLowerCase(), cls: String(e.className).slice(0, 50), left: Math.round(e.getBoundingClientRect().left * 10) / 10, width: Math.round(e.getBoundingClientRect().width) })).slice(0, 4); })()`).catch(() => []);
+    const lane0 = (o.gridLine ?? []).find((g: any) => /lane|slot/.test(g.cls) && g.tag === 'td') ?? (o.gridLine ?? [])[0]; if (lane0) { dropX = lane0.left + 4; o.dropAt = { ...(o.dropAt ?? {}), gridLineX: lane0.left, droppedAtX: dropX, from: `${lane0.tag}.${lane0.cls}` }; } else o.dropAt = { ...(o.dropAt ?? {}), gridLineX: null, note: 'no [data-time] slot found; dropped by the heading as before' }; }
+  if (cb && lb && dropX !== null) { await p.mouse.move(cb.x + cb.width / 2, cb.y + cb.height / 2); await p.mouse.down(); await p.mouse.move(cb.x + 40, cb.y + 20, { steps: 5 }); await p.mouse.move(dropX, lb.y + lb.height / 2, { steps: 20 }); await p.mouse.up(); await p.waitForTimeout(3000); }
   const d = dlg(); o.dialogStart = (await d.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 300);
   if (/Couldn.t read/i.test(o.dialogStart)) { o.workingHoursMessage = true; }
   if (choose) { await d.getByText(/Choose lines/i).first().click().catch(() => {}); await p.waitForTimeout(900); const row = d.locator('.q-item, [class*="line"], div').filter({ hasText: new RegExp(choose.slice(0, 18), 'i') }).filter({ has: p.locator('.q-checkbox') }).last(); await row.locator('.q-checkbox').first().click().catch(() => {}); await p.waitForTimeout(600); o.selectLines = await d.locator('button').filter({ hasText: /Select lines/i }).count(); await d.locator('button').filter({ hasText: /Select lines/i }).first().click().catch(() => {}); await p.waitForTimeout(1200); }
@@ -260,8 +267,15 @@ async function schedDrop2(w: any, staff: string, hourLabel: RegExp, choose: stri
   /* FIX 5: the Schedule's own data says where the shift landed; the block is found on the grid by its customer text */
   o.boardShifts = await shiftsOf(w);
   o.shifts = []; const blocks = await gridBlocks(w); o.rowBlocks = blocks;
-  for (const bl of blocks.slice(0, 6)) { await p.mouse.click(bl.x + 20, bl.y + 10); await p.waitForTimeout(1500); const det = (await p.locator('.q-dialog, .q-menu, [role=dialog]').last().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 400); if (det.includes(w.number)) { o.shifts.push({ at: bl, details: det }); await shot(p, `sched5-${w.number}-details`); } await p.keyboard.press('Escape'); await p.waitForTimeout(500); }
+  for (const bl of blocks.slice(0, 6)) { await p.mouse.click(bl.x + 20, bl.y + 10); await p.waitForTimeout(1500); const det = (await p.locator('.q-dialog, .q-menu, [role=dialog]').last().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 400); if (hasNum(det, w.number)) { o.shifts.push({ at: bl, details: det }); await shot(p, `sched5-${w.number}-details`); } await p.keyboard.press('Escape'); await p.waitForTimeout(500); }
   o.details = o.shifts[0]?.details ?? null;
+  if (opts.gridTime) { // the shift the drop made, read back from the Schedule's own data by its id (board call) — start, end, who
+    const sid = (o.savePosted.join(' ').match(/"id":"([0-9a-f-]{36})"/) || [])[1]; o.madeShiftId = sid ? sid.slice(0, 8) : null;
+    if (sid) { const d0 = new Date(Date.now() - 86400000).toISOString().slice(0, 10) + 'T00:00:00.000Z', d1 = new Date(Date.now() + 4 * 86400000).toISOString().slice(0, 10) + 'T00:00:00.000Z';
+      let f: any = null; const walk = (x: any) => { if (!x || typeof x !== 'object' || f) return; if (Array.isArray(x)) return x.forEach(walk); if (x.id === sid && x.startsAt) { f = x; return; } Object.values(x).forEach(walk); };
+      walk((await a.get(`/api/schedule/board?from=${encodeURIComponent(d0)}&to=${encodeURIComponent(d1)}`)).body);
+      o.apiShift = f ? { startsAt: f.startsAt, endsAt: f.endsAt, minutes: f.durationMinutes, staff: f.staffId === staff ? 'the technician dropped on' : String(f.staffId).slice(0, 8), lines: (f.lines ?? []).length, workOrder: f.workOrder?.number ?? f.workOrder?.id ?? null } : 'not in the Schedule\'s data (board call) after the reload';
+      const sh2 = await a.get(`/api/schedule/shifts?staffId=${staff}&from=${encodeURIComponent(d0)}&to=${encodeURIComponent(d1)}`).catch(() => null); o.apiShiftsCall = { status: sh2?.status ?? null, hasThisShift: JSON.stringify(sh2?.body ?? '').includes(sid) }; } }
   return o; }
 
 /** 15 Oct 2026: C368172's steps as a function, so C368173 can make the line it needs when it runs alone (ONLY=C368173) */
@@ -276,8 +290,24 @@ await run('C368173', async () => { let w = R.w172; const o: any = {};
   // 15 Oct 2026 (staging second pass): stopped at once when run alone — it needed C368172's line. It now makes it (C368172's steps,
   // setup172: a new line "ZZAUTOTEST Oil change …" with Dana Ortiz added on screen), then does its own steps.
   if (!w) { o.setupFrom172 = await setup172(); w = R.w172; }
-  await page(w.id); await p.getByText('ZZAUTOTEST Oil change', { exact: false }).first().click(); await p.waitForTimeout(2500); const d = dlg(); o.rosterBefore = await roster(d); o.removed = await rosterRemoveF(d, DO.staff_id); o.added = await rosterAdd(d, p, /Ralph Edwards/); await closeLists(d); o.roster = await roster(d); o.toasts = await save(d);
-  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.labor = await laborRows(); o.techs = await lineTechs(w.id); R.C368173 = o; });
+  // 15 Oct 2026 (wave 13, fourth pass): the line started with Esther Howard pre-filled AND Dana Ortiz, and adding Ralph Edwards came
+  // back false. Now (1) SET-UP: the line is made to hold ONLY Dana Ortiz — every other name removed, Dana added if missing — saved,
+  // reloaded and read back (o.setupOnlyDana); (2) the steps: remove Dana, Add Technician > Ralph Edwards picked from the LAST open
+  // list, scrolling it until he is drawn (pickScroll; the first options seen are recorded if he never is), Save & Close, reload, read
+  // the Labor row and the line's technicians back; pictures of the form and the Lines tab.
+  const pickScroll = async (re: RegExp) => { const seen: string[] = []; for (let i = 0; i < 100; i++) { const it = p.locator('.q-menu').last().locator('.q-item').filter({ hasText: re }).first(); if (await it.count()) { await it.scrollIntoViewIfNeeded().catch(() => {}); await it.click(); await p.waitForTimeout(1500); return { picked: true, scrolls: i }; }
+      for (const x of (await p.locator('.q-menu').last().locator('.q-item').allInnerTexts().catch(() => [])).map((y) => y.replace(/\s+/g, ' ').trim())) if (!seen.includes(x)) seen.push(x);
+      const mv = await p.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); const s = m && ([m, ...m.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 4) || m); if (!s) return false; const b = s.scrollTop; s.scrollTop += 250; return s.scrollTop !== b; })()`).catch(() => false); await p.waitForTimeout(250); if (!mv && i > 2) break; }
+    return { picked: false, optionsSeen: seen.length, withRalph: seen.filter((x) => /ralph|edwards/i.test(x)), first: seen.slice(0, 8) }; };
+  const openLine = async () => { await page(w.id); await p.getByText('ZZAUTOTEST Oil change', { exact: false }).first().click(); await p.waitForTimeout(2500); return dlg(); };
+  { const d0 = await openLine(); const S: any = { before: await roster(d0), removed: [] as string[] };
+    for (const [nm, id] of [['Esther Howard', ES.staff_id], ['Ralph Edwards', RE.staff_id]] as [string, string][]) if ((S.before as string[]).some((x) => x.includes(nm))) S.removed.push(`${nm}: ${await rosterRemoveF(d0, id)}`);
+    if (!(await roster(d0)).some((x: string) => x.includes('Dana Ortiz'))) { await d0.locator('[data-test-id="select_line_roster_add_technician"]').click(); await p.waitForTimeout(800); S.addDana = await pickScroll(/Dana Ortiz/); }
+    await closeLists(d0); S.rosterNow = await roster(d0); S.toasts = await save(d0); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); S.techsReadBack = await lineTechs(w.id); S.labor = await laborRows(); o.setupOnlyDana = S; }
+  const d = await openLine(); o.rosterBefore = await roster(d); o.removed = await rosterRemoveF(d, DO.staff_id);
+  await d.locator('[data-test-id="select_line_roster_add_technician"]').click(); await p.waitForTimeout(800); o.addRalph = await pickScroll(/Ralph Edwards/); o.added = o.addRalph.picked;
+  await closeLists(d); o.roster = await roster(d); await shot(p, 'C368173-form'); o.toasts = await save(d);
+  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.labor = await laborRows(); o.techs = await lineTechs(w.id); await shot(p, 'C368173-lines-after'); R.C368173 = o; });
 await run('C368174', async () => { const w = await one('ZZAUTOTEST Lines Tab Assign', ES, 2); const o: any = { wo: w.number, attempts: [] };
   for (const l of w.ls) { await page(w.id); await p.locator(`[data-test-id="line_number_${l}"]`).click(); await p.waitForTimeout(1000); const a1: any = {};
     const ed = p.locator('.q-menu .q-item').filter({ hasText: /Edit labor/i }).first(); if (await ed.count()) { await ed.click(); await p.waitForTimeout(2000); const d = dlg();
@@ -309,7 +339,7 @@ await run('C368177', async () => { const w = await one('ZZAUTOTEST Move Labor', 
     await e.locator('button').filter({ hasText: /^\s*Save\s*$/ }).last().click(); await p.waitForTimeout(2500); o.toasts = await toastsOn(p);
     const cf = p.locator('.q-dialog').filter({ hasText: /Confirm Overwrite/ }).last(); if (await cf.count()) { o.overwrite = (await cf.innerText()).replace(/\s+/g, ' ').slice(0, 300); await cf.locator('button').filter({ hasText: /^\s*Confirm\s*$/ }).last().click(); await p.waitForTimeout(3000); o.confirmToasts = await toastsOn(p); } }
   await page(w.id); o.labor = await laborRows(); o.techs = await lineTechs(w.id); R.C368177 = o; });
-await run('C368178', async () => { const w = await one('ZZAUTOTEST Sched Entire', ES, 2); const o: any = { wo: w.number, estimate: await setEstimate(w, 1, '2') }; Object.assign(o, await schedDrop2(w, ES.staff_id, /^\s*9\s*(AM|am|:00)/, null)); R.C368178 = o; });
+await run('C368178', async () => { const w = await one('ZZAUTOTEST Sched Entire', ES, 2); const o: any = { wo: w.number, estimate: await setEstimate(w, 1, '2') }; Object.assign(o, await schedDrop2(w, ES.staff_id, /^\s*9\s*(AM|am|:00)/, null, '2', { gridTime: '09:00:00' })); R.C368178 = o; });   // 15 Oct 2026 (wave 13): drop right of the 9:00 grid line; shift read back by id
 await run('C368179', async () => { const w = await one('ZZAUTOTEST Sched Lines', ES, 2); const o: any = { wo: w.number, line1: lineName(1), estimate: await setEstimate(w, 1, '2') }; Object.assign(o, await schedDrop2(w, ES.staff_id, /^\s*1\s*PM/, lineName(1)) /* 15 Oct 2026: "13" matched the mini-calendar's date, not the 1 PM heading */); R.C368179 = o; });
 await run('C368192', async () => { const w = await one('ZZAUTOTEST Sched Phone', null, 2); const o: any = { wo: w.number }; await setEstimate(w, 1, '1'); o.setup = await schedDrop2(w, JW.staff_id, /^\s*10\s*(AM|am|:00)/, lineName(1), '1'); R.w190 = w; R.range190 = o.setup.range;
   await page(w.id); o.desktopLabor = await laborRows(); await p.setViewportSize({ width: 390, height: 844 }); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000);
@@ -382,5 +412,27 @@ await run('C368191', async () => { const o: any = {}; const w = await one('ZZAUT
   o.stillListed = (await staffRows(a, `zz.wob.gone2.${RUNNO}`)).length;
   await page(w.id); o.laborAfterDelete = await laborRows(); await shot(p, 'C368191-lines'); R.C368191 = o; });
 await a.put(PREF, { value: ORIGINAL }); R.restored = true;
+// 15 Oct 2026 (wave 13, READ ONLY, run only when ONLY names it): C368177's work order S2-35973 ("ZZAUTOTEST Move Labor 28477") shows on
+// Line 2's Labor "Esther Howard" AND a second entry "Deleted user" after the move. Who is that? The work order's lines are read from
+// the API (Line 2's own fields, any labor / task / timesheet entries with their staff id, name and dates), the line technicians, and for
+// every staff id found: whether that staff record still exists (staff view) and how it is named. The Lines tab is photographed and its
+// Labor block read. Nothing is changed.
+if (only.includes('C368177-deleted-user')) await run('C368177-deleted-user', async () => { const o: any = {}; R['C368177-deleted-user'] = o;
+  const ws = await workOrders(a, 'ZZAUTOTEST Move Labor 28477'); const w = ws.find((x: any) => x.number === 'S2-35973') ?? ws[0]; if (!w) { o.error = 'S2-35973 not found'; return; }
+  o.wo = `${w.number} ${w.status}`; const d = (await a.get(`/api/work-orders/lines/${w.id}`)).body?.data; const ls: any[] = Array.isArray(d) ? d : d?.collection ?? d?.lines ?? [];
+  const l2 = ls[1]; o.lineCount = ls.length; if (!l2) { o.error = 'no Line 2'; return; }
+  o.line2 = { name: String(l2.line_name ?? l2.name ?? '').trim(), keys: Object.keys(l2).slice(0, 60) };
+  const staffIds = new Set<string>(); const entries: any[] = [];
+  const walk = (x: any, at: string) => { if (!x || typeof x !== 'object') return; if (Array.isArray(x)) return x.forEach((y, i) => walk(y, `${at}[${i}]`));
+    const sid = x.staff_id ?? x.staffId ?? x.tech_assigned_id ?? x.technician_id ?? x.user_staff_id ?? null;
+    if (sid && typeof sid === 'string') { staffIds.add(sid); entries.push({ at, staff: sid.slice(0, 8), name: x.name ?? x.staff_name ?? x.technician_name ?? ([x.first_name, x.last_name].filter(Boolean).join(' ') || null), deleted: x.deleted_at ?? x.deletedAt ?? x.is_deleted ?? null, created: x.created_at ?? x.createdAt ?? x.start_date ?? null, ended: x.end_date ?? x.endedAt ?? null, minutes: x.minutes ?? x.duration ?? x.total_time ?? null }); }
+    for (const [k, v] of Object.entries(x)) if (v && typeof v === 'object') walk(v, `${at}.${k}`); };
+  walk(l2, 'line2'); o.line2Entries = entries.slice(0, 20);
+  o.lineTechnicians = await lineTechs(w.id);
+  o.staff = {}; for (const sid of staffIds) { const v = await a.get(`/api/staff/${sid}/view`); const row = v.body?.data ?? null;
+    o.staff[sid.slice(0, 8)] = { viewStatus: v.status, name: row ? `${row.first_name ?? row.staff?.first_name ?? ''} ${row.last_name ?? row.staff?.last_name ?? ''}`.trim() : null, active: row?.is_active ?? row?.staff?.is_active ?? null, deleted: row?.deleted_at ?? row?.staff?.deleted_at ?? null, message: v.status >= 300 ? JSON.stringify(v.body).slice(0, 120) : undefined }; }
+  const ts = await a.get(`/api/work-orders/${w.id}/timesheets`).catch(() => null); o.timesheetsCall = { status: ts?.status ?? null, sample: JSON.stringify(ts?.body?.data ?? ts?.body ?? null).slice(0, 600) };
+  await page(w.id); o.laborOnScreen = await laborRows(); o.laborBlockText = await p.evaluate(`(() => { const e = [...document.querySelectorAll('body *')].find(x => x.children.length === 0 && /Deleted user/i.test(x.textContent || '')); let c = e; for (let i = 0; c && i < 4; i++) c = c.parentElement; return c ? c.innerText.replace(/\\s+/g, ' ').slice(0, 300) : 'no "Deleted user" text on the Lines tab'; })()`);
+  await shot(p, 'C368177-deleted-user-lines'); });
 fs.writeFileSync(path.join(EV, 'high1-fix5.json'), JSON.stringify(R, null, 1));
 await RUN.end(); await done(browser);
