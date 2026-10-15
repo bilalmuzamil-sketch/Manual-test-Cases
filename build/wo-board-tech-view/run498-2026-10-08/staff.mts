@@ -40,3 +40,14 @@ export async function person(a: Api, first: string, last: string, opts: { role: 
   }
   return { row, log };
 }
+/** 15 Oct 2026 (staging, C97007 / C368159): make a test technician ELIGIBLE as a lead at Heavy Duty — active, enrolled at Heavy Duty
+ *  in Service (app enrolment route POST /api/staff/enrollment/create), Time Clock on, Location Heavy Duty — and say what was changed.
+ *  "Ben Bravo" was not offered in the work order page's Lead Technician list in the second pass. */
+export async function ensureEligible(a: Api, r: any, label = '') {
+  const out: string[] = []; if (!r) return ['no staff row'];
+  const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
+  if (!r.is_active) out.push(`${label} reactivate ${(await a.post('/api/iam/change-status', { id: r.id })).status}`);
+  const en = await a.post('/api/staff/enrollment/create', { staffId: r.staff_id, workplaceId: HEAVY, departmentId: svc?.id }); if (en.status < 300) out.push(`${label} enrolled Heavy/Service`);
+  if (!r.clockable || (r.workplace_id && r.workplace_id !== HEAVY)) out.push(`${label} Time Clock/Location ${(await a.post(`/api/staff/${r.staff_id}/change`, { first_name: r.first_name, last_name: r.last_name, email: r.email, role_id: r.role_id, workplace_id: HEAVY, job_title: r.job_title, salary_type: r.salary_type, salary: r.salary, billable: !!r.billable, clockable: true })).status}`);
+  return out;
+}

@@ -200,3 +200,14 @@ export async function findRow(p: Page, woId: string, openGroup?: string) {
   await p.evaluate(`document.querySelector('[data-test-id="tech_view_row_${woId}"]')?.scrollIntoView({ block: 'center' })`); await p.waitForTimeout(800);
   return p.evaluate(`(document.querySelector('[data-test-id="tech_view_row_${woId}"]') || { getAttribute: () => null }).getAttribute('data-group-key')`) as Promise<string | null>;
 }
+/** 15 Oct 2026 (staging): set Lead Technician on the work order page — the field found by its test-id or, on staging, by its label;
+ *  `typed` is typed to filter, then the option holding `name` is picked. Returns what was found (field, options seen, picked). */
+export async function pickLeadOnPage(pg: Page, typed: string, name: string) {
+  const sel = (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]') : pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
+  const o: any = { field: await sel.count() }; if (!o.field) return o;
+  await sel.click(); await pg.waitForTimeout(1000); await pg.keyboard.type(typed, { delay: 60 }); await pg.waitForTimeout(1500);
+  o.options = (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 8);
+  const opt = pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: name }).first(); o.picked = (await opt.count()) > 0;
+  if (o.picked) { await opt.click(); await pg.waitForTimeout(3000); } else await pg.keyboard.press('Escape').catch(() => {});
+  return o;
+}

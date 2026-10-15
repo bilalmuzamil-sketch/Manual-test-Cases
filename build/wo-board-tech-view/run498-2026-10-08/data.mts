@@ -93,3 +93,20 @@ export async function seedCase(a: Api, name: string, unit: string, plan: { lead:
   if (!have.length) { const c = await customer(a, name, unit); for (const w of plan) await workOrder(a, c, w.status ?? 'approved', w.lead, !!w.here); have = await workOrders(a, name); }
   return have;
 }
+
+/** 15 Oct 2026 (staging, C97032 / C368201): the organisation setting "Require Review Before Completion" (`requireReview`,
+ *  Administration > Settings > Work Orders; read GET /api/organizations/settings, save POST /api/organizations/settings/change with
+ *  the full settings object — simple-flow/viu-findings.md). With it OFF (staging's baseline) completing the last line takes a work
+ *  order straight to Complete, so "Review" is never reached. Sets every `requireReview` key in the object, saves, reads back.
+ *  Returns {before, save, after}; callers put `before` back in a finally block (the setting only affects work completed later). */
+export async function setRequireReview(a: Api, on: boolean) {
+  const r = await a.get('/api/organizations/settings'); const data = r.body?.data ?? r.body;
+  const find = (x: any): boolean | null => { if (!x || typeof x !== 'object') return null; if ('requireReview' in x) return !!x.requireReview; for (const v of Object.values(x)) { const f = find(v); if (f !== null) return f; } return null; };
+  const set = (x: any) => { if (!x || typeof x !== 'object') return; if ('requireReview' in x) x.requireReview = on; for (const v of Object.values(x)) set(v); };
+  const before = find(data); if (before === null) return { before, save: 'no requireReview in the settings', after: null };
+  if (before === on) return { before, save: 'already', after: before };
+  const body = JSON.parse(JSON.stringify(data)); set(body);
+  const w = await a.post('/api/organizations/settings/change', body);
+  const after = find((await a.get('/api/organizations/settings')).body?.data ?? null);
+  return { before, save: `${w.status}${w.status >= 300 ? ' ' + JSON.stringify(w.body).slice(0, 160) : ''}`, after };
+}

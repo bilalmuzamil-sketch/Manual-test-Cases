@@ -7,6 +7,8 @@ signin-check-stg4.mts | |
 # 15 Oct (wave 8b): the view-only role is put back to Work orders > View only BEFORE any view-only case (C97012's old script left
 # Create & Edit on); then the 14 wave-8b re-runs and the C368148 picture, ABOVE the sign-out line, which stays last.
 role-viewonly-stg4.mts | | 
+# 15 Oct (wave 8c): stop every test technician's running time clock (left running by C368196 / C368176) and read it back
+clocks-stg4.mts | | 
 s1-batch2b.mts | C154884 | 
 s1-batch4a.mts | C96910,C96912,C96923 | 
 s1-batch4b.mts | C96916,C96917 | WOB_PIN_NAMES=Ayesha Khan
@@ -32,4 +34,13 @@ s9-batchB.mts | C97005 |
 staledrop-stg4.mts | C97012 | 
 c368149-two.mts | C97010 | WOB_LIVE=1
 kbd-fix4.mts | C97020 | WOB_LIVE=1
+# 15 Oct (wave 8c): 20 more re-runs whose reading was unusable because of the script (judge/wave8c.json)
+rest-batch.mts | C368156 | 
+s11-batch.mts | C368159 | 
+s11-fix3.mts | C97032 | 
+high1-batch.mts | C368176,C368181 | 
+high1-fix5.mts | C368173,C368177,C368178,C368179,C368190,C368191 | 
+high2-batch.mts | C368201,C368207,C368208,C368209,C368212 | 
+sort-fix5.mts | C368196 | 
+ps-counts.mts | C368217,C368243,C368244 | 
 signout-fix.mts | C368240 | 

@@ -108,9 +108,10 @@ async function dragHandle(fromHeader: string, toHeader: string) {
 }
 const order = (cols: any[], ids: Record<string, string>) => cols.map((c) => Object.keys(ids).find((k) => ids[k] === c.id) ?? (c.id === 'unassigned' ? 'Unassigned' : null)).filter(Boolean);
 async function run(id: string, f: () => Promise<void>) {
-  if (!want(id)) return;
+  // 15 Oct 2026: the 'BLUE' step (the technician's second photo) has no case id, so ONLY=C368243,C368244 skipped it — it runs with them
+  if (!want(id) && !(id === 'BLUE' && (want('C368242') || want('C368243') || want('C368244')))) return;
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
-  console.log(t(), id, JSON.stringify(R[id] ?? null).slice(0, 2600));
+  console.log(t(), id, JSON.stringify(R[id] ?? null).slice(0, 6000));
   fs.writeFileSync(path.join(EV, 'ps-counts.json'), JSON.stringify(R, null, 1));
 }
 const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.staff_id };
@@ -203,6 +204,10 @@ const where = { C368242: { url: '/administration/staff', sel: () => `tr:has-text
   C368243: { url: '/schedule', sel: () => `[data-staff-id="${PT.staff_id}"] .q-avatar, [data-staff-id="${PT.staff_id}"] img` },
   C368244: { url: '/workorders?tab=all', sel: () => `[data-test-id="board_column_header_${PT.staff_id}"] .q-avatar` } } as const;
 await run('C368242', async () => { PT = await photoTech(); const o: any = { tech: PT.staff_id?.slice(0, 8), service: await enrolService(PT.staff_id) }; o.red = await asTechUpload(RED); R.C368242 = o; });
+// 15 Oct 2026 (staging second pass): C368243 / C368244 stopped at once ("reading 'staff_id' of null") — the photo technician is made
+// in C368242's block, which ONLY=C368243,C368244 skips. When C368242 is not run, the technician is made here the same way
+// (photoTech: Technician role, Time Clock on, Service department) and given the first (red) photo as C368242 would.
+if (!PT && (want('C368243') || want('C368244'))) { PT = await photoTech(); R.photoTechSetup = { tech: PT?.staff_id?.slice(0, 8), service: await enrolService(PT.staff_id), red: await asTechUpload(RED) }; console.log(t(), 'photo technician set-up', JSON.stringify(R.photoTechSetup).slice(0, 600)); }
 const s44 = await mkSet('ZZAUTOTEST Photo Board', [{ co: 'Alpha Co', lead: { staff_id: PT?.staff_id } }]).catch((e) => ({ err: String(e) }));
 for (const id of ['C368242', 'C368243', 'C368244'] as const) await run(id, async () => { const o: any = R[id] ?? {}; const w = where[id];
   if (id === 'C368244') { await pins([PT.staff_id]); await goP(p, 'Board View', (s44 as any).q ?? ''); await toColumn(p, PT.staff_id).catch(() => {}); } else { await p.goto(APP + w.url, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); if (id === 'C368242') { const box = p.locator('input[type=search], input[placeholder*="Search" i]').first(); if (await box.count()) { await box.fill(`Tech ${stamp}`); await p.waitForTimeout(2500); } } }
@@ -235,7 +240,14 @@ async function addPartManual(id: string, desc: string) { await p.goto(APP + `/pa
   const fill = async (re: RegExp, v: string) => { const fl = field(re); if (!(await fl.count())) return `no ${re.source}`; await fl.locator('input, textarea').first().fill(v); return v; };
   const pick = async (re: RegExp, text?: string) => { const fl = field(re); if (!(await fl.count())) return `no ${re.source}`; await fl.scrollIntoViewIfNeeded().catch(() => {}); await fl.click(); await p.waitForTimeout(800); if (text) await p.keyboard.type(text, { delay: 50 }); await p.waitForTimeout(1500);
     const o = p.locator('.q-menu .q-item:not(.disabled)').filter({ hasText: text ? new RegExp(text, 'i') : /./ }).first(); if (!(await o.count())) { await p.keyboard.press('Escape').catch(() => {}); return `no option ${re.source}`; } const l = (await o.innerText()).replace(/\s+/g, ' ').slice(0, 40); await o.click(); await p.waitForTimeout(800); return l; };
-  { const pn = field(/^\s*Part Number/); await pn.click(); await p.keyboard.type(`ZZPN-${Date.now() % 100000}`, { delay: 40 }); await p.waitForTimeout(1500); await p.keyboard.press('Enter'); await p.waitForTimeout(1000); await d.locator('.text-h6, .q-card__section').first().click({ position: { x: 5, y: 5 } }).catch(() => {}); }
+  // 15 Oct 2026 (staging second pass): the Part Number box was not found under the label "Part Number" — found now by what the
+  // window shows: a field whose label reads Part Number / Part # / Part No, then the input named that way, then a part-number test-id;
+  // which one matched and every label the window offered are recorded (log.labels).
+  { const cands = [field(/Part\s*(Number|#|No\.?)/i), d.getByLabel(/Part\s*(Number|#|No\.?)/i).first(), d.locator('[data-test-id*="part_number" i], [data-test-id*="partnumber" i], [data-test-id="select_part"]').first(), d.locator('input[placeholder*="Part" i]').first()];
+    let used = -1; for (let i = 0; i < cands.length; i++) if (await cands[i].count()) { used = i; break; }
+    log.partNumberFoundBy = ['field label', 'input label', 'test-id', 'placeholder', 'not found'][used < 0 ? 4 : used];
+    if (used >= 0) { await cands[used].click(); await p.keyboard.type(`ZZPN-${Date.now() % 100000}`, { delay: 40 }); await p.waitForTimeout(1500); await p.keyboard.press('Enter'); await p.waitForTimeout(1000); await d.locator('.text-h6, .q-card__section').first().click({ position: { x: 5, y: 5 } }).catch(() => {}); }
+    else { await shot(p, 'C368217-no-part-number'); } }
   log.desc = await fill(/^\s*Description/, desc); log.qty = await fill(/^\s*Quantity/, '1'); log.source = (await field(/^\s*Source/).innerText().catch(() => '')).replace(/\s+/g, ' ');
   log.category = await pick(/^\s*Category/, 'Uncategorized'); log.vendor = await pick(/^\s*Vendor\s*\*?\s*$/); log.cost = await fill(/^\s*Cost/, '100'); log.sell = await fill(/^\s*Sell Price/, '290.91');
   log.labelsAfter = await d.locator('.q-field__label').allInnerTexts().catch(() => []);

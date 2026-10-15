@@ -14,8 +14,8 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
-import { staffRows, person, roleIds, HEAVY } from './staff.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, pickLeadOnPage } from './wob.mts';
+import { staffRows, person, roleIds, HEAVY, ensureEligible } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
 
@@ -410,13 +410,16 @@ await run('C368158', async () => {
 
 await run('C368159', async () => {
   await pins([ANA.staff_id, BEN.staff_id]);
-  const s = await mkSet('ZZAUTOTEST F3 Stale On Site', [{ co: 'Site Co', lead: ANA }]); const o: any = {};
+  const o: any = { eligible: [...(await ensureEligible(a, ANA, 'Ana')), ...(await ensureEligible(a, BEN, 'Ben'))] };
+  { const c0 = await candidates(a); o.offered = { ana: c0.some((c) => c.id === ANA.staff_id), ben: c0.some((c) => c.id === BEN.staff_id) }; }
+  const s = await mkSet('ZZAUTOTEST F3 Stale On Site', [{ co: 'Site Co', lead: ANA }]); R.C368159 = o;
   const here = async () => (await a.get(`/api/work-orders/view/${s.w['Site Co'].id}`)).body?.data?.work_order?.is_vehicle_here;
   await goP(p, 'List', s.q); o.before = { here: await here(), lead: await leadOf(s, 'Site Co') };
   // browser 2: the work order page, Lead Technician -> Ben Bravo
   const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${s.w['Site Co'].id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(6000);
-  await pg.locator('[data-test-id="select_lead_technician"]').click(); await pg.waitForTimeout(1000); await pg.keyboard.type('ZZAUTOTEST Ben'); await pg.waitForTimeout(1200);
-  await pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: 'Ben Bravo' }).first().click(); await pg.waitForTimeout(3000); await pg.close();
+  // 15 Oct 2026 (staging second pass): "Ben Bravo" was not offered — Ana and Ben are made eligible first (staff.mts ensureEligible:
+  // active, Heavy Duty / Service, Time Clock on) and who is offered is read; the lead field is found by its label (wob.mts pickLeadOnPage)
+  o.page = await pickLeadOnPage(pg, 'Ben', 'Ben Bravo'); await pg.screenshot({ path: path.join(EV, 'C368159-browser2-lead.png') }).catch(() => {}); await pg.close();
   o.leadAfterB2 = await leadOf(s, 'Site Co');
   // browser 1, stale page: toggle On Site
   const tr = p.locator('tbody tr').filter({ hasText: s.w['Site Co'].number }); await tr.locator('[data-test-id="button_vehicle_here_toggle"]').first().click(); await p.waitForTimeout(2500);

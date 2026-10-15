@@ -445,3 +445,20 @@ script changes is restored in a `finally`; each pass begins with `role-viewonly-
 and `clocks-stg4.mts` (stop every test technician's clock, read back); a case that needs its own role or person makes a fresh
 one rather than borrowing a shared one. When judging, a reading taken after such a leak is a re-run, never a verdict.
 #staging #cleanup #roles #clock → L0339, L0341, L0343
+
+## L0345 — 2026-10-15 — Wave 8c: Review needs the org setting, the test admin must be ENROLLED to switch location, leftover clocks
+(1) **Staging's "Require Review Before Completion" (`requireReview`) is OFF**, so completing the last line takes a work order straight
+to Complete and "Review" / "Work order sent to review." is never reached (C97032, C368201). Switch it on only around the set-up or
+step that needs it and put it back in `finally` (`data.mts setRequireReview`; GET `/api/organizations/settings`, POST
+`/settings/change` with the full object; affects only work completed later). (2) **`switchLocUI` only offers locations the signed-in
+person is enrolled at**: the runner (ZZ WOB Runner) is enrolled at Heavy Duty only, so "switch to Lethbridge" silently stayed put
+(C368156, C368212). Enrol first (`POST /api/staff/enrollment/create` Service), switch, read the top bar back, and stop if it did
+not change. (3) **Scripts that start a technician's clock must stop it in `finally`** — Dana's and Ralph's clocks were left running
+(C368196), and the time-clock window's button is "Clock Out", not Save/Stop (C368176). The fourth pass starts with
+`clocks-stg4.mts`, which stops and reads back every test technician's clock. (4) **A helper block with no case id never runs
+under `ONLY=`** again ('BLUE' photo upload in ps-counts; C368242's photo technician): make the set-up run when its cases run.
+(5) The Schedule remembers the last day across reloads — read a shift by going back to the exact day text (`goRange`), and match
+hour headings as "1 PM", never "13" (the mini-calendar's date). (6) The Timesheets row's pencil (`button_edit_timesheet`) is drawn
+only while the pointer is over the row. (7) Staging refuses to delete a staff member who ever logged labor ("Staff is being used
+elsewhere."); C368191 now also records the answer for a never-used staff member deleted at once. #staging #review #location
+#clocks #schedule #rerun → L0336, L0341, L0343

@@ -14,6 +14,7 @@ import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toCol
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
+import { bootProdLogin } from '../../testing-tools/prod-login-boot.mjs';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -106,7 +107,7 @@ const order = (cols: any[], ids: Record<string, string>) => cols.map((c) => Obje
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
-  console.log(t(), id, JSON.stringify(R[id]).slice(0, 2600));
+  console.log(t(), id, JSON.stringify(R[id]).slice(0, 6000));
   fs.writeFileSync(path.join(EV, 'high1-batch.json'), JSON.stringify(R, null, 1));
 }
 const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.staff_id };
@@ -225,7 +226,14 @@ await run('C368176', async () => { const w = await one('ZZAUTOTEST Clock In Line
     const start = (await row.count()) ? row.locator('button').filter({ hasText: /Start/i }).first() : pg.locator('button').filter({ hasText: /^\s*Start\s*$/i }).first(); o.startFound = await start.count(); await shot(pg, 'C368176-tech-lines');
     if (o.startFound) { await start.click(); await pg.waitForTimeout(3000); o.afterStart = await toastsOn(pg); await pg.waitForTimeout(65000);
       const stop = pg.locator('button').filter({ hasText: /^\s*Stop\s*$/i }).first(); o.stopFound = await stop.count(); await stop.click().catch(() => {}); await pg.waitForTimeout(2000); const d = dlg(pg); o.stopDialog = (await d.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 200);
-      await d.locator('textarea, input[type=text]').first().fill('ZZAUTOTEST worked on it').catch(() => {}); await d.locator('button').filter({ hasText: /Save|Stop|Submit|Done/i }).last().click().catch(() => {}); await pg.waitForTimeout(3000); o.stopToasts = await toastsOn(pg); }
+      // 15 Oct 2026 (staging second pass): the window's button is "Clock Out" (the old filter looked for Save/Stop/Submit/Done and
+      // pressed nothing, leaving Esther's clock running). Type what was done, press Clock Out, read the clock back.
+      await d.locator('textarea, input[type=text]').first().fill('ZZAUTOTEST worked on it').catch(() => {}); o.stopButtons = await d.locator('button').allInnerTexts().catch(() => []);
+      const co = d.locator('button').filter({ hasText: /Clock\s*Out/i }).last(); o.clockOutFound = await co.count();
+      if (o.clockOutFound) { await co.click().catch(() => {}); } else await d.locator('button').filter({ hasText: /Save|Stop|Submit|Done/i }).last().click().catch(() => {});
+      await pg.waitForTimeout(3000); o.stopToasts = await toastsOn(pg); await shot(pg, 'C368176-after-clock-out');
+      o.clockRunningAfter = ((await api(pg).get('/api/technician-tasks/my-current-task')).body?.data?.technician_task?.label) ?? null;
+      if (o.clockRunningAfter) { const cur = (await api(pg).get('/api/technician-tasks/my-current-task')).body?.data; o.clockStoppedByApiAfterScreenFailed = (await api(pg).post('/api/technician-tasks/check-out', { task_id: cur?.technician_task?.id })).status; } }
   } finally { await v.close(); }
   await page(w.id); o.step6 = await laborRows(); o.techs = await lineTechs(w.id); R.C368176 = o; });
 
@@ -287,7 +295,31 @@ const onSiteToggle = async (number: string) => { const row = p.locator('tbody tr
 for (const [kind, ids] of [['asset', ['C368180', 'C368181', 'C368182', 'C368183']], ['customer', ['C368184', 'C368185', 'C368186', 'C368187']]] as const) {
   const set = await tabSet(`ZZAUTOTEST ${kind === 'asset' ? 'Asset' : 'Customer'} Tab`); const progList = await progressOf(set.name, set.w.B.number); const open = () => kind === 'asset' ? assetTab(set) : customerTab(set);
   await run(ids[0], async () => { const o: any = await open(); o.rows = await tableNums(); o.expect = kind === 'asset' ? ['A', 'B', 'C'].map((k) => set.w[k].number) : ['A', 'B', 'C', 'D'].map((k) => set.w[k].number); o.D = set.w.D.number; o.toasts = await toastsOn(p); await shot(p, `${ids[0]}-tab`); R[ids[0]] = o; });
-  await run(ids[1], async () => { const o: any = await open(); o.rowCount = (await tableNums()).length; R[ids[1]] = o; });
+  await run(ids[1], async () => { const o: any = await open(); o.rowCount = (await tableNums()).length; R[ids[1]] = o;
+    // 15 Oct 2026 (staging second pass): C368181 needs production compared (steps 4-6): production sign-in (testing-tools
+    // prod-login-boot.mjs, as report-filters-stg.mts), Customers > a customer > Assets > an asset WITH work orders > Work Orders tab;
+    // whether a count shows (tab label, above/under the table) and the rows — READ ONLY, nothing is changed on production. A picture of each side.
+    if (ids[1] === 'C368181') { await shot(p, 'C368181-staging');
+      let prod: any = null; try { prod = await bootProdLogin('/customers', {}); } catch (e: any) { o.production = { error: 'production sign-in: ' + String(e?.message || e).slice(0, 200) }; }
+      if (prod) { const pp: Page = prod.page; const P = prod.APP; const pr: any = { build: prod.version ?? null, tried: [] };
+        try { await pp.goto(P + '/customers', { waitUntil: 'domcontentloaded' }); await pp.waitForTimeout(7000);
+          const custRows = await pp.locator('tbody tr').count();
+          for (let ci = 0; ci < Math.min(custRows, 8) && !pr.found; ci++) {
+            await pp.goto(P + '/customers', { waitUntil: 'domcontentloaded' }); await pp.waitForTimeout(6000); await pp.locator('tbody tr').nth(ci).click().catch(() => {}); await pp.waitForTimeout(5000);
+            const at = pp.locator('.q-tab, [role=tab]').filter({ hasText: /Assets/ }).first(); if (!(await at.count())) continue; await at.click(); await pp.waitForTimeout(4000);
+            const nAssets = await pp.locator('tbody tr').count(); const custUrl = pp.url();
+            for (let ai = 0; ai < Math.min(nAssets, 4) && !pr.found; ai++) {
+              if (ai) { await pp.goto(custUrl, { waitUntil: 'domcontentloaded' }); await pp.waitForTimeout(5000); }
+              await pp.locator('tbody tr').nth(ai).click().catch(() => {}); await pp.waitForTimeout(5000);
+              const wt = pp.locator('.q-tab, [role=tab]').filter({ hasText: /Work Orders/ }).first(); if (!(await wt.count())) continue; await wt.click(); await pp.waitForTimeout(4000);
+              const rows = await pp.locator('tbody tr').filter({ hasText: /\S/ }).count(); const tabLabel = (await wt.innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
+              const bottom = await pp.locator('.q-table__bottom').innerText().catch(() => null); const noData = /no data|no work orders|no results/i.test(await pp.locator('tbody').innerText().catch(() => ''));
+              pr.tried.push(`${tabLabel} rows=${rows}${noData ? ' (empty)' : ''}`);
+              if (rows > 0 && !noData) { pr.found = { url: pp.url().replace(P, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>'), tabs: await pp.evaluate(`[...document.querySelectorAll('.q-tab, [role=tab]')].map(e => e.innerText.replace(/\\s+/g, ' ').trim())`), tabLabel, bottom: bottom ? bottom.replace(/\s+/g, ' ').trim() : null, rows, countShown: /\(\d+\)/.test(tabLabel) || /\d+\s*(-|–)\s*\d+\s*of\s*\d+/i.test(bottom ?? '') }; await pp.screenshot({ path: path.join(EV, 'C368181-production.png') }).catch(() => {}); }
+            } }
+        } catch (e: any) { pr.error = String(e?.message || e).slice(0, 200); await pp.screenshot({ path: path.join(EV, 'C368181-production-error.png') }).catch(() => {}); }
+        o.production = pr; await prod.browser.close().catch(() => {}); }
+      o.staging = { tabLabel: o.tab, bottom: o.bottom, rows: o.rowCount, countShown: /\(\d+\)/.test(String(o.tab ?? '')) || /\d+\s*(-|–)\s*\d+\s*of\s*\d+/i.test(String(o.bottom ?? '')) }; } });
   await run(ids[2], async () => { const o: any = await open(); o.list = progList; o.tab = await p.evaluate(`([...document.querySelectorAll('tbody tr')].find(r => r.innerText.includes('${set.w.B.number}'))?.innerText.match(/\\d+%|\\d+\\s*of\\s*\\d+/) || [null])[0]`); o.bLine = set.bLine; R[ids[2]] = o; });
   await run(ids[3], async () => { await open(); const [x, y] = await sortBy(/Number/); R[ids[3]] = { first: x, second: y }; });
 }

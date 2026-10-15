@@ -111,7 +111,7 @@ const order = (cols: any[], ids: Record<string, string>) => cols.map((c) => Obje
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
-  console.log(t(), id, JSON.stringify(R[id]).slice(0, 2600));
+  console.log(t(), id, JSON.stringify(R[id]).slice(0, 12000));
   fs.writeFileSync(path.join(EV, 'sort-fix5.json'), JSON.stringify(R, null, 1));
 }
 const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.staff_id };
@@ -203,8 +203,26 @@ await run('C368196', async () => {
   await goList(p, q); const pin = p.locator('tbody tr').filter({ hasText: 'Alpha Co' }).first().locator('[data-test-id*="vehicle_here"], button:has(i:text-matches("place|location_on"))').first(); await pin.click().catch(() => {}); await p.waitForTimeout(2500);
   o.onSiteApi = Object.fromEntries((await workOrders(a, q)).map((w: any) => [w.companyName?.split(' ').slice(-2).join(' '), w.vehicleHere]));
   await goList(p, q);
-  const table = () => p.evaluate(`(() => { const hs = [...document.querySelectorAll('thead th')].map(h => h.innerText.replace(/arrow_drop_(up|down)/g, '').trim()); return [...document.querySelectorAll('tbody tr')].filter(r => /S\\d+-\\d+/.test(r.innerText)).map(r => Object.fromEntries([...r.cells].map((c, i) => [hs[i], c.innerText.replace(/content_copy/g, '').trim() || (c.querySelectorAll('.q-avatar, img').length ? (c.querySelectorAll('.q-avatar, img').length + ' avatar ' + [...c.querySelectorAll('.q-avatar, img')].map(x => x.getAttribute('alt') || x.getAttribute('aria-label') || x.innerText || '').join('/')) : '') || ((c.querySelector('i') || {}).className || '').replace(/.*(text-[a-z-]+).*/, '$1')]))); })()`) as Promise<any[]>;
-  for (const h of ['On Site', 'Clocked In']) { const th = p.locator('thead th').filter({ hasText: h }).first(); await th.click(); await p.waitForTimeout(2200); const r1 = await table(); await th.click(); await p.waitForTimeout(2200); const r2 = await table();
-    o[h] = { first: r1.map((r) => `${r.Number} ${r[h]}`), second: r2.map((r) => `${r.Number} ${r[h]}`), distinct: new Set(r1.map((r) => r[h])).size }; }
+  // 15 Oct 2026 (staging second pass): only On Site and Clocked In were read (Number and the other headers never), On Site could not be
+  // told apart (every cell read "location_on"), and Ralph's and Dana's clocks were left running. Now EVERY header the case names is
+  // clicked twice and the rows read each time, with the header's own sort mark; a cell that is only an icon is read by the icon's
+  // colour class; both clocks are stopped at the end (finally) and read back.
+  const table = () => p.evaluate(`(() => { const hs = [...document.querySelectorAll('thead th')].map(h => h.innerText.replace(/arrow_drop_(up|down)/g, '').trim()); const icon = /^(location_on|location_off|local_shipping|content_copy|person|more_horiz|check|close|schedule|timer)$/;
+    return [...document.querySelectorAll('tbody tr')].filter(r => /[A-Z0-9]+-\\d+/.test(r.innerText)).map(r => Object.fromEntries([...r.cells].map((c, i) => { const txt = c.innerText.split('\\n').map(x => x.trim()).filter(x => x && !icon.test(x)).join(' ');
+      const av = c.querySelectorAll('.q-avatar, img'); const ic = c.querySelector('i'); return [hs[i], txt || (av.length ? av.length + ' avatar ' + [...av].map(x => x.getAttribute('alt') || x.getAttribute('aria-label') || x.innerText || '').join('/') : '') || (ic ? 'icon ' + ic.innerText.trim() + ' ' + (String(ic.className).match(/text-[a-z0-9-]+/) || [''])[0] + ' ' + (String((c.querySelector('button') || {}).className || '').match(/text-[a-z0-9-]+|--active|selected/) || [''])[0] : '')]; }))); })()`) as Promise<any[]>;
+  const sortMark = (h: string) => p.evaluate(`(() => { const th = [...document.querySelectorAll('thead th')].find(e => e.innerText.replace(/arrow_drop_(up|down)/g, '').trim() === ${JSON.stringify('${H}')}); return th ? (th.getAttribute('aria-sort') || '') + ' ' + (String(th.className).match(/sort(ed|able)?[^ ]*|asc|desc/g) || []).join(',') : 'no header'; })()`.split('${H}').join(h));
+  try {
+    for (const h of ['Number', 'On Site', 'Status', 'Customer', 'Asset', 'Unit', 'VIN/Serial #', 'Service Advisor', 'Lead Technician', 'Clocked In', 'Lines', 'Total Price', 'Created On', 'Progress']) {
+      const th = p.locator('thead th').filter({ hasText: new RegExp('^\\s*' + h.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&') + '\\s*(arrow_drop_(up|down))?\\s*$') }).first();
+      if (!(await th.count())) { o[h] = 'header not in the table'; continue; }
+      await th.click().catch(() => {}); await p.waitForTimeout(2200); const r1 = await table(); const m1 = await sortMark(h);
+      await th.click().catch(() => {}); await p.waitForTimeout(2200); const r2 = await table(); const m2 = await sortMark(h);
+      o[h] = { first: r1.map((r) => `${r.Number} | ${r[h] ?? ''}`), mark1: m1, second: r2.map((r) => `${r.Number} | ${r[h] ?? ''}`), mark2: m2, orderChanged: JSON.stringify(r1.map((r) => r.Number)) !== JSON.stringify(r2.map((r) => r.Number)), distinctValues: new Set(r1.map((r) => r[h])).size };
+      if (h === 'Number' || h === 'On Site' || h === 'Clocked In') await shot(p, `C368196-${h.replace(/\W+/g, '')}`); }
+  } finally {
+    o.clocksStopped = {};
+    for (const tech of [RE, DO]) { if (!tech) continue; const sw = await a.post('/api/switch-user', { user_id: tech.id });
+      try { const cur = (await a.get('/api/technician-tasks/my-current-task')).body?.data; o.clocksStopped[tech.first_name] = cur?.technician_task?.id ? `clock out ${(await a.post('/api/technician-tasks/check-out', { task_id: cur.technician_task.id })).status}, running now: ${((await a.get('/api/technician-tasks/my-current-task')).body?.data?.technician_task?.id) ? 'YES' : 'no'}` : `switch ${sw.status}, no clock running`; }
+      finally { await RUN.toRunner(); } } }
   await shot(p, 'C368196-varied'); R.C368196 = o; });
 await a.put(PREF, { value: ORIGINAL }); R.restored = true; fs.writeFileSync(path.join(EV, 'sort-fix5.json'), JSON.stringify(R, null, 1)); await RUN.end(); await done(browser);

@@ -112,7 +112,7 @@ const order = (cols: any[], ids: Record<string, string>) => cols.map((c) => Obje
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
-  console.log(t(), id, JSON.stringify(R[id]).slice(0, 2600));
+  console.log(t(), id, JSON.stringify(R[id]).slice(0, 6000));
   fs.writeFileSync(path.join(EV, 'high1-fix5.json'), JSON.stringify(R, null, 1));
 }
 const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.staff_id };
@@ -222,6 +222,11 @@ async function tabSet(name: string) { const c = await customer(a, `${name} ${RUN
 const closeLists = async (d: any) => { await d.locator('.text-h6, .q-card__section').first().click({ position: { x: 5, y: 5 } }).catch(() => {}); await p.waitForTimeout(500); };
 async function rosterRemoveF(d: any, staffId: string) { const b = d.locator(`[data-test-id="button_line_roster_remove_${staffId}"]`); const n = await b.count(); if (n) { await closeLists(d); await b.click({ force: true }); await p.waitForTimeout(800); const q = p.locator('.q-dialog').filter({ hasText: /Remove technician\?/ }).last(); if (await q.count()) { await q.locator('button').filter({ hasText: /^\s*Remove\s*$/ }).first().click(); await p.waitForTimeout(800); } } return n; }   // FIX 3: confirm the 'Remove technician?' question
 async function setEstimate(w: any, lineIdx: number, hours: string) { await page(w.id); await p.getByText(lineName(lineIdx), { exact: false }).first().click(); await p.waitForTimeout(2500); const d = dlg(); await d.locator('[data-test-id="input_time_estimate"]').fill(hours); await closeLists(d); return save(d); }
+/** 15 Oct 2026 (staging second pass, ported from high1-fix7 FIX 7): the Schedule REMEMBERS the last day viewed across reloads, so
+ *  "next until a working day" after a reload landed on another day (C368178 read Mon Oct 19 for a shift made on Fri Oct 16).
+ *  goRange presses Today and steps to the exact day text the shift was dropped on. */
+async function goRange(target: string | null) { if (!target) return null; await p.getByRole('button', { name: /^\s*Today\s*$/ }).first().click().catch(() => {}); await p.waitForTimeout(3000);
+  for (let i = 0; i < 21; i++) { const r = (await p.locator('[data-test-id="text_schedule_range"]').innerText().catch(() => '')).trim(); if (r === target) return r; await p.locator('[data-test-id="button_schedule_next"]').click(); await p.waitForTimeout(2500); } return null; }
 async function workingDay(staff: string) { // go to the next day the technician works (the row does not read "Not working")
   for (let i = 0; i < 7; i++) { await p.locator('[data-test-id="button_schedule_next"]').click(); await p.waitForTimeout(3000); await laneOf(staff); const txt = await p.locator(`[data-staff-id="${staff}"]`).first().innerText().catch(() => ''); const r = await p.locator('[data-test-id="text_schedule_range"]').innerText().catch(() => ''); if (!/Not working/i.test(txt) && !/Sat|Sun/.test(r)) return r; }
   return null; }
@@ -234,7 +239,9 @@ async function shiftsOf(w: any) { const d0 = new Date(); const out: any[] = []; 
 async function gridBlocks(w: any) { const name = (await a.get(`/api/work-orders/view/${w.id}`)).body?.data?.work_order?.company_name ?? ''; if (!name) return [];
   return await p.evaluate(`(() => { const n = ${JSON.stringify(name)}; return [...document.querySelectorAll('div, span, p')].filter(e => e.children.length <= 3 && (e.textContent || '').trim().startsWith(n.slice(0, 18))).map(e => e.getBoundingClientRect()).filter(b => b.x > 520 && b.width > 30 && b.width < 400 && b.height > 8).map(b => ({ x: Math.round(b.x), y: Math.round(b.y), w: Math.round(b.width) })).filter((v, i, arr) => arr.findIndex(u => Math.abs(u.x - v.x) < 4 && Math.abs(u.y - v.y) < 4) === i); })()`) as any[]; }
 async function schedDrop2(w: any, staff: string, hourLabel: RegExp, choose: string | null, wantHours = '2') { const o: any = {};
-  await p.goto(`${APP}/schedule`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); o.range = await workingDay(staff);
+  await p.goto(`${APP}/schedule`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); await p.getByRole('button', { name: /^\s*Today\s*$/ }).first().click().catch(() => {}); await p.waitForTimeout(3000); o.range = await workingDay(staff);
+  // 15 Oct 2026: the Schedule's own save is watched, so the shift made by the drop is known from its answer (start/end, lines)
+  const posted: string[] = []; const hr = async (r: any) => { if (r.request().method() === 'POST' && /\/api\/schedule\/shifts/.test(r.url())) posted.push(`${r.status()} ${(await r.text().catch(() => '')).slice(0, 300)}`); }; p.on('response', hr);
   await p.locator('[data-test-id="input_sidebar_search"]').fill(w.number); await p.waitForTimeout(3000); const cardL = p.locator('[data-test-id="sidebar_work_order_card"]').filter({ hasText: w.number }).first(); o.card = await cardL.count();
   o.laneFound = await laneOf(staff); const lane = p.locator(`[data-staff-id="${staff}"]`).first(); await lane.scrollIntoViewIfNeeded().catch(() => {});
   const hdr = p.getByText(new RegExp('^\\s*' + hourLabel.source.replace(/^\^\\s\*/, '') + '\\s*$')).first();
@@ -248,7 +255,8 @@ async function schedDrop2(w: any, staff: string, hourLabel: RegExp, choose: stri
   for (let i = 0; i < 24; i++) { const hrs = await d.evaluate((e) => { const s = e.querySelector('.drop-single-day__step--start'); const lab = s && s.parentElement ? s.parentElement.innerText : e.innerText; return (lab.match(/(\d+(?:\.\d+)?)\s*h\b/) || [])[1] ?? null; }).catch(() => null); o.hours = hrs; if (hrs === wantHours) break;
     const btn = d.locator(Number(hrs) > Number(wantHours) ? '[data-test-id="button_drop_single_day_decrement"]' : '[data-test-id="button_drop_single_day_increment"]').first(); if (!(await btn.count()) || await btn.isDisabled()) { o.stepperStopped = `at ${hrs}h`; break; } await btn.click(); await p.waitForTimeout(250); }
   await shot(p, `sched2-${w.number}-dialog`); const create = d.locator('button').filter({ hasText: /Create/ }).last(); o.createLabel = (await create.innerText().catch(() => null))?.replace(/\s+/g, ' '); await create.click().catch(() => {}); await p.waitForTimeout(3500); o.toasts = await toastsOn(p); o.dialogAfterCreate = await d.isVisible().catch(() => false); await shot(p, `sched2-${w.number}-created`); o.laneBlocksBeforeReload = (await p.locator(`[data-staff-id="${staff}"] [data-test-id="schedule_shift_block"]`).allInnerTexts().catch(() => [])).map((y) => y.replace(/\s+/g, ' ').slice(0, 90));
-  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); await workingDay(staff);
+  p.off('response', hr); o.savePosted = posted;
+  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); o.rangeAfterReload = await goRange(o.range); await laneOf(staff);
   /* FIX 5: the Schedule's own data says where the shift landed; the block is found on the grid by its customer text */
   o.boardShifts = await shiftsOf(w);
   o.shifts = []; const blocks = await gridBlocks(w); o.rowBlocks = blocks;
@@ -256,13 +264,18 @@ async function schedDrop2(w: any, staff: string, hourLabel: RegExp, choose: stri
   o.details = o.shifts[0]?.details ?? null;
   return o; }
 
-await run('C368172', async () => { const w = await one('ZZAUTOTEST New Line Tech', ES, 1); const o: any = { wo: w.number };
+/** 15 Oct 2026: C368172's steps as a function, so C368173 can make the line it needs when it runs alone (ONLY=C368173) */
+async function setup172() { const w = await one('ZZAUTOTEST New Line Tech', ES, 1); const o: any = { wo: w.number };
   await page(w.id); await p.locator('[data-test-id="button_new_line"]').click(); await p.waitForTimeout(2500); const d = dlg();
   await d.locator('[data-test-id="select_line_canned_line"]').click(); await p.keyboard.type('ZZAUTOTEST Oil change zq', { delay: 30 }); for (let i = 0; i < 6 && !(await p.locator('.q-menu').filter({ hasText: /No results/i }).count()); i++) await p.waitForTimeout(700); o.noResults = await p.locator('.q-menu').filter({ hasText: /No results/i }).count(); await p.keyboard.press('Enter'); await p.waitForTimeout(1500); await closeLists(d);
   await d.locator('[data-test-id="input_time_estimate"]').fill('1'); o.rosterBefore = await roster(d); o.added = await rosterAdd(d, p, /Dana Ortiz/);   // FIX 4: the case only adds Dana; nobody is removed
     await closeLists(d); o.roster = await roster(d); await shot(p, 'C368172-form'); o.toasts = await save(d);
-  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.labor = await laborRows(); o.techs = await lineTechs(w.id); R.C368172 = o; R.w172 = w; });
-await run('C368173', async () => { const w = R.w172; const o: any = {}; if (!w) { R.C368173 = { err: 'needs C368172' }; return; }
+  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.labor = await laborRows(); o.techs = await lineTechs(w.id); R.w172 = w; return o; }
+await run('C368172', async () => { R.C368172 = await setup172(); });
+await run('C368173', async () => { let w = R.w172; const o: any = {};
+  // 15 Oct 2026 (staging second pass): stopped at once when run alone — it needed C368172's line. It now makes it (C368172's steps,
+  // setup172: a new line "ZZAUTOTEST Oil change …" with Dana Ortiz added on screen), then does its own steps.
+  if (!w) { o.setupFrom172 = await setup172(); w = R.w172; }
   await page(w.id); await p.getByText('ZZAUTOTEST Oil change', { exact: false }).first().click(); await p.waitForTimeout(2500); const d = dlg(); o.rosterBefore = await roster(d); o.removed = await rosterRemoveF(d, DO.staff_id); o.added = await rosterAdd(d, p, /Ralph Edwards/); await closeLists(d); o.roster = await roster(d); o.toasts = await save(d);
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.labor = await laborRows(); o.techs = await lineTechs(w.id); R.C368173 = o; });
 await run('C368174', async () => { const w = await one('ZZAUTOTEST Lines Tab Assign', ES, 2); const o: any = { wo: w.number, attempts: [] };
@@ -284,13 +297,21 @@ await run('C368177', async () => { const w = await one('ZZAUTOTEST Move Labor', 
   } finally { await v.close(); }
   await page(w.id); await p.locator('[data-test-id="button_work_order_nav_bar_menu"]').click(); await p.waitForTimeout(800); await p.locator('.q-menu .q-item').filter({ hasText: /Timesheets/ }).first().click(); await p.waitForTimeout(3500);
   const row = p.locator('tr').filter({ hasText: /Esther/ }).first(); o.row = (await row.innerText().catch(() => '')).replace(/\s+/g, ' '); o.rowButtons = await row.evaluate((r: any) => [...r.querySelectorAll('button')].map((b: any) => (b.getAttribute('data-test-id') || '') + '|' + (b.getAttribute('aria-label') || '') + '|' + b.innerText.trim())).catch(() => []);
-  const pen = row.locator('button').filter({ has: p.locator('i', { hasText: /edit/ }) }).first(); await (await pen.count() ? pen : row.locator('button').last()).click().catch(() => {}); await p.waitForTimeout(2000); const e = dlg(); o.editTitle = (await e.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 200); await shot(p, 'C368177-edit');
-  const lf = e.locator('.q-field').filter({ has: p.locator('.q-field__label', { hasText: /^Line/ }) }).first(); if (await lf.count()) { await lf.click(); await p.waitForTimeout(800); o.lineOptions = (await p.locator('.q-menu .q-item').allInnerTexts()).map((x) => x.replace(/\s+/g, ' ')).slice(0, 6); await p.locator('.q-menu .q-item').filter({ hasText: /^\s*2\b/ }).first().click().catch(async () => { await p.locator('.q-menu .q-item').nth(1).click(); }); await p.waitForTimeout(700); await closeLists(e);
-    await e.locator('button').filter({ hasText: /^\s*Save\s*$/ }).last().click(); await p.waitForTimeout(3000); o.toasts = await toastsOn(p); }
+  // 15 Oct 2026 (staging second pass): the Edit Timesheet window was never found — the row's own pencil (button_edit_timesheet) is
+  // drawn only while the pointer is over the row. Route walked on screen and proven in high1-fix7 / prod-timesheet-check.mjs: hover the
+  // row, click its button_edit_timesheet, wait for the window, Line = the option for line 2, Save, answer "Confirm Overwrite" if asked.
+  await row.hover().catch(() => {}); await p.waitForTimeout(800); const eb = row.locator('[data-test-id="button_edit_timesheet"]').first(); o.editVisibleOnHover = await eb.isVisible().catch(() => null);
+  await eb.click({ timeout: 10_000 }).catch(async (x) => { o.editClick = String(x).slice(0, 80); });
+  const e = dlg(); for (let k = 0; k < 12 && !(await e.isVisible().catch(() => false)); k++) await p.waitForTimeout(1000); o.editTitle = (await e.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 200); await shot(p, 'C368177-edit');
+  const lf = e.locator('.q-field').filter({ has: p.locator('.q-field__label', { hasText: /^Line/ }) }).first(); o.lineField = await lf.count();
+  if (o.lineField) { await lf.click(); await p.waitForTimeout(800); o.lineOptions = (await p.locator('.q-menu .q-item').allInnerTexts()).map((x) => x.replace(/\s+/g, ' ')).slice(0, 6);
+    await p.locator('.q-menu .q-item').filter({ hasText: /(^|\s)2\s+\S/ }).first().click().catch(async () => { await p.locator('.q-menu .q-item').nth(1).click(); }); await p.waitForTimeout(700); await closeLists(e); await shot(p, 'C368177-edit-line2');
+    await e.locator('button').filter({ hasText: /^\s*Save\s*$/ }).last().click(); await p.waitForTimeout(2500); o.toasts = await toastsOn(p);
+    const cf = p.locator('.q-dialog').filter({ hasText: /Confirm Overwrite/ }).last(); if (await cf.count()) { o.overwrite = (await cf.innerText()).replace(/\s+/g, ' ').slice(0, 300); await cf.locator('button').filter({ hasText: /^\s*Confirm\s*$/ }).last().click(); await p.waitForTimeout(3000); o.confirmToasts = await toastsOn(p); } }
   await page(w.id); o.labor = await laborRows(); o.techs = await lineTechs(w.id); R.C368177 = o; });
 await run('C368178', async () => { const w = await one('ZZAUTOTEST Sched Entire', ES, 2); const o: any = { wo: w.number, estimate: await setEstimate(w, 1, '2') }; Object.assign(o, await schedDrop2(w, ES.staff_id, /^\s*9\s*(AM|am|:00)/, null)); R.C368178 = o; });
-await run('C368179', async () => { const w = await one('ZZAUTOTEST Sched Lines', ES, 2); const o: any = { wo: w.number, line1: lineName(1), estimate: await setEstimate(w, 1, '2') }; Object.assign(o, await schedDrop2(w, ES.staff_id, /^\s*1\s*(PM|pm)|^\s*13(:00)?\s*$/, lineName(1))); R.C368179 = o; });
-await run('C368192', async () => { const w = await one('ZZAUTOTEST Sched Phone', null, 2); const o: any = { wo: w.number }; await setEstimate(w, 1, '1'); o.setup = await schedDrop2(w, JW.staff_id, /^\s*10\s*(AM|am|:00)/, lineName(1), '1'); R.w190 = w;
+await run('C368179', async () => { const w = await one('ZZAUTOTEST Sched Lines', ES, 2); const o: any = { wo: w.number, line1: lineName(1), estimate: await setEstimate(w, 1, '2') }; Object.assign(o, await schedDrop2(w, ES.staff_id, /^\s*1\s*PM/, lineName(1)) /* 15 Oct 2026: "13" matched the mini-calendar's date, not the 1 PM heading */); R.C368179 = o; });
+await run('C368192', async () => { const w = await one('ZZAUTOTEST Sched Phone', null, 2); const o: any = { wo: w.number }; await setEstimate(w, 1, '1'); o.setup = await schedDrop2(w, JW.staff_id, /^\s*10\s*(AM|am|:00)/, lineName(1), '1'); R.w190 = w; R.range190 = o.setup.range;
   await page(w.id); o.desktopLabor = await laborRows(); await p.setViewportSize({ width: 390, height: 844 }); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000);
   const exp = p.locator(`[data-test-id="button_line_expand_${w.ls[0]}"]`); o.expand = await exp.count(); if (!o.expand) o.expandButtons = await p.evaluate(`[...document.querySelectorAll('button')].map(b => (b.getAttribute('data-test-id') || '') + '|' + (b.getAttribute('aria-label') || '') + '|' + b.innerText.trim()).filter(x => /expand|more/i.test(x)).slice(0, 10)`);
   await (o.expand ? exp : p.locator('button[aria-label*="Expand" i], button:has(i:text-is("expand_more"))').first()).click().catch(() => {}); await p.waitForTimeout(1500);
@@ -302,8 +323,12 @@ async function openOurShift(w: any, staff: string) { const lane = p.locator(`[da
   const blocks = await p.evaluate(`(() => { const top = ${lb.y}, bot = ${lb.y + lb.height}; return [...document.querySelectorAll('[class*="shift"], [class*="event"], [data-test-id*="shift"]')].map(e => e.getBoundingClientRect()).filter(b => b.height > 20 && b.width > 30 && b.height < 200 && (b.y + b.height / 2) > top && (b.y + b.height / 2) < bot).map(b => [Math.round(b.x), Math.round(b.y), Math.round(b.width)]); })()`) as number[][];
   for (const [x, y, wd] of blocks.slice(0, 10)) { await p.mouse.click(x + Math.min(20, wd / 2), y + 12); await p.waitForTimeout(1500); const det = (await p.locator('.q-dialog, .q-menu, [role=dialog]').last().innerText().catch(() => '')); if (det.includes(w.number)) return 1; await p.keyboard.press('Escape'); await p.waitForTimeout(400); }
   return 0; }
-await run('C368190', async () => { const w = R.w190; const o: any = {}; if (!w) { R.C368190 = { err: 'needs C368192 setup' }; return; }
-  await page(w.id); o.step1 = await laborRows(); await p.goto(`${APP}/schedule`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); o.range = await workingDay(JW.staff_id);
+await run('C368190', async () => { let w = R.w190; const o: any = {};
+  // 15 Oct 2026 (staging second pass): stopped at once when run alone — it needed C368192's set-up. It now makes its own: a work order
+  // with no lead, one line with a 1-hour estimate, dropped on Jenny Wilson's Schedule row under 10 AM with only that line chosen
+  // (the same schedDrop2 drop); then the Schedule is opened on that exact day (goRange).
+  if (!w) { w = await one('ZZAUTOTEST Sched Delete Line', null, 2); await setEstimate(w, 1, '1'); o.setup = await schedDrop2(w, JW.staff_id, /^\s*10\s*(AM|am|:00)/, lineName(1), '1'); R.range190 = o.setup.range; o.wo = w.number; }
+  await page(w.id); o.step1 = await laborRows(); await p.goto(`${APP}/schedule`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); o.range = (await goRange(R.range190 ?? null)) ?? await workingDay(JW.staff_id); await laneOf(JW.staff_id);
   o.boardShifts = await shiftsOf(w); o.shift = 0;
   for (const bl of (await gridBlocks(w)).slice(0, 6)) { await p.mouse.click(bl.x + 20, bl.y + 10); await p.waitForTimeout(1500); if ((await p.locator('.q-dialog, .q-menu, [role=dialog]').last().innerText().catch(() => '')).includes(w.number)) { o.shift = 1; break; } await p.keyboard.press('Escape'); await p.waitForTimeout(400); }   /* FIX 5: block found by its text */
   o.detailButtons = await p.evaluate(`[...document.querySelectorAll('.q-dialog button, .q-menu button, [role=dialog] button')].map(b => (b.getAttribute('data-test-id') || '') + '|' + (b.getAttribute('aria-label') || '') + '|' + b.innerText.trim()).slice(0, 12)`);
@@ -337,7 +362,14 @@ await run('C368191', async () => { const o: any = {}; const w = await one('ZZAUT
   await page(w.id); o.laborBefore = await laborRows();
   const del = async () => p.evaluate(async ([api, id]) => { const r = await fetch(`${api}/api/staff/${id}`, { method: 'DELETE', credentials: 'include' }); return `${r.status} ${(await r.text()).slice(0, 120)}`; }, [(await import('./profile.mts')).API, gone.staff_id]);
   o.del1 = await del();
-  if (!/^2/.test(o.del1)) { o.deactivate = say(await a.post('/api/iam/change-status', { user_id: gone.id, status: 'inactive' })); o.del2 = await del(); }
+  // 15 Oct 2026: the deactivation body is {id: <user id>} (playbook; {user_id, status} answered "id Missing required parameter")
+  if (!/^2/.test(o.del1)) { o.deactivate = say(await a.post('/api/iam/change-status', { id: gone.id })); o.del2 = await del(); }
+  // control (15 Oct 2026, wave 8c): a FRESH staff member who has never been used anywhere, deleted at once — does staging allow any
+  // deletion? The answer is recorded word for word; nothing is marked from it.
+  { const fresh = (await person(a, 'ZZAUTOTEST Never Used', `Tech ${RUNNO}`, { role: (await roleIds(a))['Technician'], email: `zz.wob.neverused.${RUNNO}@staging.shopview.local` })).row;
+    o.freshDeletable = fresh?.deletable ?? null;
+    o.freshDelete = fresh ? await p.evaluate(async ([api, id]) => { const r = await fetch(`${api}/api/staff/${id}`, { method: 'DELETE', credentials: 'include' }); return `${r.status} ${(await r.text()).slice(0, 160)}`; }, [(await import('./profile.mts')).API, fresh.staff_id]) : 'not made';
+    o.freshStillListed = (await staffRows(a, `zz.wob.neverused.${RUNNO}`)).length; }
   o.stillListed = (await staffRows(a, `zz.wob.gone2.${RUNNO}`)).length;
   await page(w.id); o.laborAfterDelete = await laborRows(); await shot(p, 'C368191-lines'); R.C368191 = o; });
 await a.put(PREF, { value: ORIGINAL }); R.restored = true;

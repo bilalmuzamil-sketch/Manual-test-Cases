@@ -15,9 +15,9 @@ import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
-import { staffRows, person, roleIds, HEAVY } from './staff.mts';
+import { staffRows, person, roleIds, HEAVY, LETH } from './staff.mts';
 import { viewAs } from './viewas.mts';
-import { candidates } from './data.mts';
+import { candidates, setRequireReview } from './data.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -188,9 +188,24 @@ await run('C97030', async () => {
 await run('C97032', async () => {
   await pins([ANA.staff_id]);
   const cben = (await person(a, 'ZZAUTOTEST F3 Count Ben', 'Bravo', { role: TECH_ROLE, email: `zz.wob.countben.${stamp}${D}`, clockable: true })).row; const B = { staff_id: cben.staff_id };
-  const s = await mkSet('ZZAUTOTEST F3 Open Count', [{ co: 'Approved Co', lead: B }, { co: 'Progress Co', lead: B, status: 'in_progress' }, { co: 'Review Co', lead: B, status: 'ready_for_review' }, { co: 'Complete Co', lead: B, status: 'complete' }, { co: 'Estimate Co', lead: B, status: 'estimate' }, { co: 'Invoiced Co', lead: B, status: 'invoiced' }, { co: 'Paid Co', lead: B, status: 'paid' }, { co: 'Declined Co', lead: B, status: 'declined' }, { co: 'Line Only Co', lead: ANA }, { co: 'Spare Co', lead: ANA }]);
+  // 15 Oct 2026 (staging second pass): "Review Co" ended Complete (staging's "Require Review Before Completion" is OFF, so completing
+  // its line skipped Review) and the Loc2 Co work order at the other location was never made. Now the setting is switched ON only
+  // while this case's work orders are made (put back in finally; it affects only work completed later), Review Co is read back
+  // (Ready for Review asked for again if needed), and Ben is enrolled at Staging Lethbridge - 4310 with one Approved work order
+  // there (made through the server-side location, then back to Heavy Duty).
+  const rrv = await setRequireReview(a, true); let s: any;
+  try { s = await mkSet('ZZAUTOTEST F3 Open Count', [{ co: 'Approved Co', lead: B }, { co: 'Progress Co', lead: B, status: 'in_progress' }, { co: 'Review Co', lead: B, status: 'ready_for_review' }, { co: 'Complete Co', lead: B, status: 'complete' }, { co: 'Estimate Co', lead: B, status: 'estimate' }, { co: 'Invoiced Co', lead: B, status: 'invoiced' }, { co: 'Paid Co', lead: B, status: 'paid' }, { co: 'Declined Co', lead: B, status: 'declined' }, { co: 'Line Only Co', lead: ANA }, { co: 'Spare Co', lead: ANA }]);
+  } finally { (globalThis as any).__rr97032 = { on: rrv, back: await setRequireReview(a, !!rrv.before) }; }
+  { const rv = (await workOrders(a, s.q)).find((x: any) => x.id === s.w['Review Co'].id); if (rv?.status !== 'ready_for_review') (globalThis as any).__rv97032 = `Review Co was ${rv?.status}; ready_for_review ${say(await a.post('/api/work-orders/change-status', { id: s.w['Review Co'].id, work_order: s.w['Review Co'].id, status: 'ready_for_review' }))}`; }
+  const loc2: any = {}; { const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
+    loc2.enrol = say(await a.post('/api/staff/enrollment/create', { staffId: cben.staff_id, workplaceId: LETH, departmentId: svc?.id }));
+    try { await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }); const n2 = `ZZAUTOTEST F3 Open Count Loc2 Co ${RUNNO}`;
+      const w2 = await workOrder(a, await customer(a, n2, 'ZZF3OC2'), 'estimate', null); await mkLine(w2, 1); loc2.approved = say(await a.post('/api/work-orders/change-status', { id: w2, status: 'approved' })); loc2.lead = say(await a.post('/api/work-orders/change-lead-technician', { work_order_id: w2, tech_assigned_id: cben.staff_id }));
+      const r2 = (await workOrders(a, n2))[0]; loc2.wo = r2 ? `${r2.number} ${r2.status} lead=${r2.techAssignedFirstName ?? '-'}` : 'not found'; }
+    catch (e: any) { loc2.error = String(e?.message || e).slice(0, 160); }
+    finally { await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); } }
   const lo = (await linesRaw(s.w['Line Only Co'].id))[0]; if (lo) await a.put(`/api/work-orders/lines/${lo.line_id}/technicians`, { staffIds: [cben.staff_id] });
-  const o: any = { statuses: Object.fromEntries((await workOrders(a, s.q)).map((w: any) => [nameOf(s)(w.number), w.status])) };
+  const o: any = { requireReview: (globalThis as any).__rr97032, reviewFix: (globalThis as any).__rv97032 ?? null, loc2, statuses: Object.fromEntries((await workOrders(a, s.q)).map((w: any) => [nameOf(s)(w.number), w.status])) }; R.C97032 = o;
   const readCount = async (from: string) => { const mm = await openReassign(p, (s.w as any)[from]?.id ?? from); await mm.item.click(); await p.waitForTimeout(1200); await p.locator('[data-test-id="input_reassign_lead_search"]').fill('Count Ben'); await p.waitForTimeout(1200);
     const c = await p.locator(`[data-test-id="text_lead_technician_open_count_${cben.staff_id}"]`).innerText().catch(() => null); await p.locator('[data-test-id="button_cancel_reassign_lead_technician"]').click(); await p.waitForTimeout(800); return c; };
   await goP(p, 'Board View', s.q); await p.waitForSelector('[data-test-id="board_view_scroller"]', { timeout: 20000 }).catch(() => {}); o.boardReady = await p.locator('[data-test-id="board_view_scroller"]').count(); o.step5 = await readCount('Spare Co');

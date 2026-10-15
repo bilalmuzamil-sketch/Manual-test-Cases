@@ -14,7 +14,7 @@ import { api, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, switchLocUI } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
-import { candidates } from './data.mts';
+import { candidates, setRequireReview } from './data.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -203,18 +203,31 @@ await run('C368200', async () => { const s = await mkSet('ZZAUTOTEST Row Toggle'
   const o: any = { before: await here() }; const tr = p.locator('tbody tr').filter({ hasText: s.w['One Co'].number });
   await tr.locator('[data-test-id="button_vehicle_here_toggle"]').first().click(); await p.waitForTimeout(2500); o.url = p.url().replace(APP, ''); o.after = await here(); R.C368200 = o; });
 
-await run('C368201', async () => { const s = await mkSet('ZZAUTOTEST Back Status', [{ co: 'One Co', lead: ANA }]); await goList(p, s.q); const num = s.w['One Co'].number; const o: any = {};
-  await p.locator('tbody tr').filter({ hasText: num }).locator('td').nth(2).click(); await p.waitForTimeout(5000); o.opened = p.url().replace(APP, '');
-  // to Review the way the page does it: complete the line (tech story + mileage), the work order goes to review
-  const w = s.w['One Co'].id; await a.post('/api/work-orders/change-mileage', { work_order_id: w, mileage: '123456' });
-  for (const l of await linesRaw(w)) { for (const q of (l.part_requests ?? [])) await a.post(`/api/work-orders/part/remove-request/${q.id ?? q.part_request_id}`, {}); await a.post('/api/work-orders/lines/change-story', { line_id: l.line_id, tech_story: 'Done', work_order_id: w }); }
-  const l = (await linesRaw(w))[0]; await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
-  await p.locator(`[data-test-id="button_action_complete_line_${l.line_id}"]`).click(); await p.waitForTimeout(2500); const dlg = p.locator('.q-dialog:visible');
-  o.dialog = (await dlg.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 200);
-  for (let i = 0; i < 3 && await dlg.count(); i++) { const b = dlg.locator('button').filter({ hasText: /Complete (All )?Line|Complete Line|Confirm/i }).last(); if (await b.count()) { await b.click(); await p.waitForTimeout(2500); } else break; }
-  o.toasts = await toasts(p); o.status = (await workOrders(a, s.q))[0]?.status;
-  await p.goBack(); await p.waitForTimeout(3500); o.backUrl = p.url().replace(APP, ''); o.rowStatus = await p.locator('tbody tr').filter({ hasText: num }).locator('td').nth(1).innerText().catch(() => null); await shot(p, 'C368201-back');
-  R.C368201 = o; });
+await run('C368201', async () => { const o: any = {}; R.C368201 = o;
+  // 15 Oct 2026 (staging second pass): completing the line took the work order straight to Complete — staging's organisation setting
+  // "Require Review Before Completion" is OFF, so Review was never reached. It is switched ON for this check only (put back in finally,
+  // data.mts setRequireReview); the line is the case's ready-made "Service - Full grease service" (no parts) when the list has it.
+  o.requireReview = await setRequireReview(a, true);
+  try {
+    const n = `ZZAUTOTEST Back Status ${RUNNO}`; const c = await customer(a, n, 'TRK-118'); const w = await workOrder(a, c, 'estimate', null);
+    const gi = canned.findIndex((x: any) => /Full grease service/i.test(String(x.canned_line_name ?? x.name ?? ''))); o.line = gi >= 0 ? 'Service - Full grease service' : 'first ready-made line (grease service not in the list)';
+    await mkLine(w, gi >= 0 ? gi : 1); await a.post('/api/work-orders/change-status', { id: w, status: 'approved' }); await a.post('/api/work-orders/change-lead-technician', { work_order_id: w, tech_assigned_id: ANA.staff_id });
+    const num = (await workOrders(a, n))[0]?.number; o.wo = num; await goList(p, n);
+    await p.locator('tbody tr').filter({ hasText: num }).locator('td').nth(2).click(); await p.waitForTimeout(5000); o.opened = p.url().replace(APP, '');
+    for (const l of await linesRaw(w)) for (const q of (l.part_requests ?? [])) await a.post(`/api/work-orders/part/remove-request/${q.id ?? q.part_request_id}`, {});
+    const l = (await linesRaw(w))[0]; await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
+    // on screen: Complete on the line > Tech Story > Missing Details (mileage) > Complete Line
+    await p.locator(`[data-test-id="button_action_complete_line_${l.line_id}"]`).click(); await p.waitForTimeout(2500); const dlg = p.locator('.q-dialog:visible').last();
+    o.dialog = (await dlg.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 300);
+    const story = dlg.locator('textarea').first(); if (await story.count()) { await story.click(); await story.fill('Done'); }
+    const md = dlg.getByText(/Missing Details/i).first(); if (await md.count()) { await md.click().catch(() => {}); await p.waitForTimeout(1000); const mi = p.locator('.q-dialog:visible input').filter({ hasNot: p.locator('[type=checkbox]') }).last(); await mi.fill('123456').catch(() => {}); }
+    const seen = new Set<string>();
+    for (let i = 0; i < 4 && await p.locator('.q-dialog:visible').count(); i++) { const d2 = p.locator('.q-dialog:visible').last(); const bt = d2.locator('button').filter({ hasText: /Complete( All)? Line|Complete & Send|Send to Review|Complete|Confirm|Next/i }).last(); if (!(await bt.count())) break; o['click' + i] = (await bt.innerText().catch(() => '')).replace(/\s+/g, ' '); await bt.click(); await p.waitForTimeout(2000); for (const x of await toasts(p)) seen.add(x); }
+    for (let i = 0; i < 4; i++) { for (const x of await toasts(p)) seen.add(x); await p.waitForTimeout(700); }
+    o.toasts = [...seen]; o.status = (await workOrders(a, n))[0]?.status; o.pageStatus = await p.evaluate(`(document.body.innerText.match(/\\b(Review|Ready For Review|Complete|In Progress|Approved)\\b/) || [null])[0]`); await shot(p, 'C368201-sent-to-review');
+    await p.goBack(); await p.waitForTimeout(3500); o.backUrl = p.url().replace(APP, ''); o.rowStatus = await p.locator('tbody tr').filter({ hasText: num }).locator('td').nth(1).innerText().catch(() => null); await shot(p, 'C368201-back');
+  } finally { o.requireReviewBack = await setRequireReview(a, !!o.requireReview?.before); }
+});
 
 await run('C368203', async () => { await goList(p); await p.goto(APP + '/workorders?tab=estimate&assigned_to_me=1', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); R.C368203 = { tab: await activeTabName(), assigned: await assignedOn(), url: p.url().replace(APP, '') }; await shot(p, 'C368203'); });
 await run('C368204', async () => { await goList(p); const saved = { tab: await activeTabName(), assigned: await assignedOn() };
@@ -250,7 +263,18 @@ const cardNums = () => p.evaluate(`[...new Set((document.querySelector('main, .q
 await run('C368209', async () => { await phone(); await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); const o: any = {};
   const sb = p.locator('[aria-label="Sort work orders"]').first(); o.sortButton = await sb.count(); if (o.sortButton) { await sb.click(); await p.waitForTimeout(900); o.options = await p.locator('.q-menu .q-item').allInnerTexts(); await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Customer A-Z/i }).first().click().catch(() => {}); await p.waitForTimeout(2500); }
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); if (o.sortButton) { await sb.click(); await p.waitForTimeout(900); o.ticked = await p.evaluate(`[...document.querySelectorAll('.q-menu .q-item')].filter(e => /check/.test(e.innerText) || e.classList.contains('q-item--active')).map(e => e.innerText.replace('check','').trim())`); await p.keyboard.press('Escape'); }
-  o.customers = await p.evaluate(`[...document.querySelectorAll('.q-card, [data-test-id*="card"]')].map(c => c.innerText.split('\\n').find(l => /[A-Za-z]{3}/.test(l) && !/^S\\d/.test(l)) || '').filter(Boolean).slice(0, 8)`); await shot(p, 'C368209-phone'); await desk(); R.C368209 = o; });
+  // 15 Oct 2026 (staging second pass): the customer was read as the first text line of each card, which is the On Site icon's
+  // name ("location_on"), and only the first screen was read. Now each card's customer is the first line that is not an icon name,
+  // a work order number, a status, a date or money, and the list is scrolled to collect the first 40 cards in order; the distinct
+  // customers in that order and whether they run A to Z are recorded, with a picture at the top and one further down.
+  await shot(p, 'C368209-phone');
+  const pick = `[...document.querySelectorAll('.q-card, [data-test-id*="card"]')].filter(c => c.getBoundingClientRect().height > 30).map(c => ({ k: (c.innerText.match(/[A-Z0-9]+-\\d+/) || [''])[0], cust: c.innerText.split('\\n').map(l => l.trim()).find(l => l.length > 2 && !/^[a-z_]+$/.test(l) && !/^[A-Z0-9]+-\\d+$/.test(l) && !/^(Estimate|Approved|In Progress|Review|Ready For Review|Complete|Invoiced|Paid|Declined|Imported|Today|Yesterday)$/i.test(l) && !/^\\$|^\\d+%$|^\\d{1,2}\\/\\d{1,2}/.test(l)) || '' }))`;
+  const cards: { k: string; cust: string }[] = []; const seenK = new Set<string>();
+  for (let i = 0; i < 8 && cards.length < 40; i++) { for (const c of (await p.evaluate(pick)) as any[]) if (c.k && !seenK.has(c.k)) { seenK.add(c.k); cards.push(c); }
+    await p.evaluate(`(() => { const s = [...document.querySelectorAll('*')].filter(e => e.scrollHeight > e.clientHeight + 50 && /auto|scroll/.test(getComputedStyle(e).overflowY)).pop(); const el = s || document.scrollingElement; el.scrollTop += 700; window.scrollBy(0, 700); })()`); await p.waitForTimeout(1500); if (i === 2) await shot(p, 'C368209-phone-further'); }
+  o.cards = cards.slice(0, 40).map((c) => c.cust); o.customersInOrder = cards.map((c) => c.cust).filter((x, i, arr) => x && arr.indexOf(x) === i).slice(0, 15);
+  o.aToZ = o.customersInOrder.every((x: string, i: number, arr: string[]) => i === 0 || arr[i - 1].localeCompare(x, 'en', { sensitivity: 'base' }) <= 0);
+  await desk(); R.C368209 = o; });
 await run('C368210', async () => { await phone(); await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await tab(p, 'All').catch(() => {}); await p.waitForTimeout(2500);
   const o: any = { before: (await cardNums()).length }; for (let i = 0; i < 6; i++) { await p.evaluate(`(() => { const s = [...document.querySelectorAll('*')].filter(e => e.scrollHeight > e.clientHeight + 50 && /auto|scroll/.test(getComputedStyle(e).overflowY)).pop(); (s || document.scrollingElement).scrollTop = 1e9; window.scrollTo(0, 1e9); })()`); await p.waitForTimeout(1500); }
   const after = await cardNums(); o.after = after.length; o.unique = new Set(after).size === after.length; await desk(); R.C368210 = o; });
@@ -262,8 +286,16 @@ await run('C368212', async () => { const o: any = {}; o.toLeth = say(await a.pos
   const s = await mkSet('ZZAUTOTEST Loc2 Customer', [{ co: 'WO', lead: null }]).catch((e) => { o.createError = String(e).slice(0, 160); return null as any; });
   o.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
   if (s) { const num = s.w['WO'].number; o.num = num; await goList(p, 'Loc2'); o.heavyLoc2 = (await rowsList()).includes(num); await search(p, num); o.heavyByNumber = (await rowsList()).includes(num);
-    if (process.env.WOB_LOC_SELECT) await switchLocUI(p, 'Lethbridge'); else await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }); await goList(p, 'Loc2'); o.lethLoc2 = (await rowsList()).includes(num); o.lethTopBar = await p.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`);
-    if (process.env.WOB_LOC_SELECT) await switchLocUI(p, 'Staging Heavy Duty'); else await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); }
+    // 15 Oct 2026 (staging second pass): the screen never switched to Lethbridge — the test admin was not enrolled there, so the
+    // location menu did not offer it. Enrol the runner at Lethbridge (Service), switch ON SCREEN (switchLocUI), read the top bar back
+    // before continuing (again after Work Orders opens, switching once more without a reload if it went back), then switch back.
+    { const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
+      o.enrolRunner = say(await a.post('/api/staff/enrollment/create', { staffId: RUN.staffId, workplaceId: LETH, departmentId: svc?.id })); }
+    const topBar = async () => p.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => '');
+    o.switched = await switchLocUI(p, 'Staging Lethbridge'); await goList(p, 'Loc2'); o.lethTopBar = await topBar();
+    if (!o.lethTopBar.includes('Lethbridge')) { o.switchedAgain = await switchLocUI(p, 'Staging Lethbridge'); await tab(p, 'All'); await search(p, 'Loc2'); o.lethTopBar = await topBar(); }
+    if (o.lethTopBar.includes('Lethbridge')) { o.lethLoc2 = (await rowsList()).includes(num); await shot(p, 'C368212-lethbridge'); } else o.lethLoc2 = 'not read: the screen did not switch';
+    o.backTopBar = await switchLocUI(p, 'Staging Heavy Duty'); }
   R.C368212 = o; });
 
 await run('C368214', async () => { const s = await mkSet('ZZAUTOTEST Back Forward', [{ co: 'One Co', lead: ANA }]); const num = s.w['One Co'].number; const o: any = {};
