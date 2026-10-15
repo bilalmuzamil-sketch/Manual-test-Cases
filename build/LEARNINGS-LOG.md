@@ -605,3 +605,14 @@ run started. #run #coverage #staging → L0342, L0349
 - **Clearing the saved preference reopens Unassigned:** a script that drops the saved "collapsed" choice to start from defaults has to close it again for technician-group work.
 - **A line technician set behind the screen may have no task for that person (C590114, also s5-batchC):** clock-in by task id is then impossible. Start the clock from the person's own window instead (Lines tab > the line's Start, `button_clock_toggle_task_…`), read the running clock back, and stop it in `finally`.
 - **A board card's "unit · asset" line needs a real year/make/model:** create the work orders first, then `POST /api/vehicles/change` with year and make/model ids borrowed from an existing vehicle (playbook §C). Read the asset back, and record whether the card shows it (playbook 055 saw cards not show make/model set this way).
+
+## L0361 — 2026-10-15 — A judge's "redo" list is not queued work until it is in the next pass's plan; a failure's story is the one its quotes cite most
+- **Redo is not queued work:** the design judge returned six "redo" verdicts (C590114, C590120, C590122, C590123, C590128,
+  C590129) with exact reasons, then finished. Nothing put them into a pass plan, so they would have been left out of the run
+  without anyone noticing. **Whoever receives a judge's report puts every redo into the next unstarted pass plan, with the
+  script fixed, in the same step as posting the passes.** It is checked at every check-in by the L0357 subtraction.
+- **Which story a Failed design result goes under:** these cases have no refs field. Count the `S<n>-R<m>` requirement ids
+  quoted in the case's Expected, and the most-quoted story owns it. Override this only where the behaviour plainly belongs to
+  another story (grip handles → the drag story SV-10052; card hover in Board View → SV-10046). Story keys for epic SV-10043:
+  S1–S9 = SV-10044 … SV-10052 in order, S10 = SV-10053 (OBSOLETE), S11 = SV-10054. Read every status live before naming it in a
+  result (all Ready for QA on 15 Oct 06:00). #judge #redo #tickets → L0357

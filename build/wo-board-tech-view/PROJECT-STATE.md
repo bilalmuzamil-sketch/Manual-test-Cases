@@ -105,3 +105,11 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
 - judged from existing third-pass readings: C368193, C368194, C368195, C368198, C368200, C368210, C368213, C368214;
 - never run on staging: C154650, C368175 (need a second organisation), C97026, C97033, C97034 (analytics);
 - new cases from the QA lead, 14 Oct 21:59, section 13236: C581915, C581916, C581917, C581918.
+
+### 15 Oct 06:05 UTC — design results posted; report draft
+- Batch 12 (design section 73780): Passed C590126 C590131; Failed (tickets held, story read live, Ready for QA) C590110 C590111
+  C590112 C590113 C590115 C590116 C590117 C590118 C590119 C590121 C590124 C590127 C590130; redo queued in the sixth pass
+  C590114 C590120 C590122 C590123 C590128 C590129; C590125 Dark theme has no expected result (PO question W-15).
+- Batch 13: Passed C368193 C368194 C368200 C368214 (wave 14). C368210, C368213 pictures re-captured in the sixth pass.
+- Story keys: S1–S9 = SV-10044…SV-10052, S10 = SV-10053 (OBSOLETE), S11 = SV-10054.
+- Report draft for the QA lead: `run498-2026-10-08/REPORT-staging-2026-10-15.md` (plain_check clean), finished when passes 5–6 end.
