@@ -191,7 +191,8 @@ const fieldIds = async (pg: Page) => pg.evaluate(`[...document.querySelectorAll(
 const fieldsMenu = async (pg: Page) => { await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900); };
 const toggle = async (pg: Page, re: RegExp) => { const ids = await fieldIds(pg); const k = ids.map((x) => x.split('=')[0]).find((x) => re.test(x)); if (!k) return `no field ${re}`; await pg.locator(`[data-test-id="toggle_board_field_${k}"]`).click(); await pg.waitForTimeout(1500); return k; };
 const user = async (key: string, role = ADMIN_ROLE) => { if (!U[key]) { const u = await fresh(key, role); U[key] = { id: u.id, name: `ZZAUTOTEST GA ${key} ${stamp}`, email: u.email }; fs.writeFileSync(UF, JSON.stringify(U, null, 1)); } return U[key]; };
-const log = (key: string, ev: any[]) => { U[key].uid = U[key].uid ?? ev.find((e) => e.uid)?.uid ?? null; (U[key].events ??= []).push(...ev.filter(WO).map((e) => `${new Date(e.t).toISOString().slice(0, 16)} ${brief(e)}`)); fs.writeFileSync(UF, JSON.stringify(U, null, 1)); };
+// 15 Oct 2026 (wave 23): keep EVERY user id seen on this user's events (uids), so "each user keeps the same uid on every event" is read, not assumed
+const log = (key: string, ev: any[]) => { U[key].uid = U[key].uid ?? ev.find((e) => e.uid)?.uid ?? null; U[key].uids = [...new Set([...(U[key].uids ?? []), ...ev.filter(WO).map((e) => e.uid ?? 'none')])]; (U[key].events ??= []).push(...ev.filter(WO).map((e) => `${new Date(e.t).toISOString().slice(0, 16)} ${brief(e)}`)); fs.writeFileSync(UF, JSON.stringify(U, null, 1)); };
 if (PHASES.includes('day1')) {
   // C97033 day 1 — U1 turns VIN/Serial on, off, on
   { const u = await user('FS1'); await withUser(u, async (pg, ev) => { await openWO(pg); await display(pg, 'Board View'); await settle(pg, 4000); await fieldsMenu(pg); R.fs1fields = await fieldIds(pg);
@@ -230,6 +231,6 @@ if (PHASES.includes('c97026')) {
   fs.writeFileSync(path.join(path.dirname(UF), 'c97026-raw-events.json'), JSON.stringify(raw, null, 1));
   R.c97026 = { newbie: raw.newbie.map(brief), disp: raw.disp.map(brief), uids: [raw.newbie[0]?.uid, raw.disp[0]?.uid] };
 }
-R.users = Object.fromEntries(Object.entries(U).map(([k, v]: any) => [k, { name: v.name, uid: v.uid, events: (v.events ?? []).length }]));
+R.users = Object.fromEntries(Object.entries(U).map(([k, v]: any) => [k, { name: v.name, uid: v.uid, uids: v.uids ?? null, events: (v.events ?? []).length }]));
 fs.writeFileSync(path.join(path.dirname(UF), `ga-week-${PHASES.join('-')}.json`), JSON.stringify(R, null, 1)); console.log('GAWEEK', JSON.stringify(R).slice(0, 3000));
 await browser.close(); process.exit(0);

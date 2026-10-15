@@ -84,7 +84,18 @@ async function toggleOption(name: RegExp) {
   return { done: false };
 }
 const ticked = () => p.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); if (!m) return null; return [...m.querySelectorAll('.q-item, .q-checkbox')].filter(e => e.querySelector('[aria-checked="true"], .q-checkbox__inner--truthy') || e.getAttribute('aria-checked') === 'true' || e.getAttribute('aria-selected') === 'true').map(e => e.innerText.replace(/\\s+/g, ' ').trim()); })()`) as Promise<string[] | null>;
-async function clickOutside() { await p.mouse.click(40, 140); await W(900); if (await p.locator('.q-menu').count()) { await p.keyboard.press('Escape'); await W(700); return 'clicked outside, then Escape (list was still open)'; } return 'clicked outside'; }
+// 15 Oct 2026 (wave 23, sixth pass): the fixed point (40, 140) landed on "Create Work Order" once the search text widened the toolbar and
+// the button wrapped to a second row, so a New Work Order window opened and every later click timed out behind it. Now the click goes to
+// the first candidate point whose element is NOT a button, link, field, tab, header cell or card (checked with elementFromPoint), and a
+// window that opened anyway is closed and recorded.
+async function clickOutside() {
+  const pt = await p.evaluate(`(() => { const bad = 'button, a, input, textarea, [role=button], [role=tab], th, .q-btn, .q-field, .q-tab, [data-test-id^="board_card_"], [data-test-id^="tech_view_row_"], .q-menu';
+    for (const [x, y] of [[1100, 95], [900, 95], [700, 95], [1400, 230], [40, 230], [800, 600]]) { const e = document.elementFromPoint(x, y); if (e && !e.closest(bad)) return [x, y]; } return null; })()`).catch(() => null) as number[] | null;
+  if (pt) await p.mouse.click(pt[0], pt[1]); else await p.keyboard.press('Escape'); await W(900);
+  let how = pt ? `clicked outside at ${pt[0]},${pt[1]}` : 'Escape (no safe empty spot found)';
+  if (await p.locator('.q-menu').count()) { await p.keyboard.press('Escape'); await W(700); how += ', then Escape (list was still open)'; }
+  if (await p.locator('.q-dialog').count()) { await p.keyboard.press('Escape'); await W(700); how += ', a window had opened and was closed'; }
+  return how; }
 const emptyState = () => p.evaluate(`(() => { const t = (document.querySelector('main, .q-page') || document.body).innerText.replace(/\\s+/g, ' '); const m = t.match(/No work orders match[^.]*\\.?[^.]*\\.?/); return { message: m ? m[0].slice(0, 160) : null, hint: /Try removing a filter to widen your results\\./.test(t), clearAll: [...document.querySelectorAll('button, .q-btn')].some(b => /Clear all filters/i.test(b.innerText)) }; })()`);
 const listRows = () => p.evaluate(`[...document.querySelectorAll('tbody tr')].map(r => (r.innerText.match(/\\bS\\d+-\\d+\\b/) || [])[0]).filter(Boolean)`) as Promise<string[]>;
 /** every Tech View group header in screen order (the table is walked top to bottom; the virtual list draws only what is on screen) */

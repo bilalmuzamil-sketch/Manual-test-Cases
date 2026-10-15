@@ -59,7 +59,7 @@ How the stores divide (each fact lives in ONE place; this map and `recall.py` fi
 | keyboard focus / tab order | `run498-2026-10-08/kbd-batch.mts`, `probe-kbd.mts` (roving focus: one tabindex per board) |
 | an offline / failed-save alert | L0317 (QA branch → sleep page; judge offline on staging); `s4-batchD.mts` (refused request instead) |
 | anything with times or time zones | Rule 125; L0312 (the harness shows UTC), L0313; `tz-match-check.mjs`; a two-day test: "different day" must hold in the zone the report uses (PKT midnight ≠ UTC midnight) |
-| Google Analytics events / reports | L0314; playbook "GOOGLE ANALYTICS CHECKS WITHOUT GOOGLE ANALYTICS"; `ga-week.mts` + `ga_calc.py`; by hand: `ruling-rewrites-2026-10-12/HOWTO.html` (F12 → Network → filter `collect`) |
+| Google Analytics events / reports | L0314, L0375 (keep every uid; day 2 = later Pakistan-time day; ga_calc.py <folder>); playbook "GOOGLE ANALYTICS CHECKS WITHOUT GOOGLE ANALYTICS"; `ga-week.mts` + `ga_calc.py`; by hand: `ruling-rewrites-2026-10-12/HOWTO.html` (F12 → Network → filter `collect`) |
 | report filters (Sales By Customer, Parts Velocity, Inventory Value) | `run498-2026-10-08/medium-batch.mts`, `prod-filters.mjs` (same clicks on production) |
 | Parts pages keeping a filter (Purchase Orders, Vendors, Vendor Invoices) | `parts-filter2.mts`; the filter is the Search box at the right of the page header |
 | whether something is a regression | Rule 121 (same on production ⇒ not a regression); `build/PROD-VS-STAGING-COMPARE-METHOD.md`; `run498-2026-10-08/prod-*.mjs` |

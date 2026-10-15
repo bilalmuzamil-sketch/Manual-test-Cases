@@ -3,9 +3,12 @@ own definitions (Confluence 845185030 v47, read 12 Oct 2026):
   S12-R4  weekly display usage by distinct users          S12-R11 density distribution
   S12-R10 field selection rate = distinct exposed users selecting / distinct users exposed to that available field
   S12-R7  unavailable financial fields excluded            S12-R13 repeated events from one user are not extra users
-Input: evidence/ga-week-2026-10-12/ga-week-users.json (one line per event: time, event, display, key, value, source)."""
+Input: evidence/ga-week-2026-10-12/ga-week-users.json (one line per event: time, event, display, key, value, source).
+15 Oct 2026: an optional first argument names another folder holding ga-week-users.json (e.g. the staging one,
+evidence/staging-full-2026-10-14/ga-week); with no argument it reads the QA-branch folder exactly as before."""
 import json, sys, collections
-U = json.load(open('evidence/ga-week-2026-10-12/ga-week-users.json'))
+DIR = sys.argv[1] if len(sys.argv) > 1 else 'evidence/ga-week-2026-10-12'
+U = json.load(open(DIR + '/ga-week-users.json'))
 def parse(line):
     p = line.split(); return {'en': p[1], 'display': p[2] if len(p) > 2 else '', 'key': p[3] if len(p) > 3 else '', 'val': p[4] if len(p) > 4 else '', 'src': p[5] if len(p) > 5 else ''}
 def evs(k): return [parse(l) for l in U.get(k, {}).get('events', [])]
@@ -38,4 +41,4 @@ def rate(field):
         if k in exposed and state: selecting.add(k)
     return {'exposed': sorted(exposed), 'selecting': sorted(selecting), 'rate': f'{len(selecting)} / {len(exposed)} = {100*len(selecting)/len(exposed):.1f}%' if exposed else 'n/a'}
 out['C97033'] = {'users_with_events': fs, 'vin': rate('vin'), 'total_price': rate('total_price')}
-json.dump(out, open('evidence/ga-week-2026-10-12/report-figures.json', 'w'), indent=1); print(json.dumps(out, indent=1))
+json.dump(out, open(DIR + '/report-figures.json', 'w'), indent=1); print(json.dumps(out, indent=1))

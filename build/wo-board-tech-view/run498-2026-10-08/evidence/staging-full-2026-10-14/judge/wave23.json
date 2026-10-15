@@ -1,0 +1,209 @@
+{
+ "results": {
+  "C97026": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (15 Oct 2026), by recording what the Work Orders page sent to Google Analytics, as the test describes.",
+    "Step 3, a brand-new user (ZZAUTOTEST GA NEWBIE 55967): every field and density event was sent as \"default\" (density Regular, default). All 16 events carry the same user id.",
+    "Step 5, a dispatcher (ZZAUTOTEST GA DISP 55967) who picked Comfortable on an earlier visit: on the next visit the density was sent as \"comfortable\" with \"saved\". The dispatcher's events carry one user id, the same on both visits.",
+    "Step 6: default and saved come out as separate groups: the new user under default, the dispatcher's density under saved, each with their own user id.",
+    "Fallback: not checked by hand.",
+    "The report page itself is built inside Google Analytics, outside ShopView, and was not looked at (QA lead's decision of 12 Oct 2026)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97026-ga-events-default-vs-saved.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C97034": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (15 Oct 2026, Thursday), all four users in the same week, by recording what each visit sent to Google Analytics and working out the figures with the PRD's rules (each user counted once).",
+    "U1 (ZZAUTOTEST GA WK1 55967) opened Work Orders 5 times in Board View and set Compact; U2 twice in Tech View and set Comfortable; U3 once and stayed on List; U4 once in Tech View and left Regular.",
+    "Weekly display use by different users: List 4, Tech View 2 (U2, U4), Board View 1 (U1). U1's five visits count as one user.",
+    "Density of the users who used Tech View or Board View: Compact 1 (U1), Comfortable 1 (U2), Regular 1 (U4), so 1 of 3 = 33.3% each. U3 (List only) is not in it.",
+    "Totals add up: 1 + 1 + 1 = 3 users in the density figures, and 4 different user ids in all.",
+    "The report page itself is built inside Google Analytics, outside ShopView, and was not looked at (QA lead's decision of 12 Oct 2026)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97034-ga-weekly-use-and-density.png"
+   ],
+   "not_observed": "The recording kept each user's id from their first event only, so it was not read event by event that every one of U1's five visits carried the same id (the figures use that one id per user). The same page, in the same run, sent one unchanged id on every event across two separate visits of another user (C97026's dispatcher). From 15 Oct the recording keeps every id seen.",
+   "todo": "None."
+  },
+  "C97033": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked until tomorrow: this test needs steps on two different days of the same week (it checks that two days are not averaged).",
+    "Day 1 is done on staging (15 Oct 2026, Thursday): U1 (ZZAUTOTEST GA FS1 55967) opened Board View, where VIN/Serial loaded off and Total price on, then turned VIN/Serial on, off and on again. U1 ends with VIN/Serial on; they count as one person.",
+    "The day-2 users ZZAUTOTEST GA FS2, FS3 and FS4 55967 were made today and have not signed in yet.",
+    "Day 2 runs on 16 Oct 2026 (Pakistan time). Passed if, after day 2, VIN/Serial comes out at 2 of 4 users = 50% (not 66.7%) and Total price at 2 of 3 = 66.7% (the user without financial data is left out)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97033-ga-day1.png"
+   ],
+   "not_observed": "Day 2 (U2, U3, U4) and the week's figures.",
+   "todo": "Day 2 on staging, on or after 16 Oct 2026 00:05 Pakistan time (15 Oct 19:05 UTC) and no later than Sunday 18 Oct 23:59 Pakistan time (18 Oct 18:59 UTC): plan line \"ga-week.mts | C97033 | PHASE=day2\" (same staging users file evidence/staging-full-2026-10-14/ga-week/ga-week-users.json; FS2 turns VIN/Serial on, FS3 turns Total price off, FS4 opens Board View with the role's See financial data turned off for the visit and put back). Then: python3 ga_calc.py evidence/staging-full-2026-10-14/ga-week (expect vin 2 / 4 = 50.0%, total_price 2 / 3 = 66.7%), check FS4 has no total_price field_load event and fs4fields offers no Total price, check finBack restored, check each user's \"uids\" holds one id, and make the picture with ga_readout_png.py. Do NOT run it before 19:05 UTC today: the same calendar day would void the test."
+  },
+  "C368195": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps, with a brand-new user with the Technician role who had never opened Work Orders.",
+    "As that user: Work Orders > List > All. Columns shown: On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Created On.",
+    "Column Selection: exactly five are off: Waiting On Parts, Invoiced Date, Days open, Parts and Returns. None of them is shown in the List.",
+    "Every other column the user is offered is on."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368195-new-technician-list-columns.png"
+   ],
+   "not_observed": "Total Price is neither shown nor offered in Column Selection for this Technician user (the Admin's List shows it). This is consistent with the role not seeing financial data, but the role's financial setting and the same user's List in production were not read in this pass. The Column Selection picture was taken with the menu already closed, so the five \"off\" switches are not in a picture (the reading comes from the menu itself).",
+   "todo": "None."
+  },
+  "C368198": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "X (S2-36113) was invoiced first and Y (S2-36114) about a minute later, both for ZZAUTOTEST Invoice Order 59138.",
+    "Work Orders > All, Status: Invoiced only, Invoiced Date turned on, Search \"ZZAUTOTEST Invoice Order\".",
+    "Every row reads Invoiced; the Invoiced Date column is sorted newest first and Y (S2-36114) is above X (S2-36113). The earlier pairs follow in the same order (S2-35896 above S2-35895, S2-35680 above S2-35679).",
+    "The Invoiced Date column shows \"Today\" for each row, so the exact times are not on screen; the order is the only thing the column tells apart."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368198-invoiced-only-newest-first.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368210": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (window 390 px wide, All tab).",
+    "Without scrolling: 30 work order cards (one page).",
+    "After scrolling to the bottom: 390 cards, no number repeated. More cards appeared only after the scroll."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368210-1-phone-first-page.png",
+    "evidence/staging-full-2026-10-14/annotated/C368210-2-phone-after-scroll.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368213": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Work order S2-36115 (\"ZZAUTOTEST WO Parts Counts 63540\", Approved) has two part requests (one ordered, received and then returned; one still Authorized To Order) and one return.",
+    "Work Orders > All > Search, Column Selection: Parts and Returns turned on. The S2-36115 row reads Parts 2 and Returns 1.",
+    "The work order's own records agree: 2 part requests, 1 return. The search shows only that work order, so nothing from other work orders or locations is added."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368213-list-parts-2-returns-1.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ },
+ "redo": {},
+ "failed": {
+  "C581915": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging (15 Oct 2026), following the test's own steps.",
+    "Step 4: Tech View's filter bar reads Search, Status, Assigned to me, Asset on Site. There is no Technician filter after Assigned to me (no Department, Customer or Service Advisor filter either, which is right).",
+    "Step 5 cannot be done: there is no Technician filter to click, so steps 5 to 9 have nothing to act on.",
+    "Steps 11 and 12: Board View's filter bar is the same: Search, Status, Assigned to me, Asset on Site, and no Technician filter.",
+    "Step 14: List's filter bar shows no Technician filter, which is right.",
+    "This is the same thing already seen in C590127 (no Technician filter in the filter bar)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C581915-1-tech-view-no-technician-filter.png",
+    "evidence/staging-full-2026-10-14/annotated/C581915-2-board-view-no-technician-filter.png",
+    "evidence/staging-full-2026-10-14/annotated/C581915-3-list-no-technician-filter.png"
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "step": "Step 4 (Tech View filter bar) and steps 11-12 (Board View filter bar)",
+   "expected": "\"Step 4: Tech View's filter bar shows a Technician filter after Assigned to me (to its right).\" and \"Steps 11 and 12: Board View's filter bar shows the same Technician filter after Assigned to me (to its right), with the same options in the same order\". Source PRD Confluence 845185030 version 52 (14 Oct 2026, Chris Ward), S1-R15: \"In Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location’s technicians (the same people who get a group or column, S9-R4), by first name then last name.\"",
+   "seen": "Tech View and Board View filter bars read Search, Status, Assigned to me, Asset on Site; no Technician filter. List correctly has none.",
+   "story": "SV-10044 (Story 1, Switch between display options). The Technician filter was added in PRD version 52 on 14 Oct 2026; read SV-10044's live status (Rule 112) before any ticket."
+  },
+  "C581916": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging (15 Oct 2026), following the test's own steps.",
+    "Step 4: \"Click the Technician filter\" cannot be done: Tech View's filter bar has no Technician filter (the run read \"no Technician filter\"), so Unassigned and the technician could not be ticked and step 8 showed every group (e.g. Unassigned with WO-4, Dana Ortiz with WO-3 and WO-5, and the rest).",
+    "Same finding as C581915 (and C590127): Tech View and Board View offer no Technician filter. Pictures are C581915's, taken in the same run on the same screens."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C581915-1-tech-view-no-technician-filter.png",
+    "evidence/staging-full-2026-10-14/annotated/C581915-2-board-view-no-technician-filter.png"
+   ],
+   "not_observed": "Everything after step 4 depends on the missing filter.",
+   "todo": "None.",
+   "step": "Step 4 (Click the Technician filter)",
+   "expected": "The case's expected results rest on S1-R15: \"In Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location’s technicians (the same people who get a group or column, S9-R4), by first name then last name.\" (PRD Confluence 845185030 version 52 (14 Oct 2026, Chris Ward)).",
+   "seen": "No Technician filter in Tech View or Board View; the step has nothing to click.",
+   "story": "SV-10044 (Story 1). Same finding as C581915; one ticket would cover all four if the QA lead asks for one."
+  },
+  "C581917": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging (15 Oct 2026), following the test's own steps.",
+    "Step 4: \"Click the Technician filter and tick {Technician-A}\" cannot be done: Tech View's filter bar has no Technician filter (the run read \"no Technician filter\"), so nothing from step 6 on can show the filter combining with others.",
+    "Same finding as C581915 (and C590127): Tech View and Board View offer no Technician filter. Pictures are C581915's, taken in the same run on the same screens."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C581915-1-tech-view-no-technician-filter.png",
+    "evidence/staging-full-2026-10-14/annotated/C581915-2-board-view-no-technician-filter.png"
+   ],
+   "not_observed": "Everything after step 4 depends on the missing filter.",
+   "todo": "None.",
+   "step": "Step 4 (Click the Technician filter)",
+   "expected": "The case's expected results rest on S1-R15: \"In Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location’s technicians (the same people who get a group or column, S9-R4), by first name then last name.\" (PRD Confluence 845185030 version 52 (14 Oct 2026, Chris Ward)).",
+   "seen": "No Technician filter in Tech View or Board View; the step has nothing to click.",
+   "story": "SV-10044 (Story 1). Same finding as C581915; one ticket would cover all four if the QA lead asks for one."
+  },
+  "C581918": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging (15 Oct 2026), following the test's own steps.",
+    "Step 4: \"Click the Technician filter and tick {Technician-A}\" cannot be done: Tech View's filter bar has no Technician filter (the run read \"no Technician filter\"). Step 8's \"List's filter bar shows no Technician filter\" holds, but the remembered-choice part cannot be tried.",
+    "Same finding as C581915 (and C590127): Tech View and Board View offer no Technician filter. Pictures are C581915's, taken in the same run on the same screens."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C581915-1-tech-view-no-technician-filter.png",
+    "evidence/staging-full-2026-10-14/annotated/C581915-2-board-view-no-technician-filter.png"
+   ],
+   "not_observed": "Everything after step 4 depends on the missing filter.",
+   "todo": "None.",
+   "step": "Step 4 (Click the Technician filter)",
+   "expected": "The case's expected results rest on S1-R15: \"In Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location’s technicians (the same people who get a group or column, S9-R4), by first name then last name.\" (PRD Confluence 845185030 version 52 (14 Oct 2026, Chris Ward)).",
+   "seen": "No Technician filter in Tech View or Board View; the step has nothing to click.",
+   "story": "SV-10044 (Story 1). Same finding as C581915; one ticket would cover all four if the QA lead asks for one."
+  }
+ },
+ "doubt": {
+  "C368175": {
+   "suggest": "Blocked",
+   "why": [
+    "Staging has only one organisation, and a second one cannot be made: the registration service answered 404 \"'resource' was not found.\" (same as the QA branch on 12 Oct 2026). The test's own marker says it needs a second organisation.",
+    "Proved by staff id: nothing about organisation B. There are no organisation-B staff on staging, so no organisation-B id could be looked for (ids checked: 0).",
+    "Read, by name only: New Line > Add Technician typed \"OrgB\" shows \"No results\" (control: typing \"Ana\" lists 30). Edit Line > Add Technician (99 names, ends at \"QA ServiceManager\", so it stops at the 100-name limit) and Edit labor (30 names) do not narrow when typed into, and hold no \"OrgB\" name.",
+    "Not observed: whether another organisation's technician is offered. With no such person, the empty lists prove nothing."
+   ],
+   "todo": "Blocked on staging with that reason, unless the QA lead has a second organisation made on staging (or names one that exists); then orgb-fix3 runs as written."
+  },
+  "C154650": {
+   "suggest": "Blocked",
+   "why": [
+    "No second organisation exists on staging and one cannot be made (registration service 404), so steps 2-4 and 6 (another organisation's work orders and technicians) cannot be tried.",
+    "Proved by staff id: nothing about organisation B (organisation-B ids checked: 0). The Reassign list offered 181 people by id, none from organisation B, because none exist.",
+    "Read: searching \"F3 Scope OrgB\" in Tech View and Board View shows \"No work orders match the search\" (no such work order exists, so this proves nothing).",
+    "Step 5 (another location) was read: a work order made at Staging Lethbridge - 4310 with a lead set there does not appear at Staging Heavy Duty - 9919 in either view. Control: this location's own test work orders show (8 cards on the board), but Tech View read 0 rows for that control search, so the Tech View half of the control did not work.",
+    "Reassign: \"No technicians match\" for \"OrgB\" and \"Loc2 Tech\" by name; control Ben is offered. The Lethbridge-only technician was not checked by staff id."
+   ],
+   "todo": "Blocked on staging (needs a second organisation). Step 5 alone is not enough to pass the case. If the QA lead wants a partial record, step 5 can be quoted from this reading."
+  }
+ }
+}
