@@ -771,3 +771,12 @@ Record the outcome here. #restart #idle #unattended → L0365, L0370
 - **Same-name technicians pile up:** staging's Reassign dialog lists four "ZZAUTOTEST F3 Count Ben Bravo" from earlier runs. Identify this run's person by the **Current** mark or by staff id, never by name or position alone.
 - **The result picture of a "no notification" check is the empty Notifications page itself**, photographed in that person's own window (`s4-batchH` `read(who, tag)`).
 - **A pass runner reads its plan ONCE:** `run-*.sh` pipes `grep -v '^#' plan | while read`, so the list is fixed the moment the pass starts; a line added a minute later never runs. Check `run-all.out` for "<n> pass start" immediately before AND after editing a plan; if it started, use the next pass (`eighth-pass-plan.txt`, `run-eighth.sh` skips a line the previous pass already ran with the same ONLY, `stg-after8.sh`, `resume-eighth.sh`, wired into `recover.sh`).
+
+## L0378 — 2026-10-15 — Every time a pass is added, check where the sign-out test is: it must be in the LAST plan only
+L0342 says the sign-out test runs last of all passes. Even so, when the eighth pass was added (after the seventh had started),
+`signout-fix.mts` was left as the last line of the seventh plan. The eighth plan had none. So staging would have been signed
+out at the end of pass 7, and pass 8's sign-in check would have stopped it. I caught it on reading the plans. The fix was to
+touch `logs7/signout-fix.done` before pass 7 reached it, note the skip in `logs7/run.out`, and append the sign-out line to the
+end of `eighth-pass-plan.txt`. **The check, whenever a new pass plan is written:**
+`grep -l signout-fix *-pass-plan.txt` must name only the newest plan. Each older pass that has not yet reached its sign-out line
+needs its `.done` marker. #signout #passes #staging → L0342
