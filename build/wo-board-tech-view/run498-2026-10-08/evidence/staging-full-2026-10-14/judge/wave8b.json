@@ -1,0 +1,105 @@
+{
+ "results": {
+  "C96980": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Board Default Fields: S2-35526 led by Esther Howard; Board View.",
+    "Fay Financial (who can see financial data): Fields to display had exactly Lead technician, Customer, Asset, Progress and Total price on; number, unit and status always show. VIN/serial, service advisor, clocked in, line count, line technicians, estimated hours, on-site and created date were off.",
+    "Her card showed S2-35526, Approved, the customer, unit ZZF2BD, Progress 0%, Esther Howard and $0.00. (This test asset has only a unit, so no year/make/model shows beside it.)",
+    "Nate Nofinance (without financial data): the same defaults without Total price; his card shows no dollar amount, and Total price is not offered in his Fields to display."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96980-fay.png",
+    "evidence/staging-full-2026-10-14/C96980-nate.png"
+   ]
+  },
+  "C96986": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 No Dollar Amounts: S2-35527. With financial data on, Nate Nofinance had Total price on in both Tech View and Board View.",
+    "After See Financial Data was turned off for his role and he signed in again:",
+    "Tech View has no Total Price column, and Column Selection does not offer it; the row shows no dollar amount.",
+    "Board View's card shows no dollar amount, and Fields to display does not offer Total price.",
+    "No filter (Status, Assigned to me, Asset on Site) offers a dollar option, and his earlier saved choice did not bring any dollar value back."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C96986-techview.png",
+    "evidence/staging-full-2026-10-14/C96986-board.png"
+   ]
+  },
+  "C368148": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customers ZZAUTOTEST F3 Hidden Tech Order Alpha/Bravo/Charlie/Delta Co, led by Ana, Ben, Cal and Dan; Board View.",
+    "With Assigned to me on only Ana's and Cal's columns showed; Cal's column was dragged before Ana's (Cal, Ana).",
+    "With Assigned to me off again, the order read Unassigned, Cal, Ana, Ben, Dan: Cal was placed right before Ana and the hidden Ben and Dan kept their order."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368148-after.png",
+    "evidence/staging-full-2026-10-14/C368148-end.png"
+   ]
+  },
+  "C368147": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "The view-only user opened Board View with ZZAUTOTEST F3 No Drag Permission: Ana's column read Alpha Co, Bravo Co.",
+    "Dragging Bravo Co above Alpha Co, and Alpha Co into Ben's column, moved nothing and no message appeared.",
+    "The cards offer no More actions button, so Reassign lead technician is not offered.",
+    "In Tech View the Alpha Co row could not be dragged either.",
+    "After a refresh the order is still Alpha Co, Bravo Co and Alpha Co's lead is still ZZAUTOTEST Ana Alpha."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368147-viewer.png",
+    "evidence/staging-full-2026-10-14/C368147-end.png"
+   ]
+  },
+  "C368146": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Board View started Unassigned, Dan (pinned), Cal, Ben.",
+    "A new staff member ZZAUTOTEST Aaron Able (active, Time Clock on, Technician, this location) appeared after the last existing technician, not first by name, and the earlier order was kept.",
+    "After Time Clock was turned on for ZZAUTOTEST Ezra Echo, he appeared right after Aaron Able.",
+    "Tech View shows the technician groups in exactly the same order as Board View (all 156 compared, no difference)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/C368146-v4-tech.png",
+    "evidence/staging-full-2026-10-14/C368146-end.png"
+   ]
+  }
+ },
+ "redo": {
+  "C96978": "The second technician could not be clocked in again (\"You are already clocked into different line\"), so Clocked in showed only Esther Howard and the \"first name +N\" form and its hover list were not seen. Fields to display offered exactly the 13 fields and the other card values matched List. Re-run clocking in two different technicians.",
+  "C96989": "Again only Comfortable was set: the location menu was not found, and the shared, after-sign-in, second-browser and second-location checks were not recorded.",
+  "C96992": "Again only the Customers table was compared (48 pixels a row before and after). Tech View rows, Board View cards and the List row height were not read.",
+  "C96997": "The script logged nothing for this case again.",
+  "C96999": "The script logged nothing for this case again.",
+  "C97000": "The script logged nothing for this case again.",
+  "C96998": "Same as before: adding and editing the story worked, but Line 2 had parts waiting, so completing it without a story was stopped by the \"Receive parts\" window and the tech-story message was never reached. Re-run on a line with no parts waiting.",
+  "C97007": "The script stopped picking \"Ben Bravo\" in the Lead Technician list again (not found by that name); nothing was read.",
+  "C97011": "Board View held again (each drag cancelled, Ana 2 / Ben 1, no message, lead still Ana Alpha after refresh), but the Tech View repeat (step 8) was again not done.",
+  "C97013": "The script stopped again before any check (a test row was not found); nothing was read.",
+  "C97005": "Steps 4, 6 and 7 held again (Charlie Co, Alpha Co, Bravo Co in both views and for the second dispatcher), but step 8 was again only a reopen, not a sign-out and sign-in, and step 9 (dragging Ben's group above Ana's in the first browser) was never done.",
+  "C97012": "The script stopped at the start (a test technician was not found). It also turned Create & Edit on in the \"ZZAUTOTEST WO View Only\" role and did not turn it off again, which spoiled C97020. Turn it off, then re-run.",
+  "C97010": "Partly done again: Dan Delta's group showed \"Inactive\" with 1 work order and the drop on him was not accepted. But the save failure was again forced instead of invoicing the work order in a second tab, so only \"Failed to update lead technician, please try again.\" showed, with no status explanation; the Board View inactive marker and closing the alert with X were not read.",
+  "C97020": "Not a fair run: the \"view-only\" user's role had Create & Edit switched on (left by C97012), so it could open Reassign lead technician. The dispatcher part held (Reassign lead technician disabled for the Invoiced Bravo Co, tooltip \"The lead technician can't be changed once a work order is Invoiced or Paid.\", lead still Ana Alpha). Turn Create & Edit off in that role and re-run the view-only part."
+ },
+ "failed": {},
+ "doubt": {
+  "C97003": "The view-only user dragged Cal before Ana (Unassigned, Cal, Ana, Ben) and could not drag the Unassigned column. When Ben was dropped to the left of Unassigned, he was placed right after Unassigned (Unassigned, Ben, Cal, Ana, Dan): Unassigned stayed first. That order then stayed after the refresh, in both views, and the dispatcher's order was unchanged. The doubt: the case expects \"Unassigned, Cal, Ana, Ben\" after the refresh, as if the step 7 drop does nothing, but the build placed Ben at the nearest allowed spot. The QA lead should say whether that is acceptable. Also the Tech View drag of Ben above Unassigned (step 10) was not tried (no handle found), so re-run that step."
+ }
+}

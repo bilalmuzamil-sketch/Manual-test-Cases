@@ -1,0 +1,78 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 3 = wave 8 + 8b final passes"
+ },
+ "results": {
+  "C96980": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 Board Default Fields: S2-35526 led by Esther Howard; Board View.",
+    "Fay Financial (who can see financial data): Fields to display had exactly Lead technician, Customer, Asset, Progress and Total price on; number, unit and status always show. VIN/serial, service advisor, clocked in, line count, line technicians, estimated hours, on-site and created date were off.",
+    "Her card showed S2-35526, Approved, the customer, unit ZZF2BD, Progress 0%, Esther Howard and $0.00. (This test asset has only a unit, so no year/make/model shows beside it.)",
+    "Nate Nofinance (without financial data): the same defaults without Total price; his card shows no dollar amount, and Total price is not offered in his Fields to display."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96980-1-fay-defaults.png",
+    "evidence/staging-full-2026-10-14/annotated/C96980-2-nate-no-price.png"
+   ],
+   "note": "wave8b"
+  },
+  "C96986": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Customer ZZAUTOTEST F2 No Dollar Amounts: S2-35527. With financial data on, Nate Nofinance had Total price on in both Tech View and Board View.",
+    "After See Financial Data was turned off for his role and he signed in again:",
+    "Tech View has no Total Price column, and Column Selection does not offer it; the row shows no dollar amount.",
+    "Board View's card shows no dollar amount, and Fields to display does not offer Total price.",
+    "No filter (Status, Assigned to me, Asset on Site) offers a dollar option, and his earlier saved choice did not bring any dollar value back."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96986-1-tech-no-price.png",
+    "evidence/staging-full-2026-10-14/annotated/C96986-2-board-no-price.png"
+   ],
+   "note": "wave8b"
+  },
+  "C368147": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "The view-only user opened Board View with ZZAUTOTEST F3 No Drag Permission: Ana's column read Alpha Co, Bravo Co.",
+    "Dragging Bravo Co above Alpha Co, and Alpha Co into Ben's column, moved nothing and no message appeared.",
+    "The cards offer no More actions button, so Reassign lead technician is not offered.",
+    "In Tech View the Alpha Co row could not be dragged either.",
+    "After a refresh the order is still Alpha Co, Bravo Co and Alpha Co's lead is still ZZAUTOTEST Ana Alpha."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368147-1-viewonly-no-drag.png"
+   ],
+   "note": "wave8b"
+  },
+  "C368146": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps.",
+    "Board View started Unassigned, Dan (pinned), Cal, Ben.",
+    "A new staff member ZZAUTOTEST Aaron Able (active, Time Clock on, Technician, this location) appeared after the last existing technician, not first by name, and the earlier order was kept.",
+    "After Time Clock was turned on for ZZAUTOTEST Ezra Echo, he appeared right after Aaron Able.",
+    "Tech View shows the technician groups in exactly the same order as Board View (all 156 compared, no difference)."
+   ],
+   "not_observed": null,
+   "todo": "None.",
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368146-1-new-techs-at-end.png"
+   ],
+   "note": "wave8b"
+  }
+ }
+}
