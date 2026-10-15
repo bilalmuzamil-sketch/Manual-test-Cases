@@ -27,7 +27,7 @@ C581892 (3974848) · C581893 (3974849) · C581894 (3974850) · C581895 (3974851)
   example address staging. All read back.
 - Checks: display fr-view 8/8 (served-8.json, served-96970.json); check_tester_runnable PASS 8/8; check_runnable_cases 8/8.
 - Not seen (outside lane, no import made): the message after a successful invoice import, quoted in the C581896 Doc.
-- Out of scope, same wording issue: the C368132 setup Doc still says "click Create 1 shift" in Choose lines mode.
+- ~~Out of scope, same wording issue: the C368132 setup Doc still says "click Create 1 shift" in Choose lines mode.~~ CORRECTED 15 Oct 2026: wrong. The C368132 setup Doc (1vKTGelEYDcq7yv98YAbCK7-PIQKBnhna2mdzFHfyTU4, not linked from the case) books no shift; a Drive full-text search finds "Create 1 shift" only in the C96965, C368133 and C581893 Docs, all in Entire work order steps where staging shows that button.
 
 ## Third set — 3 tests (run 498), 14 Oct 2026
 QA lead: "More cases for the same testing suite to build verify on staging". Tests: C581891 (test 3973197) · C97010 (3481954) · C368131 (3761652).
@@ -38,3 +38,8 @@ QA lead: "More cases for the same testing suite to build verify on staging". Tes
 - Setup Docs: C368131 (Technician-C/Location-B wording; role creation "Create Custom Role > Skip > Role Name > under Work orders turn on View, leave Create & Edit off > Create"; Part 2 note). C97010 ("click the Finance tab and click Mark Reviewed; in the Mark as reviewed window fill Mileage or Engine Hours if asked and click Confirm review"). Read back.
 - Checks: display fr-view 3/3 (served-3.json, served-3b.json); check_tester_runnable PASS; check_runnable_cases 3/3.
 - Not seen on screen (would need data built or a failure provoked): the Deactivate Account confirmation, the alert's dismiss X, the inactive marker on a column header (present in the build's code).
+
+## Follow-up, 15 Oct 2026 (QA lead: "2. a  3. a")
+- Asset on Site line added to the six first-set setup Docs: C154648, C581889, C581890 (wording added to the existing filter sentence);
+  C96965, C368133, C581891 (new bullet at the end of "What the setup creates"). C96965 read back.
+- C368132: no change needed (see the corrected note above).
