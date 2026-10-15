@@ -161,6 +161,21 @@ await run('C96962', async () => {
       R.C96962.editLineToasts = await toasts(pg); R.C96962.dialogStillOpen = await pg.locator('.q-dialog:visible').count();
       // read back AFTER Save: whom the server now has on each line
       R.C96962.lineTechsReadBack = (((await a.get(`/api/work-orders/${wo}/line-technicians`)).body?.data?.lineTechnicians ?? []) as any[]).map((x: any) => `${x.lineId === l1 ? 'Line 1' : x.lineId === l2 ? 'Line 2' : x.lineId?.slice(0, 6)}: ${(x.technicians ?? []).map((t2: any) => `${t2.firstName ?? ''} ${t2.lastName ?? ''}`.trim()).join(', ') || 'Unassigned'}${x.derivedFromLeadTech ? ' (follows lead)' : ''}`);
+      // 15 Oct 2026 (wave 17, fifth pass): Dana Ortiz DID land on Line 1 (read back) but no line entry was found — read only through the
+      // API, straight after Save. Now the line's own Audit log is read ON SCREEN as the case says (the line's ⋮ menu > Audit log; the
+      // playbook route: the ⋮ button in the line row, else ~50 px right of button_line_expand_), photographed, after a 6 s settle; and the
+      // API lists are read again after that wait. Line 2's log is read the same way (it must still show only "Line created").
+      await pg.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(6000);
+      const auditOnScreen = async (lineName: string, k: string) => { const o: any = {};
+        const row = pg.locator('tr, .q-item, div').filter({ hasText: lineName }).filter({ has: pg.locator('button') }).last();
+        let btn = row.locator('button:has(i:text-is("more_vert"))').first();
+        if (!(await btn.count())) btn = pg.locator('button:has(i:text-is("more_vert"))').nth(k === 'l1' ? 1 : 2); // index 0 is the work order's own ⋮ next to New Line
+        await btn.click().catch(async () => { const e = pg.locator('[data-test-id^="button_line_expand_"]').nth(k === 'l1' ? 0 : 1); const b = await e.boundingBox(); if (b) await pg.mouse.click(b.x + b.width + 50, b.y + b.height / 2); });
+        await pg.waitForTimeout(1200); o.menu = (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 14);
+        const item = pg.locator('.q-menu .q-item').filter({ hasText: /^\s*Audit log\s*$/i }).first(); o.auditItem = await item.count();
+        if (o.auditItem) { await item.click(); await pg.waitForTimeout(3000); o.log = ((await pg.locator('.q-dialog').last().innerText().catch(() => '')) as string).replace(/\s+/g, ' ').trim().slice(0, 900); await shot(pg, `C96962-line-audit-${k}`); }
+        await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(800); return o; };
+      R.C96962.lineAuditOnScreen = { l1: await auditOnScreen(canned[1].canned_line_name?.trim() ?? 'Service', 'l1').catch((e) => String(e).slice(0, 160)), l2: await auditOnScreen(canned[2 % canned.length].canned_line_name?.trim() ?? 'Service', 'l2').catch((e) => String(e).slice(0, 160)) };
     } else R.C96962.editLineNotOpened = true;
     await pg.close();
     // the line's OWN audit log (line number > Audit log) is a separate list from the work order's
@@ -173,7 +188,9 @@ await run('C96962', async () => {
   // 15 Oct 2026 (wave 12, fourth pass): "Ralph Edwards" was not found in the page's Lead Technician list. Make him an eligible lead first
   // (ensureEligible) and pick him with wob.mts pickLeadOnPage (field by test id or label; types, then scrolls the list until drawn).
   R.C96962.ralphEligible = await ensureEligible(a, RE, 'Ralph'); await pg.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(6000);
-  R.C96962.woPagePick = await pickLeadOnPage(pg, 'Ralph', 'Ralph Edwards'); await pg.waitForTimeout(2500); await pg.screenshot({ path: path.join(EV, 'C96962-wo-page-lead.png') }).catch(() => {}); await pg.close();
+  // 15 Oct 2026 (wave 17, fifth pass): Ralph Edwards was again not drawn in the page's list (19 scroll steps, only the D names), while Dana
+  // Ortiz is offered at once. The case's name is an example ("e.g. to Ralph Edwards"), so the work order page change is Esther -> Dana.
+  R.C96962.woPagePick = await pickLeadOnPage(pg, 'Dana', 'Dana Ortiz'); await pg.waitForTimeout(2500); await pg.screenshot({ path: path.join(EV, 'C96962-wo-page-lead.png') }).catch(() => {}); await pg.close();
   R.C96962.leadAfterWoPage = (await workOrders(a, n))[0]?.techAssignedFirstName;
   R.C96962.woPage = await since(n0);
   R.C96962.whereFound = 'Work order page > the change history (GET /api/work-orders/{id}/history, the list the page shows)';

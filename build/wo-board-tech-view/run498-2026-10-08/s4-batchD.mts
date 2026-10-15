@@ -124,6 +124,9 @@ await run('C96974', async () => {
     await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, tb); await display(p, 'Board View'); await search(p, n); await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"]').scrollLeft = 0`);
     const o = await openReassign(p, esWo.id); await o.item.click(); await p.waitForTimeout(1200);
     R.C96974['count_' + tb] = await p.locator(`[data-test-id="text_lead_technician_open_count_${NN.staff_id}"]`).innerText().catch(() => null);
+    // 15 Oct 2026 (wave 17): the picture showed the top of the list (the A names), not Nina Newtech's row: bring her row into the
+    // middle of the dialog's list before the picture, so "4 open" is on it.
+    await p.locator(`[data-test-id="text_lead_technician_open_count_${NN.staff_id}"]`).evaluate((e) => e.scrollIntoView({ block: 'center' })).catch(() => {}); await p.waitForTimeout(700);
     await shot(p, `C96974-dialog-${tb.replace(' ', '')}`); // 15 Oct 2026: the dialog with the count, for the result's picture
     await p.locator('[data-test-id="button_cancel_reassign_lead_technician"]').click(); await p.waitForTimeout(800);
   }
