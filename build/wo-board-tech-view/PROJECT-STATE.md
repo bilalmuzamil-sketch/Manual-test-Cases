@@ -82,3 +82,10 @@ Technicians made for these checks (e.g. "Esther Howard", "Ralph Edwards" — nam
   measurable points. Test list: `run498-2026-10-08/design-2026-10-15/section-73780-tests.json` (found by walking the suite's
   sections fully paged and keeping tests whose section is under 73780). Script `design-stg5.mts` (QA_DPR=2) runs in the fourth
   pass before signout-fix. C590125 (Dark theme) has no expected result — record only, it is with the product owner.
+- **15 Oct 03:15 UTC — Chris's S5-R11b bug (C581895) not reproducible tonight, and why:** staging keeps ONE name per technician
+  (renaming the staff record renames the account and vice versa — L0339, L0349), so every surface showed the same name
+  (List, card, hovers, column header: "ZZAUTOTEST Account Ana"); production v26.40.17-f5bf8f4 has no Board/Tech View
+  (`/api/work-orders/board` 404) and its List names match the staff list (`run498-2026-10-08/evidence/prod-names-2026-10-15/`);
+  the QA branch sv10043 — the only place the two stored names differ (developer, 12 Oct) — needs a fresh sign-in cookie
+  (its 12 Oct cookie has expired; DEV MODE quick-login is gone). ASK for the QA lead: a fresh sv10043 cookie, then reproduce
+  (List lead name vs card/column/group header for a technician whose two names differ) and prepare the ticket; nothing filed.

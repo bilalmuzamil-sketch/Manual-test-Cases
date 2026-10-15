@@ -7,9 +7,9 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, candidates, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, pickLeadOnPage } from './wob.mts';
 import { viewAs } from './viewas.mts';
-import { staffRows, HEAVY } from './staff.mts';
+import { staffRows, HEAVY, ensureEligible } from './staff.mts';
 import { mkShift, shiftsOn } from './shifts.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -163,6 +163,10 @@ await run('C96958', async () => {
   const wo = await workOrder(a, c, 'estimate', null); await mkLine(wo, 1);
   await a.post('/api/work-orders/change-status', { id: wo, status: 'approved' }); await a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: ES.staff_id });
   const num = (await workOrders(a, n))[0].number;
+  // 15 Oct 2026 (wave 10, staging third pass): "Ralph Edwards" was not offered in the work order page's Lead Technician list, so the
+  // script stopped at step 1. Make the three people eligible leads at Heavy Duty first (ensureEligible: active, enrolled in Service,
+  // Time Clock on, Location Heavy Duty) and pick on the page with pickLeadOnPage (test-id field, else the field labelled Lead Technician).
+  const eligible = { 'Esther Howard': await ensureEligible(a, ES, 'Esther'), 'Ralph Edwards': await ensureEligible(a, RE, 'Ralph'), 'Dana Ortiz': await ensureEligible(a, DO, 'Dana') };
   const people: Record<string, any> = { 'Esther Howard': ES, 'Ralph Edwards': RE, 'Dana Ortiz': DO };
   const read = async (who: string) => {
     const v = await viewAs(browser, p, a, people[who].id, me.id, RUN.toRunner); const got: string[] = [];
@@ -175,13 +179,15 @@ await run('C96958', async () => {
       return { count: items.length, mentionsWo: items.filter((x) => x.includes(num) || /lead tech/i.test(x)), top: items.slice(0, 2), empty: !!empty, bell, calls: [...new Set(got)].slice(0, 3) };
     } finally { await v.close(); }
   };
-  R.C96958 = { wo: num, base: { 'Esther Howard': await read('Esther Howard'), 'Ralph Edwards': await read('Ralph Edwards'), 'Dana Ortiz': await read('Dana Ortiz') } };
+  R.C96958 = { wo: num, eligible, candidates: (await candidates(a)).filter((x) => Object.keys(people).includes(x.name)).map((x) => x.name), base: { 'Esther Howard': await read('Esther Howard'), 'Ralph Edwards': await read('Ralph Edwards'), 'Dana Ortiz': await read('Dana Ortiz') } };
   // step 1: the work order page, Esther -> Ralph
-  { const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${wo}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000);
-    await pg.waitForTimeout(3000); await shot(pg, 'C96958-wo-page');
-    await pg.locator('[data-test-id="select_lead_technician"]').click(); await pg.waitForTimeout(1000); await pg.keyboard.type('Ralph'); await pg.waitForTimeout(1200);
-    await pg.locator('.q-menu .q-item').filter({ hasText: 'Ralph Edwards' }).first().click(); await pg.waitForTimeout(3000); await pg.close(); }
+  { const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${wo}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(8000);
+    await shot(pg, 'C96958-wo-page');
+    R.C96958.woPagePick = await pickLeadOnPage(pg, 'Ralph', 'Ralph Edwards'); await shot(pg, 'C96958-wo-page-after-pick'); await pg.close(); }
   R.C96958.leadAfterWoPage = (await workOrders(a, n))[0]?.techAssignedFirstName;
+  // if the page could not pick him, say so and set the lead behind the screen so the later steps still have Ralph as the lead to start from
+  if (R.C96958.leadAfterWoPage !== 'Ralph') { R.C96958.step1NotOnScreen = `work order page did not set Ralph (${JSON.stringify(R.C96958.woPagePick).slice(0, 200)}); lead set by API for steps 2+`;
+    await a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: RE.staff_id }); R.C96958.leadAfterApi = (await workOrders(a, n))[0]?.techAssignedFirstName; }
   await p.waitForTimeout(20_000);
   R.C96958.afterWoPage = { 'Esther Howard': await read('Esther Howard'), 'Ralph Edwards': await read('Ralph Edwards') };
   // board drag Ralph -> Dana
