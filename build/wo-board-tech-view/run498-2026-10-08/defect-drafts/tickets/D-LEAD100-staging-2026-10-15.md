@@ -1,36 +1,36 @@
-# D-LEAD100 — Work Order Page: Lead Technician List Stops After 100 People (DRAFT, NOT FILED)
+# Work order page: technician lists stop after 100 people (draft, not filed)
 
-**What a user sees (staging, 15 Oct 2026):** on a work order page, the Lead Technician list shows only the first 100 people
-(A to the Q names), then the current lead. Technicians later in the alphabet — Ralph Edwards, ZZAUTOTEST Ben Bravo — are
-not in it, and the field does not search as you type (typing any name, even one already in the list, does not narrow it). The same people ARE offered in the board's Reassign lead
-technician dialog. So a dispatcher cannot set those technicians as lead from the work order page.
+**What a user sees on staging:** on a work order page, the Lead Technician list shows only the first 100 people
+(A to the Q names), then the current lead. The location has 184 people who can lead work, so the later ones,
+such as Ralph Edwards, cannot be picked as lead there. The same people can be picked in the board's
+"Reassign lead technician" window.
 
-**Why it matters for the tests:** three tests (a new lead goes to the bottom of the technician's work; a stale On Site click does not undo
-a lead change; the work order page saves a new lead and mileage together) all need a lead set on the work order page to a late-alphabet
-technician, so none of them can be finished on staging.
+**The second list:** the Edit Line window's "Add Technician" list stops the same way. It ends at QA PartsTechnician
+(97 names), and Ralph Edwards is not in it, so he cannot be added to a line.
 
-**Ticket shape:** Story Defect under the story for reassigning the lead technician (Ready for QA, read live 15 Oct 2026; re-read before
-the ask) · Medium. Its own ticket (QA lead's ruling). Full draft: `D-LEAD100-staging-2026-10-15.wiki`; picture:
-`../D-LEAD100-1-page-list-vs-dialog.png` (page list end beside the Reassign dialog offering Ralph Edwards).
+**Typing does not help:** neither field has a search box. Typing a name, even one already in the list, shows
+no text and does not change the list. Production behaves the same way here, so this part is not new and is
+not part of the problem we report.
 
-**Edit Line (same page):** the Edit Line > Add Technician list stops the same way — 97 names, ending at QA PartsTechnician;
-Ralph Edwards not in it; typing does not narrow it. Picture `../D-LEAD100-2-editline-list-and-production.png` (staging Edit Line list end
-beside the production Lead Technician list). The QA lead decides: one ticket for both lists, or two.
+**Production:** production has only 18 active staff, so both lists there hold everyone (10 and 9 people).
+Production therefore cannot show whether it would also stop at 100. We do not guess; we say so.
 
-**Production (Rule 121) — PRODUCTION CANNOT SHOW IT.** Read 15 Oct 2026 11:46 UTC, build v26.40.18-163ddfa: production has only 18
-active staff in all (9 offered at that location), and both lists there are complete (10 and 9 entries), so they cannot reach 100. Production neither confirms nor rules out
-the same limit; it is not guessed. Typing did not narrow the list there either. Nothing was changed on production.
+**What is next before we ask you:** the next test round records how many people each list asks the system for,
+on staging and on production. If production asks for the same 100, the limit is older than this work and we
+report it instead of raising it. If not, we ask you whether to raise it.
 
-**Status: NOT YET READY TO ASK.** The tenth pass records which request each list makes and its limit setting, on staging and production.
-Same limit asked on production ⇒ the limit is older than this work: do not file, report it instead. Different ⇒ ask the QA lead to file
-(and whether one ticket or two).
+**What we will ask you then:** one report covering both lists, or two separate reports. The draft is written in
+two parts so either answer works without rewriting.
 
-**Still open:** the live PRD read for the Sources waits for the QA lead's go-ahead (Rule 81/106); the staging pictures are 1x and are
-re-taken at 2x in the tenth pass; read the staging build off the page at the re-measure.
-
-**Duplicate search (15 Oct 2026):** 37 recent SV issues about lead technician lists — none about this 100-person limit.
+**Why it matters:** four tests need a later-alphabet technician picked on the work order page or in Edit Line.
+They cannot be finished on staging until this question is answered.
 
 ---REFERENCE---
-C97007 https://shopview.testrail.io/index.php?/cases/view/97007 · C368159 https://shopview.testrail.io/index.php?/cases/view/368159 ·
-C368169 https://shopview.testrail.io/index.php?/cases/view/368169 · run 498 https://shopview.testrail.io/index.php?/runs/view/498 ·
-SV-10047 https://shopview.atlassian.net/browse/SV-10047 (Ready for QA, read 15 Oct 2026)
+Draft: `D-LEAD100-staging-2026-10-15.wiki` (PART A lead list, PART B Edit Line).
+Pictures: `../D-LEAD100-1-page-list-vs-dialog.png`, `../D-LEAD100-2-lead-list-staging-vs-production.png`,
+`../D-LEAD100-3-editline-staging-vs-production.png`. Staging pictures are 1x, re-taken at 2x in the tenth pass.
+Part A: C97007 https://shopview.testrail.io/index.php?/cases/view/97007 · C368159 https://shopview.testrail.io/index.php?/cases/view/368159 ·
+C368169 https://shopview.testrail.io/index.php?/cases/view/368169. Part B: C368173 https://shopview.testrail.io/index.php?/cases/view/368173.
+All in run 498 https://shopview.testrail.io/index.php?/runs/view/498.
+Parent story SV-10047 https://shopview.atlassian.net/browse/SV-10047 (re-read live by the coordinator 15 Oct 2026).
+Production build v26.40.18-163ddfa, work order S2-968; staging work order S2-36154.

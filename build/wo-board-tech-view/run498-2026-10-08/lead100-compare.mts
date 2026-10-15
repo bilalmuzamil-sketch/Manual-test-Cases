@@ -31,10 +31,19 @@ async function readList(pg: Page, pic: string) { const f = await leadField(pg); 
   await f.click(); await pg.waitForTimeout(1500); await shot(pg, `${pic}-open`);
   const all = await cap(120_000, listAllOptions(pg), [] as string[]); o.count = all.length; o.first = all.slice(0, 6); o.last = all.slice(-6); o.all = all;
   await shot(pg, `${pic}-end`); await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(800); return o; }
+/** type like a person: try the field's box; if it refuses (readonly / not editable), press the keys with the field focused.
+ *  Records HOW it typed and what the box then holds, so a "typing changed nothing" reading is never an unproved fill (Rule 104; the
+ *  eighth pass swallowed fill errors and its pictures showed no typed text). Capped. */
+async function typeLikeUser(pg: Page, inp: any, term: string) { const t: any = {};
+  t.readonly = await Promise.race([inp.getAttribute('readonly').catch(() => 'n/a'), new Promise((r) => setTimeout(() => r('timeout'), 4000))]);
+  try { await Promise.race([inp.fill(term, { timeout: 5000 }), new Promise((_, j) => setTimeout(() => j(new Error('fill cap')), 7000))]); t.how = 'fill'; }
+  catch (e: any) { t.fillErr = String(e?.message || e).split('\n')[0].slice(0, 160); t.how = 'keys'; await Promise.race([pg.keyboard.type(term, { delay: 50 }).catch(() => {}), new Promise((r) => setTimeout(r, 10_000))]); }
+  t.valueAfter = await Promise.race([inp.inputValue().catch(() => 'n/a'), new Promise((r) => setTimeout(() => r('timeout'), 4000))]);
+  t.textShown = String(t.valueAfter || '').toLowerCase().includes(term.toLowerCase()); return t; }
 /** type a name into the field's own box, record what it offers, Escape — nothing picked */
 async function typeAndRead(pg: Page, term: string, pic: string) { const f = await leadField(pg); const o: any = { term };
   await f.click(); await pg.waitForTimeout(1200); const inp = f.locator('input').first(); o.hasInput = await inp.count();
-  if (o.hasInput) { await inp.fill(term).catch(() => {}); } else await pg.keyboard.type(term, { delay: 60 });
+  if (o.hasInput) { o.typing = await typeLikeUser(pg, inp, term); } else await pg.keyboard.type(term, { delay: 60 });
   await pg.waitForTimeout(3500); o.offered = (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [] as string[])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 15);
   o.found = o.offered.some((x: string) => x.toLowerCase().includes(term.toLowerCase())); o.narrowed = o.offered.length > 0 && o.offered.every((x: string) => x.toLowerCase().includes(term.split(' ')[0].toLowerCase())); await shot(pg, pic);
   await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(500); if (o.hasInput) await inp.fill('').catch(() => {}); await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(800); return o; }
@@ -59,7 +68,7 @@ async function readEditLineAdd(pg: Page, lines: () => Promise<any[]>, late: stri
   // Escape can close the whole window as well as the list: reopen it (the line's name) before each typed reading, and say so
   const ensureOpen = async () => { if (await cap(5000, d.isVisible().catch(() => false), false)) return false; await cap(15_000, pg.getByText(name, { exact: false }).first().click({ timeout: 10_000 }).catch(() => {}), undefined); await pg.waitForTimeout(2500); return true; };
   const typed = async (term: string, tag: string) => { const r: any = { term }; r.reopened = await ensureOpen(); await cap(12_000, add.click({ timeout: 10_000 }).catch(() => {}), undefined); await pg.waitForTimeout(900);
-    const inp = add.locator('input').first(); r.hasInput = await cap(5000, inp.count(), 0); if (r.hasInput) await cap(8000, inp.fill(term).catch(() => {}), undefined); else await cap(10_000, pg.keyboard.type(term, { delay: 50 }), undefined);
+    const inp = add.locator('input').first(); r.hasInput = await cap(5000, inp.count(), 0); if (r.hasInput) r.typing = await cap(25_000, typeLikeUser(pg, inp, term), { how: 'cap' }); else await cap(10_000, pg.keyboard.type(term, { delay: 50 }), undefined);
     await pg.waitForTimeout(3000); r.offered = (await cap(8000, pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [] as string[]), [] as string[])).map((x: string) => x.replace(/\s+/g, ' ').trim()).slice(0, 15);
     r.found = r.offered.some((x: string) => x.toLowerCase().includes(term.toLowerCase())); r.narrowed = r.offered.length > 0 && r.offered.every((x: string) => x.toLowerCase().includes(term.split(' ')[0].toLowerCase()));
     await shot(pg, `${pic}-${tag}`); await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(500); if (r.hasInput) await cap(5000, inp.fill('').catch(() => {}), undefined); return r; };
