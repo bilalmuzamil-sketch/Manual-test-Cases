@@ -4,7 +4,7 @@
  "C96956": {
   "menuDisabled": false,
   "list": {
-   "count": 146,
+   "count": 178,
    "unassigned": true,
    "esther": true,
    "ralph": true,
@@ -55,187 +55,132 @@
    ],
    "near": "Lead technician Unassigned"
   },
-  "error": "locator.hover: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"tech_view_row_0ab11bed-9602-4b8c-9ca4-46b7b46ee770\"]')\n"
- },
- "C96957": {
-  "drag1": {
-   "prompt": null,
-   "message": [
-    "Lead technician updated"
+  "techView": {
+   "startGroup": "b669608e-a897-4f21-a510-8ced9d9fa982",
+   "finds": [
+    "as it was",
+    "as it was",
+    "as it was"
    ],
-   "goneAfterSec": 9,
-   "lead": [
-    "S2-35463 lead=Ralph Edwards"
-   ]
+   "menuDisabled": false,
+   "menu": [
+    "Reassign lead technician"
+   ],
+   "dialogCount": 178,
+   "toRalph": {
+    "prompt": null,
+    "toast": [
+     "Lead technician updated"
+    ],
+    "lead": [
+     "S2-35462 lead=Ralph Edwards"
+    ]
+   },
+   "findAfterRalph": "as it was",
+   "groupAfterRalph": "b51a80a5-2d2a-488a-87cd-747e8798d8ee",
+   "woPageLeadAfterRalph": {
+    "field": null,
+    "testIds": [
+     "lead_technician_readonly=Ralph Edwards"
+    ],
+    "near": "Lead technician Ralph Edwards"
+   },
+   "toUnassigned": {
+    "prompt": null,
+    "toast": [
+     "Lead technician removed"
+    ],
+    "lead": [
+     "S2-35462 lead=none"
+    ]
+   },
+   "findAfterUnassigned": "NOT FOUND",
+   "groupAfterUnassigned": "unassigned",
+   "afterCancel": {
+    "lead": [
+     "S2-35462 lead=none"
+    ],
+    "find": "as it was",
+    "group": "unassigned"
+   },
+   "woPageLead": {
+    "field": null,
+    "testIds": [
+     "lead_technician_readonly=Unassigned"
+    ],
+    "near": "Lead technician Unassigned"
+   }
   },
-  "drag2": {
-   "prompt": null,
-   "message": [
-    "Lead technician removed"
-   ],
-   "goneAfterSec": 9,
-   "lead": [
-    "S2-35463 lead=none"
-   ]
-  }
+  "techRowMenu": [
+   "Reassign lead technician"
+  ]
  },
  "C96959": {
+  "startLeadsFromRecords": {
+   "esther": 3,
+   "ralph": 1,
+   "unassigned": 0,
+   "total": 4,
+   "reset": [
+    201,
+    201,
+    201,
+    201
+   ]
+  },
   "before": {
+   "esther": 3,
+   "ralph": 1,
+   "unassigned": 0
+  },
+  "afterDrag": {
+   "esther": 2,
+   "ralph": 2,
+   "unassigned": 0
+  },
+  "afterDialog": {
    "esther": 2,
    "ralph": 1,
    "unassigned": 1
   },
-  "afterDrag": {
-   "esther": 1,
-   "ralph": 2,
-   "unassigned": 1
-  },
-  "afterDialog": {
-   "esther": 1,
-   "ralph": 1,
-   "unassigned": 2
-  },
   "tech": {
-   "esther": 1,
+   "esther": 2,
    "ralph": 1,
-   "unassigned": 2
+   "unassigned": 1
   }
  },
  "C96969": {
   "linesBefore": [
    "Line 1 Service - Transmission service: Esther Howard (follows lead)",
-   "Line 2 Service - Cabin air filter: Esther Howard (follows lead)"
+   "Line 2 Service - Cabin air filter: Unassigned (needs technicians)"
   ],
   "historyBefore": [
-   "Lead tech changed",
-   "Lead tech changed",
-   "Lead tech changed",
-   "Lead tech changed",
-   "Line created",
    "Line created",
    "Lead tech changed",
+   "Line created",
    "Created"
   ],
   "confirmEnabledForCurrent": true,
   "message": [],
   "lead": [
-   "S2-35468 lead=Esther Howard"
+   "S2-36023 lead=Esther Howard"
   ],
   "linesAfter": [
    "Line 1 Service - Transmission service: Esther Howard (follows lead)",
-   "Line 2 Service - Cabin air filter: Esther Howard (follows lead)"
+   "Line 2 Service - Cabin air filter: Unassigned (needs technicians)"
   ],
   "historyAfter": [
-   "Lead tech changed",
-   "Lead tech changed",
-   "Lead tech changed",
-   "Lead tech changed",
-   "Line created",
    "Line created",
    "Lead tech changed",
+   "Line created",
    "Created"
   ],
   "controlHistory": [
    "Lead tech changed",
-   "Lead tech changed",
-   "Lead tech changed",
-   "Lead tech changed",
-   "Lead tech changed",
-   "Line created",
    "Line created",
    "Lead tech changed",
+   "Line created",
    "Created"
   ]
- },
- "C368163": {
-  "board": {
-   "top": "Reassign lead technician |  | S2-35470 · ZZAUTOTEST F1 Dialog Search",
-   "current": "EH Esther Howard Current · 146 open check",
-   "full": 146,
-   "placeholder": "Search technicians",
-   "Ral": {
-    "names": [
-     "person Unassigned",
-     "GP Gerald Pitts 0 open",
-     "MF Maximiliana Fitzgerald-Montgomery 1 open",
-     "RE Ralph Edwards 58 open"
-    ],
-    "empty": null
-   },
-   "ral": {
-    "names": [
-     "person Unassigned",
-     "GP Gerald Pitts 0 open",
-     "MF Maximiliana Fitzgerald-Montgomery 1 open",
-     "RE Ralph Edwards 58 open"
-    ],
-    "empty": null
-   },
-   "Olive": {
-    "names": [
-     "person Unassigned"
-    ],
-    "empty": "No technicians match “Olive” Cancel Reassign"
-   },
-   "zzqx": {
-    "names": [
-     "person Unassigned"
-    ],
-    "empty": "No technicians match “zzqx” Cancel Reassign"
-   },
-   "cleared": 146,
-   "afterCancel": {
-    "message": [],
-    "lead": [
-     "S2-35470 lead=Esther Howard"
-    ]
-   },
-   "searchOnReopen": ""
-  },
-  "techRowGroup": "b669608e-a897-4f21-a510-8ced9d9fa982",
-  "tech": {
-   "top": "Reassign lead technician |  | S2-35470 · ZZAUTOTEST F1 Dialog Search",
-   "current": "EH Esther Howard Current · 146 open check",
-   "full": 146,
-   "placeholder": "Search technicians",
-   "Ral": {
-    "names": [
-     "person Unassigned",
-     "GP Gerald Pitts 0 open",
-     "MF Maximiliana Fitzgerald-Montgomery 1 open",
-     "RE Ralph Edwards 58 open"
-    ],
-    "empty": null
-   },
-   "ral": {
-    "names": [
-     "person Unassigned",
-     "GP Gerald Pitts 0 open",
-     "MF Maximiliana Fitzgerald-Montgomery 1 open",
-     "RE Ralph Edwards 58 open"
-    ],
-    "empty": null
-   },
-   "Olive": {
-    "names": [
-     "person Unassigned"
-    ],
-    "empty": "No technicians match “Olive” Cancel Reassign"
-   },
-   "zzqx": {
-    "names": [
-     "person Unassigned"
-    ],
-    "empty": "No technicians match “zzqx” Cancel Reassign"
-   },
-   "cleared": 146,
-   "afterCancel": {
-    "message": [],
-    "lead": [
-     "S2-35470 lead=Esther Howard"
-    ]
-   },
-   "searchOnReopen": ""
-  }
  }
 }

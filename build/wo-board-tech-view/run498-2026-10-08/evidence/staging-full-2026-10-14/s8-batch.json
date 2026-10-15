@@ -24,6 +24,40 @@
   ],
   "mileage": "201",
   "line2PartsWaiting": 0,
+  "storySetting": {
+   "organisation": {
+    "status": 200,
+    "storyKeys": [
+     {
+      "path": "requireTechStories",
+      "value": false
+     }
+    ]
+   },
+   "location": {
+    "/api/workplaces/<Heavy Duty>": {
+     "status": 404,
+     "storyKeys": []
+    },
+    "/api/workplaces/<Heavy Duty>/settings": {
+     "status": 404,
+     "storyKeys": []
+    },
+    "/api/workplaces/view/<Heavy Duty>": {
+     "status": 404,
+     "storyKeys": []
+    }
+   },
+   "turnedOnForThisCheck": {
+    "key": "requireTechStories",
+    "save": "200",
+    "readBack": true
+   },
+   "putBack": {
+    "save": "200",
+    "readBack": false
+   }
+  },
   "add": {
    "opened": "story row",
    "box": 1,
@@ -45,8 +79,8 @@
   "storedLine1": "First note, edited",
   "completeNoStory": {
    "toasts": [],
-   "dialog": null,
-   "status": "complete"
+   "dialog": "Tech stories\nclose\n\nS2-36028 · ZZAUTOTEST Contact\n\nService - Electric brake trailer CVIP\nTech Story\n0\nCancel\nComplete Line",
+   "status": "authorized"
   },
   "add2": {
    "opened": "story row",
@@ -57,6 +91,11 @@
    "toasts": [],
    "rowNow": "Second note"
   },
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"button_action_complete_line_c1fd3afd-e505-4feb-92de-a33ce2517f18\"]')\n"
+  "completeDialog": null,
+  "completeWithStory": {
+   "toasts": [],
+   "status": "complete"
+  },
+  "wo": "S2-36028"
  }
 }
