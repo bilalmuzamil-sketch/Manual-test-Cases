@@ -91,11 +91,17 @@ def attach(result_id, path):
             + open(path, 'rb').read() + ('\r\n--%s--\r\n' % bnd).encode())
     rq = urllib.request.Request(t._BASE + 'add_attachment_to_result/%d' % result_id, data=body, method='POST')
     rq.add_header('Authorization', 'Basic ' + t._AUTH); rq.add_header('Content-Type', 'multipart/form-data; boundary=' + bnd)
-    try:
-        with urllib.request.urlopen(rq, timeout=120) as r:
-            return r.status, json.loads(r.read().decode() or 'null')
-    except urllib.error.HTTPError as e:
-        return e.code, e.read().decode()[:200]
+    import time
+    for k in range(4):  # 15 Oct 2026: a dropped connection mid-batch stopped 97 attachments — retry it (2/4/8 s)
+        try:
+            with urllib.request.urlopen(rq, timeout=120) as r:
+                return r.status, json.loads(r.read().decode() or 'null')
+        except urllib.error.HTTPError as e:
+            return e.code, e.read().decode()[:200]
+        except (urllib.error.URLError, ConnectionError, TimeoutError) as e:
+            if k == 3:
+                return 0, str(e)[:200]
+            time.sleep(2 ** (k + 1))
 
 
 STATUS = {'Passed': 1, 'Blocked': 2, 'Untested': 3, 'Retest': 4, 'Failed': 5}
@@ -231,7 +237,13 @@ def main():
             rows = rr.get('results', rr) if isinstance(rr, dict) else rr
             if not rows:
                 sys.exit('no result yet on %s (test %d)' % (cid, tid))
+            # 15 Oct 2026: never attach the same picture twice — skip files already on this result (a re-run after a dropped connection)
+            s0, ra0 = t.get('get_attachments_for_test/%d' % tid)
+            ra0 = ra0.get('attachments', ra0) if isinstance(ra0, dict) else ra0
+            have = {x.get('name') for x in (ra0 if isinstance(ra0, list) else []) if x.get('entity_id') == rows[0]['id']}
             for pth in r['pictures']:
+                if _os.path.basename(pth) in have:
+                    print('  %s result %d already has %s' % (cid, rows[0]['id'], _os.path.basename(pth))); continue
                 if a.dry_run:
                     print('  [dry-run] %s result %d <- %s' % (cid, rows[0]['id'], pth)); continue
                 print('  %s result %d <- %s: %s' % (cid, rows[0]['id'], pth, attach(rows[0]['id'], pth)[0]))

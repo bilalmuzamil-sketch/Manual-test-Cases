@@ -392,4 +392,4 @@ When filters leave Board View with no cards (e.g. Assigned to me after reassigni
 reader that sets `scrollLeft` throws "Cannot set properties of null (setting 'scrollLeft')" (C96973, second pass, 15 Oct).
 Read the empty-state text before reading columns; the error is the observation "empty state shown", never a product crash
 and never a reason to re-run. Also: every test now ends with `<C-id>-end.png` (session.mts `__shotEach`, `WOB_SHOT_EACH=0`
-turns it off), so a result always has a picture to annotate (Rule 130). #board #emptystate #scripts → L0337, L0339
+turns it off), so a result always has a picture to annotate (Rule 130). Also (15 Oct): a large result push can lose its connection after the results are written but mid-attachment — `push_results_to_run.py` now retries a dropped upload and `--attach-only` skips pictures already on the result, so just re-run it with `--attach-only`. #board #emptystate #scripts #testrail → L0337, L0339
