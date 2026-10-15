@@ -1,0 +1,57 @@
+{
+ "results": {
+  "C368208": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps, and compared with production (Rule 121).",
+    "Staging (eighth pass), the view-only user's own window, S2-36184 (ZZAUTOTEST View Only Toggle): the On Site pin is shown disabled — drawn faded, and the pointer shows \"not allowed\" over it.",
+    "Clicking it changed nothing: not on site before the click, after it, and after a reload.",
+    "Production (read only, build v26.40.18-163ddfa), a view-only login (Work Orders view, no create or edit), S2-968: the pin is shown the same way — faded, \"not allowed\" pointer — and a click changed nothing.",
+    "On both sites the pin's hover text still says \"… Click to toggle status.\" (\"Asset not here.\" on staging, \"Asset here.\" on production). That wording comes from production, so it is not caused by this work."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368208-1-viewonly-before-click.png",
+    "evidence/staging-full-2026-10-14/annotated/C368208-2-viewonly-after-click.png",
+    "evidence/staging-full-2026-10-14/annotated/C368208-3-pin-staging-vs-production.png"
+   ],
+   "not_observed": "For the record: the first two pictures are from the seventh-pass run (S2-36141, same result); the side-by-side picture is from this run (S2-36184) and production (S2-968).",
+   "todo": "None."
+  },
+  "C368196": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (eighth pass), search \"ZZAUTOTEST List Sort 99048\": S2-36185, S2-36186, S2-36187.",
+    "Number: first click S2-36185, S2-36186, S2-36187; second click S2-36187, S2-36186, S2-36185.",
+    "On Site, Status, Customer, Asset, Unit, VIN/Serial #, Service Advisor, Lead Technician, Clocked In, Lines, Total Price and Created On each ordered the 3 rows one way, then the other, with the header marked as sorted (Total Price: $52.20, $313.18, $435.27, then the reverse; Created On: oldest first, then newest first — all three read \"Today\").",
+    "Progress cannot be clicked to sort: it has no sort mark and the order did not change.",
+    "No header failed to order the rows."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368196-1-number-second-click.png",
+    "evidence/staging-full-2026-10-14/annotated/C368196-2-total-price-second-click.png",
+    "evidence/staging-full-2026-10-14/annotated/C368196-3-created-on-second-click.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368181": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps, with production compared (steps 4-6).",
+    "Staging: asset TRK-201 of ZZAUTOTEST Asset Tab 14610, its Work Orders tab lists 3 rows (S2-36192, S2-36193, S2-36194). No count shows: the tab reads \"Work Orders\", and there is none above or under the table.",
+    "Production (read only, build v26.40.18-163ddfa — production moved from v26.40.17-f5bf8f4 during the day): an asset with work orders (a 2019 Freightliner of customer Ahsan), its Work Orders tab lists 14 rows and also shows no count.",
+    "So \"no count\" is how the product already works, as the case allows; no count differs from the rows."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368181-staging-vs-production-no-count.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ },
+ "redo": {
+  "C368217": "Not judged (eighth pass, P2-2326): (1) the Receive step was refused — \"There is already invoice with number: ZZINV-PS1 Please try to resolve this.\" — because the script reused a fixed Vendor Invoice Number, so no part was received and no return raised (the setup check read Parts (2)); (2) the Lethbridge part sale was made (2 parts, on screen at Staging Lethbridge - 4310), but the screen never came back to Heavy Duty (top bar still Lethbridge after Change Location and after a reload), so the Part Sales list was read at Lethbridge and found nothing. Fixed in ps-counts.mts: a run-numbered Vendor Invoice Number; the browser's stored location is saved before the switch and put back (with the server-side location) afterwards, then reloaded; the run stops instead of reading the list at the wrong location. Queued in ninth-pass-plan.txt (ps-counts.mts | C368217)."
+ },
+ "failed": {},
+ "doubt": {}
+}

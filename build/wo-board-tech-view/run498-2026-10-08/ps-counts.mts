@@ -279,7 +279,7 @@ await run('C368217', async () => { const ps = await partSale(`ZZAUTOTEST Part Sa
   await btn(/^Receive$/).click(); await p.waitForTimeout(3000); st('receive window: ' + (await dlgText())); const d = p.locator('.q-dialog').last();
   // the order can come out "Vendor missing": choose the vendor before receiving (playbook)
   const vend = d.locator('[data-test-id*="vendor" i]').first(); if (await vend.count() && /Vendor missing/i.test((await dlgText()) ?? '')) { await vend.click(); await p.waitForTimeout(1200); await p.locator('.q-menu .q-item').first().click().catch(() => {}); await p.waitForTimeout(1200); st('vendor picked'); }
-  const field = (re: RegExp) => d.getByLabel(re).first(); await field(/Vendor Invoice/i).fill('ZZINV-PS1').catch(() => st('no invoice field'));
+  const field = (re: RegExp) => d.getByLabel(re).first(); await field(/Vendor Invoice/i).fill(`ZZINV-PS-${RUNNO}`)   /* wave 29: a fixed number was refused the second time ("There is already invoice with number: ZZINV-PS1") */.catch(() => st('no invoice field'));
   await d.getByLabel(/Part (Number|#)/i).first().fill('ZZPN-PS1').catch(() => st('no part number field')); await d.getByLabel(/Qty Received|Received/i).first().fill('1').catch(() => st('no qty field'));
   await d.locator('tbody .q-checkbox, tbody [role=checkbox]').first().click().catch(() => st('no row tick')); await p.waitForTimeout(800); await shot(p, 'C368217-receive-window');
   await d.getByRole('button', { name: /Receive Parts/i }).first().click().catch(() => st('no Receive Parts button')); await p.waitForTimeout(4000); o.receiveToasts = await toasts(p);
@@ -291,11 +291,17 @@ await run('C368217', async () => { const ps = await partSale(`ZZAUTOTEST Part Sa
   // 15 Oct 2026 (wave 25, seventh pass): the second location was set behind the screen only, so the screen stayed at Heavy Duty and the
   // Lethbridge part sale's page sent it back to the Part Sales list (no Add Part button; 30 s timeout). Switch the SCREEN too (Change
   // Location, as the case says), read the top bar, and switch back the same way (behind-the-screen set + reload if the screen will not).
+  // 15 Oct 2026 (wave 29, eighth pass): switching the screen BACK never took (top bar still Lethbridge after Change Location and after a
+  // reload), so the list was read at Lethbridge and found nothing. The app keeps the location in this browser's storage: it is saved
+  // here before the switch and put back (with the server-side location) afterwards, then the page is reloaded and the top bar read.
+  const lsBefore = await p.evaluate(`(() => { const o = {}; for (const k of ['location', 'current_shop_id', 'timezone', 'user']) o[k] = localStorage.getItem(k); return o; })()`).catch(() => null) as any;
   await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }).catch(() => {}); o.l2TopBar = await switchLocUI(p, 'Staging Lethbridge');
   const ps2 = await partSale(`ZZAUTOTEST Part Sale Counts L2 ${RUNNO}`); o.l2id = ps2.id;
   try { o.l2parts = [await addPartManual(ps2.id, 'Brake Pads'), await addPartManual(ps2.id, 'Brake Pads')]; o.l2PartsRead = (await partsOf(ps2.id)).length; }
   finally { await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); o.backTopBar = await switchLocUI(p, 'Staging Heavy Duty');
-    if (!String(o.backTopBar).includes('Heavy Duty')) { await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(5000); o.backTopBarAfterReload = (await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); } }
+    if (!String(o.backTopBar).includes('Heavy Duty')) { if (lsBefore) await p.evaluate(`(() => { const s = ${JSON.stringify(lsBefore)}; for (const k of Object.keys(s)) if (s[k] !== null) localStorage.setItem(k, s[k]); })()`).catch(() => {});
+      await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(6000); o.backTopBarAfterReload = (await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); o.storageRestored = !!lsBefore; }
+    if (!String(o.backTopBarAfterReload ?? o.backTopBar).includes('Heavy Duty')) throw new Error(`the screen did not come back to Staging Heavy Duty - 9919 (top bar: ${o.backTopBarAfterReload ?? o.backTopBar}); the list would be read at the wrong location`); }
   // the list, filtered by the page's own Search (right of the header)
   await p.goto(APP + '/parts/part-sales', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.topBar = (await p.locator('header').innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 160);
   const box = p.locator('[data-test-id="page_search_input"]'); if (!(await box.isVisible().catch(() => false))) await p.locator('[data-test-id="page_search_toggle"]').click().catch(() => st('no page search toggle'));
