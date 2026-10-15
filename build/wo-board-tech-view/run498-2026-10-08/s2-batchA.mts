@@ -156,12 +156,21 @@ await run('C96935', async () => {
     const copies = [...s.querySelectorAll('[class*="sticky"], [class*="group-header"], [class*="floating"]')].filter(e => !e.closest('tr[data-test-id^="tech_view_group_"]') && e.getBoundingClientRect().width > 0 && names.some(n => (e.innerText || '').includes(n)))
       .map(e => ({ text: e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 80), box: bx(e), position: getComputedStyle(e).position, cls: String(e.className).slice(0, 60) })).slice(0, 4);
     const y = sb.top + (thead && thead.bottom > 0 ? thead.bottom : 0) + 6; const top = document.elementFromPoint(sb.left + 200, y); let a = top, named = null; for (let i = 0; a && i < 8 && !named; i++, a = a.parentElement) { const tx = (a.innerText || '').replace(/\\s+/g, ' ').trim(); if (tx && tx.length < 160 && names.some(n => tx.includes(n))) named = tx.slice(0, 100); }
-    return { scrollTop: Math.round(s.scrollTop), tableTopOnScreen: R1(sb.top), tableHeight: R1(sb.height), thead, groupHeaders, copies, justUnderColumnHeaders: named }; })()`) as Promise<any>;
+    // 15 Oct 2026 (wave 15): the drawn sticky header is neither the group row nor a class-named copy (copies came back empty while the
+    // picture at 500 px showed Ayesha Khan's header held at the top), so also read WHAT IS DRAWN at the sticky spot: the point 150 px in
+    // from the table's left edge and 20 px below the column-header row (48 px tall at rest), climbing to the first short text.
+    const sp0 = document.elementFromPoint(sb.left + 150, sb.top + 48 + 20); let b2 = sp0, spot = null; for (let i = 0; b2 && i < 8 && !spot; i++, b2 = b2.parentElement) { const tx = (b2.innerText || '').replace(/\s+/g, ' ').trim(); if (tx && tx.length < 160) spot = tx.slice(0, 100); }
+    const atStickySpot = { text: spot, namesTechA: !!spot && spot.includes(names[0]), namesTechB: !!spot && spot.includes(names[1]) };
+    return { scrollTop: Math.round(s.scrollTop), tableTopOnScreen: R1(sb.top), tableHeight: R1(sb.height), thead, groupHeaders, copies, justUnderColumnHeaders: named, atStickySpot }; })()`) as Promise<any>;
   R.C96935 = { techA: tA.name, techB: tB.name, reference: 'every box is measured from the table top edge (the scroller box), which does not move', samples: [] };
-  for (let y = 0, last = -1; y <= 30000; y += 250) {
+  // 15 Oct 2026 (wave 15, fifth pass): [Tech-B] (Bilal Muzamil) was not pinned, so his group sat far below the alphabetical groups and
+  // the scroll never reached it (the next group after Ayesha Khan was Aaron Baker). The plan line now pins BOTH (WOB_PIN_NAMES=Ayesha
+  // Khan,Bilal Muzamil), so Bilal's group follows Ayesha's; from 750 px the scroll goes in 125 px steps and EVERY stop is photographed
+  // (C96935-stop-<y>), so the hand-over from her header to his is on a picture, with atStickySpot saying which name is drawn there.
+  for (let y = 0, last = -1; y <= 30000; y += (y >= 750 ? 125 : 250)) {
     await p.evaluate(`document.querySelector('${scroller}').scrollTop = ${y}`); await p.waitForTimeout(700);
     const sm = await topGroup(); R.C96935.samples.push(sm);
-    if ([500, 1500, 3000].includes(y)) await shot(p, `C96935-mid-${y}`);
+    if (y === 500) await shot(p, `C96935-mid-${y}`); if (y >= 750) { await shot(p, `C96935-stop-${y}`); sm.picture = `C96935-stop-${y}.png`; }
     if (sm.scrollTop === last) break; last = sm.scrollTop;
     const gB = (sm.groupHeaders ?? []).find((g: any) => g.name === tB.name);
     if (gB && gB.row.top < -150) { await shot(p, 'C96935-in-B'); break; }

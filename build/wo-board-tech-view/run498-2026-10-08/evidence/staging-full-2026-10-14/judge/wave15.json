@@ -1,0 +1,120 @@
+{
+ "results": {
+  "C154888": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Fresh customer ZZAUTOTEST F1 Shift Trim 15863, work order S2-36011 led by Esther Howard, set up at 10:31 shop time with three whole-work-order shifts: yesterday (Wed 14 Oct) 8:00-12:00, today 9:30-12:30 (under way) and tomorrow (Fri 16 Oct) 8:00-12:00.",
+    "Board View: the card was dragged from Esther Howard's column into Ralph Edwards' column at 10:32; the question about her scheduled shifts appeared and Clear Shifts was clicked. Ralph Edwards is now the lead.",
+    "Yesterday's 8:00-12:00 shift is unchanged.",
+    "Today's shift now runs 9:30-10:32: it ends at the moment of the change.",
+    "Tomorrow's 8:00-12:00 shift is gone (the Schedule search for S2-36011 finds no match on Fri 16 Oct).",
+    "This is the expected behaviour rather than the \"what you should see today\" note, so the change has shipped: tell the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C154888-1-yesterday-shift-kept.png",
+    "evidence/staging-full-2026-10-14/annotated/C154888-2-today-shift-trimmed.png",
+    "evidence/staging-full-2026-10-14/annotated/C154888-3-tomorrow-shift-removed.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C154889": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Customer ZZAUTOTEST F1 Remove Lead Prompt: S2-35491 and S2-35492 led by Esther Howard, each with a whole-work-order shift tomorrow 8:00-12:00.",
+    "Dragging S2-35491 into Unassigned opened the question \"Clear Esther Howard's scheduled shifts?\" with the text \"Esther Howard has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change.\" and the buttons Cancel, Keep Shifts and Clear Shifts.",
+    "More actions > Reassign lead technician > Unassigned > confirm on S2-35492 opened the same question, same title, text and buttons.",
+    "After Keep Shifts both work orders have no lead (they sit in Unassigned) and Esther Howard's tomorrow 8:00-12:00 shifts on both are still on the Schedule.",
+    "This is the expected behaviour rather than the \"what you should see today\" note, so the change has shipped: tell the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C154889-1-drag-to-unassigned-question.png",
+    "evidence/staging-full-2026-10-14/annotated/C154889-2-reassign-unassigned-question.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96987": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (verdict unchanged from the earlier staging run; this fifth-pass re-run was for usable pictures, judged 15 Oct against the live case text).",
+    "A brand-new user who had never chosen a density opened Work Orders; List has no density control.",
+    "Tech View's Density menu, photographed open: Compact, Regular and Comfortable, with Regular ticked.",
+    "Board View's Density menu, photographed open: the same three, with Regular ticked."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96987-1-tech-view-density.png",
+    "evidence/staging-full-2026-10-14/annotated/C96987-2-board-view-density.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96991": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (verdict unchanged from the earlier staging run; this fifth-pass re-run was for usable pictures, judged 15 Oct against the live case text).",
+    "Tech View set to Comfortable; after a normal reload the Density menu still has Comfortable ticked.",
+    "With the saved setting made unreadable on purpose (the forced load failure), Tech View's menu has Regular ticked, and Board View's too.",
+    "The saved choice itself was still Comfortable afterwards.",
+    "The red \"Ooooops! An error occurred\" message on the failure pictures comes from the deliberately blocked load, not from a separate fault."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96991-1-normal-reload-comfortable.png",
+    "evidence/staging-full-2026-10-14/annotated/C96991-2-load-failure-tech-regular.png",
+    "evidence/staging-full-2026-10-14/annotated/C96991-3-load-failure-board-regular.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368144": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (verdict unchanged from the earlier staging run; this fifth-pass re-run was for usable pictures, judged 15 Oct against the live case text).",
+    "Customer ZZAUTOTEST F3 Unassigned Place 47757: Bravo Co = S2-36012, Charlie Co = S2-36015, Alpha Co = S2-36014, Delta Co = S2-36013.",
+    "Step 4: Unassigned reads Bravo Co, Delta Co.",
+    "Step 5: removing Charlie Co's lead with Reassign lead technician > Unassigned showed \"Lead technician removed\".",
+    "Step 6: Unassigned reads Bravo Co, Charlie Co, Delta Co: Charlie Co is in its customer-name place, not at the bottom.",
+    "Step 8: after Alpha Co's lead was cleared on its work order page, Unassigned reads Alpha Co, Bravo Co, Charlie Co, Delta Co.",
+    "Step 9: Tech View's Unassigned group shows the same order.",
+    "The cards show the numbers, not the customer names, so the pictures are read through the number of each customer listed above."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368144-1-step4-unassigned.png",
+    "evidence/staging-full-2026-10-14/annotated/C368144-2-step6-charlie-in-place.png",
+    "evidence/staging-full-2026-10-14/annotated/C368144-3-step8-alpha-first.png",
+    "evidence/staging-full-2026-10-14/annotated/C368144-4-step9-tech-view-order.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368189": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (verdict unchanged from the earlier staging run; this fifth-pass re-run was for usable pictures, judged 15 Oct against the live case text).",
+    "Customer ZZAUTOTEST Asset Tab Old Page 80348, asset TRK-201: the asset's Work Orders tab was left open, then S2-36018's lead was changed to Ben Bravo elsewhere.",
+    "On the older page, without reloading, S2-36018's Asset on Site toggle was clicked; no error message appeared.",
+    "Refreshed, the asset's tab shows S2-36018 with a green pin (on site) and Lead Technician ZZAUTOTEST Ben Bravo.",
+    "The work order page reads Lead Technician ZZAUTOTEST Ben Bravo: the older page did not put Ana Alpha back."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368189-1-asset-tab-after-toggle.png",
+    "evidence/staging-full-2026-10-14/annotated/C368189-2-wo-page-lead.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ },
+ "redo": {
+  "C96958": "Not judged: the script stopped at the Tech View step. What it did see: no notification for anyone at the start; Ralph Edwards was not offered in the work order page's Lead Technician list (the list scrolled and still showed only Dana Ortiz to Dusan Radulovic), so step 1 was done behind the screen; the board drag to Dana Ortiz showed \"Lead technician updated\"; no notification reached Ralph Edwards or Dana Ortiz. Then the Tech View row was never found: Unassigned (about 3,450 rows on staging) opens expanded and pushed the group out of reach. Fixed in s4-batchH.mts: Tech-B is now Dana Ortiz (offered on the page; the whole list is recorded if she is not picked), Tech-C Ralph Edwards; Unassigned is closed, the row found in Ralph's group and centred before More actions. Queued in sixth-pass-plan.txt (s4-batchH.mts | C96958,C96966).",
+  "C96966": "Not judged: no Schedule change was made. The Schedule's search found the work order (\"1 match\", S2-36009 tomorrow 8:00-12:00 on Esther Howard's row) but the block shows the customer name, not the number, so the script never found it. Seen before that: status In Progress in the record, lead Esther Howard, her clock running. Fixed in s4-batchH.mts: the block is found by the customer name (else the number), and the status is also read beside the number on the work order page (the old read gave \"Approved\" from somewhere on the page against In Progress in the record). Queued in sixth-pass-plan.txt.",
+  "C368179": "Not judged: the drop under the 1 PM heading saved a 12:45-14:45 shift (the drop landed 15 minutes early, the known heading-text fault) and the shift's details were never opened (the block was 11,750 px down the page when clicked). Seen: Choose lines with only \"Service - Cabin air filter\", Hours 2h, \"Create shift · 1 line · 2h\", saved with no error, the shift covers that one line. Fixed in high1-fix5.mts: drop right of the 13:00 grid line (gridTime, as C368178) and scroll the block on screen before opening it. Queued in sixth-pass-plan.txt (high1-fix5 line).",
+  "C368190": "Not judged: the shift was never opened, so it was not deleted (step 3 still reads Jenny Wilson because nothing changed). The block was 10,664 px down the page when clicked and its details were matched on \"S2-\" while the Schedule writes \"S-\". Seen: step 1 Line 1 Labor reads Jenny Wilson; her 10:00-11:00 shift tomorrow is there. Fixed in high1-fix5.mts: block scrolled on screen first, details matched on the digits. Queued in sixth-pass-plan.txt (high1-fix5 line).",
+  "C96935": "Half seen: step 5 is proved (picture at 500 px: Ayesha Khan's header, name and count 25, held at the top while her rows scroll under it). Step 6 was not reached: [Tech-B] Bilal Muzamil was not pinned, so his group sat far down the alphabetical list and the scroll never got there (at 1,500 px Admin ShopView's header had taken the top). Fixed: both technicians pinned (WOB_PIN_NAMES=Ayesha Khan,Bilal Muzamil) so his group follows hers, 125 px steps from 750 px with a picture at every stop, and a reading of the name drawn at the sticky spot. Queued in sixth-pass-plan.txt."
+ },
+ "failed": [],
+ "doubt": {
+  "C368191": "Cannot be judged on staging as written: the case needs a line whose labor was done by a staff member who has since been DELETED, and staging refuses to delete such a person. Exact answers on work order S2-36022 (labor by \"ZZAUTOTEST Gone Tech 80348\", clock stopped with \"Timesheet clocked out\"): delete staff -> 400 {\"errors\":[{\"error\":\"Staff is being used elsewhere.\"}]}; deactivate -> 201; delete again -> 400 {\"errors\":[{\"error\":\"Staff is being used elsewhere.\"}]}. A brand-new unused staff member deletes at once (200 {\"data\":{\"staff_id\":\"9447754c-...\"}}), so the delete itself works. The Labor row still reads \"ZZAUTOTEST Gone Tech 80348\" (the person still exists). The product does not let the case's state be made, so no workaround is built (a state the product refuses is not created). Decision for the QA lead: mark Blocked with this reason, or point to a staging record where a deleted person already has labor. The read-only check C368177-deleted-user in the sixth pass looks for such a record."
+ }
+}

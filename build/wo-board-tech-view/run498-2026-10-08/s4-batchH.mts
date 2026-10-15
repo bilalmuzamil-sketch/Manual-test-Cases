@@ -7,7 +7,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, candidates, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, pickLeadOnPage } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, pickLeadOnPage, listAllOptions, findRow } from './wob.mts';
 import { viewAs } from './viewas.mts';
 import { staffRows, HEAVY, ensureEligible } from './staff.mts';
 import { mkShift, shiftsOn } from './shifts.mts';
@@ -80,8 +80,13 @@ await run('C96966', async () => {
       // 15 Oct 2026 (wave 12): the page's status was read as the first status word anywhere ("Approved" can be a LINE's word); the
       // work order's own status card (status_card) and the status pill in it are read too, beside the record's status
       const statusCard = await pg.locator('[data-test-id="status_card"]').first().innerText().then((x) => x.replace(/\s+/g, ' ').trim().slice(0, 200)).catch(() => null);
+      // 15 Oct 2026 (wave 15): status_card does not exist on staging (read null); read the status pill beside the work order number in
+      // the page's summary card (the number's own element, climbing until a status word appears) — this is what the tester reads
+      const statusNearNumber = await pg.evaluate(`(() => { const num = ${JSON.stringify(num)}; const W = /In Progress|Approved|Estimate|On Hold|Waiting[^\\n]{0,20}|Review|Complete[d]?|Invoiced|Closed/;
+        const start = document.querySelector('[data-test-id="text_wo_number"]') || [...document.querySelectorAll('body *')].find(e => e.children.length === 0 && (e.textContent || '').trim() === num && e.getBoundingClientRect().width > 0);
+        let a = start; for (let i = 0; i < 5 && a; i++, a = a.parentElement) { const tx = (a.innerText || '').replace(/\\s+/g, ' ').trim(); const m = tx.match(W); if (m) return { status: m[0], box: tx.slice(0, 120) }; } return start ? { status: null, box: (start.parentElement || start).innerText.slice(0, 120) } : null; })()`).catch((e) => String(e).slice(0, 120));
       const recordStatus = (await a.get(`/api/work-orders/view/${id}`)).body?.data?.work_order?.status ?? null;
-      return { actualHours: (tx.match(/\d+(?:\.\d+)?\s*\/\s*\d+(?:\.\d+)?/g) || []).slice(0, 8), totalHours: (tx.match(/Total Hours[^0-9]{0,30}[\d.:]+/i) || [null])[0], firstStatusWordOnPage: (tx.match(/In Progress|Approved|Review|Complete/) || [null])[0], statusCard, recordStatus, leadNear: (tx.match(/Lead Technician[^A-Za-z]{0,10}[A-Za-z]+ [A-Za-z]+/) || [null])[0] }; }
+      return { actualHours: (tx.match(/\d+(?:\.\d+)?\s*\/\s*\d+(?:\.\d+)?/g) || []).slice(0, 8), totalHours: (tx.match(/Total Hours[^0-9]{0,30}[\d.:]+/i) || [null])[0], firstStatusWordOnPage: (tx.match(/In Progress|Approved|Review|Complete/) || [null])[0], statusCard, statusNearNumber, recordStatus, leadNear: (tx.match(/Lead Technician[^A-Za-z]{0,10}[A-Za-z]+ [A-Za-z]+/) || [null])[0] }; }
     finally { await pg.close().catch(() => {}); } };
   R.C96966 = { wo: num, clock, before: await state(), screenBefore: await woScreen(wo, 'before') };
   const sh = await mkShift(a, wo, ES.staff_id, 1, '08:00', 240, []);
@@ -117,21 +122,36 @@ await run('C96966', async () => {
   // clock label reads the same), so it was never found. Now the block is matched by its digits (S<any>-35915); if it is still not
   // drawn, the Schedule's own search (magnifier > input_schedule_search, the stg-fix-new3 / stg6-sched2 route) is used on that day.
   const NUMRX = new RegExp(num.replace(/^[A-Z]+\d*-/, '[A-Z]+\\d*-') + '\\b');
-  const block = () => sp.locator('.fc-event').filter({ hasText: NUMRX }).first();
-  const searchSched = async () => { if (await block().count()) return false; if (!(await sp.locator('[data-test-id="input_schedule_search"]').isVisible().catch(() => false))) { await sp.locator('button').filter({ hasText: /^\s*search\s*$/ }).last().click().catch(() => sp.mouse.click(1300, 84)); await sp.waitForTimeout(1000); }
-    const sb = sp.locator('[data-test-id="input_schedule_search"]'); await sb.fill(''); await sb.fill(num); await sp.waitForTimeout(4000); if (!(await block().count())) { await sb.fill(num.replace(/^[A-Z]+\d*-/, '')); await sp.waitForTimeout(4000); }
+  // 15 Oct 2026 (wave 15, fifth pass): the Schedule's search found the work order ("1 match", picture C96966-schedule-found) but the
+  // block shows the CUSTOMER name ("ZZAUTOTEST F1 Status And Time Kept 56957") and no number, so a match on the number never found it
+  // and the move timed out. tagBlock() finds the block by the customer name (else the number), climbs to the block itself (a class
+  // naming event/shift/block, else the last ancestor before a much wider lane) and tags it; block() returns the tagged element.
+  const tagBlock = async () => (S_tag.last = await sp.evaluate(`(() => { document.querySelectorAll('[data-zz-block]').forEach(e => e.removeAttribute('data-zz-block'));
+    const n = ${JSON.stringify(n)}, rx = new RegExp(${JSON.stringify(NUMRX.source)}); const vis = (e) => { const b = e.getBoundingClientRect(); return b.width > 20 && b.height > 8 && b.x > 520; };
+    let el = [...document.querySelectorAll('.fc-event')].find(e => vis(e) && ((e.innerText || '').includes(n) || rx.test(e.innerText || '')));
+    if (!el) { const leaves = [...document.querySelectorAll('div, span, p, a')].filter(e => e.children.length <= 3 && vis(e));
+      const leaf = leaves.find(e => (e.textContent || '').trim().startsWith(n)) || leaves.find(e => (e.textContent || '').trim().startsWith(n.slice(0, 30))) || leaves.find(e => rx.test((e.textContent || '').trim().slice(0, 40)));
+      if (leaf) { let a = leaf, named = null; for (let i = 0; i < 7 && a; i++, a = a.parentElement) if (/fc-event|event|shift|block/i.test(String(a.className))) { named = a; break; }
+        if (named) el = named; else { el = leaf; while (el.parentElement) { const c = el.getBoundingClientRect(), pr = el.parentElement.getBoundingClientRect(); if (pr.height > 120 || pr.width > 1.5 * Math.max(c.width, 100)) break; el = el.parentElement; } } } }
+    if (!el) return null; el.setAttribute('data-zz-block', '1'); const b = el.getBoundingClientRect();
+    return { how: el.classList.contains('fc-event') ? 'fc-event' : 'customer name', cls: String(el.className).slice(0, 80), x: Math.round(b.x), y: Math.round(b.y), w: Math.round(b.width), h: Math.round(b.height) }; })()`).catch((e) => String(e).slice(0, 120)));
+  const S_tag: any = {};
+  const block = () => sp.locator('[data-zz-block="1"]').first();
+  const blk = async () => { await tagBlock(); return block(); };
+  const searchSched = async () => { if (await (await blk()).count()) return false; if (!(await sp.locator('[data-test-id="input_schedule_search"]').isVisible().catch(() => false))) { await sp.locator('button').filter({ hasText: /^\s*search\s*$/ }).last().click().catch(() => sp.mouse.click(1300, 84)); await sp.waitForTimeout(1000); }
+    const sb = sp.locator('[data-test-id="input_schedule_search"]'); await sb.fill(''); await sb.fill(num); await sp.waitForTimeout(4000); if (!(await (await blk()).count())) { await sb.fill(num.replace(/^[A-Z]+\d*-/, '')); await sp.waitForTimeout(4000); }
     await sp.evaluate(`document.querySelector('.fc-event')?.scrollIntoView({ block: 'center' })`).catch(() => {}); await sp.waitForTimeout(800); return true; };
   const S: any = { day: await openTomorrow() }; S.searched = await searchSched(); S.blocksDrawn = await sp.locator('.fc-event').allInnerTexts().then((x) => x.map((y) => y.replace(/\s+/g, ' ').slice(0, 60)).slice(0, 6)).catch(() => []); await sshot('found');
   const ok = (want: RegExp) => async () => want.test(await shiftNow());
   // (a) move 8 AM -> 1 PM
-  { const xs = await hours(['8 AM', '1 PM']); const e = block(); S.blockFound = await e.count(); await e.scrollIntoViewIfNeeded().catch(() => {}); await sp.waitForTimeout(600); const bx = await e.boundingBox();
+  { const xs = await hours(['8 AM', '1 PM']); const e = await blk(); S_tag['at' + Object.keys(S_tag).length] = S_tag.last; S.blockFound = await e.count(); await e.scrollIntoViewIfNeeded().catch(() => {}); await sp.waitForTimeout(600); const bx = await e.boundingBox();
     if (bx && xs['8 AM'] !== null && xs['1 PM'] !== null) { const dx = xs['1 PM']! - xs['8 AM']!; const gx = bx.x + Math.min(30, bx.width / 3), gy = bx.y + bx.height / 2;
       await sp.mouse.move(gx, gy); await sp.mouse.down(); await sp.mouse.move(gx + 12, gy, { steps: 4 }); await sp.mouse.move(gx + dx, gy, { steps: 25 }); await sp.waitForTimeout(400); await sp.mouse.up(); S.moveDialog = await confirmAny(); }
     await sp.waitForTimeout(2000); S.afterMoveScreen = await shiftNow(); await sshot('after-move');
     if (!(await ok(/T08:00:00Z|13:00/)())) { const moved = await shiftNow(); S.moveApiFallback = (await a.patch(`/api/schedule/shifts/${sh}`, { startsAt: start.toISOString(), isAllDay: false, reassign: false, changeNote: false, scope: 'shift' })).status; S.moveNote = `screen drag did not land (${moved}); api fallback`; } }
-  R.C96966.move = S; R.C96966.afterMove = { shift: await shiftNow(), ...(await state()) };
+  R.C96966.blockTags = S_tag; R.C96966.move = S; R.C96966.afterMove = { shift: await shiftNow(), ...(await state()) };
   // (b) resize: end 5 PM -> 4 PM
-  { const S2: any = {}; await openTomorrow(); S2.searched = await searchSched(); const xs = await hours(['4 PM', '5 PM']); const e = block(); await e.scrollIntoViewIfNeeded().catch(() => {}); await e.hover().catch(() => {}); await sp.waitForTimeout(600);
+  { const S2: any = {}; await openTomorrow(); S2.searched = await searchSched(); const xs = await hours(['4 PM', '5 PM']); const e = await blk(); S_tag['at' + Object.keys(S_tag).length] = S_tag.last; await e.scrollIntoViewIfNeeded().catch(() => {}); await e.hover().catch(() => {}); await sp.waitForTimeout(600);
     const rz = e.locator('.fc-event-resizer-end, .fc-event-resizer').last(); S2.handle = await rz.count(); const rb = (await rz.boundingBox().catch(() => null)) ?? null; const eb = await e.boundingBox();
     if (eb && xs['4 PM'] !== null && xs['5 PM'] !== null) { const dx = xs['4 PM']! - xs['5 PM']!; const gx = rb ? rb.x + rb.width / 2 : eb.x + eb.width - 3, gy = rb ? rb.y + rb.height / 2 : eb.y + eb.height / 2;
       await sp.mouse.move(gx, gy); await sp.mouse.down(); await sp.mouse.move(gx - 6, gy, { steps: 3 }); await sp.mouse.move(gx + dx, gy, { steps: 20 }); await sp.waitForTimeout(400); await sp.mouse.up(); S2.dialog = await confirmAny(); }
@@ -140,7 +160,7 @@ await run('C96966', async () => {
     R.C96966.resize = S2; }
   R.C96966.afterResize = { shift: await shiftNow(), ...(await state()) };
   // (c) onto Dana Ortiz's row
-  { const S3: any = {}; await openTomorrow(); S3.danaLane = await laneOf2(DO.staff_id); const e = block(); await e.scrollIntoViewIfNeeded().catch(() => {}); await sp.waitForTimeout(600);
+  { const S3: any = {}; await openTomorrow(); S3.danaLane = await laneOf2(DO.staff_id); const e = await blk(); S_tag['at' + Object.keys(S_tag).length] = S_tag.last; await e.scrollIntoViewIfNeeded().catch(() => {}); await sp.waitForTimeout(600);
     const eb = await e.boundingBox(); const lb = await sp.locator(`[data-staff-id="${DO.staff_id}"]`).first().boundingBox().catch(() => null); S3.bothOnScreen = !!(eb && lb && lb.y > 0 && lb.y < 1000);
     if (eb && lb) { const gx = eb.x + Math.min(30, eb.width / 3), gy = eb.y + eb.height / 2; await sp.mouse.move(gx, gy); await sp.mouse.down(); await sp.mouse.move(gx, gy + 8, { steps: 3 }); await sp.mouse.move(gx, lb.y + lb.height / 2, { steps: 25 }); await sp.waitForTimeout(400); await sp.mouse.up(); S3.dialog = await confirmAny(); }
     await sp.waitForTimeout(2000); S3.afterScreen = await shiftNow(); await sshot('after-reassign');
@@ -191,28 +211,40 @@ await run('C96958', async () => {
     } finally { await v.close(); }
   };
   R.C96958 = { wo: num, eligible, candidates: (await candidates(a)).filter((x) => Object.keys(people).includes(x.name)).map((x) => x.name), base: { 'Esther Howard': await read('Esther Howard'), 'Ralph Edwards': await read('Ralph Edwards'), 'Dana Ortiz': await read('Dana Ortiz') } };
-  // step 1: the work order page, Esther -> Ralph
+  // 15 Oct 2026 (wave 15, fifth pass): Ralph Edwards was never drawn in the page's Lead Technician list (it scrolled 19 times and
+  // still showed only the D names), while Dana Ortiz was offered at once. The case names the people only as examples, so the roles
+  // are now Tech-A = Esther Howard, Tech-B = Dana Ortiz (picked on the page), Tech-C = Ralph Edwards (board drag target). If Dana is not
+  // picked either, the whole list is recorded (listAllOptions) before the lead is set behind the screen.
+  // step 1: the work order page, Esther -> Dana
   { const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${wo}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(8000);
     await shot(pg, 'C96958-wo-page');
-    R.C96958.woPagePick = await pickLeadOnPage(pg, 'Ralph', 'Ralph Edwards'); await shot(pg, 'C96958-wo-page-after-pick'); await pg.close(); }
+    R.C96958.woPagePick = await pickLeadOnPage(pg, 'Dana', 'Dana Ortiz'); await shot(pg, 'C96958-wo-page-after-pick');
+    if (!R.C96958.woPagePick?.picked) { const sel = (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]') : pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
+      await sel.click().catch(() => {}); await pg.waitForTimeout(1500); R.C96958.woPageAllOptions = await listAllOptions(pg).catch((e) => [String(e).slice(0, 120)]); await pg.keyboard.press('Escape').catch(() => {}); }
+    await pg.close(); }
   R.C96958.leadAfterWoPage = (await workOrders(a, n))[0]?.techAssignedFirstName;
-  // if the page could not pick him, say so and set the lead behind the screen so the later steps still have Ralph as the lead to start from
-  if (R.C96958.leadAfterWoPage !== 'Ralph') { R.C96958.step1NotOnScreen = `work order page did not set Ralph (${JSON.stringify(R.C96958.woPagePick).slice(0, 200)}); lead set by API for steps 2+`;
-    await a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: RE.staff_id }); R.C96958.leadAfterApi = (await workOrders(a, n))[0]?.techAssignedFirstName; }
+  // if the page could not pick her, say so and set the lead behind the screen so the later steps still have Dana as the lead to start from
+  if (R.C96958.leadAfterWoPage !== 'Dana') { R.C96958.step1NotOnScreen = `work order page did not set Dana (${JSON.stringify(R.C96958.woPagePick).slice(0, 200)}); lead set by API for steps 2+`;
+    await a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: DO.staff_id }); R.C96958.leadAfterApi = (await workOrders(a, n))[0]?.techAssignedFirstName; }
   await p.waitForTimeout(20_000);
-  R.C96958.afterWoPage = { 'Esther Howard': await read('Esther Howard'), 'Ralph Edwards': await read('Ralph Edwards') };
-  // board drag Ralph -> Dana
-  await bv(n); await drag(p, `[data-test-id="board_card_${wo}"]`, `[data-test-id="board_column_${DO.staff_id}"]`, 120); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
-  R.C96958.boardMessage = await toasts(p); R.C96958.leadAfterBoard = (await workOrders(a, n))[0]?.techAssignedFirstName;
+  R.C96958.afterWoPage = { 'Esther Howard': await read('Esther Howard'), 'Dana Ortiz': await read('Dana Ortiz') };
+  // board drag Dana -> Ralph
+  await bv(n); await drag(p, `[data-test-id="board_card_${wo}"]`, `[data-test-id="board_column_${RE.staff_id}"]`, 120); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
+  R.C96958.boardMessage = await toasts(p); R.C96958.leadAfterBoard = (await workOrders(a, n))[0]?.techAssignedFirstName; await shot(p, 'C96958-board-after-drag');
   await p.waitForTimeout(20_000);
-  R.C96958.afterBoard = { 'Ralph Edwards': await read('Ralph Edwards'), 'Dana Ortiz': await read('Dana Ortiz') };
-  // Tech View reassign Dana -> Esther
-  await bv(n, 'Tech View'); await expandSmallGroups(p);
+  R.C96958.afterBoard = { 'Dana Ortiz': await read('Dana Ortiz'), 'Ralph Edwards': await read('Ralph Edwards') };
+  // Tech View reassign Ralph -> Esther. Fifth pass: the row was never found (hover timed out) because Unassigned (~3,450 rows on
+  // staging) opens expanded and pushes Ralph's group out of the drawn rows (L0360). Close Unassigned first, then bring the row on
+  // screen in Ralph's group and centre it before hovering.
+  await bv(n, 'Tech View');
+  if (await p.locator('[data-test-id="tech_view_group_unassigned"][data-collapsed="false"]').count()) { await p.locator('[data-test-id="button_tech_view_group_toggle_unassigned"]').click().catch(() => {}); await p.waitForTimeout(1800); R.C96958.unassignedClosed = true; }
+  await expandSmallGroups(p); R.C96958.techRowGroup = await findRow(p, wo, RE.staff_id).catch((e) => `findRow: ${String(e).slice(0, 100)}`);
+  await p.evaluate(`document.querySelector('[data-test-id="tech_view_row_${wo}"]')?.scrollIntoView({ block: 'center' })`).catch(() => {}); await p.waitForTimeout(800);
   const o = await openReassign(p, wo, 'tech'); await o.item.click(); await p.waitForTimeout(1200);
   await p.locator(`[data-test-id="option_lead_technician_${ES.staff_id}"]`).click(); await p.locator('[data-test-id="button_confirm_reassign_lead_technician"]').click(); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
-  R.C96958.techMessage = await toasts(p); R.C96958.leadAfterTech = (await workOrders(a, n))[0]?.techAssignedFirstName;
+  R.C96958.techMessage = await toasts(p); R.C96958.leadAfterTech = (await workOrders(a, n))[0]?.techAssignedFirstName; await shot(p, 'C96958-tech-after-reassign');
   await p.waitForTimeout(20_000);
-  R.C96958.afterTech = { 'Dana Ortiz': await read('Dana Ortiz'), 'Esther Howard': await read('Esther Howard') };
+  R.C96958.afterTech = { 'Ralph Edwards': await read('Ralph Edwards'), 'Esther Howard': await read('Esther Howard') };
 });
 
 await RUN.end();
