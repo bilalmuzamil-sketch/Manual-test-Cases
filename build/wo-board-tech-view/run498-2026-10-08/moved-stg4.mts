@@ -126,12 +126,34 @@ const bv = async (pg: Page, n: string, d = 'Board View') => { await pg.goto(APP 
 const cols = (pg: Page) => pg.evaluate(`[...document.querySelectorAll('[data-test-id^="board_column_header_"]')].map(h => { const id = h.getAttribute('data-test-id').replace('board_column_header_', ''); const c = document.querySelector('[data-test-id="board_column_' + id + '"]'); const pin = document.querySelector('[data-test-id="button_board_pin_' + id + '"]');
   return { id: id.slice(0, 8), name: ((document.querySelector('[data-test-id="board_column_name_' + id + '"]') || {}).textContent || '').trim(), header: h.innerText.replace(/\\s+/g, ' ').trim(), pinned: pin ? pin.getAttribute('aria-pressed') : 'no pin control', cards: c ? [...c.querySelectorAll('[data-test-id="board_card_number"]')].map(e => e.textContent.trim()) : [], empty: ((document.querySelector('[data-test-id="board_column_empty_' + id + '"]') || {}).innerText || '').replace(/\\s+/g, ' ').trim() || null, left: Math.round(h.getBoundingClientRect().left) }; })`) as Promise<any[]>;
 const onScreen = (pg: Page, sel: string) => pg.evaluate(`(() => { const e = document.querySelector(${JSON.stringify(sel)}); if (!e) return 'not drawn'; const r = e.getBoundingClientRect(); return r.left >= 0 && r.right <= innerWidth && r.width > 0 ? 'on screen @' + Math.round(r.left) : 'off screen @' + Math.round(r.left); })()`) as Promise<string>;
+/** 15 Oct 2026 (wave 11, fourth pass): no message was read after the drop on the moved technician's column — the old read came ~4 s
+ *  after letting go, so a short message could have gone. Now a MutationObserver is started BEFORE the press (as stg-new5's toastWatch)
+ *  and records, with the time since the press, every message (.q-notification) and every other short text that appears on the page
+ *  (a refusal note drawn over the column, a tooltip, a dialog). The drag is HELD over the target for a moment so what shows while
+ *  holding is read and photographed (<pic>-holding), then released; the watch keeps running for 5 s after the drop. */
+const watchStart = (pg: Page) => pg.evaluate(`(() => { window.__mw = []; window.__mw0 = Date.now(); if (window.__mo) window.__mo.disconnect();
+  const add = (kind, txt, el) => { const t = (txt || '').replace(/\\s+/g, ' ').replace(/^(check_circle|warning|error|info|block|do_not_disturb)\\s*/, '').replace(/\\s*close$/i, '').trim(); if (!t || t.length > 200) return; if (window.__mw.some(x => x.text === t && x.kind === kind)) return; window.__mw.push({ ms: Date.now() - window.__mw0, kind, text: t, cls: String(el && el.className || '').slice(0, 60) }); };
+  const grab = (muts) => { for (const e of document.querySelectorAll('.q-notification')) add('message', e.innerText, e);
+    for (const m of muts || []) for (const nd of m.addedNodes || []) { if (nd.nodeType !== 1) continue; const r = nd.getBoundingClientRect ? nd.getBoundingClientRect() : null; if (!r || r.width === 0) continue; if (nd.closest && nd.closest('.q-notification')) continue;
+      const txt = nd.innerText || ''; if (txt && txt.length <= 200) add(nd.closest && nd.closest('.q-tooltip') ? 'tooltip' : nd.closest && nd.closest('.q-dialog') ? 'dialog' : 'new text', txt, nd); } };
+  window.__mo = new MutationObserver(grab); window.__mo.observe(document.body, { childList: true, subtree: true, characterData: true }); grab([]); })()`);
+const watchRead = (pg: Page) => pg.evaluate('window.__mw || []') as Promise<{ ms: number; kind: string; text: string; cls: string }[]>;
+async function holdDrop(from: string, to: string, pic: string, dy: number) {
+  await p.locator(from).first().scrollIntoViewIfNeeded().catch(() => {}); await p.waitForTimeout(300);
+  const a1 = await p.locator(from).first().boundingBox(), b1 = await p.locator(to).first().boundingBox(); if (!a1 || !b1) throw new Error(`drag: missing ${!a1 ? from : to}`);
+  const gx = a1.x + a1.width * 0.45; await watchStart(p);
+  await p.mouse.move(gx, a1.y + a1.height / 2); await p.mouse.down(); await p.mouse.move(gx, a1.y + a1.height / 2 + 8, { steps: 4 });
+  await p.mouse.move(b1.x + b1.width / 2, b1.y + dy, { steps: 20 }); await p.waitForTimeout(900);
+  const holding = await watchRead(p); await shot(p, `${pic}-holding`);
+  await p.mouse.up(); await p.waitForTimeout(300); await shot(p, `${pic}-just-dropped`);
+  return holding;
+}
 /** drag, Keep shifts if asked, then read the message and the lead */
 async function dropTry(from: string, to: string, n: string, pic: string, dy = 120) {
   const o: any = { from: await onScreen(p, from), to: await onScreen(p, to) };
-  try { await drag(p, from, to, dy); } catch (e: any) { o.dragError = String(e?.message || e).slice(0, 160); }
+  try { o.whileHolding = await holdDrop(from, to, pic, dy); } catch (e: any) { o.dragError = String(e?.message || e).slice(0, 160); }
   o.shiftPrompt = await shiftPrompt(p, 'Keep shifts'); o.message = await toasts(p); await shot(p, pic);
-  await p.waitForTimeout(1500); o.leads = await leads(n);
+  await p.waitForTimeout(4000); o.watched = await watchRead(p); o.leads = await leads(n);
   return o;
 }
 
@@ -215,7 +237,7 @@ await run('C96970', async () => {
     // steps 10-12: the row onto {Technician-A}'s group, then onto {Technician-C}'s group
     await findRow(p, w2.id);
     const rowSel = `[data-test-id="tech_view_row_${w2.id}"]`;
-    const tdrop = async (to: string, pic: string) => { const r: any = { from: await onScreen(p, rowSel), to: await onScreen(p, to) }; try { await drag(p, rowSel, to, 10); } catch (e: any) { r.dragError = String(e?.message || e).slice(0, 160); } r.shiftPrompt = await shiftPrompt(p, 'Keep shifts'); r.message = await toasts(p); await shot(p, pic); await p.waitForTimeout(1500); r.leads = await leads(n); r.rowGroup = await findRow(p, w2.id); return r; };
+    const tdrop = async (to: string, pic: string) => { const r: any = { from: await onScreen(p, rowSel), to: await onScreen(p, to) }; try { r.whileHolding = await holdDrop(rowSel, to, pic, 10); } catch (e: any) { r.dragError = String(e?.message || e).slice(0, 160); } r.shiftPrompt = await shiftPrompt(p, 'Keep shifts'); r.message = await toasts(p); await shot(p, pic); await p.waitForTimeout(4000); r.watched = await watchRead(p); r.leads = await leads(n); r.rowGroup = await findRow(p, w2.id); return r; };
     o.step10 = await tdrop(`[data-test-id="tech_view_group_${TA.staff_id}"]`, 'C96970-stg4-step10');
     o.step11 = await tdrop(`[data-test-id="tech_view_group_${TC.staff_id}"]`, 'C96970-stg4-step11');
     o.step12 = { group: await findRow(p, w2.id), techBId: TB.staff_id };

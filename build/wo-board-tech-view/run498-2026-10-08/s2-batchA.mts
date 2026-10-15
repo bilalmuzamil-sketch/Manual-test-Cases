@@ -140,24 +140,31 @@ await run('C96935', async () => {
   // whole stack of elements at the top edge of the table body (elementsFromPoint), the text of the first one that names a
   // group (name and count), and every visible group-name label sitting at that edge, copy or row. The scroll goes on in
   // 250 px steps until [Tech-B]'s rows have reached the top (or the table ends), so both groups are passed through.
+  // 15 Oct 2026 (wave 11, fourth pass): the readings were still empty past the top — the reference edge was taken from the thead's
+  // bottom, which itself moved with the scroll, so the "edge" went negative and nothing sat at it. Now the TABLE's own top edge (the
+  // scroller's box, which never moves) is the reference: at every scroll stop the script reads the on-screen box of every group-header
+  // element (the group row, its header div, and any sticky/fixed copy that names a group) and of the column header row, against that
+  // edge, with each one's position setting; and it photographs mid-scroll (500, 1500, 3000 px and inside [Tech-B]'s rows).
   const NAMES = JSON.stringify([tA.name, tB.name, 'Unassigned']);
-  const topGroup = () => p.evaluate(`(() => { const s = document.querySelector('${scroller}'); const th = s.querySelector('thead'); const y = (th ? th.getBoundingClientRect().bottom : s.getBoundingClientRect().top) + 6; const x = s.getBoundingClientRect().left + 200;
-    const names = ${NAMES}; const tidOf = (e) => { let a = e, t = ''; while (a && !t) { t = a.getAttribute && a.getAttribute('data-test-id') || ''; a = a.parentElement; } return t; };
-    const stack = document.elementsFromPoint(x, y);
-    let named = null; for (const e of stack) { let a = e; for (let i = 0; a && i < 6; i++, a = a.parentElement) { const tx = (a.innerText || '').replace(/\\s+/g, ' ').trim(); if (tx && tx.length < 160 && names.some(n => tx.includes(n))) { named = { text: tx.slice(0, 120), tid: tidOf(a), tag: a.tagName.toLowerCase(), cls: String(a.className).slice(0, 60), inTableRow: !!a.closest('tr') }; break; } } if (named) break; }
-    const el = stack[0]; const tr = el && el.closest('tr'); const tid = tr && tr.getAttribute('data-test-id') || '';
-    const atEdge = [...document.querySelectorAll('[data-test-id^="tech_view_group_name_"], body *')].filter(e => e.children.length === 0 && names.includes((e.textContent || '').trim()))
-      .map(e => { const r = e.getBoundingClientRect(); return { name: e.textContent.trim(), top: Math.round(r.top), w: r.width, inGroupRow: !!e.closest('tr[data-test-id^="tech_view_group_"]'), tid: tidOf(e) }; })
-      .filter(o => o.w > 0 && o.top >= y - 40 && o.top <= y + 40).map(o => o.name + (o.inGroupRow ? ' (row)' : ' (copy ' + o.tid + ')') + '@' + o.top);
-    const bRow = document.querySelector('[data-test-id="tech_view_group_${tB.id}"]'); const bTop = bRow ? Math.round(bRow.getBoundingClientRect().top - y) : null;
-    return { scrollTop: Math.round(s.scrollTop), edge: Math.round(y), header: named, under: tid.startsWith('tech_view_group_') ? 'group row ' + ((tr.querySelector('[data-test-id^="tech_view_group_name_"]') || {}).textContent || '') : (tr ? 'row ' + ((tr.innerText.match(/S\\d+-\\d+/) || [''])[0]) : (el ? el.tagName.toLowerCase() + '.' + String(el.className).slice(0, 40) : null)), groupNamesAtEdge: atEdge, techBGroupRowFromEdge: bTop }; })()`) as Promise<any>;
-  R.C96935 = { techA: tA.name, techB: tB.name, samples: [] };
+  const topGroup = () => p.evaluate(`(() => { const s = document.querySelector('${scroller}'); const sb = s.getBoundingClientRect(); const names = ${NAMES};
+    const R1 = (n) => Math.round(n); const bx = (e) => { const r = e.getBoundingClientRect(); return { top: R1(r.top - sb.top), bottom: R1(r.bottom - sb.top), h: R1(r.height), w: R1(r.width) }; };
+    const th = s.querySelector('thead'); const thead = th ? { ...bx(th), position: getComputedStyle(th).position, thPosition: th.querySelector('th') ? getComputedStyle(th.querySelector('th')).position : null } : null;
+    const rows = [...document.querySelectorAll('[data-test-id^="tech_view_group_"]')].filter(e => /^tech_view_group_([0-9a-f-]{36}|unassigned)$/.test(e.getAttribute('data-test-id')));
+    const groupHeaders = rows.map(tr => { const nm = (tr.querySelector('[data-test-id^="tech_view_group_name_"]') || {}).textContent; const div = tr.querySelector('.tech-view-group-header') || tr.querySelector('div'); const td = tr.querySelector('td');
+      const b = bx(div || tr); return { name: (nm || '').trim(), row: bx(tr), header: b, rowPosition: getComputedStyle(tr).position, tdPosition: td ? getComputedStyle(td).position : null, tdTop: td ? getComputedStyle(td).top : null, divPosition: div ? getComputedStyle(div).position : null,
+        onScreen: b.w > 0 && b.top >= -1 && b.bottom <= sb.height + 1, atTableTop: b.w > 0 && b.top >= -2 && b.top <= (thead ? thead.bottom + 4 : 4) }; }).filter(g => g.row.w > 0);
+    const copies = [...s.querySelectorAll('[class*="sticky"], [class*="group-header"], [class*="floating"]')].filter(e => !e.closest('tr[data-test-id^="tech_view_group_"]') && e.getBoundingClientRect().width > 0 && names.some(n => (e.innerText || '').includes(n)))
+      .map(e => ({ text: e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 80), box: bx(e), position: getComputedStyle(e).position, cls: String(e.className).slice(0, 60) })).slice(0, 4);
+    const y = sb.top + (thead && thead.bottom > 0 ? thead.bottom : 0) + 6; const top = document.elementFromPoint(sb.left + 200, y); let a = top, named = null; for (let i = 0; a && i < 8 && !named; i++, a = a.parentElement) { const tx = (a.innerText || '').replace(/\\s+/g, ' ').trim(); if (tx && tx.length < 160 && names.some(n => tx.includes(n))) named = tx.slice(0, 100); }
+    return { scrollTop: Math.round(s.scrollTop), tableTopOnScreen: R1(sb.top), tableHeight: R1(sb.height), thead, groupHeaders, copies, justUnderColumnHeaders: named }; })()`) as Promise<any>;
+  R.C96935 = { techA: tA.name, techB: tB.name, reference: 'every box is measured from the table top edge (the scroller box), which does not move', samples: [] };
   for (let y = 0, last = -1; y <= 30000; y += 250) {
     await p.evaluate(`document.querySelector('${scroller}').scrollTop = ${y}`); await p.waitForTimeout(700);
     const sm = await topGroup(); R.C96935.samples.push(sm);
-    if (y === 500) await shot(p, 'C96935-mid-A');
+    if ([500, 1500, 3000].includes(y)) await shot(p, `C96935-mid-${y}`);
     if (sm.scrollTop === last) break; last = sm.scrollTop;
-    if (sm.techBGroupRowFromEdge !== null && sm.techBGroupRowFromEdge < -150) { await shot(p, 'C96935-in-B'); break; }
+    const gB = (sm.groupHeaders ?? []).find((g: any) => g.name === tB.name);
+    if (gB && gB.row.top < -150) { await shot(p, 'C96935-in-B'); break; }
   }
 });
 

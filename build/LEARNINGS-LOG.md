@@ -521,3 +521,9 @@ v26.40.17-a5c4210 it fails exactly as the ticket described, twice, with a brand-
 case passed on the strength of an Obsolete/closed ticket is re-judged on its own staging reading, never carried over (Rule 101),
 and when it fails again the ask is "reopen the old ticket or file a new one", with the old ticket's live status shown.
 #staging #regression #tickets → Rules 101, 113
+
+## L0351 — 2026-10-15 — Wave 11: a location switch undone by the viewAs window, a moving "edge", messages read too late
+- **A location switch inside a viewAs window does not hold (C368130):** viewas.mts writes the switched user's saved `user` (with their location at the time) back into page storage on EVERY page load. A switch that reloads the page is therefore undone, and the top bar keeps reading the old location. Instead: tell the server the new location (`/api/iam/change-location`), then open a CLEAN window of the same session (cookies only, no page storage, no init script), read the top bar, switch on screen there if needed, and read the top bar back before reading anything else.
+- **Measure sticky things against something that does not move (C96935):** the thead's bottom edge scrolled with the table, so "the top edge" went negative and nothing was ever found at it. Use the scroller's own box as the reference, read every group-header element's box and position setting at each stop, and photograph mid-scroll.
+- **A saved "collapsed" from an earlier run spoils "how it opens" (C368127):** use a brand-new user on every run, and write "paging not seen by hand" when no spinner appears.
+- **Short messages after a drop (C368131/C96970):** start a MutationObserver BEFORE the press (stg-new5's toastWatch, widened in moved-stg4's `watchStart` to any new short text), hold the drag over the target to read and photograph, then keep watching for about 5 s after the drop.

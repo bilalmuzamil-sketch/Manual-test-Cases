@@ -70,29 +70,56 @@ if (want('C368130')) {
     o.workOrders = wos.map((x: any) => `${x.number} ${x.status} lead=${x.techAssignedFirstName ?? '-'}`);
     o.techniciansThere = (await candidates(a)).map((x) => x.name);
     await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: process.env.WOB_LOC_TZ || 'America/Edmonton' });
-    // (4) on screen
-    await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000);
-    o.header = await switchLocUI(p, LOC);
-    // no page.goto after the switch (as s2-batchB, where the switched screen held): only back to Work Orders if the switch left it
-    if (!/\/workorders/.test(p.url())) { await p.locator('a, .q-btn, button').filter({ hasText: /^\s*Work Orders\s*$/ }).first().click().catch(() => {}); await p.waitForTimeout(5000); }
-    o.headerOnWorkOrders = await p.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => null);
-    await tab(p, 'All'); await display(p, 'Tech View');
-    // Unassigned starts collapsed: open it so its rows can be read
-    if (await p.locator('[data-test-id="tech_view_group_unassigned"][data-collapsed="true"]').count()) { await p.locator('[data-test-id="button_tech_view_group_toggle_unassigned"]').click().catch(() => {}); await p.waitForTimeout(1500); }
-    o.tech = await p.evaluate(`(() => { const out = []; let cur = null; const re = ${NUM};
-      for (const tr of document.querySelectorAll('.q-virtual-scroll__content > tr')) { const tid = tr.getAttribute('data-test-id') || '';
-        if (tid.startsWith('tech_view_group_')) { const id = tid.replace('tech_view_group_', ''); const q = (s) => tr.querySelector('[data-test-id="' + s + id + '"]'); cur = { id, name: (q('tech_view_group_name_') || {}).textContent?.trim(), count: (q('tech_view_group_count_') || {}).textContent?.trim(), rows: [] }; out.push(cur); continue; }
-        if (cur) for (const m of (tr.innerText.match(re) || [])) if (!cur.rows.includes(m)) cur.rows.push(m); }
-      return out; })()`);
-    o.techText = (await p.evaluate(`(document.querySelector('main, .q-page') || document.body).innerText`) as string).replace(/\s+/g, ' ').slice(0, 900);
-    await shot(p, 'C368130-stg4-tech');
-    await display(p, 'Board View');
-    const empty = await p.locator('[data-test-id="board_view_scroller"], .board-view__scroller').count();
-    o.board = empty ? (await allBoardCols(p)).map((c) => ({ id: c.id, name: c.name, count: c.count, cards: c.cards, empty: c.empty })) : 'no board scroller (empty state, L0340)';
-    o.boardText = (await p.evaluate(`(document.querySelector('main, .q-page') || document.body).innerText`) as string).replace(/\s+/g, ' ').slice(0, 900);
-    await shot(p, 'C368130-stg4-board');
-    await (globalThis as any).__shotEach?.('C368130');
-    await display(p, 'List');
+    // (4) on screen — 15 Oct 2026 (wave 11, fourth pass): the on-screen switch in the runner's viewAs window did not take (top bar stayed
+    // "Staging Heavy Duty - 9919" although the runner is enrolled at the new location). That window re-writes the runner's saved user
+    // (with Heavy Duty as its location) into page storage on EVERY page load (viewas.mts init script), so a switch that reloads the page
+    // is undone. So the screen part runs in a CLEAN window of the same session (cookies only, no page storage, no init script — the
+    // "second browser" of s7-batch): the server is told the new location first, the page is opened, the top bar read; if it is not the
+    // new location, the profile menu's location list is read and the switch made there (switchLocUI); the top bar is read back and
+    // nothing is read off the board unless it names the new location.
+    if (!(o.runnerWorkplaces ?? []).includes(LOC)) { // the location menu lists only locations the user is enrolled at (L0345); the runner has Time Clock off, so this never makes it a technician
+      const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const dep = dd.find((d: any) => (d.name ?? d.label) === 'Service') ?? dd[0];
+      o.enrolRunner = (await a.post('/api/staff/enrollment/create', { staffId: RUN.staffId, workplaceId: w.id, departmentId: dep?.id })).status; }
+    await a.post('/api/iam/change-location', { workplace_id: w.id, workplace_timezone: w.timezone ?? 'Asia/Karachi' });
+    const st = await p.context().storageState();
+    const ctx = await browser.newContext({ storageState: { cookies: st.cookies, origins: [] }, viewport: { width: 1600, height: 1000 }, deviceScaleFactor: Number(process.env.WOB_SCALE || 1), ignoreHTTPSErrors: true });
+    await ctx.route((u) => /maps\.googleapis|intercom|sentry\.io|mercure\.qa|googletagmanager|google-analytics|hotjar|fullstory/i.test(u.toString()), (r) => r.abort()).catch(() => {});
+    const pg = await ctx.newPage(); pg.setDefaultTimeout(30_000);
+    try {
+      await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(7000);
+      const hdr = () => pg.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => null);
+      o.cleanWindowUrl = pg.url().replace(APP, ''); o.headerOnOpen = await hdr();
+      if (!(o.headerOnOpen ?? '').includes(LOC)) {
+        await pg.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await pg.waitForTimeout(1200);
+        await pg.locator('[data-test-id="select_location"]').click().catch(() => {}); await pg.waitForTimeout(1500);
+        o.locationsOffered = (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 20);
+        await shot(pg, 'C368130-stg4-location-menu'); await pg.keyboard.press('Escape').catch(() => {}); await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(800);
+        o.header = await switchLocUI(pg, LOC);
+        if (!/\/workorders/.test(pg.url())) { await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(6000); }
+      }
+      o.headerOnWorkOrders = await hdr(); o.switched = (o.headerOnWorkOrders ?? '').includes(LOC);
+      await shot(pg, 'C368130-stg4-top-bar');
+      if (!o.switched) throw new Error(`top bar still reads "${o.headerOnWorkOrders}" — nothing read off the board`);
+      o.techniciansThereAfterSwitch = (await candidates(api(pg))).map((x) => x.name);
+      await tab(pg, 'All'); await display(pg, 'Tech View');
+      if (await pg.locator('[data-test-id="tech_view_group_unassigned"][data-collapsed="true"]').count()) { await pg.locator('[data-test-id="button_tech_view_group_toggle_unassigned"]').click().catch(() => {}); await pg.waitForTimeout(1500); }
+      o.tech = await pg.evaluate(`(() => { const out = []; let cur = null; const re = ${NUM};
+        for (const tr of document.querySelectorAll('.q-virtual-scroll__content > tr')) { const tid = tr.getAttribute('data-test-id') || '';
+          if (tid.startsWith('tech_view_group_')) { const id = tid.replace('tech_view_group_', ''); const q = (s) => tr.querySelector('[data-test-id="' + s + id + '"]'); cur = { id, name: (q('tech_view_group_name_') || {}).textContent?.trim(), count: (q('tech_view_group_count_') || {}).textContent?.trim(), rows: [] }; out.push(cur); continue; }
+          if (cur) for (const m of (tr.innerText.match(re) || [])) if (!cur.rows.includes(m)) cur.rows.push(m); }
+        return out; })()`);
+      o.techText = (await pg.evaluate(`(document.querySelector('main, .q-page') || document.body).innerText`) as string).replace(/\s+/g, ' ').slice(0, 900);
+      await shot(pg, 'C368130-stg4-tech');
+      await display(pg, 'Board View');
+      const hasBoard = await pg.locator('[data-test-id="board_view_scroller"], .board-view__scroller').count();
+      o.board = hasBoard ? (await allBoardCols(pg)).map((c) => ({ id: c.id, name: c.name, count: c.count, cards: c.cards, empty: c.empty })) : 'no board scroller (empty state, L0340)';
+      o.boardText = (await pg.evaluate(`(document.querySelector('main, .q-page') || document.body).innerText`) as string).replace(/\s+/g, ' ').slice(0, 900);
+      await shot(pg, 'C368130-stg4-board'); await pg.screenshot({ path: path.join(EV, 'C368130-end.png') }).catch(() => {});
+      await display(pg, 'List');
+    } finally {
+      o.backOnScreen = await switchLocUI(pg, HEAVY_NAME).catch((e) => 'switch back failed ' + String(e).slice(0, 80));
+      await ctx.close().catch(() => {});
+    }
   } catch (e: any) { o.error = String(e?.message || e).slice(0, 400); await shot(p, 'C368130-stg4-error'); }
   // (5) back to the first location, on screen and on the server
   o.back = await switchLocUI(p, HEAVY_NAME).catch((e) => 'switch back failed ' + String(e).slice(0, 80));

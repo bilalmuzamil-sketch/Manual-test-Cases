@@ -26,7 +26,7 @@ const by = (n: string) => techs.find((x) => x.name === n)!;
 const me = by('Admin ShopView'), tA = by('Ayesha Khan');
 const sid = async (email: string) => (await staffRows(a, email)).find((x) => x.email === email);
 const tv = async (name: string) => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, 'All'); await display(p, 'Tech View'); if (name) await search(p, name); };
-const OWN_END = new Set(['C96926', 'C96929']); // 15 Oct 2026: these take their end picture where the result shows
+const OWN_END = new Set(['C96926', 'C96929', 'C368127', 'C96930']); // 15 Oct 2026: these take their end picture where the result shows
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); if (!OWN_END.has(id)) await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
@@ -107,6 +107,34 @@ await run('C96930', async () => {
   R.C96930.staffProof = Object.fromEntries(await Promise.all(names.map(async (n) => { const e = `zz.wob.${n.toLowerCase().replace(' ', '.')}${D}`; const r = await sid(e);
     return [n, r ? { email: r.email, role: r.role_label, timeClock: r.clockable, active: r.is_active, billable: r.billable, location: r.defaultWorkplaceName ?? r.workplace_name ?? r.workplace_id, workplaces: (r.workplaces ?? r.departments ?? []).map((x: any) => x.name ?? x.workplace_name ?? x.label ?? x).slice(0, 6) } : 'NOT FOUND']; })));
   R.C96930.offeredAsLead = Object.fromEntries(names.map((n) => [n, (techs.some((x) => x.name === n))]));
+  // 15 Oct 2026 (wave 11, picture only — the reading above is unchanged): the end picture showed List. Now, for each of the seven people,
+  // a picture of Tech View and of Board View at the place the person's group / column sits (Esther Howard, Billy Nobill) or WOULD sit
+  // in name order (the other five: the picture shows the neighbouring groups / columns either side and no group for that person).
+  // The screen order is read by walking the whole table / board; R.C96930.pictures says what each picture shows.
+  const slug = (n: string) => n.replace(/[^A-Za-z]+/g, '-');
+  const spot = (order: string[], n: string) => { if (order.includes(n)) return { shows: n, exists: true };
+    const after = order.filter((x) => x !== 'Unassigned').find((x) => x.localeCompare(n) > 0) ?? null; const i = after ? order.indexOf(after) : order.length; return { shows: after ?? order[order.length - 1], before: order[i - 1] ?? null, after, exists: false }; };
+  R.C96930.pictures = { tech: {}, board: {} };
+  await tv('ZZAUTOTEST F2 No Work Text');
+  { const un2 = (await groups(p)).find((g) => g.id === 'unassigned'); if (un2 && !un2.collapsed) await toggleGroup(p, 'unassigned'); }
+  const torder: string[] = []; await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await p.waitForTimeout(600);
+  for (let i = 0; i < 120; i++) { for (const n of (await p.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_group_name_"]')].map(e => e.textContent.trim())`)) as string[]) if (!torder.includes(n)) torder.push(n);
+    const moved = await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); const b = s.scrollTop; s.scrollTop += 600; return s.scrollTop !== b; })()`); await p.waitForTimeout(300); if (!moved) break; }
+  R.C96930.techOrderLength = torder.length;
+  for (const n of names) { const sp = spot(torder, n); await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await p.waitForTimeout(400);
+    for (let i = 0; i < 120 && !(await p.locator('[data-test-id^="tech_view_group_name_"]').filter({ hasText: new RegExp('^\\s*' + sp.shows.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*$') }).count()); i++) { const moved = await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); const b = s.scrollTop; s.scrollTop += 600; return s.scrollTop !== b; })()`); await p.waitForTimeout(300); if (!moved) break; }
+    await p.locator('[data-test-id^="tech_view_group_name_"]').filter({ hasText: sp.shows }).first().evaluate((e) => e.scrollIntoView({ block: 'center' })).catch(() => {}); await p.waitForTimeout(800);
+    await shot(p, `C96930-tech-${slug(n)}`); R.C96930.pictures.tech[n] = { ...sp, picture: `C96930-tech-${slug(n)}.png` }; }
+  await shot(p, 'C96930-end');
+  await display(p, 'Board View'); await p.waitForTimeout(1500);
+  const bcols: { id: string; name: string }[] = []; await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); if (h) h.scrollLeft = 0; })()`); await p.waitForTimeout(500);
+  for (let i = 0; i < 250; i++) { for (const c of (await p.evaluate(`[...document.querySelectorAll('[data-test-id^="board_column_name_"]')].map(e => ({ id: e.getAttribute('data-test-id').replace('board_column_name_', ''), name: e.textContent.trim() }))`)) as { id: string; name: string }[]) if (!bcols.some((x) => x.id === c.id)) bcols.push(c);
+    const moved = await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); if (!h) return false; const b = h.scrollLeft; h.scrollLeft += 900; return h.scrollLeft !== b; })()`); await p.waitForTimeout(300); if (!moved) break; }
+  R.C96930.boardOrderLength = bcols.length; const border = bcols.map((x) => x.name);
+  for (const n of names) { const sp = spot(border, n); const id = bcols.find((x) => x.name === sp.shows)?.id;
+    if (id) { await toColumn(p, id); await p.mouse.move(1, 1); await p.waitForTimeout(600); }
+    await shot(p, `C96930-board-${slug(n)}`); R.C96930.pictures.board[n] = { ...sp, picture: `C96930-board-${slug(n)}.png`, reached: !!id }; }
+  await display(p, 'List');
 });
 
 // ── as User-B for name order and default sort ─────────────────────────
@@ -212,28 +240,46 @@ await run('C96929', async () => {
 });
 
 await run('C368127', async () => {
-  await asUserB(async () => {
-    await tv('');
-    const u = async () => (await groups(p)).find((g) => g.id === 'unassigned');
-    // 15 Oct 2026: record how Unassigned OPENS. Setup per the case: if it is collapsed, expand it once, then open Work Orders again.
-    const saved0 = ((await a.get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {}).collapsedGroups ?? null;
-    const first = (await u())?.collapsed;
-    if (first) { await toggleGroup(p, 'unassigned'); await tv(''); }
-    R.C368127 = { savedCollapsedAtStart: saved0, collapsedAtFirstLook: first, setupExpandedOnce: !!first, opensCollapsed: (await u())?.collapsed ?? 'group row not drawn' };
-    await shot(p, 'C368127-opened');
-    if ((await u())?.collapsed) await toggleGroup(p, 'unassigned');
+  // 15 Oct 2026 (wave 11, fourth pass): User-B had Unassigned SAVED as collapsed by an earlier run of this case, so "how it opens" only
+  // showed that saved choice. Now a BRAND-NEW user (Admin role, Time Clock off, made on every run) who has never opened Work Orders is
+  // used, in their own window; nothing is expanded before the first look. The loading pause is watched while scrolling deep into
+  // Unassigned: every list request the page sends (page number, time to answer) and any loading spinner or "Loading" text on screen;
+  // if none is seen that is written down as "paging not seen by hand".
+  const rl = (await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data; const rr: any[] = Array.isArray(rl) ? rl : rl?.collection ?? [];
+  const adminRole = rr.find((r) => /^admin(istrator)?$/i.test(r.label ?? r.name ?? ''))?.id;
+  const email = `zzautotest.wob.unassigned.${Date.now()}${D}`;
+  const nuR = await person(a, 'ZZAUTOTEST', `Never Collapsed ${Date.now() % 100000}`, { role: adminRole, email, clockable: false });
+  const nu = nuR.row; if (!nu) throw new Error(`new user not made: ${nuR.log.join('; ')}`);
+  R.C368127 = { user: { email, role: 'Admin', log: nuR.log } };
+  const v = await viewAs(browser, p, a, nu.id, me.id); const pg = v.page; pg.setDefaultTimeout(30_000);
+  try {
+    R.C368127.savedPrefAtStart = (await api(pg).get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? null;
+    const u = async () => (await groups(pg)).find((g) => g.id === 'unassigned');
+    await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); await tab(pg, 'All'); await display(pg, 'Tech View'); await pg.waitForTimeout(1500);
+    R.C368127.opensCollapsed = (await u())?.collapsed ?? 'group row not drawn'; await shot(pg, 'C368127-opened');
+    if ((await u())?.collapsed) { await toggleGroup(pg, 'unassigned'); R.C368127.expandedByScriptToScroll = true; }
     R.C368127.count = (await u())?.count;
-    await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 1500`); await p.waitForTimeout(2000);
-    await shot(p, 'C368127-mid-scroll');
+    const reqs: { at: number; page: string | null; ms: number | null; status: number | null }[] = []; const t0 = Date.now();
+    pg.on('requestfinished', async (rq) => { const url = rq.url(); if (rq.method() !== 'GET' || !/\/api\/work-orders(\?|$)/.test(url)) return; const tm = rq.timing(); const rs = await rq.response().catch(() => null);
+      reqs.push({ at: Date.now() - t0, page: (url.match(/pagination%5Bpage%5D=(\d+)|pagination\[page\]=(\d+)/) || []).slice(1).find(Boolean) ?? null, ms: tm && tm.responseEnd > 0 ? Math.round(tm.responseEnd) : null, status: rs ? rs.status() : null }); });
+    const spin = () => pg.evaluate(`(() => { const s = [...document.querySelectorAll('.q-inner-loading, .q-spinner, .q-linear-progress--indeterminate, [class*="loading"], [class*="skeleton"]')].filter(e => e.getBoundingClientRect().width > 0); const tx = /Loading/i.test((document.querySelector('.q-table__middle') || document.body).innerText); return s.length || tx ? { spinners: s.slice(0, 3).map(e => String(e.className).slice(0, 60)), loadingText: tx } : null; })()`);
+    R.C368127.scroll = []; let firstSpin = false;
+    for (let y = 600; y <= 24000; y += 600) { await pg.evaluate(`document.querySelector('.q-table__middle').scrollTop = ${y}`); await pg.waitForTimeout(250);
+      const sp = await spin(); const at = Math.round(await pg.evaluate(`document.querySelector('.q-table__middle').scrollTop`) as number);
+      if (sp && !firstSpin) { firstSpin = true; await shot(pg, 'C368127-loading'); }
+      R.C368127.scroll.push({ y, at, spinner: sp }); await pg.waitForTimeout(450); if (y > 1500 && at < y - 600) break; }
+    R.C368127.listRequests = reqs.slice(0, 40);
+    R.C368127.loadingPause = firstSpin ? 'a loading spinner or "Loading" text was seen (see scroll[], picture C368127-loading)' : `paging not seen by hand (no spinner or Loading text at any stop; ${reqs.length} list request(s) sent while scrolling)`;
+    await pg.evaluate(`document.querySelector('.q-table__middle').scrollTop = 1500`); await pg.waitForTimeout(2000);
+    await shot(pg, 'C368127-mid-scroll');
     // the header kept at the top is drawn over the table; click the arrow where it sits
-    const hit = await p.evaluate(`(() => { const els = document.elementsFromPoint(90, 210); const b = els.map(e => e.closest && e.closest('button')).find(Boolean); return { y: 210, what: els.slice(0, 4).map(e => e.tagName + '.' + String(e.className).slice(0, 40)), button: b ? (b.getAttribute('aria-label') || b.getAttribute('data-test-id')) : null, text: (els[0] && els[0].closest('tr, div') || {}).innerText?.replace(/\\s+/g, ' ').slice(0, 80) }; })()`) as any;
+    const hit = await pg.evaluate(`(() => { const els = document.elementsFromPoint(90, 210); const b = els.map(e => e.closest && e.closest('button')).find(Boolean); return { y: 210, what: els.slice(0, 4).map(e => e.tagName + '.' + String(e.className).slice(0, 40)), button: b ? (b.getAttribute('aria-label') || b.getAttribute('data-test-id')) : null, text: (els[0] && els[0].closest('tr, div') || {}).innerText?.replace(/\\s+/g, ' ').slice(0, 80) }; })()`) as any;
     R.C368127.stickyArrow = hit;
-    await p.mouse.click(90, hit.y); await p.waitForTimeout(2000);
-    await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await p.waitForTimeout(1500);
-    R.C368127.afterClick = { collapsed: (await u())?.collapsed ?? 'group row not drawn', savedCollapsed: ((await a.get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {}).collapsedGroups ?? null };
-    await shot(p, 'C368127-after-arrow');
-    if ((await u())?.collapsed) await toggleGroup(p, 'unassigned');
-  });
+    await pg.mouse.click(90, hit.y); await pg.waitForTimeout(2000);
+    await pg.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await pg.waitForTimeout(1500);
+    R.C368127.afterClick = { collapsed: (await u())?.collapsed ?? 'group row not drawn', savedCollapsed: ((await api(pg).get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {}).collapsedGroups ?? null };
+    await shot(pg, 'C368127-after-arrow'); await pg.screenshot({ path: path.join(EV, 'C368127-end.png') }).catch(() => {});
+  } finally { await v.close(); }
   // List's own rows for the All tab, paged the way List asks for them, counted where the lead is empty
   // 15 Oct 2026 (staging second pass): the loop stopped at page 11 (5,500 rows) — staging's All tab holds more. Read EVERY page.
   let page = 1, total = 0, noLead = 0, meta: any = null; const seenIds = new Set<string>();
