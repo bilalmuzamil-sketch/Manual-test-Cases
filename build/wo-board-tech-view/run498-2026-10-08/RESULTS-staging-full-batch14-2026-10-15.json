@@ -1,0 +1,115 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 14 = wave 15: 6 Passed"
+ },
+ "results": {
+  "C154888": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Fresh customer ZZAUTOTEST F1 Shift Trim 15863, work order S2-36011 led by Esther Howard, set up at 10:31 shop time with three whole-work-order shifts: yesterday (Wed 14 Oct) 8:00-12:00, today 9:30-12:30 (under way) and tomorrow (Fri 16 Oct) 8:00-12:00.",
+    "Board View: the card was dragged from Esther Howard's column into Ralph Edwards' column at 10:32; the question about her scheduled shifts appeared and Clear Shifts was clicked. Ralph Edwards is now the lead.",
+    "Yesterday's 8:00-12:00 shift is unchanged.",
+    "Today's shift now runs 9:30-10:32: it ends at the moment of the change.",
+    "Tomorrow's 8:00-12:00 shift is gone (the Schedule search for S2-36011 finds no match on Fri 16 Oct).",
+    "This is the expected behaviour rather than the \"what you should see today\" note, so the change has shipped: tell the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C154888-1-yesterday-shift-kept.png",
+    "evidence/staging-full-2026-10-14/annotated/C154888-2-today-shift-trimmed.png",
+    "evidence/staging-full-2026-10-14/annotated/C154888-3-tomorrow-shift-removed.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C154889": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's own steps (fifth pass reading, judged 15 Oct against the live case text).",
+    "Customer ZZAUTOTEST F1 Remove Lead Prompt: S2-35491 and S2-35492 led by Esther Howard, each with a whole-work-order shift tomorrow 8:00-12:00.",
+    "Dragging S2-35491 into Unassigned opened the question \"Clear Esther Howard's scheduled shifts?\" with the text \"Esther Howard has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change.\" and the buttons Cancel, Keep Shifts and Clear Shifts.",
+    "More actions > Reassign lead technician > Unassigned > confirm on S2-35492 opened the same question, same title, text and buttons.",
+    "After Keep Shifts both work orders have no lead (they sit in Unassigned) and Esther Howard's tomorrow 8:00-12:00 shifts on both are still on the Schedule.",
+    "This is the expected behaviour rather than the \"what you should see today\" note, so the change has shipped: tell the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C154889-1-drag-to-unassigned-question.png",
+    "evidence/staging-full-2026-10-14/annotated/C154889-2-reassign-unassigned-question.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96987": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (verdict unchanged from the earlier staging run; this fifth-pass re-run was for usable pictures, judged 15 Oct against the live case text).",
+    "A brand-new user who had never chosen a density opened Work Orders; List has no density control.",
+    "Tech View's Density menu, photographed open: Compact, Regular and Comfortable, with Regular ticked.",
+    "Board View's Density menu, photographed open: the same three, with Regular ticked."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96987-1-tech-view-density.png",
+    "evidence/staging-full-2026-10-14/annotated/C96987-2-board-view-density.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C96991": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (verdict unchanged from the earlier staging run; this fifth-pass re-run was for usable pictures, judged 15 Oct against the live case text).",
+    "Tech View set to Comfortable; after a normal reload the Density menu still has Comfortable ticked.",
+    "With the saved setting made unreadable on purpose (the forced load failure), Tech View's menu has Regular ticked, and Board View's too.",
+    "The saved choice itself was still Comfortable afterwards.",
+    "The red \"Ooooops! An error occurred\" message on the failure pictures comes from the deliberately blocked load, not from a separate fault."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96991-1-normal-reload-comfortable.png",
+    "evidence/staging-full-2026-10-14/annotated/C96991-2-load-failure-tech-regular.png",
+    "evidence/staging-full-2026-10-14/annotated/C96991-3-load-failure-board-regular.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368144": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (verdict unchanged from the earlier staging run; this fifth-pass re-run was for usable pictures, judged 15 Oct against the live case text).",
+    "Customer ZZAUTOTEST F3 Unassigned Place 47757: Bravo Co = S2-36012, Charlie Co = S2-36015, Alpha Co = S2-36014, Delta Co = S2-36013.",
+    "Step 4: Unassigned reads Bravo Co, Delta Co.",
+    "Step 5: removing Charlie Co's lead with Reassign lead technician > Unassigned showed \"Lead technician removed\".",
+    "Step 6: Unassigned reads Bravo Co, Charlie Co, Delta Co: Charlie Co is in its customer-name place, not at the bottom.",
+    "Step 8: after Alpha Co's lead was cleared on its work order page, Unassigned reads Alpha Co, Bravo Co, Charlie Co, Delta Co.",
+    "Step 9: Tech View's Unassigned group shows the same order.",
+    "The cards show the numbers, not the customer names, so the pictures are read through the number of each customer listed above."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368144-1-step4-unassigned.png",
+    "evidence/staging-full-2026-10-14/annotated/C368144-2-step6-charlie-in-place.png",
+    "evidence/staging-full-2026-10-14/annotated/C368144-3-step8-alpha-first.png",
+    "evidence/staging-full-2026-10-14/annotated/C368144-4-step9-tech-view-order.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  },
+  "C368189": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (verdict unchanged from the earlier staging run; this fifth-pass re-run was for usable pictures, judged 15 Oct against the live case text).",
+    "Customer ZZAUTOTEST Asset Tab Old Page 80348, asset TRK-201: the asset's Work Orders tab was left open, then S2-36018's lead was changed to Ben Bravo elsewhere.",
+    "On the older page, without reloading, S2-36018's Asset on Site toggle was clicked; no error message appeared.",
+    "Refreshed, the asset's tab shows S2-36018 with a green pin (on site) and Lead Technician ZZAUTOTEST Ben Bravo.",
+    "The work order page reads Lead Technician ZZAUTOTEST Ben Bravo: the older page did not put Ana Alpha back."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368189-1-asset-tab-after-toggle.png",
+    "evidence/staging-full-2026-10-14/annotated/C368189-2-wo-page-lead.png"
+   ],
+   "not_observed": null,
+   "todo": "None."
+  }
+ }
+}

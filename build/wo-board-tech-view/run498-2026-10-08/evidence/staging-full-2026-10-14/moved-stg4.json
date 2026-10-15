@@ -8,8 +8,7 @@
     "staff_id": "309924ab-95b2-40dc-8e8a-9bf22bc297b8",
     "name": "Aaa ZZAUTOTEST Tara Lead",
     "setup": [
-     "create 201",
-     "change 201",
+     "reactivate 201",
      "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}"
     ],
     "active": true,
@@ -21,8 +20,7 @@
     "staff_id": "a7748aa8-3421-40ca-8d03-bdd68581606e",
     "name": "Aaa ZZAUTOTEST Jenny Pinned",
     "setup": [
-     "create 201",
-     "change 201",
+     "reactivate 201",
      "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}"
     ],
     "active": true,
@@ -34,8 +32,7 @@
     "staff_id": "82608f53-2039-4d17-a5c5-c7c1647a609d",
     "name": "Aaa ZZAUTOTEST Theresa Pinned",
     "setup": [
-     "create 201",
-     "change 201",
+     "reactivate 201",
      "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}",
      "enrol Lethbridge 201"
     ],
@@ -167,8 +164,36 @@
   "step9": {
    "from": "on screen @667",
    "to": "on screen @342",
+   "whileHolding": [
+    {
+     "ms": 106,
+     "kind": "new text",
+     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 320,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
    "shiftPrompt": null,
    "message": [],
+   "watched": [
+    {
+     "ms": 106,
+     "kind": "new text",
+     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 320,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
    "leads": [
     "S2-35908 lead=Aaa ZZAUTOTEST Tara Lead",
     "S2-35909 lead=Aaa ZZAUTOTEST Theresa Pinned"
@@ -177,8 +202,36 @@
   "step10": {
    "from": "on screen @667",
    "to": "on screen @950",
+   "whileHolding": [
+    {
+     "ms": 88,
+     "kind": "new text",
+     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 277,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
    "shiftPrompt": null,
    "message": [],
+   "watched": [
+    {
+     "ms": 88,
+     "kind": "new text",
+     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 277,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
    "leads": [
     "S2-35908 lead=Aaa ZZAUTOTEST Tara Lead",
     "S2-35909 lead=Aaa ZZAUTOTEST Theresa Pinned"
@@ -187,9 +240,55 @@
   "step12": {
    "from": "on screen @971",
    "to": "on screen @38",
+   "whileHolding": [
+    {
+     "ms": 98,
+     "kind": "new text",
+     "text": "S2-35909 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 404,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
    "shiftPrompt": null,
    "message": [
     "Lead technician removed"
+   ],
+   "watched": [
+    {
+     "ms": 98,
+     "kind": "new text",
+     "text": "S2-35909 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 404,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    },
+    {
+     "ms": 1687,
+     "kind": "new text",
+     "text": "drag_indicator AF Amy Fernandez push_pin assignment 0 0 work orders assignment Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1859,
+     "kind": "message",
+     "text": "Lead technician removed",
+     "cls": "q-notification row items-stretch q-notification--standard bg"
+    },
+    {
+     "ms": 2253,
+     "kind": "new text",
+     "text": "S2-35909 Approved more_horiz Customer ZZAUTOTEST C368131 Pinned Gone ZZC131 Progress 0% Total price $0.00",
+     "cls": "board-column__card"
+    }
    ],
    "leads": [
     "S2-35908 lead=Aaa ZZAUTOTEST Tara Lead",
@@ -199,14 +298,14 @@
   "step13": {
    "unassignedHoldsWo2": true,
    "techCColumn": "no column",
-   "columnsRead": 148
+   "columnsRead": 180
   },
   "step15": {
    "first": [
     {
      "id": "unassign",
      "name": "Unassigned",
-     "header": "person Unassigned assignment 3431 3431 work orders",
+     "header": "person Unassigned assignment 3456 3456 work orders",
      "pinned": "no pin control",
      "cards": [
       "S2-33692",
@@ -336,8 +435,7 @@
     "staff_id": "3b235e82-fff8-42e5-97a4-d83a3422f238",
     "name": "Aaa ZZAUTOTEST Ina Inactive",
     "setup": [
-     "create 201",
-     "change 201",
+     "reactivate 201",
      "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}"
     ],
     "active": true,
@@ -349,8 +447,7 @@
     "staff_id": "f6a72868-2816-4817-8f77-641c928b2e62",
     "name": "Aaa ZZAUTOTEST Mia Holder",
     "setup": [
-     "create 201",
-     "change 201",
+     "reactivate 201",
      "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}"
     ],
     "active": true,
@@ -362,8 +459,7 @@
     "staff_id": "8e5c0f52-2dd1-41b1-9ff8-6cbef42e379e",
     "name": "Aaa ZZAUTOTEST Mona Moved",
     "setup": [
-     "create 201",
-     "change 201",
+     "reactivate 201",
      "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}",
      "enrol Lethbridge 201"
     ],
@@ -477,8 +573,36 @@
   "step4": {
    "from": "on screen @667",
    "to": "on screen @342",
+   "whileHolding": [
+    {
+     "ms": 122,
+     "kind": "new text",
+     "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 335,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
    "shiftPrompt": null,
    "message": [],
+   "watched": [
+    {
+     "ms": 122,
+     "kind": "new text",
+     "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 335,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
    "leads": [
     "S2-35910 lead=Aaa ZZAUTOTEST Ina Inactive",
     "S2-35911 lead=Aaa ZZAUTOTEST Mia Holder",
@@ -491,8 +615,36 @@
   "step6": {
    "from": "on screen @667",
    "to": "on screen @950",
+   "whileHolding": [
+    {
+     "ms": 112,
+     "kind": "new text",
+     "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 338,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
    "shiftPrompt": null,
    "message": [],
+   "watched": [
+    {
+     "ms": 112,
+     "kind": "new text",
+     "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 338,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
    "leads": [
     "S2-35910 lead=Aaa ZZAUTOTEST Ina Inactive",
     "S2-35911 lead=Aaa ZZAUTOTEST Mia Holder",
@@ -541,8 +693,36 @@
   "step10": {
    "from": "on screen @30",
    "to": "on screen @30",
+   "whileHolding": [
+    {
+     "ms": 151,
+     "kind": "new text",
+     "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 379,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
    "shiftPrompt": null,
    "message": [],
+   "watched": [
+    {
+     "ms": 151,
+     "kind": "new text",
+     "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 379,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
    "leads": [
     "S2-35910 lead=Aaa ZZAUTOTEST Ina Inactive",
     "S2-35911 lead=Aaa ZZAUTOTEST Mia Holder",
@@ -553,8 +733,36 @@
   "step11": {
    "from": "on screen @30",
    "to": "on screen @30",
+   "whileHolding": [
+    {
+     "ms": 150,
+     "kind": "new text",
+     "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 430,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
    "shiftPrompt": null,
    "message": [],
+   "watched": [
+    {
+     "ms": 150,
+     "kind": "new text",
+     "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 430,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
    "leads": [
     "S2-35910 lead=Aaa ZZAUTOTEST Ina Inactive",
     "S2-35911 lead=Aaa ZZAUTOTEST Mia Holder",
