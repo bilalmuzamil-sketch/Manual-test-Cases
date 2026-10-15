@@ -204,3 +204,10 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
   label board-tech-view · Relates SV-10228 · one full-width picture. C368177 stays Passed in run 498 (its Expected is met);
   the ticket and picture were added to it. Draft + picture: run498-2026-10-08/defect-drafts/tickets/D-DELUSER/.
 - Side effect: the production account's active location was switched to Truck Hill 1 (dummy environment, no cleanup needed).
+
+### 15 Oct 2026 (evening) — two Blocked tests run on staging and Passed
+- C581895 (rewritten: real names) Passed — Esther Howard lead, Ralph Edwards on line 2, S2-36280; names match Settings > Staff in the
+  List, Board card + column header, avatar tooltips and the Tech View group/Assigned Techs. Script `c581895-v2.mts`.
+- C154650 Passed — company B reached with the QA lead's "Analyst 1" login (L0395): `stg-orgb-seed.mts` + `stg-orgb-lead.mts`, then
+  `orgb-fix3.mts ONLY=C154650` as Admin. Nothing from company B or the second location shows; Reassign "OrgB" finds nobody.
+- Still Blocked: C368175 (now runnable with the same company B — not yet run) and C368191 (a deleted person's line).

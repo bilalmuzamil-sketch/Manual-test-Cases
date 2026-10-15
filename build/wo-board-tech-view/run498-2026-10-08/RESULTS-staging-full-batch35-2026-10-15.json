@@ -1,0 +1,33 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 32b lead list Failed"
+ },
+ "results": {
+  "C154650": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up, company B: signed in as the QA lead's second-company user (Analyst 1). That company has an Approved work order for customer \"ZZAUTOTEST F3 Scope OrgB Customer\" (S-2 / S1-2 there), led by its technician \"Scope OrgB Tech\".",
+    "Set-up, company A: a work order for \"ZZAUTOTEST F3 Scope Loc2 Customer\" was made at our second location, led by a technician enrolled only there.",
+    "Steps 2-4: signed in to our own company at Staging Heavy Duty - 9919. Searching \"F3 Scope OrgB\" shows \"No work orders match the search\" in both Tech View and Board View. No group or column for \"Scope OrgB Tech\".",
+    "Searching the other company's work order number \"S-2\" finds only our own work order S2-16647, never the other company's.",
+    "Step 5: searching \"F3 Scope Loc2 Customer\" shows \"No work orders match the search\" in both views, so the other location's work order is not shown here.",
+    "Step 6: in the \"Reassign lead technician\" window, typing \"OrgB\" shows \"No technicians match OrgB\". Our own technician \"ZZAUTOTEST Ben Bravo\" is found, so the search works.",
+    "The lead technician list offers 255 people, none of them from the other company.",
+    "Check that the views work: our own test work orders (\"ZZAUTOTEST F3 Scope Here\") do show on the board."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C154650-1-orgB-search.png",
+    "evidence/staging-full-2026-10-14/annotated/C154650-2-number-search.png",
+    "evidence/staging-full-2026-10-14/annotated/C154650-3-other-location.png",
+    "evidence/staging-full-2026-10-14/annotated/C154650-4-reassign.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing."
+  }
+ }
+}
