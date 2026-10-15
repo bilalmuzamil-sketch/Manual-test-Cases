@@ -14,7 +14,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, pickLeadOnPage, listAllOptions } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, pickLeadOnPage, listAllOptions, pickLeadTyped } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY, ensureEligible, eligibilityOf } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
@@ -428,7 +428,9 @@ await run('C368159', async () => {
   if (/^(Office( User)?|Time Clock( User)?)$/i.test(String(o.benWhyBefore.role ?? ''))) o.benRoleFix = (await a.post(`/api/staff/${BEN.staff_id}/change`, { first_name: BEN.first_name, last_name: BEN.last_name, email: BEN.email, role_id: TECH_ROLE, workplace_id: HEAVY, job_title: BEN.job_title, salary_type: BEN.salary_type, salary: BEN.salary, billable: !!BEN.billable, clockable: true })).status;
   o.benWhyAfter = await eligibilityOf(a, `zz.wob.ben.bravo${D}`);
   await pg.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(7000);
-  o.page = await pickLeadOnPage(pg, 'Ben', 'Ben Bravo');
+  // 15 Oct 2026 (wave 19): the page's list stops after 100 people (Ben is never drawn by scrolling) — type into the field's own input first
+  o.pageTyped = await pickLeadTyped(pg, ['Ben Bravo', 'Bravo', 'Ben'], 'Ben Bravo'); await pg.screenshot({ path: path.join(EV, 'C368159-browser2-lead-typed.png') }).catch(() => {});
+  o.page = o.pageTyped.picked ? { picked: true, by: 'typed into the field: ' + o.pageTyped.pickedWith } : await pickLeadOnPage(pg, 'Ben', 'Ben Bravo');
   if (!o.page?.picked) { await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(500);
     const fld = (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]') : pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
     await fld.click().catch(() => {}); await pg.waitForTimeout(1200); const all = await listAllOptions(pg);

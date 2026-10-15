@@ -217,6 +217,28 @@ export async function pickLeadOnPage(pg: Page, typed: string, name: string) {
   if (o.picked) { await opt.click(); await pg.waitForTimeout(3000); } else await pg.keyboard.press('Escape').catch(() => {});
   return o;
 }
+/** 15 Oct 2026 (wave 19, C97007 / C368159 / C368169): the work order page's Lead Technician list holds 100 people (+ Unassigned and the
+ *  current lead) — listAllOptions read exactly 101 entries ending at the Q names — so anyone later in the alphabet (Ralph Edwards,
+ *  ZZAUTOTEST Ben Bravo) is never drawn by scrolling. Keyboard typing did not narrow the list (the options stayed at the A names).
+ *  This types into the field's OWN input, one term at a time (e.g. the full name, then the last name, then the first name), waits
+ *  for the list to answer, records what each term offered, and picks the option holding `name` as soon as one appears.
+ *  New export only — the existing pickLeadOnPage is unchanged. */
+export async function pickLeadTyped(pg: Page, terms: string[], name: string) {
+  const sel = (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]') : pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
+  const o: any = { field: await sel.count(), tries: [] as any[], picked: false }; if (!o.field) return o;
+  for (const term of terms) {
+    await sel.click().catch(() => {}); await pg.waitForTimeout(1200);
+    const inp = sel.locator('input').first(); const hasInput = await inp.count();
+    if (hasInput) { await inp.fill('').catch(() => {}); await inp.fill(term).catch(() => {}); } else await pg.keyboard.type(term, { delay: 60 });
+    await pg.waitForTimeout(3000);
+    const opts = (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [] as string[])).map((x) => x.replace(/\s+/g, ' ').trim());
+    o.tries.push({ term, hasInput, count: opts.length, offered: opts.slice(0, 10) });
+    const opt = pg.locator('.q-menu .q-item').filter({ hasText: name }).first();
+    if (await opt.count()) { await opt.click(); await pg.waitForTimeout(3000); o.picked = true; o.pickedWith = term; return o; }
+    await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(600);
+  }
+  return o;
+}
 /** 15 Oct 2026 (wave 13, C97007 / C368159): every option of the open pick list (the last visible .q-menu), scrolling it top to bottom,
  *  so a reading can say exactly how a person is listed (or that they are not). Returns the texts in list order (max 400). */
 export async function listAllOptions(pg: Page) {

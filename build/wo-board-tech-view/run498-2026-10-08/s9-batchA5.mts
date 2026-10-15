@@ -13,7 +13,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, findRow, toggleGroup, pickLeadOnPage, listAllOptions } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, findRow, toggleGroup, pickLeadOnPage, listAllOptions, pickLeadTyped } from './wob.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
 import { HEAVY } from './staff.mts';
@@ -211,7 +211,9 @@ await run('C97007', async () => {
   if (/^(Office( User)?|Time Clock( User)?)$/i.test(String(o.benWhyBefore.role ?? ''))) o.benRoleFix = (await a.post(`/api/staff/${BEN.staff_id}/change`, { first_name: BEN.first_name, last_name: BEN.last_name, email: BEN.email, role_id: TECH_ROLE, workplace_id: HEAVY, job_title: BEN.job_title, salary_type: BEN.salary_type, salary: BEN.salary, billable: !!BEN.billable, clockable: true })).status;
   o.benFixes = await ensureEligible(a, BEN, 'Ben'); o.benWhyAfter = await eligibilityOf(a, `zz.wob.ben.bravo${D}`);
   await pg.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(7000);
-  o.step8pick = await pickLeadOnPage(pg, 'Ben', 'Ben Bravo'); await pg.waitForTimeout(2500); await pg.screenshot({ path: path.join(EV, 'C97007-wo-page-lead.png') }).catch(() => {});
+  // 15 Oct 2026 (wave 19): the page's list stops after 100 people (Ben is never drawn by scrolling) — type into the field's own input first
+  o.step8typed = await pickLeadTyped(pg, ['Ben Bravo', 'Bravo', 'Ben'], 'Ben Bravo'); await pg.screenshot({ path: path.join(EV, 'C97007-wo-page-lead-typed.png') }).catch(() => {});
+  o.step8pick = o.step8typed.picked ? { picked: true, by: 'typed into the field: ' + o.step8typed.pickedWith } : await pickLeadOnPage(pg, 'Ben', 'Ben Bravo'); await pg.waitForTimeout(2500); await pg.screenshot({ path: path.join(EV, 'C97007-wo-page-lead.png') }).catch(() => {});
   if (!o.step8pick?.picked) { await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(500);
     const fld = (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]') : pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
     await fld.click().catch(() => {}); await pg.waitForTimeout(1200); const all = await listAllOptions(pg); o.step8pageList = { count: all.length, withBenOrBravo: all.filter((x) => /ben|bravo/i.test(x)), first: all.slice(0, 8), last: all.slice(-5) };
@@ -231,7 +233,12 @@ await run('C97007', async () => {
   const d2 = (await person(a, 'ZZAUTOTEST Second', 'Dispatcher', { role: ADM, email: `zz.wob.second.dispatcher${D}`, clockable: false })).row;
   const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView');
   if (d2) { const v = await viewAs(browser, p, a, d2.id, me?.id ?? '', RUN.toRunner);
-    try { const pg2 = v.page; await go('Tech View', s.q, pg2); const g2 = await groups(pg2); if (g2.find((x) => x.id === BEN.staff_id)?.collapsed) await toggleGroup(pg2, BEN.staff_id);
+    try { const pg2 = v.page; await go('Tech View', s.q, pg2);
+      // 15 Oct 2026 (wave 19): the second dispatcher's Tech View read Ben's group as empty — Unassigned (~3,450 rows on staging) opens
+      // expanded and keeps Ben's rows from being drawn (L0360). Close Unassigned first, then open the small groups again.
+      if (await pg2.locator('[data-test-id="tech_view_group_unassigned"][data-collapsed="false"]').count()) { await pg2.locator('[data-test-id="button_tech_view_group_toggle_unassigned"]').click().catch(() => {}); await pg2.waitForTimeout(1800); }
+      await expandSmallGroups(pg2); await pg2.evaluate(`document.querySelector('[data-test-id="tech_view_group_${BEN.staff_id}"]')?.scrollIntoView({ block: 'start' })`).catch(() => {}); await pg2.waitForTimeout(800);
+      const g2 = await groups(pg2); if (g2.find((x) => x.id === BEN.staff_id)?.collapsed) await toggleGroup(pg2, BEN.staff_id);
       o.step12 = { tech: ((await groups(pg2)).find((x) => x.id === BEN.staff_id)?.rows ?? []).map(nameOf(s)) }; await shot(pg2, 'C97007-second-dispatcher-tech');
       await display(pg2, 'Board View'); await toColumn(pg2, BEN.staff_id); o.step12.board = ((await boardCols(pg2)).find((c) => c.id === BEN.staff_id)?.cards ?? []).map(nameOf(s)); await shot(pg2, 'C97007-second-dispatcher-board'); }
     finally { await v.close(); } } else o.step12 = 'second dispatcher not made';
