@@ -560,3 +560,16 @@ are put into the next pass's plan, which works only if that pass has not started
 - **A production "asset page" must BE an asset page (C368181):** on the customer page click the "Assets (n)" TAB (whole label), open an asset row, and accept only an address containing `/vehicle/` (staging: `/customers/vehicle/<id>/work-orders`). A customer's own Work Orders tab looks alike but is not the same page.
 - **A line that must hold only one technician (C368173):** remove every pre-filled name first (Esther Howard comes pre-filled), save, reload and read it back before the steps.
 - **A late plan line goes into a NEXT pass, and the sign-out moves with it:** create `logsN/signout-fix.done` before the running pass reaches it, and put the sign-out last in the new plan (L0342).
+
+## L0357 — 2026-10-15 — "Every test is queued" must be proved from the run's latest result dates, not from the pass plans
+After four passes on staging I believed every remaining test of run 498 was either posted or in a pass plan. A live count said
+otherwise. I paged `get_tests/498` and `get_results_for_run/498`, took each test's LATEST result, and split them by whether it
+was posted after the staging run began (14 Oct 12:00 UTC). Then I subtracted every case named in the pass plans and every case
+held in `judge/*.json`. **17 tests were covered by nothing:**
+- 8 had staging readings (third pass, high2-batch/parts-batch2) that no judge wave ever picked up;
+- 5 had never been run on staging at all (two need a second organisation, three are analytics);
+- 4 were NEW cases (C581915–C581918) the QA lead added to the run at 21:59, after the plans were written.
+Their latest result was still the QA-branch "Passed", so the run's status counts looked nearly complete. **Before saying a run is
+finished, or at every check-in on a long run, do this subtraction:** latest-result date < run start, minus the queued plans,
+minus the judged-and-held cases. Whatever is left is the true gap. Then re-read the run's test list for cases added after the
+run started. #run #coverage #staging → L0342, L0349

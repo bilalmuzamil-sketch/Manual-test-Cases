@@ -97,3 +97,11 @@ Technicians made for these checks (e.g. "Esther Howard", "Ralph Edwards" — nam
   SV-11101 was marked Obsolete (read live: OBSOLETE). Posted Failed with the ticket held; draft
   `run498-2026-10-08/defect-drafts/tickets/D3-staging-C96929-2026-10-15.wiki` (Story Defect under SV-10045, Ready for QA
   read live) — ASK the QA lead: reopen SV-11101 or file the new one. Nothing filed.
+
+### 15 Oct 05:35 UTC — coverage gap found by a live count (L0357)
+Run 498: 274 tests; 243 Passed, 4 Failed (C368232, C368236, C368237 same on production, no ticket; C96929 ticket held), 27 untested.
+180 have a staging result; 67 still carry only a QA-branch result. Of those, 50 are in the fifth/sixth pass plans and 4 are held
+for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and were handed to the helper for the sixth pass:
+- judged from existing third-pass readings: C368193, C368194, C368195, C368198, C368200, C368210, C368213, C368214;
+- never run on staging: C154650, C368175 (need a second organisation), C97026, C97033, C97034 (analytics);
+- new cases from the QA lead, 14 Oct 21:59, section 13236: C581915, C581916, C581917, C581918.
