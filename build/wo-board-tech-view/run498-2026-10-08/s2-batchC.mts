@@ -9,7 +9,8 @@ import path from 'node:path';
 import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { api, candidates, seedCase, workOrders, customer, workOrder } from './data.mts';
-import { EV, t, shot, display, tab, search, groups, toggleGroup, read, switchLocUI } from './wob.mts';
+import { EV, t, shot, display, tab, search, groups, toggleGroup, read, switchLocUI, toColumn } from './wob.mts';
+import { viewAs } from './viewas.mts';
 import { staffRows, person, HEAVY } from './staff.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -25,10 +26,11 @@ const by = (n: string) => techs.find((x) => x.name === n)!;
 const me = by('Admin ShopView'), tA = by('Ayesha Khan');
 const sid = async (email: string) => (await staffRows(a, email)).find((x) => x.email === email);
 const tv = async (name: string) => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, 'All'); await display(p, 'Tech View'); if (name) await search(p, name); };
+const OWN_END = new Set(['C96926', 'C96929']); // 15 Oct 2026: these take their end picture where the result shows
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
-  try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
-  console.log(t(), id, JSON.stringify(R[id]).slice(0, 2000));
+  try { await f(); if (!OWN_END.has(id)) await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
+  console.log(t(), id, JSON.stringify(R[id]).slice(0, 6000)); // 15 Oct 2026: 2000 cut readings short
   fs.writeFileSync(path.join(EV, 's2-batchC.json'), JSON.stringify(R, null, 1));
 }
 const calls: string[] = []; p.on('request', (q) => { if (q.method() !== 'GET' && /\/api\//.test(q.url()) && !/sentry|envelope|preferences/.test(q.url())) calls.push(`${q.method()} ${q.url().replace(/^https:\/\/[^/]+/, '').slice(0, 120)} ${(q.postData() || '').slice(0, 160)}`); });
@@ -100,6 +102,11 @@ await run('C96930', async () => {
   R.C96930.board = Object.fromEntries(names.map((n) => [n, cols.has(n)])); R.C96930.boardColumns = cols.size;
   await display(p, 'List');
   R.C96930.inaKeptInactive = 'Ina Active stays deactivated: that is her set-up for this case';
+  // 15 Oct 2026 (staging second pass): the reading of "no group" proves something only if each person exists as the case
+  // describes, so the staff records are read back here: role, Time Clock, active, billable, Location (and every location)
+  R.C96930.staffProof = Object.fromEntries(await Promise.all(names.map(async (n) => { const e = `zz.wob.${n.toLowerCase().replace(' ', '.')}${D}`; const r = await sid(e);
+    return [n, r ? { email: r.email, role: r.role_label, timeClock: r.clockable, active: r.is_active, billable: r.billable, location: r.defaultWorkplaceName ?? r.workplace_name ?? r.workplace_id, workplaces: (r.workplaces ?? r.departments ?? []).map((x: any) => x.name ?? x.workplace_name ?? x.label ?? x).slice(0, 6) } : 'NOT FOUND']; })));
+  R.C96930.offeredAsLead = Object.fromEntries(names.map((n) => [n, (techs.some((x) => x.name === n))]));
 });
 
 // ── as User-B for name order and default sort ─────────────────────────
@@ -139,39 +146,83 @@ await run('C96926', async () => {
     for (let i = 0; i < 30; i++) { await p.evaluate(`(() => { const h = document.querySelector('.board-view__scroller'); if (h) h.scrollLeft += 900; })()`); await p.waitForTimeout(300); for (const x of (await p.evaluate(`[...document.querySelectorAll('[data-test-id^="board_column_"]')].map(e => e.getAttribute('data-test-id')).filter(x => /^board_column_(unassigned|[0-9a-f-]{36})$/.test(x)).map(x => x.replace('board_column_', ''))`)) as string[]) if (!all.includes(x)) all.push(x); }
     R.C96926.board = all.filter((i) => i === 'unassigned' || ids.includes(i)).map((i) => nm[i]);
     R.C96926.boardAll = all.map((i) => nm[i] ?? i).slice(0, 60);
+    // 15 Oct 2026 (Rule 130): pictures of the five test technicians' columns, first one at the left edge
+    if (await toColumn(p, ids[1]!)) { await p.evaluate(`document.querySelector('[data-test-id="board_column_${ids[1]}"]')?.scrollIntoView({ inline: 'start', block: 'nearest' })`); await p.waitForTimeout(1000); }
+    await shot(p, 'C96926-board');
+    await display(p, 'Tech View');
+    { const u2 = (await groups(p)).find((g) => g.id === 'unassigned'); if (u2 && !u2.collapsed) await toggleGroup(p, 'unassigned'); }
+    await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await p.waitForTimeout(600);
+    for (let i = 0; i < 80; i++) { if (await p.locator(`[data-test-id="tech_view_group_${ids[1]}"]`).count()) { await p.evaluate(`document.querySelector('[data-test-id="tech_view_group_${ids[1]}"]')?.scrollIntoView({ block: 'start' })`); await p.waitForTimeout(1200); break; } await p.evaluate(`document.querySelector('.q-table__middle').scrollTop += 400`); await p.waitForTimeout(300); }
+    await shot(p, 'C96926-tech'); (globalThis as any).__shotEach && await (globalThis as any).__shotEach('C96926');
+    await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`);
     await display(p, 'List');
   });
 });
 
 await run('C96929', async () => {
+  // 15 Oct 2026 (staging second pass): every reading was empty — the three work orders (Zeta Hauling, Alpha Freight, Mid Trucking,
+  // led by Carol Neal) were made on the QA branch only and never on staging, and the "User-B" used has a saved List sort.
+  // Now: (1) the three customers are made here, IN THIS ORDER (Zeta, Alpha, Mid), each with one Approved work order led by Carol
+  // Neal; their names carry one shared word "ZZ96929" after the case's names, so a search for it shows exactly these three and
+  // customer-name A-Z order is unchanged; (2) any other work order Carol leads is given no lead, so she leads exactly these three;
+  // (3) the check is made by a BRAND-NEW user (Admin role, Time Clock off) who has never saved a sort, in their own window
+  // (viewAs), reading List, then Carol's group in Tech View, then her column in Board View, each with the search applied.
   const carol = by('Carol Neal');
-  const nm: Record<string, string> = {};
-  for (const c of ['Zeta Hauling', 'Alpha Freight', 'Mid Trucking']) for (const w of await workOrders(a, `ZZAUTOTEST ${c}`)) nm[w.number] = c;
-  R.C96929 = { lead: carol.name };
-  await asUserB(async () => {
-    const pref = (await a.get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {};
-    R.C96929.userBListSort = { sortBy: pref.sortBy ?? '(none saved: default)', descending: pref.descending ?? null };
-    const r = await a.get(`/api/work-orders?pagination[page]=1&pagination[rowsPerPage]=50&pagination[sortBy]=companyName&pagination[descending]=false&filters[0][field]=tech_assigned_id&filters[0][value]=${carol.id}`);
-    R.C96929.listDefaultOrder = (r.body?.data?.work_orders ?? []).map((w: any) => nm[w.number] ?? w.number);
-    await tv('');
-    const sg = await scrollToGroup(carol.id); if (!sg.found) throw new Error('Carol Neal group not reached');
-    const g = (await groups(p)).find((x) => x.id === carol.id); if (g?.collapsed) await toggleGroup(p, carol.id);
-    await p.locator(`[data-test-id="tech_view_group_${carol.id}"]`).scrollIntoViewIfNeeded(); await p.waitForTimeout(1000);
-    R.C96929.tech = ((await groups(p)).find((x) => x.id === carol.id)?.rows ?? []).map((x) => nm[x] ?? x); await shot(p, 'C96929-tech');
-    if (sg.wasOpen) { await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await toggleGroup(p, 'unassigned').catch(() => {}); }
-    await display(p, 'Board View');
-    const col = (await p.evaluate(`(document.querySelector('[data-test-id="board_column_${carol.id}"]') || {}).innerText || ''`)) as string;
-    R.C96929.board = (col.match(/\bS\d+-\d+\b/g) || []).map((x) => nm[x] ?? x); await shot(p, 'C96929-board');
-    await display(p, 'List');
-  });
+  if (!carol) throw new Error('Carol Neal is not offered as a technician at this location');
+  const TOK = 'ZZ96929'; const nm: Record<string, string> = {};
+  for (const c of ['Zeta Hauling', 'Alpha Freight', 'Mid Trucking']) {
+    const name = `${c} ${TOK}`; let have = await workOrders(a, name);
+    if (!have.length) { await workOrder(a, await customer(a, name, `ZZ29${c.slice(0, 2).toUpperCase()}`), 'approved', carol.id); have = await workOrders(a, name); }
+    for (const w of have) { nm[w.number] = c; if (w.techAssignedId !== carol.id) await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: carol.id }); }
+  }
+  const others: string[] = [];
+  for (let pg = 1; pg < 40; pg++) { const r = await a.get(`/api/work-orders?pagination[page]=${pg}&pagination[rowsPerPage]=200&filters[0][field]=tech_assigned_id&filters[0][value]=${carol.id}`); const ws = r.body?.data?.work_orders ?? [];
+    for (const w of ws) if (!nm[w.number] && w.techAssignedId === carol.id) { const x = await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: null }); others.push(`${w.number} -> no lead ${x.status}`); }
+    if (ws.length < 200) break; }
+  R.C96929 = { lead: carol.name, seeded: nm, otherWorkOrdersUnassigned: others };
+  // the brand-new user
+  const rl = (await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data; const rr: any[] = Array.isArray(rl) ? rl : rl?.collection ?? [];
+  const adminRole = rr.find((r) => /^admin(istrator)?$/i.test(r.label ?? r.name ?? ''))?.id;
+  const deps = (await a.get('/api/departments')).body?.data; const dl = Array.isArray(deps) ? deps : deps?.collection ?? [];
+  const email = `zzautotest.wob.sort.${Date.now()}${D}`;
+  const cr = await a.post('/api/iam/create', { email, first_name: 'ZZAUTOTEST', last_name: 'Never Sorted', role_id: adminRole, departments: [(dl.find((d: any) => (d.name ?? d.label) === 'Service') ?? dl[0])].filter(Boolean).map((d: any) => d.id), workplace_id: HEAVY });
+  const nu = await sid(email); if (!nu) throw new Error(`new user not made: ${cr.status} ${JSON.stringify(cr.body).slice(0, 160)}`);
+  if (nu.clockable) await a.post(`/api/staff/${nu.staff_id}/change`, { first_name: nu.first_name, last_name: nu.last_name, email: nu.email, role_id: nu.role_id, workplace_id: nu.workplace_id ?? HEAVY, job_title: nu.job_title, salary_type: nu.salary_type, salary: nu.salary, billable: !!nu.billable, clockable: false });
+  R.C96929.user = { email, role: 'Admin', create: cr.status };
+  const v = await viewAs(browser, p, a, nu.id, me.id);
+  const pg = v.page; pg.setDefaultTimeout(30_000);
+  try {
+    R.C96929.user.savedPref = (await api(pg).get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? null;
+    await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); await tab(pg, 'All'); await display(pg, 'List'); await search(pg, TOK);
+    R.C96929.listSortHeader = await pg.evaluate(`[...document.querySelectorAll('thead th.sorted')].map(e => e.innerText.trim() + ' ' + (e.className.match(/sort-(asc|desc)/) || [''])[0])`);
+    R.C96929.list = Object.keys(await read(pg, 'List')).map((x) => nm[x] ?? x); await shot(pg, 'C96929-list');
+    await display(pg, 'Tech View'); if (!(await pg.locator('[data-test-id="page_search_input"]').inputValue().catch(() => ''))) await search(pg, TOK);
+    let found = false; await pg.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`);
+    for (let i = 0; i < 120 && !found; i++) { found = (await pg.locator(`[data-test-id="tech_view_group_${carol.id}"]`).count()) > 0; if (!found) { await pg.evaluate(`document.querySelector('.q-table__middle').scrollTop += 400`); await pg.waitForTimeout(300); } }
+    R.C96929.techGroupFound = found;
+    if (found) { await pg.evaluate(`document.querySelector('[data-test-id="tech_view_group_${carol.id}"]')?.scrollIntoView({ block: 'start' })`); await pg.waitForTimeout(1000);
+      const g = (await groups(pg)).find((x) => x.id === carol.id); if (g?.collapsed) await toggleGroup(pg, carol.id);
+      R.C96929.tech = ((await groups(pg)).find((x) => x.id === carol.id)?.rows ?? []).map((x) => nm[x] ?? x); }
+    await shot(pg, 'C96929-tech');
+    await display(pg, 'Board View'); if (!(await pg.locator('[data-test-id="page_search_input"]').inputValue().catch(() => ''))) await search(pg, TOK);
+    R.C96929.boardColumnFound = await toColumn(pg, carol.id);
+    R.C96929.board = ((await pg.evaluate(`[...document.querySelectorAll('[data-test-id="board_column_${carol.id}"] [data-test-id="board_card_number"]')].map(e => e.textContent.trim())`)) as string[]).map((x) => nm[x] ?? x);
+    await shot(pg, 'C96929-board'); (globalThis as any).__wobPage = pg; await (globalThis as any).__shotEach?.('C96929'); (globalThis as any).__wobPage = p;
+  } finally { await v.close(); await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); }
 });
 
 await run('C368127', async () => {
   await asUserB(async () => {
     await tv('');
     const u = async () => (await groups(p)).find((g) => g.id === 'unassigned');
+    // 15 Oct 2026: record how Unassigned OPENS. Setup per the case: if it is collapsed, expand it once, then open Work Orders again.
+    const saved0 = ((await a.get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {}).collapsedGroups ?? null;
+    const first = (await u())?.collapsed;
+    if (first) { await toggleGroup(p, 'unassigned'); await tv(''); }
+    R.C368127 = { savedCollapsedAtStart: saved0, collapsedAtFirstLook: first, setupExpandedOnce: !!first, opensCollapsed: (await u())?.collapsed ?? 'group row not drawn' };
+    await shot(p, 'C368127-opened');
     if ((await u())?.collapsed) await toggleGroup(p, 'unassigned');
-    R.C368127 = { count: (await u())?.count };
+    R.C368127.count = (await u())?.count;
     await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 1500`); await p.waitForTimeout(2000);
     await shot(p, 'C368127-mid-scroll');
     // the header kept at the top is drawn over the table; click the arrow where it sits
@@ -184,18 +235,33 @@ await run('C368127', async () => {
     if ((await u())?.collapsed) await toggleGroup(p, 'unassigned');
   });
   // List's own rows for the All tab, paged the way List asks for them, counted where the lead is empty
-  let page = 1, total = 0, noLead = 0;
-  for (;;) { const r = await a.get(`/api/work-orders?pagination[page]=${page}&pagination[rowsPerPage]=500&pagination[sortBy]=companyName&pagination[descending]=false&search=&showMyWorkOrders=0`); const w = r.body?.data?.work_orders ?? []; total += w.length; noLead += w.filter((x: any) => !x.techAssignedId).length; if (w.length < 500 || page > 10) break; page++; }
-  R.C368127.listAllTab = { rows: total, withoutLead: noLead };
+  // 15 Oct 2026 (staging second pass): the loop stopped at page 11 (5,500 rows) — staging's All tab holds more. Read EVERY page.
+  let page = 1, total = 0, noLead = 0, meta: any = null; const seenIds = new Set<string>();
+  for (;;) { const r = await a.get(`/api/work-orders?pagination[page]=${page}&pagination[rowsPerPage]=500&pagination[sortBy]=companyName&pagination[descending]=false&search=&showMyWorkOrders=0`); const w = r.body?.data?.work_orders ?? []; if (page === 1) meta = JSON.stringify(r.body?.data?.pagination ?? r.body?.meta ?? null).slice(0, 200);
+    for (const x of w) { if (seenIds.has(x.id)) continue; seenIds.add(x.id); total++; if (!x.techAssignedId) noLead++; }
+    if (w.length < 500 || page >= 200) break; page++; }
+  R.C368127.listAllTab = { rows: total, withoutLead: noLead, pages: page, firstPageMeta: meta, matchesHeader: R.C368127.count === noLead };
 });
 
 await run('C96927', async () => {
-  await tv('ZZAUTOTEST F2 Tech Columns');
-  await p.locator('[data-test-id="button_tech_view_column_selection"]').click(); await p.waitForTimeout(1200);
+  // 15 Oct 2026 (staging second pass): only the table columns were read. Now BOTH Column Selection menus are read item by item
+  // (List: button_column_selection, Tech View: button_tech_view_column_selection; each item is a switch with a label).
+  const readMenu = async (btn: string) => { await p.locator(`[data-test-id="${btn}"]`).click(); await p.waitForTimeout(1200);
+    const items = await p.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); if (!m) return null;
+      const sws = [...m.querySelectorAll('[role=switch]')]; return sws.map(sw => { const host = sw.closest('[data-test-id^="toggle_"]') || sw; const lab = sw.getAttribute('aria-label') || (sw.closest('.q-item') || host).innerText.replace(/\\s+/g, ' ').trim();
+        return { label: lab, key: (host.getAttribute('data-test-id') || '').replace(/^toggle_(tech_view_column_|column_)/, ''), on: sw.getAttribute('aria-checked') }; }); })()`);
+    return items as { label: string; key: string; on: string }[] | null; };
+  await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, 'All'); await display(p, 'List'); await search(p, 'ZZAUTOTEST F2 Tech Columns');
+  const listMenu = await readMenu('button_column_selection'); await shot(p, 'C96927-list-menu'); await p.keyboard.press('Escape'); await p.waitForTimeout(800);
+  await display(p, 'Tech View'); if (!(await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => ''))) await search(p, 'ZZAUTOTEST F2 Tech Columns');
+  const techMenu = await readMenu('button_tech_view_column_selection'); await shot(p, 'C96927-tech-menu');
+  const L = (listMenu ?? []).map((x) => x.label), T = (techMenu ?? []).map((x) => x.label);
+  R.C96927 = { techViewButton: await p.locator('[data-test-id="button_tech_view_column_selection"]').count(), listMenu: L, techMenu: T,
+    listOffersAssignedTechs: L.includes('Assigned Techs'), techOffersAssignedTechs: T.includes('Assigned Techs'), inListNotInTech: L.filter((x) => !T.includes(x)), inTechNotInList: T.filter((x) => !L.includes(x)) };
   const sw = p.locator('.q-menu [role=switch][aria-label="Assigned Techs"]').first();
-  R.C96927 = { before: await sw.getAttribute('aria-checked') };
-  if ((await sw.getAttribute('aria-checked')) !== 'true') { await sw.click(); await p.waitForTimeout(1500); }
-  R.C96927.after = await sw.getAttribute('aria-checked'); await p.keyboard.press('Escape'); await p.waitForTimeout(1000);
+  R.C96927.before = await sw.getAttribute('aria-checked').catch(() => null);
+  if (R.C96927.before !== 'true') { await sw.click().catch(() => {}); await p.waitForTimeout(1500); }
+  R.C96927.after = await sw.getAttribute('aria-checked').catch(() => null); await p.keyboard.press('Escape'); await p.waitForTimeout(1000);
   R.C96927.headers = await p.evaluate(`[...document.querySelectorAll('thead th')].map(e => e.innerText.trim()).filter(Boolean)`); await shot(p, 'C96927-assigned-techs-column');
   await display(p, 'List'); R.C96927.listHeaders = await p.evaluate(`[...document.querySelectorAll('thead th')].map(e => e.innerText.trim()).filter(Boolean)`);
 });
