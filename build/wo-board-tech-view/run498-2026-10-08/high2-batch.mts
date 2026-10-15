@@ -266,6 +266,14 @@ await run('C368208', async () => { const s = await mkSet('ZZAUTOTEST View Only T
   const u = await mkUser('ZZAUTOTEST', `VOT ${stamp}`, VIEW_ROLE, 'vot'); const o: any = {}; o.before = await here(); const v = await asUser(u);
   try { await goList(v.page, s.q); const tr = v.page.locator('tbody tr').filter({ hasText: s.w['One Co'].number }); const tg = tr.locator('[data-test-id="button_vehicle_here_toggle"]').first();
     o.disabled = await tg.evaluate((e) => (e as any).disabled || e.getAttribute('aria-disabled') === 'true' || e.classList.contains('disabled')).catch(() => 'no toggle');
+    // 15 Oct 2026 (wave 25 follow-up, QA lead option 2): read how the pin is SHOWN, the same reading as viewonly-pin-prod.mts on
+    // production — disabled / aria-disabled / class / cursor / opacity on the button and its icon, and the tooltip while hovered.
+    o.state = await v.page.evaluate(`(() => { const tr = [...document.querySelectorAll('tbody tr')].find(r => r.innerText.includes(${JSON.stringify(s.w['One Co'].number)})); const b = tr && tr.querySelector('[data-test-id="button_vehicle_here_toggle"]'); if (!b) return null;
+      const i = b.querySelector('i'); const sb = getComputedStyle(b), si = i ? getComputedStyle(i) : null;
+      return { tag: b.tagName, disabledProp: !!b.disabled, disabledAttr: b.hasAttribute('disabled'), ariaDisabled: b.getAttribute('aria-disabled'), tabindex: b.getAttribute('tabindex'), buttonClass: String(b.className).slice(0, 200), cursor: sb.cursor, opacity: sb.opacity, pointerEvents: sb.pointerEvents,
+        icon: i ? i.innerText.trim() : null, iconClass: i ? String(i.className).slice(0, 120) : null, iconColor: si ? si.color : null, iconOpacity: si ? si.opacity : null }; })()`).catch((e) => String(e).slice(0, 120));
+    await tg.hover().catch(() => {}); await v.page.waitForTimeout(1500); o.tooltip = await v.page.locator('.q-tooltip').allInnerTexts().then((x) => x.map((y) => y.replace(/\s+/g, ' ').trim())).catch(() => []); await shot(v.page, 'C368208-viewonly-hover');
+    await v.page.mouse.move(5, 5).catch(() => {}); await v.page.waitForTimeout(600);
     await shot(v.page, 'C368208-viewonly-before-click'); await tg.click({ force: true }).catch(() => {}); await v.page.waitForTimeout(2500); await shot(v.page, 'C368208-viewonly-after-click'); await v.page.reload({ waitUntil: 'domcontentloaded' }); await v.page.waitForTimeout(4000); o.reloadUrl = new URL(v.page.url()).pathname; await shot(v.page, 'C368208-viewonly-after-reload'); /* wave 18: pictures from the VIEW-ONLY user's window */ } finally { await v.close(); }
   o.after = await here(); R.C368208 = o; });
 

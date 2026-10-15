@@ -70,7 +70,8 @@
     "The posted verdict (Passed) rests on the toggle being marked disabled in the page and the value not changing, which this run confirms again.",
     "On screen, though, the view-only user's pin looks like the ordinary not-on-site pin and its tooltip still says \"Asset not here. Click to toggle status.\" The case's source wants List exactly as in production, and production was not compared."
    ],
-   "suggest": "Keep Passed (the value cannot be changed), or compare the same view-only role on production's List (read-only) before deciding whether the look counts as \"shown disabled\"."
+   "suggest": "Keep Passed (the value cannot be changed), or compare the same view-only role on production's List (read-only) before deciding whether the look counts as \"shown disabled\".",
+   "decision": "QA lead/coordinator chose option 2 (15 Oct): the eighth pass reads the pin on production read-only (viewonly-pin-prod.mts, the lower-permission login) and on staging (high2-batch C368208: tooltip, disabled/aria-disabled/class/cursor/opacity, hover picture). Same on production => not caused by this work (Rule 121); different => staging regression."
   }
  }
 }
