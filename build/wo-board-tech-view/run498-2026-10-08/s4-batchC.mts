@@ -132,11 +132,20 @@ await run('C154889', async () => {
   const ws = await fresh(n, 'ZZF4RP', 2); for (const w of ws) { await setLeadApi(w.id, ES.staff_id); if (!(await shiftsOn(a, w.id, names)).length) await mkShift(a, w.id, ES.staff_id, 1, '08:00', 240); }
   await bv(n);
   await dragTo(ws[0].id, 'unassigned'); await p.waitForTimeout(1000);
-  const d1 = promptLoc(); const t1 = { opened: await d1.count(), title: await d1.locator('[data-test-id="text_dialog_title"]').textContent().catch(() => null), buttons: await d1.locator('button').allTextContents().catch(() => []) };
+  // 15 Oct 2026 (wave 10): the question's TITLE is read on BOTH removals the same way — the title element by test id, else the dialog's
+  // first heading-like line — plus the whole question text and a picture taken while it is open (before it is answered).
+  const qTitle = async (d: any) => ({ title: await d.locator('[data-test-id="text_dialog_title"]').first().textContent({ timeout: 3000 }).then((x: string | null) => x?.trim() ?? null).catch(() => null),
+    heading: await d.locator('.q-card__section, .text-h6, h1, h2, h3, [class*="title"]').first().innerText({ timeout: 3000 }).then((x: string) => x.replace(/\s+/g, ' ').trim().slice(0, 160)).catch(() => null),
+    text: await d.innerText({ timeout: 3000 }).then((x: string) => x.replace(/\s+/g, ' ').trim().slice(0, 400)).catch(() => null) });
+  await waitPrompt(4000).catch(() => {});
+  const d1 = promptLoc(); const t1 = { opened: await d1.count(), ...(await qTitle(d1)), buttons: await d1.locator('button').allTextContents().catch(() => []) };
+  await shot(p, 'C154889-removal1-drag-question');
   await shiftPrompt(p, 'Keep shifts');
   const o = await openReassign(p, ws[1].id); await o.item.click(); await p.waitForTimeout(1200);
   await p.locator('[data-test-id="option_lead_technician_unassigned"]').click(); await p.locator('[data-test-id="button_confirm_reassign_lead_technician"]').click(); await p.waitForTimeout(1000);
-  const d2 = promptLoc(); const t2 = { opened: await d2.count(), title: await d2.locator('[data-test-id="text_dialog_title"]').textContent().catch(() => null) };
+  await waitPrompt(4000).catch(() => {});
+  const d2 = promptLoc(); const t2 = { opened: await d2.count(), ...(await qTitle(d2)), buttons: await d2.locator('button').allTextContents().catch(() => []) };
+  await shot(p, 'C154889-removal2-dialog-question');
   await shiftPrompt(p, 'Keep shifts');
   R.C154889 = { drag: t1, dialog: t2, leads: await lead(n), shifts: Object.fromEntries(await Promise.all(ws.map(async (w: any) => [w.number, await shiftsOn(a, w.id, names)]))) };
 });
