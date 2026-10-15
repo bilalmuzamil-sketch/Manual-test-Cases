@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 30 = wave 31"
+ },
+ "results": {
+  "C368240": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (tenth pass, 12:11–12:12 UTC), following the test's own steps, as Admin at Staging Heavy Duty - 9919.",
+    "Step 1: Work Orders open in tab 1.",
+    "Step 2: in tab 2 of the same browser, Sign Out — tab 2 shows the sign-in page.",
+    "Steps 3–4: back in tab 1, the page had already gone to the sign-in page by itself (its address ends /login?redirect=/workorders?tab=all), so Reports could not be clicked; no red error messages and no work orders or report rows were left showing.",
+    "After signing in again (Admin quick login), Reports > Inventory Value opened with today's rows (As of 10/15/2026, 33 rows read, totals shown) and no error messages.",
+    "For the record: after signing in the app opened Work Orders (Assigned to me, Estimates tab) rather than the page tab 1 had been on; the test does not ask about that."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368240-1-tab2-signed-out-tab1-sign-in.png",
+    "evidence/staging-full-2026-10-14/annotated/C368240-2-after-sign-in-report.png"
+   ],
+   "not_observed": "None.",
+   "todo": "None. This was the last staging test of the day; the shared session is now signed out."
+  }
+ }
+}
