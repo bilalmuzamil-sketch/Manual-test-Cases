@@ -171,3 +171,16 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
 - Ticket queue being drafted (defect-drafts/tickets/QUEUE-2026-10-15.md): sorting C96929 (reopen SV-11101 or new — his
   call), D-LEAD100 (one or two), TECHFILTER (5 tests, SV-10044), design findings grouped one per distinct finding. Each is
   asked separately (Rule 113). The live PRD read waits for his yes (Rule 81/106).
+
+### 15 Oct 12:50 UTC — tickets: SV-11101 reopened; 17 failed tests linked to existing tickets
+- QA lead, 15 Oct 2026 (quota at 97%): report what we already know first, fast, so the developer has work while the quota
+  resets. Reopen old tickets with full data and screenshots, and always give the link.
+- SV-11101 was reopened (transition 26), retitled, and rewritten from D3-staging-C96929 with 3 inline pictures
+  (size_pics: 3 full-width). A snapshot of the old text is in defect-drafts/tickets/SV-11101-snapshot-before-reopen-2026-10-15.json.
+- Run 498 batch 31: 17 failed tests carry their existing ticket (Defects field + "Follow the status here"). Mapping: SV-11319
+  C590110 · SV-11322 C590111 · SV-11324 C590112 · SV-11317 + SV-11321 C590113 · SV-11325 C590114 · SV-11318 C590115 ·
+  SV-11320 C590116/C590117 · SV-11323 C590118 · SV-11338 C590119/C590129 · SV-11326 C590127 + C581915–C581918 ·
+  SV-11101 C96929.
+- New tickets still to ask (one yes each): D-LEAD100 (one or two), hover shadow (C590121, C590124), name bubble below
+  (C590124), green message box (C590130), avatar size by density (C590128). C590121's menu icon goes under SV-11319 if he
+  agrees.
