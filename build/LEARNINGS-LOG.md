@@ -801,3 +801,18 @@ never folded into another ticket, and never left only as a "held" note. It still
 - asked for on its own (Rule 113).
 
 The tests it blocks carry the ticket number once it is filed. #ruling #tickets #story-defect → L0369
+
+## L0381 — 2026-10-15 — A hung script costs its whole timeout: spot it by log age and CPU, kill only its `timeout`, re-queue
+`high1-batch.mts` (C368181) signed in to production at 10:22:15 UTC and then did nothing. The log was silent and the node
+process sat at 0% CPU. Its `timeout` is 3600 s, so it would have held the pass until about 11:20.
+- **How to spot a hang:** the newest `logsN/*.log` has not changed for more than 10 minutes, the newest evidence picture is just
+  as old, and `ps -eo pid,etime,pcpu,args | grep <script>` shows 0% CPU.
+- **How to stop it:** `kill -TERM <pid of the 'timeout 3600 ./wob-run.sh <script>' process>`. timeout passes the signal on,
+  the pass runner writes EXIT=143 and goes on to the next line, and no `.done` is written. Do not use `pkill -f`, which can hit
+  your own shell (L0339).
+- **After stopping it:** log the stop in `run.out` and re-queue the case in the next pass with every step time-limited
+  (L0368).
+- Every check-in now reads the newest log's age.
+
+Also seen: production moved to **v26.40.18-163ddfa** during the run (it was f5bf8f4 overnight). A production comparison must
+record the build it read. #hang #unattended #production → L0368, L0372
