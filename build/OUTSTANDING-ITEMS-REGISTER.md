@@ -3192,3 +3192,8 @@ only), W-11, W-12, W-15. Settled, not sent: W-13 (Chris's answer 10, 14 Oct) and
 Already sent by Ahtasham Amjad on Slack 14 Oct: Tech View pin icon (S2-R11 vs design) and More actions covering the card badge.
 For the QA lead (not the PO): SV-11337 and SV-11338 quote "design" sizes the design file does not have — ask Ahtasham what he measured.
 Vladimir's C228763 (not ours) expects Assigned Techs off by default; fails a correct build under PRD v51.
+
+### QA lead, 15 Oct 2026 — CLOSED, never remind again
+- SV-11337 / SV-11338 design-size question for Ahtasham: "Ignore and do not remind me about this again."
+- Vladimir's C228763 (created by Vladimir, user 1): "If Vlad has created it then ignore this too and dont remind me again."
+- Telling Vladimir about C96911, C96993–C96996 (expected results unchanged, runnable by a manual tester): "ignore it too and do not remind it again."
