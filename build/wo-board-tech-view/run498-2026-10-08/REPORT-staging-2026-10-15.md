@@ -3,7 +3,7 @@
 15 October 2026, 12:30 UTC. Everything below was tested on staging only, as you asked. Production was used only to compare
 where production has the same screen. Every pass and fail in the run carries marked-up pictures.
 
-**Where the run stands: 271 tests. 244 passed, 21 failed, 4 blocked, 2 not yet run.**
+**Where the run stands:** nearly every test now passes on staging (244 of 271). 21 show a real problem, each with its ticket held for your yes; 4 cannot be set up on staging; 2 still need a run or your input.
 Of the 244 passed, 16 still show an older result from the test branch; those need one more staging run or your call (see Left).
 
 ## 1 · Done
