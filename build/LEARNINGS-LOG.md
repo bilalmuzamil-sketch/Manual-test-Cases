@@ -1059,3 +1059,17 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 - **Analyst 1 company for long-list tests:** Location A/B, technicians Bilal Muzamil and Test B2; Analyst 1 can create customers and work
   orders but not staff or roles. Tech View hand-over (C590131) needs Unassigned > one screen AND a full screen of rows after the next group's
   header (30 unassigned + 23 led by Test B2). `analyst.mts` opens a browser as Analyst 1. #staging #schedule #fullcalendar #audit-log #two-users → L0400, L0404
+
+## L0406 — 2026-10-16 — "Deleted user" labor exists in the Analyst 1 company (S1-3); company A cannot make it; a card pill check waits on SV-11405
+- **Company A (staging, v26.40.19):** a staff member with logged labor cannot be deleted: "Staff is being used elsewhere." after
+  deactivation and a role change too; removing the location is refused ("Staff must be enrolled in at least one department from default
+  location"). A person who is ONLY a line's technician deletes (200), and the Labor row then reads "Unassigned", not "Deleted user". The app's
+  code holds one delete only (DELETE /api/staff/{id}); there is no account delete and no timesheet delete (`C368191-routes.mts`).
+- **Analyst 1 company:** work order S1-3 (Customer 1), Line 1 "Gfhghfghg" reads "Deleted user"; its labor entries point at two staff ids that
+  answer 404 "'Staff' was not found." Use it for C368191 (`C368191-orgb-steps.mts`, technician Test B2). Scan a company for such lines with
+  `C368191-orgb-scan.mts`.
+- **Settings > Staff search** matches one name field: "Gone B Tech 26846" finds nothing, and a deactivated person is on the Deactivated tab.
+- **C590120 step 7** (List's pill with its red/blue numbers on the Board card, 22 px) is the open work item SV-11405 (Chris Ward, In Progress
+  on 16 Oct): mark Blocked under Rule 112 until it is Ready for QA. Measured today: List and card pills 21 px; the card has no number.
+- **Progress above 0 on demand:** progress = clocked labour minutes / Estimated Time; set Line 1's Estimated Time to 0.1 h in Edit Line and
+  clock its technician ~100 s from their own window (29%). #staging #deleted-user #staff #rule112 #progress → L0405

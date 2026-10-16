@@ -1,0 +1,68 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-72f4f3b",
+  "date": "16 October 2026",
+  "note": "batch 40b: C368156, C368191 (Analyst 1 company), C590120; 11:27-12:04 UTC"
+ },
+ "results": {
+  "C368156": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, as the Admin in one normal sign-in.",
+    "Step 1: at Staging Heavy Duty - 9919, ZZAUTOTEST Ana Alpha, Ben Bravo and Cal Charlie were pinned with the pin icon in each column header; they moved to the front of the board.",
+    "Step 2: the fourth technician's pin button (ZZAUTOTEST Dan Delta) is turned off and shows \"You can pin up to 3 technicians.\"",
+    "Step 3: after Change Location to Staging Lethbridge - 4310 (the second location), no pinned columns show and none of the Heavy Duty pins appear.",
+    "Step 4: Xia Xray, Yan Yankee and Zoe Zulu were all pinned at Lethbridge with no message, so the Heavy Duty pins did not use up the three slots.",
+    "Step 5: Change Location back to Staging Heavy Duty - 9919 worked at the first try; Ana, Ben and Cal are still pinned there.",
+    "The earlier failed switch back came from the test script's own window, not the product. The Admin's own pins were put back afterwards."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016d/C368156-1-step2-fourth-pin.png",
+    "evidence/staging-full-2026-10-14/annotated-1016d/C368156-2-step3-lethbridge-no-pins.png",
+    "evidence/staging-full-2026-10-14/annotated-1016d/C368156-2b-step4-lethbridge-pinned.png",
+    "evidence/staging-full-2026-10-14/annotated-1016d/C368156-3-step5-back-at-heavy-duty.png"
+   ],
+   "ticket": null
+  },
+  "C368191": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, in the QA lead's second company (\"Analyst 1\" sign-in, Location A).",
+    "Why there: in the main company the starting situation cannot be made. Deleting a staff member who has logged work answers \"Staff is being used elsewhere.\" (also after deactivating them, after a role change, and removing their location is refused). A staff member who is only a line's technician can be deleted, but the line then reads \"Unassigned\", not \"Deleted user\". A never-used staff member deletes at once (check that deleting works at all).",
+    "Step 1: in the second company, work order S1-3 (Customer 1), Line 1 \"Gfhghfghg\" reads \"Deleted user\" on its Labor row; its labor entries belong to two staff members who no longer exist.",
+    "Step 2: Schedule, Mon, Oct 19: S1-3 was dragged onto Test B2's row (an active technician there); the window opened for \"S1-3 · Customer 1\", Test B2, Oct 19, at Location A.",
+    "Step 3: Choose lines with only Line 1 ticked, Hours 2h, \"Create shift · 1 line · 2h\": the shift saved with no error message.",
+    "Step 4: the shift shows on Test B2's row, 09:00 AM to 11:00 AM, \"Single line\", Line 1 \"Gfhghfghg\" only.",
+    "Step 5: after a refresh, Line 1's Labor row still reads \"Deleted user\"; Test B2 did not replace it."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016d/C368191-1-step1-deleted-user.png",
+    "evidence/staging-full-2026-10-14/annotated-1016d/C368191-2-step4-shift-test-b2.png",
+    "evidence/staging-full-2026-10-14/annotated-1016d/C368191-3-step5-still-deleted-user.png"
+   ],
+   "ticket": null
+  },
+  "C590120": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the change this test checks in step 7 is still being built (SV-11405, In Progress), so it cannot be judged yet.",
+    "Set-up: work order S2-36547 (customer \"ZZAUTOTEST DC11 Board Card 51478\", TRK-118 · 2022 Freightliner M2), led by ZZAUTOTEST DC11-51478 Pia Card, one line with a parts request; its technician clocked about 2 minutes so progress reads 29%. S2-36548 is Invoiced.",
+    "Steps 1-3 (List): S2-36547's \"Approved\" pill carries a blue number 1; it is 21 px tall.",
+    "Step 5: the card is white with rounded corners and a thin grey border; number in blue at the left, pill at the right; customer in dark text; \"TRK-118 · 2022 Freightliner M2\" smaller and grey; the blue progress bar is filled to 29%; line technicians as overlapping round avatars and the total $38.41 at the right.",
+    "Step 6: number, customer name and total price are all 14 px, medium weight; the unit and asset line is 12 px and grey.",
+    "Step 7: the card's pill has the same word, colours and rounded shape as List's, but no blue number on it (List shows 1), and it is 21 px tall where the test expects 22 px.",
+    "Step 8: a padlock outline sits right after S2-36548's number.",
+    "Steps 9-10: Compact has less space around the content and Comfortable more; the same fields and values and the same text sizes as in step 6.",
+    "SV-11405 (written by Chris Ward on 15 Oct, assigned to Slavcho Mitrov) is the work to put List's pill, with its red and blue numbers, 22 px tall, on the card. It read In Progress on 16 Oct 2026."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016d/C590120-1-step3-list-pill.png",
+    "evidence/staging-full-2026-10-14/annotated-1016d/C590120-2-board-card.png"
+   ],
+   "not_observed": "Step 7 on finished work: the card's pill with List's red and blue numbers at 22 px.",
+   "ticket": "Follow the work here: https://shopview.atlassian.net/browse/SV-11405 (In Progress, read 16 Oct 2026)",
+   "todo": "What needs to be done: when SV-11405 reaches Ready for QA, run step 7 again with a work order that has a parts request (blue number) and compare the card's pill with List's (expected the same numbers, 22 px tall)."
+  }
+ }
+}

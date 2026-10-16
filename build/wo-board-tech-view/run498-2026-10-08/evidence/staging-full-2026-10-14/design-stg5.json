@@ -1,283 +1,2334 @@
 {
  "runner": "3620a2b1",
- "started": "2026-10-16T09:49:20.823Z",
+ "started": "2026-10-16T11:35:51.355Z",
  "roles": {
   "tech": true,
   "admin": true,
   "viewOnly": true
  },
  "line": "Service - Full grease service",
- "C590131": {
-  "started": "09:49:22",
-  "wo1": "S2-36436 estimate lead=-",
+ "C590120": {
+  "started": "11:35:52",
+  "wo1": "S2-36547 approved lead=ZZAUTOTEST DC11-51478 Pia Card",
+  "wo2": "S2-36548 invoiced lead=ZZAUTOTEST DC11-51478 Pia Card LOG approve 201; lead 201; mileage 201; line complete 200; in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]; ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]; complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]; invoice 201",
+  "assetVin": "ZZDC1151478569680",
+  "assetShape": {
+   "borrowed": "Freightliner M2",
+   "save": "201"
+  },
+  "assetReadBack": "TRK-118 · 2022 Freightliner M2",
+  "partRequest": "201",
+  "estimateAfter": [
+   "6"
+  ],
+  "clockButtons": 1,
+  "clockRunning": "S-36547, Service - Full grease service",
+  "clockAfter": "no clock running",
+  "progressNow": [
+   "S2-36547 progress 29"
+  ],
+  "s1_s3": {
+   "prep": {
+    "pref": 200,
+    "assignedToMeOn": false
+   },
+   "row": "location_on Approved 1 S2-36547 ZZAUTOTEST DC11 Board Card 514.. Freightliner M2 TRK-118 ZZDC1151478569680 content_copy 29% ZZ WOB Runner ZZAUTOTEST DC11-51478 ",
+   "pill": {
+    "word": "Approved",
+    "bg": "rgb(224, 242, 241)",
+    "text": "rgb(0, 105, 92)",
+    "border": "1px solid color(srgb 0 0.411765 0.360784 / 0.5)",
+    "radius": "800px",
+    "height": 21,
+    "width": 72.4,
+    "fontSize": "11.008px",
+    "fontWeight": "600",
+    "numbers": [
+     {
+      "text": "1",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(66, 165, 245)"
+     }
+    ],
+    "box": {
+     "x": 109.171875,
+     "y": 241,
+     "w": 72.359375,
+     "h": 21.015625,
+     "r": 181.53125,
+     "b": 262.015625
+    }
+   },
+   "progressCell": "29%",
+   "picture": "C590120-s3-list-pill.png"
+  },
   "prep": {
    "pref": 200,
    "assignedToMeOn": false
   },
-  "unassignedOpenedCollapsed": "false",
-  "s1": {
-   "thead": {
-    "x": 30,
-    "y": 140,
-    "w": 1380,
-    "h": 48,
-    "r": 1410,
-    "b": 188
-   },
-   "unassigned": {
-    "x": 30,
-    "y": 188,
-    "w": 1380,
-    "h": 44,
-    "r": 1410,
-    "b": 232
-   },
-   "sc": {
-    "box": {
-     "x": 30,
-     "y": 140,
-     "w": 1380,
-     "h": 740,
-     "r": 1410,
-     "b": 880
-    },
-    "scrollTop": 0,
-    "scrollLeft": 0,
-    "scrollH": 35469,
-    "clientH": 740,
-    "scrollW": 1380,
-    "clientW": 1380
-   },
-   "unassignedCount": "3534"
-  },
-  "s3_after": {
-   "sc": {
-    "box": {
-     "x": 30,
-     "y": 140,
-     "w": 1380,
-     "h": 740,
-     "r": 1410,
-     "b": 880
-    },
-    "scrollTop": 3000,
-    "scrollLeft": 0,
-    "scrollH": 36669,
-    "clientH": 740,
-    "scrollW": 1380,
-    "clientW": 1380
-   },
-   "thead": {
-    "x": 30,
-    "y": -2860,
-    "w": 1380,
-    "h": 48,
-    "r": 1410,
-    "b": -2812
-   },
-   "theadOnTop": {
-    "box": {
-     "x": 30,
-     "y": 140,
-     "w": 54.8,
-     "h": 48,
-     "r": 84.8,
-     "b": 188
-    },
-    "atPoint": true,
-    "topTid": "table_tech_view"
-   },
-   "unassignedHeader": "not in the page (scrolled away)",
-   "toggleOnTop": null,
-   "firstRowsUnder": [
-    {
-     "x": 30,
-     "y": -896,
-     "w": 1380,
-     "h": 48,
-     "r": 1410,
-     "b": -848
-    },
-    {
-     "x": 30,
-     "y": -848,
-     "w": 1380,
-     "h": 48,
-     "r": 1410,
-     "b": -800
-    }
+  "fields": {
+   "before": [
+    "technician=true \"\"",
+    "company_name=true \"\"",
+    "vehicle=true \"\"",
+    "vin=false \"\"",
+    "progress=true \"\"",
+    "service_advisor=false \"\"",
+    "clocked_in_technicians=false \"\"",
+    "lines_count=false \"\"",
+    "line_technicians=false \"\"",
+    "time_estimate=false \"\"",
+    "total_price=true \"\"",
+    "vehicle_here=false \"\"",
+    "start_date=false \"\""
    ],
-   "picture": "C590131-s3-scrolled.png"
+   "clicked": true
   },
-  "s3_clip": "C590131-s3-table-top.png",
-  "s4_load": [
+  "cardOnScreen": {
+   "C590120-s2-card-regular": true,
+   "C590120-s4-wo2-card": true,
+   "C590120-compact-card": true,
+   "C590120-comfortable-card": true
+  },
+  "s2_s3_regular": {
+   "card": {
+    "d": {
+     "tid": "board_card_<id>",
+     "tag": "div",
+     "cls": "q-card q-card--flat no-shadow board-card cursor-pointer wo-density--regular",
+     "text": "S2-36547 Approved more_horiz Customer ZZAUTOTEST DC11 Board Card 51478 TRK-118· Asset 2022 Freightli",
+     "box": {
+      "x": 363,
+      "y": 222,
+      "w": 262,
+      "h": 224.1,
+      "r": 625,
+      "b": 446.1
+     },
+     "st": {
+      "fontSize": "13.12px",
+      "fontWeight": "400",
+      "lineHeight": "19.5488px",
+      "color": "rgb(0, 0, 0)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "backgroundImage": "none",
+      "borderTop": "1px solid rgb(227, 232, 239)",
+      "borderRight": "1px solid rgb(227, 232, 239)",
+      "borderBottom": "1px solid rgb(227, 232, 239)",
+      "borderLeft": "1px solid rgb(227, 232, 239)",
+      "borderRadius": "8px",
+      "boxShadow": "none",
+      "padding": "12px",
+      "margin": "0px",
+      "opacity": "1",
+      "position": "relative",
+      "top": "0px",
+      "left": "0px",
+      "zIndex": "auto",
+      "textAlign": "start",
+      "textOverflow": "clip",
+      "overflow": "visible",
+      "whiteSpace": "normal",
+      "transform": "none",
+      "cursor": "pointer",
+      "visibility": "visible",
+      "textTransform": "none",
+      "letterSpacing": "normal",
+      "gap": "8px",
+      "outline": "rgb(0, 0, 0) none 0px",
+      "width": "262px",
+      "height": "224.094px"
+     },
+     "icons": [
+      {
+       "tag": "i",
+       "cls": "q-icon notranslate material-icons",
+       "box": {
+        "x": 590.9,
+        "y": 236.9,
+        "w": 17.1,
+        "h": 17.1,
+        "r": 608,
+        "b": 254.1
+       },
+       "color": "rgb(105, 117, 134)",
+       "opacity": "1",
+       "ligature": "more_horiz",
+       "fontSize": "17.15px"
+      }
+     ]
+    },
+    "parts": [
+     {
+      "kind": "text",
+      "text": "S2-36547",
+      "box": {
+       "x": 376,
+       "y": 235.1,
+       "w": 65,
+       "h": 20.9,
+       "r": 441,
+       "b": 255.9
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(23, 92, 211)"
+     },
+     {
+      "kind": "text",
+      "text": "Approved",
+      "box": {
+       "x": 539.6,
+       "y": 235,
+       "w": 72.4,
+       "h": 21,
+       "r": 612,
+       "b": 256
+      },
+      "fontSize": "11.008px",
+      "fontWeight": "600",
+      "color": "rgb(0, 105, 92)",
+      "bg": "rgb(224, 242, 241)"
+     },
+     {
+      "kind": "shape",
+      "box": {
+       "x": 584.9,
+       "y": 235.9,
+       "w": 29.1,
+       "h": 19.1,
+       "r": 614,
+       "b": 255.1
+      },
+      "bg": "rgb(255, 255, 255)",
+      "border": "1px solid rgb(227, 232, 239)",
+      "radius": "6px"
+     },
+     {
+      "kind": "icon",
+      "icon": {
+       "tag": "i",
+       "cls": "q-icon notranslate material-icons",
+       "box": {
+        "x": 590.9,
+        "y": 236.9,
+        "w": 17.1,
+        "h": 17.1,
+        "r": 608,
+        "b": 254.1
+       },
+       "color": "rgb(105, 117, 134)",
+       "opacity": "1",
+       "ligature": "more_horiz",
+       "fontSize": "17.15px"
+      }
+     },
+     {
+      "kind": "text",
+      "text": "Customer",
+      "box": {
+       "x": 375,
+       "y": 263,
+       "w": 1,
+       "h": 1,
+       "r": 376,
+       "b": 264
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     },
+     {
+      "kind": "text",
+      "text": "ZZAUTOTEST DC11 Board Card 51478",
+      "box": {
+       "x": 376,
+       "y": 264,
+       "w": 236,
+       "h": 41.7,
+       "r": 612,
+       "b": 305.7
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     },
+     {
+      "kind": "text",
+      "text": "TRK-118",
+      "box": {
+       "x": 376,
+       "y": 307.7,
+       "w": 49.3,
+       "h": 16,
+       "r": 425.3,
+       "b": 323.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "·",
+      "box": {
+       "x": 429.3,
+       "y": 307.7,
+       "w": 2.8,
+       "h": 16,
+       "r": 432.1,
+       "b": 323.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "Asset",
+      "box": {
+       "x": 435.1,
+       "y": 306.7,
+       "w": 1,
+       "h": 1,
+       "r": 436.1,
+       "b": 307.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "2022 Freightliner M2",
+      "box": {
+       "x": 436.1,
+       "y": 307.7,
+       "w": 118.1,
+       "h": 16,
+       "r": 554.2,
+       "b": 323.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "Progress",
+      "box": {
+       "x": 375,
+       "y": 342,
+       "w": 1,
+       "h": 1,
+       "r": 376,
+       "b": 343
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "shape",
+      "box": {
+       "x": 376,
+       "y": 340.5,
+       "w": 58.7,
+       "h": 4,
+       "r": 434.7,
+       "b": 344.5
+      },
+      "bg": "rgb(37, 124, 255)",
+      "border": "0px none rgb(105, 117, 134)",
+      "radius": "0px"
+     },
+     {
+      "kind": "text",
+      "text": "29%",
+      "box": {
+       "x": 586.4,
+       "y": 333.6,
+       "w": 25.6,
+       "h": 17.9,
+       "r": 612,
+       "b": 351.5
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "Line technicians",
+      "box": {
+       "x": 375,
+       "y": 373.4,
+       "w": 1,
+       "h": 1,
+       "r": 376,
+       "b": 374.4
+      },
+      "fontSize": "13.12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)"
+     },
+     {
+      "kind": "text",
+      "text": "Lead technician",
+      "box": {
+       "x": 423,
+       "y": 367.5,
+       "w": 1,
+       "h": 1,
+       "r": 424,
+       "b": 368.5
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "shape",
+      "box": {
+       "x": 376,
+       "y": 374.4,
+       "w": 24,
+       "h": 24,
+       "r": 400,
+       "b": 398.4
+      },
+      "bg": "rgb(56, 116, 255)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "50%"
+     },
+     {
+      "kind": "text",
+      "text": "ZD",
+      "box": {
+       "x": 380,
+       "y": 383.4,
+       "w": 16,
+       "h": 6,
+       "r": 396,
+       "b": 389.4
+      },
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "color": "rgb(255, 255, 255)"
+     },
+     {
+      "kind": "shape",
+      "box": {
+       "x": 392,
+       "y": 374.4,
+       "w": 24,
+       "h": 24,
+       "r": 416,
+       "b": 398.4
+      },
+      "bg": "rgb(56, 116, 255)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "50%"
+     },
+     {
+      "kind": "text",
+      "text": "ZD",
+      "box": {
+       "x": 396,
+       "y": 383.4,
+       "w": 16,
+       "h": 6,
+       "r": 412,
+       "b": 389.4
+      },
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "color": "rgb(255, 255, 255)"
+     },
+     {
+      "kind": "text",
+      "text": "ZZAUTOTEST DC11-51478 Pia Card",
+      "box": {
+       "x": 424,
+       "y": 368.5,
+       "w": 188,
+       "h": 35.8,
+       "r": 612,
+       "b": 404.2
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "Total price",
+      "box": {
+       "x": 565.7,
+       "y": 411.2,
+       "w": 1,
+       "h": 1,
+       "r": 566.7,
+       "b": 412.2
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     },
+     {
+      "kind": "text",
+      "text": "$38.41",
+      "box": {
+       "x": 566.7,
+       "y": 412.2,
+       "w": 45.3,
+       "h": 20.9,
+       "r": 612,
+       "b": 433.1
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     }
+    ],
+    "avatars": [
+     {
+      "box": {
+       "x": 376,
+       "y": 374.4,
+       "w": 40,
+       "h": 24,
+       "r": 416,
+       "b": 398.4
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "text": "ZD\nZD",
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "radius": "0px",
+      "border": "0px none rgb(0, 0, 0)",
+      "img": null,
+      "icons": [],
+      "tid": "board_card_field_line_technicians"
+     }
+    ],
+    "bars": [
+     {
+      "box": {
+       "x": 376,
+       "y": 340.5,
+       "w": 202.4,
+       "h": 4,
+       "r": 578.4,
+       "b": 344.5
+      },
+      "bg": "rgb(227, 232, 239)",
+      "radius": "2px",
+      "cls": "board-card__track"
+     },
+     {
+      "box": {
+       "x": 376,
+       "y": 340.5,
+       "w": 58.7,
+       "h": 4,
+       "r": 434.7,
+       "b": 344.5
+      },
+      "bg": "rgb(37, 124, 255)",
+      "radius": "0px",
+      "cls": "board-card__fill"
+     }
+    ],
+    "fields": [
+     {
+      "tid": "board_card_number",
+      "text": "S2-36547",
+      "box": {
+       "x": 376,
+       "y": 235.1,
+       "w": 65,
+       "h": 20.9,
+       "r": 441,
+       "b": 255.9
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(23, 92, 211)"
+     },
+     {
+      "tid": "board_card_status",
+      "text": "Approved",
+      "box": {
+       "x": 539.6,
+       "y": 235,
+       "w": 72.4,
+       "h": 21,
+       "r": 612,
+       "b": 256
+      },
+      "fontSize": "11.008px",
+      "fontWeight": "600",
+      "color": "rgb(0, 105, 92)"
+     },
+     {
+      "tid": "board_card_field_company_name",
+      "text": "Customer ZZAUTOTEST DC11 Board Card 51478",
+      "box": {
+       "x": 376,
+       "y": 264,
+       "w": 236,
+       "h": 41.7,
+       "r": 612,
+       "b": 305.7
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     },
+     {
+      "tid": "board_card_unit",
+      "text": "TRK-118",
+      "box": {
+       "x": 376,
+       "y": 307.7,
+       "w": 49.3,
+       "h": 16,
+       "r": 425.3,
+       "b": 323.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "tid": "board_card_field_vehicle",
+      "text": "Asset 2022 Freightliner M2",
+      "box": {
+       "x": 436.1,
+       "y": 307.7,
+       "w": 118.1,
+       "h": 16,
+       "r": 554.2,
+       "b": 323.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "tid": "board_card_field_progress",
+      "text": "Progress 29%",
+      "box": {
+       "x": 376,
+       "y": 333.6,
+       "w": 236,
+       "h": 17.9,
+       "r": 612,
+       "b": 351.5
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "tid": "board_card_footer",
+      "text": "Line technicians ZD ZD Lead technician ZZAUTOTEST DC11-51478",
+      "box": {
+       "x": 376,
+       "y": 359.5,
+       "w": 236,
+       "h": 73.6,
+       "r": 612,
+       "b": 433.1
+      },
+      "fontSize": "13.12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)"
+     },
+     {
+      "tid": "board_card_field_line_technicians",
+      "text": "Line technicians ZD ZD",
+      "box": {
+       "x": 376,
+       "y": 374.4,
+       "w": 40,
+       "h": 24,
+       "r": 416,
+       "b": 398.4
+      },
+      "fontSize": "13.12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)"
+     },
+     {
+      "tid": "board_card_field_technician",
+      "text": "Lead technician ZZAUTOTEST DC11-51478 Pia Card",
+      "box": {
+       "x": 424,
+       "y": 368.5,
+       "w": 188,
+       "h": 35.8,
+       "r": 612,
+       "b": 404.2
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "tid": "board_card_field_total_price",
+      "text": "Total price $38.41",
+      "box": {
+       "x": 566.7,
+       "y": 412.2,
+       "w": 45.3,
+       "h": 20.9,
+       "r": 612,
+       "b": 433.1
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     }
+    ],
+    "col": "board_column_<id>"
+   },
+   "sizes": {
+    "number": {
+     "text": "S2-36547",
+     "fontSize": "14px",
+     "fontWeight": "500",
+     "color": "rgb(23, 92, 211)",
+     "box": {
+      "x": 376,
+      "y": 235.1,
+      "w": 65,
+      "h": 20.9,
+      "r": 441,
+      "b": 255.9
+     }
+    },
+    "customerName": {
+     "kind": "text",
+     "text": "ZZAUTOTEST DC11 Board Card 51478",
+     "box": {
+      "x": 376,
+      "y": 264,
+      "w": 236,
+      "h": 41.7,
+      "r": 612,
+      "b": 305.7
+     },
+     "fontSize": "14px",
+     "fontWeight": "500",
+     "color": "rgb(18, 25, 38)"
+    },
+    "unitAssetLine": {
+     "text": "TRK-118",
+     "fontSize": "12px",
+     "fontWeight": "500",
+     "color": "rgb(105, 117, 134)",
+     "box": {
+      "x": 376,
+      "y": 307.7,
+      "w": 49.3,
+      "h": 16,
+      "r": 425.3,
+      "b": 323.7
+     }
+    },
+    "totalPrice": {
+     "kind": "text",
+     "text": "$38.41",
+     "box": {
+      "x": 566.7,
+      "y": 412.2,
+      "w": 45.3,
+      "h": 20.9,
+      "r": 612,
+      "b": 433.1
+     },
+     "fontSize": "14px",
+     "fontWeight": "500",
+     "color": "rgb(18, 25, 38)"
+    },
+    "cardPadding": "12px",
+    "cardHeight": 224.1,
+    "fieldsShown": [
+     "company_name",
+     "vehicle",
+     "progress",
+     "line_technicians",
+     "technician",
+     "total_price"
+    ]
+   },
+   "picture": "C590120-s2-card-regular.png"
+  },
+  "s7_cardPill": {
+   "word": "Approved",
+   "bg": "rgb(224, 242, 241)",
+   "text": "rgb(0, 105, 92)",
+   "border": "1px solid color(srgb 0 0.411765 0.360784 / 0.5)",
+   "radius": "800px",
+   "height": 21,
+   "width": 72.4,
+   "fontSize": "11.008px",
+   "fontWeight": "600",
+   "numbers": [],
+   "box": {
+    "x": 539.640625,
+    "y": 235,
+    "w": 72.359375,
+    "h": 21.015625,
+    "r": 612,
+    "b": 256.015625
+   }
+  },
+  "s7_compare": {
+   "sameWord": true,
+   "sameBg": true,
+   "sameTextColour": true,
+   "sameRadius": true,
+   "sameNumbers": false,
+   "listHeight": 21,
+   "cardHeight": 21
+  },
+  "s5_progressBar": [
    {
-    "i": 0,
-    "none": true
+    "cls": "board-card__track",
+    "tid": null,
+    "x": 376,
+    "w": 202.4,
+    "h": 4,
+    "bg": "rgb(227, 232, 239)"
    },
    {
-    "i": 10,
-    "none": true
-   },
-   {
-    "i": 20,
-    "none": true
-   },
-   {
-    "id": "c57d19d7-dc2b-4472-a11d-984c61b01c0e",
-    "name": "Aaron Baker",
-    "gap": 1245,
-    "rows": 58,
-    "scrollTop": 36000,
-    "scrollH": 69017
-   },
-   {
-    "i": 40,
-    "none": true
-   },
-   {
-    "i": 50,
-    "none": true
-   },
-   {
-    "i": 60,
-    "none": true
-   },
-   {
-    "i": 70,
-    "none": true
+    "cls": "board-card__fill",
+    "tid": null,
+    "x": 376,
+    "w": 58.7,
+    "h": 4,
+    "bg": "rgb(37, 124, 255)"
    }
   ],
-  "s4_nextGroup": {
-   "found": true,
-   "seconds": 57,
-   "at": {
-    "id": "c57d19d7-dc2b-4472-a11d-984c61b01c0e",
-    "name": "Aaron Baker",
-    "gap": 44,
-    "rows": 79,
-    "scrollTop": 87600,
-    "scrollH": 119409
-   }
+  "s5_progressText": "29%",
+  "s7_cardPillPicture": "C590120-s7-card-pill.png",
+  "s4_wo2": {
+   "number": {
+    "number": {
+     "tid": "board_card_number",
+     "tag": "span",
+     "cls": "board-card__number",
+     "text": "S2-36548",
+     "box": {
+      "x": 376,
+      "y": 467.2,
+      "w": 65,
+      "h": 20.9,
+      "r": 441,
+      "b": 488
+     },
+     "st": {
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(23, 92, 211)",
+      "cursor": "pointer"
+     },
+     "icons": []
+    },
+    "rowParts": [
+     {
+      "kind": "text",
+      "text": "S2-36548",
+      "box": {
+       "x": 376,
+       "y": 467.2,
+       "w": 65,
+       "h": 20.9,
+       "r": 441,
+       "b": 488
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(23, 92, 211)"
+     },
+     {
+      "kind": "icon",
+      "icon": {
+       "tag": "i",
+       "cls": "q-icon",
+       "box": {
+        "x": 445,
+        "y": 471.6,
+        "w": 12,
+        "h": 12,
+        "r": 457,
+        "b": 483.6
+       },
+       "color": "rgb(105, 117, 134)",
+       "opacity": "1",
+       "svg": {
+        "cls": "",
+        "box": {
+         "x": 445,
+         "y": 471.6,
+         "w": 12,
+         "h": 12,
+         "r": 457,
+         "b": 483.6
+        },
+        "viewBox": "0 0 24 24",
+        "fill": "none",
+        "stroke": "none",
+        "strokeWidth": "1px",
+        "shapes": 3,
+        "dataIcon": null
+       }
+      }
+     }
+    ]
+   },
+   "picture": "C590120-s4-wo2-card.png"
   },
-  "s4_s5_walk": [
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 0,
-    "picture": "C590131-s5-handover-00.png"
+  "s5_compact": {
+   "menu": [
+    "Compact [false]",
+    "Regular check [true]",
+    "Comfortable [false]"
+   ],
+   "card": {
+    "d": {
+     "tid": "board_card_<id>",
+     "tag": "div",
+     "cls": "q-card q-card--flat no-shadow board-card cursor-pointer wo-density--compact",
+     "text": "S2-36547 Approved more_horiz Customer ZZAUTOTEST DC11 Board Card 51478 TRK-118· Asset 2022 Freightli",
+     "box": {
+      "x": 363,
+      "y": 222,
+      "w": 262,
+      "h": 212.1,
+      "r": 625,
+      "b": 434.1
+     },
+     "st": {
+      "fontSize": "13.12px",
+      "fontWeight": "400",
+      "lineHeight": "19.5488px",
+      "color": "rgb(0, 0, 0)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "backgroundImage": "none",
+      "borderTop": "1px solid rgb(227, 232, 239)",
+      "borderRight": "1px solid rgb(227, 232, 239)",
+      "borderBottom": "1px solid rgb(227, 232, 239)",
+      "borderLeft": "1px solid rgb(227, 232, 239)",
+      "borderRadius": "8px",
+      "boxShadow": "none",
+      "padding": "10px 12px",
+      "margin": "0px",
+      "opacity": "1",
+      "position": "relative",
+      "top": "0px",
+      "left": "0px",
+      "zIndex": "auto",
+      "textAlign": "start",
+      "textOverflow": "clip",
+      "overflow": "visible",
+      "whiteSpace": "normal",
+      "transform": "none",
+      "cursor": "pointer",
+      "visibility": "visible",
+      "textTransform": "none",
+      "letterSpacing": "normal",
+      "gap": "6px",
+      "outline": "rgb(0, 0, 0) none 0px",
+      "width": "262px",
+      "height": "212.094px"
+     },
+     "icons": [
+      {
+       "tag": "i",
+       "cls": "q-icon notranslate material-icons",
+       "box": {
+        "x": 590.9,
+        "y": 234.9,
+        "w": 17.1,
+        "h": 17.1,
+        "r": 608,
+        "b": 252.1
+       },
+       "color": "rgb(105, 117, 134)",
+       "opacity": "1",
+       "ligature": "more_horiz",
+       "fontSize": "17.15px"
+      }
+     ]
+    },
+    "parts": [
+     {
+      "kind": "text",
+      "text": "S2-36547",
+      "box": {
+       "x": 376,
+       "y": 233.1,
+       "w": 65,
+       "h": 20.9,
+       "r": 441,
+       "b": 253.9
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(23, 92, 211)"
+     },
+     {
+      "kind": "text",
+      "text": "Approved",
+      "box": {
+       "x": 539.6,
+       "y": 233,
+       "w": 72.4,
+       "h": 21,
+       "r": 612,
+       "b": 254
+      },
+      "fontSize": "11.008px",
+      "fontWeight": "600",
+      "color": "rgb(0, 105, 92)",
+      "bg": "rgb(224, 242, 241)"
+     },
+     {
+      "kind": "shape",
+      "box": {
+       "x": 584.9,
+       "y": 233.9,
+       "w": 29.1,
+       "h": 19.1,
+       "r": 614,
+       "b": 253.1
+      },
+      "bg": "rgb(255, 255, 255)",
+      "border": "1px solid rgb(227, 232, 239)",
+      "radius": "6px"
+     },
+     {
+      "kind": "icon",
+      "icon": {
+       "tag": "i",
+       "cls": "q-icon notranslate material-icons",
+       "box": {
+        "x": 590.9,
+        "y": 234.9,
+        "w": 17.1,
+        "h": 17.1,
+        "r": 608,
+        "b": 252.1
+       },
+       "color": "rgb(105, 117, 134)",
+       "opacity": "1",
+       "ligature": "more_horiz",
+       "fontSize": "17.15px"
+      }
+     },
+     {
+      "kind": "text",
+      "text": "Customer",
+      "box": {
+       "x": 375,
+       "y": 259,
+       "w": 1,
+       "h": 1,
+       "r": 376,
+       "b": 260
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     },
+     {
+      "kind": "text",
+      "text": "ZZAUTOTEST DC11 Board Card 51478",
+      "box": {
+       "x": 376,
+       "y": 260,
+       "w": 236,
+       "h": 41.7,
+       "r": 612,
+       "b": 301.7
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     },
+     {
+      "kind": "text",
+      "text": "TRK-118",
+      "box": {
+       "x": 376,
+       "y": 303.7,
+       "w": 49.3,
+       "h": 16,
+       "r": 425.3,
+       "b": 319.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "·",
+      "box": {
+       "x": 429.3,
+       "y": 303.7,
+       "w": 2.8,
+       "h": 16,
+       "r": 432.1,
+       "b": 319.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "Asset",
+      "box": {
+       "x": 435.1,
+       "y": 302.7,
+       "w": 1,
+       "h": 1,
+       "r": 436.1,
+       "b": 303.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "2022 Freightliner M2",
+      "box": {
+       "x": 436.1,
+       "y": 303.7,
+       "w": 118.1,
+       "h": 16,
+       "r": 554.2,
+       "b": 319.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "Progress",
+      "box": {
+       "x": 375,
+       "y": 336,
+       "w": 1,
+       "h": 1,
+       "r": 376,
+       "b": 337
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "shape",
+      "box": {
+       "x": 376,
+       "y": 334.5,
+       "w": 58.7,
+       "h": 4,
+       "r": 434.7,
+       "b": 338.5
+      },
+      "bg": "rgb(37, 124, 255)",
+      "border": "0px none rgb(105, 117, 134)",
+      "radius": "0px"
+     },
+     {
+      "kind": "text",
+      "text": "29%",
+      "box": {
+       "x": 586.4,
+       "y": 327.6,
+       "w": 25.6,
+       "h": 17.9,
+       "r": 612,
+       "b": 345.5
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "Line technicians",
+      "box": {
+       "x": 375,
+       "y": 363.4,
+       "w": 1,
+       "h": 1,
+       "r": 376,
+       "b": 364.4
+      },
+      "fontSize": "13.12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)"
+     },
+     {
+      "kind": "text",
+      "text": "Lead technician",
+      "box": {
+       "x": 423,
+       "y": 357.5,
+       "w": 1,
+       "h": 1,
+       "r": 424,
+       "b": 358.5
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "shape",
+      "box": {
+       "x": 376,
+       "y": 364.4,
+       "w": 24,
+       "h": 24,
+       "r": 400,
+       "b": 388.4
+      },
+      "bg": "rgb(56, 116, 255)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "50%"
+     },
+     {
+      "kind": "text",
+      "text": "ZD",
+      "box": {
+       "x": 380,
+       "y": 373.4,
+       "w": 16,
+       "h": 6,
+       "r": 396,
+       "b": 379.4
+      },
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "color": "rgb(255, 255, 255)"
+     },
+     {
+      "kind": "shape",
+      "box": {
+       "x": 392,
+       "y": 364.4,
+       "w": 24,
+       "h": 24,
+       "r": 416,
+       "b": 388.4
+      },
+      "bg": "rgb(56, 116, 255)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "50%"
+     },
+     {
+      "kind": "text",
+      "text": "ZD",
+      "box": {
+       "x": 396,
+       "y": 373.4,
+       "w": 16,
+       "h": 6,
+       "r": 412,
+       "b": 379.4
+      },
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "color": "rgb(255, 255, 255)"
+     },
+     {
+      "kind": "text",
+      "text": "ZZAUTOTEST DC11-51478 Pia Card",
+      "box": {
+       "x": 424,
+       "y": 358.5,
+       "w": 188,
+       "h": 35.8,
+       "r": 612,
+       "b": 394.2
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "Total price",
+      "box": {
+       "x": 565.7,
+       "y": 401.2,
+       "w": 1,
+       "h": 1,
+       "r": 566.7,
+       "b": 402.2
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     },
+     {
+      "kind": "text",
+      "text": "$38.41",
+      "box": {
+       "x": 566.7,
+       "y": 402.2,
+       "w": 45.3,
+       "h": 20.9,
+       "r": 612,
+       "b": 423.1
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     }
+    ],
+    "avatars": [
+     {
+      "box": {
+       "x": 376,
+       "y": 364.4,
+       "w": 40,
+       "h": 24,
+       "r": 416,
+       "b": 388.4
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "text": "ZD\nZD",
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "radius": "0px",
+      "border": "0px none rgb(0, 0, 0)",
+      "img": null,
+      "icons": [],
+      "tid": "board_card_field_line_technicians"
+     }
+    ],
+    "bars": [
+     {
+      "box": {
+       "x": 376,
+       "y": 334.5,
+       "w": 202.4,
+       "h": 4,
+       "r": 578.4,
+       "b": 338.5
+      },
+      "bg": "rgb(227, 232, 239)",
+      "radius": "2px",
+      "cls": "board-card__track"
+     },
+     {
+      "box": {
+       "x": 376,
+       "y": 334.5,
+       "w": 58.7,
+       "h": 4,
+       "r": 434.7,
+       "b": 338.5
+      },
+      "bg": "rgb(37, 124, 255)",
+      "radius": "0px",
+      "cls": "board-card__fill"
+     }
+    ],
+    "fields": [
+     {
+      "tid": "board_card_number",
+      "text": "S2-36547",
+      "box": {
+       "x": 376,
+       "y": 233.1,
+       "w": 65,
+       "h": 20.9,
+       "r": 441,
+       "b": 253.9
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(23, 92, 211)"
+     },
+     {
+      "tid": "board_card_status",
+      "text": "Approved",
+      "box": {
+       "x": 539.6,
+       "y": 233,
+       "w": 72.4,
+       "h": 21,
+       "r": 612,
+       "b": 254
+      },
+      "fontSize": "11.008px",
+      "fontWeight": "600",
+      "color": "rgb(0, 105, 92)"
+     },
+     {
+      "tid": "board_card_field_company_name",
+      "text": "Customer ZZAUTOTEST DC11 Board Card 51478",
+      "box": {
+       "x": 376,
+       "y": 260,
+       "w": 236,
+       "h": 41.7,
+       "r": 612,
+       "b": 301.7
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     },
+     {
+      "tid": "board_card_unit",
+      "text": "TRK-118",
+      "box": {
+       "x": 376,
+       "y": 303.7,
+       "w": 49.3,
+       "h": 16,
+       "r": 425.3,
+       "b": 319.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "tid": "board_card_field_vehicle",
+      "text": "Asset 2022 Freightliner M2",
+      "box": {
+       "x": 436.1,
+       "y": 303.7,
+       "w": 118.1,
+       "h": 16,
+       "r": 554.2,
+       "b": 319.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "tid": "board_card_field_progress",
+      "text": "Progress 29%",
+      "box": {
+       "x": 376,
+       "y": 327.6,
+       "w": 236,
+       "h": 17.9,
+       "r": 612,
+       "b": 345.5
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "tid": "board_card_footer",
+      "text": "Line technicians ZD ZD Lead technician ZZAUTOTEST DC11-51478",
+      "box": {
+       "x": 376,
+       "y": 351.5,
+       "w": 236,
+       "h": 71.6,
+       "r": 612,
+       "b": 423.1
+      },
+      "fontSize": "13.12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)"
+     },
+     {
+      "tid": "board_card_field_line_technicians",
+      "text": "Line technicians ZD ZD",
+      "box": {
+       "x": 376,
+       "y": 364.4,
+       "w": 40,
+       "h": 24,
+       "r": 416,
+       "b": 388.4
+      },
+      "fontSize": "13.12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)"
+     },
+     {
+      "tid": "board_card_field_technician",
+      "text": "Lead technician ZZAUTOTEST DC11-51478 Pia Card",
+      "box": {
+       "x": 424,
+       "y": 358.5,
+       "w": 188,
+       "h": 35.8,
+       "r": 612,
+       "b": 394.2
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "tid": "board_card_field_total_price",
+      "text": "Total price $38.41",
+      "box": {
+       "x": 566.7,
+       "y": 402.2,
+       "w": 45.3,
+       "h": 20.9,
+       "r": 612,
+       "b": 423.1
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     }
+    ],
+    "col": "board_column_<id>"
    },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 1
+   "sizes": {
+    "number": {
+     "text": "S2-36547",
+     "fontSize": "14px",
+     "fontWeight": "500",
+     "color": "rgb(23, 92, 211)",
+     "box": {
+      "x": 376,
+      "y": 233.1,
+      "w": 65,
+      "h": 20.9,
+      "r": 441,
+      "b": 253.9
+     }
+    },
+    "customerName": {
+     "kind": "text",
+     "text": "ZZAUTOTEST DC11 Board Card 51478",
+     "box": {
+      "x": 376,
+      "y": 260,
+      "w": 236,
+      "h": 41.7,
+      "r": 612,
+      "b": 301.7
+     },
+     "fontSize": "14px",
+     "fontWeight": "500",
+     "color": "rgb(18, 25, 38)"
+    },
+    "unitAssetLine": {
+     "text": "TRK-118",
+     "fontSize": "12px",
+     "fontWeight": "500",
+     "color": "rgb(105, 117, 134)",
+     "box": {
+      "x": 376,
+      "y": 303.7,
+      "w": 49.3,
+      "h": 16,
+      "r": 425.3,
+      "b": 319.7
+     }
+    },
+    "totalPrice": {
+     "kind": "text",
+     "text": "$38.41",
+     "box": {
+      "x": 566.7,
+      "y": 402.2,
+      "w": 45.3,
+      "h": 20.9,
+      "r": 612,
+      "b": 423.1
+     },
+     "fontSize": "14px",
+     "fontWeight": "500",
+     "color": "rgb(18, 25, 38)"
+    },
+    "cardPadding": "10px 12px",
+    "cardHeight": 212.1,
+    "fieldsShown": [
+     "company_name",
+     "vehicle",
+     "progress",
+     "line_technicians",
+     "technician",
+     "total_price"
+    ]
    },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 2
-   },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 3
-   },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 4
-   },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 5
-   },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 6
-   },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 7
-   },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 8,
-    "picture": "C590131-s5-handover-08.png"
-   },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 9
-   },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 10,
-    "picture": "C590131-s5-handover-10.png"
-   },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 11
-   },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 12,
-    "picture": "C590131-s5-handover-12.png"
-   },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 13
-   },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 14,
-    "picture": "C590131-s5-handover-14.png"
-   },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 15
-   },
-   {
-    "headingBottom": 188,
-    "headers": [],
-    "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items",
-    "step": 16,
-    "picture": "C590131-s5-handover-16.png"
-   }
-  ],
-  "s5_after": {
-   "headingBottom": 188,
-   "headers": [],
-   "justUnderHeadings": "row/other: tech-view-group-header row no-wrap items"
+   "picture": "C590120-compact-card.png"
   },
-  "s5_afterPic": "C590131-s5-after-handover.png",
-  "ended": "09:50:54"
+  "s6_comfortable": {
+   "menu": [
+    "Compact check [true]",
+    "Regular [false]",
+    "Comfortable [false]"
+   ],
+   "card": {
+    "d": {
+     "tid": "board_card_<id>",
+     "tag": "div",
+     "cls": "q-card q-card--flat no-shadow board-card cursor-pointer wo-density--comfortable",
+     "text": "S2-36547 Approved more_horiz Customer ZZAUTOTEST DC11 Board Card 51478 TRK-118· Asset 2022 Freightli",
+     "box": {
+      "x": 363,
+      "y": 222,
+      "w": 262,
+      "h": 240.1,
+      "r": 625,
+      "b": 462.1
+     },
+     "st": {
+      "fontSize": "13.12px",
+      "fontWeight": "400",
+      "lineHeight": "19.5488px",
+      "color": "rgb(0, 0, 0)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "backgroundImage": "none",
+      "borderTop": "1px solid rgb(227, 232, 239)",
+      "borderRight": "1px solid rgb(227, 232, 239)",
+      "borderBottom": "1px solid rgb(227, 232, 239)",
+      "borderLeft": "1px solid rgb(227, 232, 239)",
+      "borderRadius": "8px",
+      "boxShadow": "none",
+      "padding": "16px",
+      "margin": "0px",
+      "opacity": "1",
+      "position": "relative",
+      "top": "0px",
+      "left": "0px",
+      "zIndex": "auto",
+      "textAlign": "start",
+      "textOverflow": "clip",
+      "overflow": "visible",
+      "whiteSpace": "normal",
+      "transform": "none",
+      "cursor": "pointer",
+      "visibility": "visible",
+      "textTransform": "none",
+      "letterSpacing": "normal",
+      "gap": "10px",
+      "outline": "rgb(0, 0, 0) none 0px",
+      "width": "262px",
+      "height": "240.094px"
+     },
+     "icons": [
+      {
+       "tag": "i",
+       "cls": "q-icon notranslate material-icons",
+       "box": {
+        "x": 586.9,
+        "y": 240.9,
+        "w": 17.1,
+        "h": 17.1,
+        "r": 604,
+        "b": 258.1
+       },
+       "color": "rgb(105, 117, 134)",
+       "opacity": "1",
+       "ligature": "more_horiz",
+       "fontSize": "17.15px"
+      }
+     ]
+    },
+    "parts": [
+     {
+      "kind": "text",
+      "text": "S2-36547",
+      "box": {
+       "x": 380,
+       "y": 239.1,
+       "w": 65,
+       "h": 20.9,
+       "r": 445,
+       "b": 259.9
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(23, 92, 211)"
+     },
+     {
+      "kind": "text",
+      "text": "Approved",
+      "box": {
+       "x": 535.6,
+       "y": 239,
+       "w": 72.4,
+       "h": 21,
+       "r": 608,
+       "b": 260
+      },
+      "fontSize": "11.008px",
+      "fontWeight": "600",
+      "color": "rgb(0, 105, 92)",
+      "bg": "rgb(224, 242, 241)"
+     },
+     {
+      "kind": "shape",
+      "box": {
+       "x": 580.9,
+       "y": 239.9,
+       "w": 29.1,
+       "h": 19.1,
+       "r": 610,
+       "b": 259.1
+      },
+      "bg": "rgb(255, 255, 255)",
+      "border": "1px solid rgb(227, 232, 239)",
+      "radius": "6px"
+     },
+     {
+      "kind": "icon",
+      "icon": {
+       "tag": "i",
+       "cls": "q-icon notranslate material-icons",
+       "box": {
+        "x": 586.9,
+        "y": 240.9,
+        "w": 17.1,
+        "h": 17.1,
+        "r": 604,
+        "b": 258.1
+       },
+       "color": "rgb(105, 117, 134)",
+       "opacity": "1",
+       "ligature": "more_horiz",
+       "fontSize": "17.15px"
+      }
+     },
+     {
+      "kind": "text",
+      "text": "Customer",
+      "box": {
+       "x": 379,
+       "y": 269,
+       "w": 1,
+       "h": 1,
+       "r": 380,
+       "b": 270
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     },
+     {
+      "kind": "text",
+      "text": "ZZAUTOTEST DC11 Board Card 51478",
+      "box": {
+       "x": 380,
+       "y": 270,
+       "w": 228,
+       "h": 41.7,
+       "r": 608,
+       "b": 311.7
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     },
+     {
+      "kind": "text",
+      "text": "TRK-118",
+      "box": {
+       "x": 380,
+       "y": 313.7,
+       "w": 49.3,
+       "h": 16,
+       "r": 429.3,
+       "b": 329.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "·",
+      "box": {
+       "x": 433.3,
+       "y": 313.7,
+       "w": 2.8,
+       "h": 16,
+       "r": 436.1,
+       "b": 329.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "Asset",
+      "box": {
+       "x": 439.1,
+       "y": 312.7,
+       "w": 1,
+       "h": 1,
+       "r": 440.1,
+       "b": 313.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "2022 Freightliner M2",
+      "box": {
+       "x": 440.1,
+       "y": 313.7,
+       "w": 118.1,
+       "h": 16,
+       "r": 558.2,
+       "b": 329.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "Progress",
+      "box": {
+       "x": 379,
+       "y": 350,
+       "w": 1,
+       "h": 1,
+       "r": 380,
+       "b": 351
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "shape",
+      "box": {
+       "x": 380,
+       "y": 348.5,
+       "w": 56.4,
+       "h": 4,
+       "r": 436.4,
+       "b": 352.5
+      },
+      "bg": "rgb(37, 124, 255)",
+      "border": "0px none rgb(105, 117, 134)",
+      "radius": "0px"
+     },
+     {
+      "kind": "text",
+      "text": "29%",
+      "box": {
+       "x": 582.4,
+       "y": 341.6,
+       "w": 25.6,
+       "h": 17.9,
+       "r": 608,
+       "b": 359.5
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "Line technicians",
+      "box": {
+       "x": 379,
+       "y": 385.4,
+       "w": 1,
+       "h": 1,
+       "r": 380,
+       "b": 386.4
+      },
+      "fontSize": "13.12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)"
+     },
+     {
+      "kind": "text",
+      "text": "Lead technician",
+      "box": {
+       "x": 427,
+       "y": 379.5,
+       "w": 1,
+       "h": 1,
+       "r": 428,
+       "b": 380.5
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "shape",
+      "box": {
+       "x": 380,
+       "y": 386.4,
+       "w": 24,
+       "h": 24,
+       "r": 404,
+       "b": 410.4
+      },
+      "bg": "rgb(56, 116, 255)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "50%"
+     },
+     {
+      "kind": "text",
+      "text": "ZD",
+      "box": {
+       "x": 384,
+       "y": 395.4,
+       "w": 16,
+       "h": 6,
+       "r": 400,
+       "b": 401.4
+      },
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "color": "rgb(255, 255, 255)"
+     },
+     {
+      "kind": "shape",
+      "box": {
+       "x": 396,
+       "y": 386.4,
+       "w": 24,
+       "h": 24,
+       "r": 420,
+       "b": 410.4
+      },
+      "bg": "rgb(56, 116, 255)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "50%"
+     },
+     {
+      "kind": "text",
+      "text": "ZD",
+      "box": {
+       "x": 400,
+       "y": 395.4,
+       "w": 16,
+       "h": 6,
+       "r": 416,
+       "b": 401.4
+      },
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "color": "rgb(255, 255, 255)"
+     },
+     {
+      "kind": "text",
+      "text": "ZZAUTOTEST DC11-51478 Pia Card",
+      "box": {
+       "x": 428,
+       "y": 380.5,
+       "w": 180,
+       "h": 35.8,
+       "r": 608,
+       "b": 416.2
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "kind": "text",
+      "text": "Total price",
+      "box": {
+       "x": 561.7,
+       "y": 423.2,
+       "w": 1,
+       "h": 1,
+       "r": 562.7,
+       "b": 424.2
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     },
+     {
+      "kind": "text",
+      "text": "$38.41",
+      "box": {
+       "x": 562.7,
+       "y": 424.2,
+       "w": 45.3,
+       "h": 20.9,
+       "r": 608,
+       "b": 445.1
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     }
+    ],
+    "avatars": [
+     {
+      "box": {
+       "x": 380,
+       "y": 386.4,
+       "w": 40,
+       "h": 24,
+       "r": 420,
+       "b": 410.4
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "text": "ZD\nZD",
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "radius": "0px",
+      "border": "0px none rgb(0, 0, 0)",
+      "img": null,
+      "icons": [],
+      "tid": "board_card_field_line_technicians"
+     }
+    ],
+    "bars": [
+     {
+      "box": {
+       "x": 380,
+       "y": 348.5,
+       "w": 194.4,
+       "h": 4,
+       "r": 574.4,
+       "b": 352.5
+      },
+      "bg": "rgb(227, 232, 239)",
+      "radius": "2px",
+      "cls": "board-card__track"
+     },
+     {
+      "box": {
+       "x": 380,
+       "y": 348.5,
+       "w": 56.4,
+       "h": 4,
+       "r": 436.4,
+       "b": 352.5
+      },
+      "bg": "rgb(37, 124, 255)",
+      "radius": "0px",
+      "cls": "board-card__fill"
+     }
+    ],
+    "fields": [
+     {
+      "tid": "board_card_number",
+      "text": "S2-36547",
+      "box": {
+       "x": 380,
+       "y": 239.1,
+       "w": 65,
+       "h": 20.9,
+       "r": 445,
+       "b": 259.9
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(23, 92, 211)"
+     },
+     {
+      "tid": "board_card_status",
+      "text": "Approved",
+      "box": {
+       "x": 535.6,
+       "y": 239,
+       "w": 72.4,
+       "h": 21,
+       "r": 608,
+       "b": 260
+      },
+      "fontSize": "11.008px",
+      "fontWeight": "600",
+      "color": "rgb(0, 105, 92)"
+     },
+     {
+      "tid": "board_card_field_company_name",
+      "text": "Customer ZZAUTOTEST DC11 Board Card 51478",
+      "box": {
+       "x": 380,
+       "y": 270,
+       "w": 228,
+       "h": 41.7,
+       "r": 608,
+       "b": 311.7
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     },
+     {
+      "tid": "board_card_unit",
+      "text": "TRK-118",
+      "box": {
+       "x": 380,
+       "y": 313.7,
+       "w": 49.3,
+       "h": 16,
+       "r": 429.3,
+       "b": 329.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "tid": "board_card_field_vehicle",
+      "text": "Asset 2022 Freightliner M2",
+      "box": {
+       "x": 440.1,
+       "y": 313.7,
+       "w": 118.1,
+       "h": 16,
+       "r": 558.2,
+       "b": 329.7
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "tid": "board_card_field_progress",
+      "text": "Progress 29%",
+      "box": {
+       "x": 380,
+       "y": 341.6,
+       "w": 228,
+       "h": 17.9,
+       "r": 608,
+       "b": 359.5
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "tid": "board_card_footer",
+      "text": "Line technicians ZD ZD Lead technician ZZAUTOTEST DC11-51478",
+      "box": {
+       "x": 380,
+       "y": 369.5,
+       "w": 228,
+       "h": 75.6,
+       "r": 608,
+       "b": 445.1
+      },
+      "fontSize": "13.12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)"
+     },
+     {
+      "tid": "board_card_field_line_technicians",
+      "text": "Line technicians ZD ZD",
+      "box": {
+       "x": 380,
+       "y": 386.4,
+       "w": 40,
+       "h": 24,
+       "r": 420,
+       "b": 410.4
+      },
+      "fontSize": "13.12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)"
+     },
+     {
+      "tid": "board_card_field_technician",
+      "text": "Lead technician ZZAUTOTEST DC11-51478 Pia Card",
+      "box": {
+       "x": 428,
+       "y": 380.5,
+       "w": 180,
+       "h": 35.8,
+       "r": 608,
+       "b": 416.2
+      },
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "color": "rgb(105, 117, 134)"
+     },
+     {
+      "tid": "board_card_field_total_price",
+      "text": "Total price $38.41",
+      "box": {
+       "x": 562.7,
+       "y": 424.2,
+       "w": 45.3,
+       "h": 20.9,
+       "r": 608,
+       "b": 445.1
+      },
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "rgb(18, 25, 38)"
+     }
+    ],
+    "col": "board_column_<id>"
+   },
+   "sizes": {
+    "number": {
+     "text": "S2-36547",
+     "fontSize": "14px",
+     "fontWeight": "500",
+     "color": "rgb(23, 92, 211)",
+     "box": {
+      "x": 380,
+      "y": 239.1,
+      "w": 65,
+      "h": 20.9,
+      "r": 445,
+      "b": 259.9
+     }
+    },
+    "customerName": {
+     "kind": "text",
+     "text": "ZZAUTOTEST DC11 Board Card 51478",
+     "box": {
+      "x": 380,
+      "y": 270,
+      "w": 228,
+      "h": 41.7,
+      "r": 608,
+      "b": 311.7
+     },
+     "fontSize": "14px",
+     "fontWeight": "500",
+     "color": "rgb(18, 25, 38)"
+    },
+    "unitAssetLine": {
+     "text": "TRK-118",
+     "fontSize": "12px",
+     "fontWeight": "500",
+     "color": "rgb(105, 117, 134)",
+     "box": {
+      "x": 380,
+      "y": 313.7,
+      "w": 49.3,
+      "h": 16,
+      "r": 429.3,
+      "b": 329.7
+     }
+    },
+    "totalPrice": {
+     "kind": "text",
+     "text": "$38.41",
+     "box": {
+      "x": 562.7,
+      "y": 424.2,
+      "w": 45.3,
+      "h": 20.9,
+      "r": 608,
+      "b": 445.1
+     },
+     "fontSize": "14px",
+     "fontWeight": "500",
+     "color": "rgb(18, 25, 38)"
+    },
+    "cardPadding": "16px",
+    "cardHeight": 240.1,
+    "fieldsShown": [
+     "company_name",
+     "vehicle",
+     "progress",
+     "line_technicians",
+     "technician",
+     "total_price"
+    ]
+   },
+   "picture": "C590120-comfortable-card.png"
+  },
+  "backAtRegular": {
+   "number": {
+    "text": "S2-36547",
+    "fontSize": "14px",
+    "fontWeight": "500",
+    "color": "rgb(23, 92, 211)",
+    "box": {
+     "x": 376,
+     "y": 235.1,
+     "w": 65,
+     "h": 20.9,
+     "r": 441,
+     "b": 255.9
+    }
+   },
+   "customerName": {
+    "kind": "text",
+    "text": "ZZAUTOTEST DC11 Board Card 51478",
+    "box": {
+     "x": 376,
+     "y": 264,
+     "w": 236,
+     "h": 41.7,
+     "r": 612,
+     "b": 305.7
+    },
+    "fontSize": "14px",
+    "fontWeight": "500",
+    "color": "rgb(18, 25, 38)"
+   },
+   "unitAssetLine": {
+    "text": "TRK-118",
+    "fontSize": "12px",
+    "fontWeight": "500",
+    "color": "rgb(105, 117, 134)",
+    "box": {
+     "x": 376,
+     "y": 307.7,
+     "w": 49.3,
+     "h": 16,
+     "r": 425.3,
+     "b": 323.7
+    }
+   },
+   "totalPrice": {
+    "kind": "text",
+    "text": "$38.41",
+    "box": {
+     "x": 566.7,
+     "y": 412.2,
+     "w": 45.3,
+     "h": 20.9,
+     "r": 612,
+     "b": 433.1
+    },
+    "fontSize": "14px",
+    "fontWeight": "500",
+    "color": "rgb(18, 25, 38)"
+   },
+   "cardPadding": "12px",
+   "cardHeight": 224.1,
+   "fieldsShown": [
+    "company_name",
+    "vehicle",
+    "progress",
+    "line_technicians",
+    "technician",
+    "total_price"
+   ]
+  },
+  "ended": "11:39:19"
  },
  "restorePref": 200,
- "ended": "2026-10-16T09:50:55.291Z"
+ "ended": "2026-10-16T11:39:19.458Z"
 }
