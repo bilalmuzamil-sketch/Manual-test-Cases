@@ -1,0 +1,8 @@
+# Judged steps of the full staging run (run-full-1016.sh), one line per step: step | script | cases | verdicts | results file
+# Helper: python3 judge-helper-1016.py <step> [--short] prints the live case, log lines, JSON readings, pictures and the last result.
+# NOTE: some scripts write pictures/JSON to RUN/evidence/ (not WOB_EV) — the helper searches both.
+4 | C590131-orgb.mts | C590131 | Passed | RESULTS-full-1016-01.json (posted)
+5 | C368191-orgb-steps.mts | C368191 | Passed | RESULTS-full-1016-01.json (posted)
+11 | s1-batch1.mts | C96909 Passed; C154885 NOT RUN (script exits after C96909 when ONLY is set: fix-up re-run needed, no result posted) | RESULTS-full-1016-01.json (posted)
+12 | s1-batch2.mts | C96921 Passed (script ignored ONLY and also re-ran C96913/C154884, judged from step 13) | RESULTS-full-1016-01.json (posted)
+13 | s1-batch2b.mts | C96913 Passed, C154884 Passed | RESULTS-full-1016-01.json (posted)

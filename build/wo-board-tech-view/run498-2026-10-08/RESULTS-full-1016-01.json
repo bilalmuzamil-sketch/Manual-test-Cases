@@ -1,0 +1,102 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "16 October 2026",
+  "note": "full staging run of run 498 started 16 Oct 2026 19:33 UTC (run-full-1016.sh); batch 01 = queue steps 4, 5, 11, 12, 13; location zone Asia/Karachi proved at step 7 (Rule 125)"
+ },
+ "results": {
+  "C590131": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, in the QA lead's second company (\"Analyst 1\" sign-in, Location A), window 1440 px wide.",
+    "Set-up: there, Unassigned holds 30 work orders (more than fit on the screen) and two technician groups follow it (Bilal Muzamil with 1, Test B2 with 23). No filters, Search empty.",
+    "Step 3: while scrolling through Unassigned, the column headings stay at the top and the Unassigned header, with its arrow and count 30, stays just under them.",
+    "Steps 4 and 5: when Bilal Muzamil's header reaches it, the Unassigned header is pushed up and off and Bilal Muzamil's header takes its place; further down Test B2's header takes over the same way.",
+    "Only one group header was held under the column headings at any time (checked at 26 scroll positions)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590131-1-unassigned-header-held.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590131-2-next-header-pushes.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590131-3-one-header-held.png"
+   ],
+   "ticket": null
+  },
+  "C368191": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, in the QA lead's second company (\"Analyst 1\" sign-in, Location A), where a line with a deleted staff member's labor exists.",
+    "Step 1: work order S1-3 (Customer 1), Line 1 \"Gfhghfghg\" reads \"Deleted user\" on its Labor row.",
+    "Step 2: on the Schedule, Mon, Oct 19, S1-3 was dragged onto Test B2's row (an active technician there); the dialog opened for S1-3, Test B2, that day.",
+    "Step 3: \"Choose lines\", only Line 1 ticked, 2 hours: the button read \"Create shift · 1 line · 2h\" and the shift was created.",
+    "Step 4: the shift shows under Test B2, Mon, Oct 19, 9:00 AM to 11:00 AM, with only Line 1 on it.",
+    "Step 5: back on S1-3, Line 1's Labor row still reads \"Deleted user\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368191-1-step4-shift-on-line-1.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368191-2-step5-still-deleted-user.png"
+   ],
+   "ticket": null
+  },
+  "C96909": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "With List chosen and the page opened afresh, the switcher at the right of the toolbar showed exactly three buttons, and \"List\" (the left one) was highlighted.",
+    "Hovering the buttons from left to right showed the tooltips \"List\", \"Tech View\" and \"Board View\", in that order.",
+    "After clicking \"Tech View\" only Tech View was highlighted; after \"Board View\" only Board View; after \"List\" only List."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96909-1-three-options-list-highlighted.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96909-2-tooltip-tech-view.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96909-3-tech-view-highlighted.png"
+   ],
+   "ticket": null
+  },
+  "C96921": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Work Orders was open in two tabs as the same user (customer \"ZZAUTOTEST F1 Two Tabs\" made first).",
+    "Tab A was switched to Tech View, then a few seconds later tab B to Board View.",
+    "After refreshing, tab A and tab B both opened in Board View, and a new tab C also opened in Board View: the last choice made.",
+    "No warning or conflict message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96921-1-tab-a-board-view.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96921-2-new-tab-c-board-view.png"
+   ],
+   "ticket": null
+  },
+  "C96913": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F1 Tabs\": one work order each in Estimate, Approved and Complete made today (S2-36635, S2-36636, S2-36637, led by Aaron Baker); six from earlier runs are also listed.",
+    "All four tabs (\"All\", \"Work Orders\", \"Estimates\", \"Completed\") were shown and used in List, Tech View and Board View.",
+    "Each tab showed the same work orders in all three displays: \"All\" all nine, \"Work Orders\" only the Approved ones (S2-36636, S2-35704, S2-35246), \"Estimates\" only the Estimate ones (S2-36635, S2-35703, S2-35245), \"Completed\" only the Complete ones (S2-36637, S2-35705, S2-35247)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96913-1-tech-view-work-orders-tab.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96913-2-board-view-work-orders-tab.png"
+   ],
+   "ticket": null
+  },
+  "C154884": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F1 Assigned To Me\": six Approved work orders led by me (Admin ShopView); the others were set to another lead (Aaron Baker) or no lead, with Ayesha Khan as Service Advisor.",
+    "List with \"Assigned to me\" on shows only my six (S2-35248, S2-35249, S2-35706, S2-35707, S2-36638, S2-36639).",
+    "Tech View with \"Assigned to me\" on shows only my group, Admin ShopView, with the same six; Board View shows only my column with the same six cards.",
+    "The work orders led by Aaron Baker or by no one do not appear in any of the three displays."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154884-1-list-assigned-to-me.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154884-2-tech-view-assigned-to-me.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154884-3-board-view-assigned-to-me.png"
+   ],
+   "ticket": null
+  }
+ }
+}
