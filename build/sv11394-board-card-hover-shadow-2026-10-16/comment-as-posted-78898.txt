@@ -4,16 +4,17 @@
 h3. What failed
 *Board View: hovering a card shows no shadow.* When the pointer rests on a card, its border turns darker, but no shadow appears around it.
 
-!sv11394-01-card-hover-hd.png|width=960,height=454!
-_1: the card at rest. 2: pointer on the card today: the border is darker and there is no shadow. 3: the same card with its "no-shadow" setting taken off, in my browser only: the shadow shows._
+!sv11394-01-card-hover-hd-v2.png|width=960,height=595!
+_1: the card at rest. 2: pointer on the card today: the border is darker and there is no shadow. 3: for comparison only, the same card after I removed its "no-shadow" style in the browser's developer tools (right-click > Inspect). This is not a ShopView feature and users cannot do it; it only shows what the hover would look like. With it removed, the shadow shows._
+_Updated on 16 October 2026, 12:02 CDT: made clear that picture 3 and the end of the recording were done in the browser's developer tools, as a comparison only, not in ShopView._
 
-!sv11394-02-edge-closeup-hd.png|width=810,height=301!
-_Close-up of the card's bottom edge: today (top) and with "no-shadow" taken off (bottom)._
+!sv11394-02-edge-closeup-hd-v2.png|width=810,height=301!
+_Close-up of the card's bottom edge: today (top), and for comparison only with "no-shadow" removed in the browser's developer tools, not in ShopView (bottom)._
 
 [~accountid:712020:aa00b8d6-a71f-4259-8919-82a304227c20] I checked the card's shadow value on hover, as you asked. It reads *none* on build v26.40.19-edc8195, so the shadow is missing, not hidden by the column.
 * The hover style does ask for the soft 4px shadow.
-* But every card also carries the "no-shadow" setting, and that one wins.
-* With "no-shadow" taken off in my browser, the shadow appears (picture 3).
+* But every card also carries a "no-shadow" style in the page code, and that one wins.
+* For comparison only, I removed that style in the browser's developer tools (right-click > Inspect). This is not something ShopView offers; it only shows what the hover would look like. With it removed, the shadow appears (picture 3). _Updated on 16 October 2026, 12:02 CDT: made clear that picture 3 and the end of the recording were done in the browser's developer tools, as a comparison only, not in ShopView._
 * The column leaves 12px of space around each card, so nothing would clip it.
 
 *Steps to reproduce*
@@ -34,6 +35,6 @@ h3. What I checked
 |3|A soft shadow appears on hover: none of the 30 cards shows one.|FAILED|
 
 h3. Screen recording (with voice-over)
-_Updated on 16 October 2026, 11:45 CDT: replaced the silent recording with one that has a spoken walk-through. Updated again at 11:55 CDT: shorter version, 24 seconds._
-!sv11394-card-hover-staging-recording-voiceover-short.mp4|width=1280,alt="sv11394-card-hover-staging-recording-voiceover-short.mp4"!
-_Staging v26.40.19-edc8195, 16 Oct 2026, Board View at 1440 px, 100% zoom (24 seconds, with sound). The pointer rests on the top card of three columns: S2-36632, S2-35705 and S2-36365. Each time the border turns darker and the shadow value reads "none". Then the "no-shadow" setting is taken off in that browser only, and card S2-36632 shows the soft shadow (rgba(11, 23, 51, 0.08) 0px 4px 8px)._
+_Updated on 16 October 2026, 11:45 CDT: replaced the silent recording with one that has a spoken walk-through. Updated again at 11:55 CDT: shorter version. Updated again at 12:02 CDT: the comparison step now says it was done in the browser's developer tools, not in ShopView._
+!sv11394-card-hover-staging-recording-voiceover-v3.mp4|width=1280,alt="sv11394-card-hover-staging-recording-voiceover-v3.mp4"!
+_Staging v26.40.19-edc8195, 16 Oct 2026, Board View at 1440 px, 100% zoom (29 seconds, with sound). The pointer rests on the top card of three columns: S2-36632, S2-35705 and S2-36365. Each time the border turns darker and the shadow value reads "none". Then, for comparison only, the "no-shadow" style is removed in the browser's developer tools (not a ShopView feature), and card S2-36632 shows the soft shadow (rgba(11, 23, 51, 0.08) 0px 4px 8px)._

@@ -8,8 +8,8 @@ C = (0, 0, 310, 231); B = (110, 203, 230, 222)   # the strip just under the card
 a = panel(p('h-097f416b-before.png'), C, '1. At rest', boxes=[B + (BLU, 1)], notes=[(1, BLU, 'Under the card: plain background, no shadow.')])
 b = panel(p('h-097f416b-after.png'), C, '2. Pointer on the card (staging today)', boxes=[B + (RED, 1)],
           notes=[(1, RED, 'The border turns darker, but under the card there is still no shadow. The shadow value reads "none".')])
-c = panel(p('h-diag-noShadowRemoved-hover.png'), C, '3. Same, with "no-shadow" taken off in my browser only', boxes=[B + (GRN, 1)],
-          notes=[(1, GRN, 'The soft shadow the hover style asks for now shows under the card.')])
+c = panel(p('h-diag-noShadowRemoved-hover.png'), C, '3. Comparison only - NOT a ShopView feature', boxes=[B + (GRN, 1)],
+          notes=[(1, GRN, 'Done by me in the browser\'s developer tools (right-click > Inspect), not in ShopView: I removed the card\'s "no-shadow" style from the page code. Users cannot do this. With it removed, the soft shadow shows under the card.')])
 ims = [a, b, c]; g = 30; W = sum(i.size[0] for i in ims) + g * 2; H = max(i.size[1] for i in ims)
 out = Image.new('RGB', (W, H), 'white'); x = 0
 for i in ims: out.paste(i, (x, 0)); x += i.size[0] + g
@@ -24,5 +24,5 @@ s2, s3 = strip('h-097f416b-after.png'), strip('h-diag-noShadowRemoved-hover.png'
 pad = 70; Wd = s2.size[0]; z = Image.new('RGB', (Wd, pad * 2 + s2.size[1] * 2 + 30), 'white'); d = ImageDraw.Draw(z)
 d.text((10, 15), 'Close-up of the card\'s bottom edge, pointer on the card - staging today: no shadow', fill=(200, 30, 30), font=F)
 z.paste(s2, (0, pad)); y = pad + s2.size[1] + 30
-d.text((10, y - 5), 'Same edge with "no-shadow" taken off in my browser: soft shadow under the edge', fill=(20, 130, 60), font=F)
+d.text((10, y - 5), 'Comparison only (browser developer tools, not a ShopView feature): soft shadow', fill=(20, 130, 60), font=F)
 z.paste(s3, (0, y + pad - 30)); z.save(p('sv11394-02-edge-closeup-hd.png')); print('closeup', z.size)

@@ -107,6 +107,7 @@
 > - **AFTER ANY CONFIRM CLICK, RE-READ THE DIALOG — ShopView often asks twice ("Yes" → orange "Are You Sure?") (Standing Rule 102); never call a control "does nothing" before that.**
 > - **BEFORE CALLING A TICKET OUTSTANDING, RE-OPEN IT LIVE: status + last comment (Standing Rule 103).**
 > - **SCREEN RECORDING ON A QA COMMENT ONLY IF THE QA LEAD SAYS YES — ASK ON EVERY TICKET FIRST; no yes = no recording (Standing Rule 104; method playbook §AK). ONLY AFTER A RECORDING YES, ASK A SECOND QUESTION: VOICE-OVER YES/NO — on yes, a professional female voice explains the bug/fix in plain, professional words, in short lines that do NOT make the film longer (Rule 104, amended 2026-10-16).**
+> - **ANYTHING DONE OUTSIDE THE PRODUCT (developer tools, console, direct API) IS LABELLED "COMPARISON ONLY" WHERE IT APPEARS — what was done, where, and that it is NOT a ShopView feature; never call a page style a "setting" (Standing Rule 108).**
 > - **A RECORDING SHOWS ONLY THE ACTIVITY — NO LONG STILL PAUSES (Standing Rule 107): `finish_recording.py` cuts every still stretch to 1.5 s (2 s on the final result); check the frame grid and the printed idle-removed figure before posting.**
 > - **EVERY STEP SAYS EXACTLY WHERE TO CLICK OR LOOK (Standing Rule 101): screen area + exact label, no private names ("the blue bubble"), describe small things by colour/shape/text/position, say what appears, locator picture with a close-up, walk the steps live before posting.**
 > - **EDITING SOMETHING ALREADY POSTED? (Standing Rule 100): put a dated note (date, time, timezone, what changed) right at the edited section/row.**
@@ -5474,6 +5475,28 @@ deliver the 7-tab management report.
     **WHY:** the readers are busy and senior; a five-minute film where most of the time is a still page reads as padding
     and hides the steps. Proven on the SV-10142 production recording: 340 s became 139 s (118 still stretches cut) with
     every step and caption still in frame. Ties to Standing Rules 64, 65, 72, 81 (verify what the reader receives) and 104.
+
+108. **ANYTHING I DO OUTSIDE THE PRODUCT TO SHOW A POINT MUST SAY, RIGHT WHERE IT APPEARS, HOW IT WAS DONE AND THAT IT IS
+    NOT A FEATURE (all projects).**
+    USER DIRECTIVE (2026-10-16, verbatim): *"One important thing you said "with NO shadow setting removed in this browser
+    only" you did not tell that you did it from where and if this is a feature or you did it from somewhere else. If you
+    wont tell this quickly the POs and non technical people will get confused and cosider this as something which is
+    possible as a feature in the application. Remember this rule for other tickets to if you do something similar there
+    too."*
+    **THE RULE:** whenever evidence includes something I did **outside the product's own screens** — editing the page in
+    the browser's **developer tools** (removing a style, changing a value, forcing a hover state), running a **console
+    script**, calling an **API directly**, changing a **feature flag or database value**, or any other tester-only
+    workaround — every place it appears (the comment text, the picture's label, the video's caption **and** its narration)
+    says, **in the same sentence**: **(a) what I did and where** (*"I removed the card's 'no-shadow' style in the browser's
+    developer tools (right-click > Inspect)"*), **(b) that it is NOT a ShopView feature and users cannot do it**, and
+    **(c) why it is shown** (*"for comparison only — it shows what the hover would look like"*). Label it **"Comparison
+    only"** (or "Diagnostic only") at the start, so a reader who skims sees it first.
+    **WORDS TO AVOID:** never call a page-code style or flag a **"setting"** — to a PO a setting is something in the app's
+    Settings screen. Say **"style in the page code"**, **"developer tools"**, **"directly through the API"**.
+    **WHY:** POs and senior non-technical readers act on what they see; an unexplained "with X removed, it works" reads as
+    a product option or a workaround a customer could use. The pre-post gate (Rule 72) now checks every such step carries
+    (a), (b) and (c). Ties to Standing Rules 7, 64, 65, 67, 72, 84 (the disclosure of a deliberately induced fault, which
+    this generalises), 89 and 101.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
