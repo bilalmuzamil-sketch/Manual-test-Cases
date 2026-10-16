@@ -1080,3 +1080,12 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   sign-in, one app session (L0394).
 - So compare the two `sv_sso_session` values first. Same value: Admin quick-login and Analyst 1 take turns, and a two-person test
   (C97012) needs another second person, such as Tech quick-login in a separate run (L0405 route). Different values: both can run at once. #staging #signin → L0394, L0404
+
+## L0408 — 2026-10-16 — Finding the script that judged a test, a case's old wording, and an empty location for run 498
+- **Which script judged a test:** match the dated start lines in each pass's `run.out` / `queue.out` (passes 2–10, the 16 Oct
+  queues) to the time of the test's latest staging result. The last script that ran before that result is the judge. This mapping
+  is now `run498-2026-10-08/full-map-1016.json` (278 tests, 70 scripts); the one-command run is `run-full-1016.sh`.
+- **A case's wording at the time it was judged:** `get_history_for_case/<id>`. The first change AFTER the result's created_on holds the
+  old value. Quick filter first: the case's `updated_on` is later than the result's `created_on`. On 16 Oct, 56 of 278 had changed.
+- **"ZZAUTOTEST F2 Empty Shop" is no longer empty:** C368130 seeds work orders there. A "location with no work orders" test must make
+  a fresh location and prove it holds zero first (draft `C614715-stg.mts`). #testrail #mapping #staging → L0401
