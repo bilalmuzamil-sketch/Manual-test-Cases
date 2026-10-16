@@ -1,0 +1,28 @@
+import {open} from './qa.mjs'; import fs from 'fs';
+const C=JSON.parse(fs.readFileSync('/tmp/qa11398/cookies.json')); const D=JSON.parse(fs.readFileSync('/tmp/qa11310/vo38/durs.json'));
+const HOLD=k=>Math.max(Math.round(D[k]*1000)+1000,2500);
+const s=await open({env:'staging',dir:'/tmp/qa11310',cookies:C,quick:'admin',vp:{width:1440,height:900},dpr:1,record:'/tmp/qa11310/rec38'}); const tLogin=Date.now(); const p=s.page;
+await s.go('/workorders?tab=all'); await p.waitForTimeout(5000);
+await p.click('[data-test-id=toggle_display_option]'); await p.waitForTimeout(700); await p.click('[data-test-id=display_option_tech_view]'); await p.waitForTimeout(5000);
+const st=await p.evaluate(()=>document.querySelector('[data-test-id=button_tech_view_collapse_all]')?.getAttribute('aria-label')||document.querySelector('[data-test-id=button_tech_view_collapse_all]')?.innerText); console.log('collapse btn',st);
+if(!/expand/i.test(st||'')){ await p.click('[data-test-id=button_tech_view_collapse_all]'); await p.waitForTimeout(2500);}
+let id=null; for(let i=0;i<60&&!id;i++){ id=await p.evaluate(()=>{const n=[...document.querySelectorAll('[data-test-id^=tech_view_group_name_]')].find(e=>e.innerText.trim()==='Brandi Smith'); if(n){n.scrollIntoView({block:'center'}); return n.getAttribute('data-test-id').replace('tech_view_group_name_','');} const sc=[...document.querySelectorAll('[data-test-id=tech_view] *')].find(e=>e.scrollHeight>e.clientHeight+50&&/(auto|scroll)/.test(getComputedStyle(e).overflowY))||document.scrollingElement; sc.scrollTop+=500; return null;}); await p.waitForTimeout(300);}
+await p.mouse.move(90,860); await p.waitForTimeout(1500);
+const mk=await s.marker(); const ev={}; const log={};
+const col=(av,nm)=>p.evaluate(([av,nm])=>{const h=s=>{const m=s.match(/\d+/g).slice(0,3).map(Number);return '#'+m.map(x=>x.toString(16).padStart(2,'0').toUpperCase()).join('');}; const a=document.querySelector(`[data-test-id=${av}]`); const n=document.querySelector(`[data-test-id=${nm}]`); const cn=n?getComputedStyle(n):null; return {bg:h(getComputedStyle(a).backgroundColor),fg:h(getComputedStyle(a.querySelector('span')).color),name:cn?cn.fontSize+'/'+cn.fontWeight+' '+h(cn.color):''};},[av,nm]);
+ev.n1=Date.now(); await s.caption(`SV-11338 · staging build ${mk.version} · 16 Oct 2026 · Work Orders > Tech View · window 1440 px, zoom 100%`,{hold:HOLD('n1')});
+await s.pointBeside('tech_view_group_avatar_'+id); await p.waitForTimeout(1200); let v=await col('tech_view_group_avatar_'+id,'tech_view_group_name_'+id); log.n2=v;
+ev.n2=Date.now(); await s.caption(`Tech View · Brandi Smith (no photo) · circle ${v.bg} · initials ${v.fg} · name ${v.name}`,{hold:HOLD('n2')});
+await s.glideClick('toggle_display_option'); await p.waitForTimeout(600); await s.glideClick('display_option_board_view'); await p.waitForTimeout(4500);
+for(let i=0;i<80;i++){ const hit=await p.evaluate(id=>{const n=document.querySelector(`[data-test-id=board_column_name_${id}]`); if(n){n.scrollIntoView({inline:'center',block:'nearest'}); return true;} document.querySelector('[data-test-id=board_view_scroller]').scrollLeft+=1000; return false;},id); if(hit) break; await p.waitForTimeout(300);}
+await p.waitForTimeout(1200); await s.pointBeside('board_column_avatar_'+id); await p.waitForTimeout(1500); v=await col('board_column_avatar_'+id,'board_column_name_'+id); log.n3=v;
+ev.n3=Date.now(); await s.caption(`Board View · Brandi Smith column · circle ${v.bg} · initials ${v.fg} · name ${v.name}`,{hold:HOLD('n3')});
+const btn=await p.evaluateHandle(id=>{const colEl=document.querySelector(`[data-test-id=board_column_${id}]`); const c=[...colEl.querySelectorAll('[data-test-id^=board_card_]')].find(e=>/board_card_[0-9a-f]{8}-/.test(e.getAttribute('data-test-id'))&&e.querySelector('[data-test-id=board_card_status]')?.innerText.trim()==='Approved'); c.dispatchEvent(new MouseEvent('mouseover',{bubbles:true})); return c.querySelector('[data-test-id=button_work_order_more_actions]');},id);
+const bb=await btn.asElement().boundingBox(); await p.mouse.move(bb.x+bb.width/2,bb.y+bb.height/2,{steps:15}); await p.mouse.click(bb.x+bb.width/2,bb.y+bb.height/2); await p.waitForTimeout(900);
+const mb=await p.locator('[data-test-id=menu_item_reassign_lead_technician]').last().boundingBox(); await p.mouse.move(mb.x+mb.width/2,mb.y+mb.height/2,{steps:12}); await p.mouse.click(mb.x+mb.width/2,mb.y+mb.height/2); await p.waitForTimeout(3000);
+const dl=await p.evaluate(()=>{const d=document.querySelector('[data-test-id=dialog_reassign_lead_technician]'); const h=s=>{const m=s.match(/\d+/g).slice(0,3).map(Number);return '#'+m.map(x=>x.toString(16).padStart(2,'0').toUpperCase()).join('');}; const agg={}; let n=0,ph=0; for(const a of d.querySelectorAll('.q-avatar')){ if(!a.getBoundingClientRect().width) continue; if(a.querySelector('img')){ph++;continue;} n++; const k=h(getComputedStyle(a).backgroundColor)+' / '+h(getComputedStyle(a.querySelector('span')||a).color); agg[k]=(agg[k]||0)+1;} return {n,ph,agg};}); log.n4=dl;
+await p.mouse.move(1380,860,{steps:8});
+ev.n4=Date.now(); await s.caption(`Reassign lead technician dialog · ${dl.n} avatars without a photo: ${Object.entries(dl.agg).map(([k,c])=>k+' ×'+c).join(', ')} · ${dl.ph} with a photo`,{hold:HOLD('n4')});
+ev.n5=Date.now(); await s.caption('Spec v62 S2-R23: no photo = light-grey circle #EEF2F6, initials #4B5565; header name 14px / 600 / #364152 → PASSED',{hold:HOLD('n5')});
+await p.keyboard.press('Escape'); await p.waitForTimeout(800);
+const r=await s.close(); const out={tLogin,ev,r,mk,log}; fs.writeFileSync('/tmp/qa11310/vo38/run.json',JSON.stringify(out,null,1)); console.log(JSON.stringify({ev,log}));

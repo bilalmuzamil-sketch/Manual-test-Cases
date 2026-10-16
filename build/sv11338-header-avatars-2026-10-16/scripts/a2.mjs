@@ -1,0 +1,11 @@
+import {open} from './qa.mjs'; import fs from 'fs';
+const C=JSON.parse(fs.readFileSync('/tmp/qa11398/cookies.json'));
+const s=await open({env:'staging',dir:'/tmp/qa11310',cookies:C,quick:'admin',vp:{width:1600,height:1000},dpr:2}); const p=s.page;
+await s.go('/workorders?tab=all'); await p.waitForTimeout(5000);
+await p.click('[data-test-id=toggle_display_option]'); await p.waitForTimeout(700); await p.click('[data-test-id=display_option_tech_view]'); await p.waitForTimeout(6000);
+await p.click('[data-test-id=button_tech_view_collapse_all]'); await p.waitForTimeout(3000);
+const r=await p.evaluate(()=>{const gs=[...document.querySelectorAll('[data-test-id^=tech_view_group_]')].map(e=>e.getAttribute('data-test-id')).filter(t=>/tech_view_group_[0-9a-f]{8}-/.test(t)||/tech_view_group_(name|avatar)/.test(t));
+  const first=[...document.querySelectorAll('[data-test-id^=tech_view_group_name_]')].find(e=>!/unassigned/.test(e.getAttribute('data-test-id')));
+  const hdr=first?.closest('tr,div[class*=group]'); return {ids:[...new Set(gs.map(t=>t.replace(/[0-9a-f]{8}-[0-9a-f-]{27}/,'<id>')))], html:hdr?.outerHTML.slice(0,2500)};});
+console.log(JSON.stringify(r.ids)); console.log(r.html);
+await p.screenshot({path:'/tmp/qa11310/tv2.png'}); await s.close();
