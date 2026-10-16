@@ -1,0 +1,2 @@
+# SV-11467 — Tech View, Compact: count bubbles cover the status name on the pill
+Filed 16 Oct 2026 on the QA lead's ruling while testing SV-11318. Story Defect (10007), parent SV-10049, Medium, label board-tech-view, Relates SV-11318. Duplicate search (pill + bubble/count + Compact) empty. Image 01-count-bubbles-cover-status-compact-hd.png (attachment 62484). Read back: 5 steps, image file, table 5 rows.
