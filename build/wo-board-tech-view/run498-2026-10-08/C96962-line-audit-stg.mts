@@ -44,6 +44,11 @@ try {
   R.s0 = { wo: await woLog('0-start'), line1: await lineLog(lines[0], '0-line1'), line2: await lineLog(lines[1], '0-line2') };
   // steps 1-2: Board View drag Esther -> Ralph
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); await tab(p, 'All'); await display(p, 'Board View'); await search(p, n);
+  // 16 Oct 2026 (batch 40, second go): the saved pins did not take on the second run (Esther and Ralph sat in alphabetical order, Ralph far
+  // off screen), so the drag had no target. Pin them through each column's pin button when they are not pinned, then go back to the left.
+  R.pinnedOnScreen = []; for (const x of [ES, RE]) { await toColumn(p, x.staff_id); const b = p.locator(`[data-test-id="button_board_pin_${x.staff_id}"]`); const cls = (await b.getAttribute('class').catch(() => '')) ?? '';
+    if (/pin--unpinned/.test(cls)) { await b.click().catch(() => {}); await p.waitForTimeout(1500); R.pinnedOnScreen.push(x.first_name ?? x.staff_id.slice(0, 4)); } }
+  await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller').scrollLeft = 0`).catch(() => {}); await p.waitForTimeout(1200);
   await toColumn(p, ES.staff_id); R.cardFound = await p.locator(`[data-test-id="board_card_${wo}"]`).count(); R.ralphCol = await p.locator(`[data-test-id="board_column_${RE.staff_id}"]`).count();
   await drag(p, `[data-test-id="board_card_${wo}"]`, `[data-test-id="board_column_${RE.staff_id}"]`, 120); R.dragPrompt = await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(2000); R.dragToasts = await toasts(p); await shot('1-board-after-drag');
   R.leadAfterDrag = (await workOrders(a, n))[0]?.techAssignedFirstName;

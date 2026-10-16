@@ -1028,3 +1028,12 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 - **Rendered `<img>` count on read-back includes smart-link issue-type icons** (a ticket key in the body renders an `<img class="icon">`),
   so "img 2 / 1" after filing is not a stray picture — check the `src` before worrying.
 - Files: `build/wo-board-tech-view/run498-2026-10-08/source-verify-2026-10-16/` (PRD v58 text, RECONCILE-7.md, FILED-2026-10-16.json).
+
+## L0404 — 2026-10-16 — Two different Google sign-ins = two staging sessions that can run at the SAME time
+- One staging Google sign-in holds one app session (L0394). The QA lead's Admin cookie (`/tmp/qa-cookies/staging-sso.txt`) and his
+  "Analyst 1" cookie (`/tmp/qa-cookies/staging-analyst1.json`, bilal.muzamil+dako, the second company) are DIFFERENT Google
+  sign-ins, so they do not end each other. Use this for any test that needs two people at once, e.g. C97012 "Session expired".
+- Drive Analyst 1 by loading its three cookies into a Playwright context, host-only on app. and api.staging.shopview.com
+  (`stg-orgb-seed.mts`). Never put its cookie through quick-login: that replaces its session.
+- He calls the Analyst 1 company "comparatively cleaner" (few records). Use it where a big shop gets in the way, such as Unassigned
+  loading in batches or 255 technicians. Add whatever data a test needs there. Password kept in `/tmp/shopview/staging-analyst1.env` only. #staging #signin #two-users → L0394, L0395
