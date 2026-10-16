@@ -1,0 +1,17 @@
+# Run 498 FIX-UP pass (17 Oct 2026): ONLY the tests the 16 Oct full staging run could not judge because the SCRIPT failed (judge's report).
+# One step per line, same format as full-order-1016.txt: block|script|ONLY ids|extra env|mode|note
+# modes: setup = Admin set-up step, exit code logged (stg6-tz must exit 0 or the queue stops, Rule 125); ensure = ensure-heavy.mts first (exit 0 required) then ONLY=<ids> wob-run.sh
+# Run AFTER the main run (run-full-1016.sh) has finished: ./run-fixup-1017.sh   (it refuses to start while another wob-run.sh runs)
+# Each fixed script logs "START STATE found …" (the saved display / collapsed groups / pins it found BEFORE setting anything) and "START STATE set …".
+B-setup|stg6-tz.mts|-|TZ_TARGET=Asia/Karachi|setup|Rule 125 guard (not a case): Heavy Duty zone = browser zone, proved again before C581892's shift times are read; exit 0 required
+C-fix|s1-batch1.mts|C154885|-|ensure|fix-up: ONLY no longer stops the script after C96909
+C-fix|s1-batch2.mts|C96921|-|ensure|fix-up: ONLY honoured, evidence to WOB_EV, starts from List, each tab's choice read back
+C-fix|s1-batch3.mts|C96920|WOB_PIN_NAMES=Ayesha Khan|ensure|fix-up: refresh FIRST, then Tech View / List / Board View loaded online, then offline (case order, read live 17 Oct)
+C-fix|s1-batch4b.mts|C96916,C96917|WOB_PIN_NAMES=Ayesha Khan|ensure|fix-up: Status chip looked for (Work Orders tab Board/List, All-tab control); display set and read back, Schedule round trip display recorded and re-chosen
+C-fix|s2-batchA.mts|C96928,C96933|WOB_PIN_NAMES=Ayesha Khan,Bilal Muzamil|ensure|fix-up: collapse save read back, display read and re-chosen after refresh/new tab/sign-in; C96933 leads put back under Ayesha Khan first
+C-fix|s4-batchA.mts|C96959|WOB_PIN_NAMES=-|ensure|fix-up: Esther Howard + Ralph Edwards pinned through the saved choice and read back; card brought on screen before the drag
+C-fix|s4-batchC.mts|C368135,C368136|-|ensure|fix-up: saved collapsed groups cleared, Tech View groups expanded and read back, row brought on screen before each drag
+C-fix|s9-batchA5.mts|C97004,C368148|WOB_SCALE=2|ensure|fix-up: column/group handle taken by test id board_column_drag_handle_<id> / tech_view_group_drag_handle_<id>
+C-fix|s11-batch.mts|C368154|-|ensure|fix-up: density menu read item by item (aria-selected / aria-checked / icon), item count as the control
+C-fix|moved-stg4.mts|C96970,C368131|WOB_PIN_NAMES=-|ensure|fix-up: card/row brought on screen before the press, target brought on screen while holding; where each end was is recorded
+C-fix|stg-new5.mts|C581892,C581896|-|ensure|fix-up: Schedule read capped (6 events per work order, 4 min overall, fresh page after a timeout), dialogs dismissed, progress lines

@@ -5,7 +5,8 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { open, done, APP } from './session.mts';
+import { open, done, APP, registerShotPage } from './session.mts';
+import { startState, setDisplay, capped } from './fixup-1017.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, display, active, tab, search, drag, toColumn, toasts, shiftPrompt } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
@@ -13,8 +14,12 @@ import { mkShift, shiftsOn } from './shifts.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
-const { browser, page: p } = await open('/workorders?tab=all'); p.setDefaultTimeout(30_000);
-const a = api(p);
+// 17 Oct 2026: fix-up — `let`, so a page stuck in the Schedule read can be replaced by a fresh one (see scheduleTomorrow below)
+let { browser, page: p } = await open('/workorders?tab=all'); p.setDefaultTimeout(30_000);
+let a = api(p);
+// 17 Oct 2026: fix-up — a browser dialog (leave-page question, alert) would block every later page call for ever: dismiss and log it
+const onDialog = (d: any) => { console.log(t(), 'browser dialog dismissed:', d.type(), String(d.message()).slice(0, 120)); d.dismiss().catch(() => {}); };
+p.on('dialog', onDialog);
 const OUT = path.join(EV, 'stg-new5.json');
 const R: Record<string, any> = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : {};
 const stamp = new Date().toISOString().slice(5, 16).replace(/[-T:]/g, '');
@@ -35,6 +40,8 @@ const lineStates = async (wo: string) => { const d = (await a.get(`/api/work-ord
 const setLead = (wo: string, s: string | null) => a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: s });
 const prefGet = async () => (await a.get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {};
 const PREF0 = await prefGet();
+// 17 Oct 2026: fix-up — log the saved display / collapsed groups / pins found BEFORE anything is set (each case then sets its own display)
+R.startState = await startState(p, a, 'stg-new5');
 const pin = (ids: string[]) => a.put('/api/users/me/preferences/work-orders-list', { value: { ...PREF0, pinnedTechnicianIds: ids } });
 const promptLoc = () => p.locator('.q-dialog').filter({ hasText: /scheduled shifts/i }).last();
 async function waitPrompt(ms = 4000) { for (let i = 0; i < ms / 250; i++) { if (await promptLoc().count()) return true; await p.waitForTimeout(250); } return false; }
@@ -44,7 +51,7 @@ const inColumn = (woId: string, staff: string) => p.locator(`[data-test-id="boar
 const tooltips = () => p.evaluate(`[...document.querySelectorAll('.q-tooltip')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.replace(/\\s+/g, ' ').trim())`) as Promise<string[]>;
 async function cleanPage(d = 'List') {
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await tab(p, 'All');
-  if (d) await display(p, d);
+  if (d) await setDisplay(p, a, d, `cleanPage ${d}`); // 17 Oct 2026: fix-up — chosen AND read back
   await p.evaluate(`(() => { const lab = [...document.querySelectorAll('*')].find(e => e.children.length === 0 && /^Asset on Site/.test((e.textContent || '').trim()) && e.getBoundingClientRect().width > 0); if (!lab) return; let c = lab; for (let i = 0; i < 6 && c; i++, c = c.parentElement) { const x = [...c.querySelectorAll('i')].find(i => i.textContent.trim() === 'cancel'); if (x) { x.click(); return; } } })()`);
   await p.waitForTimeout(1500);
   await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900);
@@ -62,18 +69,27 @@ async function run(id: string, f: () => Promise<void>) {
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 2500));
   fs.writeFileSync(OUT, JSON.stringify(R, null, 1));
 }
+/** 17 Oct 2026: fix-up — on 16 Oct the run hung for 60 minutes here, after the third drag of C581892 (last picture 21:36:09, killed by
+ *  the queue's timeout at 22:34:46; the log was empty because nothing was printed until a case ended). Every visible schedule event was
+ *  clicked one by one, each click allowed 30 s plus 3 s of waiting — if the Schedule search did not narrow the list (staging has ~260
+ *  technicians) that is hundreds of events, i.e. the hour. Now: at most 6 events per work order are opened, every step prints a line,
+ *  each page call is capped, and the whole read is capped at 4 minutes by the caller (capped), after which a fresh page is used. */
 async function scheduleTomorrow(nums: string[], tag: string) {
+  console.log(t(), tag, 'schedule: opening Schedule');
   await p.locator('a, .q-item, .q-tab, button').filter({ hasText: /^\s*Schedule\s*$/ }).first().click(); await p.waitForTimeout(8000);
-  await p.evaluate(`(() => { const vis = (e) => e.getBoundingClientRect().width > 0; const today = [...document.querySelectorAll('button')].find(b => vis(b) && b.innerText.trim() === 'Today'); const tr = today.getBoundingClientRect();
-    const near = [...document.querySelectorAll('button')].filter(b => vis(b) && b !== today && Math.abs(b.getBoundingClientRect().top - tr.top) < 20 && b.getBoundingClientRect().left > tr.left && b.getBoundingClientRect().left < tr.right + 200).sort((x, y) => x.getBoundingClientRect().left - y.getBoundingClientRect().left); near[1].click(); })()`);
+  console.log(t(), tag, 'schedule: going to tomorrow');
+  await capped(p.evaluate(`(() => { const vis = (e) => e.getBoundingClientRect().width > 0; const today = [...document.querySelectorAll('button')].find(b => vis(b) && b.innerText.trim() === 'Today'); const tr = today.getBoundingClientRect();
+    const near = [...document.querySelectorAll('button')].filter(b => vis(b) && b !== today && Math.abs(b.getBoundingClientRect().top - tr.top) < 20 && b.getBoundingClientRect().left > tr.left && b.getBoundingClientRect().left < tr.right + 200).sort((x, y) => x.getBoundingClientRect().left - y.getBoundingClientRect().left); near[1].click(); })()`), 20_000, `${tag} schedule: tomorrow arrow`, undefined);
   await p.waitForTimeout(6000);
   const out: any = {};
   for (const num of nums) {
     if (!(await p.locator('[data-test-id="input_schedule_search"]').isVisible().catch(() => false))) { await p.mouse.click(1300, 84); await p.waitForTimeout(1000); }
     const s = p.locator('[data-test-id="input_schedule_search"]'); await s.fill(''); await s.fill(num); await p.waitForTimeout(4000);
-    const evs = p.locator('.fc-event'); const n = await evs.count(); const det: string[] = [];
-    for (let i = 0; i < n; i++) { const e = evs.nth(i); if (!(await e.isVisible().catch(() => false))) continue; await e.click().catch(() => {}); await p.waitForTimeout(2200);
-      det.push(await p.evaluate(`(() => { const d = [...document.querySelectorAll('.q-dialog, .q-menu, .q-card, [role=dialog]')].filter(x => x.getBoundingClientRect().width > 0).pop(); return d ? d.innerText.replace(/\\s+/g, ' ').trim().slice(0, 400) : ''; })()`));
+    const evs = p.locator('.fc-event'); const all = await evs.count(); const n = Math.min(all, 6); const det: string[] = [];
+    console.log(t(), tag, `schedule: ${num} -> ${all} event(s) on screen, opening ${n}`);
+    if (all > n) det.push(`(${all} events on screen after searching ${num}; only the first ${n} opened)`);
+    for (let i = 0; i < n; i++) { const e = evs.nth(i); if (!(await e.isVisible().catch(() => false))) continue; await e.click({ timeout: 8000 }).catch(() => {}); await p.waitForTimeout(2200);
+      det.push(await capped(p.evaluate(`(() => { const d = [...document.querySelectorAll('.q-dialog, .q-menu, .q-card, [role=dialog]')].filter(x => x.getBoundingClientRect().width > 0).pop(); return d ? d.innerText.replace(/\\s+/g, ' ').trim().slice(0, 400) : ''; })()`) as Promise<string>, 15_000, `${tag} schedule: event ${i + 1} of ${num}`, '(read timed out)'));
       await p.keyboard.press('Escape'); await p.waitForTimeout(1000); }
     await p.evaluate(`document.querySelector('.fc-event')?.scrollIntoView({ block: 'center' })`); await p.waitForTimeout(600); await shot(`${tag}-schedule-${num}`);
     out[num] = det;
@@ -97,13 +113,19 @@ await run('C581892', async () => {
   o.setup = Object.fromEntries(await Promise.all(W.map(async (w, i) => [`WO-${i + 1} ${nums[w]}`, { lines: await lineStates(w), shifts: await shiftsOn(a, w, names) }])));
   await pin([ES.staff_id, RE.staff_id]); await boardOpen(n);
   for (let i = 0; i < 3; i++) {
+    console.log(t(), `C581892 drag ${i + 1} of 3`); // 17 Oct 2026: fix-up — progress line
     await toastWatch(); await dragTo(W[i], RE.staff_id); const opened = await waitPrompt(3500);
     const title = opened ? (await promptLoc().innerText()).split('\n')[0].trim() : null;
     if (opened) { await shot(`C581892-WO${i + 1}-question`); await shiftPrompt(p, 'Keep shifts'); }
     await p.waitForTimeout(1500); o[`WO-${i + 1}`] = { prompt: opened, title, toasts: await toastSeen(), inB: (await inColumn(W[i], RE.staff_id)) > 0 };
   }
   await shot('C581892-board-after');
-  o.schedule = await scheduleTomorrow(W.map((w) => nums[w]), 'C581892');
+  // 17 Oct 2026: fix-up — the Schedule read is capped at 4 minutes; if it does not finish, the stuck page is left and a fresh page of the
+  // same sign-in carries on (so C581896 still runs); the timeout is recorded in the result
+  console.log(t(), 'C581892 drags done', JSON.stringify({ 1: o['WO-1']?.inB, 2: o['WO-2']?.inB, 3: o['WO-3']?.inB }));
+  o.schedule = await capped(scheduleTomorrow(W.map((w) => nums[w]), 'C581892'), 240_000, 'C581892 schedule read', { timedOut: '4 min' } as any);
+  if (o.schedule?.timedOut) { const old = p; p = await old.context().newPage(); p.setDefaultTimeout(30_000); p.on('dialog', onDialog); a = api(p); registerShotPage(p);
+    await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(4000); old.close({ runBeforeUnload: false }).catch(() => {}); console.log(t(), 'C581892 schedule read timed out: carrying on in a fresh page'); }
   o.shiftsAfter = Object.fromEntries(await Promise.all(W.map(async (w, i) => [`WO-${i + 1}`, await shiftsOn(a, w, names)])));
 });
 

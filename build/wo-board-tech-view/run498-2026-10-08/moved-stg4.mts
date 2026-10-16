@@ -29,6 +29,7 @@ import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toCol
 import { staffRows, person, HEAVY, LETH } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { setStaffLocation } from './staffloc.mts';
+import { startState, setDisplay } from './fixup-1017.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -40,6 +41,9 @@ const D = '@staging.shopview.local';
 const ORG = (await import('./profile.mts')).ORG;
 const PREF = '/api/users/me/preferences/work-orders-list';
 R.clearedLeftoverSwitch = (await a.post('/api/exit-switch-user', {})).status;
+// 17 Oct 2026: fix-up — log the saved display / collapsed groups / pins found BEFORE anything is set, clear the saved collapsed groups
+// (C96970 drags Tech View rows) and read them back
+R.startState = await startState(p, a, 'moved-stg4', { clearCollapsed: true });
 const rl = (await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data; const roles: any[] = Array.isArray(rl) ? rl : rl?.collection ?? [];
 const TECH_ROLE = roles.find((r) => /^Technician$/i.test(r.label ?? r.name ?? ''))?.id;
 if (!TECH_ROLE) throw new Error('no Technician role in this organisation');
@@ -121,7 +125,8 @@ async function uiDeactivate(email: string) {
   o.toasts = await toasts(p);
   return { ...o, done: true };
 }
-const bv = async (pg: Page, n: string, d = 'Board View') => { await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(4500); await tab(pg, 'All'); await display(pg, d); if (n) await search(pg, n); };
+// 17 Oct 2026: fix-up — on the main page the display is chosen AND read back (setDisplay); the view-only user's window keeps the plain click
+const bv = async (pg: Page, n: string, d = 'Board View') => { await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(4500); await tab(pg, 'All'); if (pg === p) await setDisplay(pg, a, d, `bv ${n}`); else await display(pg, d); if (n) await search(pg, n); };
 /** the columns drawn on screen, left to right, with their full header text */
 const cols = (pg: Page) => pg.evaluate(`[...document.querySelectorAll('[data-test-id^="board_column_header_"]')].map(h => { const id = h.getAttribute('data-test-id').replace('board_column_header_', ''); const c = document.querySelector('[data-test-id="board_column_' + id + '"]'); const pin = document.querySelector('[data-test-id="button_board_pin_' + id + '"]');
   return { id: id.slice(0, 8), name: ((document.querySelector('[data-test-id="board_column_name_' + id + '"]') || {}).textContent || '').trim(), header: h.innerText.replace(/\\s+/g, ' ').trim(), pinned: pin ? pin.getAttribute('aria-pressed') : 'no pin control', cards: c ? [...c.querySelectorAll('[data-test-id="board_card_number"]')].map(e => e.textContent.trim()) : [], empty: ((document.querySelector('[data-test-id="board_column_empty_' + id + '"]') || {}).innerText || '').replace(/\\s+/g, ' ').trim() || null, left: Math.round(h.getBoundingClientRect().left) }; })`) as Promise<any[]>;
@@ -138,11 +143,28 @@ const watchStart = (pg: Page) => pg.evaluate(`(() => { window.__mw = []; window.
       const txt = nd.innerText || ''; if (txt && txt.length <= 200) add(nd.closest && nd.closest('.q-tooltip') ? 'tooltip' : nd.closest && nd.closest('.q-dialog') ? 'dialog' : 'new text', txt, nd); } };
   window.__mo = new MutationObserver(grab); window.__mo.observe(document.body, { childList: true, subtree: true, characterData: true }); grab([]); })()`);
 const watchRead = (pg: Page) => pg.evaluate('window.__mw || []') as Promise<{ ms: number; kind: string; text: string; cls: string }[]>;
+/** 17 Oct 2026: fix-up — bring an element on screen: if it is drawn, scroll it to the middle; if not (the board draws only the columns
+ *  near the screen, the Tech View table only the rows near it), step the board's sideways scroller, then the table's, from the start
+ *  until it is drawn. Returns where it ended ('on screen' / 'off screen @x,y' / 'not drawn'). Every step is bounded. */
+const reveal = (pg: Page, sel: string) => pg.evaluate(`(async () => { const sleep = (ms) => new Promise(r => setTimeout(r, ms)); const find = () => document.querySelector(${JSON.stringify(sel)});
+  if (!find()) { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); if (h) { h.scrollLeft = 0; h.dispatchEvent(new Event('scroll')); await sleep(400); for (let i = 0; i < 400 && !find(); i++) { const b = h.scrollLeft; h.scrollLeft += 700; h.dispatchEvent(new Event('scroll')); await sleep(250); if (h.scrollLeft === b) break; } } }
+  if (!find()) { const v = document.querySelector('.q-table__middle'); if (v) { v.scrollTop = 0; await sleep(400); for (let i = 0; i < 200 && !find(); i++) { const b = v.scrollTop; v.scrollTop += 400; await sleep(250); if (v.scrollTop === b) break; } } }
+  const e = find(); if (!e) return 'not drawn'; e.scrollIntoView({ block: 'center', inline: 'center' }); await sleep(700);
+  const r = e.getBoundingClientRect(); return r.left >= 0 && r.right <= innerWidth && r.top >= 0 && r.bottom <= innerHeight && r.width > 0 ? 'on screen' : 'off screen @' + Math.round(r.left) + ',' + Math.round(r.top); })()`).catch((e) => 'reveal failed: ' + String(e).slice(0, 60)) as Promise<string>;
+let lastReach: any = null;
 async function holdDrop(from: string, to: string, pic: string, dy: number) {
-  await p.locator(from).first().scrollIntoViewIfNeeded().catch(() => {}); await p.waitForTimeout(300);
-  const a1 = await p.locator(from).first().boundingBox(), b1 = await p.locator(to).first().boundingBox(); if (!a1 || !b1) throw new Error(`drag: missing ${!a1 ? from : to}`);
+  // 17 Oct 2026: fix-up — on 16 Oct every drag read "from: not drawn" (the card's column was far along the ~260-column board) and the
+  // drag timed out on the card. Now the card/row is brought on screen first (reveal); if the target is not on screen with it, the drag is
+  // started, the target is brought on screen WHILE HOLDING (the board / table scrolled to it), its box read afresh, then the drop.
+  // Where each end was is kept (lastReach -> o.reach) so a refusal is only judged when both ends were really reached.
+  lastReach = { from: await reveal(p, from) }; lastReach.toBeforePress = await onScreen(p, to);
+  const a1 = await p.locator(from).first().boundingBox({ timeout: 8000 }).catch(() => null); if (!a1) throw new Error(`drag: missing ${from} (${lastReach.from})`);
   const gx = a1.x + a1.width * 0.45; await watchStart(p);
   await p.mouse.move(gx, a1.y + a1.height / 2); await p.mouse.down(); await p.mouse.move(gx, a1.y + a1.height / 2 + 8, { steps: 4 });
+  if (!String(lastReach.toBeforePress).startsWith('on screen')) { await p.mouse.move(gx + 30, a1.y + a1.height / 2 + 20, { steps: 4 }); lastReach.toWhileHolding = await reveal(p, to); }
+  const b1 = await p.locator(to).first().boundingBox({ timeout: 8000 }).catch(() => null);
+  if (!b1) { await p.mouse.up().catch(() => {}); throw new Error(`drag: missing ${to} (${lastReach.toWhileHolding ?? lastReach.toBeforePress})`); }
+  lastReach.toAtDrop = await onScreen(p, to);
   await p.mouse.move(b1.x + b1.width / 2, b1.y + dy, { steps: 20 }); await p.waitForTimeout(900);
   const holding = await watchRead(p); await shot(p, `${pic}-holding`);
   await p.mouse.up(); await p.waitForTimeout(300); await shot(p, `${pic}-just-dropped`);
@@ -151,7 +173,8 @@ async function holdDrop(from: string, to: string, pic: string, dy: number) {
 /** drag, Keep shifts if asked, then read the message and the lead */
 async function dropTry(from: string, to: string, n: string, pic: string, dy = 120) {
   const o: any = { from: await onScreen(p, from), to: await onScreen(p, to) };
-  try { o.whileHolding = await holdDrop(from, to, pic, dy); } catch (e: any) { o.dragError = String(e?.message || e).slice(0, 160); }
+  lastReach = null; try { o.whileHolding = await holdDrop(from, to, pic, dy); } catch (e: any) { o.dragError = String(e?.message || e).slice(0, 160); }
+  o.reach = lastReach; // 17 Oct 2026: fix-up — where each end was when the card was pressed and dropped
   o.shiftPrompt = await shiftPrompt(p, 'Keep shifts'); o.message = await toasts(p); await shot(p, pic);
   await p.waitForTimeout(4000); o.watched = await watchRead(p); o.leads = await leads(n);
   return o;
@@ -224,20 +247,24 @@ await run('C96970', async () => {
     o.leadsAtStart = await leads(n);
     // steps 1-3
     await bv(p, n); o.step3 = (await cols(p)).slice(0, 7); await shot(p, 'C96970-stg4-step3');
+    // 17 Oct 2026: fix-up — step 3 reads {Technician-A}'s and {Technician-C}'s headers: each column is brought on screen and read (the
+    // first seven columns alone did not hold them on 16 Oct)
+    o.step3Headers = {}; for (const [k, x] of [['A', TA], ['C', TC]] as const) { const found = await toColumn(p, x.staff_id); o.step3Headers[k] = found ? (await cols(p)).find((c) => c.id === x.staff_id.slice(0, 8)) ?? 'drawn but not read' : 'no column'; await shot(p, `C96970-stg4-step3-tech${k}`); }
+    await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller').scrollLeft = 0`); await p.waitForTimeout(800);
     // steps 4-5: WO-2 onto {Technician-A}; steps 6-7: onto {Technician-C}
     o.step4 = await dropTry(`[data-test-id="board_card_${w2.id}"]`, `[data-test-id="board_column_${TA.staff_id}"]`, n, 'C96970-stg4-step5');
     o.step5 = (await cols(p)).filter((c) => c.cards.includes(w2.number)).map((c) => c.name);
     o.step6 = await dropTry(`[data-test-id="board_card_${w2.id}"]`, `[data-test-id="board_column_${TC.staff_id}"]`, n, 'C96970-stg4-step7');
     o.step7 = (await cols(p)).filter((c) => c.cards.includes(w2.number)).map((c) => c.name);
     // steps 8-9: Tech View
-    await display(p, 'Tech View'); if (!(await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => ''))) await search(p, n);
+    await setDisplay(p, a, 'Tech View', 'C96970 step 8'); if (!(await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => ''))) await search(p, n); // 17 Oct 2026: fix-up — read back
     const gs = await groups(p); o.step9 = gs.filter((g) => [TA.staff_id, TB.staff_id, TC.staff_id, 'unassigned'].includes(g.id)).map((g) => ({ name: g.name, count: g.count, rows: g.rows, pin: g.pin?.pressed ?? null }));
     o.step9Headers = await p.evaluate(`[${JSON.stringify(TA.staff_id)}, ${JSON.stringify(TC.staff_id)}].map(id => { const g = document.querySelector('[data-test-id="tech_view_group_' + id + '"]'); return g ? g.innerText.replace(/\\s+/g, ' ').trim() : 'not drawn'; })`);
     await shot(p, 'C96970-stg4-step9');
     // steps 10-12: the row onto {Technician-A}'s group, then onto {Technician-C}'s group
     await findRow(p, w2.id);
     const rowSel = `[data-test-id="tech_view_row_${w2.id}"]`;
-    const tdrop = async (to: string, pic: string) => { const r: any = { from: await onScreen(p, rowSel), to: await onScreen(p, to) }; try { r.whileHolding = await holdDrop(rowSel, to, pic, 10); } catch (e: any) { r.dragError = String(e?.message || e).slice(0, 160); } r.shiftPrompt = await shiftPrompt(p, 'Keep shifts'); r.message = await toasts(p); await shot(p, pic); await p.waitForTimeout(4000); r.watched = await watchRead(p); r.leads = await leads(n); r.rowGroup = await findRow(p, w2.id); return r; };
+    const tdrop = async (to: string, pic: string) => { const r: any = { from: await onScreen(p, rowSel), to: await onScreen(p, to) }; lastReach = null; try { r.whileHolding = await holdDrop(rowSel, to, pic, 10); } catch (e: any) { r.dragError = String(e?.message || e).slice(0, 160); } r.reach = lastReach; r.shiftPrompt = await shiftPrompt(p, 'Keep shifts'); r.message = await toasts(p); await shot(p, pic); await p.waitForTimeout(4000); r.watched = await watchRead(p); r.leads = await leads(n); r.rowGroup = await findRow(p, w2.id); return r; };
     o.step10 = await tdrop(`[data-test-id="tech_view_group_${TA.staff_id}"]`, 'C96970-stg4-step10');
     o.step11 = await tdrop(`[data-test-id="tech_view_group_${TC.staff_id}"]`, 'C96970-stg4-step11');
     o.step12 = { group: await findRow(p, w2.id), techBId: TB.staff_id };

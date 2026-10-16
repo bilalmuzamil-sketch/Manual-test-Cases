@@ -1153,3 +1153,20 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 - Rule: when replacing a helper, either message the old one OR start a new one, never both. If both happen, send the old one an
   explicit STOP (no posting, no writes to the tracking file, kill its waiters) and ask what it posted after the cut-off.
   `judged-full-1016.txt` is the single record of what is judged. #helpers #double-posting → L0412
+
+## L0415 — 2026-10-17 — Run 498 fix-up: what the eleven script faults taught (fixup-1017.mts, fixup-1017.txt, run-fixup-1017.sh)
+- **Saved choices are read and logged before they are set.** `fixup-1017.mts` `startState()` logs "START STATE found …" (saved display,
+  collapsedGroups, pins, filters, density from `/api/users/me/preferences/work-orders-list`, plus the display on screen) BEFORE setting
+  anything, then `setDisplay()` clicks and reads the display back on screen AND in the saved preference (`display`: list / tech_view /
+  board_view). Use it after every refresh / round trip: a fall-back to Board View is then SEEN, not a broken next step.
+- **The Work Orders TAB has no Status chip** (Board View picture C96916-error, 16 Oct; List: high2-batch `statusButton: 0`). The All tab
+  has it. C96916's rewritten starting screen ("Work Orders tab, Status = Approved") may not be buildable — the fixed script counts the
+  chip (All tab = control) and records `statusReachable`.
+- **Column / group drag handle = its own test id:** `board_column_drag_handle_<id>` (span.board-column-header__grip) and
+  `tech_view_group_drag_handle_<id>`. `header.locator('i, .q-icon').filter({ hasText: 'drag_indicator' })` found nothing on staging
+  although the grips were on screen.
+- **Unbounded loops over page items hang a step for its whole timeout:** stg-new5 clicked every `.fc-event` on the Schedule (30 s + 3 s
+  each); cap the count, cap the whole read (`capped()`), print progress lines, and dismiss browser dialogs.
+- **Pin toggles read straight after another case's toggle are stale** (C96959): pin through the saved preference (PUT) and read back.
+- **Another session's "evidence checkpoint" commits sweep in scripts being edited** in the same checkout (4ffbe5b28, 6c0979e0a took the
+  fix-up edits mid-way): check `git log --stat` before reporting what you committed. #staging #scripts #preferences → L0412, L0413

@@ -1,0 +1,49 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 13 = queue steps 33"
+ },
+ "results": {
+  "C368166": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 3: it opened Lead Technician on work order S2-36751 (led by Esther Howard) but could not find \"Ralph Edwards\" in the list, so no new lead was picked.",
+    "Lead Technician stayed \"Esther Howard\", before and after a reload. Whether a new lead shows was not judged.",
+    "Possibly the same cut-off list seen today in another test (the work order page's technician list stops at about 100 names, before the R names; ticket SV-11393, \"OBSOLETE\"), but the script did not record the list's names, so that is not proved here."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368166-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: record the names the Lead Technician list offers, or pick a technician whose name is early in the list)."
+  },
+  "C368167": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 4: on work order S2-36752 (led by Esther Howard) it could not find \"Ralph Edwards\" in the Lead Technician list, so no change was tried and no message could appear.",
+    "Lead Technician stayed \"Esther Howard\", also after a reload. The refusal message was not judged.",
+    "Possibly the same cut-off list as ticket SV-11393 (not proved here: the script did not record the list's names)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368167-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: record the names the Lead Technician list offers, or pick a technician whose name is early in the list)."
+  },
+  "C368168": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 2: on work order S2-36753 it could not find \"Ralph Edwards\" in the Lead Technician list, so the lead was not changed.",
+    "Set-up seen: Line 1 follows the lead (Labor \"Esther Howard\"), Line 2 was given to Dana Ortiz (Labor \"Dana Ortiz\"). After the attempt both lines read the same as before and no clear-shifts question appeared.",
+    "Possibly the same cut-off list as ticket SV-11393 (not proved here: the script did not record the list's names)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368168-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: record the names the Lead Technician list offers, or pick a technician whose name is early in the list)."
+  }
+ }
+}
