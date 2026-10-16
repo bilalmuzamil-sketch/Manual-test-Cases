@@ -15,6 +15,7 @@ import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, findRow, toggleGroup, pickLeadOnPage, listAllOptions, pickLeadTyped } from './wob.mts';
 import { viewAs } from './viewas.mts';
+import { startState } from './fixup-1017.mts';
 import { candidates } from './data.mts';
 import { HEAVY } from './staff.mts';
 import { staffRows, person, roleIds, ensureEligible, eligibilityOf } from './staff.mts';
@@ -29,6 +30,9 @@ const R: Record<string, any> = { runner: RUN.id.slice(0, 8) };
 const PREF = '/api/users/me/preferences/work-orders-list';
 const prefGet = async () => (await a.get(PREF)).body?.data?.value ?? {};
 const ORIGINAL = await prefGet();
+// 17 Oct 2026: fix-up — log the runner's saved display / collapsed groups / pins found BEFORE anything is set, clear the saved collapsed
+// groups and read back (ORIGINAL above is still what is put back at the end)
+R.startState = await startState(p, a, 's9-batchA5', { clearCollapsed: true });
 const pins = async (ids: string[]) => { await a.put(PREF, { value: { ...(await prefGet()), pinnedTechnicianIds: ids } }); };
 const RUNNO = String(Date.now() % 100000);
 const D = '@staging.shopview.local';
@@ -105,13 +109,27 @@ const card = (set: any, co: string) => `[data-test-id="board_card_${set.w[co].id
 const row = (set: any, co: string) => `[data-test-id="tech_view_row_${set.w[co].id}"]`;
 const leadOf = async (set: any, co: string) => { const w = (await workOrders(a, set.q)).find((x: any) => x.id === set.w[co].id); return w?.techAssignedFirstName ? `${w.techAssignedFirstName} ${w.techAssignedLastName}` : 'none'; };
 const below = async (sel: string) => { const b = await p.locator(sel).boundingBox(); return b ? Math.round(b.height - 4) : 40; };
-/** drag a whole column/group by its six-dot handle to just before another column/group */
+/** drag a whole column/group by its six-dot handle to just before another column/group
+ *  17 Oct 2026: fix-up — on 16 Oct `header.locator('i, .q-icon').filter({ hasText: 'drag_indicator' })` found nothing for 30 s although
+ *  both headers and their grips were on screen (pictures C97004-error, C368148-error). The handle is now taken by its own test id —
+ *  board_column_drag_handle_<id> (span.board-column-header__grip, title "Drag to reorder technicians"; probe-board-dom.json and the
+ *  staging design reading) or tech_view_group_drag_handle_<id> — then the grip class inside the column, then the old icon route; which
+ *  one worked is returned. The source column is brought on screen first (toColumn) and both ends are checked on screen; every wait is
+ *  bounded (8 s) so a missing element is reported instead of timing out the case. */
 async function dragHandle(fromHeader: string, toHeader: string) {
-  const h = p.locator(fromHeader).locator('i, .q-icon').filter({ hasText: 'drag_indicator' }).first();
-  const hb = await h.boundingBox(); const tb = await p.locator(toHeader).boundingBox();
+  const m = /data-test-id="(board_column_header|tech_view_group)_([^"]+)"/.exec(fromHeader); const kind = m?.[1], id = m?.[2] ?? '';
+  if (kind === 'board_column_header' && !(await p.locator(fromHeader).count())) await toColumn(p, id);
+  const routes = kind === 'board_column_header'
+    ? [`[data-test-id="board_column_drag_handle_${id}"]`, `[data-test-id="board_column_${id}"] [class*="grip"]`]
+    : [`[data-test-id="tech_view_group_drag_handle_${id}"]`, `${fromHeader} [class*="grip"], ${fromHeader} [class*="drag-handle"]`];
+  let hb: any = null, via = '';
+  for (const r of routes) { const l = p.locator(r).first(); if (await l.count()) { await l.scrollIntoViewIfNeeded({ timeout: 8000 }).catch(() => {}); hb = await l.boundingBox({ timeout: 8000 }).catch(() => null); if (hb) { via = r.replace(id, '<id>'); break; } } }
+  if (!hb) { hb = await p.locator(fromHeader).locator('i, .q-icon').filter({ hasText: 'drag_indicator' }).first().boundingBox({ timeout: 8000 }).catch(() => null); if (hb) via = 'icon in header'; }
+  const tb = await p.locator(toHeader).first().boundingBox({ timeout: 8000 }).catch(() => null);
+  console.log(t(), 'dragHandle', JSON.stringify({ from: fromHeader.slice(15, 60), handle: via || 'NOT FOUND', handleBox: hb && { x: Math.round(hb.x), y: Math.round(hb.y), w: Math.round(hb.width) }, target: tb ? Math.round(tb.x) : 'NOT FOUND' }));
   if (!hb || !tb) return `no handle/target (${!!hb}/${!!tb})`;
   await p.mouse.move(hb.x + hb.width / 2, hb.y + hb.height / 2); await p.mouse.down(); await p.mouse.move(hb.x + 12, hb.y + 4, { steps: 4 });
-  await p.mouse.move(tb.x + 6, tb.y + tb.height / 2, { steps: 20 }); await p.waitForTimeout(400); await p.mouse.up(); await p.waitForTimeout(2500); return 'ok';
+  await p.mouse.move(tb.x + 6, tb.y + tb.height / 2, { steps: 20 }); await p.waitForTimeout(400); await p.mouse.up(); await p.waitForTimeout(2500); return `ok (${via})`;
 }
 const order = (cols: any[], ids: Record<string, string>) => cols.map((c) => Object.keys(ids).find((k) => ids[k] === c.id) ?? (c.id === 'unassigned' ? 'Unassigned' : null)).filter(Boolean);
 async function run(id: string, f: () => Promise<void>) {

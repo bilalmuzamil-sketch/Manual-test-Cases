@@ -17,6 +17,7 @@ import { api, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, pickLeadOnPage, listAllOptions, pickLeadTyped } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY, ensureEligible, eligibilityOf } from './staff.mts';
 import { viewAs } from './viewas.mts';
+import { startState } from './fixup-1017.mts';
 import { candidates } from './data.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -29,6 +30,9 @@ const R: Record<string, any> = { runner: RUN.id.slice(0, 8) };
 const PREF = '/api/users/me/preferences/work-orders-list';
 const prefGet = async () => (await a.get(PREF)).body?.data?.value ?? {};
 const ORIGINAL = await prefGet();
+// 17 Oct 2026: fix-up — log the runner's saved display / collapsed groups / density found at the start. Nothing is SET here: C368154
+// judges a brand-new user's defaults (its own reading of that user's saved choices is o.savedBefore), and the other cases set their own.
+R.startState = await startState(p, a, 's11-batch');
 const pins = async (ids: string[]) => { await a.put(PREF, { value: { ...(await prefGet()), pinnedTechnicianIds: ids } }); };
 const RUNNO = String(Date.now() % 100000);
 const D = '@staging.shopview.local';
@@ -300,7 +304,21 @@ await run('C368154', async () => {
     o.step2active = await pg.evaluate(`(['List','Tech View','Board View'].find(l => { const e = [...document.querySelectorAll('[aria-label="' + l + '"]')].find(x => x.getBoundingClientRect().width > 0); return e && (e.getAttribute('aria-pressed') === 'true' || /active|selected|bg-/.test(e.className)); }) || null)`);
     await shot(pg, 'C368154-fresh-start'); await display(pg, 'Board View'); await pg.waitForTimeout(1500);
     await pg.locator('[data-test-id="button_density"]').click(); await pg.waitForTimeout(800);
-    o.step4 = await pg.evaluate(`[...document.querySelectorAll('[data-test-id^="option_density_"]')].filter(e => e.getBoundingClientRect().width > 0 && /check/.test(e.innerText)).map(e => e.innerText.replace('check','').trim())`); await pg.keyboard.press('Escape');
+    // 17 Oct 2026: fix-up — on 16 Oct step 4 read [] : the items were filtered on the word "check" in their text, which the staging menu
+    // does not carry. Now (as design-stg5's menu reading does) every density item is read — its words, aria-selected / aria-checked on the
+    // item or a child, and its icons — and the selected one is the item marked selected (aria "true") or carrying an icon. Positive
+    // control: the number of items read (a reading with 0 items is retried, then reported as "menu not read", never as "none selected").
+    let dens: any[] = [];
+    for (let i = 0; i < 3 && !dens.length; i++) {
+      if (i) { await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(500); await pg.locator('[data-test-id="button_density"]').click().catch(() => {}); await pg.waitForTimeout(1200); }
+      dens = await pg.evaluate(`[...document.querySelectorAll('[data-test-id^="option_density_"]')].filter(e => e.getBoundingClientRect().width > 0).map(e => { const ck = e.querySelector('[aria-checked],[aria-selected]');
+        const icons = [...e.querySelectorAll('i, .q-icon')].map(x => x.textContent.trim()).filter(Boolean);
+        return { tid: e.getAttribute('data-test-id').replace('option_density_', ''), text: e.innerText.replace(/\\s+/g, ' ').trim(), ariaSelected: e.getAttribute('aria-selected'), ariaChecked: e.getAttribute('aria-checked') ?? (ck ? (ck.getAttribute('aria-checked') ?? ck.getAttribute('aria-selected')) : null), activeClass: /active|selected/.test(String(e.className)), icons }; })`) as any[];
+    }
+    const sel = dens.filter((d) => d.ariaSelected === 'true' || d.ariaChecked === 'true' || d.activeClass || d.icons.length);
+    o.step4menu = dens; o.step4 = dens.length ? sel.map((d) => d.text.replace(/^(check|done|radio_button_checked)\s*/, '').replace(/\s*(check|done|radio_button_checked)$/, '').trim() || d.tid) : 'menu not read';
+    console.log(t(), 'C368154 density menu', JSON.stringify(dens));
+    await shot(pg, 'C368154-density'); await pg.keyboard.press('Escape');
     await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900);
     o.step5 = await pg.evaluate(`[...document.querySelectorAll('.q-menu [data-test-id^="toggle_board_field_"]')].filter(e => (e.querySelector('[role=switch], [role=checkbox], [aria-checked]') || e).getAttribute('aria-checked') === 'true' || e.querySelector('.q-toggle__inner--truthy, .q-checkbox__inner--truthy')).map(e => (e.innerText.trim() || (e.closest('.q-item') || e).innerText.trim()) + ' [' + e.getAttribute('data-test-id').replace('toggle_board_field_', '') + ']')`);
     o.step5all = await pg.evaluate(`[...document.querySelectorAll('.q-menu [data-test-id^="toggle_board_field_"]')].map(e => e.getAttribute('data-test-id').replace('toggle_board_field_', '') + '=' + ((e.querySelector('[aria-checked]') || e).getAttribute('aria-checked')) + '/' + (e.querySelector('.q-toggle__inner--truthy, .q-checkbox__inner--truthy') ? 'on' : 'off'))`); await shot(pg, 'C368154-fields'); await pg.keyboard.press('Escape');
