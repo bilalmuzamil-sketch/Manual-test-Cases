@@ -1102,3 +1102,12 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 - **Editing a script block by text:** cut a `await run('Cxxxx', …)` block up to the NEXT `await run(` or a line that is exactly `});`,
   never the first `});` after it — `…, staff_id });` inside the block matches first and leaves half the old block behind (esbuild caught it).
   #keyboard #wo-board #scripts → L0408
+
+## L0410 — 2026-10-16 — Before a long run: hold the sign-out step, and delete check-ins that would start it twice
+- `signout-fix.mts` (C368240) ends the shared staging Google sign-in. If it runs at the end of a 9–15 hour queue, every fix-up
+  re-run after judging needs new cookies from the QA lead. `run-full-1016.sh` now takes `NO_SIGNOUT=1`: run sign-out only after
+  the fix-ups.
+- A scheduled check-in written as "if the go-ahead came, start the full run" would start a SECOND queue once the run is already
+  going by hand. Delete or rewrite such check-ins the moment the run starts. Two queues at once end each other's session (L0394).
+- Before starting, check which cases changed since the scripts were prepared (updated_on, then `get_history_for_case` field diffs).
+  On 16 Oct, 39 cases changed, but only build stamps, AUTOMATION markers and wording tidies: no Expected content. #long-run #signout #routines → L0383, L0394
