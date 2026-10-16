@@ -1,0 +1,40 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "16 October 2026",
+  "note": "full staging run 16 Oct 2026, batch 08 = queue step 26"
+ },
+ "results": {
+  "C96970": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete steps 3 to 9 (Board View): the board did not show the test's three technicians' columns on screen, so the cards could not be read or dragged.",
+    "Customer \"ZZAUTOTEST C96970 Refused Drops\": S2-35910 led by Aaa ZZAUTOTEST Ina Inactive (deactivated), S2-35911 by Aaa ZZAUTOTEST Mia Holder, S2-35912 by Aaa ZZAUTOTEST Mona Moved (moved to Staging Lethbridge - 4310).",
+    "Tech View, steps 10 to 12: Ina Inactive's group is shown with S2-35910 and marked \"Inactive\"; holding S2-35911 over her group and over Mona Moved's group showed \"This technician can't be assigned work orders.\"; S2-35911 stayed in Mia Holder's group.",
+    "Step 13: S2-35911's Lead Technician is still Aaa ZZAUTOTEST Mia Holder."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96970-1-tech-view-refused.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run the Board View part (script fix-up: scroll the board to the test's columns before reading and dragging)."
+  },
+  "C368131": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete steps 9 to 13 (the drags): it could not find S2-35908's card on the board to drag.",
+    "Customer \"ZZAUTOTEST C368131 Pinned Gone\": S2-35908 led by Aaa ZZAUTOTEST Tara Lead, S2-35909 by Aaa ZZAUTOTEST Theresa Pinned; Jenny Pinned and Theresa Pinned pinned for the admin and the view-only user. Jenny Pinned deactivated; Theresa Pinned's Location changed to Staging Lethbridge - 4310.",
+    "Step 7: Jenny Pinned's column stays right after Unassigned, still pinned, marked \"Inactive\", reading \"No work orders\". Theresa Pinned is not among the pinned columns.",
+    "Step 8: Theresa Pinned's column shows further along as a normal column holding S2-35909, no pin icon, no \"Inactive\".",
+    "Step 15 (view-only user): Jenny Pinned's column also reads \"No work orders\". Theresa Pinned still has a column because step 12 (moving S2-35909 to Unassigned) could not be done."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368131-1-inactive-pinned-column.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368131-2-moved-tech-normal-column.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run steps 9 to 15 (script fix-up: scroll the board to the cards before dragging)."
+  }
+ }
+}
