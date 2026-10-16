@@ -1,0 +1,38 @@
+{panel:bgColor=#ffebe6}
+*OVERALL QA STATUS: FAILED*
+{panel}
+h3. What failed
+*Board View: hovering a card shows no shadow.* When the pointer rests on a card, its border turns darker, but no shadow appears around it.
+
+!sv11394-01-card-hover-hd.png|width=960,height=454!
+_1: the card at rest. 2: pointer on the card today: the border is darker and there is no shadow. 3: the same card with its "no-shadow" setting taken off, in my browser only: the shadow shows._
+
+!sv11394-02-edge-closeup-hd.png|width=810,height=301!
+_Close-up of the card's bottom edge: today (top) and with "no-shadow" taken off (bottom)._
+
+[~accountid:712020:aa00b8d6-a71f-4259-8919-82a304227c20] I checked the card's shadow value on hover, as you asked. It reads *none* on build v26.40.19-edc8195, so the shadow is missing, not hidden by the column.
+* The hover style does ask for the soft 4px shadow.
+* But every card also carries the "no-shadow" setting, and that one wins.
+* With "no-shadow" taken off in my browser, the shadow appears (picture 3).
+* The column leaves 12px of space around each card, so nothing would clip it.
+
+*Steps to reproduce*
+# Open https://app.staging.shopview.com, click *Admin* on the login page, and check the top right reads *Staging Heavy Duty - 9919*. Use a browser window 1440 px wide at 100% zoom.
+# In the top menu click {{Work Orders}}, then the {{All}} tab.
+# At the right end of the toolbar there are three small icon buttons ({{List}}, {{Tech View}}, {{Board View}}). Click the third one, {{Board View}}.
+# Rest the pointer on any card, for example *S2-33692* at the top of the *Unassigned* column.
+
+*Current behaviour:* the card's border turns darker, and no shadow appears.
+*Expected behaviour:* the border darkens and a soft shadow appears; the card does not grow or move. From test case C590124: "the card's border darkens and a soft shadow appears; the card does not grow or move, as in the card-hover design picture". The design library says: "Hover is a colour shift plus a lift (elev-1 → elev-2), never a scale."
+*Environment:* staging, build v26.40.19-edc8195, 16 October 2026, Admin, browser window 1440 px wide (also checked at 1920 px).
+
+----
+h3. What I checked
+||#||Check||Result||
+|1|Pointer on a card: the border turns darker. Seen on every visible card: 12 cards in 4 columns at 1440 px and 18 cards in 6 columns at 1920 px.|PASSED|
+|2|The card does not grow or move on hover: same size and position before and after.|PASSED|
+|3|A soft shadow appears on hover: none of the 30 cards shows one.|FAILED|
+
+h3. Screen recording
+!sv11394-card-hover-staging-recording.mp4|width=1280,alt="sv11394-card-hover-staging-recording.mp4"!
+_Staging v26.40.19-edc8195, 16 Oct 2026, Board View at 1440 px: the pointer rests on cards S2-33692, S2-33465 and S2-33043. Each time the border turns darker and the shadow value reads "none"._
