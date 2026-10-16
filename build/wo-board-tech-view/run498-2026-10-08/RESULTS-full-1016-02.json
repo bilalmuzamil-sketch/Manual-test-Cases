@@ -1,0 +1,253 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "16 October 2026",
+  "note": "full staging run 16 Oct 2026, batch 02 = queue steps 14, 15, 16"
+ },
+ "results": {
+  "C96911": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Search \"ZZAUTOTEST Fibridge\" with Status \"Approved\". The search also matches the customers \"ZZAUTOTEST Fibridge Commercial\" and \"ZZAUTOTEST Fibridge Logistics\" left from earlier runs, so 8 Approved work orders show (not 3): one led by Aaron Baker, seven with no lead.",
+    "Each click changed the layout straight away, without a page reload.",
+    "After every switch the \"All\" tab was still selected, the search still read \"ZZAUTOTEST Fibridge\" and the filter still read \"Status: Approved\".",
+    "The same 8 work orders showed in List, in Tech View (Unassigned 7 + Aaron Baker 1 = 8), in Board View, and again in List.",
+    "The \"ZZAUTOTEST Fisquare\" work orders (S2-34154, S2-34155) showed in none of them."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96911-1-list.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96911-2-tech-view.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96911-3-board-view.png"
+   ],
+   "ticket": null
+  },
+  "C96914": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F1 Same Results\": S2-35191 (unit ZZSR1A, on site, Ayesha Khan), S2-35192 (unit ZZSR2B, Advisor Analysis), S2-35193 (unit ZZSR3C, no lead).",
+    "Search for unit ZZSR2B: only S2-35192, in List, Tech View and Board View.",
+    "Search cleared, \"Asset on Site\" = Yes: of these three, only S2-35191 showed, in all three displays.",
+    "Back from Schedule through the \"Work Orders\" link, \"Asset on Site: Yes\" was still on in Board View, Tech View and List alike."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96914-1-search-tech-view.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96914-2-filter-board-view.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96914-3-back-from-schedule.png"
+   ],
+   "ticket": null
+  },
+  "C96915": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F1 List Sort\": three work orders created at different times, all led by Ayesha Khan.",
+    "List sorted by \"Created On\", newest first: S2-35198, S2-35197, S2-35196.",
+    "In Tech View the last one in her group (S2-35197) was dragged to the top: the group then read S2-35197, S2-35198, S2-35196, and Board View showed the same order.",
+    "Back in List the table was still sorted by \"Created On\", newest first (S2-35198, S2-35197, S2-35196), with the sort arrow still on \"Created On\". The dragged order did not appear in List."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96915-1-list-sorted-created-on.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96915-2-tech-view-dragged-order.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96915-3-list-back-same-sort.png"
+   ],
+   "ticket": null
+  },
+  "C96920": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete steps 6 to 8 (the clicks made with the network off).",
+    "Why: the script loaded Tech View, List and Board View first and only then refreshed the page; the test does the refresh first. So, with the network off, the Tech View part of the page had to be fetched again and could not load: the page showed \"Something went wrong loading this section\" and the display switcher was gone, so whether the switch still works offline could not be seen.",
+    "What was seen: before going offline the page opened in Board View; after the network came back and the page was refreshed it opened in Board View (the offline change was not saved); clicking \"Tech View\" while online and refreshing opened Tech View."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96920-1-offline-tech-view.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run with the script following the test's order (refresh, then load each display, then go offline)."
+  },
+  "C96916": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: this test waits on a change that is not on the staging build yet (its case reads \"Not available on Build to test Yet\"): browser Back bringing back the tab and the filters in Tech View and Board View, ticket SV-11421 (status \"TESTING STAGE\", read 16 Oct 2026).",
+    "The test script also stopped at the start: on the \"Work Orders\" tab it found no \"Status\" filter to set to \"Approved\", so no step was run."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96916-1-script-stopped.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11421.",
+   "todo": "What needs to be done: run it once SV-11421 is on staging."
+  },
+  "C96917": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the Board View half passed, but the test script could not complete the Tech View half (steps 8 onward in Tech View).",
+    "Board View: scrolled right and down, then \"Estimates\" and \"All\" clicked: back at the top-left, every column at its first card. Scrolled again, then Schedule and back through \"Work Orders\": top-left again. Scrolled again, then \"Work Orders\" clicked while already on the board: the board stayed exactly where it was.",
+    "Tech View: after a tab click it was back at the top-left. But after Schedule and back through \"Work Orders\" the page showed Board View instead of Tech View, so the remaining Tech View checks read the board instead.",
+    "Note: the \"Asset on Site: Yes\" filter left on by the test before was still on; it does not change the scroll checks."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96917-1-board-after-tab-click.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96917-2-board-after-work-orders-link.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96917-3-tech-view-half-came-back-as-board.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run the Tech View half, and check whether the page really falls back to Board View after the Schedule round trip (another session signed in as the same user can also change the display)."
+  },
+  "C96924": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F2 Tech Grouping\": Ayesha Khan leads S2-35253, S2-35254 (Approved) and S2-35255 (Estimate); Bilal Muzamil leads two; S2-35258 has no lead.",
+    "Tech View is split into groups, one per lead, with a thin line between groups.",
+    "Ayesha Khan's header shows \"AK\", her name and 3, with 3 rows under it; Unassigned shows 1 with 1 row. Bilal Muzamil shows 2 (his group was collapsed by an earlier choice, so only the header shows).",
+    "With Status \"Approved\" only, Ayesha Khan's number became 2, with 2 rows (S2-35253, S2-35254)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96924-1-groups-with-counts.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96924-2-approved-only.png"
+   ],
+   "ticket": null
+  },
+  "C96925": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F2 Unassigned First\", Tech View, searched by the customer name.",
+    "The first group is Unassigned, holding exactly the two work orders with no lead (S2-35259, S2-35260).",
+    "After dragging Ayesha Khan's group above Unassigned, Unassigned was still first and her group came right after it."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96925-1-unassigned-still-first.png"
+   ],
+   "ticket": null
+  },
+  "C96928": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 4 (the refresh).",
+    "Seen: clicking the arrow on Bilal Muzamil's header collapsed his group to its header only (no rows, count still shown), the other two groups stayed open.",
+    "After the refresh the page opened in Board View instead of Tech View, so the script could not find the group arrow; the new tab and new sign-in were then read on Board View too."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96928-1-board-view-after-refresh.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run; also check whether the display really falls back to Board View after collapsing a group and refreshing (another session signed in as the same user can also change the display)."
+  },
+  "C96931": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F2 No Work Text\": S2-35266 led by Ayesha Khan, S2-35267 by Bilal Muzamil, S2-35268 with no lead; Branko Cicovic leads none.",
+    "Searched by the customer name: Branko Cicovic still has a group (count 0).",
+    "Searched by the number S2-35266: Ayesha Khan's group lists S2-35266; Unassigned and every open technician group with no match (Aaron Baker, Aaron Zed, Admin ShopView ...) shows \"No work orders\".",
+    "Bilal Muzamil's and Branko Cicovic's groups were left collapsed by an earlier choice, so they show only their header (count 0); a collapsed group shows no text."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96931-1-empty-groups-text.png"
+   ],
+   "ticket": null
+  },
+  "C96932": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F2 Row Click\", Tech View: row S2-35269 led by Ayesha Khan.",
+    "Clicking the customer name opened the work order, and so did clicking an empty part of the row.",
+    "A press with a movement of one or two pixels also opened the work order and did not start a drag.",
+    "The row's more-actions button opened its menu (\"Reassign lead technician\") without opening the work order.",
+    "Pressing and moving the pointer well away started a drag: the row lifted and followed the pointer (picture). It was let go in place and the lead stayed Ayesha Khan."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96932-1-clear-move-drags.png"
+   ],
+   "ticket": null
+  },
+  "C96933": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not make the starting state.",
+    "Unassigned was not empty at the start: S2-35270 had been moved there by an earlier run and was not put back under Ayesha Khan, so \"Unassigned shows No work orders\" and the drop onto an empty Unassigned could not be seen."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96933-1-start-not-empty.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run after giving S2-35270 back to Ayesha Khan (or with fresh work orders)."
+  },
+  "C96935": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F2 Sticky Header\": 25 Approved work orders led by Ayesha Khan and 3 led by Bilal Muzamil.",
+    "Step 5: while scrolling through Ayesha Khan's rows (readings every 125 to 250 px), her header (name and count 25) stayed on screen just under the column header row.",
+    "Step 7: Bilal Muzamil's header pushed hers off and took its place just under the column header row; further down the next group's header did the same to his.",
+    "Only one group header was held under the column headings at any time."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96935-1-header-held.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96935-2-next-header-took-over.png"
+   ],
+   "ticket": null
+  },
+  "C96937": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F2 Assigned Groups\": S2-35313 led by me, S2-35314 led by Ralph Edwards (also its advisor), S2-35315 with no lead and me as Service Advisor; Jenny Wilson pinned.",
+    "List with \"Assigned to me\" on showed S2-35313 and S2-35315.",
+    "Tech View with \"Assigned to me\" on showed only Unassigned (count 1, S2-35315; the group was collapsed) and my own group (S2-35313). Ralph Edwards, Esther Howard and the pinned Jenny Wilson were hidden.",
+    "\"Assigned to me\" off: the groups came back, Unassigned first, Jenny Wilson still pinned right after it, Esther Howard shown."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96937-1-assigned-to-me-groups.png"
+   ],
+   "ticket": null
+  },
+  "C96939": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F2 Tech Pin Limit\", one work order each for five technicians; Tech View.",
+    "Every technician group header has a pin control.",
+    "Bilal Muzamil, Aaron Baker and Aaron Zed were pinned (3 pins; their controls read \"Unpin ...\").",
+    "The pin controls on Ayesha Khan's and Branko Cicovic's headers were then disabled; hovering one showed \"You can pin up to 3 technicians.\" Clicking it pinned nobody: still 3 pins."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96939-1-fourth-pin-refused.png"
+   ],
+   "ticket": null
+  },
+  "C368128": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F2 No Pin Assigned\"; Tech View.",
+    "With \"Assigned to me\" off, every technician group header shows a pin control (Unassigned has none).",
+    "With \"Assigned to me\" on, the groups still shown (Bilal Muzamil, Admin ShopView) show no pin control; Board View with \"Assigned to me\" on showed none either.",
+    "Turning \"Assigned to me\" off brought the pin controls back."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368128-1-no-pins-assigned-to-me.png"
+   ],
+   "ticket": null
+  },
+  "C368129": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F2 No Total Row\": S2-35302 and S2-35303, led by Ayesha Khan (no lines yet, so $0.00 each).",
+    "List ends with its total row, reading $0.00.",
+    "Tech View, with \"Total Price\" shown, has no total row: nothing below Ayesha Khan's group or after the last group adds up prices."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368129-1-list-total-row.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368129-2-tech-view-no-total.png"
+   ],
+   "ticket": null
+  }
+ }
+}

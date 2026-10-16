@@ -47,11 +47,11 @@ def main():
             print('-- STEPS:\n' + strip(c.get('custom_steps'))[:2500])
         print('-- EXPECTED:\n' + strip(c.get('custom_expected'))[:3500])
         ll = [l for l in logtxt.splitlines() if cid in l]
-        print('-- LOG:'); [print('  ' + l[:3000]) for l in ll]
+        print('-- LOG:'); [print('  ' + l[:(2000 if short else 3000)]) for l in ll]
         for f in jsons:
             try: d = json.load(open(f))
             except Exception: continue
-            if isinstance(d, dict) and cid in d: print(f'-- JSON {os.path.basename(f)}[{cid}]:\n  ' + json.dumps(d[cid])[:3000])
+            if isinstance(d, dict) and cid in d and not (short and ll): print(f'-- JSON {os.path.basename(f)}[{cid}]:\n  ' + json.dumps(d[cid])[:3000])
         pics = sorted(p for p in glob.glob(os.path.join(EV, f'*{cid}*.png')) + glob.glob(os.path.join(HERE, 'evidence', f'*{cid}*.png')) if s['start'] - 5 <= os.path.getmtime(p) <= end)
         print('-- PICTURES:', [os.path.relpath(p, EV) for p in pics])
         st, r = t._req('GET', f'get_results_for_case/498/{num}&limit=1')
