@@ -22,8 +22,11 @@ def stamp(e,i):
             if h: return re.sub(p,NEW,e)
     assert n==0,(i,'stamp count',hits)
     if '; not yet build-verified.' in e and e.count('; not yet build-verified.')==1: return e.replace('; not yet build-verified.','. '+NEW)
-    m=re.search(r'(Source-verified [^<]*?)(</p>)',e); assert m,(i,'no provenance sentence')
-    return e[:m.end(1)]+' '+NEW+e[m.end(1):]
+    m=re.search(r'(Source-verified [^<]*?)(</p>)',e)
+    if m: return e[:m.end(1)]+' '+NEW+e[m.end(1):]
+    # newer layout: sources live in the preconditions; the build sentence gets its own line before the marker
+    k=e.rfind('<p>AUTOMATION:')
+    return (e[:k]+'<p>'+NEW+'</p>'+e[k:]) if k>=0 else e+'<p>'+NEW+'</p>'
 write='--write' in sys.argv; only={int(x) for x in sys.argv[1:] if x.isdigit()}
 log=open(f'{D}/write-log.txt','a') if write else None
 for k,p in PLAN.items():
