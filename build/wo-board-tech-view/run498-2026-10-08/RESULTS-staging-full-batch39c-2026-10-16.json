@@ -1,0 +1,81 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.18-7d85b7d",
+  "date": "16 October 2026",
+  "note": "batch 39c: Tech View re-runs (s2-batchA, s2-batchC), 16 Oct 09:21-09:26 UTC"
+ },
+ "results": {
+  "C96935": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F2 Sticky Header\" with 25 Approved work orders led by Ayesha Khan (Technician-A) and 3 led by Bilal Muzamil (Technician-B); no pins.",
+    "Step 5: while scrolling through Ayesha Khan's rows (readings every 125 px), her header (name and count 25) stayed on screen just under the column header row.",
+    "Step 7: the next group's header (the empty group \"Ayesha Tech Role\", which sorts between the two) pushed Ayesha Khan's header off and took its place; then Bilal Muzamil's header did the same and stayed just under the column header row while his rows scrolled.",
+    "Only one group header was held under the column headings at any time."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C96935-1-one-header-held-at-a-time.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing."
+  },
+  "C96929": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps, as a brand-new Admin user with no saved sort (User-B).",
+    "Set-up: four Approved work orders led by Carol Neal, made in this order: S2-35903 (Zeta Hauling), S2-35904 (Alpha Freight), S2-35905 (Mid Trucking) and S2-36360 (Mid Trucking, made today).",
+    "Step 4: List (sorted by Customer, A to Z) shows Alpha Freight, Mid Trucking S2-36360, Mid Trucking S2-35905, Zeta Hauling.",
+    "Step 6: Tech View's rows in Carol Neal's group are Zeta Hauling, Alpha Freight, Mid Trucking S2-35905, Mid Trucking S2-36360: the order they were made, not List's order (the two Mid Trucking work orders are also the other way round).",
+    "Step 8: Board View's cards in Carol Neal's column are in the same order as Tech View's rows.",
+    "The linked ticket was read today with the status Obsolete, but the problem still happens on this build; whether to reopen it is with the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C96929-1-list-order.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C96929-3-tech-view-order.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C96929-2-board-order.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11101 (status read 16 Oct 2026: Obsolete). The problem still happens; whether to reopen the ticket is with the QA lead.",
+   "todo": "What needs to be done: the QA lead decides whether to reopen the ticket; once Tech View and Board View follow List's order on staging, run this test again."
+  },
+  "C368127": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps as a brand-new Admin user who had never opened Tech View.",
+    "Step 3: Unassigned opened expanded, and its header count reads 3532; List's All tab holds 3,532 work orders with no lead technician (all 14 pages of 500 read).",
+    "Step 5: while scrolling down through Unassigned, its header (arrow, name and count) stayed on screen just under the column header row.",
+    "Step 6: loading in batches not seen by hand (the pictures taken while scrolling show no loading pause).",
+    "Step 7: deep inside the group (1,500 px down), clicking the arrow on the held header (\"Collapse Unassigned\") collapsed Unassigned without scrolling back up first."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C368127-1-unassigned-header-held.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C368127-2-unassigned-collapsed.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing."
+  },
+  "C96927": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps (the user's saved Tech View columns were taken off first and put back after).",
+    "Step 4: List's Column Selection does not offer Assigned Techs.",
+    "Steps 6 and 7: Tech View has its own Column Selection button and menu; it offers every column List's menu offers, plus Assigned Techs. But Assigned Techs starts OFF; the test wants it on.",
+    "Before steps 8 to 10: VIN/Serial # and Lead Technician were already on (the test expects them off for a new user), and On Site is not in the menu at all (it always shows).",
+    "Step 11: On Site, VIN/Serial # and Lead Technician show as Tech View columns.",
+    "Steps 13 to 16: with Assigned Techs off the column is not in the table; turned on, it shows.",
+    "Step 17: Status, Number and Customer are not in the menu and stay in the table.",
+    "Steps 18 and 19: Unit is not in the menu, so it cannot be turned off; the Unit column still shows. The test wants Unit to be one that can be turned off."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C96927-1-tech-view-column-menu.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11317.",
+   "todo": "What needs to be done: follow the ticket (default Tech View columns, and Unit able to be turned off); once it is fixed on staging, run this test again."
+  }
+ }
+}

@@ -85,7 +85,14 @@ async function scheduleTomorrow(nums: string[], tag: string) {
 }
 
 await run('C581895', async () => {
-  const o = R.C581895; const n = `ZZAUTOTEST Staff Names ${stamp}`; const TA = ES, TB = RE;
+  const o = R.C581895; const n = `ZZAUTOTEST Staff Names ${stamp}`;
+  // 16 Oct 2026 (build v26.40.18): run 498's C96929 re-run showed List's Lead Technician "David Sparks" on Carol Neal's work orders while
+  // Tech View and Board View showed "Carol Neal" — so on staging a staff record and its sign-in account CAN carry different names. The
+  // case's precondition asks for such a technician "where the site allows it", so Technician-A is now Carol Neal's staff record when it
+  // is found (else Esther Howard, as before). Technician-B stays Ralph Edwards.
+  const CN = (await staffRows(a, 'Carol')).find((x: any) => x.first_name === 'Carol' && x.last_name === 'Neal' && x.staff_id);
+  const TA = CN ?? ES, TB = RE; if (CN) names[CN.staff_id] = 'Carol';
+  o.staffRowA = CN ? { first: CN.first_name, last: CN.last_name, email: String(CN.email ?? '').replace(/^(.).*@/, '$1…@'), user: CN.user_first_name ?? CN.user?.first_name ?? null } : 'Carol Neal not found; Esther Howard used';
   o.staff = [TA, TB].map((x: any) => ({ id: x.staff_id, name: `${x.first_name} ${x.last_name}` }));
   const c = await customer(a, n, 'ZZS5SN'); const w = await workOrder(a, c, 'approved', TA.staff_id);
   await mkLine(w, TRANS); const l2 = await mkLine(w, BAG); o.l2tech = (await a.put(`/api/work-orders/lines/${l2}/technicians`, { staffIds: [TB.staff_id] })).status;
