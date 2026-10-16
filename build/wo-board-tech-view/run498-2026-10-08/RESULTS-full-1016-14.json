@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 14 = queue steps 35"
+ },
+ "results": {
+  "C368179": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up: location time zone and browser both on Pakistan time; Esther Howard's row was cleared for Mon, Oct 19 (the next working day).",
+    "Work order S2-36770 (customer \"ZZAUTOTEST Schedule Choose Lines 6273\"), two Approved lines; the card was dropped on the 1 PM line of Esther Howard's row. Check first: the same drop on the 9 AM line saved 9:00 AM to 11:00 AM.",
+    "Choose lines, only Line 1 \"Service - Cabin air filter\" ticked, Hours 2h, \"Create shift · 1 line · 2h\": the shift saved with no error message.",
+    "After a reload, the shift on Esther Howard's row reads 01:00 PM to 03:00 PM, \"Single line · Est. 2h\", Line 1 \"Service - Cabin air filter\" only (1 of 2 lines)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368179-1-line-shift-1-3pm.png"
+   ],
+   "ticket": null
+  }
+ }
+}
