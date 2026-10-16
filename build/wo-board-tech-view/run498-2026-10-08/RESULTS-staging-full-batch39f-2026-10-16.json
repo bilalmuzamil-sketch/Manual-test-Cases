@@ -1,0 +1,33 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.18-7d85b7d",
+  "date": "16 October 2026",
+  "note": "batch 39f: staff names with Carol Neal (c581895-v2, c581895-staff-carol), 16 Oct 09:36-09:46 UTC"
+ },
+ "results": {
+  "C581895": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Set-up: on staging a technician's staff record and sign-in account can carry different names: Carol Neal's work orders show \"David Sparks\" in List. So Technician-A is Carol Neal (staff record) and Technician-B is Ralph Edwards; work order S2-36397 is led by Carol Neal and its second line's technician is Ralph Edwards.",
+    "Step 2: Settings > Staff shows \"Carol Neal\" and \"Ralph Edwards\"; a search for \"Sparks\" finds no staff member.",
+    "Step 5: List's Lead Technician for S2-36397 reads \"David Sparks\", not the staff record name \"Carol Neal\".",
+    "Steps 7 and 8: Board View's card lead and column header read \"Carol Neal\".",
+    "Step 9: the card's avatar hover names are \"Carol Neal\" and \"Ralph Edwards\".",
+    "Steps 11 and 12: Tech View's group header reads \"Carol Neal\", and the Assigned Techs hover names are \"Carol Neal\" and \"Ralph Edwards\".",
+    "So Tech View and Board View show the staff record name, but List shows another name for the same technician.",
+    "This problem has no ticket yet; it is with the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C581895-0-staff-record-carol-neal.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C581895-1-list-lead-david-sparks.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C581895-3-tech-view-carol-neal.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: not filed yet; this problem is with the QA lead for a decision.",
+   "ticket_held": true,
+   "todo": "What needs to be done: wait for the QA lead's decision on the ticket; once List shows the staff record name, run this test again with Carol Neal."
+  }
+ }
+}

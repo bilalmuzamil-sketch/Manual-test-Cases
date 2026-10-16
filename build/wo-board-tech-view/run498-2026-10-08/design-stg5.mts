@@ -759,10 +759,13 @@ await run('C590125', async (o) => { // Dark theme
       whiteAreas: whites.length, biggestWhite: whites.slice(0, 8), textsChecked: texts, lowContrast: low.length, lowContrastSample: low.slice(0, 15) }; })()`;
   const menuClosed = async () => { for (let i = 0; i < 10; i++) { const open = await p.evaluate(`[...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0 && getComputedStyle(e).opacity !== '0').length`).catch(() => 0); if (!open) return i; await p.keyboard.press('Escape').catch(() => {}); await W(500); } return 'still open'; };
   const choose = async (word: RegExp) => { await p.locator('[data-test-id="profile_menu_button"]').click(); await W(1000); const items = (await D(p, '__D.menu()'))?.items?.map((x: any) => x.text);
-    const it = p.locator('.q-menu .q-item, .q-menu [role="menuitem"], .q-menu .q-btn, .q-menu .q-radio, .q-menu .q-toggle').filter({ hasText: word }).last();
+    // 16 Oct 2026 (second go): Light and Dark are two buttons inside ONE menu row ("light_mode Light dark_mode Dark"), so the row filter
+    // never matched; click the button whose own words are exactly Light / Dark
+    let it = p.locator('.q-menu button, .q-menu .q-btn, .q-menu [role="radio"], .q-menu [role="button"]').filter({ hasText: word }).last();
+    if (!(await it.count())) it = p.locator('.q-menu').getByText(word).last();
     const found = await it.count(); if (found) await it.click().catch(() => {}); await W(1500); const closedAfter = await menuClosed(); await W(1500); return { items, found, closedAfter }; };
   o.s1_lightBefore = { body: (await D(p, SCAN))?.body };
-  o.s2_choose = await choose(/^\s*Dark\s*$/i); o.s2_pic = await pic(p, 'C590125-s2-after-dark');
+  o.s2_choose = await choose(/^\s*(dark_mode\s*)?Dark\s*$/i); o.s2_pic = await pic(p, 'C590125-s2-after-dark');
   o.s3_tech = await D(p, SCAN); o.s3_pic = await pic(p, 'C590125-s3-tech-dark');
   o.find = await rowOn(p, w1.id, c.name, A.staff); await away();
   const rsel = `[data-test-id="tech_view_row_${w1.id}"]`;
@@ -770,7 +773,7 @@ await run('C590125', async (o) => { // Dark theme
   const rb0 = await rowBg(); await hoverSel(p, rsel); o.s4_hover = { before: rb0, after: await rowBg(), picture: await clip(p, 'C590125-s4-row-hover-dark', await D(p, `__D.box(__D.q(${J(rsel)}))`), 60) };
   await away(); if (o.find.usedSearch) await search(p, '');
   await display(p, 'Board View'); await away(); o.s6_board = await D(p, SCAN); o.s6_pic = await pic(p, 'C590125-s6-board-dark');
-  o.s7_choose = await choose(/^\s*Light\s*$/i); o.s7_board = await D(p, SCAN); o.s7_pic = await pic(p, 'C590125-s7-board-light');
+  o.s7_choose = await choose(/^\s*(light_mode\s*)?Light\s*$/i); o.s7_board = await D(p, SCAN); o.s7_pic = await pic(p, 'C590125-s7-board-light');
   await display(p, 'Tech View'); await away(); o.s7_tech = await D(p, SCAN); o.s7_techPic = await pic(p, 'C590125-s7-tech-light');
   if (!/255, 255, 255|250|248|246|245/.test(String(o.s7_tech?.body ?? ''))) o.lightNotBack = true;
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await W(3000);
@@ -900,19 +903,26 @@ await run('C590131', async (o) => { // sticky column header and Unassigned group
   // 16 Oct 2026 (new steps 4-5): keep scrolling to the END of Unassigned (~3,450 rows load in batches) until the next group's header is
   // drawn, then walk it up to the Unassigned header in small steps and record, at each stop, every group header's box and position, the
   // bottom of the column header row, and which header is on top just under the headings.
-  const nextHdr = `(function () { var g = __D.qa('[data-test-id^="tech_view_group_"]').filter(function (e) { return /^tech_view_group_[0-9a-f-]{36}$/.test(e.getAttribute('data-test-id')); })[0]; return g ? g.getAttribute('data-test-id').replace('tech_view_group_', '') : null; })()`;
-  let nid: string | null = null; const t0 = Date.now(); o.s4_load = [];
-  for (let i = 0; i < 600 && !nid && Date.now() - t0 < 15 * 60_000; i++) {
-    const sc = await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (!s) return null; s.scrollTop = s.scrollHeight; return { top: Math.round(s.scrollTop), h: s.scrollHeight }; })()`); await W(900);
-    nid = await D(p, nextHdr); if (i % 20 === 0) o.s4_load.push({ i, sc, rows: await p.evaluate(`document.querySelectorAll('[data-test-id^="tech_view_row_"]').length`) }); }
-  o.s4_nextGroup = nid ? { found: true, seconds: Math.round((Date.now() - t0) / 1000) } : { found: false, seconds: Math.round((Date.now() - t0) / 1000) };
+  // 16 Oct 2026 (second go): jumping to scrollHeight landed at the end of the WHOLE table (the technician groups after Unassigned), not at
+  // the end of Unassigned, and the heading row was measured from <thead> (which scrolls; only its cells are sticky). Now: scroll down in
+  // 1,200 px steps (more Unassigned rows load in batches as the loaded ones run out) until the FIRST technician group header (in page
+  // order) comes within 300 px under the heading cells; the heading row is read from 'thead th'.
+  const firstTech = `(function () { var th = document.querySelector('thead th'); var hb = th ? th.getBoundingClientRect().bottom : 188; var g = Array.prototype.filter.call(document.querySelectorAll('[data-test-id^="tech_view_group_"]'), function (e) { return /^tech_view_group_[0-9a-f-]{36}$/.test(e.getAttribute('data-test-id')); })[0]; if (!g) return null; var r = g.getBoundingClientRect(); var n = g.querySelector('[data-test-id^="tech_view_group_name_"]'); return { id: g.getAttribute('data-test-id').replace('tech_view_group_', ''), name: n ? n.textContent.trim() : '?', gap: Math.round(r.top - hb), rows: document.querySelectorAll('[data-test-id^="tech_view_row_"]').length, scrollTop: document.querySelector('.q-table__middle').scrollTop, scrollH: document.querySelector('.q-table__middle').scrollHeight }; })()`;
+  let nid: string | null = null; const t0 = Date.now(); o.s4_load = []; let last: any = null;
+  await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await W(800);
+  for (let i = 0; i < 500 && Date.now() - t0 < 15 * 60_000; i++) {
+    last = await D(p, firstTech);
+    if (last && last.gap <= 300 && last.gap > -60) { nid = last.id; break; }
+    if (last && last.gap <= -60) { await p.evaluate(`document.querySelector('.q-table__middle').scrollTop += ${-last.gap + 250}`); await W(900); continue; }
+    if (i % 10 === 0) o.s4_load.push(last ?? { i, none: true });
+    await p.evaluate(`document.querySelector('.q-table__middle').scrollTop += 1200`); await W(700); }
+  o.s4_nextGroup = { found: !!nid, seconds: Math.round((Date.now() - t0) / 1000), at: last };
   if (!nid) return;
-  const hdrs = `(function () { var th = __D.box(__D.headRow()); return { theadBottom: th ? th.b : null, headers: __D.qa('[data-test-id^="tech_view_group_"]').filter(function (e) { return /^tech_view_group_([0-9a-f-]{36}|unassigned)$/.test(e.getAttribute('data-test-id')); }).map(function (e) { var n = e.querySelector('[data-test-id^="tech_view_group_name_"]'); var s = getComputedStyle(e); return { group: e.getAttribute('data-test-id') === 'tech_view_group_unassigned' ? 'Unassigned' : 'next: ' + (n ? n.textContent.trim() : '?'), box: __D.box(e), position: s.position, top: s.top, z: s.zIndex }; }),
-    justUnderHeadings: th ? (function () { var es = document.elementsFromPoint(200, th.b + 6); var g = es.map(function (x) { return x.closest && x.closest('[data-test-id^="tech_view_group_"]'); }).filter(Boolean)[0]; return g ? g.getAttribute('data-test-id').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/, '<technician>') : (es[0] ? String(es[0].className).slice(0, 40) : null); })() : null }; })()`;
-  // bring the next header to ~220 px below the headings, then step down 20 px at a time across the hand-over
-  await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); const g = document.querySelector('[data-test-id="tech_view_group_${nid}"]'); const th = document.querySelector('thead tr'); if (!s || !g || !th) return; s.scrollTop += g.getBoundingClientRect().top - th.getBoundingClientRect().bottom - 220; })()`); await W(1500);
-  o.s4_s5_walk = []; const shotsAt = new Set([0, 9, 11, 13, 16]);
-  for (let k = 0; k <= 18; k++) { const r: any = await D(p, hdrs); r.step = k; if (shotsAt.has(k)) r.picture = await pic(p, `C590131-s5-handover-${String(k).padStart(2, '0')}`); o.s4_s5_walk.push(r);
+  const hdrs = `(function () { var th = document.querySelector('thead th'); var hb = th ? Math.round(th.getBoundingClientRect().bottom) : null; return { headingBottom: hb, headers: __D.qa('[data-test-id^="tech_view_group_"]').filter(function (e) { return /^tech_view_group_([0-9a-f-]{36}|unassigned)$/.test(e.getAttribute('data-test-id')); }).map(function (e) { var n = e.querySelector('[data-test-id^="tech_view_group_name_"]'); var d = e.querySelector('.tech-view-group-header') || e; return { group: e.getAttribute('data-test-id') === 'tech_view_group_unassigned' ? 'Unassigned' : 'next: ' + (n ? n.textContent.trim() : '?'), header: __D.box(d), row: __D.box(e) }; }).filter(function (h) { return h.header && h.header.b > 100 && h.header.y < 900; }),
+    justUnderHeadings: hb ? (function () { var es = document.elementsFromPoint(300, hb + 8); var g = es.map(function (x) { return x.closest && x.closest('[data-test-id^="tech_view_group_"]'); }).filter(Boolean)[0]; if (!g) return es[0] ? 'row/other: ' + String(es[0].closest('tr') ? (es[0].closest('tr').innerText || '').slice(0, 30) : es[0].className).slice(0, 40) : null; var n = g.querySelector('[data-test-id^="tech_view_group_name_"]'); return n ? n.textContent.trim() : g.getAttribute('data-test-id'); })() : null }; })()`;
+  await p.evaluate(`document.querySelector('.q-table__middle').scrollTop += ${(last?.gap ?? 220) - 220}`); await W(1500);
+  o.s4_s5_walk = []; const shotsAt = new Set([0, 8, 10, 12, 14, 16]);
+  for (let k = 0; k <= 16; k++) { const r: any = await D(p, hdrs); r.step = k; if (shotsAt.has(k)) r.picture = await pic(p, `C590131-s5-handover-${String(k).padStart(2, '0')}`); o.s4_s5_walk.push(r);
     await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollTop += 20; })()`); await W(700); }
   await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollTop += 300; })()`); await W(1200);
   o.s5_after = await D(p, hdrs); o.s5_afterPic = await pic(p, 'C590131-s5-after-handover');
