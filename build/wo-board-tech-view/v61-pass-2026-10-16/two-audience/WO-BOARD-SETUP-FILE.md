@@ -57,11 +57,12 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- Technicians "ZZAUTOTEST C97021 Ana" and "ZZAUTOTEST C97021 Ben" are active at this location, and both are pinned in your Board View (no other technician is pinned).
-- Customer "ZZAUTOTEST C97021 Keyboard" has four Approved work orders: units "C97021-U1" and "C97021-U2" led by "ZZAUTOTEST C97021 Ana", unit "C97021-U3" led by "ZZAUTOTEST C97021 Ben", and unit "C97021-U4" with no lead technician.
-- Starting screen: "Work Orders" \> "All" tab, "Board View" shown, "Search" holding "ZZAUTOTEST C97021 Keyboard", no filter chosen, "Assigned to me" off, browser window at least 1024 px wide.
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A} (for example Staging Heavy Duty - 9919).
+- Two technicians are active at {Location-A} with the "Technician" role and Time Clock on: {Technician-A} (for example ZZAUTOTEST C97021 Ana) and {Technician-B} (for example ZZAUTOTEST C97021 Ben).
+- Customer {Customer-A} (for example ZZAUTOTEST C97021 Keyboard) has four Approved work orders: {Work-order-1} and {Work-order-2} (for example S10043-17701 and S10043-17702) led by {Technician-A}, {Work-order-3} (for example S10043-17703) led by {Technician-B}, and {Work-order-4} (for example S10043-17704) with no lead technician.
+- {Technician-A} and {Technician-B} are pinned in your Board View, and no other technician is pinned.
+- Starting screen: "Work Orders" \> "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, in a browser window at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -76,6 +77,17 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 9.  **P-START** (ACCOUNT-A): starting screen: Board View, All tab, Search "ZZAUTOTEST C97021 Keyboard".
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
+
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-A} = ZZAUTOTEST C97021 Ana
+- {Technician-B} = ZZAUTOTEST C97021 Ben
+- {Customer-A} = ZZAUTOTEST C97021 Keyboard
+- {Work-order-1} = the work order for unit C97021-U1
+- {Work-order-2} = the work order for unit C97021-U2
+- {Work-order-3} = the work order for unit C97021-U3
+- {Work-order-4} = the work order for unit C97021-U4
 
 #### SETUP-C368150 — [C368150](https://shopview.testrail.io/index.php?/cases/view/368150) Enter opens the focused card or row, and no key drags it
 

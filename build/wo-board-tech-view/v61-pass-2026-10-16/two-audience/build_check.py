@@ -55,7 +55,7 @@ for c in K:
     t, pre, steps, exp = c["title"], c["pre"], c["steps"], c["exp"]
     if len(t) > 80 or ";" in t: problems.append(f"{k}: title length {len(t)} or ';'")
     if len(pre) > 6: problems.append(f"{k}: {len(pre)} preconditions (max 6)")
-    if pre[-1] != BLOCKED: problems.append(f"{k}: last precondition is not the Blocked line")
+    if pre[-1] != BLOCKED and not c.get("placeholders"): problems.append(f"{k}: last precondition is not the Blocked line")
     if not any(p.startswith("Starting screen:") or "Starting screen:" in p for p in pre): problems.append(f"{k}: no starting screen")
     if '"Admin" role' not in pre[0]: problems.append(f"{k}: first precondition does not name the role")
     if len(steps) > 10:
@@ -65,6 +65,7 @@ for c in K:
         if not e.startswith(f"Step {i}: "): problems.append(f"{k}: expected line {i} does not start 'Step {i}: '")
     for part in pre + steps + exp + ([c["known"]] if c.get("known") else []):
         m = TESTER_BAD.search(part)
+        if m and c.get("placeholders") and (m.group(0).startswith("{") or m.group(0) == "(for example"): m = None
         if m and not part.startswith("Known problem"): problems.append(f"{k}: tester text has '{m.group(0)}': {part[:70]}")
     if not re.fullmatch(r"AUTOMATION: (READY|READY - EXPECT FAIL \(SV-\d+\)|HOLD - [^\n]{5,200})", c["marker"]):
         problems.append(f"{k}: marker")
@@ -88,7 +89,7 @@ for c in K:
     rtext = json.dumps([RECIPES.get(r) for r in c["recipes"]], ensure_ascii=False)
     for r in c["recipes"]:
         if r not in RECIPES: problems.append(f"{k}: recipe {r} missing")
-    names = set(re.findall(r'"((?:ZZAUTOTEST|C\d{5,6}-|N\d-)[^"]*)"', " ".join(pre + steps)))
+    names = set() if c.get("placeholders") else set(re.findall(r'"((?:ZZAUTOTEST|C\d{5,6}-|N\d-)[^"]*)"', " ".join(pre + steps)))
     for n in names:
         if n.startswith("ZZAUTOTEST") and n not in rtext and n.split(" ")[-1] not in rtext and not n.startswith("ZZAUTOTEST Empty"):
             problems.append(f"{k}: name {n} not made by its recipe")

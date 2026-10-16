@@ -33,13 +33,22 @@ K = []  # the 21 cases
 K.append(dict(
     case_id=97021, section_id=13246, refs="SV-10054",
     title="Tab enters each view once and the arrow keys move between cards and rows",
-    pre=[LOC,
-         'Technicians "ZZAUTOTEST C97021 Ana" and "ZZAUTOTEST C97021 Ben" are active at this location, and both are pinned '
-         'in your Board View (no other technician is pinned).',
-         'Customer "ZZAUTOTEST C97021 Keyboard" has four Approved work orders: units "C97021-U1" and "C97021-U2" led by '
-         '"ZZAUTOTEST C97021 Ana", unit "C97021-U3" led by "ZZAUTOTEST C97021 Ben", and unit "C97021-U4" with no lead technician.',
-         start("Board View", "ZZAUTOTEST C97021 Keyboard", extra=W1024),
-         BLOCKED],
+    pre=[
+         'You are signed in with the "Admin" role at {Location-A} (for example Staging Heavy Duty - 9919).',
+         'Two technicians are active at {Location-A} with the "Technician" role and Time Clock on: {Technician-A} (for example ZZAUTOTEST '
+         'C97021 Ana) and {Technician-B} (for example ZZAUTOTEST C97021 Ben).',
+         'Customer {Customer-A} (for example ZZAUTOTEST C97021 Keyboard) has four Approved work orders: {Work-order-1} and {Work-order-2} '
+         '(for example S10043-17701 and S10043-17702) led by {Technician-A}, {Work-order-3} (for example S10043-17703) led by {Technician-B}, '
+         'and {Work-order-4} (for example S10043-17704) with no lead technician.',
+         '{Technician-A} and {Technician-B} are pinned in your Board View, and no other technician is pinned.',
+         'Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" '
+         'off, in a browser window at least 1024 px wide.',
+         'If any record above is missing, mark this test Blocked: "setup not done".'],
+    placeholders={"{Location-A}": "the case location (Staging Heavy Duty - 9919 on staging)",
+                  "{Technician-A}": "ZZAUTOTEST C97021 Ana", "{Technician-B}": "ZZAUTOTEST C97021 Ben",
+                  "{Customer-A}": "ZZAUTOTEST C97021 Keyboard",
+                  "{Work-order-1}": "the work order for unit C97021-U1", "{Work-order-2}": "the work order for unit C97021-U2",
+                  "{Work-order-3}": "the work order for unit C97021-U3", "{Work-order-4}": "the work order for unit C97021-U4"},
     steps=['Click once in the "Search" box.',
            "Press Tab until something on the board shows a focus ring.",
            "Press the Right arrow key.",

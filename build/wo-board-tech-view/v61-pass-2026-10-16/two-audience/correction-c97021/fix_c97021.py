@@ -10,23 +10,17 @@ A = json.load(open(f"{V}/anchor-quotes-current.json")); PRD = ws(open(f"{V}/CONF
 OLD = json.load(open(f"{V}/two-audience/existing-quotes.json"))["97021"]["quotes"]
 DOC = "https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md"
 pre = [
- 'Sign in as a user with the "Admin" role (on a QA site: the Admin quick-login button on the sign-in page). The location shown in the top '
- 'bar next to the bell is {Location-A} (for example Staging Heavy Duty - 9919); create everything below at {Location-A}.',
- 'Create two technicians: your initials (top right) > "Settings" > "Staff" > "New Staff Member", enter a First Name and Last Name, an Email, '
- 'Role "Technician", at least one Department, Location {Location-A}, turn "Time Clock" on, then "Save & Close". These are {Technician-A} '
- '(for example ZZAUTOTEST Ana) and {Technician-B} (for example ZZAUTOTEST Ben).',
- 'Create a customer: top menu "Customers" > "New Customer", enter a Name, "Save"; on the customer page "Contacts" > "New Contact" > "Save", '
- 'then "Assets" > "New Asset", pick the contact, Make (type "Freight", pick Freightliner) > "Save". This is {Customer-A} (for example '
- 'ZZAUTOTEST Keyboard).',
- 'Create four work orders for {Customer-A}, each this way: "Work Orders" > "Create Work Order", pick {Customer-A} and its asset > "Save"; '
- 'on the Lines tab type "grease", pick "Service - Full grease service", turn "Line Approved" on > "Save & Close"; write down the number '
- 'shown at the top left; then pick the lead in the "Lead Technician" dropdown (or leave it empty). {Work-order-1} and {Work-order-2} '
- '(for example S10043-17701 and S10043-17702) are led by {Technician-A}, {Work-order-3} (for example S10043-17703) by {Technician-B}, '
- 'and {Work-order-4} (for example S10043-17704) has no lead.',
- 'Pin both technicians: "Work Orders" > "All" > "Board View", click the pin on {Technician-A}\'s column header, then on {Technician-B}\'s; '
- 'unpin anyone else, so {Technician-A} and {Technician-B} sit right after "Unassigned".',
- 'Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} typed in "Search", no filter chosen, '
- '"Assigned to me" off, in a browser window at least 1024 px wide. If you cannot create any record above, mark this test Blocked and say which.']
+ 'You are signed in with the "Admin" role at {Location-A} (for example Staging Heavy Duty - 9919).',
+ 'Two technicians are active at {Location-A} with the "Technician" role and Time Clock on: {Technician-A} (for example ZZAUTOTEST '
+ 'C97021 Ana) and {Technician-B} (for example ZZAUTOTEST C97021 Ben).',
+ 'Customer {Customer-A} (for example ZZAUTOTEST C97021 Keyboard) has four Approved work orders: {Work-order-1} and {Work-order-2} '
+ '(for example S10043-17701 and S10043-17702) led by {Technician-A}, {Work-order-3} (for example S10043-17703) led by {Technician-B}, '
+ 'and {Work-order-4} (for example S10043-17704) with no lead technician.',
+ '{Technician-A} and {Technician-B} are pinned in your Board View, and no other technician is pinned.',
+ 'Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" '
+ 'off, in a browser window at least 1024 px wide.',
+ 'If any record above is missing, mark this test Blocked: "setup not done".']
+HOWTO = re.compile(r'New Staff Member|New Customer|Create Work Order|Save & Close|"Save"|quick-login|click the pin|type "grease"|Lead Technician" dropdown')
 steps = ['Click once in the "Search" box.',
          "Press Tab until something on the board shows a focus ring.",
          "Press the Right arrow key.",
@@ -67,6 +61,7 @@ ph = re.compile(r"\{([^{}]+)\}"); defined = set(ph.findall(" ".join(pre)))
 for x in set(ph.findall(" ".join(steps + res))):
     if x not in defined: P.append(f"{{{x}}} not defined in the preconditions")
 if re.search(r'"ZZAUTOTEST[^"]*"', " ".join(pre + steps + res)): P.append("hard-coded ZZAUTOTEST value in tester text")
+if HOWTO.search(" ".join(pre)): P.append("set-up instructions in the tester preconditions: " + HOWTO.search(" ".join(pre)).group(0))
 for i, r in enumerate(res, 1):
     if not r.startswith(f"Step {i}: "): P.append(f"result {i} not 'Step {i}:'")
 if len(res) != len(steps): P.append("one result per step")
@@ -90,9 +85,9 @@ if "--apply" in sys.argv:
         r = urllib.request.Request("https://shopview.testrail.io/index.php?/api/v2/" + ep, data=json.dumps(d).encode() if d is not None else None,
                                    headers={"Authorization": "Basic " + AU, "Content-Type": "application/json"})
         x = urllib.request.urlopen(r, timeout=120); return x.status, json.load(x)
-    after = json.load(open(f"{V}/two-audience/applied/C97021-after.json")); st, live = api("get_case/97021")
+    after = json.load(open(f"{H}/C97021-after.json")); st, live = api("get_case/97021")
     if live["updated_on"] != after["updated_on"]: sys.exit("REFUSED: C97021 changed since this pass wrote it")
-    json.dump(live, open(f"{H}/C97021-before.json", "w"), indent=1)
+    json.dump(live, open(f"{H}/C97021-before-2.json", "w"), indent=1)
     st, _ = api("update_case/97021", fields); st2, a = api("get_case/97021"); json.dump(a, open(f"{H}/C97021-after.json", "w"), indent=1)
     un = [x for x in a if x not in fields and x not in ("updated_on", "updated_by", "version") and a.get(x) != live.get(x)]
     r = {"op": "update_case", "case": "C97021", "http": st, "fields_ok": all(a[f] == v for f, v in fields.items()), "untouched_changed": un,

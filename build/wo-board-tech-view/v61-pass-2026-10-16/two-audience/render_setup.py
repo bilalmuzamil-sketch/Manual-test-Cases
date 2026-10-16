@@ -70,7 +70,9 @@ for c in B:
     H.append(f"<h4>{rid} — {link(c)} {e(c['title'])}</h4><p><strong>Satisfies these precondition lines, exactly as the case states them:</strong></p>"
              + ul([e(p) for p in c["pre"]]) + f"<p><strong>Slots:</strong> {', '.join(slots(c))}. <strong>Run first:</strong> "
              + ", ".join(x for x in c["recipes"] if x != rid) + ".</p><ol>" + "".join(f"<li>{item_text(p, v)}</li>" for p, v in r["items"]) + "</ol>"
-             + f"<p><strong>Check:</strong> {e(r['check'])}</p>")
+             + f"<p><strong>Check:</strong> {e(r['check'])}</p>"
+             + ("<p><strong>Placeholder values</strong> (the case names records by placeholder; give the tester the real work order numbers after setup):</p>"
+                + ul([f"{e(k)} = {e(v)}" for k, v in c["placeholders"].items()]) if c.get("placeholders") else ""))
 H.append("<h2>5. Mapping table (execution order)</h2>" + table(["Test case", "Account slots", "Recipes in order"],
     [[f"{link(c)} {e(c['title'])}", ", ".join(slots(c)), ", ".join(c["recipes"])] for c in B]))
 H.append("<h2>6. Dependencies and shared fixtures</h2>" + ul([e(x) for x in [
