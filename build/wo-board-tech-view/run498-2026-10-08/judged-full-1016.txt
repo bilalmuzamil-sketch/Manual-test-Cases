@@ -22,5 +22,4 @@
 27 | stg6.mts | C96965 C154648 C368133 C581889 C581890 C581891 Passed | RESULTS-full-1016-09.json (posted)
 28 | stg-new5.mts (TIMED OUT exit 124 after 60 min) | C581892 Blocked (step 14 not reached); C581896 NOT RUN (JSON holds 14 Oct readings, no new pictures; fix-up re-run needed, no result posted) | RESULTS-full-1016-10.json (posted)
 29 | stg-fix-new3.mts | C581893 C581894 Passed | RESULTS-full-1016-11.json (posted)
-30 | c581895-v2.mts | C581895 NOT RUN: staging sign-in expired during the step (quick-login sent to the Google sign-in page); no result posted
-QUEUE STOPPED 22:44:28 UTC 16 Oct: "STOP: staging sign-in expired" then "queue finished". Steps 31-82 never ran (block C from c581895-staff-carol.mts on, all of block D, drafts, sign-out). Restart with FROM=30 after new staging cookies.
+30 (first try 22:40-22:44) | c581895-v2.mts | NOT JUDGED: did not sign in; queue then logged a FALSE "STOP: staging sign-in expired / queue finished" at 22:44. Coordinator resumed with FROM=30 at 22:46; judge the re-run of step 30 only.

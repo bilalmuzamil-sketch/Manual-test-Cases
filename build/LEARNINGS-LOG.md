@@ -1133,8 +1133,9 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   session on the same user) shares them. Mid-run, every Tech View group was found collapsed (C368135, C368136) and the page twice came
   back in Board View after Tech View had been chosen (C96917, C96928). Before a Tech View check, expand all groups and choose Tech View
   again, and read the preference back; whether the display really falls back on its own is still to be proved.
-- **The full run stopped after about 3 hours (22:44 UTC, step 30 of 82):** the staging sign-in expired (quick-login landed on the Google
-  sign-in page). Step 28 (`stg-new5.mts`) also hung for its whole 60-minute limit after C581892's third drag. A script that reloads
+- **False stop after about 3 hours (22:44 UTC, step 30 of 82):** one quick-login landed on the Google sign-in page, the queue logged
+  "STOP: staging sign-in expired" and "queue finished", but the next sign-in worked at once; it was resumed with FROM=30. A judging
+  helper must not take one "queue finished" line as the end: wait until the process is gone AND the last line is "queue finished". Step 28 (`stg-new5.mts`) also hung for its whole 60-minute limit after C581892's third drag. A script that reloads
   its JSON from disk (`stg-new5.mts`) keeps the OLD readings of a test it never reached (C581896's were from 14 Oct): judge only readings
   whose pictures were taken in the step's own time window. #long-run #judging → L0411
 
