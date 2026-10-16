@@ -33,6 +33,9 @@ export WOB_LOC_SELECT=1 WOB_EMPTY_LOC="ZZAUTOTEST F2 Empty Shop"     # as every 
 L=$WOB_EV/logs-full-1016; mkdir -p "$L"; Q=$L/queue.out
 say() { echo "$(date -u +%T) $*" | tee -a "$Q"; }
 expired() { grep -qE 'accounts\.google\.com|sso_required' "$1" 2>/dev/null; }
+# 17 Oct 2026: a single script's log can show the Google page once while the sign-in is fine (step 30, 22:44 UTC: the next
+# ensure-heavy signed in at once). So a log that looks expired is CONFIRMED by a fresh ensure-heavy sign-in before the queue stops.
+confirm_expired() { expired "$1" || return 1; timeout 300 ./wob-run.sh ensure-heavy.mts > "$L/recheck-$(date +%H%M%S).log" 2>&1 && { say "sign-in re-checked after a Google page in $1: still signed in, carrying on"; return 1; }; return 0; }
 if ps -eo args | grep -v "run-full-1016" | grep -q "[w]ob-run.sh"; then say "STOP: another wob-run.sh is running (one staging sign-in holds one session, L0394)"; exit 1; fi
 SEED=$WOB_EV/orgb-seed-stg.json
 ANALYST_OK=1; n=0
@@ -66,7 +69,7 @@ grep -v '^#' full-order-1016.txt | while IFS='|' read -r block s only extra mode
       env ${extra:+"$extra"} timeout 900 ./wob-run.sh "$s" > "$log.retry" 2>&1; rc=$?; say "step $n stg6-tz retry exit $rc"
       [ $rc -ne 0 ] && { say "STOP: the location zone could not be proved equal to the browser zone (Rule 125)"; break; }
     fi
-    expired "$log" && { say "STOP: staging sign-in expired"; break; }
+    confirm_expired "$log" && { say "STOP: staging sign-in expired"; break; }
     continue
   fi
   # ensure / nodirect / last / todo / todo-2day / draft: an Admin script, started from Heavy Duty
@@ -81,6 +84,6 @@ grep -v '^#' full-order-1016.txt | while IFS='|' read -r block s only extra mode
     env ONLY="$only" ${extra:+"$extra"} timeout 3600 ./wob-run.sh "$s" > "$log" 2>&1; rc=$?
   fi
   say "step $n end $s exit $rc"
-  expired "$log" && { say "STOP: staging sign-in expired"; break; }
+  confirm_expired "$log" && { say "STOP: staging sign-in expired"; break; }
 done
 say "queue finished"

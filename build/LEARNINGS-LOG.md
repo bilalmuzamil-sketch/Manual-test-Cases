@@ -1137,3 +1137,11 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   sign-in page). Step 28 (`stg-new5.mts`) also hung for its whole 60-minute limit after C581892's third drag. A script that reloads
   its JSON from disk (`stg-new5.mts`) keeps the OLD readings of a test it never reached (C581896's were from 14 Oct): judge only readings
   whose pictures were taken in the step's own time window. #long-run #judging → L0411
+
+## L0413 — 2026-10-17 — One script landing on Google's sign-in page is not proof the staging sign-in expired
+- At 22:44 UTC, step 30 (c581895-v2.mts) logged "NOT SIGNED IN after 3 quick-login attempts" (accounts.google.com), and the full
+  run stopped as "sign-in expired". A minute later `ensure-heavy.mts` signed in at once. The API with only the SSO cookie answered
+  `not_authenticated` (alive), not `sso_required` (L0398).
+- `run-full-1016.sh` now confirms with a fresh `ensure-heavy.mts` (`confirm_expired`) before stopping. Resume with `FROM=<the step that
+  failed>`: that step never signed in, so it must run again. Tell the judging helper the queue continues, or it will take
+  "queue finished" as the end. #staging #signin #long-run → L0393, L0398
