@@ -220,3 +220,6 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
   (its steps 13–15 follow the old Tab rule; PRD v55+ S11-R1/R3 changed it — QA lead's call on the case text).
 - Filed today (QA lead's go-ahead, checked against PRD v58): SV-11419, SV-11420, SV-11421, SV-11422. Updated: SV-11318, SV-11101
   (still Obsolete), SV-11320, SV-11322, SV-11338. C581895 = existing SV-11336. C590122 linked to SV-11323 (grey panel).
+- **16 Oct 2026, QA lead: "you have my YES for automated tests"** — go-ahead (Rule 71) to run, and where a test's own steps or
+  preconditions need it, to update the cases TestRail flags as Automated in run 498. The Expected field is still never changed
+  (Rule 114) and Vladimir's cases (created_by 1) are still never touched (Rule 38). Every change to an Automated case is told to Vlad (Rule 65).
