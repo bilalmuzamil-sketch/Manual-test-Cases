@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "16 October 2026",
+  "note": "full staging run 16 Oct 2026, batch 10 = queue step 28 (timed out after 60 min; C581896 not run)"
+ },
+ "results": {
+  "C581892": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 14 (the Schedule check): it stopped responding after the third drag and was ended by the time limit.",
+    "Seen: S2-36732 (second line not approved), S2-36733 (second line declined) and S2-36734 (a Choose lines shift ticking both approved lines), each led by Esther Howard with a shift on Sun, Oct 18.",
+    "Each drag to Ralph Edwards opened \"Clear Esther Howard's scheduled shifts?\"; after \"Keep Shifts\" each moved to Ralph Edwards' column with \"Lead technician updated\".",
+    "Whether Esther's three shifts are still on the Schedule was not read."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581892-1-question-declined-line.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581892-2-moved-after-keep.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run step 14 (open the Schedule for Sun, Oct 18 and read Esther Howard's three shifts)."
+  }
+ }
+}
