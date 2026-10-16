@@ -1,0 +1,148 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "16 October 2026",
+  "note": "full staging run 16 Oct 2026, batch 04 = queue steps 19, 20"
+ },
+ "results": {
+  "C154888": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (the shifts were made around the shop's time when the test ran, 1:23 AM on Sat, Oct 17, Pakistan time).",
+    "Fresh customer \"ZZAUTOTEST F1 Shift Trim 26382\", work order S2-36644 led by Esther Howard, with three whole-work-order shifts: yesterday (Fri, Oct 16) 8:00-12:00, today 12:15-3:15 AM (under way) and tomorrow (Sun, Oct 18) 8:00-12:00.",
+    "The card was dragged to Ralph Edwards at 1:24 AM; the question about her shifts appeared and \"Clear Shifts\" was clicked. Ralph Edwards is now the lead.",
+    "Yesterday's 8:00-12:00 shift is unchanged.",
+    "Today's shift now runs 12:15-1:24 AM: it ends at the moment of the change.",
+    "Tomorrow's 8:00-12:00 shift is gone (the Schedule search for S2-36644 finds no match on Sun, Oct 18).",
+    "This is the expected behaviour, not the \"what you should see today\" note: the change has shipped."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154888-1-yesterday-unchanged.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154888-2-today-trimmed.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154888-3-tomorrow-gone.png"
+   ],
+   "ticket": null
+  },
+  "C154889": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F1 Remove Lead Prompt\": S2-35491 and S2-35492 led by Esther Howard, each with a whole-work-order shift on Sun, Oct 18, 8:00-12:00.",
+    "Dragging S2-35491 into Unassigned opened \"Clear Esther Howard's scheduled shifts?\" with the buttons \"Cancel\", \"Keep Shifts\" and \"Clear Shifts\".",
+    "\"Reassign lead technician\" > Unassigned on S2-35492 opened the same question, same title, text and buttons.",
+    "After \"Keep Shifts\" both work orders have no lead and Esther Howard's shifts are still on the Schedule.",
+    "This is the expected behaviour, not the \"what you should see today\" note: the change has shipped."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154889-1-remove-lead-question.png"
+   ],
+   "ticket": null
+  },
+  "C154890": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F1 Clear Fails\": S2-35495 led by Esther Howard, who has a shift on Sun, Oct 18, 8:00-12:00.",
+    "The card was dragged to Ralph Edwards and the question opened; saving was made to fail (the server refused it) and \"Clear Shifts\" was clicked.",
+    "The alert read \"Failed to update lead technician, please try again.\"",
+    "The card went back to Esther Howard's column; she is still the lead and her 8:00-12:00 shift is still on the Schedule: nothing was half done.",
+    "Clearing-only failure not checked by hand."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154890-1-nothing-half-done.png"
+   ],
+   "ticket": null
+  },
+  "C368134": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F1 Prompt Wording\": S2-35488 led by Esther Howard, who has a shift for the whole work order. The card was dragged to Ralph Edwards' column.",
+    "Title: \"Clear Esther Howard's scheduled shifts?\"",
+    "Text: \"Esther Howard has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change.\"",
+    "Buttons \"Cancel\", \"Keep shifts\" and \"Clear shifts\" (shown in capitals by the button style), plus a close (X).",
+    "After \"Keep shifts\": \"Lead technician updated\", Ralph Edwards is the lead and Esther Howard's shift is still on the Schedule.",
+    "No-name title not checked by hand."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368134-1-prompt-wording.png"
+   ],
+   "ticket": null
+  },
+  "C368135": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the Board View part passed, but the test script could not complete the Tech View part.",
+    "Board View (customer \"ZZAUTOTEST F1 Prompt Cancel\"): after \"Cancel\", after the close (X) and after Escape the question closed, the card went back to Esther Howard's column and no \"Lead technician updated\" appeared. Clicking outside left the question open (expected).",
+    "Reassign dialog path: \"Cancel\" in the question went back to the dialog with Ralph Edwards still chosen. The lead is still Esther Howard and her 8:00-12:00 shift is still on the Schedule.",
+    "Tech View: every technician group was collapsed (saved from an earlier test), so the work order's row was hidden and the script could not drag it."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368135-2-back-in-dialog.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368135-1-tech-view-all-collapsed.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run the Tech View part after expanding the groups (script fix-up)."
+  },
+  "C368136": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete steps 4 to 10.",
+    "Board View (customer \"ZZAUTOTEST F1 Prompt Where\"): the question opened for the drag and for the Reassign dialog.",
+    "Tech View: every technician group was collapsed (saved from an earlier test), so the row was hidden and the script stopped; the work order page, the List and the final Schedule check were not reached."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368136-1-tech-view-all-collapsed.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run after expanding the groups (script fix-up)."
+  },
+  "C96979": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "A brand-new user who never saved a choice (\"Nora New\"): her List shows List's own columns (On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price, Created On), with no Assigned Techs.",
+    "Her Tech View shows exactly 13 columns in this order: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created On, Total Price. On Site, VIN/Serial # and Lead Technician are off but offered.",
+    "Without financial data (Nate Nofinance, same run) Tech View shows the same columns in the same order without Total Price: 12, ending Lines, Assigned Techs, Created On.",
+    "My own List with Service Advisor off and Created On on kept that after a reload, after switching to Tech View and back, and after a second reload.",
+    "Pre-release List choice not checked."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96979-1-new-user-tech-view-columns.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96986-1-tech-view-no-dollars.png"
+   ],
+   "ticket": null
+  },
+  "C96980": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F2 Board Default Fields\": S2-35526 led by Esther Howard; Board View.",
+    "Fay Financial (can see financial data): \"Fields to display\" had Lead technician, Customer, Asset, Progress and Total price on; number, unit and status always show. VIN/serial, service advisor, clocked in, line count, line technicians, estimated hours, on-site and created date were off.",
+    "Her card shows S2-35526, Approved, the customer, unit ZZF2BD, Progress 0%, Esther Howard and $0.00.",
+    "Nate Nofinance: the same defaults without total price; his card shows no dollar amount and Total price is not offered in his \"Fields to display\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96980-1-fay-default-card.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96980-2-nate-default-card.png"
+   ],
+   "ticket": null
+  },
+  "C96986": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F2 No Dollar Amounts\": S2-35527. With financial data on, Nate Nofinance had Total price on in Tech View and Board View.",
+    "After \"See Financial Data\" was turned off for his role: Tech View has no Total Price column and the column chooser does not offer it; the row shows no dollar amount.",
+    "Board View's card shows no dollar amount, and \"Fields to display\" does not offer Total price.",
+    "No filter (Status, Assigned to me, Asset on Site) offers a dollar option, and his earlier saved choice did not bring any dollar value back."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96986-1-tech-view-no-dollars.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96986-2-board-no-dollars.png"
+   ],
+   "ticket": null
+  }
+ }
+}
