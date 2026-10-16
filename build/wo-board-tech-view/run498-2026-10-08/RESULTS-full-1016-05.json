@@ -1,0 +1,161 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "16 October 2026",
+  "note": "full staging run 16 Oct 2026, batch 05 = queue steps 21, 22"
+ },
+ "results": {
+  "C96993": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F3 Avatar Group\", S2-36645: led by Esther Howard; Ralph Edwards and Dana Ortiz on lines; Jenny Wilson scheduled on Line 3.",
+    "Board View with \"Line technicians\" on: the card shows an avatar group of 4, \"EH RE DO JW\"; hovering each shows Esther Howard, Ralph Edwards, Dana Ortiz, Jenny Wilson.",
+    "Tech View's \"Assigned Techs\" shows the same 4 avatars with the same names.",
+    "List's column menu does not offer Assigned Techs."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96993-1-card-four-avatars.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96993-2-tech-assigned-techs.png"
+   ],
+   "ticket": null
+  },
+  "C96994": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F3 Lead First Once\", S2-36646: Esther Howard is lead and on Line 1; Ralph Edwards is on Lines 2 and 3.",
+    "Board View: 2 avatars, \"EH\" (Esther Howard) first, then \"RE\" (Ralph Edwards), each once.",
+    "Tech View's \"Assigned Techs\" shows the same two, in the same order, each once."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96994-1-lead-first-once.png"
+   ],
+   "ticket": null
+  },
+  "C96995": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F3 Plus N Avatars\", S2-36647 with 6 technicians.",
+    "Board View: 4 avatars (EH, RE, DO, JW) then \"+2\"; 4 + 2 = 6.",
+    "Hovering each avatar showed only its own name: Esther Howard, Ralph Edwards, Dana Ortiz, Jenny Wilson. Hovering \"+2\" listed \"Kristin Watson, Theresa Webb\".",
+    "Tech View's \"Assigned Techs\" behaved exactly the same."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96995-1-plus-two.png"
+   ],
+   "ticket": null
+  },
+  "C96996": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F3 Blank Technician\": S2-36648 (no lead, no line technician), S2-36649 (Ralph Edwards on a line, no lead), S2-36650 (led by Esther Howard).",
+    "Board View: S2-36648's card has no technician field at all; S2-36649 shows \"RE\"; S2-36650 shows \"EH\". Only 1 of the 3 is blank.",
+    "Tech View: \"Assigned Techs\" is empty for S2-36648, \"RE\" for S2-36649 and \"EH\" for S2-36650."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96996-1-only-one-blank.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96996-2-tech-blank-cell.png"
+   ],
+   "ticket": null
+  },
+  "C96997": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "S2-36654, Line 1 with the story \"Brought unit in. Completed inspection.\"",
+    "On the work order page the line shows its story text and no check mark anywhere on the line (no check icon on the page; other icons were read, so the reading works).",
+    "Signed in as the technician (Esther Howard), the same: story shown, no check mark."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96997-1-story-no-check-mark.png"
+   ],
+   "ticket": null
+  },
+  "C96999": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, compared with production as the test asks.",
+    "Staging: S2-36655 (\"ZZAUTOTEST F3 No Story Look\"), Line 1 \"Service - Cabin air filter\" with no tech story: the Story row reads \"Add tech story for this line\", no check mark anywhere.",
+    "Production, opened read-only (build v26.40.19-d2441a9): S2-378, line \"EMpty LIne\" with no story: the same Story row and the same \"Add tech story for this line\", no check mark.",
+    "The two look the same: same prompt and layout, no new mark, nothing missing."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96999-1-staging-line.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96999-2-production-line.png"
+   ],
+   "ticket": null
+  },
+  "C97000": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "S2-36656: Line 1 with a story, Line 2 without.",
+    "On the work order page neither line shows any icon, badge or colour about the story; Line 2 shows only the usual \"Add tech story for this line\".",
+    "Same in the technician's view (Esther Howard)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97000-1-no-new-marker.png"
+   ],
+   "ticket": null
+  },
+  "C368141": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "A user who never changed anything (\"Nora New\", read in the same run) has Assigned Techs on, directly to the right of Lines.",
+    "My own user (who had turned it off earlier): turned on in the column menu, its column sits directly after Lines (Lines, Assigned Techs, Created On, Total Price).",
+    "Turned off, its column no longer shows; turned back on, it is again directly after Lines."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368141-1-assigned-techs-after-lines.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96979-1-new-user-tech-view-columns.png"
+   ],
+   "ticket": null
+  },
+  "C368142": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Work order S2-36652 with three lines: Line 2 has Jenny Wilson scheduled; Line 3 has Ralph Edwards and Dana Ortiz scheduled; no labor technicians.",
+    "Lines tab: Line 2's Labor row reads \"Jenny Wilson\" instead of \"Unassigned\".",
+    "Line 3's Labor row reads \"Dana Ortiz, Ralph Edwards\" (2 names).",
+    "Neither row shows a \"Needs techs\" badge or any other badge."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368142-1-scheduled-names.png"
+   ],
+   "ticket": null
+  },
+  "C368143": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Work order S2-36653: Line 1 has no labor technician and nobody scheduled; its Labor row reads \"Unassigned\".",
+    "After Ralph Edwards was set as Line 1's labor technician, the row reads \"Ralph Edwards\".",
+    "Note: Ralph Edwards was given to Line 1 with the same save the labor screen makes, not by clicking through that screen."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368143-1-labor-tech-set.png"
+   ],
+   "ticket": null
+  },
+  "C96998": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "The shop's \"Require tech stories\" setting was off; it was turned on for this check (read back on) and put back off afterwards (read back off).",
+    "S2-36657: Line 1 story \"First note\" added and saved, then edited to \"First note, edited\" and saved; the edited text shows.",
+    "Line 2 with no story, Complete: the \"Tech stories\" window opens asking for the story and \"Complete Line\" stays unavailable; the line is not completed.",
+    "After adding \"Second note\", Line 2 completes and reads Complete."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96998-1-complete-needs-story.png"
+   ],
+   "ticket": null
+  }
+ }
+}
