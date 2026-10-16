@@ -82,69 +82,65 @@
    {
     "id": "unassign",
     "name": "Unassigned",
-    "header": "person Unassigned assignment 0 0 work orders",
+    "header": "Unassigned 0 0 work orders",
     "pinned": "no pin control",
     "cards": [],
     "empty": "Drag a work order here to assign it",
-    "left": 47
+    "left": 17
    },
    {
     "id": "a7748aa8",
     "name": "Aaa ZZAUTOTEST Jenny Pinned",
-    "header": "drag_indicator AZ Aaa ZZAUTOTEST Jenny Pinned Inactive push_pin assignment 0 0 work orders",
+    "header": "AZ Aaa ZZAUTOTEST Jenny Pinned Inactive 0 0 work orders",
     "pinned": "true",
     "cards": [],
     "empty": "No work orders",
-    "left": 351
-   },
-   {
-    "id": "309924ab",
-    "name": "Aaa ZZAUTOTEST Tara Lead",
-    "header": "drag_indicator AZ Aaa ZZAUTOTEST Tara Lead push_pin assignment 1 1 work order",
-    "pinned": "false",
-    "cards": [
-     "S2-35908"
-    ],
-    "empty": null,
-    "left": 655
-   },
-   {
-    "id": "82608f53",
-    "name": "Aaa ZZAUTOTEST Theresa Pinned",
-    "header": "drag_indicator AZ Aaa ZZAUTOTEST Theresa Pinned assignment 1 1 work order",
-    "pinned": "no pin control",
-    "cards": [
-     "S2-35909"
-    ],
-    "empty": null,
-    "left": 959
+    "left": 321
    },
    {
     "id": "c57d19d7",
     "name": "Aaron Baker",
-    "header": "drag_indicator AB Aaron Baker push_pin assignment 0 0 work orders",
+    "header": "AB Aaron Baker 0 0 work orders",
     "pinned": "false",
     "cards": [],
     "empty": "Drag a work order here to assign it",
-    "left": 1263
+    "left": 625
    },
    {
     "id": "52b5c2b4",
     "name": "Aaron Zed",
-    "header": "drag_indicator AZ Aaron Zed push_pin assignment 0 0 work orders",
+    "header": "AZ Aaron Zed 0 0 work orders",
     "pinned": "false",
     "cards": [],
     "empty": "Drag a work order here to assign it",
-    "left": 1567
+    "left": 929
    },
    {
     "id": "7f85bc58",
     "name": "Admin ShopView",
-    "header": "drag_indicator AS Admin ShopView push_pin assignment 0 0 work orders",
+    "header": "AS Admin ShopView 0 0 work orders",
     "pinned": "false",
     "cards": [],
     "empty": "Drag a work order here to assign it",
-    "left": 1871
+    "left": 1233
+   },
+   {
+    "id": "1bdce760",
+    "name": "Advisor Analysis",
+    "header": "AA Advisor Analysis 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 1537
+   },
+   {
+    "id": "b06dd063",
+    "name": "Ahtasham Admin",
+    "header": "AA Ahtasham Admin 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 1841
    }
   ],
   "step8": {
@@ -152,7 +148,7 @@
    "column": {
     "id": "82608f53",
     "name": "Aaa ZZAUTOTEST Theresa Pinned",
-    "header": "drag_indicator AZ Aaa ZZAUTOTEST Theresa Pinned assignment 1 1 work order",
+    "header": "AZ Aaa ZZAUTOTEST Theresa Pinned 1 1 work order",
     "pinned": "no pin control",
     "cards": [
      "S2-35909"
@@ -162,234 +158,144 @@
    }
   },
   "step9": {
-   "from": "on screen @667",
-   "to": "on screen @342",
-   "whileHolding": [
-    {
-     "ms": 106,
-     "kind": "new text",
-     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
-     "cls": "board-drag-overlay"
-    },
-    {
-     "ms": 320,
-     "kind": "new text",
-     "text": "This technician can't be assigned work orders.",
-     "cls": "board-drag-denied row no-wrap items-center"
-    }
-   ],
+   "from": "not drawn",
+   "to": "on screen @312",
+   "dragError": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_card_9d075fc2-daa9-4d38-8101-82be5be3e632\"]').first()\n",
    "shiftPrompt": null,
    "message": [],
-   "watched": [
-    {
-     "ms": 106,
-     "kind": "new text",
-     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
-     "cls": "board-drag-overlay"
-    },
-    {
-     "ms": 320,
-     "kind": "new text",
-     "text": "This technician can't be assigned work orders.",
-     "cls": "board-drag-denied row no-wrap items-center"
-    }
-   ],
+   "watched": [],
    "leads": [
     "S2-35908 lead=Aaa ZZAUTOTEST Tara Lead",
     "S2-35909 lead=Aaa ZZAUTOTEST Theresa Pinned"
    ]
   },
   "step10": {
-   "from": "on screen @667",
-   "to": "on screen @950",
-   "whileHolding": [
-    {
-     "ms": 88,
-     "kind": "new text",
-     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
-     "cls": "board-drag-overlay"
-    },
-    {
-     "ms": 277,
-     "kind": "new text",
-     "text": "This technician can't be assigned work orders.",
-     "cls": "board-drag-denied row no-wrap items-center"
-    }
-   ],
+   "from": "not drawn",
+   "to": "not drawn",
+   "dragError": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_card_9d075fc2-daa9-4d38-8101-82be5be3e632\"]').first()\n",
    "shiftPrompt": null,
    "message": [],
-   "watched": [
-    {
-     "ms": 88,
-     "kind": "new text",
-     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
-     "cls": "board-drag-overlay"
-    },
-    {
-     "ms": 277,
-     "kind": "new text",
-     "text": "This technician can't be assigned work orders.",
-     "cls": "board-drag-denied row no-wrap items-center"
-    }
-   ],
+   "watched": [],
    "leads": [
     "S2-35908 lead=Aaa ZZAUTOTEST Tara Lead",
     "S2-35909 lead=Aaa ZZAUTOTEST Theresa Pinned"
    ]
   },
   "step12": {
-   "from": "on screen @971",
-   "to": "on screen @38",
-   "whileHolding": [
-    {
-     "ms": 98,
-     "kind": "new text",
-     "text": "S2-35909 ZZAUTOTEST C368131 Pinned Gone",
-     "cls": "board-drag-overlay"
-    },
-    {
-     "ms": 404,
-     "kind": "new text",
-     "text": "This technician can't be assigned work orders.",
-     "cls": "board-drag-denied row no-wrap items-center"
-    }
-   ],
+   "from": "not drawn",
+   "to": "on screen @8",
+   "dragError": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_card_5efbbc38-859f-47d9-af6b-61799333a4c2\"]').first()\n",
    "shiftPrompt": null,
-   "message": [
-    "Lead technician removed"
-   ],
-   "watched": [
-    {
-     "ms": 98,
-     "kind": "new text",
-     "text": "S2-35909 ZZAUTOTEST C368131 Pinned Gone",
-     "cls": "board-drag-overlay"
-    },
-    {
-     "ms": 404,
-     "kind": "new text",
-     "text": "This technician can't be assigned work orders.",
-     "cls": "board-drag-denied row no-wrap items-center"
-    },
-    {
-     "ms": 1687,
-     "kind": "new text",
-     "text": "drag_indicator AF Amy Fernandez push_pin assignment 0 0 work orders assignment Drag a work order here to assign it",
-     "cls": "board-column"
-    },
-    {
-     "ms": 1859,
-     "kind": "message",
-     "text": "Lead technician removed",
-     "cls": "q-notification row items-stretch q-notification--standard bg"
-    },
-    {
-     "ms": 2253,
-     "kind": "new text",
-     "text": "S2-35909 Approved more_horiz Customer ZZAUTOTEST C368131 Pinned Gone ZZC131 Progress 0% Total price $0.00",
-     "cls": "board-column__card"
-    }
-   ],
+   "message": [],
+   "watched": [],
    "leads": [
     "S2-35908 lead=Aaa ZZAUTOTEST Tara Lead",
-    "S2-35909 lead=none"
+    "S2-35909 lead=Aaa ZZAUTOTEST Theresa Pinned"
    ]
   },
   "step13": {
-   "unassignedHoldsWo2": true,
-   "techCColumn": "no column",
-   "columnsRead": 180
+   "unassignedHoldsWo2": false,
+   "techCColumn": "still has a column",
+   "columnsRead": 264
   },
   "step15": {
    "first": [
     {
      "id": "unassign",
      "name": "Unassigned",
-     "header": "person Unassigned assignment 3456 3456 work orders",
+     "header": "Unassigned 3623 3623 work orders",
      "pinned": "no pin control",
      "cards": [
       "S2-33692",
-      "S2-33465",
       "S2-33043",
+      "S2-36633",
       "S2-32262",
       "S2-33697",
       "S2-34872",
-      "S2-33742",
       "S2-33104",
       "S2-32260",
       "S2-32218",
-      "S2-32992"
+      "S2-32992",
+      "S2-35104"
      ],
      "empty": null,
-     "left": 47
+     "left": 17
     },
     {
      "id": "a7748aa8",
      "name": "Aaa ZZAUTOTEST Jenny Pinned",
-     "header": "drag_indicator AZ Aaa ZZAUTOTEST Jenny Pinned Inactive push_pin assignment 0 0 work orders",
+     "header": "AZ Aaa ZZAUTOTEST Jenny Pinned Inactive 0 0 work orders",
      "pinned": "true",
      "cards": [],
      "empty": "No work orders",
-     "left": 351
+     "left": 321
     },
     {
      "id": "309924ab",
      "name": "Aaa ZZAUTOTEST Tara Lead",
-     "header": "drag_indicator AZ Aaa ZZAUTOTEST Tara Lead push_pin assignment 1 1 work order",
+     "header": "AZ Aaa ZZAUTOTEST Tara Lead 1 1 work order",
      "pinned": "false",
      "cards": [
       "S2-35908"
      ],
      "empty": null,
-     "left": 655
+     "left": 625
+    },
+    {
+     "id": "82608f53",
+     "name": "Aaa ZZAUTOTEST Theresa Pinned",
+     "header": "AZ Aaa ZZAUTOTEST Theresa Pinned 1 1 work order",
+     "pinned": "no pin control",
+     "cards": [
+      "S2-35909"
+     ],
+     "empty": null,
+     "left": 929
     },
     {
      "id": "c57d19d7",
      "name": "Aaron Baker",
-     "header": "drag_indicator AB Aaron Baker push_pin assignment 6 6 work orders",
+     "header": "AB Aaron Baker 16 16 work orders",
      "pinned": "false",
      "cards": [
-      "S2-35703",
-      "S2-35704",
       "S2-35705",
+      "S2-35703",
+      "S2-33465",
       "S2-35708",
       "S2-35710",
-      "S2-34149"
+      "S2-34149",
+      "S2-36395",
+      "S2-36396",
+      "S2-36421",
+      "S2-36422",
+      "S2-36630"
      ],
      "empty": null,
-     "left": 959
+     "left": 1233
     },
     {
      "id": "52b5c2b4",
      "name": "Aaron Zed",
-     "header": "drag_indicator AZ Aaron Zed push_pin assignment 0 0 work orders",
-     "pinned": "false",
-     "cards": [],
-     "empty": "No work orders",
-     "left": 1263
-    },
-    {
-     "id": "7f85bc58",
-     "name": "Admin ShopView",
-     "header": "drag_indicator AS Admin ShopView push_pin assignment 10 10 work orders",
+     "header": "AZ Aaron Zed 25 25 work orders",
      "pinned": "false",
      "cards": [
-      "S2-31594",
-      "S2-32136",
-      "S2-33016",
-      "S2-35248",
-      "S2-35249",
-      "S2-35300",
-      "S2-35313",
-      "S2-35392",
-      "S2-35706",
-      "S2-35707"
+      "S2-36365",
+      "S2-35704",
+      "S2-36364",
+      "S2-36366",
+      "S2-36367",
+      "S2-36368",
+      "S2-36369",
+      "S2-36370",
+      "S2-36371",
+      "S2-36372",
+      "S2-36373"
      ],
      "empty": null,
-     "left": 1567
+     "left": 1537
     }
    ],
-   "techCColumn": "no column",
+   "techCColumn": "has a column",
    "techBColumn": {
     "id": "a7748aa8-3421-40ca-8d03-bdd68581606e",
     "name": "Aaa ZZAUTOTEST Jenny Pinned",
@@ -398,7 +304,7 @@
     "pinned": "true",
     "pinDisabled": false,
     "empty": "No work orders",
-    "left": 351
+    "left": 321
    }
   },
   "restore": {
@@ -503,205 +409,119 @@
    {
     "id": "unassign",
     "name": "Unassigned",
-    "header": "person Unassigned assignment 0 0 work orders",
+    "header": "Unassigned 0 0 work orders",
     "pinned": "no pin control",
     "cards": [],
     "empty": "Drag a work order here to assign it",
-    "left": 47
-   },
-   {
-    "id": "3b235e82",
-    "name": "Aaa ZZAUTOTEST Ina Inactive",
-    "header": "drag_indicator AZ Aaa ZZAUTOTEST Ina Inactive Inactive push_pin assignment 1 1 work order",
-    "pinned": "false",
-    "cards": [
-     "S2-35910"
-    ],
-    "empty": null,
-    "left": 351
-   },
-   {
-    "id": "f6a72868",
-    "name": "Aaa ZZAUTOTEST Mia Holder",
-    "header": "drag_indicator AZ Aaa ZZAUTOTEST Mia Holder push_pin assignment 1 1 work order",
-    "pinned": "false",
-    "cards": [
-     "S2-35911"
-    ],
-    "empty": null,
-    "left": 655
-   },
-   {
-    "id": "8e5c0f52",
-    "name": "Aaa ZZAUTOTEST Mona Moved",
-    "header": "drag_indicator AZ Aaa ZZAUTOTEST Mona Moved assignment 1 1 work order",
-    "pinned": "no pin control",
-    "cards": [
-     "S2-35912"
-    ],
-    "empty": null,
-    "left": 959
+    "left": 17
    },
    {
     "id": "c57d19d7",
     "name": "Aaron Baker",
-    "header": "drag_indicator AB Aaron Baker push_pin assignment 0 0 work orders",
+    "header": "AB Aaron Baker 0 0 work orders",
     "pinned": "false",
     "cards": [],
     "empty": "Drag a work order here to assign it",
-    "left": 1263
+    "left": 321
    },
    {
     "id": "52b5c2b4",
     "name": "Aaron Zed",
-    "header": "drag_indicator AZ Aaron Zed push_pin assignment 0 0 work orders",
+    "header": "AZ Aaron Zed 0 0 work orders",
     "pinned": "false",
     "cards": [],
     "empty": "Drag a work order here to assign it",
-    "left": 1567
+    "left": 625
    },
    {
     "id": "7f85bc58",
     "name": "Admin ShopView",
-    "header": "drag_indicator AS Admin ShopView push_pin assignment 0 0 work orders",
+    "header": "AS Admin ShopView 0 0 work orders",
     "pinned": "false",
     "cards": [],
     "empty": "Drag a work order here to assign it",
-    "left": 1871
+    "left": 929
+   },
+   {
+    "id": "1bdce760",
+    "name": "Advisor Analysis",
+    "header": "AA Advisor Analysis 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 1233
+   },
+   {
+    "id": "b06dd063",
+    "name": "Ahtasham Admin",
+    "header": "AA Ahtasham Admin 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 1537
+   },
+   {
+    "id": "052a953c",
+    "name": "Ahtasham Service Advisor",
+    "header": "AS Ahtasham Service Advisor 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 1841
    }
   ],
   "step4": {
-   "from": "on screen @667",
-   "to": "on screen @342",
-   "whileHolding": [
-    {
-     "ms": 122,
-     "kind": "new text",
-     "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
-     "cls": "board-drag-overlay"
-    },
-    {
-     "ms": 335,
-     "kind": "new text",
-     "text": "This technician can't be assigned work orders.",
-     "cls": "board-drag-denied row no-wrap items-center"
-    }
-   ],
+   "from": "not drawn",
+   "to": "not drawn",
+   "dragError": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_card_3d537ffe-ec66-489d-979e-69a2c661be52\"]').first()\n",
    "shiftPrompt": null,
    "message": [],
-   "watched": [
-    {
-     "ms": 122,
-     "kind": "new text",
-     "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
-     "cls": "board-drag-overlay"
-    },
-    {
-     "ms": 335,
-     "kind": "new text",
-     "text": "This technician can't be assigned work orders.",
-     "cls": "board-drag-denied row no-wrap items-center"
-    }
-   ],
+   "watched": [],
    "leads": [
     "S2-35910 lead=Aaa ZZAUTOTEST Ina Inactive",
     "S2-35911 lead=Aaa ZZAUTOTEST Mia Holder",
     "S2-35912 lead=Aaa ZZAUTOTEST Mona Moved"
    ]
   },
-  "step5": [
-   "Aaa ZZAUTOTEST Mia Holder"
-  ],
+  "step5": [],
   "step6": {
-   "from": "on screen @667",
-   "to": "on screen @950",
-   "whileHolding": [
-    {
-     "ms": 112,
-     "kind": "new text",
-     "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
-     "cls": "board-drag-overlay"
-    },
-    {
-     "ms": 338,
-     "kind": "new text",
-     "text": "This technician can't be assigned work orders.",
-     "cls": "board-drag-denied row no-wrap items-center"
-    }
-   ],
+   "from": "not drawn",
+   "to": "not drawn",
+   "dragError": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_card_3d537ffe-ec66-489d-979e-69a2c661be52\"]').first()\n",
    "shiftPrompt": null,
    "message": [],
-   "watched": [
-    {
-     "ms": 112,
-     "kind": "new text",
-     "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
-     "cls": "board-drag-overlay"
-    },
-    {
-     "ms": 338,
-     "kind": "new text",
-     "text": "This technician can't be assigned work orders.",
-     "cls": "board-drag-denied row no-wrap items-center"
-    }
-   ],
+   "watched": [],
    "leads": [
     "S2-35910 lead=Aaa ZZAUTOTEST Ina Inactive",
     "S2-35911 lead=Aaa ZZAUTOTEST Mia Holder",
     "S2-35912 lead=Aaa ZZAUTOTEST Mona Moved"
    ]
   },
-  "step7": [
-   "Aaa ZZAUTOTEST Mia Holder"
-  ],
+  "step7": [],
   "step9": [
    {
     "name": "Unassigned",
     "count": 0,
     "rows": [],
     "pin": null
-   },
-   {
-    "name": "Aaa ZZAUTOTEST Ina Inactive",
-    "count": 1,
-    "rows": [
-     "S2-35910"
-    ],
-    "pin": "false"
-   },
-   {
-    "name": "Aaa ZZAUTOTEST Mia Holder",
-    "count": 1,
-    "rows": [
-     "S2-35911"
-    ],
-    "pin": "false"
-   },
-   {
-    "name": "Aaa ZZAUTOTEST Mona Moved",
-    "count": 1,
-    "rows": [
-     "S2-35912"
-    ],
-    "pin": null
    }
   ],
   "step9Headers": [
-   "drag_indicator expand_more AZ Aaa ZZAUTOTEST Ina Inactive Inactive push_pin assignment 1 1 work order",
-   "drag_indicator expand_more AZ Aaa ZZAUTOTEST Mona Moved assignment 1 1 work order"
+   "not drawn",
+   "not drawn"
   ],
   "step10": {
-   "from": "on screen @30",
-   "to": "on screen @30",
+   "from": "off screen @0",
+   "to": "off screen @0",
    "whileHolding": [
     {
-     "ms": 151,
+     "ms": 102,
      "kind": "new text",
      "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
      "cls": "board-drag-overlay"
     },
     {
-     "ms": 379,
+     "ms": 326,
      "kind": "new text",
      "text": "This technician can't be assigned work orders.",
      "cls": "board-drag-denied row no-wrap items-center"
@@ -711,13 +531,13 @@
    "message": [],
    "watched": [
     {
-     "ms": 151,
+     "ms": 102,
      "kind": "new text",
      "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
      "cls": "board-drag-overlay"
     },
     {
-     "ms": 379,
+     "ms": 326,
      "kind": "new text",
      "text": "This technician can't be assigned work orders.",
      "cls": "board-drag-denied row no-wrap items-center"
@@ -731,17 +551,17 @@
    "rowGroup": "f6a72868-2816-4817-8f77-641c928b2e62"
   },
   "step11": {
-   "from": "on screen @30",
-   "to": "on screen @30",
+   "from": "off screen @0",
+   "to": "off screen @0",
    "whileHolding": [
     {
-     "ms": 150,
+     "ms": 101,
      "kind": "new text",
      "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
      "cls": "board-drag-overlay"
     },
     {
-     "ms": 430,
+     "ms": 360,
      "kind": "new text",
      "text": "This technician can't be assigned work orders.",
      "cls": "board-drag-denied row no-wrap items-center"
@@ -751,13 +571,13 @@
    "message": [],
    "watched": [
     {
-     "ms": 150,
+     "ms": 101,
      "kind": "new text",
      "text": "S2-35911 ZZAUTOTEST C96970 Refused Drops",
      "cls": "board-drag-overlay"
     },
     {
-     "ms": 430,
+     "ms": 360,
      "kind": "new text",
      "text": "This technician can't be assigned work orders.",
      "cls": "board-drag-denied row no-wrap items-center"
