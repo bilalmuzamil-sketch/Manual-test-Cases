@@ -4,6 +4,13 @@
 **TestRail:** group **12166** "Dashboard (Sep 2026)", suite 1 — empty at start (0 subfolders, 0 cases).
 Link: https://shopview.testrail.io/index.php?/suites/view/1&group_id=12166
 
+## 🟢 16 Oct 2026 — PRD v50 + Chris Ward's answers 17-18 applied (read this first)
+- PRD Confluence 788430850 now **v50** (16 Oct 14:55 UTC): S5-R3 "Top: None" (v49, answer 18), S4-R3 Parts / Labor / Other (v50). Saved
+  `currency-2026-10-16/CONFLUENCE-788430850-v50-2026-10-16.md`; diff `PRD-DIFF-v48-vs-v50.json`. Answer 17: no change.
+- QA lead approved and we wrote: C351714, C88604 (Automated), C88636 edited; **C614718** new (first Dashboard case in the two-audience
+  shape; setup file `setup/DASHBOARD-SETUP-FILE.md`). Run 525: 119 tests. Record: `currency-2026-10-16/ANSWERS-17-18-IMPACT-2026-10-16.md`.
+- The three edited tests still show Passed from the old wording.
+
 ## 🟢 14 Oct 2026 (evening) — AUTHORISED TestRail write landed (read this first)
 - QA lead: "update ALL the test cases which Nebojsa or Vladimir have not last updated" → "Only the 6 with behaviour changes" + "Yes,
   create all 17"; coordinator added C88645 and C351716 from the full audit (same authorisation). Tools and logs:

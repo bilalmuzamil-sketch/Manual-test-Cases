@@ -36,3 +36,13 @@ Vladimir's 10 cases: none checks the Top line or the Revenue split.
 
 ## Build note
 The design's row-15 build screenshot (14 Oct) shows no "Top:" line at zero, and Ayesha's question shows the build still puts supplies into Labor. A case updated to the new rules is expected to fail on today's build until the developers ship the change.
+
+## Applied 16 Oct 2026 (QA lead: "1. Yes … 2. YES … 3. YES … add that to the test run too")
+Tool `apply_v50.py` (edit lock, verbatim-quote gate against PRD v50, marker last), logs in `applied/`. PRD re-checked just before the write: still v50.
+| Case | What changed | Read-back | Run 525 test |
+|---|---|---|---|
+| C351714 https://shopview.testrail.io/index.php?/cases/view/351714 | Step 2 now expects "Top: None" and "$0.00 (12mo) · 0 customers"; S5-R3 and S5-R9 quoted; PRD v50 + answers 9 and 18 in Source; divergence sentence (design row 15 shows no line); build stamp marked "before the expected results changed" | 200, fields OK, nothing else changed, automation status kept | https://shopview.testrail.io/index.php?/tests/view/3742900 (Passed, from the old wording) |
+| C88604 https://shopview.testrail.io/index.php?/cases/view/88604 (Automated) | S4-R3 quote refreshed to v50; result says there is no "Other" share; Source v42 → v50 | same | https://shopview.testrail.io/index.php?/tests/view/3698721 (Passed, old wording) |
+| C88636 https://shopview.testrail.io/index.php?/cases/view/88636 | S4-R3 quote refreshed; "spec does not say" Blocked line replaced by "setup not done" if supplies appear; no "Other" share; Source v48 → v50 | same | https://shopview.testrail.io/index.php?/tests/view/3698753 (Passed, old wording) |
+| C614718 https://shopview.testrail.io/index.php?/cases/view/614718 NEW, section 12180 | Revenue tile shows shop supplies as an Other share; two-audience shape; setup file `build/dashboards/setup/DASHBOARD-SETUP-FILE.md`; AUTOMATION: HOLD - not yet build-verified | 200, fields OK, section OK | https://shopview.testrail.io/index.php?/tests/view/4006698 (Untested) |
+Run 525: 118 → 119 tests, union only, nothing dropped, no test id or status changed. All other 121 dashboard cases unchanged (updated_on re-read).
