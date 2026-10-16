@@ -1073,3 +1073,10 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   on 16 Oct): mark Blocked under Rule 112 until it is Ready for QA. Measured today: List and card pills 21 px; the card has no number.
 - **Progress above 0 on demand:** progress = clocked labour minutes / Estimated Time; set Line 1's Estimated Time to 0.1 h in Edit Line and
   clock its technician ~100 s from their own window (29%). #staging #deleted-user #staff #rule112 #progress → L0405
+
+## L0407 — 2026-10-16 — Check whether the Admin and Analyst 1 cookies share ONE Google sign-in before planning parallel sessions
+- L0404 holds only when the two `sv_sso_session` values DIFFER. On 16 Oct evening the QA lead sent Admin and Analyst 1 cookies
+  with the SAME `sv_sso_session`. Analyst 1's PHPSESSID answered 200, and the Admin PHPSESSID went 401 straight after: one Google
+  sign-in, one app session (L0394).
+- So compare the two `sv_sso_session` values first. Same value: Admin quick-login and Analyst 1 take turns, and a two-person test
+  (C97012) needs another second person, such as Tech quick-login in a separate run (L0405 route). Different values: both can run at once. #staging #signin → L0394, L0404
