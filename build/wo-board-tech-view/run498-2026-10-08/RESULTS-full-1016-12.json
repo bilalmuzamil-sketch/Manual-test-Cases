@@ -3,7 +3,7 @@
   "env": "staging",
   "build": "v26.40.19-1493c63",
   "date": "17 October 2026",
-  "note": "full staging run 16-17 Oct 2026, batch 12 = queue steps 30 (re-run), 31"
+  "note": "full staging run 16-17 Oct 2026, batch 12 = queue steps 30 (re-run), 31, 32"
  },
  "results": {
   "C581895": {
@@ -18,6 +18,54 @@
    ],
    "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11336.",
    "todo": "What needs to be done: re-run this test (script fix-up: c581895-v2 could not sign in) and read steps 3 to 12 on the screen."
+  },
+  "C581915": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: this test waits on a change that is not on the staging build yet (its case reads \"Not available on Build to test Yet\"): the Technician filter in Tech View and Board View, ticket SV-11326 (status \"Open\", read 17 Oct 2026).",
+    "Seen today: Tech View, Board View and List all offer only Search, Status, Assigned to me and Asset on Site; there is no Technician filter to open, so steps 5 to 13 could not be done."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581915-1-no-technician-filter.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11326.",
+   "todo": "What needs to be done: run this test once SV-11326 is on staging."
+  },
+  "C581916": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: this test waits on a change that is not on the staging build yet (its case reads \"Not available on Build to test Yet\"): the Technician filter in Tech View and Board View, ticket SV-11326 (status \"Open\", read 17 Oct 2026).",
+    "Seen today: Tech View's filter bar has no Technician filter, so no technician could be chosen; every technician group still shows."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581916-1-no-technician-filter.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11326.",
+   "todo": "What needs to be done: run this test once SV-11326 is on staging."
+  },
+  "C581917": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: this test waits on a change that is not on the staging build yet (its case reads \"Not available on Build to test Yet\"): the Technician filter in Tech View and Board View, ticket SV-11326 (status \"Open\", read 17 Oct 2026).",
+    "Seen today: Tech View's filter bar has no Technician filter, so it could not be combined with the other filters. The other filters themselves worked: with Status \"Paid\" the page read \"No work orders match these filters\" with a \"Clear all filters\" button."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581917-1-no-technician-filter.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11326.",
+   "todo": "What needs to be done: run this test once SV-11326 is on staging."
+  },
+  "C581918": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: this test waits on a change that is not on the staging build yet (its case reads \"Not available on Build to test Yet\"): the Technician filter in Tech View and Board View, ticket SV-11326 (status \"Open\", read 17 Oct 2026).",
+    "Seen today: Tech View's filter bar has no Technician filter, so no choice could be made for List to ignore or for Tech View to bring back."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581918-1-no-technician-filter.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11326.",
+   "todo": "What needs to be done: run this test once SV-11326 is on staging."
   }
  }
 }
