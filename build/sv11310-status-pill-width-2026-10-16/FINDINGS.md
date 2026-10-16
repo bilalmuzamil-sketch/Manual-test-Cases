@@ -65,3 +65,9 @@ SV-11310 comment **78903** (14:33 CDT): attachments 62473 (before/after), 62474 
 
 ## Learning check
 One new recipe recorded in the playbook (§AK area is unrelated; added under the Work Orders list notes): a saved **Status sort** on a staging account groups the list so most screens show one status — use a **search that returns mixed statuses** (e.g. a partial work-order number) to get a mixed screen; and a pill/badge "same width" check must compare **per screen and across tabs**, because the Work Orders table column auto-sizes to the widest content rendered. Nothing else new.
+
+## Re-check after the mid-afternoon redeploy (v26.40.19-754919e, 20:22 GMT)
+S2-363 mixed screen: 5 statuses all 113.98 px; S2-1650: 3 statuses all 67.09 px; single searches S2-33363 113.98 / S2-4802 58.45 / S2-33121 67.00 — identical to production and to 1493c63. PRD v63: S6-R2a / S2-R22 unchanged. Comment 78903 still holds; not edited.
+
+## SV-11464 vs the spec (raise with QA lead)
+PRD v62/v63 S6-R2a: "List's status pill is unchanged: for the same work orders on the same page, every List pill is the same width and height as in production, including production's matching widths down the column"; S2-R22: "With Ready for Review on the page that is about the design's 132px; with only short statuses it is narrower." Change log v53 (Chris, 15 Oct): "we cannot break what people currently have." → SV-11464 (filed on the QA lead's instruction) asks for the behaviour the spec keeps on purpose. Not changed or closed by us — QA lead's decision.

@@ -29,3 +29,6 @@ Build marker re-read unchanged; ticket re-read (TESTING STAGE, 0 comments); PRD 
 
 ## Posted
 Comment **78904**; attachments 62477 (exhibit), 62478 (recording). Read back: green panel first, media file 818x1029 then mp4, table 6 rows, 2 quotes, 4 steps.
+
+## Re-check after the mid-afternoon redeploy (v26.40.19-754919e, 20:22 GMT)
+All cards at all three densities re-measured (72 / 65 / 65 cards): number, customer, total 14px/500, unit line 12px/500 — unchanged. PRD v63 leaves S6-R4 and S2-R23 word-identical. Verdict on comment 78904 still holds; the comment (tested on 1493c63) was not edited.
