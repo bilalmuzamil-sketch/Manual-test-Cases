@@ -17,6 +17,8 @@
    "ZZAUTOTEST No portal",
    "Service Advisor",
    "Parts Manager",
+   "ZZAUTOTEST F3 Stale Drop Dispatcher Role",
+   "QA SV-11241 NoFin",
    "Service Manager",
    "Office User",
    "ZZAUTOTEST No Vendor Order View",
@@ -41,6 +43,94 @@
    "ZZAUTOTEST No Parts View",
    "Foreman",
    "ZZAUTOTEST No Work Orders Or Vendors"
+  ]
+ },
+ "C96979": {
+  "nora": {
+   "prefBefore": null,
+   "list": {
+    "heads": [
+     "On Site",
+     "Status",
+     "Number",
+     "Customer",
+     "Asset",
+     "Unit",
+     "VIN/Serial #",
+     "Progress",
+     "Service Advisor",
+     "Lead Technician",
+     "Clocked In",
+     "Lines",
+     "Total Price",
+     "Created On"
+    ],
+    "on": [
+     "vehicle",
+     "vin",
+     "progress",
+     "serviceAdvisor",
+     "technician",
+     "clockedInTechnicians",
+     "linesCount",
+     "totalPrice",
+     "startDate"
+    ]
+   },
+   "tech": {
+    "heads": [
+     "Status",
+     "Waiting On Parts",
+     "Number",
+     "Customer",
+     "Unit",
+     "Asset",
+     "Progress",
+     "Service Advisor",
+     "Clocked In",
+     "Lines",
+     "Assigned Techs",
+     "Created On",
+     "Total Price"
+    ],
+    "on": [
+     "unreceived_part_requests_count",
+     "unit",
+     "vehicle",
+     "progress",
+     "service_advisor",
+     "clocked_in_technicians",
+     "lines_count",
+     "assigned_techs",
+     "start_date",
+     "total_price"
+    ]
+   }
+  },
+  "mine": [
+   "ok",
+   "ok"
+  ],
+  "mineAfterReload": [
+   "vehicle",
+   "vin",
+   "progress",
+   "technician",
+   "clockedInTechnicians",
+   "linesCount",
+   "totalPrice",
+   "startDate"
+  ],
+  "techChange": "ok",
+  "mineAfterSwitchAndReload": [
+   "vehicle",
+   "vin",
+   "progress",
+   "technician",
+   "clockedInTechnicians",
+   "linesCount",
+   "totalPrice",
+   "startDate"
   ]
  },
  "C96980": {
@@ -121,20 +211,19 @@
    "s1": "ok",
    "s2": "ok",
    "techHeads": [
-    "On Site",
     "Status",
+    "Waiting On Parts",
     "Number",
     "Customer",
-    "Asset",
     "Unit",
-    "VIN/Serial #",
+    "Asset",
     "Progress",
     "Service Advisor",
-    "Lead Technician",
     "Clocked In",
     "Lines",
-    "Total Price",
-    "Created On"
+    "Assigned Techs",
+    "Created On",
+    "Total Price"
    ],
    "card": {
     "number": "S2-35527",
@@ -157,24 +246,25 @@
   "setOff": "200 now seeFinancialData=false",
   "withoutFinance": {
    "rowFound": true,
-   "rowText": "location_on Approved S2-35527 ZZAUTOTEST F2 No Dollar Amount.. ZZF2ND ZZWOB179200729419 content_copy 0% ZZ WOB Runner Esther Howard 0 Today ",
+   "rowText": " Approved — S2-35527 ZZAUTOTEST F2 No Dollar Amount.. ZZF2ND 0% ZZ WOB Runner 0 EH 2 days ago  | S2-35527 |  | ",
    "techHeads": [
-    "On Site",
     "Status",
+    "Waiting On Parts",
     "Number",
     "Customer",
-    "Asset",
     "Unit",
-    "VIN/Serial #",
+    "Asset",
     "Progress",
     "Service Advisor",
-    "Lead Technician",
     "Clocked In",
     "Lines",
+    "Assigned Techs",
     "Created On"
    ],
    "techOffered": [
+    "On Site",
     "Waiting On Parts",
+    "Unit",
     "Asset",
     "VIN/Serial #",
     "Progress",
