@@ -1,0 +1,91 @@
+# Run 498 full staging re-run, order (16 Oct 2026). One step per line: block|script|ONLY ids|extra env|mode|note
+# modes: analyst = Analyst 1 (second company) block, runs FIRST, no ensure-heavy (an Admin quick-login would end the Analyst 1 session)
+#        setup = Admin set-up/clean-up step, exit code logged; ensure = ensure-heavy.mts first (exit 0 required) then ONLY=<ids> wob-run.sh
+#        nodirect = like ensure, but the script signs in itself (npx tsx from global-search/e2e, not wob-run.sh)
+#        todo / todo-2day / draft = NOT run unless RUN_TODO=1 / RUN_GA=1 / RUN_DRAFTS=1; last = signout-fix, always the final step
+A-analyst|analyst-ready.mts|-|-|analyst|sign Analyst 1 in (form sign-in only if its session is gone), save PHPSESSID, print build marker
+A-analyst|stg-orgb-seed.mts|-|-|analyst|company B data + orgb-seed-stg.json for C154650/C368175 (json backed up; restored if the seed could not sign in)
+A-analyst|stg-orgb-lead.mts|-|-|analyst|company B work order S-2 led by Scope OrgB Tech
+A-analyst|C590131-orgb.mts|C590131|-|analyst|
+A-analyst|C368191-orgb-steps.mts|C368191|-|analyst|
+B-setup|build-marker.mts|-|-|setup|staging build marker
+B-setup|stg6-tz.mts|-|TZ_TARGET=Asia/Karachi|setup|Rule 125: Heavy Duty zone = browser zone, proved by the Schedule now-pill; exit 0 required
+B-setup|signin-check-stg4.mts|-|-|setup|Admin sign-in proved
+B-setup|role-viewonly-stg4.mts|-|-|setup|role ZZAUTOTEST WO View Only back to View only
+B-setup|clocks-stg4.mts|-|-|setup|stop test technicians' running clocks
+C-read|s1-batch1.mts|C96909,C154885|-|ensure|
+C-read|s1-batch2.mts|C96921|-|ensure|
+C-read|s1-batch2b.mts|C96913,C154884|-|ensure|
+C-read|s1-batch3.mts|C96911,C96914,C96915,C96920|WOB_PIN_NAMES=Ayesha Khan|ensure|
+C-read|s1-batch4b.mts|C96917|WOB_PIN_NAMES=Ayesha Khan|ensure|
+C-read|s2-batchA.mts|C96924,C96925,C96928,C96931,C96932,C96933,C96935,C96937,C96939,C368128,C368129|WOB_PIN_NAMES=Ayesha Khan,Bilal Muzamil|ensure|
+C-read|s3-batchC.mts|C96950|-|ensure|
+C-read|s4-batchA.mts|C96956,C96957,C96959,C96967,C96969,C368163|WOB_PIN_NAMES=-|ensure|
+C-read|s4-batchC.mts|C154888,C154889,C154890,C368134,C368135,C368136|-|ensure|
+C-read|s5-batchB.mts|C96979,C96980,C96986|-|ensure|
+C-read|s7-batch.mts|C96993,C96994,C96995,C96996,C96997,C96999,C97000,C368141,C368142,C368143|WOB_SCALE=2|ensure|
+C-read|s8-batch.mts|C96998|-|ensure|
+C-read|s9-batchA5.mts|C97001,C97002,C97004,C97006,C97007,C97008,C97009,C97011,C97013,C368144,C368145,C368148|WOB_SCALE=2|ensure|
+C-read|s9-batchB.mts|C97005,C368147|-|ensure|
+C-read|s11-batch.mts|C97028,C97031,C154649,C368154,C368158,C368159|-|ensure|
+C-read|moved-stg4.mts|C96970,C368131|WOB_PIN_NAMES=-|ensure|
+C-read|stg6.mts|C96965,C154648,C368133,C581889,C581890,C581891|-|nodirect|
+C-read|stg-new5.mts|C581892,C581896|-|ensure|
+C-read|stg-fix-new3.mts|C581893,C581894|-|ensure|
+C-read|c581895-v2.mts|C581895|-|ensure|
+C-read|c581895-staff-carol.mts|C581895|-|ensure|companion read for C581895 step 1 (Carol Neal staff record)
+C-read|tech-filter-stg6.mts|C581915,C581916,C581917,C581918|WOB_SCALE=2|ensure|
+C-read|high1-fix.mts|C368166,C368167,C368168|-|ensure|
+C-read|high1-fix5.mts|C368172,C368173,C368174,C368177,C368178,C368188,C368189,C368190,C368192,C368202|WOB_SCALE=2|ensure|
+C-read|C368179-drop-exact.mts|C368179|-|ensure|
+C-read|C96962-line-audit-stg.mts|C96962|-|ensure|
+C-read|medium-fix3.mts|C368220,C368222,C368224,C368225,C368226,C368227,C368228,C368229,C368230,C368231,C368233,C368234,C368235,C368245,C368246|-|ensure|
+C-read|parts-batch.mts|C368213|WOB_SCALE=2|ensure|
+C-read|parts-filter2.mts|C368218,C368219,C368223|-|ensure|
+C-read|editwo-fix.mts|C368169,C368170,C368171|-|ensure|
+C-read|rest2-batch.mts|C368197|-|ensure|
+C-read|imp-fix3.mts|C368238,C368239|-|ensure|
+C-read|analytics-batch.mts|C97023,C97024,C97025,C97027,C97029,C97035,C368153,C368155|-|ensure|
+C-read|c368149-two.mts|C97010|WOB_LIVE=1|ensure|
+C-read|high1-batch.mts|C368176,C368180,C368181,C368182,C368183,C368184,C368185,C368186,C368187|-|ensure|
+C-read|sort-fix5.mts|C368196|-|ensure|
+C-read|clocks-stg4.mts|-|-|setup|sort-fix5/high1-batch leave clocks running (L0342)
+D-location|s1-batch4a.mts|C96910,C96912,C96919,C96923|-|ensure|
+D-location|s2-batchB.mts|C96936,C368126|WOB_PIN_NAMES=-|ensure|
+D-location|s2-batchC.mts|C96926,C96927,C96929,C96930,C96934,C96938,C368125,C368127,C368161|WOB_PIN_NAMES=Esther Howard|ensure|
+D-location|s3-batchA.mts|C96940,C96941,C96942,C96944,C96946,C96947,C96948,C96949,C96951,C96952,C96953,C96954,C96955|WOB_PIN_NAMES=-|ensure|
+D-location|s3-batchB.mts|C96943,C154886,C368132|-|ensure|
+D-location|s4-batchD.mts|C96968,C96971,C96974,C368137,C368138,C368139|-|ensure|
+D-location|s4-batchE.mts|C96960,C96961,C368140|WOB_PIN_NAMES=Esther Howard,Ralph Edwards|ensure|
+D-location|s4-batchG.mts|C96963,C96964,C96972|-|ensure|
+D-location|s4-batchH.mts|C96958,C96966|-|ensure|
+D-location|s5-batchA.mts|C96977,C96981|-|ensure|
+D-location|s5-batchA3.mts|C96975,C96976,C96983|-|ensure|
+D-location|s5-batchC.mts|C96978,C96985|-|ensure|
+D-location|s6-batch.mts|C96987,C96990,C96991|WOB_SCALE=2|ensure|
+D-location|s6b-batch.mts|C96988,C96989,C96992|WOB_SCALE=2|ensure|
+D-location|s11-fix3.mts|C97030,C97032,C368157|WOB_SCALE=2|ensure|
+D-location|ui-fallback.mts|C96982,C96984|-|ensure|
+D-location|ps-counts.mts|C368215,C368217,C368241,C368243,C368244|-|ensure|
+D-location|high2-batch.mts|C368193,C368194,C368195,C368198,C368199,C368200,C368201,C368203,C368205,C368206,C368207,C368208,C368209,C368210,C368212,C368214|-|ensure|
+D-location|design-stg5.mts|C590110,C590111,C590113,C590115,C590116,C590118,C590121,C590122,C590123,C590124,C590125,C590126,C590127,C590129,C590130,C598326|QA_DPR=2|ensure|
+D-location|notech-stg4.mts|C368130|-|ensure|
+D-location|orgb-fix3.mts|C154650,C368175|-|ensure|
+D-location|c368175-api.mts|C368175|-|ensure|companion read for C368175 step 4 (whole line-technician list)
+D-location|C368156-pins-loc-stg.mts|C368156|-|ensure|
+D-location|s9-fix7.mts|C97003,C368146|-|ensure|
+D-location|role-viewonly-stg4.mts|-|-|setup|s9-fix7 switches Create & Edit on the view-only role; put it back
+E-todo|C97012-two-people.mts|C97012|-|todo|route broken: Analyst 1 now shares the Admin Google sign-in, so its Dev Mode Tech quick-login would end the Admin session; needs a second sign-in that does not use the shared SSO
+E-todo|design-stg5.mts|C590112,C590114,C590117,C590119,C590120,C590128|QA_DPR=2|todo|six design cases rewritten 16 Oct with new readings (Status column width, cell alignment, Tech View pin, column order after pin, avatar sizes at each density); C590120 still Blocked by SV-11405
+E-todo|kbd-fix4.mts|C97020,C97021,C97022,C368150,C368151,C368152|WOB_LIVE=1|todo|six keyboard cases rewritten 16 Oct to PRD v61 (one Tab stop per view, arrows inside); see full-changed-1016.md
+E-todo|s1-batch4b.mts|C96916|WOB_PIN_NAMES=Ayesha Khan|todo|C96916 rewritten 16 Oct: start on the Work Orders tab with Status=Approved and Search; read tab + Status chip after each Back
+E-todo|s3-batchA.mts|C96945|WOB_PIN_NAMES=-|todo|C96945 rewritten 16 Oct: reach the card by Search > Tab > arrow keys (not card.focus()); read menu closed and button hidden after Escape/mouse-off
+E-todo|s4-batchA.mts|C96973|WOB_PIN_NAMES=-|todo|C96973 Expected changed 15 Oct: read that your column is hidden and the empty-state words + Clear all filters button
+E-todo|ga-week.mts|C97026,C97033,C97034|PHASE=day1+c97026|todo-2day|two-day analytics: RUN_GA=day1 runs PHASE=day1+c97026 (all three); the NEXT Pakistan-time day RUN_GA=day2 runs PHASE=day2 ONLY=C97033,C97034 (ga-week.mts header)
+F-draft|C614711-stg.mts|C614711|-|draft|DRAFT, not yet run
+F-draft|C614714-stg.mts|C614714|-|draft|DRAFT, not yet run
+F-draft|C614715-stg.mts|C614715|-|draft|DRAFT, not yet run
+F-draft|C614716-stg.mts|C614716|-|draft|DRAFT, not yet run
+F-draft|C614717-stg.mts|C614717|-|draft|DRAFT, not yet run
+F-draft|C614719-stg.mts|C614719|-|draft|DRAFT, not yet run
+G-last|signout-fix.mts|C368240|-|last|signs the shared session out: ALWAYS last
