@@ -1,0 +1,28 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "15 October 2026",
+  "note": "batch 32b lead list Failed"
+ },
+ "results": {
+  "C97033": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, over two days (day 1 on 15 Oct, day 2 on 16 Oct, Pakistan time), by recording what the browser sent to Google Analytics.",
+    "Four test users were each offered the VIN/Serial field on the board; 2 of the 4 turned it on: 2 of 4 = 50%, as the test expects.",
+    "Three of them were offered Total price (the fourth user's role cannot see money, so it was never offered); 2 of the 3 turned it on: 2 of 3 = 66.7%, as the test expects.",
+    "The fourth user's field list shows no Total price at all.",
+    "That user's role was set back to how it was after the visit.",
+    "Each user was counted once (one id each)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97033-ga-day1.png",
+    "evidence/staging-full-2026-10-14/annotated/C97033-ga-day2.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing."
+  }
+ }
+}
