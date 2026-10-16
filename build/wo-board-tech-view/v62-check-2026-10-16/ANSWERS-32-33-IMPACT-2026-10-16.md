@@ -25,3 +25,9 @@ Not covered by any case: Unassigned collapsed or empty → first Tab lands on th
 - S11-R1: C96945 (Automated), C97020, C97021 (edited 17:10 UTC by someone else, QA lead: not to be restored), C368150, C368152.
 - S2-R23: C590110, C590114, C590117, C590119, C590128, C614716, C614717.
 The setup file `../v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md` also still lists questions 32 and 33 as open and quotes the v61 text.
+
+## QA lead's decisions and what was done (16 Oct 2026)
+1. Quote refresh in the 12 cases: **no** (left as they are).
+2. New case: **yes** → **C614719** https://shopview.testrail.io/index.php?/cases/view/614719 "First Tab skips a collapsed or empty Unassigned to the first technician", section 13246 (S11), refs SV-10054, two-audience shape, quotes S11-R1 / S2-R2 / S2-R17 verbatim from PRD v62, AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build. Tool `new_case_first_tab.py`; read back 200, fields OK. PRD re-checked just before the write: still v62.
+   Run 498: 277 → 278 tests, union only, nothing dropped, no status changed. Test: https://shopview.testrail.io/index.php?/tests/view/4007027 (Untested).
+3. Setup file: **yes** → `update_setup_file.py`: header now 22 cases and PRD v62; the 7 S2-R23 and 5 S11-R1 quotes now carry the v62 text; open questions 32 and 33 marked ANSWERED; SETUP-C614719 recipe, mapping row, traceability and VIU row added. (The cases themselves still quote v61, by the QA lead's choice.)
