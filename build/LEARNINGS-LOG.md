@@ -957,3 +957,14 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 - To list "tests whose latest result is not from staging", page `get_tests` and read each test's latest result (~270 calls, more
   than 2 min: run it in the background). A comment that names "Staging Heavy Duty" is NOT a staging result: match the "Tested on
   staging" / "Tested on QA branch" opening line instead. #routine #staging #signin #testrail → L0372, L0393, L0394
+
+## L0399 — 2026-10-16 — The staging test account's location DRIFTS between runs; check it before every test
+- 16 Oct, staging: the first round of re-runs made work orders at the wrong location (numbers "S1-…" / "S3-…", not "S2-…"), and
+  most scripts timed out looking for things that were at Heavy Duty. When the probe started, the account (ZZ WOB Runner) sat at
+  "DVI Test", a location none of our scripts use. So something outside the run changes it.
+- The C368156 switch-back that "failed twice" did NOT reproduce. Done the way a person does it (`loc-switchback-probe.mts`:
+  menu > Lethbridge, then menu > Heavy Duty) it took on the first try. It is not a product fault and was not reported (Rule 104).
+- `POST /api/iam/change-location` answered 200 but did NOT change the top bar after a reload. Switch through the menu (`switchLocUI`).
+- Every re-run now starts with `ensure-heavy.mts` (menu switch to Heavy Duty, top bar read back, exit 3 = skip the test). Scripts
+  that switch location themselves go last (`rerun6-1016b.sh`). Ticks in the location list can't be read from the text: every row
+  carries a "check" icon. #staging #location #rule104 → L0394
