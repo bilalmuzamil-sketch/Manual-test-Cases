@@ -1,0 +1,31 @@
+import {session,toView} from './rec.mjs'; import fs from 'fs';
+const quick=process.argv[2]||'tech'; const SEARCH='ZZAUTOTEST F2 Tech Pin Order';
+const DPR=+(process.env.DPR||1); const s=await session({quick,vp:{width:1440,height:900},dpr:DPR}); const p=s.page; const out={quick,DPR,mk:await s.marker(),cases:[]};
+const get=async()=>(await s.api('/api/users/me/preferences/work-orders-list')).json.data.value;
+const put=async v=>(await s.api('/api/users/me/preferences/work-orders-list',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({value:v})})).status;
+const before=await get(); fs.writeFileSync(`/tmp/qa11310/pref02b-before-${quick}.json`,JSON.stringify(before,null,1));
+const FM='07253c44-3af0-4164-8a6d-0039dd74034c', PM='55319163-e4c8-4099-82b2-4f5e9e98c125';
+const nav=[]; p.on('framenavigated',f=>{ if(f===p.mainFrame()) nav.push(f.url()); });
+const heads=()=>p.evaluate(()=>[...document.querySelectorAll('[data-test-id^=button_tech_view_group_toggle_]')].map(b=>{const id=b.getAttribute('data-test-id').slice(30); return {id,y:Math.round(b.getBoundingClientRect().y),name:document.querySelector(`[data-test-id=tech_view_group_name_${id}]`)?.innerText.trim(),pin:document.querySelector(`[data-test-id=button_tech_view_pin_${id}] svg`)?.getAttribute('data-icon')};}).filter(h=>h.y>0&&h.y<900).sort((a,b)=>a.y-b.y));
+const row=num=>p.evaluate(num=>{const r=[...document.querySelectorAll('[data-test-id^=tech_view_row_]')].filter(r=>/^tech_view_row_[0-9a-f-]{36}$/.test(r.getAttribute('data-test-id'))).find(r=>r.innerText.includes(num)); if(!r) return null; const b=r.getBoundingClientRect(); return {num,x:560,y:b.y+b.height/2};},num);
+const fmt=h=>h.map(x=>x.name+(x.pin==='pin-off'?'*':'')).slice(0,7).join(' > ');
+const load=async()=>{ await s.go('/workorders?tab=all&search='+encodeURIComponent(SEARCH)); await p.waitForTimeout(4500); await toView(p,'tech_view'); await p.waitForSelector('[data-test-id^=button_tech_view_pin_]'); await p.waitForTimeout(1500); for(const id of [FM,PM]){ const ex=await p.getAttribute(`[data-test-id=button_tech_view_group_toggle_${id}]`,'aria-expanded'); if(ex!=='true'){ await p.click(`[data-test-id=button_tech_view_group_toggle_${id}]`); await p.waitForTimeout(1200);} } await p.mouse.move(1430,890); await p.waitForTimeout(800); };
+const drag=async(fromId,to,tag,useName=false)=>{ const g=useName?await p.locator(`[data-test-id=tech_view_group_name_${fromId}]`).boundingBox():await p.locator(`[data-test-id=tech_view_group_drag_handle_${fromId}]`).boundingBox(); const fx=g.x+g.width/2, fy=g.y+g.height/2; const n0=nav.length; const h0=await heads();
+ await p.mouse.move(fx,fy); await p.mouse.down(); for(let i=1;i<=30;i++){ await p.mouse.move(fx+(to.x-fx)*i/30,fy+(to.y-fy)*i/30); await p.waitForTimeout(40);} await p.waitForTimeout(300); await p.screenshot({path:`/tmp/qa11310/d02b${DPR>1?'x2':''}-${quick}-${tag}-hold.png`}); await p.mouse.up(); await p.waitForTimeout(2500);
+ const r={tag,from:h0.find(h=>h.id===fromId)?.name,useName,dir:to.y>fy?'down':'up',releasedOver:to.num,urlAfter:p.url(),navigations:nav.slice(n0),opened:/\/workorders\/[0-9a-f-]{36}/.test(p.url()),orderBefore:fmt(h0),orderAfter:fmt(await heads())}; out.cases.push(r); console.log(JSON.stringify(r)); await p.screenshot({path:`/tmp/qa11310/d02b${DPR>1?'x2':''}-${quick}-${tag}-after.png`});
+ if(r.opened){ await load(); } };
+try{
+ await load(); const ic=await p.evaluate(id=>document.querySelector(`[data-test-id=button_tech_view_pin_${id}] svg`)?.getAttribute('data-icon'),FM); if(ic==='pin'){ await p.click(`[data-test-id=button_tech_view_pin_${FM}]`); await p.waitForTimeout(2000);} await p.mouse.move(1430,890); await p.waitForTimeout(800);
+ out.h0=fmt(await heads()); console.log('start',out.h0);
+ let hs=await heads(); if(hs.filter(h=>h.pin==='pin-off').length<2){ const ab=hs.find(h=>h.pin==='pin'&&h.id!==PM&&h.name!=='Unassigned'); await p.click(`[data-test-id=button_tech_view_pin_${ab.id}]`); await p.waitForTimeout(2000); await p.mouse.move(1430,890); hs=await heads(); console.log('pinned extra',ab.name,'->',fmt(hs)); } let pins=hs.filter(h=>h.pin==='pin-off'); const otherPinned=pins.find(h=>h.id!==FM);
+ await drag(otherPinned.id,await row('S2-35338'),'A-pinned-onto-pinned-row');
+ await drag(FM,await row('S2-35339'),'B-pinned-onto-unpinned-row');
+ hs=await heads(); const fmY=hs.find(h=>h.id===FM).y; const below=hs.filter(h=>h.pin==='pin-off'&&h.y>fmY)[0]||hs.filter(h=>h.pin==='pin-off'&&h.id!==FM)[0];
+ await drag(below.id,await row('S2-35338'),'C-pinned-by-name',true);
+ await drag(PM,await row('S2-35338'),'D-unpinned-onto-row');
+ hs=await heads(); const fy2=hs.find(h=>h.id===FM).y; const lowPin=hs.filter(h=>h.pin==='pin-off'&&h.y>fy2).pop(); if(lowPin) await drag(lowPin.id,await row('S2-35338'),'F-pinned-upward-onto-row');
+ const t=await row('S2-35339'); await p.mouse.click(t.x,t.y); await p.waitForTimeout(3000); out.click={num:t.num,url:p.url()}; console.log('E-click',JSON.stringify(out.click));
+}catch(e){ console.log('ERR',e.message.slice(0,300)); }
+const cur=await get(); out.putR=await put({...cur,pinnedTechnicianIds:before.pinnedTechnicianIds,technicianOrder:before.technicianOrder,collapsedGroups:before.collapsedGroups});
+const aft=await get(); out.restored=['pinnedTechnicianIds','technicianOrder','collapsedGroups'].every(k=>JSON.stringify(aft[k])===JSON.stringify(before[k])); console.log('restored',out.restored);
+fs.writeFileSync(`/tmp/qa11310/d02b${DPR>1?'x2':''}-${quick}.json`,JSON.stringify(out,null,1)); await s.close();
