@@ -3203,4 +3203,6 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
 1. DONE 16 Oct: C581895 updated (Retest); C96963, C97009, C368158, C368130 quotes refreshed (no retest); SV-11318/SV-11320 footers fixed.
 2. Run 498: 28 tests set to Retest and 3 Untested (first run) — need a staging run (test-run lane).
 3. C590127, C97022, C581915–C581918: Blocked in run 498 on SV-11326 (Technician filter, Open); rerun when it is done.
+5. PRD moved v54 → v58 on 15 Oct (S11-R1/S11-R3 keyboard rewritten; new S1-N1c, S2-R11a, S2-R13a, S2-R23; S2-R20, S2-R22, Out of Scope changed): our WO Board cases still quote v54 — needs a full pass when the QA lead orders it.
+6. C614711 (SV-11416, deleted lead technician): update to the PO's ruling once SV-11416 is decided.
 4. Vladimir: C96929 and C96978 expected results changed (note in followup-2026-10-16/NOTE-FOR-VLADIMIR-2026-10-16.md) — QA lead to send.

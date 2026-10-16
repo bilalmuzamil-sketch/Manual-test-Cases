@@ -5,7 +5,7 @@
 ## 🟢 CURRENT STATE — 16 Oct 2026: Chris Ward's answers 12–31 (PRD v54) applied
 42 of our cases updated + 1 new (C598326, section 73780), all read back OK, 43/43 runnable, run 498 = 272 tests (union only).
 Retest on staging: 27 · first run: 3 · no retest: 13. Report with every C-id, test link and doc: `answers-2026-10-15/APPLY-REPORT.md`.
-16 Oct follow-up: C581895 updated (Retest), 4 stale-quote cases refreshed, SV-11318/SV-11320 footers fixed; run 498: 28 Retest, 3 Untested (first run).
+16 Oct: new C614711 for SV-11416 (deleted lead technician; Failed in run 498, now 273 tests). PRD is now v58 (cases quote v54). 16 Oct follow-up: C581895 updated (Retest), 4 stale-quote cases refreshed, SV-11318/SV-11320 footers fixed; run 498: 28 Retest, 3 Untested (first run).
 
 ## (previous) 14 Oct 2026 Currency Check V2 (done)
 - **14 Oct write (QA lead's go-ahead):** C154648, C368133, C96965 edited; new C581889, C581890, C581891; run 498 = 243.
