@@ -222,7 +222,12 @@ for (const id of ['C368242', 'C368243', 'C368244'] as const) await run(id, async
 // ---- part sales
 const custFor = async (name: string) => { const c = await customer(a, name); return c; };
 async function partSale(name: string) { const c: any = await custFor(name); const r = await a.post('/api/part-sales', { company_id: c.id ?? c.company_id });
-  const id = r.body?.data?.[0]?.id ?? r.body?.data?.id; const v = (await a.get(`/api/work-orders/view/${id}`)).body?.data; return { id, number: v?.number, create: say(r), c }; }
+  let id = r.body?.data?.[0]?.id ?? r.body?.data?.id ?? r.body?.data?.part_sale?.id ?? r.body?.data?.work_order?.id;
+  // 16 Oct 2026: on staging the create answer gave no id, the page opened /part-sale/undefined and fell back to the list. Record the
+  // answer's shape and find the new part sale by its customer instead.
+  (globalThis as any).__psCreate = { status: r.status, keys: Object.keys(r.body?.data ?? {}).slice(0, 12), body: JSON.stringify(r.body ?? '').replace(/[0-9a-f]{32,}/g, '<h>').slice(0, 300) };
+  if (!id) { const l = (await a.get(`/api/part-sales?search=${encodeURIComponent(name)}&pagination[rowsPerPage]=10`)).body?.data; const arr = (Array.isArray(l) ? l : l?.part_sales ?? l?.work_orders ?? l?.collection ?? []) as any[]; id = arr[0]?.id; (globalThis as any).__psCreate.found = arr.length; }
+  const v = (await a.get(`/api/work-orders/view/${id}`)).body?.data; return { id, number: v?.number, create: say(r), c }; }
 async function addPartUI(id: string, term: string, qty = '1') { await p.goto(APP + `/parts/part-sale/${id}/part-requests`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
   for (let i = 0; i < 3 && await p.locator('.q-dialog').count(); i++) { await p.keyboard.press('Escape'); await p.waitForTimeout(600); } await p.locator('[data-test-id="button_add_part"]').first().click({ force: true }); await p.waitForTimeout(1500);
   const sel = p.locator('[data-test-id="select_part"]').first(); await sel.click(); await p.keyboard.type(term, { delay: 60 }); await p.waitForTimeout(2500);
@@ -265,7 +270,7 @@ await run('C368216', async () => { const ps = R.ps ?? await partSale(`ZZAUTOTEST
   o.techField = o.labels.filter((x: string) => /technician|sales rep/i.test(x)); await shot(p, 'C368216-card'); R.C368216 = o; });
 // 15 Oct 2026 (wave 18, fifth pass): C368217 stopped at once with "Cannot read properties of undefined (reading 'evaluate')" — wob.mts
 // toasts() was called with no page in addPartManual and in the receive/return steps; every call now passes the page (toasts(p)).
-await run('C368217', async () => { const ps = await partSale(`ZZAUTOTEST Part Sale Counts ${RUNNO}`); const o: any = {}; R.C368217 = o;   // 15 Oct (wave 25): readings kept if a later step fails
+await run('C368217', async () => { const ps = await partSale(`ZZAUTOTEST Part Sale Counts ${RUNNO}`); const o: any = { psCreate: (globalThis as any).__psCreate }; R.C368217 = o;   // 15 Oct (wave 25): readings kept if a later step fails
   o.p1 = await addPartManual(ps.id, 'Brake Pads'); o.p2 = await addPartManual(ps.id, 'Brake Pads');
   // FIX: the part sale's number is read off its own page (the view call returned none); the setup follows the case's own clicks
   const page = APP + `/parts/part-sale/${ps.id}/part-requests`; const st = (x: string) => { o.stages = [...(o.stages ?? []), x]; };

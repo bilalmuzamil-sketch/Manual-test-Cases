@@ -8,3 +8,7 @@ for pair in "C368217 ps-counts.mts" "C368156 rest-batch.mts" "C368178,C368179 hi
   ONLY=$1 timeout 1800 ./wob-run.sh $2 > $L/${2%.mts}.log 2>&1; echo "$(date -u +%T) end $2 exit $?" >> $L/queue.out
 done
 echo "$(date -u +%T) queue finished" >> $L/queue.out
+# 16 Oct: C368217 again with the part-sale id fix (first try opened /part-sale/undefined)
+source stg-env.sh; echo "$(date -u +%T) start ps-counts.mts ONLY=C368217 (retry)" >> $L/queue.out
+ONLY=C368217 timeout 1800 ./wob-run.sh ps-counts.mts > $L/ps-counts-retry.log 2>&1; echo "$(date -u +%T) end ps-counts retry exit $?" >> $L/queue.out
+echo "$(date -u +%T) queue finished (with retry)" >> $L/queue.out
