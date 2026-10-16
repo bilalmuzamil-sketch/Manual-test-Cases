@@ -1,12 +1,13 @@
 """Turn a Playwright session recording into the MP4 that goes at the bottom of a Jira QA comment.
 
 usage: python3 finish_recording.py <video.webm> <startSec> <out.mp4> [--width 1280] [--crf 28]
-                                   [--hold 0.8] [--end-hold 2.0] [--keep-idle]
+                                   [--hold 1.5] [--end-hold 2.0] [--keep-idle]
 
 - trims everything before <startSec> (the login / wake-up), so the film opens on the app
 - CUTS THE IDLE PAUSES (Standing Rule 107, QA lead 2026-10-16): every stretch where nothing on the
   screen changes for longer than --hold seconds is shortened to --hold seconds, so the film shows only
-  the activity, back to back. The very last still stretch keeps --end-hold seconds so the final result
+  the activity, back to back. The top 8% of the frame (the app's top bar, where a clock-in timer ticks)
+  is ignored when deciding what is still. The very last still stretch keeps --end-hold seconds so the final result
   can be read. --keep-idle switches this off (never use it for a Jira recording).
 - H.264 + yuv420p + faststart: plays inline in Jira's media viewer and every browser
 - prints duration before/after, idle removed, size and resolution so the pre-post gate can record them
@@ -25,7 +26,12 @@ def _duration(path):
 
 def _still_spans(path, min_still):
     """Return [(start, end)] of every stretch where the picture does not change for >= min_still s."""
-    err = subprocess.run([FF, '-i', path, '-vf', f'freezedetect=n=0.0008:d={min_still}', '-map', '0:v',
+    # n=0.006: Playwright's webm carries compression speckle that a stricter n reads as movement, so a
+    # minute of waiting survived the cut at n=0.0008 (SV-11398, 2026-10-16). Pointer glides, dialogs,
+    # captions and value changes are far above this and are kept.
+    # the app's top bar is ignored: a running clock-in timer ticks there every second and would otherwise
+    # make a minute of waiting look like activity (SV-11398, 2026-10-16)
+    err = subprocess.run([FF, '-i', path, '-vf', f'crop=iw:ih*0.92:0:ih*0.08,freezedetect=n=0.006:d={min_still}', '-map', '0:v',
                           '-f', 'null', '-'], capture_output=True, text=True).stderr
     starts = [float(x) for x in re.findall(r'freeze_start: ([\d.]+)', err)]
     ends = [float(x) for x in re.findall(r'freeze_end: ([\d.]+)', err)]
@@ -36,7 +42,7 @@ def _still_spans(path, min_still):
     return spans, total
 
 
-def finish(src, start, out, width=1280, crf=28, hold=0.8, end_hold=2.0, keep_idle=False):
+def finish(src, start, out, width=1280, crf=28, hold=1.5, end_hold=2.0, keep_idle=False):
     # start 0.6 s AFTER the logged-in moment: the video timeline lags the wall clock, and a pre-roll
     # left the sign-in page in frame 0 (SV-9828, 2026-10-07) - which Jira then used as the preview image.
     tmp = out + '.trim.mp4'
@@ -77,5 +83,5 @@ def finish(src, start, out, width=1280, crf=28, hold=0.8, end_hold=2.0, keep_idl
 if __name__ == '__main__':
     a = sys.argv[1:]
     opt = lambda k, d: type(d)(a[a.index(k) + 1]) if k in a else d
-    finish(a[0], a[1], a[2], opt('--width', 1280), opt('--crf', 28), opt('--hold', 0.8),
+    finish(a[0], a[1], a[2], opt('--width', 1280), opt('--crf', 28), opt('--hold', 1.5),
            opt('--end-hold', 2.0), '--keep-idle' in a)
