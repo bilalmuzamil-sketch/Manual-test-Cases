@@ -1,0 +1,51 @@
+TITLE: Board View – Browser Back Loses the Board's Scroll Position and Switches the Tab from All to Work Orders
+TYPE: Story Defect · PARENT: SV-10044 (Switch between display options; Ready for QA, read live 16 Oct 2026 — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10044
+ALREADY REPORTED: none found among SV-11101, SV-11310, SV-11317 to SV-11326, SV-11338, SV-11393 to SV-11398 (titles read live 16 Oct 2026).
+SEEN ON: staging build {{v26.40.18-7d85b7d}}, 16 Oct 2026 (run 498, C96916), twice the same way.
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+NOTE: the Tech View half of the test was not judged (the scripted row click did not open the work order after the Back); check Tech View by hand before filing.
+
+h2. Description
+
+*After opening a work order from Board View and pressing the browser's Back button, the board should come back exactly where it was: the same sideways position, and the card that was at the top of the column back at the top.* On staging the board comes back at the far left, with the *Work Orders* tab chosen instead of *All*.
+
+For example,
+* the board was scrolled right to a technician near the end of the board and down that technician's column
+* after Back, the first columns (Unassigned, Aaron Baker …) are in view and the technician's column is gone from view
+* the tab under the page title has changed from *All* to *Work Orders*
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin and check the top bar shows *Staging Heavy Duty - 9919*.
+# Open *Work Orders*, click the *All* tab, type {{ZZAUTOTEST F1 Scroll Back Theresa}} in *Search* and click *Board View*.
+# Scroll the board to the right until *Theresa Webb*'s column is fully in view, and scroll down inside her column a few cards.
+# Click a card that is in view to open its work order.
+# Press the browser's *Back* button.
+#* The *Work Orders* tab is chosen instead of *All*.
+#* The board is at the far left; Theresa Webb's column is not in view.
+
+*Actual Result:*
+* The board's sideways and column scroll positions are lost, and the tab changes to Work Orders.
+
+*Expected Result:*
+* As the test expects: *"Step 9: the same technician columns are in view, at exactly the same sideways position as before. In {Technician-H}'s column the card that was at the top comes back at the top and is fully shown; it may sit up to one card away from the exact position you left."*
+
+h2. Screenshots
+
+!C96916-1-board-before-open.png|width=1000!
+!C96916-2-board-after-back.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.18-7d85b7d}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 16 Oct 2026
+* *User:* Admin
+
+h2. Sources
+
+* PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54, S1-R8 (as quoted in the test case):
+{quote}In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. Horizontal position comes back exactly. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position. List behaves as it does today.{quote}
+* Product owner answer: Chris Ward, WO Board and Tech View question sheet, answer 30 (15 Oct 2026).
+
+h2. Test case
+
+* [C96916 Browser Back restores the scroll position in Tech View and Board View|https://shopview.testrail.io/index.php?/cases/view/96916]

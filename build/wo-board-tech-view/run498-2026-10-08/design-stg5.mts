@@ -912,13 +912,16 @@ await run('C590131', async (o) => { // sticky column header and Unassigned group
   await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await W(800);
   for (let i = 0; i < 500 && Date.now() - t0 < 15 * 60_000; i++) {
     last = await D(p, firstTech);
-    if (last && last.gap <= 300 && last.gap > -60) { nid = last.id; break; }
+    // 16 Oct 2026 (third go): reaching the next group's header starts the next batch of Unassigned rows, which pushes it away again;
+    // so wait 3 s once it is near, and stop only if it is still near and the table did not grow
+    if (last && last.gap <= 300 && last.gap > -60) { await W(3000); const again: any = await D(p, firstTech); if (again && again.gap <= 300 && again.gap > -60 && again.scrollH === last.scrollH) { last = again; nid = last.id; break; } last = again; continue; }
     if (last && last.gap <= -60) { await p.evaluate(`document.querySelector('.q-table__middle').scrollTop += ${-last.gap + 250}`); await W(900); continue; }
     if (i % 10 === 0) o.s4_load.push(last ?? { i, none: true });
     await p.evaluate(`document.querySelector('.q-table__middle').scrollTop += 1200`); await W(700); }
   o.s4_nextGroup = { found: !!nid, seconds: Math.round((Date.now() - t0) / 1000), at: last };
   if (!nid) return;
-  const hdrs = `(function () { var th = document.querySelector('thead th'); var hb = th ? Math.round(th.getBoundingClientRect().bottom) : null; return { headingBottom: hb, headers: __D.qa('[data-test-id^="tech_view_group_"]').filter(function (e) { return /^tech_view_group_([0-9a-f-]{36}|unassigned)$/.test(e.getAttribute('data-test-id')); }).map(function (e) { var n = e.querySelector('[data-test-id^="tech_view_group_name_"]'); var d = e.querySelector('.tech-view-group-header') || e; return { group: e.getAttribute('data-test-id') === 'tech_view_group_unassigned' ? 'Unassigned' : 'next: ' + (n ? n.textContent.trim() : '?'), header: __D.box(d), row: __D.box(e) }; }).filter(function (h) { return h.header && h.header.b > 100 && h.header.y < 900; }),
+  // the header held under the headings is drawn as its own '.tech-view-group-header' element, not inside the group's row: read every one
+  const hdrs = `(function () { var th = document.querySelector('thead th'); var hb = th ? Math.round(th.getBoundingClientRect().bottom) : null; return { headingBottom: hb, headers: __D.qa('.tech-view-group-header').map(function (d) { var n = d.querySelector('[data-test-id^="tech_view_group_name_"]'); var tr = d.closest('[data-test-id^="tech_view_group_"]'); return { group: (n ? n.textContent.trim() : (d.innerText || '').replace(/\\s+/g, ' ').slice(0, 30)), inRow: !!tr, header: __D.box(d), position: getComputedStyle(d).position }; }).filter(function (h) { return h.header && h.header.b > 100 && h.header.y < 900; }),
     justUnderHeadings: hb ? (function () { var es = document.elementsFromPoint(300, hb + 8); var g = es.map(function (x) { return x.closest && x.closest('[data-test-id^="tech_view_group_"]'); }).filter(Boolean)[0]; if (!g) return es[0] ? 'row/other: ' + String(es[0].closest('tr') ? (es[0].closest('tr').innerText || '').slice(0, 30) : es[0].className).slice(0, 40) : null; var n = g.querySelector('[data-test-id^="tech_view_group_name_"]'); return n ? n.textContent.trim() : g.getAttribute('data-test-id'); })() : null }; })()`;
   await p.evaluate(`document.querySelector('.q-table__middle').scrollTop += ${(last?.gap ?? 220) - 220}`); await W(1500);
   o.s4_s5_walk = []; const shotsAt = new Set([0, 8, 10, 12, 14, 16]);

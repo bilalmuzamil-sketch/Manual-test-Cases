@@ -989,3 +989,25 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 - On 16 Oct at 08:10 UTC another session set 28 tests in run 498 to Retest (Chris Ward's answers 12–31, PRD v54), added C598326, and
   rewrote C581895. Our counts from the previous hour were stale. Count the run live before every report and say WHO changed what
   (`get_results` created_by/created_on). #testrail #build #cross-session → L0398, L0399
+
+## L0402 — 2026-10-16 — Run 498 re-runs on v26.40.18: queue waiters, Tech View traps, and staff vs account names on staging
+- **Queue waiters:** a background `while pgrep -f "rerun-1016c.sh"; do sleep; done; ./rerun-1016c.sh …` matches ITS OWN command line and
+  waits for ever. Wait on the running queue's PID (`while kill -0 <pid>`) or on a line in `logs-1016c/queue.out` ("end <tag>") plus
+  `! pgrep -f "^/bin/bash ./rerun-1016c.sh"`. `rerun-1016c.sh` stops the queue when a log shows Google's sign-in or `sso_required`.
+- **Tech View traps (staging):** Unassigned opens expanded with ~3,530 rows, so pinned technicians' headers are not drawn until it is
+  collapsed (`collapseUn`). Its rows load in BATCHES: jumping to `scrollHeight` lands in the technician groups after it, and nearing the
+  next group starts the next batch, which pushes that group away (C590131 steps 4–5 were not reached; the 16 Oct script waits 3 s and
+  re-checks). The header held under the headings is its own `.tech-view-group-header` element, not inside the group's row. The heading row
+  is sticky per `th`, so measure `thead th`, not `thead`.
+- **Users' saved choices bite:** Admin ShopView had groups saved collapsed and a pin (Tech View rows hidden); the runner's Tech View had
+  Assigned Techs OFF, and with no saved columns Tech View starts with Assigned Techs off and VIN/Lead on (SV-11317). Clear and restore the
+  preference inside the test.
+- **Keyboard (C97021):** Tab stops on ONE card (Board View) or the first group header (Tech View) and then leaves; arrows move between
+  cards. In the Reassign dialog, arrows from the search box do nothing: Tab to the first row, then arrow down. Headless Chromium ignores
+  Alt+Left; use `page.goBack()`.
+- **Profile menu theme:** "Light" and "Dark" are two buttons in ONE menu row; click the button by its exact word.
+- **Names can differ on staging (corrects C581895's set-up note):** Carol Neal's staff record reads "Carol Neal" but List's Lead
+  Technician shows "David Sparks" (no staff member of that name); Tech View/Board View show "Carol Neal". Use her when a test needs the two
+  names to differ (`c581895-v2.mts`, `c581895-staff-carol.mts`).
+- **Ticket status matters:** SV-11101 read OBSOLETE on 16 Oct while C96929 still fails; read statuses live before linking. SV-11310 (List
+  pill widths) exists and covers C598326 step 3. #staging #techview #keyboard #queue #rule104 → L0394, L0399, L0401

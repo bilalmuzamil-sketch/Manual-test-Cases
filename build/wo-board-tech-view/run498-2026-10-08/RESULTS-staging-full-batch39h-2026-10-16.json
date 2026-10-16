@@ -1,0 +1,45 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.18-7d85b7d",
+  "date": "16 October 2026",
+  "note": "batch 39h: sticky Unassigned header (design-stg5) and Back position (s1-batch4b), 16 Oct 09:40-09:54 UTC"
+ },
+ "results": {
+  "C590131": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: steps 4 and 5 (the next group's header pushing the Unassigned header off) were not reached by the test script, so they are not judged.",
+    "Step 3: while scrolling down through Unassigned (count 3534), the column header row stayed at the top and the \"Unassigned\" header, with its arrow and count, stayed just under it.",
+    "Steps 4 and 5: Unassigned loads its rows in batches. When the first technician's group header (Aaron Baker) came near the top, the next batch of Unassigned rows loaded and pushed it down again, and the script's slow walk did not reach it. This is a test-script limit, not a product fault.",
+    "The same push between two technician groups was seen today in test C96935 (one header held at a time)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C590131-1-unassigned-header-held.png"
+   ],
+   "not_observed": "Steps 4 and 5: the hand-over from the Unassigned header to the next group's header.",
+   "ticket": null,
+   "todo": "What needs to be done: by hand, open Tech View, scroll to the end of Unassigned (keep scrolling while more rows load), and check that the next group's header pushes the Unassigned header off and takes its place under the column headings."
+  },
+  "C96916": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F1 Scroll Back Theresa\" with 20 Approved work orders led by Theresa Webb (Technician-H, her column is at the far right of the board) and 2 led by each of seven other technicians.",
+    "Steps 4 to 6 (Board View): the board was scrolled right until Theresa Webb's column was fully in view, then her column was scrolled down until S2-36407 was the card at its top.",
+    "Steps 7 and 8: a card in view (S2-36409) was clicked and its work order opened; then the browser's Back button was used.",
+    "Step 9: the page came back on the \"Work Orders\" tab instead of \"All\", with the board at the far left: Theresa Webb's column and S2-36407 were no longer in view. The sideways position and the card at the top were not kept. The same happened on a second try.",
+    "Steps 10 to 15 (Tech View) were not judged: after that Back, the row the test script clicked did not open its work order, so Back could not be checked there.",
+    "This problem has no ticket yet; it is with the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C96916-1-board-before-open.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C96916-2-board-after-back.png"
+   ],
+   "not_observed": "Steps 10 to 15 (Tech View): the scripted row click did not open the work order.",
+   "ticket": "Ticket: not filed yet; this problem is with the QA lead for a decision.",
+   "ticket_held": true,
+   "todo": "What needs to be done: wait for the QA lead's decision on the ticket; when it is fixed on staging, run this test again, including the Tech View part by hand."
+  }
+ }
+}
