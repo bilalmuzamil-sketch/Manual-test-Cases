@@ -1,0 +1,11 @@
+import {open} from './qa.mjs'; import fs from 'fs';
+const C=JSON.parse(fs.readFileSync('/tmp/qa11398/cookies.json'));
+const s=await open({env:'staging',dir:'/tmp/qa11310',cookies:C,quick:'admin',vp:{width:1600,height:1000},dpr:2}); const p=s.page;
+const reqs=[]; p.on('request',r=>{const u=r.url(); if(/api\//.test(u)&&!/\.(js|css|png)/.test(u)) reqs.push(r.method()+' '+u.replace(/https:\/\/[^/]+/,'')+(r.postData()?' '+r.postData().slice(0,300):''));});
+await s.go('/workorders?tab=all'); await p.waitForTimeout(5000);
+await p.click('[data-test-id=toggle_display_option]'); await p.waitForTimeout(700); await p.click('[data-test-id=display_option_tech_view]'); await p.waitForTimeout(5000);
+console.log('HEADERS',await p.evaluate(()=>[...document.querySelectorAll('[data-test-id=table_tech_view] th, [data-test-id=tech_view] th')].map(t=>t.innerText.trim()).filter(Boolean).join(' | ')));
+await p.click('[data-test-id=button_tech_view_column_selection]'); await p.waitForTimeout(1200);
+console.log('MENU',await p.evaluate(()=>[...document.querySelectorAll('.q-menu [data-test-id], .q-menu .q-item, .q-dialog .q-item, .q-dialog [data-test-id]')].map(e=>(e.getAttribute('data-test-id')||'')+':'+e.innerText.trim().replace(/\s+/g,' ')).slice(0,60).join(' || ')));
+console.log('REQS',reqs.filter(r=>/pref|setting|column|user/i.test(r)).join('\n'));
+await p.screenshot({path:'/tmp/qa11310/c1.png'}); await s.close();

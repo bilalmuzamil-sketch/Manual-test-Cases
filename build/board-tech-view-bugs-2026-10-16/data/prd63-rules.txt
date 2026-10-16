@@ -1,0 +1,58 @@
+== S5-R4 : Until the user changes Tech View’s columns, Tech View shows these columns, in this order, as in the design: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price (Total price subject to financial permission). On Site, VIN/Serial # and Lead Technician are off by default; each can be added with the column chooser (S2-R4). Column headings use the List’s labels for List columns (for example Unit, not Unit #) and Assigned Techs for the new column. List’s columns are unchanged.
+
+== S5-R4a : As in the design, Status, Number and Customer are always shown in Tech View and cannot be turned off. Every other Tech View column, Unit included, can be turned off with the column chooser.
+
+== S7-R7 : In Tech View the Assigned Techs column sits immediately after Lines, matching the design. It is on by default (S5-R4) and can be removed through the column chooser (S2-R4).
+
+== S2-R4 : Tech View offers the same columns as List, plus the Assigned Techs column (Story 7), through its own column chooser (Story 5).
+
+== S2-R19 : Tech View’s Status column is the same status pill List shows in production, with the same red service-actions count and blue parts-actions count on it. Its size follows density (S6-R2a).
+
+== S6-R2a : In Tech View the status pill is 16px tall at Compact and Regular and 22px tall at Comfortable, the design’s small and regular badges. List’s status pill is unchanged: for the same work orders on the same page, every List pill is the same width and height as in production, including production’s matching widths down the column (for example, Approved as wide as Ready For Review when both are on the page). Tech View’s pill takes the same widths as List’s; only its height follows density.
+
+== S1-R9a : The switcher uses the design’s icons at 20px: List is Lucide list , Tech View is user-round , Board View is square-kanban . In Tech View and Board View these icons are the design’s: density ( row-height in Tech View, card-height in Board View, custom icons in the design system’s icon set), collapse chevron ( chevron-down ), pin and unpin ( pin / pin-off ), Invoiced or Paid lock ( lock ), Unassigned avatar ( user-round ) and the empty state when there are no work orders at all ( clipboard-list ). The filtered no-results state is the List’s, magnifier included (S1-N1). The filter chips and Search use the design file’s icons in every display option, List included, each exactly as the design file draws it. The display switcher (new on every view, List included) shows the design’s slate icons in every view, so it keeps one color as the user moves between views. These are the only changes to List. Every other List icon is unchanged.
+
+== S9-R1a : In Tech View every work order row, Unassigned’s rows included, shows the design’s six-dot drag grip at its left edge to users who can drag work orders (S4-N1). Every technician group header shows the grip to every user who can reorder technicians (S9-R2), view-only users included, because the technician order is personal. The Unassigned group header shows no grip, because Unassigned cannot move (S9-R8). The whole row still drags (S2-R8); the grip shows that it can.
+
+== S2-R21 : Tech View’s column header labels are 12px, medium weight (500), in the secondary text color, as in the design. Labels never overlap a neighboring label.
+
+== S1-R9b : The switcher’s hover tooltip opens above the switcher, so it never covers the table’s column header row. The tooltips read List, Tech View and Board View.
+
+== S3-R23 : Board View runs full width, with no grey rounded panel around the columns, as in the design.
+
+== S2-R22 : Tech View’s table runs edge to edge on white, with no side gutter and no card or panel around it, as in the design. When the columns are wider than the screen, the table scrolls sideways, as in the design; columns keep the design’s minimum widths and are never squeezed or clipped. The Status column is the one exception: it has no minimum width and sizes to its widest pill on the page, because its pills keep the List’s production widths (S6-R2a). With Ready for Review on the page that is about the design’s 132px; with only short statuses it is narrower.
+
+== S2-R20 : Tech View’s cells follow the design: the work order number shows as a link in the design system’s link color (#175CD3), which meets accessible contrast on white; Progress shows as a thin bar with the percentage beside it, with no hours line under it at any density (S6-R6); Service Advisor shows the advisor’s avatar before the name. Clocked In keeps List’s display (S5-R11).
+
+== S5-R11 : Offer the optional fields listed below using their existing production meaning.
+
+== S9-R9 : Allow pinned technicians to re order only within the pinned area.
+
+== S2-R8 : Clicking anywhere on a row, outside its own controls, opens the work order. A drag starts only after the pointer has moved a few pixels, so a click never turns into a drag.
+
+== S3-R5 : Keep each card’s status badge in a fixed position.
+
+== S3-R5a : A Board View card’s status is the same status pill List shows in production, with the same red service-actions count and blue parts-actions count on it, as in Tech View (S2-R19), at the design’s card badge height (22px).
+
+== S2-E1 : While the user scrolls through an expanded group, that group’s header stays on screen just under the column headings. Only one group header is held at a time: when the next group’s header reaches it, the next header pushes it off and takes its place. Unassigned’s header works the same way (S2-R18).
+
+== S2-R18 : Unassigned opens expanded unless the user collapsed it (S2-R13). While the user scrolls through Unassigned, its header stays on screen as in S2-E1, so it can be collapsed from anywhere in the group. When it holds more work orders than fit on screen, which on the All tab can be thousands, it loads them in pages as the user scrolls, as List does, never all at once.
+
+== S1-R8 : In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. Horizontal position comes back exactly, and so do the filter view (tab) and filters that were on screen, in Tech View and Board View. List’s Back behavior is unchanged in this release. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position. List behaves as it does today.
+
+== S1-N1a : With filters active, with or without a search, the empty state reads “No work orders match these filters”, then “Try removing a filter to widen your results.”, with a Clear all filters button.
+
+== S1-N1b : With only a search active, the empty state reads “No work orders match the search "{search}".” and shows no button.
+
+== S1-N1c : When no filter and no search are active and the filter view has no work orders at all, Tech View and Board View show the design’s first-run state: the clipboard-list icon in a grey circle, “No work orders yet”, then “Create a work order and assign a technician to see it here.”, with a Create Work Order button that does the same as the page’s Create Work Order button. List keeps its production empty state.
+
+== S11-R2 : Every control a mouse can use in Tech View and Board View is reachable with Tab and works with Enter or Space, as the design system’s menus and dialogs do: the more-actions button (which appears on keyboard focus, S3-R13), the Columns options, the x on a filter chip, and the display switcher. Technician names behind avatars show on keyboard focus, the same as on hover.
+
+== S5-R11b : Every technician name in Tech View and Board View, on cards, rows, group headers, column headers and the names shown on hover over any technician avatar (S2-R10, S7-R1), is the technician’s staff record name, the same name the List’s Lead Technician column shows. Optional fields: lead technician name, customer, asset (year/make/model), VIN/serial, progress, service advisor, clocked in (the names of the technicians currently clocked in to the work order, shown the way List’s Clocked In column shows them today: the first technician’s full name, then +N, with every name on hover), line count, line technicians, estimated hours, total price, on-site indicator, and created date.
+
+== S4-N1 : Require Work Orders create and edit permission to drag work orders or access Reassign lead technician.
+
+== S9-R2 : Users with Work Orders view permission can reorder technician groups and columns. The order is saved per user.
+
+== S9-R8 : Keep Unassigned fixed during technician reordering.
+

@@ -1,0 +1,517 @@
+##### SV-11317 Tech View: open on the design's 13 columns, not the List's | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+Tech View opens on the design's default columns instead of the List's production defaults.
+
+h3. Expected
+
+S5-R4: "Until the user changes Tech View's columns, Tech View shows these columns, in this order, as in the design: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price (Total price subject to financial permission). On Site, VIN/Serial # and Lead Technician are off by default; each can be added with the column chooser (S2-R4). List's columns are unchanged." S7-R7: Assigned Techs is on by default and can be removed.
+
+PRD: [Board View & Tech View PRD v51|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S5-R4, S7-R7).
+
+h3. Actual (staging build, develop b19269d4487, clicked through locally)
+
+Tech View shows the List's 14 columns (On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price, Created On). Lead Technician repeats the group's technician on every row.
+
+h3. How to check
+
+* A user who has never changed Tech View's columns sees exactly the 13 columns above, in that order.
+* On Site, VIN/Serial # and Lead Technician can still be added from the column chooser.
+* Total price is hidden for users without financial permission.
+* List's columns are unchanged.
+
+h3. Screenshots
+
+Attached: staging build first, Branko's design (files starting D) after.
+
+Raised from Sasha's staging review, 2026-10-14.
+
+----
+
+*Test cases for this design issue:*
+
+* [C590113|https://shopview.testrail.io/index.php?/cases/view/590113] Tech View opens on 13 default columns with small grey header labels
+* [C590112|https://shopview.testrail.io/index.php?/cases/view/590112] Tech View table runs edge to edge on white with no side gutter
+* [C590126|https://shopview.testrail.io/index.php?/cases/view/590126] No labels overlap in the toolbar and headers from 1024 to 1920 px wide
+* [C96979|https://shopview.testrail.io/index.php?/cases/view/96979] A new user's Tech View opens on the design's 13 columns
+* [C96927|https://shopview.testrail.io/index.php?/cases/view/96927] Tech View offers List's columns plus Assigned Techs in its own Columns menu
+
+h3. PRD v54 update (2026-10-15)
+
+* S2-R22: when the columns are wider than the screen, Tech View scrolls sideways, as in the design; columns keep the design's minimum widths and are never squeezed or clipped. Sideways scrolling at 1440px is not a def
+  -- COMMENT Chris Ward 2026-10-14T14:13 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v51 S5-R4, S7-R7 once it is ready. The "How to check" list in the description is what passing looks like, and the attached screenshots show the staging build next to the design.
+  -- COMMENT Chris Ward 2026-10-15T11:01 : [~accountid:712020:1b27a800-7b5a-43f3-982a-81e7071a4fdb] [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] updated to [PRD v54|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S2-R22, S5-R4, S5-R4a). The description now carries the change under "PRD v54 update"; test against that.
+  ATT ['08-tech_view-scrolled-right-1440.png', 'D1-design-tech_view-1440.png']
+##### SV-11318 Tech View: status pill size follows density (16px / 16px / 22px) | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+Tech View keeps the List's production status pill and its red and blue counts, but the pill's size follows the density setting.
+
+h3. Expected
+
+S2-R19: Tech View's Status column is the same status pill List shows in production, with the same red service-actions count and blue parts-actions count on it. S6-R2a (v58, unchanged since v54): "In Tech View the status pill is 16px tall at Compact and Regular and 22px tall at Comfortable, the design’s small and regular badges. List’s status pill is unchanged: for the same work orders on the same page, every List pill is the same width and height as in production, including production’s matching widths down the column (for example, Approved as wide as Ready For Review when both are on the page). Tech View’s pill takes the same widths as List’s; only its height follows density."
+
+PRD: [Board View & Tech View PRD v58|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (page 845185030, version 58, read 16 Oct 2026) (S2-R19, S6-R2a). Product owner answer: Chris Ward, answer 15 (15 Oct 2026): "16px at Compact and Regular, 22px at Comfortable, as the design draws it."
+
+h3. Actual (staging build, develop b19269d4487, clicked through locally)
+
+The status pill is the same size (about 21px) at every density.
+
+* Still the same on staging {{v26.40.18-7d85b7d}}, 16 Oct 2026: the pill is 21 px tall at Compact, Regular and Comfortable (test C590115); the target is 16 px, 16 px and 22 px.
+
+h3. How to check
+
+* Compact and Regular: status pill 16px tall. Comfortable: 22px tall.
+* Red and blue counts still show on the pill, with their tooltips.
+* List's status pill looks exactly as in production.
+
+h3. Screenshots
+
+Attached: staging build first, Branko's design (files starting D) after.
+
+Raised from Sasha's staging review, 2026-10-14.
+
+h3. PRD v54 update (2026-10-15)
+
+* S6-R2a corrected: 16px at Compact and Regular (was 18px, which came from an unused badge in the design system), 22px at Comfortable. List pills keep production's sizes, including the matching widths down the column; Tech View's pill takes the same widths.
+
+Also check:
+
+* Tech View pill is 16px at Compact and Regular, 22px at Comfortable.
+* Pill widths match List's production widths for the same work orders.
+
+----
+
+*Test cases for this design issue:*
+
+* [C590115|https://shopview.testrail.io/index.php?/cases/view/590115] Tech View status pill is List's pill, 16 px tall, 22 px at Comfortable
+* [C590128|https://shopview.testrail.io/index.ph
+  -- COMMENT Chris Ward 2026-10-14T14:13 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v51 S2-R19, S6-R2a once it is ready. The "How to check" list in the description is what passing looks like, and the attached screenshots show the staging build next to the design.
+  -- COMMENT Chris Ward 2026-10-15T11:01 : [~accountid:712020:1b27a800-7b5a-43f3-982a-81e7071a4fdb] [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] updated to [PRD v54|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S6-R2a). The description now carries the change under "PRD v54 update"; test against that.
+  ATT ['07-tech_view-density-menu-1440.png', '09-tech_view-status-chips-2x.png', 'D1-design-tech_view-1440.png']
+##### SV-11319 Tech View and Board View: use the design's Lucide icons (switcher and all view icons) | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+Replace the Material stand-in icons with the design's Lucide icons in the switcher, Tech View and Board View.
+
+h3. Expected
+
+S1-R9a: the switcher uses List = list, Tech View = user-round, Board View = square-kanban (Lucide, 20px). In Tech View and Board View: density row-height (Tech View) / card-height (Board View), collapse chevron-down, pin / pin-off, Invoiced or Paid lock, Unassigned avatar user-round, empty states clipboard-list. List's icons are unchanged.
+
+PRD: [Board View & Tech View PRD v51|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S1-R9a).
+
+h3. Actual (staging build, develop b19269d4487, clicked through locally)
+
+Material icons: view_list, person and view_kanban in the switcher; format_line_spacing for density; expand_more / chevron_right, push_pin, Material lock, person and assignment in the views.
+
+h3. How to check
+
+* Compare each icon against the design screenshots attached.
+* List's toolbar and rows show the same icons as production.
+
+h3. Screenshots
+
+Attached: staging build first, Branko's design (files starting D) after.
+
+Raised from Sasha's staging review, 2026-10-14.
+
+----
+
+*Test cases for this design issue:*
+
+* [C590110|https://shopview.testrail.io/index.php?/cases/view/590110] Display switcher and toolbar icons in Tech View and Board View match the design
+* [C590114|https://shopview.testrail.io/index.php?/cases/view/590114] Tech View cells show a blue number, a thin progress bar and the advisor's avatar
+* [C590117|https://shopview.testrail.io/index.php?/cases/view/590117] Tech View group header shows grip, arrow, grey initials avatar, name and count
+* [C590119|https://shopview.testrail.io/index.php?/cases/view/590119] Board View column header shows grip, avatar, name, pin and count as designed
+* [C590122|https://shopview.testrail.io/index.php?/cases/view/590122] Empty groups, empty columns and no-results pages look as designed
+  -- COMMENT Chris Ward 2026-10-14T14:13 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v51 S1-R9a once it is ready. The "How to check" list in the description is what passing looks like, and the attached screenshots show the staging build next to the design.
+  ATT ['03-switcher-active-board_view-2x.png', '03-toolbar-tech_view-2x.png', 'card-height.svg', 'D3-design-toolbar-board_view-2x.png', 'D3-design-toolbar-tech_view-2x.png', 'row-height.svg']
+##### SV-11320 Tech View: drag grip on every row and technician header (none on Unassigned header) | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+Show the design's six-dot drag grip at the left of every Tech View work order row, Unassigned's rows included, for users who can drag work orders.
+
+Already right on staging and not part of this ticket (Chris Ward, answer 16, 15 Oct 2026): technician group headers show the grip, the Unassigned header shows none, and a view-only user sees no row grips.
+
+h3. Expected
+
+S9-R1a (v53): "In Tech View every work order row, Unassigned's rows included, shows the design's six-dot drag grip at its left edge to users who can drag work orders (S4-N1). Every technician group header shows the grip to every user who can reorder technicians (S9-R2), view-only users included, because the technician order is personal. The Unassigned group header shows no grip, because Unassigned cannot move (S9-R8). The whole row still drags (S2-R8); the grip shows that it can."
+
+PRD: [Board View & Tech View PRD v58|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (page 845185030, version 58, read 16 Oct 2026) (S9-R1a, unchanged since v53).
+
+h3. Actual (staging build, develop b19269d4487, clicked through locally)
+
+Rows show no grip, although dragging a row works.
+
+* Still the same on staging {{v26.40.18-7d85b7d}}, 16 Oct 2026: no work order row shows a grip, in Unassigned or in a technician's group (test C590116).
+
+h3. How to check
+
+* A user with Work Orders create and edit sees a grip on every work order row, Unassigned's rows included.
+* A view-only user sees no row grips.
+* Dragging from anywhere on the row still works; a click still opens the work order.
+
+h3. Screenshots
+
+Attached: staging build first, Branko's design (files starting D) after.
+
+Raised from Sasha's staging review, 2026-10-14.
+
+h3. PRD v54 update (2026-10-15)
+
+* S9-R1a reworded per grip (v53): row grips follow who can drag work orders (S4-N1); every technician group header shows the grip to everyone who can reorder technicians (S9-R2), view-only users included; the Unassigned header has no grip because Unassigned cannot move (S9-R8).
+
+----
+
+*Test cases for this design issue:*
+
+* [C590116|https://shopview.testrail.io/index.php?/cases/view/590116] Six-dot grips on Tech View rows and technician headers, none on Unassigned
+* [C590117|https://shopview.testrail.io/index.php?/cases/view/590117] Tech View group headers show grip, arrow, avatar, name and count as designed
+  -- COMMENT Chris Ward 2026-10-14T14:13 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v51 S9-R1a once it is ready. The "How to check" list in the description is what passing looks like, and the attached screenshots show the staging build next to the design.
+  -- COMMENT Chris Ward 2026-10-15T11:01 : [~accountid:712020:1b27a800-7b5a-43f3-982a-81e7071a4fdb] [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] updated to [PRD v54|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S9-R1a). The description now carries the change under "PRD v54 update"; test against that.
+  ATT ['06-tech_view-row-hover-1440.png', 'D2-design-tech_view-row-hover-1440.png']
+##### SV-11321 Tech View: column header labels 12px, weight 500, secondary color; no overlap | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+Restyle Tech View's column header labels to the design and stop labels colliding.
+
+h3. Expected
+
+S2-R21: "Tech View's column header labels are 12px, medium weight (500), in the secondary text color, as in the design. Labels never overlap a neighboring label."
+
+PRD: [Board View & Tech View PRD v51|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S2-R21).
+
+h3. Actual (staging build, develop b19269d4487, clicked through locally)
+
+Labels are bold black. At 1440px "Lead Technician" runs into "Clocked In", and "Progress" touches "Service Advisor".
+
+h3. How to check
+
+* Header labels match the design's style at 1440 and 1536 wide.
+* No label touches or overlaps its neighbor, with the default columns and with every optional column added.
+
+h3. Screenshots
+
+Attached: staging build first, Branko's design (files starting D) after.
+
+Raised from Sasha's staging review, 2026-10-14.
+
+----
+
+*Test cases for this design issue:*
+
+* [C590113|https://shopview.testrail.io/index.php?/cases/view/590113] Tech View opens on 13 default columns with small grey header labels
+* [C590126|https://shopview.testrail.io/index.php?/cases/view/590126] No labels overlap in the toolbar and headers from 1024 to 1920 px wide
+  -- COMMENT Chris Ward 2026-10-14T14:13 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v51 S2-R21 once it is ready. The "How to check" list in the description is what passing looks like, and the attached screenshots show the staging build next to the design.
+  ATT ['04-tech_view-from-completed-tab-1440.png', 'D1-design-tech_view-1440.png']
+##### SV-11322 Switcher tooltip covers the column header row | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+Open the switcher's hover tooltip above the switcher.
+
+The tooltip words *List*, *Tech View* and *Board View* are right (S1-R9b, Chris Ward answer 24) and are not part of this ticket; only where the tooltip opens is wrong.
+
+h3. Expected
+
+S1-R9b (v58): "The switcher’s hover tooltip opens above the switcher, so it never covers the table’s column header row. The tooltips read List, Tech View and Board View."
+
+PRD: [Board View & Tech View PRD v58|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (page 845185030, version 58, read 16 Oct 2026) (S1-R9b).
+
+h3. Actual (staging build, develop b19269d4487, clicked through locally)
+
+Hovering Tech View in the switcher shows the "Tech View" tooltip below it, on top of the Service Advisor header.
+
+* Still the same on staging {{v26.40.18-7d85b7d}}, 16 Oct 2026: every switcher tooltip opens below the switcher, over the column header row, in Tech View and Board View, at 1440 and 1536 px wide (test C590111).
+
+h3. How to check
+
+* Hover each of the three switcher buttons: the tooltip shows above the switcher and the header row stays readable.
+
+h3. Screenshots
+
+Attached: staging build first, Branko's design (files starting D) after.
+
+Raised from Sasha's staging review, 2026-10-14.
+
+----
+
+*Test case for this design issue:*
+
+* [C590111|https://shopview.testrail.io/index.php?/cases/view/590111] Display switcher tooltips open above it and never cover the column headers
+  -- COMMENT Chris Ward 2026-10-14T14:14 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v51 S1-R9b once it is ready. The "How to check" list in the description is what passing looks like, and the attached screenshots show the staging build next to the design.
+  ATT ['02-tech_view-1440-retry.png']
+##### SV-11323 Board View: run full width, no grey rounded panel | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+Remove the grey rounded panel around Board View's columns.
+
+h3. Expected
+
+S3-R23: "Board View runs full width, with no grey rounded panel around the columns, as in the design."
+
+PRD: [Board View & Tech View PRD v51|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S3-R23).
+
+h3. Actual (staging build, develop b19269d4487, clicked through locally)
+
+Board View's columns sit inside a grey rounded panel with margins.
+
+h3. How to check
+
+* Board View's columns run the full width of the page, as in the attached design screenshot.
+
+h3. Screenshots
+
+Attached: staging build first, Branko's design (files starting D) after.
+
+Raised from Sasha's staging review, 2026-10-14.
+
+----
+
+*Test case for this design issue:*
+
+* [C590118|https://shopview.testrail.io/index.php?/cases/view/590118] Board View runs full width with no grey rounded panel around the columns
+  -- COMMENT Chris Ward 2026-10-14T14:14 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v51 S3-R23 once it is ready. The "How to check" list in the description is what passing looks like, and the attached screenshots show the staging build next to the design.
+  ATT ['02-board_view-1440.png', 'D1-design-board_view-1440.png']
+##### SV-11324 Tech View: run edge to edge on white, no side gutter | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+Remove the side gutter around Tech View's table.
+
+h3. Expected
+
+S2-R22: "Tech View's table runs edge to edge on white, with no side gutter and no card or panel around it, as in the design."
+
+PRD: [Board View & Tech View PRD v51|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S2-R22).
+
+h3. Actual (staging build, develop b19269d4487, clicked through locally)
+
+Tech View's table sits inset from the page edges with a gutter on each side.
+
+h3. How to check
+
+* Tech View's table and its group headers run to both edges of the page, as in the attached design screenshot.
+* List is unchanged.
+
+h3. Screenshots
+
+Attached: staging build first, Branko's design (files starting D) after.
+
+Raised from Sasha's staging review, 2026-10-14.
+
+----
+
+*Test case for this design issue:*
+
+* [C590112|https://shopview.testrail.io/index.php?/cases/view/590112] Tech View table runs edge to edge on white with no side gutter
+  -- COMMENT Chris Ward 2026-10-14T14:14 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v51 S2-R22 once it is ready. The "How to check" list in the description is what passing looks like, and the attached screenshots show the staging build next to the design.
+  ATT ['02-tech_view-1440-retry.png', 'D1-design-tech_view-1440.png']
+##### SV-11325 Tech View: number link, progress bar and advisor avatar as in the design | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+Restyle three Tech View cells to the design.
+
+h3. Expected
+
+S2-R20: "Tech View's cells follow the design: the work order number shows as a link in the accent color; Progress shows as a thin bar with the percentage beside it; Service Advisor shows the advisor's avatar before the name. Clocked In keeps List's display (S5-R11)."
+
+PRD: [Board View & Tech View PRD v51|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S2-R20).
+
+h3. Actual (staging build, develop b19269d4487, clicked through locally)
+
+Number is plain text, Progress is a colored percentage pill, and Service Advisor shows the name only, as in List.
+
+h3. How to check
+
+* Number shows as an accent-color link and opens the work order.
+* Progress shows a thin bar plus the percentage.
+* Service Advisor shows avatar then name.
+* Clocked In looks exactly as in List.
+* List's cells are unchanged.
+
+h3. Screenshots
+
+Attached: staging build first, Branko's design (files starting D) after.
+
+Raised from Sasha's staging review, 2026-10-14.
+
+----
+
+*Test case for this design issue:*
+
+* [C590114|https://shopview.testrail.io/index.php?/cases/view/590114] Tech View cells show a blue number, a thin progress bar and the advisor's avatar
+  -- COMMENT Chris Ward 2026-10-14T14:14 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v51 S2-R20 once it is ready. The "How to check" list in the description is what passing looks like, and the attached screenshots show the staging build next to the design.
+  ATT ['02-tech_view-1440-retry.png', 'D1-design-tech_view-1440.png']
+##### SV-11402 Tech View: dragging a pinned technician's header opens the work order where it is released | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+In Tech View, dragging a pinned technician's group header opens the work order that sits where the header is released. Dragging a group header must only reorder technicians; it must never open a work order.
+
+h3. Steps
+
+# Open Work Orders and switch to Tech View.
+# Pin a technician (pin on their group header).
+# Drag that pinned technician's group header up or down, across work order rows, and release it over a work order row.
+
+h3. Expected
+
+The pinned technician moves within the pinned area only (S9-R9), or stays put if released outside it. No work order opens. A click opens a work order only when there was no drag (S2-R8).
+
+PRD: [Board View & Tech View PRD v55|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S9-R9, S2-R8).
+
+h3. Actual
+
+The work order under the pointer at release opens, as if it had been clicked.
+
+h3. How to check
+
+* Drag a pinned technician's header and release it over a work order row: no work order opens; the order of pinned technicians updates or stays the same.
+* Repeat with an unpinned technician's header: no work order opens.
+* A plain click on a work order row still opens it.
+
+Seen by Chris Ward on staging, 2026-10-15.
+  -- COMMENT Chris Ward 2026-10-15T11:18 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v55 S9-R9 and S2-R8 once it is ready. The "How to check" list in the description is what passing looks like.
+  -- COMMENT Chris Ward 2026-10-15T11:59 : Environment: Chrome on Windows, with a mouse (not a trackpad).
+  ATT []
+##### SV-11404 Work Orders Search: use the design system's magnifier icon in every view | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+The Search field on the Work Orders page uses the design file's magnifier in List, Tech View and Board View.
+
+h3. Expected
+
+S1-R9a: "The filter chips and Search use the design file's icons in every display option, List included, each exactly as the design file draws it; this is the only change to List." The design file's Work Orders search uses the design system's own 20px magnifier, not Lucide's and not Material's.
+
+PRD: [Board View & Tech View PRD v55|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S1-R9a).
+
+h3. Actual (origin/develop, 2026-10-15)
+
+Search shows the Material search icon at 20px in every view. (The filter chips already use the design's icons; the Technician chip is SV-11326.)
+
+h3. How to check
+
+* Search shows the design system's 20px magnifier in List, Tech View and Board View, matching the design file.
+* Nothing else on the List page changes.
+
+From the PRD v54/v55 rulings on Bilal's and Slavcho's questions, 2026-10-15.
+  -- COMMENT Chris Ward 2026-10-15T11:39 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v55 S1-R9a once it is ready. The "How to check" list in the description is what passing looks like.
+  ATT []
+##### SV-11405 Board View: card status uses the List's status pill with its red and blue counts | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+A Board View card shows the same status pill as List and Tech View, with the red service-actions and blue parts-actions counts.
+
+h3. Expected
+
+S3-R5a: "A Board View card's status is the same status pill List shows in production, with the same red service-actions count and blue parts-actions count on it, as in Tech View (S2-R19), at the design's card badge height (22px)." The badge stays in a fixed spot on the card (S3-R5).
+
+PRD: [Board View & Tech View PRD v55|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S3-R5a, S6-R2a).
+
+h3. Actual (origin/develop, 2026-10-15)
+
+The card shows a plain badge with the status name only: no red or blue counts, and not the List's pill.
+
+h3. How to check
+
+* A card for a work order with pending service actions shows the red count; with pending parts actions, the blue count; with tooltips as in List.
+* The pill is 22px tall and in the same place on every card.
+* The pill reads the same as that work order's pill in List and Tech View.
+
+From the PRD v54/v55 rulings on Bilal's and Slavcho's questions, 2026-10-15.
+  -- COMMENT Chris Ward 2026-10-15T11:39 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v55 S3-R5a, S6-R2a once it is ready. The "How to check" list in the description is what passing looks like.
+  ATT []
+##### SV-11406 Tech View: the next group header pushes the held header off while scrolling | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+While scrolling, the held group header is pushed off by the next group's header instead of swapping in place.
+
+h3. Expected
+
+S2-E1: "While the user scrolls through an expanded group, that group's header stays on screen just under the column headings. Only one group header is held at a time: when the next group's header reaches it, the next header pushes it off and takes its place. Unassigned's header works the same way (S2-R18)."
+
+PRD: [Board View & Tech View PRD v55|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S2-E1, S2-R18).
+
+h3. Actual (origin/develop, 2026-10-15)
+
+From the code on develop: a single held header shows the group of the first row on screen and swaps in place; the next group's header slides underneath it until its first row reaches the top, then the held header changes. Please confirm on staging while fixing.
+
+h3. How to check
+
+* With two or more groups expanded, scroll down: the next group's header pushes the held one up and off, then is held itself.
+* Scrolling back up reverses it.
+* Unassigned behaves the same way.
+* Only one header is held at any time.
+
+From the PRD v54/v55 rulings on Bilal's and Slavcho's questions, 2026-10-15.
+  -- COMMENT Chris Ward 2026-10-15T11:39 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v55 S2-E1, S2-R18 once it is ready. The "How to check" list in the description is what passing looks like.
+  ATT []
+##### SV-11407 Tech View and Board View: Back brings the top row or card back fully shown | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+After browser Back, the row or card that was at the top of the view comes back at the top, fully shown.
+
+h3. Expected
+
+S1-R8: "Horizontal position comes back exactly. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position."
+
+PRD: [Board View & Tech View PRD v55|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S1-R8).
+
+h3. Actual (origin/develop, 2026-10-15)
+
+Both views remember the first row or card whose top edge is in view. A row or card that was half visible at the top is skipped, so after Back it sits hidden above the top (seen by Bilal on staging, 14 and 15 Oct). In Tech View the restored row can also land under the held group header.
+
+h3. How to check
+
+* Scroll so a card (Board) or row (Tech View) is half visible at the top, open a work order, press Back: that card or row is at the top, fully shown.
+* In Tech View the restored row is not hidden under the held group header.
+* Horizontal position is exact.
+
+From the PRD v54/v55 rulings on Bilal's and Slavcho's questions, 2026-10-15.
+  -- COMMENT Chris Ward 2026-10-15T11:39 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v55 S1-R8 once it is ready. The "How to check" list in the description is what passing looks like.
+  ATT []
+##### SV-11408 Tech View and Board View: first-run state when there are no work orders at all | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+With no filter or search and no work orders, the views show the design's first-run state instead of the filtered empty state.
+
+h3. Expected
+
+S1-N1c: "When no filter and no search are active and the filter view has no work orders at all, Tech View and Board View show the design's first-run state: the clipboard-list icon in a grey circle, 'No work orders yet', then 'Create a work order and assign a technician to see it here.', with a Create Work Order button that does the same as the page's Create Work Order button. List keeps its production empty state."
+
+PRD: [Board View & Tech View PRD v55|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S1-N1c, S1-R9a).
+
+h3. Actual (origin/develop, 2026-10-15)
+
+Both views show the filtered empty state (magnifier and "No work orders found.") whether or not a filter or search is active. "No work orders found." is not in the PRD or the design.
+
+h3. How to check
+
+* With no filter or search and an empty filter view, both views show the clipboard icon, both lines of text word for word, and a Create Work Order button that opens the same flow as the page button.
+* With a filter or search active and no matches, the filtered states in S1-N1a and S1-N1b show instead.
+* List is unchanged.
+
+From the PRD v54/v55 rulings on Bilal's and Slavcho's questions, 2026-10-15.
+  -- COMMENT Chris Ward 2026-10-15T11:39 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v55 S1-N1c, S1-R9a once it is ready. The "How to check" list in the description is what passing looks like.
+  ATT []
+##### SV-11409 Tech View and Board View: technician names behind avatars reachable by keyboard | TESTING STAGE | Slavcho Mitrov | parent SV-10043
+h3. What
+
+The names behind avatars in an avatar group can be reached and read with the keyboard.
+
+h3. Expected
+
+S11-R2: "Every control a mouse can use in Tech View and Board View is reachable with Tab and works with Enter or Space... Technician names behind avatars show on keyboard focus, the same as on hover." Names are the staff record name (S5-R11b).
+
+PRD: [Board View & Tech View PRD v55|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S11-R2).
+
+h3. Actual (origin/develop, 2026-10-15)
+
+Avatar names are a hover tooltip only, with no focus stop or accessible label, so a keyboard user cannot get them. The rest of Story 11 is already built (one Tab stop per view, arrow keys, Enter, focus return).
+
+h3. How to check
+
+* With the keyboard alone, reach an Assigned Techs avatar group (Tech View) and a card's avatars (Board View) and hear or see each technician's name.
+* Also confirm the Columns menu options and the x on a filter chip are reachable with Tab and work with Enter or Space.
+
+From the PRD v54/v55 rulings on Bilal's and Slavcho's questions, 2026-10-15.
+  -- COMMENT Chris Ward 2026-10-15T11:39 : [~accountid:712020:b2d16ade-9013-4875-8a9d-e255e63e8217] [~accountid:712020:6d590212-5c9b-4135-ae11-277f3826110e] for QA: please test this against PRD v55 S11-R2 once it is ready. The "How to check" list in the description is what passing looks like.
+  ATT []

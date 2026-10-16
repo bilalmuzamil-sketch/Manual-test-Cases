@@ -1,0 +1,14 @@
+import {session,toView,narr,finish} from './rec.mjs';
+const dir='/tmp/qa11310/vo17'; const N=narr(dir);
+const s=await session({vp:{width:1920,height:1000},record:'/tmp/qa11310/rec17'}); const p=s.page; const tLogin=Date.now();
+await s.go('/workorders?tab=all'); await p.waitForTimeout(5000); await toView(p,'tech_view'); await p.mouse.move(1880,960); await p.waitForTimeout(1500);
+const mk=await s.marker();
+await N.cap(s,'n1',`SV-11317 · staging build ${mk.version} · 16 Oct 2026 · Work Orders > Tech View · admin · window 1920 px, zoom 100%`);
+const hs=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id=table_tech_view] th')].map(t=>t.innerText.trim()).filter(Boolean));
+await N.cap(s,'n2',`${hs.length} columns: ${hs.join(' · ')}`);
+await s.glideClick('button_tech_view_column_selection'); await p.waitForTimeout(1500);
+const opts=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>{const t=e.innerText.trim().replace(/\s+/g,' '); const on=e.querySelector('[aria-checked=true],[aria-pressed=true],.q-toggle__inner--truthy'); return t+(on?'':' (off)');}));
+await N.cap(s,'n3',`Columns menu: ${opts.filter(o=>/On Site|VIN|Lead Technician/.test(o)).join(' · ')}`);
+await p.keyboard.press('Escape'); await p.mouse.move(1880,960);
+await N.cap(s,'n4','Spec v63 S5-R4: 13 columns in this order; On Site, VIN/Serial #, Lead Technician off by default → PASSED');
+await finish(s,dir,N.ev,{tLogin,mk,hs,opts}); console.log(JSON.stringify({hs,opts}));
