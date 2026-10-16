@@ -1,0 +1,43 @@
+C97025 | section 55300 Not runnable for now | Automated: False | layout old | run 498 test T3481963 status Passed
+existing setup doc: none
+
+TITLE: Field and density changes are recorded only after they save
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser (private window) · Google Analytics DebugView access · about 10 minutes
+- Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+- Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+- Analytics access: you can open Google Analytics for the property the QA build reports to, at Admin > DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write "not checked by hand" in the result comment and pass or fail on what you can see on the Work Orders page.
+- Event names to look for in DebugView: work_orders_display_view (a display was shown), work_orders_field_load and work_orders_density_load (the fields and density you have, once per display per session), work_orders_field_toggle and work_orders_density_change (a saved change).
+- Board View starting values: Service advisor off, Customer on, Density not Compact (step 4 changes it to Compact).
+Setup
+- Start a fresh analytics session: close every browser window, open a new private window and sign in.
+- Open Work Orders > Board View: if Service advisor is on or Customer is off in Fields to display, or Density is Compact, change them back (Service advisor off, Customer on, Density Regular), then start a new private window and sign in again.
+- Check the setup worked: Google Analytics > Admin > DebugView opens and shows your device within a few seconds of opening any ShopView page. If it does not, carry on but write "not checked by hand" for the event checks, as the Preconditions say.
+
+=== STEPS ===
+- Open Work Orders and click Board View.
+- Open Fields to display, turn Service advisor on and Customer off, then close the picker.
+- In DebugView, count the work_orders_field_toggle events.
+- Open the Density control and pick Compact.
+- Count the work_orders_density_change events.
+- Open the density control again and pick Compact again (the value it already has).
+- Open Fields to display and close it without changing anything.
+- Count the change events since step 5.
+
+=== EXPECTED ===
+Expected results
+- Step 3: 2 field change events, one for Service advisor (on) and one for Customer (off).
+- Step 5: 1 density change event, naming Compact.
+- Step 8: 0 new events. Re-picking the same density and closing the picker without a change are not changes.
+- A failed save cannot be caused by hand without also blocking analytics. That part is not checked by hand: write "failed save: not checked by hand" in the result comment.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S12-R3, S12-R8, S12-R9, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names.
+Exact quotes from the source (for reproducibility)
+- S12-R3: “Measure field-selection changes after successful saves.”
+- S12-R8: “Measure density changes after successful saves.”
+- S12-R9: “Do not count canceled or failed saves as successful preference changes.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: HOLD - not manually testable (developer/automated check only)

@@ -1,0 +1,46 @@
+C368168 | section 47110 High — shares code that changed behaviour (developer items 1–4 and the rebuilt List) | Automated: True | layout old | run 498 test T3792489 status Passed
+existing setup doc: none
+
+TITLE: Changing the lead on the work order page moves the lines that followed it
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 10 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- 3 technicians eligible at this location: active, Role Technician, at least one Department, Location Staging Heavy Duty - 9919, Time Clock on. Names are examples ("Esther Howard", "Ralph Edwards", "Dana Ortiz").
+- Customer "ZZAUTOTEST Lead Moves Lines" (used by this case only) with one contact and one asset.
+- One Approved work order [WO-1] with Lead Technician = [Tech-A] and two approved lines: Line 1 (the line numbered 1 on the Lines tab) has no technician of its own, so its Labor row shows [Tech-A]; Line 2 (numbered 2) was given [Tech-C] on purpose.
+- What must hold: Line 1 follows the lead, Line 2 does not. Names and numbers are examples.
+Setup
+- Your initials (top right) > Settings > Staff: if no suitable technician exists, click New Staff Member > First Name, Last Name, Email > Role = Technician > Departments = any one (at least one Department is required) > Location = Staging Heavy Duty - 9919 > turn Time Clock on > Save & Close. Record the technician as [Tech-A] (the expected results call this technician "Esther Howard").
+- Your initials (top right) > Settings > Staff: if no suitable technician exists, click New Staff Member > First Name, Last Name, Email > Role = Technician > Departments = any one (at least one Department is required) > Location = Staging Heavy Duty - 9919 > turn Time Clock on > Save & Close. Record the technician as [Tech-B] (the expected results call this technician "Ralph Edwards"). Use a second, different technician.
+- Your initials (top right) > Settings > Staff: if no suitable technician exists, click New Staff Member > First Name, Last Name, Email > Role = Technician > Departments = any one (at least one Department is required) > Location = Staging Heavy Duty - 9919 > turn Time Clock on > Save & Close. Record the technician as [Tech-C] (the expected results call this technician "Dana Ortiz"). Use a third, different technician.
+- Customers > New Customer > Name "ZZAUTOTEST Lead Moves Lines" > Save (the customer page opens). Contacts tab > New Contact > First Name "ZZAUTOTEST", Last Name "Contact" > Save. Assets tab > New Asset > Contact = ZZAUTOTEST Contact > Year 2022 > Make: type "Freight" and pick Freightliner > Model: type "M2" and pick it > Unit "TRK-118" > Save (Contact and Make are required).
+- Work Orders > Create Work Order > New Work Order: Customer = "ZZAUTOTEST Lead Moves Lines" > Asset = its asset > Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-1] (the expected results call it "S1-710").
+- In New Line > What Are You Doing? type "grease" and pick the ready-made line "Service - Full grease service" (it has no parts) > turn Line Approved on > Save & Add Line. In New Line > What Are You Doing? type "clutch" and pick the ready-made line "Service - Adjust clutch" (it has no parts) > turn Line Approved on > Save & Close. The status reads Approved.
+- On [WO-1], on the status card at the left, click Lead Technician and pick [Tech-A]. (Lead Technician is a dropdown only once the work order is Approved; while it is an Estimate it reads "Unassigned" and cannot be changed.) The choice saves at once.
+- On the Lines tab click the name of line 2 ("Service - Adjust clutch") to open Edit Line > Technicians: Add Technician > pick [Tech-C] > Save & Close.
+- Check the setup worked: reload [WO-1] > Lines tab. Line 1's Labor row shows [Tech-A] and Line 2's Labor row shows [Tech-C]. Write both down. If not, repeat the step that is wrong.
+
+=== STEPS ===
+- Open [WO-1] and click the Lines tab.
+- On the status card change Lead Technician from [Tech-A] to [Tech-B].
+- Reload the page and click the Lines tab.
+- Read Line 1's and Line 2's Labor rows.
+
+=== EXPECTED ===
+Expected results
+- Line 1 (it was following the old lead) now shows "Ralph Edwards".
+- Line 2 (given to Dana Ortiz on purpose) still shows "Dana Ortiz".
+- So 1 of 2 lines moved. No clear-shifts question appeared on the work order page.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 1; QA handoff test plan (generated 2026-10-08), §7; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (S4-R8, S4-R31). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- QA handoff §7: “Lines follow the lead. Set up a work order with lead A, line 1 created with no technician (it follows A), and line 2 set to Tech B on the Lines tab. Change the lead to C.”
+- QA handoff §7: “Line 1 moves to C. Line 2 stays B.”
+- PRD S4-R8: “Apply the line-movement rules below on every path that assigns, changes, or removes the lead technician.”
+- PRD S4-R31: “The prompt shows on Board View and Tech View, both when dragging and in the Reassign dialog. Changing the lead technician on the work order page or from the List does not show it, as today.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

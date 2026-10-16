@@ -1,0 +1,43 @@
+C97033 | section 55300 Not runnable for now | Automated: False | layout old | run 498 test T3481971 status Passed
+existing setup doc: none
+
+TITLE: Field selection rate is one combined share across all users, not an average
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: about 30 minutes, over two different days of the same week (Monday to Sunday).
+- Desktop browser window at least 1024 px wide; Admin sign-in for the setup (on a QA branch: the Admin quick-login button).
+- Work in one location throughout, shown next to the bell in the top bar (e.g. "Staging Heavy Duty - 9919"); to change it click your initials (top right) > Change Location. Create everything in that location.
+- No Google Analytics access is needed: you read what the page sends in the browser's developer tools (Chrome or Edge). Press F12 > Network tab > tick Preserve log > type collect in the filter box. Click a collect request > Payload tab. Each event lists en (event name), ep.element_location (list, tech_view or board_view), ep.element_label (the field or density), ep.setting_value (on or off), ep.setting_source (default = never changed, saved = chosen earlier) and uid (the user). One request can hold several events, one per line.
+- Turn off any ad blocker for this site, and use a new private window for each user so their messages are not stopped or mixed up.
+- Board View starts every new user with VIN/Serial off and Total price on.
+Setup
+- Settings > Roles & Permissions: create a role with Work Orders View but without See financial data (e.g. "ZZAUTOTEST No Money").
+- Settings > Staff > New Staff Member: four new users at this location (e.g. "ZZAUTOTEST F3 Rate U1" to "U4"); finish each invite so they can sign in. U1, U2 and U3 get a role with Work Orders View and See financial data; U4 gets the role from step 1.
+- Check: as U4, Board View > Fields to display does not offer Total price.
+
+=== STEPS ===
+- For each user below use a new private window with the browser tools open as described in the Preconditions (F12 > Network > Preserve log > filter collect). After each user, write down from the collect requests their uid, every work_orders_field_load event for vin and total_price (with ep.setting_value), and every work_orders_field_toggle event (ep.element_label and ep.setting_value). Then sign out and close the window.
+- Day 1: sign in as U1, open Work Orders > Board View > Fields to display, and turn VIN/Serial on, off, then on again.
+- Day 2 (a different calendar day): sign in as U2, open Board View and turn VIN/Serial on.
+- Day 2: sign in as U3, open Board View and turn Total price off.
+- Day 2: sign in as U4 and open Board View. Change nothing.
+- Work out the week's figures from your notes, counting each user (uid) once. For each field: the users exposed to it are those with a work_orders_field_load event for it; the users selecting it are those whose last value for it (the load, then any toggles after it) is on. Rate = users selecting ÷ users exposed, over the whole week, not per day.
+
+=== EXPECTED ===
+Expected results
+- VIN/Serial: 4 users saw it (U1 to U4) and 2 have it on (U1, U2), so the rate is 2 ÷ 4 = 50%. U1 counts once however many times they toggled.
+- The figure must not be the average of daily rates. Day 1 = 1 ÷ 1 = 100% and day 2 = 1 ÷ 3 = 33.3%, so their average of 66.7% would be wrong. The correct figure is 50%.
+- Total price: only U1, U2 and U3 could see it (U4 has no financial data, so U4 has no total_price field_load event). U1 and U2 have it on (default) and U3 turned it off, so the rate is 2 ÷ 3 = 66.7%, not 2 ÷ 4 = 50%.
+- Each user keeps the same uid on every event, on both days.
+- The report page itself is built by the report owner inside Google Analytics, outside ShopView, and is not part of this test (QA lead's decision below).
+Source — where this behaviour comes from
+- Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S12-R10, S12-R7, S12-R13, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names. Tech plan (revised 24 Sep 2026) section 3.21 and Phase 10.
+- QA lead decision, 12 Oct 2026: these checks are judged on what the ShopView page sends to Google Analytics, worked out with the PRD's rules; the report page inside Google Analytics is outside ShopView and not part of this test.
+Exact quotes from the source (for reproducibility)
+- S12-R10: “Report field selection rate by field and display: distinct exposed users selecting the field divided by distinct users exposed to that available field.”
+- S12-R7: “Exclude unavailable financial fields from field-exposure measurement and its denominator.”
+- S12-R13: “Do not count repeated events from one user as additional users.”
+- Tech plan Phase 10 sample calculation: “Each needs a named owner (product analytics, not engineering) and a sample calculation checked against a seeded week (S12-E2).”
+Last checked against build v26.40.14-e84b3d1 on 10/13/2026.
+AUTOMATION: READY

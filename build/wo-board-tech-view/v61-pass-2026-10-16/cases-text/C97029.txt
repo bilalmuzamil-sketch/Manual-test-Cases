@@ -1,0 +1,43 @@
+C97029 | section 55300 Not runnable for now | Automated: False | layout old | run 498 test T3481967 status Passed
+existing setup doc: none
+
+TITLE: Each analytics situation in the acceptance list records the right events
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 3 users · 1 browser · Google Analytics DebugView access · about 20 minutes
+- Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+- Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+- Analytics access: you can open Google Analytics for the property the QA build reports to, at Admin > DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write "not checked by hand" in the result comment and pass or fail on what you can see on the Work Orders page.
+- Event names to look for in DebugView: work_orders_display_view (a display was shown), work_orders_field_load and work_orders_density_load (the fields and density you have, once per display per session), work_orders_field_toggle and work_orders_density_change (a saved change).
+- [User-B]: a brand-new user who has never opened Work Orders (e.g. "ZZAUTOTEST F3 First Use").
+- [User-C]: a user without see financial data (e.g. "ZZAUTOTEST F3 No Financial"), whose role has Work Orders View but not see financial data.
+- Your dispatcher has a saved display, fields and density (any non-default choice).
+Setup
+- Settings > Staff > add [User-B] (e.g. "ZZAUTOTEST F3 First Use") with a role that has Work Orders View, at this location; finish the invite so the user can sign in. Do not open Work Orders as this user before step 1.
+- Settings > Roles & Permissions > create a custom role (e.g. "ZZAUTOTEST No Money") with Work Orders View and Create & Edit but not see financial data. Settings > Staff > add [User-C] with that role at this location; finish the invite.
+- As your dispatcher, in Work Orders pick Board View, change one field in Fields to display and pick a density, so all three are saved choices; then sign out.
+- Check the setup worked: Google Analytics > Admin > DebugView opens and shows your device within a few seconds of opening any ShopView page. If it does not, carry on but write "not checked by hand" for the event checks, as the Preconditions say.
+
+=== STEPS ===
+- First use: sign in as the brand-new user [User-B], open Work Orders, click Board View. Read the events.
+- Restored settings: sign in as your dispatcher (with saved display, fields and density), open Work Orders. Read the events.
+- View changes: click Tech View, then the Estimates tab. Read the events.
+- Successful save: in Board View turn VIN/Serial on in Fields to display. Read the events.
+- Financial visibility off: sign in as the user without see financial data [User-C] and click Board View. Read the events.
+
+=== EXPECTED ===
+Expected results
+- Step 1: display view with source default, and 13 field events with source default.
+- Step 2: the display view names your saved display with source saved, and fields and density show source saved.
+- Step 3: one display view per switch (2 events).
+- Step 4: one field change event for VIN/Serial (on).
+- Step 5: 12 field events and none for total price.
+- Fallback loading and a failed save cannot be caused by hand. Write "fallback and failed save: not checked by hand" in the result comment.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S12-E1, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names.
+Exact quotes from the source (for reproducibility)
+- S12-E1: “Verify analytics for first use, restored preferences, fallback loading, view changes, successful/failed saves, and financial visibility off.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: HOLD - not manually testable (developer/automated check only)

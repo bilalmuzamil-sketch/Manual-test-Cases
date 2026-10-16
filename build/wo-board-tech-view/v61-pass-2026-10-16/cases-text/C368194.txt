@@ -1,0 +1,36 @@
+C368194 | section 47110 High — shares code that changed behaviour (developer items 1–4 and the rebuilt List) | Automated: True | layout old | run 498 test T3792515 status Passed
+existing setup doc: none
+
+TITLE: A column turned on in List Column Selection stays after a reload
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 5 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- View: on Work Orders the List is shown (click List in the display switcher at the right of the toolbar; its tooltip reads "List").
+- Starting value: Column Selection > Days open is off (the List has no Days Open column).
+- Needs no test data of its own.
+Setup
+- Work Orders > List > Column Selection: if Days open is on, click its switch to turn it off, then close the menu (Escape or click outside).
+- Check the setup worked: the List headings do not include Days Open.
+
+=== STEPS ===
+- Open Work Orders and click the All tab.
+- Click Column Selection in the toolbar.
+- Turn on Days open (click the switch next to it).
+- Close the menu (Escape or click outside it).
+- Reload the page.
+
+=== EXPECTED ===
+Expected results
+- Step 4: the List shows a Days open column.
+- Step 5: after the reload Days open is still shown.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), §2; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (§1 Business Case). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- QA handoff §2: “turn "Days open" on, reload, and it is still shown.”
+- PRD §1 Business Case: “List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

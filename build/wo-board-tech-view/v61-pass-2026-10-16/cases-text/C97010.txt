@@ -1,0 +1,59 @@
+C97010 | section 13244 S9 — Drag to reorder work and technician groups/columns | Automated: False | layout rule117 | run 498 test T3481954 status Passed
+existing setup doc: https://docs.google.com/document/d/1Ci1pf5yZF76g-KZNjjXTD-gQZVtmoTYAGKn1b_s8MCI/edit
+
+TITLE: Nothing can be dropped on an inactive technician, and a failed drop goes back
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+- Technician {Technician-A} (for example ZZAUTOTEST Ana Alpha) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+- Technician {Technician-B} (for example ZZAUTOTEST Ben Bravo) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+- Customer {Customer-A} (for example "ZZAUTOTEST C97010 Failed Drop") is used by this case only.
+- Approved work order {Work-order-1} (for example S10043-17701) for {Customer-A} is led by {Technician-A}.
+- Work order {Work-order-2} (for example S10043-17702) for {Customer-A} is led by {Technician-A}, is Complete (reviewed) and has not been invoiced, so Create Invoice is offered on its Finance tab.
+- Approved work order {Work-order-3} (for example S10043-17703) for {Customer-A} is led by technician {Technician-C} (for example ZZAUTOTEST Dan Delta), made for this case only.
+- After {Work-order-3} was given its lead, {Technician-C}'s staff account was deactivated.
+- No technician has a shift on the Schedule for {Work-order-1}, {Work-order-2} or {Work-order-3}.
+- On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+
+=== STEPS ===
+- Open Work Orders, click the All tab and click Board View in the display switcher.
+- Type the name of {Customer-A} in Search.
+- Read {Technician-C}'s column header and its count.
+- Drag {Work-order-1} from {Technician-A}'s column onto {Technician-C}'s column and let go.
+- Read where {Work-order-1} is and {Technician-C}'s count.
+- Open a second browser tab and open {Work-order-2} in it.
+- In the second tab, click the Finance tab and click Create Invoice.
+- Go back to the first tab. Do not refresh it.
+- Drag {Work-order-2} from {Technician-A}'s column onto {Technician-B}'s column and let go.
+- Read where {Work-order-2} is and the alert that appears.
+- Wait about ten seconds and check whether the alert is still shown.
+- Click the alert's dismiss (X) button.
+- Refresh the page.
+- Open {Work-order-2} and read its Lead Technician.
+
+=== EXPECTED ===
+Expected results
+- Step 3: {Technician-C}'s column is still shown with {Work-order-3}, is marked inactive and its count is 1.
+- Step 5: the drop is not accepted. {Work-order-1} stays in {Technician-A}'s column, {Technician-C}'s count stays 1 and no "Lead technician updated" message appears.
+- Steps 9 and 10: the move cannot be saved. {Work-order-2} goes back to {Technician-A}'s column and the alert reads "Failed to update lead technician, please try again.", with a message explaining that the work order's status does not allow the change. If the first tab already showed {Work-order-2} as locked and it could not be dragged onto {Technician-B}'s column, this part cannot be checked by hand: write "not checked by hand" in the result comment.
+- Steps 11 and 12: the alert stays on screen until you dismiss it.
+- Steps 13 and 14: {Work-order-2} is in {Technician-A}'s column and its Lead Technician is still {Technician-A}.
+Source — where this behaviour comes from
+Epic SV-10043; stories SV-10052 (Story 9, Drag to reorder work and technician groups/columns), SV-10047 (Story 4, Reassign or unassign the lead technician) and SV-10046 (Story 3, Board View); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 49 (14 Oct 2026, Chris Ward), S9-N2, S9-E1, S4-N5 (widened in version 49 from Chris Ward's answer 2 of 14 Oct 2026 to also name a technician not enrolled at this location; this case checks the inactive technician), S3-N2, S3-N4, S4-E3, S4-N3, S4-N8, S4-N2 and S4-R10, read 14 Oct 2026. The failed save is produced by invoicing the work order in a second tab before the drop lands, which replaces the earlier way of turning the network off. Source-verified 14 October 2026. This version of the case has not yet been checked against a build (the previous version was last checked against build v26.40.8-7a95011 on 10/8/2026).
+Exact quotes from the source (for reproducibility)
+- S3-N2: “Keep matching work visible in its deactivated technician’s column.”
+- S3-N4: “Show an inactive indicator on deactivated technician columns.”
+- S4-N5: “Nothing can be dropped onto the column/group of an inactive technician (S2-N2, S3-N2) or of a technician who is not enrolled at this location (S3-R20c).”
+- S9-N2: “Apply S4-N5’s inactive-destination restriction and S4-N3/S4-N8’s failure recovery to drag reassignment.”
+- S9-E1: “If status or permission changes before a drop completes, revalidate and reject unauthorized reassignment under S4-E3/S4-N3.”
+- S4-E3: “If status becomes prohibited during a drag, reject the drop using S4-N3 and S4-N8, with a status explanation.”
+- S4-N3: “If reassignment fails, return the card or row to its original column or group.”
+- S4-N8: “Failed reassignment shows a user-dismissible alert: “Failed to update lead technician, please try again.””
+- S4-N2: “Do not allow the lead technician to change in Invoiced or Paid status. An Invoiced or Paid work order can still be dragged to reorder it within its current technician (or within Unassigned), but it cannot be moved to another technician, to Unassigned, or out of Unassigned. Declined and Complete work orders can be moved freely, as today.”
+- S4-R10: “Enforce the prohibited-status rule in S4-N2 on every lead-change path, including requests that bypass interface controls.”
+Last checked against build v26.40.17-ddb9ba1 (staging) on 10/14/2026.
+AUTOMATION: READY

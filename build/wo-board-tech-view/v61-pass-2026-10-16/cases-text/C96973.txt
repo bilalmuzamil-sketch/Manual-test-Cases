@@ -1,0 +1,46 @@
+C96973 | section 13239 S4 — Reassign or unassign the lead technician | Automated: True | layout old | run 498 test T3481917 status Passed
+existing setup doc: none
+
+TITLE: Reassign can pick a technician outside the filter and the card then leaves
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 15 minutes.
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+- [User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit. Your own staff record is also an eligible technician (Time Clock on, Role not Office User or Time Clock User, this location in Location), e.g. "Aaron Keating".
+- Desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+- One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+- Two other eligible technicians at this location: [Tech-A] "Ralph Edwards" and [Tech-B] "Dana Ortiz". A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- Customer "ZZAUTOTEST F1 Outside Filter" (used by this case only) with one Approved work order [WO-1] with Lead Technician = you ([User-A]); you are not its service advisor and no line is assigned to anyone but you.
+- Ralph Edwards and Dana Ortiz are named in the expected results and stay as written; the number is an example. What must hold: with the search below, Assigned to me shows only your column with 1 work order.
+Setup
+- Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). Your own staff record must also be an eligible technician (Settings > Staff > your own row's edit icon > Time Clock on, Role not Office User or Time Clock User, with this location picked in Location), e.g. "Aaron Keating".
+- Use one location for the whole case: it is shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+- Settings (your initials at the top right > Settings) > Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member > First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on > Save & Close. Record them as [Tech-A] = "Ralph Edwards" (use exactly this name: the expected results name it), [Tech-B] = "Dana Ortiz" (use exactly this name: the expected results name it).
+- Create the customer used only by this case: top menu Customers > New Customer > Name "ZZAUTOTEST F1 Outside Filter" > Save. On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty.
+- Create these work orders for "ZZAUTOTEST F1 Outside Filter": Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save & Close. Write down the number the build gives the work order (on a QA branch they look like "S10043-17581"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.- [WO-1] (e.g. S1-702): on the work order page set Lead Technician to yourself ([User-A]). Make sure you are not this work order's service advisor and no line is assigned to anyone but you.
+
+- Check the setup worked: Work Orders > All tab > Search "ZZAUTOTEST F1 Outside Filter" shows [WO-1] with Lead Technician = you. If not, fix it on the work order page before starting; then clear the search.
+
+=== STEPS ===
+- Open Work Orders, click the All tab, pick Board View and turn on Assigned to me.
+- Click Search and type "ZZAUTOTEST F1 Outside Filter".
+- Write down which technician columns are shown.
+- Hover the card, click More actions and choose Reassign lead technician.
+- Read the technicians listed in the Reassign lead technician dialog.
+- Pick [Tech-A] and confirm (keep shifts if asked).
+- Read the board and its header count.
+
+=== EXPECTED ===
+Expected results
+- The dialog offers Ralph Edwards and Dana Ortiz although their columns are not on screen under Assigned to me.
+- After the change the work order no longer matches Assigned to me and disappears from the board without a reload. With none of your work orders left, your column is hidden and the board shows “No work orders match these filters”, then “Try removing a filter to widen your results.”, with a Clear all filters button.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S4-E4, S4-E8, S3-N1 and S1-N1a, read 15 Oct 2026. Assigned to me behaviour S1-R13 / S3-N1. Source-verified 15 October 2026; the expected result was corrected that day to the PRD (the earlier "column count goes from 1 to 0" was not in the source).
+Exact quotes from the source (for reproducibility)
+- S4-E4: “The Reassign dialog allows destinations outside the current filter.”
+- S4-E8: “After reassignment, remove the work order from results if it no longer matches the filter.”
+- S3-N1: “With Assigned to me enabled, Board View shows only the technician columns, including Unassigned, that hold at least one work order matching Assigned to me (S1-R13). Every other column is hidden, including pinned technicians.”
+- S1-N1a: “With filters active, with or without a search, the empty state reads “No work orders match these filters”, then “Try removing a filter to widen your results.”, with a Clear all filters button.”
+Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026.
+AUTOMATION: READY

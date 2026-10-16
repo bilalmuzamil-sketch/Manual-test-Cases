@@ -1,0 +1,51 @@
+C97005 | section 13244 S9 — Drag to reorder work and technician groups/columns | Automated: False | layout old | run 498 test T3481949 status Passed
+existing setup doc: none
+
+TITLE: The order of work orders is shared by everyone at the location
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 2 users · 2 browsers · about 20 minutes
+- Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+- Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+- [User-B]: a second dispatcher with Work Orders create and edit at the same location (e.g. "ZZAUTOTEST Dispatcher Two"), with a role that has Work Orders View and Create & Edit, signed in in a second browser.
+- Technicians (examples, the expected results call them by first name or full name): "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo". A staff member counts as a technician when, in Settings > Staff > the staff member's edit icon > Edit Staff Member, they are Active, Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- Customers (used by this case only, each with one contact and one asset): "ZZAUTOTEST F3 Shared Order Alpha Co", "ZZAUTOTEST F3 Shared Order Bravo Co", "ZZAUTOTEST F3 Shared Order Charlie Co". The steps and expected results call them by the end of the name ("Alpha Co", "Bravo Co", "Charlie Co").
+- Work orders (Approved), lead Ana: Alpha Co, Bravo Co, Charlie Co. Nobody has reordered Ana's work in Tech View or Board View at this location yet, so they start in the List's default order (customer name A to Z): Alpha Co, Bravo Co, Charlie Co.
+- Technician order for both dispatchers: Ana before Ben.
+- None of these technicians has a shift on the Schedule for these work orders (check the Schedule page). If a window titled "Clear … scheduled shifts?" still appears during a move, click "Keep shifts".
+Setup
+- Settings (your initials at the top right > Settings) > Staff: confirm "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo" exist and count as technicians at this location (edit icon > Edit Staff Member). To add one: New Staff Member with those settings (at least one Department is required) (e.g. first name "ZZAUTOTEST Ana", last name "Alpha") > Save & Close.
+- Settings (your initials at the top right > Settings) > Staff > New Staff Member with a role that has Work Orders View and Create & Edit, with this location picked in Location (e.g. "ZZAUTOTEST Dispatcher Two"; skip if one exists). Record as [User-B] and sign them in in a second browser.
+- Create this case's customers: "ZZAUTOTEST F3 Shared Order Alpha Co", "ZZAUTOTEST F3 Shared Order Bravo Co", "ZZAUTOTEST F3 Shared Order Charlie Co". For each: top menu Customers > New Customer, Name > Save; on the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact); then the Assets tab > New Asset > pick the Contact, then Year, Make, Model (e.g. 2022, Freightliner, M2) > Save. Make is required; Unit can be left empty.
+- Create each work order listed in the Preconditions: Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. Move it to the status named: a new work order starts as Estimate (it opens with the New Line form: pick a ready-made line and Save & Close); for Approved turn on Line Approved on its line; for In Progress click Start on the line's Labor row (stop the clock afterwards with Stop > Clock Out); for Review click the line's Complete button, type a Tech Story (fill any missing detail it asks for, e.g. Mileage) and click Complete Line (the List shows "Ready For Review"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance tab > Create Invoice; for Paid, after invoicing, Finance tab > New Payment for the full amount > Make Payment. Set the lead technician before invoicing. Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (leave it as Unassigned for an unassigned one). (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Write down each work order number as you create it (e.g. S1-801); the steps call each work order by the end of its customer name (e.g. "Alpha Co").
+- Check the setup worked: Work Orders > All tab > List > type "ZZAUTOTEST F3 Shared Order" in Search — exactly 3 work orders show, all Approved and led by Ana; in Tech View Ana's group reads Alpha Co, Bravo Co, Charlie Co, and Ana comes before Ben for both dispatchers. If anything differs, correct that work order (status or Lead Technician) before starting.
+
+=== STEPS ===
+- Open Work Orders from the top menu and click the All tab.
+- Type "ZZAUTOTEST F3 Shared Order" in Search so only this case's work orders show.
+- Click Tech View in the display switcher at the right of the toolbar (tooltip "Tech View").
+- In Ana's group, drag the Charlie Co row above the Alpha Co row and release.
+- Click Board View in the display switcher (tooltip "Board View").
+- Read the order of the cards in Ana's column.
+- In the second browser, as the second dispatcher, open Work Orders > All, search "ZZAUTOTEST F3 Shared Order", click Board View and read Ana's column, then click Tech View and read Ana's group.
+- In the first browser, sign out, sign back in and open Work Orders > All > Tech View with the same search.
+- In the first browser, drag Ben's group header above Ana's group (technician order), then in the second browser refresh and read the technician order.
+
+=== EXPECTED ===
+Expected results
+- Step 4: Ana's group reads Charlie Co, Alpha Co, Bravo Co.
+- Step 6: Board View shows the same order in Ana's column: Charlie Co, Alpha Co, Bravo Co.
+- Step 7: the second dispatcher sees Charlie Co, Alpha Co, Bravo Co in both views without doing anything (the work order order is saved once for the location).
+- Step 8: after signing in again the order is still Charlie Co, Alpha Co, Bravo Co: the saved order replaces the starting customer-name order and stays until someone changes it.
+- Step 9: the second dispatcher's technician order does not change (Ana before Ben): technician order is saved per user, unlike the work order order.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10052 (Story 9, Drag to reorder work and technician groups/columns); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S9-R3, S9-R11, S9-R12, read 8 Oct 2026. Key Decisions (manual ordering), same PRD. Starting order (customer name A to Z): Review Decisions page 853901313, DR-45 (29 Sep 2026).
+Exact quotes from the source (for reproducibility)
+- S9-R3: “Once anyone at the location has reordered a technician’s work orders, use that saved order instead of the initial sort. Once a user has reordered technician groups/columns, use their saved order instead of the initial technician sort.”
+- S9-R11: “Save the manual order of work orders once per location. Everyone at the location sees the same order, in both Tech View and Board View. If two people reorder at the same time, the later save wins; the other person sees the saved order on their next refresh and is not warned.”
+- S9-R12: “The manual order of work orders stays until someone changes it. Technician group/column order and pins are saved per user (S9-R2, S3-R18).”
+- Key decision: manual ordering: “That order is the shop’s priority plan, so it is saved once per location and everyone at the location sees the same order, in Tech View and Board View alike.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

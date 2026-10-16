@@ -1,0 +1,46 @@
+C368135 | section 13239 S4 — Reassign or unassign the lead technician | Automated: True | layout old | run 498 test T3761656 status Passed
+existing setup doc: none
+
+TITLE: Cancel or closing the clear-shifts question calls the change off
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · Schedule access · about 15 minutes.
+- Sign in as an Admin (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). Desktop browser window at least 1024 px wide; narrower windows show only the List.
+- Work in one location throughout, shown next to the bell in the top bar (e.g. "Staging Heavy Duty - 9919"); to change it click your initials (top right) > Change Location. Create everything in that location.
+- Two technicians named exactly "Esther Howard" ([Tech-A]) and "Ralph Edwards" ([Tech-B]); the expected results quote these names.
+- Customer "ZZAUTOTEST F1 Prompt Cancel" (this case only) with one Approved work order [WO-1] led by Esther Howard, and a shift for her on it tomorrow 8:00–12:00.
+Setup
+- Technicians: your initials (top right) > Settings > Staff. A person counts as a technician only if Active, Time Clock on, Role not Office User or Time Clock User, and this location in Location. To add one: New Staff Member > First Name, Last Name, Email, Role "Technician", one Department (required), Location = this location, Time Clock on > Save & Close. You need: "Esther Howard" and "Ralph Edwards".
+- Customer: Customers > New Customer > Name "ZZAUTOTEST F1 Prompt Cancel" > Save. On its Contacts tab > New Contact > First and Last Name > Save. On its Assets tab > New Asset > pick the contact, Year, Make (required), Model, Unit "TRK-118" > Save.
+- Work orders for "ZZAUTOTEST F1 Prompt Cancel": Work Orders > Create Work Order > pick the Customer and its Asset > Save (if a credit-limit Confirmation appears, click Create). In the New Line form that opens, type in "What Are You Doing?" and pick a ready-made line (e.g. "Replace - Brake pot"), turn Line Approved on > Save & Close: the status reads Approved. Write down the work order number (top left). Then pick the lead in Lead Technician on the card at the left of the work order page; it saves at once.- [WO-1]: lead = Esther Howard.
+
+- Schedule > go to tomorrow > drag [WO-1] from the work order list onto Esther Howard's row at 8:00 > choose Entire work order > set the end time to 12:00 > save.
+- Check: tomorrow's Schedule shows Esther Howard's 8:00–12:00 shift on [WO-1], and [WO-1] shows Lead Technician Esther Howard.
+
+=== STEPS ===
+- Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip "Board View").
+- Type "ZZAUTOTEST F1 Prompt Cancel" in Search.
+- Drag the card from [Tech-A]'s column into [Tech-B]'s column. A question about [Tech-A]'s scheduled shifts appears.
+- In the question click Cancel.
+- Drag the card into [Tech-B]'s column again and close the question with its close (X) button.
+- Drag the card into [Tech-B]'s column again and press Escape on the keyboard.
+- Hover the card, click More actions > Reassign lead technician, pick [Tech-B] and confirm.
+- In the question click Cancel and read the screen.
+- Click Cancel in the Reassign lead technician dialog.
+- Open the work order and read Lead Technician, then open the Schedule for tomorrow.
+- Repeat steps 3 to 9 in Tech View.
+
+=== EXPECTED ===
+Expected results
+- After Cancel, after X and after Escape, the dragged card goes back to its place in Esther Howard's column, and no "Lead technician updated" message appears.
+- After Cancel from the dialog path you are back in the Reassign lead technician dialog with Ralph Edwards still chosen.
+- In the end nothing changed: Lead Technician is Esther Howard and her 8:00–12:00 shift is still on the Schedule.
+- Note: clicking an empty part of the page outside the question does not close it; the question simply stays open. That is expected and is not a fault (QA lead's decision below).
+Source — where this behaviour comes from
+- Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S4-R30, read 8 Oct 2026. PO decision Chris Ward 6 Oct 2026 ("Cancel undoes the move"). Escape as a way of closing the question: the design system's dialog behaviour in the 8 Oct design export.
+- QA lead decision, 9 Oct 2026: clicking outside the clear-shifts question does not close it, and that is not a defect.
+Exact quotes from the source (for reproducibility)
+- S4-R30: “Cancel, or closing the prompt, calls the change off. A dragged card goes back to where it was; in the Reassign dialog the user is back in the dialog with their choice kept.”
+Last checked against build v26.40.8-7a95011 on 10/9/2026.
+AUTOMATION: READY

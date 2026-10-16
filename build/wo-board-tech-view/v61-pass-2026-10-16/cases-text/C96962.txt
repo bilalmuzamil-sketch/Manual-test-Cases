@@ -1,0 +1,34 @@
+C96962 | section 13239 S4 — Reassign or unassign the lead technician | Automated: True | layout old | run 498 test T3481906 status Passed
+existing setup doc: none
+
+TITLE: A lead change adds one history entry and none for the lines it moves
+
+=== PRECONDITIONS ===
+- Sign in as Admin (on a QA branch: the Admin quick-login button; you appear as "Admin ShopView").
+- An Approved work order with a Lead Technician (e.g. Esther Howard) and two lines with no technician picked on them. Example: the work order of customer "ZZAUTOTEST F1 Lead History".
+- No such work order? Click Create Work Order, pick a customer and asset, Save. Add two lines with New Line (Status "Authorized", no technician). On the work order's left card set Lead Technician.
+- Two more technicians at this location (e.g. Ralph Edwards and Dana Ortiz).
+
+=== STEPS ===
+- Go to Work Orders, click the All tab, then Board View. Click Search and type the customer's name.
+- Drag the work order's card from the lead's column (e.g. Esther Howard) to another technician's column (e.g. Ralph Edwards). If asked "Clear …'s scheduled shifts?", click Keep Shifts.
+- Open the work order. Click ⋮ at the top right (next to New Line), then Audit Log.
+- In the Work Order Log, read the newest "Lead tech changed" entry. Close the log.
+- Click the first line's name. In Edit Line, remove the technician shown (x), add another one (e.g. Dana Ortiz), click Save & Close.
+- Click the line's number (1), then Audit log. Read the newest entry. Close it.
+- Back on Board View, open the card's More actions > Reassign lead technician, pick the first lead again (e.g. Esther Howard) and confirm. Repeat steps 3 and 4.
+- On the work order's left card change Lead Technician (e.g. to Ralph Edwards). Repeat steps 3 and 4.
+
+=== EXPECTED ===
+Expected results
+- Each lead change (drag, Reassign dialog, work order page) adds exactly one entry showing the previous lead, the new lead, your user as the person who made it, and the time (e.g. Esther Howard → Ralph Edwards, by you, at the time you noted).
+- No separate entries appear for the two lines that moved with the lead (3 lead changes = 3 entries, not 9).
+- Changing a line's technician directly in Edit Line still adds its own line entry, as it does today.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S4-R9, S4-R17, S4-R18, read 8 Oct 2026. Review Decisions FF-4 history (audit actor is the logged-in user). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- S4-R9: “Every lead-change path records one audit entry with the previous lead, new lead, logged-in actor, and time.”
+- S4-R17: “Do not create separate audit entries for implicit line movements caused by a lead change.”
+- S4-R18: “Continue existing line auditing for technician changes made directly on a work order line.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

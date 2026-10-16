@@ -1,0 +1,33 @@
+C96999 | section 13243 S8 — Remove the tech-story check-mark | Automated: False | layout old | run 498 test T3481943 status Passed
+existing setup doc: none
+
+TITLE: Lines without a tech story look the same as before
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · the production app or an older screenshot · about 10 minutes
+- Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+- Customer "ZZAUTOTEST F3 No Story Look" (used by this case only), with one contact and one asset.
+- Work order [WO-1] for this customer: status Approved, a line "Line 1" and no tech story.
+- A way to see the same kind of line before this release: the current production app, or a screenshot taken before the release.
+- The line name is an example.
+Setup
+- Top menu Customers > New Customer, Name "ZZAUTOTEST F3 No Story Look" > Save (skip if it already exists). On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty. Record the customer as [Cust-1].
+- Create a work order with one line: Work Orders > Create Work Order > in New Work Order pick Customer [Cust-1] and its Asset > Save. The work order opens on its Lines tab with the New Line form open: in "What Are You Doing?" pick a ready-made line, turn Line Approved on (this makes the work order Approved) > Save & Add Line for the next line or Save & Close. Record the number shown as [WO-1]. Line names in this case (such as "Line 1") are only labels for you: the New Line form's "What Are You Doing?" box only offers ready-made lines (typed text finds no results), so pick any ready-made line for each one (e.g. "Replace - Brake pot") and write down which is which.
+- Check the setup worked: [WO-1] reads Approved and its Lines tab shows Line 1 with no tech story. Have the production app or the older screenshot open before starting; if neither is available, the comparison in step 3 cannot be made.
+
+=== STEPS ===
+- Open the work order [WO-1] and click the Lines tab.
+- Look at Line 1 (its Story row and add-story prompt).
+- Compare it with the same kind of line before this release.
+
+=== EXPECTED ===
+Expected results
+- Line 1 looks exactly as before: the same add-story prompt and layout, no new mark and nothing missing.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10051 (Story 8, Remove the tech story check-mark indicator); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S8-N1, read 8 Oct 2026. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- S8-N1: “Lines without a tech story look the same before and after this change.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

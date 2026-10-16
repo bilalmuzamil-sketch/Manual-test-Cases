@@ -1,0 +1,29 @@
+C368246 | section 47112 Low — one quick look each | Automated: False | layout old | run 498 test T3792567 status Passed
+existing setup doc: none
+
+TITLE: Dashboard cards that show a table list their rows as before
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 5 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- Needs no test data of its own.
+Setup
+- Check the setup worked: the Dashboard opens (see step 1) and shows cards.
+
+=== STEPS ===
+- Click Dashboard in the top menu (on this build: click the ShopView logo at the top left; it opens /dashboard).
+- Find each card that shows a table (e.g. At Risk Customers; also Efficiency by Tech, Billing Efficiency by Advisor, Effective Labor Rate (ELR) by Advisor, Utilization by Tech).
+- Read its rows and, where offered, click a column header to sort.
+
+=== EXPECTED ===
+Expected results
+- Each table card shows its rows with no error message, and a clicked header orders the rows. Write down the cards you checked.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, Low; QA handoff test plan (generated 2026-10-08), §Frontend Components; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- Dev reply Low: “Any table page (Customers, Dashboard cards): the table component only gained an addition.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

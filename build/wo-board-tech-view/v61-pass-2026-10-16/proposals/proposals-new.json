@@ -1,0 +1,176 @@
+{
+ "updates": [],
+ "new": [
+  {
+   "key": "N-S3R20d-time-clock-off",
+   "section_id": 13238,
+   "title": "A lead whose Time Clock is turned off keeps a named column that takes no drops",
+   "preconditions": [
+    "You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.",
+    "Technician {Technician-A} (for example ZZAUTOTEST S3R20d Tim Clock) is a staff member made for this case only, active at {Location-A} with Time Clock on and the Technician role, because this test turns their Time Clock off.",
+    "Customer {Customer-A} (for example \"ZZAUTOTEST S3R20d Time Clock Off\") is used by this case only.",
+    "Approved work order {Work-order-1} (for example S10043-17911) for {Customer-A} is led by {Technician-A}.",
+    "Approved work order {Work-order-2} (for example S10043-17912) for {Customer-A} has no lead technician, so it sits in Unassigned.",
+    "On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty."
+   ],
+   "steps": [
+    "Click your initials (top right) and open Settings > Staff.",
+    "Click the pencil icon on {Technician-A}.",
+    "Turn Time Clock off and click Save & Close.",
+    "Open Work Orders, click the All tab and click Board View in the display switcher.",
+    "Type the name of {Customer-A} in Search.",
+    "Read the header of the column that holds {Work-order-1}.",
+    "Drag {Work-order-2}'s card from Unassigned onto {Technician-A}'s column and let go.",
+    "Click Tech View in the display switcher.",
+    "Read the header of the group that holds {Work-order-1}.",
+    "Open {Work-order-1}, set its Lead Technician dropdown to Unassigned and go back to Work Orders.",
+    "Click Board View in the display switcher and look for {Technician-A}'s column.",
+    "Click Tech View in the display switcher and look for {Technician-A}'s group."
+   ],
+   "results": [
+    "Step 6: {Work-order-1} is still in a column of its own headed with {Technician-A}'s name.",
+    "Step 7: the drop is refused: {Work-order-2} stays in Unassigned and {Technician-A}'s column still holds only {Work-order-1}.",
+    "Step 9: in Tech View {Work-order-1} is in a group headed with {Technician-A}'s name.",
+    "Steps 11 and 12: once {Technician-A} leads no work orders, neither Board View nor Tech View shows a column or group for them."
+   ],
+   "source": "Epic SV-10043; story SV-10046 (Story 3, Board View) and SV-10045 (Story 2, Tech View); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S3-R20d, S3-R20c and S4-N5, read 16 Oct 2026. S3-R20d was added in version 59 on 16 Oct 2026 (Chris Ward ruling on Slavcho Mitrov's question on SV-11416). Source-verified 16 October 2026.",
+   "quotes": [
+    [
+     "S3-R20d",
+     "A lead technician whose Time Clock is turned off (not deleted) keeps their own column on Board View and group in Tech View, under their name, while they still lead work orders. Nothing can be dropped onto it, the same as S3-R20c. Once they lead no work orders, the column or group is no longer shown."
+    ],
+    [
+     "S3-R20c",
+     "The column of S3-R20b takes no drops. Dropping a work order on it is refused with \"This technician can't be assigned work orders.\" and the work order stays where it was. The column shows no inactive marker, because the technician is not deactivated (S3-N4). Once it holds no work orders, the column is no longer shown."
+    ],
+    [
+     "S4-N5",
+     "Nothing can be dropped onto the column/group of an inactive technician (S2-N2, S3-N2) or of a technician who is not enrolled at this location (S3-R20c)."
+    ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+   "doc_part1": [
+    "Sign in as an Owner or Admin user. On a QA site click the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\". To check the permissions: your initials (top right) > Settings > Roles & Permissions > Admin > Work orders: View and Create & Edit are on.",
+    "Pick one location for the whole case; it is shown in the top bar next to the bell (to change it: your initials > Change Location). This is {Location-A} (for example Staging Heavy Duty - 9919). Create everything below at {Location-A}.",
+    "Use a desktop browser window at least 1024 px wide (narrower windows show only the List, with no display switcher).",
+    "Your initials > Settings > Staff > New Staff Member. Make a new one for this case, because the test turns its Time Clock off. Enter First Name and Last Name (for example ZZAUTOTEST S3R20d Tim Clock), an Email with ZZAUTOTEST in it, Role Technician, at least one Department (required), Location {Location-A}, turn Time Clock on, then Save & Close. This is {Technician-A}.",
+    "Top menu Customers > New Customer > Name (for example \"ZZAUTOTEST S3R20d Time Clock Off\") > Save. This is {Customer-A}; use it for this case only. On the customer page click Contacts > New Contact > First Name and Last Name (for example ZZAUTOTEST Contact) > Save. Then Assets > New Asset > pick the contact, Year (for example 2022), Make (type \"Freight\" and pick Freightliner), Model (for example M2), Unit (for example TRK-118) > Save. Contact and Make are required.",
+    "Work Orders > Create Work Order > in the New Work Order window pick {Customer-A} and its asset > Save (if a Confirmation about the credit limit appears, click Create). The work order opens on its Lines tab with the New Line form. In What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\", turn Line Approved on and click Save & Close. The status reads Approved. Write down the number shown at the top left (for example S10043-17911). This is {Work-order-1}. On {Work-order-1}'s page pick {Technician-A} in the Lead Technician dropdown; it saves at once (the dropdown shows once the work order is Approved).",
+    "Work Orders > Create Work Order > in the New Work Order window pick {Customer-A} and its asset > Save (if a Confirmation about the credit limit appears, click Create). The work order opens on its Lines tab with the New Line form. In What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\", turn Line Approved on and click Save & Close. The status reads Approved. Write down the number shown at the top left (for example S10043-17912). This is {Work-order-2}. Leave its Lead Technician empty, so it sits in Unassigned.",
+    "Work Orders > All: clear any Status selection, click the x on the Asset on Site chip if it shows Yes or No, turn Assigned to me off and empty Search.",
+    "Check the setup worked: Work Orders > All > Board View > Search the name of {Customer-A} shows {Work-order-1} in {Technician-A}'s column and {Work-order-2} in Unassigned. Then empty Search."
+   ],
+   "doc_part2": [
+    "Goal: turn a lead technician's Time Clock off and check their column and group stay under their name, take no drops, and go once they lead nothing.",
+    "Each run needs a technician whose Time Clock is on at the start; turn it back on at the end (Settings > Staff > pencil > Time Clock on) or make a new one next time.",
+    "The refused drop's message is not judged by this case; S3-R20c's message (\"This technician can't be assigned work orders.\") is for a technician not enrolled at the location."
+   ],
+   "why": "PRD v59 S3-R20d (16 Oct 2026): a lead whose Time Clock is off keeps a named column or group, takes no drops, goes once they lead none."
+  },
+  {
+   "key": "N-S1N1c-first-run",
+   "section_id": 13236,
+   "title": "With no work orders at all, Tech View and Board View show No work orders yet",
+   "preconditions": [
+    "You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.",
+    "Location {Location-B} (for example a location set up for testing with no work orders) is one you can switch to, and its All tab has no work orders at all: no work orders, estimates or completed work.",
+    "On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty."
+   ],
+   "steps": [
+    "Click your initials (top right), click Change Location and pick {Location-B}.",
+    "Open Work Orders and click the All tab.",
+    "Click Tech View in the display switcher.",
+    "Read the page.",
+    "Click Board View in the display switcher.",
+    "Read the page.",
+    "Click the Create Work Order button in the empty state.",
+    "Close the window that opened without saving.",
+    "Click List in the display switcher and look at the page."
+   ],
+   "results": [
+    "Steps 4 and 6: instead of groups or columns the page shows a clipboard-list icon in a grey circle, the words \"No work orders yet\", then \"Create a work order and assign a technician to see it here.\", and a Create Work Order button.",
+    "Step 7: the button opens the same New Work Order window as the page's own Create Work Order button.",
+    "Step 9: List shows its usual empty page, as it does today; it does not show \"No work orders yet\"."
+   ],
+   "source": "Epic SV-10043; story SV-10044 (Story 1, switch between display options); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S1-N1c, read 16 Oct 2026. S1-N1c was added in version 55 on 15 Oct 2026 (Chris Ward ruling on Slavcho Mitrov's v54 follow-up questions). Source-verified 16 October 2026.",
+   "quotes": [
+    [
+     "S1-N1c",
+     "When no filter and no search are active and the filter view has no work orders at all, Tech View and Board View show the design’s first-run state: the clipboard-list icon in a grey circle, “No work orders yet”, then “Create a work order and assign a technician to see it here.”, with a Create Work Order button that does the same as the page’s Create Work Order button. List keeps its production empty state."
+    ]
+   ],
+   "marker": "AUTOMATION: HOLD - needs a location with no work orders at all",
+   "doc_part1": [
+    "Sign in as an Owner or Admin user. On a QA site click the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\". To check the permissions: your initials (top right) > Settings > Roles & Permissions > Admin > Work orders: View and Create & Edit are on.",
+    "Find a location with no work orders at all: click your initials > Change Location, pick a location, open Work Orders > All and check that List shows no work orders. Ask the QA lead for such a location if none of yours is empty. This is {Location-B}.",
+    "Use a desktop browser window at least 1024 px wide (narrower windows show only the List, with no display switcher).",
+    "Work Orders > All: clear any Status selection, click the x on the Asset on Site chip if it shows Yes or No, turn Assigned to me off and empty Search.",
+    "Check the setup worked: at {Location-B}, Work Orders > All > List shows no work orders, and nothing is chosen in any filter."
+   ],
+   "doc_part2": [
+    "Goal: the first-run state of Tech View and Board View in a filter view with no work orders and no filter or search.",
+    "Busy staging locations always hold work orders, so this case needs an empty location; if none exists, record Blocked with the reason."
+   ],
+   "why": "PRD v55 S1-N1c (15 Oct 2026): first-run state in Tech View and Board View; no case covered it."
+  },
+  {
+   "key": "N-S2R23-tooltips",
+   "section_id": 73780,
+   "title": "Density and Columns tooltips open above their button and hide while the menu is open",
+   "preconditions": [
+    "You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).",
+    "Your browser window is 1440 px wide, with the browser zoom at 100%.",
+    "Technician {Technician-A} (for example ZZAUTOTEST S2R23 Tia Tips) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.",
+    "Approved work order {Work-order-1} (for example S10043-17921) for customer {Customer-A} (for example \"ZZAUTOTEST S2R23 Tooltips\") is led by {Technician-A}.",
+    "On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty."
+   ],
+   "steps": [
+    "Open Work Orders, click the All tab and click Tech View in the display switcher.",
+    "Type the name of {Customer-A} in Search.",
+    "Hover the density button and look at its tooltip.",
+    "Click the density button and look at the tooltip while the menu is open.",
+    "Press Escape to close the menu.",
+    "Hover the Column Selection button and look at its tooltip.",
+    "Click the Column Selection button and look at the tooltip while the menu is open.",
+    "Press Escape to close the menu.",
+    "Hover the display switcher's Tech View button and look at where its tooltip opens."
+   ],
+   "results": [
+    "Step 3: the density button's tooltip opens above the button, not below it, and does not cover the table's column header row.",
+    "Step 4: while the density menu is open, no tooltip shows.",
+    "Step 6: the Column Selection button's tooltip opens above the button, not below it.",
+    "Step 7: while the column menu is open, no tooltip shows.",
+    "Step 9: the switcher's tooltip opens above the switcher too, so all three buttons' tooltips open the same way."
+   ],
+   "source": "Epic SV-10043; story SV-10045 (Story 2, Tech View); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S2-R23 and S1-R9b, read 16 Oct 2026. The tooltip sentence of S2-R23 was added in version 55 on 15 Oct 2026 (Chris Ward ruling on Slavcho Mitrov's v54 follow-up questions). Source-verified 16 October 2026.",
+   "quotes": [
+    [
+     "S2-R23",
+     "In Tech View and Board View, as in the design: a technician avatar without a photo is a light-grey circle (--sv-grey-100, #EEF2F6) with initials in --sv-grey-600 (#4B5565) in light mode, which meets accessible contrast (6.7:1; the design file’s #697586 is 4.2:1); dark mode uses the design’s dark colors; group and column header names are 14px, weight 600, in the design’s slate text color (#364152), with the design’s smaller, lighter initials; Board card customer and total price are weight 500; toolbar and switcher icons are the design’s slate color (the switcher in List too, S1-R9a). Technician avatars, and the Service Advisor avatar, follow density in Tech View as in the design: 20px, 24px and 32px on rows and 24px, 28px and 36px on group headers at Compact, Regular and Comfortable; Board View card avatars stay 24px. The Progress bar is 48 by 4px at Compact, as in the design. The name bubble on hover over a technician avatar on a row or card (the +N included) opens above the avatar, in both views; group and column header avatars keep the browser’s plain name tip, because the name is printed beside them. In Tech View, Status, Waiting On Parts and Progress are left-aligned. The Density and Columns tooltips open above their button, like the switcher’s (S1-R9b), and are hidden while their menu is open. List is unchanged."
+    ],
+    [
+     "S1-R9b",
+     "The switcher’s hover tooltip opens above the switcher, so it never covers the table’s column header row. The tooltips read List, Tech View and Board View."
+    ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+   "doc_part1": [
+    "Sign in as an Owner or Admin user. On a QA site click the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\". To check the permissions: your initials (top right) > Settings > Roles & Permissions > Admin > Work orders: View and Create & Edit are on.",
+    "Pick one location for the whole case; it is shown in the top bar next to the bell (to change it: your initials > Change Location). This is {Location-A} (for example Staging Heavy Duty - 9919). Create everything below at {Location-A}.",
+    "Set the browser window to 1440 px wide with the zoom at 100%.",
+    "Your initials > Settings > Staff. Reuse a staff member only if they are active, have Time Clock on, {Location-A} in Location and a Role other than Office User or Time Clock User. Otherwise click New Staff Member and enter First Name and Last Name (for example ZZAUTOTEST S2R23 Tia Tips), an Email, Role Technician, at least one Department (required), Location {Location-A}, turn Time Clock on, then Save & Close. This is {Technician-A}.",
+    "Top menu Customers > New Customer > Name (for example \"ZZAUTOTEST S2R23 Tooltips\") > Save. This is {Customer-A}; use it for this case only. On the customer page click Contacts > New Contact > First Name and Last Name (for example ZZAUTOTEST Contact) > Save. Then Assets > New Asset > pick the contact, Year (for example 2022), Make (type \"Freight\" and pick Freightliner), Model (for example M2), Unit (for example TRK-118) > Save. Contact and Make are required.",
+    "Work Orders > Create Work Order > in the New Work Order window pick {Customer-A} and its asset > Save (if a Confirmation about the credit limit appears, click Create). The work order opens on its Lines tab with the New Line form. In What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\", turn Line Approved on and click Save & Close. The status reads Approved. Write down the number shown at the top left (for example S10043-17921). This is {Work-order-1}. On {Work-order-1}'s page pick {Technician-A} in the Lead Technician dropdown; it saves at once (the dropdown shows once the work order is Approved).",
+    "Work Orders > All: clear any Status selection, click the x on the Asset on Site chip if it shows Yes or No, turn Assigned to me off and empty Search.",
+    "Check the setup worked: Work Orders > All > Tech View > Search the name of {Customer-A} shows {Work-order-1} in {Technician-A}'s group. Then empty Search."
+   ],
+   "doc_part2": [
+    "Goal: where the density and column tooltips open, and that they hide while their menu is open.",
+    "Read each tooltip's bounding box against its button's: the tooltip's bottom edge must be above the button's top edge."
+   ],
+   "why": "PRD v55 S2-R23 (15 Oct 2026): Density and Columns tooltips open above their button and hide while their menu is open; no case covered it."
+  }
+ ]
+}

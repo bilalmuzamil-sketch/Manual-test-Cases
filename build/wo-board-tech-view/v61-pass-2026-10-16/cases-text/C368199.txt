@@ -1,0 +1,35 @@
+C368199 | section 47110 High — shares code that changed behaviour (developer items 1–4 and the rebuilt List) | Automated: True | layout old | run 498 test T3792520 status Passed
+existing setup doc: none
+
+TITLE: Switching List tabs quickly shows only the last tab's work orders
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 5 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- View: on Work Orders the List is shown (click List in the display switcher at the right of the toolbar; its tooltip reads "List").
+- Needs no test data of its own (the site has work orders on every tab).
+Setup
+- Check the setup worked: Work Orders > List shows the tabs All, Estimates, Work Orders, Completed.
+
+=== STEPS ===
+- Open Work Orders and click the All tab.
+- Click Estimates, Completed, Work Orders and Completed again as fast as you can.
+- Wait for the List to finish loading.
+- Read the rows and look for any error message.
+
+=== EXPECTED ===
+Expected results
+- Only the Completed tab's work orders show (every row reads Complete or a later status, as the Completed tab shows today).
+- No error message appears.
+- Requests the page stops on the way are a developer check. This part cannot be checked by hand; write 'not checked by hand' in the result comment and pass or fail on what you can see.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), §2; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (§1 Business Case). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- QA handoff §2: “Switch tabs quickly.”
+- QA handoff §2: “no error toast appears, and only the last tab's rows show.”
+- PRD §1 Business Case: “List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

@@ -1,0 +1,52 @@
+C590128 | section 73780 Design — how it looks | Automated: False | layout rule117 | run 498 test T3995737 status Failed
+existing setup doc: https://docs.google.com/document/d/1it_DCjI5fBIhsFVyidPjCc777gy7Gv4r_qoH7DhAVm8/edit
+
+TITLE: Density changes Tech View row, avatar and bar sizes but never the text size
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is 1440 px wide, with the browser zoom at 100%.
+- The design pictures DC-06-tech-view-compact-light-1440.png, DC-06-tech-view-regular-light-1440.png and DC-06-tech-view-comfortable-light-1440.png are open beside the app at 100% zoom (actual size); they are attached to this case.
+- In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 …) beside rows and cards are left out of this release, so do not compare those.
+- The Comfortable design picture adds the hours under each progress bar (for example 0.8 / 8.0 hrs); the PRD says density never changes the values shown, so do not expect the hours there.
+- Technician {Technician-A} (for example ZZAUTOTEST DC19 Zoe Density) is an active technician at {Location-A}.
+- Technician {Technician-B} (for example ZZAUTOTEST DC19 Abe Density) is an active technician at {Location-A}.
+- Customer {Customer-A} (for example "ZZAUTOTEST DC19 Density Sizes") is used by this case only.
+- Approved work order {Work-order-1} (for example S10043-17852) for {Customer-A} is led by {Technician-A} and has one approved line, {Line-1} (for example "Service - Full grease service"), whose technician is {Technician-B}.
+- On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).
+
+=== STEPS ===
+- Open Work Orders, click the All tab and click Tech View in the display switcher.
+- Click the density button and choose Compact.
+- Look at the rows, the group headers, the avatars and the progress bars, and compare them with the Compact design picture.
+- Click the density button and choose Regular.
+- Look at them again and compare them with the Regular design picture.
+- Click the density button and choose Comfortable.
+- Look at them again and compare them with the Comfortable design picture.
+- Click Board View in the display switcher and click the density button.
+
+=== EXPECTED ===
+Expected results
+- Step 3: the rows are at their lowest (36 px in the design), the avatars are smaller and the progress bars shorter and thinner (48 × 4 px in the design), as in the Compact picture. The row text is the same size as at Regular (14 px); Compact does not make it smaller.
+- Step 5: the rows are taller (48 px in the design) and the progress bars 64 × 6 px, as in the Regular picture.
+- Step 7: the rows are the tallest (64 px in the design) and the avatars larger, as in the Comfortable picture.
+- Steps 3, 5 and 7: the same columns and the same values show at every density, and no hours line (for example "0.8 / 8.0 hrs") shows under the progress bar at any density. The column header labels and the percentage beside the progress bar stay the same small size at every density.
+- Step 8: Comfortable is the density in use in Board View too.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10049 (Story 6, Density); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S6-R1, S6-R2, S6-R3, S6-R4 and S6-R6, read 15 Oct 2026; Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html", states core__work-orders__tech-compact__light__1440, core__work-orders__tech-regular__light__1440 and core__work-orders__tech-comfortable__light__1440 (design pictures DC-06-tech-view-compact-light-1440.png, DC-06-tech-view-regular-light-1440.png, DC-06-tech-view-comfortable-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11318 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answers 18 and 27, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.
+The design's Compact row text is 13 px and the design adds the hours under the progress bar only at Comfortable. Chris Ward answered on 15 Oct 2026 (answer 27) that row and card text is 14 px at every density and Compact never shrinks it, while text the design sets at 12 px stays 12 px, and (answer 18) that no hours line shows at any density. PRD version 54 says so, and this case follows it.
+Exact quotes from the source (for reproducibility)
+- S6-R1: “Offer Compact, Regular, and Comfortable density in Tech View and Board View.”
+- S6-R2: “Density adjusts spacing and the size of rows, cards, and their elements.”
+- S6-R3: “Share one density selection between Tech View and Board View.”
+- S6-R4: “Row and card text is 14px at every density; Compact never shrinks it. Text the design sets at 12px at every density, such as column header labels (S2-R21), the progress percentage and secondary lines, stays 12px.”
+- S6-R6: “Changing density never changes which fields, columns, or values are displayed.”
+- S2-R20: “Tech View’s cells follow the design: the work order number shows as a link in the accent color; Progress shows as a thin bar with the percentage beside it, with no hours line under it at any density (S6-R6); Service Advisor shows the advisor’s avatar before the name. Clocked In keeps List’s display (S5-R11).”
+- Design — Work Orders.dc.html, Tech View row height by density: “rowH: rowDensity === "large" ? "64px" : rowDensity === "small" ? "36px" : "48px"”
+- Design — Work Orders.dc.html, Tech View text size by density: “cellFs: rowDensity === "small" ? "13px" : "14px"”
+- Design — Work Orders.dc.html, Tech View avatar size by density: “crewSize: rowDensity === "large" ? 32 : rowDensity === "small" ? 20 : 24”
+- Design — Work Orders.dc.html, Tech View progress bar by density: “barW: rowDensity === "small" ? "48px" : "64px"”
+AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build

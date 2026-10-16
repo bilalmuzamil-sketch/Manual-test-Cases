@@ -1,0 +1,43 @@
+C368136 | section 13239 S4 — Reassign or unassign the lead technician | Automated: True | layout old | run 498 test T3761657 status Passed
+existing setup doc: https://docs.google.com/document/d/10cH2seN_5E7YVAKin8pgK4RjzAraIcPBZ5HHHPyw0iI/edit
+
+TITLE: The clear-shifts question shows on Board and Tech View only
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- Needs: 1 user · 1 browser · Schedule access · about 15 minutes.
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+- User: [User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+- Browser: desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+- People: two eligible technicians at this location: [Tech-A] "Esther Howard" and [Tech-B] (e.g. "Ralph Edwards"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- Data: customer "ZZAUTOTEST F1 Prompt Where" (used by this case only) with one Approved work order [WO-1] led by [Tech-A].
+- Data: a shift for [Tech-A] on [WO-1] tomorrow 8:00–12:00 (entire work order).
+- Note: Esther Howard is named in the expected results and stays as written; the other name and the number are examples.
+
+=== STEPS ===
+- Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip "Board View").
+- Type "ZZAUTOTEST F1 Prompt Where" in Search.
+- Drag the card from [Tech-A]'s column into [Tech-B]'s column. Note whether the prompt opens, click Keep shifts.
+- Drag the card back into [Tech-A]'s column.
+- Use More actions > Reassign lead technician to pick [Tech-B] and confirm. Note the prompt, click Keep shifts.
+- Move it back to [Tech-A] the same way.
+- Pick Tech View and repeat steps 3 to 6 with the row (drag between groups, then the row's More actions).
+- Open the work order page and change Lead Technician from [Tech-A] to [Tech-B] there.
+- Pick List in the display switcher and look for any way to change the lead from a List row.
+- Open the Schedule for tomorrow.
+
+=== EXPECTED ===
+Expected results
+- Steps 3, 5 and 7: The prompt opens 4 times: Board View drag, Board View dialog, Tech View drag and Tech View dialog.
+- Steps 8 and 9: Changing the lead on the work order page does not show the prompt, and the List offers no lead change at all, so no prompt appears there either (as today).
+- Step 10: Esther Howard's 8:00–12:00 shift is still on the Schedule (every choice was Keep shifts or no prompt).
+What you should see today (build v26.40.8-7a95011, 10/8/2026): changing the lead (by dragging the card or with Reassign lead technician) shows no question about scheduled shifts, even when the outgoing lead has a shift booked for the entire work order. The lead changes at once with the "Lead technician updated" (or "Lead technician removed") message, and the outgoing lead's shift stays on the Schedule. (1) If you see exactly that, mark the case Failed and raise nothing new. (2) If it fails in a different way, that is a new problem: report it. (3) If it behaves as the expected results above say, the change has shipped: mark it Passed and tell the QA lead.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S4-R31, read 8 Oct 2026. PO decision Chris Ward 6 Oct 2026; DR-33 (List gets no lead reassignment). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- S4-R31: “The prompt shows on Board View and Tech View, both when dragging and in the Reassign dialog. Changing the lead technician on the work order page or from the List does not show it, as today.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

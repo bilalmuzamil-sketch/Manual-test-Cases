@@ -1,0 +1,54 @@
+C590122 | section 73780 Design — how it looks | Automated: False | layout rule117 | run 498 test T3995731 status Failed
+existing setup doc: https://docs.google.com/document/d/1jGDNCMTa__ldAkqapqptKXh1AJx-qo9BtQgIXyRz-EU/edit
+
+TITLE: Empty groups, empty columns and no-results pages look as designed
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is 1440 px wide, with the browser zoom at 100%.
+- The design pictures DC-18-tech-technician-chosen-light-1440.png and DC-13-tech-search-empty-light-1440.png are open beside the app at 100% zoom (actual size); they are attached to this case.
+- The first picture shows an empty group at its bottom (Cameron Williamson, 0); the second shows the search-only empty page. The design's words differ from the PRD's ("No work orders assigned", "No results for …"); the case follows the PRD's words, so compare the look and the place only.
+- Technician {Technician-A} (for example ZZAUTOTEST DC13 Sam Idle) is an active technician at {Location-A} who leads no work orders and is used by this case only.
+- On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).
+
+=== STEPS ===
+- Open Work Orders, click the All tab and click Tech View in the display switcher.
+- Find {Technician-A}'s group header and look at the group under it.
+- Click Board View in the display switcher.
+- Look at {Technician-A}'s column.
+- Click the Status filter and tick Paid.
+- Type zzzz in Search.
+- Look at the page.
+- Click List in the display switcher and look at the page.
+- Click Tech View in the display switcher and look at the page.
+- Click Clear all filters.
+- Type zzzz in Search.
+- Look at the page.
+- Click List in the display switcher and look at the page.
+
+=== EXPECTED ===
+Expected results
+- Step 2: under {Technician-A}'s header the group shows the words "No work orders" in grey, centred, with the clipboard outline icon before them, and no rows, as in the empty group at the bottom of the first design picture.
+- Step 4: the empty column shows a dashed rounded box holding a small light-grey circle with the clipboard outline icon and the text "Drag a work order here to assign it".
+- Step 7: the board is replaced by an empty state centred on the page: List's magnifier icon in a round grey circle, the title "No work orders match these filters", the hint "Try removing a filter to widen your results." and a Clear all filters button.
+- Step 8: List shows the same empty state, with the same magnifier icon, words and button.
+- Step 9: Tech View shows the same empty state as List.
+- Step 12: Tech View shows "No work orders match the search "zzzz"." with no button, centred like the search-only design picture.
+- Step 13: List shows the same message as Tech View at step 12.
+Source — where this behaviour comes from
+Epic SV-10043; stories SV-10045 (Story 2, Tech View), SV-10046 (Story 3, Board View), SV-10044 (Story 1, Switch between display options); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S2-R15, S3-R20, S1-R9a, S1-N1, S1-N1a and S1-N1b, read 15 Oct 2026; Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html", states states__work-orders__tech-technician-chosen__light__1440 (empty group) and states__work-orders__tech-search-empty__light__1440, and the empty-column block of Work Orders.dc.html (design pictures DC-18-tech-technician-chosen-light-1440.png, DC-13-tech-search-empty-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11319 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 17, read 15 Oct 2026. Earlier answer: Chris Ward, answer 10 on the same sheet, 14 Oct 2026 (the PRD's words are right; the design is being updated). Source-verified 15 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.
+The design's empty texts read "No work orders assigned" and "No results for …"; Chris Ward answered on 14 Oct 2026 (answer 10) that the PRD's words are right, and this case follows them. The PRD (version 52) gave empty states the clipboard icon while List and the design use a magnifier on the no-results page; Chris Ward answered on 15 Oct 2026 (answer 17) that the no-results page keeps List's magnifier and the clipboard is only for a view with no work orders at all. PRD version 54 says so, and steps 7 and 8 now check the magnifier.
+Exact quotes from the source (for reproducibility)
+- S2-R15: “A technician group with no work orders under the current filters, and an empty Unassigned group, show the text “No work orders”.”
+- S3-R20: “A technician column with no work orders under the current filters, and an empty Unassigned column, show “Drag a work order here to assign it” to a user who can reassign work orders (S4-N1), and “No work orders” to everyone else.”
+- S1-R9a: “The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View these icons are the design’s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system’s icon set), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and the empty state when there are no work orders at all (`clipboard-list`). The filtered no-results state is the List’s, magnifier included (S1-N1). The filter chips and Search use the design file’s icons in every display option, List included, each exactly as the design file draws it; this is the only change to List. Every other List icon is unchanged.”
+- S1-N1: “When the active filters or a search return no work orders, Tech View and Board View show the same empty state as the List, with the same messages and action.”
+- S1-N1a: “With filters active, with or without a search, the empty state reads “No work orders match these filters”, then “Try removing a filter to widen your results.”, with a Clear all filters button.”
+- S1-N1b: “With only a search active, the empty state reads “No work orders match the search "{search}".” and shows no button.”
+- Design — Work Orders.dc.html, Board View empty column: “border-radius: 8px; border: 1px dashed var(--sv-border-strong); background: var(--sv-surface);”
+- Design — Work Orders.dc.html, Board View empty column: “font-size: 12px; font-weight: 500; color: var(--sv-text-secondary);">Drag a work order here to assign it”
+- Design — SKILL.md (design library), empty states: “Empty-state illustrations are a deliberate omission — Shopview empty states are text only.”
+AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build

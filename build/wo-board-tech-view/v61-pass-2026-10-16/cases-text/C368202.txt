@@ -1,0 +1,34 @@
+C368202 | section 47110 High — shares code that changed behaviour (developer items 1–4 and the rebuilt List) | Automated: True | layout old | run 498 test T3792523 status Passed
+existing setup doc: none
+
+TITLE: A work order made with Create Work Order shows in the List at once
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 5 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- View: on Work Orders the List is shown (click List in the display switcher at the right of the toolbar; its tooltip reads "List").
+- Customer "ZZAUTOTEST New WO Listed" (used by this case only) with one contact and one asset.
+Setup
+- Customers > New Customer > Name "ZZAUTOTEST New WO Listed" > Save (the customer page opens). Contacts tab > New Contact > First Name "ZZAUTOTEST", Last Name "Contact" > Save. Assets tab > New Asset > Contact = ZZAUTOTEST Contact > Year 2022 > Make: type "Freight" and pick Freightliner > Model: type "M2" and pick it > Unit "TRK-118" > Save (Contact and Make are required).
+- Check the setup worked: Customers > "ZZAUTOTEST New WO Listed" > Assets tab shows the asset.
+
+=== STEPS ===
+- Open Work Orders and click the All tab.
+- Click Create Work Order.
+- Pick "ZZAUTOTEST New WO Listed" as Customer and its asset as Asset > Save (if a Confirmation about the credit limit appears, click Create). Write down the number shown at the top left; close the New Line window that opens (X).
+- Go back to Work Orders (top menu) without reloading.
+- Click the All tab, click Search and type "ZZAUTOTEST New WO Listed".
+
+=== EXPECTED ===
+Expected results
+- The new work order is listed without a manual reload.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), §2; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (§1 Business Case). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- QA handoff §2: “A work order created with Create Work Order appears without a manual reload.”
+- PRD §1 Business Case: “List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

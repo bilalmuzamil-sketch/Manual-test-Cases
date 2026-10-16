@@ -1,0 +1,54 @@
+C368133 | section 13239 S4 — Reassign or unassign the lead technician | Automated: True | layout old | run 498 test T3761654 status Passed
+existing setup doc: https://docs.google.com/document/d/1F-veF5viSH0gFz5eh7JZ8LALLVpYRhzsjEpFhMcDu-E/edit
+
+TITLE: The clear-shifts question appears only for the old lead's unfinished shifts
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+
+Preconditions
+- You are signed in as an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and Schedule access, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+- Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+- Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+- Technician {Technician-C} (for example Dana Ortiz) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+- Customer {Customer-A} (for example "ZZAUTOTEST F1 Prompt Only Unfinished") is used by this case only.
+- Six Approved work orders for {Customer-A}, {Work-order-1} to {Work-order-6} (for example S10043-17581 to S10043-17586), are led by {Technician-A}, and each has two approved lines (for example "Service - Full grease service" and "Service - Adjust clutch").
+- On {Work-order-3} the two lines are {Line-1} (for example "Service - Full grease service") and {Line-2} (for example "Service - Adjust clutch").
+- Approved work order {Work-order-7} (for example S10043-17587) for {Customer-A} is led by {Technician-B}.
+- Work order {Work-order-1} has a shift for {Technician-A} tomorrow 8:00–12:00 covering the entire work order.
+- Work order {Work-order-2} has no shifts at all.
+- Work order {Work-order-3} has a shift for {Technician-A} tomorrow 8:00–12:00 on {Line-1} only, not on {Line-2}.
+- Work order {Work-order-4} has a shift for {Technician-A} covering the entire work order that has already ended (for example yesterday 8:00–12:00).
+- Work order {Work-order-5} has a shift for {Technician-C} tomorrow 8:00–12:00 covering the entire work order, and none for {Technician-A}.
+- Work order {Work-order-6} has no shifts, while {Technician-A} has a shift tomorrow 13:00–15:00 covering the entire work order {Work-order-7}.
+- No other shift is booked on {Work-order-1} to {Work-order-6}.
+- On the Work Orders page, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip).
+
+=== STEPS ===
+- Open Work Orders, click the All tab and click Board View in the display switcher.
+- Type the name of {Customer-A} in Search.
+- Drag {Work-order-1} from {Technician-A}'s column into {Technician-B}'s column.
+- Read the title of the question that opens.
+- Click Keep shifts.
+- Drag {Work-order-2} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts).
+- Drag {Work-order-3} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts).
+- Drag {Work-order-4} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts).
+- Drag {Work-order-5} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts).
+- Drag {Work-order-6} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts).
+
+=== EXPECTED ===
+Expected results
+- Step 4: dragging {Work-order-1} opens the question "Clear {Technician-A}'s scheduled shifts?" (with the example name: "Clear Esther Howard's scheduled shifts?").
+- Steps 6 to 10: {Work-order-2} (no shift), {Work-order-3} (a shift on {Line-1} only, not on every line), {Work-order-4} (only an ended shift), {Work-order-5} (only {Technician-C}'s shift) and {Work-order-6} ({Technician-A}'s shift is on another work order) each move to {Technician-B}'s column straight away with the message "Lead technician updated" and no question.
+- Steps 3 to 10: the question opened for 1 of the 6 work orders ({Work-order-1}) and for none of the other 5.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 49 (14 Oct 2026, Chris Ward), S4-R28 (reworded in version 49 on 14 Oct 2026 from Chris Ward's answer 1 of 14 Oct 2026: a work-order-level shift is one that covers every approved line, judged at the moment the lead changes; first defined in version 47 after SV-11126), S4-R29 and S4-R5, read 14 Oct 2026. PO answer to engineering, Sasha Grosman 24 Sep 2026 (only the outgoing lead's whole-work-order shifts that have not ended), as recorded in the Technical Implementation Plan section 1.4. Every work order has two lines because the Schedule books a one-line work order at once as a whole. On a one-line work order a shift on that line counts (version 49, S4-R28). Source-verified 14 October 2026.
+Exact quotes from the source (for reproducibility)
+- S4-R29: “The prompt reads: title “Clear {Name}'s scheduled shifts?” (with no name: “Clear the lead technician's scheduled shifts?”); text “{Name} has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change.”; buttons “Keep shifts”, “Clear shifts” and “Cancel”.”
+- S4-R28: “The shift-clearing prompt (S4-R11, S4-R26) shows only when the outgoing lead has a work-order-level shift on this work order that has not ended. A work-order-level shift is one that covers every approved line of the work order, judged at the moment the lead changes; this is what the Schedule's Entire work order drop creates. Lines not yet approved, and declined lines, are ignored. On a work order with one line, a shift on that line counts, and so does a Choose lines shift that ticks every approved line. A shift on only some approved lines does not show the prompt, and that includes an Entire work order shift once a line has been added and approved after it was made.”
+- S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”
+- Tech plan 1.4 (FF-4 shift scope): “Confirmed: only the outgoing lead's whole-work-order shifts that have not ended”
+Last checked against build v26.40.17-ddb9ba1 (staging) on 10/14/2026.
+AUTOMATION: READY

@@ -1,0 +1,51 @@
+C96960 | section 13239 S4 — Reassign or unassign the lead technician | Automated: True | layout old | run 498 test T3481904 status Passed
+existing setup doc: https://docs.google.com/document/d/1ig888XpxPXbRIsJHzY178lMOawJ09hl4-JpgZPYnYI8/edit
+
+TITLE: Reassigning by drag moves only open lines that follow the old lead
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- Needs: 2 users · 2 browsers · about 30 minutes.
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+- User: [User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+- People: [Tech-A] can also sign in (a staff record with an email you can open and an accepted invite), in a second browser.
+- Browser: desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+- People: three eligible technicians at this location: [Tech-A] "Esther Howard", [Tech-B] "Ralph Edwards", [Tech-C] "Dana Ortiz". A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- Data: customer "ZZAUTOTEST F1 Drag Moves Open Lines" (used by this case only) with one work order [WO-1], created on this build, Approved, Lead Technician [Tech-A], and six lines: Line 1 Unassigned (no technician) · Line 2 Implicit (follows the lead) · Line 3 Explicit (its own technician [Tech-C]) · Line 4 Complete (follows the lead, status Complete) · Line 5 Logged (follows the lead, has logged labor) · Line 6 Clocked (follows the lead, [Tech-A]'s time clock running, no earlier labor).
+- Note: the technician names are used in the expected results and stay as written; the line names are only labels, and the number is an example.
+
+=== STEPS ===
+- Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip "Board View").
+- Type "ZZAUTOTEST F1 Drag Moves Open Lines" in Search.
+- Drag [WO-1]'s card from [Tech-A]'s column into [Tech-B]'s column.
+- If a "Clear …'s scheduled shifts?" prompt opens, click Keep shifts.
+- Open the work order (click the card) and go to the Lines tab.
+- Read the Labor technician of each of the six lines and whether Line 6's clock is still running.
+
+=== EXPECTED ===
+Expected results
+- Step 6: Line 1 Unassigned now shows Ralph Edwards (a line with no technician moves to the new lead).
+- Step 6: Line 2 Implicit now shows Ralph Edwards (a line following the old lead moves).
+- Step 6: Line 3 Explicit still shows Dana Ortiz.
+- Step 6: Line 4 Complete still shows Esther Howard.
+- Step 6: Line 5 Logged still shows Esther Howard.
+- Step 6: Line 6 Clocked still shows Esther Howard and her clock is still running.
+- Steps 3 and 6: So exactly 2 of the 6 lines moved (Lines 1 and 2); each line was judged on its own, and wherever a line was Complete, explicit, had labor or a running clock it stayed, even though it also followed the old lead. The drag applied the same rules as the Reassign dialog.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S4-R1, S4-R8 (line table), S4-E5, read 8 Oct 2026. Review Decisions DR-44 (lines created before the release keep today's rule; no backfill) — hence the fresh work order. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- S4-R1: “Apply this story’s reassignment rules to the drag interactions in Story 9.”
+- S4-R8 table: no technician: “Has no technician assigned | Yes”
+- S4-R8 table: implicit: “Assigned to the outgoing lead technician (an implicit assignment) | Yes”
+- S4-R8 table: explicit: “Explicitly assigned to a different technician | No — the explicit assignment is preserved”
+- S4-R8 table: Complete: “Status is Complete | No”
+- S4-R8 table: logged labor: “Has logged labor against it | No”
+- S4-R8 table: active clock-in: “Has an active clock-in on the line, including an implicit assignment with no previously logged labor | No — preserve the clock-in and that technician’s line assignment”
+- S4-R8 acceptance: “Any No condition overrides a Yes condition.”
+- S4-R8: “Apply the line-movement rules below on every path that assigns, changes, or removes the lead technician.”
+- S4-E5: “For mixed line assignments, apply S4-R8 independently to each line.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

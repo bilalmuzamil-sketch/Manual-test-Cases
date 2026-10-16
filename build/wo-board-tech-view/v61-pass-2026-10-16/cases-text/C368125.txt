@@ -1,0 +1,44 @@
+C368125 | section 13237 S2 — Tech View (table grouped by lead technician) | Automated: True | layout old | run 498 test T3761646 status Passed
+existing setup doc: none
+
+TITLE: A collapsed group stays collapsed when a search finds work inside it
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 15 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.
+- [User-A]: an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+- One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+- Two technicians at this location: "Esther Howard" (the expected results name her, so keep this name) and [Tech-B] (e.g. "Ralph Edwards"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- Two customers used by this case only: "ZZAUTOTEST F2 Collapse Kept" and "ZZAUTOTEST F2 Collapse Other", each with one contact and one asset.
+- Two Approved work orders, both led by Esther Howard: [WO-1] for "ZZAUTOTEST F2 Collapse Kept" and [WO-2] for "ZZAUTOTEST F2 Collapse Other".
+- What must hold: the search word "Collapse Kept" matches [WO-1] only.
+Setup
+- Sign in with the Admin quick-login button on the sign-in page (you appear as "Admin ShopView"). Check the location in the top bar next to the bell; to change it click your initials at the top right > Change Location.
+- Settings (your initials at the top right > Settings) > Staff: confirm each technician below is active at this location with Time Clock on, or add it: New Staff Member > First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on > Save & Close. Record them as "Esther Howard" (keep this name); [Tech-B] (e.g. Ralph Edwards).
+- Top menu Customers > New Customer > Name "ZZAUTOTEST F2 Collapse Kept" > Save (if it already exists, open it instead). On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) > Save. Make is required; Unit can be left empty. Do the same for "ZZAUTOTEST F2 Collapse Other".
+- Work Orders > Create Work Order > in the New Work Order window pick Customer "ZZAUTOTEST F2 Collapse Kept" and its asset > Save. The work order opens on its Lines tab with the New Line form open: in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; the build offers only ready-made lines), turn Line Approved on > Save & Close; the work order becomes Approved. Repeat for "ZZAUTOTEST F2 Collapse Other"; record the numbers as [WO-1] ("ZZAUTOTEST F2 Collapse Kept", the expected results call it "S1-702") and [WO-2] ("ZZAUTOTEST F2 Collapse Other", e.g. S1-644) (numbers on this site look like "S10043-17581").
+- Set the leads: on an Approved work order pick the technician in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned. Here: [WO-1] and [WO-2] = Esther Howard.
+- Check the setup worked: Work Orders > All tab > Search Collapse Kept — only [WO-1] shows, led by Esther Howard. Clear the search afterwards. If [WO-2] also shows, or the lead is wrong, fix it before starting.
+
+=== STEPS ===
+- Open Work Orders.
+- Click the All tab on the left of the toolbar.
+- In the display switcher at the right of the toolbar, click Tech View (tooltip "Tech View").
+- Collapse Esther Howard's group (arrow on her header).
+- Click Search and type Collapse Kept.
+- Read Esther Howard's group header and whether any of her rows show.
+- Expand Esther Howard's group.
+
+=== EXPECTED ===
+Expected results
+- During the search Esther Howard's group stays collapsed: it does not open by itself.
+- Its header count shows how many of her work orders match: 1 (S1-702 only).
+- Expanding it shows the 1 matching row, S1-702.
+- The design opens every group that has a match while searching: if the build does that, it is a fail.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10045 (Story 2, Tech View — table grouped by lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S2-R16, read 8 Oct 2026. PRD footer comment Slavcho Mitrov 2 Oct 2026 item 1, folded into the 7 Oct PRD. Design: Claude Design export of 8 Oct 2026 (Work Orders.dc.html), By Lead Tech search behaviour; on-screen labels only.
+Exact quotes from the source (for reproducibility)
+- S2-R16: “When a search or filter finds work orders inside a group the user collapsed, the group stays collapsed; its count shows how many match. Collapsing is the user's saved choice (S2-R13).”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

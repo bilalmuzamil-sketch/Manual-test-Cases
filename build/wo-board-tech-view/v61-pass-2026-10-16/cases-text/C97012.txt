@@ -1,0 +1,49 @@
+C97012 | section 13244 S9 — Drag to reorder work and technician groups/columns | Automated: False | layout old | run 498 test T3481956 status Passed
+existing setup doc: none
+
+TITLE: A drop is refused if the status or permission changed after the board loaded
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 2 users · 2 browsers · about 20 minutes
+- Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+- [User-A] (you, the dispatcher): a staff member at this location whose role is [Role-D], a custom role you are allowed to edit (e.g. "ZZAUTOTEST F3 Stale Drop Dispatcher Role") with Work Orders View and Create & Edit, assigned to your dispatcher user before you start. [Role-D] is used by this case only.
+- A second browser signed in as an Admin at the same location (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView").
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+- Technicians (examples, the expected results call them by first name or full name): "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo". A staff member counts as a technician when, in Settings > Staff > the staff member's edit icon > Edit Staff Member, they are Active, Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- Customers (used by this case only, each with one contact and one asset): "ZZAUTOTEST F3 Stale Drop Alpha Co", "ZZAUTOTEST F3 Stale Drop Bravo Co". The steps and expected results call them by the end of the name ("Alpha Co", "Bravo Co").
+- Work orders, lead Ana: Alpha Co Complete, Bravo Co Approved.
+- None of these technicians has a shift on the Schedule for these work orders (check the Schedule page). If a window titled "Clear … scheduled shifts?" still appears during a move, click "Keep shifts".
+Setup
+- Settings (your initials at the top right > Settings) > Staff: confirm "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo" exist and count as technicians at this location (edit icon > Edit Staff Member). To add one: New Staff Member with those settings (at least one Department is required) (e.g. first name "ZZAUTOTEST Ana", last name "Alpha") > Save & Close.
+- As Admin: Settings > Roles & Permissions > Create Custom Role > Skip > Role Name (e.g. "ZZAUTOTEST F3 Stale Drop Dispatcher Role") > under Work orders tick View and Create & Edit > Create. Record it as [Role-D].
+- As Admin: Settings (your initials at the top right > Settings) > Staff > New Staff Member (or edit your dispatcher user) with Role [Role-D], at least one Department, this location > Save & Close; finish the invite so the user can sign in. Record this user as [User-A] and sign in as [User-A] in the first browser.
+- Create this case's customers: "ZZAUTOTEST F3 Stale Drop Alpha Co", "ZZAUTOTEST F3 Stale Drop Bravo Co". For each: top menu Customers > New Customer, Name > Save; on the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact); then the Assets tab > New Asset > pick the Contact, then Year, Make, Model (e.g. 2022, Freightliner, M2) > Save. Make is required; Unit can be left empty.
+- Create each work order listed in the Preconditions: Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. Move it to the status named: a new work order starts as Estimate (it opens with the New Line form: pick a ready-made line and Save & Close); for Approved turn on Line Approved on its line; for In Progress click Start on the line's Labor row (stop the clock afterwards with Stop > Clock Out); for Review click the line's Complete button, type a Tech Story (fill any missing detail it asks for, e.g. Mileage) and click Complete Line (the List shows "Ready For Review"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance tab > Create Invoice; for Paid, after invoicing, Finance tab > New Payment for the full amount > Make Payment. Set the lead technician before invoicing. Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (leave it as Unassigned for an unassigned one). (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Write down each work order number as you create it (e.g. S1-801); the steps call each work order by the end of its customer name (e.g. "Alpha Co").
+- Check the setup worked: Work Orders > All tab > List > type "ZZAUTOTEST F3 Stale Drop" in Search — (as [User-A]) exactly 2 work orders show, both led by Ana: Alpha Co Complete, Bravo Co Approved. In the second browser the Admin is signed in. If anything differs, correct that work order (status or Lead Technician) before starting.
+
+=== STEPS ===
+- Open Work Orders from the top menu and click the All tab.
+- Type "ZZAUTOTEST F3 Stale Drop" in Search so only this case's work orders show.
+- Click Board View in the display switcher (tooltip "Board View").
+- In the second browser (Admin), open the Alpha Co work order and click Finance > Create Invoice so it becomes Invoiced.
+- Back in your browser, without refreshing, drag the Alpha Co card from Ana's column into Ben's column and release.
+- Read the alert, dismiss it, then refresh and open Alpha Co to read Lead Technician.
+- In the second browser (Admin), Settings > Roles & Permissions > edit [Role-D] > under Work orders untick Create & Edit > Save and confirm.
+- Back in your browser, without refreshing, drag the Bravo Co card into Ben's column and release.
+- Refresh and open Bravo Co to read Lead Technician.
+
+=== EXPECTED ===
+Expected results
+- Step 5: the drop is refused. The card goes back to Ana's column and the alert reads "Failed to update lead technician, please try again." with an explanation that the status does not allow it (write down the explanation words).
+- Step 6: Alpha Co is Invoiced and still has Lead Technician Ana Alpha.
+- Steps 8 and 9: the move is refused and Bravo Co still has Lead Technician Ana Alpha after the refresh. If the app signs you out when your permissions change, write that down. The check passes if the lead is unchanged.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10052 (Story 9, Drag to reorder work and technician groups/columns); SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S9-E1, S4-E3, S4-N3, S4-N8, read 8 Oct 2026.
+Exact quotes from the source (for reproducibility)
+- S9-E1: “If status or permission changes before a drop completes, revalidate and reject unauthorized reassignment under S4-E3/S4-N3.”
+- S4-E3: “If status becomes prohibited during a drag, reject the drop using S4-N3 and S4-N8, with a status explanation.”
+- S4-N3: “If reassignment fails, return the card or row to its original column or group.”
+- S4-N8: “Failed reassignment shows a user-dismissible alert: “Failed to update lead technician, please try again.””
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

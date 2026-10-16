@@ -1,0 +1,45 @@
+C97008 | section 13244 S9 — Drag to reorder work and technician groups/columns | Automated: True | layout old | run 498 test T3481952 status Passed
+existing setup doc: none
+
+TITLE: Moving to another technician shows the message, reordering shows none
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 10 minutes
+- Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+- Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+- Technicians (examples, the expected results call them by first name or full name): "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo". A staff member counts as a technician when, in Settings > Staff > the staff member's edit icon > Edit Staff Member, they are Active, Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- Customers (used by this case only, each with one contact and one asset): "ZZAUTOTEST F3 Move Message Alpha Co", "ZZAUTOTEST F3 Move Message Bravo Co", "ZZAUTOTEST F3 Move Message Charlie Co", "ZZAUTOTEST F3 Move Message Delta Co". The steps and expected results call them by the end of the name ("Alpha Co", "Bravo Co", "Charlie Co", "Delta Co").
+- Work orders (Approved): lead Ana — Alpha Co, Bravo Co, Charlie Co; lead Ben — Delta Co (header counts Ana 3, Ben 1).
+- None of these technicians has a shift on the Schedule for these work orders (check the Schedule page). If a window titled "Clear … scheduled shifts?" still appears during a move, click "Keep shifts".
+Setup
+- Settings (your initials at the top right > Settings) > Staff: confirm "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo" exist and count as technicians at this location (edit icon > Edit Staff Member). To add one: New Staff Member with those settings (at least one Department is required) (e.g. first name "ZZAUTOTEST Ana", last name "Alpha") > Save & Close.
+- Create this case's customers: "ZZAUTOTEST F3 Move Message Alpha Co", "ZZAUTOTEST F3 Move Message Bravo Co", "ZZAUTOTEST F3 Move Message Charlie Co", "ZZAUTOTEST F3 Move Message Delta Co". For each: top menu Customers > New Customer, Name > Save; on the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact); then the Assets tab > New Asset > pick the Contact, then Year, Make, Model (e.g. 2022, Freightliner, M2) > Save. Make is required; Unit can be left empty.
+- Create each work order listed in the Preconditions: Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. Move it to the status named: a new work order starts as Estimate (it opens with the New Line form: pick a ready-made line and Save & Close); for Approved turn on Line Approved on its line; for In Progress click Start on the line's Labor row (stop the clock afterwards with Stop > Clock Out); for Review click the line's Complete button, type a Tech Story (fill any missing detail it asks for, e.g. Mileage) and click Complete Line (the List shows "Ready For Review"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance tab > Create Invoice; for Paid, after invoicing, Finance tab > New Payment for the full amount > Make Payment. Set the lead technician before invoicing. Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (leave it as Unassigned for an unassigned one). (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Write down each work order number as you create it (e.g. S1-801); the steps call each work order by the end of its customer name (e.g. "Alpha Co").
+- Check the setup worked: Work Orders > All tab > List > type "ZZAUTOTEST F3 Move Message" in Search — exactly 4 work orders show, all Approved: 3 led by Ana, Delta Co led by Ben. If anything differs, correct that work order (status or Lead Technician) before starting.
+
+=== STEPS ===
+- Open Work Orders from the top menu and click the All tab.
+- Type "ZZAUTOTEST F3 Move Message" in Search so only this case's work orders show.
+- Click Board View in the display switcher (tooltip "Board View").
+- Write down the header counts (Ana 3, Ben 1).
+- Drag the Alpha Co card from Ana's column into Ben's column and release. Do not reload.
+- Read the message that appears and both header counts, then wait about 10 seconds without clicking.
+- Drag the Alpha Co card above the Delta Co card inside Ben's column and release.
+- Read the screen for any message, read both header counts, then open Alpha Co and read Lead Technician.
+
+=== EXPECTED ===
+Expected results
+- Step 6: "Lead technician updated" appears and the counts change at once to Ana 2, Ben 2 (3 − 1 = 2 and 1 + 1 = 2), with no page reload. The message fades by itself.
+- Step 8: Alpha Co moves above Delta Co. No message appears, the counts stay Ana 2, Ben 2, and Alpha Co still has Lead Technician Ben Bravo.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10052 (Story 9, Drag to reorder work and technician groups/columns); SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S9-R5, S9-R15, S4-R5, S4-R7, S4-R16, read 8 Oct 2026.
+Exact quotes from the source (for reproducibility)
+- S9-R5: “Successful between-technician moves use Story 4’s feedback and count updates.”
+- S9-R15: “Reordering within one technician changes position without changing assignments or showing a reassignment toast.”
+- S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”
+- S4-R7: “Counts in column/group headers update immediately after a successful change.”
+- S4-R16: “Success toasts dismiss automatically.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

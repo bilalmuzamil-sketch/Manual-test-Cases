@@ -1,0 +1,43 @@
+C96911 | section 13236 S1 — Switch between display options | Automated: True | layout rule117 | run 498 test T3481856 status Passed
+existing setup doc: https://docs.google.com/document/d/1OjGsR0TJWfusjl_QM75P9z0ZUsud_O7cI6sGcVJlcgg/edit
+
+TITLE: Switching display keeps the same tab, search, filters and work orders
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+- Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+- Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+- Technician {Technician-C} (for example Jenny Wilson) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+- Customer {Customer-A} (for example "ZZAUTOTEST Fibridge") has exactly three Approved work orders: {Work-order-1} (for example S10043-17612) led by {Technician-A}, {Work-order-2} (for example S10043-17613) led by {Technician-B}, and {Work-order-3} (for example S10043-17614) with no lead.
+- Customer {Customer-B} (for example "ZZAUTOTEST Fisquare") has one Approved work order, {Work-order-4} (for example S10043-17615), with any lead. {Customer-B}'s name does not contain {Customer-A}'s name, so searching {Customer-A}'s name does not find {Work-order-4}.
+- On the Work Orders page nothing is ticked in Status, Assigned to me is off and Search is empty.
+
+=== STEPS ===
+- Open Work Orders.
+- Click the All tab on the left of the toolbar.
+- Click Search and type the name of {Customer-A}.
+- Click Status and tick Approved.
+- Click outside the Status list to close it.
+- In List, write down every work order number shown.
+- Click Tech View in the display switcher at the right of the toolbar (tooltip "Tech View").
+- Write down the work order numbers shown and each group header count.
+- Click Board View in the display switcher (tooltip "Board View").
+- Write down the work order numbers on the cards and each column header count.
+- Click List in the display switcher (tooltip "List").
+
+=== EXPECTED ===
+Expected results
+- Steps 7, 9 and 11: the layout changes straight away on each click, without a page reload.
+- Steps 7 to 11: after every switch the All tab is still selected, the search box still shows the name of {Customer-A}, and Status still shows Approved ticked.
+- Steps 6, 8 and 10: the same work orders appear in all three displays. List shows 3 rows ({Work-order-1}, {Work-order-2}, {Work-order-3}), Tech View shows the same 3 (Unassigned 1 + {Technician-A} 1 + {Technician-B} 1 = 3) and Board View shows the same 3 cards. {Work-order-4} appears in none of them.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S1-R3 and Feature Overview (its filter sentence was reworded in version 52 to name the Technician filter as the second exception, after Imported; this case uses no Technician filter, so the expected results are unchanged), read 14 Oct 2026. Source-verified 14 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026.
+Exact quotes from the source (for reproducibility)
+- S1-R3: “Switching display options immediately re-lays out the current results without changing the filter view, search text, or filters.”
+- Feature Overview: “The existing filter views (the tabs on the left — All, Work Orders, Estimates, Completed) and the filter bar (search, status, assigned to me, and so on) apply the same way in every display option.”
+- Feature Overview (the two exceptions): “Imported work orders are one exception: they open in List only (S1-R13a, S1-R13b). The Technician filter is the other: Tech View and Board View offer it and List does not (S1-R15).”
+AUTOMATION: READY

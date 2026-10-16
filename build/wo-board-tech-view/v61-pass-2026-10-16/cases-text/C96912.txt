@@ -1,0 +1,50 @@
+C96912 | section 13236 S1 — Switch between display options | Automated: False | layout old | run 498 test T3481857 status Passed
+existing setup doc: none
+
+TITLE: The chosen display follows the user to new sign-ins, devices and locations
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 2 users · 2 browsers · a second location · about 20 minutes.
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+- [User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+- [User-B]: a second user with Work Orders view who has never changed the display (e.g. a Service Advisor), at the first location.
+- Desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.
+- One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+- [Loc-2]: a second location your user ([User-A]) is enrolled at.
+- A second browser (or another computer) is available.
+- [Tech-A]: one eligible technician at this location. A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- Customer "ZZAUTOTEST F1 Display Follows User" (used by this case only) with one Approved work order [WO-1] led by [Tech-A].
+- [User-A] can be in any display before step 2. Names are examples; what must hold: [User-B] has never changed the display, so still sees List.
+Setup
+- Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+- Check the location in the top bar next to the bell; to change it click your initials at the top right > Change Location. Create everything below in this location.
+- Settings (your initials at the top right > Settings) > Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member > First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on > Save & Close. Record them as [Tech-A] (e.g. Esther Howard).
+- Create the customer used only by this case: top menu Customers > New Customer > Name "ZZAUTOTEST F1 Display Follows User" > Save. On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty.
+- Create these work orders for "ZZAUTOTEST F1 Display Follows User": Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save & Close. Write down the number the build gives the work order (on a QA branch they look like "S10043-17581"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.- [WO-1] (e.g. S1-702): Lead Technician = [Tech-A].
+
+- Make sure your user is enrolled at a second location (Settings > Staff > open your staff record > add the second location, e.g. "ZZAUTOTEST Location 2"; if no second location exists, create one first: Settings > Locations > New Location > fill in and save). Record it as [Loc-2].
+- Have a second user with Work Orders view who has never changed the display (e.g. a Service Advisor). Add one in Settings > Staff if needed: New Staff Member with an email you can open (e.g. "ZZAUTOTEST F1 Second Viewer"), a role with Work Orders view, at least one Department (required), this location in Location > Save & Close; accept the invitation and set a password. Record this user as [User-B].
+- Check the setup worked: your initials > Change Location lists [Loc-2]; Settings > Staff lists [User-B]; Work Orders > All > Search "ZZAUTOTEST F1 Display Follows User" shows [WO-1]. If [User-B] has ever changed the display, create another new user.
+
+=== STEPS ===
+- Open Work Orders.
+- In the display switcher at the right of the toolbar, click Board View (tooltip "Board View").
+- Sign out, then sign in again as the same user.
+- Open Work Orders and note the display.
+- In the second browser, sign in as the same user ([User-A]) and open Work Orders. Note the display.
+- Click your initials at the top right > Change Location and pick [Loc-2] and open Work Orders. Note the display.
+- Sign out and sign in as [User-B]. Open Work Orders and note the display.
+
+=== EXPECTED ===
+Expected results
+- After signing in again, Work Orders opens in Board View.
+- In the second browser, Work Orders opens in Board View.
+- At the second location, Work Orders opens in Board View.
+- The second user still sees List: the choice was saved for your user only.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S1-R4, read 8 Oct 2026. Review Decisions Confluence 853901313, DR-6 (display option persists across locations).
+Exact quotes from the source (for reproducibility)
+- S1-R4: “Save the selected display option per user. It follows the user after logout/login, on other devices, and in other locations.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

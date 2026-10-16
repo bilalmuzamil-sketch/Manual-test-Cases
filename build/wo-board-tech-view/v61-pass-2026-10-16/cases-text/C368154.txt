@@ -1,0 +1,39 @@
+C368154 | section 13247 S12 — Google Analytics for display and field usage | Automated: False | layout old | run 498 test T3761675 status Passed
+existing setup doc: none
+
+TITLE: Usage figures never change the product defaults by themselves
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 2 users · 1 browser · about 10 minutes
+- Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+- Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+- Several users at the test location have chosen non-default settings over time (e.g. Board View, Compact density, Customer turned off in Fields to display).
+- [User-B]: a brand-new user who has never opened Work Orders (e.g. "ZZAUTOTEST Fresh"), with Work Orders View.
+Setup
+- As Admin, make some non-default choices if none exist: Work Orders > Board View, Density Compact, Customer off in Fields to display.
+- Settings > Staff > add a brand-new user (e.g. "ZZAUTOTEST Fresh"; use a new name on each run) with a role that has Work Orders View, at this location; finish the invite so the user can sign in. Record as [User-B]. Do not open Work Orders as [User-B] before step 1.
+- Check the setup worked: [User-B] appears in Settings > Staff at this location and can sign in. If [User-B] has already opened Work Orders, add another new user.
+
+=== STEPS ===
+- Sign in as [User-B] (e.g. ZZAUTOTEST Fresh) and open Work Orders.
+- Read which display option is active.
+- Click Board View in the display switcher (tooltip "Board View").
+- Open the density control and read the selected value.
+- Open Fields to display and read which fields are on.
+
+=== EXPECTED ===
+Expected results
+- Step 2: List is active (List stays the default for every new user).
+- Step 4: Regular is selected (the default density).
+- Step 5: the fields on are the standard Board View defaults: lead technician name, work order number, customer, unit number, asset, progress, total price, and status. The other users' choices did not change them.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); SV-10044 (Story 1, Switch between display options); SV-10048 (Story 5, Fields to display and columns); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S12-R14, S1-R2, S6-R5, S5-R13, read 8 Oct 2026.
+Exact quotes from the source (for reproducibility)
+- S12-R14: “Do not change product defaults automatically based on analytics.”
+- S1-R2: “List is the default display option for every user until they choose another.”
+- S6-R5: “Use Regular as the default density.”
+- S5-R13: “Board View’s default selection is lead technician name, work order number, customer, unit number, asset, progress, total price, and mandatory status, subject to financial permission.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

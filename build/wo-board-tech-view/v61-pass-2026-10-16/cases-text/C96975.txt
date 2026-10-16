@@ -1,0 +1,56 @@
+C96975 | section 13240 S5 — Choose what is shown (fields and columns) | Automated: False | layout rule117 | run 498 test T3481919 status Passed
+existing setup doc: https://docs.google.com/document/d/1JxlHW935HDF2Jffikob-EcAwh5d6YiGo74V7rHqQYGE/edit
+
+TITLE: Tech View keeps its own column choice, separate from List, for each user
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+- You can also work at a second location, {Location-B} (for example Staging Lethbridge - 4310): it is listed under your initials > Change Location.
+- Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+- Approved work order {Work-order-1} (for example S10043-17604) for customer {Customer-A} (for example "ZZAUTOTEST F2 Tech Own Columns") at {Location-A} is led by {Technician-A} and has one approved line, {Line-1} (for example "Service - Full grease service").
+- In List's Column Selection, Service Advisor and Progress are on.
+- In Tech View's Column Selection, Service Advisor, Progress and Assigned Techs are on.
+- A second browser or computer is available.
+
+=== STEPS ===
+- Open Work Orders and click the All tab.
+- Click List in the display switcher.
+- Click the Column Selection button and write down which columns are on.
+- Close the menu.
+- Click Tech View in the display switcher.
+- Click the Column Selection button.
+- Turn Service Advisor off.
+- Turn Assigned Techs off.
+- Close the menu.
+- Click List in the display switcher.
+- Read whether Service Advisor and Assigned Techs show in List.
+- Click the Column Selection button.
+- Turn Progress off and close the menu.
+- Click Tech View in the display switcher.
+- Read whether Progress shows in Tech View.
+- Log out.
+- Log back in as the same user, open Work Orders and click Tech View.
+- Read Tech View's columns, then click List and read List's columns.
+- In the second browser, sign in as the same user, open Work Orders and click Tech View.
+- Read Tech View's columns, then click List and read List's columns.
+- Switch to {Location-B} (your initials > Change Location).
+- Open Work Orders and click Tech View.
+- Read Tech View's columns, then click List and read List's columns.
+
+=== EXPECTED ===
+Expected results
+- Step 11: List still shows Service Advisor, and List has no Assigned Techs column: Tech View's choice did not touch List.
+- Step 15: Tech View still shows Progress: List's choice did not touch Tech View.
+- Steps 18, 20 and 23: Tech View shows neither Service Advisor nor Assigned Techs and still shows Progress, after logging back in, in the second browser and at {Location-B}.
+- Steps 18, 20 and 23: List keeps its own columns: Service Advisor on and Progress off.
+Source — where this behaviour comes from
+Epic SV-10043; stories SV-10048 (Story 5, Fields to display (Board View) and columns (Tech View)) and SV-10050 (Story 7); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S5-R1, S5-R8 and S7-R7 (S7-R7 rewritten in version 51 on 14 Oct 2026 (Chris Ward ruling after Sasha Grosman's staging review: Tech View's default columns are the design's 13, and Assigned Techs is on by default), so this case now turns Assigned Techs off, a choice different from the default), read 14 Oct 2026. Review Decisions DR-33 (Tech View's column selection separate from List both ways). Source-verified 14 October 2026. This version of the case has not yet been checked against a build (the previous version was last checked against build v26.40.8-7a95011 on 10/8/2026).
+Exact quotes from the source (for reproducibility)
+- S5-R1: “Tech View has its own optional-column selection, separate from List. Changing columns in Tech View never changes List, and changing columns in List never changes Tech View.”
+- S5-R8: “Save the Tech View column selection per user across logout/login, devices, and locations. List keeps saving its columns exactly as it does today.”
+- S7-R7: “In Tech View the Assigned Techs column sits immediately after Lines, matching the design. It is on by default (S5-R4) and can be removed through the column chooser (S2-R4).”
+AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build

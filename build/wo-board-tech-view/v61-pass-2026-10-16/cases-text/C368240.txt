@@ -1,0 +1,27 @@
+C368240 | section 55300 Not runnable for now | Automated: False | layout old | run 498 test T3792561 status Passed
+existing setup doc: none
+
+TITLE: An ended session shows the sign-in page without error messages
+
+=== PRECONDITIONS ===
+- Sign in to the Work Orders build under test as an Admin (the Admin role can see every page used below).
+- Use a desktop browser window at least 1024 px wide.
+- In the top bar, pick the location you will test in (e.g. "Heavy Duty") and stay in it for the whole case.
+
+=== STEPS ===
+- Open Work Orders in tab 1.
+- Open a second tab of the same browser on the same site and sign out there.
+- Go back to tab 1 and click Reports > Inventory Value.
+- Read the screen.
+
+=== EXPECTED ===
+Expected results
+- Tab 1 takes you to the sign-in page (or asks you to sign in again).
+- No pile of red error messages appears, and no work orders or report rows are left showing.
+- After you sign in again, the page shows current data.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, Medium 8; QA handoff test plan (generated 2026-10-08); PRD Confluence 845185030 (edited 7 Oct 2026) where quoted. Source-verified 8 October 2026; not yet build-verified.
+Exact quotes from the source (for reproducibility)
+- Dev reply 8: “Impersonation and session expiry, on any page.”
+- Dev reply 8: “Start and exit impersonation while a page is loading. There should be no stale data, and no error toasts from cancelled requests.”
+AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build

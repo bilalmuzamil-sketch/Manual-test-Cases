@@ -1,0 +1,33 @@
+C368203 | section 47110 High — shares code that changed behaviour (developer items 1–4 and the rebuilt List) | Automated: True | layout old | run 498 test T3792524 status Passed
+existing setup doc: none
+
+TITLE: A link with Estimates and Assigned to me opens with both applied
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 5 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- View: on Work Orders the List is shown (click List in the display switcher at the right of the toolbar; its tooltip reads "List").
+- Starting view: your saved List is on the All tab with Assigned to me off.
+- Needs no test data of its own.
+Setup
+- Work Orders > click the All tab; if Assigned to me is highlighted, click it to turn it off.
+- Check the setup worked: reload Work Orders; the All tab is selected and Assigned to me is off.
+
+=== STEPS ===
+- In the address bar open the site's Work Orders address with ?tab=estimate&assigned_to_me=1 added at the end (https://sv10043.qa.shopview.com/workorders?tab=estimate&assigned_to_me=1).
+- Read which tab is selected and whether Assigned to me is on.
+
+=== EXPECTED ===
+Expected results
+- The Estimates tab is selected and Assigned to me is on.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), §2, hotspot 3; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (§1 Business Case). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- QA handoff §2: “Estimates and Assigned to me are applied.”
+- QA handoff hotspot 3: “The rebuilt Work Orders List. Check saved preferences against URL links, Back and Forward, location switch, stale rows after an edit, and sorting and paging.”
+- PRD §1 Business Case: “List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

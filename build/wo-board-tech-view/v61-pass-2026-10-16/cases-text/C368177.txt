@@ -1,0 +1,41 @@
+C368177 | section 47110 High — shares code that changed behaviour (developer items 1–4 and the rebuilt List) | Automated: True | layout old | run 498 test T3792498 status Passed
+existing setup doc: none
+
+TITLE: Moving labor to another line gives that line the technician
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 2 users · 2 browsers · about 15 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- 1 technicians eligible at this location: active, Role Technician, at least one Department, Location Staging Heavy Duty - 9919, Time Clock on. Names are examples ("Esther Howard"). [Tech-A] must be able to sign in with her own email and password.
+- Customer "ZZAUTOTEST Move Labor" (used by this case only) with one contact and one asset.
+- One Approved work order [WO-1] with NO lead technician and two approved lines with no technician: Line 1 (numbered 1) has [Tech-A]'s logged labor; Line 2 (numbered 2) has none and reads "Unassigned".
+- Names and numbers are examples.
+Setup
+- Your initials (top right) > Settings > Staff: if no suitable technician exists, click New Staff Member > First Name, Last Name, Email > Role = Technician > Departments = any one (at least one Department is required) > Location = Staging Heavy Duty - 9919 > turn Time Clock on > Save & Close. Record the technician as [Tech-A] (the expected results call this technician "Esther Howard"). Give her a real email you can open; she accepts the invitation from that email and sets a password (or use an existing technician who can sign in).
+- Customers > New Customer > Name "ZZAUTOTEST Move Labor" > Save (the customer page opens). Contacts tab > New Contact > First Name "ZZAUTOTEST", Last Name "Contact" > Save. Assets tab > New Asset > Contact = ZZAUTOTEST Contact > Year 2022 > Make: type "Freight" and pick Freightliner > Model: type "M2" and pick it > Unit "TRK-118" > Save (Contact and Make are required).
+- Work Orders > Create Work Order > New Work Order: Customer = "ZZAUTOTEST Move Labor" > Asset = its asset > Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-1] (the expected results call it "S1-732").
+- In New Line > What Are You Doing? type "grease" and pick the ready-made line "Service - Full grease service" (it has no parts) > turn Line Approved on > Save & Add Line. In New Line > What Are You Doing? type "clutch" and pick the ready-made line "Service - Adjust clutch" (it has no parts) > turn Line Approved on > Save & Close. Leave Lead Technician empty.
+- In browser 2 sign in as [Tech-A], open [WO-1] > Lines tab > click Start on Line 1's Labor row, wait at least 1 minute, click Stop > type any text in What Have You Been Doing On This Line? > Clock Out.
+- Check the setup worked: in browser 1 reload [WO-1] > Lines tab. Line 1's Labor row shows [Tech-A] and Line 1's Actual is above 0.00; Line 2's Labor row reads "Unassigned". Then click the three-dots button at the top right of the Lines tab > Timesheets: one row for [Tech-A] on line 1.
+
+=== STEPS ===
+- In browser 1, open [WO-1], click the three-dots button at the top right of the tabs and click Timesheets.
+- Find [Tech-A]'s row (Line "1 - …") and click its edit button (pencil icon at the right of the row). The Edit Timesheet window opens.
+- In Line pick "2 Service - Adjust clutch" (Line 2) as the destination.
+- Click Save.
+- Click the Lines tab, reload the page and read Line 2's Labor row.
+
+=== EXPECTED ===
+Expected results
+- Step 4: the move saves with no error message.
+- Step 5: Line 2's Labor row shows "Esther Howard". The line that received the labor took its technician.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 2; QA handoff test plan (generated 2026-10-08); PRD Confluence 845185030 (edited 7 Oct 2026) where quoted. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- Dev reply High 2: “Move a labor task from one line to another: the target line takes the technician.”
+- Dev reply High 2: “Both code paths were changed.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

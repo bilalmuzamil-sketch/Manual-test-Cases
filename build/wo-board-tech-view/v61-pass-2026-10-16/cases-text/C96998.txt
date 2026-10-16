@@ -1,0 +1,35 @@
+C96998 | section 13243 S8 — Remove the tech-story check-mark | Automated: False | layout old | run 498 test T3481942 status Passed
+existing setup doc: none
+
+TITLE: Tech stories can still be entered, edited and required
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 10 minutes
+- Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+- Customer "ZZAUTOTEST F3 Story Entry" (used by this case only), with one contact and one asset.
+- Work order [WO-1] for this customer: status Approved, two lines "Line 1" and "Line 2", neither with a tech story, and a mileage entered on the work order.
+- Line names and story texts are examples.
+Setup
+- Top menu Customers > New Customer, Name "ZZAUTOTEST F3 Story Entry" > Save (skip if it already exists). On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty. Record the customer as [Cust-1].
+- Create a work order with two lines: Work Orders > Create Work Order > in New Work Order pick Customer [Cust-1] and its Asset > Save. The work order opens on its Lines tab with the New Line form open: in "What Are You Doing?" pick a ready-made line, turn Line Approved on (this makes the work order Approved) > Save & Add Line for the next line or Save & Close. Record the number shown as [WO-1]. Line names in this case (such as "Line 1") are only labels for you: the New Line form's "What Are You Doing?" box only offers ready-made lines (typed text finds no results), so pick any ready-made line for each one (e.g. "Replace - Brake pot") and write down which is which.
+- Enter a mileage on [WO-1].
+- Check the setup worked: [WO-1] reads Approved, shows a mileage, and its Lines tab shows Line 1 and Line 2 with no tech story. If not, fix it before starting.
+
+=== STEPS ===
+- On the Lines tab of [WO-1], add a tech story to Line 1 (e.g. "First note") and save.
+- Edit Line 1's story to "First note, edited" and save.
+- Try to complete Line 2 without a tech story.
+- Add a tech story to Line 2 and complete it.
+
+=== EXPECTED ===
+Expected results
+- Entering and editing the story work as before and the edited text shows.
+- Completing a line without a tech story is still blocked with today's message (a tech story is required), and works once the story is entered. Nothing else about tech stories changed; only the check mark is gone.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10051 (Story 8, Remove the tech story check-mark indicator); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S8-R2, read 8 Oct 2026. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- S8-R2: “Entering, editing, or requiring a tech story continues to work exactly as today; only the indicator is removed.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

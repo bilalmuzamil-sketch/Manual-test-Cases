@@ -1,0 +1,49 @@
+C614711 | section 13238 S3 — Board View (board by lead technician) | Automated: False | layout old | run 498 test T4004397 status Failed
+existing setup doc: https://docs.google.com/document/d/1SR2QvFurbK38NQioUAqAJ82mlrbEbUCC3f1gO16OUNw/edit
+
+TITLE: Deleting a lead technician leaves no Unknown Technician column in Board View
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+- Technician {Technician-A} (for example ZZAUTOTEST SV11416 Dana Delete) is a new staff member made for this case only, active at {Location-A} with Time Clock on and the Technician role, with no labor recorded on any work order, because this test deletes them.
+- Customer {Customer-A} (for example "ZZAUTOTEST SV11416 Deleted Lead") is used by this case only.
+- Approved work order {Work-order-1} (for example S10043-17901) for {Customer-A} is led by {Technician-A}.
+- On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+
+=== STEPS ===
+- Open Work Orders, click the All tab and click Board View in the display switcher.
+- Type the name of {Customer-A} in Search.
+- Read the header of the column that holds {Work-order-1}.
+- Click your initials (top right) and open Settings > Staff.
+- Click the pencil icon on {Technician-A}.
+- Click Delete and confirm the deletion.
+- Open Work Orders, click the All tab and click List in the display switcher.
+- Type the name of {Customer-A} in Search.
+- Read the Lead Technician of {Work-order-1} and write it down.
+- Click Board View in the display switcher.
+- Find {Work-order-1} and read the header of the column that holds it.
+
+=== EXPECTED ===
+Expected results
+- Step 3: {Work-order-1} is in a column headed with {Technician-A}'s name.
+- Step 11: {Work-order-1} is not in a column headed "Unknown Technician". Every column header on the board names whose column it is.
+- Step 11: if {Work-order-1} is still in a technician's column, that column's header shows the same name as the Lead Technician you wrote down at step 9.
+Known problem (SV-11416, open: https://shopview.atlassian.net/browse/SV-11416): today, at step 11, {Work-order-1} sits in a column headed "Unknown Technician" with a generic person icon. The deleted technician's name is not shown and the column has no inactive marker.
+1. If you see exactly that, mark this test Failed and raise nothing new.
+2. If it fails in a different way, that is a new problem: report it.
+3. If it passes, the fix has shipped: tell the QA lead.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10046 (Story 3, Board View); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 58 (15 Oct 2026, Chris Ward), S5-R11b and S3-R3, with S3-N2, S3-N4 and the Decisions entry of 2026-09-13 as the nearest rules, read 16 Oct 2026. Defect SV-11416 (open). Source-verified 16 October 2026.
+The spec says what happens when a lead technician is deactivated (the work stays in their column, marked inactive, so it stays attributable) but not when the technician is deleted. SV-11416 asks the product owner to decide: show the technician's name with the inactive marker, as for a deactivated technician, or move the work order to Unassigned. Either keeps this case's results; once the product owner decides, this case is updated to that ruling.
+Exact quotes from the source (for reproducibility)
+- S5-R11b: “Every technician name in Tech View and Board View, on cards, rows, group headers, column headers and the names shown on hover over any technician avatar (S2-R10, S7-R1), is the technician’s staff record name, the same name the List’s Lead Technician column shows.”
+- S3-R3: “Column headers (technician names and counts) stay pinned at the top of the board while the user scrolls vertically, so long columns never hide whose column is being viewed.”
+- S3-N2: “Keep matching work visible in its deactivated technician’s column.”
+- S3-N4: “Show an inactive indicator on deactivated technician columns.”
+- Decisions (2026-09-13): “Deactivating a technician does not change work orders they already lead. They remain the lead technician on those work orders so the work stays visible and attributable; they simply receive no new assignments (S2-N2, S3-N2, S3-E3).”
+Last checked against staging on 10/16/2026: failed as described in SV-11416 (the ticket does not record the build marker).
+AUTOMATION: READY - EXPECT FAIL (SV-11416)

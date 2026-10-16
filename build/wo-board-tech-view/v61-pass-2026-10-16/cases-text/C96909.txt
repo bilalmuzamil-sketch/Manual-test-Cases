@@ -1,0 +1,44 @@
+C96909 | section 13236 S1 — Switch between display options | Automated: False | layout rule117 | run 498 test T3481854 status Passed
+existing setup doc: https://docs.google.com/document/d/1_J0jmTIfkU8HO_3rdT0C8S_QRp3H4ISlxRuSfgYfmn0/edit
+
+TITLE: Display switcher offers List, Tech View and Board View and marks the active one
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+- Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+- Customer {Customer-A} (for example "ZZAUTOTEST F1 Display Switcher") has two Approved work orders: {Work-order-1} (for example S10043-17581), led by {Technician-A}, and {Work-order-2} (for example S10043-17582), with no lead technician.
+- The Work Orders page shows List at the start: List is the highlighted button in the display switcher.
+- Developer note kept from the automation engineer (nothing for the tester to do): Dev-layer test — fe-unit. Existing coverage: app/src/components/ts/work-orders/**/DisplayOptionSwitcher.spec.ts:42,65,77
+
+=== STEPS ===
+- Open Work Orders from the top menu and click the All tab.
+- Look at the display switcher at the right of the toolbar and write down which button is highlighted.
+- Hover the first button of the display switcher and read its tooltip.
+- Hover the second button and read its tooltip.
+- Hover the third button and read its tooltip.
+- Click Tech View in the display switcher.
+- Look at which switcher button is highlighted.
+- Click Board View in the display switcher.
+- Look at which switcher button is highlighted.
+- Click List in the display switcher.
+- Look at which switcher button is highlighted.
+
+=== EXPECTED ===
+Expected results
+- Step 2: the switcher offers exactly three display options, and List is the highlighted one.
+- Steps 3 to 5: the tooltips read List, Tech View and Board View, in that order.
+- Step 7: only Tech View is highlighted.
+- Step 9: only Board View is highlighted.
+- Step 11: only List is highlighted.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S1-R1, S1-R9 and S1-R9b, read 15 Oct 2026. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 24, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.19-72f4f3b (staging) on 10/16/2026.
+The design's tooltips read Table, By Lead Tech and Board, and this case used to accept any label. Chris Ward answered on 15 Oct 2026 (answer 24) that the tooltips read List, Tech View and Board View; PRD version 54 says so, and a different word is now a fail.
+Exact quotes from the source (for reproducibility)
+- S1-R1: “The Work Orders toolbar offers List, Tech View, and Board View display options.”
+- S1-R9: “The switcher visually indicates the active display option.”
+- S1-R9b: “The switcher’s hover tooltip opens above the switcher, so it never covers the table’s column header row. The tooltips read List, Tech View and Board View.”
+AUTOMATION: READY

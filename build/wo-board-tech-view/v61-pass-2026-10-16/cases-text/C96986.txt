@@ -1,0 +1,45 @@
+C96986 | section 13240 S5 — Choose what is shown (fields and columns) | Automated: False | layout old | run 498 test T3481930 status Passed
+existing setup doc: none
+
+TITLE: Without See Financial Data no dollar amounts show in Tech or Board View
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 2 users · 2 browsers · about 15 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.
+- [User-A]: an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+- One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+- [User-B] = "Nate Nofinance" (the expected results name him, so keep this name): a second user whose role is a custom role with Work Orders view and, for now, See Financial Data, signed in in a second browser.
+- One technician at this location: [Tech-A] (e.g. "Esther Howard"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- Customer "ZZAUTOTEST F2 No Dollar Amounts" (used by this case only), with one contact and one asset, so this case's work orders are kept apart from every other work order at the location.
+- One Approved work order for that customer, [WO-1], led by [Tech-A], with a price.
+- As Nate Nofinance, Total price is on in Tech View's Column Selection menu and in Board View's Fields to display.
+Setup
+- Sign in with the Admin quick-login button on the sign-in page (you appear as "Admin ShopView"). Check the location in the top bar next to the bell; to change it click your initials at the top right > Change Location.
+- Settings (your initials at the top right > Settings) > Staff > New Staff Member, enter First Name and Last Name (e.g. "Esther Howard") and an email. Pick a Role that is not Office User or Time Clock User (e.g. "Technician"), pick at least one Department (required), set Location to this location and turn Time Clock on, then click Save & Close. Record as [Tech-A].
+- Settings > Roles & Permissions > Create Custom Role (e.g. "ZZAUTOTEST F2 Finance Toggle") > turn on Work Orders view and See Financial Data > Save.
+- Settings (your initials at the top right > Settings) > Staff > New Staff Member for "Nate Nofinance" with an email you can open, Role = the new custom role, at least one Department (required), with this location picked in Location, Time Clock off > Save & Close, then accept the invitation and set a password. Keep him signed in in a second browser.
+- Create a customer used only by this case so a search shows only its work orders: top menu Customers > New Customer, Name "ZZAUTOTEST F2 No Dollar Amounts" > Save. On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty.
+- Create the work order: Work Orders > Create Work Order > in the New Work Order window pick Customer "ZZAUTOTEST F2 No Dollar Amounts" and its Asset > Save, and record its number as [WO-1] (e.g. "S1-702"). The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save & Close.
+- Set the leads: on an Approved work order pick the technician in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned. Here: [WO-1] = [Tech-A].
+- As Nate Nofinance, turn Total price on in Tech View's Column Selection menu and in Board View's Fields to display.
+- Check the setup worked: as Nate Nofinance, Work Orders > All tab > Search ZZAUTOTEST F2 No Dollar Amounts — Tech View shows a Total price column and the Board View card shows a dollar amount. If not, check his role has See Financial Data on.
+
+=== STEPS ===
+- As the admin, edit Nate Nofinance's role and turn See Financial Data off, then save.
+- As Nate Nofinance sign in again, open Work Orders, pick Tech View and search for ZZAUTOTEST F2 No Dollar Amounts.
+- Read the columns and open Column Selection.
+- Open every filter in the toolbar and read its options.
+- Pick Board View, read the card and open Fields to display.
+
+=== EXPECTED ===
+Expected results
+- Tech View has no Total price column and its column chooser does not offer it; Board View cards show no dollar amount and Fields to display does not offer total price.
+- No filter offers a dollar-amount option, and Nate's earlier saved choice (Total price on) does not bring any dollar value back. List is not part of this change and stays as in production.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10048 (Story 5, Fields to display (Board View) and columns (Tech View)); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S5-E2, S5-E6, read 8 Oct 2026. Review Decisions MF-1 (see financial data; List dropped from this answer, DR-33). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- S5-E2: “Without see financial data permission, hide all dollar-amount fields from displays, filters, and field/column pickers.”
+- S5-E6: “Saved filters and field selections must not reveal financial values when see financial data is off.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

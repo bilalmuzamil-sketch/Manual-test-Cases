@@ -1,0 +1,37 @@
+C368213 | section 47110 High — shares code that changed behaviour (developer items 1–4 and the rebuilt List) | Automated: False | layout old | run 498 test T3792534 status Passed
+existing setup doc: none
+
+TITLE: The List's Parts and Returns counts match the work order
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 30 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- View: on Work Orders the List is shown (click List in the display switcher at the right of the toolbar; its tooltip reads "List").
+- Customer "ZZAUTOTEST WO Parts Counts" (used by this case only) with one contact, one asset and one Approved work order [WO-1] with two part requests, one received with one return raised.
+Setup
+- Customers > New Customer > Name "ZZAUTOTEST WO Parts Counts" > Save (the customer page opens). Contacts tab > New Contact > First Name "ZZAUTOTEST", Last Name "Contact" > Save. Assets tab > New Asset > Contact = ZZAUTOTEST Contact > Year 2022 > Make: type "Freight" and pick Freightliner > Model: type "M2" and pick it > Unit "TRK-118" > Save (Contact and Make are required).
+- Work Orders > Create Work Order > New Work Order: Customer = "ZZAUTOTEST WO Parts Counts" > Asset = its asset > Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-1] (the expected results call it "S1-795").
+- In New Line > What Are You Doing? type "grease" and pick the ready-made line "Service - Full grease service" (it has no parts) > turn Line Approved on > Save & Close.
+- On the line's Parts row click Add Part: an entry row opens. Type Description (e.g. "ZZAUTOTEST Brake Pads 1"), Qty 1, Cost 100 and Sell price 150, then click Save (message "Part added"). Add a second part the same way. Both parts read "Auth To Order" with an Order button.
+- Click Order on the first part; it reads "Awaiting" with a Receive button. Click Receive: in the "Receive parts" window pick a vendor in Assign Vendor (e.g. "5 Star Truck Repair"), type a Vendor Invoice Number (e.g. "ZZINV-1"), type a part number in the part's row (e.g. "ZZPN-1"), set Qty Received to 1, tick the part's row and click Receive Parts (1). The message reads "Parts received."
+- Click the received part's three-dots (part menu) > Return. In "Add new part return request" type a Return Reason (e.g. "ZZAUTOTEST wrong part"), keep Quantity 1 and click Save & Close. The part reads "Returned".
+- Check the setup worked: on [WO-1]'s Lines tab the line shows two parts: one "Auth To Order" and one "Returned". If not, finish the order, receive and return steps above before starting.
+
+=== STEPS ===
+- Open Work Orders, click the All tab, click Search and type "ZZAUTOTEST WO Parts Counts".
+- Click Column Selection and turn on Parts and Returns.
+- Read the [WO-1] row's Parts and Returns.
+
+=== EXPECTED ===
+Expected results
+- Parts reads 2 and Returns reads 1, the requests you created. Nothing from other work orders or locations is added.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), §10, API changes; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (§1 Business Case). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- QA handoff Where This Applies: “Part request and part return counts (Work Orders List and Part Sales list) are now scoped to the organization.”
+- PRD §1 Business Case: “List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

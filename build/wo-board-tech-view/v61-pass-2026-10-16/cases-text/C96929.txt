@@ -1,0 +1,38 @@
+C96929 | section 13237 S2 — Tech View (table grouped by lead technician) | Automated: True | layout rule117 | run 498 test T3481873 status Failed
+existing setup doc: https://docs.google.com/document/d/1Vx-pPfhwqM03IaGMnZgqaxL5SCCeMtKLIuZmEVoqAcM/edit
+
+TITLE: Before anyone reorders them, a group's work orders follow List's default sort
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+- User {User-B} (for example ZZAUTOTEST Sort Viewer) is a new staff member with the Admin role at {Location-A}, can sign in, and has never changed or saved a sort in List.
+- Technician {Technician-A} (for example Kristin Watson) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User. {Technician-A} leads no other work order.
+- Customers {Customer-A} (for example "ZZAUTOTEST F2 Sort Alpha Freight"), {Customer-B} (for example "ZZAUTOTEST F2 Sort Mid Trucking") and {Customer-C} (for example "ZZAUTOTEST F2 Sort Zeta Hauling") start with the same words (for example ZZAUTOTEST F2 Sort) and are used by this case only.
+- Four Approved work orders, all led by {Technician-A}, were created in this order: {Work-order-1} (for example S10043-17621) for {Customer-C}, {Work-order-2} (for example S10043-17622) for {Customer-A}, {Work-order-3} (for example S10043-17623) for {Customer-B} and {Work-order-4} (for example S10043-17624) for {Customer-B}.
+- Nobody has reordered {Technician-A}'s work orders at {Location-A}.
+- On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+
+=== STEPS ===
+- Sign in as {User-B}.
+- Open Work Orders, click the All tab and click List in the display switcher.
+- Type the shared start of the three customer names (for example ZZAUTOTEST F2 Sort) in Search.
+- Write down the order of the four work orders in List.
+- Click Tech View in the display switcher.
+- Write down the order of the rows in {Technician-A}'s group.
+- Click Board View in the display switcher.
+- Write down the order of the cards in {Technician-A}'s column.
+
+=== EXPECTED ===
+Expected results
+- Step 4: List shows the four work orders in its usual default order: by customer name from A to Z (with the example names: {Customer-A}, then {Customer-B}'s two work orders, then {Customer-C}).
+- Step 6: Tech View's rows are in exactly the same order as List at step 4, including the order of {Customer-B}'s two work orders, {Work-order-3} and {Work-order-4}.
+- Step 8: Board View's cards are in the same order as Tech View's rows.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10045 (Story 2, Tech View — table grouped by lead technician); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S2-R6, read 15 Oct 2026. Review Decisions 853901313 DR-45 (desktop List default sort is customer name A to Z; its description of the tie-break was corrected by Chris Ward on 15 Oct 2026 in PRD version 53: same customer, start date, newest first, exactly as the List sorts today). Source-verified 15 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.
+Exact quotes from the source (for reproducibility)
+- S2-R6: “Before a manual order is saved, use the List’s default work order sort, ties included, exactly as the List sorts today: work orders for the same customer go by start date, newest first. The List itself does not change. A work order that gets a new lead after it was created goes to the bottom of that technician’s work instead (S9-R14).”
+AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build

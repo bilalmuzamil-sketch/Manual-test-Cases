@@ -1,0 +1,38 @@
+C581894 | section 13240 S5 — Choose what is shown (fields and columns) | Automated: False | layout rule117 | run 498 test T3974850 status Passed
+existing setup doc: https://docs.google.com/document/d/1KL_a8UaE0E-_ma0_fgvXrt-018h2nO51jkImbvcmCUE/edit
+
+TITLE: A card's estimated hours match Total Hours on the work order page
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as an Owner or Admin user whose role has Work orders > View, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+- Customer {Customer-A} (for example "ZZAUTOTEST S5R11a Card Hours") is used by this case only, and {Work-order-1} below is its only work order.
+- Work order {Work-order-1} (for example S10043-17661) for {Customer-A} has four lines with an Estimated Time: three approved lines {Line-1} (for example 0.30 hours), {Line-2} (for example 1.50 hours) and {Line-3} (for example 0.40 hours), and a declined line {Line-4} (for example 2.00 hours).
+- On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+
+=== STEPS ===
+- Open Work Orders, click the All tab and click List in the display switcher.
+- Type the name of {Customer-A} in Search.
+- Click {Work-order-1} to open it.
+- Read Total Hours on the work order page.
+- Click Work Orders in the top menu.
+- Click Board View in the display switcher.
+- Click Search, clear it and type the name of {Customer-A}.
+- Click Fields to display and turn on Estimated hours.
+- Close Fields to display.
+- Read the estimated hours on {Work-order-1}'s card.
+
+=== EXPECTED ===
+Expected results
+- Step 4: Total Hours reads 2.2 hrs with the example values (0.30 + 1.50 + 0.40 = 2.20). The declined line's 2.00 hours are left out.
+- Step 10: the card shows the same estimated hours as Total Hours (2.2 with the example values). A difference of up to 0.1 hours is accepted, so 2.1 to 2.3 passes. 4.2 (2.20 + 2.00, the declined line counted) fails. The List's Estimated Hours is not part of this check.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10048 (Story 5, Choose what is shown); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 49 (14 Oct 2026, Chris Ward), S5-R11a (added in version 49 from Chris Ward's answer 3 of 14 Oct 2026 to our question sheet) and S5-R11 with its optional fields list (estimated hours), read 14 Oct 2026. Earlier the PRD said only "existing production meaning"; the developer's comment on SV-11106 (12 Oct 2026) said the same without product sign-off. Source-verified 14 October 2026. Not yet checked against a build.
+Exact quotes from the source (for reproducibility)
+- S5-R11a: “Estimated hours on a card is the total of the work order's lines with declined lines left out, the same figure as the work order page's Total Hours. It can differ from that page by up to 0.1 hours, because the page rounds each line to whole minutes. It can also differ from the List's Estimated Hours, which keeps its production figure (List is unchanged).”
+- S5-R11: “Offer the optional fields listed below using their existing production meaning.”
+Last checked against build v26.40.17-ddb9ba1 (staging) on 10/14/2026.
+AUTOMATION: READY

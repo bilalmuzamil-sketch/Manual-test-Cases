@@ -1,0 +1,34 @@
+C96923 | section 13236 S1 — Switch between display options | Automated: False | layout old | run 498 test T3481867 status Passed
+existing setup doc: none
+
+TITLE: Changing location keeps Assigned to me as the user set it, as it does today
+
+=== PRECONDITIONS ===
+Preconditions: Log in as Owner/Admin with access to two locations, each containing at least one work order and an eligible technician.
+
+=== STEPS ===
+At the first location, open Work Orders → List.
+- Enable Assigned to me.
+- Use your initials → Change Location to switch to the second location.
+- Record the page and tab that open. This is your baseline.
+- Return to the first location and turn Assigned to me off.
+- Open Work Orders → Board View.
+- Enable Assigned to me.
+- Change to the second location.
+- Check the landing page/tab, selected display and Assigned to me state.
+- Select Tech View. Assigned to me is still on from step 7.
+- Change back to the first location.
+- Check the same items again.
+
+=== EXPECTED ===
+Expected after each location change:
+- The landing page and tab match the List baseline.
+- Assigned to me stays as you set it: on.
+- The chosen display remains selected: Board View after step 8 and Tech View after step 11.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD Confluence 845185030 v45, edited 12 Oct 2026, S1-E2, S1-E3, read 12 Oct 2026. Review Decisions 853901313 FF-3 / DR-6.
+Exact quotes from the source (for reproducibility)
+- S1-E2: “Changing location opens that location’s existing default page.”
+- S1-E3: “Assigned to me stays as the user set it when the location changes, as it does today.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

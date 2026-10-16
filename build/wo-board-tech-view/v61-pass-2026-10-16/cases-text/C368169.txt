@@ -1,0 +1,42 @@
+C368169 | section 55300 Not runnable for now | Automated: False | layout old | run 498 test T3792490 status Failed
+existing setup doc: none
+
+TITLE: Edit Work Order saves a new lead and a new mileage together
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 10 minutes.
+- Sign in as an Admin (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). Desktop browser window at least 1024 px wide; narrower windows show only the List.
+- Work in one location throughout, shown next to the bell in the top bar (e.g. "Staging Heavy Duty - 9919"); to change it click your initials (top right) > Change Location. Create everything in that location.
+- Technicians [Tech-A] and [Tech-B] (the expected results call them "Esther Howard" and "Ralph Edwards").
+- Customer "ZZAUTOTEST Edit WO Lead Mileage" (this case only) with a contact and an asset.
+- One Approved work order [WO-1] led by [Tech-A], with Mileage 120,000.
+- Names and numbers are examples, except names the expected results quote, which must be used exactly.
+Setup
+- Technicians: your initials (top right) > Settings > Staff. A person counts as a technician only if Active, Time Clock on, Role not Office User or Time Clock User, and this location in Location. To add one: New Staff Member > First Name, Last Name, Email, Role "Technician", one Department (required), Location = this location, Time Clock on > Save & Close. You need: two, [Tech-A] and [Tech-B].
+- Customer: Customers > New Customer > Name "ZZAUTOTEST Edit WO Lead Mileage" > Save. On its Contacts tab > New Contact > First and Last Name > Save. On its Assets tab > New Asset > pick the contact, Year, Make (required), Model, Unit "TRK-118" > Save.
+- Work order: Work Orders > Create Work Order > Customer "ZZAUTOTEST Edit WO Lead Mileage" > its asset > Save (if a credit-limit Confirmation appears, click Create). In New Line > "What Are You Doing?" type "grease" and pick "Service - Full grease service" (no parts) > Line Approved on > Save & Close. Write down the number (top left) as [WO-1] ("S1-712" in the expected results).
+- On [WO-1], in the card at the left, pick [Tech-A] in Lead Technician (it saves at once; it can only be changed once the work order is Approved).
+- In the same card click Mileage, type 120000 and click outside the field (it saves when you leave it).
+- Check: reload [WO-1]. Lead Technician reads [Tech-A] and Mileage reads 120,000.
+
+=== STEPS ===
+- Open [WO-1] (Work Orders > All tab > Search "ZZAUTOTEST Edit WO Lead Mileage" > click the work order).
+- There is no separate Edit Work Order window; the edits are made on the status card (the card at the left of the work order page that shows the status, Lead Technician, Mileage and Engine Hours).
+- On the status card click Lead Technician and pick [Tech-B]. It saves at once.
+- On the status card click Mileage, change it to 120500 and click outside the field (it saves when you leave it).
+- Watch for any error message.
+- Reload the page and read Lead Technician and Mileage on the status card.
+
+=== EXPECTED ===
+Expected results
+- Steps 3 to 5: both changes save with no error message.
+- Step 6: Lead Technician reads "Ralph Edwards" and Mileage reads 120,500. Both changes were saved.
+Source — where this behaviour comes from
+- Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 1; QA handoff test plan (generated 2026-10-08), §7; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted. Source-verified 8 October 2026.
+- QA lead decision, 9 Oct 2026: there is no separate Edit Work Order window for an existing work order; the lead technician, mileage and engine hours are changed on the card at the left of the work order page.
+Exact quotes from the source (for reproducibility)
+- Dev reply High 1: “Edit Work Order: the lead now goes through the new shared path.”
+- QA handoff §7: “A successful change shows the new lead.”
+Last checked against build v26.40.8-7a95011 on 10/9/2026.
+AUTOMATION: READY

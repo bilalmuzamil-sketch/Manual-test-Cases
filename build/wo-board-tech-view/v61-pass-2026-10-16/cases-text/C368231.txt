@@ -1,0 +1,35 @@
+C368231 | section 47111 Medium — shared plumbing (Part Sales, saved filters, report filters, impersonation, avatars) | Automated: False | layout old | run 498 test T3792552 status Passed
+existing setup doc: none
+
+TITLE: The Sales By Representative report keeps a chosen filter after a reload
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 5 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- Your role can see reports (Admin: Page Access > Reports on) and the organization has two locations (Staging Heavy Duty - 9919, Staging Lethbridge - 4310).
+- Needs no test data of its own; restore the filter at the end.
+Setup
+- Click Reports in the top menu > Sales By Representative (left menu, PERFORMANCE group). If Location is not at its default (Staging Heavy Duty - 9919 only), set it back.
+- Check the setup worked: the Location button shows its default value.
+
+=== STEPS ===
+- Click Reports in the top menu.
+- In the PERFORMANCE group click "Sales By Representative".
+- Open the Location filter and tick Staging Lethbridge - 4310 as well (only Staging Heavy Duty - 9919 is ticked by default). Write down which.
+- Close the filter (Escape or click outside it) and write down the rows or totals shown.
+- Reload the page.
+
+=== EXPECTED ===
+Expected results
+- After the reload the filter still shows your choice and the report shows the same rows or totals as before the reload.
+- No error message appears.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, Medium 6; QA handoff test plan (generated 2026-10-08), hotspot 5; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- Dev reply 6: “Pages that remember filters and settings: Orders, Vendors, Return Requests, Return Credits, Part Sales, Deliveries, Parts Catalogue, Inventory, and the report pages.”
+- Dev reply 6: “Set a filter, reload, and check that it's kept.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

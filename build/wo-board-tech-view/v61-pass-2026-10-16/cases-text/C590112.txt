@@ -1,0 +1,50 @@
+C590112 | section 73780 Design — how it looks | Automated: False | layout rule117 | run 498 test T3995721 status Failed
+existing setup doc: https://docs.google.com/document/d/1YWlZvYrK-qLEWI60wBqwvLnfXAGas5sqUro6SgcU50Q/edit
+
+TITLE: Tech View table runs edge to edge on white with no side gutter
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is 1440 px wide, with the browser zoom at 100%.
+- For the steps that name 1536 px, your screen lets you widen the window to 1536 px.
+- The design pictures DC-03-tech-view-regular-light-1440.png and DC-03-tech-view-regular-light-1536.png are open beside the app at 100% zoom (actual size); they are attached to this case.
+- In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 …) beside rows and cards are left out of this release, so do not compare those.
+- Technician {Technician-A} (for example ZZAUTOTEST DC03 Cara Edge) is an active technician at {Location-A}.
+- Customer {Customer-A} (for example "ZZAUTOTEST DC03 Edge To Edge") is used by this case only.
+- Approved work order {Work-order-1} (for example S10043-17807) for {Customer-A} is led by {Technician-A}.
+- Estimate {Work-order-2} (for example S10043-17808) for {Customer-A} has no lead technician, so it sits in the Unassigned group.
+- On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).
+
+=== STEPS ===
+- Open Work Orders, click the All tab and click Tech View in the display switcher.
+- Look at the left and right edges of the table, from the column header row down to the last row on screen.
+- Look at the line between the Unassigned group and the next group.
+- Scroll the table down a few screens.
+- Scroll the table sideways to its far right.
+- Widen the window to 1536 px and look at the table edges again.
+- Click List in the display switcher and look at the table edges.
+
+=== EXPECTED ===
+Expected results
+- Step 2: the table is white and runs from the left edge of the page to the right edge: the column header row, every group header and every row start right at the page's left edge, with no grey strip, margin or gap on either side, and there is no card, panel, rounded corner or shadow around the table. Side by side with the 1440 px design picture, the white table meets the browser edge on the left in the same way.
+- Step 3: the groups are separated by a double grey line above each group header, as in the picture.
+- Step 4: the column header row stays at the top of the table while the rows move up under it.
+- Step 5: the table scrolls sideways inside the page (a horizontal scroll bar shows) and each header label stays above its own column while you scroll. No column is squeezed narrower than its content or cut off to make the table fit.
+- Step 6: at 1536 px the table still runs edge to edge on white, as in the 1536 px design picture.
+- Step 7: List's table looks as it does in production today; List is unchanged by this release.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10045 (Story 2, Tech View); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S2-R22, S2-R1 and Goals, read 15 Oct 2026; Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html", states core__work-orders__tech-regular__light__1440 and core__work-orders__tech-regular__light__1536 (design pictures DC-03-tech-view-regular-light-1440.png, DC-03-tech-view-regular-light-1536.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11324 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answers 13 and 21, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.
+With the design's default columns the table is about 1,790 px wide, so it scrolls sideways at 1440 and 1536 px in the design too. Chris Ward answered on 15 Oct 2026 (answer 13) that sideways scrolling is fine, as in the design, and columns keep the design's minimum widths and are never squeezed or clipped; PRD version 54 says so, and this case follows it.
+Exact quotes from the source (for reproducibility)
+- S2-R22: “Tech View’s table runs edge to edge on white, with no side gutter and no card or panel around it, as in the design. When the columns are wider than the screen, the table scrolls sideways, as in the design; columns keep the design’s minimum widths and are never squeezed or clipped.”
+- S2-R1: “Group work orders by lead technician with visible separators.”
+- Goals: “List remains the default and is unchanged from production. The only changes to the Work Orders page are the display switcher and the icons on the filter chips and Search, which follow the design file in every display option, List included (S1-R9a). Today’s tabs, toolbar layout and Create Work Order button stay as they are.”
+- Design — README.md (design library), list screens: “runs edge to edge on white (never inside a card on grey)”
+- Design — SKILL.md (design library), list screens: “A list screen is white and the table runs edge to edge.”
+- Design — Work Orders.dc.html, Tech View column header row: “position: sticky; top: 0; z-index: 2; background: var(--sv-surface); border-bottom: 1px solid var(--sv-border-default);”
+- Design — Work Orders.dc.html, Tech View group header: “border-top: 3px double var(--sv-border-default);”
+- Design — Work Orders.dc.html, Tech View table: “min-width: {{ rowsMinWidth }}; flex: 1; padding-bottom: 20px; background: var(--sv-surface);”
+AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build

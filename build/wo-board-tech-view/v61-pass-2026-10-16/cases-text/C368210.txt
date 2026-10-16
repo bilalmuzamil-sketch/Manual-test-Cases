@@ -1,0 +1,33 @@
+C368210 | section 47110 High — shares code that changed behaviour (developer items 1–4 and the rebuilt List) | Automated: True | layout old | run 498 test T3792531 status Passed
+existing setup doc: none
+
+TITLE: On a phone the next page of cards loads only when you scroll
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 phone or narrow browser · about 5 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011) on a phone, or a desktop browser narrowed to about 390 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- The All tab holds more work orders than one page (this site does: more than 100).
+- Needs no test data of its own.
+Setup
+- Check the setup worked: at 390 px Work Orders > All tab shows work order cards.
+
+=== STEPS ===
+- Open Work Orders and click the All tab.
+- Without scrolling, count the cards (count the distinct work order numbers).
+- Scroll to the bottom of the cards.
+- Count the cards again.
+
+=== EXPECTED ===
+Expected results
+- Step 2: one page of cards shows (write down the number, e.g. 25).
+- Step 4: more cards appear only after the scroll (e.g. 50), with no repeats.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), §2; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (§1 Business Case). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- QA handoff §2: “Page 2 loads only after scrolling.”
+- PRD §1 Business Case: “List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

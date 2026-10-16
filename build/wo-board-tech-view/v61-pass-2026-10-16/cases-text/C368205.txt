@@ -1,0 +1,32 @@
+C368205 | section 47110 High — shares code that changed behaviour (developer items 1–4 and the rebuilt List) | Automated: True | layout old | run 498 test T3792526 status Passed
+existing setup doc: none
+
+TITLE: A link with an unknown Asset on Site value is ignored
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 5 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- View: on Work Orders the List is shown (click List in the display switcher at the right of the toolbar; its tooltip reads "List").
+- Starting view: your saved List is on the All tab with no filters.
+- Needs no test data of its own.
+Setup
+- Work Orders > click the All tab; clear any Status / Asset on Site filter (Clear selection) and turn Assigned to me off. Write down how many work orders the All tab shows (scroll to the end, or note the first and last rows).
+- Check the setup worked: Asset on Site shows no selection.
+
+=== STEPS ===
+- Open the site's Work Orders address with ?vehicleHere=2 added at the end.
+- Read the Asset on Site filter (click it: Yes / No / Clear selection) and the number of work orders shown.
+
+=== EXPECTED ===
+Expected results
+- The Asset on Site filter has nothing selected, the same number of work orders shows as before, and no error message appears.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), §2; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (§1 Business Case). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- QA handoff §2: “`?vehicleHere=2` is ignored.”
+- PRD §1 Business Case: “List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

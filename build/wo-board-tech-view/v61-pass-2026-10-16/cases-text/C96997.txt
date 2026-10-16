@@ -1,0 +1,35 @@
+C96997 | section 13243 S8 — Remove the tech-story check-mark | Automated: True | layout old | run 498 test T3481941 status Passed
+existing setup doc: none
+
+TITLE: The tech story check mark no longer shows on work order lines
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 2 users · 2 browsers · about 15 minutes
+- Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+- [User-B]: a user whose role uses the Tech View work order mode from Roles & Permissions (e.g. a "Technician" role, Settings > Roles & Permissions > the role > Work orders > View mode = Tech view), signed in in a second browser. This is the Simple Flow tech view mode, not the Tech View display on the Work Orders page.
+- Customer "ZZAUTOTEST F3 Story Check Mark" (used by this case only), with one contact and one asset.
+- Work order [WO-1] for this customer: status Approved, a line "Line 1" with a tech story entered on it (e.g. "Brought unit in. Completed inspection.").
+- The line name and story text are examples.
+Setup
+- Top menu Customers > New Customer, Name "ZZAUTOTEST F3 Story Check Mark" > Save (skip if it already exists). On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty. Record the customer as [Cust-1].
+- Create a work order with one line: Work Orders > Create Work Order > in New Work Order pick Customer [Cust-1] and its Asset > Save. The work order opens on its Lines tab with the New Line form open: in "What Are You Doing?" pick a ready-made line, turn Line Approved on (this makes the work order Approved) > Save & Add Line for the next line or Save & Close. Record the number shown as [WO-1]. Line names in this case (such as "Line 1") are only labels for you: the New Line form's "What Are You Doing?" box only offers ready-made lines (typed text finds no results), so pick any ready-made line for each one (e.g. "Replace - Brake pot") and write down which is which.
+- Enter a tech story on Line 1: on the Lines tab, in Line 1's Story row click the edit pencil ("Edit tech story"); the window "Tech Story: <line name>" opens; type the story (e.g. "Brought unit in. Completed inspection.") and click Update.
+- Confirm [User-B]'s role: Settings > Roles & Permissions > the role > Work orders > View mode = Tech view. Sign [User-B] in in the second browser at the same location.
+- Check the setup worked: on [WO-1]'s Lines tab, Line 1 shows its story text; [User-B] can open [WO-1] in the second browser. If not, enter the story again or correct the role before starting.
+
+=== STEPS ===
+- Open the work order [WO-1] and click the Lines tab.
+- Look at Line 1's Story row and the line row for a check mark.
+- In the second browser (Tech View work order mode, as [User-B]) open the same work order and look at Line 1 again.
+
+=== EXPECTED ===
+Expected results
+- Line 1 shows its story text with no check-mark indicator anywhere on the line, on the normal work order page and in the Simple Flow tech view mode.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10051 (Story 8, Remove the tech story check-mark indicator); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S8-R1, read 8 Oct 2026. Design export of 8 Oct 2026 (Claude Design project 787fef1a, Work Orders.dc.html) work order page (wo-details/Add Part.html): Story row shows only the text. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- S8-R1: “The check-mark indicator that appears on a work order line when a tech story has been entered is removed everywhere it appears (work order page line list, including the Simple Flow tech view mode).”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

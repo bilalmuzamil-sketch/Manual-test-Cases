@@ -1,0 +1,33 @@
+C368191 | section 55300 Not runnable for now | Automated: False | layout old | run 498 test T3792512 status Passed
+existing setup doc: none
+
+TITLE: A line with labor by a deleted staff member still reads Deleted user
+
+=== PRECONDITIONS ===
+Purpose
+Verify the existing regression expectation that scheduling another technician on a line does not replace its “Deleted user” labor attribution.
+Preconditions
+- Use the environment and build being tested. Sign in as an Owner/Admin or a user with access to view work orders and create Schedule shifts.
+- Select one location and keep it selected throughout the test.
+- Have an existing work order [WO-1] with a line [Line-1] whose recorded labor belongs to a since-deleted staff member. Its Labor row must already read “Deleted user”.
+- Have an active technician [Tech-J] available for scheduling at the same location.
+- The work order and line must allow a line-specific Schedule shift to be created.
+
+=== STEPS ===
+Open [WO-1] → Lines and identify [Line-1]. Confirm that its Labor row reads “Deleted user” before changing anything.
+- Open Schedule at the same location and select a suitable future date. Find [WO-1], drag it onto [Tech-J]’s row at an available time, and open the shift-creation dialog.
+- Choose lines, select only [Line-1], set the duration to 2 hours, and create the shift.
+- Confirm that the new shift is shown for [Tech-J] on [Line-1].
+- Reopen [WO-1] → Lines, refresh if needed, and read [Line-1]’s Labor row.
+
+=== EXPECTED ===
+Step 1: [Line-1] displays “Deleted user” and has recorded labor attributed to a since-deleted staff member. If this starting data is absent, stop and record the missing fixture.
+Step 2: The shift-creation dialog opens for the correct work order, technician, location and date.
+Step 3: A 2-hour shift is created for [Tech-J] on [Line-1] only.
+Step 4: The Schedule shows the shift on the selected line under [Tech-J].
+Step 5: The Labor row still reads “Deleted user”; the scheduled technician does not replace the recorded labor attribution.
+Source basis — distinguish the requirement from the blocker
+PRD: Work Orders — Board View & Tech View Display Options, version 58, checked 16 October 2026: S7-R8 applies when a line has no labor technician and has scheduled technicians; S7-R10 covers a line with neither. Neither requirement explicitly mentions “Deleted user”, requires deletion of staff with logged labor, or defines the staff-deletion rules. These requirements provide context, not the explicit “Deleted user” expectation.
+The explicit expected result in Step 5 is retained from the original case’s cited developer regression list (received 8 October 2026) and QA handoff test plan (generated 8 October 2026), §8. Original quoted handoff wording: “A line with real labor keeps its labor technician, and "Deleted user" stays.” The underlying regression list and handoff document were not independently retrieved during this review; this attribution comes from the existing case.
+PR #3548 and SV-9769 confirm the scheduled-technician fallback context. The PR also recognizes historical records naming since-deleted technicians. This supports retaining the historical-data regression check, but does not add a requirement that deleting staff with logged labor must be allowed.
+The Blocked result comes from the 15 October execution’s reported inability to obtain the required data on staging. It is not a PRD-mandated block, and it is not evidence that the “Deleted user” behavior failed. Re-run when a qualifying fixture is available; no blanket automation hold is imposed by this case.

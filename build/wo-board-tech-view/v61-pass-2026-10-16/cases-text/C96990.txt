@@ -1,0 +1,40 @@
+C96990 | section 13241 S6 — Density across the three displays | Automated: False | layout rule117 | run 498 test T3481934 status Failed
+existing setup doc: https://docs.google.com/document/d/1IFcE1ZmgiJaBUfONLH_FycOAGXwkOYFwt9g0QvmKztw/edit
+
+TITLE: Row and card text stays the same size at every density
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+- Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+- Customer {Customer-A} (for example "ZZAUTOTEST F1 Compact Text") has one Approved work order, {Work-order-1} (for example S10043-17651), led by {Technician-A}.
+- Tech View shows the Progress column (it is on by default).
+- On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+
+=== STEPS ===
+- Open Work Orders, click the All tab and type the name of {Customer-A} in Search.
+- Click Tech View in the display switcher.
+- Click the density button and choose Regular.
+- Look at the size of the text in {Work-order-1}'s row, of the column header labels and of the percentage beside the progress bar.
+- Click the density button and choose Compact.
+- Compare the same texts with what you saw at step 4.
+- Click the density button and choose Comfortable.
+- Compare the same texts with what you saw at step 4.
+- Click Board View in the display switcher.
+- Click the density button and choose Regular, and look at the text on {Work-order-1}'s card.
+- Click the density button and choose Compact, and compare the card text with step 10.
+
+=== EXPECTED ===
+Expected results
+- Step 6: at Compact the row text is the same size as at Regular (14 px), not smaller. The column header labels and the percentage keep their own smaller size (12 px), the same as at Regular.
+- Step 8: at Comfortable every text is the same size as at Regular.
+- Step 11: the card text is the same size at Compact as at Regular (14 px).
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10049 (Story 6, Density in Tech View and Board View); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S6-R4, read 15 Oct 2026. PRD section 5 Terminology (Density). Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 27, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.19-72f4f3b (staging) on 10/16/2026.
+The PRD (version 52) said only that Compact must not go below the minimum body text size, while the design's Compact rows use 13 px. Chris Ward answered on 15 Oct 2026 (answer 27) that row and card text is 14 px at every density and text the design sets at 12 px stays 12 px; PRD version 54 says so, and this case follows it.
+Exact quotes from the source (for reproducibility)
+- S6-R4: “Row and card text is 14px at every density; Compact never shrinks it. Text the design sets at 12px at every density, such as column header labels (S2-R21), the progress percentage and secondary lines, stays 12px.”
+AUTOMATION: READY

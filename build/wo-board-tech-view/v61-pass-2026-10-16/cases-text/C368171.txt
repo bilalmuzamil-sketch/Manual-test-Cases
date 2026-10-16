@@ -1,0 +1,45 @@
+C368171 | section 55300 Not runnable for now | Automated: False | layout old | run 498 test T3792492 status Passed
+existing setup doc: none
+
+TITLE: A lead change in Edit Work Order adds one Lead tech changed entry
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 10 minutes.
+- Sign in as an Admin (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). Desktop browser window at least 1024 px wide; narrower windows show only the List.
+- Work in one location throughout, shown next to the bell in the top bar (e.g. "Staging Heavy Duty - 9919"); to change it click your initials (top right) > Change Location. Create everything in that location.
+- Technicians [Tech-A] and [Tech-B] (the expected results call them "Esther Howard" and "Ralph Edwards").
+- Customer "ZZAUTOTEST Edit WO Audit" (this case only) with a contact and an asset.
+- One Approved work order [WO-1] with two approved lines that follow the lead (no technician of their own), led by [Tech-A].
+- Names and numbers are examples, except names the expected results quote, which must be used exactly.
+Setup
+- Technicians: your initials (top right) > Settings > Staff. A person counts as a technician only if Active, Time Clock on, Role not Office User or Time Clock User, and this location in Location. To add one: New Staff Member > First Name, Last Name, Email, Role "Technician", one Department (required), Location = this location, Time Clock on > Save & Close. You need: two, [Tech-A] and [Tech-B].
+- Customer: Customers > New Customer > Name "ZZAUTOTEST Edit WO Audit" > Save. On its Contacts tab > New Contact > First and Last Name > Save. On its Assets tab > New Asset > pick the contact, Year, Make (required), Model, Unit "TRK-118" > Save.
+- Work order: Work Orders > Create Work Order > Customer "ZZAUTOTEST Edit WO Audit" > its asset > Save (if a credit-limit Confirmation appears, click Create). In New Line > "What Are You Doing?" type "grease" and pick "Service - Full grease service" (no parts) > Line Approved on > Save & Add Line; then type "clutch", pick "Service - Adjust clutch", Line Approved on > Save & Close. Write down the number (top left) as [WO-1] ("S1-716" in the expected results).
+- On [WO-1], in the card at the left, pick [Tech-A] in Lead Technician (it saves at once; it can only be changed once the work order is Approved).
+- Check: reload [WO-1]. Both lines' Labor rows show [Tech-A]. The history is at the three-dots button at the top right of the tabs > Audit Log (window "Work Order Log").
+
+=== STEPS ===
+- Open [WO-1] (Work Orders > All tab > Search "ZZAUTOTEST Edit WO Audit" > click the work order) and open the Audit Log (three-dots at the top right of the tabs > Audit Log). Count the "Lead tech changed" entries and close the window (X).
+- Note the time.
+- There is no separate Edit Work Order window; the lead is changed on the status card (the card at the left of the work order page that shows the status, Lead Technician, Mileage and Engine Hours).
+- On the status card click Lead Technician and pick [Tech-B]. It saves at once.
+- Open the Audit Log again.
+- Read the newest entries.
+
+=== EXPECTED ===
+Expected results
+- Exactly one new "Lead tech changed" entry appears (count at step 1 + 1).
+- It names Esther Howard as the previous lead, Ralph Edwards as the new lead, your user, and the time you noted.
+- No separate entries appear for the two lines that followed the lead.
+Source — where this behaviour comes from
+- Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 1; QA handoff test plan (generated 2026-10-08), §7; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (S4-R9, S4-R17). Source-verified 8 October 2026.
+- QA lead decision, 9 Oct 2026: there is no separate Edit Work Order window for an existing work order; the lead technician, mileage and engine hours are changed on the card at the left of the work order page.
+Exact quotes from the source (for reproducibility)
+- Dev reply High 1: “Every lead change also adds a "Lead tech changed" history entry.”
+- QA handoff §7: “Each change adds exactly one "Lead tech changed" entry to the work order history.”
+- QA handoff §7: “This now also happens for changes made in Edit Work Order”
+- PRD S4-R9: “Every lead-change path records one audit entry with the previous lead, new lead, logged-in actor, and time.”
+- PRD S4-R17: “Do not create separate audit entries for implicit line movements caused by a lead change.”
+Last checked against build v26.40.8-7a95011 on 10/9/2026.
+AUTOMATION: READY

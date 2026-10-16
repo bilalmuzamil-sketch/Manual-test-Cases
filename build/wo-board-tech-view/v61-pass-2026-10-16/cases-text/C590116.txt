@@ -1,0 +1,51 @@
+C590116 | section 73780 Design — how it looks | Automated: False | layout rule117 | run 498 test T3995725 status Failed
+existing setup doc: https://docs.google.com/document/d/15HpPwyQFbstQ3SQPu_s3oCjW3UwLee7Yw4UWk0qNakQ/edit
+
+TITLE: Six-dot grips on Tech View rows and technician headers, none on Unassigned
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is 1440 px wide, with the browser zoom at 100%.
+- The design pictures DC-07-tech-view-row-hover-light-1440.png and DC-07-tech-view-view-only-light-1440.png are open beside the app at 100% zoom (actual size); they are attached to this case.
+- In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 …) beside rows and cards are left out of this release, so do not compare those.
+- The view-only design picture also shows grips on the rows; the PRD shows grips only to users who can drag, so use that picture only to compare the grip's drawing.
+- Technician {Technician-A} (for example ZZAUTOTEST DC07 Hana Grip) is an active technician at {Location-A}.
+- Customer {Customer-A} (for example "ZZAUTOTEST DC07 Grip") is used by this case only.
+- Approved work orders {Work-order-1} (for example S10043-17817) and {Work-order-2} (for example S10043-17818) for {Customer-A} are both led by {Technician-A}.
+- Estimate {Work-order-3} (for example S10043-17819) for {Customer-A} has no lead technician, so it sits in the Unassigned group.
+- User {User-B} (for example ZZAUTOTEST DC07 Viewer) has a role with Work orders > View but not Work orders > Create & Edit, at {Location-A}, and can sign in.
+- On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).
+
+=== STEPS ===
+- Open Work Orders, click the All tab and click Tech View in the display switcher.
+- Look at the left edge of every group header, the Unassigned header included.
+- Look at the left edge of every work order row, {Work-order-3}'s row in Unassigned included.
+- Hover {Work-order-1}'s row.
+- Press on {Work-order-1}'s Customer cell, move the mouse down past {Work-order-2}'s row and release it there.
+- Click {Work-order-1}'s Customer cell without moving the mouse.
+- Click your initials (top right) and click Logout, then sign in as {User-B}.
+- Open Work Orders, click the All tab and click Tech View in the display switcher.
+- Look at the left edge of the work order rows and of the group headers.
+
+=== EXPECTED ===
+Expected results
+- Step 2: every technician group header shows a six-dot grip (two columns of three small grey dots) at its left edge, as in the design pictures. The Unassigned header shows no grip.
+- Step 3: every row shows the same six-dot grip at its left edge.
+- Step 4: the row's background turns light grey and the grip stays visible, as in the row-hover picture.
+- Step 5: the row moves although you grabbed it outside the grip, and {Work-order-1} now sits below {Work-order-2}.
+- Step 6: the work order opens; the click did not start a drag.
+- Step 9: no grip shows on the work order rows for {User-B}, who cannot drag work orders. Every technician group header still shows the grip, because {User-B} can reorder technicians. The Unassigned header shows no grip.
+Source — where this behaviour comes from
+Epic SV-10043; stories SV-10052 (Story 9, Drag to reorder), SV-10045 (Story 2, Tech View), SV-10047 (Story 4, Reassign the lead technician); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S9-R1a, S2-R8 and S4-N1, read 15 Oct 2026; Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html", states states__work-orders__tech-row-hover__light__1440 and states__work-orders__tech-view-only__light__1440 (design pictures DC-07-tech-view-row-hover-light-1440.png, DC-07-tech-view-view-only-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11320 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 16, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.19-72f4f3b (staging) on 10/16/2026.
+The PRD (version 52) put a grip on every group header, Unassigned included, for users who can drag. Chris Ward answered on 15 Oct 2026 (answer 16): technician group-header grips show to everyone who can reorder technicians, view-only users included; row grips show only to users with Work Orders create and edit; the Unassigned header has no grip. PRD version 54 says so, and this case follows it. The design shows row grips to a view-only user too; this case follows the PRD.
+Exact quotes from the source (for reproducibility)
+- S9-R1a: “In Tech View every work order row, Unassigned’s rows included, shows the design’s six-dot drag grip at its left edge to users who can drag work orders (S4-N1). Every technician group header shows the grip to every user who can reorder technicians (S9-R2), view-only users included, because the technician order is personal. The Unassigned group header shows no grip, because Unassigned cannot move (S9-R8). The whole row still drags (S2-R8); the grip shows that it can.”
+- S9-R2: “Users with Work Orders view permission can reorder technician groups and columns. The order is saved per user.”
+- S2-R8: “Clicking anywhere on a row, outside its own controls, opens the work order. A drag starts only after the pointer has moved a few pixels, so a click never turns into a drag.”
+- S4-N1: “Require Work Orders create and edit permission to drag work orders or access Reassign lead technician.”
+- Design — Work Orders.dc.html, Tech View group header grip: “title="Drag to reorder technicians" style="width: 28px; flex: none; display: grid; place-items: center; color: var(--sv-text-muted);"”
+- Design — Work Orders.dc.html, Tech View row hover: “style-hover="background: var(--sv-surface-hover);"”
+AUTOMATION: READY

@@ -1,0 +1,40 @@
+C368192 | section 47110 High — shares code that changed behaviour (developer items 1–4 and the rebuilt List) | Automated: True | layout old | run 498 test T3792513 status Passed
+existing setup doc: none
+
+TITLE: At phone width an expanded line shows its scheduled technicians
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 10 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), a phone, or a desktop browser narrowed to about 390 px wide for the steps.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- Schedule access: the Admin role has Schedule > View and Create & Edit (Settings > Roles & Permissions > Admin > edit).
+- One technician [Tech-J] in the Service department at this location. Name is an example ("Jenny Wilson").
+- Customer "ZZAUTOTEST Phone Line Techs" (used by this case only) with one contact and one asset.
+- One Approved work order [WO-1] with NO lead technician and two approved lines with no labor; Line 1 = "Service - Full grease service".
+- Tomorrow [Tech-J] has one shift on [WO-1] made with Choose lines and only Line 1 ticked.
+Setup
+- Your initials (top right) > Settings > Staff > New Staff Member: First Name, Last Name, Email > Role = Technician > Departments = Service (only technicians in the Service department show as rows on the Schedule) > Location = Staging Heavy Duty - 9919 > turn Time Clock on > Save & Close. Record the technician as [Tech-J] (the expected results call this technician "Jenny Wilson").
+- Customers > New Customer > Name "ZZAUTOTEST Phone Line Techs" > Save (the customer page opens). Contacts tab > New Contact > First Name "ZZAUTOTEST", Last Name "Contact" > Save. Assets tab > New Asset > Contact = ZZAUTOTEST Contact > Year 2022 > Make: type "Freight" and pick Freightliner > Model: type "M2" and pick it > Unit "TRK-118" > Save (Contact and Make are required).
+- Work Orders > Create Work Order > New Work Order: Customer = "ZZAUTOTEST Phone Line Techs" > Asset = its asset > Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-1] (the expected results call it "S1-772").
+- In New Line > What Are You Doing? type "grease" and pick the ready-made line "Service - Full grease service" (it has no parts) > turn Line Approved on > Save & Add Line. In New Line > What Are You Doing? type "clutch" and pick the ready-made line "Service - Adjust clutch" (it has no parts) > turn Line Approved on > Save & Close. Leave Lead Technician empty. (Do the setup at desktop width.)
+- Click Schedule in the top menu > click the > arrow next to Today once so the date reads tomorrow. In Search work orders (left) type [WO-1]. Drag its card onto [Tech-J]'s row (scroll the rows down to find it) and drop it under 8 AM. In the window that opens click Choose lines, tick only "Service - Full grease service", use − / + until Hours reads 2h and click the Create button (it reads "Create 1 shift" or "Create shift · 1 line · …").
+- Check the setup worked: on [WO-1] > Lines tab (desktop width) Line 1's Labor row shows [Tech-J]. Then narrow the window to about 390 px (or open the work order on a phone).
+
+=== STEPS ===
+- Open [WO-1] and click the Lines tab.
+- On Line 1's card ("1." at its top left) tap the arrow button at the card's top right (tooltip "Expand") to expand it.
+- Read the Assigned Technicians part of the card (below Rate, Margin and Total).
+
+=== EXPECTED ===
+Expected results
+- Assigned Technicians shows "Jenny Wilson". No "Needs techs" badge appears.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), §8; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (S7-R8, S7-R9). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- QA handoff §8: “expand the line card. "Assigned Technicians" shows the scheduled names”
+- PRD S7-R8: “On the work order’s Lines tab, a line with no labor technician but with technicians scheduled on it from the Schedule shows those technicians’ names in its Labor row, in place of “Unassigned”.”
+- PRD S7-R9: “That row shows no “Needs techs” badge or any other badge.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

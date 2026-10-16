@@ -1,0 +1,36 @@
+C590130 | section 73780 Design — how it looks | Automated: False | layout rule117 | run 498 test T3995739 status Failed
+existing setup doc: https://docs.google.com/document/d/1f28aPZG9YFiiV5NcNeAN1jNYB2znhH2lTDt-UtmLnMo/edit
+
+TITLE: Lead technician updated message looks as in the design
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is 1440 px wide, with the browser zoom at 100%.
+- The design picture DC-21-toast-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.
+- In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 …) beside rows and cards are left out of this release, so do not compare those.
+- The design picture's message has other words and an Undo button; the PRD sets the words "Lead technician updated", so compare only the message's place and look.
+- Technician {Technician-A} (for example ZZAUTOTEST DC21 Dee Toast) is an active technician at {Location-A}.
+- Customer {Customer-A} (for example "ZZAUTOTEST DC21 Toast") is used by this case only.
+- Estimate {Work-order-1} (for example S10043-17856) for {Customer-A} has no lead technician and no approved line, so it sits in Unassigned.
+- On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).
+
+=== STEPS ===
+- Open Work Orders, click the All tab and click Board View in the display switcher.
+- Drag {Work-order-1}'s card from Unassigned into {Technician-A}'s column and release it.
+- Look at the message that appears.
+- Wait ten seconds without moving the mouse over the message.
+
+=== EXPECTED ===
+Expected results
+- Step 3: a white message box with rounded corners appears at the bottom right of the page, with a green check-in-a-circle icon, the words "Lead technician updated" and an X to close it, as in the design picture.
+- Step 4: the message disappears by itself.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10047 (Story 4, Reassign the lead technician); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S4-R5 and S4-R16, read 14 Oct 2026; Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html", state states__work-orders__tech-toast-after-reassign__light__1440 (design pictures DC-21-toast-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Where the PRD says nothing about the look, the design is the source. Source-verified 14 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026.
+Exact quotes from the source (for reproducibility)
+- S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”
+- S4-R16: “Success toasts dismiss automatically.”
+- Design — Work Orders.dc.html, message box: “position: fixed; right: 24px; bottom: 24px; z-index: 300;”
+AUTOMATION: READY

@@ -1,0 +1,40 @@
+C368175 | section 55300 Not runnable for now | Automated: False | layout old | run 498 test T3792496 status Passed
+existing setup doc: none
+
+TITLE: Line technician lists offer no staff from another organization
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 2 organizations · 1 browser · about 30 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- Two organizations on the build under test: A (this site's organization, Staging Foothills Group) and B, a second organization that has a staff member named "ZZAUTOTEST OrgB Tech".
+- Customer "ZZAUTOTEST Other Org Lists" (used by this case only) in organization A with one contact and one asset, and one work order [WO-1] with one line.
+- Names and numbers are examples.
+Setup
+- Get a second organization B on the QA build with a staff member "ZZAUTOTEST OrgB Tech" (ask the QA lead or developer; signing up a new organization was not walked on this build).
+- Customers > New Customer > Name "ZZAUTOTEST Other Org Lists" > Save (the customer page opens). Contacts tab > New Contact > First Name "ZZAUTOTEST", Last Name "Contact" > Save. Assets tab > New Asset > Contact = ZZAUTOTEST Contact > Year 2022 > Make: type "Freight" and pick Freightliner > Model: type "M2" and pick it > Unit "TRK-118" > Save (Contact and Make are required).
+- Work Orders > Create Work Order > New Work Order: Customer = "ZZAUTOTEST Other Org Lists" > Asset = its asset > Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-1] (the expected results call it "S1-726").
+- In New Line > What Are You Doing? type "grease" and pick the ready-made line "Service - Full grease service" (it has no parts) > turn Line Approved on > Save & Close.
+- Check the setup worked: [WO-1] shows one line on its Lines tab.
+
+=== STEPS ===
+- Open [WO-1] and click the Lines tab.
+- Click New Line. In What Are You Doing? type "ZZAUTOTEST Typed line" and press Enter when the list reads "No results" (the Technicians field shows only for a typed line). Click Add Technician and type "OrgB".
+- Close the New Line window (X at its top right) without saving.
+- Click the existing line's name to open Edit Line, click Add Technician and type "OrgB".
+- Close the Edit Line window (X) without saving.
+- On the line, click the three-dots button left of the line name > Edit labor, click Technician and type "OrgB".
+
+=== EXPECTED ===
+Expected results
+- Steps 2, 4 and 6: "ZZAUTOTEST OrgB Tech" is never offered. Only organization A's staff are listed.
+- The server also refuses a technician from another organization if one is sent outside the screens. This part cannot be checked by hand; write 'not checked by hand' in the result comment and pass or fail on what you can see.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 1; QA handoff test plan (generated 2026-10-08), §9, §10; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- Dev reply High 1: “Lines tab: adding a line, editing a line's technician and assigning a technician now reject staff from another organization.”
+- QA handoff §10: “Logged in at location A, nothing from location B appears in the List, Board View, Tech View, the candidates or the part counts.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: HOLD - needs a second organization on the QA build

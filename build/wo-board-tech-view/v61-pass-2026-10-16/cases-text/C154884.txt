@@ -1,0 +1,47 @@
+C154884 | section 13236 S1 — Switch between display options | Automated: False | layout old | run 498 test T3481977 status Passed
+existing setup doc: none
+
+TITLE: Assigned to me shows the same matching work orders in every display
+
+=== PRECONDITIONS ===
+Dev-layer test — be-functional. Existing coverage: ViewWorkOrderBoardTest.php:215 (List vs board parity); merged into E2E C96911
+
+Preconditions
+- Needs: 1 user · 1 browser · about 15 minutes.
+- Sign in as an Admin (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). Desktop browser window at least 1024 px wide; narrower windows show only the List.
+- Work in one location throughout, shown next to the bell in the top bar (e.g. "Staging Heavy Duty - 9919"); to change it click your initials (top right) > Change Location. Create everything in that location.
+- Customer "ZZAUTOTEST F1 Assigned To Me" (this case only) with four Approved work orders: two led by you, one led by another technician, one with no lead. Only your two have you as Service Advisor.
+- Names and numbers are examples, except names the expected results quote, which must be used exactly.
+Setup
+- Make yourself a lead technician: Settings > Staff > your own row's edit icon > Active, Time Clock on, this location in Location > Save.
+- Technicians: your initials (top right) > Settings > Staff. A person counts as a technician only if Active, Time Clock on, Role not Office User or Time Clock User, and this location in Location. To add one: New Staff Member > First Name, Last Name, Email, Role "Technician", one Department (required), Location = this location, Time Clock on > Save & Close. You need: one other technician, [Tech-A] (the expected results call it "Ralph Edwards").
+- Customer: Customers > New Customer > Name "ZZAUTOTEST F1 Assigned To Me" > Save. On its Contacts tab > New Contact > First and Last Name > Save. On its Assets tab > New Asset > pick the contact, Year, Make (required), Model, Unit "TRK-118" > Save.
+- Work orders for "ZZAUTOTEST F1 Assigned To Me": Work Orders > Create Work Order > pick the Customer and its Asset > Save (if a credit-limit Confirmation appears, click Create). In the New Line form that opens, type in "What Are You Doing?" and pick a ready-made line (e.g. "Replace - Brake pot"), turn Line Approved on > Save & Close: the status reads Approved. Write down the work order number (top left). Then pick the lead in Lead Technician on the card at the left of the work order page; it saves at once.- [WO-1] ("S1-702" in the expected results): lead = you.
+- [WO-2] ("S1-644"): lead = you.
+- [WO-3] ("S1-691"): lead = [Tech-A].
+- [WO-4] ("S1-352"): no lead.
+
+- Whoever creates a work order becomes its Service Advisor, and Assigned to me also shows those. So on [WO-3] and [WO-4], in the card at the left, set Service Advisor to someone other than you (e.g. [Tech-A]).
+- Check: Work Orders > All tab > Search "ZZAUTOTEST F1 Assigned To Me" shows [WO-1] and [WO-2] (lead: you), [WO-3] (lead [Tech-A]) and [WO-4] (no lead). If your name is missing from the Lead Technician list, redo the first setup step. Clear the search.
+
+=== STEPS ===
+- Open Work Orders.
+- Click the All tab on the left of the toolbar.
+- In List, click Search and type ZZAUTOTEST F1 Assigned To Me.
+- In List, turn on Assigned to me.
+- Write down every work order shown (with this setup: [WO-1] and [WO-2], 2 rows).
+- In the display switcher at the right of the toolbar, click Tech View (tooltip "Tech View").
+- Write down every work order shown and the groups they are in.
+- In the display switcher at the right of the toolbar, click Board View (tooltip "Board View").
+- Write down every card shown and the columns they are in.
+
+=== EXPECTED ===
+Expected results
+- Tech View and Board View show exactly the work orders List shows with Assigned to me on (example: S1-702 and S1-644, 2 in each display) and no others.
+- S1-691 (Ralph Edwards) and S1-352 (no lead) do not appear in any display.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S1-R13, read 8 Oct 2026.
+Exact quotes from the source (for reproducibility)
+- S1-R13: “With Assigned to me enabled, show only the work orders that match the existing Assigned to me rules, in every display option.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

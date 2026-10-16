@@ -1,0 +1,51 @@
+C368126 | section 13237 S2 — Tech View (table grouped by lead technician) | Automated: False | layout old | run 498 test T3761647 status Passed
+existing setup doc: none
+
+TITLE: Pinned groups sit after Unassigned in Tech View, newest pin last
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 2 users · 1 browser · about 20 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.
+- The case is run as [User-B]: a user with no pins and no saved technician order (use a new user if unsure: Role Admin, which holds Work orders > View and Create & Edit; Time Clock off).
+- [User-A]: an Owner/Admin user who creates the data (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+- One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+- Four technicians at this location: "Esther Howard", "Jenny Wilson", "Kristin Watson", "Ralph Edwards" (the expected results name them, so keep these names). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- Customer "ZZAUTOTEST F2 Tech Pin Order" (used by this case only), with one contact and one asset, so this case's work orders are kept apart from every other work order at the location.
+- Five Approved work orders for that customer: one led by each technician and one with no lead.
+Setup
+- Sign in with the Admin quick-login button on the sign-in page (you appear as "Admin ShopView"). Check the location in the top bar next to the bell; to change it click your initials at the top right > Change Location.
+- Settings (your initials at the top right > Settings) > Staff: confirm each technician below is active at this location with Time Clock on, or add it: New Staff Member > First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on > Save & Close. Record them as "Esther Howard", "Jenny Wilson", "Kristin Watson" and "Ralph Edwards" (keep these names).
+- Settings > Staff > New Staff Member > First Name and Last Name, an email you can open, Role "Admin", at least one Department (required), Location = this location, Time Clock off > Save & Close. Accept the invitation from that email and set a password. Record this user as [User-B].
+- Top menu Customers > New Customer > Name "ZZAUTOTEST F2 Tech Pin Order" > Save (if it already exists, open it instead). On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) > Save. Make is required; Unit can be left empty.
+- Work Orders > Create Work Order > in the New Work Order window pick Customer "ZZAUTOTEST F2 Tech Pin Order" and its asset > Save. The work order opens on its Lines tab with the New Line form open: in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; the build offers only ready-made lines), turn Line Approved on > Save & Close; the work order becomes Approved. Repeat for five work orders in all (numbers on this site look like "S10043-17581").
+- Set the leads: on an Approved work order pick the technician in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned. Here: one work order each for the four technicians; one with no lead.
+- Check the setup worked: sign in as [User-B], Work Orders > All tab > Search ZZAUTOTEST F2 Tech Pin Order > Tech View — Unassigned and the four technician groups each hold one row, and no header shows a filled pin. If someone is pinned, unpin them before starting.
+
+=== STEPS ===
+- Sign in as [User-B] and open Work Orders.
+- Click the All tab on the left of the toolbar.
+- Click Search and type ZZAUTOTEST F2 Tech Pin Order so only this test's work orders show.
+- In the display switcher at the right of the toolbar, click Tech View (tooltip "Tech View").
+- Write down the group order.
+- Pin Kristin Watson.
+- Write down the group order.
+- Pin Esther Howard.
+- Write down the group order.
+- In the display switcher at the right of the toolbar, click Board View (tooltip "Board View").
+- Read the column order.
+
+=== EXPECTED ===
+Expected results
+- Read the order of your four test technicians only (others at the location may sit between them). At the start: Unassigned, Esther Howard, Jenny Wilson, Kristin Watson, Ralph Edwards.
+- After pinning Kristin Watson she is right after Unassigned, before every unpinned technician: Unassigned, Kristin Watson, Esther Howard, Jenny Wilson, Ralph Edwards.
+- After pinning Esther Howard: Unassigned, Kristin Watson, Esther Howard, Jenny Wilson, Ralph Edwards (the new pin goes after the existing pin, not by name).
+- Board View shows the same order.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10045 (Story 2, Tech View — table grouped by lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S2-R17, S3-R15, S3-R16, read 8 Oct 2026. PRD footer comment Slavcho Mitrov 2 Oct 2026 item 2, folded into the 7 Oct PRD.
+Exact quotes from the source (for reproducibility)
+- S2-R17: “Tech View orders pinned technicians the same way as Board View: after the fixed Unassigned group and before unpinned technicians, each newly pinned technician after the existing pins (S3-R15, S3-R16).”
+- S3-R15: “Place pinned technicians after fixed Unassigned and before unpinned technicians.”
+- S3-R16: “Append each newly pinned technician after the existing pins.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

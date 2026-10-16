@@ -1,0 +1,66 @@
+C590114 | section 73780 Design — how it looks | Automated: False | layout rule117 | run 498 test T3995723 status Failed
+existing setup doc: https://docs.google.com/document/d/1U8Hfe0eaNnKhC9ouIEpKHwp3qp2jxd_gcyOPyBFepfk/edit
+
+TITLE: Tech View cells show a blue number, a thin progress bar and the advisor's avatar
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is 1440 px wide, with the browser zoom at 100%.
+- The design picture DC-05-tech-view-rows-regular-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.
+- In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 …) beside rows and cards are left out of this release, so do not compare those.
+- Technician {Technician-A} (for example ZZAUTOTEST DC05 Eva Cells) is an active technician at {Location-A} who has a profile photo.
+- Technician {Technician-B} (for example ZZAUTOTEST DC05 Finn Cells) is an active technician at {Location-A} who has no profile photo.
+- Customer {Customer-A} (for example "ZZAUTOTEST DC05 Cell Styles") is used by this case only.
+- Approved work order {Work-order-1} (for example S10043-17812) for {Customer-A} is led by {Technician-A}, has a service advisor shown in List, and has one approved line, {Line-1} (for example "Service - Full grease service"), whose technician is {Technician-B}.
+- {Technician-B} is clocked in to {Line-1}, so List's Clocked In column shows a name for {Work-order-1}.
+- Work order {Work-order-2} (for example S10043-17813) for {Customer-A} is Invoiced and led by {Technician-A}.
+- On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).
+
+=== STEPS ===
+- Open Work Orders, click the All tab and click Tech View in the display switcher.
+- Find {Work-order-1}'s row in {Technician-A}'s group.
+- Look at the Number cell.
+- Look at the Progress cell.
+- Look at the Service Advisor cell.
+- Look at the Assigned Techs cell.
+- Look at the Waiting On Parts, Clocked In and Total price cells.
+- Hover the first avatar in the Assigned Techs cell, then the second.
+- Click {Work-order-1}'s number.
+- Go back to the Work Orders page.
+- Look at {Work-order-2}'s Number cell.
+- Hover the small padlock next to {Work-order-2}'s number.
+- Click List in the display switcher.
+- Look at {Work-order-1}'s Clocked In cell.
+
+=== EXPECTED ===
+Expected results
+- Step 3: the number shows in the blue used for links, the same blue as the numbers in the design picture, not in black.
+- Step 4: a thin rounded bar with the percentage beside it in small grey text (for example 0%), as in the picture: in the design the bar is 64 × 6 px, about as long as the word "Progress" in the header and much thinner than the text. Any filled part of the bar is blue.
+- Step 5: a small round avatar sits before the advisor's name: the advisor's photo, or the initials on a light-grey circle.
+- Step 6: overlapping round avatars, {Technician-A} (the lead) first, then {Technician-B}.
+- Step 7: Waiting On Parts shows a grey dash (-), not a blank, and Total price sits at the right of its column.
+- Step 8: each avatar shows its technician's name when hovered.
+- Step 9: the work order opens.
+- Step 11: a small padlock outline icon sits right after {Work-order-2}'s number, as after the S1-359 and S1-360 numbers in the design picture.
+- Step 12: a dark tooltip with light text opens above the padlock.
+- Step 14: List's Clocked In cell shows the same thing in the same style as Tech View's Clocked In cell at step 7.
+Source — where this behaviour comes from
+Epic SV-10043; stories SV-10045 (Story 2, Tech View), SV-10044 (Story 1, Switch between display options), SV-10050 (Story 7, Line technicians); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S2-R20, S1-R9a, S2-R8, S7-R3 and S7-R6, read 15 Oct 2026; Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html", state core__work-orders__tech-regular__light__1440 (design pictures DC-05-tech-view-rows-regular-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11325 (reported 14 Oct 2026 by Chris Ward), SV-11319 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 31, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026.
+The design shows Clocked In as a time badge (for example 0:48); this case follows the PRD, which keeps List's display (PRD version 51 onwards; Chris Ward confirmed on 15 Oct 2026, answer 31, that the names show as the List shows them). The design also locks Declined and Imported work orders; this case checks the padlock on an Invoiced one only.
+Exact quotes from the source (for reproducibility)
+- S2-R20: “Tech View’s cells follow the design: the work order number shows as a link in the accent color; Progress shows as a thin bar with the percentage beside it, with no hours line under it at any density (S6-R6); Service Advisor shows the advisor’s avatar before the name. Clocked In keeps List’s display (S5-R11).”
+- S1-R9a: “The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View these icons are the design’s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system’s icon set), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and the empty state when there are no work orders at all (`clipboard-list`). The filtered no-results state is the List’s, magnifier included (S1-N1). The filter chips and Search use the design file’s icons in every display option, List included, each exactly as the design file draws it; this is the only change to List. Every other List icon is unchanged.”
+- S2-R8: “Clicking anywhere on a row, outside its own controls, opens the work order. A drag starts only after the pointer has moved a few pixels, so a click never turns into a drag.”
+- S7-R3: “Place the lead technician first in the avatar group.”
+- S7-R6: “Keep every involved technician discoverable by name.”
+- Design — Work Orders.dc.html, Tech View Progress cell, bar size at Regular: “barW: rowDensity === "small" ? "48px" : "64px"”
+- Design — Work Orders.dc.html, Tech View Progress cell, bar size at Regular: “barH: rowDensity === "small" ? "4px" : "6px"”
+- Design — Work Orders.dc.html, Tech View Progress cell: “font-size: 12px; color: var(--sv-text-secondary); font-variant-numeric: tabular-nums;">{{ wo.pctLabel }}”
+- Design — Work Orders.dc.html, Tech View Service Advisor cell: “component-from-global-scope="SVAvatarFix" name="{{ wo.adv }}" size="{{ crewSize }}"”
+- Design — Work Orders.dc.html, empty cell: “<span style="color: var(--sv-text-muted);">-</span>”
+- Design — Work Orders.dc.html, Total price cell: “text-align: right; color: var(--sv-text-primary); font-variant-numeric: tabular-nums;">{{ wo.total }}”
+- Design — Work Orders.dc.html, tooltip: “transform: translate(-50%, -100%); padding: 6px 10px; border-radius: var(--sv-radius-md); background: var(--sv-surface-inverse);”
+AUTOMATION: READY

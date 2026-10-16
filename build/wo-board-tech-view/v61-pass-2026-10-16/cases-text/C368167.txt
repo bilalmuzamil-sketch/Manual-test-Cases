@@ -1,0 +1,48 @@
+C368167 | section 47110 High — shares code that changed behaviour (developer items 1–4 and the rebuilt List) | Automated: True | layout old | run 498 test T3792488 status Passed
+existing setup doc: none
+
+TITLE: A refused lead change on the work order page shows an error, keeps the old lead
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 2 tabs of the same browser · about 15 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- 2 technicians eligible at this location: active, Role Technician, at least one Department, Location Staging Heavy Duty - 9919, Time Clock on. Names are examples ("Esther Howard", "Ralph Edwards").
+- Customer "ZZAUTOTEST Refused Lead Change" (used by this case only) with one contact and one asset.
+- One work order [WO-1] for that customer with one completed line, Lead Technician = [Tech-A], status Complete (all lines complete and reviewed, not yet invoiced).
+- Two tabs of the same browser window, both signed in as Admin ShopView (open the second with right-click on the work order > Open link in new tab). Do not sign in again in a private window: a second quick-login can end the first tab's session.
+- Names and numbers are examples.
+Setup
+- Your initials (top right) > Settings > Staff: if no suitable technician exists, click New Staff Member > First Name, Last Name, Email > Role = Technician > Departments = any one (at least one Department is required) > Location = Staging Heavy Duty - 9919 > turn Time Clock on > Save & Close. Record the technician as [Tech-A] (the expected results call this technician "Esther Howard").
+- Your initials (top right) > Settings > Staff: if no suitable technician exists, click New Staff Member > First Name, Last Name, Email > Role = Technician > Departments = any one (at least one Department is required) > Location = Staging Heavy Duty - 9919 > turn Time Clock on > Save & Close. Record the technician as [Tech-B] (the expected results call this technician "Ralph Edwards"). Use a second, different technician.
+- Customers > New Customer > Name "ZZAUTOTEST Refused Lead Change" > Save (the customer page opens). Contacts tab > New Contact > First Name "ZZAUTOTEST", Last Name "Contact" > Save. Assets tab > New Asset > Contact = ZZAUTOTEST Contact > Year 2022 > Make: type "Freight" and pick Freightliner > Model: type "M2" and pick it > Unit "TRK-118" > Save (Contact and Make are required).
+- Work Orders > Create Work Order > New Work Order: Customer = "ZZAUTOTEST Refused Lead Change" > Asset = its asset > Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-1] (the expected results call it "S1-705").
+- In New Line > What Are You Doing? type "grease" and pick the ready-made line "Service - Full grease service" (it has no parts) > turn Line Approved on > Save & Close. The status reads Approved.
+- On [WO-1], on the status card at the left, click Lead Technician and pick [Tech-A]. (Lead Technician is a dropdown only once the work order is Approved; while it is an Estimate it reads "Unassigned" and cannot be changed.) The choice saves at once.
+- Bring it to Complete: on the Lines tab click Complete on the line > Tech Story: type any text > if a "Missing Details (1)" step shows, click it and type a Mileage > Complete Line (or Complete All Lines). The message "Work order sent to review." appears and the status reads Review. Click Mark Reviewed; if a Mark as reviewed window asks for VIN, type any 17 characters (e.g. 1FVACWDT1BDAZ0001) > Confirm Review. The status reads Complete.
+- Check the setup worked: reload [WO-1]. The status reads Complete, Lead Technician reads [Tech-A] and on the Finance tab the Create Invoice button can be clicked. Do not click it yet.
+
+=== STEPS ===
+- In tab 1, open [WO-1] and leave the page open.
+- In tab 2, open [WO-1], click the Finance tab and click Create Invoice so the work order is Invoiced. Close the New Customer Payment window that opens (the X at its top right) without paying.
+- In tab 1, without reloading, click Lead Technician on the status card.
+- Pick [Tech-B].
+- Read the message that appears and the Lead Technician field.
+- Reload tab 1 and read Lead Technician.
+
+=== EXPECTED ===
+Expected results
+- Step 5: an error message appears (write down its words, e.g. "The lead technician can't be changed once a work order is Invoiced or Paid.") and the Lead Technician field goes back to "Esther Howard".
+- Step 6: after the reload Lead Technician still reads "Esther Howard". The change was not saved.
+- If browser 1 already shows the field disabled at step 3 because the page refreshed itself, write 'page refreshed itself' in the result comment and pass on the disabled field.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 1; QA handoff test plan (generated 2026-10-08), §7; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (§4 Key Decisions). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- Dev reply High 1: “A refused change now shows an error and puts the old value back.”
+- QA handoff §7: “A refused change shows an error and puts the old value back.”
+- QA handoff §7: “changing the lead from the dialog, by a board drag or from the detail card is refused with "The lead technician can't be changed once a work order is Invoiced or Paid."”
+- PRD §4 Key Decisions (lead lock): “Lead technician cannot be changed once a work order is Invoiced or Paid. This is a product rule, not only a screen rule, so it must hold on every path that changes the lead technician — board drag, Reassign dialog, and the work order detail page.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

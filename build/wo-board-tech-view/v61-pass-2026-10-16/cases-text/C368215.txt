@@ -1,0 +1,36 @@
+C368215 | section 47111 Medium — shared plumbing (Part Sales, saved filters, report filters, impersonation, avatars) | Automated: False | layout old | run 498 test T3792536 status Passed
+existing setup doc: none
+
+TITLE: A part sale's status card shows in full
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 10 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.17-35e65f9), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- Customer "ZZAUTOTEST Part Sale Card" (used by this case only) with one contact.
+- One part sale [PS-1] for that customer with one part.
+Setup
+- Customers > New Customer > Name "ZZAUTOTEST Part Sale Card" > Save (the customer page opens). Contacts tab > New Contact > First Name "ZZAUTOTEST", Last Name "Contact" > Save. Assets tab > New Asset > Contact = ZZAUTOTEST Contact > Year 2022 > Make: type "Freight" and pick Freightliner > Model: type "M2" and pick it > Unit "TRK-118" > Save (Contact and Make are required).
+- Click Parts in the top menu > Part Sales > New Part Sale > Customer: type and pick "ZZAUTOTEST Part Sale Card" (add it first with Customers > New Customer if missing) > Save (if a Confirmation about the credit limit appears, click Create). The part sale page opens; record the number at the top left as [PS-1] (the expected results call it "PS-1001").
+- On the Parts tab click Add Part > Description "Brake Pads" > Quantity 1 > Category Uncategorized > Vendor: pick any > Cost 100 > Sell Price 290.91 > Save & Close.
+- Check the setup worked: Parts > Part Sales > Search [PS-1] lists it as Estimate with Parts 1.
+
+=== STEPS ===
+- Click Parts in the top menu, then Part Sales.
+- Click the [PS-1] row in the Part Sales list to open it.
+- Read the status card at the left of the page.
+
+=== EXPECTED ===
+Expected results
+- The status card shows [PS-1]'s number at the top, the status Estimate, the Started date, and a Sales Representative field showing Unassigned or a person's name.
+- As Admin on an Estimate, Sales Representative is a dropdown you can open to pick a person (on an invoiced or paid sale it is plain text).
+- It shows no Lead technician, Service advisor or progress bar: those belong to work orders only.
+- No empty box, missing field or error message.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, Medium 5; QA handoff test plan (generated 2026-10-08), Frontend screens; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted. Source-verified 8 October 2026. Updated 14 October 2026: develop's part sale work (SV-10264), merged into SV-10043 at 35e65f9, adds the Sales Representative field; the expected results now list the card's fields.
+Exact quotes from the source (for reproducibility)
+- Dev reply 5: “The detail page's status card had props removed. Check that it renders and that changing the technician works.”
+Last checked against build v26.40.17-35e65f9 (local) on 10/14/2026.
+AUTOMATION: READY

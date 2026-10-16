@@ -1,0 +1,58 @@
+C590117 | section 73780 Design — how it looks | Automated: False | layout rule117 | run 498 test T3995726 status Failed
+existing setup doc: https://docs.google.com/document/d/1bC6edOcfZK6nmG9syWfbycqLPnF5Ci4ZX0ZmBO7SLT0/edit
+
+TITLE: Tech View group headers show grip, arrow, avatar, name and count as designed
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is 1440 px wide, with the browser zoom at 100%.
+- The design pictures DC-08-tech-view-group-headers-light-1440.png and DC-08-tech-view-collapsed-light-1440.png are open beside the app at 100% zoom (actual size); they are attached to this case.
+- In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 …) beside rows and cards are left out of this release, so do not compare those.
+- The design's group header has no pin icon; whether Tech View keeps pinning is with the product owner, so do not judge a pin icon in this case.
+- Technician {Technician-A} (for example ZZAUTOTEST DC08 Ines Header) is an active technician at {Location-A} who has a profile photo.
+- Technician {Technician-B} (for example ZZAUTOTEST DC08 Jon Header) is an active technician at {Location-A} who has no profile photo.
+- Customer {Customer-A} (for example "ZZAUTOTEST DC08 Group Header") is used by this case only.
+- Approved work order {Work-order-1} (for example S10043-17821) for {Customer-A} is led by {Technician-A}.
+- Approved work order {Work-order-2} (for example S10043-17822) for {Customer-A} is led by {Technician-B}.
+- Estimate {Work-order-3} (for example S10043-17823) for {Customer-A} has no lead technician, so it sits in the Unassigned group.
+- On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).
+
+=== STEPS ===
+- Open Work Orders, click the All tab and click Tech View in the display switcher.
+- Look at the Unassigned group header from left to right.
+- Look at {Technician-B}'s group header from left to right.
+- Look at {Technician-A}'s group header avatar.
+- Hover the number at the right of {Technician-A}'s group header.
+- Hover {Technician-B}'s avatar in the group header.
+- Click the arrow in {Technician-A}'s group header.
+- Click the same arrow again.
+- Click the density button and choose Compact, and look at the group headers.
+- Click the density button and choose Comfortable, and look at the group headers.
+
+=== EXPECTED ===
+Expected results
+- Step 2: from left to right: a thin down-pointing arrow, a round light-grey avatar holding a grey outline person icon, the word Unassigned in dark semibold text, a short grey upright divider, a clipboard outline icon and the number of work orders, as in the design picture. The Unassigned header has no six-dot grip.
+- Step 3: {Technician-B}'s header starts with the six-dot grip, then the arrow. Its avatar is a light-grey circle with the initials in dark grey (for example "ZJ"), like "BM" in the design picture, not a solid blue circle with white initials. The name is dark and semibold, about the size of the row text (14 px in the design).
+- Step 4: {Technician-A}'s avatar is the technician's round photo.
+- Step 5: a dark tooltip opens above the number and does not cover any column header label.
+- Step 6: {Technician-B}'s name shows.
+- Step 7: the group closes and its arrow turns to point right, as in the collapsed design picture.
+- Step 8: the group opens again and the arrow points down.
+- Steps 9 and 10: the header is shorter and its avatar smaller at Compact, taller and larger at Comfortable; the name keeps the same size.
+Source — where this behaviour comes from
+Epic SV-10043; stories SV-10045 (Story 2, Tech View), SV-10044 (Story 1, Switch between display options); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S2-R12, S2-R10, S2-R5 and S1-R9a, read 15 Oct 2026; Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html", states core__work-orders__tech-regular__light__1440 and states__work-orders__tech-collapsed-one__light__1440 (design pictures DC-08-tech-view-group-headers-light-1440.png, DC-08-tech-view-collapsed-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11338 (reported 14 Oct 2026 by Ahtasham Amjad), SV-11319 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 16, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.
+SV-11338 estimates the design's header name at about 16 px; the ticket's estimated design sizes differ from the design file, which draws the name at 14 px semibold; this case follows the design file. Pinning in Tech View: Ahtasham Amjad asked Chris Ward on 14 Oct 2026 whether to keep the pin the PRD keeps (S2-R11) although the design shows none; no pin look is judged here. The PRD (version 52) also put a grip on the Unassigned header; Chris Ward answered on 15 Oct 2026 (answer 16) that the Unassigned header has no grip, and PRD version 54 says so.
+Exact quotes from the source (for reproducibility)
+- S2-R12: “Each group header shows the technician’s name, avatar, and a count of the work orders currently shown in that group, after the filter view and filters are applied, so the count always matches the rows listed.”
+- S2-R10: “Hovering a technician header or avatar reveals the technician’s name.”
+- S2-R5: “Allow each technician group to be collapsed or expanded.”
+- S1-R9a: “The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View these icons are the design’s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system’s icon set), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and the empty state when there are no work orders at all (`clipboard-list`). The filtered no-results state is the List’s, magnifier included (S1-N1). The filter chips and Search use the design file’s icons in every display option, List included, each exactly as the design file draws it; this is the only change to List. Every other List icon is unchanged.”
+- Design — _ds_bundle.js (design library), staff avatar: “Photo when we have one, initials otherwise.”
+- Design — _ds_bundle.js (design library), staff avatar without a photo: “background: color || 'var(--sv-surface-sunken)', color: color ? 'var(--sv-accent-on-solid)' : 'var(--sv-text-secondary)',”
+- Design — Work Orders.dc.html, Tech View group header name: “font-size: 14px; font-weight: 600; color: var(--sv-text-primary); margin-right: -12px;”
+- Design — Work Orders.dc.html, Tech View group header height by density: “groupH: rowDensity === "large" ? "56px" : rowDensity === "small" ? "36px" : "44px"”
+- S9-R1a: “In Tech View every work order row, Unassigned’s rows included, shows the design’s six-dot drag grip at its left edge to users who can drag work orders (S4-N1). Every technician group header shows the grip to every user who can reorder technicians (S9-R2), view-only users included, because the technician order is personal. The Unassigned group header shows no grip, because Unassigned cannot move (S9-R8). The whole row still drags (S2-R8); the grip shows that it can.”
+AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build

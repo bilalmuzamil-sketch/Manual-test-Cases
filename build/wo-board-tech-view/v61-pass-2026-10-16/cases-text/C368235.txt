@@ -1,0 +1,38 @@
+C368235 | section 47111 Medium — shared plumbing (Part Sales, saved filters, report filters, impersonation, avatars) | Automated: False | layout old | run 498 test T3792556 status Passed
+existing setup doc: none
+
+TITLE: The Inventory Value Category filter ticks, selects all and clears
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · a production sign-in for the comparison · about 10 minutes. No test data of its own.
+- Sign in as an Admin (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). Desktop browser window at least 1024 px wide; narrower windows show only the List. Your role must see Reports.
+- Work in one location throughout, shown next to the bell in the top bar (e.g. "Staging Heavy Duty - 9919"); to change it click your initials (top right) > Change Location. Create everything in that location.
+- Before you start: Reports > Inventory Value; if the Category filter was changed, set it back to its default.
+- For step 9: a sign-in to production (app.shopview.com) that can see Reports. You only look there; nothing is changed.
+
+=== STEPS ===
+- Click Reports in the top menu.
+- In the PARTS group click "Inventory Value".
+- Open the Category filter. Note that "All categories" is ticked.
+- Click one option. Write down what happens to the ticks and to the report.
+- Click the same option again. Write down what happens.
+- Click the "All categories" box. Write down what happens; if it is already ticked, click it once more and write that down too.
+- Look for a Clear selection button (write down whether there is one, and its words). If there is one, click it and write down what happens.
+- Close the filter and set Category back to "All categories".
+- In another browser tab sign in to production (app.shopview.com) and repeat steps 1 to 8 on the same report. Compare each step with what you wrote down.
+
+=== EXPECTED ===
+Expected results
+- Every step behaves the same on this build as on production (step 9): the same ticks change, the report narrows and widens the same way, and the same buttons are offered.
+- Clicking an option changes which options are ticked, and the report updates to match. (Production today: with "All categories" ticked, clicking an option selects only that option and the button reads "1 selected"; clicking it again goes back to "All categories".)
+- "All categories" ticks every option; clicking it while it is ticked unticks every option. (Production has no separate Clear selection button; clicking the ticked "All categories" box clears the selection.)
+- No error message appears.
+- Mark Failed only if this build behaves differently from production in any step (QA lead's decision below).
+Source — where this behaviour comes from
+- Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, Medium 7; QA handoff test plan (generated 2026-10-08), hotspot 5; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted. Source-verified 8 October 2026.
+- QA lead decision, 12 Oct 2026 (recorded on this test in run 498: https://shopview.testrail.io/index.php?/tests/view/3792556): this build behaves the same as production, so it passes; an issue that production has too is not a regression.
+Exact quotes from the source (for reproducibility)
+- Dev reply 7: “The filter option list now supports disabled options. Check that options toggle normally and that Select all and Clear selection work.”
+Last checked against build v26.40.8-7a95011 on 10/10/2026; production compared by the QA lead on 10/12/2026.
+AUTOMATION: READY

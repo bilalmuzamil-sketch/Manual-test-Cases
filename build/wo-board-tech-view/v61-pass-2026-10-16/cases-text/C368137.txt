@@ -1,0 +1,47 @@
+C368137 | section 13239 S4 — Reassign or unassign the lead technician | Automated: False | layout old | run 498 test T3761658 status Passed
+existing setup doc: none
+
+TITLE: A reorder that cannot be saved shows its alert and the card goes back
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 15 minutes.
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+- [User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+- Desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+- One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+- [Tech-A]: one eligible technician at this location. A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- Customer "ZZAUTOTEST F1 Reorder Offline" (used by this case only) with three Approved work orders led by [Tech-A]: [WO-1], [WO-2], [WO-3].
+- You can turn this computer's network connection off and on (e.g. Wi-Fi off).
+- Names and numbers are examples; what must hold: three cards in one technician's column.
+Setup
+- Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+- Use one location for the whole case: it is shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+- Settings (your initials at the top right > Settings) > Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member > First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on > Save & Close. Record them as [Tech-A] (e.g. Esther Howard).
+- Create the customer used only by this case: top menu Customers > New Customer > Name "ZZAUTOTEST F1 Reorder Offline" > Save. On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty.
+- Create these work orders for "ZZAUTOTEST F1 Reorder Offline": Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save & Close. Write down the number the build gives the work order (on a QA branch they look like "S10043-17581"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.- [WO-1] (e.g. S1-701): Lead Technician = [Tech-A].
+- [WO-2] (e.g. S1-702): Lead Technician = [Tech-A].
+- [WO-3] (e.g. S1-703): Lead Technician = [Tech-A].
+
+- Check the setup worked: Work Orders > All tab > Search "ZZAUTOTEST F1 Reorder Offline" shows [WO-1], [WO-2] and [WO-3], each with Lead Technician [Tech-A]. If not, fix it on the work order page before starting; then clear the search.
+
+=== STEPS ===
+- Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip "Board View").
+- Type "ZZAUTOTEST F1 Reorder Offline" in Search.
+- Write down the order of the three cards in [Tech-A]'s column (e.g. [WO-1], [WO-2], [WO-3]).
+- Turn off this computer's network connection (e.g. Wi-Fi off).
+- Drag the last card to the top of [Tech-A]'s column.
+- Read the alert and the order of the cards.
+- Turn the network back on and reload.
+- Repeat steps 3 to 7 in Tech View.
+
+=== EXPECTED ===
+Expected results
+- An alert reads exactly: Couldn't save the new order. Please try again. (A straight or curly apostrophe is not a difference.)
+- The card goes back to where it was, so the order is again as written down, and stays so after the reload. No lead change message appears.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S4-N10, read 8 Oct 2026. PO decision Chris Ward 6 Oct 2026 (two sentences). Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- S4-N10: “A reorder within one technician that cannot be saved shows the alert “Couldn't save the new order. Please try again.” and the card goes back to where it was.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

@@ -1,0 +1,37 @@
+C368157 | section 20449 TP - Tech-plan coverage (Imported, mobile breakpoint, tenancy) | Automated: True | layout old | run 498 test T3761678 status Passed
+existing setup doc: none
+
+TITLE: Unpinning a technician puts them back where they were
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 5 minutes
+- Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+- Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+- Technicians (examples, the expected results call them by first name or full name): "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo", "ZZAUTOTEST Cal Charlie", "ZZAUTOTEST Dan Delta". A staff member counts as a technician when, in Settings > Staff > the staff member's edit icon > Edit Staff Member, they are Active, Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- No technician is pinned and your technician order is the starting one: Ana, Ben, Cal, Dan.
+Setup
+- Settings (your initials at the top right > Settings) > Staff: confirm "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo", "ZZAUTOTEST Cal Charlie", "ZZAUTOTEST Dan Delta" exist and count as technicians at this location (edit icon > Edit Staff Member). To add one: New Staff Member with those settings (at least one Department is required) (e.g. first name "ZZAUTOTEST Ana", last name "Alpha") > Save & Close.
+- Work Orders > All > Board View: unpin every pinned technician (pin icon in the column header); write down who was pinned so you can pin them back after the case.
+- Check the setup worked: Board View shows no pinned column and the four technicians read Ana, Ben, Cal, Dan after Unassigned. If you have reordered them earlier, drag them back into that order first.
+
+=== STEPS ===
+- Open Work Orders from the top menu and click the All tab.
+- Click Board View in the display switcher (tooltip "Board View").
+- Pin Cal (the pin icon in his header). Read the column order.
+- Unpin Cal (the same pin icon). Read the column order.
+- Click Tech View in the display switcher at the right of the toolbar (tooltip "Tech View").
+
+=== EXPECTED ===
+Expected results
+- Step 3: Cal moves to the pinned area: Unassigned, Cal, Ana, Ben, Dan.
+- Step 4: Cal returns to his previous place: Unassigned, Ana, Ben, Cal, Dan.
+- Step 5: Tech View shows the same order.
+Source — where this behaviour comes from
+Epic SV-10043; Work Orders Board View & Tech View Display Options Technical Implementation Plan (revised 24 Sep 2026, uploaded 8 Oct 2026), section 1.4 (SQ-11), confirmed by Sasha Grosman in the PRD footer comment of 24 Sep 2026. Epic SV-10043; story SV-10046 (Story 3, Board View); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S3-R19, read 8 Oct 2026. Review Decisions SQ-11 (29 Sep 2026) still lists the unpin position as open (PO question raised).
+Exact quotes from the source (for reproducibility)
+- S3-R19: “Unpinning frees a slot in both Tech View and Board View.”
+- Tech plan 1.4 SQ-11: “Confirmed: unpin returns to the previous slot; pins/order per user, filtered to technicians of the current location”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

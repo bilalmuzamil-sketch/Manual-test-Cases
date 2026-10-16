@@ -1,0 +1,42 @@
+C368183 | section 47110 High — shares code that changed behaviour (developer items 1–4 and the rebuilt List) | Automated: True | layout old | run 498 test T3792504 status Passed
+existing setup doc: none
+
+TITLE: An asset's Work Orders tab sorts by a column header
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 20 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- Customer "ZZAUTOTEST Asset Tab Sort" (used by this case only) with one contact and two assets: unit TRK-201 and unit TRK-202.
+- For TRK-201 three work orders: [WO-A] Estimate with one line, [WO-B] Approved with two lines of which only Line 1 is completed, [WO-C] Complete. For TRK-202 one Approved work order [WO-D].
+- Numbers are examples; all work orders made at this location (the tabs list only the chosen location's work orders).
+Setup
+- Customers > New Customer > Name "ZZAUTOTEST Asset Tab Sort" > Save (the customer page opens). Contacts tab > New Contact > First Name "ZZAUTOTEST", Last Name "Contact" > Save. Assets tab > New Asset > Contact = ZZAUTOTEST Contact > Year 2022 > Make: type "Freight" and pick Freightliner > Model: type "M2" and pick it > Unit "TRK-201" > Save (Contact and Make are required).
+- On the customer page click Assets > New Asset > Contact = ZZAUTOTEST Contact > Year 1999 > Make: type "Ford", pick Ford > Model: type "Explorer", pick it > Unit "TRK-202" > Save.
+- Work Orders > Create Work Order > New Work Order: Customer = "ZZAUTOTEST Asset Tab Sort" > Asset = TRK-201 > Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-A] (the expected results call it "S1-750"). In New Line > What Are You Doing? type "grease" and pick "Service - Full grease service" > leave Line Approved OFF > Save & Close. [WO-A] status reads Estimate.
+- Work Orders > Create Work Order > New Work Order: Customer = "ZZAUTOTEST Asset Tab Sort" > Asset = TRK-201 > Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-B] (the expected results call it "S1-751"). In New Line > What Are You Doing? type "grease" and pick the ready-made line "Service - Full grease service" (it has no parts) > turn Line Approved on > Save & Add Line. In New Line > What Are You Doing? type "clutch" and pick the ready-made line "Service - Adjust clutch" (it has no parts) > turn Line Approved on > Save & Close. On line 1 click Complete > type any Tech Story > Complete Line (message "1 line completed."). Leave line 2 open. Status reads Approved.
+- Work Orders > Create Work Order > New Work Order: Customer = "ZZAUTOTEST Asset Tab Sort" > Asset = TRK-201 > Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-C] (the expected results call it "S1-752"). In New Line > What Are You Doing? type "grease" and pick the ready-made line "Service - Full grease service" (it has no parts) > turn Line Approved on > Save & Close. Bring it to Complete: on the Lines tab click Complete on the line > Tech Story: type any text > if a "Missing Details (1)" step shows, click it and type a Mileage > Complete Line (or Complete All Lines). The message "Work order sent to review." appears and the status reads Review. Click Mark Reviewed; if a Mark as reviewed window asks for VIN, type any 17 characters (e.g. 1FVACWDT1BDAZ0001) > Confirm Review. The status reads Complete.
+- Work Orders > Create Work Order > New Work Order: Customer = "ZZAUTOTEST Asset Tab Sort" > Asset = TRK-202 > Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-D] (the expected results call it "S1-753"). In New Line > What Are You Doing? type "grease" and pick the ready-made line "Service - Full grease service" (it has no parts) > turn Line Approved on > Save & Close.
+- Work Orders > List > All tab > Search "ZZAUTOTEST Asset Tab Sort" and write down the Progress shown for [WO-B].
+- Check the setup worked: the search lists exactly [WO-A] Estimate, [WO-B] Approved, [WO-C] Complete, [WO-D] Approved. If not, fix the one that differs.
+
+=== STEPS ===
+- Click Customers in the top menu, open "ZZAUTOTEST Asset Tab Sort", click its Assets tab, click the TRK-201 row (the asset page opens) and click its Work Orders tab.
+- Click the Number column header.
+- Read the order of the rows.
+- Click the same header again.
+- Read the order of the rows.
+
+=== EXPECTED ===
+Expected results
+- Step 3: the 3 rows are in number order (e.g. S1-750, S1-751, S1-752).
+- Step 5: the same rows in the reverse order. No row is missing or repeated.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 4; QA handoff test plan (generated 2026-10-08), hotspot 4; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- Dev reply High 4: “Both use the same work orders list API, which was refactored and is now scoped to the organization.”
+- Dev reply High 4: “Check rows, counts, progress and sorting.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

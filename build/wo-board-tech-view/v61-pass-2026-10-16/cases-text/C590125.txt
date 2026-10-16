@@ -1,0 +1,40 @@
+C590125 | section 73780 Design — how it looks | Automated: False | layout rule117 | run 498 test T3995734 status Passed
+existing setup doc: https://docs.google.com/document/d/1wsZfPF0A8HiOhV40ch13_TIrQxMY68puotgts1X9PyI/edit
+
+TITLE: Tech View and Board View look as designed in the Dark theme
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is 1440 px wide, with the browser zoom at 100%.
+- Your profile menu (click your initials, top right) offers Light and Dark, and Light is chosen at the start.
+- The design pictures DC-16-tech-view-dark-1440.png and DC-16-board-view-dark-1440.png are open beside the app at 100% zoom (actual size); they are attached to this case.
+- Technician {Technician-A} (for example ZZAUTOTEST DC16 Xia Dark) is an active technician at {Location-A}.
+- Customer {Customer-A} (for example "ZZAUTOTEST DC16 Dark Theme") is used by this case only.
+- Approved work order {Work-order-1} (for example S10043-17846) for {Customer-A} is led by {Technician-A}.
+- On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).
+
+=== STEPS ===
+- Open Work Orders, click the All tab and click Tech View in the display switcher.
+- Click your initials (top right) and click Dark.
+- Look at Tech View and compare it with the Tech View dark design picture.
+- Hover {Work-order-1}'s row.
+- Click Board View in the display switcher.
+- Look at Board View and compare it with the Board View dark design picture.
+- Click your initials (top right) and click Light.
+
+=== EXPECTED ===
+Expected results
+- Step 3: the page, the table, its column header row and the group headers turn dark with light text, as in the Tech View dark picture. Every word, number, icon, status pill and grip stays readable against the dark background. No part of Tech View is left with a white background, and no text is dark on dark.
+- Step 4: the hovered row turns a slightly lighter dark grey, as in the dark picture's hover, and its text stays readable.
+- Step 6: the board, its columns, their headers and the cards turn dark as in the Board View dark picture. Card text, numbers, status pills and avatars stay readable, and no part of Board View is left with a white background.
+- Step 7: Tech View and Board View return to the light look.
+Source — where this behaviour comes from
+Epic SV-10043; stories SV-10045 (Story 2, Tech View), SV-10046 (Story 3, Board View); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S1-R9c (added in version 54), read 15 Oct 2026; Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html", states core__work-orders__tech-regular__dark__1440 and core__work-orders__board-detailed__dark__1440 (design pictures DC-16-tech-view-dark-1440.png, DC-16-board-view-dark-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 29, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.19-72f4f3b (staging) on 10/16/2026.
+Until 15 Oct 2026 the PRD said nothing about themes and this case was on hold. Chris Ward answered on 15 Oct 2026 (answer 29) that both views are tested in the dark theme as well as light, with the design file's dark colours; PRD version 54 adds this, and the hold is lifted.
+Exact quotes from the source (for reproducibility)
+- S1-R9c: “Tech View and Board View work in the application’s dark theme as well as its light theme, using the design file’s dark colors. Every rule in this PRD holds in both themes.”
+- Design — SKILL.md (design library), checklist: “Rendered and checked in both themes (`ShopviewTheme.set('dark')`).”
+AUTOMATION: READY

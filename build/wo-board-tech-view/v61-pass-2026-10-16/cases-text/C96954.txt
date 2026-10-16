@@ -1,0 +1,44 @@
+C96954 | section 13238 S3 — Board View (board by lead technician) | Automated: False | layout old | run 498 test T3481898 status Passed
+existing setup doc: none
+
+TITLE: Every card field stays reachable by scrolling at any card size or density
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 35 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.
+- [User-A]: an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+- One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+- Technicians at this location: "Esther Howard" (the expected results name her, so keep this name) and two or more others to put on lines (e.g. "Ralph Edwards", "Jenny Wilson"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- Customers used by this case only: "ZZAUTOTEST F2 Card Reach" and a long-named one "ZZAUTOTEST F2 Card Reach Commercial Transport Services", each with one contact and one asset.
+- About 15 Approved work orders led by Esther Howard, some for the long-named customer, and some with several line technicians.
+- What must hold: Esther Howard's column is taller than the screen at every density.
+Setup
+- Sign in with the Admin quick-login button on the sign-in page (you appear as "Admin ShopView"). Check the location in the top bar next to the bell; to change it click your initials at the top right > Change Location.
+- Settings (your initials at the top right > Settings) > Staff: confirm each technician below is active at this location with Time Clock on, or add it: New Staff Member > First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on > Save & Close. Record them as "Esther Howard" (keep this name, the expected results use it); [Tech-B] and [Tech-C] (e.g. Ralph Edwards, Jenny Wilson).
+- Top menu Customers > New Customer > Name "ZZAUTOTEST F2 Card Reach" > Save (if it already exists, open it instead). On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) > Save. Make is required; Unit can be left empty. Do the same for "ZZAUTOTEST F2 Card Reach Commercial Transport Services".
+- Work Orders > Create Work Order > in the New Work Order window pick Customer "ZZAUTOTEST F2 Card Reach" and its asset > Save. The work order opens on its Lines tab with the New Line form open: in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; the build offers only ready-made lines), turn Line Approved on > Save & Close; the work order becomes Approved. Repeat for about 15 work orders in all, about 5 of them for "ZZAUTOTEST F2 Card Reach Commercial Transport Services" (numbers on this site look like "S10043-17581").
+- Set the leads: on an Approved work order pick the technician in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned. Here: all about 15 = Esther Howard.
+- On a few of them give the line to [Tech-B] and [Tech-C] as well (Edit Line > Technicians, pick each, save) so the card has several line technicians.
+- Check the setup worked: Work Orders > All tab > Search ZZAUTOTEST F2 Card Reach > Board View — Esther Howard's column holds about 15 cards and does not fit on the screen. If it fits, add more work orders.
+
+=== STEPS ===
+- Open Work Orders.
+- Click the All tab on the left of the toolbar, click Search and type ZZAUTOTEST F2 Card Reach.
+- In the display switcher at the right of the toolbar, click Board View (tooltip "Board View").
+- Open Fields to display and turn on every field. Close the picker.
+- Set the density to Comfortable (the largest option).
+- Scroll down inside Esther Howard's column to the last card.
+- Read every field on the last card.
+- Repeat steps 5 to 7 at Regular and Compact.
+
+=== EXPECTED ===
+Expected results
+- At every density you can scroll to the very last card in the column.
+- Every field you turned on is fully visible on the last card: nothing is cut off at the bottom of the column.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10046 (Story 3, Board View — board by lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S3-E4, read 8 Oct 2026.
+Exact quotes from the source (for reproducibility)
+- S3-E4: “Keep all selected card content reachable by scrolling, regardless of card height or density.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

@@ -1,0 +1,34 @@
+C368241 | section 47111 Medium — shared plumbing (Part Sales, saved filters, report filters, impersonation, avatars) | Automated: False | layout old | run 498 test T3792562 status Passed
+existing setup doc: none
+
+TITLE: A new photo shows in the top bar after a reload
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 5 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- Two clearly different photos on your computer (e.g. a red square and a blue square).
+- Your own profile photo is the red one before step 1.
+Setup
+- Your initials (top right) > Edit Profile > click "Click to upload a profile photo" (or the current photo) and pick the red photo. The photo shows on the page and in the top bar.
+- Check the setup worked: the round picture at the top right shows the red photo.
+
+=== STEPS ===
+- Look at your avatar in the top bar (top right, next to the location).
+- Upload the blue photo as your own photo: your initials > Edit Profile > click the photo > pick the blue photo.
+- Go back to the same place (the Edit Profile page) and reload the page.
+- Look at the avatar again.
+
+=== EXPECTED ===
+Expected results
+- Before the upload the avatar shows the red photo.
+- After the reload it shows the blue photo, not the old red one.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, Medium 9; QA handoff test plan (generated 2026-10-08), §9, hotspot 5; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- Dev reply 9: “Avatars everywhere (header, Staff, Schedule, cards). Avatars are now cached. After someone uploads a new photo, a reload must show the new one.”
+- QA handoff §9: “After a new photo is uploaded, a reload shows the new image.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

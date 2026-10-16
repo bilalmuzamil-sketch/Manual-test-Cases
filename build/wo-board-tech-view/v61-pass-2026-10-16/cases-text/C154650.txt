@@ -1,0 +1,43 @@
+C154650 | section 55300 Not runnable for now | Automated: False | layout old | run 498 test T3481976 status Passed
+existing setup doc: none
+
+TITLE: Tech View and Board View show only this organization and location
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 2 organizations · 1 browser · a second location · about 30 minutes
+- Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+- Two organizations on the build under test: A (your usual test organization) and B.
+- In organization B: an eligible technician "ZZAUTOTEST F3 Scope OrgB Tech" and a work order for customer "ZZAUTOTEST F3 Scope OrgB Customer" led by that technician.
+- In organization A: a second location with a work order for customer "ZZAUTOTEST F3 Scope Loc2 Customer" led by a technician enrolled only there.
+- You sign in to organization A as a dispatcher whose role has Work Orders view and Work Orders create and edit (check: Settings > Roles & Permissions > open the role > on the Work Orders card, View and Create & Edit are both ticked. The Admin role has both).
+- Window: a desktop browser window at least 1024 px wide (the display switcher only shows at 1024 px and wider).
+- Note for the tester: the behind-the-screen scoping and the organization check on a technician sent with a reassignment are developer/automated checks. By hand, confirm only that nothing from organization B, or from the other location, is ever shown or offered.
+Setup
+- If you have no second organization, sign up a new one on the QA build (e.g. "ZZAUTOTEST Org B").
+- In organization B: add an eligible technician "ZZAUTOTEST F3 Scope OrgB Tech" (Settings > Staff > New Staff Member: a Role that is not Office User or Time Clock User, at least one Department, Time Clock on > Save & Close) and a work order for customer "ZZAUTOTEST F3 Scope OrgB Customer" (Customers > New Customer, then a contact and an asset as usual) led by that technician.
+- In organization A: Settings > Locations — use or add a second location; add a technician enrolled only there; Change Location to it (your initials > Change Location) and create a work order for customer "ZZAUTOTEST F3 Scope Loc2 Customer" led by that technician; then Change Location back to your usual location.
+- Check the setup worked: in organization B, Work Orders > All > search "F3 Scope OrgB" shows the OrgB work order; in organization A at the second location, search "F3 Scope Loc2" shows the Loc2 work order. If either is missing, create it before starting.
+
+=== STEPS ===
+-                 
+In organization A, at your usual location, open Work Orders > All.
+- Search "F3 Scope OrgB".
+- Click Tech View in the display switcher at the right of the toolbar (tooltip "Tech View").
+- Click Board View in the display switcher (tooltip "Board View").
+- Search "F3 Scope Loc2" in both views.
+- Open any card's more-actions > "Reassign lead technician" and search "F3 Scope OrgB Tech", then cancel.
+-
+
+=== EXPECTED ===
+Expected results
+- Steps 2 to 4: no work order, group or column from organization B appears in either view.
+- Step 5: the other location's work order and its technician do not appear at this location.
+- Step 6: the dialog offers no organization B technician.
+Source — where this behaviour comes from
+Epic SV-10043; Work Orders Board View & Tech View Display Options Technical Implementation Plan (revised 24 Sep 2026, uploaded 8 Oct 2026), section 1.2 (NFR-006), section 1.4 (tenant check on inbound technician id) and section 9 (security).
+Exact quotes from the source (for reproducibility)
+- Tech plan NFR-006: “Every new query is scoped by workplace and organization.”
+- Tech plan 1.4 tenant check: “Add organization-ownership check (eligibility stays the picker's job per the PRD)”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: HOLD - not manually testable on this QA branch (needs a second organisation; the scoping itself is a developer/automated check)

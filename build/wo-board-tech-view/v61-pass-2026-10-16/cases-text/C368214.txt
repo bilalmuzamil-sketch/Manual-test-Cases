@@ -1,0 +1,36 @@
+C368214 | section 47110 High — shares code that changed behaviour (developer items 1–4 and the rebuilt List) | Automated: True | layout rule117 | run 498 test T3792535 status Passed
+existing setup doc: https://docs.google.com/document/d/1QoS6_qJwKdMWR0-ePd9zV4Cn1gpleVZDIREkkB4E0oI/edit
+
+TITLE: After Back and Forward the List keeps its tab, search and filters
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+- Customer {Customer-A} (for example "ZZAUTOTEST Back Forward") is used by this case only and has one Approved work order, {Work-order-1} (for example S10043-17751).
+- The Work Orders page shows List (List is highlighted in the display switcher).
+- On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+
+=== STEPS ===
+- Open Work Orders and click the Work Orders tab.
+- Click Status and tick Approved only. If the Work Orders tab shows no Status filter, write "no Status filter on this tab" in the result comment and go on.
+- Click Search and type the name of {Customer-A}.
+- Click {Work-order-1}'s row to open it.
+- Press the browser Back button and read the tab, Status, Search and rows.
+- Press the browser Forward button and read the page.
+- Press the browser Back button again and read the List.
+
+=== EXPECTED ===
+Expected results
+- Step 5: the Work Orders tab, Status Approved and the same rows show, as they do in production today. Write down whether the search text is kept.
+- Step 6: {Work-order-1} opens again.
+- Step 7: the List shows the same tab, filters and rows as at step 5.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), hotspot 3; PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S1-R8 and section 1 Business Case where quoted, read 15 Oct 2026. In version 54 S1-R8 gained two sentences about Tech View and Board View; its List sentence is unchanged, so the expected results are unchanged. Source-verified 15 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026.
+Exact quotes from the source (for reproducibility)
+- QA handoff hotspot 3: “The rebuilt Work Orders List. Check saved preferences against URL links, Back and Forward, location switch, stale rows after an edit, and sorting and paging.”
+- PRD S1-R8: “In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. Horizontal position comes back exactly. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position. List behaves as it does today.”
+- PRD section 1 Business Case: “List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.”
+AUTOMATION: READY

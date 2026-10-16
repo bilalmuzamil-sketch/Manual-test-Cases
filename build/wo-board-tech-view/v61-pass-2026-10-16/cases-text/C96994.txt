@@ -1,0 +1,39 @@
+C96994 | section 13242 S7 — Line technicians on cards and rows | Automated: True | layout rule117 | run 498 test T3481938 status Passed
+existing setup doc: https://docs.google.com/document/d/1mmQhGVka5CGPjxaYmlxGDEbFs7kSvrFDay7b0okhYKU/edit
+
+TITLE: The lead comes first and each technician shows only once
+
+=== PRECONDITIONS ===
+Setup (manual QA tester and Claude session)
+
+Preconditions
+- You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+- Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+- Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+- Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+- Approved work order {Work-order-1} (for example S10043-17606) for customer {Customer-A} (for example "ZZAUTOTEST F3 Lead First Once") is led by {Technician-A} and has three approved lines: {Line-1} (for example "Service - Full grease service") given to {Technician-A}, and {Line-2} (for example "Service - Adjust clutch") and {Line-3} (for example "Replace - Brake pot") both given to {Technician-B}.
+
+=== STEPS ===
+- Open Work Orders, click the All tab and click Board View in the display switcher (tooltip "Board View").
+- Type the name of {Customer-A} in Search.
+- Click Fields to display, turn line technicians on and close the menu.
+- Read the avatars on the {Work-order-1} card in order.
+- Hover each avatar and read the name shown.
+- Click Tech View in the display switcher.
+- Click the Column Selection button and make sure Assigned Techs is on (it is on by default; turn it on if it was turned off), then close the menu.
+- Read the avatars in {Work-order-1}'s Assigned Techs cell in order.
+- Hover each avatar and read the name shown.
+
+=== EXPECTED ===
+Expected results
+- Steps 4 and 5: the group shows 2 avatars: {Technician-A} first, then {Technician-B}.
+- Steps 4 and 5: {Technician-A} appears once although they are the lead and on {Line-1}, and {Technician-B} appears once although they are on {Line-2} and {Line-3}.
+- Steps 8 and 9: Tech View's Assigned Techs cell shows the same 2 avatars, {Technician-A} first, each once.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10050 (Story 7, Show line technicians on cards and rows); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S7-R3, S7-R5, S7-E1 and S7-R7 (S7-R7 rewritten in version 51 on 14 Oct 2026 (Chris Ward ruling after Sasha Grosman's staging review: Tech View's default columns are the design's 13, and Assigned Techs is on by default); the Tech View step now only makes sure Assigned Techs is on, the expected results are unchanged), read 14 Oct 2026. Review Decisions FF-8 / DR-11. Source-verified 14 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026.
+Exact quotes from the source (for reproducibility)
+- S7-R3: “Place the lead technician first in the avatar group.”
+- S7-R5: “Show each technician once, even when they are both lead and assigned to lines.”
+- S7-E1: “A technician assigned to several lines of the same work order appears once.”
+- S7-R7: “In Tech View the Assigned Techs column sits immediately after Lines, matching the design. It is on by default (S5-R4) and can be removed through the column chooser (S2-R4).”
+AUTOMATION: READY

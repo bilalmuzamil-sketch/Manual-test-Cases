@@ -1,0 +1,49 @@
+C97032 | section 13248 Counts and data accuracy (Rule 116) | Automated: True | layout old | run 498 test T3481970 status Passed
+existing setup doc: none
+
+TITLE: The open count in the Reassign dialog counts exactly four statuses
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · a second location · about 40 minutes
+- Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+- Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+- Technicians: "ZZAUTOTEST Ana Alpha" (example) and [Tech-B], a technician for this case only, "ZZAUTOTEST F3 Count Ben Bravo" (the steps and expected results call him Ben). [Tech-B] leads no work order other than the ones below. A staff member counts as a technician when, in Settings > Staff > the staff member's edit icon > Edit Staff Member, they are Active, Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- Customers (used by this case only, each with one contact and one asset): "ZZAUTOTEST F3 Open Count Approved Co", "ZZAUTOTEST F3 Open Count Progress Co", "ZZAUTOTEST F3 Open Count Review Co", "ZZAUTOTEST F3 Open Count Complete Co", "ZZAUTOTEST F3 Open Count Estimate Co", "ZZAUTOTEST F3 Open Count Invoiced Co", "ZZAUTOTEST F3 Open Count Paid Co", "ZZAUTOTEST F3 Open Count Declined Co", "ZZAUTOTEST F3 Open Count Line Only Co", "ZZAUTOTEST F3 Open Count Loc2 Co", "ZZAUTOTEST F3 Open Count Spare Co". The steps and expected results call them by the end of the name ("Approved Co", "Progress Co", "Review Co", "Complete Co", "Estimate Co", "Invoiced Co", "Paid Co", "Declined Co", "Line Only Co", "Loc2 Co", "Spare Co").
+- Work orders at this location, lead [Tech-B] unless stated:- Counted: Approved (1), In Progress (1), Review / Ready for Review (1), Complete (1) = 4.
+- Not counted: Estimate (1), Invoiced (1), Paid (1), Declined (1).
+- Not counted: an Approved work order (Line Only Co) with lead Ana where [Tech-B] is only the technician on one line.
+- One spare Approved work order with lead Ana, Spare Co, to open the dialog from.
+
+- A second location where [Tech-B] is also enrolled (Settings > Locations, then enrol Ben there), with one Approved work order (Loc2 Co) led by [Tech-B] at that location. Not counted here.
+- None of these technicians has a shift on the Schedule for these work orders (check the Schedule page). If a window titled "Clear … scheduled shifts?" still appears during a move, click "Keep shifts".
+Setup
+- Settings (your initials at the top right > Settings) > Staff: confirm "ZZAUTOTEST Ana Alpha" exist and count as technicians at this location (edit icon > Edit Staff Member). To add one: New Staff Member with those settings (at least one Department is required) (e.g. first name "ZZAUTOTEST Ana", last name "Alpha") > Save & Close. Add [Tech-B] the same way: first name "ZZAUTOTEST F3 Count Ben", last name "Bravo".
+- Create this case's customers: "ZZAUTOTEST F3 Open Count Approved Co", "ZZAUTOTEST F3 Open Count Progress Co", "ZZAUTOTEST F3 Open Count Review Co", "ZZAUTOTEST F3 Open Count Complete Co", "ZZAUTOTEST F3 Open Count Estimate Co", "ZZAUTOTEST F3 Open Count Invoiced Co", "ZZAUTOTEST F3 Open Count Paid Co", "ZZAUTOTEST F3 Open Count Declined Co", "ZZAUTOTEST F3 Open Count Line Only Co", "ZZAUTOTEST F3 Open Count Loc2 Co", "ZZAUTOTEST F3 Open Count Spare Co". For each: top menu Customers > New Customer, Name > Save; on the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact); then the Assets tab > New Asset > pick the Contact, then Year, Make, Model (e.g. 2022, Freightliner, M2) > Save. Make is required; Unit can be left empty.
+- Create each work order listed in the Preconditions: Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. Move it to the status named: a new work order starts as Estimate (it opens with the New Line form: pick a ready-made line and Save & Close); for Approved turn on Line Approved on its line; for In Progress click Start on the line's Labor row (stop the clock afterwards with Stop > Clock Out); for Review click the line's Complete button, type a Tech Story (fill any missing detail it asks for, e.g. Mileage) and click Complete Line (the List shows "Ready For Review"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance tab > Create Invoice; for Paid, after invoicing, Finance tab > New Payment for the full amount > Make Payment. Set the lead technician before invoicing. Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (leave it as Unassigned for an unassigned one). (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Write down each work order number as you create it (e.g. S1-801); the steps call each work order by the end of its customer name (e.g. "Alpha Co"). Use one customer per work order: Approved Co, Progress Co (In Progress), Review Co (Review), Complete Co, Estimate Co, Invoiced Co, Paid Co, Declined Co — all led by [Tech-B]; Line Only Co and Spare Co Approved with lead Ana; on Line Only Co give one line to [Tech-B] (Edit Line > Technicians).
+- Second location: Settings > Locations (add one if there is none, e.g. "ZZAUTOTEST Loc2"); edit [Tech-B] (Settings > Staff > edit icon > Edit Staff Member) and pick that location too in Location. Click your initials > Change Location to it, create the Loc2 Co work order there (Approved, lead [Tech-B]), then Change Location back.
+- Check the setup worked: Work Orders > All tab > List > type "ZZAUTOTEST F3 Open Count" in Search — at this location exactly 10 work orders show with the statuses and leads above (Loc2 Co is not here). If [Tech-B] leads any other work order at this location, this case's counts will be off — use a new technician. If anything differs, correct that work order (status or Lead Technician) before starting.
+
+=== STEPS ===
+- Open Work Orders from the top menu and click the All tab.
+- Type "ZZAUTOTEST F3 Open Count" in Search so only this case's work orders show.
+- Click Board View in the display switcher (tooltip "Board View").
+- Hover the Spare Co card, click more-actions (…) > "Reassign lead technician".
+- Find Ben ([Tech-B], "ZZAUTOTEST F3 Count Ben Bravo") in the list and read his open count, then cancel the dialog.
+- Click Status and tick "Estimate" only, open the dialog from any visible card, read Ben's count, then cancel and clear the filter.
+- Open Ben's Estimate work order, approve it, come back and open the dialog again. Read Ben's count.
+
+=== EXPECTED ===
+Expected results
+- Step 5: Ben shows 4 open (Approved 1 + In Progress 1 + Ready for Review 1 + Complete 1 = 4). Estimate, Invoiced, Paid and Declined, the line-only work order, and the work order at the other location are not counted.
+- Step 6: still 4 open. The page filter does not change the count.
+- Step 7: 5 open (4 + 1) right after the Estimate became Approved.
+- The design shows a count of all of a technician's work orders (e.g. "4 open" including Paid and Invoiced). If the build counts that way, it is a fail against the four statuses.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S4-R15, read 8 Oct 2026. Review Decisions page 853901313, DR-43 (29 Sep 2026). Lead only, current location and ignoring page filters: Sasha Grosman's answer to MF-3 in the PRD footer comment of 24 Sep 2026, recorded in the tech plan (revised 24 Sep 2026) section 1.4.
+Exact quotes from the source (for reproducibility)
+- S4-R15: “The dialog’s N open count includes Approved, In Progress, Ready for Review, and Complete work orders.”
+- Tech plan 1.4 MF-3: “Confirmed plus Complete: lead only, current location, Approved / In Progress / Ready for Review / Complete, ignoring page filters (PRD S4-R15 not yet updated)”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

@@ -1,0 +1,39 @@
+C97034 | section 55300 Not runnable for now | Automated: False | layout old | run 498 test T3481972 status Passed
+existing setup doc: none
+
+TITLE: Weekly use and density spread count each user once
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: about 30 minutes, in one sitting (all four users in the same week, Monday to Sunday).
+- Desktop browser window at least 1024 px wide; Admin sign-in for the setup (on a QA branch: the Admin quick-login button).
+- Work in one location throughout, shown next to the bell in the top bar (e.g. "Staging Heavy Duty - 9919"); to change it click your initials (top right) > Change Location. Create everything in that location.
+- No Google Analytics access is needed: you read what the page sends in the browser's developer tools (Chrome or Edge). Press F12 > Network tab > tick Preserve log > type collect in the filter box. Click a collect request > Payload tab. Each event lists en (event name), ep.element_location (list, tech_view or board_view), ep.element_label (the field or density), ep.setting_value (on or off), ep.setting_source (default = never changed, saved = chosen earlier) and uid (the user). One request can hold several events, one per line.
+- Turn off any ad blocker for this site, and use a new private window for each user so their messages are not stopped or mixed up.
+- Events to look for: work_orders_display_view (each time a display is shown) and the density events work_orders_density_load and work_orders_density_change.
+Setup
+- Settings > Staff > New Staff Member: four new users at this location with a role that has Work Orders View (e.g. "ZZAUTOTEST F3 Weekly U1" to "U4"); finish each invite so they can sign in. None may have opened Tech View or Board View before the steps.
+
+=== STEPS ===
+- For each user below use a new private window with the browser tools open as described in the Preconditions (F12 > Network > Preserve log > filter collect). After each user, write down from the collect requests every work_orders_display_view event (ep.element_location and uid) and the last density event (ep.element_label and uid). Then sign out and close the window.
+- U1: open Work Orders 5 times (reload the page between visits); each time switch to Board View. Set density to Compact.
+- U2: open Work Orders twice; switch to Tech View. Set density to Comfortable.
+- U3: open Work Orders once and stay on List.
+- U4: open Work Orders once and switch to Tech View. Leave density as it is (Regular).
+- Work out the weekly figures from your notes, counting each user (uid) once: for each display (list, tech_view, board_view), how many different uids have a work_orders_display_view event for it; and, among the users who used Tech View or Board View, how many have each density.
+
+=== EXPECTED ===
+Expected results
+- Weekly display usage by distinct users: List 4 (every user opened the page on List first), Tech View 2 (U2, U4), Board View 1 (U1). U1's five visits count as 1 user.
+- Density spread across users who used Tech View or Board View: Compact 1 (U1), Comfortable 1 (U2), Regular 1 (U4), so 1 ÷ 3 = 33.3% each. No user appears twice and U3 (List only) is not in it.
+- Check the user totals add up: 1 + 1 + 1 = 3 users in the density figures, and 4 different uids in all.
+- The report page itself is built by the report owner inside Google Analytics, outside ShopView, and is not part of this test (QA lead's decision below).
+Source — where this behaviour comes from
+- Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S12-R4, S12-R11, S12-R13, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names.
+- QA lead decision, 12 Oct 2026: these checks are judged on what the ShopView page sends to Google Analytics, worked out with the PRD's rules; the report page inside Google Analytics is outside ShopView and not part of this test.
+Exact quotes from the source (for reproducibility)
+- S12-R4: “Report weekly display usage by distinct users.”
+- S12-R11: “Report density distribution.”
+- S12-R13: “Do not count repeated events from one user as additional users.”
+Last checked against build v26.40.8-7a95011 on 10/12/2026.
+AUTOMATION: READY

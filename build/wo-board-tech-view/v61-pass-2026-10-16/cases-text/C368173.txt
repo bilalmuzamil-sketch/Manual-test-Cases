@@ -1,0 +1,44 @@
+C368173 | section 47110 High — shares code that changed behaviour (developer items 1–4 and the rebuilt List) | Automated: True | layout old | run 498 test T3792494 status Failed
+existing setup doc: none
+
+TITLE: Changing a line's technician in Edit Line saves the new technician
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 10 minutes
+- Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.
+- Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit).
+- Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > Change Location).
+- 3 technicians eligible at this location: active, Role Technician, at least one Department, Location Staging Heavy Duty - 9919, Time Clock on. Names are examples ("Esther Howard", "Ralph Edwards", "Dana Ortiz").
+- Customer "ZZAUTOTEST Edit Line Tech" (used by this case only) with one contact and one asset.
+- One Approved work order [WO-1] with Lead Technician = [Tech-A] and one line given to [Tech-D].
+- Names and numbers are examples.
+Setup
+- Your initials (top right) > Settings > Staff: if no suitable technician exists, click New Staff Member > First Name, Last Name, Email > Role = Technician > Departments = any one (at least one Department is required) > Location = Staging Heavy Duty - 9919 > turn Time Clock on > Save & Close. Record the technician as [Tech-A] (the expected results call this technician "Esther Howard").
+- Your initials (top right) > Settings > Staff: if no suitable technician exists, click New Staff Member > First Name, Last Name, Email > Role = Technician > Departments = any one (at least one Department is required) > Location = Staging Heavy Duty - 9919 > turn Time Clock on > Save & Close. Record the technician as [Tech-B] (the expected results call this technician "Ralph Edwards"). Use a second, different technician.
+- Your initials (top right) > Settings > Staff: if no suitable technician exists, click New Staff Member > First Name, Last Name, Email > Role = Technician > Departments = any one (at least one Department is required) > Location = Staging Heavy Duty - 9919 > turn Time Clock on > Save & Close. Record the technician as [Tech-D] (the expected results call this technician "Dana Ortiz"). Use a third, different technician.
+- Customers > New Customer > Name "ZZAUTOTEST Edit Line Tech" > Save (the customer page opens). Contacts tab > New Contact > First Name "ZZAUTOTEST", Last Name "Contact" > Save. Assets tab > New Asset > Contact = ZZAUTOTEST Contact > Year 2022 > Make: type "Freight" and pick Freightliner > Model: type "M2" and pick it > Unit "TRK-118" > Save (Contact and Make are required).
+- Work Orders > Create Work Order > New Work Order: Customer = "ZZAUTOTEST Edit Line Tech" > Asset = its asset > Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-1] (the expected results call it "S1-722").
+- In New Line > What Are You Doing? type "grease" and pick the ready-made line "Service - Full grease service" (it has no parts) > turn Line Approved on > Save & Close.
+- On [WO-1], on the status card at the left, click Lead Technician and pick [Tech-A]. (Lead Technician is a dropdown only once the work order is Approved; while it is an Estimate it reads "Unassigned" and cannot be changed.) The choice saves at once.
+- On the Lines tab click the line's name to open Edit Line > Technicians: Add Technician > pick [Tech-D] > Save & Close.
+- Check the setup worked: reload > Lines tab. The line's Labor row shows [Tech-D].
+
+=== STEPS ===
+- Open [WO-1] and click the Lines tab.
+- Click the line's name to open Edit Line.
+- In Technicians click the X next to [Tech-D] to remove it, then click Add Technician and pick [Tech-B].
+- Click Save & Close.
+- Reload the page and read the line's technician (its Labor row).
+
+=== EXPECTED ===
+Expected results
+- Step 4: the line saves with no error message.
+- Step 5: the line shows "Ralph Edwards" as its technician.
+Source — where this behaviour comes from
+Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 1; QA handoff test plan (generated 2026-10-08), §7; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted. Source-verified 8 October 2026.
+Exact quotes from the source (for reproducibility)
+- Dev reply High 1: “Lines tab: adding a line, editing a line's technician and assigning a technician now reject staff from another organization.”
+- QA handoff §7: “Adding, editing and assigning line technicians on the Lines tab still works.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY

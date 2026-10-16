@@ -1,0 +1,33 @@
+C368155 | section 55300 Not runnable for now | Automated: False | layout old | run 498 test T3761676 status Passed
+existing setup doc: none
+
+TITLE: Analytics events use the same user identity as other ShopView events
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser (private window) · Google Analytics DebugView access · about 10 minutes
+- Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+- Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+- Analytics access: you can open Google Analytics for the property the QA build reports to, at Admin > DebugView. The QA build runs analytics in debug mode, so each event appears in DebugView within a few seconds under your user. If you cannot open DebugView, the event checks in this case cannot be done by hand: write "not checked by hand" in the result comment and pass or fail on what you can see on the Work Orders page.
+- Event names to look for in DebugView: work_orders_display_view (a display was shown), work_orders_field_load and work_orders_density_load (the fields and density you have, once per display per session), work_orders_field_toggle and work_orders_density_change (a saved change).
+- At least one work order card shows in Board View at this location.
+Setup
+- Start a fresh analytics session: close every browser window, open a new private window and sign in.
+- Check the setup worked: Google Analytics > Admin > DebugView opens and shows your device within a few seconds of opening any ShopView page. If it does not, carry on but write "not checked by hand" for the event checks, as the Preconditions say.
+
+=== STEPS ===
+- Open Work Orders and click Board View.
+- Click a card to open a work order, then go back.
+- In DebugView, select your device and compare the user shown on the work_orders_display_view event with the one on the existing work_order_view event from step 2.
+
+=== EXPECTED ===
+Expected results
+- Both events show the same user, the existing ShopView user ID. No new user or customer identifier appears on the Work Orders events.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10593 (Story 12, Google Analytics for display and field usage); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S12-R15, read 8 Oct 2026. Event names and timing: SV-10593 comments by Slavcho Mitrov and Milos Vasic, 6 Oct 2026 (the agreed GA4 event table); earlier event contract on Review Decisions page 853901313 (29 Sep 2026) uses older names.
+Exact quotes from the source (for reproducibility)
+- S12-R15: “Reuse existing analytics identity without introducing another customer identifier.”
+- Story 12 prerequisites: “Reuse the application’s existing Google Analytics setup and analytics identity/consent policy. Work Orders view permission is required; field visibility follows S5-E2.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: HOLD - not manually testable (developer/automated check only)

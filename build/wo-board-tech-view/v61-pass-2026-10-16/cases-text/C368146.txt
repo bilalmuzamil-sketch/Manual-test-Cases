@@ -1,0 +1,45 @@
+C368146 | section 13244 S9 — Drag to reorder work and technician groups/columns | Automated: False | layout old | run 498 test T3761667 status Passed
+existing setup doc: none
+
+TITLE: A newly added technician appears after the existing unpinned technicians
+
+=== PRECONDITIONS ===
+Preconditions
+- Needs: 1 user · 1 browser · about 20 minutes
+- Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+- Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+- Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+- Technicians (examples, the expected results call them by first name or full name): "ZZAUTOTEST Ben Bravo", "ZZAUTOTEST Cal Charlie", "ZZAUTOTEST Dan Delta". A staff member counts as a technician when, in Settings > Staff > the staff member's edit icon > Edit Staff Member, they are Active, Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+- Your pins: only Dan is pinned (pin button in his column header, tooltip "Pin column").
+- Your unpinned technician order in Board View reads Cal, Ben, so the columns read Unassigned, Dan (pinned), Cal, Ben.
+- A staff member who is not yet a technician, e.g. "ZZAUTOTEST Ezra Echo", with the Time Clock setting off (Settings > Staff).
+- "ZZAUTOTEST Aaron Able" does not exist yet (step 4 creates him).
+Setup
+- Settings (your initials at the top right > Settings) > Staff: confirm "ZZAUTOTEST Ben Bravo", "ZZAUTOTEST Cal Charlie", "ZZAUTOTEST Dan Delta" exist and count as technicians at this location (edit icon > Edit Staff Member). To add one: New Staff Member with those settings (at least one Department is required) (e.g. first name "ZZAUTOTEST Ana", last name "Alpha") > Save & Close.
+- Settings > Staff > New Staff Member: "ZZAUTOTEST Ezra Echo" (at least one Department is required), this location, Time Clock off > Save & Close (skip if he exists with Time Clock off).
+- Pin Dan in Board View (pin button in his column header, tooltip "Pin column"). If any other technician is pinned, unpin it (and pin it back after the case).
+- Reorder the unpinned technicians in Board View so they read Cal, Ben (drag Cal's header before Ben's).
+- Check the setup worked: Work Orders > All > Board View reads Unassigned, Dan (pinned), Cal, Ben; Settings > Staff shows Ezra Echo with Time Clock off and no "ZZAUTOTEST Aaron Able". If Aaron Able already exists (an earlier run), deactivate him or use another new name and read the expected results with that name.
+
+=== STEPS ===
+- Open Work Orders from the top menu and click the All tab.
+- Click Board View in the display switcher (tooltip "Board View").
+- Write down the column order (Unassigned, Dan pinned, Cal, Ben).
+- Settings > Staff > New Staff Member (at least one Department is required): "ZZAUTOTEST Aaron Able": Active, Time Clock on, role Technician, with this location picked in Location. Save.
+- Go back to Work Orders > All > Board View and read the column order.
+- Settings > Staff > ZZAUTOTEST Ezra Echo's edit icon > Edit Staff Member > turn Time Clock on > save.
+- Go back to Work Orders > All > Board View and read the column order.
+- Click Tech View in the display switcher at the right of the toolbar (tooltip "Tech View").
+
+=== EXPECTED ===
+Expected results
+- Step 5: Aaron Able appears after the last unpinned technician: Unassigned, Dan (pinned), Cal, Ben, Aaron. He is not placed first by name, and your order is kept.
+- Step 7: Ezra Echo, who now counts as a technician, is added after Aaron: Unassigned, Dan, Cal, Ben, Aaron, Ezra.
+- Step 8: Tech View shows the technician groups in the same order.
+Source — where this behaviour comes from
+Epic SV-10043; story SV-10052 (Story 9, Drag to reorder work and technician groups/columns); PRD Confluence 845185030, edited 7 Oct 2026 (status line "PRD v33"), S9-R4, read 8 Oct 2026. Inline PRD comment by Sasha Grosman, 25 Sep 2026 (a new staff record that meets the technician criteria).
+Exact quotes from the source (for reproducibility)
+- S9-R4: “When a staff member newly counts as a technician (Clockable, Active, role neither Office nor Time Clock User, and enrolled in the current location), for example when a new staff record is created, add them after the existing unpinned technicians.”
+- S9-R3: “Once anyone at the location has reordered a technician’s work orders, use that saved order instead of the initial sort. Once a user has reordered technician groups/columns, use their saved order instead of the initial technician sort.”
+Last checked against build v26.40.8-7a95011 on 10/8/2026.
+AUTOMATION: READY
