@@ -256,7 +256,7 @@ def c368158():
 
 
 def c368130():
-    pre = [PRE_ADMIN, PRE_WIDTH,
+    pre = ["You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit.", PRE_WIDTH,
            "Location {Location-A} (for example \"ZZAUTOTEST F2 Empty Shop\") is used by this case only and has no technicians: no "
            "staff member has {Location-A} in their Location field. You are working at {Location-A}.",
            "Customer {Customer-A} (for example \"ZZAUTOTEST F2 No Tech Location\") has two Approved work orders at {Location-A}, "
