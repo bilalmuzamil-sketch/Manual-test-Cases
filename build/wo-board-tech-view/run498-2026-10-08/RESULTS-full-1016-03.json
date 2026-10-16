@@ -1,0 +1,126 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "16 October 2026",
+  "note": "full staging run 16 Oct 2026, batch 03 = queue steps 17, 18"
+ },
+ "results": {
+  "C96950": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F2 Empty Columns\", Board View.",
+    "For my user (can reassign), Jenny Wilson's empty column and the empty Unassigned column each show \"Drag a work order here to assign it\".",
+    "For the view-only user, the same two columns each show \"No work orders\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96950-1-admin-drag-here.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96950-2-viewonly-no-work-orders.png"
+   ],
+   "ticket": null
+  },
+  "C96956": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F1 Reassign List\", work order S2-35462, led by Esther Howard at the start.",
+    "Step 4: the \"Reassign lead technician\" dialog opened from the card's more-actions menu.",
+    "Step 5: it has a \"Search technicians\" box; its first row is \"Unassigned\"; then one list with no grouping, each technician with an avatar and \"N open\". Esther Howard, Ralph Edwards and Jenny Wilson are listed; Olive Office (Office User), Ina Inactive (deactivated) and Ella Elsewhere (another location only) are not.",
+    "Step 6: Ralph Edwards picked: the card moved to his column and \"Lead technician updated\" showed. Step 9: Unassigned picked: the card moved to Unassigned and \"Lead technician removed\" showed.",
+    "Step 12: \"Jen\" typed, then Cancel: the dialog closed and the card stayed in Unassigned, no message. Step 13: the work order page shows Lead technician \"Unassigned\".",
+    "Step 16: Tech View's dialog shows the same list, Unassigned first. Step 17: Esther Howard picked: the row moved to her group and \"Lead technician updated\" showed."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96956-1-dialog-unassigned-first.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96956-2-moved-to-ralph.png"
+   ],
+   "ticket": null
+  },
+  "C96957": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "S2-35463 dragged from Esther Howard to Ralph Edwards: the message read exactly \"Lead technician updated\" and went away by itself after 9 seconds, not clicked.",
+    "Dragged on to Unassigned: the message read exactly \"Lead technician removed\" and went away by itself after 9 seconds, not clicked.",
+    "The lead was Ralph Edwards after the first move and none after the second."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96957-1-updated-message.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96957-2-removed-message.png"
+   ],
+   "ticket": null
+  },
+  "C96959": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 2 (the drag).",
+    "Seen: customer \"ZZAUTOTEST F1 Header Counts\", leads reset first; before the change the headers read Esther Howard 3, Ralph Edwards 1, Unassigned 0.",
+    "The script then could not find the card it was to drag on the board, so the counts after the drag and after the dialog change were not read."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96959-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: wait for the card to be drawn before dragging)."
+  },
+  "C96967": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "The view-only user opened Board View with customer \"ZZAUTOTEST F1 View Only No Drag\": S2-35471 and S2-35472 led by Esther Howard.",
+    "Trying to drag a card to another technician and within the column changed nothing: order still S2-35471, S2-35472, both still led by Esther Howard, no message.",
+    "The cards offer no more-actions button, so \"Reassign lead technician\" is not offered."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96967-1-viewonly-no-drag.png"
+   ],
+   "ticket": null
+  },
+  "C96969": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Work order S2-36643 (customer \"ZZAUTOTEST F1 Same Lead Again\") led by Esther Howard; Line 1 follows the lead, Line 2's Labor reads \"Unassigned\".",
+    "\"Reassign lead technician\" with Esther Howard (marked \"Current\") picked and confirmed: no \"Lead technician updated\" or any other message.",
+    "Lead Technician is still Esther Howard, Line 2 still reads \"Unassigned\", and the history is unchanged (\"Line created\", \"Lead tech changed\", \"Line created\", \"Created\").",
+    "Check: a real lead change on a work order does add a \"Lead tech changed\" entry."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96969-1-current-lead-picked.png"
+   ],
+   "ticket": null
+  },
+  "C96973": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F1 Outside Filter\": S2-35469 led by me (Admin ShopView). Board View, \"Assigned to me\" on, customer searched: only my column (1) was shown; Ralph Edwards' and Dana Ortiz's columns were not.",
+    "The card's \"Reassign lead technician\" dialog still offered Ralph Edwards and Dana Ortiz.",
+    "Ralph Edwards picked: \"Lead technician updated\"; the work order no longer matched \"Assigned to me\" and left the board without a reload; my column was hidden.",
+    "The board then showed \"No work orders match these filters\", then \"Try removing a filter to widen your results.\", with a \"Clear all filters\" button."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96973-1-card-left-empty-state.png"
+   ],
+   "ticket": null
+  },
+  "C368163": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F1 Dialog Search\", work order S2-35470 led by Esther Howard.",
+    "Step 5: the dialog reads \"S2-35470 \u00b7 ZZAUTOTEST F1 Dialog Search\", marks Esther Howard \"Current\", starts with \"Unassigned\" and lists the technicians with no grouping.",
+    "Steps 6 and 7: \"Ral\" and \"ral\" give the same list, only names containing those letters (Ralph Edwards, and also Gerald Pitts, Maximiliana Fitzgerald-Montgomery and ZZOLD Ralph Edwards); Esther Howard and Jenny Wilson disappear.",
+    "Steps 8 and 9: \"Olive\" (the Office User) lists no technician: \"No technicians match \u201cOlive\u201d\"; \"zzqx\" shows \"No technicians match \u201czzqx\u201d\".",
+    "Step 10: clearing the box brings back the whole list. Step 11: Cancel: card stays with Esther Howard, no message. Step 13: the search box is empty when the dialog opens again.",
+    "Step 17: Tech View's dialog narrows the list the same way, and after Cancel the row stays in Esther Howard's group."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368163-1-search-ral.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368163-2-no-match.png"
+   ],
+   "ticket": null
+  }
+ }
+}
