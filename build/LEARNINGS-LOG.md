@@ -1011,3 +1011,20 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   names to differ (`c581895-v2.mts`, `c581895-staff-carol.mts`).
 - **Ticket status matters:** SV-11101 read OBSOLETE on 16 Oct while C96929 still fails; read statuses live before linking. SV-11310 (List
   pill widths) exists and covers C598326 step 3. #staging #techview #keyboard #queue #rule104 → L0394, L0399, L0401
+
+## L0403 — 2026-10-16 — Re-read the PRD before filing a held draft: a version bump can turn a "defect" into the product being right
+- **What happened:** seven problems from run 498 (staging v26.40.18-7d85b7d) were drafted against PRD **v54** (quoted by the cases).
+  The live page was **v58**. v55 rewrote **S11-R1/S11-R3**: each view is ONE Tab stop, arrow keys move inside, Tab then reaches the
+  focused item's own controls and leaves. The C97021 draft ("Tab stops on one card, then leaves") was the build FOLLOWING the PRD —
+  a false defect (Rule 106 outcome 4). Only the narrow point "Tech View's single Tab stop lands on the Unassigned header, not a row"
+  was against S11-R1 → SV-11422. C97021/C368151 Expected/steps now disagree with the PRD: reported, Expected not edited (Rule 114).
+- **Always search Jira by requirement id AND by words before calling a problem new:** `text ~ "S5-R11b"` found SV-11336 (filed by
+  Ahtasham Amjad 14 Oct, its footer already names C581895) that the draft's "none found among SV-113xx" list had missed — the draft had
+  only scanned our own and Chris's ticket ranges.
+- **A visual fault can be a symptom of another ticket:** C590122's invisible magnifier circle in Board View sits on the grey rounded
+  panel that S3-R23 forbids (SV-11323) — the empty state itself is List's; not filed separately.
+- **PRD silent ⇒ not filed even if the design shows it:** C590117's count tooltip "above the number" comes only from the design
+  (the PRD sets tooltip placement only for the switcher, Density and Columns). Report it; the QA lead decides on a design-based ticket.
+- **Rendered `<img>` count on read-back includes smart-link issue-type icons** (a ticket key in the body renders an `<img class="icon">`),
+  so "img 2 / 1" after filing is not a stray picture — check the `src` before worrying.
+- Files: `build/wo-board-tech-view/run498-2026-10-08/source-verify-2026-10-16/` (PRD v58 text, RECONCILE-7.md, FILED-2026-10-16.json).
