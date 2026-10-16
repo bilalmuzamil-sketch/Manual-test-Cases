@@ -3,7 +3,7 @@
   "env": "staging",
   "build": "v26.40.19-1493c63",
   "date": "17 October 2026",
-  "note": "full staging run 16-17 Oct 2026, batch 14 = queue steps 35"
+  "note": "full staging run 16-17 Oct 2026, batch 14 = queue steps 35, 36"
  },
  "results": {
   "C368179": {
@@ -17,6 +17,23 @@
    ],
    "pictures": [
     "evidence/staging-full-2026-10-14/annotated-full-1016/C368179-1-line-shift-1-3pm.png"
+   ],
+   "ticket": null
+  },
+  "C96962": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Work order S2-36771 (customer \"ZZAUTOTEST F1 Lead History 47777\"), two lines with no technician of their own, lead Esther Howard.",
+    "Board View drag to Ralph Edwards (\"Lead technician updated\"): the Work Order Log shows one new entry, \"Lead tech changed\", Esther Howard to Ralph Edwards, by Admin ShopView, 04:26 AM.",
+    "Edit Line on line 1: Ralph Edwards removed, Dana Ortiz added, Save & Close. Line 1's own Audit log shows \"Line tech changed\", Ralph Edwards to Dana Ortiz, 04:27 AM.",
+    "Reassign lead technician back to Esther Howard: one entry, 04:28 AM. Lead Technician changed on the work order page: one entry, Esther Howard to Dana Ortiz, 04:29 AM.",
+    "3 lead changes = 3 entries, each with the old lead, the new lead, the user and the time; line 2's own log still shows only \"Line created\", so no entries were added for the lines that moved with the lead.",
+    "Note: on the work order page Dana Ortiz was picked as the new lead (the test's names are examples)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96962-1-wo-log-one-entry-each.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96962-2-line2-log-no-entries.png"
    ],
    "ticket": null
   }
