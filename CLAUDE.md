@@ -106,7 +106,7 @@
 > - **NO VERDICT (OR VERDICT QUESTION) UNTIL EVERY POINT'S MATRIX IS FINISHED, AND A FAILING EXAMPLE MUST BE ONE A USER CAN BUILD ON SCREEN (Standing Rule 106).** Write down how each failing example was made; if any step was a server-only request, it proves nothing against the ticket.
 > - **AFTER ANY CONFIRM CLICK, RE-READ THE DIALOG — ShopView often asks twice ("Yes" → orange "Are You Sure?") (Standing Rule 102); never call a control "does nothing" before that.**
 > - **BEFORE CALLING A TICKET OUTSTANDING, RE-OPEN IT LIVE: status + last comment (Standing Rule 103).**
-> - **SCREEN RECORDING ON A QA COMMENT ONLY IF THE QA LEAD SAYS YES — ASK ON EVERY TICKET FIRST; no yes = no recording (Standing Rule 104; method playbook §AK).**
+> - **SCREEN RECORDING ON A QA COMMENT ONLY IF THE QA LEAD SAYS YES — ASK ON EVERY TICKET FIRST; no yes = no recording (Standing Rule 104; method playbook §AK). ONLY AFTER A RECORDING YES, ASK A SECOND QUESTION: VOICE-OVER YES/NO — on yes, a professional female voice explains the bug/fix in plain, professional words (Rule 104, amended 2026-10-16).**
 > - **A RECORDING SHOWS ONLY THE ACTIVITY — NO LONG STILL PAUSES (Standing Rule 107): `finish_recording.py` cuts every still stretch to 1.5 s (2 s on the final result); check the frame grid and the printed idle-removed figure before posting.**
 > - **EVERY STEP SAYS EXACTLY WHERE TO CLICK OR LOOK (Standing Rule 101): screen area + exact label, no private names ("the blue bubble"), describe small things by colour/shape/text/position, say what appears, locator picture with a close-up, walk the steps live before posting.**
 > - **EDITING SOMETHING ALREADY POSTED? (Standing Rule 100): put a dated note (date, time, timezone, what changed) right at the edited section/row.**
@@ -5362,6 +5362,20 @@ deliver the 7-tab management report.
     YES is a recording made and added. No answer, or no, means NO recording is made or added.** A yes on one ticket is
     never a yes on the next (same shape as Rules 51/84). Everything below describes how the recording is made WHEN he
     says yes.
+    **⚠️ AMENDED 2026-10-16 — THE VOICE-OVER QUESTION, ASKED SECOND AND ONLY AFTER A YES.** USER DIRECTIVE (2026-10-16,
+    verbatim): *"When asking for the VIDEO do always ask if I also need a voice over for those videos, if I say Yes go
+    ahead with Voice over and if I say No then go ahead without voice - But first ask the basic question about whether I
+    want the Screen recording or not as you are currently doing, only if I say YES for the screen recording THEN ask
+    questions about the voiceover, the voice should be of a professional girl explaining the Bug/Fix/issue in a very
+    professional way."* **So the asks go in this order, per ticket: (1) screen recording — yes or no? (2) ONLY if yes:
+    voice-over — yes or no?** Never ask (2) when (1) is no, and never bundle them into one question. **On a voice-over
+    yes:** the narration is a **professional female voice** explaining the bug / fix / issue **in a calm, professional
+    way**, in plain words a non-technical reader follows (Rules 7/65 — human voice, no AI self-reference, no model or
+    tool names spoken). The script is written from the comment's own verdict and steps, every number spoken is read live
+    from the screen (Rule 12), and it is synced to the steps the picture shows. **On a no:** the recording is made
+    silent, exactly as before. A yes on one ticket is never a yes on the next. The QA lead confirmed on 2026-10-16 that
+    the silent recordings as now made (activity only, Rule 107) are "GREAT … perfect" — the voice-over is an addition to
+    that format, not a change to it.
     USER DIRECTIVE (2026-10-07, verbatim): *"Now you need to find a way to add teh screen recording at the bottom of your
     comment with every comment you make for the QA passed/Failed/Partially passed tickets. SO that we can prove with screen
     recording whether its really working or not working."*

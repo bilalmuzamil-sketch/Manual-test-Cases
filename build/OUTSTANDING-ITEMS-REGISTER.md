@@ -30,7 +30,7 @@
 > stays hedged instead of asserted. A missing QA branch means **nothing is live-verified** and a
 > whole suite sits VIU-Pending.
 
-**Last updated:** 2026-09-11 (~05:05 UTC — SV-9866 cleared: it reached Ready for Production without us; SV-9890 stopped on instruction)
+**Last updated:** 2026-10-16 (~16:30 UTC — SV-11398 closed as duplicate; SV-10072/SV-11071 leftovers dismissed by the QA lead, never remind)
 **Active projects:** Report Suite · Schedule · Filters (user ruling 2026-07-27)
 **Predecessor snapshot (kept for the record):** `build/PROJECTS-NEEDS-2026-07-27.md`
 **Companion defensibility register (read before answering any QA challenge in a public channel):** `build/qa-preemptive-answers-2026-07-31/ANTICIPATED-QUESTIONS-AND-ANSWERS.md` / `.xlsx` — 65 rows of *what someone could say* → *the paste-ready answer* → *the evidence*, across the three active projects, with a TOP 10 and an open list of what we would genuinely have to concede.
@@ -56,6 +56,13 @@ we may write anything) · `ACCESS` (a login, branch, token or connected account)
 else owes).
 
 ---
+
+## 2026-10-16, ~16:30 UTC. **SV-11398 CLOSED AS A DUPLICATE OF SV-11087 (passed on staging, logged Passed on TestRail run 498). SV-11394 REASSIGNED TO SLAVCHO. FOUR ITEMS DISMISSED — NEVER RAISE AGAIN.**
+| Item | State |
+|---|---|
+| SV-11398 | OBSOLETE / Done, linked "duplicates SV-11087", TestRail C368177 result 525350 Passed + web links on the ticket; QA lead: *"If this is the correct decision then do it"* (Chris 78879: close as duplicate if it passes) |
+| SV-11394 | FAILED (comment 78898), assignee now Slavcho Mitrov — QA lead: *"Please do that"* |
+| **DISMISSED — DO NOT REMIND, EVER** | SV-10072 side observations O1 (manual return writes no Part History), O2 (add-item allows negative stock), O3 (add-item credits/part fields); Chris's production-database check on SV-10072; Chris's confirmation on SV-11071. QA lead 2026-10-16, verbatim: *"Ignore and never remind for them again."* Never list these in an OUTSTANDING section again. |
 
 ## 2026-10-08, ~04:00 UTC. **SV-9138 — ALL FOUR ASKS ANSWERED (CLEARED ~04:10 UTC): out of scope / drop / no recording / no technical section. QA PASSED posted as comment 78202.**
 

@@ -41,3 +41,9 @@ Tech half 134.4 s → 24.1 s, Admin half 74.2 s → 23.2 s; joined 47.3 s, 0.91 
 - Staging can redeploy mid-pass with no notice: the gate's marker re-read caught it and the build name was corrected before posting (Rule 72(1) worked as designed).
 - Recordings: the ticking clock-in timer and webm speckle defeated the idle cut — fixed in `finish_recording.py` (Rule 107 tuning, committed).
 - Reading Labor rows: the Lines tab draws the empty row ("Deleted user") without a `line_labor_name_` id, and the technician view has 3 cells instead of 4 — recorded in playbook §AT.
+
+## Follow-up (16 Oct 2026, ~16:25 UTC) — QA lead: close as duplicate if correct, log on TestRail, link the run
+- **TestRail:** run 498 (ours, created_by Bilal), test 3792498 = C368177. Snapshot of all 1,144 run results before; `add_result` Passed → **result 525350**; 4 attachments (3 annotated PNGs + MP4) added to it. After: 1,145 results, **0 missing, 0 changed by id**, the only new one is 525350. Text: `testrail-result-3792498.md`.
+- **Jira SV-11398:** Duplicate link added and read back as "SV-11398 duplicates SV-11087" (the existing Relates link kept); two web links to the TestRail test and run; comment 78897 gained a "TestRail" section with a dated note (11:23 CDT), read back (4 file media intact, first line unchanged); transitioned **Close → OBSOLETE, resolution Done** (the only closing transition offered; it has no fields). Chris's 78879 asked for exactly this if the retest passed.
+- **SV-11394:** assignee → Slavcho Mitrov (read back).
+- Learning check: nothing new beyond the voice-over ask order (Rule 104 amendment).

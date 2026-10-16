@@ -6,6 +6,10 @@ I retested this on *staging* (build *v26.40.19-edc8195*, which is newer than v26
 * When a time entry is moved to another line, the receiving line now lists only the technician whose time was moved. No *Deleted user* entry appears, and the line the time came from goes back to *Unassigned*.
 * [~accountid:712020:aa00b8d6-a71f-4259-8919-82a304227c20] it passes, so it can be closed as a duplicate of SV-11087, as you suggested.
 
+h3. TestRail
+The result is also logged on TestRail as *Passed*, with the same pictures and recording: [C368177 in run 498|https://shopview.testrail.io/index.php?/tests/view/3792498] (run: [WO Board & Tech View (Sep 2026) - Execution 2026-10-01|https://shopview.testrail.io/index.php?/runs/view/498]).
+_Added on 16 October 2026, 11:23 CDT._
+
 h3. Before and after
 !sv11398-01-before-after-hd.png|width=1551,height=1210!
 _Before: S2-35973, where the entry was moved on 15 Oct on build v26.40.17-a5c4210. Line 2 shows Esther Howard plus a "Deleted user". After: S2-36626, the same steps today. Line 2 shows only Tech ShopView._

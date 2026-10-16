@@ -5989,6 +5989,8 @@ in-page `s.api` call** — from a blank page the fetch fails with "Failed to fet
 
 **⚠️ ONLY WITH THE QA LEAD'S YES FOR THAT TICKET.** Ask on every new ticket, before recording anything, whether its comment(s) should include a screen recording; no yes = no recording made or added.
 
+**THEN, ONLY AFTER A RECORDING YES, ASK THE SECOND QUESTION: voice-over yes or no? (Rule 104 amendment, 2026-10-16.)** On yes: a professional female voice explains the bug/fix/issue calmly and professionally, in plain words, synced to the steps, every spoken number read from the screen, no AI/tool names spoken. On no: silent, as below. The text-to-speech method is not yet proven in this container — work it out the first time a yes arrives, then record the working recipe here.
+
 **What it is:** a real-time MP4 of the test being driven on the environment tested, with a visible red pointer, a click ripple and a plain caption bar, attached to the ticket and embedded at the bottom of the QA comment.
 
 **1. Record** — `build/testing-tools/qa-session.mjs`:
