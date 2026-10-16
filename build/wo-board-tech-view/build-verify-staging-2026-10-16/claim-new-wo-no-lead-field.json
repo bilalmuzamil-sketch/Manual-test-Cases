@@ -1,0 +1,33 @@
+{
+ "claim": "On staging v26.40.19-72f4f3b the New Work Order window has no Lead Technician field (Customer, Asset, Asset Here?, Save only), and no split-line item was seen in the work order or line menus",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "probe/05-labels-e.json newWOFields: the same instrument read the Customer and Asset fields filled with Continental Fleet Services and 2004 Ford"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "probe/01-labels.json createWO (empty window) and 05-labels-e.json newWOFields (after picking customer and asset): window opened by the Create Work Order button; screenshots 03-create-wo.png, 07-new-wo-filled.png"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Two reads in two runs, 3 s settle each; second read after customer AND asset were picked (fields can appear conditionally)"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "Window is a q-dialog; closed with Escape/close; nothing saved (no POST to work-orders in 05-labels-e.json writes)"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "Admin ShopView with full Work orders permissions (fe_permissions read at sign-in); customer with assets picked"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "OBSERVED-UI-LABELS-staging.md (14 Oct): work order page side panel has the Lead Technician dropdown; no New Work Order Lead Technician field recorded anywhere; 03-labels-c.json lineMenus: no Split item"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely fault: the field appears only after customer and asset are chosen. Ruled out by the second read after both were picked"
+  }
+ }
+}

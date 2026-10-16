@@ -1,0 +1,33 @@
+{
+ "claim": "On staging v26.40.19-72f4f3b the card/row More actions menu offers only 'Reassign lead technician' (no 'Unassign' item); unassigning is done by picking Unassigned in the Reassign lead technician window",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "probe/01-labels.json reassign: the same menu instrument opened the Reassign window and read Unassigned, technicians, Cancel and Reassign"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "probe/01-labels.json cardMenus: three Board View cards in technician columns opened by clicking More actions; rowMenu: a Tech View row menu; all read 'Reassign lead technician' only"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "probe/05-labels-e.json kbMenuItems: a fourth read, opened from the keyboard on card S2-16176, after the page had settled 9 s; one item only"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "Menus are q-menu popups; no navigation (URL unchanged, recorded in each probe); Escape returned focus to the More actions button (05-labels-e.json afterEsc)"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "The cards read were led by a technician (columns after Unassigned, x>330) and Approved/Estimate, the state the case needs; the Unassigned row is present in the window"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "git grep 'Unassign' on origin/claude/slack-session-0sxnd9 build/: no recorded Unassign menu item; code crawl of 900 build chunks (01-labels.json code): 'Lead technician removed' is in WorkOrderMoreActions, no '\"Unassign\"' label string"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely fault: reading a menu on a locked (Invoiced/Paid) card or the Unassigned column, where items could be hidden. Ruled out: cards were in technician columns and not locked; the item list was read four times, mouse and keyboard"
+  }
+ }
+}

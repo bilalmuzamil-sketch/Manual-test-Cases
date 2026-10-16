@@ -1,0 +1,33 @@
+{
+ "claim": "On staging v26.40.19-72f4f3b Tab enters Board View at one card (then its More actions button) and Tech View at the Unassigned group header (then its collapse arrow), then leaves the board; other cards, rows, pin buttons and group arrows are reached with the arrow keys, not Tab",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "probe/04-keyboard.json: the same Tab instrument reached every toolbar control in order (Clear search, Status, Assigned to me, Asset on Site, Density, Fields to display / Column Selection, List, Tech View, Board View, Create Work Order) and the first card"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Real keyboard presses from the Search box, the way a tester does it (04-keyboard.json seq; 03-labels-c.json kbBoard/kbTech; screenshots 04-kb-board.png, 05-kb-tech.png)"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Four runs: searches 'Fleet' and 'Continental', both views, plus 03-labels-c.json earlier run; 9 s settle after each view switch, 6 s after search"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "No navigation during Tab presses (URL recorded ?search=...); focus went to BODY / Skip to main content, i.e. out of the page"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "Boards held 75-78 cards and Tech View 62 rows (04-keyboard.json ti.n); exactly one card/row has tabindex 0, the rest none; pin buttons tabindex -1"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "git grep 'roving' / 'arrow keys move' on origin/claude/slack-session-0sxnd9 build/: nothing recorded; OBSERVED-UI-LABELS-staging.md has no keyboard notes"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely fault: focus trapped by a lazy-rendered list, or Tab pressed before the board rendered. Ruled out: tabindex read from the DOM directly (one tabindex=0 per board), arrow keys moved focus card to card (04-keyboard.json arrows) and Tech View rows (05-labels-e.json techArrows)"
+  }
+ }
+}
