@@ -3202,4 +3202,5 @@ Vladimir's C228763 (not ours) expects Assigned Techs off by default; fails a cor
 Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answers-2026-10-15/APPLY-REPORT.md`). Open, for the QA lead:
 1. DONE 16 Oct: C581895 updated (Retest); C96963, C97009, C368158, C368130 quotes refreshed (no retest); SV-11318/SV-11320 footers fixed.
 2. Run 498: 28 tests set to Retest and 3 Untested (first run) — need a staging run (test-run lane).
-3. C590127, C97022, C581915–C581918 need the Technician filter, not on staging yet — will block until it ships.
+3. C590127, C97022, C581915–C581918: Blocked in run 498 on SV-11326 (Technician filter, Open); rerun when it is done.
+4. Vladimir: C96929 and C96978 expected results changed (note in followup-2026-10-16/NOTE-FOR-VLADIMIR-2026-10-16.md) — QA lead to send.

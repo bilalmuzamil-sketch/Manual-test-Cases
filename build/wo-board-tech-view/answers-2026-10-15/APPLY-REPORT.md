@@ -101,3 +101,15 @@ Record: `followup-2026-10-16/` (proposals, 5 new setup Docs, apply log, read-bac
   added C598326 to SV-11318 and C590117 to SV-11320. Before-copies: `../po-defects-2026-10-14/ticket-footer-backups/`.
 - **Run 498:** the 28 tests whose expected results changed (the 27 in section 1 plus C581895) now carry a new result **Retest** (HTTP 200,
   earlier results kept in history). The 3 never-run tests stay Untested (first run). Run total 272.
+
+## Follow-up 2, 16 Oct 2026 (QA lead: "keep them blocked ... add the related ticket ... please fix")
+- **Run 498, Blocked on SV-11326** (Technician filter in Tech View and Board View, Open): C590127, C97022, C581915, C581916, C581917,
+  C581918. Each got a new result Blocked, with the comment "waiting on ticket SV-11326 ... run this test again once SV-11326 is done"
+  and SV-11326 in the Defects field (HTTP 200, 6 results). Before: Retest or Failed.
+- **Run 498, C581895** ([T3974851](https://shopview.testrail.io/index.php?/tests/view/3974851)): related ticket SV-11336 (technician name
+  differs from List's Lead Technician name, Open) added in the Defects field; status stays Retest.
+  Record: `followup-2026-10-16/block_and_link.py`, `applied/block-and-link-2026-10-16.json`.
+- **Vladimir:** of the 7 Automated cases changed on 15 Oct, only C96929 and C96978 changed their expected results; the other 5 are
+  quote-only. Note to send: `followup-2026-10-16/NOTE-FOR-VLADIMIR-2026-10-16.md`. The 5 follow-up cases are not Automated.
+- **C368163 setup Doc:** the developer-note bullet removed from the Preconditions list; its "Dev-layer test — fe-unit" words added to the
+  existing Part 2 developer-coverage bullet, so nothing is lost. Read back OK.
