@@ -286,6 +286,17 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 - **List / read:** list `GET /api/work-orders` / `GET /api/work-orders/simple-list`; detail
   `GET /api/work-orders/view/{id}` (carries `adjustments[]`, `adjustmentsSummary`, `editable`,
   `deletable`); lines `GET /api/work-orders/lines/{woId}`.
+  **List paging/sort (proven 2026-10-16, SV-11310):** `GET /api/work-orders?pagination[page]=N&pagination[rowsPerPage]=500&pagination[sortBy]=status&pagination[descending]=false&search=&showMyWorkOrders=0`
+  → `{data:{pagination, work_orders:[{number,status,...}]}}` — the way to find a work order of a given status
+  (a `status=` query param is rejected 400). Statuses: `GET /api/work-orders/statuses`.
+- **Work Orders List — measuring the Status pills (proven 2026-10-16, SV-11310):** the pill is
+  `td.cell.status .q-badge:not(.q-badge--floating)` (the floating ones are the red/blue count bubbles). The
+  table is auto-layout, so the Status column — and the pill, which fills it — sizes to the **longest status
+  rendered on screen**: check widths **per screen and across tabs/searches**, never one screen. On staging the
+  admin account carries a **saved Status sort**, so most screens show one status; to get a mixed screen,
+  **search a partial work-order number** (e.g. `S2-363`). List vs Board vs Tech View: `toggle_display_option` →
+  `display_option_list`. Search: `page_search_toggle` (focuses the input). Tabs: `tab_all` / `tab_estimates` /
+  `tab_work_orders` / `tab_completed`.
 - **Vehicles:** `GET /api/vehicles?company_id={id}`; create `POST /api/vehicles/create
   {company_id, customer_id:<CONTACT id>, unit}`; VIN edit `POST /api/vehicles/change` → 201.
 - **Existing-WO detail bounces to `/workorders` on mount (all roles incl. admin)** — create a FRESH

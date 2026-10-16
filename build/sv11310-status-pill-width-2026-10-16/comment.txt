@@ -1,0 +1,35 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on Staging (build v26.40.19-1493c63) on 16 October 2026, and compared with Production (build v26.40.19-d2441a9). 7 of 7 checks passed.
+
+On the Work Orders *List*, the status pills are the same width again. On every screen I checked, every pill matched its neighbours, and Staging now looks exactly like Production.
+
+*Before and after*
+!sv11310-01-before-after-status-pills.png|width=1094,height=1008!
+_Left: the problem as reported on 14 October (the picture from this ticket): each pill was only as wide as its own text. Middle: Staging now, five different statuses on one screen, every pill 113.98 px. Right: Production today, seven different statuses, every pill 113.98 px. Window 1600 x 1000 px, browser zoom 100%._
+
+*What I checked*
+||#||Check||Status||
+|1|The steps in this ticket: search *S2-33363* (Ready For Review), then clear the search and compare the rows. The pill fills its column (113.98 px) and the rows below match it.|PASSED|
+|2|A screen with many statuses at once (search *S2-363*: Ready For Review, Paid, Invoiced, Estimate, Approved). Every pill is the same width.|PASSED|
+|3|Every screen while scrolling the *All*, *Estimates*, *Work Orders* and *Completed* tabs: 100 screens, none with pills of different widths.|PASSED|
+|4|Each of the 8 statuses searched on its own (Ready For Review, In Progress, Approved, Complete, Declined, Estimate, Invoiced, Paid): the pill is the same width on Staging and on Production for every one.|PASSED|
+|5|A narrower window (1280 px): same results as 1600 px, on both Staging and Production.|PASSED|
+|6|The small red and blue count bubbles still sit on the top-right corner of the pill, as on Production.|PASSED|
+|7|The List works the same as on Production, which the spec asks for: _"A List row opens the work order page, as in production (List is unchanged)."_ (Work Orders — Board View & Tech View Display Options, v48)|PASSED|
+
+!sv11310-02-each-status-staging-vs-production.png|width=1208,height=614!
+_Each status searched on its own: the pill is exactly the same width on Staging (left) and Production (right)._
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com and click *Work Orders* in the top menu.
+# Above the list, on the left, click the *All* tab. On the right of the same bar, click the first of the three view buttons (the one with horizontal lines) so the *List* is shown.
+# Click *Search* (the magnifying glass above the list) and type *S2-363*.
+# Look at the coloured pills in the *Status* column (second column): Ready For Review, Paid, Invoiced, Estimate and Approved pills are all the same width.
+
+*Separate issue found (also on Production):* the pills all share one width per screen, but that width changes with what is on the screen. For example, on the *Estimates* tab every pill is 67 px, while on the *All* tab it is 114 px. Production works the same way today, so it is not caused by this fix. It has been reported separately as a bug: [SV-11464|https://shopview.atlassian.net/browse/SV-11464]
+
+*Screen recording*
+!sv11310-status-pills-staging-recording-voiceover.mp4|width=1280,alt="sv11310-status-pills-staging-recording-voiceover.mp4"!
+_Staging, build v26.40.19-1493c63, 16 October 2026, window 1440 px, zoom 100%: search S2-33363 (Ready For Review pill 113.98 px), then search S2-363 (13 pills, 5 statuses, all 113.98 px). With voice-over._

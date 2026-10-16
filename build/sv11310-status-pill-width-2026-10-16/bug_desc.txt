@@ -1,0 +1,35 @@
+Found while testing [SV-11310|https://shopview.atlassian.net/browse/SV-11310]
+
+h3. Summary
+On the Work Orders List, all status pills on one screen are the same width, but that width changes depending on which work orders are showing. When a "Ready For Review" work order is on screen every pill is wide; on the Estimates tab, the Completed tab, or a search that shows only short statuses, every pill is narrower. This is how Production works today, and Staging does the same since SV-11310.
+
+h3. Steps to reproduce
+Open Production: https://app.shopview.com (window about 1600 px wide, browser zoom 100%).
+# In the top menu, click *Work Orders*. The list opens.
+# Above the list, on the left, click the *All* tab. Look at the coloured pills in the *Status* column (second column): they are all the same width, about 114 px.
+# Click the *Estimates* tab (next to *All*). Look at the *Status* column again: every *Estimate* pill is now narrower, about 67 px.
+# Click the *Completed* tab. Every *Complete* pill is about 71.5 px.
+# Click the *All* tab, then click *Search* (the magnifying glass above the list, on the right) and type *S2-597*. The one row shown is a *Paid* work order, and its pill is about 58 px.
+!01-pill-width-changes-by-tab-production-hd.png|width=1276,height=534!
+
+*Fastest way to see it:* open https://app.shopview.com/workorders?tab=estimate, look at the *Status* column, then click the *All* tab and look again.
+
+h3. Expected behaviour
+The status pills keep the same width wherever they appear in the list: on every tab, after a search, and whatever work orders are on screen.
+*Where this comes from:*
+* [SV-11310|https://shopview.atlassian.net/browse/SV-11310]: the team asked for every status pill to be the same width — _"The status pills are stretching now, they should all be the same."_ (team report passed on by QA, 14 Oct 2026)
+
+h3. Current behaviour
+The pill takes the width of the *Status* column, and the column is only as wide as the longest status on the screen, so the pill size jumps between tabs and searches.
+It happened every time:
+||Where (Production, 16 Oct 2026)||Pill width||
+|*All* tab|113.98 px|
+|*Work Orders* tab|113.98 px|
+|*Estimates* tab|67.00 px|
+|*Completed* tab|71.52 px|
+|Search *S2-691* (Ready For Review)|113.98 px|
+|Search *S2-597* (Paid)|58.45 px|
+
+The same widths appear in a 1280 px window, and Staging gives the same results (Estimates 67.00 px, Completed 71.52 px, a Paid work order searched alone 58.45 px).
+
+Tested on Production (build v26.40.19-d2441a9) and Staging (build v26.40.19-1493c63), 16 Oct 2026.

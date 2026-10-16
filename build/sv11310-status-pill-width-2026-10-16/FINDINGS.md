@@ -42,3 +42,26 @@ The pill width follows the column, and the column sizes to the longest status on
 - `ev/sv11310-02-each-status-staging-vs-production.png` — 8 statuses, each searched alone, both envs.
 - `data/` — raw measurements; `scripts/` — probe/measure scripts; `ev/raw-*` — unannotated screenshots.
 - Nothing seeded; nothing changed on either environment.
+
+## QA lead answers (16 Oct 2026)
+- Screen recording: **yes**; voice-over: **yes** (asked second, after the recording yes).
+- Technical details section: **no**.
+- Column-follows-content behaviour: *"Pass it but create a separate bug ticket for production and do mention in the ticket comment that the other issue found (reproducible on production) has been reported separately as a bug"*.
+
+## Separate bug filed: [SV-11464](https://shopview.atlassian.net/browse/SV-11464)
+"Work Orders List: status pill width changes with the statuses on screen" — Bug, Medium, Product Area Work Orders, label board-tech-view, parent epic SV-10043, Relates SV-11310. Duplicate search (search/jql: "status pill", "pill width", "same width", summary "pills", "status badge"+"width") found only SV-11310 / SV-11318 (Tech View) / SV-11405 (Board View) — none cover it. Reproduced on production by clicking (top menu Work Orders → All 113.98 / Work Orders 113.98 / Estimates 67.00 / Completed 71.52 / search S2-691 113.98 / search S2-597 58.45), build v26.40.19-d2441a9. Image attachment 62472 (`ev/01-pill-width-changes-by-tab-production-hd.png`). Read back: media type file 1276x534, steps 1-5, table 7 rows, Relates link, no jargon.
+
+## Recording
+`ev/sv11310-status-pills-staging-recording-voiceover.mp4` — 21.6 s, 1440 px window, en-US-AriaNeural +10%, 4 lines (5.42/4.46/3.19/5.42 s). Captions read live: S2-33363 Ready For Review 113.98 px / column 124 px; S2-363 13 pills, 5 statuses, all 113.98 px. Full decode OK; caption on frame 0; speech at every step (-19.9 / -20.6 / -20.2 / -21.6 dB). Grid `voiceover/grid.png`.
+
+## Pre-post gate (14:32 CDT)
+- Build markers re-read: staging v26.40.19-1493c63 (18:32:36 GMT, etag 9bc39e81…) and production v26.40.19-d2441a9 (09:17:45 GMT) — unchanged from the measurements.
+- SV-11310 re-read: TESTING STAGE, Slavcho Mitrov, Medium, no comments.
+- Voice scan of the comment text: clean. No technical section (QA lead said no).
+- Every figure in the comment traces to `data/` (mix/sr/mx/meas json).
+
+## Posted
+SV-11310 comment **78903** (14:33 CDT): attachments 62473 (before/after), 62474 (each status), 62475 (recording). Read back via v3: green panel first; media in order png, png, mp4 (all `file`); table 8 rows (header + 7); 4 numbered steps; SV-11464 link present.
+
+## Learning check
+One new recipe recorded in the playbook (§AK area is unrelated; added under the Work Orders list notes): a saved **Status sort** on a staging account groups the list so most screens show one status — use a **search that returns mixed statuses** (e.g. a partial work-order number) to get a mixed screen; and a pill/badge "same width" check must compare **per screen and across tabs**, because the Work Orders table column auto-sizes to the widest content rendered. Nothing else new.
