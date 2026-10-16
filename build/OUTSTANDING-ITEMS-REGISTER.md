@@ -3200,7 +3200,6 @@ Vladimir's C228763 (not ours) expects Assigned Techs off by default; fails a cor
 
 ### WO Board & Tech View — 16 Oct 2026: Chris Ward's answers 12–31 applied (PRD v54)
 Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answers-2026-10-15/APPLY-REPORT.md`). Open, for the QA lead:
-1. C581895 — may it be updated for PRD v54 S5-R11b (row avatar hover names = staff record name)? It was rewritten on 15 Oct by the test-run session.
-2. Pre-existing stale quotes C96963, C97009, C368158 (old S4-N2 with Imported) and C368130 (removed "Design updates" line) — quote-only fixes, may they be done?
-3. SV-11318 and SV-11320 need ticket updates per Chris (another session files/edits tickets).
-4. Retest on staging the 27 changed cases and first-run the 3 (list in the report).
+1. DONE 16 Oct: C581895 updated (Retest); C96963, C97009, C368158, C368130 quotes refreshed (no retest); SV-11318/SV-11320 footers fixed.
+2. Run 498: 28 tests set to Retest and 3 Untested (first run) — need a staging run (test-run lane).
+3. C590127, C97022, C581915–C581918 need the Technician filter, not on staging yet — will block until it ships.

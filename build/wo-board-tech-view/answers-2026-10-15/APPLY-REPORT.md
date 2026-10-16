@@ -87,3 +87,17 @@ Run 498 (union only): 271 → 272 tests, C598326 added, nothing dropped, no test
 - **Tickets Chris said need updating:** SV-11318 (pill 16 px at Compact and Regular), SV-11320 (view-only users see technician header
   grips; no grip on Unassigned). Not edited.
 - Three cases deleted by someone else since 14 Oct (Report filter regression cases C368232, C368236, C368237); not ours to act on.
+
+## Follow-up, 16 Oct 2026 (QA lead: "1. Yes ... 2. Same as above 3. Do what is scientifically correct")
+Record: `followup-2026-10-16/` (proposals, 5 new setup Docs, apply log, read-back, retest log).
+- **C581895** rewritten in full to the Rule 117 layout for PRD v54 S5-R11b (answer 23): every technician name in both views, avatar
+  hover names included, must be the staff record name. Staging keeps one name per technician, so there the case proves every name
+  matches Settings > Staff but cannot prove which field is read (stated in the case). Expected results changed: **Retest**.
+- **C96963, C97009, C368158, C368130** rewritten in full; only the stale quotes were refreshed (S4-N2 without Imported; the reworded
+  Design updates line), expected results unchanged: **no retest**, they keep their results.
+- All 5: HTTP 200, read back OK, runnable gate 5/5. Edit lock against a fresh 16 Oct snapshot: none refused.
+- **Tickets SV-11318, SV-11320:** already updated on 15 Oct with Chris's rulings (16 px pill; view-only header grips, none on
+  Unassigned). Fixed only the footer: moved the test-case list back to the bottom after the update section, current case titles,
+  added C598326 to SV-11318 and C590117 to SV-11320. Before-copies: `../po-defects-2026-10-14/ticket-footer-backups/`.
+- **Run 498:** the 28 tests whose expected results changed (the 27 in section 1 plus C581895) now carry a new result **Retest** (HTTP 200,
+  earlier results kept in history). The 3 never-run tests stay Untested (first run). Run total 272.

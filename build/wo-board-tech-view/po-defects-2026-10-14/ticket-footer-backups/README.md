@@ -9,3 +9,4 @@ Map: ../ticket-footers.json. Each edit's response was read back: original text i
   editJiraIssue contentFormat=html). Media ids unchanged after the write: 57b88464… (SV-11336), 21516a2d… (SV-11337),
   5121ac2b… (SV-11338). Pre-edit HTML: SV-11338-before.html (SV-11336/11337 pre-edit HTML is the same body minus the footer,
   as returned in the edit response).
+- 2026-10-16: SV-11318 and SV-11320 before-copies (description as fetched in HTML on 16 Oct 08:10 UTC) before moving the test-case footer back to the bottom.
