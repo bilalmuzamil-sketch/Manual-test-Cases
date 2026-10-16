@@ -947,3 +947,13 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   of `build/atlassian-login/jira.sh` (Origin, Referer, browser User-Agent, `X-Atlassian-Token: no-check`) plus `;type=image/png`.
 - Upload the picture FIRST, then post the comment or description that embeds `!name.png|width=1000!`. The comment went in first here,
   so it briefly pointed at a missing picture. Read back `?expand=renderedBody` and count `<img`. #jira #attachment #comment → L0390
+
+## L0398 — 2026-10-16 — A scheduled check-in fires into a reclaimed container; and "not_authenticated" (not "sso_required") means the Google sign-in still works
+- The C97033 day-2 routine fired at 19:11 UTC on 15 Oct but reached this session only at 07:36 UTC on 16 Oct. The container had been
+  reclaimed while idle, so nothing ran overnight. If a timed step matters, keep a background job alive until it fires (L0372), or
+  check the routine's delivery time on wake and run the step straight away. Day 2 still counted: it was 16 Oct in Pakistan.
+- After a restart, `/api/auth/me/fe-permissions` with only the saved `sv_sso_session` answered `not_authenticated`. That means the
+  Google sign-in is still alive and quick-login will work. `sso_required` means it has expired and the QA lead must send a new one (L0393).
+- To list "tests whose latest result is not from staging", page `get_tests` and read each test's latest result (~270 calls, more
+  than 2 min: run it in the background). A comment that names "Staging Heavy Duty" is NOT a staging result: match the "Tested on
+  staging" / "Tested on QA branch" opening line instead. #routine #staging #signin #testrail → L0372, L0393, L0394
