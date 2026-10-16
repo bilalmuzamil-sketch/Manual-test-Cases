@@ -1,0 +1,13 @@
+import {session,toView} from './rec.mjs'; import fs from 'fs';
+const s=await session({vp:{width:1600,height:900},dpr:2}); const p=s.page; const out={mk:await s.marker()};
+await s.go('/workorders?tab=all&search=S2-33043'); await p.waitForTimeout(5000);
+const cell=(tblSel)=>p.evaluate(tblSel=>{const tbl=document.querySelector(tblSel); const ths=[...tbl.querySelectorAll('thead th')].map(t=>t.innerText.replace(/arrow_drop_(up|down)/,'').trim()); const r=[...tbl.querySelectorAll('tbody tr')].find(r=>/S2-33043/.test(r.innerText)); const td=[...r.querySelectorAll(':scope > td')]; const g=n=>td[ths.indexOf(n)];
+ const ci=g('Clocked In'); const sa=g('Service Advisor'); const num=g('Number'); const pr=g('Progress'); const rect=e=>{const b=e.getBoundingClientRect();return {x:b.x,y:b.y,w:b.width,h:b.height};};
+ const ciInner=ci.firstElementChild; const cs=ciInner?getComputedStyle(ciInner):null; const ciTxt=[...ci.querySelectorAll('*')].filter(e=>e.children.length===0&&e.innerText?.trim()).map(e=>{const c=getComputedStyle(e);return e.innerText.trim()+' ['+c.fontSize+'/'+c.fontWeight+'/'+c.color+'/'+c.backgroundColor+']';});
+ const av=sa.querySelector('.q-avatar'); let nameX=null; if(av){ const w=document.createTreeWalker(sa,NodeFilter.SHOW_TEXT); let n; while(n=w.nextNode()){ if(!av.contains(n)&&n.textContent.trim()){ const rg=document.createRange(); rg.selectNodeContents(n); nameX=rg.getBoundingClientRect().x; break;} } }
+ return {ci:ci.innerText.trim().replace(/\s+/g,' '),ciParts:ciTxt,ciHtmlClass:(ciInner?.className||'').toString().slice(0,60),ciRect:rect(ci),sa:sa.innerText.trim().replace(/\s+/g,' '),avX:av?av.getBoundingClientRect().x:null,avR:av?av.getBoundingClientRect().right:null,nameX,num:num.innerText.trim(),numRect:rect(num),prRect:rect(pr),saRect:rect(sa)};},tblSel);
+await toView(p,'list'); await p.waitForTimeout(2500); await p.mouse.move(1590,890); out.list=await cell('.q-table__container'); await p.screenshot({path:'/tmp/qa11310/ci25-list.png'});
+await toView(p,'tech_view'); await p.waitForTimeout(2500); const ex=await p.getAttribute('[data-test-id=button_tech_view_group_toggle_unassigned]','aria-expanded'); if(ex!=='true'){await p.click('[data-test-id=button_tech_view_group_toggle_unassigned]'); await p.waitForTimeout(2000);} await p.mouse.move(1590,890); await p.waitForTimeout(800);
+out.tech=await cell('[data-test-id=table_tech_view]'); await p.screenshot({path:'/tmp/qa11310/ci25-tech.png'});
+// hover +N in both
+console.log(JSON.stringify(out,null,0).slice(0,2500)); fs.writeFileSync('/tmp/qa11310/ci25.json',JSON.stringify(out,null,1)); await s.close();

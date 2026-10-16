@@ -1,0 +1,11 @@
+import {session,toView} from './rec.mjs'; import fs from 'fs';
+const s=await session({vp:{width:1600,height:900},dpr:2}); const p=s.page; const out={mk:await s.marker()};
+await s.go('/workorders?tab=all&search=S2-33692'); await p.waitForTimeout(5000);
+const R=e=>e?{x:e.x,y:e.y,w:e.width,h:e.height}:null;
+await toView(p,'tech_view'); await p.waitForTimeout(2000); const ex=await p.getAttribute('[data-test-id=button_tech_view_group_toggle_unassigned]','aria-expanded'); if(ex!=='true'){await p.click('[data-test-id=button_tech_view_group_toggle_unassigned]'); await p.waitForTimeout(2000);} await p.mouse.move(1590,890); await p.waitForTimeout(800);
+out.tech=await p.evaluate(()=>{const id='097f416b-4476-4317-b9ad-706fc31ce25f'; const q=t=>document.querySelector(`[data-test-id=${t}${id}]`)?.getBoundingClientRect(); const pr=document.querySelector(`[data-test-id=tech_view_row_progress_${id}]`).closest('td').getBoundingClientRect(); const av=document.querySelector(`[data-test-id=tech_view_row_advisor_avatar_${id}]`); const sa=av.closest('td').getBoundingClientRect(); const row=document.querySelector(`[data-test-id=tech_view_row_${id}]`).getBoundingClientRect(); const f=r=>({x:r.x,y:r.y,w:r.width,h:r.height}); return {num:f(q('tech_view_row_number_link_')),prog:f(pr),sa:f(sa),row:f(row)};});
+await p.screenshot({path:'/tmp/qa11310/x25-tech.png'});
+await toView(p,'list'); await p.waitForTimeout(2000); await p.mouse.move(1590,890); await p.waitForTimeout(800);
+out.list=await p.evaluate(()=>{const tbl=document.querySelector('.q-table__container'); const ths=[...tbl.querySelectorAll('thead th')].map(t=>t.innerText.replace(/arrow_drop_(up|down)/,'').trim()); const r=[...tbl.querySelectorAll('tbody tr')].find(r=>/S2-33692/.test(r.innerText)); const td=[...r.querySelectorAll(':scope > td')]; const f=n=>{const b=td[ths.indexOf(n)].getBoundingClientRect(); return {x:b.x,y:b.y,w:b.width,h:b.height};}; const rb=r.getBoundingClientRect(); return {num:f('Number'),prog:f('Progress'),sa:f('Service Advisor'),row:{x:rb.x,y:rb.y,w:rb.width,h:rb.height}};});
+await p.screenshot({path:'/tmp/qa11310/x25-list.png'}); await toView(p,'tech_view');
+fs.writeFileSync('/tmp/qa11310/x25.json',JSON.stringify(out,null,1)); console.log(JSON.stringify(out)); await s.close();

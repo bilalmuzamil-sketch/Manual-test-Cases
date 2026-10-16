@@ -1,0 +1,27 @@
+import {open} from './qa.mjs'; import {C,toView,dens} from './rec.mjs'; import fs from 'fs';
+const env=process.argv[2]||'staging';
+const s=await open(env==='prod'?{env:'prod',dir:'/tmp/qa11310',user:'bilal.muzamil@shopview.com',vp:{width:1600,height:900},dpr:1}:{env:'staging',dir:'/tmp/qa11310',cookies:C,quick:'admin',vp:{width:1600,height:900},dpr:1});
+const p=s.page; const out={env,mk:await s.marker()};
+await s.go('/workorders?tab=all'); await p.waitForTimeout(5000);
+const listCells=()=>p.evaluate(()=>{const tbl=[...document.querySelectorAll('.q-table__container')].find(c=>!c.closest('[data-test-id=table_tech_view]')); const ths=[...tbl.querySelectorAll('thead th')].map(t=>t.innerText.replace('arrow_drop_up','').replace('arrow_drop_down','').trim()); const ix=n=>ths.indexOf(n);
+ return [...tbl.querySelectorAll('tbody tr')].filter(r=>r.querySelectorAll('td').length>5).slice(0,60).map(r=>{const td=[...r.querySelectorAll(':scope > td')]; const num=td[ix('Number')]; if(!num) return {ths}; const a=num.querySelector('a'); const cs=getComputedStyle(a||num); const pr=td[ix('Progress')]; const sa=td[ix('Service Advisor')]; const ci=td[ix('Clocked In')];
+  return {num:num?.innerText.trim(),numTag:a?'A':'TEXT',numColor:cs.color,numW:cs.fontWeight,prog:pr?.innerText.trim().replace(/\s+/g,' '),progHtml:(pr?.querySelector('[class]')?.className||'').toString().slice(0,40),saAvatar:!!sa?.querySelector('.q-avatar'),sa:sa?.innerText.trim().replace(/\s+/g,' '),ci:ci?.innerText.trim().replace(/\s+/g,' ')};});});
+if(env==='prod'){ out.list=await listCells(); fs.writeFileSync('/tmp/qa11310/c25-prod.json',JSON.stringify(out,null,1)); console.log(JSON.stringify(out.list.slice(0,3))); await s.close(); process.exit(0); }
+await toView(p,'list'); await p.waitForTimeout(2000); out.list=await listCells();
+await toView(p,'tech_view'); await p.waitForTimeout(1500);
+const lab=await p.getAttribute('[data-test-id=button_tech_view_collapse_all]','aria-label'); if(/Collapse/.test(lab)){await p.click('[data-test-id=button_tech_view_collapse_all]'); await p.waitForTimeout(1500);} 
+await p.click('[data-test-id=button_tech_view_group_toggle_unassigned]'); await p.waitForTimeout(2500);
+const tv=()=>p.evaluate(()=>{const ths=[...document.querySelectorAll('[data-test-id=table_tech_view] thead th')].map(t=>t.innerText.trim()); const ci=ths.indexOf('Clocked In');
+ return [...document.querySelectorAll('[data-test-id^=tech_view_row_]')].filter(r=>/^tech_view_row_[0-9a-f-]{36}$/.test(r.getAttribute('data-test-id'))).map(r=>{const id=r.getAttribute('data-test-id').slice(14); const td=[...r.querySelectorAll(':scope > td')];
+  const a=document.querySelector(`[data-test-id=tech_view_row_number_link_${id}]`); const acs=getComputedStyle(a); const tr=document.querySelector(`[data-test-id=tech_view_row_progress_${id}]`); const trb=tr.getBoundingClientRect(); const fill=tr.firstElementChild; const pc=tr.closest('td'); const pctEl=[...pc.querySelectorAll('*')].find(e=>e.children.length===0&&/%$/.test(e.innerText?.trim()||'')); const pb=pctEl?.getBoundingClientRect();
+  const av=document.querySelector(`[data-test-id=tech_view_row_advisor_avatar_${id}]`); const ab=av?.getBoundingClientRect(); const acss=av?getComputedStyle(av):null; const nb=av?.nextElementSibling; const nbb=nb?.getBoundingClientRect(); const ini=av?.innerText.trim(); const icol=av?getComputedStyle(av.querySelector('.q-avatar__content')||av).color:null;
+  return {id,num:a.innerText.trim(),tag:a.tagName,href:a.getAttribute('href'),color:acs.color,w:acs.fontWeight,deco:acs.textDecorationLine,track:{w:Math.round(trb.width),h:Math.round(trb.height),bg:getComputedStyle(tr).backgroundColor},fill:fill?{w:+fill.getBoundingClientRect().width.toFixed(1),bg:getComputedStyle(fill).backgroundColor}:null,pct:pctEl?.innerText.trim(),pctBeside:pb?Math.round(pb.x-(trb.x+trb.width)):null,progText:pc.innerText.trim().replace(/\s+/g,' '),hoursLine:/h(rs)?\b|\//.test(pc.innerText),avatar:av?{size:Math.round(ab.width),bg:acss.backgroundColor,ini,icol,before:nbb?nbb.x>ab.x+ab.width-1:null,name:nb?.innerText.trim()}:null,ci:td[ci]?.innerText.trim().replace(/\s+/g,' '),sa:td[ths.indexOf('Service Advisor')]?.innerText.trim()};});});
+out.tech={};
+for(const d of ['compact','regular','comfortable']){ await dens(p,d); await p.mouse.move(1590,890); await p.waitForTimeout(1200); out.tech[d]=await tv(); const t=out.tech[d];
+ console.log(d,'rows',t.length,'A',t.filter(r=>r.tag==='A'&&r.href).length,'colors',[...new Set(t.map(r=>r.color))],'track',[...new Set(t.map(r=>r.track.w+'x'+r.track.h))],'pctOK',t.filter(r=>r.pct&&r.pctBeside>=0).length,'hours',t.filter(r=>r.hoursLine).length,'avatar',[...new Set(t.map(r=>r.avatar&&(r.avatar.size+' '+r.avatar.bg+' '+r.avatar.icol+' before:'+r.avatar.before)))],'noAvatar',t.filter(r=>!r.avatar).map(r=>r.num+':'+r.progText).slice(0,3)); }
+await dens(p,'regular');
+// clocked in comparison
+const L=Object.fromEntries(out.list.map(r=>[r.num,r])); out.ciCmp=out.tech.regular.filter(r=>L[r.num]).map(r=>({num:r.num,tv:r.ci,list:L[r.num].ci,same:r.ci===L[r.num].ci}));
+console.log('ci compared',out.ciCmp.length,'same',out.ciCmp.filter(x=>x.same).length,'nonEmpty',out.ciCmp.filter(x=>x.tv).length, JSON.stringify(out.ciCmp.filter(x=>x.tv).slice(0,4)));
+await p.click('[data-test-id=button_tech_view_group_toggle_unassigned]'); await p.waitForTimeout(800);
+fs.writeFileSync('/tmp/qa11310/c25-staging.json',JSON.stringify(out,null,1)); await s.close();
