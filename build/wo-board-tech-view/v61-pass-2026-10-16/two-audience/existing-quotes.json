@@ -1,0 +1,524 @@
+{
+ "97021": {
+  "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+  "last_checked": "Last checked against build v26.40.8-7a95011 on 10/8/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "quotes": [
+   [
+    "S11-R1",
+    "Tab moves focus onto each work order row (Tech View) or card (Board View); the focused row or card shows a visible focus ring."
+   ],
+   [
+    "S11-R3",
+    "Tab and Shift+Tab move through rows or cards and group or column headers in on-screen order: top to bottom in Tech View; in Board View, column by column, left to right, and top to bottom within each column."
+   ],
+   [
+    "Story 11 user story",
+    "As a keyboard user, I want to navigate work orders and their actions so that these controls are usable without a mouse."
+   ]
+  ]
+ },
+ "368150": {
+  "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+  "last_checked": "Last checked against build v26.40.8-7a95011 on 10/8/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "quotes": [
+   [
+    "S11-R4",
+    "Enter on a focused row or card opens the work order, the same as a click."
+   ],
+   [
+    "S11-R10",
+    "Opening a work order by keyboard is Enter (S11-R4); dragging is by mouse or touch only, so the two never conflict. A mouse click without a drag opens the work order as today (S2-R8)."
+   ],
+   [
+    "S11-R9",
+    "Reassigning by keyboard goes through the more-actions menu: Reassign lead technician opens the Reassign dialog, and Unassign is a menu item. There is no keyboard drag in this release, so reordering work orders and technicians is by mouse or touch only."
+   ],
+   [
+    "Out of Scope",
+    "Reordering work orders or technicians by keyboard. Reordering is by mouse or touch drag in this release (S11-R9)."
+   ]
+  ]
+ },
+ "368152": {
+  "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+  "last_checked": "Last checked against build v26.40.8-7a95011 on 10/8/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "quotes": [
+   [
+    "S11-R9",
+    "Reassigning by keyboard goes through the more-actions menu: Reassign lead technician opens the Reassign dialog, and Unassign is a menu item. There is no keyboard drag in this release, so reordering work orders and technicians is by mouse or touch only."
+   ],
+   [
+    "S4-R5",
+    "After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”."
+   ],
+   [
+    "Out of Scope",
+    "Reordering work orders or technicians by keyboard. Reordering is by mouse or touch drag in this release (S11-R9)."
+   ],
+   [
+    "Tech plan Phase 11 dialog",
+    "The dialog is the keyboard path for moving work between technicians; it runs the same permission and status checks as the pointer path (S11-N1)"
+   ]
+  ]
+ },
+ "97020": {
+  "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+  "last_checked": "Last checked against build v26.40.8-7a95011 on 10/8/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "quotes": [
+   [
+    "S11-N1",
+    "Keyboard access must not bypass action permissions or work order status restrictions."
+   ],
+   [
+    "S11-R9",
+    "Reassigning by keyboard goes through the more-actions menu: Reassign lead technician opens the Reassign dialog, and Unassign is a menu item. There is no keyboard drag in this release, so reordering work orders and technicians is by mouse or touch only."
+   ],
+   [
+    "S4-N1",
+    "Require Work Orders create and edit permission to drag work orders or access Reassign lead technician."
+   ],
+   [
+    "S4-N6",
+    "The disabled Reassign lead technician action on an Invoiced or Paid work order shows this tooltip: “The lead technician can’t be changed once a work order is Invoiced or Paid.”"
+   ],
+   [
+    "Tech plan Phase 11 tests",
+    "a keyboard-initiated reassign is refused for a locked status and without permission (S11-N1)."
+   ]
+  ]
+ },
+ "96945": {
+  "marker": "AUTOMATION: READY",
+  "last_checked": "Last checked against build v26.40.8-7a95011 on 10/8/2026.",
+  "quotes": [
+   [
+    "S3-R13",
+    "Reveal the card’s more-actions overlay on hover or keyboard focus."
+   ],
+   [
+    "S3-R14",
+    "Include Reassign lead technician in the card’s more-actions menu."
+   ]
+  ]
+ },
+ "614711": {
+  "marker": "AUTOMATION: READY - EXPECT FAIL (SV-11416)",
+  "last_checked": null,
+  "quotes": [
+   [
+    "S5-R11b",
+    "Every technician name in Tech View and Board View, on cards, rows, group headers, column headers and the names shown on hover over any technician avatar (S2-R10, S7-R1), is the technician’s staff record name, the same name the List’s Lead Technician column shows."
+   ],
+   [
+    "S3-R3",
+    "Column headers (technician names and counts) stay pinned at the top of the board while the user scrolls vertically, so long columns never hide whose column is being viewed."
+   ],
+   [
+    "S3-N2",
+    "Keep matching work visible in its deactivated technician’s column."
+   ],
+   [
+    "S3-N4",
+    "Show an inactive indicator on deactivated technician columns."
+   ],
+   [
+    "Decisions (2026-09-13)",
+    "Deactivating a technician does not change work orders they already lead. They remain the lead technician on those work orders so the work stays visible and attributable; they simply receive no new assignments (S2-N2, S3-N2, S3-E3)."
+   ]
+  ]
+ },
+ "96916": {
+  "marker": "AUTOMATION: READY",
+  "last_checked": "Last checked against build v26.40.19-72f4f3b (staging) on 10/16/2026.",
+  "quotes": [
+   [
+    "S1-R8",
+    "In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. Horizontal position comes back exactly. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position. List behaves as it does today."
+   ]
+  ]
+ },
+ "368214": {
+  "marker": "AUTOMATION: READY",
+  "last_checked": "Last checked against build v26.40.8-7a95011 on 10/8/2026.",
+  "quotes": [
+   [
+    "QA handoff hotspot 3",
+    "The rebuilt Work Orders List. Check saved preferences against URL links, Back and Forward, location switch, stale rows after an edit, and sorting and paging."
+   ],
+   [
+    "PRD S1-R8",
+    "In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. Horizontal position comes back exactly. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position. List behaves as it does today."
+   ],
+   [
+    "PRD section 1 Business Case",
+    "List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays."
+   ]
+  ]
+ },
+ "590110": {
+  "marker": "AUTOMATION: READY",
+  "last_checked": "Last checked against build v26.40.19-72f4f3b (staging) on 10/16/2026.",
+  "quotes": [
+   [
+    "S1-R9a",
+    "The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View these icons are the design’s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system’s icon set), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and the empty state when there are no work orders at all (`clipboard-list`). The filtered no-results state is the List’s, magnifier included (S1-N1). The filter chips and Search use the design file’s icons in every display option, List included, each exactly as the design file draws it; this is the only change to List. Every other List icon is unchanged."
+   ],
+   [
+    "S1-R9",
+    "The switcher visually indicates the active display option."
+   ],
+   [
+    "S6-R1",
+    "Offer Compact, Regular, and Comfortable density in Tech View and Board View."
+   ],
+   [
+    "Goals",
+    "List remains the default and is unchanged from production. The only changes to the Work Orders page are the display switcher and the icons on the filter chips and Search, which follow the design file in every display option, List included (S1-R9a). Today’s tabs, toolbar layout and Create Work Order button stay as they are."
+   ],
+   [
+    "Design — _ds_bundle.js (design library), density button icon",
+    "name: kanban ? 'card-height' : 'row-height',"
+   ],
+   [
+    "Design — _ds_bundle.js (design library), column chooser button icon",
+    "window.svIcon(\"columns-3\", 20)"
+   ],
+   [
+    "Design — README.md (design library), icons",
+    "Never emoji. Never a unicode glyph as an icon."
+   ],
+   [
+    "Design — _ds_bundle.js (design library), Work Orders filter chip Status icon",
+    "id: \"status\", icon: SVIcons.ICON_LOAD, label: \"Status\","
+   ],
+   [
+    "Design — _ds_bundle.js (design library), Work Orders filter chip Assigned to me icon",
+    "id: \"mine\", icon: svGlyph(\"clipboard-list\", 16), label: \"Assigned to me\","
+   ],
+   [
+    "Design — _ds_bundle.js (design library), Work Orders filter chip Asset on site icon",
+    "id: \"asset\", icon: SVIcons.ICON_TRUCK, label: \"Asset on site\","
+   ],
+   [
+    "Design — _ds_bundle.js (design library), spinner icon",
+    "ICON_LOAD: lazyGlyph(\"loader\"),"
+   ],
+   [
+    "Design — _ds_bundle.js (design library), Search icon",
+    "ICON_SEARCH: lazyGlyph(\"search\", 20),"
+   ]
+  ]
+ },
+ "590112": {
+  "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+  "last_checked": "Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "quotes": [
+   [
+    "S2-R22",
+    "Tech View’s table runs edge to edge on white, with no side gutter and no card or panel around it, as in the design. When the columns are wider than the screen, the table scrolls sideways, as in the design; columns keep the design’s minimum widths and are never squeezed or clipped."
+   ],
+   [
+    "S2-R1",
+    "Group work orders by lead technician with visible separators."
+   ],
+   [
+    "Goals",
+    "List remains the default and is unchanged from production. The only changes to the Work Orders page are the display switcher and the icons on the filter chips and Search, which follow the design file in every display option, List included (S1-R9a). Today’s tabs, toolbar layout and Create Work Order button stay as they are."
+   ],
+   [
+    "Design — README.md (design library), list screens",
+    "runs edge to edge on white (never inside a card on grey)"
+   ],
+   [
+    "Design — SKILL.md (design library), list screens",
+    "A list screen is white and the table runs edge to edge."
+   ],
+   [
+    "Design — Work Orders.dc.html, Tech View column header row",
+    "position: sticky; top: 0; z-index: 2; background: var(--sv-surface); border-bottom: 1px solid var(--sv-border-default);"
+   ],
+   [
+    "Design — Work Orders.dc.html, Tech View group header",
+    "border-top: 3px double var(--sv-border-default);"
+   ],
+   [
+    "Design — Work Orders.dc.html, Tech View table",
+    "min-width: {{ rowsMinWidth }}; flex: 1; padding-bottom: 20px; background: var(--sv-surface);"
+   ]
+  ]
+ },
+ "590114": {
+  "marker": "AUTOMATION: READY",
+  "last_checked": "Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026.",
+  "quotes": [
+   [
+    "S2-R20",
+    "Tech View’s cells follow the design: the work order number shows as a link in the accent color; Progress shows as a thin bar with the percentage beside it, with no hours line under it at any density (S6-R6); Service Advisor shows the advisor’s avatar before the name. Clocked In keeps List’s display (S5-R11)."
+   ],
+   [
+    "S1-R9a",
+    "The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View these icons are the design’s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system’s icon set), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and the empty state when there are no work orders at all (`clipboard-list`). The filtered no-results state is the List’s, magnifier included (S1-N1). The filter chips and Search use the design file’s icons in every display option, List included, each exactly as the design file draws it; this is the only change to List. Every other List icon is unchanged."
+   ],
+   [
+    "S2-R8",
+    "Clicking anywhere on a row, outside its own controls, opens the work order. A drag starts only after the pointer has moved a few pixels, so a click never turns into a drag."
+   ],
+   [
+    "S7-R3",
+    "Place the lead technician first in the avatar group."
+   ],
+   [
+    "S7-R6",
+    "Keep every involved technician discoverable by name."
+   ],
+   [
+    "Design — Work Orders.dc.html, Tech View Progress cell, bar size at Regular",
+    "barW: rowDensity === \"small\" ? \"48px\" : \"64px\""
+   ],
+   [
+    "Design — Work Orders.dc.html, Tech View Progress cell, bar size at Regular",
+    "barH: rowDensity === \"small\" ? \"4px\" : \"6px\""
+   ],
+   [
+    "Design — Work Orders.dc.html, Tech View Progress cell",
+    "font-size: 12px; color: var(--sv-text-secondary); font-variant-numeric: tabular-nums;\">{{ wo.pctLabel }}"
+   ],
+   [
+    "Design — Work Orders.dc.html, Tech View Service Advisor cell",
+    "component-from-global-scope=\"SVAvatarFix\" name=\"{{ wo.adv }}\" size=\"{{ crewSize }}\""
+   ],
+   [
+    "Design — Work Orders.dc.html, empty cell",
+    "<span style=\"color: var(--sv-text-muted);\">-</span>"
+   ],
+   [
+    "Design — Work Orders.dc.html, Total price cell",
+    "text-align: right; color: var(--sv-text-primary); font-variant-numeric: tabular-nums;\">{{ wo.total }}"
+   ],
+   [
+    "Design — Work Orders.dc.html, tooltip",
+    "transform: translate(-50%, -100%); padding: 6px 10px; border-radius: var(--sv-radius-md); background: var(--sv-surface-inverse);"
+   ]
+  ]
+ },
+ "590117": {
+  "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+  "last_checked": "Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "quotes": [
+   [
+    "S2-R12",
+    "Each group header shows the technician’s name, avatar, and a count of the work orders currently shown in that group, after the filter view and filters are applied, so the count always matches the rows listed."
+   ],
+   [
+    "S2-R10",
+    "Hovering a technician header or avatar reveals the technician’s name."
+   ],
+   [
+    "S2-R5",
+    "Allow each technician group to be collapsed or expanded."
+   ],
+   [
+    "S1-R9a",
+    "The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View these icons are the design’s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system’s icon set), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and the empty state when there are no work orders at all (`clipboard-list`). The filtered no-results state is the List’s, magnifier included (S1-N1). The filter chips and Search use the design file’s icons in every display option, List included, each exactly as the design file draws it; this is the only change to List. Every other List icon is unchanged."
+   ],
+   [
+    "Design — _ds_bundle.js (design library), staff avatar",
+    "Photo when we have one, initials otherwise."
+   ],
+   [
+    "Design — _ds_bundle.js (design library), staff avatar without a photo",
+    "background: color || 'var(--sv-surface-sunken)', color: color ? 'var(--sv-accent-on-solid)' : 'var(--sv-text-secondary)',"
+   ],
+   [
+    "Design — Work Orders.dc.html, Tech View group header name",
+    "font-size: 14px; font-weight: 600; color: var(--sv-text-primary); margin-right: -12px;"
+   ],
+   [
+    "Design — Work Orders.dc.html, Tech View group header height by density",
+    "groupH: rowDensity === \"large\" ? \"56px\" : rowDensity === \"small\" ? \"36px\" : \"44px\""
+   ],
+   [
+    "S9-R1a",
+    "In Tech View every work order row, Unassigned’s rows included, shows the design’s six-dot drag grip at its left edge to users who can drag work orders (S4-N1). Every technician group header shows the grip to every user who can reorder technicians (S9-R2), view-only users included, because the technician order is personal. The Unassigned group header shows no grip, because Unassigned cannot move (S9-R8). The whole row still drags (S2-R8); the grip shows that it can."
+   ]
+  ]
+ },
+ "590119": {
+  "marker": "AUTOMATION: READY",
+  "last_checked": "Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026.",
+  "quotes": [
+   [
+    "S3-R12",
+    "Each column header shows the technician’s name, avatar, and a count of the work orders currently shown in that column, after the filter view and filters are applied, so the count always matches the cards listed."
+   ],
+   [
+    "S3-R7",
+    "Allow users to pin a technician from the column header."
+   ],
+   [
+    "S3-R8",
+    "At three pinned technicians, disable other pin controls with: “You can pin up to 3 technicians.”"
+   ],
+   [
+    "S1-R9a",
+    "The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View these icons are the design’s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system’s icon set), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and the empty state when there are no work orders at all (`clipboard-list`). The filtered no-results state is the List’s, magnifier included (S1-N1). The filter chips and Search use the design file’s icons in every display option, List included, each exactly as the design file draws it; this is the only change to List. Every other List icon is unchanged."
+   ],
+   [
+    "Design — Work Orders.dc.html, Board View Unassigned avatar",
+    "width: 28px; height: 28px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--sv-surface-sunken); color: var(--sv-text-secondary);"
+   ],
+   [
+    "Design — Work Orders.dc.html, Board View column header name",
+    "font-size: 14px; font-weight: 600; color: var(--sv-text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: -8px;"
+   ],
+   [
+    "Design — _ds_bundle.js (design library), staff avatar without a photo",
+    "background: color || 'var(--sv-surface-sunken)', color: color ? 'var(--sv-accent-on-solid)' : 'var(--sv-text-secondary)',"
+   ]
+  ]
+ },
+ "590128": {
+  "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+  "last_checked": "Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "quotes": [
+   [
+    "S6-R1",
+    "Offer Compact, Regular, and Comfortable density in Tech View and Board View."
+   ],
+   [
+    "S6-R2",
+    "Density adjusts spacing and the size of rows, cards, and their elements."
+   ],
+   [
+    "S6-R3",
+    "Share one density selection between Tech View and Board View."
+   ],
+   [
+    "S6-R4",
+    "Row and card text is 14px at every density; Compact never shrinks it. Text the design sets at 12px at every density, such as column header labels (S2-R21), the progress percentage and secondary lines, stays 12px."
+   ],
+   [
+    "S6-R6",
+    "Changing density never changes which fields, columns, or values are displayed."
+   ],
+   [
+    "S2-R20",
+    "Tech View’s cells follow the design: the work order number shows as a link in the accent color; Progress shows as a thin bar with the percentage beside it, with no hours line under it at any density (S6-R6); Service Advisor shows the advisor’s avatar before the name. Clocked In keeps List’s display (S5-R11)."
+   ],
+   [
+    "Design — Work Orders.dc.html, Tech View row height by density",
+    "rowH: rowDensity === \"large\" ? \"64px\" : rowDensity === \"small\" ? \"36px\" : \"48px\""
+   ],
+   [
+    "Design — Work Orders.dc.html, Tech View text size by density",
+    "cellFs: rowDensity === \"small\" ? \"13px\" : \"14px\""
+   ],
+   [
+    "Design — Work Orders.dc.html, Tech View avatar size by density",
+    "crewSize: rowDensity === \"large\" ? 32 : rowDensity === \"small\" ? 20 : 24"
+   ],
+   [
+    "Design — Work Orders.dc.html, Tech View progress bar by density",
+    "barW: rowDensity === \"small\" ? \"48px\" : \"64px\""
+   ]
+  ]
+ },
+ "590113": {
+  "marker": "AUTOMATION: READY",
+  "last_checked": "Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026.",
+  "quotes": [
+   [
+    "S5-R4",
+    "Until the user changes Tech View’s columns, Tech View shows these columns, in this order, as in the design: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price (Total price subject to financial permission). On Site, VIN/Serial # and Lead Technician are off by default; each can be added with the column chooser (S2-R4). Column headings use the List’s labels for List columns (for example Unit, not Unit #) and Assigned Techs for the new column. List’s columns are unchanged."
+   ],
+   [
+    "S7-R7",
+    "In Tech View the Assigned Techs column sits immediately after Lines, matching the design. It is on by default (S5-R4) and can be removed through the column chooser (S2-R4)."
+   ],
+   [
+    "S2-R21",
+    "Tech View’s column header labels are 12px, medium weight (500), in the secondary text color, as in the design. Labels never overlap a neighboring label."
+   ],
+   [
+    "Out of Scope",
+    "Rank numbers (1, 2, 3, and so on) beside each Tech View row, as the design shows."
+   ],
+   [
+    "Out of Scope",
+    "Collapse all and Expand all controls for the technician groups. Groups collapse one at a time (S2-R5, S2-R13)."
+   ],
+   [
+    "Design — Work Orders.dc.html, Tech View column header row",
+    "font-size: 12px; font-weight: 500; color: var(--sv-text-secondary); white-space: nowrap;"
+   ]
+  ]
+ },
+ "590122": {
+  "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+  "last_checked": "Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "quotes": [
+   [
+    "S2-R15",
+    "A technician group with no work orders under the current filters, and an empty Unassigned group, show the text “No work orders”."
+   ],
+   [
+    "S3-R20",
+    "A technician column with no work orders under the current filters, and an empty Unassigned column, show “Drag a work order here to assign it” to a user who can reassign work orders (S4-N1), and “No work orders” to everyone else."
+   ],
+   [
+    "S1-R9a",
+    "The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View these icons are the design’s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system’s icon set), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and the empty state when there are no work orders at all (`clipboard-list`). The filtered no-results state is the List’s, magnifier included (S1-N1). The filter chips and Search use the design file’s icons in every display option, List included, each exactly as the design file draws it; this is the only change to List. Every other List icon is unchanged."
+   ],
+   [
+    "S1-N1",
+    "When the active filters or a search return no work orders, Tech View and Board View show the same empty state as the List, with the same messages and action."
+   ],
+   [
+    "S1-N1a",
+    "With filters active, with or without a search, the empty state reads “No work orders match these filters”, then “Try removing a filter to widen your results.”, with a Clear all filters button."
+   ],
+   [
+    "S1-N1b",
+    "With only a search active, the empty state reads “No work orders match the search \"{search}\".” and shows no button."
+   ],
+   [
+    "Design — Work Orders.dc.html, Board View empty column",
+    "border-radius: 8px; border: 1px dashed var(--sv-border-strong); background: var(--sv-surface);"
+   ],
+   [
+    "Design — Work Orders.dc.html, Board View empty column",
+    "font-size: 12px; font-weight: 500; color: var(--sv-text-secondary);\">Drag a work order here to assign it"
+   ],
+   [
+    "Design — SKILL.md (design library), empty states",
+    "Empty-state illustrations are a deliberate omission — Shopview empty states are text only."
+   ]
+  ]
+ },
+ "590127": {
+  "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+  "last_checked": null,
+  "quotes": [
+   [
+    "S1-R15",
+    "In Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location’s technicians (the same people who get a group or column, S9-R4), by first name then last name. Choosing one or more shows only those technicians’ groups or columns; every other group or column, pinned ones included, is hidden. It filters by lead technician only."
+   ],
+   [
+    "S1-R15b",
+    "List does not offer the Technician filter and stays as in production. Switching to List while technicians are chosen shows List as if none were chosen; switching back to Tech View or Board View brings the choice back. The choice is remembered the same way as the other filters."
+   ],
+   [
+    "S1-R9a",
+    "The switcher uses the design’s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View these icons are the design’s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system’s icon set), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and the empty state when there are no work orders at all (`clipboard-list`). The filtered no-results state is the List’s, magnifier included (S1-N1). The filter chips and Search use the design file’s icons in every display option, List included, each exactly as the design file draws it; this is the only change to List. Every other List icon is unchanged."
+   ],
+   [
+    "Out of Scope",
+    "A Department filter. The design shows one, but a work order’s department is not shown or editable on any work order screen today, so users could not see why a work order matches. Revisit once the work order shows its department."
+   ],
+   [
+    "Design — _ds_bundle.js (design library), Technician filter icon",
+    "ICON_WRENCH: lazyGlyph(\"wrench\"),"
+   ]
+  ]
+ }
+}
