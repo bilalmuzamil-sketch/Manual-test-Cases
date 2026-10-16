@@ -37,15 +37,15 @@
    "statusChip": "Status: Approved\nkeyboard_arrow_down\ncancel",
    "wos": {
     "S2-34132": "list",
+    "S2-34150": "list",
     "S2-34134": "list",
     "S2-34133": "list",
     "S2-34138": "list",
     "S2-34149": "list",
     "S2-34137": "list",
-    "S2-34135": "list",
-    "S2-34150": "list"
+    "S2-34135": "list"
    },
-   "ms": 3081
+   "ms": 3065
   },
   "Tech View": {
    "active": "Tech View",
@@ -67,7 +67,7 @@
     "Unassigned": 7,
     "Aaron Baker": 1
    },
-   "ms": 3115
+   "ms": 3107
   },
   "Board View": {
    "active": "Board View",
@@ -86,10 +86,10 @@
     "S2-34149": "board_column_c57d19d7-dc2b-4472-a11d-984c61b01c0e"
    },
    "counts": {
-    "board_column_unassigned": "person | Unassigned | assignment",
-    "board_column_c57d19d7-dc2b-4472-a11d-984c61b01c0e": "drag_indicator | AB | Aaron Baker"
+    "board_column_unassigned": "Unassigned | 7 | 7 work orders",
+    "board_column_c57d19d7-dc2b-4472-a11d-984c61b01c0e": "AB | Aaron Baker | 1"
    },
-   "ms": 3138
+   "ms": 3123
   },
   "List (back)": {
    "active": "List",
@@ -99,15 +99,15 @@
    "statusChip": "Status: Approved\nkeyboard_arrow_down\ncancel",
    "wos": {
     "S2-34132": "list",
+    "S2-34150": "list",
     "S2-34134": "list",
     "S2-34133": "list",
     "S2-34138": "list",
     "S2-34149": "list",
     "S2-34137": "list",
-    "S2-34135": "list",
-    "S2-34150": "list"
+    "S2-34135": "list"
    },
-   "ms": 3111
+   "ms": 3097
   }
  },
  "C96914": {
@@ -154,7 +154,7 @@
     "display": "Board View",
     "chip": "Asset on Site: Yes\nkeyboard_arrow_down\ncancel",
     "search": null,
-    "wos": 26
+    "wos": 27
    },
    "Tech View": {
     "scheduleUrl": "/schedule",
@@ -177,8 +177,8 @@
  "C96920": {
   "start": "Board View",
   "failed": [
-   "GET /js/WorkOrdersTechViewDisplay.B5xTgl4e.js",
-   "GET /css/WorkOrdersTechViewDisplay.Dkzw81Ju.css",
+   "GET /css/WorkOrdersTechViewDisplay.Cp4SGnn0.css",
+   "GET /js/WorkOrdersTechViewDisplay.BAKyE8QR.js",
    "POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%",
    "POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%",
    "PUT /api/users/me/preferences/work-orders-list"
@@ -220,21 +220,21 @@
   ],
   "headerChosen": "text-left sortable sorted sort-desc | aria-sort=null | Created Onarrow_drop_up",
   "techBefore": [
-   "S2-35196",
-   "S2-35197",
-   "S2-35198"
-  ],
-  "rowAttrs": "draggable=null class=cursor-pointer grip=false",
-  "techAfter": [
    "S2-35198",
    "S2-35196",
    "S2-35197"
+  ],
+  "rowAttrs": "draggable=null class=cursor-pointer grip=true",
+  "techAfter": [
+   "S2-35197",
+   "S2-35198",
+   "S2-35196"
   ],
   "toasts": [],
   "board": [
+   "S2-35197",
    "S2-35198",
-   "S2-35196",
-   "S2-35197"
+   "S2-35196"
   ],
   "listBack": [
    "S2-35198",
@@ -244,8 +244,9 @@
   "headerBack": "text-left sortable sorted sort-desc | aria-sort=null | Created Onarrow_drop_up"
  },
  "prefCalls": [
-  "GET /js/usePagePreferences.J7fUFCiv.js ",
+  "GET /js/usePagePreferences._fkzgsuD.js ",
   "GET /api/users/me/preferences/work-orders-list ",
+  "PUT /api/users/me/preferences/work-orders-list {\"value\":{\"tab\":\"all\",\"filters\":{\"assigned_to_me\":[]},\"columns\":{\"unreceivedPartRequestsCount\":true,\"vehicle\":true,\"vin\":true,\"progress\":true,\"serviceAdvisor\":true,\"technician\":true,\"clockedInTechnici",
   "PUT /api/users/me/preferences/work-orders-list {\"value\":{\"tab\":\"all\",\"filters\":{\"assigned_to_me\":[],\"status\":[\"approved\"]},\"columns\":{\"unreceivedPartRequestsCount\":true,\"vehicle\":true,\"vin\":true,\"progress\":true,\"serviceAdvisor\":true,\"technician\":t",
   "PUT /api/users/me/preferences/work-orders-list {\"value\":{\"tab\":\"all\",\"filters\":{\"status\":[\"approved\"],\"assigned_to_me\":[]},\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":true,\"progress\":true,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"t",
   "PUT /api/users/me/preferences/work-orders-list {\"value\":{\"tab\":\"all\",\"filters\":{\"vehicleHere\":[\"1\"]},\"columns\":{\"unreceivedPartRequestsCount\":true,\"vehicle\":true,\"vin\":true,\"progress\":true,\"serviceAdvisor\":true,\"technician\":true,\"clockedInTechnici",
