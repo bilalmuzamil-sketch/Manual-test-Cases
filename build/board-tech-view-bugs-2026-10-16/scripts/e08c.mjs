@@ -1,0 +1,12 @@
+import {session,toView} from './rec.mjs';
+const s=await session({vp:{width:1600,height:1000},dpr:1}); const p=s.page;
+await s.go('/workorders?tab=all'); await p.waitForTimeout(3000);
+await p.click('[data-test-id=profile_menu_button]'); await p.waitForTimeout(900);
+await p.click('[data-test-id=select_location]'); await p.waitForTimeout(1200);
+const opts=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>e.innerText.trim()));
+console.log('opts',JSON.stringify(opts));
+const it=p.locator('.q-menu .q-item').filter({hasText:'ZZAUTOTEST F2 Empty Shop'}).last(); await it.click(); await p.waitForTimeout(6000);
+console.log('url',p.url(), await p.evaluate(()=>document.querySelector('[data-test-id=profile_menu_button]')?.innerText.replace(/\s+/g,' ')));
+const r=await s.api('/api/work-orders?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=5&pagination%5BsortBy%5D=status&pagination%5Bdescending%5D=true&search=&showMyWorkOrders=0');
+console.log('count',JSON.stringify(r.json?.data?.pagination), (r.json?.data?.work_orders||[]).map(w=>w.number).join(','));
+await s.close();

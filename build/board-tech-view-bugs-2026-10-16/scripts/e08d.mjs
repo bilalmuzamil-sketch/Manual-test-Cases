@@ -1,0 +1,12 @@
+import {session,toView} from './rec.mjs'; import fs from 'fs';
+const s=await session({vp:{width:1600,height:1000},dpr:2}); const p=s.page; const mk=await s.marker();
+const loc=async name=>{ await p.click('[data-test-id=profile_menu_button]'); await p.waitForTimeout(900); await p.click('[data-test-id=select_location]'); await p.waitForTimeout(1200); await p.locator('.q-menu .q-item').filter({hasText:name}).last().click(); await p.waitForTimeout(6000); };
+await s.go('/workorders?tab=all'); await p.waitForTimeout(3000);
+const cur=await p.evaluate(()=>document.querySelector('[data-test-id=profile_menu_button]')?.innerText); if(!/Empty Shop/.test(cur)) await loc('ZZAUTOTEST F2 Empty Shop');
+const empty=()=>p.evaluate(()=>{const e=document.querySelector('[class*=empty]:not([class*=board-column__empty])'); const txt=[...document.querySelectorAll('*')].filter(e=>e.children.length===0&&e.innerText?.trim()&&e.getBoundingClientRect().y>200&&e.getBoundingClientRect().y<900&&!e.closest('tr,[data-test-id^=board_column_header]')).map(e=>e.innerText.trim()); const ic=[...document.querySelectorAll('svg[data-icon=clipboard-list],i.q-icon')].filter(i=>{const r=i.getBoundingClientRect();return r.width>=20&&r.y>200;}).map(i=>(i.getAttribute('data-icon')||'MAT:'+i.innerText.trim())+'@'+Math.round(i.getBoundingClientRect().width)); const b=[...document.querySelectorAll('button')].filter(b=>b.getBoundingClientRect().y>200).map(b=>(b.getAttribute('data-test-id')||'')+':'+b.innerText.trim()); const rows=document.querySelectorAll('[data-test-id^=tech_view_row_],[data-test-id^=board_card_][data-test-id*="-"],tbody tr.cursor-pointer').length; return {rows,txt:txt.slice(0,8),ic,b:b.slice(0,6)};});
+const out={mk};
+for(const tab of ['all','estimates','work_orders','completed']){ await p.click(`[data-test-id=tab_${tab}]`); await p.waitForTimeout(2500);
+  for(const v of ['list','tech_view','board_view']){ await toView(p,v); await p.waitForTimeout(1800); const e=await empty(); out[tab+'_'+v]=e; console.log(tab,v,JSON.stringify(e).slice(0,400)); if(e.rows===0) await p.screenshot({path:`/tmp/qa11310/e08d-${tab}-${v}.png`}); } }
+await p.click('[data-test-id=tab_all]'); await p.waitForTimeout(1500); await toView(p,'tech_view');
+await loc('Staging Heavy Duty - 9919'); console.log('restored',await p.evaluate(()=>document.querySelector('[data-test-id=profile_menu_button]')?.innerText.replace(/\s+/g,' ')));
+fs.writeFileSync('/tmp/qa11310/e08d.json',JSON.stringify(out,null,1)); await s.close();

@@ -1,0 +1,6 @@
+import {session,toView} from './rec.mjs'; import fs from 'fs';
+const s=await session({vp:{width:1600,height:1000},dpr:2}); const p=s.page; const mk=await s.marker(); const out={mk};
+await s.go('/workorders?tab=all&search=ZZNOMATCH19Q'); await p.waitForTimeout(5000);
+const rd=()=>p.evaluate(()=>{const ic=[...document.querySelectorAll('svg[data-icon],i.q-icon')].filter(i=>{const r=i.getBoundingClientRect();return r.width>=20&&r.y>250&&r.y<900;}).map(i=>(i.getAttribute('data-icon')||'MAT:'+i.innerText.trim())+'@'+Math.round(i.getBoundingClientRect().width)); const txt=[...document.querySelectorAll('*')].filter(e=>e.children.length===0&&e.innerText?.trim()&&e.getBoundingClientRect().y>250&&e.getBoundingClientRect().y<900).map(e=>e.innerText.trim()); return {ic,txt:txt.slice(0,6),clip:!!document.querySelector('[data-test-id=button_first_run_create_work_order]')};});
+for(const v of ['list','tech_view','board_view']){ await toView(p,v); await p.mouse.move(1580,990); await p.waitForTimeout(2500); out[v]=await rd(); await p.screenshot({path:`/tmp/qa11310/nr19-${v}.png`}); console.log(v,JSON.stringify(out[v])); }
+await toView(p,'tech_view'); fs.writeFileSync('/tmp/qa11310/nr19.json',JSON.stringify(out,null,1)); await s.close();
