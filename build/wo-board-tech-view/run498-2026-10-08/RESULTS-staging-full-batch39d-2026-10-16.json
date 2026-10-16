@@ -1,0 +1,73 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.18-7d85b7d",
+  "date": "16 October 2026",
+  "note": "batch 39d: reassign dialog and card field re-runs (s4-batchA, s5-batchC), 16 Oct 09:26-09:32 UTC"
+ },
+ "results": {
+  "C96956": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F1 Reassign List\", work order S2-35462, led by Esther Howard (Technician-A) at the start.",
+    "Step 4: the \"Reassign lead technician\" dialog opened from the card's More actions menu.",
+    "Step 5: it has a \"Search technicians\" box; its first row is \"Unassigned\"; under it comes one list with no grouping, every technician with an avatar and an \"N open\" line. Esther Howard, Ralph Edwards and Jenny Wilson are listed; Olive Office (Office User), Ina Active (deactivated) and Ella Elsewhere (another location only) are not.",
+    "Step 6: picking Ralph Edwards moved the card to his column and \"Lead technician updated\" showed.",
+    "Step 9: picking Unassigned moved the card to the Unassigned column and \"Lead technician removed\" showed.",
+    "Step 12: typing \"Jen\" narrowed the list; Cancel closed the dialog and nothing changed (the card stayed in Unassigned, no message).",
+    "Step 13: the work order page shows Lead technician \"Unassigned\".",
+    "Step 16: in Tech View the dialog shows the same rows with \"Unassigned\" first.",
+    "Step 17: picking Esther Howard moved the row to her group and \"Lead technician updated\" showed."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C96956-1-dialog-unassigned-first.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C96956-2-tech-view-dialog.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing."
+  },
+  "C368163": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F1 Dialog Search\", work order S2-35470, led by Esther Howard (Technician-A).",
+    "Step 5: the dialog reads \"S2-35470 · ZZAUTOTEST F1 Dialog Search\", marks Esther Howard as \"Current\" with a check, starts with \"Unassigned\" and lists the technicians in one list with no grouping.",
+    "Steps 6 and 7: \"Ral\" and \"ral\" give the same list: only names containing \"ral\" stay (Ralph Edwards, and also Gerald Pitts, Maximiliana Fitzgerald-Montgomery and ZZOLD Ralph Edwards, which contain the same letters on staging); Esther Howard and Jenny Wilson disappear.",
+    "Steps 8 and 9: \"Olive\" (the Office User) lists no technician: \"No technicians match “Olive”\"; \"zzqx\" shows \"No technicians match “zzqx”\".",
+    "Step 10: clearing the box brings back the whole list (260 rows).",
+    "Step 11: Cancel changed nothing: no message, and the card stayed in Esther Howard's column.",
+    "Step 13: the search box is empty when the dialog opens again.",
+    "Step 17: Tech View's dialog narrows the list the same way, and after Cancel the row stays in Esther Howard's group.",
+    "Note: the test's set-up says no other technician contains \"ral\"; on staging three others do. The list still kept only matching names."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C368163-1-board-dialog-ral.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C368163-2-office-user-not-offered.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing."
+  },
+  "C96978": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up: S2-36362 for \"ZZAUTOTEST F2 Card Field Values 21048\", asset on site, Service Advisor Esther Howard, three lines; lead \"ZZAUTOTEST Cora23480 Clock\" clocked in on line 1 and \"ZZAUTOTEST Rory23480 Clock\" (line 2's technician) clocked in on line 2.",
+    "Step 4: List's Clocked In reads \"ZZAUTOTEST Cora23480 Clock +1\" (the first technician's full name, then +1), and hovering shows both names.",
+    "Step 6: Fields to display offers 13 optional fields: Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date.",
+    "Step 8: with all of them on, the card shows the same values as List: customer, unit, VIN, Esther Howard, 0%, 3 lines, $435.27, On site, Today and the lead's name. The estimated hours read \"Est. 2.2 hrs\", the same as the work order page's \"Total Hours: 2.2 hrs\" (this run's three lines add up to 2.2 hours, not the 8.0 of the test's example lines).",
+    "Step 9: the card's clocked-in field reads \"ZZAUTOTEST Cora23480 Clock +1\", and hovering shows both names."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C96978-1-list-values.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C96978-2-card-clocked-in-hover.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C96978-3-work-order-total-hours.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing."
+  }
+ }
+}

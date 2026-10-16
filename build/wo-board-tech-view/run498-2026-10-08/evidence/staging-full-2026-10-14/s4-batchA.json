@@ -2,20 +2,135 @@
  "clearedSwitch": 200,
  "nina": [],
  "C96956": {
+  "setLeadA": 201,
+  "leadAtStart": [
+   "S2-35462 lead=Esther Howard"
+  ],
+  "wo": "S2-35462",
   "menuDisabled": false,
-  "list": {
-   "count": 178,
-   "unassigned": true,
-   "esther": true,
-   "ralph": true,
-   "jenny": true,
-   "oliveOffice": false,
-   "timClockuser": false,
-   "inaInactive": false,
-   "nickNoclock": false,
-   "ellaElsewhere": false
+  "s4_dialogOpen": 1,
+  "s5": {
+   "detail": {
+    "search": {
+     "placeholder": "Search technicians",
+     "value": ""
+    },
+    "rowCount": 260,
+    "nonRowItemsInList": [],
+    "rows": [
+     {
+      "key": "unassigned",
+      "text": "person Unassigned",
+      "avatar": false,
+      "photo": false,
+      "open": false,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "c57d19d7",
+      "text": "AB Aaron Baker 5 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "52b5c2b4",
+      "text": "AZ Aaron Zed 0 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "7f85bc58",
+      "text": "AS Admin ShopView 8 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "1bdce760",
+      "text": "AA Advisor Analysis 7 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "b06dd063",
+      "text": "AA Ahtasham Admin 4 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "052a953c",
+      "text": "AS Ahtasham Service Advisor 0 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "07253c44",
+      "text": "AF Ahtsham Foreman 1 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "55319163",
+      "text": "AP Ahtsham Parts Manger 1 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "1bc0e956",
+      "text": "AS Ahtsham Service Manager 0 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "768eb047",
+      "text": "AM Ammar Mughamis 1 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "95d3115a",
+      "text": "AF Amy Fernandez 0 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   },
+   "list": {
+    "count": 260,
+    "first": "person Unassigned",
+    "unassigned": true,
+    "esther": true,
+    "ralph": true,
+    "jenny": true,
+    "oliveOffice": false,
+    "timClockuser": false,
+    "inaInactive": false,
+    "nickNoclock": true,
+    "ellaElsewhere": false
+   }
   },
-  "toRalph": {
+  "s6_toRalph": {
    "prompt": null,
    "toast": [
     "Lead technician updated"
@@ -24,15 +139,8 @@
     "S2-35462 lead=Ralph Edwards"
    ]
   },
-  "inRalphColumn": true,
-  "woPageLeadAfterRalph": {
-   "field": null,
-   "testIds": [
-    "lead_technician_readonly=Ralph Edwards"
-   ],
-   "near": "Lead technician Ralph Edwards"
-  },
-  "toUnassigned": {
+  "s6_inRalphColumn": true,
+  "s9_toUnassigned": {
    "prompt": null,
    "toast": [
     "Lead technician removed"
@@ -41,146 +149,454 @@
     "S2-35462 lead=none"
    ]
   },
-  "inUnassigned": true,
-  "afterCancel": {
+  "s9_inUnassigned": true,
+  "s12_typed": [
+   "person Unassigned Current check",
+   "JC Jenna Cervantes 0 open",
+   "JM Jennifer Morris 0 open",
+   "JP Jennifer Phillips 0 open",
+   "JW Jenny Wilson 7 open"
+  ],
+  "s12_afterCancel": {
+   "dialog": 0,
    "lead": [
     "S2-35462 lead=none"
    ],
-   "stillUnassigned": true
+   "stillUnassigned": true,
+   "message": []
   },
-  "woPageLead": {
+  "s13_woPageLead": {
    "field": null,
    "testIds": [
     "lead_technician_readonly=Unassigned"
    ],
    "near": "Lead technician Unassigned"
   },
-  "techView": {
-   "startGroup": "b669608e-a897-4f21-a510-8ced9d9fa982",
-   "finds": [
-    "as it was",
-    "as it was",
-    "as it was"
-   ],
-   "menuDisabled": false,
-   "menu": [
-    "Reassign lead technician"
-   ],
-   "dialogCount": 178,
-   "toRalph": {
-    "prompt": null,
-    "toast": [
-     "Lead technician updated"
-    ],
-    "lead": [
-     "S2-35462 lead=Ralph Edwards"
-    ]
+  "s15_group": "unassigned",
+  "s16": {
+   "search": {
+    "placeholder": "Search technicians",
+    "value": ""
    },
-   "findAfterRalph": "as it was",
-   "groupAfterRalph": "b51a80a5-2d2a-488a-87cd-747e8798d8ee",
-   "woPageLeadAfterRalph": {
-    "field": null,
-    "testIds": [
-     "lead_technician_readonly=Ralph Edwards"
-    ],
-    "near": "Lead technician Ralph Edwards"
-   },
-   "toUnassigned": {
-    "prompt": null,
-    "toast": [
-     "Lead technician removed"
-    ],
-    "lead": [
-     "S2-35462 lead=none"
-    ]
-   },
-   "findAfterUnassigned": "NOT FOUND",
-   "groupAfterUnassigned": "unassigned",
-   "afterCancel": {
-    "lead": [
-     "S2-35462 lead=none"
-    ],
-    "find": "as it was",
-    "group": "unassigned"
-   },
-   "woPageLead": {
-    "field": null,
-    "testIds": [
-     "lead_technician_readonly=Unassigned"
-    ],
-    "near": "Lead technician Unassigned"
-   }
-  },
-  "techRowMenu": [
-   "Reassign lead technician"
-  ]
- },
- "C96959": {
-  "startLeadsFromRecords": {
-   "esther": 3,
-   "ralph": 1,
-   "unassigned": 0,
-   "total": 4,
-   "reset": [
-    201,
-    201,
-    201,
-    201
+   "rowCount": 260,
+   "nonRowItemsInList": [],
+   "rows": [
+    {
+     "key": "unassigned",
+     "text": "person Unassigned Current check",
+     "avatar": false,
+     "photo": false,
+     "open": false,
+     "bg": "rgb(233, 245, 255)"
+    },
+    {
+     "key": "c57d19d7",
+     "text": "AB Aaron Baker 5 open",
+     "avatar": true,
+     "photo": false,
+     "open": true,
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "key": "52b5c2b4",
+     "text": "AZ Aaron Zed 0 open",
+     "avatar": true,
+     "photo": false,
+     "open": true,
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "key": "7f85bc58",
+     "text": "AS Admin ShopView 8 open",
+     "avatar": true,
+     "photo": false,
+     "open": true,
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "key": "1bdce760",
+     "text": "AA Advisor Analysis 7 open",
+     "avatar": true,
+     "photo": false,
+     "open": true,
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "key": "b06dd063",
+     "text": "AA Ahtasham Admin 4 open",
+     "avatar": true,
+     "photo": false,
+     "open": true,
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "key": "052a953c",
+     "text": "AS Ahtasham Service Advisor 0 open",
+     "avatar": true,
+     "photo": false,
+     "open": true,
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "key": "07253c44",
+     "text": "AF Ahtsham Foreman 1 open",
+     "avatar": true,
+     "photo": false,
+     "open": true,
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "key": "55319163",
+     "text": "AP Ahtsham Parts Manger 1 open",
+     "avatar": true,
+     "photo": false,
+     "open": true,
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "key": "1bc0e956",
+     "text": "AS Ahtsham Service Manager 0 open",
+     "avatar": true,
+     "photo": false,
+     "open": true,
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "key": "768eb047",
+     "text": "AM Ammar Mughamis 1 open",
+     "avatar": true,
+     "photo": false,
+     "open": true,
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "key": "95d3115a",
+     "text": "AF Amy Fernandez 0 open",
+     "avatar": true,
+     "photo": false,
+     "open": true,
+     "bg": "rgba(0, 0, 0, 0)"
+    }
    ]
   },
-  "before": {
-   "esther": 3,
-   "ralph": 1,
-   "unassigned": 0
+  "s17_toEsther": {
+   "prompt": null,
+   "toast": [
+    "Lead technician updated"
+   ],
+   "lead": [
+    "S2-35462 lead=Esther Howard"
+   ]
   },
-  "afterDrag": {
-   "esther": 2,
-   "ralph": 2,
-   "unassigned": 0
-  },
-  "afterDialog": {
-   "esther": 2,
-   "ralph": 1,
-   "unassigned": 1
-  },
-  "tech": {
-   "esther": 2,
-   "ralph": 1,
-   "unassigned": 1
-  }
+  "s17_group": "b669608e-a897-4f21-a510-8ced9d9fa982"
  },
- "C96969": {
-  "linesBefore": [
-   "Line 1 Service - Transmission service: Esther Howard (follows lead)",
-   "Line 2 Service - Cabin air filter: Unassigned (needs technicians)"
-  ],
-  "historyBefore": [
-   "Line created",
-   "Lead tech changed",
-   "Line created",
-   "Created"
-  ],
-  "confirmEnabledForCurrent": true,
-  "message": [],
-  "lead": [
-   "S2-36023 lead=Esther Howard"
-  ],
-  "linesAfter": [
-   "Line 1 Service - Transmission service: Esther Howard (follows lead)",
-   "Line 2 Service - Cabin air filter: Unassigned (needs technicians)"
-  ],
-  "historyAfter": [
-   "Line created",
-   "Lead tech changed",
-   "Line created",
-   "Created"
-  ],
-  "controlHistory": [
-   "Lead tech changed",
-   "Line created",
-   "Lead tech changed",
-   "Line created",
-   "Created"
-  ]
+ "C368163": {
+  "board": {
+   "detail": {
+    "search": {
+     "placeholder": "Search technicians",
+     "value": ""
+    },
+    "rowCount": 260,
+    "nonRowItemsInList": [],
+    "rows": [
+     {
+      "key": "unassigned",
+      "text": "person Unassigned",
+      "avatar": false,
+      "photo": false,
+      "open": false,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "c57d19d7",
+      "text": "AB Aaron Baker 5 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "52b5c2b4",
+      "text": "AZ Aaron Zed 0 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "7f85bc58",
+      "text": "AS Admin ShopView 8 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "1bdce760",
+      "text": "AA Advisor Analysis 7 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "b06dd063",
+      "text": "AA Ahtasham Admin 4 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "052a953c",
+      "text": "AS Ahtasham Service Advisor 0 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "07253c44",
+      "text": "AF Ahtsham Foreman 1 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "55319163",
+      "text": "AP Ahtsham Parts Manger 1 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "1bc0e956",
+      "text": "AS Ahtsham Service Manager 0 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "768eb047",
+      "text": "AM Ammar Mughamis 1 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "95d3115a",
+      "text": "AF Amy Fernandez 0 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   },
+   "lead0": 201,
+   "top": "Reassign lead technician |  | S2-35470 · ZZAUTOTEST F1 Dialog Search",
+   "current": "EH Esther Howard Current · 195 open check",
+   "full": 260,
+   "placeholder": "Search technicians",
+   "Ral": {
+    "names": [
+     "person Unassigned",
+     "GP Gerald Pitts 0 open",
+     "MF Maximiliana Fitzgerald-Montgomery 1 open",
+     "RE Ralph Edwards 66 open",
+     "ZR ZZOLD Ralph Edwards 8 open"
+    ],
+    "empty": null
+   },
+   "ral": {
+    "names": [
+     "person Unassigned",
+     "GP Gerald Pitts 0 open",
+     "MF Maximiliana Fitzgerald-Montgomery 1 open",
+     "RE Ralph Edwards 66 open",
+     "ZR ZZOLD Ralph Edwards 8 open"
+    ],
+    "empty": null
+   },
+   "Olive": {
+    "names": [
+     "person Unassigned"
+    ],
+    "empty": "No technicians match “Olive” Cancel Reassign"
+   },
+   "zzqx": {
+    "names": [
+     "person Unassigned"
+    ],
+    "empty": "No technicians match “zzqx” Cancel Reassign"
+   },
+   "cleared": 260,
+   "afterCancel": {
+    "message": [],
+    "lead": [
+     "S2-35470 lead=Esther Howard"
+    ]
+   },
+   "searchOnReopen": ""
+  },
+  "techRowGroup": "b669608e-a897-4f21-a510-8ced9d9fa982",
+  "tech": {
+   "detail": {
+    "search": {
+     "placeholder": "Search technicians",
+     "value": ""
+    },
+    "rowCount": 260,
+    "nonRowItemsInList": [],
+    "rows": [
+     {
+      "key": "unassigned",
+      "text": "person Unassigned",
+      "avatar": false,
+      "photo": false,
+      "open": false,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "c57d19d7",
+      "text": "AB Aaron Baker 5 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "52b5c2b4",
+      "text": "AZ Aaron Zed 0 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "7f85bc58",
+      "text": "AS Admin ShopView 8 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "1bdce760",
+      "text": "AA Advisor Analysis 7 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "b06dd063",
+      "text": "AA Ahtasham Admin 4 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "052a953c",
+      "text": "AS Ahtasham Service Advisor 0 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "07253c44",
+      "text": "AF Ahtsham Foreman 1 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "55319163",
+      "text": "AP Ahtsham Parts Manger 1 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "1bc0e956",
+      "text": "AS Ahtsham Service Manager 0 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "768eb047",
+      "text": "AM Ammar Mughamis 1 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "95d3115a",
+      "text": "AF Amy Fernandez 0 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   },
+   "lead0": 201,
+   "top": "Reassign lead technician |  | S2-35470 · ZZAUTOTEST F1 Dialog Search",
+   "current": "EH Esther Howard Current · 195 open check",
+   "full": 260,
+   "placeholder": "Search technicians",
+   "Ral": {
+    "names": [
+     "person Unassigned",
+     "GP Gerald Pitts 0 open",
+     "MF Maximiliana Fitzgerald-Montgomery 1 open",
+     "RE Ralph Edwards 66 open",
+     "ZR ZZOLD Ralph Edwards 8 open"
+    ],
+    "empty": null
+   },
+   "ral": {
+    "names": [
+     "person Unassigned",
+     "GP Gerald Pitts 0 open",
+     "MF Maximiliana Fitzgerald-Montgomery 1 open",
+     "RE Ralph Edwards 66 open",
+     "ZR ZZOLD Ralph Edwards 8 open"
+    ],
+    "empty": null
+   },
+   "Olive": {
+    "names": [
+     "person Unassigned"
+    ],
+    "empty": "No technicians match “Olive” Cancel Reassign"
+   },
+   "zzqx": {
+    "names": [
+     "person Unassigned"
+    ],
+    "empty": "No technicians match “zzqx” Cancel Reassign"
+   },
+   "cleared": 260,
+   "afterCancel": {
+    "message": [],
+    "lead": [
+     "S2-35470 lead=Esther Howard"
+    ]
+   },
+   "searchOnReopen": ""
+  }
  }
 }
