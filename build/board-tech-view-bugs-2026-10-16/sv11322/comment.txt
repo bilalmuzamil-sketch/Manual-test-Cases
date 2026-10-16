@@ -1,0 +1,30 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on Staging (build v26.40.19-754919e) on 16 October 2026, against the spec (version 64). 4 of 4 checks passed.
+
+The display switcher's tooltips now open above the switcher, so they never cover the column header row, and they read List, Tech View and Board View.
+
+*Before and after*
+!sv11322-01-switcher-tooltips.png|width=1024,height=588!
+_Top (red): the "Tech View" tooltip as reported (picture from this ticket), opening below the switcher on top of the "Service Advisor" header. Bottom: staging today, hovering each of the three buttons; the blue line marks the top of the header row. Window 1440 x 900 px, browser zoom 100%._
+
+*What I checked*
+||#||Check||Status||
+|1|Hovering each of the three switcher buttons in List, Tech View and Board View, at 1440 and 1536 px: all 18 tooltips open above the switcher (each ends at 78 px; the buttons start at 86 px).|PASSED|
+|2|No tooltip covers the column header row: Tech View and List headers start at 140 px, Board View's column headers at 161 px.|PASSED|
+|3|The tooltips read exactly "List", "Tech View" and "Board View".|PASSED|
+|4|The tooltips are the same in every view: the same three words, in the same place.|PASSED|
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S1-R9b: The switcher's hover tooltip opens above the switcher, so it never covers the table's column header row. The tooltips read List, Tech View and Board View.{quote}
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com/workorders
+# On the right of the bar above the list there are three view buttons. Move the mouse over each one (don't click): a dark label appears above the buttons reading "List", "Tech View" or "Board View", and the column headers below stay readable.
+# Click the second button to open *Tech View* and repeat, then the third button for *Board View* and repeat.
+
+*Screen recording*
+!sv11322-switcher-tooltips-staging-recording-voiceover.mp4|width=1280,alt="sv11322-switcher-tooltips-staging-recording-voiceover.mp4"!
+_Staging, build v26.40.19-754919e, 16 October 2026, window 1440 px, zoom 100%: hovering List, Tech View and Board View in Tech View, then Board View in Board View, with each tooltip's position read from the page. With voice-over._

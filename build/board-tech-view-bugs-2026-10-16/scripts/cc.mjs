@@ -1,0 +1,3 @@
+import {session,toView} from './rec.mjs';
+const s=await session({vp:{width:1440,height:900},dpr:1}); const p=s.page; await s.go('/workorders?tab=all'); await p.waitForTimeout(4000); await toView(p,'board_view'); await p.waitForTimeout(1500);
+console.log(await p.evaluate(()=>{let n=document.querySelector('[data-test-id^=board_column_header_]'); const o=[]; for(let i=0;i<5&&n;i++){const r=n.getBoundingClientRect(),cs=getComputedStyle(n); o.push(`${n.getAttribute('data-test-id')||n.className.toString().slice(0,40)} x=${r.x} bl=${cs.borderLeftWidth} rad=${cs.borderRadius}`); n=n.parentElement;} return o.join('\n');})); await toView(p,'tech_view'); await s.close();
