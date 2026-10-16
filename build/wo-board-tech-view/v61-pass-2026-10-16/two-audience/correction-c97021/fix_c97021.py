@@ -9,17 +9,18 @@ def ws(s): return re.sub(r"\s+", " ", s.replace("**", "").replace("\\", "")).str
 A = json.load(open(f"{V}/anchor-quotes-current.json")); PRD = ws(open(f"{V}/CONFLUENCE-845185030-v61-2026-10-16.md").read())
 OLD = json.load(open(f"{V}/two-audience/existing-quotes.json"))["97021"]["quotes"]
 DOC = "https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md"
-pre = [
- 'You are signed in with the "Admin" role at {Location-A} (for example Staging Heavy Duty - 9919).',
- 'Two technicians are active at {Location-A} with the "Technician" role and Time Clock on: {Technician-A} (for example ZZAUTOTEST '
- 'C97021 Ana) and {Technician-B} (for example ZZAUTOTEST C97021 Ben).',
- 'Customer {Customer-A} (for example ZZAUTOTEST C97021 Keyboard) has four Approved work orders: {Work-order-1} and {Work-order-2} '
- '(for example S10043-17701 and S10043-17702) led by {Technician-A}, {Work-order-3} (for example S10043-17703) led by {Technician-B}, '
- 'and {Work-order-4} (for example S10043-17704) with no lead technician.',
- '{Technician-A} and {Technician-B} are pinned in your Board View, and no other technician is pinned.',
- 'Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" '
- 'off, in a browser window at least 1024 px wide.',
- 'If any record above is missing, mark this test Blocked: "setup not done".']
+pre = [   # (state line, example line shown on a second line of the same bullet, no bullet of its own)
+ ('You are signed in with the "Admin" role at {Location-A}.', "For example: {Location-A} is Staging Heavy Duty - 9919."),
+ ('Two technicians are active at {Location-A} with the "Technician" role and Time Clock on: {Technician-A} and {Technician-B}.',
+  "For example: {Technician-A} is ZZAUTOTEST C97021 Ana and {Technician-B} is ZZAUTOTEST C97021 Ben."),
+ ('Customer {Customer-A} has four Approved work orders: {Work-order-1} and {Work-order-2} led by {Technician-A}, {Work-order-3} led by '
+  '{Technician-B}, and {Work-order-4} with no lead technician.',
+  "For example: {Customer-A} is ZZAUTOTEST C97021 Keyboard, and {Work-order-1} to {Work-order-4} are S10043-17701 to S10043-17704."),
+ ("{Technician-A} and {Technician-B} are pinned in your Board View, and no other technician is pinned.", None),
+ ('Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" '
+  'off, in a browser window at least 1024 px wide.', None),
+ ('If any record above is missing, mark this test Blocked: "setup not done".', None)]
+PRE_TEXT = [a + (" " + b if b else "") for a, b in pre]
 HOWTO = re.compile(r'New Staff Member|New Customer|Create Work Order|Save & Close|"Save"|quick-login|click the pin|type "grease"|Lead Technician" dropdown')
 steps = ['Click once in the "Search" box.',
          "Press Tab until something on the board shows a focus ring.",
@@ -57,11 +58,11 @@ marker = "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build"
 P = []
 for l, q in quotes:
     if ws(q) not in PRD: P.append(f"quote {l} not verbatim in PRD v61")
-ph = re.compile(r"\{([^{}]+)\}"); defined = set(ph.findall(" ".join(pre)))
+ph = re.compile(r"\{([^{}]+)\}"); defined = set(ph.findall(" ".join(PRE_TEXT)))
 for x in set(ph.findall(" ".join(steps + res))):
     if x not in defined: P.append(f"{{{x}}} not defined in the preconditions")
-if re.search(r'"ZZAUTOTEST[^"]*"', " ".join(pre + steps + res)): P.append("hard-coded ZZAUTOTEST value in tester text")
-if HOWTO.search(" ".join(pre)): P.append("set-up instructions in the tester preconditions: " + HOWTO.search(" ".join(pre)).group(0))
+if re.search(r'"ZZAUTOTEST[^"]*"', " ".join(PRE_TEXT + steps + res)): P.append("hard-coded ZZAUTOTEST value in tester text")
+if HOWTO.search(" ".join(PRE_TEXT)): P.append("set-up instructions in the tester preconditions: " + HOWTO.search(" ".join(PRE_TEXT)).group(0))
 for i, r in enumerate(res, 1):
     if not r.startswith(f"Step {i}: "): P.append(f"result {i} not 'Step {i}:'")
 if len(res) != len(steps): P.append("one result per step")
@@ -71,7 +72,7 @@ e = lambda s: html.escape(s, quote=False)
 ul = lambda xs, t="ul": f"<{t}>" + "".join(f"<li>{e(x)}</li>" for x in xs) + f"</{t}>"
 fields = {
  "custom_preconds": f'<p><strong><a href="{DOC}">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p>'
-                    "<p><strong>Preconditions</strong></p>" + ul(pre),
+                    "<p><strong>Preconditions</strong></p><ul>" + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in pre) + "</ul>",
  "custom_steps": ul(steps, "ol"),
  "custom_expected": ("<p><strong>Expected results</strong></p>" + ul(res)
                      + f"<p><strong>Source &mdash; where this behaviour comes from</strong><br>{e(source)}</p><p>{e(divergence)}</p>"
@@ -87,7 +88,7 @@ if "--apply" in sys.argv:
         x = urllib.request.urlopen(r, timeout=120); return x.status, json.load(x)
     after = json.load(open(f"{H}/C97021-after.json")); st, live = api("get_case/97021")
     if live["updated_on"] != after["updated_on"]: sys.exit("REFUSED: C97021 changed since this pass wrote it")
-    json.dump(live, open(f"{H}/C97021-before-2.json", "w"), indent=1)
+    json.dump(live, open(f"{H}/C97021-before-3.json", "w"), indent=1)
     st, _ = api("update_case/97021", fields); st2, a = api("get_case/97021"); json.dump(a, open(f"{H}/C97021-after.json", "w"), indent=1)
     un = [x for x in a if x not in fields and x not in ("updated_on", "updated_by", "version") and a.get(x) != live.get(x)]
     r = {"op": "update_case", "case": "C97021", "http": st, "fields_ok": all(a[f] == v for f, v in fields.items()), "untouched_changed": un,

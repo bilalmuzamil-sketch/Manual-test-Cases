@@ -57,9 +57,9 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at {Location-A} (for example Staging Heavy Duty - 9919).
-- Two technicians are active at {Location-A} with the "Technician" role and Time Clock on: {Technician-A} (for example ZZAUTOTEST C97021 Ana) and {Technician-B} (for example ZZAUTOTEST C97021 Ben).
-- Customer {Customer-A} (for example ZZAUTOTEST C97021 Keyboard) has four Approved work orders: {Work-order-1} and {Work-order-2} (for example S10043-17701 and S10043-17702) led by {Technician-A}, {Work-order-3} (for example S10043-17703) led by {Technician-B}, and {Work-order-4} (for example S10043-17704) with no lead technician.
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Two technicians are active at {Location-A} with the "Technician" role and Time Clock on: {Technician-A} and {Technician-B}. For example: {Technician-A} is ZZAUTOTEST C97021 Ana and {Technician-B} is ZZAUTOTEST C97021 Ben.
+- Customer {Customer-A} has four Approved work orders: {Work-order-1} and {Work-order-2} led by {Technician-A}, {Work-order-3} led by {Technician-B}, and {Work-order-4} with no lead technician. For example: {Customer-A} is ZZAUTOTEST C97021 Keyboard, and {Work-order-1} to {Work-order-4} are S10043-17701 to S10043-17704.
 - {Technician-A} and {Technician-B} are pinned in your Board View, and no other technician is pinned.
 - Starting screen: "Work Orders" \> "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, in a browser window at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
