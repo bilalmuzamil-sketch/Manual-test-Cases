@@ -1,0 +1,203 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 15 = queue steps 37, 38"
+ },
+ "results": {
+  "C368220": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Parts > Returns (Returns tab): the Vendor filter already read \"4Refuel\" when the page opened (kept from an earlier run); 4Refuel was picked and the page listed 31 rows, all 4Refuel.",
+    "After a reload Vendor still reads \"4Refuel\" and the same rows show. No error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368220-1-vendor-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368222": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Parts > Part Sales: Status opened with Estimate, Approved and Completed ticked (Completed left ticked by an earlier run); clicking Completed unticked it, so the filter read \"Status: Estimate, +1\".",
+    "After a reload Status still has Estimate and Approved ticked and Completed unticked, and the same rows and totals show. No error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368222-1-status-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368224": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 2: in Parts > Catalog it clicked \"All manufacturers\" (the first entry, already chosen) instead of a manufacturer, so no filter was chosen and nothing was tested.",
+    "Seen: Manufacturer read \"All manufacturers\" before and after the reload, the same rows showed, and no error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368224-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: pick a real manufacturer, not \"All manufacturers\")."
+  },
+  "C368225": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 2: in Parts > Inventory it clicked \"All categories\" (the first entry, already chosen) instead of a category such as \"Uncategorized\", so no filter was chosen and nothing was tested.",
+    "Seen: Category read \"All categories\" before and after the reload, the same rows showed, and no error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368225-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: pick a real category, for example \"Uncategorized\")."
+  },
+  "C368226": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Reports > Work In Progress: in Location, Staging Lethbridge - 4310 was ticked as well as Staging Heavy Duty - 9919; the filter read \"Location: 2 locations\".",
+    "After a reload it still reads \"2 locations\" with both ticked, and the report shows the same rows and totals ($363,661.41, $553,649.66). No error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368226-1-location-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368227": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Reports > Sales By Customer: in Customer, \"4 Star Truck Repair\" was clicked; the report narrowed to that one customer.",
+    "After a reload the filter still reads \"4 Star Truck Repair\" and the report shows the same single row. No error message appeared.",
+    "Note: between the two readings that customer's row went from 11 to 12 sales ($4,989.73 to $5,364.61 labor). A reload does not make sales, so this is read as a new sale for this shared test customer made on staging in that minute; the filter and the row are the same."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368227-1-customer-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368228": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Reports > Parts Velocity: in Vendor, \"4Refuel\" was clicked; the filter read \"Vendor: 4Refuel\".",
+    "After a reload it still reads \"4Refuel\" and the same rows and totals show. No error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368228-1-vendor-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368229": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Reports > Inventory Value: in Category, \".Brake Parts\" was clicked; the filter read \"Category: .Brake Parts\".",
+    "After a reload it still reads \".Brake Parts\" and the same rows and totals show. No error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368229-1-category-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368230": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Reports > Technician Utilization: in Technician, Dana Ortiz was unticked; the filter read \"Technician: 7 technicians\".",
+    "After a reload it still reads \"7 technicians\" with Dana Ortiz unticked, and the same technicians' rows show. No error message appeared.",
+    "Note: only Daniel Montoya's hours moved, from 388.71 to 388.72 (his clock is running), so his row and the totals rose by $1.50."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368230-1-technician-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368231": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Reports > Sales By Representative: in Location, Staging Lethbridge - 4310 was ticked as well; the filter read \"Location: 2 locations\".",
+    "After a reload it still reads \"2 locations\" with both ticked, and the same rows and totals show. No error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368231-1-location-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368233": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 6: it did not click the ticked \"All customers\" box, and the comparison with production (step 9) was not repeated in this run.",
+    "Seen on staging, steps 3 to 5: \"All customers\" was ticked; clicking \"4 Star Truck Repair\" made it the only ticked one and the report narrowed to it; clicking it again went back to \"All customers\" and the full report. No Clear selection button was found in the open list. No error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368233-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: click the ticked \"All customers\" box) and compare with production."
+  },
+  "C368234": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 6: it did not click the ticked \"All vendors\" box, and the comparison with production (step 9) was not repeated in this run.",
+    "Seen on staging, steps 3 to 5: \"All vendors\" was ticked; clicking \"4Refuel\" made it the only ticked one and the report narrowed to it; clicking it again went back to \"All vendors\" and the full report. No Clear selection button was found. No error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368234-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: click the ticked \"All vendors\" box) and compare with production."
+  },
+  "C368235": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 6: it did not click the ticked \"All categories\" box, and the comparison with production (step 9) was not repeated in this run.",
+    "Seen on staging, steps 3 to 5: \"All categories\" was ticked; clicking \".Brake Parts\" made it the only ticked one and the report narrowed to it; clicking it again went back to \"All categories\" and the full report. No Clear selection button was found. No error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368235-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: click the ticked \"All categories\" box) and compare with production."
+  },
+  "C368245": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: step 4 could not be judged. After clicking Customer Name, the first page is in name order except one test customer, \"ZZBREAK <b>bold</b> \\\"q\\\" & 'x' Superlong…\" (made by another test to try odd names), which sits at the top before \"4 Star Truck Repair\". It sits at the top in the Sales By Customer report's lists too, so its saved name may start with a hidden character; that could not be read on screen.",
+    "Seen: step 2, the table shows rows with no error message. Step 5, after scrolling, the next rows are different customers, in name order, with no repeats (68 rows)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368245-1-sorted-later-page.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: open that customer (Customers > ZZBREAK…) and check whether its name starts with a space or hidden character; if it does, mark this test Passed; if not, it is sorted wrongly and should be reported."
+  },
+  "C368246": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 2: the Dashboard's cards (Revenue, Billing Efficiency, Technician Efficiency, Technician Utilization, Sales by Customer, At Risk Customers) loaded with no error message, but their tables are behind \"View details\" and the script did not open them, so no table rows or sorting were read."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368246-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: open each card's View details, then read and sort its table)."
+  },
+  "C368213": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete the set-up: on purchase order S2-36773 (for work order S2-36773's part request ZZPC-B-7246) it left \"Vendor Invoice #\" empty, so \"Receive Parts (1)\" stayed disabled and no part was received or returned.",
+    "Seen: customer \"ZZAUTOTEST WO Parts Counts 82631\", work order approved with two part requests; one was ordered. The List's Parts and Returns columns were not read."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368213-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: type a Vendor Invoice # before Receive Parts, then raise the return and read the List)."
+  }
+ }
+}
