@@ -981,3 +981,11 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   target. Not proved yet, so it was not reported (C368156 Blocked).
 - `push_results_to_run.py --screenshots yes` refuses unless EVERY result, Blocked included, has a picture: annotate the screen that
   shows why it was blocked. #staging #schedule #location #rule104 #rule130 → L0399
+
+## L0401 — 2026-10-16 — Read the build with build-marker.mts (wob-run hides /api/version); recount the run before reporting, other sessions change it
+- `/api/version` answers a 40-character commit plus "-develop", and `wob-run.sh` masks any 32+ hex run as "<hidden>". So the build
+  probe printed "<hidden>-develop". `run498-2026-10-08/build-marker.mts` prints the page's own `<meta app-version>` (v26.40.18-7d85b7d
+  on 16 Oct) and the commit's first 7 characters. Read it before judging from older evidence: a changed build means a fresh run.
+- On 16 Oct at 08:10 UTC another session set 28 tests in run 498 to Retest (Chris Ward's answers 12–31, PRD v54), added C598326, and
+  rewrote C581895. Our counts from the previous hour were stale. Count the run live before every report and say WHO changed what
+  (`get_results` created_by/created_on). #testrail #build #cross-session → L0398, L0399
