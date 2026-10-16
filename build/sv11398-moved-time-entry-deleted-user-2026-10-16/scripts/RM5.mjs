@@ -1,0 +1,30 @@
+import {start,labor,apiTasks,moveEntry,shot,J,sleep} from './drv.mjs'; import {mkwo} from './mkwo.mjs'; import fs from 'fs';
+const A0=await start(); const W=await mkwo(A0); fs.writeFileSync('wo2.json',JSON.stringify(W)); console.log('WO2',J(W,400)); await A0.close();
+const out={W}; const mk=(s,f)=>shot(s,f);
+// Session A: the technician clocks in and out on line 1, on screen
+const T=await start({quick:'tech',vp:{width:1600,height:1000},record:'/tmp/qa11398/rec/a'}); const tp=T.page;
+await T.go(`/workorders/${W.wid}/lines`); await tp.waitForTimeout(3500);
+const techName=(await tp.locator('.q-header,header').first().innerText()).match(/\n([A-Z][a-z]+ [A-Z][a-z]+)\n/)?.[1];
+await T.caption(`SV-11398 on staging: work order ${W.number}, signed in as the technician. Both lines are Unassigned.`,{hold:2500});
+out.techBefore=await labor(T,W.wid,{reload:false}); await mk(T,'ev/m5-0-tech-before.png');
+await T.caption('Line 1: click Start',{hold:1200}); await T.glideClick(`button_clock_toggle_task_${W.lines[0].id}`); await tp.waitForTimeout(3000);
+out.techStarted=await labor(T,W.wid,{reload:false}); await mk(T,'ev/m5-1-tech-started.png');
+await T.caption(`Line 1 Labor now shows ${out.techStarted[W.lines[0].id]?.join(', ')}. Working for a minute...`,{hold:1500});
+await sleep(62000);
+await T.caption('Click Stop, type a story, click Clock Out',{hold:1200}); await T.glideClick(`button_clock_toggle_task_${W.lines[0].id}`); await tp.waitForTimeout(2000);
+await tp.locator('[data-test-id="input_tech_story"]').last().fill('ZZAUTOTEST worked on line 1'); await mk(T,'ev/m5-2-tech-stop-dialog.png');
+await T.glideClick('button_clock_out'); await tp.waitForTimeout(3000);
+out.techAfter=await labor(T,W.wid); await mk(T,'ev/m5-3-tech-clocked-out.png');
+await T.caption(`Clocked out. Line 1: ${out.techAfter[W.lines[0].id]?.join(', ')}; line 2: ${out.techAfter[W.lines[1].id]?.join(', ')}`,{hold:2500});
+out.recA=await T.close();
+// Session B: the admin moves the entry to line 2 and reloads
+const A=await start({vp:{width:1600,height:1000},record:'/tmp/qa11398/rec/b'}); const ap=A.page;
+await A.go(`/workorders/${W.wid}/lines`); await ap.waitForTimeout(3500);
+await A.caption(`Signed in as Admin. ${W.number} before the move: line 1 ${(await labor(A,W.wid,{reload:false}))[W.lines[0].id]?.join(', ')}, line 2 Unassigned`,{hold:2500}); await mk(A,'ev/m5-4-admin-before-move.png');
+await A.caption('Three-dots button (top right of the tabs) → Timesheets',{hold:1200});
+out.move=await moveEntry(A,W.wid,{who:out.techAfter[W.lines[0].id]?.[0]||'',toText:'2 Replace',cap:async n=>{ if(n==='timesheets') await A.caption('Pencil on the technician\'s row → Edit Timesheet',{hold:1000}); if(n==='editdialog') await A.caption('Line: pick 2 Replace - Suspension air bag, then Save',{hold:1500}); await mk(A,`ev/m5-5-${n}.png`);} });
+await A.caption('Back to the Lines tab and reload the page',{hold:1000});
+out.adminAfter=await labor(A,W.wid); out.api=await apiTasks(A,W.wid); await mk(A,'ev/m5-6-after-move-reload.png');
+await A.caption(`After the reload: line 1 ${out.adminAfter[W.lines[0].id]?.join(', ')}; line 2 ${out.adminAfter[W.lines[1].id]?.join(', ')} (no "Deleted user")`,{hold:3000});
+out.recB=await A.close(); out.techName=techName;
+fs.writeFileSync('ev/m5.json',JSON.stringify(out,null,1)); console.log(J(out,4000));

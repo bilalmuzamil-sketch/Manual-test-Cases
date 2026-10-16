@@ -1,0 +1,37 @@
+{
+ "dialog": "Edit Timesheet close Select Department arrow_drop_down Work Order S2-36625 [ ZZAUTOTEST Move Labor 28477 ] arrow_drop_down Line 2 Replace - Suspension Air Bag arrow_drop_down event Start access_time event End access_time Cancel Save",
+ "options": [
+  "check 1 Service - Cabin air filter",
+  "check 2 Replace - Suspension air bag"
+ ],
+ "save": 201,
+ "reportRow": [
+  "Oct 16 2026 Tech ShopView S2-36625 Service - Cabin Air Filter 08:13 PM 08:14 PM 0.02 0.02 0.00 Admin ShopView Oct 16, 2026 08:22 PM ZZAUTOTEST Worked On Line 1 "
+ ],
+ "after": {
+  "b317a8c5-78de-448a-abf6-78069cf33f26": [
+   "Tech ShopView"
+  ],
+  "cbbe8cd5-54e6-4564-9e37-af68b2fa3ba0": [
+   "Unassigned"
+  ]
+ },
+ "api": [
+  {
+   "line": "Service - Cabin air filter",
+   "id": "b317a8c5-78de-448a-abf6-78069cf33f26",
+   "story": "ZZAUTOTEST worked on line 1",
+   "rows": [
+    "Tech ShopView|exists=true|0.02"
+   ]
+  },
+  {
+   "line": "Replace - Suspension air bag",
+   "id": "cbbe8cd5-54e6-4564-9e37-af68b2fa3ba0",
+   "story": null,
+   "rows": [
+    "Unassigned|exists=false|0.00"
+   ]
+  }
+ ]
+}

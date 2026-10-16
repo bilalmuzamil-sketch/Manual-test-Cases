@@ -1,0 +1,15 @@
+import {start,labor,apiTasks,shot,J} from './drv.mjs'; import fs from 'fs';
+const W=JSON.parse(fs.readFileSync('wo2.json')); const s=await start(); const p=s.page; const out={};
+await s.go('/reports/punch-clock-activities'); await p.waitForTimeout(5000);
+const row=p.locator('tbody tr').filter({hasText:'S2-36625'}).filter({hasText:'Tech ShopView'}).first();
+await row.scrollIntoViewIfNeeded(); await row.hover(); await p.waitForTimeout(500); await shot(s,'ev/m6-0-report-row.png');
+await row.locator('[data-test-id="button_edit_timesheet"]').click(); await p.waitForTimeout(2000);
+const d=p.locator('.q-dialog').last(); out.dialog=(await d.innerText()).replace(/\s+/g,' ');
+await d.locator('[data-test-id="select_timesheet_line"]').click(); await p.waitForTimeout(1000);
+out.options=await p.locator('.q-menu .q-item').allInnerTexts();
+await p.locator('.q-menu .q-item').filter({hasText:'1 Service'}).first().click(); await p.waitForTimeout(800); await shot(s,'ev/m6-1-edit-dialog.png');
+const resp=p.waitForResponse(r=>/technician-tasks\/change/.test(r.url()),{timeout:15000}).catch(()=>null);
+await d.locator('[data-test-id="button_save_timesheet"]').click(); const r=await resp; out.save=r?r.status():null; await p.waitForTimeout(2500);
+out.reportRow=(await p.locator('tbody tr').filter({hasText:'S2-36625'}).allInnerTexts()).map(t=>t.replace(/\s+/g,' '));
+out.after=await labor(s,W.wid); out.api=await apiTasks(s,W.wid); await shot(s,'ev/m6-2-wo-after-reload.png');
+fs.writeFileSync('ev/m6.json',JSON.stringify(out,null,1)); console.log(J(out,3000)); await s.close();

@@ -1,0 +1,96 @@
+{
+ "before": {
+  "screen": {
+   "af560542-57a2-48a2-a26e-af0de8227ccd": [
+    "Admin ShopView"
+   ],
+   "359a3884-3bac-4957-b50a-3cf837ddefee": [
+    "Unassigned"
+   ]
+  },
+  "api": [
+   {
+    "line": "Service - Cabin air filter",
+    "id": "af560542-57a2-48a2-a26e-af0de8227ccd",
+    "story": "ZZAUTOTEST M1 work on line 1",
+    "rows": [
+     "Admin ShopView|exists=true|0.04"
+    ]
+   },
+   {
+    "line": "Replace - Suspension air bag",
+    "id": "359a3884-3bac-4957-b50a-3cf837ddefee",
+    "story": null,
+    "rows": [
+     "Unassigned|exists=false|0.00"
+    ]
+   }
+  ]
+ },
+ "move1": {
+  "save": "201 /api/technician-tasks/change",
+  "toasts": [],
+  "dialogsOpen": 0
+ },
+ "after1": {
+  "screen": {
+   "af560542-57a2-48a2-a26e-af0de8227ccd": [
+    "Unassigned"
+   ],
+   "359a3884-3bac-4957-b50a-3cf837ddefee": [
+    "Admin ShopView"
+   ]
+  },
+  "api": [
+   {
+    "line": "Service - Cabin air filter",
+    "id": "af560542-57a2-48a2-a26e-af0de8227ccd",
+    "story": "ZZAUTOTEST M1 work on line 1",
+    "rows": [
+     "Unassigned|exists=false|0.00"
+    ]
+   },
+   {
+    "line": "Replace - Suspension air bag",
+    "id": "359a3884-3bac-4957-b50a-3cf837ddefee",
+    "story": null,
+    "rows": [
+     "Admin ShopView|exists=true|0.05"
+    ]
+   }
+  ]
+ },
+ "move2": {
+  "save": "201 /api/technician-tasks/change",
+  "toasts": [],
+  "dialogsOpen": 0
+ },
+ "after2": {
+  "screen": {
+   "af560542-57a2-48a2-a26e-af0de8227ccd": [
+    "Admin ShopView"
+   ],
+   "359a3884-3bac-4957-b50a-3cf837ddefee": [
+    "Unassigned"
+   ]
+  },
+  "api": [
+   {
+    "line": "Service - Cabin air filter",
+    "id": "af560542-57a2-48a2-a26e-af0de8227ccd",
+    "story": "ZZAUTOTEST M1 work on line 1",
+    "rows": [
+     "Admin ShopView|exists=true|0.05"
+    ]
+   },
+   {
+    "line": "Replace - Suspension air bag",
+    "id": "359a3884-3bac-4957-b50a-3cf837ddefee",
+    "story": null,
+    "rows": [
+     "Unassigned|exists=false|0.00"
+    ]
+   }
+  ]
+ }
+}

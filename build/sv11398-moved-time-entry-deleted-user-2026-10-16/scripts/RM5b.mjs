@@ -1,0 +1,12 @@
+import {start,labor,apiTasks,moveEntry,shot,J} from './drv.mjs'; import fs from 'fs';
+const W=JSON.parse(fs.readFileSync('wo2.json')); const out={W}; const mk=(s,f)=>shot(s,f);
+const A=await start({vp:{width:1600,height:1000},record:'/tmp/qa11398/rec/b2'}); const ap=A.page;
+await A.go(`/workorders/${W.wid}/lines`); await ap.waitForTimeout(3500);
+out.before=await labor(A,W.wid,{reload:false}); out.apiBefore=await apiTasks(A,W.wid);
+await A.caption(`Signed in as Admin. ${W.number} before the move: line 1 ${out.before[W.lines[0].id]?.join(', ')}, line 2 ${out.before[W.lines[1].id]?.join(', ')}`,{hold:2500}); await mk(A,'ev/m5-4-admin-before-move.png');
+await A.caption('Three-dots button (top right of the tabs) → Timesheets',{hold:1200});
+out.move=await moveEntry(A,W.wid,{who:'Tech ShopView',toText:'2 Replace',cap:async n=>{ if(n==='timesheets') await A.caption("Pencil at the right of Tech ShopView's row → Edit Timesheet",{hold:1000}); if(n==='editdialog') await A.caption('Line: pick 2 Replace - Suspension air bag, then Save',{hold:1500}); await mk(A,`ev/m5-5-${n}.png`);} });
+await A.caption('Back to the Lines tab and reload the page',{hold:1000});
+out.after=await labor(A,W.wid); out.api=await apiTasks(A,W.wid); await mk(A,'ev/m5-6-after-move-reload.png');
+await A.caption(`After the reload: line 1 ${out.after[W.lines[0].id]?.join(', ')}; line 2 ${out.after[W.lines[1].id]?.join(', ')}. No "Deleted user".`,{hold:3000});
+out.recB=await A.close(); fs.writeFileSync('ev/m5.json',JSON.stringify(out,null,1)); console.log(J(out,3000));

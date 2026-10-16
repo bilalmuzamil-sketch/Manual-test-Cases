@@ -1,0 +1,77 @@
+{
+ "W": {
+  "wid": "2e0686b5-043d-4379-993f-810effa206ff",
+  "number": "S2-36625",
+  "lines": [
+   {
+    "id": "b317a8c5-78de-448a-abf6-78069cf33f26",
+    "name": "Service - Cabin air filter"
+   },
+   {
+    "id": "cbbe8cd5-54e6-4564-9e37-af68b2fa3ba0",
+    "name": "Replace - Suspension air bag"
+   }
+  ]
+ },
+ "before": {
+  "b317a8c5-78de-448a-abf6-78069cf33f26": [
+   "Tech ShopView"
+  ],
+  "cbbe8cd5-54e6-4564-9e37-af68b2fa3ba0": [
+   "Unassigned"
+  ]
+ },
+ "apiBefore": [
+  {
+   "line": "Service - Cabin air filter",
+   "id": "b317a8c5-78de-448a-abf6-78069cf33f26",
+   "story": "ZZAUTOTEST worked on line 1",
+   "rows": [
+    "Tech ShopView|exists=true|0.02"
+   ]
+  },
+  {
+   "line": "Replace - Suspension air bag",
+   "id": "cbbe8cd5-54e6-4564-9e37-af68b2fa3ba0",
+   "story": null,
+   "rows": [
+    "Unassigned|exists=false|0.00"
+   ]
+  }
+ ],
+ "move": {
+  "save": "201 /api/technician-tasks/change",
+  "toasts": [],
+  "dialogsOpen": 0
+ },
+ "after": {
+  "b317a8c5-78de-448a-abf6-78069cf33f26": [
+   "Unassigned"
+  ],
+  "cbbe8cd5-54e6-4564-9e37-af68b2fa3ba0": [
+   "Tech ShopView"
+  ]
+ },
+ "api": [
+  {
+   "line": "Service - Cabin air filter",
+   "id": "b317a8c5-78de-448a-abf6-78069cf33f26",
+   "story": "ZZAUTOTEST worked on line 1",
+   "rows": [
+    "Unassigned|exists=false|0.00"
+   ]
+  },
+  {
+   "line": "Replace - Suspension air bag",
+   "id": "cbbe8cd5-54e6-4564-9e37-af68b2fa3ba0",
+   "story": null,
+   "rows": [
+    "Tech ShopView|exists=true|0.02"
+   ]
+  }
+ ],
+ "recB": {
+  "video": "/tmp/qa11398/rec/b2/fdc4522e86384adb29e4edb4730f8ed3.webm",
+  "startSec": 7.868
+ }
+}
