@@ -23,12 +23,78 @@
     "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
     "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]"
    ],
-   "alpha": "S2-36298 complete lead=ZZAUTOTEST Ana Alpha",
-   "bravo": "S2-36299 approved lead=ZZAUTOTEST Ana Alpha"
+   "alpha": "S2-36307 complete lead=ZZAUTOTEST Ana Alpha",
+   "bravo": "S2-36308 approved lead=ZZAUTOTEST Ana Alpha"
   },
   "userAPerms": 3,
+  "start": {
+   "alphaCard": 1,
+   "bravoCard": 1,
+   "userASession": 200
+  },
+  "step4": {
+   "invoice": "201",
+   "status": "invoiced",
+   "backToUserA": 200,
+   "userASessionAfterHandBack": 401
+  },
+  "step5": {
+   "drag": "ok",
+   "shiftPrompt": null,
+   "alert": [
+    "priority_high Session expired, please log in again. Session expired, please log in again."
+   ],
+   "watched": [
+    {
+     "ms": 143,
+     "kind": "new text",
+     "text": "S2-36307ZZAUTOTEST F3 Stale Drop 94101 Alpha Co"
+    },
+    {
+     "ms": 1002,
+     "kind": "new text",
+     "text": "S2-36307Completemore_horizCustomer ZZAUTOTEST F3 Stale Drop 94101 Alpha CoZZF3SDProgress0%Lead technician ZZAUTOTEST Ben Bravo"
+    },
+    {
+     "ms": 1073,
+     "kind": "message",
+     "text": "priority_highSession expired, please log in again.Session expired, please log in again.close"
+    },
+    {
+     "ms": 1192,
+     "kind": "new text",
+     "text": "Sign in to your account to continueEmailPasswordvisibilityLoginForgot password? Privacy Policy · Terms of Use"
+    },
+    {
+     "ms": 1238,
+     "kind": "new text",
+     "text": "light_modeLightdark_modeDark"
+    },
+    {
+     "ms": 1496,
+     "kind": "new text",
+     "text": "science Dev Mode — Quick Login infoadmin_panel_settingsAdminscheduleTech"
+    }
+   ],
+   "userASessionAfterDrag": 401,
+   "url": "/login",
+   "signedOut": true,
+   "pageNavigations": {
+    "count": 2,
+    "log": [
+     "08:13:25 /workorders?tab=all",
+     "08:13:25 /workorders?tab=all",
+     "08:13:25 /workorders",
+     "08:13:37 /workorders?search=ZZAUTOTEST+F3+Stale+Drop+94101",
+     "08:13:49 /workorders?search=ZZAUTOTEST+F3+Stale+Drop+94101",
+     "08:13:49 /login"
+    ]
+   },
+   "anaCards": []
+  },
+  "step6reload": "Work Orders did not reload: page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://app.staging.shopview.com/workorders?tab=all\", waiting until \"domcontentloaded\"\n; url /login; session page did not answer in 10 s",
   "closedDispatcherWindow": "closed",
-  "error": "page.evaluate: TypeError: Cannot set properties of null (setting 'scrollLeft')\n    at eval (eval at evaluate (:290:30), <anonymous>:1:98)\n    at eval (<anonymous>)\n    at UtilityScript.evaluate (<anonymous>:290:30)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+  "error": "stopped after step 5: [User-A]'s page did not reload (recorded, not retried)",
   "roleRestore": "200",
   "roleAfterRestore": [
    "workOrdersCreateAndEdit",

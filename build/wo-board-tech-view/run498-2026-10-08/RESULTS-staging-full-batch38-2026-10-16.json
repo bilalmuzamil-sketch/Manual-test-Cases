@@ -1,0 +1,135 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.17-a5c4210",
+  "date": "16 October 2026",
+  "note": "batch 38: seven re-runs (16 Oct 08:00-08:23 UTC)"
+ },
+ "results": {
+  "C368217": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Part sale P2-2401 (customer \"ZZAUTOTEST Part Sale Counts\") was made at Staging Heavy Duty - 9919 with two \"Brake Pads\" parts.",
+    "One part was received (\"Parts received.\") and returned; the part sale then shows \"Parts (1)\" and the other part waits to be ordered.",
+    "A second part sale with two parts was made for the same customer at Staging Lethbridge - 4310.",
+    "Back at Staging Heavy Duty - 9919, Parts > Part Sales, searched \"P2-2401\": the Parts column shows 2 and the Returns column shows 1.",
+    "The second location's two parts are not added in (Parts would read 4)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368217-1-list-counts.png",
+    "evidence/staging-full-2026-10-14/annotated/C368217-2-setup-check.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing."
+  },
+  "C368178": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Work order S2-36304 (customer \"ZZAUTOTEST Sched Entire\", 2 lines) was dragged onto Esther Howard's row under 9 AM on the Schedule, on Mon, Oct 19 (the next day with shop hours used by the test).",
+    "In the window \"Entire work order\" was kept, Hours set to 2h, and \"Create 1 shift\" clicked: the window closed and no error message showed.",
+    "After a reload, Esther Howard's row shows the shift from 9 AM to 11 AM.",
+    "The shift is for the whole work order: it reads \"2 Lines\" and names no single line."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368178-1-entire-shift.png",
+    "evidence/staging-full-2026-10-14/annotated/C368178-2-work-order-card.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing."
+  },
+  "C368179": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the start time could not be judged, because the test script did not drop the card exactly on 1 PM.",
+    "Work order S2-36305 (customer \"ZZAUTOTEST Sched Lines\", 2 lines) was dragged onto Esther Howard's row near 1 PM on Mon, Oct 19.",
+    "\"Choose lines\" with only Line 1 ticked, Hours 2h, \"Create shift · 1 line · 2h\": the shift saved with no error message.",
+    "After a reload the shift's details read \"Single line · Est. 2h\", \"Service - Cabin air filter\": Line 1 only, as expected.",
+    "The details read \"12:45 PM – 2:45 PM\", a quarter hour before the 1:00 PM – 3:00 PM the test expects.",
+    "The test script let go of the card at the same distance past the hour line as on the 9 AM test, which saved exactly 9 AM, so where it let go is not proved; this is not judged as a product fault.",
+    "On 12 Oct the QA lead's own drop under 1 PM saved at 1:00 PM."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368179-1-line-shift-time.png"
+   ],
+   "not_observed": "Step 6 start time: whether a drop exactly on the 1 PM line saves 1:00 PM – 3:00 PM.",
+   "ticket": null,
+   "todo": "What needs to be done: drag the work order by hand onto Esther Howard's row exactly at the 1 PM line, choose Line 1 only, 2h, and read the shift's time (expected 1:00 PM – 3:00 PM)."
+  },
+  "C96962": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: step 6 (the line's own Audit log) could not be opened by the test script.",
+    "Work order S2-36306 (customer \"ZZAUTOTEST F1 Lead History\"), two lines, lead Esther Howard.",
+    "Board View drag to Ralph Edwards added exactly one entry: \"Lead tech changed Esther Howard -> Ralph Edwards by Admin ShopView\", 08:11.",
+    "Reassign lead technician back to Esther Howard added exactly one entry, 08:11; changing Lead Technician on the work order page (to Dana Ortiz) added exactly one entry, 08:12.",
+    "3 lead changes = 3 entries; no entries were added for the two lines that moved with the lead.",
+    "Edit Line on line 1: Dana Ortiz was added and saved (line 1 then shows Dana Ortiz); Ralph Edwards was not removed first, as step 5 asks.",
+    "The line's Audit log was not reached: the menu the test script opened offered only \"Add Labor Fee / Discount\", so the line's own entry could not be read."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C96962-1-edit-line.png"
+   ],
+   "not_observed": "Step 6: whether changing line 1's technician in Edit Line adds its own entry to the line's Audit log.",
+   "ticket": null,
+   "todo": "What needs to be done: on S2-36306 (or a new work order) change line 1's technician in Edit Line, then click the line's number (1) > Audit log and read the newest entry (expected: a line technician entry)."
+  },
+  "C97012": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the dispatcher was signed out before the drop could be judged.",
+    "Alpha Co (S2-36307) and Bravo Co (S2-36308), both led by ZZAUTOTEST Ana Alpha, showed on Board View for the dispatcher.",
+    "Step 4: Alpha Co was invoiced by an Admin sign-in; on staging one sign-in holds only one app session, so this ended the dispatcher's session.",
+    "Step 5: right after the drag the app showed \"Session expired, please log in again.\" and the sign-in page.",
+    "So the refusal message and the card going back to Ana's column could not be seen, and steps 6 to 9 could not be done.",
+    "The test role was set back to how it was after the test."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C97012-1-signed-out.png"
+   ],
+   "not_observed": "Steps 5 to 9: the refused drop, its message, and the lead after each refusal.",
+   "ticket": null,
+   "todo": "What needs to be done: run it with two people on two separate sign-ins (the dispatcher and an Admin who is not the same sign-in), as the test's preconditions say."
+  },
+  "C590120": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: steps 1 to 3 (List) were not done by the test script, and the work order's progress was 0%.",
+    "Card S2-36309 (Approved, customer \"ZZAUTOTEST DC11 Board Card 91517\") is white with rounded corners and a thin grey border; number in blue at the left, status pill at the right.",
+    "Number, customer name and total price \"$173.98\" are all 14 px, medium weight; the unit and asset line \"TRK-118 · 2022 Freightliner M2\" is 12 px and grey.",
+    "Line technicians show as two overlapping round avatars with the lead's name, total price at the right.",
+    "S2-36310 (Invoiced) shows a padlock outline right after its number.",
+    "Compact: less space around the content (card 212 px tall); Comfortable: more space (240 px); same fields, values and text sizes as Regular.",
+    "The card's \"Approved\" pill measured 21 px tall (the test expects 22 px); it was not compared with List, so this is not judged.",
+    "Progress shows \"0%\", so the thin blue progress bar's fill could not be seen."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C590120-2-card-text-progress.png"
+   ],
+   "not_observed": "Steps 3 and 7 (the List pill and the comparison with the card's pill) and the blue progress fill in step 5.",
+   "ticket": null,
+   "todo": "What needs to be done: use a work order with some progress (clock time on a line), look at its pill in List first, then compare the Board View card's pill with it and measure its height (expected 22 px)."
+  },
+  "C368156": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: step 5 could not be done because the location did not change back to Staging Heavy Duty - 9919.",
+    "Step 1: Ana, Ben and Cal were pinned at Staging Heavy Duty - 9919.",
+    "Step 2: the fourth pin button is turned off and shows \"You can pin up to 3 technicians.\"",
+    "Step 3: at Staging Lethbridge - 4310 (the second location) none of the Heavy Duty pins showed and there were no pinned columns.",
+    "Step 4: Xia, Yan and Zoe were all pinned there with no message, so the Heavy Duty pins did not use up the three slots.",
+    "Step 5: the test script picked \"Staging Heavy Duty - 9919\" in Change Location twice, and the top bar still read \"Staging Lethbridge - 4310\" both times.",
+    "Earlier today the same switch, done step by step the way a person does it, worked first time, so this is not judged as a product fault."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated/C368156-1-pins-and-location.png"
+   ],
+   "not_observed": "Step 5: whether Ana, Ben and Cal are still pinned at Staging Heavy Duty - 9919 after coming back.",
+   "ticket": null,
+   "todo": "What needs to be done: change location back to Staging Heavy Duty - 9919 by hand (your initials > Change Location), open Board View and check that Ana, Ben and Cal are still pinned."
+  }
+ }
+}

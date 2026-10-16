@@ -968,3 +968,16 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 - Every re-run now starts with `ensure-heavy.mts` (menu switch to Heavy Duty, top bar read back, exit 3 = skip the test). Scripts
   that switch location themselves go last (`rerun6-1016b.sh`). Ticks in the location list can't be read from the text: every row
   carries a "check" icon. #staging #location #rule104 → L0394
+
+## L0400 — 2026-10-16 — A scripted Schedule drop cannot judge a start time; and the location field can already read the target
+- **Schedule drops:** in one run (`high1-fix5.mts`, staging, 16 Oct) both drops landed the same distance past the hour line (about
+  24 px, worked out from the heading text because staging has no time-slot marker). The 9 AM drop saved 9:00 and the 1 PM drop saved
+  12:45. So a script's drop point is not a proved instrument for the START TIME (Rule 104). Judge the time only from a drop made by
+  hand on the line, or after a positive control that shows the same offset saving the same minute twice. What the shift covers
+  (whole work order or chosen lines) and "no error message" can still be judged from a scripted drop (C368178 Passed, C368179 Blocked).
+- **Change Location:** on the way back in `rest-batch.mts` the menu's "Change Location:" field already read "Staging Heavy Duty -
+  9919" (ticked in the list) while the top bar read "Staging Lethbridge - 4310". Picking the value the field already shows may change
+  nothing. Before saying a switch failed, read that field; if it already shows the target, pick another location first, then the
+  target. Not proved yet, so it was not reported (C368156 Blocked).
+- `push_results_to_run.py --screenshots yes` refuses unless EVERY result, Blocked included, has a picture: annotate the screen that
+  shows why it was blocked. #staging #schedule #location #rule104 #rule130 → L0399
