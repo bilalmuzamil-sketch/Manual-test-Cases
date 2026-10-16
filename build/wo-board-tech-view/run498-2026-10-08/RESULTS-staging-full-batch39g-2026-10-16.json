@@ -1,0 +1,30 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.18-7d85b7d",
+  "date": "16 October 2026",
+  "note": "batch 39g: Dark theme (design-stg5, second go), 16 Oct 09:46-09:48 UTC"
+ },
+ "results": {
+  "C590125": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Step 2: the profile menu offers \"Light\" and \"Dark\"; Dark was chosen and the menu closed.",
+    "Step 3: Tech View's page, table, column header row and group headers turned dark (near black) with light text. No area of the page was left white, and no text was dark on dark. The only low-contrast text found is the small white number on the blue bubbles beside the status pills, which can still be read.",
+    "Step 4: the hovered row (S2-36435) turned a slightly lighter dark grey and its text stayed readable.",
+    "Step 6: Board View's board, columns, column headers and cards turned dark with light text; card text, numbers, status pills and avatars stayed readable and no area was left white.",
+    "Step 7: after choosing Light, Tech View and Board View were light again.",
+    "The views were compared with the test's words; the design's dark pictures were not laid over the screen."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C590125-1-tech-view-dark.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C590125-2-row-hover-dark.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C590125-3-board-view-dark.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing."
+  }
+ }
+}
