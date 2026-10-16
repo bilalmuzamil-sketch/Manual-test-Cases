@@ -3,7 +3,7 @@
   "env": "staging",
   "build": "v26.40.19-1493c63",
   "date": "17 October 2026",
-  "note": "full staging run 16-17 Oct 2026, batch 13 = queue steps 33"
+  "note": "full staging run 16-17 Oct 2026, batch 13 = queue steps 33, 34"
  },
  "results": {
   "C368166": {
@@ -44,6 +44,138 @@
    ],
    "ticket": null,
    "todo": "What needs to be done: re-run this test (script fix-up: record the names the Lead Technician list offers, or pick a technician whose name is early in the list)."
+  },
+  "C368172": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Work order S2-36755 (led by Esther Howard): New Line, \"ZZAUTOTEST Oil change zq\" typed until the list read \"No results\", then Enter; Estimated Time 1.",
+    "In Technicians, Add Technician > Dana Ortiz. Save & Close saved the line with no error message.",
+    "After a reload the new line's Labor row shows \"Dana Ortiz\" (Esther Howard, already listed when the window opened, is also kept)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368172-1-new-line-dana.png"
+   ],
+   "ticket": null
+  },
+  "C368173": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps (same problem as before).",
+    "Work order S2-36755, line \"ZZAUTOTEST Oil change zq\" given to Dana Ortiz; in Edit Line Dana Ortiz was removed.",
+    "Add Technician then lists 97 people, starting \"Aaron Baker\", \"Aaron Jennings\"; Ralph Edwards, the name the test asks for, is not offered, and typing \"Ralph Edwards\", \"Edwards\" or \"Ralph\" does not find him.",
+    "So the line could not be given Ralph Edwards; after Save & Close and a reload it reads \"Unassigned\".",
+    "The ticket for the cut-off list reads \"OBSOLETE\" (read 16 Oct 2026), but the list still stops at about 100 names on this build."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368173-1-edit-line-no-ralph.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368173-2-line-unassigned.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11393.",
+   "todo": "What needs to be done: the QA lead to decide on the ticket (it is closed as obsolete, the problem is still there); once fixed on staging, run this test again."
+  },
+  "C368174": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 2: on work order S2-36756 it opened Edit labor on line 1, removed Esther Howard, but could not find \"Ralph Edwards\" in the Technician list; the same happened on line 2.",
+    "Both lines then read \"Unassigned\". The script did not record which names the list offered, so this is not judged; it may be the same cut-off list as ticket SV-11393 (seen today in Edit Line, test C368173).",
+    "Note: the script's set-up gave the lines Esther Howard first; the test starts from lines with no technician."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368174-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: start from Unassigned lines and record the names the Technician list offers)."
+  },
+  "C368177": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Work order S2-36757, no lead: Esther Howard clocked in on line 1 (Start), then out (\"Timesheet clocked out\").",
+    "Admin: work order menu > Timesheets > Esther Howard's row (line \"1 - Service - Cabin air filter\") > pencil > Edit Timesheet > Line \"2 Replace - Suspension air bag\" > Save: no error message.",
+    "After a reload, line 2's Labor row reads \"Esther Howard\" with 0.03 hours: the line that received the labor took its technician. Line 1 now reads \"Unassigned\". No \"Deleted user\" entry appears."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368177-1-line2-took-tech.png"
+   ],
+   "ticket": null
+  },
+  "C368178": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 6: after the reload it could not find the new shift on Esther Howard's row to open it.",
+    "Steps 1 to 5 seen: S2-36758 (2 lines) was dragged onto Esther Howard's row under 9 AM on Mon, Oct 19; the window kept \"Entire work order\", Hours set to 2h, \"Create 1 shift\" clicked: the window closed with no error message, and the save was accepted for 9:00 to 11:00 covering both lines.",
+    "The set-up was not met: Esther Howard already had a shift from another test from 6:00 to 9:30 AM that day (\"Double-booked\"), and the new shift does not show in the picture of her row. Not judged, because the script could not open it."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368178-1-shift-not-found.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test on a day when Esther Howard has nothing between 9 AM and noon, and read the shift on her row (script fix-up)."
+  },
+  "C368188": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST Asset Tab Toggle Lead 78512\" > Assets > TRK-201 > Work Orders tab: in S2-36760's row the Asset on Site toggle flipped from not on site to on site, with no error message.",
+    "After a reload the row still shows the green pin (on site).",
+    "Lead Technician still reads \"ZZAUTOTEST Ana Alpha\" (in the asset tab's row, and in the saved work order)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368188-1-pin-kept-lead.png"
+   ],
+   "ticket": null
+  },
+  "C368189": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST Asset Tab Old Page 78512\", asset TRK-201: the asset's Work Orders tab was left open, then S2-36764's lead was changed to Ben Bravo elsewhere.",
+    "On the older page, without reloading, S2-36764's Asset on Site toggle was clicked; no error message appeared.",
+    "Refreshed, the asset's tab shows S2-36764 with a green pin (on site) and Lead Technician \"ZZAUTOTEST Ben Bravo\"; the work order page reads Lead Technician \"ZZAUTOTEST Ben Bravo\". The older page did not put Ana Alpha back."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368189-1-ben-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368190": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 2: on the Schedule (Mon, Oct 19) it could not find and open Jenny Wilson's shift on S2-36759, so the shift was not deleted.",
+    "Step 1 seen: Line 1's Labor row reads \"Jenny Wilson\" (her shift that day covers that line). Step 3 was therefore not judged (Line 1 still reads \"Jenny Wilson\" because the shift is still there)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368190-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: scroll to Jenny Wilson's row and open the shift before deleting it)."
+  },
+  "C368192": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "S2-36759 at phone width (390 px); line 1 (\"Service - Cabin air filter\") has Jenny Wilson scheduled on it from the Schedule.",
+    "Line 1's card is expanded (its button reads \"Collapse\").",
+    "Assigned Technicians reads \"Jenny Wilson\". No \"Needs techs\" badge appears."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368192-1-assigned-techs.png"
+   ],
+   "ticket": null
+  },
+  "C368202": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Work Orders > All > Create Work Order: customer \"ZZAUTOTEST New WO Listed 78512\" and its asset > Save; the new work order is S2-36768.",
+    "Back to Work Orders from the top menu without reloading, All tab, searched \"New WO Listed 78512\" (Status filter off).",
+    "S2-36768 is listed straight away, without a manual reload."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368202-1-listed.png"
+   ],
+   "ticket": null
   }
  }
 }
