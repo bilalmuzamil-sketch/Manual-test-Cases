@@ -12,6 +12,7 @@ import { api, candidates, seedCase, workOrders, customer, workOrder } from './da
 import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, openReassign, toasts, shiftPrompt, pickLead, read, woPageLead, findRow } from './wob.mts';
 import { staffRows, person, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
+import { startState, setDisplay, prefRead, PREF } from './fixup-1017.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -26,6 +27,8 @@ R.nina = (await person(a, 'Nina', 'Newtech', { role: roles.find((r) => (r.label 
 const ES = await sid('esther.howard'), RE = await sid('ralph.edwards'), JW = await sid('jenny.wilson'), NN = await sid('nina.newtech'), VO = await sid('viewonly'), NK = await sid('nick.noclock');
 const techs = await candidates(a);
 const me = techs.find((x) => x.name === 'Admin ShopView')!;
+// 17 Oct 2026: fix-up — log the saved display / pins / collapsed groups found BEFORE anything is set, clear the saved collapsed groups
+R.startState = await startState(p, a, 's4-batchA', { clearCollapsed: true });
 const bv = async (pg: Page, n: string, d = 'Board View') => { await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(4500); await tab(pg, 'All'); await display(pg, d); if (n) await search(pg, n); };
 const leadOf = async (n: string) => (await workOrders(a, n)).map((w: any) => `${w.number} lead=${w.techAssignedFirstName ? w.techAssignedFirstName + ' ' + w.techAssignedLastName : 'none'}`);
 async function run(id: string, f: () => Promise<void>) {
@@ -107,18 +110,30 @@ await run('C96959', async () => {
   await bv(p, n);
   const counts = async () => { const all = await (await import('./wob.mts')).allBoardCols(p); const f = (id: string) => all.find((c) => c.id === id)?.count; return { esther: f(ES.staff_id), ralph: f(RE.staff_id), unassigned: f('unassigned') }; };
   R.C96959 = { startLeadsFromRecords: startLeads, before: await counts() }; await shot(p, 'C96959-before');
-  const pinned0: string[] = ((await a.get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {}).pinnedTechnicianIds ?? [];
-  for (const x of [ES, RE]) if (!pinned0.includes(x.staff_id)) { await toColumn(p, x.staff_id); await p.locator(`[data-test-id="button_board_pin_${x.staff_id}"]`).click(); await p.waitForTimeout(1200); }
+  // 17 Oct 2026: fix-up — on 16 Oct the card was "not found" before the drag: the picture (C96959-error) shows neither Esther Howard nor
+  // Ralph Edwards pinned, so both columns were far along the ~260-column board and not drawn. The pin buttons are TOGGLES and the saved
+  // pins were read straight after C96957 had unpinned them by click (the save had not landed), so the clicks here did nothing or undid
+  // themselves. Now the two are pinned through the saved choice (PUT, as s4-batchC does), the page reloaded, the pins read back from the
+  // preference AND from the screen (their columns right after Unassigned), and the source column and the card are brought on screen
+  // (toColumn) and checked before the drag; the target column is checked on screen too. The pins are put back at the end (PUT).
+  const pinned0: string[] = ((await a.get(PREF)).body?.data?.value ?? {}).pinnedTechnicianIds ?? [];
+  { const pv = (await a.get(PREF)).body?.data?.value ?? {}; R.C96959.pinPut = (await a.put(PREF, { value: { ...pv, pinnedTechnicianIds: [ES.staff_id, RE.staff_id] } })).status; }
+  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await setDisplay(p, a, 'Board View', 'C96959 after pinning'); await search(p, n);
   await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"]').scrollLeft = 0`); await p.waitForTimeout(800);
+  R.C96959.pinsReadBack = { saved: (await prefRead(a)).pinned, firstColumnsOnScreen: (await boardCols(p)).slice(0, 4).map((c) => `${c.name} pinned=${c.pinned}`) };
   const w1 = wos.find((w: any) => w.techAssignedId === ES.staff_id)!;
+  const onScr = (sel: string) => p.evaluate(`(() => { const e = document.querySelector(${JSON.stringify(sel)}); if (!e) return 'not drawn'; const r = e.getBoundingClientRect(); return r.left >= 0 && r.right <= innerWidth && r.width > 0 ? 'on screen' : 'off screen @' + Math.round(r.left); })()`) as Promise<string>;
+  if ((await onScr(`[data-test-id="board_card_${w1.id}"]`)) !== 'on screen') await toColumn(p, ES.staff_id);
+  R.C96959.beforeDrag = { card: await onScr(`[data-test-id="board_card_${w1.id}"]`), target: await onScr(`[data-test-id="board_column_${RE.staff_id}"]`) };
+  console.log(t(), 'C96959 before drag', JSON.stringify(R.C96959.pinsReadBack), JSON.stringify(R.C96959.beforeDrag));
   await drag(p, `[data-test-id="board_card_${w1.id}"]`, `[data-test-id="board_column_${RE.staff_id}"]`, 120); await shiftPrompt(p);
   const hc = async () => { const cs = await boardCols(p); const f = (id: string) => cs.find((c) => c.id === id)?.count; return { esther: f(ES.staff_id), ralph: f(RE.staff_id), unassigned: f('unassigned') }; };
   R.C96959.afterDrag = await hc(); await shot(p, 'C96959-after-drag');
   const o = await openReassign(p, w1.id); await o.item.click(); await p.waitForTimeout(1200); await pickLead(p, 'unassigned');
   R.C96959.afterDialog = await hc(); await shot(p, 'C96959-after-dialog');
-  await display(p, 'Tech View'); const g = await groups(p); const f = (id: string) => g.find((x) => x.id === id)?.count;
+  R.C96959.techSet = (await setDisplay(p, a, 'Tech View', 'C96959 Tech View')).ok; const g = await groups(p); const f = (id: string) => g.find((x) => x.id === id)?.count; // 17 Oct 2026: fix-up — read back
   R.C96959.tech = { esther: f(ES.staff_id), ralph: f(RE.staff_id), unassigned: f('unassigned') }; await shot(p, 'C96959-tech'); await display(p, 'Board View');
-  for (const x of [ES, RE]) if (!pinned0.includes(x.staff_id)) { await toColumn(p, x.staff_id); await p.locator(`[data-test-id="button_board_pin_${x.staff_id}"]`).click().catch(() => {}); await p.waitForTimeout(1000); }
+  { const pv = (await a.get(PREF)).body?.data?.value ?? {}; R.C96959.pinsPutBack = (await a.put(PREF, { value: { ...pv, pinnedTechnicianIds: pinned0 } })).status; } // 17 Oct 2026: fix-up — pins back through the saved choice
 });
 
 await run('C96969', async () => {

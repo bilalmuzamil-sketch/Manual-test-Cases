@@ -10,6 +10,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { api, candidates, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, active, activeTab, searchValue, groupCounts, allBoardCols } from './wob.mts';
+import { startState, setDisplay, noteDisplay, prefRead } from './fixup-1017.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -19,6 +20,9 @@ const a = api(p);
 const R: Record<string, any> = {};
 const techs = await candidates(a);
 const tA = techs.find((x) => x.name === 'Ayesha Khan')!;
+// 17 Oct 2026: fix-up — log the saved display / collapsed groups found BEFORE anything is set, clear the saved collapsed groups
+// (Tech View rows are read in both cases) and read them back; each case then sets its own display with setDisplay (read back)
+R.startState = await startState(p, a, 's1-batch4b', { clearCollapsed: true });
 const go = async () => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); };
 async function seed(name: string, unit: string, n: number) {
   let have = await workOrders(a, name);
@@ -111,13 +115,31 @@ await run('C96916', async () => {
   // Back - steps 5 and 10 - the tab and the Status chip are read besides the scroll position; steps 4 and 9 read that the work order page
   // opened; step 6 reads that Tech View holds the same work orders as Board View, per technician). A tab click clears the search, so the
   // order is: tab, clear filters, Status, then Search. Every step has its own reading and picture (shots named by the case's step number).
-  const filt = async () => ({ display: await active(p), tab: await activeTab(p), statusChip: await statusChip(), search: await searchValue(p), assignedToMe: await assignedOn(), url: p.url().replace(APP, '') });
-  await go(); await tab(p, 'Work Orders'); await display(p, 'Board View');
+  const filt = async () => ({ display: await active(p), tab: await activeTab(p), statusChip: await statusChip(), savedFilters: (await prefRead(a)).filters, search: await searchValue(p), assignedToMe: await assignedOn(), url: p.url().replace(APP, '') }); // 17 Oct 2026: fix-up — saved filters read too (the chip may not be drawn)
+  // 17 Oct 2026: fix-up — on 16 Oct the click on the Status chip timed out: in the picture (C96916-error) the Work Orders tab in Board
+  // View shows NO Status chip at all (Search, Assigned to me, Asset on Site only), and high2-batch (C368214) read the same on the Work
+  // Orders tab in List (statusButton 0). So the chip is looked for, never assumed: count it on the Work Orders tab in Board View and in
+  // List; positive control = the same selector on the All tab (where other scripts use it). If the Work Orders tab offers it, Status is
+  // set to Approved there; if not, the reading says so (the case's starting screen cannot be built on this build — reported, the rest
+  // of the case still runs) and the saved filters are read so the judge sees what the page holds.
+  const chipCount = () => p.locator('[data-test-id="filter_chip_status"]:visible').count();
+  await go(); await tab(p, 'Work Orders'); const bvStart = await setDisplay(p, a, 'Board View', 'C96916 start');
   await p.locator('[data-test-id="clear_filters"]').click().catch(() => {}); await p.waitForTimeout(1500);
-  await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(800);
-  await p.locator('.q-menu').getByText('Clear selection').first().click().catch(() => {}); await p.waitForTimeout(600);
-  await p.locator('[data-test-id="filter_option_status_approved"]').click(); await p.waitForTimeout(800);
-  await p.keyboard.press('Escape'); await p.waitForTimeout(2000);
+  const sc: any = { workOrdersTabBoard: await chipCount() };
+  if (!sc.workOrdersTabBoard) { await display(p, 'List'); sc.workOrdersTabList = await chipCount(); }
+  const where = sc.workOrdersTabBoard ? 'Board View' : sc.workOrdersTabList ? 'List' : null;
+  if (!where) { await tab(p, 'All'); sc.allTabControl = await chipCount(); await tab(p, 'Work Orders'); }
+  if (where) {
+    await p.locator('[data-test-id="filter_chip_status"]:visible').first().click({ timeout: 10_000 }); await p.waitForTimeout(800);
+    await p.locator('.q-menu').getByText('Clear selection').first().click({ timeout: 5000 }).catch(() => {}); await p.waitForTimeout(600);
+    await p.locator('[data-test-id="filter_option_status_approved"]').click({ timeout: 10_000 }).catch((e) => { sc.approvedClick = String(e?.message || e).slice(0, 80); }); await p.waitForTimeout(800);
+    await p.keyboard.press('Escape'); await p.waitForTimeout(2000);
+  }
+  sc.chipText = await statusChip(); sc.savedFilters = (await prefRead(a)).filters;
+  sc.statusReachable = !!where && !sc.approvedClick;
+  if (where !== 'Board View') sc.backToBoard = await setDisplay(p, a, 'Board View', 'C96916 back to Board View');
+  R.C96916.statusSetup = sc; R.C96916.boardStart = bvStart;
+  console.log(t(), 'C96916 Status set-up', JSON.stringify(sc));
   if ((await assignedOn()) === 'true') { await p.locator('[data-test-id="filter_chip_assigned_to_me"]').click().catch(() => {}); await p.waitForTimeout(2000); }
   await search(p, n);
   R.C96916.start = { ...(await filt()), windowWidth: await p.evaluate('innerWidth'), seededStatuses: [...new Set(have.map((w: any) => w.status))] };
@@ -148,7 +170,7 @@ await run('C96916', async () => {
     const top = rows.find(r => r.getBoundingClientRect().bottom > edge + 4); const tr = top ? top.getBoundingClientRect() : null;
     const heads = [...s.querySelectorAll('thead th')].filter(e => { const r = e.getBoundingClientRect(); return r.width > 0 && r.left >= sb.left - 1 && r.right <= sb.right + 1; }).map(e => e.innerText.replace(/arrow_drop_(up|down)/g, '').trim()).filter(Boolean);
     return { scrollTop: Math.round(s.scrollTop), scrollLeft: Math.round(s.scrollLeft), wider: s.scrollWidth > s.clientWidth, columnsInView: heads, topRow: top ? { number: (top.innerText.match(/S\\d+-\\d+/) || [''])[0], index: rows.indexOf(top), offsetFromEdge: Math.round(tr.top - edge), height: Math.round(tr.height), fullyShown: tr.top >= edge - 1 && tr.bottom <= sb.bottom + 1 } : null, rowsDrawn: all.length }; })()`);
-  await display(p, 'Tech View'); await p.waitForTimeout(2000);
+  await setDisplay(p, a, 'Tech View', 'C96916 step 6'); await p.waitForTimeout(2000); // 17 Oct 2026: fix-up — read back
   // step 6: tab + Status chip + search read BEFORE anything is typed again (typing it back would hide a lost search); then the same work orders
   const s6: any = { ...(await filt()), techCounts: await groupCounts(p) };
   s6.sameAsBoard = JSON.stringify(Object.entries(s6.techCounts).filter(([, c]) => (c as number) > 0).sort()) === JSON.stringify(Object.entries(R.C96916.boardCounts).sort());
@@ -172,8 +194,13 @@ await run('C96916', async () => {
 await run('C96917', async () => {
   R.C96917 = { seeded: await seed('ZZAUTOTEST F1 Top Left', 'ZZTL-1', 20) };
   await go(); await tab(p, 'All');
+  // 17 Oct 2026: fix-up — the display is set AND read back (setDisplay); after the Schedule round trip the display the page came back
+  // in is read (and the saved choice at that moment) BEFORE anything else: on 16 Oct the Tech View half came back in Board View, so every
+  // Tech View reading after it was a Board View reading. If it came back in another display it is recorded and Tech View chosen again.
+  // The top-menu links are taken from the header bar only (16 Oct the URL came back as /workorders?vehicleHere=1).
+  const topNav = (label: string) => p.locator('header, .q-header').first().getByText(label, { exact: true }).first();
   for (const d of ['Board View', 'Tech View']) {
-    await display(p, d); R.C96917[d] = { scrollers: await mark(tA.id) };
+    R.C96917[d] = { set: await setDisplay(p, a, d, `C96917 ${d}`) }; R.C96917[d].scrollers = await mark(tA.id);
     // 15 Oct 2026: on Board View scroll right FIRST, then down inside a long column that is still on screen (markTallInView)
     const rightDown = async (k: string) => { if (d === 'Board View') { await scrollTo(2400, 0); R.C96917[d]['longColumn' + k] = await markTallInView(tA.id); } await scrollTo(2400, 900); R.C96917[d]['scrolled' + k] = await pos(); if (d === 'Board View') R.C96917[d]['colTopsScrolled' + k] = await colTops(); };
     const after = async (k: string) => { R.C96917[d][k] = await pos(); if (d === 'Board View') R.C96917[d][k + 'ColTops'] = await colTops(); };
@@ -181,11 +208,15 @@ await run('C96917', async () => {
     await tab(p, 'Estimates'); await tab(p, 'All'); await p.waitForTimeout(1500); await mark(tA.id);
     await after('afterTabClick'); await shot(p, `C96917-${d.replace(' ', '')}-after-tab`);
     await rightDown('2');
-    await p.locator('a, .q-btn, button').filter({ hasText: /^\s*Schedule\s*$/ }).first().click(); await p.waitForTimeout(4000);
-    await p.locator('a, .q-btn, button').filter({ hasText: /^\s*Work Orders\s*$/ }).first().click(); await p.waitForTimeout(5000); await mark(tA.id);
+    await topNav('Schedule').click().catch(() => p.locator('a, .q-btn, button').filter({ hasText: /^\s*Schedule\s*$/ }).first().click()); await p.waitForTimeout(4000);
+    await topNav('Work Orders').click().catch(() => p.locator('a, .q-btn, button').filter({ hasText: /^\s*Work Orders\s*$/ }).first().click()); await p.waitForTimeout(5000);
+    R.C96917[d].cameBackIn = await noteDisplay(p, a, `C96917 ${d} after Schedule`);
+    if (R.C96917[d].cameBackIn.screen !== d) { R.C96917[d].reselected = await setDisplay(p, a, d, `C96917 ${d} re-chosen after Schedule`); await p.waitForTimeout(1500); }
+    await mark(tA.id);
     await after('afterSchedule'); await shot(p, `C96917-${d.replace(' ', '')}-after-schedule`);
     await rightDown('3');
-    await p.locator('a, .q-btn, button').filter({ hasText: /^\s*Work Orders\s*$/ }).first().click(); await p.waitForTimeout(3000);
+    await topNav('Work Orders').click().catch(() => p.locator('a, .q-btn, button').filter({ hasText: /^\s*Work Orders\s*$/ }).first().click()); await p.waitForTimeout(3000);
+    R.C96917[d].afterSameNavDisplay = await noteDisplay(p, a, `C96917 ${d} after the same-page Work Orders click`); // 17 Oct 2026: fix-up
     if (d === 'Board View') { const lc = R.C96917[d].longColumn3?.id; if (lc) await markTallInView(lc); }
     await after('afterSameNav'); await shot(p, `C96917-${d.replace(' ', '')}-after-same-nav`);
   }

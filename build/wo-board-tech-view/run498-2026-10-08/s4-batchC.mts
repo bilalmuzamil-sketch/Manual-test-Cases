@@ -13,6 +13,8 @@ import { api, candidates, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, toggleGroup, openReassign, toasts, shiftPrompt } from './wob.mts';
 import { staffRows, person } from './staff.mts';
 import { mkShift, shiftsOn, localTime } from './shifts.mts';
+import { findRow } from './wob.mts';
+import { startState, setDisplay, collapsedOnScreen, expandAll } from './fixup-1017.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -29,8 +31,14 @@ const names: Record<string, string> = { [ES.staff_id]: 'Esther', [RE.staff_id]: 
 const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
 const prefGet = async () => (await a.get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {};
 const ADMIN_PINS = ['3ff0914b-49a3-4d80-b07d-92a10e1a89f8'];
+// 17 Oct 2026: fix-up — log the saved display / collapsed groups / pins found BEFORE anything is set (16 Oct: every Tech View group
+// was collapsed, so no row could be dragged), clear the saved collapsed groups and read them back
+R.startState = await startState(p, a, 's4-batchC', { clearCollapsed: true });
 await a.put('/api/users/me/preferences/work-orders-list', { value: { ...(await prefGet()), pinnedTechnicianIds: [ES.staff_id, RE.staff_id] } });
-const bv = async (n: string, d = 'Board View') => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); await tab(p, 'All'); await display(p, d); if (n) await search(p, n); await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"]'); if (h) h.scrollLeft = 0; })()`); await p.waitForTimeout(600); };
+// 17 Oct 2026: fix-up — the display is chosen AND read back (setDisplay); in Tech View the groups are read (how many, which collapsed)
+// and every collapsed group is expanded, then read again — a positive control: "none collapsed" only counts with groups > 0
+const bv = async (n: string, d = 'Board View') => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); await tab(p, 'All'); await setDisplay(p, a, d, `bv ${n}`); if (n) await search(p, n); await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"]'); if (h) h.scrollLeft = 0; })()`); await p.waitForTimeout(600);
+  if (d === 'Tech View') { const g0 = await collapsedOnScreen(p); const g1 = g0.collapsed.length ? await expandAll(p) : g0; console.log(t(), 'Tech View groups', n, JSON.stringify({ found: g0, after: g1 })); } };
 const lead = async (n: string) => Object.fromEntries((await workOrders(a, n)).map((w: any) => [w.number, w.techAssignedFirstName ? `${w.techAssignedFirstName} ${w.techAssignedLastName}` : 'none']));
 async function fresh(n: string, unit: string, k = 1) { const ws = await workOrders(a, n); if (ws.length >= k) return ws; const c = await customer(a, n, unit); for (let i = ws.length; i < k; i++) await workOrder(a, c, 'approved', ES.staff_id); return workOrders(a, n); }
 async function run(id: string, f: () => Promise<void>) {
@@ -43,6 +51,8 @@ const dragTo = async (woId: string, target: string, where: 'board' | 'tech' = 'b
   if (where === 'board') return drag(p, `[data-test-id="board_card_${woId}"]`, `[data-test-id="board_column_${target}"]`, 120);
   // Tech View: drop on the target group's "No work orders" row when it has one, else on its header
   const empty = `[data-test-id="tech_view_group_empty_${target}"]`;
+  // 17 Oct 2026: fix-up — the table draws only the rows near the screen: bring the row on screen first (findRow, as moved-stg4 does)
+  const inGroup = await findRow(p, woId); if (!(await p.locator(`[data-test-id="tech_view_row_${woId}"]`).count())) console.log(t(), 'Tech View row not drawn before the drag', woId.slice(0, 8), 'group', inGroup, JSON.stringify(await collapsedOnScreen(p)));
   return drag(p, `[data-test-id="tech_view_row_${woId}"]`, (await p.locator(empty).count()) ? empty : `[data-test-id="tech_view_group_${target}"]`, 10);
 };
 async function waitPrompt(ms = 4000) { for (let i = 0; i < ms / 250; i++) { if (await promptLoc().count()) return true; await p.waitForTimeout(250); } return false; }

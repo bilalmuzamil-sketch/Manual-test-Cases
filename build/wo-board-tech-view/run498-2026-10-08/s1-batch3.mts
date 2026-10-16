@@ -8,6 +8,7 @@ import path from 'node:path';
 import { open, done, APP } from './session.mts';
 import { api, candidates, customer, workOrder, workOrders, vehicle } from './data.mts';
 import { EV, t, shot, display, active, tab, activeTab, search, searchValue, read, groupCounts, columnHeads } from './wob.mts';
+import { startState, setDisplay, prefRead } from './fixup-1017.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -16,6 +17,8 @@ p.setDefaultTimeout(30_000);
 const a = api(p);
 const R: Record<string, any> = {};
 const prefCalls: string[] = [];
+// 17 Oct 2026: fix-up — log the saved display / collapsed groups found BEFORE anything is set (each case sets its own display)
+R.startState = await startState(p, a, 's1-batch3');
 p.on('request', (q) => { if (/preference/i.test(q.url())) prefCalls.push(`${q.method()} ${q.url().replace(/^https:\/\/[^/]+/, '')} ${(q.postData() || '').slice(0, 200)}`); });
 const techs = await candidates(a);
 const tA = techs.find((x) => x.name === 'Ayesha Khan')!;
@@ -110,9 +113,20 @@ await run('C96919', async () => {
 // ── C96920 offline ──────────────────────────────────────────────────────
 await run('C96920', async () => {
   await ensure('ZZAUTOTEST F1 Unsaved Display', 'ZZUS-1', [{ lead: tA.id }]);
-  await go(); for (const d of ['Tech View', 'List', 'Board View']) await display(p, d);
+  // 17 Oct 2026: fix-up — the steps in the case's order (read live 17 Oct): Board View, REFRESH and check it opens in Board View,
+  // THEN Tech View, List and Board View, waiting until each has shown its work orders (this loads every display while online),
+  // THEN offline. The 16 Oct run refreshed AFTER loading the displays, so offline the Tech View code itself could not load
+  // (GET /js/WorkOrdersTechViewDisplay… failed) and "the switcher still changes the display" could not be judged.
+  await go(); const s1 = await setDisplay(p, a, 'Board View', 'C96920 step 2');
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
-  R.C96920 = { start: await active(p), failed: [], errors: [] };
+  R.C96920 = { step2: s1, start: await active(p), savedAtStart: (await prefRead(a)).display, failed: [], errors: [], loadedOnline: {} };
+  const drawn = () => p.evaluate(`(() => { const m = document.querySelector('main, .q-page') || document.body; return { numbers: (m.innerText.match(/\\bS\\d+-\\d+\\b/g) || []).length, cards: document.querySelectorAll('[data-test-id="board_card_number"]').length, techRows: document.querySelectorAll('[data-test-id^="tech_view_row_"]').length, groups: document.querySelectorAll('[data-test-id^="tech_view_group_name_"]').length, listRows: document.querySelectorAll('tbody tr').length }; })()`);
+  for (const d of ['Tech View', 'List', 'Board View']) {
+    await display(p, d); let r: any = null;
+    for (let i = 0; i < 15; i++) { r = await drawn(); if (r.numbers > 0 || r.groups > 0) break; await p.waitForTimeout(1000); }
+    R.C96920.loadedOnline[d] = { display: await active(p), ...r };
+  }
+  R.C96920.savedBeforeOffline = (await prefRead(a)).display; await shot(p, 'C96920-step4-loaded-online');
   p.on('requestfailed', (q) => { if (R.C96920.offline) R.C96920.failed.push(`${q.method()} ${q.url().replace(/^https:\/\/[^/]+/, '').slice(0, 120)}`); });
   p.on('pageerror', (e) => { if (R.C96920.offline) R.C96920.errors.push(String(e).slice(0, 200)); });
   p.on('console', (m) => { if (R.C96920.offline && m.type() === 'error') R.C96920.errors.push(m.text().slice(0, 200)); });

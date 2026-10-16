@@ -10,6 +10,7 @@ import { open, done, APP } from './session.mts';
 import { signIn } from '../../global-search/e2e/fixtures/auth.js';
 import { api, candidates, seedCase, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, groups, toggleGroup, drag, read } from './wob.mts';
+import { startState, setDisplay, noteDisplay, prefRead } from './fixup-1017.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -21,7 +22,10 @@ const techs = await candidates(a);
 const by = (n: string) => techs.find((x) => x.name === n)!;
 const tA = by('Ayesha Khan'), tB = by('Bilal Muzamil'), tC = by('Branko Cicovic'), me = by('Admin ShopView');
 console.log(t(), 'techs', [tA, tB, tC, me].map((x) => x?.name).join(', '));
-const tv = async (name: string) => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, 'All'); await display(p, 'Tech View'); await search(p, name); };
+// 17 Oct 2026: fix-up — log the saved display / collapsed groups found BEFORE anything is set, clear the saved collapsed groups and read back
+R.startState = await startState(p, a, 's2-batchA', { clearCollapsed: true });
+// 17 Oct 2026: fix-up — Tech View is chosen AND read back (on screen and saved) instead of a bare click
+const tv = async (name: string) => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, 'All'); await setDisplay(p, a, 'Tech View', `tv ${name}`); await search(p, name); };
 const mine = (gs: any[], ids: string[]) => gs.filter((g) => ids.includes(g.id) || g.id === 'unassigned');
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
@@ -79,11 +83,18 @@ await run('C96928', async () => {
   for (const g of await groups(p)) if ([tA.id, tB.id, tC.id].includes(g.id) && g.collapsed) await toggleGroup(p, g.id);
   R.C96928 = { start: await st(p) };
   await toggleGroup(p, tB.id); R.C96928.afterCollapse = await st(p); R.C96928.bRowsShown = (await groups(p)).find((g) => g.id === tB.id)?.rows.length; await shot(p, 'C96928-collapsed');
-  await p.waitForTimeout(1500); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await search(p, n); R.C96928.afterRefresh = await st(p);
-  const p2 = await p.context().newPage(); await p2.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p2.waitForTimeout(5000); await search(p2, n); R.C96928.newTab = await st(p2); await p2.close();
-  const s2 = await signIn('/customers'); await s2.page.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await s2.page.waitForTimeout(5000); await search(s2.page, n);
+  // 17 Oct 2026: fix-up — on 16 Oct the page came back in Board View after the refresh, so no group could be read ({}), and the last
+  // toggle timed out. Now: wait until the collapse is SAVED (read back), then after each refresh / new tab / new sign-in read the display
+  // the page opened in and the saved one (recorded: if it is not Tech View that is itself worth the judge's eye), and choose Tech View
+  // again before reading the groups, as the case's step 10 does ("open Work Orders in Tech View").
+  let savedCollapsed: any = null; for (let i = 0; i < 10; i++) { savedCollapsed = (await prefRead(a)).collapsedGroups; if ((savedCollapsed ?? []).includes(tB.id)) break; await p.waitForTimeout(1000); }
+  R.C96928.savedCollapsedAfterCollapse = (savedCollapsed ?? []).map((x: string) => String(x).slice(0, 8));
+  const inTech = async (pg: Page, tag: string) => { const seen = await noteDisplay(pg, a, `C96928 ${tag}`); let re = null; if (seen.screen !== 'Tech View') re = await setDisplay(pg, a, 'Tech View', `C96928 ${tag} re-chosen`); return { openedIn: seen, reselected: re ? re.ok : null }; };
+  await p.waitForTimeout(1500); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); R.C96928.refreshDisplay = await inTech(p, 'after refresh'); await search(p, n); R.C96928.afterRefresh = await st(p);
+  const p2 = await p.context().newPage(); await p2.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p2.waitForTimeout(5000); R.C96928.newTabDisplay = await inTech(p2, 'new tab'); await search(p2, n); R.C96928.newTab = await st(p2); await p2.close();
+  const s2 = await signIn('/customers'); await s2.page.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await s2.page.waitForTimeout(5000); R.C96928.newSignInDisplay = await inTech(s2.page, 'new sign-in'); await search(s2.page, n);
   R.C96928.newSignIn = await st(s2.page); await shot(s2.page, 'C96928-new-signin'); await Promise.race([s2.browser.close().catch(() => {}), new Promise((r) => setTimeout(r, 5000))]);
-  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await search(p, n);
+  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); R.C96928.lastDisplay = await inTech(p, 'before re-expanding'); await search(p, n);
   await toggleGroup(p, tB.id); R.C96928.reExpanded = await st(p); R.C96928.bRowsAfter = (await groups(p)).find((g) => g.id === tB.id)?.rows;
 });
 
@@ -119,10 +130,19 @@ await run('C96932', async () => {
 
 await run('C96933', async () => {
   const n = 'ZZAUTOTEST F2 Empty Unassigned Drop';
-  const wos = await seedCase(a, n, 'ZZF2EU', [{ lead: tA.id }, { lead: tA.id }]);
+  let wos = await seedCase(a, n, 'ZZF2EU', [{ lead: tA.id }, { lead: tA.id }]);
+  // 17 Oct 2026: fix-up — the case starts with NO unassigned work for this customer (both work orders led by Tech-A). An earlier run
+  // left S2-35270 in Unassigned, so on 16 Oct the "empty Unassigned" start never existed. Every work order of the customer not led by
+  // Tech-A is put back under Tech-A (the case's own set-up: "If any work order for this customer has no lead, set one before
+  // starting"), then the leads are read back from the records before anything is judged.
+  const fixLeads: string[] = [];
+  for (const w of wos) if (w.techAssignedId !== tA.id) fixLeads.push(`${w.number} ${(await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: tA.id })).status}`);
+  wos = await workOrders(a, n);
+  const setupLeads = wos.map((w: any) => `${w.number} lead=${w.techAssignedFirstName ? w.techAssignedFirstName + ' ' + w.techAssignedLastName : 'none'}`);
+  console.log(t(), 'C96933 set-up leads', JSON.stringify({ fixLeads, setupLeads }));
   await tv(n);
   const pick = async () => (await groups(p)).filter((g) => [tA.id, 'unassigned'].includes(g.id)).map((g) => ({ name: g.name, count: g.count, rows: g.rows, empty: g.empty, collapsed: g.collapsed }));
-  R.C96933 = { before: await pick(), firstGroup: (await groups(p))[0]?.name }; await shot(p, 'C96933-before');
+  R.C96933 = { fixLeads, setupLeads, before: await pick(), firstGroup: (await groups(p))[0]?.name }; await shot(p, 'C96933-before');
   if (R.C96933.before.find((g: any) => g.name === 'Unassigned')?.collapsed) await toggleGroup(p, 'unassigned');
   const w2 = wos[wos.length - 1];
   await drag(p, `[data-test-id="tech_view_row_${w2.id}"]`, '[data-test-id="tech_view_group_unassigned"]', 10);
