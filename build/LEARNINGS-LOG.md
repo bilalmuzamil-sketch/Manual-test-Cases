@@ -1146,3 +1146,10 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 - `run-full-1016.sh` now confirms with a fresh `ensure-heavy.mts` (`confirm_expired`) before stopping. Resume with `FROM=<the step that
   failed>`: that step never signed in, so it must run again. Tell the judging helper the queue continues, or it will take
   "queue finished" as the end. #staging #signin #long-run → L0393, L0398
+
+## L0414 — 2026-10-17 — A message to a helper that has finished RESUMES it: pick one judge before sending, or results get posted twice
+- After the false stop I messaged the first judging helper "the run resumed, keep judging". It had already finished, so I
+  started a second judge. The message then resumed the first, and both were about to post steps 30+.
+- Rule: when replacing a helper, either message the old one OR start a new one, never both. If both happen, send the old one an
+  explicit STOP (no posting, no writes to the tracking file, kill its waiters) and ask what it posted after the cut-off.
+  `judged-full-1016.txt` is the single record of what is judged. #helpers #double-posting → L0412
