@@ -1,0 +1,47 @@
+TITLE: Tech View – Row Text Is 13 px and the Progress Percentage 11 px at Every Density
+TYPE: Story Defect · PARENT: SV-10049 (Density in Tech View and Board View; Ready for QA, read live 16 Oct 2026 — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10049
+ALREADY REPORTED: none found among SV-11317 to SV-11326, SV-11338, SV-11393 to SV-11398 (titles read live 16 Oct 2026). SV-11321 covers the column header labels only (12 px, weight 500); it is not repeated here.
+SEEN ON: staging build {{v26.40.18-7d85b7d}}, 16 Oct 2026 (run 498, C96990; the same sizes were read in C590128 the same day).
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+
+h2. Description
+
+*Tech View's row text should be 14 px at every density, and the progress percentage should stay 12 px.* On staging the row text is 13 px and the percentage 11 px, at Compact, Regular and Comfortable alike.
+
+For example,
+* the work order number, customer, unit, VIN, advisor, lead and price in a Tech View row are 13 px
+* the "0%" beside the progress bar is 11 px
+* Board View's card text, by contrast, is 14 px
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin and check the top bar shows *Staging Heavy Duty - 9919*.
+# Open *Work Orders*, click the *All* tab, type a customer in *Search* (for example {{ZZAUTOTEST F1 Compact Text}}) and click *Tech View*.
+# Click the density button and choose *Regular*, then *Compact*, then *Comfortable*, and compare the size of the text in a row each time (for example with the browser's inspector, Computed > font-size).
+#* Row text: 13 px at every density.
+#* The percentage beside the progress bar: 11 px at every density.
+
+*Actual Result:*
+* Row text 13 px and percentage 11 px at every density.
+
+*Expected Result:*
+* As the test expects: *"Step 6: at Compact the row text is the same size as at Regular (14 px), not smaller. The column header labels and the percentage keep their own smaller size (12 px), the same as at Regular."*
+
+h2. Screenshots
+
+!C96990-1-tech-view-row-text-13px.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.18-7d85b7d}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 16 Oct 2026
+* *User:* Admin
+
+h2. Sources
+
+* PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54, S6-R4 (as quoted in the test case):
+{quote}Row and card text is 14px at every density; Compact never shrinks it. Text the design sets at 12px at every density, such as column header labels (S2-R21), the progress percentage and secondary lines, stays 12px.{quote}
+* Product owner answer: Chris Ward, WO Board and Tech View question sheet, answer 27 (15 Oct 2026).
+
+h2. Test case
+
+* [C96990 Row and card text stays the same size at every density|https://shopview.testrail.io/index.php?/cases/view/96990]

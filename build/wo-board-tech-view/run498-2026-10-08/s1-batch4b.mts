@@ -85,7 +85,14 @@ await run('C96916', async () => {
   const want8 = ['Esther Howard', 'Ralph Edwards', 'Jenny Wilson', 'Theresa Webb', 'Kristin Watson', 'Brenda Martinez', 'Cameron Williamson', 'Floyd Miles'];
   let eight = want8.map((n) => techs.find((x) => x.name === n)).filter(Boolean) as { id: string; name: string }[];
   if (eight.length < 8) eight = [...eight, ...techs.filter((x) => !eight.some((e) => e.id === x.id) && !/Admin ShopView|^ZZ/.test(x.name)).slice(0, 8 - eight.length)];
-  const H = eight[eight.length - 1]; const n = 'ZZAUTOTEST F1 Scroll Back H';
+  // 16 Oct 2026 (second go): the first go took the last name of the list as Technician-H; with two stand-ins that was Aaron Zed, whose
+  // column sits at the far LEFT, so nothing scrolled sideways. Technician-H is now the one whose name sorts LAST (columns are in name
+  // order), with its own customer; and this user's saved collapsed groups and pins are taken off for the test (put back at the end),
+  // because collapsed groups hid every Tech View row on the first go.
+  eight.sort((x, y) => x.name.localeCompare(y.name));
+  const H = eight[eight.length - 1]; const n = `ZZAUTOTEST F1 Scroll Back ${H.name.split(' ')[0]}`;
+  const PREFU = '/api/users/me/preferences/work-orders-list'; const PV0 = (await a.get(PREFU)).body?.data?.value ?? {}; (globalThis as any).__pv0 = PV0;
+  { const v: any = {}; for (const [k, x] of Object.entries(PV0)) if (!/collaps|pinned/i.test(k)) v[k] = x; v.pinnedTechnicianIds = []; R.C96916_prefCleared = (await a.put(PREFU, { value: v })).status; }
   let have = await workOrders(a, n);
   if (!have.length) { const c = await customer(a, n, 'ZZSBH'); for (let k = 0; k < 20; k++) await workOrder(a, c, 'approved', H.id); for (const tt of eight.slice(0, 7)) { await workOrder(a, c, 'approved', tt.id); await workOrder(a, c, 'approved', tt.id); } have = await workOrders(a, n); }
   R.C96916 = { technicians: eight.map((x) => x.name), H: H.name, workOrders: have.length };
@@ -123,7 +130,7 @@ await run('C96916', async () => {
   await display(p, 'Tech View'); await p.waitForTimeout(2000); if (!(await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => ''))) await search(p, n);
   await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) { s.scrollTop = 700; s.scrollLeft = s.scrollWidth; } })()`); await p.waitForTimeout(1500);
   const T: any = { before: await tvRead() }; await shot(p, 'C96916-s12-tech-before');
-  const rt = await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); const rows = [...s.querySelectorAll('[data-test-id^="tech_view_row_"]')].filter(r => { const b = r.getBoundingClientRect(); return b.top > 300 && b.bottom < innerHeight - 20; }); const r = rows[1] || rows[0]; if (!r) return null; const c = [...r.querySelectorAll('td')].find(td => /S\\d+-\\d+/.test(td.innerText)) || r.querySelector('td'); const b = c.getBoundingClientRect(); return { n: (r.innerText.match(/S\\d+-\\d+/) || [''])[0], x: b.left + Math.min(b.width / 2, 30), y: b.top + b.height / 2 }; })()`) as any;
+  const rt = await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); const th = s.querySelector('thead'); const edge = (th ? th.getBoundingClientRect().bottom : 200) + 60; const rows = [...s.querySelectorAll('[data-test-id^="tech_view_row_"]')].filter(r => { const b = r.getBoundingClientRect(); return b.top > edge && b.bottom < innerHeight - 10; }); const r = rows[1] || rows[0]; if (!r) return null; const c = [...r.querySelectorAll('td')].find(td => /S\\d+-\\d+/.test(td.innerText)) || r.querySelector('td'); const b = c.getBoundingClientRect(); return { n: (r.innerText.match(/S\\d+-\\d+/) || [''])[0], x: b.left + Math.min(b.width / 2, 30), y: b.top + b.height / 2 }; })()`) as any;
   T.clicked = rt?.n ?? null; if (!rt) throw new Error('Tech View: no row on screen to open');
   await p.mouse.click(rt.x, rt.y); await p.waitForTimeout(4000); T.openedUrl = p.url().replace(APP, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/, '<id>');
   await p.goBack({ waitUntil: 'domcontentloaded' }); for (let i = 0; i < 4; i++) { await p.waitForTimeout(2500); T['after' + (i + 1)] = await tvRead(); }
@@ -131,6 +138,7 @@ await run('C96916', async () => {
   const tl = T.after4 ?? T.after3; T.drift = tl?.topRow && T.before?.topRow ? { sideways: tl.scrollLeft - T.before.scrollLeft, rows: tl.topRow.index - T.before.topRow.index, sameTopRow: tl.topRow.number === T.before.topRow.number, px: tl.scrollTop - T.before.scrollTop } : null;
   R.C96916.tech = T;
   await search(p, ''); await display(p, 'List');
+  R.C96916.prefRestored = (await a.put(PREFU, { value: PV0 })).status;
 });
 
 await run('C96917', async () => {
@@ -156,5 +164,6 @@ await run('C96917', async () => {
   await display(p, 'List');
 });
 
+if ((globalThis as any).__pv0 && !R.C96916?.prefRestored) R.C96916_prefRestoredAfterError = (await a.put('/api/users/me/preferences/work-orders-list', { value: (globalThis as any).__pv0 })).status; // 16 Oct 2026
 fs.writeFileSync(path.join(EV, 's1-batch4b.json'), JSON.stringify(R, null, 1)); // 16 Oct 2026: EV = WOB_EV when set
 await done(browser);
