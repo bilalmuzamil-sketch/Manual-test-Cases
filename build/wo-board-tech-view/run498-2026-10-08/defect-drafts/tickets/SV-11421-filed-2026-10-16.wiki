@@ -1,0 +1,49 @@
+TITLE: Board View – Browser Back Loses the Board's Sideways and Column Position
+FILED: SV-11421 https://shopview.atlassian.net/browse/SV-11421 · Story Defect · parent SV-10044 (Ready for QA, read live) · Medium · label board-tech-view · relates to SV-10044 · 16 Oct 2026
+
+h2. Description
+
+*After opening a work order from Board View and pressing the browser's Back button, the board should come back where it was:* the same sideways position exactly, and the card that was at the top of the column back at the top. On staging the board comes back at the far left, and the tab under the page title has changed from *All* to *Work Orders*.
+
+For example,
+
+* the board was scrolled right to a technician near the end of the board, and down that technician's column
+* after Back, the first columns (Unassigned, Aaron Baker …) are in view and that technician's column is out of view
+* the tab has changed from *All* to *Work Orders*
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin and check the top bar shows *Staging Heavy Duty - 9919*.
+# Open *Work Orders*, click the *All* tab, type {{ZZAUTOTEST F1 Scroll Back Theresa}} in *Search* and click *Board View*.
+# Scroll the board to the right until *Theresa Webb*'s column is fully in view, then scroll down inside her column a few cards.
+# Click a card that is in view to open its work order.
+# Press the browser's *Back* button.
+#* The *Work Orders* tab is chosen instead of *All*.
+#* The board is at the far left; Theresa Webb's column is not in view.
+
+*Actual Result:*
+
+* The board's sideways position and the column's scroll position are lost, and the tab changes to Work Orders.
+
+*Expected Result:*
+
+* The same columns are in view at exactly the same sideways position, and the card that was at the top of Theresa Webb's column comes back at the top, fully shown (it may sit up to one card from the exact position).
+
+h2. Screenshots
+
+!C96916-1-board-before-open.png|width=1000!
+!C96916-2-board-after-back.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.18-7d85b7d}} on [staging|https://app.staging.shopview.com/workorders] · *Location:* Staging Heavy Duty - 9919 · *User:* Admin, example card {{S2-36407}} at the top of Theresa Webb's column · seen 16 Oct 2026
+
+h2. Sources
+
+* [PRD – Work Orders — Board View & Tech View Display Options|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (Confluence page 845185030, version 58, read 16 Oct 2026), S1-R8:
+{quote}In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. Horizontal position comes back exactly. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position. List behaves as it does today.{quote}
+* Related, not the same problem: SV-11407 (a half-visible top card or row comes back hidden). Here the whole sideways and column position is lost. Only Board View was checked for this ticket.
+
+h2. Test case
+
+* [C96916 Browser Back restores the scroll position in Tech View and Board View|https://shopview.testrail.io/index.php?/cases/view/96916]

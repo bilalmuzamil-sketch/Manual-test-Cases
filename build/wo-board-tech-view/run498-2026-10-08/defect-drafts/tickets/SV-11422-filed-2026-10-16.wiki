@@ -1,0 +1,46 @@
+TITLE: Tech View – First Tab Lands on the Unassigned Header, Not a Work Order Row
+FILED: SV-11422 https://shopview.atlassian.net/browse/SV-11422 · Story Defect · parent SV-10054 (Ready for QA, read live) · Medium · label board-tech-view · relates to SV-10054 · 16 Oct 2026
+
+h2. Description
+
+*In Tech View, the one Tab stop should land on a work order row* — the row last focused, or the first row when none has been — and that row shows the focus ring. On staging the first Tab lands on the *Unassigned* group header instead, even when Unassigned has a work order row under it.
+
+For example,
+
+* Tech View shows the Unassigned group with one work order row under it
+* pressing Tab from the Search box puts the blue focus ring on the Unassigned group header, not on that row
+* Board View does this correctly: the first Tab lands on the first card
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin and check the top bar shows *Staging Heavy Duty - 9919*.
+# Open *Work Orders*, click the *All* tab, type {{ZZAUTOTEST F3 Keyboard Reach}} in *Search* and click *Tech View*.
+#* The Unassigned group shows one row, {{S2-36336}}.
+# Click once in the *Search* box and press Tab until focus enters the table.
+#* The blue focus ring is on the *Unassigned* group header.
+#* No work order row has the focus ring.
+
+*Actual Result:*
+
+* The first Tab into Tech View lands on the Unassigned group header.
+
+*Expected Result:*
+
+* The first Tab into Tech View lands on a work order row (here the first row, S2-36336), with a visible focus ring.
+
+h2. Screenshots
+
+!C97021-3-tech-first-tab-lands-on-header.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.18-7d85b7d}} on [staging|https://app.staging.shopview.com/workorders] · *Location:* Staging Heavy Duty - 9919 · *User:* Admin · seen 16 Oct 2026
+
+h2. Sources
+
+* [PRD – Work Orders — Board View & Tech View Display Options|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (Confluence page 845185030, version 58, read 16 Oct 2026), S11-R1:
+{quote}Each view is a single Tab stop. Tab lands on one work order row (Tech View) or card (Board View), the one last focused, or the first one when none has been; the focused row or card shows a visible focus ring.{quote}
+
+h2. Test case
+
+* [C97021 Tab reaches every card, row and header in on-screen order with a focus ring|https://shopview.testrail.io/index.php?/cases/view/97021]

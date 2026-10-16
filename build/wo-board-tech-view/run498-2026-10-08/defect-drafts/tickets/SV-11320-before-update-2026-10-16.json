@@ -1,0 +1,13 @@
+{
+ "key": "SV-11320",
+ "read_at": "2026-10-16 (live, before update)",
+ "http": "200",
+ "summary": "Tech View: drag grip on every row and technician header (none on Unassigned header)",
+ "status": "In Progress",
+ "updated": "2026-10-16T03:10:07.686-0500",
+ "description": "h3. What\n\nShow the design's six-dot drag grip at the left of every Tech View row and technician group header (not the Unassigned header).\n\nh3. Expected\n\nS9-R1a (v53): \"In Tech View every work order row, Unassigned's rows included, shows the design's six-dot drag grip at its left edge to users who can drag work orders (S4-N1). Every technician group header shows the grip to every user who can reorder technicians (S9-R2), view-only users included, because the technician order is personal. The Unassigned group header shows no grip, because Unassigned cannot move (S9-R8). The whole row still drags (S2-R8); the grip shows that it can.\"\n\nPRD: [Board View & Tech View PRD v51|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S9-R1a).\n\nh3. Actual (staging build, develop b19269d4487, clicked through locally)\n\nRows show no grip, although dragging a row works. Technician group headers have a grip; Unassigned has none.\n\nh3. How to check\n\n* A user with Work Orders create and edit sees a grip on every work order row, Unassigned's rows included.\n* A view-only user sees no row grips, but does see the grip on every technician group header and can reorder technicians. The Unassigned group header shows no grip to anyone.\n* Dragging from anywhere on the row still works; a click still opens the work order.\n\nh3. Screenshots\n\nAttached: staging build first, Branko's design (files starting D) after.\n\nRaised from Sasha's staging review, 2026-10-14.\n\nh3. PRD v54 update (2026-10-15)\n\n* S9-R1a reworded per grip (v53): row grips follow who can drag work orders (S4-N1); every technician group header shows the grip to everyone who can reorder technicians (S9-R2), view-only users included; the Unassigned header has no grip because Unassigned cannot move (S9-R8).\n\n----\n\n*Test cases for this design issue:*\n\n* [C590116|https://shopview.testrail.io/index.php?/cases/view/590116] Six-dot grips on Tech View rows and technician headers, none on Unassigned\n* [C590117|https://shopview.testrail.io/index.php?/cases/view/590117] Tech View group headers show grip, arrow, avatar, name and count as designed",
+ "attachments": [
+  "06-tech_view-row-hover-1440.png",
+  "D2-design-tech_view-row-hover-1440.png"
+ ]
+}

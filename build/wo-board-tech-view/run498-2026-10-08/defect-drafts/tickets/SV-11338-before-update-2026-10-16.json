@@ -1,0 +1,12 @@
+{
+ "key": "SV-11338",
+ "read_at": "2026-10-16 (live, before update)",
+ "http": "200",
+ "summary": "Tech/Board View – header avatars solid blue instead of the design's grey initials",
+ "status": "In Progress",
+ "updated": "2026-10-15T09:53:27.940-0500",
+ "description": "h3. Preconditions\n\n* Role: Admin.\n* A technician with no profile photo.\n\nh3. Environment\n\n* Staging — app.staging.shopview.com, Chrome 154 / Windows 10.\n\nh3. Steps to reproduce\n\n# Select Tech View and find the group of a technician with no photo.\n# Inspect the avatar in the group header and the header name.\n# Select Board View and inspect the same technician's column header avatar.\n# In the design file (Work Orders → Tech View and Board View), compare a header avatar for a technician without a photo.\n\nh3. Expected result\n\nPer the design (Tech View and Board View headers, e.g. \"BM\" Brenda Martinez) and S2-R12 / S3-R12:\n\n* The avatar is a light-grey circle with dark initials.\n* The header name is ≈16px, weight 600 (estimated from the design file).\n\nh3. Actual result\n\nIn both views:\n\n* The avatar is a 28px circle with a solid blue background (class {{bg-primary}}, rgb 56, 116, 255) and white initials.\n* The header name is 14px, weight 600.\n\n\n\n*Evidence:* \n\n!header_avatar_staging_vs_design.png|width=780,alt=\"header_avatar_staging_vs_design.png\"!\n\n----\n\n*Test cases for this design issue:*\n\n* [C590117|https://shopview.testrail.io/index.php?/cases/view/590117] Tech View group header shows grip, arrow, grey initials avatar, name and count\n* [C590119|https://shopview.testrail.io/index.php?/cases/view/590119] Board View column header shows grip, avatar, name, pin and count as designed",
+ "attachments": [
+  "header_avatar_staging_vs_design.png"
+ ]
+}

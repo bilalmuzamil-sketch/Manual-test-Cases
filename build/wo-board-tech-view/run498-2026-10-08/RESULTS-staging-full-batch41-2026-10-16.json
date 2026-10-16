@@ -1,0 +1,107 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.18-7d85b7d",
+  "date": "16 October 2026",
+  "note": "batch 41: tickets filed or found for the 7 problems of 16 Oct (QA lead's yes, 16 Oct); verdicts and bullets kept from batch 39, ticket added. Source check: source-verify-2026-10-16/RECONCILE-7.md"
+ },
+ "results": {
+  "C581895": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Set-up: on staging a technician's staff record and sign-in account can carry different names: Carol Neal's work orders show \"David Sparks\" in List. So Technician-A is Carol Neal (staff record) and Technician-B is Ralph Edwards; work order S2-36397 is led by Carol Neal and its second line's technician is Ralph Edwards.",
+    "Step 2: Settings > Staff shows \"Carol Neal\" and \"Ralph Edwards\"; a search for \"Sparks\" finds no staff member.",
+    "Step 5: List's Lead Technician for S2-36397 reads \"David Sparks\", not the staff record name \"Carol Neal\".",
+    "Steps 7 and 8: Board View's card lead and column header read \"Carol Neal\".",
+    "Step 9: the card's avatar hover names are \"Carol Neal\" and \"Ralph Edwards\".",
+    "Steps 11 and 12: Tech View's group header reads \"Carol Neal\", and the Assigned Techs hover names are \"Carol Neal\" and \"Ralph Edwards\".",
+    "So Tech View and Board View show the staff record name, but List shows another name for the same technician.",
+    "This is the problem already reported in the ticket below; it is not fixed on this build."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C581895-0-staff-record-carol-neal.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C581895-1-list-lead-david-sparks.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C581895-3-tech-view-carol-neal.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11336 (already reported on 14 Oct 2026; the same problem).",
+   "todo": "What needs to be done: follow the ticket; once List shows the staff record name, run this test again with Carol Neal."
+  },
+  "C96916": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F1 Scroll Back Theresa\" with 20 Approved work orders led by Theresa Webb (Technician-H, her column is at the far right of the board) and 2 led by each of seven other technicians.",
+    "Steps 4 to 6 (Board View): the board was scrolled right until Theresa Webb's column was fully in view, then her column was scrolled down until S2-36407 was the card at its top.",
+    "Steps 7 and 8: a card in view (S2-36409) was clicked and its work order opened; then the browser's Back button was used.",
+    "Step 9: the page came back on the \"Work Orders\" tab instead of \"All\", with the board at the far left: Theresa Webb's column and S2-36407 were no longer in view. The sideways position and the card at the top were not kept. The same happened on a second try.",
+    "Steps 10 to 15 (Tech View) were not judged: after that Back, the row the test script clicked did not open its work order, so Back could not be checked there."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C96916-1-board-before-open.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C96916-2-board-after-back.png"
+   ],
+   "not_observed": "Steps 10 to 15 (Tech View): the scripted row click did not open the work order.",
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11421.",
+   "todo": "What needs to be done: follow the ticket; when it is fixed on staging, run this test again, including the Tech View part by hand."
+  },
+  "C96990": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Set-up: S2-35534 for \"ZZAUTOTEST F1 Compact Text\", led by Esther Howard.",
+    "Step 4 (Tech View, Regular): the row text is 13 px; the column header labels are 12.8 px; the percentage beside the progress bar is 11 px.",
+    "Step 6 (Compact): the row text is still 13 px, so it is not smaller than at Regular, but the test wants 14 px. The header labels stay 12.8 px and the percentage 11 px; the test wants both at 12 px.",
+    "Step 8 (Comfortable): every text is the same size as at Regular.",
+    "Step 11 (Board View): the card's text is the same size at Compact as at Regular (number and price 14 px, the other lines 12 px)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C96990-1-tech-view-row-text-13px.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C96990-2-board-card-same-size.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11420 (row text and percentage) and https://shopview.atlassian.net/browse/SV-11321 (header labels).",
+   "todo": "What needs to be done: follow the tickets; once Tech View's row text is 14 px and the percentage 12 px on staging, run this test again."
+  },
+  "C368152": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps with the keyboard.",
+    "Set-up: customer \"ZZAUTOTEST F3 Keyboard Reassign\" with four Approved work orders: S2-36356 and S2-36357 led by Ana Alpha, S2-36358 led by Ben Bravo, S2-36359 with no lead.",
+    "Steps 5 and 6: on S2-36356's card, Tab reached \"More actions\", Enter opened the menu, and the down arrow and Enter opened \"Reassign lead technician\".",
+    "Steps 7 and 8: typing \"ZZAUTOTEST Be\" in the search box left \"Unassigned\" and \"ZZAUTOTEST Ben Bravo\". Tab went to the first row, the down arrow to Ben Bravo, Enter picked him, and Enter on \"Reassign\" confirmed. S2-36356 moved to Ben Bravo's column and \"Lead technician updated\" showed.",
+    "Steps 9 and 10: the \"More actions\" menu of S2-36358 (led by Ben Bravo) offers only \"Reassign lead technician\". There is no \"Unassign\" item.",
+    "Step 11 could not be done, because there is no Unassign item.",
+    "Step 12: Space, the arrow keys and Shift with the arrow keys did not move S2-36357; it stayed in Ana Alpha's column."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C368152-1-reassigned-by-keyboard.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C368152-2-menu-has-no-unassign.png"
+   ],
+   "not_observed": "Step 11 (Unassign by Enter): the menu has no Unassign item.",
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11419.",
+   "todo": "What needs to be done: follow the ticket; once the menu offers Unassign on staging, run this test again."
+  },
+  "C97021": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps (keyboard only, Tab and Shift+Tab).",
+    "Set-up: customer \"ZZAUTOTEST F3 Keyboard Reach\" with four Approved work orders: two led by Ana Alpha, one by Ben Bravo and one with no lead.",
+    "Step 5: Tab from the Search box reaches the first card (S2-36336, in Unassigned), and it shows a blue focus ring.",
+    "Step 6: the next Tab goes to that card's \"More actions\" button, and the one after that leaves the board for the top of the page. No other card (S2-36333, S2-36334, S2-36335) and no column header is reached by Tab.",
+    "Step 7: Shift+Tab goes back through the toolbar (display switcher, Fields to display, Density, the filters, Search), not through the cards.",
+    "Step 9: in Tech View, Tab reaches the \"Unassigned\" group header, but never a work order row.",
+    "Step 10: the next Tab goes to the Unassigned header's arrow and then leaves the table; no row and no technician group header is reached.",
+    "Note: the product requirements (version 58, read 16 Oct 2026) now say each view is a single Tab stop and the arrow keys move between cards, rows and headers. So Tab leaving the board after one card is what the requirements ask for.",
+    "What is still wrong: in Tech View the first Tab lands on the Unassigned group header, not on a work order row; the requirements say it lands on a row. That is the ticket below."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C97021-3-tech-first-tab-lands-on-header.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11422 (Tech View's first Tab lands on the Unassigned header instead of a work order row).",
+   "todo": "What needs to be done: follow the ticket. The steps that expect Tab to visit every card and row are with the QA lead, because the product requirements now say Tab stops once in each view."
+  }
+ }
+}

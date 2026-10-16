@@ -1,0 +1,12 @@
+{
+ "key": "SV-11322",
+ "read_at": "2026-10-16 (live, before update)",
+ "http": "200",
+ "summary": "Switcher tooltip covers the column header row",
+ "status": "In Progress",
+ "updated": "2026-10-15T09:54:04.675-0500",
+ "description": "h3. What\n\nOpen the switcher's hover tooltip above the switcher.\n\nh3. Expected\n\nS1-R9b: \"The switcher's hover tooltip opens above the switcher, so it never covers the table's column header row.\"\n\nPRD: [Board View & Tech View PRD v51|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S1-R9b).\n\nh3. Actual (staging build, develop b19269d4487, clicked through locally)\n\nHovering Tech View in the switcher shows the \"Tech View\" tooltip below it, on top of the Service Advisor header.\n\nh3. How to check\n\n* Hover each of the three switcher buttons: the tooltip shows above the switcher and the header row stays readable.\n\nh3. Screenshots\n\nAttached: staging build first, Branko's design (files starting D) after.\n\nRaised from Sasha's staging review, 2026-10-14.\n\n----\n\n*Test case for this design issue:*\n\n* [C590111|https://shopview.testrail.io/index.php?/cases/view/590111] Display switcher tooltips open above it and never cover the column headers",
+ "attachments": [
+  "02-tech_view-1440-retry.png"
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "key": "SV-11318",
+ "read_at": "2026-10-16 (live, before update)",
+ "http": "200",
+ "summary": "Tech View: status pill size follows density (16px / 16px / 22px)",
+ "status": "In Progress",
+ "updated": "2026-10-16T03:10:06.770-0500",
+ "description": "h3. What\n\nTech View keeps the List's production status pill and its red and blue counts, but the pill's size follows the density setting.\n\nh3. Expected\n\nS2-R19: Tech View's Status column is the same status pill List shows in production, with the same red service-actions count and blue parts-actions count on it. S6-R2a (v54): \"In Tech View the status pill is 16px tall at Compact and Regular and 22px tall at Comfortable, the design's small and regular badges. List's status pill is unchanged.\"\n\nPRD: [Board View & Tech View PRD v51|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] (S2-R19, S6-R2a).\n\nh3. Actual (staging build, develop b19269d4487, clicked through locally)\n\nThe status pill is the same size (about 21px) at every density.\n\nh3. How to check\n\n* Compact and Regular: status pill 16px tall. Comfortable: 22px tall.\n* Red and blue counts still show on the pill, with their tooltips.\n* List's status pill looks exactly as in production.\n\nh3. Screenshots\n\nAttached: staging build first, Branko's design (files starting D) after.\n\nRaised from Sasha's staging review, 2026-10-14.\n\nh3. PRD v54 update (2026-10-15)\n\n* S6-R2a corrected: 16px at Compact and Regular (was 18px, which came from an unused badge in the design system), 22px at Comfortable. List pills keep production's sizes, including the matching widths down the column; Tech View's pill takes the same widths.\n\nAlso check:\n\n* Tech View pill is 16px at Compact and Regular, 22px at Comfortable.\n* Pill widths match List's production widths for the same work orders.\n\n----\n\n*Test cases for this design issue:*\n\n* [C590115|https://shopview.testrail.io/index.php?/cases/view/590115] Tech View status pill is List's pill, 16 px tall, 22 px at Comfortable\n* [C590128|https://shopview.testrail.io/index.php?/cases/view/590128] Density changes Tech View row, avatar and bar sizes but never the text size\n* [C598326|https://shopview.testrail.io/index.php?/cases/view/598326] List status pills keep matching widths and Tech View pills take the same widths",
+ "attachments": [
+  "07-tech_view-density-menu-1440.png",
+  "09-tech_view-status-chips-2x.png",
+  "D1-design-tech_view-1440.png"
+ ]
+}

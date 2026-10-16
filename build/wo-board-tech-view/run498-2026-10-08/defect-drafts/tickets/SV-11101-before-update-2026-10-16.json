@@ -1,0 +1,16 @@
+{
+ "key": "SV-11101",
+ "read_at": "2026-10-16 (live, before update)",
+ "http": "200",
+ "summary": "Tech View & Board View – A Technician's Work Orders Don't Start in the List's Default Order (Staging)",
+ "status": "OBSOLETE",
+ "updated": "2026-10-15T08:44:27.919-0500",
+ "description": "h2. Description\n\nBefore anyone reorders a technician's work orders, *Tech View and Board View should list them in the List's default order* (customer name A-Z).\n\nFor example,\n\n* one technician leads three work orders for customers whose names sort differently\n* nobody has reordered that technician's work yet\n* Tech View and Board View list them in the order they were created, not A-Z\n\nThis appears inconsistent with the requirement defined in *Epic SV-10043* and the *PRD* (S2-R6). The same check worked on the QA branch on 9 October, which is why this ticket was closed then. On staging it fails again, so this ticket is reopened.\n\nh2. Steps to Reproduce\n\n# Create three work orders in this order, for customers *Zeta Hauling*, *Alpha Freight* and *Mid Trucking*, all with the same lead technician (one who leads nothing else).\n# Sign in as a user who has never reordered work or changed the List sort, open *Work Orders* > *All* > *List*.\n#* The three show as *Alpha Freight, Mid Trucking, Zeta Hauling* (List's default, customer A-Z).\n# Click *Tech View* and find that technician's group; then click *Board View* and find that technician's column.\n#* Both show *Zeta Hauling, Alpha Freight, Mid Trucking* — the order they were created.\n\n*Actual Result:*\n\n* Before any reorder, a group/column lists its work orders in creation order.\n\n*Expected Result:*\n\n* Before any reorder, a group/column uses the List's default order: *Alpha Freight, Mid Trucking, Zeta Hauling*.\n\n!C96929-1-list-order-expected.png|width=1962,height=1084!\n\n!C96929-2-tech-view-wrong-order.png|width=1962,height=1084!\n\n!C96929-3-board-view-wrong-order.png|width=1962,height=1084!\n\nh2. Environment\n\n* *Build:* {{v26.40.17-a5c4210}} on [staging|https://app.staging.shopview.com/workorders]\n* *Location:* Staging Heavy Duty - 9919 · *User:* a brand-new user with no saved sort or order · *Lead technician:* Carol Neal\n* *Example records:* {{S2-35903}} (ZZAUTOTEST Zeta Hauling ZZ96929, made first), {{S2-35904}} (Alpha Freight ZZ96929), {{S2-35905}} (Mid Trucking ZZ96929) — search \"ZZ96929\" on staging\n\nh2. Sources\n\n* [PRD – Work Orders Board View & Tech View|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030] — S2-R6, read 14 Oct 2026 (re-read live before filing):\nBefore a manual order is saved, use the List’s default work order sort.\n* Review Decisions (page 853901313), DR-45: the desktop List's default sort is customer name A-Z, ties by work order number.\n\nh2. Test case\n\n* [C96929 Before anyone reorders them, a group's work orders follow List's default sort|https://shopview.testrail.io/index.php?/cases/view/96929]",
+ "attachments": [
+  "C96929-1-list-order-expected.png",
+  "C96929-2-tech-view-wrong-order.png",
+  "C96929-3-board-view-wrong-order.png",
+  "D3-C96929-1-list-annotated.png",
+  "D3-C96929-2-board-annotated.png"
+ ]
+}
