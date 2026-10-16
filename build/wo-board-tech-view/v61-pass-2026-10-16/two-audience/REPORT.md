@@ -16,7 +16,7 @@ Rule 117 is locked: this is a one-time authorization for these 21 cases only; ev
 - Over 10 steps, not split (needs the QA lead): C368150 (13), C368152 (12), C97020 (16), C590117 (11).
 - Run 498: 273 → 277 (C614714–C614717 added, union only, nothing dropped, no other result changed). Retest set on the 13 changed cases.
 - Automated cases changed (Vladimir not told, per the QA lead): C96945 (expected changed), C368214 (quote refresh).
-- C614711 retitled; the SV-11416 footer shows the old title (refresh it when next editing the ticket).
+- C614711 retitled; the SV-11416 footer was refreshed to the new title (16 Oct, media unchanged).
 
 | Case | Title | Test in run 498 | Change | Why |
 |---|---|---|---|---|
