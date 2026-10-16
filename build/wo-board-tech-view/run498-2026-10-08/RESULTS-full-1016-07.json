@@ -1,0 +1,96 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "16 October 2026",
+  "note": "full staging run 16 Oct 2026, batch 07 = queue step 25"
+ },
+ "results": {
+  "C97028": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Every Google Analytics request was blocked for this check.",
+    "The page loaded normally; VIN/serial turned on and \"Compact\" density applied at once.",
+    "The card moved to Ben with \"Lead technician updated\".",
+    "After a refresh, Board View, VIN/serial on, Compact and Ben as lead were all still there."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97028-1-blocked-analytics-kept.png"
+   ],
+   "ticket": null
+  },
+  "C97031": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Start: Unassigned 2, Ana 3, Ben 2, Cal 0 (7).",
+    "Step 5, Ana to Cal: Ana 2, Cal 1, others unchanged. Step 6, Ana to Unassigned: Ana 1, Unassigned 3. 7 each time, each count changed straight away with no reload.",
+    "Step 7 (reorder) and step 8 (refused move) changed no count.",
+    "Steps 9 and 10: Tech View shows Unassigned 3, Ana 1, Ben 2, Cal 1 (7) before and after the refresh."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97031-1-tech-view-counts.png"
+   ],
+   "ticket": null
+  },
+  "C154649": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Board View was chosen at full width.",
+    "At about 900 pixels wide the page showed the phone List of work order cards: no display switcher, no density control, no \"Fields to display\", no board.",
+    "After a refresh at that width it was still the phone List.",
+    "Back at full width the page opened in Board View again (the saved choice stayed Board View), with the switcher (List, Tech View, Board View), density control and \"Fields to display\" back."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154649-1-narrow-phone-list.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154649-2-wide-board-again.png"
+   ],
+   "ticket": null
+  },
+  "C368154": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 4 (reading which density is selected).",
+    "Seen: a brand-new user with no saved choices opened Work Orders and List was the active display (step 2).",
+    "Step 5: \"Fields to display\" had exactly Lead technician, Customer, Asset, Progress and Total price on (number, unit and status always show); everything else off: the standard Board View defaults.",
+    "Step 4: the script opened the density control but did not find a ticked option, so whether Regular is selected was not read."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368154-1-new-user-list.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368154-2-default-fields.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: read the selected density)."
+  },
+  "C368158": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "An Invoiced work order (S2-36718) led by Ana Alpha.",
+    "Its On Site toggle was changed with no error; after a refresh it is still on site.",
+    "Lead Technician still reads \"ZZAUTOTEST Ana Alpha\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368158-1-on-site-saved-invoiced.png"
+   ],
+   "ticket": null
+  },
+  "C368159": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps (same problem as before).",
+    "Work order S2-36719 led by Ana Alpha, open in two browsers.",
+    "Step 2: in the second browser Ben Bravo could not be chosen on the work order page: its \"Lead Technician\" list shows only about the first 100 people (to the Q names), so the lead stayed Ana Alpha and the stale-page check could not be done.",
+    "The first browser's On Site change saved (on site now), lead still Ana Alpha.",
+    "The ticket for the cut-off list reads \"OBSOLETE\" (read 16 Oct 2026), but the list still stops at about 100 names on this build."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368159-1-wo-page-list-no-ben.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11393.",
+   "todo": "What needs to be done: the QA lead to decide on the ticket (it is closed as obsolete, the problem is still there); once fixed on staging, run this test again."
+  }
+ }
+}
