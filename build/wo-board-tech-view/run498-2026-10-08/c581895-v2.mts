@@ -115,8 +115,8 @@ await run('C581895', async () => {
   o.step5 = await p.locator(`[data-test-id="board_column_name_${TA.staff_id}"]`).innerText().catch(() => null);
   await card.scrollIntoViewIfNeeded().catch(() => {}); await shot('C581895-v2-step5-board');
   const avs = card.locator('[data-test-id="board_card_field_line_technicians"] .q-avatar, [data-test-id="board_card_field_line_technicians"] [class*="avatar"], [data-test-id="board_card_field_line_technicians"] [class*="overflow"]');
-  o.step6count = await avs.count(); o.step6 = [];
-  for (let i = 0; i < Math.min(o.step6count, 6); i++) { await avs.nth(i).hover().catch(() => {}); await p.waitForTimeout(1200); o.step6.push((await tooltips()).join(' | ')); if (i === 0) await shot('C581895-v2-step6-board-hover'); }
+  o.step6count = await avs.count(); o.step6 = []; o.step6pic = 0;
+  for (let i = 0; i < Math.min(o.step6count, 6); i++) { await avs.nth(i).hover().catch(() => {}); await p.waitForTimeout(1200); o.step6.push((await tooltips()).join(' | ')); if (o.step6[i] && !o.step6pic) { o.step6pic = i + 1; await shot('C581895-v2-step6-board-hover'); } } // 16 Oct 2026: picture at the first hover that shows a name
   o.step6field = await card.locator('[data-test-id="board_card_field_line_technicians"]').innerText().catch(() => null);
   // steps 7-8: Tech View
   await p.mouse.move(5, 500); await display(p, 'Tech View'); await p.waitForTimeout(2500);
@@ -135,7 +135,7 @@ await run('C581895', async () => {
   const ai = (o.techHeads as string[]).findIndex((h) => /^Assigned Techs/i.test(h));
   const cell = ai >= 0 ? row.locator('td').nth(ai) : row; const tav = cell.locator('.q-avatar, [class*="avatar"], [class*="overflow"]');
   o.step8count = await tav.count(); o.step8 = [];
-  for (let i = 0; i < Math.min(o.step8count, 6); i++) { await tav.nth(i).hover().catch(() => {}); await p.waitForTimeout(1200); o.step8.push((await tooltips()).join(' | ')); if (i === 0) await shot('C581895-v2-step8-tech-hover'); }
+  for (let i = 0; i < Math.min(o.step8count, 6); i++) { await tav.nth(i).hover().catch(() => {}); await p.waitForTimeout(1200); o.step8.push((await tooltips()).join(' | ')); if (o.step8[i] && !o.step8pic) { o.step8pic = i + 1; await shot('C581895-v2-step8-tech-hover'); } } // 16 Oct 2026: picture at the first hover that SHOWS a name (the first hover on 16 Oct showed none)
   o.step8cell = await cell.innerText().catch(() => null);
 });
 

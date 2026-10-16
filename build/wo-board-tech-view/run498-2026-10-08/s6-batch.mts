@@ -136,11 +136,23 @@ await run('C96989', async () => {
 });
 
 await run('C96990', async () => {
+  // 16 Oct 2026 (case rewritten 15 Oct): row and card text must be 14 px at every density and the 12 px texts (column header labels and
+  // the percentage beside the progress bar) stay 12 px. Every text in Work-order-1's row, every header label and the percentage are read
+  // (computed font size) at Regular, Compact and Comfortable in Tech View, and the card's texts at Regular and Compact in Board View.
   const n = 'ZZAUTOTEST F1 Compact Text'; const w = await seed(n, 'ZZF6CX', [ES.staff_id]); const wo = w[0].id, num = w[0].number;
-  await go('List', n); R.C96990 = { list: await listRowSizes(p, num) };
-  await display(p, 'Tech View'); await p.waitForTimeout(1500); await expandSmallGroups(p); await setDensity('compact'); R.C96990.techCompact = await sizes(p, rowSel(wo)); await shot(p, 'C96990-tech-compact');
-  await display(p, 'Board View'); await p.waitForTimeout(1500); R.C96990.boardCompact = await sizes(p, cardSel(wo)); await shot(p, 'C96990-board-compact');
-  R.C96990.bodyFont = await p.evaluate(`parseFloat(getComputedStyle(document.body).fontSize)`);
+  const texts = (sel: string) => p.evaluate(`(() => { const root = document.querySelector(${JSON.stringify(sel)}); if (!root) return null; const out = [];
+    for (const e of root.querySelectorAll('*')) { if (e.closest('.q-icon, i, svg, .material-icons')) continue; let own = ''; for (const c of e.childNodes) if (c.nodeType === 3) own += c.textContent; own = own.replace(/\\s+/g, ' ').trim(); if (!own || e.getBoundingClientRect().width <= 0) continue;
+      out.push(own.slice(0, 24) + ' = ' + getComputedStyle(e).fontSize); } return out; })()`);
+  const headLabels = () => p.evaluate(`[...document.querySelectorAll('thead th')].map(th => { let own = ''; let leaf = null; for (const e of [th, ...th.querySelectorAll('*')]) { if (e.closest('.q-icon, i, svg, .material-icons')) continue; let t = ''; for (const c of e.childNodes) if (c.nodeType === 3) t += c.textContent; t = t.replace(/\\s+/g, ' ').trim(); if (t) { own = t; leaf = e; break; } } return own ? own + ' = ' + getComputedStyle(leaf).fontSize : null; }).filter(Boolean)`);
+  const pct = (sel: string) => p.evaluate(`(() => { const root = document.querySelector(${JSON.stringify(sel)}); if (!root) return null; const e = [...root.querySelectorAll('*')].find(x => /^\\s*\\d+%\\s*$/.test(x.textContent || '') && x.children.length === 0); return e ? e.textContent.trim() + ' = ' + getComputedStyle(e).fontSize : 'no percentage'; })()`);
+  await go('List', n); R.C96990 = { wo: num, list: await listRowSizes(p, num) };
+  await display(p, 'Tech View'); await p.waitForTimeout(1500); await expandSmallGroups(p); if (!(await searchValue(p))) await search(p, n);
+  for (const d of ['regular', 'compact', 'comfortable']) { await setDensity(d); await p.evaluate(`document.querySelector('${rowSel(wo).replace(/'/g, "\\'")}')?.scrollIntoView({ block: 'center' })`).catch(() => {}); await p.waitForTimeout(600);
+    R.C96990[`tech_${d}`] = { row: await texts(rowSel(wo)), headers: await headLabels(), percentage: await pct(rowSel(wo)), size: await sizes(p, rowSel(wo)) }; await shot(p, `C96990-tech-${d}`); }
+  await display(p, 'Board View'); await p.waitForTimeout(1500); if (!(await searchValue(p))) await search(p, n);
+  for (const d of ['regular', 'compact']) { await setDensity(d); await p.evaluate(`document.querySelector('${cardSel(wo)}')?.scrollIntoView({ block: 'center', inline: 'center' })`).catch(() => {}); await p.waitForTimeout(600);
+    R.C96990[`board_${d}`] = { card: await texts(cardSel(wo)), size: await sizes(p, cardSel(wo)) }; await shot(p, `C96990-board-${d}`); }
+  await setDensity('regular'); R.C96990.bodyFont = await p.evaluate(`parseFloat(getComputedStyle(document.body).fontSize)`);
 });
 
 await run('C96991', async () => {

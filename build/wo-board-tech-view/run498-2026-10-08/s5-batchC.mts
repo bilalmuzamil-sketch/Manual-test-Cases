@@ -151,6 +151,15 @@ await run('C96978', async () => {
     if (!(await target.count())) continue; await target.hover().catch(() => {}); await p.waitForTimeout(1300);
     const tt = await tooltip(); R.C96978.cardClockHover.push(tt); if (tt.length) { await shot(p, 'C96978-card-clock-hover'); break; } }
   R.C96978.estimate = { wo: (await a.get(`/api/work-orders/view/${wo}`)).body?.data?.work_order?.time_estimate ?? null, cardHasField: await p.locator(`[data-test-id="board_card_${wo}"] [data-test-id="board_card_field_time_estimate"]`).count() };
+  // 16 Oct 2026 (S5-R11a, answer 31): the card's estimated hours must equal the WORK ORDER PAGE's Total Hours (within 0.1) — open the work
+  // order in a new tab and read the "Total Hours" label and the value beside it, with a picture
+  { const wp = await p.context().newPage(); try { await wp.goto(`${APP}/workorders/${wo}/lines`, { waitUntil: 'domcontentloaded' }).catch(() => {}); let th: any = null;
+      for (let i = 0; i < 15 && !(th && th.near); i++) { await wp.waitForTimeout(1000); th = await wp.evaluate(`(() => { const lab = [...document.querySelectorAll('body *')].find(e => e.children.length === 0 && /^\\s*Total Hours\\s*:?\\s*$/i.test(e.textContent || '') && e.getBoundingClientRect().width > 0);
+        if (!lab) { const t = document.body.innerText; const i = t.search(/Total Hours/i); return { near: null, text: i >= 0 ? t.slice(i, i + 60).replace(/\\s+/g, ' ') : null }; }
+        let a = lab.parentElement; for (let i = 0; i < 4 && a && !/\\d/.test(a.innerText); i++) a = a.parentElement; const b = lab.getBoundingClientRect();
+        return { near: a ? a.innerText.replace(/\\s+/g, ' ').trim().slice(0, 80) : null, box: { x: Math.round(b.left), y: Math.round(b.top) } }; })()`); }
+      R.C96978.woPageTotalHours = th; await wp.screenshot({ path: path.join(EV, 'C96978-wo-page-total-hours.png') }).catch(() => {});
+    } finally { await wp.close().catch(() => {}); } }
   // stop both clocks, then take the fresh technicians off the board (no lead, deactivated) so they do not crowd later checks
   for (const who of [TA, TB]) { await a.post('/api/switch-user', { user_id: who.id }); try { const cur = (await a.get('/api/technician-tasks/my-current-task')).body?.data; if (cur?.technician_task?.id) await a.post('/api/technician-tasks/check-out', { task_id: cur.technician_task.id }); } finally { await RUN.toRunner(); } }
   await a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: null });

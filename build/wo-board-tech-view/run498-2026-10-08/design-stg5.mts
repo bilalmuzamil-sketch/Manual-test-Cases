@@ -342,20 +342,27 @@ async function run(id: string, f: (o: any) => Promise<void>) {
   fs.writeFileSync(OUT, JSON.stringify(R, null, 1));
 }
 
+// 16 Oct 2026 (build v26.40.18-7d85b7d, RETEST-PLAN-2026-10-16): the Search box's icon and each filter chip's icons, in the display in use
+const filterIcons = async (pg: Page = p) => ({ search: await D(pg, `(function () { var i = __D.q('[data-test-id="page_search_input"]'); var f = i && (i.closest('.q-field') || i.parentElement); return f ? __D.icons(f) : 'no search box'; })()`),
+  chips: ((await D(pg, '__D.chips()')) ?? []).map((x: any) => ({ text: x.text, icons: x.icons })) });
+
 // ═════════════════════════════ the 22 cases ═════════════════════════════
 await run('C590110', async (o) => { // switcher and toolbar icons
   const A = await tech('DC01', 'Ana Icons'); const c = await cust('ZZAUTOTEST DC01 Toolbar Icons'); o.wo1 = brief(await mkWO(c, { lead: A.staff }));
   o.prep = await prep([A.staff], 'List');
   o.s1_list = await D(p, '__D.switcher()'); o.s1_pic = await clip(p, 'C590110-s1-list-switcher', await D(p, '__D.box(__D.track())')); await pic(p, 'C590110-s1-list');
+  o.s4_list_filterIcons = await filterIcons(); o.s4_pic = await clip(p, 'C590110-s4-list-filter-icons', await D(p, '__D.box(__D.toolbar())'), 4); // 16 Oct: new step 4
   await display(p, 'Tech View'); await away();
   o.s2_tech = { switcher: await D(p, '__D.switcher()'), density: await D(p, `__D.desc(__D.q('[data-test-id="button_density"]'), true)`), columnSelection: await D(p, `__D.desc(__D.q('[data-test-id="button_tech_view_column_selection"]'), true)`) };
   o.s2_pic = await clip(p, 'C590110-s2-tech-toolbar', await D(p, '__D.box(__D.toolbar())'), 4);
+  o.s7_tech_filterIcons = await filterIcons(); // 16 Oct: new step 7
   await p.locator('[data-test-id="button_density"]').first().click(); await W(900);
   o.s3_menu = await D(p, '__D.menu()'); o.s3_pic = await pic(p, 'C590110-s3-density-menu');
   await p.keyboard.press('Escape'); await W(700); o.s4_menuAfterEscape = await D(p, '__D.menu()');
   await display(p, 'Board View'); await away();
   o.s5_board = { switcher: await D(p, '__D.switcher()'), density: await D(p, `__D.desc(__D.q('[data-test-id="button_density"]'), true)`), fields: await D(p, `__D.desc(__D.q('[data-test-id="button_board_fields_selection"]'), true)`) };
   o.s5_pic = await clip(p, 'C590110-s5-board-toolbar', await D(p, '__D.box(__D.toolbar())'), 4);
+  o.s13_board_filterIcons = await filterIcons(); // 16 Oct: new step 13
   await display(p, 'List'); await away();
   o.s6_list = { buttons: await D(p, '__D.tbButtons()'), icons: await D(p, '__D.icons(__D.toolbar())') }; o.s6_pic = await clip(p, 'C590110-s6-list-toolbar', await D(p, '__D.box(__D.toolbar())'), 4);
 });
@@ -531,6 +538,11 @@ await run('C590117', async (o) => { // Tech View group header pieces
   o.wos = [await mkWO(c, { lead: A.staff }), await mkWO(c, { lead: B.staff }), await mkWO(c, { status: 'estimate' })].map(brief);
   o.prep = await prep([A.staff, B.staff], 'Tech View');
   o.s2_unassigned = await D(p, `__D.groupHdr('unassigned')`); o.s2_pic = await clip(p, 'C590117-s2-unassigned-header', o.s2_unassigned?.box ?? null, 8);
+  // 16 Oct 2026: on 15 Oct the technician headers were never drawn (they sit after ~3,450 Unassigned rows), so steps 3-10 read nothing.
+  // Close Unassigned (step 2 is already read) and bring the pinned technicians' headers into the window.
+  o.unassigned = await collapseUn(p); await centre(p, `[data-test-id="tech_view_group_${B.staff}"]`);
+  o.headersDrawn = { A: await p.locator(`[data-test-id="tech_view_group_${A.staff}"]`).count(), B: await p.locator(`[data-test-id="tech_view_group_${B.staff}"]`).count() };
+  o.s3_bothHeadersPic = await pic(p, 'C590117-s3-tech-headers');
   o.s3_techB = await D(p, `__D.groupHdr(${J(B.staff)})`); o.s3_pic = await clip(p, 'C590117-s3-techB-header', o.s3_techB?.box ?? null, 8);
   o.s4_techA = await D(p, `__D.groupHdr(${J(A.staff)})`); o.s4_pic = await clip(p, 'C590117-s4-techA-header', o.s4_techA?.box ?? null, 8);
   o.s5_countHover = await tipFor(p, `[data-test-id="tech_view_group_count_${A.staff}"]`, 'C590117-s5-count-hover', '__D.box(__D.headRow())');
@@ -721,26 +733,46 @@ await run('C590124', async (o) => { // hover looks: row, card, avatar name bubbl
   await away();
 });
 
-await run('C590125', async (o) => { // Dark theme: only whether one is offered (case on hold)
-  const A = await tech('DC16', 'Xia Dark'); const c = await cust('ZZAUTOTEST DC16 Dark Theme'); o.wo1 = brief(await mkWO(c, { lead: A.staff }));
+await run('C590125', async (o) => { // Dark theme
+  // 16 Oct 2026 (build v26.40.18-7d85b7d): the case now has an expected result (answer 29: Dark is in scope). Choose Dark from the profile
+  // menu, WAIT for the menu to close, then measure: background colours of the page, table, heading row, group headers and rows (TV) and of
+  // the board, columns, headers and cards (BV); every visible area with a white background; every visible text's colour against the colour
+  // behind it (contrast ratio; below 3 is listed as "low"); the hovered row's colour. Then Light, and the same counts again.
+  const A = await tech('DC16', 'Xia Dark'); const c = await cust('ZZAUTOTEST DC16 Dark Theme'); const w1 = await mkWO(c, { lead: A.staff }); o.wo1 = brief(w1);
   o.prep = await prep([A.staff], 'Tech View');
-  await p.locator('[data-test-id="profile_menu_button"]').click(); await W(1000);
-  o.s2_profileMenu = (await D(p, '__D.menu()'))?.items?.map((x: any) => x.text); o.s2_pic = await pic(p, 'C590125-s2-profile-menu');
-  o.s2_themeInMenu = await D(p, `__D.findText('dark|theme|appearance|light mode|night')`);
-  await p.keyboard.press('Escape').catch(() => {}); await W(500);
-  const looks: Record<string, any> = {};
-  for (const u of ['/profile', '/settings']) { await p.goto(APP + u, { waitUntil: 'domcontentloaded' }).catch(() => {}); await W(4000); looks[u] = { at: p.url().replace(APP, ''), found: await D(p, `__D.findText('dark|theme|appearance|light mode|night')`) }; await pic(p, `C590125-look${u.replace('/', '-')}`); }
-  o.s2_elsewhere = looks;
-  const any = [o.s2_themeInMenu, ...Object.values(looks).map((x: any) => x.found)].some((x: any) => Array.isArray(x) && x.length);
-  o.darkThemeOffered = any ? 'an element with theme/dark words was found (see the lists)' : 'no theme or Dark option found in the profile menu, Edit Profile or Settings';
-  if (Array.isArray(o.s2_themeInMenu) && o.s2_themeInMenu.length) {
-    await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await W(4000); await display(p, 'Tech View');
-    await p.locator('[data-test-id="profile_menu_button"]').click(); await W(900); await p.locator('.q-menu *').filter({ hasText: /dark/i }).last().click().catch(() => {}); await W(2000); await p.keyboard.press('Escape').catch(() => {});
-    o.s3_tech = await pic(p, 'C590125-s3-tech-dark'); await display(p, 'Board View'); o.s3_board = await pic(p, 'C590125-s3-board-dark');
-    o.s3_bodyBg = await D(p, 'getComputedStyle(document.body).backgroundColor');
-    await p.locator('[data-test-id="profile_menu_button"]').click(); await W(900); await p.locator('.q-menu *').filter({ hasText: /light/i }).last().click().catch(() => {}); await W(1500); await p.keyboard.press('Escape').catch(() => {});
-    o.s3_bodyBgAfterSwitchBack = await D(p, 'getComputedStyle(document.body).backgroundColor');
-  }
+  const SCAN = `(function () { var vis = function (e) { var r = e.getBoundingClientRect(); if (r.width < 2 || r.height < 2 || r.bottom < 0 || r.top > innerHeight || r.right < 0 || r.left > innerWidth) return false; var s = getComputedStyle(e); return s.visibility !== 'hidden' && s.display !== 'none' && s.opacity !== '0'; };
+    var rgb = function (c) { var m = String(c).match(/rgba?\\(([^)]+)\\)/); if (!m) return null; var v = m[1].split(',').map(function (x) { return parseFloat(x); }); return { r: v[0], g: v[1], b: v[2], a: v.length > 3 ? v[3] : 1 }; };
+    var bgOf = function (e) { for (var a = e; a && a.nodeType === 1; a = a.parentElement) { var c = rgb(getComputedStyle(a).backgroundColor); if (c && c.a > 0.5) return c; } return { r: 255, g: 255, b: 255, a: 1 }; };
+    var lum = function (c) { var f = function (v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c.r) + 0.7152 * f(c.g) + 0.0722 * f(c.b); };
+    var ratio = function (a, b) { var x = lum(a), y = lum(b); return Math.round((Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05) * 10) / 10; };
+    var tid = function (e) { var h = e.closest('[data-test-id]'); return h ? h.getAttribute('data-test-id').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>') : String(e.className || e.tagName).slice(0, 50); };
+    var main = document.querySelector('main, .q-page-container') || document.body;
+    var whites = [], all = main.querySelectorAll('*');
+    for (var i = 0; i < all.length; i++) { var e = all[i]; if (!vis(e)) continue; var c = rgb(getComputedStyle(e).backgroundColor); if (c && c.a > 0.5 && c.r >= 245 && c.g >= 245 && c.b >= 245) { var r = e.getBoundingClientRect(); whites.push({ where: tid(e), tag: e.tagName.toLowerCase(), bg: getComputedStyle(e).backgroundColor, w: Math.round(r.width), h: Math.round(r.height), x: Math.round(r.left), y: Math.round(r.top) }); } }
+    whites.sort(function (a, b) { return b.w * b.h - a.w * a.h; });
+    var low = [], texts = 0;
+    for (var k = 0; k < all.length; k++) { var t = all[k]; var own = ''; for (var n = 0; n < t.childNodes.length; n++) if (t.childNodes[n].nodeType === 3) own += t.childNodes[n].textContent; own = own.replace(/\\s+/g, ' ').trim(); if (!own || !vis(t)) continue; texts++;
+      var fg = rgb(getComputedStyle(t).color); var bg = bgOf(t); if (!fg) continue; var cr = ratio(fg, bg); if (cr < 3) low.push({ text: own.slice(0, 30), where: tid(t), color: getComputedStyle(t).color, behind: 'rgb(' + bg.r + ', ' + bg.g + ', ' + bg.b + ')', ratio: cr }); }
+    var bgs = function (sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)).filter(vis).slice(0, 3).map(function (e) { return { where: tid(e), bg: getComputedStyle(e).backgroundColor, bgBehind: (function (c) { return 'rgb(' + c.r + ', ' + c.g + ', ' + c.b + ')'; })(bgOf(e)), color: getComputedStyle(e).color }; }); };
+    return { body: getComputedStyle(document.body).backgroundColor, page: bgs('.q-page, main'), table: bgs('.q-table__container, .q-table'), headRow: bgs('thead tr, thead th'), groupHeaders: bgs('[data-test-id^="tech_view_group_"]'), rows: bgs('[data-test-id^="tech_view_row_"]'),
+      board: bgs('[data-test-id="board_view_scroller"], .board-view__scroller'), columns: bgs('[data-test-id^="board_column_"]'), columnHeaders: bgs('[data-test-id^="board_column_header_"]'), cards: bgs('[data-test-id^="board_card_"]'), pills: bgs('.q-badge, .q-chip'),
+      whiteAreas: whites.length, biggestWhite: whites.slice(0, 8), textsChecked: texts, lowContrast: low.length, lowContrastSample: low.slice(0, 15) }; })()`;
+  const menuClosed = async () => { for (let i = 0; i < 10; i++) { const open = await p.evaluate(`[...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0 && getComputedStyle(e).opacity !== '0').length`).catch(() => 0); if (!open) return i; await p.keyboard.press('Escape').catch(() => {}); await W(500); } return 'still open'; };
+  const choose = async (word: RegExp) => { await p.locator('[data-test-id="profile_menu_button"]').click(); await W(1000); const items = (await D(p, '__D.menu()'))?.items?.map((x: any) => x.text);
+    const it = p.locator('.q-menu .q-item, .q-menu [role="menuitem"], .q-menu .q-btn, .q-menu .q-radio, .q-menu .q-toggle').filter({ hasText: word }).last();
+    const found = await it.count(); if (found) await it.click().catch(() => {}); await W(1500); const closedAfter = await menuClosed(); await W(1500); return { items, found, closedAfter }; };
+  o.s1_lightBefore = { body: (await D(p, SCAN))?.body };
+  o.s2_choose = await choose(/^\s*Dark\s*$/i); o.s2_pic = await pic(p, 'C590125-s2-after-dark');
+  o.s3_tech = await D(p, SCAN); o.s3_pic = await pic(p, 'C590125-s3-tech-dark');
+  o.find = await rowOn(p, w1.id, c.name, A.staff); await away();
+  const rsel = `[data-test-id="tech_view_row_${w1.id}"]`;
+  const rowBg = () => D(p, `(function () { var r = document.querySelector(${J(rsel)}); if (!r) return null; var td = r.querySelector('td'); return { tr: getComputedStyle(r).backgroundColor, td: td ? getComputedStyle(td).backgroundColor : null, text: td ? getComputedStyle(td).color : null }; })()`);
+  const rb0 = await rowBg(); await hoverSel(p, rsel); o.s4_hover = { before: rb0, after: await rowBg(), picture: await clip(p, 'C590125-s4-row-hover-dark', await D(p, `__D.box(__D.q(${J(rsel)}))`), 60) };
+  await away(); if (o.find.usedSearch) await search(p, '');
+  await display(p, 'Board View'); await away(); o.s6_board = await D(p, SCAN); o.s6_pic = await pic(p, 'C590125-s6-board-dark');
+  o.s7_choose = await choose(/^\s*Light\s*$/i); o.s7_board = await D(p, SCAN); o.s7_pic = await pic(p, 'C590125-s7-board-light');
+  await display(p, 'Tech View'); await away(); o.s7_tech = await D(p, SCAN); o.s7_techPic = await pic(p, 'C590125-s7-tech-light');
+  if (!/255, 255, 255|250|248|246|245/.test(String(o.s7_tech?.body ?? ''))) o.lightNotBack = true;
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await W(3000);
 });
 
@@ -764,7 +796,10 @@ await run('C590127', async (o) => { // Technician filter after Assigned to me
   o.prep = await prep([A.staff], 'Tech View');
   o.s2_chips = await D(p, '__D.chips()'); o.s2_department = await D(p, `__D.findText('^Department')`); o.s2_pic = await clip(p, 'C590127-s2-filter-bar', await D(p, '__D.box(__D.toolbar())'), 4);
   const chip = p.locator('[data-test-id^="filter_chip_"]').filter({ hasText: /Technician/ }).first();
-  if (!(await chip.count())) { o.s3 = 'no Technician filter chip'; return; }
+  if (!(await chip.count())) { o.s3 = 'no Technician filter chip';
+    // 16 Oct 2026: also read Board View's and List's filter bars (positive control: the other chips are read in the same pass)
+    await display(p, 'Board View'); await away(); o.boardChips = ((await D(p, '__D.chips()')) ?? []).map((x: any) => x.text); o.boardBarPic = await clip(p, 'C590127-board-filter-bar', await D(p, '__D.box(__D.toolbar())'), 4);
+    await display(p, 'List'); await away(); o.listChips = ((await D(p, '__D.chips()')) ?? []).map((x: any) => x.text); return; }
   const cb = await chip.boundingBox(); await chip.click(); await W(1200);
   const m = await D(p, '__D.menu()'); o.s4_list = { chip: cb, menuBox: m?.box, opensBelow: m?.box && cb ? m.box.y >= cb.y + cb.height - 1 : null, count: m?.items?.length, items: m?.items?.slice(0, 15), allNames: m?.items?.map((x: any) => x.text) };
   o.s4_pic = await pic(p, 'C590127-s4-technician-list');
@@ -786,7 +821,9 @@ await run('C590128', async (o) => { // density sizes in Tech View
   // 15 Oct 2026 (redo): a density change redraws the table, so the row is centred again after each one before it is read
   const read = async (d: string) => ({ menu: await density(p, d as any), centred: await centre(p, `[data-test-id="tech_view_row_${w1.id}"]`), row: await D(p, `__D.row(${J(w1.id)})`), groupHeader: await D(p, `(function () { var h = __D.groupHdr(${J(A.staff)}); return h ? { h: h.box.h, avatars: h.avatars, name: h.name && h.name.st } : null; })()`),
     assigned: await D(p, `__D.avs(__D.cell(${J(w1.id)}, 'Assigned Techs'))`), advisor: await D(p, `__D.avs(__D.cell(${J(w1.id)}, 'Service Advisor'))`), progress: await D(p, `__D.bars(__D.cell(${J(w1.id)}, 'Progress'))`),
-    rowText: await D(p, `__D.parts(__D.rowEl(${J(w1.id)}), 30).filter(function (x) { return x.kind === 'text'; }).map(function (x) { return x.text + ' ' + x.fontSize + '/' + x.fontWeight; })`), picture: await pic(p, `C590128-${d}`) });
+    rowText: await D(p, `__D.parts(__D.rowEl(${J(w1.id)}), 30).filter(function (x) { return x.kind === 'text'; }).map(function (x) { return x.text + ' ' + x.fontSize + '/' + x.fontWeight; })`),
+    headLabels: await D(p, `__D.qa('thead th').map(function (th) { var t = (th.innerText || '').replace(/\\s+/g, ' ').trim(); var leaf = Array.prototype.filter.call(th.querySelectorAll('*'), function (e) { return e.childElementCount === 0 && (e.textContent || '').trim() && !e.closest('.q-icon,i,svg'); })[0] || th; return t ? t + ' ' + getComputedStyle(leaf).fontSize : null; }).filter(Boolean)`), // 16 Oct: header labels judged too
+    picture: await pic(p, `C590128-${d}`) });
   o.s3_compact = await read('compact'); o.s5_regular = await read('regular'); o.s7_comfortable = await read('comfortable');
   await display(p, 'Board View'); await p.locator('[data-test-id="button_density"]').first().click(); await W(900);
   o.s8_boardMenu = { menu: await D(p, '__D.menu()'), picture: await pic(p, 'C590128-s8-board-density-menu') };
@@ -827,6 +864,26 @@ await run('C590130', async (o) => { // Lead technician updated message
   if (o.find.usedSearch) await search(p, '');
 });
 
+await run('C598326', async (o) => { // 16 Oct 2026 NEW: List's Approved and Ready For Review pills, their widths in Tech View, height per density
+  // Copied from the C590115 block. Ready For Review is reached the way the invoiced path does it: line completed, In Progress, Ready For Review.
+  const A = await tech('S6', 'Pia Pills'); const c = await cust('ZZAUTOTEST S6 Pill Widths');
+  const w1 = await mkWO(c, { lead: A.staff }); o.wo1 = brief(w1);
+  const w2 = await mkWO(c, { lead: A.staff, line: true });
+  for (const l of await linesRaw(w2.id)) { await a.post('/api/work-orders/lines/change-story', { line_id: l.line_id, tech_story: 'Done', work_order_id: w2.id }); w2.log.push(`line complete ${say(await a.post('/api/work-orders/lines/change-status', { line_id: l.line_id, status: 'complete', workOrderId: w2.id }))}`); }
+  for (const st of ['in_progress', 'ready_for_review']) w2.log.push(`${st} ${say(await a.post('/api/work-orders/change-status', { id: w2.id, work_order: w2.id, status: st }))}`);
+  const w2n = (await workOrders(a, c.name)).find((x: any) => x.id === w2.id); o.wo2 = `${w2n?.number ?? '?'} ${w2n?.status ?? '?'} lead=${w2n?.techAssignedFirstName ?? '-'} ${w2.log.filter((x) => / [45]\d\d /.test(x)).join('; ')}`;
+  const both = async (k1: string, k2: string, tag: string) => { const p1 = await D(p, `__D.pill(__D.cell(${J(k1)}, 'Status'))`), p2 = await D(p, `__D.pill(__D.cell(${J(k2)}, 'Status'))`);
+    const b1 = p1?.pill?.box ?? null, b2 = p2?.pill?.box ?? null; const u = b1 && b2 ? { x: Math.min(b1.x, b2.x), y: Math.min(b1.y, b2.y), w: Math.max(b1.r, b2.r) - Math.min(b1.x, b2.x), h: Math.max(b1.b, b2.b) - Math.min(b1.y, b2.y), r: Math.max(b1.r, b2.r), b: Math.max(b1.b, b2.b) } : (b1 ?? b2);
+    return { approved: { text: p1?.pill?.text ?? p1?.text, box: b1 }, readyForReview: { text: p2?.pill?.text ?? p2?.text, box: b2 }, picture: await clip(p, `C598326-${tag}`, u, 40) }; };
+  o.prep = await prep([A.staff], 'List'); await search(p, c.name); await away();
+  o.s3_list = await both(w1.number, w2n?.number ?? '', 's3-list-pills'); await pic(p, 'C598326-s3-list');
+  await search(p, ''); await display(p, 'Tech View'); o.find1 = await rowOn(p, w1.id, c.name, A.staff); await away();
+  o.s5_tech = await both(w1.id, w2.id, 's5-tech-pills'); await pic(p, 'C598326-s5-tech');
+  for (const d of ['compact', 'comfortable'] as const) { o[`s${d === 'compact' ? 6 : 7}_${d}`] = { menu: await density(p, d), centred: await centre(p, `[data-test-id="tech_view_row_${w1.id}"]`), ...(await both(w1.id, w2.id, `s${d === 'compact' ? 6 : 7}-${d}-pills`)) }; }
+  o.s8_regular = await density(p, 'regular'); if (o.find1.usedSearch) await search(p, '');
+  await display(p, 'List'); await search(p, c.name); await away(); o.s9_list = await both(w1.number, w2n?.number ?? '', 's9-list-pills'); await search(p, '');
+});
+
 await run('C590131', async (o) => { // sticky column header and Unassigned group header
   const c = await cust('ZZAUTOTEST DC22 Sticky Headers'); o.wo1 = brief(await mkWO(c, { status: 'estimate' }));
   o.prep = await prep([], 'Tech View');
@@ -840,6 +897,26 @@ await run('C590131', async (o) => { // sticky column header and Unassigned group
     toggleOnTop: await D(p, `__D.onTop('[data-test-id="button_tech_view_group_toggle_unassigned"]')`), firstRowsUnder: await D(p, `__D.qa('[data-test-id^="tech_view_row_"]').slice(0, 2).map(function (r) { return __D.box(r); })`),
     picture: await pic(p, 'C590131-s3-scrolled') };
   o.s3_clip = await clip(p, 'C590131-s3-table-top', (() => { const t: any = o.s3_after.thead; return t ? { ...t, h: t.h + 120, b: t.b + 120 } : null; })(), 4);
+  // 16 Oct 2026 (new steps 4-5): keep scrolling to the END of Unassigned (~3,450 rows load in batches) until the next group's header is
+  // drawn, then walk it up to the Unassigned header in small steps and record, at each stop, every group header's box and position, the
+  // bottom of the column header row, and which header is on top just under the headings.
+  const nextHdr = `(function () { var g = __D.qa('[data-test-id^="tech_view_group_"]').filter(function (e) { return /^tech_view_group_[0-9a-f-]{36}$/.test(e.getAttribute('data-test-id')); })[0]; return g ? g.getAttribute('data-test-id').replace('tech_view_group_', '') : null; })()`;
+  let nid: string | null = null; const t0 = Date.now(); o.s4_load = [];
+  for (let i = 0; i < 600 && !nid && Date.now() - t0 < 15 * 60_000; i++) {
+    const sc = await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (!s) return null; s.scrollTop = s.scrollHeight; return { top: Math.round(s.scrollTop), h: s.scrollHeight }; })()`); await W(900);
+    nid = await D(p, nextHdr); if (i % 20 === 0) o.s4_load.push({ i, sc, rows: await p.evaluate(`document.querySelectorAll('[data-test-id^="tech_view_row_"]').length`) }); }
+  o.s4_nextGroup = nid ? { found: true, seconds: Math.round((Date.now() - t0) / 1000) } : { found: false, seconds: Math.round((Date.now() - t0) / 1000) };
+  if (!nid) return;
+  const hdrs = `(function () { var th = __D.box(__D.headRow()); return { theadBottom: th ? th.b : null, headers: __D.qa('[data-test-id^="tech_view_group_"]').filter(function (e) { return /^tech_view_group_([0-9a-f-]{36}|unassigned)$/.test(e.getAttribute('data-test-id')); }).map(function (e) { var n = e.querySelector('[data-test-id^="tech_view_group_name_"]'); var s = getComputedStyle(e); return { group: e.getAttribute('data-test-id') === 'tech_view_group_unassigned' ? 'Unassigned' : 'next: ' + (n ? n.textContent.trim() : '?'), box: __D.box(e), position: s.position, top: s.top, z: s.zIndex }; }),
+    justUnderHeadings: th ? (function () { var es = document.elementsFromPoint(200, th.b + 6); var g = es.map(function (x) { return x.closest && x.closest('[data-test-id^="tech_view_group_"]'); }).filter(Boolean)[0]; return g ? g.getAttribute('data-test-id').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/, '<technician>') : (es[0] ? String(es[0].className).slice(0, 40) : null); })() : null }; })()`;
+  // bring the next header to ~220 px below the headings, then step down 20 px at a time across the hand-over
+  await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); const g = document.querySelector('[data-test-id="tech_view_group_${nid}"]'); const th = document.querySelector('thead tr'); if (!s || !g || !th) return; s.scrollTop += g.getBoundingClientRect().top - th.getBoundingClientRect().bottom - 220; })()`); await W(1500);
+  o.s4_s5_walk = []; const shotsAt = new Set([0, 9, 11, 13, 16]);
+  for (let k = 0; k <= 18; k++) { const r: any = await D(p, hdrs); r.step = k; if (shotsAt.has(k)) r.picture = await pic(p, `C590131-s5-handover-${String(k).padStart(2, '0')}`); o.s4_s5_walk.push(r);
+    await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollTop += 20; })()`); await W(700); }
+  await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollTop += 300; })()`); await W(1200);
+  o.s5_after = await D(p, hdrs); o.s5_afterPic = await pic(p, 'C590131-s5-after-handover');
+  await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollTop = 0; })()`); await W(800);
 });
 
 // ───────────────────────────── put everything back ─────────────────────────────

@@ -7,11 +7,14 @@ import path from 'node:path';
 import { open, done } from './session.mts';
 
 const here = path.dirname(new URL(import.meta.url).pathname);
-const EV = path.join(here, 'evidence');
+// 16 Oct 2026 (build v26.40.18): evidence goes to WOB_EV when set (staging re-run), and ONLY=C96909 skips the other two cases.
+const EV = process.env.WOB_EV || path.join(here, 'evidence');
+const ONLY = (process.env.ONLY || '').split(',').filter(Boolean); const want = (id: string) => !ONLY.length || ONLY.includes(id);
 const t = () => new Date().toISOString().slice(11, 19);
 const { browser, page: p } = await open('/workorders?tab=all');
 p.setDefaultTimeout(30_000);
 const shot = (n: string) => p.screenshot({ path: path.join(EV, `${n}.png`) }).catch(() => {});
+void want;
 const R: Record<string, any> = {};
 
 const switcher = () => p.evaluate(`(() => {
@@ -20,23 +23,33 @@ const switcher = () => p.evaluate(`(() => {
     const e = [...document.querySelectorAll('[aria-label]')].find(x => x.getAttribute('aria-label') === l && x.getBoundingClientRect().width > 0);
     if (!e) return { label: l, present: false };
     const btn = e.closest('button,[role=button],.q-btn') || e;
-    return { label: l, present: true, pressed: btn.getAttribute('aria-pressed'), cls: String(btn.className),
+    const r = btn.getBoundingClientRect();
+    return { label: l, present: true, x: Math.round(r.left), pressed: btn.getAttribute('aria-pressed'), cls: String(btn.className),
              bg: getComputedStyle(btn).backgroundColor, color: getComputedStyle(btn).color, title: btn.getAttribute('title') };
   });
 })()`) as Promise<any[]>;
 const click = async (l: string) => { await p.locator(`[aria-label="${l}"]`).first().click(); await p.waitForTimeout(2500); };
 
 // ── C96909 ─────────────────────────────────────────────────────────────
+// 16 Oct 2026: the precondition says the page shows List at the start; the page remembers the last display (Board View on the first
+// 16 Oct try), so choose List and open the page afresh before the first look.
+await p.locator('[aria-label="List"]').first().click().catch(() => {}); await p.waitForTimeout(2000);
+await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(5000);
 await p.getByText('All', { exact: true }).first().click().catch(() => {});
 await p.waitForTimeout(2000);
 R.C96909 = { start: await switcher() }; await shot('C96909-1-list');
+// 16 Oct 2026: the case now judges "exactly three options" and the tooltip order left to right — count the switcher's buttons
+R.C96909.switcherButtons = await p.evaluate(`(() => { const e = [...document.querySelectorAll('[aria-label="List"]')].find(x => x.getBoundingClientRect().width > 0); const b = e && (e.closest('button,.q-btn') || e); const g = b && (b.closest('.q-btn-group,.q-btn-toggle,[role=group]') || b.parentElement);
+  return g ? [...g.querySelectorAll('button,.q-btn')].filter(x => x.getBoundingClientRect().width > 0).map(x => ({ label: x.getAttribute('aria-label'), x: Math.round(x.getBoundingClientRect().left) })) : null; })()`);
 for (const l of ['Tech View', 'Board View', 'List']) { await click(l); R.C96909[l] = await switcher(); await shot(`C96909-${l.replace(' ', '')}`); }
 // hover tooltips
 R.C96909.tooltips = {};
 for (const l of ['List', 'Tech View', 'Board View']) {
   await p.locator(`[aria-label="${l}"]`).first().hover(); await p.waitForTimeout(900);
   R.C96909.tooltips[l] = await p.evaluate(`[...document.querySelectorAll('.q-tooltip,[role=tooltip]')].map(e => e.innerText.trim()).filter(Boolean)`);
+  await shot(`C96909-tip-${l.replace(' ', '')}`);
 }
+if (ONLY.length) { fs.writeFileSync(path.join(EV, 'C96909-s1-batch1.json'), JSON.stringify(R, null, 1)); console.log(t(), 'ONLY set: done after C96909'); await done(browser); }
 console.log(t(), 'C96909', JSON.stringify(R.C96909).slice(0, 1500));
 
 // ── C96918 ─────────────────────────────────────────────────────────────

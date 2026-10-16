@@ -35,48 +35,44 @@ async function run(id: string, f: () => Promise<void>) {
   fs.writeFileSync(path.join(EV, 's4-batchA.json'), JSON.stringify(R, null, 1));
 }
 const dialogNames = (pg: Page) => pg.evaluate(`[...document.querySelectorAll('[data-test-id^="option_lead_technician_"]')].map(e => e.innerText.replace(/\\s+/g, ' ').trim())`) as Promise<string[]>;
+/** 16 Oct 2026: the dialog read from the top — the search box, every row in order (avatar? photo? "N open"?), and anything in the list that
+ *  is NOT a row (a group heading or divider), so "Unassigned first, one list with no grouping" can be judged */
+const dialogDetail = (pg: Page) => pg.evaluate(`(() => { const d = [...document.querySelectorAll('.q-dialog')].pop(); if (!d) return null; const inp = d.querySelector('input');
+  const opts = [...d.querySelectorAll('[data-test-id^="option_lead_technician_"]')]; const list = opts[0] ? opts[0].parentElement : null;
+  const others = list ? [...list.children].filter(c => !c.matches('[data-test-id^="option_lead_technician_"]') && c.getBoundingClientRect().height > 0).map(c => (c.className + ' ' + c.innerText.replace(/\\s+/g, ' ').trim()).slice(0, 60)) : [];
+  return { search: inp ? { placeholder: inp.getAttribute('placeholder'), value: inp.value } : null, rowCount: opts.length, nonRowItemsInList: others,
+    rows: opts.slice(0, 12).map(o => ({ key: o.getAttribute('data-test-id').replace('option_lead_technician_', '').replace(/^([0-9a-f]{8})[0-9a-f-]{28}$/, '$1'), text: o.innerText.replace(/\\s+/g, ' ').trim().slice(0, 60), avatar: !!o.querySelector('.q-avatar, img'), photo: !!o.querySelector('img'), open: /\\d+ open/.test(o.innerText), bg: getComputedStyle(o).backgroundColor })) }; })()`) as Promise<any>;
+const typeIn = async (pg: Page, q: string) => { const box = pg.locator('[data-test-id="input_reassign_lead_search"] input, input[data-test-id="input_reassign_lead_search"], .q-dialog input').first(); await box.fill(''); await box.type(q, { delay: 60 }); await pg.waitForTimeout(1200); };
+const cancelDlg = async (pg: Page) => { const c = pg.locator('[data-test-id="button_cancel_reassign_lead_technician"]').first(); if (await c.count()) await c.click(); else await pg.locator('.q-dialog button').filter({ hasText: /^\s*Cancel\s*$/i }).first().click(); await pg.waitForTimeout(1500); };
 
 await run('C96956', async () => {
+  // 16 Oct 2026 (case rewritten 15 Oct): step 5 is read with the work order LED by Technician-A (Esther Howard) — the lead is set first,
+  // since an earlier run left it in Unassigned; the dialog is read from the top (search box, first row, any grouping, avatar and
+  // "N open" per row); step 12 is now "type Technician-C's first letters, then Cancel"; steps 14-17: Back, Tech View, the row in
+  // Unassigned, the dialog's rows from the top, then Technician-A's row.
   const n = 'ZZAUTOTEST F1 Reassign List';
   const [w] = await seedCase(a, n, 'ZZF4RL', [{ lead: ES.staff_id }]);
+  R.C96956 = { setLeadA: (await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: ES.staff_id })).status, leadAtStart: await leadOf(n), wo: w.number };
   await bv(p, n); await toColumn(p, ES.staff_id);
-  const o = await openReassign(p, w.id); R.C96956 = { menuDisabled: o.disabled }; await o.item.click(); await p.waitForTimeout(1500);
-  const names = await dialogNames(p);
-  const has = (x: string) => names.some((y) => y.includes(x));
-  R.C96956.list = { count: names.length, unassigned: has('Unassigned'), esther: has('Esther Howard'), ralph: has('Ralph Edwards'), jenny: has('Jenny Wilson'), oliveOffice: has('Olive Office'), timClockuser: has('Tim Clockuser'), inaInactive: has('Ina Active'), nickNoclock: has('Nick Noclock'), ellaElsewhere: has('Ella Elsewhere') };
-  await shot(p, 'C96956-dialog');
-  R.C96956.toRalph = { prompt: await pickLead(p, RE.staff_id), toast: await toasts(p), lead: await leadOf(n) };
-  await toColumn(p, RE.staff_id); R.C96956.inRalphColumn = (await boardCols(p)).find((c) => c.id === RE.staff_id)?.cards.includes(w.number);
-  await shot(p, 'C96956-board-in-ralph'); R.C96956.woPageLeadAfterRalph = await woPageLead(p, APP, w.id); // 15 Oct 2026
+  const o = await openReassign(p, w.id); R.C96956.menuDisabled = o.disabled; await o.item.click(); await p.waitForTimeout(1500);
+  R.C96956.s4_dialogOpen = await p.locator('.q-dialog').count();
+  const names = await dialogNames(p); const has = (x: string) => names.some((y) => y.includes(x));
+  R.C96956.s5 = { detail: await dialogDetail(p), list: { count: names.length, first: names[0], unassigned: has('Unassigned'), esther: has('Esther Howard'), ralph: has('Ralph Edwards'), jenny: has('Jenny Wilson'), oliveOffice: has('Olive Office'), timClockuser: has('Tim Clockuser'), inaInactive: has('Ina Active'), nickNoclock: has('Nick Noclock'), ellaElsewhere: has('Ella Elsewhere') } };
+  await shot(p, 'C96956-s5-dialog');
+  R.C96956.s6_toRalph = { prompt: await pickLead(p, RE.staff_id), toast: await toasts(p), lead: await leadOf(n) };
+  await toColumn(p, RE.staff_id); R.C96956.s6_inRalphColumn = (await boardCols(p)).find((c) => c.id === RE.staff_id)?.cards.includes(w.number); await shot(p, 'C96956-s6-board-in-ralph');
   const o2 = await openReassign(p, w.id); await o2.item.click(); await p.waitForTimeout(1200);
-  R.C96956.toUnassigned = { prompt: await pickLead(p, 'unassigned'), toast: await toasts(p), lead: await leadOf(n) };
+  R.C96956.s9_toUnassigned = { prompt: await pickLead(p, 'unassigned'), toast: await toasts(p), lead: await leadOf(n) };
   await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"]').scrollLeft = 0`); await p.waitForTimeout(800);
-  R.C96956.inUnassigned = (await boardCols(p)).find((c) => c.id === 'unassigned')?.cards.includes(w.number);
-  const o3 = await openReassign(p, w.id); await o3.item.click(); await p.waitForTimeout(1200); await pickLead(p, JW.staff_id, 'cancel'); await p.waitForTimeout(1500);
-  R.C96956.afterCancel = { lead: await leadOf(n), stillUnassigned: (await boardCols(p)).find((c) => c.id === 'unassigned')?.cards.includes(w.number) };
-  // 15 Oct 2026 (staging second pass): the work order page's Lead Technician read empty (that test-id is not on staging) and
-  // the Tech View repeat only opened the menu. Now the page is read by woPageLead (wob.mts), and steps 3-13 are repeated in
-  // Tech View with the row's More actions: back to Esther Howard first (step 3 starts in [Tech-A]'s group), then Ralph Edwards,
-  // then Unassigned, then Jenny Wilson + Cancel; the row is found on screen (findRow) before each action.
-  R.C96956.woPageLead = await woPageLead(p, APP, w.id);
-  await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: ES.staff_id });
-  await bv(p, n, 'Tech View');
-  const T: any = { startGroup: await findRow(p, w.id) };
-  // 15 Oct 2026 (wave 12, fourth pass): after the move to Ralph Edwards the row was not found again (his group can open collapsed, and
-  // findRow only opens the group it is told). rowFind tries as it is, then each group the row can be in (Ralph, Esther, Jenny,
-  // Unassigned), opening it; failing that it reloads Tech View with the search and tries again. Used before EVERY Tech View step.
-  const rowFind = async () => { for (let pass = 0; pass < 2; pass++) { for (const g of [undefined, RE.staff_id, ES.staff_id, JW.staff_id, 'unassigned']) { await findRow(p, w.id, g).catch(() => null); if (await p.locator(`[data-test-id="tech_view_row_${w.id}"]`).count()) return `${pass ? 'after reload, ' : ''}${g ?? 'as it was'}`; } await bv(p, n, 'Tech View'); } return 'NOT FOUND'; };
-  T.finds = [];
-  const rowMenu = async (grp?: string) => { T.finds.push(await rowFind()); await findRow(p, w.id, grp).catch(() => null); const o = await openReassign(p, w.id, 'tech'); if (T.menuDisabled === undefined) { T.menuDisabled = o.disabled; T.menu = await p.evaluate(`[...document.querySelectorAll('.q-menu')].map(m => m.innerText.replace(/\\s+/g, ' '))`); } await o.item.click(); await p.waitForTimeout(1500); };
-  await rowMenu(); T.dialogCount = (await dialogNames(p)).length; await shot(p, 'C96956-tech-dialog');
-  T.toRalph = { prompt: await pickLead(p, RE.staff_id), toast: await toasts(p), lead: await leadOf(n) };
-  T.findAfterRalph = await rowFind(); T.groupAfterRalph = await findRow(p, w.id); await shot(p, 'C96956-tech-in-ralph'); T.woPageLeadAfterRalph = await woPageLead(p, APP, w.id);
-  await rowMenu(); T.toUnassigned = { prompt: await pickLead(p, 'unassigned'), toast: await toasts(p), lead: await leadOf(n) };
-  T.findAfterUnassigned = await rowFind(); T.groupAfterUnassigned = await findRow(p, w.id, 'unassigned'); await shot(p, 'C96956-tech-in-unassigned');
-  await rowMenu('unassigned'); await pickLead(p, JW.staff_id, 'cancel'); await p.waitForTimeout(1500);
-  T.afterCancel = { lead: await leadOf(n), find: await rowFind(), group: await findRow(p, w.id, 'unassigned') }; await shot(p, 'C96956-tech-after-cancel');
-  T.woPageLead = await woPageLead(p, APP, w.id);
-  R.C96956.techView = T; R.C96956.techRowMenu = T.menu;
+  R.C96956.s9_inUnassigned = (await boardCols(p)).find((c) => c.id === 'unassigned')?.cards.includes(w.number); await shot(p, 'C96956-s9-board-in-unassigned');
+  const o3 = await openReassign(p, w.id); await o3.item.click(); await p.waitForTimeout(1200); await typeIn(p, 'Jen'); R.C96956.s12_typed = (await dialogNames(p)).slice(0, 5); await shot(p, 'C96956-s12-typed');
+  await cancelDlg(p); R.C96956.s12_afterCancel = { dialog: await p.locator('.q-dialog').count(), lead: await leadOf(n), stillUnassigned: (await boardCols(p)).find((c) => c.id === 'unassigned')?.cards.includes(w.number), message: await toasts(p) };
+  R.C96956.s13_woPageLead = await woPageLead(p, APP, w.id);
+  await bv(p, n, 'Tech View'); R.C96956.s15_group = await findRow(p, w.id, 'unassigned');
+  const o4 = await openReassign(p, w.id, 'tech'); await o4.item.click(); await p.waitForTimeout(1500);
+  R.C96956.s16 = await dialogDetail(p); await shot(p, 'C96956-s16-tech-dialog');
+  R.C96956.s17_toEsther = { prompt: await pickLead(p, ES.staff_id), toast: await toasts(p), lead: await leadOf(n) };
+  R.C96956.s17_group = await findRow(p, w.id, ES.staff_id); await shot(p, 'C96956-s17-tech-in-esther');
 });
 
 await run('C96957', async () => {
@@ -175,10 +171,12 @@ await run('C96973', async () => {
 await run('C368163', async () => {
   const n = 'ZZAUTOTEST F1 Dialog Search';
   const [w] = await seedCase(a, n, 'ZZF4DS', [{ lead: ES.staff_id }]);
+  const lead0 = (await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: ES.staff_id })).status; // 16 Oct 2026: led by Technician-A first
   const once = async (pg: Page, where: 'board' | 'tech') => {
     const o = await openReassign(pg, w.id, where); await o.item.click(); await pg.waitForTimeout(1200);
+    const detail = await dialogDetail(pg); // 16 Oct 2026: first row and grouping judged at step 5
     const dlg = pg.locator('.q-dialog').last(); const box = pg.locator('[data-test-id="input_reassign_lead_search"]');
-    const r: any = { top: (await dlg.innerText()).split('\n').slice(0, 3).join(' | '), current: (await pg.locator(`[data-test-id="option_lead_technician_${ES.staff_id}"]`).innerText()).replace(/\s+/g, ' '), full: (await dialogNames(pg)).length, placeholder: await box.getAttribute('placeholder') };
+    const r: any = { detail, lead0, top: (await dlg.innerText()).split('\n').slice(0, 3).join(' | '), current: (await pg.locator(`[data-test-id="option_lead_technician_${ES.staff_id}"]`).innerText()).replace(/\s+/g, ' '), full: (await dialogNames(pg)).length, placeholder: await box.getAttribute('placeholder') };
     for (const q of ['Ral', 'ral', 'Olive', 'zzqx']) { await box.fill(q); await pg.waitForTimeout(900); r[q] = { names: (await dialogNames(pg)).slice(0, 6), empty: (await dlg.innerText()).replace(/\s+/g, ' ').match(/No [^.]*?(match|found)[^.]*/i)?.[0] ?? null }; if (q === 'Ral' || q === 'Olive') await shot(pg, `C368163-${where}-${q}`); }
     await box.fill(''); await pg.waitForTimeout(800); r.cleared = (await dialogNames(pg)).length;
     await pg.locator('[data-test-id="button_cancel_reassign_lead_technician"]').click(); await pg.waitForTimeout(1200);

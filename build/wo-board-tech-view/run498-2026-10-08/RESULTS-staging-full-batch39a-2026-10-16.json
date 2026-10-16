@@ -1,0 +1,229 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.18-7d85b7d",
+  "date": "16 October 2026",
+  "note": "batch 39a: re-runs of the tests whose expected results changed on 15 Oct (RETEST-PLAN-2026-10-16), 16 Oct 08:50-09:08 UTC"
+ },
+ "results": {
+  "C96909": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "With List chosen and the page opened afresh, the switcher at the right of the toolbar showed exactly three buttons, and \"List\" (the left one) was the highlighted one.",
+    "Hovering the three buttons from left to right showed the tooltips \"List\", \"Tech View\" and \"Board View\", in that order.",
+    "After clicking \"Tech View\" only Tech View was highlighted; after \"Board View\" only Board View; after \"List\" only List."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C96909-1-list-highlighted-at-start.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C96909-2-tooltip-tech-view.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C96909-3-board-view-highlighted.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing."
+  },
+  "C590110": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Step 3: the switcher shows three thin outline icons in a light-grey track, but List's icon is a boxed list, not the bulleted list of the design picture.",
+    "Step 4, 7 and 13: in List, Tech View and Board View alike, \"Search\" shows a magnifier and the filters show a circle of short strokes (\"Status\"), a clipboard (\"Assigned to me\") and a truck (\"Asset on Site\"), drawn as thin outlines. These match the test's words; they were compared by shape, not laid over the design picture.",
+    "Step 6: the Tech View button sits on a white raised segment; the density button shows lines with an up-and-down arrow and the column button a rectangle split into three columns.",
+    "Step 9: the density menu offers \"Compact\", \"Regular\" and \"Comfortable\", with Regular ticked.",
+    "Step 12: Board View's density button shows the SAME drawing as Tech View's (lines with an arrow), not the design's card with an arrow.",
+    "Step 15: the other List toolbar icons look as in production."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C590110-1-toolbars-list-tech-board.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C590110-2-list-page.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11319.",
+   "todo": "What needs to be done: follow the ticket; once it is fixed on staging, run this test again."
+  },
+  "C590111": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "The tooltip words are right: \"List\", \"Tech View\" and \"Board View\".",
+    "Steps 2 to 4 (Tech View, 1440 px wide): every tooltip opens BELOW the switcher, not above it, and lies over the column header row.",
+    "Step 6 (Board View): every tooltip also opens below the switcher.",
+    "Step 9 (1536 px wide): every tooltip still opens below the switcher, over the column header row."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C590111-1-tech-view-tooltip-below.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C590111-2-board-view-tooltip-below.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C590111-3-tech-view-1536-tooltip-below.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11322.",
+   "todo": "What needs to be done: follow the ticket; once the tooltips open above the switcher on staging, run this test again."
+  },
+  "C590112": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Step 2 (1440 px wide): the table does not run edge to edge. A grey strip about 30 px wide is left on each side, and the table sits inside it.",
+    "Step 4: the column header row stays at the top while the rows move up under it.",
+    "Step 6 (1536 px wide): the same grey strip on both sides.",
+    "Step 5 was not seen: with the default columns the table fits the window at 1440 px, so no sideways scroll bar showed and nothing could be scrolled.",
+    "Step 3 was not seen: Unassigned holds about 3,520 rows, so the line between it and the next group was not brought on screen."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C590112-1-side-gutters-1440.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C590112-2-side-gutters-1536.png"
+   ],
+   "not_observed": "Step 3 (the double line under Unassigned, not brought on screen) and step 5 (sideways scrolling: the table did not need it at 1440 px with the default columns).",
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11324.",
+   "todo": "What needs to be done: follow the ticket; once it is fixed on staging, run this test again (turn on more columns to check step 5)."
+  },
+  "C590115": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Steps 5 and 6: Tech View's \"Approved\" pill is the same as List's: same colours, word, rounded shape and width (72 px), and the blue number shows the same tooltip \"1 Part Ready to Order\". This work order had no red number.",
+    "Steps 8 and 10: the pill is 21 px tall at Compact and at Regular; the test wants 16 px.",
+    "Step 12: at Comfortable the pill is still 21 px tall; the test wants it taller (22 px). The width stays the same.",
+    "Step 13: List's pill is unchanged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C590115-1-pill-21px-every-density.png"
+   ],
+   "not_observed": "Step 3 and 6 for a red number (this work order showed only the blue one).",
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11318.",
+   "todo": "What needs to be done: follow the ticket; once the pill heights are fixed on staging, run this test again."
+  },
+  "C590116": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Step 2: the technician group headers show the six-dot grip at their left edge, and the \"Unassigned\" header shows none, as the test wants.",
+    "Step 3: no work order row shows a grip: not S2-36323 in Unassigned, and not S2-36321 or S2-36322 in the technician's group.",
+    "Step 9 (view-only User-B): no grip on the rows and none on the \"Unassigned\" header, as the test wants. The technician headers were not brought on screen for this user.",
+    "Steps 4 to 6 (row hover, drag from the Customer cell, plain click) were not reached by the test script on this run."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C590116-1-rows-without-grip.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C590116-2-view-only-user-rows.png"
+   ],
+   "not_observed": "Steps 4 to 6, and step 9's technician headers.",
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11320.",
+   "todo": "What needs to be done: follow the ticket (the missing grip on rows); once it is fixed on staging, run this test again, including steps 4 to 6."
+  },
+  "C590117": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Step 2: the \"Unassigned\" header reads, left to right: a down arrow, a grey circle with a person icon, \"Unassigned\" in dark semibold text, a short divider, a clipboard icon and the number. It has no six-dot grip, as the test wants.",
+    "Step 3: Technician-B's header starts with the six-dot grip, then the arrow, and the name is dark semibold at 14 px. But the avatar is a solid blue circle with white initials (\"ZD\"), not the light-grey circle with dark initials the test wants.",
+    "Step 4: Technician-A's avatar is the technician's round photo.",
+    "Step 5: hovering the number shows \"2 work orders\", but the tooltip opens BELOW the number, not above it.",
+    "Step 6: hovering Technician-B's avatar showed no name in this run; this is not judged (one try only).",
+    "Steps 7 and 8: the group closes with the arrow pointing right, and opens again with it pointing down.",
+    "Steps 9 and 10: the header is 36 px at Compact and 56 px at Comfortable (44 px at Regular) and the name stays 14 px, but the avatar stays 28 px at every density instead of getting smaller and larger.",
+    "The tooltip below the number (step 5) has no ticket yet; it is with the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C590117-1-headers-and-count-tooltip.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C590117-2-unassigned-and-densities.png"
+   ],
+   "not_observed": "Step 6: whether hovering Technician-B's avatar shows the name (no name showed on the single try).",
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11338 (blue avatar) and https://shopview.atlassian.net/browse/SV-11397 (avatar size). The tooltip under the number is not filed yet; it is with the QA lead.",
+   "todo": "What needs to be done: follow the tickets; once they are fixed on staging, run this test again and check step 6 by hand."
+  },
+  "C590122": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Step 2: under Technician-A's header, \"No work orders\" shows in grey, centred, with the clipboard icon before it, and no rows.",
+    "Step 4: Technician-A's empty column shows a dashed rounded box with a light-grey circle holding the clipboard icon and \"Drag a work order here to assign it\".",
+    "Step 7: Board View shows \"No work orders match these filters\", \"Try removing a filter to widen your results.\" and \"Clear all filters\", centred. The magnifier's round grey circle is drawn in the same grey as the board behind it, so no circle can be seen.",
+    "Step 8: List shows the same words and button, and its magnifier sits in a visible round grey circle.",
+    "Step 9: Tech View shows the same as List.",
+    "Steps 12 and 13: Tech View and List show \"No work orders match the search \"zzzz\".\" with no button.",
+    "The missing circle in Board View has no ticket yet; it is with the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C590122-1-no-results-board-list-tech.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C590122-2-empty-group-and-column.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: not filed yet; this problem is with the QA lead for a decision.",
+   "ticket_held": true,
+   "todo": "What needs to be done: wait for the QA lead's decision on the ticket; once the Board View circle can be seen on staging, run this test again."
+  },
+  "C590127": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Step 2: Tech View's filter bar reads \"Search\", \"Status\", \"Assigned to me\", \"Asset on Site\". There is no Technician filter after \"Assigned to me\" (and no Department filter).",
+    "Step 7: Board View's filter bar shows the same three filters, with no Technician filter.",
+    "Step 8: List's filter bar has no Technician filter, as the test wants.",
+    "Steps 3 to 6 could not be done, because the Technician filter is not there."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C590127-1-no-technician-filter.png"
+   ],
+   "not_observed": "Steps 3 to 6 (the filter's list and ticking a technician): the filter is missing.",
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11326.",
+   "todo": "What needs to be done: follow the ticket; once the Technician filter is on staging, run this test again."
+  },
+  "C590128": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Rows are 40 px tall at Compact, 48 px at Regular and 64 px at Comfortable.",
+    "Steps 3, 5 and 7: there is no progress bar at any density, only a grey \"0%\" label.",
+    "Steps 3 and 7: the group header avatar stays 28 px at every density; it does not get smaller at Compact or larger at Comfortable.",
+    "Step 3: the row text is 13 px at every density. It does not shrink at Compact, but the test wants 14 px, the same as Regular in the design.",
+    "Steps 3, 5 and 7: the same columns and values show at every density, no hours line shows, and the column header labels (12.8 px) and the percentage (11 px) keep the same size at every density.",
+    "Step 8: Board View's density menu has \"Comfortable\" ticked.",
+    "The 13 px row text has no ticket yet; it is with the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C590128-1-rows-three-densities.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C590128-2-regular-header-avatar.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11325 (progress bar) and https://shopview.atlassian.net/browse/SV-11397 (avatar size). The 13 px row text is not filed yet; it is with the QA lead.",
+   "todo": "What needs to be done: follow the tickets; once they are fixed on staging, run this test again."
+  },
+  "C590129": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Step 5: a white dialog with rounded corners over a dimmed page, titled \"Reassign lead technician\", with \"S2-36330 · ZZAUTOTEST DC20 Reassign Dialog 24869\" in grey under it, an X at the top right and a \"Search technicians\" box with a magnifier.",
+    "Step 5: \"Unassigned\" is the first row, then one list with no grouping; every row has a round avatar, the name and a grey \"N open\" line. \"Cancel\" sits at the bottom right, next to \"Reassign\".",
+    "Step 5: Technician-B (no photo) shows a solid blue circle with white initials, not the light-grey circle the test wants.",
+    "Step 5: Technician-A's row (the current lead, with the photo) was further down the long list and was not brought on screen, so its tint and check mark were not seen.",
+    "Step 6: typing \"Cal\" narrows the list to the matching technicians (Unassigned stays at the top).",
+    "Step 7: Cancel closes the dialog and the work order still has Technician-A as its lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C590129-1-dialog-top.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C590129-2-technician-b-blue-avatar.png"
+   ],
+   "not_observed": "Step 5: Technician-A's row (photo, light-blue tint, check mark) was not brought on screen.",
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11338.",
+   "todo": "What needs to be done: follow the ticket; once avatars without a photo are light grey on staging, run this test again and scroll to the current lead's row."
+  },
+  "C598326": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST S6 Pill Widths 24869\", S2-36331 (Approved) and S2-36332 (Ready For Review), both led by \"ZZAUTOTEST S6 Pia Pills\".",
+    "Step 3: in List the two pills are NOT the same width: \"Approved\" is 72 px wide and \"Ready For Review\" 114 px; each pill is narrowed to fit its own word.",
+    "Step 5: in Tech View the two pills have the same widths as in List (72 px and 114 px).",
+    "Steps 6 and 7: at Compact and at Comfortable both pills stay 21 px tall; the test wants 16 px at Compact and 22 px at Comfortable. Their widths do not change.",
+    "Step 9: List's pills look as at step 3."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C598326-1-pill-widths-and-heights.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11310 (List pills sized to their word) and https://shopview.atlassian.net/browse/SV-11318 (pill height by density).",
+   "todo": "What needs to be done: follow the tickets; once both are fixed on staging, run this test again."
+  }
+ }
+}

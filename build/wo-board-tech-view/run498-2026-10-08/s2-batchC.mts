@@ -197,12 +197,17 @@ await run('C96929', async () => {
   // (viewAs), reading List, then Carol's group in Tech View, then her column in Board View, each with the search applied.
   const carol = by('Carol Neal');
   if (!carol) throw new Error('Carol Neal is not offered as a technician at this location');
-  const TOK = 'ZZ96929'; const nm: Record<string, string> = {};
+  const TOK = 'ZZ96929'; const nm: Record<string, string> = {}; // 16 Oct 2026: Mid Trucking's two work orders are told apart below by number
   for (const c of ['Zeta Hauling', 'Alpha Freight', 'Mid Trucking']) {
     const name = `${c} ${TOK}`; let have = await workOrders(a, name);
     if (!have.length) { await workOrder(a, await customer(a, name, `ZZ29${c.slice(0, 2).toUpperCase()}`), 'approved', carol.id); have = await workOrders(a, name); }
     for (const w of have) { nm[w.number] = c; if (w.techAssignedId !== carol.id) await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: carol.id }); }
+    // 16 Oct 2026 (case rewritten 15 Oct): Customer-B (Mid Trucking) now has TWO work orders, the fourth made last, so the tie inside
+    // one customer can be compared with List. Made once; a later run finds both by name.
+    if (c === 'Mid Trucking' && have.length < 2) { await workOrder(a, await customer(a, name, 'ZZ29MI'), 'approved', carol.id); for (const w of await workOrders(a, name)) nm[w.number] = c; }
   }
+  R.C96929_midNumbers = Object.keys(nm).filter((k) => nm[k] === 'Mid Trucking');
+  for (const k of R.C96929_midNumbers) nm[k] = `Mid Trucking ${k}`;
   const others: string[] = [];
   for (let pg = 1; pg < 40; pg++) { const r = await a.get(`/api/work-orders?pagination[page]=${pg}&pagination[rowsPerPage]=200&filters[0][field]=tech_assigned_id&filters[0][value]=${carol.id}`); const ws = r.body?.data?.work_orders ?? [];
     for (const w of ws) if (!nm[w.number] && w.techAssignedId === carol.id) { const x = await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: null }); others.push(`${w.number} -> no lead ${x.status}`); }
@@ -272,6 +277,11 @@ await run('C368127', async () => {
     R.C368127.loadingPause = firstSpin ? 'a loading spinner or "Loading" text was seen (see scroll[], picture C368127-loading)' : `paging not seen by hand (no spinner or Loading text at any stop; ${reqs.length} list request(s) sent while scrolling)`;
     await pg.evaluate(`document.querySelector('.q-table__middle').scrollTop = 1500`); await pg.waitForTimeout(2000);
     await shot(pg, 'C368127-mid-scroll');
+    // 16 Oct 2026 (step 5 made exact: "just under the column header row"): the heading row's bottom and the held Unassigned header's box
+    R.C368127.midScrollBoxes = await pg.evaluate(`(() => { const r = (e) => { if (!e) return null; const b = e.getBoundingClientRect(); return { top: Math.round(b.top), bottom: Math.round(b.bottom), h: Math.round(b.height) }; };
+      const th = document.querySelector('thead tr'); const u = document.querySelector('[data-test-id="tech_view_group_unassigned"]'); const es = th ? document.elementsFromPoint(200, th.getBoundingClientRect().bottom + 6) : [];
+      const g = es.map(x => x.closest && x.closest('[data-test-id^="tech_view_group_"]')).filter(Boolean)[0];
+      return { headRow: r(th), unassignedHeader: r(u), unassignedPosition: u ? getComputedStyle(u).position : null, justUnderHeadings: g ? g.getAttribute('data-test-id') : null, scrollTop: document.querySelector('.q-table__middle').scrollTop }; })()`);
     // the header kept at the top is drawn over the table; click the arrow where it sits
     const hit = await pg.evaluate(`(() => { const els = document.elementsFromPoint(90, 210); const b = els.map(e => e.closest && e.closest('button')).find(Boolean); return { y: 210, what: els.slice(0, 4).map(e => e.tagName + '.' + String(e.className).slice(0, 40)), button: b ? (b.getAttribute('aria-label') || b.getAttribute('data-test-id')) : null, text: (els[0] && els[0].closest('tr, div') || {}).innerText?.replace(/\\s+/g, ' ').slice(0, 80) }; })()`) as any;
     R.C368127.stickyArrow = hit;
@@ -292,24 +302,43 @@ await run('C368127', async () => {
 await run('C96927', async () => {
   // 15 Oct 2026 (staging second pass): only the table columns were read. Now BOTH Column Selection menus are read item by item
   // (List: button_column_selection, Tech View: button_tech_view_column_selection; each item is a switch with a label).
+  // 16 Oct 2026 (case rewritten 15 Oct, new steps 8-20): Tech View's columns start from the defaults (the saved choice is taken off
+  // first and put back at the end); EVERY entry of the menu is read with on/off and locked; then On Site, VIN/Serial # and Lead
+  // Technician on; Assigned Techs off and on; try Status, Number and Customer off; Unit off and on — headers read after each.
+  const PREF = '/api/users/me/preferences/work-orders-list'; const ORIG = (await a.get(PREF)).body?.data?.value ?? {};
+  { const v: any = {}; for (const [k, x] of Object.entries(ORIG)) if (k !== 'techViewColumns') v[k] = x; R.C96927_prefReset = (await a.put(PREF, { value: v })).status; }
+  const name = 'ZZAUTOTEST F2 Tech Columns'; let have = await workOrders(a, name);
+  if (!have.length) { const est = await sid('zz.wob.esther.howard' + D); const c = await customer(a, name, 'ZZF2TC'); const id = await workOrder(a, c, 'approved', est?.staff_id ?? null);
+    const cl = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/work-orders/canned-lines')).body?.data)[0]; await a.post(`/api/work-orders/${id}/lines/create-from-canned-line`, { canned_line_id: cl?.id, status: 'authorized' }); have = await workOrders(a, name); }
   const readMenu = async (btn: string) => { await p.locator(`[data-test-id="${btn}"]`).click(); await p.waitForTimeout(1200);
     const items = await p.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); if (!m) return null;
       const sws = [...m.querySelectorAll('[role=switch]')]; return sws.map(sw => { const host = sw.closest('[data-test-id^="toggle_"]') || sw; const lab = sw.getAttribute('aria-label') || (sw.closest('.q-item') || host).innerText.replace(/\\s+/g, ' ').trim();
-        return { label: lab, key: (host.getAttribute('data-test-id') || '').replace(/^toggle_(tech_view_column_|column_)/, ''), on: sw.getAttribute('aria-checked') }; }); })()`);
-    return items as { label: string; key: string; on: string }[] | null; };
-  await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, 'All'); await display(p, 'List'); await search(p, 'ZZAUTOTEST F2 Tech Columns');
-  const listMenu = await readMenu('button_column_selection'); await shot(p, 'C96927-list-menu'); await p.keyboard.press('Escape'); await p.waitForTimeout(800);
-  await display(p, 'Tech View'); if (!(await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => ''))) await search(p, 'ZZAUTOTEST F2 Tech Columns');
-  const techMenu = await readMenu('button_tech_view_column_selection'); await shot(p, 'C96927-tech-menu');
+        const dis = sw.getAttribute('aria-disabled') === 'true' || /disabled/.test(String(sw.className) + ' ' + String(host.className));
+        return { label: lab, key: (host.getAttribute('data-test-id') || '').replace(/^toggle_(tech_view_column_|column_)/, ''), on: sw.getAttribute('aria-checked'), locked: dis }; }); })()`);
+    return items as { label: string; key: string; on: string; locked: boolean }[] | null; };
+  const heads = async () => (await p.evaluate(`[...document.querySelectorAll('thead th')].map(e => e.innerText.replace(/arrow_drop_(up|down)/g, '').trim()).filter(Boolean)`)) as string[];
+  const flip = async (label: string, want: 'true' | 'false') => { const sw = p.locator(`.q-menu [role=switch][aria-label="${label}"]`).first(); if (!(await sw.count())) return 'not in the menu';
+    const b = await sw.getAttribute('aria-checked'); if (b !== want) { await sw.scrollIntoViewIfNeeded().catch(() => {}); await sw.click({ timeout: 5000 }).catch(() => {}); await p.waitForTimeout(1300); } return `${b} -> ${await sw.getAttribute('aria-checked')}`; };
+  const close = async () => { await p.keyboard.press('Escape'); await p.waitForTimeout(1000); };
+  const openTv = async () => { await p.locator('[data-test-id="button_tech_view_column_selection"]').click(); await p.waitForTimeout(1200); };
+  await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, 'All'); await display(p, 'List'); await search(p, name);
+  const listMenu = await readMenu('button_column_selection'); await shot(p, 'C96927-s4-list-menu'); await close();
+  await display(p, 'Tech View'); if (!(await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => ''))) await search(p, name);
+  const techMenu = await readMenu('button_tech_view_column_selection'); await shot(p, 'C96927-s7-tech-menu');
+  await p.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); if (m) { const s = [m, ...m.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 4); if (s) s.scrollTop = s.scrollHeight; } })()`); await p.waitForTimeout(600); await shot(p, 'C96927-s7-tech-menu-end');
   const L = (listMenu ?? []).map((x) => x.label), T = (techMenu ?? []).map((x) => x.label);
-  R.C96927 = { techViewButton: await p.locator('[data-test-id="button_tech_view_column_selection"]').count(), listMenu: L, techMenu: T,
+  R.C96927 = { wo: have.map((w: any) => w.number), techViewButton: await p.locator('[data-test-id="button_tech_view_column_selection"]').count(), listMenu: L, techMenuFull: techMenu,
     listOffersAssignedTechs: L.includes('Assigned Techs'), techOffersAssignedTechs: T.includes('Assigned Techs'), inListNotInTech: L.filter((x) => !T.includes(x)), inTechNotInList: T.filter((x) => !L.includes(x)) };
-  const sw = p.locator('.q-menu [role=switch][aria-label="Assigned Techs"]').first();
-  R.C96927.before = await sw.getAttribute('aria-checked').catch(() => null);
-  if (R.C96927.before !== 'true') { await sw.click().catch(() => {}); await p.waitForTimeout(1500); }
-  R.C96927.after = await sw.getAttribute('aria-checked').catch(() => null); await p.keyboard.press('Escape'); await p.waitForTimeout(1000);
-  R.C96927.headers = await p.evaluate(`[...document.querySelectorAll('thead th')].map(e => e.innerText.trim()).filter(Boolean)`); await shot(p, 'C96927-assigned-techs-column');
-  await display(p, 'List'); R.C96927.listHeaders = await p.evaluate(`[...document.querySelectorAll('thead th')].map(e => e.innerText.trim()).filter(Boolean)`);
+  R.C96927.s8_10 = { onSite: await flip('On Site', 'true'), vin: await flip('VIN/Serial #', 'true'), lead: await flip('Lead Technician', 'true') }; await close();
+  R.C96927.s11_headers = await heads(); await shot(p, 'C96927-s11-headers');
+  await openTv(); R.C96927.s13 = await flip('Assigned Techs', 'false'); await close(); R.C96927.s14_headers = await heads(); await shot(p, 'C96927-s14-headers');
+  await openTv(); R.C96927.s15 = await flip('Assigned Techs', 'true'); await close(); R.C96927.s16_headers = await heads(); await shot(p, 'C96927-s16-headers');
+  await openTv(); R.C96927.s17 = { Status: await flip('Status', 'false'), Number: await flip('Number', 'false'), Customer: await flip('Customer', 'false') }; R.C96927.s18_unit = await flip('Unit', 'false');
+  R.C96927.s17_menuNow = await p.evaluate(`[...document.querySelectorAll('.q-menu [role=switch]')].map(sw => (sw.getAttribute('aria-label') || '') + '=' + sw.getAttribute('aria-checked'))`); await shot(p, 'C96927-s17-menu');
+  await close(); R.C96927.s19_headers = await heads(); await shot(p, 'C96927-s19-headers');
+  await openTv(); R.C96927.s20_unit = await flip('Unit', 'true'); await close(); R.C96927.s20_headers = await heads();
+  R.C96927.prefRestored = (await a.put(PREF, { value: ORIG })).status;
+  await display(p, 'List'); R.C96927.listHeaders = await heads();
 });
 
 await run('C368161', async () => {

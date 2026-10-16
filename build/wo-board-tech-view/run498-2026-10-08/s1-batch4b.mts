@@ -77,36 +77,60 @@ async function run(id: string, f: () => Promise<void>) {
 }
 
 await run('C96916', async () => {
-  // 🔴 first attempt void (2026-10-08): the card "in view" was found in Ayesha Khan's column while that column was
-  // OFF screen, and a locator click scrolls its target into view — so the click itself moved the board and the
-  // "before" position was never what Back had to restore. Now: the column is brought into view first, the card
-  // is picked by its on-screen box, and it is clicked by mouse position (no automatic scrolling).
-  R.C96916 = { seeded: await seed('ZZAUTOTEST F1 Scroll Back', 'ZZSB-1', 20) };
-  const names = Object.fromEntries(techs.map((x) => [x.id, x.name]));
-  const view = async () => { const q = await pos(); const ids = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="board_column_"]')].filter(e => /^board_column_([0-9a-f-]{36}|unassigned)$/.test(e.getAttribute('data-test-id'))).filter(e => { const r = e.getBoundingClientRect(); return r.width > 0 && r.right > 0 && r.left < innerWidth; }).map(e => e.getAttribute('data-test-id').replace('board_column_', ''))`) as string[];
-    return { ...q, columnsInView: ids.map((i) => names[i] ?? i) }; };
-  const pickInView = (sel: string) => p.evaluate(`(() => { for (const e of document.querySelectorAll(${JSON.stringify(sel)})) { if (e.children.length || !/^S\\d+-\\d+$/.test(e.textContent.trim())) continue; const r = e.getBoundingClientRect(); if (r.top > 230 && r.bottom < innerHeight - 10 && r.left > 0 && r.right < innerWidth) return { n: e.textContent.trim(), x: r.left + r.width / 2, y: r.top + r.height / 2 }; } return null; })()`) as Promise<{ n: string; x: number; y: number } | null>;
-  await go(); await tab(p, 'All');
-  for (const d of ['Board View', 'Tech View']) {
-    await display(p, d); R.C96916[d] = { scrollers: await mark(tA.id) };
-    if (d === 'Board View') {
-      const off = await p.evaluate(`(() => { const h = document.querySelector('[data-zz=h],[data-zz=hv]'); const c = document.querySelector('[data-test-id="board_column_${tA.id}"]'); return c && h ? Math.round(c.getBoundingClientRect().left - h.getBoundingClientRect().left + h.scrollLeft) : null; })()`) as number | null;
-      R.C96916[d].columnOffset = off;
-      // step 4: scroll right until a technician near the END is at the left edge; step 5: scroll down inside a long column on screen
-      await scrollTo(-1200, 0); R.C96916[d].longColumn = await markTallInView(tA.id); await scrollTo(-1200, 900);
-      R.C96916[d].colTopsBefore = await colTops();
-    } else { await scrollTo(300, 900); }
-    const before = await view(); R.C96916[d].before = before; await shot(p, `C96916-${d.replace(' ', '')}-before`);
-    const target = await pickInView(d === 'Board View' ? `[data-zz=v] *` : '.q-virtual-scroll__content *');
-    R.C96916[d].opened = target?.n ?? null;
-    if (!target) throw new Error(`${d}: no work order on screen to open`);
-    await p.mouse.click(target.x, target.y); await p.waitForTimeout(4000);
-    R.C96916[d].openedUrl = p.url().replace(APP, '');
-    await p.goBack({ waitUntil: 'domcontentloaded' });
-    for (let i = 0; i < 4; i++) { await p.waitForTimeout(2500); if (d === 'Board View') { await mark(tA.id); const lc = R.C96916[d].longColumn?.id; if (lc) await markTallInView(lc); } else await mark(tA.id); R.C96916[d]['after' + (i + 1)] = await view(); if (d === 'Board View') R.C96916[d]['colTopsAfter' + (i + 1)] = await colTops(); }
-    await shot(p, `C96916-${d.replace(' ', '')}-after-back`);
-  }
-  await display(p, 'List');
+  // 16 Oct 2026 (case rewritten 15 Oct): Back must bring the sideways position back EXACTLY, and the card/row that was at the top must
+  // come back at the top, fully shown, at most one card/row away. The case's own set-up is made: customer "ZZAUTOTEST F1 Scroll Back H"
+  // with 20 Approved work orders led by Technician-H and 2 led by each of seven other technicians (made once, reused); Search on it;
+  // Board View scrolled right to Technician-H's column, then that column scrolled down; the top card's id, its box and whether it is fully
+  // inside the column are read before and after Back, and the drift is given in cards. Then the same for a Tech View row.
+  const want8 = ['Esther Howard', 'Ralph Edwards', 'Jenny Wilson', 'Theresa Webb', 'Kristin Watson', 'Brenda Martinez', 'Cameron Williamson', 'Floyd Miles'];
+  let eight = want8.map((n) => techs.find((x) => x.name === n)).filter(Boolean) as { id: string; name: string }[];
+  if (eight.length < 8) eight = [...eight, ...techs.filter((x) => !eight.some((e) => e.id === x.id) && !/Admin ShopView|^ZZ/.test(x.name)).slice(0, 8 - eight.length)];
+  const H = eight[eight.length - 1]; const n = 'ZZAUTOTEST F1 Scroll Back H';
+  let have = await workOrders(a, n);
+  if (!have.length) { const c = await customer(a, n, 'ZZSBH'); for (let k = 0; k < 20; k++) await workOrder(a, c, 'approved', H.id); for (const tt of eight.slice(0, 7)) { await workOrder(a, c, 'approved', tt.id); await workOrder(a, c, 'approved', tt.id); } have = await workOrders(a, n); }
+  R.C96916 = { technicians: eight.map((x) => x.name), H: H.name, workOrders: have.length };
+  const boardRead = () => p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); const col = document.querySelector('[data-test-id="board_column_${H.id}"]'); if (!col) return { left: h ? Math.round(h.scrollLeft) : null, column: 'not drawn' };
+    const body = [col, ...col.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 5 && /(auto|scroll)/.test(getComputedStyle(e).overflowY)); const bb = (body || col).getBoundingClientRect(); const cb = col.getBoundingClientRect();
+    const cards = [...col.querySelectorAll('[data-test-id^="board_card_"]')].filter(e => /^board_card_[0-9a-f-]{36}$/.test(e.getAttribute('data-test-id')));
+    const order = cards.map(e => (e.querySelector('[data-test-id="board_card_number"]') || {}).textContent?.trim());
+    const top = cards.find(e => e.getBoundingClientRect().bottom > bb.top + 4); const tb = top ? top.getBoundingClientRect() : null;
+    const cols = [...document.querySelectorAll('[data-test-id^="board_column_name_"]')].filter(e => { const r = e.getBoundingClientRect(); return r.width > 0 && r.left >= 0 && r.right <= innerWidth; }).map(e => e.textContent.trim());
+    return { left: h ? Math.round(h.scrollLeft) : null, columnsInView: cols, columnFullyInView: cb.left >= 0 && cb.right <= innerWidth, columnScrollTop: body ? Math.round(body.scrollTop) : null,
+      topCard: top ? { number: (top.querySelector('[data-test-id="board_card_number"]') || {}).textContent?.trim(), index: cards.indexOf(top), offsetFromColumnTop: Math.round(tb.top - bb.top), height: Math.round(tb.height), fullyShown: tb.top >= bb.top - 1 && tb.bottom <= bb.bottom + 1 } : null, cardsDrawn: order.length }; })()`);
+  await go(); await tab(p, 'All'); await display(p, 'Board View'); await search(p, n);
+  const B: any = { reached: await (async () => { await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller').scrollLeft = 0`); for (let i = 0; i < 400 && !(await p.locator(`[data-test-id="board_column_${H.id}"]`).count()); i++) { const mv = await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); const b = h.scrollLeft; h.scrollLeft += 600; return h.scrollLeft !== b; })()`); await p.waitForTimeout(300); if (!mv) break; }
+    await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); const c = document.querySelector('[data-test-id="board_column_${H.id}"]'); if (h && c) { const r = c.getBoundingClientRect(); if (r.right > innerWidth) h.scrollLeft += r.right - innerWidth + 24; if (r.left < 0) h.scrollLeft += r.left - 24; } })()`); await p.waitForTimeout(1200);
+    return (await p.locator(`[data-test-id="board_column_${H.id}"]`).count()) > 0; })() };
+  B.boardWiderThanWindow = await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); return h ? h.scrollWidth > h.clientWidth : null; })()`);
+  // step 5: scroll down inside H's column until a card well below the first screen is at the top (6 cards' worth)
+  await p.evaluate(`(() => { const col = document.querySelector('[data-test-id="board_column_${H.id}"]'); if (!col) return; const body = [col, ...col.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 5 && /(auto|scroll)/.test(getComputedStyle(e).overflowY)); const c1 = col.querySelector('[data-test-id^="board_card_"]'); if (body) body.scrollTop = Math.round((c1 ? c1.getBoundingClientRect().height + 8 : 150) * 6); })()`); await p.waitForTimeout(1500);
+  B.before = await boardRead(); await shot(p, 'C96916-s6-board-before');
+  const tgt = await p.evaluate(`(() => { const col = document.querySelector('[data-test-id="board_column_${H.id}"]'); if (!col) return null; const cards = [...col.querySelectorAll('[data-test-id^="board_card_"]')].filter(e => /^board_card_[0-9a-f-]{36}$/.test(e.getAttribute('data-test-id')));
+    const vis = cards.filter(e => { const r = e.getBoundingClientRect(); return r.top > 240 && r.bottom < innerHeight - 10 && r.left > 0 && r.right < innerWidth; }); const e = vis[1] || vis[0]; if (!e) return null; const n = e.querySelector('[data-test-id="board_card_number"]'); const r = (n || e).getBoundingClientRect(); return { n: n ? n.textContent.trim() : '?', x: r.left + Math.min(r.width / 2, 30), y: r.top + r.height / 2 }; })()`) as any;
+  B.clicked = tgt?.n ?? null; if (!tgt) throw new Error('Board View: no card of Technician-H on screen to open');
+  await p.mouse.click(tgt.x, tgt.y); await p.waitForTimeout(4000); B.openedUrl = p.url().replace(APP, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/, '<id>');
+  await p.goBack({ waitUntil: 'domcontentloaded' }); for (let i = 0; i < 4; i++) { await p.waitForTimeout(2500); B['after' + (i + 1)] = await boardRead(); }
+  await shot(p, 'C96916-s9-board-after-back');
+  const bl = B.after4 ?? B.after3; B.drift = bl?.topCard && B.before?.topCard ? { sideways: (bl.left ?? 0) - (B.before.left ?? 0), cards: bl.topCard.index - B.before.topCard.index, sameTopCard: bl.topCard.number === B.before.topCard.number, px: (bl.columnScrollTop ?? 0) - (B.before.columnScrollTop ?? 0) } : null;
+  R.C96916.board = B;
+  // Tech View: scroll down (and right if wider), the row at the top under the headings, then open a row and come Back
+  const tvRead = () => p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (!s) return null; const sb = s.getBoundingClientRect(); const th = s.querySelector('thead'); const hb = th ? th.getBoundingClientRect().bottom : sb.top;
+    const held = [...s.querySelectorAll('[data-test-id^="tech_view_group_"]')].filter(e => /^tech_view_group_([0-9a-f-]{36}|unassigned)$/.test(e.getAttribute('data-test-id'))).map(e => e.getBoundingClientRect()).filter(r => r.top <= hb + 4 && r.bottom > hb).map(r => r.bottom);
+    const edge = Math.max(hb, ...held); const rows = [...s.querySelectorAll('[data-test-id^="tech_view_row_"]')]; const all = rows.map(r => (r.innerText.match(/S\\d+-\\d+/) || [''])[0]);
+    const top = rows.find(r => r.getBoundingClientRect().bottom > edge + 4); const tr = top ? top.getBoundingClientRect() : null;
+    const heads = [...s.querySelectorAll('thead th')].filter(e => { const r = e.getBoundingClientRect(); return r.width > 0 && r.left >= sb.left - 1 && r.right <= sb.right + 1; }).map(e => e.innerText.replace(/arrow_drop_(up|down)/g, '').trim()).filter(Boolean);
+    return { scrollTop: Math.round(s.scrollTop), scrollLeft: Math.round(s.scrollLeft), wider: s.scrollWidth > s.clientWidth, columnsInView: heads, topRow: top ? { number: (top.innerText.match(/S\\d+-\\d+/) || [''])[0], index: rows.indexOf(top), offsetFromEdge: Math.round(tr.top - edge), height: Math.round(tr.height), fullyShown: tr.top >= edge - 1 && tr.bottom <= sb.bottom + 1 } : null, rowsDrawn: all.length }; })()`);
+  await display(p, 'Tech View'); await p.waitForTimeout(2000); if (!(await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => ''))) await search(p, n);
+  await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) { s.scrollTop = 700; s.scrollLeft = s.scrollWidth; } })()`); await p.waitForTimeout(1500);
+  const T: any = { before: await tvRead() }; await shot(p, 'C96916-s12-tech-before');
+  const rt = await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); const rows = [...s.querySelectorAll('[data-test-id^="tech_view_row_"]')].filter(r => { const b = r.getBoundingClientRect(); return b.top > 300 && b.bottom < innerHeight - 20; }); const r = rows[1] || rows[0]; if (!r) return null; const c = [...r.querySelectorAll('td')].find(td => /S\\d+-\\d+/.test(td.innerText)) || r.querySelector('td'); const b = c.getBoundingClientRect(); return { n: (r.innerText.match(/S\\d+-\\d+/) || [''])[0], x: b.left + Math.min(b.width / 2, 30), y: b.top + b.height / 2 }; })()`) as any;
+  T.clicked = rt?.n ?? null; if (!rt) throw new Error('Tech View: no row on screen to open');
+  await p.mouse.click(rt.x, rt.y); await p.waitForTimeout(4000); T.openedUrl = p.url().replace(APP, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/, '<id>');
+  await p.goBack({ waitUntil: 'domcontentloaded' }); for (let i = 0; i < 4; i++) { await p.waitForTimeout(2500); T['after' + (i + 1)] = await tvRead(); }
+  await shot(p, 'C96916-s15-tech-after-back');
+  const tl = T.after4 ?? T.after3; T.drift = tl?.topRow && T.before?.topRow ? { sideways: tl.scrollLeft - T.before.scrollLeft, rows: tl.topRow.index - T.before.topRow.index, sameTopRow: tl.topRow.number === T.before.topRow.number, px: tl.scrollTop - T.before.scrollTop } : null;
+  R.C96916.tech = T;
+  await search(p, ''); await display(p, 'List');
 });
 
 await run('C96917', async () => {
@@ -132,5 +156,5 @@ await run('C96917', async () => {
   await display(p, 'List');
 });
 
-fs.writeFileSync(path.join(EV, 's1-batch4b.json'), JSON.stringify(R, null, 1));
+fs.writeFileSync(path.join(EV, 's1-batch4b.json'), JSON.stringify(R, null, 1)); // 16 Oct 2026: EV = WOB_EV when set
 await done(browser);

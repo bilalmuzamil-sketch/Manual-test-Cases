@@ -1,0 +1,49 @@
+TITLE: Board View No-Results Page – Magnifier's Grey Circle Cannot Be Seen on the Grey Board
+TYPE: Story Defect · PARENT: SV-10046 (Board View — board by lead technician; Ready for QA, read live 16 Oct 2026 — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10046
+ALREADY REPORTED: none found among SV-11317 to SV-11326, SV-11338, SV-11393 to SV-11398 (titles read live 16 Oct 2026). SV-11319 is about the icon drawings, not this circle.
+SEEN ON: staging build {{v26.40.18-7d85b7d}}, 16 Oct 2026 (run 498, C590122).
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+
+h2. Description
+
+*When filters return no work orders, Board View should show the same empty state as List, with List's magnifier in a round grey circle.* In Board View the circle is drawn in the same grey as the board behind it, so only a bare magnifier can be seen.
+
+For example,
+* List and Tech View show the magnifier inside a visible light-grey circle
+* Board View shows the same words and button, but no circle around the magnifier
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin, check the top bar shows *Staging Heavy Duty - 9919*, and use a browser window 1440 px wide at 100% zoom.
+# Open *Work Orders*, click the *All* tab, then *Board View* in the display switcher.
+# Click *Status*, tick *Paid*, press Escape, and type {{zzzz}} in *Search*.
+#* "No work orders match these filters", "Try removing a filter to widen your results." and *Clear all filters* show in the middle of the board.
+#* The magnifier above them has no visible circle around it.
+# Click *List* in the display switcher.
+#* The same words and button show, and the magnifier sits in a light-grey circle.
+
+*Actual Result:*
+* Board View's no-results page shows a bare magnifier; its grey circle cannot be seen against the grey board.
+
+*Expected Result:*
+* As the test expects: *"Step 7: the board is replaced by an empty state centred on the page: List's magnifier icon in a round grey circle, the title "No work orders match these filters", the hint "Try removing a filter to widen your results." and a Clear all filters button."*
+
+h2. Screenshots
+
+!C590122-1-no-results-board-list-tech.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.18-7d85b7d}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 16 Oct 2026
+* *User:* Admin, browser window 1440 px wide at 100% zoom
+
+h2. Sources
+
+* Test case C590122 (Expected, verbatim):
+{quote}Step 7: the board is replaced by an empty state centred on the page: List's magnifier icon in a round grey circle, the title "No work orders match these filters", the hint "Try removing a filter to widen your results." and a Clear all filters button.{quote}
+* PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54, S1-N1 (as quoted in the test case):
+{quote}When the active filters or a search return no work orders, Tech View and Board View show the same empty state as the List, with the same messages and action.{quote}
+
+h2. Test case
+
+* [C590122 Empty group, empty column and no-results pages|https://shopview.testrail.io/index.php?/cases/view/590122]
