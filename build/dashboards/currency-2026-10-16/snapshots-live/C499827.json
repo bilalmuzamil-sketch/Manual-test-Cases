@@ -1,0 +1,78 @@
+{
+ "id": 499827,
+ "title": "Technician filter on the expanded Technician Efficiency chart offers the technicians in its table, including non-billable ones",
+ "section_id": 12174,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 3,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1791767510,
+ "updated_by": 1,
+ "updated_on": 1791905374,
+ "estimate": null,
+ "estimate_forecast": null,
+ "suite_id": 1,
+ "display_order": 5,
+ "is_deleted": 0,
+ "is_ai_generated": false,
+ "is_ai_automated": false,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "A non-billable, clockable technician enrolled at the active workplace, with clocked time on an invoiced work order dated inside the Technician Efficiency card's current window\nA billable technician with clocked time on an invoiced work order in that window\nLogged in as a user with dashboard access; active workplace = the seeded workplace",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "Open the dashboard and expand the Technician Efficiency tile",
+   "expected": "The details panel opens with the Technician Efficiency chart and the technician table, which lists both seeded technicians",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Open the chart's Technician filter",
+   "expected": "The options are the technicians in the table below, including the non-billable technician. All are ticked and the filter reads all technicians",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Untick the billable technician and close the filter",
+   "expected": "The filter summary narrows to the remaining selection",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Reopen the filter and wait for the chart to settle",
+   "expected": "The same technicians are still offered (the list does not shrink), the billable technician reads unticked, the chart shows a settled state (chart or empty, not an error), and the table lists only the selected technician (the billable technician's row is gone, the non-billable technician's row remains)",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Deselect every technician in the filter",
+   "expected": "The chart and the technician table are both hidden; the filter stays visible and reads no technicians",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Select every technician again in the filter",
+   "expected": "The chart settles again and the technician table returns, listing both seeded technicians\n\nThe Technician Efficiency chart's Technician filter offers the same technicians as its table, including non-billable ones; unticking one narrows the filter and the table to the selection without changing the options offered, and deselecting everyone hides the chart and the table until a technician is selected again",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": [],
+ "version": 3
+}
