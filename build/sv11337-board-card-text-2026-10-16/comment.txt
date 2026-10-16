@@ -1,0 +1,35 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on Staging (build v26.40.19-1493c63) on 16 October 2026. 5 of 5 checks passed.
+
+The Board View card text now matches the spec at every density. The sizes are the same as when this ticket was raised, because the spec was changed after it: on 15 October Chris set card text at 14px (12px for the smaller grey lines), weight 500, so the cards are correct as they are.
+
+_Where this differs from the ticket: the ticket asked for the larger, bolder text estimated from the design file (number about 15px, customer 15–16px and total price 16px, weight 600). Chris's later spec rulings (version 54 and 55, 15 October 2026) set the text at 14px, weight 500, and we have taken that latest ruling as the one that applies._
+
+*Before and after*
+!sv11337-01-card-text-ticket-vs-staging-densities.png|width=818,height=1029!
+_Left: the card as reported on 14 October (the picture from this ticket). Right: the same work order, S2-16614, on staging today at Compact, Regular and Comfortable. Number, customer and total price are 14px, weight 500; the unit line is 12px. Only the card height changes with density (175, 187, 203 px). Window 1600 x 1000 px, browser zoom 100%. Board View does not exist on Production, so there is no Production picture._
+
+*What I checked*
+||#||Check||Status||
+|1|Work order number on every card: 14px, weight 500, at Compact, Regular and Comfortable (52 to 57 cards measured at each density).|PASSED|
+|2|Customer name on every card: 14px, weight 500, at every density.|PASSED|
+|3|Unit · asset line on every card: 12px, at every density.|PASSED|
+|4|Total price on every card: 14px, weight 500, at every density.|PASSED|
+|5|The other small lines (estimated hours, progress, technician, vehicle) stay 12px; changing density only changes spacing and card height, never the text size.|PASSED|
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 62:
+{quote}S6-R4: Row and card text is 14px at every density; Compact never shrinks it. Text the design sets at 12px at every density, such as column header labels (S2-R21), the progress percentage and secondary lines, stays 12px.{quote}
+{quote}S2-R23: … Board card customer and total price are weight 500 …{quote}
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com and click *Work Orders* in the top menu, then the *All* tab.
+# On the right of the bar above the list, click the third of the three view buttons (the board icon) to open *Board View*.
+# Click *Search* (the magnifying glass) and type *S2-16614*. Scroll the board sideways to the *Brandi Smith* column to find the card.
+# Click the density button (the icon just right of *Asset on Site*) and pick *Compact*, then *Regular*, then *Comfortable*. The text on the card stays the same size each time; only the card gets taller.
+
+*Screen recording*
+!sv11337-board-card-text-staging-recording-voiceover.mp4|width=1280,alt="sv11337-board-card-text-staging-recording-voiceover.mp4"!
+_Staging, build v26.40.19-1493c63, 16 October 2026, window 1440 px, zoom 100%: card S2-16614 at Compact, Regular and Comfortable, with the text sizes read from the screen at each step. With voice-over._
