@@ -43,3 +43,19 @@ Evidence: `build-verify-staging-2026-10-15/probe/` (only writes: the saved displ
 - Empty Tech View search: `No work orders match the search "zzzz".`
 - Profile menu: `Edit Profile` · `Change Location:` · `My Timesheets` · `Customer Portal` `New` · `Billing` · `What's New` · `Settings` · `Logout` · `Light` · `Dark`.
 - Top menu now also shows `Dashboard`.
+
+## 2026-10-16 — staging build v26.40.19-72f4f3b (location Staging Heavy Duty - 9919)
+Evidence: `build-verify-staging-2026-10-16/probe/` (01–09 json + screenshots). Only writes: the saved display/filter choice when switching views (restored to List, no Status, empty Search) and one accidental On Site toggle on S2-10395, put back and read back after reload (07-S2-10395-restore.json).
+- Toolbar unchanged from 15 Oct; still **no Technician filter** in any display. The **Work Orders** tab has no `Status` filter (All tab has it). A ticked Status shows as `Status: <value>` with an x (`Clear Status filter`).
+- Empty page with a filter + search: `No work orders match these filters` · `Try removing a filter to widen your results.` · `Clear all filters` (all three displays); after Clear all filters: `No work orders match the search "zzzz".`
+- All tab counts: `Unassigned, 3572 work orders` (Board View header), Tech View group `3572 work orders`.
+- Card/row `More actions` menu: **only** `Reassign lead technician` (no `Unassign`; claim-no-unassign-item.json PROVED). Reassign window: `Search technicians`, `Unassigned` first (`Current` on the lead), technicians with `N open`, `Cancel` · `Reassign`.
+- Keyboard: Tab goes Clear search → Status → Assigned to me → Asset on Site → Density → Fields to display / Column Selection → List → Tech View → Board View → Create Work Order → **one** card (Board View) or the Unassigned group header + `Collapse Unassigned` (Tech View), then leaves the page. Arrow keys move card to card / column header and row to row. Pin buttons tabindex -1; avatars not focusable. Focus ring shows on the card and on the switcher button. (claim-tab-one-card.json PROVED.)
+- Tech View group headers: `Collapse|Expand <name>`, `Pin|Unpin <name>`; avatar hover shows the technician's name.
+- List On Site column: a pin-icon toggle in every row (always shown; not in Column Selection).
+- New Work Order window: `Customer` (+`Add`) · `Asset` (+`Add`) · `Asset Here?` · `Save` — **no Lead Technician field**, also after a customer and asset are picked (claim-new-wo-no-lead-field.json PROVED). Work order menu: `Audit Log` · `Timesheets (0)` · `Add Work Order Fee / Discount` · `Print Work Order` · `Create invoice` · `Delete Work Order`; line labor menu `Add Labor Fee / Discount`; part menu `Move` · `Return` · `Move up` · `Move down` · `Add Part Fee / Discount`. No split item seen.
+- Line: `+ Add Part` opens an inline row `Part number` · `Description *` · `Qty *` · `Category` · `Cost` · `Sell price *` · `More options` · `Save`; a saved request shows `Requested`. No `Request part` window.
+- New Line `What Are You Doing?` + "grease" offers `Service - Full grease service`.
+- Edit Profile: `Click to upload a profile photo`. Invoiced work order Finance tab: `New Payment` → `New Customer Payment` (`Payment Date` · `Payment Method` · `Reference Number` · `Memo` · `Make Payment` · `Send to Terminal`) — closed without paying.
+- Create Custom Role > Skip > `Create Role`: Work orders `View` · `Create & Edit` · `Delete` · `View mode` (`Full View` / `Tech view`) … `Cross-Cutting Toggles` → `See Financial Data` · `View and Manage AP/AR Data` · `Cancel` · `Create`.
+- Change Location options: `QB Location` · `ZZAUTOTEST F2 Empty Shop` · `Staging Heavy Duty - 9919` · `Staging Lethbridge - 4310` · `DVI Test` (no "Staging Light Duty - 9920").
