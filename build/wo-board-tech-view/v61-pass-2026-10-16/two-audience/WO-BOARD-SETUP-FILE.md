@@ -93,11 +93,12 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- Technicians "ZZAUTOTEST C368150 Ana" and "ZZAUTOTEST C368150 Ben" are active at this location, and both are pinned in your Board View (no other technician is pinned).
-- Customer "ZZAUTOTEST C368150 Enter" has four Approved work orders: units "C368150-U1" and "C368150-U2" led by "ZZAUTOTEST C368150 Ana", unit "C368150-U3" led by "ZZAUTOTEST C368150 Ben", and unit "C368150-U4" with no lead technician.
-- Starting screen: "Work Orders" \> "All" tab, "Board View" shown, "Search" holding "ZZAUTOTEST C368150 Enter", no filter chosen, "Assigned to me" off, browser window at least 1024 px wide.
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Two technicians are active at {Location-A} with the "Technician" role and Time Clock on: {Technician-A} and {Technician-B}. For example: {Technician-A} is ZZAUTOTEST C368150 Ana and {Technician-B} is ZZAUTOTEST C368150 Ben.
+- Customer {Customer-A} has four Approved work orders: {Work-order-1} and {Work-order-2} led by {Technician-A}, {Work-order-3} led by {Technician-B}, and {Work-order-4} with no lead technician. For example: {Customer-A} is ZZAUTOTEST C368150 Enter, and {Work-order-1} to {Work-order-4} are S10043-17701 to S10043-17704.
+- {Technician-A} and {Technician-B} are pinned in your Board View, and no other technician is pinned.
+- Starting screen: "Work Orders" \> "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, in a browser window at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -113,15 +114,27 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-A} = ZZAUTOTEST C368150 Ana
+- {Technician-B} = ZZAUTOTEST C368150 Ben
+- {Customer-A} = ZZAUTOTEST C368150 Enter
+- {Work-order-1} = the work order for unit C368150-U1
+- {Work-order-2} = the work order for unit C368150-U2
+- {Work-order-3} = the work order for unit C368150-U3
+- {Work-order-4} = the work order for unit C368150-U4
+
 #### SETUP-C368152 — [C368152](https://shopview.testrail.io/index.php?/cases/view/368152) Reassign and Unassign work from the keyboard through the More actions menu
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- Technicians "ZZAUTOTEST C368152 Ana" and "ZZAUTOTEST C368152 Ben" are active at this location, and both are pinned in your Board View (no other technician is pinned).
-- Customer "ZZAUTOTEST C368152 Reassign" has three Approved work orders: unit "C368152-U1" led by "ZZAUTOTEST C368152 Ana", unit "C368152-U3" led by "ZZAUTOTEST C368152 Ben", and unit "C368152-U4" with no lead technician. None has a shift on the Schedule.
-- Starting screen: "Work Orders" \> "All" tab, "Board View" shown, "Search" holding "ZZAUTOTEST C368152 Reassign", no filter chosen, "Assigned to me" off, browser window at least 1024 px wide.
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Two technicians are active at {Location-A} with the "Technician" role and Time Clock on: {Technician-A} and {Technician-B}. For example: {Technician-A} is ZZAUTOTEST C368152 Ana and {Technician-B} is ZZAUTOTEST C368152 Ben.
+- Customer {Customer-A} has three Approved work orders: {Work-order-1} led by {Technician-A}, {Work-order-2} led by {Technician-B}, and {Work-order-3} with no lead technician. None has a shift on the Schedule. For example: {Customer-A} is ZZAUTOTEST C368152 Reassign, and {Work-order-1} to {Work-order-3} are S10043-17721 to S10043-17723.
+- {Technician-A} and {Technician-B} are pinned in your Board View, and no other technician is pinned.
+- Starting screen: "Work Orders" \> "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, in a browser window at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -136,15 +149,26 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-A} = ZZAUTOTEST C368152 Ana
+- {Technician-B} = ZZAUTOTEST C368152 Ben
+- {Customer-A} = ZZAUTOTEST C368152 Reassign
+- {Work-order-1} = the work order for unit C368152-U1
+- {Work-order-2} = the work order for unit C368152-U3
+- {Work-order-3} = the work order for unit C368152-U4
+
 #### SETUP-C97020 — [C97020](https://shopview.testrail.io/index.php?/cases/view/97020) The keyboard cannot get around permission or status limits
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run). A second user, signed in a second browser, has the custom role "ZZAUTOTEST C97020 View Only" (Work orders: View only).
-- Technician "ZZAUTOTEST C97020 Ana" is active at this location and is pinned in Board View for both users.
-- Customer "ZZAUTOTEST C97020 Limits" has two work orders led by "ZZAUTOTEST C97020 Ana": unit "C97020-U1", Approved, and unit "C97020-U2", Invoiced. None has a shift on the Schedule.
-- Starting screen: "Work Orders" \> "All" tab, "Board View" shown, "Search" holding "ZZAUTOTEST C97020 Limits", no filter chosen, "Assigned to me" off, browser window at least 1024 px wide, for both users.
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- A second user {User-B} has the custom role {Role-A}, which allows Work orders: View only, and is signed in in a second browser. For example: {User-B} is ZZAUTOTEST C97020 Viewer and {Role-A} is ZZAUTOTEST C97020 View Only.
+- Technician {Technician-A} is active at {Location-A} with the "Technician" role and is pinned in Board View for both users. For example: {Technician-A} is ZZAUTOTEST C97020 Ana.
+- Customer {Customer-A} has two work orders led by {Technician-A}: {Work-order-1}, Approved, and {Work-order-2}, Invoiced. None has a shift on the Schedule. For example: {Customer-A} is ZZAUTOTEST C97020 Limits, and {Work-order-1} and {Work-order-2} are S10043-17711 and S10043-17712.
+- Starting screen: "Work Orders" \> "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, in a browser window at least 1024 px wide, for both users.
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A, ACCOUNT-B. **Run first:** SETUP-ADMIN, SETUP-VIEWONLY.
 
@@ -158,15 +182,25 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {User-B} = ZZAUTOTEST C97020 Viewer
+- {Role-A} = ZZAUTOTEST C97020 View Only
+- {Technician-A} = ZZAUTOTEST C97020 Ana
+- {Customer-A} = ZZAUTOTEST C97020 Limits
+- {Work-order-1} = the work order for unit C97020-U1
+- {Work-order-2} = the work order for unit C97020-U2
+
 #### SETUP-C96945 — [C96945](https://shopview.testrail.io/index.php?/cases/view/96945) A card's More actions menu appears on hover or focus and offers Reassign
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- Technician "ZZAUTOTEST C96945 Ana" is active at this location and is pinned in your Board View.
-- Customer "ZZAUTOTEST C96945 Card Menu" has one Approved work order, unit "C96945-U1", led by "ZZAUTOTEST C96945 Ana".
-- Starting screen: "Work Orders" \> "All" tab, "Board View" shown, "Search" holding "ZZAUTOTEST C96945 Card Menu", no filter chosen, "Assigned to me" off, browser window at least 1024 px wide.
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technician {Technician-A} is active at {Location-A} with the "Technician" role and is pinned in your Board View. For example: {Technician-A} is ZZAUTOTEST C96945 Ana.
+- Customer {Customer-A} has one Approved work order, {Work-order-1}, led by {Technician-A}. For example: {Customer-A} is ZZAUTOTEST C96945 Card Menu and {Work-order-1} is S10043-17731.
+- Starting screen: "Work Orders" \> "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, in a browser window at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -178,15 +212,22 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-A} = ZZAUTOTEST C96945 Ana
+- {Customer-A} = ZZAUTOTEST C96945 Card Menu
+- {Work-order-1} = the work order for unit C96945-U1
+
 #### SETUP-C614711 — [C614711](https://shopview.testrail.io/index.php?/cases/view/614711) Work orders of a deleted lead sit under Deleted technician, which takes no drops
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- Technicians "ZZAUTOTEST C614711 Dana" and "ZZAUTOTEST C614711 Eli" are active at this location with the "Technician" role. "ZZAUTOTEST C614711 Dana" was made for this case only and has no labor on any work order, because this test deletes that staff record.
-- Customer "ZZAUTOTEST C614711 Deleted Lead" has two Approved work orders: unit "C614711-U1" led by "ZZAUTOTEST C614711 Dana", and unit "C614711-U2" with no lead technician.
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Two technicians are active at {Location-A} with the "Technician" role: {Technician-A} and {Technician-B}. {Technician-A} was made for this case only and has no labor on any work order, because this test deletes that staff record. For example: {Technician-A} is ZZAUTOTEST C614711 Dana and {Technician-B} is ZZAUTOTEST C614711 Eli.
+- Customer {Customer-A} has two Approved work orders: {Work-order-1} led by {Technician-A}, and {Work-order-2} with no lead technician. For example: {Customer-A} is ZZAUTOTEST C614711 Deleted Lead, and {Work-order-1} and {Work-order-2} are S10043-17901 and S10043-17902.
 - Starting screen: your initials (top right) \> "Settings" \> "Staff", in a browser window at least 1024 px wide.
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -199,16 +240,24 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-A} = ZZAUTOTEST C614711 Dana
+- {Technician-B} = ZZAUTOTEST C614711 Eli
+- {Customer-A} = ZZAUTOTEST C614711 Deleted Lead
+- {Work-order-1} = the work order for unit C614711-U1
+- {Work-order-2} = the work order for unit C614711-U2
+
 #### SETUP-C96916 — [C96916](https://shopview.testrail.io/index.php?/cases/view/96916) Browser Back restores scroll, tab and filters in Tech View and Board View
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- Eight technicians are active at this location: "ZZAUTOTEST C96916 Ana", "… Ben", "… Cal", "… Dee", "… Eve", "… Fay", "… Gus" and "… Hal" (each name starts "ZZAUTOTEST C96916").
-- Customer "ZZAUTOTEST C96916 Scroll Back" has about 20 Approved work orders led by "ZZAUTOTEST C96916 Hal" (units "C96916-H01" to "C96916-H20") and 2 Approved work orders led by each of the other seven technicians.
-- With that search, Board View is wider than the window (you scroll right to reach "ZZAUTOTEST C96916 Hal"'s column), and that column and the Tech View table are taller than the window.
-- Starting screen: "Work Orders" \> "Work Orders" tab, "Board View" shown, "Search" holding "ZZAUTOTEST C96916 Scroll Back", no filter chosen, "Assigned to me" off, "Status" filter set to "Approved" only, browser window at least 1024 px wide.
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Eight technicians are active at {Location-A} with the "Technician" role and Time Clock on: {Technician-A}, {Technician-B}, {Technician-C}, {Technician-D}, {Technician-E}, {Technician-F}, {Technician-G} and {Technician-H}. For example: {Technician-A} to {Technician-H} are ZZAUTOTEST C96916 Ana, Ben, Cal, Dee, Eve, Fay, Gus and Hal.
+- Customer {Customer-A} has about 20 Approved work orders led by {Technician-H} and 2 led by each of the other seven technicians. With a search on its name, Board View is wider than the window (you scroll right to reach {Technician-H}'s column), and that column and the Tech View table are taller than the window. For example: {Customer-A} is ZZAUTOTEST C96916 Scroll Back.
+- Starting screen: "Work Orders" \> "Work Orders" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, "Status" filter set to "Approved" only, in a browser window at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -260,14 +309,27 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-A} = ZZAUTOTEST C96916 Ana
+- {Technician-B} = ZZAUTOTEST C96916 Ben
+- {Technician-C} = ZZAUTOTEST C96916 Cal
+- {Technician-D} = ZZAUTOTEST C96916 Dee
+- {Technician-E} = ZZAUTOTEST C96916 Eve
+- {Technician-F} = ZZAUTOTEST C96916 Fay
+- {Technician-G} = ZZAUTOTEST C96916 Gus
+- {Technician-H} = ZZAUTOTEST C96916 Hal
+- {Customer-A} = ZZAUTOTEST C96916 Scroll Back
+
 #### SETUP-C368214 — [C368214](https://shopview.testrail.io/index.php?/cases/view/368214) After Back and Forward the List keeps its tab, search and filters
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- Customer "ZZAUTOTEST C368214 Back Forward" has one Approved work order, unit "C368214-U1".
-- Starting screen: "Work Orders" \> "Work Orders" tab, "List" shown, no filter chosen, "Assigned to me" off, "Search" empty, browser window at least 1024 px wide.
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Customer {Customer-A} has one Approved work order, {Work-order-1}. For example: {Customer-A} is ZZAUTOTEST C368214 Back Forward and {Work-order-1} is S10043-17751.
+- Starting screen: "Work Orders" \> "Work Orders" tab, "List" shown, "Search" empty, no filter chosen, "Assigned to me" off, in a browser window at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -277,15 +339,21 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Customer-A} = ZZAUTOTEST C368214 Back Forward
+- {Work-order-1} = the work order for unit C368214-U1
+
 #### SETUP-C590110 — [C590110](https://shopview.testrail.io/index.php?/cases/view/590110) Display switcher, filter and Search icons match the design in every display
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "DC-01-toolbar-tech-view-light-1440.png" and "DC-01-toolbar-board-view-light-1440.png" attached to this case are open beside it at 100% (actual size). Names, numbers and the rank numbers in the pictures are sample data.
-- Customer "ZZAUTOTEST C590110 Toolbar Icons" has one Approved work order, unit "C590110-U1", led by technician "ZZAUTOTEST C590110 Ana".
-- Starting screen: "Work Orders" \> "All" tab, "List" shown, no filter chosen, "Assigned to me" off, "Search" empty, density "Regular".
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "DC-01-toolbar-tech-view-light-1440.png" and "DC-01-toolbar-board-view-light-1440.png" attached to this case are open beside it at 100% (actual size). Names, numbers and rank numbers in the pictures are sample data.
+- Customer {Customer-A} has one Approved work order, {Work-order-1}, led by technician {Technician-A}. For example: {Customer-A} is ZZAUTOTEST C590110 Toolbar Icons, {Work-order-1} is S10043-17801 and {Technician-A} is ZZAUTOTEST C590110 Ana.
+- Starting screen: "Work Orders" \> "All" tab, "List" shown, "Search" empty, no filter chosen, "Assigned to me" off, density "Regular".
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -296,16 +364,22 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Customer-A} = ZZAUTOTEST C590110 Toolbar Icons
+- {Technician-A} = ZZAUTOTEST C590110 Ana
+- {Work-order-1} = the work order for unit C590110-U1
+
 #### SETUP-C590112 — [C590112](https://shopview.testrail.io/index.php?/cases/view/590112) Tech View table runs edge to edge on white and the Status column fits its pills
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "DC-03-tech-view-regular-light-1440.png" and "DC-03-tech-view-regular-light-1536.png" attached to this case are open beside it at 100% (actual size). Names, numbers and the rank numbers in the pictures are sample data. Your screen lets you widen the window to 1536 px.
-- Customer "ZZAUTOTEST C590112 Short" has an Approved work order, unit "C590112-S1", led by technician "ZZAUTOTEST C590112 Ana", and an Estimate, unit "C590112-S2", with no lead technician.
-- Customer "ZZAUTOTEST C590112 Review" has a work order in "Ready For Review", unit "C590112-R1", led by "ZZAUTOTEST C590112 Ana".
-- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, no filter chosen, "Assigned to me" off, "Search" empty, density "Regular".
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "DC-03-tech-view-regular-light-1440.png" and "DC-03-tech-view-regular-light-1536.png" attached to this case are open beside it at 100% (actual size). Names, numbers and rank numbers in the pictures are sample data. Your screen lets you widen the window to 1536 px.
+- Customer {Customer-A} has an Approved work order {Work-order-1}, led by technician {Technician-A}, and an Estimate {Work-order-2} with no lead technician. Customer {Customer-B} has a work order {Work-order-3} in "Ready For Review", led by {Technician-A}. For example: {Customer-A} is ZZAUTOTEST C590112 Short, {Customer-B} is ZZAUTOTEST C590112 Review, {Technician-A} is ZZAUTOTEST C590112 Ana, and {Work-order-1} to {Work-order-3} are S10043-17807 to S10043-17809.
+- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, "Search" empty, no filter chosen, "Assigned to me" off, density "Regular".
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -319,16 +393,26 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Customer-A} = ZZAUTOTEST C590112 Short
+- {Customer-B} = ZZAUTOTEST C590112 Review
+- {Technician-A} = ZZAUTOTEST C590112 Ana
+- {Work-order-1} = the work order for unit C590112-S1
+- {Work-order-2} = the estimate for unit C590112-S2
+- {Work-order-3} = the work order for unit C590112-R1
+
 #### SETUP-C590114 — [C590114](https://shopview.testrail.io/index.php?/cases/view/590114) Tech View cells show a blue number, a thin progress bar and the advisor's avatar
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- The browser window is 1440 px wide with the zoom at 100%, and the design picture "DC-05-tech-view-rows-regular-light-1440.png" attached to this case is open beside it at 100% (actual size). Names, numbers and the rank numbers in the pictures are sample data.
-- Technicians "ZZAUTOTEST C590114 Eva" (with a profile photo) and "ZZAUTOTEST C590114 Finn" (no photo) are active at this location.
-- Customer "ZZAUTOTEST C590114 Cell Styles" has an Approved work order, unit "C590114-U1", led by "ZZAUTOTEST C590114 Eva", with a service advisor and one approved line whose technician is "ZZAUTOTEST C590114 Finn", who is clocked in to it; and an Invoiced work order, unit "C590114-U2", led by "ZZAUTOTEST C590114 Eva".
-- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, "Search" holding "ZZAUTOTEST C590114 Cell Styles", no filter chosen, "Assigned to me" off, density "Regular".
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design picture "DC-05-tech-view-rows-regular-light-1440.png" attached to this case is open beside it at 100% (actual size). Names, numbers and rank numbers in the pictures are sample data.
+- Two technicians are active at {Location-A} with the "Technician" role: {Technician-A}, who has a profile photo, and {Technician-B}, who has none. For example: {Technician-A} is ZZAUTOTEST C590114 Eva and {Technician-B} is ZZAUTOTEST C590114 Finn.
+- Customer {Customer-A} has an Approved work order {Work-order-1}, led by {Technician-A}, with a service advisor and one approved line {Line-1} whose technician is {Technician-B}, who is clocked in to it; and an Invoiced work order {Work-order-2}, led by {Technician-A}. For example: {Customer-A} is ZZAUTOTEST C590114 Cell Styles, {Work-order-1} and {Work-order-2} are S10043-17812 and S10043-17813, and {Line-1} is "Service - Full grease service".
+- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, density "Regular".
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -345,16 +429,26 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-A} = ZZAUTOTEST C590114 Eva (with a profile photo)
+- {Technician-B} = ZZAUTOTEST C590114 Finn (no photo)
+- {Customer-A} = ZZAUTOTEST C590114 Cell Styles
+- {Work-order-1} = the work order for unit C590114-U1
+- {Work-order-2} = the work order for unit C590114-U2
+- {Line-1} = the approved line of C590114-U1
+
 #### SETUP-C590117 — [C590117](https://shopview.testrail.io/index.php?/cases/view/590117) Tech View group headers show grip, arrow, avatar, name, pin and count
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "DC-08-tech-view-group-headers-light-1440.png" and "DC-08-tech-view-collapsed-light-1440.png" attached to this case are open beside it at 100% (actual size). Names, numbers and the rank numbers in the pictures are sample data.
-- Technicians "ZZAUTOTEST C590117 Ines" (with a profile photo) and "ZZAUTOTEST C590117 Jon" (no photo) are active at this location, and no technician is pinned in your Tech View.
-- Customer "ZZAUTOTEST C590117 Group Header" has Approved work orders "C590117-U1" led by "ZZAUTOTEST C590117 Ines" and "C590117-U2" led by "ZZAUTOTEST C590117 Jon", and an Estimate, unit "C590117-U3", with no lead technician.
-- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, "Search" holding "ZZAUTOTEST C590117 Group Header", no filter chosen, "Assigned to me" off, density "Regular".
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "DC-08-tech-view-group-headers-light-1440.png" and "DC-08-tech-view-collapsed-light-1440.png" attached to this case are open beside it at 100% (actual size). Names, numbers and rank numbers in the pictures are sample data.
+- Two technicians are active at {Location-A} with the "Technician" role: {Technician-A}, who has a profile photo, and {Technician-B}, who has none. No technician is pinned in your Tech View. For example: {Technician-A} is ZZAUTOTEST C590117 Ines and {Technician-B} is ZZAUTOTEST C590117 Jon.
+- Customer {Customer-A} has Approved work orders {Work-order-1} led by {Technician-A} and {Work-order-2} led by {Technician-B}, and an Estimate {Work-order-3} with no lead technician. For example: {Customer-A} is ZZAUTOTEST C590117 Group Header, and {Work-order-1} to {Work-order-3} are S10043-17821 to S10043-17823.
+- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, density "Regular".
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -370,16 +464,26 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-A} = ZZAUTOTEST C590117 Ines (with a profile photo)
+- {Technician-B} = ZZAUTOTEST C590117 Jon (no photo)
+- {Customer-A} = ZZAUTOTEST C590117 Group Header
+- {Work-order-1} = the work order for unit C590117-U1
+- {Work-order-2} = the work order for unit C590117-U2
+- {Work-order-3} = the work order for unit C590117-U3
+
 #### SETUP-C590119 — [C590119](https://shopview.testrail.io/index.php?/cases/view/590119) Board View column header shows grip, avatar, name, pin and count as designed
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "DC-10-board-column-headers-light-1440.png" and "DC-10-board-pinned-light-1440.png" attached to this case are open beside it at 100% (actual size). Names, numbers and the rank numbers in the pictures are sample data.
-- Technicians "ZZAUTOTEST C590119 Lea" (with a profile photo), "ZZAUTOTEST C590119 Max" (no photo), "ZZAUTOTEST C590119 Nia" and "ZZAUTOTEST C590119 Oli" are active at this location, and no technician is pinned in your Board View.
-- Customer "ZZAUTOTEST C590119 Column Header" has Approved work orders "C590119-U1" led by "ZZAUTOTEST C590119 Lea" and "C590119-U2" led by "ZZAUTOTEST C590119 Max", and an Estimate, unit "C590119-U3", with no lead technician.
-- Starting screen: "Work Orders" \> "All" tab, "Board View" shown, "Search" holding "ZZAUTOTEST C590119 Column Header", no filter chosen, "Assigned to me" off, density "Regular".
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "DC-10-board-column-headers-light-1440.png" and "DC-10-board-pinned-light-1440.png" attached to this case are open beside it at 100% (actual size). Names, numbers and rank numbers in the pictures are sample data.
+- Four technicians are active at {Location-A} with the "Technician" role: {Technician-A}, who has a profile photo, {Technician-B}, who has none, {Technician-C} and {Technician-D}. No technician is pinned in your Board View. For example: {Technician-A} to {Technician-D} are ZZAUTOTEST C590119 Lea, Max, Nia and Oli.
+- Customer {Customer-A} has Approved work orders {Work-order-1} led by {Technician-A} and {Work-order-2} led by {Technician-B}, and an Estimate {Work-order-3} with no lead technician. For example: {Customer-A} is ZZAUTOTEST C590119 Column Header, and {Work-order-1} to {Work-order-3} are S10043-17827 to S10043-17829.
+- Starting screen: "Work Orders" \> "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, density "Regular".
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -397,15 +501,27 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-A} = ZZAUTOTEST C590119 Lea (with a profile photo)
+- {Technician-B} = ZZAUTOTEST C590119 Max (no photo)
+- {Technician-C} = ZZAUTOTEST C590119 Nia
+- {Technician-D} = ZZAUTOTEST C590119 Oli
+- {Customer-A} = ZZAUTOTEST C590119 Column Header
+- {Work-order-1} = the work order for unit C590119-U1
+- {Work-order-2} = the work order for unit C590119-U2
+- {Work-order-3} = the work order for unit C590119-U3
+
 #### SETUP-C590128 — [C590128](https://shopview.testrail.io/index.php?/cases/view/590128) Density changes Tech View row, avatar and bar sizes, not Board card avatars
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "DC-06-tech-view-compact-light-1440.png" and "DC-06-tech-view-regular-light-1440.png" and "DC-06-tech-view-comfortable-light-1440.png" attached to this case are open beside it at 100% (actual size). Names, numbers and the rank numbers in the pictures are sample data.
-- Customer "ZZAUTOTEST C590128 Density" has an Approved work order, unit "C590128-U1", led by technician "ZZAUTOTEST C590128 Ana", with a service advisor and line technician "ZZAUTOTEST C590128 Ben" on its approved line; Board View's "Fields to display" has "Line technicians" on.
-- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, "Search" holding "ZZAUTOTEST C590128 Density", no filter chosen, "Assigned to me" off, density "Regular".
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "DC-06-tech-view-compact-light-1440.png" and "DC-06-tech-view-regular-light-1440.png" and "DC-06-tech-view-comfortable-light-1440.png" attached to this case are open beside it at 100% (actual size). Names, numbers and rank numbers in the pictures are sample data.
+- Customer {Customer-A} has an Approved work order {Work-order-1}, led by technician {Technician-A}, with a service advisor and line technician {Technician-B} on its approved line. Board View's "Fields to display" has "Line technicians" on. For example: {Customer-A} is ZZAUTOTEST C590128 Density, {Work-order-1} is S10043-17830, {Technician-A} is ZZAUTOTEST C590128 Ana and {Technician-B} is ZZAUTOTEST C590128 Ben.
+- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, density "Regular".
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -420,15 +536,23 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Customer-A} = ZZAUTOTEST C590128 Density
+- {Technician-A} = ZZAUTOTEST C590128 Ana
+- {Technician-B} = ZZAUTOTEST C590128 Ben
+- {Work-order-1} = the work order for unit C590128-U1
+
 #### SETUP-C590113 — [C590113](https://shopview.testrail.io/index.php?/cases/view/590113) Tech View opens on 13 default columns with small grey header labels
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run). You have never changed Tech View's columns.
-- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "DC-04-tech-view-header-row-1440.png" and "DC-04-tech-view-all-columns-1440.png" attached to this case are open beside it at 100% (actual size). Names, numbers and the rank numbers in the pictures are sample data. Your screen lets you widen the window to 1536 px.
-- Customer "ZZAUTOTEST C590113 Columns" has an Approved work order, unit "C590113-U1", led by technician "ZZAUTOTEST C590113 Ana".
-- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, "Search" holding "ZZAUTOTEST C590113 Columns", no filter chosen, "Assigned to me" off, density "Regular".
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}, and you have never changed Tech View's columns. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "DC-04-tech-view-header-row-1440.png" and "DC-04-tech-view-all-columns-1440.png" attached to this case are open beside it at 100% (actual size). Names, numbers and rank numbers in the pictures are sample data. Your screen lets you widen the window to 1536 px.
+- Customer {Customer-A} has an Approved work order {Work-order-1}, led by technician {Technician-A}. For example: {Customer-A} is ZZAUTOTEST C590113 Columns, {Work-order-1} is S10043-17840 and {Technician-A} is ZZAUTOTEST C590113 Ana.
+- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, density "Regular".
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -440,15 +564,22 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Customer-A} = ZZAUTOTEST C590113 Columns
+- {Technician-A} = ZZAUTOTEST C590113 Ana
+- {Work-order-1} = the work order for unit C590113-U1
+
 #### SETUP-C590122 — [C590122](https://shopview.testrail.io/index.php?/cases/view/590122) Empty groups, empty columns and no-results pages look as designed
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "DC-18-tech-technician-chosen-light-1440.png" and "DC-13-tech-search-empty-light-1440.png" attached to this case are open beside it at 100% (actual size). Names, numbers and the rank numbers in the pictures are sample data. The pictures' words differ from the ones checked here; compare the look and the place only.
-- Technician "ZZAUTOTEST C590122 Sam" is active at this location and leads no work orders.
-- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, no filter chosen, "Assigned to me" off, "Search" empty, density "Regular".
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "DC-18-tech-technician-chosen-light-1440.png" and "DC-13-tech-search-empty-light-1440.png" attached to this case are open beside it at 100% (actual size). Names, numbers and rank numbers in the pictures are sample data. The pictures' words differ from the ones checked here; compare the look and the place only.
+- Technician {Technician-A} is active at {Location-A} with the "Technician" role and leads no work orders. For example: {Technician-A} is ZZAUTOTEST C590122 Sam.
+- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, "Search" empty, no filter chosen, "Assigned to me" off, density "Regular".
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -458,15 +589,20 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Tech View shows "ZZAUTOTEST C590122 Sam"'s group with "No work orders".
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-A} = ZZAUTOTEST C590122 Sam
+
 #### SETUP-C590127 — [C590127](https://shopview.testrail.io/index.php?/cases/view/590127) Technician filter sits after Assigned to me in Tech View and Board View
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- The browser window is 1440 px wide with the zoom at 100%, and the design picture "DC-18-tech-technician-chip-open-light-1440.png" attached to this case is open beside it at 100% (actual size). Names, numbers and the rank numbers in the pictures are sample data. The picture's Department filter is left out of this release.
-- Technician "ZZAUTOTEST C590127 Yan" is active at this location and leads the Approved work order of customer "ZZAUTOTEST C590127 Technician Filter", unit "C590127-U1".
-- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, no filter chosen, "Assigned to me" off, "Search" empty, density "Regular".
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design picture "DC-18-tech-technician-chip-open-light-1440.png" attached to this case is open beside it at 100% (actual size). Names, numbers and rank numbers in the pictures are sample data. The picture's Department filter is left out of this release.
+- Technician {Technician-A} is active at {Location-A} and leads the Approved work order {Work-order-1} of customer {Customer-A}. For example: {Technician-A} is ZZAUTOTEST C590127 Yan, {Customer-A} is ZZAUTOTEST C590127 Technician Filter and {Work-order-1} is S10043-17850.
+- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, "Search" empty, no filter chosen, "Assigned to me" off, density "Regular".
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -477,15 +613,22 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-A} = ZZAUTOTEST C590127 Yan
+- {Customer-A} = ZZAUTOTEST C590127 Technician Filter
+- {Work-order-1} = the work order for unit C590127-U1
+
 #### SETUP-N1 — [C614714](https://shopview.testrail.io/index.php?/cases/view/614714) A lead whose Time Clock is turned off keeps a named column that takes no drops
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- Technician "ZZAUTOTEST N1 Tim" is active at this location with the "Technician" role and "Time Clock" on. It was made for this case only, because this test turns that Time Clock off.
-- Customer "ZZAUTOTEST N1 Time Clock Off" has two Approved work orders: unit "N1-U1" led by "ZZAUTOTEST N1 Tim", and unit "N1-U2" with no lead technician.
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technician {Technician-A} is active at {Location-A} with the "Technician" role and Time Clock on. It was made for this case only, because this test turns that Time Clock off. For example: {Technician-A} is ZZAUTOTEST N1 Tim.
+- Customer {Customer-A} has two Approved work orders: {Work-order-1} led by {Technician-A}, and {Work-order-2} with no lead technician. For example: {Customer-A} is ZZAUTOTEST N1 Time Clock Off, and {Work-order-1} and {Work-order-2} are S10043-17911 and S10043-17912.
 - Starting screen: your initials (top right) \> "Settings" \> "Staff", in a browser window at least 1024 px wide.
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -498,14 +641,21 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-A} = ZZAUTOTEST N1 Tim
+- {Customer-A} = ZZAUTOTEST N1 Time Clock Off
+- {Work-order-1} = the work order for unit N1-U1
+- {Work-order-2} = the work order for unit N1-U2
+
 #### SETUP-N2 — [C614715](https://shopview.testrail.io/index.php?/cases/view/614715) With no work orders at all, Tech View and Board View show No work orders yet
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role and can switch to location "ZZAUTOTEST Empty Location".
-- Location "ZZAUTOTEST Empty Location" has no work orders at all: no work orders, estimates or completed work.
+- You are signed in with the "Admin" role and can switch to location {Location-B}, which has no work orders at all: no work orders, estimates or completed work. For example: {Location-B} is ZZAUTOTEST Empty Location.
 - Starting screen: any page, in a browser window at least 1024 px wide.
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -513,15 +663,19 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** At "ZZAUTOTEST Empty Location" List shows no work orders.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-B} = ZZAUTOTEST Empty Location (see SETUP-N2)
+
 #### SETUP-N3 — [C614716](https://shopview.testrail.io/index.php?/cases/view/614716) Density and Columns tooltips open above their button and hide while open
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The browser window is 1440 px wide with the zoom at 100%.
-- Customer "ZZAUTOTEST N3 Tooltips" has an Approved work order, unit "N3-U1", led by technician "ZZAUTOTEST N3 Tia".
-- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, "Search" holding "ZZAUTOTEST N3 Tooltips", no filter chosen, "Assigned to me" off.
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- Customer {Customer-A} has an Approved work order {Work-order-1}, led by technician {Technician-A}. For example: {Customer-A} is ZZAUTOTEST N3 Tooltips, {Work-order-1} is S10043-17921 and {Technician-A} is ZZAUTOTEST N3 Tia.
+- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -532,15 +686,22 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
 
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Customer-A} = ZZAUTOTEST N3 Tooltips
+- {Technician-A} = ZZAUTOTEST N3 Tia
+- {Work-order-1} = the work order for unit N3-U1
+
 #### SETUP-N4 — [C614717](https://shopview.testrail.io/index.php?/cases/view/614717) Row and card name bubbles open above the avatar, headers keep the plain tip
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at location "Staging Heavy Duty - 9919" (on another site: the location named in the test run).
-- Six technicians are active at this location: "ZZAUTOTEST N4 Ana", "… Ben", "… Cal", "… Dee", "… Eve" and "… Fay" (each name starts "ZZAUTOTEST N4").
-- Customer "ZZAUTOTEST N4 Name Bubbles" has an Approved work order, unit "N4-U1", led by "ZZAUTOTEST N4 Ana", with five approved lines whose technicians are "… Ben", "… Cal", "… Dee", "… Eve" and "… Fay", so its avatars end in "+N".
-- Board View's "Fields to display" has "Line technicians" on. Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, "Search" holding "ZZAUTOTEST N4 Name Bubbles", no filter chosen, "Assigned to me" off, browser window at least 1024 px wide.
-- If any record named above is missing, mark this test Blocked: "setup not done".
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Six technicians are active at {Location-A} with the "Technician" role: {Technician-A}, {Technician-B}, {Technician-C}, {Technician-D}, {Technician-E} and {Technician-F}. For example: {Technician-A} to {Technician-F} are ZZAUTOTEST N4 Ana, Ben, Cal, Dee, Eve and Fay.
+- Customer {Customer-A} has an Approved work order {Work-order-1}, led by {Technician-A}, with five approved lines whose technicians are {Technician-B} to {Technician-F}, so its avatars end in "+N". Board View's "Fields to display" has "Line technicians" on. For example: {Customer-A} is ZZAUTOTEST N4 Name Bubbles and {Work-order-1} is S10043-17931.
+- Starting screen: "Work Orders" \> "All" tab, "Tech View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, in a browser window at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
@@ -557,6 +718,18 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 11. **P-START** (ACCOUNT-A): starting screen: Tech View, All tab, Search "ZZAUTOTEST N4 Name Bubbles".
 
 **Check:** Every precondition line of the case is true on screen, read top to bottom.
+
+**Placeholder values** (the case names records by placeholder; give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-A} = ZZAUTOTEST N4 Ana
+- {Technician-B} = ZZAUTOTEST N4 Ben
+- {Technician-C} = ZZAUTOTEST N4 Cal
+- {Technician-D} = ZZAUTOTEST N4 Dee
+- {Technician-E} = ZZAUTOTEST N4 Eve
+- {Technician-F} = ZZAUTOTEST N4 Fay
+- {Customer-A} = ZZAUTOTEST N4 Name Bubbles
+- {Work-order-1} = the work order for unit N4-U1
 
 ## 5. Mapping table (execution order)
 

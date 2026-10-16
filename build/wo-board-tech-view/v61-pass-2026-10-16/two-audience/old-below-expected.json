@@ -1,0 +1,115 @@
+{
+ "368150": {
+  "source": "Epic SV-10043; story SV-10054 (Story 11, Keyboard access and focus); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S11-R4, S11-R9, S11-R10 and Out of Scope (keyboard reordering), read 15 Oct 2026. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 28, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "divergence": [
+   "Until 15 Oct 2026 Story 11 only listed keyboard behaviour the design still had to define, so this case asked the tester to try keys and write down what each did. Chris Ward answered on 15 Oct 2026 (answer 28): Tab reaches every control, Enter opens, Escape closes, focus returns to the control that opened a menu or dialog, reassigning by keyboard goes through the ⋯ menu, and there is no keyboard drag. PRD version 54 rewrites Story 11 into these requirements, and this case now checks them."
+  ],
+  "before_source": []
+ },
+ "368152": {
+  "source": "Epic SV-10043; story SV-10054 (Story 11, Keyboard access and focus); SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S11-R9, S4-R5 and Out of Scope (keyboard reordering), read 15 Oct 2026. Tech plan (revised 24 Sep 2026) Phase 11. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 28, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "divergence": [
+   "Until 15 Oct 2026 Story 11 only listed keyboard behaviour the design still had to define, so this case asked the tester to try keys and write down what each did. Chris Ward answered on 15 Oct 2026 (answer 28): Tab reaches every control, Enter opens, Escape closes, focus returns to the control that opened a menu or dialog, reassigning by keyboard goes through the ⋯ menu, and there is no keyboard drag. PRD version 54 rewrites Story 11 into these requirements, and this case now checks them."
+  ],
+  "before_source": []
+ },
+ "97020": {
+  "source": "Epic SV-10043; story SV-10054 (Story 11, Keyboard access and focus); SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S11-N1, S11-R9, S4-N1 and S4-N6, read 15 Oct 2026. Tech plan (revised 24 Sep 2026) Phase 11. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 28, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "divergence": [
+   "Until 15 Oct 2026 Story 11 only listed keyboard behaviour the design still had to define, so this case asked the tester to try keys and write down what each did. Chris Ward answered on 15 Oct 2026 (answer 28): Tab reaches every control, Enter opens, Escape closes, focus returns to the control that opened a menu or dialog, reassigning by keyboard goes through the ⋯ menu, and there is no keyboard drag. PRD version 54 rewrites Story 11 into these requirements, and this case now checks them."
+  ],
+  "before_source": []
+ },
+ "96945": {
+  "source": "Epic SV-10043; story SV-10046 (Story 3, Board View — board by lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S3-R13, S3-R14, read 8 Oct 2026. Design: Claude Design export of 8 Oct 2026 (Work Orders.dc.html), Board card more-actions menu; on-screen labels only.",
+  "divergence": [],
+  "before_source": []
+ },
+ "614711": {
+  "source": "Epic SV-10043; story SV-10046 (Story 3, Board View); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 58 (15 Oct 2026, Chris Ward), S5-R11b and S3-R3, with S3-N2, S3-N4 and the Decisions entry of 2026-09-13 as the nearest rules, read 16 Oct 2026. Defect SV-11416 (open). Source-verified 16 October 2026.",
+  "divergence": [
+   "The spec says what happens when a lead technician is deactivated (the work stays in their column, marked inactive, so it stays attributable) but not when the technician is deleted. SV-11416 asks the product owner to decide: show the technician's name with the inactive marker, as for a deactivated technician, or move the work order to Unassigned. Either keeps this case's results; once the product owner decides, this case is updated to that ruling."
+  ],
+  "before_source": [
+   "Known problem (SV-11416, open: https://shopview.atlassian.net/browse/SV-11416): today, at step 11, {Work-order-1} sits in a column headed \"Unknown Technician\" with a generic person icon. The deleted technician's name is not shown and the column has no inactive marker.",
+   "1. If you see exactly that, mark this test Failed and raise nothing new.",
+   "2. If it fails in a different way, that is a new problem: report it.",
+   "3. If it passes, the fix has shipped: tell the QA lead."
+  ]
+ },
+ "96916": {
+  "source": "Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S1-R8, read 15 Oct 2026. Review Decisions 853901313 FF-3 / DR-6. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 30, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.19-72f4f3b (staging) on 10/16/2026.",
+  "divergence": [
+   "On staging the up-and-down position came back about one row off. Chris Ward answered on 15 Oct 2026 (answer 30) that sideways comes back exactly and vertically the row or card that was at the top comes back at the top, fully shown, within one row or card; PRD version 54 says so, and this case follows it."
+  ],
+  "before_source": []
+ },
+ "590110": {
+  "source": "Epic SV-10043; stories SV-10044 (Story 1, Switch between display options), SV-10049 (Story 6, Density); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S1-R9a, S1-R9, S6-R1 and Goals, read 15 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", states states__work-orders__tech-density-menu__light__1440 and core__work-orders__board-detailed__light__1440 (design pictures DC-01-toolbar-tech-view-light-1440.png, DC-01-toolbar-board-view-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11319 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answers 12, 21 and 24, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.19-72f4f3b (staging) on 10/16/2026.",
+  "divergence": [
+   "Until 15 Oct 2026 the PRD (version 52) left every List icon unchanged, so this case did not judge the filter icons. Chris Ward answered on 15 Oct 2026 (answer 12) that the filter chips and Search use the design file's icons in every display option, List included, and (answer 21) that today's tabs, toolbar and Create Work Order button stay. PRD version 54 says so, and this case follows it. The design names the three options Table, By Lead Tech and Board; PRD version 54 keeps List, Tech View and Board View (answer 24). The Technician filter's wrench icon is checked in the Technician filter design case."
+  ],
+  "before_source": []
+ },
+ "590112": {
+  "source": "Epic SV-10043; story SV-10045 (Story 2, Tech View); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S2-R22, S2-R1 and Goals, read 15 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", states core__work-orders__tech-regular__light__1440 and core__work-orders__tech-regular__light__1536 (design pictures DC-03-tech-view-regular-light-1440.png, DC-03-tech-view-regular-light-1536.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11324 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answers 13 and 21, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "divergence": [
+   "With the design's default columns the table is about 1,790 px wide, so it scrolls sideways at 1440 and 1536 px in the design too. Chris Ward answered on 15 Oct 2026 (answer 13) that sideways scrolling is fine, as in the design, and columns keep the design's minimum widths and are never squeezed or clipped; PRD version 54 says so, and this case follows it."
+  ],
+  "before_source": []
+ },
+ "590114": {
+  "source": "Epic SV-10043; stories SV-10045 (Story 2, Tech View), SV-10044 (Story 1, Switch between display options), SV-10050 (Story 7, Line technicians); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S2-R20, S1-R9a, S2-R8, S7-R3 and S7-R6, read 15 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", state core__work-orders__tech-regular__light__1440 (design pictures DC-05-tech-view-rows-regular-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11325 (reported 14 Oct 2026 by Chris Ward), SV-11319 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 31, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026.",
+  "divergence": [
+   "The design shows Clocked In as a time badge (for example 0:48); this case follows the PRD, which keeps List's display (PRD version 51 onwards; Chris Ward confirmed on 15 Oct 2026, answer 31, that the names show as the List shows them). The design also locks Declined and Imported work orders; this case checks the padlock on an Invoiced one only."
+  ],
+  "before_source": []
+ },
+ "590117": {
+  "source": "Epic SV-10043; stories SV-10045 (Story 2, Tech View), SV-10044 (Story 1, Switch between display options); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S2-R12, S2-R10, S2-R5 and S1-R9a, read 15 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", states core__work-orders__tech-regular__light__1440 and states__work-orders__tech-collapsed-one__light__1440 (design pictures DC-08-tech-view-group-headers-light-1440.png, DC-08-tech-view-collapsed-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11338 (reported 14 Oct 2026 by Ahtasham Amjad), SV-11319 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 16, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "divergence": [
+   "SV-11338 estimates the design's header name at about 16 px; the ticket's estimated design sizes differ from the design file, which draws the name at 14 px semibold; this case follows the design file. Pinning in Tech View: Ahtasham Amjad asked Chris Ward on 14 Oct 2026 whether to keep the pin the PRD keeps (S2-R11) although the design shows none; no pin look is judged here. The PRD (version 52) also put a grip on the Unassigned header; Chris Ward answered on 15 Oct 2026 (answer 16) that the Unassigned header has no grip, and PRD version 54 says so."
+  ],
+  "before_source": []
+ },
+ "590119": {
+  "source": "Epic SV-10043; stories SV-10046 (Story 3, Board View), SV-10044 (Story 1, Switch between display options); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S3-R12, S3-R7, S3-R8 and S1-R9a, read 15 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", states core__work-orders__board-detailed__light__1440 and states__work-orders__board-pinned-two__light__1440 (design pictures DC-10-board-column-headers-light-1440.png, DC-10-board-pinned-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11319 (reported 14 Oct 2026 by Chris Ward), SV-11338 (reported 14 Oct 2026 by Ahtasham Amjad). Where the PRD says nothing about the look, the design is the source. Source-verified 15 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026.",
+  "divergence": [
+   "SV-11338 estimates the design's header name at about 16 px; the ticket's estimated design sizes differ from the design file, which draws the name at 14 px semibold; this case follows the design file. The design allows five pins; this case follows the PRD's limit of three."
+  ],
+  "before_source": []
+ },
+ "590128": {
+  "source": "Epic SV-10043; story SV-10049 (Story 6, Density); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S6-R1, S6-R2, S6-R3, S6-R4 and S6-R6, read 15 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", states core__work-orders__tech-compact__light__1440, core__work-orders__tech-regular__light__1440 and core__work-orders__tech-comfortable__light__1440 (design pictures DC-06-tech-view-compact-light-1440.png, DC-06-tech-view-regular-light-1440.png, DC-06-tech-view-comfortable-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11318 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answers 18 and 27, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "divergence": [
+   "The design's Compact row text is 13 px and the design adds the hours under the progress bar only at Comfortable. Chris Ward answered on 15 Oct 2026 (answer 27) that row and card text is 14 px at every density and Compact never shrinks it, while text the design sets at 12 px stays 12 px, and (answer 18) that no hours line shows at any density. PRD version 54 says so, and this case follows it."
+  ],
+  "before_source": []
+ },
+ "368214": {
+  "source": "Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), hotspot 3; PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S1-R8 and section 1 Business Case where quoted, read 15 Oct 2026. In version 54 S1-R8 gained two sentences about Tech View and Board View; its List sentence is unchanged, so the expected results are unchanged. Source-verified 15 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026.",
+  "divergence": [],
+  "before_source": []
+ },
+ "590113": {
+  "source": "Epic SV-10043; stories SV-10048 (Story 5, Choose what is shown), SV-10050 (Story 7, Line technicians), SV-10045 (Story 2, Tech View); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S5-R4, S7-R7, S2-R21 and Out of Scope (rank numbers; Collapse all and Expand all), read 15 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", states core__work-orders__tech-regular__light__1440 and states__work-orders__tech-all-columns__light__1440 (design pictures DC-04-tech-view-header-row-1440.png, DC-04-tech-view-all-columns-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11317 (reported 14 Oct 2026 by Chris Ward), SV-11321 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answers 14 and 25, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026.",
+  "divergence": [
+   "The design's header row reads \"Unit #\" and \"Assigned Tech\"; Chris Ward answered on 15 Oct 2026 (answer 14) that the headings are Unit and Assigned Techs, and PRD version 54 says so. The design's Tech View column chooser does not offer On Site, VIN/Serial # or Lead Technician; PRD version 54 keeps them as columns that can be added, and this case follows the PRD. Which columns cannot be turned off (answer 25) is checked in its own case."
+  ],
+  "before_source": []
+ },
+ "590122": {
+  "source": "Epic SV-10043; stories SV-10045 (Story 2, Tech View), SV-10046 (Story 3, Board View), SV-10044 (Story 1, Switch between display options); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S2-R15, S3-R20, S1-R9a, S1-N1, S1-N1a and S1-N1b, read 15 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", states states__work-orders__tech-technician-chosen__light__1440 (empty group) and states__work-orders__tech-search-empty__light__1440, and the empty-column block of Work Orders.dc.html (design pictures DC-18-tech-technician-chosen-light-1440.png, DC-13-tech-search-empty-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11319 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 17, read 15 Oct 2026. Earlier answer: Chris Ward, answer 10 on the same sheet, 14 Oct 2026 (the PRD's words are right; the design is being updated). Source-verified 15 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
+  "divergence": [
+   "The design's empty texts read \"No work orders assigned\" and \"No results for …\"; Chris Ward answered on 14 Oct 2026 (answer 10) that the PRD's words are right, and this case follows them. The PRD (version 52) gave empty states the clipboard icon while List and the design use a magnifier on the no-results page; Chris Ward answered on 15 Oct 2026 (answer 17) that the no-results page keeps List's magnifier and the clipboard is only for a view with no work orders at all. PRD version 54 says so, and steps 7 and 8 now check the magnifier."
+  ],
+  "before_source": []
+ },
+ "590127": {
+  "source": "Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S1-R15, S1-R15b and Out of Scope (Department filter), read 15 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", states states__work-orders__tech-technician-chip__light__1440 (design pictures DC-18-tech-technician-chip-open-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11326 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 12, read 15 Oct 2026. Source-verified 15 October 2026. Not yet checked against a build.",
+  "divergence": [
+   "The design's Technician list has no Unassigned entry and filters by any assigned technician; this case follows the PRD (S1-R15, added in version 52). The design gives the filter a wrench icon; Chris Ward answered on 15 Oct 2026 (answer 12) that the filter chips use the design file's icons in every display option, and PRD version 54 says so, so step 2 now checks the wrench icon."
+  ],
+  "before_source": []
+ }
+}

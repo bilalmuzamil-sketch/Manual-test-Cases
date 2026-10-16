@@ -34,6 +34,11 @@ def item_text(proc, params):
     return f"<strong>{proc}</strong> ({e(who if 'as' not in params else params['as'])}): " + (e("; ".join(extra)) + "." if extra else "as described in the procedure table.")
 
 B = bc.built
+V2PRE = json.load(open(f"{D}/v2-pre.json")) if os.path.exists(f"{D}/v2-pre.json") else {}
+for _c in B:   # the approved shape (16 Oct 2026): the case's own precondition lines and the placeholder → value map
+    _k = f"C{new[_c['key']]}" if _c.get("key") else _c["k"]
+    _k = _k if _k in V2PRE else _c.get("key")
+    if _k in V2PRE: _c["pre"], _c["placeholders"] = V2PRE[_k]["pre"], V2PRE[_k]["placeholders"]
 H = ["<html><body><h1>WO Board and Tech View: setup file for Claude sessions (21 cases, 16 Oct 2026)</h1>",
      "<p>This file is for a Claude session. A manual tester never needs it: each test case is complete on its own. With this file "
      "and the access the user gives at the start of the session, a new session can put the account into every case's starting "
