@@ -3,8 +3,10 @@
 # PREPARED, NOT RUN. Start it only on the QA lead's go-ahead (another session is build-verifying on the same staging sign-in).
 #
 # Usage:   ./run-full-1016.sh                       main run (blocks A, B, C, D, then G = signout-fix LAST)
-#          RUN_TODO=1   ./run-full-1016.sh          also block E: tests whose case text changed after their latest result and whose
-#                                                   script still needs a change (full-changed-1016.md) — only once the scripts are fixed
+#          RUN_TODO=1   ./run-full-1016.sh          also block E: only C97012 now (two-people route broken, full-unplaced-1016.md).
+#                                                   16 Oct 2026: the 15 tests whose case text changed (full-changed-1016.md) have their
+#                                                   scripts updated and now run in blocks C/D (s1-batch4b C96916, s4-batchA C96973,
+#                                                   s3-batchA C96945, design-stg5 C590112/114/117/119/120/128, kbd-fix4 six keyboard cases)
 #          RUN_GA=day1  ./run-full-1016.sh          also ga-week.mts day 1 (C97026, C97033, C97034); RUN_GA=day2 on the NEXT
 #                                                   Pakistan-time day runs PHASE=day2 ONLY=C97033,C97034 (two-day analytics)
 #          RUN_DRAFTS=1 ./run-full-1016.sh          also block F: the six DRAFT scripts for the new cases C614711..C614719
@@ -21,7 +23,7 @@
 #      "now" pill; the queue STOPS if it cannot be proved, since time readings would be void), sign-in check, the view-only role put
 #      back to View only, running test clocks stopped.
 #   C  scripts that stay at Heavy Duty;  D  scripts that switch location / change roles (each still starts from ensure-heavy.mts).
-#   E  TODO (not run by default) · F  DRAFTS (not run by default) · G  signout-fix.mts — it signs the shared session out, ALWAYS LAST.
+#   E  TODO (not run by default: C97012 only, plus ga-week's two-day steps) · F  DRAFTS (not run by default) · G  signout-fix.mts — it signs the shared session out, ALWAYS LAST.
 # Before EVERY Admin script: `timeout 300 ./wob-run.sh ensure-heavy.mts` (exit 0 required, else the script is SKIPPED, L0399).
 # The whole queue stops if any log shows the staging sign-in has expired (Google sign-in page or sso_required, L0393).
 # C97012 (two people) is in block E: its route used Analyst 1's own Google sign-in, which is now the SAME one (see full-unplaced-1016.md).

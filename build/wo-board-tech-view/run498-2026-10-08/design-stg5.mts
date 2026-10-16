@@ -22,6 +22,8 @@
  * session is never signed out, L0342); C590113's "never opened Tech View" user is created new on every run.
  * C590125 (Dark theme, on hold): only records whether a Dark/theme option is offered (profile menu, Edit Profile, Settings) and, if it
  * is, pictures of Tech View and Board View in it; nothing else.
+ * 16 Oct 2026: C590112, C590114, C590117, C590119, C590120 and C590128 follow their cases as rewritten on 16 Oct (see each block's
+ * "16 Oct 2026: follows the case as rewritten" note); their readings are keyed by the case's own step numbers.
  * Every saved choice is put back at the end (runner preference as it was, any clock started here stopped).
  */
 import fs from 'node:fs';
@@ -29,8 +31,8 @@ import path from 'node:path';
 import type { Page } from 'playwright';
 import { open, done, APP, registerShotPage } from './session.mts';
 import { asRunner } from './runner.mts';
-import { api, customer, workOrder, workOrders, type Api } from './data.mts';
-import { EV, t, shot, display, tab, search, findRow, toColumn, groups, shiftPrompt } from './wob.mts';
+import { api, customer, workOrder, workOrders, setRequireReview, type Api } from './data.mts';
+import { EV, t, shot, display, tab, search, findRow, toColumn, groups, shiftPrompt, boardCols } from './wob.mts';
 import { person, roleIds, ensureEligible, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 
@@ -379,23 +381,53 @@ await run('C590111', async (o) => { // switcher tooltips against the column head
   o.s5_s6_tech1536 = await each('tech1536', '__D.box(__D.headRow())');
 });
 
-await run('C590112', async (o) => { // Tech View edge to edge, double border on group headers, sticky header, sideways scroll
-  const A = await tech('DC03', 'Cara Edge'); const c = await cust('ZZAUTOTEST DC03 Edge To Edge');
-  o.wo1 = brief(await mkWO(c, { lead: A.staff })); o.wo2 = brief(await mkWO(c, { status: 'estimate' }));
+await run('C590112', async (o) => { // Tech View edge to edge, double border on group headers, sticky header, sideways scroll, Status column width
+  // 16 Oct 2026: follows the case as rewritten (8 steps; NEW steps 6-7: with Customer-A searched the Status column is only as wide as its
+  // widest pill - Approved / Estimate - and with Customer-B, whose work order is in "Ready For Review", it is wider, about 132 px). Readings
+  // are keyed by the case's step numbers. Customer-B's Ready For Review work order: one line finished, then In Progress > Ready For Review
+  // behind the screen; if that status is refused, "Require Review Before Completion" is switched on (setRequireReview) for the move and put
+  // back in the finally block; the status is read back either way.
+  const A = await tech('DC03', 'Cara Edge'); const c = await cust('ZZAUTOTEST DC03 Edge To Edge'); const cB = await cust('ZZAUTOTEST DC03 Review', 'ZZDCR');
+  const w1 = await mkWO(c, { lead: A.staff }), w2 = await mkWO(c, { status: 'estimate' }); o.wo1 = brief(w1); o.wo2 = brief(w2);
+  const w3 = await mkWO(cB, { lead: A.staff, line: true }); let rr: any = null;
+  try {
+    const toReview = async () => { const log: string[] = [`mileage ${say(await a.post('/api/work-orders/change-mileage', { work_order_id: w3.id, mileage: '123456' }))}`];
+      for (const l of await linesRaw(w3.id)) { for (const rq of (l.part_requests ?? [])) await a.post(`/api/work-orders/part/remove-request/${rq.id ?? rq.part_request_id}`, {});
+        log.push(`story ${say(await a.post('/api/work-orders/lines/change-story', { line_id: l.line_id, tech_story: 'Done', work_order_id: w3.id }))}`); log.push(`line complete ${say(await a.post('/api/work-orders/lines/change-status', { line_id: l.line_id, status: 'complete', workOrderId: w3.id }))}`); }
+      for (const s of ['in_progress', 'ready_for_review']) log.push(`${s} ${say(await a.post('/api/work-orders/change-status', { id: w3.id, work_order: w3.id, status: s }))}`);
+      return { log, status: (await workOrders(a, cB.name)).find((x: any) => x.id === w3.id)?.status }; };
+    o.wo3 = await toReview();
+    if (o.wo3.status !== 'ready_for_review') { rr = await setRequireReview(a, true); o.requireReviewOn = rr; o.wo3retry = await toReview(); }
+    o.wo3.number = (await workOrders(a, cB.name)).find((x: any) => x.id === w3.id)?.number;
+  } finally { if (rr && rr.before === false) o.requireReviewPutBack = await setRequireReview(a, false); }
   o.prep = await prep([A.staff], 'Tech View');
+  o.start = { search: await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => '(search box closed: empty)') };
   const read = async (tag: string) => ({ frame: await D(p, '__D.frame()'), groupBorders: await D(p, '__D.groupBorders()'), picture: await pic(p, `C590112-${tag}`) });
-  o.s2_1440 = await read('s2-tech-1440');
-  o.s3_groupHeader = await clip(p, 'C590112-s3-group-header', await D(p, `__D.box(__D.grp(${J(A.staff)}))`), 24);
+  o.s1_edges_1440 = await read('s1-tech-1440');
+  o.s2_groupSeparator = { borders: o.s1_edges_1440.groupBorders, picture: await clip(p, 'C590112-s2-group-header', await D(p, `__D.box(__D.grp(${J(A.staff)}))`), 24) };
   const before = { thead: await D(p, '__D.box(__D.headRow())'), sc: await D(p, '__D.tScroller()') };
-  await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollTop += 700; })()`); await W(1200);
-  o.s4_sticky = { before, after: { thead: await D(p, '__D.box(__D.headRow())'), theadPosition: await D(p, `(function () { var t = __D.q('thead'); var th = __D.q('thead th'); return { thead: t ? getComputedStyle(t).position : null, th: th ? getComputedStyle(th).position : null, top: th ? getComputedStyle(th).top : null }; })()`), sc: await D(p, '__D.tScroller()') }, picture: await pic(p, 'C590112-s4-scrolled-down') };
+  await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollTop += 2100; })()`); await W(1200);
+  o.s3_sticky = { before, after: { thead: await D(p, '__D.box(__D.headRow())'), theadPosition: await D(p, `(function () { var t = __D.q('thead'); var th = __D.q('thead th'); return { thead: t ? getComputedStyle(t).position : null, th: th ? getComputedStyle(th).position : null, top: th ? getComputedStyle(th).top : null }; })()`), sc: await D(p, '__D.tScroller()') }, picture: await pic(p, 'C590112-s3-scrolled-down') };
   await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) { s.scrollTop = 0; s.scrollLeft = s.scrollWidth; } })()`); await W(1200);
-  o.s5_sideways = { sc: await D(p, '__D.tScroller()'), align: await D(p, '__D.align()'), picture: await pic(p, 'C590112-s5-scrolled-sideways') };
+  o.s4_sideways = { sc: await D(p, '__D.tScroller()'), align: await D(p, '__D.align()'), heads: (await D(p, '__D.heads()'))?.cells?.map((x: any) => ({ label: x.label, w: x.box?.w, labelW: x.labelBox?.w })), overlaps: await D(p, '__D.overOf(__D.headRow())'), picture: await pic(p, 'C590112-s4-scrolled-sideways') };
   await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollLeft = 0; })()`);
   await p.setViewportSize({ width: 1536, height: 900 }); await W(1500);
-  o.s6_1536 = { ...(await read('s6-tech-1536')), align: await D(p, '__D.align()') };
-  await p.setViewportSize({ width: 1440, height: 900 }); await display(p, 'List'); await away();
-  o.s7_list = await read('s7-list-1440');
+  o.s5_1536 = { ...(await read('s5-tech-1536')), align: await D(p, '__D.align()') };
+  /** the Status column against the pills in it: the header cell's width, each listed work order's cell and pill width, and the empty space
+   *  after the pill (cell width - padding - pill width) */
+  const statusCol = async (ids: Record<string, string>) => D(p, `(function () { var h = __D.heads(); var th = h && h.cells.filter(function (x) { return x.label === 'Status'; })[0]; var ids = ${J(ids)}; var out = {};
+      Object.keys(ids).forEach(function (k) { var td = __D.cell(ids[k], 'Status'); if (!td) { out[k] = 'row not drawn'; return; } var pl = __D.pill(td); var s = getComputedStyle(td); var pb = pl && pl.pill ? pl.pill.box : null; var tb = __D.box(td);
+        out[k] = { pillText: pl && pl.pill ? pl.pill.text : null, pillW: pb ? pb.w : null, cellW: tb.w, padL: s.paddingLeft, padR: s.paddingRight, spaceAfterPill: pb ? Math.round((tb.r - parseFloat(s.paddingRight) - pb.r) * 10) / 10 : null }; });
+      return { statusHeaderW: th ? th.box.w : 'no Status column', statusHeaderLabelW: th && th.labelBox ? th.labelBox.w : null, rows: out }; })()`);
+  // step 6: Customer-A in Search (the box's value read back after typing, L0387)
+  await search(p, c.name); o.s6_customerA = { searchHolds: await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null), statusColumn: await statusCol({ 'Work-order-1 (Approved)': w1.id, 'Work-order-2 (Estimate)': w2.id }) };
+  o.s6_customerA.picture = await pic(p, 'C590112-s6-status-column-customer-a');
+  // step 7: replace the search text with Customer-B (Ready For Review): expected about 132 px
+  await search(p, cB.name); o.s7_customerB = { searchHolds: await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null), statusColumn: await statusCol({ 'Work-order-3 (Ready For Review)': w3.id }), designWidthPx: 132 };
+  o.s7_customerB.picture = await pic(p, 'C590112-s7-status-column-customer-b');
+  // step 8: List
+  await display(p, 'List'); await away(); o.s8_list = await read('s8-list-1536');
+  await search(p, ''); await p.setViewportSize({ width: 1440, height: 900 });
 });
 
 await run('C590113', async (o) => { // default columns and header labels, as a user who has never opened Tech View
@@ -433,6 +465,11 @@ await run('C590113', async (o) => { // default columns and header labels, as a u
 });
 
 await run('C590114', async (o) => { // Tech View cells
+  // 16 Oct 2026: follows the case as rewritten (NEW step 3: Status, Waiting On Parts and Progress sit at the LEFT of their columns - read as
+  // the content's left edge against the cell's left edge and padding, and the space left over on the right; step 6 hovers ONLY the first
+  // avatar in Assigned Techs and expects a name bubble ABOVE it). The old "click the row opens the work order" reading is gone (not a step
+  // of the case any more). Readings: s2_number = step 1, s2_progress = step 2, s3_alignment = step 3, s2_advisor = step 4, s2_assigned =
+  // step 5, s3_avatarHover = step 6, s2_waiting / s2_clockedIn / s2_total = step 7, s5_wo2Number = step 8, s5_lockHover = step 9, s6_list = step 10.
   const A = await tech('DC05', 'Eva Cells', true), B = await tech('DC05', 'Finn Cells'); o.photoLog = A.log.filter((x) => /photo/.test(x));
   const c = await cust('ZZAUTOTEST DC05 Cell Styles');
   const w1 = await mkWO(c, { lead: A.staff, line: true, lineTech: B.staff }), w2 = await mkWO(c, { status: 'invoiced', lead: A.staff }); o.wo1 = brief(w1); o.wo2 = brief(w2);
@@ -449,7 +486,8 @@ await run('C590114', async (o) => { // Tech View cells
     } finally { await v.close(); } if (o.clockInScreen && o.clockInScreen !== 'no clock running') clocks.push({ userId: B.id, who: B.name }); }
   if (tk) clocks.push({ userId: B.id, who: B.name });
   try {
-    o.prep = await prep([A.staff, B.staff], 'Tech View'); o.find1 = await rowOn(p, w1.id, c.name, A.staff);
+    o.prep = await prep([A.staff, B.staff], 'Tech View'); await search(p, c.name); o.searchHolds = await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null); // 16 Oct 2026: the case starts with Customer-A searched
+    o.find1 = await rowOn(p, w1.id, c.name, A.staff);
     o.s2_row = await D(p, `__D.row(${J(w1.id)})`);
     const cl = (lab: string) => `__D.cell(${J(w1.id)}, ${J(lab)})`;
     o.s2_number = { parts: await D(p, `__D.parts(${cl('Number')}, 8)`), link: await D(p, `__D.desc(__D.q('a', ${cl('Number')}))`) };
@@ -458,11 +496,17 @@ await run('C590114', async (o) => { // Tech View cells
     o.s2_waiting = await D(p, `__D.parts(${cl('Waiting On Parts')}, 4)`); o.s2_total = { cell: await D(p, `__D.desc(${cl('Total price')}, true)`), parts: await D(p, `__D.parts(${cl('Total price')}, 4)`), header: await D(p, `(function () { var h = __D.heads(); var c = h && h.cells.filter(function (x) { return x.label === 'Total price'; })[0]; return c || null; })()`) };
     o.s2_clockedIn = { parts: await D(p, `__D.parts(${cl('Clocked In')}, 8)`), avatars: await D(p, `__D.avs(${cl('Clocked In')})`) };
     o.s2_pic = await clip(p, 'C590114-s2-wo1-row', await D(p, `__D.box(__D.rowEl(${J(w1.id)}))`), 6); await pic(p, 'C590114-s2-tech');
-    o.s3_avatarHover = [];
-    for (const [i, av] of ((Array.isArray(o.s2_assigned) ? o.s2_assigned : []) as any[]).entries()) { await away(); await hoverBox(p, av.box); const tp = await D(p, '__D.tips()'); o.s3_avatarHover.push({ avatar: i + 1, tooltips: tp, place: rel(tp?.[0]?.box ?? null, av.box) }); await pic(p, `C590114-s3-avatar-${i + 1}-hover`); }
-    await away(); const url0 = p.url(); await p.locator(`[data-test-id="tech_view_row_${w1.id}"]`).locator('a').first().click().catch(async () => { await p.locator(`[data-test-id="tech_view_row_${w1.id}"]`).click(); }); await W(3500);
-    o.s4_click = { before: url0.replace(APP, ''), after: p.url().replace(APP, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>') }; await pic(p, 'C590114-s4-opened');
-    if (p.url() !== url0) { await p.goBack().catch(() => {}); await W(4000); if (!/\/workorders/.test(p.url())) { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await W(4000); } await display(p, 'Tech View').catch(() => {}); }
+    // step 3 (16 Oct 2026): where the content of Status, Waiting On Parts and Progress sits in its cell
+    const alignOf = (lab: string) => D(p, `(function () { var td = ${cl(lab)}; if (!td) return 'no cell'; var tb = __D.box(td); var s = getComputedStyle(td); var x = 1e9, r = -1e9;
+        __D.qa('*', td).forEach(function (e) { if (e.childElementCount && !e.matches('.q-icon, i, svg, img, [class*="avatar"]')) { var own = Array.prototype.some.call(e.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); }); var bgd = getComputedStyle(e).backgroundColor !== 'rgba(0, 0, 0, 0)'; if (!own && !bgd) return; } var b = e.getBoundingClientRect(); if (b.width <= 0) return; x = Math.min(x, b.left); r = Math.max(r, b.right); });
+        if (r < x) return { cell: tb, text: td.innerText.trim(), content: 'nothing drawn' }; return { cell: tb, textAlign: s.textAlign, justify: getComputedStyle(td.firstElementChild || td).justifyContent, padL: s.paddingLeft, padR: s.paddingRight, contentLeftFromCellLeft: Math.round((x - tb.x) * 10) / 10, spaceRightOfContent: Math.round((tb.r - r) * 10) / 10, text: td.innerText.replace(/\\s+/g, ' ').trim().slice(0, 40) }; })()`);
+    o.s3_alignment = { Status: await alignOf('Status'), 'Waiting On Parts': await alignOf('Waiting On Parts'), Progress: await alignOf('Progress') };
+    o.s3_alignmentPic = await clip(p, 'C590114-s3-status-waiting-progress', await D(p, `__D.box(__D.rowEl(${J(w1.id)}))`), 6);
+    // step 6: hover the FIRST avatar in Assigned Techs only; the bubble must open above it
+    o.s3_avatarHover = []; { const av = ((Array.isArray(o.s2_assigned) ? o.s2_assigned : []) as any[])[0];
+      if (av) { await away(); await hoverBox(p, av.box); const tp = await D(p, '__D.tips()'); o.s3_avatarHover.push({ avatar: 1, tooltips: tp, place: rel(tp?.[0]?.box ?? null, av.box), titleAttr: await D(p, `(function () { var e = document.elementFromPoint(${av.box.x + av.box.w / 2}, ${av.box.y + av.box.h / 2}); for (var i = 0; e && i < 4; i++, e = e.parentElement) if (e.getAttribute('title')) return e.getAttribute('title'); return null; })()`) }); await pic(p, 'C590114-s6-first-avatar-hover'); }
+      else o.s3_avatarHover.push('no avatar in Assigned Techs'); }
+    await away();
     o.find2 = await rowOn(p, w2.id, c.name, A.staff);
     const n2 = `__D.cell(${J(w2.id)}, 'Number')`; o.s5_wo2Number = { parts: await D(p, `__D.parts(${n2}, 8)`), icons: await D(p, `__D.icons(${n2})`) };
     const lock = (o.s5_wo2Number.icons ?? []).find((x: any) => /lock/i.test(`${x.cls} ${x.ligature ?? ''} ${x.svg?.cls ?? ''}`)) ?? (o.s5_wo2Number.icons ?? [])[0];
@@ -533,30 +577,56 @@ await run('C590116', async (o) => { // six-dot grip on rows and group headers; n
 });
 
 await run('C590117', async (o) => { // Tech View group header pieces
+  // 16 Oct 2026: follows the case as rewritten (11 steps; NEW pin steps: step 6 click the pin in Technician-B's group header - it turns
+  // blue - and step 11 click it again - grey again; step 5 now expects the browser's PLAIN name tip on the header avatar, so the avatar's
+  // title attribute is read, not only .q-tooltip). The case's start: NO technician pinned (pinning B by the script first would make step 6
+  // an unpin) and Customer-A's name in Search; the technicians' headers are scrolled into the window (groupOn). Readings keyed by step.
   const A = await tech('DC08', 'Ines Header', true), B = await tech('DC08', 'Jon Header'); o.photoLog = A.log.filter((x) => /photo/.test(x));
   const c = await cust('ZZAUTOTEST DC08 Group Header');
   o.wos = [await mkWO(c, { lead: A.staff }), await mkWO(c, { lead: B.staff }), await mkWO(c, { status: 'estimate' })].map(brief);
-  o.prep = await prep([A.staff, B.staff], 'Tech View');
-  o.s2_unassigned = await D(p, `__D.groupHdr('unassigned')`); o.s2_pic = await clip(p, 'C590117-s2-unassigned-header', o.s2_unassigned?.box ?? null, 8);
-  // 16 Oct 2026: on 15 Oct the technician headers were never drawn (they sit after ~3,450 Unassigned rows), so steps 3-10 read nothing.
-  // Close Unassigned (step 2 is already read) and bring the pinned technicians' headers into the window.
-  o.unassigned = await collapseUn(p); await centre(p, `[data-test-id="tech_view_group_${B.staff}"]`);
-  o.headersDrawn = { A: await p.locator(`[data-test-id="tech_view_group_${A.staff}"]`).count(), B: await p.locator(`[data-test-id="tech_view_group_${B.staff}"]`).count() };
-  o.s3_bothHeadersPic = await pic(p, 'C590117-s3-tech-headers');
-  o.s3_techB = await D(p, `__D.groupHdr(${J(B.staff)})`); o.s3_pic = await clip(p, 'C590117-s3-techB-header', o.s3_techB?.box ?? null, 8);
-  o.s4_techA = await D(p, `__D.groupHdr(${J(A.staff)})`); o.s4_pic = await clip(p, 'C590117-s4-techA-header', o.s4_techA?.box ?? null, 8);
-  o.s5_countHover = await tipFor(p, `[data-test-id="tech_view_group_count_${A.staff}"]`, 'C590117-s5-count-hover', '__D.box(__D.headRow())');
-  const bav = (o.s3_techB?.avatars ?? [])[0]; await away();
-  if (bav) { await hoverBox(p, bav.box); const tp = await D(p, '__D.tips()'); o.s6_avatarHover = { tooltips: tp, place: rel(tp?.[0]?.box ?? null, bav.box), picture: await pic(p, 'C590117-s6-avatar-hover') }; } else o.s6_avatarHover = 'no avatar found in the header';
+  o.prep = await prep([], 'Tech View'); await search(p, c.name); o.searchHolds = await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null);
+  /** bring a group header into the window: scroll the table from the top until it is drawn, then centre it */
+  const groupOn = async (id: string) => { await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollTop = 0; })()`); await W(500);
+    for (let i = 0; i < 200 && !(await p.locator(`[data-test-id="tech_view_group_${id}"]`).count()); i++) { const mv = await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (!s) return false; const b = s.scrollTop; s.scrollTop += 400; return s.scrollTop !== b; })()`); await W(250); if (!mv) break; }
+    await centre(p, `[data-test-id="tech_view_group_${id}"]`); return (await p.locator(`[data-test-id="tech_view_group_${id}"]`).count()) > 0; };
+  const pinOf = (id: string) => D(p, `(function () { var b = __D.q('[data-test-id="button_tech_view_pin_${id}"]'); return b ? { pressed: b.getAttribute('aria-pressed'), label: b.getAttribute('aria-label'), color: getComputedStyle(b).color, opacity: getComputedStyle(b).opacity, icons: __D.icons(b) } : 'no pin in the header'; })()`);
+  // step 1: Unassigned
+  o.s1_unassigned = await D(p, `__D.groupHdr('unassigned')`); o.s1_pic = await clip(p, 'C590117-s1-unassigned-header', o.s1_unassigned?.box ?? null, 8);
+  // step 2: Technician-B's header, left to right (its pin read without hovering)
+  o.s2_reached = await groupOn(B.staff); await away();
+  o.s2_techB = await D(p, `__D.groupHdr(${J(B.staff)})`); o.s2_techBPin = await pinOf(B.staff); o.s2_pic = await clip(p, 'C590117-s2-techB-header', o.s2_techB?.box ?? null, 8);
+  // step 3: Technician-A's avatar (photo)
+  o.s3_reached = await groupOn(A.staff); o.s3_techA = await D(p, `__D.groupHdr(${J(A.staff)})`); o.s3_pic = await clip(p, 'C590117-s3-techA-header', o.s3_techA?.box ?? null, 8);
+  // step 4: hover A's count: dark tooltip above it, not over a column header label
+  o.s4_countHover = await tipFor(p, `[data-test-id="tech_view_group_count_${A.staff}"]`, 'C590117-s4-count-hover', '__D.box(__D.headRow())');
+  // step 5: hover B's header avatar: the browser's plain name tip = the title attribute on the avatar (or the nearest element holding one)
+  await groupOn(B.staff); await away(); const bav = ((await D(p, `__D.groupHdr(${J(B.staff)})`))?.avatars ?? [])[0];
+  if (bav) { await hoverBox(p, bav.box); const tp = await D(p, '__D.tips()');
+    o.s5_avatarHover = { titleAttr: await D(p, `(function () { var e = document.elementFromPoint(${bav.box.x + bav.box.w / 2}, ${bav.box.y + bav.box.h / 2}); var out = []; for (var i = 0; e && i < 5; i++, e = e.parentElement) if (e.getAttribute('title')) out.push({ tag: e.tagName.toLowerCase(), title: e.getAttribute('title') }); return out; })()`), styledTooltips: tp, expectedName: B.name, picture: await pic(p, 'C590117-s5-avatar-hover'),
+      note: 'a browser title tip is drawn by the browser, not the page: it does not show in a screenshot; the title attribute is the reading' }; }
+  else o.s5_avatarHover = 'no avatar found in the header';
   await away();
-  await p.locator(`[data-test-id="button_tech_view_group_toggle_${A.staff}"]`).click(); await W(1500); await away();
+  // step 6: click the pin in B's header: blue (pressed); B's group then sits right after Unassigned
+  o.s6_before = await pinOf(B.staff); await p.locator(`[data-test-id="button_tech_view_pin_${B.staff}"]`).first().click(); await W(1800); await away();
+  await groupOn(B.staff); o.s6_after = { pin: await pinOf(B.staff), savedPins: ((await a.get(PREF)).body?.data?.value?.pinnedTechnicianIds ?? []).includes(B.staff), groupsOrder: (await groups(p)).slice(0, 3).map((g) => g.name), picture: await clip(p, 'C590117-s6-techB-pinned', await D(p, `__D.box(__D.grp(${J(B.staff)}))`), 8) };
+  // steps 7-8: A's arrow, twice
+  await groupOn(A.staff); await p.locator(`[data-test-id="button_tech_view_group_toggle_${A.staff}"]`).click(); await W(1500); await away();
   o.s7_collapsed = { hdr: await D(p, `__D.groupHdr(${J(A.staff)})`), picture: await clip(p, 'C590117-s7-collapsed', await D(p, `__D.box(__D.grp(${J(A.staff)}))`), 30) };
   await p.locator(`[data-test-id="button_tech_view_group_toggle_${A.staff}"]`).click(); await W(1500); await away();
   o.s8_open = { collapsed: (await D(p, `__D.groupHdr(${J(A.staff)})`))?.collapsed, toggle: (await D(p, `__D.groupHdr(${J(A.staff)})`))?.toggle, picture: await clip(p, 'C590117-s8-open', await D(p, `__D.box(__D.grp(${J(A.staff)}))`), 30) };
-  const sizes = async () => { const h: any = await D(p, `__D.groupHdr(${J(A.staff)})`); const hb: any = await D(p, `__D.groupHdr(${J(B.staff)})`); return { techA: { h: h?.box?.h, avatar: h?.avatars?.[0]?.box, name: h?.name?.st }, techB: { h: hb?.box?.h, avatar: hb?.avatars?.[0]?.box, name: hb?.name?.st, avatarText: hb?.avatars?.[0] } }; };
+  // steps 9-10: Compact, Comfortable (header height, avatar size, name size)
+  const sizes = async () => { await groupOn(B.staff); const hb: any = await D(p, `__D.groupHdr(${J(B.staff)})`); await groupOn(A.staff); const h: any = await D(p, `__D.groupHdr(${J(A.staff)})`); return { techA: { h: h?.box?.h, avatar: h?.avatars?.[0]?.box, name: h?.name?.st }, techB: { h: hb?.box?.h, avatar: hb?.avatars?.[0]?.box, name: hb?.name?.st, avatarText: hb?.avatars?.[0] } }; };
   o.regular = await sizes();
-  for (const d of ['compact', 'comfortable'] as const) { o[`s${d === 'compact' ? 9 : 10}_${d}`] = { menu: await density(p, d), ...(await sizes()), picture: await clip(p, `C590117-${d}-headers`, await D(p, `__D.box(__D.grp(${J(A.staff)}))`), 60) }; }
-  await density(p, 'regular');
+  for (const d of ['compact', 'comfortable'] as const) { o[`s${d === 'compact' ? 9 : 10}_${d}`] = { menu: await density(p, d), ...(await sizes()), picture: await clip(p, `C590117-s${d === 'compact' ? 9 : 10}-${d}-headers`, await D(p, `__D.box(__D.grp(${J(A.staff)}))`), 60) }; }
+  // step 11: click B's pin again: grey again
+  await groupOn(B.staff); await p.locator(`[data-test-id="button_tech_view_pin_${B.staff}"]`).first().click(); await W(1800); await away();
+  await groupOn(B.staff); o.s11_unpinned = { pin: await pinOf(B.staff), savedPins: ((await a.get(PREF)).body?.data?.value?.pinnedTechnicianIds ?? []).includes(B.staff), picture: await clip(p, 'C590117-s11-techB-unpinned', await D(p, `__D.box(__D.grp(${J(B.staff)}))`), 8) };
+  // extra reading for step 6's "as on a pinned Board View column header": the pin colour on a PINNED Board View column (B pinned by the
+  // pin clicked on the board for this read only, then clicked again to take it off; both read back)
+  await display(p, 'Board View'); await toColumn(p, B.staff).catch(() => {}); const bp = p.locator(`[data-test-id="button_board_pin_${B.staff}"], [data-test-id="button_board_column_pin_${B.staff}"]`).first();
+  if (await bp.count()) { await bp.click(); await W(1800); await toColumn(p, B.staff).catch(() => {}); await away(); o.boardPinnedReference = (await D(p, `__D.colHdr(${J(B.staff)})`))?.pin ?? 'no column header';
+    await bp.click().catch(() => {}); await W(1500); o.boardPinTakenOff = !(((await a.get(PREF)).body?.data?.value?.pinnedTechnicianIds ?? []) as string[]).includes(B.staff); } else o.boardPinnedReference = 'no pin button on the Board View column';
+  await display(p, 'Tech View'); await density(p, 'regular'); await search(p, '');
 });
 
 await run('C590118', async (o) => { // Board View full width, columns as cards
@@ -572,22 +642,39 @@ await run('C590118', async (o) => { // Board View full width, columns as cards
 });
 
 await run('C590119', async (o) => { // Board View column header pieces and pins
+  // 16 Oct 2026: follows the case as rewritten (NEW step 4: after pinning Technician-B, B's column moves to just after "Unassigned" - the
+  // column order is read from the left of the board; steps 6-7 confirm A and C pinned - three pinned, read from the saved choice and the
+  // headers). Starting screen as the case: nobody pinned, Customer-A's name in Search. Readings keyed by the case's step numbers.
   const A = await tech('DC10', 'Lea Pin', true), B = await tech('DC10', 'Max Pin'), C = await tech('DC10', 'Nia Pin'), Dd = await tech('DC10', 'Oli Pin'); o.photoLog = A.log.filter((x) => /photo/.test(x));
   const c = await cust('ZZAUTOTEST DC10 Column Header');
   o.wos = [await mkWO(c, { lead: A.staff }), await mkWO(c, { lead: B.staff }), await mkWO(c, { status: 'estimate' })].map(brief);
-  o.prep = await prep([], 'Board View');
-  o.s2_unassigned = await D(p, `__D.colHdr('unassigned')`); o.s2_pic = await clip(p, 'C590119-s2-unassigned-header', o.s2_unassigned?.box ?? null, 8);
-  o.s3_reached = await toColumn(p, B.staff); o.s3_techB = await D(p, `__D.colHdr(${J(B.staff)})`); o.s3_pic = await clip(p, 'C590119-s3-techB-header', o.s3_techB?.box ?? null, 8);
-  await toColumn(p, A.staff); o.s4_techA = await D(p, `__D.colHdr(${J(A.staff)})`); o.s4_pic = await clip(p, 'C590119-s4-techA-header', o.s4_techA?.box ?? null, 8);
+  o.prep = await prep([], 'Board View'); await search(p, c.name); o.searchHolds = await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null);
+  const who: Record<string, string> = { [A.staff]: 'Technician-A', [B.staff]: 'Technician-B', [C.staff]: 'Technician-C', [Dd.staff]: 'Technician-D', unassigned: 'Unassigned' };
+  /** the first columns of the board from its left edge, by their place on screen */
+  const leftCols = async (n = 5) => { await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); if (h) h.scrollLeft = 0; })()`); await W(900);
+    return (await boardCols(p)).sort((x, y) => x.left - y.left).slice(0, n).map((x) => `${who[x.id] ?? x.name}${x.pinned === 'true' ? ' [pinned]' : ''}`); };
+  const saved = async () => (((await a.get(PREF)).body?.data?.value?.pinnedTechnicianIds ?? []) as string[]).map((x) => who[x] ?? x);
+  o.start = { firstColumns: await leftCols(), savedPins: await saved() };
+  o.s1_unassigned = await D(p, `__D.colHdr('unassigned')`); o.s1_pic = await clip(p, 'C590119-s1-unassigned-header', o.s1_unassigned?.box ?? null, 8);
+  o.s2_reached = await toColumn(p, B.staff); o.s2_techB = await D(p, `__D.colHdr(${J(B.staff)})`); o.s2_pic = await clip(p, 'C590119-s2-techB-header', o.s2_techB?.box ?? null, 8);
+  await toColumn(p, A.staff); o.s3_techA = await D(p, `__D.colHdr(${J(A.staff)})`); o.s3_pic = await clip(p, 'C590119-s3-techA-header', o.s3_techA?.box ?? null, 8);
   const pinSel = (id: string) => `[data-test-id="button_board_pin_${id}"], [data-test-id="button_board_column_pin_${id}"]`;
   const pinClick = async (id: string) => { await toColumn(p, id); await p.locator(pinSel(id)).first().click(); await W(1800); await away(); };
-  await pinClick(B.staff); o.s6_techBPinned = { pin: (await D(p, `__D.colHdr(${J(B.staff)})`))?.pin, picture: await clip(p, 'C590119-s6-techB-pinned', await D(p, `__D.box(__D.q('[data-test-id="board_column_header_${B.staff}"]'))`), 8) };
-  await pinClick(A.staff); await pinClick(C.staff);
-  await toColumn(p, Dd.staff); o.s9_pinHover = await tipFor(p, pinSel(Dd.staff), 'C590119-s9-pin-hover');
-  o.s9_unpinnedPins = await D(p, `__D.qa('[data-test-id^="button_board_pin_"], [data-test-id^="button_board_column_pin_"]').filter(function (b) { return b.getAttribute('aria-pressed') !== 'true'; }).slice(0, 4).map(function (b) { return { tid: b.getAttribute('data-test-id').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/, '<id>'), disabled: b.disabled || b.getAttribute('aria-disabled') === 'true', opacity: getComputedStyle(b).opacity, icon: __D.icons(b)[0] || null, color: getComputedStyle(b).color }; })`);
+  // step 4: pin B: B's column directly after Unassigned
+  await pinClick(B.staff); o.s4 = { firstColumns: await leftCols(), savedPins: await saved() }; o.s4.bRightAfterUnassigned = o.s4.firstColumns[0]?.startsWith('Unassigned') && o.s4.firstColumns[1]?.startsWith('Technician-B');
+  o.s4.picture = await pic(p, 'C590119-s4-after-pin-b');
+  // step 5: B's pin (slash, blue)
+  await toColumn(p, B.staff); await away(); o.s5_techBPin = { pin: (await D(p, `__D.colHdr(${J(B.staff)})`))?.pin, picture: await clip(p, 'C590119-s5-techB-pinned', await D(p, `__D.box(__D.q('[data-test-id="board_column_header_${B.staff}"]'))`), 8) };
+  // steps 6-7: pin A, then C: three pinned
+  await pinClick(A.staff); o.s6 = { savedPins: await saved(), firstColumns: await leftCols(), pinA: (await D(p, `__D.colHdr(${J(A.staff)})`))?.pin?.pressed };
+  await pinClick(C.staff); o.s7 = { savedPins: await saved(), firstColumns: await leftCols(), pinnedCount: (await saved()).length }; o.s7.picture = await pic(p, 'C590119-s7-three-pinned');
+  // step 8: hover D's pin: faded, "You can pin up to 3 technicians."
+  await toColumn(p, Dd.staff); o.s8_pinHover = await tipFor(p, pinSel(Dd.staff), 'C590119-s8-pin-hover');
+  o.s8_unpinnedPins = await D(p, `__D.qa('[data-test-id^="button_board_pin_"], [data-test-id^="button_board_column_pin_"]').filter(function (b) { return b.getAttribute('aria-pressed') !== 'true'; }).slice(0, 4).map(function (b) { return { tid: b.getAttribute('data-test-id').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/, '<id>'), disabled: b.disabled || b.getAttribute('aria-disabled') === 'true', opacity: getComputedStyle(b).opacity, icon: __D.icons(b)[0] || null, color: getComputedStyle(b).color }; })`);
+  // step 9: unpin B, A, C: every header shows the grey outline pin again
   await away(); for (const x of [B, A, C]) await pinClick(x.staff);
-  o.s10_after = {}; for (const [k, x] of Object.entries({ A, B, C, D: Dd })) { await toColumn(p, x.staff); o.s10_after[k] = (await D(p, `__D.colHdr(${J(x.staff)})`))?.pin; }
-  o.s10_pic = await pic(p, 'C590119-s10-unpinned');
+  o.s9_after = { savedPins: await saved() }; for (const [k, x] of Object.entries({ A, B, C, D: Dd })) { await toColumn(p, x.staff); o.s9_after[k] = (await D(p, `__D.colHdr(${J(x.staff)})`))?.pin; }
+  o.s9_pic = await pic(p, 'C590119-s9-unpinned'); await search(p, '');
 });
 
 await run('C590120', async (o) => { // Board View card layout and text sizes at each density
@@ -641,13 +728,32 @@ await run('C590120', async (o) => { // Board View card layout and text sizes at 
       var b = w; while (b && b !== root && (getComputedStyle(b).backgroundColor === 'rgba(0, 0, 0, 0)' || getComputedStyle(b).borderRadius === '0px')) b = b.parentElement; if (!b || b === root) b = w; var s = getComputedStyle(b), sw = getComputedStyle(w);
       var host = b.parentElement || b; var nums = Array.prototype.filter.call(host.querySelectorAll('*'), function (e) { return /^\\d+$/.test(own(e)) && e.getBoundingClientRect().width > 0; }).map(function (e) { var g = e; while (g && g !== host && getComputedStyle(g).backgroundColor === 'rgba(0, 0, 0, 0)') g = g.parentElement; return { text: own(e), color: getComputedStyle(e).color, bg: g ? getComputedStyle(g).backgroundColor : null }; });
       var r = b.getBoundingClientRect(); return { word: own(w), bg: s.backgroundColor, text: sw.color, border: s.borderTop, radius: s.borderRadius, height: Math.round(r.height * 10) / 10, width: Math.round(r.width * 10) / 10, fontSize: sw.fontSize, fontWeight: sw.fontWeight, numbers: nums, box: { x: r.left, y: r.top, w: r.width, h: r.height, r: r.right, b: r.bottom } }; })()`);
-  // steps 1-3: List
-  o.s1_s3 = { prep: await prep([A.staff], 'List') }; await search(p, c.name); await W(2500);
-  { const rowSel = await D(p, `(function () { var r = Array.prototype.find.call(document.querySelectorAll('tbody tr'), function (x) { return x.innerText.indexOf(${J(w1.number)}) >= 0; }); if (!r) return null; r.setAttribute('data-zz-row', '1'); return r.innerText.replace(/\\s+/g, ' ').slice(0, 160); })()`);
-    o.s1_s3.row = rowSel; o.s1_s3.pill = await pillOf('tbody tr[data-zz-row="1"]'); o.s1_s3.progressCell = await D(p, `(function () { var r = document.querySelector('tbody tr[data-zz-row="1"]'); return r ? (r.innerText.match(/\\d+%/) || [null])[0] : null; })()`);
-    await pic(p, 'C590120-s3-list'); o.s1_s3.picture = await clip(p, 'C590120-s3-list-pill', (o.s1_s3.pill as any)?.box ? { x: o.s1_s3.pill.box.x, y: o.s1_s3.pill.box.y, w: o.s1_s3.pill.box.w, h: o.s1_s3.pill.box.h, r: o.s1_s3.pill.box.r, b: o.s1_s3.pill.box.b } : null, 40); }
-  await search(p, '');
-  o.prep = await prep([A.staff], 'Board View'); o.fields = await lineTechsOn();
+  // 16 Oct 2026: follows the case as rewritten (List baseline for EVERY prepared status - Work-order-1 Approved, Work-order-2 Invoiced - and
+  // for BOTH action-count types - red service actions, blue parts actions - then the same work orders' Board pills compared with List; at
+  // Compact and Comfortable the card avatars must stay 24 px and the pills 22 px). Readings keyed by the case's step numbers (s1 .. s7).
+  // The blue parts-actions count comes from Line-1's part request (above). No recipe for a red SERVICE-actions count is recorded in this
+  // repo, so a work order that already shows one (serviceActionsCount > 0 in the list answer) is looked up and read the same way in List
+  // and Board View; if none is found the reading says so and that half of step 1/4 needs a hand check. The case is still Blocked by
+  // SV-11405 for the reporting session (read the story's status live first, Rule 112) - this script only records.
+  const redWo = await (async () => { for (let pg = 1; pg <= 8; pg++) { const r = await a.get(`/api/work-orders?pagination[rowsPerPage]=200&pagination[page]=${pg}`); const l: any[] = r.body?.data?.work_orders ?? [];
+      const hit = l.find((w) => (w.serviceActionsCount ?? 0) > 0 && (w.partRequestsCount ?? 0) > 0) ?? l.find((w) => (w.serviceActionsCount ?? 0) > 0); if (hit) return { id: hit.id, number: hit.number, status: hit.status, serviceActionsCount: hit.serviceActionsCount, partRequestsCount: hit.partRequestsCount, lead: hit.techAssignedId ?? hit.tech_assigned_id ?? null, page: pg }; if (!l.length) break; }
+    return null; })();
+  o.redServiceActionsWorkOrder = redWo ?? 'no work order with serviceActionsCount > 0 on the first 8 pages of the list (1,600 work orders): the red count is not prepared - check it by hand';
+  const own = (await workOrders(a, c.name)).filter((x: any) => [w1.id, w2.id].includes(x.id)).map((x: any) => ({ number: x.number, status: x.status, serviceActionsCount: x.serviceActionsCount, partRequestsCount: x.partRequestsCount }));
+  o.preparedCounts = own;
+  const listPill = async (num: string) => { await D(p, `(function () { Array.prototype.forEach.call(document.querySelectorAll('[data-zz-row]'), function (e) { e.removeAttribute('data-zz-row'); }); var r = Array.prototype.find.call(document.querySelectorAll('tbody tr'), function (x) { return x.innerText.indexOf(${J(num)}) >= 0; }); if (r) r.setAttribute('data-zz-row', '1'); return !!r; })()`);
+    return pillOf('tbody tr[data-zz-row="1"]'); };
+  const boxOf = (x: any) => x?.box ? { x: x.box.x, y: x.box.y, w: x.box.w, h: x.box.h, r: x.box.r, b: x.box.b } : null;
+  // step 1: List, the customer searched: every prepared work order's pill (word, colours, shape, red / blue numbers)
+  o.s1 = { prep: await prep([A.staff], 'List') }; await search(p, c.name); await W(2500); o.s1.searchHolds = await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null);
+  o.s1.wo1 = await listPill(w1.number); o.s1.wo1Picture = await clip(p, 'C590120-s1-list-wo1-pill', boxOf(o.s1.wo1), 40);
+  o.s1.wo2 = await listPill(w2.number); o.s1.wo2Picture = await clip(p, 'C590120-s1-list-wo2-pill', boxOf(o.s1.wo2), 40);
+  o.s1.progressCell = await D(p, `(function () { var r = Array.prototype.find.call(document.querySelectorAll('tbody tr'), function (x) { return x.innerText.indexOf(${J(w1.number)}) >= 0; }); return r ? (r.innerText.match(/\\d+%/) || [null])[0] : null; })()`);
+  await pic(p, 'C590120-s1-list');
+  if (redWo) { await search(p, redWo.number); await W(2000); o.s1.red = await listPill(redWo.number); o.s1.redPicture = await clip(p, 'C590120-s1-list-red-count-pill', boxOf(o.s1.red), 40); await search(p, c.name); await W(2000); }
+  // steps 2-3: Board View (Line technicians on, the search kept), WO1's card from top to bottom, and the four texts' sizes
+  await display(p, 'Board View'); o.fields = await lineTechsOn(); o.searchAfterSwitch = await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null);
+  if (!o.searchAfterSwitch) await search(p, c.name);
   await toColumn(p, A.staff);
   const cardPic = async (id: string, name: string) => { await p.evaluate(`document.querySelector('[data-test-id="board_card_${id}"]')?.scrollIntoView({ block: 'center', inline: 'center' })`).catch(() => {}); await W(700);
     const b = await D(p, `__D.box(__D.q('[data-test-id="board_card_${id}"]'))`); const vp = p.viewportSize(); (o.cardOnScreen ??= {})[name] = !!(b && vp && b.y >= 0 && b.x >= 0 && b.y + b.h <= vp.height && b.x + b.w <= vp.width);
@@ -656,16 +762,25 @@ await run('C590120', async (o) => { // Board View card layout and text sizes at 
   const sizes = async () => D(p, `(function () { var c = __D.q('[data-test-id="board_card_${w1.id}"]'); if (!c) return null; var pick = function (sel) { var e = c.querySelector(sel); if (!e) return null; var s = getComputedStyle(e); return { text: e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 60), fontSize: s.fontSize, fontWeight: s.fontWeight, color: s.color, box: __D.box(e) }; };
       var leaf = function (re) { var all = __D.parts(c, 60).filter(function (x) { return x.kind === 'text' && re.test(x.text); }); return all[0] || null; };
       return { number: pick('[data-test-id="board_card_number"]'), customerName: leaf(/^ZZAUTOTEST DC11 Board Card/), unitAssetLine: pick('[data-test-id="board_card_unit"]') || leaf(/TRK-118/), totalPrice: leaf(/^\\$[0-9]/), cardPadding: getComputedStyle(c).padding, cardHeight: __D.box(c).h, fieldsShown: __D.qa('[data-test-id^="board_card_field_"]', c).map(function (e) { return e.getAttribute('data-test-id').replace('board_card_field_', ''); }) }; })()`);
-  o.s2_s3_regular = { card: await D(p, `__D.card(${J(w1.id)})`), sizes: await sizes(), picture: await cardPic(w1.id, 'C590120-s2-card-regular') }; await pic(p, 'C590120-s2-board');
-  // 16 Oct 2026 (batch 40): step 7 — the card's pill read the same way as List's; step 5 — the progress bar's track and fill on the card
-  o.s7_cardPill = await pillOf(`[data-test-id="board_card_${w1.id}"]`);
-  o.s7_compare = (() => { const L: any = o.s1_s3?.pill, C: any = o.s7_cardPill; if (!L || !C || typeof L === 'string' || typeof C === 'string') return 'not both read'; return { sameWord: L.word === C.word, sameBg: L.bg === C.bg, sameTextColour: L.text === C.text, sameRadius: L.radius === C.radius, sameNumbers: JSON.stringify(L.numbers.map((n: any) => n.text + n.bg)) === JSON.stringify(C.numbers.map((n: any) => n.text + n.bg)), listHeight: L.height, cardHeight: C.height }; })();
-  o.s5_progressBar = await D(p, `(function () { var c = document.querySelector('[data-test-id="board_card_${w1.id}"]'); if (!c) return null; return Array.prototype.filter.call(c.querySelectorAll('*'), function (e) { var r = e.getBoundingClientRect(); return r.height >= 1 && r.height <= 8 && r.width >= 4 && getComputedStyle(e).backgroundColor !== 'rgba(0, 0, 0, 0)'; }).map(function (e) { var r = e.getBoundingClientRect(); return { cls: String(e.className).slice(0, 60), tid: e.getAttribute('data-test-id'), x: Math.round(r.left), w: Math.round(r.width * 10) / 10, h: Math.round(r.height * 10) / 10, bg: getComputedStyle(e).backgroundColor }; }).slice(0, 8); })()`);
-  o.s5_progressText = await D(p, `(function () { var c = document.querySelector('[data-test-id="board_card_${w1.id}"]'); return c ? (c.innerText.match(/\\d+%/) || [null])[0] : null; })()`);
-  o.s7_cardPillPicture = await clip(p, 'C590120-s7-card-pill', (o.s7_cardPill as any)?.box ? { x: o.s7_cardPill.box.x, y: o.s7_cardPill.box.y, w: o.s7_cardPill.box.w, h: o.s7_cardPill.box.h, r: o.s7_cardPill.box.r, b: o.s7_cardPill.box.b } : null, 40);
-  o.s4_wo2 = { number: await D(p, `(function () { var c = __D.q('[data-test-id="board_card_${w2.id}"]'); var n = c && c.querySelector('[data-test-id="board_card_number"]'); return n ? { number: __D.desc(n), rowParts: __D.parts(n.parentElement, 8) } : null; })()`), picture: await cardPic(w2.id, 'C590120-s4-wo2-card') };
-  for (const d of ['compact', 'comfortable'] as const) { o[`s${d === 'compact' ? 5 : 6}_${d}`] = { menu: await density(p, d), card: await D(p, `__D.card(${J(w1.id)})`), sizes: await sizes(), picture: await cardPic(w1.id, `C590120-${d}-card`) }; }
-  await density(p, 'regular'); o.backAtRegular = await sizes();
+  const avatarSizes = () => D(p, `__D.avs(__D.q('[data-test-id="board_card_${w1.id}"]')).map(function (v) { return { w: v.box.w, h: v.box.h, text: v.text, img: !!v.img }; })`);
+  o.s2 = { card: await D(p, `__D.card(${J(w1.id)})`), avatars: await avatarSizes(), progressBar: await D(p, `(function () { var c = document.querySelector('[data-test-id="board_card_${w1.id}"]'); if (!c) return null; return Array.prototype.filter.call(c.querySelectorAll('*'), function (e) { var r = e.getBoundingClientRect(); return r.height >= 1 && r.height <= 8 && r.width >= 4 && getComputedStyle(e).backgroundColor !== 'rgba(0, 0, 0, 0)'; }).map(function (e) { var r = e.getBoundingClientRect(); return { cls: String(e.className).slice(0, 60), tid: e.getAttribute('data-test-id'), x: Math.round(r.left), w: Math.round(r.width * 10) / 10, h: Math.round(r.height * 10) / 10, bg: getComputedStyle(e).backgroundColor }; }).slice(0, 8); })()`),
+    progressText: await D(p, `(function () { var c = document.querySelector('[data-test-id="board_card_${w1.id}"]'); return c ? (c.innerText.match(/\\d+%/) || [null])[0] : null; })()`), picture: await cardPic(w1.id, 'C590120-s2-card-regular') };
+  await pic(p, 'C590120-s2-board');
+  o.s3 = { sizes: await sizes() };
+  // step 4: each prepared work order's Board pill against its List pill, 22 px tall
+  const cmp = (L: any, C: any) => { if (!L || !C || typeof L === 'string' || typeof C === 'string') return 'not both read'; return { sameWord: L.word === C.word, sameBg: L.bg === C.bg, sameTextColour: L.text === C.text, sameRadius: L.radius === C.radius, sameNumbers: JSON.stringify(L.numbers.map((n: any) => n.text + n.bg)) === JSON.stringify(C.numbers.map((n: any) => n.text + n.bg)), listNumbers: L.numbers, cardNumbers: C.numbers, listHeight: L.height, cardHeight: C.height }; };
+  o.s4 = { wo1: { card: await pillOf(`[data-test-id="board_card_${w1.id}"]`) } }; o.s4.wo1.compare = cmp(o.s1.wo1, o.s4.wo1.card); o.s4.wo1.picture = await clip(p, 'C590120-s4-card-wo1-pill', boxOf(o.s4.wo1.card), 40);
+  await cardPic(w2.id, 'C590120-s4-wo2-card'); o.s4.wo2 = { card: await pillOf(`[data-test-id="board_card_${w2.id}"]`) }; o.s4.wo2.compare = cmp(o.s1.wo2, o.s4.wo2.card); o.s4.wo2.picture = await clip(p, 'C590120-s4-card-wo2-pill', boxOf(o.s4.wo2.card), 40);
+  // step 5: WO2's number and the padlock right after it
+  o.s5_wo2 = { number: await D(p, `(function () { var c = __D.q('[data-test-id="board_card_${w2.id}"]'); var n = c && c.querySelector('[data-test-id="board_card_number"]'); return n ? { number: __D.desc(n), rowParts: __D.parts(n.parentElement, 8), icons: __D.icons(n.parentElement) } : null; })()`), picture: await cardPic(w2.id, 'C590120-s5-wo2-number') };
+  // the red-count work order on the board (searched by its number; its column is wherever its lead is)
+  if (redWo) { await search(p, redWo.number); await W(2500); await toColumn(p, redWo.lead ?? 'unassigned').catch(() => {}); const where = await D(p, `__D.whereCard(${J(redWo.id)})`);
+    await cardPic(redWo.id, 'C590120-s4-red-count-card'); o.s4.red = { card: await pillOf(`[data-test-id="board_card_${redWo.id}"]`), column: where }; o.s4.red.compare = cmp(o.s1.red, o.s4.red.card); o.s4.red.picture = await clip(p, 'C590120-s4-card-red-count-pill', boxOf(o.s4.red.card), 40);
+    await search(p, c.name); await W(2000); await toColumn(p, A.staff); }
+  // steps 6-7: Compact, Comfortable: same fields and values, text 14 / 12 px, card avatars 24 px, pills 22 px
+  for (const [d, k] of [['compact', 's6'], ['comfortable', 's7']] as const) { o[k] = { menu: await density(p, d), card: await D(p, `__D.card(${J(w1.id)})`), sizes: await sizes(), avatars: await avatarSizes(), wo1PillHeight: ((await pillOf(`[data-test-id="board_card_${w1.id}"]`)) as any)?.height ?? null, picture: await cardPic(w1.id, `C590120-${k}-${d}-card`) };
+    const p2: any = await pillOf(`[data-test-id="board_card_${w2.id}"]`); o[k].wo2PillHeight = p2?.height ?? null; }
+  await density(p, 'regular'); o.backAtRegular = await sizes(); await search(p, '');
 });
 
 await run('C590121', async (o) => { // More actions button and menu
@@ -858,20 +973,37 @@ await run('C590127', async (o) => { // Technician filter after Assigned to me
   if (await chip2.count()) { await chip2.click(); await W(1000); const it2 = p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: A.name }).first(); if (await it2.count()) { await it2.click(); await W(1200); } await p.keyboard.press('Escape').catch(() => {}); }
 });
 
-await run('C590128', async (o) => { // density sizes in Tech View
+await run('C590128', async (o) => { // density sizes in Tech View, and Board card avatars at Comfortable and Compact
+  // 16 Oct 2026: follows the case as rewritten (exact avatar sizes per density - rows / Service Advisor 20-24-32 px, group header 24-28-36 px -
+  // and NEW steps 7-10: Board View, the density menu shows Comfortable in use, Work-order-1's card avatars read at Comfortable, Compact
+  // chosen, read again: 24 px both times). Starting screen as the case: Customer-A's name in Search. Readings keyed by step: s1_s2_compact,
+  // s3_s4_regular, s5_s6_comfortable (menu = the step that chooses, the rest = the step that looks), s7 .. s10 on the board.
   const A = await tech('DC19', 'Zoe Density'), B = await tech('DC19', 'Abe Density'); const c = await cust('ZZAUTOTEST DC19 Density Sizes');
   const w1 = await mkWO(c, { lead: A.staff, line: true, lineTech: B.staff }); o.wo1 = brief(w1);
-  o.prep = await prep([A.staff, B.staff], 'Tech View'); o.find = await rowOn(p, w1.id, c.name, A.staff);
+  o.prep = await prep([A.staff, B.staff], 'Tech View'); await search(p, c.name); o.searchHolds = await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null);
+  o.find = await rowOn(p, w1.id, c.name, A.staff);
   // 15 Oct 2026 (redo): a density change redraws the table, so the row is centred again after each one before it is read
-  const read = async (d: string) => ({ menu: await density(p, d as any), centred: await centre(p, `[data-test-id="tech_view_row_${w1.id}"]`), row: await D(p, `__D.row(${J(w1.id)})`), groupHeader: await D(p, `(function () { var h = __D.groupHdr(${J(A.staff)}); return h ? { h: h.box.h, avatars: h.avatars, name: h.name && h.name.st } : null; })()`),
+  const read = async (d: string, tag: string) => ({ menu: await density(p, d as any), centred: await centre(p, `[data-test-id="tech_view_row_${w1.id}"]`), row: await D(p, `__D.row(${J(w1.id)})`), groupHeader: await D(p, `(function () { var h = __D.groupHdr(${J(A.staff)}); return h ? { h: h.box.h, avatars: h.avatars, name: h.name && h.name.st } : null; })()`),
     assigned: await D(p, `__D.avs(__D.cell(${J(w1.id)}, 'Assigned Techs'))`), advisor: await D(p, `__D.avs(__D.cell(${J(w1.id)}, 'Service Advisor'))`), progress: await D(p, `__D.bars(__D.cell(${J(w1.id)}, 'Progress'))`),
     rowText: await D(p, `__D.parts(__D.rowEl(${J(w1.id)}), 30).filter(function (x) { return x.kind === 'text'; }).map(function (x) { return x.text + ' ' + x.fontSize + '/' + x.fontWeight; })`),
     headLabels: await D(p, `__D.qa('thead th').map(function (th) { var t = (th.innerText || '').replace(/\\s+/g, ' ').trim(); var leaf = Array.prototype.filter.call(th.querySelectorAll('*'), function (e) { return e.childElementCount === 0 && (e.textContent || '').trim() && !e.closest('.q-icon,i,svg'); })[0] || th; return t ? t + ' ' + getComputedStyle(leaf).fontSize : null; }).filter(Boolean)`), // 16 Oct: header labels judged too
-    picture: await pic(p, `C590128-${d}`) });
-  o.s3_compact = await read('compact'); o.s5_regular = await read('regular'); o.s7_comfortable = await read('comfortable');
-  await display(p, 'Board View'); await p.locator('[data-test-id="button_density"]').first().click(); await W(900);
-  o.s8_boardMenu = { menu: await D(p, '__D.menu()'), picture: await pic(p, 'C590128-s8-board-density-menu') };
-  await p.keyboard.press('Escape').catch(() => {}); await density(p, 'regular');
+    picture: await pic(p, `C590128-${tag}-${d}`) });
+  o.s1_s2_compact = await read('compact', 's1-s2'); o.s3_s4_regular = await read('regular', 's3-s4'); o.s5_s6_comfortable = await read('comfortable', 's5-s6');
+  // step 7: Board View (Line technicians on, as the preconditions say), the density button: Comfortable in use here too
+  await display(p, 'Board View'); o.fields = await lineTechsOn(); o.s7_searchAfterSwitch = await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null);
+  o.s7_cardFound = await findCard(p, w1.id, A.staff, c.name);
+  await p.locator('[data-test-id="button_density"]').first().click(); await W(900);
+  o.s7_boardMenu = { menu: await D(p, '__D.menu()'), picture: await pic(p, 'C590128-s7-board-density-menu') };
+  await p.keyboard.press('Escape').catch(() => {}); await away();
+  // step 8: Work-order-1's card avatars at Comfortable
+  const cardAvs = async () => { await p.evaluate(`document.querySelector('[data-test-id="board_card_${w1.id}"]')?.scrollIntoView({ block: 'center', inline: 'center' })`).catch(() => {}); await W(700);
+    return { avatars: await D(p, `__D.avs(__D.q('[data-test-id="board_card_${w1.id}"]')).map(function (v) { return { w: v.box.w, h: v.box.h, text: v.text, img: !!v.img, tid: v.tid }; })`), cardBox: await D(p, `__D.box(__D.q('[data-test-id="board_card_${w1.id}"]'))`) }; };
+  o.s8_comfortable = await cardAvs(); o.s8_comfortable.picture = await clip(p, 'C590128-s8-card-comfortable', o.s8_comfortable.cardBox, 12);
+  // step 9: choose Compact in the density menu
+  o.s9_menu = await density(p, 'compact');
+  // step 10: the same card's avatars at Compact (24 px expected again)
+  o.s10_compact = await cardAvs(); o.s10_compact.picture = await clip(p, 'C590128-s10-card-compact', o.s10_compact.cardBox, 12);
+  await density(p, 'regular'); await search(p, '');
 });
 
 await run('C590129', async (o) => { // Reassign lead technician dialog look

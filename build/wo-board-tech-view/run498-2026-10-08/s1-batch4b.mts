@@ -9,7 +9,7 @@ import path from 'node:path';
 import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { api, candidates, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search } from './wob.mts';
+import { EV, t, shot, display, tab, search, active, activeTab, searchValue, groupCounts, allBoardCols } from './wob.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -70,6 +70,9 @@ const colTops = () => p.evaluate(`[...document.querySelectorAll('[data-test-id^=
   .map(c => { const id = c.getAttribute('data-test-id').replace('board_column_', ''); const n = document.querySelector('[data-test-id="board_column_name_' + id + '"]');
     const b = [c, ...c.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 5 && /(auto|scroll)/.test(getComputedStyle(e).overflowY));
     const first = c.querySelector('[data-test-id="board_card_number"]'); return (n ? n.textContent.trim() : id) + ' top=' + (b ? Math.round(b.scrollTop) : 'no-scroll') + ' firstCard=' + (first ? first.textContent.trim() : '-'); })`) as Promise<string[]>;
+// 16 Oct 2026 (C96916 rewritten): Status chip text and the "Assigned to me" chip's state, read as they show
+const statusChip = () => p.locator('[data-test-id="filter_chip_status"]').first().innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => null);
+const assignedOn = () => p.locator('[data-test-id="filter_chip_assigned_to_me"]').first().evaluate((e) => e.getAttribute('aria-pressed') ?? (/(selected|active|bg-primary|text-primary)/.test(e.className) ? 'true' : 'false')).catch(() => null);
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
@@ -104,20 +107,38 @@ await run('C96916', async () => {
     const cols = [...document.querySelectorAll('[data-test-id^="board_column_name_"]')].filter(e => { const r = e.getBoundingClientRect(); return r.width > 0 && r.left >= 0 && r.right <= innerWidth; }).map(e => e.textContent.trim());
     return { left: h ? Math.round(h.scrollLeft) : null, columnsInView: cols, columnFullyInView: cb.left >= 0 && cb.right <= innerWidth, columnScrollTop: body ? Math.round(body.scrollTop) : null,
       topCard: top ? { number: (top.querySelector('[data-test-id="board_card_number"]') || {}).textContent?.trim(), index: cards.indexOf(top), offsetFromColumnTop: Math.round(tb.top - bb.top), height: Math.round(tb.height), fullyShown: tb.top >= bb.top - 1 && tb.bottom <= bb.bottom + 1 } : null, cardsDrawn: order.length }; })()`);
-  await go(); await tab(p, 'All'); await display(p, 'Board View'); await search(p, n);
+  // 16 Oct 2026: follows the case as rewritten (starts on the "Work Orders" tab with Status "Approved" only, not the All tab; after each
+  // Back - steps 5 and 10 - the tab and the Status chip are read besides the scroll position; steps 4 and 9 read that the work order page
+  // opened; step 6 reads that Tech View holds the same work orders as Board View, per technician). A tab click clears the search, so the
+  // order is: tab, clear filters, Status, then Search. Every step has its own reading and picture (shots named by the case's step number).
+  const filt = async () => ({ display: await active(p), tab: await activeTab(p), statusChip: await statusChip(), search: await searchValue(p), assignedToMe: await assignedOn(), url: p.url().replace(APP, '') });
+  await go(); await tab(p, 'Work Orders'); await display(p, 'Board View');
+  await p.locator('[data-test-id="clear_filters"]').click().catch(() => {}); await p.waitForTimeout(1500);
+  await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(800);
+  await p.locator('.q-menu').getByText('Clear selection').first().click().catch(() => {}); await p.waitForTimeout(600);
+  await p.locator('[data-test-id="filter_option_status_approved"]').click(); await p.waitForTimeout(800);
+  await p.keyboard.press('Escape'); await p.waitForTimeout(2000);
+  if ((await assignedOn()) === 'true') { await p.locator('[data-test-id="filter_chip_assigned_to_me"]').click().catch(() => {}); await p.waitForTimeout(2000); }
+  await search(p, n);
+  R.C96916.start = { ...(await filt()), windowWidth: await p.evaluate('innerWidth'), seededStatuses: [...new Set(have.map((w: any) => w.status))] };
+  // step 6 needs "the same work orders" in both views: every Board View column's count now (the board is scrolled back to the left after)
+  R.C96916.boardCounts = Object.fromEntries((await allBoardCols(p)).filter((c) => c.count > 0).map((c) => [c.name, c.count]));
+  await shot(p, 'C96916-s0-start');
   const B: any = { reached: await (async () => { await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller').scrollLeft = 0`); for (let i = 0; i < 400 && !(await p.locator(`[data-test-id="board_column_${H.id}"]`).count()); i++) { const mv = await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); const b = h.scrollLeft; h.scrollLeft += 600; return h.scrollLeft !== b; })()`); await p.waitForTimeout(300); if (!mv) break; }
     await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); const c = document.querySelector('[data-test-id="board_column_${H.id}"]'); if (h && c) { const r = c.getBoundingClientRect(); if (r.right > innerWidth) h.scrollLeft += r.right - innerWidth + 24; if (r.left < 0) h.scrollLeft += r.left - 24; } })()`); await p.waitForTimeout(1200);
     return (await p.locator(`[data-test-id="board_column_${H.id}"]`).count()) > 0; })() };
   B.boardWiderThanWindow = await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); return h ? h.scrollWidth > h.clientWidth : null; })()`);
+  B.step1 = await boardRead(); await shot(p, 'C96916-s1-column-in-view'); // step 1: Technician-H's column fully in view
   // step 5: scroll down inside H's column until a card well below the first screen is at the top (6 cards' worth)
   await p.evaluate(`(() => { const col = document.querySelector('[data-test-id="board_column_${H.id}"]'); if (!col) return; const body = [col, ...col.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 5 && /(auto|scroll)/.test(getComputedStyle(e).overflowY)); const c1 = col.querySelector('[data-test-id^="board_card_"]'); if (body) body.scrollTop = Math.round((c1 ? c1.getBoundingClientRect().height + 8 : 150) * 6); })()`); await p.waitForTimeout(1500);
-  B.before = await boardRead(); await shot(p, 'C96916-s6-board-before');
+  B.before = await boardRead(); await shot(p, 'C96916-s2-s3-board-before'); // steps 2-3: the card at the top and the columns in view, written down
   const tgt = await p.evaluate(`(() => { const col = document.querySelector('[data-test-id="board_column_${H.id}"]'); if (!col) return null; const cards = [...col.querySelectorAll('[data-test-id^="board_card_"]')].filter(e => /^board_card_[0-9a-f-]{36}$/.test(e.getAttribute('data-test-id')));
     const vis = cards.filter(e => { const r = e.getBoundingClientRect(); return r.top > 240 && r.bottom < innerHeight - 10 && r.left > 0 && r.right < innerWidth; }); const e = vis[1] || vis[0]; if (!e) return null; const n = e.querySelector('[data-test-id="board_card_number"]'); const r = (n || e).getBoundingClientRect(); return { n: n ? n.textContent.trim() : '?', x: r.left + Math.min(r.width / 2, 30), y: r.top + r.height / 2 }; })()`) as any;
   B.clicked = tgt?.n ?? null; if (!tgt) throw new Error('Board View: no card of Technician-H on screen to open');
   await p.mouse.click(tgt.x, tgt.y); await p.waitForTimeout(4000); B.openedUrl = p.url().replace(APP, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/, '<id>');
+  B.step4 = { workOrderPageOpened: /\/workorders\/[0-9a-f]{8}-/.test(p.url()), pageShowsClickedNumber: tgt.n !== '?' && (await p.evaluate('document.body.innerText').catch(() => '') as string).includes(tgt.n) }; await shot(p, 'C96916-s4-wo-page');
   await p.goBack({ waitUntil: 'domcontentloaded' }); for (let i = 0; i < 4; i++) { await p.waitForTimeout(2500); B['after' + (i + 1)] = await boardRead(); }
-  await shot(p, 'C96916-s9-board-after-back');
+  B.step5filters = await filt(); await shot(p, 'C96916-s5-board-after-back'); // step 5: tab "Work Orders" + Status "Approved" must still read, besides the position
   const bl = B.after4 ?? B.after3; B.drift = bl?.topCard && B.before?.topCard ? { sideways: (bl.left ?? 0) - (B.before.left ?? 0), cards: bl.topCard.index - B.before.topCard.index, sameTopCard: bl.topCard.number === B.before.topCard.number, px: (bl.columnScrollTop ?? 0) - (B.before.columnScrollTop ?? 0) } : null;
   R.C96916.board = B;
   // Tech View: scroll down (and right if wider), the row at the top under the headings, then open a row and come Back
@@ -127,17 +148,24 @@ await run('C96916', async () => {
     const top = rows.find(r => r.getBoundingClientRect().bottom > edge + 4); const tr = top ? top.getBoundingClientRect() : null;
     const heads = [...s.querySelectorAll('thead th')].filter(e => { const r = e.getBoundingClientRect(); return r.width > 0 && r.left >= sb.left - 1 && r.right <= sb.right + 1; }).map(e => e.innerText.replace(/arrow_drop_(up|down)/g, '').trim()).filter(Boolean);
     return { scrollTop: Math.round(s.scrollTop), scrollLeft: Math.round(s.scrollLeft), wider: s.scrollWidth > s.clientWidth, columnsInView: heads, topRow: top ? { number: (top.innerText.match(/S\\d+-\\d+/) || [''])[0], index: rows.indexOf(top), offsetFromEdge: Math.round(tr.top - edge), height: Math.round(tr.height), fullyShown: tr.top >= edge - 1 && tr.bottom <= sb.bottom + 1 } : null, rowsDrawn: all.length }; })()`);
-  await display(p, 'Tech View'); await p.waitForTimeout(2000); if (!(await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => ''))) await search(p, n);
+  await display(p, 'Tech View'); await p.waitForTimeout(2000);
+  // step 6: tab + Status chip + search read BEFORE anything is typed again (typing it back would hide a lost search); then the same work orders
+  const s6: any = { ...(await filt()), techCounts: await groupCounts(p) };
+  s6.sameAsBoard = JSON.stringify(Object.entries(s6.techCounts).filter(([, c]) => (c as number) > 0).sort()) === JSON.stringify(Object.entries(R.C96916.boardCounts).sort());
+  await shot(p, 'C96916-s6-tech-view');
+  if (!s6.search) { await search(p, n); s6.searchTypedAgain = await searchValue(p); } // recorded: the reading above stays the verdict
+  R.C96916.step6 = s6;
   await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) { s.scrollTop = 700; s.scrollLeft = s.scrollWidth; } })()`); await p.waitForTimeout(1500);
-  const T: any = { before: await tvRead() }; await shot(p, 'C96916-s12-tech-before');
+  const T: any = { before: await tvRead() }; await shot(p, 'C96916-s7-s8-tech-before'); // steps 7-8: the row at the top and the columns in view
   const rt = await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); const th = s.querySelector('thead'); const edge = (th ? th.getBoundingClientRect().bottom : 200) + 60; const rows = [...s.querySelectorAll('[data-test-id^="tech_view_row_"]')].filter(r => { const b = r.getBoundingClientRect(); return b.top > edge && b.bottom < innerHeight - 10; }); const r = rows[1] || rows[0]; if (!r) return null; const b = r.getBoundingClientRect(); return { n: (r.innerText.match(/S\\d+-\\d+/) || [''])[0], x: b.left + Math.min(b.width * 0.35, 420), y: b.top + b.height / 2 }; })()`) as any; // 16 Oct 2026 (third go): the click on the number cell did not open the work order; click the row body as C368150 does
   T.clicked = rt?.n ?? null; if (!rt) throw new Error('Tech View: no row on screen to open');
   await p.mouse.click(rt.x, rt.y); await p.waitForTimeout(4000); T.openedUrl = p.url().replace(APP, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/, '<id>');
+  T.step9 = { workOrderPageOpened: /\/workorders\/[0-9a-f]{8}-/.test(p.url()), pageShowsClickedNumber: !!rt.n && (await p.evaluate('document.body.innerText').catch(() => '') as string).includes(rt.n) }; await shot(p, 'C96916-s9-wo-page');
   await p.goBack({ waitUntil: 'domcontentloaded' }); for (let i = 0; i < 4; i++) { await p.waitForTimeout(2500); T['after' + (i + 1)] = await tvRead(); }
-  await shot(p, 'C96916-s15-tech-after-back');
+  T.step10filters = await filt(); await shot(p, 'C96916-s10-tech-after-back'); // step 10: tab "Work Orders" + Status "Approved" must still read
   const tl = T.after4 ?? T.after3; T.drift = tl?.topRow && T.before?.topRow ? { sideways: tl.scrollLeft - T.before.scrollLeft, rows: tl.topRow.index - T.before.topRow.index, sameTopRow: tl.topRow.number === T.before.topRow.number, px: tl.scrollTop - T.before.scrollTop } : null;
   R.C96916.tech = T;
-  await search(p, ''); await display(p, 'List');
+  await search(p, ''); await p.locator('[data-test-id="clear_filters"]').click().catch(() => {}); await p.waitForTimeout(1200); await display(p, 'List');
   R.C96916.prefRestored = (await a.put(PREFU, { value: PV0 })).status;
 });
 

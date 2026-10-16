@@ -17,10 +17,10 @@ C-read|s1-batch1.mts|C96909,C154885|-|ensure|
 C-read|s1-batch2.mts|C96921|-|ensure|
 C-read|s1-batch2b.mts|C96913,C154884|-|ensure|
 C-read|s1-batch3.mts|C96911,C96914,C96915,C96920|WOB_PIN_NAMES=Ayesha Khan|ensure|
-C-read|s1-batch4b.mts|C96917|WOB_PIN_NAMES=Ayesha Khan|ensure|
+C-read|s1-batch4b.mts|C96916,C96917|WOB_PIN_NAMES=Ayesha Khan|ensure|C96916 script follows the case as rewritten 16 Oct (moved from block E)
 C-read|s2-batchA.mts|C96924,C96925,C96928,C96931,C96932,C96933,C96935,C96937,C96939,C368128,C368129|WOB_PIN_NAMES=Ayesha Khan,Bilal Muzamil|ensure|
 C-read|s3-batchC.mts|C96950|-|ensure|
-C-read|s4-batchA.mts|C96956,C96957,C96959,C96967,C96969,C368163|WOB_PIN_NAMES=-|ensure|
+C-read|s4-batchA.mts|C96956,C96957,C96959,C96967,C96969,C96973,C368163|WOB_PIN_NAMES=-|ensure|C96973 script follows the corrected Expected (moved from block E)
 C-read|s4-batchC.mts|C154888,C154889,C154890,C368134,C368135,C368136|-|ensure|
 C-read|s5-batchB.mts|C96979,C96980,C96986|-|ensure|
 C-read|s7-batch.mts|C96993,C96994,C96995,C96996,C96997,C96999,C97000,C368141,C368142,C368143|WOB_SCALE=2|ensure|
@@ -53,7 +53,7 @@ C-read|clocks-stg4.mts|-|-|setup|sort-fix5/high1-batch leave clocks running (L03
 D-location|s1-batch4a.mts|C96910,C96912,C96919,C96923|-|ensure|
 D-location|s2-batchB.mts|C96936,C368126|WOB_PIN_NAMES=-|ensure|
 D-location|s2-batchC.mts|C96926,C96927,C96929,C96930,C96934,C96938,C368125,C368127,C368161|WOB_PIN_NAMES=Esther Howard|ensure|
-D-location|s3-batchA.mts|C96940,C96941,C96942,C96944,C96946,C96947,C96948,C96949,C96951,C96952,C96953,C96954,C96955|WOB_PIN_NAMES=-|ensure|
+D-location|s3-batchA.mts|C96940,C96941,C96942,C96944,C96945,C96946,C96947,C96948,C96949,C96951,C96952,C96953,C96954,C96955|WOB_PIN_NAMES=-|ensure|C96945 script follows the case as rewritten 16 Oct (moved from block E)
 D-location|s3-batchB.mts|C96943,C154886,C368132|-|ensure|
 D-location|s4-batchD.mts|C96968,C96971,C96974,C368137,C368138,C368139|-|ensure|
 D-location|s4-batchE.mts|C96960,C96961,C368140|WOB_PIN_NAMES=Esther Howard,Ralph Edwards|ensure|
@@ -68,7 +68,8 @@ D-location|s11-fix3.mts|C97030,C97032,C368157|WOB_SCALE=2|ensure|
 D-location|ui-fallback.mts|C96982,C96984|-|ensure|
 D-location|ps-counts.mts|C368215,C368217,C368241,C368243,C368244|-|ensure|
 D-location|high2-batch.mts|C368193,C368194,C368195,C368198,C368199,C368200,C368201,C368203,C368205,C368206,C368207,C368208,C368209,C368210,C368212,C368214|-|ensure|
-D-location|design-stg5.mts|C590110,C590111,C590113,C590115,C590116,C590118,C590121,C590122,C590123,C590124,C590125,C590126,C590127,C590129,C590130,C598326|QA_DPR=2|ensure|
+D-location|design-stg5.mts|C590110,C590111,C590112,C590113,C590114,C590115,C590116,C590117,C590118,C590119,C590120,C590121,C590122,C590123,C590124,C590125,C590126,C590127,C590128,C590129,C590130,C598326|QA_DPR=2|ensure|C590112/114/117/119/120/128 scripts follow the cases as rewritten 16 Oct (moved from block E); C590120 still Blocked by SV-11405 for the report (Rule 112)
+D-location|kbd-fix4.mts|C97020,C97021,C97022,C368150,C368151,C368152|WOB_LIVE=1|ensure|six keyboard cases, scripts follow PRD v61 as the cases quote it (moved from block E); C97022 steps 4-7 run only if the board offers the Technician filter (SV-11326)
 D-location|notech-stg4.mts|C368130|-|ensure|
 D-location|orgb-fix3.mts|C154650,C368175|-|ensure|
 D-location|c368175-api.mts|C368175|-|ensure|companion read for C368175 step 4 (whole line-technician list)
@@ -76,11 +77,6 @@ D-location|C368156-pins-loc-stg.mts|C368156|-|ensure|
 D-location|s9-fix7.mts|C97003,C368146|-|ensure|
 D-location|role-viewonly-stg4.mts|-|-|setup|s9-fix7 switches Create & Edit on the view-only role; put it back
 E-todo|C97012-two-people.mts|C97012|-|todo|route broken: Analyst 1 now shares the Admin Google sign-in, so its Dev Mode Tech quick-login would end the Admin session; needs a second sign-in that does not use the shared SSO
-E-todo|design-stg5.mts|C590112,C590114,C590117,C590119,C590120,C590128|QA_DPR=2|todo|six design cases rewritten 16 Oct with new readings (Status column width, cell alignment, Tech View pin, column order after pin, avatar sizes at each density); C590120 still Blocked by SV-11405
-E-todo|kbd-fix4.mts|C97020,C97021,C97022,C368150,C368151,C368152|WOB_LIVE=1|todo|six keyboard cases rewritten 16 Oct to PRD v61 (one Tab stop per view, arrows inside); see full-changed-1016.md
-E-todo|s1-batch4b.mts|C96916|WOB_PIN_NAMES=Ayesha Khan|todo|C96916 rewritten 16 Oct: start on the Work Orders tab with Status=Approved and Search; read tab + Status chip after each Back
-E-todo|s3-batchA.mts|C96945|WOB_PIN_NAMES=-|todo|C96945 rewritten 16 Oct: reach the card by Search > Tab > arrow keys (not card.focus()); read menu closed and button hidden after Escape/mouse-off
-E-todo|s4-batchA.mts|C96973|WOB_PIN_NAMES=-|todo|C96973 Expected changed 15 Oct: read that your column is hidden and the empty-state words + Clear all filters button
 E-todo|ga-week.mts|C97026,C97033,C97034|PHASE=day1+c97026|todo-2day|two-day analytics: RUN_GA=day1 runs PHASE=day1+c97026 (all three); the NEXT Pakistan-time day RUN_GA=day2 runs PHASE=day2 ONLY=C97033,C97034 (ga-week.mts header)
 F-draft|C614711-stg.mts|C614711|-|draft|DRAFT, not yet run
 F-draft|C614714-stg.mts|C614714|-|draft|DRAFT, not yet run

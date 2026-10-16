@@ -1,4 +1,6 @@
-/** FIX 4 (2026-10-09): C368151 also looks for the group's arrow button by Tab and tries Space / Left / Right on the row;
+/** 16 Oct 2026: follows the cases as rewritten on 16 Oct to PRD v61 (one Tab stop per view, arrow keys move inside it) - C97021, C368150,
+ * C368151, C368152, C97020 and C97022 are re-written below ("16 Oct 2026: follows the case as rewritten"); the older helpers stay for reference.
+ * FIX 4 (2026-10-09): C368151 also looks for the group's arrow button by Tab and tries Space / Left / Right on the row;
  * C368152 Tabs to the first person in the reassign list and arrows down to the right Ben Bravo (matched by staff record).
  * FIX 3 (2026-10-09): focus on the page body reads as 'body' (C368152 crashed); the arrow walk goes to the leftmost
  * column first (Golf Co sits in Unassigned); the Tech View collapse counts visible rows; the view-only user's menu item
@@ -15,7 +17,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, woPageLead } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, woPageLead, findRow } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
@@ -212,180 +214,334 @@ async function keepShiftsKbd(pg: Page) { await pg.waitForTimeout(900); const d =
   const text = (await d.innerText()).replace(/\s+/g, ' '); const k = await keyUntil(pg, (f) => /keep shifts/i.test(f.text), 8); if (k.found) { await pg.keyboard.press('Enter'); await pg.waitForTimeout(2000); } return { text, keepByKeyboard: k.found }; }
 const colOf = async (pg: Page, woId: string) => pg.evaluate(`(() => { const c = document.querySelector('[data-test-id="board_card_${woId}"]'); const col = c && c.closest('[data-test-id^="board_column_"]'); return col ? col.getAttribute('data-test-id').replace(/^board_column_/, '') : (c ? 'card, no column' : 'card not on the board'); })()`) as Promise<string>;
 
-await run('C97021', async () => { await pins([ANA.staff_id, BEN.staff_id]);
-  // 16 Oct 2026: Tab ONLY now (S11-R3: Tab and Shift+Tab move through cards, rows and headers in on-screen order, with a focus ring)
-  const s = await mkSet('ZZAUTOTEST F3 Keyboard Reach', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: ANA }, { co: 'Charlie Co', lead: BEN }, { co: 'Golf Co', lead: null }]); const o: any = {}; const N = nm(s);
-  await goP(p, 'Board View', s.q); o.boardCards = (await p.evaluate(`[...document.querySelectorAll('[data-test-id^="board_card_"]')].map(e => e.getAttribute('data-test-id')).filter(t => /^board_card_[0-9a-f-]{36}$/.test(t))`) as string[]).map(N);
-  o.boardColumns = (await colsOf(p)).length; await clickSearch(p);
-  const first = await keyUntil(p, (f) => /^board_card_/.test(f.raw), 40, 'Tab', N); o.s5_firstCard = { found: first.found, presses: first.presses, focus: first.f ? { ...first.f, raw: N(first.f.raw) } : null };
-  await shot(p, 'C97021-s5-board-first-card-focus');
-  o.s6_tabStops = (await keyUntil(p, () => false, 25, 'Tab', N)).seen; await shot(p, 'C97021-s6-board-after-tabs');
-  o.s7_shiftTabStops = (await keyUntil(p, () => false, 12, 'Shift+Tab', N)).seen;
-  o.s6_cardsReachedByTab = o.boardCards.filter((c: string) => [first.f?.raw ? N(first.f.raw) : '', ...o.s6_tabStops, ...o.s7_shiftTabStops].some((x: string) => x.startsWith(c)));
-  await display(p, 'Tech View'); await p.waitForTimeout(2000); await expandSmallGroups(p).catch(() => {});
-  o.techRows = (await p.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_row_"]')].map(e => e.getAttribute('data-test-id'))`) as string[]).map(N);
-  await clickSearch(p); const fr = await keyUntil(p, (f) => /^tech_view_(row|group)_/.test(f.raw), 40, 'Tab', N);
-  o.s9_first = { found: fr.found, presses: fr.presses, focus: fr.f ? { ...fr.f, raw: N(fr.f.raw) } : null }; await shot(p, 'C97021-s9-tech-first-focus');
-  o.s10_tabStops = (await keyUntil(p, () => false, 25, 'Tab', N)).seen; await shot(p, 'C97021-s10-tech-after-tabs');
-  o.s10_rowsReachedByTab = o.techRows.filter((r: string) => [fr.f?.raw ? N(fr.f.raw) : '', ...o.s10_tabStops].some((x: string) => x.startsWith(r)));
-  R.C97021 = o; });
+// ───── 16 Oct 2026: follows the cases as rewritten on 16 Oct to PRD v61 (one Tab stop per view, the arrow keys move inside it). The PRD's
+// keyboard rules are taken ONLY from the cases' own quoted source lines (Confluence not fetched): S11-R1 "Each view is a single Tab stop.
+// Tab lands on one work order row (Tech View) or card (Board View), the one last focused, or the first one when none has been (never a
+// group or column header while a work order is shown ...)"; S11-R3 "Inside a view the arrow keys move focus: Up and Down move between rows
+// and group headers in Tech View, and between cards and the column header within a Board View column; Left and Right move between Board
+// View columns. Tab from a focused row, card or header reaches its own controls (more actions, pin, collapse) in order, then leaves the
+// view. Tab never stops on every row."; S11-R9 "Reassigning by keyboard goes through the more-actions menu ... There is no keyboard drag".
+// Rules for every reading below: after EVERY key the identity of document.activeElement is recorded (its own data-test-id, the nearest
+// card / column / row / group it sits in, its words, aria-label, and whether a focus ring is drawn); typing records what the field holds
+// after typing (L0387); Tech View rows lower down are brought on screen with findRow (L0402); every negative reading has a positive
+// control in the same run (Rule 104: e.g. "focus leaves the board" is only read after the same Tab DID land on the board).
+const kz = (pg: Page, N: (r: string) => string = clean) => pg.evaluate(`(() => { const e = document.activeElement; if (!e || e === document.body) return { raw: 'body', where: 'page', text: '', ring: false };
+  const up = (re) => { for (let x = e; x; x = x.parentElement) { const t = x.getAttribute && x.getAttribute('data-test-id'); if (t && re.test(t)) return t; } return null; };
+  const host = e.closest('[data-test-id]'); const cs = getComputedStyle(e);
+  const ring = (cs.outlineStyle !== 'none' && parseFloat(cs.outlineWidth) > 0) || (cs.boxShadow && cs.boxShadow !== 'none') || e.matches(':focus-visible');
+  const card = up(/^board_card_[0-9a-f-]{36}$/), col = up(/^board_column_([0-9a-f-]{36}|unassigned)$/), head = up(/^board_column_header_/), row = up(/^tech_view_row_/), grp = up(/^tech_view_group_([0-9a-f-]{36}|unassigned)$/);
+  const where = e.closest('.q-dialog') ? 'dialog' : e.closest('.q-menu') ? 'menu' : (card || col || head || e.closest('[data-test-id="board_view_scroller"]')) ? 'board' : (row || grp || e.closest('.q-table__middle')) ? 'table' : 'page';
+  return { raw: e.getAttribute('data-test-id') || (host && host.getAttribute('data-test-id')) || e.tagName, own: e.getAttribute('data-test-id'), tag: e.tagName, label: e.getAttribute('aria-label'), title: e.getAttribute('title'),
+    cls: String(e.className || '').slice(0, 80), text: (e.innerText || e.value || '').replace(/\\s+/g, ' ').trim().slice(0, 50), ring: !!ring, where, card, column: col ? col.replace('board_column_', '') : (head ? head.replace('board_column_header_', '') : null), header: head, row, group: grp }; })()`)
+  .then((f: any) => ({ ...f, raw: N(f.raw), card: f.card ? N(f.card) : null, column: f.column ? N(f.column) : null, header: f.header ? N(f.header) : null, row: f.row ? N(f.row) : null, group: f.group ? N(f.group) : null }));
+const kshort = (f: any) => `${f.raw}${f.card && f.card !== f.raw ? ' in ' + f.card : ''}${f.row && f.row !== f.raw ? ' in ' + f.row : ''}${f.ring ? ' (ring)' : ''} [${f.where}]`;
+/** press one key and read what has focus */
+const kp = async (pg: Page, k: string, N: (r: string) => string = clean) => { await pg.keyboard.press(k); await pg.waitForTimeout(250); return { key: k, ...(await kz(pg, N)) }; };
+/** step "Click once in the Search box": the box is clicked, then focus is read, and whether anything in the board/table has focus or a ring */
+async function kSearch(pg: Page, N: (r: string) => string = clean) { await clickSearch(pg); await pg.waitForTimeout(300);
+  return { focus: await kz(pg, N), inSearch: await pg.evaluate(`(() => { const e = document.activeElement; return !!e && (e.getAttribute('data-test-id') === 'page_search_input' || !!e.closest('[data-test-id="page_search_input"]')); })()`),
+    searchHolds: await pg.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null),
+    ringsInViews: await pg.evaluate(`[...document.querySelectorAll('[data-test-id="board_view_scroller"] *, .q-table__middle *')].filter(e => e.matches(':focus, :focus-visible, :focus-within')).length`) }; }
+/** "Press Tab until something on the board / in the table shows a focus ring": every stop on the way is kept */
+async function kTabIn(pg: Page, area: 'board' | 'table', N: (r: string) => string = clean, max = 40) { const stops: string[] = [];
+  for (let i = 0; i < max; i++) { const f = await kp(pg, 'Tab', N); stops.push(kshort(f)); if (f.where === area) return { landed: f, presses: i + 1, stops, headerOnTheWay: stops.some((x) => /column_header|tech_view_group_/.test(x)) }; }
+  return { landed: null, presses: max, stops, headerOnTheWay: stops.some((x) => /column_header|tech_view_group_/.test(x)) }; }
+const same = (f: any, g: any) => f.raw === g.raw && f.card === g.card && f.row === g.row && f.group === g.group;
+/** "Use the arrow keys to move the focus ring to ...": from where focus is NOW, arrows only; each key recorded. Board: down/up the column,
+ *  then right (and back left) column by column. Table: down, then up. Stops when focus would leave the view. */
+async function kArrowsTo(pg: Page, ok: (f: any) => boolean, mode: 'board' | 'table', N: (r: string) => string = clean) {
+  const keys: string[] = []; let f = await kz(pg, N); if (ok(f)) return { reached: true, keys, focus: f };
+  const press = async (k: string) => { const g = await kp(pg, k, N); keys.push(`${k} -> ${kshort(g)}`); return g; };
+  const scan = async (dirs: string[], n = 30) => { for (const k of dirs) for (let i = 0; i < n; i++) { const g = await press(k); if (ok(g)) { f = g; return true; } if (same(g, f) || g.where !== mode) break; f = g; } return false; };
+  if (mode === 'table') { const r = await scan(['ArrowDown', 'ArrowUp']); return { reached: r, keys, focus: f }; }
+  if (await scan(['ArrowDown', 'ArrowUp'], 12)) return { reached: true, keys, focus: f };
+  for (const dir of ['ArrowRight', 'ArrowLeft']) for (let c = 0; c < 16; c++) { const g = await press(dir); if (ok(g)) return { reached: true, keys, focus: g }; if (same(g, f) || g.where !== 'board') break; f = g; if (await scan(['ArrowDown', 'ArrowUp'], 12)) return { reached: true, keys, focus: f }; }
+  return { reached: false, keys, focus: f }; }
+/** a pinned / filtered start: pins as asked, no saved collapsed groups, no filters (put back from ORIGINAL at the end of the file) */
+const kPrefs = async (ids: string[]) => { const v: any = {}; for (const [k, x] of Object.entries(await prefGet())) if (!/collaps/i.test(k)) v[k] = x; v.pinnedTechnicianIds = ids; v.filters = {}; return (await a.put(PREF, { value: v })).status; };
+const kAssigned = (pg: Page) => pg.locator('[data-test-id="filter_chip_assigned_to_me"]').first().evaluate((e) => e.getAttribute('aria-pressed') ?? (/(selected|active|bg-primary|text-primary)/.test(e.className) ? 'true' : 'false')).catch(() => null);
+/** the starting screen of every keyboard case: All tab, the display, the customer in Search, Assigned to me off; read back */
+async function kStart(pg: Page, d: string, q: string) { await goP(pg, d, q); if ((await kAssigned(pg)) === 'true') { await pg.locator('[data-test-id="filter_chip_assigned_to_me"]').click(); await pg.waitForTimeout(2000); }
+  return { tab: await pg.evaluate(`(document.querySelector('.q-tab--active, [role=tab][aria-selected=true]') || {}).innerText?.trim() || null`), search: await pg.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null), assignedToMe: await kAssigned(pg), width: await pg.evaluate('innerWidth') }; }
+const kMore = (pg: Page, woId: string) => pg.locator(`[data-test-id="board_card_${woId}"] [data-test-id="button_work_order_more_actions"]`).first().evaluate((e) => { const s = getComputedStyle(e); const r = e.getBoundingClientRect(); return s.visibility !== 'hidden' && s.display !== 'none' && +s.opacity > 0.05 && r.width > 0; }).catch(() => false);
+/** with the menu open: arrow down to the item whose words match, then Enter; returns the stops and what the item said */
+async function kMenuChoose(pg: Page, re: RegExp) { const k = await keyUntil(pg, (f) => re.test(f.text), 10, 'ArrowDown'); const focus = await fx(pg); if (k.found) { await pg.keyboard.press('Enter'); await pg.waitForTimeout(1500); } return { found: k.found, stops: k.seen, itemFocused: focus.text }; }
+/** in the open Reassign dialog: to the search box, type, read what the box holds, arrows (then Tab) to the person, Enter, Confirm, Keep shifts */
+async function kDialogPick(pg: Page, typed: string, staffId: string, who: string) { const o: any = {};
+  o.focusOnOpen = clean((await fx(pg)).raw); o.focusInSearch = await pg.evaluate(`!!(document.activeElement && document.activeElement.tagName === 'INPUT' && document.activeElement.closest('.q-dialog'))`);
+  if (!o.focusInSearch) { const k = await keyUntil(pg, (f) => /INPUT/.test(f.raw) || /search/i.test(f.raw), 6); o.tabToSearch = k.seen; }
+  await pg.keyboard.type(typed, { delay: 60 }); await pg.waitForTimeout(1800);
+  o.boxHolds = await pg.locator('.q-dialog input').first().inputValue().catch(() => null); // L0387: what the field holds after typing
+  o.rows = await pg.evaluate(`[...document.querySelectorAll('.q-dialog [data-test-id^="option_lead_technician_"]')].map(e => e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 40))`);
+  o.rowIsTarget = (await pg.evaluate(`[...document.querySelectorAll('.q-dialog [data-test-id^="option_lead_technician_"]')].map(e => e.getAttribute('data-test-id'))`) as string[]).map((x) => x === `option_lead_technician_${staffId}` ? who : clean(x));
+  const want = `option_lead_technician_${staffId}`;
+  let k = await keyUntil(pg, (f) => f.raw === want, 8, 'ArrowDown'); o.route = 'arrow keys from the search box';
+  if (!k.found) { const t1 = await keyUntil(pg, (f) => /^option_lead_technician_/.test(f.raw), 4, 'Tab'); k = await keyUntil(pg, (f) => f.raw === want, 8, 'ArrowDown'); o.route = `Tab to the list (${t1.seen.join(' > ')}), then arrow keys`; if (!k.found && t1.found && t1.f?.raw === want) k = t1; }
+  o.reachedPerson = k.found; o.stops = k.seen;
+  if (k.found) { await pg.keyboard.press('Enter'); await pg.waitForTimeout(1200);
+    if (await pg.locator('.q-dialog').filter({ hasNotText: /scheduled shifts/i }).count()) { const cf = await keyUntil(pg, (f) => /confirm/i.test(f.raw), 8); o.confirm = cf.found ? 'Confirm reached by Tab, Enter pressed' : 'no Confirm button reached'; if (cf.found) { await pg.keyboard.press('Enter'); await pg.waitForTimeout(1200); } }
+    o.shifts = await keepShiftsKbd(pg); await pg.waitForTimeout(600); o.messages = await toastsOn(pg); }
+  o.dialogsLeft = await pg.locator('.q-dialog').count(); return o; }
+const lineTech = async (wo: string, staffId: string) => { const l = (await linesRaw(wo))[0]; return l ? say(await a.put(`/api/work-orders/lines/${l.line_id}/technicians`, { staffIds: [staffId] })) : 'no line'; };
+const techChip = (pg: Page) => pg.locator('[data-test-id^="filter_chip_"]').filter({ hasText: /Technician/ }).first();
 
-await run('C368150', async () => { await pins([ANA.staff_id, BEN.staff_id]);
-  // 16 Oct 2026: steps as rewritten — Enter opens; Alt+Left back; Space/arrows/Shift+arrows move nothing and no "Lead technician updated"
-  // message; Enter on the Tech View row; NEW step 13: one plain mouse click on the row opens the work order.
-  const s = await mkSet('ZZAUTOTEST F3 Keyboard Enter Opens', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: ANA }, { co: 'Charlie Co', lead: BEN }, { co: 'Golf Co', lead: null }]); const id = s.w['Alpha Co'].id; const o: any = {};
+await run('C97021', async () => {
+  // 16 Oct 2026: follows the case as rewritten (PRD v61: one Tab stop per view, then Right/Down arrows; Tab from a card goes to its own
+  // More actions and Tab again leaves the board; in Tech View Tab lands on the first ROW and Down reaches the next group header).
+  // Work-order-1..4 = Alpha Co, Bravo Co (Technician-A = Ana), Charlie Co (Technician-B = Ben), Golf Co (no lead). Pins: A then B.
+  const s = await mkSet('ZZAUTOTEST F3 Keyboard Reach', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: ANA }, { co: 'Charlie Co', lead: BEN }, { co: 'Golf Co', lead: null }]); const N = nm(s);
+  const o: any = (R.C97021 = { names: 'Work-order-1 Alpha Co, Work-order-2 Bravo Co, Work-order-3 Charlie Co, Work-order-4 Golf Co; Technician-A Ana, Technician-B Ben', prefs: await kPrefs([ANA.staff_id, BEN.staff_id]) });
+  o.start = await kStart(p, 'Board View', s.q); o.start.columns = (await boardCols(p)).slice(0, 4).map((c) => `${N(c.id)}(${c.count}) [${c.cards.map(nameOf(s)).join(', ')}]`);
+  o.s1 = await kSearch(p, N); await shot(p, 'C97021-s1-search');
+  o.s2 = await kTabIn(p, 'board', N); o.s2.isWorkOrder4Card = o.s2.landed?.card === 'board_card_Golf Co' && o.s2.landed?.column === 'unassigned'; await p.mouse.move(1, 1); await shot(p, 'C97021-s2-first-tab-stop');
+  o.s3 = await kp(p, 'ArrowRight', N); o.s3.inTechnicianAColumn = o.s3.column === 'Ana'; await shot(p, 'C97021-s3-arrow-right');
+  o.s4 = await kp(p, 'ArrowDown', N); o.s4.cardOfTechnicianA = o.s4.column === 'Ana' && !!o.s4.card && o.s4.card !== o.s3.card; await shot(p, 'C97021-s4-arrow-down');
+  o.s5 = await kp(p, 'Tab', N); o.s5.ownMoreActions = /more_actions/.test(o.s5.raw) && o.s5.card === o.s4.card; await shot(p, 'C97021-s5-tab-more-actions');
+  o.s6 = await kp(p, 'Tab', N); o.s6.leftBoard = o.s6.where !== 'board'; o.s6.positiveControl = 'step 2 shows Tab landing ON the board in this run'; await shot(p, 'C97021-s6-tab-leaves');
+  await display(p, 'Tech View'); await p.waitForTimeout(2000);
+  o.s7 = { groupsInOrder: (await groups(p)).slice(0, 4).map((g) => ({ group: N(g.id), name: g.name, count: g.count, collapsed: g.collapsed, rows: g.rows.map(nameOf(s)) })) }; await shot(p, 'C97021-s7-tech-view');
+  o.s8 = await kSearch(p, N); await shot(p, 'C97021-s8-search');
+  o.s9 = await kTabIn(p, 'table', N); o.s9.isWorkOrder4Row = o.s9.landed?.row === 'tech_view_row_Golf Co' && !/tech_view_group_/.test(o.s9.landed?.raw ?? ''); await p.mouse.move(1, 1); await shot(p, 'C97021-s9-first-tab-stop');
+  o.s10 = await kp(p, 'ArrowDown', N); o.s10.isTechnicianAHeader = o.s10.group === 'tech_view_group_Ana' && !o.s10.row; await shot(p, 'C97021-s10-arrow-down');
+});
+
+await run('C368150', async () => {
+  // 16 Oct 2026: follows the case as rewritten (Space and Shift+each arrow are pressed BEFORE Enter - plain arrows now move focus by design,
+  // so they are not "drag" keys any more; Back is the browser Back button, page.goBack()). Work-order-1 = Alpha Co (Technician-A = Ana).
+  const s = await mkSet('ZZAUTOTEST F3 Keyboard Enter Opens', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: ANA }, { co: 'Charlie Co', lead: BEN }, { co: 'Golf Co', lead: null }]); const id = s.w['Alpha Co'].id; const N = nm(s);
+  const o: any = (R.C368150 = { prefs: await kPrefs([ANA.staff_id, BEN.staff_id]) });
   const isWo = () => /\/workorders\/[0-9a-f-]{36}/.test(p.url()); const u = () => clean(p.url().replace(APP, ''));
-  await goP(p, 'Board View', s.q); o.s5 = await cardFocus(p, `board_card_${id}`); await shot(p, 'C368150-s5-card-focus');
-  await p.keyboard.press('Enter'); await p.waitForTimeout(3500); o.s6_enter = { url: u(), openedAlpha: p.url().includes(id) }; await shot(p, 'C368150-s6-after-enter');
-  await p.keyboard.press('Alt+ArrowLeft'); await p.waitForTimeout(4000); o.s7_back = u();
-  if (isWo()) { await p.goBack().catch(() => {}); await p.waitForTimeout(3500); o.s7_backNeededGoBack = true; }
-  if (!/workorders/.test(p.url()) || !(await p.locator(`[data-test-id="board_card_${id}"]`).count())) await goP(p, 'Board View', s.q);
-  o.s8 = await cardFocus(p, `board_card_${id}`); const before = await colCards(p, ANA.staff_id, s); o.s9_keys = {};
-  for (const k of ['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Shift+ArrowUp', 'Shift+ArrowDown', 'Shift+ArrowLeft', 'Shift+ArrowRight']) {
-    await p.keyboard.press(k); await p.waitForTimeout(900); const tt = await toastsOn(p);
-    o.s9_keys[k] = { page: isWo() ? 'work order opened' : 'board', alphaColumn: N2(await colOf(p, id)), focus: clean((await fx(p)).raw), message: tt.filter((x) => /lead technician/i.test(x)) };
-    if (isWo()) { await p.goBack(); await p.waitForTimeout(3500); }
-    if (!/^board_card_/.test((await fx(p)).raw) || (await fx(p)).raw !== `board_card_${id}`) { await cardFocus(p, `board_card_${id}`); } }
-  o.s9_after = { anaColumn: await colCards(p, ANA.staff_id, s), before, lead: await leadOf(s, 'Alpha Co'), messagesNow: await toastsOn(p) }; await shot(p, 'C368150-s9-after-keys');
-  await display(p, 'Tech View'); await p.waitForTimeout(2000); await expandSmallGroups(p).catch(() => {}); await clickSearch(p);
-  const tr = await keyUntil(p, (f) => f.raw === `tech_view_row_${id}`, 40); o.s11_reachedBy = tr.found ? 'Tab' : ((await (async () => { await clickSearch(p); return arrowToRow(p, `tech_view_row_${id}`); })()) ? 'Tab to the table, then arrow keys' : 'not reached'); o.s11_tabStops = tr.seen;
-  if (o.s11_reachedBy !== 'not reached') { await p.keyboard.press('Enter'); await p.waitForTimeout(3500); o.s11_enter = { url: u(), openedAlpha: p.url().includes(id) }; await shot(p, 'C368150-s11-after-enter'); }
-  await p.keyboard.press('Alt+ArrowLeft'); await p.waitForTimeout(4000); o.s12_back = u(); if (isWo()) { await p.goBack().catch(() => {}); await p.waitForTimeout(3500); }
-  if (!(await p.locator(`[data-test-id="tech_view_row_${id}"]`).count())) { await goP(p, 'Tech View', s.q); }
-  const rb = await p.locator(`[data-test-id="tech_view_row_${id}"]`).first().boundingBox();
-  if (rb) { const x = rb.x + Math.min(rb.width * 0.35, 420), y = rb.y + rb.height / 2; await p.mouse.move(x, y); await p.mouse.down(); await p.mouse.up(); await p.waitForTimeout(3500); o.s13_click = { at: [Math.round(x), Math.round(y)], url: u(), openedAlpha: p.url().includes(id) }; await shot(p, 'C368150-s13-after-click'); } else o.s13_click = 'row not on screen';
-  R.C368150 = o; function N2(x: string) { return x === ANA.staff_id ? 'Technician-A' : x === BEN.staff_id ? 'Technician-B' : x; } });
+  const place = async () => { const c = await colCards(p, ANA.staff_id, s); return { column: (await colOf(p, id)).replace(ANA.staff_id, 'Technician-A').replace(BEN.staff_id, 'Technician-B'), indexInA: c.indexOf('Alpha Co'), technicianAColumn: c }; };
+  o.start = await kStart(p, 'Board View', s.q);
+  o.s1 = await kSearch(p, N); await shot(p, 'C368150-s1-search');
+  o.s2 = await kTabIn(p, 'board', N); await p.mouse.move(1, 1); await shot(p, 'C368150-s2-tab-card');
+  o.s3 = await kArrowsTo(p, (f) => f.card === 'board_card_Alpha Co' && f.raw === 'board_card_Alpha Co', 'board', N); await shot(p, 'C368150-s3-arrows-wo1');
+  o.s4 = { before: await place(), keys: {} as any };
+  for (const k of ['Space', 'Shift+ArrowUp', 'Shift+ArrowDown', 'Shift+ArrowLeft', 'Shift+ArrowRight']) { const f = await kp(p, k, N); await p.waitForTimeout(700);
+    o.s4.keys[k] = { focus: kshort(f), page: isWo() ? `work order opened ${u()}` : 'board', ...(isWo() ? {} : await place()), updatedMessage: (await toastsOn(p)).filter((x) => /lead technician/i.test(x)) };
+    if (isWo()) { await p.goBack(); await p.waitForTimeout(3500); o.s4.keys[k].wentBack = true; } }
+  o.s4.after = { ...(await place()), lead: await leadOf(s, 'Alpha Co'), messagesNow: await toastsOn(p) }; await shot(p, 'C368150-s4-after-keys');
+  o.s5 = { focusBeforeEnter: kshort(await kz(p, N)) }; await p.keyboard.press('Enter'); await p.waitForTimeout(3500); o.s5.url = u(); o.s5.openedWorkOrder1 = p.url().includes(id); await shot(p, 'C368150-s5-after-enter');
+  await p.goBack({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(4000);
+  o.s6 = { url: u(), display: await p.evaluate(`(['List','Tech View','Board View'].find(l => { const e = [...document.querySelectorAll('[aria-label="' + l + '"]')].find(x => x.getBoundingClientRect().width > 0); const b = e && (e.closest('button,.q-btn') || e); return b && b.getAttribute('aria-pressed') === 'true'; }) || null)`), cardOnBoard: await p.locator(`[data-test-id="board_card_${id}"]`).count(), boardCounts: Object.fromEntries((await boardCols(p)).filter((c) => c.count > 0).map((c) => [N(c.id), c.count])) };
+  await shot(p, 'C368150-s6-after-back');
+  await display(p, 'Tech View'); await p.waitForTimeout(2000);
+  const gs = await groups(p); o.s7 = { groupCounts: Object.fromEntries(gs.filter((g) => g.count > 0).map((g) => [N(g.id), g.count])) }; o.s7.sameAsBoard = JSON.stringify(Object.entries(o.s7.groupCounts).sort()) === JSON.stringify(Object.entries(o.s6.boardCounts).sort()); await shot(p, 'C368150-s7-tech-view');
+  o.s8 = await kSearch(p, N); await shot(p, 'C368150-s8-search');
+  o.s9 = await kTabIn(p, 'table', N); o.s9.onARow = !!o.s9.landed?.row && !/tech_view_group_/.test(o.s9.landed?.raw ?? ''); await p.mouse.move(1, 1); await shot(p, 'C368150-s9-tab-row');
+  o.s10 = await kArrowsTo(p, (f) => f.row === 'tech_view_row_Alpha Co', 'table', N); await shot(p, 'C368150-s10-arrows-row');
+  o.s11 = { focusBeforeEnter: kshort(await kz(p, N)) }; await p.keyboard.press('Enter'); await p.waitForTimeout(3500); o.s11.url = u(); o.s11.openedWorkOrder1 = p.url().includes(id); await shot(p, 'C368150-s11-after-enter');
+  await p.goBack({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(4000);
+  o.s12 = { url: u(), display: await p.evaluate(`(['List','Tech View','Board View'].find(l => { const e = [...document.querySelectorAll('[aria-label="' + l + '"]')].find(x => x.getBoundingClientRect().width > 0); const b = e && (e.closest('button,.q-btn') || e); return b && b.getAttribute('aria-pressed') === 'true'; }) || null)`) }; await shot(p, 'C368150-s12-after-back');
+  o.s13 = { group: await findRow(p, id, ANA.staff_id) }; const rb = await p.locator(`[data-test-id="tech_view_row_${id}"]`).first().boundingBox();
+  if (rb) { const x = rb.x + Math.min(rb.width * 0.35, 420), y = rb.y + rb.height / 2; await p.mouse.move(x, y); await p.mouse.down(); await p.mouse.up(); await p.waitForTimeout(3500); Object.assign(o.s13, { at: [Math.round(x), Math.round(y)], url: u(), openedWorkOrder1: p.url().includes(id) }); await shot(p, 'C368150-s13-after-click'); } else o.s13.click = 'row not on screen';
+});
 
-await run('C368151', async () => { await pins([BEN.staff_id]);
-  // 16 Oct 2026: steps 5-18 as rewritten (Enter OR Space opens the card menu; Space unpins; Space expands; avatar name on focus; Column
-  // Selection by keyboard with focus returned; the Status chip's x by Enter; the display switcher by Enter). Technician-A NOT pinned at start.
-  const s = await mkSet('ZZAUTOTEST F3 Keyboard Controls', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: ANA }, { co: 'Charlie Co', lead: BEN }, { co: 'Golf Co', lead: null }]); const id = s.w['Alpha Co'].id; const o: any = {};
+await run('C368151', async () => {
+  // 16 Oct 2026: follows the case as rewritten (headers are reached with the arrow keys - ArrowUp from a card / Shift+Tab back to the row
+  // then ArrowUp to the group - and then Tab to the pin / collapse arrow / avatar; Column Selection and Status by keyboard). Precondition:
+  // ONE Approved work order (Alpha Co) led by Technician-A (Ana), A NOT pinned, A on one of its lines so Assigned Techs shows an avatar;
+  // in Tech View A's group expanded and Assigned Techs on (set by mouse, which the case allows for set-up).
+  const s = await mkSet('ZZAUTOTEST F3 Keyboard Controls One', [{ co: 'Alpha Co', lead: ANA }]); const id = s.w['Alpha Co'].id; const N = nm(s);
+  const o: any = (R.C368151 = { prefs: await kPrefs([BEN.staff_id]), lineTechnician: await lineTech(id, ANA.staff_id) });
   const isPinned = async () => ((await prefFor()).pinnedTechnicianIds ?? []).includes(ANA.staff_id);
-  o.pinnedAtStart = await isPinned();
-  await goP(p, 'Board View', s.q); await toColumn(p, ANA.staff_id).catch(() => {});
-  o.s5 = { ...(await cardFocus(p, `board_card_${id}`)), focus: await fx(p), moreVisibleOnFocus: await p.locator(`[data-test-id="board_card_${id}"] [data-test-id="button_work_order_more_actions"]`).isVisible().catch(() => false) };
-  await p.mouse.move(1, 1); await shot(p, 'C368151-s5-card-focus');
-  const tm = await keyUntil(p, (f) => /more_actions/.test(f.raw), 6); o.s6 = { tabStops: tm.seen, onMore: tm.found };
-  await p.keyboard.press('Enter'); await p.waitForTimeout(1000); o.s6.menuOpen = await menuOpen(p); o.s6.items = await menuItems(p); await shot(p, 'C368151-s6-menu-enter');
-  await p.keyboard.press('Escape'); await p.waitForTimeout(800); o.s7 = { menuOpen: await menuOpen(p), focus: clean((await fx(p)).raw), focusFull: await fx(p) };
-  await p.keyboard.press('Space'); await p.waitForTimeout(1000); o.s8 = { menuOpen: await menuOpen(p), items: await menuItems(p) }; await shot(p, 'C368151-s8-menu-space');
-  await p.keyboard.press('Escape'); await p.waitForTimeout(800); o.s9 = { menuOpen: await menuOpen(p), focus: clean((await fx(p)).raw) };
-  const pinSel = (f: any) => /pin/i.test(f.raw + ' ' + (f.label ?? '')) && f.raw.includes(ANA.staff_id.slice(0, 8)) || new RegExp('board_column_header_' + ANA.staff_id).test(f.raw) && /pin/i.test(f.label ?? f.cls ?? '');
-  let tp = await keyUntil(p, pinSel, 40); o.s10_reach = { by: 'Tab', stops: tp.seen.slice(-12) };
-  if (!tp.found) { tp = await keyUntil(p, pinSel, 40, 'Shift+Tab'); o.s10_reach = { by: 'Shift+Tab', stops: tp.seen.slice(-12) }; }
-  if (!tp.found) { await cardFocus(p, `board_card_${id}`); await p.keyboard.press('ArrowUp'); await p.waitForTimeout(300); tp = await keyUntil(p, pinSel, 6); o.s10_reach = { by: 'arrow up to the column header, then Tab (Tab alone did not reach it)', stops: tp.seen }; }
-  o.s10_found = tp.found; o.s10_focus = tp.f ?? null;
-  if (tp.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(1800); o.s10_afterEnter = { pinnedSaved: await isPinned(), button: await fx(p) }; await shot(p, 'C368151-s10-after-enter-pin');
-    if (!/pin/i.test((await fx(p)).raw + ((await fx(p)).label ?? ''))) { o.s11_focusLost = clean((await fx(p)).raw); }
-    await p.keyboard.press('Space'); await p.waitForTimeout(1800); o.s11_afterSpace = { pinnedSaved: await isPinned(), button: await fx(p) }; await shot(p, 'C368151-s11-after-space'); }
+  const pinBtn = () => p.locator(`[data-test-id="button_board_pin_${ANA.staff_id}"]`).first().getAttribute('aria-pressed').catch(() => null);
+  o.pinnedAtStart = await isPinned(); o.start = await kStart(p, 'Board View', s.q); await toColumn(p, ANA.staff_id).catch(() => {});
+  // step 1: the card by keyboard (Search > Tab > arrows), ring, and More actions shows without hovering
+  await clickSearch(p); o.s1 = { tab: await kTabIn(p, 'board', N) }; o.s1.arrows = await kArrowsTo(p, (f) => f.raw === 'board_card_Alpha Co', 'board', N);
+  await p.mouse.move(1, 1); await p.waitForTimeout(600); o.s1.focus = await kz(p, N); o.s1.moreActionsWithoutHover = await kMore(p, id); await shot(p, 'C368151-s1-card-focus');
+  // step 2: Tab to More actions; Enter, Escape; Space, Escape - focus read after each
+  o.s2 = { tab: await kp(p, 'Tab', N) }; await p.keyboard.press('Enter'); await p.waitForTimeout(1000); o.s2.enter = { menusOpen: await menuOpen(p), items: await menuItems(p) }; await shot(p, 'C368151-s2-menu-enter');
+  o.s2.escape1 = { ...(await kp(p, 'Escape', N)), menusOpen: await menuOpen(p) };
+  await p.keyboard.press('Space'); await p.waitForTimeout(1000); o.s2.space = { menusOpen: await menuOpen(p), items: await menuItems(p) }; await shot(p, 'C368151-s2-menu-space');
+  o.s2.escape2 = { ...(await kp(p, 'Escape', N)), menusOpen: await menuOpen(p) }; await shot(p, 'C368151-s2-after-escape');
+  // step 3: arrow keys to A's column header (Shift+Tab back to the card first, then ArrowUp), Tab to its pin, Enter
+  o.s3 = { back: kshort(await kp(p, 'Shift+Tab', N)) }; o.s3.toHeader = await kArrowsTo(p, (f) => /^board_column_header_Ana$/.test(f.raw) || (f.header === 'board_column_header_Ana' && !/pin/i.test(f.raw)), 'board', N);
+  const tp = await keyUntil(p, (f) => f.raw === `button_board_pin_${ANA.staff_id}`, 6, 'Tab', N); o.s3.tabToPin = { found: tp.found, stops: tp.seen };
+  if (tp.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(1800); o.s3.afterEnter = { pinnedSaved: await isPinned(), pinPressed: await pinBtn(), focus: kshort(await kz(p, N)) }; }
+  await shot(p, 'C368151-s3-after-enter-pin');
+  // step 4: focus kept on the pin, Space
+  o.s4 = { focusBefore: kshort(await kz(p, N)) }; await p.keyboard.press('Space'); await p.waitForTimeout(1800); o.s4.pinnedSaved = await isPinned(); o.s4.pinPressed = await pinBtn(); o.s4.focusAfter = kshort(await kz(p, N)); await shot(p, 'C368151-s4-after-space');
   if (await isPinned()) { await pins([BEN.staff_id]); o.unpinnedByScript = true; }
-  await display(p, 'Tech View'); await p.waitForTimeout(2000); await expandSmallGroups(p).catch(() => {}); await clickSearch(p);
+  // step 5: Tech View (mouse), set-up by mouse: Assigned Techs on and A's group expanded; then keyboard to A's group header, Tab to its arrow, Enter
+  await display(p, 'Tech View'); await p.waitForTimeout(2500);
+  await p.locator('[data-test-id="button_tech_view_column_selection"]').click().catch(() => {}); await p.waitForTimeout(1200);
+  { const at = p.locator('.q-menu [role=checkbox], .q-menu .q-item').filter({ hasText: /Assigned Techs/i }).first(); o.assignedTechsWasOn = await at.getAttribute('aria-checked').catch(() => null); if (o.assignedTechsWasOn === 'false') { await at.click(); await p.waitForTimeout(1500); } }
+  await p.keyboard.press('Escape'); await p.waitForTimeout(800);
+  o.rowGroup = await findRow(p, id, ANA.staff_id); // L0402: A's group may sit lower down
   const collapsed = () => p.evaluate(`(document.querySelector('[data-test-id="tech_view_group_${ANA.staff_id}"]') || { getAttribute: () => 'no group' }).getAttribute('data-collapsed')`) as Promise<string | null>;
-  const vis = () => p.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_row_"]')].filter(e => e.getBoundingClientRect().height > 0).length`) as Promise<number>;
-  const tg = await keyUntil(p, (f) => f.raw === `button_tech_view_group_toggle_${ANA.staff_id}`, 40); o.s13_reach = { found: tg.found, stops: tg.seen.slice(-10) };
-  if (tg.found) { const r0 = await vis(), c0 = await collapsed(); await p.keyboard.press('Enter'); await p.waitForTimeout(1600); o.s13 = { before: { rows: r0, collapsed: c0 }, after: { rows: await vis(), collapsed: await collapsed() }, focus: clean((await fx(p)).raw) }; await shot(p, 'C368151-s13-after-enter');
-    if ((await fx(p)).raw !== `button_tech_view_group_toggle_${ANA.staff_id}`) { const back = await keyUntil(p, (f) => f.raw === `button_tech_view_group_toggle_${ANA.staff_id}`, 6, 'Shift+Tab'); o.s14_refocus = back.found; }
-    await p.keyboard.press('Space'); await p.waitForTimeout(1600); o.s14 = { rows: await vis(), collapsed: await collapsed() }; await shot(p, 'C368151-s14-after-space'); }
-  const inAlpha = `(function () { var e = document.activeElement; return !!(e && e.closest('[data-test-id="tech_view_row_${id}"]')); })()`;
-  const av = await keyUntil(p, async (f) => (await p.evaluate(inAlpha)) && /avatar/i.test(f.raw + ' ' + f.cls + ' ' + (f.label ?? '')), 30); o.s15_reach = { found: av.found, stops: av.seen.slice(-14) };
-  await p.mouse.move(1, 1); await p.waitForTimeout(1200); o.s15_tooltips = await p.evaluate(`[...document.querySelectorAll('.q-tooltip,[role=tooltip]')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.trim())`); o.s15_focus = await fx(p); await shot(p, 'C368151-s15-avatar-focus');
-  const cs = await keyUntil(p, (f) => f.raw === 'button_tech_view_column_selection', 40, 'Shift+Tab'); o.s16_reach = { found: cs.found, stops: cs.seen.slice(-8) };
-  if (cs.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(1200); const m1 = await menuOpen(p); await p.keyboard.press('Tab'); await p.waitForTimeout(400); const fIn = await fx(p);
-    const inMenu = await p.evaluate(`!!(document.activeElement && document.activeElement.closest('.q-menu'))`); await shot(p, 'C368151-s16-column-selection-open');
-    await p.keyboard.press('Escape'); await p.waitForTimeout(900); o.s16 = { menuOpenAfterEnter: m1, afterTab: { ...fIn, raw: clean(fIn.raw), insideMenu: inMenu }, menuOpenAfterEscape: await menuOpen(p), focusAfterEscape: clean((await fx(p)).raw) }; await shot(p, 'C368151-s16-after-escape'); }
-  await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /^\s*Approved\s*$/i }).first().click().catch(() => {}); await p.waitForTimeout(1500); await p.keyboard.press('Escape'); await p.waitForTimeout(1200);
-  o.s17_chipBefore = await p.locator('[data-test-id="filter_chip_status"]').first().innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => null);
-  const xs = await keyUntil(p, async (f) => p.evaluate(`(function () { var e = document.activeElement; var c = e && e.closest('[data-test-id="filter_chip_status"]'); return !!c && e !== c && (/remove|clear|cancel|close/i.test((e.getAttribute('aria-label') || '') + ' ' + e.className + ' ' + (e.textContent || ''))); })()`) as Promise<boolean>, 30); o.s17_reach = { found: xs.found, stops: xs.seen.slice(-10) };
-  if (!xs.found) { const xs2 = await keyUntil(p, async () => p.evaluate(`(function () { var e = document.activeElement; var c = e && e.closest('[data-test-id="filter_chip_status"]'); return !!c && e !== c; })()`) as Promise<boolean>, 30, 'Shift+Tab'); o.s17_reachBack = { found: xs2.found, stops: xs2.seen.slice(-10), focus: xs2.f ?? null }; }
-  await p.keyboard.press('Enter'); await p.waitForTimeout(1800); o.s17_chipAfter = await p.locator('[data-test-id="filter_chip_status"]').first().innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => null); await p.keyboard.press('Escape').catch(() => {}); await shot(p, 'C368151-s17-after-enter-x');
-  const bv = await keyUntil(p, (f) => f.label === 'Board View', 40, 'Shift+Tab'); o.s18_reach = { found: bv.found, stops: bv.seen.slice(-8) };
-  if (!bv.found) { const bv2 = await keyUntil(p, (f) => f.label === 'Board View', 60, 'Tab'); o.s18_reachForward = { found: bv2.found }; }
-  await p.keyboard.press('Enter'); await p.waitForTimeout(2500); o.s18_active = await p.evaluate(`(['List','Tech View','Board View'].find(l => { const e = [...document.querySelectorAll('[aria-label="' + l + '"]')].find(x => x.getBoundingClientRect().width > 0); const b = e && (e.closest('button,.q-btn') || e); return b && b.getAttribute('aria-pressed') === 'true'; }) || null)`); await shot(p, 'C368151-s18-after-enter');
-  await statusOnly(null).catch(() => {}); R.C368151 = o; });
+  const rowsIn = () => p.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_row_"]')].filter(e => e.getAttribute('data-group-key') === ${JSON.stringify(ANA.staff_id)} && e.getBoundingClientRect().height > 0).length`) as Promise<number>;
+  await clickSearch(p); o.s5 = { tab: await kTabIn(p, 'table', N) }; o.s5.toHeader = await kArrowsTo(p, (f) => f.group === 'tech_view_group_Ana' && !f.row, 'table', N);
+  const tg = await keyUntil(p, (f) => f.raw === `button_tech_view_group_toggle_${ANA.staff_id}`, 6, 'Tab', N); o.s5.tabToArrow = { found: tg.found, stops: tg.seen };
+  if (tg.found) { o.s5.before = { collapsed: await collapsed(), rows: await rowsIn() }; await p.keyboard.press('Enter'); await p.waitForTimeout(1600); o.s5.after = { collapsed: await collapsed(), rows: await rowsIn(), focus: kshort(await kz(p, N)) }; }
+  await shot(p, 'C368151-s5-after-enter-collapse');
+  // step 6: focus kept on the arrow, Space
+  o.s6 = { focusBefore: kshort(await kz(p, N)) }; await p.keyboard.press('Space'); await p.waitForTimeout(1600); o.s6.collapsed = await collapsed(); o.s6.rows = await rowsIn(); o.s6.focusAfter = kshort(await kz(p, N)); await shot(p, 'C368151-s6-after-space');
+  // step 7: arrows to the row (Shift+Tab back to the header, then ArrowDown), Tab to an Assigned Techs avatar, read the name it shows
+  o.s7 = { back: kshort(await kp(p, 'Shift+Tab', N)) }; o.s7.toRow = await kArrowsTo(p, (f) => f.row === 'tech_view_row_Alpha Co' && f.raw === 'tech_view_row_Alpha Co', 'table', N);
+  const assignedCol = await p.evaluate(`[...document.querySelectorAll('thead th')].map(e => e.innerText.trim()).findIndex(h => /^Assigned Techs/i.test(h))`) as number; o.s7.assignedTechsColumnIndex = assignedCol;
+  const inAssigned = `(function () { var e = document.activeElement; var r = e && e.closest('[data-test-id="tech_view_row_${id}"]'); var td = e && e.closest('td'); return !!r && !!td && [...td.parentElement.children].indexOf(td) === ${assignedCol}; })()`;
+  const inRow = `!!(document.activeElement && document.activeElement.closest('[data-test-id="tech_view_row_${id}"]'))`;
+  const av = await keyUntil(p, async (f) => ((await p.evaluate(inAssigned)) as boolean) || (/avatar/i.test(f.raw + ' ' + f.cls + ' ' + (f.label ?? '')) && (await p.evaluate(inRow)) as boolean), 30, 'Tab', N); o.s7.tabToAvatar = { found: av.found, stops: av.seen };
+  await p.mouse.move(1, 1); await p.waitForTimeout(1200);
+  o.s7.focus = await kz(p, N); o.s7.nameShown = { tooltips: await p.evaluate(`[...document.querySelectorAll('.q-tooltip,[role=tooltip]')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.trim())`), label: o.s7.focus.label, title: o.s7.focus.title, text: o.s7.focus.text, expected: 'ZZAUTOTEST Ana Alpha' };
+  await shot(p, 'C368151-s7-avatar-focus');
+  // step 8: Column Selection by keyboard: focus it, Enter, Tab into the options, Escape (focus must come back to it)
+  let cs = await keyUntil(p, (f) => f.raw === 'button_tech_view_column_selection', 40, 'Shift+Tab', N); o.s8 = { reach: { by: 'Shift+Tab', found: cs.found, stops: cs.seen.slice(-10) } };
+  if (!cs.found) { cs = await keyUntil(p, (f) => f.raw === 'button_tech_view_column_selection', 60, 'Tab', N); o.s8.reach = { by: 'Tab', found: cs.found, stops: cs.seen.slice(-10) }; }
+  if (cs.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(1200); o.s8.menuOpenAfterEnter = await menuOpen(p); const fIn = await kp(p, 'Tab', N); o.s8.afterTab = { ...fIn, insideMenu: await p.evaluate(`!!(document.activeElement && document.activeElement.closest('.q-menu'))`) }; await shot(p, 'C368151-s8-column-selection-open');
+    const fe = await kp(p, 'Escape', N); await p.waitForTimeout(700); o.s8.afterEscape = { menusOpen: await menuOpen(p), focus: kshort(fe), backOnColumnSelection: (await kz(p, N)).raw === 'button_tech_view_column_selection' }; await shot(p, 'C368151-s8-after-escape'); }
+  // step 9: Status by keyboard: focus the chip, Enter, arrows to Approved, Enter (Space if Enter did not tick it), Escape; then its x, Enter
+  let sc = await keyUntil(p, (f) => f.raw === 'filter_chip_status', 30, 'Tab', N); o.s9 = { reach: { by: 'Tab', found: sc.found, stops: sc.seen.slice(-8) } };
+  if (!sc.found) { sc = await keyUntil(p, (f) => f.raw === 'filter_chip_status', 60, 'Shift+Tab', N); o.s9.reach = { by: 'Shift+Tab', found: sc.found, stops: sc.seen.slice(-8) }; }
+  const chipText = () => p.locator('[data-test-id="filter_chip_status"]').first().innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => null);
+  o.s9.chipAtStart = await chipText();
+  if (sc.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(1000); o.s9.optionsOpen = await menuOpen(p);
+    const ap = await keyUntil(p, (f) => /^Approved$/i.test(f.text) || f.raw === 'filter_option_status_approved', 15, 'ArrowDown', N); o.s9.toApproved = { found: ap.found, stops: ap.seen };
+    if (ap.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(1500); o.s9.chipAfterEnter = await chipText(); if (o.s9.chipAfterEnter === o.s9.chipAtStart) { await p.keyboard.press('Space'); await p.waitForTimeout(1500); o.s9.chipAfterSpace = await chipText(); } }
+    await shot(p, 'C368151-s9-approved-ticked'); const ce = await kp(p, 'Escape', N); await p.waitForTimeout(700); o.s9.closed = { menusOpen: await menuOpen(p), focus: kshort(ce), chip: await chipText() }; }
+  const xs = await keyUntil(p, async () => p.evaluate(`(function () { var e = document.activeElement; var c = e && e.closest('[data-test-id="filter_chip_status"]'); return !!c && e !== c && (/remove|clear|cancel|close/i.test((e.getAttribute('aria-label') || '') + ' ' + e.className + ' ' + (e.textContent || ''))); })()`) as Promise<boolean>, 6, 'Tab', N);
+  o.s9.toX = { by: 'Tab', found: xs.found, stops: xs.seen };
+  if (!xs.found) { const xb = await keyUntil(p, async () => p.evaluate(`(function () { var e = document.activeElement; var c = e && e.closest('[data-test-id="filter_chip_status"]'); return !!c && e !== c; })()`) as Promise<boolean>, 30, 'Shift+Tab', N); o.s9.toX = { by: 'Shift+Tab (Tab did not reach it)', found: xb.found, stops: xb.seen.slice(-10) }; }
+  if (o.s9.toX.found) { o.s9.xFocus = await kz(p, N); await p.keyboard.press('Enter'); await p.waitForTimeout(1800); }
+  o.s9.chipAfterX = await chipText(); await p.keyboard.press('Escape').catch(() => {}); await shot(p, 'C368151-s9-after-x');
+  // step 10: the Board View switcher by keyboard, Enter
+  let bv = await keyUntil(p, (f) => f.label === 'Board View', 40, 'Shift+Tab', N); o.s10 = { reach: { by: 'Shift+Tab', found: bv.found, stops: bv.seen.slice(-8) } };
+  if (!bv.found) { bv = await keyUntil(p, (f) => f.label === 'Board View', 60, 'Tab', N); o.s10.reach = { by: 'Tab', found: bv.found, stops: bv.seen.slice(-8) }; }
+  if (bv.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(2500); }
+  o.s10.active = await p.evaluate(`(['List','Tech View','Board View'].find(l => { const e = [...document.querySelectorAll('[aria-label="' + l + '"]')].find(x => x.getBoundingClientRect().width > 0); const b = e && (e.closest('button,.q-btn') || e); return b && b.getAttribute('aria-pressed') === 'true'; }) || null)`); await shot(p, 'C368151-s10-after-enter');
+  await statusOnly(null).catch(() => {});
+});
 
-await run('C368152', async () => { await pins([ANA.staff_id, BEN.staff_id]);
-  // 16 Oct 2026: reassign through More actions AND the dialog's search box (Technician-B's first letters); NEW steps 9-11: More actions
-  // on Work-order-3 (led by Technician-B), read every item, Unassign by Enter if offered; step 12: no key reorders Work-order-2.
-  const s = await mkSet('ZZAUTOTEST F3 Keyboard Reassign', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: ANA }, { co: 'Charlie Co', lead: BEN }, { co: 'Golf Co', lead: null }]); const id = s.w['Alpha Co'].id, c3 = s.w['Charlie Co'].id; const o: any = {};
-  await goP(p, 'Board View', s.q); o.s5 = await cardFocus(p, `board_card_${id}`); const tm = await keyUntil(p, (f) => /more_actions/.test(f.raw), 6); o.s5.onMore = tm.found;
-  await p.keyboard.press('Enter'); await p.waitForTimeout(1000); const items = await menuItems(p); o.s5.items = items;
-  const idx = items.findIndex((x) => /Reassign lead technician/i.test(x)); for (let i = 0; i <= idx; i++) { await p.keyboard.press('ArrowDown'); await p.waitForTimeout(200); } o.s6_menuFocus = (await fx(p)).text; await p.keyboard.press('Enter'); await p.waitForTimeout(1500);
-  o.s6_dialog = await p.locator('.q-dialog').count();
-  if (o.s6_dialog) { o.s7_focusInSearch = await p.evaluate(`!!(document.activeElement && document.activeElement.tagName === 'INPUT' && document.activeElement.closest('.q-dialog'))`);
-    if (!o.s7_focusInSearch) { const k = await keyUntil(p, (f) => /INPUT|search/i.test(f.raw), 6); o.s7_tabToSearch = k.found; }
-    await p.keyboard.type('ZZAUTOTEST Be', { delay: 60 }); await p.waitForTimeout(1800);
-    o.s7_rows = await p.evaluate(`[...document.querySelectorAll('.q-dialog [data-test-id^="option_lead_technician_"]')].map(e => e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 40))`); await shot(p, 'C368152-s7-typed');
-    // 16 Oct 2026 (second go): the first go pressed the arrows from the search box and then Tab, and kept only the Tab stops. Now every
-    // route is kept: arrows from the search box; Tab to the first row, then arrows; Tab alone. The row ids in the list are recorded too.
-    o.s7_rowIds = (await p.evaluate(`[...document.querySelectorAll('.q-dialog [data-test-id^="option_lead_technician_"]')].map(e => e.getAttribute('data-test-id'))`) as string[]).map((x) => x === `option_lead_technician_${BEN.staff_id}` ? 'Technician-B (Ben Bravo, this run)' : clean(x));
-    const want8 = `option_lead_technician_${BEN.staff_id}`; o.s8_routes = {};
-    let k8 = await keyUntil(p, (f) => f.raw === want8, 6, 'ArrowDown'); o.s8_routes.arrowsFromSearch = { found: k8.found, stops: k8.seen }; o.s8_reach = { by: 'arrow keys from the search box', found: k8.found };
-    if (!k8.found) { const t1 = await keyUntil(p, (f) => /^option_lead_technician_/.test(f.raw), 4, 'Tab'); k8 = await keyUntil(p, (f) => f.raw === want8, 6, 'ArrowDown'); o.s8_routes.tabThenArrows = { firstTab: t1.seen, found: k8.found, stops: k8.seen }; o.s8_reach = { by: 'Tab to the first row, then arrow keys', found: k8.found }; }
-    if (!k8.found) { k8 = await keyUntil(p, (f) => f.raw === want8, 12, 'Tab'); o.s8_routes.tabOnly = { found: k8.found, stops: k8.seen }; o.s8_reach = { by: 'Tab', found: k8.found }; }
-    await shot(p, 'C368152-s8-dialog-keyboard');
-    if (k8.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(1200);
-      if (await p.locator('.q-dialog').filter({ hasNotText: /scheduled shifts/i }).count()) { const cf = await keyUntil(p, (f) => /confirm/i.test(f.raw), 8); o.s8_confirm = cf.found ? 'a Confirm button needed Enter' : 'no confirm'; if (cf.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(1200); } }
-      o.s8_shifts = await keepShiftsKbd(p); await p.waitForTimeout(800); o.s8_messages = await toastsOn(p); }
-    o.s8_dialogLeft = await p.locator('.q-dialog').count(); await p.waitForTimeout(1500); o.s8_alphaColumn = (await colOf(p, id)).replace(BEN.staff_id, 'Technician-B').replace(ANA.staff_id, 'Technician-A'); o.s8_lead = await leadOf(s, 'Alpha Co'); await shot(p, 'C368152-s8-after-reassign'); }
-  await p.keyboard.press('Escape').catch(() => {});
-  o.s9 = await cardFocus(p, `board_card_${c3}`); const tm9 = await keyUntil(p, (f) => /more_actions/.test(f.raw), 6); o.s9.onMore = tm9.found;
-  await p.keyboard.press('Enter'); await p.waitForTimeout(1000); o.s10_items = await menuItems(p); await shot(p, 'C368152-s10-menu-items');
-  const ui = (o.s10_items as string[]).findIndex((x) => /^Unassign/i.test(x));
-  if (ui >= 0) { for (let i = 0; i <= ui; i++) { await p.keyboard.press('ArrowDown'); await p.waitForTimeout(200); } await p.keyboard.press('Enter'); await p.waitForTimeout(1200); o.s11_shifts = await keepShiftsKbd(p); o.s11_messages = await toastsOn(p); await p.waitForTimeout(1500); o.s11_column = (await colOf(p, c3)).replace(BEN.staff_id, 'Technician-B'); o.s11_lead = await leadOf(s, 'Charlie Co'); await shot(p, 'C368152-s11-after-unassign'); }
-  else { o.s11 = 'no Unassign item in the menu'; await p.keyboard.press('Escape').catch(() => {}); }
-  const before = await colCards(p, ANA.staff_id, s); o.s12 = await cardFocus(p, `board_card_${s.w['Bravo Co'].id}`); o.s12_keys = {};
-  for (const k of ['Space', 'ArrowUp', 'ArrowDown', 'Shift+ArrowUp', 'Shift+ArrowDown', 'Shift+ArrowLeft', 'Shift+ArrowRight']) { await p.keyboard.press(k); await p.waitForTimeout(800); o.s12_keys[k] = (await colOf(p, s.w['Bravo Co'].id)).replace(ANA.staff_id, 'Technician-A'); if (/\/workorders\/[0-9a-f-]{36}/.test(p.url())) { o.s12_keys[k] += ' (opened the work order)'; await p.goBack(); await p.waitForTimeout(3500); } }
-  o.s12_order = { before, after: await colCards(p, ANA.staff_id, s) }; await shot(p, 'C368152-s12-after-keys');
-  R.C368152 = o; });
+await run('C368152', async () => {
+  // 16 Oct 2026: follows the case as rewritten (Work-order-2 is now led by Technician-B and is the one Unassigned; the menu items are read
+  // on Work-order-1; the old "no key moves Work-order-2" step is gone). WO-1 Alpha Co (A = Ana), WO-2 Bravo Co (B = Ben), WO-3 Golf Co (none).
+  const s = await mkSet('ZZAUTOTEST F3 Keyboard Reassign', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: BEN }, { co: 'Golf Co', lead: null }]); const id = s.w['Alpha Co'].id, id2 = s.w['Bravo Co'].id; const N = nm(s);
+  const o: any = (R.C368152 = { prefs: await kPrefs([ANA.staff_id, BEN.staff_id]) });
+  const colName = async (w: string) => (await colOf(p, w)).replace(BEN.staff_id, 'Technician-B').replace(ANA.staff_id, 'Technician-A');
+  o.start = { ...(await kStart(p, 'Board View', s.q)), wo1Column: await colName(id), wo2Column: await colName(id2) };
+  o.s1 = await kSearch(p, N); await shot(p, 'C368152-s1-search');
+  o.s2 = await kTabIn(p, 'board', N); await p.mouse.move(1, 1); await shot(p, 'C368152-s2-tab-card');
+  o.s3 = await kArrowsTo(p, (f) => f.raw === 'board_card_Alpha Co', 'board', N); await shot(p, 'C368152-s3-arrows-wo1');
+  o.s4 = await kp(p, 'Tab', N); await p.mouse.move(1, 1); await p.waitForTimeout(500); o.s4.onOwnMoreActions = /more_actions/.test(o.s4.raw) && o.s4.card === 'board_card_Alpha Co'; o.s4.moreShows = await kMore(p, id); await shot(p, 'C368152-s4-more-actions');
+  await p.keyboard.press('Enter'); await p.waitForTimeout(1000); o.s5 = { menusOpen: await menuOpen(p), items: await menuItems(p) }; await shot(p, 'C368152-s5-menu');
+  o.s6 = await kMenuChoose(p, /Reassign lead technician/i); o.s6.dialog = await p.locator('.q-dialog').count(); o.s6.title = await p.locator('.q-dialog').first().innerText().then((x) => x.replace(/\s+/g, ' ').slice(0, 80)).catch(() => null); await shot(p, 'C368152-s6-dialog');
+  if (o.s6.dialog) { const d = await kDialogPick(p, 'ZZAUTOTEST Be', BEN.staff_id, 'Technician-B (Ben Bravo, this run)');
+    o.s7 = { typed: 'ZZAUTOTEST Be', boxHolds: d.boxHolds, rows: d.rows, rowIds: d.rowIsTarget }; o.s8 = { route: d.route, reachedPerson: d.reachedPerson, stops: d.stops, confirm: d.confirm, shifts: d.shifts, messages: d.messages, dialogsLeft: d.dialogsLeft };
+    await p.waitForTimeout(1500); o.s8.wo1Column = await colName(id); o.s8.lead = await leadOf(s, 'Alpha Co'); await shot(p, 'C368152-s8-after-reassign'); }
+  // step 9: arrows from wherever focus is now to Work-order-2's card (the focus before the first arrow is kept: it says whether focus stayed on the board)
+  o.s9 = { focusBefore: kshort(await kz(p, N)) }; Object.assign(o.s9, await kArrowsTo(p, (f) => f.raw === 'board_card_Bravo Co', 'board', N));
+  if (!o.s9.reached) { o.s9.note = 'arrows alone did not reach Work-order-2 from where focus was; re-entered by Search > Tab, then arrows (recorded separately)'; await clickSearch(p); o.s9.reentry = await kTabIn(p, 'board', N); o.s9.reentryArrows = await kArrowsTo(p, (f) => f.raw === 'board_card_Bravo Co', 'board', N); }
+  await p.mouse.move(1, 1); await shot(p, 'C368152-s9-arrows-wo2');
+  o.s10 = await kp(p, 'Tab', N); o.s10.onOwnMoreActions = /more_actions/.test(o.s10.raw) && o.s10.card === 'board_card_Bravo Co'; await shot(p, 'C368152-s10-more-actions');
+  await p.keyboard.press('Enter'); await p.waitForTimeout(1000); o.s11 = { menusOpen: await menuOpen(p), items: await menuItems(p) }; await shot(p, 'C368152-s11-menu');
+  o.s12 = await kMenuChoose(p, /^Unassign/i); o.s12.shifts = await keepShiftsKbd(p); o.s12.messages = await toastsOn(p); await p.waitForTimeout(1500); o.s12.wo2Column = await colName(id2); o.s12.lead = await leadOf(s, 'Bravo Co'); await shot(p, 'C368152-s12-after-unassign');
+});
 
-await run('C97020', async () => { await pins([ANA.staff_id, BEN.staff_id]);
-  const s = await mkSet('ZZAUTOTEST F3 Keyboard Limits', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: ANA, status: 'invoiced' }]); const o: any = {};
-  // 15 Oct 2026 (staging second pass): the view-only role had Work orders > Create & Edit left ON by C97012 (s9-fix7), so the
-  // "view-only" user could open Reassign. The role must be Work orders > View only before the viewer part: anything else in
-  // Work orders (Create & Edit, Delete) is taken off here and the role is read back (role-viewonly-stg4.mts does the same at the
-  // start of the fourth pass; this is the second guard). Taking a permission OFF a view-only role needs no restore.
+await run('C97020', async () => {
+  // 16 Oct 2026: follows the case as rewritten (PRD v61: the card is reached by Search > Tab > arrow keys; Tab to More actions; Space and
+  // Shift+each arrow only - plain arrows now move focus by design; a reading at each of the 16 steps). WO-1 Alpha Co (Approved), WO-2 Bravo Co
+  // (Invoiced), both led by Technician-A (Ana), pinned for both users. Steps 1-6 as the view-only User-B, steps 7-16 as the Admin runner.
+  const s = await mkSet('ZZAUTOTEST F3 Keyboard Limits', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: ANA, status: 'invoiced' }]); const N = nm(s); const id1 = s.w['Alpha Co'].id, id2 = s.w['Bravo Co'].id;
+  const o: any = (R.C97020 = { statuses: (await workOrders(a, s.q)).map((w: any) => `${nameOf(s)(w.number)} ${w.status}`) });
+  // 15 Oct 2026 (kept): the view-only role must be Work orders > View only before the viewer part (C97012 may have left Create & Edit on)
   { const rr = (await a.get(`/api/roles/${VIEW_ROLE}`)).body?.data; const code = (x: any) => String(x?.code ?? x?.name ?? x);
     const extra = ((rr?.fe_permissions ?? []) as any[]).filter((x) => /^workOrders/.test(code(x)) && !/^workOrdersView$/.test(code(x)));
     if (extra.length) o.roleFixedAtStart = say(await a.put(`/api/roles/${VIEW_ROLE}`, { name: rr.name, description: rr.description, view_mode: rr.view_mode, template_id: rr.template_id, fe_permissions: ((rr.fe_permissions ?? []) as any[]).filter((x) => !extra.includes(x)).map((x) => x.id), cross_toggles: rr.cross_toggles }));
     o.roleWorkOrderPermsBeforeViewer = (((await a.get(`/api/roles/${VIEW_ROLE}`)).body?.data?.fe_permissions ?? []) as any[]).map(code).filter((c) => /^workOrders/.test(c)); }
+  const place = async (pg: Page, w: string) => (await colOf(pg, w)).replace(ANA.staff_id, 'Technician-A').replace(BEN.staff_id, 'Technician-B');
   const viewer = await mkUser('ZZAUTOTEST', `KbdViewer ${stamp}`, VIEW_ROLE, 'kbdviewer'); const v = await asUser(viewer);
-  try { const pg = v.page; await a.put(PREF, { value: { ...(await prefFor()), pinnedTechnicianIds: [ANA.staff_id, BEN.staff_id] } }).catch(() => {}); await goP(pg, 'Board View', s.q); await toColumn(pg, ANA.staff_id).catch(() => {}); await clickSearch(pg);
-    o.viewerFocused = await arrowToCard(pg, `board_card_${s.w['Alpha Co'].id}`);
-    await pg.keyboard.press('Tab'); await pg.waitForTimeout(300); o.viewerTabTo = (await focusInfo(pg)).raw.replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>'); if (/more_actions/.test(o.viewerTabTo)) { await pg.keyboard.press('Enter'); await pg.waitForTimeout(1000); o.viewerMenu = await pg.evaluate(`[...document.querySelectorAll('.q-menu .q-item')].map(e => e.innerText.replace(/\\s+/g, ' ').trim() + (e.classList.contains('disabled') || e.getAttribute('aria-disabled') === 'true' ? ' [disabled]' : ''))`); await shot(pg, 'C97020-viewer-menu');
-      const vi = (o.viewerMenu as string[]).findIndex((x) => /Reassign lead technician/i.test(x)); for (let i = 0; i <= vi; i++) { await pg.keyboard.press('ArrowDown'); await pg.waitForTimeout(150); } await pg.keyboard.press('Enter'); await pg.waitForTimeout(1500);
-      o.viewerItemEnter = { dialog: await pg.locator('.q-dialog').count(), text: await pg.locator('.q-dialog').first().innerText().then((x) => x.replace(/\s+/g, ' ').slice(0, 200)).catch(() => null), toasts: await toastsOn(pg) }; await shot(pg, 'C97020-viewer-item-enter'); await pg.keyboard.press('Escape'); await pg.waitForTimeout(500); await pg.keyboard.press('Escape'); await pg.waitForTimeout(500); }
+  try { const pg = v.page; o.viewerPins = (await a.put(PREF, { value: { ...(await prefFor()), pinnedTechnicianIds: [ANA.staff_id, BEN.staff_id], filters: {} } }).catch(() => ({ status: 0 }))).status;
+    o.viewerStart = await kStart(pg, 'Board View', s.q);
     { const st: any = await api(pg).get('/api/switch-user').catch(() => null); const perms = (st?.body?.data?.role?.fePermissions ?? []).map((x: any) => x.name); o.viewerRole = { name: st?.body?.data?.role?.name ?? null, count: perms.length, workOrderPerms: perms.filter((n: string) => /^wo|work/i.test(n)) }; }
-    await clickSearch(pg); await arrowToCard(pg, `board_card_${s.w['Alpha Co'].id}`);
-    for (const k of ['Enter', 'Space', 'ArrowDown', 'ArrowRight', 'Shift+ArrowRight', 'Shift+ArrowDown', 'Alt+ArrowRight', 'Control+ArrowRight']) { await pg.keyboard.press(k); await pg.waitForTimeout(700); (o.viewerKeys ??= {})[k] = (await pg.locator('.q-dialog, .q-menu').count()) ? 'menu/dialog' : /\/workorders\/[0-9a-f-]{36}/.test(pg.url()) ? 'opened the work order' : 'nothing'; if (o.viewerKeys[k] !== 'nothing') { await pg.keyboard.press('Escape'); if (/\/workorders\/[0-9a-f-]{36}/.test(pg.url())) { await pg.goBack(); await pg.waitForTimeout(3500); } await clickSearch(pg); await arrowToCard(pg, `board_card_${s.w['Alpha Co'].id}`); } }
-    o.viewerMoreActions = await pg.locator(`[data-test-id="board_card_${s.w['Alpha Co'].id}"] [data-test-id="button_work_order_more_actions"]`).count();
+    o.s1 = await kSearch(pg, N); await shot(pg, 'C97020-s1-viewer-search');
+    o.s2 = await kTabIn(pg, 'board', N); await pg.mouse.move(1, 1); await shot(pg, 'C97020-s2-viewer-tab');
+    o.s3 = await kArrowsTo(pg, (f) => f.raw === 'board_card_Alpha Co', 'board', N); await shot(pg, 'C97020-s3-viewer-arrows');
+    o.s4 = await kp(pg, 'Tab', N); o.s4.cardHasMoreActions = await pg.locator(`[data-test-id="board_card_${id1}"] [data-test-id="button_work_order_more_actions"]`).count(); o.s4.onMoreActions = /more_actions/.test(o.s4.raw) && o.s4.card === 'board_card_Alpha Co'; o.s4.leftBoard = o.s4.where !== 'board'; await shot(pg, 'C97020-s4-viewer-tab');
+    await pg.keyboard.press('Enter'); await pg.waitForTimeout(1200);
+    o.s5 = { menusOpen: await menuOpen(pg), items: await menuItems(pg), dialogs: await pg.locator('.q-dialog').count(), url: clean(pg.url().replace(APP, '')) }; await shot(pg, 'C97020-s5-viewer-enter');
+    if (o.s5.menusOpen && (o.s5.items as string[]).some((x) => /Reassign lead technician/i.test(x))) { const c = await kMenuChoose(pg, /Reassign lead technician/i); o.s5.choose = { ...c, dialogAfter: await pg.locator('.q-dialog').count(), messages: await toastsOn(pg) }; await shot(pg, 'C97020-s5-viewer-item-enter'); }
+    for (let i = 0; i < 3 && ((await pg.locator('.q-dialog, .q-menu').count()) > 0); i++) { await pg.keyboard.press('Escape'); await pg.waitForTimeout(500); }
+    if (/\/workorders\/[0-9a-f-]{36}/.test(pg.url())) { o.s5.openedAPage = clean(pg.url().replace(APP, '')); await pg.goBack(); await pg.waitForTimeout(3500); }
+    o.s6 = { focusBefore: kshort(await kz(pg, N)), before: await place(pg, id1), keys: {} as any };
+    for (const k of ['Space', 'Shift+ArrowUp', 'Shift+ArrowDown', 'Shift+ArrowLeft', 'Shift+ArrowRight']) { const f = await kp(pg, k, N); await pg.waitForTimeout(700); o.s6.keys[k] = { focus: kshort(f), wo1: await place(pg, id1), opened: /\/workorders\/[0-9a-f-]{36}/.test(pg.url()), menusOrDialogs: await pg.locator('.q-dialog, .q-menu').count() }; if (o.s6.keys[k].opened) { await pg.goBack(); await pg.waitForTimeout(3500); } }
+    // extra reading (not a case step): the same keys with focus placed ON Work-order-1's card, so "no key moves it" is read with the card focused
+    await clickSearch(pg); await kTabIn(pg, 'board', N); const onCard = await kArrowsTo(pg, (f) => f.raw === 'board_card_Alpha Co', 'board', N); o.s6.extraOnCard = { reached: onCard.reached, keys: {} as any };
+    if (onCard.reached) for (const k of ['Space', 'Shift+ArrowUp', 'Shift+ArrowDown', 'Shift+ArrowLeft', 'Shift+ArrowRight']) { const f = await kp(pg, k, N); await pg.waitForTimeout(700); o.s6.extraOnCard.keys[k] = { focus: kshort(f), wo1: await place(pg, id1) }; if (/\/workorders\/[0-9a-f-]{36}/.test(pg.url())) { await pg.goBack(); await pg.waitForTimeout(3500); } }
+    o.s6.after = { wo1: await place(pg, id1), lead: await leadOf(s, 'Alpha Co') }; await shot(pg, 'C97020-s6-viewer-after-keys');
   } finally { await v.close(); }
-  o.alphaAfterViewer = { lead: await leadOf(s, 'Alpha Co') };
-  await goP(p, 'Board View', s.q); await clickSearch(p); o.dispFocused = await arrowToCard(p, `board_card_${s.w['Bravo Co'].id}`); await p.keyboard.press('Tab'); await p.waitForTimeout(300); await p.keyboard.press('Enter'); await p.waitForTimeout(1000);
-  const it = p.locator('.q-menu .q-item').filter({ hasText: /Reassign lead technician/i }).first(); o.item = { found: await it.count(), disabled: await it.evaluate((e) => e.classList.contains('disabled') || e.getAttribute('aria-disabled') === 'true' || e.classList.contains('q-item--disabled')).catch(() => null) };
-  await it.hover().catch(() => {}); await p.waitForTimeout(1200); o.tooltip = await p.evaluate(`[...document.querySelectorAll('.q-tooltip')].map(e => e.innerText)`); await shot(p, 'C97020-invoiced-menu');
-  const items = await p.locator('.q-menu .q-item').allInnerTexts().catch(() => []); const idx = items.findIndex((x) => /Reassign lead technician/i.test(x)); for (let i = 0; i <= idx; i++) { await p.keyboard.press('ArrowDown'); await p.waitForTimeout(150); } await p.keyboard.press('Enter'); await p.waitForTimeout(1500); o.dialogOpened = await p.locator('.q-dialog').count(); await p.keyboard.press('Escape');
-  await clickSearch(p); await arrowToCard(p, `board_card_${s.w['Bravo Co'].id}`); for (const k of ['Shift+ArrowRight', 'Alt+ArrowRight', 'Control+ArrowRight', 'Space']) { await p.keyboard.press(k); await p.waitForTimeout(700); } await p.keyboard.press('Escape');
-  // 16 Oct 2026: steps 5-10 are done as the Admin user (the runner "ZZ WOB Runner" carries the Admin role); step 10 now refreshes the page
-  // and opens Work-order-2 to read Lead Technician on its own page; the disabled item's note is kept word for word
-  o.itemNoteFull = await p.evaluate(`[...document.querySelectorAll('.q-menu .q-item')].filter(e => /Reassign lead technician/i.test(e.innerText)).map(e => e.innerText.replace(/\s+/g, ' ').trim())`).catch(() => null);
-  await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(4000); o.s10_woPage = await woPageLead(p, APP, s.w['Bravo Co'].id);
+  // steps 7-16: the Admin (runner)
+  o.adminStart = await kStart(p, 'Board View', s.q);
+  o.s7 = await kSearch(p, N); await shot(p, 'C97020-s7-admin-search');
+  o.s8 = await kTabIn(p, 'board', N); await p.mouse.move(1, 1); await shot(p, 'C97020-s8-admin-tab');
+  o.s9 = await kArrowsTo(p, (f) => f.raw === 'board_card_Bravo Co', 'board', N); await shot(p, 'C97020-s9-admin-arrows');
+  o.s10 = await kp(p, 'Tab', N); await p.mouse.move(1, 1); await p.waitForTimeout(500); o.s10.onOwnMoreActions = /more_actions/.test(o.s10.raw) && o.s10.card === 'board_card_Bravo Co'; o.s10.moreShows = await kMore(p, id2); await shot(p, 'C97020-s10-admin-more');
+  await p.keyboard.press('Enter'); await p.waitForTimeout(1000); o.s11 = { menusOpen: await menuOpen(p), items: await menuItems(p) };
+  o.s11.reassignItemText = await p.evaluate(`[...document.querySelectorAll('.q-menu .q-item')].filter(e => /Reassign lead technician/i.test(e.innerText)).map(e => e.innerText.replace(/\\s+/g, ' ').trim())`).catch(() => null);
+  o.s11.noteExpected = 'The lead technician can’t be changed once a work order is Invoiced or Paid.'; await shot(p, 'C97020-s11-menu');
+  const r12 = await keyUntil(p, (f) => /Reassign lead technician/i.test(f.text), 10, 'ArrowDown', N); await p.waitForTimeout(900);
+  o.s12 = { reachedItem: r12.found, stops: r12.seen, tooltipsOnFocus: await p.evaluate(`[...document.querySelectorAll('.q-tooltip,[role=tooltip]')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.replace(/\\s+/g, ' ').trim())`) };
+  o.s11.noteShown = [...((o.s11.reassignItemText ?? []) as string[]), ...(o.s12.tooltipsOnFocus as string[])].some((x) => x.includes('can’t be changed once a work order is Invoiced or Paid') || x.includes("can't be changed once a work order is Invoiced or Paid"));
+  await p.keyboard.press('Enter'); await p.waitForTimeout(1500); o.s12.dialogs = await p.locator('.q-dialog').count(); o.s12.messages = await toastsOn(p); await shot(p, 'C97020-s12-after-enter');
+  if (o.s12.dialogs) { await p.keyboard.press('Escape'); await p.waitForTimeout(600); }
+  o.s13 = { ...(await kp(p, 'Escape', N)), menusOpen: await menuOpen(p) }; await shot(p, 'C97020-s13-after-escape');
+  o.s14 = { before: await place(p, id2), keys: {} as any };
+  for (const k of ['Space', 'Shift+ArrowUp', 'Shift+ArrowDown', 'Shift+ArrowLeft', 'Shift+ArrowRight']) { const f = await kp(p, k, N); await p.waitForTimeout(700); o.s14.keys[k] = { focus: kshort(f), wo2: await place(p, id2), menusOrDialogs: await p.locator('.q-dialog, .q-menu').count(), opened: /\/workorders\/[0-9a-f-]{36}/.test(p.url()) };
+    if (o.s14.keys[k].menusOrDialogs) { await p.keyboard.press('Escape'); await p.waitForTimeout(500); } if (o.s14.keys[k].opened) { await p.goBack(); await p.waitForTimeout(3500); } }
+  o.s14.lead = await leadOf(s, 'Bravo Co'); await shot(p, 'C97020-s14-after-keys');
+  await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(4500); if (!(await p.locator(`[data-test-id="board_card_${id2}"]`).count())) await ensure(`[data-test-id="board_card_${id2}"]`, s.q);
+  o.s15 = { wo2: await place(p, id2), searchHolds: await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null) }; await shot(p, 'C97020-s15-after-refresh');
+  const cb = await p.locator(`[data-test-id="board_card_${id2}"] [data-test-id="board_card_number"]`).first().boundingBox().catch(() => null);
+  if (cb) { await p.mouse.click(cb.x + Math.min(cb.width / 2, 30), cb.y + cb.height / 2); await p.waitForTimeout(4000); }
+  o.s16 = { url: clean(p.url().replace(APP, '')), openedWorkOrder2: p.url().includes(id2) }; await shot(p, 'C97020-s16-wo-page');
+  o.s16.leadOnPage = await woPageLead(p, APP, id2); o.s16.leadOnRecord = await leadOf(s, 'Bravo Co'); o.s16.expectedLead = 'ZZAUTOTEST Ana Alpha';
   o.runnerRole = 'Admin (ZZ WOB Runner, runner.mts)';
-  o.bravoLead = await leadOf(s, 'Bravo Co'); R.C97020 = o; });
+});
 
-await run('C97022', async () => { await pins([ANA.staff_id, BEN.staff_id]);
-  // 16 Oct 2026: steps 1-9 only (focus goes back to the More actions button after the menu and after the dialog). Steps 10-16 need the
-  // Technician filter; whether Board View offers it is read here (with the other filters as the positive control) and nothing more is done.
-  const s = await mkSet('ZZAUTOTEST F3 Keyboard Focus Kept', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: ANA }, { co: 'Charlie Co', lead: BEN }, { co: 'Golf Co', lead: null }]); const o: any = {}; const N = nm(s);
-  await goP(p, 'Board View', s.q); o.anaColumn = await colCards(p, ANA.staff_id, s); const firstId = s.w[o.anaColumn[0]]?.id ?? s.w['Alpha Co'].id; o.s5_firstCard = o.anaColumn[0];
-  o.s5 = await cardFocus(p, `board_card_${firstId}`); const tm = await keyUntil(p, (f) => /more_actions/.test(f.raw), 6); o.s6_onMore = tm.found; const moreRaw = (await fx(p)).raw;
-  await p.keyboard.press('Enter'); await p.waitForTimeout(1000); o.s6_menu = await menuOpen(p);
-  await p.keyboard.press('Escape'); await p.waitForTimeout(900); o.s7 = { menuOpen: await menuOpen(p), focus: await fx(p), sameButton: (await fx(p)).raw === moreRaw && await p.evaluate(`!!(document.activeElement && document.activeElement.closest('[data-test-id="board_card_${firstId}"]'))`) }; o.s7.focus.raw = N(o.s7.focus.raw); await shot(p, 'C97022-s7-after-escape-menu');
-  await p.keyboard.press('Enter'); await p.waitForTimeout(1000); const items = await menuItems(p); const idx = items.findIndex((x) => /Reassign lead technician/i.test(x));
-  for (let i = 0; i <= idx; i++) { await p.keyboard.press('ArrowDown'); await p.waitForTimeout(200); } await p.keyboard.press('Enter'); await p.waitForTimeout(1500); o.s8_dialog = await p.locator('.q-dialog').count(); await shot(p, 'C97022-s8-dialog');
-  await p.keyboard.press('Escape'); await p.waitForTimeout(1200); o.s9 = { dialogOpen: await p.locator('.q-dialog').count(), focus: await fx(p), onSameMore: await p.evaluate(`!!(document.activeElement && document.activeElement.closest('[data-test-id="board_card_${firstId}"]') && /more_actions/.test(document.activeElement.getAttribute('data-test-id') || (document.activeElement.closest('[data-test-id]') || {}).getAttribute?.('data-test-id') || ''))`), lead: await leadOf(s, o.anaColumn[0] ?? 'Alpha Co') }; o.s9.focus.raw = N(o.s9.focus.raw); await shot(p, 'C97022-s9-after-escape-dialog');
-  o.s10_filterChips = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="filter_chip_"]')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.replace(/\\s+/g, ' ').trim())`); o.s10_technicianFilter = (o.s10_filterChips as string[]).some((x) => /Technician/i.test(x));
-  await shot(p, 'C97022-s10-filter-bar');
-  R.C97022 = o; });
+await run('C97022', async () => {
+  // 16 Oct 2026: follows the case as rewritten (7 steps; NEW step 7: keyboard navigation continues from the header without losing focus).
+  // Two Approved work orders (Alpha Co, Bravo Co) led by Technician-A (Ana). Steps 1-3 need nothing more. Steps 4-7 need the Technician
+  // filter: when the board offers it they are run (focus after each reassign, then one more key from A's header - ArrowDown and Tab - read
+  // for a visible, not-lost focus); when it does not, the filter bar is read (the other filters are the positive control) and steps 4-7
+  // stay Blocked by SV-11326 (read its status live before reporting, Rule 112).
+  const s = await mkSet('ZZAUTOTEST F3 Keyboard Focus Kept', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: ANA }]); const N = nm(s);
+  const o: any = (R.C97022 = { prefs: await kPrefs([ANA.staff_id, BEN.staff_id]) });
+  o.start = await kStart(p, 'Board View', s.q); o.anaColumn = await colCards(p, ANA.staff_id, s); const firstCo = o.anaColumn[0] ?? 'Alpha Co'; const firstId = s.w[firstCo].id;
+  // step 1: keyboard to the first card in A's column, ring; Tab to its More actions, ring
+  await clickSearch(p); o.s1 = { tab: await kTabIn(p, 'board', N) }; o.s1.arrows = await kArrowsTo(p, (f) => f.raw === `board_card_${firstCo}`, 'board', N); o.s1.cardFocus = await kz(p, N);
+  o.s1.more = await kp(p, 'Tab', N); o.s1.onOwnMore = /more_actions/.test(o.s1.more.raw) && o.s1.more.card === `board_card_${firstCo}`; await p.mouse.move(1, 1); await shot(p, 'C97022-s1-more-focus');
+  // step 2: Enter, Escape: menu closed, focus back on the same More actions
+  await p.keyboard.press('Enter'); await p.waitForTimeout(1000); o.s2 = { menusOpen: await menuOpen(p) }; const e2 = await kp(p, 'Escape', N); await p.waitForTimeout(600);
+  o.s2.afterEscape = { menusOpen: await menuOpen(p), focus: kshort(e2), backOnOpener: /more_actions/.test(e2.raw) && e2.card === `board_card_${firstCo}`, ring: e2.ring }; await shot(p, 'C97022-s2-after-escape');
+  // step 3: menu again, Reassign by arrows + Enter, Escape the dialog: no reassignment, focus back on the opener
+  await p.keyboard.press('Enter'); await p.waitForTimeout(1000); o.s3 = await kMenuChoose(p, /Reassign lead technician/i); o.s3.dialog = await p.locator('.q-dialog').count(); await shot(p, 'C97022-s3-dialog');
+  const e3 = await kp(p, 'Escape', N); await p.waitForTimeout(900); o.s3.afterEscape = { dialogs: await p.locator('.q-dialog').count(), focus: kshort(e3), backOnOpener: /more_actions/.test(e3.raw) && e3.card === `board_card_${firstCo}`, ring: e3.ring, lead: await leadOf(s, firstCo) }; await shot(p, 'C97022-s3-after-escape');
+  // step 4: Technician = A (mouse allowed for applying the filter)
+  o.s4 = { filterChips: await p.evaluate(`[...document.querySelectorAll('[data-test-id^="filter_chip_"]')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.replace(/\\s+/g, ' ').trim())`) };
+  o.s4.technicianFilter = await techChip(p).count(); await shot(p, 'C97022-s4-filter-bar');
+  if (!o.s4.technicianFilter) { o.s4.blocked = 'no Technician filter on this board (SV-11326); the other filter chips above are the positive control that the bar was read'; return; }
+  await techChip(p).click(); await p.waitForTimeout(1200);
+  { let it = p.locator('.q-menu').last().locator('.q-item, .q-checkbox').filter({ hasText: /ZZAUTOTEST Ana Alpha/ }).first();
+    for (let i = 0; i < 80 && !(await it.count()); i++) { const mv = await p.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); const s = m && ([m, ...m.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 4) || m); if (!s) return false; const b = s.scrollTop; s.scrollTop += 250; return s.scrollTop !== b; })()`).catch(() => false); await p.waitForTimeout(250); if (!mv) break; it = p.locator('.q-menu').last().locator('.q-item, .q-checkbox').filter({ hasText: /ZZAUTOTEST Ana Alpha/ }).first(); }
+    o.s4.optionFound = await it.count(); if (o.s4.optionFound) { await it.click(); await p.waitForTimeout(1500); } }
+  await p.keyboard.press('Escape'); await p.waitForTimeout(1500);
+  o.s4.chip = await techChip(p).innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => null);
+  o.s4.columns = (await boardCols(p)).map((c) => `${N(c.id)}(${c.count}) [${c.cards.map(nameOf(s)).join(', ')}]`);
+  await clickSearch(p); o.s4.tab = await kTabIn(p, 'board', N); o.s4.arrows = await kArrowsTo(p, (f) => f.column === 'Ana' && /^board_card_/.test(f.raw), 'board', N); o.s4.focus = await kz(p, N); await p.mouse.move(1, 1); await shot(p, 'C97022-s4-first-card');
+  const reassignFocused = async (tag: string) => { const r: any = { card: (await kz(p, N)).card }; r.more = kshort(await kp(p, 'Tab', N)); await p.keyboard.press('Enter'); await p.waitForTimeout(1000);
+    r.choose = await kMenuChoose(p, /Reassign lead technician/i); if (await p.locator('.q-dialog').count()) r.dialog = await kDialogPick(p, 'ZZAUTOTEST Be', BEN.staff_id, 'Technician-B (Ben Bravo, this run)');
+    await p.waitForTimeout(2500); r.focusAfter = await kz(p, N); r.columns = (await boardCols(p)).map((c) => `${N(c.id)}(${c.count}) [${c.cards.map(nameOf(s)).join(', ')}]`); await shot(p, `C97022-${tag}`); return r; };
+  // step 5: reassign the focused card to B: it leaves, focus moves to the next card in A's column, visible
+  o.s5 = await reassignFocused('s5-after-first-reassign'); o.s5.focusOnNextCardInA = o.s5.focusAfter.column === 'Ana' && /^board_card_/.test(o.s5.focusAfter.raw) && o.s5.focusAfter.raw !== o.s5.card; o.s5.ring = o.s5.focusAfter.ring;
+  // step 6: reassign the remaining card: focus moves to A's column header, visible
+  if (/^board_card_/.test(o.s5.focusAfter.raw)) { o.s6 = await reassignFocused('s6-after-second-reassign'); o.s6.focusOnAHeader = /^board_column_header_Ana$/.test(o.s6.focusAfter.raw) || (o.s6.focusAfter.header === 'board_column_header_Ana'); o.s6.ring = o.s6.focusAfter.ring; }
+  else o.s6 = { skipped: 'focus was not on a card after step 5, so the remaining card was not reassigned by keyboard', focusAfterStep5: kshort(o.s5.focusAfter) };
+  // step 7: one more key from the header - ArrowDown, then Tab - focus visible, not lost (not the page body) and not trapped
+  o.s7 = { arrowDown: await kp(p, 'ArrowDown', N) }; o.s7.tab = await kp(p, 'Tab', N); o.s7.shiftTab = await kp(p, 'Shift+Tab', N);
+  o.s7.notLost = ![o.s7.arrowDown, o.s7.tab, o.s7.shiftTab].some((f: any) => f.raw === 'body'); o.s7.notTrapped = o.s7.tab.raw !== o.s7.arrowDown.raw || o.s7.tab.where !== o.s7.arrowDown.where; await shot(p, 'C97022-s7-after-keys');
+  o.leads = { [firstCo]: await leadOf(s, firstCo), other: await leadOf(s, firstCo === 'Alpha Co' ? 'Bravo Co' : 'Alpha Co') };
+  await p.locator('[data-test-id="clear_filters"]').click().catch(() => {}); await p.waitForTimeout(1200);
+});
 
 await a.put(PREF, { value: ORIGINAL }); R.restored = true;
 fs.writeFileSync(path.join(EV, 'kbd-fix4.json'), JSON.stringify(R, null, 1));

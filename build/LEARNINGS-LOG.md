@@ -1089,3 +1089,16 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   old value. Quick filter first: the case's `updated_on` is later than the result's `created_on`. On 16 Oct, 56 of 278 had changed.
 - **"ZZAUTOTEST F2 Empty Shop" is no longer empty:** C368130 seeds work orders there. A "location with no work orders" test must make
   a fresh location and prove it holds zero first (draft `C614715-stg.mts`). #testrail #mapping #staging → L0401
+
+## L0409 — 2026-10-16 — Keyboard scripts for PRD v61 (one Tab stop per view), and a status pill's red count has no seed recipe
+- **Keyboard readings under PRD v61** (`run498-2026-10-08/kbd-fix4.mts`, helpers `kz`/`kp`/`kSearch`/`kTabIn`/`kArrowsTo`/`kDialogPick`):
+  the view is entered by Search > Tab until focus is INSIDE the board/table (every stop kept, so "no header on the way" is read), then
+  arrows only. After every key record the focused element's own data-test-id plus the card / column / row / group it sits in (walk up
+  for `board_card_<uuid>`, not `closest('[data-test-id^="board_card_"]')`, which stops at `board_card_number`). "Focus leaves the board"
+  only counts when the same run shows Tab landing ON the board (Rule 104).
+- **Red service-actions count:** the list answer carries `serviceActionsCount` (and `partRequestsCount`), but no recipe in this repo
+  makes a nonzero service-actions count; `design-stg5.mts` C590120 looks one up in the list and says so when none is found. The blue
+  parts count comes from a part request on the line (C590115 recipe).
+- **Editing a script block by text:** cut a `await run('Cxxxx', …)` block up to the NEXT `await run(` or a line that is exactly `});`,
+  never the first `});` after it — `…, staff_id });` inside the block matches first and leaves half the old block behind (esbuild caught it).
+  #keyboard #wo-board #scripts → L0408

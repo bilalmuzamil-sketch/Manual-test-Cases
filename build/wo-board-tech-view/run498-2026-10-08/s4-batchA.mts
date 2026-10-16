@@ -154,17 +154,42 @@ await run('C96969', async () => {
 });
 
 await run('C96973', async () => {
+  // 16 Oct 2026: follows the case as rewritten (Expected corrected 15 Oct to the PRD: after the reassign your column is hidden and the board
+  // shows "No work orders match these filters", "Try removing a filter to widen your results." and a Clear all filters button - no longer
+  // "your column count goes from 1 to 0"). Steps 1-7 each get a reading and a picture; the dialog is checked for BOTH names the Expected
+  // gives (Ralph Edwards and Dana Ortiz); the work order's lead is put back to you first (an earlier run left it with Ralph Edwards, and
+  // seedCase reuses the work order). Positive control (Rule 104): before the change your column IS drawn with 1 work order, and the
+  // empty-state words are read with the same reader the "after" uses.
   const n = 'ZZAUTOTEST F1 Outside Filter';
+  const DO = await sid('dana.ortiz');
   const [w] = await seedCase(a, n, 'ZZF4OF', [{ lead: me.id }]);
-  await a.post('/api/work-orders/change-service-advisor', { work_order_id: w.id, service_advisor_id: RE.staff_id });
-  await bv(p, ''); await p.locator('[data-test-id="filter_chip_assigned_to_me"]').click(); await p.waitForTimeout(2500); await search(p, n);
-  R.C96973 = { columns: (await boardCols(p)).map((c) => `${c.name}(${c.count})`) };
-  await toColumn(p, me.id);
-  const o = await openReassign(p, w.id); await o.item.click(); await p.waitForTimeout(1200);
-  const names = await dialogNames(p); R.C96973.dialogOffersRalph = names.some((x) => x.includes('Ralph Edwards')); R.C96973.dialogOffersJenny = names.some((x) => x.includes('Jenny Wilson'));
-  await pickLead(p, RE.staff_id); await p.waitForTimeout(2000);
-  R.C96973.after = { columns: (await boardCols(p)).map((c) => `${c.name}(${c.count}) [${c.cards.join(' ')}]`), lead: await leadOf(n), message: await toasts(p) };
-  await shot(p, 'C96973-after');
+  const o: any = (R.C96973 = { setup: { lead: (await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: me.id })).status, advisor: (await a.post('/api/work-orders/change-service-advisor', { work_order_id: w.id, service_advisor_id: RE.staff_id })).status, leadNow: await leadOf(n), danaStaff: DO ? `${DO.first_name} ${DO.last_name} active=${DO.is_active}` : 'no zz.wob.dana.ortiz staff record' } });
+  const empty = () => p.evaluate(`(() => { const t = (document.querySelector('main, .q-page') || document.body).innerText.replace(/\\s+/g, ' ');
+    return { noMatchTitle: /No work orders match these filters/.test(t), hint: /Try removing a filter to widen your results\\./.test(t), clearAllButton: [...document.querySelectorAll('button, .q-btn, a')].filter(b => b.getBoundingClientRect().width > 0).map(b => b.innerText.replace(/\\s+/g, ' ').trim()).filter(x => /Clear all filters/i.test(x)),
+      emptyText: (t.match(/No work orders[^.]*\\.?[^.]*\\.?/) || [null])[0] }; })()`);
+  const assigned = () => p.locator('[data-test-id="filter_chip_assigned_to_me"]').first().evaluate((e) => e.getAttribute('aria-pressed') ?? (/(selected|active|bg-primary|text-primary)/.test(e.className) ? 'true' : 'false')).catch(() => null);
+  // step 1: All tab, Board View, Assigned to me on
+  await bv(p, ''); if ((await assigned()) !== 'true') { await p.locator('[data-test-id="filter_chip_assigned_to_me"]').click(); await p.waitForTimeout(2500); }
+  o.s1 = { assignedToMe: await assigned(), activeTab: await p.evaluate(`(document.querySelector('.q-tab--active, [role=tab][aria-selected=true]') || {}).innerText?.trim() || null`) }; await shot(p, 'C96973-s1-assigned-to-me');
+  // step 2: Search; the box's own value is read back after typing (L0387)
+  await search(p, n); o.s2 = { searchHolds: await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null) }; await shot(p, 'C96973-s2-search');
+  // step 3: the technician columns shown (positive control for the "after": your column is drawn with 1)
+  const cols0 = await boardCols(p); o.s3 = { columns: cols0.map((c) => `${c.name}(${c.count})`), yourColumn: cols0.filter((c) => c.id === me.id).map((c) => ({ count: c.count, cards: c.cards })), ralphColumnDrawn: cols0.some((c) => c.id === RE.staff_id), danaColumnDrawn: !!DO && cols0.some((c) => c.id === DO.staff_id), emptyStateBefore: await empty() };
+  await shot(p, 'C96973-s3-columns');
+  // step 4: hover the card, More actions, Reassign lead technician
+  await toColumn(p, me.id); await p.evaluate('window.__zzNoReload = 1');
+  const r = await openReassign(p, w.id); o.s4 = { itemDisabled: r.disabled }; await r.item.click(); await p.waitForTimeout(1200); o.s4.dialogOpen = await p.locator('.q-dialog').count(); await shot(p, 'C96973-s4-dialog');
+  // step 5: the people the dialog lists (Ralph Edwards and Dana Ortiz although their columns are not on screen)
+  const names = await dialogNames(p); o.s5 = { listed: names.length, dialogOffersRalph: names.some((x) => x.includes('Ralph Edwards')), dialogOffersDana: names.some((x) => x.includes('Dana Ortiz')), first12: names.slice(0, 12) };
+  if (!o.s5.dialogOffersDana) { await typeIn(p, 'Dana'); o.s5.typedDana = { boxHolds: await p.locator('.q-dialog input').first().inputValue().catch(() => null), rows: await dialogNames(p) }; o.s5.dialogOffersDana = (o.s5.typedDana.rows as string[]).some((x) => x.includes('Dana Ortiz')); await typeIn(p, ''); }
+  if (!o.s5.dialogOffersRalph) { await typeIn(p, 'Ralph'); o.s5.typedRalph = { boxHolds: await p.locator('.q-dialog input').first().inputValue().catch(() => null), rows: await dialogNames(p) }; o.s5.dialogOffersRalph = (o.s5.typedRalph.rows as string[]).some((x) => x.includes('Ralph Edwards')); }
+  await shot(p, 'C96973-s5-dialog-names');
+  // step 6: pick Tech-A (Ralph Edwards) and confirm, Keep shifts if asked
+  o.s6 = { shiftPrompt: await pickLead(p, RE.staff_id) }; await p.waitForTimeout(2500); o.s6.messages = await toasts(p); o.s6.lead = await leadOf(n); await shot(p, 'C96973-s6-after-confirm');
+  // step 7: the board and its header count, without a reload
+  const cols1 = await boardCols(p);
+  o.s7 = { noReload: await p.evaluate('window.__zzNoReload === 1'), columns: cols1.map((c) => `${c.name}(${c.count}) [${c.cards.join(' ')}]`), yourColumnShown: cols1.some((c) => c.id === me.id), cardStillOnBoard: await p.locator(`[data-test-id="board_card_${w.id}"]`).count(), emptyState: await empty(), assignedToMe: await assigned(), searchHolds: await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null) };
+  await shot(p, 'C96973-s7-empty-state');
   await p.locator('[data-test-id="filter_chip_assigned_to_me"]').click(); await p.waitForTimeout(1500);
 });
 

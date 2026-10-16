@@ -115,20 +115,54 @@ await run('C96944', async () => {
 });
 
 await run('C96945', async () => {
+  // 16 Oct 2026: follows the case as rewritten (PRD v61 S11-R1/S11-R3: the card is reached by clicking Search, Tab until a card shows a
+  // focus ring, then the arrow keys - no card.focus(); new readings: the menu closes after Escape (step 4) and the More actions button is
+  // hidden again after the mouse leaves (step 5)). Every key press records document.activeElement (data-test-id + words + ring).
+  // Precondition: Technician-A (Esther Howard) pinned in your Board View - pinned here if not (the pin list is read back).
   const [w] = await seedCase(a, 'ZZAUTOTEST F2 Card Menu', 'ZZF3CM', [{ lead: ES.staff_id }]);
+  const o: any = (R.C96945 = {});
+  if (!(((await prefs()).pinnedTechnicianIds ?? []) as string[]).includes(ES.staff_id)) { await bv(''); await pin(ES.staff_id); }
+  o.pinnedEsther = (((await prefs()).pinnedTechnicianIds ?? []) as string[]).includes(ES.staff_id);
   await bv('ZZAUTOTEST F2 Card Menu'); await toColumn(p, ES.staff_id);
   const card = p.locator(`[data-test-id="board_card_${w.id}"]`); const btn = card.locator('[data-test-id="button_work_order_more_actions"]');
-  const vis = () => btn.evaluate((e) => { const s = getComputedStyle(e); const r = e.getBoundingClientRect(); return { opacity: s.opacity, visibility: s.visibility, display: s.display, w: Math.round(r.width) }; });
-  await p.mouse.move(5, 500); await p.waitForTimeout(600); R.C96945 = { idle: await vis() };
-  await card.hover(); await p.waitForTimeout(800); R.C96945.hover = await vis(); await shot(p, 'C96945-hover');
-  await btn.click(); await p.waitForTimeout(1200); R.C96945.menu = await p.evaluate(`[...document.querySelectorAll('.q-menu')].map(m => m.innerText.replace(/\\s+/g, ' '))`); await shot(p, 'C96945-menu'); await p.keyboard.press('Escape');
-  await p.mouse.move(5, 500); await p.waitForTimeout(500);
-  await card.focus().catch(() => {}); await p.waitForTimeout(800); R.C96945.focus = { focused: await card.evaluate((e) => e === document.activeElement || e.contains(document.activeElement)), btn: await vis() };
-  // an unassigned card's menu label
+  const vis = () => btn.evaluate((e) => { const s = getComputedStyle(e); const r = e.getBoundingClientRect(); return { opacity: s.opacity, visibility: s.visibility, display: s.display, w: Math.round(r.width), shown: s.visibility !== 'hidden' && s.display !== 'none' && +s.opacity > 0.05 && r.width > 0 }; }).catch(() => ({ shown: false, missing: true }));
+  const menus = () => p.evaluate(`[...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).map(m => m.innerText.replace(/\\s+/g, ' ').trim())`) as Promise<string[]>;
+  const fx = () => p.evaluate(`(() => { const e = document.activeElement; if (!e || e === document.body) return { tid: 'body', text: '', ring: false };
+    const host = e.closest('[data-test-id]'); const cs = getComputedStyle(e);
+    const ring = (cs.outlineStyle !== 'none' && parseFloat(cs.outlineWidth) > 0) || (cs.boxShadow && cs.boxShadow !== 'none') || e.matches(':focus-visible');
+    return { tid: String(e.getAttribute('data-test-id') || (host && host.getAttribute('data-test-id')) || e.tagName).replace('${w.id}', 'Work-order-1').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>'), text: (e.innerText || e.value || e.getAttribute('aria-label') || '').replace(/\\s+/g, ' ').slice(0, 40), ring: !!ring }; })()`) as Promise<any>;
+  const press = async (k: string) => { await p.keyboard.press(k); await p.waitForTimeout(250); return { key: k, focus: await fx() }; };
+  await p.mouse.move(5, 500); await p.waitForTimeout(600); o.idle = await vis(); // positive control for step 1/5: the button is hidden when nothing hovers
+  // step 1: hover the card
+  await card.hover(); await p.waitForTimeout(800); o.s1 = await vis(); await shot(p, 'C96945-s1-hover');
+  // steps 2-3: click More actions, read the items
+  await btn.click(); await p.waitForTimeout(1200); o.s2 = { menusOpen: (await menus()).length }; o.s3 = { items: await menus(), offersReassign: (await menus()).some((x) => /Reassign lead technician/.test(x)) }; await shot(p, 'C96945-s2-s3-menu');
+  // step 4: Escape closes the menu
+  await p.keyboard.press('Escape'); await p.waitForTimeout(800); o.s4 = { menusOpen: (await menus()).length }; await shot(p, 'C96945-s4-after-escape');
+  // step 5: mouse off the card, the button hides again
+  await p.mouse.move(5, 500); await p.waitForTimeout(900); o.s5 = await vis(); await shot(p, 'C96945-s5-mouse-off');
+  // step 6: click once in Search
+  const box = p.locator('[data-test-id="page_search_input"]'); if (!(await box.isVisible().catch(() => false))) await p.locator('[data-test-id="page_search_toggle"]').click();
+  await box.click(); await p.waitForTimeout(400); o.s6 = { focus: await fx(), inSearch: await p.evaluate(`!!(document.activeElement && document.activeElement.closest('[data-test-id="page_search_input"]') || (document.activeElement && document.activeElement.getAttribute('data-test-id') === 'page_search_input'))`), searchHolds: await box.inputValue().catch(() => null) };
+  await shot(p, 'C96945-s6-search');
+  // step 7: Tab until a card shows a focus ring (every stop recorded; positive control that Tab DOES reach the board)
+  o.s7 = { stops: [] as any[] };
+  for (let i = 0; i < 40; i++) { const st = await press('Tab'); o.s7.stops.push(st.focus); if (/^board_card_/.test(st.focus.tid) && st.focus.tid !== 'board_card_number') { o.s7.landed = st.focus; o.s7.presses = i + 1; break; } }
+  await p.mouse.move(5, 500); await shot(p, 'C96945-s7-tab-card');
+  // step 8: arrow keys to Work-order-1's card (down its column, then left/right across columns), each key recorded
+  o.s8 = { keys: [] as any[] }; const target = 'board_card_Work-order-1';
+  if (o.s7.landed) {
+    let f = o.s7.landed;
+    for (const k of ['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft']) { for (let i = 0; i < 10 && f.tid !== target; i++) { const st = await press(k); o.s8.keys.push(`${k} -> ${st.focus.tid}${st.focus.ring ? ' (ring)' : ''}`); if (st.focus.tid === f.tid) break; f = st.focus; } if (f.tid === target) break; }
+    o.s8.reached = f.tid === target; o.s8.focus = await fx();
+  }
+  await p.mouse.move(5, 500); await p.waitForTimeout(700); o.s8.moreActionsWithoutHover = await vis(); await shot(p, 'C96945-s8-arrows-card');
+  // an unassigned card's menu label (extra reading kept from the earlier version)
   const [u] = await seedCase(a, 'ZZAUTOTEST F2 Card Menu Unassigned', 'ZZF3CU', [{ lead: null }]);
   await search(p, 'ZZAUTOTEST F2 Card Menu Unassigned'); await p.locator(`[data-test-id="board_card_${u.id}"]`).hover(); await p.locator(`[data-test-id="board_card_${u.id}"] [data-test-id="button_work_order_more_actions"]`).click(); await p.waitForTimeout(1000);
-  R.C96945.menuUnassigned = await p.evaluate(`[...document.querySelectorAll('.q-menu')].map(m => m.innerText.replace(/\\s+/g, ' '))`); await p.keyboard.press('Escape');
+  o.menuUnassigned = await p.evaluate(`[...document.querySelectorAll('.q-menu')].map(m => m.innerText.replace(/\\s+/g, ' '))`); await p.keyboard.press('Escape');
 });
+
 
 await run('C96946', async () => {
   const [w] = await seedCase(a, 'ZZAUTOTEST F2 Card Click', 'ZZF3CC', [{ lead: ES.staff_id }]);
