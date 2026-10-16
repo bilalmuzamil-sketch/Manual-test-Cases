@@ -1119,3 +1119,17 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   the steps done.
 - `autocommit-1016.sh` commits and pushes the run folder every 20 minutes (secret scan first) until the queue ends, so the Stop
   hook's "uncommitted changes" never stalls a turn. #long-run #reporting → L0105
+
+## L0412 — 2026-10-16 — Judging a long staging queue as it runs: where the readings are, and four script traps seen in run 498
+- **Helper:** `run498-2026-10-08/judge-helper-1016.py <step> [--short]` prints, for one queue step, each test's live Expected, its log
+  line, its JSON reading and the pictures taken during the step, plus the latest posted result. Some older scripts (`s1-batch2.mts`)
+  still write to `RUN/evidence/` instead of `WOB_EV`; the helper searches both. Progress is in `judged-full-1016.txt`.
+- **Coordinates for `annotate_v2.py`:** draw a labelled 100 px grid on the raw picture (source pixels) and read it once; several
+  pictures in one contact sheet keep the cost down. Readings that carry element positions (sticky headers, rows) can be used directly.
+- **Traps that made tests Blocked (our scripts, not the product):** `s1-batch1.mts` stops after C96909 whenever ONLY is set, so
+  C154885 never runs; `s1-batch2.mts` ignores ONLY; `s1-batch3.mts` (C96920) refreshes AFTER loading the displays, so offline the Tech
+  View part must be fetched again; column drags look for a `drag_indicator` icon the board column header no longer matches.
+- **Shared user preferences bite:** Tech View collapse state and the chosen display are saved per user, and every script (and any other
+  session on the same user) shares them. Mid-run, every Tech View group was found collapsed (C368135, C368136) and the page twice came
+  back in Board View after Tech View had been chosen (C96917, C96928). Before a Tech View check, expand all groups and choose Tech View
+  again, and read the preference back; whether the display really falls back on its own is still to be proved. #long-run #judging → L0411
