@@ -5,7 +5,9 @@ Why: on heavy screens (Board View, Tech View) Playwright's video stalls during r
 drifts 1-3.5 s behind Date.now(). Anchoring each voice line to the moment its caption actually appears
 in the raw .webm keeps the voice and the caption together.
 
-usage: python3 anchor_mux.py <run.json> <clips_dir> <out.mp4> [--ids n1,n2,...] [--tail 1.0]
+usage: python3 anchor_mux.py <run.json> <clips_dir> <out.mp4> [--ids n1,n2,...] [--tail 1.0] [--fix n5=137.3]
+  --fix: pin a line to a caption time you read off the check image / changes list (a page navigation also
+         changes the caption strip and can be taken for the caption - SV-11320 line 5)
   run.json : {"r": {"video": "<raw .webm>"}, "ev": {"n1": ms, ...}}   (written by the recording script)
   clips_dir: <id>.mp3 from narrate.py, plus durs.json in its parent folder (or --durs path)
 Writes <out.mp4>, <out>.check.png (caption strip 0.3 s after each voice onset) and prints
@@ -53,7 +55,7 @@ def anchors_for(run, changes, ids):
     return res
 
 
-def main(run_path, clips, out, ids=None, tail=1.0, durs_path=None):
+def main(run_path, clips, out, ids=None, tail=1.0, durs_path=None, fix=None):
     run = json.load(open(run_path)); video = run['r']['video']
     ids = ids or list(run['ev'].keys())
     durs = json.load(open(durs_path or os.path.join(os.path.dirname(clips.rstrip('/')), 'durs.json')))
@@ -62,6 +64,7 @@ def main(run_path, clips, out, ids=None, tail=1.0, durs_path=None):
     w, h = map(int, re.search(r', (\d{3,4})x(\d{3,4})', probe).groups())
     ch = caption_changes(video, w, h)
     A = anchors_for(run, ch, ids)
+    for k, v in (fix or {}).items(): A[k] = v  # manual anchor where a page change was taken for a caption
     start = A[ids[0]] - 0.3
     off = {k: round(A[k] - start + 0.2, 2) for k in ids}
     total = A[ids[-1]] - start + durs[ids[-1]] + tail
@@ -91,4 +94,6 @@ if __name__ == '__main__':
     a = sys.argv[1:]
     opt = lambda k, d: a[a.index(k) + 1] if k in a else d
     ids = opt('--ids', None)
-    main(a[0], a[1], a[2], ids.split(',') if ids else None, float(opt('--tail', '1.0')), opt('--durs', None))
+    fx = opt('--fix', None)  # e.g. n5=137.3,n6=150.2 : use when a page navigation changed the caption strip first
+    fix = {k: float(v) for k, v in (x.split('=') for x in fx.split(','))} if fx else None
+    main(a[0], a[1], a[2], ids.split(',') if ids else None, float(opt('--tail', '1.0')), opt('--durs', None), fix)
