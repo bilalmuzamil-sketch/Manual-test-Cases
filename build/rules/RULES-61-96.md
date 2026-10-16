@@ -2929,6 +2929,15 @@ test cases as needed to make them runnable for the manual QA tester."* Recorded 
    version is quoted by a case, and every out-of-date quote is replaced.
 5. Worked example: the Dashboard v1 full update of 2026-10-07 (`build/dashboards/full-update-2026-10-07/`):
    61 cases rewritten, 36 added, 146/146 requirements quoted, 437/437 design elements driven.
+6. **AMENDED 2026-10-16 (QA lead, verbatim): "For Rule 122: Alwyas ASK ME the question whether I want a FULL pass or
+   only want to change a certain set of test cases. Then give me the reason why full pass is needed OR why full pass is
+   needed OR ONLY the updates to the a certain cases are needed and why the update is needed and then LET ME decide."**
+   So before any update starts, I ask him: a FULL pass, or only a named set of cases? With the question I give (a) the
+   reason a full pass would be needed, or the reason only certain cases need updating and why each needs it; (b) what is
+   already done (for a PO answer sheet: how many cases were already updated from it, and how many still need it); and
+   (c) the evidence that skipping the other cases does no harm, with the limits of that evidence stated. He decides; no
+   update starts before his answer. Points 1 to 4 apply in full when he chooses a full pass. Why: on 16 Oct a full pass
+   of 266 cases was set up from a "go ahead" when about 17 cases needed changing.
 
 ## 123 · KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS; ASK BEFORE EDITING ANYONE ELSE'S CASES (all projects, permanent)
 

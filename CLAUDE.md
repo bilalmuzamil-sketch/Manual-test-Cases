@@ -56,6 +56,8 @@ These are stated here **in full** because a session that gets only this far must
 - **🔴 NEVER WORK IN DELTA MODE (122).** Every update is a full pass: every case in the suite rewritten to the
   current standard and made runnable by a manual tester, the whole design driven again, coverage proven against every
   source in full — not only the cases the change touches.
+  **Amended 16 Oct 2026 (QA lead): always ASK first, full pass or only a named set of cases, with the reasons, what is
+  already done, and the evidence that skipping the rest does no harm; he decides before any update starts.**
 - **🔴 A DESIGN IS NOT "DRIVEN" UNTIL IT PASSES THE COMPLETENESS GATES (124, amended 9 Oct 2026).** Read every file
   of the package; run the one-click sweep; run the TEXT INVENTORY (`design_text_inventory.py`): every on-screen text in
   the design's files is in a case or classified (DATA / COVERED / OUT-OF-SCOPE / SPEC-CONFLICT / CASE-NEEDED), zero
