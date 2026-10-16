@@ -6,6 +6,141 @@
   "cal": true,
   "dan": true
  },
+ "C97028": {
+  "loaded": 1,
+  "step2": {
+   "vinShown": 1,
+   "density": "compact"
+  },
+  "step3": {
+   "msg": [
+    "Lead technician updated"
+   ],
+   "lead": "ZZAUTOTEST Ben Bravo"
+  },
+  "step4": {
+   "display": "board_view",
+   "vinShown": 1,
+   "density": "compact",
+   "inBen": true
+  },
+  "analyticsBlocked": [
+   "https://www.googletagmanager.com/gtag/js"
+  ],
+  "note": "this harness refuses every Google Analytics / Tag Manager request"
+ },
+ "C368154": {
+  "savedBefore": {},
+  "step2active": "List",
+  "step4": [],
+  "step5": [
+   "Lead technician [technician]",
+   "Customer [company_name]",
+   "Asset [vehicle]",
+   "Progress [progress]",
+   "Total price [total_price]"
+  ],
+  "step5all": [
+   "technician=true/on",
+   "company_name=true/on",
+   "vehicle=true/on",
+   "vin=false/off",
+   "progress=true/on",
+   "service_advisor=false/off",
+   "clocked_in_technicians=false/off",
+   "lines_count=false/off",
+   "line_technicians=false/off",
+   "time_estimate=false/off",
+   "total_price=true/on",
+   "vehicle_here=false/off",
+   "start_date=false/off"
+  ]
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "C97031": {
+  "step4": {
+   "Unassigned": "2/2",
+   "Ana": "3/3",
+   "Ben": "2/2",
+   "Cal": "0/0"
+  },
+  "step5": {
+   "Unassigned": "2/2",
+   "Ana": "2/2",
+   "Ben": "2/2",
+   "Cal": "1/1"
+  },
+  "step6": {
+   "Unassigned": "3/3",
+   "Ana": "1/1",
+   "Ben": "2/2",
+   "Cal": "1/1"
+  },
+  "step7": {
+   "counts": {
+    "Unassigned": "3/3",
+    "Ana": "1/1",
+    "Ben": "2/2",
+    "Cal": "1/1"
+   },
+   "un": [
+    "Bravo Co",
+    "Golf Co",
+    "Hotel Co"
+   ]
+  },
+  "step8": {
+   "counts": {
+    "Unassigned": "3/3",
+    "Ana": "1/1",
+    "Ben": "2/2",
+    "Cal": "1/1"
+   },
+   "echoLead": "ZZAUTOTEST Ben Bravo"
+  },
+  "step9": {
+   "Unassigned": "3/3",
+   "Ana": "1/1",
+   "Ben": "2/2",
+   "Cal": "1/1"
+  },
+  "step10": {
+   "Unassigned": "3/3",
+   "Ana": "1/1",
+   "Ben": "2/2",
+   "Cal": "1/1"
+  }
+ },
+ "C154649": {
+  "saved0": "board_view",
+  "narrow": {
+   "switcher": 0,
+   "density": 0,
+   "fields": 0,
+   "board": 0
+  },
+  "narrowAfterRefresh": {
+   "switcher": 0,
+   "density": 0,
+   "fields": 0,
+   "board": 0
+  },
+  "savedNarrow": "board_view",
+  "wide": {
+   "switcher": 2,
+   "density": 1,
+   "fields": 1,
+   "board": 84,
+   "saved": "board_view"
+  }
+ },
+ "C368158": {
+  "status": "invoiced",
+  "before": "0",
+  "msg": [],
+  "after": "1",
+  "lead": "ZZAUTOTEST Ana Alpha"
+ },
  "C368159": {
   "eligible": [],
   "offered": {
@@ -25,6 +160,7 @@
    "role": "Technician",
    "location": "this location",
    "departments": [
+    "QB Location/Shop Time (Shop hand)",
     "Staging Heavy Duty - 9919/Service"
    ],
    "enrolments": [],
@@ -33,7 +169,7 @@
    ],
    "offeredAsLead": true,
    "sameNameOffered": [
-    "1b72172f open=54"
+    "1b72172f open=82"
    ]
   },
   "benWhyAfter": {
@@ -45,6 +181,7 @@
    "role": "Technician",
    "location": "this location",
    "departments": [
+    "QB Location/Shop Time (Shop hand)",
     "Staging Heavy Duty - 9919/Service"
    ],
    "enrolments": [],
@@ -53,7 +190,7 @@
    ],
    "offeredAsLead": true,
    "sameNameOffered": [
-    "1b72172f open=54"
+    "1b72172f open=82"
    ]
   },
   "pageTyped": {
@@ -129,25 +266,25 @@
    "picked": false
   },
   "pageList": {
-   "count": 101,
+   "count": 99,
    "withBenOrBravo": [
     "check Julie Benjamin"
    ],
    "first": [
     "check Unassigned",
-    "check Aaron Zed",
-    "check Aaron Jennings",
     "check Aaron Baker",
+    "check Aaron Jennings",
+    "check Aaron Zed",
     "check Admin ShopView",
     "check Advisor Analysis",
     "check Ahtasham Service Advisor",
     "check Ahtasham Admin"
    ],
    "last": [
-    "check QA Administrator",
-    "check QA ServiceManager",
+    "check Parts Technician",
+    "check Patricia Washington",
     "check QA PartsManager",
-    "check QA Foreman",
+    "check QA ServiceManager",
     "check ZZAUTOTEST Ana Alpha"
    ]
   },
