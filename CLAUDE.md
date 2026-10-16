@@ -106,7 +106,7 @@
 > - **NO VERDICT (OR VERDICT QUESTION) UNTIL EVERY POINT'S MATRIX IS FINISHED, AND A FAILING EXAMPLE MUST BE ONE A USER CAN BUILD ON SCREEN (Standing Rule 106).** Write down how each failing example was made; if any step was a server-only request, it proves nothing against the ticket.
 > - **AFTER ANY CONFIRM CLICK, RE-READ THE DIALOG — ShopView often asks twice ("Yes" → orange "Are You Sure?") (Standing Rule 102); never call a control "does nothing" before that.**
 > - **BEFORE CALLING A TICKET OUTSTANDING, RE-OPEN IT LIVE: status + last comment (Standing Rule 103).**
-> - **SCREEN RECORDING ON A QA COMMENT ONLY IF THE QA LEAD SAYS YES — ASK ON EVERY TICKET FIRST; no yes = no recording (Standing Rule 104; method playbook §AK). ONLY AFTER A RECORDING YES, ASK A SECOND QUESTION: VOICE-OVER YES/NO — on yes, a professional female voice explains the bug/fix in plain, professional words (Rule 104, amended 2026-10-16).**
+> - **SCREEN RECORDING ON A QA COMMENT ONLY IF THE QA LEAD SAYS YES — ASK ON EVERY TICKET FIRST; no yes = no recording (Standing Rule 104; method playbook §AK). ONLY AFTER A RECORDING YES, ASK A SECOND QUESTION: VOICE-OVER YES/NO — on yes, a professional female voice explains the bug/fix in plain, professional words, in short lines that do NOT make the film longer (Rule 104, amended 2026-10-16).**
 > - **A RECORDING SHOWS ONLY THE ACTIVITY — NO LONG STILL PAUSES (Standing Rule 107): `finish_recording.py` cuts every still stretch to 1.5 s (2 s on the final result); check the frame grid and the printed idle-removed figure before posting.**
 > - **EVERY STEP SAYS EXACTLY WHERE TO CLICK OR LOOK (Standing Rule 101): screen area + exact label, no private names ("the blue bubble"), describe small things by colour/shape/text/position, say what appears, locator picture with a close-up, walk the steps live before posting.**
 > - **EDITING SOMETHING ALREADY POSTED? (Standing Rule 100): put a dated note (date, time, timezone, what changed) right at the edited section/row.**
@@ -5376,6 +5376,11 @@ deliver the 7-tab management report.
     silent, exactly as before. A yes on one ticket is never a yes on the next. The QA lead confirmed on 2026-10-16 that
     the silent recordings as now made (activity only, Rule 107) are "GREAT … perfect" — the voice-over is an addition to
     that format, not a change to it.
+    **THE VOICE-OVER MUST NOT LENGTHEN THE FILM (QA lead, 2026-10-16, verbatim: *"The voiceover has made the video a bit
+    lengthy, try to not extend the video time due to voiceover."*).** Write the narration to fit the activity, not the
+    activity to fit the narration: one short sentence per step (a few words where a step is quick), no recap of what the
+    caption already shows, voice rate +10%. Each step holds for its sentence or 2 s, whichever is longer. Target: within a few
+    seconds of the silent film's length (SV-11394: silent 18 s; first voiced take 75 s — rejected; short take 24 s).
     USER DIRECTIVE (2026-10-07, verbatim): *"Now you need to find a way to add teh screen recording at the bottom of your
     comment with every comment you make for the QA passed/Failed/Partially passed tickets. SO that we can prove with screen
     recording whether its really working or not working."*
