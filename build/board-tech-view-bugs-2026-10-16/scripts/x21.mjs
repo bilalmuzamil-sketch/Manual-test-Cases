@@ -1,0 +1,14 @@
+import {session,toView} from './rec.mjs'; import fs from 'fs';
+const s=await session({vp:{width:1440,height:900},dpr:2}); const p=s.page; const out={mk:await s.marker()};
+const get=async()=>(await s.api('/api/users/me/preferences/work-orders-list')).json.data.value;
+const put=async v=>(await s.api('/api/users/me/preferences/work-orders-list',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({value:v})})).status;
+const before=await get(); out.beforeCols=before.techViewColumns;
+const ALL={vin:true,daysOpen:true,technician:true,vehicleHere:true,invoicedDate:true,assignedTechs:true,partRequestsCount:true,partReturnRequestsCount:true};
+const lab=()=>p.evaluate(()=>[...document.querySelectorAll('[data-test-id=table_tech_view] thead tr th')].filter(t=>t.innerText.trim()).map(th=>{const w=document.createTreeWalker(th,NodeFilter.SHOW_TEXT);let n,a=[];while(n=w.nextNode()) if(n.textContent.trim()) a.push(n); const r=document.createRange(); r.setStart(a[0],0); r.setEnd(a[a.length-1],a[a.length-1].textContent.length); const b=r.getBoundingClientRect(); return {t:th.innerText.trim(),x:b.x,y:b.y,w:b.width,h:b.height};}));
+const shot=async(tag,sl=0)=>{ await p.evaluate(sl=>{const m=document.querySelector('[data-test-id=table_tech_view] .q-table__middle'); m.scrollLeft=sl;},sl); await p.mouse.move(1435,895); await p.waitForTimeout(1200); out[tag]=await lab(); await p.screenshot({path:`/tmp/qa11310/x21-${tag}.png`}); };
+await s.go('/workorders?tab=all'); await p.waitForTimeout(4000); await toView(p,'tech_view'); await p.waitForTimeout(2000);
+await shot('def0',0);
+out.put1=await put({...(await get()),techViewColumns:ALL}); await s.go('/workorders?tab=all'); await p.waitForTimeout(5000);
+await shot('all0',0); await shot('all1',900); await shot('all2',2000);
+out.put2=await put({...(await get()),techViewColumns:before.techViewColumns}); const after=await get(); out.restored=JSON.stringify(after.techViewColumns)===JSON.stringify(before.techViewColumns);
+console.log(out.put1,out.put2,'restored',out.restored,JSON.stringify(after.techViewColumns)); fs.writeFileSync('/tmp/qa11310/x21.json',JSON.stringify(out,null,1)); await s.close();

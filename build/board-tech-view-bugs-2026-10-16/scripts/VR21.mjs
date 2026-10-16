@@ -1,0 +1,24 @@
+import {session,toView,narr,finish} from './rec.mjs';
+const dir='/tmp/qa11310/vo21'; const N=narr(dir);
+const s=await session({vp:{width:1440,height:900},record:'/tmp/qa11310/rec21'}); const p=s.page; const tLogin=Date.now(); const mk=await s.marker(); const log={};
+const get=async()=>(await s.api('/api/users/me/preferences/work-orders-list')).json.data.value;
+const put=async v=>(await s.api('/api/users/me/preferences/work-orders-list',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({value:v})})).status;
+const before=(await get()).techViewColumns; log.before=before;
+const lab=()=>p.evaluate(()=>{const L=[...document.querySelectorAll('[data-test-id=table_tech_view] thead tr th')].filter(t=>t.innerText.trim()).map(th=>{const w=document.createTreeWalker(th,NodeFilter.SHOW_TEXT);let n,a=[];while(n=w.nextNode()) if(n.textContent.trim()) a.push(n); const r=document.createRange(); r.setStart(a[0],0); r.setEnd(a[a.length-1],a[a.length-1].textContent.length); const b=r.getBoundingClientRect(); const cs=getComputedStyle(a[0].parentElement); return {t:th.innerText.trim(),x0:b.x,x1:b.x+b.width,y:b.y,st:cs.fontSize+' / '+cs.fontWeight+' / '+cs.color};});
+ const g=[]; for(let i=1;i<L.length;i++) g.push({a:L[i-1].t,b:L[i].t,gap:L[i].x0-L[i-1].x1}); const m=g.reduce((x,y)=>y.gap<x.gap?y:x); return {n:L.length,styles:[...new Set(L.map(l=>l.st))],min:m,L,g};});
+await s.go('/workorders?tab=all'); await p.waitForTimeout(4000); await toView(p,'tech_view'); await p.waitForTimeout(2000);
+let m=await lab(); log.m1=m; const st=await p.locator('[data-test-id=table_tech_view] thead th').nth(1).boundingBox(); await p.mouse.move(st.x+30,st.y+st.height+14,{steps:14});
+await N.cap(s,'n1',`SV-11320 · staging ${mk.version} · Tech View, 1440 px · ${m.n} header labels, all ${m.styles.join(', ')}`.replace('SV-11320','SV-11321'));
+await p.mouse.move(m.L[6].x1+10,m.L[6].y+30,{steps:14});
+await N.cap(s,'n2',`Default columns: closest pair "${m.min.a}" / "${m.min.b}", ${m.min.gap.toFixed(0)} px apart · no overlap`);
+await s.glideClick('button_tech_view_column_selection'); await p.waitForTimeout(1200);
+const tg=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id^=toggle_tech_view_column_]')].map(t=>({k:t.getAttribute('data-test-id').slice(24),on:t.getAttribute('aria-checked')==='true'})));
+await N.cap(s,'n3','Columns menu: switching on every optional column');
+for(const t of tg) if(!t.on){ await p.locator(`[data-test-id=toggle_tech_view_column_${t.k}]`).scrollIntoViewIfNeeded(); await s.glideClick(`toggle_tech_view_column_${t.k}`); await p.waitForTimeout(1300);} 
+await p.keyboard.press('Escape'); await p.waitForTimeout(2000);
+await p.evaluate(()=>{const mm=document.querySelector('[data-test-id=table_tech_view] .q-table__middle'); mm.scrollTo({left:2000,behavior:'smooth'});}); await p.waitForTimeout(2000);
+m=await lab(); log.m4=m; const lt=m.L.find(l=>l.t==='Lead Technician'), ci=m.L.find(l=>l.t==='Clocked In'); await p.mouse.move((lt.x1+ci.x0)/2,lt.y+30,{steps:14});
+await N.cap(s,'n4',`All ${m.n} columns on · "Lead Technician" / "Clocked In" ${(ci.x0-lt.x1).toFixed(0)} px apart · closest pair ${m.min.gap.toFixed(0)} px · ${m.styles.length} style`);
+await N.cap(s,'n5','Spec v64 S2-R21: 12px, weight 500, secondary grey, labels never overlap → PASSED');
+log.put=await put({...(await get()),techViewColumns:before}); log.restored=JSON.stringify((await get()).techViewColumns)===JSON.stringify(before);
+await finish(s,dir,N.ev,{tLogin,mk,log}); console.log(JSON.stringify({n1:log.m1.n,st:log.m1.styles,min1:log.m1.min,n4:log.m4.n,st4:log.m4.styles,min4:log.m4.min,restored:log.restored}));

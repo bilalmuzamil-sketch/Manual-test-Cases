@@ -41,16 +41,20 @@ def caption_changes(video, w, h, fps=10, thr=5.0):
 
 
 def anchors_for(run, changes, ids):
-    """Match each step to the first caption change at or after its wall-clock estimate (estimates are
-    re-based on the first caption, which is the large jump from 'no caption' to 'caption')."""
+    """Match each step to its caption change: the LARGEST strip change within 4 s after its wall-clock
+    estimate (estimates are re-based on the first caption, the large jump from 'no caption' to 'caption').
+    Largest, not first: a page change or a sideways scroll also moves the strip a little just before the
+    caption arrives (SV-11320 line 5: page open 18.6 then caption 32.0; SV-11321 line 4: scroll 5-8 then
+    caption 57.5)."""
     ev = run['ev']; t0 = ev[ids[0]]
     big = [t for t, d in changes if d > 60]
     first = big[0] if big else changes[0][0]
     est = {k: first + (ev[k] - t0) / 1000 for k in ids}
     res = {ids[0]: first}; last = first
     for k in ids[1:]:
-        cand = [t for t, d in changes if t > last + 0.8 and t >= est[k] - 0.6]
-        res[k] = cand[0] if cand else est[k]
+        cand = [(t, d) for t, d in changes if t > last + 0.8 and t >= est[k] - 0.6]
+        win = [c for c in cand if c[0] <= est[k] + 4.0]
+        res[k] = max(win, key=lambda c: c[1])[0] if win else (cand[0][0] if cand else est[k])
         last = res[k]
     return res
 
