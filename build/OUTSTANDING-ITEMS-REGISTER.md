@@ -3197,3 +3197,10 @@ Vladimir's C228763 (not ours) expects Assigned Techs off by default; fails a cor
 - SV-11337 / SV-11338 design-size question for Ahtasham: "Ignore and do not remind me about this again."
 - Vladimir's C228763 (created by Vladimir, user 1): "If Vlad has created it then ignore this too and dont remind me again."
 - Telling Vladimir about C96911, C96993–C96996 (expected results unchanged, runnable by a manual tester): "ignore it too and do not remind it again."
+
+### WO Board & Tech View — 16 Oct 2026: Chris Ward's answers 12–31 applied (PRD v54)
+Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answers-2026-10-15/APPLY-REPORT.md`). Open, for the QA lead:
+1. C581895 — may it be updated for PRD v54 S5-R11b (row avatar hover names = staff record name)? It was rewritten on 15 Oct by the test-run session.
+2. Pre-existing stale quotes C96963, C97009, C368158 (old S4-N2 with Imported) and C368130 (removed "Design updates" line) — quote-only fixes, may they be done?
+3. SV-11318 and SV-11320 need ticket updates per Chris (another session files/edits tickets).
+4. Retest on staging the 27 changed cases and first-run the 3 (list in the report).

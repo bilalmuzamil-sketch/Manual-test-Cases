@@ -2,7 +2,12 @@
 
 **Created:** 2026-09-23 · **PO / spec owner:** Sasha Grosman · **Status:** ACTIVE — source-verified authoring complete, not yet build-verified.
 
-## 🟢 CURRENT STATE — 14 Oct 2026 Currency Check V2 (done)
+## 🟢 CURRENT STATE — 16 Oct 2026: Chris Ward's answers 12–31 (PRD v54) applied
+42 of our cases updated + 1 new (C598326, section 73780), all read back OK, 43/43 runnable, run 498 = 272 tests (union only).
+Retest on staging: 27 · first run: 3 · no retest: 13. Report with every C-id, test link and doc: `answers-2026-10-15/APPLY-REPORT.md`.
+Held: C581895 (rewritten by the test-run session 15 Oct; v54 S5-R11b avatar names) — needs the QA lead's go-ahead.
+
+## (previous) 14 Oct 2026 Currency Check V2 (done)
 - **14 Oct write (QA lead's go-ahead):** C154648, C368133, C96965 edited; new C581889, C581890, C581891; run 498 = 243.
   Vladimir's C236975/C236976 untouched (their two-line fix is in the QA sheet). Record `currency-2026-10-14/apply/`.
 - **Owner (QA lead, 14 Oct 2026, verbatim):** "For this testing suite: I own ALL the test cases as it is mainly my Testing

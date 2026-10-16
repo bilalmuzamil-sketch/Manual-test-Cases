@@ -28,6 +28,8 @@ def c96927():
 
 def _s5r4_only(cid):
     p = base(cid)
+    if cid == 368141:   # developer note moved out of the tester's view; the setup Doc Part 2 already carries it (16 Oct)
+        p["preconditions"] = [x for x in p["preconditions"] if not x.startswith("Developer note kept from the automation engineer")]
     p["source"] = v54_source(p["source"], answers=(14,), changed=False,
                              extra="In version 54 S5-R4 gained one sentence (column headings use List's labels, for example Unit, and Assigned Techs); the default columns and their order are unchanged, so the expected results are unchanged.")
     requote(p, "S5-R4")

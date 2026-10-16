@@ -477,9 +477,7 @@ def c368163():
            "Staff member {User-B} (for example Owen Office) is active at {Location-A} with the Office User role.",
            "Customer {Customer-A} (for example \"ZZAUTOTEST F1 Dialog Search\") has one Approved work order, {Work-order-1} (for "
            "example S10043-17671), led by {Technician-A}.",
-           PRE_CLEAR,
-           "Developer note kept from the automation engineer (nothing for the tester to do): Dev-layer test — fe-unit. Existing "
-           "coverage: ReassignLeadTechnicianDialog.spec.ts:348,361,564; leadTechnicianOptions.spec.ts:134"]
+           PRE_CLEAR]  # developer note moved to the setup Doc Part 2 (16 Oct: the runnable gate flags code file names in tester text)
     steps = ["Open Work Orders, click the All tab and click Board View in the display switcher.",
              "Type the name of {Customer-A} in Search.",
              "Hover {Work-order-1}'s card in {Technician-A}'s column and click its More actions (…) button.",
