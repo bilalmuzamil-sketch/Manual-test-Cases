@@ -1,0 +1,131 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.18-7d85b7d",
+  "date": "16 October 2026",
+  "note": "batch 39b: keyboard re-runs (kbd-fix4.mts), 16 Oct 09:08-09:20 UTC"
+ },
+ "results": {
+  "C97021": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps (keyboard only, Tab and Shift+Tab).",
+    "Set-up: customer \"ZZAUTOTEST F3 Keyboard Reach\" with four Approved work orders: two led by Ana Alpha, one by Ben Bravo and one with no lead.",
+    "Step 5: Tab from the Search box reaches the first card (S2-36336, in Unassigned), and it shows a blue focus ring.",
+    "Step 6: the next Tab goes to that card's \"More actions\" button, and the one after that leaves the board for the top of the page. No other card (S2-36333, S2-36334, S2-36335) and no column header is reached by Tab.",
+    "Step 7: Shift+Tab goes back through the toolbar (display switcher, Fields to display, Density, the filters, Search), not through the cards.",
+    "Step 9: in Tech View, Tab reaches the \"Unassigned\" group header, but never a work order row.",
+    "Step 10: the next Tab goes to the Unassigned header's arrow and then leaves the table; no row and no technician group header is reached.",
+    "This problem has no ticket yet; it is with the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C97021-1-board-tab-reaches-one-card.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C97021-2-tech-tab-reaches-unassigned-header-only.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: not filed yet; this problem is with the QA lead for a decision.",
+   "ticket_held": true,
+   "todo": "What needs to be done: wait for the QA lead's decision on the ticket; once Tab moves through every card and row on staging, run this test again."
+  },
+  "C368150": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps with the keyboard.",
+    "Set-up: customer \"ZZAUTOTEST F3 Keyboard Enter Opens\" with four Approved work orders; Work-order-1 is S2-36337, led by Ana Alpha.",
+    "Step 5: Tab from the Search box lands on the board's first card; the arrow keys then move focus to S2-36337 (Tab alone only stops on one card; that is judged in its own test).",
+    "Step 6: Enter opened S2-36337's work order page.",
+    "Step 7: the test browser cannot use Alt+Left, so the browser's Back was used instead.",
+    "Step 9: Space, the four arrow keys and Shift with each arrow key did not move S2-36337: it stayed first in Ana Alpha's column, its lead stayed Ana Alpha, and no \"Lead technician updated\" message appeared.",
+    "Step 11: in Tech View, Enter on S2-36337's row opened its work order page.",
+    "Step 13: one plain mouse click on the row opened the work order page."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C368150-1-keys-moved-nothing.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C368150-2-row-click-opened-work-order.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing."
+  },
+  "C368151": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: steps 13 to 15 cannot be done, because Tab never reaches Technician-A's group header arrow or any work order row in Tech View (the problem reported under test C97021, held with the QA lead).",
+    "Set-up: customer \"ZZAUTOTEST F3 Keyboard Controls\" with four Approved work orders; Work-order-1 is S2-36341, led by Ana Alpha; Ana Alpha not pinned at the start.",
+    "Step 5: S2-36341's card shows a blue focus ring and its \"More actions\" button shows without hovering (focus was moved to it with the arrow keys after Tab).",
+    "Steps 6 and 7: Enter opens the card's menu (\"Reassign lead technician\"); Escape closes it and focus is back on the \"More actions\" button.",
+    "Steps 8 and 9: Space opens the menu as well, and Escape closes it again.",
+    "Steps 10 and 11: the pin in Ana Alpha's column header was reached with the up arrow and then Tab (Tab alone did not reach it). Enter pinned her (the button now reads \"Unpin ZZAUTOTEST Ana Alpha\"), and Space unpinned her.",
+    "Step 13: in Tech View, Tab goes from the toolbar to the \"Unassigned\" header and its arrow, then to the top of the page; Ana Alpha's group arrow is never reached, so Enter and Space (steps 13 and 14) could not be tried on it.",
+    "Step 15: no row is reached by Tab, so no avatar in the \"Assigned Techs\" cell got focus. That column was also off for the test user.",
+    "Step 16: Enter opens the Column Selection options, Tab moves inside them, and Escape closes them with focus back on the \"Column Selection\" button.",
+    "Step 17: with \"Status: Approved\" chosen, Tab reached the chip's x (\"Clear Status filter\") and Enter cleared the filter.",
+    "Step 18: Shift+Tab reached the \"Board View\" switcher button and Enter switched to Board View."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C368151-1-card-focus-ring-more-button.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C368151-2-column-selection-by-keyboard.png"
+   ],
+   "not_observed": "Steps 13 to 15: Enter and Space on Technician-A's group arrow, and the name on a focused avatar (Tab does not reach them).",
+   "ticket": null,
+   "todo": "What needs to be done: once Tab reaches every row and group header (test C97021), run this test again, with the Assigned Techs column on."
+  },
+  "C368152": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps with the keyboard.",
+    "Set-up: customer \"ZZAUTOTEST F3 Keyboard Reassign\" with four Approved work orders: S2-36356 and S2-36357 led by Ana Alpha, S2-36358 led by Ben Bravo, S2-36359 with no lead.",
+    "Steps 5 and 6: on S2-36356's card, Tab reached \"More actions\", Enter opened the menu, and the down arrow and Enter opened \"Reassign lead technician\".",
+    "Steps 7 and 8: typing \"ZZAUTOTEST Be\" in the search box left \"Unassigned\" and \"ZZAUTOTEST Ben Bravo\". Tab went to the first row, the down arrow to Ben Bravo, Enter picked him, and Enter on \"Reassign\" confirmed. S2-36356 moved to Ben Bravo's column and \"Lead technician updated\" showed.",
+    "Steps 9 and 10: the \"More actions\" menu of S2-36358 (led by Ben Bravo) offers only \"Reassign lead technician\". There is no \"Unassign\" item.",
+    "Step 11 could not be done, because there is no Unassign item.",
+    "Step 12: Space, the arrow keys and Shift with the arrow keys did not move S2-36357; it stayed in Ana Alpha's column.",
+    "The missing Unassign item has no ticket yet; it is with the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C368152-1-reassigned-by-keyboard.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C368152-2-menu-has-no-unassign.png"
+   ],
+   "not_observed": "Step 11 (Unassign by Enter): the menu has no Unassign item.",
+   "ticket": "Ticket: not filed yet; this problem is with the QA lead for a decision.",
+   "ticket_held": true,
+   "todo": "What needs to be done: wait for the QA lead's decision on the ticket; once the menu offers Unassign on staging, run this test again."
+  },
+  "C97020": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F3 Keyboard Limits\" with S2-36350 (Approved) and S2-36351 (Invoiced), both led by Ana Alpha. The view-only role was read back as holding only Work orders > View.",
+    "Steps 1 to 3 (view-only User-B, keyboard only): the card of S2-36350 got focus, but it has no \"More actions\" button, so Reassign lead technician is not offered.",
+    "Step 4: Space, the arrow keys and Shift with the arrow keys moved nothing; S2-36350 kept its place and its lead Ana Alpha. (Enter opened the work order to view it.)",
+    "Steps 7 and 8 (as the Admin user): the menu of the Invoiced S2-36351 opened; \"Reassign lead technician\" is disabled, Enter on it did nothing, and its note reads \"The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+    "Step 9: Escape, then Space, Shift with the arrow keys and the other arrow keys moved nothing.",
+    "Step 10: after a refresh, S2-36351's page shows Lead technician \"ZZAUTOTEST Ana Alpha\".",
+    "Focus was moved between cards with the arrow keys after Tab, because Tab stops on one card only (judged in its own test)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C97020-1-reassign-disabled-invoiced.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C97020-2-work-order-page-lead.png"
+   ],
+   "not_observed": null,
+   "ticket": null,
+   "todo": "What needs to be done: nothing."
+  },
+  "C97022": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: steps 10 to 16 need the Technician filter, which staging does not have (Tech View and Board View offer only \"Status\", \"Assigned to me\" and \"Asset on Site\").",
+    "Set-up: customer \"ZZAUTOTEST F3 Keyboard Focus Kept\" with four Approved work orders; S2-36352 and S2-36353 led by Ana Alpha, S2-36354 by Ben Bravo, S2-36355 with no lead.",
+    "Step 5: the first card in Ana Alpha's column is S2-36352 (focus moved to it with the arrow keys after Tab).",
+    "Step 7: Enter on its \"More actions\" button opened the menu; Escape closed it and focus went back to that same button.",
+    "Step 9: the Reassign lead technician dialog, opened from the menu by keyboard, closed on Escape without changing anything (lead still Ana Alpha), and focus went back to the same \"More actions\" button."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C97022-1-focus-back-and-no-technician-filter.png"
+   ],
+   "not_observed": "Steps 10 to 16 (where focus goes when the focused work order leaves the board through the Technician filter).",
+   "ticket": "Blocked by the missing Technician filter: https://shopview.atlassian.net/browse/SV-11326.",
+   "todo": "What needs to be done: once the Technician filter is on staging (ticket SV-11326), run this test again from step 10."
+  }
+ }
+}

@@ -1,0 +1,47 @@
+TITLE: Board View and Tech View – More Actions Menu Has No Unassign Item
+TYPE: Story Defect · PARENT: SV-10054 (Keyboard access and focus — design questions to resolve; Ready for QA, read live 16 Oct 2026 — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10054
+ALREADY REPORTED: none found among SV-11317 to SV-11326, SV-11338, SV-11393 to SV-11398 (titles read live 16 Oct 2026).
+SEEN ON: staging build {{v26.40.18-7d85b7d}}, 16 Oct 2026 (run 498, C368152). The same one-item menu was seen on 15 Oct (build v26.40.17-a5c4210, test C368151).
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+
+h2. Description
+
+*The More actions (⋯) menu of a work order that has a lead technician should offer Unassign as a menu item, so the lead can be removed with the keyboard.* On staging the menu offers only "Reassign lead technician".
+
+For example,
+* a work order led by a technician shows one item in its More actions menu: "Reassign lead technician"
+* there is no "Unassign" item, so the keyboard way to remove the lead goes through the Reassign dialog's Unassigned row instead
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin and check the top bar shows *Staging Heavy Duty - 9919*.
+# Open *Work Orders*, click the *All* tab, type a customer whose work order has a lead technician in *Search* (for example {{ZZAUTOTEST F3 Keyboard Reassign}}) and click *Board View*.
+# Move focus to that work order's card, press Tab to its *More actions* (⋯) button and press Enter.
+#* The menu opens with one item: "Reassign lead technician".
+#* There is no "Unassign" item.
+
+*Actual Result:*
+* The More actions menu offers only "Reassign lead technician".
+
+*Expected Result:*
+* As the test expects: *"Step 10: the menu offers Reassign lead technician and Unassign."* and *"Step 11: {Work-order-3} moves to the Unassigned column and "Lead technician removed" shows."*
+
+h2. Screenshots
+
+!C368152-2-menu-has-no-unassign.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.18-7d85b7d}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 16 Oct 2026
+* *User:* Admin
+
+h2. Sources
+
+* PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54, S11-R9 (as quoted in the test case):
+{quote}Reassigning by keyboard goes through the more-actions menu: Reassign lead technician opens the Reassign dialog, and Unassign is a menu item. There is no keyboard drag in this release, so reordering work orders and technicians is by mouse or touch only.{quote}
+* S4-R5:
+{quote}After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.{quote}
+
+h2. Test case
+
+* [C368152 Reassign and Unassign work from the keyboard through the More actions menu|https://shopview.testrail.io/index.php?/cases/view/368152]

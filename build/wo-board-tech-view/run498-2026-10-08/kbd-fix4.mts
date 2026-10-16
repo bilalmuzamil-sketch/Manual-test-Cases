@@ -315,8 +315,14 @@ await run('C368152', async () => { await pins([ANA.staff_id, BEN.staff_id]);
     if (!o.s7_focusInSearch) { const k = await keyUntil(p, (f) => /INPUT|search/i.test(f.raw), 6); o.s7_tabToSearch = k.found; }
     await p.keyboard.type('ZZAUTOTEST Be', { delay: 60 }); await p.waitForTimeout(1800);
     o.s7_rows = await p.evaluate(`[...document.querySelectorAll('.q-dialog [data-test-id^="option_lead_technician_"]')].map(e => e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 40))`); await shot(p, 'C368152-s7-typed');
-    const want8 = `option_lead_technician_${BEN.staff_id}`; let k8 = await keyUntil(p, (f) => f.raw === want8, 10, 'ArrowDown'); o.s8_reach = { by: 'arrow keys', found: k8.found, stops: k8.seen };
-    if (!k8.found) { k8 = await keyUntil(p, (f) => f.raw === want8, 12, 'Tab'); o.s8_reach = { by: 'Tab', found: k8.found, stops: k8.seen }; }
+    // 16 Oct 2026 (second go): the first go pressed the arrows from the search box and then Tab, and kept only the Tab stops. Now every
+    // route is kept: arrows from the search box; Tab to the first row, then arrows; Tab alone. The row ids in the list are recorded too.
+    o.s7_rowIds = (await p.evaluate(`[...document.querySelectorAll('.q-dialog [data-test-id^="option_lead_technician_"]')].map(e => e.getAttribute('data-test-id'))`) as string[]).map((x) => x === `option_lead_technician_${BEN.staff_id}` ? 'Technician-B (Ben Bravo, this run)' : clean(x));
+    const want8 = `option_lead_technician_${BEN.staff_id}`; o.s8_routes = {};
+    let k8 = await keyUntil(p, (f) => f.raw === want8, 6, 'ArrowDown'); o.s8_routes.arrowsFromSearch = { found: k8.found, stops: k8.seen }; o.s8_reach = { by: 'arrow keys from the search box', found: k8.found };
+    if (!k8.found) { const t1 = await keyUntil(p, (f) => /^option_lead_technician_/.test(f.raw), 4, 'Tab'); k8 = await keyUntil(p, (f) => f.raw === want8, 6, 'ArrowDown'); o.s8_routes.tabThenArrows = { firstTab: t1.seen, found: k8.found, stops: k8.seen }; o.s8_reach = { by: 'Tab to the first row, then arrow keys', found: k8.found }; }
+    if (!k8.found) { k8 = await keyUntil(p, (f) => f.raw === want8, 12, 'Tab'); o.s8_routes.tabOnly = { found: k8.found, stops: k8.seen }; o.s8_reach = { by: 'Tab', found: k8.found }; }
+    await shot(p, 'C368152-s8-dialog-keyboard');
     if (k8.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(1200);
       if (await p.locator('.q-dialog').filter({ hasNotText: /scheduled shifts/i }).count()) { const cf = await keyUntil(p, (f) => /confirm/i.test(f.raw), 8); o.s8_confirm = cf.found ? 'a Confirm button needed Enter' : 'no confirm'; if (cf.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(1200); } }
       o.s8_shifts = await keepShiftsKbd(p); await p.waitForTimeout(800); o.s8_messages = await toastsOn(p); }

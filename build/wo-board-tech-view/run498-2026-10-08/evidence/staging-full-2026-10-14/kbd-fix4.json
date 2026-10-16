@@ -6,117 +6,213 @@
   "cal": true,
   "dan": true
  },
- "C97021": {
-  "boardCards": [
-   "board_card_Golf Co",
-   "board_card_Alpha Co",
-   "board_card_Bravo Co",
-   "board_card_Charlie Co"
+ "C368152": {
+  "s5": {
+   "reachedBy": "Tab to the board, then arrow keys (Tab alone did not reach it)",
+   "tabStops": [
+    "page_search_clear(Clear search)",
+    "filter_chip_status",
+    "filter_chip_assigned_to_me",
+    "filter_chip_vehicleHere",
+    "button_density(Density)",
+    "button_board_fields_selection(Fields to display)",
+    "display_option_list(List)",
+    "display_option_tech_view(Tech View)",
+    "display_option_board_view(Board View)*",
+    "button_new_work_order(Create Work Order)",
+    "board_card_<id>*",
+    "button_work_order_more_actions(More actions for S2-36359)",
+    "body",
+    "skip-to-content*",
+    "module_selector_trigger(Current module: ShopHub. Switch module)*",
+    "button_desktop_nav_link(Work Orders)",
+    "button_desktop_nav_link(Schedule)",
+    "button_desktop_nav_link(Customers)",
+    "button_desktop_nav_link(Parts)",
+    "button_desktop_nav_link(Reports)",
+    "button_desktop_nav_link(Dashboard)",
+    "global_search_trigger(Search)*",
+    "button_notifications(Notifications)",
+    "profile_menu_button(Profile)",
+    "tab_all",
+    "page_search_input",
+    "page_search_clear(Clear search)",
+    "filter_chip_status",
+    "filter_chip_assigned_to_me",
+    "filter_chip_vehicleHere",
+    "button_density(Density)",
+    "button_board_fields_selection(Fields to display)",
+    "display_option_list(List)",
+    "display_option_tech_view(Tech View)",
+    "display_option_board_view(Board View)*",
+    "button_new_work_order(Create Work Order)",
+    "board_card_<id>*",
+    "button_work_order_more_actions(More actions for S2-36359)",
+    "body",
+    "skip-to-content*"
+   ],
+   "onMore": true,
+   "items": [
+    "Reassign lead technician"
+   ]
+  },
+  "s6_menuFocus": "Reassign lead technician",
+  "s6_dialog": 1,
+  "s7_focusInSearch": true,
+  "s7_rows": [
+   "person Unassigned",
+   "ZB ZZAUTOTEST Ben Bravo 61 open"
   ],
-  "boardColumns": 14,
-  "s5_firstCard": {
-   "found": true,
-   "presses": 11,
-   "focus": {
-    "raw": "board_card_Golf Co",
-    "label": null,
-    "cls": "q-card q-card--flat no-shadow board-card cursor-pointer wo-density--regular",
-    "text": "S2-36336 Approved more_horiz ZZF9 Line c",
-    "outline": "2px solid rgb(37, 124, 255)",
-    "shadow": null,
-    "focusVisible": true
+  "s7_rowIds": [
+   "option_lead_technician_unassigned",
+   "Technician-B (Ben Bravo, this run)"
+  ],
+  "s8_routes": {
+   "arrowsFromSearch": {
+    "found": false,
+    "stops": [
+     "input_reassign_lead_search(Search technicians)",
+     "input_reassign_lead_search(Search technicians)",
+     "input_reassign_lead_search(Search technicians)",
+     "input_reassign_lead_search(Search technicians)",
+     "input_reassign_lead_search(Search technicians)",
+     "input_reassign_lead_search(Search technicians)"
+    ]
+   },
+   "tabThenArrows": {
+    "firstTab": [
+     "option_lead_technician_unassigned"
+    ],
+    "found": true,
+    "stops": [
+     "option_lead_technician_<id>"
+    ]
    }
   },
-  "s6_tabStops": [
-   "button_work_order_more_actions(More actions for S2-36336)",
-   "body",
-   "skip-to-content*",
-   "module_selector_trigger(Current module: ShopHub. Switch module)*",
-   "button_desktop_nav_link(Work Orders)",
-   "button_desktop_nav_link(Schedule)",
-   "button_desktop_nav_link(Customers)",
-   "button_desktop_nav_link(Parts)",
-   "button_desktop_nav_link(Reports)",
-   "button_desktop_nav_link(Dashboard)",
-   "global_search_trigger(Search)*",
-   "button_notifications(Notifications)",
-   "profile_menu_button(Profile)",
-   "tab_all",
-   "page_search_input",
-   "page_search_clear(Clear search)",
-   "filter_chip_status",
-   "filter_chip_assigned_to_me",
-   "filter_chip_vehicleHere",
-   "button_density(Density)",
-   "button_board_fields_selection(Fields to display)",
-   "display_option_list(List)",
-   "display_option_tech_view(Tech View)",
-   "display_option_board_view(Board View)*",
-   "button_new_work_order(Create Work Order)"
-  ],
-  "s7_shiftTabStops": [
-   "display_option_board_view(Board View)*",
-   "display_option_tech_view(Tech View)",
-   "display_option_list(List)",
-   "button_board_fields_selection(Fields to display)",
-   "button_density(Density)",
-   "filter_chip_vehicleHere",
-   "filter_chip_assigned_to_me",
-   "filter_chip_status",
-   "page_search_input",
-   "tab_all",
-   "profile_menu_button(Profile)",
-   "button_notifications(Notifications)"
-  ],
-  "s6_cardsReachedByTab": [
-   "board_card_Golf Co"
-  ],
-  "techRows": [
-   "tech_view_row_Golf Co",
-   "tech_view_row_Alpha Co",
-   "tech_view_row_Bravo Co",
-   "tech_view_row_Charlie Co"
-  ],
-  "s9_first": {
-   "found": true,
-   "presses": 11,
-   "focus": {
-    "raw": "tech_view_group_unassigned",
-    "label": null,
-    "cls": "",
-    "text": "expand_more person Unassigned assignment",
-    "outline": null,
-    "shadow": null,
-    "focusVisible": true
-   }
+  "s8_reach": {
+   "by": "Tab to the first row, then arrow keys",
+   "found": true
   },
-  "s10_tabStops": [
-   "button_tech_view_group_toggle_unassigned(Collapse Unassigned)",
-   "body",
-   "skip-to-content*",
-   "module_selector_trigger(Current module: ShopHub. Switch module)*",
-   "button_desktop_nav_link(Work Orders)",
-   "button_desktop_nav_link(Schedule)",
-   "button_desktop_nav_link(Customers)",
-   "button_desktop_nav_link(Parts)",
-   "button_desktop_nav_link(Reports)",
-   "button_desktop_nav_link(Dashboard)",
-   "global_search_trigger(Search)*",
-   "button_notifications(Notifications)",
-   "profile_menu_button(Profile)",
-   "tab_all",
-   "page_search_input",
-   "page_search_clear(Clear search)",
-   "filter_chip_status",
-   "filter_chip_assigned_to_me",
-   "filter_chip_vehicleHere",
-   "button_density(Density)",
-   "button_tech_view_column_selection(Column Selection)",
-   "display_option_list(List)",
-   "display_option_tech_view(Tech View)*",
-   "display_option_board_view(Board View)",
-   "button_new_work_order(Create Work Order)"
+  "s8_confirm": "a Confirm button needed Enter",
+  "s8_shifts": null,
+  "s8_messages": [
+   "Lead technician updated"
   ],
-  "s10_rowsReachedByTab": []
- }
+  "s8_dialogLeft": 0,
+  "s8_alphaColumn": "Technician-B",
+  "s8_lead": "ZZAUTOTEST Ben Bravo",
+  "s9": {
+   "reachedBy": "Tab to the board, then arrow keys (Tab alone did not reach it)",
+   "tabStops": [
+    "page_search_clear(Clear search)",
+    "filter_chip_status",
+    "filter_chip_assigned_to_me",
+    "filter_chip_vehicleHere",
+    "button_density(Density)",
+    "button_board_fields_selection(Fields to display)",
+    "display_option_list(List)",
+    "display_option_tech_view(Tech View)",
+    "display_option_board_view(Board View)*",
+    "button_new_work_order(Create Work Order)",
+    "board_card_<id>*",
+    "button_work_order_more_actions(More actions for S2-36357)",
+    "body",
+    "skip-to-content*",
+    "module_selector_trigger(Current module: ShopHub. Switch module)*",
+    "button_desktop_nav_link(Work Orders)",
+    "button_desktop_nav_link(Schedule)",
+    "button_desktop_nav_link(Customers)",
+    "button_desktop_nav_link(Parts)",
+    "button_desktop_nav_link(Reports)",
+    "button_desktop_nav_link(Dashboard)",
+    "global_search_trigger(Search)*",
+    "button_notifications(Notifications)",
+    "profile_menu_button(Profile)",
+    "tab_all",
+    "page_search_input",
+    "page_search_clear(Clear search)",
+    "filter_chip_status",
+    "filter_chip_assigned_to_me",
+    "filter_chip_vehicleHere",
+    "button_density(Density)",
+    "button_board_fields_selection(Fields to display)",
+    "display_option_list(List)",
+    "display_option_tech_view(Tech View)",
+    "display_option_board_view(Board View)*",
+    "button_new_work_order(Create Work Order)",
+    "board_card_<id>*",
+    "button_work_order_more_actions(More actions for S2-36357)",
+    "body",
+    "skip-to-content*"
+   ],
+   "onMore": true
+  },
+  "s10_items": [
+   "Reassign lead technician"
+  ],
+  "s11": "no Unassign item in the menu",
+  "s12": {
+   "reachedBy": "Tab to the board, then arrow keys (Tab alone did not reach it)",
+   "tabStops": [
+    "page_search_clear(Clear search)",
+    "filter_chip_status",
+    "filter_chip_assigned_to_me",
+    "filter_chip_vehicleHere",
+    "button_density(Density)",
+    "button_board_fields_selection(Fields to display)",
+    "display_option_list(List)",
+    "display_option_tech_view(Tech View)",
+    "display_option_board_view(Board View)*",
+    "button_new_work_order(Create Work Order)",
+    "board_card_<id>*",
+    "button_work_order_more_actions(More actions for S2-36358)",
+    "skip-to-content*",
+    "module_selector_trigger(Current module: ShopHub. Switch module)*",
+    "button_desktop_nav_link(Work Orders)",
+    "button_desktop_nav_link(Schedule)",
+    "button_desktop_nav_link(Customers)",
+    "button_desktop_nav_link(Parts)",
+    "button_desktop_nav_link(Reports)",
+    "button_desktop_nav_link(Dashboard)",
+    "global_search_trigger(Search)*",
+    "button_notifications(Notifications)",
+    "profile_menu_button(Profile)",
+    "tab_all",
+    "page_search_input",
+    "page_search_clear(Clear search)",
+    "filter_chip_status",
+    "filter_chip_assigned_to_me",
+    "filter_chip_vehicleHere",
+    "button_density(Density)",
+    "button_board_fields_selection(Fields to display)",
+    "display_option_list(List)",
+    "display_option_tech_view(Tech View)",
+    "display_option_board_view(Board View)*",
+    "button_new_work_order(Create Work Order)",
+    "board_card_<id>*",
+    "button_work_order_more_actions(More actions for S2-36358)",
+    "body",
+    "skip-to-content*",
+    "module_selector_trigger(Current module: ShopHub. Switch module)*"
+   ]
+  },
+  "s12_keys": {
+   "Space": "Technician-A",
+   "ArrowUp": "Technician-A",
+   "ArrowDown": "Technician-A",
+   "Shift+ArrowUp": "Technician-A",
+   "Shift+ArrowDown": "Technician-A",
+   "Shift+ArrowLeft": "Technician-A",
+   "Shift+ArrowRight": "Technician-A"
+  },
+  "s12_order": {
+   "before": [
+    "Bravo Co"
+   ],
+   "after": [
+    "Bravo Co"
+   ]
+  }
+ },
+ "restored": true
 }

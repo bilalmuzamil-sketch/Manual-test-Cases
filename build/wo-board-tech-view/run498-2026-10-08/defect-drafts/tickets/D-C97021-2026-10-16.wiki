@@ -1,0 +1,52 @@
+TITLE: Board View and Tech View – Tab Stops on One Card or Header, Not on Every Card, Row and Header
+TYPE: Story Defect · PARENT: SV-10054 (Keyboard access and focus — design questions to resolve; Ready for QA, read live 16 Oct 2026 — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10054
+ALREADY REPORTED: none found among SV-11317 to SV-11326, SV-11338, SV-11393 to SV-11398 (titles read live 16 Oct 2026).
+SEEN ON: staging build {{v26.40.18-7d85b7d}}, 16 Oct 2026 (run 498, C97021). The same was seen on 15 Oct (build v26.40.17-a5c4210).
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+
+h2. Description
+
+*Tab and Shift+Tab should move through every card and column header in Board View, and every row and group header in Tech View, in on-screen order.* On staging Tab stops on one card (Board View) or on the first group header (Tech View) and then leaves the board or table; the other cards, rows and headers are reached only with the arrow keys.
+
+For example,
+* in Board View, Tab reaches the first card and its More actions button, then jumps to the top of the page
+* in Tech View, Tab reaches the Unassigned group header and its arrow, then jumps to the top of the page; no row ever gets focus by Tab
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin and check the top bar shows *Staging Heavy Duty - 9919*.
+# Open *Work Orders*, click the *All* tab and type a customer with several work orders for different technicians in *Search* (for example {{ZZAUTOTEST F3 Keyboard Reach}}).
+# Click *Board View*, click once in the *Search* box and from now on use only the keyboard.
+# Press Tab repeatedly.
+#* The first card gets a blue focus ring, then its More actions button gets focus.
+#* The next Tab goes to the top of the page; no other card and no column header is reached.
+# Click *Tech View*, click once in the *Search* box and press Tab repeatedly.
+#* The Unassigned group header gets focus, then its arrow, then focus goes to the top of the page; no work order row is reached.
+
+*Actual Result:*
+* Tab reaches one card (Board View) or one group header (Tech View) and then leaves.
+
+*Expected Result:*
+* As the test expects: *"Step 6: Tab moves through the column headers and cards in on-screen order: column by column from left to right, and top to bottom within each column. Every card and every column header is reached."* and *"Step 10: Tab moves through the group headers and rows from top to bottom. Every row and every group header is reached."*
+
+h2. Screenshots
+
+!C97021-1-board-tab-reaches-one-card.png|width=1000!
+!C97021-2-tech-tab-reaches-unassigned-header-only.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.18-7d85b7d}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 16 Oct 2026
+* *User:* Admin
+
+h2. Sources
+
+* PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54, S11-R3 (as quoted in the test case):
+{quote}Tab and Shift+Tab move through rows or cards and group or column headers in on-screen order: top to bottom in Tech View; in Board View, column by column, left to right, and top to bottom within each column.{quote}
+* S11-R1:
+{quote}Tab moves focus onto each work order row (Tech View) or card (Board View); the focused row or card shows a visible focus ring.{quote}
+* Product owner answer: Chris Ward, WO Board and Tech View question sheet, answer 28 (15 Oct 2026).
+
+h2. Test case
+
+* [C97021 Tab reaches every card, row and header in on-screen order with a focus ring|https://shopview.testrail.io/index.php?/cases/view/97021]
