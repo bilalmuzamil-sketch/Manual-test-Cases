@@ -213,3 +213,10 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
 - Still Blocked: C368175 (now runnable with the same company B — not yet run) and C368191 (a deleted person's line).
 - C368175 Passed on staging (15 Oct evening): no company-B technician in New Line / Edit Line / Edit labor; full `/api/technicians`
   (253, 4 pages) holds none either (L0396). Only C368191 stays Blocked.
+
+### 16 Oct 2026 (afternoon) — run 498 state on staging (v26.40.19-72f4f3b)
+- 273 tests: 236 Passed, 30 Failed (every one with its ticket linked), 7 Blocked, 0 untested/retest (read live).
+- Blocked: C581915–C581918 + C97022 (no Technician filter on staging, SV-11326) · C590120 (SV-11405 In Progress) · C368151
+  (its steps 13–15 follow the old Tab rule; PRD v55+ S11-R1/R3 changed it — QA lead's call on the case text).
+- Filed today (QA lead's go-ahead, checked against PRD v58): SV-11419, SV-11420, SV-11421, SV-11422. Updated: SV-11318, SV-11101
+  (still Obsolete), SV-11320, SV-11322, SV-11338. C581895 = existing SV-11336. C590122 linked to SV-11323 (grey panel).

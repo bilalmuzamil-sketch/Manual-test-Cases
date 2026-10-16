@@ -1,0 +1,32 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.18-7d85b7d",
+  "date": "16 October 2026",
+  "note": "batch 39a: re-runs of the tests whose expected results changed on 15 Oct (RETEST-PLAN-2026-10-16), 16 Oct 08:50-09:08 UTC"
+ },
+ "results": {
+  "C590122": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Step 2: under Technician-A's header, \"No work orders\" shows in grey, centred, with the clipboard icon before it, and no rows.",
+    "Step 4: Technician-A's empty column shows a dashed rounded box with a light-grey circle holding the clipboard icon and \"Drag a work order here to assign it\".",
+    "Step 7: Board View shows \"No work orders match these filters\", \"Try removing a filter to widen your results.\" and \"Clear all filters\", centred. The magnifier's round grey circle is drawn in the same grey as the board behind it, so no circle can be seen.",
+    "Step 8: List shows the same words and button, and its magnifier sits in a visible round grey circle.",
+    "Step 9: Tech View shows the same as List.",
+    "Steps 12 and 13: Tech View and List show \"No work orders match the search \"zzzz\".\" with no button.",
+    "The missing circle in Board View has no ticket yet; it is with the QA lead.",
+    "The magnifier's grey circle is there, but it sits on the grey rounded panel behind the board, which the requirements say should not be there; that panel is already reported (ticket below). Once the panel is removed, the circle should show."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016/C590122-1-no-results-board-list-tech.png",
+    "evidence/staging-full-2026-10-14/annotated-1016/C590122-2-empty-group-and-column.png"
+   ],
+   "not_observed": null,
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11323.",
+   "ticket_held": true,
+   "todo": "What needs to be done: follow the ticket below; run this test again once the grey panel behind the board is removed."
+  }
+ }
+}
