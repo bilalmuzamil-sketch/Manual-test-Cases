@@ -3203,10 +3203,10 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
 1. DONE 16 Oct: C581895 updated (Retest); C96963, C97009, C368158, C368130 quotes refreshed (no retest); SV-11318/SV-11320 footers fixed.
 2. Run 498: 28 tests set to Retest and 3 Untested (first run) — need a staging run (test-run lane).
 3. C590127, C97022, C581915–C581918: Blocked in run 498 on SV-11326 (Technician filter, Open); rerun when it is done.
-5d. Check-in set for 16 Oct 22:32 UTC (trigger trig_0126bsu9Ja2LijuWWCGsBkHw): read Chris's answers 32-33 and report their effect on the cases; no change without the QA lead's approval. C97021's 17:10 edit and C614715's empty location are with the test-run session.
-5c. Chris's sheet: questions 32 (header avatar initials colour) and 33 (where Tab lands first) added 16 Oct, rows 37-38, light green; message drafted for the QA lead to send. Waiting on Chris's answers.
+5d. Check-in set for 16 Oct 22:32 UTC (trigger trig_0126bsu9Ja2LijuWWCGsBkHw): read Chris's answers 32-33 and report their effect on the cases; no change without the QA lead's approval.
+5c. Chris's sheet: questions 32 (header avatar initials colour) and 33 (where Tab lands first) added 16 Oct, rows 37-38, light green; the QA lead sent the message to Chris on 16 Oct. Waiting on Chris's answers.
 5a. DONE 16 Oct: the 21 targeted cases rewritten in the two-audience layout (one-time), 4 new (C614714–C614717), run 498 277 tests, 13 Retest. Report: wo-board-tech-view/v61-pass-2026-10-16/two-audience/REPORT.md.
-5b. QA lead to decide: split C368150 (13 steps), C368152 (12), C97020 (16), C590117 (11)? Empty location for C614715? Vladimir to be told about C96945/C368214 when the QA lead says.
+5b. CLOSED 16 Oct (QA lead): the 4 long cases are not split; C97021's 17:10 UTC edit by someone else is NOT to be restored (our version stays only in correction-c97021/C97021-fields.json); C614715's empty location is the test-run session's job, not to be raised again; Vladimir is not to be told for now.
 5. ON HOLD (QA lead 16 Oct, verbatim: "Lets wait until I give you a go ahead for a full pass once the oher sessions are done with their job. Lets hold"): v58 full pass, analysis in answers-2026-10-15/V58-IMPACT-2026-10-16.md. Do not start until he says go. PRD moved v54 → v58 on 15 Oct (S11-R1/S11-R3 keyboard rewritten; new S1-N1c, S2-R11a, S2-R13a, S2-R23; S2-R20, S2-R22, Out of Scope changed): our WO Board cases still quote v54 — needs a full pass when the QA lead orders it.
 6. C614711 (SV-11416, deleted lead technician): update to the PO's ruling once SV-11416 is decided.
 4. Vladimir: C96929 and C96978 expected results changed (note in followup-2026-10-16/NOTE-FOR-VLADIMIR-2026-10-16.md) — QA lead to send.

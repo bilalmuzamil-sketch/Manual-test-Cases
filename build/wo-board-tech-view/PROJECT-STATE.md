@@ -134,3 +134,8 @@ caught 0 of the 10; C96927 and C96979 assert the old S5-R4. Review, root causes 
 - 18 design questions added to Chris's sheet (rows 17–34). Unsent count 0.
 
 - 16 Oct 2026 (QA lead): this lane writes and updates cases; it does not run them. Running the cases (run 498, the 13 Retest and 4 Untested) is the test-run session's job. Vladimir is not to be told about the Automated changes for now. Do not split the four long cases (C368150, C368152, C97020, C590117).
+
+### 16 Oct 2026 — QA lead decisions (late)
+- Message to Chris about questions 32 and 33: sent by the QA lead.
+- C97021 (https://shopview.testrail.io/index.php?/cases/view/97021): the 17:10 UTC edit by someone else stays; do NOT restore our version (kept only as `v61-pass-2026-10-16/two-audience/correction-c97021/C97021-fields.json`). When judging Chris's answer 33, read C97021's live text.
+- C614715 (https://shopview.testrail.io/index.php?/cases/view/614715) empty location: the test-run session handles it; do not remind the QA lead.
