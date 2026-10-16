@@ -1,0 +1,81 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-72f4f3b",
+  "date": "16 October 2026",
+  "note": "batch 40: the seven Blocked tests unblocked (QA lead 16 Oct); staging moved to v26.40.19-72f4f3b before this batch; location zone set to Asia/Karachi and proved (Rule 125) at 10:51 UTC"
+ },
+ "results": {
+  "C96962": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging.",
+    "Set-up: the location's time zone was set back to Pakistan time first (someone had changed it); the Schedule's clock then matched the browser.",
+    "Work order S2-36536 (customer \"ZZAUTOTEST F1 Lead History 55834\"), two lines, lead Esther Howard.",
+    "Board View drag to Ralph Edwards: the Work Order Log shows one new entry, \"Lead tech changed\", Esther Howard to Ralph Edwards, by Admin ShopView, 3:56 PM.",
+    "Edit Line on line 1: Ralph Edwards removed, Dana Ortiz added, Save & Close. Line 1's own Audit log (click the line number 1 > Audit log) shows \"Line tech changed\", Ralph Edwards to Dana Ortiz, 3:57 PM.",
+    "Reassign lead technician back to Esther Howard: one entry, 3:58 PM. Lead Technician changed on the work order page: one entry, Esther Howard to Dana Ortiz, 3:59 PM.",
+    "3 lead changes = 3 entries, each with the old lead, the new lead, the user and the time; line 2's own log still shows only \"Line created\", so no entries were added for the lines that moved with the lead.",
+    "The work order page's Lead Technician list does not reach Ralph Edwards (the known 100-name list limit), so Dana Ortiz was picked there; the test names Ralph only as an example."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016d/C96962-1-work-order-log.png",
+    "evidence/staging-full-2026-10-14/annotated-1016d/C96962-2-line-1-audit-log.png"
+   ],
+   "ticket": null
+  },
+  "C97012": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, with two people signed in at the same time on two separate sign-ins.",
+    "Dispatcher: Tech ShopView, given the test's own role \"ZZAUTOTEST F3 Stale Drop Dispatcher Role\" (Work orders View and Create & Edit), signed in on a second, separate sign-in. Admin: Admin ShopView on the usual sign-in.",
+    "Alpha Co (S2-36540, Complete) and Bravo Co (S2-36541, Approved), both led by ZZAUTOTEST Ana Alpha, shown on the dispatcher's Board View.",
+    "Step 4: the Admin invoiced Alpha Co. Step 5: the dispatcher, without refreshing, dragged Alpha Co to Ben's column: the alert read \"Failed to update lead technician, please try again.\" with \"The lead technician can't be changed once a work order is Invoiced or Paid.\", and the card went back to Ana's column.",
+    "Step 6: after a refresh Alpha Co is Invoiced and still led by ZZAUTOTEST Ana Alpha.",
+    "Step 7: the Admin removed Create & Edit from the role. Step 8: the dispatcher, without refreshing, dragged Bravo Co to Ben: the app signed the dispatcher out with \"Session expired, please log in again.\" (written down, as the test asks).",
+    "Step 9: Bravo Co is still led by ZZAUTOTEST Ana Alpha, so the move did not happen.",
+    "The role and Tech ShopView's own role were put back afterwards and read back."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016d/C97012-1-step5-drop-refused.png",
+    "evidence/staging-full-2026-10-14/annotated-1016d/C97012-2-step8-signed-out.png"
+   ],
+   "ticket": null
+  },
+  "C368179": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging.",
+    "Set-up: location time zone and browser both on Pakistan time (proved first). Esther Howard's row was cleared for Mon, Oct 19 (tomorrow is a Saturday, a day she does not work).",
+    "Work order S2-36545 (customer \"ZZAUTOTEST Schedule Choose Lines 33562\"), two Approved lines, Line 1 \"Service - Cabin air filter\" estimated at 2h.",
+    "The card was dropped exactly on the 1 PM line of Esther Howard's row (the app's own drop marker started on the line). Check first: the same drop on the 9 AM line saved 9:00 AM to 11:00 AM.",
+    "Choose lines, only Line 1 ticked, Hours 2h, \"Create shift · 1 line · 2h\": the shift saved with no error message.",
+    "After a reload, the shift on Esther Howard's row reads 01:00 PM to 03:00 PM, \"Single line · Est. 2h\", Line 1 \"Service - Cabin air filter\" only (1 of 2 lines).",
+    "The earlier 12:45 reading came from where the test script let go of the card, not from the product."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016d/C368179-1-drop-on-1pm-line.png",
+    "evidence/staging-full-2026-10-14/annotated-1016d/C368179-2-shift-details.png"
+   ],
+   "ticket": null
+  },
+  "C590131": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, in the QA lead's second company (\"Analyst 1\" sign-in, Location A), window 1440 px wide.",
+    "Set-up: the main company's Unassigned group holds about 3,500 work orders and loads them in batches, so its end could not be reached; here Unassigned holds 30 work orders (more than fit on the screen) and two technician groups follow it (Bilal Muzamil, Test B2 with 23). No filters, Search empty, density Regular.",
+    "Step 3: while scrolling through Unassigned, the column headings stay at the top and the Unassigned header, with its arrow and count 30, stays just under them.",
+    "Steps 4 and 5: when the next group's header (Bilal Muzamil) reaches the Unassigned header, the Unassigned header goes away at once and the next header moves up into its place just under the column headings.",
+    "Only one group header is held at a time; the same hand-over happens again from Bilal Muzamil to Test B2.",
+    "Note: the Unassigned header leaves at once rather than sliding up; the next header then slides up into the same place."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-1016d/C590131-1-step3-unassigned-held.png",
+    "evidence/staging-full-2026-10-14/annotated-1016d/C590131-2-step4-next-header-arrives.png",
+    "evidence/staging-full-2026-10-14/annotated-1016d/C590131-3-step5-unassigned-header-leaves.png",
+    "evidence/staging-full-2026-10-14/annotated-1016d/C590131-4-step5-next-header-held.png"
+   ],
+   "ticket": null
+  }
+ }
+}

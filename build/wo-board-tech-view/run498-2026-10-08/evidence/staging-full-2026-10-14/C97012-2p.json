@@ -1,0 +1,167 @@
+{
+ "exit": 200,
+ "roleSetUp": "200",
+ "roleAtStart": [
+  "workOrdersCreateAndEdit",
+  "workOrdersView"
+ ],
+ "techRoleBefore": "Technician",
+ "techToRoleD": "201",
+ "techNow": [
+  "Nebojsa Custom Tech Custom Tech",
+  "Tech ShopView ZZAUTOTEST F3 Stale Drop Dispatcher Role"
+ ],
+ "setup": {
+  "log": [
+   "Alpha Co approved 201",
+   "Alpha Co lead 201",
+   "Bravo Co approved 201",
+   "Bravo Co lead 201",
+   "mileage 201",
+   "line complete 200"
+  ],
+  "alpha": "S2-36540 complete lead=ZZAUTOTEST Ana Alpha",
+  "bravo": "S2-36541 approved lead=ZZAUTOTEST Ana Alpha"
+ },
+ "devTechButton": 1,
+ "dispatcherUrl": "/workorders?status=invoiced&tab=work_orders",
+ "dispatcherPerms": [
+  "woFullViewMode",
+  "workOrdersCreateAndEdit",
+  "workOrdersView"
+ ],
+ "adminStillSignedIn": 200,
+ "dispatcherTop0": "Staging Heavy Duty - 9919 TS",
+ "pinPut": 200,
+ "start": {
+  "top": "Staging Heavy Duty - 9919 TS",
+  "alpha": 1,
+  "bravo": 1,
+  "benColumn": 1
+ },
+ "step4": {
+  "invoice": "201",
+  "status": "invoiced",
+  "dispatcherSession": 200
+ },
+ "step5": {
+  "drag": "ok",
+  "prompt": null,
+  "alert": [
+   "Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid."
+  ],
+  "watched": [
+   {
+    "ms": 149,
+    "kind": "text",
+    "text": "S2-36540ZZAUTOTEST F3 Stale Drop 67073 Alpha Co"
+   },
+   {
+    "ms": 993,
+    "kind": "text",
+    "text": "S2-36540Completemore_horizCustomer ZZAUTOTEST F3 Stale Drop 67073 Alpha CoZZF3SDProgress0%Lead technician ZZAUTOTEST Ben Bravo"
+   },
+   {
+    "ms": 1111,
+    "kind": "message",
+    "text": "warningFailed to update lead technician, please try again.The lead technician can't be changed once a work order is Invoiced or Paid.close"
+   },
+   {
+    "ms": 1111,
+    "kind": "text",
+    "text": "S2-36540Completemore_horizCustomer ZZAUTOTEST F3 Stale Drop 67073 Alpha CoZZF3SDProgress0%Lead technician ZZAUTOTEST Ana Alpha"
+   },
+   {
+    "ms": 1111,
+    "kind": "text",
+    "text": "assignmentDrag a work order here to assign it"
+   },
+   {
+    "ms": 1143,
+    "kind": "text",
+    "text": "S2-36541Approvedmore_horizCustomer ZZAUTOTEST F3 Stale Drop 67073 Bravo CoZZF3SDProgress0%Lead technician ZZAUTOTEST Ana Alpha"
+   }
+  ],
+  "anaColumn": [
+   "S2-36540",
+   "S2-36541"
+  ]
+ },
+ "step6": {
+  "status": "invoiced",
+  "lead": "ZZAUTOTEST Ana Alpha",
+  "url": "/workorders?tab=work_orders&search=ZZAUTOTEST+F3+Stale+Drop+67073"
+ },
+ "step7": {
+  "save": "200",
+  "roleNow": [
+   "workOrdersView"
+  ]
+ },
+ "step8": {
+  "drag": "ok",
+  "prompt": null,
+  "alert": [
+   "Session expired, please log in again. Session expired, please log in again."
+  ],
+  "watched": [
+   {
+    "ms": 143,
+    "kind": "text",
+    "text": "S2-36541ZZAUTOTEST F3 Stale Drop 67073 Bravo Co"
+   },
+   {
+    "ms": 911,
+    "kind": "text",
+    "text": "assignmentDrag a work order here to assign it"
+   },
+   {
+    "ms": 946,
+    "kind": "text",
+    "text": "S2-36541Approvedmore_horizCustomer ZZAUTOTEST F3 Stale Drop 67073 Bravo CoZZF3SDProgress0%Lead technician ZZAUTOTEST Ben Bravo"
+   },
+   {
+    "ms": 1125,
+    "kind": "message",
+    "text": "priority_highSession expired, please log in again.Session expired, please log in again.close"
+   },
+   {
+    "ms": 1236,
+    "kind": "text",
+    "text": "Sign in to your account to continueEmailPasswordvisibilityLoginForgot password? Privacy Policy · Terms of Use"
+   },
+   {
+    "ms": 1266,
+    "kind": "text",
+    "text": "light_modeLightdark_modeDark"
+   },
+   {
+    "ms": 1472,
+    "kind": "text",
+    "text": "science Dev Mode — Quick Login infoadmin_panel_settingsAdminscheduleTech"
+   }
+  ],
+  "url": "/login",
+  "dispatcherSession": 401
+ },
+ "step9": {
+  "lead": "ZZAUTOTEST Ana Alpha",
+  "url": "/login"
+ },
+ "controlPermsAfter": [],
+ "roleRestore": "200",
+ "roleAfter": [
+  "workOrdersCreateAndEdit",
+  "workOrdersView"
+ ],
+ "techRestore": "201",
+ "techAfter": [
+  "Custom Tech",
+  "Technician"
+ ],
+ "analystBack": {
+  "url": "/workorders?tab=work_orders",
+  "top": "Location A BM",
+  "form": true
+ }
+}

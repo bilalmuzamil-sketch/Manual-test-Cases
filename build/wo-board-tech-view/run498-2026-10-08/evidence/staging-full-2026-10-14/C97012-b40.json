@@ -1,0 +1,157 @@
+{
+ "runner": "3620a2b1",
+ "C97012": {
+  "techsOffered": {
+   "ana": true,
+   "ben": true
+  },
+  "roleAtStart": [
+   "workOrdersCreateAndEdit",
+   "workOrdersView"
+  ],
+  "setup": {
+   "log": [
+    "Alpha Co approved 201",
+    "Alpha Co lead 201",
+    "Bravo Co approved 201",
+    "Bravo Co lead 201",
+    "mileage 201",
+    "remove part request 200",
+    "story 201",
+    "line complete 200",
+    "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+    "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+    "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]"
+   ],
+   "alpha": "S2-36538 complete lead=ZZAUTOTEST Ana Alpha",
+   "bravo": "S2-36539 approved lead=ZZAUTOTEST Ana Alpha"
+  },
+  "userAPerms": 3,
+  "start": {
+   "alphaCard": 1,
+   "bravoCard": 1,
+   "userASession": 200
+  },
+  "step4": {
+   "toAdmin": "200 perms=59",
+   "invoice": "201",
+   "status": "invoiced",
+   "backToUserA": 200,
+   "userASessionAfterHandBack": 200
+  },
+  "step5": {
+   "drag": "ok",
+   "shiftPrompt": null,
+   "alert": [
+    "Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "watched": [
+    {
+     "ms": 134,
+     "kind": "new text",
+     "text": "S2-36538ZZAUTOTEST F3 Stale Drop 12683 Alpha Co"
+    },
+    {
+     "ms": 936,
+     "kind": "new text",
+     "text": "S2-36538Completemore_horizCustomer ZZAUTOTEST F3 Stale Drop 12683 Alpha CoZZF3SDProgress0%Lead technician ZZAUTOTEST Ben Bravo"
+    },
+    {
+     "ms": 1064,
+     "kind": "message",
+     "text": "warningFailed to update lead technician, please try again.The lead technician can't be changed once a work order is Invoiced or Paid.close"
+    },
+    {
+     "ms": 1064,
+     "kind": "new text",
+     "text": "S2-36538Completemore_horizCustomer ZZAUTOTEST F3 Stale Drop 12683 Alpha CoZZF3SDProgress0%Lead technician ZZAUTOTEST Ana Alpha"
+    },
+    {
+     "ms": 1064,
+     "kind": "new text",
+     "text": "assignmentDrag a work order here to assign it"
+    },
+    {
+     "ms": 1104,
+     "kind": "new text",
+     "text": "S2-36539Approvedmore_horizCustomer ZZAUTOTEST F3 Stale Drop 12683 Bravo CoZZF3SDProgress0%Lead technician ZZAUTOTEST Ana Alpha"
+    }
+   ],
+   "userASessionAfterDrag": 200,
+   "url": "/workorders?search=ZZAUTOTEST+F3+Stale+Drop+12683",
+   "signedOut": false,
+   "pageNavigations": {
+    "count": 0,
+    "log": [
+     "11:02:04 /workorders?tab=all",
+     "11:02:04 /workorders?tab=all",
+     "11:02:04 /workorders?tab=all",
+     "11:02:05 /workorders",
+     "11:02:16 /workorders?search=ZZAUTOTEST+F3+Stale+Drop+12683"
+    ]
+   },
+   "anaCards": [
+    "S2-36538",
+    "S2-36539"
+   ]
+  },
+  "step6": {
+   "status": "invoiced",
+   "lead": "ZZAUTOTEST Ana Alpha"
+  },
+  "step7": {
+   "toAdmin": "200 perms=59",
+   "save": "200",
+   "roleNow": [
+    "workOrdersView"
+   ],
+   "backToUserA": 200,
+   "userASessionAfterHandBack": 200
+  },
+  "step8": {
+   "drag": "ok",
+   "shiftPrompt": null,
+   "alert": [
+    "Lead technician updated"
+   ],
+   "watched": [
+    {
+     "ms": 135,
+     "kind": "new text",
+     "text": "S2-36539ZZAUTOTEST F3 Stale Drop 12683 Bravo Co"
+    },
+    {
+     "ms": 943,
+     "kind": "new text",
+     "text": "S2-36539Approvedmore_horizCustomer ZZAUTOTEST F3 Stale Drop 12683 Bravo CoZZF3SDProgress0%Lead technician ZZAUTOTEST Ben Bravo"
+    },
+    {
+     "ms": 1085,
+     "kind": "message",
+     "text": "check_circleLead technician updatedclose"
+    }
+   ],
+   "userASessionAfterDrag": 200,
+   "url": "/workorders?search=ZZAUTOTEST+F3+Stale+Drop+12683",
+   "signedOut": false,
+   "pageNavigations": {
+    "count": 0,
+    "log": [
+     "11:02:35 /workorders?search=ZZAUTOTEST+F3+Stale+Drop+12683",
+     "11:02:36 /workorders?search=ZZAUTOTEST+F3+Stale+Drop+12683",
+     "11:02:41 /workorders?search=ZZAUTOTEST+F3+Stale+Drop+12683",
+     "11:02:41 /workorders?tab=all",
+     "11:02:41 /workorders?tab=all",
+     "11:02:42 /workorders?tab=all"
+    ]
+   }
+  },
+  "step9": {
+   "lead": "ZZAUTOTEST Ben Bravo",
+   "url": "/workorders?search=ZZAUTOTEST+F3+Stale+Drop+12683"
+  },
+  "error": "asAdmin is not defined",
+  "roleRestore": "403 [{\"error\":\"Access denied.\"}]",
+  "roleAfterRestore": []
+ }
+}

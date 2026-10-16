@@ -1037,3 +1037,25 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   (`stg-orgb-seed.mts`). Never put its cookie through quick-login: that replaces its session.
 - He calls the Analyst 1 company "comparatively cleaner" (few records). Use it where a big shop gets in the way, such as Unassigned
   loading in batches or 255 technicians. Add whatever data a test needs there. Password kept in `/tmp/shopview/staging-analyst1.env` only. #staging #signin #two-users → L0394, L0395
+
+## L0405 — 2026-10-16 — Unblocking run 498 (batch 40): exact Schedule drops, the line's own Audit log, two-person tests, a clean company
+- **Build moved under us:** staging served v26.40.19-72f4f3b at 10:40 UTC (not v26.40.18); `build-marker.mts` before every batch (L0401).
+- **Location zone drifts too:** "Staging Heavy Duty - 9919" was back on America/Edmonton (audit times read 04:43 AM at 3:43 PM Karachi).
+  `stg6-tz.mts` sets Asia/Karachi and checks the Schedule's "now" pill; run it before any test that reads a time (Rule 125).
+- **Schedule drop = FullCalendar resource timeline, snapDuration 00:15, start = the 15-minute slot under the POINTER** (Schedule chunks,
+  v26.40.19). The hour lines are `[data-date*="T13:00:00"]` slot cells (`td.fc-timeline-slot-lane`); release at line + 1/8 hour. While the
+  mouse is held, `.fc-event-mirror`'s left edge shows where it will land. 9 AM saved 9:00 and 1 PM saved 1:00 PM (`C368179-drop-exact.mts`).
+  The heading TEXT sits ~6 px right of the line, so aiming from the text was the 12:45 trap (L0400). "Choose lines" is a TAB in the drop
+  window. Delete a shift with `DELETE /api/schedule/shifts/{id}?scope=shift` (shift | following | series).
+- **A line's own Audit log:** click `line_number_<lineId>` and pick "Audit log" from the VISIBLE menu (`C96962-line-audit-stg.mts`).
+  The labor sub-row's ⋮ only offers "Add Labor Fee / Discount" (playbook 054 trap). If saved pins do not take, pin through the column pin buttons.
+- **Two people in company A at once:** Analyst 1's own user cannot join company A ("There is already a user with that email."). Instead, in
+  a browser holding ONLY Analyst 1's Google cookies (sso + cf_clearance), the Dev Mode "Tech" quick-login gives Tech ShopView in company A
+  on a separate session; give Tech the test role first, put it back after (`C97012-two-people.mts`). This replaces Analyst 1's app session:
+  `analyst.mts` signs Analyst 1 back in through the app's own Email/Password form (POST /api/login) and saves the new PHPSESSID to its file.
+- **One-session stand-in is not enough for permission checks:** switching users from the RUNNER's jar left the dispatcher's jar on a dead
+  cookie (401). Switching from the dispatcher's own jar works, but a dispatcher reached by "switch user" had a drop ACCEPTED after the role
+  lost Create & Edit, while the real second sign-in was signed out and refused. Judge permission changes with a real second sign-in.
+- **Analyst 1 company for long-list tests:** Location A/B, technicians Bilal Muzamil and Test B2; Analyst 1 can create customers and work
+  orders but not staff or roles. Tech View hand-over (C590131) needs Unassigned > one screen AND a full screen of rows after the next group's
+  header (30 unassigned + 23 led by Test B2). `analyst.mts` opens a browser as Analyst 1. #staging #schedule #fullcalendar #audit-log #two-users → L0400, L0404
