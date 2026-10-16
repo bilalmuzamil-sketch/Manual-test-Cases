@@ -15,6 +15,131 @@
    "Dan": "ZZAUTOTEST Dan Delta"
   }
  },
+ "C97001": {
+  "anaStart": [
+   "Alpha Co",
+   "Bravo Co",
+   "Charlie Co"
+  ],
+  "step5": [
+   "Charlie Co",
+   "Alpha Co",
+   "Bravo Co"
+  ],
+  "step6": {
+   "ana": [
+    "Charlie Co",
+    "Alpha Co"
+   ],
+   "ben": [
+    "Delta Co",
+    "Bravo Co"
+   ],
+   "msg": [
+    "Lead technician updated"
+   ]
+  },
+  "step8": [
+   "Bravo Co",
+   "Delta Co"
+  ],
+  "step9": {
+   "ana": [
+    "Charlie Co",
+    "Alpha Co",
+    "Echo Co"
+   ],
+   "cal": [],
+   "msg": [
+    "Lead technician updated"
+   ]
+  },
+  "afterReload": {
+   "ana": [
+    "Charlie Co",
+    "Alpha Co",
+    "Echo Co"
+   ],
+   "ben": [
+    "Bravo Co",
+    "Delta Co"
+   ],
+   "cal": []
+  }
+ },
+ "C97002": {
+  "step4": {
+   "msg": [
+    "Lead technician updated"
+   ],
+   "ben": [
+    "Alpha Co"
+   ]
+  },
+  "step4fadedAfter9s": true,
+  "step5": "ZZAUTOTEST Ben Bravo",
+  "step6": {
+   "msg": [
+    "Lead technician removed"
+   ],
+   "un": [
+    "Alpha Co",
+    "Golf Co"
+   ]
+  },
+  "step7": "none",
+  "step8": {
+   "msg": [
+    "Lead technician updated"
+   ],
+   "cal": [
+    "Golf Co"
+   ]
+  },
+  "step9": "ZZAUTOTEST Cal Charlie",
+  "step11": {
+   "msg": [
+    "Lead technician updated"
+   ],
+   "ana": [
+    "Golf Co"
+   ],
+   "lead": "ZZAUTOTEST Ana Alpha"
+  }
+ },
+ "C97004": {
+  "error": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_column_header_1b72172f-c6fa-417e-a21f-0ece36b913b3\"]').locator('i, .q-icon').filter({ hasText: 'drag_indicator' }).first()\n"
+ },
+ "C97006": {
+  "step4": {
+   "sort": [
+    "Created Onarrow_drop_up desc"
+   ],
+   "rows": [
+    "Charlie Co",
+    "Bravo Co",
+    "Alpha Co"
+   ]
+  },
+  "techAfter": [
+   "Bravo Co",
+   "Alpha Co"
+  ],
+  "boardAfter": [
+   "Alpha Co",
+   "Bravo Co"
+  ],
+  "step9": {
+   "sort": [
+    "Created Onarrow_drop_up desc"
+   ],
+   "rows": [
+    "Charlie Co",
+    "Bravo Co",
+    "Alpha Co"
+   ]
+  }
+ },
  "C97007": {
   "benStart": [
    "Bravo Co",
@@ -34,6 +159,7 @@
    "role": "Technician",
    "location": "this location",
    "departments": [
+    "QB Location/Shop Time (Shop hand)",
     "Staging Heavy Duty - 9919/Service"
    ],
    "enrolments": [],
@@ -42,7 +168,7 @@
    ],
    "offeredAsLead": true,
    "sameNameOffered": [
-    "1b72172f open=53"
+    "1b72172f open=71"
    ]
   },
   "benFixes": [],
@@ -55,6 +181,7 @@
    "role": "Technician",
    "location": "this location",
    "departments": [
+    "QB Location/Shop Time (Shop hand)",
     "Staging Heavy Duty - 9919/Service"
    ],
    "enrolments": [],
@@ -63,7 +190,7 @@
    ],
    "offeredAsLead": true,
    "sameNameOffered": [
-    "1b72172f open=53"
+    "1b72172f open=71"
    ]
   },
   "step8typed": {
@@ -139,25 +266,25 @@
    "picked": false
   },
   "step8pageList": {
-   "count": 101,
+   "count": 99,
    "withBenOrBravo": [
     "check Julie Benjamin"
    ],
    "first": [
     "check Unassigned",
-    "check Aaron Zed",
-    "check Aaron Jennings",
     "check Aaron Baker",
+    "check Aaron Jennings",
+    "check Aaron Zed",
     "check Admin ShopView",
     "check Advisor Analysis",
     "check Ahtasham Service Advisor",
     "check Ahtasham Admin"
    ],
    "last": [
-    "check QA Administrator",
-    "check QA ServiceManager",
-    "check QA PartsManager",
-    "check QA Foreman",
+    "check Parts Technician",
+    "check Patricia Washington",
+    "check QA ServiceAdvisor",
+    "check QA Technician",
     "check ZZAUTOTEST Cal Charlie"
    ]
   },
@@ -190,5 +317,29 @@
    ]
   }
  },
- "restored": true
+ "C97008": {
+  "start": {
+   "ana": 3,
+   "ben": 1
+  },
+  "step6": {
+   "msg": [
+    "Lead technician updated"
+   ],
+   "ana": 2,
+   "ben": 2,
+   "noReload": true
+  },
+  "step6faded": true,
+  "step8": {
+   "order": [
+    "Alpha Co",
+    "Delta Co"
+   ],
+   "msg": [],
+   "ana": 2,
+   "ben": 2,
+   "lead": "ZZAUTOTEST Ben Bravo"
+  }
+ }
 }

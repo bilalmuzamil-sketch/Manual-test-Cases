@@ -1111,3 +1111,11 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   going by hand. Delete or rewrite such check-ins the moment the run starts. Two queues at once end each other's session (L0394).
 - Before starting, check which cases changed since the scripts were prepared (updated_on, then `get_history_for_case` field diffs).
   On 16 Oct, 39 cases changed, but only build stamps, AUTOMATION markers and wording tidies: no Expected content. #long-run #signout #routines → L0383, L0394
+
+## L0411 — 2026-10-16 — On a long run, post results as steps finish: the QA lead sees TestRail, not our logs
+- 75 minutes into the full run (22 of 87 steps done) the QA lead asked twice "You are still not running any tests?". Nothing had
+  reached TestRail, because judging was planned for the end. From the first finished steps onward, run a judging helper next
+  to the queue that posts every few steps (`judged-full-1016.txt` tracks what is done). Every status names the step running and
+  the steps done.
+- `autocommit-1016.sh` commits and pushes the run folder every 20 minutes (secret scan first) until the queue ends, so the Stop
+  hook's "uncommitted changes" never stalls a turn. #long-run #reporting → L0105
