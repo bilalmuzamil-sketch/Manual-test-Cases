@@ -47,6 +47,7 @@ grep -v '^#' full-order-1016.txt | while IFS='|' read -r block s only extra mode
                elif [ "${RUN_GA:-}" = day2 ]; then extra="PHASE=day2"; only="C97033,C97034"
                else say "step $n TWO-DAY not run: $s ONLY=$only (set RUN_GA=day1, then RUN_GA=day2 the next Pakistan-time day)"; continue; fi ;;
     draft)     [ "${RUN_DRAFTS:-}" = 1 ] || { say "step $n DRAFT not run: $s"; continue; } ;;
+    last)      [ "${NO_SIGNOUT:-}" = 1 ] && { say "step $n SIGN-OUT held (NO_SIGNOUT=1): $s ONLY=$only — run it after the fix-ups, it ends the shared sign-in"; continue; } ;;   # 17 Oct 2026
   esac
   if [ "$mode" = analyst ]; then
     [ "$ANALYST_OK" = 1 ] || { say "step $n SKIPPED $s (Analyst 1 not signed in)"; continue; }
