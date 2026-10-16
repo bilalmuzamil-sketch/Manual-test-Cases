@@ -6008,6 +6008,7 @@ const r = await s.close();                         // -> {video:'<...>.webm', st
 - Width 1900: at 1600 the Returns ⋮ column is off-screen and a click lands outside the window (hit 2026-10-07).
 
 **2. Finish** — `python3 build/testing-tools/finish_recording.py <video.webm> <startSec> <out.mp4>`
+  **(2026-10-16, Standing Rule 107) the finish step now CUTS IDLE PAUSES:** every still stretch longer than 0.8 s is shortened to 0.8 s (final result keeps 2 s) using ffmpeg `freezedetect=n=0.0008`, then `select=between(...)`+`setpts=N/FRAME_RATE/TB`. It prints `duration_before_s` / `duration_s` / `idle_removed_s` — record them. Proven: 340 s → 139 s, all steps and captions kept.
 - Trims everything before `startSec` (the login / quick-login / wake-up), so **no login screen or credential appears**.
 - H.264 + yuv420p + faststart, 1280 wide, 25 fps, CRF 28 ≈ 0.7 MB per minute. ffmpeg comes from `pip install imageio-ffmpeg` (has libx264).
 - **Verify before posting:** `ffmpeg -v error -i out.mp4 -f null -` prints nothing (clean decode); sample a frame every 8 s into a grid and **look at it** — captions present, pointer not covering the evidenced value, final frame shows the result.

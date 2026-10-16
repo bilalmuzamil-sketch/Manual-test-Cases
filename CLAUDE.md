@@ -107,6 +107,7 @@
 > - **AFTER ANY CONFIRM CLICK, RE-READ THE DIALOG — ShopView often asks twice ("Yes" → orange "Are You Sure?") (Standing Rule 102); never call a control "does nothing" before that.**
 > - **BEFORE CALLING A TICKET OUTSTANDING, RE-OPEN IT LIVE: status + last comment (Standing Rule 103).**
 > - **SCREEN RECORDING ON A QA COMMENT ONLY IF THE QA LEAD SAYS YES — ASK ON EVERY TICKET FIRST; no yes = no recording (Standing Rule 104; method playbook §AK).**
+> - **A RECORDING SHOWS ONLY THE ACTIVITY — NO LONG STILL PAUSES (Standing Rule 107): `finish_recording.py` cuts every still stretch to 0.8 s (2 s on the final result); check the frame grid and the printed idle-removed figure before posting.**
 > - **EVERY STEP SAYS EXACTLY WHERE TO CLICK OR LOOK (Standing Rule 101): screen area + exact label, no private names ("the blue bubble"), describe small things by colour/shape/text/position, say what appears, locator picture with a close-up, walk the steps live before posting.**
 > - **EDITING SOMETHING ALREADY POSTED? (Standing Rule 100): put a dated note (date, time, timezone, what changed) right at the edited section/row.**
 > - **PO UPDATED THE SPEC + ASKED FOR A RETEST? (Standing Rule 99): first line = that check's verdict against the NEW text, quoted; update every earlier row the new text changes; never drop the spec quote.**
@@ -5431,6 +5432,29 @@ deliver the 7-tab management report.
     *"Tell me clearly if the ticket is actually passed"*. Ties to Standing Rules 12, 50, 61, 68, 85, 89 (the screen
     decides), 91, 93, 94 (API-only paths are a separate finding), 96 (the variant matrix) and 97 (green only for a full
     fix — and, by this rule, not withheld from a full fix either).
+
+107. **A SCREEN RECORDING SHOWS ONLY THE ACTIVITY — EVERY LONG STILL PAUSE IS CUT OUT (all projects).**
+    USER DIRECTIVE (2026-10-16, verbatim): *"For your recording: Note you recording should not show long timeline where no
+    activity is happenig on the screen, the recording should be short and should be showing when the activity is happening.
+    I see a long pause between action/clicks/activity, those long pauses whould not be in the recording. When I want to see
+    the recorrding I quickly want to see all the steps happening. Make it a permanent rule to never forget and save it for
+    the future too."*
+    **THE RULE:** every recording attached to a QA comment (Rule 104) is cut so the reader watches the steps happen back to
+    back. **Any stretch where nothing on the screen changes for more than 0.8 s is shortened to 0.8 s** — page loads,
+    server waits, the pause between two clicks, the script deciding what to do next. The **final result keeps 2 s** so it
+    can be read. Movement (the pointer gliding to a control, a dialog opening, a value changing, a caption changing) is
+    never cut.
+    **MECHANICALLY — it is in the tool, not left to memory:** `build/testing-tools/finish_recording.py` now runs a
+    still-frame detector after the login trim and removes the excess of every still stretch (`--hold 0.8`,
+    `--end-hold 2.0`). It prints `duration_before_s`, `duration_s` and `idle_removed_s`; **record those three numbers in the
+    findings doc**. `--keep-idle` exists only for debugging and is never used for a Jira recording.
+    **CHECK BEFORE POSTING (part of the Rule-72 gate):** look at the frame grid of the FINISHED MP4 — every step visible,
+    each caption readable — and confirm no gap longer than about a second between actions (re-run the detector on the
+    output if in doubt). A caption that needs reading time is kept on screen by the movement around it or by the 0.8 s
+    hold; if a caption is genuinely too long to read in that time, shorten the caption, don't put the pause back.
+    **WHY:** the readers are busy and senior; a five-minute film where most of the time is a still page reads as padding
+    and hides the steps. Proven on the SV-10142 production recording: 340 s became 139 s (118 still stretches cut) with
+    every step and caption still in frame. Ties to Standing Rules 64, 65, 72, 81 (verify what the reader receives) and 104.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
