@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109–126** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109–127** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -72,6 +72,8 @@ These are stated here **in full** because a session that gets only this far must
   overlap at 1440/1536 px) is checked, not only its words; a VISUAL inventory passes beside the text inventory; design-library
   "always/never" sentences are in scope; no design-vs-spec question stays unsent; a ruling covers only what it names. Why:
   the PO filed 10 design defects on WO Board on 14 Oct that no case of ours would have caught (L-01).
+- **🔴 NEVER SPLIT A TEST CASE WITHOUT ASKING (127, 16 Oct 2026).** A case over the length limits (or one a split would help) stays whole;
+  list it with C-id, link, counts and what a split costs, and ask the QA lead. Split only what he names.
 - **🔴 KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS (123).** New and changed cases go into the project's run in the
   same pass, union only (34). Before editing a case someone else created: give the QA lead the list with C-ids, links,
   who created each and when, and ask permission. No edit until he says yes.
@@ -457,6 +459,14 @@ session prepare the required state, execute the test and determine pass/fail usi
 removes repetition and ambiguity, never information needed to run it.** **Also PERMANENT (2026-10-08): a "Needs:" line opens the
 Preconditions; Setup records relied-on values once as [placeholders] ([WO-1], [Tech-A]) used throughout; each expected
 result starts "Step n:"; every case has its own ZZAUTOTEST data.** **PERMANENT (2026-10-08, third amendment): two audiences. Each case links, at the top of Preconditions, to its own public Google Doc "Setup for claude session". The doc holds everything a Claude session needs and no secrets. Below the link, the Preconditions and Setup are written for the manual tester, who never needs the doc. Steps are actions only, and every expected result starts "Step N:". The build verification session verifies the doc too. Example C425784 (SV-4802; deleted after review, body and doc kept as reference).** **🔴 SUPERSEDED IN PART, PERMANENT (2026-10-08, fourth amendment): the Preconditions field holds the link "Setup (manual QA tester and Claude session)" and then complete Preconditions: user and role, location, and every record with its state, as [placeholders]. There is no Needs line, browser count or duration, and NO Setup block in TestRail. The attached public doc holds Part 1 "Setup for manual QA tester" and Part 2 "Setup for Claude session". Read Rule 117, fourth amendment.** **PERMANENT (2026-10-08, fifth amendment): placeholders in {} braces with plain names ({Location}, {Part}, {Line}), and every example value is written "(for example …)", never as if it exists in the app. This applies to Preconditions, Steps, the plain expected results and the setup doc.** **PERMANENT (2026-10-08, sixth amendment): friendly phrasing. Each precondition is one plain sentence (what must exist, then its {name}). Each step is one simple action in order. A "don't" the test depends on gets its own step. Example C425784 (deleted after review; body and doc v4 kept as reference).** **PERMANENT (2026-10-08, seventh amendment): placeholder names are name, hyphen and letter, even for one: {Part-A}, {Part-B}, {Location-A}, {Work-order-A}, {Line-A}, {User-B}. A further record of the same kind takes the next letter ({Work-order-B}, {Technician-B}; after {User-B} comes {User-C}); converting old placeholders keeps a letter and maps a number 1 → A, 2 → B.** **PERMANENT (2026-10-08, eighth amendment): each precondition is one short sentence naming the record inside it, with an example ("Work order {Work-order-1} (for example S2-15440) has an approved line, {Line-1}"), never "In this test it is called"; lines and work orders are numbered ({Line-1}, {Line-2}, {Work-order-1}, {Work-order-2}), everything else keeps letters; every record has an example, including work order number, line and part number. Example C433977 (deleted after review; body and doc v2 kept).**
+
+**🔴 Rule 117 NINTH AMENDMENT, PERMANENT (QA lead, 2026-10-16): the two-audience shape is the default.** Preconditions say only
+what must exist in the account (role, location, records and state, settings, starting screen), records as {placeholders}, each
+example on a second line of its bullet starting "For example:", last line "If any record above is missing, mark this test Blocked:
+"setup not done"". The how-to lives in ONE setup file per feature for Claude sessions (slots, recipes, placeholder values,
+traceability, VIU, open questions), linked from every case; it replaces the per-case Google Doc. Steps one action each; one
+"Step N:" result per step; below the results the Source, divergence, exact quotes and AUTOMATION line stay. Read the amendment
+in `build/rules/RULES-61-96.md` before writing a case.
 
 **🔴 Rule 118 (each session follows only its own rule book — facts may be shared, rules may not)** was
 ordered by the QA lead **2026-10-06** and lives at the end of `build/rules/RULES-61-96.md`, after 117.

@@ -2820,6 +2820,39 @@ whether they still want it done** before recording anything (Rule 72). A one-tim
 that single case or run only and never edits this rule or the skill. Silence, implication, or your own
 judgement is never authorization to change the standard.
 
+### 117 — NINTH AMENDMENT, PERMANENT (QA lead, 2026-10-16): the two-audience case shape is the default
+
+Ordered over the review of C97021 on 16 Oct 2026, verbatim: *"things like this which tell HOW TO DO IT should be the part of the file
+for claude but not for the Manual QA tester … We expect manual QA tester to KNOW how to setup the preconditions, but we do not expect
+the same from claude so keep these in the fie for claude, but for manual tester just tell him what he needs in the account."*;
+*"this for example thing should appear in the 2nd line without a bullet point"*; *"apply the same shape to the other 20 cases …
+Also save it as the pattern to follow going forward in the upcoming cases"*. Stated back in plain words and confirmed as PERMANENT
+the same day (Rule 117 change control). **This supersedes, where they differ, requirement 2 above and the 2nd, 4th and 5th
+amendments (creation click-paths in the case; the per-case public Google Doc with Part 1 for the tester; "(for example …)" inside
+the sentence).** Everything else in Rule 117 and Rules 113/114 still applies.
+
+1. **Preconditions = what must exist in the account, never how to make it.** Who (role as shown in the UI), the location, every
+   record and its state, settings, the starting screen. Each record is named with a placeholder ({Technician-A}, {Customer-A},
+   {Work-order-1}, {Line-1}); no creation steps, no admin paths, no credentials. A manual tester knows how to create them.
+2. **Examples on a second line.** Each bullet that names records gets a second line inside the same bullet, no bullet of its own,
+   starting "For example:" (for example: "For example: {Technician-A} is ZZAUTOTEST C97021 Ana and {Technician-B} is ZZAUTOTEST C97021 Ben.").
+   Nothing is hard-coded in the state lines, steps or results.
+3. **The last precondition** is: If any record above is missing, mark this test Blocked: "setup not done".
+4. **The how-to lives in ONE setup file per feature for Claude sessions**, linked from the top of every case's Preconditions as
+   "Setup file (for Claude sessions; a tester does not need it)": header and sources, account slots (role, purpose, configuration),
+   flags and settings, shared procedures and one recipe per case (the exact values), the value of every placeholder per case, a
+   mapping table, dependencies, reset and cleanup, traceability (each step's verbatim source sentence), VIU status, open questions.
+   No environment address, credentials, cookies or session data. The example values in the case are the setup file's values.
+5. **Steps** are one action each, from the starting screen, using the placeholders; **Expected results** give one "Step N:" line
+   for every step.
+6. **Unchanged below the results:** the Source paragraph, the divergence paragraph(s), "Exact quotes from the source (for
+   reproducibility)" and the AUTOMATION line, last.
+7. **Limits are targets:** about 6 preconditions and 10 steps; an existing case over them is never split without asking (Rule 127).
+8. Worked example: C368150 and the 21 WO Board cases of 16 Oct 2026 (`build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/`:
+   `build_v2.py`, `cases_v2.py`, `WO-BOARD-SETUP-FILE.md`). C97021 was the reviewed pilot (our version kept in
+   `correction-c97021/C97021-fields.json`; the live case was edited by someone else afterwards). Existing cases in the older shape
+   are converted only when the QA lead asks (Rule 122 as amended: ask full pass or a named set).
+
 ## 118 · EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK — FACTS MAY BE SHARED, RULES MAY NOT (all projects, permanent)
 
 Standing instruction from the QA lead, 2026-10-06, recorded with his explicit approval ("This message is my
@@ -3161,3 +3194,16 @@ test case for that."* Operator form: `build/skills/21-DESIGN-DRIVE-PROTOCOL.md` 
 9. **The completion gate.** A suite is not complete, and nothing goes to build verification, until: every PO-reported and
    tester-reported design defect on the feature maps to a case in the Design subfolder; the visual inventory has zero
    unclassified; and the unsent-question count is zero.
+
+## 127 · NEVER SPLIT A TEST CASE WITHOUT ASKING — ALWAYS ASK FIRST (all projects, permanent)
+
+Ordered by the QA lead, 2026-10-16, verbatim: *"Do not split the test cases but always ask like you asked this time and save
+it as a rule for yourself to ask this in such situation."*
+
+1. **No split without his answer.** When a case is over a length limit (more than 10 steps, or more than 6 preconditions), or
+   splitting it looks better for any other reason, the case is written whole and is not split.
+2. **Ask, with the facts.** List each such case with its C-id and TestRail link, its title, its step and precondition counts, why a
+   split might help, and what a split costs (new C-ids, the run history stays on the old case, automation links point at the old
+   C-id). Ask whether to split, and split only the cases he names, per ask.
+3. Worked example: 16 Oct 2026, C368150 (13 steps), C368152 (12), C97020 (16) and C590117 (11) were listed and asked about; his
+   answer was "Do not split".

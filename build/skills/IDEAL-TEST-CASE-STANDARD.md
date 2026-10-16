@@ -4,6 +4,15 @@
 or editing any test case. This is the executable form of Rules 113 and 114; where a looser reading of
 those conflicts with this, this wins. **The format is LOCKED — see "Change control" at the bottom.**
 
+## 🔴 Current default since 2026-10-16 (Rule 117, ninth amendment, PERMANENT)
+
+Preconditions = what must exist in the account, never how to make it; records as {placeholders}; each example on a second line of
+its bullet, starting "For example:"; last line "If any record above is missing, mark this test Blocked: "setup not done"". The how-to
+goes into ONE setup file per feature for Claude sessions, linked from every case (it replaces the per-case Google Doc). Steps one
+action each; one "Step N:" result per step; below the results: Source, divergence, exact quotes, AUTOMATION line. Where requirement 2
+below and the 2nd, 4th and 5th amendments say otherwise, this wins. Full text: `build/rules/RULES-61-96.md`, Rule 117 ninth
+amendment. Worked example: C368150 and `build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/`.
+
 ## The four requirements (all four, every case)
 
 1. **Concise title, ≤ ~80 chars, one behaviour.** It says what the case checks; no compound

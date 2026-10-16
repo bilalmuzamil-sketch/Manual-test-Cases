@@ -132,3 +132,5 @@ caught 0 of the 10; C96927 and C96979 assert the old S5-R4. Review, root causes 
 - Run 498: 248 → 274 tests (union only). All 13 reported design tickets (SV-11317…26, SV-11336…38) map to cases, and each
   ticket's description now ends with its test case links (`po-defects-2026-10-14/ticket-footer-backups/README.md`).
 - 18 design questions added to Chris's sheet (rows 17–34). Unsent count 0.
+
+- 16 Oct 2026 (QA lead): this lane writes and updates cases; it does not run them. Running the cases (run 498, the 13 Retest and 4 Untested) is the test-run session's job. Vladimir is not to be told about the Automated changes for now. Do not split the four long cases (C368150, C368152, C97020, C590117).
