@@ -43,7 +43,7 @@ def view_only_user(ph, example_user, example_role):
 
 
 def no_shifts(techs):
-    return (f"Open the Schedule page and check that {techs} have no shift on this case's work orders. If a window titled \"Clear … "
+    return (f"Open the Schedule page and check that {techs} {'have' if ' and ' in techs else 'has'} no shift on this case's work orders. If a window titled \"Clear … "
             "scheduled shifts?\" still appears during a move, click Keep shifts.")
 
 

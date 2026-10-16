@@ -1646,13 +1646,13 @@
     "Open Work Orders and click the All tab.",
     "Type the name of {Customer-A} in Search.",
     "Click Tech View in the display switcher.",
-    "Scroll down slowly through {Technician-A}'s rows until her last row.",
+    "Scroll down slowly through {Technician-A}'s rows until the group's last row.",
     "Look at the top of the table.",
     "Keep scrolling slowly into {Technician-B}'s group.",
     "Look at the top of the table."
    ],
    "results": [
-    "Step 5: while you scroll through {Technician-A}'s rows, her group header (name and count) stays on screen just under the column header row.",
+    "Step 5: while you scroll through {Technician-A}'s rows, {Technician-A}'s group header (name and count) stays on screen just under the column header row.",
     "Step 7: {Technician-B}'s header pushes {Technician-A}'s header up and off and takes its place just under the column header row. Only one group header is held there at a time."
    ],
    "source": "Epic SV-10043; story SV-10045 (Story 2, Tech View — table grouped by lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S2-E1, read 15 Oct 2026. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 20, read 15 Oct 2026. Source-verified 15 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.",
@@ -2555,7 +2555,7 @@
     "Technicians {Technician-A} (for example ZZAUTOTEST Ana Alpha), {Technician-B} (for example ZZAUTOTEST Ben Bravo) and {Technician-C} (for example ZZAUTOTEST Cal Charlie) are active staff members at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.",
     "Customers {Customer-A} to {Customer-E} are used by this case only, their names start with the same words (for example \"ZZAUTOTEST F3 Reassign Bottom\") and end, in name order, with Aardvark Co, Abbey Co, Bravo Co, Delta Co and Echo Co.",
     "Approved work orders: {Work-order-3} (for {Customer-C}) and {Work-order-4} (for {Customer-D}) are led by {Technician-B}; {Work-order-1} (for {Customer-A}), {Work-order-2} (for {Customer-B}) and {Work-order-5} (for {Customer-E}) are led by {Technician-C} (for example S10043-17721 to S10043-17725).",
-    "Nobody has reordered {Technician-B}'s work at {Location-A}, so his column starts in customer-name order: {Work-order-3}, {Work-order-4}.",
+    "Nobody has reordered {Technician-B}'s work at {Location-A}, so {Technician-B}'s column starts in customer-name order: {Work-order-3}, {Work-order-4}.",
     "No technician has a shift on the Schedule for these work orders.",
     "On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty."
    ],
@@ -2681,7 +2681,7 @@
     "Work Orders > Create Work Order > in the New Work Order window pick {Customer-B} and its asset > Save (if a Confirmation about the credit limit appears, click Create). The work order opens on its Lines tab with the New Line form. In What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\", turn Line Approved on and click Save & Close. The status reads Approved. Write down the number shown at the top left (for example S10043-17732). This is {Work-order-2}. Leave its Lead Technician empty, so it sits in Unassigned.",
     "Work Orders > Create Work Order > in the New Work Order window pick {Customer-C} and its asset > Save (if a Confirmation about the credit limit appears, click Create). The work order opens on its Lines tab with the New Line form. In What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\", turn Line Approved on and click Save & Close. The status reads Approved. Write down the number shown at the top left (for example S10043-17733). This is {Work-order-3}. On {Work-order-3}'s page pick {Technician-A} in the Lead Technician dropdown; it saves at once (the dropdown shows once the work order is Approved).",
     "Work Orders > Create Work Order > in the New Work Order window pick {Customer-D} and its asset > Save (if a Confirmation about the credit limit appears, click Create). The work order opens on its Lines tab with the New Line form. In What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\", turn Line Approved on and click Save & Close. The status reads Approved. Write down the number shown at the top left (for example S10043-17734). This is {Work-order-4}. Leave its Lead Technician empty, so it sits in Unassigned.",
-    "Open the Schedule page and check that {Technician-A} have no shift on this case's work orders. If a window titled \"Clear … scheduled shifts?\" still appears during a move, click Keep shifts.",
+    "Open the Schedule page and check that {Technician-A} has no shift on this case's work orders. If a window titled \"Clear … scheduled shifts?\" still appears during a move, click Keep shifts.",
     "Work Orders > All: clear any Status selection, click the x on the Asset on Site chip if it shows Yes or No, turn Assigned to me off and empty Search.",
     "Check the setup worked: Work Orders > All > List > Search the shared start of the customer names shows exactly four Approved work orders: {Work-order-1} and {Work-order-3} led by {Technician-A}, {Work-order-2} and {Work-order-4} with no lead; Board View's Unassigned column reads {Work-order-2}, {Work-order-4}. If someone has reordered Unassigned at this location, use another location. Then empty Search."
    ],

@@ -208,11 +208,11 @@ def c96935():
     steps = ["Open Work Orders and click the All tab.",
              "Type the name of {Customer-A} in Search.",
              "Click Tech View in the display switcher.",
-             "Scroll down slowly through {Technician-A}'s rows until her last row.",
+             "Scroll down slowly through {Technician-A}'s rows until the group's last row.",
              "Look at the top of the table.",
              "Keep scrolling slowly into {Technician-B}'s group.",
              "Look at the top of the table."]
-    res = ["Step 5: while you scroll through {Technician-A}'s rows, her group header (name and count) stays on screen just under "
+    res = ["Step 5: while you scroll through {Technician-A}'s rows, {Technician-A}'s group header (name and count) stays on screen just under "
            "the column header row.",
            "Step 7: {Technician-B}'s header pushes {Technician-A}'s header up and off and takes its place just under the column "
            "header row. Only one group header is held there at a time."]

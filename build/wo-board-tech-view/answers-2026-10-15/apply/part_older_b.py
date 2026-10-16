@@ -285,7 +285,7 @@ def c97007():
            "Approved work orders: {Work-order-3} (for {Customer-C}) and {Work-order-4} (for {Customer-D}) are led by "
            "{Technician-B}; {Work-order-1} (for {Customer-A}), {Work-order-2} (for {Customer-B}) and {Work-order-5} (for "
            "{Customer-E}) are led by {Technician-C} (for example S10043-17721 to S10043-17725).",
-           "Nobody has reordered {Technician-B}'s work at {Location-A}, so his column starts in customer-name order: {Work-order-3}, "
+           "Nobody has reordered {Technician-B}'s work at {Location-A}, so {Technician-B}'s column starts in customer-name order: {Work-order-3}, "
            "{Work-order-4}.",
            "No technician has a shift on the Schedule for these work orders.",
            PRE_CLEAR]
