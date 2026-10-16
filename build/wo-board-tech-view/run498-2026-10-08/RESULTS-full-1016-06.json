@@ -1,0 +1,207 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "16 October 2026",
+  "note": "full staging run 16 Oct 2026, batch 06 = queue steps 23, 24"
+ },
+ "results": {
+  "C97001": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F3 Drag Order\"; Tech View: Ana's group read Alpha Co, Bravo Co, Charlie Co.",
+    "Step 5: Charlie Co dragged above Alpha Co: Charlie Co, Alpha Co, Bravo Co.",
+    "Step 6: Bravo Co dragged into Ben's group below Delta Co (\"Lead technician updated\"): Ben's group Delta Co, Bravo Co; Bravo Co gone from Ana's.",
+    "Step 8: Board View, Bravo Co dragged above Delta Co: Ben's column Bravo Co, Delta Co.",
+    "Step 9: Echo Co dragged from Cal's column below Ana's last card: Ana's column Charlie Co, Alpha Co, Echo Co; Cal's column empty. After a reload everything stayed where released."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97001-1-after-drags.png"
+   ],
+   "ticket": null
+  },
+  "C97002": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F3 Drag Lead Change\" (Alpha Co, Golf Co); Board View.",
+    "Alpha Co dragged into Ben's column: \"Lead technician updated\" appeared and went away by itself; the work order page reads \"ZZAUTOTEST Ben Bravo\".",
+    "Alpha Co dragged to Unassigned: \"Lead technician removed\"; the work order has no lead technician.",
+    "Golf Co dragged into Cal's column: its work order page reads \"ZZAUTOTEST Cal Charlie\".",
+    "Tech View: the Golf Co row dragged into Ana's group moved there (\"Lead technician updated\") and its work order reads \"ZZAUTOTEST Ana Alpha\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97002-1-tech-view-drag-to-ana.png"
+   ],
+   "ticket": null
+  },
+  "C97004": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 5.",
+    "Customer \"ZZAUTOTEST F3 Pinned Reorder\", Board View with Ana and Ben pinned: the script could not find the drag handle on Ben's column header, so no technician was moved and nothing was judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97004-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: find the column's drag handle)."
+  },
+  "C97006": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F3 List Sort Kept\". List sorted by \"Created On\", newest first: Charlie Co, Bravo Co, Alpha Co.",
+    "In Tech View Ana's rows were reordered by dragging (Bravo Co above Alpha Co); in Board View Ana's cards were reordered again.",
+    "Back in List: still sorted by \"Created On\", newest first, arrow on \"Created On\", rows Charlie Co, Bravo Co, Alpha Co exactly as before.",
+    "Note: in Board View the drag was a reorder inside Ana's column, not a move from Ben's column."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97006-1-list-sort-kept.png"
+   ],
+   "ticket": null
+  },
+  "C97007": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps (same problem as before).",
+    "Step 7: Aardvark Co given to Ben Bravo with \"Reassign lead technician\" went to the bottom of his column: Bravo Co, Delta Co, Aardvark Co.",
+    "Steps 8 and 9: Ben Bravo could not be chosen on the work order page: its \"Lead Technician\" list shows only about the first 100 people (to the Q names), so the lead could not be set there and step 9 could not be done.",
+    "Step 10: Echo Co dragged into Ben's column landed where dropped: Bravo Co, Echo Co, Delta Co, Aardvark Co. Step 11: Tech View shows the same order.",
+    "The ticket for the cut-off list reads \"OBSOLETE\" (read 16 Oct 2026), but the list still stops at about 100 names on this build."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97007-1-wo-page-list-no-ben.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97007-2-board-ben-column.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11393.",
+   "todo": "What needs to be done: the QA lead to decide on the ticket (it is closed as obsolete, the problem is still there); once fixed on staging, run this test again."
+  },
+  "C97008": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Board View: Ana 3, Ben 1 at the start.",
+    "Moving a card from Ana to Ben: \"Lead technician updated\" (went away by itself) and the counts changed at once, without a reload, to Ana 2, Ben 2.",
+    "Dragging Alpha Co above Delta Co inside Ben's column: it moved, no message appeared, counts stayed Ana 2, Ben 2, and Alpha Co's lead is still Ben Bravo."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97008-1-counts-and-reorder.png"
+   ],
+   "ticket": null
+  },
+  "C97009": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F3 Invoiced Lock\": Bravo Co (Invoiced) and Charlie Co (Paid) led by Ana; Golf Co (Invoiced, no lead); Delta Co (Declined), Echo Co (Complete), Alpha Co (Approved).",
+    "Bravo Co and Charlie Co carry a lock reading \"The lead technician can't be changed once a work order is Invoiced or Paid.\" (the design says \"Invoiced \u00b7 can't be reassigned\").",
+    "Bravo Co dragged above Alpha Co inside Ana's column moved there.",
+    "Bravo Co dragged to Ben and Charlie Co dragged to Unassigned both stayed with Ana, no message, Ana's count unchanged (5). Golf Co could not be moved out of Unassigned.",
+    "Delta Co and Echo Co moved to Ben's column, each with \"Lead technician updated\". In Tech View, Charlie Co stayed in Ana's group."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97009-1-locked-stay.png"
+   ],
+   "ticket": null
+  },
+  "C97011": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Start: Ana Alpha's column Alpha Co, Bravo Co (2); Ben Bravo 1.",
+    "Escape while over Ben's column, Escape while above Alpha Co, and a drop outside the board: each drag was cancelled; Ana still Alpha Co, Bravo Co; counts Ana 2, Ben 1; no message.",
+    "Tech View, Escape while over Ben's group: the same, nothing moved, no message.",
+    "After a refresh nothing changed and Bravo Co's lead is still \"ZZAUTOTEST Ana Alpha\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97011-1-cancelled-drags.png"
+   ],
+   "ticket": null
+  },
+  "C97013": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Ana's group: Alpha Co, Bravo Co, Charlie Co, Delta Co (Alpha and Charlie In Progress).",
+    "Filtered to In progress: Alpha Co, Charlie Co. Charlie Co dragged above Alpha Co; filter cleared: Charlie, Alpha, Bravo, Delta (C, A, B, D).",
+    "Put back to A, B, C, D; filtered again, Alpha Co dragged below Charlie Co; filter cleared: Bravo, Charlie, Alpha, Delta (B, C, A, D).",
+    "Board View shows Ana's column in the same order, B, C, A, D."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97013-1-filter-cleared-order.png"
+   ],
+   "ticket": null
+  },
+  "C368144": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST F3 Unassigned Place 71862\": Bravo Co = S2-36694, Delta Co = S2-36695, Alpha Co = S2-36696, Charlie Co = S2-36697.",
+    "Step 4: Unassigned reads Bravo Co, Delta Co.",
+    "Step 6: removing Charlie Co's lead with \"Reassign lead technician\" > Unassigned showed \"Lead technician removed\".",
+    "Step 7: Unassigned reads Bravo Co, Charlie Co, Delta Co: Charlie Co in its customer-name place, not at the bottom.",
+    "Step 9: after Alpha Co's lead was cleared on its work order page: Alpha Co, Bravo Co, Charlie Co, Delta Co. Step 10: Tech View's Unassigned group shows the same order."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368144-1-removed-lead-name-place.png"
+   ],
+   "ticket": null
+  },
+  "C368145": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the case reads \"Not available on Build to test Yet\": a way to create a work order with a lead already set is not on the staging build (the new work order window offers only Customer and Asset).",
+    "Seen with the Split route the test allows: Ben's column read Bravo Co, Delta Co; a line of Bravo Co was split into a new work order, which kept Ben Bravo as lead; Ben's column then read Bravo Co (split off), Bravo Co, Delta Co: not at the bottom."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368145-1-split-off-place.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: run this test once creating a work order with a lead is on staging."
+  },
+  "C368148": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 5.",
+    "The script could not find the drag handle on Cal's column header with \"Assigned to me\" on, so no technician was moved and nothing was judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368148-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: find the column's drag handle)."
+  },
+  "C97005": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (step 8 by a new window, see below).",
+    "Ana's group started Alpha Co, Bravo Co, Charlie Co. Charlie Co dragged above Alpha Co: Charlie, Alpha, Bravo. Board View: the same.",
+    "Second dispatcher, without doing anything: Charlie, Alpha, Bravo in both Tech View and Board View.",
+    "Step 8 was not a real sign-out and sign-in: it was done in a new browser window, because signing out ends the shared staging session. There the order was still Charlie, Alpha, Bravo in both views.",
+    "Step 9: the first dispatcher dragged Ben above Ana (now Ben, Ana); the second dispatcher, after refreshing, still has Ana before Ben."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97005-1-order-kept-new-window.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97005-2-first-moves-ben-up.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97005-3-second-keeps-own-order.png"
+   ],
+   "ticket": null
+  },
+  "C368147": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "The view-only user opened Board View with \"ZZAUTOTEST F3 No Drag Permission\": Ana's column read Alpha Co, Bravo Co.",
+    "Dragging Bravo Co above Alpha Co, and Alpha Co into Ben's column, moved nothing and no message appeared.",
+    "The cards offer no more-actions button, so \"Reassign lead technician\" is not offered. In Tech View the row could not be dragged either.",
+    "After a refresh the order is still Alpha Co, Bravo Co and Alpha Co's lead is still \"ZZAUTOTEST Ana Alpha\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368147-1-viewonly-no-drag.png"
+   ],
+   "ticket": null
+  }
+ }
+}
