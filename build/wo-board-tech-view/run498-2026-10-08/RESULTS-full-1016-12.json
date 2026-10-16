@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 12 = queue steps 30 (re-run), 31"
+ },
+ "results": {
+  "C581895": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 3: it could not sign in to staging (it was sent to the sign-in page twice), so List, Board View and Tech View were not read.",
+    "Steps 1 and 2 were done on their own: Settings > Staff, Search \"Carol\" shows one staff member, \"Carol Neal\" (Admin); a search for \"Sparks\" finds no staff member.",
+    "Not judged: behind the screen, the work order list's data for S2-36397 (led by Carol Neal) still gives the lead's name as \"David Sparks\", the name the earlier run saw in List (ticket below, status \"Open\", read 16 Oct 2026)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581895-1-staff-record-carol.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11336.",
+   "todo": "What needs to be done: re-run this test (script fix-up: c581895-v2 could not sign in) and read steps 3 to 12 on the screen."
+  }
+ }
+}
