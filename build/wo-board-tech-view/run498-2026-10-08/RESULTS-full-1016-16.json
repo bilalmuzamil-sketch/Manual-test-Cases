@@ -1,0 +1,49 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 16 = queue steps 39"
+ },
+ "results": {
+  "C368218": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Parts > Purchase Orders: the list showed 30 rows.",
+    "Typing \"S2-36773\" in the Search box in the page header narrowed the list to the 1 matching row.",
+    "After a reload the Search box still read \"S2-36773\" and the same row showed. No error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368218-1-search-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368219": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Parts > Vendors: the list showed 30 rows.",
+    "Typing \"123 Cannabis Forestlawn\" in the Search box in the page header narrowed the list to the 1 matching row.",
+    "After a reload the Search box still read \"123 Cannabis Forestlawn\" and the same row showed. No error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368219-1-search-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368223": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Parts > Vendor Invoices: the list showed 30 rows.",
+    "Typing \"343453\" (the first row's invoice number) in the Search box in the page header narrowed the list to the 1 matching row.",
+    "After a reload the Search box still read \"343453\" and the same row showed. No error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368223-1-search-kept.png"
+   ],
+   "ticket": null
+  }
+ }
+}
