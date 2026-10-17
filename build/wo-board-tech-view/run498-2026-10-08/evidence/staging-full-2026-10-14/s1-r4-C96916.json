@@ -11,7 +11,7 @@
     ],
     "filters": [],
     "density": "compact",
-    "tab": "all"
+    "tab": "work_orders"
    },
    "screen": {
     "switcher": 3,
@@ -30,7 +30,7 @@
    ],
    "filters": [],
    "density": "compact",
-   "tab": "all"
+   "tab": "work_orders"
   }
  },
  "C96916_prefCleared": 200,
@@ -170,7 +170,7 @@
     "column": "not drawn"
    },
    "step5filters": {
-    "display": "Tech View",
+    "display": "List",
     "tab": "Work Orders",
     "statusChip": null,
     "savedFilters": [],
@@ -189,6 +189,8 @@
    "assignedToMe": "false",
    "url": "/workorders?tab=work_orders&search=ZZAUTOTEST+F1+Scroll+Back+Theresa",
    "techCounts": {
+    "Esther Howard": 2,
+    "Ralph Edwards": 2,
     "Aaron Baker": 2,
     "Aaron Zed": 2,
     "Brenda Martinez": 2
@@ -196,13 +198,15 @@
    "sameAsBoard": false
   },
   "tech": {
-   "caseRowsDrawnAtTop": 12,
+   "caseRowsDrawnAtTop": 10,
    "scrollToRow": {
-    "aimed": "S2-36424",
-    "caseRowsDrawn": 12
+    "aimed": "S2-36427",
+    "steps": 3,
+    "scrollTop": 1007,
+    "screens": 1.2
    },
    "afterScrollDown": {
-    "scrollTop": 250,
+    "scrollTop": 1007,
     "scrollLeft": 0,
     "wider": true,
     "columnsInView": [
@@ -219,39 +223,44 @@
      "Lead Technician"
     ],
     "topRow": {
-     "number": "S2-36421",
-     "id": "859f942e-1c92-4658-b402-3a55b49a9ffd",
+     "number": "S2-36427",
+     "id": "9a59d872-ee85-44a6-94b7-dbbf8f9708fa",
      "index": 0,
-     "offsetFromEdge": 72,
+     "offsetFromEdge": 108,
      "height": 36,
      "fullyShown": true
     },
-    "rowsDrawn": 30
+    "rowsDrawn": 10
    },
    "caseRowAtTop": true,
-   "rowToOpen": "S2-36421",
+   "rowToOpen": "S2-36428",
    "sideways": {
     "wider": true,
     "tries": [
      {
-      "scrollLeft": 400
+      "scrollLeft": 400,
+      "linkInView": false
      },
      {
-      "scrollLeft": 240
+      "scrollLeft": 240,
+      "linkInView": false
      },
      {
-      "scrollLeft": 120
+      "scrollLeft": 120,
+      "linkInView": false
      },
      {
-      "scrollLeft": 60
+      "scrollLeft": 60,
+      "linkInView": false
      },
      {
-      "scrollLeft": 0
+      "scrollLeft": 0,
+      "linkInView": false
      }
     ]
    },
    "before": {
-    "scrollTop": 250,
+    "scrollTop": 1007,
     "scrollLeft": 0,
     "wider": true,
     "columnsInView": [
@@ -268,21 +277,24 @@
      "Lead Technician"
     ],
     "topRow": {
-     "number": "S2-36421",
-     "id": "859f942e-1c92-4658-b402-3a55b49a9ffd",
+     "number": "S2-36427",
+     "id": "9a59d872-ee85-44a6-94b7-dbbf8f9708fa",
      "index": 0,
-     "offsetFromEdge": 72,
+     "offsetFromEdge": 108,
      "height": 36,
      "fullyShown": true
     },
-    "rowsDrawn": 30
+    "rowsDrawn": 10
    },
    "beforeIsCaseRow": true,
    "link": {
-    "link": false
+    "link": true,
+    "x": 353.6796875,
+    "y": -658.4375,
+    "inView": false
    },
    "beforeAtClick": {
-    "scrollTop": 250,
+    "scrollTop": 1007,
     "scrollLeft": 0,
     "wider": true,
     "columnsInView": [
@@ -299,19 +311,20 @@
      "Lead Technician"
     ],
     "topRow": {
-     "number": "S2-36421",
-     "id": "859f942e-1c92-4658-b402-3a55b49a9ffd",
+     "number": "S2-36427",
+     "id": "9a59d872-ee85-44a6-94b7-dbbf8f9708fa",
      "index": 0,
-     "offsetFromEdge": 72,
+     "offsetFromEdge": 108,
      "height": 36,
      "fullyShown": true
     },
-    "rowsDrawn": 30
+    "rowsDrawn": 10
    },
+   "fallbackClick": "clicked",
    "openedBy": "number link (Playwright scrolled it into view; position re-read just before)",
-   "openedUrl": "/workorders?tab=work_orders&search=ZZAUTOTEST+F1+Scroll+Back+Theresa",
+   "openedUrl": "/workorders/<id>/lines",
    "step9": {
-    "workOrderPageOpened": false,
+    "workOrderPageOpened": true,
     "pageShowsClickedNumber": true
    },
    "after1": {
@@ -324,22 +337,18 @@
      "Waiting On Parts",
      "Number",
      "Customer",
-     "Unit",
      "Asset",
+     "Unit",
      "VIN/Serial #",
      "Progress",
      "Service Advisor",
-     "Lead Technician"
+     "Lead Technician",
+     "Clocked In",
+     "Lines",
+     "Total Price"
     ],
-    "topRow": {
-     "number": "S2-33043",
-     "id": "0c643903-e7a3-4143-b1df-320b4ea0d11d",
-     "index": 0,
-     "offsetFromEdge": 0,
-     "height": 36,
-     "fullyShown": true
-    },
-    "rowsDrawn": 309
+    "topRow": null,
+    "rowsDrawn": 0
    },
    "after2": {
     "scrollTop": 0,
@@ -351,22 +360,18 @@
      "Waiting On Parts",
      "Number",
      "Customer",
-     "Unit",
      "Asset",
+     "Unit",
      "VIN/Serial #",
      "Progress",
      "Service Advisor",
-     "Lead Technician"
+     "Lead Technician",
+     "Clocked In",
+     "Lines",
+     "Total Price"
     ],
-    "topRow": {
-     "number": "S2-33043",
-     "id": "0c643903-e7a3-4143-b1df-320b4ea0d11d",
-     "index": 0,
-     "offsetFromEdge": 0,
-     "height": 36,
-     "fullyShown": true
-    },
-    "rowsDrawn": 323
+    "topRow": null,
+    "rowsDrawn": 0
    },
    "after3": {
     "scrollTop": 0,
@@ -378,22 +383,18 @@
      "Waiting On Parts",
      "Number",
      "Customer",
-     "Unit",
      "Asset",
+     "Unit",
      "VIN/Serial #",
      "Progress",
      "Service Advisor",
-     "Lead Technician"
+     "Lead Technician",
+     "Clocked In",
+     "Lines",
+     "Total Price"
     ],
-    "topRow": {
-     "number": "S2-33043",
-     "id": "0c643903-e7a3-4143-b1df-320b4ea0d11d",
-     "index": 0,
-     "offsetFromEdge": 0,
-     "height": 36,
-     "fullyShown": true
-    },
-    "rowsDrawn": 323
+    "topRow": null,
+    "rowsDrawn": 0
    },
    "after4": {
     "scrollTop": 0,
@@ -405,40 +406,30 @@
      "Waiting On Parts",
      "Number",
      "Customer",
-     "Unit",
      "Asset",
+     "Unit",
      "VIN/Serial #",
      "Progress",
      "Service Advisor",
-     "Lead Technician"
+     "Lead Technician",
+     "Clocked In",
+     "Lines",
+     "Total Price"
     ],
-    "topRow": {
-     "number": "S2-33043",
-     "id": "0c643903-e7a3-4143-b1df-320b4ea0d11d",
-     "index": 0,
-     "offsetFromEdge": 0,
-     "height": 36,
-     "fullyShown": true
-    },
-    "rowsDrawn": 323
+    "topRow": null,
+    "rowsDrawn": 0
    },
    "step10filters": {
-    "display": "Tech View",
+    "display": "List",
     "tab": "Work Orders",
     "statusChip": null,
     "savedFilters": [],
-    "search": null,
+    "search": "ZZAUTOTEST F1 Scroll Back Theresa",
     "assignedToMe": "false",
-    "url": "/workorders?tab=work_orders"
+    "url": "/workorders?tab=work_orders&search=ZZAUTOTEST+F1+Scroll+Back+Theresa"
    },
    "driftAgainst": "the position read just before the number-link click",
-   "drift": {
-    "sideways": 0,
-    "rows": 0,
-    "sameTopRow": false,
-    "px": -250,
-    "afterIsCaseRow": false
-   }
+   "drift": null
   },
   "prefRestored": 200
  }
