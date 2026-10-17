@@ -6,12 +6,14 @@ import { open, done, APP } from './session.mts';
 import { api, candidates, seedCase, workOrders, customer, workOrder, vehicle } from './data.mts';
 import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, shiftPrompt } from './wob.mts';
 import { staffRows, HEAVY, LETH } from './staff.mts';
+import { startState } from './fixup-1017.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
 const { browser, page: p } = await open('/workorders?tab=all');
 p.setDefaultTimeout(30_000);
 const a = api(p);
+await startState(p, a, 's3-batchB');   // L0415, fix-up 2
 const R: Record<string, any> = {};
 const D = '@staging.shopview.local';
 const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
@@ -66,16 +68,45 @@ await run('C96950', async () => {
 });
 
 await run('C154886', async () => {
-  const n = 'ZZAUTOTEST F2 Board Empty Unassigned';
-  const wos = await seedCase(a, n, 'ZZF3EU', [{ lead: ES.staff_id }, { lead: ES.staff_id }]);
+  // FIX-UP 2 (17 Oct 2026): on 16 Oct Unassigned was never empty — S2-35718, this customer's work order left with no lead by the 15 Oct
+  // run, sat in it, so neither the empty state nor the drop onto an EMPTY column was tested. The precondition ("two Approved work
+  // orders, both led by Esther Howard; none for this customer without a lead") is now MADE TRUE every run and read back before step 1:
+  // the two Approved work orders get Esther Howard as lead; every OTHER work order this search shows (not one of the two) is deleted
+  // (POST /api/work-orders/delete, Rule 107 — staging data is a dummy) or, if the delete is refused, given Esther Howard as lead so it
+  // is not in Unassigned (logged; Esther's count then starts above 2). Nothing is put back afterwards.
+  const n = 'ZZAUTOTEST F2 Board Empty Unassigned'; const o: any = {}; R.C154886 = o;
+  const leadOf = (w: any) => w.techAssignedFirstName ? `${w.techAssignedFirstName} ${w.techAssignedLastName}` : 'none';
+  let have = await workOrders(a, n);
+  console.log(t(), 'START STATE found C154886', JSON.stringify(have.map((w: any) => `${w.number} ${w.status} lead=${leadOf(w)}`)));
+  const c = await customer(a, n, 'TRK-118'); const appr = () => have.filter((w: any) => /^approved$/i.test(String(w.status)) && (!w.companyName || w.companyName === n));
+  for (let k = appr().length; k < 2; k++) await workOrder(a, c, 'approved', ES.staff_id);
+  have = await workOrders(a, n);
+  const two = appr().sort((x: any, y: any) => String(x.number).localeCompare(String(y.number), undefined, { numeric: true })).slice(0, 2);
+  o.setup = [];
+  for (const w of two) if (w.techAssignedId !== ES.staff_id) o.setup.push(`${w.number} lead Esther ${(await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: ES.staff_id })).status}`);
+  for (const w of have.filter((x: any) => !two.some((y: any) => y.id === x.id))) {
+    const del = await a.post('/api/work-orders/delete', { work_order_id: w.id }); o.setup.push(`${w.number} (${w.status}, lead=${leadOf(w)}) delete ${del.status}`);
+    if (del.status >= 300 && !w.techAssignedFirstName) o.setup.push(`${w.number} delete refused; lead Esther ${(await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: ES.staff_id })).status}`); }
+  const back = await workOrders(a, n); o.wos = back.map((w: any) => `${w.number} ${w.status} lead=${leadOf(w)}`);
+  o.noLeadLeft = back.filter((w: any) => !w.techAssignedFirstName).map((w: any) => w.number); o.estherCountData = back.filter((w: any) => w.techAssignedId === ES.staff_id).length;
+  const wos = two; const w2 = wos[wos.length - 1]; o.wo1 = wos[0]?.number; o.wo2 = w2?.number;
+  // steps 1-5 (All tab, Search, Assigned to me off, Board View)
   await bv(n);
-  const first = (await boardCols(p))[0];
-  R.C154886 = { firstColumn: first?.name, unassigned: await col('unassigned'), esther: (await col(ES.staff_id))?.count };
-  const w2 = wos[wos.length - 1];
+  const atm = p.locator('[data-test-id="filter_chip_assigned_to_me"]').first(); o.assignedToMeOn = await atm.evaluate((e: any) => e.getAttribute('aria-pressed') === 'true' || /--active|selected|bg-primary/.test(String(e.className))).catch(() => null);
+  if (o.assignedToMeOn) { await atm.click().catch(() => {}); await p.waitForTimeout(2500); o.assignedToMeTurnedOff = true; }
+  const uStart = await col('unassigned');
+  console.log(t(), 'START STATE set C154886', JSON.stringify({ wos: o.wos, setup: o.setup, noLeadLeft: o.noLeadLeft, unassignedOnScreen: uStart && { count: uStart.count, cards: uStart.cards, empty: uStart.empty } }));
+  if (o.noLeadLeft.length || (uStart && uStart.cards?.length)) o.setupWarning = 'Unassigned is NOT empty at step 6 — the set-up did not hold; the empty-state reading below is void';
+  // step 6: the Unassigned column (positive control: the column itself is found and Esther Howard's column holds the two cards)
+  const first = (await boardCols(p))[0]; o.firstColumn = first?.name; o.unassigned = uStart; o.esther = (await col(ES.staff_id))?.count;
+  o.emptyText = await p.evaluate(`(document.querySelector('[data-test-id="board_column_unassigned"]') || {}).innerText?.replace(/\\s+/g, ' ').trim().slice(0, 160) || null`);
+  await p.evaluate(`document.querySelector('[data-test-id="board_column_unassigned"]')?.scrollIntoView({ inline: 'start' })`).catch(() => {}); await p.waitForTimeout(600); await shot(p, 'C154886-empty-unassigned');
+  // step 7: drag [WO-2] from Esther Howard's column onto Unassigned
   await toColumn(p, ES.staff_id);
-  await drag(p, `[data-test-id="board_card_${w2.id}"]`, '[data-test-id="board_column_unassigned"]', 120);
-  R.C154886.moved = w2.number; R.C154886.after = { unassigned: (await col('unassigned'))?.cards, esther: (await col(ES.staff_id))?.count };
-  R.C154886.toast = await p.evaluate(`[...document.querySelectorAll('.q-notification')].map(e => e.innerText.replace(/\\s+/g, ' ').slice(0, 120))`); await shot(p, 'C154886-after-drop');
+  await drag(p, `[data-test-id="board_card_${w2.id}"]`, '[data-test-id="board_column_unassigned"]', 120); o.shiftPrompt = await shiftPrompt(p, 'Keep shifts').catch(() => null);
+  // step 8
+  o.moved = w2.number; o.after = { unassigned: (await col('unassigned'))?.cards, unassignedCount: (await col('unassigned'))?.count, esther: (await col(ES.staff_id))?.count, leadData: leadOf((await workOrders(a, n)).find((w: any) => w.id === w2.id) ?? {}) };
+  o.toast = await p.evaluate(`[...document.querySelectorAll('.q-notification')].map(e => e.innerText.replace(/\\s+/g, ' ').slice(0, 120))`); await shot(p, 'C154886-after-drop');
 });
 
 await run('C368132', async () => {

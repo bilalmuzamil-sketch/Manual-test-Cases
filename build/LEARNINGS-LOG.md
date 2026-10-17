@@ -1204,7 +1204,10 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   to a line needs a fresh work order per run (C368161: Aaron Baker was already on the re-used line, so the list no longer offered him).
 - **Tech View's held group header is a drawn copy (`.tech-view__sticky`) with no `<button>`**: click its
   `.tech-view-group-header__icon` and read the collapse in place (saved `collapsedGroups`, scroll position) before scrolling back
-  (C368127 step 7). #staging #scripts #signin #sv-11393 → L0394, L0396, L0413, L0415
+  (C368127 step 7).
+- **An "empty" precondition must be made true and read back every run** (C154886: S2-35718, left with no lead by the 15 Oct run,
+  kept Unassigned from ever being empty). **A "hidden until hover" reading needs focus cleared first** (click a neutral spot, blur,
+  park the mouse) and the effective opacity up the ancestors plus `document.activeElement` recorded (C96945). #staging #scripts #signin #sv-11393 → L0394, L0396, L0413, L0415
 
 ## L0418 — 2026-10-17 — Reading a run's history: what a full re-run's posts did to earlier verdicts (run 498)
 - **`build/testing-tools/tr_client.py` `get()` returns a TUPLE `(http_status, body)`**, not the body: `_, r = t.get("get_tests/498&limit=250&offset=0"); r['tests']`; `_, rs = t.get(f"get_results/{test_id}&limit=3"); rs['results']`. Page `get_tests` by 250.

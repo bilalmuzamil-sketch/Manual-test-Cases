@@ -10,6 +10,7 @@ import { open, done, APP } from './session.mts';
 import { signIn } from '../../global-search/e2e/fixtures/auth.js';
 import { api, candidates, seedCase, workOrders, customer, workOrder, vehicle } from './data.mts';
 import { EV, t, shot, display, tab, search, groups, toggleGroup, drag, boardCols, allBoardCols, toColumn } from './wob.mts';
+import { startState } from './fixup-1017.mts';
 import { staffRows, person, HEAVY, LETH } from './staff.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -17,6 +18,7 @@ const want = (id: string) => !only.length || only.includes(id);
 const { browser, page: p } = await open('/workorders?tab=all');
 p.setDefaultTimeout(30_000);
 const a = api(p);
+await startState(p, a, 's3-batchA');   // L0415, fix-up 2
 const R: Record<string, any> = {};
 const D = '@staging.shopview.local', ORG = (await import('./profile.mts')).ORG;
 const rolesR = await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`);
@@ -125,14 +127,26 @@ await run('C96945', async () => {
   o.pinnedEsther = (((await prefs()).pinnedTechnicianIds ?? []) as string[]).includes(ES.staff_id);
   await bv('ZZAUTOTEST F2 Card Menu'); await toColumn(p, ES.staff_id);
   const card = p.locator(`[data-test-id="board_card_${w.id}"]`); const btn = card.locator('[data-test-id="button_work_order_more_actions"]');
-  const vis = () => btn.evaluate((e) => { const s = getComputedStyle(e); const r = e.getBoundingClientRect(); return { opacity: s.opacity, visibility: s.visibility, display: s.display, w: Math.round(r.width), shown: s.visibility !== 'hidden' && s.display !== 'none' && +s.opacity > 0.05 && r.width > 0 }; }).catch(() => ({ shown: false, missing: true }));
+  // FIX-UP 2 (17 Oct 2026): on 16 Oct the button read as shown BEFORE any hover (and still after Escape), so "shows only on hover"
+  // could not be judged — possibly held by keyboard focus on the card. The reading now also gives the EFFECTIVE opacity (the button's
+  // and every ancestor's up to the card, since a hover style can sit on a parent), pointer-events, whether the button is the element
+  // actually painted at its own centre, and document.activeElement; and the idle / step-5 readings are taken after focus is cleared.
+  const vis = () => btn.evaluate((e: any) => { const s = getComputedStyle(e); const r = e.getBoundingClientRect(); let eff = 1, n: any = e; for (let i = 0; i < 12 && n; i++, n = n.parentElement) { eff *= +getComputedStyle(n).opacity; if (n.getAttribute && /^board_card_/.test(n.getAttribute('data-test-id') || '') && n.getAttribute('data-test-id') !== 'board_card_number') break; }
+    const top = r.width > 0 ? document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2) : null; const ae = document.activeElement;
+    return { opacity: s.opacity, effectiveOpacity: Math.round(eff * 100) / 100, visibility: s.visibility, display: s.display, pointerEvents: s.pointerEvents, w: Math.round(r.width), h: Math.round(r.height), paintedOnTop: !!(top && (top === e || e.contains(top))),
+      shown: s.visibility !== 'hidden' && s.display !== 'none' && eff > 0.05 && r.width > 0, active: ae && ae !== document.body ? String(ae.getAttribute('data-test-id') || ae.closest('[data-test-id]')?.getAttribute('data-test-id') || ae.tagName).replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>') : 'body', cardHovered: !!(e.closest('[data-test-id^="board_card_"]') || e).matches(':hover'), cardFocusWithin: !!(e.closest('[data-test-id^="board_card_"]') || e).matches(':focus-within') }; }).catch(() => ({ shown: false, missing: true }));
+  // a neutral spot: a point whose element is not a control, a card or a field — clicked to drop focus, and where the mouse is parked
+  const neutral = async () => { for (const [x, y] of [[1590, 990], [800, 990], [1590, 500], [5, 500], [800, 75]] as const) { const ok = await p.evaluate(`(() => { const e = document.elementFromPoint(${x}, ${y}); return !!e && !e.closest('button, a, input, textarea, [role=button], [role=menuitem], .q-field, .q-btn, [data-test-id^="board_card_"], [data-test-id^="board_column_header"]'); })()`).catch(() => false); if (ok) return { x, y }; } return { x: 1590, y: 990 }; };
+  const clearFocus = async (tag: string) => { const pt = await neutral(); await p.mouse.click(pt.x, pt.y).catch(() => {}); await p.evaluate(`(() => { const e = document.activeElement; if (e && e !== document.body && e.blur) e.blur(); })()`).catch(() => {}); await p.mouse.move(pt.x, pt.y); await p.waitForTimeout(900); return { at: pt, tag }; };
   const menus = () => p.evaluate(`[...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).map(m => m.innerText.replace(/\\s+/g, ' ').trim())`) as Promise<string[]>;
   const fx = () => p.evaluate(`(() => { const e = document.activeElement; if (!e || e === document.body) return { tid: 'body', text: '', ring: false };
     const host = e.closest('[data-test-id]'); const cs = getComputedStyle(e);
     const ring = (cs.outlineStyle !== 'none' && parseFloat(cs.outlineWidth) > 0) || (cs.boxShadow && cs.boxShadow !== 'none') || e.matches(':focus-visible');
     return { tid: String(e.getAttribute('data-test-id') || (host && host.getAttribute('data-test-id')) || e.tagName).replace('${w.id}', 'Work-order-1').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>'), text: (e.innerText || e.value || e.getAttribute('aria-label') || '').replace(/\\s+/g, ' ').slice(0, 40), ring: !!ring }; })()`) as Promise<any>;
   const press = async (k: string) => { await p.keyboard.press(k); await p.waitForTimeout(250); return { key: k, focus: await fx() }; };
-  await p.mouse.move(5, 500); await p.waitForTimeout(600); o.idle = await vis(); // positive control for step 1/5: the button is hidden when nothing hovers
+  o.idleBeforeClear = await vis();   // as found, before focus is cleared
+  o.cleared = await clearFocus('before step 1'); o.idle = await vis(); await shot(p, 'C96945-s0-idle');   // the NEGATIVE reading: nothing hovers, nothing focused
+  console.log(t(), 'START STATE found C96945', JSON.stringify({ idleBeforeClear: o.idleBeforeClear, idleAfterClear: o.idle }));
   // step 1: hover the card
   await card.hover(); await p.waitForTimeout(800); o.s1 = await vis(); await shot(p, 'C96945-s1-hover');
   // steps 2-3: click More actions, read the items
@@ -140,7 +154,9 @@ await run('C96945', async () => {
   // step 4: Escape closes the menu
   await p.keyboard.press('Escape'); await p.waitForTimeout(800); o.s4 = { menusOpen: (await menus()).length }; await shot(p, 'C96945-s4-after-escape');
   // step 5: mouse off the card, the button hides again
-  await p.mouse.move(5, 500); await p.waitForTimeout(900); o.s5 = await vis(); await shot(p, 'C96945-s5-mouse-off');
+  { const pt = await neutral(); await p.mouse.move(pt.x, pt.y); } await p.waitForTimeout(900); o.s5 = await vis(); await shot(p, 'C96945-s5-mouse-off');   // the case's step 5: mouse only
+  o.s5cleared = await clearFocus('before the step-5 reading'); o.s5afterClickOutside = await vis(); await shot(p, 'C96945-s5-after-click-outside');   // the same after a click outside the card (focus dropped)
+  o.hoverControl = { s1Shown: o.s1?.shown, idleShown: o.idle?.shown, s5Shown: o.s5afterClickOutside?.shown, note: 's1 (hovered) is the positive control; idle and s5 after the click outside are the negative readings' };
   // step 6: click once in Search
   const box = p.locator('[data-test-id="page_search_input"]'); if (!(await box.isVisible().catch(() => false))) await p.locator('[data-test-id="page_search_toggle"]').click();
   await box.click(); await p.waitForTimeout(400); o.s6 = { focus: await fx(), inSearch: await p.evaluate(`!!(document.activeElement && document.activeElement.closest('[data-test-id="page_search_input"]') || (document.activeElement && document.activeElement.getAttribute('data-test-id') === 'page_search_input'))`), searchHolds: await box.inputValue().catch(() => null) };
