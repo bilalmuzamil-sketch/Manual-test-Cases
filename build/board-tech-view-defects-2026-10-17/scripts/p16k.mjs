@@ -1,0 +1,13 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const d=JSON.parse(fs.readFileSync('/tmp/qa11310/ev10/prod-deleted-lead-staff.json')); const N=d.wo.number;
+const s=await open({env:'prod',user:'bilal.muzamil@shopview.com',dir:'/tmp/qa11310',vp:{width:1440,height:900},dpr:2}); const p=s.page; const out={N,marker:await s.marker?.()};
+const rowOf=async tag=>{ await s.go('/workorders?tab=all&search='+N); await p.waitForTimeout(5000);
+ const hdr=await p.evaluate(()=>[...document.querySelectorAll('thead th')].map(t=>t.innerText.trim()));
+ const row=await p.evaluate(n=>{const tr=[...document.querySelectorAll('tbody tr')].find(t=>t.innerText.includes(n)); return tr?[...tr.querySelectorAll('td')].map(td=>td.innerText.trim()):null;},N);
+ await p.mouse.move(5,890); await p.screenshot({path:`/tmp/qa11310/ev10/p16-list-${tag}.png`}); return {hdr,row}; };
+out.before=await rowOf('before'); console.log('before',JSON.stringify(out.before));
+const r=await s.api(`/api/staff/${d.staff.staff_id}`,{method:'DELETE'}); out.del=r.status; console.log('delete',r.status,JSON.stringify(r.json).slice(0,150));
+const w=(await s.api('/api/work-orders?pagination[page]=1&pagination[rowsPerPage]=3&search='+N)).json.data.work_orders[0]; out.apiAfter={first:w.techAssignedFirstName,last:w.techAssignedLastName}; console.log('api after',JSON.stringify(out.apiAfter));
+out.after=await rowOf('after'); console.log('after',JSON.stringify(out.after));
+await s.go(`/workorders/${d.wo.id}/lines`); await p.waitForTimeout(5000); out.woPageLead=await p.evaluate(()=>document.querySelector('[data-test-id=select_lead_technician]')?.innerText.replace(/\s+/g,' ').trim()); console.log('wo page lead',out.woPageLead); await p.screenshot({path:'/tmp/qa11310/ev10/p16-wopage-after.png'});
+fs.writeFileSync('/tmp/qa11310/ev10/p16k.json',JSON.stringify(out,null,1)); await s.close();

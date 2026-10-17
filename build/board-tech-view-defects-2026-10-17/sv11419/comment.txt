@@ -1,0 +1,41 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on Staging (build v26.40.19-754919e) on 17 October 2026, against the spec (version 64). 7 of 7 checks passed.
+
+The More actions (⋯) menu of a work order that has a lead technician now offers *Unassign* under *Reassign lead technician*, in both Board View and Tech View, and it works with the keyboard. It asks the same shift question as changing the lead, and it is locked on Invoiced and Paid work orders.
+
+*Before and after*
+!sv11419-01-unassign.png|width=1024,height=1479!
+_Top (red): the picture in this ticket, where the menu had only "Reassign lead technician". Below: staging today, Board View. 1: the menu on S2-35490 (lead Esther Howard) with the red Unassign item. 2: the shift prompt. 3: "Lead technician removed". 4: S2-35490 in the Unassigned column. 5: Paid work order S2-15322, both items greyed out. 6: S2-17495 has no lead, so there is no Unassign item. Board View is not on production yet, so the "before" is the ticket's own picture. Window 1440 x 900 px, zoom 100%._
+
+*What I checked*
+||#||Check||Status||
+|1|A work order with a lead (S2-35490, Esther Howard): the More actions menu shows *Reassign lead technician* and *Unassign*; Unassign is red with an "x" icon. Same in Board View and Tech View.|PASSED|
+|2|Keyboard: with the menu open, the Down arrow moves to *Unassign* and Enter chooses it.|PASSED|
+|3|Choosing Unassign shows the same prompt as changing the lead: "Clear Esther Howard's scheduled shifts?" with *Cancel*, *Keep Shifts* and *Clear Shifts*. Pressing Escape closes it and nothing changes.|PASSED|
+|4|*Keep Shifts*: the message "Lead technician removed" shows, the work order moves to Unassigned and has no lead, and Esther Howard's shift on it is still there.|PASSED|
+|5|The work order goes into Unassigned among the others (7th of 13 shown), not to the bottom of the column.|PASSED|
+|6|Invoiced (S2-36630) and Paid (S2-15322) work orders: both menu items are greyed out and cannot be chosen, in Board View and Tech View.|PASSED|
+|7|A work order with no lead (S2-17495): the menu has only *Reassign lead technician*, no Unassign.|PASSED|
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S11-R9: Reassigning by keyboard goes through the more-actions menu: Reassign lead technician opens the Reassign dialog, and Unassign is a menu item.{quote}
+{quote}S4-R26: Removing the lead technician (moving the work order to Unassigned) shows the same shift-clearing prompt as changing it (S4-R11).{quote}
+{quote}S4-N2: Do not allow the lead technician to change in Invoiced or Paid status.{quote}
+{quote}S9-R14: Removing the lead from the Reassign lead technician dialog or the detail page puts the work order in Unassigned in the initial sort, not at the bottom, so it is not lost behind every other unassigned work order.{quote}
+Chris Ward in this ticket (16 October): Unassign is red with an "x" icon, only shown when the work order has a lead, disabled when locked, and it lands in Unassigned at its initial sort position like the Reassign dialog.
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com/workorders and click the *All* tab (top left).
+# Click *Search* in the bar above the list and type {{ZZAUTOTEST F1 Prompt Where}}.
+# On the right of that bar, click the *Board View* button (the right of the three view buttons). Find the S2-35490 card in the *Esther Howard* column.
+# Click the three dots (⋯) at the top right of the card: the menu shows *Reassign lead technician* and a red *Unassign*. (With the keyboard: press the Down arrow to reach Unassign and Enter.)
+# Choose *Unassign*: the question "Clear Esther Howard's scheduled shifts?" appears. Click *Keep Shifts*. The message "Lead technician removed" appears and the card moves to the *Unassigned* column.
+# To put it back, open the card's ⋯ menu, choose *Reassign lead technician*, pick Esther Howard and confirm.
+# Search {{S2-15322}} (a Paid work order) and open its ⋯ menu: both items are greyed out.
+
+*Screen recording*
+!sv11419-unassign-staging-recording-voiceover.mp4|width=1280,height=800,alt="sv11419-unassign-staging-recording-voiceover.mp4"!
+_Staging, build v26.40.19-754919e, 17 October 2026, window 1440 x 900 px, zoom 100%: in Tech View the S2-35490 menu is opened and Unassign chosen with the keyboard, Keep Shifts, the message and the work order in Unassigned with its shift kept; then the Paid S2-15322 menu (greyed out) and the no-lead S2-17495 menu in Board View. Each caption is read from the page. With voice-over. Afterwards the lead was put back on S2-35490._

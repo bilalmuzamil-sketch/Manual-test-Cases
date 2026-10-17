@@ -1,0 +1,15 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const s=await open({env:'prod',user:'bilal.muzamil@shopview.com',dir:'/tmp/qa11310',vp:{width:1440,height:900},dpr:1});
+const J=(u,m,b)=>s.api(u,b?{method:m,headers:{'Content-Type':'application/json'},body:JSON.stringify(b)}:{method:m||'GET'});
+const WP='b617914c-16e9-4485-8e8b-193cd86aa416'; const wp=(await J('/api/staff/my-workplaces')).json.data.collection.find(w=>w.id===WP);
+let r=await J('/api/iam/change-location','POST',{workplace_id:WP,workplace_timezone:wp.timezone}); console.log('loc back',r.status);
+const old=JSON.parse(fs.readFileSync('/tmp/qa11310/ev10/prod-deleted-lead-staff.json'));
+const ts=Date.now()%100000;
+const body={email:`zz.deleted.lead.${ts}@prod.shopview.local`,first_name:'ZZAUTOTEST',last_name:`Deleted Lead ${ts}`,role_id:old.body.role_id,departments:['03e3cecc-1556-467a-bceb-93e252d94a3d'],workplace_id:WP};
+r=await J('/api/iam/create','POST',body); console.log('create',r.status);
+r=await J('/api/staff?pagination[rowsPerPage]=50&search='+encodeURIComponent('Deleted Lead '+ts)); const me=r.json.data.collection[0]; console.log('ws',me.defaultWorkplaceName,me.departments);
+const cb={first_name:me.first_name,last_name:me.last_name,email:me.email,role_id:body.role_id,workplace_id:WP,job_title:'',salary_type:null,salary:null,billable:1,clockable:1,departments:body.departments};
+r=await J(`/api/staff/${me.staff_id}/change`,'POST',cb); console.log('change',r.status);
+r=await J('/api/work-orders?pagination[page]=1&pagination[rowsPerPage]=100'); const w=r.json.data.work_orders.find(w=>!w.techAssignedId&&w.status==='approved'&&/ZZAUTOTEST/.test(w.companyName))||r.json.data.work_orders.find(w=>!w.techAssignedId&&w.status==='approved'); console.log('wo',w.number,w.companyName);
+fs.writeFileSync('/tmp/qa11310/ev10/prod-deleted-lead-staff.json',JSON.stringify({body,staff:me,wo:{id:w.id,number:w.number},earlier:old.staff.staff_id},null,1));
+await s.close();

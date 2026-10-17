@@ -1,0 +1,35 @@
+import {session,toView,narr,finish} from './rec.mjs'; import fs from 'fs';
+const dir='/tmp/qa11310/vo16'; const N=narr(dir); const Q='ZZAUTOTEST F1 Assigned To Me'; const PIA='e5842df2-5ddb-4973-bb25-e964167c1996';
+const s=await session({vp:{width:1440,height:900},record:'/tmp/qa11310/rec16'}); const p=s.page; const tLogin=Date.now(); const mk=await s.marker(); const log={};
+const OWN=['display','collapsedGroups','tab']; const getP=async()=>(await s.api('/api/users/me/preferences/work-orders-list')).json.data.value; const prefs0=await getP();
+const wo=async n=>{ const w=(await s.api('/api/work-orders?pagination[page]=1&pagination[rowsPerPage]=3&search='+n)).json.data.work_orders[0]; return {id:w.id,lead:w.techAssignedId,name:((w.techAssignedFirstName||'')+' '+(w.techAssignedLastName||'')).trim()}; };
+const move=async(n,t)=>{ const w=await wo(n); return (await s.api(`/api/work-orders/${w.id}/board-move`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({technicianId:t})})).status; };
+const drag=async(from,to)=>{ await p.mouse.move(from.x,from.y,{steps:8}); await p.mouse.down(); for(const d of [3,6,9,12]){ await p.mouse.move(from.x+d,from.y+d); await p.waitForTimeout(40);} for(let i=1;i<=24;i++){ await p.mouse.move(from.x+(to.x-from.x)*i/24,from.y+(to.y-from.y)*i/24); await p.waitForTimeout(55);} await p.waitForTimeout(600); await p.mouse.up(); await p.waitForTimeout(2500); };
+const toasts=()=>p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(n=>n.innerText.replace(/check_circle|Close/g,'').replace(/\s+/g,' ').trim()));
+try{
+ log.setup=await move('S2-35251',PIA); log.w0={a:await wo('S2-35709'),b:await wo('S2-35251'),c:await wo('S2-36641')};
+ await s.go('/workorders?tab=all&search='+encodeURIComponent(Q)); await p.waitForTimeout(3500); await toView(p,'tech_view'); await p.waitForTimeout(2500);
+ for(let k=0;k<2;k++){ if(/Expand/.test(await p.getAttribute('[data-test-id=button_tech_view_collapse_all]','aria-label'))) break; await p.click('[data-test-id=button_tech_view_collapse_all]'); await p.waitForTimeout(2500);} await p.click('[data-test-id=button_tech_view_collapse_all]'); await p.waitForTimeout(2500);
+ for(let i=0;i<90;i++){ if(await p.$('[data-test-id=tech_view_group_deleted]')) break; await p.evaluate(()=>{document.querySelector('.q-table__middle').scrollTop+=500;}); await p.waitForTimeout(350);}
+ await p.evaluate(()=>document.querySelector('[data-test-id=tech_view_group_deleted]').scrollIntoView({block:'center'})); await p.waitForTimeout(1200); await p.mouse.move(1000,880,{steps:6});
+ log.group=await p.evaluate(()=>{const g=document.querySelector('[data-test-id=tech_view_group_deleted]'); return {text:g.innerText.replace(/\s+/g,' ').trim(),grip:g.querySelectorAll('[data-test-id*=drag_handle]').length,badge:[...g.querySelectorAll('.q-badge')].map(b=>b.innerText.trim())};});
+ await p.evaluate(()=>{const c=document.getElementById('__qa_caption'); if(c){c.style.top='170px'; c.style.bottom='auto';}}); await N.cap(s,'n1',`SV-11416 · staging ${mk.version} · Tech View · group "${log.group.text.split(' Inactive')[0]}" · marker "${log.group.badge.join(',')}" · drag grips: ${log.group.grip}`);
+ const geo=await p.evaluate(()=>{const row=[...document.querySelectorAll('[data-test-id^=tech_view_row_]')].find(e=>/^tech_view_row_[0-9a-f-]{36}$/.test(e.dataset.testId)&&e.innerText.includes('S2-35251')); const h=row?.querySelector('[data-test-id^=tech_view_row_drag_handle_]')?.getBoundingClientRect(); const g=document.querySelector('[data-test-id=tech_view_group_deleted]').getBoundingClientRect(); return {from:h?{x:h.x+h.width/2,y:h.y+h.height/2}:null,to:{x:600,y:g.y+g.height+20}};});
+ log.geo=geo; const b1=s.writes.length; if(geo.from) await drag(geo.from,geo.to); log.dropWrites=s.writes.slice(b1).filter(w=>!/preferences/.test(w)); log.dropAfter=await wo('S2-35251');
+ await N.cap(s,'n2',`Drag S2-35251 onto "Deleted technician": no change saved · S2-35251 lead still ${log.dropAfter.name||'none'}`);
+ await s.go('/workorders?tab=all&search='+encodeURIComponent(Q)); await p.waitForTimeout(3500); await toView(p,'board_view'); await p.waitForTimeout(3000);
+ await p.evaluate(()=>{const sc=document.querySelector('[data-test-id=board_view_scroller]'); sc.scrollLeft=sc.scrollWidth;}); await p.waitForTimeout(1500);
+ for(let i=0;i<90;i++){ const ok=await p.evaluate(()=>{const h=document.querySelector('[data-test-id=board_column_header_deleted]'); if(h){ h.scrollIntoView({inline:'center',block:'nearest'}); return true;} document.querySelector('[data-test-id=board_view_scroller]').scrollLeft+=700; return false;}); if(ok) break; await p.waitForTimeout(300);}
+ await p.waitForTimeout(800); log.col=await p.evaluate(()=>{const h=document.querySelector('[data-test-id=board_column_header_deleted]'); const pan=h.closest('.board-column__panel'); return {text:h.innerText.replace(/\s+/g,' ').trim(),grip:pan.querySelectorAll('[data-test-id^=board_column_drag_handle_]').length,cards:[...pan.querySelectorAll('.board-card')].map(c=>(c.innerText.match(/S\d-\d+/)||[])[0])};});
+ await N.cap(s,'n3',`Board View · column "${log.col.text}" · drag grips: ${log.col.grip} · cards: ${log.col.cards.join(', ')}`);
+ const g2=await p.evaluate(()=>{const c=[...document.querySelectorAll('.board-card')].find(c=>c.innerText.includes('S2-35709')); const r=c.getBoundingClientRect(); const u=document.querySelector('[data-test-id=board_column_header_unassigned]').closest('.board-column__panel').getBoundingClientRect(); return {from:{x:r.x+r.width/2,y:r.y+30},to:{x:u.x+u.width/2,y:u.y+300}};});
+ const b2=s.writes.length; await drag(g2.from,g2.to); log.outWrites=s.writes.slice(b2).filter(w=>!/preferences/.test(w)); log.outToast=await toasts(); log.outAfter=await wo('S2-35709');
+ await N.cap(s,'n4',`Drag S2-35709 out to Unassigned: "${log.outToast[0]||''}" · S2-35709 lead now ${log.outAfter.name||'none (Unassigned)'}`);
+ await s.go('/workorders?tab=all&search=S2-36641'); await p.waitForTimeout(3500); await toView(p,'list'); await p.waitForTimeout(3000); await p.mouse.move(1000,880,{steps:6});
+ log.list=await p.evaluate(()=>{const heads=[...document.querySelectorAll('thead th')].map(t=>t.innerText.replace('arrow_drop_up','').trim()); const i=heads.indexOf('Lead Technician'); const r=[...document.querySelectorAll('tbody tr')].find(r=>/S2-36641/.test(r.innerText)); return r?r.children[i]?.innerText.trim():null;});
+ await N.cap(s,'n5',`List · S2-36641 (lead deleted) · Lead Technician: "${log.list}" · Production today shows "Unassigned" for a deleted lead too · Spec v64 S3-R20e → PASSED`);
+}catch(e){ log.err=e.message.slice(0,200); }
+try{ log.restore=await move('S2-35251',null); log.end={b:await wo('S2-35251')}; }catch(e){ log.restoreErr=e.message.slice(0,100); }
+try{ const cur=await getP(); const v={...cur}; for(const k of OWN) v[k]=prefs0[k]; await s.api('/api/users/me/preferences/work-orders-list',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({value:v})}); }catch(e){}
+await toView(p,'tech_view').catch(()=>{});
+await finish(s,dir,N.ev,{tLogin,mk,log}); console.log(JSON.stringify(log).slice(0,2000));
