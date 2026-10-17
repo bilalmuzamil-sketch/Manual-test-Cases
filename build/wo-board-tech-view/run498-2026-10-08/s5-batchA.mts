@@ -15,6 +15,7 @@ import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, searchValue, expandSmallGroups, switchLocUI } from './wob.mts';
+import { startState } from './fixup-1017.mts';
 import { staffRows } from './staff.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -23,6 +24,7 @@ const { browser, page: p0 } = await open('/workorders?tab=all');
 const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p;  // our own test admin (runner.mts)
 p.setDefaultTimeout(30_000);
 const a = api(p);
+await startState(p, a, 's5-batchA');   // L0415, fix-up 2
 const R: Record<string, any> = { runner: { id: RUN.id.slice(0, 8), perms: RUN.perms, who: RUN.who, log: RUN.log } };
 const D = '@staging.shopview.local';
 const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
@@ -104,23 +106,39 @@ await run('C96976', async () => {
   R.C96976.saved = (await prefGet()).boardFields;
 });
 
+// FIX-UP 2 (17 Oct 2026): on 16 Oct C96977 / C96981 read "No work orders match the search" with no location name in the top bar — the
+// pre-step location check (ensure-heavy.mts) sets the ADMIN's location, but these cases run as the runner (ZZ WOB Runner), whose
+// location had been left at Lethbridge by this script's own 'loc2' block (it switched back with the API call, which answers 200 and
+// does not change the top bar, L0399). Before searching, the runner's top-bar location is read; if it is not Heavy Duty it is switched
+// through the menu (switchLocUI) and read back; START STATE found / set are logged. 'loc2' now switches back through the menu too.
+const topLoc = async () => (await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
+async function atHeavy(tag: string) {
+  await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500);
+  const found = await topLoc(); console.log(t(), 'START STATE found', tag, JSON.stringify({ location: found }));
+  let now = found; if (!found.includes('Staging Heavy Duty')) { now = await switchLocUI(p, 'Staging Heavy Duty'); if (!now.includes('Staging Heavy Duty')) now = await switchLocUI(p, 'Staging Heavy Duty'); }
+  console.log(t(), 'START STATE set', tag, JSON.stringify({ location: now, switched: now !== found }));
+  if (!now.includes('Staging Heavy Duty')) throw new Error(`not at Staging Heavy Duty - 9919 (top bar reads "${now}")`);
+  return { found, now };
+}
 await run('C96977', async () => {
+  const loc = await atHeavy('C96977');
   const n = 'ZZAUTOTEST F2 Card Always On'; const w = await seed(n, 'TRK-118', [ES.staff_id]); const wo = w[0].id;
   await go('Board View', n); const m = await menu('Board View');
-  R.C96977 = { menuItems: m.items.map((x: any) => x[1]), offersNumberUnitStatus: m.items.filter((x: any) => /number|unit|status/i.test(x[0] + x[1])).map((x: any) => x[1]) };
+  R.C96977 = { location: loc, menuItems: m.items.map((x: any) => x[1]), offersNumberUnitStatus: m.items.filter((x: any) => /number|unit|status/i.test(x[0] + x[1])).map((x: any) => x[1]) };
   await shot(p, 'C96977-menu'); await close();
   for (const k of m.items.filter((x: any) => x[2] === 'true').map((x: any) => x[0])) await setSwitch('Board View', k, false);
   R.C96977.cardAllOff = await card(p, wo); R.C96977.unitOnAsset = w[0].unit ?? w[0].vehicleUnit ?? null; await shot(p, 'C96977-card');
 });
 
 await run('C96981', async () => {
+  const loc = await atHeavy('C96981');
   const n = 'ZZAUTOTEST F2 Fields No Reload'; const w = await seed(n, 'ZZF2NR', [ES.staff_id, ES.staff_id, RE.staff_id]);
   await go('Board View', n); await setSwitch('Board View', 'start_date', false); await setSwitch('Board View', 'company_name', true);
   const before = Object.fromEntries(await Promise.all(w.map(async (x: any) => [x.number, await card(p, x.id)])));
   await p.evaluate(`window.__zzNoReload = 1`);
   const mm = await menu('Board View'); await p.locator('[data-test-id="toggle_board_field_start_date"]').click(); await p.waitForTimeout(400); await p.locator('[data-test-id="toggle_board_field_company_name"]').click(); await p.waitForTimeout(400);
   const during = Object.fromEntries(await Promise.all(w.map(async (x: any) => [x.number, await card(p, x.id)]))); await close();
-  R.C96981 = { menuWas: onKeys(mm), before, after: during, stillSamePage: await p.evaluate(`window.__zzNoReload === 1`), search: await searchValue(p) };
+  R.C96981 = { location: loc, menuWas: onKeys(mm), before, after: during, stillSamePage: await p.evaluate(`window.__zzNoReload === 1`), search: await searchValue(p) };
   await shot(p, 'C96981-after');
 });
 
@@ -153,6 +171,7 @@ await run('loc2', async () => {
   await display(p, 'Board View'); R.loc2.board = onKeys(await menu('Board View')); await close();
   await display(p, 'List'); R.loc2.list = onKeys(await menu('List')); await close(); await shot(p, 'S5-loc2');
   await a.post('/api/iam/change-location', { workplace_id: 'b3c8c820-f815-4cf1-8938-10956c5ee71a', workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
+  R.loc2.back = await switchLocUI(p, 'Staging Heavy Duty');   // fix-up 2: the API call alone does not move the top bar (L0399)
 });
 
 const BACK = ORIGINAL; await a.put(PREF, { value: BACK }); R.restored = JSON.stringify(await prefGet()) === JSON.stringify(BACK);

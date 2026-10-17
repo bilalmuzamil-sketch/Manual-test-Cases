@@ -1207,7 +1207,11 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   (C368127 step 7).
 - **An "empty" precondition must be made true and read back every run** (C154886: S2-35718, left with no lead by the 15 Oct run,
   kept Unassigned from ever being empty). **A "hidden until hover" reading needs focus cleared first** (click a neutral spot, blur,
-  park the mouse) and the effective opacity up the ancestors plus `document.activeElement` recorded (C96945). #staging #scripts #signin #sv-11393 → L0394, L0396, L0413, L0415
+  park the mouse) and the effective opacity up the ancestors plus `document.activeElement` recorded (C96945).
+- **ensure-heavy.mts fixes the ADMIN's location, not the runner's** (ZZ WOB Runner, runner.mts): a script that switched the runner to
+  Lethbridge and back with the API left it there (L0399), and the next runner script searched an empty board (C96977/C96981). Read and fix
+  the runner's own top bar through the menu before searching. **A reorder test must ask for a NEW place**: dropping a card on the top of
+  the card it already sits above changes nothing (C96963 step 7). #staging #scripts #signin #sv-11393 → L0394, L0396, L0413, L0415
 
 ## L0418 — 2026-10-17 — Reading a run's history: what a full re-run's posts did to earlier verdicts (run 498)
 - **`build/testing-tools/tr_client.py` `get()` returns a TUPLE `(http_status, body)`**, not the body: `_, r = t.get("get_tests/498&limit=250&offset=0"); r['tests']`; `_, rs = t.get(f"get_results/{test_id}&limit=3"); rs['results']`. Page `get_tests` by 250.

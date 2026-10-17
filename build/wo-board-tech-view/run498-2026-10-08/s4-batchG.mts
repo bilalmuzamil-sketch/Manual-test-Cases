@@ -11,6 +11,7 @@ import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, candidates, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
+import { startState } from './fixup-1017.mts';
 import { viewAs } from './viewas.mts';
 import { staffRows, HEAVY } from './staff.mts';
 import { mkShift, shiftsOn } from './shifts.mts';
@@ -21,6 +22,7 @@ const { browser, page: p0 } = await open('/workorders?tab=all');
 const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p;  // our own test admin (runner.mts)
 p.setDefaultTimeout(30_000);
 const a = api(p);
+await startState(p, a, 's4-batchG');   // L0415, fix-up 2
 const R: Record<string, any> = { runner: { id: RUN.id.slice(0, 8), perms: RUN.perms, who: RUN.who, log: RUN.log } };
 const D = '@staging.shopview.local';
 const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
@@ -48,6 +50,8 @@ async function completeLine(wo: string, line: string) {
 }
 const myTask = async () => JSON.stringify((await a.get('/api/technician-tasks/my-current-task')).body?.data ?? null).slice(0, 200);
 const lead = async (n: string) => Object.fromEntries((await workOrders(a, n)).map((w: any) => [w.number, w.techAssignedFirstName ? `${w.techAssignedFirstName} ${w.techAssignedLastName}` : 'none']));
+const watchToasts = (pg: Page = p) => pg.evaluate(`(() => { window.__tl = []; if (window.__to) window.__to.disconnect(); const grab = () => { for (const e of document.querySelectorAll('.q-notification')) { const t = e.innerText.replace(/\\s+/g, ' ').replace(/^(check_circle|warning|error|info)\\s*/, '').replace(/\\s*close$/i, '').trim(); if (t && !window.__tl.includes(t)) window.__tl.push(t); } }; window.__to = new MutationObserver(grab); window.__to.observe(document.body, { childList: true, subtree: true, characterData: true }); })()`).catch(() => {});   // fix-up 2
+const seenToasts = (pg: Page = p) => pg.evaluate('window.__tl || []').catch(() => []) as Promise<string[]>;
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
@@ -128,10 +132,33 @@ await run('C96963', async () => {
       o[lab] = { before: before.map((x: string) => num(x) ?? x), afterReload: (await order(ES.staff_id)).map((x: string) => num(x) ?? x), lead: await where(id), message: m };
     }
     // W4 reorder inside Unassigned (needs a second unassigned card of this customer: put W1 there first)
+    // FIX-UP 2 (17 Oct 2026): on 16 Oct W4 was dropped on the TOP of W1 while W4 already sat above W1 (Unassigned read [W4, W1] before
+    // and after), so the drop asked for no change, and no picture was taken. Now: Unassigned is brought on screen with both cards, a
+    // "before" picture is taken, W4 is dragged with the same mechanics as the working in-column reorder (press, small move, move, drop)
+    // to a NEW place — just below W1's bottom edge — and what the board shows mid-drag (drop placeholder / ghost classes, the element
+    // under the pointer) is recorded to show whether the drop was accepted; any message is read; an "after" picture is taken; the order
+    // is read back on screen after a reload and from the server (the list order and any order/position field of the two work orders).
     if (!tv) { await a.post('/api/work-orders/change-lead-technician', { work_order_id: W1, tech_assigned_id: null }); await go();
-      const before = await order('unassigned'); await drag(p, host(W4), host(W1), 4); await p.waitForTimeout(1200); const m = await toasts(p); await go();
-      o.W4reorderUnassigned = { before: before.map((x: string) => num(x) ?? x), after: (await order('unassigned')).map((x: string) => num(x) ?? x), lead: await where(W4), message: m };
-      await a.post('/api/work-orders/change-lead-technician', { work_order_id: W1, tech_assigned_id: ES.staff_id }); }
+      const u: any = {}; await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"]') || document.querySelector('.board-view__scroller'); if (h) h.scrollLeft = 0; })()`).catch(() => {}); await p.waitForTimeout(800);
+      u.onScreen = { W4: await ensure(host(W4), n), W1: await ensure(host(W1), n) };
+      await p.locator(host(W1)).first().scrollIntoViewIfNeeded().catch(() => {}); await p.locator(host(W4)).first().scrollIntoViewIfNeeded().catch(() => {}); await p.waitForTimeout(600);
+      const before = await order('unassigned'); u.before = before.map((x: string) => num(x) ?? x);
+      console.log(t(), 'START STATE found C96963 Unassigned reorder', JSON.stringify({ unassigned: u.before, W4lead: await where(W4), W1lead: await where(W1) }));
+      await shot(p, 'C96963-BV-W4-reorder-unassigned-before');
+      const fb = await p.locator(host(W4)).first().boundingBox(); const tb = await p.locator(host(W1)).first().boundingBox();
+      if (fb && tb) { const gx = fb.x + fb.width * 0.45; const tx = tb.x + tb.width / 2, ty = tb.y + tb.height - 6; u.dropAt = { y: Math.round(ty), w1Top: Math.round(tb.y), w1Bottom: Math.round(tb.y + tb.height) };
+        await watchToasts(); await p.mouse.move(gx, fb.y + fb.height / 2); await p.mouse.down(); await p.mouse.move(gx, fb.y + fb.height / 2 + 8, { steps: 4 }); await p.mouse.move(tx, ty, { steps: 20 }); await p.waitForTimeout(500);
+        u.midDrag = await p.evaluate(`(() => { const col = document.querySelector('[data-test-id="board_column_unassigned"]'); const marks = [...document.querySelectorAll('[class*="ghost"], [class*="placeholder"], [class*="drop"], [class*="chosen"], [class*="dragging"], [class*="sortable"]')].filter(e => e.getBoundingClientRect().width > 0).map(e => String(e.className).slice(0, 60)).slice(0, 8);
+          const at = document.elementFromPoint(${Math.round(tx)}, ${Math.round(ty)}); const c = at && at.closest('[data-test-id^="board_column_"]'); return { marks, underPointer: at ? at.tagName + '.' + String(at.className).slice(0, 40) : null, column: c ? c.getAttribute('data-test-id') : null, cursor: at ? getComputedStyle(at).cursor : null, orderNow: col ? [...col.querySelectorAll('[data-test-id^="board_card_"]')].map(e => e.getAttribute('data-test-id')).filter(x => /^board_card_[0-9a-f-]{36}$/.test(x)).map(x => x.slice(11)) : null }; })()`).catch(() => null);
+        if (u.midDrag?.orderNow) u.midDrag.orderNow = u.midDrag.orderNow.map((x: string) => num(x) ?? x);
+        await shot(p, 'C96963-BV-W4-reorder-unassigned-middrag'); await p.mouse.up(); await p.waitForTimeout(3000); }
+      else u.dragError = `card box missing: W4 ${!!fb}, W1 ${!!tb}`;
+      u.message = [...new Set([...(await seenToasts()), ...(await toasts(p))])]; u.afterNoReload = (await order('unassigned')).map((x: string) => num(x) ?? x); await shot(p, 'C96963-BV-W4-reorder-unassigned-after');
+      await go(); u.afterReload = (await order('unassigned')).map((x: string) => num(x) ?? x); await shot(p, 'C96963-BV-W4-reorder-unassigned-after-reload');
+      const srv = await workOrders(a, n); u.server = { listOrder: srv.filter((w: any) => !w.techAssignedFirstName).map((w: any) => w.number), fields: Object.fromEntries(srv.filter((w: any) => [W4, W1].includes(w.id)).map((w: any) => [w.number, Object.fromEntries(Object.entries(w).filter(([k]) => /order|position|sort|rank|index/i.test(k)))])) };
+      const pv = await prefGet(); u.server.prefKeys = Object.fromEntries(Object.entries(pv).filter(([k]) => /order|position|sort|rank/i.test(k)).map(([k, v]) => [k, JSON.stringify(v).slice(0, 200)]));
+      u.reordered = JSON.stringify(u.before) !== JSON.stringify(u.afterReload); u.lead = await where(W4);
+      o.W4reorderUnassigned = u; await a.post('/api/work-orders/change-lead-technician', { work_order_id: W1, tech_assigned_id: ES.staff_id }); }
     // in Tech View, bring W5 and W6 back to Esther (the case's last step)
     if (tv) { o.declinedBack = await tryMove('W5-back', W5, ES.staff_id); o.completeBack = await tryMove('W6-back', W6, ES.staff_id); }
     else { await a.post('/api/work-orders/change-lead-technician', { work_order_id: W5, tech_assigned_id: ES.staff_id }); await a.post('/api/work-orders/change-lead-technician', { work_order_id: W6, tech_assigned_id: ES.staff_id }); }

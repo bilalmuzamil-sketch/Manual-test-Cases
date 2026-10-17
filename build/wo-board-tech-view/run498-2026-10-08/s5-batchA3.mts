@@ -13,6 +13,7 @@ import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, searchValue, expandSmallGroups, switchLocUI } from './wob.mts';
+import { startState } from './fixup-1017.mts';
 import { staffRows, HEAVY, LETH } from './staff.mts';
 import { RUNNER_EMAIL } from './runner.mts';
 
@@ -22,6 +23,7 @@ const { browser, page: p0 } = await open('/workorders?tab=all');
 const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p;  // our own test admin (runner.mts)
 p.setDefaultTimeout(30_000);
 const a = api(p);
+await startState(p, a, 's5-batchA3');   // L0415, fix-up 2
 const R: Record<string, any> = { runner: { id: RUN.id.slice(0, 8), perms: RUN.perms, who: RUN.who, log: RUN.log } };
 const D = '@staging.shopview.local';
 const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
@@ -79,45 +81,40 @@ const second = async () => { const st = await p.context().storageState(); const 
   await ctx.addInitScript((kv: Record<string, string>) => { try { if (!sessionStorage.getItem('zz_seeded')) { for (const [k, v] of Object.entries(kv)) localStorage.setItem(k, v); sessionStorage.setItem('zz_seeded', '1'); } } catch { /* */ } }, keep);
   return { ctx, pg: await ctx.newPage(), kept: Object.keys(keep) }; };
 
+// FIX-UP 2 (17 Oct 2026, C96975): the script turned Assigned Techs ON in Tech View, while the case (read live 17 Oct) turns it OFF at
+// step 8; it also skipped the case's own readings. It now follows the case: the preconditions are SET and read back (List: Service
+// Advisor and Progress on; Tech View: Service Advisor, Progress and Assigned Techs on), then steps 1-15 with a reading at 3, 11 and 15,
+// steps 19-20 in a second browser, and steps 21-23 at Lethbridge in the 'loc2' block (which now ends back at Heavy Duty, read back).
+// Steps 16-18 (log out, log back in) are NOT done: logging out ends the ONE shared staging sign-in that the whole queue runs on
+// (L0394); a fresh page load of the same user is read in their place and labelled so.
+const keyOf = async (d: string, rx: RegExp, pg: Page = p) => { const m = await menu(d, pg); await close(pg); return ((m.items ?? []).find((x: any) => rx.test(String(x[1]))) ?? [])[0] ?? null; };
+const setBy = async (d: string, rx: RegExp, on: boolean, pg: Page = p) => { const k = await keyOf(d, rx, pg); return k ? `${k}=${on ? 'on' : 'off'} ${await setSwitch(d, k, on, pg)}` : `no ${rx.source} in the ${d} menu`; };
+const readView = async (d: string, pg: Page = p) => { const m = await menu(d, pg); await close(pg); return { on: onKeys(m), labelsOn: (m.items ?? []).filter((x: any) => x[2] === 'true').map((x: any) => x[1]), heads: await heads(pg) }; };
 await run('C96975', async () => {
-  const n = 'ZZAUTOTEST F2 Tech Own Columns'; await seed(n, 'ZZF2TC', [ES.staff_id]);
-  await go('Tech View', n); R.C96975 = { set: [await setSwitch('Tech View', 'service_advisor', false), await setSwitch('Tech View', 'assigned_techs', true)] };
-  await display(p, 'List'); await p.waitForTimeout(1500); R.C96975.setList = await setSwitch('List', 'progress', false);
-  const s = await second(); R.C96975.secondKept = s.kept; try { await go('Tech View', n, s.pg); R.C96975.secondBrowser = { at: await where(s.pg), tech: onKeys(await menu('Tech View', s.pg)), techHeads: await heads(s.pg) }; await close(s.pg);
-    await display(s.pg, 'List'); await s.pg.waitForTimeout(1500); R.C96975.secondBrowser.list = onKeys(await menu('List', s.pg)); await close(s.pg); await shot(s.pg, 'C96975-second-browser'); } finally { await s.ctx.close(); }
-});
-
-await run('C96976', async () => {
-  const n = 'ZZAUTOTEST F2 Board Fields Saved'; const w = await seed(n, 'ZZF2BF', [ES.staff_id]); const wo = w[0].id;
-  // 15 Oct 2026: step 1/4 — where each picker sits in the toolbar and what it holds (Tech View's Column Selection vs Board View's Fields to display)
-  await go('Tech View', n); const tm = await menu('Tech View'); await shot(p, 'C96976-tech-picker'); await close();
-  await go('Board View', n); const bm = await menu('Board View'); await shot(p, 'C96976-board-picker'); await close();
-  const place = { techViewButton: tm.box, boardViewButton: bm.box, sameSpot: !!(tm.box && bm.box && Math.abs(tm.box.x - bm.box.x) < 12 && Math.abs(tm.box.y - bm.box.y) < 12), techItems: (tm.items ?? []).length, boardItems: (bm.items ?? []).length, boardKinds: [...new Set((bm.items ?? []).map((x: any) => x[2] === null ? 'not a switch' : 'switch'))] };
-  R.C96976 = { pickerPlace: place, set: [await setSwitch('Board View', 'company_name', false), await setSwitch('Board View', 'vin', true)], card: await card(p, wo) }; await shot(p, 'C96976-card');
-  const s = await second(); try { await go('Board View', n, s.pg); R.C96976.secondBrowser = { at: await where(s.pg), on: onKeys(await menu('Board View', s.pg)), card: await card(s.pg, wo) }; await close(s.pg); await shot(s.pg, 'C96976-second-browser'); } finally { await s.ctx.close(); }
-});
-
-await run('C96983', async () => {
-  const n = 'ZZAUTOTEST F2 Saved Choice Failure'; await seed(n, 'ZZF2SF', [null]);
-  const saves: string[] = [];
-  p.on('request', (r) => { if (/preferences\/work-orders-list/.test(r.url()) && r.method() !== 'GET') saves.push(`${r.method()} ${String(r.postData() ?? '').slice(0, 200)}`); });
-  // positive control: a normal change IS seen being saved by this recorder
-  await go('Board View', n); await setSwitch('Board View', 'line_technicians', true); await p.waitForTimeout(2500);
-  R.C96983 = { controlSaves: saves.splice(0).map((x) => x.slice(0, 120)) };
-  await setSwitch('Board View', 'line_technicians', false); await p.waitForTimeout(2500); saves.splice(0);
-  R.C96983.before = onKeys(await menu('Board View')); await close();
-  const fail = (u: URL) => /preferences\/work-orders-list/.test(u.toString());
-  const handler = async (r: any) => { if (r.request().method() === 'GET') await r.fulfill({ status: 500, contentType: 'application/json', body: '{"errors":[{"error":"ZZ forced failure"}]}' }); else await r.continue(); };
-  await p.route(fail, handler);
-  await go('Board View', n); R.C96983.failBoard = onKeys(await menu('Board View')); await close();
-  R.C96983.change = await setSwitch('Board View', 'vehicle_here', true); await p.waitForTimeout(4000);
-  R.C96983.failBoardAfterChange = onKeys(await menu('Board View')); await close(); await shot(p, 'C96983-fail-after-change');
-  // 15 Oct 2026: Tech View's columns while the saved choices cannot be read (step 4) — not read before
-  await go('Tech View', n); R.C96983.failTech = { menuOn: onKeys(await menu('Tech View')) }; await close(); R.C96983.failTech.heads = await heads(); await shot(p, 'C96983-fail-tech');
-  await go('Board View', n);
-  R.C96983.savesDuringFailure = saves.splice(0);
-  await p.unroute(fail, handler);
-  await go('Board View', n); R.C96983.afterReload = onKeys(await menu('Board View')); await close(); await shot(p, 'C96983-after-reload');
+  const n = 'ZZAUTOTEST F2 Tech Own Columns'; await seed(n, 'ZZF2TC', [ES.staff_id]); const o: any = (R.C96975 = {});
+  // preconditions: found, then set, then read back
+  await go('List'); o.locationFound = await where(p); if (!/Heavy Duty/.test(String(o.locationFound))) { o.locationSwitch = await switchLocUI(p, 'Staging Heavy Duty'); await go('List'); o.locationNow = await where(p); if (!/Heavy Duty/.test(String(o.locationNow))) throw new Error(`the runner is not at Staging Heavy Duty - 9919 (top bar: ${o.locationNow})`); }   // fix-up 2: the runner's own location (not the Admin's) is checked first
+  o.foundList = await readView('List'); await display(p, 'Tech View'); await p.waitForTimeout(1500); o.foundTech = await readView('Tech View');
+  console.log(t(), 'START STATE found C96975', JSON.stringify({ list: o.foundList.labelsOn, tech: o.foundTech.labelsOn, location: await where(p) }));
+  o.setup = [await setBy('Tech View', /Service Advisor/i, true), await setBy('Tech View', /Progress/i, true), await setBy('Tech View', /Assigned Techs/i, true)];
+  await display(p, 'List'); await p.waitForTimeout(1500); o.setup.push(await setBy('List', /Service Advisor/i, true), await setBy('List', /Progress/i, true));
+  // steps 1-4: All tab, List, Column Selection read
+  await go('List', n); o.step3 = await readView('List');
+  console.log(t(), 'START STATE set C96975', JSON.stringify({ setup: o.setup, list: o.step3.labelsOn }));
+  // steps 5-9: Tech View, Service Advisor OFF, Assigned Techs OFF
+  await display(p, 'Tech View'); await p.waitForTimeout(1500); o.step7 = await setBy('Tech View', /Service Advisor/i, false); o.step8 = await setBy('Tech View', /Assigned Techs/i, false); o.techAfter8 = await readView('Tech View'); await shot(p, 'C96975-s9-tech');
+  // steps 10-11: List — Service Advisor still shown, no Assigned Techs column
+  await display(p, 'List'); await p.waitForTimeout(1500); o.step11 = await readView('List'); o.step11.serviceAdvisorShown = o.step11.heads.some((h: string) => /Service Advisor/i.test(h)); o.step11.assignedTechsShown = o.step11.heads.some((h: string) => /Assigned Techs/i.test(h)); await shot(p, 'C96975-s11-list');
+  // steps 12-13: List — Progress OFF
+  o.step13 = await setBy('List', /Progress/i, false);
+  // steps 14-15: Tech View — Progress still shown
+  await display(p, 'Tech View'); await p.waitForTimeout(1500); o.step15 = await readView('Tech View'); o.step15.progressShown = o.step15.heads.some((h: string) => /Progress/i.test(h)); await shot(p, 'C96975-s15-tech');
+  // steps 16-18: NOT done (see above); a fresh page load of the same user instead
+  o.steps16to18 = 'not done: logging out ends the one shared staging sign-in (L0394); fresh page load read instead';
+  await go('Tech View', n); o.step18reload = { tech: await readView('Tech View') }; await display(p, 'List'); await p.waitForTimeout(1500); o.step18reload.list = await readView('List'); await shot(p, 'C96975-s18-reload');
+  // steps 19-20: a second browser, same user
+  const s = await second(); o.secondKept = s.kept; try { await go('Tech View', n, s.pg); o.secondBrowser = { at: await where(s.pg), tech: await readView('Tech View', s.pg) }; await shot(s.pg, 'C96975-s20-second-tech');
+    await display(s.pg, 'List'); await s.pg.waitForTimeout(1500); o.secondBrowser.list = await readView('List', s.pg); await shot(s.pg, 'C96975-second-browser'); } finally { await s.ctx.close(); }
 });
 
 await run('loc2', async () => {
@@ -149,6 +146,9 @@ await run('loc2', async () => {
     R.loc2.density = (await prefGet()).density;
   }
   R.loc2.back = process.env.WOB_LOC_SELECT ? await switchLocUI(p, 'Staging Heavy Duty') : say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
+  // fix-up 2 (17 Oct 2026): on 16 Oct the page was left at Lethbridge — read the top bar back on a fresh load and switch again through the menu if needed
+  for (let k = 0; k < 2; k++) { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); R.loc2.backReadBack = await where(p); if (/Heavy Duty/.test(String(R.loc2.backReadBack))) break; R.loc2[`backRetry${k}`] = await switchLocUI(p, 'Staging Heavy Duty'); }
+  console.log(t(), 'LOCATION after the second-location part', JSON.stringify({ back: R.loc2.back, readBack: R.loc2.backReadBack }));
 });
 
 for (const id of DEFER) if (want(id)) console.log(t(), id, JSON.stringify({ ...(R[id] ?? {}), secondLocation: R.loc2 ?? 'not run' }).slice(0, 8000));
