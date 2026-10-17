@@ -1199,3 +1199,8 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 - **Production in the same script as staging is safe when it signs in by password** (`prod-login-boot.mjs`, second production
   account): it does not touch the staging Google sign-in (L0394), so a case's "repeat on production" step can run in its own browser
   right after the staging steps (medium-fix3 `caseSteps(..., 'production')`). #staging #scripts #signin #sv-11393 → L0394, L0396, L0413, L0415
+
+## L0418 — 2026-10-17 — Reading a run's history: what a full re-run's posts did to earlier verdicts (run 498)
+- **`build/testing-tools/tr_client.py` `get()` returns a TUPLE `(http_status, body)`**, not the body: `_, r = t.get("get_tests/498&limit=250&offset=0"); r['tests']`; `_, rs = t.get(f"get_results/{test_id}&limit=3"); rs['results']`. Page `get_tests` by 250.
+- **After each judged batch, diff each case's NEW result against its PREVIOUS one** (last 3 results per test). Two things only that diff shows: (1) **Failed → Passed** = the ticket's fix may have shipped (Rule 61 outcome 3) — read the ticket's live status and tell the QA lead (C96927: Failed 16 Oct on SV-11317, Passed 17 Oct, ticket in TESTING STAGE); (2) **Passed → Blocked by a script fault** = the re-run made the run look worse than the build is — queue a fix-up at once (C96936, C368127, C368161, added to fix-up 2).
+- **Run totals can move by more than the batch explains** (passed 201→199 after 11 passes): previously-passed tests re-posted as script-fault Blocked. Never report the totals without that diff.
