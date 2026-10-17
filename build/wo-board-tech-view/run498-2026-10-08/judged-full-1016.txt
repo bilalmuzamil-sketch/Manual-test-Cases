@@ -152,3 +152,6 @@ signout 05 | signout-1017.mts | C96948 Passed (real sign-out/in, pins kept; seco
 signout 06 | signout-1017.mts | C96928 Passed (real sign-out/in, Ralph still collapsed; expand OK) | RESULTS-signout-1017-01.json (posted)
 signout 07 | signout-1017.mts | C96975 Blocked (Tech View cols kept after real log-in; List Progress back ON; S5-R8 'List as today' -> production check Rule 121 / QA lead) | RESULTS-signout-1017-01.json (posted)
 signout 08 | signout-fix.mts | C368240 Passed (tab1 to sign-in by itself, no errors, current data after sign-in) | RESULTS-signout-1017-01.json (posted)
+live 07 | s1-r6 (live, dedicated user) | C96916 Blocked (Back restores display, tab, search, sideways, top card/row in both views; Status-Approved start state unreachable -> QA lead; SV-11421 Testing Stage, fix looks shipped) | RESULTS-live-1017-02.json (posted)
+live 08 | c96912-fresh (live) | C96912 Blocked (step 7 by switch-user to fresh user: List seen; real sign-in impossible without invitation password; L0425) | RESULTS-live-1017-02.json (posted)
+live 09 | prod-c96975 (live) | C96975 FAILED, ticket held with QA lead (staging List loses Progress-off after real logout; production keeps it; S5-R8 'as today'; owning story SV-10048 Ready for QA) | RESULTS-live-1017-02.json (posted)

@@ -1,0 +1,58 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 live fixer readings, batch 02"
+ },
+ "results": {
+  "C96916": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: everything the screen can show matches, but the test's start state (Work Orders tab with Status: Approved) cannot be made on this build, so the 'Status Approved still chosen' part of steps 5, 6 and 10 cannot be judged. The position and display parts of SV-11421 (Testing Stage) look shipped.",
+    "Run with a test user no other session uses (ZZAUTOTEST C96916 Back Tester), so its saved display could not be changed by anyone else; Work Orders tab, search \"ZZAUTOTEST F1 Scroll Back Theresa\", 1600 px. The Work Orders tab offers no Status filter (only the All tab does), so the run started on the Work Orders tab without it.",
+    "Steps 1 to 5 (Board View): Theresa Webb's column scrolled into view and down to S2-36407; S2-36409 opened; after Back the page came back in Board View, on the Work Orders tab with the search kept, at exactly the same sideways position, with S2-36407 back at the top of the column, fully shown.",
+    "Step 6: Tech View shows the same work orders, on the Work Orders tab.",
+    "Steps 7 to 10 (Tech View): scrolled so S2-36421 was at the top; S2-36422 opened; after Back the page came back in Tech View, on the Work Orders tab with the search kept, with S2-36421 back at the top, fully shown, and the same columns in view.",
+    "Earlier today, with the shared admin user, Back landed in List or in the other view; with this dedicated user it came back in the view that was open both times."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96916-l3-1-board-back.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96916-l3-2-tech-back.png"
+   ],
+   "ticket": "Fix looks shipped: https://shopview.atlassian.net/browse/SV-11421 (Testing Stage, read 17 Oct 2026).",
+   "todo": "What needs to be done: the QA lead to rule on the start state (the Work Orders tab has no Status filter on this build; the All tab has one); nothing else is left."
+  },
+  "C96912": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: steps 1 to 6 match with a real sign-out (seen earlier today), and step 7's check was seen, but step 7's sign-in could not be done for real, so the test cannot pass.",
+    "Step 7: a brand-new user (ZZAUTOTEST C96912 Fresh 54169) was made and opened Work Orders through switch-user in its own window: it shows List (no display saved). The first user (ZZAUTOTEST C96916 Back Tester) still has Board View.",
+    "Why not a real sign-in: a new user only gets a password by accepting the invitation e-mail, which cannot be reached on staging, and the two quick-login users (Admin, Tech) have both already chosen a display."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96912-l-1-fresh-user.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: step 7 by a manual tester with a second user who has a password and has never chosen a display: sign out, sign in as that user, open Work Orders and check it shows List."
+  },
+  "C96975": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging: after logging out and back in, List lost its own column choice (Progress came back on). Production keeps it, so this is a change from today's behaviour.",
+    "Staging (10:56, real log-out and log-in): Tech View kept its own columns (no Service Advisor, no Assigned Techs, Progress shown). List showed Service Advisor, but Progress was back on, although it was turned off before logging out.",
+    "Production (v26.40.19-d2441a9, 11:12, real log-out and log-in): Progress was turned off in List, then after logging out and back in List still had Progress off.",
+    "The PRD (S5-R8) says: \"Save the Tech View column selection per user across logout/login, devices, and locations. List keeps saving its columns exactly as it does today.\" The test expects List to keep Progress off after logging back in.",
+    "Earlier today on staging (same build), List kept Progress off in a second browser and at Staging Lethbridge - 4310; only the log-out loses it.",
+    "Owning story: SV-10048 (Story 5, Fields to display and columns), status Ready for QA (read 17 Oct 2026)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96975-s-1-list-after-sign-in.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96975-prod-1-after-relogin.png"
+   ],
+   "ticket": "No ticket yet: this new finding is with the QA lead, who decides whether a ticket is raised. Owning story https://shopview.atlassian.net/browse/SV-10048 (Ready for QA).",
+   "ticket_held": true,
+   "todo": "What needs to be done: the QA lead decides on the finding (List's column choice is lost after logging out on staging but kept on production); no ticket is raised until then."
+  }
+ }
+}
