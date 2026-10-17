@@ -789,3 +789,6 @@ read that link as the defect: it filled the result's defects field with SV-10048
 comment (Rule 123), wrongly presenting the STORY as the ticket. Fixed by posting a corrected Failed result whose ticket line names the
 story without a link. Rule: in a ticket_held result write the owning story as plain text ("Owning story: SV-10048, Ready for QA"), never as a
 browse/ URL; only a real defect ticket gets a link. #testrail #push-results #rule-123 → L0425
+
+## L0444 — 2026-10-17 — Staging: the "ZZBREAK…" customer sorts first because its name starts with two spaces — it is another tester's edge-case record, leave it
+Customer id 70ccb9ae-a766-4572-a083-3fcf2a718a15, raw name `"  ZZBREAK <b>bold</b> \"q\" & 'x' Superlong…"` (135 chars, two leading U+0020, HTML/quotes/ampersand/long word on purpose), created 16 Oct, 6 work orders; nothing in this repo creates it. Any "Customer A–Z" check on staging will see it FIRST — that is correct ordering of the saved name, not a sort fault (C368209, C368245 passed on that basis). Do not rename or delete it (it is someone else's overflow/escaping test); name it in the result instead. Probe: `run498-2026-10-08/probe-zzbreak.mts`.
