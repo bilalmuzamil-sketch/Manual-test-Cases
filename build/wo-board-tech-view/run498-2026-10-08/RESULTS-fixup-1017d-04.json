@@ -1,0 +1,112 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up round 4, batch 04 = round 4 steps 6-11"
+ },
+ "results": {
+  "C97003": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script again could not do steps 7 and 8 (the test's columns sit far to the right among about 280 technicians, and the columns needed were not on screen together).",
+    "Signed in as a new view-only user (ZZAUTOTEST Viewer5, role ZZAUTOTEST WO View Only); both users started with Unassigned, Ana, Ben, Cal (plus Dan).",
+    "Step 6: the view-only user dragged Cal's column by its handle and dropped it before Ana's: the order became Unassigned, Cal, Ana, Ben.",
+    "Step 7 not done: Ben's column and Unassigned were never both on screen, so no drag was made. Step 8: the Unassigned header has no drag handle, but the drag to the right of Cal was not made.",
+    "Step 10: in Tech View, Ben's group was held and released on the Unassigned header: nothing moved, Unassigned stays the first group.",
+    "Step 11: after the refresh the view-only user sees Unassigned, Cal, Ana, Ben in both Tech View and Board View.",
+    "Step 12: the dispatcher's own order is unchanged: Unassigned, Ana, Ben, Cal."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97003-f4-1-cal-held.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97003-f4-2-cal-moved.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: steps 7 and 8 by hand or with the test's technicians pinned for the view-only user so they sit next to Unassigned (sent back to the coordinator)."
+  },
+  "C614711": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: every step matches except step 8, whose wording (\"blank\") is a question with the QA lead. The known problem SV-11416 (\"Unknown Technician\") was not seen, so its fix (Testing Stage) looks shipped.",
+    "Set-up: ZZAUTOTEST C614711 Dana 74527 (lead of S2-37103) and ZZAUTOTEST C614711 Eli; customer ZZAUTOTEST C614711 Deleted Lead 74527; S2-37104 with no lead.",
+    "Steps 1 and 2: Dana's staff record opened; Delete and the confirmation removed her from the Staff list.",
+    "Steps 3 to 5: Board View shows both cards; S2-37103 sits in a column headed \"Deleted technician\" with the Inactive marker and no drag grip.",
+    "Step 6: S2-37104 dropped on the Deleted technician column was refused (\"This technician can't be assigned work orders.\" while held) and it stayed in Unassigned.",
+    "Step 7: in Tech View, S2-37103 sits in a group headed \"Deleted technician\" with the Inactive marker and no grip.",
+    "Step 8: in List, S2-37103's Lead Technician cell reads \"Unassigned\". The test says blank; whether that counts is with the QA lead.",
+    "Steps 9 and 10: Board View again; S2-37103 dragged out onto Eli's column moved there with \"Lead technician updated\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614711-f4-1-refused.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614711-f4-2-tech-group.png"
+   ],
+   "ticket": "Fix looks shipped: https://shopview.atlassian.net/browse/SV-11416 (Testing Stage, read 17 Oct 2026).",
+   "todo": "What needs to be done: the QA lead to say whether \"Unassigned\" in List counts as the blank Lead Technician the test expects; nothing else is left."
+  },
+  "C614714": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not click Save & Close in the Edit Staff Member window, on Tim's record or on a second test record used as a check, so step 2 was not done and Time Clock stayed on.",
+    "Set-up: ZZAUTOTEST N1 Tim 43447 (Technician, Time Clock on) leads S2-37105; S2-37106 has no lead; customer ZZAUTOTEST N1 Time Clock Off 43447.",
+    "Check record (ZZAUTOTEST N1 Control 43447): the window opened, but the script found neither the Job Title field nor the Save & Close button, so nothing was saved.",
+    "Step 2: Time Clock was switched off on Tim's record, but Save & Close (visible on screen) was not found by the script and never clicked; the window stayed open and the record still has Time Clock on. Nothing was changed behind the screen.",
+    "Because Tim's Time Clock stayed on, the later steps do not test the case: a drop of S2-37106 on his column was accepted, as it should be for an ordinary technician. Not judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614714-f4-1-save-not-clicked.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: a focused script that clicks the visible Save & Close button (found by its role or position, not its exact text) and checks the window closes; then repeat steps 3 to 10 (sent back to the coordinator)."
+  },
+  "C368136": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (round 4 re-run, 17 Oct). The clear-shifts question has shipped: the QA lead is told (outcome 3 of the test).",
+    "Set-up: S2-35490 (customer \"ZZAUTOTEST F1 Prompt Where\") led by Esther Howard, with her 8:00 to 12:00 shift for the whole work order on Sunday Oct 18.",
+    "Steps 3 to 7: the question opened 4 times: Board View drag, Board View Reassign window, Tech View drag and Tech View Reassign window. Keep shifts was clicked each time and the work order moved to Ralph Edwards with \"Lead technician updated\"; moving it back to Esther (who then had no shift question to ask) gave no question.",
+    "Step 8: on the work order page Lead Technician was changed from Esther Howard with no question. Ralph Edwards is not in that list (the known list cut-off, SV-11393), so Jenny Wilson was picked; the test's names are examples.",
+    "Step 9: the List offers no way to change the lead from a row.",
+    "Step 10: on the Schedule for Sunday Oct 18, Esther Howard's 8:00 to 12:00 shift for the work order is still there."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368136-f4-1-tech-dialog.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368136-f4-2-wo-page.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368136-f4-3-schedule.png"
+   ],
+   "ticket": null
+  },
+  "C96916": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the Tech View half was again not done by the test script (third time): its click on the number link did not open the work order. The Board View half and the start-state question stay as posted earlier today.",
+    "Tech View (Work Orders tab, search \"ZZAUTOTEST F1 Scroll Back Theresa\"): the script scrolled so a row of this test, S2-36421, was at the top, but no number link was clicked; the page did not change, and its Back press then left the page (search cleared, top of the list). Steps 9 and 10 are not judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96916-f4-1-no-open.png"
+   ],
+   "ticket": "Follow the work here: https://shopview.atlassian.net/browse/SV-11421 (Testing Stage, read 17 Oct 2026).",
+   "todo": "What needs to be done: steps 6 to 10 by a manual tester (Tech View, scroll a few rows down, click a work order number, press Back, check the row at the top and the sideways position) or a focused script that clicks the number inside the row; the QA lead to look at the start state (Status is offered only on the All tab)."
+  },
+  "C368131": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: with step 3 done through the screen only, Theresa Pinned stays a technician at Staging Heavy Duty, so the state the test describes is not reached; this is put to the QA lead.",
+    "Set-up: S2-35908 led by Aaa ZZAUTOTEST Tara Lead, S2-35909 by Aaa ZZAUTOTEST Theresa Pinned; Jenny Pinned and Theresa Pinned pinned for the admin and for the view-only user.",
+    "Step 2: Jenny Pinned was deactivated with Deactivate Account.",
+    "Step 3: Theresa Pinned's Location was changed to Staging Lethbridge - 4310 and Save & Close closed the window. Read afterwards, she is still offered as a technician at Staging Heavy Duty - 9919 (no change was made behind the screen).",
+    "Steps 7 and 9 (admin) are void: when Board View opened, the admin had no pinned technicians any more (the pins set at the start were gone, cause not known), so Jenny's column was not drawn and the script's drop for step 9 landed on another technician (ZZAUTOTEST N4 Fay).",
+    "Step 8: Theresa Pinned's column shows further along, holding S2-35909.",
+    "Steps 10 and 11: S2-35908 dropped on Theresa Pinned's column was accepted with \"Lead technician updated\" (no refusal), consistent with her still being a technician here.",
+    "Steps 12 and 13: S2-35909 dragged to Unassigned (\"Lead technician removed\"); Theresa Pinned still has a column (holding S2-35908).",
+    "Step 15 (view-only user): Jenny Pinned is pinned right after Unassigned, Inactive, reading \"No work orders\"; Theresa Pinned still has a pinned column holding S2-35908."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368131-f4-1-location-saved.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368131-f4-2-drop-accepted.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368131-f4-3-viewonly.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: the QA lead to say whether changing a technician's Location on the Edit Staff Member window should remove them from the old location (the test assumes it does; on staging it does not); then re-run with the admin's pins checked just before step 7."
+  }
+ }
+}
