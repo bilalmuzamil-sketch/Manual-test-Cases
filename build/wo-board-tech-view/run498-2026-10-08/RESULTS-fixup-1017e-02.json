@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up round 5, batch 02 = round 5 step 3"
+ },
+ "results": {
+  "C368246": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (round 5 re-run, 17 Oct).",
+    "Step 1: the Dashboard opened (from the ShopView logo, /dashboard) with no error message.",
+    "Steps 2 and 3, cards checked (each opened with View details): Billing Efficiency (Advisor Analysis table, 7 rows), Technician Efficiency (4 rows), Technician Utilization (8 rows), Sales by Customer (10 rows a page) and At Risk Customers (10 rows a page, 173 in all). Each shows its rows with no error message. Revenue shows a chart, not a table.",
+    "On each of those five tables, clicking the first column heading (Advisor, Tech, Tech, Customer, Customer) put the rows in A to Z order, and a second click in Z to A order."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368246-f5-1-at-risk-sorted.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368246-f5-2-billing-sorted.png"
+   ],
+   "ticket": null
+  }
+ }
+}

@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up round 5, batch 01 = round 5 step 2"
+ },
+ "results": {
+  "C581892": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: step 14 (reading the shifts on the Schedule) was again not done on screen by the test script (third time).",
+    "Set-up (customer ZZAUTOTEST S4R28 Approved Lines 10170923), each led by Esther Howard with a shift on Sunday Oct 18: S2-37107 (second line not approved; 8:00 to 10:00), S2-37108 (second line declined; 10:00 to 12:00), S2-37109 (a Choose lines shift ticking both approved lines; 13:00 to 15:00).",
+    "Steps 3 to 11: each of the three drags from Esther Howard's column to Ralph Edwards' opened \"Clear Esther Howard's scheduled shifts?\"; after Keep shifts each work order moved to Ralph Edwards' column with \"Lead technician updated\".",
+    "Step 14 not seen on screen: the Schedule was moved to Sun, Oct 18, but the script's scrolling never moved the list of people past its first rows, so Esther Howard's row was not reached. (Read behind the screen, her three shifts are unchanged, but that is not the screen check the test asks for.)"
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581892-f5-1-schedule.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: step 14 by a manual tester (Schedule > Sun, Oct 18 > scroll to Esther Howard's row and read her three shifts) or a focused script that scrolls the Schedule's own grid (sent back to the coordinator)."
+  }
+ }
+}
