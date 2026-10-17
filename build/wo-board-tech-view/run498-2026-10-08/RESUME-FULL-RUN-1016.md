@@ -15,3 +15,8 @@ existing ticket link or a held draft (Rule 113: file only on the QA lead's yes; 
 Fix-ups for script faults, then sign-out (signout-fix.mts, C368240) LAST. Analytics day 2 (`RUN_GA=day2`) on the next Pakistan day.
 Open asks to the QA lead: C97021/C368151 Expected vs PRD v55+ (now re-stamped READY by the build-verification session — re-check);
 SV-11101 reopen; C590117 tooltip ticket.
+
+## 17 Oct 02:50 UTC — judge notes for fix-up 2 (do not lose)
+- **C96975** (fix-up 2, s5-batchA3.mts): steps 16–18 (log out, log back in) are SUBSTITUTED by a fresh page load, because a log-out ends the one shared staging sign-in mid-queue. A substituted step is not observed (Rule 12) ⇒ C96975 can NOT be marked Passed on the fix-up reading alone. Re-do steps 16–18 by hand-script at the very END, together with signout-fix.mts (C368240), after every other step; judge only then.
+- **C368171** (fix-up 2, editwo-fix.mts) needs Ralph Edwards by name; if he is still not offered ⇒ Failed on SV-11393 (OBSOLETE, still reproduces), not Blocked.
+- **C96936** step 5: if Ralph is not offered in tab B, the lead is set through the page's own save; the refresh in tab A is what the case judges — say in the result how step 5 was done.
