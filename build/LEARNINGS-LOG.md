@@ -1170,3 +1170,8 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 - **Pin toggles read straight after another case's toggle are stale** (C96959): pin through the saved preference (PUT) and read back.
 - **Another session's "evidence checkpoint" commits sweep in scripts being edited** in the same checkout (4ffbe5b28, 6c0979e0a took the
   fix-up edits mid-way): check `git log --stat` before reporting what you committed. #staging #scripts #preferences → L0412, L0413
+
+## L0416 — 2026-10-17 — A wait-loop on a resumed queue log must read only the recent lines
+**What happened:** a background "wait until step 53 ends or the run stops" loop on run 498's `logs-full-1016/queue.out` returned at once, because `grep -q "STOP"` over the WHOLE log matched the old false stop at 22:44 (before the `FROM=30` resume).
+**Do this:** on a queue that has been resumed, test only the tail — `tail -40 queue.out | grep -qE "step (5[3-9]|…) end"` — plus `ps` for the runner. Never match a word that an earlier, already-handled stop wrote into the same log.
+**Also:** a helper agent that ends its turn with "waiting for step N" has stopped; it does not keep watching. The main session waits (background until-loop) and resumes that ONE judge per batch (L0414).
