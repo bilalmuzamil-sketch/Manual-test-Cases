@@ -1,0 +1,121 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up 2, batch 05 = fix-up steps 23-26"
+ },
+ "results": {
+  "C96963": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: one check (reordering inside Unassigned) could not be done by the test script, for the second time, so it is handed to a manual tester.",
+    "Set-up: S2-37063 Approved; S2-37064 Invoiced and S2-37065 Paid, led by Esther Howard; S2-37066 Invoiced with no lead; S2-37067 Declined and S2-37068 Complete.",
+    "Board View and Tech View: S2-37064 and S2-37065 could not be moved to Ralph Edwards or to Unassigned (lead stays Esther Howard, no message); both could be moved within Esther's column and kept their new place after a reload. S2-37066 could not be moved out of Unassigned.",
+    "The Declined and the Complete work orders moved to Ralph Edwards normally, with \"Lead technician updated\" (and back in Tech View).",
+    "On S2-37064's work order page the Lead technician shows as plain text and cannot be changed. A change sent outside the screens was refused by the server with \"The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+    "Not seen: step 7's second half. For the manual tester: Work Orders > All > Board View, search \"ZZAUTOTEST F1 Invoiced Paid Locked 84534\"; make sure Unassigned holds S2-37066 and one other card (drag S2-37063 there if needed); drag S2-37066 by its card and drop it ABOVE the top card in Unassigned; check S2-37066 is now first in Unassigned, then reload and check it is still first."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96963-1-unassigned.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96963-2-wo-page.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: a manual tester does step 7's second half as written in the last bullet and records the result; the rest is already seen."
+  },
+  "C96977": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "At Staging Heavy Duty - 9919 (top bar read back).",
+    "Fields to display lists 13 fields (Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date); Work order number, Unit number and Status are not in it.",
+    "With every listed field off, the card still shows S2-35518, Approved and TRK-118."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96977-1-card.png"
+   ],
+   "ticket": null
+  },
+  "C96981": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Customer \"ZZAUTOTEST F2 Fields No Reload\": 3 cards (S2-35519, S2-35520, S2-35521).",
+    "After turning Created date on and Customer off, all 3 cards show \"Created date 2 days ago\" and no customer, straight away.",
+    "The page did not reload: the search text is still there and the board kept its place."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96981-1-fields.png"
+   ],
+   "ticket": null
+  },
+  "C96975": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the log-out and log-in step (steps 16 to 18) has not yet been done for real.",
+    "Seen working: step 11, after Service Advisor and Assigned Techs were turned off in Tech View, List still shows Service Advisor and has no Assigned Techs. Step 15, after Progress was turned off in List, Tech View still shows Progress.",
+    "Step 20 (second browser) and step 23 (Staging Lethbridge - 4310): Tech View shows neither Service Advisor nor Assigned Techs and still shows Progress; List keeps Service Advisor on and Progress off.",
+    "Steps 16 to 18 were done as a fresh page load, not a real log-out (the readings were the same).",
+    "It runs in the end-of-run sign-out batch: a real log-out ends the shared staging sign-in for every running test, so it goes last."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96975-1-second-browser.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: do steps 16 to 18 (log out, log back in, read both views' columns) for real in the end-of-run sign-out batch, then judge."
+  },
+  "C368200": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Work order S2-37069 (customer \"ZZAUTOTEST Row Toggle 56580\"); no filter left on, at Staging Heavy Duty - 9919.",
+    "Clicking the row's Asset on Site toggle turned it on (the pin is now green, hover text \"Asset here. Click to toggle status.\").",
+    "The page stayed on the Work Orders List: the work order did not open."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368200-1-toggle.png"
+   ],
+   "ticket": null
+  },
+  "C368201": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Work order S2-37070 opened from the List; its line completed through Complete All Lines (mileage typed in Missing Details): \"Work order sent to review.\", status Review.",
+    "After the browser Back button the List row reads \"Ready For Review\" straight away, with no reload."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368201-1-back.png"
+   ],
+   "ticket": null
+  },
+  "C368212": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not switch to the second location, for the second time, so the other half is handed to a manual tester.",
+    "Steps 2 and 3: at Staging Heavy Duty - 9919, neither \"Loc2\" nor the number S3-37071 (a work order made at Staging Lethbridge - 4310) shows in the List.",
+    "Step 4 not seen: the screen stayed at Heavy Duty after Change Location, so whether S3-37071 shows at Lethbridge (the check that the record exists) was not read.",
+    "For the manual tester: your initials (top right) > Change Location > Staging Lethbridge - 4310 > Work Orders > All tab; make sure Status shows no filter; Search \"Loc2\" and check S3-37071 is listed; then change back to Staging Heavy Duty - 9919, search \"Loc2\" and check it is not listed."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368212-1-heavy.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: a manual tester does step 4 as written in the last bullet and records the result."
+  },
+  "C368214": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: step 1 cannot be done as written.",
+    "On the Work Orders tab the List offers no Status filter (only Search, Assigned to me and Asset on Site), so \"Status: Approved\" cannot be ticked; Status is offered on the All tab only. The same was seen in C96916.",
+    "Seen without the Status filter: on the Work Orders tab with search \"ZZAUTOTEST Back Forward 56580\", S2-37072's row shows; it opens; Back returns to the Work Orders tab with the same search and row; Forward opens it again; Back again shows the same tab, search and row.",
+    "The case still carries \"Not available on Build to test Yet\"; the start state (Status on the Work Orders tab) is a question for the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368214-1-no-status.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: the QA lead to look at the case's start state (Status is offered only on the All tab); then run it again."
+  }
+ }
+}
