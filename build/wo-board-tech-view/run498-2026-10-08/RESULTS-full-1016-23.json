@@ -1,0 +1,325 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 23 = queue steps 51, 52, 53"
+ },
+ "results": {
+  "C96940": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F2 Board Columns: Esther Howard leads three work orders (two Approved, one Estimate), Ralph Edwards two, two have no lead, Jenny Wilson none.",
+    "Board View, searched by the customer name: one column for each of the 260 eligible technicians plus Unassigned (261 columns).",
+    "Each header shows the name, the avatar (Esther Howard \"EH\") and a number equal to its cards: Unassigned 2, Esther Howard 3, Ralph Edwards 2, Jenny Wilson 0 (her column reads \"Drag a work order here to assign it\").",
+    "With the Status filter on Approved, Esther Howard's header shows 2, with 2 cards (S2-35343, S2-35344)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96940-1-columns-counts.png"
+   ],
+   "ticket": null
+  },
+  "C96941": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F2 Sticky Unassigned; Board View, searched by the customer name.",
+    "Unassigned is the first column.",
+    "Scrolling the board sideways (by 1,200 and then 3,000 pixels) left Unassigned fixed at the same spot at the left edge while the technician columns moved past behind it."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96941-1-unassigned-fixed.png"
+   ],
+   "ticket": null
+  },
+  "C96942": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F2 Sticky Column Header: 20 work orders led by Esther Howard; Board View, searched by the customer name.",
+    "Scrolling down inside her column (600 and then 2,000 pixels) kept her header (name, \"EH\" and 20) at the top of the column the whole time.",
+    "The other column headers stayed at the same height too, so it was always clear whose column it is."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96942-1-header-stays.png"
+   ],
+   "ticket": null
+  },
+  "C96944": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F2 Badge Spot: three cards (S2-35373, S2-35374, S2-35375) with different customer name lengths.",
+    "On every card the status badge sits at the top-right, level with the work order number, at the same spot on all three cards.",
+    "The badge stays in that same spot on all three cards at Compact, Regular and Comfortable, and hovering a card did not move it."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96944-1-badge-spot.png"
+   ],
+   "ticket": null
+  },
+  "C96945": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not judge steps 1 and 5: its check of the More actions (…) button read it as shown even before any card was hovered (its control), and after Escape and moving the mouse off, the button still shows on the S2-35376 card (it may be kept by keyboard focus left on the card), so whether it appears only on hover could not be judged.",
+    "Seen: step 2, the card's menu opened; step 3, it offers \"Reassign lead technician\" (and \"Unassign\"); step 4, Escape closed it; step 6, the cursor was in Search; step 7, Tab reached a card with a focus ring; step 8, the S2-35376 card had the focus ring and its More actions button showed without hovering."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96945-1-script-control.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: read the button with nothing focused and nothing hovered before step 1, and after step 5 click outside the card first)."
+  },
+  "C96946": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F2 Card Click; Board View, searched by the customer name.",
+    "Clicking the customer name on the card opened the work order (its Lines page), and after Back, clicking an empty part of the card opened the same work order.",
+    "Clicking the card's more-actions button opened its menu (\"Reassign lead technician\", \"Unassign\") and did not open the work order."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96946-1-card-click.png"
+   ],
+   "ticket": null
+  },
+  "C96947": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F2 Board Pin Order; Board View, searched by the customer name; no pins at the start.",
+    "Every technician column header has a pin control.",
+    "Start order: Unassigned, Esther Howard, Jenny Wilson, Kristin Watson, Ralph Edwards.",
+    "After pinning Ralph Edwards: Unassigned, Ralph Edwards, Esther Howard, Jenny Wilson, Kristin Watson.",
+    "After pinning Esther Howard: Unassigned, Ralph Edwards, Esther Howard, Jenny Wilson, Kristin Watson (the newest pin goes after the existing pin)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96947-1-pin-order.png"
+   ],
+   "ticket": null
+  },
+  "C96948": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F2 Pins Follow User; Ralph Edwards and Jenny Wilson were pinned in Board View.",
+    "Tech View showed both pinned, right after Unassigned (Unassigned, Ralph Edwards, Jenny Wilson, then Aaron Baker), without pinning them again.",
+    "A brand-new sign-in as the same user (covering \"sign in again\" and \"the second browser\") showed the same two pinned right after Unassigned.",
+    "A second user has no pins and sees none of them: the board starts Unassigned, Aaron Baker, Aaron Zed, Admin ShopView."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96948-1-pins-follow.png"
+   ],
+   "ticket": null
+  },
+  "C96949": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F2 Board Pin Limit; Ralph Edwards, Jenny Wilson and Theresa Webb pinned in Board View.",
+    "With three pinned, the next pin control is disabled and its hover text reads \"You can pin up to 3 technicians.\"",
+    "Clicking the disabled control pinned nobody: the pins stayed Ralph Edwards, Theresa Webb, Jenny Wilson.",
+    "After unpinning Jenny Wilson, Esther Howard could be pinned: Ralph Edwards, Theresa Webb, Esther Howard.",
+    "Tech View shows the same three pins, and Kristin Watson's pin control is disabled there too with the same text."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96949-1-pin-limit.png"
+   ],
+   "ticket": null
+  },
+  "C96951": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F2 Board Assigned; Jenny Wilson pinned; Board View, searched by the customer name.",
+    "With Assigned to me on, Board View shows only Unassigned (holding S2-35394) and my own column, Admin ShopView (holding S2-35392).",
+    "Ralph Edwards, Esther Howard and the pinned Jenny Wilson are hidden, and neither column shown offers a pin control.",
+    "Turning Assigned to me off brought back every column (261) and the pin controls, with Jenny Wilson still pinned right after Unassigned."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96951-1-assigned-on.png"
+   ],
+   "ticket": null
+  },
+  "C96952": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F2 Inactive Pinned: S2-35395 and S2-35396 led by Ralph Edwards, who was pinned and then deactivated.",
+    "His column is still shown, still pinned right after Unassigned, with both cards (count 2).",
+    "His header shows an \"Inactive\" label next to his name.",
+    "He could be unpinned; his column then left the pinned area (the board started Unassigned, Aaron Baker, Aaron Zed). He was set active again afterwards (read back: active)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96952-1-inactive-pinned.png"
+   ],
+   "ticket": null
+  },
+  "C96953": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F2 Column Scroll; Board View, searched by the customer name.",
+    "Scrolling inside Unassigned moved only its cards: the next column and every header stayed where they were.",
+    "The mouse wheel over the empty area below a short column did not scroll the page.",
+    "Esther Howard's column scrolled on its own the same way, while Unassigned and the columns beside her stayed put (see picture).",
+    "Sideways the board holds 260 technician columns, the same as the 260 eligible technicians: none is hidden."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96953-1-columns-scroll.png"
+   ],
+   "ticket": null
+  },
+  "C96954": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customers ZZAUTOTEST F2 Card Reach, all led by Esther Howard; Board View; every field in Fields to display switched on.",
+    "At Comfortable, Regular and Compact, scrolling Esther Howard's column to the end reached the last card, S2-35459.",
+    "The last card was fully visible at every density, with space to spare above the bottom of the column; every field shown on it (customer, VIN, progress, line technicians, lead technician, total price) was fully visible."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96954-1-last-card.png"
+   ],
+   "ticket": null
+  },
+  "C96955": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Board View has a Density control offering Compact, Regular and Comfortable (Regular was selected at the start).",
+    "After choosing Compact in Board View, Tech View's Density control showed Compact selected.",
+    "After choosing Comfortable in Tech View, Board View showed Comfortable selected: one setting shared by both displays.",
+    "The design's \"Card size\" and \"Row height\" choices do not appear."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96955-1-shared-density.png"
+   ],
+   "ticket": null
+  },
+  "C96943": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F2 Card Required Fields: S2-36925 on unit TRK-118 and S2-36926 on an asset with no unit.",
+    "The Fields to display picker lists 13 fields and none of them is the work order number, the unit number or the status, so those cannot be turned off.",
+    "With every listed field off, the S2-36925 card still shows S2-36925, TRK-118 and Approved.",
+    "The S2-36926 card shows S2-36926 and Approved, and no unit number because it has none."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96943-1-required-fields.png"
+   ],
+   "ticket": null
+  },
+  "C154886": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test's set-up was not met: when the page opened, Unassigned already held S2-35718 (moved there by the 15 Oct run), so its empty state could not be seen and the drop could not be tested.",
+    "Seen: Unassigned is the first column; Esther Howard holds S2-35719 (count 1)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154886-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: give S2-35718 back to Esther Howard first, so Unassigned starts empty)."
+  },
+  "C368132": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F2 Empty Tech Column: two work orders led by Esther Howard, nothing led by Jenny Wilson; Assigned to me off.",
+    "Jenny Wilson's column is on the board with count 0 and \"Drag a work order here to assign it\".",
+    "No control to hide empty technician columns was found in the toolbar, the column headers or the menus.",
+    "A card dragged onto Jenny Wilson's column was accepted (\"Lead technician updated\", no shift question): Jenny Wilson now shows 1 and Esther Howard dropped from 2 to 1."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368132-1-drop-on-empty.png"
+   ],
+   "ticket": null
+  },
+  "C96968": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F1 Reassign Offline: a work order led by Esther Howard. In Board View the card was dragged to Ralph Edwards' column while saving was failing (the save was made to fail by the script).",
+    "The card went back to Esther Howard's column.",
+    "The alert read exactly \"Failed to update lead technician, please try again.\" It was still on screen after 10 seconds and went away when its Close button was clicked.",
+    "After a reload the lead is still Esther Howard.",
+    "Tech View behaved the same way: the row went back to Esther Howard's group with the same alert, which stayed until closed."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96968-1-failed-alert.png"
+   ],
+   "ticket": null
+  },
+  "C96971": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F1 Later Reassign Wins, led by Esther Howard; Board View open in two windows.",
+    "Window 1 reassigned it to Ralph Edwards; window 2, without reloading, reassigned it to Dana Ortiz (\"Lead technician updated\").",
+    "After reloading, both windows show the card in Dana Ortiz's column and the work order reads Dana Ortiz in both: the later change wins."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96971-1-later-wins.png"
+   ],
+   "ticket": null
+  },
+  "C96974": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Nina Newtech leads 8 work orders for ZZAUTOTEST F1 Open Count, one in each status: Estimate S2-35496, Invoiced S2-35497, In Progress S2-35498, Ready for Review S2-35499, Complete S2-35500, Approved S2-35501, Paid S2-35502, Declined S2-35503.",
+    "Line-only: S2-36927 is led by Esther Howard with Nina Newtech as the technician on its line (read back).",
+    "Another location: S3-35913 at Staging Lethbridge - 4310 is led by Nina Newtech.",
+    "Reassign lead technician on a card in Esther Howard's column: Nina Newtech reads \"4 open\" on the Work Orders tab, and \"4 open\" on the All tab too (Approved 1 + In Progress 1 + Review 1 + Complete 1)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96974-1-four-open.png"
+   ],
+   "ticket": null
+  },
+  "C368137": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F1 Reorder Offline: Esther Howard's column held S2-35506, S2-35507, S2-35508 in that order.",
+    "A card was dragged to a new place while saving was failing (made to fail by the script). The alert read exactly \"Couldn't save the new order. Please try again.\"",
+    "The card went back: the order was again S2-35506, S2-35507, S2-35508, and it stayed so after a reload. No lead change message appeared.",
+    "Tech View behaved the same way, with the same alert and the same order before and after the reload."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368137-1-order-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368138": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F1 Moved Neighbour; Board View open in two windows.",
+    "Window 2 dragged S2-35512 to Ralph Edwards' column.",
+    "Window 1, not reloaded, dropped S2-35511 next to S2-35512 (still shown there under Esther Howard). The alert read: \"Couldn't save the new order. Please try again. The card you dropped this next to has moved. Refresh the board and try again.\" The required sentence is there; the headline above it is allowed.",
+    "S2-35511 went back to where it was; after reloading window 1 the board matches window 2: S2-35512 is under Ralph Edwards, and S2-35510 and S2-35511 are under Esther Howard."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368138-1-moved-neighbour.png"
+   ],
+   "ticket": null
+  },
+  "C368139": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST F1 Board Busy; Board View open in two windows.",
+    "Five times, S2-35513 and S2-35514 were dropped on Ralph Edwards' column from the two windows at the same moment; every drop saved (\"Lead technician updated\" in both). Busy alert not reproduced by hand.",
+    "After reloading, each card is in exactly one column (Ralph Edwards'): none lost or shown twice."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368139-1-no-card-lost.png"
+   ],
+   "ticket": null
+  }
+ }
+}
