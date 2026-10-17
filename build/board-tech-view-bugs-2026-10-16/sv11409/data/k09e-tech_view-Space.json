@@ -1,0 +1,113 @@
+{
+ "view": "tech_view",
+ "keyX": "Space",
+ "log": [
+  {
+   "k": "start",
+   "tag": "SPAN",
+   "tid": "",
+   "role": "",
+   "label": "",
+   "text": "",
+   "chip": {
+    "text": "Status keyboard_arrow_down",
+    "url": "?tab=all",
+    "near": [
+     "filter_chip_status||ti=0",
+     "filter_chip_assigned_to_me||ti=0",
+     "filter_chip_vehicleHere||ti=0"
+    ],
+    "rows": 305
+   }
+  },
+  {
+   "k": "onStatus",
+   "tag": "BUTTON",
+   "tid": "filter_chip_status",
+   "role": "",
+   "label": "",
+   "text": "Status keyboard_arrow_down"
+  },
+  {
+   "k": "menuOpen",
+   "tag": "DIV",
+   "tid": "",
+   "role": "menu",
+   "label": "",
+   "text": "Estimate Approved In progress Review Com",
+   "menu": [
+    "Estimate Approved In progress Review Complete Invoiced Paid Declined Imported Imported work orders open in List. Clear selection"
+   ]
+  },
+  {
+   "k": "onOption",
+   "tag": "DIV",
+   "tid": "filter_option_status_in_progress",
+   "role": "checkbox",
+   "label": "In progress",
+   "text": "In progress"
+  },
+  {
+   "k": "optionSpace",
+   "tag": "DIV",
+   "tid": "filter_option_status_in_progress",
+   "role": "checkbox",
+   "label": "In progress",
+   "text": "In progress"
+  },
+  {
+   "k": "afterEsc",
+   "tag": "BUTTON",
+   "tid": "filter_chip_status",
+   "role": "",
+   "label": "",
+   "text": "Status: In progress keyboard_arrow_down ",
+   "chip": {
+    "text": "Status: In progress keyboard_arrow_down cancel",
+    "url": "?status=in_progress",
+    "near": [
+     "filter_chip_status||ti=0",
+     "filter_chip_clear_status|Clear Status filter|ti=0",
+     "filter_chip_assigned_to_me||ti=0",
+     "filter_chip_vehicleHere||ti=0"
+    ],
+    "rows": 110
+   }
+  },
+  {
+   "k": "onX",
+   "tag": "I",
+   "tid": "filter_chip_clear_status",
+   "role": "button",
+   "label": "Clear Status filter",
+   "text": "cancel"
+  },
+  {
+   "k": "afterX",
+   "tag": "BODY",
+   "tid": "",
+   "role": "",
+   "label": "",
+   "text": "Skip to main content ShopHub expand_more",
+   "chip": {
+    "text": "Status keyboard_arrow_down",
+    "url": "",
+    "near": [
+     "filter_chip_status||ti=0",
+     "filter_chip_assigned_to_me||ti=0",
+     "filter_chip_vehicleHere||ti=0"
+    ],
+    "rows": 305
+   }
+  }
+ ],
+ "menu": [
+  "Estimate Approved In progress Review Complete Invoiced Paid Declined Imported Imported work orders open in List. Clear selection"
+ ],
+ "changedKeys": [
+  "tab",
+  "display",
+  "filters"
+ ],
+ "put": 200
+}
