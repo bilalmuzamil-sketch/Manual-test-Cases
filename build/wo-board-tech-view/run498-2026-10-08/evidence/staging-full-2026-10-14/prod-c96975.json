@@ -1,0 +1,725 @@
+{
+ "version": "v26.40.19-d2441a9",
+ "permissions": 45,
+ "start": {
+  "list": {
+   "url": "/workorders",
+   "switcher": 0
+  },
+  "headings": [
+   "On Site",
+   "Status",
+   "Waiting On Parts",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On",
+   "Invoiced Date",
+   "Days Open",
+   "Parts",
+   "Returns"
+  ],
+  "menu": {
+   "button": "[data-test-id=\"button_column_selection\"]",
+   "items": [
+    {
+     "tid": null,
+     "text": "Waiting On Parts",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_unreceivedPartRequestsCount",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Asset",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_vehicle",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "VIN/Serial #",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_vin",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Progress",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_progress",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Service Advisor",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_serviceAdvisor",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Lead Technician",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_technician",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Clocked In",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_clockedInTechnicians",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Lines",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_linesCount",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Total price",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_totalPrice",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Created on",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_startDate",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Invoiced Date",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_invoicedDate",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Days open",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_daysOpen",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Parts",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_partRequestsCount",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Returns",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_partReturnRequestsCount",
+     "text": "",
+     "on": "true"
+    }
+   ]
+  },
+  "saved": {
+   "status": 401,
+   "keys": null,
+   "listColumns": null
+  }
+ },
+ "off": {
+  "menuBefore": {
+   "button": "[data-test-id=\"button_column_selection\"]",
+   "items": [
+    {
+     "tid": null,
+     "text": "Waiting On Parts",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_unreceivedPartRequestsCount",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Asset",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_vehicle",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "VIN/Serial #",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_vin",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Progress",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_progress",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Service Advisor",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_serviceAdvisor",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Lead Technician",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_technician",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Clocked In",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_clockedInTechnicians",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Lines",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_linesCount",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Total price",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_totalPrice",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Created on",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_startDate",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Invoiced Date",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_invoicedDate",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Days open",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_daysOpen",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Parts",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_partRequestsCount",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Returns",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_partReturnRequestsCount",
+     "text": "",
+     "on": "true"
+    }
+   ]
+  },
+  "found": 1,
+  "stateBefore": "true",
+  "stateAfter": "false",
+  "headings": [
+   "On Site",
+   "Status",
+   "Waiting On Parts",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On",
+   "Invoiced Date",
+   "Days Open",
+   "Parts",
+   "Returns"
+  ],
+  "saved": {
+   "status": 401,
+   "keys": null,
+   "listColumns": null
+  }
+ },
+ "logoutItem": 1,
+ "afterLogout": {
+  "url": "/login",
+  "onLogin": true
+ },
+ "afterLogin": {
+  "url": "/workorders",
+  "signedIn": true
+ },
+ "afterRelogin": {
+  "list": {
+   "url": "/workorders",
+   "switcher": 0
+  },
+  "headings": [
+   "On Site",
+   "Status",
+   "Waiting On Parts",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On",
+   "Invoiced Date",
+   "Days Open",
+   "Parts",
+   "Returns"
+  ],
+  "menu": {
+   "button": "[data-test-id=\"button_column_selection\"]",
+   "items": [
+    {
+     "tid": null,
+     "text": "Waiting On Parts",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_unreceivedPartRequestsCount",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Asset",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_vehicle",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "VIN/Serial #",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_vin",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Progress",
+     "on": "false"
+    },
+    {
+     "tid": "toggle_column_progress",
+     "text": "",
+     "on": "false"
+    },
+    {
+     "tid": null,
+     "text": "Service Advisor",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_serviceAdvisor",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Lead Technician",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_technician",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Clocked In",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_clockedInTechnicians",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Lines",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_linesCount",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Total price",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_totalPrice",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Created on",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_startDate",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Invoiced Date",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_invoicedDate",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Days open",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_daysOpen",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Parts",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_partRequestsCount",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Returns",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_partReturnRequestsCount",
+     "text": "",
+     "on": "true"
+    }
+   ]
+  },
+  "saved": {
+   "status": 401,
+   "keys": null,
+   "listColumns": null
+  }
+ },
+ "progressKeptOff": true,
+ "progressMenuAfterRelogin": [
+  {
+   "tid": null,
+   "text": "Progress",
+   "on": "false"
+  },
+  {
+   "tid": "toggle_column_progress",
+   "text": "",
+   "on": "false"
+  }
+ ],
+ "restore": {
+  "menuBefore": {
+   "button": "[data-test-id=\"button_column_selection\"]",
+   "items": [
+    {
+     "tid": null,
+     "text": "Waiting On Parts",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_unreceivedPartRequestsCount",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Asset",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_vehicle",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "VIN/Serial #",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_vin",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Progress",
+     "on": "false"
+    },
+    {
+     "tid": "toggle_column_progress",
+     "text": "",
+     "on": "false"
+    },
+    {
+     "tid": null,
+     "text": "Service Advisor",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_serviceAdvisor",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Lead Technician",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_technician",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Clocked In",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_clockedInTechnicians",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Lines",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_linesCount",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Total price",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_totalPrice",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Created on",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_startDate",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Invoiced Date",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_invoicedDate",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Days open",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_daysOpen",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Parts",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_partRequestsCount",
+     "text": "",
+     "on": "true"
+    },
+    {
+     "tid": null,
+     "text": "Returns",
+     "on": "true"
+    },
+    {
+     "tid": "toggle_column_partReturnRequestsCount",
+     "text": "",
+     "on": "true"
+    }
+   ]
+  },
+  "found": 1,
+  "stateBefore": "false",
+  "stateAfter": "true",
+  "headings": [
+   "On Site",
+   "Status",
+   "Waiting On Parts",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On",
+   "Invoiced Date",
+   "Days Open",
+   "Parts",
+   "Returns"
+  ]
+ }
+}

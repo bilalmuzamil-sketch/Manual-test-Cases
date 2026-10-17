@@ -769,3 +769,16 @@ another route (e.g. a payment) and read the status back. Evidence: `evidence/sta
 
 ## L0441 — 2026-10-17 — On staging a REAL app log-out + quick-login sign-in did NOT end the shared Google sign-in
 Run 498's end-of-run sign-out batch (signout-1017.mts, from 10:42 UTC) logged out through initials > Logout and signed back in with the Admin quick-login three times in a row (C96989, C97005, …) and the next steps' location checks still passed — the `sv_sso_session` Google sign-in survived. So L0410's fear ("a real log-out may end the Google sign-in") did not happen on staging today; a sign-out batch can be run mid-pass if needed, but keep it last anyway until it has proved itself across several days. Also from this stretch: the app user's SAVED DISPLAY is shared by every session using that user, so a "Back lands in List" reading on the shared admin cannot be blamed on the product (C96916) — use a test user no other session uses for any display/preference check.
+
+## L0442 — 2026-10-17 — A per-user check needs a user nobody else uses; a fresh user cannot be signed in for real on staging
+- The Admin's saved Work Orders choices are shared with every session using that account, so "the display after Back" read List in one run
+  and Board/Tech View in another (C96916). As a DEDICATED Admin-role test user ("ZZAUTOTEST C96916 Back Tester", switch-user + viewAs, as
+  runner.mts) Back restored Board View and Tech View, same top card/row (`s1-r6.mts`). Use a dedicated user for any per-user preference check.
+- A brand-new staff user has no password until it accepts the invitation e-mail (unreadable @staging.shopview.local; the staff window offers
+  only "Resend Invitation"). For "sign in as a user who never chose a display" (C96912 step 7) the route is switch-user to a fresh ZZAUTOTEST
+  user, its saved preference read empty FIRST, then the screen (List) — and the reading must say it was switch-user, not a sign-in
+  (`c96912-fresh.mts`).
+- Production (second account, prod-login-boot.mjs): a REAL log-out (initials > Logout -> /login) and the app's own Email/Password form work
+  in one run; List's Column Selection is `button_column_selection` with `toggle_column_<key>` items (`prod-c96975.mts`). Production v26.40.19
+  KEPT Progress off across log-out/log-in (C96975, Rule 121).
+  #wo-board #staging #production → L0410, L0440
