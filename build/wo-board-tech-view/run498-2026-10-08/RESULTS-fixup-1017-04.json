@@ -1,0 +1,222 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up 2, batch 04 = fix-up steps 15-22"
+ },
+ "results": {
+  "C368174": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Work order S2-37058, both lines starting with no technician (Labor \"Unassigned\").",
+    "Ralph Edwards is not offered in the Edit labor Technician list (97 names, ending at \"QA ServiceManager\": the known list cut-off, SV-11393, closed as obsolete but still there). The case says names are examples, so Jenny Wilson was used.",
+    "Step 2: Jenny Wilson was assigned to Line 1 and to Line 2 through Edit labor > Technician > Save & Close, with no error message.",
+    "Step 3: after a reload both lines' Labor rows read \"Jenny Wilson\" (2 of 2)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368174-1-both-lines.png"
+   ],
+   "ticket": null
+  },
+  "C368190": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Work order S2-37059: a 2-hour shift for Jenny Wilson on Mon 19 Oct covering Line 1 only.",
+    "Step 1: Line 1's Labor row reads \"Jenny Wilson\".",
+    "Step 2: on the Schedule (Mon, Oct 19) her shift was opened and deleted with the delete icon; it went at once, with no question.",
+    "Step 3: Line 1's Labor row reads \"Unassigned\" again."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368190-1-shift.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368190-2-unassigned.png"
+   ],
+   "ticket": null
+  },
+  "C368224": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Parts > Catalog: Manufacturer \"Magnum\" ticked; one row (Steering Damper SC2967).",
+    "After a reload Manufacturer still reads Magnum and the same one row shows. No error message."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368224-1-after-reload.png"
+   ],
+   "ticket": null
+  },
+  "C368225": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Parts > Inventory: Category \"Uncategorized\" ticked; the list narrowed to Uncategorized parts.",
+    "After a reload Category still reads Uncategorized and the same rows show. No error message."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368225-1-after-reload.png"
+   ],
+   "ticket": null
+  },
+  "C368233": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Production (app.shopview.com, build v26.40.19-d2441a9) was checked the same way, step by step.",
+    "Step 3: All customers ticked on both.",
+    "Step 4: clicking one customer ticks only that one on both, and the report narrows to it (staging 4 Star Truck Repair; production its own customer).",
+    "Step 5: clicking it again goes back to All customers on both, with the full report.",
+    "Step 6: clicking the ticked All customers box unticks everything on both; clicking it again ticks All again.",
+    "Step 7: neither has a separate Clear selection button. No error message on either."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368233-1-staging-one.png"
+   ],
+   "ticket": null
+  },
+  "C368234": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Production (app.shopview.com, build v26.40.19-d2441a9) was checked the same way, step by step.",
+    "Steps 3 to 6 tick the same way on both: All vendors ticked; one vendor clicked becomes the only one ticked (\"1 selected\"); clicking it again goes back to All vendors; clicking the ticked All vendors unticks everything, and again ticks All.",
+    "Step 7: neither has a separate Clear selection button. No error message on either.",
+    "The report: on staging it narrowed to 4Refuel's 30 rows. Production's Parts Velocity report shows no rows for any choice, so how its report narrows could not be compared; nothing behaved differently."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368234-1-staging-one.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368234-2-production-one.png"
+   ],
+   "ticket": null
+  },
+  "C368235": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Production (app.shopview.com, build v26.40.19-d2441a9) was checked the same way, step by step.",
+    "Step 3: All categories ticked on both.",
+    "Step 4: one category clicked becomes the only one ticked on both and the report narrows (staging .Brake Parts; production Air Conditioning, 3 rows).",
+    "Step 5: clicking it again goes back to All categories on both.",
+    "Step 6: clicking the ticked All categories box unticks everything on both; again ticks All.",
+    "Step 7: neither has a separate Clear selection button. No error message on either."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368235-1-staging-one.png"
+   ],
+   "ticket": null
+  },
+  "C368246": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 2.",
+    "The Dashboard opened (from the logo) with its cards: Revenue, Billing Efficiency, Technician Efficiency, Technician Utilization, Sales by Customer, At Risk Customers, and no error message.",
+    "Each card's table is behind \"View details\", but the script found none of those links (0), so no table rows were read and no header was sorted."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368246-1-script-miss.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run (script fix: click each card's View details, then read and sort its table)."
+  },
+  "C368213": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Customer \"ZZAUTOTEST WO Parts Counts 75186\", work order S2-37060 with two part requests; one was ordered, received (Vendor Invoice # typed) and a return was raised.",
+    "With Parts and Returns turned on in Column Selection, S2-37060's row reads Parts 2 and Returns 1, the ones created."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368213-1-counts.png"
+   ],
+   "ticket": null
+  },
+  "C368171": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Work order S2-37061 led by Esther Howard; the Audit Log holds 1 \"Lead tech changed\" entry at the start.",
+    "Step 4: Ralph Edwards cannot be picked: the Lead Technician list on the status card offers 98 names and ends at \"QA PartsTechnician\" (before the R names); typing \"Ralph Edwards\" or \"Edwards\" does not narrow it. The case needs that name, so the lead could not be changed.",
+    "The Audit Log still holds 1 \"Lead tech changed\" entry; no entries for the lines.",
+    "Same problem as already reported: the technician lists stop at about 100 names (ticket below, closed as obsolete, still there, read 17 Oct 2026)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368171-1-not-offered.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11393.",
+   "todo": "What needs to be done: the QA lead to decide on the ticket (it is closed as obsolete, the problem is still there); once fixed on staging, run this test again."
+  },
+  "C96936": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 5.",
+    "Set-up: customer \"ZZAUTOTEST F2 Refresh Lead\": S2-35331, S2-35332, S2-35333 with Esther Howard, S2-35334 and S2-35335 with Ralph Edwards.",
+    "Steps 1 to 4: tab A in Tech View shows Esther Howard 3 and Ralph Edwards 2.",
+    "Step 5 was not done: in tab B the script opened the work order page but did not find the Lead Technician field (it waited 20 seconds), so the lead was not changed by any route, and steps 6 to 8 were not read."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96936-1-before.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run (script fix: find Lead Technician on the status card; if Ralph Edwards is not in the list, give the lead through the page's own save and say so)."
+  },
+  "C368127": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 7.",
+    "Brand-new Admin user. Step 3: Unassigned opens expanded; its count 3,762 matches List's All tab (7,109 work orders, 3,762 with no lead, all 15 pages read).",
+    "Step 5: deep in the group the Unassigned header (with its count) stays just under the column headings while the rows scroll past.",
+    "Step 6: a loading bar showed at each scroll stop: rows load in batches.",
+    "Step 7 was not done properly: the script clicked the person icon on the held header (then the header row), not the arrow, so nothing collapsed; whether the arrow collapses it in place was not tried."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368127-1-held-header.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run step 7 clicking the arrow on the held Unassigned header (script fix)."
+  },
+  "C368161": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Work order S2-37062 led by Theresa Webb (no photo), with Jenny Wilson as its line technician.",
+    "Steps 5 and 10: Theresa Webb's group header (Tech View) and column header (Board View) show a round avatar with \"TW\" next to her name and count.",
+    "Steps 8 and 13: the row's Assigned Techs and the card's line technicians show \"TW\" and \"JW\", each in its own round avatar.",
+    "No empty circle, blank space or broken image anywhere."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368161-1-initials.png"
+   ],
+   "ticket": null
+  },
+  "C154886": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Set-up put back first: both S2-35718 and S2-35719 led by Esther Howard, so Unassigned starts empty.",
+    "Board View (Assigned to me off): the Unassigned column is still there, first, showing \"Drag a work order here to assign it\".",
+    "S2-35719 dragged onto Unassigned: it moves there; counts Unassigned 1, Esther Howard 1."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154886-1-drop.png"
+   ],
+   "ticket": null
+  },
+  "C96945": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: step 5 needs a ruling on the case's wording.",
+    "Step 1: with nothing hovered or focused the More actions button is hidden; on hover it appears.",
+    "Steps 2 to 4: the menu opens with \"Reassign lead technician\" (and \"Unassign\"); Escape closes it.",
+    "Step 5: after Escape the keyboard focus goes back to the More actions button (the requirement for keyboard users), so when the mouse moves off the card the button still shows. It hides once the focus leaves the card (click outside).",
+    "Steps 6 to 8: the cursor is in Search; Tab lands on a card with a focus ring; Work-order-1's card (S2-35376) shows the focus ring and its More actions button without hovering.",
+    "Whether step 5 should expect the button hidden while it still has the focus is for the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96945-1-focus-kept.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: the QA lead to say whether step 5 should be read after the focus has left the card; then judge."
+  }
+ }
+}
