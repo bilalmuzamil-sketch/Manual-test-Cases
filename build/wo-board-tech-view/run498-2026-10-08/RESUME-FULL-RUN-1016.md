@@ -58,3 +58,7 @@ SV-11101 reopen; C590117 tooltip ticket.
 - Fixes look shipped (passed, tickets TESTING STAGE): SV-11317 (C590113), SV-11394 + SV-11395 (C590124), SV-11338 (C590129); SV-11416 symptom gone (C614711 steps 3–5). C368130 passed.
 - Round 4 (fixup-1017d.txt, chained after round 3 by after-round4-1017.sh, which then runs the sign-out batch): focused scripts for C590115, C590116, C368151, C97003, C614711, C97020. The old after-signout-1017.sh waiter is stopped so the sign-out batch cannot start before round 4.
 - C97020 re-check was VOID (focus never reached the test card) — not posted; latest result stays Failed, ticket held.
+
+## 17 Oct 08:25 UTC — round 3 steps 2–8 judged (RESULTS-fixup-1017c-01)
+- Passed: C614717, C614719, C368178.
+- To round 4 (focused): C614714 (step 2: Edit Staff Member window stayed open after Save & Close — script vs product to be settled with a positive control on another staff record; step 8 New Line window over a no-line work order), C368136 (Tech View group not rendered), C96916 Tech View half (rows not on screen), C368131 (step 3 through the screen only: does changing Location alone remove her from Heavy Duty? — if not, that is the READING, possibly a QA lead / source question).

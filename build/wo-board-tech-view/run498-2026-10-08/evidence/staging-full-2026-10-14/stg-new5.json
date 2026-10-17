@@ -1,6 +1,6 @@
 {
  "meta": {
-  "at": "2026-10-17T05:42:27.508Z",
+  "at": "2026-10-17T08:08:54.489Z",
   "esther": [
    "QB Location/Shop Time (Shop hand)",
    "Staging Heavy Duty - 9919/Service"
@@ -12,7 +12,7 @@
  },
  "C581892": {
   "setup": {
-   "WO-1 S2-37051": {
+   "WO-1 S2-37090": {
     "lines": [
      "Service - Transmission service=authorized",
      "Service - Cabin air filter=authorization_required"
@@ -21,7 +21,7 @@
      "Esther 2026-10-18 08:00-10:00 lines"
     ]
    },
-   "WO-2 S2-37052": {
+   "WO-2 S2-37091": {
     "lines": [
      "Service - Transmission service=authorized",
      "Service - Cabin air filter=authorization_declined"
@@ -30,7 +30,7 @@
      "Esther 2026-10-18 10:00-12:00 lines"
     ]
    },
-   "WO-3 S2-37053": {
+   "WO-3 S2-37092": {
     "lines": [
      "Service - Transmission service=authorized",
      "Replace - Suspension air bag=authorized"
@@ -40,7 +40,106 @@
     ]
    }
   },
-  "error": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_card_16c48af4-3c12-4230-aeb1-66fa8cc98b23\"]').first()\n"
+  "WO-1": {
+   "prep": {
+    "search": "ZZAUTOTEST S4R28 Approved Lines 10170808",
+    "cardFound": true,
+    "columnsInView": [
+     "Unassigned",
+     "EH",
+     "RE",
+     "AB",
+     "AZ",
+     "AS"
+    ]
+   },
+   "prompt": true,
+   "title": "Clear Esther Howard's scheduled shifts?",
+   "toasts": [
+    "Lead technician updated"
+   ],
+   "inB": true
+  },
+  "WO-2": {
+   "prep": {
+    "search": "ZZAUTOTEST S4R28 Approved Lines 10170808",
+    "cardFound": true,
+    "columnsInView": [
+     "Unassigned",
+     "EH",
+     "RE",
+     "AB",
+     "AZ",
+     "AS"
+    ]
+   },
+   "prompt": true,
+   "title": "Clear Esther Howard's scheduled shifts?",
+   "toasts": [
+    "Lead technician updated"
+   ],
+   "inB": true
+  },
+  "WO-3": {
+   "prep": {
+    "search": "ZZAUTOTEST S4R28 Approved Lines 10170808",
+    "cardFound": true,
+    "columnsInView": [
+     "Unassigned",
+     "EH",
+     "RE",
+     "AB",
+     "AZ",
+     "AS"
+    ]
+   },
+   "prompt": true,
+   "title": "Clear Esther Howard's scheduled shifts?",
+   "toasts": [
+    "Lead technician updated"
+   ],
+   "inB": true
+  },
+  "schedule": {
+   "S2-37090": [
+    "(286 events on screen after searching S2-37090; only the first 6 opened)",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "S2-37091": [
+    "(286 events on screen after searching S2-37091; only the first 6 opened)",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "S2-37092": [
+    "(286 events on screen after searching S2-37092; only the first 6 opened)",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ]
+  },
+  "shiftsAfter": {
+   "WO-1": [
+    "Esther 2026-10-18 08:00-10:00 lines"
+   ],
+   "WO-2": [
+    "Esther 2026-10-18 10:00-12:00 lines"
+   ],
+   "WO-3": [
+    "Esther 2026-10-18 13:00-15:00 lines"
+   ]
+  }
  },
  "C581893": {
   "setup": {
@@ -191,33 +290,31 @@
   "found": {
    "saved": {
     "status": 200,
-    "display": "board_view",
-    "collapsedGroups": [
-     "unassigned"
-    ],
+    "display": "tech_view",
+    "collapsedGroups": [],
     "pinned": [
-     "3ff0914b"
+     "a7748aa8",
+     "82608f53"
     ],
     "filters": [],
-    "density": "compact",
+    "density": "comfortable",
     "tab": "all"
    },
    "screen": {
     "switcher": 3,
-    "active": "Board View"
+    "active": "Tech View"
    }
   },
   "savedAfter": {
    "status": 200,
-   "display": "board_view",
-   "collapsedGroups": [
-    "unassigned"
-   ],
+   "display": "tech_view",
+   "collapsedGroups": [],
    "pinned": [
-    "3ff0914b"
+    "a7748aa8",
+    "82608f53"
    ],
    "filters": [],
-   "density": "compact",
+   "density": "comfortable",
    "tab": "all"
   }
  }
