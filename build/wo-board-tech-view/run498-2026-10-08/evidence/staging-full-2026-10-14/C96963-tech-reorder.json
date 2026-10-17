@@ -1,0 +1,84 @@
+{
+ "C96963": {
+  "exitSwitch": 200,
+  "found": [
+   "S2-37068 complete lead=Esther Howard",
+   "S2-37067 declined lead=Esther Howard",
+   "S2-37066 invoiced lead=none",
+   "S2-37065 paid lead=Esther Howard",
+   "S2-37064 invoiced lead=Esther Howard",
+   "S2-37063 approved lead=none"
+  ],
+  "set": [
+   "S2-37068 complete lead=Esther Howard",
+   "S2-37067 declined lead=Esther Howard",
+   "S2-37066 invoiced lead=none",
+   "S2-37065 paid lead=Esther Howard",
+   "S2-37064 invoiced lead=Esther Howard",
+   "S2-37063 approved lead=none"
+  ],
+  "before": [
+   "S2-37066",
+   "S2-37063"
+  ],
+  "searchHolds": "ZZAUTOTEST F1 Invoiced Paid Locked 84534",
+  "plan": {
+   "w4WasOnTop": true,
+   "droppedRelativeTo": "S2-37063",
+   "where": "below its bottom edge",
+   "grip": "the row's first (grip) cell"
+  },
+  "dropAt": {
+   "x": 400,
+   "y": 290,
+   "refTop": 260,
+   "refBottom": 296
+  },
+  "underBeforePress": {
+   "row": "tech_view_row_<id>",
+   "number": "S2-37063",
+   "groupKey": "unassigned",
+   "underGroup": "unassigned",
+   "isGroupHeader": false
+  },
+  "dropInsideUnassigned": true,
+  "holding": {
+   "order": [
+    "S2-37066",
+    "S2-37063"
+   ],
+   "underWhileHeld": {
+    "row": "tech_view_row_<id>",
+    "number": "S2-37063",
+    "groupKey": "unassigned",
+    "underGroup": "unassigned",
+    "isGroupHeader": false
+   },
+   "marks": [
+    "q-field__native q-placeholder",
+    "board-drag-ghost row no-wrap items-center",
+    "board-drag-ghost__text column",
+    "board-drag-ghost__title ellipsis",
+    "board-drag-ghost__subtitle ellipsis"
+   ]
+  },
+  "messages": [],
+  "after": [
+   "S2-37063",
+   "S2-37066"
+  ],
+  "afterReload": [
+   "S2-37063",
+   "S2-37066"
+  ],
+  "server": {
+   "w4": "S2-37066 invoiced lead=none",
+   "unassigned": [
+    "S2-37066",
+    "S2-37063"
+   ]
+  },
+  "reordered": true,
+  "stillInUnassigned": true
+ }
+}

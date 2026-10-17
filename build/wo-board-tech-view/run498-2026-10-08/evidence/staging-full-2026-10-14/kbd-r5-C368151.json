@@ -1,0 +1,96 @@
+{
+ "runner": "3620a2b1",
+ "techs": {
+  "ana": true,
+  "ben": true,
+  "cal": true,
+  "dan": true
+ },
+ "C368151": {
+  "data": {
+   "q": "ZZAUTOTEST F3 Keyboard Controls One 22139",
+   "wo": "S2-37111"
+  },
+  "scriptFocusPlacement": "never",
+  "prefs": 200,
+  "start": {
+   "tab": "All",
+   "search": "ZZAUTOTEST F3 Keyboard Controls One 22139",
+   "assignedToMe": "false",
+   "width": 1600
+  },
+  "chipAtStart": "Status keyboard_arrow_down",
+  "reach": {
+   "by": "Tab from the Search box",
+   "found": true,
+   "stops": [
+    "page_search_clear(Clear search)",
+    "filter_chip_status"
+   ]
+  },
+  "keys": [
+   {
+    "key": "Enter (open)",
+    "active": "DIV Estimate Approved In progress ",
+    "focusedOption": null,
+    "activedescendant": null,
+    "highlighted": null,
+    "menuOpen": true,
+    "inMenu": true,
+    "ticked": []
+   },
+   {
+    "key": "Tab",
+    "active": "filter_option_status_estimate Estimate",
+    "focusedOption": "estimate",
+    "activedescendant": null,
+    "highlighted": null,
+    "menuOpen": true,
+    "inMenu": true,
+    "ticked": []
+   },
+   {
+    "key": "Tab",
+    "active": "filter_option_status_approved Approved",
+    "focusedOption": "approved",
+    "activedescendant": null,
+    "highlighted": null,
+    "menuOpen": true,
+    "inMenu": true,
+    "ticked": []
+   }
+  ],
+  "firstHighlightAfter": "Tab",
+  "reachedBy": "Tab",
+  "keyboardReachedOption": true,
+  "keyboardReachedApproved": true,
+  "afterEnter": {
+   "chip": "Status: Approved keyboard_arrow_down cancel",
+   "active": "filter_option_status_approved Approved",
+   "focusedOption": "approved",
+   "activedescendant": null,
+   "highlighted": null,
+   "menuOpen": true,
+   "inMenu": true,
+   "ticked": [
+    "Approved"
+   ]
+  },
+  "approvedTickedByKeyboard": true,
+  "afterEscape": {
+   "focus": "filter_chip_status (ring) [page]",
+   "backOnChip": true,
+   "menusOpen": 0,
+   "chip": "Status: Approved keyboard_arrow_down cancel"
+  },
+  "toX": {
+   "found": true,
+   "stops": [
+    "filter_chip_clear_status(Clear Status filter)*"
+   ]
+  },
+  "xFocus": "filter_chip_clear_status (ring) [page]",
+  "chipAfterX": "Status keyboard_arrow_down"
+ },
+ "restored": true
+}
