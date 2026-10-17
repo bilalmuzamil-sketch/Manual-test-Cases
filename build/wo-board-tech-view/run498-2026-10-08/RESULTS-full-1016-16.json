@@ -3,7 +3,7 @@
   "env": "staging",
   "build": "v26.40.19-1493c63",
   "date": "17 October 2026",
-  "note": "full staging run 16-17 Oct 2026, batch 16 = queue steps 39"
+  "note": "full staging run 16-17 Oct 2026, batch 16 = queue steps 39, 40"
  },
  "results": {
   "C368218": {
@@ -44,6 +44,44 @@
     "evidence/staging-full-2026-10-14/annotated-full-1016/C368223-1-search-kept.png"
    ],
    "ticket": null
+  },
+  "C368169": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 3: on work order S2-36774 (led by Esther Howard) it opened Lead Technician but could not pick a new lead. The list showed 62 names and ended at the Q names (\"QA PartsManager\", \"QA ServiceManager\"), so Ralph Edwards was not offered; the script's second try, Dana Ortiz (who was listed), also did not land.",
+    "Seen: Mileage was changed to 120,500 with no error message and still reads 120,500 after a reload; Lead Technician still reads \"Esther Howard\".",
+    "The work order page's lead list stopping before the R names matches ticket SV-11393 (\"OBSOLETE\"), but the test's names are examples, so the test is not judged on it."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368169-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: pick a technician early in the list, for example Dana Ortiz, and confirm the pick)."
+  },
+  "C368170": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Work order S2-36776 (led by Esther Howard, Mileage 123,456, Engine Hours 3,420) was invoiced; its status reads Invoiced.",
+    "On the status card, Lead technician is plain text with no list of technicians to pick from; Mileage and Engine Hours are read-only boxes.",
+    "After a reload Lead technician still reads \"Esther Howard\", Mileage 123,456 and Engine Hours 3,420: none of the edits was saved. (The test's example mileage is 120,000; this work order was made with 123,456.)"
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368170-1-invoiced-locked.png"
+   ],
+   "ticket": null
+  },
+  "C368171": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 4: on work order S2-36775 it could not pick a new lead on the status card, so no lead change was made.",
+    "Seen: the Audit Log holds 1 \"Lead tech changed\" entry (the set-up's, to Esther Howard) before and after; no entries for the lines. Nothing was judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368171-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: pick a technician early in the list, for example Dana Ortiz, and confirm the pick)."
   }
  }
 }
