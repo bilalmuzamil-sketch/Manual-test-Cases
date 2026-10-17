@@ -674,3 +674,24 @@ Round 3 of run 498 (after-fixup-1017c.sh, `while ps -eo args | grep -q "[r]un-fi
 
 ## L0430 — 2026-10-17 — Staging Board View has ~280 technician columns: never "walk" to a far column — narrow the board first
 Run 498 C614711: the "Deleted technician" column was column 279 of 280; a held card walked 80 moves (scrollLeft 15,600) and was released short of it. C97003: centring one column header (scrollLeft 59,832) pushed the drop target off screen. Tech View likewise renders only the groups near the screen (C614711 step 7: not among the 35 loaded groups; C97003: Ben's group handle not rendered). For any drag between technicians on staging: make BOTH ends render on screen first — search to the case's own work orders (only those technicians' columns stay meaningful), or pin the target next to the source — and check both bounding boxes are inside the viewport before pressing. Also: a drop at `rowBottom + 6` lands under the NEXT group's header and reassigns the work order (C590116) — drop between two rows' centres of the same group and check `elementFromPoint` first.
+
+## L0431 — 2026-10-17 — A status pill's RED number = lines in "Needs Approval"; read the app's own public code when no recipe exists
+- **Red number on List's status pill** (and Tech View's, which is the same pill) is the list answer's `serviceActionsCount`, tooltip
+  `"<n> Line(s) in Auth Req'd"`: the count of the work order's lines in the line status **Needs Approval** (`authorization_required`).
+  Seed it with the app's own add-line call: `POST /api/work-orders/{wo}/lines/create-from-canned-line {canned_line_id, status:
+  'authorization_required'}` (fallback `POST /api/work-orders/lines/change-status {line_id, status}`), then read `serviceActionsCount`
+  back before comparing. Blue number = parts actions (`statusRequestedCount` / `statusAuthToOrderCount` / `statusInStock`; a part request
+  → "1 Part Ready to Order"). C590115's preconditions name only the approved line with a part request (blue only) — reported, not edited.
+  Supersedes L0409's "no seed recipe" for the red count. Script: `run498-2026-10-08/design-r4.mts` (`redLine()`).
+- **When no recipe says what drives a screen element, read the build's own code without touching the session:** the staging app's JS
+  chunks are public static files — `curl https://app.staging.shopview.com/` → the `/js/index.*.js` names → download the chunks it lists into
+  a scratch folder and `grep` the tooltip text (here `Ready to Order` → `WorkOrders.*.js` → `serviceActionsCount` → `Ga=e=>…Auth Req'd`).
+  No cookie, no browser, no app session used (safe while a queue holds the one SSO session, L0394).
+- **Round 4 focused scripts** (each queued alone with ONLY=<id> in `fixup-1017d.txt`, run by `after-round4-1017.sh` after round 3 and
+  before the sign-out batch): `design-r4.mts` (C590115 red + blue; C590116 drop inside the group, elementFromPoint checked first),
+  `kbd-r4.mts` (C368151 every key logged, lost focus recorded and re-entered by Search > Tab, Technician-A put after Unassigned by the
+  saved `technicianOrder`; C97020 Admin pinned, card read back before keys, disabled item's note on keyboard vs hover), `s9-r4.mts`
+  (C97003 left column put right of the sticky Unassigned and the window widened until the right one is on screen; Tech View searched from
+  the TOP), `C614711-r4.mts` (board scrolled to its END: the last column and the sticky Unassigned are both on screen). Each copies the
+  proven prologue of its parent script byte-for-byte and writes its own `<name>-<ONLY>.json`, so two ONLY runs never overwrite each other.
+  #wo-board #scripts #status-pill → L0409, L0430

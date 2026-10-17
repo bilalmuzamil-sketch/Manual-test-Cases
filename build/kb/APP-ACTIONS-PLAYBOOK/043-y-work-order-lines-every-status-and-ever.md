@@ -149,3 +149,9 @@ const toasts = await page.evaluate(()=>{ const t=[...window.__toasts]; clearInte
 
 ---
 
+
+- **THE RED / BLUE NUMBERS ON A WORK ORDER'S STATUS PILL (List, Tech View, Board cards) — seeded 2026-10-17.** Red = lines in
+  **Needs Approval**: add a line with `POST /api/work-orders/{wo}/lines/create-from-canned-line {canned_line_id, status:
+  'authorization_required'}` → list answer `serviceActionsCount` ≥ 1, tooltip `"1 Line in Auth Req'd"` (not drawn on the Estimates tab).
+  Blue = parts actions: a part request on a line (`/api/work-orders/part/make-request`) → `"1 Part Ready to Order"`. Read the count back
+  in the list answer before judging a pill (L0431).

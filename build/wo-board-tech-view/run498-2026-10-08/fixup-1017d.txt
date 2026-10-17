@@ -1,0 +1,9 @@
+# Run 498 FIX-UP ROUND 4 (17 Oct 2026): focused scripts for what round 3 could not settle. Read once when run-fixup-1017d.sh starts
+# (after-round4-1017.sh starts it after round 3; the sign-out batch runs after it). Format: block|script|ONLY ids|extra env|mode|note
+B-setup|stg6-tz.mts|-|TZ_TARGET=Asia/Karachi|setup|Rule 125 guard (not a case): Heavy Duty zone = browser zone; exit 0 required
+C-fix2|design-r4.mts|C590115|-|ensure|round 4: red number seeded (Line-2 in Needs Approval = List's "Lines in Auth Req'd"), read back in the list answer and on List, then List vs Tech View numbers/colours/tooltips + density heights
+C-fix2|design-r4.mts|C590116|-|ensure|round 4: step 5 dropped inside Technician-A's group (elementFromPoint checked before the press); step 9 also reads the Unassigned header for User-B
+C-fix2|kbd-r4.mts|C368151|-|ensure|round 4: Technician-A right after Unassigned by the saved order (unpinned); steps 5-7 every key logged, lost focus recorded + re-entry by Search > Tab; step 9 Home/ArrowDown, then script focus on the first option, then Tab; Enter/Space ticks Approved
+C-fix2|kbd-r4.mts|C97020|-|ensure|round 4: Admin half (steps 7-16) with Technician-A pinned for the Admin, Work-order-2's card read back first; disabled "Reassign lead technician" note read on keyboard highlight and on mouse hover (positive control)
+C-fix2|s9-r4.mts|C97003|-|ensure|round 4: step 6 Ana's column put right of the sticky Unassigned and the window widened until Cal is on screen too (under-the-drop-point logged); step 10 Tech View scrolled from the TOP to Ben's group, grip held while scrolling up to Unassigned if needed
+C-fix2|C614711-r4.mts|C614711|-|ensure|round 4: step 6 board scrolled to its END (Deleted technician column + sticky Unassigned both on screen, under-the-drop-point logged), step 7 Tech View scrolled to its bottom until the group is drawn, step 10 reverse drag to Technician-B as the positive control
