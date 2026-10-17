@@ -1,0 +1,121 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 19 = queue step 43 (analytics)"
+ },
+ "results": {
+  "C97023": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Analytics, judged by the events the browser sent to Google Analytics (fresh session).",
+    "Opening Work Orders sent exactly 1 display view: List, All tab.",
+    "Tech View and then Board View each sent 1 more (running total 3); the Estimates tab and then the All tab each sent 1 more (running total 5).",
+    "Loading more cards, searching, filtering and narrowing then widening the window sent no new display view. Total: 5 display views. The page worked as usual."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97023-1-analytics-events.png"
+   ],
+   "ticket": null
+  },
+  "C97024": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test's expected count for Tech View no longer matches the product requirement, so the result cannot be judged against the test as written; this is for the QA lead to decide (the expected wording is left unchanged).",
+    "Seen: Board View sent 13 field-load events, one per optional field; VIN/serial was on with source saved and every other field had source default; plus 1 density-load event (as expected).",
+    "Tech View sent 17 field-load events, not the 15 the test expects: the two extra are On Site (vehicle_here) and Unit; plus 1 density-load event. Board View, List and Board View again sent no new field or density events. Session total 13 + 17 = 30 (the test expects 28).",
+    "The product requirement (PRD version 58, read 16 Oct 2026, S5-R4 and S5-R4a) now makes On Site and Unit optional Tech View columns: \"On Site, VIN/Serial # and Lead Technician are off by default; each can be added with the column chooser\" and \"Every other Tech View column, Unit included, can be turned off with the column chooser.\" So 17 follows the requirement; the test's 15 was written before that change."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97024-1-analytics-events.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: the QA lead to decide whether this test's expected Tech View count (15, total 28) is updated to follow the requirement (17, total 30); then judge it again."
+  },
+  "C97025": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Analytics, judged by the events the browser sent to Google Analytics.",
+    "Turning Service advisor on and Customer off sent 2 field-change events: service_advisor on and company_name off.",
+    "Picking Compact sent 1 density-change event naming compact.",
+    "Picking Compact again and closing Fields to display without a change sent no new events.",
+    "Failed save: not checked by hand."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97025-1-analytics-events.png"
+   ],
+   "ticket": null
+  },
+  "C97027": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Analytics: search \"ZZAUTOTEST Bravo\", Tech View, Board View, VIN/serial turned on and density changed; all 37 Work Orders events of the session read.",
+    "Every parameter holds only a field or setting name and its value (for example board_view, tech_view, vin, total_price, on, off, regular, comfortable, default, saved).",
+    "No event contains the customer name, a technician name, a work order number, a VIN, the search text or a dollar amount (every value of every event was checked against that list; none matched)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97027-1-analytics-events.png"
+   ],
+   "ticket": null
+  },
+  "C97029": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Analytics, judged by the events the browser sent to Google Analytics.",
+    "Step 1, a brand-new user: display view list with source default and 13 field events with source default (then one more display view when Board View was clicked).",
+    "Step 2, the dispatcher with saved Board View, fields and density (comfortable): display view board_view source saved; density load comfortable source saved; the 6 fields the dispatcher has saved read source saved and the 7 never changed read default.",
+    "Step 3: Tech View, then Estimates = 2 display views. Step 4: VIN/Serial turned on = exactly 1 field change event (vin on).",
+    "Step 5, the user without See financial data: 12 field events and none for total price.",
+    "Fallback and failed save: not checked by hand."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97029-1-analytics-events.png"
+   ],
+   "ticket": null
+  },
+  "C97035": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test's expected field-load count no longer matches the product requirement (see below), so the result cannot be judged against the test as written; this is for the QA lead to decide (the expected wording is left unchanged).",
+    "Seen in one session: display views 5, field loads 30, density loads 2, field changes 3 (service advisor, line count, created date, changed quickly one after another), density change 1; loading more cards added nothing. Grand total 41.",
+    "The test expects field loads 28 (13 + 15) and a total of 39. The difference is Tech View's two extra optional columns, On Site and Unit (13 + 17 = 30), which the product requirement (PRD version 58, read 16 Oct 2026, S5-R4 and S5-R4a) now allows in Tech View's column chooser. Every other count matches the test."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97035-1-analytics-events.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: the QA lead to decide whether this test's expected counts (28 field loads, 39 total) are updated to follow the requirement (30 and 41); then judge it again."
+  },
+  "C368153": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test's expected Tech View count no longer matches the product requirement (see below), so the result cannot be judged against the test as written; this is for the QA lead to decide (the expected wording is left unchanged).",
+    "Seen, with See Financial Data off for the test user's role: Board View sent 12 field-load events (13 - 1) and none for total price; Fields to display does not offer Total price, and no card shows a dollar amount (as expected).",
+    "Tech View sent 16 field-load events (17 - 1), not the 14 the test expects, and none for total price. The two extra are On Site and Unit, which the product requirement (PRD version 58, read 16 Oct 2026, S5-R4 and S5-R4a) now makes optional Tech View columns. Total for this user 12 + 16 = 28 (the test expects 26). Total price is left out completely."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368153-1-analytics-events.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: the QA lead to decide whether this test's expected Tech View count (14, total 26) is updated to follow the requirement (16, total 28); then judge it again."
+  },
+  "C368155": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Board View opened, then a card was clicked to open the work order, and Back.",
+    "The Work Orders display-view events and the existing work order view event carry the same ShopView user ID (the one the page views carry).",
+    "No new user or customer identifier appears on the Work Orders events (they carry no extra user properties)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368155-1-analytics-events.png"
+   ],
+   "ticket": null
+  }
+ }
+}
