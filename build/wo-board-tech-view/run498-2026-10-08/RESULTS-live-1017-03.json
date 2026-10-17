@@ -1,0 +1,37 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 live batch 03 (re-judged from existing readings)"
+ },
+ "results": {
+  "C368209": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, judged from this morning's reading (17 Oct, same build) now that the first card's place is explained.",
+    "Phone width (390 px): the sort button offers Newest First, Oldest First, Customer A-Z and Customer Z-A; Customer A-Z was chosen and is still ticked after the reload.",
+    "After the reload the cards are in customer name order A to Z: ZZBREAK (see below), then 4 Star Truck Repair, A & J Truck & Trailer Repair, Aberdeen Diesel Services LLC, Alicia's Truck & Trailer Repair, All American Truck & Trailer Repair, Andreasen Truck & Equipment Repair, Andrews' Truck & Trailer Repair LLC, Bravo Mechanical Services and on.",
+    "The first row is another tester's deliberate edge-case customer, \"ZZBREAK <b>bold</b> ...\", whose saved name starts with two ordinary spaces (read back: two U+0020 characters, nothing hidden). A space comes before any letter or digit, so A to Z correctly puts it first. Neither the test nor its source says leading spaces are ignored; that customer belongs to another tester and was not renamed."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368209-l-1-sort-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368245": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, judged from the reading of 16-17 Oct (same build) now that the first row's place is explained.",
+    "Step 2: Customers shows the table (30 rows) with no error message.",
+    "Step 4: after clicking Customer Name the rows are in name order: ZZBREAK (see below), then 4 Star Truck Repair, 7 Star Truck Repair, A & J Truck & Trailer Repair, Aberdeen Diesel Services LLC, Aberdeen Truck Repair and on.",
+    "Step 5: scrolling to the bottom loaded the next rows (68 in all): different customers, still in name order, with no repeats.",
+    "The first row is another tester's deliberate edge-case customer, \"ZZBREAK <b>bold</b> ...\", whose saved name starts with two ordinary spaces (read back: two U+0020 characters, nothing hidden). A space comes before any letter or digit, so A to Z correctly puts it first. Neither the test nor its source says leading spaces are ignored; that customer belongs to another tester and was not renamed."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368245-l-1-next-rows.png"
+   ],
+   "ticket": null
+  }
+ }
+}
