@@ -1,0 +1,224 @@
+{
+ "meta": {
+  "at": "2026-10-17T05:42:27.508Z",
+  "esther": [
+   "QB Location/Shop Time (Shop hand)",
+   "Staging Heavy Duty - 9919/Service"
+  ],
+  "ralph": [
+   "QB Location/Shop Time (Shop hand)",
+   "Staging Heavy Duty - 9919/Service"
+  ]
+ },
+ "C581892": {
+  "setup": {
+   "WO-1 S2-37051": {
+    "lines": [
+     "Service - Transmission service=authorized",
+     "Service - Cabin air filter=authorization_required"
+    ],
+    "shifts": [
+     "Esther 2026-10-18 08:00-10:00 lines"
+    ]
+   },
+   "WO-2 S2-37052": {
+    "lines": [
+     "Service - Transmission service=authorized",
+     "Service - Cabin air filter=authorization_declined"
+    ],
+    "shifts": [
+     "Esther 2026-10-18 10:00-12:00 lines"
+    ]
+   },
+   "WO-3 S2-37053": {
+    "lines": [
+     "Service - Transmission service=authorized",
+     "Replace - Suspension air bag=authorized"
+    ],
+    "shifts": [
+     "Esther 2026-10-18 13:00-15:00 lines"
+    ]
+   }
+  },
+  "error": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_card_16c48af4-3c12-4230-aeb1-66fa8cc98b23\"]').first()\n"
+ },
+ "C581893": {
+  "setup": {
+   "WO-1 S2-35699": {
+    "lines": [
+     "Service - Transmission service=authorized",
+     "Replace - Suspension air bag=authorized",
+     "Service - Cabin air filter=authorized"
+    ],
+    "shifts": [
+     "Esther 2026-10-16 08:00-12:00 whole"
+    ]
+   },
+   "WO-2 S2-35700": {
+    "lines": [
+     "Service - Transmission service=authorized",
+     "Replace - Suspension air bag=authorized",
+     "Service - Cabin air filter=authorization_required"
+    ],
+    "shifts": [
+     "Esther 2026-10-16 13:00-17:00 whole"
+    ]
+   }
+  },
+  "step4": {
+   "prompt": true,
+   "toasts": [
+    "Lead technician updated"
+   ],
+   "inB": true
+  },
+  "step6": {
+   "prompt": true,
+   "title": "Clear Esther Howard's scheduled shifts?"
+  },
+  "step7": {
+   "toasts": [
+    "Lead technician updated"
+   ],
+   "inB": true
+  }
+ },
+ "C581894": {
+  "setup": {
+   "lines": [
+    "Service - Cabin air filter=authorized",
+    "Replace - Suspension air bag=authorized",
+    "Service - Cabin air filter=authorized",
+    "Service - Transmission service=authorization_declined"
+   ],
+   "estimates": [
+    "Service - Cabin air filter 18 min",
+    "Replace - Suspension air bag 90 min",
+    "Service - Cabin air filter 18 min",
+    "Service - Transmission service (Automatic) 120 min"
+   ]
+  },
+  "wo": "S2-35701",
+  "step4": null,
+  "step10": "Estimated hours\nEst. 2.1 hrs"
+ },
+ "C581895": {
+  "staff": [
+   {
+    "staff_id": "1eafe778-9b24-4068-828b-cac6a4a87f27",
+    "user_id": "7bdd1742-6ae4-441a-8650-18f5f4ce984a",
+    "staffName": "ZZAUTOTEST Staffname Ana",
+    "rename": 201
+   },
+   {
+    "staff_id": "4ad504d9-b56f-43b0-9a7b-61680809df6e",
+    "user_id": "de5d6cf4-dbaf-41d0-b0ad-0f4b63a883cf",
+    "staffName": "ZZAUTOTEST Staffname Ben",
+    "rename": 201
+   }
+  ],
+  "candidates": [
+   "ZZAUTOTEST Staffname Ana",
+   "ZZAUTOTEST Staffname Ben"
+  ],
+  "wo": "S2-35702",
+  "step2": [],
+  "staffUrl": "https://app.staging.shopview.com/settings/staff",
+  "step5": "location_on Approved 5 — S2-35702 ZZAUTOTEST S5R11b Staff Names .. ZZS5SN ZZWOB179201902900 content_copy 0% Admin ShopView ZZAUTOTEST Staffname Ana 2 $608.95 Today - 1 day 5 0",
+  "fields": [
+   "technician=true",
+   "company_name=true",
+   "vehicle=true",
+   "vin=false",
+   "progress=true",
+   "service_advisor=false",
+   "clocked_in_technicians=false",
+   "lines_count=false",
+   "line_technicians=false",
+   "time_estimate=true",
+   "total_price=true",
+   "vehicle_here=false",
+   "start_date=false"
+  ],
+  "step7": "S2-35702 Approved more_horiz Customer ZZAUTOTEST S5R11b Staff Names 10142259 ZZS5SN Estimated hours Est. 3.5 hrs Progress 0% Line technicians ZS ZS Lead technician ZZAUTOTEST Staffname Ana Total price $608.95",
+  "step8": [
+   "ZZAUTOTEST Staffname Ben",
+   "ZZAUTOTEST Staffname Ana",
+   "ZZAUTOTEST Staffname Ana",
+   "ZZAUTOTEST Staffname Ana"
+  ],
+  "step9": "ZZAUTOTEST Staffname Ana",
+  "step11": null
+ },
+ "C581896": {
+  "step4": "Board View",
+  "step6": {
+   "display": "List",
+   "chip": "Status: Imported keyboard_arrow_down cancel",
+   "rows": [
+    "- Imported — ZZAUTOTEST-IMP-001 4 Star Truck Repair Hyundai ",
+    "- Imported — ZZAUTOTEST-IMP-002 4 Star Truck Repair Hyundai ",
+    "- Imported — ZZAUTOTEST-IMP-21007 ZZAUTOTEST Imported Lead 1"
+   ]
+  },
+  "step7": {
+   "disabled": true,
+   "tooltip": [
+    "Not available while Imported is selected."
+   ]
+  },
+  "step8": {
+   "disabled": true,
+   "tooltip": [
+    "Not available while Imported is selected."
+   ]
+  },
+  "step11": "Board View",
+  "step13": "List",
+  "step16": {
+   "display": "List",
+   "chip": "Status: Imported keyboard_arrow_down cancel",
+   "rows": [
+    "- Imported — ZZAUTOTEST-IMP-001 4 Star Truck Repair Hyundai ",
+    "- Imported — ZZAUTOTEST-IMP-002 4 Star Truck Repair Hyundai ",
+    "- Imported — ZZAUTOTEST-IMP-21007 ZZAUTOTEST Imported Lead 1"
+   ],
+   "boardGreyed": true,
+   "techGreyed": true
+  }
+ },
+ "startState": {
+  "found": {
+   "saved": {
+    "status": 200,
+    "display": "board_view",
+    "collapsedGroups": [
+     "unassigned"
+    ],
+    "pinned": [
+     "3ff0914b"
+    ],
+    "filters": [],
+    "density": "compact",
+    "tab": "all"
+   },
+   "screen": {
+    "switcher": 3,
+    "active": "Board View"
+   }
+  },
+  "savedAfter": {
+   "status": 200,
+   "display": "board_view",
+   "collapsedGroups": [
+    "unassigned"
+   ],
+   "pinned": [
+    "3ff0914b"
+   ],
+   "filters": [],
+   "density": "compact",
+   "tab": "all"
+  }
+ }
+}
