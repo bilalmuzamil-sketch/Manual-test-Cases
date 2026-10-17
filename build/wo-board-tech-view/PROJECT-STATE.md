@@ -223,3 +223,9 @@ for the QA lead (C96916, C96920, C96973, C97003). 17 were covered by nothing and
 - **16 Oct 2026, QA lead: "you have my YES for automated tests"** — go-ahead (Rule 71) to run, and where a test's own steps or
   preconditions need it, to update the cases TestRail flags as Automated in run 498. The Expected field is still never changed
   (Rule 114) and Vladimir's cases (created_by 1) are still never touched (Rule 38). Every change to an Automated case is told to Vlad (Rule 65).
+
+### 2026-10-17 — full staging run (build v26.40.19-1493c63): two tickets now pass
+- **SV-11317** (Tech View's starting columns) — C96927 Failed 16 Oct, **Passed 17 Oct**; ticket status TESTING STAGE (read live 17 Oct). Defaults now: Assigned Techs on, VIN/Serial # and Lead Technician off, On Site in the menu (off).
+- **SV-11420** (text sizes per density) — C96990 Failed earlier, **Passed 17 Oct**; ticket TESTING STAGE. Row/card text 14 px at Compact/Regular/Comfortable, header labels and percentage 12 px. Avatar initials scale with the avatar (8/9.6/12.8 px) — not covered by S6-R4, not counted.
+- Still failing on this build: SV-11393 (lead list stops ~100 names; OBSOLETE) — C368169, C368173; SV-11101 (A-to-Z order; OBSOLETE) — C96929. Both go to the QA lead as reopen questions.
+- Script faults found while judging go to fix-up 2 (`C-fix2` lines in `run498-2026-10-08/fixup-1017.txt`), run after the main queue.
