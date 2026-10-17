@@ -695,3 +695,6 @@ Run 498 C614711: the "Deleted technician" column was column 279 of 280; a held c
   the TOP), `C614711-r4.mts` (board scrolled to its END: the last column and the sticky Unassigned are both on screen). Each copies the
   proven prologue of its parent script byte-for-byte and writes its own `<name>-<ONLY>.json`, so two ONLY runs never overwrite each other.
   #wo-board #scripts #status-pill → L0409, L0430
+
+## L0432 — 2026-10-17 — A script that "fixes" a step behind the screen can hide the very finding the case exists for
+Run 498 round 3: two scripts quietly finished a step the screen did not complete — C614714 switched Time Clock off by API after Save & Close left the Edit Staff Member window open; C368131 removed Theresa's enrolment by API after changing her Location on screen left her still offered at Heavy Duty. Both cases then "matched", but the step they changed is exactly where a product fault (or a case gap) would show. Rule: a behind-the-screen fallback is allowed ONLY to build a precondition (Rule 107/14), never to complete a step the case tells the user to do on screen; when the screen does not do what the step says, RECORD that as the reading (with a positive control on another record to separate script fault from product), and judge it — never paper over it.
