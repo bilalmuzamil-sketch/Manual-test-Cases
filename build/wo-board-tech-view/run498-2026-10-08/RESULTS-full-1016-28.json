@@ -1,0 +1,89 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 28 = queue steps 77-81 (new cases)"
+ },
+ "results": {
+  "C614714": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 2 through the screen.",
+    "Set-up: ZZAUTOTEST N1 Tim 25901 (Technician, Time Clock on) leads S2-37035; S2-37036 has no lead; customer ZZAUTOTEST N1 Time Clock Off 25901.",
+    "Steps 1 and 2: Tim's staff record opened and Time Clock was switched off, but the script could not save it through the window, so it made the same change behind the screen (read back: Time Clock off).",
+    "Step 4: Board View still shows Tim's own column holding S2-37035.",
+    "Step 5: dropping S2-37036 on Tim's column was refused: S2-37036 stayed in Unassigned, Tim's column still holds only S2-37035, and no message showed. (A drop on another technician's column in the same run was accepted, so the drag itself worked.)",
+    "Steps 6 to 8 were not done through the screens: the script did not find Tim's Tech View group (it is far down the list) and did not open S2-37035's page; it cleared the lead behind the screen instead (the page then read Lead technician Unassigned).",
+    "Steps 9 and 10: after that, Board View has no column and Tech View no group for Tim."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614714-1-drop-refused.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614714-2-script-save.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run steps 1-2 and 6-8 through the screens (script fix: save the staff record with Save & Close, scroll Tech View to Tim's group, open the work order from its row and set the lead there)."
+  },
+  "C614715": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 5.",
+    "Step 1: the screen was switched to a new location with no work orders at all, \"ZZAUTOTEST C614715 Empty Location\" (top bar read back; it holds 0 work orders).",
+    "Step 2: Tech View shows, instead of groups, a clipboard icon in a grey circle, \"No work orders yet\", \"Create a work order and assign a technician to see it here.\" and a Create Work Order button.",
+    "Step 3: Board View shows the same first-run state instead of columns.",
+    "Step 4: the empty state's Create Work Order button opens the New Work Order window (Customer, Asset, Asset Here?, Save). The script did not compare it with the page's own button.",
+    "Steps 5 and 6 were not done: closing the window brings up \"Are you sure you want to close this dialog?\", and the script left that open, so the first-run state after closing and List's empty page were not seen."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614715-1-first-run.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614715-2-script-confirm.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run steps 4 to 6 (script fix: press Close in the confirmation; open the page's own Create Work Order window to compare)."
+  },
+  "C614716": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (window 1440 px wide).",
+    "Step 1: the Density tooltip opens above the density button and does not cover the column header row.",
+    "Steps 2 and 3: the density menu opens with no tooltip showing; Escape closes it.",
+    "Steps 4 to 6: the Column Selection tooltip opens above its button; the column menu opens with no tooltip showing; Escape closes it.",
+    "Step 7: the switcher's Tech View tooltip opens above it the same way (all three sit 8 px above their buttons)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614716-1-density-tooltip.png"
+   ],
+   "ticket": null
+  },
+  "C614717": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 1.",
+    "Set-up: S2-37038 led by ZZAUTOTEST N4 Ana, with five approved lines for Ben, Cal, Dee, Eve and Fay; Line technicians turned on in Board View.",
+    "Steps 1 and 2 were not done: the Assigned Techs cell is off screen to the right in Tech View, so the hover produced nothing (the script itself marks these readings void).",
+    "Steps 3 and 7: Technician-A's group header and column header avatars carry the browser's plain name tip \"ZZAUTOTEST N4 Ana\" and no bubble.",
+    "Step 5: on the card, a dark name bubble opens above the avatars, but it reads \"ZZAUTOTEST N4 Cal\": the pointer was on the third avatar, not on Technician-A's.",
+    "Step 6: the \"+2\" bubble opens above it and lists the remaining names: \"ZZAUTOTEST N4 Eve, ZZAUTOTEST N4 Fay\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614717-1-script-hover.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run steps 1, 2 and 5 with the Assigned Techs cell scrolled into view and the pointer on the first avatar itself (script fix)."
+  },
+  "C614719": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 1.",
+    "Set-up: S2-37039 (Technician-A) and S2-37040 (Technician-B) for Customer-A, S2-37041 with no lead for Customer-B.",
+    "The script ran on the Estimates tab (left there earlier), where these Approved work orders cannot show: both views read \"No work orders match the search\", so there was nothing to collapse and Tab went from the toolbar to the top menu.",
+    "Nothing was judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614719-1-script-tab.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run on the All tab (script fix: click All first)."
+  }
+ }
+}
