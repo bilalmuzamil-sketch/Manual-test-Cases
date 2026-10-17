@@ -6,210 +6,40 @@
   "cal": true,
   "dan": true
  },
- "C368193": {
-  "before": "ZZAUTOTEST Tab Clears Search",
-  "after": null,
-  "rows": 30,
-  "statuses": [
-   "Estimate",
-   "Estimate 3",
-   "Estimate 2"
-  ]
- },
- "C368194": {
-  "before": [
-   "daysOpen",
-   "false"
-  ],
-  "step4": true,
-  "step5": true,
-  "heads": [
-   "On Site",
-   "Status",
-   "Number",
-   "Customer",
-   "Asset",
-   "Unit",
-   "VIN/Serial #",
-   "Progress",
-   "Service Advisor",
-   "Lead Technician",
-   "Clocked In",
-   "Lines",
-   "Total Price",
-   "Created On",
-   "Days Open"
-  ]
- },
- "C368195": {
-  "userRole": "Technician",
-  "saved": {},
-  "heads": [
-   "On Site",
-   "Status",
-   "Number",
-   "Customer",
-   "Asset",
-   "Unit",
-   "VIN/Serial #",
-   "Progress",
-   "Service Advisor",
-   "Lead Technician",
-   "Clocked In",
-   "Lines",
-   "Created On"
-  ],
-  "menu": [
-   [
-    "unreceivedPartRequestsCount",
-    "false"
-   ],
-   [
-    "vehicle",
-    "true"
-   ],
-   [
-    "vin",
-    "true"
-   ],
-   [
-    "progress",
-    "true"
-   ],
-   [
-    "serviceAdvisor",
-    "true"
-   ],
-   [
-    "technician",
-    "true"
-   ],
-   [
-    "clockedInTechnicians",
-    "true"
-   ],
-   [
-    "linesCount",
-    "true"
-   ],
-   [
-    "startDate",
-    "true"
-   ],
-   [
-    "invoicedDate",
-    "false"
-   ],
-   [
-    "daysOpen",
-    "false"
-   ],
-   [
-    "partRequestsCount",
-    "false"
-   ],
-   [
-    "partReturnRequestsCount",
-    "false"
-   ]
-  ]
- },
- "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
- "C368198": {
-  "x": "S2-36969",
-  "y": "S2-36970",
-  "rows": [
-   "S2-36970",
-   "S2-36969",
-   "S2-36114",
-   "S2-36113",
-   "S2-35896",
-   "S2-35895",
-   "S2-35680",
-   "S2-35679"
-  ],
-  "yAboveX": true,
-  "heads": [
-   "On Site",
-   "Status",
-   "Number",
-   "Customer",
-   "Asset",
-   "Unit",
-   "VIN/Serial #",
-   "Progress",
-   "Service Advisor",
-   "Lead Technician",
-   "Clocked In",
-   "Lines",
-   "Total Price",
-   "Created On",
-   "Invoiced Date",
-   "Days Open"
-  ],
-  "rowsWithDates": [
-   {
-    "number": "S2-36970",
-    "status": "Invoiced",
-    "invoicedDate": "Today",
-    "customer": "ZZAUTOTEST Invoice Order 65015.."
-   },
-   {
-    "number": "S2-36969",
-    "status": "Invoiced",
-    "invoicedDate": "Today",
-    "customer": "ZZAUTOTEST Invoice Order 65015.."
-   },
-   {
-    "number": "S2-36114",
-    "status": "Invoiced",
-    "invoicedDate": "2 days ago",
-    "customer": "ZZAUTOTEST Invoice Order 59138.."
-   },
-   {
-    "number": "S2-36113",
-    "status": "Invoiced",
-    "invoicedDate": "2 days ago",
-    "customer": "ZZAUTOTEST Invoice Order 59138.."
-   },
-   {
-    "number": "S2-35896",
-    "status": "Invoiced",
-    "invoicedDate": "2 days ago",
-    "customer": "ZZAUTOTEST Invoice Order 12613.."
-   },
-   {
-    "number": "S2-35895",
-    "status": "Invoiced",
-    "invoicedDate": "2 days ago",
-    "customer": "ZZAUTOTEST Invoice Order 12613.."
-   },
-   {
-    "number": "S2-35680",
-    "status": "Invoiced",
-    "invoicedDate": "2 days ago",
-    "customer": "ZZAUTOTEST Invoice Order 17406.."
-   },
-   {
-    "number": "S2-35679",
-    "status": "Invoiced",
-    "invoicedDate": "2 days ago",
-    "customer": "ZZAUTOTEST Invoice Order 17406.."
-   }
-  ],
-  "statusChip": "Status: Invoiced keyboard_arrow_down cancel"
- },
- "C368199": {
-  "active": "Completed",
-  "statuses": [
-   "Complete",
-   "Complete 1 3"
-  ],
-  "toasts": [],
-  "apiErrors": []
- },
  "C368200": {
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('tbody tr').filter({ hasText: 'S2-36971' }).locator('[data-test-id=\"button_vehicle_here_toggle\"]').first()\n"
+  "before": "0",
+  "url": "/workorders?search=ZZAUTOTEST+Row+Toggle+56580",
+  "after": "1",
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Staging Heavy Duty - 9919"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Staging Heavy Duty - 9919",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Staging Heavy Duty - 9919"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Staging Heavy Duty - 9919",
+    "locationTries": []
+   }
+  }
  },
  "C368201": {
   "requireReview": {
@@ -218,177 +48,51 @@
    "after": true
   },
   "line": "Service - Full grease service",
-  "wo": "S2-36972",
+  "wo": "S2-37070",
+  "opened": "/workorders/58b17e61-f9c3-44df-82a3-63fa6b3e1a39/lines",
+  "dialog": "Missing Details close S2-37070 · ZZAUTOTEST Contact Mileage Cancel Complete All Lines",
+  "click0": "Complete All Lines",
+  "toasts": [
+   "Work order sent to review."
+  ],
+  "status": "ready_for_review",
+  "pageStatus": "Review",
+  "backUrl": "/workorders?search=ZZAUTOTEST+Back+Status+56580",
+  "rowStatus": "Ready For Review",
   "requireReviewBack": {
    "before": true,
    "save": "200",
    "after": false
   },
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('tbody tr').filter({ hasText: 'S2-36972' }).locator('td').nth(2)\n"
- },
- "C368203": {
-  "tab": "Estimates",
-  "assigned": "true",
-  "url": "/workorders?tab=estimate&assigned_to_me=1"
- },
- "C368205": {
-  "rowsBefore": 30,
-  "rowsAfter": 30,
-  "bottomBefore": null,
-  "bottomAfter": null,
-  "toasts": [],
-  "chip": "Asset on Site\nkeyboard_arrow_down",
-  "filter": "Yes No Clear selection",
-  "checked": 0
- },
- "C368206": {
-  "off": "200",
-  "heads": [
-   "On Site",
-   "Status",
-   "Number",
-   "Customer",
-   "Asset",
-   "Unit",
-   "VIN/Serial #",
-   "Progress",
-   "Service Advisor",
-   "Lead Technician",
-   "Clocked In",
-   "Lines",
-   "Created On"
-  ],
-  "menu": [
-   "unreceivedPartRequestsCount",
-   "vehicle",
-   "vin",
-   "progress",
-   "serviceAdvisor",
-   "technician",
-   "clockedInTechnicians",
-   "linesCount",
-   "startDate",
-   "invoicedDate",
-   "daysOpen",
-   "partRequestsCount",
-   "partReturnRequestsCount"
-  ],
-  "bottom": null,
-  "dollars": [],
-  "restore": "200"
- },
- "C368207": {
-  "createButton": 0,
-  "perms": 2
- },
- "C368208": {
-  "before": "0",
-  "disabled": true,
-  "state": {
-   "tag": "BUTTON",
-   "disabledProp": true,
-   "disabledAttr": true,
-   "ariaDisabled": null,
-   "tabindex": "0",
-   "buttonClass": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-negative q-btn--actionable q-focusable q-hoverable cursor-pointer transparent-btn opacity-25",
-   "cursor": "not-allowed",
-   "opacity": "0.6",
-   "pointerEvents": "auto",
-   "icon": "location_on",
-   "iconClass": "q-icon notranslate material-icons",
-   "iconColor": "rgb(193, 0, 21)",
-   "iconOpacity": "1"
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Staging Heavy Duty - 9919"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Staging Heavy Duty - 9919",
+    "locationTries": []
+   }
   },
-  "tooltip": [
-   "Asset not here. Click to toggle status."
-  ],
-  "reloadUrl": "/workorders",
-  "after": "0"
- },
- "C368209": {
-  "sortButton": 1,
-  "options": [
-   "Newest First",
-   "Oldest First",
-   "Customer A-Z",
-   "Customer Z-A"
-  ],
-  "ticked": [
-   "Customer A-Z"
-  ],
-  "cardCount": 30,
-  "cards": [
-   "ZZBREAK <b>bold</b> \"q\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders",
-   "ZZBREAK <b>bold</b> \"q\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders",
-   "ZZBREAK <b>bold</b> \"q\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders",
-   "4 Star Truck Repair",
-   "A & J Truck & Trailer Repair",
-   "Aberdeen Diesel Services LLC",
-   "Aberdeen Diesel Services LLC",
-   "Alicia's Truck & Trailer Repair",
-   "All American Truck & Trailer Repair",
-   "All American Truck & Trailer Repair",
-   "Andreasen Truck & Equipment Repair",
-   "Andrews' Truck & Trailer Repair LLC",
-   "Bravo Mechanical Services",
-   "Bravo Mechanical Services",
-   "C44596 1791201726902",
-   "C44596 1791201772720",
-   "C44596 1791201812647",
-   "C44596 1791202030348",
-   "C44596 1791204786068",
-   "C44596 1791209590703",
-   "C44596 1791305505349",
-   "C44596 1791361171885",
-   "C44596 1791370303102",
-   "C44596 1791370481669",
-   "C44596 1791374447506",
-   "C44596 1791374641107",
-   "C44596 1791374831350",
-   "C44596 1791379317013",
-   "C44596 1791379512660",
-   "C44596 1791383246600"
-  ],
-  "customersInOrder": [
-   "ZZBREAK <b>bold</b> \"q\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders",
-   "4 Star Truck Repair",
-   "A & J Truck & Trailer Repair",
-   "Aberdeen Diesel Services LLC",
-   "Alicia's Truck & Trailer Repair",
-   "All American Truck & Trailer Repair",
-   "Andreasen Truck & Equipment Repair",
-   "Andrews' Truck & Trailer Repair LLC",
-   "Bravo Mechanical Services",
-   "C44596 1791201726902",
-   "C44596 1791201772720",
-   "C44596 1791201812647",
-   "C44596 1791202030348",
-   "C44596 1791204786068",
-   "C44596 1791209590703"
-  ],
-  "aToZ": false
- },
- "C368210": {
-  "before": 30,
-  "after": 390,
-  "unique": true
- },
- "C368212": {
-  "toLeth": "200",
-  "back": "200",
-  "num": "S3-36974",
-  "heavyLoc2": false,
-  "heavyByNumber": false,
-  "enrolRunner": "400 [{\"error\":\"Staff is already enrolled in department\"}]",
-  "switched": "Staging Lethbridge - 4310",
-  "lethTopBar": "Staging Lethbridge - 4310",
-  "lethLoc2": false,
-  "backTopBar": "Staging Lethbridge - 4310",
-  "backApi": "200",
-  "backTopBarAfterApi": "Staging Lethbridge - 4310"
- },
- "C368214": {
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('tbody tr').filter({ hasText: 'S2-36975' }).locator('td').nth(2)\n"
- },
- "restored": true
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Staging Heavy Duty - 9919"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Staging Heavy Duty - 9919",
+    "locationTries": []
+   }
+  }
+ }
 }

@@ -18,133 +18,49 @@
   "current_shop_id"
  ],
  "C96975": {
-  "set": [
-   "ok",
-   "ok"
-  ],
-  "setList": "ok",
-  "secondKept": [
-   "user",
-   "fe_permissions_wrapper"
-  ],
-  "secondBrowser": {
-   "at": "Staging Heavy Duty - 9919",
-   "tech": [
-    "unreceived_part_requests_count",
-    "unit",
-    "vehicle",
-    "progress",
-    "clocked_in_technicians",
-    "lines_count",
-    "assigned_techs",
-    "start_date",
-    "total_price"
-   ],
-   "techHeads": [
-    "Status",
-    "Waiting On Parts",
-    "Number",
-    "Customer",
-    "Unit",
-    "Asset",
-    "Progress",
-    "Clocked In",
-    "Lines",
-    "Assigned Techs",
-    "Created On",
-    "Total Price"
-   ],
-   "list": [
+  "locationFound": "Staging Heavy Duty - 9919",
+  "foundList": {
+   "on": [
     "vehicle",
     "vin",
+    "progress",
     "serviceAdvisor",
     "technician",
     "clockedInTechnicians",
     "linesCount",
     "totalPrice",
     "startDate"
-   ]
-  }
- },
- "C96976": {
-  "pickerPlace": {
-   "techViewButton": {
-    "x": 1200,
-    "y": 86
-   },
-   "boardViewButton": {
-    "x": 1200,
-    "y": 86
-   },
-   "sameSpot": true,
-   "techItems": 17,
-   "boardItems": 13,
-   "boardKinds": [
-    "switch"
-   ]
-  },
-  "set": [
-   "ok",
-   "ok"
-  ],
-  "card": {
-   "number": "S2-35516",
-   "status": "Approved",
-   "unit": "ZZF2BF",
-   "field_vin": "VIN/serial VIN ZZWOB179200672011",
-   "field_lines_count": "Line count 0 lines",
-   "field_progress": "Progress 0%",
-   "field_total_price": "Total price $0.00"
-  },
-  "secondBrowser": {
-   "at": "Staging Heavy Duty - 9919",
-   "on": [
-    "vehicle",
-    "vin",
-    "progress",
-    "lines_count",
-    "total_price"
    ],
-   "card": {
-    "number": "S2-35516",
-    "status": "Approved",
-    "unit": "ZZF2BF",
-    "field_vin": "VIN/serial VIN ZZWOB179200672011",
-    "field_lines_count": "Line count 0 lines",
-    "field_progress": "Progress 0%",
-    "field_total_price": "Total price $0.00"
-   }
-  }
- },
- "C96983": {
-  "controlSaves": [
-   "PUT {\"value\":{\"tab\":\"all\",\"filters\":{},\"columns\":{\"unreceivedPartRequestsCount\":false,\"vehicle\":true,\"vin\":true,\"progres"
-  ],
-  "before": [
-   "vehicle",
-   "vin",
-   "progress",
-   "lines_count",
-   "total_price"
-  ],
-  "failBoard": [
-   "technician",
-   "company_name",
-   "vehicle",
-   "progress",
-   "total_price"
-  ],
-  "change": "ok",
-  "failBoardAfterChange": [
-   "technician",
-   "company_name",
-   "vehicle",
-   "progress",
-   "total_price",
-   "vehicle_here"
-  ],
-  "failTech": {
-   "menuOn": [
+   "labelsOn": [
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total price",
+    "Created on"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On"
+   ]
+  },
+  "foundTech": {
+   "on": [
     "unreceived_part_requests_count",
     "unit",
     "vehicle",
@@ -155,6 +71,18 @@
     "assigned_techs",
     "start_date",
     "total_price"
+   ],
+   "labelsOn": [
+    "Waiting On Parts",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Service Advisor",
+    "Clocked In",
+    "Lines",
+    "Assigned Techs",
+    "Created on",
+    "Total price"
    ],
    "heads": [
     "Status",
@@ -172,20 +100,323 @@
     "Total Price"
    ]
   },
-  "savesDuringFailure": [
-   "PATCH {\"value\":{\"display\":\"board_view\"}}",
-   "PUT {\"value\":{\"tab\":\"all\",\"filters\":{},\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":false,\"progress\":false,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"totalPrice\":true,\"invoicedDate\":false,\"s",
-   "PATCH {\"value\":{\"display\":\"tech_view\"}}",
-   "PATCH {\"value\":{\"display\":\"board_view\"}}"
+  "setup": [
+   "service_advisor=on ok",
+   "progress=on ok",
+   "assigned_techs=on ok",
+   "serviceAdvisor=on ok",
+   "progress=on ok"
   ],
-  "afterReload": [
-   "vehicle",
-   "vin",
-   "progress",
-   "lines_count",
-   "total_price",
-   "vehicle_here"
-  ]
+  "step3": {
+   "on": [
+    "vehicle",
+    "vin",
+    "progress",
+    "serviceAdvisor",
+    "technician",
+    "clockedInTechnicians",
+    "linesCount",
+    "totalPrice",
+    "startDate"
+   ],
+   "labelsOn": [
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total price",
+    "Created on"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On"
+   ]
+  },
+  "step7": "service_advisor=off ok",
+  "step8": "assigned_techs=off ok",
+  "techAfter8": {
+   "on": [
+    "unreceived_part_requests_count",
+    "unit",
+    "vehicle",
+    "progress",
+    "clocked_in_technicians",
+    "lines_count",
+    "start_date",
+    "total_price"
+   ],
+   "labelsOn": [
+    "Waiting On Parts",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Clocked In",
+    "Lines",
+    "Created on",
+    "Total price"
+   ],
+   "heads": [
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Clocked In",
+    "Lines",
+    "Created On",
+    "Total Price"
+   ]
+  },
+  "step11": {
+   "on": [
+    "vehicle",
+    "vin",
+    "progress",
+    "serviceAdvisor",
+    "technician",
+    "clockedInTechnicians",
+    "linesCount",
+    "totalPrice",
+    "startDate"
+   ],
+   "labelsOn": [
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total price",
+    "Created on"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On"
+   ],
+   "serviceAdvisorShown": true,
+   "assignedTechsShown": false
+  },
+  "step13": "progress=off ok",
+  "step15": {
+   "on": [
+    "unreceived_part_requests_count",
+    "unit",
+    "vehicle",
+    "progress",
+    "clocked_in_technicians",
+    "lines_count",
+    "start_date",
+    "total_price"
+   ],
+   "labelsOn": [
+    "Waiting On Parts",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Clocked In",
+    "Lines",
+    "Created on",
+    "Total price"
+   ],
+   "heads": [
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Clocked In",
+    "Lines",
+    "Created On",
+    "Total Price"
+   ],
+   "progressShown": true
+  },
+  "steps16to18": "not done: logging out ends the one shared staging sign-in (L0394); fresh page load read instead",
+  "step18reload": {
+   "tech": {
+    "on": [
+     "unreceived_part_requests_count",
+     "unit",
+     "vehicle",
+     "progress",
+     "clocked_in_technicians",
+     "lines_count",
+     "start_date",
+     "total_price"
+    ],
+    "labelsOn": [
+     "Waiting On Parts",
+     "Unit",
+     "Asset",
+     "Progress",
+     "Clocked In",
+     "Lines",
+     "Created on",
+     "Total price"
+    ],
+    "heads": [
+     "Status",
+     "Waiting On Parts",
+     "Number",
+     "Customer",
+     "Unit",
+     "Asset",
+     "Progress",
+     "Clocked In",
+     "Lines",
+     "Created On",
+     "Total Price"
+    ]
+   },
+   "list": {
+    "on": [
+     "vehicle",
+     "vin",
+     "serviceAdvisor",
+     "technician",
+     "clockedInTechnicians",
+     "linesCount",
+     "totalPrice",
+     "startDate"
+    ],
+    "labelsOn": [
+     "Asset",
+     "VIN/Serial #",
+     "Service Advisor",
+     "Lead Technician",
+     "Clocked In",
+     "Lines",
+     "Total price",
+     "Created on"
+    ],
+    "heads": [
+     "On Site",
+     "Status",
+     "Number",
+     "Customer",
+     "Asset",
+     "Unit",
+     "VIN/Serial #",
+     "Service Advisor",
+     "Lead Technician",
+     "Clocked In",
+     "Lines",
+     "Total Price",
+     "Created On"
+    ]
+   }
+  },
+  "secondKept": [
+   "user",
+   "fe_permissions_wrapper"
+  ],
+  "secondBrowser": {
+   "at": "Staging Heavy Duty - 9919",
+   "tech": {
+    "on": [
+     "unreceived_part_requests_count",
+     "unit",
+     "vehicle",
+     "progress",
+     "clocked_in_technicians",
+     "lines_count",
+     "start_date",
+     "total_price"
+    ],
+    "labelsOn": [
+     "Waiting On Parts",
+     "Unit",
+     "Asset",
+     "Progress",
+     "Clocked In",
+     "Lines",
+     "Created on",
+     "Total price"
+    ],
+    "heads": [
+     "Status",
+     "Waiting On Parts",
+     "Number",
+     "Customer",
+     "Unit",
+     "Asset",
+     "Progress",
+     "Clocked In",
+     "Lines",
+     "Created On",
+     "Total Price"
+    ]
+   },
+   "list": {
+    "on": [
+     "vehicle",
+     "vin",
+     "serviceAdvisor",
+     "technician",
+     "clockedInTechnicians",
+     "linesCount",
+     "totalPrice",
+     "startDate"
+    ],
+    "labelsOn": [
+     "Asset",
+     "VIN/Serial #",
+     "Service Advisor",
+     "Lead Technician",
+     "Clocked In",
+     "Lines",
+     "Total price",
+     "Created on"
+    ],
+    "heads": [
+     "On Site",
+     "Status",
+     "Number",
+     "Customer",
+     "Asset",
+     "Unit",
+     "VIN/Serial #",
+     "Service Advisor",
+     "Lead Technician",
+     "Clocked In",
+     "Lines",
+     "Total Price",
+     "Created On"
+    ]
+   }
+  }
  },
  "loc2": {
   "runnerDeps": [
@@ -233,7 +464,6 @@
    "progress",
    "clocked_in_technicians",
    "lines_count",
-   "assigned_techs",
    "start_date",
    "total_price"
   ],
@@ -247,17 +477,14 @@
    "Progress",
    "Clocked In",
    "Lines",
-   "Assigned Techs",
    "Created On",
    "Total Price"
   ],
   "board": [
    "vehicle",
-   "vin",
    "progress",
    "lines_count",
-   "total_price",
-   "vehicle_here"
+   "total_price"
   ],
   "list": [
    "vehicle",
@@ -269,7 +496,10 @@
    "totalPrice",
    "startDate"
   ],
-  "back": "Staging Lethbridge - 4310"
+  "back": "Staging Lethbridge - 4310",
+  "backReadBack": "Staging Lethbridge - 4310",
+  "backRetry0": "Staging Lethbridge - 4310",
+  "backRetry1": "Staging Lethbridge - 4310"
  },
  "restored": true
 }
