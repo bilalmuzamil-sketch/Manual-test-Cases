@@ -296,16 +296,25 @@ await run('C368127', async () => {
     const savedCollapsed = async () => ((await api(pg).get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {}).collapsedGroups ?? null;
     R.C368127.beforeClick = await stickyState(); R.C368127.savedBeforeClick = await savedCollapsed();
     console.log(t(), 'START STATE found C368127 step 7', JSON.stringify({ sticky: R.C368127.beforeClick, saved: R.C368127.savedBeforeClick }));
-    const icon = pg.locator('.tech-view__sticky .tech-view-group-header__icon').first(); const head = pg.locator('.tech-view__sticky .tech-view-group-header').first();
-    R.C368127.stickyArrow = { icon: await icon.count(), header: await head.count(), readsUnassigned: /Unassigned/i.test(String(R.C368127.beforeClick.text)) };
+    // FIX-UP 2c (17 Oct 2026, last automated try): .tech-view-group-header__icon is the PERSON icon (x 89 on the 17 Oct picture); the
+    // collapse arrow is the chevron LEFT of it (about x 60). Every icon in the held header is now logged (tag, data-icon / text, aria-label,
+    // box) so a person can see exactly what to click, the arrow is taken by its icon (data-icon chevron / expand / arrow, or the material
+    // words expand_more / expand_less / arrow_drop_down / chevron_right), the element under its centre is checked, and its centre clicked.
+    const icons = await pg.evaluate(`(() => { const s = document.querySelector('.tech-view__sticky'); if (!s) return null; document.querySelectorAll('[data-zz-arrow]').forEach(e => e.removeAttribute('data-zz-arrow'));
+      const all = [...s.querySelectorAll('svg, i, .q-icon, button, [role=button]')].filter(e => e.getBoundingClientRect().width > 0);
+      const list = all.map(e => { const b = e.getBoundingClientRect(); return { tag: e.tagName.toLowerCase(), icon: e.getAttribute('data-icon') || (e.tagName === 'I' || e.classList.contains('q-icon') ? (e.textContent || '').trim() : ''), aria: e.getAttribute('aria-label') || (e.closest('[aria-label]') || {}).getAttribute?.('aria-label') || null, tid: e.getAttribute('data-test-id') || (e.closest('[data-test-id]') || {}).getAttribute?.('data-test-id') || null, x: Math.round(b.x), y: Math.round(b.y), w: Math.round(b.width), h: Math.round(b.height) }; });
+      const rx = /chevron|expand|collapse|arrow_drop|arrow-down|caret/i;
+      let arrow = all.find(e => rx.test(e.getAttribute('data-icon') || '') || rx.test((e.tagName === 'I' || e.classList.contains('q-icon')) ? (e.textContent || '') : '') || rx.test(e.getAttribute('aria-label') || ''));
+      if (!arrow) arrow = all.filter(e => e.tagName.toLowerCase() === 'svg').sort((p1, p2) => p1.getBoundingClientRect().x - p2.getBoundingClientRect().x)[0];
+      let pick = null; if (arrow) { const b = arrow.getBoundingClientRect(); arrow.setAttribute('data-zz-arrow', '1'); const cx = b.x + b.width / 2, cy = b.y + b.height / 2; const at = document.elementFromPoint(cx, cy); pick = { icon: arrow.getAttribute('data-icon') || (arrow.textContent || '').trim(), cx: Math.round(cx), cy: Math.round(cy), under: at ? at.tagName.toLowerCase() + '.' + String(at.getAttribute('class') || '').slice(0, 40) : null, onArrow: !!at && (at === arrow || arrow.contains(at) || at.contains(arrow)) }; }
+      return { icons: list, arrow: pick }; })()`).catch((e) => ({ error: String(e).slice(0, 100) })) as any;
+    R.C368127.headerIcons = icons?.icons ?? icons; R.C368127.stickyArrow = { arrow: icons?.arrow ?? null, readsUnassigned: /Unassigned/i.test(String(R.C368127.beforeClick.text)) };
+    console.log(t(), 'C368127 held header icons', JSON.stringify(icons));
     await shot(pg, 'C368127-before-arrow');
-    if (R.C368127.stickyArrow.icon) { await icon.click({ timeout: 8000 }).catch((e) => { R.C368127.stickyArrow.iconClickError = String(e?.message || e).slice(0, 120); }); R.C368127.stickyArrow.clicked = 'sticky header arrow icon'; }
-    else if (R.C368127.stickyArrow.header) { await head.click({ timeout: 8000 }).catch(() => {}); R.C368127.stickyArrow.clicked = 'sticky header row'; }
+    if (icons?.arrow) { await pg.mouse.move(icons.arrow.cx, icons.arrow.cy); await pg.waitForTimeout(400); await pg.mouse.click(icons.arrow.cx, icons.arrow.cy); R.C368127.stickyArrow.clicked = `the ${icons.arrow.icon || 'leftmost'} icon's centre (${icons.arrow.cx}, ${icons.arrow.cy})`; }
+    else R.C368127.stickyArrow.clicked = 'no icon found in the held header';
     await pg.waitForTimeout(2500);
-    R.C368127.afterClickInPlace = { ...(await stickyState()), saved: await savedCollapsed() }; await shot(pg, 'C368127-after-arrow-in-place');
-    if (!(JSON.stringify(R.C368127.afterClickInPlace.saved ?? []).includes('unassigned')) && R.C368127.stickyArrow.header && R.C368127.stickyArrow.clicked !== 'sticky header row') {
-      // the icon click changed nothing saved: try the copy's header row itself once, and say so
-      await head.click({ timeout: 8000 }).catch(() => {}); await pg.waitForTimeout(2500); R.C368127.stickyArrow.secondTry = 'sticky header row'; R.C368127.afterSecondTry = { ...(await stickyState()), saved: await savedCollapsed() }; await shot(pg, 'C368127-after-header-row'); }
+    R.C368127.afterClickInPlace = { ...(await stickyState()), saved: await savedCollapsed(), groupCollapsedNow: await pg.evaluate(`(document.querySelector('[data-test-id="tech_view_group_unassigned"]') || {}).getAttribute?.('data-collapsed') ?? 'group row not drawn'`).catch(() => null) }; await shot(pg, 'C368127-after-arrow-in-place');
     R.C368127.scrolledBackUp = (R.C368127.afterSecondTry ?? R.C368127.afterClickInPlace).scrollTop !== null && (R.C368127.afterSecondTry ?? R.C368127.afterClickInPlace).scrollTop < 100;
     await pg.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await pg.waitForTimeout(1500);
     R.C368127.afterClick = { collapsed: (await u())?.collapsed ?? 'group row not drawn', savedCollapsed: await savedCollapsed() };

@@ -177,18 +177,30 @@ await run('C368246', async () => { const o: any = { cards: [] };
   else { const logo = p.locator('a[href$="/dashboard"], [data-test-id*="logo" i] a, [data-test-id*="logo" i], header a').first(); o.logo = await logo.count(); if (o.logo) { await logo.click().catch(() => {}); await p.waitForTimeout(7000); } }
   o.logoOpened = p.url().replace(APP, ''); if (!/\/dashboard/.test(p.url())) { await p.goto(APP + '/dashboard', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); }
   o.url = p.url().replace(APP, ''); o.toastsStart = await toasts();
-  const vdSel = 'button, a, .q-btn, [role=button]'; const vdRx = /^\s*View details\s*$/i;
-  const titles = await p.evaluate(`[...document.querySelectorAll('button, a, .q-btn, [role=button]')].filter(e => /^\\s*View details\\s*$/i.test(e.innerText || '') && e.getBoundingClientRect().width > 0).map(e => { const c = e.closest('.q-card') || e.parentElement?.parentElement; return c ? (c.innerText.split('\\n').map(x => x.trim()).filter(Boolean)[0] || '').slice(0, 60) : null; })`).catch(() => []) as string[];
-  o.viewDetails = titles.length; o.cardTitles = titles; await shot(p, 'C368246-dashboard');
-  console.log(t(), 'START STATE found C368246', JSON.stringify({ url: o.url, viewDetails: o.viewDetails, cards: titles }));
-  for (let i = 0; i < Math.min(titles.length, 10); i++) { const c: any = { title: titles[i] };
+  // FIX-UP 2c (17 Oct 2026, last automated try): the 17 Oct picture shows "View details ⌄" under every card, but 0 were found — the
+  // control's text carries its icon word ("View details expand_more"), so an exact-text match missed it, and the cards are not .q-card.
+  // Now: every card is DUMPED first (its visible text, every button/link with text, aria-label and role) with a picture, so a person can
+  // see exactly what to click; the "View details" controls are found by text CONTAINING "View details", climbed to their clickable element
+  // and their card, and MARKED (data-zz-vd / data-zz-card = n); each is clicked by its mark and the card (or a window, if one opens) read.
+  const marked = await p.evaluate(`(() => { document.querySelectorAll('[data-zz-vd],[data-zz-card]').forEach(e => { e.removeAttribute('data-zz-vd'); e.removeAttribute('data-zz-card'); });
+    const vis = (e) => e.getBoundingClientRect().width > 0; const leafs = [...document.querySelectorAll('main *, .q-page *')].filter(e => vis(e) && /View details/i.test(e.textContent || '') && ![...e.children].some(c => /View details/i.test(c.textContent || '')));
+    const out = []; leafs.forEach((l, i) => { const ctl = l.closest('button, a, [role=button], .q-btn, .cursor-pointer') || l; let card = ctl.parentElement; while (card && card.getBoundingClientRect().height < 150) card = card.parentElement;
+      ctl.setAttribute('data-zz-vd', String(i)); if (card) card.setAttribute('data-zz-card', String(i));
+      out.push({ i, control: { tag: ctl.tagName.toLowerCase(), text: (ctl.innerText || '').replace(/\\s+/g, ' ').trim(), role: ctl.getAttribute('role'), aria: ctl.getAttribute('aria-label') }, title: card ? (card.innerText.split('\\n').map(x => x.trim()).filter(Boolean)[0] || '').slice(0, 50) : null,
+        cardText: card ? card.innerText.replace(/\\s+/g, ' ').trim().slice(0, 200) : null, cardControls: card ? [...card.querySelectorAll('button, a, [role=button], .q-btn')].filter(vis).map(b => ({ text: (b.innerText || '').replace(/\\s+/g, ' ').trim().slice(0, 30), aria: b.getAttribute('aria-label'), role: b.getAttribute('role'), tag: b.tagName.toLowerCase() })).slice(0, 8) : [] }); });
+    return out; })()`).catch((e) => [{ error: String(e).slice(0, 100) }]) as any[];
+  const titles = marked.map((x: any) => x.title); o.viewDetails = marked.length; o.cardsDump = marked; o.cardTitles = titles; await shot(p, 'C368246-dashboard');
+  console.log(t(), 'START STATE found C368246', JSON.stringify({ url: o.url, viewDetails: o.viewDetails, cards: marked.map((x: any) => ({ title: x.title, control: x.control, controls: x.cardControls })) }));
+  for (let i = 0; i < Math.min(marked.length, 10); i++) { const c: any = { title: titles[i] };
     try {
       if (!/\/dashboard/.test(p.url())) { await p.goto(APP + '/dashboard', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); }
-      const b = p.locator(vdSel).filter({ hasText: vdRx }).filter({ visible: true }).nth(i); await b.scrollIntoViewIfNeeded().catch(() => {}); const url0 = p.url(); await b.click(); await p.waitForTimeout(5000);
-      const dlgOpen = await p.locator('.q-dialog').filter({ visible: true }).count(); c.opened = dlgOpen ? 'window' : (p.url() !== url0 ? `page ${p.url().replace(APP, '')}` : 'same page');
-      const root = dlgOpen ? p.locator('.q-dialog').filter({ visible: true }).last() : p.locator('main, .q-page').first();
+      let b = p.locator(`[data-zz-vd="${i}"]`).first(); if (!(await b.count())) { o.remarked = true; await p.evaluate(`(() => { const l = [...document.querySelectorAll('main *, .q-page *')].filter(e => e.getBoundingClientRect().width > 0 && /View details/i.test(e.textContent || '') && ![...e.children].some(c => /View details/i.test(c.textContent || '')))[${i}]; if (!l) return; const ctl = l.closest('button, a, [role=button], .q-btn, .cursor-pointer') || l; ctl.setAttribute('data-zz-vd', '${i}'); let card = ctl.parentElement; while (card && card.getBoundingClientRect().height < 150) card = card.parentElement; if (card) card.setAttribute('data-zz-card', '${i}'); })()`).catch(() => {}); b = p.locator(`[data-zz-vd="${i}"]`).first(); }
+      await b.scrollIntoViewIfNeeded().catch(() => {}); const url0 = p.url(); await b.click(); await p.waitForTimeout(5000);
+      const dlgOpen = await p.locator('.q-dialog').filter({ visible: true }).count(); c.opened = dlgOpen ? 'window' : (p.url() !== url0 ? `page ${p.url().replace(APP, '')}` : 'in the card');
+      const root = dlgOpen ? p.locator('.q-dialog').filter({ visible: true }).last() : (p.url() !== url0 ? p.locator('main, .q-page').first() : p.locator(`[data-zz-card="${i}"]`).first());
       const readT = async () => root.evaluate((el: any) => ({ heads: [...el.querySelectorAll('thead th')].map((h: any) => h.innerText.replace(/\s+/g, ' ').replace(/arrow_(up|down)ward|arrow_drop_(up|down)/g, '').trim()).filter(Boolean).slice(0, 10), rows: el.querySelectorAll('tbody tr').length, first: [...el.querySelectorAll('tbody tr')].slice(0, 4).map((r: any) => r.innerText.replace(/\s+/g, ' ').slice(0, 90)), noData: /No data/i.test(el.innerText) })).catch(() => null);
       c.table = await readT();
+      c.textAfterOpen = (await root.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 300); c.roleRows = await root.evaluate((el: any) => el.querySelectorAll('[role=row], .q-tr').length).catch(() => null);   // fix-up 2c: what opened, for a person reading the log
       if (c.table && !c.table.rows && c.table.noData) { const rng = root.locator('button, .q-btn, .q-select').filter({ hasText: /This Month|Month|Week|Year|Days|Today/ }).first(); if (await rng.count()) { await rng.click(); await p.waitForTimeout(900); const opts = p.locator('.q-menu .q-item'); const n = await opts.count(); if (n) { c.ranges = (await opts.allInnerTexts()).map((x) => x.trim()).slice(0, 8); await opts.nth(n - 1).click(); await p.waitForTimeout(3500); c.tableWidened = await readT(); } } }
       const th = root.locator('thead th.sortable, thead th:has(i), thead th').first(); c.headers = await root.locator('thead th').count();
       if (c.headers && (c.tableWidened?.rows ?? c.table?.rows)) { const col = await th.evaluate((e: any) => Array.from(e.parentElement.children).indexOf(e)).catch(() => 0);
@@ -197,7 +209,7 @@ await run('C368246', async () => { const o: any = { cards: [] };
         c.sort = { header: (await th.innerText().catch(() => '')).replace(/\s+/g, ' ').trim(), before: v0, firstClick: v1, secondClick: v2, changed: JSON.stringify(v1) !== JSON.stringify(v2) || JSON.stringify(v0) !== JSON.stringify(v1) };
       } else c.sort = c.headers ? 'no rows to order' : 'no table headings found';
       c.toasts = await toasts(); await shot(p, `C368246-${i + 1}-${String(titles[i] || 'card').replace(/[^A-Za-z0-9]+/g, '-').slice(0, 30)}`);
-      if (dlgOpen) { await p.keyboard.press('Escape'); await p.waitForTimeout(1000); }
+      if (dlgOpen) { await p.keyboard.press('Escape'); await p.waitForTimeout(1000); } else if (c.opened === 'in the card') { c.rowsSeenInCard = c.table?.rows ?? null; }
     } catch (e: any) { c.error = String(e?.message || e).slice(0, 200); }
     o.cards.push(c); }
   // the cards that show a table straight on the dashboard (the 16 Oct reading), kept as a second reading

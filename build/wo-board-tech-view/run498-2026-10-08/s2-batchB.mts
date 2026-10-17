@@ -148,7 +148,21 @@ await run('C96936', async () => {
     // step 5: tab B, the work order page, Lead Technician = Ralph Edwards
     const pB = await p.context().newPage(); pB.setDefaultTimeout(20_000); o.step5 = {};
     try { await pB.goto(`${APP}/workorders/${w1.id}/lines`, { waitUntil: 'domcontentloaded' }); await pB.waitForTimeout(7000);
-      const sel = async () => (await pB.locator('[data-test-id="select_lead_technician"]').count()) ? pB.locator('[data-test-id="select_lead_technician"]').first() : pB.locator('.q-field').filter({ has: pB.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
+      // FIX-UP 2c (17 Oct 2026, last automated try): on 17 Oct no Lead Technician field was found in tab B within 20 s. Every candidate is now
+      // logged (test ids holding "lead", q-fields by label, the element reading "Lead Technician" and its clickable container) for up to
+      // 20 s, the best one is MARKED (select_lead_technician > a test id with "lead" that is not read-only > the labelled q-field > the
+      // clickable container next to the label), scrolled on screen and photographed; only then is the list opened from it.
+      let cand: any = null;
+      for (let i = 0; i < 20; i++) { cand = await pB.evaluate(`(() => { document.querySelectorAll('[data-zz-lead]').forEach(e => e.removeAttribute('data-zz-lead')); const vis = (e) => e && e.getBoundingClientRect().width > 0; const txt = (e) => (e.innerText || '').replace(/\\s+/g, ' ').trim().slice(0, 60);
+          const byTid = [...document.querySelectorAll('[data-test-id*="lead" i]')].filter(vis); const fields = [...document.querySelectorAll('.q-field')].filter(f => vis(f) && /Lead Tech/i.test(((f.querySelector('.q-field__label') || {}).textContent || '') + ' ' + (f.getAttribute('aria-label') || '')));
+          const lab = [...document.querySelectorAll('body *')].find(e => e.children.length === 0 && /^\\s*Lead Technician\\s*$/i.test(e.textContent || '') && vis(e)); let near = null; if (lab) { let c = lab.parentElement; for (let k = 0; k < 4 && c && !c.querySelector('.q-field, [role=combobox], [role=button], button, .cursor-pointer'); k++) c = c.parentElement; near = c ? (c.querySelector('.q-field, [role=combobox], [role=button], button, .cursor-pointer') || c) : null; }
+          const pick = document.querySelector('[data-test-id="select_lead_technician"]') || byTid.find(e => !/readonly/i.test(e.getAttribute('data-test-id'))) || fields[0] || near; if (pick && vis(pick)) pick.setAttribute('data-zz-lead', '1');
+          return { picked: pick ? (pick.getAttribute('data-test-id') || pick.className.toString().slice(0, 40)) : null, byTestId: byTid.map(e => e.getAttribute('data-test-id') + '=' + txt(e)), labelledFields: fields.map(txt), label: lab ? txt(lab) : null, nearLabel: near ? (near.getAttribute('data-test-id') || near.tagName) + '=' + txt(near) : null, url: location.pathname.slice(0, 60) }; })()`).catch((e) => ({ error: String(e).slice(0, 80) }));
+        if (cand?.picked) break; await pB.waitForTimeout(1000); }
+      o.step5.leadCandidates = cand; console.log(t(), 'C96936 tab B Lead Technician candidates', JSON.stringify(cand));
+      await pB.locator('[data-zz-lead="1"]').first().scrollIntoViewIfNeeded().catch(() => {}); await pB.waitForTimeout(500); await pB.screenshot({ path: path.join(EV, 'C96936-tabB-lead-field.png') }).catch(() => {});
+      const sel = async () => (await pB.locator('[data-zz-lead="1"]').count()) ? pB.locator('[data-zz-lead="1"]').first() : ((await pB.locator('[data-test-id="select_lead_technician"]').count()) ? pB.locator('[data-test-id="select_lead_technician"]').first() : pB.locator('.q-field').filter({ has: pB.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first());
+      if (!cand?.picked) throw new Error(`tab B: no Lead Technician control on the work order page after 20 s (candidates ${JSON.stringify(cand).slice(0, 300)}) — step 5 NOT done`);
       const pk = await pickTech(pB, async () => { await (await sel()).click(); }, 'C96936 tab B Lead Technician', { prefer: ['Ralph Edwards'], control: ['Esther Howard', 'Dana Ortiz'], exact: true });
       o.step5.list = { count: pk.list.count, first: pk.list.first, last: pk.list.last, offered: pk.list.offered, readingValid: pk.list.readingValid };
       if (pk.picked) o.step5.how = 'picked on the work order page in tab B';
