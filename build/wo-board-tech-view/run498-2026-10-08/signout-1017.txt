@@ -1,0 +1,13 @@
+# Run 498 END-OF-RUN SIGN-OUT BATCH (17 Oct 2026, L0425): the REAL log-out / log-in steps that earlier scripts had substituted with a fresh
+# browser (those cases were corrected to Blocked). Runs only after every fix-up round (after-signout-1017.sh). Same line format as
+# fixup-1017.txt: block|script|ONLY ids|extra env|mode|note. Each line: the case's state made, REAL Logout, REAL sign-in on the sign-in page
+# (Admin quick-login), the after-login expectation read. If signing back in fails the script exits 9 with an sso_required line, the runner
+# confirms with ensure-heavy and STOPS (the rest is not run). signout-fix.mts (C368240) stays LAST.
+B-setup|stg6-tz.mts|-|TZ_TARGET=Asia/Karachi|setup|Rule 125 guard (not a case): Heavy Duty zone = browser zone; exit 0 required
+S-signout|signout-1017.mts|C96989|-|ensure|C96989 step 3: density Comfortable set in Tech View, real log-out / log-in, Tech View density read
+S-signout|signout-1017.mts|C97005|-|ensure|C97005 step 8: Ana's group Charlie, Alpha, Bravo (fresh set, step 4 drag), real log-out / log-in, order read
+S-signout|signout-1017.mts|C96912|-|ensure|C96912 steps 2-5 and 7: Board View, real log-out / log-in, second browser real sign-in, User-B = Tech quick-login (never-changed check first)
+S-signout|signout-1017.mts|C96948|-|ensure|C96948 steps 6-7: Ralph Edwards and Jenny Wilson pinned, real log-out / log-in, second browser real sign-in
+S-signout|signout-1017.mts|C96928|-|ensure|C96928 steps 10-11: Ralph Edwards' group collapsed, real log-out / log-in, collapse read, expand
+S-signout|signout-1017.mts|C96975|-|ensure|C96975 steps 16-18: Tech View and List column choices made, real log-out / log-in, both read
+G-last|signout-fix.mts|C368240|-|ensure|C368240: signs the shared session out — ALWAYS LAST

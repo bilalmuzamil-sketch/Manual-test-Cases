@@ -10,7 +10,8 @@ import path from 'node:path';
 import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { api, candidates, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, toggleGroup, openReassign, toasts, shiftPrompt } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, toColumn, groups, toggleGroup, openReassign, toasts, shiftPrompt, pickLeadTyped } from './wob.mts';
+import { pickTech } from './fx6-1017.mts';
 import { staffRows, person } from './staff.mts';
 import { mkShift, shiftsOn, localTime } from './shifts.mts';
 import { findRow } from './wob.mts';
@@ -107,9 +108,14 @@ await run('C368135', async () => {
 
 await run('C368136', async () => {
   const n = 'ZZAUTOTEST F1 Prompt Where';
-  const [w] = await fresh(n, 'ZZF4PH'); await setLeadApi(w.id, ES.staff_id);
+  const [w] = await fresh(n, 'ZZF4PH');
+  // FIX-UP 2c (17 Oct 2026): the start state is read, then MADE the case's precondition (lead Esther Howard, her 8:00-12:00 whole-work-order
+  // shift tomorrow) and read back — the 16 Oct/17 Oct runs could leave the work order led by Ralph Edwards.
+  const found136 = { lead: (await lead(n))[w.number], shifts: await shiftsOn(a, w.id, names) }; console.log(t(), 'START STATE found C368136', JSON.stringify(found136));
+  await setLeadApi(w.id, ES.staff_id);
   if (!(await shiftsOn(a, w.id, names)).length) await mkShift(a, w.id, ES.staff_id, 1, '08:00', 240);
-  R.C368136 = {};
+  const set136 = { lead: (await lead(n))[w.number], shifts: await shiftsOn(a, w.id, names) }; console.log(t(), 'START STATE set C368136', JSON.stringify(set136));
+  R.C368136 = { startFound: found136, startSet: set136 };
   for (const where of ['board', 'tech'] as const) {
     await bv(n, where === 'board' ? 'Board View' : 'Tech View');
     if (where === 'tech') { const un = (await groups(p)).find((g) => g.id === 'unassigned'); if (un && !un.collapsed) await toggleGroup(p, 'unassigned'); }
@@ -126,13 +132,28 @@ await run('C368136', async () => {
   const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000);
   // a work order with no lines opens the New Line form by itself: close it to reach the Lead technician box
   if (await pg.locator('.q-dialog').filter({ hasText: 'New Line' }).count()) { await pg.locator('.q-dialog').filter({ hasText: 'New Line' }).locator('button').filter({ hasText: /^close$/ }).first().click().catch(() => pg.keyboard.press('Escape')); await pg.waitForTimeout(1200); }
-  const sel = (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]') : pg.getByText('Lead technician', { exact: true }).locator('..');
-  await sel.click(); await pg.waitForTimeout(1000);
-  await pg.locator('.q-menu .q-item').filter({ hasText: 'Ralph Edwards' }).first().click().catch(async () => { await pg.keyboard.type('Ralph'); await pg.waitForTimeout(800); await pg.locator('.q-menu .q-item').filter({ hasText: 'Ralph Edwards' }).first().click(); });
-  await pg.waitForTimeout(2000);
-  R.C368136.woPage = { prompt: await pg.locator('.q-dialog').filter({ hasText: /scheduled shifts/i }).count(), lead: (await lead(n))[w.number] }; await shot(pg, 'C368136-wo-page'); await pg.close();
+  // FIX-UP 2c (17 Oct 2026): step 8 waited 30 s for "Ralph Edwards" in the work order page's Lead Technician list and stopped — that list
+  // stops at about 100 names (SV-11393), so Ralph is never drawn there (the Reassign dialog, which DID list him in C368135, uses a different
+  // list). The case names [Tech-B] only as an example and step 8 checks one thing: the page shows NO shift prompt. So the page's own field
+  // is used (test id, else its label), the whole list is read and logged, and the first offered of Ralph Edwards / Jenny Wilson / Dana Ortiz
+  // is picked (typing "Ralph Edwards" into the field is tried first); the name used is recorded, and the prompt is watched for 4 s.
+  const sel = async () => (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]').first() : pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
+  const typed = await pickLeadTyped(pg, ['Ralph Edwards'], 'Ralph Edwards').catch(() => ({ picked: false }));
+  let used: string | null = (typed as any).picked ? 'Ralph Edwards' : null; let pk: any = null;
+  if (!used) { await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(600); pk = await pickTech(pg, async () => { await (await sel()).click(); }, 'C368136 Lead Technician (work order page)', { prefer: ['Ralph Edwards', 'Jenny Wilson', 'Dana Ortiz'], avoid: ['Esther Howard'], control: ['Esther Howard', 'Dana Ortiz'] }); used = pk.picked; }
+  let promptSeen = 0; for (let i = 0; i < 8 && !promptSeen; i++) { promptSeen = await pg.locator('.q-dialog').filter({ hasText: /scheduled shifts/i }).count(); await pg.waitForTimeout(500); }
+  R.C368136.woPage = { used, typedPick: (typed as any).picked ?? false, substitute: pk?.substitute ?? null, list: pk ? { count: pk.list.count, first: pk.list.first, last: pk.list.last, offered: pk.list.offered } : null, prompt: promptSeen, toasts: await toasts(pg).catch(() => []), lead: (await lead(n))[w.number] }; await shot(pg, 'C368136-wo-page');
+  if (promptSeen) await shiftPrompt(pg, 'Keep shifts').catch(() => null);
+  await pg.close();
   await bv(n, 'List');
   R.C368136.listRowMenu = await p.evaluate(`[...document.querySelectorAll('[data-test-id="button_work_order_more_actions"]')].length`);
+  await shot(p, 'C368136-list');
+  // step 10 (FIX-UP 2c): the Schedule for tomorrow, on screen — Esther Howard's 8:00-12:00 block for this work order, plus the server reading
+  await p.goto(`${APP}/schedule`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); await p.getByRole('button', { name: /^\s*Today\s*$/ }).first().click().catch(() => {}); await p.waitForTimeout(2500);
+  await p.locator('[data-test-id="button_schedule_next"]').first().click().catch(() => {}); await p.waitForTimeout(4000);
+  const cname = (await a.get(`/api/work-orders/view/${w.id}`)).body?.data?.work_order?.company_name ?? n;
+  R.C368136.schedule = { range: await p.locator('[data-test-id="text_schedule_range"]').innerText().catch(() => null), blocks: (await p.locator('.fc-event, .fc-timeline-event').filter({ hasText: cname }).allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').slice(0, 120)) };
+  { const ev = p.locator('.fc-event, .fc-timeline-event').filter({ hasText: cname }).first(); if (await ev.count()) { await ev.scrollIntoViewIfNeeded().catch(() => {}); await p.waitForTimeout(800); } } await shot(p, 'C368136-schedule-tomorrow');
   R.C368136.shifts = await shiftsOn(a, w.id, names);
   await setLeadApi(w.id, ES.staff_id);
 });

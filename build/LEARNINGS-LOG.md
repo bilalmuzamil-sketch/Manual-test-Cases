@@ -612,7 +612,12 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 - **A queue reads its list once, at start**: lines added after run-fixup-1017.sh started go to a NEW list (fixup-1017c.txt) run by a
   copy of the runner (run-fixup-1017c.sh, own log dir) chained behind it (after-fixup-1017c.sh waits on `[r]un-fixup-1017\.sh`, a
   pattern that does not match the copy). Never edit a running bash script. Closing New Work Order asks "Are you sure you want to
-  close this dialog?" — answer it (C614715). #staging #scripts #signin #sv-11393 → L0394, L0396, L0413, L0415
+  close this dialog?" — answer it (C614715).
+- **The end-of-run sign-out batch** (`signout-1017.txt`, `signout-1017.mts`, `run-signout-1017.sh`, `after-signout-1017.sh`): each case's
+  state is made, then a REAL Logout and a REAL sign-in on the sign-in page (Admin quick-login), "SIGN-OUT done / SIGN-IN done" logged; a
+  failed sign-in exits 9 with an `sso_required` line so the runner re-checks and stops. User-B on the shared Google sign-in can only be the
+  "Tech" quick-login — its saved display is read first and a changed one is reported, never used as "never changed" (C96912).
+  #staging #scripts #signin #sv-11393 → L0394, L0396, L0413, L0415, L0425
 
 ## L0418 — 2026-10-17 — Reading a run's history: what a full re-run's posts did to earlier verdicts (run 498)
 - **`build/testing-tools/tr_client.py` `get()` returns a TUPLE `(http_status, body)`**, not the body: `_, r = t.get("get_tests/498&limit=250&offset=0"); r['tests']`; `_, rs = t.get(f"get_results/{test_id}&limit=3"); rs['results']`. Page `get_tests` by 250.
