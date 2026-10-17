@@ -1,0 +1,103 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 27 = queue steps 69-76 (73 set-up, 74 not run, 75 waits for day 2)"
+ },
+ "results": {
+  "C154650": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Other company: the QA lead's second-company sign-in, with customer \"ZZAUTOTEST F3 Scope OrgB Customer\" and its work orders (for example S-55, S1-4) led by its technician.",
+    "Our second location: a work order for \"ZZAUTOTEST F3 Scope Loc2 Customer 99752\" made at Staging Lethbridge - 4310, led by a technician there.",
+    "Steps 2 to 4 (our company, Staging Heavy Duty - 9919): searching \"F3 Scope OrgB\" shows \"No work orders match the search\" in Tech View and Board View. Searching the other company's numbers finds nothing of theirs (S1-4: nothing; S-55: only our own S2-55xx work orders). None of the 267 technician columns belongs to the other company.",
+    "Step 5: searching \"F3 Scope Loc2 Customer 99752\" shows nothing in either view, while our own test work order here (S2-37030) does show.",
+    "Step 6: the Reassign lead technician dialog offers our own technicians (ZZAUTOTEST Ben found); searching \"OrgB\" and \"Loc2 Tech\" finds no technician. The lead list (266 people) has nobody from the other company.",
+    "The server-side checks are a developer check, as the test says."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154650-1-orgB-search.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154650-2-reassign.png"
+   ],
+   "ticket": null
+  },
+  "C368175": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging.",
+    "Our work order S2-37028 (customer \"ZZAUTOTEST Other Org Lists 99752\") at Staging Heavy Duty - 9919; the other company's four staff were looked for by name and by their records.",
+    "Steps 2, 4 and 6 (New Line > Add Technician: 84 names; Edit Line > Add Technician: 97 names; Edit labor > Technician: 28 names): nobody from the other company is offered.",
+    "These lists stop before the end of the alphabet and do not narrow when you type (the known list cut-off, SV-11393), so the full list they come from was also read: 264 people over 4 pages, to the Z names, including our own Ralph Edwards and Ana Alpha, and nobody from the other company.",
+    "Server refusal of another company's technician: not checked by hand."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368175-1-edit-labor.png"
+   ],
+   "ticket": null
+  },
+  "C368156": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Step 1: at Staging Heavy Duty - 9919, Ana, Ben and Cal were pinned and moved to the front.",
+    "Step 2: the fourth pin is turned off with \"You can pin up to 3 technicians.\"",
+    "Step 3: at Staging Lethbridge - 4310 (the second location) no pinned columns show.",
+    "Step 4: Xia Xray, Yan Yankee and Zoe Zulu were all pinned there with no message.",
+    "Step 5: back at Heavy Duty, Ana, Ben and Cal are still pinned first."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368156-1-fourth-pin.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368156-2-loc2-pinned.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368156-3-heavy-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368146": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Step 3: Board View starts Unassigned, Dan (pinned), Cal, Ben.",
+    "Step 5: the new staff member ZZAUTOTEST Aaron Able 991413 (active, Time Clock on, Technician, this location) appears after the last existing technician (place 278 of 280, only the Deleted technician column after him), not first by name; the order before him is kept.",
+    "Step 7: after Time Clock was turned on for ZZAUTOTEST Ezra Echo 991413, he appears right after Aaron.",
+    "Step 8: Tech View shows the groups in the same order (Aaron at 278, Ezra at 279, the same first four)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368146-1-new-techs-last.png"
+   ],
+   "ticket": null
+  },
+  "C97003": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 6.",
+    "Signed in as the view-only user (role read back: Work orders > View only); the search held this test's customer, and the order read Unassigned, Ana, Ben, Cal, Dan for the view-only user and for the dispatcher.",
+    "Steps 6 to 10 were not done: the test's technicians sit far to the right of Board View, off screen, and the script never found Cal's or Ben's grip, so no drag was made. The order therefore stayed the same, which says nothing about the product.",
+    "Nothing was judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97003-1-script-columns.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run with the test's technicians scrolled into view (or pinned for the view-only user) before dragging (script fix)."
+  },
+  "C614711": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 6.",
+    "Set-up: ZZAUTOTEST C614711 Dana 47519 (lead of S2-37033) and ZZAUTOTEST C614711 Eli; customer ZZAUTOTEST C614711 Deleted Lead 47519; S2-37034 with no lead.",
+    "Steps 1 and 2: Dana's staff record opened; Delete and the confirmation removed her from the Staff list.",
+    "Steps 3 to 5: Board View shows both cards. S2-37033 sits in a column headed \"Deleted technician\" with the Inactive marker and no drag grip. That is what the test expects, not the known problem (\"Unknown Technician\"), so the fix in SV-11416 (now in Testing Stage) looks to have shipped.",
+    "Steps 6, 7 and 10 were not done: the script could not find the drop target or the card (it waited 30 seconds each time), so the refused drop, the Tech View group and the drag to Eli were not seen.",
+    "Step 8: in List, S2-37033's Lead Technician cell reads \"Unassigned\" (the same as S2-37034, which never had a lead). The test expects the cell to be blank; whether \"Unassigned\" counts as blank is for the QA lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614711-1-deleted-column.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614711-2-list-lead.png"
+   ],
+   "ticket": "Follow the work here: https://shopview.atlassian.net/browse/SV-11416 (Testing Stage, read 17 Oct 2026).",
+   "todo": "What needs to be done: re-run steps 6, 7 and 10 (script fix: find the Deleted technician column and the card by their own test ids, and scroll Tech View to the Deleted technician group); the QA lead to say whether \"Unassigned\" in List counts as the blank lead the test expects."
+  }
+ }
+}
