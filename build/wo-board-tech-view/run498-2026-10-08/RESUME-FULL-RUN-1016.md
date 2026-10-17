@@ -35,3 +35,9 @@ SV-11101 reopen; C590117 tooltip ticket.
 - **C614711 step 8 — QA lead ruling needed:** List shows Lead Technician "Unassigned" for the deleted lead's work order S2-37033; the case expects a blank cell. Evidence `annotated-full-1016/C614711-2-list-lead.png`.
 - C97012 (step 74) not run: two-person route broken since Admin and Analyst 1 share one Google sign-in (L0407).
 - C97026/C97033/C97034: analytics day 2 on the next Pakistan day (RUN_GA=day2).
+
+## 17 Oct 06:05 UTC — fix-up 2 steps 11–14
+- C581895 **Failed** on SV-11336 (Open): Settings > Staff "Carol Neal", List "David Sparks", Board/Tech View "Carol Neal" (S2-37054). Step 12 (Tech View avatar hover names) not read.
+- C368166, C368168 Passed using Jenny Wilson (cases say names are examples); Ralph Edwards still not offered — Lead Technician list 98 names ending "QA PartsTechnician" (SV-11393 OBSOLETE but still reproduces) ⇒ reopen question for the QA lead.
+- C368167 Blocked: the work order would not invoice ("Over Limit" mark) — round 3 fix seeds a customer that can invoice.
+- C368131 (leftover pin "Brandi Smith"), C581892 (second card not found) ⇒ round 3.
