@@ -13,10 +13,12 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders, vehicle } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, pickLeadOnPage as pickLeadByLabel } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, pickLeadOnPage as pickLeadByLabel, pickLeadTyped } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY, ensureEligible } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
+import { pickTech } from './fx6-1017.mts';
+import { startState } from './fixup-1017.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -25,6 +27,7 @@ const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p;
 p.setDefaultTimeout(30_000);
 const a = api(p);
 const R: Record<string, any> = { runner: RUN.id.slice(0, 8) };
+await startState(p, a, 'editwo-fix');   // L0415, fix-up 2
 const PREF = '/api/users/me/preferences/work-orders-list';
 const prefGet = async () => (await a.get(PREF)).body?.data?.value ?? {};
 const ORIGINAL = await prefGet();
@@ -233,13 +236,26 @@ await run('C368169', async () => { const w = await one('ZZAUTOTEST Edit WO Card 
   o.pick = await pickLazy(p, 'Ralph', /Ralph Edwards/); if (!o.pick.picked) o.pick.fallback = await pickLeadByLabel(p, 'Ralph', 'Ralph Edwards'); o.picked = !!(o.pick.picked || o.pick.fallback?.picked); o.mileageEditable = await p.locator('[data-test-id="input_vehicle_mileage"]').first().evaluate((e: any) => !(e.disabled || e.readOnly)).catch(() => false) /* 15 Oct 2026: was never set, so the Mileage edit was skipped (wave 7) */; o.mileage = o.mileageEditable ? await cardInput('input_vehicle_mileage', '120500') : 'locked: the Mileage box is read-only on the Invoiced work order'; o.toasts = await toastsOn(p); await shot(p, 'C368169-card');
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.afterReload = { lead: await leadText(), mileage: await cardVal('input_vehicle_mileage') }; o.api = { lead: await leadName(w.id), ...(await vehOf(w.id)) }; await shot(p, 'C368169-after-reload'); R.C368169 = o; });
 
-await run('C368171', async () => { const w = await one('ZZAUTOTEST Edit WO Card Audit', ES, 2); const o: any = { wo: w.number };
-  await page(w.id); const t0 = await auditText(); o.countBefore = (t0.match(/Lead tech changed/gi) || []).length; await closeDlg();
+// ───────── FIX-UP 2 (17 Oct 2026, C368171): the 16 Oct run could not pick a new lead. KNOWN PRODUCT FAULT SV-11393: the work order
+// page's Lead Technician list stops at about 100 names (62 drawn, ending at the Q names), so Ralph Edwards is never offered. This case
+// says "Names and numbers are examples, EXCEPT names the expected results quote, which must be used exactly" and its Expected quotes
+// Ralph Edwards as the new lead — so NO other person is substituted. The list is read whole and logged (count, first, last, whether
+// Ralph is offered, with Esther Howard / Dana Ortiz as the positive control that the reading worked), typing into the field's own
+// input is tried as well (pickLeadTyped), and the Audit Log is still read after, so the judge can mark it against SV-11393.
+await run('C368171', async () => { const w = await one('ZZAUTOTEST Edit WO Audit', ES, 2); const o: any = { wo: w.number };
+  await page(w.id); o.laborStart = await laborRows();
+  console.log(t(), 'START STATE found C368171', JSON.stringify({ wo: w.number, lead: await leadName(w.id), lines: await lineTechs(w.id), laborOnScreen: o.laborStart }));
+  const t0 = await auditText(); o.countBefore = (t0.match(/Lead tech changed/gi) || []).length; await shot(p, 'C368171-audit-before'); await closeDlg();
   const lineHist = async () => { const out: number[] = []; for (const l of w.ls) { const r = (await a.get(`/api/work-orders/lines/${l}/history`)).body?.data; out.push((Array.isArray(r) ? r : r?.collection ?? []).length); } return out; };
   o.lineHistBefore = await lineHist(); o.time = new Date().toISOString().slice(11, 19);
-  o.picked = await pickLeadOnPage2(/Ralph Edwards/); await p.waitForTimeout(2000);
+  const leadSel = async () => (await p.locator('[data-test-id="select_lead_technician"]').count()) ? p.locator('[data-test-id="select_lead_technician"]').first() : p.locator('.q-field').filter({ has: p.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
+  o.techB = await pickTech(p, async () => { await (await leadSel()).click(); }, 'C368171 Lead Technician (work order page)', { prefer: ['Ralph Edwards'], control: ['Esther Howard', 'Dana Ortiz'], exact: true });
+  o.picked = !!o.techB.picked;
+  if (!o.picked) { await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(600); o.typed = await pickLeadTyped(p, ['Ralph Edwards', 'Edwards', 'Ralph'], 'Ralph Edwards'); o.picked = !!o.typed.picked; }
+  if (!o.picked) o.note = 'Ralph Edwards is not offered (SV-11393). The case needs that exact name, so the lead was NOT changed; the whole list is in techB.list';
+  await shot(p, 'C368171-lead-list'); await p.waitForTimeout(2000);
   const t1 = await auditText(); o.countAfter = (t1.match(/Lead tech changed/gi) || []).length; o.newest = (t1.match(/Lead tech changed[^]{0,160}/i) || [null])[0]; await shot(p, 'C368171-audit'); await closeDlg();
-  o.lineHistAfter = await lineHist(); R.C368171 = o; });
+  o.lineHistAfter = await lineHist(); o.apiLead = await leadName(w.id); R.C368171 = o; });
 
 await run('C368170', async () => { const w = await one('ZZAUTOTEST Edit WO Card Refused', ES); const o: any = { wo: w.number };
 await a.post('/api/work-orders/change-mileage', { work_order_id: w.id, mileage: '120000' }); await a.post('/api/work-orders/change-engine-hours', { work_order_id: w.id, engine_hours: '3420' });

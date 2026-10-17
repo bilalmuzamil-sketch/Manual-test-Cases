@@ -1175,3 +1175,27 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 **What happened:** a background "wait until step 53 ends or the run stops" loop on run 498's `logs-full-1016/queue.out` returned at once, because `grep -q "STOP"` over the WHOLE log matched the old false stop at 22:44 (before the `FROM=30` resume).
 **Do this:** on a queue that has been resumed, test only the tail — `tail -40 queue.out | grep -qE "step (5[3-9]|…) end"` — plus `ps` for the runner. Never match a word that an earlier, already-handled stop wrote into the same log.
 **Also:** a helper agent that ends its turn with "waiting for step N" has stopped; it does not keep watching. The main session waits (background until-loop) and resumes that ONE judge per batch (L0414).
+
+## L0417 — 2026-10-17 — Run 498 fix-up 2: six script faults, and what each one teaches (fx6-1017.mts, fixup-1017.txt "C-fix2" lines)
+- **A staging quick-login that fails on its FIRST click cannot recover inside the boot harness.** `qa-branch-boot.mjs` retries by
+  clearing ALL cookies — the Google `sv_sso_session` too — so attempts 2-3 can only land on accounts.google.com, then it calls
+  `process.exit(2)`. That is why c581895-v2 "could not sign in" twice while ensure-heavy signed in just before and after (L0413).
+  `fx6-1017.mts openRetry(open, route)` turns that exit into an error and opens a FRESH browser (cookie files re-read), 45 s / 90 s
+  apart. The shared harness was NOT changed (Rule 129: every staging script depends on it) — clearing only PHPSESSID there is a
+  proposal, not done.
+- **Technician pick lists (SV-11393, ~100 names, ends at Q): read the case's own wording before substituting.** "Names are examples"
+  (C368166-C368168, C368174) → use the first name the list DOES offer (Ralph Edwards, else Jenny Wilson, else another offered lead) and
+  log it. "Names … are examples, EXCEPT names the expected results quote, which must be used exactly" (C368171) → no substitute; log
+  the whole list (count, first, last, Ralph offered, Esther/Dana as the control) so the judge can mark it against SV-11393.
+  `fx6-1017.mts pickTech()` does both (`exact: true`).
+- **A filter's "All …" row text starts with its tick-box icon word**, so `/^\s*(Select all|All\b)/` never matched it (C368233-C368235
+  step 6 never ran) and a numbered pick of option 0 chose the default "All manufacturers" (C368224/C368225 chose nothing). Strip the
+  icon word first (`cleanOpt`, `clickAllItem` in medium-fix3.mts) and skip the "All …" row in a numbered pick.
+- **The Purchase Order receive form re-draws after a vendor is picked** (a spinner over the parts table): a Vendor Invoice # typed
+  before that is wiped and Receive Parts stays disabled (C368213, picture C368213-receive). Wait for the spinner, type, READ BACK, retype.
+- **Schedule blocks: use the calendar event element and let Playwright scroll it**, or re-measure after the scroll settles; a box read
+  in the same breath as `scrollIntoView()` came back 12,600 px down and the click hit nothing (C368190). Seed the shift the case needs
+  first (Schedule drag, `mkShift` fallback) and read it back before judging "removed".
+- **Production in the same script as staging is safe when it signs in by password** (`prod-login-boot.mjs`, second production
+  account): it does not touch the staging Google sign-in (L0394), so a case's "repeat on production" step can run in its own browser
+  right after the staging steps (medium-fix3 `caseSteps(..., 'production')`). #staging #scripts #signin #sv-11393 → L0394, L0396, L0413, L0415

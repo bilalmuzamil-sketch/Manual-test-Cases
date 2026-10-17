@@ -15,3 +15,10 @@ C-fix|s9-batchA5.mts|C97004,C368148|WOB_SCALE=2|ensure|fix-up: column/group hand
 C-fix|s11-batch.mts|C368154|-|ensure|fix-up: density menu read item by item (aria-selected / aria-checked / icon), item count as the control
 C-fix|moved-stg4.mts|C96970,C368131|WOB_PIN_NAMES=-|ensure|fix-up: card/row brought on screen before the press, target brought on screen while holding; where each end was is recorded
 C-fix|stg-new5.mts|C581892,C581896|-|ensure|fix-up: Schedule read capped (6 events per work order, 4 min overall, fresh page after a timeout), dialogs dismissed, progress lines
+# fix-up 2 (17 Oct 2026, added while the main run was at step ~48): the scripts the judge found faulty a second time; helpers in fx6-1017.mts
+C-fix2|c581895-v2.mts|C581895|-|ensure|fix-up 2: sign-in retried with a FRESH browser when the quick-login harness gives up (it exited twice on 16 Oct, L0413); START STATE lines
+C-fix2|high1-fix.mts|C368166,C368167,C368168|-|ensure|fix-up 2: [Tech-B] = first OFFERED of Ralph Edwards / Jenny Wilson / another lead (cases say names are examples); lead list logged (count, first, last, Ralph offered: SV-11393); C368167 invoices in a second tab
+C-fix2|high1-fix5.mts|C368174,C368190|WOB_SCALE=2|ensure|fix-up 2: C368174 starts with no lead, Edit labor picks an offered technician on both lines (list logged); C368190 seeds Jenny Wilson's 8 AM 2h Line-1 shift (Schedule drag, API fallback), opens it as a calendar event, deletes it, reads back
+C-fix2|medium-fix3.mts|C368224,C368225,C368233,C368234,C368235,C368246|-|ensure|fix-up 2: a real (not "All …") filter value picked, read back and restored; step 6 All box clicked (again if ticked) and step 9 repeated on production (password sign-in, own browser); dashboard tables opened via View details
+C-fix2|parts-batch.mts|C368213|WOB_SCALE=2|ensure|fix-up 2: ZZAUTOTEST vendor invoice number typed after the vendor pick has re-drawn the form, read back, Receive Parts waited for
+C-fix2|editwo-fix.mts|C368171|-|ensure|fix-up 2: the case needs Ralph Edwards exactly; lead list logged (SV-11393) and typed search tried, no substitute; Audit Log still read

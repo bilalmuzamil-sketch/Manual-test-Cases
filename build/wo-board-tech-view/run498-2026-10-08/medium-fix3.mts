@@ -17,10 +17,12 @@ import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api } from './data.mts';
 import { EV, t, shot } from './wob.mts';
+import { startState } from './fixup-1017.mts';
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
 const { browser, page: p0 } = await open('/workorders?tab=all');
 const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p; p.setDefaultTimeout(30_000); const a = api(p);
+await startState(p, a, 'medium-fix3');   // L0415, fix-up 2
 const R: Record<string, any> = {};
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
@@ -39,18 +41,37 @@ const menuItems = () => p.locator('.q-menu').filter({ visible: true }).last().lo
 const menuState = () => p.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); if (!m) return null;
   return [...m.querySelectorAll('.q-item, [role=option], [role=checkbox], .q-checkbox, .q-radio')].filter(e => e.innerText.trim()).map(e => { const on = !!(e.querySelector('.q-checkbox__inner--truthy, .q-radio__inner--truthy, [aria-checked=true], [aria-selected=true]') || e.getAttribute('aria-checked') === 'true' || e.getAttribute('aria-selected') === 'true' || e.classList.contains('q-item--active') || /\\bcheck\\b/.test(e.innerText)); return (on ? '[x] ' : '[ ] ') + e.innerText.replace(/\\s+/g, ' ').replace(/\\bcheck\\b/, '').trim().slice(0, 50); }).filter((v, i, arr) => arr.indexOf(v) === i).slice(0, 40); })()`) as Promise<string[] | null>;
 const closeMenu = async () => { await p.keyboard.press('Escape'); await p.waitForTimeout(800); };
+// FIX-UP 2 (17 Oct 2026): the "All …" / "Select all" row of a filter, found by its own text with the icon word removed
+const ALLRX = /^(All\b|Select all\b)/i;
+const cleanOpt = (x: string) => String(x ?? '').replace(/\s+/g, ' ').replace(/^(check_box_outline_blank|check_box|check|done)\s+/i, '').replace(/\bcheck\b/, '').trim();
+async function clickAllItem(pg: Page = p): Promise<string | null> { const txt = await pg.evaluate(`(() => { document.querySelectorAll('[data-zz-all]').forEach(e => e.removeAttribute('data-zz-all'));
+    const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); if (!m) return null;
+    const clean = (x) => String(x || '').replace(/\\s+/g, ' ').replace(/^(check_box_outline_blank|check_box|check|done)\\s+/i, '').replace(/\\bcheck\\b/, '').trim();
+    const it = [...m.querySelectorAll('.q-item, [role=option], [role=checkbox]')].find(e => /^(All\\b|Select all\\b)/i.test(clean(e.innerText))); if (!it) return null; it.setAttribute('data-zz-all', '1'); return clean(it.innerText); })()`).catch(() => null) as string | null;
+  if (txt) { await pg.locator('[data-zz-all="1"]').first().click().catch(() => {}); await pg.waitForTimeout(2000); } return txt; }
 /** pick in a filter: `how` = the n-th option, or a text */
-async function keepAfterReload(id: string, label: string, pick: number | string, before?: () => Promise<void>) {
+async function keepAfterReload(id: string, label: string, pick: number | string, before?: () => Promise<void>, opts: { restore?: boolean } = {}) {
   const o: any = {}; const f = filterEl(label); o.filterFound = await f.count(); if (!o.filterFound) { o.labels = await p.evaluate(`[...document.querySelectorAll('button, .q-chip, .q-field__label')].filter(e => e.getBoundingClientRect().width > 0 && e.getBoundingClientRect().y < 300).map(e => e.innerText.replace(/\\s+/g, ' ').trim()).filter(Boolean).slice(0, 30)`); await shot(p, `${id}-no-filter`); return o; }
   await f.click(); await p.waitForTimeout(1200); o.menuBefore = await menuState();
+  // FIX-UP 2 (17 Oct 2026): what the filter shows BEFORE anything is set (L0415); the case's set-up clears a value already chosen
+  o.chipStart = (await f.innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); const tickedStart = (o.menuBefore ?? []).filter((x: string) => x.startsWith('[x]')).map((x: string) => x.slice(4));
+  console.log(t(), 'START STATE found', id, JSON.stringify({ chip: o.chipStart, ticked: tickedStart.slice(0, 5) }));
+  if (opts.restore && tickedStart.some((x: string) => !ALLRX.test(x))) { o.setupCleared = await clickAllItem(); await p.waitForTimeout(1500); o.menuBefore = await menuState(); console.log(t(), 'START STATE set', id, JSON.stringify({ cleared: o.setupCleared, ticked: (o.menuBefore ?? []).filter((x: string) => x.startsWith('[x]')).slice(0, 5) })); }
   const items = menuItems();
   if ((await items.count()) < 3) { await p.keyboard.type('a', { delay: 60 }); await p.waitForTimeout(2500); o.typedToLoad = await items.count(); }   // FIX: some lists load their options only after typing
-  o.options = (await items.allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 12); const it = typeof pick === 'number' ? items.nth(Math.min(pick, Math.max(0, (await items.count()) - 1))) : items.filter({ hasText: pick }).first(); o.picked = (await it.innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); if (!o.picked) { await shot(p, `${id}-options`); await closeMenu(); return o; } await it.click(); await p.waitForTimeout(2000);
+  o.tableStart = await table();
+  o.options = (await items.allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 12); let it = typeof pick === 'number' ? items.nth(Math.min(pick, Math.max(0, (await items.count()) - 1))) : items.filter({ hasText: pick }).first(); o.picked = (await it.innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
+  // FIX-UP 2 (17 Oct 2026, C368224/C368225): option 0 was the default "All manufacturers" / "All categories", so no real filter was chosen.
+  // A numbered pick that lands on an "All …" / "Select all" row moves to the first REAL option after it.
+  if (typeof pick === 'number' && ALLRX.test(cleanOpt(o.picked))) { const n = await items.count(); for (let k = 0; k < n; k++) { const tx = cleanOpt(await items.nth(k).innerText().catch(() => '')); if (tx && !ALLRX.test(tx)) { o.skippedDefault = o.picked; it = items.nth(k); o.picked = tx; break; } } } if (!o.picked) { await shot(p, `${id}-options`); await closeMenu(); return o; } await it.click(); await p.waitForTimeout(2000);
   o.menuAfterPick = await menuState(); await closeMenu(); o.tableBefore = await table(); o.chip = (await f.innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); await shot(p, `${id}-before-reload`);
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); if (before) await before();
   o.tableAfter = await table(); o.chipAfter = (await filterEl(label).innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); o.url = p.url().replace(APP, '');
   await filterEl(label).click().catch(() => {}); await p.waitForTimeout(1200); o.menuAfterReload = await menuState(); await closeMenu(); o.toasts = await toasts(); await shot(p, `${id}-after-reload`);
   o.sameRows = JSON.stringify(o.tableBefore.first) === JSON.stringify(o.tableAfter.first) && o.tableBefore.rows === o.tableAfter.rows;
+  // FIX-UP 2: the pick read back — ticked in the menu before AND after the reload, and named on the filter button (positive control: the rows changed when it was ticked)
+  const pk = cleanOpt(o.picked); o.readBack = { tickedAfterPick: (o.menuAfterPick ?? []).includes('[x] ' + pk.slice(0, 50)), chipNamesIt: String(o.chip).includes(pk.slice(0, 20)), tickedAfterReload: (o.menuAfterReload ?? []).includes('[x] ' + pk.slice(0, 50)), chipAfterNamesIt: String(o.chipAfter).includes(pk.slice(0, 20)), rowsChangedByPick: JSON.stringify(o.tableStart?.first) !== JSON.stringify(o.tableBefore.first) || o.tableStart?.rows !== o.tableBefore.rows };
+  if (opts.restore) { await filterEl(label).click().catch(() => {}); await p.waitForTimeout(1200); o.restoreClicked = await clickAllItem(); await p.waitForTimeout(1500); await closeMenu(); o.restoredChip = (await filterEl(label).innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); }
   return o;
 }
 async function tickSelectClear(id: string, label: string) {
@@ -72,12 +93,68 @@ await run('C368220', async () => { await nav('Parts', 'Returns'); R.C368220 = { 
 await run('C368221', async () => { await nav('Parts', 'Returns'); const c = p.locator('.q-tab, [role=tab]').filter({ hasText: /Credits/ }).first(); await c.click(); await p.waitForTimeout(3000);
   R.C368221 = { page: p.url().replace(APP, '') }; Object.assign(R.C368221, await keepAfterReload('C368221', 'Date', '60', async () => { R.C368221.tabAfterReload = await p.evaluate(`document.querySelector('.q-tab--active, [role=tab][aria-selected=true]')?.innerText.trim()`); const c2 = p.locator('.q-tab, [role=tab]').filter({ hasText: /Credits/ }).first(); if (!/Credits/.test(String(R.C368221.tabAfterReload))) { await c2.click(); await p.waitForTimeout(3000); } })); });
 await run('C368222', async () => { await nav('Parts', 'Part Sales'); R.C368222 = { page: p.url().replace(APP, '') }; Object.assign(R.C368222, await keepAfterReload('C368222', 'Status', 'Complete')); });
-await run('C368224', async () => { await nav('Parts', 'Catalog'); R.C368224 = { page: p.url().replace(APP, '') }; Object.assign(R.C368224, await keepAfterReload('C368224', 'Manufacturer', 0)); });
-await run('C368225', async () => { await nav('Parts', 'Inventory'); R.C368225 = { page: p.url().replace(APP, '') }; Object.assign(R.C368225, await keepAfterReload('C368225', 'Category', 0)); });
+await run('C368224', async () => { await nav('Parts', 'Catalog'); R.C368224 = { page: p.url().replace(APP, '') }; Object.assign(R.C368224, await keepAfterReload('C368224', 'Manufacturer', 0, undefined, { restore: true })); });
+await run('C368225', async () => { await nav('Parts', 'Inventory'); R.C368225 = { page: p.url().replace(APP, '') }; Object.assign(R.C368225, await keepAfterReload('C368225', 'Category', 0, undefined, { restore: true })); });
 const reportsKeep: [string, string, string, number | string][] = [['C368226', 'Work In Progress', 'Location', 'Lethbridge'], ['C368227', 'Sales By Customer', 'Customer', 2], ['C368228', 'Parts Velocity', 'Vendor', 2], ['C368229', 'Inventory Value', 'Category', 2], ['C368230', 'Technician Utilization', 'Technician', 2], ['C368231', 'Sales By Representative', 'Location', 'Lethbridge']];
 for (const [id, rep, label, pick] of reportsKeep) await run(id, async () => { await nav('Reports', rep); R[id] = { page: p.url().replace(APP, '') }; Object.assign(R[id], await keepAfterReload(id, label, pick)); });
 const reportsTick: [string, string, string][] = [['C368232', 'Work In Progress', 'Location'], ['C368233', 'Sales By Customer', 'Customer'], ['C368234', 'Parts Velocity', 'Vendor'], ['C368235', 'Inventory Value', 'Category'], ['C368236', 'Technician Utilization', 'Technician'], ['C368237', 'Sales By Representative', 'Location']];
-for (const [id, rep, label] of reportsTick) await run(id, async () => { await nav('Reports', rep); R[id] = { page: p.url().replace(APP, '') }; Object.assign(R[id], await tickSelectClear(id, label)); });
+// ───────── FIX-UP 2 (17 Oct 2026, C368233-C368235): the 16 Oct run never did step 6 (the "All …" row was looked for with ^All, but its
+// text starts with the tick-box icon word) and never repeated the steps on production (step 9). caseSteps() now does steps 3-8 exactly
+// as written — on the SAME code for both sides — and production (app.shopview.com, a dummy environment we are authorised to use; the
+// second production account signs in by password, so it does not touch the staging Google sign-in, L0394) is step 9, read only.
+// Every step's ticks, the filter button's words and the report's rows are recorded per side; a picture per step: <id>-<side>-stepN-*.png.
+const menuStateOn = (pg: Page) => pg.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); if (!m) return null;
+  return [...m.querySelectorAll('.q-item, [role=option], [role=checkbox], .q-checkbox, .q-radio')].filter(e => e.innerText.trim()).map(e => { const on = !!(e.querySelector('.q-checkbox__inner--truthy, .q-radio__inner--truthy, [aria-checked=true], [aria-selected=true]') || e.getAttribute('aria-checked') === 'true' || e.getAttribute('aria-selected') === 'true' || e.classList.contains('q-item--active') || /\\bcheck\\b/.test(e.innerText)); return (on ? '[x] ' : '[ ] ') + e.innerText.replace(/\\s+/g, ' ').replace(/\\bcheck\\b/, '').trim().slice(0, 50); }).filter((v, i, arr) => arr.indexOf(v) === i).slice(0, 400); })()`).catch(() => null) as Promise<string[] | null>;
+const tableOn = async (pg: Page) => ({ rows: await pg.evaluate(`[...document.querySelectorAll('tbody tr')].filter(r => r.getBoundingClientRect().height > 0).length`).catch(() => -1), first: await pg.evaluate(`[...document.querySelectorAll('tbody tr')].slice(0, 3).map(r => r.innerText.replace(/\\s+/g, ' ').slice(0, 70))`).catch(() => []) });
+const sumUp = (st: string[] | null) => { const tk = (st ?? []).filter((x) => x.startsWith('[x]')).map((x) => x.slice(4)); return { ticked: tk.length, of: (st ?? []).length, allTicked: tk.some((x) => ALLRX.test(x)), firstTicked: tk.slice(0, 3) }; };
+const filterOn = (pg: Page, label: string) => pg.locator('.q-page-container, main').first().locator('button, .q-btn, .q-chip, .q-field, [data-test-id^="filter_chip_"]').filter({ hasText: new RegExp('^\\s*(?:[a-z_]+\\s*)?' + label, 'i') }).filter({ visible: true }).first();
+async function caseSteps(id: string, label: string, pg: Page, side: string) {
+  const o: any = { side }; const f = filterOn(pg, label); o.filterFound = await f.count(); if (!o.filterFound) { await pg.screenshot({ path: path.join(EV, `${id}-${side}-no-filter.png`) }).catch(() => {}); return o; }
+  const chip = async () => (await f.innerText().catch(() => '')).replace(/\s+/g, ' ').replace(/keyboard_arrow_down/, '').trim();
+  const pic = (n: string) => pg.screenshot({ path: path.join(EV, `${id}-${side}-${n}.png`) }).catch(() => {});
+  const read = async (k: string) => { const st = await menuStateOn(pg); o[k] = { ...sumUp(st), chip: await chip(), table: await tableOn(pg) }; return st; };
+  // step 3: open the filter; the "All …" row should be ticked
+  await f.click(); await pg.waitForTimeout(1500); const s3 = await read('step3'); o.step3.allRow = (s3 ?? []).find((x) => ALLRX.test(x.slice(4))) ?? null; await pic('step3');
+  console.log(t(), 'START STATE found', id, side, JSON.stringify({ chip: o.step3.chip, ticked: o.step3.ticked, allTicked: o.step3.allTicked }));
+  const items = pg.locator('.q-menu').filter({ visible: true }).last().locator('.q-item, [role=option], [role=checkbox]').filter({ hasText: /\S/ });
+  if ((await items.count()) < 3) { await pg.keyboard.type('a', { delay: 60 }); await pg.waitForTimeout(2500); }
+  // step 4: click ONE real option (the second real one, as on 16 Oct and in prod-filters.mjs)
+  let idx = -1, real = 0; const n = await items.count(); for (let k = 0; k < n; k++) { const tx = cleanOpt(await items.nth(k).innerText().catch(() => '')); if (tx && !ALLRX.test(tx)) { real++; if (real === 2) { idx = k; o.option = tx; break; } } }
+  if (idx < 0) { o.error = 'no real option found'; return o; }
+  await items.nth(idx).click(); await pg.waitForTimeout(2500); await read('step4'); await pic('step4-one');
+  // step 5: click the same option again
+  await items.nth(idx).click(); await pg.waitForTimeout(2500); await read('step5'); await pic('step5-again');
+  // step 6: click the "All …" box; if it was already ticked, click it once more
+  const wasTicked = o.step5.allTicked; o.step6 = { allTickedBefore: wasTicked };
+  o.step6.clicked1 = await clickAllItem(pg); const s61 = await menuStateOn(pg); o.step6.after1 = { ...sumUp(s61), chip: await chip(), table: await tableOn(pg) }; await pic('step6-all');
+  if (wasTicked || o.step6.after1.allTicked) { o.step6.clicked2 = await clickAllItem(pg); const s62 = await menuStateOn(pg); o.step6.after2 = { ...sumUp(s62), chip: await chip(), table: await tableOn(pg) }; await pic('step6-all-again'); }
+  if (!o.step6.clicked1) o.step6.note = 'no "All …" / "Select all" row was found in the open filter';
+  // step 7: a Clear selection button?
+  const clr = pg.locator('.q-menu').filter({ visible: true }).last().locator('button, .q-btn, .q-item').filter({ hasText: /Clear( selection)?/i }).first(); o.step7 = { clearButton: (await clr.innerText().catch(() => null))?.replace(/\s+/g, ' ').trim() ?? null, buttons: (await pg.locator('.q-menu').filter({ visible: true }).last().locator('button').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).filter(Boolean) };
+  if (o.step7.clearButton) { await clr.click().catch(() => {}); await pg.waitForTimeout(2000); o.step7.after = { ...sumUp(await menuStateOn(pg)), chip: await chip(), table: await tableOn(pg) }; await pic('step7-clear'); }
+  // step 8: close the filter and set it back to "All …"
+  await pg.keyboard.press('Escape'); await pg.waitForTimeout(1000); o.step8 = { chipClosed: await chip() };
+  for (let k = 0; k < 2; k++) { await f.click().catch(() => {}); await pg.waitForTimeout(1200); const st = sumUp(await menuStateOn(pg)); if (st.allTicked) { o.step8.allTicked = true; await pg.keyboard.press('Escape'); await pg.waitForTimeout(800); break; } o.step8[`setBack${k}`] = await clickAllItem(pg); await pg.keyboard.press('Escape'); await pg.waitForTimeout(1000); }
+  o.step8.chip = await chip(); o.step8.table = await tableOn(pg); await pic('step8');
+  o.toasts = await pg.evaluate(`[...document.querySelectorAll('.q-notification')].map(e => e.innerText.replace(/\\s+/g, ' ').trim())`).catch(() => []);
+  return o; }
+let PROD: any = null;
+async function prodPage() { if (PROD) return PROD; const { bootProdLogin } = await import('../../testing-tools/prod-login-boot.mjs') as any; PROD = await bootProdLogin('/reports', { viewport: { width: 1600, height: 1000 } }); PROD.page.setDefaultTimeout(20_000); console.log(t(), 'PRODUCTION signed in', JSON.stringify({ version: PROD.version ?? null })); return PROD; }
+const slugOf: Record<string, string> = { 'Sales By Customer': 'sales-by-customer', 'Parts Velocity': 'parts-velocity', 'Inventory Value': 'inventory-value' };
+for (const [id, rep, label] of reportsTick) await run(id, async () => {
+  if (['C368233', 'C368234', 'C368235'].includes(id)) {
+    // steps 1-2 on staging, by the menus (Reports > the report), then steps 3-8
+    await nav('Reports', rep); R[id] = { page: p.url().replace(APP, ''), staging: await caseSteps(id, label, p, 'staging') };
+    // step 9: production, same report, steps 1-8 (read only; the filter is put back to "All …" at step 8)
+    try { const P = await prodPage(); const pp: Page = P.page; await pp.goto(`${P.APP}/reports`, { waitUntil: 'domcontentloaded' }).catch(() => {}); await pp.waitForTimeout(5000);
+      const link = pp.getByText(rep, { exact: true }).last(); R[id].prodNav = await link.count(); if (R[id].prodNav) { await link.click().catch(() => {}); await pp.waitForTimeout(6000); }
+      if (!pp.url().includes(slugOf[rep])) { await pp.goto(`${P.APP}/reports/${slugOf[rep]}`, { waitUntil: 'domcontentloaded' }).catch(() => {}); await pp.waitForTimeout(7000); R[id].prodNavFallback = 'opened by its address'; }
+      R[id].production = await caseSteps(id, label, pp, 'production'); R[id].productionVersion = P.version ?? null;
+    } catch (e: any) { R[id].production = { error: String(e?.message || e).slice(0, 200) }; }
+    const S = R[id].staging, Pd = R[id].production; const keyOf = (x: any) => x ? `${x.ticked}/${x.allTicked ? 'All' : '-'}` : null;
+    R[id].compare = Pd?.error ? 'production not read' : { step3: [keyOf(S.step3), keyOf(Pd.step3)], step4: [keyOf(S.step4), keyOf(Pd.step4)], step5: [keyOf(S.step5), keyOf(Pd.step5)], step6first: [keyOf(S.step6?.after1), keyOf(Pd.step6?.after1)], step6second: [keyOf(S.step6?.after2), keyOf(Pd.step6?.after2)], clearButton: [S.step7?.clearButton ?? null, Pd.step7?.clearButton ?? null], step8chip: [S.step8?.chip, Pd.step8?.chip] };
+    return; }
+  await nav('Reports', rep); R[id] = { page: p.url().replace(APP, '') }; Object.assign(R[id], await tickSelectClear(id, label)); });
 
 await run('C368245', async () => { await nav('Customers'); const o: any = { first: await table(), toasts: await toasts() };
   const th0 = p.locator('thead th').filter({ hasText: /Customer Name|Name/ }).first(); const th = (await th0.count()) ? th0 : p.getByText('Customer Name').last(); o.headerKind = (await th0.count()) ? 'th' : 'text'; await th.click(); await p.waitForTimeout(2500);
@@ -87,16 +164,46 @@ await run('C368245', async () => { await nav('Customers'); const o: any = { firs
   const n2 = await names(); o.after = { count: n2.length, before: n1.length, unique: new Set(n2).size === n2.length, ordered: n2.every((x, i) => i === 0 || n2[i - 1].localeCompare(x, undefined, { sensitivity: 'base' }) <= 0) || n2.every((x, i) => i === 0 || n2[i - 1].localeCompare(x, undefined, { sensitivity: 'base' }) >= 0) };
   o.bottom = await p.locator('.q-table__bottom').first().innerText().catch(() => null); await shot(p, 'C368245'); R.C368245 = o; });
 
-await run('C368246', async () => { await p.goto(APP + '/dashboard', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); const o: any = { url: p.url().replace(APP, ''), toasts: await toasts() };
-  o.cards = await p.evaluate(`[...document.querySelectorAll('.q-card')].filter(c => c.querySelector('table')).map(c => ({ title: (c.innerText.split('\\n')[0] || '').trim().slice(0, 50), rows: c.querySelectorAll('tbody tr').length, heads: [...c.querySelectorAll('thead th')].map(h => h.innerText.trim()).filter(Boolean).slice(0, 6) }))`);
-  const sorts: any = {}; const cards = p.locator('.q-card').filter({ has: p.locator('table') });
-  for (let i = 0; i < Math.min(await cards.count(), 6); i++) { const c = cards.nth(i); const title = ((await c.innerText()).split('\n')[0] || '').trim().slice(0, 40); const th = c.locator('thead th').filter({ has: p.locator('i, .q-icon') }).first();
-    if (!(await th.count())) { sorts[title] = 'no sortable header'; continue; } const col = await th.evaluate((e) => Array.from(e.parentElement!.children).indexOf(e));
-    const read = () => c.evaluate((el, k) => [...el.querySelectorAll('tbody tr')].map((r) => ((r.children[k as number] as HTMLElement)?.innerText.trim() || (r as HTMLElement).innerText.replace(/\s+/g, ' ').trim())), col);
-    if (await c.getByText(/No data for selected date range/).count()) { const rng = c.locator('button, .q-btn, .q-select').filter({ hasText: /This Month|Month|Week|Year|Days/ }).first(); if (await rng.count()) { await rng.click(); await p.waitForTimeout(900); const opts = p.locator('.q-menu .q-item'); const n = await opts.count(); if (n) { (sorts as any)[title + ' ranges'] = (await opts.allInnerTexts()).map((x) => x.trim()).slice(0, 8); await opts.nth(n - 1).click(); await p.waitForTimeout(3000); } } (sorts as any)[title + ' rowsAfterWiden'] = await c.locator('tbody tr').count(); }
-    const b = await read(); await th.click(); await p.waitForTimeout(1500); const x = await read(); await th.click(); await p.waitForTimeout(1500); const y = await read();
-    sorts[title] = { header: (await th.innerText()).trim(), before: b.slice(0, 4), first: x.slice(0, 4), second: y.slice(0, 4), changed: JSON.stringify(x) !== JSON.stringify(y) }; }
-  o.sorts = sorts; await shot(p, 'C368246'); R.C368246 = o; });
+// ───────── FIX-UP 2 (17 Oct 2026, C368246): the 16 Oct run read no cards — on this build the dashboard cards show charts and their
+// TABLES open behind each card's "View details". Step 1 clicks the ShopView logo (the case's route on this build); step 2 opens every
+// card's "View details", reads where the table opened (window / page), its headings and rows; step 3 clicks a heading and reads the
+// column again, twice (positive control: the column's own values are read before the click, and a card with no rows is recorded as
+// such, never as "sorted"). One picture per card: C368246-<n>-<card>.png.
+await run('C368246', async () => { const o: any = { cards: [] };
+  await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000);
+  // step 1: Dashboard in the top menu (staging shows it there); else the ShopView logo, as the case says for the QA build
+  const navD = p.locator('[data-test-id="button_desktop_nav_link"]').filter({ hasText: /^\s*Dashboard\s*$/ }).first(); o.topMenuDashboard = await navD.count();
+  if (o.topMenuDashboard) { await navD.click().catch(() => {}); await p.waitForTimeout(7000); }
+  else { const logo = p.locator('a[href$="/dashboard"], [data-test-id*="logo" i] a, [data-test-id*="logo" i], header a').first(); o.logo = await logo.count(); if (o.logo) { await logo.click().catch(() => {}); await p.waitForTimeout(7000); } }
+  o.logoOpened = p.url().replace(APP, ''); if (!/\/dashboard/.test(p.url())) { await p.goto(APP + '/dashboard', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); }
+  o.url = p.url().replace(APP, ''); o.toastsStart = await toasts();
+  const vdSel = 'button, a, .q-btn, [role=button]'; const vdRx = /^\s*View details\s*$/i;
+  const titles = await p.evaluate(`[...document.querySelectorAll('button, a, .q-btn, [role=button]')].filter(e => /^\\s*View details\\s*$/i.test(e.innerText || '') && e.getBoundingClientRect().width > 0).map(e => { const c = e.closest('.q-card') || e.parentElement?.parentElement; return c ? (c.innerText.split('\\n').map(x => x.trim()).filter(Boolean)[0] || '').slice(0, 60) : null; })`).catch(() => []) as string[];
+  o.viewDetails = titles.length; o.cardTitles = titles; await shot(p, 'C368246-dashboard');
+  console.log(t(), 'START STATE found C368246', JSON.stringify({ url: o.url, viewDetails: o.viewDetails, cards: titles }));
+  for (let i = 0; i < Math.min(titles.length, 10); i++) { const c: any = { title: titles[i] };
+    try {
+      if (!/\/dashboard/.test(p.url())) { await p.goto(APP + '/dashboard', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); }
+      const b = p.locator(vdSel).filter({ hasText: vdRx }).filter({ visible: true }).nth(i); await b.scrollIntoViewIfNeeded().catch(() => {}); const url0 = p.url(); await b.click(); await p.waitForTimeout(5000);
+      const dlgOpen = await p.locator('.q-dialog').filter({ visible: true }).count(); c.opened = dlgOpen ? 'window' : (p.url() !== url0 ? `page ${p.url().replace(APP, '')}` : 'same page');
+      const root = dlgOpen ? p.locator('.q-dialog').filter({ visible: true }).last() : p.locator('main, .q-page').first();
+      const readT = async () => root.evaluate((el: any) => ({ heads: [...el.querySelectorAll('thead th')].map((h: any) => h.innerText.replace(/\s+/g, ' ').replace(/arrow_(up|down)ward|arrow_drop_(up|down)/g, '').trim()).filter(Boolean).slice(0, 10), rows: el.querySelectorAll('tbody tr').length, first: [...el.querySelectorAll('tbody tr')].slice(0, 4).map((r: any) => r.innerText.replace(/\s+/g, ' ').slice(0, 90)), noData: /No data/i.test(el.innerText) })).catch(() => null);
+      c.table = await readT();
+      if (c.table && !c.table.rows && c.table.noData) { const rng = root.locator('button, .q-btn, .q-select').filter({ hasText: /This Month|Month|Week|Year|Days|Today/ }).first(); if (await rng.count()) { await rng.click(); await p.waitForTimeout(900); const opts = p.locator('.q-menu .q-item'); const n = await opts.count(); if (n) { c.ranges = (await opts.allInnerTexts()).map((x) => x.trim()).slice(0, 8); await opts.nth(n - 1).click(); await p.waitForTimeout(3500); c.tableWidened = await readT(); } } }
+      const th = root.locator('thead th.sortable, thead th:has(i), thead th').first(); c.headers = await root.locator('thead th').count();
+      if (c.headers && (c.tableWidened?.rows ?? c.table?.rows)) { const col = await th.evaluate((e: any) => Array.from(e.parentElement.children).indexOf(e)).catch(() => 0);
+        const colVals = () => root.evaluate((el: any, k: any) => [...el.querySelectorAll('tbody tr')].map((r: any) => (r.children[k]?.innerText || '').replace(/\s+/g, ' ').trim()).slice(0, 8), col).catch(() => []);
+        const v0 = await colVals(); await th.click().catch(() => {}); await p.waitForTimeout(1800); const v1 = await colVals(); await th.click().catch(() => {}); await p.waitForTimeout(1800); const v2 = await colVals();
+        c.sort = { header: (await th.innerText().catch(() => '')).replace(/\s+/g, ' ').trim(), before: v0, firstClick: v1, secondClick: v2, changed: JSON.stringify(v1) !== JSON.stringify(v2) || JSON.stringify(v0) !== JSON.stringify(v1) };
+      } else c.sort = c.headers ? 'no rows to order' : 'no table headings found';
+      c.toasts = await toasts(); await shot(p, `C368246-${i + 1}-${String(titles[i] || 'card').replace(/[^A-Za-z0-9]+/g, '-').slice(0, 30)}`);
+      if (dlgOpen) { await p.keyboard.press('Escape'); await p.waitForTimeout(1000); }
+    } catch (e: any) { c.error = String(e?.message || e).slice(0, 200); }
+    o.cards.push(c); }
+  // the cards that show a table straight on the dashboard (the 16 Oct reading), kept as a second reading
+  if (!/\/dashboard/.test(p.url())) { await p.goto(APP + '/dashboard', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); }
+  o.inlineTables = await p.evaluate(`[...document.querySelectorAll('.q-card')].filter(c => c.querySelector('table')).map(c => ({ title: (c.innerText.split('\\n')[0] || '').trim().slice(0, 50), rows: c.querySelectorAll('tbody tr').length }))`).catch(() => []);
+  R.C368246 = o; });
 
 await run('C368247', async () => {
   const cust = `ZZAUTOTEST Imported Lead ${Date.now() % 100000}`; await (await import('./data.mts')).customer(a, cust, 'IMP-1');
@@ -117,4 +224,5 @@ await run('C368247', async () => {
   R.C368247 = o; await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(3000); await p.locator('[data-test-id="filter_chip_status"]').click().catch(() => {}); await p.waitForTimeout(800); await p.locator('.q-menu').getByText('Clear selection').first().click().catch(() => {}); await p.keyboard.press('Escape').catch(() => {});   /* FIX: never leave the Imported filter saved */ });
 
 fs.writeFileSync(path.join(EV, 'medium-fix3.json'), JSON.stringify(R, null, 1));
+if (PROD) await Promise.race([PROD.browser.close().catch(() => {}), new Promise((r) => setTimeout(r, 8000))]);   // fix-up 2: the production browser (C368233-C368235)
 await RUN.end(); await done(browser);

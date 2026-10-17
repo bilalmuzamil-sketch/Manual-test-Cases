@@ -20,6 +20,9 @@ import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toCol
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
+import { mkShift } from './shifts.mts';
+import { pickTech } from './fx6-1017.mts';
+import { startState } from './fixup-1017.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -27,6 +30,9 @@ const { browser, page: p0 } = await open('/workorders?tab=all');
 const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p;
 p.setDefaultTimeout(30_000);
 const a = api(p);
+await startState(p, a, 'high1-fix5');   // L0415, fix-up 2: saved Work Orders choices found before anything is set
+const CANDS = (await candidates(a)).map((c) => c.name).filter((n) => n && !/^(Admin ShopView|ZZ WOB Runner)$/.test(n));
+const TECHB = ['Ralph Edwards', 'Jenny Wilson', ...CANDS.filter((n) => !/^(Ralph Edwards|Jenny Wilson)$/.test(n))];   // fix-up 2 (SV-11393): Ralph first, then names the list offers
 const R: Record<string, any> = { runner: RUN.id.slice(0, 8) };
 const PREF = '/api/users/me/preferences/work-orders-list';
 const prefGet = async () => (await a.get(PREF)).body?.data?.value ?? {};
@@ -328,16 +334,27 @@ await run('C368173', async () => { let w = R.w172; const o: any = {};
   if (!o.addRalph?.picked) { await d.locator('[data-test-id="select_line_roster_add_technician"]').click(); await p.waitForTimeout(800); o.addRalph = await pickScroll(/Ralph Edwards/); } o.added = o.addRalph.picked;
   await closeLists(d); o.roster = await roster(d); await shot(p, 'C368173-form'); o.toasts = await save(d);
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.labor = await laborRows(); o.techs = await lineTechs(w.id); await shot(p, 'C368173-lines-after'); R.C368173 = o; });
-await run('C368174', async () => { const w = await one('ZZAUTOTEST Lines Tab Assign', ES, 2); const o: any = { wo: w.number, attempts: [] };
-  for (const l of w.ls) { await page(w.id); await p.locator(`[data-test-id="line_number_${l}"]`).click(); await p.waitForTimeout(1000); const a1: any = {};
-    const ed = p.locator('.q-menu .q-item').filter({ hasText: /Edit labor/i }).first(); if (await ed.count()) { await ed.click(); await p.waitForTimeout(2000); const d = dlg();
+// ───────── FIX-UP 2 (17 Oct 2026, C368174): the case's [WO-1] has NO lead technician and both lines read "Unassigned" (the old block set
+// Esther Howard as lead, then unticked her). [Tech-B] is picked in Edit labor > Technician from the names the list DOES offer: Ralph
+// Edwards is past the ~100-name cut-off (KNOWN PRODUCT FAULT SV-11393) and the case says "Names are examples", so the first offered of
+// Ralph Edwards / Jenny Wilson / any other offered lead is used, and the SAME person on both lines. Every list is logged ("LIST …").
+await run('C368174', async () => { const w = await one('ZZAUTOTEST Assign Lines Tech', null, 2); const o: any = { wo: w.number, attempts: [] };
+  await page(w.id); o.laborStart = await laborRows();
+  console.log(t(), 'START STATE found C368174', JSON.stringify({ wo: w.number, lead: await leadName(w.id), lines: await lineTechs(w.id), laborOnScreen: o.laborStart }));
+  let used: string | null = null;
+  for (const [i, l] of w.ls.entries()) { await page(w.id); await p.locator(`[data-test-id="line_number_${l}"]`).click(); await p.waitForTimeout(1000); const a1: any = { line: i + 1 };
+    const ed = p.locator('.q-menu .q-item').filter({ hasText: /Edit labor/i }).first(); a1.menu = await ed.count();
+    if (a1.menu) { await ed.click(); await p.waitForTimeout(2000); const d = dlg();
       const tf = d.locator('.q-field').filter({ has: p.locator('.q-field__label', { hasText: /Technician/ }) }).first(); a1.before = (await tf.innerText().catch(() => '')).replace(/\s+/g, ' ');
-      await tf.click(); await p.waitForTimeout(800); a1.picked = await pickFromList(p, /Ralph Edwards/);
-      if (/Esther Howard/.test(a1.before)) { if (!(await p.locator('.q-menu').count())) { await tf.click().catch(() => {}); await p.waitForTimeout(600); } await p.evaluate(`(() => { const m = document.querySelector('.q-menu .q-virtual-scroll, .q-menu'); if (m) m.scrollTop = 0; })()`); await p.waitForTimeout(400); a1.untick = await pickFromList(p, /Esther Howard/); }   // FIX 3: untick in the SAME open list
-      await closeLists(d); a1.now = (await tf.innerText().catch(() => '')).replace(/\s+/g, ' '); await shot(p, `C368174-fix2-${o.attempts.length + 1}`);
-      a1.buttons = (await d.locator('button').allInnerTexts()).map((x) => x.replace(/\s+/g, ' ').trim()); await d.locator('button').filter({ hasText: /Save/ }).last().click(); await p.waitForTimeout(3000); a1.toasts = await toastsOn(p); } else await p.keyboard.press('Escape');
+      const pk = await pickTech(p, async () => { await tf.click(); }, `C368174 Edit labor > Technician, line ${i + 1}`, { prefer: used ? [used] : TECHB, control: ['Esther Howard', 'Dana Ortiz'], exact: !!used });
+      a1.picked = pk.picked; a1.substitute = pk.substitute ?? null; a1.reason = pk.reason ?? null; a1.list = i === 0 ? pk.list : { count: pk.list.count, first: pk.list.first, last: pk.list.last, offered: pk.list.offered };
+      if (!used) used = pk.picked;
+      await closeLists(d); a1.now = (await tf.innerText().catch(() => '')).replace(/\s+/g, ' '); await shot(p, `C368174-editlabor-line${i + 1}`);
+      a1.buttons = (await d.locator('button').allInnerTexts()).map((x) => x.replace(/\s+/g, ' ').trim()); await d.locator('button').filter({ hasText: /Save/ }).last().click(); await p.waitForTimeout(3000); a1.toasts = await toastsOn(p);
+    } else { a1.menuItems = (await p.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 10); await p.keyboard.press('Escape'); }
     o.attempts.push(a1); }
-  await page(w.id); o.labor = await laborRows(); o.techs = await lineTechs(w.id); R.C368174 = o; });
+  o.used = used; await page(w.id); o.labor = await laborRows(); o.techs = await lineTechs(w.id); await shot(p, 'C368174-after-reload');
+  o.readBack = used ? { bothLinesOnScreen: Object.values(o.labor).filter((x: any) => String(x).includes(used!)).length, bothLinesServer: Object.values(o.techs).filter((x: any) => String(x).includes(used!)).length } : null; R.C368174 = o; });
 await run('C368177', async () => { const w = await one('ZZAUTOTEST Move Labor', null, 2); const o: any = { wo: w.number }; const v = await asUser(ES);
   try { const pg = v.page; await page(w.id, 'lines', pg); const tg = pg.locator(`[data-test-id="button_clock_toggle_task_${w.ls[0]}"]`).first(); o.start = await tg.count(); o.startText = (await tg.innerText().catch(() => '')).replace(/\s+/g, ' '); await tg.click({ force: true }); await pg.waitForTimeout(2500);
     { const sw = dlg(pg); for (let k = 0; k < 10 && !(await sw.isVisible().catch(() => false)); k++) await pg.waitForTimeout(1000); if (await sw.isVisible().catch(() => false)) {   /* FIX 5: the window can take several seconds */ o.switchDialog = (await sw.innerText()).replace(/\s+/g, ' ').slice(0, 200); await sw.locator('textarea').first().fill('ZZAUTOTEST switching').catch(() => {}); await sw.locator('button').filter({ hasText: /^\s*Start\s*$/ }).last().click().catch(() => {}); await pg.waitForTimeout(3000); } }
@@ -379,17 +396,57 @@ async function openOurShift(w: any, staff: string) { const lane = p.locator(`[da
   const blocks = await p.evaluate(`(() => { const top = ${lb.y}, bot = ${lb.y + lb.height}; return [...document.querySelectorAll('[class*="shift"], [class*="event"], [data-test-id*="shift"]')].map(e => e.getBoundingClientRect()).filter(b => b.height > 20 && b.width > 30 && b.height < 200 && (b.y + b.height / 2) > top && (b.y + b.height / 2) < bot).map(b => [Math.round(b.x), Math.round(b.y), Math.round(b.width)]); })()`) as number[][];
   for (const [x, y, wd] of blocks.slice(0, 10)) { await p.mouse.click(x + Math.min(20, wd / 2), y + 12); await p.waitForTimeout(1500); const det = (await p.locator('.q-dialog, .q-menu, [role=dialog]').last().innerText().catch(() => '')); if (det.includes(w.number)) return 1; await p.keyboard.press('Escape'); await p.waitForTimeout(400); }
   return 0; }
-await run('C368190', async () => { let w = R.w190; const o: any = {};
-  // 15 Oct 2026 (staging second pass): stopped at once when run alone — it needed C368192's set-up. It now makes its own: a work order
-  // with no lead, one line with a 1-hour estimate, dropped on Jenny Wilson's Schedule row under 10 AM with only that line chosen
-  // (the same schedDrop2 drop); then the Schedule is opened on that exact day (goRange).
-  if (!w) { w = await one('ZZAUTOTEST Sched Delete Line', null, 2); await setEstimate(w, 1, '1'); o.setup = await schedDrop2(w, JW.staff_id, /^\s*10\s*(AM|am|:00)/, lineName(1), '1'); R.range190 = o.setup.range; o.wo = w.number; }
-  await page(w.id); o.step1 = await laborRows(); await p.goto(`${APP}/schedule`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); o.range = (await goRange(R.range190 ?? null)) ?? await workingDay(JW.staff_id); await laneOf(JW.staff_id);
-  o.boardShifts = await shiftsOf(w); o.shift = 0;
-  o.blocks = await gridBlocks(w); for (const bl of o.blocks.slice(0, 6)) { await p.mouse.click(bl.x + 20, bl.y + 10); await p.waitForTimeout(1500); if (hasNum(await p.locator('.q-dialog, .q-menu, [role=dialog]').last().innerText().catch(() => ''), w.number)) { o.shift = 1; break; } await p.keyboard.press('Escape'); await p.waitForTimeout(400); }   /* FIX 5: block found by its text. Wave 15: blocks scrolled on screen first (gridBlocks) and the details matched on the digits (the Schedule writes "S-", L0354) */
-  o.detailButtons = await p.evaluate(`[...document.querySelectorAll('.q-dialog button, .q-menu button, [role=dialog] button')].map(b => (b.getAttribute('data-test-id') || '') + '|' + (b.getAttribute('aria-label') || '') + '|' + b.innerText.trim()).slice(0, 12)`);
-  const del = p.locator('[data-test-id*="delete" i], button[aria-label*="Delete" i], button:has(i:text-is("delete")), button:has(i:text-is("delete_outline"))').first(); o.del = await del.count(); await shot(p, 'C368190-details'); await del.click().catch(() => {}); await p.waitForTimeout(2500); o.question = await p.locator('.q-dialog').filter({ hasText: /delete|remove/i }).count(); o.toasts = await toastsOn(p);
-  await page(w.id); o.step3 = await laborRows(); o.techs = await lineTechs(w.id); R.C368190 = o; });
+// ───────── FIX-UP 2 (17 Oct 2026, C368190): the 16 Oct run never found Jenny Wilson's shift on the grid (its blocks were measured
+// 12,600 px down, before the scroll had settled, so the clicks hit nothing and nothing was deleted). Now (Rule 107: build what the test
+// needs): the case's own [WO-1] is made ("ZZAUTOTEST Shift Removed", no lead, two lines), Line 1 estimated at 2 h, and the shift is
+// SEEDED through the Schedule as the case's Setup says (drag onto Jenny Wilson's row under 8 AM on the next working day, Choose lines:
+// Line 1 only, 2h); if the drag saved nothing, the same shift is made with the Schedule's own save call (logged). It is read back from
+// the Schedule's data BEFORE step 1 (positive control for the "removed" reading). The block is then found as a FullCalendar event
+// (.fc-event) holding the customer name, brought on screen by Playwright and clicked; the old text-leaf search is the fallback, measured
+// again after the scroll settles. Delete is looked for inside the details; whether a question appeared is recorded.
+const TZL = process.env.WOB_LOC_TZ || 'Asia/Karachi';
+const dayLabel = (off: number) => new Intl.DateTimeFormat('en-US', { timeZone: TZL, weekday: 'short', month: 'short', day: 'numeric' }).format(new Date(Date.now() + off * 86400000));
+const detailsText = async () => (await p.locator('.q-dialog, .q-menu, [role=dialog]').filter({ visible: true }).last().innerText().catch(() => '')).replace(/\s+/g, ' ');
+async function openShiftOnGrid(w: any, staff: string) { const o: any = { tried: [] as string[] };
+  const cname = (await view(w.id))?.work_order?.company_name ?? ''; o.customer = cname; await laneOf(staff);
+  const evs = p.locator('.fc-event, .fc-timeline-event'); const n = await evs.count(); o.events = n;
+  for (let i = 0; i < Math.min(n, 80) && o.tried.length < 6; i++) { const e = evs.nth(i); const txt = (await e.innerText().catch(() => '')).replace(/\s+/g, ' ');
+    if (!(cname && txt.includes(cname)) && !hasNum(txt, w.number)) continue;
+    o.tried.push(txt.slice(0, 80)); await e.scrollIntoViewIfNeeded().catch(() => {}); await p.waitForTimeout(800); await e.click({ timeout: 8000 }).catch(() => {}); await p.waitForTimeout(1800);
+    const det = await detailsText(); if (hasNum(det, w.number) || (cname && det.includes(cname) && /shift|line/i.test(det))) { o.opened = true; o.how = 'calendar event holding the customer name'; o.details = det.slice(0, 400); return o; }
+    await p.keyboard.press('Escape'); await p.waitForTimeout(500); }
+  for (let k = 0; k < 3 && !o.opened; k++) { await gridBlocks(w); await p.waitForTimeout(1500); const bl = (await gridBlocks(w)).filter((b: any) => b.y > 60 && b.y < 980); o[`fallback${k}`] = bl.slice(0, 4);
+    for (const b of bl.slice(0, 4)) { await p.mouse.click(b.x + 20, b.y + 10); await p.waitForTimeout(1500); const det = await detailsText(); if (hasNum(det, w.number)) { o.opened = true; o.how = 'text leaf, measured after the scroll settled'; o.details = det.slice(0, 400); return o; } await p.keyboard.press('Escape'); await p.waitForTimeout(400); } }
+  o.opened = false; return o; }
+await run('C368190', async () => { const o: any = {};
+  const w = await one('ZZAUTOTEST Shift Removed', null, 2); o.wo = w.number; o.line1 = lineName(1);
+  o.estimate = await setEstimate(w, 1, '2');
+  o.setup = await schedDrop2(w, JW.staff_id, /^\s*8\s*(AM|am|:00)/, lineName(1), '2', { gridTime: '08:00:00' }); o.range = o.setup.range;
+  let sh = await shiftsOf(w); o.seededBy = 'Schedule drag onto Jenny Wilson\'s row, Choose lines: Line 1 only, 2h';
+  if (!sh.length) { let off = 1; for (let k = 1; k <= 10; k++) if (dayLabel(k) === o.range) { off = k; break; }
+    o.seedApi = await mkShift(a, w.id, JW.staff_id, off, '08:00', 120, [w.ls[0]]).then((id) => String(id ?? '').slice(0, 8)).catch((e) => String(e?.message || e).slice(0, 160));
+    sh = await shiftsOf(w); o.seededBy = 'the drag saved nothing; the same shift made with the Schedule\'s own save call (Rule 107)'; o.range = dayLabel(off); }
+  o.shiftsBefore = sh.map((x: any) => ({ start: x.start, end: x.end, staff: x.staff === JW.staff_id ? 'Jenny Wilson' : String(x.staff).slice(0, 8), lines: Array.isArray(x.lines) ? x.lines.map((l: any) => l.name ?? l).slice(0, 3) : x.lines }));
+  console.log(t(), 'START STATE found C368190', JSON.stringify({ wo: w.number, lead: await leadName(w.id), lines: await lineTechs(w.id), shifts: o.shiftsBefore, day: o.range }));
+  // step 1
+  await page(w.id); o.step1 = await laborRows(); await shot(p, 'C368190-step1-lines');
+  // step 2: Schedule, that day, Jenny Wilson's shift on [WO-1] > Delete shift
+  await p.goto(`${APP}/schedule`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000); o.rangeShown = (await goRange(o.range ?? null)) ?? await workingDay(JW.staff_id);
+  o.find = await openShiftOnGrid(w, JW.staff_id); o.shift = o.find.opened ? 1 : 0;
+  if (o.shift) { await shot(p, 'C368190-details');
+    o.detailButtons = await p.evaluate(`[...document.querySelectorAll('.q-dialog button, .q-menu button, [role=dialog] button')].filter(b => b.getBoundingClientRect().width > 0).map(b => (b.getAttribute('data-test-id') || '') + '|' + (b.getAttribute('aria-label') || b.getAttribute('title') || '') + '|' + b.innerText.trim()).slice(0, 14)`);
+    const box = p.locator('.q-dialog, .q-menu, [role=dialog]').filter({ visible: true }).last();
+    const delSel = '[data-test-id*="delete" i], button[aria-label*="Delete" i], button[title*="Delete" i], button:has(i:text-is("delete")), button:has(i:text-is("delete_outline"))';
+    let del = box.locator(delSel).first(); o.del = await del.count(); if (!o.del) { del = p.locator(delSel).filter({ visible: true }).first(); o.delOnPage = await del.count(); }
+    const dialogsBefore = await p.locator('.q-dialog').count();
+    if (o.del || o.delOnPage) { await del.click().catch((e) => { o.delError = String(e?.message || e).slice(0, 120); }); await p.waitForTimeout(2500);
+      const q = p.locator('.q-dialog').filter({ hasText: /delete|remove|sure/i }).filter({ has: p.locator('button') }); o.question = await q.count(); o.dialogsAfter = await p.locator('.q-dialog').count(); o.dialogsBefore = dialogsBefore;
+      if (o.question) { o.questionText = (await q.last().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 200); await shot(p, 'C368190-question');
+        await q.last().locator('button').filter({ hasText: /^\s*(Delete|Remove|Yes|Confirm)/i }).first().click().catch(() => {}); await p.waitForTimeout(2500); o.questionAnswered = true; }
+      o.toasts = await toastsOn(p); await shot(p, 'C368190-after-delete'); } }
+  o.shiftsAfter = (await shiftsOf(w)).length; o.shiftsBeforeCount = sh.length;
+  // step 3
+  await page(w.id); o.step3 = await laborRows(); o.techs = await lineTechs(w.id); await shot(p, 'C368190-step3-lines'); R.C368190 = o; });
 async function assetTab2(set: any) { await p.goto(`${APP}/customers/${set.c.company_id}`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); await p.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Assets(\s*\(\d+\))?\s*$/ }).first().click(); await p.waitForTimeout(4000);   /* FIX 5: the tab, not the left card's Assets count */
   if (!(await p.getByText('TRK-201', { exact: true }).count())) { await p.getByText('Assets', { exact: true }).last().click().catch(() => {}); await p.waitForTimeout(3000); }   // FIX 3: the left card has its own Assets tab
   await p.getByText('TRK-201', { exact: true }).first().click(); await p.waitForTimeout(5000); const t = p.locator('.q-tab, [role=tab]').filter({ hasText: /Work Orders/ }).first(); if (await t.count()) { await t.click(); await p.waitForTimeout(4000); }

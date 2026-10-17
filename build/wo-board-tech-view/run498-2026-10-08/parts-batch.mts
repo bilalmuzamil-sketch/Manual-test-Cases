@@ -12,7 +12,9 @@ import path from 'node:path';
 import { open, done, APP } from './session.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search } from './wob.mts';
+import { startState } from './fixup-1017.mts';
 const { browser, page: p } = await open('/workorders?tab=all'); p.setDefaultTimeout(30_000); const a = api(p);
+await startState(p, a, 'parts-batch');   // L0415, fix-up 2
 const R: any = {}; const say = (r: any) => `${r.status}${r.status >= 300 ? ' ' + JSON.stringify(r.body?.message ?? r.body?.errors ?? r.body).slice(0, 200) : ''}`;
 const rows = (r: any) => { const d = r?.body?.data; return Array.isArray(d) ? d : d?.collection ?? d?.data ?? d?.items ?? []; };
 const linesRaw = async (wo: string) => { const d = (await a.get(`/api/work-orders/lines/${wo}`)).body?.data; return (Array.isArray(d) ? d : d?.collection ?? d?.lines ?? []) as any[]; };
@@ -40,13 +42,31 @@ try {
     if (o.vendorField) { await vf.click(); await p.waitForTimeout(800); await p.keyboard.type(String(vendor?.name ?? 'ZZAUTOTEST').slice(0, 18), { delay: 40 }); await p.waitForTimeout(2000);
       const opt = p.locator('.q-menu .q-item').filter({ hasText: String(vendor?.name ?? 'ZZAUTOTEST') }).first(); o.vendorPicked = await opt.count(); if (o.vendorPicked) await opt.click(); else await p.locator('.q-menu .q-item').first().click().catch(() => {}); await p.waitForTimeout(1500); }
     if (!o.vendorPicked) o.assignVendor = say(await a.post(`/api/orders/${orderId}/assign-vendor`, { vendorId: vendor?.id, orderItemIds: [itemId] })); }
-  await p.locator(`[data-test-id="input_invoice_${orderId}"]`).fill(`ZZINV${Date.now() % 100000}`);
+  // FIX-UP 2 (17 Oct 2026): on 16 Oct the vendor pick re-drew the receive form (a loading spinner, picture C368213-receive) AFTER the
+  // invoice number had been typed, so "Vendor Invoice #" was empty and Receive Parts stayed disabled. Now: wait for the form to settle,
+  // type a ZZAUTOTEST vendor invoice number into the field (found by its test id, else by its label), READ IT BACK, retype if the form
+  // wiped it, and wait for Receive Parts to become enabled before pressing it. If it never enables, the empty required fields are listed.
+  const settle = async () => { for (let i = 0; i < 30; i++) { const busy = await p.locator('.q-spinner, .q-inner-loading, [role=progressbar]').filter({ visible: true }).count().catch(() => 0); if (!busy) return i; await p.waitForTimeout(500); } return -1; };
+  o.settledAfterVendor = await settle(); await p.waitForTimeout(1500);
+  const invNo = `ZZAUTOTEST-INV-${Date.now() % 100000}`; o.invoiceTyped = invNo;
+  let invBox = p.locator(`[data-test-id="input_invoice_${orderId}"]`).first();
+  if (!(await invBox.count())) invBox = p.locator('.q-field').filter({ has: p.locator('.q-field__label', { hasText: /Vendor Invoice/i }) }).first();
+  if ((await invBox.evaluate((e: any) => e.tagName).catch(() => 'INPUT')) !== 'INPUT') invBox = invBox.locator('input').first();
+  for (let k = 0; k < 4; k++) { await invBox.click().catch(() => {}); await invBox.fill(invNo).catch(() => {}); await invBox.press('Tab').catch(() => {}); await p.waitForTimeout(1500); await settle();
+    o.invoiceValue = await invBox.inputValue().catch(() => null); if (o.invoiceValue === invNo) break; o[`invoiceWiped${k}`] = o.invoiceValue; await p.waitForTimeout(2000); }
   const sell = p.locator(`[data-test-id="input_sell_${itemId}"]`); if (await sell.count()) { const v = await sell.inputValue().catch(() => ''); if (!(Number(v) > 0)) await sell.fill('20'); }
-  await shot(p, 'C368213-receive'); o.receiveEnabled = await p.locator(`[data-test-id="button_receive_po_${orderId}"]`).isEnabled().catch(() => null); await p.locator(`[data-test-id="button_receive_po_${orderId}"]`).click(); await p.waitForTimeout(7000); o.afterReceiveUrl = p.url().replace(APP, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>');
+  const recv = p.locator(`[data-test-id="button_receive_po_${orderId}"]`);
+  for (let k = 0; k < 30; k++) { o.receiveEnabled = await recv.isEnabled().catch(() => null); if (o.receiveEnabled) break; await p.waitForTimeout(500); }
+  console.log(t(), 'START STATE found C368213 receive form', JSON.stringify({ vendorPicked: o.vendorPicked ?? null, invoiceValue: o.invoiceValue, receiveEnabled: o.receiveEnabled }));
+  await shot(p, 'C368213-receive');
+  if (!o.receiveEnabled) { o.emptyRequired = await p.evaluate(`[...document.querySelectorAll('.q-field')].filter(f => /\\*/.test(f.querySelector('.q-field__label')?.innerText || '')).filter(f => { const i = f.querySelector('input'); return i && !i.value; }).map(f => f.querySelector('.q-field__label').innerText.trim())`).catch(() => null);
+    throw new Error(`Receive Parts stayed disabled (invoice box reads "${o.invoiceValue}", empty required: ${JSON.stringify(o.emptyRequired)})`); }
+  await recv.click(); await p.waitForTimeout(7000); o.afterReceiveUrl = p.url().replace(APP, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>');
   const l = (await linesRaw(w))[0]; o.lineParts = (l?.parts ?? []).map((x: any) => `${x.part_number}:${x.status ?? ''}`); o.requestsNow = (l?.part_requests ?? []).map((r: any) => `${r.part_number}:${r.status}`);
   const part = (l?.parts ?? [])[0]; o.partKeys = part ? Object.keys(part).join(',').slice(0, 300) : null;
   if (part) o.ret = say(await a.post('/api/work-orders/part/make-return-request', { part_id: part.part_id ?? part.id, work_order_id: w, quantity: 1, return_reason: 'ZZAUTOTEST parts count' }));
   const row = (await workOrders(a, q))[0]; o.api = { parts: row?.partRequestsCount, returns: row?.partReturnRequestsCount, number: row?.number };
+  console.log(t(), 'START STATE found C368213', JSON.stringify({ wo: o.api.number, lineParts: o.lineParts, requests: o.requestsNow, returnRaised: o.ret ?? null, apiCounts: o.api }));   // the set-up as read back before the case's steps
   // the case's steps on the screen
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); await tab(p, 'All'); await display(p, 'List'); await search(p, q); await p.waitForTimeout(3000);
   await p.locator('[data-test-id="button_column_selection"]').click(); await p.waitForTimeout(800);

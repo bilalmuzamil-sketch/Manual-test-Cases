@@ -13,11 +13,16 @@ import { api, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, display, active, tab, search, drag, toColumn, toasts, shiftPrompt, findRow } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { mkShift, shiftsOn } from './shifts.mts';
+import { openRetry } from './fx6-1017.mts';
+import { startState } from './fixup-1017.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
-const { browser, page: p } = await open('/workorders?tab=all'); p.setDefaultTimeout(30_000);
+// 17 Oct 2026 (fix-up 2): the 16 Oct full run could not sign in here twice (quick-login left the page on /login, then the harness's
+// retries landed on Google's page and it exited, L0413). openRetry() turns that exit into a retry with a FRESH browser (fx6-1017.mts).
+const { browser, page: p } = await openRetry(open, '/workorders?tab=all'); p.setDefaultTimeout(30_000);
 const a = api(p);
+await startState(p, a, 'c581895-v2');   // L0415: the saved Work Orders choices found before anything is set
 const OUT = path.join(EV, 'c581895-v2.json');
 const R: Record<string, any> = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : {};
 const stamp = new Date().toISOString().slice(5, 16).replace(/[-T:]/g, '');
@@ -94,6 +99,7 @@ await run('C581895', async () => {
   const TA = CN ?? ES, TB = RE; if (CN) names[CN.staff_id] = 'Carol';
   o.staffRowA = CN ? { first: CN.first_name, last: CN.last_name, email: String(CN.email ?? '').replace(/^(.).*@/, '$1…@'), user: CN.user_first_name ?? CN.user?.first_name ?? null } : 'Carol Neal not found; Esther Howard used';
   o.staff = [TA, TB].map((x: any) => ({ id: x.staff_id, name: `${x.first_name} ${x.last_name}` }));
+  console.log(t(), 'START STATE found C581895', JSON.stringify({ technicianA: o.staff[0]?.name, technicianB: o.staff[1]?.name, staffRowA: o.staffRowA }));
   const c = await customer(a, n, 'ZZS5SN'); const w = await workOrder(a, c, 'approved', TA.staff_id);
   await mkLine(w, TRANS); const l2 = await mkLine(w, BAG); o.l2tech = (await a.put(`/api/work-orders/lines/${l2}/technicians`, { staffIds: [TB.staff_id] })).status;
   o.lead = (await setLead(w, TA.staff_id)).status;

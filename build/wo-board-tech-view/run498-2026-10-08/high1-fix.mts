@@ -14,6 +14,8 @@ import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toCol
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
+import { pickTech } from './fx6-1017.mts';
+import { startState } from './fixup-1017.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -21,6 +23,7 @@ const { browser, page: p0 } = await open('/workorders?tab=all');
 const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p;
 p.setDefaultTimeout(30_000);
 const a = api(p);
+await startState(p, a, 'high1-fix');   // L0415, fix-up 2: saved Work Orders choices found before anything is set
 const R: Record<string, any> = { runner: RUN.id.slice(0, 8) };
 const PREF = '/api/users/me/preferences/work-orders-list';
 const prefGet = async () => (await a.get(PREF)).body?.data?.value ?? {};
@@ -192,17 +195,68 @@ async function rosterRemove(d: any, staffId: string) { const b = d.locator(`[dat
 const save = async (d: any, pg: Page = p) => { await d.locator('[data-test-id="button_save_close"], button:has-text("Save & Close")').first().click(); await pg.waitForTimeout(3500); return toastsOn(pg); };
 const roster = (d: any) => d.evaluate((e: any) => [...e.querySelectorAll('[data-test-id^="line_roster_technician_"]')].map((x: any) => x.innerText.trim()));
 
-await run('C368166', async () => { const w = await one('ZZAUTOTEST WO Page Lead Change', ES); const o: any = {};
-  await page(w.id); o.before = await leadText(); o.picked = await pickLeadOnPage2(/Ralph Edwards/); o.after = await leadText(); o.toasts = await toastsOn(p); await shot(p, 'C368166-after');
-  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.afterReload = await leadText(); o.apiLead = await leadName(w.id); R.C368166 = o; });
-await run('C368167', async () => { const w = await one('ZZAUTOTEST WO Page Refused Lead', ES); const o: any = {};
-  await page(w.id); o.before = await leadText(); const log: any[] = []; await finish(w.id, 'invoiced', log); o.status = (await view(w.id)).status;
-  o.picked = await pickLeadOnPage2(/Ralph Edwards/); o.toasts = await toastsOn(p); o.fieldNow = await leadText(); await shot(p, 'C368167-message');
-  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.afterReload = (await leadText()) || (await p.evaluate(`(document.body.innerText.match(/Lead technician\\s*\\n\\s*([^\\n]+)/i) || [])[1] || null`)); o.apiLead = await leadName(w.id); R.C368167 = o; });
-await run('C368168', async () => { const w = await one('ZZAUTOTEST WO Page Lines Follow', ES, 2); const o: any = {};
+// ───────── FIX-UP 2 (17 Oct 2026, C368166-C368168). The 16 Oct full run could not pick Ralph Edwards in the work order page's
+// Lead Technician list: KNOWN PRODUCT FAULT SV-11393 — the list stops at about 100 names (62 drawn on the work order page, ending
+// at the Q names), so Ralph is never offered. These three cases say "Names are examples" (the expected results only CALL [Tech-B]
+// "Ralph Edwards"), so [Tech-B] is the first of Ralph Edwards / Jenny Wilson (our Service technician at Heavy Duty, Time Clock on)
+// / any other offered lead that the list DOES offer; every reading logs the list (count, first, last, whether Ralph is offered —
+// "LIST …") and which name was used ("PICK …"), and the pick is read back from the server (apiLead). Customer names follow the
+// cases. "START STATE found …" logs the work order as set up, before the step that is judged.
+const CANDS = (await candidates(a)).map((c) => c.name).filter((n) => n && !/^(Admin ShopView|ZZ WOB Runner)$/.test(n));
+const TECHB = ['Ralph Edwards', 'Jenny Wilson', ...CANDS.filter((n) => !/^(Ralph Edwards|Jenny Wilson)$/.test(n))];
+const leadSel = async (pg: Page = p) => (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]').first() : pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
+const pickB = async (id: string, avoid: string[], pg: Page = p) => pickTech(pg, async () => { await (await leadSel(pg)).click(); }, `${id} Lead Technician (work order page)`, { prefer: TECHB, avoid, control: ['Esther Howard', 'Dana Ortiz'] });
+const NAMEOF: Record<string, string> = { Esther: 'Esther Howard', Ralph: 'Ralph Edwards', Dana: 'Dana Ortiz', Jenny: 'Jenny Wilson' };
+const apiLeadName = async (id: string) => { const n = await leadName(id); return NAMEOF[String(n)] ?? n; };
+const statusOf = async (id: string) => { const v = await view(id); return v?.work_order?.status ?? v?.status ?? null; };
+const watchToasts = (pg: Page = p) => pg.evaluate(`(() => { window.__tl = []; if (window.__to) window.__to.disconnect(); const grab = () => { for (const e of document.querySelectorAll('.q-notification')) { const t = e.innerText.replace(/\\s+/g, ' ').replace(/^(check_circle|warning|error|info)\\s*/, '').replace(/\\s*close$/i, '').trim(); if (t && !window.__tl.includes(t)) window.__tl.push(t); } }; window.__to = new MutationObserver(grab); window.__to.observe(document.body, { childList: true, subtree: true, characterData: true }); })()`).catch(() => {});
+const seenToasts = (pg: Page = p) => pg.evaluate('window.__tl || []').catch(() => []) as Promise<string[]>;
+
+await run('C368166', async () => { const w = await one('ZZAUTOTEST Lead Change Page', ES); const o: any = { wo: w.number };
+  console.log(t(), 'START STATE found C368166', JSON.stringify({ wo: w.number, status: await statusOf(w.id), lead: await apiLeadName(w.id) }));
+  await page(w.id); o.before = await leadText(); await watchToasts();
+  o.techB = await pickB('C368166', ['Esther Howard']); o.used = o.techB.picked; await p.waitForTimeout(1500);
+  o.after = await leadText(); o.toasts = [...new Set([...(await seenToasts()), ...(await toastsOn(p))])]; await shot(p, 'C368166-after');
+  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.afterReload = await leadText(); o.apiLead = await apiLeadName(w.id); await shot(p, 'C368166-after-reload');
+  o.readBack = o.used ? { screen: o.afterReload.includes(o.used), server: o.apiLead === o.used } : null; R.C368166 = o; });
+
+await run('C368167', async () => { const w = await one('ZZAUTOTEST Refused Lead Change', ES); const o: any = { wo: w.number };
+  // set-up: the work order to Complete (lines completed and reviewed), as the case's Setup, through the app's own calls
+  const log: any[] = []; await finish(w.id, 'complete', log); o.setup = log;
+  console.log(t(), 'START STATE found C368167', JSON.stringify({ wo: w.number, status: await statusOf(w.id), lead: await apiLeadName(w.id) }));
+  // step 1: tab 1 opens the work order and is left open
+  await page(w.id); o.before = await leadText(); await shot(p, 'C368167-tab1-start');
+  // step 2: tab 2 (same browser) — Finance > Create Invoice; the New Customer Payment window is closed without paying
+  const t2 = await p.context().newPage(); t2.setDefaultTimeout(20_000); o.tab2 = {};
+  try { await t2.goto(`${APP}/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }); await t2.waitForTimeout(7000);
+    await t2.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Finance\s*$/ }).first().click().catch(() => {}); await t2.waitForTimeout(3500);
+    const ci = t2.locator('button').filter({ hasText: /Create Invoice/i }).first(); o.tab2.button = await ci.count(); o.tab2.disabled = o.tab2.button ? await ci.isDisabled().catch(() => null) : null;
+    if (o.tab2.button && !o.tab2.disabled) { await ci.click(); await t2.waitForTimeout(5000); o.tab2.how = 'Create Invoice pressed in tab 2';
+      const pay = t2.locator('.q-dialog').filter({ hasText: /Payment/i }).last(); o.tab2.paymentWindow = (await pay.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 120);
+      await t2.screenshot({ path: path.join(EV, 'C368167-tab2-invoice.png') }).catch(() => {});
+      if (o.tab2.paymentWindow) { await pay.locator('[data-test-id="button_close_dialog"], button:has(i:text-is("close"))').first().click({ timeout: 5000 }).catch(async () => { await t2.keyboard.press('Escape'); }); await t2.waitForTimeout(1500); }
+    } else { o.tab2.how = 'Create Invoice could not be pressed in tab 2 — the same invoice call was made from tab 2 instead (fallback)';
+      o.tab2.api = say(await api(t2).post('/api/invoices/create', { work_order_id: w.id, issue_date: new Date().toISOString().slice(0, 10), due_date: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10) })); }
+  } catch (e: any) { o.tab2.error = String(e?.message || e).slice(0, 200); }
+  o.statusAfterInvoice = await statusOf(w.id);
+  // steps 3-5: back in tab 1, NOT reloaded
+  await p.bringToFront(); await p.waitForTimeout(800); const ls = await leadSel();
+  o.step3 = { disabled: await ls.evaluate((e: any) => e.classList.contains('q-field--disabled') || e.getAttribute('aria-disabled') === 'true' || !!e.querySelector('.q-field--disabled, [aria-disabled="true"]')).catch(() => null), field: (await ls.innerText().catch(() => '')).replace(/\s+/g, ' ').trim() };
+  if (o.step3.disabled) o.step3.note = 'page refreshed itself (the field was already disabled at step 3)';
+  await watchToasts(); o.techB = await pickB('C368167', ['Esther Howard']); o.used = o.techB.picked; await p.waitForTimeout(1500);
+  o.toasts = [...new Set([...(await seenToasts()), ...(await toastsOn(p))])]; o.fieldNow = await leadText(); await shot(p, 'C368167-message');
+  // step 6: reload tab 1
+  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.afterReload = (await leadText()) || (await p.evaluate(`(document.body.innerText.match(/Lead technician\\s*\\n\\s*([^\\n]+)/i) || [])[1] || null`)); o.apiLead = await apiLeadName(w.id); await shot(p, 'C368167-after-reload');
+  await t2.close().catch(() => {}); R.C368167 = o; });
+
+await run('C368168', async () => { const w = await one('ZZAUTOTEST Lead Moves Lines', ES, 2); const o: any = { wo: w.number };
   await page(w.id); await p.getByText(lineName(2), { exact: false }).first().click(); await p.waitForTimeout(2500); let d = dlg(); o.removed = await rosterRemove(d, ES.staff_id); o.added = await rosterAdd(d, p, /Dana Ortiz/); o.roster = await roster(d); o.saved = await save(d);
-  o.before = Object.values(await lineTechs(w.id)); await page(w.id); o.picked = await pickLeadOnPage2(/Ralph Edwards/); o.shiftQuestion = await p.locator('.q-dialog').filter({ hasText: /scheduled shifts/i }).count();
-  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); const lt = await lineTechs(w.id); o.after = w.ls.map((l: string) => lt[l]); o.labor = await laborRows(); await shot(p, 'C368168-lines'); R.C368168 = o; });
+  o.before = Object.values(await lineTechs(w.id)); await page(w.id); o.laborBefore = await laborRows();
+  console.log(t(), 'START STATE found C368168', JSON.stringify({ wo: w.number, lead: await apiLeadName(w.id), lines: o.before, laborOnScreen: o.laborBefore }));
+  o.techB = await pickB('C368168', ['Esther Howard', 'Dana Ortiz']); o.used = o.techB.picked; await p.waitForTimeout(1500);
+  o.shiftQuestion = await p.locator('.q-dialog').filter({ hasText: /scheduled shifts/i }).count(); o.toasts = await toastsOn(p);
+  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); await p.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Lines/ }).first().click().catch(() => {}); await p.waitForTimeout(2500);
+  const lt = await lineTechs(w.id); o.after = w.ls.map((l: string) => lt[l]); o.labor = await laborRows(); o.apiLead = await apiLeadName(w.id); await shot(p, 'C368168-lines'); R.C368168 = o; });
 await run('C368172', async () => { const w = await one('ZZAUTOTEST New Line Tech', ES, 1); const o: any = {};
   await page(w.id); await p.locator('[data-test-id="button_new_line"]').click(); await p.waitForTimeout(2500); const d = dlg();
   await d.locator('[data-test-id="select_line_canned_line"]').click(); await p.keyboard.type('ZZAUTOTEST Oil change zq', { delay: 30 }); for (let i = 0; i < 6 && !(await p.locator('.q-menu').filter({ hasText: /No results/i }).count()); i++) await p.waitForTimeout(700); o.noResults = await p.locator('.q-menu').filter({ hasText: /No results/i }).count(); await p.keyboard.press('Enter'); await p.waitForTimeout(1500);
