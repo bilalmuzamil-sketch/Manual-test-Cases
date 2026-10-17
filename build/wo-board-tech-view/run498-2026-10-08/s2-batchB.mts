@@ -7,7 +7,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
-import { api, candidates, seedCase, workOrders } from './data.mts';
+import { api, candidates, seedCase, workOrders, customer, workOrder } from './data.mts';
+import { staffRows } from './staff.mts';
+import { pickTech } from './fx6-1017.mts';
+import { startState } from './fixup-1017.mts';
 import { EV, t, shot, display, tab, search, groups, toggleGroup, read, columnHeads, switchLocUI } from './wob.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -16,6 +19,7 @@ const { browser, page: p } = await open('/workorders?tab=all');
 p.setDefaultTimeout(30_000);
 const a = api(p);
 const R: Record<string, any> = {};
+await startState(p, a, 's2-batchB');   // L0415, fix-up 2
 const techs = await candidates(a);
 const by = (n: string) => techs.find((x) => x.name === n)!;
 const tA = by('Ayesha Khan'), tB = by('Bilal Muzamil'), me = by('Admin ShopView');
@@ -107,23 +111,59 @@ await run('C368162', async () => {
   await shot(p, 'C368162-header-row');
 });
 
+// ───────── FIX-UP 2 (17 Oct 2026, C96936): the 16 Oct run stopped with an error — seedCase() makes the case's work orders only ONCE,
+// and an earlier run had moved their leads, so no work order was left with the first technician. It also used Ayesha Khan / Bilal
+// Muzamil, while the case names Esther Howard and Ralph Edwards ("keep these names"). Now the case's own customer is used and its
+// work orders are SET every run: five Approved ones (made if missing), [WO-1]-[WO-3] led by Esther Howard, [WO-4]/[WO-5] by Ralph
+// Edwards, any other work order of this customer back to no lead — and read back (Esther 3, Ralph 2) before step 1. Both technicians
+// are pinned for the run (saved choice, put back after) so their groups sit at the top. Step 5 is done in tab B on the work order page;
+// Ralph Edwards is past the ~100-name cut-off of that list (KNOWN PRODUCT FAULT SV-11393), so if he is not offered the same save the
+// page makes is sent from tab B instead, and the log says which way it went (step5.how) with the list read (step5.list).
 await run('C96936', async () => {
-  const n = 'ZZAUTOTEST F2 Refresh Lead';
-  const wos = await seedCase(a, n, 'ZZF2RL', [{ lead: tA.id }, { lead: tA.id }, { lead: tA.id }, { lead: tB.id }, { lead: tB.id }]);
-  await tv(n);
-  const pick = async () => (await groups(p)).filter((g) => [tA.id, tB.id].includes(g.id)).map((g) => ({ name: g.name, count: g.count, rows: g.rows }));
-  R.C96936 = { before: await pick() };
-  const w1 = wos.find((w: any) => w.techAssignedFirstName === 'Ayesha')!;
-  // tab B: the work order's own page — the Lead Technician change it makes is this same call
-  const pB = await p.context().newPage(); await pB.goto(`${APP}/workorders/${w1.id}/lines`, { waitUntil: 'domcontentloaded' }); await pB.waitForTimeout(4000);
-  const r = await api(pB).post('/api/work-orders/change-lead-technician', { work_order_id: w1.id, tech_assigned_id: tB.id }); await pB.close();
-  R.C96936.moved = `${w1.number} -> Bilal Muzamil (${r.status})`;
-  // 15 Oct 2026 (Rule 130): the pictures must show the two groups — bring each on screen (the table draws only rows near the screen)
-  const showGroups = async (k: string) => { for (const [id, nmx] of [[tA.id, 'A'], [tB.id, 'B']] as const) { await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await p.waitForTimeout(400); if (await scrollToGroup(id)) { await p.evaluate(`document.querySelector('[data-test-id="tech_view_group_${id}"]')?.scrollIntoView({ block: 'start' })`); await p.waitForTimeout(900); } await shot(p, `C96936-${k}-group${nmx}`); } };
-  await p.waitForTimeout(3000); R.C96936.beforeRefresh = await pick(); await showGroups('before-refresh');
-  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await search(p, n); R.C96936.afterRefresh = await pick(); await shot(p, 'C96936-after-refresh'); await showGroups('after-refresh');
+  const n = 'ZZAUTOTEST F2 Refresh Lead'; const o: any = {}; R.C96936 = o;
+  const D = '@staging.shopview.local'; const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x: any) => x.email === `zz.wob.${e}${D}`);
+  const ES = await sid('esther.howard'), RE = await sid('ralph.edwards'); if (!ES || !RE) throw new Error(`technicians not found: Esther ${!!ES}, Ralph ${!!RE}`);
+  const leadOfW = (w: any) => w.techAssignedFirstName ? `${w.techAssignedFirstName} ${w.techAssignedLastName}` : 'none';
+  let have = (await workOrders(a, n)).filter((w: any) => !w.companyName || w.companyName === n);
+  console.log(t(), 'START STATE found C96936', JSON.stringify(have.map((w: any) => `${w.number} ${w.status} lead=${leadOfW(w)}`)));
+  const c = await customer(a, n, 'TRK-118'); const approved = () => have.filter((w: any) => /^approved$/i.test(String(w.status)));
+  for (let k = approved().length; k < 5; k++) await workOrder(a, c, 'approved', null);
+  have = (await workOrders(a, n)).filter((w: any) => !w.companyName || w.companyName === n);
+  const five = approved().sort((x: any, y: any) => String(x.number).localeCompare(String(y.number), undefined, { numeric: true })).slice(0, 5);
+  o.setLeads = [];
+  for (const [i, w] of five.entries()) { const want = i < 3 ? ES.staff_id : RE.staff_id; o.setLeads.push(`${w.number} ${(await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: want })).status}`); }
+  for (const w of have.filter((x: any) => !five.some((f: any) => f.id === x.id) && x.techAssignedFirstName)) o.setLeads.push(`${w.number} no lead ${(await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: null })).status}`);
+  const back = await workOrders(a, n); const lead = (id: string) => leadOfW(back.find((w: any) => w.id === id) ?? {});
+  o.wos = five.map((w: any, i: number) => ({ wo: `WO-${i + 1}`, number: w.number, lead: lead(w.id) }));
+  o.setupOk = o.wos.filter((x: any) => x.lead === 'Esther Howard').length === 3 && o.wos.filter((x: any) => x.lead === 'Ralph Edwards').length === 2;
+  console.log(t(), 'START STATE set C96936', JSON.stringify({ wos: o.wos, setupOk: o.setupOk, others: back.filter((w: any) => !five.some((f: any) => f.id === w.id)).map((w: any) => `${w.number} lead=${leadOfW(w)}`) }));
+  if (!o.setupOk) throw new Error('the set-up did not read back as Esther Howard 3 / Ralph Edwards 2: ' + JSON.stringify(o.wos));
+  const w1 = five[0]; o.wo1 = w1.number;
+  const pv0 = await prefs(); o.pinsAtStart = pv0.pinnedTechnicianIds ?? []; o.pin = (await a.put('/api/users/me/preferences/work-orders-list', { value: { ...pv0, pinnedTechnicianIds: [ES.staff_id, RE.staff_id] } })).status;
+  try {
+    // steps 1-4: tab A, Work Orders > All > Search > Tech View
+    await tv(n);
+    const pick = async () => (await groups(p)).filter((g) => [ES.staff_id, RE.staff_id].includes(g.id)).map((g) => ({ name: g.name, count: g.count, rows: g.rows }));
+    o.before = await pick(); await shot(p, 'C96936-tabA-start');
+    // step 5: tab B, the work order page, Lead Technician = Ralph Edwards
+    const pB = await p.context().newPage(); pB.setDefaultTimeout(20_000); o.step5 = {};
+    try { await pB.goto(`${APP}/workorders/${w1.id}/lines`, { waitUntil: 'domcontentloaded' }); await pB.waitForTimeout(7000);
+      const sel = async () => (await pB.locator('[data-test-id="select_lead_technician"]').count()) ? pB.locator('[data-test-id="select_lead_technician"]').first() : pB.locator('.q-field').filter({ has: pB.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first();
+      const pk = await pickTech(pB, async () => { await (await sel()).click(); }, 'C96936 tab B Lead Technician', { prefer: ['Ralph Edwards'], control: ['Esther Howard', 'Dana Ortiz'], exact: true });
+      o.step5.list = { count: pk.list.count, first: pk.list.first, last: pk.list.last, offered: pk.list.offered, readingValid: pk.list.readingValid };
+      if (pk.picked) o.step5.how = 'picked on the work order page in tab B';
+      else { o.step5.how = 'Ralph Edwards is not offered on the work order page (SV-11393); the same save the page makes was sent from tab B'; o.step5.api = (await api(pB).post('/api/work-orders/change-lead-technician', { work_order_id: w1.id, tech_assigned_id: RE.staff_id })).status; }
+      await pB.waitForTimeout(2500); await pB.screenshot({ path: path.join(EV, 'C96936-tabB.png') }).catch(() => {});
+    } finally { await pB.close().catch(() => {}); }
+    o.step5.leadNow = leadOfW((await workOrders(a, n)).find((w: any) => w.id === w1.id) ?? {});   // read back from the server
+    // step 6: tab A, not refreshed
+    const showGroups = async (k: string) => { for (const [id, nmx] of [[ES.staff_id, 'Esther'], [RE.staff_id, 'Ralph']] as const) { await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await p.waitForTimeout(400); if (await scrollToGroup(id)) { await p.evaluate(`document.querySelector('[data-test-id="tech_view_group_${id}"]')?.scrollIntoView({ block: 'start' })`); await p.waitForTimeout(900); } await shot(p, `C96936-${k}-group-${nmx}`); } };
+    await p.bringToFront(); await p.waitForTimeout(3000); o.beforeRefresh = await pick(); await showGroups('before-refresh');
+    // steps 7-8: refresh tab A
+    await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await search(p, n); await p.waitForTimeout(2000); o.afterRefresh = await pick(); await shot(p, 'C96936-after-refresh'); await showGroups('after-refresh');
+    o.wo1Group = (o.afterRefresh as any[]).find((g) => g.rows.includes(w1.number))?.name ?? null;
+  } finally { o.pinsBack = (await a.put('/api/users/me/preferences/work-orders-list', { value: { ...(await prefs()), pinnedTechnicianIds: o.pinsAtStart } })).status; }
 });
-
 await run('C96929', async () => {
   const lead = free[0];
   for (const c of ['Zeta Hauling', 'Alpha Freight', 'Mid Trucking']) await seedCase(a, `ZZAUTOTEST ${c}`, 'ZZF2' + c.slice(0, 3).toUpperCase(), [{ lead: lead.id }]);

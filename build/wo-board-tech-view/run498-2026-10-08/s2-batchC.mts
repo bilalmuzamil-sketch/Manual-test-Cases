@@ -282,12 +282,30 @@ await run('C368127', async () => {
       const th = document.querySelector('thead tr'); const u = document.querySelector('[data-test-id="tech_view_group_unassigned"]'); const es = th ? document.elementsFromPoint(200, th.getBoundingClientRect().bottom + 6) : [];
       const g = es.map(x => x.closest && x.closest('[data-test-id^="tech_view_group_"]')).filter(Boolean)[0];
       return { headRow: r(th), unassignedHeader: r(u), unassignedPosition: u ? getComputedStyle(u).position : null, justUnderHeadings: g ? g.getAttribute('data-test-id') : null, scrollTop: document.querySelector('.q-table__middle').scrollTop }; })()`);
-    // the header kept at the top is drawn over the table; click the arrow where it sits
-    const hit = await pg.evaluate(`(() => { const els = document.elementsFromPoint(90, 210); const b = els.map(e => e.closest && e.closest('button')).find(Boolean); return { y: 210, what: els.slice(0, 4).map(e => e.tagName + '.' + String(e.className).slice(0, 40)), button: b ? (b.getAttribute('aria-label') || b.getAttribute('data-test-id')) : null, text: (els[0] && els[0].closest('tr, div') || {}).innerText?.replace(/\\s+/g, ' ').slice(0, 80) }; })()`) as any;
-    R.C368127.stickyArrow = hit;
-    await pg.mouse.click(90, hit.y); await pg.waitForTimeout(2000);
+    // FIX-UP 2 (17 Oct 2026): on 16 Oct the point (90, 210) hit SPAN.tech-view-group-header__icon inside DIV.tech-view__sticky — the
+    // header held at the top is a DRAWN COPY with no <button> — and the click there did not collapse the group. Step 7 now clicks that
+    // sticky copy's own arrow icon (else the copy's header row), checks first that the copy reads "Unassigned", and reads the result
+    // WITHOUT scrolling back up: the saved collapsed groups, the arrow icon's word, the scroll position and the rows still drawn; only
+    // then is the table scrolled to the top and the group row's own data-collapsed read (the positive control).
+    const stickyState = () => pg.evaluate(`(() => { const s = document.querySelector('.tech-view__sticky'); const ic = s && s.querySelector('.tech-view-group-header__icon'); const m = document.querySelector('.q-table__middle');
+      return { sticky: !!s, text: s ? s.innerText.replace(/\\s+/g, ' ').trim().slice(0, 80) : null, icon: ic ? ic.innerText.trim() : null, iconBox: ic ? (() => { const b = ic.getBoundingClientRect(); return { x: Math.round(b.x), y: Math.round(b.y), w: Math.round(b.width) }; })() : null,
+        scrollTop: m ? Math.round(m.scrollTop) : null, rowsDrawn: document.querySelectorAll('tr[data-group-key="unassigned"]').length }; })()`) as Promise<any>;
+    const savedCollapsed = async () => ((await api(pg).get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {}).collapsedGroups ?? null;
+    R.C368127.beforeClick = await stickyState(); R.C368127.savedBeforeClick = await savedCollapsed();
+    console.log(t(), 'START STATE found C368127 step 7', JSON.stringify({ sticky: R.C368127.beforeClick, saved: R.C368127.savedBeforeClick }));
+    const icon = pg.locator('.tech-view__sticky .tech-view-group-header__icon').first(); const head = pg.locator('.tech-view__sticky .tech-view-group-header').first();
+    R.C368127.stickyArrow = { icon: await icon.count(), header: await head.count(), readsUnassigned: /Unassigned/i.test(String(R.C368127.beforeClick.text)) };
+    await shot(pg, 'C368127-before-arrow');
+    if (R.C368127.stickyArrow.icon) { await icon.click({ timeout: 8000 }).catch((e) => { R.C368127.stickyArrow.iconClickError = String(e?.message || e).slice(0, 120); }); R.C368127.stickyArrow.clicked = 'sticky header arrow icon'; }
+    else if (R.C368127.stickyArrow.header) { await head.click({ timeout: 8000 }).catch(() => {}); R.C368127.stickyArrow.clicked = 'sticky header row'; }
+    await pg.waitForTimeout(2500);
+    R.C368127.afterClickInPlace = { ...(await stickyState()), saved: await savedCollapsed() }; await shot(pg, 'C368127-after-arrow-in-place');
+    if (!(JSON.stringify(R.C368127.afterClickInPlace.saved ?? []).includes('unassigned')) && R.C368127.stickyArrow.header && R.C368127.stickyArrow.clicked !== 'sticky header row') {
+      // the icon click changed nothing saved: try the copy's header row itself once, and say so
+      await head.click({ timeout: 8000 }).catch(() => {}); await pg.waitForTimeout(2500); R.C368127.stickyArrow.secondTry = 'sticky header row'; R.C368127.afterSecondTry = { ...(await stickyState()), saved: await savedCollapsed() }; await shot(pg, 'C368127-after-header-row'); }
+    R.C368127.scrolledBackUp = (R.C368127.afterSecondTry ?? R.C368127.afterClickInPlace).scrollTop !== null && (R.C368127.afterSecondTry ?? R.C368127.afterClickInPlace).scrollTop < 100;
     await pg.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await pg.waitForTimeout(1500);
-    R.C368127.afterClick = { collapsed: (await u())?.collapsed ?? 'group row not drawn', savedCollapsed: ((await api(pg).get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {}).collapsedGroups ?? null };
+    R.C368127.afterClick = { collapsed: (await u())?.collapsed ?? 'group row not drawn', savedCollapsed: await savedCollapsed() };
     await shot(pg, 'C368127-after-arrow'); await pg.screenshot({ path: path.join(EV, 'C368127-end.png') }).catch(() => {});
   } finally { await v.close(); }
   // List's own rows for the All tab, paged the way List asks for them, counted where the lead is empty
