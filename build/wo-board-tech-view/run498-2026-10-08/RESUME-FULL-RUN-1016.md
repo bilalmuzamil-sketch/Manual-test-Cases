@@ -29,3 +29,9 @@ SV-11101 reopen; C590117 tooltip ticket.
 - Held draft **D-C590122** (invisible magnifier circle) no longer reproduces ⇒ close it in the report (Rule 62(c) gate 3).
 - Before the final report: one live read of PRD Confluence 845185030 (latest version), quote verbatim for each of the above, then ask the QA lead per ticket (one at a time).
 - Tickets now passing (TESTING STAGE): SV-11319, SV-11322, SV-11324, SV-11323, SV-11338, SV-11394, SV-11325, SV-11397, SV-11310, SV-11318, SV-11422, SV-11419, SV-11405 (C590120), SV-11317, SV-11420.
+
+## 17 Oct 04:55 UTC — for the final report
+- **C614711** (Retest → Blocked, script fault steps 6/7/10, in fix-up 2): its EXPECT-FAIL symptom (SV-11416 "Unknown Technician" column) no longer reproduces — deleted lead's work order shows under "Deleted technician" with the Inactive marker, no grip ⇒ case outcome 3: tell the QA lead the fix looks shipped (SV-11416 TESTING STAGE, read 17 Oct).
+- **C614711 step 8 — QA lead ruling needed:** List shows Lead Technician "Unassigned" for the deleted lead's work order S2-37033; the case expects a blank cell. Evidence `annotated-full-1016/C614711-2-list-lead.png`.
+- C97012 (step 74) not run: two-person route broken since Admin and Analyst 1 share one Google sign-in (L0407).
+- C97026/C97033/C97034: analytics day 2 on the next Pakistan day (RUN_GA=day2).
