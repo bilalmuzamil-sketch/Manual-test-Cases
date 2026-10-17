@@ -1198,7 +1198,13 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
   first (Schedule drag, `mkShift` fallback) and read it back before judging "removed".
 - **Production in the same script as staging is safe when it signs in by password** (`prod-login-boot.mjs`, second production
   account): it does not touch the staging Google sign-in (L0394), so a case's "repeat on production" step can run in its own browser
-  right after the staging steps (medium-fix3 `caseSteps(..., 'production')`). #staging #scripts #signin #sv-11393 → L0394, L0396, L0413, L0415
+  right after the staging steps (medium-fix3 `caseSteps(..., 'production')`).
+- **`seedCase()` makes a case's work orders ONCE; later runs inherit whatever leads earlier runs left** (C96936 found no work order
+  with its first technician and stopped). Set the leads every run and read them back before step 1; a check that ADDS a technician
+  to a line needs a fresh work order per run (C368161: Aaron Baker was already on the re-used line, so the list no longer offered him).
+- **Tech View's held group header is a drawn copy (`.tech-view__sticky`) with no `<button>`**: click its
+  `.tech-view-group-header__icon` and read the collapse in place (saved `collapsedGroups`, scroll position) before scrolling back
+  (C368127 step 7). #staging #scripts #signin #sv-11393 → L0394, L0396, L0413, L0415
 
 ## L0418 — 2026-10-17 — Reading a run's history: what a full re-run's posts did to earlier verdicts (run 498)
 - **`build/testing-tools/tr_client.py` `get()` returns a TUPLE `(http_status, body)`**, not the body: `_, r = t.get("get_tests/498&limit=250&offset=0"); r['tests']`; `_, rs = t.get(f"get_results/{test_id}&limit=3"); rs['results']`. Page `get_tests` by 250.

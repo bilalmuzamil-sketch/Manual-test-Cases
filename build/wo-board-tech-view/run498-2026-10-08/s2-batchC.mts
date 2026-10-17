@@ -11,7 +11,9 @@ import { open, done, APP } from './session.mts';
 import { api, candidates, seedCase, workOrders, customer, workOrder } from './data.mts';
 import { EV, t, shot, display, tab, search, groups, toggleGroup, read, switchLocUI, toColumn } from './wob.mts';
 import { viewAs } from './viewas.mts';
-import { staffRows, person, HEAVY } from './staff.mts';
+import { staffRows, person, HEAVY, roleIds, ensureEligible } from './staff.mts';
+import { pickTech } from './fx6-1017.mts';
+import { startState } from './fixup-1017.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -19,6 +21,7 @@ const { browser, page: p } = await open('/workorders?tab=all');
 p.setDefaultTimeout(30_000);
 const a = api(p);
 const R: Record<string, any> = {};
+await startState(p, a, 's2-batchC');   // L0415, fix-up 2
 const ORG = (await import('./profile.mts')).ORG;
 const D = '@staging.shopview.local';
 const techs = await candidates(a);
@@ -360,30 +363,47 @@ await run('C96927', async () => {
 });
 
 await run('C368161', async () => {
-  const lead = await sid('zz.wob.esther.howard' + D), line = await sid('zz.wob.aaron.baker' + D);
+  // FIX-UP 2 (17 Oct 2026): the 16 Oct run re-used an old work order (S2-35327) whose line already had Aaron Baker, so "Add technician"
+  // no longer offered him and the click timed out; it also used Esther Howard / Aaron Baker while the case names Theresa Webb (lead) and
+  // Jenny Wilson (line technician) — "keep these names" (the expected avatars are "TW" and "JW"). Now, every run: Theresa Webb is found
+  // (an active, eligible "Theresa Webb", else ours is made: Technician, Time Clock on, Heavy Duty, no photo — Rule 107), a FRESH Approved
+  // work order is made for the case's customer with Theresa Webb as lead, and its line is given to Jenny Wilson through the line editor
+  // (Edit Line > Add technician), the line's technicians read from the server BEFORE and AFTER; the same save the editor makes is sent
+  // only if the editor could not do it (logged).
+  const TECH_ROLE = (await roleIds(a))['Technician'];
+  const theresas = (await staffRows(a, 'Theresa')).filter((x: any) => x.first_name === 'Theresa' && x.last_name === 'Webb' && x.staff_id && x.is_active !== false);
+  const offeredT = (await candidates(a)).filter((c) => c.name === 'Theresa Webb').map((c) => c.id);
+  let lead: any = theresas.find((x: any) => offeredT.includes(x.staff_id)) ?? theresas[0] ?? null; const tLog: string[] = [];
+  if (!lead) { const r = await person(a, 'Theresa', 'Webb', { role: TECH_ROLE, email: `zz.wob.theresa.webb${D}`, clockable: true }); lead = r.row; tLog.push(...r.log); }
+  if (!lead) throw new Error('Theresa Webb could not be found or made: ' + tLog.join('; '));
+  if (!offeredT.includes(lead.staff_id)) tLog.push(...(await ensureEligible(a, lead, 'Theresa Webb')));
+  const jenny = await sid('zz.wob.jenny.wilson' + D); if (!jenny) throw new Error('Jenny Wilson not found');
   const n = 'ZZAUTOTEST F2 Initials Avatar';
-  let [w] = await workOrders(a, n);
-  if (!w) { const c = await customer(a, n, 'ZZF2IA'); const id = await workOrder(a, c, 'approved', lead.staff_id); w = (await workOrders(a, n))[0]; }
-  R.C368161 = { wo: w.number, lead: 'Esther Howard', lineTech: 'Aaron Baker' };
+  const older = (await workOrders(a, n)).map((x: any) => `${x.number} ${x.status} lead=${x.techAssignedFirstName ?? '-'} ${x.techAssignedLastName ?? ''}`.trim());
+  const c = await customer(a, n, 'TRK-118'); const wid = await workOrder(a, c, 'estimate', null);
   const canned = (await a.get('/api/work-orders/canned-lines')).body?.data; const cl = (Array.isArray(canned) ? canned : canned?.collection ?? [])[0];
-  if (!w.linesCount) { const r = await a.post(`/api/work-orders/${w.id}/lines/create-from-canned-line`, { canned_line_id: cl?.id, status: 'authorized' }); R.C368161.lineCreate = r.status; }
-  // give the line to Aaron Baker through the line editor (click the line > Add Technician > Save & Close) — done once
-  // (2026-10-08, the editor saved PUT /api/work-orders/lines/<id>/technicians {staffIds:[Aaron Baker]}); not repeated
-  if (!process.env.LINE_DONE) await p.goto(`${APP}/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
-  calls.length = 0;
-  R.C368161.canned = cl?.name ?? cl?.title ?? cl?.line_name ?? JSON.stringify(cl).slice(0, 120);
-  R.C368161.linesPageText = ((await p.evaluate(`(document.querySelector('main, .q-page') || document.body).innerText`)) as string).replace(/\s+/g, ' ').slice(0, 300);
-  if (!process.env.LINE_DONE) { await p.waitForTimeout(5000);
-  await p.getByText(/Transmission service/i).first().click().catch((e) => { R.C368161.lineClick = String(e.message).slice(0, 80); }); } await p.waitForTimeout(2500); await shot(p, 'C368161-line-editor');
-  const add = p.locator('.q-dialog .q-field').filter({ hasText: /Add technician/i }).first(); R.C368161.editorOpen = await add.count();
-  if (!process.env.LINE_DONE && await add.count()) {
-    await add.click(); await p.waitForTimeout(1500);
-    R.C368161.techOptions = (await p.locator('.q-menu .q-item, [role=option]').allInnerTexts()).slice(0, 8);
-    await p.locator('.q-menu .q-item, [role=option]').filter({ hasText: 'Aaron Baker' }).first().click().catch(async () => { await p.keyboard.type('Aaron Baker'); await p.waitForTimeout(1500); await p.locator('.q-menu .q-item, [role=option]').filter({ hasText: 'Aaron Baker' }).first().click(); });
-    await p.waitForTimeout(1000); await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(500);
-    R.C368161.editorButtons = await p.evaluate(`[...document.querySelectorAll('button')].map(b => b.innerText.trim()).filter(x => /save|close|cancel/i.test(x))`);
-    await p.locator('button').filter({ hasText: /Save\s*&\s*Close/i }).last().click(); await p.waitForTimeout(3000);
+  const lineR = await a.post(`/api/work-orders/${wid}/lines/create-from-canned-line`, { canned_line_id: cl?.id, status: 'authorized' }); const lineId = lineR.body?.data?.line_id ?? lineR.body?.data?.id;
+  for (const q of (((await a.get(`/api/work-orders/lines/${wid}`)).body?.data ?? [])[0]?.part_requests ?? [])) await a.post(`/api/work-orders/part/remove-request/${q.id ?? q.part_request_id}`, {});
+  const appr = (await a.post('/api/work-orders/change-status', { id: wid, status: 'approved' })).status; const leadSet = (await a.post('/api/work-orders/change-lead-technician', { work_order_id: wid, tech_assigned_id: lead.staff_id })).status;
+  let w: any = (await workOrders(a, n)).find((x: any) => x.id === wid) ?? { id: wid, number: '' };   // the readings below use w.id / w.number
+  const lineTechsNow = async () => ((await a.get(`/api/work-orders/${wid}/line-technicians`)).body?.data?.lineTechnicians ?? []).map((x: any) => (x.technicians ?? []).map((tt: any) => `${tt.firstName} ${tt.lastName}`).join(', ') || 'Unassigned');
+  R.C368161 = { wo: w?.number, lead: `${lead.first_name} ${lead.last_name}`, leadStaff: String(lead.staff_id).slice(0, 8), theresaLog: tLog, lineTech: 'Jenny Wilson', created: { approve: appr, lead: leadSet, line: lineR.status }, olderWorkOrders: older, lineTechsBefore: await lineTechsNow() };
+  console.log(t(), 'START STATE found C368161', JSON.stringify({ wo: w?.number, lead: R.C368161.lead, leadOfferedAsLead: offeredT.includes(lead.staff_id), lineTechsBefore: R.C368161.lineTechsBefore, olderWorkOrders: older.length }));
+  R.C368161.canned = cl?.canned_line_name ?? cl?.name ?? JSON.stringify(cl).slice(0, 120);
+  // set-up: the line to Jenny Wilson through the line editor (click the line > Add technician > Jenny Wilson > Save & Close)
+  await p.goto(`${APP}/workorders/${wid}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000); calls.length = 0;
+  await p.getByText(String(R.C368161.canned).trim(), { exact: false }).first().click().catch((e) => { R.C368161.lineClick = String(e.message).slice(0, 80); }); await p.waitForTimeout(2500); await shot(p, 'C368161-line-editor');
+  const add = p.locator('.q-dialog [data-test-id="select_line_roster_add_technician"]').first(); const addF = (await add.count()) ? add : p.locator('.q-dialog .q-field').filter({ hasText: /Add technician/i }).first(); R.C368161.editorOpen = await addF.count();
+  if (R.C368161.editorOpen) {
+    const pk = await pickTech(p, async () => { await addF.click(); }, 'C368161 Edit Line > Add technician', { prefer: ['Jenny Wilson'], control: ['Esther Howard', 'Dana Ortiz'], exact: true });
+    R.C368161.addTech = { picked: pk.picked, count: pk.list.count, first: pk.list.first, last: pk.list.last, offered: pk.list.offered, reason: pk.reason ?? null };
+    await p.locator('.q-dialog .text-h6, .q-dialog [data-test-id="dialog_title"]').first().click({ position: { x: 5, y: 5 } }).catch(() => {}); await p.waitForTimeout(600);
+    R.C368161.roster = await p.evaluate(`[...document.querySelectorAll('.q-dialog [data-test-id^="line_roster_technician_"]')].map(x => x.innerText.replace(/\\s+/g, ' ').trim())`).catch(() => null);
+    await p.locator('.q-dialog button').filter({ hasText: /Save\s*&\s*Close/i }).last().click().catch(() => {}); await p.waitForTimeout(3500);
   }
+  R.C368161.lineTechsAfterEditor = await lineTechsNow();
+  if (!String(R.C368161.lineTechsAfterEditor).includes('Jenny Wilson')) { R.C368161.fallback = `the line editor did not give the line to Jenny Wilson; the same save the editor makes was sent: ${(await a.put(`/api/work-orders/lines/${lineId}/technicians`, { staffIds: [jenny.staff_id] })).status}`; R.C368161.lineTechsAfterFallback = await lineTechsNow(); }
+  console.log(t(), 'START STATE set C368161', JSON.stringify({ wo: w?.number, lineTechsAfter: R.C368161.lineTechsAfterFallback ?? R.C368161.lineTechsAfterEditor, how: R.C368161.fallback ? 'fallback save' : 'line editor' }));
   R.C368161.lineCalls = [...calls];
   await tv(n); R.C368161.reach = await scrollToGroupId(lead.staff_id);
   R.C368161.header = await p.evaluate(`(() => { const g = document.querySelector('[data-test-id="tech_view_group_${lead.staff_id}"]'); if (!g) return null; const av = g.querySelector('.q-avatar'); return { avatar: av ? av.innerText.trim() : null, hasImg: !!g.querySelector('img'), text: g.innerText.replace(/\\s+/g, ' ') }; })()`);
