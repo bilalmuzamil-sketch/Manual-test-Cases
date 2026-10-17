@@ -745,3 +745,24 @@ So a case step "Create Invoice, close the payment window without paying" never l
 put to the QA lead whether that is intended). To get an Invoiced work order through the screen, do not close the payment window with X — find
 another route (e.g. a payment) and read the status back. Evidence: `evidence/staging-full-2026-10-14/invoice-r5-C368167.json` (control.invoice).
 #wo-board #staging #invoice #precondition → L0426
+
+## L0440 — 2026-10-17 — Staging live probes: the selectors that worked for six stubborn run 498 cases
+- **Edit Staff Member window** (probe-staff-window.json): Save & Close is `[data-test-id="button_save_staff"]` — its own text is
+  "Save & close" (capitalised by CSS) and aria-label "Save and close", so `hasText: /^Save & Close$/` finds NOTHING; fields by test id
+  (`input_job_title` — label "Job title", `select_role`, `select_location`), switches `toggle_time_clock` / `toggle_sales_rep`.
+- **Work order page Lead Technician is read-only (`lead_technician_readonly`) while the work order has NO lines**, and a New Line window
+  opens over the page. Give the work order one line in SET-UP (create-from-canned-line) and `select_lead_technician` appears (C614714,
+  C96936). Typing into it does not filter the list (still ~100 names, SV-11393): Ralph Edwards stays unreachable on that page.
+- **Tech View rows**: `[data-test-id^="tech_view_row_"]` also matches `tech_view_row_drag_handle_<id>`, `tech_view_row_number_link_<id>`,
+  `tech_view_row_progress_<id>` — filter to `/^tech_view_row_[0-9a-f-]{36}$/`. The number link is `tech_view_row_number_link_<id>`
+  (`<a href="/workorders/<id>">`); clicking it opens the work order.
+- **Schedule people column**: cells `.fc-datagrid-body .fc-datagrid-cell-cushion` read "EH\nEsther Howard\nNot working" — initials FIRST,
+  so match the name as its own line; all ~296 people are in the DOM and two `.fc-scroller` elements scroll together (a mouse wheel over
+  the column moves both). A crowded row (15+ stacked blocks from earlier runs) hides this run's blocks: clear that technician's shifts on
+  the day in set-up (`DELETE /api/schedule/shifts/{id}?scope=shift`), then every block in her row is the case's.
+- **Board View far columns**: put the column you need just right of the sticky Unassigned column (scrollLeft += header.x − (unassigned.right
+  + 24)); never measure "the first technician" instead (C97003 step 7 placed column 1 of 281, ~196 away).
+- **Invoiced state on staging**: Create Invoice reads Invoiced on the server after ~6 s while the New Customer Payment window is open;
+  closing that window with its X calls `/api/invoices/remove-customer-transaction` and the work order goes back to Complete. Leave the
+  window open (or record the payment) to keep the locked state (C368167).
+  #wo-board #staging #selectors → L0430, L0432

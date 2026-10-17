@@ -246,42 +246,56 @@ async function createInvoiceOnScreen(pg: Page, id: string, tag: string) {
 const raiseCredit = async (companyId: string) => { const cv = (await a.get(`/api/customers/view/${companyId}`)).body?.data; const co = cv?.company ?? cv ?? {}; const before = co.credit_limit ?? null;
   const s = say(await a.post('/api/customers/change', { ...co, company_id: companyId, id: companyId, credit_limit: 9999999 })); const cv2 = (await a.get(`/api/customers/view/${companyId}`)).body?.data; return { before, save: s, after: (cv2?.company ?? cv2 ?? {}).credit_limit ?? null }; };
 
+/** LIVE FIX 17 Oct: Finance > Create Invoice through the screen, the New Customer Payment window LEFT OPEN (closing it with its X calls
+ *  /api/invoices/remove-customer-transaction and puts the work order back to Complete — seen on the control at 09:32); the server is
+ *  polled every 2 s (max 30 s) until it reads Invoiced. Returns the readings; the page is left as it is. */
+async function invoiceKeepOpen(pg: Page, id: string, tag: string) {
+  const o: any = { before: await invState(id) }; const net = netLog(pg);
+  await pg.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Finance\s*$/ }).first().click().catch(() => {}); await pg.waitForTimeout(3500);
+  const ci = pg.locator('button').filter({ hasText: /^\s*Create Invoice\s*$/i }).first(); o.button = await ci.count(); o.disabled = o.button ? await ci.isDisabled().catch(() => null) : null;
+  if (!o.button || o.disabled) { net.stop(); o.requests = net.out; o.invoiced = false; return o; }
+  o.click = await ci.click({ timeout: 10_000 }).then(() => 'clicked').catch((e: any) => 'click failed: ' + String(e?.message || e).split('\n')[0].slice(0, 100));
+  o.polls = []; for (let i = 0; i < 15; i++) { await pg.waitForTimeout(2000); const s = await invState(id); o.polls.push(`${(i + 1) * 2}s ${s.status}${s.invoice_id ? ' inv' : ''}`); if (/^invoiced$/i.test(String(s.status)) && s.invoice_id) { o.invoicedAfter = `${(i + 1) * 2} s`; break; } }
+  o.server = await invState(id); o.windows = await windowsOn(pg); o.paymentWindowLeftOpen = o.windows.some((w: any) => /Payment/i.test(w.text));
+  await pg.screenshot({ path: path.join(EV, `C368167-r5-${tag}-invoiced-window-open.png`) }).catch(() => {});
+  net.stop(); o.requests = net.out; o.invoiced = /^invoiced$/i.test(String(o.server.status)) && !!o.server.invoice_id; return o; }
+
 await run('C368167', async () => {
-  // ROUND 5 (17 Oct 2026): on 17 Oct, after Create Invoice in tab 2 the server still read "Complete" with no invoice id (the New Customer
-  // Payment window had opened). So FIRST a positive control: a brand-new plain ZZAUTOTEST work order (one line, Complete, customer credit limit
-  // raised) gets Finance > Create Invoice through the screen, and the status is read from the server (2 s / 5 s / 10 s after the click, after
-  // the payment window is closed, after a reload) and from the screen, with every request the page sent and its answer. If the control
-  // invoices, the case runs with the same route; if it never invoices, that is recorded plainly and NO lead is changed.
-  const o: any = {}; R.C368167 = o;
+  // LIVE FIX 17 Oct (staging free): the case's own route ("close the New Customer Payment window with its X") puts the work order back to
+  // Complete on staging (remove-customer-transaction), so the Invoiced state is built as SET-UP the other way the app offers: Create Invoice in
+  // tab 2 with the payment window LEFT OPEN — the server reads Invoiced — and tab 1 (stale, not reloaded) then tries the lead change through
+  // the screen. Positive control first: the same route on a new plain work order must read Invoiced. Route used is logged (stateRoute).
+  const o: any = { stateRoute: 'Create Invoice in tab 2, New Customer Payment window left open (not closed with X, not paid)' }; R.C368167 = o;
   const ctl = await one('ZZAUTOTEST Invoice Control', ES); o.control = { wo: ctl.number, credit: await raiseCredit(ctl.c.company_id) };
-  { const log: any[] = []; await finish(ctl.id, 'complete', log); o.control.setup = log; o.control.statusBefore = await statusOf(ctl.id); }
-  console.log(t(), 'START STATE found C368167 (control work order)', JSON.stringify({ wo: ctl.number, status: o.control.statusBefore, credit: o.control.credit }));
+  { const log: any[] = []; await finish(ctl.id, 'complete', log); o.control.statusBefore = await statusOf(ctl.id); }
+  console.log(t(), 'START STATE found C368167 (control work order)', JSON.stringify({ wo: ctl.number, status: o.control.statusBefore }));
   const pc = await p.context().newPage(); pc.setDefaultTimeout(20_000);
-  try { await page(ctl.id, 'lines', pc); o.control.invoice = await createInvoiceOnScreen(pc, ctl.id, 'control'); } finally { await pc.close().catch(() => {}); }
-  console.log(t(), 'C368167 control: does Create Invoice invoice?', JSON.stringify({ invoiced: o.control.invoice.invoiced, click: o.control.invoice.click, s2: o.control.invoice.server2s, s10: o.control.invoice.server10s, afterReload: o.control.invoice.serverAfterReload, page: o.control.invoice.pageAfterReload, requests: o.control.invoice.requests, windows: o.control.invoice.windows }));
+  try { await page(ctl.id, 'lines', pc); o.control.invoice = await invoiceKeepOpen(pc, ctl.id, 'control'); } finally { await pc.close().catch(() => {}); }
+  o.control.serverAfterTabClosed = await invState(ctl.id);
+  console.log(t(), 'C368167 control (payment window left open)', JSON.stringify({ invoiced: o.control.invoice.invoiced, after: o.control.invoice.invoicedAfter, polls: o.control.invoice.polls, afterTabClosed: o.control.serverAfterTabClosed }));
   fs.writeFileSync(OUT5, JSON.stringify(R, null, 1));
-  if (!o.control.invoice.invoiced) { o.result = 'Create Invoice through the screen did NOT invoice the control work order (server status and invoice id read after 2 s, 5 s, 10 s, after closing the payment window and after a reload) — possible product finding; the case was NOT run and no lead was changed'; return; }
-  // the case, with the route the control proved
+  if (!o.control.invoice.invoiced) { o.result = 'the control did not read Invoiced with the payment window left open: the case was NOT run and no lead was changed'; return; }
   const w = await one('ZZAUTOTEST Refused Lead Change', ES); o.wo = w.number; o.credit = await raiseCredit(w.c.company_id);
   { const log: any[] = []; await finish(w.id, 'complete', log); o.setup = log; }
-  console.log(t(), 'START STATE set C368167', JSON.stringify({ wo: w.number, status: await statusOf(w.id), lead: await apiLeadName(w.id), credit: o.credit }));
-  // step 1: tab 1 open and left
+  console.log(t(), 'START STATE set C368167', JSON.stringify({ wo: w.number, status: await statusOf(w.id), lead: await apiLeadName(w.id) }));
+  // step 1: tab 1 opens the work order and is left open
   await page(w.id); o.before = await leadText(); await shot(p, 'C368167-r5-tab1-start');
-  // step 2: tab 2 — Finance > Create Invoice, the payment window closed with its X
+  // step 2 (set-up route above): tab 2 Create Invoice, payment window left open; the server must read Invoiced before tab 1 acts
   const t2 = await p.context().newPage(); t2.setDefaultTimeout(20_000);
-  try { await page(w.id, 'lines', t2); o.tab2 = await createInvoiceOnScreen(t2, w.id, 'case-tab2'); } finally { await t2.close().catch(() => {}); }
+  await page(w.id, 'lines', t2); o.tab2 = await invoiceKeepOpen(t2, w.id, 'case-tab2');
   o.serverRightBeforeChange = await invState(w.id);
-  if (!/^invoiced$/i.test(String(o.serverRightBeforeChange.status)) && !o.serverRightBeforeChange.invoice_id) { o.result = 'the case\'s work order did not read Invoiced after Create Invoice (the control did): lead NOT changed'; return; }
-  // steps 3-5: tab 1, not reloaded
+  if (!o.tab2.invoiced) { o.result = 'the case\'s work order did not read Invoiced: lead NOT changed'; await t2.close().catch(() => {}); return; }
+  // steps 3-5: tab 1, NOT reloaded
   await p.bringToFront(); await p.waitForTimeout(800); const ls = await leadSel();
   o.step3 = { disabled: await ls.evaluate((e: any) => e.classList.contains('q-field--disabled') || e.getAttribute('aria-disabled') === 'true' || !!e.querySelector('.q-field--disabled, [aria-disabled="true"]')).catch(() => null), field: (await ls.innerText().catch(() => '')).replace(/\s+/g, ' ').trim() };
   if (o.step3.disabled) o.step3.note = 'page refreshed itself (the field was already disabled at step 3)';
-  else { const net = netLog(p); await watchToasts(); o.techB = await pickB('C368167', ['Esther Howard']); o.used = o.techB.picked; await p.waitForTimeout(2000);
+  else { const net = netLog(p); await watchToasts(); o.techB = await pickB('C368167', ['Esther Howard']); o.used = o.techB.picked; await p.waitForTimeout(2500);
     o.toasts = [...new Set([...(await seenToasts()), ...(await toastsOn(p))])]; o.fieldNow = await leadText(); net.stop(); o.changeRequests = net.out; await shot(p, 'C368167-r5-message'); }
-  o.serverRightAfterChange = await invState(w.id);
-  // step 6
+  o.serverRightAfterChange = await invState(w.id); o.apiLeadAfterChange = await apiLeadName(w.id);
+  // step 6: reload tab 1
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.afterReload = (await leadText()) || (await p.evaluate(`(document.body.innerText.match(/Lead technician\\s*\\n\\s*([^\\n]+)/i) || [])[1] || null`)); o.apiLead = await apiLeadName(w.id); o.pageAfterReload = await pageBits(p); await shot(p, 'C368167-r5-after-reload');
-  console.log(t(), 'C368167 case', JSON.stringify({ step3: o.step3, used: o.used, toasts: o.toasts, fieldNow: o.fieldNow, afterReload: o.afterReload, apiLead: o.apiLead, before: o.serverRightBeforeChange, after: o.serverRightAfterChange }));
+  await t2.close().catch(() => {}); o.serverAfterTab2Closed = await invState(w.id);
+  console.log(t(), 'C368167 case', JSON.stringify({ stateRoute: o.stateRoute, before: o.serverRightBeforeChange, step3: o.step3, used: o.used, toasts: o.toasts, fieldNow: o.fieldNow, afterChange: o.serverRightAfterChange, apiLeadAfterChange: o.apiLeadAfterChange, afterReload: o.afterReload, apiLead: o.apiLead, afterTab2Closed: o.serverAfterTab2Closed }));
 });
 
 await a.put(PREF, { value: ORIGINAL }); R.restored = true;
