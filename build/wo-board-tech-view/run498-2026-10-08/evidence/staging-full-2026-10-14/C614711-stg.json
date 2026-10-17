@@ -2,11 +2,11 @@
  "exitSwitch": 200,
  "eligible": [],
  "data": {
-  "techA": "ZZAUTOTEST C614711 Dana 47519",
+  "techA": "ZZAUTOTEST C614711 Dana 99482",
   "techB": "ZZAUTOTEST C614711 Eli",
-  "customer": "ZZAUTOTEST C614711 Deleted Lead 47519",
-  "wo1": "S2-37033",
-  "wo2": "S2-37034"
+  "customer": "ZZAUTOTEST C614711 Deleted Lead 99482",
+  "wo1": "S2-37085",
+  "wo2": "S2-37086"
  },
  "s1_rowFound": 1,
  "s1_opened": "Edit Staff Member close First Name Last Name Email Salary Type arrow_drop_down $ Salary Job Title Role Technician arrow_drop_down visibility Location Staging Heavy Duty - 9919 arrow_drop_down Billable",
@@ -16,6 +16,10 @@
  "s2_route": "screen",
  "s2_stillListedScreen": 0,
  "s2_stillListedApi": 0,
+ "pinsAtStart": [
+  "b669608e-a897-4f21-a510-8ced9d9fa982"
+ ],
+ "pinB": 200,
  "s3_ok": true,
  "s4_cards": {
   "wo1": true,
@@ -25,7 +29,7 @@
   "id": "deleted",
   "name": "Deleted technician",
   "cards": [
-   "S2-37033"
+   "S2-37085"
   ]
  },
  "s5_header": {
@@ -38,40 +42,156 @@
   "inactiveMarker": true,
   "html": "<div data-v-82b85cf4=\"\" data-v-c35ed5f7=\"\" data-nav-item=\"group:deleted\" data-test-id=\"board_column_header_deleted\" aria-label=\"Deleted technician, 1 work order\" class=\"board-column-header row no-wrap items-center board-column__header\" role=\"group\"><!----><span data-v-82b85cf4=\"\" class=\"board-column-header__icon\" aria-hidden=\"true\"><svg data-v-2e65d8f4=\"\" data-v-82b85cf4=\"\" width=\"14\" height=\"14\" data-icon=\"user-round\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" class=\"lucide-icon\"><circle data-v-2e65d"
  },
- "s6_dragError": "TimeoutError: locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_col",
+ "s6_order": {
+  "unassigned": 0,
+  "deleted": 279,
+  "of": 280
+ },
+ "s6": {
+  "tag": "s6",
+  "dir": 1,
+  "start": {
+   "scrollLeft": 0,
+   "inView": [
+    "Unassigned",
+    "ZC",
+    "AB",
+    "AZ",
+    "AS",
+    "AA"
+   ],
+   "from": true,
+   "to": false
+  },
+  "walk": 80,
+  "targetFound": false,
+  "held": {
+   "scrollLeft": 15600,
+   "inView": [
+    "Unassigned",
+    "JM",
+    "JM",
+    "JG",
+    "JJ",
+    "JJ",
+    "JC"
+   ]
+  },
+  "result": "released without finding the target"
+ },
  "s6_messages": [],
  "s6_wo2LeadApi": null,
- "s6_wo2Column": "Unassigned",
  "s6_wo2ColumnAfter": "Unassigned",
+ "s6_columnsFound": [
+  "Unassigned:S2-37086",
+  "Deleted technician:S2-37085"
+ ],
+ "s7_groupsFound": [
+  "Unassigned(1) collapsed: ",
+  "ZZAUTOTEST C614711 Eli(0): ",
+  "Aaron Baker(0): ",
+  "Aaron Zed(0): ",
+  "Admin ShopView(0): ",
+  "Advisor Analysis(0): ",
+  "Ahtasham Admin(0): ",
+  "Ahtasham Service Advisor(0): ",
+  "Ahtsham Foreman(0): ",
+  "Ahtsham Parts Manger(0): ",
+  "Ahtsham Service Manager(0): ",
+  "Ammar Mughamis(0): ",
+  "Amy Fernandez(0): ",
+  "Angelica Harper(0): ",
+  "Ashlee Thomas(0): ",
+  "Ashley Schultz(0): ",
+  "Automation Tech(0): ",
+  "Ayesha Khan(0): ",
+  "Ayesha Tech Role(0): ",
+  "Bilal Muzamil(0): ",
+  "BIlal Muzamil(0): ",
+  "Billy Nobill(0): ",
+  "Brandi Smith(0): ",
+  "Brandon Jarvis(0): ",
+  "Branko Cicovic(0): ",
+  "Brenda Martinez(0): ",
+  "Brent Avila(0): ",
+  "Brian Hunt(0): ",
+  "Candace Taylor(0): ",
+  "Carol Neal(0): ",
+  "Carrie Johnson(0): ",
+  "Chris Lee(0): ",
+  "Chris Lee(0): ",
+  "Christian Wallace(0): ",
+  "Clayton Stephens(0): "
+ ],
  "s7_group": null,
  "s8_leadCell": {
   "heads": [
-   "On Sitearrow_drop_up",
-   "Statusarrow_drop_up",
-   "Waiting On Partsarrow_drop_up",
-   "Numberarrow_drop_up",
-   "Customerarrow_drop_up",
-   "Assetarrow_drop_up",
-   "Unitarrow_drop_up",
-   "VIN/Serial #arrow_drop_up",
+   "On Site",
+   "Status",
+   "Waiting On Parts",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
    "Progress",
-   "Service Advisorarrow_drop_up",
-   "Lead Technicianarrow_drop_up",
-   "Clocked Inarrow_drop_up",
-   "Linesarrow_drop_up",
-   "Total Pricearrow_drop_up",
-   "Created Onarrow_drop_up",
-   "Invoiced Datearrow_drop_up",
-   "Days Openarrow_drop_up",
-   "Partsarrow_drop_up",
-   "Returnsarrow_drop_up"
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On",
+   "Invoiced Date",
+   "Days Open",
+   "Parts",
+   "Returns"
   ],
-  "column": -1,
-  "cell": null,
+  "column": 10,
+  "cell": "Unassigned",
   "rowFound": true
  },
  "s9_ok": true,
- "s10_dragError": "TimeoutError: locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_car",
- "s10_messages": [],
- "s10_wo1Lead": "not Technician-B"
+ "s10_from": "Deleted technician",
+ "s10_order": {
+  "from": 279,
+  "technicianB": 1,
+  "of": 280
+ },
+ "s10": {
+  "tag": "s10",
+  "dir": -1,
+  "start": {
+   "scrollLeft": 83536,
+   "inView": [
+    "Unassigned",
+    "ZN",
+    "ZN",
+    "ZN",
+    "ZZAUTOTEST Photo Tech 441154",
+    "ZS",
+    "Deleted technician"
+   ],
+   "from": true,
+   "to": false
+  },
+  "walk": 41,
+  "targetFound": true,
+  "held": {
+   "scrollLeft": 0,
+   "inView": [
+    "Unassigned",
+    "ZC",
+    "AB",
+    "AZ",
+    "AS",
+    "AA"
+   ]
+  },
+  "result": "dropped on the target"
+ },
+ "s10_messages": [
+  "Lead technician updated"
+ ],
+ "s10_wo1Lead": "Technician-B",
+ "pinsBack": 200
 }
