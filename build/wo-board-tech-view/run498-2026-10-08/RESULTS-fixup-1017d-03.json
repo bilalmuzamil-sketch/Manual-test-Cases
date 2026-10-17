@@ -1,0 +1,31 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up round 4, batch 03 = round 4 step 5"
+ },
+ "results": {
+  "C97020": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps with the keyboard only (round 4 re-check of the Admin half, 17 Oct).",
+    "Set-up: S2-37099 (Approved) and S2-37100 (Invoiced), both led by ZZAUTOTEST Ana Alpha; search \"ZZAUTOTEST F3 Keyboard Limits 86164\".",
+    "Steps 1 to 6 (view-only user, seen earlier today on this build): Tab from Search lands on S2-37024's card; there is no More actions button, so no menu or dialog can be opened; Space and Shift with the arrow keys move nothing.",
+    "Steps 7 to 10 (Admin): the cursor is in Search; Tab lands on S2-37099's card with a focus ring; the down arrow moves the ring to S2-37100; Tab reaches its own More actions button.",
+    "Step 11: Enter opens the menu; Reassign lead technician is disabled (Unassign too). While Reassign lead technician has the keyboard highlight, no note shows on screen.",
+    "For comparison, with the mouse pointer on the same item the note shows: \"The lead technician can't be changed once a work order is Invoiced or Paid.\" So the note exists but only appears on mouse hover, not for keyboard users.",
+    "Step 12: Enter on the item does nothing; no window opens. Step 13: Escape closes the menu and focus is back on More actions.",
+    "Step 14: Space and Shift with each arrow key move nothing; S2-37100 stays with Ana Alpha.",
+    "Steps 15 and 16: after a refresh S2-37100 is still in Ana Alpha's column, and its page reads Lead technician ZZAUTOTEST Ana Alpha."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97020-f4-1-keyboard.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97020-f4-2-hover.png"
+   ],
+   "ticket": "No ticket yet: this new finding is with the QA lead, who decides whether a ticket is raised.",
+   "ticket_held": true,
+   "todo": "What needs to be done: the QA lead decides on the finding (the disabled item's note shows on mouse hover but not on keyboard highlight); no ticket is raised until then."
+  }
+ }
+}
