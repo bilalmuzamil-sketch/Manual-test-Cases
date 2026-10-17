@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up round 4, batch 01 = round 4 step 2"
+ },
+ "results": {
+  "C590115": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (round 4 re-run, 17 Oct). The fix in SV-11318 (Testing Stage) looks shipped.",
+    "Set-up: S2-37094 (Approved, led by ZZAUTOTEST DC06 Gia Pills) with a part ready to order (blue number) and a second line waiting for approval (red number); search \"ZZAUTOTEST DC06 Status Pill 79989\" in both List and Tech View.",
+    "Steps 2 and 3 (List): an Approved pill with a red 1 and a blue 1; the red number's tooltip reads \"1 Line in Auth Req'd\", the blue one's \"1 Part Ready to Order\".",
+    "Steps 5 and 6 (Tech View): the same pill: same colours, word, rounded shape and width (72 px in both), with the same red and blue numbers and the same two tooltips.",
+    "Steps 8, 10 and 12: the pills are 16 px tall at Compact and at Regular and 22 px at Comfortable, keeping their width.",
+    "Step 13: List's pill is unchanged (72 by 21 px, same colours and numbers) after the Tech View density changes."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590115-f4-1-list.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590115-f4-2-tech.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590115-f4-3-comfortable.png"
+   ],
+   "ticket": "Fix looks shipped: https://shopview.atlassian.net/browse/SV-11318 (Testing Stage, read 17 Oct 2026)."
+  }
+ }
+}
