@@ -1,0 +1,209 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 22 = queue steps 48, 49, 50"
+ },
+ "results": {
+  "C96910": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "A brand-new user with no saved choices (Service Advisor at Staging Heavy Duty - 9919) opened Work Orders: the List display was selected and the ordinary List table showed (33 rows on the first load), with no technician groups and no columns of cards.",
+    "After refreshing the page the same user still saw List."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96910-1-new-user-list.png"
+   ],
+   "ticket": null
+  },
+  "C96912": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Board View was chosen, then the same user signed in again in a second browser: Work Orders opened in Board View. The first browser also still showed Board View.",
+    "After Change Location to Staging Lethbridge - 4310 it still opened in Board View.",
+    "A different, brand-new user opening Work Orders saw List: the choice belongs to the first user's account only."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96912-1-board-at-loc2.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96912-2-other-user-list.png"
+   ],
+   "ticket": null
+  },
+  "C96919": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Control check: after choosing Board View and refreshing, the page opened in Board View.",
+    "Not checked by hand: when the saved setting was made unreadable by the script, the page opened in List (with a general \"Ooooops! An error occurred\" message); once restored it was Board View again."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96919-1-unreadable-list.png"
+   ],
+   "ticket": null
+  },
+  "C96923": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Baseline: List with Assigned to me on at Staging Heavy Duty - 9919, then a change to Staging Lethbridge - 4310: Work Orders opened on the All tab in List with Assigned to me still on (also after a refresh).",
+    "Back at the first location Assigned to me was turned off, Board View chosen and Assigned to me turned on again.",
+    "After changing to Staging Lethbridge - 4310: same page and All tab as the baseline, Board View still selected, Assigned to me still on.",
+    "Tech View chosen there (Assigned to me still on), then changed back to Staging Heavy Duty - 9919: same page and All tab, Tech View still selected, Assigned to me still on."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96923-1-tech-kept.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96923-2-board-kept.png"
+   ],
+   "ticket": null
+  },
+  "C96936": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 5: for customer \"ZZAUTOTEST F2 Refresh Lead\" the stand-in technician Ayesha Khan led none of the test's work orders (all 5 were with Bilal Muzamil, left there by an earlier run), so the script found no work order to change and stopped with an error.",
+    "Nothing was judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96936-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: first give 3 of the customer's work orders back to the first technician, as the set-up says)."
+  },
+  "C368126": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps, as the test user ZZAUTOTEST WOB User B with no pins at the start. Staging stand-ins for the four technicians, in name order: Ahtsham Service Manager, Amy Fernandez, Ayesha Khan, Bilal Muzamil.",
+    "Tech View at the start: Unassigned, Ahtsham Service Manager, Amy Fernandez, Ayesha Khan, Bilal Muzamil.",
+    "After pinning Ayesha Khan (the test's third technician): Unassigned, Ayesha Khan, Ahtsham Service Manager, Amy Fernandez, Bilal Muzamil.",
+    "After pinning Ahtsham Service Manager: Unassigned, Ayesha Khan, Ahtsham Service Manager, Amy Fernandez, Bilal Muzamil (the new pin goes after the existing pin, not by name).",
+    "Board View shows the same order. The pins were taken off again at the end (the picture shows the page after that)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368126-1-tech-view-after-unpin.png"
+   ],
+   "ticket": null
+  },
+  "C96926": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps, as a user with no pins.",
+    "Tech View: Unassigned first, then the five test technicians in this relative order: Aaron Baker, Aaron Zed, Brenda Martinez, Chris Lee (the one created first), Chris Lee (created second); the other technicians fit in alphabetically between them.",
+    "Board View columns follow the same order."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96926-1-tech-order.png"
+   ],
+   "ticket": null
+  },
+  "C96927": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Step 4: List's column menu does not offer Assigned Techs. Steps 6 and 7: Tech View has its own Column Selection button; its menu offers every column List offers, plus On Site, Unit and Assigned Techs; Assigned Techs is on.",
+    "Step 11: after turning them on, On Site, VIN/Serial # and Lead Technician each show as a column in Tech View.",
+    "Step 14: Assigned Techs turned off no longer shows; step 16: turned on again, it shows again.",
+    "Step 17: Status, Number and Customer are not in the menu and stay in the table. Step 19: Unit turned off no longer shows, while Status, Number and Customer still show (Unit was turned back on afterwards)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96927-1-tech-columns.png"
+   ],
+   "ticket": null
+  },
+  "C96929": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps (same problem as before), as a brand-new Admin user with no saved sort.",
+    "Set-up: four Approved work orders led by Carol Neal, made in this order: S2-35903 (Zeta Hauling), S2-35904 (Alpha Freight), S2-35905 (Mid Trucking) and S2-36360 (Mid Trucking).",
+    "Step 4: List (sorted by Customer, A to Z) shows Alpha Freight, Mid Trucking S2-36360, Mid Trucking S2-35905, Zeta Hauling.",
+    "Step 6: Tech View's rows in Carol Neal's group are Zeta Hauling, Alpha Freight, Mid Trucking S2-35905, Mid Trucking S2-36360: the order they were made, not List's order (the two Mid Trucking work orders are also the other way round).",
+    "Step 8: Board View's cards in Carol Neal's column are in the same order as Tech View's rows.",
+    "The ticket reads \"OBSOLETE\" (read 17 Oct 2026), but the problem is still there on this build."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96929-1-list-order.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96929-2-tech-order.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11101.",
+   "todo": "What needs to be done: the QA lead to decide on the ticket (it is closed as obsolete, the problem is still there); once fixed on staging, run this test again."
+  },
+  "C96930": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Staff checked: Esther Howard (Technician, Time Clock on, active, Heavy Duty), Billy Nobill (same, Billable off), Ina Active (deactivated), Nick Noclock, Olive Office (Office User), Tim Clockuser and Ella Elsewhere.",
+    "Esther Howard and Billy Nobill each have a group in Tech View and a column in Board View, with no work orders.",
+    "Ina Active, Nick Noclock, Olive Office, Tim Clockuser and Ella Elsewhere have no group and no column (every one of the 251 groups and 121 columns read)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96930-1-esther-group.png"
+   ],
+   "ticket": null
+  },
+  "C96934": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Ralph Edwards was deactivated through Settings > Staff > Deactivate Account.",
+    "Work Orders > All > Search \"ZZAUTOTEST F2 Inactive Lead\" > Tech View: Ralph Edwards' group is still shown with his work orders, count 2.",
+    "His header carries an \"Inactive\" label next to his name.",
+    "Afterwards he was set active again (read back: active)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96934-1-inactive-header.png"
+   ],
+   "ticket": null
+  },
+  "C96938": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Pointer held on Ayesha Khan's avatar: the spot under the pointer carries the hover label \"Ayesha Khan\".",
+    "Pointer held on the long name and on its avatar: both carry the hover label \"Maximiliana Fitzgerald-Montgomery\". On this screen width the long name was shown in full, not shortened.",
+    "The hover label is the browser's own, which automated pictures do not draw, so the picture shows where the pointer was, not the label itself."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96938-1-hover-long-name.png"
+   ],
+   "ticket": null
+  },
+  "C368125": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Esther Howard's group was collapsed (and pinned) before the search; her test work orders were S2-35906 (matches) and S2-35907 (does not).",
+    "During the search her group stayed collapsed: it did not open by itself. Its header count showed 1.",
+    "Expanding it showed the 1 matching row, S2-35906."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368125-1-collapsed-count1.png"
+   ],
+   "ticket": null
+  },
+  "C368127": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete steps 5 and 7: deep inside the Unassigned group it did not find the held header's \"Collapse\" button, so it could not show the header staying in view or collapse the group.",
+    "Seen, as a brand-new Admin user: step 3, Unassigned opened expanded and its header count reads 3740; List's All tab holds 3,740 work orders with no lead technician (all pages read). Step 6: a loading bar showed while scrolling (rows load in batches)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368127-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: find the held Unassigned header's Collapse button while scrolled)."
+  },
+  "C368161": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete the set-up: on S2-35327 (lead Esther Howard) it could not find Aaron Baker in the line's technician list, so it stopped before reading any avatar.",
+    "The list offered names from \"Aaron Jennings\" on; Aaron Baker may already be on that line from the 15 Oct run. Nothing was judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368161-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: use a fresh work order, or skip adding the line technician when already there)."
+  }
+ }
+}
