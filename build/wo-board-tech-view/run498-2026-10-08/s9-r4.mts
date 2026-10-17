@@ -270,13 +270,13 @@ await run('C97003', async () => {
     console.log(t(), 'C97003 step 6', JSON.stringify({ screen: { ok: o.step6screen.ok, inView: o.step6screen.inView, widths: o.step6screen.widths }, drag: o.step6drag, order: o.step6 })); save4();
     // step 7: Ben's grip onto the Unassigned header (left part)
     const ord6 = await allCols(pg); const firstTech = ord6.find((x) => x !== 'unassigned') ?? BEN.staff_id;
-    o.step7screen = await bothOnScreen(pg, firstTech === BEN.staff_id ? BEN.staff_id : firstTech, BEN.staff_id);
+    void firstTech; await pg.setViewportSize(VW); o.step7screen = await bothOnScreen(pg, BEN.staff_id, BEN.staff_id);   // LIVE FIX 17 Oct: Ben himself placed just right of the sticky Unassigned column (was: the board's first technician, ~196 columns away)
     { const u = o.step7screen.unassigned; if (o.step7screen.ok && u) o.step7drag = await gripTo(pg, 'board', BEN.staff_id, { x: u.x + 8, y: u.y + u.h / 2 }, 'step7'); else o.step7drag = 'not made: Ben and Unassigned not both on screen'; }
     o.step7 = named(await allCols(pg), IDS); await shot(pg, 'C97003-r4-step7');
     // step 8: Unassigned has no grip; its header pressed and moved to the right of Cal
     o.step8handle = { testId: await pg.locator('[data-test-id="board_column_drag_handle_unassigned"]').count(), gripClass: await pg.locator('[data-test-id="board_column_header_unassigned"] .board-column-header__grip').count() };
     const ord7 = await allCols(pg); const firstTech7 = ord7.find((x) => x !== 'unassigned') ?? CAL.staff_id;
-    o.step8screen = await bothOnScreen(pg, firstTech7, CAL.staff_id);
+    void firstTech7; await pg.setViewportSize(VW); o.step8screen = await bothOnScreen(pg, CAL.staff_id, CAL.staff_id);   // LIVE FIX 17 Oct: Cal placed just right of the sticky Unassigned column
     { const u = o.step8screen.unassigned, c = o.step8screen.right; if (u && c) { await pg.mouse.move(u.x + 60, u.y + u.h / 2); await pg.mouse.down(); await pg.mouse.move(u.x + 80, u.y + u.h / 2, { steps: 4 }); await pg.mouse.move(c.r - 10, c.y + c.h / 2, { steps: 20 }); await pg.waitForTimeout(500); await shot(pg, 'C97003-r4-step8-holding'); await pg.mouse.up(); await pg.waitForTimeout(2500); o.step8drag = 'made'; } else o.step8drag = `not made: unassigned ${!!u}, cal ${!!c}`; }
     o.step8 = named(await allCols(pg), IDS); save4();
     // step 10: Tech View, Ben's group header onto / above the Unassigned group
