@@ -1,0 +1,112 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 end-of-run sign-out batch"
+ },
+ "results": {
+  "C96989": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps; the log-out step was done for real today (10:45).",
+    "Steps 1 and 2: Comfortable chosen in Tech View is also ticked in Board View.",
+    "Step 3: Signed out for real (your initials > Logout: the sign-in page showed) and signed back in with the Admin quick-login button. Tech View opened with Comfortable still selected.",
+    "Steps 4 and 5 (seen earlier today, 05:41, same build): in a second browser and at Staging Lethbridge - 4310 both views still showed Comfortable."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96989-s-1-signed-out.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96989-s-2-after-sign-in.png"
+   ],
+   "ticket": null
+  },
+  "C97005": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps; the sign-out step was done for real today (10:47).",
+    "Steps 4 to 6: Charlie Co dragged above Alpha Co in Ana's group (Charlie, Alpha, Bravo); Board View shows the same order.",
+    "Step 7 (seen earlier today, 05:41, same build): the second dispatcher saw Charlie, Alpha, Bravo in both views without doing anything.",
+    "Step 8: Signed out for real (your initials > Logout: the sign-in page showed) and signed back in with the Admin quick-login button. Tech View with the same search still reads Charlie Co, Alpha Co, Bravo Co.",
+    "Step 9 (seen earlier today): when the first dispatcher moved Ben above Ana, the second dispatcher still had Ana before Ben after refreshing."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97005-s-1-after-sign-in.png"
+   ],
+   "ticket": null
+  },
+  "C96912": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: steps 1 to 6 match with a real sign-out, but step 7's check (\"the second user still sees List\") cannot be judged with the user that was used.",
+    "Steps 1 to 4: Board View chosen; Signed out for real (your initials > Logout: the sign-in page showed) and signed back in with the Admin quick-login button. Work Orders opened in Board View.",
+    "Step 5: in a second browser, signed in as the same user, Work Orders opened in Board View.",
+    "Step 6 (seen earlier today, 05:41, same build): after Change Location to Staging Lethbridge - 4310 it still opened in Board View.",
+    "Step 7: signed out for real and signed in as User-B with the Tech quick-login button (Tech ShopView). Work Orders opened in Tech View, that user's own earlier choice; it did not take the first user's Board View, but because this user had already chosen a display, \"still sees List\" cannot be judged with them."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96912-s-1-after-sign-in.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96912-s-2-user-b.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: step 7 again with a User-B who has never chosen a display (for example a new staff user): sign out, sign in as that user, open Work Orders and check it shows List."
+  },
+  "C96948": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps; the sign-out step was done for real today (10:52).",
+    "Steps 1 to 5: Ralph Edwards and Jenny Wilson pinned in Board View; Tech View shows both pinned right after Unassigned without pinning them again.",
+    "Step 6: Signed out for real (your initials > Logout: the sign-in page showed) and signed back in with the Admin quick-login button. Board View shows Ralph Edwards and Jenny Wilson still pinned right after Unassigned.",
+    "Step 7: in a second browser, signed in as the same user, the same two are pinned.",
+    "Step 8 (seen earlier today, 05:41, same build): a second user has no pins and sees none of them."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96948-s-1-after-sign-in.png"
+   ],
+   "ticket": null
+  },
+  "C96928": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps; the sign-out step was done for real today (10:54).",
+    "Steps 1 to 6 (customer ZZAUTOTEST F2 Collapse Memory): clicking the arrow on Ralph Edwards' group collapsed it to its header and count; Esther Howard's and Jenny Wilson's groups stayed expanded.",
+    "Steps 7 to 9 (seen earlier today, 05:38, same build): after a refresh, in a new tab and after reopening, the collapsed group stayed collapsed and the others expanded.",
+    "Step 10: Signed out for real (your initials > Logout: the sign-in page showed) and signed back in with the Admin quick-login button. Tech View shows Ralph Edwards' group still collapsed, the other two expanded.",
+    "Step 11: clicking the arrow again expands Ralph Edwards' group and shows its row."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96928-s-1-after-sign-in.png"
+   ],
+   "ticket": null
+  },
+  "C96975": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: after a real log-out and log-in, Tech View kept its own columns, but List showed Progress again; whether List should keep that choice after logging out depends on how List works in production today, which has not been checked.",
+    "Steps 11 and 15 (seen earlier today, 06:55, same build, and again before logging out): Tech View's choice did not touch List, and List's choice did not touch Tech View.",
+    "Steps 16 to 18: logged out for real (your initials > Logout) and back in with the Admin quick-login button. Tech View shows neither Service Advisor nor Assigned Techs and still shows Progress. List shows Service Advisor, but Progress is back on (it was off before logging out).",
+    "Steps 20 and 23 (seen earlier today, same build): in a second browser and at Staging Lethbridge - 4310, Tech View had neither Service Advisor nor Assigned Techs and kept Progress; List kept Service Advisor on and Progress off.",
+    "The PRD (S5-R8) says: \"Save the Tech View column selection per user across logout/login, devices, and locations. List keeps saving its columns exactly as it does today.\" The test expects List to keep Progress off after logging back in."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96975-s-1-list-after-sign-in.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: check on production whether List keeps a column choice after logging out and back in (List is meant to work exactly as it does today); if production keeps it, this is a fault to put to the QA lead; if production also resets it, the QA lead decides on the test's List wording."
+  },
+  "C368240": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (end-of-run sign-out batch, 10:58).",
+    "Step 1: Work Orders open in tab 1 (33 rows).",
+    "Step 2: in tab 2 of the same browser, signed out (your initials > Logout): tab 2 shows the sign-in page.",
+    "Steps 3 and 4: back in tab 1, the page had already gone to the sign-in page by itself (/login?redirect=/workorders?tab=all), so Reports could not be clicked, as the test allows; no red error messages, no work orders or report rows left showing.",
+    "After signing in again (Admin quick-login), Reports > Inventory Value opened with current data (As of 10/17/2026, 33 rows) and no error messages."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368240-s-1-tab1.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368240-s-2-after-sign-in.png"
+   ],
+   "ticket": null
+  }
+ }
+}
