@@ -1,0 +1,337 @@
+{
+ "C96989": {
+  "started": "10:44:24",
+  "exitSwitch": 200,
+  "startFound": {
+   "present": true,
+   "options": [
+    {
+     "id": "compact",
+     "selected": true
+    },
+    {
+     "id": "regular",
+     "selected": false
+    },
+    {
+     "id": "comfortable",
+     "selected": false
+    }
+   ],
+   "selected": [
+    "compact"
+   ],
+   "saved": "compact"
+  },
+  "step1": {
+   "present": true,
+   "options": [
+    {
+     "id": "compact",
+     "selected": false
+    },
+    {
+     "id": "regular",
+     "selected": false
+    },
+    {
+     "id": "comfortable",
+     "selected": true
+    }
+   ],
+   "selected": [
+    "comfortable"
+   ],
+   "saved": "comfortable"
+  },
+  "step2board": {
+   "present": true,
+   "options": [
+    {
+     "id": "compact",
+     "selected": false
+    },
+    {
+     "id": "regular",
+     "selected": false
+    },
+    {
+     "id": "comfortable",
+     "selected": true
+    }
+   ],
+   "selected": [
+    "comfortable"
+   ],
+   "saved": "comfortable"
+  },
+  "signOut": {
+   "before": {
+    "url": "/workorders?tab=all",
+    "user": null
+   },
+   "logoutItem": 1,
+   "after": {
+    "url": "/login",
+    "signInPage": true,
+    "permissions": {
+     "status": 401,
+     "body": "{\"errors\":[{\"error\":\"session_expired\"}]}"
+    }
+   }
+  },
+  "signIn": {
+   "label": "Admin",
+   "button": 1,
+   "buttonsOffered": [
+    "light_mode Light",
+    "dark_mode Dark",
+    "Login",
+    "admin_panel_settings Admin",
+    "schedule Tech"
+   ],
+   "url": "https://app.staging.shopview.com/dashboard",
+   "permissions": {
+    "status": 200,
+    "body": "{\"data\":{\"fe_permissions\":[\"accountingBankingCreateAndEdit\",\"accountingBankingView\",\"accountingBankReconciliation\",\"acco"
+   },
+   "user": null,
+   "ok": true
+  },
+  "step3afterSignIn": {
+   "display": {
+    "switcher": 3,
+    "active": "Tech View"
+   },
+   "density": {
+    "present": true,
+    "options": [
+     {
+      "id": "compact",
+      "selected": false
+     },
+     {
+      "id": "regular",
+      "selected": false
+     },
+     {
+      "id": "comfortable",
+      "selected": true
+     }
+    ],
+    "selected": [
+     "comfortable"
+    ],
+    "saved": "comfortable"
+   },
+   "user": null
+  },
+  "keptComfortable": true,
+  "ended": "10:45:27"
+ },
+ "C97005": {
+  "started": "10:46:21",
+  "exitSwitch": 200,
+  "pin": 200,
+  "step3": [
+   "Alpha Co",
+   "Bravo Co",
+   "Charlie Co"
+  ],
+  "step4": [
+   "Charlie Co",
+   "Alpha Co",
+   "Bravo Co"
+  ],
+  "signOut": {
+   "before": {
+    "url": "/workorders?search=ZZAUTOTEST+F3+Shared+Order+82987",
+    "user": null
+   },
+   "logoutItem": 1,
+   "after": {
+    "url": "/login",
+    "signInPage": true,
+    "permissions": {
+     "status": 401,
+     "body": "{\"errors\":[{\"error\":\"session_expired\"}]}"
+    }
+   }
+  },
+  "signIn": {
+   "label": "Admin",
+   "button": 1,
+   "buttonsOffered": [
+    "light_mode Light",
+    "dark_mode Dark",
+    "Login",
+    "admin_panel_settings Admin",
+    "schedule Tech"
+   ],
+   "url": "https://app.staging.shopview.com/dashboard",
+   "permissions": {
+    "status": 200,
+    "body": "{\"data\":{\"fe_permissions\":[\"accountingBankingCreateAndEdit\",\"accountingBankingView\",\"accountingBankReconciliation\",\"acco"
+   },
+   "user": null,
+   "ok": true
+  },
+  "step8afterSignIn": [
+   "Charlie Co",
+   "Alpha Co",
+   "Bravo Co"
+  ],
+  "sameOrderAfterSignIn": true,
+  "ended": "10:47:36"
+ },
+ "C96912": {
+  "started": "10:48:30",
+  "exitSwitch": 200,
+  "startFound": {
+   "display": {
+    "switcher": 3,
+    "active": "Tech View"
+   },
+   "saved": "tech_view"
+  },
+  "step2": {
+   "display": {
+    "switcher": 3,
+    "active": "Board View"
+   },
+   "saved": "board_view"
+  },
+  "signOut3": {
+   "before": {
+    "url": "/workorders?tab=all",
+    "user": null
+   },
+   "logoutItem": 1,
+   "after": {
+    "url": "/login",
+    "signInPage": true,
+    "permissions": {
+     "status": 401,
+     "body": "{\"errors\":[{\"error\":\"session_expired\"}]}"
+    }
+   }
+  },
+  "signIn3": {
+   "label": "Admin",
+   "button": 1,
+   "buttonsOffered": [
+    "light_mode Light",
+    "dark_mode Dark",
+    "Login",
+    "admin_panel_settings Admin",
+    "schedule Tech"
+   ],
+   "url": "https://app.staging.shopview.com/dashboard",
+   "permissions": {
+    "status": 200,
+    "body": "{\"data\":{\"fe_permissions\":[\"accountingBankingCreateAndEdit\",\"accountingBankingView\",\"accountingBankReconciliation\",\"acco"
+   },
+   "user": null,
+   "ok": true
+  },
+  "step4": {
+   "display": {
+    "switcher": 3,
+    "active": "Board View"
+   },
+   "saved": "board_view",
+   "user": null
+  },
+  "step5": {
+   "display": {
+    "switcher": 3,
+    "active": "Board View"
+   },
+   "saved": "board_view",
+   "user": null
+  },
+  "firstAgain": {
+   "permissionsBefore": 200
+  },
+  "step6": "not part of this batch (Change Location is not a sign-out step; read by s1-batch4a)",
+  "signOut7": {
+   "before": {
+    "url": "/workorders?tab=all",
+    "user": null
+   },
+   "logoutItem": 1,
+   "after": {
+    "url": "/login",
+    "signInPage": true,
+    "permissions": {
+     "status": 401,
+     "body": "{\"errors\":[{\"error\":\"session_expired\"}]}"
+    }
+   }
+  },
+  "signInUserB": {
+   "label": "Tech",
+   "button": 1,
+   "buttonsOffered": [
+    "light_mode Light",
+    "dark_mode Dark",
+    "Login",
+    "admin_panel_settings Admin",
+    "schedule Tech"
+   ],
+   "url": "https://app.staging.shopview.com/workorders?tab=work_orders",
+   "permissions": {
+    "status": 200,
+    "body": "{\"data\":{\"fe_permissions\":[\"customersView\",\"scheduleView\",\"woPickParts\",\"workOrderLinesCreateAndEdit\",\"workOrdersView\",\""
+   },
+   "user": null,
+   "ok": true
+  },
+  "step7": {
+   "user": null,
+   "savedDisplayBefore": "tech_view",
+   "neverChanged": false,
+   "display": {
+    "switcher": 3,
+    "active": "Tech View"
+   },
+   "saved": "tech_view",
+   "workOrdersShown": true,
+   "note": "Tech ShopView has a saved display \"tech_view\": not a never-changed user, so this reading cannot judge \"the second user still sees List\""
+  },
+  "signOutB": {
+   "before": {
+    "url": "/workorders?tab=all",
+    "user": null
+   },
+   "logoutItem": 1,
+   "after": {
+    "url": "/login",
+    "signInPage": true,
+    "permissions": {
+     "status": 401,
+     "body": "{\"errors\":[{\"error\":\"session_expired\"}]}"
+    }
+   }
+  },
+  "signInBack": {
+   "label": "Admin",
+   "button": 1,
+   "buttonsOffered": [
+    "light_mode Light",
+    "dark_mode Dark",
+    "Login",
+    "admin_panel_settings Admin",
+    "schedule Tech"
+   ],
+   "url": "https://app.staging.shopview.com/dashboard",
+   "permissions": {
+    "status": 200,
+    "body": "{\"data\":{\"fe_permissions\":[\"accountingBankingCreateAndEdit\",\"accountingBankingView\",\"accountingBankReconciliation\",\"acco"
+   },
+   "user": null,
+   "ok": true
+  },
+  "ended": "10:50:38"
+ }
+}

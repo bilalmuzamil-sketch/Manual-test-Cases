@@ -183,5 +183,577 @@
   ],
   "sameOrderAfterSignIn": true,
   "ended": "10:47:36"
+ },
+ "C96912": {
+  "started": "10:48:30",
+  "exitSwitch": 200,
+  "startFound": {
+   "display": {
+    "switcher": 3,
+    "active": "Tech View"
+   },
+   "saved": "tech_view"
+  },
+  "step2": {
+   "display": {
+    "switcher": 3,
+    "active": "Board View"
+   },
+   "saved": "board_view"
+  },
+  "signOut3": {
+   "before": {
+    "url": "/workorders?tab=all",
+    "user": null
+   },
+   "logoutItem": 1,
+   "after": {
+    "url": "/login",
+    "signInPage": true,
+    "permissions": {
+     "status": 401,
+     "body": "{\"errors\":[{\"error\":\"session_expired\"}]}"
+    }
+   }
+  },
+  "signIn3": {
+   "label": "Admin",
+   "button": 1,
+   "buttonsOffered": [
+    "light_mode Light",
+    "dark_mode Dark",
+    "Login",
+    "admin_panel_settings Admin",
+    "schedule Tech"
+   ],
+   "url": "https://app.staging.shopview.com/dashboard",
+   "permissions": {
+    "status": 200,
+    "body": "{\"data\":{\"fe_permissions\":[\"accountingBankingCreateAndEdit\",\"accountingBankingView\",\"accountingBankReconciliation\",\"acco"
+   },
+   "user": null,
+   "ok": true
+  },
+  "step4": {
+   "display": {
+    "switcher": 3,
+    "active": "Board View"
+   },
+   "saved": "board_view",
+   "user": null
+  },
+  "step5": {
+   "display": {
+    "switcher": 3,
+    "active": "Board View"
+   },
+   "saved": "board_view",
+   "user": null
+  },
+  "firstAgain": {
+   "permissionsBefore": 200
+  },
+  "step6": "not part of this batch (Change Location is not a sign-out step; read by s1-batch4a)",
+  "signOut7": {
+   "before": {
+    "url": "/workorders?tab=all",
+    "user": null
+   },
+   "logoutItem": 1,
+   "after": {
+    "url": "/login",
+    "signInPage": true,
+    "permissions": {
+     "status": 401,
+     "body": "{\"errors\":[{\"error\":\"session_expired\"}]}"
+    }
+   }
+  },
+  "signInUserB": {
+   "label": "Tech",
+   "button": 1,
+   "buttonsOffered": [
+    "light_mode Light",
+    "dark_mode Dark",
+    "Login",
+    "admin_panel_settings Admin",
+    "schedule Tech"
+   ],
+   "url": "https://app.staging.shopview.com/workorders?tab=work_orders",
+   "permissions": {
+    "status": 200,
+    "body": "{\"data\":{\"fe_permissions\":[\"customersView\",\"scheduleView\",\"woPickParts\",\"workOrderLinesCreateAndEdit\",\"workOrdersView\",\""
+   },
+   "user": null,
+   "ok": true
+  },
+  "step7": {
+   "user": null,
+   "savedDisplayBefore": "tech_view",
+   "neverChanged": false,
+   "display": {
+    "switcher": 3,
+    "active": "Tech View"
+   },
+   "saved": "tech_view",
+   "workOrdersShown": true,
+   "note": "Tech ShopView has a saved display \"tech_view\": not a never-changed user, so this reading cannot judge \"the second user still sees List\""
+  },
+  "signOutB": {
+   "before": {
+    "url": "/workorders?tab=all",
+    "user": null
+   },
+   "logoutItem": 1,
+   "after": {
+    "url": "/login",
+    "signInPage": true,
+    "permissions": {
+     "status": 401,
+     "body": "{\"errors\":[{\"error\":\"session_expired\"}]}"
+    }
+   }
+  },
+  "signInBack": {
+   "label": "Admin",
+   "button": 1,
+   "buttonsOffered": [
+    "light_mode Light",
+    "dark_mode Dark",
+    "Login",
+    "admin_panel_settings Admin",
+    "schedule Tech"
+   ],
+   "url": "https://app.staging.shopview.com/dashboard",
+   "permissions": {
+    "status": 200,
+    "body": "{\"data\":{\"fe_permissions\":[\"accountingBankingCreateAndEdit\",\"accountingBankingView\",\"accountingBankReconciliation\",\"acco"
+   },
+   "user": null,
+   "ok": true
+  },
+  "ended": "10:50:38"
+ },
+ "C96948": {
+  "started": "10:51:33",
+  "exitSwitch": 200,
+  "startFound": {
+   "pinned": [
+    "ec182619"
+   ]
+  },
+  "pin": 200,
+  "step3": {
+   "Ralph": "true",
+   "Jenny": "true",
+   "firstColumns": [
+    "Unassigned",
+    "RE",
+    "JW",
+    "AB"
+   ]
+  },
+  "signOut6": {
+   "before": {
+    "url": "/workorders?search=ZZAUTOTEST+F2+Pins+Follow+User",
+    "user": null
+   },
+   "logoutItem": 1,
+   "after": {
+    "url": "/login",
+    "signInPage": true,
+    "permissions": {
+     "status": 401,
+     "body": "{\"errors\":[{\"error\":\"session_expired\"}]}"
+    }
+   }
+  },
+  "signIn6": {
+   "label": "Admin",
+   "button": 1,
+   "buttonsOffered": [
+    "light_mode Light",
+    "dark_mode Dark",
+    "Login",
+    "admin_panel_settings Admin",
+    "schedule Tech"
+   ],
+   "url": "https://app.staging.shopview.com/dashboard",
+   "permissions": {
+    "status": 200,
+    "body": "{\"data\":{\"fe_permissions\":[\"accountingBankingCreateAndEdit\",\"accountingBankingView\",\"accountingBankReconciliation\",\"acco"
+   },
+   "user": null,
+   "ok": true
+  },
+  "step6": {
+   "onScreen": {
+    "Ralph": "true",
+    "Jenny": "true",
+    "firstColumns": [
+     "Unassigned",
+     "RE",
+     "JW",
+     "AB"
+    ]
+   },
+   "saved": [
+    "Ralph",
+    "Jenny"
+   ]
+  },
+  "step7": {
+   "onScreen": {
+    "Ralph": "true",
+    "Jenny": "true",
+    "firstColumns": [
+     "Unassigned",
+     "RE",
+     "JW",
+     "AB"
+    ]
+   },
+   "saved": [
+    "Ralph",
+    "Jenny"
+   ]
+  },
+  "firstAgain": {
+   "permissionsBefore": 200
+  },
+  "step8": "not part of this batch (sign in as User-B: see C96912 step 7 for whether a second user can sign in unattended)",
+  "ended": "10:53:03"
+ },
+ "C96928": {
+  "started": "10:53:57",
+  "exitSwitch": 200,
+  "leadsFixed": [
+   "S2-35265 201",
+   "S2-35264 201",
+   "S2-35263 201"
+  ],
+  "pin": 200,
+  "startFound": {
+   "Esther": {
+    "collapsed": false,
+    "count": 1,
+    "rows": 1
+   },
+   "Ralph": {
+    "collapsed": false,
+    "count": 1,
+    "rows": 1
+   },
+   "Jenny": {
+    "collapsed": false,
+    "count": 1,
+    "rows": 1
+   },
+   "saved": []
+  },
+  "step5": {
+   "Esther": {
+    "collapsed": false,
+    "count": 1,
+    "rows": 1
+   },
+   "Ralph": {
+    "collapsed": true,
+    "count": 1,
+    "rows": 0
+   },
+   "Jenny": {
+    "collapsed": false,
+    "count": 1,
+    "rows": 1
+   },
+   "saved": [
+    "Ralph"
+   ]
+  },
+  "signOut": {
+   "before": {
+    "url": "/workorders?search=ZZAUTOTEST+F2+Collapse+Memory",
+    "user": null
+   },
+   "logoutItem": 1,
+   "after": {
+    "url": "/login",
+    "signInPage": true,
+    "permissions": {
+     "status": 401,
+     "body": "{\"errors\":[{\"error\":\"session_expired\"}]}"
+    }
+   }
+  },
+  "signIn": {
+   "label": "Admin",
+   "button": 1,
+   "buttonsOffered": [
+    "light_mode Light",
+    "dark_mode Dark",
+    "Login",
+    "admin_panel_settings Admin",
+    "schedule Tech"
+   ],
+   "url": "https://app.staging.shopview.com/dashboard",
+   "permissions": {
+    "status": 200,
+    "body": "{\"data\":{\"fe_permissions\":[\"accountingBankingCreateAndEdit\",\"accountingBankingView\",\"accountingBankReconciliation\",\"acco"
+   },
+   "user": null,
+   "ok": true
+  },
+  "step10": {
+   "Esther": {
+    "collapsed": false,
+    "count": 1,
+    "rows": 1
+   },
+   "Ralph": {
+    "collapsed": true,
+    "count": 1,
+    "rows": 0
+   },
+   "Jenny": {
+    "collapsed": false,
+    "count": 1,
+    "rows": 1
+   },
+   "saved": [
+    "Ralph"
+   ]
+  },
+  "step11": {
+   "Esther": {
+    "collapsed": false,
+    "count": 1,
+    "rows": 1
+   },
+   "Ralph": {
+    "collapsed": false,
+    "count": 1,
+    "rows": 1
+   },
+   "Jenny": {
+    "collapsed": false,
+    "count": 1,
+    "rows": 1
+   },
+   "saved": []
+  },
+  "ended": "10:55:03"
+ },
+ "C96975": {
+  "started": "10:55:57",
+  "exitSwitch": 200,
+  "startFoundTech": [
+   "On Site",
+   "Waiting On Parts",
+   "Unit",
+   "Asset",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Assigned Techs",
+   "Created on",
+   "Total price"
+  ],
+  "startFoundList": [
+   "Waiting On Parts",
+   "Asset",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total price",
+   "Created on",
+   "Invoiced Date",
+   "Days open",
+   "Parts",
+   "Returns"
+  ],
+  "setList": [
+   "Waiting On Parts",
+   "Asset",
+   "VIN/Serial #",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total price",
+   "Created on",
+   "Invoiced Date",
+   "Days open",
+   "Parts",
+   "Returns"
+  ],
+  "setTech": [
+   "On Site",
+   "Waiting On Parts",
+   "Unit",
+   "Asset",
+   "VIN/Serial #",
+   "Progress",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Created on",
+   "Total price"
+  ],
+  "before": {
+   "techHeads": [
+    "On Site",
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Unit",
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Created On",
+    "Total Price"
+   ],
+   "listHeads": [
+    "On Site",
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On",
+    "Invoiced Date",
+    "Days Open",
+    "Parts",
+    "Returns"
+   ]
+  },
+  "signOut": {
+   "before": {
+    "url": "/workorders?tab=all",
+    "user": null
+   },
+   "logoutItem": 1,
+   "after": {
+    "url": "/login",
+    "signInPage": true,
+    "permissions": {
+     "status": 401,
+     "body": "{\"errors\":[{\"error\":\"session_expired\"}]}"
+    }
+   }
+  },
+  "signIn": {
+   "label": "Admin",
+   "button": 1,
+   "buttonsOffered": [
+    "light_mode Light",
+    "dark_mode Dark",
+    "Login",
+    "admin_panel_settings Admin",
+    "schedule Tech"
+   ],
+   "url": "https://app.staging.shopview.com/dashboard",
+   "permissions": {
+    "status": 200,
+    "body": "{\"data\":{\"fe_permissions\":[\"accountingBankingCreateAndEdit\",\"accountingBankingView\",\"accountingBankReconciliation\",\"acco"
+   },
+   "user": null,
+   "ok": true
+  },
+  "step18tech": {
+   "on": [
+    "On Site",
+    "Waiting On Parts",
+    "Unit",
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Created on",
+    "Total price"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Unit",
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Created On",
+    "Total Price"
+   ]
+  },
+  "step18list": {
+   "on": [
+    "Waiting On Parts",
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total price",
+    "Created on",
+    "Invoiced Date",
+    "Days open",
+    "Parts",
+    "Returns"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On",
+    "Invoiced Date",
+    "Days Open",
+    "Parts",
+    "Returns"
+   ]
+  },
+  "check": {
+   "techNoServiceAdvisor": true,
+   "techNoAssignedTechs": true,
+   "techProgress": true,
+   "listServiceAdvisor": true,
+   "listNoProgress": false
+  },
+  "ended": "10:57:20"
  }
 }
