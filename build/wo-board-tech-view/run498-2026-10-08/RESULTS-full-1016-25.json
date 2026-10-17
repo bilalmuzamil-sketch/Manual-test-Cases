@@ -1,0 +1,379 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 25 = queue steps 61-65"
+ },
+ "results": {
+  "C96988": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Work order S2-36944 with every optional card field on (unit, line count, estimated hours, progress, total).",
+    "Board View at Compact, Regular and Comfortable: the card shows the same fields and values each time: S2-36944, Approved, ZZF6CT, 3 lines, Est. 2.2 hrs, 0%, $435.27.",
+    "Only the size changes: the card is 173 px tall at Compact, 187 at Regular and 205 at Comfortable.",
+    "Tech View shows the same 13 columns and values at every density; rows are 36, 48 and 64 px tall."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96988-1-compact-card.png"
+   ],
+   "ticket": null
+  },
+  "C96989": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Comfortable was chosen in Tech View; Board View then also showed Comfortable ticked.",
+    "In a new browser window both views still showed Comfortable. (A new window was used instead of signing out, because signing out ends the shared staging sign-in.)",
+    "After switching to Staging Lethbridge - 4310 both views still showed Comfortable."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96989-1-density-shared.png"
+   ],
+   "ticket": null
+  },
+  "C96992": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Tech View rows are 36 px at Compact, 48 at Regular and 64 at Comfortable.",
+    "Board View cards are 149 px tall at Compact and 163 at Regular, with the same 8 px gap between them.",
+    "List rows stayed 48 px before and after, and the Customers page rows stayed 48 px."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96992-1-tech-compact.png"
+   ],
+   "ticket": null
+  },
+  "C97030": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Seven work orders for this test's customer: Approved, Estimate, In Progress and Invoiced, led by Ana, Ben or nobody.",
+    "Board View and Tech View: every header count matches the cards or rows under it: Unassigned 2, Ana 3, Ben 2, Cal 0.",
+    "With only Approved ticked (List shows the three Approved work orders): Unassigned 1, Ana 2, Ben 0, Cal 0 in both views.",
+    "After one more change the counts followed again: Unassigned 1, Ana 1."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97030-1-counts.png"
+   ],
+   "ticket": null
+  },
+  "C97032": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Technician Ben has one work order in each status (Approved, Complete, Declined, Estimate, Invoiced, Paid, In Progress, Ready For Review), a line-only one, and one at Staging Lethbridge - 4310.",
+    "Step 5: the Reassign lead technician dialog shows Ben with 4 open.",
+    "Step 6: with the page filtered down to one work order, the dialog still shows 4 open.",
+    "Step 7: right after his Estimate was approved, it shows 5 open."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97032-1-open-count.png"
+   ],
+   "ticket": null
+  },
+  "C368157": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Cal was at place 206 of 274 in Board View before pinning.",
+    "Pinned, Cal moved to just after Unassigned.",
+    "Unpinned, Cal went back to place 206, between the same two technicians as before, in Board View and Tech View."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368157-1-unpinned-back.png"
+   ],
+   "ticket": null
+  },
+  "C96982": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Two work orders were made through the screens: one on a 2022 Freightliner M2 with unit TRK-118, one on a 1999 Ford Explorer with no unit.",
+    "With every optional field turned off, each card shows only the number, the status and the unit or asset: \"S2-36963 Approved TRK-118\" and \"S2-36964 Approved 1999 Ford Explorer\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96982-1-required-only.png"
+   ],
+   "ticket": null
+  },
+  "C96984": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "(a) The card with unit TRK-118 shows TRK-118 and its asset 2022 Freightliner M2.",
+    "(b) The card with no unit shows the asset 1999 Ford Explorer where the unit would be.",
+    "(c) not built - an asset needs a Make (the test says to skip it).",
+    "(d) The cards show their zero values as values: 0 lines, $0.00 and 0%."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96984-1-unit-fallback.png"
+   ],
+   "ticket": null
+  },
+  "C368215": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Part sale P2-2406 was made with one part.",
+    "Its status card shows in full: P2-2406, Estimate, Started: Today, Sales Representative, Unassigned. Nothing is cut off."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368215-1-part-sale.png"
+   ],
+   "ticket": null
+  },
+  "C368217": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Part sale P2-2407 was given two part requests (Brake Pads); one was ordered, received and then a return was made.",
+    "The Part Sales list shows P2-2407 with Parts 2 and Returns 1, the ones created.",
+    "A part sale at Staging Lethbridge - 4310 was given parts too; they are not added to P2-2407's counts."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368217-1-counts.png"
+   ],
+   "ticket": null
+  },
+  "C368241": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "A red photo was uploaded on the profile page, then a blue one.",
+    "After a reload the profile page and the top bar show the new blue photo."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368241-1-new-photo.png"
+   ],
+   "ticket": null
+  },
+  "C368243": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "The technician's photo was changed, then the Schedule was reloaded.",
+    "The technician's row in the Schedule shows the new photo."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368243-1-schedule-photo.png"
+   ],
+   "ticket": null
+  },
+  "C368244": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "The technician's photo was changed (red to blue), then Board View was reloaded.",
+    "The technician's column header shows the new blue photo."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368244-1-board-photo.png"
+   ],
+   "ticket": null
+  },
+  "C368193": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "\"ZZAUTOTEST Tab Clears Search\" was typed in Search on the All tab.",
+    "After clicking Estimates the Search box is empty and the list shows Estimates (30 rows)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368193-1-tab-clears-search.png"
+   ],
+   "ticket": null
+  },
+  "C368194": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Days Open was off at the start and was turned on in Column Selection.",
+    "After a reload Days Open is still shown as the last column."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368194-1-column-kept.png"
+   ],
+   "ticket": null
+  },
+  "C368195": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "A brand-new Technician user opened the List for the first time.",
+    "Waiting On Parts, Invoiced Date, Days Open, Parts and Returns are switched off in Column Selection and are not shown in the List."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368195-1-new-user-columns.png"
+   ],
+   "ticket": null
+  },
+  "C368198": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Two work orders were invoiced, S2-36969 first and S2-36970 second.",
+    "On the All tab with only Invoiced ticked, S2-36970 is above S2-36969, and older invoices (2 days ago, 3 days ago) follow."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368198-1-invoice-order.png"
+   ],
+   "ticket": null
+  },
+  "C368199": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "The tabs were clicked quickly one after another, ending on Completed.",
+    "Only Complete work orders show, and no error message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368199-1-last-tab.png"
+   ],
+   "ticket": null
+  },
+  "C368203": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "A link with Estimates and Assigned to me was opened.",
+    "The List opened on the Estimates tab with Assigned to me on."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368203-1-link.png"
+   ],
+   "ticket": null
+  },
+  "C368205": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "A link with an unknown Asset on Site value was opened.",
+    "The Asset on Site filter has neither Yes nor No ticked, the list shows the same 30 rows as before, and no error showed.",
+    "(A Status: Invoiced filter left on by an earlier test was also on the screen; it does not touch this check.)"
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368205-1-unknown-value.png"
+   ],
+   "ticket": null
+  },
+  "C368206": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "See Financial Data was taken off the user's role (put back afterwards).",
+    "The List has no Total Price column and no total at the bottom, and Column Selection does not offer it."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368206-1-no-financial.png"
+   ],
+   "ticket": null
+  },
+  "C368207": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Signed in as a view-only user (role with Work orders > View only).",
+    "The List has no Create Work Order button."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368207-1-no-create.png"
+   ],
+   "ticket": null
+  },
+  "C368208": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Signed in as a view-only user.",
+    "The row's Asset on Site toggle is greyed out with a not-allowed pointer; clicking it changed nothing, and after a reload it was still off.",
+    "Hover text: \"Asset not here. Click to toggle status.\""
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368208-1-toggle-locked.png"
+   ],
+   "ticket": null
+  },
+  "C368210": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Phone width (390 px).",
+    "30 cards show at first; more load only after scrolling to the bottom (390 after scrolling), with no card shown twice."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368210-1-next-page.png"
+   ],
+   "ticket": null
+  },
+  "C368200": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete its steps.",
+    "The script made work order S2-36971, but a Status: Invoiced filter left on by an earlier test hid it, so the row's Asset on Site toggle could not be found (the script waited 30 seconds and stopped).",
+    "Nothing was judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368200-1-script-filter.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test with the Status filter cleared first (script fix)."
+  },
+  "C368201": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete its steps.",
+    "The script made work order S2-36972 and changed its status, but a Status: Invoiced filter left on by an earlier test hid it in the List, so the row could not be found (the script waited 30 seconds and stopped).",
+    "Nothing was judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368201-1-script-filter.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test with the Status filter cleared first (script fix)."
+  },
+  "C368212": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete its steps.",
+    "The script made work order S3-36974 at Staging Lethbridge - 4310 and switched there.",
+    "At Heavy Duty the List did not show it by its number or by \"Loc2\", as the test wants.",
+    "At Lethbridge the List did not show it either, because a Status: Invoiced filter left on by an earlier test was still ticked. So the positive check (it shows at its own location) failed for the script's reason, and nothing can be judged.",
+    "The script then could not switch the screen back to Heavy Duty."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368212-1-script-filter.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test with the Status filter cleared first and the location switched back at the end (script fix)."
+  },
+  "C368214": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete its steps.",
+    "The previous test left the screen at Staging Lethbridge - 4310, so this test's work order S2-36975 (made at Heavy Duty) could not show in the List and its row was never found (the script waited 30 seconds and stopped).",
+    "Nothing was judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368214-1-script-location.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test after switching back to Staging Heavy Duty - 9919 (script fix)."
+  },
+  "C368209": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the result depends on a question that is still open.",
+    "Phone width: the sort button offers Newest First, Oldest First, Customer A-Z and Customer Z-A; Customer A-Z was chosen and is still ticked after a reload.",
+    "But under Customer A-Z the first cards are the test customer \"ZZBREAK <b>bold</b> ...\", ahead of \"4 Star Truck Repair\". Whether this test customer's place in A-Z is right is the same open question as in C368245."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368209-1-sort.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: the QA lead to answer the open question about where the ZZBREAK test customer sorts (asked under C368245); then judge this test."
+  }
+ }
+}

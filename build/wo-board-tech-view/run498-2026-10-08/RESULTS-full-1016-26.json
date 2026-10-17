@@ -1,0 +1,481 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 26 = queue steps 66-68"
+ },
+ "results": {
+  "C590110": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Step 1 (List): the switcher shows three thin outline icons in a light-grey track: a bulleted list, a person and a board, in slate grey.",
+    "Step 2: Search shows a magnifier; Status a circle of short strokes, Assigned to me a clipboard, Asset on Site a truck, all thin outlines.",
+    "Steps 3 and 4 (Tech View): the Tech View button sits on a white raised segment; the density button shows lines with an up-and-down arrow and Column Selection a rectangle split into three; switcher icons keep the same slate grey.",
+    "Step 6: the density menu offers Compact, Regular and Comfortable, with Regular ticked.",
+    "Steps 7 and 8 (Board View): Board View is the white raised segment; its density button is now a card with an up-and-down arrow.",
+    "Steps 5 and 9: the same Search and filter icons as in List. Step 10: List's other toolbar icons are unchanged.",
+    "The earlier failure (wrong list icon, same density icon in Board View) is gone; it was reported in SV-11319, now in Testing Stage."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590110-1-board-toolbar.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590110-2-tech-toolbar.png"
+   ],
+   "ticket": null
+  },
+  "C590111": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Tech View at 1440 px: the tooltips read List, Tech View and Board View, and each opens above the switcher (about 8 px above), covering no part of the column header row.",
+    "Board View: the same three tooltips open above the switcher and cover none of the column headers.",
+    "Tech View at 1536 px: the same.",
+    "The earlier failure (tooltips below the switcher) is gone; it was reported in SV-11322, now in Testing Stage."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590111-1-tooltip-above.png"
+   ],
+   "ticket": null
+  },
+  "C590112": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Step 1: Tech View's table is white and runs from the page's left edge to its right edge (0 to 1440 px), with no grey strip, card or shadow around it.",
+    "Step 2: a double grey line sits above each group header (seen when searched to this test's customer).",
+    "Step 3: the column header row stays at the top while the rows move up under it.",
+    "Step 4: the table (1784 px wide) scrolls sideways inside the page; each header label stays above its column.",
+    "Step 5: at 1536 px it still runs edge to edge on white.",
+    "Steps 6 and 7: the Status column is 88 px with Approved and Estimate pills (72 px pills), and 130 px with a Ready For Review pill (114 px pill), with no wide empty space after the pills.",
+    "Step 8: List keeps its grey margin, as in production.",
+    "The earlier failure (grey strip on both sides) is gone; it was reported in SV-11324, now in Testing Stage."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590112-1-edge-to-edge.png"
+   ],
+   "ticket": null
+  },
+  "C590113": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 5.",
+    "Step 1 (new Admin user, never opened Tech View): 13 columns in the right order: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price. On Site, VIN/Serial # and Lead Technician are not shown.",
+    "Steps 2 and 3: header labels are 12 px, medium weight, grey (lighter than the 14 px row text), and none touches its neighbour.",
+    "Step 4: the column list offers On Site, VIN/Serial # and Lead Technician, switched off.",
+    "Step 5 was not done: the script did not manage to switch those three on, so steps 5 to 7 (all columns shown) were not seen.",
+    "Steps 8 to 10: the labels keep the same size, weight and grey at Compact and Comfortable, and none touches its neighbour at 1536 px.",
+    "The earlier failure (wrong default columns, SV-11317, now in Testing Stage) is gone."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590113-1-column-list.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run steps 5 to 7 (script fix: switch the three columns on in the column list)."
+  },
+  "C590114": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Step 1: the work order number is blue like a link (#175CD3), not black.",
+    "Step 2: a thin rounded bar (64 px) with 0% beside it in small grey text.",
+    "Step 3: Status, Waiting On Parts and Progress sit at the left of their columns.",
+    "Step 4: a small round avatar sits before the advisor's name.",
+    "Step 7: Waiting On Parts shows a dash. But Total price sits at the LEFT of its column, not at the right as the test expects (amounts such as $173.98 start at the column's left edge).",
+    "Step 8: a small padlock outline sits right after the Invoiced number.",
+    "Step 10: List's Clocked In cell shows the same name in the same bold style as Tech View's.",
+    "Not seen this run (test script faults): step 5, because the script gave the work order only one technician; step 6, because the hover landed beside the avatars; step 9, because no tooltip was read while the pointer was on the padlock (no proof the hover worked).",
+    "The Total price finding is new and has no ticket. The requirement text for it has not been re-read in this pass."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590114-1-total-price.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590114-2-cells.png"
+   ],
+   "ticket": "Not filed yet - this new finding (Total price at the left of its column) is with the QA lead.",
+   "todo": "What needs to be done: the QA lead to decide whether the Total price alignment is filed; re-run steps 5, 6 and 9 (script fix).",
+   "ticket_held": true
+  },
+  "C590115": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 5 fairly.",
+    "Steps 8, 10 and 12: Tech View's pills are 16 px tall at Compact and Regular and 22 px at Comfortable, keeping their width. (The earlier failure, SV-11318, now in Testing Stage, is gone.)",
+    "Step 6: the blue number shows the same tooltip as in List: \"1 Part Ready to Order\". This work order has no red number, so the red tooltip was not seen.",
+    "Step 5 (same width as in List) could not be judged: the script searched the List down to this one work order (pill 72 px) but did not search Tech View, where Ready For Review pills set a 114 px width. The two readings are not of the same page.",
+    "Step 13: List's pill is unchanged after the density changes."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590115-1-pill-comfortable.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run with the same search in List and Tech View, and with a red service-action count set up (script fix)."
+  },
+  "C590116": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 4.",
+    "Step 2: the Unassigned header has no grip.",
+    "Step 3: rows now show the six-dot grip at their left edge (the earlier failure, SV-11320, now in Testing Stage, is gone).",
+    "Steps 4 to 6 were not done: the script could not find this test's two work order rows, so the row hover, the drag from the Customer cell and the plain click were not tried.",
+    "Step 9 (view-only user): no grip on the work order rows; the technician headers were not read for this user."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590116-1-grips.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run steps 2, 4 to 6 and 9 (script fix: find the test's own rows and read the technician headers)."
+  },
+  "C590117": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Step 1: Unassigned header: down arrow, light-grey avatar with a person icon, \"Unassigned\" in dark semibold, divider, clipboard and count; no grip, no pin.",
+    "Step 2: Technician-B's header: grip, arrow, light-grey circle with dark grey initials \"ZD\", name in slate semibold 14 px, grey outline pin, divider, clipboard and count.",
+    "Step 3: Technician-A's avatar is the round photo.",
+    "Step 4: the count's dark tooltip (\"1 work order\") opens BELOW the number, not above it.",
+    "Step 5: the avatar carries the browser's name tip for Technician-B.",
+    "Steps 6 to 11: the pin turns blue when pinned and grey again when unpinned; the group closes (arrow right) and opens (arrow down); headers are 36, 44 and 56 px with avatars 24, 28 and 36 px at Compact, Regular and Comfortable, names staying 14 px.",
+    "The earlier avatar colour and size failures (SV-11338 and SV-11397, both in Testing Stage) are gone; only the tooltip position remains."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590117-1-count-tooltip.png"
+   ],
+   "ticket": "Not filed yet - the count tooltip opening below the number is with the QA lead (draft ticket prepared on 16 Oct).",
+   "todo": "What needs to be done: the QA lead to decide on the held ticket for the count tooltip; once fixed, run this test again.",
+   "ticket_held": true
+  },
+  "C590118": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Step 2: Board View's columns sit straight on the page's light-grey background from edge to edge; no grey rounded panel or margin around them.",
+    "Step 3: each column is a white card with rounded corners and the same gap between columns.",
+    "Step 4: Unassigned stays at the left while the technician columns slide past it.",
+    "Step 5: the same at 1536 px.",
+    "The earlier failure (grey rounded panel, SV-11323, now in Testing Stage) is gone."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590118-1-board-full-width.png"
+   ],
+   "ticket": null
+  },
+  "C590119": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Step 1: Unassigned column header: light-grey avatar with a person icon, dark semibold name, divider, clipboard and count; no grip, no pin.",
+    "Step 2: Technician-B's header: grip, light-grey circle with dark grey initials, slate semibold name, grey outline pin, divider, clipboard and count.",
+    "Step 3: Technician-A shows the round photo.",
+    "Steps 4 and 5: once pinned, Technician-B's column moves to just after Unassigned and its pin is a blue pin with a slash.",
+    "Steps 6 and 7: Technician-A and Technician-C pinned too; three pinned.",
+    "Step 8: the other columns' pins look faded and read \"You can pin up to 3 technicians.\"",
+    "Step 9: after unpinning, every header shows the grey outline pin again.",
+    "The earlier avatar failure (SV-11338, Testing Stage) is gone."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590119-1-three-pinned.png"
+   ],
+   "ticket": null
+  },
+  "C590120": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up: S2-36995 (TRK-118 · 2022 Freightliner M2) with a parts request, 30% progress, led by Pia Card with a second line technician; S2-36996 Invoiced; S2-33691 carries a red 2.",
+    "Step 2: the card shows the blue number at top left and the pill at top right, the dark customer, the smaller grey unit · asset line, a thin blue progress bar and divider, two overlapping avatars on the left and the total at the right, on a white rounded card with a thin grey border.",
+    "Step 3: number, customer and total are 14 px, weight 500; the unit/asset line 12 px grey.",
+    "Step 4: each pill matches List's word, colours, shape and red or blue number; Board pills are 22 px tall (List 21 px).",
+    "Step 5: a padlock right after the Invoiced number.",
+    "Steps 6 and 7: the card is 213 px at Compact, 225 at Regular and 241 at Comfortable, with the same fields; text stays 14 and 12 px, avatars 24 px, pills 22 px.",
+    "This was blocked before on SV-11405, now in Testing Stage."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590120-1-card.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590120-2-red-count.png"
+   ],
+   "ticket": null
+  },
+  "C590121": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Step 2: without hovering, no three-dot button shows on the card.",
+    "Step 3: on hover the border darkens, a soft shadow appears and a small white three-dot button appears at the card's top right, just before the status pill. (How much of the pill it may cover is the open question the test names, so it is not judged.)",
+    "Step 4: a white menu opens below the button, lined up with its right edge: Reassign lead technician first, then Unassign, each with an outline icon.",
+    "Steps 7 and 8: in Tech View the row turns light grey, the three-dot button shows at the row's right end, and the same menu opens below it, lined up with its right edge.",
+    "Steps 10 and 11: for the Invoiced work order Reassign lead technician is greyed out; its tooltip reads \"The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+    "The earlier failures (no shadow SV-11394, no menu icon SV-11319, both in Testing Stage) are gone."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590121-1-card-hover.png"
+   ],
+   "ticket": null
+  },
+  "C590122": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: step 8 needs a re-run with a picture and a check of the requirement.",
+    "Step 1: under the technician's empty group: \"No work orders\" in grey, centred, with the clipboard icon.",
+    "Step 3: the empty Board View column shows a dashed rounded box, a light-grey circle with the clipboard, and \"Drag a work order here to assign it\".",
+    "Steps 5 to 7: Board View, List and Tech View all show the magnifier in a visible grey circle, \"No work orders match these filters\", \"Try removing a filter to widen your results.\" and Clear all filters, centred. (The earlier invisible circle in Board View is gone.)",
+    "Step 8: after Clear all filters the Status filter was cleared, but the Search box still read \"zzzz\" two seconds later. The test expects the search to be empty too. This was read from the box; no picture was taken at that moment, and the requirement text we hold does not say whether Clear all filters also empties Search.",
+    "Steps 9 and 10: Tech View and List show \"No work orders match the search \"zzzz\".\" with no button."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590122-1-no-results.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run step 8 with a picture right after Clear all filters, and check the requirement on whether Clear all filters also empties Search (QA lead)."
+  },
+  "C590123": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Step 2: while the estimate is dragged over Technician-A's column, the dragged card looks faded and a thin blue line shows where it will land.",
+    "Step 3: it lands there and \"Lead technician updated\" shows.",
+    "Step 4: while the Invoiced card is held over the column, no blue line shows; a small dark message with a no-entry icon at the top reads \"The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+    "Step 5: the Invoiced card stays in Technician-B's column.",
+    "Steps 7 and 8: in Tech View a thin blue line shows between rows; Work-order-1 then sits below Work-order-2.",
+    "Steps 9 and 10: a blue line shows between groups; Technician-A's group then sits below Technician-B's."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590123-1-refused-drop.png"
+   ],
+   "ticket": null
+  },
+  "C590124": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 3.",
+    "Step 2: the hovered row turns light grey and nothing in it moves.",
+    "Step 5: the card's border darkens and a soft shadow appears; the card does not grow or move. (The earlier failure SV-11394, Testing Stage, is gone.)",
+    "Step 6: a small dark bubble opens above the card's avatars (the earlier failure SV-11395, Testing Stage, is gone), but it showed Technician-B's name, because the script pointed at the middle of the avatar pair, not at Technician-A's avatar.",
+    "Step 3 was not done properly: in Tech View the pointer landed beside the avatars, so no name bubble was read."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590124-1-card-hover.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590124-2-avatar-miss.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run steps 3 and 6 with the pointer on Technician-A's own avatar (script fix)."
+  },
+  "C590125": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Step 3: in the Dark theme Tech View's page, table, header row and group headers are dark with light text; nothing is left white and no text is dark on dark.",
+    "Step 4: the hovered row turns a slightly lighter dark grey and its text stays readable.",
+    "Step 6: Board View's board, columns, headers and cards are dark; card text, numbers, pills and avatars stay readable.",
+    "Step 7: after choosing Light both views are light again."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590125-1-dark.png"
+   ],
+   "ticket": null
+  },
+  "C590126": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Tech View at 1024, 1280, 1366, 1440, 1536 and 1920 px: no toolbar or header label touches another; up to 1366 px the buttons move onto a second line; where the table is wider than the window it scrolls sideways.",
+    "Board View at 1920, 1536, 1440, 1280 and 1024 px: no label touches another; the long technician name ends with \"...\" 13 px before the pin; the board scrolls sideways."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590126-1-1024.png"
+   ],
+   "ticket": null
+  },
+  "C590127": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Step 2: Tech View's filter bar reads Search, Status, Assigned to me, Asset on Site. There is no Technician filter after Assigned to me.",
+    "Step 7: Board View's filter bar is the same, with no Technician filter.",
+    "Step 8: List has no Technician filter, as the test wants.",
+    "Steps 3 to 6 cannot be done without the filter."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590127-1-no-tech-filter.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11326.",
+   "todo": "What needs to be done: the developers to add the Technician filter (SV-11326, Open); then run this test again."
+  },
+  "C590128": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Steps 1 and 2 (Compact): rows 36 px; row and Service Advisor avatars 20 px; group header avatars 24 px; progress bar 48 x 4 px; same columns and values; text 14 px; no hours line.",
+    "Steps 3 and 4 (Regular): rows 48 px; avatars 24 px; header avatars 28 px; bar 64 x 6 px.",
+    "Steps 5 and 6 (Comfortable): rows 64 px; avatars 32 px; header avatars 36 px; header labels 12 px and the percentage 12 px.",
+    "Step 7: Board View's density menu has Comfortable ticked.",
+    "Steps 8 to 10: Board card avatars are 24 px at Comfortable and at Compact.",
+    "The earlier failures (SV-11325 and SV-11397, both in Testing Stage) are gone."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590128-1-compact.png"
+   ],
+   "ticket": null
+  },
+  "C590129": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 5 completely.",
+    "Step 5: a white rounded dialog over a dimmed page: \"Reassign lead technician\", \"S2-37008 · ZZAUTOTEST DC20 Reassign Dialog 53016\" in grey, an X at the top right, a search box with a magnifier, Unassigned as the first row, one list with no grouping, each row a round avatar, the name and a grey \"N open\" line, Cancel at the bottom right.",
+    "Technician-B's row: light-grey circle with initials, \"0 open\" (the earlier solid blue avatar, SV-11338, Testing Stage, is gone).",
+    "Technician-A's row (the current lead: photo, light blue tint, blue check) was further down the list and was not read by the script.",
+    "Step 6: typing \"Cal\" narrowed the list to the matching names.",
+    "Step 7: Cancel closed the dialog and the lead is still Technician-A."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590129-1-dialog.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run step 5 with Technician-A's row scrolled into view (script fix)."
+  },
+  "C590130": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Step 3: \"Lead technician updated\" appears at the bottom right, but it is a solid green box with white text, a white check icon and the word Close, not the design's white rounded box with a green check-in-a-circle and an X.",
+    "Step 4: it disappears by itself (gone by 10 seconds)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590130-1-message.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11396.",
+   "todo": "What needs to be done: the QA lead to decide on the ticket (it is closed as obsolete, the problem is still there); once fixed on staging, run this test again."
+  },
+  "C598326": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up: S2-37010 (Approved) and S2-37011 (Ready For Review), both for this test's customer.",
+    "Step 3: in List both pills are the same width (114 px), as in production.",
+    "Step 5: in Tech View both pills have the same 114 px width.",
+    "Steps 6 to 8: 16 px tall at Compact and Regular, 22 px at Comfortable; widths unchanged.",
+    "Step 9: List's pills are as at step 3.",
+    "The earlier failures (SV-11310 and SV-11318, both in Testing Stage) are gone."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C598326-1-list-pills.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C598326-2-tech-pills.png"
+   ],
+   "ticket": null
+  },
+  "C97020": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps with the keyboard only.",
+    "Set-up: S2-37024 (Approved) and S2-37025 (Invoiced), both led by Ana Alpha; the view-only role was read back as holding only Work orders > View.",
+    "Steps 1 to 6 (view-only user): Tab from Search lands on S2-37024's card with a focus ring; the card has no More actions button, so Tab leaves the board; no menu or dialog can be opened; Space and Shift with the arrow keys move nothing.",
+    "Steps 7 to 10 (Admin): Tab lands on a card, the down arrow moves to S2-37025, Tab reaches its own More actions button.",
+    "Step 11: the menu opens and Reassign lead technician is disabled (Unassign too), but no note shows: while the item has the keyboard focus the text \"The lead technician can't be changed once a work order is Invoiced or Paid.\" never appears. (The same note does show on mouse hover in C590121 on this build.)",
+    "Step 12: Enter on it does nothing; no dialog. Step 13: Escape closes the menu. Step 14: no key moves S2-37025.",
+    "Steps 15 and 16: after a refresh it is still in Ana Alpha's column, and its page reads Lead technician ZZAUTOTEST Ana Alpha.",
+    "The missing note for keyboard users is new and has no ticket. The requirement text for it has not been re-read in this pass."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97020-1-locked-menu.png"
+   ],
+   "ticket": "Not filed yet - this new finding (the disabled item's note does not show for keyboard users) is with the QA lead.",
+   "todo": "What needs to be done: the QA lead to decide whether this is filed; once fixed, run this test again.",
+   "ticket_held": true
+  },
+  "C97021": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up: Work-order-4 in Unassigned, Work-orders 1 and 2 with Ana, Work-order-3 with Ben.",
+    "Step 1: the cursor is in Search; nothing on the board has a focus ring.",
+    "Step 2: Tab goes through the toolbar and lands on Work-order-4's card in Unassigned; no column header on the way.",
+    "Step 3: the right arrow moves into Ana's column. Step 4: the down arrow moves to her next card.",
+    "Step 5: Tab moves to that card's own More actions button. Step 6: the next Tab leaves the board.",
+    "Step 7: Tech View shows Unassigned, then Ana's and Ben's groups.",
+    "Steps 8 to 10: Tab from Search lands on Work-order-4's row (not a header); the down arrow then moves to Ana's group header.",
+    "The earlier failure (SV-11422, Testing Stage) is gone."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97021-1-first-tab.png"
+   ],
+   "ticket": null
+  },
+  "C97022": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: steps 4 to 7 need the Technician filter, which staging does not have.",
+    "Step 1: Tab lands on S2-37026's card in Ana's column with a focus ring, then on its More actions button.",
+    "Step 2: Enter opens the menu; Escape closes it and focus returns to that button.",
+    "Step 3: the Reassign lead technician dialog, opened by keyboard, closes on Escape without changes (lead still Ana Alpha), and focus returns to the More actions button.",
+    "Step 4: the filter bar offers only Status, Assigned to me and Asset on Site."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97022-1-no-tech-filter.png"
+   ],
+   "ticket": "Blocked by: https://shopview.atlassian.net/browse/SV-11326.",
+   "todo": "What needs to be done: the developers to add the Technician filter (SV-11326, Open); then run this test again."
+  },
+  "C368150": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Steps 1 to 3: Tab from Search lands on a card; the arrow keys move the focus to Work-order-1 (S2-37016) in Ana's column.",
+    "Step 4: Space, the arrow keys and Shift with each arrow moved nothing: S2-37016 stayed first in Ana's column and no \"Lead technician updated\" showed.",
+    "Step 5: Enter opened S2-37016's page. Step 6: Back returned to Board View.",
+    "Step 7: Tech View shows the same work orders (Unassigned 1, Ana 2, Ben 1).",
+    "Steps 8 to 11: Tab lands on a row; the arrow keys reach S2-37016's row; Enter opens its page. Step 12: Back returns to Tech View.",
+    "Step 13: a click on the row opens the same page."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368150-1-enter-opens.png"
+   ],
+   "ticket": null
+  },
+  "C368151": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 5.",
+    "Step 1: Tab lands on S2-37020's card with a focus ring and its More actions button shows.",
+    "Step 2: Enter and Space each open the menu (Reassign lead technician, Unassign); Escape closes it and focus is back on More actions.",
+    "Steps 3 and 4: the arrow keys reach Ana's column header; Tab reaches the pin; Enter pins her, Space unpins her.",
+    "Steps 5 to 7 were not done: in Tech View the script lost the focus to the top menu (Reports), so the group header (collapse and expand) and the avatar name were not reached.",
+    "Step 8: Column Selection opens with Enter, its options are reached with Tab, Escape closes it and focus returns to Column Selection.",
+    "Step 9 was not done: the script could not reach the Approved option in the Status filter with Tab, so applying and clearing it was not seen.",
+    "Step 10: Board View chosen with the keyboard."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368151-1-focus-lost.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run steps 5 to 7 and 9 (script fix: keep the focus in Tech View; reach the Status options with the arrow keys)."
+  },
+  "C368152": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up: Work-order-1 (S2-37021) led by Technician-A, Work-order-2 (S2-37022) by Technician-B.",
+    "Steps 1 to 5: Tab and the arrow keys reach S2-37021's card; Tab reaches its More actions; Enter opens the menu with Reassign lead technician and Unassign.",
+    "Steps 6 and 7: the dialog opens; typing \"ZZAUTOTEST Be\" narrows it to Unassigned and Ben Bravo.",
+    "Step 8: picking Ben Bravo and Reassign by keyboard moves S2-37021 to his column; \"Lead technician updated\" shows.",
+    "Steps 9 to 12: the arrow keys reach S2-37022; Tab reaches its More actions; the menu opens; Unassign moves it to Unassigned and \"Lead technician removed\" shows.",
+    "The earlier failure (no Unassign item, SV-11419, Testing Stage) is gone."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368152-1-unassigned.png"
+   ],
+   "ticket": null
+  },
+  "C368130": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test's starting state was not there.",
+    "The screen was switched to ZZAUTOTEST F2 No Tech Shop (top bar read back), with S-35901 and S-35902 and no lead.",
+    "But a technician, Ayesha Khan, is now set up at this location, so Tech View shows Unassigned (2) and Ayesha Khan's group (0), and Board View her empty column. The no-technicians state the test needs was not there, and the script did not take her off the location."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368130-1-tech-present.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: take Ayesha Khan off ZZAUTOTEST F2 No Tech Shop (or use a location with no technicians) and run this test again (script fix)."
+  }
+ }
+}
