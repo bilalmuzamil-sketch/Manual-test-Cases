@@ -717,3 +717,16 @@ At 08:24 UTC the harness reported a restart and listed my background WAIT comman
 - Opening a work order that has **no lines** shows a **New Line** window over the page. Anything on the page (Lead Technician field, status card) is behind it, and selectors hit the wrong control (C96936 matched `button_toggle_vehicle_here`; C614714 step 8 found no field). Close it with its X and answer "Are you sure you want to close this dialog?" before touching the page — or give the work order a line in set-up.
 - The **Schedule search box** filters only the work-order list on the left; it does not narrow the calendar to that work order's technician. To read a technician's shifts on screen, open the Schedule on the right day and scroll the resource list to that technician's ROW (C581892 step 14 opened 6 of 286 events and never reached Esther Howard's row).
 - Dashboard "View details" tables: a reader keyed to one table selector counted 0 rows while the pictures showed full tables — read rows by role=row / tr / repeated row elements and log which selector matched.
+
+## L0433 — 2026-10-17 — Moving the sign-out batch behind a new round: stop the PARENT waiter only; its running child survives
+- Round 5 of run 498 had to go before the sign-out batch, which `after-round4-1017.sh` (pid 4795) would start after round 4. `kill 4795`
+  (plain SIGTERM to the waiter's pid only) left its running child `run-fixup-1017d.sh` alive, re-parented to pid 1: the child wrote to a
+  log FILE (no pipe to break) and the waiter was started with `setsid nohup` (no terminal, so no hang-up signal to the group). Checked with
+  `ps -eo pid,ppid,pgid,etime,args` before and after. `after-round5-1017.sh` then waits for `^/bin/bash \./run-fixup-1017d\.sh` (L0429),
+  runs `run-fixup-1017e.sh`, then `run-signout-1017.sh` LAST. Never kill the process GROUP (`kill -- -4795`): that takes the round down too.
+- Round 5 scripts: `sched-r5.mts` (C581892 step 14 read in Esther Howard's Schedule ROW: `.fc-datagrid-body .fc-datagrid-cell-cushion`
+  starting "Esther Howard", resource list scrolled until drawn, blocks in the same vertical band), `dash-r5.mts` (C368246: the opened
+  area is the ancestor that GREW after "View details", rows tried by several selectors and the hit logged), `s2-r5.mts` (C96936: close the
+  New Line window before looking for Lead Technician, by its label), `C96963-tech-reorder.mts` (Tech View Unassigned reorder by the row's
+  grip cell), `invoice-r5.mts` (C368167: positive control for Create Invoice on a new plain work order before the case).
+  #wo-board #queues #scripts → L0429, L0430

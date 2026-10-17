@@ -1,0 +1,8 @@
+# Run 498 FIX-UP ROUND 5 (17 Oct 2026): focused scripts for what round 3 left open. Read once when run-fixup-1017e.sh starts
+# (after-round5-1017.sh starts it after round 4; the sign-out batch runs after it, LAST). Format: block|script|ONLY ids|extra env|mode|note
+B-setup|stg6-tz.mts|-|TZ_TARGET=Asia/Karachi|setup|Rule 125 guard (not a case): Heavy Duty zone = browser zone; exit 0 required
+C-fix2|sched-r5.mts|C581892|-|ensure|round 5: steps 1-11 as before; step 14 ON SCREEN - Schedule on the shifts' day (server date vs day label), Esther Howard's row found by scrolling the resource list, the blocks in HER row read, opened and pictured
+C-fix2|dash-r5.mts|C368246|-|ensure|round 5: each View details - the opened area found (grown ancestor / new window), rows read by tbody tr, role=row, .q-tr, .q-item, li or repeated siblings (selector logged), one heading clicked twice with that column read before/after
+C-fix2|s2-r5.mts|C96936|-|ensure|round 5: step 5 - the New Line window closed with its X (question answered) first, then Lead Technician found by its label (never button_toggle_vehicle_here), Ralph Edwards typed into the field, read back
+C-fix2|C96963-tech-reorder.mts|C96963|-|ensure|round 5: step 11 Tech View - S2-37066's grip dragged to a NEW place inside the Unassigned group (elementFromPoint checked first and while held), reload, order read on screen and from the server
+C-fix2|invoice-r5.mts|C368167|-|ensure|round 5: FIRST a positive control - Create Invoice through the screen on a new plain ZZAUTOTEST work order, server status/invoice id + page + requests logged; the case only if the control invoices, else recorded plainly and no lead changed
