@@ -1,4 +1,4 @@
-Every test in the Work Orders board run has been tested on staging today, and the results are all posted. 244 tests pass, 13 fail and 21 are blocked; none is left untested.
+Every test in the Work Orders board run has been tested on staging today, and the results are all posted. 246 tests pass, 13 fail and 19 are blocked; none is left untested.
 
 | 1 · DONE | What it means for you |
 |---|---|
@@ -8,7 +8,7 @@ Every test in the Work Orders board run has been tested on staging today, and th
 
 | 2 · LEFT | How to finish it |
 |---|---|
-| 2 sorting tests: one of our own test customers sorts first in A to Z | I check whether its saved name starts with a hidden character, fix the test data, and run both again |
+| Nothing left to run on staging | — |
 | Your decisions on the 2 problems and the questions below | Answer in chat; I act on each answer the same day |
 
 | 3 · BLOCKED | Why, and what it does not block |
@@ -19,7 +19,6 @@ Every test in the Work Orders board run has been tested on staging today, and th
 | 1 test needs a brand-new user to sign in for real | A new user has no password until they accept the invitation e-mail; every other step passes |
 | 3 analytics tests | The requirements now send 17 fields; the tests still say 15 |
 | 8 tests wait for a ruling from you | Questions 2 to 7 and 9 below; every other step in them passes |
-| 2 sorting tests | My own test data, see table 2 |
 
 | 4 · HOW TO UNBLOCK | Who |
 |---|---|
@@ -49,3 +48,6 @@ C. Questions (each blocks only its own test):
 9. "Clear all filters" keeps the search text. Should it empty it? (product owner question)
 
 If you say nothing: nothing is raised, every test keeps its current result, and nothing else is waiting.
+
+
+Update 11:45 UTC: the 2 sorting tests now pass. The customer that always came first is another tester's deliberate test record whose name starts with two spaces, so it correctly sorts first; it was not renamed.
