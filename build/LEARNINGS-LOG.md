@@ -699,7 +699,7 @@ Run 498 C614711: the "Deleted technician" column was column 279 of 280; a held c
 ## L0432 — 2026-10-17 — A script that "fixes" a step behind the screen can hide the very finding the case exists for
 Run 498 round 3: two scripts quietly finished a step the screen did not complete — C614714 switched Time Clock off by API after Save & Close left the Edit Staff Member window open; C368131 removed Theresa's enrolment by API after changing her Location on screen left her still offered at Heavy Duty. Both cases then "matched", but the step they changed is exactly where a product fault (or a case gap) would show. Rule: a behind-the-screen fallback is allowed ONLY to build a precondition (Rule 107/14), never to complete a step the case tells the user to do on screen; when the screen does not do what the step says, RECORD that as the reading (with a positive control on another record to separate script fault from product), and judge it — never paper over it.
 
-## L0432 — 2026-10-17 — Staff window "stays open after Save & Close": first suspect the hidden window in front, not the product
+## L0433 — 2026-10-17 — Staff window "stays open after Save & Close": first suspect the hidden window in front, not the product
 - `C614714-stg.mts` pressed `.q-dialog:visible >> button "Save & Close"` with `.catch(() => {})`; staffloc.mts already records that a HIDDEN
   `.q-dialog` sits in front of the open Edit Staff Member window, so that click can fail silently and read as "the window stayed open, no
   error". Take the VISIBLE button (`button:visible` filtered by its words), keep the click's own result, log the staff/iam requests the page

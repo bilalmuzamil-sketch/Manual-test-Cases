@@ -57,8 +57,19 @@
     ]
    }
   ],
-  "step5": {},
+  "step5": {
+   "leadCandidates": {
+    "picked": "button_toggle_vehicle_here",
+    "byTestId": [
+     "lead_technician_readonly=Esther Howard"
+    ],
+    "labelledFields": [],
+    "label": "Lead technician",
+    "nearLabel": "button_toggle_vehicle_here=location_on",
+    "url": "/workorders/6850c1bf-89bb-4199-9041-0242904e88a4/lines"
+   }
+  },
   "pinsBack": 200,
-  "error": "locator.click: Timeout 20000ms exceeded.\nCall log:\n  - waiting for locator('.q-field').filter({ has: locator('.q-field__label').filter({ hasText: /Lead Tech/i }) }).first()\n"
+  "error": "locator.click: Timeout 20000ms exceeded.\nCall log:\n  - waiting for locator('[data-zz-lead=\"1\"]').first()\n    - locator resolved to <button outlined=\"\" tabindex=\"0\" type=\"button\" filled=\"true\" data-zz-lead=\"1\" data-v-68e00a17=\"\" data-v-ea6ba2cd=\"\" data-test-id=\"button_toggle_vehicle_here\" class=\"q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-negative q-btn--actionable "
  }
 }
