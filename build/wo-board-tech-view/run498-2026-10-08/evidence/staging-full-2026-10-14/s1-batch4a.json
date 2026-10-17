@@ -3,7 +3,8 @@
   "QB Location 25a0d576-b371-4b82-bef4-41ba977f31c2 America/Vancouver",
   "ZZAUTOTEST F2 Empty Shop 8a0d9904-c35d-449a-8bc2-3acf9134b4da Asia/Karachi",
   "Staging Heavy Duty - 9919 b3c8c820-f815-4cf1-8938-10956c5ee71a Asia/Karachi",
-  "Staging Lethbridge - 4310 f8a8b802-7780-4b16-bf10-343caeb616b2 America/Edmonton"
+  "Staging Lethbridge - 4310 f8a8b802-7780-4b16-bf10-343caeb616b2 America/Edmonton",
+  "DVI Test 39522bc6-abca-4f67-bd12-2840043c2d68 America/Toronto"
  ],
  "prefShape": {
   "status": 200,
@@ -18,10 +19,20 @@
    "boardFields",
    "collapsedGroups",
    "techViewColumns",
+   "technicianOrder",
    "pinnedTechnicianIds"
   ],
-  "display": "list",
-  "filters": "{\"assigned_to_me\":[]}"
+  "display": "tech_view",
+  "filters": "{\"assigned_to_me\":[\"1\"]}"
+ },
+ "C96919": {
+  "control": "Board View",
+  "whenUnreadable": "List",
+  "url": "/workorders",
+  "messages": [
+   "warning\nOoooops! An error occurred\nClose"
+  ],
+  "afterRestore": "Board View"
  },
  "userB": {
   "id": "5ec3f0b7-b1e2-42d7-8eaa-fab389b9665d",
@@ -31,11 +42,11 @@
  },
  "C96910": {
   "user": {
-   "email": "zzautotest.wob.never.c96910.1792033698018@staging.shopview.local",
+   "email": "zzautotest.wob.never.c96910.1792198304072@staging.shopview.local",
    "role": "Service Advisor",
    "create": 201,
-   "id": "f9be204d-0fce-4f86-9015-19ed157b3102",
-   "staffId": "18a5dd70-2495-4e88-961b-0b3524e51693",
+   "id": "0985bb7c-f23a-42d4-8a83-297e542360ef",
+   "staffId": "68001564-f60d-4392-af17-0f57005e2076",
    "workplace": "Staging Heavy Duty - 9919",
    "perms": 26,
    "prefBeforeOpening": {
@@ -76,12 +87,13 @@
     "boardFields",
     "collapsedGroups",
     "techViewColumns",
+    "technicianOrder",
     "pinnedTechnicianIds"
    ],
-   "display": "list",
-   "filters": "{\"assigned_to_me\":[]}"
+   "display": "board_view",
+   "filters": "{\"assigned_to_me\":[\"1\"]}"
   },
-  "pageAtStart": "List",
+  "pageAtStart": "Board View",
   "chosen": "Board View",
   "prefAfterChoice": {
    "status": 200,
@@ -96,10 +108,11 @@
     "boardFields",
     "collapsedGroups",
     "techViewColumns",
+    "technicianOrder",
     "pinnedTechnicianIds"
    ],
    "display": "board_view",
-   "filters": "{\"assigned_to_me\":[]}"
+   "filters": "{\"assigned_to_me\":[\"1\"]}"
   },
   "prefSeenBy2": {
    "status": 200,
@@ -114,10 +127,11 @@
     "boardFields",
     "collapsedGroups",
     "techViewColumns",
+    "technicianOrder",
     "pinnedTechnicianIds"
    ],
    "display": "board_view",
-   "filters": "{\"assigned_to_me\":[]}"
+   "filters": "{\"assigned_to_me\":[\"1\"]}"
   },
   "newSignIn": "Board View",
   "locSteps": [
@@ -126,31 +140,30 @@
    "now: Staging Lethbridge - 4310"
   ],
   "loc2": {
-   "url": "/workorders",
+   "url": "/workorders?tab=all",
    "location": "Staging Lethbridge - 4310",
    "display": "Board View"
   },
   "firstBrowser": {
-   "url": "/workorders",
+   "url": "/workorders?tab=all",
    "display": "Board View"
   },
   "puts": [
-   "03:08:42 browser1 display=board_view",
-   "03:09:52 browser1 display=list",
-   "03:10:11 browser1 display=list",
-   "03:10:39 browser1 display=list",
-   "03:10:41 browser1 display=board_view",
-   "03:10:44 browser1 display=board_view",
-   "03:10:56 browser1 display=tech_view",
-   "03:11:09 browser1 display=list"
+   "00:53:11 browser1 display=list",
+   "00:53:30 browser1 display=list",
+   "00:53:56 browser1 display=list",
+   "00:53:58 browser1 display=board_view",
+   "00:54:01 browser1 display=board_view",
+   "00:54:13 browser1 display=tech_view",
+   "00:54:26 browser1 display=list"
   ],
   "userB": {
    "user": {
-    "email": "zzautotest.wob.never.c96912.1792033774993@staging.shopview.local",
+    "email": "zzautotest.wob.never.c96912.1792198376649@staging.shopview.local",
     "role": "Service Advisor",
     "create": 201,
-    "id": "6aafdfe8-bfa9-4960-90a7-d235d598b0f8",
-    "staffId": "92167e09-a634-46cf-8ebb-eb8483c3ecff",
+    "id": "14f69c47-8ab3-4b0c-a6d9-7642685444f4",
+    "staffId": "7bd99fdb-c6f0-4c74-89ce-647a766d90c4",
     "workplace": "Staging Heavy Duty - 9919",
     "perms": 26,
     "prefBeforeOpening": {
@@ -248,6 +261,7 @@
     "boardFields",
     "collapsedGroups",
     "techViewColumns",
+    "technicianOrder",
     "pinnedTechnicianIds"
    ],
    "display": "board_view",
@@ -285,6 +299,7 @@
     "boardFields",
     "collapsedGroups",
     "techViewColumns",
+    "technicianOrder",
     "pinnedTechnicianIds"
    ],
    "display": "tech_view",
