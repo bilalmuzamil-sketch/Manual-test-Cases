@@ -48,3 +48,8 @@ SV-11101 reopen; C590117 tooltip ticket.
 - **QA lead question — C96945 step 5:** after Escape, keyboard focus returns to the More actions (…) button (required by the keyboard rules), so it stays shown when the mouse leaves the card and hides once focus leaves the card. Step 5 as written expects it hidden. Case wording vs keyboard focus rule — report, Expected untouched (114).
 - C368234: production's Parts Velocity report shows no rows for any choice, so the narrowing could not be compared there — say so.
 - Round 3 LAST attempts (Rule 115): C368246 (View details not found), C96936 (Lead Technician field not found in tab B), C368127 (clicked person icon, not the arrow). If they fail again ⇒ hand checks, named in the report with what to click.
+
+## 17 Oct 07:05 UTC — fix-up 2 steps 23–26
+- **QA lead question (start state) — C368214 and C96916:** the Work Orders tab offers NO Status filter on this build (only the All tab does), so their step 1 / start state "Work Orders tab, Status: Approved" cannot be made. Source check (Rule 57/58): is the Status filter meant to be on the Work Orders tab? Hold and ask; Expected untouched. Everything else in both cases was seen working.
+- C96963 and C368212: second script fault ⇒ NOT left unjudged (Rule 107): focused one-check scripts queued in round 3. (Earlier instruction citing Rule 115 was a misreading — Rule 115 is about keeping flaky specs, not about leaving tests unjudged.)
+- C96975 → end-of-run sign-out batch.
