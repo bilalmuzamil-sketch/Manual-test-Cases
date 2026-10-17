@@ -30,31 +30,29 @@
   "secondBrowser": {
    "at": "Staging Heavy Duty - 9919",
    "tech": [
+    "unreceived_part_requests_count",
+    "unit",
     "vehicle",
-    "vin",
     "progress",
-    "technician",
     "clocked_in_technicians",
     "lines_count",
     "assigned_techs",
-    "total_price",
-    "start_date"
+    "start_date",
+    "total_price"
    ],
    "techHeads": [
-    "On Site",
     "Status",
+    "Waiting On Parts",
     "Number",
     "Customer",
-    "Asset",
     "Unit",
-    "VIN/Serial #",
+    "Asset",
     "Progress",
-    "Lead Technician",
     "Clocked In",
     "Lines",
     "Assigned Techs",
-    "Total Price",
-    "Created On"
+    "Created On",
+    "Total Price"
    ],
    "list": [
     "vehicle",
@@ -79,7 +77,7 @@
     "y": 86
    },
    "sameSpot": true,
-   "techItems": 15,
+   "techItems": 17,
    "boardItems": 13,
    "boardKinds": [
     "switch"
@@ -94,7 +92,7 @@
    "status": "Approved",
    "unit": "ZZF2BF",
    "field_vin": "VIN/serial VIN ZZWOB179200672011",
-   "field_lines_count": "Line count format_list_bulleted 0 lines",
+   "field_lines_count": "Line count 0 lines",
    "field_progress": "Progress 0%",
    "field_total_price": "Total price $0.00"
   },
@@ -112,7 +110,7 @@
     "status": "Approved",
     "unit": "ZZF2BF",
     "field_vin": "VIN/serial VIN ZZWOB179200672011",
-    "field_lines_count": "Line count format_list_bulleted 0 lines",
+    "field_lines_count": "Line count 0 lines",
     "field_progress": "Progress 0%",
     "field_total_price": "Total price $0.00"
    }
@@ -147,31 +145,31 @@
   ],
   "failTech": {
    "menuOn": [
+    "unreceived_part_requests_count",
+    "unit",
     "vehicle",
-    "vin",
     "progress",
     "service_advisor",
-    "technician",
     "clocked_in_technicians",
     "lines_count",
-    "total_price",
-    "start_date"
+    "assigned_techs",
+    "start_date",
+    "total_price"
    ],
    "heads": [
-    "On Site",
     "Status",
+    "Waiting On Parts",
     "Number",
     "Customer",
-    "Asset",
     "Unit",
-    "VIN/Serial #",
+    "Asset",
     "Progress",
     "Service Advisor",
-    "Lead Technician",
     "Clocked In",
     "Lines",
-    "Total Price",
-    "Created On"
+    "Assigned Techs",
+    "Created On",
+    "Total Price"
    ]
   },
   "savesDuringFailure": [
@@ -191,8 +189,10 @@
  },
  "loc2": {
   "runnerDeps": [
+   "QB Location/Shop Time (Shop hand)",
    "ZZAUTOTEST F2 No Tech Shop/Service",
-   "Staging Heavy Duty - 9919/Service"
+   "Staging Heavy Duty - 9919/Service",
+   "Staging Lethbridge - 4310/Service"
   ],
   "ayeshaDeps": [
    "QB Location/Shop Time (Shop hand)",
@@ -214,9 +214,10 @@
   ],
   "ayeshaWorkplace": "Staging Heavy Duty - 9919",
   "ids": 0,
-  "enrolLeth": "201",
+  "enrolLeth": "400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}",
   "enrol": "201",
   "runnerDepsAfter": [
+   "QB Location/Shop Time (Shop hand)",
    "ZZAUTOTEST F2 No Tech Shop/Service",
    "Staging Heavy Duty - 9919/Service",
    "Staging Lethbridge - 4310/Service"
@@ -226,31 +227,29 @@
   "at": "Staging Lethbridge - 4310",
   "atAfterOpen": "Staging Lethbridge - 4310",
   "tech": [
+   "unreceived_part_requests_count",
+   "unit",
    "vehicle",
-   "vin",
    "progress",
-   "technician",
    "clocked_in_technicians",
    "lines_count",
    "assigned_techs",
-   "total_price",
-   "start_date"
+   "start_date",
+   "total_price"
   ],
   "techHeads": [
-   "On Site",
    "Status",
+   "Waiting On Parts",
    "Number",
    "Customer",
-   "Asset",
    "Unit",
-   "VIN/Serial #",
+   "Asset",
    "Progress",
-   "Lead Technician",
    "Clocked In",
    "Lines",
    "Assigned Techs",
-   "Total Price",
-   "Created On"
+   "Created On",
+   "Total Price"
   ],
   "board": [
    "vehicle",
