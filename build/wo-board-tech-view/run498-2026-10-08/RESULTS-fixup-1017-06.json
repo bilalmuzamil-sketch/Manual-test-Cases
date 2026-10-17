@@ -1,0 +1,164 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up 2, batch 06 = fix-up steps 27-33"
+ },
+ "results": {
+  "C590113": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct). The fix in SV-11317 (Testing Stage) looks shipped.",
+    "Step 1 (a brand-new user, ZZAUTOTEST DC04 New 85838): 13 columns in the expected order, Status first and Total price last; On Site, VIN/Serial # and Lead Technician are not shown.",
+    "Steps 2 and 3: the header labels are small (12 px), medium weight and grey, and none touches its neighbour.",
+    "Steps 4 to 6: the column list offers On Site, VIN/Serial # and Lead Technician. On Site, VIN/Serial #, Lead Technician, Invoiced Date, Days open, Parts and Returns were turned on and each shows as a column; the list closed.",
+    "Step 7: with every column on, no header label touches or overlaps the next (labels are only cut where the window edge is while scrolling sideways).",
+    "Steps 8 to 10: the labels keep the same size, weight and grey at Compact and Comfortable, and none touches its neighbour at 1536 px."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590113-f2-1-default-headers.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590113-f2-2-all-columns-on.png"
+   ],
+   "ticket": "Fix looks shipped: https://shopview.atlassian.net/browse/SV-11317 (Testing Stage, read 17 Oct 2026)."
+  },
+  "C590115": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script again set up only a blue number, so the red number could not be compared (second time).",
+    "Step 5: with the same search in List and Tech View, the Approved pill is the same in both: same colours, word and shape, and the same width (72 px in each).",
+    "Step 6: the blue number shows the same tooltip in both: \"1 Part Ready to Order\".",
+    "Steps 8, 10 and 12: the pills are 16 px tall at Compact and Regular and 22 px at Comfortable, keeping their width (the earlier failure, SV-11318, now in Testing Stage, stays gone).",
+    "Step 13: List's pill is unchanged after the density changes.",
+    "Not seen: the red number. The work order had only a part request (blue); no red number was set up, so the red number's look and tooltip in List against Tech View were not compared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590115-f2-1-list-pill.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590115-f2-2-tech-pill.png"
+   ],
+   "ticket": "Follow the work here: https://shopview.atlassian.net/browse/SV-11318 (Testing Stage, read 17 Oct 2026).",
+   "todo": "What needs to be done: re-run with a work order that carries a red number as well as the blue one, then compare the red number and its tooltip in List and Tech View (script fix, sent back to the coordinator)."
+  },
+  "C590116": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script let go of the dragged row in the wrong place, so step 5 was not tested (second time step 5 was not done).",
+    "Step 2: the technician headers show the six-dot grip; the Unassigned header has none.",
+    "Step 3: every row shows the six-dot grip at its left edge.",
+    "Step 4: the hovered row turns light grey and its grip stays visible.",
+    "Step 5: grabbing S2-37075 by its Customer cell did start a drag (the row turned pale and a blue drop line showed), but the script let go just below Aaron Baker's header instead of below S2-37076, so the row moved into Aaron Baker's group (\"Lead technician updated\"). Whether it lands below the other row inside its own group was not tested.",
+    "Step 6: a plain click on the row opened the work order and did not start a drag.",
+    "Step 9 (view-only user): no grips on the work order rows; the technician headers still show their grip. The Unassigned header was not read for this user."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590116-f2-1-script-drop.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590116-f2-2-after-drop.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590116-f2-3-view-only.png"
+   ],
+   "ticket": "Earlier ticket: https://shopview.atlassian.net/browse/SV-11320 (Testing Stage) - the row grips it was about now show.",
+   "todo": "What needs to be done: re-run step 5 with the drop point inside the same group, between S2-37076 and the next group's header (script fix, sent back to the coordinator)."
+  },
+  "C590124": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct). The fixes in SV-11394 and SV-11395 (both Testing Stage) look shipped.",
+    "Step 2: the hovered row in Tech View turns light grey and nothing in it moves.",
+    "Step 3: pointing at Technician-A's avatar on the row shows a small dark bubble with \"ZZAUTOTEST DC15 Vic Hover\" above the avatar.",
+    "Step 5: the hovered card gets a soft shadow and a darker border; it does not grow or move.",
+    "Step 6: pointing at Technician-A's avatar on the card shows the same dark bubble with the name, above the avatar."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590124-f2-1-row-hover.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590124-f2-2-avatar-name.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590124-f2-3-card-hover.png"
+   ],
+   "ticket": "Fix looks shipped: https://shopview.atlassian.net/browse/SV-11394 and https://shopview.atlassian.net/browse/SV-11395 (both Testing Stage, read 17 Oct 2026)."
+  },
+  "C590129": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct). The fix in SV-11338 (Testing Stage) looks shipped.",
+    "Step 5: the Reassign lead technician window opens over a dimmed page, with S2-37079 and the customer in grey under the title, an X, a search box and Unassigned as the first row.",
+    "The current lead's row (ZZAUTOTEST DC20 Bea Dialog) shows her photo, \"Current · 5 open\", a light-blue tint and a tick; Technician-B (ZZAUTOTEST DC20 Cal Dialog, 0 open) shows grey initials.",
+    "Step 6: typing \"Cal\" narrowed the list to the matching names.",
+    "Step 7: Cancel closed the window and the lead is still Bea."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590129-f2-1-dialog.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590129-f2-2-current-lead.png"
+   ],
+   "ticket": "Fix looks shipped: https://shopview.atlassian.net/browse/SV-11338 (Testing Stage, read 17 Oct 2026)."
+  },
+  "C368151": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script lost the keyboard focus in Tech View again (second time), so the group and avatar checks were not reached.",
+    "Steps 1 and 2: Tab reaches the card with a focus ring and More actions shows; Enter and Space each open the menu (Reassign lead technician, Unassign); Escape closes it and focus returns.",
+    "Steps 3 and 4: Enter pins the technician and Space unpins her.",
+    "Steps 5 to 7: in Tech View, Tab reached the group row but the next key press sent the focus to the top menu (Reports), so collapse, expand and the avatar name were not reached.",
+    "Step 8: Column Selection opens and closes by keyboard.",
+    "Step 9: inside the Status menu the down arrow highlighted nothing, so the Approved option was not ticked by keyboard (the script's key presses; not judged).",
+    "Step 10: Board View chosen with the keyboard."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368151-f2-1-menu-enter.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368151-f2-2-focus-lost.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: a focused script for steps 5 to 7 (keep the focus on Tech View's group row) and step 9 (reach the Approved option inside the Status menu), sent back to the coordinator."
+  },
+  "C368130": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "At ZZAUTOTEST F2 No Tech Shop (top bar read back), after the script removed its only technician; S-35901 and S-35902 belong to it.",
+    "Step 3: Tech View shows only the Unassigned group, holding S-35901 and S-35902, with \"No technicians yet\" and \"Add technicians to assign work orders. Until then, every work order stays in Unassigned.\"",
+    "Step 5: Board View shows only the Unassigned column, holding both work orders, with the same two lines."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368130-f2-1-tech.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368130-f2-2-board.png"
+   ],
+   "ticket": null
+  },
+  "C97003": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script did not complete steps 6 and 10 (second time), so they could not be judged.",
+    "Signed in as a new view-only user (ZZAUTOTEST Viewer4); both users started with Unassigned, Ana, Ben, Cal (plus Dan).",
+    "Step 6: the script dragged Cal's column, but Ana's column was off screen when it let go, so the order did not change. Not judged.",
+    "Step 7: Ben's column, dragged by the view-only user toward Unassigned, landed straight after Unassigned: Unassigned stays first, and the view-only user can drag a technician column.",
+    "Step 8: the Unassigned header has no drag handle, and dragging it moved nothing.",
+    "Step 10: in Tech View the script could not find Ben's group handle (the group list only loads the groups on screen), so no drag was made. Not judged.",
+    "Step 11: after the refresh the view-only user still sees Unassigned, Ben, Ana, Cal in both views.",
+    "Step 12: the dispatcher's own order is unchanged: Unassigned, Ana, Ben, Cal (the order is saved per user)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97003-f2-1-ben-held.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97003-f2-2-after-refresh.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: a focused script that keeps Ana's column on screen while dropping Cal before her (step 6) and scrolls Tech View to Ben's group before dragging it above Unassigned (step 10); sent back to the coordinator."
+  },
+  "C614711": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not reach the Deleted technician column or group (second time), so steps 6 and 7 were not judged.",
+    "Set-up: ZZAUTOTEST C614711 Dana 99482 (lead of S2-37085) and ZZAUTOTEST C614711 Eli; customer ZZAUTOTEST C614711 Deleted Lead 99482; S2-37086 with no lead.",
+    "Steps 1 and 2: Dana's staff record opened; Delete and the confirmation removed her from the Staff list.",
+    "Steps 3 to 5: Board View shows both cards. S2-37085 sits in a column headed \"Deleted technician\" with the Inactive marker and no drag grip. That is what the test expects, not the known problem (\"Unknown Technician\"), so the fix in SV-11416 (Testing Stage) looks shipped.",
+    "Step 6: the Deleted technician column is the last of 280; the script walked right but never reached it, and let go elsewhere. S2-37086 stayed in Unassigned, but no drop onto the column was tried. Not judged.",
+    "Step 7: Tech View only had its first groups loaded; the Deleted technician group was not reached. Not judged.",
+    "Step 8: in List, S2-37085's Lead Technician cell reads \"Unassigned\". The test expects it blank; whether \"Unassigned\" counts as blank is with the QA lead.",
+    "Step 10: S2-37085 dragged out of Deleted technician onto Eli's column moved there, with \"Lead technician updated\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614711-f2-1-deleted-column.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614711-f2-2-list-lead.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614711-f2-3-dragged-out.png"
+   ],
+   "ticket": "Fix looks shipped (steps 3 to 5): https://shopview.atlassian.net/browse/SV-11416 (Testing Stage, read 17 Oct 2026).",
+   "todo": "What needs to be done: a focused script that scrolls Board View to the Deleted technician column (last column) before dropping S2-37086 on it, and scrolls Tech View to the Deleted technician group; the QA lead to say whether \"Unassigned\" in List counts as blank."
+  }
+ }
+}
