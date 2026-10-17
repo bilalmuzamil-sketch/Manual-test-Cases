@@ -109,11 +109,12 @@ await run('C96936', async () => {
       if (o.step5.typed?.picked) { o.step5.how = 'typed into the Lead Technician field and picked on the work order page in tab B'; }
       const pk = o.step5.typed?.picked ? { picked: 'Ralph Edwards', list: { count: null, first: null, last: null, offered: null, readingValid: null } } as any : await pickTech(pB, async () => { await (await sel()).click(); }, 'C96936 tab B Lead Technician', { prefer: ['Ralph Edwards'], control: ['Esther Howard', 'Dana Ortiz'], exact: true });
       o.step5.list = { count: pk.list.count, first: pk.list.first, last: pk.list.last, offered: pk.list.offered, readingValid: pk.list.readingValid };
-      if (pk.picked) o.step5.how = 'picked on the work order page in tab B';
-      else { o.step5.how = 'Ralph Edwards is not offered on the work order page (SV-11393); the same save the page makes was sent from tab B'; o.step5.api = (await api(pB).post('/api/work-orders/change-lead-technician', { work_order_id: w1.id, tech_assigned_id: RE.staff_id })).status; }
+      if (pk.picked) { o.step5.how = 'picked on the work order page in tab B'; o.step5Route = 'screen'; }
+      else { o.step5Route = 'behind-the-screen (Ralph not offered, SV-11393)'; o.step5.how = 'Ralph Edwards is not offered on the work order page (SV-11393); the same save the page makes was sent from tab B'; o.step5.api = (await api(pB).post('/api/work-orders/change-lead-technician', { work_order_id: w1.id, tech_assigned_id: RE.staff_id })).status; }
       await pB.waitForTimeout(2500); await pB.screenshot({ path: path.join(EV, 'C96936-r5-tabB.png') }).catch(() => {});
     } finally { await pB.close().catch(() => {}); }
     o.step5.leadNow = leadOfW((await workOrders(a, n)).find((w: any) => w.id === w1.id) ?? {});   // read back from the server
+    o.step5Route = o.step5Route ?? 'not reached (step 5 did not complete)'; console.log(t(), 'C96936 step5Route', JSON.stringify({ step5Route: o.step5Route, leadNow: o.step5.leadNow }));   // judge: tab B's change is only the trigger
     // step 6: tab A, not refreshed
     const showGroups = async (k: string) => { for (const [id, nmx] of [[ES.staff_id, 'Esther'], [RE.staff_id, 'Ralph']] as const) { await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await p.waitForTimeout(400); if (await scrollToGroup(id)) { await p.evaluate(`document.querySelector('[data-test-id="tech_view_group_${id}"]')?.scrollIntoView({ block: 'start' })`); await p.waitForTimeout(900); } await shot(p, `C96936-r5-${k}-group-${nmx}`); } };
     await p.bringToFront(); await p.waitForTimeout(3000); o.beforeRefresh = await pick(); await showGroups('before-refresh');
