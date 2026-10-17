@@ -4,6 +4,7 @@
  *  Selection read (every toggle and the headings); Progress turned OFF through the menu; headings read; REAL log-out (initials > Logout);
  *  log-in through the app's own Email / Password form; Work Orders > List; headings and the menu read again; then Progress turned back ON
  *  (restore) and read. The saved list preference is read from the server at each point. Credentials stay in /tmp; nothing printed.
+ *  Captured at 2x when QA_DPR=2 (Rule 116); the saved preference (server, with its updatedAt) and the browser's stored column keys are read at each point.
  *  Output EV/prod-c96975.json, pictures EV/C96975-prod-*.png. */
 import fs from 'node:fs'; import path from 'node:path';
 const EV = process.env.WOB_EV || path.join(path.dirname(new URL(import.meta.url).pathname), 'evidence');
@@ -12,11 +13,11 @@ const { bootProdLogin } = await import('../../testing-tools/prod-login-boot.mjs'
 const o: any = {}; let P: any = null;
 const shot = (pg: any, n: string) => pg.screenshot({ path: path.join(EV, `C96975-prod-${n}.png`) }).catch(() => {});
 try {
-  P = await bootProdLogin('/workorders', { viewport: { width: 1600, height: 1000 } }); const pg = P.page; pg.setDefaultTimeout(20_000); const APP = P.APP;
+  P = await bootProdLogin('/workorders', { viewport: { width: 1600, height: 1000 }, deviceScaleFactor: Number(process.env.QA_DPR || 1) }); const pg = P.page; pg.setDefaultTimeout(20_000); const APP = P.APP;
   o.version = P.version ?? null; o.permissions = P.nFePerms;
   const W = (ms: number) => pg.waitForTimeout(ms);
-  const apiGet = (u: string) => pg.evaluate(async (u0: string) => { const r = await fetch(`https://api.shopview.com${u0}`, { credentials: 'include', headers: { Accept: 'application/json', Authorization: (() => { try { const x = JSON.parse(localStorage.getItem('user') || '{}'); const tk = x?.data?.token || localStorage.getItem('token'); return tk ? 'Bearer ' + tk : ''; } catch { return ''; } })() } }); let b: any = null; try { b = await r.json(); } catch { /* */ } return { status: r.status, body: b }; }, u);
-  const savedPref = async () => { const r = await apiGet('/api/users/me/preferences/work-orders-list'); const v = r.body?.data?.value ?? null; return { status: r.status, keys: v ? Object.keys(v) : null, listColumns: v ? (v.listColumns ?? v.columns ?? v.visibleColumns ?? Object.fromEntries(Object.entries(v).filter(([k]) => /column/i.test(k)))) : null }; };
+  const apiGet = (u: string) => pg.evaluate(async (u0: string) => { const r = await fetch(`https://api.shopview.com${u0}`, { credentials: 'include', headers: { Accept: 'application/json', 'Content-Type': 'application/json' } }); let b: any = null; try { b = await r.json(); } catch { /* */ } return { status: r.status, body: b }; }, u);
+  const savedPref = async () => { const r = await apiGet('/api/users/me/preferences/work-orders-list'); const v = r.body?.data?.value ?? null; return { status: r.status, updatedAt: r.body?.data?.updatedAt ?? null, local: await pg.evaluate(() => Object.keys(localStorage).filter((k) => /column|work.?order|prefer/i.test(k)).map((k) => k + '=' + String(localStorage.getItem(k)).slice(0, 160))).catch(() => null), keys: v ? Object.keys(v) : null, listColumns: v ? (v.listColumns ?? v.columns ?? v.visibleColumns ?? Object.fromEntries(Object.entries(v).filter(([k]) => /column/i.test(k)))) : null }; };
   const toList = async () => { await pg.goto(`${APP}/workorders`, { waitUntil: 'domcontentloaded' }).catch(() => {}); await W(8000);
     const allTab = pg.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*All\s*$/ }).first(); if (await allTab.count()) { await allTab.click().catch(() => {}); await W(3000); }
     const lst = pg.locator('[aria-label="List"]').first(); if (await lst.count()) { await lst.click().catch(() => {}); await W(3000); }
