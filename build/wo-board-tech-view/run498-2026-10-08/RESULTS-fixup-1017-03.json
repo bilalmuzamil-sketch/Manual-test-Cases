@@ -1,0 +1,130 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up 2, batch 03 = fix-up steps 11-14"
+ },
+ "results": {
+  "C96970": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Set-up: S2-35910 led by Aaa ZZAUTOTEST Ina Inactive (deactivated), S2-35911 by Aaa ZZAUTOTEST Mia Holder, S2-35912 by Aaa ZZAUTOTEST Mona Moved (moved to Staging Lethbridge - 4310).",
+    "Step 3: Ina Inactive's column is shown with S2-35910 and marked Inactive; Mona Moved's column shows further along as a normal column with S2-35912, no inactive marker, not among the pinned columns.",
+    "Steps 4 to 7: dropping S2-35911 on Ina's column and on Mona's column is refused with \"This technician can't be assigned work orders.\"; S2-35911 stays in Mia Holder's column.",
+    "Steps 9 to 12: in Tech View Ina's group is shown with S2-35910 and marked Inactive; both drops are refused the same way and S2-35911 stays in Mia Holder's group.",
+    "Step 13: S2-35911's Lead Technician is still Aaa ZZAUTOTEST Mia Holder."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96970-1-board-refused.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96970-2-tech-refused.png"
+   ],
+   "ticket": null
+  },
+  "C368131": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 7 for the admin user.",
+    "Set-up through the screens: Jenny Pinned deactivated (Deactivate Account), Theresa Pinned's Location changed to Staging Lethbridge - 4310 (Save & Close); S2-35908 led by Tara Lead, S2-35909 by Theresa Pinned.",
+    "Step 7 (admin): the pinned column after Unassigned was Brandi Smith, a pin left from an earlier test, not Jenny Pinned, so the admin's pinned Jenny column could not be read and the drag onto it (step 9) had no target.",
+    "Step 8: Theresa Pinned's column shows further along as a normal column with S2-35909, no pin icon, no Inactive.",
+    "Steps 12 and 13: S2-35909 dragged to Unassigned (\"Lead technician removed\"); Theresa Pinned then has no column at all.",
+    "Step 15 (view-only user): Jenny Pinned stays pinned right after Unassigned, marked Inactive, reading \"No work orders\"; there is no Theresa Pinned column.",
+    "Steps 10 and 11 could not be judged: the card was dropped where the script could not see the target column."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368131-1-admin-pins.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368131-2-viewonly.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run steps 7, 9 to 11 with the admin's pins cleared first and Jenny Pinned pinned (script fix)."
+  },
+  "C581892": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 6.",
+    "Set-up: S2-37051 (second line not approved), S2-37052 (second line declined), S2-37053 (a Choose lines shift ticking both approved lines), each led by Esther Howard with a shift on 18 Oct.",
+    "The first drag was made; the script then could not find the second card on the board (it waited 30 seconds) and stopped, so the questions for the other two and the Schedule check were not read."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581892-1-script-stop.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run (script fix: scroll the board to the test's technician columns before each drag)."
+  },
+  "C581896": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Step 6: the link with Status Imported opened in List, not Board View, with \"Status: Imported\" ticked and the imported work orders listed.",
+    "Steps 7 and 8: Board View and Tech View are greyed out, each with \"Not available while Imported is selected.\"",
+    "Step 11: a new tab without Imported opened in Board View: the saved display had not changed.",
+    "Step 16: after ticking Imported in another tab, a new tab opened in List with Imported still ticked, Board View and Tech View greyed out."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581896-1-imported-list.png"
+   ],
+   "ticket": null
+  },
+  "C581895": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps.",
+    "Steps 1 and 2: Settings > Staff shows Technician-A as \"Carol Neal\" and Technician-B as \"Ralph Edwards\".",
+    "Step 5: List's Lead Technician for this test's work order S2-37054 reads \"David Sparks\", not the staff record name \"Carol Neal\".",
+    "Steps 7 to 9: Board View shows \"Carol Neal\" on the card and in the column header; the line technician avatars read Carol Neal and Ralph Edwards.",
+    "Step 11: Tech View's group header reads \"Carol Neal\".",
+    "Step 12 (the Assigned Techs avatar names in Tech View) was not read by the script.",
+    "Same problem as already reported, ticket below (status Open, read 17 Oct 2026)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581895-1-list-name.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581895-2-board-names.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11336.",
+   "todo": "What needs to be done: the developers to fix SV-11336 (Open); then run this test again."
+  },
+  "C368166": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Work order S2-37055, Approved, led by Esther Howard.",
+    "Ralph Edwards is not offered in the work order page's Lead Technician list (98 names, ending at \"QA PartsTechnician\": the known list cut-off, SV-11393, closed as obsolete but still there). The case says names are examples, so Jenny Wilson was used as the new lead.",
+    "Step 4: Lead Technician reads \"Jenny Wilson\" and no error message appeared.",
+    "Step 5: after a reload it still reads \"Jenny Wilson\" (and the line's Labor too)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368166-1-new-lead.png"
+   ],
+   "ticket": null
+  },
+  "C368168": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Work order S2-37057: Line 1 followed the lead (Labor \"Esther Howard\"), Line 2 was given to Dana Ortiz.",
+    "Ralph Edwards is not offered in the work order page's Lead Technician list (98 names, ending at \"QA PartsTechnician\": the known list cut-off, SV-11393, closed as obsolete but still there). The case says names are examples, so Jenny Wilson was used as the new lead.",
+    "After the change and a reload: Line 1's Labor reads \"Jenny Wilson\", Line 2 still \"Dana Ortiz\": 1 of 2 lines moved. No clear-shifts question appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368168-1-lines.png"
+   ],
+   "ticket": null
+  },
+  "C368167": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test's starting state (the work order Invoiced in tab 2) was not there.",
+    "Work order S2-37056, Complete, led by Esther Howard. In tab 2 Create Invoice was pressed and the New Customer Payment window opened and was closed.",
+    "In tab 1 Lead Technician was still open for change; Ralph Edwards is not offered in the work order page's Lead Technician list (98 names, ending at \"QA PartsTechnician\": the known list cut-off, SV-11393, closed as obsolete but still there). The case says names are examples, so Jenny Wilson was used as the new lead. The change was accepted with no message.",
+    "But after the reload the work order still reads Complete (with an \"Over Limit\" mark) and Create Invoice is still offered, so it was never Invoiced. A lead change on a Complete work order is allowed, so nothing about the refusal can be judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368167-1-not-invoiced.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run with the invoice read back as Invoiced before step 3 (script fix; the Over Limit mark may be stopping the invoice)."
+  }
+ }
+}
