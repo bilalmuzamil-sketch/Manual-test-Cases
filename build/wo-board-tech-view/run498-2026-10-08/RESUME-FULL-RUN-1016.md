@@ -20,3 +20,12 @@ SV-11101 reopen; C590117 tooltip ticket.
 - **C96975** (fix-up 2, s5-batchA3.mts): steps 16–18 (log out, log back in) are SUBSTITUTED by a fresh page load, because a log-out ends the one shared staging sign-in mid-queue. A substituted step is not observed (Rule 12) ⇒ C96975 can NOT be marked Passed on the fix-up reading alone. Re-do steps 16–18 by hand-script at the very END, together with signout-fix.mts (C368240), after every other step; judge only then.
 - **C368171** (fix-up 2, editwo-fix.mts) needs Ralph Edwards by name; if he is still not offered ⇒ Failed on SV-11393 (OBSOLETE, still reproduces), not Blocked.
 - **C96936** step 5: if Ralph is not offered in tab B, the lead is set through the page's own save; the refresh in tab A is what the case judges — say in the result how step 5 was done.
+
+## 17 Oct 04:20 UTC — new failures with NO ticket (Rule 113: result written, ticket held; Rule 106: PRD live read BEFORE any ask)
+- **C590114** Failed — Total price left-aligned in its column, case expects right (`annotated-full-1016/C590114-1-total-price.png`; `design-stg5.json` C590114.s2_total).
+- **C97020** Failed — keyboard focus on the disabled "Reassign lead technician" never shows its note "The lead technician can't be changed once a work order is Invoiced or Paid." (shows on mouse hover, C590121) (`annotated-full-1016/C97020-1-locked-menu.png`; `kbd-fix4.json` s11/s12).
+- **C590117** Failed on held draft `defect-drafts/tickets/D-C590117-2026-10-16.wiki` (tooltip opens below the count).
+- **C590122** Blocked — after "Clear all filters" Search still reads "zzzz"; PRD extract silent ⇒ read PRD S1-N1a LIVE; if silent ⇒ PO question (58), not a defect.
+- Held draft **D-C590122** (invisible magnifier circle) no longer reproduces ⇒ close it in the report (Rule 62(c) gate 3).
+- Before the final report: one live read of PRD Confluence 845185030 (latest version), quote verbatim for each of the above, then ask the QA lead per ticket (one at a time).
+- Tickets now passing (TESTING STAGE): SV-11319, SV-11322, SV-11324, SV-11323, SV-11338, SV-11394, SV-11325, SV-11397, SV-11310, SV-11318, SV-11422, SV-11419, SV-11405 (C590120), SV-11317, SV-11420.
