@@ -1,7 +1,6 @@
 {
  "exitSwitch": 200,
  "start": "Staging Heavy Duty - 9919 0.15 Hrs Today AS",
- "made": "21315d41-98ac-48a7-9f32-426e5cf79bf8",
  "s1_top": "ZZAUTOTEST C614715 Empty .. 0.15 Hrs Today AS",
  "control": {
   "status": 200,
@@ -32,9 +31,29 @@
   "text": "All Estimates Work Orders Completed Search Status keyboard_arrow_down Assigned to me Asset on Site keyboard_arrow_down Create Work Order No work orders yet Create a work order and assign a technician to see it here. Create Work Order"
  },
  "s4_buttons": 2,
- "s4_window": "New Work Order close Customer arrow_drop_down Add Asset arrow_drop_down Add Asset Here? Save",
+ "s4_emptyButton": true,
+ "s4_window": {
+  "title": "New Work Order",
+  "labels": [
+   "Customer",
+   "Asset"
+  ],
+  "buttons": [
+   "close",
+   "Add",
+   "Add",
+   "Save"
+  ],
+  "toggles": []
+ },
+ "s5_close": {
+  "questions": [
+   "Confirmation close Are you sure you want to close this dialog? Cancel Close"
+  ],
+  "openAfter": 0
+ },
  "s5": {
-  "dialogs": 2,
+  "dialogs": 0,
   "empty": {
    "text": "No work orders yet Create a work order and assign a technician to see it here. Create Work Order",
    "button": "Create Work Order",
@@ -43,7 +62,36 @@
    ]
   }
  },
- "s4_pageButtonWindow": "Confirmation close Are you sure you want to close this dialog? Cancel Close",
- "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[aria-label=\"List\"]').first()\n    - locator resolved to <button tabindex=\"0\" type=\"button\" filled=\"true\" aria-label=\"List\" data-v-68e00a17=\"\" data-v-6acd686c=\"\" aria-pressed=\"false\" data-test-id=\"display_option_list\" class=\"",
- "back": "ZZAUTOTEST C614715 Empty .. AS"
+ "s4_toolbarButton": 1,
+ "s4_pageButtonWindow": {
+  "title": "New Work Order",
+  "labels": [
+   "Customer",
+   "Asset"
+  ],
+  "buttons": [
+   "close",
+   "Add",
+   "Add",
+   "Save"
+  ],
+  "toggles": []
+ },
+ "s4_toolbarClose": {
+  "questions": [
+   "Confirmation close Are you sure you want to close this dialog? Cancel Close"
+  ],
+  "openAfter": 0
+ },
+ "s4_sameWindow": true,
+ "s5_afterComparison": {
+  "dialogs": 0,
+  "empty": true
+ },
+ "s6": {
+  "text": "All Estimates Work Orders Completed Search Status keyboard_arrow_down Assigned to me Asset on Site keyboard_arrow_down width_normal Create Work Order On Sitearrow_drop_up Statusarrow_drop_up Waiting On Partsarrow_drop_up Numberarrow_drop_up Customerarrow_drop_up Assetarrow_drop_up Unitarrow_drop_up VIN/Serial #arrow_drop_up Progress Service Advisorarrow_drop_up Lead Technicianarrow_drop_up Clocked Inarrow_drop_up Linesarrow_drop_up Total Pricearrow_drop_up Created Onarrow_drop_up Invoiced Datearrow_drop_up Days Openarrow_drop_up Partsarrow_drop_up Returnsarrow_drop_up search No work orders fou",
+  "firstRun": false,
+  "rows": 2
+ },
+ "back": "Staging Heavy Duty - 9919 AS"
 }
