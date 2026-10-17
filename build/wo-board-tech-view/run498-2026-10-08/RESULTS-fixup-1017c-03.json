@@ -1,0 +1,41 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up round 3, batch 03 = round 3 steps 15-16"
+ },
+ "results": {
+  "C368212": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (round 3 re-run, 17 Oct).",
+    "Steps 2 and 3 (seen earlier today and again now): at Staging Heavy Duty - 9919, the All tab with search \"Loc2\" shows \"No work orders match the search \"Loc2\".\", and the number S3-37071 (made at Staging Lethbridge - 4310) is not listed.",
+    "Step 4: your initials > Change Location > Staging Lethbridge - 4310 (top bar read back), Work Orders > All, search \"Loc2\": S3-37071 is listed, so the record exists and is only hidden where it does not belong.",
+    "Changed back to Staging Heavy Duty - 9919 afterwards (top bar read back)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368212-f3-1-lethbridge.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368212-f3-2-heavy-duty.png"
+   ],
+   "ticket": null
+  },
+  "C614715": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (round 3 re-run, 17 Oct).",
+    "Step 1: your initials > Change Location > \"ZZAUTOTEST C614715 Empty Location\", a location with no work orders at all; the top bar shows it.",
+    "Step 2: Tech View shows, instead of groups, the clipboard icon in a grey circle, \"No work orders yet\", \"Create a work order and assign a technician to see it here.\" and a Create Work Order button.",
+    "Step 3: Board View shows the same first-run state instead of columns.",
+    "Step 4: the empty state's Create Work Order opens the same New Work Order window (Customer, Asset, Save) as the page's own Create Work Order button.",
+    "Step 5: closing it asks \"Are you sure you want to close this dialog?\"; after Close the window is gone and the first-run state shows again.",
+    "Step 6: List shows its usual empty page (\"No work orders found.\") without \"No work orders yet\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614715-f3-1-tech-first-run.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614715-f3-2-list-empty.png"
+   ],
+   "ticket": null
+  }
+ }
+}
