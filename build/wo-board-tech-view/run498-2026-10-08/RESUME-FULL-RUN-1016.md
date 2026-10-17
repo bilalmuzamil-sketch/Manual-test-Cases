@@ -74,3 +74,10 @@ SV-11101 reopen; C590117 tooltip ticket.
 - Passed: C614714, C581892.
 - QA lead questions (Blocked, Expected untouched): **C97003** step 11 order (Ben lands after Unassigned at step 7; tech plan "Unassigned is never a technician drop target" vs PRD S9-R8 only "keep Unassigned fixed"); **C368167** step 2 (closing the payment window with X undoes the invoice — is that intended? the rest of the case behaves correctly: refusal message exact, lead stays Esther, status Invoiced); **C96936** step 5 needs Ralph Edwards by name, not offered (SV-11393) — trigger made behind the screen, result itself matched.
 - **C96916** possible finding NOT proved (Rule 104): Back landed in List in both views this run, but Board View/Tech View at 08:01 and 09:15 the same day; the admin's saved display is shared with other sessions. Re-run with a test user no other session uses, if the staging sign-in survives the sign-out batch.
+
+## 17 Oct 11:10 UTC — sign-out batch judged (RESULTS-signout-1017-01). Run 498: 244 Passed, 12 Failed, 22 Blocked, 0 untested
+- Passed with real log-out/log-in: C96989, C97005, C96948, C96928, C368240.
+- C96912 step 7 needs a fresh never-chosen-display user (Tech user had Tech View saved) — live item A.
+- C96975: List's Progress-off choice did NOT survive a real log-out/log-in on staging (Tech View columns did). PRD v64 S5-R8 "List keeps saving its columns exactly as it does today" ⇒ production comparison decides (Rule 121) — live item B.
+- Failed (12): C96929, C581895, C97007, C97020, C368159, C368173, C368169, C368171, C590114, C590117, C590127, C590130.
+- Blocked (22): C96912, C96916, C581915–C581918, C96936, C96945, C368131, C614711, C96975, C97003, C368145, C97022, C368167, C368209, C368214, C368245, C97024, C97035, C368153, C590122.
