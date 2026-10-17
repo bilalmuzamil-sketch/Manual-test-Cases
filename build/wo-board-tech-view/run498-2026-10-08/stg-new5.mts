@@ -8,7 +8,7 @@ import path from 'node:path';
 import { open, done, APP, registerShotPage } from './session.mts';
 import { startState, setDisplay, capped } from './fixup-1017.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, display, active, tab, search, drag, toColumn, toasts, shiftPrompt } from './wob.mts';
+import { EV, t, display, active, tab, search, drag, toColumn, toasts, shiftPrompt, searchValue } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { mkShift, shiftsOn } from './shifts.mts';
 
@@ -114,10 +114,20 @@ await run('C581892', async () => {
   await pin([ES.staff_id, RE.staff_id]); await boardOpen(n);
   for (let i = 0; i < 3; i++) {
     console.log(t(), `C581892 drag ${i + 1} of 3`); // 17 Oct 2026: fix-up — progress line
+    // FIX-UP 2c (17 Oct 2026): after the first drag the second card was not found (30 s) and the case stopped. Board View draws only the
+    // columns near the screen (L0417), and the search can be lost after the prompt: before EVERY drag the case's search is re-applied if it
+    // changed, the board scrolled to its start and Esther Howard's column brought on screen, and the card looked for (up to 5 tries, search
+    // typed again between them). The columns in view and the search are logged; a card that never shows is recorded, and the next drag runs.
+    const prep: any = { search: await searchValue(p) }; if (prep.search !== n) { await search(p, n); await p.waitForTimeout(1500); prep.searchTypedAgain = true; }
+    for (let k = 0; k < 5 && !(await p.locator(`[data-test-id="board_card_${W[i]}"]`).count()); k++) { await toColumn(p, ES.staff_id).catch(() => false); await p.waitForTimeout(1500); if (!(await p.locator(`[data-test-id="board_card_${W[i]}"]`).count())) { await search(p, n); await p.waitForTimeout(2500); } prep.tries = k + 1; }
+    prep.cardFound = (await p.locator(`[data-test-id="board_card_${W[i]}"]`).count()) > 0; await p.locator(`[data-test-id="board_card_${W[i]}"]`).first().scrollIntoViewIfNeeded().catch(() => {});
+    prep.columnsInView = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="board_column_header_"]')].filter(h => { const r = h.getBoundingClientRect(); return r.right > 0 && r.left < innerWidth; }).map(h => (h.innerText.split('\\n')[0] || '').trim().slice(0, 30))`).catch(() => []);
+    console.log(t(), `C581892 before drag ${i + 1}`, JSON.stringify(prep));
+    if (!prep.cardFound) { o[`WO-${i + 1}`] = { prep, error: 'card not on the board after 5 tries: not dragged' }; continue; }
     await toastWatch(); await dragTo(W[i], RE.staff_id); const opened = await waitPrompt(3500);
     const title = opened ? (await promptLoc().innerText()).split('\n')[0].trim() : null;
     if (opened) { await shot(`C581892-WO${i + 1}-question`); await shiftPrompt(p, 'Keep shifts'); }
-    await p.waitForTimeout(1500); o[`WO-${i + 1}`] = { prompt: opened, title, toasts: await toastSeen(), inB: (await inColumn(W[i], RE.staff_id)) > 0 };
+    await p.waitForTimeout(1500); o[`WO-${i + 1}`] = { prep, prompt: opened, title, toasts: await toastSeen(), inB: (await inColumn(W[i], RE.staff_id)) > 0 };
   }
   await shot('C581892-board-after');
   // 17 Oct 2026: fix-up — the Schedule read is capped at 4 minutes; if it does not finish, the stuck page is left and a fresh page of the

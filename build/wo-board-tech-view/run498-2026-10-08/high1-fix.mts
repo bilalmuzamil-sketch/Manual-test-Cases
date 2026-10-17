@@ -221,6 +221,17 @@ await run('C368166', async () => { const w = await one('ZZAUTOTEST Lead Change P
   o.readBack = o.used ? { screen: o.afterReload.includes(o.used), server: o.apiLead === o.used } : null; R.C368166 = o; });
 
 await run('C368167', async () => { const w = await one('ZZAUTOTEST Refused Lead Change', ES); const o: any = { wo: w.number };
+  // FIX-UP 2c (17 Oct 2026): on 17 Oct, after Create Invoice in tab 2 (invoice INV-… shown, server read "Invoiced") and the lead change in
+  // tab 1, the reloaded page read Complete with an "Over Limit" mark and Create Invoice offered again. Two things are now separated: (1) the
+  // customer's credit limit is raised first (the app's customer save, read back) so "Over Limit" cannot be the reason an invoice does not
+  // hold (L0426); (2) the status is read from the server right after the invoice, right before the lead change, right after it, and after the
+  // reload — with the badges on the page — so the judge can see whether the work order was Invoiced when the change was tried and whether
+  // the change itself took the work order out of Invoiced.
+  { const cv = (await a.get(`/api/customers/view/${w.c.company_id}`)).body?.data; const co = cv?.company ?? cv ?? {}; o.creditBefore = co.credit_limit ?? null;
+    o.creditSave = say(await a.post('/api/customers/change', { ...co, company_id: w.c.company_id, id: w.c.company_id, credit_limit: 9999999 }));
+    const cv2 = (await a.get(`/api/customers/view/${w.c.company_id}`)).body?.data; o.creditAfter = (cv2?.company ?? cv2 ?? {}).credit_limit ?? null; }
+  const invoiceBits = async () => { const v = await view(w.id); const wo = v?.work_order ?? v ?? {}; return { status: wo.status ?? null, keys: Object.keys(v ?? {}).filter((k) => /invoice/i.test(k)).concat(Object.keys(wo).filter((k) => /invoice/i.test(k))).slice(0, 8), invoiceId: wo.invoice_id ?? wo.invoiceId ?? v?.invoice?.id ?? null }; };
+  const badges = () => p.evaluate(`[...document.querySelectorAll('.q-badge, .q-chip')].filter(e => e.getBoundingClientRect().width > 0 && e.getBoundingClientRect().top < 220).map(e => e.innerText.replace(/\\s+/g, ' ').trim()).filter(Boolean).slice(0, 6)`).catch(() => []) as Promise<string[]>;
   // set-up: the work order to Complete (lines completed and reviewed), as the case's Setup, through the app's own calls
   const log: any[] = []; await finish(w.id, 'complete', log); o.setup = log;
   console.log(t(), 'START STATE found C368167', JSON.stringify({ wo: w.number, status: await statusOf(w.id), lead: await apiLeadName(w.id) }));
@@ -239,14 +250,18 @@ await run('C368167', async () => { const w = await one('ZZAUTOTEST Refused Lead 
       o.tab2.api = say(await api(t2).post('/api/invoices/create', { work_order_id: w.id, issue_date: new Date().toISOString().slice(0, 10), due_date: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10) })); }
   } catch (e: any) { o.tab2.error = String(e?.message || e).slice(0, 200); }
   o.statusAfterInvoice = await statusOf(w.id);
+  o.serverAfterInvoice = await invoiceBits(); console.log(t(), 'START STATE set C368167', JSON.stringify({ credit: [o.creditBefore, o.creditAfter], afterInvoice: o.serverAfterInvoice, tab2: o.tab2?.how }));
   // steps 3-5: back in tab 1, NOT reloaded
   await p.bringToFront(); await p.waitForTimeout(800); const ls = await leadSel();
   o.step3 = { disabled: await ls.evaluate((e: any) => e.classList.contains('q-field--disabled') || e.getAttribute('aria-disabled') === 'true' || !!e.querySelector('.q-field--disabled, [aria-disabled="true"]')).catch(() => null), field: (await ls.innerText().catch(() => '')).replace(/\s+/g, ' ').trim() };
   if (o.step3.disabled) o.step3.note = 'page refreshed itself (the field was already disabled at step 3)';
+  o.serverRightBeforeChange = await invoiceBits();
   await watchToasts(); o.techB = await pickB('C368167', ['Esther Howard']); o.used = o.techB.picked; await p.waitForTimeout(1500);
+  o.serverRightAfterChange = await invoiceBits();
   o.toasts = [...new Set([...(await seenToasts()), ...(await toastsOn(p))])]; o.fieldNow = await leadText(); await shot(p, 'C368167-message');
   // step 6: reload tab 1
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.afterReload = (await leadText()) || (await p.evaluate(`(document.body.innerText.match(/Lead technician\\s*\\n\\s*([^\\n]+)/i) || [])[1] || null`)); o.apiLead = await apiLeadName(w.id); await shot(p, 'C368167-after-reload');
+  o.serverAfterReload = await invoiceBits(); o.badgesAfterReload = await badges(); o.createInvoiceOfferedAfterReload = await p.locator('button').filter({ hasText: /^\s*Create Invoice\s*$/ }).count();
   await t2.close().catch(() => {}); R.C368167 = o; });
 
 await run('C368168', async () => { const w = await one('ZZAUTOTEST Lead Moves Lines', ES, 2); const o: any = { wo: w.number };

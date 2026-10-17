@@ -194,6 +194,18 @@ await run('C368131', async () => {
   const pinsBefore: string[] = ((await a.get(PREF)).body?.data?.value ?? {}).pinnedTechnicianIds ?? [];
   o.pins = { admin: await setPrefs(a, [TB.staff_id, TC.staff_id]) };
   { const v = await viewAs(browser, p, a, VO.id, me.id); try { o.pins.viewOnly = await setPrefs(api(v.page), [TB.staff_id, TC.staff_id]); o.viewOnlyPerms = v.perms; } finally { await v.close(); } }
+  // FIX-UP 2c (17 Oct 2026): on 17 Oct the admin's board showed "Brandi Smith" pinned at step 7 (a pin from outside this case), so step 7 and
+  // the drags of steps 9-11 could not be read. The admin's pins are now read (START STATE found), set to exactly the case's two
+  // ({Technician-B} Jenny Pinned and {Technician-C} Theresa Pinned), the page reloaded so the app holds them (a page loaded earlier saves its
+  // own copy of the preference back), and read back saved AND on screen (START STATE set). Just before step 7 the saved pins are read
+  // again: if something OUTSIDE the case replaced them (a person neither B nor C), they are put back and that is logged; if the product
+  // itself dropped B or C (the behaviour under test), nothing is re-applied.
+  const pinName = (id: string) => id === TB.staff_id ? 'Technician-B' : id === TC.staff_id ? 'Technician-C' : String(id).slice(0, 8);
+  console.log(t(), 'START STATE found C368131', JSON.stringify({ adminPins: pinsBefore.map(pinName) }));
+  await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(5000);
+  o.pinsSet = { saved: (((await a.get(PREF)).body?.data?.value ?? {}).pinnedTechnicianIds ?? []).map(pinName) };
+  await bv(p, n); o.pinsSet.screen = (await cols(p)).slice(0, 4).map((c: any) => `${c.name}:${c.pinned}`); await shot(p, 'C368131-start-pins');
+  console.log(t(), 'START STATE set C368131', JSON.stringify(o.pinsSet));
   try {
     // steps 1-2: deactivate {Technician-B} on the staff screen
     o.step2 = await uiDeactivate(TB.email);
@@ -202,6 +214,8 @@ await run('C368131', async () => {
     // step 3: {Technician-C}'s Location from Heavy Duty to Lethbridge (and the old enrolment removed — see the top comment)
     o.step3 = await moveOff(TC);
     // steps 4-7
+    { const savedNow: string[] = ((await a.get(PREF)).body?.data?.value ?? {}).pinnedTechnicianIds ?? []; o.pinsBeforeStep7 = savedNow.map(pinName);
+      const outsiders = savedNow.filter((x) => x !== TB.staff_id && x !== TC.staff_id); if (outsiders.length) { o.pinsReapplied = { found: o.pinsBeforeStep7, put: await setPrefs(a, [TB.staff_id, TC.staff_id]) }; console.log(t(), 'C368131 pins changed outside the case before step 7; put back', JSON.stringify(o.pinsReapplied)); } }
     await bv(p, n); o.step7 = (await cols(p)).slice(0, 7); await shot(p, 'C368131-stg4-step7-pinned');
     // step 8
     o.step8 = { columnFound: await toColumn(p, TC.staff_id) }; o.step8.column = (await cols(p)).find((c) => c.id === TC.staff_id.slice(0, 8)) ?? 'no column'; await shot(p, 'C368131-stg4-step8-techC');
