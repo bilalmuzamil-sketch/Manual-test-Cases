@@ -1,0 +1,29 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 live batch 02 correction (C96975 ticket line)"
+ },
+ "results": {
+  "C96975": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging: after logging out and back in, List lost its own column choice (Progress came back on). Production keeps it, so this is a change from today's behaviour.",
+    "Correction: the result just above wrongly linked the owning story SV-10048 as if it were the ticket to follow; there is no ticket for this finding yet.",
+    "Staging (10:56, real log-out and log-in): Tech View kept its own columns (no Service Advisor, no Assigned Techs, Progress shown). List showed Service Advisor, but Progress was back on, although it was turned off before logging out.",
+    "Production (v26.40.19-d2441a9, 11:12, real log-out and log-in): Progress was turned off in List, then after logging out and back in List still had Progress off.",
+    "The PRD (S5-R8) says: \"Save the Tech View column selection per user across logout/login, devices, and locations. List keeps saving its columns exactly as it does today.\" The test expects List to keep Progress off after logging back in.",
+    "Earlier today on staging (same build), List kept Progress off in a second browser and at Staging Lethbridge - 4310; only the log-out loses it.",
+    "Owning story: SV-10048 (Story 5, Fields to display and columns), status Ready for QA (read 17 Oct 2026)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96975-s-1-list-after-sign-in.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96975-prod-1-after-relogin.png"
+   ],
+   "ticket": "No ticket yet: this new finding is with the QA lead, who decides whether a ticket is raised. (Owning story: SV-10048, Story 5, Ready for QA - named here for reference only; it is not a defect ticket.)",
+   "ticket_held": true,
+   "todo": "What needs to be done: the QA lead decides on the finding (List's column choice is lost after logging out on staging but kept on production); no ticket is raised until then."
+  }
+ }
+}

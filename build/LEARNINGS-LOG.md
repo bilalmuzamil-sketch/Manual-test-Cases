@@ -782,3 +782,10 @@ Run 498's end-of-run sign-out batch (signout-1017.mts, from 10:42 UTC) logged ou
   in one run; List's Column Selection is `button_column_selection` with `toggle_column_<key>` items (`prod-c96975.mts`). Production v26.40.19
   KEPT Progress off across log-out/log-in (C96975, Rule 121).
   #wo-board #staging #production → L0410, L0440
+
+## L0443 — 2026-10-17 — A held (no-ticket) Failed result must carry NO browse/ link: push_results_to_run.py treats any link as the defect
+Run 498, C96975: the "ticket" text of a ticket_held Failed result named the owning story with its full link (…/browse/SV-10048). The tool
+read that link as the defect: it filled the result's defects field with SV-10048 and posted a separate "Follow the status here SV-10048"
+comment (Rule 123), wrongly presenting the STORY as the ticket. Fixed by posting a corrected Failed result whose ticket line names the
+story without a link. Rule: in a ticket_held result write the owning story as plain text ("Owning story: SV-10048, Ready for QA"), never as a
+browse/ URL; only a real defect ticket gets a link. #testrail #push-results #rule-123 → L0425
