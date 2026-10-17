@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 20 = queue steps 44"
+ },
+ "results": {
+  "C97010": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST C97010 Failed Drop…\", Board View: Dan Delta (deactivated) still has his column with S2-36869, marked \"Inactive\", count 1.",
+    "S2-36867 dragged from Ana Alpha onto Dan's column: not accepted; it stayed with Ana Alpha, Dan still 1, no \"Lead technician updated\" message.",
+    "S2-36868 invoiced in a second tab (Create Invoice pressed on screen). Back in the first tab, without refreshing, dragged to Ben Bravo: it went back to Ana's column and the alert read \"Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+    "The alert was still shown about 10 seconds later and went away only when Close was clicked.",
+    "After a refresh S2-36868 is in Ana Alpha's column and its page reads Lead technician \"ZZAUTOTEST Ana Alpha\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97010-1-failed-drop-back.png"
+   ],
+   "ticket": null
+  }
+ }
+}
