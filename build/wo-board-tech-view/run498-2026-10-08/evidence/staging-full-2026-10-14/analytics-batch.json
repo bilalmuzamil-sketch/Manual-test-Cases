@@ -8,76 +8,112 @@
  },
  "unread": [
   0,
+  0,
   0
  ],
- "C97029": {
-  "step1": {
-   "views": [
-    "work_orders_display_view list all  default",
-    "work_orders_display_view board_view all  saved"
-   ],
-   "fields": 13,
-   "sources": [
-    "default"
-   ]
-  },
-  "savedBeforeStep2": {
-   "display": "board_view",
-   "density": "comfortable",
-   "boardFields": 6
-  },
+ "C97023": {
+  "step1": [
+   "work_orders_display_view list all  default"
+  ],
+  "step3": [
+   "work_orders_display_view list all  default",
+   "work_orders_display_view tech_view all  saved",
+   "work_orders_display_view board_view all  saved"
+  ],
+  "step4": [
+   "work_orders_display_view list all  default",
+   "work_orders_display_view tech_view all  saved",
+   "work_orders_display_view board_view all  saved",
+   "work_orders_display_view board_view estimates  saved",
+   "work_orders_display_view board_view all  saved"
+  ],
+  "step5to7new": [],
+  "total": 5,
+  "otherWO": [
+   "work_orders_field_load tech_view vehicle_here off default",
+   "work_orders_field_load tech_view unreceived_part_requests_count on default",
+   "work_orders_field_load tech_view unit on default",
+   "work_orders_field_load tech_view vehicle on default",
+   "work_orders_field_load tech_view vin off default",
+   "work_orders_field_load tech_view progress on default",
+   "work_orders_field_load tech_view service_advisor on default",
+   "work_orders_field_load tech_view technician off default",
+   "work_orders_field_load tech_view clocked_in_technicians on default",
+   "work_orders_field_load tech_view lines_count on default",
+   "work_orders_field_load tech_view assigned_techs on default",
+   "work_orders_field_load tech_view start_date on default",
+   "work_orders_field_load tech_view total_price on default",
+   "work_orders_field_load tech_view invoiced_date off default",
+   "work_orders_field_load tech_view days_open off default",
+   "work_orders_field_load tech_view part_requests_count off default",
+   "work_orders_field_load tech_view part_return_requests_count off default",
+   "work_orders_density_load tech_view regular  default",
+   "work_orders_field_load board_view technician on default",
+   "work_orders_field_load board_view company_name on default",
+   "work_orders_field_load board_view vehicle on default",
+   "work_orders_field_load board_view vin off default",
+   "work_orders_field_load board_view progress on default",
+   "work_orders_field_load board_view service_advisor off default",
+   "work_orders_field_load board_view clocked_in_technicians off default",
+   "work_orders_field_load board_view lines_count off default",
+   "work_orders_field_load board_view line_technicians off default",
+   "work_orders_field_load board_view time_estimate off default",
+   "work_orders_field_load board_view total_price on default",
+   "work_orders_field_load board_view vehicle_here off default",
+   "work_orders_field_load board_view start_date off default",
+   "work_orders_density_load board_view regular  default"
+  ]
+ },
+ "C97024": {
+  "setupSaved": true,
   "step2": {
-   "views": [
-    "work_orders_display_view board_view all  saved"
-   ],
-   "fields": [
-    "work_orders_field_load board_view technician off saved",
-    "work_orders_field_load board_view company_name off saved",
-    "work_orders_field_load board_view vehicle on saved",
-    "work_orders_field_load board_view vin off default",
-    "work_orders_field_load board_view progress on saved",
+   "field": [
+    "work_orders_field_load board_view technician on default",
+    "work_orders_field_load board_view company_name on default",
+    "work_orders_field_load board_view vehicle on default",
+    "work_orders_field_load board_view vin on saved",
+    "work_orders_field_load board_view progress on default",
     "work_orders_field_load board_view service_advisor off default",
     "work_orders_field_load board_view clocked_in_technicians off default",
-    "work_orders_field_load board_view lines_count on saved",
+    "work_orders_field_load board_view lines_count off default",
     "work_orders_field_load board_view line_technicians off default",
     "work_orders_field_load board_view time_estimate off default",
-    "work_orders_field_load board_view total_price on saved",
+    "work_orders_field_load board_view total_price on default",
     "work_orders_field_load board_view vehicle_here off default",
     "work_orders_field_load board_view start_date off default"
    ],
    "density": [
-    "work_orders_density_load board_view comfortable  saved"
-   ],
-   "note": null
-  },
-  "step3": [
-   "work_orders_display_view tech_view all  saved",
-   "work_orders_display_view tech_view estimates  saved"
-  ],
-  "step4": [
-   "work_orders_field_toggle board_view vin on"
-  ],
-  "finOff": "200 now false",
-  "step5": {
-   "fields": 12,
-   "totalPrice": 0,
-   "labels": [
-    "technician",
-    "company_name",
-    "vehicle",
-    "vin",
-    "progress",
-    "service_advisor",
-    "clocked_in_technicians",
-    "lines_count",
-    "line_technicians",
-    "time_estimate",
-    "vehicle_here",
-    "start_date"
+    "work_orders_density_load board_view regular  default"
    ]
   },
-  "finRestore": "200 now false",
-  "note": "fallback and failed save: not checked by hand"
- },
- "restored": true
+  "step4": {
+   "field": [
+    "work_orders_field_load tech_view vehicle_here off default",
+    "work_orders_field_load tech_view unreceived_part_requests_count on default",
+    "work_orders_field_load tech_view unit on default",
+    "work_orders_field_load tech_view vehicle on default",
+    "work_orders_field_load tech_view vin off default",
+    "work_orders_field_load tech_view progress on default",
+    "work_orders_field_load tech_view service_advisor on default",
+    "work_orders_field_load tech_view technician off default",
+    "work_orders_field_load tech_view clocked_in_technicians on default",
+    "work_orders_field_load tech_view lines_count on default",
+    "work_orders_field_load tech_view assigned_techs on default",
+    "work_orders_field_load tech_view start_date on default",
+    "work_orders_field_load tech_view total_price on default",
+    "work_orders_field_load tech_view invoiced_date off default",
+    "work_orders_field_load tech_view days_open off default",
+    "work_orders_field_load tech_view part_requests_count off default",
+    "work_orders_field_load tech_view part_return_requests_count off default"
+   ],
+   "density": [
+    "work_orders_density_load tech_view regular  default"
+   ]
+  },
+  "step8": {
+   "field": 0,
+   "density": 0
+  },
+  "totalFieldLoads": 30
+ }
 }
