@@ -1,0 +1,190 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up 2 (17 Oct), batch 01 = fix-up steps 2-10"
+ },
+ "results": {
+  "C154885": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Board View was chosen at full width (1600 px).",
+    "At 900 px wide the page shows the List's phone layout (cards, sort button, Create Work Order, the filters) and no display switcher.",
+    "Back at 1600 px the switcher (List, Tech View, Board View) is offered again and Board View is still the active display: the narrow window did not change the saved choice.",
+    "Tablet held sideways not checked (optional). Edge not checked by hand."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154885-1-narrow.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C154885-2-wide.png"
+   ],
+   "ticket": null
+  },
+  "C96921": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Work Orders open in tab A and tab B as the same user, both starting in List.",
+    "Tab A chose Tech View, then tab B chose Board View.",
+    "After refreshing, tab A and tab B open in Board View, and a new tab C also opens in Board View: the last choice made.",
+    "No warning or conflict message appeared."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96921-1-tab-c.png"
+   ],
+   "ticket": null
+  },
+  "C96920": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Board View was chosen and a refresh opened Board View.",
+    "Tech View, List and Board View were each loaded while online.",
+    "With the network off, clicking Tech View and then List still switched the display; the saving failed (\"Network Error\").",
+    "After the network came back and the page was refreshed it opened in Board View: the offline changes were not saved.",
+    "Tech View chosen again online, then a refresh: the page opens in Tech View."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96920-1-offline.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96920-2-after-reconnect.png"
+   ],
+   "ticket": null
+  },
+  "C96917": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Board View: scrolled right and down a long column, then Estimates and All clicked: back at the top-left, every column at its first card. Scrolled again, Schedule and back through Work Orders: top-left again. Scrolled again, then Work Orders clicked while already on the board: the board stayed exactly where it was.",
+    "Tech View: the same three checks give the same results (top-left after a tab click; top-left and still Tech View after Schedule and back; unchanged after clicking Work Orders on the same page)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96917-1-tech-top-left.png"
+   ],
+   "ticket": null
+  },
+  "C96933": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "With no unassigned work for this test's customer, the Unassigned group is still on screen, first, showing \"No work orders\"; Ayesha Khan's group holds S2-35271 and S2-35270.",
+    "Dragging S2-35270 onto Unassigned moves it there: Unassigned 1, Ayesha Khan 1, \"Lead technician removed\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96933-1-drop-unassigned.png"
+   ],
+   "ticket": null
+  },
+  "C96959": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Leads reset first: Esther Howard 3, Ralph Edwards 1, Unassigned 0.",
+    "Straight after dragging one of Esther's cards to Ralph's column, with no reload: Esther 2, Ralph 2, Unassigned 0.",
+    "Straight after Reassign lead technician to Unassigned on one of Ralph's cards: Ralph 1, Unassigned 1, Esther 2.",
+    "Tech View's group headers show the same three numbers."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96959-1-counts.png"
+   ],
+   "ticket": null
+  },
+  "C368135": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Board View and Tech View alike: after Cancel, after the close (X) and after Escape the question closed, the work order went back to Esther Howard and no \"Lead technician updated\" showed.",
+    "Clicking outside the question left it open (expected, the QA lead's decision).",
+    "From the Reassign dialog: Cancel in the question went back to the dialog with Ralph Edwards still chosen.",
+    "In the end the lead is still Esther Howard and her 8:00-12:00 shift (18 Oct) is still on the Schedule."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368135-1-back-in-dialog.png"
+   ],
+   "ticket": null
+  },
+  "C97004": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Counts at the start: Ana 1, Ben 2, Cal 1, Dan 0, with Ana and Ben pinned.",
+    "Step 5: Ben's column dragged before Ana's: Unassigned, Ben, Ana, Cal, Dan.",
+    "Step 6: Ben dragged to after Cal: he stays among the pinned technicians (Unassigned, Ana, Ben, Cal, Dan).",
+    "Step 8: in Tech View the pinned groups come right after Unassigned in the same order; Ana dragged below Cal stays among the pinned groups (Unassigned, Ben, Ana).",
+    "Step 9: counts unchanged (Ana 1, Ben 2, Cal 1, Dan 0) and Bravo Co's Lead Technician is still ZZAUTOTEST Ben Bravo."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97004-1-ben-first.png"
+   ],
+   "ticket": null
+  },
+  "C368148": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "Full order at the start: Ana, Ben, Cal, Dan. With Assigned to me on only Ana and Cal show.",
+    "Cal dragged before Ana: Cal, Ana.",
+    "With Assigned to me off again: Unassigned, Cal, Ana, Ben, Dan: the hidden Ben and Dan kept their order."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368148-1-order.png"
+   ],
+   "ticket": null
+  },
+  "C368154": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (fix-up re-run, 17 Oct).",
+    "A brand-new user with no saved choices opened Work Orders: List is active.",
+    "Board View's density menu has Regular ticked.",
+    "Fields to display has Lead technician, Customer, Asset, Progress and Total price on (number, unit and status always show); everything else off: the standard defaults."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368154-1-density.png"
+   ],
+   "ticket": null
+  },
+  "C96916": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test's start state cannot be made.",
+    "The test starts on the Work Orders tab with Status Approved chosen. On the Work Orders tab neither Board View nor List offers a Status filter (only Search, Assigned to me and Asset on Site); on the All tab the Status filter is there. So Status Approved could not be chosen and the filter half of steps 5, 6 and 10 cannot be judged as written.",
+    "Seen in Board View (Work Orders tab, search \"ZZAUTOTEST F1 Scroll Back Theresa\", 1600 px): Theresa Webb's column was scrolled into view and down to S2-36407; a card was opened; after Back the board came back on the Work Orders tab with the same columns at exactly the same sideways position and S2-36407 back at the top of the column, fully shown. The symptom of SV-11421 (sideways and column position lost) was not seen.",
+    "Tech View half not done: the script's row click did not open a work order (test script fault)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96916-1-no-status-filter.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96916-2-back-restores.png"
+   ],
+   "ticket": "Follow the work here: https://shopview.atlassian.net/browse/SV-11421 (Testing Stage, read 17 Oct 2026).",
+   "todo": "What needs to be done: the QA lead to look at the case's start state (Status is offered only on the All tab); re-run the Tech View half (script fix: open the row by its number)."
+  },
+  "C96928": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: step 10 (sign out and sign in again) was not done for real.",
+    "Customer \"ZZAUTOTEST F2 Collapse Memory\": clicking the arrow on Bilal Muzamil's header collapsed his group to its header only (rows hidden, count shown); Ayesha Khan's and Branko Cicovic's stayed open. The collapse was saved.",
+    "After a refresh, in a new tab, and in a new browser opened with the saved sign-in, the page opened in Tech View with Bilal Muzamil's group still collapsed and the other two expanded. Expanding it again shows its row (S2-35264).",
+    "A real sign-out ends the one shared staging sign-in for every running test, so step 10 was done as a new browser with the saved sign-in. That is not the step as written, so the case is not passed on this reading."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96928-1-collapsed-kept.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: do step 10 with a real sign-out at the end of the run (with the other sign-out checks), then judge."
+  },
+  "C368136": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not complete step 8.",
+    "Board View and Tech View (customer \"ZZAUTOTEST F1 Prompt Where\"): the clear-shifts question opened 4 times: Board View drag, Board View dialog, Tech View drag and Tech View dialog; each time Keep shifts was chosen and the work order was moved back to Esther Howard.",
+    "Then the script stopped (it waited 30 seconds for a menu item \"Ralph Edwards\" that it never found), so the work order page change, the List check and the Schedule check (steps 8 to 10) were not done. The work order was left with Ralph Edwards as lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368136-1-script-stop.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run steps 8 to 10 (script fix: change the lead on the work order page by typing the name; put the lead back to Esther Howard first)."
+  }
+ }
+}
