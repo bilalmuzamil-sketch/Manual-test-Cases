@@ -1,0 +1,255 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 24 = queue steps 54-60"
+ },
+ "results": {
+  "C96960": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Work order S2-36928 led by Esther Howard with six lines: Line 1 with no technician, Line 2 following the lead, Line 3 given to Dana Ortiz, Line 4 Complete, Line 5 with logged time, Line 6 with Esther Howard's clock running.",
+    "Board View: the card was dragged to Ralph Edwards' column and \"Lead technician updated\" appeared.",
+    "Line 1 and Line 2 now show Ralph Edwards: exactly 2 of the 6 lines moved.",
+    "Line 3 still shows Dana Ortiz; Lines 4, 5 and 6 still show Esther Howard, and her clock on Line 6 is still running (stopped afterwards)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96960-1-drag-lines.png"
+   ],
+   "ticket": null
+  },
+  "C96961": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "S2-36929 led by Esther Howard, six lines, with Esther Howard clocked in on Line 6.",
+    "Reassign lead technician > Unassigned: \"Lead technician removed\"; the card is in Unassigned and the work order has no lead, even though she was clocked in.",
+    "Line 2 (followed the lead) now reads Unassigned; Line 1 still Unassigned.",
+    "Line 3 still Dana Ortiz; Line 4 (Complete) and Line 5 (labor logged) still Esther Howard.",
+    "Line 6 still shows Esther Howard and her clock was still running (stopped afterwards)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96961-1-lead-removed.png"
+   ],
+   "ticket": null
+  },
+  "C368140": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "S2-36930, no lead, with Line 1 Unassigned, Line 2 Dana Ortiz, Line 3 Complete and Unassigned.",
+    "Reassign lead technician > Ralph Edwards: \"Lead technician updated\" and the card moved to Ralph Edwards' column.",
+    "Line 1 now shows Ralph Edwards, Line 2 still Dana Ortiz, Line 3 (Complete) still Unassigned: 1 of 3 lines moved."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368140-1-one-of-three.png"
+   ],
+   "ticket": null
+  },
+  "C96963": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not show step 7's second half: its reorder of S2-36934 inside the Unassigned column left the order unchanged (S2-36934, S2-36931) and no picture was taken, so whether it can be reordered there was not judged.",
+    "Seen, in Board View and Tech View: S2-36932 (Invoiced) and S2-36933 (Paid), led by Esther Howard, did not move to Ralph Edwards or to Unassigned and kept Esther Howard as lead; both could be moved within her column and kept their new place after a reload; S2-36934 (Invoiced, no lead) could not be moved out of Unassigned.",
+    "The Declined S2-36935 and the Complete S2-36936 moved to Ralph Edwards normally, with \"Lead technician updated\".",
+    "On the work order page of S2-36932 the Lead technician shows Esther Howard as plain text, with no way to change it. Server refusal not checked by hand (a change sent outside the screens was refused with \"The lead technician can't be changed once a work order is Invoiced or Paid.\")."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96963-1-invoiced-stays.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: reorder two cards inside Unassigned with a picture before and after the reload)."
+  },
+  "C96964": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "S2-36938 (Invoiced) and S2-36939 (Paid), both led by Esther Howard.",
+    "In Board View each card carries a lock icon labelled \"The lead technician can't be changed once a work order is Invoiced or Paid.\"; in Tech View each row carries the same lock icon.",
+    "On both cards and both rows, More actions shows Reassign lead technician disabled, and hovering it shows the tooltip \"The lead technician can't be changed once a work order is Invoiced or Paid.\""
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96964-1-disabled-reassign.png"
+   ],
+   "ticket": null
+  },
+  "C96972": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "S2-36937 led by Esther Howard; the board showed it as Complete.",
+    "It was invoiced elsewhere; the board, not reloaded, still showed Complete.",
+    "Dragging it to Ralph Edwards' column was refused: the card went back to Esther Howard's column.",
+    "The alert read: \"Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+    "After a reload the card is in Esther Howard's column and she is still the lead."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96972-1-refused-alert.png"
+   ],
+   "ticket": null
+  },
+  "C96958": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "S2-36941: the lead was changed on the work order page (Esther Howard to Dana Ortiz), then by a Board View drag (Dana Ortiz to Ralph Edwards, \"Lead technician updated\"), then in Tech View (Ralph Edwards to Esther Howard, \"Lead technician updated\").",
+    "After each change, both technicians' own Notifications pages read empty (no new notification), the same in every place.",
+    "Email was not checked (the test technicians' addresses are not real mailboxes)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96958-1-no-notification.png"
+   ],
+   "ticket": null
+  },
+  "C96966": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "S2-36940 (In Progress), lead Esther Howard, her clock running; a shift made for her on Sun, Oct 18.",
+    "On the Schedule the shift was moved, resized to 3 hours and reassigned to Dana Ortiz (\"Reassign shift … Move this shift to Dana Ortiz on Sun, Oct 18?\" confirmed): Lead Technician still reads Esther Howard and the status In Progress.",
+    "On Board View the card was dragged to Ralph Edwards' column: no prompt, \"Lead technician updated\"; the lead is now Ralph Edwards and the status still reads In Progress.",
+    "Recorded time unchanged: the line's Actual hours went 0.02, 0.06, 0.08 of 0.30, only the running clock adding minutes; her clock was still running; no locked or approved entry was touched (clock stopped afterwards)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96966-1-status-time-kept.png"
+   ],
+   "ticket": null
+  },
+  "C96977": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 1: Board View showed \"No work orders match the search\" for \"ZZAUTOTEST F2 Card Always On\" and the top bar showed no location name, so the script was not at the location that holds the test's work order. Nothing was judged.",
+    "Seen: Fields to display lists 13 fields (Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date); work order number, unit and status are not in it."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96977-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test at Staging Heavy Duty - 9919 (script fix-up: confirm the location in the top bar before searching)."
+  },
+  "C96981": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script could not complete step 1: Board View showed \"No work orders match the search\" for \"ZZAUTOTEST F2 Fields No Reload\" and the top bar showed no location name, so the script was not at the location that holds the test's work orders. Nothing was judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96981-1-script-stopped.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test at Staging Heavy Duty - 9919 (script fix-up: confirm the location in the top bar before searching)."
+  },
+  "C96975": {
+   "verdict": "Blocked",
+   "observed": [
+    "Blocked: the test script did not follow step 8: it turned Assigned Techs ON in Tech View, while the test turns it OFF, so the test's check (Tech View shows neither Service Advisor nor Assigned Techs) could not be made.",
+    "Seen: Tech View with Service Advisor off kept it off in a second browser and at Staging Lethbridge - 4310 (Progress still on); List kept its own columns there (Service Advisor on, Progress off, no Assigned Techs)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96975-1-script-assigned-on.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run this test (script fix-up: turn Assigned Techs off in Tech View, as step 8 says)."
+  },
+  "C96976": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Board View's Fields to display button sits in the same toolbar spot as Tech View's column chooser and works the same way: a list of fields, each with a switch.",
+    "With Customer off and VIN/serial on, card S2-35516 shows \"VIN ZZWOB179200672011\" and no customer.",
+    "The same choice is in force in a second browser and at Staging Lethbridge - 4310.",
+    "Usage recording not checked by hand."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96976-1-customer-off-vin-on.png"
+   ],
+   "ticket": null
+  },
+  "C96983": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "A normal save worked first (control).",
+    "With the saved choices made unreadable on purpose, Board View showed its default card fields (lead technician, customer, asset, progress, total price, plus number, unit and status), and Tech View showed its starting columns in the test's order: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created On, Total Price.",
+    "The field turned on during the failure (On-site, standing in for the test's Created date) was saved and was still on after the reload."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96983-1-fallback-columns.png"
+   ],
+   "ticket": null
+  },
+  "C96978": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up: S2-36942 for \"ZZAUTOTEST F2 Card Field Values 65998\", asset on site, Service Advisor Esther Howard, three lines; lead \"ZZAUTOTEST Cora68328 Clock\" and \"ZZAUTOTEST Rory68328 Clock\" both clocked in.",
+    "Step 4: List's Clocked In reads \"ZZAUTOTEST Cora68328 Clock +1\", and hovering shows both names.",
+    "Step 6: Fields to display offers 13 optional fields: Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date.",
+    "Step 8: with all of them on, the card shows the same values as List: customer, unit, VIN, Esther Howard, 0%, 3 lines, $435.27, On site, Today and the lead's name. Estimated hours read \"Est. 2.2 hrs\", the same as the work order page's \"Total Hours: 2.2 hrs\" (this run's three lines add up to 2.2 hours, not the 8.0 of the test's example).",
+    "Step 9: the card's clocked-in field reads \"ZZAUTOTEST Cora68328 Clock +1\", and hovering shows both names."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96978-1-card-values.png"
+   ],
+   "ticket": null
+  },
+  "C96985": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "S2-36943 has no service advisor, no VIN and nobody clocked in.",
+    "Fields to display: service advisor, VIN/serial and clocked in were turned on (with lead technician, customer and progress).",
+    "The card leaves out service advisor, VIN/serial and clocked in entirely: no label, no blank, no dash.",
+    "Its other fields still show: S2-36943, Approved, the customer, unit ZZF2EH, Progress 0% and Lead technician Esther Howard."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96985-1-empty-hidden.png"
+   ],
+   "ticket": null
+  },
+  "C96987": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "A brand-new user who had never chosen a density opened Work Orders; List has no density control.",
+    "Tech View's Density menu: Compact, Regular and Comfortable, with Regular ticked.",
+    "Board View's Density menu: the same three, with Regular ticked."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96987-1-density-regular.png"
+   ],
+   "ticket": null
+  },
+  "C96990": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Set-up: S2-35534 for \"ZZAUTOTEST F1 Compact Text\", led by Esther Howard.",
+    "Step 4 (Tech View, Regular): the row text is 14 px; the column header labels are 12 px; the percentage beside the progress bar is 12 px.",
+    "Step 6 (Compact): the row text is still 14 px; header labels and percentage stay 12 px.",
+    "Step 8 (Comfortable): the row text, header labels and percentage are the same sizes as at Regular.",
+    "Step 11 (Board View): the card text is 14 px at Compact and at Regular.",
+    "Note: the status pill stays 11 px at every density; the technician avatar's initials grow and shrink with the avatar (8, 9.6 and 12.8 px); the requirement (S6-R4) names row and card text and the 12 px texts, not avatars.",
+    "The problem reported in the ticket (13 px row text, 11 px percentage) is not seen on this build; the ticket reads \"TESTING STAGE\" (read 17 Oct 2026): https://shopview.atlassian.net/browse/SV-11420."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96990-1-compact-text-sizes.png"
+   ],
+   "ticket": null
+  },
+  "C96991": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Tech View set to Comfortable; after a normal reload the Density menu still has Comfortable ticked.",
+    "With the saved setting made unreadable on purpose (the forced load failure), Tech View's menu has Regular ticked, and Board View's too.",
+    "The saved choice itself was still Comfortable afterwards."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96991-1-fallback-regular.png"
+   ],
+   "ticket": null
+  }
+ }
+}
