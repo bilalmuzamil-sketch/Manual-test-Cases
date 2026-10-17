@@ -1,0 +1,107 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 live fixer readings, batch 01"
+ },
+ "results": {
+  "C97003": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: every step was done and matches, except the order at step 11, which follows from what step 7 itself allows; that is a question about the test's wording for the QA lead (the expected results are left as written).",
+    "Signed in as a new view-only user (ZZAUTOTEST Viewer5, role ZZAUTOTEST WO View Only); both users started with Unassigned, Ana, Ben, Cal (plus Dan).",
+    "Step 6: Cal's column dragged before Ana's: the order became Unassigned, Cal, Ana, Ben.",
+    "Step 7: Ben's column, let go on the Unassigned header, could not be placed before Unassigned; it went straight after it (Unassigned, Ben, Cal, Ana). Unassigned stays the first column.",
+    "Step 8: the Unassigned header has no drag handle, and dragging it to the right of Cal moved nothing.",
+    "Step 10: in Tech View, Ben's group dragged above the Unassigned group moved nothing; Unassigned stays the first group.",
+    "Step 11: after the refresh the view-only user sees Unassigned, Ben, Cal, Ana in both views. The test expects Unassigned, Cal, Ana, Ben, which assumes the step 7 drop left Ben where he was; step 7's expected result only says Ben cannot go before Unassigned.",
+    "Step 12: the dispatcher's own order is unchanged: Unassigned, Ana, Ben, Cal (saved per user)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97003-l-1-ben-on-unassigned.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97003-l-2-after-refresh.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: the QA lead to say whether a technician let go on the Unassigned header should land first after Unassigned (as here) or stay where it was (as step 11 assumes, and as the tech plan's 'Unassigned is never a technician drop target' may mean); nothing else is left."
+  },
+  "C614714": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps through the screen (live re-run, 17 Oct).",
+    "Set-up: ZZAUTOTEST N1 Tim 37661 (Technician, Time Clock on) leads S2-37114; S2-37115 has no lead; customer ZZAUTOTEST N1 Time Clock Off 37661.",
+    "Steps 1 and 2: Tim's staff record opened; Time Clock was switched off and Save & Close saved it (the window closed; read back: Time Clock off). The same window saved a change on another test record too.",
+    "Step 4: Board View still shows Tim's own column holding S2-37114.",
+    "Step 5: S2-37115 dropped on Tim's column was refused: it stayed in Unassigned and Tim's column still holds only S2-37114. (A drop on Esther Howard's column in the same run was accepted, so the drag itself worked.)",
+    "Step 6: Tech View shows S2-37114 in a group headed ZZAUTOTEST N1 Tim 37661.",
+    "Steps 7 and 8: S2-37114's page opened; Lead Technician was set to Unassigned on the page and reads Unassigned.",
+    "Steps 9 and 10: Board View shows no column and Tech View no group for Tim."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614714-l-1-refused.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614714-l-2-lead-unassigned.png"
+   ],
+   "ticket": null
+  },
+  "C581892": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (live re-run, 17 Oct).",
+    "Set-up (customer ZZAUTOTEST S4R28 Approved Lines 10171031), each led by Esther Howard with a shift on Sunday Oct 18: S2-37122 (second line not approved; 8:00 to 10:00), S2-37123 (second line declined; 10:00 to 12:00), S2-37124 (a Choose lines shift ticking both approved lines; 13:00 to 15:00).",
+    "Steps 3 to 11: each of the three drags from Esther Howard's column to Ralph Edwards' opened \"Clear Esther Howard's scheduled shifts?\"; after Keep shifts each work order moved to Ralph Edwards' column with \"Lead technician updated\".",
+    "Steps 12 to 14: Schedule > tomorrow (Sun, Oct 18): Esther Howard's row still shows all three shifts at the same times: 8-10 AM, 10 AM-12 PM and 1-3 PM."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581892-l-1-esther-row.png"
+   ],
+   "ticket": null
+  },
+  "C96936": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: step 5 (changing the lead in tab B on the work order page) was done behind the screen by the test script, so the test cannot pass as written, although what it judges (tab A after the refresh) matched.",
+    "Set-up: customer \"ZZAUTOTEST F2 Refresh Lead\": S2-35331, S2-35332, S2-35333 with Esther Howard, S2-35334 and S2-35335 with Ralph Edwards. Steps 1 to 4: tab A in Tech View shows Esther Howard 3 and Ralph Edwards 2.",
+    "How step 5 was done: in tab B, S2-35331's page opened and its Lead Technician list was opened, but Ralph Edwards is not offered there (the list is cut off, the known SV-11393 problem), so the script changed the lead to Ralph Edwards behind the screen instead.",
+    "Step 6: before the refresh, tab A still showed S2-35331 under Esther Howard.",
+    "Steps 7 and 8: after the refresh S2-35331 is under Ralph Edwards; Esther Howard shows 2 and Ralph Edwards shows 3."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96936-l-1-after-refresh.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: redo step 5 on the screen with a technician that is offered (the names are examples, e.g. Jenny Wilson), then read tab A before and after the refresh; or the coordinator / QA lead accepts the behind-the-screen change as the trigger."
+  },
+  "C96916": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: in this run Back came back in List, but earlier runs today on the same steps came back in Board View (08:01) and in Tech View (09:15), and this test user's saved display is shared with other sessions using staging at the same time, so the view Back lands in cannot be judged yet.",
+    "Board View half (Work Orders tab, search \"ZZAUTOTEST F1 Scroll Back Theresa\", 1600 px): S2-36409 was opened from Theresa Webb's column; after Back the Work Orders tab and the search were kept, but the page showed List, not Board View, so the sideways position and the top card could not be compared.",
+    "Tech View half: scrolled so S2-36427 was at the top, S2-36428's number opened its work order; after Back the Work Orders tab and the search were kept, but the page again showed List, not Tech View.",
+    "Earlier today (fix-up round 3, 08:01) the same Board View steps came back in Board View with the same sideways position and the same top card; in round 4 (09:15) Back came back in Tech View.",
+    "The start-state question stands: the Work Orders tab offers no Status filter, so \"Status Approved\" cannot be chosen there."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96916-l-1-board-back.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96916-l-2-tech-back.png"
+   ],
+   "ticket": "Follow the work here: https://shopview.atlassian.net/browse/SV-11421 (Testing Stage, read 17 Oct 2026).",
+   "todo": "What needs to be done: re-run with a test user no other session uses (so the saved display cannot change during the run) and record which view Back returns to; the QA lead to look at the start state (Status is offered only on the All tab)."
+  },
+  "C368167": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: step 2 could not be done as written (closing New Customer Payment with X undoes the invoice), so the payment window was left open instead; the rest matches the test.",
+    "Set-up: S2-37126, Complete, led by Esther Howard (customer ZZAUTOTEST Refused Lead Change 33880; credit limit raised).",
+    "Step 2 (tab 2): Finance tab > Create Invoice; the work order read Invoiced. The New Customer Payment window was NOT closed with X, because on staging that removes the invoice again (seen on a check work order earlier today).",
+    "Steps 3 and 4 (tab 1, not reloaded): Lead Technician could still be opened; Ralph Edwards is not offered (SV-11393 list cut-off), so Jenny Wilson was picked (the names are examples).",
+    "Step 5: the change was refused with \"The lead technician can't be changed once a work order is Invoiced or Paid. Please try to resolve this.\"; the screen then shows Lead technician Esther Howard (the script's own text read at that moment returned empty, the picture taken straight after shows Esther Howard).",
+    "Step 6: after the reload Lead Technician still reads Esther Howard; the work order reads Invoiced."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368167-l-1-after-refused.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: the QA lead to say whether closing New Customer Payment should undo the invoice; if it should, step 2 of the test needs another wording (leave the window open or pay part); then this can be marked from today's reading."
+  }
+ }
+}
