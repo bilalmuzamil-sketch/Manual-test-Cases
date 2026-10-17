@@ -1,0 +1,131 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up round 3, batch 01 = round 3 steps 2-8"
+ },
+ "results": {
+  "C614714": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: steps 2 and 8 were again done behind the screen by the test script, not through the screens, so the test cannot pass (second time).",
+    "Set-up: ZZAUTOTEST N1 Tim 80133 (Technician, Time Clock on) leads S2-37087; S2-37088 has no lead; customer ZZAUTOTEST N1 Time Clock Off 80133.",
+    "Steps 1 and 2: Tim's staff record opened and Time Clock was switched off, but after Save & Close the window stayed open with no error shown; the script then made the same change behind the screen (read back: Time Clock off).",
+    "Step 4: Board View still shows Tim's own column, holding only S2-37087.",
+    "Step 5: dropping S2-37088 on Tim's column was refused: it stayed in Unassigned and Tim's column still holds only S2-37087 (a drop on another technician's column in the same run was accepted, so the drag itself worked).",
+    "Step 6: Tech View shows S2-37087 in a group headed ZZAUTOTEST N1 Tim 80133.",
+    "Steps 7 and 8: S2-37087's page opened, but a New Line window opened over it and the script did not reach the Lead Technician field; it cleared the lead behind the screen (the page then read Lead technician Unassigned).",
+    "Steps 9 and 10: after that, Board View has no column and Tech View no group for Tim."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614714-f3-1-save-window.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614714-f3-2-new-line.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: a focused script that saves the Time Clock change through the Edit Staff Member window (find out why Save & Close left it open) and closes the New Line window before setting Lead Technician to Unassigned on the work order page; sent back to the coordinator."
+  },
+  "C614717": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (round 3 re-run, 17 Oct).",
+    "Set-up: S2-37038 led by ZZAUTOTEST N4 Ana, with lines for Ben, Cal, Dee, Eve and Fay; the Assigned Techs cell shows four avatars and \"+2\".",
+    "Step 1: pointing at the first avatar in Tech View's Assigned Techs cell opens a bubble \"ZZAUTOTEST N4 Ana\" above it.",
+    "Step 2: pointing at \"+2\" opens a bubble above it listing \"ZZAUTOTEST N4 Eve, ZZAUTOTEST N4 Fay\".",
+    "Step 3: Ana's group header avatar carries the browser's plain name tip \"ZZAUTOTEST N4 Ana\" and no bubble.",
+    "Step 4: Board View shows S2-37038's card with its technician avatars.",
+    "Steps 5 and 6: on the card, the first avatar opens \"ZZAUTOTEST N4 Ana\" above it, and \"+2\" opens \"ZZAUTOTEST N4 Eve, ZZAUTOTEST N4 Fay\" above it.",
+    "Step 7: Ana's column header avatar carries the plain name tip \"ZZAUTOTEST N4 Ana\" and no bubble."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614717-f3-1-row-avatar.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614717-f3-2-row-plus.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614717-f3-3-card-plus.png"
+   ],
+   "ticket": null
+  },
+  "C614719": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (round 3 re-run on the All tab, 17 Oct).",
+    "Set-up: S2-37039 (ZZAUTOTEST C614719 Ana) and S2-37040 (ZZAUTOTEST C614719 Ben) for Customer-A, S2-37041 with no lead; search \"ZZAUTOTEST C614719 Keyboard\".",
+    "Step 1: Unassigned collapses; its header stays and S2-37041's row is hidden; Ana's group follows, then Ben's.",
+    "Step 2: the cursor is in Search and nothing in the table has a focus ring.",
+    "Step 3: Tab lands the focus ring on S2-37039's row, the first row of Ana's group, not on a header.",
+    "Steps 4 and 5: Board View shows Unassigned first, then Ana's and Ben's columns; with Customer-A's name in Search, S2-37039 is in Ana's column, S2-37040 in Ben's, and Unassigned has no cards.",
+    "Steps 6 and 7: the cursor is in Search with no ring on the board; Tab lands the focus ring on S2-37039's card, the first card in Ana's column, not on a column header."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614719-f3-1-tab-tech.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C614719-f3-2-tab-board.png"
+   ],
+   "ticket": null
+  },
+  "C368178": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (round 3 re-run, 17 Oct).",
+    "Location time zone matches the browser (Asia/Karachi; the Schedule's clock read the same time as the browser before the run).",
+    "Set-up: Esther Howard's two leftover shifts on Mon, Oct 19 were removed first, so her row was empty that day. Work order S2-37089 (2 lines) was used.",
+    "Steps 1 to 5: on Mon, Oct 19, S2-37089's card was dragged onto Esther Howard's row under 9 AM; the window kept Entire work order; Hours was set to 2h and Create 1 shift was clicked: the window closed with no error message.",
+    "Step 6: after the reload, Esther Howard's row shows the shift from 9 AM; opened, it reads 09:00 AM to 11:00 AM, technician Esther Howard, and lists both of the work order's lines (the whole work order, no single line named)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368178-f3-1-shift.png"
+   ],
+   "ticket": null
+  },
+  "C368136": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script stopped in Tech View, so steps 7 to 10 were not done (second time steps 8 to 10 were not reached).",
+    "Set-up: S2-35490 (customer ZZAUTOTEST F1 Prompt Where) led by Esther Howard, with her 8:00 to 12:00 shift for the whole work order tomorrow (Oct 18).",
+    "Board View: the clear-shifts question opened for the drag to Ralph Edwards and for the Reassign lead technician window; Keep shifts was chosen and the work order was moved back to Esther Howard each time.",
+    "Tech View: the script waited 30 seconds for Ralph Edwards' group, which was not loaded on the page (the list only loads groups near the screen), and stopped. The Tech View drag and dialog, the work order page change, the List check and the Schedule check were not done.",
+    "The question opening in Board View means the symptom the test expects today (no question at all) was not seen there."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368136-f3-1-script-stop.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: a focused script that scrolls Tech View to Ralph Edwards' group before dragging, then changes the lead on the work order page by typing the name, checks List, and reads tomorrow's Schedule; sent back to the coordinator."
+  },
+  "C96916": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the Tech View half was not done by the test script for the second time (no row was clicked). The Board View half and the start-state question stay as posted earlier today.",
+    "Board View (read again today, Work Orders tab, search \"ZZAUTOTEST F1 Scroll Back Theresa\", 1600 px): after opening S2-36409 and pressing Back, the board came back on the Work Orders tab with the search kept, at exactly the same sideways position, with S2-36407 back at the top of Theresa Webb's column, fully shown.",
+    "Tech View: the script scrolled down to S2-36421 but found no row of this test in view to click, so no work order opened; its Back press then left the page (search cleared, top of the list). Steps 9 and 10 are not judged.",
+    "The start-state question stands: the Work Orders tab offers no Status filter, so \"Status Approved\" cannot be chosen there."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96916-f3-1-tech-no-row.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96916-f3-2-board-back.png"
+   ],
+   "ticket": "Follow the work here: https://shopview.atlassian.net/browse/SV-11421 (Testing Stage, read 17 Oct 2026).",
+   "todo": "What needs to be done: a focused script that scrolls Tech View until one of this test's rows is at the top, clicks that row, then presses Back (script fix, sent back to the coordinator); the QA lead to look at the start state (Status is offered only on the All tab)."
+  },
+  "C368131": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: step 3 needed an extra change made behind the screen by the test script, so the test cannot pass as written.",
+    "Set-up: S2-35908 led by Aaa ZZAUTOTEST Tara Lead, S2-35909 by Aaa ZZAUTOTEST Theresa Pinned; Jenny Pinned and Theresa Pinned pinned for the admin and for the view-only user.",
+    "Step 2: Jenny Pinned was deactivated with Deactivate Account.",
+    "Step 3: Theresa Pinned's Location was changed to Staging Lethbridge - 4310 with Save & Close. After that she was still offered as a technician at Staging Heavy Duty, so the script also removed her Heavy Duty enrolment behind the screen.",
+    "Step 7 (admin): Jenny Pinned's column stays pinned right after Unassigned, marked Inactive, reading \"No work orders\"; Theresa Pinned is not among the pinned columns.",
+    "Step 8: Theresa Pinned's column shows further along as a normal column holding S2-35909, with no pin icon and no Inactive marker.",
+    "Step 9: S2-35908 dropped on Jenny Pinned's column was refused and stayed with Tara Lead.",
+    "Steps 10 and 11: dropped on Theresa Pinned's column, \"This technician can't be assigned work orders.\" showed and S2-35908 stayed with Tara Lead.",
+    "Steps 12 and 13: S2-35909 dragged to Unassigned (\"Lead technician removed\"); Theresa Pinned then has no column at all.",
+    "Step 15 (view-only user): Jenny Pinned stays pinned after Unassigned, Inactive, reading \"No work orders\"; there is no Theresa Pinned column."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368131-f3-1-pinned-inactive.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368131-f3-2-refused.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368131-f3-3-viewonly.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: re-run with step 3 done only through the screen (no change behind it) and read steps 7, 8 and 10 to 13 as they then are; if changing the Location alone leaves her at Staging Heavy Duty, the QA lead decides whether the case needs a further step (sent back to the coordinator)."
+  }
+ }
+}
