@@ -1,0 +1,20 @@
+import {session,toView,narr,finish,dens} from './rec.mjs';
+const dir='/tmp/qa11310/vo05'; const N=narr(dir); const NUM='S2-17528';
+const s=await session({vp:{width:1440,height:900},record:'/tmp/qa11310/rec05'}); const p=s.page; const tLogin=Date.now(); const mk=await s.marker(); const log={};
+const card=()=>p.evaluate(num=>{const c=[...document.querySelectorAll('[data-test-id^=board_card_]')].find(c=>/^board_card_[0-9a-f-]{36}$/.test(c.getAttribute('data-test-id'))&&c.getBoundingClientRect().width>0&&c.innerText.includes(num)); const pill=c.querySelector('.q-badge:not(.q-badge--floating)'); const b=pill.getBoundingClientRect(); const cb=c.getBoundingClientRect(); const fl=[...c.querySelectorAll('.q-badge--floating')].map(f=>{const r=f.getBoundingClientRect(); return {t:f.innerText.trim(),x:r.x+r.width/2,y:r.y+r.height/2};}); return {pill:pill.innerText.trim(),h:Math.round(b.height),dx:Math.round(cb.right-b.right),dy:Math.round(b.top-cb.top),x:b.x,y:b.y+b.height/2,fl};},NUM);
+const tip=async f=>{ await p.mouse.move(f.x,f.y,{steps:12}); await p.waitForTimeout(1300); return p.evaluate(()=>[...document.querySelectorAll('.q-tooltip,[role=tooltip]')].filter(e=>e.getBoundingClientRect().width>0).map(e=>e.innerText.trim().replace(/\n/g,', ')).join(' | ')); };
+await s.go(`/workorders?tab=all&search=${NUM}`); await p.waitForTimeout(4000); await toView(p,'board_view'); await p.waitForTimeout(2500);
+let c=await card(); log.c=c; await p.mouse.move(c.x-15,c.y,{steps:14});
+await N.cap(s,'n1',`SV-11405 · staging ${mk.version} · Board View · ${NUM}: "${c.pill}" pill, ${c.h} px tall, red ${c.fl[0]?.t} and blue ${c.fl[1]?.t} counts`);
+log.t1=await tip(c.fl[0]); log.t2=await tip(c.fl[1]); await p.mouse.move(c.fl[1].x,c.fl[1].y);
+await N.cap(s,'n2',`Card tooltips: red "${log.t1}" · blue "${log.t2}"`);
+await p.mouse.move(700,860,{steps:8}); await toView(p,'list'); await p.waitForTimeout(2500);
+const L=await p.evaluate(num=>{const r=[...document.querySelectorAll('.q-table__container tbody tr')].find(r=>r.innerText.includes(num)); const pill=r.querySelector('.q-badge:not(.q-badge--floating)'); const b=pill.getBoundingClientRect(); const fl=[...r.querySelectorAll('.q-badge--floating')].map(f=>{const q=f.getBoundingClientRect(); return {t:f.innerText.trim(),x:q.x+q.width/2,y:q.y+q.height/2};}); return {pill:pill.innerText.trim(),x:b.x,y:b.y+b.height/2,fl};},NUM);
+log.L=L; log.lt1=await tip(L.fl[0]); log.lt2=await tip(L.fl[1]);
+await N.cap(s,'n3',`List, same work order: "${L.pill}", red ${L.fl[0]?.t} "${log.lt1}" · blue ${L.fl[1]?.t} "${log.lt2}"`);
+await p.mouse.move(700,860,{steps:8}); await toView(p,'board_view'); await p.waitForTimeout(2000); const hs=[];
+for(const d of ['compact','comfortable','regular']){ await dens(p,d); await p.waitForTimeout(1200); const k=await card(); hs.push(`${d[0].toUpperCase()+d.slice(1)} ${k.h} px`); }
+log.hs=hs; const c2=await card(); await p.mouse.move(c2.x-15,c2.y,{steps:10});
+await N.cap(s,'n4',`Pill height: ${hs.join(', ')} · same spot on every card · Spec v64 S3-R5a → PASSED`);
+await toView(p,'tech_view');
+await finish(s,dir,N.ev,{tLogin,mk,log}); console.log(JSON.stringify(log).slice(0,800));

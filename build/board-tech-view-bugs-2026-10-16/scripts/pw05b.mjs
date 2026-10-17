@@ -1,0 +1,8 @@
+import {open} from './qa.mjs'; import {C,toView} from './rec.mjs';
+const env=process.argv[2];
+const s=await open(env==='prod'?{env:'prod',dir:'/tmp/qa11310',user:'bilal.muzamil@shopview.com',vp:{width:1600,height:900},dpr:1}:{env:'staging',dir:'/tmp/qa11310',cookies:C,quick:'admin',vp:{width:1600,height:900},dpr:1});
+const p=s.page;
+let num=process.argv[3]; if(!num){ const r=await s.api('/api/work-orders?pagination[page]=1&pagination[rowsPerPage]=50&pagination[sortBy]=number&pagination[descending]=true&filters[0][field]=status&filters[0][value]=paid&search=&showMyWorkOrders=0'); num=r.json.data.work_orders[0].number; }
+await s.go(`/workorders?tab=all&search=${num}`); await p.waitForTimeout(4500); if(env!=='prod'){ await toView(p,'list'); await p.waitForTimeout(2000);}
+console.log(env,num,JSON.stringify(await p.evaluate(num=>{const r=[...document.querySelectorAll('.q-table__container tbody tr')].filter(r=>r.innerText.includes(num)); const e=r[0]?.querySelector('.q-badge:not(.q-badge--floating)'); if(!e) return {rows:r.length}; const td=e.closest('td'); const kids=[...e.querySelectorAll('*')].map(k=>k.tagName+'.'+k.className.toString().slice(0,30)+':'+Math.round(k.getBoundingClientRect().width)); return {rows:r.length,w:e.getBoundingClientRect().width,html:e.outerHTML.replace(/ data-v-[a-z0-9]+=""/g,'').slice(0,300),kids,tdW:td.getBoundingClientRect().width,parentDisp:getComputedStyle(e.parentElement).display,parentW:e.parentElement.getBoundingClientRect().width,flex:getComputedStyle(e).flex,alignSelf:getComputedStyle(e).alignSelf,width:getComputedStyle(e).width};},num)));
+await s.close();

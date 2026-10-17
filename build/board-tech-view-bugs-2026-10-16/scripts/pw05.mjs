@@ -1,0 +1,8 @@
+import {open} from './qa.mjs'; import {C,toView} from './rec.mjs';
+const env=process.argv[2]; const num=process.argv[3];
+const s=await open(env==='prod'?{env:'prod',dir:'/tmp/qa11310',user:'bilal.muzamil@shopview.com',vp:{width:1600,height:900},dpr:1}:{env:'staging',dir:'/tmp/qa11310',cookies:C,quick:'admin',vp:{width:1600,height:900},dpr:1});
+const p=s.page; await s.go(`/workorders?tab=all&search=${num}`); await p.waitForTimeout(4500);
+const pill=scope=>p.evaluate(([scope,num])=>{const root=scope==='board'?[...document.querySelectorAll('[data-test-id^=board_card_]')].find(c=>/^board_card_[0-9a-f-]{36}$/.test(c.getAttribute('data-test-id'))&&c.innerText.includes(num)):[...document.querySelectorAll('.q-table__container tbody tr')].find(r=>r.innerText.includes(num)); if(!root) return null; const e=root.querySelector('.q-badge:not(.q-badge--floating)'); const cs=getComputedStyle(e); return {w:e.getBoundingClientRect().width,minW:cs.minWidth,pad:cs.paddingLeft+'/'+cs.paddingRight,style:e.getAttribute('style'),cls:e.className};},[scope,num]);
+if(env!=='prod'){ await toView(p,'list'); await p.waitForTimeout(2000);} console.log(env,'list',JSON.stringify(await pill('list')));
+if(env!=='prod'){ await toView(p,'board_view'); await p.waitForTimeout(2500); console.log(env,'board',JSON.stringify(await pill('board'))); await toView(p,'tech_view'); await p.waitForTimeout(2000); console.log(env,'tech',JSON.stringify(await p.evaluate(num=>{const r=[...document.querySelectorAll('[data-test-id^=tech_view_row_]')].find(r=>r.innerText.includes(num)); if(!r) return null; const e=r.querySelector('.q-badge:not(.q-badge--floating)'); return {w:e.getBoundingClientRect().width,style:e.getAttribute('style')};},num))); }
+await s.close();

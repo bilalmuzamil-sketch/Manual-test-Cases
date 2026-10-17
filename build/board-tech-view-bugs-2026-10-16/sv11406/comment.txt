@@ -1,0 +1,38 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on Staging (build v26.40.19-754919e) on 17 October 2026, against the spec (version 64), signed in as the Tech user. 5 of 5 checks passed.
+
+In Tech View, while you scroll, the group you are in keeps its header just under the column headings. When the next group's header reaches it, the next header pushes it up and off and is then held itself. Scrolling back up reverses it, and Unassigned works the same way.
+
+*Before and after*
+!sv11406-01-held-header-push.png|width=1024,height=1558!
+_David Haynes (6 work orders, search "Lamkin"). Top: his header is held under the column headings while his work orders scroll past. Middle: the Douglas Fields header has reached it and is pushing it up. Bottom: Douglas Fields is now the held header. There is no before picture: the ticket has none and Tech View is not on production yet. Window 1440 x 900 px, browser zoom 100%._
+
+!sv11406-02-unassigned-push.png|width=1024,height=1558!
+_The same for Unassigned (137 work orders, search "4 Star"): held, pushed up by the next header, then replaced._
+
+*What I checked*
+||#||Check||Status||
+|1|With the groups open, scrolling down: the next group's header pushes the held one up and off, then is held itself. Seen on every group change in two scroll runs: 19 changes with all groups open, and 69 with the Tech user's own mix of open and closed groups.|PASSED|
+|2|Scrolling back up reverses it: the held header slides back down into place and the earlier group's header is held again (every one of those group changes, in reverse).|PASSED|
+|3|Unassigned behaves the same way, both with many work orders (137, search "4 Star") and with one (search "Lamkin").|PASSED|
+|4|Only one header is held at any time: never more than one, in all 500 positions I measured.|PASSED|
+|5|The held header sits right under the column headings (headings end and held header starts at the same line) and does not cover them.|PASSED|
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S2-E1: While the user scrolls through an expanded group, that group's header stays on screen just under the column headings. Only one group header is held at a time: when the next group's header reaches it, the next header pushes it off and takes its place. Unassigned's header works the same way (S2-R18).{quote}
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com/workorders and sign in (I used the Tech user).
+# In the search box above the list, type *Lamkin*.
+# On the right of the same bar, click the *Tech View* button: the middle one of the three view buttons, with a person icon.
+# If no work orders show under the *David Haynes* header, click the small arrow to the left of his initials *DH* to open the group.
+# Scroll down slowly until the *David Haynes* header sits just under the column headings while his work orders scroll underneath.
+# Keep scrolling: the *Douglas Fields* header pushes David Haynes up and off, then stays in that spot.
+# Scroll back up: David Haynes comes back down and is held again.
+
+*Screen recording*
+!sv11406-held-header-staging-recording-voiceover.mp4|width=1280,alt="sv11406-held-header-staging-recording-voiceover.mp4"!
+_Staging, build v26.40.19-754919e, 17 October 2026, window 1440 px, zoom 100%, Tech user: David Haynes held, pushed off by Douglas Fields, held again when scrolling back up, then Unassigned pushed off the same way. Each value is read from the page. With voice-over._

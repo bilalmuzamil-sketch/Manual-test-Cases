@@ -102,6 +102,8 @@ if you need it.
 | Called the Work Order Log's Details column "cut off" in a QA comment and typed the full text into the exhibit by hand, when the dialog has a **horizontal scroll bar** — the QA lead had to point at it in a screenshot. Nothing was lost; I had simply not scrolled. (SV-9304, 2026-09-17.) | Before reporting anything as truncated, hidden or unavailable on screen, **look for the scroll bar and use it**, then re-capture. An exhibit shows the app's own rendering; a hand-typed transcription of a clipped column is a tell that the control was never operated. | `build/APP-ACTIONS-PLAYBOOK.md` §AC.10 (the log dialog scroll recipe); Standing Rules 79 + 81. |
 
 
+| 2026-10-17 | SV-11406 film: the caption of the last step stayed on screen over the next page (a different search), saying something that page did not show | Before switching page between two voiced lines, show a short bridging caption saying what comes next; check the caption strip between lines, not only at each voice offset | `build/board-tech-view-bugs-2026-10-16/sv11406/FINDINGS.md`, playbook §AK 5f |
+
 ## The shape of the mistakes, in four lines
 
 Read these before trusting any verdict you are about to give:
