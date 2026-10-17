@@ -45,7 +45,7 @@
  },
  "C368127": {
   "user": {
-   "email": "zzautotest.wob.unassigned.1792217885836@staging.shopview.local",
+   "email": "zzautotest.wob.unassigned.1792225222770@staging.shopview.local",
    "role": "Admin",
    "log": [
     "create 201"
@@ -53,7 +53,7 @@
   },
   "savedPrefAtStart": null,
   "opensCollapsed": false,
-  "count": 3762,
+  "count": 3768,
   "scroll": [
    {
     "y": 600,
@@ -471,7 +471,7 @@
   },
   "beforeClick": {
    "sticky": true,
-   "text": "Unassigned 3762 3762 work orders",
+   "text": "Unassigned 3768 3768 work orders",
    "icon": "",
    "iconBox": {
     "x": 89,
@@ -482,133 +482,84 @@
    "rowsDrawn": 68
   },
   "savedBeforeClick": null,
+  "headerIcons": [
+   {
+    "tag": "button",
+    "icon": "",
+    "aria": "Collapse Unassigned",
+    "tid": "button_tech_view_sticky_group_toggle",
+    "x": 49,
+    "y": 200,
+    "w": 23,
+    "h": 23
+   },
+   {
+    "tag": "svg",
+    "icon": "chevron-down",
+    "aria": "Collapse Unassigned",
+    "tid": "button_tech_view_sticky_group_toggle",
+    "x": 52,
+    "y": 203,
+    "w": 16,
+    "h": 16
+   },
+   {
+    "tag": "svg",
+    "icon": "user-round",
+    "aria": null,
+    "tid": "tech_view_sticky_group",
+    "x": 96,
+    "y": 204,
+    "w": 14,
+    "h": 14
+   },
+   {
+    "tag": "svg",
+    "icon": "clipboard-list",
+    "aria": null,
+    "tid": "tech_view_sticky_group",
+    "x": 236,
+    "y": 203,
+    "w": 16,
+    "h": 16
+   }
+  ],
   "stickyArrow": {
-   "icon": 1,
-   "header": 1,
+   "arrow": {
+    "icon": "",
+    "cx": 60,
+    "cy": 211,
+    "under": "svg.lucide-icon",
+    "onArrow": true
+   },
    "readsUnassigned": true,
-   "clicked": "sticky header arrow icon",
-   "secondTry": "sticky header row"
+   "clicked": "the leftmost icon's centre (60, 211)"
   },
   "afterClickInPlace": {
-   "sticky": true,
-   "text": "Unassigned 3762 3762 work orders",
-   "icon": "",
-   "iconBox": {
-    "x": 89,
-    "y": 197,
-    "w": 28
-   },
-   "scrollTop": 1500,
-   "rowsDrawn": 68,
-   "saved": null
+   "sticky": false,
+   "text": null,
+   "icon": null,
+   "iconBox": null,
+   "scrollTop": 0,
+   "rowsDrawn": 0,
+   "saved": [
+    "unassigned"
+   ],
+   "groupCollapsedNow": "true"
   },
-  "afterSecondTry": {
-   "sticky": true,
-   "text": "Unassigned 3762 3762 work orders",
-   "icon": "",
-   "iconBox": {
-    "x": 89,
-    "y": 197,
-    "w": 28
-   },
-   "scrollTop": 1500,
-   "rowsDrawn": 68,
-   "saved": null
-  },
-  "scrolledBackUp": false,
+  "scrolledBackUp": true,
   "afterClick": {
-   "collapsed": false,
-   "savedCollapsed": null
+   "collapsed": true,
+   "savedCollapsed": [
+    "unassigned"
+   ]
   },
   "listAllTab": {
-   "rows": 7109,
-   "withoutLead": 3762,
+   "rows": 7140,
+   "withoutLead": 3768,
    "pages": 15,
    "firstPageMeta": "{\"sortBy\":\"company_name\",\"descending\":false,\"page\":1,\"rowsPerPage\":500,\"totalWorkOrderPrice\":84970926}",
    "matchesHeader": true
-  }
- },
- "C368161": {
-  "wo": "S2-37062",
-  "lead": "Theresa Webb",
-  "leadStaff": "36a07bcb",
-  "theresaLog": [],
-  "lineTech": "Jenny Wilson",
-  "created": {
-   "approve": 201,
-   "lead": 201,
-   "line": 201
-  },
-  "olderWorkOrders": [
-   "S2-35327 approved lead=Esther Howard"
-  ],
-  "lineTechsBefore": [
-   "Theresa Webb"
-  ],
-  "canned": " Service - Transmission service (Automatic)",
-  "editorOpen": 1,
-  "addTech": {
-   "picked": "Jenny Wilson",
-   "count": 97,
-   "first": "Aaron Baker",
-   "last": "QA ServiceManager",
-   "offered": {
-    "Jenny Wilson": true
-   },
-   "reason": null
-  },
-  "roster": [
-   "Theresa Webb close",
-   "Jenny Wilson close"
-  ],
-  "lineTechsAfterEditor": [
-   "Jenny Wilson"
-  ],
-  "lineCalls": [
-   "POST /api/work-orders/lines/change {\"assigned_techs\":[\"36a07bcb-9f92-436f-b28f-d91e443d3f6c\",\"aa23aa05-38c9-470e-a280-01ed3863b0eb\"],\"description\":\"Due by mileage/ preventative maintenence\",\"line",
-   "PUT /api/work-orders/lines/176526fb-6a10-4e3f-bd84-681b50445fc9/technicians {\"staffIds\":[\"aa23aa05-38c9-470e-a280-01ed3863b0eb\"]}"
-  ],
-  "reach": {
-   "found": true,
-   "wasOpen": true
-  },
-  "header": {
-   "avatar": "TW",
-   "hasImg": false,
-   "text": "TW Theresa Webb 1 1 work order"
-  },
-  "rowAvatars": {
-   "avatars": [
-    "AS",
-    "TW",
-    "JW"
-   ],
-   "brokenImg": 0
-  },
-  "boardHeader": "TW",
-  "fieldsButton": "Fields to display",
-  "fieldsMenu": [
-   "Lead technician=true",
-   "Customer=true",
-   "Asset=true",
-   "VIN/serial=true",
-   "Progress=true",
-   "Service advisor=false",
-   "Clocked in=true",
-   "Line count=false",
-   "Line technicians=true",
-   "Estimated hours=true",
-   "Total price=true",
-   "On-site=true",
-   "Created date=false"
-  ],
-  "lineTechOn": "true",
-  "cardAvatars": {
-   "avatars": [
-    "TW",
-    "JW"
-   ],
-   "text": "S2-37062 Approved 2 Customer ZZAUTOTEST F2 Initials Avatar TRK-118 VIN/serial VIN ZZWOB179221795409 Estimated hours Est. 2.0 hrs Progress 0% Line technicians TW JW Lead technician Theresa Webb Total p"
   }
  }
 }
