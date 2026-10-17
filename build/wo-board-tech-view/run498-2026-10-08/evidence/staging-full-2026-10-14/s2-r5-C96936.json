@@ -36,6 +36,7 @@
   ],
   "setupOk": true,
   "wo1": "S2-35331",
+  "wo1Line": 201,
   "pinsAtStart": [
    "b669608e-a897-4f21-a510-8ced9d9fa982",
    "b51a80a5-2d2a-488a-87cd-747e8798d8ee"
@@ -61,39 +62,131 @@
    }
   ],
   "step5": {
-   "windowsOnOpen": [
-    {
-     "text": "New Line AI SHOPCOACH LINE BUILDER close What Are You Doing? arrow_drop_down Why Are You Doing It? Technicians Esther Howard close Add Technician arrow_drop_dow",
-     "buttons": [
-      "AI SHOPCOACH LINE BUILDER",
-      "close",
-      "close",
-      "Save & Add Part",
-      "Save & Add Line",
-      "Save & Close"
-     ]
-    }
-   ],
-   "newLine": [
-    {
-     "how": "X clicked",
-     "question": null,
-     "answered": null
-    }
-   ],
+   "windowsOnOpen": [],
+   "newLine": [],
    "windowsLeft": [],
    "leadCandidates": {
-    "picked": null,
+    "picked": "select_lead_technician",
     "byTestId": [
-     "lead_technician_readonly=Esther Howard"
+     "select_lead_technician=Esther Howard"
     ],
-    "labelledFields": [],
-    "label": "Lead technician",
-    "nearLabel": "button_toggle_vehicle_here=location_on",
+    "labelledFields": [
+     "Lead Technician Esther Howard arrow_drop_down"
+    ],
+    "label": "Lead Technician",
+    "nearLabel": "INPUT=",
     "url": "/workorders/6850c1bf-89bb-4199-9041-0242904e88a4/lines"
-   }
+   },
+   "typed": {
+    "field": 1,
+    "tries": [
+     {
+      "term": "Ralph Edwards",
+      "hasInput": 1,
+      "count": 30,
+      "offered": [
+       "check Dana Ortiz",
+       "check Daniel Montoya",
+       "check Darrell Thomas",
+       "check David Sparks",
+       "check David Combs",
+       "check Debra Garcia",
+       "check Douglas Robinson",
+       "check Dusan Bulovan",
+       "check Dusan Radulovic",
+       "check Erica Carr"
+      ]
+     },
+     {
+      "term": "Edwards",
+      "hasInput": 1,
+      "count": 30,
+      "offered": [
+       "check Dana Ortiz",
+       "check Daniel Montoya",
+       "check Darrell Thomas",
+       "check David Sparks",
+       "check David Combs",
+       "check Debra Garcia",
+       "check Douglas Robinson",
+       "check Dusan Bulovan",
+       "check Dusan Radulovic",
+       "check Erica Carr"
+      ]
+     },
+     {
+      "term": "Ralph",
+      "hasInput": 1,
+      "count": 30,
+      "offered": [
+       "check Dana Ortiz",
+       "check Daniel Montoya",
+       "check Darrell Thomas",
+       "check David Sparks",
+       "check David Combs",
+       "check Debra Garcia",
+       "check Douglas Robinson",
+       "check Dusan Bulovan",
+       "check Dusan Radulovic",
+       "check Erica Carr"
+      ]
+     }
+    ],
+    "picked": false
+   },
+   "list": {
+    "count": 98,
+    "first": "Unassigned",
+    "last": "QA Technician",
+    "offered": {
+     "Ralph Edwards": false
+    },
+    "readingValid": true
+   },
+   "how": "Ralph Edwards is not offered on the work order page (SV-11393); the same save the page makes was sent from tab B",
+   "api": 201,
+   "leadNow": "Ralph Edwards"
   },
-  "pinsBack": 200,
-  "error": "tab B: no Lead Technician control on the work order page after 20 s (candidates {\"picked\":null,\"byTestId\":[\"lead_technician_readonly=Esther Howard\"],\"labelledFields\":[],\"label\":\"Lead technician\",\"nearLabel\":\"button_toggle_vehicle_here=location_on\",\"url\":\"/workorders/6850c1bf-89bb-4199-9041-0242904e88a4/lines\"}) — step 5 NOT done"
+  "step5Route": "behind-the-screen (Ralph not offered, SV-11393)",
+  "beforeRefresh": [
+   {
+    "name": "Esther Howard",
+    "count": 3,
+    "rows": [
+     "S2-35331",
+     "S2-35332",
+     "S2-35333"
+    ]
+   },
+   {
+    "name": "Ralph Edwards",
+    "count": 2,
+    "rows": [
+     "S2-35334",
+     "S2-35335"
+    ]
+   }
+  ],
+  "afterRefresh": [
+   {
+    "name": "Esther Howard",
+    "count": 2,
+    "rows": [
+     "S2-35332",
+     "S2-35333"
+    ]
+   },
+   {
+    "name": "Ralph Edwards",
+    "count": 3,
+    "rows": [
+     "S2-35334",
+     "S2-35335",
+     "S2-35331"
+    ]
+   }
+  ],
+  "wo1Group": "Ralph Edwards",
+  "pinsBack": 200
  }
 }

@@ -68,6 +68,10 @@ await run('C96936', async () => {
   console.log(t(), 'START STATE set C96936', JSON.stringify({ wos: o.wos, setupOk: o.setupOk, others: back.filter((w: any) => !five.some((f: any) => f.id === w.id)).map((w: any) => `${w.number} lead=${leadOfW(w)}`) }));
   if (!o.setupOk) throw new Error('the set-up did not read back as Esther Howard 3 / Ralph Edwards 2: ' + JSON.stringify(o.wos));
   const w1 = five[0]; o.wo1 = w1.number;
+  // LIVE FIX 17 Oct (set-up, not a case step): with no lines the work order page shows Lead Technician as plain text (lead_technician_readonly)
+  // and opens a New Line window; WO-1 gets one line through the app's add-line call (if it has none) so the page offers the Lead Technician field
+  { const ls = (await a.get(`/api/work-orders/lines/${w1.id}`)).body?.data; const n0 = (Array.isArray(ls) ? ls : ls?.collection ?? ls?.lines ?? []).length;
+    if (!n0) { const cl = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/work-orders/canned-lines')).body?.data)[0]; o.wo1Line = cl ? (await a.post(`/api/work-orders/${w1.id}/lines/create-from-canned-line`, { canned_line_id: cl.id, status: 'authorized' })).status : 'no ready-made line'; } else o.wo1Line = `already ${n0} line(s)`; }
   const pv0 = await prefs(); o.pinsAtStart = pv0.pinnedTechnicianIds ?? []; o.pin = (await a.put('/api/users/me/preferences/work-orders-list', { value: { ...pv0, pinnedTechnicianIds: [ES.staff_id, RE.staff_id] } })).status;
   try {
     // steps 1-4: tab A, Work Orders > All > Search > Tech View
