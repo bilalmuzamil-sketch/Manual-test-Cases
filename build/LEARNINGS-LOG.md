@@ -718,7 +718,7 @@ At 08:24 UTC the harness reported a restart and listed my background WAIT comman
 - The **Schedule search box** filters only the work-order list on the left; it does not narrow the calendar to that work order's technician. To read a technician's shifts on screen, open the Schedule on the right day and scroll the resource list to that technician's ROW (C581892 step 14 opened 6 of 286 events and never reached Esther Howard's row).
 - Dashboard "View details" tables: a reader keyed to one table selector counted 0 rows while the pictures showed full tables — read rows by role=row / tr / repeated row elements and log which selector matched.
 
-## L0433 — 2026-10-17 — Moving the sign-out batch behind a new round: stop the PARENT waiter only; its running child survives
+## L0436 — 2026-10-17 — Moving the sign-out batch behind a new round: stop the PARENT waiter only; its running child survives
 - Round 5 of run 498 had to go before the sign-out batch, which `after-round4-1017.sh` (pid 4795) would start after round 4. `kill 4795`
   (plain SIGTERM to the waiter's pid only) left its running child `run-fixup-1017d.sh` alive, re-parented to pid 1: the child wrote to a
   log FILE (no pipe to break) and the waiter was started with `setsid nohup` (no terminal, so no hang-up signal to the group). Checked with
