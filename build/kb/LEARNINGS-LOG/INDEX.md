@@ -320,3 +320,70 @@
 - L0298
 - L0299
 - L0300
+
+## build/kb/LEARNINGS-LOG/005-L0301-L0365.md
+- L0301 — 2026-10-09 — A KEYWORD SEARCH IS NOT A FILTER (QA lead, after SV-11099 was filed in error)
+- L0302 — 2026-10-09 — AN ASK WITHOUT THE STEPS CANNOT BE ANSWERED (QA lead, on the click-outside question)
+- L0303 — 2026-10-09 — THE PRD WINS; PRODUCTION IS NEVER USED TO DECIDE WHAT THE PRD MEANS (QA lead)
+- L0304 — 2026-10-09 — LEAD TECHNICIAN CHANGES ARE IN THE WORK ORDER'S LOG, NOT A LINE'S (QA lead, with a recording)
+- L0305 — 2026-10-09 — THE MODEL FOR PRECONDITIONS AND STEPS IS C96962 (QA lead: "a great example of a good test case preconditions and steps")
+- L0306 — 2026-10-10 — EVERY TICKET IS COMMENTED IN THE RUN WITH ITS FULL LINK; AN OBSOLETED TICKET MEANS ASK "MARK THE TEST PASSED?" (QA lead)
+- L0307 — 2026-10-10 — A WATCHER MUST TEST THE REAL THING, AND MUST BE PROVED ABLE TO SAY "UP" (QA lead: "Branch is back, since 30 minutes why could not know that
+- L0308 — 2026-10-10 — A filed ticket is HIS text now: add to it, never rewrite it from the draft
+- L0309 — 2026-10-12 — "Which tickets did HE mark Obsolete" is read from the change history, never assumed
+- L0310 — 2026-10-12 — Same on production ⇒ not a regression (now Rule 121)
+- L0311 — 2026-10-12 — A freeze that only my browser shows: pause it and read the stack before blaming anything
+- L0312 — 2026-10-12 — The harness shows QA-branch times in UTC: never judge a displayed time through it
+- L0313 — 2026-10-12 — Re-test another tester's failure with THEIR route; and read the shop's own time zone first
+- L0314 — 2026-10-12 — "Read it in Google Analytics" is not a blocker: test the product's half on the QA branch
+- L0315 — 2026-10-12 — `wob-run.sh` runs with `env -i`: any setting it does not list is silently dropped
+- L0316 — 2026-10-12 — "Already clocked into different line" with no clock to stop: use fresh clockable technicians
+- L0317 — 2026-10-12 — An offline test on a QA branch lands on the sleep page: the QA build redirects every network error
+- L0318 — 2026-10-13 — The QA lead's own rulings go into a test as one dated decision line, never as our chat
+- L0319 — 2026-10-12 — Edit a TestRail case with `safe_case_edit.py`, then scan the served page (make its folder first)
+- L0320 — 2026-10-12 — The Automated flag moves: read it live (and its history) before telling the engineer
+- L0321 — 2026-10-12 — TestRail case history keeps every old wording, so a saved snapshot can leak what was removed
+- L0322 — 2026-10-12 — A "different day" test must differ in the zone the measurement uses, not only in Pakistan time
+- L0323 — 2026-10-12 — Run comments: `push_results_to_run.py` printed a stray "None." under Passed results
+- L0324 — 2026-10-13 — Finding what was learned before: `recall.py` + `KNOWLEDGE-MAP.md` (Rule 127)
+- L0325 — 2026-10-13 — Learning is saved automatically: a Stop hook checks it, a SessionStart hook recalls it (Rule 127 amendment)
+- L0326 — 2026-10-13 — Big files: retrieve blocks, budget every store, split byte-verified, distil (Rule 128)
+- L0327 — 2026-10-13 — An improvement can break what it touches: find the dependants, prove before/after, add a self-test (Rule 129)
+- L0328 — 2026-10-13 — Fail-safe pass over the day's changes: scenarios, not just checks (Rule 129 amendment)
+- L0329 — 2026-10-14 — Before any build verification, check whether another session did it already today
+- L0330 — 2026-10-14 — New or rewritten cases are RUN, not asked about; and the staging set-up traps that cost an hour
+- L0331 — 2026-10-14 — Results went into the run with no annotated screenshots (Rule 130)
+- L0332 — 2026-10-14 — Running the whole WO Board suite on staging: five things the QA-branch scripts assumed
+- L0333 — 2026-10-14 — The suite's location picker finds no options on staging; use `select_location`
+- L0334 — 2026-10-14 — On a fresh environment the suite's scripts depend on each other's data: plan a second pass
+- L0335 — 2026-10-14 — Staging can be redeployed mid-run, and its Heavy Duty has ~119 technicians
+- L0336 — 2026-10-14 — Two staging timing/state traps: leftover pins, and shop midnight under Asia/Karachi
+- L0337 — 2026-10-14 — The second pass is a plan file, and every board reader had a hidden 125-column ceiling
+- L0338 — 2026-10-14 — Fixture files follow WOB_EV: copy them into a new run folder first
+- L0339 — 2026-10-15 — Staging's role list is a plain list; staging names are identical everywhere; GA needs a quiet wait
+- L0340 — 2026-10-15 — An empty board has no scroller: a script error there is the empty state, not a fault
+- L0341 — 2026-10-15 — Fourth-pass script faults on staging: wrong person by substring, shared "new" users, far-apart drags
+- L0342 — 2026-10-15 — On staging the sign-out test runs LAST OF ALL passes, never at the end of one pass
+- L0343 — 2026-10-15 — Wave 8b script faults: shared roles changed by a case, blocks filtered out by ONLY, parts on a "plain" line
+- L0344 — 2026-10-15 — Leftover state from one script spoils the next: every pass starts with a clean-up step
+- L0345 — 2026-10-15 — Wave 8c: Review needs the org setting, the test admin must be ENROLLED to switch location, leftover clocks
+- L0346 — 2026-10-15 — The Schedule's "Entire work order" drop records the approved lines; an API exit does not end Account Access on the page
+- L0347 — 2026-10-15 — An analytics test's evidence picture is a rendering of the captured events, not a screenshot
+- L0348 — 2026-10-15 — "While the page is still loading" means after its data request is SENT; a technician's menu has no Reports
+- L0349 — 2026-10-15 — Staging keeps ONE name per technician; a running pass skips a script whose .done exists
+- L0350 — 2026-10-15 — Measuring a design on staging: one string-injected kit, text boxes cut to the screen, pictures taken mid-action
+- L0351 — 2026-10-15 — A fault "fixed" (ticket Obsolete) on the QA branch can be broken again on staging
+- L0352 — 2026-10-15 — Wave 11: a location switch undone by the viewAs window, a moving "edge", messages read too late
+- L0353 — 2026-10-15 — Two writers to the learnings log pick the same number: pull, then number at the moment of writing
+- L0354 — 2026-10-15 — Wave 12: the Schedule writes "S-", lines made after the lead read Unassigned, long pick lists must be scrolled
+- L0355 — 2026-10-15 — After a container restart, restart the sign-in relay before trusting any "no DEV MODE Admin button"
+- L0356 — 2026-10-15 — Wave 13: read WHY a person is not offered, probe the session before blaming the product, drop on the grid line
+- L0357 — 2026-10-15 — "Every test is queued" must be proved from the run's latest result dates, not from the pass plans
+- L0358 — 2026-10-15 — Judging design cases: compare against the case's own attached pictures; a row read off-screen is a redo
+- L0359 — 2026-10-15 — Scripts written for the QA branch can carry the QA host in a filter, and keep QA users in a file
+- L0360 — 2026-10-15 — Tech View on staging: close Unassigned before reading pinned groups, then centre the row
+- L0361 — 2026-10-15 — A judge's "redo" list is not queued work until it is in the next pass's plan; a failure's story is the one its quotes cite most
+- L0362 — 2026-10-15 — Wave 15: Schedule blocks show the customer, far-down blocks must be scrolled on screen, pin both tech groups
+- L0363 — 2026-10-15 — Wave 16: a cookies-only second window is signed out on staging; the loading bar element proves no paging
+- L0364 — 2026-10-15 — Wave 17: read the shop setting before judging a "not blocked", read a line's audit on its own screen, frame the row you cite
+- L0365 — 2026-10-15 — A background watcher dies at two hours; plan the night around check-ins, not around the watcher
