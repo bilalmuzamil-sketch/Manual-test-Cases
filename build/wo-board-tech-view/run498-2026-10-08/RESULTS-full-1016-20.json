@@ -3,7 +3,7 @@
   "env": "staging",
   "build": "v26.40.19-1493c63",
   "date": "17 October 2026",
-  "note": "full staging run 16-17 Oct 2026, batch 20 = queue steps 44"
+  "note": "full staging run 16-17 Oct 2026, batch 20 = queue steps 44, 45"
  },
  "results": {
   "C97010": {
@@ -18,6 +18,119 @@
    ],
    "pictures": [
     "evidence/staging-full-2026-10-14/annotated-full-1016/C97010-1-failed-drop-back.png"
+   ],
+   "ticket": null
+  },
+  "C368176": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer \"ZZAUTOTEST Clock In Line 37308\", S2-36872 with no lead; step 1: Line 1's Labor row reads \"Unassigned\".",
+    "Esther Howard had no clock running before the test (checked first, nothing to stop).",
+    "In her own window: Start on Line 1, about a minute of work (0.02 h recorded), Stop (\"Stop working on S2-36872, Service - Cabin air …\"), text typed, Clock Out: \"Timesheet clocked out\"; no clock left running.",
+    "Step 6, browser 1 reloaded: Line 1's Labor row shows \"Esther Howard\" (the line took the technician who clocked in); Line 2, where nobody clocked in, still reads \"Unassigned\"."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368176-1-line-took-tech.png"
+   ],
+   "ticket": null
+  },
+  "C368180": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST Asset Tab List > Assets > TRK-201 > Work Orders tab (tabs: Work Orders, Invoices, Notes, Inspections).",
+    "The table lists exactly S2-36877, S2-36878 and S2-36879 (A, B and C, 3 rows) and nothing else. D (S2-36880, on TRK-202) is not listed.",
+    "No error message appeared and the table finished loading."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368180-1-asset-tab-rows.png"
+   ],
+   "ticket": null
+  },
+  "C368181": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Staging: asset TRK-201's Work Orders tab lists 3 rows (S2-36877, S2-36878, S2-36879). No count shows: the tab reads \"Work Orders\", and there is none above or under the table.",
+    "Production (read only, build v26.40.19-d2441a9): an asset with work orders (a 2019 Freightliner of customer Ahsan), its Work Orders tab lists 15 rows and also shows no count.",
+    "So \"no count\" is how the product already works, as the test allows; no count differs from the rows."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368181-1-staging-no-count.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368181-2-production-no-count.png"
+   ],
+   "ticket": null
+  },
+  "C368182": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Asset TRK-201's Work Orders tab: work order B's Progress reads 0%.",
+    "The Work Orders List shows the same 0% for B."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368182-1-progress-same.png"
+   ],
+   "ticket": null
+  },
+  "C368183": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Asset TRK-201's Work Orders tab, Number header clicked: S2-36879, S2-36878, S2-36877 (number order, highest first).",
+    "Clicked again: S2-36877, S2-36878, S2-36879, the reverse. No row missing or repeated."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368183-1-sorted.png"
+   ],
+   "ticket": null
+  },
+  "C368184": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "Customer ZZAUTOTEST Customer Tab 37308 > Work Orders tab (label \"Work Orders (4)\").",
+    "The table lists exactly S2-36897, S2-36898, S2-36899 and S2-36900 (A, B, C and D, 4 rows) and no other customer's work orders.",
+    "No error message appeared and the table finished loading."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368184-1-customer-tab-rows.png"
+   ],
+   "ticket": null
+  },
+  "C368185": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "The customer's Work Orders tab reads \"Work Orders (4)\" and the table has 4 rows: they match."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368185-1-count-matches.png"
+   ],
+   "ticket": null
+  },
+  "C368186": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "The customer's Work Orders tab: work order B's Progress reads 0%.",
+    "The Work Orders List shows the same 0% for B."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368186-1-progress-same.png"
+   ],
+   "ticket": null
+  },
+  "C368187": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps.",
+    "The customer's Work Orders tab, Number header clicked: S2-36897, S2-36898, S2-36899, S2-36900.",
+    "Clicked again: S2-36900, S2-36899, S2-36898, S2-36897, the reverse. No row missing or repeated."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368187-1-sorted.png"
    ],
    "ticket": null
   }
