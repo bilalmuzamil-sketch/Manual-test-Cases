@@ -1,0 +1,39 @@
+{panel:bgColor=#fffae6}
+*OVERALL QA STATUS: PARTIALLY PASSED*
+{panel}
+
+The details of what passed are below. The one thing still to be fixed is posted in a separate comment below this one.
+
+Tested on Staging (build v26.40.19-754919e) on 17 October 2026, against the spec (version 64), signed in as the Tech user and as Admin.
+* Tech View: after Back, the row that was half hidden at the top comes back at the top, fully shown, and never under the group header.
+* Board View: the same works in every technician column, and the sideways position comes back exactly.
+* Board View's *Unassigned* column: its top card comes back 2 px under the column's top edge, so it is not fully shown (Tech user, 9 of 9 tries).
+
+*Before and after*
+!sv11407-01-back-top-item.png|width=1024,height=368!
+_Staging, Tech user. Top: Tech View before opening a work order (orange: the half-hidden top row S2-32993) and after Back (green: S2-32993 at the top, fully shown, below the "Unassigned" header). Bottom: Board View before (orange: each column's half-hidden top card) and after Back (green: fully shown; red: Unassigned's card S2-33104 comes back 2 px cut). There is no production "before": these views are not on production, and the ticket has no picture. Window 1440 x 900 px, zoom 100%._
+
+*What I checked*
+||#||Check||Status||
+|1|Tech View: the top row is half hidden (cut by a quarter, a half, three quarters and nine tenths of its height); I open a lower work order and press Back: the same row is at the top, fully shown.|PASSED|
+|2|Tech View: the restored row is never hidden under the held group header (its top is exactly where the header ends).|PASSED|
+|3|Tech View: with the table scrolled sideways (228 px), the sideways position comes back exactly.|PASSED|
+|4|Board View: each technician column scrolled so its top card is half hidden; after Back each column's top card is at the top, fully shown.|PASSED|
+|5|Board View: with the board scrolled sideways (900 px), the sideways position comes back exactly.|PASSED|
+|6|Board View, *Unassigned* column, Tech user: the top card comes back 2 px under the column's top edge, so its top border is hidden. Seen 9 of 9 times (all three densities, different scroll depths, with and without the board scrolled sideways). Signed in as Admin it comes back fully shown (6 of 6).|FAILED|
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S1-R8: Horizontal position comes back exactly. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position.{quote}
+Chris Ward in this ticket (15 October): "The 'How to check' list in the description is what passing looks like." Its first point: "that card or row is at the top, fully shown."
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com and sign in with the *Tech* user (the "Tech" button on the staging login page).
+# Click *Work Orders*, then the *All* tab (top left), then the *Tech View* button (the middle of the three view buttons, a person icon, right of the bar above the list).
+# Scroll down until the top row is half hidden under the grey "Unassigned" header.
+# Click the work order number on a row lower down (it opens), then press the browser's *Back* button: the half-hidden row is back at the top, fully shown.
+# Click the *Board View* button (the right view button) and do the same in a technician column: its top card comes back fully shown.
+
+*Screen recording*
+!sv11407-back-top-item-staging-recording-voiceover.mp4|width=1280,height=800,alt="sv11407-back-top-item-staging-recording-voiceover.mp4"!
+_Staging, build v26.40.19-754919e, 17 October 2026, Tech user, window 1440 x 900 px, zoom 100%: Tech View top row half hidden, a work order opened, Back, the row fully shown; then Board View with each column's top card half hidden, a card opened, Back: technician columns fully shown, the Unassigned card 2 px cut. Each caption is read from the page. With voice-over._

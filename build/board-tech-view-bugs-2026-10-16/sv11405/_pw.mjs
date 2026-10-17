@@ -1,0 +1,11 @@
+import {session,toView,dens} from './rec.mjs';
+const s=await session({quick:'admin',vp:{width:1440,height:900},dpr:1}); const p=s.page;
+const OWN=['display','tab','density','collapsedGroups']; const getP=async()=>(await s.api('/api/users/me/preferences/work-orders-list')).json.data.value; const prefs0=await getP();
+const W=sel=>p.evaluate(sel=>[...document.querySelectorAll(sel)].map(e=>{const b=e.getBoundingClientRect(); return e.innerText.trim()+'@'+b.width.toFixed(1)+'x'+b.height.toFixed(1);}).filter(x=>/^(Paid|Invoiced|Complete|Estimate|Approved|Declined|Ready For Review|In Progress)@/.test(x)).slice(0,6),sel);
+for(const n of ['S2-36772','S2-36683']){ await s.go('/workorders?tab=all&search='+n); await p.waitForTimeout(3000);
+ await toView(p,'list'); await p.waitForTimeout(2500); const l=await W('tbody tr .q-badge:not(.q-badge--floating)');
+ await toView(p,'tech_view'); await p.waitForTimeout(2500); for(let k=0;k<2;k++){ if(/Expand/.test(await p.getAttribute('[data-test-id=button_tech_view_collapse_all]','aria-label'))) break; await p.click('[data-test-id=button_tech_view_collapse_all]'); await p.waitForTimeout(2500);} await p.click('[data-test-id=button_tech_view_collapse_all]'); await p.waitForTimeout(2500);
+ for(let i=0;i<80;i++){ if(await p.evaluate(n=>[...document.querySelectorAll('[data-test-id^=tech_view_row_]')].some(e=>e.innerText.includes(n)),n)) break; await p.evaluate(()=>{document.querySelector('.q-table__middle').scrollTop+=500;}); await p.waitForTimeout(300);}
+ const t={}; for(const d of ['compact','regular','comfortable']){ await dens(p,d); await p.waitForTimeout(1500); t[d]=await p.evaluate(n=>{const r=[...document.querySelectorAll('[data-test-id^=tech_view_row_]')].find(e=>/^tech_view_row_[0-9a-f-]{36}$/.test(e.dataset.testId)&&e.innerText.includes(n)); const e=r?.querySelector('.q-badge:not(.q-badge--floating)'); const b=e?.getBoundingClientRect(); return e?e.innerText.trim()+'@'+b.width.toFixed(1)+'x'+b.height.toFixed(1):null;},n); }
+ console.log(n,'| List',JSON.stringify(l),'| Tech',JSON.stringify(t)); }
+const cur=await getP(); const v={...cur}; for(const k of OWN) v[k]=prefs0[k]; await s.api('/api/users/me/preferences/work-orders-list',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({value:v})}); await s.close();

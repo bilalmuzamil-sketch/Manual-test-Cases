@@ -1,0 +1,5 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const s=await open({env:'prod',user:'bilal.muzamil@shopview.com',dir:'/tmp/qa11310',vp:{width:1440,height:900},dpr:2}); const p=s.page;
+await s.go('/workorders?tab=all&status=paid'); await p.waitForTimeout(6000); await p.mouse.move(1435,895);
+const o=await p.evaluate(()=>{const e=[...document.querySelectorAll('tbody tr .q-badge:not(.q-badge--floating)')].find(e=>/^Paid$/.test(e.innerText.trim())); if(!e) return [...document.querySelectorAll('tbody tr')].length; const b=e.getBoundingClientRect(); return {x:b.x,y:b.y,w:b.width,h:b.height,t:e.innerText.trim(),all:[...new Set([...document.querySelectorAll('tbody tr .q-badge:not(.q-badge--floating)')].map(e=>e.innerText.trim()+'@'+e.getBoundingClientRect().width.toFixed(1)))]};});
+await p.screenshot({path:'/tmp/qa11310/ex/x05c-paid-prod-list.png'}); console.log(JSON.stringify({o,mk:await s.marker()})); fs.writeFileSync('/tmp/qa11310/ex/x05c-prod.json',JSON.stringify(o)); await s.close();

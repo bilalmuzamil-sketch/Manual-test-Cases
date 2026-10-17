@@ -1,0 +1,20 @@
+[~accountid:712020:1b27a800-7b5a-43f3-982a-81e7071a4fdb] *Remaining issue to be fixed*
+
+*What's happening:*
+* In Tech View the *Paid* status pill is 44.5 px wide, while List shows the Paid pill 58.5 px wide (Staging and Production). Every other status is the same width as List.
+* Example on staging: any Paid work order, e.g. S2-36772 (Tech View 44.5 px, List 58.5 px).
+
+!sv11318-02-paid-width.png|width=1024,height=534!
+_Status filter on Paid: Production List 58.5 px, Staging List 58.5 px, Staging Tech View 44.5 px, Staging Board View card 44.5 px._
+
+*Steps:*
+# Sign in to Staging as Admin.
+# *Work Orders* → *All* tab.
+# Click *Status* above the list and tick *Paid*.
+# In *List* (the left of the three view buttons) look at the Paid pill's width.
+# Click *Tech View* (the middle view button, a person icon) and compare the Paid pill on the rows: it is narrower.
+
+*What it should be:*
+The Paid pill in Tech View is the same width as in List, like every other status.
+Spec version 64, S6-R2a:
+{quote}Tech View's pill takes the same widths as List's; only its height follows density.{quote}

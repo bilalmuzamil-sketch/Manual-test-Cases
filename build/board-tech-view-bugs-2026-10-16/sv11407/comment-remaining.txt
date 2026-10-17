@@ -1,0 +1,20 @@
+[~accountid:712020:1b27a800-7b5a-43f3-982a-81e7071a4fdb] *Remaining issue to be fixed*
+
+*What's happening:*
+* On Board View, after browser Back, the *Unassigned* column's top card comes back 2 px under the column's top edge, so its top border is hidden. The other columns' top cards come back fully shown.
+* Example on staging, Tech user: S2-33104 is at 204 px while the Unassigned column starts at 206 px (the next column's card is at 207–208 px).
+
+!sv11407-02-unassigned-cut.png|width=1024,height=295!
+_Close-up after Back: left, Unassigned (no card border below the column edge); right, the next column (2 px gap, border shown)._
+
+*Steps:*
+# Sign in to Staging with the *Tech* user (the "Tech" button on the login page).
+# *Work Orders* → *All* tab → *Board View* (the right of the three view buttons).
+# Scroll the *Unassigned* column until its top card is half hidden.
+# Click a card lower in that column, then press the browser's *Back* button.
+# Look at the top of the Unassigned column: the card's top border sits under the column edge. Compare with the next column.
+
+*What it should be:*
+The top card comes back fully shown, as in the other columns.
+Spec version 64, S1-R8:
+{quote}Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position.{quote}

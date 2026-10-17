@@ -1,0 +1,16 @@
+import {session,toView} from './rec.mjs'; import fs from 'fs';
+const s=await session({quick:'admin',vp:{width:1440,height:900},dpr:2}); const p=s.page; const out={mk:await s.marker(),rows:[]};
+const OWN=['display','tab','density']; const getP=async()=>(await s.api('/api/users/me/preferences/work-orders-list')).json.data.value; const prefs0=await getP();
+// pick one WO per status (plus the named ones)
+const want={'S2-36332':'RfR no counts','S2-36683':'Paid no counts','S2-36237':'Estimate w/ counts','S2-36736':'Approved w/ counts','S2-17528':'In Progress w/ counts','S2-34941':'RfR w/ counts'};
+const seen=new Set(Object.values(want).map(v=>v.split(' ')[0]));
+for(let pg=1;pg<=8;pg++){ const ws=(await s.api(`/api/work-orders?pagination[page]=${pg}&pagination[rowsPerPage]=100`)).json.data.work_orders; for(const w of ws){ const k=w.status; if(!['declined','imported','complete','invoiced','paid','estimate','approved','in_progress','ready_for_review'].includes(k)) continue; const tag='by status: '+k; if(!Object.values(want).includes(tag)&&!['paid','ready_for_review'].includes(k)||k==='paid'&&!Object.values(want).includes(tag)) { if(!Object.values(want).includes(tag)) want[w.number]=tag; } } }
+const pill=view=>p.evaluate(view=>{const e=view==='list'?document.querySelector('tbody tr .q-badge, tbody tr [class*=status-pill], tbody tr [class*=status]'):document.querySelector('.board-card [class*=status] .q-badge, .board-card .q-badge'); if(!e) return null; const r=e.getBoundingClientRect(); const cs=getComputedStyle(e); const fl=[...(e.closest(view==='list'?'td':'.board-card')||document).querySelectorAll('.q-badge')].filter(x=>x!==e&&/^\d+$/.test(x.innerText.trim())).map(x=>x.innerText.trim()+':'+getComputedStyle(x).backgroundColor); return {t:e.innerText.trim(),w:+r.width.toFixed(1),h:+r.height.toFixed(1),bg:cs.backgroundColor,c:cs.color,x:r.x,y:r.y,counts:fl};},view);
+for(const [n,why] of Object.entries(want)){ const row={n,why};
+ await s.go('/workorders?tab=all&search='+n); await p.waitForTimeout(3000); await toView(p,'list'); await p.waitForTimeout(2500); row.list=await pill('list'); if(n==='S2-36683'||n==='S2-36332') await p.screenshot({path:`/tmp/qa11310/ex/x05-${n}-list.png`});
+ await toView(p,'board_view'); await p.waitForTimeout(3000);
+ for(let i=0;i<60;i++){ if(await p.evaluate(()=>{const c=document.querySelector('.board-card'); if(!c) return false; const r=c.getBoundingClientRect(); return r.left>0&&r.right<1440;})) break; await p.evaluate(()=>{document.querySelector('[data-test-id=board_view_scroller]').scrollLeft+=700;}); await p.waitForTimeout(300);}
+ row.board=await pill('board'); if(n==='S2-36683'||n==='S2-36332') await p.screenshot({path:`/tmp/qa11310/ex/x05-${n}-board.png`});
+ out.rows.push(row); console.log(n,why,'| list',row.list&&[row.list.t,row.list.w,row.list.h,row.list.counts.join(',')].join(' '),'| board',row.board&&[row.board.t,row.board.w,row.board.h,row.board.bg,row.board.counts.join(',')].join(' ')); }
+const cur=await getP(); const v={...cur}; for(const k of OWN) v[k]=prefs0[k]; await s.api('/api/users/me/preferences/work-orders-list',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({value:v})});
+fs.writeFileSync('/tmp/qa11310/ex/x05.json',JSON.stringify(out,null,1)); await s.close();
