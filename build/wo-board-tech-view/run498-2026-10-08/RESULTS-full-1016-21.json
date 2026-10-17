@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 21 = queue steps 46"
+ },
+ "results": {
+  "C368196": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps. Search \"ZZAUTOTEST List Sort 83521\": S2-36910, S2-36911, S2-36912, made to differ in every column (asset, unit, advisor, lead, clocked in, lines, price, on site).",
+    "Number: first click S2-36910, S2-36911, S2-36912; second click S2-36912, S2-36911, S2-36910.",
+    "On Site, Status, Customer, Asset, Unit, VIN/Serial #, Service Advisor, Lead Technician, Clocked In, Lines, Total Price and Created On each ordered the 3 rows one way, then the other, with the header marked as sorted (for example Total Price: $52.20, $313.18, $435.27, then the reverse; Created On: all three read \"Today\").",
+    "Clocked In: first click nobody, Dana Ortiz, Ralph Edwards; second click Dana Ortiz, Ralph Edwards, then nobody (the two with one person clocked in keep their order).",
+    "Progress cannot be clicked to sort: it has no sort mark and the order did not change. No header failed to order the rows."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368196-1-number-sorted.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368196-2-clocked-in-sorted.png"
+   ],
+   "ticket": null
+  }
+ }
+}
