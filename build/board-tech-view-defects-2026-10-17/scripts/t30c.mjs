@@ -1,0 +1,11 @@
+import {session,toView} from './rec.mjs'; import fs from 'fs';
+const s=await session({quick:'admin',vp:{width:1440,height:900},dpr:2}); const p=s.page; const out={marker:await s.marker?.()};
+const OWN=['display','tab']; const getP=async()=>(await s.api('/api/users/me/preferences/work-orders-list')).json.data.value; const prefs0=await getP();
+await s.go('/workorders?tab=all'); await p.waitForTimeout(3500); await toView(p,'board_view'); await p.waitForTimeout(2500); await p.click('[data-test-id=profile_menu_button]'); await p.waitForTimeout(900); await p.click('[data-test-id=button_night_mode_dark]'); await p.waitForTimeout(1500); await p.keyboard.press('Escape'); await p.waitForTimeout(800); await p.reload(); await p.waitForTimeout(5000);
+out.cls=await p.evaluate(()=>document.body.className.match(/body--(dark|light)/)?.[0]);
+const seen={}; for(let i=0;i<120;i++){ const r=await p.evaluate(()=>[...document.querySelectorAll('.board-column__body')].map(b=>{const cs=getComputedStyle(b); return {name:(b.closest('.board-column__panel').querySelector('[data-test-id^=board_column_header_]')?.innerText||'').replace(/\s+/g,' ').slice(0,40),c:cs.scrollbarColor,w:cs.scrollbarWidth,scrolls:b.scrollHeight>b.clientHeight};})); for(const c of r) seen[c.name]=c; const end=await p.evaluate(()=>{const sc=document.querySelector('[data-test-id=board_view_scroller]'); const e=sc.scrollLeft+sc.clientWidth>=sc.scrollWidth-5; sc.scrollLeft+=1100; return e;}); await p.waitForTimeout(450); if(end) break; }
+const vals=Object.values(seen); out.total=vals.length; out.styles=[...new Set(vals.map(v=>v.c+' | '+v.w))]; out.scrolling=vals.filter(v=>v.scrolls).length;
+console.log(JSON.stringify(out));
+await p.evaluate(()=>{document.querySelector('[data-test-id=board_view_scroller]').scrollLeft=0;}); await p.waitForTimeout(800); await p.mouse.move(700,150); await p.screenshot({path:'/tmp/qa11310/ev10/t30-dark-reload.png'});
+const cur=await getP(); const v={...cur}; for(const k of OWN) v[k]=prefs0[k]; await s.api('/api/users/me/preferences/work-orders-list',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({value:v})});
+fs.writeFileSync('/tmp/qa11310/ev10/t30c.json',JSON.stringify({out,seen},null,1)); await s.close();
