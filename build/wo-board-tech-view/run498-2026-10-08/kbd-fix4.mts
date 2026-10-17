@@ -18,6 +18,7 @@ import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, woPageLead, findRow } from './wob.mts';
+import { startState } from './fixup-1017.mts';
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
@@ -28,6 +29,7 @@ const { browser, page: p0 } = await open('/workorders?tab=all');
 const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p;
 p.setDefaultTimeout(30_000);
 const a = api(p);
+await startState(p, a, 'kbd-fix4');   // L0415, fix-up 2
 const R: Record<string, any> = { runner: RUN.id.slice(0, 8) };
 const PREF = '/api/users/me/preferences/work-orders-list';
 const prefGet = async () => (await a.get(PREF)).body?.data?.value ?? {};
@@ -392,13 +394,30 @@ await run('C368151', async () => {
   if (cs.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(1200); o.s8.menuOpenAfterEnter = await menuOpen(p); const fIn = await kp(p, 'Tab', N); o.s8.afterTab = { ...fIn, insideMenu: await p.evaluate(`!!(document.activeElement && document.activeElement.closest('.q-menu'))`) }; await shot(p, 'C368151-s8-column-selection-open');
     const fe = await kp(p, 'Escape', N); await p.waitForTimeout(700); o.s8.afterEscape = { menusOpen: await menuOpen(p), focus: kshort(fe), backOnColumnSelection: (await kz(p, N)).raw === 'button_tech_view_column_selection' }; await shot(p, 'C368151-s8-after-escape'); }
   // step 9: Status by keyboard: focus the chip, Enter, arrows to Approved, Enter (Space if Enter did not tick it), Escape; then its x, Enter
-  let sc = await keyUntil(p, (f) => f.raw === 'filter_chip_status', 30, 'Tab', N); o.s9 = { reach: { by: 'Tab', found: sc.found, stops: sc.seen.slice(-8) } };
-  if (!sc.found) { sc = await keyUntil(p, (f) => f.raw === 'filter_chip_status', 60, 'Shift+Tab', N); o.s9.reach = { by: 'Shift+Tab', found: sc.found, stops: sc.seen.slice(-8) }; }
+  // FIX-UP 2 (17 Oct 2026): on 16 Oct Tab started from the top menu and, once the Status options were open, 15 ArrowDown presses read
+  // document.activeElement as an anonymous DIV every time — the options list moves a HIGHLIGHT (q-manual-focusable--focused /
+  // aria-activedescendant), not the browser focus — so "Approved" was never recognised and nothing was ticked. Now: focus starts in the
+  // page body (a click on a neutral spot in the board area, then blur), Tab moves to the Status chip, and inside the open options each
+  // key (ArrowDown, then Tab if ArrowDown highlights nothing) is followed by a reading of BOTH document.activeElement and the highlighted
+  // option; the "Approved" option counts as reached when either names it. Every key's reading is logged in s9.keys.
+  const neutralSpot = async () => { for (const [x, y] of [[800, 600], [1200, 700], [400, 800], [1590, 990]] as const) { const ok = await p.evaluate(`(() => { const e = document.elementFromPoint(${x}, ${y}); return !!e && !e.closest('button, a, input, textarea, [role=button], .q-btn, .q-field, [data-test-id^="board_card_"], [data-test-id^="tech_view_row_"], [data-test-id^="board_column_header"], [data-test-id^="tech_view_group_"], .q-menu'); })()`).catch(() => false); if (ok) return { x, y }; } return null; };
+  const ns = await neutralSpot(); o.s9pre = { neutral: ns }; if (ns) await p.mouse.click(ns.x, ns.y).catch(() => {}); await p.evaluate(`(() => { const e = document.activeElement; if (e && e !== document.body && e.blur) e.blur(); })()`).catch(() => {}); await p.mouse.move(1, 1);
+  o.s9pre.activeAfterClear = (await kz(p, N)).raw;
+  let sc = await keyUntil(p, (f) => f.raw === 'filter_chip_status', 30, 'Tab', N); o.s9 = { reach: { by: 'Tab from the page body', found: sc.found, stops: sc.seen } };
+  if (!sc.found) { sc = await keyUntil(p, (f) => f.raw === 'filter_chip_status', 60, 'Shift+Tab', N); o.s9.reach = { by: 'Shift+Tab', found: sc.found, stops: sc.seen }; }
   const chipText = () => p.locator('[data-test-id="filter_chip_status"]').first().innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => null);
   o.s9.chipAtStart = await chipText();
-  if (sc.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(1000); o.s9.optionsOpen = await menuOpen(p);
-    const ap = await keyUntil(p, (f) => /^Approved$/i.test(f.text) || f.raw === 'filter_option_status_approved', 15, 'ArrowDown', N); o.s9.toApproved = { found: ap.found, stops: ap.seen };
-    if (ap.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(1500); o.s9.chipAfterEnter = await chipText(); if (o.s9.chipAfterEnter === o.s9.chipAtStart) { await p.keyboard.press('Space'); await p.waitForTimeout(1500); o.s9.chipAfterSpace = await chipText(); } }
+  const optState = () => p.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); const ae = document.activeElement;
+    const clean = (x) => String(x || '').replace(/\\s+/g, ' ').replace(/^(check_box_outline_blank|check_box|check)\\s+/i, '').trim();
+    const hi = m ? [...m.querySelectorAll('.q-item, [role=option], [role=checkbox]')].find(e => e.classList.contains('q-manual-focusable--focused') || e.classList.contains('q-item--focused') || e === ae || e.contains(ae) && ae !== m) : null;
+    const ad = ae && ae.getAttribute('aria-activedescendant'); const adEl = ad ? document.getElementById(ad) : null;
+    return { active: ae ? (ae.getAttribute('data-test-id') || ae.tagName) + ' ' + clean(ae.innerText || ae.getAttribute('aria-label')).slice(0, 30) : 'none', inMenu: !!(ae && m && m.contains(ae)), highlighted: hi ? clean(hi.innerText).slice(0, 30) : (adEl ? clean(adEl.innerText).slice(0, 30) : null), ticked: m ? [...m.querySelectorAll('.q-item, [role=option], [role=checkbox]')].filter(e => e.querySelector('.q-checkbox__inner--truthy, [aria-checked=true]') || e.getAttribute('aria-checked') === 'true').map(e => clean(e.innerText).slice(0, 20)) : [] }; })()`).catch(() => null) as Promise<any>;
+  if (sc.found) { await p.keyboard.press('Enter'); await p.waitForTimeout(1000); o.s9.optionsOpen = await menuOpen(p); o.s9.keys = [{ key: 'Enter (open)', ...(await optState()) }];
+    let reached = false;
+    for (const key of ['ArrowDown', 'Tab']) { for (let i = 0; i < 12 && !reached; i++) { await p.keyboard.press(key); await p.waitForTimeout(300); const st = await optState(); o.s9.keys.push({ key, ...st }); if (/^Approved$/i.test(String(st?.highlighted)) || /\bApproved$/i.test(String(st?.active))) reached = true; if (!st?.highlighted && !st?.inMenu && key === 'ArrowDown' && i >= 3) break; } if (reached) break; }
+    o.s9.toApproved = { found: reached, by: o.s9.keys[o.s9.keys.length - 1]?.key };
+    if (reached) { await p.keyboard.press('Enter'); await p.waitForTimeout(1500); o.s9.afterEnter = { chip: await chipText(), ...(await optState()) }; if (!(o.s9.afterEnter.ticked ?? []).some((x: string) => /Approved/i.test(x))) { await p.keyboard.press('Space'); await p.waitForTimeout(1500); o.s9.afterSpace = { chip: await chipText(), ...(await optState()) }; } }
+    o.s9.chipAfterEnter = await chipText();
     await shot(p, 'C368151-s9-approved-ticked'); const ce = await kp(p, 'Escape', N); await p.waitForTimeout(700); o.s9.closed = { menusOpen: await menuOpen(p), focus: kshort(ce), chip: await chipText() }; }
   const xs = await keyUntil(p, async () => p.evaluate(`(function () { var e = document.activeElement; var c = e && e.closest('[data-test-id="filter_chip_status"]'); return !!c && e !== c && (/remove|clear|cancel|close/i.test((e.getAttribute('aria-label') || '') + ' ' + e.className + ' ' + (e.textContent || ''))); })()`) as Promise<boolean>, 6, 'Tab', N);
   o.s9.toX = { by: 'Tab', found: xs.found, stops: xs.seen };

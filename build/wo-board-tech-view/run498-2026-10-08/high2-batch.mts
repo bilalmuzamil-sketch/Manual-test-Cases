@@ -104,9 +104,35 @@ async function dragHandle(fromHeader: string, toHeader: string) {
   await p.mouse.move(tb.x + 6, tb.y + tb.height / 2, { steps: 20 }); await p.waitForTimeout(400); await p.mouse.up(); await p.waitForTimeout(2500); return 'ok';
 }
 const order = (cols: any[], ids: Record<string, string>) => cols.map((c) => Object.keys(ids).find((k) => ids[k] === c.id) ?? (c.id === 'unassigned' ? 'Unassigned' : null)).filter(Boolean);
+// ───────── FIX-UP 2 (17 Oct 2026): on 16 Oct C368198 left the Status filter on "Invoiced", so C368200 / C368201 / C368212 could not see
+// their own new work orders (row look-ups timed out), and C368212 left the runner at Lethbridge, so C368214's Heavy Duty work order never
+// showed. Every case now STARTS clean and ENDS clean (caseEdge): the saved Work Orders filters are cleared (tab All) and read back, the
+// Status chip on screen is read, and the RUNNER's own top-bar location is read and switched to Staging Heavy Duty through the menu
+// (switchLocUI; then the picker opened by hand with its options logged; the API call + reload only as the last try, L0399).
+// "START STATE found / set" and "END STATE" lines are logged per case.
+const topBarOf = async (pg: Page = p) => (await pg.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
+async function heavyMenu(pg: Page = p) { const o: any = { tries: [] as string[] };
+  for (let k = 0; k < 3; k++) { const now = await topBarOf(pg); if (now.includes('Staging Heavy Duty')) { o.now = now; return o; }
+    if (k === 0) o.tries.push(`switchLocUI -> ${await switchLocUI(pg, 'Staging Heavy Duty')}`);
+    else if (k === 1) { await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(4500); await pg.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await pg.waitForTimeout(1200); await pg.locator('[data-test-id="select_location"]').click().catch(() => {}); await pg.waitForTimeout(1500);
+      o.options = (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 20);
+      await pg.locator('.q-menu .q-item').filter({ hasText: 'Staging Heavy Duty' }).filter({ hasNotText: /Change Location/i }).last().click().catch(() => {}); await pg.waitForTimeout(6000); await pg.keyboard.press('Escape').catch(() => {}); o.tries.push(`picker by hand -> ${await topBarOf(pg)}`); }
+    else { o.tries.push(`api ${say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }))}`); await pg.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(5000); } }
+  o.now = await topBarOf(pg); return o; }
+async function caseEdge(id: string, when: 'START' | 'END') {
+  await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(4500);
+  const v0 = await prefGet(); const found = { savedFilters: JSON.stringify(v0.filters ?? null).slice(0, 200), savedTab: v0.tab ?? null, statusChip: (await p.locator('[data-test-id="filter_chip_status"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim(), location: await topBarOf() };
+  if (when === 'START') console.log(t(), 'START STATE found', id, JSON.stringify(found));
+  const put = (await a.put(PREF, { value: { ...v0, filters: {}, tab: 'all' } })).status; await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(4000);
+  const loc = await heavyMenu(); const v1 = await prefGet();
+  const set = { put, savedFilters: JSON.stringify(v1.filters ?? null).slice(0, 200), statusChip: (await p.locator('[data-test-id="filter_chip_status"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim(), location: loc.now, locationTries: loc.tries, options: loc.options };
+  console.log(t(), when === 'START' ? 'START STATE set' : 'END STATE', id, JSON.stringify(set));
+  return { found, set }; }
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
+  const edge = await caseEdge(id, 'START').catch((e) => ({ error: String(e?.message || e).slice(0, 160) }));
   try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 400) }; await shot(p, `${id}-error`); }
+  R[id] = { ...(R[id] || {}), startState: edge, endState: await caseEdge(id, 'END').catch((e) => ({ error: String(e?.message || e).slice(0, 160) })) };
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 2600));
   fs.writeFileSync(path.join(EV, 'high2-batch.json'), JSON.stringify(R, null, 1));
 }
@@ -324,8 +350,8 @@ await run('C368212', async () => { const o: any = {}; o.toLeth = say(await a.pos
     o.backTopBar = await switchLocUI(p, 'Staging Heavy Duty');
     // 15 Oct 2026 (wave 25, seventh pass): the switch back left the screen on Lethbridge (picture C368212-end). If the top bar does not
     // read Heavy Duty, set the location the way the Schedule/API does and reload, then read the top bar again (recorded either way).
-    if (!String(o.backTopBar).includes('Heavy Duty')) { o.backApi = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
-      await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(5000); o.backTopBarAfterApi = await topBar(); } }
+    // fix-up 2 (17 Oct 2026): switching back left the runner at Lethbridge on 16 Oct — heavyMenu() tries the menu twice (logging the picker's options) before the API call
+    if (!String(o.backTopBar).includes('Heavy Duty')) o.backHeavy = await heavyMenu(); o.backTopBarFinal = await topBar(); }
   R.C368212 = o; });
 
 await run('C368214', async () => { const s = await mkSet('ZZAUTOTEST Back Forward', [{ co: 'One Co', lead: ANA }]); const num = s.w['One Co'].number; const o: any = {};

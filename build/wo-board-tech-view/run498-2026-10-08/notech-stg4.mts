@@ -69,6 +69,27 @@ if (want('C368130')) {
     const wos = await seedCase(a, CUST, 'ZZF2NT', [{ lead: null }, { lead: null }]);
     o.workOrders = wos.map((x: any) => `${x.number} ${x.status} lead=${x.techAssignedFirstName ?? '-'}`);
     o.techniciansThere = (await candidates(a)).map((x) => x.name);
+    // FIX-UP 2 (17 Oct 2026): on 16 Oct Ayesha Khan counted as a technician here, so "no technicians" was false. The precondition is now
+    // MADE TRUE every run (Rule 107; nothing is put back): every person the product offers as a technician at this location loses the
+    // location — each enrolment there is removed with the app's own route (POST /api/staff/enrollment/remove {staffId, workplaceId,
+    // departmentId}, department ids from the staff view, else every department tried), and a person whose Location field (home
+    // location) IS this location is moved to Heavy Duty — then the list is read back and must be empty.
+    console.log(t(), 'START STATE found C368130', JSON.stringify({ location: LOC, techniciansThere: o.techniciansThere }));
+    o.unenrol = [];
+    if (o.techniciansThere.length) {
+      const deps = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data) as any[];
+      for (const c of await candidates(a)) {
+        const v = (await a.get(`/api/staff/${c.id}/view`)).body?.data ?? {}; const row = v.staff ?? v;
+        const ens = ((v.enrollments ?? v.workplaces ?? row.enrollments ?? []) as any[]).filter((e: any) => (e.workplace_id ?? e.workplaceId ?? e.id) === w!.id || (e.workplace_name ?? e.workplaceName ?? e.name) === LOC);
+        const depIds = [...new Set(ens.map((e: any) => e.department_id ?? e.departmentId).filter(Boolean))] as string[];
+        for (const dep of (depIds.length ? depIds : deps.map((d: any) => d.id))) { const r = await a.post('/api/staff/enrollment/remove', { staffId: c.id, workplaceId: w!.id, departmentId: dep }); if (r.status < 300 || depIds.length) o.unenrol.push(`${c.name} ${String(dep).slice(0, 8)} ${r.status}`); }
+        const sr = (await a.get(`/api/staff?limit=200&search=${encodeURIComponent(c.name)}`)).body?.data?.collection?.find((x: any) => x.staff_id === c.id);
+        if (sr && sr.workplace_id === w!.id) o.unenrol.push(`${c.name} home location -> Heavy Duty ${(await a.post(`/api/staff/${sr.staff_id}/change`, { first_name: sr.first_name, last_name: sr.last_name, email: sr.email, role_id: sr.role_id, workplace_id: HEAVY, job_title: sr.job_title, salary_type: sr.salary_type, salary: sr.salary, billable: !!sr.billable, clockable: !!sr.clockable })).status}`);
+      }
+      o.techniciansThereAfterRemoval = (await candidates(a)).map((x) => x.name);
+    } else o.techniciansThereAfterRemoval = [];
+    console.log(t(), 'START STATE set C368130', JSON.stringify({ removed: o.unenrol, techniciansThere: o.techniciansThereAfterRemoval }));
+    if (o.techniciansThereAfterRemoval.length) o.setupWarning = `technicians still offered at ${LOC}: ${o.techniciansThereAfterRemoval.join(', ')} — the "no technicians" reading is void`;
     await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: process.env.WOB_LOC_TZ || 'America/Edmonton' });
     // (4) on screen — 15 Oct 2026 (wave 11, fourth pass): the on-screen switch in the runner's viewAs window did not take (top bar stayed
     // "Staging Heavy Duty - 9919" although the runner is enrolled at the new location). That window re-writes the runner's saved user

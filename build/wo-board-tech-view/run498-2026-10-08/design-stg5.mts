@@ -33,6 +33,7 @@ import { open, done, APP, registerShotPage } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders, setRequireReview, type Api } from './data.mts';
 import { EV, t, shot, display, tab, search, findRow, toColumn, groups, shiftPrompt, boardCols } from './wob.mts';
+import { startState } from './fixup-1017.mts';
 import { person, roleIds, ensureEligible, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 
@@ -43,6 +44,7 @@ const OUT = path.join(EV, 'design-stg5.json');
 const { browser, page: p0 } = await open('/workorders?tab=all');
 const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p; p.setDefaultTimeout(15_000);
 const a = api(p);
+await startState(p, a, 'design-stg5');   // L0415, fix-up 2
 const R: Record<string, any> = { runner: RUN.id.slice(0, 8), started: new Date().toISOString() };
 const PREF = '/api/users/me/preferences/work-orders-list';
 const ORIGINAL = (await a.get(PREF)).body?.data?.value ?? {};
@@ -444,9 +446,20 @@ await run('C590113', async (o) => { // default columns and header labels, as a u
     o.s2_pic = await pic(pg, 'C590113-s2-default-headers'); o.s2_clip = await clip(pg, 'C590113-s2-header-row', await D(pg, '__D.box(__D.headRow())'), 8);
     await pg.locator('[data-test-id="button_tech_view_column_selection"]').first().click(); await W(1000, pg);
     o.s4_menuBefore = await D(pg, '__D.menu()'); o.s4_pic = await pic(pg, 'C590113-s4-column-selection');
-    const toggles = await D(pg, `__D.qa('[data-test-id^="toggle_column_"]').map(function (e) { var ck = e.getAttribute('aria-checked') || (e.querySelector('[aria-checked]') ? e.querySelector('[aria-checked]').getAttribute('aria-checked') : null); return { tid: e.getAttribute('data-test-id'), on: ck, text: e.innerText.replace(/\\s+/g, ' ').trim() }; })`);
-    o.s4_toggles = toggles; o.s4_turnedOn = [];
-    for (const tg of (Array.isArray(toggles) ? toggles : [])) if (tg.on !== 'true') { await pg.locator(`[data-test-id="${tg.tid}"]`).first().click().catch(() => {}); await W(700, pg); o.s4_turnedOn.push(tg.text || tg.tid); }
+    // FIX-UP 2 (17 Oct 2026): on 16 Oct no switch was found (only [data-test-id^="toggle_column_"] was looked for; Tech View's are
+    // "toggle_tech_view_column_…" and some carry no test id), so steps 5-7 were skipped. Every switch of the OPEN menu is now taken by any
+    // "toggle_" test id OR role=switch / .q-toggle / role=checkbox, named by its aria-label or its row's text, marked, and clicked by the
+    // mark; each is read back (aria-checked) after the click. Positive control: the menu's own item count (s4_menuBefore) beside it.
+    const toggles = await pg.evaluate(`(() => { document.querySelectorAll('[data-zz-tg]').forEach(e => e.removeAttribute('data-zz-tg'));
+      const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); if (!m) return null;
+      const els = [...new Set([...m.querySelectorAll('[data-test-id^="toggle_"], [role=switch], .q-toggle, [role=checkbox]')].map(e => e.closest('[data-test-id^="toggle_"]') || e.closest('.q-toggle') || e))];
+      return els.map((e, i) => { e.setAttribute('data-zz-tg', String(i)); const sw = e.matches('[role=switch],[role=checkbox]') ? e : e.querySelector('[role=switch],[role=checkbox],[aria-checked]'); const row = e.closest('.q-item') || e;
+        return { i, tid: e.getAttribute('data-test-id'), on: sw ? sw.getAttribute('aria-checked') : (e.querySelector('.q-toggle__inner--truthy') ? 'true' : 'false'), text: (e.getAttribute('aria-label') || (sw && sw.getAttribute('aria-label')) || row.innerText || '').replace(/\\s+/g, ' ').trim().slice(0, 40) }; }); })()`).catch(() => null) as any[] | null;
+    o.s4_toggles = toggles; o.s4_turnedOn = []; o.s4_offers = { onSite: !!(toggles ?? []).find((x) => /On Site/i.test(x.text)), vin: !!(toggles ?? []).find((x) => /VIN/i.test(x.text)), lead: !!(toggles ?? []).find((x) => /Lead Tech/i.test(x.text)) };
+    for (const tg of (Array.isArray(toggles) ? toggles : [])) if (tg.on !== 'true') { await pg.locator(`[data-zz-tg="${tg.i}"]`).first().click().catch(() => {}); await W(700, pg);
+      const now = await pg.evaluate(`(() => { const e = document.querySelector('[data-zz-tg="${tg.i}"]'); if (!e) return null; const sw = e.matches('[role=switch],[role=checkbox]') ? e : e.querySelector('[role=switch],[role=checkbox],[aria-checked]'); return sw ? sw.getAttribute('aria-checked') : (e.querySelector('.q-toggle__inner--truthy') ? 'true' : 'false'); })()`).catch(() => null);
+      o.s4_turnedOn.push(`${tg.text || tg.tid} -> ${now}`); }
+    o.s5_pic_menu = await pic(pg, 'C590113-s5-all-on-menu');
     await pg.keyboard.press('Escape').catch(() => {}); await away(pg);
     o.s5_heads = await D(pg, '__D.heads()'); o.s5_overlaps = [];
     for (let i = 0; i < 12; i++) {
@@ -532,8 +545,11 @@ await run('C590115', async (o) => { // status pill in List and Tech View, at eac
     await away(); return { pill: pl, hovers: hov, picture: await clip(p, `C590115-${tag}-pill`, pl?.pill?.box ?? null, 30) }; };
   o.prep = await prep([A.staff], 'List'); await search(p, c.name); o.listUsedSearch = true;
   o.s2_s3_list = await pillAt(w1.number, 's2-list');
-  await search(p, ''); await display(p, 'Tech View'); o.find = await rowOn(p, w1.id, c.name, A.staff);
+  // FIX-UP 2 (17 Oct 2026): List was searched down to Work-order-1 but Tech View was not, so the two pills were measured on different
+  // screens. Tech View now gets the SAME search before it is measured (and keeps it for the density readings); both search boxes are read back.
+  await display(p, 'Tech View'); await search(p, c.name); o.techSearchHolds = await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null); o.find = await rowOn(p, w1.id, c.name, A.staff);
   o.s5_s6_tech = await pillAt(w1.id, 's5-tech');
+  o.pillWidths = { list: o.s2_s3_list?.pill?.pill?.box?.w ?? null, tech: o.s5_s6_tech?.pill?.pill?.box?.w ?? null, sameSearch: o.techSearchHolds === c.name };
   for (const d of ['compact', 'regular', 'comfortable'] as const) { o[`density_${d}`] = { menu: await density(p, d), wo1Pill: (await D(p, `__D.pill(__D.cell(${J(w1.id)}, 'Status'))`))?.pill?.box, visiblePillHeights: await D(p, '__D.pills()'), picture: await pic(p, `C590115-${d}-tech`) }; }
   await density(p, 'regular'); await display(p, 'List'); await search(p, c.name);
   { const pl = await D(p, `__D.pill(__D.cell(${J(w1.number)}, 'Status'))`); o.s13_list = { pill: pl, picture: await clip(p, 'C590115-s13-list-pill', pl?.pill?.box ?? null, 30) }; }
@@ -546,10 +562,14 @@ await run('C590116', async (o) => { // six-dot grip on rows and group headers; n
   o.prep = await prep([A.staff], 'Tech View');
   o.s2_groupHeaders = await D(p, `__D.qa('[data-test-id^="tech_view_group_"]').filter(function (e) { return /^tech_view_group_([0-9a-f-]{36}|unassigned)$/.test(e.getAttribute('data-test-id')); }).slice(0, 6).map(function (tr) { var g = tr.querySelector('[data-test-id^="tech_view_group_drag_handle_"]'); var n = tr.querySelector('[data-test-id^="tech_view_group_name_"]'); return { group: n ? n.textContent.trim() : tr.getAttribute('data-test-id'), grip: g ? __D.desc(g, true) : null, gripLeftOfRow: g ? Math.round(g.getBoundingClientRect().left - tr.getBoundingClientRect().left) : null, firstParts: __D.parts(tr, 3) }; })`);
   o.s2_pic = await clip(p, 'C590116-s2-group-headers', await D(p, `__D.box(__D.grp('unassigned'))`), 8); await pic(p, 'C590116-s2-tech');
+  // FIX-UP 2 (17 Oct 2026): on 16 Oct WO-1 / WO-2 were not drawn (Tech View draws only rows near the screen, ~100 groups), so steps 3-6 read
+  // nothing of the test's own rows. The rows are now brought on screen (rowOn: open the group, scroll; the case's customer typed in Search if
+  // that is what it takes, logged as usedSearch) and read back before any measurement; the search is KEPT for steps 4-6 so both rows stay drawn.
+  o.find1 = await rowOn(p, w1.id, c.name, A.staff); o.find2 = { found: (await p.locator(`[data-test-id="tech_view_row_${w2.id}"]`).count()) > 0 };
+  console.log(t(), 'START STATE found C590116', JSON.stringify({ wos: o.wos, wo1: o.find1, wo2: o.find2 }));
   o.s3_rows = { wo1: await D(p, `__D.rowGrip(${J(w1.id)})`), wo2: await D(p, `__D.rowGrip(${J(w2.id)})`), sample: await D(p, `__D.qa('[data-test-id^="tech_view_row_"]').slice(0, 6).map(function (tr) { return __D.rowGrip(tr.getAttribute('data-test-id').replace('tech_view_row_', '')); })`) };
   o.find3 = await rowOn(p, w3.id, c.name, 'unassigned'); o.s3_wo3 = await D(p, `__D.rowGrip(${J(w3.id)})`); o.s3_pic = await pic(p, 'C590116-s3-unassigned-row');
-  if (o.find3.usedSearch) await search(p, '');
-  await findRow(p, w1.id, A.staff).catch(() => {}); await away();
+  o.find1b = await rowOn(p, w1.id, c.name, A.staff); o.find2b = { found: (await p.locator(`[data-test-id="tech_view_row_${w2.id}"]`).count()) > 0 }; await away();   // fix-up 2: both rows drawn for steps 4-6
   const before = await D(p, `__D.rowGrip(${J(w1.id)})`); await hoverSel(p, `[data-test-id="tech_view_row_${w1.id}"]`);
   o.s4_hover = { before, after: await D(p, `__D.rowGrip(${J(w1.id)})`), picture: await clip(p, 'C590116-s4-row-hover', await D(p, `__D.box(__D.rowEl(${J(w1.id)}))`), 40) };
   await away();
@@ -569,7 +589,7 @@ await run('C590116', async (o) => { // six-dot grip on rows and group headers; n
   o.userB = { role: vb.role_label };
   const v = await viewAs(browser, p, a, vb.id, RUN.me?.id ?? '', RUN.toRunner); const pg = v.page; registerShotPage(pg); pg.setDefaultTimeout(15_000);
   try {
-    o.userB.perms = v.perms; o.userB.prep = await prep([A.staff], 'Tech View', 1440, pg, api(pg)); await findRow(pg, w1.id, A.staff).catch(() => {});
+    o.userB.perms = v.perms; o.userB.prep = await prep([A.staff], 'Tech View', 1440, pg, api(pg)); o.userB.find1 = await rowOn(pg, w1.id, c.name, A.staff);   // fix-up 2: rows brought on screen for User-B too
     o.s9_rows = { wo1: await D(pg, `__D.rowGrip(${J(w1.id)})`), wo2: await D(pg, `__D.rowGrip(${J(w2.id)})`), sample: await D(pg, `__D.qa('[data-test-id^="tech_view_row_"]').slice(0, 5).map(function (tr) { return __D.rowGrip(tr.getAttribute('data-test-id').replace('tech_view_row_', '')); })`) };
     o.s9_groupHeadersAlsoRecorded = await D(pg, `__D.qa('[data-test-id^="tech_view_group_drag_handle_"]').length`);
     o.s9_pic = await pic(pg, 'C590116-s9-user-b-tech'); await pg.screenshot({ path: path.join(EV, 'C590116-end.png') }).catch(() => {});
@@ -872,6 +892,22 @@ await run('C590123', async (o) => { // drop line, refused drop message, reorder 
     else o.s9_during = `group grip ${!!g}, end of B's group ${!!below}`; }
 });
 
+/** FIX-UP 2 (17 Oct 2026, C590124): on 16 Oct the avatar box was measured BEFORE the mouse was moved away and the page re-laid, so the
+ *  hover landed beside the avatars and no name bubble was read. The first avatar of the container is now MARKED, brought on screen,
+ *  measured at that moment, hovered at its own centre, and document.elementFromPoint at that centre must be the avatar (or inside it):
+ *  `hit.onAvatar` is the positive control for any "no bubble" reading. If the first move misses, Playwright's own hover() is tried. */
+async function hoverAvatar(pg: Page, containerExpr: string, tag: string) {
+  const initials = await D(pg, `(function () { document.querySelectorAll('[data-zz-av]').forEach(function (e) { e.removeAttribute('data-zz-av'); }); var c = ${containerExpr}; if (!c) return null; var a = c.querySelector('.q-avatar') || c.querySelector('[class*="avatar"]'); if (!a) return null; a.setAttribute('data-zz-av', '1'); return (a.innerText || '').trim() || '(no text)'; })()`);
+  if (!initials || initials.evalError) return { found: false, why: initials?.evalError ?? 'no avatar in the container' };
+  const l = pg.locator('[data-zz-av="1"]').first(); await l.scrollIntoViewIfNeeded().catch(() => {}); await W(500, pg);
+  const bb = await l.boundingBox(); if (!bb) return { found: true, initials, why: 'no box' };
+  const box: any = { x: bb.x, y: bb.y, w: bb.width, h: bb.height, r: bb.x + bb.width, b: bb.y + bb.height };
+  const hitNow = () => pg.evaluate(`(() => { const a = document.querySelector('[data-zz-av="1"]'); if (!a) return null; const r = a.getBoundingClientRect(); const e = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2); return { onAvatar: !!e && (e === a || a.contains(e)), at: e ? e.tagName + '.' + String(e.className).slice(0, 40) : null, hovered: a.matches(':hover') }; })()`).catch(() => null) as Promise<any>;
+  await pg.mouse.move(bb.x + bb.width / 2, bb.y + bb.height / 2, { steps: 6 }); await W(1400, pg); let hit = await hitNow();
+  if (!hit?.hovered) { await l.hover({ timeout: 5000 }).catch(() => {}); await W(1400, pg); hit = { ...(await hitNow()), retriedWithLocatorHover: true }; }
+  const tp = await D(pg, '__D.tips()');
+  return { found: true, initials, box, hit, tooltips: tp, place: rel(tp?.[0]?.box ?? null, box), picture: await clip(pg, `C590124-${tag}`, box, 70) };
+}
 await run('C590124', async (o) => { // hover looks: row, card, avatar name bubbles
   const A = await tech('DC15', 'Vic Hover'), B = await tech('DC15', 'Wes Hover'); const c = await cust('ZZAUTOTEST DC15 Hover Looks');
   const w1 = await mkWO(c, { lead: A.staff, line: true, lineTech: B.staff }); o.wo1 = brief(w1);
@@ -880,12 +916,12 @@ await run('C590124', async (o) => { // hover looks: row, card, avatar name bubbl
   const rsel = `[data-test-id="tech_view_row_${w1.id}"]`; const rb = await D(p, `__D.desc(__D.q(${J(rsel)}), true)`);
   await hoverSel(p, rsel); o.s2_row = { before: rb, after: await D(p, `__D.desc(__D.q(${J(rsel)}), true)`), firstCellBgAfter: await D(p, `getComputedStyle(__D.q(${J(rsel)}).querySelector('td')).backgroundColor`), picture: await clip(p, 'C590124-s2-row-hover', rb?.box ?? null, 30) };
   const av = (await D(p, `__D.avs(__D.cell(${J(w1.id)}, 'Assigned Techs'))`)) ?? []; o.s3_avatars = av;
-  if (av[0]) { await away(); await hoverBox(p, av[0].box); const tp = await D(p, '__D.tips()'); o.s3_hover = { tooltips: tp, place: rel(tp?.[0]?.box ?? null, av[0].box), picture: await clip(p, 'C590124-s3-avatar-hover', av[0].box, 70) }; }
+  await away(); o.s3_hover = await hoverAvatar(p, `__D.cell(${J(w1.id)}, 'Assigned Techs')`, 's3-avatar-hover');   // fix-up 2: hovered at the avatar's own centre, hit checked
   await away(); await display(p, 'Board View'); await toColumn(p, A.staff); await away();
   const csel = `[data-test-id="board_card_${w1.id}"]`; const cbf = await D(p, `__D.desc(__D.q(${J(csel)}), true)`);
   await hoverSel(p, csel); o.s5_card = { before: cbf, after: await D(p, `__D.desc(__D.q(${J(csel)}), true)`), picture: await clip(p, 'C590124-s5-card-hover', cbf?.box ?? null, 20) };
   const cav = (await D(p, `__D.avs(__D.q('[data-test-id="board_card_field_line_technicians"]', __D.q(${J(csel)})) || __D.q(${J(csel)}))`)) ?? []; o.s6_avatars = cav;
-  if (cav[0]) { await away(); await hoverBox(p, cav[0].box); const tp = await D(p, '__D.tips()'); o.s6_hover = { tooltips: tp, place: rel(tp?.[0]?.box ?? null, cav[0].box), picture: await clip(p, 'C590124-s6-card-avatar-hover', cav[0].box, 70) }; }
+  await away(); o.s6_hover = await hoverAvatar(p, `(__D.q('[data-test-id="board_card_field_line_technicians"]', __D.q(${J(csel)})) || __D.q(${J(csel)}))`, 's6-card-avatar-hover');   // fix-up 2
   await away();
 });
 
@@ -1016,6 +1052,18 @@ await run('C590129', async (o) => { // Reassign lead technician dialog look
   const mine = (dl: any) => dl ? { ...dl, rows: (dl.rows ?? []).map((r: any) => ({ ...r, who: r.tid?.endsWith(A.staff.slice(0, 8)) || r.text?.includes('Bea Dialog') ? 'Technician-A' : r.text?.includes('Cal Dialog') ? 'Technician-B' : /unassigned/i.test(r.tid ?? r.text ?? '') ? 'Unassigned' : undefined })) } : null;
   const dl = await D(p, '__D.dialog()'); o.s5_dialog = mine(dl);
   o.s5_keyRows = (o.s5_dialog?.rows ?? []).filter((r: any) => r.who); o.s5_rowCount = (o.s5_dialog?.rows ?? []).length; o.s5_pic = await pic(p, 'C590129-s5-dialog');
+  // FIX-UP 2 (17 Oct 2026): the dialog draws only ~30 rows of a long name-sorted list, so Technician-A ("… DC20 Bea Dialog", a Z name) was
+  // never among them and its row was not read. The dialog's own list is now scrolled until each technician's row is drawn; the row is
+  // marked, centred, read (__D.desc: avatar photo or initials, sizes, colours) and photographed. The current lead's row is Technician-A's.
+  const findInDialog = (rx: string) => p.evaluate(`(async () => { document.querySelectorAll('[data-zz-row]').forEach(e => e.removeAttribute('data-zz-row')); const d = [...document.querySelectorAll('.q-dialog')].pop(); if (!d) return { dialog: false };
+    const sc = [d, ...d.querySelectorAll('*')].filter(e => e.scrollHeight > e.clientHeight + 4 && /auto|scroll/.test(getComputedStyle(e).overflowY)); const s = sc.pop() || d; s.scrollTop = 0; await new Promise(r => setTimeout(r, 300));
+    for (let i = 0; i < 150; i++) { const it = [...d.querySelectorAll('.q-item, [role=option], [data-test-id]')].find(e => new RegExp(${JSON.stringify(rx)}).test(e.innerText || '') && (e.innerText || '').length < 200);
+      if (it) { it.setAttribute('data-zz-row', '1'); it.scrollIntoView({ block: 'center' }); return { found: true, steps: i, tid: it.getAttribute('data-test-id'), text: it.innerText.replace(/\\s+/g, ' ').trim().slice(0, 120), photo: !!it.querySelector('img'), avatarText: ((it.querySelector('.q-avatar') || {}).innerText || '').trim() }; }
+      const b = s.scrollTop; s.scrollTop += 200; await new Promise(r => setTimeout(r, 250)); if (s.scrollTop === b) break; } return { found: false }; })()`).catch((e) => ({ error: String(e?.message || e).slice(0, 120) })) as Promise<any>;
+  for (const [who, rx] of [['Technician-A', 'DC20 Bea Dialog'], ['Technician-B', 'DC20 Cal Dialog']] as const) {
+    const f = await findInDialog(rx); await W(600);
+    o[`s5_row_${who}`] = { ...f, desc: f?.found ? await D(p, `__D.desc(document.querySelector('[data-zz-row]'), true)`) : null, picture: f?.found ? await clip(p, `C590129-s5-row-${who}`, await D(p, `__D.box(document.querySelector('[data-zz-row]'))`), 12) : null };
+    console.log(t(), 'C590129 dialog row', who, JSON.stringify({ found: f?.found ?? false, text: f?.text ?? null, photo: f?.photo ?? null, avatarText: f?.avatarText ?? null })); }
   const box = p.locator('[data-test-id="input_reassign_lead_search"] input, input[data-test-id="input_reassign_lead_search"], .q-dialog input').first();
   for (const typed of ['ZZA', 'Cal']) { await box.fill(''); await box.type(typed, { delay: 60 }); await W(1500); const d2 = await D(p, '__D.dialog()'); o[`s6_typed_${typed}`] = { rows: (d2?.rows ?? []).map((r: any) => r.text), picture: await pic(p, `C590129-s6-typed-${typed}`) }; }
   const cancel = p.locator('[data-test-id="button_cancel_reassign_lead_technician"]').first();
