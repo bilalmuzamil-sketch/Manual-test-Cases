@@ -53,3 +53,8 @@ SV-11101 reopen; C590117 tooltip ticket.
 - **QA lead question (start state) — C368214 and C96916:** the Work Orders tab offers NO Status filter on this build (only the All tab does), so their step 1 / start state "Work Orders tab, Status: Approved" cannot be made. Source check (Rule 57/58): is the Status filter meant to be on the Work Orders tab? Hold and ask; Expected untouched. Everything else in both cases was seen working.
 - C96963 and C368212: second script fault ⇒ NOT left unjudged (Rule 107): focused one-check scripts queued in round 3. (Earlier instruction citing Rule 115 was a misreading — Rule 115 is about keeping flaky specs, not about leaving tests unjudged.)
 - C96975 → end-of-run sign-out batch.
+
+## 17 Oct 07:55 UTC — fix-up 2 steps 27–33 judged (RESULTS-fixup-1017-06); round 3 running; round 4 being built
+- Fixes look shipped (passed, tickets TESTING STAGE): SV-11317 (C590113), SV-11394 + SV-11395 (C590124), SV-11338 (C590129); SV-11416 symptom gone (C614711 steps 3–5). C368130 passed.
+- Round 4 (fixup-1017d.txt, chained after round 3 by after-round4-1017.sh, which then runs the sign-out batch): focused scripts for C590115, C590116, C368151, C97003, C614711, C97020. The old after-signout-1017.sh waiter is stopped so the sign-out batch cannot start before round 4.
+- C97020 re-check was VOID (focus never reached the test card) — not posted; latest result stays Failed, ticket held.
