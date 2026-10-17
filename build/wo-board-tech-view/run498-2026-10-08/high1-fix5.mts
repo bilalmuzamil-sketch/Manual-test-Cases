@@ -13,7 +13,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
-import { open, done, APP } from './session.mts';
+import { open, done, APP, API } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders, vehicle } from './data.mts';
 import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
@@ -382,7 +382,48 @@ await run('C368177', async () => { const w = await one('ZZAUTOTEST Move Labor', 
   o.deletedUser1 = await du(); await shot(p, 'C368177-after-move-1'); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000);
   o.labor2 = await laborRows(); o.deletedUser2 = await du(); await shot(p, 'C368177-after-move-2');
   try { const d = (await a.get(`/api/work-orders/lines/${w.id}`)).body?.data; const ls: any[] = Array.isArray(d) ? d : d?.collection ?? d?.lines ?? []; o.line2Data = JSON.stringify(ls[1] ?? null).replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>').slice(0, 2500); } catch (x) { o.line2Data = String(x).slice(0, 100); } });
-await run('C368178', async () => { const w = await one('ZZAUTOTEST Sched Entire', ES, 2); const o: any = { wo: w.number, estimate: await setEstimate(w, 1, '2') }; Object.assign(o, await schedDrop2(w, ES.staff_id, /^\s*9\s*(AM|am|:00)/, null, '2', { gridTime: '09:00:00' })); R.C368178 = o; });   // 15 Oct 2026 (wave 13): drop right of the 9:00 grid line; shift read back by id
+// ───────── FIX-UP 2c (17 Oct 2026, C368178): on 16 Oct the 9:00–11:00 shift was SAVED (201, read back by id) but its block was not found
+// on screen: Esther Howard already had a 6:00–9:30 shift from another test that day, which overlapped the new block (isConflict true) and
+// took the clicks (L0362 "leftover test shifts stack over yours"). The precondition "nothing is scheduled for [Tech-A] tomorrow between
+// 9 AM and noon" is now MADE TRUE every run: the day the drop will use (the next working day, as schedDrop2 picks it) is computed, every
+// shift of the technician on that day is read from the Schedule's own data and deleted with the Schedule's own call
+// (DELETE /api/schedule/shifts/{id}?scope=shift), and the day is read back as empty (START STATE found / set). Then the case's steps run
+// through the screen (schedDrop2), and after the reload the saved block is found as a calendar event (.fc-event holding the customer
+// name, brought on screen by Playwright and clicked), its details read and photographed, and the shift read back from the server.
+// Helpers are defined here (before the C368178 line) and used by C368178 only; C368174 / C368190 are unchanged.
+const TZ178 = process.env.WOB_LOC_TZ || 'Asia/Karachi';
+const day178 = (off: number) => new Intl.DateTimeFormat('en-US', { timeZone: TZ178, weekday: 'short', month: 'short', day: 'numeric' }).format(new Date(Date.now() + off * 86400000));
+const ymd178 = (off: number) => new Intl.DateTimeFormat('en-CA', { timeZone: TZ178, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(Date.now() + off * 86400000));
+async function shiftsOnDay178(staff: string, off: number) { const d = ymd178(off); const from = new Date(Date.now() + (off - 2) * 86400000).toISOString().slice(0, 10) + 'T00:00:00.000Z', to = new Date(Date.now() + (off + 2) * 86400000).toISOString().slice(0, 10) + 'T00:00:00.000Z';
+  const body = (await a.get(`/api/schedule/board?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`)).body; const out: any[] = []; const seen = new Set<string>();
+  const walk = (x: any) => { if (!x || typeof x !== 'object') return; if (Array.isArray(x)) return x.forEach(walk); if (x.id && x.startsAt && (x.staffId ?? x.staff_id) === staff && !seen.has(x.id) && new Intl.DateTimeFormat('en-CA', { timeZone: TZ178 }).format(new Date(x.startsAt)) === d) { seen.add(x.id); out.push({ id: x.id, startsAt: x.startsAt, endsAt: x.endsAt, wo: x.workOrder?.number ?? null }); } Object.values(x).forEach(walk); };
+  walk(body); return out; }
+const delShift178 = (id: string) => p.evaluate(async ([api0, id0]) => { const r = await fetch(`${api0}/api/schedule/shifts/${id0}?scope=shift`, { method: 'DELETE', credentials: 'include', headers: { Accept: 'application/json' } }); return `${r.status} ${(await r.text()).slice(0, 80)}`; }, [API, id]);
+async function openEvent178(w: any) { const o: any = { tried: [] as string[] }; const cname = (await view(w.id))?.work_order?.company_name ?? ''; o.customer = cname;
+  const evs = p.locator('.fc-event, .fc-timeline-event'); const n = await evs.count(); o.events = n;
+  for (let i = 0; i < Math.min(n, 80) && o.tried.length < 6; i++) { const e = evs.nth(i); const txt = (await e.innerText().catch(() => '')).replace(/\s+/g, ' ');
+    if (!(cname && txt.includes(cname)) && !hasNum(txt, w.number)) continue;
+    o.tried.push(txt.slice(0, 80)); await e.scrollIntoViewIfNeeded().catch(() => {}); await p.waitForTimeout(800); o.blockText = txt.slice(0, 160); await shot(p, 'C368178-block-on-screen');
+    await e.click({ timeout: 8000 }).catch(() => {}); await p.waitForTimeout(1800);
+    const det = (await p.locator('.q-dialog, .q-menu, [role=dialog]').filter({ visible: true }).last().innerText().catch(() => '')).replace(/\s+/g, ' ');
+    if (hasNum(det, w.number) || (cname && det.includes(cname))) { o.opened = true; o.details = det.slice(0, 400); await shot(p, 'C368178-details'); await p.keyboard.press('Escape').catch(() => {}); return o; }
+    await p.keyboard.press('Escape'); await p.waitForTimeout(500); }
+  o.opened = false; return o; }
+await run('C368178', async () => {
+  let off = 1; for (let k = 1; k <= 7; k++) if (!/^(Sat|Sun)/.test(day178(k))) { off = k; break; }
+  const before = await shiftsOnDay178(ES.staff_id, off); const o: any = { day: day178(off) };
+  console.log(t(), 'START STATE found C368178', JSON.stringify({ technician: 'Esther Howard', day: o.day, shifts: before.map((x) => `${x.startsAt}-${x.endsAt} ${x.wo ?? ''}`) }));
+  o.cleared = []; for (const x of before) o.cleared.push(`${x.wo ?? '-'} ${x.startsAt} ${await delShift178(x.id)}`);
+  const after = await shiftsOnDay178(ES.staff_id, off); o.dayEmpty = after.length === 0;
+  console.log(t(), 'START STATE set C368178', JSON.stringify({ day: o.day, deleted: o.cleared, shiftsNow: after.length }));
+  if (!o.dayEmpty) o.setupWarning = `${after.length} shift(s) still on Esther Howard's row on ${o.day}`;
+  const w = await one('ZZAUTOTEST Schedule Entire WO', ES, 2); o.wo = w.number; o.estimate = await setEstimate(w, 1, '2');
+  Object.assign(o, await schedDrop2(w, ES.staff_id, /^\s*9\s*(AM|am|:00)/, null, '2', { gridTime: '09:00:00' }));
+  if (o.range && o.range !== o.day) o.dayNote = `the drop landed on ${o.range}, the cleared day was ${o.day}`;
+  // step 6 again, the case's way: the block as a calendar event, brought on screen, clicked, its details read
+  await laneOf(ES.staff_id); o.event = await openEvent178(w);
+  o.serverShifts = (await shiftsOnDay178(ES.staff_id, off)).map((x) => `${x.startsAt}-${x.endsAt} ${x.wo ?? ''}`);
+  R.C368178 = o; });
 await run('C368179', async () => { const w = await one('ZZAUTOTEST Sched Lines', ES, 2); const o: any = { wo: w.number, line1: lineName(1), estimate: await setEstimate(w, 1, '2') }; Object.assign(o, await schedDrop2(w, ES.staff_id, /^\s*1\s*PM/, lineName(1), '2', { gridTime: '13:00:00' }) /* 15 Oct 2026: "13" matched the mini-calendar's date, not the 1 PM heading. Wave 15: the drop on the 1 PM heading text saved 12:45-14:45 (07:45Z) — drop right of the 13:00 grid line instead, as C368178 does */); R.C368179 = o; });
 await run('C368192', async () => { const w = await one('ZZAUTOTEST Sched Phone', null, 2); const o: any = { wo: w.number }; await setEstimate(w, 1, '1'); o.setup = await schedDrop2(w, JW.staff_id, /^\s*10\s*(AM|am|:00)/, lineName(1), '1'); R.w190 = w; R.range190 = o.setup.range;
   await page(w.id); o.desktopLabor = await laborRows(); await p.setViewportSize({ width: 390, height: 844 }); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000);
