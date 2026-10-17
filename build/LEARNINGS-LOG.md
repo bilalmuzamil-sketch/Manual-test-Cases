@@ -620,3 +620,16 @@ A background Bash wait-loop ("until step 53 ends", loop limit 3000 s) was stoppe
 - **Hovering the middle of a box is not hovering the thing.** The Assigned Techs cell is 120 px wide with 2 small avatars at its left; hovering its centre hits empty space (C590114, C590124) or the second avatar (C590124 bubble showed Technician-B). Hover the avatar element itself.
 - **Column Selection toggles in Tech View have no data-test-id**; a test-id lookup finds nothing and silently skips step 5 (C590113). Find them by their label text.
 - **A precondition location can be changed by another session**: ZZAUTOTEST F2 No Tech Shop now has Ayesha Khan as a technician (C368130). Read the technicians there and take them off before judging.
+
+## L0421 — 2026-10-17 — Reconciling against a moved PRD: diff the two versions by requirement id, not the old extract
+- **What happened:** four run-498 problems (staging v26.40.19-1493c63) were reconciled against the live PRD 845185030. The live page was
+  **v64**; our last saved text was v58 (16 Oct). Re-fetch the old version with `/wiki/rest/api/content/<id>?status=historical&version=<N>&expand=body.storage,version`,
+  strip both the same way, then diff by requirement id (`S2-R23`, `S11-R1` …) — the precedent's saved text was stripped differently, so a plain
+  diff against it is noise. `/wiki/rest/api/content/<id>/version?limit=10` lists each version's message (who, when, why). Both work with `jira.sh`'s cookie.
+- **"Cells follow the design:" with a colon is not a blanket rule.** S2-R20 names three cells after the colon, and the PO's own ticket under it
+  (SV-11325) restyled exactly those three; so Total price alignment (C590114) is design-only, the same class as C590117's count tooltip (L0403) — not filed, QA lead decides.
+- **A tooltip requirement with no input method named (S4-N6) is broken when keyboard focus reaches the item and nothing shows** (C97020): prove it with
+  the mouse-hover control on the same item (C590121) and state the reading risk in the draft (S11-R2 spells out keyboard parity only for avatar names).
+- **"Clear all filters" and the search box:** the PRD keeps search apart from filters (S1-N1a "with or without a search"), and the QA lead ruled on 9 Oct
+  that a search is not a filter (L0301). A case expecting the search emptied has no source; the deciding check is what List's own Clear all filters does (S1-N1 "same action").
+- Files: `build/wo-board-tech-view/run498-2026-10-08/source-verify-2026-10-17/` (PRD v64 text, RECONCILE-4.md); draft `defect-drafts/tickets/D-C97020-2026-10-17.wiki`; D-C590122 closed. #prd #reconcile #rule106 → L0403, L0301

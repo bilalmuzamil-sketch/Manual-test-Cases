@@ -1,0 +1,60 @@
+TITLE: Board View – Locked Work Order's Reassign Note Never Shows With the Keyboard
+TYPE: Story Defect · PARENT: SV-10054 (Keyboard access and focus — design questions to resolve; Ready for QA, read live 17 Oct 2026 — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10054 (S4-N6 itself sits in SV-10047, Reassign or unassign the lead technician, also Ready for QA 17 Oct 2026 — the fault is keyboard-only, so the keyboard story owns it)
+ALREADY REPORTED: none. JQL read live 17 Oct 2026: text ~ "S4-N6", text ~ "Invoiced or Paid" (60 days), text ~ "S11-R2", text ~ "Reassign lead technician" AND "keyboard", text ~ "tooltip" AND "keyboard", text ~ "disabled" AND "focus", label board-tech-view. Related, not the same: SV-11409 (TESTING STAGE) is technician names behind avatars by keyboard; SV-11419 (TESTING STAGE) is the missing Unassign item.
+SEEN ON: staging build {{v26.40.19-1493c63}}, 17 Oct 2026 (run 498, C97020; evidence/staging-full-2026-10-14/kbd-fix4.json → C97020.s11, s12). Seen once by keyboard; re-measure on the build of the day before the ask (skill 06 §6e, Rule 62(c) gate 3).
+CONTROL: with the mouse, hovering the same greyed-out item shows the note (C590121, design-stg5.json → C590121.s11_itemHover), so the note exists and only the keyboard route misses it.
+STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+READING RISK (answered in advance): S4-N6 does not say "on hover"; it says the disabled action "shows this tooltip", with no condition on mouse or keyboard. S11-R2 names keyboard parity only for avatar names, so a reader could argue other tooltips were left to hover. Against that: keyboard focus does stop on the greyed-out item (it is reachable), and S11-N1 makes the keyboard route subject to the same status limits, so the reason for the limit is part of what the keyboard user must get. If the product owner reads S4-N6 as mouse-only, this ticket is withdrawn.
+
+h2. Description
+
+*On an Invoiced or Paid work order, the greyed-out "Reassign lead technician" item must explain why it cannot be used.* With the mouse the note shows; with the keyboard alone it never does.
+
+For example,
+* a keyboard user opens the *More actions* (…) menu of a locked work order
+* *Reassign lead technician* and *Unassign* are greyed out
+* the keyboard focus lands on *Reassign lead technician*, but no note appears, so nothing tells the user why
+
+This appears inconsistent with S4-N6 of the PRD "Work Orders — Board View & Tech View Display Options" (version 64), under *Epic SV-10043*.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin and check the top bar shows *Staging Heavy Duty - 9919*.
+# Create a work order for any customer with a lead technician and one approved line, complete the line, then on its *Finance* tab click *Mark Reviewed* and *Create Invoice*, so it reads *Invoiced* (for example {{S2-37025}}, customer {{ZZAUTOTEST F3 Keyboard Limits 34389}}, lead {{ZZAUTOTEST Ana Alpha}}).
+# Open *Work Orders*, click the *All* tab, type the customer's name in *Search* and click *Board View*.
+# Click once in the *Search* box. From now on use only the keyboard.
+# Press *Tab*, then the arrow keys, until the Invoiced work order's card shows the blue focus ring.
+# Press *Tab* to reach the card's *More actions* (…) button, then press *Enter*.
+#* The menu opens with *Reassign lead technician* and *Unassign*, both greyed out.
+# Press the *Down* arrow until *Reassign lead technician* has the focus.
+#* No note appears anywhere on the screen.
+# Now, with the mouse, hover *Reassign lead technician* in the same menu.
+#* The note "The lead technician can't be changed once a work order is Invoiced or Paid." appears.
+
+*Actual Result:*
+* With the keyboard, the greyed-out *Reassign lead technician* item never shows its note; only the mouse shows it.
+
+*Expected Result:*
+* As the test expects: *"Step 11: the menu opens and "Reassign lead technician" is disabled, with the note "The lead technician can’t be changed once a work order is Invoiced or Paid.""*
+
+h2. Screenshots
+
+!C97020-1-locked-menu.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.19-1493c63}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 17 Oct 2026
+* *User:* Admin, keyboard only
+
+h2. Sources
+
+* PRD "Work Orders — Board View & Tech View Display Options", [Confluence 845185030|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030], version 64 (16 Oct 2026, Chris Ward), read 17 Oct 2026, S4-N6:
+{quote}The disabled Reassign lead technician action on an Invoiced or Paid work order shows this tooltip: “The lead technician can’t be changed once a work order is Invoiced or Paid.”{quote}
+* Same page, S11-N1:
+{quote}Keyboard access must not bypass action permissions or work order status restrictions.{quote}
+* Same page, S11-R9:
+{quote}Reassigning by keyboard goes through the more-actions menu: Reassign lead technician opens the Reassign dialog, and Unassign is a menu item. There is no keyboard drag in this release, so reordering work orders and technicians is by mouse or touch only.{quote}
+
+h2. Test case
+
+* [C97020 The keyboard cannot get around permission or status limits|https://shopview.testrail.io/index.php?/cases/view/97020]
