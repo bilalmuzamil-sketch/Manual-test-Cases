@@ -1,41 +1,31 @@
 {
  "clearedSwitch": 200,
- "C368134": {
-  "opened": 1,
-  "title": "Clear Esther Howard's scheduled shifts?",
-  "text": "Clear Esther Howard's scheduled shifts? close Esther Howard has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change. Cancel Keep Shifts Clear Shifts",
-  "buttons": [
-   {
-    "shown": "close",
-    "text": "close",
-    "cssTransform": "none"
+ "startState": {
+  "found": {
+   "saved": {
+    "status": 200,
+    "display": "board_view",
+    "collapsedGroups": [],
+    "pinned": [],
+    "filters": [],
+    "density": "compact",
+    "tab": "all"
    },
-   {
-    "shown": "Cancel",
-    "text": "Cancel",
-    "cssTransform": "uppercase"
-   },
-   {
-    "shown": "Keep Shifts",
-    "text": "Keep shifts",
-    "cssTransform": "uppercase"
-   },
-   {
-    "shown": "Clear Shifts",
-    "text": "Clear shifts",
-    "cssTransform": "uppercase"
+   "screen": {
+    "switcher": 3,
+    "active": "Board View"
    }
-  ],
-  "after": {
-   "lead": {
-    "S2-35488": "Ralph Edwards"
-   },
-   "shifts": [
-    "Esther 2026-10-18 08:00-12:00 whole"
-   ],
-   "message": [
-    "Lead technician updated"
-   ]
+  },
+  "clearCollapsedPut": 200,
+  "collapsedSavedAfter": [],
+  "savedAfter": {
+   "status": 200,
+   "display": "board_view",
+   "collapsedGroups": [],
+   "pinned": [],
+   "filters": [],
+   "density": "compact",
+   "tab": "all"
   }
  },
  "C368135": {
@@ -80,7 +70,47 @@
     ]
    }
   },
-  "error": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"tech_view_row_ceda6ecd-5460-4662-94ad-dc766d978ac6\"]').first()\n"
+  "tech": {
+   "Cancel": {
+    "opened": 1,
+    "promptStillOpen": 0,
+    "cardBackWithEsther": true,
+    "message": [],
+    "lead": "Esther Howard"
+   },
+   "X": {
+    "opened": 1,
+    "promptStillOpen": 0,
+    "cardBackWithEsther": true,
+    "message": [],
+    "lead": "Esther Howard"
+   },
+   "Escape": {
+    "opened": 1,
+    "promptStillOpen": 0,
+    "cardBackWithEsther": true,
+    "message": [],
+    "lead": "Esther Howard"
+   },
+   "outside": {
+    "opened": 1,
+    "promptStillOpen": 1,
+    "cardBackWithEsther": false,
+    "message": [],
+    "lead": "Esther Howard"
+   },
+   "dialogPath": {
+    "opened": 1,
+    "backInReassignDialog": true,
+    "ralphStillChosen": "true"
+   },
+   "final": {
+    "lead": "Esther Howard",
+    "shifts": [
+     "Esther 2026-10-18 08:00-12:00 whole"
+    ]
+   }
+  }
  },
  "C368136": {
   "board": {
@@ -90,88 +120,13 @@
    "dialogPrompt": true,
    "lead": "Esther Howard"
   },
-  "error": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"tech_view_row_c283a033-271b-4eae-8130-2499f78d87da\"]').first()\n"
- },
- "C154889": {
-  "drag": {
-   "opened": 1,
-   "title": "Clear Esther Howard's scheduled shifts?",
-   "heading": "Clear Esther Howard's scheduled shifts? close",
-   "text": "Clear Esther Howard's scheduled shifts? close Esther Howard has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change. Cancel Keep Shifts Clear Shifts",
-   "buttons": [
-    "close",
-    "Cancel",
-    "Keep shifts",
-    "Clear shifts"
-   ]
+  "tech": {
+   "dragPrompt": true,
+   "leadAfterDrag": "Ralph Edwards",
+   "leadAfterBack": "Esther Howard",
+   "dialogPrompt": true,
+   "lead": "Esther Howard"
   },
-  "dialog": {
-   "opened": 1,
-   "title": "Clear Esther Howard's scheduled shifts?",
-   "heading": "Clear Esther Howard's scheduled shifts? close",
-   "text": "Clear Esther Howard's scheduled shifts? close Esther Howard has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change. Cancel Keep Shifts Clear Shifts",
-   "buttons": [
-    "close",
-    "Cancel",
-    "Keep shifts",
-    "Clear shifts"
-   ]
-  },
-  "leads": {
-   "S2-35492": "none",
-   "S2-35491": "none"
-  },
-  "shifts": {
-   "S2-35492": [
-    "Esther 2026-10-18 08:00-12:00 whole"
-   ],
-   "S2-35491": [
-    "Esther 2026-10-18 08:00-12:00 whole"
-   ]
-  }
- },
- "C154888": {
-  "customer": "ZZAUTOTEST F1 Shift Trim 26382",
-  "shopTimeAtSetup": "01:23",
-  "made": [
-   "-1 08:00 240m ok",
-   "0 00:15 180m ok",
-   "1 08:00 240m ok"
-  ],
-  "before": [
-   "Esther 2026-10-16 08:00-12:00 whole",
-   "Esther 2026-10-18 08:00-12:00 whole",
-   "Esther today 00:15-03:15 whole"
-  ],
-  "prompt": true,
-  "changedAt": "01:24",
-  "after": {
-   "lead": "Ralph Edwards",
-   "shifts": [
-    "Esther 2026-10-16 08:00-12:00 whole",
-    "Esther today 00:15-01:24 whole"
-   ]
-  },
-  "schedulePictures": {
-   "yesterday": "Fri, Oct 16",
-   "today": "Sat, Oct 17",
-   "tomorrow": "Sun, Oct 18"
-  }
- },
- "C154890": {
-  "prompt": true,
-  "refusedCalls": [
-   "POST /api/work-orders/d0062d76-8a59-48a9-ad4b-40f1ef0c75cb/board-move?search=ZZAUTOTEST%20F1%20Clear%20Fails&showMyWorkOrders=0"
-  ],
-  "message": [
-   "Failed to update lead technician, please try again."
-  ],
-  "cardBack": true,
-  "after": {
-   "lead": "Esther Howard",
-   "shifts": [
-    "Esther 2026-10-18 08:00-12:00 whole"
-   ]
-  }
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-menu .q-item').filter({ hasText: 'Ralph Edwards' }).first()\n"
  }
 }
