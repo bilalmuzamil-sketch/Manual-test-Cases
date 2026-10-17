@@ -766,3 +766,6 @@ another route (e.g. a payment) and read the status back. Evidence: `evidence/sta
   closing that window with its X calls `/api/invoices/remove-customer-transaction` and the work order goes back to Complete. Leave the
   window open (or record the payment) to keep the locked state (C368167).
   #wo-board #staging #selectors → L0430, L0432
+
+## L0441 — 2026-10-17 — On staging a REAL app log-out + quick-login sign-in did NOT end the shared Google sign-in
+Run 498's end-of-run sign-out batch (signout-1017.mts, from 10:42 UTC) logged out through initials > Logout and signed back in with the Admin quick-login three times in a row (C96989, C97005, …) and the next steps' location checks still passed — the `sv_sso_session` Google sign-in survived. So L0410's fear ("a real log-out may end the Google sign-in") did not happen on staging today; a sign-out batch can be run mid-pass if needed, but keep it last anyway until it has proved itself across several days. Also from this stretch: the app user's SAVED DISPLAY is shared by every session using that user, so a "Back lands in List" reading on the shared admin cannot be blamed on the product (C96916) — use a test user no other session uses for any display/preference check.
