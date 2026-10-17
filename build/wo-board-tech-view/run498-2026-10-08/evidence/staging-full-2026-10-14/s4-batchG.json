@@ -50,20 +50,20 @@
    "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]"
   ],
   "set": {
-   "S2-35484": "complete lead=Esther Howard",
-   "S2-35483": "declined lead=Esther Howard",
-   "S2-35482": "invoiced lead=none",
-   "S2-35481": "paid lead=Esther Howard",
-   "S2-35480": "invoiced lead=Esther Howard",
-   "S2-35479": "approved lead=Esther Howard"
+   "S2-36936": "complete lead=Esther Howard",
+   "S2-36935": "declined lead=Esther Howard",
+   "S2-36934": "invoiced lead=none",
+   "S2-36933": "paid lead=Esther Howard",
+   "S2-36932": "invoiced lead=Esther Howard",
+   "S2-36931": "approved lead=Esther Howard"
   },
   "ids": {
-   "W1": "S2-35479",
-   "W2": "S2-35480",
-   "W3": "S2-35481",
-   "W4": "S2-35482",
-   "W5": "S2-35483",
-   "W6": "S2-35484"
+   "W1": "S2-36931",
+   "W2": "S2-36932",
+   "W3": "S2-36933",
+   "W4": "S2-36934",
+   "W5": "S2-36935",
+   "W6": "S2-36936"
   },
   "views": {
    "Board View": {
@@ -108,40 +108,40 @@
     },
     "W2-inv-reorder": {
      "before": [
-      "S2-35479",
-      "S2-35480",
-      "S2-35481"
+      "S2-36931",
+      "S2-36932",
+      "S2-36933"
      ],
      "afterReload": [
-      "S2-35480",
-      "S2-35479",
-      "S2-35481"
+      "S2-36932",
+      "S2-36931",
+      "S2-36933"
      ],
      "lead": "Esther Howard",
      "message": []
     },
     "W3-paid-reorder": {
      "before": [
-      "S2-35480",
-      "S2-35479",
-      "S2-35481"
+      "S2-36932",
+      "S2-36931",
+      "S2-36933"
      ],
      "afterReload": [
-      "S2-35480",
-      "S2-35481",
-      "S2-35479"
+      "S2-36932",
+      "S2-36933",
+      "S2-36931"
      ],
      "lead": "Esther Howard",
      "message": []
     },
     "W4reorderUnassigned": {
      "before": [
-      "S2-35479",
-      "S2-35482"
+      "S2-36934",
+      "S2-36931"
      ],
      "after": [
-      "S2-35482",
-      "S2-35479"
+      "S2-36934",
+      "S2-36931"
      ],
      "lead": "Unassigned",
      "message": []
@@ -189,52 +189,148 @@
     },
     "W2-inv-reorder": {
      "before": [
-      "S2-35482",
+      "S2-36934",
+      "drag_handle_be4ef244-2b80-49a1-9131-75ecbad39d51",
+      "number_link_be4ef244-2b80-49a1-9131-75ecbad39d51",
       "lock",
-      "S2-35480",
+      "progress_be4ef244-2b80-49a1-9131-75ecbad39d51",
+      "advisor_avatar_be4ef244-2b80-49a1-9131-75ecbad39d51",
+      "S2-36932",
+      "drag_handle_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
+      "number_link_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
       "lock",
-      "S2-35481",
+      "progress_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
+      "advisor_avatar_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
+      "S2-36933",
+      "drag_handle_0ef3849c-a02a-4acd-97f5-19581aecdb23",
+      "number_link_0ef3849c-a02a-4acd-97f5-19581aecdb23",
       "lock",
-      "S2-35479",
-      "S2-35483",
-      "S2-35484"
+      "progress_0ef3849c-a02a-4acd-97f5-19581aecdb23",
+      "advisor_avatar_0ef3849c-a02a-4acd-97f5-19581aecdb23",
+      "S2-36931",
+      "drag_handle_cf57e351-5054-441b-9d41-2612462ff30e",
+      "number_link_cf57e351-5054-441b-9d41-2612462ff30e",
+      "progress_cf57e351-5054-441b-9d41-2612462ff30e",
+      "advisor_avatar_cf57e351-5054-441b-9d41-2612462ff30e",
+      "S2-36935",
+      "drag_handle_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "number_link_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "progress_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "advisor_avatar_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "S2-36936",
+      "drag_handle_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd",
+      "number_link_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd",
+      "progress_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd",
+      "advisor_avatar_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd"
      ],
      "afterReload": [
-      "S2-35482",
+      "S2-36934",
+      "drag_handle_be4ef244-2b80-49a1-9131-75ecbad39d51",
+      "number_link_be4ef244-2b80-49a1-9131-75ecbad39d51",
       "lock",
-      "S2-35481",
+      "progress_be4ef244-2b80-49a1-9131-75ecbad39d51",
+      "advisor_avatar_be4ef244-2b80-49a1-9131-75ecbad39d51",
+      "S2-36933",
+      "drag_handle_0ef3849c-a02a-4acd-97f5-19581aecdb23",
+      "number_link_0ef3849c-a02a-4acd-97f5-19581aecdb23",
       "lock",
-      "S2-35480",
+      "progress_0ef3849c-a02a-4acd-97f5-19581aecdb23",
+      "advisor_avatar_0ef3849c-a02a-4acd-97f5-19581aecdb23",
+      "S2-36932",
+      "drag_handle_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
+      "number_link_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
       "lock",
-      "S2-35479",
-      "S2-35483",
-      "S2-35484"
+      "progress_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
+      "advisor_avatar_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
+      "S2-36931",
+      "drag_handle_cf57e351-5054-441b-9d41-2612462ff30e",
+      "number_link_cf57e351-5054-441b-9d41-2612462ff30e",
+      "progress_cf57e351-5054-441b-9d41-2612462ff30e",
+      "advisor_avatar_cf57e351-5054-441b-9d41-2612462ff30e",
+      "S2-36935",
+      "drag_handle_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "number_link_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "progress_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "advisor_avatar_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "S2-36936",
+      "drag_handle_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd",
+      "number_link_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd",
+      "progress_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd",
+      "advisor_avatar_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd"
      ],
      "lead": "Esther Howard",
      "message": []
     },
     "W3-paid-reorder": {
      "before": [
-      "S2-35482",
+      "S2-36934",
+      "drag_handle_be4ef244-2b80-49a1-9131-75ecbad39d51",
+      "number_link_be4ef244-2b80-49a1-9131-75ecbad39d51",
       "lock",
-      "S2-35481",
+      "progress_be4ef244-2b80-49a1-9131-75ecbad39d51",
+      "advisor_avatar_be4ef244-2b80-49a1-9131-75ecbad39d51",
+      "S2-36933",
+      "drag_handle_0ef3849c-a02a-4acd-97f5-19581aecdb23",
+      "number_link_0ef3849c-a02a-4acd-97f5-19581aecdb23",
       "lock",
-      "S2-35480",
+      "progress_0ef3849c-a02a-4acd-97f5-19581aecdb23",
+      "advisor_avatar_0ef3849c-a02a-4acd-97f5-19581aecdb23",
+      "S2-36932",
+      "drag_handle_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
+      "number_link_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
       "lock",
-      "S2-35479",
-      "S2-35483",
-      "S2-35484"
+      "progress_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
+      "advisor_avatar_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
+      "S2-36931",
+      "drag_handle_cf57e351-5054-441b-9d41-2612462ff30e",
+      "number_link_cf57e351-5054-441b-9d41-2612462ff30e",
+      "progress_cf57e351-5054-441b-9d41-2612462ff30e",
+      "advisor_avatar_cf57e351-5054-441b-9d41-2612462ff30e",
+      "S2-36935",
+      "drag_handle_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "number_link_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "progress_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "advisor_avatar_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "S2-36936",
+      "drag_handle_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd",
+      "number_link_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd",
+      "progress_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd",
+      "advisor_avatar_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd"
      ],
      "afterReload": [
-      "S2-35482",
+      "S2-36934",
+      "drag_handle_be4ef244-2b80-49a1-9131-75ecbad39d51",
+      "number_link_be4ef244-2b80-49a1-9131-75ecbad39d51",
       "lock",
-      "S2-35480",
+      "progress_be4ef244-2b80-49a1-9131-75ecbad39d51",
+      "advisor_avatar_be4ef244-2b80-49a1-9131-75ecbad39d51",
+      "S2-36932",
+      "drag_handle_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
+      "number_link_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
       "lock",
-      "S2-35481",
+      "progress_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
+      "advisor_avatar_dbe8fdbb-224e-4d73-b74c-a287d8862be6",
+      "S2-36933",
+      "drag_handle_0ef3849c-a02a-4acd-97f5-19581aecdb23",
+      "number_link_0ef3849c-a02a-4acd-97f5-19581aecdb23",
       "lock",
-      "S2-35479",
-      "S2-35483",
-      "S2-35484"
+      "progress_0ef3849c-a02a-4acd-97f5-19581aecdb23",
+      "advisor_avatar_0ef3849c-a02a-4acd-97f5-19581aecdb23",
+      "S2-36931",
+      "drag_handle_cf57e351-5054-441b-9d41-2612462ff30e",
+      "number_link_cf57e351-5054-441b-9d41-2612462ff30e",
+      "progress_cf57e351-5054-441b-9d41-2612462ff30e",
+      "advisor_avatar_cf57e351-5054-441b-9d41-2612462ff30e",
+      "S2-36935",
+      "drag_handle_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "number_link_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "progress_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "advisor_avatar_6c0b3744-f546-4411-b43a-487e74cf28bd",
+      "S2-36936",
+      "drag_handle_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd",
+      "number_link_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd",
+      "progress_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd",
+      "advisor_avatar_7bd87dbb-7d24-4c03-829f-cbd0208dbbcd"
      ],
      "lead": "Esther Howard",
      "message": []
@@ -262,12 +358,12 @@
   },
   "serverRefusal": "409 [{\"error\":\"The lead technician can't be changed once a work order is Invoiced or Paid.\"}]",
   "final": {
-   "S2-35484": "complete lead=Esther Howard",
-   "S2-35483": "declined lead=Esther Howard",
-   "S2-35482": "invoiced lead=none",
-   "S2-35481": "paid lead=Esther Howard",
-   "S2-35480": "invoiced lead=Esther Howard",
-   "S2-35479": "approved lead=Esther Howard"
+   "S2-36936": "complete lead=Esther Howard",
+   "S2-36935": "declined lead=Esther Howard",
+   "S2-36934": "invoiced lead=none",
+   "S2-36933": "paid lead=Esther Howard",
+   "S2-36932": "invoiced lead=Esther Howard",
+   "S2-36931": "approved lead=Esther Howard"
   }
  },
  "C96972": {
@@ -291,7 +387,7 @@
   "column": "Esther Howard",
   "afterReload": {
    "lead": {
-    "S2-35485": "invoiced lead=Esther Howard"
+    "S2-36937": "invoiced lead=Esther Howard"
    },
    "column": "Esther Howard"
   }
@@ -321,13 +417,12 @@
    "status now Paid"
   ],
   "set": [
-   "S2-35486 invoiced lead=Esther",
-   "S2-35487 paid lead=Esther"
+   "S2-36938 invoiced lead=Esther",
+   "S2-36939 paid lead=Esther"
   ],
   "Board View WO-1 Invoiced": {
    "icons": [
-    "|board_card_lock|The lead technician can't be changed once a work order is Invoiced or Paid.",
-    "more_horiz||"
+    "|board_card_lock|The lead technician can't be changed once a work order is Invoiced or Paid."
    ],
    "lockTooltip": [],
    "menuItem": {
@@ -340,8 +435,7 @@
   },
   "Board View WO-2 Paid": {
    "icons": [
-    "|board_card_lock|The lead technician can't be changed once a work order is Invoiced or Paid.",
-    "more_horiz||"
+    "|board_card_lock|The lead technician can't be changed once a work order is Invoiced or Paid."
    ],
    "lockTooltip": [],
    "menuItem": {
@@ -354,10 +448,7 @@
   },
   "Tech View WO-1 Invoiced": {
    "icons": [
-    "location_on||",
-    "|tech_view_row_lock|The lead technician can't be changed once a work order is Invoiced or Paid.",
-    "content_copy||",
-    "more_horiz||"
+    "|tech_view_row_lock|The lead technician can't be changed once a work order is Invoiced or Paid."
    ],
    "lockTooltip": [],
    "menuItem": {
@@ -370,10 +461,7 @@
   },
   "Tech View WO-2 Paid": {
    "icons": [
-    "location_on||",
-    "|tech_view_row_lock|The lead technician can't be changed once a work order is Invoiced or Paid.",
-    "content_copy||",
-    "more_horiz||"
+    "|tech_view_row_lock|The lead technician can't be changed once a work order is Invoiced or Paid."
    ],
    "lockTooltip": [],
    "menuItem": {
