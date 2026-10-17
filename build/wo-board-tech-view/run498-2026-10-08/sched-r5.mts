@@ -9,7 +9,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { open, done, APP, registerShotPage } from './session.mts';
+import { open, done, APP, API, registerShotPage } from './session.mts';
 import { startState, setDisplay, capped } from './fixup-1017.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, display, active, tab, search, drag, toColumn, toasts, shiftPrompt, searchValue } from './wob.mts';
@@ -122,8 +122,9 @@ async function scheduleRow(nums: string[], tag: string, shiftDate: string | null
   if (await p.locator('[data-test-id="input_schedule_search"]').isVisible().catch(() => false)) { await p.locator('[data-test-id="input_schedule_search"]').fill(''); await p.waitForTimeout(2500); out.searchCleared = true; }
   await shot(`${tag}-r5-schedule-day`);
   // Esther Howard's row
+  // LIVE FIX 17 Oct: a people cell reads "EH / Esther Howard / Not working" (initials first), so the old ^Esther test never matched
   const findRow = () => p.evaluate(`(() => { document.querySelectorAll('[data-zz-es]').forEach(e => e.removeAttribute('data-zz-es')); const cells = [...document.querySelectorAll('.fc-datagrid-body .fc-datagrid-cell-cushion, .fc-datagrid-body .fc-datagrid-cell')].filter(e => e.getBoundingClientRect().width > 0);
-    const c = cells.find(e => /^Esther Howard\\b/.test((e.innerText || '').trim())); if (!c) return { found: false, firstDrawn: (cells[0] || {}).innerText?.trim().slice(0, 30) || null, lastDrawn: (cells[cells.length - 1] || {}).innerText?.trim().slice(0, 30) || null };
+    const c = cells.find(e => /(^|\\n)\\s*Esther Howard\\s*(\\n|$)/.test(e.innerText || '')); if (!c) return { found: false, firstDrawn: (cells[0] || {}).innerText?.trim().slice(0, 30) || null, lastDrawn: (cells[cells.length - 1] || {}).innerText?.trim().slice(0, 30) || null };
     const cell = c.closest('.fc-datagrid-cell') || c; cell.setAttribute('data-zz-es', '1'); const rid = (c.closest('[data-resource-id]') || {}).getAttribute ? c.closest('[data-resource-id]').getAttribute('data-resource-id') : null; return { found: true, text: c.innerText.replace(/\\s+/g, ' ').trim().slice(0, 60), resourceId: rid }; })()`).catch((e: any) => ({ found: false, error: String(e).slice(0, 60) }));
   let f: any = await findRow(); out.rowSearch = [];
   if (!f.found) { await p.evaluate(`(() => { const s = [...document.querySelectorAll('.fc-scroller')].find(e => e.scrollHeight > e.clientHeight + 10); if (s) s.scrollTop = 0; })()`).catch(() => {}); await p.waitForTimeout(800); f = await findRow(); }
@@ -144,11 +145,12 @@ async function scheduleRow(nums: string[], tag: string, shiftDate: string | null
     if (cb) await p.screenshot({ path: path.join(EV, `${tag}-r5-schedule-esther-row-clip.png`), clip: { x: 0, y: Math.max(0, cb.y - 30), width: vs.width, height: Math.min(vs.height - Math.max(0, cb.y - 30), cb.height + 60) } }).catch(() => {}); }
   // each block of hers opened for its details (max 6)
   out.details = [];
-  const n = Math.min(6, (out.blocksAfterSideways?.blocks ?? []).length);
+  const n = Math.min(24, (out.blocksAfterSideways?.blocks ?? []).length);   // LIVE FIX 17 Oct: every block of her row is opened (the case's blocks can be the narrow ones with no words drawn)
   for (let i = 0; i < n; i++) { const pos = await p.evaluate(`(() => { const cell = document.querySelector('[data-zz-es="1"]'); const cb = cell.getBoundingClientRect(); const l = [...document.querySelectorAll('.fc-event, .fc-timeline-event')].filter(x => { const b = x.getBoundingClientRect(); const y = b.top + b.height / 2; return b.width > 0 && y >= cb.top - 1 && y <= cb.bottom + 1 && !x.parentElement.closest('.fc-event'); }); const e = l[${i}]; if (!e) return null; e.scrollIntoView({ block: 'center', inline: 'center' }); const b = e.getBoundingClientRect(); return { x: b.left + Math.min(b.width / 2, 40), y: b.top + b.height / 2, text: e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 80) }; })()`).catch(() => null) as any;
     if (!pos) break; await p.waitForTimeout(600); await p.mouse.click(pos.x, pos.y); await p.waitForTimeout(2200);
     const pop = await capped(p.evaluate(`(() => { const d = [...document.querySelectorAll('.q-dialog, .q-menu, [role=dialog]')].filter(x => x.getBoundingClientRect().width > 0).pop(); return d ? d.innerText.replace(/\\s+/g, ' ').trim().slice(0, 400) : ''; })()`) as Promise<string>, 15_000, `${tag} schedule: block ${i + 1}`, '(read timed out)');
     out.details.push({ block: pos.text, details: pop }); await shot(`${tag}-r5-schedule-esther-block${i + 1}`); await p.keyboard.press('Escape'); await p.waitForTimeout(1000); }
+  out.caseBlocks = out.details.filter((d: any) => nums.some((n) => String(d.details).includes(n))).map((d: any) => d.details);   // the blocks whose details name this run's work orders
   return out;
 }
 
@@ -156,6 +158,17 @@ async function scheduleRow(nums: string[], tag: string, shiftDate: string | null
 await run('C581892', async () => {
   const o = R.C581892; const n = `ZZAUTOTEST S4R28 Approved Lines ${stamp}`;
   const c = await customer(a, n, 'ZZS4AL');
+  // LIVE FIX 17 Oct (set-up, Rule 107): Esther Howard's row tomorrow held 15+ stacked blocks left by earlier runs (older S4R28 sets, other
+  // cases' prompt shifts), so this run's three blocks could not be told apart on screen. Her shifts on that day are cleared first through the
+  // Schedule's own delete (DELETE /api/schedule/shifts/{id}?scope=shift, as high1-fix5), listed and logged; the cases that need theirs
+  // re-create them when missing.
+  { const TZr = process.env.WOB_LOC_TZ || 'Asia/Karachi'; const ymd = (off: number) => new Intl.DateTimeFormat('en-CA', { timeZone: TZr, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(Date.now() + off * 86400000));
+    const d = ymd(1); const from = new Date(Date.now() - 86400000).toISOString().slice(0, 10) + 'T00:00:00.000Z', to = new Date(Date.now() + 3 * 86400000).toISOString().slice(0, 10) + 'T00:00:00.000Z';
+    const body = (await a.get(`/api/schedule/board?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`)).body; const found: any[] = []; const seen = new Set<string>();
+    const walk = (x: any) => { if (!x || typeof x !== 'object') return; if (Array.isArray(x)) return x.forEach(walk); if (x.id && x.startsAt && (x.staffId ?? x.staff_id) === ES.staff_id && !seen.has(x.id) && new Intl.DateTimeFormat('en-CA', { timeZone: TZr }).format(new Date(x.startsAt)) === d) { seen.add(x.id); found.push({ id: x.id, startsAt: x.startsAt, wo: x.workOrder?.number ?? null }); } Object.values(x).forEach(walk); };
+    walk(body); o.clearedDay = d; o.cleared = [];
+    for (const x of found) o.cleared.push(`${x.wo ?? '-'} ${x.startsAt} ` + await p.evaluate(async ([api0, id0]) => { const r = await fetch(`${api0}/api/schedule/shifts/${id0}?scope=shift`, { method: 'DELETE', credentials: 'include', headers: { Accept: 'application/json' } }); return `${r.status}`; }, [API, x.id]));
+    console.log(t(), 'START STATE found C581892 (Esther Howard, tomorrow)', JSON.stringify({ day: d, shiftsCleared: o.cleared })); }
   const W = [await workOrder(a, c, 'approved', ES.staff_id), await workOrder(a, c, 'approved', ES.staff_id), await workOrder(a, c, 'approved', ES.staff_id)];
   const L1 = await mkLine(W[0], TRANS), L2 = await mkLine(W[0], CABIN, 'authorization_required');
   const L3 = await mkLine(W[1], TRANS), L4 = await mkLine(W[1], CABIN, 'authorization_declined');
@@ -192,7 +205,7 @@ await run('C581892', async () => {
   const shiftDate = ((Object.values(o.setup ?? {}) as any[]).flatMap((x: any) => x.shifts ?? []).map((s: string) => (s.match(/\d{4}-\d{2}-\d{2}/) || [])[0]).find(Boolean)) ?? null;
   o.shiftDate = shiftDate;
   o.schedule = await capped(scheduleRow(W.map((w) => nums[w]), 'C581892', shiftDate), 300_000, 'C581892 schedule read', { timedOut: '5 min' } as any);
-  console.log(t(), 'C581892 step 14 (Esther Howard row)', JSON.stringify({ day: [o.schedule?.dayAtOpen, o.schedule?.dayAfterArrow, o.schedule?.wantDay], row: o.schedule?.row, blocks: o.schedule?.blocksAfterSideways?.blocks ?? o.schedule?.blocks, ours: o.schedule?.ourBlocks, details: o.schedule?.details }));
+  console.log(t(), 'C581892 step 14 (Esther Howard row)', JSON.stringify({ caseBlocks: o.schedule?.caseBlocks, day: [o.schedule?.dayAtOpen, o.schedule?.dayAfterArrow, o.schedule?.wantDay], row: o.schedule?.row, blocks: o.schedule?.blocksAfterSideways?.blocks ?? o.schedule?.blocks, ours: o.schedule?.ourBlocks, details: o.schedule?.details }));
   if (o.schedule?.timedOut) { const old = p; p = await old.context().newPage(); p.setDefaultTimeout(30_000); p.on('dialog', onDialog); a = api(p); registerShotPage(p);
     await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(4000); old.close({ runBeforeUnload: false }).catch(() => {}); console.log(t(), 'C581892 schedule read timed out: carrying on in a fresh page'); }
   o.shiftsAfter = Object.fromEntries(await Promise.all(W.map(async (w, i) => [`WO-${i + 1}`, await shiftsOn(a, w, names)])));
