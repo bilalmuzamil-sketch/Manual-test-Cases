@@ -1,0 +1,52 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up round 4, batch 02 = round 4 steps 3-4"
+ },
+ "results": {
+  "C590116": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (round 4 re-run, 17 Oct). The fix in SV-11320 (Testing Stage) looks shipped.",
+    "Set-up: S2-37095 and S2-37096 (Approved, led by ZZAUTOTEST DC07 Hana Grip) and S2-37097 (Estimate, no lead); a view-only user (role ZZAUTOTEST WO View Only).",
+    "Step 2: the technician group headers show the six-dot grip at their left edge; the Unassigned header has none.",
+    "Step 3: every row shows the six-dot grip at its left edge, including S2-37097's row in Unassigned.",
+    "Step 4: the hovered row turns light grey and its grip stays visible.",
+    "Step 5: S2-37095, grabbed by its Customer cell, was dropped inside Hana Grip's own group below S2-37096: the order is now S2-37096, S2-37095, the lead is unchanged and no message showed.",
+    "Step 6: a plain click on the row opened the work order and did not start a drag.",
+    "Step 9 (view-only user): no grips on the work order rows; every technician header still shows its grip; the Unassigned header shows none."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590116-f4-1-row-hover.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590116-f4-2-dragging.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590116-f4-3-after-drop.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C590116-f4-4-view-only.png"
+   ],
+   "ticket": "Fix looks shipped: https://shopview.atlassian.net/browse/SV-11320 (Testing Stage, read 17 Oct 2026)."
+  },
+  "C368151": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: step 9 could only be finished after the test script put the focus on an option itself, so it cannot be passed; every other step matches.",
+    "Set-up: S2-37098 led by ZZAUTOTEST Ana Alpha (customer \"ZZAUTOTEST F3 Keyboard Controls One 96485\"), Ana's column right after Unassigned and not pinned.",
+    "Step 1: Tab from Search lands on S2-37098's card with a focus ring; More actions shows.",
+    "Step 2: Enter and Space each open the menu (Reassign lead technician, Unassign); Escape closes it and focus is back on More actions.",
+    "Steps 3 and 4: the up arrow reaches Ana's column header, Tab reaches the pin; Enter pins her and Space unpins her.",
+    "Steps 5 and 6: in Tech View, Tab lands on the row, the up arrow reaches Ana's group header, Tab reaches its arrow; Enter collapses the group and Space expands it.",
+    "Step 7: the down arrow reaches the row and Tab reaches the avatar in Assigned Techs, which shows \"ZZAUTOTEST Ana Alpha\".",
+    "Step 8: Column Selection opens with Enter, Tab moves into its options (On Site), Escape closes it and focus is back on Column Selection.",
+    "Step 9: Enter opened Status, but Home and the down arrow highlighted no option. Only after the script put the focus on the first option did Tab reach Approved; Enter ticked it, the chip read \"Status: Approved\", and Enter on its x cleared it. Tab inside the open menu, without the script's help, was not tried.",
+    "Step 10: Enter on the Board View switcher changed the display to Board View."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368151-f4-1-collapse.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368151-f4-2-avatar.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368151-f4-3-status.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: a focused run of step 9 only: Enter on Status, then Tab (no focus placed by the script) and record whether an option is reached and Approved can be ticked; sent back to the coordinator."
+  }
+ }
+}
