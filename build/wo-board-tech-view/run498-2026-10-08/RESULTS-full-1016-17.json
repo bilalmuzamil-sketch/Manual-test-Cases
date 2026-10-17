@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "full staging run 16-17 Oct 2026, batch 17 = correction of C368169 (step 40) + later steps"
+ },
+ "results": {
+  "C368169": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, following the test's steps (same problem as before; this replaces the Blocked result posted a few minutes earlier for this run).",
+    "Work order S2-36774, led by Esther Howard: on the status card, Lead Technician's list shows 62 names and ends at the Q names (\"QA PartsManager\", \"QA ServiceManager\"); Ralph Edwards, the name the test asks for, is not offered, so the lead could not be changed (the script's second try, Dana Ortiz, did not land either).",
+    "Mileage was changed to 120,500 with no error message and still reads 120,500 after a reload; Lead Technician still reads \"Esther Howard\".",
+    "The ticket for the cut-off list reads \"OBSOLETE\" (read 16 Oct 2026), but the list still stops before the R names on this build."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368169-1-lead-not-offered.png"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11393.",
+   "todo": "What needs to be done: the QA lead to decide on the ticket (it is closed as obsolete, the problem is still there); once fixed on staging, run this test again."
+  }
+ }
+}
