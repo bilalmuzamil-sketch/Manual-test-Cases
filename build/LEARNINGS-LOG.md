@@ -709,3 +709,6 @@ Run 498 round 3: two scripts quietly finished a step the screen did not complete
   scrolling if needed), C96916 (`s1-r4.mts`: a CASE row brought to the top, number link clicked in place) and C368131 (`moved-r4.mts`:
   step 3 through the screen only — no enrolment removed behind it; if Location alone leaves her offered, that IS the reading).
   #wo-board #scripts #staff → L0430, L0431
+
+## L0434 — 2026-10-17 — A "container was restarted" notice can mean only the SESSION WORKER restarted: check `ps` before restarting anything
+At 08:24 UTC the harness reported a restart and listed my background WAIT commands and the judge helper as stopped. But the staging runners started with `setsid nohup` (run-fixup-1017c.sh, after-round4-1017.sh, autocommit-*.sh) and the Atlassian relay (bridge.mjs) were all still alive — round 3 carried on at step 15. Only a git commit in flight was cut (exit 137; its staged files were still staged). After such a notice: (1) `ps -eo args | grep -E "run-fixup|after-|autocommit|bridge"` and the queue logs; (2) if they live, restart NOTHING — just re-create the lost wait commands, finish the cut commit, and resume the helper telling it to check what it already posted (no double posts); (3) only if `ps` is empty, restart the relay first, then resume the queue with `FROM=<n>`.
