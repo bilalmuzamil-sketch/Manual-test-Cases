@@ -1,0 +1,74 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up round 5, batch 03 = round 5 steps 4-7"
+ },
+ "results": {
+  "C96936": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: step 5 was again not done (third time), so steps 6 to 8 were not read.",
+    "Set-up: customer \"ZZAUTOTEST F2 Refresh Lead\": S2-35331, S2-35332, S2-35333 with Esther Howard, S2-35334 and S2-35335 with Ralph Edwards. Steps 1 to 4: tab A in Tech View shows Esther Howard 3 and Ralph Edwards 2.",
+    "How step 5 was tried: in tab B the script opened S2-35331's page; the New Line window that opens on a work order with no lines was closed with its X. The page then shows \"Lead technician: Esther Howard\" as plain text; the script looked for a field to pick from, did not click that text, and gave up after 20 seconds. The lead was not changed by any route (nothing behind the screen)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96936-f5-1-lead-not-changed.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: step 5 by a manual tester (open S2-35331 in a second tab, close the New Line window, click Lead technician on the left card and pick Ralph Edwards; if he is not offered pick another technician and say so), then steps 6 to 8 in tab A; or a focused script that clicks the shown lead name first (sent back to the coordinator)."
+  },
+  "C96963": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (all parts seen on 17 Oct on this build; the last one, Tech View reordering inside Unassigned, in round 5).",
+    "Set-up: S2-37063 Approved; S2-37064 Invoiced and S2-37065 Paid, led by Esther Howard; S2-37066 Invoiced with no lead; S2-37067 Declined and S2-37068 Complete (customer ZZAUTOTEST F1 Invoiced Paid Locked 84534).",
+    "Board View and Tech View: S2-37064 and S2-37065 cannot be moved to another technician or to Unassigned (lead stays Esther Howard, no message), but can be moved within Esther's column/group and keep their place after a reload. S2-37066 cannot be moved out of Unassigned.",
+    "S2-37066 can be reordered inside Unassigned: in Board View it was dropped above S2-37063, in Tech View below it; each time it kept its new place after a reload, with no message, and stayed in Unassigned.",
+    "The Declined and the Complete work orders move to Ralph Edwards normally, with \"Lead technician updated\".",
+    "On S2-37064's work order page the Lead technician shows as plain text and cannot be changed."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96963-f5-1-tech-holding.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96963-f5-2-tech-after-reload.png"
+   ],
+   "ticket": null
+  },
+  "C368167": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test's starting state (a work order that reads Invoiced after Create Invoice, with the payment window closed) cannot be reached, so the case was not run.",
+    "Check first, on a new plain work order S2-37110 (Complete, credit limit raised): Finance tab > Create Invoice made invoice INV-S2-37110 and opened New Customer Payment. About 10 seconds later the work order read Invoiced.",
+    "Closing New Customer Payment with its X, as the test's step 2 says, removed the invoice again: the work order went back to Complete, and after a reload it still reads Complete with Create invoice offered.",
+    "So tab 2's step 2 can never leave the work order Invoiced, and the refused lead change in tab 1 cannot be tested. No lead was changed in this run."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368167-f5-1-control-create.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368167-f5-2-control-reload.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: the QA lead to say whether closing New Customer Payment should undo the invoice; if it should, the test's step 2 needs another way to leave the work order Invoiced (for example Make Payment with a part payment), then run it again."
+  },
+  "C368151": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, using the keyboard only (steps 1 to 8 and 10 seen in round 4 on 17 Oct; step 9 in round 5, with no focus placed by the script).",
+    "Step 1: Tab from Search lands on S2-37098's card with a focus ring and More actions shows.",
+    "Step 2: Enter and Space each open the menu (Reassign lead technician, Unassign); Escape closes it and focus is back on More actions.",
+    "Steps 3 and 4: the up arrow reaches the technician's column header, Tab reaches the pin; Enter pins and Space unpins.",
+    "Steps 5 and 6: in Tech View, Enter on the group's collapse arrow collapses the group and Space expands it.",
+    "Step 7: the avatar in Assigned Techs, reached by keyboard, shows \"ZZAUTOTEST Ana Alpha\".",
+    "Step 8: Column Selection opens with Enter, Tab moves into its options, Escape closes it and focus is back on Column Selection.",
+    "Step 9: Tab reaches Status, Enter opens it, Tab reaches Estimate and then Approved, Enter ticks Approved (chip \"Status: Approved\"), Escape closes the options with focus back on the chip, Tab reaches its x and Enter clears the filter.",
+    "Step 10: Enter on the Board View switcher changes the display to Board View."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368151-f5-1-status-keyboard.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368151-f4-1-collapse.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368151-f4-2-avatar.png"
+   ],
+   "ticket": null
+  }
+ }
+}
