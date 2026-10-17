@@ -1433,3 +1433,12 @@ what is still owed.
 | **Print in the export requirements** | Removed at v14 **S18-R7** and **S18-R10**. |
 | **Whether markers exist on Report Suite** | **473 of 473 now carry exactly one `AUTOMATION:` marker.** Before today, 453 carried none and two competing styles coexisted on the other 20. |
 | **Whether a VIU pass had rewritten expectations** | **Checked across all 41 commits that touched the case source: no pass ever changed a case's steps and its expectation body together, and the two pure VIU passes changed ZERO expectations.** The contamination came from an answer-ingest pass. Audit §10. |
+
+## Board View & Tech View bug batch (staging v26.40.19-754919e) — raised 2026-10-17
+| What is missing | Who owes it | What it blocks | Since |
+|---|---|---|---|
+| Decision: Board/Tech View Paid pill is 44.5 px, List's is 58.5–72.4 px (List fills its column). Is 44.5 px correct? | QA lead | SV-11405 comment (held, not posted); may also touch passed SV-11318 (78911) | 2026-10-17 |
+| Decision: on Board View after Back, the Unassigned column's top card comes back 2 px under the column edge (top border hidden); other columns leave a 2 px gap. Within S1-R8's allowance, or a remaining issue? | QA lead | SV-11407 comment (held, not posted) | 2026-10-17 |
+| Decision: "Collapse all" label still reads "Collapse all" when every group with work orders is collapsed (a zero-work-order group that is not in the user's collapsed list counts as open). Raise it or not? | QA lead | nothing posted; data in build/board-tech-view-bugs-2026-10-16/collapse-all-observation/ | 2026-10-17 |
+| Decision: after a filter chip's x is used by keyboard, focus drops to the top of the page. No rule covers it. Raise it or not? | QA lead | nothing posted (SV-11409 passed on its own rule) | 2026-10-17 |
+| Decision: earlier voiced films on SV-11318, SV-11337, SV-11338 still contain 9–12 s of still frames (made before the idle cut for voiced films existed). Re-cut and replace? | QA lead | nothing blocked | 2026-10-17 |
