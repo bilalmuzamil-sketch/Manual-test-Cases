@@ -1,0 +1,69 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 correction (Rule 12): Passed results whose sign-out step was substituted"
+ },
+ "results": {
+  "C96989": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the sign-out and sign-in step has not yet been done for real.",
+    "Seen working: Comfortable chosen in Tech View is also ticked in Board View; a new browser window showed Comfortable in both views; after switching to Staging Lethbridge - 4310 both views still showed Comfortable.",
+    "Step 4 (log out, log back in) was done as a new browser window, not a real log-out.",
+    "This replaces the Passed posted earlier today: that step was done in a new browser window instead of a real sign-out, and a step done another way is not observed."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96989-1-density-shared.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: do the sign-out and sign-in step for real in the end-of-run sign-out batch, then judge. A real sign-out ends the one shared staging sign-in for every running test, so it is done last."
+  },
+  "C97005": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the sign-out and sign-in step has not yet been done for real.",
+    "Seen working: Charlie Co dragged above Alpha Co in Ana's group (Charlie, Alpha, Bravo), the same in Board View; the second dispatcher saw that order without doing anything; when the first dispatcher moved Ben above Ana, the second dispatcher still had Ana before Ben after refreshing.",
+    "Step 9 (sign out, sign back in) was done as a new browser window, not a real sign-out (the order was still Charlie, Alpha, Bravo there).",
+    "This replaces the Passed posted earlier today: that step was done in a new browser window instead of a real sign-out, and a step done another way is not observed."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97005-1-order-kept-new-window.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97005-2-first-moves-ben-up.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C97005-3-second-keeps-own-order.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: do the sign-out and sign-in step for real in the end-of-run sign-out batch, then judge. A real sign-out ends the one shared staging sign-in for every running test, so it is done last."
+  },
+  "C96912": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the sign-out and sign-in step has not yet been done for real.",
+    "Seen working: Board View chosen; the same user opening Work Orders in a second browser got Board View, and the first browser still showed Board View; after Change Location to Staging Lethbridge - 4310 it still opened in Board View; a different, brand-new user saw List.",
+    "Step 4 (sign out, then sign in again) and step 8 (sign out and sign in as User-B) were done with new browsers, not real sign-outs.",
+    "This replaces the Passed posted earlier today: that step was done in a new browser window instead of a real sign-out, and a step done another way is not observed."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96912-1-board-at-loc2.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96912-2-other-user-list.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: do the sign-out and sign-in step for real in the end-of-run sign-out batch, then judge. A real sign-out ends the one shared staging sign-in for every running test, so it is done last."
+  },
+  "C96948": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the sign-out and sign-in step has not yet been done for real.",
+    "Seen working: Ralph Edwards and Jenny Wilson pinned in Board View showed pinned right after Unassigned in Tech View; a new sign-in as the same user in another browser showed the same two pinned; a second user has no pins.",
+    "Step 7 (sign out, sign in again) was done with a new browser, not a real sign-out.",
+    "This replaces the Passed posted earlier today: that step was done in a new browser window instead of a real sign-out, and a step done another way is not observed."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96948-1-pins-follow.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: do the sign-out and sign-in step for real in the end-of-run sign-out batch, then judge. A real sign-out ends the one shared staging sign-in for every running test, so it is done last."
+  }
+ }
+}
