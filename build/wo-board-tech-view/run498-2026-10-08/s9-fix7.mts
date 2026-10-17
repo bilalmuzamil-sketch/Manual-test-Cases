@@ -168,6 +168,29 @@ async function toGroup(pg: Page, id: string) {
   await pg.locator(`[data-test-id="tech_view_group_${id}"]`).scrollIntoViewIfNeeded().catch(() => {});
 }
 
+/** FIX-UP 2 (17 Oct 2026, C97003): on 16 Oct the view-only user's drags found no grip ("no handle/target (false/true)"): the grip was
+ *  looked for as a material "drag_indicator" icon, but staging draws it as its own element (board_column_drag_handle_<id> /
+ *  tech_view_group_drag_handle_<id>, L0415), and the test's columns sit far right among ~100 technicians. This brings the dragged
+ *  column/group on screen first (header scrolled into view, horizontal scroller position logged with the columns in view), takes the
+ *  grip by its test id (else .board-column-header__grip, else the old icon), pictures before/after, and says what was found. */
+async function gripDrag(pg: Page, kind: 'board' | 'tech', id: string, toSel: string, dx: number, tag: string) {
+  const o: any = {}; const head = kind === 'board' ? hdr(id) : `[data-test-id="tech_view_group_${id}"]`;
+  if (kind === 'board') { for (let i = 0; i < 400 && !(await pg.locator(head).count()); i++) { const mv = await pg.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"]'); if (!h) return false; const b = h.scrollLeft; h.scrollLeft += 900; return h.scrollLeft !== b; })()`).catch(() => false); await pg.waitForTimeout(300); if (!mv) break; } }
+  else await toGroup(pg, id);
+  await pg.locator(head).first().scrollIntoViewIfNeeded().catch(() => {}); await pg.evaluate(`document.querySelector(${JSON.stringify(head)})?.scrollIntoView({ block: 'center', inline: 'center' })`).catch(() => {}); await pg.waitForTimeout(800);
+  o.scrollLeft = await pg.evaluate(`(document.querySelector('[data-test-id="board_view_scroller"]') || {}).scrollLeft ?? null`).catch(() => null);
+  if (kind === 'board') o.inView = named(await visibleIds(pg), IDS);
+  const gid = kind === 'board' ? `board_column_drag_handle_${id}` : `tech_view_group_drag_handle_${id}`;
+  let grip = pg.locator(`[data-test-id="${gid}"]`).first(); o.grip = (await grip.count()) ? 'test id' : null;
+  if (!o.grip) { grip = pg.locator(head).locator('.board-column-header__grip, .tech-view-group-header__grip, [class*="grip"]').first(); o.grip = (await grip.count()) ? 'grip class' : null; }
+  if (!o.grip) { grip = pg.locator(head).locator('i, .q-icon').filter({ hasText: 'drag_indicator' }).first(); o.grip = (await grip.count()) ? 'drag_indicator icon' : 'NOT FOUND'; }
+  await grip.scrollIntoViewIfNeeded().catch(() => {});
+  const hb = await grip.boundingBox().catch(() => null); const tb = await pg.locator(toSel).first().boundingBox().catch(() => null); o.gripBox = !!hb; o.targetBox = !!tb;
+  await shot(pg, `C97003-${tag}-before`);
+  if (!hb || !tb) { o.drag = `not made: grip ${!!hb}, target ${!!tb}`; return o; }
+  await pg.mouse.move(hb.x + hb.width / 2, hb.y + hb.height / 2); await pg.mouse.down(); await pg.mouse.move(hb.x + 12, hb.y + 4, { steps: 4 });
+  await pg.mouse.move(tb.x + dx, tb.y + tb.height / 2, { steps: 20 }); await pg.waitForTimeout(500); await shot(pg, `C97003-${tag}-holding`); await pg.mouse.up(); await pg.waitForTimeout(2500);
+  o.drag = 'made'; await shot(pg, `C97003-${tag}-after`); return o; }
 await run('C97003', async () => {
   const s = await mkSet('ZZAUTOTEST F3 Viewer Column Order', [{ co: 'Alpha Co', lead: ANA }, { co: 'Golf Co', lead: null }]); const o: any = {}; R.C97003 = o;   // FIX 6: readings kept when a later step fails
   await goP(p, 'Board View', s.q); o.dispatcherStart = named((await allCols(p)), IDS);
@@ -176,10 +199,10 @@ await run('C97003', async () => {
     o.step5 = named((await allCols(pg)), IDS); await shot(pg, 'C97003-v4-step5');
     // FIX: the test technicians sit far right among ~97 columns; Unassigned stays pinned on the left while the board scrolls
     await showCols(pg, ANA.staff_id); o.visibleAtDrag = named(await visibleIds(pg), IDS);
-    o.step6drag = await dragHandleOn(pg, hdr(CAL.staff_id), hdr(ANA.staff_id), 6); o.step6 = named((await allCols(pg)), IDS); await shot(pg, 'C97003-v4-step6');
+    await showCols(pg, ANA.staff_id); o.step6drag = await gripDrag(pg, 'board', CAL.staff_id, hdr(ANA.staff_id), 6, 'v4-step6'); o.step6 = named((await allCols(pg)), IDS); await shot(pg, 'C97003-v4-step6');
     await showCols(pg, ANA.staff_id).catch(() => {}); await pg.evaluate(`document.querySelector('[data-test-id="board_view_scroller"]').scrollLeft -= 400`).catch(() => {}); await pg.waitForTimeout(600);
-    o.step7drag = await dragHandleOn(pg, hdr(BEN.staff_id), '[data-test-id="board_column_header_unassigned"]', 4); o.step7 = named((await allCols(pg)), IDS); await shot(pg, 'C97003-v4-step7');
-    o.step8handle = await pg.locator('[data-test-id="board_column_header_unassigned"]').locator('i, .q-icon').filter({ hasText: 'drag_indicator' }).count();
+    o.step7drag = await gripDrag(pg, 'board', BEN.staff_id, '[data-test-id="board_column_header_unassigned"]', 4, 'v4-step7'); o.step7 = named((await allCols(pg)), IDS); await shot(pg, 'C97003-v4-step7');
+    o.step8handle = { testId: await pg.locator('[data-test-id="board_column_drag_handle_unassigned"]').count(), gripClass: await pg.locator('[data-test-id="board_column_header_unassigned"] .board-column-header__grip').count(), icon: await pg.locator('[data-test-id="board_column_header_unassigned"]').locator('i, .q-icon').filter({ hasText: 'drag_indicator' }).count() };   // fix-up 2
     await showCols(pg, ANA.staff_id).catch(() => {});
     { const u = await pg.locator('[data-test-id="board_column_header_unassigned"]').boundingBox({ timeout: 8000 }).catch(() => null); const c = await pg.locator(hdr(CAL.staff_id)).boundingBox({ timeout: 8000 }).catch(() => null); o.step8found = { unassigned: !!u, cal: !!c };
       if (u && c) { await pg.mouse.move(u.x + 60, u.y + u.height / 2); await pg.mouse.down(); await pg.mouse.move(u.x + 80, u.y + u.height / 2, { steps: 4 }); await pg.mouse.move(c.x + c.width - 10, c.y + c.height / 2, { steps: 20 }); await pg.mouse.up(); await pg.waitForTimeout(2500); o.step8drag = 'ok'; } }
@@ -187,7 +210,8 @@ await run('C97003', async () => {
     await display(pg, 'Tech View'); await pg.waitForTimeout(3000); o.techHandles = (await handles(pg)).slice(0, 8);
     o.techBefore = named((await techGroups(pg)), IDS); await shot(pg, 'C97003-v4-tech');
     await toGroup(pg, BEN.staff_id);
-    o.step10drag = await dragHandleOn(pg, `[data-test-id="tech_view_group_${BEN.staff_id}"]`, '[data-test-id="tech_view_group_unassigned"]', 30);
+    o.techGrips = await pg.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_group_drag_handle_"]')].map(e => e.getAttribute('data-test-id').replace('tech_view_group_drag_handle_', '').slice(0, 8))`).catch(() => null);
+    o.step10drag = await gripDrag(pg, 'tech', BEN.staff_id, '[data-test-id="tech_view_group_unassigned"]', 30, 'v4-step10');
     o.step10 = named((await techGroups(pg)), IDS); await shot(pg, 'C97003-v4-step10');
     await pg.reload({ waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(6000); await display(pg, 'Tech View'); await pg.waitForTimeout(2500); o.step11tech = named((await techGroups(pg)), IDS);
     await display(pg, 'Board View'); await pg.waitForTimeout(2500); o.step11board = named((await allCols(pg)), IDS); await shot(pg, 'C97003-v4-step11');

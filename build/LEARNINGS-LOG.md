@@ -604,7 +604,11 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 - **A batch script's cases must each start and end clean** (high2-batch `caseEdge`): one case's saved Status filter hid the next
   cases' new work orders, and one case's location switch hid the next one's. **Quasar option lists move a HIGHLIGHT, not the browser
   focus** (C368151): read `q-manual-focusable--focused` / `aria-activedescendant` beside `document.activeElement` after each key.
-  **Measure a hover target at the moment of the hover** and check `elementFromPoint` (C590124). #staging #scripts #signin #sv-11393 → L0394, L0396, L0413, L0415
+  **Measure a hover target at the moment of the hover** and check `elementFromPoint` (C590124).
+- **Board View draws only the columns near the screen**: scrolling to one end of a drag un-draws the other (C614711 steps 6/10 timed out
+  on `board_column_deleted` / the card). Bring the source on screen, hold the card and walk the board until the target is drawn
+  (`dragAcross`), or pin the target technician first. Column grips are their own elements (`board_column_drag_handle_<id>`), not a
+  `drag_indicator` icon (C97003). #staging #scripts #signin #sv-11393 → L0394, L0396, L0413, L0415
 
 ## L0418 — 2026-10-17 — Reading a run's history: what a full re-run's posts did to earlier verdicts (run 498)
 - **`build/testing-tools/tr_client.py` `get()` returns a TUPLE `(http_status, body)`**, not the body: `_, r = t.get("get_tests/498&limit=250&offset=0"); r['tests']`; `_, rs = t.get(f"get_results/{test_id}&limit=3"); rs['results']`. Page `get_tests` by 250.
