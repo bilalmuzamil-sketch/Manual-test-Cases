@@ -1,0 +1,5167 @@
+{
+ "clearedLeftoverSwitch": 200,
+ "startState": {
+  "found": {
+   "saved": {
+    "status": 200,
+    "display": "tech_view",
+    "collapsedGroups": null,
+    "pinned": [],
+    "filters": [],
+    "density": "compact",
+    "tab": "work_orders"
+   },
+   "screen": {
+    "switcher": 3,
+    "active": "Tech View"
+   }
+  },
+  "clearCollapsedPut": 200,
+  "collapsedSavedAfter": [],
+  "savedAfter": {
+   "status": 200,
+   "display": "tech_view",
+   "collapsedGroups": [],
+   "pinned": [],
+   "filters": [],
+   "density": "compact",
+   "tab": "work_orders"
+  }
+ },
+ "C368131": {
+  "technicians": {
+   "A": {
+    "email": "zz.wob.aaa.tara.lead@staging.shopview.local",
+    "id": "a9a98ce3-236b-4243-8c78-c31561587304",
+    "staff_id": "309924ab-95b2-40dc-8e8a-9bf22bc297b8",
+    "name": "Aaa ZZAUTOTEST Tara Lead",
+    "setup": [
+     "reactivate 201",
+     "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}"
+    ],
+    "active": true,
+    "location": "Staging Heavy Duty - 9919"
+   },
+   "B": {
+    "email": "zz.wob.aaa.jenny.pinned@staging.shopview.local",
+    "id": "7e081796-a0b7-4150-9fdf-9ac53d33831e",
+    "staff_id": "a7748aa8-3421-40ca-8d03-bdd68581606e",
+    "name": "Aaa ZZAUTOTEST Jenny Pinned",
+    "setup": [
+     "reactivate 201",
+     "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}"
+    ],
+    "active": true,
+    "location": "Staging Heavy Duty - 9919"
+   },
+   "C": {
+    "email": "zz.wob.aaa.theresa.pinned@staging.shopview.local",
+    "id": "60024a26-a04f-4a4e-be0b-19b156aa59b5",
+    "staff_id": "82608f53-2039-4d17-a5c5-c7c1647a609d",
+    "name": "Aaa ZZAUTOTEST Theresa Pinned",
+    "setup": [
+     "reactivate 201",
+     "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}",
+     "enrol Lethbridge 201"
+    ],
+    "active": true,
+    "location": "Staging Heavy Duty - 9919"
+   }
+  },
+  "workOrders": {
+   "set": [
+    "S2-35908 201",
+    "S2-35909 201"
+   ],
+   "now": [
+    "S2-35908 lead=Aaa ZZAUTOTEST Tara Lead",
+    "S2-35909 lead=Aaa ZZAUTOTEST Theresa Pinned"
+   ],
+   "wo1": "S2-35908",
+   "wo2": "S2-35909"
+  },
+  "pins": {
+   "admin": 200,
+   "viewOnly": 200
+  },
+  "viewOnlyPerms": 2,
+  "pinsSet": {
+   "saved": [
+    "Technician-B",
+    "Technician-C"
+   ],
+   "screen": [
+    "Unassigned:no pin control",
+    "Aaa ZZAUTOTEST Jenny Pinned:true",
+    "Aaa ZZAUTOTEST Theresa Pinned:true",
+    "Aaron Baker:false"
+   ]
+  },
+  "step2": {
+   "rowsFound": 1,
+   "button": "Deactivate Account",
+   "confirmText": [],
+   "toasts": [],
+   "done": true,
+   "activeNow": false
+  },
+  "step3": {
+   "before": {
+    "location": "Staging Heavy Duty - 9919",
+    "offeredAtHeavy": true
+   },
+   "locationField": {
+    "shown": "Location Staging Lethbridge - 4310 arrow_drop_down",
+    "calls": [
+     "POST /api/staff/82608f53-2039-4d17-a5c5-c7c1647a609d/change {\"first_name\":\"Aaa ZZAUTOTEST Theresa\",\"last_name\":\"Pinned\",\"email\":\"zz.wob.aaa.theresa.pinned@staging.shopview.local\",\"role_id\":\"af8d02b5-ecd1-4205-a82f-32a4d5bb1015\",\"workplace_id\":\"f8a8b802-7780-4b16-bf10-343caeb616b2\",\"job_title\":null,\"salary_type\":null,\"salary\":null,\"billable\":0,\"clockable\":tru"
+    ],
+    "stillOpen": 0
+   },
+   "after": {
+    "location": "Staging Lethbridge - 4310",
+    "active": true,
+    "offeredAtHeavy": true
+   },
+   "enrolmentRemovedBehindScreen": false,
+   "reading": "Location changed on the screen, and she is STILL offered as a technician at Heavy Duty (nothing added behind the screen)"
+  },
+  "pinsBeforeStep7": [],
+  "step7": [
+   {
+    "id": "unassign",
+    "name": "Unassigned",
+    "header": "Unassigned 0 0 work orders",
+    "pinned": "no pin control",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 17
+   },
+   {
+    "id": "c57d19d7",
+    "name": "Aaron Baker",
+    "header": "AB Aaron Baker 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 321
+   },
+   {
+    "id": "52b5c2b4",
+    "name": "Aaron Zed",
+    "header": "AZ Aaron Zed 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 625
+   },
+   {
+    "id": "7f85bc58",
+    "name": "Admin ShopView",
+    "header": "AS Admin ShopView 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 929
+   },
+   {
+    "id": "1bdce760",
+    "name": "Advisor Analysis",
+    "header": "AA Advisor Analysis 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 1233
+   },
+   {
+    "id": "b06dd063",
+    "name": "Ahtasham Admin",
+    "header": "AA Ahtasham Admin 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 1537
+   },
+   {
+    "id": "052a953c",
+    "name": "Ahtasham Service Advisor",
+    "header": "AS Ahtasham Service Advisor 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 1841
+   }
+  ],
+  "step8": {
+   "columnFound": true,
+   "column": {
+    "id": "82608f53",
+    "name": "Aaa ZZAUTOTEST Theresa Pinned",
+    "header": "AZ Aaa ZZAUTOTEST Theresa Pinned 1 1 work order",
+    "pinned": "false",
+    "cards": [
+     "S2-35909"
+    ],
+    "empty": null,
+    "left": 809
+   }
+  },
+  "step9": {
+   "from": "not drawn",
+   "to": "not drawn",
+   "dragError": "drag: missing [data-test-id=\"board_column_a7748aa8-3421-40ca-8d03-bdd68581606e\"] (not drawn)",
+   "reach": {
+    "from": "on screen",
+    "toBeforePress": "not drawn",
+    "toWhileHolding": "not drawn"
+   },
+   "shiftPrompt": null,
+   "message": [
+    "Lead technician updated"
+   ],
+   "watched": [
+    {
+     "ms": 100,
+     "kind": "new text",
+     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 264,
+     "kind": "new text",
+     "text": "AT Ashlee Thomas 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 264,
+     "kind": "new text",
+     "text": "AH Angelica Harper 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 264,
+     "kind": "new text",
+     "text": "AF Amy Fernandez 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 264,
+     "kind": "new text",
+     "text": "AM Ammar Mughamis 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 264,
+     "kind": "new text",
+     "text": "AS Ahtsham Service Manager 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 264,
+     "kind": "new text",
+     "text": "AP Ahtsham Parts Manger 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 264,
+     "kind": "new text",
+     "text": "AF Ahtsham Foreman 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 264,
+     "kind": "new text",
+     "text": "AS Ahtasham Service Advisor 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 264,
+     "kind": "new text",
+     "text": "AA Ahtasham Admin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 264,
+     "kind": "new text",
+     "text": "AA Advisor Analysis 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 264,
+     "kind": "new text",
+     "text": "AS Admin ShopView 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 264,
+     "kind": "new text",
+     "text": "AZ Aaron Zed 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 264,
+     "kind": "new text",
+     "text": "AB Aaron Baker 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1159,
+     "kind": "new text",
+     "text": "AS Ashley Schultz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1159,
+     "kind": "new text",
+     "text": "AT Automation Tech 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1408,
+     "kind": "new text",
+     "text": "AK Ayesha Khan 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1408,
+     "kind": "new text",
+     "text": "AT Ayesha Tech Role 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1408,
+     "kind": "new text",
+     "text": "BM Bilal Muzamil 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1656,
+     "kind": "new text",
+     "text": "BM BIlal Muzamil 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1656,
+     "kind": "new text",
+     "text": "BN Billy Nobill 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1920,
+     "kind": "new text",
+     "text": "BS Brandi Smith 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1920,
+     "kind": "new text",
+     "text": "BJ Brandon Jarvis 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2162,
+     "kind": "new text",
+     "text": "BC Branko Cicovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2162,
+     "kind": "new text",
+     "text": "BM Brenda Martinez 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2162,
+     "kind": "new text",
+     "text": "BA Brent Avila 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2412,
+     "kind": "new text",
+     "text": "BH Brian Hunt 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2412,
+     "kind": "new text",
+     "text": "CT Candace Taylor 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2658,
+     "kind": "new text",
+     "text": "CN Carol Neal 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2658,
+     "kind": "new text",
+     "text": "CJ Carrie Johnson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2915,
+     "kind": "new text",
+     "text": "CL Chris Lee 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2915,
+     "kind": "new text",
+     "text": "CW Christian Wallace 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3158,
+     "kind": "new text",
+     "text": "CS Clayton Stephens 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3158,
+     "kind": "new text",
+     "text": "CM Craig Moore 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3414,
+     "kind": "new text",
+     "text": "DV Damjan Veljkovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3414,
+     "kind": "new text",
+     "text": "DO Dana Ortiz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3673,
+     "kind": "new text",
+     "text": "DH David Haynes 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3673,
+     "kind": "new text",
+     "text": "DF Douglas Fields 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3926,
+     "kind": "new text",
+     "text": "DR Douglas Robinson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3926,
+     "kind": "new text",
+     "text": "DB Dusan Bulovan 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3926,
+     "kind": "new text",
+     "text": "DR Dusan Radulovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4173,
+     "kind": "new text",
+     "text": "DR Dylan Rush 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4173,
+     "kind": "new text",
+     "text": "EH Eileen Hensley 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4426,
+     "kind": "new text",
+     "text": "EM Emily Madden 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4426,
+     "kind": "new text",
+     "text": "EC Erica Carr 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4684,
+     "kind": "new text",
+     "text": "EH Esther Howard 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4684,
+     "kind": "new text",
+     "text": "FB Fabian Bonjean 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4684,
+     "kind": "new text",
+     "text": "GC Gail Contreras 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4927,
+     "kind": "new text",
+     "text": "GP Gerald Pitts 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4927,
+     "kind": "new text",
+     "text": "JM Jamie Montoya 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5176,
+     "kind": "new text",
+     "text": "JM Jasna Mladenovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5176,
+     "kind": "new text",
+     "text": "JG Jason Garrison 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5423,
+     "kind": "new text",
+     "text": "JJ Jason Johnson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5423,
+     "kind": "new text",
+     "text": "JJ Jeffrey Jordan 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5424,
+     "kind": "new text",
+     "text": "JC Jenna Cervantes 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5672,
+     "kind": "new text",
+     "text": "JM Jennifer Morris 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5672,
+     "kind": "new text",
+     "text": "JP Jennifer Phillips 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5926,
+     "kind": "new text",
+     "text": "JW Jenny Wilson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5926,
+     "kind": "new text",
+     "text": "JS Jessica Stanton 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6188,
+     "kind": "new text",
+     "text": "JO John Ortiz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6188,
+     "kind": "new text",
+     "text": "JP John Pearson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6425,
+     "kind": "new text",
+     "text": "JS John Scott 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6425,
+     "kind": "new text",
+     "text": "JS Jose Sheppard 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6425,
+     "kind": "new text",
+     "text": "JA Julie Arnold 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6674,
+     "kind": "new text",
+     "text": "JB Julie Benjamin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6674,
+     "kind": "new text",
+     "text": "JO Julie Olson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6926,
+     "kind": "new text",
+     "text": "KP Karen Peck 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6926,
+     "kind": "new text",
+     "text": "KS Kevin Smith 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7178,
+     "kind": "new text",
+     "text": "KW Kristin Watson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7178,
+     "kind": "new text",
+     "text": "LD Lauren Diaz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7178,
+     "kind": "new text",
+     "text": "LP Lindsay Perez 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7423,
+     "kind": "new text",
+     "text": "MA Marissa Armstrong 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7423,
+     "kind": "new text",
+     "text": "MM Mary Moore 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7673,
+     "kind": "new text",
+     "text": "MF Maximiliana Fitzgerald-Montgomery 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7673,
+     "kind": "new text",
+     "text": "MM Michael Macdonald 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7923,
+     "kind": "new text",
+     "text": "MS Michelle Smith 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7923,
+     "kind": "new text",
+     "text": "MZ Milan Zivanovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7923,
+     "kind": "new text",
+     "text": "MK Milomir Kotlajic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8178,
+     "kind": "new text",
+     "text": "MV Milos Vasic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8178,
+     "kind": "new text",
+     "text": "MQ Mudassir Qamar 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8423,
+     "kind": "new text",
+     "text": "NN Nate Nofinance 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8690,
+     "kind": "new text",
+     "text": "NC Nebojsa Custom Tech 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8690,
+     "kind": "new text",
+     "text": "NC Nebojsa Custom-Admin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8943,
+     "kind": "new text",
+     "text": "NG Nebojsa Glavinic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8943,
+     "kind": "new text",
+     "text": "NM Nebojsa Miskovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8943,
+     "kind": "new text",
+     "text": "ND Nemanja Djuric 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9189,
+     "kind": "new text",
+     "text": "NN Nick Noclock 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9189,
+     "kind": "new text",
+     "text": "NM Nicole Mitchell 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9443,
+     "kind": "new text",
+     "text": "NM Nikola Milosevic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9444,
+     "kind": "new text",
+     "text": "NN Nina Newtech 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9705,
+     "kind": "new text",
+     "text": "NN Nora New 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9705,
+     "kind": "new text",
+     "text": "PF Parth Fadadu 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9939,
+     "kind": "new text",
+     "text": "PT Parts Technician 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9939,
+     "kind": "new text",
+     "text": "QA QA Administrator 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10190,
+     "kind": "new text",
+     "text": "QF QA Foreman 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10190,
+     "kind": "new text",
+     "text": "QJ QA JuniorServiceAdvisor 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10442,
+     "kind": "new text",
+     "text": "QP QA PartsManager 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10442,
+     "kind": "new text",
+     "text": "QP QA PartsTechnician 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10693,
+     "kind": "new text",
+     "text": "QS QA SalesRepresentative 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10693,
+     "kind": "new text",
+     "text": "QS QA ServiceAdvisor 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10943,
+     "kind": "new text",
+     "text": "QS QA ServiceManager 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10943,
+     "kind": "new text",
+     "text": "QT QA Technician 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11195,
+     "kind": "new text",
+     "text": "RE Ralph Edwards 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11195,
+     "kind": "new text",
+     "text": "RF Ryan Fyfe 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11195,
+     "kind": "new text",
+     "text": "SB Sarah Bass 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11460,
+     "kind": "new text",
+     "text": "SL Sarah Levine 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11460,
+     "kind": "new text",
+     "text": "SG Sasha Grosman 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11713,
+     "kind": "new text",
+     "text": "SV Sava Vukosavljev 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11713,
+     "kind": "new text",
+     "text": "SV Sierra Vance 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11956,
+     "kind": "new text",
+     "text": "SN Sinisa Nogic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11956,
+     "kind": "new text",
+     "text": "SM Stefan Mitrovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12208,
+     "kind": "new text",
+     "text": "SV Stefan Vukovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12208,
+     "kind": "new text",
+     "text": "SG Stephen Grimes 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12208,
+     "kind": "new text",
+     "text": "SH Steven Hayes 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12468,
+     "kind": "new text",
+     "text": "TS Tech ShopView 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12468,
+     "kind": "new text",
+     "text": "Teresa Smith 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12710,
+     "kind": "new text",
+     "text": "TW Theresa Webb 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12710,
+     "kind": "new text",
+     "text": "TG Thomas Garcia 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12961,
+     "kind": "new text",
+     "text": "TV Tina Valentine 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12961,
+     "kind": "new text",
+     "text": "TM Tracy Morris 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12961,
+     "kind": "new text",
+     "text": "TT TUDROP TechMTMUDJ4WUVX 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13206,
+     "kind": "new text",
+     "text": "TT TUDROP TechMTMUT1CP1JX 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13206,
+     "kind": "new text",
+     "text": "TT TUKEEP TechMTMUDG1BH2B 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13459,
+     "kind": "new text",
+     "text": "TT TUKEEP TechMTMUSYCSNIH 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13459,
+     "kind": "new text",
+     "text": "VV Viktoria Videnovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13715,
+     "kind": "new text",
+     "text": "VR Vladimir Radojcic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13715,
+     "kind": "new text",
+     "text": "VT Vladimir Tomovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13715,
+     "kind": "new text",
+     "text": "VT VlTest TTest 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13968,
+     "kind": "new text",
+     "text": "ZD ZZ Density Newuser 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14211,
+     "kind": "new text",
+     "text": "ZW ZZ WOB Dispatcher 458188 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14458,
+     "kind": "new text",
+     "text": "ZW ZZ WOB Dispatcher 486091 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14458,
+     "kind": "new text",
+     "text": "ZW ZZ WOB Dispatcher 902381 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14714,
+     "kind": "new text",
+     "text": "ZF ZZAUTOTEST Fresh 345794 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14714,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Changes 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14714,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Changes 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14957,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA DISP 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14957,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Fields 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15207,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Fields 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15207,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA First 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15463,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA First 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15463,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA First 886244 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15463,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA FS1 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15709,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA FS2 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15709,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA FS3 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15957,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA FS4 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15957,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Identity 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16207,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Identity 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16207,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA NEWBIE 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16207,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA NoFin 886244 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16476,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA NoMoney 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16476,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Privacy 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16727,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Privacy 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16727,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Totals 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16978,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Totals 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16978,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Views 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17227,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Views 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17227,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA WK1 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17227,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA WK2 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17475,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA WK3 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17475,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA WK4 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17723,
+     "kind": "new text",
+     "text": "ZK ZZAUTOTEST KbdViewer 370654 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17723,
+     "kind": "new text",
+     "text": "ZK ZZAUTOTEST KbdViewer 632247 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17975,
+     "kind": "new text",
+     "text": "ZL ZZAUTOTEST ListNew 421364 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17975,
+     "kind": "new text",
+     "text": "ZL ZZAUTOTEST ListNew 715665 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17975,
+     "kind": "new text",
+     "text": "ZL ZZAUTOTEST ListNew Tech 362117 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18223,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST Never Chose C96912 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18223,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST Never Collapsed 44786 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18473,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST Never Sorted 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18473,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NoCustomers 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18724,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NoDrag 486091 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18724,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NoFin 325319 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18724,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NoWorkOrders 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18975,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Stale Dispatcher 16197 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18975,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Stale Dispatcher 25295 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19224,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Stale Dispatcher 6770 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19224,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Stale Dispatcher 96732 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19473,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VO 379387 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19473,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VO 882560 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19734,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VOT 325319 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19734,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VOT 32958 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19734,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VOT 379387 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19973,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VOT 882560 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19974,
+     "kind": "new text",
+     "text": "ZW ZZAUTOTEST WOB User B 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20225,
+     "kind": "new text",
+     "text": "ZW ZZAUTOTEST WOB View Only 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20225,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Aaron Able 140025 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20475,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Aaron Able 659556 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20475,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Account Ana 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20722,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Account Ben 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20722,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Ana Alpha 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20973,
+     "kind": "new text",
+     "text": "ZB ZZAUTOTEST Ben Bravo 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20973,
+     "kind": "new text",
+     "text": "ZC ZZAUTOTEST Cal Charlie 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21244,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST Dan Delta 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21244,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC01 Ana Icons 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21244,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC02 Ben Tooltip 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21490,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC03 Cara Edge 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21490,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC04 Dan Columns 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21745,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC04 New 59707 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21745,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC05 Eva Cells 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21996,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC05 Finn Cells 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21996,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC06 Gia Pills 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21996,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC07 Hana Grip 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22241,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC08 Ines Header 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22241,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC08 Jon Header 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22493,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC09 Kai Board 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22493,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC10 Lea Pin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22741,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Max Pin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22741,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Nia Pin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22991,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Oli Pin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22992,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11 Pia Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22992,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11 Quinn Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23240,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-51754 Pia Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23240,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-51754 Quinn Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23491,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC12 Rae Menu 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23491,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC13 Sam Idle 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23743,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14 Tia Drag 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23743,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14 Uma Drag 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23743,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14-44308 Tia Drag 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23989,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14-44308 Uma Drag 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23989,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC15 Vic Hover 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24240,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC15 Wes Hover 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24240,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC16 Xia Dark 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24492,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC17 Maximiliana Abernathy-Kowalczyk 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24492,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC18 Yan Filter 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24492,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC19 Abe Density 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24761,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC19 Zoe Density 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24761,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC20 Bea Dialog 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25006,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC20 Cal Dialog 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25006,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC21 Dee Toast 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25263,
+     "kind": "new text",
+     "text": "ZE ZZAUTOTEST Ezra Echo 140025 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25263,
+     "kind": "new text",
+     "text": "ZE ZZAUTOTEST Ezra Echo 659556 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25502,
+     "kind": "new text",
+     "text": "ZF ZZAUTOTEST F3 Count Ben Bravo 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25758,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST Gone Tech 29799 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26007,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST Gone Tech 55331 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26007,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NT1 Ana Brooks 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26258,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NT1 Ana Carter 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26259,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NT1 Ben Adams 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26259,
+     "kind": "new text",
+     "text": "ZZAUTOTEST Photo Tech 299878 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26507,
+     "kind": "new text",
+     "text": "ZP ZZAUTOTEST Photo Tech 331883 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26507,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Staffname Ana 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26761,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Staffname Ben 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26761,
+     "kind": "new text",
+     "text": "ZD ZZOLD Dana Ortiz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27009,
+     "kind": "new text",
+     "text": "ZE ZZOLD Esther Howard 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27009,
+     "kind": "new text",
+     "text": "ZJ ZZOLD Jenny Wilson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27009,
+     "kind": "new text",
+     "text": "ZR ZZOLD Ralph Edwards 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27260,
+     "kind": "new text",
+     "text": "AZ Aaa ZZAUTOTEST Tara Lead 1 1 work order",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27260,
+     "kind": "new text",
+     "text": "AZ Aaa ZZAUTOTEST Theresa Pinned 1 1 work order",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27318,
+     "kind": "new text",
+     "text": "S2-35908 Approved Customer ZZAUTOTEST C368131 Pinned Gone ZZC131 VIN/serial VIN ZZWOB179203514347 Progress 0% Line technicians AZ Lead technician Aaa ZZAUTOTEST Tara Lead Total price $0.00",
+     "cls": "board-column__card"
+    },
+    {
+     "ms": 27329,
+     "kind": "new text",
+     "text": "S2-35909 Approved Customer ZZAUTOTEST C368131 Pinned Gone ZZC131 VIN/serial VIN ZZWOB179203514347 Progress 0% Line technicians AZ Lead technician Aaa ZZAUTOTEST Theresa Pinned Total price $0.00",
+     "cls": "board-column__card"
+    },
+    {
+     "ms": 27507,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Aaron Able 991413 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27507,
+     "kind": "new text",
+     "text": "ZC ZZAUTOTEST C614711 Eli 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27758,
+     "kind": "new text",
+     "text": "ZC ZZAUTOTEST C614719 Ana 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27758,
+     "kind": "new text",
+     "text": "ZC ZZAUTOTEST C614719 Ben 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 28025,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-10751 Pia Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 28025,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-10751 Quinn Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 28025,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-51478 Pia Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 28258,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-51478 Quinn Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 28258,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-53016 Pia Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 28509,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-53016 Quinn Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 28509,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-91517 Pia Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 28763,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-91517 Quinn Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 28763,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14-53016 Tia Drag 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 28763,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14-53016 Uma Drag 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 29026,
+     "kind": "new text",
+     "text": "ZE ZZAUTOTEST Ezra Echo 991413 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 29274,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST N1 Control 43447 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 29274,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST N1 Tim 43447 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 29525,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST N3 Tia 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 29525,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST N4 Ana 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 29525,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST N4 Ben 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 29775,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST N4 Cal 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 29775,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST N4 Dee 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 30029,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST N4 Eve 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 30029,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST N4 Fay 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 30276,
+     "kind": "new text",
+     "text": "ZZAUTOTEST Photo Tech 441154 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 30276,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST S6 Pia Pills 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 39294,
+     "kind": "new text",
+     "text": "S2-35908 Approved Customer ZZAUTOTEST C368131 Pinned Gone ZZC131 VIN/serial VIN ZZWOB179203514347 Progress 0% Line technicians AZ Lead technician ZZAUTOTEST N4 Fay Total price $0.00",
+     "cls": "board-column__card"
+    },
+    {
+     "ms": 39583,
+     "kind": "message",
+     "text": "Lead technician updated",
+     "cls": "q-notification row items-stretch q-notification--standard bg"
+    },
+    {
+     "ms": 39583,
+     "kind": "new text",
+     "text": "ZN",
+     "cls": "avatar-group__avatar"
+    }
+   ],
+   "leads": [
+    "S2-35908 lead=ZZAUTOTEST N4 Fay",
+    "S2-35909 lead=Aaa ZZAUTOTEST Theresa Pinned"
+   ]
+  },
+  "step10": {
+   "from": "on screen @701",
+   "to": "not drawn",
+   "whileHolding": [
+    {
+     "ms": 0,
+     "kind": "message",
+     "text": "Lead technician updated",
+     "cls": "q-notification row items-stretch q-notification--standard bg"
+    },
+    {
+     "ms": 96,
+     "kind": "new text",
+     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AT Ashlee Thomas 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AH Angelica Harper 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AF Amy Fernandez 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AM Ammar Mughamis 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AS Ahtsham Service Manager 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AP Ahtsham Parts Manger 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AF Ahtsham Foreman 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AS Ahtasham Service Advisor 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AA Ahtasham Admin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AA Advisor Analysis 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AS Admin ShopView 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AZ Aaron Zed 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AB Aaron Baker 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1172,
+     "kind": "new text",
+     "text": "AS Ashley Schultz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1172,
+     "kind": "new text",
+     "text": "AT Automation Tech 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1419,
+     "kind": "new text",
+     "text": "AK Ayesha Khan 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1419,
+     "kind": "new text",
+     "text": "AT Ayesha Tech Role 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1419,
+     "kind": "new text",
+     "text": "BM Bilal Muzamil 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1670,
+     "kind": "new text",
+     "text": "BM BIlal Muzamil 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1670,
+     "kind": "new text",
+     "text": "BN Billy Nobill 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1920,
+     "kind": "new text",
+     "text": "BS Brandi Smith 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1920,
+     "kind": "new text",
+     "text": "BJ Brandon Jarvis 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2170,
+     "kind": "new text",
+     "text": "BC Branko Cicovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2170,
+     "kind": "new text",
+     "text": "BM Brenda Martinez 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2170,
+     "kind": "new text",
+     "text": "BA Brent Avila 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2419,
+     "kind": "new text",
+     "text": "BH Brian Hunt 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2419,
+     "kind": "new text",
+     "text": "CT Candace Taylor 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2669,
+     "kind": "new text",
+     "text": "CN Carol Neal 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2669,
+     "kind": "new text",
+     "text": "CJ Carrie Johnson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2937,
+     "kind": "new text",
+     "text": "CL Chris Lee 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2937,
+     "kind": "new text",
+     "text": "CW Christian Wallace 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3186,
+     "kind": "new text",
+     "text": "CS Clayton Stephens 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3186,
+     "kind": "new text",
+     "text": "CM Craig Moore 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3468,
+     "kind": "new text",
+     "text": "DV Damjan Veljkovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3468,
+     "kind": "new text",
+     "text": "DO Dana Ortiz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3738,
+     "kind": "new text",
+     "text": "DH David Haynes 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3738,
+     "kind": "new text",
+     "text": "DF Douglas Fields 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3990,
+     "kind": "new text",
+     "text": "DR Douglas Robinson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3990,
+     "kind": "new text",
+     "text": "DB Dusan Bulovan 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3990,
+     "kind": "new text",
+     "text": "DR Dusan Radulovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4234,
+     "kind": "new text",
+     "text": "DR Dylan Rush 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4234,
+     "kind": "new text",
+     "text": "EH Eileen Hensley 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4487,
+     "kind": "new text",
+     "text": "EM Emily Madden 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4487,
+     "kind": "new text",
+     "text": "EC Erica Carr 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4744,
+     "kind": "new text",
+     "text": "EH Esther Howard 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4744,
+     "kind": "new text",
+     "text": "FB Fabian Bonjean 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4744,
+     "kind": "new text",
+     "text": "GC Gail Contreras 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4986,
+     "kind": "new text",
+     "text": "GP Gerald Pitts 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4986,
+     "kind": "new text",
+     "text": "JM Jamie Montoya 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5235,
+     "kind": "new text",
+     "text": "JM Jasna Mladenovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5235,
+     "kind": "new text",
+     "text": "JG Jason Garrison 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5486,
+     "kind": "new text",
+     "text": "JJ Jason Johnson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5486,
+     "kind": "new text",
+     "text": "JJ Jeffrey Jordan 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5486,
+     "kind": "new text",
+     "text": "JC Jenna Cervantes 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5735,
+     "kind": "new text",
+     "text": "JM Jennifer Morris 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5735,
+     "kind": "new text",
+     "text": "JP Jennifer Phillips 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5984,
+     "kind": "new text",
+     "text": "JW Jenny Wilson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5984,
+     "kind": "new text",
+     "text": "JS Jessica Stanton 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6239,
+     "kind": "new text",
+     "text": "JO John Ortiz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6239,
+     "kind": "new text",
+     "text": "JP John Pearson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6504,
+     "kind": "new text",
+     "text": "JS John Scott 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6504,
+     "kind": "new text",
+     "text": "JS Jose Sheppard 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6504,
+     "kind": "new text",
+     "text": "JA Julie Arnold 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6754,
+     "kind": "new text",
+     "text": "JB Julie Benjamin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6754,
+     "kind": "new text",
+     "text": "JO Julie Olson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7003,
+     "kind": "new text",
+     "text": "KP Karen Peck 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7003,
+     "kind": "new text",
+     "text": "KS Kevin Smith 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7258,
+     "kind": "new text",
+     "text": "KW Kristin Watson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7258,
+     "kind": "new text",
+     "text": "LD Lauren Diaz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7258,
+     "kind": "new text",
+     "text": "LP Lindsay Perez 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7504,
+     "kind": "new text",
+     "text": "MA Marissa Armstrong 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7504,
+     "kind": "new text",
+     "text": "MM Mary Moore 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7742,
+     "kind": "new text",
+     "text": "MF Maximiliana Fitzgerald-Montgomery 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7742,
+     "kind": "new text",
+     "text": "MM Michael Macdonald 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8003,
+     "kind": "new text",
+     "text": "MS Michelle Smith 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8003,
+     "kind": "new text",
+     "text": "MZ Milan Zivanovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8003,
+     "kind": "new text",
+     "text": "MK Milomir Kotlajic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8252,
+     "kind": "new text",
+     "text": "MV Milos Vasic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8252,
+     "kind": "new text",
+     "text": "MQ Mudassir Qamar 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8502,
+     "kind": "new text",
+     "text": "NN Nate Nofinance 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8751,
+     "kind": "new text",
+     "text": "NC Nebojsa Custom Tech 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8751,
+     "kind": "new text",
+     "text": "NC Nebojsa Custom-Admin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9003,
+     "kind": "new text",
+     "text": "NG Nebojsa Glavinic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9003,
+     "kind": "new text",
+     "text": "NM Nebojsa Miskovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9003,
+     "kind": "new text",
+     "text": "ND Nemanja Djuric 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9250,
+     "kind": "new text",
+     "text": "NN Nick Noclock 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9250,
+     "kind": "new text",
+     "text": "NM Nicole Mitchell 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9509,
+     "kind": "new text",
+     "text": "NM Nikola Milosevic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9509,
+     "kind": "new text",
+     "text": "NN Nina Newtech 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9758,
+     "kind": "new text",
+     "text": "NN Nora New 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9758,
+     "kind": "new text",
+     "text": "PF Parth Fadadu 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10001,
+     "kind": "new text",
+     "text": "PT Parts Technician 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10001,
+     "kind": "new text",
+     "text": "QA QA Administrator 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10251,
+     "kind": "new text",
+     "text": "QF QA Foreman 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10251,
+     "kind": "new text",
+     "text": "QJ QA JuniorServiceAdvisor 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10521,
+     "kind": "new text",
+     "text": "QP QA PartsManager 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10521,
+     "kind": "new text",
+     "text": "QP QA PartsTechnician 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10767,
+     "kind": "new text",
+     "text": "QS QA SalesRepresentative 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10767,
+     "kind": "new text",
+     "text": "QS QA ServiceAdvisor 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11018,
+     "kind": "new text",
+     "text": "QS QA ServiceManager 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11018,
+     "kind": "new text",
+     "text": "QT QA Technician 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11264,
+     "kind": "new text",
+     "text": "RE Ralph Edwards 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11264,
+     "kind": "new text",
+     "text": "RF Ryan Fyfe 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11264,
+     "kind": "new text",
+     "text": "SB Sarah Bass 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11519,
+     "kind": "new text",
+     "text": "SL Sarah Levine 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11519,
+     "kind": "new text",
+     "text": "SG Sasha Grosman 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11777,
+     "kind": "new text",
+     "text": "SV Sava Vukosavljev 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11777,
+     "kind": "new text",
+     "text": "SV Sierra Vance 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12018,
+     "kind": "new text",
+     "text": "SN Sinisa Nogic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12018,
+     "kind": "new text",
+     "text": "SM Stefan Mitrovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12270,
+     "kind": "new text",
+     "text": "SV Stefan Vukovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12270,
+     "kind": "new text",
+     "text": "SG Stephen Grimes 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12270,
+     "kind": "new text",
+     "text": "SH Steven Hayes 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12521,
+     "kind": "new text",
+     "text": "TS Tech ShopView 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12521,
+     "kind": "new text",
+     "text": "Teresa Smith 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12771,
+     "kind": "new text",
+     "text": "TW Theresa Webb 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12771,
+     "kind": "new text",
+     "text": "TG Thomas Garcia 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13021,
+     "kind": "new text",
+     "text": "TV Tina Valentine 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13021,
+     "kind": "new text",
+     "text": "TM Tracy Morris 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13021,
+     "kind": "new text",
+     "text": "TT TUDROP TechMTMUDJ4WUVX 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13268,
+     "kind": "new text",
+     "text": "TT TUDROP TechMTMUT1CP1JX 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13268,
+     "kind": "new text",
+     "text": "TT TUKEEP TechMTMUDG1BH2B 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13522,
+     "kind": "new text",
+     "text": "TT TUKEEP TechMTMUSYCSNIH 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13522,
+     "kind": "new text",
+     "text": "VV Viktoria Videnovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13776,
+     "kind": "new text",
+     "text": "VR Vladimir Radojcic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13776,
+     "kind": "new text",
+     "text": "VT Vladimir Tomovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13776,
+     "kind": "new text",
+     "text": "VT VlTest TTest 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14018,
+     "kind": "new text",
+     "text": "ZD ZZ Density Newuser 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14268,
+     "kind": "new text",
+     "text": "ZW ZZ WOB Dispatcher 458188 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14524,
+     "kind": "new text",
+     "text": "ZW ZZ WOB Dispatcher 486091 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14524,
+     "kind": "new text",
+     "text": "ZW ZZ WOB Dispatcher 902381 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14771,
+     "kind": "new text",
+     "text": "ZF ZZAUTOTEST Fresh 345794 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14771,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Changes 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14771,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Changes 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15017,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA DISP 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15017,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Fields 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15267,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Fields 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15267,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA First 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15521,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA First 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15521,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA First 886244 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15521,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA FS1 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15774,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA FS2 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15774,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA FS3 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16026,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA FS4 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16026,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Identity 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16288,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Identity 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16288,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA NEWBIE 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16288,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA NoFin 886244 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16536,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA NoMoney 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16536,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Privacy 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16784,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Privacy 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16784,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Totals 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17035,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Totals 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17035,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Views 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17288,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Views 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17288,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA WK1 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17288,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA WK2 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17537,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA WK3 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17537,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA WK4 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17789,
+     "kind": "new text",
+     "text": "ZK ZZAUTOTEST KbdViewer 370654 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17789,
+     "kind": "new text",
+     "text": "ZK ZZAUTOTEST KbdViewer 632247 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18041,
+     "kind": "new text",
+     "text": "ZL ZZAUTOTEST ListNew 421364 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18041,
+     "kind": "new text",
+     "text": "ZL ZZAUTOTEST ListNew 715665 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18041,
+     "kind": "new text",
+     "text": "ZL ZZAUTOTEST ListNew Tech 362117 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18291,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST Never Chose C96912 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18291,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST Never Collapsed 44786 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18534,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST Never Sorted 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18534,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NoCustomers 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18789,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NoDrag 486091 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18789,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NoFin 325319 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18789,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NoWorkOrders 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19044,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Stale Dispatcher 16197 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19044,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Stale Dispatcher 25295 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19284,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Stale Dispatcher 6770 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19284,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Stale Dispatcher 96732 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19535,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VO 379387 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19535,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VO 882560 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19787,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VOT 325319 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19787,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VOT 32958 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19787,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VOT 379387 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20037,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VOT 882560 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20037,
+     "kind": "new text",
+     "text": "ZW ZZAUTOTEST WOB User B 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20283,
+     "kind": "new text",
+     "text": "ZW ZZAUTOTEST WOB View Only 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20283,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Aaron Able 140025 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20553,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Aaron Able 659556 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20553,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Account Ana 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20802,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Account Ben 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20802,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Ana Alpha 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21050,
+     "kind": "new text",
+     "text": "ZB ZZAUTOTEST Ben Bravo 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21050,
+     "kind": "new text",
+     "text": "ZC ZZAUTOTEST Cal Charlie 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21305,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST Dan Delta 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21305,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC01 Ana Icons 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21305,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC02 Ben Tooltip 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21554,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC03 Cara Edge 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21554,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC04 Dan Columns 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21802,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC04 New 59707 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21802,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC05 Eva Cells 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22055,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC05 Finn Cells 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22055,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC06 Gia Pills 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22055,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC07 Hana Grip 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22301,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC08 Ines Header 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22301,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC08 Jon Header 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22550,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC09 Kai Board 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22550,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC10 Lea Pin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22803,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Max Pin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22803,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Nia Pin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23064,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Oli Pin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23064,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11 Pia Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23067,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11 Quinn Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23309,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-51754 Pia Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23309,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-51754 Quinn Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23552,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC12 Rae Menu 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23552,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC13 Sam Idle 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23804,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14 Tia Drag 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23804,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14 Uma Drag 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23804,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14-44308 Tia Drag 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24055,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14-44308 Uma Drag 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24055,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC15 Vic Hover 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24304,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC15 Wes Hover 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24304,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC16 Xia Dark 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24552,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC17 Maximiliana Abernathy-Kowalczyk 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24552,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC18 Yan Filter 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24552,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC19 Abe Density 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24812,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC19 Zoe Density 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24812,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC20 Bea Dialog 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25052,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC20 Cal Dialog 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25052,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC21 Dee Toast 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25318,
+     "kind": "new text",
+     "text": "ZE ZZAUTOTEST Ezra Echo 140025 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25318,
+     "kind": "new text",
+     "text": "ZE ZZAUTOTEST Ezra Echo 659556 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25572,
+     "kind": "new text",
+     "text": "ZF ZZAUTOTEST F3 Count Ben Bravo 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25820,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST Gone Tech 29799 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26070,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST Gone Tech 55331 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26070,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NT1 Ana Brooks 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26321,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NT1 Ana Carter 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26321,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NT1 Ben Adams 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26321,
+     "kind": "new text",
+     "text": "ZZAUTOTEST Photo Tech 299878 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26568,
+     "kind": "new text",
+     "text": "ZP ZZAUTOTEST Photo Tech 331883 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26568,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Staffname Ana 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26824,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Staffname Ben 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26824,
+     "kind": "new text",
+     "text": "ZD ZZOLD Dana Ortiz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27069,
+     "kind": "new text",
+     "text": "ZE ZZOLD Esther Howard 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27069,
+     "kind": "new text",
+     "text": "ZJ ZZOLD Jenny Wilson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27069,
+     "kind": "new text",
+     "text": "ZR ZZOLD Ralph Edwards 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27318,
+     "kind": "new text",
+     "text": "AZ Aaa ZZAUTOTEST Tara Lead 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27318,
+     "kind": "new text",
+     "text": "AZ Aaa ZZAUTOTEST Theresa Pinned 1 1 work order",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27370,
+     "kind": "new text",
+     "text": "S2-35909 Approved Customer ZZAUTOTEST C368131 Pinned Gone ZZC131 VIN/serial VIN ZZWOB179203514347 Progress 0% Line technicians AZ Lead technician Aaa ZZAUTOTEST Theresa Pinned Total price $0.00",
+     "cls": "board-column__card"
+    },
+    {
+     "ms": 27574,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Aaron Able 991413 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27574,
+     "kind": "new text",
+     "text": "ZC ZZAUTOTEST C614711 Eli 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27574,
+     "kind": "new text",
+     "text": "ZC ZZAUTOTEST C614719 Ana 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27574,
+     "kind": "new text",
+     "text": "ZC ZZAUTOTEST C614719 Ben 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27574,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-10751 Pia Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27575,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-10751 Quinn Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    }
+   ],
+   "reach": {
+    "from": "on screen",
+    "toBeforePress": "not drawn",
+    "toWhileHolding": "on screen",
+    "toAtDrop": "on screen @800"
+   },
+   "shiftPrompt": null,
+   "message": [
+    "Lead technician updated"
+   ],
+   "watched": [
+    {
+     "ms": 0,
+     "kind": "message",
+     "text": "Lead technician updated",
+     "cls": "q-notification row items-stretch q-notification--standard bg"
+    },
+    {
+     "ms": 96,
+     "kind": "new text",
+     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AT Ashlee Thomas 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AH Angelica Harper 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AF Amy Fernandez 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AM Ammar Mughamis 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AS Ahtsham Service Manager 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AP Ahtsham Parts Manger 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AF Ahtsham Foreman 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AS Ahtasham Service Advisor 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AA Ahtasham Admin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AA Advisor Analysis 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AS Admin ShopView 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AZ Aaron Zed 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 278,
+     "kind": "new text",
+     "text": "AB Aaron Baker 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1172,
+     "kind": "new text",
+     "text": "AS Ashley Schultz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1172,
+     "kind": "new text",
+     "text": "AT Automation Tech 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1419,
+     "kind": "new text",
+     "text": "AK Ayesha Khan 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1419,
+     "kind": "new text",
+     "text": "AT Ayesha Tech Role 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1419,
+     "kind": "new text",
+     "text": "BM Bilal Muzamil 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1670,
+     "kind": "new text",
+     "text": "BM BIlal Muzamil 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1670,
+     "kind": "new text",
+     "text": "BN Billy Nobill 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1920,
+     "kind": "new text",
+     "text": "BS Brandi Smith 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1920,
+     "kind": "new text",
+     "text": "BJ Brandon Jarvis 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2170,
+     "kind": "new text",
+     "text": "BC Branko Cicovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2170,
+     "kind": "new text",
+     "text": "BM Brenda Martinez 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2170,
+     "kind": "new text",
+     "text": "BA Brent Avila 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2419,
+     "kind": "new text",
+     "text": "BH Brian Hunt 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2419,
+     "kind": "new text",
+     "text": "CT Candace Taylor 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2669,
+     "kind": "new text",
+     "text": "CN Carol Neal 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2669,
+     "kind": "new text",
+     "text": "CJ Carrie Johnson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2937,
+     "kind": "new text",
+     "text": "CL Chris Lee 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 2937,
+     "kind": "new text",
+     "text": "CW Christian Wallace 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3186,
+     "kind": "new text",
+     "text": "CS Clayton Stephens 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3186,
+     "kind": "new text",
+     "text": "CM Craig Moore 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3468,
+     "kind": "new text",
+     "text": "DV Damjan Veljkovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3468,
+     "kind": "new text",
+     "text": "DO Dana Ortiz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3738,
+     "kind": "new text",
+     "text": "DH David Haynes 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3738,
+     "kind": "new text",
+     "text": "DF Douglas Fields 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3990,
+     "kind": "new text",
+     "text": "DR Douglas Robinson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3990,
+     "kind": "new text",
+     "text": "DB Dusan Bulovan 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 3990,
+     "kind": "new text",
+     "text": "DR Dusan Radulovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4234,
+     "kind": "new text",
+     "text": "DR Dylan Rush 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4234,
+     "kind": "new text",
+     "text": "EH Eileen Hensley 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4487,
+     "kind": "new text",
+     "text": "EM Emily Madden 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4487,
+     "kind": "new text",
+     "text": "EC Erica Carr 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4744,
+     "kind": "new text",
+     "text": "EH Esther Howard 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4744,
+     "kind": "new text",
+     "text": "FB Fabian Bonjean 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4744,
+     "kind": "new text",
+     "text": "GC Gail Contreras 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4986,
+     "kind": "new text",
+     "text": "GP Gerald Pitts 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 4986,
+     "kind": "new text",
+     "text": "JM Jamie Montoya 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5235,
+     "kind": "new text",
+     "text": "JM Jasna Mladenovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5235,
+     "kind": "new text",
+     "text": "JG Jason Garrison 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5486,
+     "kind": "new text",
+     "text": "JJ Jason Johnson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5486,
+     "kind": "new text",
+     "text": "JJ Jeffrey Jordan 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5486,
+     "kind": "new text",
+     "text": "JC Jenna Cervantes 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5735,
+     "kind": "new text",
+     "text": "JM Jennifer Morris 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5735,
+     "kind": "new text",
+     "text": "JP Jennifer Phillips 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5984,
+     "kind": "new text",
+     "text": "JW Jenny Wilson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 5984,
+     "kind": "new text",
+     "text": "JS Jessica Stanton 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6239,
+     "kind": "new text",
+     "text": "JO John Ortiz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6239,
+     "kind": "new text",
+     "text": "JP John Pearson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6504,
+     "kind": "new text",
+     "text": "JS John Scott 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6504,
+     "kind": "new text",
+     "text": "JS Jose Sheppard 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6504,
+     "kind": "new text",
+     "text": "JA Julie Arnold 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6754,
+     "kind": "new text",
+     "text": "JB Julie Benjamin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 6754,
+     "kind": "new text",
+     "text": "JO Julie Olson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7003,
+     "kind": "new text",
+     "text": "KP Karen Peck 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7003,
+     "kind": "new text",
+     "text": "KS Kevin Smith 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7258,
+     "kind": "new text",
+     "text": "KW Kristin Watson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7258,
+     "kind": "new text",
+     "text": "LD Lauren Diaz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7258,
+     "kind": "new text",
+     "text": "LP Lindsay Perez 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7504,
+     "kind": "new text",
+     "text": "MA Marissa Armstrong 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7504,
+     "kind": "new text",
+     "text": "MM Mary Moore 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7742,
+     "kind": "new text",
+     "text": "MF Maximiliana Fitzgerald-Montgomery 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 7742,
+     "kind": "new text",
+     "text": "MM Michael Macdonald 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8003,
+     "kind": "new text",
+     "text": "MS Michelle Smith 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8003,
+     "kind": "new text",
+     "text": "MZ Milan Zivanovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8003,
+     "kind": "new text",
+     "text": "MK Milomir Kotlajic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8252,
+     "kind": "new text",
+     "text": "MV Milos Vasic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8252,
+     "kind": "new text",
+     "text": "MQ Mudassir Qamar 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8502,
+     "kind": "new text",
+     "text": "NN Nate Nofinance 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8751,
+     "kind": "new text",
+     "text": "NC Nebojsa Custom Tech 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 8751,
+     "kind": "new text",
+     "text": "NC Nebojsa Custom-Admin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9003,
+     "kind": "new text",
+     "text": "NG Nebojsa Glavinic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9003,
+     "kind": "new text",
+     "text": "NM Nebojsa Miskovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9003,
+     "kind": "new text",
+     "text": "ND Nemanja Djuric 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9250,
+     "kind": "new text",
+     "text": "NN Nick Noclock 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9250,
+     "kind": "new text",
+     "text": "NM Nicole Mitchell 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9509,
+     "kind": "new text",
+     "text": "NM Nikola Milosevic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9509,
+     "kind": "new text",
+     "text": "NN Nina Newtech 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9758,
+     "kind": "new text",
+     "text": "NN Nora New 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 9758,
+     "kind": "new text",
+     "text": "PF Parth Fadadu 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10001,
+     "kind": "new text",
+     "text": "PT Parts Technician 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10001,
+     "kind": "new text",
+     "text": "QA QA Administrator 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10251,
+     "kind": "new text",
+     "text": "QF QA Foreman 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10251,
+     "kind": "new text",
+     "text": "QJ QA JuniorServiceAdvisor 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10521,
+     "kind": "new text",
+     "text": "QP QA PartsManager 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10521,
+     "kind": "new text",
+     "text": "QP QA PartsTechnician 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10767,
+     "kind": "new text",
+     "text": "QS QA SalesRepresentative 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 10767,
+     "kind": "new text",
+     "text": "QS QA ServiceAdvisor 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11018,
+     "kind": "new text",
+     "text": "QS QA ServiceManager 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11018,
+     "kind": "new text",
+     "text": "QT QA Technician 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11264,
+     "kind": "new text",
+     "text": "RE Ralph Edwards 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11264,
+     "kind": "new text",
+     "text": "RF Ryan Fyfe 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11264,
+     "kind": "new text",
+     "text": "SB Sarah Bass 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11519,
+     "kind": "new text",
+     "text": "SL Sarah Levine 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11519,
+     "kind": "new text",
+     "text": "SG Sasha Grosman 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11777,
+     "kind": "new text",
+     "text": "SV Sava Vukosavljev 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 11777,
+     "kind": "new text",
+     "text": "SV Sierra Vance 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12018,
+     "kind": "new text",
+     "text": "SN Sinisa Nogic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12018,
+     "kind": "new text",
+     "text": "SM Stefan Mitrovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12270,
+     "kind": "new text",
+     "text": "SV Stefan Vukovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12270,
+     "kind": "new text",
+     "text": "SG Stephen Grimes 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12270,
+     "kind": "new text",
+     "text": "SH Steven Hayes 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12521,
+     "kind": "new text",
+     "text": "TS Tech ShopView 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12521,
+     "kind": "new text",
+     "text": "Teresa Smith 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12771,
+     "kind": "new text",
+     "text": "TW Theresa Webb 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 12771,
+     "kind": "new text",
+     "text": "TG Thomas Garcia 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13021,
+     "kind": "new text",
+     "text": "TV Tina Valentine 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13021,
+     "kind": "new text",
+     "text": "TM Tracy Morris 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13021,
+     "kind": "new text",
+     "text": "TT TUDROP TechMTMUDJ4WUVX 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13268,
+     "kind": "new text",
+     "text": "TT TUDROP TechMTMUT1CP1JX 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13268,
+     "kind": "new text",
+     "text": "TT TUKEEP TechMTMUDG1BH2B 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13522,
+     "kind": "new text",
+     "text": "TT TUKEEP TechMTMUSYCSNIH 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13522,
+     "kind": "new text",
+     "text": "VV Viktoria Videnovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13776,
+     "kind": "new text",
+     "text": "VR Vladimir Radojcic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13776,
+     "kind": "new text",
+     "text": "VT Vladimir Tomovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 13776,
+     "kind": "new text",
+     "text": "VT VlTest TTest 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14018,
+     "kind": "new text",
+     "text": "ZD ZZ Density Newuser 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14268,
+     "kind": "new text",
+     "text": "ZW ZZ WOB Dispatcher 458188 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14524,
+     "kind": "new text",
+     "text": "ZW ZZ WOB Dispatcher 486091 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14524,
+     "kind": "new text",
+     "text": "ZW ZZ WOB Dispatcher 902381 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14771,
+     "kind": "new text",
+     "text": "ZF ZZAUTOTEST Fresh 345794 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14771,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Changes 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 14771,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Changes 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15017,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA DISP 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15017,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Fields 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15267,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Fields 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15267,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA First 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15521,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA First 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15521,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA First 886244 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15521,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA FS1 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15774,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA FS2 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 15774,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA FS3 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16026,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA FS4 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16026,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Identity 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16288,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Identity 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16288,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA NEWBIE 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16288,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA NoFin 886244 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16536,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA NoMoney 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16536,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Privacy 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16784,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Privacy 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 16784,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Totals 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17035,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Totals 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17035,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Views 317307 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17288,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA Views 329185 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17288,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA WK1 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17288,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA WK2 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17537,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA WK3 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17537,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST GA WK4 55967 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17789,
+     "kind": "new text",
+     "text": "ZK ZZAUTOTEST KbdViewer 370654 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 17789,
+     "kind": "new text",
+     "text": "ZK ZZAUTOTEST KbdViewer 632247 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18041,
+     "kind": "new text",
+     "text": "ZL ZZAUTOTEST ListNew 421364 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18041,
+     "kind": "new text",
+     "text": "ZL ZZAUTOTEST ListNew 715665 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18041,
+     "kind": "new text",
+     "text": "ZL ZZAUTOTEST ListNew Tech 362117 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18291,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST Never Chose C96912 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18291,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST Never Collapsed 44786 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18534,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST Never Sorted 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18534,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NoCustomers 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18789,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NoDrag 486091 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18789,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NoFin 325319 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 18789,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NoWorkOrders 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19044,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Stale Dispatcher 16197 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19044,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Stale Dispatcher 25295 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19284,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Stale Dispatcher 6770 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19284,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Stale Dispatcher 96732 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19535,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VO 379387 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19535,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VO 882560 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19787,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VOT 325319 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19787,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VOT 32958 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 19787,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VOT 379387 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20037,
+     "kind": "new text",
+     "text": "ZV ZZAUTOTEST VOT 882560 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20037,
+     "kind": "new text",
+     "text": "ZW ZZAUTOTEST WOB User B 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20283,
+     "kind": "new text",
+     "text": "ZW ZZAUTOTEST WOB View Only 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20283,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Aaron Able 140025 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20553,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Aaron Able 659556 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20553,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Account Ana 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20802,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Account Ben 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 20802,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Ana Alpha 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21050,
+     "kind": "new text",
+     "text": "ZB ZZAUTOTEST Ben Bravo 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21050,
+     "kind": "new text",
+     "text": "ZC ZZAUTOTEST Cal Charlie 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21305,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST Dan Delta 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21305,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC01 Ana Icons 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21305,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC02 Ben Tooltip 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21554,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC03 Cara Edge 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21554,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC04 Dan Columns 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21802,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC04 New 59707 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 21802,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC05 Eva Cells 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22055,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC05 Finn Cells 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22055,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC06 Gia Pills 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22055,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC07 Hana Grip 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22301,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC08 Ines Header 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22301,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC08 Jon Header 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22550,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC09 Kai Board 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22550,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC10 Lea Pin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22803,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Max Pin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 22803,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Nia Pin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23064,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Oli Pin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23064,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11 Pia Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23067,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11 Quinn Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23309,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-51754 Pia Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23309,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-51754 Quinn Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23552,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC12 Rae Menu 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23552,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC13 Sam Idle 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23804,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14 Tia Drag 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23804,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14 Uma Drag 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 23804,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14-44308 Tia Drag 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24055,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14-44308 Uma Drag 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24055,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC15 Vic Hover 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24304,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC15 Wes Hover 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24304,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC16 Xia Dark 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24552,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC17 Maximiliana Abernathy-Kowalczyk 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24552,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC18 Yan Filter 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24552,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC19 Abe Density 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24812,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC19 Zoe Density 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 24812,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC20 Bea Dialog 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25052,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC20 Cal Dialog 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25052,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC21 Dee Toast 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25318,
+     "kind": "new text",
+     "text": "ZE ZZAUTOTEST Ezra Echo 140025 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25318,
+     "kind": "new text",
+     "text": "ZE ZZAUTOTEST Ezra Echo 659556 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25572,
+     "kind": "new text",
+     "text": "ZF ZZAUTOTEST F3 Count Ben Bravo 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 25820,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST Gone Tech 29799 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26070,
+     "kind": "new text",
+     "text": "ZG ZZAUTOTEST Gone Tech 55331 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26070,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NT1 Ana Brooks 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26321,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NT1 Ana Carter 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26321,
+     "kind": "new text",
+     "text": "ZN ZZAUTOTEST NT1 Ben Adams 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26321,
+     "kind": "new text",
+     "text": "ZZAUTOTEST Photo Tech 299878 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26568,
+     "kind": "new text",
+     "text": "ZP ZZAUTOTEST Photo Tech 331883 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26568,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Staffname Ana 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26824,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST Staffname Ben 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 26824,
+     "kind": "new text",
+     "text": "ZD ZZOLD Dana Ortiz 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27069,
+     "kind": "new text",
+     "text": "ZE ZZOLD Esther Howard 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27069,
+     "kind": "new text",
+     "text": "ZJ ZZOLD Jenny Wilson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27069,
+     "kind": "new text",
+     "text": "ZR ZZOLD Ralph Edwards 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27318,
+     "kind": "new text",
+     "text": "AZ Aaa ZZAUTOTEST Tara Lead 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27318,
+     "kind": "new text",
+     "text": "AZ Aaa ZZAUTOTEST Theresa Pinned 1 1 work order",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27370,
+     "kind": "new text",
+     "text": "S2-35909 Approved Customer ZZAUTOTEST C368131 Pinned Gone ZZC131 VIN/serial VIN ZZWOB179203514347 Progress 0% Line technicians AZ Lead technician Aaa ZZAUTOTEST Theresa Pinned Total price $0.00",
+     "cls": "board-column__card"
+    },
+    {
+     "ms": 27574,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Aaron Able 991413 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27574,
+     "kind": "new text",
+     "text": "ZC ZZAUTOTEST C614711 Eli 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27574,
+     "kind": "new text",
+     "text": "ZC ZZAUTOTEST C614719 Ana 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27574,
+     "kind": "new text",
+     "text": "ZC ZZAUTOTEST C614719 Ben 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27574,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-10751 Pia Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 27575,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-10751 Quinn Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 29580,
+     "kind": "new text",
+     "text": "S2-35908 Approved Customer ZZAUTOTEST C368131 Pinned Gone ZZC131 VIN/serial VIN ZZWOB179203514347 Progress 0% Line technicians ZN Lead technician Aaa ZZAUTOTEST Theresa Pinned Total price $0.00",
+     "cls": "board-column__card"
+    },
+    {
+     "ms": 29813,
+     "kind": "new text",
+     "text": "AZ",
+     "cls": "avatar-group__avatar"
+    }
+   ],
+   "leads": [
+    "S2-35908 lead=Aaa ZZAUTOTEST Theresa Pinned",
+    "S2-35909 lead=Aaa ZZAUTOTEST Theresa Pinned"
+   ]
+  },
+  "step12": {
+   "from": "on screen @821",
+   "to": "on screen @8",
+   "whileHolding": [
+    {
+     "ms": 0,
+     "kind": "message",
+     "text": "Lead technician updated",
+     "cls": "q-notification row items-stretch q-notification--standard bg"
+    },
+    {
+     "ms": 91,
+     "kind": "new text",
+     "text": "S2-35909 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    }
+   ],
+   "reach": {
+    "from": "on screen",
+    "toBeforePress": "on screen @8",
+    "toAtDrop": "on screen @8"
+   },
+   "shiftPrompt": null,
+   "message": [
+    "Lead technician removed"
+   ],
+   "watched": [
+    {
+     "ms": 0,
+     "kind": "message",
+     "text": "Lead technician updated",
+     "cls": "q-notification row items-stretch q-notification--standard bg"
+    },
+    {
+     "ms": 91,
+     "kind": "new text",
+     "text": "S2-35909 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 1719,
+     "kind": "message",
+     "text": "Lead technician removed",
+     "cls": "q-notification row items-stretch q-notification--standard bg"
+    },
+    {
+     "ms": 2068,
+     "kind": "new text",
+     "text": "S2-35909 Approved Customer ZZAUTOTEST C368131 Pinned Gone ZZC131 VIN/serial VIN ZZWOB179203514347 Progress 0% Total price $0.00",
+     "cls": "board-column__card"
+    }
+   ],
+   "leads": [
+    "S2-35908 lead=Aaa ZZAUTOTEST Theresa Pinned",
+    "S2-35909 lead=none"
+   ]
+  },
+  "step13": {
+   "unassignedHoldsWo2": true,
+   "techCColumn": "still has a column",
+   "columnsRead": 283
+  },
+  "step15": {
+   "first": [
+    {
+     "id": "unassign",
+     "name": "Unassigned",
+     "header": "Unassigned 3770 3770 work orders",
+     "pinned": "no pin control",
+     "cards": [
+      "S2-33692",
+      "S2-33043",
+      "S2-36633",
+      "S2-32262",
+      "S2-33697",
+      "S2-34872",
+      "S2-33104",
+      "S2-32260",
+      "S2-32218",
+      "S2-32992",
+      "S2-35104"
+     ],
+     "empty": null,
+     "left": 17
+    },
+    {
+     "id": "a7748aa8",
+     "name": "Aaa ZZAUTOTEST Jenny Pinned",
+     "header": "AZ Aaa ZZAUTOTEST Jenny Pinned Inactive 0 0 work orders",
+     "pinned": "true",
+     "cards": [],
+     "empty": "No work orders",
+     "left": 321
+    },
+    {
+     "id": "82608f53",
+     "name": "Aaa ZZAUTOTEST Theresa Pinned",
+     "header": "AZ Aaa ZZAUTOTEST Theresa Pinned 1 1 work order",
+     "pinned": "true",
+     "cards": [
+      "S2-35908"
+     ],
+     "empty": null,
+     "left": 625
+    },
+    {
+     "id": "309924ab",
+     "name": "Aaa ZZAUTOTEST Tara Lead",
+     "header": "AZ Aaa ZZAUTOTEST Tara Lead 0 0 work orders",
+     "pinned": "false",
+     "cards": [],
+     "empty": "No work orders",
+     "left": 929
+    },
+    {
+     "id": "c57d19d7",
+     "name": "Aaron Baker",
+     "header": "AB Aaron Baker 18 18 work orders",
+     "pinned": "false",
+     "cards": [
+      "S2-35705",
+      "S2-35703",
+      "S2-33465",
+      "S2-35708",
+      "S2-35710",
+      "S2-34149",
+      "S2-36395",
+      "S2-36396",
+      "S2-36421",
+      "S2-36422",
+      "S2-36630"
+     ],
+     "empty": null,
+     "left": 1233
+    },
+    {
+     "id": "52b5c2b4",
+     "name": "Aaron Zed",
+     "header": "AZ Aaron Zed 25 25 work orders",
+     "pinned": "false",
+     "cards": [
+      "S2-36365",
+      "S2-35704",
+      "S2-36364",
+      "S2-36366",
+      "S2-36367",
+      "S2-36368",
+      "S2-36369",
+      "S2-36370",
+      "S2-36371",
+      "S2-36372",
+      "S2-36373"
+     ],
+     "empty": null,
+     "left": 1537
+    }
+   ],
+   "techCColumn": "has a column",
+   "techBColumn": {
+    "id": "a7748aa8-3421-40ca-8d03-bdd68581606e",
+    "name": "Aaa ZZAUTOTEST Jenny Pinned",
+    "count": 0,
+    "cards": [],
+    "pinned": "true",
+    "pinDisabled": false,
+    "empty": "No work orders",
+    "left": 321
+   }
+  },
+  "restore": {
+   "C": [
+    "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}",
+    "Location Heavy 201",
+    "unenrol Leth 201",
+    "deactivate 201"
+   ],
+   "A": [
+    "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}",
+    "unenrol Leth 400 {\"errors\":[{\"error\":\"The enrollment doesn't exist\"}]}",
+    "deactivate 201"
+   ],
+   "B": [
+    "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}",
+    "unenrol Leth 400 {\"errors\":[{\"error\":\"The enrollment doesn't exist\"}]}"
+   ],
+   "pinsAdmin": 200,
+   "pinsViewOnly": 200,
+   "read": {
+    "A": false,
+    "B": false,
+    "C": false,
+    "CLocation": "Staging Heavy Duty - 9919"
+   }
+  }
+ }
+}
