@@ -1,0 +1,99 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-1493c63",
+  "date": "17 October 2026",
+  "note": "run 498 fix-up round 3, batch 02 = round 3 steps 9-14"
+ },
+ "results": {
+  "C581892": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: step 14 (reading the shifts on the Schedule) was not done on screen by the test script.",
+    "Set-up (customer ZZAUTOTEST S4R28 Approved Lines 10170808), each led by Esther Howard with a shift tomorrow (Oct 18): S2-37090 (second line not approved; shift 8:00 to 10:00), S2-37091 (second line declined; 10:00 to 12:00), S2-37092 (a Choose lines shift ticking both approved lines; 13:00 to 15:00).",
+    "Steps 3 to 11: each of the three drags from Esther Howard's column to Ralph Edwards' opened \"Clear Esther Howard's scheduled shifts?\"; after Keep shifts each work order moved to Ralph Edwards' column with \"Lead technician updated\".",
+    "Step 14 not seen on screen: the script searched the Schedule by work order number, which only narrows the work order list on the left, and did not find Esther Howard's row. (Read behind the screen, her three shifts are still there at the same times, but that is not the screen check the test asks for.)"
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581892-f3-1-question.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C581892-f3-2-schedule.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: a focused script that opens Schedule for Oct 18, finds Esther Howard's row and reads her three shifts' times on screen (sent back to the coordinator)."
+  },
+  "C368167": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test's starting state (the work order Invoiced in tab 2) was again not reached, so the refused change could not be tested.",
+    "Set-up: S2-37093, Complete, led by Esther Howard; the customer's credit limit was raised first so it is not Over Limit.",
+    "Step 2 (tab 2): Finance tab > Create Invoice showed invoice INV-S2-37093 and the New Customer Payment window, which was closed without paying. The work order still read Complete, both on screen and when read behind the screen (no invoice recorded).",
+    "Steps 3 to 5 (tab 1, not reloaded): Lead Technician could still be changed. Ralph Edwards is not offered (the known list cut-off, SV-11393, list ends at \"QA PartsTechnician\"); the test's names are examples, so Jenny Wilson was picked. No message appeared and the field read Jenny Wilson.",
+    "Step 6: after the reload the work order still reads Complete, Create Invoice is still offered, and Lead Technician reads Jenny Wilson. Because the work order never became Invoiced, a lead change was allowed, so nothing about the refused change can be judged."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368167-f3-1-tab2.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368167-f3-2-tab1-reload.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: find out why Create Invoice leaves this work order Complete (with the QA lead), then re-run once the work order really reads Invoiced in tab 2."
+  },
+  "C368246": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script again did not sort any table (second time), so the header check was not done.",
+    "The Dashboard opened from the logo with no error message. With View details opened, these cards show a table with rows and no error: Billing Efficiency (Advisor Analysis), Technician Efficiency, Technician Utilization, Sales by Customer (1-10, 15 pages) and At Risk Customers (1-10 of 173). Revenue shows a chart, not a table.",
+    "The script's own table reader counted 0 rows on every card (its selector missed the tables seen in the pictures), and it clicked no column header, so whether a clicked header orders the rows was not seen."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368246-f3-1-at-risk.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368246-f3-2-sales.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: a focused script that opens each card's View details, reads the table rows and clicks one column header, then checks the order (sent back to the coordinator)."
+  },
+  "C96936": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the test script could not change the lead in tab B for the second time, so steps 5 to 8 were not done.",
+    "Set-up: customer \"ZZAUTOTEST F2 Refresh Lead\": S2-35331, S2-35332, S2-35333 with Esther Howard, S2-35334 and S2-35335 with Ralph Edwards.",
+    "Steps 1 to 4: tab A in Tech View shows Esther Howard 3 and Ralph Edwards 2.",
+    "Step 5: in tab B, S2-35331's page opened with a New Line window over it (the work order has no lines). The script did not close it, clicked the wrong button and waited 20 seconds; the lead stayed Esther Howard. Steps 6 to 8 were not read."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96936-f3-1-new-line.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: a focused script that closes the New Line window (X) first, then clicks Lead Technician on the status card and picks Ralph Edwards (sent back to the coordinator)."
+  },
+  "C368127": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, following the test's steps (round 3 re-run with a brand-new Admin user, 17 Oct).",
+    "Step 3: Unassigned opens expanded; its header count 3768 matches List's All tab (7,140 work orders, 3,768 with no lead, all 15 pages read).",
+    "Step 5: deep inside the group the Unassigned header, with its count, stays just under the column headings while the rows scroll past.",
+    "Step 6: a loading bar showed at each scroll stop: rows load in batches as you scroll.",
+    "Step 7: clicking the arrow on the held Unassigned header, from deep inside the group, collapsed Unassigned straight away (no scrolling up first); the next group, Aaron Baker, follows."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368127-f3-1-held-header.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C368127-f3-2-collapsed.png"
+   ],
+   "ticket": null
+  },
+  "C96963": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on staging: the Board View half of step 7 is now seen, but the same check in Tech View (step 11) has still not been run.",
+    "Seen earlier today (17 Oct, same build): Invoiced and Paid work orders cannot be moved to another technician or to Unassigned in Board View or Tech View, but can be reordered in their own column; S2-37066 (Invoiced, no lead) cannot be moved out of Unassigned; Declined and Complete work orders move normally; the work order page shows Lead technician as plain text, and a change sent behind the screen was refused with \"The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+    "Now seen (Board View, search \"ZZAUTOTEST F1 Invoiced Paid Locked 84534\"; S2-37063 put in Unassigned as set-up): S2-37066 dragged above S2-37063 inside Unassigned is now first, with no message, and stays first after a reload.",
+    "Not seen: reordering S2-37066 inside Unassigned in Tech View (step 11 repeats step 7 there)."
+   ],
+   "pictures": [
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96963-f3-1-holding.png",
+    "evidence/staging-full-2026-10-14/annotated-full-1016/C96963-f3-2-after-reload.png"
+   ],
+   "ticket": null,
+   "todo": "What needs to be done: run the same Unassigned reorder in Tech View (drag S2-37066's row above S2-37063's row inside Unassigned, reload, check it stays first); sent back to the coordinator."
+  }
+ }
+}
