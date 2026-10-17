@@ -69,3 +69,8 @@ SV-11101 reopen; C590117 tooltip ticket.
 - **QA lead question — C97003 step 11:** Ben dropped at Unassigned lands as the FIRST technician; the case's expected order may need his wording.
 - Script faults still open after 3 tries: C97003 (scroll to column ~196 of 279), C614714 (Save & Close button not matched by exact text; Job Title field not found), C96916 Tech View half (number link never clicked), C581892 step 14 (Schedule people list never scrolled). ⇒ Work these LIVE (one probe at a time on the shared sign-in) after round 5 ends, BEFORE the sign-out batch.
 - **Sign-out batch is HELD** by after-round5b-1017.sh until `evidence/staging-full-2026-10-14/logs-signout-1017/GO` exists. Release with `touch` that file when the live fixes are done.
+
+## 17 Oct 10:55 UTC — live fixes judged (RESULTS-live-1017-01); sign-out batch running since 10:42
+- Passed: C614714, C581892.
+- QA lead questions (Blocked, Expected untouched): **C97003** step 11 order (Ben lands after Unassigned at step 7; tech plan "Unassigned is never a technician drop target" vs PRD S9-R8 only "keep Unassigned fixed"); **C368167** step 2 (closing the payment window with X undoes the invoice — is that intended? the rest of the case behaves correctly: refusal message exact, lead stays Esther, status Invoiced); **C96936** step 5 needs Ralph Edwards by name, not offered (SV-11393) — trigger made behind the screen, result itself matched.
+- **C96916** possible finding NOT proved (Rule 104): Back landed in List in both views this run, but Board View/Tech View at 08:01 and 09:15 the same day; the admin's saved display is shared with other sessions. Re-run with a test user no other session uses, if the staging sign-in survives the sign-out batch.
