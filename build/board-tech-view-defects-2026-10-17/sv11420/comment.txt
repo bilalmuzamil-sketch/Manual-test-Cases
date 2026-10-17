@@ -1,0 +1,33 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on Staging (build v26.40.19-754919e) on 17 October 2026, against the spec (version 64). 4 of 4 checks passed.
+
+Tech View row text is now 14 px and the percentage beside the progress bar is 12 px, and neither changes with the density.
+
+*Before and after*
+!sv11420-01-text-sizes.png|width=1024,height=799!
+_Top (red): the picture in this ticket, where the row text was 13 px and the percentage 11 px. Below (blue): staging today at Compact, Regular and Comfortable, work order S2-16688. Green boxes mark the number, the customer and the percentage, with the text size the page reports. Tech View is not on production yet, so the "before" is the ticket's own picture. Window 1920 x 900 px, zoom 100%._
+
+*What I checked*
+||#||Check||Status||
+|1|Compact: the number and the customer are 14 px; the percentage ("107%") is 12 px.|PASSED|
+|2|Regular: the same sizes, 14 px and 12 px.|PASSED|
+|3|Comfortable: the same sizes, 14 px and 12 px.|PASSED|
+|4|The other text cells of the row (Waiting On Parts, Unit, Asset, VIN/Serial #, Total Price) are also 14 px at all three densities.|PASSED|
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S6-R4: Row and card text is 14px at every density; Compact never shrinks it. Text the design sets at 12px at every density, such as column header labels (S2-R21), the progress percentage and secondary lines, stays 12px.{quote}
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com/workorders and click the *All* tab (top left).
+# Click *Search* in the bar above the list and type {{S2-16688}}.
+# On the right of that bar, click the *Tech View* button (the middle of the three view buttons, a person icon).
+# Right-click the number *S2-16688* in the row and choose *Inspect*; in the panel that opens, the *Computed* tab shows font-size 14px. Do the same on the "107%" beside the progress bar: 12px.
+# Click the *Density* button (the icon with three lines and an up-down arrow, left of the view buttons), choose *Compact*, then *Comfortable*, and check again: the sizes stay the same.
+
+*Screen recording*
+!sv11420-text-size-staging-recording-voiceover.mp4|width=1280,height=666,alt="sv11420-text-size-staging-recording-voiceover.mp4"!
+_Updated on 17 October 2026, 03:13 CDT: the film is now shown at its full height (it was squashed)._
+_Staging, build v26.40.19-754919e, 17 October 2026, window 1920 px, zoom 100%: Tech View at Regular, Compact and Comfortable; each caption shows the text size of the number and of the percentage, read from the page. With voice-over._

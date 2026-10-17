@@ -39,6 +39,7 @@ if you need it.
 
 | Date | What went wrong | What we do now | Where it lives |
 |---|---|---|---|
+| 2026-10-17 | Posted two voiced films (SV-11397, SV-11420) with `width=1280` but no `height`, so Jira stored them 1280 x 183 (squashed) — a REPEAT of a lesson already in the playbook | Every embed carries both width and height; `jira_post_qa.py` now STOPS on any png/mp4 embed without `height=`. Film height = 1280 x (video h / video w), read from the file | `build/testing-tools/jira_post_qa.py`; playbook §V.0 |
 | 2026-09-15 | Reported the production "before" capture as blocked because the **cookies** had expired (409), and asked for a fresh cookie set — when production is not a cookie environment at all. | **Production = log in with username + password at app.shopview.com.** Ask for credentials, never cookies; cookies are only for the `sv####.qa.shopview.com` branches. Keep the credentials in `/tmp`, never in this public repo. | playbook §K.1 |
 | 2026-09-13 | Declared two builds' printed logos **identical** while the two shops had **different logo files**. The equality was an artefact of the confounder, not a finding — with one file held constant production prints the logo **10.7% smaller**. | Before declaring two things equal, **hold every input constant and say which one you held**. If a variable cannot be controlled, the honest output is "not comparable", never "identical". | `build/invoice-legacy-qa-vs-prod-2026-09-12/SV-9979-FONT-SIZE-CHECK.md` (same-logo sections) |
 | 2026-09-13 | Recorded "QA 320x157 / production 1200x600" for the two logo files — **backwards**, and the real production file was 320x157. Nobody could have caught it because the numbers looked plausible. | An attribution is a claim. **Extract the artefact, hash it, and look at it** before writing which environment it came from; a sha256 in the notes makes the error impossible. | same file; playbook §AC.10 |
@@ -103,6 +104,8 @@ if you need it.
 
 
 | 2026-10-17 | SV-11406 film: the caption of the last step stayed on screen over the next page (a different search), saying something that page did not show | Before switching page between two voiced lines, show a short bridging caption saying what comes next; check the caption strip between lines, not only at each voice offset | `build/board-tech-view-bugs-2026-10-16/sv11406/FINDINGS.md`, playbook §AK 5f |
+
+| 2026-10-17 | A probe restored EVERY preference key that differed at the end of the run on the shared admin account, so it overwrote another session's pinned-technician change (pinnedTechnicianIds) that it never touched; the other value could not be recovered | Restore only the keys the script itself changes (list them explicitly: density, display, collapsedGroups, tab, filters…); never diff-and-restore all keys on a shared account | build/board-tech-view-defects-2026-10-17 scripts; playbook §AK note |
 
 ## The shape of the mistakes, in four lines
 

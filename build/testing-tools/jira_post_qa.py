@@ -23,6 +23,9 @@ def main():
     opt = lambda k: a[a.index(k) + 1] if k in a else None
     key, ctext = a[0], a[1]
     files = [x for x in a[2:] if not x.startswith('--') and x not in (opt('--expect-build'), opt('--prd'))]
+    # Every embedded picture or film must carry both width and height, or Jira stores it at 183 px high (squashed).
+    bad = [m for m in re.findall(r'!([^!|\n]+\.(?:png|jpg|mp4|webm))\|([^!\n]*)!', open(ctext).read()) if 'height=' not in m[1]]
+    if bad: sys.exit(f'STOP: embeds without height: {[b[0] for b in bad]}')
     html = curl('https://app.staging.shopview.com/index.html')
     build = re.search(r'app-version" content="([^"]+)', html).group(1)
     print('build', build)

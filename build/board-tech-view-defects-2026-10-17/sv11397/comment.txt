@@ -1,0 +1,37 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on Staging (build v26.40.19-754919e) on 17 October 2026, against the spec (version 64). 5 of 5 checks passed.
+
+In Tech View the avatars now change size with the density: smallest at Compact, largest at Comfortable. The Service Advisor avatar follows too. Board View card avatars stay the same size at every density, as the spec asks.
+
+*Before and after*
+!sv11397-01-avatar-sizes.png|width=1024,height=740!
+_Top (red): the picture in this ticket, where every avatar stayed the same size. Below (blue): staging today at Compact, Regular and Comfortable, work order S2-16688 under its lead Brandi Smith. Green boxes mark each avatar with its measured width. Tech View is not on production yet, so the "before" is the ticket's own picture. Window 1920 x 900 px (so the Assigned Techs column fits), zoom 100%._
+
+*What I checked*
+||#||Check||Status||
+|1|Tech View, Compact: group header avatar 24 px; technician avatar and Service Advisor avatar on the row 20 px.|PASSED|
+|2|Tech View, Regular: group header avatar 28 px; row avatars 24 px.|PASSED|
+|3|Tech View, Comfortable: group header avatar 36 px; row avatars 32 px.|PASSED|
+|4|The Service Advisor avatar follows the density the same way as the technician avatars (20 / 24 / 32 px).|PASSED|
+|5|Board View card avatars are 24 px at Compact, Regular and Comfortable.|PASSED|
+
+The progress bar also follows the design, as agreed in the comments above: 48 x 4 px at Compact and 64 x 6 px at Regular and Comfortable.
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S2-R23: Technician avatars, and the Service Advisor avatar, follow density in Tech View as in the design: 20px, 24px and 32px on rows and 24px, 28px and 36px on group headers at Compact, Regular and Comfortable; Board View card avatars stay 24px. The Progress bar is 48 by 4px at Compact, as in the design.{quote}
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com/workorders and click the *All* tab (top left).
+# Click *Search* in the bar above the list and type {{S2-16688}}.
+# On the right of that bar, click the *Tech View* button (the middle of the three view buttons, a person icon).
+# Look at the row S2-16688 under *Brandi Smith*: the round initials "BS" in the group header, "JG" in the *Service Advisor* column and the initials in the *Assigned Techs* column (scroll right if needed).
+# Click the *Density* button (the icon with three lines and an up-down arrow, left of the view buttons) and choose *Compact*, then *Regular*, then *Comfortable*: the avatars get bigger each time.
+# Click the *Board View* button (the right one): the small avatars at the bottom of each card stay the same size whichever density you pick.
+
+*Screen recording*
+!sv11397-avatar-density-staging-recording-voiceover.mp4|width=1280,height=666,alt="sv11397-avatar-density-staging-recording-voiceover.mp4"!
+_Updated on 17 October 2026, 03:13 CDT: the film is now shown at its full height (it was squashed)._
+_Staging, build v26.40.19-754919e, 17 October 2026, window 1920 px, zoom 100%: Tech View at Regular, Compact and Comfortable with the avatar sizes read from the page in each caption, then Board View card avatars at all three densities. With voice-over._
