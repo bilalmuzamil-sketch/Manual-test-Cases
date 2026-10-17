@@ -14,7 +14,7 @@
   "Dana": "400 [{\"error\":\"Staff is already enrolled in department\"}]"
  },
  "C368169": {
-  "wo": "S2-36151",
+  "wo": "S2-36774",
   "setupMileage": 201,
   "ralphEligible": [],
   "before": {
@@ -22,14 +22,14 @@
    "mileage": "120,000"
   },
   "pick": {
-   "seen": 64,
+   "seen": 62,
    "last": [
-    "check QA PartsTechnician",
-    "check QA JuniorServiceAdvisor",
-    "check QA Administrator",
-    "check QA ServiceManager",
+    "check Nora New",
+    "check Parth Fadadu",
+    "check Parts Technician",
+    "check Patricia Washington",
     "check QA PartsManager",
-    "check QA Foreman"
+    "check QA ServiceManager"
    ],
    "field": 1,
    "input": 1,
@@ -44,7 +44,7 @@
      "check David Combs",
      "check Debra Garcia",
      "check Douglas Robinson",
-     "check Dusan Radulovic"
+     "check Dusan Bulovan"
     ],
     "scrolled": 19,
     "picked": false
@@ -56,12 +56,68 @@
   "toasts": [],
   "afterReload": {
    "lead": "Esther Howard",
-   "mileage": "120500"
+   "mileage": "120,500"
   },
   "api": {
    "lead": "Esther",
    "mileage": "120500",
    "engineHours": null
+  }
+ },
+ "C368171": {
+  "wo": "S2-36775",
+  "countBefore": 1,
+  "lineHistBefore": [
+   0,
+   0
+  ],
+  "time": "00:02:00",
+  "picked": false,
+  "countAfter": 1,
+  "newest": "Lead tech changed ZZ WOB Runner - Lead tech: - → Esther Howard Oct 17, 2026 05:01 AM Line created ZZ WOB Runner Replace - Suspension air bag - Oct 17, 2026 05:01 AM Line created",
+  "lineHistAfter": [
+   0,
+   0
+  ]
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "C368170": {
+  "wo": "S2-36776",
+  "poSeed": "typed",
+  "status": "Invoiced",
+  "before": {
+   "lead": "Esther",
+   "mileage": "123456",
+   "engineHours": "3420",
+   "po": "PO-100"
+  },
+  "leadFieldIsPicker": 0,
+  "leadShown": "Esther Howard",
+  "leadPicked": "locked: no picker on an Invoiced work order",
+  "leadToasts": [],
+  "mileageEditable": false,
+  "mileage": "locked: the Mileage box is read-only on the Invoiced work order",
+  "mileageToasts": [],
+  "engineEditable": false,
+  "engine": "locked: the Engine Hours box is read-only on the Invoiced work order",
+  "engineToasts": [],
+  "poBoxes": [
+   {
+    "label": "Customer PO",
+    "tid": "input_customer_po",
+    "disabled": false,
+    "value": "PO-100"
+   }
+  ],
+  "po": "typed",
+  "after": {
+   "leadScreen": "",
+   "mileageScreen": "123,456",
+   "engineScreen": "3,420",
+   "lead": "Esther",
+   "mileage": "123456",
+   "engineHours": "3420",
+   "po": "PO-200"
   }
  }
 }
