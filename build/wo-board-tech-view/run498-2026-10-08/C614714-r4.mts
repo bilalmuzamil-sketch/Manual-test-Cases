@@ -56,7 +56,9 @@ async function fieldProblems() {
 async function saveClose(tag: string) {
   const r: any = {}; calls.length = 0;
   await p.evaluate(`(() => { window.__tl = []; if (window.__to) window.__to.disconnect(); const grab = () => { for (const e of document.querySelectorAll('.q-notification')) { const t = e.innerText.replace(/\\s+/g, ' ').trim(); if (t && !window.__tl.includes(t)) window.__tl.push(t); } }; window.__to = new MutationObserver(grab); window.__to.observe(document.body, { childList: true, subtree: true, characterData: true }); })()`).catch(() => {});
-  const btn = p.locator('button:visible').filter({ hasText: /^\s*Save & Close\s*$/ }).last(); r.buttons = await btn.count();
+  // LIVE FIX 17 Oct (probe-staff-window.json): the button's own text is "Save & close" (shown capitalised by CSS), aria-label "Save and close", test id button_save_staff
+  let btn = p.locator('.q-dialog [data-test-id="button_save_staff"]:visible').last(); r.buttons = await btn.count(); r.buttonBy = 'test id button_save_staff';
+  if (!r.buttons) { btn = p.getByRole('button', { name: /save and close/i }).last(); r.buttons = await btn.count(); r.buttonBy = 'role name "Save and close"'; }
   r.click = await btn.click({ timeout: 10_000 }).then(() => 'clicked').catch((e: any) => 'click failed: ' + String(e?.message || e).split('\n')[0].slice(0, 120)); await W(3000);
   r.windowsAfter = await windows();
   const q = r.windowsAfter.find((w: any) => !/Edit Staff Member/.test(w.text) && w.buttons.length);
@@ -73,6 +75,11 @@ try {
   o.eligible = await ensureEligible(a, A, 'A'); o.offeredBefore = (await candidates(a)).some((x) => x.id === A.staff_id);
   const CUST = `ZZAUTOTEST N1 Time Clock Off ${RUNNO}`; const c = await customer(a, CUST, 'N1-U1');
   const w1 = await workOrder(a, c, 'approved', A.staff_id), w2 = await workOrder(a, c, 'approved', null);
+  // LIVE FIX 17 Oct (set-up, not a case step): the work order page shows Lead Technician as a read-only value ("lead_technician_readonly")
+  // while the work order has NO lines, and opens a New Line window over the page; Work-order-1 gets one line (the app's add-line call)
+  // so the page offers the Lead Technician field step 8 uses
+  { const cl = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/work-orders/canned-lines')).body?.data)[0];
+    o.wo1Line = cl ? (await a.post(`/api/work-orders/${w1}/lines/create-from-canned-line`, { canned_line_id: cl.id, status: 'authorized' })).status : 'no ready-made line'; }
   const num = async (id: string) => (await workOrders(a, CUST)).find((x: any) => x.id === id)?.number;
   o.data = { techA: `${A.first_name} ${A.last_name}`, control: `${CT?.first_name} ${CT?.last_name}`, customer: CUST, wo1: await num(w1), wo2: await num(w2) };
   const recA = async () => (await staffRows(a, A.email)).find((x: any) => x.staff_id === A.staff_id);
@@ -80,8 +87,8 @@ try {
   console.log(t(), 'START STATE set C614714', JSON.stringify({ techA: A.email, control: CT?.email ?? null, wo1Lead: 'Technician-A', wo2Lead: 'none' }));
   // ---- positive control for step 2: a harmless change on ANOTHER ZZAUTOTEST record through the same window
   if (CT) { const cc: any = { open: await openStaff(`Control ${RUNNO}`, 'control') };
-    const jt = p.locator('.q-dialog:visible .q-field').filter({ has: p.locator('.q-field__label', { hasText: /^Job Title/ }) }).first(); cc.jobTitleField = await jt.count();
-    if (cc.jobTitleField) { await jt.locator('input').fill(`ZZ control ${RUNNO}`).catch(() => {}); await W(500); }
+    const jt0 = p.locator('.q-dialog [data-test-id="input_job_title"]:visible').first(); cc.jobTitleField = await jt0.count();   // LIVE FIX: label is "Job title", test id input_job_title
+    if (cc.jobTitleField) { const isInput = await jt0.evaluate((e: any) => e.tagName === 'INPUT').catch(() => false); const jt = isInput ? jt0 : jt0.locator('input').first(); await jt.fill(`ZZ control ${RUNNO}`).catch((e: any) => { cc.fillError = String(e).slice(0, 80); }); await W(500); cc.jobTitleTyped = await jt.inputValue().catch(() => null); }
     cc.save = await saveClose('control'); cc.server = { jobTitle: (await staffRows(a, CT.email)).find((x: any) => x.staff_id === CT.staff_id)?.job_title ?? null };
     cc.closed = !cc.save.editWindowOpen; o.control2 = cc;
     console.log(t(), 'C614714 step 2 control (another record, Job Title)', JSON.stringify({ click: cc.save.click, closed: cc.closed, jobTitle: cc.server.jobTitle, messages: cc.save.messages, requests: cc.save.requests.slice(0, 4) }));
@@ -90,7 +97,8 @@ try {
   o.s1 = await openStaff(`Tim ${RUNNO}`, 's1');
   const dlg = p.locator('.q-dialog:visible').filter({ hasText: 'Edit Staff Member' }).last();
   const togState = (tg: any) => tg.evaluate((e: any) => { const sw = e.matches('[role=switch]') ? e : e.querySelector('[role=switch], [aria-checked]'); return sw ? sw.getAttribute('aria-checked') : (e.querySelector('.q-toggle__inner--truthy') ? 'true' : 'false'); }).catch(() => null);
-  const tog = dlg.locator('.q-toggle').filter({ hasText: /Time Clock/i }).first(); o.s2 = { toggle: await tog.count() };
+  let tog = p.locator('.q-dialog [data-test-id="toggle_time_clock"]:visible').first(); o.s2 = { toggle: await tog.count(), toggleBy: 'test id toggle_time_clock' };
+  if (!o.s2.toggle) { tog = dlg.locator('.q-toggle').filter({ hasText: /Time Clock/i }).first(); o.s2 = { toggle: await tog.count(), toggleBy: 'words' }; }
   if (o.s2.toggle) { o.s2.before = await togState(tog);
     if (o.s2.before !== 'false') { await tog.locator('.q-toggle__inner, .q-toggle__track').first().click().catch(async () => { await tog.click().catch(() => {}); }); await W(800); o.s2.afterClick = await togState(tog);
       if (o.s2.afterClick !== 'false') { await tog.focus().catch(() => {}); await p.keyboard.press('Space'); await W(800); o.s2.afterSpace = await togState(tog); } }

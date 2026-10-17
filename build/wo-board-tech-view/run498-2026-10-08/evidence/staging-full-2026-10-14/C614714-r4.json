@@ -2,44 +2,37 @@
  "exitSwitch": 200,
  "eligible": [],
  "offeredBefore": true,
+ "wo1Line": 201,
  "data": {
-  "techA": "ZZAUTOTEST N1 Tim 43447",
-  "control": "ZZAUTOTEST N1 Control 43447",
-  "customer": "ZZAUTOTEST N1 Time Clock Off 43447",
-  "wo1": "S2-37105",
-  "wo2": "S2-37106"
+  "techA": "ZZAUTOTEST N1 Tim 37661",
+  "control": "ZZAUTOTEST N1 Control 37661",
+  "customer": "ZZAUTOTEST N1 Time Clock Off 37661",
+  "wo1": "S2-37114",
+  "wo2": "S2-37115"
  },
  "control2": {
   "open": {
    "rowFound": 1,
    "window": "Edit Staff Member close First Name Last Name Email Salary Type arrow_drop_down $ Salary Job Title Role Technician arrow_drop_down visibility Location Staging Heavy Duty - 9919 arrow_drop_down Billable No arrow_drop_down "
   },
-  "jobTitleField": 0,
+  "jobTitleField": 1,
+  "jobTitleTyped": "ZZ control 37661",
   "save": {
-   "buttons": 0,
-   "click": "click failed: locator.click: Timeout 10000ms exceeded.",
-   "windowsAfter": [
-    {
-     "text": "Edit Staff Member close First Name Last Name Email Salary Type arrow_drop_down $ Salary Job Title Role Technician arrow_drop_down visibility Location Staging Heavy Duty - 9919 arrow_drop_down Billable No arrow_drop_down Time Clock Sales Representative TECHNICI",
-     "buttons": [
-      "close",
-      "visibility",
-      "Resend Invitation",
-      "Deactivate Account",
-      "Delete",
-      "Save & Close"
-     ]
-    }
-   ],
-   "editWindowOpen": true,
-   "fieldProblems": [],
+   "buttons": 1,
+   "buttonBy": "test id button_save_staff",
+   "click": "clicked",
+   "windowsAfter": [],
+   "editWindowOpen": false,
    "messages": [],
-   "requests": []
+   "requests": [
+    "POST /api/staff/b4183679-a79e-4969-aa3c-8fc36e618297/change {\"first_name\":\"ZZAUTOTEST N1\",\"last_name\":\"Control 37661\",\"email\":\"zz.wob.n1.control.37661@staging.shopview.local\",\"role_id\":\"af8d02b5-ecd1-4205-a82f-32a4d5bb1015\",\"workplace_id\":\"b3c8c820-f815-4cf1-8",
+    "  -> 201 /api/staff/b4183679-a79e-4969-aa3c-8fc36e618297/change"
+   ]
   },
   "server": {
-   "jobTitle": null
+   "jobTitle": "ZZ control 37661"
   },
-  "closed": false
+  "closed": true
  },
  "s1": {
   "rowFound": 1,
@@ -47,109 +40,93 @@
  },
  "s2": {
   "toggle": 1,
+  "toggleBy": "test id toggle_time_clock",
   "before": "true",
   "afterClick": "false",
   "fieldProblemsBeforeSave": [],
   "save": {
-   "buttons": 0,
-   "click": "click failed: locator.click: Timeout 10000ms exceeded.",
-   "windowsAfter": [
-    {
-     "text": "Edit Staff Member close First Name Last Name Email Salary Type arrow_drop_down $ Salary Job Title Role Technician arrow_drop_down visibility Location Staging Heavy Duty - 9919 arrow_drop_down Billable No arrow_drop_down Time Clock Sales Representative TECHNICI",
-     "buttons": [
-      "close",
-      "visibility",
-      "Resend Invitation",
-      "Deactivate Account",
-      "Delete",
-      "Save & Close"
-     ]
-    }
-   ],
-   "editWindowOpen": true,
-   "fieldProblems": [],
+   "buttons": 1,
+   "buttonBy": "test id button_save_staff",
+   "click": "clicked",
+   "windowsAfter": [],
+   "editWindowOpen": false,
    "messages": [],
-   "requests": []
+   "requests": [
+    "POST /api/staff/7ee914f6-5d21-439a-bb7a-8f6861729e1d/change {\"first_name\":\"ZZAUTOTEST N1\",\"last_name\":\"Tim 37661\",\"email\":\"zz.wob.n1.tim.37661@staging.shopview.local\",\"role_id\":\"af8d02b5-ecd1-4205-a82f-32a4d5bb1015\",\"workplace_id\":\"b3c8c820-f815-4cf1-8938-1095",
+    "  -> 201 /api/staff/7ee914f6-5d21-439a-bb7a-8f6861729e1d/change"
+   ]
   },
-  "serverTimeClock": true,
-  "savedThroughScreen": false
+  "serverTimeClock": false,
+  "savedThroughScreen": true
  },
  "s4_column": {
   "id": "Technician-A",
-  "name": "ZZAUTOTEST N1 Tim 43447",
+  "name": "ZZAUTOTEST N1 Tim 37661",
   "cards": [
-   "S2-37105"
+   "S2-37114"
   ]
  },
- "s5_messages": [
-  "Lead technician updated"
- ],
- "s5_wo2Lead": "d091af49-a9c4-4397-a751-f86b07bf88bd",
+ "s5_messages": [],
+ "s5_wo2Lead": null,
  "s5_columnAfter": [
-  "S2-37105",
-  "S2-37106"
+  "S2-37114"
  ],
- "s6_rowGroupKey": "d091af49-a9c4-4397-a751-f86b07bf88bd",
+ "s6_rowGroupKey": "7ee914f6-5d21-439a-bb7a-8f6861729e1d",
  "s6_group": [
   {
-   "name": "ZZAUTOTEST N1 Tim 43447",
+   "name": "ZZAUTOTEST N1 Tim 37661",
    "id": "Technician-A",
    "rows": [
-    "S2-37105",
-    "S2-37106"
+    "S2-37114"
    ]
   }
  ],
  "s7_numberLink": 0,
  "s7_opened": true,
  "s8": {
-  "windowsOnOpen": [
-   {
-    "text": "New Line AI SHOPCOACH LINE BUILDER close What Are You Doing? arrow_drop_down Why Are You Doing It? Technicians Unknown technician close Add Technician arrow_drop_down Labor Rate arrow_drop_down Estimated Time Tech Time Save & Add Part Save & Add Line Save & Cl",
-    "buttons": [
-     "AI SHOPCOACH LINE BUILDER",
-     "close",
-     "close",
-     "Save & Add Part",
-     "Save & Add Line",
-     "Save & Close"
-    ]
-   }
-  ],
-  "close0": "close button",
+  "windowsOnOpen": [],
   "windowsLeft": [],
   "leadCandidates": [
    {
-    "tid": "lead_technician_readonly",
+    "tid": null,
+    "tag": "LABEL",
+    "cls": "q-field row no-wrap items-start q-field--outlined ",
+    "text": "Lead Technician ZZAUTOTEST N1 Tim 37661 arrow_drop_down",
+    "clickable": true
+   },
+   {
+    "tid": "select_lead_technician",
     "tag": "DIV",
-    "cls": "static-field__value",
-    "text": "ZZAUTOTEST N1 Tim 43447",
-    "clickable": false
+    "cls": "q-field__native row items-center",
+    "text": "ZZAUTOTEST N1 Tim 37661",
+    "clickable": true
    }
   ],
-  "fieldUsed": "[data-test-id=\"lead_technician_readonly\"]",
+  "fieldUsed": "[data-test-id=\"select_lead_technician\"]",
   "pick": {
-   "picked": null,
-   "count": 0,
-   "first": null,
-   "reason": "\"Unassigned\" is not offered and the case needs that exact name"
+   "picked": "Unassigned",
+   "count": 99,
+   "first": "Unassigned",
+   "reason": null
   },
   "messages": [],
-  "serverLead": "d091af49-a9c4-4397-a751-f86b07bf88bd",
-  "route": "screen did not clear the lead (no fallback used)",
+  "serverLead": null,
+  "route": "screen",
   "pageReads": {
    "field": null,
    "testIds": [
-    "lead_technician_readonly=ZZAUTOTEST N1 Tim 43447"
+    "lead_technician_readonly=Unassigned"
    ],
-   "near": "Lead technician ZZAUTOTEST N1 Tim 43447"
+   "near": "Lead technician Unassigned"
   }
  },
- "s9_columnForA": true,
+ "s9_columnForA": false,
  "s10_groupForA": false,
- "s10_wo1Group": null,
+ "s10_wo1Group": "Unassigned",
  "control5": {
-  "messages": [],
-  "accepted": false
+  "messages": [
+   "Lead technician updated"
+  ],
+  "accepted": true
  }
 }
