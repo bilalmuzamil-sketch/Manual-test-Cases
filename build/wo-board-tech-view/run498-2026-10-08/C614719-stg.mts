@@ -12,7 +12,7 @@
  *  Output EV/C614719-stg.json, pictures C614719-stg-*.png. */
 import fs from 'node:fs'; import path from 'node:path';
 import { open, done, APP } from './session.mts'; import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, display, tab, search, groups, boardCols } from './wob.mts';
+import { EV, t, display, tab, search, groups, boardCols, activeTab, searchValue, switchLocUI } from './wob.mts';
 import { person, roleIds, ensureEligible, HEAVY } from './staff.mts';
 const { browser, page: p } = await open('/workorders?tab=all'); p.setDefaultTimeout(30_000); const a = api(p);
 const o: any = { exitSwitch: (await a.post('/api/exit-switch-user', {})).status }; const W = (ms: number) => p.waitForTimeout(ms);
@@ -33,10 +33,22 @@ try {
   const wa = await workOrders(a, CA), wb = await workOrders(a, CB);
   const WO1 = wa.find((x: any) => x.techAssignedId === ANA.staff_id || x.tech_assigned_id === ANA.staff_id) ?? wa[0], WO2 = wa.find((x: any) => x !== WO1), WO3 = wb[0];
   o.data = { wo1: WO1?.number, wo2: WO2?.number, wo3: WO3?.number };
+  // FIX-UP 2 (17 Oct 2026): on 16 Oct the page opened on the Estimates tab (a saved choice left by an earlier script), so the Approved work
+  // orders could not show and every reading was empty. The starting screen is now SET and read back: saved tab All, no saved filters, no
+  // saved collapsed groups, Technician-A then Technician-B pinned; the location in the top bar is Heavy Duty (switched through the menu if
+  // not); the three work orders are Approved with their leads (put back if an earlier run moved them). START STATE found / set are logged.
+  o.startFound = { tab: ORIGINAL.tab ?? null, filters: JSON.stringify(ORIGINAL.filters ?? null).slice(0, 160), collapsed: ORIGINAL.collapsedGroups ?? null, pinned: (ORIGINAL.pinnedTechnicianIds ?? []).length, location: await p.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => null), wos: [WO1, WO2, WO3].map((w: any) => `${w?.number} ${w?.status} lead=${w?.techAssignedFirstName ?? '-'}`) };
+  console.log(t(), 'START STATE found C614719', JSON.stringify(o.startFound));
+  o.leadFix = []; for (const [w, lead] of [[WO1, ANA.staff_id], [WO2, BEN.staff_id], [WO3, null]] as [any, string | null][]) { if (!w) continue; if (!/^approved$/i.test(String(w.status))) o.leadFix.push(`${w.number} status ${(await a.post('/api/work-orders/change-status', { id: w.id, status: 'approved' })).status}`); if ((w.techAssignedId ?? w.tech_assigned_id ?? null) !== lead) o.leadFix.push(`${w.number} lead ${(await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: lead })).status}`); }
   const clean: any = {}; for (const [k, v] of Object.entries(ORIGINAL)) if (!/collaps/i.test(k)) clean[k] = v; // no saved collapsed groups (C590131-orgb.mts)
-  await a.put(PREF, { value: { ...clean, pinnedTechnicianIds: [ANA.staff_id, BEN.staff_id] } });
+  await a.put(PREF, { value: { ...clean, tab: 'all', filters: {}, pinnedTechnicianIds: [ANA.staff_id, BEN.staff_id] } });
+  { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await W(5000); const topNow = await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => ''); if (!/Staging Heavy Duty/.test(topNow)) o.locationSwitch = await switchLocUI(p, 'Staging Heavy Duty'); }
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await W(5000); await tab(p, 'All').catch(() => {}); await display(p, 'Tech View'); await search(p, Q); await W(2000);
   await p.reload({ waitUntil: 'domcontentloaded' }); await W(7000); // freshly opened: nothing has had keyboard focus
+  if ((await activeTab(p)) !== 'All') { o.tabClickedAgain = await activeTab(p); await tab(p, 'All').catch(() => {}); await W(2000); }
+  if ((await searchValue(p)) !== Q) { await search(p, Q); await W(2000); }
+  const pv = await prefGet(); o.startSet = { tab: await activeTab(p), savedTab: pv.tab ?? null, filters: JSON.stringify(pv.filters ?? null).slice(0, 120), pinned: (pv.pinnedTechnicianIds ?? []).length, search: await searchValue(p), location: await p.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => null), leadFix: o.leadFix };
+  console.log(t(), 'START STATE set C614719', JSON.stringify(o.startSet));
   o.start = (await groups(p)).map((g) => ({ name: g.name, collapsed: g.collapsed, rows: g.rows })); await shot('s0-start');
   // ---- step 1: collapse Unassigned
   await p.locator('[data-test-id="button_tech_view_group_toggle_unassigned"]').first().click().catch(async () => { await p.locator('[data-test-id^="button_tech_view_group_toggle_"]').first().click().catch(() => {}); }); await W(1500);

@@ -51,15 +51,36 @@ try {
   o.s2 = { empty: await emptyState(), groups: await p.locator('[data-test-id^="tech_view_group_"]').count(), text: await mainText() }; await shot('s2-tech-view');
   // ---- step 3: Board View
   await display(p, 'Board View'); await W(2000); o.s3 = { empty: await emptyState(), columns: await p.locator('[data-test-id^="board_column_header_"]').count(), text: await mainText() }; await shot('s3-board-view');
-  // ---- step 4: the empty state's Create Work Order button; compare with the page's own button's window
-  const es = p.locator('button').filter({ hasText: /^\s*Create Work Order\s*$/ }); o.s4_buttons = await es.count();
-  await es.last().click().catch(() => {}); await W(3000); const d1 = p.locator('.q-dialog:visible').last(); o.s4_window = (await d1.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 160); await shot('s4-window');
-  // ---- step 5: close without saving
-  await p.keyboard.press('Escape').catch(() => {}); await W(1500); if (await p.locator('.q-dialog:visible').count()) { await p.locator('.q-dialog:visible button').filter({ hasText: /close|cancel/i }).first().click().catch(() => {}); await W(1500); }
-  o.s5 = { dialogs: await p.locator('.q-dialog:visible').count(), empty: await emptyState() }; await shot('s5-closed');
-  if (o.s4_buttons > 1) { await es.first().click().catch(() => {}); await W(3000); o.s4_pageButtonWindow = (await p.locator('.q-dialog:visible').last().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 160); await p.keyboard.press('Escape').catch(() => {}); await W(1500); }
+  // ---- FIX-UP 2 (17 Oct 2026): closing the New Work Order window raises "Are you sure you want to close this dialog?" (Cancel / Close),
+  // which the 16 Oct run left open — so steps 5-6 were never seen and the page's own Create Work Order window was never compared.
+  // closeWindow() presses the window's X (else Escape), answers that question with its "Close" button, repeats until no window is open,
+  // and records each question. The empty state's own button is marked inside the empty state (never the toolbar button), and the two
+  // windows (empty state vs the toolbar's button_new_work_order) are read the same way and compared (title, field labels, buttons).
+  const winRead = async () => p.evaluate(`(() => { const d = [...document.querySelectorAll('.q-dialog')].filter(e => e.getBoundingClientRect().width > 0).pop(); if (!d) return null;
+    return { title: (d.querySelector('.text-h6, [data-test-id="dialog_title"]') || {}).innerText?.trim() ?? d.innerText.split('\\n')[0].trim(), labels: [...d.querySelectorAll('.q-field__label')].map(e => e.innerText.trim()), buttons: [...d.querySelectorAll('button')].map(b => b.innerText.replace(/\\s+/g, ' ').trim()).filter(Boolean), toggles: [...d.querySelectorAll('.q-toggle')].map(e => e.innerText.trim()) }; })()`).catch(() => null) as Promise<any>;
+  async function closeWindow(tag: string) { const c: any = { questions: [] as string[] };
+    for (let i = 0; i < 4 && (await p.locator('.q-dialog:visible').count()); i++) {
+      const top = p.locator('.q-dialog:visible').last(); const txt = (await top.innerText().catch(() => '')).replace(/\s+/g, ' ');
+      if (/Are you sure you want to close/i.test(txt)) { c.questions.push(txt.slice(0, 100)); await shot(`${tag}-close-question`); await top.locator('button').filter({ hasText: /^\s*Close\s*$/ }).last().click().catch(() => {}); await W(1500); continue; }
+      const x = top.locator('button:has(i:text-is("close")), [data-test-id="button_close_dialog"], button[aria-label*="close" i]').first();
+      if (await x.count()) await x.click().catch(() => {}); else await p.keyboard.press('Escape').catch(() => {}); await W(1500); }
+    c.openAfter = await p.locator('.q-dialog:visible').count(); return c; }
+  // ---- step 4: the empty state's Create Work Order button
+  o.s4_buttons = await p.locator('button').filter({ hasText: /^\s*Create Work Order\s*$/ }).count();
+  o.s4_emptyButton = await p.evaluate(`(() => { document.querySelectorAll('[data-zz-es]').forEach(e => e.removeAttribute('data-zz-es')); const t = [...document.querySelectorAll('*')].find(e => e.childElementCount === 0 && /^No work orders yet$/.test((e.textContent || '').trim())); if (!t) return false;
+    let box = t; for (let i = 0; i < 6 && box.parentElement; i++) { box = box.parentElement; const b = [...box.querySelectorAll('button')].find(x => /Create Work Order/.test(x.innerText) && x.getAttribute('data-test-id') !== 'button_new_work_order'); if (b) { b.setAttribute('data-zz-es', '1'); return true; } } return false; })()`).catch(() => false);
+  console.log(t(), 'START STATE found C614715 step 4', JSON.stringify({ location: await top(), emptyStateButton: o.s4_emptyButton, buttons: o.s4_buttons, firstRun: !!(await emptyState()) }));
+  if (o.s4_emptyButton) await p.locator('[data-zz-es="1"]').first().click().catch(() => {}); else await p.locator('button').filter({ hasText: /^\s*Create Work Order\s*$/ }).last().click().catch(() => {});
+  await W(3000); o.s4_window = await winRead(); await shot('s4-window');
+  // ---- step 5: close without saving (answer the close question), first-run state again
+  o.s5_close = await closeWindow('s5'); o.s5 = { dialogs: await p.locator('.q-dialog:visible').count(), empty: await emptyState() }; await shot('s5-closed');
+  // ---- step 4 comparison: the page's own Create Work Order button (toolbar)
+  const tb = p.locator('[data-test-id="button_new_work_order"]').first(); o.s4_toolbarButton = await tb.count();
+  if (o.s4_toolbarButton) { await tb.click().catch(() => {}); await W(3000); o.s4_pageButtonWindow = await winRead(); await shot('s4-toolbar-window'); o.s4_toolbarClose = await closeWindow('s4-toolbar'); }
+  o.s4_sameWindow = !!(o.s4_window && o.s4_pageButtonWindow) && JSON.stringify(o.s4_window) === JSON.stringify(o.s4_pageButtonWindow);
+  o.s5_afterComparison = { dialogs: await p.locator('.q-dialog:visible').count(), empty: !!(await emptyState()) };
   // ---- step 6: List
-  await display(p, 'List'); await W(2000); o.s6 = { text: await mainText(), firstRun: /No work orders yet/.test(await mainText()) }; await shot('s6-list');
+  await display(p, 'List'); await W(2500); o.s6 = { text: await mainText(), firstRun: /No work orders yet/.test(await mainText()), rows: await p.locator('tbody tr').count() }; await shot('s6-list');
 } catch (e: any) { o.error = String(e?.message || e).slice(0, 300); }
 finally { o.back = await switchLocUI(p, 'Staging Heavy Duty').catch(() => null); }
 fs.writeFileSync(path.join(EV, 'C614715-stg.json'), JSON.stringify(o, null, 1)); console.log(t(), 'C614715', JSON.stringify(o).slice(0, 2500)); await done(browser);

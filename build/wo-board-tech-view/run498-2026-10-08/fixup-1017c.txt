@@ -1,0 +1,8 @@
+# Run 498 FIX-UP pass, third queue "c" (17 Oct 2026): the NEW cases (main run steps 77-81, draft block) whose SCRIPTS failed — fixed after
+# run-fixup-1017.sh had already started (it reads its list once, at start). Run by after-fixup-1017c.sh once run-fixup-1017.sh has ended.
+# One step per line, same format as fixup-1017.txt: block|script|ONLY ids|extra env|mode|note   (helpers: fx6-1017.mts)
+B-setup|stg6-tz.mts|-|TZ_TARGET=Asia/Karachi|setup|Rule 125 guard (not a case): Heavy Duty zone = browser zone, proved again; exit 0 required
+C-fix2|C614714-stg.mts|C614714|-|ensure|fix-up 2: Time Clock turned off in Edit Staff Member by its label, switch state read before/after, save messages and window state read, record read back; Tech View searched and Tim's row brought on screen; the work order opened from its number link and the lead set to Unassigned on its page
+C-fix2|C614717-stg.mts|C614717|-|ensure|fix-up 2: real avatars only, ordered left to right; the leftmost, the +N and Technician-A's avatar (by initials) each scrolled on screen, hovered at its centre with elementFromPoint checked before the bubble is read
+C-fix2|C614719-stg.mts|C614719|-|ensure|fix-up 2: starting screen set and read back (tab All, no saved filters or collapsed groups, Ana then Ben pinned, Heavy Duty, the three work orders Approved with their leads); START STATE found/set
+C-fix2|C614715-stg.mts|C614715|-|ensure|fix-up 2: the "Are you sure you want to close this dialog?" question answered; first-run state read again; the empty state's and the toolbar's Create Work Order windows compared; then List

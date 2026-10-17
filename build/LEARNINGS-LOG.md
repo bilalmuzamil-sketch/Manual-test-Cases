@@ -608,7 +608,11 @@ soon after he sends them. #staging #signin #sso → L0355, L0383
 - **Board View draws only the columns near the screen**: scrolling to one end of a drag un-draws the other (C614711 steps 6/10 timed out
   on `board_column_deleted` / the card). Bring the source on screen, hold the card and walk the board until the target is drawn
   (`dragAcross`), or pin the target technician first. Column grips are their own elements (`board_column_drag_handle_<id>`), not a
-  `drag_indicator` icon (C97003). #staging #scripts #signin #sv-11393 → L0394, L0396, L0413, L0415
+  `drag_indicator` icon (C97003).
+- **A queue reads its list once, at start**: lines added after run-fixup-1017.sh started go to a NEW list (fixup-1017c.txt) run by a
+  copy of the runner (run-fixup-1017c.sh, own log dir) chained behind it (after-fixup-1017c.sh waits on `[r]un-fixup-1017\.sh`, a
+  pattern that does not match the copy). Never edit a running bash script. Closing New Work Order asks "Are you sure you want to
+  close this dialog?" — answer it (C614715). #staging #scripts #signin #sv-11393 → L0394, L0396, L0413, L0415
 
 ## L0418 — 2026-10-17 — Reading a run's history: what a full re-run's posts did to earlier verdicts (run 498)
 - **`build/testing-tools/tr_client.py` `get()` returns a TUPLE `(http_status, body)`**, not the body: `_, r = t.get("get_tests/498&limit=250&offset=0"); r['tests']`; `_, rs = t.get(f"get_results/{test_id}&limit=3"); rs['results']`. Page `get_tests` by 250.
