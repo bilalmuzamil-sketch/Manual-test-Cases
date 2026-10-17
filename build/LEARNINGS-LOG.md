@@ -736,3 +736,12 @@ Twice in one morning a helper and the main session both appended "## L0432" / "#
 
 ## L0438 — 2026-10-17 — After three blind script fixes fail, stop queuing and debug LIVE — hold the sign-out batch to keep the session for it
 Run 498: four cases (C97003, C614714, C96916 Tech View half, C581892 step 14) failed three automated rounds each, every fix written blind from logs while the queue owned the one shared staging sign-in. Each new round cost ~1 h and found the next wrong selector. Better: once the queues end, HOLD the sign-out batch behind a go-file (`after-round5b-1017.sh` waits for `logs-signout-1017/GO`), give one helper the free session to probe each case live (dump the real markup, try the scroll/click, read it back), fix, run once, and only then release the sign-out batch with `touch .../GO`. Rule of thumb: two blind fixes, then go live.
+
+## L0439 — 2026-10-17 — Staging: closing "New Customer Payment" with X after Create Invoice UNDOES the invoice
+Run 498 round 5 (invoice-r5.mts, positive control on a plain work order S2-37110, credit limit raised): Create Invoice → `POST /api/invoices/create` 201,
+and ~10 s later the work order reads Invoiced (invoice id, status pending). Closing the New Customer Payment window with its X then sends
+`POST /api/invoices/remove-customer-transaction` 200 and the work order goes back to Complete with Create invoice offered again (also after a reload).
+So a case step "Create Invoice, close the payment window without paying" never leaves a work order Invoiced on staging (C368167 Blocked on it;
+put to the QA lead whether that is intended). To get an Invoiced work order through the screen, do not close the payment window with X — find
+another route (e.g. a payment) and read the status back. Evidence: `evidence/staging-full-2026-10-14/invoice-r5-C368167.json` (control.invoice).
+#wo-board #staging #invoice #precondition → L0426
