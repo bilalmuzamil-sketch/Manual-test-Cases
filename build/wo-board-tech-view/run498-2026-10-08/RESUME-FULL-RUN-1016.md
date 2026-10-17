@@ -62,3 +62,10 @@ SV-11101 reopen; C590117 tooltip ticket.
 ## 17 Oct 08:25 UTC — round 3 steps 2–8 judged (RESULTS-fixup-1017c-01)
 - Passed: C614717, C614719, C368178.
 - To round 4 (focused): C614714 (step 2: Edit Staff Member window stayed open after Save & Close — script vs product to be settled with a positive control on another staff record; step 8 New Line window over a no-line work order), C368136 (Tech View group not rendered), C96916 Tech View half (rows not on screen), C368131 (step 3 through the screen only: does changing Location alone remove her from Heavy Duty? — if not, that is the READING, possibly a QA lead / source question).
+
+## 17 Oct 09:30 UTC — round 4 judged (RESULTS-fixup-1017d-04), round 5 running; SIGN-OUT BATCH HELD
+- Passed: C368136 (EXPECT-FAIL symptom gone — the clear-shifts question shipped; tell the QA lead), C368246.
+- **QA lead question — C368131:** changing a technician's Location in the staff window (screen only, Save & Close closed) leaves her offered at the OLD location (Heavy Duty); a drop on her column is accepted. The case assumes the move removes her. Possible product finding or case gap — evidence `annotated-full-1016/C368131-f4-*.png`, `moved-r4-C368131.json`. Rule 106 PRD read before any ask.
+- **QA lead question — C97003 step 11:** Ben dropped at Unassigned lands as the FIRST technician; the case's expected order may need his wording.
+- Script faults still open after 3 tries: C97003 (scroll to column ~196 of 279), C614714 (Save & Close button not matched by exact text; Job Title field not found), C96916 Tech View half (number link never clicked), C581892 step 14 (Schedule people list never scrolled). ⇒ Work these LIVE (one probe at a time on the shared sign-in) after round 5 ends, BEFORE the sign-out batch.
+- **Sign-out batch is HELD** by after-round5b-1017.sh until `evidence/staging-full-2026-10-14/logs-signout-1017/GO` exists. Release with `touch` that file when the live fixes are done.
