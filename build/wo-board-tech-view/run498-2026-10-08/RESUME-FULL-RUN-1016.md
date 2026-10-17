@@ -42,3 +42,9 @@ SV-11101 reopen; C590117 tooltip ticket.
 - C368167 Blocked: the work order would not invoice ("Over Limit" mark) — round 3 fix seeds a customer that can invoice.
 - C368131 (leftover pin "Brandi Smith"), C581892 (second card not found) ⇒ round 3.
 - **C368167 — possible product finding (not yet a claim):** invoice in tab 2 worked (INV-S2-37056, server "Invoiced"); stale tab 1 changed the lead with no error (server lead → Jenny Wilson); after reload the work order read Complete + "Over Limit" + Create Invoice offered again. Round 3 re-runs with credit limit raised and status read before/after each step. If it reproduces: Rule 106 live PRD read + case Expected, then ask the QA lead (one ticket, Rule 113) — never file without his yes.
+
+## 17 Oct 06:40 UTC — fix-up 2 steps 15–22 (judged, RESULTS-fixup-1017-04)
+- C368171 **Failed** on SV-11393 (OBSOLETE, read live): Ralph Edwards not in the status-card Lead Technician list (98 names, ends "QA PartsTechnician", typing does not narrow). ⇒ reopen question for the QA lead.
+- **QA lead question — C96945 step 5:** after Escape, keyboard focus returns to the More actions (…) button (required by the keyboard rules), so it stays shown when the mouse leaves the card and hides once focus leaves the card. Step 5 as written expects it hidden. Case wording vs keyboard focus rule — report, Expected untouched (114).
+- C368234: production's Parts Velocity report shows no rows for any choice, so the narrowing could not be compared there — say so.
+- Round 3 LAST attempts (Rule 115): C368246 (View details not found), C96936 (Lead Technician field not found in tab B), C368127 (clicked person icon, not the arrow). If they fail again ⇒ hand checks, named in the report with what to click.
