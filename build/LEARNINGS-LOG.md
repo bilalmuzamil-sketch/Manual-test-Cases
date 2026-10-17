@@ -730,3 +730,6 @@ At 08:24 UTC the harness reported a restart and listed my background WAIT comman
   New Line window before looking for Lead Technician, by its label), `C96963-tech-reorder.mts` (Tech View Unassigned reorder by the row's
   grip cell), `invoice-r5.mts` (C368167: positive control for Create Invoice on a new plain work order before the case).
   #wo-board #queues #scripts → L0429, L0430
+
+## L0437 — 2026-10-17 — Two helpers adding learnings at once collide on the NUMBER: read the last number right before writing
+Twice in one morning a helper and the main session both appended "## L0432" / "## L0433" within minutes (run 498 rounds 4–5); the self-test does not catch duplicate L-numbers in the index file. Before appending: `grep -o "^## L0[0-9]*" build/LEARNINGS-LOG.md | tail -1` and use the next; after a pull/rebase that brings in another session's entry, re-check and renumber (`sed -i '<line>s/^## L0NNN — /## L0MMM — /'`) before pushing. Tell every helper the same in its brief.
