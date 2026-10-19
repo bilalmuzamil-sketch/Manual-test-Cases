@@ -221,3 +221,11 @@ When approved, the QA comment — **PASSED, FAILED or PARTIALLY PASSED** — end
 - **FAILED / PARTIALLY PASSED:** the recording shows the failure reproducing, following the written steps, plus the parts that passed where they fit in the same run.
 - Caption line under it: environment, build, date, and what values are seen. No login screen, no credentials (trimmed).
 - Method: playbook §AK.
+
+
+## Before-and-after pictures must say which is which (QA lead, 19 October 2026)
+- A section titled "Before and after" only goes over a picture that has **BEFORE** and **AFTER** written on the picture itself, each part naming its environment, build and date.
+- Use the ticket's own screenshot as BEFORE when it has one (label it "BEFORE THE FIX: the picture in this ticket", with its build and date).
+- When no before picture exists (the view is not on Production and the ticket has no screenshot), do NOT use the "Before and after" title. Title it "What it looks like now (after the fix)", put an AFTER banner on the picture, and say in one line why there is no before.
+- Words inside a picture such as "before opening" or "after Back" must not be confusable with before/after the fix; say so in the banner when they appear.
+- Tool: `build/board-tech-view-bugs-2026-10-16/before-after-fix-2026-10-19/relabel.py` (banner with wrapped title).

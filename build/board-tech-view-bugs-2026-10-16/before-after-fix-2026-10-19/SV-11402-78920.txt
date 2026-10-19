@@ -1,0 +1,41 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on Staging (build v26.40.19-754919e) on 16 October 2026, against the spec (version 64), with a mouse. 6 of 6 checks passed.
+
+Dragging a technician's group header in Tech View and letting go over a work order row no longer opens that work order. A pinned technician only moves within the pinned group, and a plain click on a row still opens the work order.
+
+*What it looks like now (after the fix)*
+_Updated on 18 October 2026, 23:03 CDT: this section was titled "Before and after", but the picture shows only the fixed build. There is no before picture: Tech View is not on Production, and this ticket has no screenshot. The picture now says this at the top._
+!sv11402-01-header-drag-v2.png|width=1024,height=542!
+_Left: mid-drag, the pinned "Ahtsham Foreman" header carried over work order S2-35339; the blue line shows it will land at the end of the pinned group. Right: after letting go, the list is still showing, Ahtsham Foreman is the last pinned technician, and S2-35339 did not open. There is no before picture: the ticket has none and Tech View is not on production yet. Window 1440 x 900 px, browser zoom 100%._
+
+*What I checked*
+||#||Check||Status||
+|1|Pinned technician's header dragged down by its grip and dropped on a work order row inside the pinned group (S2-35338): no work order opened; the pinned order updated (Tech user) or stayed the same (admin), both allowed by the ticket. _Updated on 16 October 2026, 18:43 CDT: said "updated" for both accounts._|PASSED|
+|2|Pinned technician's header dropped on a work order row of an unpinned technician (S2-35339): no work order opened; the technician moved to the end of the pinned group and did not leave it.|PASSED|
+|3|Pinned header picked up by its name instead of the grip, and a pinned header dragged upward onto a row: no work order opened; the technician stayed inside the pinned group.|PASSED|
+|4|Unpinned technician's header (Ahtsham Parts Manger) dragged onto a work order row: no work order opened; it stayed below the pinned group.|PASSED|
+|5|No drag changed which technician a work order belongs to: S2-35338 is still Ahtsham Foreman's and S2-35339 is still Ahtsham Parts Manger's.|PASSED|
+|6|A plain click on a work order row still opens it (S2-35339 opened on its Lines tab).|PASSED|
+
+Checks 1 to 6 were run both as the admin (who can also drag work orders) and as the Tech user (who can only view them). Both gave the same result. Each account's pins, technician order and open groups were put back afterwards.
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S9-R9: Allow pinned technicians to re order only within the pinned area.{quote}
+{quote}S9-R10: Reordering technicians does not change work order assignments.{quote}
+{quote}S2-R8: Clicking anywhere on a row, outside its own controls, opens the work order. A drag starts only after the pointer has moved a few pixels, so a click never turns into a drag.{quote}
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com/workorders?search=ZZAUTOTEST%20F2%20Tech%20Pin%20Order (the search is filled in).
+# On the right of the bar above the list there are three view buttons. Click the second one (the person icon) to open *Tech View*.
+# On the *Ahtsham Foreman* header row, click the pin icon right of the name to pin him. Open his group and the *Ahtsham Parts Manger* group with the small arrows.
+# Press and hold the six dots at the far left of the *Ahtsham Foreman* header, drag down over work order S2-35339 and let go: no work order opens and Ahtsham Foreman stays in the pinned group at the top.
+# Click once on the S2-35339 row: it opens.
+# Click the pin again to unpin Ahtsham Foreman when done.
+
+*Screen recording*
+_Updated on 18 October 2026, 22:21 CDT: the recording's display size was corrected (it was showing squashed); nothing else changed._
+!sv11402-header-drag-staging-recording-voiceover.mp4|width=1280,height=800,alt="sv11402-header-drag-staging-recording-voiceover.mp4"!
+_Staging, build v26.40.19-754919e, 16 October 2026, window 1440 px, zoom 100%, as the admin: a pinned header dropped on S2-35339, an unpinned header dropped on S2-35338, then a plain click on S2-35339. The page address, pinned order and group of each work order in the captions are read from the page. With voice-over._

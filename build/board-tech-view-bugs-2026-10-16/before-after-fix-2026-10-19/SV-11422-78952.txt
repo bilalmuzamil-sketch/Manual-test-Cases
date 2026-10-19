@@ -1,0 +1,44 @@
+{panel:bgColor=#fffae6}
+*OVERALL QA STATUS: PARTIALLY PASSED*
+{panel}
+
+The details of what passed are below. The one thing still to be fixed is posted in a separate comment below this one.
+
+Tested on Staging (build v26.40.19-31ad1e1) on 19 October 2026, against the spec (version 64), signed in as Admin.
+* In Tech View the first Tab now lands on a work order row, not the Unassigned header, whenever the row is on the screen.
+* Board View, tabbing back in, and the all-collapsed case work as Chris described.
+* When the first work order is listed but further down the page, out of sight, the first Tab still lands on the empty "Unassigned" header (Tech View) or column header (Board View).
+
+*Before and after*
+_Updated on 18 October 2026, 23:03 CDT: the picture now says which part is BEFORE the fix and which is AFTER._
+!sv11422-01-first-tab-v2.png|width=1024,height=1394!
+_Staging today, Admin. 1 (green): with rows in Unassigned the first Tab lands on the first row, S2-37015; the ticket's picture showed the ring on the Unassigned header here. 2 (red): search S2-16688, Unassigned is empty and the only work order is far down the list; the first Tab lands on the "Unassigned" header. 3 (green): the same search with S2-16688 scrolled onto the screen; Tab lands on the row. 4 (red): Board View, the same search; the first Tab lands on the "Unassigned" column header while the card is in Brandi Smith's column far to the right. Window 1440 x 900 px, zoom 100%._
+
+*What I checked*
+||#||Check||Status||
+|1|Tech View, rows in Unassigned (ZZAUTOTEST F3 Keyboard Reach): the first Tab from the Search box lands on the first row, S2-37015, with the blue focus ring.|PASSED|
+|2|Tech View: arrow up onto the Unassigned header, Shift+Tab out, Tab back in: focus returns to the row S2-37015, not the header.|PASSED|
+|3|Tech View, every group collapsed: the first Tab lands on the first group header (Unassigned).|PASSED|
+|4|Tech View, a row focused further down (S2-16218, search Lamkin), Tab out and back in: focus returns to S2-16218.|PASSED|
+|5|Board View, first Tab (ZZAUTOTEST F3 Keyboard Reach): lands on the first card, S2-37015.|PASSED|
+|6|Board View, the last-focused card scrolled out of its column: Tab lands on S2-33099, the first card fully in view (the card above it, S2-35104, is half cut off at the top of the column). With the card still in view, Tab returns to it.|PASSED|
+|7|Tech View, Unassigned empty and the first work order listed below the visible part of the page (search S2-16688, 2 fresh loads): the first Tab lands on the "Unassigned" header. Once S2-16688 is scrolled onto the screen, Tab lands on it.|FAILED|
+|8|Board View, the same search: the first Tab lands on the "Unassigned" column header; the only card is in Brandi Smith's column, off to the right.|FAILED|
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S11-R1: Each view is a single Tab stop. Tab lands on one work order row (Tech View) or card (Board View), the one last focused, or, when none has been, the first work order shown in on-screen order: the first row or card in Unassigned, or the first technician's first row or card when Unassigned is collapsed or empty (never a group or column header while a work order is shown; when every group is collapsed, Tab lands on the first group header; after the user arrows onto a header and tabs out and back in, Tab returns to a work order row while any row is shown; on Board View, if the last-focused card has scrolled out of view in its column, Tab lands on the first card in view); the focused row or card shows a visible focus ring.{quote}
+Chris Ward in this ticket (16 October): "The Tab stop must land on a work order row, never the Unassigned header while a row is shown." His later answer to Slavcho is written into the same rule.
+The spec uses "shown" for the work orders listed in the view ("a count of the work orders currently shown in that group … so the count always matches the rows listed", S2-R12) and says "in view" when it means on the screen (the Board View case above). S2-16688 is listed, so it counts as shown.
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com/workorders and click the *All* tab (top left).
+# In the *Search* box above the list type {{S2-16688}}.
+# On the right of that bar, click the *Tech View* button (the middle of the three view buttons, a person icon).
+# Click once in the *Search* box, then press Tab until the blue focus ring appears in the table: it is on the "Unassigned" header (0 work orders), not on S2-16688.
+# Scroll down to Brandi Smith's group until S2-16688 is on the screen, click the *Search* box again and press Tab: the ring is now on S2-16688.
+# Click the *Board View* button (the right view button) and repeat step 4: the ring is on the "Unassigned" column header.
+
+*Screen recording*
+!sv11422-first-tab-staging-recording-voiceover.mp4|width=1280,height=800,alt="sv11422-first-tab-staging-recording-voiceover.mp4"!
+_Staging, build v26.40.19-31ad1e1, 19 October 2026, Admin, window 1440 x 900 px, zoom 100%: the first Tab with rows in Unassigned, then search S2-16688 (Tab lands on the header; then on the row once it is on screen), then Board View (Tab lands on the column header; the card is shown in Brandi Smith's column). Each caption is read from the page. With voice-over._
