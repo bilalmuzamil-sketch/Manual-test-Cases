@@ -1,0 +1,39 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Tested on Staging (build v26.40.19-c850386) on 19 October 2026, against the spec (version 66), signed in as Admin.
+* At Compact the red and blue count bubbles now sit on the pill's top corner, and the status name is readable.
+* They sit in exactly the same place at Regular, at Comfortable and on the List.
+
+*Before and after*
+!sv11467-01-before-after-compact.png|width=570,height=396!
+_The same work order, S2-33351 (Ready For Review, red 2, blue 3), in Tech View at Compact. Top: this ticket's own picture from 16 October. Bottom: Staging today._
+
+*What I checked*
+||#||Check||Status||
+|1|Tech View, Compact, S2-33351: the bubbles sit on the pill's top corner and "Ready For Review" is readable.|PASSED|
+|2|Tech View, Regular and Comfortable, S2-33351: the bubbles are in the same place on the pill; at Comfortable the pill is taller (22 px) and the word stays readable.|PASSED|
+|3|List, S2-33351: unchanged. The bubbles sit the same distance above the words as in Tech View at every density.|PASSED|
+|4|Other rows at all three densities (20 rows with bubbles): Approved, Complete, Estimate and Ready For Review pills, with a red bubble only, a blue bubble only, both, and a two-digit count (S2-33363, blue 19). The bubbles never sit lower on the word than on the List.|PASSED|
+
+*Regular, Comfortable and List*
+!sv11467-02-all-densities-and-list.png|width=570,height=654!
+_S2-33351 at Regular and Comfortable in Tech View, and on the List for comparison._
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 66:
+{quote}S2-R19: Tech View's Status column is the same status pill List shows in production, with the same red service-actions count and blue parts-actions count on it. Its size follows density (S6-R2a).{quote}
+{quote}S6-R2a: In Tech View the status pill is 16px tall at Compact and Regular and 22px tall at Comfortable, the design's small and regular badges. … Tech View's pill takes the same widths as List's; only its height follows density.{quote}
+
+*How to see it*
+# Sign in to Staging (https://app.staging.shopview.com) as Admin.
+# In the top menu click *Work Orders*, then the *All* tab (top left).
+# At the right of the bar above the list, click *Tech View* (the middle of the three view buttons, a person icon).
+# Click the density button (the icon just right of *Asset on Site*) and choose *Compact*.
+# Click *Search* (the magnifying glass) and type {{S2-33351}}. If the *Unassigned* group is closed, click the small arrow to the left of *Unassigned* to open it.
+# Look at the orange "Ready For Review" pill at the left of the row: the red 2 and blue 3 sit on its top-right corner and the whole word is readable.
+
+*Environment*
+* Staging, build v26.40.19-c850386, 19 October 2026, location Staging Heavy Duty - 9919, signed in as Admin.
+* Window 1600 x 900 px, browser zoom 100%.
