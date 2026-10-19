@@ -8,7 +8,7 @@ CUST = ("Customer {Customer-A} has no sales representative.", "For example: {Cus
 def WO(state='its card shows one "Sales Representative" field reading "Unassigned"', n=1):
     inv = "invoiced" in state.replace("not invoiced", "")
     lines = "" if ("labor line" in state or inv) else "it has one approved labor line and one part, and "
-    return (f"Work order {{Work-order-{n}}} for {{Customer-A}} is open{'' if inv else ' and not invoiced'}; {lines}{state}.",
+    return (f"Work order {{Work-order-{n}}} for {{Customer-A}} {'exists' if inv else 'is open and not invoiced'}; {lines}{state}.",
             f"For example: {{Work-order-{n}}} is S2-{40000 + n}.")
 def START(where="{Work-order-1} is open in a desktop browser at least 1024 px wide"):
     return f"Starting screen: {where}."
