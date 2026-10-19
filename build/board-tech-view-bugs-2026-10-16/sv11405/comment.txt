@@ -1,13 +1,11 @@
-{panel:bgColor=#fffae6}
-*OVERALL QA STATUS: PARTIALLY PASSED*
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
 {panel}
 
-The details of what passed are below. The one thing still to be fixed is posted in a separate comment below this one.
-
-Tested on Staging (build v26.40.19-754919e) on 17 October 2026, against the spec (version 64), signed in as Admin.
+Tested on Staging (build BUILDMARK) on TESTDATE, against the spec (version 64), signed in as Admin.
 * Board View cards now show the List's status pill, with the red and blue counts and the same hover text as List.
 * The pill is 22 px tall and sits in the same place on every card.
-* One status is still different: the *Paid* pill on a card is 44.5 px wide, while List shows it 58.5 px wide (Staging and Production both). Every other status is the same width as List.
+* All 6 checks passed.
 
 *Before and after*
 !sv11405-01-card-pill.png|width=1024,height=351!
@@ -20,11 +18,7 @@ _Staging, work order S2-34941. Left: the Board View card. Right: the same work o
 |3|The pill is 22 px tall on every card (12 cards, 8 statuses).|PASSED|
 |4|The pill sits in the same place on every card: on the right, 11 px below the card's top edge (12 of 12 cards).|PASSED|
 |5|The pill reads the same as that work order's pill in List and Tech View (same text, same colours) for Estimate, Approved, In Progress, Ready For Review, Complete, Invoiced, Declined and Paid.|PASSED|
-|6|The pill is the same width as List's: Estimate 67, Approved 72.4, In Progress 80, Ready For Review 114, Complete 71.5, Invoiced 64.2 and Declined 67.1 px, the same on the card and in List.|PASSED|
-|7|*Paid*: the card's pill is 44.5 px wide; List shows it 58.5 px wide on Staging and on Production. Tech View also shows 44.5 px. Seen on every Paid work order on screen with the Status filter set to Paid.|FAILED|
-
-!sv11405-02-paid-width.png|width=1024,height=534!
-_Status filter set to Paid. Production List: Paid pill 58.5 px. Staging List: 58.5 px. Staging Tech View: 44.5 px. Staging Board View card: 44.5 px. The Invoiced pill, checked the same way, is 64.2 px everywhere._
+|6|Each card's pill is as wide as its own words: Estimate 67, Approved 72.4, In Progress 80, Ready For Review 114, Complete 71.5, Invoiced 64.2, Declined 67.1 and Paid 44.5 px. In List and Tech View all pills on a page stretch to the widest one in the Status column (for example, all 114 px when a Ready For Review row is on the page); a card has no column, so it keeps its own width.|PASSED|
 
 *Where the expected result comes from*
 Spec "Work Orders — Board View & Tech View Display Options", version 64:
@@ -37,8 +31,7 @@ Spec "Work Orders — Board View & Tech View Display Options", version 64:
 # Click the *Board View* button (the right of the three view buttons, right side of the bar above the list). The card shows the yellow "Ready For Review" pill with a red 1 and a blue 2 on its top-right corner.
 # Move the mouse pointer over the red 1 (don't click): the hover box reads "1 Line in Auth Req'd".
 # Click the *List* button (the left view button) and do the same on the row: the pill, counts and hover text are the same.
-# To see the Paid difference: clear the search, click *Status* above the list, tick *Paid*, and compare the Paid pill's width in List and on the Board View cards.
 
 *Screen recording*
-!sv11405-card-pill-staging-recording-voiceover.mp4|width=1280,height=800,alt="sv11405-card-pill-staging-recording-voiceover.mp4"!
-_Staging, build v26.40.19-754919e, 17 October 2026, Admin, window 1440 x 900 px, zoom 100%: the S2-34941 card's pill, counts and hover text, the same in List; then the Status filter on Paid: List 58.5 px, Board View card 44.5 px. Each caption is read from the page. With voice-over._
+!sv11405-card-pill-staging-recording-voiceover-v2.mp4|width=1280,height=800,alt="sv11405-card-pill-staging-recording-voiceover-v2.mp4"!
+_Staging, build BUILDMARK, TESTDATE, Admin, window 1440 x 900 px, zoom 100%: the S2-34941 card's pill, red and blue counts and their hover text, then the same work order in List and Tech View. Each caption is read from the page. With voice-over._

@@ -1,6 +1,6 @@
 # SV-11405 — Board View: card status uses the List's status pill with its red and blue counts
 
-**Status: NOT POSTED — held for a QA-lead decision on the Paid pill width (Rule 97d).** Film ready
+**Status: NOT POSTED YET. QA lead ruled 2026-10-18 (answer to the width question): "Not a fault" — width follows the column; cards have no column. Verdict PASSED. Staging redeployed 18 Oct to v26.40.19-31ad1e1 and the staging sign-in expired (401 sso_required), so the checks are re-run and a new film (no "needs a fix" narration) recorded on the new build before posting.** Film ready
 (`/tmp/qa11310/vo05/sv11405-board-card-pill-staging-recording-voiceover.mp4`, ephemeral; data in `voiceover/`).
 
 - Staging `v26.40.19-754919e`, 16–17 Oct 2026, window 1440 x 900; Production `v26.40.19-d2441a9` for List.
@@ -27,3 +27,9 @@ List is "narrower with only short statuses". Is the card's 44.5 px Paid pill cor
 
 ## Gate
 Not run (not posted).
+
+## 2026-10-17/18 additions
+- Hover text, both counts, card = List = Tech View: S2-34941 "1 Line in Auth Req'd" / "2 Parts Requested"; S2-17528 "5 Lines in Auth Req'd" / "7 Parts Requested" (`data/tips.log`).
+- Mixed pages (`data/widths-mixed.json`): Tech View stretches every pill to its Status column like List (S2-363: Estimate, Approved, Paid all 114 px, column 130; S2-368: Complete and Approved 72.4, column 88.4). Board cards keep their own width (Estimate 67, Approved 72.4, Paid 44.5, Complete 71.5).
+- Question put to the QA lead with those numbers; his answer: "Not a fault (Recommended)" — post SV-11405 PASSED, leave SV-11318 PASSED.
+- Film v1 (`ev/sv11405-card-pill-staging-recording-voiceover.mp4`) says "still needs a fix" — superseded, not to be posted.

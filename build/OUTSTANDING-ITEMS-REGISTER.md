@@ -1437,8 +1437,7 @@ what is still owed.
 ## Board View & Tech View bug batch (staging v26.40.19-754919e) — raised 2026-10-17
 | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|
-| Decision: Board/Tech View Paid pill is 44.5 px, List's is 58.5–72.4 px (List fills its column). Is 44.5 px correct? | QA lead | SV-11405 comment (held, not posted); may also touch passed SV-11318 (78911) | 2026-10-17 |
-| Decision: on Board View after Back, the Unassigned column's top card comes back 2 px under the column edge (top border hidden); other columns leave a 2 px gap. Within S1-R8's allowance, or a remaining issue? | QA lead | SV-11407 comment (held, not posted) | 2026-10-17 |
+| Access: fresh staging cookies (`sv_sso_session` / `PHPSESSID` / `cf_clearance` for `.staging.shopview.com`). Staging redeployed 18 Oct to v26.40.19-31ad1e1 and the sign-in expired (401 sso_required). Blocks: re-running SV-11405's checks on the new build + its new film, then posting it PASSED (QA lead ruled the Paid width "Not a fault", 18 Oct). | QA lead | SV-11405 comment | 2026-10-18 |
 | Decision: "Collapse all" label still reads "Collapse all" when every group with work orders is collapsed (a zero-work-order group that is not in the user's collapsed list counts as open). Raise it or not? | QA lead | nothing posted; data in build/board-tech-view-bugs-2026-10-16/collapse-all-observation/ | 2026-10-17 |
 | Decision: after a filter chip's x is used by keyboard, focus drops to the top of the page. No rule covers it. Raise it or not? | QA lead | nothing posted (SV-11409 passed on its own rule) | 2026-10-17 |
 | Decision: earlier voiced films on SV-11318, SV-11337, SV-11338 still contain 9–12 s of still frames (made before the idle cut for voiced films existed). Re-cut and replace? | QA lead | nothing blocked | 2026-10-17 |
@@ -1447,3 +1446,6 @@ what is still owed.
 | Decision: Tech View row Service Advisor avatar shows no name bubble and no tip on hover (S2-R23 covers technician avatars only; the advisor's name is printed beside it). Raise it or not? | QA lead | nothing (SV-11395 posted PASSED, 78927) | 2026-10-17 |
 | Decision: after a keyboard Unassign on Board View, focus jumps to the old lead's column header though it still has cards (S11-E1; SV-10230 is the general focus task). Raise it or not? | QA lead | nothing (SV-11419 posted PASSED, 78929) | 2026-10-17 |
 | Known: another session's pinned technicians (pinnedTechnicianIds in the shared admin's work-orders-list preference) were overwritten by one of our restore steps on 16–17 Oct and cannot be recovered; scripts now restore only their own keys. | — (for information) | anyone who had pinned technicians as the shared staging admin must re-pin | 2026-10-17 |
+
+- 2026-10-18 cleared: Board/Tech Paid pill width — QA lead answered "Not a fault (Recommended)": width follows the Status column in List/Tech View; cards have no column. SV-11405 → PASSED (to post after re-check on the new build); SV-11318 stays PASSED (78911 film size fixed in place).
+- 2026-10-17 cleared: SV-11407 Unassigned 2 px — posted PARTIALLY PASSED by S1-R8's own words ("fully shown"): 78932 + remaining issue 78933.
