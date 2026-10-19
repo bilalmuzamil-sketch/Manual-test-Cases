@@ -1,0 +1,390 @@
+{
+ "case": {
+  "id": 96929,
+  "title": "Before anyone reorders them, a group's work orders follow List's default sort",
+  "section_id": 13237,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": null,
+  "created_by": 3,
+  "created_on": 1790157757,
+  "updated_by": 3,
+  "updated_on": 1792177645,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 6,
+  "is_deleted": 0,
+  "is_ai_generated": false,
+  "is_ai_automated": false,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 3,
+  "custom_preconds": "<p><strong><a href=\"https://docs.google.com/document/d/1Vx-pPfhwqM03IaGMnZgqaxL5SCCeMtKLIuZmEVoqAcM/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner or Admin user whose role has Work orders &gt; View and Work orders &gt; Create &amp; Edit, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.</li><li>User {User-B} (for example ZZAUTOTEST Sort Viewer) is a new staff member with the Admin role at {Location-A}, can sign in, and has never changed or saved a sort in List.</li><li>Technician {Technician-A} (for example Kristin Watson) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User. {Technician-A} leads no other work order.</li><li>Customers {Customer-A} (for example \"ZZAUTOTEST F2 Sort Alpha Freight\"), {Customer-B} (for example \"ZZAUTOTEST F2 Sort Mid Trucking\") and {Customer-C} (for example \"ZZAUTOTEST F2 Sort Zeta Hauling\") start with the same words (for example ZZAUTOTEST F2 Sort) and are used by this case only.</li><li>Four Approved work orders, all led by {Technician-A}, were created in this order: {Work-order-1} (for example S10043-17621) for {Customer-C}, {Work-order-2} (for example S10043-17622) for {Customer-A}, {Work-order-3} (for example S10043-17623) for {Customer-B} and {Work-order-4} (for example S10043-17624) for {Customer-B}.</li><li>Nobody has reordered {Technician-A}'s work orders at {Location-A}.</li><li>On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.</li></ul>",
+  "custom_steps": "<ol><li>Sign in as {User-B}.</li><li>Open Work Orders, click the All tab and click List in the display switcher.</li><li>Type the shared start of the three customer names (for example ZZAUTOTEST F2 Sort) in Search.</li><li>Write down the order of the four work orders in List.</li><li>Click Tech View in the display switcher.</li><li>Write down the order of the rows in {Technician-A}'s group.</li><li>Click Board View in the display switcher.</li><li>Write down the order of the cards in {Technician-A}'s column.</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 4: List shows the four work orders in its usual default order: by customer name from A to Z (with the example names: {Customer-A}, then {Customer-B}'s two work orders, then {Customer-C}).</li><li>Step 6: Tech View's rows are in exactly the same order as List at step 4, including the order of {Customer-B}'s two work orders, {Work-order-3} and {Work-order-4}.</li><li>Step 8: Board View's cards are in the same order as Tech View's rows.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10045 (Story 2, Tech View \u2014 table grouped by lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S2-R6, read 15 Oct 2026. Review Decisions 853901313 DR-45 (desktop List default sort is customer name A to Z; its description of the tie-break was corrected by Chris Ward on 15 Oct 2026 in PRD version 53: same customer, start date, newest first, exactly as the List sorts today). Source-verified 15 October 2026. Last checked against build v26.40.19-1493c63 (staging) on 10/16/2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S2-R6:</strong> &ldquo;Before a manual order is saved, use the List\u2019s default work order sort, ties included, exactly as the List sorts today: work orders for the same customer go by start date, newest first. The List itself does not change. A work order that gets a new lead after it was created goes to the bottom of that technician\u2019s work instead (S9-R14).&rdquo;</li></ul><p>AUTOMATION: READY</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": [],
+  "version": 11
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 10,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": [
+   {
+    "id": 27074,
+    "type_id": 6,
+    "created_on": 1790759711,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p>Build: the Work Orders QA build with the Board View / Tech View display options enabled (feature ships without a feature flag).</p><p>Logged in as a user with Work Orders view permission.</p><p>Location has several eligible technicians (Clockable, Active, role not Office / not Time Clock User, enrolled here) and seeded work orders spread across statuses (Estimate, Approved, In Progress, Review/Ready for Review, Complete, Invoiced, Paid, Declined, Imported), including at least one with no lead technician.</p><p>No manual order saved; List default sort in effect.</p>",
+      "new_value": "<p><strong>Seed / setup:</strong> On the Work Orders QA build (Board View / Tech View display options are on; the feature ships without a feature flag), ensure the current location has at least 3 eligible lead technicians (Clockable, Active, role not Office and not Time Clock User) and several work orders assigned to different lead technicians with some left Unassigned - create them via Work Orders &gt; New and set the Lead Technician - then open the Work Orders page. Sign in with Work Orders view permission (add Work Orders create-and-edit where the case reassigns or drags).</p><p>Build: the Work Orders QA build with the Board View / Tech View display options enabled (feature ships without a feature flag).</p><p>Logged in as a user with Work Orders view permission.</p><p>Location has several eligible technicians (Clockable, Active, role not Office / not Time Clock User, enrolled here) and seeded work orders spread across statuses (Estimate, Approved, In Progress, Review/Ready for Review, Complete, Invoiced, Paid, Declined, Imported), including at least one with no lead technician.</p><p>No manual order saved; List default sort in effect.</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 27256,
+    "type_id": 6,
+    "created_on": 1790791566,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Seed / setup:</strong> On the Work Orders QA build (Board View / Tech View display options are on; the feature ships without a feature flag), ensure the current location has at least 3 eligible lead technicians (Clockable, Active, role not Office and not Time Clock User) and several work orders assigned to different lead technicians with some left Unassigned - create them via Work Orders &gt; New and set the Lead Technician - then open the Work Orders page. Sign in with Work Orders view permission (add Work Orders create-and-edit where the case reassigns or drags).</p><p>Build: the Work Orders QA build with the Board View / Tech View display options enabled (feature ships without a feature flag).</p><p>Logged in as a user with Work Orders view permission.</p><p>Location has several eligible technicians (Clockable, Active, role not Office / not Time Clock User, enrolled here) and seeded work orders spread across statuses (Estimate, Approved, In Progress, Review/Ready for Review, Complete, Invoiced, Paid, Declined, Imported), including at least one with no lead technician.</p><p>No manual order saved; List default sort in effect.</p>",
+      "new_value": "<ol><li>You are signed in on the Work Orders build under test with Work Orders view permission; the Board View and Tech View display options are on.</li><li>The current location has at least 3 lead technicians shown as groups/columns (a technician is eligible when they are Clockable, Active, and their role is not Office or Time Clock User).</li><li>Via New Work Order, create several work orders and set a Lead Technician on each, spread across the technicians with some left Unassigned; then open the Work Orders page.</li><li>Location has several eligible technicians (Clockable, Active, role not Office / not Time Clock User, enrolled here) and seeded work orders spread across statuses (Estimate, Approved, In Progress, Review/Ready for Review, Complete, Invoiced, Paid, Declined, Imported), including at least one with no lead technician.</li><li>No manual order saved; List default sort in effect.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 29326,
+    "type_id": 6,
+    "created_on": 1791367105,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Before a manual order is saved, work orders in a group use List's default sort",
+      "new_value": "Until you reorder them, a group's work orders use List's default sort"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 29750,
+    "type_id": 6,
+    "created_on": 1791429719,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Until you reorder them, a group's work orders use List's default sort",
+      "new_value": "Before anyone reorders them, a group's work orders follow List's default sort"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>You are signed in on the Work Orders build under test with Work Orders view permission; the Board View and Tech View display options are on.</li><li>The current location has at least 3 lead technicians shown as groups/columns (a technician is eligible when they are Clockable, Active, and their role is not Office or Time Clock User).</li><li>Via New Work Order, create several work orders and set a Lead Technician on each, spread across the technicians with some left Unassigned; then open the Work Orders page.</li><li>Location has several eligible technicians (Clockable, Active, role not Office / not Time Clock User, enrolled here) and seeded work orders spread across statuses (Estimate, Approved, In Progress, Review/Ready for Review, Complete, Invoiced, Paid, Declined, Imported), including at least one with no lead technician.</li><li>No manual order saved; List default sort in effect.</li></ol>",
+      "new_value": "<ol><li>Sign in to the build under test as a user whose role has Work Orders view (check in Settings &gt; Roles &amp; Permissions &gt; open your role &gt; Work Orders section). The Admin role has both.</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>In the top bar, choose the location you will test in (e.g. \"Heavy Duty\"). Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. a technician nobody at this location has reordered work for, e.g. a new \"Kristin Watson\"). A person only counts as a technician here when the staff record is Active, Clockable is on, the role is neither Office nor Time Clock User, and they are enrolled at this location. To add one:<ul><li>Settings &gt; Staff &gt; add a staff member &gt; enter the first and last name (e.g. Esther Howard), role Technician, Clockable on, Active, enrolled at this location &gt; Save.</li></ul></li><li>Create the work orders this case uses and set their lead technician (three led by Kristin Watson for customers \"Zeta Hauling\", \"Alpha Freight\" and \"Mid Trucking\", created in that order):<ul><li>Work Orders &gt; New Work Order &gt; choose a customer (e.g. \"Fibridge Commercial\") and an asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Create. Write down the number the build gives the work order (the numbers in this case are examples).</li><li>On the work order page set Lead Technician (e.g. Esther Howard) and save. Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li><li>Use a user who has never saved a sort in List (e.g. a newly created user), so List shows its default sort.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Switch to Tech View.</li><li>Pick a technician group with several work orders.</li><li>Compare the order of its work orders to List's default sort.</li></ol>",
+      "new_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In List, note the order of the three Kristin Watson work orders.</li><li>In the display switcher at the right of the toolbar, click Tech View (in the design its tooltip reads \"By Lead Tech\").</li><li>Read the order of the rows in Kristin Watson's group.</li><li>In the display switcher at the right of the toolbar, click Board View (in the design its tooltip reads \"Board\").</li><li>Read the order of the cards in Kristin Watson's column.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Until you save a manual order, work orders inside a group use List's default work-order sort.</li></ul><p></p><p><strong>Source \u2014 where this behaviour comes from</strong><br>Epic SV-10043 (Work Orders \u2014 Board View &amp; Tech View Display Options). Story reference: SV-10045 \u2014 Story 2 Tech View. Spec: Confluence page 845185030 &ldquo;Work Orders \u2014 Board View &amp; Tech View Display Options (Draft Spec)&rdquo;, Draft v0.9, requirement(s) S2-R6 (read 23 Sep 2026). Review decisions/answers: Confluence page 853901313 where cited. Source-verified on 23 September 2026; not yet build-verified.</p><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S2-R6:</strong> &ldquo;Before a manual order is saved, use the List\u2019s default work order sort.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>In Tech View the rows are in List's default order: Alpha Freight, Mid Trucking, Zeta Hauling (customer name A-Z), the same order List shows.</li><li>Board View shows the same order.</li><li>The design's sample puts In progress first, then newest created: that is a sample only, the List order is what passes.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10045 (Story 2, Tech View \u2014 table grouped by lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S2-R6, read 8 Oct 2026. Review Decisions 853901313 DR-45 (desktop List default sort is customer name A-Z, ties by work order number).</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S2-R6:</strong> &ldquo;Before a manual order is saved, use the List\u2019s default work order sort.&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 29883,
+    "type_id": 6,
+    "created_on": 1791448443,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Sign in to the build under test as a user whose role has Work Orders view (check in Settings &gt; Roles &amp; Permissions &gt; open your role &gt; Work Orders section). The Admin role has both.</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>In the top bar, choose the location you will test in (e.g. \"Heavy Duty\"). Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. a technician nobody at this location has reordered work for, e.g. a new \"Kristin Watson\"). A person only counts as a technician here when the staff record is Active, Clockable is on, the role is neither Office nor Time Clock User, and they are enrolled at this location. To add one:<ul><li>Settings &gt; Staff &gt; add a staff member &gt; enter the first and last name (e.g. Esther Howard), role Technician, Clockable on, Active, enrolled at this location &gt; Save.</li></ul></li><li>Create the work orders this case uses and set their lead technician (three led by Kristin Watson for customers \"Zeta Hauling\", \"Alpha Freight\" and \"Mid Trucking\", created in that order):<ul><li>Work Orders &gt; New Work Order &gt; choose a customer (e.g. \"Fibridge Commercial\") and an asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Create. Write down the number the build gives the work order (the numbers in this case are examples).</li><li>On the work order page set Lead Technician (e.g. Esther Howard) and save. Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li><li>Use a user who has never saved a sort in List (e.g. a newly created user), so List shows its default sort.</li></ol>",
+      "new_value": "<ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. a technician nobody at this location has reordered work for, e.g. a new \"Kristin Watson\"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field. To add one:<ul><li>Settings (your initials at the top right &gt; Settings) &gt; Staff &gt; New Staff Member &gt; First Name and Last Name (e.g. Esther Howard), an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close.</li></ul></li><li>Create the work orders this case uses and set their lead technician (three led by Kristin Watson for customers \"Zeta Hauling\", \"Alpha Freight\" and \"Mid Trucking\", created in that order):<ul><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer (e.g. \"Fibridge Commercial\") and the Asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Save. Write down the number the build gives the work order (the numbers in this case are examples; on a QA branch they look like \"S10043-17581\").</li><li>Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (e.g. Esther Howard); it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li><li>Use a user who has never saved a sort in List (e.g. a newly created user), so List shows its default sort.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In List, note the order of the three Kristin Watson work orders.</li><li>In the display switcher at the right of the toolbar, click Tech View (in the design its tooltip reads \"By Lead Tech\").</li><li>Read the order of the rows in Kristin Watson's group.</li><li>In the display switcher at the right of the toolbar, click Board View (in the design its tooltip reads \"Board\").</li><li>Read the order of the cards in Kristin Watson's column.</li></ol>",
+      "new_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In List, note the order of the three Kristin Watson work orders.</li><li>In the display switcher at the right of the toolbar, click Tech View (tooltip \"Tech View\").</li><li>Read the order of the rows in Kristin Watson's group.</li><li>In the display switcher at the right of the toolbar, click Board View (tooltip \"Board View\").</li><li>Read the order of the cards in Kristin Watson's column.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>In Tech View the rows are in List's default order: Alpha Freight, Mid Trucking, Zeta Hauling (customer name A-Z), the same order List shows.</li><li>Board View shows the same order.</li><li>The design's sample puts In progress first, then newest created: that is a sample only, the List order is what passes.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10045 (Story 2, Tech View \u2014 table grouped by lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S2-R6, read 8 Oct 2026. Review Decisions 853901313 DR-45 (desktop List default sort is customer name A-Z, ties by work order number).</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S2-R6:</strong> &ldquo;Before a manual order is saved, use the List\u2019s default work order sort.&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>In Tech View the rows are in List's default order: Alpha Freight, Mid Trucking, Zeta Hauling (customer name A-Z), the same order List shows.</li><li>Board View shows the same order.</li><li>The design's sample puts In progress first, then newest created: that is a sample only, the List order is what passes.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10045 (Story 2, Tech View \u2014 table grouped by lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S2-R6, read 8 Oct 2026. Review Decisions 853901313 DR-45 (desktop List default sort is customer name A-Z, ties by work order number).</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S2-R6:</strong> &ldquo;Before a manual order is saved, use the List\u2019s default work order sort.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 30058,
+    "type_id": 6,
+    "created_on": 1791453726,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. a technician nobody at this location has reordered work for, e.g. a new \"Kristin Watson\"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field. To add one:<ul><li>Settings (your initials at the top right &gt; Settings) &gt; Staff &gt; New Staff Member &gt; First Name and Last Name (e.g. Esther Howard), an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close.</li></ul></li><li>Create the work orders this case uses and set their lead technician (three led by Kristin Watson for customers \"Zeta Hauling\", \"Alpha Freight\" and \"Mid Trucking\", created in that order):<ul><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer (e.g. \"Fibridge Commercial\") and the Asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Save. Write down the number the build gives the work order (the numbers in this case are examples; on a QA branch they look like \"S10043-17581\").</li><li>Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (e.g. Esther Howard); it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li><li>Use a user who has never saved a sort in List (e.g. a newly created user), so List shows its default sort.</li></ol>",
+      "new_value": "<ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. a technician nobody at this location has reordered work for, e.g. a new \"Kristin Watson\"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field. To add one:<ul><li>Settings (your initials at the top right &gt; Settings) &gt; Staff &gt; New Staff Member &gt; First Name and Last Name (e.g. Esther Howard), an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close.</li></ul></li><li>Create the work orders this case uses and set their lead technician (three led by Kristin Watson for customers \"Zeta Hauling\", \"Alpha Freight\" and \"Mid Trucking\", created in that order):<ul><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer (e.g. \"Fibridge Commercial\") and the Asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Save. The example customer and unit are not on the test site, so create them first: top menu Customers &gt; New Customer &gt; Name (e.g. \"Fibridge Commercial\") &gt; Save. On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) &gt; Save. Make is required; Unit can be left empty. Write down the number the build gives the work order (the numbers in this case are examples; on a QA branch they look like \"S10043-17581\").</li><li>Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (e.g. Esther Howard); it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li><li>Use a user who has never saved a sort in List (e.g. a newly created user), so List shows its default sort.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 30174,
+    "type_id": 6,
+    "created_on": 1791456933,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. a technician nobody at this location has reordered work for, e.g. a new \"Kristin Watson\"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field. To add one:<ul><li>Settings (your initials at the top right &gt; Settings) &gt; Staff &gt; New Staff Member &gt; First Name and Last Name (e.g. Esther Howard), an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close.</li></ul></li><li>Create the work orders this case uses and set their lead technician (three led by Kristin Watson for customers \"Zeta Hauling\", \"Alpha Freight\" and \"Mid Trucking\", created in that order):<ul><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer (e.g. \"Fibridge Commercial\") and the Asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Save. The example customer and unit are not on the test site, so create them first: top menu Customers &gt; New Customer &gt; Name (e.g. \"Fibridge Commercial\") &gt; Save. On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) &gt; Save. Make is required; Unit can be left empty. Write down the number the build gives the work order (the numbers in this case are examples; on a QA branch they look like \"S10043-17581\").</li><li>Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (e.g. Esther Howard); it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li><li>Use a user who has never saved a sort in List (e.g. a newly created user), so List shows its default sort.</li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 2 users \u00b7 1 browser \u00b7 about 20 minutes</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>The case is run as [User-B]: a user who has never saved a sort in List (e.g. a newly created user: Role Admin, which holds Work orders &gt; View; Time Clock off), so List shows its default sort.</li><li>[User-A]: an Owner/Admin user who creates the data (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); everything below is created in this location.</li><li>One technician at this location, [Tech-A] (e.g. \"Kristin Watson\"), who leads no other work order. A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.</li><li>Customers \"Zeta Hauling\", \"Alpha Freight\" and \"Mid Trucking\" (named in the expected results, so kept as they are), each with one contact and one asset.</li><li>Three Approved work orders led by [Tech-A], created in this order: [WO-1] for Zeta Hauling, [WO-2] for Alpha Freight, [WO-3] for Mid Trucking.</li><li>What must hold: [Tech-A] leads exactly these three work orders.</li></ul><p><strong>Setup</strong></p><ol><li>Sign in with the Admin quick-login button on the sign-in page (you appear as \"Admin ShopView\"). Check the location in the top bar next to the bell; to change it click your initials at the top right &gt; Change Location.</li><li>Settings (your initials at the top right &gt; Settings) &gt; Staff: confirm each technician below is active at this location with Time Clock on, or add it: New Staff Member &gt; First Name and Last Name, an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close. Record them as [Tech-A] (e.g. Kristin Watson; use a new technician if your choice already leads other work orders).</li><li>Settings &gt; Staff &gt; New Staff Member &gt; First Name and Last Name, an email you can open, Role \"Admin\", at least one Department (required), Location = this location, Time Clock off &gt; Save &amp; Close. Accept the invitation from that email and set a password. Record this user as [User-B].</li><li>Top menu Customers &gt; New Customer &gt; Name \"Zeta Hauling\" &gt; Save (if it already exists, open it instead). On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) &gt; Save. Make is required; Unit can be left empty. Do the same for \"Alpha Freight\" and \"Mid Trucking\".</li><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick Customer \"Zeta Hauling\" and its asset &gt; Save. The work order opens on its Lines tab with the New Line form open: in \"What Are You Doing?\" pick a ready-made line (e.g. \"Replace - Brake pot\"; the build offers only ready-made lines), turn Line Approved on &gt; Save &amp; Close; the work order becomes Approved. Repeat for Alpha Freight, then Mid Trucking, in that order; record the numbers as [WO-1] (Zeta Hauling), [WO-2] (Alpha Freight) and [WO-3] (Mid Trucking) (numbers on this site look like \"S10043-17581\").</li><li>Set the leads: on an Approved work order pick the technician in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned. Here: [WO-1], [WO-2] and [WO-3] = [Tech-A].</li><li>Check the setup worked: Work Orders &gt; All tab &gt; Tech View \u2014 [Tech-A]'s group holds exactly [WO-1], [WO-2] and [WO-3]. If it holds more, reassign the extra ones or start again with a new technician.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In List, note the order of the three Kristin Watson work orders.</li><li>In the display switcher at the right of the toolbar, click Tech View (tooltip \"Tech View\").</li><li>Read the order of the rows in Kristin Watson's group.</li><li>In the display switcher at the right of the toolbar, click Board View (tooltip \"Board View\").</li><li>Read the order of the cards in Kristin Watson's column.</li></ol>",
+      "new_value": "<ol><li>Sign in as [User-B] and open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In List, note the order of the three [Tech-A] work orders.</li><li>In the display switcher at the right of the toolbar, click Tech View (tooltip \"Tech View\").</li><li>Read the order of the rows in [Tech-A]'s group.</li><li>In the display switcher at the right of the toolbar, click Board View (tooltip \"Board View\").</li><li>Read the order of the cards in [Tech-A]'s column.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33193,
+    "type_id": 6,
+    "created_on": 1791997676,
+    "user_id": 1,
+    "changes": [
+     {
+      "type_id": 1,
+      "old_text": " Not Automated",
+      "new_text": " Automated",
+      "label": "Automation status",
+      "options": {
+       "is_required": true,
+       "default_value": "1",
+       "items": "1, Not Automated\n2, Cannot be automated\n3, Automated\n4, Pending",
+       "format": "markdown"
+      },
+      "field": "custom_atmstatus",
+      "old_value": 1,
+      "new_value": 3
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33408,
+    "type_id": 6,
+    "created_on": 1792136829,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 2 users \u00b7 1 browser \u00b7 about 20 minutes</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>The case is run as [User-B]: a user who has never saved a sort in List (e.g. a newly created user: Role Admin, which holds Work orders &gt; View; Time Clock off), so List shows its default sort.</li><li>[User-A]: an Owner/Admin user who creates the data (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); everything below is created in this location.</li><li>One technician at this location, [Tech-A] (e.g. \"Kristin Watson\"), who leads no other work order. A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.</li><li>Customers \"Zeta Hauling\", \"Alpha Freight\" and \"Mid Trucking\" (named in the expected results, so kept as they are), each with one contact and one asset.</li><li>Three Approved work orders led by [Tech-A], created in this order: [WO-1] for Zeta Hauling, [WO-2] for Alpha Freight, [WO-3] for Mid Trucking.</li><li>What must hold: [Tech-A] leads exactly these three work orders.</li></ul><p><strong>Setup</strong></p><ol><li>Sign in with the Admin quick-login button on the sign-in page (you appear as \"Admin ShopView\"). Check the location in the top bar next to the bell; to change it click your initials at the top right &gt; Change Location.</li><li>Settings (your initials at the top right &gt; Settings) &gt; Staff: confirm each technician below is active at this location with Time Clock on, or add it: New Staff Member &gt; First Name and Last Name, an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close. Record them as [Tech-A] (e.g. Kristin Watson; use a new technician if your choice already leads other work orders).</li><li>Settings &gt; Staff &gt; New Staff Member &gt; First Name and Last Name, an email you can open, Role \"Admin\", at least one Department (required), Location = this location, Time Clock off &gt; Save &amp; Close. Accept the invitation from that email and set a password. Record this user as [User-B].</li><li>Top menu Customers &gt; New Customer &gt; Name \"Zeta Hauling\" &gt; Save (if it already exists, open it instead). On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) &gt; Save. Make is required; Unit can be left empty. Do the same for \"Alpha Freight\" and \"Mid Trucking\".</li><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick Customer \"Zeta Hauling\" and its asset &gt; Save. The work order opens on its Lines tab with the New Line form open: in \"What Are You Doing?\" pick a ready-made line (e.g. \"Replace - Brake pot\"; the build offers only ready-made lines), turn Line Approved on &gt; Save &amp; Close; the work order becomes Approved. Repeat for Alpha Freight, then Mid Trucking, in that order; record the numbers as [WO-1] (Zeta Hauling), [WO-2] (Alpha Freight) and [WO-3] (Mid Trucking) (numbers on this site look like \"S10043-17581\").</li><li>Set the leads: on an Approved work order pick the technician in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned. Here: [WO-1], [WO-2] and [WO-3] = [Tech-A].</li><li>Check the setup worked: Work Orders &gt; All tab &gt; Tech View \u2014 [Tech-A]'s group holds exactly [WO-1], [WO-2] and [WO-3]. If it holds more, reassign the extra ones or start again with a new technician.</li></ol>",
+      "new_value": "<p><strong><a href=\"https://docs.google.com/document/d/1Vx-pPfhwqM03IaGMnZgqaxL5SCCeMtKLIuZmEVoqAcM/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner or Admin user whose role has Work orders &gt; View and Work orders &gt; Create &amp; Edit, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.</li><li>User {User-B} (for example ZZAUTOTEST Sort Viewer) is a new staff member with the Admin role at {Location-A}, can sign in, and has never changed or saved a sort in List.</li><li>Technician {Technician-A} (for example Kristin Watson) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User. {Technician-A} leads no other work order.</li><li>Customers {Customer-A} (for example \"ZZAUTOTEST F2 Sort Alpha Freight\"), {Customer-B} (for example \"ZZAUTOTEST F2 Sort Mid Trucking\") and {Customer-C} (for example \"ZZAUTOTEST F2 Sort Zeta Hauling\") start with the same words (for example ZZAUTOTEST F2 Sort) and are used by this case only.</li><li>Four Approved work orders, all led by {Technician-A}, were created in this order: {Work-order-1} (for example S10043-17621) for {Customer-C}, {Work-order-2} (for example S10043-17622) for {Customer-A}, {Work-order-3} (for example S10043-17623) for {Customer-B} and {Work-order-4} (for example S10043-17624) for {Customer-B}.</li><li>Nobody has reordered {Technician-A}'s work orders at {Location-A}.</li><li>On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Sign in as [User-B] and open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In List, note the order of the three [Tech-A] work orders.</li><li>In the display switcher at the right of the toolbar, click Tech View (tooltip \"Tech View\").</li><li>Read the order of the rows in [Tech-A]'s group.</li><li>In the display switcher at the right of the toolbar, click Board View (tooltip \"Board View\").</li><li>Read the order of the cards in [Tech-A]'s column.</li></ol>",
+      "new_value": "<ol><li>Sign in as {User-B}.</li><li>Open Work Orders, click the All tab and click List in the display switcher.</li><li>Type the shared start of the three customer names (for example ZZAUTOTEST F2 Sort) in Search.</li><li>Write down the order of the four work orders in List.</li><li>Click Tech View in the display switcher.</li><li>Write down the order of the rows in {Technician-A}'s group.</li><li>Click Board View in the display switcher.</li><li>Write down the order of the cards in {Technician-A}'s column.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>In Tech View the rows are in List's default order: Alpha Freight, Mid Trucking, Zeta Hauling (customer name A-Z), the same order List shows.</li><li>Board View shows the same order.</li><li>The design's sample puts In progress first, then newest created: that is a sample only, the List order is what passes.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10045 (Story 2, Tech View \u2014 table grouped by lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S2-R6, read 8 Oct 2026. Review Decisions 853901313 DR-45 (desktop List default sort is customer name A-Z, ties by work order number).</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S2-R6:</strong> &ldquo;Before a manual order is saved, use the List\u2019s default work order sort.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: READY</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 4: List shows the four work orders in its usual default order: by customer name from A to Z (with the example names: {Customer-A}, then {Customer-B}'s two work orders, then {Customer-C}).</li><li>Step 6: Tech View's rows are in exactly the same order as List at step 4, including the order of {Customer-B}'s two work orders, {Work-order-3} and {Work-order-4}.</li><li>Step 8: Board View's cards are in the same order as Tech View's rows.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10045 (Story 2, Tech View \u2014 table grouped by lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S2-R6, read 15 Oct 2026. Review Decisions 853901313 DR-45 (desktop List default sort is customer name A to Z; its description of the tie-break was corrected by Chris Ward on 15 Oct 2026 in PRD version 53: same customer, start date, newest first, exactly as the List sorts today). Source-verified 15 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S2-R6:</strong> &ldquo;Before a manual order is saved, use the List\u2019s default work order sort, ties included, exactly as the List sorts today: work orders for the same customer go by start date, newest first. The List itself does not change. A work order that gets a new lead after it was created goes to the bottom of that technician\u2019s work instead (S9-R14).&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33562,
+    "type_id": 6,
+    "created_on": 1792177645,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 4: List shows the four work orders in its usual default order: by customer name from A to Z (with the example names: {Customer-A}, then {Customer-B}'s two work orders, then {Customer-C}).</li><li>Step 6: Tech View's rows are in exactly the same order as List at step 4, including the order of {Customer-B}'s two work orders, {Work-order-3} and {Work-order-4}.</li><li>Step 8: Board View's cards are in the same order as Tech View's rows.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10045 (Story 2, Tech View \u2014 table grouped by lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S2-R6, read 15 Oct 2026. Review Decisions 853901313 DR-45 (desktop List default sort is customer name A to Z; its description of the tie-break was corrected by Chris Ward on 15 Oct 2026 in PRD version 53: same customer, start date, newest first, exactly as the List sorts today). Source-verified 15 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S2-R6:</strong> &ldquo;Before a manual order is saved, use the List\u2019s default work order sort, ties included, exactly as the List sorts today: work orders for the same customer go by start date, newest first. The List itself does not change. A work order that gets a new lead after it was created goes to the bottom of that technician\u2019s work instead (S9-R14).&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 4: List shows the four work orders in its usual default order: by customer name from A to Z (with the example names: {Customer-A}, then {Customer-B}'s two work orders, then {Customer-C}).</li><li>Step 6: Tech View's rows are in exactly the same order as List at step 4, including the order of {Customer-B}'s two work orders, {Work-order-3} and {Work-order-4}.</li><li>Step 8: Board View's cards are in the same order as Tech View's rows.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10045 (Story 2, Tech View \u2014 table grouped by lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S2-R6, read 15 Oct 2026. Review Decisions 853901313 DR-45 (desktop List default sort is customer name A to Z; its description of the tie-break was corrected by Chris Ward on 15 Oct 2026 in PRD version 53: same customer, start date, newest first, exactly as the List sorts today). Source-verified 15 October 2026. Last checked against build v26.40.19-1493c63 (staging) on 10/16/2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S2-R6:</strong> &ldquo;Before a manual order is saved, use the List\u2019s default work order sort, ties included, exactly as the List sorts today: work orders for the same customer go by start date, newest first. The List itself does not change. A work order that gets a new lead after it was created goes to the bottom of that technician\u2019s work instead (S9-R14).&rdquo;</li></ul><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   }
+  ]
+ }
+}

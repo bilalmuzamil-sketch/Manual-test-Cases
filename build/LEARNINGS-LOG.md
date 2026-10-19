@@ -798,3 +798,14 @@ Run 498, 19 Oct: three tickets read OBSOLETE, each for a different reason: (1) S
 
 ## L0446 — 2026-10-19 — Ruling: every test case named to the QA lead carries its test-in-run link
 QA lead, 19 Oct: *"Whenever you give me the reference of a test case always give that reference with the link to access the test case RUN for that test."* Recorded as a Rule 8 amendment. How: `tr_client.get(f"get_tests/{run}&limit=250&offset=…")` (returns `(status, body)`; page by 250) gives `case_id → id`; the link is `https://shopview.testrail.io/index.php?/tests/view/<id>`. Run 498 examples: C96929 → tests/view/3481873, C590130 → tests/view/3995739.
+
+## L0447 — 2026-10-19 — Updating a case to a new PRD (Rule 131 + 114(c)): safe_case_edit.py, then BOTH render checks; check_case_render flags pre-existing <strong>
+Run 498, C96929 and C590130 rewritten on the QA lead's yes: build the new title/preconds/expected as block HTML (<p>, <ul><li>, <hr />, entities;
+no <br>, no new inline tags), changing ONLY the lines the new PRD changes (precondition lines are replaced/added/removed by exact string, the rest
+is re-sent byte-identical); write with `build/testing-tools/safe_case_edit.py <id> <new.json>` (snapshot + history, read-back, untouched-fields
+and automation-flag checks, write-log.jsonl); then run `check_case_render.py` AND the served-page scan
+(`build/inline-add-edit-parts/build-verify-2026-09-01/tools/served_page_scan.mjs`, OUT=<folder> IDFILE=<json list>). check_case_render
+FAILS on the <strong> headers that the suite's precondition fields already carried; the served page showed them rendered in `markdown fr-view`
+before and after, so that flag is pre-existing, not introduced — report it, do not "fix" unchanged lines. If the scan dies with
+ERR_PROXY_CONNECTION_FAILED, run `build/testing-tools/ensure_bridge.sh` first. Folder: run498-2026-10-08/case-updates-2026-10-19/.
+#testrail #case-edit #rule-131 #render → L0441

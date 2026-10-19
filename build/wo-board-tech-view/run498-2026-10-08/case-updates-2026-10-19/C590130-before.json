@@ -1,0 +1,111 @@
+{
+ "case": {
+  "id": 590130,
+  "title": "Lead technician updated message looks as in the design",
+  "section_id": 73780,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": null,
+  "created_by": 3,
+  "created_on": 1792020958,
+  "updated_by": 3,
+  "updated_on": 1792032136,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 21,
+  "is_deleted": 0,
+  "is_ai_generated": false,
+  "is_ai_automated": false,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 1,
+  "custom_preconds": "<p><strong><a href=\"https://docs.google.com/document/d/1f28aPZG9YFiiV5NcNeAN1jNYB2znhH2lTDt-UtmLnMo/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders &gt; View, Work orders &gt; Create &amp; Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is 1440 px wide, with the browser zoom at 100%.</li><li>The design picture DC-21-toast-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.</li><li>In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 \u2026) beside rows and cards are left out of this release, so do not compare those.</li><li>The design picture's message has other words and an Undo button; the PRD sets the words \"Lead technician updated\", so compare only the message's place and look.</li><li>Technician {Technician-A} (for example ZZAUTOTEST DC21 Dee Toast) is an active technician at {Location-A}.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST DC21 Toast\") is used by this case only.</li><li>Estimate {Work-order-1} (for example S10043-17856) for {Customer-A} has no lead technician and no approved line, so it sits in Unassigned.</li><li>On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).</li></ul>",
+  "custom_steps": "<ol><li>Open Work Orders, click the All tab and click Board View in the display switcher.</li><li>Drag {Work-order-1}'s card from Unassigned into {Technician-A}'s column and release it.</li><li>Look at the message that appears.</li><li>Wait ten seconds without moving the mouse over the message.</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 3: a white message box with rounded corners appears at the bottom right of the page, with a green check-in-a-circle icon, the words \"Lead technician updated\" and an X to close it, as in the design picture.</li><li>Step 4: the message disappears by itself.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10047 (Story 4, Reassign the lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S4-R5 and S4-R16, read 14 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", state states__work-orders__tech-toast-after-reassign__light__1440 (design pictures DC-21-toast-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Where the PRD says nothing about the look, the design is the source. Source-verified 14 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S4-R5:</strong> &ldquo;After successful reassignment, show \u201cLead technician updated\u201d; after unassigning, show \u201cLead technician removed\u201d.&rdquo;</li><li><strong>S4-R16:</strong> &ldquo;Success toasts dismiss automatically.&rdquo;</li><li><strong>Design \u2014 Work Orders.dc.html, message box:</strong> &ldquo;position: fixed; right: 24px; bottom: 24px; z-index: 300;&rdquo;</li></ul><p>AUTOMATION: READY</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": [],
+  "version": 3
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 2,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": [
+   {
+    "id": 33331,
+    "type_id": 6,
+    "created_on": 1792021732,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders &gt; View, Work orders &gt; Create &amp; Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is 1440 px wide, with the browser zoom at 100%.</li><li>The design picture DC-21-toast-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.</li><li>In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 \u2026) beside rows and cards are left out of this release, so do not compare those.</li><li>The design picture's message has other words and an Undo button; the PRD sets the words \"Lead technician updated\", so compare only the message's place and look.</li><li>Technician {Technician-A} (for example ZZAUTOTEST DC21 Dee Toast) is an active technician at {Location-A}.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST DC21 Toast\") is used by this case only.</li><li>Estimate {Work-order-1} (for example S10043-17856) for {Customer-A} has no lead technician and no approved line, so it sits in Unassigned.</li><li>On the Work Orders page nothing is chosen in any filter, Assigned to me is off, Search is empty and density is Regular (the default).</li></ul>",
+      "new_value": "<p><strong><a href=\"https://docs.google.com/document/d/1f28aPZG9YFiiV5NcNeAN1jNYB2znhH2lTDt-UtmLnMo/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders &gt; View, Work orders &gt; Create &amp; Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is 1440 px wide, with the browser zoom at 100%.</li><li>The design picture DC-21-toast-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.</li><li>In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 \u2026) beside rows and cards are left out of this release, so do not compare those.</li><li>The design picture's message has other words and an Undo button; the PRD sets the words \"Lead technician updated\", so compare only the message's place and look.</li><li>Technician {Technician-A} (for example ZZAUTOTEST DC21 Dee Toast) is an active technician at {Location-A}.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST DC21 Toast\") is used by this case only.</li><li>Estimate {Work-order-1} (for example S10043-17856) for {Customer-A} has no lead technician and no approved line, so it sits in Unassigned.</li><li>On the Work Orders page nothing is chosen in any filter, Assigned to me is off, Search is empty and density is Regular (the default).</li></ul>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33354,
+    "type_id": 6,
+    "created_on": 1792032136,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://docs.google.com/document/d/1f28aPZG9YFiiV5NcNeAN1jNYB2znhH2lTDt-UtmLnMo/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders &gt; View, Work orders &gt; Create &amp; Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is 1440 px wide, with the browser zoom at 100%.</li><li>The design picture DC-21-toast-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.</li><li>In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 \u2026) beside rows and cards are left out of this release, so do not compare those.</li><li>The design picture's message has other words and an Undo button; the PRD sets the words \"Lead technician updated\", so compare only the message's place and look.</li><li>Technician {Technician-A} (for example ZZAUTOTEST DC21 Dee Toast) is an active technician at {Location-A}.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST DC21 Toast\") is used by this case only.</li><li>Estimate {Work-order-1} (for example S10043-17856) for {Customer-A} has no lead technician and no approved line, so it sits in Unassigned.</li><li>On the Work Orders page nothing is chosen in any filter, Assigned to me is off, Search is empty and density is Regular (the default).</li></ul>",
+      "new_value": "<p><strong><a href=\"https://docs.google.com/document/d/1f28aPZG9YFiiV5NcNeAN1jNYB2znhH2lTDt-UtmLnMo/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders &gt; View, Work orders &gt; Create &amp; Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is 1440 px wide, with the browser zoom at 100%.</li><li>The design picture DC-21-toast-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.</li><li>In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 \u2026) beside rows and cards are left out of this release, so do not compare those.</li><li>The design picture's message has other words and an Undo button; the PRD sets the words \"Lead technician updated\", so compare only the message's place and look.</li><li>Technician {Technician-A} (for example ZZAUTOTEST DC21 Dee Toast) is an active technician at {Location-A}.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST DC21 Toast\") is used by this case only.</li><li>Estimate {Work-order-1} (for example S10043-17856) for {Customer-A} has no lead technician and no approved line, so it sits in Unassigned.</li><li>On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 3: a white message box with rounded corners appears at the bottom right of the page, with a green check-in-a-circle icon, the words \"Lead technician updated\" and an X to close it, as in the design picture.</li><li>Step 4: the message disappears by itself.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10047 (Story 4, Reassign the lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S4-R5 and S4-R16, read 14 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", state states__work-orders__tech-toast-after-reassign__light__1440 (design pictures DC-21-toast-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Where the PRD says nothing about the look, the design is the source. Source-verified 14 October 2026. Not yet checked against a build.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S4-R5:</strong> &ldquo;After successful reassignment, show \u201cLead technician updated\u201d; after unassigning, show \u201cLead technician removed\u201d.&rdquo;</li><li><strong>S4-R16:</strong> &ldquo;Success toasts dismiss automatically.&rdquo;</li><li><strong>Design \u2014 Work Orders.dc.html, message box:</strong> &ldquo;position: fixed; right: 24px; bottom: 24px; z-index: 300;&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 3: a white message box with rounded corners appears at the bottom right of the page, with a green check-in-a-circle icon, the words \"Lead technician updated\" and an X to close it, as in the design picture.</li><li>Step 4: the message disappears by itself.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10047 (Story 4, Reassign the lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S4-R5 and S4-R16, read 14 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", state states__work-orders__tech-toast-after-reassign__light__1440 (design pictures DC-21-toast-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Where the PRD says nothing about the look, the design is the source. Source-verified 14 October 2026. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S4-R5:</strong> &ldquo;After successful reassignment, show \u201cLead technician updated\u201d; after unassigning, show \u201cLead technician removed\u201d.&rdquo;</li><li><strong>S4-R16:</strong> &ldquo;Success toasts dismiss automatically.&rdquo;</li><li><strong>Design \u2014 Work Orders.dc.html, message box:</strong> &ldquo;position: fixed; right: 24px; bottom: 24px; z-index: 300;&rdquo;</li></ul><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   }
+  ]
+ }
+}
