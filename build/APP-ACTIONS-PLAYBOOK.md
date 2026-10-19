@@ -6152,3 +6152,10 @@ This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as a
 ### Staging: make a work order WITH its lead set at creation (19 Oct 2026)
 - **Schedule** → click an empty cell in a technician's row → menu `menu_schedule_assign_work_order` / `menu_schedule_create_event` / **`menu_schedule_new_work_order`** → dialog *New Work Order* (`select_customer_select`, `select_company_vehicle_select`, `checkbox_is_vehicle_here`, `button_save_work_order`). Save sends `POST /api/work-orders/create` with `assigned_staff_id` = that technician's staff id and the work order comes back with that technician as **lead**. A cell that already holds a shift opens the shift instead — click further along the row.
 - TestRail: `add_case` always appends to the end of the section; there is no API to set the position, and a scripted drag on the section page sent no reorder request. Positioning is a manual drag.
+
+
+## §AK-FF — FIREFOX CHECKS ON STAGING (proven 2026-10-19, SV-11466)
+- Install once per container: `PLAYWRIGHT_BROWSERS_PATH=/tmp/pwff node /opt/node22/lib/node_modules/playwright/cli.js install firefox` (→ /tmp/pwff/firefox-1495, Firefox 142).
+- Launch: `firefox.launch({executablePath:'/tmp/pwff/firefox-1495/firefox/firefox', headless:false, proxy:{server:'http://127.0.0.1:'+bridgePort}, firefoxUserPrefs:{'widget.gtk.overlay-scrollbars.enabled':false,'ui.useOverlayScrollbars':0}})`, context `{viewport:null, ignoreHTTPSErrors:true}`, run under `xvfb-run -a -s "-screen 0 1600x1200x24"`. Add the staging cookies on `.shopview.com`, open /login and click `button_quick_login_admin`.
+- **A fixed `viewport` (or headless) makes Playwright Firefox hide every scrollbar** — computed `scrollbar-width: none` even on a plain div. With `viewport:null` headed, the real bar shows (12 px). Always test a plain `overflow:scroll` div first.
+- Script: build/sv11466-11467-11422-2026-10-19/sv11466/s466ff.mjs.
