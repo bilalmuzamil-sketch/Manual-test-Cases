@@ -1439,6 +1439,7 @@ what is still owed.
 |---|---|---|---|
 
 - 2026-10-19: SV-11119 screen recording — QA lead said "Yes"; voice-over question asked separately (Rule 104).
+- 2026-10-19 cleared: SV-11119 voice-over answered "No, silent". Silent two-browser recording (17.6 s) added to comment 78986 at 07:59 CDT; re-run on new staging build v26.40.19-c850386 still FAILS (5 of 5).
 - 2026-10-19 cleared: SV-11101 QA PASSED comment 78994 + label + Done; new case C674226 added to run 498 and Passed (result 527976). Its position at the end of section 13237 is DISMISSED by the QA lead 19 Oct, verbatim: "Leave it as it is ado not remind me" — never raise again.
 - 2026-10-19 cleared (QA lead, 19 Oct): SV-11119 reopened + FAILED comment 78986 tagging Slavcho; SV-11101 and SV-11124 answered ("DO what is needed to make your work the best") — QA PASSED + Done; SV-11394 Chris question DISMISSED, verbatim "Ignore it and do not remind me of it again." — never raise again.
 - 2026-10-19 cleared: SV-11394 re-tested on v26.40.19-31ad1e1 — posted PASSED 78958 (7 cards, 3 densities, dark theme, no move/grow).
