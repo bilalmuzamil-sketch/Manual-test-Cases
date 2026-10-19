@@ -305,3 +305,4 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
 - 19 Oct — C96916 on the ALL tab + Status Approved (s1-r7-C96916.json, dedicated user): Board View Back keeps columns, top card S2-36407,
   All tab, Status Approved; Tech View Back keeps top row S2-36421 and filters. Passes under option A — HELD: Expected names the Work Orders
   tab, so it needs the QA lead to name the case (114(c)).
+- 19 Oct — C368214 on the ALL tab (high2-all.json): Back/Forward/Back keep All tab, Status Approved, search and row S2-37445 — HELD for naming (114(c)).
