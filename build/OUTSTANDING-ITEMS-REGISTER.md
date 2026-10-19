@@ -60,8 +60,6 @@ else owes).
 ## 2026-10-19, ~18:30 UTC. **New layman cases for SV-11467 (test 4054407, Passed) and SV-11422 (test 4054408, Blocked on Chris). C614719 half-edited by Vladimir.**
 | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|
-| C614719 (run 498 test 4007027): Vladimir Tomovic rewrote its preconditions today (08:46 and 09:17 UTC) for steps 8–13 (an off-screen technician C, WO-4), but its steps and expected results still stop at 7. | Vladimir / the QA lead decides who finishes it. The QA lead asked on 19 Oct for the SV-11422 test case to be "super simple for a layman"; I did not edit a case another author is changing (Rules 38/39/53) and wrote a new short case instead (test 4054408). | A tester reading C614719 meets setup for steps that don't exist. | 2026-10-19 |
-| TestRail result 527989 (test 4053764) says the DVI Test handle is "most of the bar"; measured 1053 / 516 / 204 px at 1920 / 1440 / 1024. | The QA lead: edit or delete in the TestRail UI (the API cannot edit a result). | One imprecise phrase in a Passed result. | 2026-10-19 |
 
 ## 2026-10-19, ~17:30 UTC. **SV-11422 RE-TESTED ON STAGING c850386: BOTH 18-OCT FAILURES FIXED, 9 OF 9 CHECKS PASS. ONE QUESTION OPEN WITH CHRIS (comment 79031).**
 | What is missing | Who owes it | What it blocks | Since |
@@ -1464,6 +1462,8 @@ what is still owed.
   - SV-11416 List "blank" vs "Unassigned": QA lead ruled "Unassigned" is expected for this ticket only; dated note added to 78930.
   - Staging cookies: received 2026-10-19.
   - Pinned technicians overwritten (16–17 Oct): information only; scripts restore only their own keys since. Nothing further to do.
+- 2026-10-19 cleared: C614719 (run 498 test 4007027), half-edited by Vladimir. QA lead: "Leave it as is." Not touched.
+- 2026-10-19 cleared: the "most of the bar" phrase in result 527989. QA lead: "Do what is scientifically correct and does not block the manual QA tester from running it and changing it does not make it go against the PRD". Case 682419 reworded ("clearly thicker"; "how much longer depends on the window width"; v65 -> v66), byte-verified; corrected Passed result 527992 added with exact figures (1053/516/204 px DVI; 150 px Heavy Duty).
 - 2026-10-19 cleared: SV-11422 — Chris's ruling matches PRD S11-R1 v64 ("shown" = listed, S2-R12); posted PARTIALLY PASSED 78952 + remaining issue 78953 (off-screen first work order → header, Tech + Board).
 - 2026-10-19 cleared: filter chip x focus — on v26.40.19-31ad1e1 the next Tab continues to the next filter; no PRD rule; closed.
 - 2026-10-19 cleared: SV-11405 posted PASSED 78951 on v26.40.19-31ad1e1.
