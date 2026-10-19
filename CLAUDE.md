@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109–127** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109–128** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -74,6 +74,9 @@ These are stated here **in full** because a session that gets only this far must
   the PO filed 10 design defects on WO Board on 14 Oct that no case of ours would have caught (L-01).
 - **🔴 NEVER SPLIT A TEST CASE WITHOUT ASKING (127, 16 Oct 2026).** A case over the length limits (or one a split would help) stays whole;
   list it with C-id, link, counts and what a split costs, and ask the QA lead. Split only what he names.
+- **🔴 A CASE MADE FROM A TICKET IS LINKED AT THE BOTTOM OF THAT TICKET (128, 19 Oct 2026).** Whenever I am given a ticket to create a
+  test case for, I add the test case link and the test-run link at the bottom of the ticket's description, after a divider, as a
+  lossless HTML edit with a before-copy and a read-back. Nothing else in the ticket changes.
 - **🔴 KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS (123).** New and changed cases go into the project's run in the
   same pass, union only (34). Before editing a case someone else created: give the QA lead the list with C-ids, links,
   who created each and when, and ask permission. No edit until he says yes.

@@ -3207,3 +3207,22 @@ it as a rule for yourself to ask this in such situation."*
    C-id). Ask whether to split, and split only the cases he names, per ask.
 3. Worked example: 16 Oct 2026, C368150 (13 steps), C368152 (12), C97020 (16) and C590117 (11) were listed and asked about; his
    answer was "Do not split".
+
+## 128 · A CASE MADE FROM A TICKET IS LINKED AT THE BOTTOM OF THAT TICKET — CASE LINK AND TEST-RUN LINK (all projects, permanent)
+
+Ordered by the QA lead, 2026-10-19, verbatim: *"save it as a your learning/rule to add the test case RUN link and test case link at the
+bottom of the ticket whenever you are given a ticket to create a test case for."*
+
+1. **Whenever I am given a ticket to create a test case for,** once the case exists and is in the project's test run (Rule 123), I add
+   both links at the very bottom of that ticket's description: the test case (C-id with its TestRail case link and title) and the
+   test in the run (the run number and the tests/view link). No separate ask is needed for this footer; the order to create the case
+   from the ticket covers it.
+2. **Footer shape:** after a divider, "Test case for this issue:" with the C-id link and title, then "Test in the <project> test run
+   (run N):" with the test link. Nothing else in the ticket changes.
+3. **Lossless edit:** read the description as HTML, save a before-copy in the project's ticket-footer-backups folder, write it back as
+   HTML with the footer appended (Markdown would drop screenshots and videos), then read it back and confirm the original body and
+   every media id are unchanged and the footer is last. Log it in that folder's README.
+4. This is a description edit only. It never creates a ticket (Rule 62), never changes a field, status or priority (Rule 53), and
+   never touches a ticket someone else owns without saying so first (Rule 38).
+5. Worked example: SV-11503 → C665914 and run 498 test 4014037, 19 Oct 2026
+   (`build/wo-board-tech-view/sv11503-2026-10-19/RECORD-SV-11503-2026-10-19.md`).
