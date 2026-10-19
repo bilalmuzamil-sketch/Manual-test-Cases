@@ -16,7 +16,7 @@
  "C368167": {
   "stateRoute": "Create Invoice in tab 2, New Customer Payment window left open (not closed with X, not paid)",
   "control": {
-   "wo": "S2-37326",
+   "wo": "S2-37467",
    "credit": {
     "before": 0,
     "save": "200",
@@ -41,35 +41,26 @@
     "invoicedAfter": "6 s",
     "server": {
      "status": "Invoiced",
-     "invoice_id": "be8c32dd-120c-401a-bc92-bcecbfb2ad56",
+     "invoice_id": "fb2118da-bbc2-47ef-874f-afb860ab67a1",
      "invoice_status": "pending",
      "is_invoice_created": true
     },
-    "windows": [
-     {
-      "text": "New Customer Payment close event Payment Date Payment Method arrow_drop_down Reference Number Memo No. Datearrow_drop_up Due Balance Payment S2-37326 Today Today $52.20 $ Amount to credit: $ Payment amount: $52.20 Make P",
-      "buttons": [
-       "close",
-       "Make Payment",
-       "Send to Terminal"
-      ]
-     }
-    ],
-    "paymentWindowLeftOpen": true,
+    "windows": [],
+    "paymentWindowLeftOpen": false,
     "requests": [
-     "POST /api/work-orders/invoices/estimate {\"work_order_id\":\"3e64fc34-4ee3-4a55-81de-e9c67fdfa0c0\",\"type\":\"html\",\"isEstimate\":0,\"includeDeclined\":0,\"issueDate\":\"2026-10-19T08:10:33+00:00\",\"dueDate\":\"2026 -> 200 <style>\n    * {\n        box-sizing: border-box;\n    }\n\n    @page {\n        size: A4 portrait;\n        font-size: 0.8rem;\n        font-family: 'Inter', -apple-sy",
-     "POST /api/invoices/create {\"invoice_number\":\"S2-37326\",\"due_date\":\"2026-10-19T08:10:33+00:00\",\"discount\":0,\"cost\":\"49.71\",\"customer_id\":\"01c3afad-bcae-42cd-8606-7963465eb567\",\"company_id -> 201 {\"data\":{\"invoice_id\":\"be8c32dd-120c-401a-bc92-bcecbfb2ad56\",\"customer_account_id\":\"d7111357-6b59-4120-b46b-2acb2c6ccd63\",\"auto_paid\":false,\"auto_paid_credit_id"
+     "POST /api/work-orders/invoices/estimate {\"work_order_id\":\"800fb9c3-fce1-4585-b14b-5e545ef096ee\",\"type\":\"html\",\"isEstimate\":0,\"includeDeclined\":0,\"issueDate\":\"2026-10-19T15:52:33+00:00\",\"dueDate\":\"2026 -> 200 <style>\n    * {\n        box-sizing: border-box;\n    }\n\n    @page {\n        size: A4 portrait;\n        font-size: 0.8rem;\n        font-family: 'Inter', -apple-sy",
+     "POST /api/invoices/create {\"invoice_number\":\"S2-37467\",\"due_date\":\"2026-10-19T15:52:33+00:00\",\"discount\":0,\"cost\":\"49.71\",\"customer_id\":\"75ff20d9-9611-4533-9723-45cb4daa2054\",\"company_id -> 201 {\"data\":{\"invoice_id\":\"fb2118da-bbc2-47ef-874f-afb860ab67a1\",\"customer_account_id\":\"3e99d8e7-60c2-4a17-ab26-c88d32bd61fd\",\"auto_paid\":false,\"auto_paid_credit_id"
     ],
     "invoiced": true
    },
    "serverAfterTabClosed": {
     "status": "Invoiced",
-    "invoice_id": "be8c32dd-120c-401a-bc92-bcecbfb2ad56",
+    "invoice_id": "fb2118da-bbc2-47ef-874f-afb860ab67a1",
     "invoice_status": "pending",
     "is_invoice_created": true
    }
   },
-  "wo": "S2-37327",
+  "wo": "S2-37468",
   "credit": {
    "before": 0,
    "save": "200",
@@ -103,21 +94,21 @@
    "invoicedAfter": "4 s",
    "server": {
     "status": "Invoiced",
-    "invoice_id": "068d2141-48f3-40f0-97b0-852330221d9a",
+    "invoice_id": "e6b0774d-0c41-4bb8-a4ec-4c086e0d7be4",
     "invoice_status": "pending",
     "is_invoice_created": true
    },
    "windows": [],
    "paymentWindowLeftOpen": false,
    "requests": [
-    "POST /api/work-orders/invoices/estimate {\"work_order_id\":\"ad8bbff2-1837-45df-9962-6c54f378ed9d\",\"type\":\"html\",\"isEstimate\":0,\"includeDeclined\":0,\"issueDate\":\"2026-10-19T08:11:07+00:00\",\"dueDate\":\"2026 -> 200 <style>\n    * {\n        box-sizing: border-box;\n    }\n\n    @page {\n        size: A4 portrait;\n        font-size: 0.8rem;\n        font-family: 'Inter', -apple-sy",
-    "POST /api/invoices/create {\"invoice_number\":\"S2-37327\",\"due_date\":\"2026-10-19T08:11:07+00:00\",\"discount\":0,\"cost\":\"49.71\",\"customer_id\":\"f81a1f40-da61-45c6-b3f1-341f575aba63\",\"company_id -> 201 {\"data\":{\"invoice_id\":\"068d2141-48f3-40f0-97b0-852330221d9a\",\"customer_account_id\":\"31fbe3a1-7f34-430e-8bab-3d42c09d8f00\",\"auto_paid\":false,\"auto_paid_credit_id"
+    "POST /api/work-orders/invoices/estimate {\"work_order_id\":\"84eace49-3f4e-4f57-b0f0-30e2be9ae20a\",\"type\":\"html\",\"isEstimate\":0,\"includeDeclined\":0,\"issueDate\":\"2026-10-19T15:53:09+00:00\",\"dueDate\":\"2026 -> 200 <style>\n    * {\n        box-sizing: border-box;\n    }\n\n    @page {\n        size: A4 portrait;\n        font-size: 0.8rem;\n        font-family: 'Inter', -apple-sy",
+    "POST /api/invoices/create {\"invoice_number\":\"S2-37468\",\"due_date\":\"2026-10-19T15:53:09+00:00\",\"discount\":0,\"cost\":\"49.71\",\"customer_id\":\"c602b813-f0c1-44ed-8363-5aed191c3477\",\"company_id -> 201 {\"data\":{\"invoice_id\":\"e6b0774d-0c41-4bb8-a4ec-4c086e0d7be4\",\"customer_account_id\":\"3139eedf-4613-430d-92db-31ace1f930b3\",\"auto_paid\":false,\"auto_paid_credit_id"
    ],
    "invoiced": true
   },
   "serverRightBeforeChange": {
    "status": "Invoiced",
-   "invoice_id": "068d2141-48f3-40f0-97b0-852330221d9a",
+   "invoice_id": "e6b0774d-0c41-4bb8-a4ec-4c086e0d7be4",
    "invoice_status": "pending",
    "is_invoice_created": true
   },
@@ -129,7 +120,7 @@
    "list": {
     "count": 98,
     "first": "Unassigned",
-    "last": "QA ServiceManager",
+    "last": "Patricia Washington",
     "offered": {
      "Ralph Edwards": false,
      "Jenny Wilson": true,
@@ -221,6 +212,8 @@
      "Nikola Milosevic": true,
      "Nina Newtech": true,
      "Nora New": true,
+     "Nora Sort QA1019": true,
+     "Owen Created QA1019": true,
      "Parth Fadadu": true,
      "Parts Technician": true,
      "QA Administrator": false,
@@ -229,8 +222,8 @@
      "QA PartsManager": false,
      "QA PartsTechnician": false,
      "QA SalesRepresentative": false,
-     "QA ServiceAdvisor": true,
-     "QA ServiceManager": true,
+     "QA ServiceAdvisor": false,
+     "QA ServiceManager": false,
      "QA Technician": false,
      "Ryan Fyfe": false,
      "Sarah Bass": false,
@@ -257,6 +250,7 @@
      "Vladimir Radojcic": false,
      "Vladimir Tomovic": false,
      "VlTest TTest": false,
+     "Wes Hover": false,
      "ZZ Density Newuser": false,
      "ZZ WOB Dispatcher 458188": false,
      "ZZ WOB Dispatcher 486091": false,
@@ -363,7 +357,6 @@
      "ZZAUTOTEST DC14-53016 Tia Drag": false,
      "ZZAUTOTEST DC14-53016 Uma Drag": false,
      "ZZAUTOTEST DC15 Vic Hover": false,
-     "ZZAUTOTEST DC15 Wes Hover": false,
      "ZZAUTOTEST DC16 Xia Dark": false,
      "ZZAUTOTEST DC17 Maximiliana Abernathy-Kowalczyk": false,
      "ZZAUTOTEST DC18 Yan Filter": false,
@@ -409,16 +402,16 @@
     "readingValid": true,
     "names": [
      "Unassigned",
+     "Aaron Jennings",
      "Aaron Zed",
      "Aaron Baker",
-     "Aaron Jennings",
      "Admin ShopView",
      "Advisor Analysis",
      "Ahtasham Service Advisor",
      "Ahtasham Admin",
-     "Ahtsham Parts Manger",
      "Ahtsham Foreman",
      "Ahtsham Service Manager",
+     "Ahtsham Parts Manger",
      "Ammar Mughamis",
      "Andrew Wilkinson",
      "Ashlee Thomas",
@@ -464,8 +457,8 @@
      "Jason Garrison",
      "Jeffrey Wiley",
      "Jeffrey Jordan",
-     "Jennifer Morris",
      "Jennifer Phillips",
+     "Jennifer Morris",
      "Jennifer Cole",
      "Jenny Wilson",
      "Jessica Johnson",
@@ -493,25 +486,25 @@
      "Nate Nofinance",
      "Nebojsa Glavinic",
      "Nebojsa Miskovic",
-     "Nebojsa Custom Tech",
      "Nebojsa Custom-Admin",
+     "Nebojsa Custom Tech",
      "Nemanja Djuric",
      "Nick Noclock",
      "Nicole Ward",
      "Nikola Milosevic",
      "Nina Newtech",
      "Nora New",
+     "Nora Sort QA1019",
+     "Owen Created QA1019",
      "Parth Fadadu",
      "Parts Technician",
-     "Patricia Washington",
-     "QA ServiceAdvisor",
-     "QA ServiceManager"
+     "Patricia Washington"
     ]
    },
    "wanted": "Ralph Edwards",
    "picked": "Jenny Wilson",
    "clicked": true,
-   "substitute": "\"Ralph Edwards\" is not offered (SV-11393, list ends at \"QA ServiceManager\"); the case's names are examples, so \"Jenny Wilson\" was used"
+   "substitute": "\"Ralph Edwards\" is not offered (SV-11393, list ends at \"Patricia Washington\"); the case's names are examples, so \"Jenny Wilson\" was used"
   },
   "used": "Jenny Wilson",
   "toasts": [
@@ -519,11 +512,11 @@
   ],
   "fieldNow": "",
   "changeRequests": [
-   "POST /api/work-orders/change-lead-technician {\"work_order_id\":\"ad8bbff2-1837-45df-9962-6c54f378ed9d\",\"tech_assigned_id\":\"aa23aa05-38c9-470e-a280-01ed3863b0eb\"} -> 409 {\"errors\":[{\"error\":\"The lead technician can\\u0027t be changed once a work order is Invoiced or Paid.\"}]}"
+   "POST /api/work-orders/change-lead-technician {\"work_order_id\":\"84eace49-3f4e-4f57-b0f0-30e2be9ae20a\",\"tech_assigned_id\":\"aa23aa05-38c9-470e-a280-01ed3863b0eb\"} -> 409 {\"errors\":[{\"error\":\"The lead technician can\\u0027t be changed once a work order is Invoiced or Paid.\"}]}"
   ],
   "serverRightAfterChange": {
    "status": "Invoiced",
-   "invoice_id": "068d2141-48f3-40f0-97b0-852330221d9a",
+   "invoice_id": "e6b0774d-0c41-4bb8-a4ec-4c086e0d7be4",
    "invoice_status": "pending",
    "is_invoice_created": true
   },
@@ -541,7 +534,7 @@
   },
   "serverAfterTab2Closed": {
    "status": "Invoiced",
-   "invoice_id": "068d2141-48f3-40f0-97b0-852330221d9a",
+   "invoice_id": "e6b0774d-0c41-4bb8-a4ec-4c086e0d7be4",
    "invoice_status": "pending",
    "is_invoice_created": true
   }

@@ -903,3 +903,12 @@ all four Passed with pictures. C368214 is Automated → tell Vlad.
 - **`switch 401 session_expired` mid-run** (moved-r5, 2 min in, 15:44): the Admin app session ended under the script. One Google sign-in holds one app session (L0394); another session signing in as Admin ends ours. Re-run; if it repeats, ask whether another session is on staging.
 - **C682419 scroll bar:** the board's sideways bar is the browser's own, so its handle length is read from screen pixels (strip screenshot → canvas in the page → run of pixels differing from the track), with the board scrolled to the middle so both ends are track (`c682419-bar.mts`).
 #run498 #retest #queue #pkill #session #scrollbar → L0394, L0453, L0460
+
+## L0462 — 2026-10-19 — Staging v26.40.19-c850386: Create Invoice no longer opens the "New Customer Payment" window
+On c850386 (19 Oct, 15:53) Finance > Create Invoice made the invoice (server Invoiced after 4 s) and the Finance tab showed the invoice with a
+**New Payment** button; no payment window opened (`invoice-r5.mts`: `windows: []`, picture C368167-r5-case-tab2-invoiced-window-open.png).
+So C368167 step 2 ("Leave the New Customer Payment window open … closing it with its X takes the invoice back off", L0453) now describes a
+window that does not appear; the test still passes. It is Automated → not reworded without the QA lead (Rule 71); raised with him.
+Also: the C368167 refusal message is read from the screen's notification as it shows; it fades before the next picture — the picture proves
+the outcome (Invoiced, lead unchanged), the reading proves the words.
+#run498 #staging #invoice #c850386 → L0453
