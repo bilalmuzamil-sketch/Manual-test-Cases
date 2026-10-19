@@ -1,0 +1,18 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.19-c850386", "date": "19 October 2026", "note": "run 498: Design- cases not on hold"},
+ "results": {
+  "C682439": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging (Chrome, window 1440 px). The old problem SV-11430 (white scroll bar tracks in the dark theme, now Done) was not seen.",
+    "Step 1: in the dark theme on Board View, the Unassigned column and Aaron Zed's column have scroll bars 10 px wide in dark grey; no bright white track shows on any column.",
+    "Step 2: after scrolling the Unassigned column down, its scroll bar stays thin and dark.",
+    "Step 3: after reloading the page, the scroll bars are still thin and dark.",
+    "The app was switched back to the light theme afterwards."
+   ], "ticket": null, "pictures": ["pictures-1019/C682439-1-dark-scrollbars-1019.png"]},
+  "C682440": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging (Chrome, window 1440 px, zoom 100%). The old problem SV-11467 (counts covering the word Review at Compact, now Done) was not seen.",
+    "Step 1: in List, S2-33351's pill reads Ready For Review; the red 2 and the blue 3 sit on its top-right corner, only touching the top of the letters; the whole name is readable.",
+    "Steps 2 to 5: in Tech View at Compact the rows get tighter, and the counts sit on the pill's corner exactly as in List; the status name stays readable.",
+    "Step 6: at Regular and Comfortable the counts sit in the same place and the name stays readable."
+   ], "ticket": null, "pictures": ["pictures-1019/C682440-1-compact-pill-1019.png"]}
+ }
+}

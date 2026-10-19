@@ -1,0 +1,542 @@
+
+===== C665914 Design- A long customer name stays inside the dragged card in both views
+--- preconds
+Setup file (for Claude sessions; a tester does not need it)
+
+Preconditions
+You are signed in with the "Admin" role at {Location-A}.For example: {Location-A} is Staging Heavy Duty - 9919.
+Technician {Technician-A} is active at {Location-A} with the "Technician" role and Time Clock on.For example: {Technician-A} is ZZAUTOTEST C665914 Ana.
+Customer {Customer-A} has a long name, more than 60 characters, that includes one long word with no spaces.For example: {Customer-A} is ZZAUTOTEST C665914 Superlongunbrokencustomernamewithoutanyspacesforthedragpreview.
+Work order {Work-order-1} for {Customer-A} is Approved and led by {Technician-A}.For example: {Work-order-1} is S10043-17901.
+Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, in a browser window at least 1024 px wide.
+If any record above is missing, mark this test Blocked: "setup not done".
+
+
+--- steps
+Press and hold the mouse button on {Work-order-1}'s card and move the pointer a little to the right. Do not let go.
+Look at the preview box that follows the pointer.
+Press Escape, then let go of the mouse button.
+Click "Tech View" in the display switcher.
+Press and hold the mouse button on {Work-order-1}'s row and move the pointer a little down. Do not let go.
+Look at the preview box that follows the pointer.
+Press Escape, then let go of the mouse button.
+
+
+--- expected
+Expected results
+Step 1: a drag starts and a small preview box with {Work-order-1}'s work order number and customer name follows the pointer.
+Step 2: the whole customer name stays inside the preview box. A name too long to fit is cut off with "…" (or wraps onto another line inside the box). No letter of it is drawn outside the box or over the neighbouring columns and cards.
+Step 3: the drag is cancelled and {Work-order-1}'s card stays in {Technician-A}'s column.
+Step 4: Tech View shows {Work-order-1}'s row in {Technician-A}'s group.
+Step 5: a drag starts and a small preview box with {Work-order-1}'s work order number and customer name follows the pointer.
+Step 6: the whole customer name stays inside the preview box. A name too long to fit is cut off with "…" (or wraps onto another line inside the box). No letter of it is drawn outside the box or over the neighbouring rows.
+Step 7: the drag is cancelled and {Work-order-1}'s row stays in {Technician-A}'s group.
+
+Known problem (SV-11503, open, found on staging 19 Oct 2026): today the customer name runs past the preview box's right edge, across the neighbouring columns and cards in Board View, and the end of the name sits outside the box in Tech View. (1) If you see exactly that, mark this test Failed and raise nothing new. (2) If it fails in a different way, that is a new problem: report it. (3) If the name stays inside the box in both views, the fix has shipped: mark it Passed and tell the QA lead.
+Source — where this behaviour comes fromEpic SV-10043; story SV-10052 (Story 9, Drag to reorder work and technician groups/columns); PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 64 (16 Oct 2026, Chris Ward), S9-R1, read 19 Oct 2026. Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html": the customer name on a Board View card and on a Tech View row is cut off with "…" when it is too long, read 19 Oct 2026. Tech plan (upload of 8 Oct 2026), the drag files row (Escape cancels a drag). Related ticket: SV-11503. Source-verified 19 October 2026. Not yet checked against a build.
+The PRD has no rule for the drag preview itself, and the design does not draw one. This case applies the design's cut-off of customer names on cards and rows to the preview, by the QA lead's decision of 19 Oct 2026.
+Exact quotes from the source (for reproducibility)
+S9-R1: “Allow dragging work orders within or between technician groups/columns in Tech View and Board View.”
+Design — Work Orders.dc.html, Board View card customer name: “<span style="font-size: 14px; font-weight: 500; color: {{ wo.titleColor }}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wo.cust }}</span>”
+Design — Work Orders.dc.html, Tech View row customer name: “<span style="font-size: {{ cellFs }}; font-weight: 500; color: {{ wo.titleColor }}; overflow: hidden; text-overflow: ellipsis;">{{ wo.cust }}</span>”
+Tech plan, drag files row: “Pointer-events drag: threshold (SQ-10) exported as a named constant and documented so tests can exceed it deterministically, rAF auto-scroll, Escape cancels, click suppressed after a drag”
+
+AUTOMATION: READY - EXPECT FAIL (SV-11503)
+
+
+===== C682420 Design- Tech View count bubbles sit on the status label as in List, any density
+--- preconds
+Preconditions
+Needs: 1 user · 1 browser · about 5 minutes · no setup
+Sign in as an Owner/Admin user (on staging or a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). Browser zoom 100%. Window about 1600 px wide.
+Location "Staging Heavy Duty - 9919" (shown in the top bar next to the bell). To change it: click your initials at the top right > Change Location.
+Work order S2-33351 has the status "Ready For Review" with a red number and a blue number on its status pill. (On another environment use any work order whose status pill shows both a red and a blue number.)
+
+
+--- steps
+Open this link: https://app.staging.shopview.com/workorders?tab=all&search=S2-33351 (it opens Work Orders on the All tab with S2-33351 in the Search box).
+At the right of the bar above the list, click List (the left of the three view buttons). Look at the status pill of S2-33351 and where the red and blue numbers sit on it.
+Click Tech View (the middle view button, a person icon). If the "Unassigned" group is closed, click the small arrow to the left of "Unassigned" to open it.
+Click the density button (the icon just right of "Asset on Site") and choose Compact. Look at the pill of S2-33351.
+Click the density button and choose Regular. Look at the pill again.
+Click the density button and choose Comfortable. Look at the pill again.
+
+
+--- expected
+Expected results
+Step 2: the pill reads "Ready For Review". The red 2 and the blue 3 sit on its top-right corner and only touch the top of the letters, so the word is easy to read.
+Steps 4, 5 and 6: at Compact, Regular and Comfortable the red and blue numbers sit on the pill exactly as in List at step 2: on the top-right corner, only touching the top of the letters. They never cover the word.
+The pill is lower at Compact and Regular than at Comfortable. That is correct.
+
+Source — where this behaviour comes fromEpic SV-10043; story SV-10045 (Story 2, Tech View); ticket SV-11467; PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 66, S2-R19 and S6-R2a, read 19 Oct 2026.
+Exact quote from the source
+S2-R19: “Tech View’s Status column is the same status pill List shows in production, with the same red service-actions count and blue parts-actions count on it. Its size follows density (S6-R2a).”
+S6-R2a: “In Tech View the status pill is 16px tall at Compact and Regular and 22px tall at Comfortable, the design’s small and regular badges. List’s status pill is unchanged: for the same work orders on the same page, every List pill is the same width and height as in production, including production’s matching widths down the column (for example, Approved as wide as Ready For Review when both are on the page). Tech View’s pill takes the same widths as List’s; only its height follows density.”
+
+This is the expected behaviour as per epic SV-10043, story SV-10045, ticket SV-11467 and the Work Orders — Board View & Tech View Display Options specification version 66 (S2-R19, S6-R2a). Last checked against build v26.40.19-c850386 on 10/19/2026.
+AUTOMATION: READY
+
+
+===== C682429 Design- Lead menu reads Assign Tech and Reassign Lead Tech (design's version)
+--- preconds
+Setup file (for Claude sessions; a tester does not need it)
+
+Preconditions
+You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide.For example: {Location-A} is Staging Heavy Duty - 9919.
+Technician {Technician-A} is active at {Location-A} with the "Technician" role and Time Clock on.For example: {Technician-A} is ZZAUTOTEST C682429 Ana.
+Customer {Customer-A} has two Approved work orders: {Work-order-1} with no lead technician and {Work-order-2} led by {Technician-A}.For example: {Customer-A} is ZZAUTOTEST C682429 Design Labels.
+Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+If any record above is missing, mark this test Blocked: "setup not done".
+
+
+--- steps
+Open the "More actions" (…) menu on the card for {Work-order-1}.
+Click the lead technician item.
+Click "Cancel".
+Open the "More actions" (…) menu on the card for {Work-order-2}.
+Click the lead technician item.
+Click "Cancel".
+
+
+--- expected
+Expected results
+Step 1: the menu item reads "Assign Tech".
+Step 2: the lead technician dialog opens with a "Search technicians" box.
+Step 3: the dialog closes.
+Step 4: the menu item reads "Reassign Lead Tech".
+Step 5: the dialog titled "Reassign Lead Tech" opens.
+Step 6: the dialog closes.
+
+This case checks the DESIGN's version, which differs from the PRD: Menu and dialog wording for the lead technician: the design shows "Assign Tech" on a work order with no lead and "Reassign Lead Tech" on one with a lead (menu item and dialog title); the PRD says "Assign lead technician" and "Reassign lead technician". It is held until Chris Ward rules on rows D01 of the WO Board design-differences question sheet for Chris Ward (19 Oct 2026). Do not run it while it is held. If he rules for the design, it is released; if he rules for the PRD, it is removed.
+Exact quotes from the source (for reproducibility)
+What the PRD says instead:
+From: PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 66 (19 Oct 2026, Chris Ward), read 19 Oct 2026 · Epic SV-10043
+S3-R14: “Include the lead technician action in the card’s more-actions menu: “Assign lead technician” on a work order with no lead technician, “Reassign lead technician” on one that has a lead technician.”
+S4-R4: “The card or row more-actions menu opens the lead technician dialog, titled “Assign lead technician” or “Reassign lead technician” to match the menu item it was opened from (S3-R14).”
+
+Not yet checked against a build.
+
+References from Design
+Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026 (Work Orders.dc.html and its flows, driven 14 Oct 2026), read 19 Oct 2026: the source of this case's expected results.
+Design — Work Orders.dc.html, menu label: “assignLabel: locked ? lockReason : (w.tech ? "Reassign Lead Tech" : "Assign Tech")”
+
+
+AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO
+
+
+===== C682430 Design- Lead change messages, Assignment undone, 2.6 s close (design's version)
+--- preconds
+Setup file (for Claude sessions; a tester does not need it)
+
+Preconditions
+You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide.For example: {Location-A} is Staging Heavy Duty - 9919.
+Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on.For example: ZZAUTOTEST C682430 Ana and ZZAUTOTEST C682430 Ben.
+Customer {Customer-A} has three Approved work orders led by {Technician-A}: {Work-order-1}, {Work-order-2} with {Technician-B} on one of its lines, and {Work-order-3}. None has a shift on the Schedule.For example: {Customer-A} is ZZAUTOTEST C682430 Design Messages.
+You have a stopwatch, for example on your phone.
+Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+If any record above is missing, mark this test Blocked: "setup not done".
+
+
+--- steps
+Drag the card for {Work-order-1} onto the "Unassigned" column and let go.
+Drag the card for {Work-order-2} onto {Technician-B}'s column and let go.
+Drag the card for {Work-order-3} onto {Technician-B}'s column and let go.
+Click "Undo" on the message.
+Drag the card for {Work-order-3} onto {Technician-B}'s column again, let go and start the stopwatch.
+Keep the pointer away from the message and watch it.
+
+
+--- expected
+Expected results
+Step 1: the message reads "{Work-order-1} moved to Unassigned".
+Step 2: the message reads "{Work-order-2} lead technician set to {Technician-B}".
+Step 3: the message reads "{Work-order-3} assigned to {Technician-B}", with "Undo".
+Step 4: {Work-order-3} goes back to {Technician-A}'s column and a new message reads "Assignment undone".
+Step 5: the message shows, with a thin bar along its bottom.
+Step 6: the bar runs out and the message closes about 3 seconds after you let go.
+
+This case checks the DESIGN's version, which differs from the PRD: Message after moving a work order to Unassigned: the design shows "S1-352 moved to Unassigned"; the PRD says "{work order number} unassigned". Message when the new lead was already on the work order's crew: the design shows "S1-702 lead technician set to Ralph Edwards"; the PRD says always "{work order number} assigned to {technician name}". Message after clicking Undo: the design shows a new message "Assignment undone"; the PRD says "shows … no new toast". How long the lead-change message stays: the design shows about 2.6 seconds (a progress bar runs out in 2600 ms); the PRD says 8 seconds, held while the pointer is over it. It is held until Chris Ward rules on rows D02, D03, D04, D05 of the WO Board design-differences question sheet for Chris Ward (19 Oct 2026). Do not run it while it is held. If he rules for the design, it is released; if he rules for the PRD, it is removed.
+Exact quotes from the source (for reproducibility)
+What the PRD says instead:
+From: PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 66 (19 Oct 2026, Chris Ward), read 19 Oct 2026 · Epic SV-10043
+S4-R5: “After a successful lead change on Board View or Tech View, whether by drag, the dialog or Unassign, show the design’s toast (white, with the check icon) reading “{work order number} assigned to {technician name}”, or “{work order number} unassigned” after removing the lead, with an Undo button. Example: “S1-357 assigned to Esther Howard”. This replaces the standard success toast for these two messages only.”
+S4-R16: “The lead-change toast closes on its own after 8 seconds, stays open while the pointer is over it, and closes when Undo is clicked. Other success toasts dismiss automatically, as today.”
+S4-R32: “Undo puts the work order back exactly as it was before the change: the previous lead technician (or Unassigned), its previous place in that technician’s order, and any shifts the change cleared (removed shifts come back as they were; a shift that was ended at the moment of the change gets its original end time back). Undo is itself a lead change: it records its own audit entry (S4-R9), follows the Invoiced or Paid rule (S4-N2), and shows no shift-clearing prompt and no new toast. If Undo cannot be saved, nothing changes and the alert “Couldn’t undo the change. Please try again.” shows.”
+
+Not yet checked against a build.
+
+References from Design
+Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026 (Work Orders.dc.html and its flows, driven 14 Oct 2026), read 19 Oct 2026: the source of this case's expected results.
+Design — Work Orders.dc.html, toast wording: “label: !t ? srcId + " moved to Unassigned" : (wasCrew ? srcId + " lead technician set to " + t.name : srcId + " assigned to " + t.name)”
+Design — Work Orders.dc.html, after Undo: “toast: { label: "Assignment undone", tone: "info" }”
+Design — Work Orders.dc.html, toast timer: “animation: svToastBar 2600ms linear forwards;”
+
+
+AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO
+
+
+===== C682431 Design- Locked work orders show short notes, Declined locked (design's version)
+--- preconds
+Setup file (for Claude sessions; a tester does not need it)
+
+Preconditions
+You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide.For example: {Location-A} is Staging Heavy Duty - 9919.
+Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on.For example: ZZAUTOTEST C682431 Ana and ZZAUTOTEST C682431 Ben.
+Customer {Customer-A} has four work orders led by {Technician-A}: {Work-order-1} Invoiced, {Work-order-2} Declined, {Work-order-3} Imported, and {Work-order-4} Approved.For example: {Customer-A} is ZZAUTOTEST C682431 Design Locks.
+A second user, {User-B}, whose role has Work orders > View only, is signed in at {Location-A} in a second browser on the same starting screen.For example: {User-B} is ZZAUTOTEST C682431 Viewer.
+Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+If any record above is missing, mark this test Blocked: "setup not done".
+
+
+--- steps
+Open the "More actions" (…) menu on the card for {Work-order-1}.
+Drag the card for {Work-order-1} over {Technician-B}'s column and hold it there.
+Press Escape and let go.
+Drag the card for {Work-order-2} over {Technician-B}'s column and hold it there.
+Press Escape and let go.
+Drag the card for {Work-order-3} over {Technician-B}'s column and hold it there.
+Press Escape and let go.
+In the second browser, as {User-B}, drag the card for {Work-order-4} over {Technician-B}'s column and hold it there.
+Press Escape and let go.
+
+
+--- expected
+Expected results
+Step 1: the lead technician item is greyed out and reads "Invoiced · can’t be reassigned".
+Step 2: a note on the card reads "Invoiced · can’t be reassigned".
+Step 3: the card stays in {Technician-A}'s column.
+Step 4: a note reads "Declined · can’t be reassigned".
+Step 5: the card stays in {Technician-A}'s column.
+Step 6: a note reads "Imported · review before assigning".
+Step 7: the card stays in {Technician-A}'s column.
+Step 8: a note reads "You don’t have permission to assign technicians".
+Step 9: the card stays in {Technician-A}'s column.
+
+This case checks the DESIGN's version, which differs from the PRD: Note on a locked work order's menu item and while dragging it: the design shows "Invoiced · can’t be reassigned" (and "Paid · can’t be reassigned"); the PRD says "The lead technician can’t be changed once a work order is Invoiced or Paid.". Declined work orders: the design shows locked: "Declined · can’t be reassigned"; the PRD says "Declined and Complete work orders can be moved freely, as today.". Imported work orders on the board: the design shows shown on the board, locked with "Imported · review before assigning"; the PRD says "Imported work orders open in List.". Note for a user who may not reassign, while dragging: the design shows "You don’t have permission to assign technicians"; the PRD says no wording given (users without create and edit cannot drag). It is held until Chris Ward rules on rows D06, D07, D08, D09 of the WO Board design-differences question sheet for Chris Ward (19 Oct 2026). Do not run it while it is held. If he rules for the design, it is released; if he rules for the PRD, it is removed.
+Exact quotes from the source (for reproducibility)
+What the PRD says instead:
+From: PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 66 (19 Oct 2026, Chris Ward), read 19 Oct 2026 · Epic SV-10043
+S4-N6: “The disabled Reassign lead technician action on an Invoiced or Paid work order shows this tooltip: “The lead technician can’t be changed once a work order is Invoiced or Paid.””
+S4-N2: “Do not allow the lead technician to change in Invoiced or Paid status. An Invoiced or Paid work order can still be dragged to reorder it within its current technician (or within Unassigned), but it cannot be moved to another technician, to Unassigned, or out of Unassigned. Declined and Complete work orders can be moved freely, as today.”
+S1-R13b: “In Board View and Tech View, "Imported" is greyed out in the Status filter with the tooltip "Imported work orders open in List."”
+S4-N1: “Require Work Orders create and edit permission to drag work orders or access Reassign lead technician.”
+
+Not yet checked against a build.
+
+References from Design
+Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026 (Work Orders.dc.html and its flows, driven 14 Oct 2026), read 19 Oct 2026: the source of this case's expected results.
+Design — Work Orders.dc.html, Invoiced lock note: “"Invoiced": "Invoiced \u00B7 can\u2019t be reassigned",”
+Design — Work Orders.dc.html, Paid lock note: “"Paid": "Paid \u00B7 can\u2019t be reassigned",”
+Design — Work Orders.dc.html, Declined lock: “"Declined": "Declined \u00B7 can\u2019t be reassigned"”
+Design — Work Orders.dc.html, Imported lock: “"Imported": "Imported \u00B7 review before assigning"”
+Design — Work Orders.dc.html, no-permission note: “const NO_PERMISSION = "You don\u2019t have permission to assign technicians";”
+
+
+AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO
+
+
+===== C682432 Design- Up to five technicians can be pinned, pin messages (design's version)
+--- preconds
+Setup file (for Claude sessions; a tester does not need it)
+
+Preconditions
+You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide.For example: {Location-A} is Staging Heavy Duty - 9919.
+Six technicians are active at {Location-A}: {Technician-A}, {Technician-B}, {Technician-C}, {Technician-D}, {Technician-E} and {Technician-F}. None is pinned in your Board View.For example: ZZAUTOTEST C682432 Ana to ZZAUTOTEST C682432 Fay.
+Starting screen: "Work Orders" > "All" tab, "Board View" shown, "Search" empty.
+If any record above is missing, mark this test Blocked: "setup not done".
+
+
+--- steps
+Click the pin on {Technician-A}'s column header.
+Click the pins on {Technician-B}'s, {Technician-C}'s and {Technician-D}'s headers.
+Click the pin on {Technician-E}'s header.
+Click the pin on {Technician-F}'s header.
+Click the pin on {Technician-A}'s header again.
+
+
+--- expected
+Expected results
+Step 1: {Technician-A} is pinned and a message reads "{Technician-A} pinned".
+Step 2: all three are pinned.
+Step 3: {Technician-E} is pinned: five technicians are pinned.
+Step 4: {Technician-F} is not pinned and a message reads "Up to 5 pinned columns — unpin one first".
+Step 5: {Technician-A} is unpinned and a message reads "{Technician-A} unpinned".
+
+This case checks the DESIGN's version, which differs from the PRD: How many technicians can be pinned, and the pin messages: the design shows 5, with "Esther Howard pinned" / "unpinned" and "Up to 5 pinned columns — unpin one first"; the PRD says 3, with "You can pin up to 3 technicians.". It is held until Chris Ward rules on rows D10 of the WO Board design-differences question sheet for Chris Ward (19 Oct 2026). Do not run it while it is held. If he rules for the design, it is released; if he rules for the PRD, it is removed.
+Exact quotes from the source (for reproducibility)
+What the PRD says instead:
+From: PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 66 (19 Oct 2026, Chris Ward), read 19 Oct 2026 · Epic SV-10043
+S3-R8: “At three pinned technicians, disable other pin controls with: “You can pin up to 3 technicians.””
+
+Not yet checked against a build.
+
+References from Design
+Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026 (Work Orders.dc.html and its flows, driven 14 Oct 2026), read 19 Oct 2026: the source of this case's expected results.
+Design — Work Orders.dc.html, pin limit: “const PIN_LIMIT = 5;”
+Design — Work Orders.dc.html, pin limit message: “" pinned columns \u2014 unpin one first", tone: "warning" }”
+Design — Work Orders.dc.html, pin messages: “label: on ? name + " pinned" : name + " unpinned"”
+
+
+AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO
+
+
+===== C682433 Design- Row height in Tech View, Card size in Board View (design's version)
+--- preconds
+Setup file (for Claude sessions; a tester does not need it)
+
+Preconditions
+You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide.For example: {Location-A} is Staging Heavy Duty - 9919.
+Starting screen: "Work Orders" > "All" tab, "Tech View" shown, "Search" empty, no filter chosen, "Assigned to me" off.
+If any record above is missing, mark this test Blocked: "setup not done".
+
+
+--- steps
+Click the density button left of the display switcher.
+Read the options.
+Press Escape.
+Click "Board View" in the display switcher.
+Read the controls in the toolbar.
+Click the card size button.
+Read the options.
+
+
+--- expected
+Expected results
+Step 1: a menu opens headed "Row height".
+Step 2: the options are "Small", "Medium" and "Large".
+Step 3: the menu closes.
+Step 4: Board View shows.
+Step 5: there is a "Card size" button and no "Fields to display" button.
+Step 6: a menu opens.
+Step 7: the options are "Compact" and "Detailed".
+
+This case checks the DESIGN's version, which differs from the PRD: Density control names: the design shows Tech View "Row height: Small / Medium / Large"; Board View "Card size: Compact / Detailed" (seen when driven, FLOWS W4); the PRD says "Offer Compact, Regular, and Comfortable density in Tech View and Board View.". Fields to display on Board View: the design shows no Fields to display picker on Board View (only Card size) (seen when driven, FLOWS W4); the PRD says "Board View offers a separate Fields to display picker …". It is held until Chris Ward rules on rows D11, D12 of the WO Board design-differences question sheet for Chris Ward (19 Oct 2026). Do not run it while it is held. If he rules for the design, it is released; if he rules for the PRD, it is removed.
+Exact quotes from the source (for reproducibility)
+What the PRD says instead:
+From: PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 66 (19 Oct 2026, Chris Ward), read 19 Oct 2026 · Epic SV-10043
+S6-R1: “Offer Compact, Regular, and Comfortable density in Tech View and Board View.”
+S5-R2: “Board View offers a separate Fields to display picker in the same toolbar position and with the same interaction as the column chooser.”
+
+Not yet checked against a build.
+
+References from Design
+Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026 (Work Orders.dc.html and its flows, driven 14 Oct 2026), read 19 Oct 2026: the source of this case's expected results.
+Design — seen when driven (FLOWS-2026-10-14.md, W4): “Row height: Small / Medium / Large (Large adds "0.0 / 1.5 hrs" under progress) · Tech View Columns · Board: "Card size" Compact / Detailed (no Columns, no Fields to display)”
+
+
+AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO
+
+
+===== C682434 Design- Empty Tech View group reads No work orders assigned (design's version)
+--- preconds
+Setup file (for Claude sessions; a tester does not need it)
+
+Preconditions
+You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide.For example: {Location-A} is Staging Heavy Duty - 9919.
+Technicians {Technician-A} and {Technician-B} are active at {Location-A}, and {Technician-A} is pinned in your views.For example: ZZAUTOTEST C682434 Ana and ZZAUTOTEST C682434 Ben.
+Customer {Customer-A} has one Approved work order, {Work-order-1}, led by {Technician-B}.For example: {Customer-A} is ZZAUTOTEST C682434 Design Empty.
+Starting screen: "Work Orders" > "All" tab, "Tech View" shown, "Search" empty, no filter chosen, "Assigned to me" off.
+If any record above is missing, mark this test Blocked: "setup not done".
+
+
+--- steps
+Type the name of {Customer-A} in "Search".
+Look at {Technician-A}'s group.
+
+
+--- expected
+Expected results
+Step 1: only {Work-order-1} is listed, in {Technician-B}'s group.
+Step 2: {Technician-A}'s group is empty and reads "No work orders assigned".
+
+This case checks the DESIGN's version, which differs from the PRD: Text in an empty Tech View group: the design shows "No work orders assigned"; the PRD says "No work orders". It is held until Chris Ward rules on rows D13 of the WO Board design-differences question sheet for Chris Ward (19 Oct 2026). Do not run it while it is held. If he rules for the design, it is released; if he rules for the PRD, it is removed.
+Exact quotes from the source (for reproducibility)
+What the PRD says instead:
+From: PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 66 (19 Oct 2026, Chris Ward), read 19 Oct 2026 · Epic SV-10043
+S2-R15: “A technician group with no work orders under the current filters, and an empty Unassigned group, show the text “No work orders”.”
+
+Not yet checked against a build.
+
+References from Design
+Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026 (Work Orders.dc.html and its flows, driven 14 Oct 2026), read 19 Oct 2026: the source of this case's expected results.
+Design — Work Orders.dc.html, empty group: “<span>No work orders assigned</span>”
+
+
+AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO
+
+
+===== C682435 Design- Search opens a closed group, N open counts all cards (design's version)
+--- preconds
+Setup file (for Claude sessions; a tester does not need it)
+
+Preconditions
+You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide.For example: {Location-A} is Staging Heavy Duty - 9919.
+Technician {Technician-A} is active at {Location-A} with the "Technician" role and Time Clock on.For example: {Technician-A} is ZZAUTOTEST C682435 Ana.
+{Technician-A} leads exactly three work orders at {Location-A}: {Work-order-1} Approved, {Work-order-2} an Estimate and {Work-order-3} Declined.For example: customer ZZAUTOTEST C682435 Design Count.
+Starting screen: "Work Orders" > "All" tab, "Tech View" shown, "Search" empty, no filter chosen, "Assigned to me" off.
+If any record above is missing, mark this test Blocked: "setup not done".
+
+
+--- steps
+Click the arrow on {Technician-A}'s group header to collapse it.
+Type the number of {Work-order-1} in "Search".
+Look at {Technician-A}'s group.
+Clear "Search" and click "Board View".
+Open the "More actions" (…) menu on the card for {Work-order-1}.
+Click "Reassign Lead Tech".
+Read the count beside {Technician-A} in the dialog.
+
+
+--- expected
+Expected results
+Step 1: the group collapses.
+Step 2: only {Work-order-1} matches.
+Step 3: the group opens and shows {Work-order-1}.
+Step 4: Board View shows {Technician-A}'s column with three cards.
+Step 5: the menu opens.
+Step 6: the dialog opens.
+Step 7: it reads "3 open": every card in the column is counted.
+
+This case checks the DESIGN's version, which differs from the PRD: A search that finds work inside a collapsed group: the design shows the group opens to show the matches (Details board, seen when driven); the PRD says the group stays collapsed; its count shows how many match. The N open count in the lead technician dialog: the design shows counts every work order in that technician's column; the PRD says Approved, In Progress, Ready for Review and Complete only. It is held until Chris Ward rules on rows D14, D15 of the WO Board design-differences question sheet for Chris Ward (19 Oct 2026). Do not run it while it is held. If he rules for the design, it is released; if he rules for the PRD, it is removed.
+Exact quotes from the source (for reproducibility)
+What the PRD says instead:
+From: PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 66 (19 Oct 2026, Chris Ward), read 19 Oct 2026 · Epic SV-10043
+S2-R16: “When a search or filter finds work orders inside a group the user collapsed, the group stays collapsed; its count shows how many match. Collapsing is the user's saved choice (S2-R13).”
+S4-R15: “The dialog’s N open count includes Approved, In Progress, Ready for Review, and Complete work orders.”
+
+Not yet checked against a build.
+
+References from Design
+Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026 (Work Orders.dc.html and its flows, driven 14 Oct 2026), read 19 Oct 2026: the source of this case's expected results.
+Design — Work Orders.dc.html, N open: “meta: (this.state.order[t.id] || []).length + " open"”
+Design — Work Orders Details.dc.html, groups while searching: “// A search or filter opens every group that still has a hit, so results aren't hidden behind a collapsed header.”
+Design — Work Orders Details.dc.html, open rule: “const open = filtering ? true : !this.state.collapsed[g.id];”
+
+
+AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO
+
+
+===== C682436 Design- No technicians yet and Nothing here yet pages (design's version)
+--- preconds
+Setup file (for Claude sessions; a tester does not need it)
+
+Preconditions
+You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide.For example: {Location-A} is Staging Heavy Duty - 9919.
+Location {Location-B} has work orders but no technicians, and location {Location-C} has neither, and you may sign in at both.For example: ZZAUTOTEST Location No Techs and ZZAUTOTEST Location Empty.
+If any record above is missing, mark this test Blocked: "setup not done".
+
+
+--- steps
+Change location to {Location-B}.
+Open "Work Orders" > "All" and click "Board View".
+Read the page.
+Change location to {Location-C}.
+Open "Work Orders" > "All" and click "Board View".
+Read the page.
+
+
+--- expected
+Expected results
+Step 1: the location changes.
+Step 2: Board View opens.
+Step 3: it reads "No technicians yet" and "Add technicians to assign work orders. Until then, every work order stays in Unassigned.", with an "Add Technician" button.
+Step 4: the location changes.
+Step 5: Board View opens.
+Step 6: it reads "Nothing here yet" and "Add technicians and create your first work order to track work by tech."
+
+This case checks the DESIGN's version, which differs from the PRD: Empty states when a location has no technicians: the design shows "No technicians yet" / "Add technicians to assign work orders. Until then, every work order stays in Unassigned." with Add Technician, and "Nothing here yet" when there are neither (designer review frames); the PRD says only the no-work-orders state ("No work orders yet"). It is held until Chris Ward rules on rows D16 of the WO Board design-differences question sheet for Chris Ward (19 Oct 2026). Do not run it while it is held. If he rules for the design, it is released; if he rules for the PRD, it is removed.
+Exact quotes from the source (for reproducibility)
+What the PRD says instead:
+From: PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 66 (19 Oct 2026, Chris Ward), read 19 Oct 2026 · Epic SV-10043
+S1-N1c: “When no filter and no search are active and the filter view has no work orders at all, Tech View and Board View show the design’s first-run state: the clipboard-list icon in a grey circle, “No work orders yet”, then “Create a work order and assign a technician to see it here.”, with a Create Work Order button that does the same as the page’s Create Work Order button. List keeps its production empty state.”
+
+Not yet checked against a build.
+
+References from Design
+Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026 (Work Orders.dc.html and its flows, driven 14 Oct 2026), read 19 Oct 2026: the source of this case's expected results.
+Design — Work Orders.dc.html, first-run titles: “const frTitle = noWo && noTech ? "Nothing here yet" : noWo ? "No work orders yet" : "No technicians yet";”
+Design — Work Orders.dc.html, first-run titles: “const frTitle = noWo && noTech ? "Nothing here yet" : noWo ? "No work orders yet" : "No technicians yet";”
+Design — seen when driven (FLOWS-2026-10-14.md, W5): “no-technicians → "No technicians yet" + "Add technicians to assign work orders. Until then, every work order stays in Unassigned." + Add Technician”
+
+
+AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO
+
+
+===== C682439 Design- In the Dark theme, Board View column scrollbars are thin and dark
+--- preconds
+Setup file (for Claude sessions; a tester does not need it)
+
+Preconditions
+You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide.For example: {Location-A} is Staging Heavy Duty - 9919.
+The app is in the dark theme.
+At least one technician column at {Location-A} holds more work orders than fit on screen, so it scrolls.For example: Unassigned at Staging Heavy Duty - 9919.
+Starting screen: "Work Orders" > "All" tab, "Board View" shown, in a window 1440 px wide.
+If any record above is missing, mark this test Blocked: "setup not done".
+
+
+--- steps
+Look at the right edge of the Unassigned column and of each technician column.
+Scroll one column down.
+Reload the page and look again.
+
+
+--- expected
+Expected results
+Step 1: no bright white scrollbar track shows; any scrollbar is thin, in a dark grey on a transparent track, blending into the board.
+Step 2: the column scrolls and its scrollbar stays thin and dark.
+Step 3: after the reload the scrollbars are still thin and dark.
+
+Known problem (SV-11430, Done; seen on staging on 16 Oct 2026): every column showed a bright white scrollbar track in the dark theme. (1) If you see exactly that, mark this test Failed and raise nothing new. (2) If it fails in a different way, report it. (3) If the scrollbars are thin and dark, mark it Passed.
+Exact quotes from the source (for reproducibility)
+From: PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 66 (19 Oct 2026, Chris Ward), read 19 Oct 2026 · Epic SV-10043, story SV-10044 (Story 1, Switch between display options), story SV-10046 (Story 3, Board View); ticket SV-11430
+S1-R9c: “Tech View and Board View work in the application’s dark theme as well as its light theme, using the design file’s dark colors. Every rule in this PRD holds in both themes.”
+
+Not yet checked against a build.
+
+References from Design
+Shopview design system library in the design export of 14 Oct 2026 (_ds_bundle.js): scrolling panels use a thin scrollbar in the border colour on a transparent track; the dark-theme screenshots of the export (screenshots/*-dark.jpg) show no white track.
+Design system library, scrolling panel: “scrollbarWidth: "thin",
+      scrollbarColor: "var(--sv-border-strong) transparent"”
+
+
+AUTOMATION: READY
+
+
+===== C682440 Design- At Compact, count bubbles leave the Tech View status name readable
+--- preconds
+Setup file (for Claude sessions; a tester does not need it)
+
+Preconditions
+You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide.For example: {Location-A} is Staging Heavy Duty - 9919.
+Work order {Work-order-1} at {Location-A} is Ready For Review and has open service and parts actions, so its status pill shows a red and a blue count.For example: {Work-order-1} is S2-33351.
+Starting screen: "Work Orders" > "All" tab, "List" shown, the number of {Work-order-1} in "Search", in a window 1440 px wide at 100% zoom.
+If any record above is missing, mark this test Blocked: "setup not done".
+
+
+--- steps
+Look at the status pill of {Work-order-1} in List.
+Click "Tech View" in the display switcher.
+Click the density button and choose Compact.
+Open the group that holds {Work-order-1}, if it is collapsed.
+Look at the status pill of {Work-order-1}.
+Choose Regular, then Comfortable, and look at the pill each time.
+
+
+--- expected
+Expected results
+Step 1: the red and blue counts sit on the pill's top corner and the whole status name "Ready For Review" is readable.
+Step 2: Tech View shows.
+Step 3: the rows get tighter.
+Step 4: the row for {Work-order-1} shows.
+Step 5: the counts sit on the pill's corner as on the List's pill, and the whole status name stays readable; no count covers a word.
+Step 6: at both densities the status name stays readable and the counts sit on the corner.
+
+Known problem (SV-11467, Ready for QA; seen on staging on 16 Oct 2026): at Compact the 19 px count bubbles sit over the word "Review". (1) If you see exactly that, mark this test Failed and raise nothing new. (2) If it fails in a different way, report it. (3) If the name stays readable, mark it Passed.
+Exact quotes from the source (for reproducibility)
+From: PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 66 (19 Oct 2026, Chris Ward), read 19 Oct 2026 · Epic SV-10043, story SV-10045 (Story 2, Tech View), story SV-10049 (Story 6, Density); ticket SV-11467
+S2-R19: “Tech View’s Status column is the same status pill List shows in production, with the same red service-actions count and blue parts-actions count on it. Its size follows density (S6-R2a).”
+S6-R2a: “In Tech View the status pill is 16px tall at Compact and Regular and 22px tall at Comfortable, the design’s small and regular badges. List’s status pill is unchanged: for the same work orders on the same page, every List pill is the same width and height as in production, including production’s matching widths down the column (for example, Approved as wide as Ready For Review when both are on the page). Tech View’s pill takes the same widths as List’s; only its height follows density.”
+
+Not yet checked against a build.
+AUTOMATION: READY - EXPECT FAIL (SV-11467)
+
