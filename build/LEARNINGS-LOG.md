@@ -809,3 +809,6 @@ FAILS on the <strong> headers that the suite's precondition fields already carri
 before and after, so that flag is pre-existing, not introduced — report it, do not "fix" unchanged lines. If the scan dies with
 ERR_PROXY_CONNECTION_FAILED, run `build/testing-tools/ensure_bridge.sh` first. Folder: run498-2026-10-08/case-updates-2026-10-19/.
 #testrail #case-edit #rule-131 #render → L0441
+
+## L0448 — 2026-10-19 — QA lead ruling: a bug that is the same on production is kept as RETEST in the feature run, not Failed
+Run 498: the five tests blocked by the technician-list cut-off (C97007, C368159, C368173, C368169, C368171; bug SV-11429, same on production) were set to **Retest** by the QA lead and he confirmed: *"Move them to retest — I want to keep these cases separate for now because the behavior is same on production."* So when a feature-run test fails only on a bug that production also has and that has been re-homed outside the feature (Rule 121's spirit), do NOT re-post it as Failed over his Retest; leave/put it at Retest with a plain comment naming the tracking ticket. Before overwriting any status someone else set on our shared TestRail account, read who/when and ask (I overwrote three of his Retests with Failed this morning).
