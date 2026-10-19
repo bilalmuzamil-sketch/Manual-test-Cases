@@ -335,3 +335,17 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
   (c6824-held.mts, READY-TO-RUN.md). Chris answered all rows of his design-differences sheet: 5 cases to remove (PRD won), 2 released
   (C682430 messages/Undo/2.6 s, C682436 no-technician pages — both fail on today's build), C682431 mixed → needs rewording. Asked the QA lead:
   add the released ones to run 498, reword C682431, remove the five.
+
+### 19 Oct 2026 (late) — six-test retest on staging v26.40.19-c850386 (PRD v68); two tickets filed on the QA lead's word
+- QA lead: "Please retest … C614711, T3481908, T3481958, T3995730, T3481911, T3761668 … If any of them fail prepare the story defect"; then
+  "Please create the defects for the failed test Cases. And also push the results … with the ticket or tickets to follow".
+- All six Failed (results 529589–529594 with pictures; ticket results 529842–529847 + follow-the-status comments; C97020 also 529863):
+  - C614711 (T4004397): steps 1–9 pass (SV-11416 fix on staging: "Deleted technician", Inactive, no grip, drops refused, List "Unassigned");
+    step 10 message "Lead technician updated", no work order/technician/Undo → **SV-11524** (Open, Branko).
+  - C96964 (T3481908), C590121 (T3995730): old locked sentence on lock icon (title), menu tooltips, drag note → filed **SV-11545**.
+  - C97020 (T3481958): keyboard note never shows → **SV-11498** (In Progress) + old wording → **SV-11545**. View-only half steps 1–6 pass.
+  - C96967 (T3481911), C368147 (T3761668): view-only user cannot pick a card/row up and gets no "You don't have permission to assign
+    technicians" note → filed **SV-11546**. Everything else (no move, no More actions, lead kept) passes.
+- SV-11545 https://shopview.atlassian.net/browse/SV-11545 and SV-11546 https://shopview.atlassian.net/browse/SV-11546 — Story Defect ·
+  parent SV-10047 (Ready for QA, read live) · Medium · board-tech-view · Relates SV-10047 · pictures inline full-width (read back).
+- The six cases also sit in the Nightly Test Runs 539–543 (Engineering's automated runs; Rule 47 — not ours, not written to).

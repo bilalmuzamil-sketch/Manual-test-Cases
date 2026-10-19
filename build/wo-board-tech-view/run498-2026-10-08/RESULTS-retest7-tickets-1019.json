@@ -1,0 +1,95 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-c850386",
+  "date": "19 October 2026",
+  "note": "run 498: tickets filed 19 Oct on the QA lead's word for the six-test retest"
+ },
+ "results": {
+  "C96964": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging (re-test of 19 Oct; ticket now raised). The blocking works; the words shown are the old ones.",
+    "Set-up: S2-37502 (Invoiced) and S2-37503 (Paid), both led by ZZAUTOTEST C96964 Ana Alpha; ZZAUTOTEST C96964 Ben Ben as the other technician.",
+    "Both cards and both rows show a lock icon next to the number (correct).",
+    "The lock icon's hover text reads \"The lead technician can't be changed once a work order is Invoiced or Paid.\" The test expects \"Invoiced · can’t be reassigned\" / \"Paid · can’t be reassigned\".",
+    "More actions: Reassign lead technician and Unassign are greyed out (correct), but their tooltip reads the same old sentence, on both work orders, in Board View and Tech View.",
+    "While each work order is dragged over Ben Ben's column (Board View) or group (Tech View), the note at the top reads the same old sentence.",
+    "On release the drop is refused: both stay with Ana Alpha and the lead does not change (correct)."
+   ],
+   "ticket": "Ticket to follow: https://shopview.atlassian.net/browse/SV-11545 — Locked work orders still show the old \"can't be changed\" sentence (Open)",
+   "todo": "Re-run this test once SV-11545 is fixed (the lock icon, the greyed-out menu items and the drag note all show \"Invoiced · can’t be reassigned\" / \"Paid · can’t be reassigned\").",
+   "defects": [
+    "SV-11545"
+   ]
+  },
+  "C590121": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging (re-test of 19 Oct; ticket now raised) at step 11 only. Steps 2 to 10 match the test.",
+    "Step 2: without the pointer on it, S2-37500's card shows no three-dot button.",
+    "Step 3: with the pointer on it the border darkens, a soft shadow appears and a small white three-dot button appears at the top right, by the status label.",
+    "Step 4: a white menu opens below the button, lined up with its right edge: Reassign lead technician first, then Unassign, each with an icon.",
+    "Steps 7 and 8: in Tech View the row turns light grey, the three-dot button shows at the row's right end, and the same menu opens below it, lined up with its right edge.",
+    "Step 10: for Invoiced S2-37501 Reassign lead technician and Unassign are greyed out.",
+    "Step 11: the tooltip reads \"The lead technician can't be changed once a work order is Invoiced or Paid.\" The test expects \"Invoiced · can’t be reassigned\"."
+   ],
+   "ticket": "Ticket to follow: https://shopview.atlassian.net/browse/SV-11545 — Locked work orders still show the old \"can't be changed\" sentence (Open)",
+   "todo": "Re-run this test once SV-11545 is fixed (step 11: the tooltip reads \"Invoiced · can’t be reassigned\").",
+   "defects": [
+    "SV-11545"
+   ]
+  },
+  "C97020": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging (re-test of 19 Oct; ticket now raised) at step 11 only. Every other step matches the test; the keyboard cannot get round the limits.",
+    "Steps 1 to 6 (view-only user, keyboard only): the cursor is in Search; Tab reaches S2-37514's card with a focus ring after the toolbar buttons; the card has no More actions, so the next Tab leaves the board; Enter opens nothing; Space and Shift with each arrow key move nothing and the lead stays Ana Alpha.",
+    "Steps 7 to 10 (Admin): the cursor is in Search; Tab lands on S2-37498's card; the down arrow moves the ring to Invoiced S2-37499; Tab reaches its own More actions.",
+    "Step 11: Enter opens the menu and Reassign lead technician and Unassign are greyed out, but no note shows while the item is highlighted with the keyboard. The note exists only on mouse hover, and its words are the old sentence \"The lead technician can't be changed once a work order is Invoiced or Paid.\", not \"Invoiced · can’t be reassigned\".",
+    "Step 12: Enter on the item does nothing; no window opens. Step 13: Escape closes the menu and focus returns to More actions.",
+    "Step 14: Space and Shift with each arrow key move nothing. Steps 15 and 16: after a refresh S2-37499 is still in Ana Alpha's column and its page reads Lead technician ZZAUTOTEST Ana Alpha."
+   ],
+   "ticket": "Tickets to follow: https://shopview.atlassian.net/browse/SV-11498 — Locked work order's note never shows with the keyboard (In Progress) · https://shopview.atlassian.net/browse/SV-11545 — Locked work orders still show the old \"can't be changed\" sentence (Open)",
+   "todo": "Re-run this test once both tickets are fixed: SV-11498 (the note shows when the item is highlighted with the keyboard) and SV-11545 (the note reads \"Invoiced · can’t be reassigned\").",
+   "defects": [
+    "SV-11498",
+    "SV-11545"
+   ]
+  },
+  "C96967": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging (re-test of 19 Oct; ticket now raised). The view-only user cannot change anything (correct), but is never told why.",
+    "Set-up: a new staff member \"ZZAUTOTEST Vera Viewonly C96967\" with the role \"ZZAUTOTEST WO View Only\" (Work orders: View only); S2-37511 (Approved) led by Esther Howard; ZZAUTOTEST C96967 Ben Ben as the other technician.",
+    "Step 4: pressing on S2-37511's card and moving over Ben Ben's column does not pick the card up; the mouse only highlights text, and no note appears at the top of the column. The test expects \"You don’t have permission to assign technicians\".",
+    "Steps 5 and 6: the card stays in Esther Howard's column and cannot be moved within it either.",
+    "Step 7: the card has no More actions button, so Reassign lead technician and Unassign are not offered.",
+    "Step 8: in Tech View the row is not picked up either and no note appears over Ben Ben's group; no More actions on the row.",
+    "Step 9: S2-37511's lead is still Esther Howard."
+   ],
+   "ticket": "Ticket to follow: https://shopview.atlassian.net/browse/SV-11546 — View-only user never sees \"You don't have permission to assign technicians\" (Open)",
+   "todo": "Re-run this test once SV-11546 is fixed (the note \"You don’t have permission to assign technicians\" shows while the view-only user drags).",
+   "defects": [
+    "SV-11546"
+   ]
+  },
+  "C368147": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging (re-test of 19 Oct; ticket now raised) at steps 6 and 10. The other steps match the test.",
+    "Set-up: a new staff member with the role \"ZZAUTOTEST WO View Only\" (Work orders: View only); S2-37512 (Alpha Co) and S2-37513 (Bravo Co), both Approved and led by ZZAUTOTEST C368147 Ana Alpha; ZZAUTOTEST C368147 Ben Ben as the other technician.",
+    "Step 5: Bravo Co cannot be moved within Ana Alpha's column; no message appears.",
+    "Step 6: pressing on Alpha Co and moving over Ben Ben's column does not pick the card up (only text is highlighted) and no note appears at the top of the column. The test expects \"You don’t have permission to assign technicians\".",
+    "Step 7: Alpha Co stays in Ana Alpha's column. Step 8: the card has no More actions button.",
+    "Step 10: in Tech View, the same over Ben Ben's group: no note. Step 11: the row stays in Ana Alpha's group.",
+    "Step 12: the order is still Alpha Co, Bravo Co and Alpha Co's lead is still Ana Alpha."
+   ],
+   "ticket": "Ticket to follow: https://shopview.atlassian.net/browse/SV-11546 — View-only user never sees \"You don't have permission to assign technicians\" (Open)",
+   "todo": "Re-run this test once SV-11546 is fixed (steps 6 and 10: the note \"You don’t have permission to assign technicians\" shows).",
+   "defects": [
+    "SV-11546"
+   ]
+  }
+ }
+}
