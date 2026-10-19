@@ -13,7 +13,7 @@ const tag = String(Date.now()).slice(-6); const box = `zzwob-c96912-${tag}`; con
 const roles = await roleIds(a); o.roleUsed = roles['Admin'] ? 'Admin' : Object.keys(roles)[0];
 try { o.created = await person(a, 'ZZAUTOTEST', `C96912 Inbox ${tag}`, { role: roles['Admin'] ?? Object.values(roles)[0], email }); } catch (e: any) { o.createError = String(e?.message || e).slice(0, 200); }
 const row = (await staffRows(a, email)).find((x: any) => String(x.email).toLowerCase() === email); o.row = row ? { staff_id: row.staff_id, active: row.is_active, confirmed: row.confirmed_invitation_on ?? null } : null;
-await done(browser).catch(() => {});
+await browser.close().catch(() => {});
 const PORT = fs.readFileSync('/tmp/atlassian/bridge-port.txt', 'utf8').trim(); const b2 = await chromium.launch({ executablePath: process.env.CHROME_BIN || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', headless: true, proxy: { server: `http://127.0.0.1:${PORT}` }, args: ['--no-sandbox', '--ignore-certificate-errors'] });
 const pg = await (await b2.newContext({ viewport: { width: 1400, height: 900 } })).newPage(); o.reads = [];
 for (let i = 0; i < 8; i++) {

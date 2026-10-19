@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-e435950",
+  "date": "19 October 2026",
+  "note": "run 498 blocked step 1: C368145"
+ },
+ "results": {
+  "C368145": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging.",
+    "Ben's column at the start read Bravo Co, then Delta Co.",
+    "The Create Work Order window offers only Customer and Asset (no Lead Technician field), so the test's other route was used: a line of the Bravo Co work order was split off into a new work order with Split work order.",
+    "The new work order (S2-37324) kept Ben as its lead technician.",
+    "Ben's column then read S2-37324 (Bravo Co, split off), S2-37322 (Bravo Co), S2-37323 (Delta Co): the new work order took its customer-name place and did not go to the bottom.",
+    "Requirement (Confluence 845185030, version 64, S9-R14): \"A work order created or split off with a lead keeps the initial sort (S9-R3).\""
+   ],
+   "ticket": null,
+   "pictures": [
+    "pictures-1019/C368145-1-split-keeps-place.png"
+   ]
+  }
+ }
+}

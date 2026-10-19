@@ -1,0 +1,678 @@
+{
+ "clearedLeftoverSwitch": 200,
+ "startState": {
+  "found": {
+   "saved": {
+    "status": 200,
+    "display": "tech_view",
+    "collapsedGroups": [],
+    "pinned": [
+     "b669608e",
+     "b51a80a5",
+     "aa23aa05"
+    ],
+    "filters": {
+     "status": []
+    },
+    "density": "comfortable",
+    "tab": "all"
+   },
+   "screen": {
+    "switcher": 3,
+    "active": "Tech View"
+   }
+  },
+  "clearCollapsedPut": 200,
+  "collapsedSavedAfter": [],
+  "savedAfter": {
+   "status": 200,
+   "display": "tech_view",
+   "collapsedGroups": [],
+   "pinned": [
+    "b669608e",
+    "b51a80a5",
+    "aa23aa05"
+   ],
+   "filters": {
+    "status": []
+   },
+   "density": "comfortable",
+   "tab": "all"
+  }
+ },
+ "C368131": {
+  "technicians": {
+   "A": {
+    "email": "zz.wob.aaa.tara.lead@staging.shopview.local",
+    "id": "a9a98ce3-236b-4243-8c78-c31561587304",
+    "staff_id": "309924ab-95b2-40dc-8e8a-9bf22bc297b8",
+    "name": "Aaa ZZAUTOTEST Tara Lead",
+    "setup": [
+     "reactivate 201",
+     "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}"
+    ],
+    "active": true,
+    "location": "Staging Heavy Duty - 9919"
+   },
+   "B": {
+    "email": "zz.wob.aaa.jenny.pinned@staging.shopview.local",
+    "id": "7e081796-a0b7-4150-9fdf-9ac53d33831e",
+    "staff_id": "a7748aa8-3421-40ca-8d03-bdd68581606e",
+    "name": "Aaa ZZAUTOTEST Jenny Pinned",
+    "setup": [
+     "reactivate 201",
+     "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}"
+    ],
+    "active": true,
+    "location": "Staging Heavy Duty - 9919"
+   },
+   "C": {
+    "email": "zz.wob.aaa.theresa.pinned@staging.shopview.local",
+    "id": "60024a26-a04f-4a4e-be0b-19b156aa59b5",
+    "staff_id": "82608f53-2039-4d17-a5c5-c7c1647a609d",
+    "name": "Aaa ZZAUTOTEST Theresa Pinned",
+    "setup": [
+     "reactivate 201",
+     "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}",
+     "enrol Lethbridge 201"
+    ],
+    "active": true,
+    "location": "Staging Heavy Duty - 9919"
+   }
+  },
+  "workOrders": {
+   "set": [
+    "S2-35908 201",
+    "S2-35909 201"
+   ],
+   "now": [
+    "S2-35908 lead=Aaa ZZAUTOTEST Tara Lead",
+    "S2-35909 lead=Aaa ZZAUTOTEST Theresa Pinned"
+   ],
+   "wo1": "S2-35908",
+   "wo2": "S2-35909"
+  },
+  "pins": {
+   "admin": 200,
+   "viewOnly": 200
+  },
+  "viewOnlyPerms": 2,
+  "pinsSet": {
+   "saved": [
+    "Technician-B",
+    "Technician-C"
+   ],
+   "screen": [
+    "Unassigned:no pin control",
+    "Aaa ZZAUTOTEST Jenny Pinned:true",
+    "Aaa ZZAUTOTEST Theresa Pinned:true",
+    "Aaron Baker:false"
+   ]
+  },
+  "step2": {
+   "rowsFound": 1,
+   "button": "Deactivate Account",
+   "confirmText": [],
+   "toasts": [],
+   "done": true,
+   "activeNow": false
+  },
+  "step3": {
+   "before": {
+    "location": "Staging Heavy Duty - 9919",
+    "offeredAtHeavy": true
+   },
+   "locationField": {
+    "shown": "Location Staging Lethbridge - 4310 arrow_drop_down",
+    "calls": [
+     "POST /api/staff/82608f53-2039-4d17-a5c5-c7c1647a609d/change {\"first_name\":\"Aaa ZZAUTOTEST Theresa\",\"last_name\":\"Pinned\",\"email\":\"zz.wob.aaa.theresa.pinned@staging.shopview.local\",\"role_id\":\"af8d02b5-ecd1-4205-a82f-32a4d5bb1015\",\"workplace_id\":\"f8a8b802-7780-4b16-bf10-343caeb616b2\",\"job_title\":null,\"salary_type\":null,\"salary\":null,\"billable\":0,\"clockable\":tru"
+    ],
+    "stillOpen": 0
+   },
+   "after": {
+    "location": "Staging Lethbridge - 4310",
+    "active": true,
+    "offeredAtHeavy": true
+   },
+   "enrolmentRemovedBehindScreen": false,
+   "reading": "Location changed on the screen, and she is STILL offered as a technician at Heavy Duty (nothing added behind the screen)",
+   "unenrol": {
+    "button": 1,
+    "buttonText": "3 Departments",
+    "window": "Manage staff enrollments close Current enrollments QB Location Shop Time (Shop hand) delete_outline Staging Heavy Duty - 9919 Service delete_outline Staging Lethbridge - 4310 Service delete_outline Select Workplace Staging Heavy Duty - 9919 arrow_drop_down Select Department arrow_drop_down Enroll",
+    "heavyItem": 1,
+    "itemText": "Staging Heavy Duty - 9919 Service delete_outline",
+    "removeButtons": 1,
+    "removeLabel": null,
+    "windowAfter": "Manage staff enrollments close Current enrollments QB Location Shop Time (Shop hand) delete_outline Staging Lethbridge - 4310 Service delete_outline Select Workplace Staging Heavy Duty - 9919 arrow_drop_down Select Department arrow_drop_down Enroll",
+    "offeredAtHeavyAfter": false
+   }
+  },
+  "pinsBeforeStep7": [
+   "Technician-B",
+   "Technician-C"
+  ],
+  "step7": [
+   {
+    "id": "unassign",
+    "name": "Unassigned",
+    "header": "Unassigned 0 0 work orders",
+    "pinned": "no pin control",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 17
+   },
+   {
+    "id": "a7748aa8",
+    "name": "Aaa ZZAUTOTEST Jenny Pinned",
+    "header": "AZ Aaa ZZAUTOTEST Jenny Pinned Inactive 0 0 work orders",
+    "pinned": "true",
+    "cards": [],
+    "empty": "No work orders",
+    "left": 321
+   },
+   {
+    "id": "c57d19d7",
+    "name": "Aaron Baker",
+    "header": "AB Aaron Baker 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 625
+   },
+   {
+    "id": "52b5c2b4",
+    "name": "Aaron Zed",
+    "header": "AZ Aaron Zed 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 929
+   },
+   {
+    "id": "7f85bc58",
+    "name": "Admin ShopView",
+    "header": "AS Admin ShopView 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 1233
+   },
+   {
+    "id": "1bdce760",
+    "name": "Advisor Analysis",
+    "header": "AA Advisor Analysis 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 1537
+   },
+   {
+    "id": "b06dd063",
+    "name": "Ahtasham Admin",
+    "header": "AA Ahtasham Admin 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 1841
+   }
+  ],
+  "step8": {
+   "columnFound": true,
+   "column": {
+    "id": "82608f53",
+    "name": "Aaa ZZAUTOTEST Theresa Pinned",
+    "header": "AZ Aaa ZZAUTOTEST Theresa Pinned 1 1 work order",
+    "pinned": "no pin control",
+    "cards": [
+     "S2-35909"
+    ],
+    "empty": null,
+    "left": 809
+   }
+  },
+  "step9": {
+   "from": "not drawn",
+   "to": "on screen @312",
+   "whileHolding": [
+    {
+     "ms": 97,
+     "kind": "new text",
+     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AH Angelica Harper 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AF Amy Fernandez 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AM Ammar Mughamis 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AS Ahtsham Service Manager 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AP Ahtsham Parts Manger 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AF Ahtsham Foreman 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AS Ahtasham Service Advisor 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AA Ahtasham Admin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 257,
+     "kind": "new text",
+     "text": "AA Advisor Analysis 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 257,
+     "kind": "new text",
+     "text": "AS Admin ShopView 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 257,
+     "kind": "new text",
+     "text": "AZ Aaron Zed 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 257,
+     "kind": "new text",
+     "text": "AB Aaron Baker 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 257,
+     "kind": "new text",
+     "text": "AZ Aaa ZZAUTOTEST Jenny Pinned Inactive 0 0 work orders No work orders",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1544,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
+   "reach": {
+    "from": "on screen",
+    "toBeforePress": "not drawn",
+    "toWhileHolding": "on screen",
+    "toAtDrop": "on screen @312"
+   },
+   "shiftPrompt": null,
+   "message": [],
+   "watched": [
+    {
+     "ms": 97,
+     "kind": "new text",
+     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AH Angelica Harper 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AF Amy Fernandez 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AM Ammar Mughamis 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AS Ahtsham Service Manager 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AP Ahtsham Parts Manger 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AF Ahtsham Foreman 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AS Ahtasham Service Advisor 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 256,
+     "kind": "new text",
+     "text": "AA Ahtasham Admin 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 257,
+     "kind": "new text",
+     "text": "AA Advisor Analysis 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 257,
+     "kind": "new text",
+     "text": "AS Admin ShopView 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 257,
+     "kind": "new text",
+     "text": "AZ Aaron Zed 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 257,
+     "kind": "new text",
+     "text": "AB Aaron Baker 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 257,
+     "kind": "new text",
+     "text": "AZ Aaa ZZAUTOTEST Jenny Pinned Inactive 0 0 work orders No work orders",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1544,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
+   "leads": [
+    "S2-35908 lead=Aaa ZZAUTOTEST Tara Lead",
+    "S2-35909 lead=Aaa ZZAUTOTEST Theresa Pinned"
+   ]
+  },
+  "step10": {
+   "from": "not drawn",
+   "to": "not drawn",
+   "whileHolding": [
+    {
+     "ms": 86,
+     "kind": "new text",
+     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 289,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
+   "reach": {
+    "from": "on screen",
+    "toBeforePress": "on screen @1104",
+    "toAtDrop": "on screen @1104"
+   },
+   "shiftPrompt": null,
+   "message": [],
+   "watched": [
+    {
+     "ms": 86,
+     "kind": "new text",
+     "text": "S2-35908 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 289,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
+   "leads": [
+    "S2-35908 lead=Aaa ZZAUTOTEST Tara Lead",
+    "S2-35909 lead=Aaa ZZAUTOTEST Theresa Pinned"
+   ]
+  },
+  "step12": {
+   "from": "on screen @1125",
+   "to": "on screen @8",
+   "whileHolding": [
+    {
+     "ms": 87,
+     "kind": "new text",
+     "text": "S2-35909 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    }
+   ],
+   "reach": {
+    "from": "on screen",
+    "toBeforePress": "on screen @8",
+    "toAtDrop": "on screen @8"
+   },
+   "shiftPrompt": null,
+   "message": [
+    "Lead technician removed"
+   ],
+   "watched": [
+    {
+     "ms": 87,
+     "kind": "new text",
+     "text": "S2-35909 ZZAUTOTEST C368131 Pinned Gone",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 1618,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-10751 Quinn Card 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 1823,
+     "kind": "message",
+     "text": "Lead technician removed",
+     "cls": "q-notification row items-stretch q-notification--standard bg"
+    },
+    {
+     "ms": 2188,
+     "kind": "new text",
+     "text": "S2-35909 Approved Customer ZZAUTOTEST C368131 Pinned Gone ZZC131 VIN/serial VIN ZZWOB179203514347 Progress 0% Total price $0.00",
+     "cls": "board-column__card"
+    }
+   ],
+   "leads": [
+    "S2-35908 lead=Aaa ZZAUTOTEST Tara Lead",
+    "S2-35909 lead=none"
+   ]
+  },
+  "step13": {
+   "unassignedHoldsWo2": true,
+   "techCColumn": "no column",
+   "columnsRead": 285
+  },
+  "step15": {
+   "first": [
+    {
+     "id": "unassign",
+     "name": "Unassigned",
+     "header": "Unassigned 3881 3881 work orders",
+     "pinned": "no pin control",
+     "cards": [
+      "S2-33692",
+      "S2-32262",
+      "S2-36633",
+      "S2-33043",
+      "S2-33697",
+      "S2-34872",
+      "S2-33104",
+      "S2-32260",
+      "S2-32218",
+      "S2-32992",
+      "S2-35104"
+     ],
+     "empty": null,
+     "left": 17
+    },
+    {
+     "id": "a7748aa8",
+     "name": "Aaa ZZAUTOTEST Jenny Pinned",
+     "header": "AZ Aaa ZZAUTOTEST Jenny Pinned Inactive 0 0 work orders",
+     "pinned": "true",
+     "cards": [],
+     "empty": "No work orders",
+     "left": 321
+    },
+    {
+     "id": "309924ab",
+     "name": "Aaa ZZAUTOTEST Tara Lead",
+     "header": "AZ Aaa ZZAUTOTEST Tara Lead 1 1 work order",
+     "pinned": "false",
+     "cards": [
+      "S2-35908"
+     ],
+     "empty": null,
+     "left": 625
+    },
+    {
+     "id": "c57d19d7",
+     "name": "Aaron Baker",
+     "header": "AB Aaron Baker 21 21 work orders",
+     "pinned": "false",
+     "cards": [
+      "S2-35705",
+      "S2-35703",
+      "S2-33465",
+      "S2-35708",
+      "S2-35710",
+      "S2-34149",
+      "S2-36395",
+      "S2-36396",
+      "S2-36421",
+      "S2-36422",
+      "S2-36630"
+     ],
+     "empty": null,
+     "left": 929
+    },
+    {
+     "id": "52b5c2b4",
+     "name": "Aaron Zed",
+     "header": "AZ Aaron Zed 25 25 work orders",
+     "pinned": "false",
+     "cards": [
+      "S2-36365",
+      "S2-35704",
+      "S2-36364",
+      "S2-36366",
+      "S2-36367",
+      "S2-36368",
+      "S2-36369",
+      "S2-36370",
+      "S2-36371",
+      "S2-36372",
+      "S2-36373"
+     ],
+     "empty": null,
+     "left": 1233
+    },
+    {
+     "id": "7f85bc58",
+     "name": "Admin ShopView",
+     "header": "AS Admin ShopView 12 12 work orders",
+     "pinned": "false",
+     "cards": [
+      "S2-32136",
+      "S2-33016",
+      "S2-35248",
+      "S2-35249",
+      "S2-36632",
+      "S2-35300",
+      "S2-35313",
+      "S2-35392",
+      "S2-35706",
+      "S2-35707",
+      "S2-36638"
+     ],
+     "empty": null,
+     "left": 1537
+    }
+   ],
+   "techCColumn": "no column",
+   "techBColumn": {
+    "id": "a7748aa8-3421-40ca-8d03-bdd68581606e",
+    "name": "Aaa ZZAUTOTEST Jenny Pinned",
+    "count": 0,
+    "cards": [],
+    "pinned": "true",
+    "pinDisabled": false,
+    "empty": "No work orders",
+    "left": 321
+   }
+  },
+  "restore": {
+   "C": [
+    "enrol Heavy 201",
+    "Location Heavy 201",
+    "unenrol Leth 201",
+    "deactivate 201"
+   ],
+   "A": [
+    "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}",
+    "unenrol Leth 400 {\"errors\":[{\"error\":\"The enrollment doesn't exist\"}]}",
+    "deactivate 201"
+   ],
+   "B": [
+    "enrol Heavy 400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}",
+    "unenrol Leth 400 {\"errors\":[{\"error\":\"The enrollment doesn't exist\"}]}"
+   ],
+   "pinsAdmin": 200,
+   "pinsViewOnly": 200,
+   "read": {
+    "A": false,
+    "B": false,
+    "C": false,
+    "CLocation": "Staging Heavy Duty - 9919"
+   }
+  }
+ }
+}
