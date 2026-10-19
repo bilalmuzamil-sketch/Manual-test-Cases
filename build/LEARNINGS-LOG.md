@@ -912,3 +912,8 @@ window that does not appear; the test still passes. It is Automated → not rewo
 Also: the C368167 refusal message is read from the screen's notification as it shows; it fades before the next picture — the picture proves
 the outcome (Invoiced, lead unchanged), the reading proves the words.
 #run498 #staging #invoice #c850386 → L0453
+
+## L0463 — 2026-10-19 — Another session shares the staging Admin's saved Work Orders view; old batch scripts are not proof
+- **C614719-stg start state found** the Admin's saved view on `tab: work_orders` with ~80 groups collapsed — none of it set by this session. Another session works on staging as Admin at the same time and changes the SAME saved preferences (tab, collapsed groups, pins). Every script must set its own start state and read it back (startState/fixup-1017 pattern) — never trust what is saved. It may also explain why C96936's tab A came back on the Work Orders tab after a reload (probe `refresh-tab.mts`: production List keeps All after a reload; staging read queued).
+- **s3-batchA.mts's C96953 part set `scrollTop` from code and its Esther reading never moved** — a script that does not use the mouse and whose reading does not change is not evidence for "scrolls on its own" (skill 19 §9.7). Replaced by `c96953-cols.mts` (mouse wheel inside each column, wheel below a short column, wheel sideways collecting every column, count vs `candidates()`).
+#run498 #staging #shared-admin #preferences #instrument → L0458, L0461
