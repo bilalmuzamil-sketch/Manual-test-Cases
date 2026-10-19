@@ -1,0 +1,37 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on Staging (build v26.40.19-754919e) on 17 October 2026, against the spec (version 64), and compared the List with Production (v26.40.19-d2441a9). 7 of 7 checks passed.
+
+When a lead technician is deleted in Settings → Staff, their work orders now sit in one column on Board View and one group in Tech View called *Deleted technician*, with the *Inactive* marker and no drag grip. Work orders can be dragged out of it, nothing can be dropped in, and the List shows the lead the same way Production does today.
+
+*Before and after*
+!sv11416-01-deleted-technician.png|width=1024,height=522!
+_Top left (red): the picture in this ticket, with an "Unknown Technician" column and no marker. Top right (blue): Production today, List, before and after the lead of S2-968 was deleted: the Lead Technician cell changes from the name to "Unassigned". Bottom (green): staging today, the "Deleted technician" column on Board View and group in Tech View (orange: the Inactive marker; blue: a normal column's and group's drag grip, for comparison), and the List cell of S2-36641, "Unassigned", the same as Production. Window 1440 x 900 px, zoom 100%._
+
+*What I checked*
+||#||Check||Status||
+|1|Board View: work orders whose lead was deleted sit in one column headed *Deleted technician*, with the grey *Inactive* marker and no drag grip (other technician columns have one).|PASSED|
+|2|Tech View: the same work orders sit in one group *Deleted technician*, with the *Inactive* marker and no drag grip.|PASSED|
+|3|Two work orders whose leads were two different deleted technicians (S2-35709 and S2-36641) share the one column and the one group ("2 work orders").|PASSED|
+|4|Nothing can be dropped in: dragging a work order onto the Deleted technician column (Board View, from Unassigned) or group (Tech View, from ZZAUTOTEST S6 Pia Pills) changes nothing; the work order keeps its lead.|PASSED|
+|5|Dragging out works: on Board View, S2-35709 dragged to Unassigned shows "Lead technician removed" and has no lead; in Tech View, dragging it onto a technician's group shows "Lead technician updated" and the Deleted technician group goes away when it is empty.|PASSED|
+|6|The column and group show only while such a work order exists.|PASSED|
+|7|List: the Lead Technician cell of such a work order shows "Unassigned". Production today does exactly the same after a lead is deleted (checked on S2-968), so the List is unchanged.|PASSED|
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S3-R20e: Work orders whose lead technician was deleted in Settings → Staff (the name no longer exists) sit in one column on Board View and one group in Tech View labeled "Deleted technician", with the inactive marker and no drag grip. Work orders can be dragged out of it; nothing can be dropped onto it. List shows the Lead Technician as blank for these work orders, as today.{quote}
+Chris Ward chose option 2 in this ticket (16 October). For the List, "as today" is what Production shows today: the word "Unassigned" in the Lead Technician cell, on staging and on Production alike.
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com/workorders and click the *All* tab (top left).
+# Click *Search* in the bar above the list and type {{ZZAUTOTEST F1 Assigned To Me}}.
+# On the right of that bar, click the *Board View* button (the right of the three view buttons). Scroll the board all the way to the right: the last column is *Deleted technician* with a grey *Inactive* label and two cards, S2-35709 and S2-36641. It has no six-dot drag grip at the left of its header.
+# Click the *Tech View* button (the middle view button) and scroll to the bottom: the last group is *Deleted technician*, with the same *Inactive* label.
+# Back on Board View, drag a card from another column onto the Deleted technician column: it goes back where it was. Drag S2-35709 out to the *Unassigned* column: the message "Lead technician removed" appears.
+# Click the *List* button (the left view button) and search {{S2-36641}}: the *Lead Technician* column shows "Unassigned".
+
+*Screen recording*
+!sv11416-deleted-technician-staging-recording-voiceover.mp4|width=1280,height=800,alt="sv11416-deleted-technician-staging-recording-voiceover.mp4"!
+_Staging, build v26.40.19-754919e, 17 October 2026, window 1440 x 900 px, zoom 100%: the Tech View group (caption at the top so the group stays visible), a refused drop onto it, the Board View column, S2-35709 dragged out to Unassigned, and the List cell of S2-36641. Each caption is read from the page. With voice-over._

@@ -1437,15 +1437,16 @@ what is still owed.
 ## Board View & Tech View bug batch (staging v26.40.19-754919e) — raised 2026-10-17
 | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|
-| Access: fresh staging cookies (`sv_sso_session` / `PHPSESSID` / `cf_clearance` for `.staging.shopview.com`). Staging redeployed 18 Oct to v26.40.19-31ad1e1 and the sign-in expired (401 sso_required). Blocks: re-running SV-11405's checks on the new build + its new film, then posting it PASSED (QA lead ruled the Paid width "Not a fault", 18 Oct). | QA lead | SV-11405 comment | 2026-10-18 |
-| Decision: "Collapse all" label still reads "Collapse all" when every group with work orders is collapsed (a zero-work-order group that is not in the user's collapsed list counts as open). Raise it or not? | QA lead | nothing posted; data in build/board-tech-view-bugs-2026-10-16/collapse-all-observation/ | 2026-10-17 |
 | Decision: after a filter chip's x is used by keyboard, focus drops to the top of the page. No rule covers it. Raise it or not? | QA lead | nothing posted (SV-11409 passed on its own rule) | 2026-10-17 |
-| Decision: earlier voiced films on SV-11318, SV-11337, SV-11338 still contain 9–12 s of still frames (made before the idle cut for voiced films existed). Re-cut and replace? | QA lead | nothing blocked | 2026-10-17 |
 | Decision: SV-11422 — when the only matching work order is off screen (search S2-16688: Unassigned empty, row far down; Board card in a column off to the right), the first Tab lands on the Unassigned header. S11-R1 says "never a group or column header while a work order is shown". Does an off-screen row count as "shown"? | QA lead (Chris if he wants the PO) | SV-11422 comment (held, not posted); everything else on it passes | 2026-10-17 |
-| Decision: SV-11416 — S3-R20e says the List shows a deleted lead "as blank … as today"; today (Production) the cell reads "Unassigned", and staging matches. Passed on "as today". Want Chris asked to change the word "blank"? | QA lead | nothing (SV-11416 posted PASSED, 78930) | 2026-10-17 |
-| Decision: Tech View row Service Advisor avatar shows no name bubble and no tip on hover (S2-R23 covers technician avatars only; the advisor's name is printed beside it). Raise it or not? | QA lead | nothing (SV-11395 posted PASSED, 78927) | 2026-10-17 |
-| Decision: after a keyboard Unassign on Board View, focus jumps to the old lead's column header though it still has cards (S11-E1; SV-10230 is the general focus task). Raise it or not? | QA lead | nothing (SV-11419 posted PASSED, 78929) | 2026-10-17 |
-| Known: another session's pinned technicians (pinnedTechnicianIds in the shared admin's work-orders-list preference) were overwritten by one of our restore steps on 16–17 Oct and cannot be recovered; scripts now restore only their own keys. | — (for information) | anyone who had pinned technicians as the shared staging admin must re-pin | 2026-10-17 |
 
 - 2026-10-18 cleared: Board/Tech Paid pill width — QA lead answered "Not a fault (Recommended)": width follows the Status column in List/Tech View; cards have no column. SV-11405 → PASSED (to post after re-check on the new build); SV-11318 stays PASSED (78911 film size fixed in place).
 - 2026-10-17 cleared: SV-11407 Unassigned 2 px — posted PARTIALLY PASSED by S1-R8's own words ("fully shown"): 78932 + remaining issue 78933.
+- 2026-10-19 cleared (settled from PRD v64, Standing Rule 109(d)):
+  - "Collapse all" label with a 0-work-order group open: S2-R13a "While any group is expanded it reads 'Collapse all'" — a group showing its empty state is expanded, so the label is correct. Not a fault.
+  - Service Advisor avatar without a name bubble: S2-R23 gives the bubble to "a technician avatar on a row or card"; the advisor avatar is only required to follow density, and the name is printed beside it. Not a fault.
+  - Focus after a keyboard Unassign: S11-E1 requires focus to move to the next card in the same column. Already tracked: SV-10230 (Verify Phase 11) lists S11-E1 as not yet built (blocked on UX-19 / SQ-15). No new ticket.
+  - Old voiced films with still pauses (SV-11318, SV-11337, SV-11338): re-cut by Standing Rule 107 and replaced in place with dated notes (attachments 62559–62561). Sweep found 14 more comments with squashed films; all fixed in place with dated notes.
+  - SV-11416 List "blank" vs "Unassigned": QA lead ruled "Unassigned" is expected for this ticket only; dated note added to 78930.
+  - Staging cookies: received 2026-10-19.
+  - Pinned technicians overwritten (16–17 Oct): information only; scripts restore only their own keys since. Nothing further to do.

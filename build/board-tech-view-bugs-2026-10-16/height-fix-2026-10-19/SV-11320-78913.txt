@@ -1,0 +1,39 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on Staging (build v26.40.19-754919e) on 16 October 2026, against the spec (version 64). 7 of 7 checks passed.
+
+In Tech View every work order row now shows the six-dot drag grip at its left edge for users who can drag work orders, Unassigned's rows included. A view-only user sees no row grips. Dragging from anywhere on the row and clicking a row both still work.
+
+*Before and after*
+!sv11320-01-row-grips.png|width=1024,height=966!
+_Top left (red): the Tech View rows as reported on 14 October (picture from this ticket), with no grip. Top right: staging today as an admin, every row has the grip and the Unassigned header has none. Bottom: the same page as a Technician (view only), no row grips, while the technician headers keep theirs. Window 1440 x 900 px, browser zoom 100%._
+
+*What I checked*
+||#||Check||Status||
+|1|Admin (can drag work orders): every work order row shows the six-dot grip at its left edge, without hovering. Unassigned: 59 of 59 rows on screen, and 156 of 156 while scrolling down the list. Aaron Baker's group: 16 of 16.|PASSED|
+|2|The Unassigned group header shows no grip, for the admin and for the Technician.|PASSED|
+|3|Every technician group header shows the grip, for the admin and for the view-only Technician (59 of 59 headers each).|PASSED|
+|4|Technician role (reset to its template first; it can view work orders but not create or edit them): no row shows a grip. Unassigned: 0 of 59 rows. A technician's group (ZZAUTOTEST Ben Bravo): 0 of 57 rows.|PASSED|
+|5|Admin: dragging work order S2-35338 by the middle of its row (not the grip) from Ahtsham Foreman to Ahtsham Parts Manger moved it, with the message "Lead technician updated". Dragging it by its grip moved it back to Ahtsham Foreman.|PASSED|
+|6|One click on a row opens the work order, for the admin and for the Technician. A click where the mouse slips 2 pixels before release still opens it and does not start a drag.|PASSED|
+|7|Technician: dragging S2-35338 to another technician does nothing; it stays with Ahtsham Foreman and no message appears.|PASSED|
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S9-R1a: In Tech View every work order row, Unassigned's rows included, shows the design's six-dot drag grip at its left edge to users who can drag work orders (S4-N1). Every technician group header shows the grip to every user who can reorder technicians (S9-R2), view-only users included, because the technician order is personal. The Unassigned group header shows no grip, because Unassigned cannot move (S9-R8). The whole row still drags (S2-R8); the grip shows that it can.{quote}
+{quote}S4-N1: Require Work Orders create and edit permission to drag work orders or access Reassign lead technician.{quote}
+{quote}S2-R8: Clicking anywhere on a row, outside its own controls, opens the work order. A drag starts only after the pointer has moved a few pixels, so a click never turns into a drag.{quote}
+
+*How to see it yourself*
+# Open Staging as an admin: https://app.staging.shopview.com/workorders
+# On the right of the bar above the list there are three view buttons. Click the second one (the person icon) to open *Tech View*.
+# Click the small arrow to the left of *Unassigned*. Every work order row now has six small dots at its far left; the *Unassigned* header row has none, and each technician's header row has them.
+# In the search box type {{ZZAUTOTEST}}, then open the *Ahtsham Foreman* and *Ahtsham Parts Manger* groups with their small arrows. Press on the middle of row S2-35338 (not the dots), drag it onto the S2-35339 row under Ahtsham Parts Manger and let go: a green "Lead technician updated" message appears. Drag it back by its six dots onto the *Ahtsham Foreman* header.
+# Click once on any row: the work order opens.
+# Sign in as the Tech user (tech@shopview.com, role Technician) and repeat steps 2 and 3: the rows have no dots, the technician headers still do, and dragging a row moves nothing.
+
+*Screen recording*
+_Updated on 18 October 2026, 22:21 CDT: the recording's display size was corrected (it was showing squashed); nothing else changed._
+!sv11320-row-grips-staging-recording-voiceover.mp4|width=1280,height=800,alt="sv11320-row-grips-staging-recording-voiceover.mp4"!
+_Staging, build v26.40.19-754919e, 16 October 2026, window 1440 px, zoom 100%: first as an admin (grips counted, S2-35338 dragged across and back, a click opens it), then as the view-only Technician (no row grips, the drag does nothing). The counts are read from the page. With voice-over._

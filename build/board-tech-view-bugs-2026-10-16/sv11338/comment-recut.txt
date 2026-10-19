@@ -1,0 +1,36 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on Staging (build v26.40.19-754919e) on 16 October 2026. 5 of 5 checks passed.
+
+A technician without a photo now has a light-grey circle with dark-grey initials in the header of both Tech View and Board View, instead of the solid blue circle with white initials. Staging was redeployed while I was testing (build v26.40.19-1493c63 to v26.40.19-754919e), so I ran every check again on the new build and the results are the same.
+
+*Before and after*
+!sv11338-01-header-avatar-ticket-vs-staging.png|width=1110,height=1580!
+_Top: the header as reported on 14 October (the picture from this ticket): solid blue circle, white initials. Below: the same technician, Brandi Smith (no photo), on staging today in Tech View and Board View, in the light theme (green) and the dark theme (blue). Window 1600 x 1000 px, browser zoom 100%. These views do not exist on Production, so there is no Production picture._
+
+*What I checked*
+||#||Check||Status||
+|1|Tech View, every technician group header (67 of them): light-grey circle #EEF2F6 with dark-grey initials #4B5565, at Compact, Regular and Comfortable.|PASSED|
+|2|Board View, every technician column header (272 columns): the 266 technicians without a photo show the same grey circle and initials; the 6 with a photo still show their photo.|PASSED|
+|3|Header names in both views: 14px, weight 600, slate colour #364152.|PASSED|
+|4|*Reassign lead technician* window (opened from a card's *...* menu): all 255 technicians without a photo show the grey circle; the 6 with a photo show their photo.|PASSED|
+|5|Dark theme: the avatar is a dark-grey circle (#3A404B) with light-grey initials (#A9B1BE) in both views and in the Reassign window, never solid blue. The spec does not list the exact dark colours, so I checked they are no longer blue and that the initials are easy to read (about 4.8 to 1 contrast).|PASSED|
+
+On this build the Tech View header avatar also changes size with density (24, 28 and 36 px at Compact, Regular and Comfortable).
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 63:
+{quote}S2-R23: In Tech View and Board View, as in the design: a technician avatar without a photo is a light-grey circle (--sv-grey-100, #EEF2F6) with initials in --sv-grey-600 (#4B5565) in light mode, which meets accessible contrast (6.7:1; the design file's #697586 is 4.2:1); dark mode uses the design's dark colors; group and column header names are 14px, weight 600, in the design's slate text color (#364152) …{quote}
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com and click *Work Orders* in the top menu, then the *All* tab.
+# On the right of the bar above the list, click the second of the three view buttons (the person icon) to open *Tech View*.
+# Click *Collapse all* above the table, then scroll down to the *Brandi Smith* row. The small circle before her name is light grey with dark-grey letters "BS".
+# Click the third view button (the board icon) to open *Board View*, and scroll the board sideways to the *Brandi Smith* column. The circle at the top of the column is the same light grey.
+# On an *Approved* card in that column, click the *...* button and choose *Reassign lead technician*. The technicians without a photo show the same grey circles.
+
+*Screen recording*
+_Updated on 18 October 2026, 22:20 CDT: replaced with a shorter cut of the same recording (the still pauses were removed; every step and the voice are unchanged)._
+!sv11338-header-avatars-staging-recording-voiceover-v2.mp4|width=1280,height=800,alt="sv11338-header-avatars-staging-recording-voiceover-v2.mp4"!
+_Staging, build v26.40.19-754919e, 16 October 2026, window 1440 px, zoom 100%: Brandi Smith's header in Tech View and Board View, then the Reassign lead technician window, with the colours read from the screen at each step. With voice-over._

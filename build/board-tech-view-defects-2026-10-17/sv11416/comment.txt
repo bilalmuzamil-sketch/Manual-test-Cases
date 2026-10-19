@@ -17,7 +17,7 @@ _Top left (red): the picture in this ticket, with an "Unknown Technician" column
 |4|Nothing can be dropped in: dragging a work order onto the Deleted technician column (Board View, from Unassigned) or group (Tech View, from ZZAUTOTEST S6 Pia Pills) changes nothing; the work order keeps its lead.|PASSED|
 |5|Dragging out works: on Board View, S2-35709 dragged to Unassigned shows "Lead technician removed" and has no lead; in Tech View, dragging it onto a technician's group shows "Lead technician updated" and the Deleted technician group goes away when it is empty.|PASSED|
 |6|The column and group show only while such a work order exists.|PASSED|
-|7|List: the Lead Technician cell of such a work order shows "Unassigned". Production today does exactly the same after a lead is deleted (checked on S2-968), so the List is unchanged.|PASSED|
+|7|List: the Lead Technician cell of such a work order shows "Unassigned". Production today does exactly the same after a lead is deleted (checked on S2-968), so the List is unchanged. _Added on 18 October 2026, 22:22 CDT: the spec's sentence says "blank … as today", but the cell is not blank today on Production either; the QA lead ruled that "Unassigned", as Production shows it today, is the expected result for this ticket._|PASSED|
 
 *Where the expected result comes from*
 Spec "Work Orders — Board View & Tech View Display Options", version 64:

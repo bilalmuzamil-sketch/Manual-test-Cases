@@ -1,0 +1,34 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on Staging (build v26.40.19-754919e) on 16 October 2026, against the spec (version 64), and compared with Production (v26.40.19-d2441a9). 5 of 5 checks passed.
+
+The Search button on the Work Orders page now uses the design system's 20 px magnifier in List, Tech View and Board View, and keeps it when the search is open. Nothing else on the List's top bar has changed.
+
+*Before and after*
+!sv11404-01-search-icon.png|width=1024,height=738!
+_Top (red): Production today, the Material search icon (24 px, 20 px when the search is open). Below: staging in List, Tech View and Board View, closed and open. Bottom: the design file's magnifier next to staging's, both enlarged. Window 1440 x 900 px, browser zoom 100%._
+
+*What I checked*
+||#||Check||Status||
+|1|List, Tech View and Board View all show the same 20 px magnifier on the Search button, in the same grey as the other toolbar icons.|PASSED|
+|2|With the search open and text typed ("S2-33"), the same 20 px magnifier shows in all three views.|PASSED|
+|3|It is the design system's own magnifier: a round lens with a short handle, the same shape as in the design file. It is not Lucide's search icon (a bigger lens) or Material's.|PASSED|
+|4|The icon looks the same in every view: the identical drawing in List, Tech View and Board View.|PASSED|
+|5|Nothing else on the List's top bar changed: compared with Production, the only differences are the Search magnifier and the new view switcher (List / Tech View / Board View); the other 9 icons are identical.|PASSED|
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S1-R9a (extract): The filter chips and Search use the design file's icons in every display option, List included, each exactly as the design file draws it. … These are the only changes to List. Every other List icon is unchanged.{quote}
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com/workorders
+# Above the list, in the middle of the bar, find *Search* with the magnifier to its left: a thin round lens with a short handle.
+# Click the three view buttons on the right in turn (List, Tech View, Board View): the magnifier stays the same.
+# Click *Search* and type a few characters: the magnifier stays the same in the open search box.
+# Compare with Production (https://app.shopview.com/workorders): there the icon is a thicker, larger magnifier.
+
+*Screen recording*
+_Updated on 18 October 2026, 22:21 CDT: the recording's display size was corrected (it was showing squashed); nothing else changed._
+!sv11404-search-icon-staging-recording-voiceover.mp4|width=1280,height=800,alt="sv11404-search-icon-staging-recording-voiceover.mp4"!
+_Staging, build v26.40.19-754919e, 16 October 2026, window 1440 px, zoom 100%: the Search icon in List, Tech View and Board View, then with the search open, each read from the page. With voice-over._

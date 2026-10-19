@@ -1,0 +1,35 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on Staging (build v26.40.19-754919e) on 16 October 2026, against the spec (version 64). 5 of 5 checks passed.
+
+Tech View now opens on the design's 13 columns in the spec's order instead of the List's columns. On Site, VIN/Serial # and Lead Technician are off and can be added from the Columns menu, and the List's own columns are the same as on Production.
+
+*Before and after*
+!sv11317-01-tech-view-default-columns.png|width=1026,height=448!
+_Top: the header row as it was on 14 October (picture from this ticket), showing the List's columns. Middle: Admin, who has never changed Tech View's columns: 13 columns in the spec's order. Bottom: a Technician, who has no permission to see money: the same order with Total Price hidden._
+
+*What I checked*
+||#||Check||Status||
+|1|A user who has never changed Tech View's columns (Admin) sees exactly these 13, in this order: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created On, Total Price.|PASSED|
+|2|A Technician, who has no permission to see money, sees the same 12 columns in the same order; Total Price is not in the table and not in the Columns menu.|PASSED|
+|3|On Site, VIN/Serial # and Lead Technician are off at first. Each one, when added from the Columns menu, appears in its place in the table, and goes away again when switched off.|PASSED|
+|4|Status, Number and Customer are always shown and are not in the Columns menu; Assigned Techs can be switched off and back on.|PASSED|
+|5|The List is unchanged: its Columns menu has the same 14 options, in the same order, as on Production.|PASSED|
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S5-R4: Until the user changes Tech View's columns, Tech View shows these columns, in this order, as in the design: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created on, Total price (Total price subject to financial permission). On Site, VIN/Serial # and Lead Technician are off by default; each can be added with the column chooser (S2-R4). … List's columns are unchanged.{quote}
+{quote}S5-R4a: As in the design, Status, Number and Customer are always shown in Tech View and cannot be turned off.{quote}
+{quote}S7-R7: … It is on by default (S5-R4) and can be removed through the column chooser (S2-R4).{quote}
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com and click *Work Orders* in the top menu, then the *All* tab.
+# On the right of the bar above the list, click the second of the three view buttons (the person icon) to open *Tech View*.
+# Read the column headings across the top of the table: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created On, Total Price.
+# Click the *Columns* button (the icon with three vertical bars, just left of the view buttons). On Site, VIN/Serial # and Lead Technician are switched off; switch one on and it appears in the table.
+
+*Screen recording*
+_Updated on 18 October 2026, 22:21 CDT: the recording's display size was corrected (it was showing squashed); nothing else changed._
+!sv11317-tech-view-columns-staging-recording-voiceover.mp4|width=1280,height=666,alt="sv11317-tech-view-columns-staging-recording-voiceover.mp4"!
+_Staging, build v26.40.19-754919e, 16 October 2026, window 1920 px, zoom 100%, signed in as Admin: the 13 column headings and the Columns menu, read from the screen at each step. With voice-over._

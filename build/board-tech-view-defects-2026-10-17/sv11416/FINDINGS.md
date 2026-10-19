@@ -24,3 +24,6 @@
 
 ## Evidence / gate
 `ev/` (x16*, p16*, s16*.json, deleted-lead-staff*.json, exhibit, film), `voiceover/` (anchors pinned with `--fix` because two captions were placed at the top). Gate: build marker re-read, ticket TESTING STAGE (last comment Slavcho 16 Oct 11:13), PRD v64, voice scan clean, no technical section, read back 8 table rows + 2 media.
+
+## 2026-10-19
+- Row 7 (List cell "Unassigned" vs spec "blank … as today"): QA lead ruled, verbatim: "for this test case consider \"Unassigned\" as the expected behavior, but for this case only". Verdict stays PASSED; a dated note citing the ruling was added to row 7 of comment 78930 (read back OK). No question sent to Chris.

@@ -1,0 +1,42 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on Staging (build v26.40.19-754919e) on 17 October 2026, against the spec (version 64), and compared with Production (v26.40.19-d2441a9). 6 of 6 checks passed.
+
+When a tab has no work orders at all and no filter or search is on, Tech View and Board View now show "No work orders yet" with the clipboard icon and a Create Work Order button. With a search or a filter on, the matching "no results" messages show instead, and List is unchanged.
+
+*Before and after*
+!sv11408-01-first-run.png|width=1024,height=548!
+_Top left (red): Production today, List with no work orders: magnifier and "No work orders found.". Top right: staging List, the same. Bottom: staging Tech View and Board View with no work orders: the clipboard icon in a grey circle, both lines of text and a Create Work Order button. Location "ZZAUTOTEST F2 Empty Shop", Estimates tab. Tech View is not on production yet, so the production picture shows List. Window 1440 x 900 px, browser zoom 100%._
+
+!sv11408-02-filtered-and-button.png|width=1024,height=622!
+_Top: with a search only, and with the "Assigned to me" filter on, the "no results" messages show instead of the first-run state. Bottom: the empty-state button and the page's own Create Work Order button open the same New Work Order dialog._
+
+*What I checked*
+||#||Check||Status||
+|1|Tech View, no work orders, no filter or search (Estimates and Completed tabs of ZZAUTOTEST F2 Empty Shop): the clipboard icon in a grey circle, "No work orders yet", "Create a work order and assign a technician to see it here." word for word, and a *Create Work Order* button.|PASSED|
+|2|Board View in the same tabs shows the same state, word for word.|PASSED|
+|3|The *Create Work Order* button in the empty state opens the same New Work Order dialog as the page's *Create Work Order* button at the top right (same fields and buttons), in both views.|PASSED|
+|4|With only a search on and no matches ("zzqnomatch"): "No work orders match the search "zzqnomatch"." and no button, in Tech View and Board View.|PASSED|
+|5|With a filter on ("Assigned to me"), with or without a search: "No work orders match these filters", "Try removing a filter to widen your results." and a *Clear all filters* button. Clicking *Clear all filters* brings back the first-run state.|PASSED|
+|6|List is unchanged: with no work orders it shows the magnifier and "No work orders found.", the same as Production (location "Inventory 2"). Its search and filter messages are also the same words as Production.|PASSED|
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S1-N1c: When no filter and no search are active and the filter view has no work orders at all, Tech View and Board View show the design's first-run state: the clipboard-list icon in a grey circle, "No work orders yet", then "Create a work order and assign a technician to see it here.", with a Create Work Order button that does the same as the page's Create Work Order button. List keeps its production empty state.{quote}
+{quote}S1-N1a: With filters active, with or without a search, the empty state reads "No work orders match these filters", then "Try removing a filter to widen your results.", with a Clear all filters button.{quote}
+{quote}S1-N1b: With only a search active, the empty state reads "No work orders match the search "{search}"." and shows no button.{quote}
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com/workorders
+# Click your initials at the top right, then the location name, then *ZZAUTOTEST F2 Empty Shop*.
+# Click the *Estimates* tab (top left). This location has no estimates.
+# On the right of the bar above the list, click the *Tech View* button (the middle of the three view buttons, a person icon): you see "No work orders yet" and a *Create Work Order* button. Click the *Board View* button (the right one) to see the same.
+# Click the *Create Work Order* button in the middle of the page: the New Work Order dialog opens. Close it with the x at its top right; if asked "Are you sure you want to close this dialog?", click *Close*.
+# Click *Assigned to me* in the bar above the list: the message changes to "No work orders match these filters". Click *Clear all filters* to get the first view back.
+# Switch back to your own location when done.
+
+*Screen recording*
+_Updated on 18 October 2026, 22:21 CDT: the recording's display size was corrected (it was showing squashed); nothing else changed._
+!sv11408-first-run-staging-recording-voiceover.mp4|width=1280,height=800,alt="sv11408-first-run-staging-recording-voiceover.mp4"!
+_Staging, build v26.40.19-754919e, 17 October 2026, window 1440 px, zoom 100%, location ZZAUTOTEST F2 Empty Shop, Estimates tab: the first-run state in Tech View and Board View, both Create Work Order buttons opening the same dialog, the search and filter messages, Clear all filters, and List. Each text is read from the page. With voice-over._
