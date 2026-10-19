@@ -106,6 +106,7 @@ if you need it.
 | 2026-10-17 | SV-11406 film: the caption of the last step stayed on screen over the next page (a different search), saying something that page did not show | Before switching page between two voiced lines, show a short bridging caption saying what comes next; check the caption strip between lines, not only at each voice offset | `build/board-tech-view-bugs-2026-10-16/sv11406/FINDINGS.md`, playbook §AK 5f |
 
 | 2026-10-17 | A probe restored EVERY preference key that differed at the end of the run on the shared admin account, so it overwrote another session's pinned-technician change (pinnedTechnicianIds) that it never touched; the other value could not be recovered | Restore only the keys the script itself changes (list them explicitly: density, display, collapsedGroups, tab, filters…); never diff-and-restore all keys on a shared account | build/board-tech-view-defects-2026-10-17 scripts; playbook §AK note |
+| 2026-10-19 | SV-11422 held for days on a question Chris had already answered in the ticket comments, and older questions were sent to the QA lead without first settling them from the PRD | Read the ticket's PO/dev conversation and the PRD text before asking; a PO ruling decides only where the PRD matches it (else notify the PO), a developer ruling only with the QA lead's yes | CLAUDE.md Standing Rule 109 |
 
 ## The shape of the mistakes, in four lines
 

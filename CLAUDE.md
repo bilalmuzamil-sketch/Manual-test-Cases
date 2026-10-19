@@ -107,6 +107,7 @@
 > - **AFTER ANY CONFIRM CLICK, RE-READ THE DIALOG — ShopView often asks twice ("Yes" → orange "Are You Sure?") (Standing Rule 102); never call a control "does nothing" before that.**
 > - **BEFORE CALLING A TICKET OUTSTANDING, RE-OPEN IT LIVE: status + last comment (Standing Rule 103).**
 > - **SCREEN RECORDING ON A QA COMMENT ONLY IF THE QA LEAD SAYS YES — ASK ON EVERY TICKET FIRST; no yes = no recording (Standing Rule 104; method playbook §AK). ONLY AFTER A RECORDING YES, ASK A SECOND QUESTION: VOICE-OVER YES/NO — on yes, a professional female voice explains the bug/fix in plain, professional words, in short lines that do NOT make the film longer (Rule 104, amended 2026-10-16).**
+> - **A PO RULING WINS ONLY IF THE PRD MATCHES IT — otherwise notify the PO instead of passing; a developer ruling that matches the PRD wins only after the QA lead approves; settle open questions from the PRD first (Standing Rule 109).**
 > - **ANYTHING DONE OUTSIDE THE PRODUCT (developer tools, console, direct API) IS LABELLED "COMPARISON ONLY" WHERE IT APPEARS — what was done, where, and that it is NOT a ShopView feature; never call a page style a "setting" (Standing Rule 108).**
 > - **A RECORDING SHOWS ONLY THE ACTIVITY — NO LONG STILL PAUSES (Standing Rule 107): `finish_recording.py` cuts every still stretch to 1.5 s (2 s on the final result); check the frame grid and the printed idle-removed figure before posting.**
 > - **EVERY STEP SAYS EXACTLY WHERE TO CLICK OR LOOK (Standing Rule 101): screen area + exact label, no private names ("the blue bubble"), describe small things by colour/shape/text/position, say what appears, locator picture with a close-up, walk the steps live before posting.**
@@ -5497,6 +5498,24 @@ deliver the 7-tab management report.
     a product option or a workaround a customer could use. The pre-post gate (Rule 72) now checks every such step carries
     (a), (b) and (c). Ties to Standing Rules 7, 64, 65, 67, 72, 84 (the disclosure of a deliberately induced fault, which
     this generalises), 89 and 101.
+
+109. **A PO'S RULING WINS ONLY WHERE THE PRD SUPPORTS IT; WHERE IT DOESN'T, TELL THE PO INSTEAD OF PASSING — AND A
+    DEVELOPER'S RULING THAT MATCHES THE PRD WINS ONLY AFTER THE QA LEAD APPROVES IT (all projects).**
+    USER DIRECTIVE (2026-10-19, verbatim): *"Since Chris is the product owner, his ruling wins IF his ruling matches the
+    PRD. SO if the ruling of Chris does not match the PRD then chris need to be notified instead of marking the ticket as
+    passed. NOte the ruling of a PO can win only if the PRD matches that. However if there is a similar ruling from a
+    developer, and it matches the PRD that would win after my approval."* — and on open questions: *"Handle them to keep
+    them scientifically and logically correct and backed by PRD"*.
+    **(a) A PO RULING IN A TICKET COMMENT IS CHECKED AGAINST THE CURRENT PRD TEXT BEFORE IT IS USED.** Quote both side by
+    side (Rule 45(e)). If the PRD says the same thing (or the PO wrote it into the PRD), the ruling decides the verdict.
+    **(b) IF THE RULING AND THE PRD DISAGREE, OR THE PRD IS SILENT, THE TICKET IS NOT PASSED ON THE RULING.** Post a short
+    comment to the PO naming both texts and asking him to align them (update the PRD or correct the ruling); the ticket
+    waits. This refines Rule 32/33: "latest wins" does not let a comment override a PRD that was not updated to match.
+    **(c) A DEVELOPER'S RULING (e.g. "this is expected") THAT MATCHES THE PRD IS USED ONLY AFTER THE QA LEAD SAYS YES** —
+    ask him with both texts quoted. A developer ruling that does NOT match the PRD is never used.
+    **(d) OPEN QUESTIONS ARE ANSWERED FROM THE PRD FIRST.** Before asking anyone, read the PRD text that governs the point
+    and settle it there if it can be settled; only what the PRD genuinely does not decide goes to the PO (Rules 7/55).
+    Ties to Standing Rules 25, 32, 33, 45, 55, 57, 58 and 97.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
