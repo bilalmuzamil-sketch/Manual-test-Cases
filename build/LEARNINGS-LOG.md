@@ -937,3 +937,9 @@ C96936's tab A came back on "Work Orders" after its refresh (16:00), the cause w
 saved tab mid-run (L0463), not the product. Not a defect; nothing to report beyond that. The probe's saved-preference read returned the
 app's HTML (the API lives on the api. host, not the app host) — read preferences with `api(p)` from data.mts, not a relative fetch.
 #run498 #refresh #tab #shared-admin #probe → L0463
+
+## L0467 — 2026-10-19 — QA lead rulings: "no need" to tell Vlad about changed Automated cases (this time); the PO question sheet for Chris is the other session's Google Sheet
+- After I listed Automated cases changed today, he answered "No need" to telling Vlad (19 Oct, for these changes). Rule 65 stands in general; don't re-raise today's list.
+- For a PRD wording question to Chris he named the Google Sheet "WO Board and Tech View Feature Squad – Questions on design differences – for Chris Ward" (id 1coGNz1ZNj1GiFA4rS7pt9nwKsNgE8bCLpuutygK4iQs, tab "Questions for Chris", columns # · Topic · Question for you · What we know today (with (a)/(b) options) · Your answer · Where we found it). Add a row at the bottom, copy the row above's format (copyPaste PASTE_FORMAT), plain words, quote the PRD sentence live.
+- C368167 step 2 now runs on both builds ("If a New Customer Payment window opens, leave it open … If no such window opens, simply go on").
+#run498 #ruling #po-sheet #vlad → L0462, L0466

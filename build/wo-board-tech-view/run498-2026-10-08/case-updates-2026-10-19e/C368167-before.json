@@ -1,0 +1,189 @@
+{
+ "case": {
+  "id": 368167,
+  "title": "A refused lead change on the work order page shows an error, keeps the old lead",
+  "section_id": 47110,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 3,
+  "milestone_id": null,
+  "refs": null,
+  "created_by": 3,
+  "created_on": 1791450467,
+  "updated_by": 3,
+  "updated_on": 1792408228,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 3,
+  "is_deleted": 0,
+  "is_ai_generated": false,
+  "is_ai_automated": false,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 3,
+  "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as an Admin user (Work orders &gt; View and Create &amp; Edit) at {Location-A}, in a desktop browser window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Two active technicians work at {Location-A}: \"Esther Howard\" (the expected results name her) and {Technician-B}, who is offered in the work order page's \"Lead Technician\" list.<br>For example: {Technician-B} is Jenny Wilson.</li><li>Customer {Customer-A}, used by this case only, has work order {Work-order-1}, led by \"Esther Howard\", with status Complete (all lines complete and reviewed, not invoiced).<br>For example: {Customer-A} is ZZAUTOTEST Refused Lead Change and {Work-order-1} is S2-37327.</li><li>Two tabs of the same browser window are open, tab 1 and tab 2, both signed in as you. Do not sign in again in a private window: a second sign-in can end the first tab's session.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+  "custom_steps": "<ol><li>In tab 1, open {Work-order-1} and leave the page open.</li><li>In tab 2, open {Work-order-1}, click the \"Finance\" tab and click \"Create Invoice\". Leave the \"New Customer Payment\" window open: do not pay and do not close it (closing it with its X takes the invoice back off).</li><li>In tab 1, without reloading, click \"Lead Technician\" on the status card.</li><li>Pick {Technician-B}.</li><li>Read the message that appears and the \"Lead Technician\" field.</li><li>Reload tab 1 and read \"Lead Technician\".</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 5: an error message appears (write down its words, e.g. \"The lead technician can't be changed once a work order is Invoiced or Paid.\") and the Lead Technician field goes back to \"Esther Howard\".</li><li>Step 6: after the reload Lead Technician still reads \"Esther Howard\". The change was not saved.</li><li>If browser 1 already shows the field disabled at step 3 because the page refreshed itself, write 'page refreshed itself' in the result comment and pass on the disabled field.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 1; QA handoff test plan (generated 2026-10-08), \u00a77; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (\u00a74 Key Decisions). Source-verified 8 October 2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>Dev reply High 1:</strong> &ldquo;A refused change now shows an error and puts the old value back.&rdquo;</li><li><strong>QA handoff \u00a77:</strong> &ldquo;A refused change shows an error and puts the old value back.&rdquo;</li><li><strong>QA handoff \u00a77:</strong> &ldquo;changing the lead from the dialog, by a board drag or from the detail card is refused with \"The lead technician can't be changed once a work order is Invoiced or Paid.\"&rdquo;</li><li><strong>PRD \u00a74 Key Decisions (lead lock):</strong> &ldquo;Lead technician cannot be changed once a work order is Invoiced or Paid. This is a product rule, not only a screen rule, so it must hold on every path that changes the lead technician \u2014 board drag, Reassign dialog, and the work order detail page.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: READY</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": [],
+  "version": 5
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 4,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": [
+   {
+    "id": 30403,
+    "type_id": 6,
+    "created_on": 1791468158,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Sign in to the Work Orders build under test as a user whose role has Work Orders view and Work Orders create and edit. To check: Settings &gt; Roles &amp; Permissions &gt; open the role &gt; Work Orders (an Owner or Admin role has both).</li><li>Use a desktop browser window at least 1024 px wide.</li><li>In the top bar, pick the location you will test in (e.g. \"Heavy Duty\") and stay in it for the whole case.</li><li>At least 2 technicians are eligible at this location (e.g. \"Esther Howard\", \"Ralph Edwards\"). A staff member is eligible when Clockable is on, the staff record is Active, the role is neither Office nor Time Clock User, and they are enrolled at this location. To add one:<ul><li>Settings &gt; Staff &gt; add a staff member, enter a first and last name (e.g. \"Ralph Edwards\") and an email.</li><li>Pick a role that is not Office or Time Clock User (e.g. \"Technician\"), turn Clockable on, keep the record Active, enrol the staff member at this location, then Save.</li></ul></li><li>Create a customer used only by this case: Customers &gt; New Customer, name (e.g. \"ZZAUTOTEST Regression Co\"), add an asset with a unit number and year/make/model (e.g. unit \"TRK-118\", \"2022 Freightliner M2\"), then Save.</li><li>To create a work order: Work Orders &gt; Create Work Order &gt; pick the case customer and its asset &gt; create it, and write down the number the build gives it (the numbers in this case are examples, e.g. \"S1-702\").</li><li>How to reach each status: a new work order starts as Estimate. Approved = click each line's Approve (check) button. In Progress, Review (Ready for Review) and Complete = the status control on the work order page. Invoiced = Finance tab &gt; Create Invoice (the work order needs a contact person). Paid = record a payment for the full amount on that invoice. Set the lead technician before invoicing.</li><li>A second browser (or a private window) where you can sign in at the same location.</li><li>Create one work order for the case customer with a contact person (e.g. \"S1-705\"), set Lead Technician to \"Esther Howard\", add one line and approve it so the status reads Approved.</li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 2 tabs of the same browser \u00b7 about 15 minutes</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.</li><li>Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders &gt; View and Create &amp; Edit (check: your initials (top right) &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; edit).</li><li>Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials &gt; Change Location).</li><li>2 technicians eligible at this location: active, Role Technician, at least one Department, Location Staging Heavy Duty - 9919, Time Clock on. Names are examples (\"Esther Howard\", \"Ralph Edwards\").</li><li>Customer \"ZZAUTOTEST Refused Lead Change\" (used by this case only) with one contact and one asset.</li><li>One work order [WO-1] for that customer with one completed line, Lead Technician = [Tech-A], status Complete (all lines complete and reviewed, not yet invoiced).</li><li>Two tabs of the same browser window, both signed in as Admin ShopView (open the second with right-click on the work order &gt; Open link in new tab). Do not sign in again in a private window: a second quick-login can end the first tab's session.</li><li>Names and numbers are examples.</li></ul><p><strong>Setup</strong></p><ol><li>Your initials (top right) &gt; Settings &gt; Staff: if no suitable technician exists, click New Staff Member &gt; First Name, Last Name, Email &gt; Role = Technician &gt; Departments = any one (at least one Department is required) &gt; Location = Staging Heavy Duty - 9919 &gt; turn Time Clock on &gt; Save &amp; Close. Record the technician as [Tech-A] (the expected results call this technician \"Esther Howard\").</li><li>Your initials (top right) &gt; Settings &gt; Staff: if no suitable technician exists, click New Staff Member &gt; First Name, Last Name, Email &gt; Role = Technician &gt; Departments = any one (at least one Department is required) &gt; Location = Staging Heavy Duty - 9919 &gt; turn Time Clock on &gt; Save &amp; Close. Record the technician as [Tech-B] (the expected results call this technician \"Ralph Edwards\"). Use a second, different technician.</li><li>Customers &gt; New Customer &gt; Name \"ZZAUTOTEST Refused Lead Change\" &gt; Save (the customer page opens). Contacts tab &gt; New Contact &gt; First Name \"ZZAUTOTEST\", Last Name \"Contact\" &gt; Save. Assets tab &gt; New Asset &gt; Contact = ZZAUTOTEST Contact &gt; Year 2022 &gt; Make: type \"Freight\" and pick Freightliner &gt; Model: type \"M2\" and pick it &gt; Unit \"TRK-118\" &gt; Save (Contact and Make are required).</li><li>Work Orders &gt; Create Work Order &gt; New Work Order: Customer = \"ZZAUTOTEST Refused Lead Change\" &gt; Asset = its asset &gt; Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-1] (the expected results call it \"S1-705\").</li><li>In New Line &gt; What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\" (it has no parts) &gt; turn Line Approved on &gt; Save &amp; Close. The status reads Approved.</li><li>On [WO-1], on the status card at the left, click Lead Technician and pick [Tech-A]. (Lead Technician is a dropdown only once the work order is Approved; while it is an Estimate it reads \"Unassigned\" and cannot be changed.) The choice saves at once.</li><li>Bring it to Complete: on the Lines tab click Complete on the line &gt; Tech Story: type any text &gt; if a \"Missing Details (1)\" step shows, click it and type a Mileage &gt; Complete Line (or Complete All Lines). The message \"Work order sent to review.\" appears and the status reads Review. Click Mark Reviewed; if a Mark as reviewed window asks for VIN, type any 17 characters (e.g. 1FVACWDT1BDAZ0001) &gt; Confirm Review. The status reads Complete.</li><li>Check the setup worked: reload [WO-1]. The status reads Complete, Lead Technician reads [Tech-A] and on the Finance tab the Create Invoice button can be clicked. Do not click it yet.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>In browser 1, open \"S1-705\" and leave the page open.</li><li>In browser 2, open \"S1-705\", click the Finance tab and click Create Invoice so the work order is Invoiced.</li><li>In browser 1, without reloading, click Lead Technician on the status card.</li><li>Pick \"Ralph Edwards\".</li><li>Read the message that appears and the Lead Technician field.</li><li>Reload browser 1 and read Lead Technician.</li></ol>",
+      "new_value": "<ol><li>In tab 1, open [WO-1] and leave the page open.</li><li>In tab 2, open [WO-1], click the Finance tab and click Create Invoice so the work order is Invoiced. Close the New Customer Payment window that opens (the X at its top right) without paying.</li><li>In tab 1, without reloading, click Lead Technician on the status card.</li><li>Pick [Tech-B].</li><li>Read the message that appears and the Lead Technician field.</li><li>Reload tab 1 and read Lead Technician.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 5: an error message appears (write down its words, e.g. \"The lead technician can't be changed once a work order is Invoiced or Paid.\") and the Lead Technician field goes back to \"Esther Howard\".</li><li>Step 6: after the reload Lead Technician still reads \"Esther Howard\". The change was not saved.</li><li>If browser 1 already shows the field disabled at step 3 because the page refreshed itself, write 'page refreshed itself' in the result comment and pass on the disabled field.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 1; QA handoff test plan (generated 2026-10-08), \u00a77; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (\u00a74 Key Decisions). Source-verified 8 October 2026; not yet build-verified.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>Dev reply High 1:</strong> &ldquo;A refused change now shows an error and puts the old value back.&rdquo;</li><li><strong>QA handoff \u00a77:</strong> &ldquo;A refused change shows an error and puts the old value back.&rdquo;</li><li><strong>QA handoff \u00a77:</strong> &ldquo;changing the lead from the dialog, by a board drag or from the detail card is refused with \"The lead technician can't be changed once a work order is Invoiced or Paid.\"&rdquo;</li><li><strong>PRD \u00a74 Key Decisions (lead lock):</strong> &ldquo;Lead technician cannot be changed once a work order is Invoiced or Paid. This is a product rule, not only a screen rule, so it must hold on every path that changes the lead technician \u2014 board drag, Reassign dialog, and the work order detail page.&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 5: an error message appears (write down its words, e.g. \"The lead technician can't be changed once a work order is Invoiced or Paid.\") and the Lead Technician field goes back to \"Esther Howard\".</li><li>Step 6: after the reload Lead Technician still reads \"Esther Howard\". The change was not saved.</li><li>If browser 1 already shows the field disabled at step 3 because the page refreshed itself, write 'page refreshed itself' in the result comment and pass on the disabled field.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 1; QA handoff test plan (generated 2026-10-08), \u00a77; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (\u00a74 Key Decisions). Source-verified 8 October 2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>Dev reply High 1:</strong> &ldquo;A refused change now shows an error and puts the old value back.&rdquo;</li><li><strong>QA handoff \u00a77:</strong> &ldquo;A refused change shows an error and puts the old value back.&rdquo;</li><li><strong>QA handoff \u00a77:</strong> &ldquo;changing the lead from the dialog, by a board drag or from the detail card is refused with \"The lead technician can't be changed once a work order is Invoiced or Paid.\"&rdquo;</li><li><strong>PRD \u00a74 Key Decisions (lead lock):</strong> &ldquo;Lead technician cannot be changed once a work order is Invoiced or Paid. This is a product rule, not only a screen rule, so it must hold on every path that changes the lead technician \u2014 board drag, Reassign dialog, and the work order detail page.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 31007,
+    "type_id": 6,
+    "created_on": 1791544156,
+    "user_id": 1,
+    "changes": [
+     {
+      "type_id": 1,
+      "old_text": " Not Automated",
+      "new_text": " Automated",
+      "label": "Automation status",
+      "options": {
+       "is_required": true,
+       "default_value": "1",
+       "items": "1, Not Automated\n2, Cannot be automated\n3, Automated\n4, Pending",
+       "format": "markdown"
+      },
+      "field": "custom_atmstatus",
+      "old_value": 1,
+      "new_value": 3
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33862,
+    "type_id": 6,
+    "created_on": 1792406768,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>In tab 1, open [WO-1] and leave the page open.</li><li>In tab 2, open [WO-1], click the Finance tab and click Create Invoice so the work order is Invoiced. Close the New Customer Payment window that opens (the X at its top right) without paying.</li><li>In tab 1, without reloading, click Lead Technician on the status card.</li><li>Pick [Tech-B].</li><li>Read the message that appears and the Lead Technician field.</li><li>Reload tab 1 and read Lead Technician.</li></ol>",
+      "new_value": "<ol><li>In tab 1, open [WO-1] and leave the page open.</li><li>In tab 2, open [WO-1], click the Finance tab and click Create Invoice so the work order is Invoiced. Leave the New Customer Payment window that opens as it is: do not pay and do not close it (closing it with its X takes the invoice back off and the work order returns to Complete).</li><li>In tab 1, without reloading, click Lead Technician on the status card.</li><li>Pick [Tech-B].</li><li>Read the message that appears and the Lead Technician field.</li><li>Reload tab 1 and read Lead Technician.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33989,
+    "type_id": 6,
+    "created_on": 1792408228,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 2 tabs of the same browser \u00b7 about 15 minutes</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.</li><li>Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders &gt; View and Create &amp; Edit (check: your initials (top right) &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; edit).</li><li>Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials &gt; Change Location).</li><li>2 technicians eligible at this location: active, Role Technician, at least one Department, Location Staging Heavy Duty - 9919, Time Clock on. Names are examples (\"Esther Howard\", \"Ralph Edwards\").</li><li>Customer \"ZZAUTOTEST Refused Lead Change\" (used by this case only) with one contact and one asset.</li><li>One work order [WO-1] for that customer with one completed line, Lead Technician = [Tech-A], status Complete (all lines complete and reviewed, not yet invoiced).</li><li>Two tabs of the same browser window, both signed in as Admin ShopView (open the second with right-click on the work order &gt; Open link in new tab). Do not sign in again in a private window: a second quick-login can end the first tab's session.</li><li>Names and numbers are examples.</li></ul><p><strong>Setup</strong></p><ol><li>Your initials (top right) &gt; Settings &gt; Staff: if no suitable technician exists, click New Staff Member &gt; First Name, Last Name, Email &gt; Role = Technician &gt; Departments = any one (at least one Department is required) &gt; Location = Staging Heavy Duty - 9919 &gt; turn Time Clock on &gt; Save &amp; Close. Record the technician as [Tech-A] (the expected results call this technician \"Esther Howard\").</li><li>Your initials (top right) &gt; Settings &gt; Staff: if no suitable technician exists, click New Staff Member &gt; First Name, Last Name, Email &gt; Role = Technician &gt; Departments = any one (at least one Department is required) &gt; Location = Staging Heavy Duty - 9919 &gt; turn Time Clock on &gt; Save &amp; Close. Record the technician as [Tech-B] (the expected results call this technician \"Ralph Edwards\"). Use a second, different technician.</li><li>Customers &gt; New Customer &gt; Name \"ZZAUTOTEST Refused Lead Change\" &gt; Save (the customer page opens). Contacts tab &gt; New Contact &gt; First Name \"ZZAUTOTEST\", Last Name \"Contact\" &gt; Save. Assets tab &gt; New Asset &gt; Contact = ZZAUTOTEST Contact &gt; Year 2022 &gt; Make: type \"Freight\" and pick Freightliner &gt; Model: type \"M2\" and pick it &gt; Unit \"TRK-118\" &gt; Save (Contact and Make are required).</li><li>Work Orders &gt; Create Work Order &gt; New Work Order: Customer = \"ZZAUTOTEST Refused Lead Change\" &gt; Asset = its asset &gt; Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-1] (the expected results call it \"S1-705\").</li><li>In New Line &gt; What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\" (it has no parts) &gt; turn Line Approved on &gt; Save &amp; Close. The status reads Approved.</li><li>On [WO-1], on the status card at the left, click Lead Technician and pick [Tech-A]. (Lead Technician is a dropdown only once the work order is Approved; while it is an Estimate it reads \"Unassigned\" and cannot be changed.) The choice saves at once.</li><li>Bring it to Complete: on the Lines tab click Complete on the line &gt; Tech Story: type any text &gt; if a \"Missing Details (1)\" step shows, click it and type a Mileage &gt; Complete Line (or Complete All Lines). The message \"Work order sent to review.\" appears and the status reads Review. Click Mark Reviewed; if a Mark as reviewed window asks for VIN, type any 17 characters (e.g. 1FVACWDT1BDAZ0001) &gt; Confirm Review. The status reads Complete.</li><li>Check the setup worked: reload [WO-1]. The status reads Complete, Lead Technician reads [Tech-A] and on the Finance tab the Create Invoice button can be clicked. Do not click it yet.</li></ol>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as an Admin user (Work orders &gt; View and Create &amp; Edit) at {Location-A}, in a desktop browser window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Two active technicians work at {Location-A}: \"Esther Howard\" (the expected results name her) and {Technician-B}, who is offered in the work order page's \"Lead Technician\" list.<br>For example: {Technician-B} is Jenny Wilson.</li><li>Customer {Customer-A}, used by this case only, has work order {Work-order-1}, led by \"Esther Howard\", with status Complete (all lines complete and reviewed, not invoiced).<br>For example: {Customer-A} is ZZAUTOTEST Refused Lead Change and {Work-order-1} is S2-37327.</li><li>Two tabs of the same browser window are open, tab 1 and tab 2, both signed in as you. Do not sign in again in a private window: a second sign-in can end the first tab's session.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>In tab 1, open [WO-1] and leave the page open.</li><li>In tab 2, open [WO-1], click the Finance tab and click Create Invoice so the work order is Invoiced. Leave the New Customer Payment window that opens as it is: do not pay and do not close it (closing it with its X takes the invoice back off and the work order returns to Complete).</li><li>In tab 1, without reloading, click Lead Technician on the status card.</li><li>Pick [Tech-B].</li><li>Read the message that appears and the Lead Technician field.</li><li>Reload tab 1 and read Lead Technician.</li></ol>",
+      "new_value": "<ol><li>In tab 1, open {Work-order-1} and leave the page open.</li><li>In tab 2, open {Work-order-1}, click the \"Finance\" tab and click \"Create Invoice\". Leave the \"New Customer Payment\" window open: do not pay and do not close it (closing it with its X takes the invoice back off).</li><li>In tab 1, without reloading, click \"Lead Technician\" on the status card.</li><li>Pick {Technician-B}.</li><li>Read the message that appears and the \"Lead Technician\" field.</li><li>Reload tab 1 and read \"Lead Technician\".</li></ol>"
+     }
+    ],
+    "comments": []
+   }
+  ]
+ }
+}

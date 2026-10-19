@@ -325,3 +325,8 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
   re-run with a mouse-driven script (c96953-cols.mts) in progress. Facts: no New Customer Payment window after Create Invoice on c850386
   (L0462, C368167 step 2 wording now stale, Automated → asked); scrollbar measurements need --hide-scrollbars off (L0464). Run: 264 Passed
   · 7 Failed · 0 Blocked · 10 Retest.
+
+- 19 Oct (17:10 UTC) — QA lead: (1) C368167 step 2 reworded so it runs whether or not the payment window opens (case-updates-2026-10-19e/);
+  (2) no need to tell Vlad; (3) authoring notes: leave for now; (4) PRD v66 S3-R20e "blank, as today" vs "Unassigned" added as row 19 of
+  Chris's sheet https://docs.google.com/spreadsheets/d/1coGNz1ZNj1GiFA4rS7pt9nwKsNgE8bCLpuutygK4iQs (tab "Questions for Chris").
+  New in run 498 since 16:48: C682421 (Blocked by another session, SV-11422) and C682422–C682428 (untested: Assign lead dialog / Undo).
