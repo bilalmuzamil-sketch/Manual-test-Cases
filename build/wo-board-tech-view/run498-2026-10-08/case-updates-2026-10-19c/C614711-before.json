@@ -1,0 +1,240 @@
+{
+ "case": {
+  "id": 614711,
+  "title": "Work orders of a deleted lead sit under Deleted technician, which takes no drops",
+  "section_id": 13238,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": "SV-10046,SV-11416",
+  "created_by": 3,
+  "created_on": 1792144650,
+  "updated_by": 3,
+  "updated_on": 1792177906,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 22,
+  "is_deleted": 0,
+  "is_ai_generated": false,
+  "is_ai_automated": false,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 1,
+  "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as an Admin user (the \"Admin\" role, which has Work orders &gt; View and Create &amp; Edit) at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Two technicians are active at {Location-A} with the \"Technician\" role: {Technician-A} and {Technician-B}. {Technician-A} was made for this case only and has no labor on any work order, because this test deletes that staff record.<br>For example: {Technician-A} is ZZAUTOTEST C614711 Dana and {Technician-B} is ZZAUTOTEST C614711 Eli.</li><li>Customer {Customer-A} has two Approved work orders: {Work-order-1} led by {Technician-A}, and {Work-order-2} with no lead technician.<br>For example: {Customer-A} is ZZAUTOTEST C614711 Deleted Lead, and {Work-order-1} and {Work-order-2} are S10043-17901 and S10043-17902.</li><li>Starting screen: your initials (top right) &gt; \"Settings\" &gt; \"Staff\", in a browser window at least 1024 px wide.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+  "custom_steps": "<ol><li>Click the pencil icon on {Technician-A}.</li><li>Click \"Delete\" and confirm.</li><li>Go to \"Work Orders\" &gt; \"All\" &gt; \"Board View\".</li><li>Type the name of {Customer-A} in \"Search\".</li><li>Read the header of the column that holds the card for {Work-order-1}.</li><li>Drag the card for {Work-order-2} from \"Unassigned\" onto that column and let go.</li><li>Click \"Tech View\" in the display switcher.</li><li>Click \"List\" in the display switcher.</li><li>Click \"Board View\" in the display switcher.</li><li>Drag the card for {Work-order-1} onto {Technician-B}'s column and let go.</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the staff record of {Technician-A} opens.</li><li>Step 2: {Technician-A} is no longer in the \"Staff\" list.</li><li>Step 3: Board View shows.</li><li>Step 4: the cards for {Work-order-1} and {Work-order-2} show.</li><li>Step 5: the header reads \"Deleted technician\", shows the inactive marker and has no drag grip.</li><li>Step 6: the drop is refused: the card for {Work-order-2} stays in \"Unassigned\".</li><li>Step 7: {Work-order-1} sits in a group headed \"Deleted technician\" with the inactive marker.</li><li>Step 8: in the row for {Work-order-1} the \"Lead Technician\" cell is blank.</li><li>Step 9: Board View shows again.</li><li>Step 10: {Work-order-1} moves to {Technician-B}'s column and \"Lead technician updated\" shows.</li></ul><p>Known problem (SV-11416, open: https://shopview.atlassian.net/browse/SV-11416): today, at step 5, the column reads \"Unknown Technician\" with a generic person icon, no inactive marker and a drag grip, and the deleted technician's name is not shown.</p><p>1. If you see exactly that, mark this test Failed and raise nothing new.</p><p>2. If it fails in a different way, that is a new problem: report it.</p><p>3. If it passes, the fix has shipped: tell the QA lead.</p><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10046 (Story 3, Board View \u2014 board by lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S3-R20e, S4-N5, S3-N4 and S2-N3, read 16 Oct 2026. Defect SV-11416 (open). Source-verified 16 October 2026. Last checked against build v26.40.19-1493c63 (staging) on 10/16/2026.</p><p>SV-11416 asked the product owner what happens when a lead technician is deleted; the spec covered only a deactivated lead. PRD version 59 (16 Oct 2026, Chris Ward ruling on Slavcho Mitrov's question on SV-11416) added S3-R20e: such work orders sit under \"Deleted technician\" with the inactive marker and no grip, take no drops, can be dragged out, and List shows the lead blank. This case follows version 59 and later (was: no \"Unknown Technician\" column, the header naming the technician as List does).</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S3-R20e:</strong> &ldquo;Work orders whose lead technician was deleted in Settings \u2192 Staff (the name no longer exists) sit in one column on Board View and one group in Tech View labeled \u201cDeleted technician\u201d, with the inactive marker and no drag grip. Work orders can be dragged out of it; nothing can be dropped onto it. List shows the Lead Technician as blank for these work orders, as today.&rdquo;</li><li><strong>S4-N5:</strong> &ldquo;Nothing can be dropped onto the column/group of an inactive technician (S2-N2, S3-N2) or of a technician who is not enrolled at this location (S3-R20c).&rdquo;</li><li><strong>S3-N4:</strong> &ldquo;Show an inactive indicator on deactivated technician columns.&rdquo;</li><li><strong>S2-N3:</strong> &ldquo;Indicate deactivated technicians as inactive in group headers.&rdquo;</li></ul><p>AUTOMATION: READY - EXPECT FAIL (SV-11416)</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": [],
+  "version": 6
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 5,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": [
+   {
+    "id": 33435,
+    "type_id": 6,
+    "created_on": 1792144702,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner or Admin user whose role has Work orders &gt; View and Work orders &gt; Create &amp; Edit, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.</li><li>Technician {Technician-A} (for example ZZAUTOTEST SV11416 Dana Delete) is a new staff member made for this case only, active at {Location-A} with Time Clock on and the Technician role, with no labor recorded on any work order, because this test deletes them.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST SV11416 Deleted Lead\") is used by this case only.</li><li>Approved work order {Work-order-1} (for example S10043-17901) for {Customer-A} is led by {Technician-A}.</li><li>On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.</li></ul>",
+      "new_value": "<p><strong><a href=\"https://docs.google.com/document/d/1SR2QvFurbK38NQioUAqAJ82mlrbEbUCC3f1gO16OUNw/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner or Admin user whose role has Work orders &gt; View and Work orders &gt; Create &amp; Edit, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.</li><li>Technician {Technician-A} (for example ZZAUTOTEST SV11416 Dana Delete) is a new staff member made for this case only, active at {Location-A} with Time Clock on and the Technician role, with no labor recorded on any work order, because this test deletes them.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST SV11416 Deleted Lead\") is used by this case only.</li><li>Approved work order {Work-order-1} (for example S10043-17901) for {Customer-A} is led by {Technician-A}.</li><li>On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.</li></ul>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33480,
+    "type_id": 6,
+    "created_on": 1792168719,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Deleting a lead technician leaves no Unknown Technician column in Board View",
+      "new_value": "Work orders of a deleted lead sit under Deleted technician, which takes no drops"
+     },
+     {
+      "type_id": 1,
+      "field": "refs",
+      "old_value": null,
+      "new_value": "SV-10046,SV-11416"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://docs.google.com/document/d/1SR2QvFurbK38NQioUAqAJ82mlrbEbUCC3f1gO16OUNw/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner or Admin user whose role has Work orders &gt; View and Work orders &gt; Create &amp; Edit, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.</li><li>Technician {Technician-A} (for example ZZAUTOTEST SV11416 Dana Delete) is a new staff member made for this case only, active at {Location-A} with Time Clock on and the Technician role, with no labor recorded on any work order, because this test deletes them.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST SV11416 Deleted Lead\") is used by this case only.</li><li>Approved work order {Work-order-1} (for example S10043-17901) for {Customer-A} is led by {Technician-A}.</li><li>On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.</li></ul>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at location \"Staging Heavy Duty - 9919\" (on another site: the location named in the test run).</li><li>Technicians \"ZZAUTOTEST C614711 Dana\" and \"ZZAUTOTEST C614711 Eli\" are active at this location with the \"Technician\" role. \"ZZAUTOTEST C614711 Dana\" was made for this case only and has no labor on any work order, because this test deletes that staff record.</li><li>Customer \"ZZAUTOTEST C614711 Deleted Lead\" has two Approved work orders: unit \"C614711-U1\" led by \"ZZAUTOTEST C614711 Dana\", and unit \"C614711-U2\" with no lead technician.</li><li>Starting screen: your initials (top right) &gt; \"Settings\" &gt; \"Staff\", in a browser window at least 1024 px wide.</li><li>If any record named above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Open Work Orders, click the All tab and click Board View in the display switcher.</li><li>Type the name of {Customer-A} in Search.</li><li>Read the header of the column that holds {Work-order-1}.</li><li>Click your initials (top right) and open Settings &gt; Staff.</li><li>Click the pencil icon on {Technician-A}.</li><li>Click Delete and confirm the deletion.</li><li>Open Work Orders, click the All tab and click List in the display switcher.</li><li>Type the name of {Customer-A} in Search.</li><li>Read the Lead Technician of {Work-order-1} and write it down.</li><li>Click Board View in the display switcher.</li><li>Find {Work-order-1} and read the header of the column that holds it.</li></ol>",
+      "new_value": "<ol><li>Click the pencil icon on \"ZZAUTOTEST C614711 Dana\".</li><li>Click \"Delete\" and confirm.</li><li>Go to \"Work Orders\" &gt; \"All\" &gt; \"Board View\".</li><li>Type \"ZZAUTOTEST C614711 Deleted Lead\" in \"Search\".</li><li>Read the header of the column that holds the card for unit \"C614711-U1\".</li><li>Drag the card for unit \"C614711-U2\" from \"Unassigned\" onto that column and let go.</li><li>Click \"Tech View\" in the display switcher.</li><li>Click \"List\" in the display switcher.</li><li>Click \"Board View\" in the display switcher.</li><li>Drag the card for unit \"C614711-U1\" onto \"ZZAUTOTEST C614711 Eli\"'s column and let go.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 3: {Work-order-1} is in a column headed with {Technician-A}'s name.</li><li>Step 11: {Work-order-1} is not in a column headed \"Unknown Technician\". Every column header on the board names whose column it is.</li><li>Step 11: if {Work-order-1} is still in a technician's column, that column's header shows the same name as the Lead Technician you wrote down at step 9.</li></ul><p>Known problem (SV-11416, open: https://shopview.atlassian.net/browse/SV-11416): today, at step 11, {Work-order-1} sits in a column headed \"Unknown Technician\" with a generic person icon. The deleted technician's name is not shown and the column has no inactive marker.</p><p>1. If you see exactly that, mark this test Failed and raise nothing new.</p><p>2. If it fails in a different way, that is a new problem: report it.</p><p>3. If it passes, the fix has shipped: tell the QA lead.</p><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10046 (Story 3, Board View); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 58 (15 Oct 2026, Chris Ward), S5-R11b and S3-R3, with S3-N2, S3-N4 and the Decisions entry of 2026-09-13 as the nearest rules, read 16 Oct 2026. Defect SV-11416 (open). Source-verified 16 October 2026.</p><p>The spec says what happens when a lead technician is deactivated (the work stays in their column, marked inactive, so it stays attributable) but not when the technician is deleted. SV-11416 asks the product owner to decide: show the technician's name with the inactive marker, as for a deactivated technician, or move the work order to Unassigned. Either keeps this case's results; once the product owner decides, this case is updated to that ruling.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S5-R11b:</strong> &ldquo;Every technician name in Tech View and Board View, on cards, rows, group headers, column headers and the names shown on hover over any technician avatar (S2-R10, S7-R1), is the technician\u2019s staff record name, the same name the List\u2019s Lead Technician column shows.&rdquo;</li><li><strong>S3-R3:</strong> &ldquo;Column headers (technician names and counts) stay pinned at the top of the board while the user scrolls vertically, so long columns never hide whose column is being viewed.&rdquo;</li><li><strong>S3-N2:</strong> &ldquo;Keep matching work visible in its deactivated technician\u2019s column.&rdquo;</li><li><strong>S3-N4:</strong> &ldquo;Show an inactive indicator on deactivated technician columns.&rdquo;</li><li><strong>Decisions (2026-09-13):</strong> &ldquo;Deactivating a technician does not change work orders they already lead. They remain the lead technician on those work orders so the work stays visible and attributable; they simply receive no new assignments (S2-N2, S3-N2, S3-E3).&rdquo;</li></ul><p>Last checked against staging on 10/16/2026: failed as described in SV-11416 (the ticket does not record the build marker).</p><p>AUTOMATION: READY - EXPECT FAIL (SV-11416)</p>",
+      "new_value": "<p>Step 1: the staff record of \"ZZAUTOTEST C614711 Dana\" opens.</p><p>Step 2: \"ZZAUTOTEST C614711 Dana\" is no longer in the \"Staff\" list.</p><p>Step 3: Board View shows.</p><p>Step 4: the cards for units \"C614711-U1\" and \"C614711-U2\" show.</p><p>Step 5: the header reads \"Deleted technician\", shows the inactive marker and has no drag grip.</p><p>Step 6: the drop is refused: the card for unit \"C614711-U2\" stays in \"Unassigned\".</p><p>Step 7: unit \"C614711-U1\" sits in a group headed \"Deleted technician\" with the inactive marker.</p><p>Step 8: in the row for unit \"C614711-U1\" the \"Lead Technician\" cell is blank.</p><p>Step 9: Board View shows again.</p><p>Step 10: unit \"C614711-U1\" moves to \"ZZAUTOTEST C614711 Eli\"'s column and \"Lead technician updated\" shows.</p><p>Known problem SV-11416 (step 5): today the column reads \"Unknown Technician\" with a plain person icon, no inactive marker and a drag grip. If you see exactly that, mark this test Failed and raise nothing new.</p><p>AUTOMATION: READY - EXPECT FAIL (SV-11416)</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33506,
+    "type_id": 6,
+    "created_on": 1792171328,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at location \"Staging Heavy Duty - 9919\" (on another site: the location named in the test run).</li><li>Technicians \"ZZAUTOTEST C614711 Dana\" and \"ZZAUTOTEST C614711 Eli\" are active at this location with the \"Technician\" role. \"ZZAUTOTEST C614711 Dana\" was made for this case only and has no labor on any work order, because this test deletes that staff record.</li><li>Customer \"ZZAUTOTEST C614711 Deleted Lead\" has two Approved work orders: unit \"C614711-U1\" led by \"ZZAUTOTEST C614711 Dana\", and unit \"C614711-U2\" with no lead technician.</li><li>Starting screen: your initials (top right) &gt; \"Settings\" &gt; \"Staff\", in a browser window at least 1024 px wide.</li><li>If any record named above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Two technicians are active at {Location-A} with the \"Technician\" role: {Technician-A} and {Technician-B}. {Technician-A} was made for this case only and has no labor on any work order, because this test deletes that staff record.<br>For example: {Technician-A} is ZZAUTOTEST C614711 Dana and {Technician-B} is ZZAUTOTEST C614711 Eli.</li><li>Customer {Customer-A} has two Approved work orders: {Work-order-1} led by {Technician-A}, and {Work-order-2} with no lead technician.<br>For example: {Customer-A} is ZZAUTOTEST C614711 Deleted Lead, and {Work-order-1} and {Work-order-2} are S10043-17901 and S10043-17902.</li><li>Starting screen: your initials (top right) &gt; \"Settings\" &gt; \"Staff\", in a browser window at least 1024 px wide.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Click the pencil icon on \"ZZAUTOTEST C614711 Dana\".</li><li>Click \"Delete\" and confirm.</li><li>Go to \"Work Orders\" &gt; \"All\" &gt; \"Board View\".</li><li>Type \"ZZAUTOTEST C614711 Deleted Lead\" in \"Search\".</li><li>Read the header of the column that holds the card for unit \"C614711-U1\".</li><li>Drag the card for unit \"C614711-U2\" from \"Unassigned\" onto that column and let go.</li><li>Click \"Tech View\" in the display switcher.</li><li>Click \"List\" in the display switcher.</li><li>Click \"Board View\" in the display switcher.</li><li>Drag the card for unit \"C614711-U1\" onto \"ZZAUTOTEST C614711 Eli\"'s column and let go.</li></ol>",
+      "new_value": "<ol><li>Click the pencil icon on {Technician-A}.</li><li>Click \"Delete\" and confirm.</li><li>Go to \"Work Orders\" &gt; \"All\" &gt; \"Board View\".</li><li>Type the name of {Customer-A} in \"Search\".</li><li>Read the header of the column that holds the card for {Work-order-1}.</li><li>Drag the card for {Work-order-2} from \"Unassigned\" onto that column and let go.</li><li>Click \"Tech View\" in the display switcher.</li><li>Click \"List\" in the display switcher.</li><li>Click \"Board View\" in the display switcher.</li><li>Drag the card for {Work-order-1} onto {Technician-B}'s column and let go.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p>Step 1: the staff record of \"ZZAUTOTEST C614711 Dana\" opens.</p><p>Step 2: \"ZZAUTOTEST C614711 Dana\" is no longer in the \"Staff\" list.</p><p>Step 3: Board View shows.</p><p>Step 4: the cards for units \"C614711-U1\" and \"C614711-U2\" show.</p><p>Step 5: the header reads \"Deleted technician\", shows the inactive marker and has no drag grip.</p><p>Step 6: the drop is refused: the card for unit \"C614711-U2\" stays in \"Unassigned\".</p><p>Step 7: unit \"C614711-U1\" sits in a group headed \"Deleted technician\" with the inactive marker.</p><p>Step 8: in the row for unit \"C614711-U1\" the \"Lead Technician\" cell is blank.</p><p>Step 9: Board View shows again.</p><p>Step 10: unit \"C614711-U1\" moves to \"ZZAUTOTEST C614711 Eli\"'s column and \"Lead technician updated\" shows.</p><p>Known problem SV-11416 (step 5): today the column reads \"Unknown Technician\" with a plain person icon, no inactive marker and a drag grip. If you see exactly that, mark this test Failed and raise nothing new.</p><p>AUTOMATION: READY - EXPECT FAIL (SV-11416)</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 1: the staff record of {Technician-A} opens.</li><li>Step 2: {Technician-A} is no longer in the \"Staff\" list.</li><li>Step 3: Board View shows.</li><li>Step 4: the cards for {Work-order-1} and {Work-order-2} show.</li><li>Step 5: the header reads \"Deleted technician\", shows the inactive marker and has no drag grip.</li><li>Step 6: the drop is refused: the card for {Work-order-2} stays in \"Unassigned\".</li><li>Step 7: {Work-order-1} sits in a group headed \"Deleted technician\" with the inactive marker.</li><li>Step 8: in the row for {Work-order-1} the \"Lead Technician\" cell is blank.</li><li>Step 9: Board View shows again.</li><li>Step 10: {Work-order-1} moves to {Technician-B}'s column and \"Lead technician updated\" shows.</li></ul><p>Known problem (SV-11416, open: https://shopview.atlassian.net/browse/SV-11416): today, at step 5, the column reads \"Unknown Technician\" with a generic person icon, no inactive marker and a drag grip, and the deleted technician's name is not shown.</p><p>1. If you see exactly that, mark this test Failed and raise nothing new.</p><p>2. If it fails in a different way, that is a new problem: report it.</p><p>3. If it passes, the fix has shipped: tell the QA lead.</p><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10046 (Story 3, Board View \u2014 board by lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S3-R20e, S4-N5, S3-N4 and S2-N3, read 16 Oct 2026. Defect SV-11416 (open). Source-verified 16 October 2026.</p><p>SV-11416 asked the product owner what happens when a lead technician is deleted; the spec covered only a deactivated lead. PRD version 59 (16 Oct 2026, Chris Ward ruling on Slavcho Mitrov's question on SV-11416) added S3-R20e: such work orders sit under \"Deleted technician\" with the inactive marker and no grip, take no drops, can be dragged out, and List shows the lead blank. This case follows version 59 and later (was: no \"Unknown Technician\" column, the header naming the technician as List does).</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S3-R20e:</strong> &ldquo;Work orders whose lead technician was deleted in Settings \u2192 Staff (the name no longer exists) sit in one column on Board View and one group in Tech View labeled \u201cDeleted technician\u201d, with the inactive marker and no drag grip. Work orders can be dragged out of it; nothing can be dropped onto it. List shows the Lead Technician as blank for these work orders, as today.&rdquo;</li><li><strong>S4-N5:</strong> &ldquo;Nothing can be dropped onto the column/group of an inactive technician (S2-N2, S3-N2) or of a technician who is not enrolled at this location (S3-R20c).&rdquo;</li><li><strong>S3-N4:</strong> &ldquo;Show an inactive indicator on deactivated technician columns.&rdquo;</li><li><strong>S2-N3:</strong> &ldquo;Indicate deactivated technicians as inactive in group headers.&rdquo;</li></ul><p>AUTOMATION: READY - EXPECT FAIL (SV-11416)</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33552,
+    "type_id": 6,
+    "created_on": 1792177620,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 1: the staff record of {Technician-A} opens.</li><li>Step 2: {Technician-A} is no longer in the \"Staff\" list.</li><li>Step 3: Board View shows.</li><li>Step 4: the cards for {Work-order-1} and {Work-order-2} show.</li><li>Step 5: the header reads \"Deleted technician\", shows the inactive marker and has no drag grip.</li><li>Step 6: the drop is refused: the card for {Work-order-2} stays in \"Unassigned\".</li><li>Step 7: {Work-order-1} sits in a group headed \"Deleted technician\" with the inactive marker.</li><li>Step 8: in the row for {Work-order-1} the \"Lead Technician\" cell is blank.</li><li>Step 9: Board View shows again.</li><li>Step 10: {Work-order-1} moves to {Technician-B}'s column and \"Lead technician updated\" shows.</li></ul><p>Known problem (SV-11416, open: https://shopview.atlassian.net/browse/SV-11416): today, at step 5, the column reads \"Unknown Technician\" with a generic person icon, no inactive marker and a drag grip, and the deleted technician's name is not shown.</p><p>1. If you see exactly that, mark this test Failed and raise nothing new.</p><p>2. If it fails in a different way, that is a new problem: report it.</p><p>3. If it passes, the fix has shipped: tell the QA lead.</p><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10046 (Story 3, Board View \u2014 board by lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S3-R20e, S4-N5, S3-N4 and S2-N3, read 16 Oct 2026. Defect SV-11416 (open). Source-verified 16 October 2026.</p><p>SV-11416 asked the product owner what happens when a lead technician is deleted; the spec covered only a deactivated lead. PRD version 59 (16 Oct 2026, Chris Ward ruling on Slavcho Mitrov's question on SV-11416) added S3-R20e: such work orders sit under \"Deleted technician\" with the inactive marker and no grip, take no drops, can be dragged out, and List shows the lead blank. This case follows version 59 and later (was: no \"Unknown Technician\" column, the header naming the technician as List does).</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S3-R20e:</strong> &ldquo;Work orders whose lead technician was deleted in Settings \u2192 Staff (the name no longer exists) sit in one column on Board View and one group in Tech View labeled \u201cDeleted technician\u201d, with the inactive marker and no drag grip. Work orders can be dragged out of it; nothing can be dropped onto it. List shows the Lead Technician as blank for these work orders, as today.&rdquo;</li><li><strong>S4-N5:</strong> &ldquo;Nothing can be dropped onto the column/group of an inactive technician (S2-N2, S3-N2) or of a technician who is not enrolled at this location (S3-R20c).&rdquo;</li><li><strong>S3-N4:</strong> &ldquo;Show an inactive indicator on deactivated technician columns.&rdquo;</li><li><strong>S2-N3:</strong> &ldquo;Indicate deactivated technicians as inactive in group headers.&rdquo;</li></ul><p>AUTOMATION: READY - EXPECT FAIL (SV-11416)</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 1: the staff record of {Technician-A} opens.</li><li>Step 2: {Technician-A} is no longer in the \"Staff\" list.</li><li>Step 3: Board View shows.</li><li>Step 4: the cards for {Work-order-1} and {Work-order-2} show.</li><li>Step 5: the header reads \"Deleted technician\", shows the inactive marker and has no drag grip.</li><li>Step 6: the drop is refused: the card for {Work-order-2} stays in \"Unassigned\".</li><li>Step 7: {Work-order-1} sits in a group headed \"Deleted technician\" with the inactive marker.</li><li>Step 8: in the row for {Work-order-1} the \"Lead Technician\" cell is blank.</li><li>Step 9: Board View shows again.</li><li>Step 10: {Work-order-1} moves to {Technician-B}'s column and \"Lead technician updated\" shows.</li></ul><p>Known problem (SV-11416, open: https://shopview.atlassian.net/browse/SV-11416): today, at step 5, the column reads \"Unknown Technician\" with a generic person icon, no inactive marker and a drag grip, and the deleted technician's name is not shown.</p><p>1. If you see exactly that, mark this test Failed and raise nothing new.</p><p>2. If it fails in a different way, that is a new problem: report it.</p><p>3. If it passes, the fix has shipped: tell the QA lead.</p><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10046 (Story 3, Board View \u2014 board by lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S3-R20e, S4-N5, S3-N4 and S2-N3, read 16 Oct 2026. Defect SV-11416 (open). Source-verified 16 October 2026. Last checked against build v26.40.19-1493c63 (staging) on 10/16/2026.</p><p>SV-11416 asked the product owner what happens when a lead technician is deleted; the spec covered only a deactivated lead. PRD version 59 (16 Oct 2026, Chris Ward ruling on Slavcho Mitrov's question on SV-11416) added S3-R20e: such work orders sit under \"Deleted technician\" with the inactive marker and no grip, take no drops, can be dragged out, and List shows the lead blank. This case follows version 59 and later (was: no \"Unknown Technician\" column, the header naming the technician as List does).</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S3-R20e:</strong> &ldquo;Work orders whose lead technician was deleted in Settings \u2192 Staff (the name no longer exists) sit in one column on Board View and one group in Tech View labeled \u201cDeleted technician\u201d, with the inactive marker and no drag grip. Work orders can be dragged out of it; nothing can be dropped onto it. List shows the Lead Technician as blank for these work orders, as today.&rdquo;</li><li><strong>S4-N5:</strong> &ldquo;Nothing can be dropped onto the column/group of an inactive technician (S2-N2, S3-N2) or of a technician who is not enrolled at this location (S3-R20c).&rdquo;</li><li><strong>S3-N4:</strong> &ldquo;Show an inactive indicator on deactivated technician columns.&rdquo;</li><li><strong>S2-N3:</strong> &ldquo;Indicate deactivated technicians as inactive in group headers.&rdquo;</li></ul><p>AUTOMATION: READY - EXPECT FAIL (SV-11416)</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33582,
+    "type_id": 6,
+    "created_on": 1792177906,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Two technicians are active at {Location-A} with the \"Technician\" role: {Technician-A} and {Technician-B}. {Technician-A} was made for this case only and has no labor on any work order, because this test deletes that staff record.<br>For example: {Technician-A} is ZZAUTOTEST C614711 Dana and {Technician-B} is ZZAUTOTEST C614711 Eli.</li><li>Customer {Customer-A} has two Approved work orders: {Work-order-1} led by {Technician-A}, and {Work-order-2} with no lead technician.<br>For example: {Customer-A} is ZZAUTOTEST C614711 Deleted Lead, and {Work-order-1} and {Work-order-2} are S10043-17901 and S10043-17902.</li><li>Starting screen: your initials (top right) &gt; \"Settings\" &gt; \"Staff\", in a browser window at least 1024 px wide.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as an Admin user (the \"Admin\" role, which has Work orders &gt; View and Create &amp; Edit) at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Two technicians are active at {Location-A} with the \"Technician\" role: {Technician-A} and {Technician-B}. {Technician-A} was made for this case only and has no labor on any work order, because this test deletes that staff record.<br>For example: {Technician-A} is ZZAUTOTEST C614711 Dana and {Technician-B} is ZZAUTOTEST C614711 Eli.</li><li>Customer {Customer-A} has two Approved work orders: {Work-order-1} led by {Technician-A}, and {Work-order-2} with no lead technician.<br>For example: {Customer-A} is ZZAUTOTEST C614711 Deleted Lead, and {Work-order-1} and {Work-order-2} are S10043-17901 and S10043-17902.</li><li>Starting screen: your initials (top right) &gt; \"Settings\" &gt; \"Staff\", in a browser window at least 1024 px wide.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     }
+    ],
+    "comments": []
+   }
+  ]
+ }
+}

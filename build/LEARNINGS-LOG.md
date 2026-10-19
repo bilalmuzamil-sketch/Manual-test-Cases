@@ -860,3 +860,7 @@ PRD (only the changing lines, one dated decision line, `safe_case_edit.py` + ser
 and REPORT what was done. Still never: Vladimir's cases, Automated cases without telling Vlad, Jira without per-ticket permission.
 Applied: C97024, C97035, C368153 (case-updates-2026-10-19c/). Same family as Rule 107, Rule 131 and L0455.
 #run498 #ruling #unblock #analytics → L0455
+
+## L0457 — 2026-10-19 — QA lead ruling: a deleted lead's work order shows "Unassigned" in List — that is the expected behaviour
+PRD v64 S3-R20e says "List shows the Lead Technician as blank for these work orders, as today", but production TODAY shows "Unassigned" (prod-deleted-lead.json: throwaway technician made lead of S2-968, deleted, List read "Unassigned"; lead restored) and staging the same. Put to the QA lead; he ruled 19 Oct: *"Unassigned if the expected behavior"*. C614711 step 8 now expects "Unassigned" with a dated decision line (case-updates-2026-10-19c/). The PRD wording ("blank") still disagrees — worth telling Chris.
+#run498 #ruling #deleted-lead #prd-conflict → L0456
