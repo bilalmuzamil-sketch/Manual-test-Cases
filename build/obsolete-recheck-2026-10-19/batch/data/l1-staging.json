@@ -1,0 +1,290 @@
+{
+ "log": {
+  "mk": {
+   "version": "v26.40.19-e435950",
+   "lastModified": "Mon, 19 Oct 2026 06:18:22 GMT",
+   "etag": "W/\"6981e2219a3c344efbb6b3fed69132b3\""
+  },
+  "wo": [
+   201,
+   "6b776685-956c-4b59-8c29-3791d27cd34d"
+  ],
+  "line": [
+   201,
+   "{\"data\":{\"line_id\":\"666a7460-a069-47b5-801c-f034cc50f7f2\"}}"
+  ],
+  "move": 200,
+  "number": "S-37325",
+  "url": "/workorders/6b776685-956c-4b59-8c29-3791d27cd34d/lines",
+  "lineText": [
+   "expand_less 1 more_vert Service - Transmission service (Automatic) Due by mileage/ preventative maintenence 0.00 / 2.00 0% Approved Complete $149.95 100% $299.9",
+   "Story Add tech story for this line",
+   "Labor Ralph Edwards more_vert Start $299.9",
+   "Parts add Add Part",
+   " drag_indicator (-) Transmission fluid edit more_vert 1 Auth To Order Order $0.00 100% -",
+   " drag_indicator (-) Transmission filter edit more_vert 1 Auth To Order Order $0.00 100% -"
+  ],
+  "lineTids": [
+   "line_checkbox_{id}",
+   "button_line_expand_{id}",
+   "line_number_{id}",
+   "line_title",
+   "badge_line_status_{id}",
+   "button_action_complete_line_{id}",
+   "line_rate_{id}",
+   "line_margin_{id}",
+   "line_total_cost_{id}",
+   "line_tech_story_{id}",
+   "line_labor_name_{id}",
+   "button_add_labor_adjustment_{id}",
+   "button_clock_toggle_task_{id}",
+   "text_parts_group_caption",
+   "button_add_part",
+   "part_number_{id}",
+   "button_drag_part_{id}",
+   "button_edit_part_{id}",
+   "button_requested_part_context_menu_{id}_line_666a7460-a069-47b5-801c-f034cc50f7f2",
+   "part_quantity_{id}",
+   "badge_part_status_{id}",
+   "button_part_request_action",
+   "part_sell_price_{id}",
+   "part_total_sell_price_{id}"
+  ]
+ },
+ "reqs": [
+  {
+   "m": "POST",
+   "u": "/api/work-orders/create",
+   "st": 201,
+   "b": "{\"company_id\":\"2e7cb7a1-e356-4a38-a573-069194b54951\",\"vehicle_id\":\"fca761bd-ee1b-4557-af5f-f103b0bdef4c\",\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"start_date\":\"2026-10-19 07:57:34\",\"is_vehicle_here\":true}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-orders/6b776685-956c-4b59-8c29-3791d27cd34d/lines/create-from-canned-line",
+   "st": 201,
+   "b": "{\"canned_line_id\":\"0f9a7759-1982-4855-96d5-4a4cf1773a23\",\"status\":\"authorized\"}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-orders/6b776685-956c-4b59-8c29-3791d27cd34d/board-move",
+   "st": 200,
+   "b": "{\"technicianId\":\"b51a80a5-2d2a-488a-87cd-747e8798d8ee\"}"
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/view/6b776685-956c-4b59-8c29-3791d27cd34d",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps/api/js?libraries=places&key=AIzaSyCPN5W8yDviHWCRbLHfGys421NDST6Jsno&callback=Function.prototype&loading=async",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/util.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/places_impl.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/places.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/controls.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/common.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/main.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps/api/mapsjs/gen_204?csp_test=true",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/staff/my-workplaces",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/users/me/release-notes/unread",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/organizations/settings",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/iam/view-profile/",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "b": "{\"type\":\"work_orders\",\"id\":\"6b776685-956c-4b59-8c29-3791d27cd34d\"}"
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/lines/6b776685-956c-4b59-8c29-3791d27cd34d",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/statuses",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/technician-tasks/my-current-task",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/service-advisors",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/reporting/individual-punch-clock/today?range=today",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/view/6b776685-956c-4b59-8c29-3791d27cd34d",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/reporting/individual-punch-clock/today?range=today",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/technicians?clockableOnly=1",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/technicians",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/customers/view/2e7cb7a1-e356-4a38-a573-069194b54951?",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/workplaces",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/service-advisors",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/6b776685-956c-4b59-8c29-3791d27cd34d/inspections",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/sales-reps",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/lines/6b776685-956c-4b59-8c29-3791d27cd34d",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/6b776685-956c-4b59-8c29-3791d27cd34d/line-technicians",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/parts-catalogue/options",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/shopcoach/check-vin-support?vin=ZZWOB179237818922",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/line-statuses",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/parts-catalogue/categories-list?",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/labour-type-options?pagination%5BrowsPerPage%5D=1000",
+   "st": 200,
+   "b": ""
+  }
+ ]
+}

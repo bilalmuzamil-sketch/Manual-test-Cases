@@ -1,0 +1,29 @@
+{
+ "log": {
+  "mk": {
+   "version": "v26.40.19-e435950",
+   "lastModified": "Mon, 19 Oct 2026 06:18:22 GMT",
+   "etag": "W/\"6981e2219a3c344efbb6b3fed69132b3\""
+  },
+  "cl /api/canned-lines?limit=5": [
+   404,
+   "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+  ],
+  "cl /api/canned-lines": [
+   404,
+   "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+  ],
+  "cl /api/work-orders/canned-lines?limit=5": [
+   200,
+   "{\"data\":{\"collection\":[{\"id\":\"0f9a7759-1982-4855-96d5-4a4cf1773a23\",\"canned_line_name\":\" Service - Transmission service (Automatic)\",\"description\":\"Due by mileage/ preventative maintenence\",\"time_estimate\":120,\"tech_time\":120,\"fixed_price\":null,\"fixed_line_total\":null,\"fixed_line_labor_price\":null,\""
+  ]
+ },
+ "reqs": [
+  {
+   "m": "GET",
+   "u": "/api/work-orders/canned-lines?limit=5",
+   "st": 200,
+   "b": ""
+  }
+ ]
+}

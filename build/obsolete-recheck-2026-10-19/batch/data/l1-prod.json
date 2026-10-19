@@ -1,0 +1,293 @@
+{
+ "log": {
+  "mk": {
+   "version": "v26.40.19-d2441a9",
+   "lastModified": "Fri, 16 Oct 2026 09:17:45 GMT",
+   "etag": "W/\"bb9ac5fcfbb160e79c9ba76ef1d5b5af\""
+  },
+  "wo": [
+   201,
+   "88b6300b-dcdf-4399-81f1-274ea25453fc"
+  ],
+  "line": [
+   201,
+   "{\"data\":{\"line_id\":\"dc197fd7-48ad-4082-a42d-ddf4d5677956\"}}"
+  ],
+  "move": 404,
+  "number": "S-982",
+  "url": "/workorders/88b6300b-dcdf-4399-81f1-274ea25453fc/lines",
+  "lineText": [
+   "expand_less 1 more_vert What are you doing: Add Inventory Part in Line Why are you doing: The cost of labor should be $118X1=$118 0.00 / 1.00 0% Approved Comple",
+   "Story Add tech story for this line",
+   "Labor Unassigned more_vert Start $118",
+   "Parts add Add Part",
+   " (2010) Reteststage edit more_vert 1 In Stock Pick $20.00 99% $20.00"
+  ],
+  "lineTids": [
+   "line_checkbox_{id}",
+   "button_line_expand_{id}",
+   "line_number_{id}",
+   "line_title",
+   "badge_line_status_{id}",
+   "button_action_complete_line_{id}",
+   "line_rate_{id}",
+   "line_margin_{id}",
+   "line_total_cost_{id}",
+   "line_tech_story_{id}",
+   "button_add_labor_adjustment_{id}",
+   "button_clock_toggle_task_{id}",
+   "text_parts_group_caption",
+   "button_add_part",
+   "part_number_{id}",
+   "button_edit_part_{id}",
+   "button_requested_part_context_menu_{id}_line_dc197fd7-48ad-4082-a42d-ddf4d5677956",
+   "part_quantity_{id}",
+   "badge_part_status_{id}",
+   "button_part_request_action",
+   "part_sell_price_{id}",
+   "part_total_sell_price_{id}"
+  ]
+ },
+ "reqs": [
+  {
+   "m": "POST",
+   "u": "/api/work-orders/create",
+   "st": 201,
+   "b": "{\"company_id\":\"3f6ae83a-515f-466f-8aab-9c1a20934807\",\"vehicle_id\":\"ca320e20-d1cd-4f07-9701-fc22deeb64b4\",\"workplace_id\":\"b617914c-16e9-4485-8e8b-193cd86aa416\",\"start_date\":\"2026-10-19 08:06:40\",\"is_vehicle_here\":true}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-orders/88b6300b-dcdf-4399-81f1-274ea25453fc/lines/create-from-canned-line",
+   "st": 201,
+   "b": "{\"canned_line_id\":\"2c0ae6a3-6e66-4176-b5a5-6a58bcb00477\",\"status\":\"authorized\"}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-orders/88b6300b-dcdf-4399-81f1-274ea25453fc/board-move",
+   "st": 404,
+   "b": "{\"technicianId\":\"a1d7fb4a-8d44-4557-bb7e-cb7d2b0c6acb\"}"
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/view/88b6300b-dcdf-4399-81f1-274ea25453fc",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps/api/js?libraries=places&key=AIzaSyCPN5W8yDviHWCRbLHfGys421NDST6Jsno&callback=Function.prototype&loading=async",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/staff/my-workplaces",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/statuses",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/users/me/release-notes/unread",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/organization/feature-flags?organization_id=72b2cc90-6964-4429-a207-76e55f946936",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/technician-tasks/my-current-task",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/util.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/controls.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/places.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/places_impl.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/common.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/main.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/iam/view-profile/",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/organizations/settings",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/service-advisors",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/lines/88b6300b-dcdf-4399-81f1-274ea25453fc",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/reporting/individual-punch-clock/today?range=today",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/iam/view-avatar/1d610634-2618-4c70-9ce4-791f8d201642?v=/api/iam/view-avatar/1d610634-2618-4c70-9ce4-791f8d201642?t=1792397199221",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "b": "{\"type\":\"work_orders\",\"id\":\"88b6300b-dcdf-4399-81f1-274ea25453fc\"}"
+  },
+  {
+   "m": "GET",
+   "u": "/api/iam/view-avatar/1d610634-2618-4c70-9ce4-791f8d201642?v=/api/iam/view-avatar/1d610634-2618-4c70-9ce4-791f8d201642?t=1792397202250",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/notes?mention_id=1d610634-2618-4c70-9ce4-791f8d201642&is_read=false",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/view/88b6300b-dcdf-4399-81f1-274ea25453fc",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/technicians?clockableOnly=1",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps/api/mapsjs/gen_204?csp_test=true",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/service-advisors",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/technicians",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/workplaces",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/customers/view/3f6ae83a-515f-466f-8aab-9c1a20934807?",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/lines/88b6300b-dcdf-4399-81f1-274ea25453fc",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/line-statuses",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/parts-catalogue/options",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/sales-reps",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/88b6300b-dcdf-4399-81f1-274ea25453fc/inspections",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/parts-catalogue/categories-list?",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/labour-type-options?pagination%5BrowsPerPage%5D=1000",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/shopcoach/check-vin-support?vin=1FUJGLDR9KLZZ4471",
+   "st": 200,
+   "b": ""
+  }
+ ]
+}

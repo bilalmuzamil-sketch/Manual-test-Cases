@@ -1,0 +1,352 @@
+{
+ "log": {
+  "mk": {
+   "version": "v26.40.19-e435950",
+   "lastModified": "Mon, 19 Oct 2026 06:18:22 GMT",
+   "etag": "W/\"6981e2219a3c344efbb6b3fed69132b3\""
+  },
+  "wo": {
+   "wo": "6b776685-956c-4b59-8c29-3791d27cd34d",
+   "number": "S-37325"
+  },
+  "labor0": [
+   "Ralph Edwards"
+  ],
+  "audit0": [
+   "Line Log: Line 1 search Search close Event User Line Details Datearrow_drop_up Time Line created Admin ShopView Service - Transmission service (Automatic) - Oct 19, 2026 12:57 PM "
+  ],
+  "edit": [
+   "Edit Line close What Are You Doing? Why Are You Doing It? Status Authorized arrow_drop_down Technicians Ralph Edwards close Add Technician arrow_drop_down Labor Rate HD Fleet Rate arrow_drop_down Estimated Time Tech Time AI SHOPCOACH LABOR GUIDE Delete Save & Close"
+  ],
+  "editTids": [
+   "dialog_title",
+   "button_close_dialog",
+   "input_line_name",
+   "input_line_description",
+   "select_line_status",
+   "line_roster_technician_{id}",
+   "button_line_roster_remove_{id}",
+   "select_line_roster_add_technician",
+   "text_labour_type_selected",
+   "select_labour_type",
+   "input_time_estimate",
+   "input_tech_time",
+   "button_shopcoach",
+   "checkbox_parts_authorized",
+   "button_delete_line",
+   "button_save_close"
+  ],
+  "hasAdd": true,
+  "opts": [
+   "check Aaa ZZAUTOTEST Tara Lead",
+   "check Aaa ZZAUTOTEST Theresa Pinned",
+   "check Aaron Baker",
+   "check Aaron Jennings",
+   "check Aaron Zed",
+   "check Admin ShopView",
+   "check Advisor Analysis",
+   "check Ahtasham Admin",
+   "check Ahtasham Service Advisor",
+   "check Ahtsham Foreman",
+   "check Ahtsham Parts Manger",
+   "check Ahtsham Service Manager",
+   "check Ammar Mughamis",
+   "check Andrew Wilkinson",
+   "check Ashlee Thomas"
+  ],
+  "editAfter": [
+   "Edit Line close What Are You Doing? Why Are You Doing It? Status Authorized arrow_drop_down Technicians Ralph Edwards close Aaron Baker close Add Technician arrow_drop_down Labor Rate HD Fleet Rate arrow_drop_down Estimated Time Tech Time AI SHOPCOACH LABOR GUIDE Delete Save & Close"
+  ],
+  "toasts": [],
+  "labor1": [
+   "Ralph Edwards"
+  ],
+  "audit1": [
+   "Line Log: Line 1 search Search close Event User Line Details Datearrow_drop_up Time Line created Admin ShopView Service - Transmission service (Automatic) - Oct 19, 2026 12:57 PM "
+  ]
+ },
+ "reqs": [
+  {
+   "m": "GET",
+   "u": "/maps/api/js?libraries=places&key=AIzaSyCPN5W8yDviHWCRbLHfGys421NDST6Jsno&callback=Function.prototype&loading=async",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/common.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/controls.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/places.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/places_impl.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/util.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps-api-v3/api/js/66/9d/main.js",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/staff/my-workplaces",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/maps/api/mapsjs/gen_204?csp_test=true",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/technician-tasks/my-current-task",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/iam/view-profile/",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/service-advisors",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/statuses",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/reporting/individual-punch-clock/today?range=today",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/technicians?clockableOnly=1",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/service-advisors",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/users/me/release-notes/unread",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "b": "{\"type\":\"work_orders\",\"id\":\"6b776685-956c-4b59-8c29-3791d27cd34d\"}"
+  },
+  {
+   "m": "GET",
+   "u": "/api/sales-reps",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/organizations/settings",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/reporting/individual-punch-clock/today?range=today",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/view/6b776685-956c-4b59-8c29-3791d27cd34d",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/lines/6b776685-956c-4b59-8c29-3791d27cd34d",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/workplaces",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/technicians",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/customers/view/2e7cb7a1-e356-4a38-a573-069194b54951?",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/lines/6b776685-956c-4b59-8c29-3791d27cd34d",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/6b776685-956c-4b59-8c29-3791d27cd34d/line-technicians",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/line-statuses",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/parts-catalogue/categories-list?",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/parts-catalogue/options",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/shopcoach/check-vin-support?vin=ZZWOB179237818922",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/labour-type-options?pagination%5BrowsPerPage%5D=1000",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/6b776685-956c-4b59-8c29-3791d27cd34d/inspections",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/lines/666a7460-a069-47b5-801c-f034cc50f7f2/history?pagination%5BrowsPerPage%5D=50&pagination%5Bpage%5D=1&pagination%5BsortBy%5D=&pagination%5Bd",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/6b776685-956c-4b59-8c29-3791d27cd34d/line-technicians",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-orders/lines/change",
+   "st": 201,
+   "b": "{\"assigned_techs\":[\"b51a80a5-2d2a-488a-87cd-747e8798d8ee\",\"c57d19d7-dc2b-4472-a11d-984c61b01c0e\"],\"description\":\"Due by mileage/ preventative maintenence\",\"line_name\":\" Service - Transmission service (Automatic)\",\"tech_assigned_id\":\"b51a80a5-2d2a-488a-87cd-747e8798d8ee\",\"is_diagnosis\":false,\"is_warr"
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/6b776685-956c-4b59-8c29-3791d27cd34d/line-technicians",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/technician-tasks/my-current-task",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "PUT",
+   "u": "/api/work-orders/lines/666a7460-a069-47b5-801c-f034cc50f7f2/technicians",
+   "st": 200,
+   "b": "{\"staffIds\":[\"c57d19d7-dc2b-4472-a11d-984c61b01c0e\"]}"
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/6b776685-956c-4b59-8c29-3791d27cd34d/line-technicians",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/lines/6b776685-956c-4b59-8c29-3791d27cd34d",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/6b776685-956c-4b59-8c29-3791d27cd34d/line-technicians",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/view/6b776685-956c-4b59-8c29-3791d27cd34d",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/lines/6b776685-956c-4b59-8c29-3791d27cd34d",
+   "st": 200,
+   "b": ""
+  },
+  {
+   "m": "GET",
+   "u": "/api/work-orders/lines/666a7460-a069-47b5-801c-f034cc50f7f2/history?pagination%5BrowsPerPage%5D=50&pagination%5Bpage%5D=1&pagination%5BsortBy%5D=&pagination%5Bd",
+   "st": 200,
+   "b": ""
+  }
+ ]
+}
