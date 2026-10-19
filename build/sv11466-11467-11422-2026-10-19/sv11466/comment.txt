@@ -1,0 +1,48 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Tested on Staging (build v26.40.19-c850386) on 19 October 2026, against the spec (version 65), signed in as Admin.
+* Board View's sideways scroll bar is now 16 px thick.
+* Its grab handle is 150 px long on a big board at every window width, and longer on a small board, never shorter.
+* Dragging it end to end works, and nothing changed on the column scroll bars, Tech View or List.
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 65:
+{quote}S3-E2: Allow horizontal scrolling when technician columns exceed the available viewport; never hide technicians automatically. The board's sideways scrollbar is 16px thick, and its grab handle is never shorter than 150px at any screen width or number of technician columns. When more of the board fits on screen, the handle is longer, as the browser draws it. The scrollbars inside each column are unchanged. Firefox shows its own standard scrollbar.{quote}
+Chris Ward in this ticket (16 October): "Go with (A): 16px thick and a handle of at least 150px, on the browser's own scrollbar. A longer handle on a small board is fine."
+
+*What I checked*
+||#||Check (from "How to check")||Status||
+|1|Big board (Staging Heavy Duty - 9919, All tab, nearly 300 technician columns): the bar is 16 px thick and the handle is 150 px at 1920, 1440, 1280 and 1024 px wide.|PASSED|
+|2|Small board (location DVI Test, 8 technicians): the handle is longer than 150 px: 1,053 px at 1920 wide, 516 px at 1440, 204 px at 1024.|PASSED|
+|3|Dragging the handle to the right end reaches the last column ("Deleted technician"), and back to the left end returns to the first technician (Aaron Baker), at 1920, 1440, 1280 and 1024 px wide. Unassigned stays fixed on the left the whole time.|PASSED|
+|4|The scroll bars inside each column are unchanged (thin, the same as on 17 October). Tech View and List still use the usual 8 px bars.|PASSED|
+|5|Light and dark theme both show the bar and its handle clearly.|PASSED|
+|6|Firefox 142 shows its own standard grey scroll bar under the board.|PASSED|
+
+*1. Thickness and handle length*
+!sv11466-01-thickness-and-handle.png|width=1440,height=750!
+_Measured on the screen. 1: big board, 1440 px wide window. 2: the same board at 1024 px wide; the handle stays 150 px. 3: a small board; the handle is longer, as the spec allows._
+
+*2. Dragging end to end*
+!sv11466-02-drag-end-to-end.png|width=1440,height=1025!
+_The handle at the right end: the last technician column is on screen and Unassigned is still on the left._
+
+*3. Dark theme and Firefox*
+!sv11466-03-dark-and-firefox.png|width=1440,height=465!
+_5: dark theme, 150 px handle. 6: Firefox's own standard bar._
+
+*How to see it*
+# Sign in to Staging (https://app.staging.shopview.com) as Admin and check the top bar shows *Staging Heavy Duty - 9919*.
+# In the top menu click *Work Orders*, then the *All* tab (top left).
+# At the right of the bar above the list, click *Board View* (the right-most of the three view buttons).
+# Look at the grey bar at the very bottom of the board, under the technician columns: it is about twice as thick as the thin bar inside a column, and its grey handle is about half as wide as one technician column.
+# Drag the handle to the far right: the last column, "Deleted technician", comes into view and Unassigned stays on the left.
+
+There is no "before" picture: Production does not have Board View yet, and Staging already has this fix, so the old 8 px bar cannot be shown on the same screen. The ticket's own numbers for the old bar were 8 px thick with a handle of 67 px at 1440 px wide.
+
+*Environment*
+* Staging, build v26.40.19-c850386, 19 October 2026, signed in as Admin, browser zoom 100%.
+* Chromium at window widths 1920, 1440, 1280 and 1024 px; Firefox 142 at 1280 px.
+* Locations: Staging Heavy Duty - 9919 (big board) and DVI Test (small board).
