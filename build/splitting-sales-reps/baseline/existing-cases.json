@@ -78,7 +78,11 @@
    " cancel, and persists on confirm An active staff member exists whose SAVED record has the Sales Representative toggle ON (API-seeded, per-run-unique first/last name and email). The staff me",
    "es the seeded member.   Open that row's Edit Staff Member dialog The dialog loads and the Sales Representative toggle is ON.   Turn the Sales Representative toggle OFF The \"Turn Off Sales R",
    "taff Member dialog The dialog loads and the Sales Representative toggle is ON.   Turn the Sales Representative toggle OFF The \"Turn Off Sales Representative\" warning opens; its spinner reso"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD S4-N2: turning off the switch \"leaves them in the customer fields they hold, as today\". PRD does not mention this \"Turn Off Sales Representative\" warning; at risk (PO question Q2).",
+  "owner": "Vladimir Tomovic",
+  "automated": true
  },
  {
   "id": 27872,
@@ -121,7 +125,11 @@
   ],
   "snippets": [
    "n is assigned only via a line (not header). Service WO belonging to another staff member (sales rep / other advisor) \u2014 technician not assigned in any capacity. Log in as the default-Technic"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Vladimir Tomovic",
+  "automated": true
  },
  {
   "id": 149,
@@ -149,7 +157,11 @@
   "steps_separated": null,
   "snippets": [
    "toggle state. No separate Playwright spec, per test-scope-rules.md &sect;5 (E2E takes one representative per workflow; a case differing only by which value was chosen is a variation).<ul> <li>Us"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Vladimir Tomovic",
+  "automated": false
  },
  {
   "id": 150,
@@ -185,7 +197,11 @@
   ],
   "snippets": [
    "toggle state. No separate Playwright spec, per test-scope-rules.md &sect;5 (E2E takes one representative per workflow; a case differing only by which value was chosen is a variation).<ul> <li>Us"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Vladimir Tomovic",
+  "automated": false
  },
  {
   "id": 45094,
@@ -216,7 +232,11 @@
    "2. The open work order has a customer, a vehicle, a service advisor, a lead technician, a sales representative and a start date set.</p>  <p>1. On the Print Work Order view (see Preconditio",
    "present), mileage, engine hours (if present); service advisor name; lead technician name; sales representative name; and the work order start date.<p>---<br>This is the expected behaviour a",
    "ainst build v26.36.0-f43b2fd on 9/9/2026.<br>Amended per SV-9936 (11 September 2026): the Sales Representative row was missing from both the specification and the printout. It now prints wi"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "S6-R1: one name when one person holds both sides; unchanged for a work order that is not split.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 195,
@@ -245,7 +265,11 @@
   "snippets": [
    "</ul>  <ul> <li>Verify all visible columns i table</li> </ul>  <ul> <li>Customer</li> <li>Sales Representative</li> <li>Number of Work Orders</li> <li>Total Spend</li> <li>Last Visit</li> <",
    " <ul> <li>Verify all visible columns i table</li> </ul>  <ul> <li>Customer</li> <li>Sales Representative</li> <li>Number of Work Orders</li> <li>Total Spend</li> <li>Last Visit</li> </ul> "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "Sales Follow-Up report: out of scope (\"Nothing in it changes.\").",
+  "owner": "Vladimir Tomovic",
+  "automated": true
  },
  {
   "id": 29913,
@@ -295,7 +319,11 @@
   ],
   "snippets": [
    "tom role exists holding partSales:view and workOrders:view but NOT catalogInventory:view (Sales-Rep shape; built via the custom-role harness). A staff user is assigned that role and confirm"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Vladimir Tomovic",
+  "automated": true
  },
  {
   "id": 43575,
@@ -362,7 +390,11 @@
    "ive picker offers only staff whose toggle is on Two staff members exist, both holding the Sales Representative role, distinguished only by the toggle: one with Sales Representative ON, one ",
    "t, both holding the Sales Representative role, distinguished only by the toggle: one with Sales Representative ON, one with it OFF. Both API-seeded with per-run-unique names. A customer exi",
    "ON, one with it OFF. Both API-seeded with per-run-unique names. A customer exists with no sales representative assigned (API-seeded). Logged in as an admin who can edit customers. Open the "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Matches S4-R3 (switch on and account active).",
+  "owner": "Vladimir Tomovic",
+  "automated": true
  },
  {
   "id": 146392,
@@ -429,7 +461,11 @@
    "arts on separate rows and no Sales Representative set An active staff member flagged as a sales rep exists The user has Part Sales Create & Edit Pick the sales rep in Sales Representative  ",
    "staff member flagged as a sales rep exists The user has Part Sales Create & Edit Pick the sales rep in Sales Representative    Select one part's checkbox \u2192 bulk menu \u2192 \"Split Part Sale\"    ",
    "flagged as a sales rep exists The user has Part Sales Create & Edit Pick the sales rep in Sales Representative    Select one part's checkbox \u2192 bulk menu \u2192 \"Split Part Sale\"    \u22ee > Audit Log"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Expected results hold. Setup changes: a new part sale now starts with the customer's representative (S4-R26), so \"no Sales Representative set\" needs \"Unassigned\" picked first.",
+  "owner": "Vladimir Tomovic",
+  "automated": true
  },
  {
   "id": 146393,
@@ -489,7 +525,11 @@
    "l = Parts + Parts \u00d7 the new rate The new tax and Total persist No \"Edit tax rate\" pencil; Sales Representative is read-only text, not a dropdown  ",
    "Part Sale: tax rate edit recalculates the total; tax and Sales Representative lock at invoicing A Complete part sale with at least one taxable part, not invoiced The s",
    "rts + Parts \u00d7 the new rate The new tax and Total persist No \"Edit tax rate\" pencil; Sales Representative is read-only text, not a dropdown  "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Part sale keeps one Sales Representative field exactly as Part Sales Update v1 builds it (S2-N2 and its context note).",
+  "owner": "Vladimir Tomovic",
+  "automated": true
  },
  {
   "id": 29406,
@@ -517,7 +557,11 @@
   "steps_separated": null,
   "snippets": [
    " Work Orders: Create & Edit; Parts Tech is a receiver, not a completer).</li> <li>Office, Sales Rep and Time Clock cannot complete a work order.</li> </ol> "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 29407,
@@ -545,7 +589,11 @@
   "steps_separated": null,
   "snippets": [
    "tton nor the multi-select 'Receive Selected' route may lead to a usable receive.</li> <li>Sales Rep and Time Clock cannot reach Bulk Receive.</li> </ol> "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 29414,
@@ -576,7 +624,11 @@
    "ager.</li> <li>Roles expected NOT to be able to complete: Technician, Parts Tech, Office, Sales Rep, Time Clock.</li> </ol>  <ol> <li>Complete Work Order is available for Admin, Service Man",
    "anager.</li> <li>Complete Work Order is NOT available for Technician, Parts Tech, Office, Sales Rep or Time Clock.</li> <li>Technician and Parts Tech are blocked because they cannot approve",
    "se they cannot approve lines and/or lack Work Orders: Create & Edit; Office is view-only; Sales Rep and Time Clock have no work-order edit access.</li> </ol> "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 29410,
@@ -605,7 +657,11 @@
   "snippets": [
    "t API call is rejected with HTTP 403 for the four roles that should not have it \u2014 Office, Sales Representative, Technician, Time Clock \u2014 and is allowed for the seven roles that should (Admi",
    "call is rejected with HTTP 403 for the four roles that should not have it \u2014 Office, Sales Representative, Technician, Time Clock \u2014 and is allowed for the seven roles that should (Admin, Service "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 26308,
@@ -634,7 +690,11 @@
   "snippets": [
    "isor, Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office User, Sales Representative, Time Clock User.</p> <p>Each is marked as a system role.</p> <p>There is no O",
    "Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office User, Sales Representative, Time Clock User.</p> <p>Each is marked as a system role.</p> <p>There is no Owner role ("
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 26326,
@@ -663,7 +723,11 @@
   "snippets": [
    "isor, Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office User, Sales Representative, Time Clock User), each with a short description.</p> <p>(Exact modal title/la",
    "Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office User, Sales Representative, Time Clock User), each with a short description.</p> <p>(Exact modal title/labels to be "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 26504,
@@ -694,7 +758,11 @@
    "es Representative: role permissions match the expected set <ol><li>A user is assigned the Sales Representative role.</li></ol> <ol><li>Open the Sales Representative role's Permission Summar",
    " set <ol><li>A user is assigned the Sales Representative role.</li></ol> <ol><li>Open the Sales Representative role's Permission Summary (eye icon on the Roles list).</li><li>Check the add/",
    "lly log in as the user and spot-check a few of the role's typical tasks.</li></ol> <p>The Sales Representative permissions match the expected set:<br>Work Order: View<br>Customers: View, Cr"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 26506,
@@ -723,7 +791,11 @@
   "snippets": [
    "ager.</p> <p>It is off by default for Foreman, Technician, Parts Technician, Office User, Sales Representative and Time Clock User.</p> ",
    "/p> <p>It is off by default for Foreman, Technician, Parts Technician, Office User, Sales Representative and Time Clock User.</p> "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 26520,
@@ -754,7 +826,11 @@
    "Legacy 'Sales Representative' users become 'Sales Representative' after migration <ol> <li>Migration to the new roles is complete.</li> <li>At ",
    "igration <ol> <li>Migration to the new roles is complete.</li> <li>At least one existing 'Sales Representative' user is present.</li> </ol> <ol> <li>Go to Settings > Staff and find a 'Sales",
    "s Representative' user is present.</li> </ol> <ol> <li>Go to Settings > Staff and find a 'Sales Representative' user.</li> <li>Check the user's assigned role.</li> <li>Go to Settings > Role"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 26543,
@@ -783,7 +859,11 @@
   "snippets": [
    "isor, Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office User, Sales Representative, Time Clock User.</li> <li>For Office User and Time Clock User, confirm the lo",
    "Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office User, Sales Representative, Time Clock User.</li> <li>For Office User and Time Clock User, confirm the lock icon and"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 26580,
@@ -811,7 +891,11 @@
   "steps_separated": null,
   "snippets": [
    "-03). 2. Run atom-diff CLI in post-simplification mode. 3. For each system role and a few representative custom roles, diff atom sets. 4. Spot-check 5 endpoints whose guarding atom was collapsed"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 26590,
@@ -839,7 +923,11 @@
   "steps_separated": null,
   "snippets": [
    "ges \u2014 idempotent. Step 3: Count moves from 10 to 11 system roles per org (Sr SA / Jr SA / Sales Rep split; Owner template no longer seeded per spec 6/10). [Note: ticket SV-7482's title stil"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 27759,
@@ -868,7 +956,11 @@
   "snippets": [
    "e Advisor, Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office, Sales Representative, Time Clock) is listed with its correct name. The list is not blank or broken.",
    "sor, Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office, Sales Representative, Time Clock) is listed with its correct name. The list is not blank or broken."
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 27856,
@@ -899,7 +991,11 @@
    "shown in navigation for Sales Representative <p>Log in to ShopView as a user assigned the Sales Representative role. (this role has Work Orders = Off).</p>  <ol> <li>Look at the main naviga",
    "Verify Work Orders is not shown in navigation for Sales Representative <p>Log in to ShopView as a user assigned the Sales Representative role. (this role has Wo",
    "in navigation for Sales Representative <p>Log in to ShopView as a user assigned the Sales Representative role. (this role has Work Orders = Off).</p>  <ol> <li>Look at the main navigation.</li> "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 27857,
@@ -930,7 +1026,11 @@
    "ative can open reports including financial data Log in to ShopView as a user assigned the Sales Representative role. (this role has Reports ON and See Financial Data ON). Report data exists",
    "Verify Sales Representative can open reports including financial data Log in to ShopView as a user assigned the Sales",
    "can open reports including financial data Log in to ShopView as a user assigned the Sales Representative role. (this role has Reports ON and See Financial Data ON). Report data exists. 1. Click "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 27858,
@@ -961,7 +1061,11 @@
    " Sales Representative can open AP/AR reports 1. Log in to ShopView as a user assigned the Sales Representative role. 2. The role has the Reports permission ON (this is what grants access to",
    "Verify Sales Representative can open AP/AR reports 1. Log in to ShopView as a user assigned the Sales Representative ",
    " Representative can open AP/AR reports 1. Log in to ShopView as a user assigned the Sales Representative role. 2. The role has the Reports permission ON (this is what grants access to the AP/AR "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 27859,
@@ -992,7 +1096,11 @@
    "s sections are hidden from Sales Representative Log in to ShopView as a user assigned the Sales Representative role. (this role has Customers = Off and Part Sales = Off). 1. Look at the mai",
    "Verify Parts and Customers sections are hidden from Sales Representative Log in to ShopView as a user assigned the Sales Representative role. (this role has Custo",
    "ions are hidden from Sales Representative Log in to ShopView as a user assigned the Sales Representative role. (this role has Customers = Off and Part Sales = Off). 1. Look at the main navigatio"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 27860,
@@ -1023,7 +1131,11 @@
    "annot access Vendors or vendor sensitive fields Log in to ShopView as a user assigned the Sales Representative role. (this role has Vendor & Order Management = Off, so vendor sensitive fiel",
    "Vendors entry. 2. If a Vendors entry exists, try to open it. Vendors is not reachable for Sales Representative, so vendor sensitive fields (Credit Terms, Credit Limit, Taxes) can never be d",
    "Verify Sales Representative cannot access Vendors or vendor sensitive fields Log in to ShopView as a user assigned th"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 27459,
@@ -1051,7 +1163,11 @@
   "steps_separated": null,
   "snippets": [
    "CR-C3-004 \u2014 Part sales rep (full) <p>Permissions (counted): Part Sales V+E+D. Auto-gate forced ON (not counted): Par"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Vladimir Tomovic",
+  "automated": true
  },
  {
   "id": 27496,
@@ -1079,7 +1195,11 @@
   "steps_separated": null,
   "snippets": [
    "CR-C3-041 \u2014 Sales rep + customer view <p>Permissions (counted): Reports + See Financial + Customers V. View Mod"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Vladimir Tomovic",
+  "automated": true
  },
  {
   "id": 27703,
@@ -1110,7 +1230,11 @@
    "Sales Representative - A. View inspections on a work order line <p>Logged in as Sales Representative. No Work Orders access. A work order line has at least one inspection.</p>  <o",
    "Sales Representative - A. View inspections on a work order line <p>Logged in as Sales Representative. No Work ",
    "Sales Representative - A. View inspections on a work order line <p>Logged in as Sales Representative. No Work Orders access. A work order line has at least one inspection.</p>  <ol> <li>Log "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 27704,
@@ -1141,7 +1265,11 @@
    "Sales Representative - B. Add inspection to a work order line Logged in as Sales Representative. No Work Orders access. A work order with at least one line exists. 1. Log in.",
    "Sales Representative - B. Add inspection to a work order line Logged in as Sales Representative. No Work Order",
    "Sales Representative - B. Add inspection to a work order line Logged in as Sales Representative. No Work Orders access. A work order with at least one line exists. 1. Log in. 2. Open a "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 27705,
@@ -1172,7 +1300,11 @@
    "Sales Representative - C. Add multiple inspection templates to one line Logged in as Sales Representative. No Work Orders access. A work order line exists. 1. Log in. 2. Add an inspect",
    "Sales Representative - C. Add multiple inspection templates to one line Logged in as Sales Representative. No ",
    "ales Representative - C. Add multiple inspection templates to one line Logged in as Sales Representative. No Work Orders access. A work order line exists. 1. Log in. 2. Add an inspection templat"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 27706,
@@ -1203,7 +1335,11 @@
    "Sales Representative - D. Open and fill an in-progress inspection Logged in as Sales Representative. No Work Orders access. A line has an in-progress inspection (incl. on an appr",
    "Sales Representative - D. Open and fill an in-progress inspection Logged in as Sales Representative. No Work O",
    "Sales Representative - D. Open and fill an in-progress inspection Logged in as Sales Representative. No Work Orders access. A line has an in-progress inspection (incl. on an approved line f"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 27707,
@@ -1234,7 +1370,11 @@
    "ales Representative - E. Complete an inspection (Submit and Generate Report) Logged in as Sales Representative. No Work Orders access. An inspection is in progress with required fields fill",
    "Sales Representative - E. Complete an inspection (Submit and Generate Report) Logged in as Sales Representativ",
    "epresentative - E. Complete an inspection (Submit and Generate Report) Logged in as Sales Representative. No Work Orders access. An inspection is in progress with required fields fillable. 1. Lo"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 27708,
@@ -1265,7 +1405,11 @@
    "s Representative - F. Inspection at 100 percent but not submitted shows Open Logged in as Sales Representative. No Work Orders access. An inspection can be filled to 100 percent without sub",
    "Sales Representative - F. Inspection at 100 percent but not submitted shows Open Logged in as Sales Representa",
    "esentative - F. Inspection at 100 percent but not submitted shows Open Logged in as Sales Representative. No Work Orders access. An inspection can be filled to 100 percent without submitting. 1."
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 27709,
@@ -1296,7 +1440,11 @@
    "Sales Representative - G. Inspection status labels display correctly Logged in as Sales Representative. No Work Orders access. A line has inspections in different states. 1. Open a ",
    "Sales Representative - G. Inspection status labels display correctly Logged in as Sales Representative. No Wor",
    "Sales Representative - G. Inspection status labels display correctly Logged in as Sales Representative. No Work Orders access. A line has inspections in different states. 1. Open a work order "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 27710,
@@ -1327,7 +1475,11 @@
    "Sales Representative - H. Remove an incomplete (in-progress) inspection Logged in as Sales Representative. No Work Orders access. A line has an in-progress / not-started (incomplete) i",
    "Sales Representative - H. Remove an incomplete (in-progress) inspection Logged in as Sales Representative. No ",
    "ales Representative - H. Remove an incomplete (in-progress) inspection Logged in as Sales Representative. No Work Orders access. A line has an in-progress / not-started (incomplete) inspection. "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 27711,
@@ -1358,7 +1510,11 @@
    "Sales Representative - I. Remove a completed inspection Logged in as Sales Representative. No Work Orders access. A line has a completed inspection with a generated PDF",
    "Sales Representative - I. Remove a completed inspection Logged in as Sales Representative. No Work Orders acce",
    "Sales Representative - I. Remove a completed inspection Logged in as Sales Representative. No Work Orders access. A line has a completed inspection with a generated PDF report. 1."
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 27712,
@@ -1389,7 +1545,11 @@
    "Sales Representative - J. Reopen a completed inspection Logged in as Sales Representative. No Work Orders access. A line has a completed inspection. 1. Log in. 2. Open ",
    "Sales Representative - J. Reopen a completed inspection Logged in as Sales Representative. No Work Orders acce",
    "Sales Representative - J. Reopen a completed inspection Logged in as Sales Representative. No Work Orders access. A line has a completed inspection. 1. Log in. 2. Open the line wi"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 27713,
@@ -1420,7 +1580,11 @@
    "ales Representative - K. Configure Inspection Templates (Settings > Service) Logged in as Sales Representative. No Work Orders access. 1. Log in. 2. Go to Settings > Service. 3. Open Inspec",
    "Sales Representative - K. Configure Inspection Templates (Settings > Service) Logged in as Sales Representativ",
    "epresentative - K. Configure Inspection Templates (Settings > Service) Logged in as Sales Representative. No Work Orders access. 1. Log in. 2. Go to Settings > Service. 3. Open Inspection Templa"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 27714,
@@ -1451,7 +1615,11 @@
    "resentative - L. Save as canned line (carrying attached inspection template) Logged in as Sales Representative. No Work Orders access. A work order line has an attached (published) inspecti",
    "Sales Representative - L. Save as canned line (carrying attached inspection template) Logged in as Sales Repre",
    "ative - L. Save as canned line (carrying attached inspection template) Logged in as Sales Representative. No Work Orders access. A work order line has an attached (published) inspection template"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 27715,
@@ -1482,7 +1650,11 @@
    "s Representative - M. Create WO lines from Needs Attention inspection fields Logged in as Sales Representative. No Work Orders access. A completed inspection has one or more fields flagged ",
    "Sales Representative - M. Create WO lines from Needs Attention inspection fields Logged in as Sales Representa",
    "esentative - M. Create WO lines from Needs Attention inspection fields Logged in as Sales Representative. No Work Orders access. A completed inspection has one or more fields flagged \"Needs Atte"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 43577,
@@ -1519,7 +1691,11 @@
   "snippets": [
    "search no longer alters the record set on any surface (app-wide sweep) You have access to representative surfaces across Work Orders, Customers, Parts, Administration, Reports and Dashboard, inc",
    "ation, Reports and Dashboard, including detail-page tables and the audit-log dialog. On a representative surface from each area, type a query into the global header search. The visible record se"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Ahtasham Amjad",
+  "automated": false
  },
  {
   "id": 43569,
@@ -1592,7 +1768,11 @@
    "Report route permission gate for Sales By Customer / Sales By Representative / Inventory Value <p>A Technician-role staff user with a known password, enrolled at the ",
    "Report route permission gate for Sales By Customer / Sales By Representative / Inventory Value <p>A Technician-role staff user with a known password, enrolled at the ",
    "e directly to /reports/sales-by-customer</p>    <p>Navigate directly to /reports/sales-by-representative</p>    <p>Navigate directly to /reports/inventory-value</p>    <p>Open the Reports left-h"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Vladimir Tomovic",
+  "automated": true
  },
  {
   "id": 43571,
@@ -1666,7 +1846,11 @@
    "I) A sales rep with one invoiced service WO exists, so a rep row can be expanded on Sales By Representative (seeded via API) An owner/admin account, plus a restricted role holding reportsPageAccess",
    "A sales rep with one invoiced service WO exists, so a rep row can be expanded on Sales By Representative (seeded via API) An owner/admin account, plus a restricted role holding reportsPageAccess",
    " cell    Click the plain-text WO # cell    As the restricted role, open /reports/sales-by-representative and expand the seeded rep   "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Uses Sales By Representative only for links/location; nothing the PRD changes.",
+  "owner": "Vladimir Tomovic",
+  "automated": true
  },
  {
   "id": 43980,
@@ -1724,7 +1908,11 @@
   "snippets": [
    "ders.   Repeat steps 1-3 for Parts Velocity, Inventory Value, Sales By Customer and Sales By Representative Each report behaves identically; no report ejects the user out of the Reporting section. ",
    "s.   Repeat steps 1-3 for Parts Velocity, Inventory Value, Sales By Customer and Sales By Representative Each report behaves identically; no report ejects the user out of the Reporting section. "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Vladimir Tomovic",
+  "automated": true
  },
  {
   "id": 30107,
@@ -1754,7 +1942,11 @@
    "Product Type multi-select: both toggles on by default; S/P prefix filtering 1. You are on the Sales By",
    "one parts invoice (number starting with P) \u2014 seed ZZAUTOTEST data if needed. 1. Find the \"Product Type\" filter in the report toolbar; read its current selection before touching it, then open i",
    "ad the invoice numbers again. 4. Use \"All products\" to select both toggles again. 1. The \"Product Type\" filter in the toolbar is a multi-select, behaving like the Customer and Location filters"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\" S8-R7: \"Its two options read \"Part Sales\" and \"Service Sales\".\" The case expects the \"Product Type\" filter with \"Parts\" and \"Services\" toggles. (PO question Q6 on the \"All products\"/\"Clear all\" rows.)",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 43591,
@@ -1784,7 +1976,11 @@
    "Clear all leaves neither Product Type toggle on and shows the empty state 1. You are on the Sales By Customer report with a dat",
    "rmally returns rows, so you can tell an empty result from a genuinely empty range. 2. The Product Type filter is at its default with both toggles selected. 1. Open the \"Product Type\" filter an",
    "ge. 2. The Product Type filter is at its default with both toggles selected. 1. Open the \"Product Type\" filter and read the two action rows at the top. 2. Choose \"Clear all\" and read the table"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\" S8-R7: \"Its two options read \"Part Sales\" and \"Service Sales\".\" S8-R8: \"With both options selected, the filter reads \"Sales Type: All Sales\". With one, it reads that option's name, for example \"Sales Type: Part Sales\". With none, it reads \"Sales Type: No sales\".\" (PO question Q6.)",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30112,
@@ -1813,7 +2009,11 @@
   "snippets": [
    "Customer filter sits between Product Type and Location, carries a search icon 1. You are on the Sales By Customer report with at le",
    "shows before any query is typed. 1. A Customer filter labeled \"Customer\" sits between the Product Type filter and the Location filter. 2. The control carries a search (magnifier) icon marking "
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter or one of its options (\"Parts & Service\", \"Service only\"), which are renamed; the behaviour checked is unchanged (S8-R10, S8-N1). S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30113,
@@ -1842,7 +2042,11 @@
   "snippets": [
    "<br>2. At least two customers with distinct names have invoices in the current date range/Product Type/location (seed ZZAUTOTEST customers if needed)..</p> <p>1. Open the Customer filter and t",
    "(a \"contains\" match, not starts-with).<br>2. The list is scoped to the active date range, Product Type, and location.<br>3. A selected customer is shown with a checkmark.<br><br>---<br>This is"
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter or one of its options (\"Parts & Service\", \"Service only\"), which are renamed; the behaviour checked is unchanged (S8-R10, S8-N1). S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30121,
@@ -1870,7 +2074,11 @@
   "steps_separated": null,
   "snippets": [
    "a slightly softer grey, and is easy to read. 4. The count reflects the active date range, Product Type, and location \u2014 it drops when the range is narrowed; it is not a lifetime count. 5. Note "
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter or one of its options (\"Parts & Service\", \"Service only\"), which are renamed; the behaviour checked is unchanged (S8-R10, S8-N1). S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30129,
@@ -1899,7 +2107,11 @@
   "snippets": [
    "o not change the selection); watch the expanded rows.<br>2. Now change the date range (or Product Type, location, Customer selection, or sort).<br>3. Look at the previously expanded rows, the ",
    "anded table rows stay expanded.<br>2. A change that re-fetches customer rows (date range, Product Type, location, Customer selection, or sort) collapses all expanded rows.<br>3. While the re-f"
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter or one of its options (\"Parts & Service\", \"Service only\"), which are renamed; the behaviour checked is unchanged (S8-R10, S8-N1). S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30132,
@@ -1927,7 +2139,11 @@
   "steps_separated": null,
   "snippets": [
    "t is excluded from the customer's \"(N)\" count and from every row total, regardless of the Product Type filter.<br>3. The customer/asset totals drop by exactly that invoice's amounts.<br><br>--"
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter or one of its options (\"Parts & Service\", \"Service only\"), which are renamed; the behaviour checked is unchanged (S8-R10, S8-N1). S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30139,
@@ -1955,7 +2171,11 @@
   "steps_separated": null,
   "snippets": [
    "isible columns, and row expansion.</p> <p>1. Before navigating, the active date range and Product Type are written to the page link.<br>2. Pressing back returns to the report with its filters,"
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter or one of its options (\"Parts & Service\", \"Service only\"), which are renamed; the behaviour checked is unchanged (S8-R10, S8-N1). S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30155,
@@ -1983,7 +2203,11 @@
   "steps_separated": null,
   "snippets": [
    "s row is computed over the full set of customers matching the active filters (date range, Product Type, location, Customer filter).</li> <li>The totals do not change when you move between page"
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter or one of its options (\"Parts & Service\", \"Service only\"), which are renamed; the behaviour checked is unchanged (S8-R10, S8-N1). S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 43550,
@@ -2012,7 +2236,11 @@
   "snippets": [
    "ches from top to bottom and look for an entry called Location.<br>3. Do the same on Sales By Representative, then Parts Velocity, then Technician Utilization, then Work In Progress, then Inventory ",
    "s from top to bottom and look for an entry called Location.<br>3. Do the same on Sales By Representative, then Parts Velocity, then Technician Utilization, then Work In Progress, then Inventory "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "Mentions Sales By Representative or Product Type only in passing; nothing the PRD changes.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30162,
@@ -2041,7 +2269,11 @@
   "snippets": [
    "r><br>SV-9069 superseded the one-decimal wording: Margin % on Sales By Customer and Sales By Representative reads to two decimals in EVERY format &mdash; screen, PDF and CSV &mdash; so the file mat",
    "br>SV-9069 superseded the one-decimal wording: Margin % on Sales By Customer and Sales By Representative reads to two decimals in EVERY format &mdash; screen, PDF and CSV &mdash; so the file mat"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "Mentions Sales By Representative or Product Type only in passing; nothing the PRD changes.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30163,
@@ -2072,7 +2304,11 @@
    "s two locations, both product types, and several customers. 1. Set a specific date range, Product Type \"Service only\", one location, a two-customer selection in the Customer filter, and a Subt",
    "omers matching the active filters \u2014 the selected customers, within the active date range, Product Type, and location \u2014 in the active sort order. 2. When every customer is selected, the export ",
    "port contains the full set of customers under those filters. 3. The chosen date range and Product Type are reflected in both exports.  --- This is the expected behaviour as per epic SV-8582, r"
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter or one of its options (\"Parts & Service\", \"Service only\"), which are renamed; the behaviour checked is unchanged (S8-R10, S8-N1). S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30167,
@@ -2102,7 +2338,11 @@
    "PDF header: title, organization, date range, Product Type and Locations lines 1. You have downloaded the PDF with a known date range, Product Type,",
    " Product Type and Locations lines 1. You have downloaded the PDF with a known date range, Product Type, and a specific location selected. 1. Read the header's text block top to bottom. 2. Look",
    " By Customer Report\"; the organization name; the date range; and the filter summary line \"Product Type: {value}\" where value is \"Parts & Service,\" \"Parts only,\" or \"Service only.\" 3. The heade"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S8-R9: \"The filter line at the top of every PDF and CSV export of Sales By Customer reads \"Sales Type: All Sales\", \"Sales Type: Part Sales only\", or \"Sales Type: Service Sales only\".\" The case expects \"Product Type: {value}\" with \"Parts & Service\", \"Parts only\" or \"Service only\".",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30172,
@@ -2130,7 +2370,11 @@
   "steps_separated": null,
   "snippets": [
    "omer rows plus invoice rows (not the header or totals row) against the active date range, Product Type, location, Customer filter, and sort.</li> <li>Below the cap the export succeeds normally"
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter or one of its options (\"Parts & Service\", \"Service only\"), which are renamed; the behaviour checked is unchanged (S8-R10, S8-N1). S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 43832,
@@ -2159,7 +2403,11 @@
   "snippets": [
    "CSV export repeats the PDF header's Product Type and Locations filter lines 1. You are signed in to the ShopView App on a desktop browser.",
    "1. The CSV carries the same filter-summary lines as the PDF header - the date range, the \"Product Type: {value}\" line, and the \"Locations:\" line - each as a leading metadata row above the colu"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S8-R9: \"The filter line at the top of every PDF and CSV export of Sales By Customer reads \"Sales Type: All Sales\", \"Sales Type: Part Sales only\", or \"Sales Type: Service Sales only\".\" The case expects the \"Product Type: {value}\" line in the CSV.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30174,
@@ -2188,7 +2436,11 @@
   "snippets": [
    "t 1. You are on the report in a browser you can revisit. 1. Set a non-default date range, Product Type, location selection, a two-customer Customer selection, a non-default sort, and hide one ",
    "d the visible columns ARE restored - these are remembered per browser. 2. The date range, Product Type, location selection and Customer selection are NOT restored: the report opens on its defa"
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter or one of its options (\"Parts & Service\", \"Service only\"), which are renamed; the behaviour checked is unchanged (S8-R10, S8-N1). S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30178,
@@ -2216,7 +2468,11 @@
   "steps_separated": null,
   "snippets": [
    "ble columns. 1. Date range = This Month (nothing saved and no range in the page link). 2. Product Type = \"Parts & Service.\" 3. Location = the single location you are currently working in (your"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\" S8-R8: \"With both options selected, the filter reads \"Sales Type: All Sales\". With one, it reads that option's name, for example \"Sales Type: Part Sales\". With none, it reads \"Sales Type: No sales\".\" The case expects the default Product Type = \"Parts & Service\".",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30181,
@@ -2245,7 +2501,11 @@
   "snippets": [
    " Read the table body and try each toolbar control.<br>3. Also provoke the empty state via Product Type and via a location with no data, and re-check.<br>4. Look at the table header row's chevr",
    "ving the page.<br>3. The same empty state appears whichever filter caused it (date range, Product Type, or location).<br>4. The header-row chevron is hidden when the table has no visible rows."
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter or one of its options (\"Parts & Service\", \"Service only\"), which are renamed; the behaviour checked is unchanged (S8-R10, S8-N1). S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30188,
@@ -2273,7 +2533,11 @@
   "steps_separated": null,
   "snippets": [
    "e or browser device emulation).</p>  <p>1. Try each toolbar control by touch: date range, Product Type, the Customer filter, location, the overflow menu, and the column selector.<br>2. At a wi"
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter or one of its options (\"Parts & Service\", \"Service only\"), which are renamed; the behaviour checked is unchanged (S8-R10, S8-N1). S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30192,
@@ -2301,7 +2565,11 @@
   "steps_separated": null,
   "snippets": [
    "rver \u2014 case-insensitive \"contains\" matching on the name, scoped to the active date range, Product Type, and location \u2014 and lists the returned customers. 3. The all-customers state is stored as"
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter or one of its options (\"Parts & Service\", \"Service only\"), which are renamed; the behaviour checked is unchanged (S8-R10, S8-N1). S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30194,
@@ -2329,7 +2597,11 @@
   "steps_separated": null,
   "snippets": [
    "ver's refusal. 1. The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort \u2014 not assembled from the rows already loaded in the "
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter or one of its options (\"Parts & Service\", \"Service only\"), which are renamed; the behaviour checked is unchanged (S8-R10, S8-N1). S8-R6: \"On Sales By Customer, the filter labeled \"Product Type\" today is labeled \"Sales Type\".\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30195,
@@ -2360,7 +2632,11 @@
    "the Performance group of the left-side navigation top to bottom.</li><li>Click the \"Sales By Representative\" entry.</li><li>Read the page title at the top of the report and the browser tab's title.",
    "page title at the top of the report and the browser tab's title.</li></ol> <ol><li>\"Sales By Representative\" appears in the Performance group, BELOW the pre-existing entries (Sales, Technician Effi",
    " the entry opens the report in the main content area.</li><li>The page title reads \"Sales By Representative\".</li><li>The browser tab title reads \"Sales By Representative - Report | ShopView\".</li>"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30197,
@@ -2391,7 +2667,11 @@
    "e Reports navigation with the entry visible.</li></ol> <ol><li>Look closely at the \"Sales By Representative\" entry's label against the entry's left and right edges.</li><li>Compare its padding with",
    "li><li>Compare its padding with the neighbouring entries.</li></ol> <p>1. The full \"Sales By Representative\" label renders without crowding against the entry\u2019s edges and without truncation.<br>2. T",
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S1-R7), read on 17 August 2026.<br>Last checked against "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30198,
@@ -2422,7 +2702,11 @@
    "..</p> <p>1. Open the Reports navigation and read the Performance group.</p> <p>1. \"Sales By Representative\" appears in the Performance group for this user &mdash; the entry is visible to every use",
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S1-R1), read on 17 August 2026.<br>Last checked against ",
    "Sales By Representative is visible to anyone who sees another Performance report <p>1. A test user exists whose r"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30199,
@@ -2453,7 +2737,11 @@
    "port Reports dialog.</p> <p>1. The entire Reports navigation &mdash; including the \"Sales By Representative\" entry &mdash; is not shown.<br>2. The report (and its &#8943; export menu) is not reacha",
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S1-N1, S14-N3, S15-N1), read on 17 August 2026.<br>Last ",
    "t Reports dialog.</p> <p>1. The entire Reports navigation &mdash; including the \"Sales By Representative\" entry &mdash; is not shown.<br>2. The report (and its &#8943; export menu) is not reacha"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30200,
@@ -2482,7 +2770,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-N1), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-N1), read on 17 August 2026.<br>Last checked against"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30201,
@@ -2513,7 +2805,11 @@
    "106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026. Where the Sales By Representative report specification version 24 (S2-R1, S2-R2), read on 17 August 2026, says something di",
    " in the toolbar and offers the standard presets plus Custom <p>1. You are on the Sales By Representative report..</p> <p>1. Find the date range picker in the report toolbar.<br>2. Open it and re",
    "388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026. Where the Sales By Representative report specification version 24 (S2-R1, S2-R2), read on 17 August 2026, says something di"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30202,
@@ -2544,7 +2840,11 @@
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S2-R3, S2-R6), read on 17 August 2026.<br>Last checked a",
    "range uses the date-picker and holds a 366-day maximum span <p>1. You are on the Sales By Representative report..</p> <p>1. Open the date range picker and select a start and end date within 366 ",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S2-R3, S2-R6), read on 17 August 2026.<br>Last checked a"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30204,
@@ -2573,7 +2873,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S2-R5, S2-R8), read on 17 August 2026.<br>Last checked a",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S2-R5, S2-R8), read on 17 August 2026.<br>Last checked a"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30206,
@@ -2604,7 +2908,11 @@
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6, S3-R7), read o",
    " P (parts) and an S (service) invoice in the range (seed ZZAUTOTEST data via the WO Sales Representative field).</li><li>No remembered settings for this report (first visit or cleared storage), ",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6, S3-R7), read o"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S8-R1: \"Sales By Representative has a \"Sales Type\" filter with three options, in this order: \"Labor\", \"Parts\", \"Part Sales\". All three are selected by default.\" The \"Product Type\" dropdown with \"Parts & Service / Parts only / Service only\" is replaced.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30208,
@@ -2633,7 +2941,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S4-R1, S4-R2, S4-R3, S4-R5), read on 17 August 2026.<br>",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S4-R1, S4-R2, S4-R3, S4-R5), read on 17 August 2026.<br>"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30209,
@@ -2662,7 +2974,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S4-R4), read on 17 August 2026.<br>Last checked against ",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S4-R4), read on 17 August 2026.<br>Last checked against "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30211,
@@ -2693,7 +3009,11 @@
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S4-R7, S4-R6, S4-N1, S3-R8, S3-N1), read on 17 August 20",
    "active filters <p>1. ZZAUTOTEST invoices exist that each fail exactly one of: date range, product type, invoice status, location \u2014 plus one invoice matching all four.<br>2. For the per-filter ",
    "cation) and read the rep rows, counts, detail rows, and the grand Totals indicator.<br>2. Product Type leg: select \"Parts only\"; look for rep A and read rep B's (N) count, summary totals, deta"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S8-R1: \"Sales By Representative has a \"Sales Type\" filter with three options, in this order: \"Labor\", \"Parts\", \"Part Sales\". All three are selected by default.\" The \"Product Type\" dropdown with \"Parts & Service / Parts only / Service only\" is replaced.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30212,
@@ -2722,7 +3042,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S4-R8), read on 17 August 2026.<br>Last checked against ",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S4-R8), read on 17 August 2026.<br>Last checked against "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 43981,
@@ -2781,7 +3105,11 @@
    "ties the report instead of showing every rep Signed in as an owner with Reports access. A sales rep is credited on at least one invoiced work order inside the default date range. The Invoic",
    "ange. The Invoice Status filter starts at its default (all statuses selected). Open Sales By Representative and confirm the seeded rep's row is listed The rep row renders with the default all-statu",
    "e. The Invoice Status filter starts at its default (all statuses selected). Open Sales By Representative and confirm the seeded rep's row is listed The rep row renders with the default all-statu"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Vladimir Tomovic",
+  "automated": true
  },
  {
   "id": 30213,
@@ -2810,7 +3138,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S21-R1, S18-R7), read on 17 August 2026.<br>Last checked",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S21-R1, S18-R7), read on 17 August 2026.<br>Last checked"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30215,
@@ -2839,7 +3171,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S21-R3, S21-R4, S21-R5), read on 17 August 2026; where t",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S21-R3, S21-R4, S21-R5), read on 17 August 2026; where t"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30216,
@@ -2870,7 +3206,11 @@
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S21-N1), read on 17 August 2026. Chris Ward confirmed th",
    "Sales By Representative: Location filter hidden for a one-location user <p>1. You are signed in as a user assigne",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S21-N1), read on 17 August 2026. Chris Ward confirmed th"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 38913,
@@ -2901,7 +3241,11 @@
    "eps as normal.</p><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S21-R7; S14-R20), both read on 17 August 2026. The colum",
    "to any multi-location user; toggleable; rep rows Multiple <ol><li>You are on the Sales By Representative report as a user with access to two or more locations.</li><li>One rep has invoices at a ",
    " as normal.</p><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S21-R7; S14-R20), both read on 17 August 2026. The colum"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30217,
@@ -2931,7 +3275,11 @@
    "hing non-reversed invoice <ol><li>Rep A has invoices in the current filtered view; rep B (sales-rep toggle on) has NONE; rep C has only a reversed invoice (seed ZZAUTOTEST data).</li></ol> ",
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S5-R1, S5-R4, S5-N1), read on 17 August 2026.</p><p>AUTO",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S5-R1, S5-R4, S5-N1), read on 17 August 2026.</p><p>AUTO"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30218,
@@ -2960,7 +3308,11 @@
   "snippets": [
    " not a table row.<br><br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S5-R2), read on 26 August 2026. The column was renamed f",
    "t a table row.<br><br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S5-R2), read on 26 August 2026. The column was renamed f"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Sales Type column is off by default on screen (S5-R21), so the default 14/15-column layout holds; at risk only when the column is turned on (position vs Location: PO question Q4).",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30219,
@@ -2990,7 +3342,11 @@
    "still appears; tagged (Inactive) <p>1. Rep A has matching invoices; you then turn rep A's sales-rep toggle OFF (restore afterwards).<br>2. If a rep whose staff record was DELETED but who ha",
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S5-R9), read on 17 August 2026.<br>Last checked against ",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S5-R9), read on 17 August 2026.<br>Last checked against "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30221,
@@ -3019,7 +3375,11 @@
   "snippets": [
    "s shown.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S6-R1, S6-R2, S6-R3, S6-E1), both read on 17 August 2026",
    "hown.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S6-R1, S6-R2, S6-R3, S6-E1), both read on 17 August 2026"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30222,
@@ -3048,7 +3408,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R5, S6-R6), read on 17 August 2026.<br>Last checked a",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R5, S6-R6), read on 17 August 2026.<br>Last checked a"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30223,
@@ -3077,7 +3441,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R7), read on 17 August 2026.<br>Last checked against ",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R7), read on 17 August 2026.<br>Last checked against "
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S5-R11: \"Two different people on one work order are always two rows.\" S5-R13: \"A representative counts an invoice once, even when they have two rows for it. When two people split an invoice, each counts it once, so the representatives' invoice counts can add up to more than the shop's.\" The case expects every invoice under exactly one rep and the (N) counts to sum to the invoice count.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30224,
@@ -3106,7 +3474,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R8, S6-N1, S23-R2), read on 17 August 2026.<br>Last c",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R8, S6-N1, S23-R2), read on 17 August 2026.<br>Last c"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30225,
@@ -3135,7 +3507,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R9, S11-R2), read on 17 August 2026.<br>Last checked ",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R9, S11-R2), read on 17 August 2026.<br>Last checked "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 43828,
@@ -3166,7 +3542,11 @@
    "\".</p><p>This is the expected behaviour as per epic SV-8582, story SV-9281, and the Sales By Representative report specification version 24 (S5-R2), read on 26 August 2026.<br>Specification version",
    "lies and Margin <p>1. You are signed in to the ShopView App on a desktop browser.<br>2. A representative has an invoice carrying an invoice-level fee or discount in the selected date range.</p> ",
    " an invoice-level fee or discount in the selected date range.</p> <p>1. Open the Sales By Representative report.<br>2. Look at the columns left to right.</p> <p>1. The columns appear left-to-rig"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30226,
@@ -3195,7 +3575,11 @@
   "snippets": [
    "r alone.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S8-R1, S8-R2, S8-R4, S8-R5, S8-R6, S8-N1, S18-R6), both ",
    "lone.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S8-R1, S8-R2, S8-R4, S8-R5, S8-R6, S8-N1, S18-R6), both "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30227,
@@ -3224,7 +3608,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S8-R3, S18-R8), read on 17 August 2026.<br>Last checked ",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S8-R3, S18-R8), read on 17 August 2026.<br>Last checked "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30229,
@@ -3253,7 +3641,11 @@
   "snippets": [
    "decimal.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S9-R1; S9-R2; \u00a73), both read on 17 August 2026. The colu",
    "imal.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S9-R1; S9-R2; \u00a73), both read on 17 August 2026. The colu"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30230,
@@ -3282,7 +3674,11 @@
   "snippets": [
    ", -0.5).</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S9-R3, S9-R4, S9-R5, S9-R6, S9-E1, S9-E2), both read on ",
    "0.5).</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S9-R3, S9-R4, S9-R5, S9-R6, S9-E1, S9-E2), both read on "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30231,
@@ -3311,7 +3707,11 @@
   "snippets": [
    " to 0.0.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S9-N1), both read on 17 August 2026. The column was rena",
    " 0.0.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S9-N1), both read on 17 August 2026. The column was rena"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30233,
@@ -3340,7 +3740,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S10-R5), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S10-R5), read on 17 August 2026.<br>Last checked against"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 adds S5-R17 (side-only Margin % on split rows) but does not change the unsplit calculation this case checks.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30234,
@@ -3369,7 +3773,11 @@
   "snippets": [
    "ter the exports).<br><br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S5-R2; S5-R12; &sect;3), read on 26 August 2026.<br>The ",
    " the exports).<br><br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S5-R2; S5-R12; &sect;3), read on 26 August 2026.<br>The "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30235,
@@ -3398,7 +3806,11 @@
   "snippets": [
    "ntheses.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (\u00a73 negative money columns), read on 26 August 2026, with",
    "eses.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (\u00a73 negative money columns), read on 26 August 2026, with"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30236,
@@ -3427,7 +3839,11 @@
   "snippets": [
    " defect.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (\u00a73 half), read on 26 August 2026, with the epic read on ",
    "fect.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (\u00a73 half), read on 26 August 2026, with the epic read on "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 38894,
@@ -3456,7 +3872,11 @@
   "snippets": [
    "t stale.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S9-R2), both read on 17 August 2026. The column was rena",
    "tale.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S9-R2), both read on 17 August 2026. The column was rena"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 43829,
@@ -3487,7 +3907,11 @@
    "d behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 24 (S5-R11), read on 17 August 2026.<br>Last checked against",
    "d discounts <ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>A representative has invoices with invoice-level fees and discounts in the selected date range.</li></ol> ",
    "-level fees and discounts in the selected date range.</li></ol> <ol><li>Open the Sales By Representative report.</li><li>Read the Adjustments value on a rep row and an invoice detail row.</li></"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Holds for the columns; at risk on split invoices: which column carries the shared whole-invoice amount on Labor/Parts rows is not stated (PO question Q5).",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30237,
@@ -3516,7 +3940,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R6, S10-N1, S18-R7),",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R6, S10-N1, S18-R7),"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30238,
@@ -3545,7 +3973,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S10-R5, S10-N1, S16-R4), read on 17 August 2026.<br>Last",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S10-R5, S10-N1, S16-R4), read on 17 August 2026.<br>Last"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30239,
@@ -3574,7 +4006,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S10-R5, S17-R4), read on 17 August 2026.<br>Last checked",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S10-R5, S17-R4), read on 17 August 2026.<br>Last checked"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 43830,
@@ -3605,7 +4041,11 @@
    "e.</p><p>This is the expected behaviour as per epic SV-8582, story SV-9281, and the Sales By Representative report specification version 24 (S5-R12), read on 26 August 2026.<br>Specification versio",
    "ts are included <p>1. You are signed in to the ShopView App on a desktop browser.<br>2. A representative has an invoice carrying shop supplies and an invoice-level fee or discount.</p> <p>1. Ope",
    " carrying shop supplies and an invoice-level fee or discount.</p> <p>1. Open the Sales By Representative report.<br>2. On a rep row, add Labor Invoiced, Parts Invoiced, Shop Supplies and Adjustm"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30241,
@@ -3634,7 +4074,11 @@
   "snippets": [
    " sort affordance.<br><br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S11-R1; S11-R6), read on 26 August 2026. The column was ",
    "rt affordance.<br><br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S11-R1; S11-R6), read on 26 August 2026. The column was "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30242,
@@ -3663,7 +4107,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R4), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R4), read on 17 August 2026.<br>Last checked against"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30243,
@@ -3692,7 +4140,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R5, S23-R5), read on 17 August 2026.<br>Last checked",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R5, S23-R5), read on 17 August 2026.<br>Last checked"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30244,
@@ -3721,7 +4173,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R2, S22-R4), read on 17 August 2026.<br>Last checked",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R2, S22-R4), read on 17 August 2026.<br>Last checked"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30245,
@@ -3750,7 +4206,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R7), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R7), read on 17 August 2026.<br>Last checked against"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30247,
@@ -3779,7 +4239,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S12-R1, S12-R2, S12-R3), read on 17 August 2026.</p><p>A",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S12-R1, S12-R2, S12-R3), read on 17 August 2026.</p><p>A"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30249,
@@ -3810,7 +4274,11 @@
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S12-R3a, S23-R2), read on 17 August 2026.<br>Last checke",
    "n restores expansion and scroll; no reload <p>1. Non-default filters are set (date range, product type, invoice status, location, Show Unassigned on), two reps are expanded, and the table is s",
    "d on back.</p> <p>1. Back returns to the report with ALL state intact &mdash; date range, product type, invoice status, location, Show Unassigned, every rep's expansion state, and scroll posit"
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter, which becomes \"Sales Type\". S8-R1: \"Sales By Representative has a \"Sales Type\" filter with three options, in this order: \"Labor\", \"Parts\", \"Part Sales\". All three are selected by default.\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30250,
@@ -3839,7 +4307,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S12-R4, S12-R5, S12-R6, S12-N3), read on 17 August 2026.",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S12-R4, S12-R5, S12-R6, S12-N3), read on 17 August 2026."
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30251,
@@ -3868,7 +4340,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S12-N1, S12-N2), read on 17 August 2026.<br>Last checked",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S12-N1, S12-N2), read on 17 August 2026.<br>Last checked"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 43559,
@@ -3899,7 +4375,11 @@
    "note where that goes.<br>2. Sign in as the person who CANNOT open them and open the Sales By Representative report again.<br>3. Expand the same representative and look at the Invoice # values, then",
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24, read on 17 August 2026, whose &sect;2 describes each exp",
    "rself in administration and put it back as you found it afterwards.<br>3. On the Sales By Representative report you have expanded a representative so you can see the invoice rows underneath, eac"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30253,
@@ -3930,7 +4410,11 @@
    "e deactivation does not commit until confirmed.<br>2. The body shows \"{Staff Name} is the sales representative on {N} customer{s}.\" &mdash; singular for N=1 (\"1 customer\"), plural otherwise",
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-R1, S13-R3, S13-R4, S13-R12), read on 17 August 2026",
    "ssurance, focus trap <p>1. ZZAUTOTEST rep \"A\" is active, toggle on, and assigned as sales representative to exactly 1 customer; ZZAUTOTEST rep \"B\" likewise to 3 customers..</p> <p>1. Toggle rep "
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S4-R20: \"Deactivating a staff member's account removes them from every customer field they hold.\" This contradicts the dialog line the case expects, \"Their customer assignments will stay where they are.\" S4-R21: \"The warning shown before deactivating a sales representative counts every customer where they are in the first field, Service Parts or Part Sales, and counts each customer once.\" (PO questions Q1, Q2.)",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30254,
@@ -3960,7 +4444,11 @@
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-R6, S13-R7), read on 17 August 2026.<br>Last checked",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-R6, S13-R7), read on 17 August 2026.<br>Last checked",
    " case-insensitive match; Enter submits <p>1. The Deactivate dialog is open for a rep with assignments..</p> <p>1. Read the instruction text and check which element holds focus.<br>2. Hover th"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30255,
@@ -3990,7 +4478,11 @@
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-R8), read on 17 August 2026.</p><p>AUTOMATION: READY",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-R8), read on 17 August 2026.</p><p>AUTOMATION: READY",
    "; Escape and clicking outside do not <ol><li>The Deactivate dialog is open for a rep with assignments.</li></ol> <ol><li>Click the \"Cancel\" button and watch the dialog; then re-open it.</li><"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30256,
@@ -4021,7 +4513,11 @@
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-R9, S13-R10, S13-E1), read on 17 August 2026.</p><p>",
    "er success, check the staff member's status and each previously assigned customer's Sales Representative.</li></ol> <ol><li>The \"Deactivate\" button enters the standard in-flight loading state (n",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-R9, S13-R10, S13-E1), read on 17 August 2026.</p><p>"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S4-R20: \"Deactivating a staff member's account removes them from every customer field they hold.\" The case expects \"Customer assignments are NOT modified \u2014 every customer stays assigned to this rep\". (PO question Q1.)",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30257,
@@ -4052,7 +4548,11 @@
    ">1. Re-open the staff member and read the sales-representative toggle.<br>2. Download the Sales Representative Assignments CSV and read the rep's rows.<br>3. Open the report and find the re",
    " CSV and read the rep's rows.<br>3. Open the report and find the rep's row.</p> <p>1. The sales-representative toggle state is unchanged by the deactivation flow.<br>2. In the Sales Represe",
    "The sales-representative toggle state is unchanged by the deactivation flow.<br>2. In the Sales Representative Assignments CSV the rep's customers show \"Rep is active?\" = \"No\" &mdash; that "
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S4-R20: \"Deactivating a staff member's account removes them from every customer field they hold.\" The case expects the deactivated rep's customers in the Assignments CSV with \"Rep is active?\" = \"No\". (PO question Q1.)",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30258,
@@ -4083,7 +4583,11 @@
    "OTEST rep Y (with assignments) is currently inactive; ZZAUTOTEST rep Z is active with the sales-representative toggle ON and NO customers assigned..</p> <p>1. Deactivate X and watch for a d",
    "nd watch for a dialog; check Y's customer assignments afterwards.<br>3. Deactivate rep Z (sales-representative toggle on, no assignments) and watch for a dialog.</p> <p>1. For a staff membe",
    "ggle on, no assignments) and watch for a dialog.</p> <p>1. For a staff member without the sales-representative toggle, the precondition check is skipped and no warning is shown.<br>2. React"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S4-R20: \"Deactivating a staff member's account removes them from every customer field they hold.\" The case expects that after reactivation \"the assignments re-surface immediately\". (PO question Q1.)",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30259,
@@ -4113,7 +4617,11 @@
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-N5), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-N5), read on 17 August 2026.<br>Last checked against",
    "rror toast and leaves the status alone <p>1. The Deactivate dialog is open for a rep with assignments; you can force the request to fail (go offline just before submitting)..</p> <p>1. Type Y"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30260,
@@ -4144,7 +4652,11 @@
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-N4), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-N4), read on 17 August 2026.<br>Last checked against",
    ", the dialog OMITS the count headline and shows only the reassurance line \"Their customer assignments will stay where they are.\" above the \"Type YES to confirm\" gate.<br><br>---<br>This is th"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30261,
@@ -4175,7 +4687,11 @@
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S22-R1, S22-R2, S18-R7), read on 17 August 2026.<br>Last",
    "s; at least one matching invoice with NO assigned rep exists (seed via a WO with no Sales Representative whose customer also has no rep)..</p> <p>1. Find the \"Show Unassigned\" toggle in the tool",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S22-R1, S22-R2, S18-R7), read on 17 August 2026.<br>Last"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30262,
@@ -4204,7 +4720,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S22-R3, S22-R4, S22-R5, S22-R6, S6-R1), read on 17 Augus",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S22-R3, S22-R4, S22-R5, S22-R6, S6-R1), read on 17 Augus"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30264,
@@ -4233,7 +4753,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S22-N1, S6-N2), read on 17 August 2026.<br>Last checked ",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S22-N1, S6-N2), read on 17 August 2026.<br>Last checked "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30265,
@@ -4262,7 +4786,11 @@
   "snippets": [
    ".</li> </ol>  <hr />  <p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S20-R2), both read on 17 August 2026. The column was ren",
    "li> </ol>  <hr />  <p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S20-R2), both read on 17 August 2026. The column was ren"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S5-R20: \"The Sales Type column is offered in the report's column selector, first in its list.\" The case lists the toggleable columns without Sales Type.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30267,
@@ -4291,7 +4819,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S20-R4, S20-R7), read on 17 August 2026.<br>Last checked",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S20-R4, S20-R7), read on 17 August 2026.<br>Last checked"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30268,
@@ -4320,7 +4852,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S20-R8), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S20-R8), read on 17 August 2026.<br>Last checked against"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30269,
@@ -4349,7 +4885,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S20-R9), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S20-R9), read on 17 August 2026.<br>Last checked against"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 43831,
@@ -4380,7 +4920,11 @@
    "d behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S20-R2), read on 17 August 2026. Last checked against bu",
    "ments 1. You are signed in to the ShopView App on a desktop browser. 1. Open the Sales By Representative report. 2. Open the column selector. 1. The eight toggleable columns are: Labor Delta, La",
    "ehaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S20-R2), read on 17 August 2026. Last checked against bu"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S5-R20: \"The Sales Type column is offered in the report's column selector, first in its list.\" The case lists the toggleable columns without Sales Type.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30271,
@@ -4410,7 +4954,11 @@
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S23-R1, S20-R5), read on 17 August 2026.</p><p>AUTOMATIO",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S23-R1, S20-R5), read on 17 August 2026.</p><p>AUTOMATIO",
    "/li></ol> <ol><li>Every setting is restored: date range (including the custom start/end), product type, invoice status, location, Show Unassigned, column visibility, and the active column sort"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S8-R1: \"Sales By Representative has a \"Sales Type\" filter with three options, in this order: \"Labor\", \"Parts\", \"Part Sales\". All three are selected by default.\" The case sets \"Parts only\", which no longer exists; also Release day: \"Each user's saved column choices and sort on Sales By Representative reset once to the defaults.\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30272,
@@ -4439,7 +4987,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S23-R2), read on 17 August 2026.</p><p>AUTOMATION: READY",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S23-R2), read on 17 August 2026.</p><p>AUTOMATION: READY"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30273,
@@ -4468,7 +5020,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S23-R3), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S23-R3), read on 17 August 2026.<br>Last checked against"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30274,
@@ -4498,7 +5054,11 @@
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S23-R4, S23-N1, S2-R4, S2-R7, S21-R2), read on 17 August",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S23-R4, S23-N1, S2-R4, S2-R7, S21-R2), read on 17 August",
    "ol><li>Open the report and read every setting.</li></ol> <ol><li>Date range = This Month; Product Type = \"Parts &amp; Service\"; Invoice Status = \"All Statuses\"; Location = your currently activ"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S8-R1: \"Sales By Representative has a \"Sales Type\" filter with three options, in this order: \"Labor\", \"Parts\", \"Part Sales\". All three are selected by default.\" The case expects the default Product Type \"Parts & Service\".",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30275,
@@ -4527,7 +5087,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S23-R5, S11-R4), read on 17 August 2026.</p><p>AUTOMATIO",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S23-R5, S11-R4), read on 17 August 2026.</p><p>AUTOMATIO"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30276,
@@ -4558,7 +5122,11 @@
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R1, S17-R3), read on 17 August 2026.<br>Last checked",
    "u are signed in to the ShopView App on a desktop browser.</li><li>You are on the Sales By Representative report.</li></ol> <ol><li>Find the \u22ef (three-dot) button in the report toolbar \u2014 it is the",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R1, S17-R3), read on 17 August 2026.<br>Last checked"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30277,
@@ -4589,7 +5157,11 @@
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R2, S14-R2a, S14-R20, S21-R6, S22-R4), read on 28 Au",
    " <li>You are on the report with several reps showing.</li> <li>Set a specific date range, Product Type, Invoice Status, and a location selection; turn Show Unassigned on.</li> <li>Sort by a fi",
    ". Every file contains only the reps/invoices matching ALL the active filters (date range, product type, invoice status, location, Show Unassigned).<br>2. The files reflect the FULL result set "
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter, which becomes \"Sales Type\". S8-R1: \"Sales By Representative has a \"Sales Type\" filter with three options, in this order: \"Labor\", \"Parts\", \"Part Sales\". All three are selected by default.\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30278,
@@ -4620,7 +5192,11 @@
    " rows' percentages.  --- This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-R5), both read on 17 August 2026. The column was ren",
    "showing the workplace name and address, the organization logo, the report title \"Sales By Representative,\" and the selected date range. 2. There is one rolled-up row per rep, in the report's cur",
    "n the Location column is shown on screen a Location column is added immediately after the Representative name and before the money columns, and a rep who spans more than one location reads \"Mult"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD silent on the Summary PDF; at risk (PO question Q3).",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30279,
@@ -4651,7 +5227,11 @@
    "nd of the document.  --- This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-R6), both read on 17 August 2026. The column was ren",
    "ck shows the header strip (workplace name and address, organization logo, title \"Sales By Representative,\" the selected date range), the rep's name, and a per-invoice table with columns: Date / ",
    "of the document.  --- This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-R6), both read on 17 August 2026. The column was ren"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S5-R23: \"The Expanded CSV and the Expanded PDF always carry the Sales Type column, after Status, whatever the screen shows.\" The case lists the Expanded PDF columns without Sales Type.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30280,
@@ -4680,7 +5260,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R7), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R7), read on 17 August 2026.<br>Last checked against"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30281,
@@ -4711,7 +5295,11 @@
    " at the header strip's logo region.</li></ol> <p>1. The files are named exactly \"sales-by-representative-summary.pdf\" and \"sales-by-representative-expanded.pdf\".<br>2. A footer reading \"Software",
    "ol> <p>1. The files are named exactly \"sales-by-representative-summary.pdf\" and \"sales-by-representative-expanded.pdf\".<br>2. A footer reading \"Software Powered by ShopView\" appears on EVERY pag",
    "388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026; where the Sales By Representative report specification version 24 (S14-R3a, S14-R4, S14-R11), read on 17 August 2026, diffe"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30282,
@@ -4740,7 +5328,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R9, S14-R10), read on 17 August 2026.<br>Last checke",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R9, S14-R10), read on 17 August 2026.<br>Last checke"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30283,
@@ -4769,7 +5361,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R12, S14-R13), read on 17 August 2026.<br>Last check",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R12, S14-R13), read on 17 August 2026.<br>Last check"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30285,
@@ -4800,7 +5396,11 @@
    "ustomers across that rep's matching invoices.</li></ol> <p>1. The file is named \"sales-by-representative-summary.csv\" and starts with a UTF-8 BOM.<br>2. With a single location in scope the heade",
    "tarts with a UTF-8 BOM.<br>2. With a single location in scope the headers, in order, are: Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Labor Delta, Labor Invoiced, Labor Ma",
    " CSV has NO totals row.<br>6. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD silent on the Summary CSV; at risk (PO question Q3).",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30286,
@@ -4831,7 +5431,11 @@
    " the on-screen invoices (all reps, expanded).</li></ol> <p>1. The file is named \"sales-by-representative-expanded.csv\" and starts with a UTF-8 BOM.<br>2. With a single location in scope the head",
    "tarts with a UTF-8 BOM.<br>2. With a single location in scope the headers, in order, are: Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Labor Delta, Labor Invoiced",
    " current filtered view.<br>4. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test "
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S5-R23: \"The Expanded CSV and the Expanded PDF always carry the Sales Type column, after Status, whatever the screen shows.\" S5-R3: \"The report reads every invoice as one row per representative per Sales Type: \"Labor\" for a work order's labor side, \"Parts\" for its parts side, and \"Part Sales\" for a part sale.\" The case expects the headers without Sales Type and one row per invoice.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30287,
@@ -4862,7 +5466,11 @@
    "eading in both files is the single word \"Representative\". If a file shows \"Sales Rep\" or \"Sales Representative\" instead, mark this test Failed and report the heading &mdash; do not change t",
    "/ANSWERS-INGESTED.md, item 3.0), which differs from his earlier 31 July 2026 ruling that \"Sales Representative\" should be used everywhere; we take the later answer as prevailing, and specif",
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R17, with the Shop Supplies column added by S5-R12 a"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30288,
@@ -4893,7 +5501,11 @@
    "ces.</li></ol> <p>1. With the toggle ON, the Summary CSV carries one rolled-up row whose \"Sales Representative\" cell reads the literal \"Unassigned\", sorted to the top of the data rows.<br>2",
    " the data rows.<br>2. With the toggle ON, the Expanded CSV rows for those invoices carry \"Sales Representative\" = \"Unassigned\".<br>3. With the toggle OFF, no Unassigned row and no unassigne",
    "in EITHER CSV.<br>4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If a file still shows \"Sales Rep\","
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30289,
@@ -4922,7 +5534,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-N1, S14-N2, S14-E1), read on 17 August 2026.<br>Last",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-N1, S14-N2, S14-E1), read on 17 August 2026.<br>Last"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30290,
@@ -4951,7 +5567,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-E2), read on 17 August 2026; where the wording of th",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-E2), read on 17 August 2026; where the wording of th"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30291,
@@ -4980,7 +5600,11 @@
   "snippets": [
    " the files.</p><p>---<br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-E3), both read on 17 August 2026. The column was ren",
    "e files.</p><p>---<br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-E3), both read on 17 August 2026. The column was ren"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 38923,
@@ -5037,7 +5661,11 @@
   ],
   "snippets": [
    "ission (reports project storage state) The org has at least two accessible workplaces ONE sales rep is credited on invoiced service WOs at BOTH workplaces, so the rep's summary row aggregat"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Location column slot in the Expanded CSV is at risk: Sales Type is also placed \"after Status\" (S5-R23) (PO question Q4).",
+  "owner": "Vladimir Tomovic",
+  "automated": true
  },
  {
   "id": 43833,
@@ -5068,7 +5696,11 @@
    "pare again.</p><p>---<br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-R20a), both read on 17 August 2026. S14-R20a is the ",
    " <ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>The Sales By Representative report is open with at least one filter narrowed (for example a chosen date/scope and one",
    "e again.</p><p>---<br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-R20a), both read on 17 August 2026. S14-R20a is the "
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S8-R4: \"The filter line at the top of every PDF and CSV export of Sales By Representative reads the same: \"Sales Type: All\", or the selected names.\" The case expects a Product Type line.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30292,
@@ -5099,7 +5731,11 @@
    "opens.<br>2. Open the Report Name dropdown and read the list top to bottom.<br>3. Select \"Sales Representative Assignments\" and look at the dialog body.</p> <p>1. \"Sales Representative Assi",
    ".<br>3. Select \"Sales Representative Assignments\" and look at the dialog body.</p> <p>1. \"Sales Representative Assignments\" appears in the Report Name dropdown, appended at the BOTTOM of th",
    "ing it HIDES the date range picker.<br>3. The dialog shows the note: \"Snapshot of current sales representative assignments. Both active and inactive reps with assignments are listed.\"<br>4."
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30293,
@@ -5130,7 +5766,11 @@
    " headers, success toast <ol><li>At least one customer in the organization has an assigned sales representative.</li><li>The Export Report dialog is open with \"Sales Representative Assignmen",
    "tion has an assigned sales representative.</li><li>The Export Report dialog is open with \"Sales Representative Assignments\" selected.</li></ol> <ol><li>Click the Export action.</li><li>Note",
    "e file in a text editor and read the header row.</li></ol> <ol><li>The file downloads as \"sales-representative-assignments.csv\" \u2014 the short form \"rep\" is gone from the file name.</li><li>A "
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S4-R23: \"The Sales Representative Assignments export lists one row per customer per person, with a column, Side, after \"Representative is active?\".\" The case expects exactly three headers: Customer Name, Sales Representative, Rep is active?. (PO question Q7 on the header wording.)",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30294,
@@ -5161,7 +5801,11 @@
    " the no-rep customer.<br>4. Read the row order.</p> <p>1. Every customer with an assigned sales representative produces exactly ONE row (single-rep model: one rep per customer).<br>2. Custo",
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S15-R5, S15-R7, S15-R10), read on 17 August 2026.<br>Las",
    "t least one customer with NO assigned rep (seed as needed)..</p> <p>1. Download the Sales Representative Assignments CSV.<br>2. Count the rows against the customers with assigned reps.<br>3. Sea"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S4-R23: \"The Sales Representative Assignments export lists one row per customer per person, with a column, Side, after \"Representative is active?\".\" The case expects exactly one row per customer (\"single-rep model\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30295,
@@ -5192,7 +5836,11 @@
    "signed rep whose staff record is INACTIVE but whose toggle is ON..</p> <p>1. Download the Sales Representative Assignments CSV.<br>2. Read the \"Rep is active?\" value on both reps' customer ",
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S15-R6, S13-R11), read on 17 August 2026.<br>Last checke",
    "ge (and afterward restore): one assigned rep whose staff record is ACTIVE but whose sales-representative toggle is OFF, and one assigned rep whose staff record is INACTIVE but whose toggle is ON"
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S4-R20: \"Deactivating a staff member's account removes them from every customer field they hold.\" The staff-inactive-but-assigned rep the case needs can no longer be arranged by deactivating. (PO question Q1.)",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30296,
@@ -5223,7 +5871,11 @@
    "ad the Sales Representative Assignments CSV.<br>2. Find that customer's row and read its \"Sales Representative\" and \"Rep is active?\" cells.<br>3. If two customers carry different stored nam",
    " The customer still produces a row &mdash; the export never silently drops it.<br>2. The \"Sales Representative\" name comes from the customer-side stored (denormalized) rep name, and \"Rep is",
    "ith another's.<br>4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30297,
@@ -5254,7 +5906,11 @@
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S15-R11, S15-N2), read on 17 August 2026.<br>Last checke",
    "that step Blocked with the reason..</p> <p>1. With zero assigned customers, select \"Sales Representative Assignments\" in the Export Report dialog and click Export.<br>2. Read the dialog warning ",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S15-R11, S15-N2), read on 17 August 2026.<br>Last checke"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30298,
@@ -5283,7 +5939,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S16-R1, S16-R2, S16-R3, S16-N1, S2-N1, S21-N2), read on ",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S16-R1, S16-R2, S16-R3, S16-N1, S2-N1, S21-N2), read on "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30300,
@@ -5312,7 +5972,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S16-R4), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S16-R4), read on 17 August 2026.<br>Last checked against"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30301,
@@ -5341,7 +6005,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S16-R5), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S16-R5), read on 17 August 2026.<br>Last checked against"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30302,
@@ -5371,7 +6039,11 @@
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S17-R1, S17-R2, S17-R3), read on 17 August 2026.<br>Last",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S17-R1, S17-R2, S17-R3), read on 17 August 2026.<br>Last",
    "h: the \u22ef exports, the column selector, the Show Unassigned toggle, the date range picker, Product Type, Invoice Status, and Location.<br>2. Look at how the controls are laid out.<br>3. Widen t"
-  ]
+  ],
+  "verdict": "WILL BREAK (wording only)",
+  "verdict_reason": "Names the \"Product Type\" filter, which becomes \"Sales Type\". S8-R1: \"Sales By Representative has a \"Sales Type\" filter with three options, in this order: \"Labor\", \"Parts\", \"Part Sales\". All three are selected by default.\"",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30303,
@@ -5400,7 +6072,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S17-R4, S17-R5, S10-R5), read on 17 August 2026.<br>Last",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S17-R4, S17-R5, S10-R5), read on 17 August 2026.<br>Last"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30304,
@@ -5429,7 +6105,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S17-R6, S17-N1, S18-R9), read on 17 August 2026.<br>Last",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S17-R6, S17-N1, S18-R9), read on 17 August 2026.<br>Last"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30305,
@@ -5458,7 +6138,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S18-R1, S18-R2, S18-R3, S18-R4, S18-R5, S18-R7, S18-N1),",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S18-R1, S18-R2, S18-R3, S18-R4, S18-R5, S18-R7, S18-N1),"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30306,
@@ -5487,7 +6171,11 @@
   "snippets": [
    " dark mode.</p><p>---<br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S18-R8), both read on 17 August 2026. The column was ren",
    "rk mode.</p><p>---<br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S18-R8), both read on 17 August 2026. The column was ren"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30307,
@@ -5516,7 +6204,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S18-R9), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S18-R9), read on 17 August 2026.<br>Last checked against"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30308,
@@ -5545,7 +6237,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S18-R10), read on 17 August 2026.<br>Last checked agains",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S18-R10), read on 17 August 2026.<br>Last checked agains"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30309,
@@ -5574,7 +6270,11 @@
   "snippets": [
    "t by hand.)</p><p>---<br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S18-R11, S18-R12), both read on 17 August 2026. The colu",
    "y hand.)</p><p>---<br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S18-R11, S18-R12), both read on 17 August 2026. The colu"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 43839,
@@ -5605,7 +6305,11 @@
    "s Ward's design-review decisions of 17 August 2026 (the shell header wrapping). The Sales By Representative report specification version 24 does not name this visual treatment, so the exact styling",
    "li><li>A report with several columns and long header labels is open (for example Sales By Representative, which has the most columns).</li></ol> <ol><li>Read the column header row.</li><li>Find ",
    "ard's design-review decisions of 17 August 2026 (the shell header wrapping). The Sales By Representative report specification version 24 does not name this visual treatment, so the exact styling"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30310,
@@ -5636,7 +6340,11 @@
    "4. View a WO in History mode and look for the field.</p> <p>1. The left panel includes a \"Sales Representative\" selector on the standard Work Order.<br>2. The left panel includes the same \"",
    "resentative\" selector on the standard Work Order.<br>2. The left panel includes the same \"Sales Representative\" selector on the Part Sale WO.<br>3. The selector is NOT present on the import",
    " History mode.<br>5. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows "
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S2-R17: \"Once the work order is invoiced or paid, or when it is opened from its history, each field is plain text with the same label and wording, with no + or remove x.\" The case expects the field to be absent in History mode (today: \"hidden on imported Work Orders and in History mode\", SBR v24 S19-R1). (PO question Q8.)",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30311,
@@ -5667,7 +6375,11 @@
    "only reps whose sales-representative toggle is on <p>1. At least one staff member has the sales-representative toggle ON and at least one has it OFF. To arrange this: open Settings, go to S",
    "s it OFF. To arrange this: open Settings, go to Staff, edit the staff member, and use the sales-representative toggle there (restore both afterward)..</p> <p>1. Open a Work Order and open t",
    "ntative toggle there (restore both afterward)..</p> <p>1. Open a Work Order and open the \"Sales Representative\" selector.<br>2. Search the option list for both staff members.<br>3. Inspect "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30312,
@@ -5698,7 +6410,11 @@
    "tative unassigned; a change saves at once <p>1. At least one staff member is offered as a sales representative..</p> <p>1. Create a new Work Order (mark it ZZAUTOTEST) and read the Sales Re",
    "ales representative..</p> <p>1. Create a new Work Order (mark it ZZAUTOTEST) and read the Sales Representative field before touching it.<br>2. Select a rep in the field, then navigate away ",
    " unassigned-open check on a new Part Sale WO.</p> <p>1. The new Work Order opens with the Sales Representative field UNASSIGNED &mdash; it is not pre-filled at creation.<br>2. Changing the "
-  ]
+  ],
+  "verdict": "WILL BREAK",
+  "verdict_reason": "S4-R24: \"A new work order for a customer that is not split starts with the customer's representative in its one Sales Representative field.\" S4-R26: \"A new part sale starts with the customer's Part Sales field when it is added ... Without a Part Sales field it starts with the Service Parts person, or the one representative when the customer is not split.\" The case expects a new work order and a new part sale to open \"UNASSIGNED \u2014 it is not pre-filled at creation\".",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30313,
@@ -5729,7 +6445,11 @@
    "T WOs into these states if needed)..</p> <p>1. Open the Invoiced WO and try to change the Sales Representative field.<br>2. Open the Paid WO and try the same.</p> <p>1. On the Invoiced WO t",
    "entative field.<br>2. Open the Paid WO and try the same.</p> <p>1. On the Invoiced WO the Sales Representative selector is read-only (non-interactive) &mdash; the assignment cannot be chang",
    "lso read-only.<br>3. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30314,
@@ -5760,7 +6480,11 @@
    "find each invoice and note which row it sits under.</li><li>Go back to WO (a), change its Sales Representative to a different rep, and re-check the already-created invoice on the report.</l",
    "eady-created invoice on the report.</li></ol> <ol><li>Invoice (a) is credited to the WO's Sales Representative.</li><li>Invoice (b) falls back to the CUSTOMER's assigned rep.</li><li>Invoic",
    "(c) is unassigned \u2014 it appears only under the \"Unassigned\" row.</li><li>Changing WO (a)'s Sales Representative afterward does NOT retroactively alter the invoice already created from it \u2014 t"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Expected results hold (S4-R17 for a not-split customer). Setup changes: a new work order now starts with the customer's representative (S4-R24), so leg (b) must set the work order to \"Unassigned\" first.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 30315,
@@ -5791,7 +6515,11 @@
    "s a \"Sales Representative\" row; \"Unassigned\" when none <p>1. One customer HAS an assigned sales representative and one customer has NONE.<br>2. A Work Order exists whose bound Sales Represe",
    "ned sales representative and one customer has NONE.<br>2. A Work Order exists whose bound Sales Representative can have their toggle turned off (arrange and restore afterward)..</p> <p>1. O",
    ". Open the unassigned customer's record and read the same row.<br>3. Turn the bound rep's sales-representative toggle OFF, reopen the Work Order, and read the Sales Representative selector;"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30316,
@@ -5820,7 +6548,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R2), read on 17 August 2026.<br>Last checked against ",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R2), read on 17 August 2026.<br>Last checked against "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30317,
@@ -5849,7 +6581,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R5), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R5), read on 17 August 2026.<br>Last checked against"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30318,
@@ -5878,7 +6614,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S10-R5), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S10-R5), read on 17 August 2026.<br>Last checked against"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30319,
@@ -5907,7 +6647,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R2a, S14-N2, S14-E3), read on 17 August 2026.<br>Las",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R2a, S14-N2, S14-E3), read on 17 August 2026.<br>Las"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30320,
@@ -5936,7 +6680,11 @@
   "snippets": [
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-E2), read on 17 August 2026.<br>Last checked against",
    "s is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-E2), read on 17 August 2026.<br>Last checked against"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "PRD v8 does not change what this case checks (PRD silent, or the case uses an unsplit work order / one-field customer, which works \"as today\").",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 30321,
@@ -5967,7 +6715,11 @@
    "eturning the count of distinct customers currently assigned to that staff member as their sales representative, plus a flag indicating whether any assignments exist.<br>2. The dialog's \"{St",
    " a flag indicating whether any assignments exist.<br>2. The dialog's \"{Staff Name} is the sales representative on {N} customer{s}.\" headline matches the returned count.<br>3. No deactivatio",
    "This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-R1, S13-R4), read on 17 August 2026.<br>Last checked"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Count still returned; S4-R21 widens what is counted for split customers (not exercised by this case).",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 43552,
@@ -5996,7 +6748,11 @@
   "snippets": [
    " August 2026, - he asked this report's download menu to match Sales By Customer and Sales By Representative, which each offer a spreadsheet for both views, whereas that written description covers o",
    "gust 2026, - he asked this report's download menu to match Sales By Customer and Sales By Representative, which each offer a spreadsheet for both views, whereas that written description covers o"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 45210,
@@ -6027,7 +6783,11 @@
    "hooser.<br>2. Do the same in the Sales By Customer report.<br>3. Do the same in the Sales By Representative report.<br>4. Open the Technician Utilization report and look for an Adjustments column, ",
    " an Adjustments column.<br>2. Sales By Customer offers an Adjustments column.<br>3. Sales By Representative offers an Adjustments column, and it is still there with the calculations already specifi",
    " reach all six reports in the Reports area: Work In Progress, Sales By Customer, Sales By Representative, Technician Utilization, Parts Velocity and Inventory Value.<br>5. In each report you can"
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 368215,
@@ -6058,7 +6818,11 @@
    "resentative field showing Unassigned or a person's name.</li><li>As Admin on an Estimate, Sales Representative is a dropdown you can open to pick a person (on an invoiced or paid sale it is",
    "ober 2026: develop's part sale work (SV-10264), merged into SV-10043 at 35e65f9, adds the Sales Representative field; the expected results now list the card's fields.</p><p><strong>Exact qu",
    "card shows [PS-1]'s number at the top, the status Estimate, the Started date, and a Sales Representative field showing Unassigned or a person's name.</li><li>As Admin on an Estimate, Sales Repre"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Part sale keeps one Sales Representative field exactly as Part Sales Update v1 builds it (S2-N2 and its context note).",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 368231,
@@ -6089,7 +6853,11 @@
    "d.</li></ul><p><strong>Setup</strong></p><ol><li>Click Reports in the top menu &gt; Sales By Representative (left menu, PERFORMANCE group). If Location is not at its default (Staging Heavy Duty - 9",
    "/ol> <ol><li>Click Reports in the top menu.</li><li>In the PERFORMANCE group click \"Sales By Representative\".</li><li>Open the Location filter and tick Staging Lethbridge - 4310 as well (only Stagi",
    "The Sales By Representative report keeps a chosen filter after a reload <p><strong>Preconditions</strong></p><ul><li>"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Uses Sales By Representative only for links/location; nothing the PRD changes.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 154615,
@@ -6120,7 +6888,11 @@
    "t;; Quantity 1; Sell Price for example $290.91).</li><li>The shop has at least one active sales representative.</li></ul> <ol><li>Open the part sale and read its header card (below the sale",
    " sale and read its header card (below the sale number and Started date).</li><li>Find the Sales Representative field (it reads Unassigned when empty) and click it to open its picker.</li><l",
    "ield.</li></ol> <p><strong>Expected results</strong></p><ul><li>The header card carries a Sales Representative field.</li><li>The picker offers the shop's active sales representatives (Unas"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Part sale keeps one Sales Representative field exactly as Part Sales Update v1 builds it (S2-N2 and its context note).",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 154616,
@@ -6151,7 +6923,11 @@
    "rake Pads&quot;; Quantity 1; Sell Price for example $290.91).</li><li>At least two active sales representatives exist.</li><li>The sale will be taken to invoice.</li></ul> <ol><li>Set the S",
    "presentatives exist.</li><li>The sale will be taken to invoice.</li></ul> <ol><li>Set the Sales Representative on the sale, then change it to a second rep.</li><li>Open the menu ( ... ) at ",
    "rong><br>Epic SV-9667 (Founder Mode Batch #1); story SV-10266 (Attribute a part sale to a sales representative); Part Sales Update v1 PRD (Confluence 867434569), Story 5; design canvas boar"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Part sale keeps one Sales Representative field exactly as Part Sales Update v1 builds it (S2-N2 and its context note).",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": false
  },
  {
   "id": 154617,
@@ -6182,7 +6958,11 @@
    "top menu Customers -&gt; open the customer -&gt; the edit icon next to its name -&gt; set Sales Representative -&gt; save. (Only staff marked as Sales Representative can be picked: click yo",
    "it icon next to its name -&gt; set Sales Representative -&gt; save. (Only staff marked as Sales Representative can be picked: click your initials at the top right -&gt; Settings -&gt; Staff",
    "k your initials at the top right -&gt; Settings -&gt; Staff -&gt; edit icon -&gt; turn on Sales Representative -&gt; Save &amp; Close.)</li><li>\u21b3 Customer B with no assigned representative."
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Expected results hold. Setup changes: a new part sale now starts with the customer's representative (S4-R26), so \"no Sales Representative set\" needs \"Unassigned\" picked first.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 154618,
@@ -6213,7 +6993,11 @@
    "Name (e.g. \"4 Star Truck Repair\") and click Save.</li><li>Two staff members are marked as sales representatives: Settings (click your initials at the top right -&gt; Settings) -&gt; Staff -",
    "ff -&gt; on the staff member's row click the edit icon -&gt; in Edit Staff Member turn on Sales Representative -&gt; Save &amp; Close. Do this for two people (e.g. \"Ashlee Thomas\" and \"Ashl",
    " two people (e.g. \"Ashlee Thomas\" and \"Ashley Schultz\").</li><li>A third staff member has Sales Representative turned off (same screen).</li><li>A test vendor exists to order parts from. If"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Part sale keeps one Sales Representative field exactly as Part Sales Update v1 builds it (S2-N2 and its context note).",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  },
  {
   "id": 154871,
@@ -6244,7 +7028,11 @@
    "ial Data gate).</li><li>Parts-only: Return Core, Cancel Return, Edit tax rate, Audit Log, Sales Representative offered; Add Deposit NOT offered and refused by the server (needs Invoicing &a",
    "te whether these are OFFERED: Return Core, Cancel Return, Edit tax rate, Audit Log, Sales Representative, Add Deposit.</li><li>As the View-only and Parts-only users, attempt each action by direc",
    "ta gate).</li><li>Parts-only: Return Core, Cancel Return, Edit tax rate, Audit Log, Sales Representative offered; Add Deposit NOT offered and refused by the server (needs Invoicing &amp; Payment"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Part sale keeps one Sales Representative field exactly as Part Sales Update v1 builds it (S2-N2 and its context note).",
+  "owner": "Mudassir Qamar",
+  "automated": false
  },
  {
   "id": 154873,
@@ -6275,7 +7063,11 @@
    "ame roles exist on the build under test.</li></ol> <ol><li>For each role, repeat the tax, sales representative and deposit changes that were permitted before the deploy (UI where offered, d",
    "owed by this project. The server enforces the work-order permission on a part sale's tax, sales representative and deposit changes today, and it continues to grant them after the release. N",
    "t <ol><li>A pre-deploy record exists of which roles could change a part sale's tax, sales representative and deposits (server-side), even where the UI did not offer them.</li><li>The same roles "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Part sale keeps one Sales Representative field exactly as Part Sales Update v1 builds it (S2-N2 and its context note).",
+  "owner": "Mudassir Qamar",
+  "automated": false
  },
  {
   "id": 154874,
@@ -6306,7 +7098,11 @@
    "the Part Sale Log.</li><li>Let the invoice sync; open it in QuickBooks.</li><li>Run Sales By Representative.</li></ol> <p><strong>Expected results</strong></p><ul><li>Step 1: estimate shows \"Core c",
    "on this environment and Phase 4 is switched on.</li><li>A customer with an assigned sales representative exists.</li></ol> <ol><li>Part Sales -&gt; New Part Sale for that customer; Add Part \"Wat",
    " Part Sale Log.</li><li>Let the invoice sync; open it in QuickBooks.</li><li>Run Sales By Representative.</li></ol> <p><strong>Expected results</strong></p><ul><li>Step 1: estimate shows \"Core c"
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Part sale keeps one Sales Representative field exactly as Part Sales Update v1 builds it (S2-N2 and its context note).",
+  "owner": "Mudassir Qamar",
+  "automated": true
  },
  {
   "id": 154877,
@@ -6335,7 +7131,11 @@
   "snippets": [
    "li><li>Open the Financial Info card -&gt; Edit tax rate; pick a rate; save.</li><li>Set a Sales Representative on the header card.</li><li>Open the menu -&gt; Audit Log.</li><li>Finance tab",
    ">Open the Financial Info card -&gt; Edit tax rate; pick a rate; save.</li><li>Set a Sales Representative on the header card.</li><li>Open the menu -&gt; Audit Log.</li><li>Finance tab -&gt; Add "
-  ]
+  ],
+  "verdict": "STILL TRUE",
+  "verdict_reason": "Part sale keeps one Sales Representative field exactly as Part Sales Update v1 builds it (S2-N2 and its context note).",
+  "owner": "Mudassir Qamar",
+  "automated": true
  },
  {
   "id": 236972,
@@ -6364,6 +7164,10 @@
   "snippets": [
    "pectation applies only to roles with <strong>Full View</strong> and no Edit (e.g. default Sales Representative on a WO note; Technician on a customer/asset note). User C's \"ZZAUTOTEST View ",
    "ion applies only to roles with <strong>Full View</strong> and no Edit (e.g. default Sales Representative on a WO note; Technician on a customer/asset note). User C's \"ZZAUTOTEST View only\" role "
-  ]
+  ],
+  "verdict": "NEEDS NOTHING",
+  "verdict_reason": "The match is the system ROLE named \"Sales Representative\", a role/combination name, the word \"representative\" in another sense, or a passing mention of the report; not the representative field.",
+  "owner": "Bilal Muzamil (ours)",
+  "automated": true
  }
 ]
