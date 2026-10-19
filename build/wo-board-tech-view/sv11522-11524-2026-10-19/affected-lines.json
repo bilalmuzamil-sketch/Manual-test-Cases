@@ -1,0 +1,1350 @@
+{
+ "96925": {
+  "t": "Unassigned is always the first group in Tech View",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Click Search and type ZZAUTOTEST F2 Unassigned First so only this test's work orders show."
+   ]
+  ]
+ },
+ "96926": {
+  "t": "Technician groups start in first-name, last-name order",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Unassigned is first. Your five technicians then appear in this relative order: Aaron Baker, Aaron Zed, Brenda Martinez, Chris Lee, Chris Lee (first name A-Z, then last name A-Z). Other technicians at the location fit in alphabetically between them."
+   ]
+  ]
+ },
+ "96929": {
+  "t": "A group's work orders are in the order their leads were given, not List's sort",
+  "atm": 3,
+  "h": [
+   [
+    "ex",
+    "S9-R14: “A work order that gets a new lead from the Reassign lead technician dialog or from its detail page goes to the bottom of the new technician’s work, for everyone at the location, in both views. A work order dragged to a technician goes where it is drop"
+   ]
+  ]
+ },
+ "368127": {
+  "t": "Unassigned opens expanded, keeps its header in view and loads as you scroll",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "Scroll down through the Unassigned rows for a while."
+   ]
+  ]
+ },
+ "96945": {
+  "t": "A card's More actions menu appears on hover or focus and offers Reassign",
+  "atm": 3,
+  "h": [
+   [
+    "ex",
+    "Step 3: the menu includes \"Reassign lead technician\"."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10046 (Story 3, Board View — board by lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S3-R13, S3-R14, S11-R1 and S11-R3, read 16 Oct 2026. Design:"
+   ],
+   [
+    "ex",
+    "S3-R14: “Include Reassign lead technician in the card’s more-actions menu.”"
+   ]
+  ]
+ },
+ "96950": {
+  "t": "An empty column says 'Drag a work order here' only to users who can reassign",
+  "atm": 3,
+  "h": [
+   [
+    "ex",
+    "S3-R20: “A technician column with no work orders under the current filters, and an empty Unassigned column, show “Drag a work order here to assign it” to a user who can reassign work orders (S4-N1), and “No work orders” to everyone else.”"
+   ]
+  ]
+ },
+ "154886": {
+  "t": "An empty Unassigned column stays on the Board and accepts a dropped card",
+  "atm": 3,
+  "h": [
+   [
+    "ex",
+    "The Unassigned column is still on screen, first, showing its empty state (\"Drag a work order here to assign it\" for a user who can reassign)."
+   ]
+  ]
+ },
+ "368131": {
+  "t": "Pinned technician columns after deactivation or removal from this location",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; stories SV-10046 (Story 3, Board View — board by lead technician) and SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 49 (14 Oct 2026, Chris "
+   ]
+  ]
+ },
+ "614711": {
+  "t": "Work orders of a deleted lead sit under Deleted technician, which takes no drops",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Step 10: {Work-order-1} moves to {Technician-B}'s column and \"Lead technician updated\" shows."
+   ]
+  ]
+ },
+ "96956": {
+  "t": "Reassign lead technician lists eligible technicians with Unassigned first",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "Click Reassign lead technician."
+   ],
+   [
+    "st",
+    "Click {Technician-B}'s row, then click Reassign."
+   ],
+   [
+    "st",
+    "Hover the card, now in {Technician-B}'s column, click its More actions (…) button and click Reassign lead technician."
+   ],
+   [
+    "st",
+    "Click Unassigned, then click Reassign."
+   ],
+   [
+    "st",
+    "Hover the card, now in the Unassigned column, click its More actions (…) button and click Reassign lead technician."
+   ],
+   [
+    "st",
+    "Hover {Work-order-1}'s row in the Unassigned group, click its More actions (…) button and click Reassign lead technician."
+   ],
+   [
+    "st",
+    "Click {Technician-A}'s row, then click Reassign."
+   ],
+   [
+    "ex",
+    "Step 4: the Reassign lead technician dialog opens."
+   ],
+   [
+    "ex",
+    "Step 6: the card moves to {Technician-B}'s column and \"Lead technician updated\" shows."
+   ],
+   [
+    "ex",
+    "Step 9: the card moves to the Unassigned column and \"Lead technician removed\" shows."
+   ],
+   [
+    "ex",
+    "Step 16: the Tech View dialog shows the same rows as at step 5, Unassigned first."
+   ],
+   [
+    "ex",
+    "Step 17: the row moves to {Technician-A}'s group and \"Lead technician updated\" shows."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S4-R4, S4-R12, S4-R13, S4-R14 and S4-R5, read 15 Oct 2026"
+   ],
+   [
+    "ex",
+    "S4-R4: “The card or row more-actions menu opens the Reassign lead technician dialog.”"
+   ],
+   [
+    "ex",
+    "S4-R12: “The dialog offers eligible active technicians in the current location and Unassigned. It follows the design: a Search technicians box, each technician with their avatar and N open count, no grouping. Unassigned is the first row.”"
+   ],
+   [
+    "ex",
+    "S4-R13: “Confirming the dialog changes the lead to the selected technician or Unassigned.”"
+   ],
+   [
+    "ex",
+    "S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”"
+   ]
+  ]
+ },
+ "96957": {
+  "t": "Lead technician updated and removed messages show and close on their own",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "After the move to Ralph Edwards a success message reads exactly \"Lead technician updated\"."
+   ],
+   [
+    "ex",
+    "After the move to Unassigned a success message reads exactly \"Lead technician removed\"."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R5, S4-R16, read 8 Oct 2026. PRD §9 User Feedback Summary (\"Success toast, auto-fades\"). Design export of"
+   ],
+   [
+    "ex",
+    "S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”"
+   ],
+   [
+    "ex",
+    "S4-R16: “Success toasts dismiss automatically.”"
+   ]
+  ]
+ },
+ "96958": {
+  "t": "Changing the lead on the board sends the same notifications as today",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "Repeat steps 3 to 7 in Tech View with the row's More actions > Reassign lead technician, moving it back to [Tech-A]."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R6, read 8 Oct 2026. Review Decisions page 853901313 DR-46 and FF-4 (no notification is sent on a lead ch"
+   ]
+  ]
+ },
+ "96959": {
+  "t": "Column and group counts change straight after a reassign",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Open [Tech-B]'s card [WO-4] More actions > Reassign lead technician, pick Unassigned and confirm."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R7, read 8 Oct 2026. Header count definition S2-R12 / S3-R12 (work orders currently shown after filters)."
+   ]
+  ]
+ },
+ "96960": {
+  "t": "Reassigning by drag moves only open lines that follow the old lead",
+  "atm": 3,
+  "h": [
+   [
+    "ex",
+    "Steps 3 and 6: So exactly 2 of the 6 lines moved (Lines 1 and 2); each line was judged on its own, and wherever a line was Complete, explicit, had labor or a running clock it stayed, even though it also followed the old lead. The drag applied the same rules as"
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R1, S4-R8 (line table), S4-E5, read 8 Oct 2026. Review Decisions DR-44 (lines created before the release "
+   ]
+  ]
+ },
+ "96961": {
+  "t": "Removing the lead returns only lines that followed it to Unassigned",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Hover [WO-1]'s card in [Tech-A]'s column, click More actions and choose Reassign lead technician."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R8 (removal), S4-E1, S4-E6, read 8 Oct 2026. Review Decisions DR-22 (active clock-in kept on change or re"
+   ]
+  ]
+ },
+ "96962": {
+  "t": "A lead change adds one history entry and none for the lines it moves",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Back on Board View, open the card's More actions > Reassign lead technician, pick the first lead again (e.g. Esther Howard) and confirm. Repeat steps 3 and 4."
+   ],
+   [
+    "ex",
+    "Each lead change (drag, Reassign dialog, work order page) adds exactly one entry showing the previous lead, the new lead, your user as the person who made it, and the time (e.g. Esther Howard → Ralph Edwards, by you, at the time you noted)."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R9, S4-R17, S4-R18, read 8 Oct 2026. Review Decisions FF-4 history (audit actor is the logged-in user). S"
+   ]
+  ]
+ },
+ "96963": {
+  "t": "The lead of an Invoiced or Paid work order cannot be changed in any way",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Steps 8 and 9: {Work-order-5} (Declined) and {Work-order-6} (Complete) move to {Technician-B} normally, with \"Lead technician updated\"."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S4-R10, S4-N2 and Key decision: lead locked once Invoiced"
+   ],
+   [
+    "ex",
+    "Key decision: lead locked once Invoiced or Paid: “Lead technician cannot be changed once a work order is Invoiced or Paid. This is a product rule, not only a screen rule, so it must hold on every path that changes the lead technician — board drag, Reassign dia"
+   ]
+  ]
+ },
+ "96964": {
+  "t": "Invoiced and Paid work orders show why the lead can't be changed",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "Hover the card, click More actions and hover the Reassign lead technician action."
+   ],
+   [
+    "st",
+    "Read the tooltip shown next to the Reassign lead technician action."
+   ],
+   [
+    "ex",
+    "Reassign lead technician is shown disabled, and its tooltip reads exactly: The lead technician can’t be changed once a work order is Invoiced or Paid. (A straight or curly apostrophe is not a difference.)"
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-N6, S4-N7, read 8 Oct 2026. PRD §9 User Feedback Summary row \"Reassignment not allowed in current status\""
+   ],
+   [
+    "ex",
+    "S4-N6: “The disabled Reassign lead technician action on an Invoiced or Paid work order shows this tooltip: “The lead technician can’t be changed once a work order is Invoiced or Paid.””"
+   ]
+  ]
+ },
+ "96965": {
+  "t": "Clear shifts removes only the old lead's whole-work-order shifts",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 49 (14 Oct 2026, Chris Ward), S4-R11, S4-R22, S4-R23, S4-R24, S4-R28 (reworded in versi"
+   ]
+  ]
+ },
+ "96966": {
+  "t": "A lead change leaves status and recorded time alone",
+  "atm": 3,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R19, S4-R20, S4-R21, read 8 Oct 2026. Review Decisions DR-18 / DR-31. Source-verified 8 October 2026."
+   ]
+  ]
+ },
+ "96967": {
+  "t": "A user without create and edit cannot drag or reassign work orders",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Hover the card and look for More actions and Reassign lead technician."
+   ],
+   [
+    "ex",
+    "Vera Viewonly is not offered Reassign lead technician (no More actions button, or the action is missing or disabled)."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-N1, read 8 Oct 2026. PRD §4 Key decision \"Permissions\". Design export of 8 Oct 2026 (Claude Design projec"
+   ],
+   [
+    "ex",
+    "S4-N1: “Require Work Orders create and edit permission to drag work orders or access Reassign lead technician.”"
+   ]
+  ]
+ },
+ "96968": {
+  "t": "A reassign that cannot be saved puts the card back with an alert",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "Type \"ZZAUTOTEST F1 Reassign Offline\" in Search."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-N3, S4-N8, read 8 Oct 2026. PRD §9 User Feedback Summary row \"Reassignment fails\" (\"Alert; card/row retur"
+   ]
+  ]
+ },
+ "96969": {
+  "t": "Choosing the current lead again changes nothing and shows no message",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Hover the card in [Tech-A]'s column, click More actions and choose Reassign lead technician."
+   ],
+   [
+    "ex",
+    "No \"Lead technician updated\" message (or any reassignment message) appears."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-N4, R-1 (release note, item 3), read 8 Oct 2026. Source-verified 8 October 2026."
+   ],
+   [
+    "ex",
+    "S4-N4: “Selecting the current lead again leaves all assignments unchanged and produces no reassignment toast.”"
+   ]
+  ]
+ },
+ "96970": {
+  "t": "Drops are refused on an inactive technician and one removed from this location",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; stories SV-10047 (Story 4, Reassign or unassign the lead technician), SV-10046 (Story 3, Board View) and SV-10045 (Story 2, Tech View); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 49 (14 Oct 2026, Ch"
+   ]
+  ]
+ },
+ "96971": {
+  "t": "When two people reassign the same work order, the later one wins",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "In both browsers open Work Orders, click the All tab, pick Board View and search for \"ZZAUTOTEST F1 Later Reassign Wins\"."
+   ],
+   [
+    "st",
+    "In browser 1, move the card to [Tech-B] with More actions > Reassign lead technician (keep shifts if asked)."
+   ],
+   [
+    "st",
+    "In browser 2, without reloading, move the same card (still shown in [Tech-A]'s column) to [Tech-C] with More actions > Reassign lead technician (keep shifts if asked)."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-E2, S4-E7, read 8 Oct 2026. Source-verified 8 October 2026."
+   ],
+   [
+    "ex",
+    "S4-E2: “When two users reassign the same work order, the later change wins.”"
+   ]
+  ]
+ },
+ "96972": {
+  "t": "A reassign is refused if the work order was just invoiced elsewhere",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-E3, S4-N3, S4-N8, read 8 Oct 2026. Source-verified 8 October 2026."
+   ]
+  ]
+ },
+ "96973": {
+  "t": "Reassign can pick a technician outside the filter and the card then leaves",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Hover the card, click More actions and choose Reassign lead technician."
+   ],
+   [
+    "st",
+    "Read the technicians listed in the Reassign lead technician dialog."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S4-E4, S4-E8, S3-N1 and S1-N1a, read 15 Oct 2026. Assigned to me behaviour S1-R13 / S3-N1. Source-verified 15 Oct"
+   ],
+   [
+    "ex",
+    "S4-E4: “The Reassign dialog allows destinations outside the current filter.”"
+   ]
+  ]
+ },
+ "96974": {
+  "t": "The dialog's open count is the technician's Approved to Complete work",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Hover any card in [Tech-A]'s column, click More actions and choose Reassign lead technician."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R15, read 8 Oct 2026. Review Decisions DR-43 / MF-3. PO answer to engineering, Sasha Grosman 24 Sep 2026 "
+   ]
+  ]
+ },
+ "154888": {
+  "t": "Clear shifts keeps ended shifts, removes future ones, trims a running one",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "What you should see today (build v26.40.8-7a95011, 10/8/2026): changing the lead (by dragging the card or with Reassign lead technician) shows no question about scheduled shifts, even when the outgoing lead has a shift booked for the entire work order. The lea"
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R25, read 8 Oct 2026. Review Decisions DR-38. Tech plan §12.2 item 12 still says a running shift is delet"
+   ]
+  ]
+ },
+ "154889": {
+  "t": "Removing the lead asks the same clear-shifts question as changing it",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "Hover [WO-2], click More actions > Reassign lead technician, pick Unassigned and confirm."
+   ],
+   [
+    "ex",
+    "What you should see today (build v26.40.8-7a95011, 10/8/2026): changing the lead (by dragging the card or with Reassign lead technician) shows no question about scheduled shifts, even when the outgoing lead has a shift booked for the entire work order. The lea"
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R26, S4-R29, read 8 Oct 2026. Review Decisions DR-46 / FF-4. Source-verified 8 October 2026."
+   ]
+  ]
+ },
+ "154890": {
+  "t": "If shifts can't be cleared, the lead does not change either",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R27, read 8 Oct 2026. Review Decisions DR-46; tech plan §12.1 (clearing failure rolls back the lead chang"
+   ]
+  ]
+ },
+ "368133": {
+  "t": "The clear-shifts question appears only for the old lead's unfinished shifts",
+  "atm": 3,
+  "h": [
+   [
+    "ex",
+    "Steps 6 to 10: {Work-order-2} (no shift), {Work-order-3} (a shift on {Line-1} only, not on every line), {Work-order-4} (only an ended shift), {Work-order-5} (only {Technician-C}'s shift) and {Work-order-6} ({Technician-A}'s shift is on another work order) each"
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 49 (14 Oct 2026, Chris Ward), S4-R28 (reworded in version 49 on 14 Oct 2026 from Chris "
+   ],
+   [
+    "ex",
+    "S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”"
+   ]
+  ]
+ },
+ "368134": {
+  "t": "The clear-shifts question shows its exact title, text and buttons",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "What you should see today (build v26.40.8-7a95011, 10/8/2026): changing the lead (by dragging the card or with Reassign lead technician) shows no question about scheduled shifts, even when the outgoing lead has a shift booked for the entire work order. The lea"
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R29, read 8 Oct 2026. PO decision Chris Ward 6 Oct 2026 on the PRD page (\"lock your wording as written\");"
+   ]
+  ]
+ },
+ "368135": {
+  "t": "Cancel or closing the clear-shifts question calls the change off",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Hover the card, click More actions > Reassign lead technician, pick [Tech-B] and confirm."
+   ],
+   [
+    "st",
+    "Click Cancel in the Reassign lead technician dialog."
+   ],
+   [
+    "ex",
+    "After Cancel, after X and after Escape, the dragged card goes back to its place in Esther Howard's column, and no \"Lead technician updated\" message appears."
+   ],
+   [
+    "ex",
+    "After Cancel from the dialog path you are back in the Reassign lead technician dialog with Ralph Edwards still chosen."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R30, read 8 Oct 2026. PO decision Chris Ward 6 Oct 2026 (\"Cancel undoes the move\"). Escape as a way of cl"
+   ],
+   [
+    "ex",
+    "S4-R30: “Cancel, or closing the prompt, calls the change off. A dragged card goes back to where it was; in the Reassign dialog the user is back in the dialog with their choice kept.”"
+   ]
+  ]
+ },
+ "368136": {
+  "t": "The clear-shifts question shows on Board and Tech View only",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Use More actions > Reassign lead technician to pick [Tech-B] and confirm. Note the prompt, click Keep shifts."
+   ],
+   [
+    "ex",
+    "What you should see today (build v26.40.8-7a95011, 10/8/2026): changing the lead (by dragging the card or with Reassign lead technician) shows no question about scheduled shifts, even when the outgoing lead has a shift booked for the entire work order. The lea"
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R31, read 8 Oct 2026. PO decision Chris Ward 6 Oct 2026; DR-33 (List gets no lead reassignment). Source-v"
+   ],
+   [
+    "ex",
+    "S4-R31: “The prompt shows on Board View and Tech View, both when dragging and in the Reassign dialog. Changing the lead technician on the work order page or from the List does not show it, as today.”"
+   ]
+  ]
+ },
+ "368137": {
+  "t": "A reorder that cannot be saved shows its alert and the card goes back",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-N10, read 8 Oct 2026. PO decision Chris Ward 6 Oct 2026 (two sentences). Source-verified 8 October 2026."
+   ]
+  ]
+ },
+ "368138": {
+  "t": "Dropping next to a card someone just moved shows a refresh alert",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-N11, read 8 Oct 2026. PO decision Chris Ward 6 Oct 2026 (\"OK as written\"). Source-verified 8 October 2026"
+   ]
+  ]
+ },
+ "368139": {
+  "t": "Two drops into one technician at once show a board-busy alert",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-N12, read 8 Oct 2026. PO decision Chris Ward 6 Oct 2026. Jira SV-10985 (a held column lock makes drops fa"
+   ]
+  ]
+ },
+ "368140": {
+  "t": "Assigning a lead to unassigned work moves only open unassigned lines",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Hover the card in the Unassigned column, click More actions > Reassign lead technician."
+   ],
+   [
+    "ex",
+    "The card moves to Ralph Edwards' column with \"Lead technician updated\"."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R8 (assign path), read 8 Oct 2026. PRD acceptance note under the S4-R8 table (all six rows for assign, re"
+   ],
+   [
+    "ex",
+    "S4-R8 acceptance: “Acceptance criteria must cover all six rows for assign, reassign and remove. Any No condition overrides a Yes condition.”"
+   ]
+  ]
+ },
+ "368163": {
+  "t": "Searching in the Reassign lead technician dialog narrows the technician list",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "Click Reassign lead technician."
+   ],
+   [
+    "st",
+    "Open the same card's More actions (…) menu again and click Reassign lead technician."
+   ],
+   [
+    "st",
+    "Hover {Work-order-1}'s row, click its More actions (…) button and click Reassign lead technician."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S4-R12 and S4-R14, read 15 Oct 2026. Eligibility from PRD"
+   ],
+   [
+    "ex",
+    "The PRD (version 52) listed the dialog's content, search, grouping, avatars and N open count as design work still owed. Chris Ward answered on 15 Oct 2026 (answer 19) that the dialog is final as drawn, with Unassigned as its first row; PRD version 54 removes t"
+   ],
+   [
+    "ex",
+    "S4-R12: “The dialog offers eligible active technicians in the current location and Unassigned. It follows the design: a Search technicians box, each technician with their avatar and N open count, no grouping. Unassigned is the first row.”"
+   ]
+  ]
+ },
+ "581891": {
+  "t": "A line with only a Schedule shift technician follows the new lead technician",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "On {Work-order-1}'s card in {Technician-A}'s column, open More actions (…) and click Reassign lead technician."
+   ],
+   [
+    "st",
+    "Choose {Technician-D} and click Reassign."
+   ],
+   [
+    "ex",
+    "Step 4: the lead changes at once with the message \"Lead technician updated\" and no \"Clear … scheduled shifts?\" question ({Technician-A} has no shift on this work order); the card moves to {Technician-D}'s column."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 49 (14 Oct 2026, Chris Ward), the context note under S4-R8 (added in version 46, 12 Oct"
+   ],
+   [
+    "ex",
+    "S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”"
+   ]
+  ]
+ },
+ "581892": {
+  "t": "The Clear shifts question ignores lines that are not approved or are declined",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Steps 5, 8 and 11: after Keep shifts each work order moves to {Technician-B}'s column with the message \"Lead technician updated\"."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 49 (14 Oct 2026, Chris Ward), S4-R28 (reworded in version 49 from Chris Ward's answer 1"
+   ],
+   [
+    "ex",
+    "S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”"
+   ]
+  ]
+ },
+ "581893": {
+  "t": "An Entire work order shift stops counting once a new line is approved",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Step 4: no question opens. {Work-order-1} moves to {Technician-B}'s column at once with the message \"Lead technician updated\", because the shift no longer covers every approved line once {Line-5} was approved after it was made."
+   ],
+   [
+    "ex",
+    "Step 7: {Work-order-2} moves to {Technician-B}'s column with the message \"Lead technician updated\"."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 49 (14 Oct 2026, Chris Ward), S4-R28 (reworded in version 49 from Chris Ward's answer 1"
+   ],
+   [
+    "ex",
+    "S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”"
+   ]
+  ]
+ },
+ "97002": {
+  "t": "Dragging to another technician changes the lead, Unassigned clears it",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "After step 4 the card sits in Ben's column and the message \"Lead technician updated\" appears, then fades by itself."
+   ],
+   [
+    "ex",
+    "After step 6 the card sits in Unassigned and the message \"Lead technician removed\" appears."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10052 (Story 9, Drag to reorder work and technician groups/columns); SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S9-R6, S9-R7, S4-R5, S4-R16, read 8 "
+   ],
+   [
+    "ex",
+    "S9-R6: “Between-technician moves reassign the lead under Story 4.”"
+   ],
+   [
+    "ex",
+    "S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”"
+   ],
+   [
+    "ex",
+    "S4-R16: “Success toasts dismiss automatically.”"
+   ]
+  ]
+ },
+ "97003": {
+  "t": "A view-only user can reorder technician columns and Unassigned stays first",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "Write down the column order (initially Unassigned first, then technicians by first name: Ana, Ben, Cal)."
+   ],
+   [
+    "ex",
+    "Step 11: after the refresh the view-only user still sees, in both views, the column order written down at step 8, with Unassigned first (for example: Unassigned, Ben, Cal, Ana)."
+   ]
+  ]
+ },
+ "97005": {
+  "t": "The order of work orders is shared by everyone at the location",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; story SV-10052 (Story 9, Drag to reorder work and technician groups/columns); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S9-R3, S9-R11, S9-R12, read 8 Oct 2026. Key Decisions (manual ordering), same PRD. Starting order "
+   ],
+   [
+    "ex",
+    "S9-R11: “Save the manual order of work orders once per location. Everyone at the location sees the same order, in both Tech View and Board View. If two people reorder at the same time, the later save wins; the other person sees the saved order on their next re"
+   ]
+  ]
+ },
+ "97007": {
+  "t": "A work order given a new lead from Reassign or its page goes to the bottom",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Type the shared start of the customer names (for example ZZAUTOTEST F3 Reassign Bottom) in Search."
+   ],
+   [
+    "st",
+    "Click Reassign lead technician."
+   ],
+   [
+    "st",
+    "Pick {Technician-B}, then click Reassign."
+   ],
+   [
+    "ex",
+    "S9-R14: “A work order that gets a new lead from the Reassign lead technician dialog or from its detail page goes to the bottom of the new technician’s work, for everyone at the location, in both views. A work order dragged to a technician goes where it is drop"
+   ]
+  ]
+ },
+ "97008": {
+  "t": "Moving to another technician shows the message, reordering shows none",
+  "atm": 3,
+  "h": [
+   [
+    "ex",
+    "Step 6: \"Lead technician updated\" appears and the counts change at once to Ana 2, Ben 2 (3 − 1 = 2 and 1 + 1 = 2), with no page reload. The message fades by itself."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10052 (Story 9, Drag to reorder work and technician groups/columns); SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S9-R5, S9-R15, S4-R5, S4-R7, S4-R16,"
+   ],
+   [
+    "ex",
+    "S9-R15: “Reordering within one technician changes position without changing assignments or showing a reassignment toast.”"
+   ],
+   [
+    "ex",
+    "S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”"
+   ],
+   [
+    "ex",
+    "S4-R16: “Success toasts dismiss automatically.”"
+   ]
+  ]
+ },
+ "97009": {
+  "t": "Invoiced and Paid work orders can only be reordered within their technician",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Step 9: {Work-order-4} (Declined) and {Work-order-5} (Complete) move to {Technician-B}'s column with \"Lead technician updated\"."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10052 (Story 9, Drag to reorder work and technician groups/columns); SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026"
+   ]
+  ]
+ },
+ "97010": {
+  "t": "Nothing can be dropped on an inactive technician, and a failed drop goes back",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Step 5: the drop is not accepted. {Work-order-1} stays in {Technician-A}'s column, {Technician-C}'s count stays 1 and no \"Lead technician updated\" message appears."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; stories SV-10052 (Story 9, Drag to reorder work and technician groups/columns), SV-10047 (Story 4, Reassign or unassign the lead technician) and SV-10046 (Story 3, Board View); PRD \"Work Orders — Board View & Tech View Display Options\", Confluen"
+   ]
+  ]
+ },
+ "97012": {
+  "t": "A drop is refused if the status or permission changed after the board loaded",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; story SV-10052 (Story 9, Drag to reorder work and technician groups/columns); SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S9-E1, S4-E3, S4-N3, S4-N8, read 8 O"
+   ]
+  ]
+ },
+ "368144": {
+  "t": "Removing the lead puts the work order in its normal place in Unassigned",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Hover {Work-order-3}'s card in {Technician-A}'s column, click its More actions (…) button and click Reassign lead technician."
+   ],
+   [
+    "st",
+    "Pick Unassigned, then click Reassign."
+   ],
+   [
+    "ex",
+    "Step 6: the message \"Lead technician removed\" shows."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10052 (Story 9, Drag to reorder work and technician groups/columns); SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026"
+   ],
+   [
+    "ex",
+    "S9-R14: “A work order that gets a new lead from the Reassign lead technician dialog or from its detail page goes to the bottom of the new technician’s work, for everyone at the location, in both views. A work order dragged to a technician goes where it is drop"
+   ],
+   [
+    "ex",
+    "S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”"
+   ]
+  ]
+ },
+ "368145": {
+  "t": "A work order created with a lead keeps its normal place, not the bottom",
+  "atm": 3,
+  "h": [
+   [
+    "ex",
+    "S9-R14: “A work order that gets a new lead from the Reassign lead technician dialog or from its detail page goes to the bottom of the new technician’s work, for everyone at the location, in both views. A work order dragged to a technician goes where it is drop"
+   ]
+  ]
+ },
+ "368147": {
+  "t": "A user without Work Orders create and edit cannot drag work orders",
+  "atm": 3,
+  "h": [
+   [
+    "ex",
+    "Step 7: no Reassign lead technician action is offered to this user."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10052 (Story 9, Drag to reorder work and technician groups/columns); SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S9-N1, S4-N1, read 8 Oct 2026. Story"
+   ],
+   [
+    "ex",
+    "S4-N1: “Require Work Orders create and edit permission to drag work orders or access Reassign lead technician.”"
+   ]
+  ]
+ },
+ "97020": {
+  "t": "The keyboard cannot get around permission or status limits",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "Choose \"Reassign lead technician\" with the arrow keys and press Enter."
+   ],
+   [
+    "ex",
+    "Step 5: \"Reassign lead technician\" cannot be reached: no menu opens, or it is not offered, or it is disabled and nothing happens."
+   ],
+   [
+    "ex",
+    "Step 11: the menu opens and \"Reassign lead technician\" is disabled, with the note \"The lead technician can’t be changed once a work order is Invoiced or Paid.\""
+   ],
+   [
+    "ex",
+    "Epic SV-10043; stories SV-10054 (Story 11, Keyboard access and focus), SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S11-N1,"
+   ],
+   [
+    "ex",
+    "S11-R9: “Reassigning by keyboard goes through the more-actions menu: Reassign lead technician opens the Reassign dialog, and Unassign is a menu item. There is no keyboard drag in this release, so reordering work orders and technicians is by mouse or touch only"
+   ],
+   [
+    "ex",
+    "S4-N1: “Require Work Orders create and edit permission to drag work orders or access Reassign lead technician.”"
+   ],
+   [
+    "ex",
+    "S4-N6: “The disabled Reassign lead technician action on an Invoiced or Paid work order shows this tooltip: “The lead technician can’t be changed once a work order is Invoiced or Paid.””"
+   ],
+   [
+    "ex",
+    "Tech plan Phase 11 tests: “a keyboard-initiated reassign is refused for a locked status and without permission (S11-N1).”"
+   ]
+  ]
+ },
+ "97022": {
+  "t": "Focus returns to the opener and moves on when a focused card leaves",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "Use More actions to reassign that work order to B with the keyboard."
+   ],
+   [
+    "st",
+    "Use the keyboard to reassign A’s remaining work order to B."
+   ]
+  ]
+ },
+ "368150": {
+  "t": "Enter opens the focused card or row, and no key drags it",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Step 4: no card moves: {Work-order-1} stays in its place in {Technician-A}'s column and no \"Lead technician updated\" message appears."
+   ],
+   [
+    "ex",
+    "S11-R9: “Reassigning by keyboard goes through the more-actions menu: Reassign lead technician opens the Reassign dialog, and Unassign is a menu item. There is no keyboard drag in this release, so reordering work orders and technicians is by mouse or touch only"
+   ]
+  ]
+ },
+ "368152": {
+  "t": "Reassign and Unassign work from the keyboard through the More actions menu",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "Choose \"Reassign lead technician\" with the arrow keys and press Enter."
+   ],
+   [
+    "ex",
+    "Step 5: the menu opens and offers \"Reassign lead technician\" and \"Unassign\"."
+   ],
+   [
+    "ex",
+    "Step 6: the \"Reassign lead technician\" dialog opens."
+   ],
+   [
+    "ex",
+    "Step 8: {Work-order-1} moves to {Technician-B}'s column and \"Lead technician updated\" shows."
+   ],
+   [
+    "ex",
+    "Step 12: {Work-order-2} moves to the \"Unassigned\" column and \"Lead technician removed\" shows."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; stories SV-10054 (Story 11, Keyboard access and focus), SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S11-R1,"
+   ],
+   [
+    "ex",
+    "S11-R9: “Reassigning by keyboard goes through the more-actions menu: Reassign lead technician opens the Reassign dialog, and Unassign is a menu item. There is no keyboard drag in this release, so reordering work orders and technicians is by mouse or touch only"
+   ],
+   [
+    "ex",
+    "S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”"
+   ]
+  ]
+ },
+ "97028": {
+  "t": "Blocked analytics never stops the page, settings or reassignment",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Step 3: the card moves and \"Lead technician updated\" appears."
+   ]
+  ]
+ },
+ "97031": {
+  "t": "Header counts change by exactly one after a move, with nothing counted twice",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Open Bravo Co's more-actions > \"Reassign lead technician\" > Unassigned. Read the counts."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); SV-10052 (Story 9, Drag to reorder work and technician groups/columns); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R7, S9-R5, read 8 Oct 2026."
+   ]
+  ]
+ },
+ "97032": {
+  "t": "The open count in the Reassign dialog counts exactly four statuses",
+  "atm": 3,
+  "h": [
+   [
+    "st",
+    "Hover the Spare Co card, click more-actions (…) > \"Reassign lead technician\"."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S4-R15, read 8 Oct 2026. Review Decisions page 853901313, DR-43 (29 Sep 2026). Lead only, current location a"
+   ]
+  ]
+ },
+ "368158": {
+  "t": "The On Site toggle still saves on an Invoiced work order",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S4-N2, read 15 Oct 2026. In version 48 (12 Oct 2026) S4-N"
+   ]
+  ]
+ },
+ "368159": {
+  "t": "Toggling On Site from a stale page does not undo another user's lead change",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; Work Orders Board View & Tech View Display Options Technical Implementation Plan (revised 24 Sep 2026, uploaded 8 Oct 2026), Phase 3 (asset-on-site toggles stop sending the lead). Epic SV-10043; story SV-10047 (Story 4, Reassign or unassign the "
+   ]
+  ]
+ },
+ "368167": {
+  "t": "A refused lead change on the work order page shows an error, keeps the old lead",
+  "atm": 3,
+  "h": [
+   [
+    "ex",
+    "PRD §4 Key Decisions (lead lock): “Lead technician cannot be changed once a work order is Invoiced or Paid. This is a product rule, not only a screen rule, so it must hold on every path that changes the lead technician — board drag, Reassign dialog, and the wo"
+   ]
+  ]
+ },
+ "368168": {
+  "t": "Changing the lead on the work order page moves the lines that followed it",
+  "atm": 3,
+  "h": [
+   [
+    "ex",
+    "PRD S4-R31: “The prompt shows on Board View and Tech View, both when dragging and in the Reassign dialog. Changing the lead technician on the work order page or from the List does not show it, as today.”"
+   ]
+  ]
+ },
+ "368199": {
+  "t": "Switching List tabs quickly shows only the last tab's work orders",
+  "atm": 3,
+  "h": [
+   [
+    "ex",
+    "QA handoff §2: “no error toast appears, and only the last tab's rows show.”"
+   ]
+  ]
+ },
+ "154650": {
+  "t": "Tech View and Board View show only this organization and location",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "Open any card's more-actions > \"Reassign lead technician\" and search \"F3 Scope OrgB Tech\", then cancel."
+   ]
+  ]
+ },
+ "368240": {
+  "t": "An ended session shows the sign-in page without error messages",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Dev reply 8: “Start and exit impersonation while a page is loading. There should be no stale data, and no error toasts from cancelled requests.”"
+   ]
+  ]
+ },
+ "368170": {
+  "t": "A refused lead change in Edit Work Order saves none of the other edits",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "PRD §4 Key Decisions (lead lock): “Lead technician cannot be changed once a work order is Invoiced or Paid. This is a product rule, not only a screen rule, so it must hold on every path that changes the lead technician — board drag, Reassign dialog, and the wo"
+   ]
+  ]
+ },
+ "368238": {
+  "t": "Starting impersonation while a page loads shows the new user's data",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Dev reply 8: “Start and exit impersonation while a page is loading. There should be no stale data, and no error toasts from cancelled requests.”"
+   ]
+  ]
+ },
+ "368239": {
+  "t": "Exiting impersonation while a page loads shows your own data",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Dev reply 8: “Start and exit impersonation while a page is loading. There should be no stale data, and no error toasts from cancelled requests.”"
+   ]
+  ]
+ },
+ "590116": {
+  "t": "Six-dot grips on Tech View rows and technician headers, none on Unassigned",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; stories SV-10052 (Story 9, Drag to reorder), SV-10045 (Story 2, Tech View), SV-10047 (Story 4, Reassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward),"
+   ],
+   [
+    "ex",
+    "S4-N1: “Require Work Orders create and edit permission to drag work orders or access Reassign lead technician.”"
+   ]
+  ]
+ },
+ "590121": {
+  "t": "More actions button and menu on cards and rows look as in the design",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "Hover the greyed-out Reassign lead technician item."
+   ],
+   [
+    "ex",
+    "Step 4: a white menu opens below the button, lined up with the button's right edge, with Reassign lead technician as its first item and an outline icon before each item, as in the menu design picture."
+   ],
+   [
+    "ex",
+    "Step 10: the menu's Reassign lead technician item is greyed out and cannot be chosen, as in the locked-menu design picture."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; stories SV-10046 (Story 3, Board View), SV-10047 (Story 4, Reassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S3-R13, S3-R14, S4-R4 and S4-N6, re"
+   ],
+   [
+    "ex",
+    "S3-R14: “Include Reassign lead technician in the card’s more-actions menu.”"
+   ],
+   [
+    "ex",
+    "S4-R4: “The card or row more-actions menu opens the Reassign lead technician dialog.”"
+   ],
+   [
+    "ex",
+    "S4-N6: “The disabled Reassign lead technician action on an Invoiced or Paid work order shows this tooltip: “The lead technician can’t be changed once a work order is Invoiced or Paid.””"
+   ]
+  ]
+ },
+ "590122": {
+  "t": "Empty groups, empty columns and no-results pages look as designed",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "S3-R20: “A technician column with no work orders under the current filters, and an empty Unassigned column, show “Drag a work order here to assign it” to a user who can reassign work orders (S4-N1), and “No work orders” to everyone else.”"
+   ]
+  ]
+ },
+ "590123": {
+  "t": "Dragging shows a blue drop line, and a refused drop shows a dark message",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Epic SV-10043; stories SV-10052 (Story 9, Drag to reorder), SV-10047 (Story 4, Reassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S9-R1, S9-R2, S4-N2 and S4-N7,"
+   ]
+  ]
+ },
+ "590127": {
+  "t": "Technician filter sits after Assigned to me in Tech View and Board View",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "S1-R15: “In Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location’s technicians (the same people who get a group or column, S9-R4), by first name then las"
+   ]
+  ]
+ },
+ "590129": {
+  "t": "Reassign lead technician dialog looks as designed, with Unassigned first",
+  "atm": 1,
+  "h": [
+   [
+    "st",
+    "Click Reassign lead technician."
+   ],
+   [
+    "ex",
+    "Step 5: a white dialog with rounded corners sits over a dimmed page: a title, and under it the work order number and the customer in grey; an X at the top right; a search box with a magnifier icon; a list where each row has a round avatar, the name and a grey "
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign the lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S4-R12, S4-R15 and S4-R4, read 15 Oct 2026; Claude Design project \"Wo"
+   ],
+   [
+    "ex",
+    "The PRD (version 52) listed the dialog's content, search, grouping, avatars and N open count under design updates still required, and the design has no Unassigned row. Chris Ward answered on 15 Oct 2026 (answer 19) that the dialog is tested as drawn (search, a"
+   ],
+   [
+    "ex",
+    "S4-R12: “The dialog offers eligible active technicians in the current location and Unassigned. It follows the design: a Search technicians box, each technician with their avatar and N open count, no grouping. Unassigned is the first row.”"
+   ],
+   [
+    "ex",
+    "S4-R4: “The card or row more-actions menu opens the Reassign lead technician dialog.”"
+   ],
+   [
+    "ex",
+    "Design — Work Orders.dc.html, Reassign dialog: “width: 480px; max-width: 100%; max-height: 78vh; display: flex; flex-direction: column; border-radius: 12px; background: var(--sv-surface);”"
+   ],
+   [
+    "ex",
+    "Design — Work Orders.dc.html, Reassign dialog backdrop: “background: rgba(15, 17, 26, 0.5);”"
+   ],
+   [
+    "ex",
+    "Design — Work Orders.dc.html, Reassign dialog search: “placeholder=\"Search technicians\"”"
+   ]
+  ]
+ },
+ "590130": {
+  "t": "Lead technician updated shows as the app's success message and fades",
+  "atm": 1,
+  "h": [
+   [
+    "ex",
+    "Step 3: the words “Lead technician updated” appear in the app’s standard success message, the same kind of message every success in ShopView uses (PRD section 9: “Success toast”)."
+   ],
+   [
+    "ex",
+    "Step 4: the message disappears by itself (PRD section 9: “auto-fades”; S4-R16)."
+   ],
+   [
+    "ex",
+    "Epic SV-10043; story SV-10047 (Story 4, Reassign the lead technician). PRD “Work Orders — Board View & Tech View Display Options”, Confluence 845185030, version 64 (last edited 16 Oct 2026, Chris Ward), section 9 User Feedback Summary, S4-R5 and S4-R16, read 1"
+   ],
+   [
+    "ex",
+    "Product owner’s ruling, Chris Ward, comment on SV-11396 (https://shopview.atlassian.net/browse/SV-11396), 16 Oct 2026 09:23, word for word: “closing this one. The \"Lead technician updated\" message uses the app's standard success toast, the same as every succes"
+   ],
+   [
+    "ex",
+    "Section 9 User Feedback Summary, row (Trigger | Message | Behavior): “Lead technician changed by drag or dialog (S4-R5) | \"Lead technician updated\" | Success toast, auto-fades”"
+   ],
+   [
+    "ex",
+    "S4-R5: “After successful reassignment, show “Lead technician updated”; after unassigning, show “Lead technician removed”.”"
+   ],
+   [
+    "ex",
+    "S4-R16: “Success toasts dismiss automatically.”"
+   ]
+  ]
+ }
+}
