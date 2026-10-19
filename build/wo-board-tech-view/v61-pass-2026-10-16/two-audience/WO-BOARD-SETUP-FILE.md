@@ -345,7 +345,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 - {Customer-A} = ZZAUTOTEST C368214 Back Forward
 - {Work-order-1} = the work order for unit C368214-U1
 
-#### SETUP-C590110 — [C590110](https://shopview.testrail.io/index.php?/cases/view/590110) Display switcher, filter and Search icons match the design in every display
+#### SETUP-C590110 — [C590110](https://shopview.testrail.io/index.php?/cases/view/590110) Design: The view buttons, filter and search icons look as in the design
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -371,7 +371,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 - {Technician-A} = ZZAUTOTEST C590110 Ana
 - {Work-order-1} = the work order for unit C590110-U1
 
-#### SETUP-C590112 — [C590112](https://shopview.testrail.io/index.php?/cases/view/590112) Tech View table runs edge to edge on white and the Status column fits its pills
+#### SETUP-C590112 — [C590112](https://shopview.testrail.io/index.php?/cases/view/590112) Design: Tech View table fills the full width and Status fits its labels
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -403,7 +403,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 - {Work-order-2} = the estimate for unit C590112-S2
 - {Work-order-3} = the work order for unit C590112-R1
 
-#### SETUP-C590114 — [C590114](https://shopview.testrail.io/index.php?/cases/view/590114) Tech View cells show a blue number, a thin progress bar and the advisor's avatar
+#### SETUP-C590114 — [C590114](https://shopview.testrail.io/index.php?/cases/view/590114) Design: Tech View rows show a blue number, a thin progress bar and an avatar
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -439,7 +439,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 - {Work-order-2} = the work order for unit C590114-U2
 - {Line-1} = the approved line of C590114-U1
 
-#### SETUP-C590117 — [C590117](https://shopview.testrail.io/index.php?/cases/view/590117) Tech View group headers show grip, arrow, avatar, name, pin and count
+#### SETUP-C590117 — [C590117](https://shopview.testrail.io/index.php?/cases/view/590117) Design: Tech View headings show handle, arrow, avatar, name, pin and count
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -474,7 +474,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 - {Work-order-2} = the work order for unit C590117-U2
 - {Work-order-3} = the work order for unit C590117-U3
 
-#### SETUP-C590119 — [C590119](https://shopview.testrail.io/index.php?/cases/view/590119) Board View column header shows grip, avatar, name, pin and count as designed
+#### SETUP-C590119 — [C590119](https://shopview.testrail.io/index.php?/cases/view/590119) Design: Board View column headings show handle, avatar, name, pin and count
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -513,7 +513,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 - {Work-order-2} = the work order for unit C590119-U2
 - {Work-order-3} = the work order for unit C590119-U3
 
-#### SETUP-C590128 — [C590128](https://shopview.testrail.io/index.php?/cases/view/590128) Density changes Tech View row, avatar and bar sizes, not Board card avatars
+#### SETUP-C590128 — [C590128](https://shopview.testrail.io/index.php?/cases/view/590128) Design: Density changes Tech View row, avatar and bar sizes, not card avatars
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -544,7 +544,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 - {Technician-B} = ZZAUTOTEST C590128 Ben
 - {Work-order-1} = the work order for unit C590128-U1
 
-#### SETUP-C590113 — [C590113](https://shopview.testrail.io/index.php?/cases/view/590113) Tech View opens on 13 default columns with small grey header labels
+#### SETUP-C590113 — [C590113](https://shopview.testrail.io/index.php?/cases/view/590113) Design: Tech View opens with 13 columns and small grey column headings
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -571,7 +571,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 - {Technician-A} = ZZAUTOTEST C590113 Ana
 - {Work-order-1} = the work order for unit C590113-U1
 
-#### SETUP-C590122 — [C590122](https://shopview.testrail.io/index.php?/cases/view/590122) Empty groups, empty columns and no-results pages look as designed
+#### SETUP-C590122 — [C590122](https://shopview.testrail.io/index.php?/cases/view/590122) Design: Empty groups, empty columns and no-results pages look as in the design
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -594,7 +594,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 - {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
 - {Technician-A} = ZZAUTOTEST C590122 Sam
 
-#### SETUP-C590127 — [C590127](https://shopview.testrail.io/index.php?/cases/view/590127) Technician filter sits after Assigned to me in Tech View and Board View
+#### SETUP-C590127 — [C590127](https://shopview.testrail.io/index.php?/cases/view/590127) Design: The Technician filter sits right after Assigned to me in both views
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -667,7 +667,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 - {Location-B} = ZZAUTOTEST Empty Location (see SETUP-N2)
 
-#### SETUP-N3 — [C614716](https://shopview.testrail.io/index.php?/cases/view/614716) Density and Columns tooltips open above their button and hide while open
+#### SETUP-N3 — [C614716](https://shopview.testrail.io/index.php?/cases/view/614716) Design: Density and Columns tips show above their buttons, hidden while open
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -693,7 +693,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 - {Technician-A} = ZZAUTOTEST N3 Tia
 - {Work-order-1} = the work order for unit N3-U1
 
-#### SETUP-N4 — [C614717](https://shopview.testrail.io/index.php?/cases/view/614717) Row and card name bubbles open above the avatar, headers keep the plain tip
+#### SETUP-N4 — [C614717](https://shopview.testrail.io/index.php?/cases/view/614717) Design: Name bubbles show above row and card avatars, headings keep a plain tip
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -768,7 +768,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 - {Work-order-2} = the work order for unit C614719-U2
 - {Work-order-3} = the work order for unit C614719-U3
 
-#### SETUP-C665914 — [C665914](https://shopview.testrail.io/index.php?/cases/view/665914) A long customer name stays inside the drag preview in Board View and Tech View
+#### SETUP-C665914 — [C665914](https://shopview.testrail.io/index.php?/cases/view/665914) Design- A long customer name stays inside the dragged card in both views
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -1094,7 +1094,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Check:** every precondition line is true on screen.
 
-#### SETUP-C682439 — [C682439](https://shopview.testrail.io/index.php?/cases/view/682439) In the dark theme, Board View column scrollbars are thin and dark
+#### SETUP-C682439 — [C682439](https://shopview.testrail.io/index.php?/cases/view/682439) Design- In the Dark theme, Board View column scrollbars are thin and dark
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -1111,7 +1111,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Check:** every precondition line is true on screen.
 
-#### SETUP-C682440 — [C682440](https://shopview.testrail.io/index.php?/cases/view/682440) At Compact, the count bubbles leave the Tech View status name readable
+#### SETUP-C682440 — [C682440](https://shopview.testrail.io/index.php?/cases/view/682440) Design- At Compact, count bubbles leave the Tech View status name readable
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -1127,7 +1127,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Check:** every precondition line is true on screen.
 
-#### SETUP-C682429 — [C682429](https://shopview.testrail.io/index.php?/cases/view/682429) Design version: the lead menu reads Assign Tech and Reassign Lead Tech
+#### SETUP-C682429 — [C682429](https://shopview.testrail.io/index.php?/cases/view/682429) Design- Lead menu reads Assign Tech and Reassign Lead Tech (design's version)
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -1143,7 +1143,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Check:** every precondition line is true on screen.
 
-#### SETUP-C682430 — [C682430](https://shopview.testrail.io/index.php?/cases/view/682430) Design version: lead change messages, Assignment undone and a 2.6 second close
+#### SETUP-C682430 — [C682430](https://shopview.testrail.io/index.php?/cases/view/682430) Design- Lead change messages, Assignment undone, 2.6 s close (design's version)
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -1160,7 +1160,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Check:** every precondition line is true on screen.
 
-#### SETUP-C682431 — [C682431](https://shopview.testrail.io/index.php?/cases/view/682431) Design version: locked work orders show short notes and Declined is locked
+#### SETUP-C682431 — [C682431](https://shopview.testrail.io/index.php?/cases/view/682431) Design- Locked work orders show short notes, Declined locked (design's version)
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -1177,7 +1177,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Check:** every precondition line is true on screen.
 
-#### SETUP-C682432 — [C682432](https://shopview.testrail.io/index.php?/cases/view/682432) Design version: up to five technicians can be pinned, with pin messages
+#### SETUP-C682432 — [C682432](https://shopview.testrail.io/index.php?/cases/view/682432) Design- Up to five technicians can be pinned, pin messages (design's version)
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -1192,7 +1192,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Check:** every precondition line is true on screen.
 
-#### SETUP-C682433 — [C682433](https://shopview.testrail.io/index.php?/cases/view/682433) Design version: Row height in Tech View and Card size on Board View
+#### SETUP-C682433 — [C682433](https://shopview.testrail.io/index.php?/cases/view/682433) Design- Row height in Tech View, Card size in Board View (design's version)
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -1206,7 +1206,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Check:** every precondition line is true on screen.
 
-#### SETUP-C682434 — [C682434](https://shopview.testrail.io/index.php?/cases/view/682434) Design version: an empty Tech View group reads No work orders assigned
+#### SETUP-C682434 — [C682434](https://shopview.testrail.io/index.php?/cases/view/682434) Design- Empty Tech View group reads No work orders assigned (design's version)
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -1222,7 +1222,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Check:** every precondition line is true on screen.
 
-#### SETUP-C682435 — [C682435](https://shopview.testrail.io/index.php?/cases/view/682435) Design version: search opens a collapsed group, N open counts every card
+#### SETUP-C682435 — [C682435](https://shopview.testrail.io/index.php?/cases/view/682435) Design- Search opens a closed group, N open counts all cards (design's version)
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -1238,7 +1238,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Check:** every precondition line is true on screen.
 
-#### SETUP-C682436 — [C682436](https://shopview.testrail.io/index.php?/cases/view/682436) Design version: No technicians yet and Nothing here yet states
+#### SETUP-C682436 — [C682436](https://shopview.testrail.io/index.php?/cases/view/682436) Design- No technicians yet and Nothing here yet pages (design's version)
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
@@ -1264,21 +1264,21 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 | [C614711](https://shopview.testrail.io/index.php?/cases/view/614711) Work orders of a deleted lead sit under Deleted technician, which takes no drops | ACCOUNT-A            | SETUP-ADMIN, SETUP-C614711                |
 | [C96916](https://shopview.testrail.io/index.php?/cases/view/96916) Browser Back restores scroll, tab and filters in Tech View and Board View          | ACCOUNT-A            | SETUP-ADMIN, SETUP-C96916                 |
 | [C368214](https://shopview.testrail.io/index.php?/cases/view/368214) After Back and Forward the List keeps its tab, search and filters                | ACCOUNT-A            | SETUP-ADMIN, SETUP-C368214                |
-| [C590110](https://shopview.testrail.io/index.php?/cases/view/590110) Display switcher, filter and Search icons match the design in every display      | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590110                |
-| [C590112](https://shopview.testrail.io/index.php?/cases/view/590112) Tech View table runs edge to edge on white and the Status column fits its pills  | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590112                |
-| [C590114](https://shopview.testrail.io/index.php?/cases/view/590114) Tech View cells show a blue number, a thin progress bar and the advisor's avatar | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590114                |
-| [C590117](https://shopview.testrail.io/index.php?/cases/view/590117) Tech View group headers show grip, arrow, avatar, name, pin and count            | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590117                |
-| [C590119](https://shopview.testrail.io/index.php?/cases/view/590119) Board View column header shows grip, avatar, name, pin and count as designed     | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590119                |
-| [C590128](https://shopview.testrail.io/index.php?/cases/view/590128) Density changes Tech View row, avatar and bar sizes, not Board card avatars      | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590128                |
-| [C590113](https://shopview.testrail.io/index.php?/cases/view/590113) Tech View opens on 13 default columns with small grey header labels              | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590113                |
-| [C590122](https://shopview.testrail.io/index.php?/cases/view/590122) Empty groups, empty columns and no-results pages look as designed                | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590122                |
-| [C590127](https://shopview.testrail.io/index.php?/cases/view/590127) Technician filter sits after Assigned to me in Tech View and Board View          | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590127                |
+| [C590110](https://shopview.testrail.io/index.php?/cases/view/590110) Design: The view buttons, filter and search icons look as in the design      | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590110                |
+| [C590112](https://shopview.testrail.io/index.php?/cases/view/590112) Design: Tech View table fills the full width and Status fits its labels  | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590112                |
+| [C590114](https://shopview.testrail.io/index.php?/cases/view/590114) Design: Tech View rows show a blue number, a thin progress bar and an avatar | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590114                |
+| [C590117](https://shopview.testrail.io/index.php?/cases/view/590117) Design: Tech View headings show handle, arrow, avatar, name, pin and count            | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590117                |
+| [C590119](https://shopview.testrail.io/index.php?/cases/view/590119) Design: Board View column headings show handle, avatar, name, pin and count     | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590119                |
+| [C590128](https://shopview.testrail.io/index.php?/cases/view/590128) Design: Density changes Tech View row, avatar and bar sizes, not card avatars      | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590128                |
+| [C590113](https://shopview.testrail.io/index.php?/cases/view/590113) Design: Tech View opens with 13 columns and small grey column headings              | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590113                |
+| [C590122](https://shopview.testrail.io/index.php?/cases/view/590122) Design: Empty groups, empty columns and no-results pages look as in the design                | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590122                |
+| [C590127](https://shopview.testrail.io/index.php?/cases/view/590127) Design: The Technician filter sits right after Assigned to me in both views          | ACCOUNT-A            | SETUP-ADMIN, SETUP-C590127                |
 | [C614714](https://shopview.testrail.io/index.php?/cases/view/614714) A lead whose Time Clock is turned off keeps a named column that takes no drops   | ACCOUNT-A            | SETUP-ADMIN, SETUP-N1                     |
 | [C614715](https://shopview.testrail.io/index.php?/cases/view/614715) With no work orders at all, Tech View and Board View show No work orders yet     | ACCOUNT-A            | SETUP-ADMIN, SETUP-N2                     |
-| [C614716](https://shopview.testrail.io/index.php?/cases/view/614716) Density and Columns tooltips open above their button and hide while open         | ACCOUNT-A            | SETUP-ADMIN, SETUP-N3                     |
-| [C614717](https://shopview.testrail.io/index.php?/cases/view/614717) Row and card name bubbles open above the avatar, headers keep the plain tip      | ACCOUNT-A            | SETUP-ADMIN, SETUP-N4                     |
+| [C614716](https://shopview.testrail.io/index.php?/cases/view/614716) Design: Density and Columns tips show above their buttons, hidden while open         | ACCOUNT-A            | SETUP-ADMIN, SETUP-N3                     |
+| [C614717](https://shopview.testrail.io/index.php?/cases/view/614717) Design: Name bubbles show above row and card avatars, headings keep a plain tip      | ACCOUNT-A            | SETUP-ADMIN, SETUP-N4                     |
 | [C614719](https://shopview.testrail.io/index.php?/cases/view/614719) First Tab skips a collapsed or empty Unassigned to the first technician | ACCOUNT-A | SETUP-ADMIN, SETUP-C614719 |
-| [C665914](https://shopview.testrail.io/index.php?/cases/view/665914) A long customer name stays inside the drag preview in Board View and Tech View | ACCOUNT-A | SETUP-ADMIN, SETUP-C665914 |
+| [C665914](https://shopview.testrail.io/index.php?/cases/view/665914) Design- A long customer name stays inside the dragged card in both views | ACCOUNT-A | SETUP-ADMIN, SETUP-C665914 |
 | [C368131](https://shopview.testrail.io/index.php?/cases/view/368131) Pinned technician columns after deactivation or removal from this location | ACCOUNT-A, ACCOUNT-B | SETUP-ADMIN, SETUP-C368131 |
 | [C368167](https://shopview.testrail.io/index.php?/cases/view/368167) A refused lead change on the work order page shows an error, keeps the old lead | ACCOUNT-A | SETUP-ADMIN, SETUP-C368167 |
 | [C96936](https://shopview.testrail.io/index.php?/cases/view/96936) A lead changed elsewhere moves the work order to its new group on refresh | ACCOUNT-A | SETUP-ADMIN, SETUP-C96936 |
@@ -1291,16 +1291,16 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 | [C682428](https://shopview.testrail.io/index.php?/cases/view/682428) Undo cannot move back a work order that was invoiced in the meantime | ACCOUNT-A | SETUP-ADMIN, SETUP-C682428 |
 | [C682437](https://shopview.testrail.io/index.php?/cases/view/682437) Releasing a dragged technician header over a row opens no work order | ACCOUNT-A | SETUP-ADMIN, SETUP-C682437 |
 | [C682438](https://shopview.testrail.io/index.php?/cases/view/682438) On a Board View card, a focused avatar shows the technician's name | ACCOUNT-A | SETUP-ADMIN, SETUP-C682438 |
-| [C682439](https://shopview.testrail.io/index.php?/cases/view/682439) In the dark theme, Board View column scrollbars are thin and dark | ACCOUNT-A | SETUP-ADMIN, SETUP-C682439 |
-| [C682440](https://shopview.testrail.io/index.php?/cases/view/682440) At Compact, the count bubbles leave the Tech View status name readable | ACCOUNT-A | SETUP-ADMIN, SETUP-C682440 |
-| [C682429](https://shopview.testrail.io/index.php?/cases/view/682429) Design version: the lead menu reads Assign Tech and Reassign Lead Tech | ACCOUNT-A | SETUP-ADMIN, SETUP-C682429 |
-| [C682430](https://shopview.testrail.io/index.php?/cases/view/682430) Design version: lead change messages, Assignment undone and a 2.6 second close | ACCOUNT-A | SETUP-ADMIN, SETUP-C682430 |
-| [C682431](https://shopview.testrail.io/index.php?/cases/view/682431) Design version: locked work orders show short notes and Declined is locked | ACCOUNT-A | SETUP-ADMIN, SETUP-C682431 |
-| [C682432](https://shopview.testrail.io/index.php?/cases/view/682432) Design version: up to five technicians can be pinned, with pin messages | ACCOUNT-A | SETUP-ADMIN, SETUP-C682432 |
-| [C682433](https://shopview.testrail.io/index.php?/cases/view/682433) Design version: Row height in Tech View and Card size on Board View | ACCOUNT-A | SETUP-ADMIN, SETUP-C682433 |
-| [C682434](https://shopview.testrail.io/index.php?/cases/view/682434) Design version: an empty Tech View group reads No work orders assigned | ACCOUNT-A | SETUP-ADMIN, SETUP-C682434 |
-| [C682435](https://shopview.testrail.io/index.php?/cases/view/682435) Design version: search opens a collapsed group, N open counts every card | ACCOUNT-A | SETUP-ADMIN, SETUP-C682435 |
-| [C682436](https://shopview.testrail.io/index.php?/cases/view/682436) Design version: No technicians yet and Nothing here yet states | ACCOUNT-A | SETUP-ADMIN, SETUP-C682436 |
+| [C682439](https://shopview.testrail.io/index.php?/cases/view/682439) Design- In the Dark theme, Board View column scrollbars are thin and dark | ACCOUNT-A | SETUP-ADMIN, SETUP-C682439 |
+| [C682440](https://shopview.testrail.io/index.php?/cases/view/682440) Design- At Compact, count bubbles leave the Tech View status name readable | ACCOUNT-A | SETUP-ADMIN, SETUP-C682440 |
+| [C682429](https://shopview.testrail.io/index.php?/cases/view/682429) Design- Lead menu reads Assign Tech and Reassign Lead Tech (design's version) | ACCOUNT-A | SETUP-ADMIN, SETUP-C682429 |
+| [C682430](https://shopview.testrail.io/index.php?/cases/view/682430) Design- Lead change messages, Assignment undone, 2.6 s close (design's version) | ACCOUNT-A | SETUP-ADMIN, SETUP-C682430 |
+| [C682431](https://shopview.testrail.io/index.php?/cases/view/682431) Design- Locked work orders show short notes, Declined locked (design's version) | ACCOUNT-A | SETUP-ADMIN, SETUP-C682431 |
+| [C682432](https://shopview.testrail.io/index.php?/cases/view/682432) Design- Up to five technicians can be pinned, pin messages (design's version) | ACCOUNT-A | SETUP-ADMIN, SETUP-C682432 |
+| [C682433](https://shopview.testrail.io/index.php?/cases/view/682433) Design- Row height in Tech View, Card size in Board View (design's version) | ACCOUNT-A | SETUP-ADMIN, SETUP-C682433 |
+| [C682434](https://shopview.testrail.io/index.php?/cases/view/682434) Design- Empty Tech View group reads No work orders assigned (design's version) | ACCOUNT-A | SETUP-ADMIN, SETUP-C682434 |
+| [C682435](https://shopview.testrail.io/index.php?/cases/view/682435) Design- Search opens a closed group, N open counts all cards (design's version) | ACCOUNT-A | SETUP-ADMIN, SETUP-C682435 |
+| [C682436](https://shopview.testrail.io/index.php?/cases/view/682436) Design- No technicians yet and Nothing here yet pages (design's version) | ACCOUNT-A | SETUP-ADMIN, SETUP-C682436 |
 
 ## 6. Dependencies and shared fixtures
 
@@ -1429,7 +1429,7 @@ Steps with no source sentence (navigation and on-screen labels, taken from the b
 
 Jira: none. Last checked against build v26.40.8-7a95011 on 10/8/2026.
 
-### [C590110](https://shopview.testrail.io/index.php?/cases/view/590110) Display switcher, filter and Search icons match the design in every display
+### [C590110](https://shopview.testrail.io/index.php?/cases/view/590110) Design: The view buttons, filter and search icons look as in the design
 
 PRD v55/v58 S1-R9a and S2-R23: the display switcher's icons are the design's slate in every view, List included, and the toolbar icons are slate. Steps compressed to ten (the density menu now closes by switching view).
 
@@ -1451,7 +1451,7 @@ Steps with no source sentence (navigation and on-screen labels, taken from the b
 
 Jira: SV-10044,SV-10049,SV-11319. Last checked against build v26.40.19-72f4f3b (staging) on 10/16/2026, before the expected results changed on 16 Oct 2026; not yet checked against a build since.
 
-### [C590112](https://shopview.testrail.io/index.php?/cases/view/590112) Tech View table runs edge to edge on white and the Status column fits its pills
+### [C590112](https://shopview.testrail.io/index.php?/cases/view/590112) Design: Tech View table fills the full width and Status fits its labels
 
 PRD v57 S2-R22: the Status column has no minimum width and sizes to its widest pill (about 132 px with Ready For Review, narrower with only short statuses); two searches added to check it.
 
@@ -1466,7 +1466,7 @@ PRD v57 S2-R22: the Status column has no minimum width and sizes to its widest p
 
 Jira: SV-10045,SV-11324. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 16 Oct 2026; not yet checked against a build since.
 
-### [C590114](https://shopview.testrail.io/index.php?/cases/view/590114) Tech View cells show a blue number, a thin progress bar and the advisor's avatar
+### [C590114](https://shopview.testrail.io/index.php?/cases/view/590114) Design: Tech View rows show a blue number, a thin progress bar and an avatar
 
 PRD v55 S2-R20: the number link is the design system's link colour (#175CD3), darker than the design file's blue (was: the same blue as the picture). PRD v55/v60 S2-R23: Status, Waiting On Parts and Progress are left-aligned, and a row avatar's name bubble opens above it. Clicking the number (opens the work order) is left to C96932.
 
@@ -1486,7 +1486,7 @@ PRD v55 S2-R20: the number link is the design system's link colour (#175CD3), da
 
 Jira: SV-10045,SV-10050,SV-11319,SV-11325. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 16 Oct 2026; not yet checked against a build since.
 
-### [C590117](https://shopview.testrail.io/index.php?/cases/view/590117) Tech View group headers show grip, arrow, avatar, name, pin and count
+### [C590117](https://shopview.testrail.io/index.php?/cases/view/590117) Design: Tech View headings show handle, arrow, avatar, name, pin and count
 
 PRD v55 S2-R11a: the Tech View group-header pin is always shown, grey when unpinned and blue when pinned (was: pin not judged, question open). PRD v55/v58/v61 S2-R23: initials grey-600 (darker than the design file), header names slate semibold, header avatars keep the browser's plain name tip.
 
@@ -1506,7 +1506,7 @@ Steps with no source sentence (navigation and on-screen labels, taken from the b
 
 Jira: SV-10045,SV-11319,SV-11338. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 16 Oct 2026; not yet checked against a build since.
 
-### [C590119](https://shopview.testrail.io/index.php?/cases/view/590119) Board View column header shows grip, avatar, name, pin and count as designed
+### [C590119](https://shopview.testrail.io/index.php?/cases/view/590119) Design: Board View column headings show handle, avatar, name, pin and count
 
 PRD v55/v58 S2-R23: avatar initials are grey-600, a little darker than the design file's, and header names slate semibold (was: as in the design picture).
 
@@ -1523,7 +1523,7 @@ Steps with no source sentence (navigation and on-screen labels, taken from the b
 
 Jira: SV-10046,SV-11319,SV-11338. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 16 Oct 2026; not yet checked against a build since.
 
-### [C590128](https://shopview.testrail.io/index.php?/cases/view/590128) Density changes Tech View row, avatar and bar sizes, not Board card avatars
+### [C590128](https://shopview.testrail.io/index.php?/cases/view/590128) Design: Density changes Tech View row, avatar and bar sizes, not card avatars
 
 PRD v60/v61 S2-R23: Tech View row avatars 20/24/32 px and group header avatars 24/28/36 px by density, the Service Advisor avatar follows density, the Compact bar is 48 × 4 px, and Board card avatars stay 24 px (new steps 8-10).
 
@@ -1543,7 +1543,7 @@ Steps with no source sentence (navigation and on-screen labels, taken from the b
 
 Jira: SV-10049,SV-11318. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026, before the expected results changed on 16 Oct 2026; not yet checked against a build since.
 
-### [C590113](https://shopview.testrail.io/index.php?/cases/view/590113) Tech View opens on 13 default columns with small grey header labels
+### [C590113](https://shopview.testrail.io/index.php?/cases/view/590113) Design: Tech View opens with 13 columns and small grey column headings
 
 Quote refresh: PRD v56 removed the Out of Scope line on Collapse all / Expand all (now S2-R13a, covered by Vladimir's C614712); that quote is dropped. What the case checks is unchanged.
 
@@ -1557,7 +1557,7 @@ Steps with no source sentence (navigation and on-screen labels, taken from the b
 
 Jira: SV-10045,SV-10048,SV-10050,SV-11317,SV-11321. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026.
 
-### [C590122](https://shopview.testrail.io/index.php?/cases/view/590122) Empty groups, empty columns and no-results pages look as designed
+### [C590122](https://shopview.testrail.io/index.php?/cases/view/590122) Design: Empty groups, empty columns and no-results pages look as in the design
 
 Quote refresh: PRD v58 S1-R9a reworded (the display switcher's slate icons in every view). What the case checks is unchanged.
 
@@ -1575,7 +1575,7 @@ Steps with no source sentence (navigation and on-screen labels, taken from the b
 
 Jira: SV-10044,SV-10045,SV-10046,SV-11319. Last checked against build v26.40.17-a5c4210 (staging) on 10/15/2026.
 
-### [C590127](https://shopview.testrail.io/index.php?/cases/view/590127) Technician filter sits after Assigned to me in Tech View and Board View
+### [C590127](https://shopview.testrail.io/index.php?/cases/view/590127) Design: The Technician filter sits right after Assigned to me in both views
 
 Quote refresh: PRD v58 S1-R9a reworded. What the case checks is unchanged; it stays Blocked in run 498 until SV-11326 is done.
 
@@ -1611,7 +1611,7 @@ Steps with no source sentence (navigation and on-screen labels, taken from the b
 
 Jira: SV-10044. Not yet checked against a build.
 
-### [C614716](https://shopview.testrail.io/index.php?/cases/view/614716) Density and Columns tooltips open above their button and hide while open
+### [C614716](https://shopview.testrail.io/index.php?/cases/view/614716) Design: Density and Columns tips show above their buttons, hidden while open
 
 New, PRD v55 S2-R23 (tooltip sentence; 15 Oct 2026, Chris Ward ruling on Slavcho Mitrov's v54 follow-up questions).
 
@@ -1622,7 +1622,7 @@ Steps with no source sentence (navigation and on-screen labels, taken from the b
 
 Jira: SV-10045. Not yet checked against a build.
 
-### [C614717](https://shopview.testrail.io/index.php?/cases/view/614717) Row and card name bubbles open above the avatar, headers keep the plain tip
+### [C614717](https://shopview.testrail.io/index.php?/cases/view/614717) Design: Name bubbles show above row and card avatars, headings keep a plain tip
 
 New, PRD v60/v61 S2-R23 (16 Oct 2026, Chris Ward rulings on the QA triage of SV-11395, SV-11397, SV-11422, SV-11421).
 
@@ -1646,7 +1646,7 @@ Steps with no source sentence (navigation and on-screen labels, taken from the b
 
 Jira: SV-10054. Not yet checked against a build.
 
-### [C665914](https://shopview.testrail.io/index.php?/cases/view/665914) A long customer name stays inside the drag preview in Board View and Tech View
+### [C665914](https://shopview.testrail.io/index.php?/cases/view/665914) Design- A long customer name stays inside the dragged card in both views
 
 SV-11503 (19 Oct 2026). The PRD (v64) has no rule for the drag preview and the design draws none; the case applies the design's "…" cut-off of customer names on cards and rows to the preview, by the QA lead's decision of 19 Oct 2026.
 

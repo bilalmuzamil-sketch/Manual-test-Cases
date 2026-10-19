@@ -17,7 +17,7 @@ def code(c): return re.search(r"^- \*\*" + re.escape(c) + r":\*\*\s*(.*)$", PRD,
 DOC = ("https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/"
        "v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md")
 e = lambda s: html.escape(s, quote=False)
-TITLE = "A long customer name stays inside the drag preview in Board View and Tech View"
+TITLE = "Design- A long customer name stays inside the dragged card in both views"
 SECTION = 73780; RUN = 498
 
 def build(cid):

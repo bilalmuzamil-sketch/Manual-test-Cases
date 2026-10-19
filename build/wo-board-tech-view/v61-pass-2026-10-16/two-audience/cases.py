@@ -341,7 +341,7 @@ K.append(dict(
 # ---------------------------------------------------------------- Design — how it looks
 K.append(dict(
     case_id=590110, section_id=73780, refs="SV-10044,SV-10049,SV-11319",
-    title="Display switcher, filter and Search icons match the design in every display",
+    title="Design: The view buttons, filter and search icons look as in the design",
     pre=[LOC,
          design_view(["DC-01-toolbar-tech-view-light-1440.png", "DC-01-toolbar-board-view-light-1440.png"]),
          'Customer "ZZAUTOTEST C590110 Toolbar Icons" has one Approved work order, unit "C590110-U1", led by technician "ZZAUTOTEST C590110 Ana".',
@@ -384,7 +384,7 @@ K.append(dict(
 
 K.append(dict(
     case_id=590112, section_id=73780, refs="SV-10045,SV-11324",
-    title="Tech View table runs edge to edge on white and the Status column fits its pills",
+    title="Design: Tech View table fills the full width and Status fits its labels",
     pre=[LOC,
          design_view(["DC-03-tech-view-regular-light-1440.png", "DC-03-tech-view-regular-light-1536.png"])
          + " Your screen lets you widen the window to 1536 px.",
@@ -421,7 +421,7 @@ K.append(dict(
 
 K.append(dict(
     case_id=590114, section_id=73780, refs="SV-10045,SV-10050,SV-11319,SV-11325",
-    title="Tech View cells show a blue number, a thin progress bar and the advisor's avatar",
+    title="Design: Tech View rows show a blue number, a thin progress bar and an avatar",
     pre=[LOC,
          design_view(["DC-05-tech-view-rows-regular-light-1440.png"]),
          'Technicians "ZZAUTOTEST C590114 Eva" (with a profile photo) and "ZZAUTOTEST C590114 Finn" (no photo) are active at this location.',
@@ -465,7 +465,7 @@ K.append(dict(
 
 K.append(dict(
     case_id=590117, section_id=73780, refs="SV-10045,SV-11319,SV-11338",
-    title="Tech View group headers show grip, arrow, avatar, name, pin and count",
+    title="Design: Tech View headings show handle, arrow, avatar, name, pin and count",
     pre=[LOC,
          design_view(["DC-08-tech-view-group-headers-light-1440.png", "DC-08-tech-view-collapsed-light-1440.png"]),
          'Technicians "ZZAUTOTEST C590117 Ines" (with a profile photo) and "ZZAUTOTEST C590117 Jon" (no photo) are active at this '
@@ -510,7 +510,7 @@ K.append(dict(
 
 K.append(dict(
     case_id=590119, section_id=73780, refs="SV-10046,SV-11319,SV-11338",
-    title="Board View column header shows grip, avatar, name, pin and count as designed",
+    title="Design: Board View column headings show handle, avatar, name, pin and count",
     pre=[LOC,
          design_view(["DC-10-board-column-headers-light-1440.png", "DC-10-board-pinned-light-1440.png"]),
          'Technicians "ZZAUTOTEST C590119 Lea" (with a profile photo), "ZZAUTOTEST C590119 Max" (no photo), "ZZAUTOTEST C590119 Nia" '
@@ -549,7 +549,7 @@ K.append(dict(
 
 K.append(dict(
     case_id=590128, section_id=73780, refs="SV-10049,SV-11318",
-    title="Density changes Tech View row, avatar and bar sizes, not Board card avatars",
+    title="Design: Density changes Tech View row, avatar and bar sizes, not card avatars",
     pre=[LOC,
          design_view(["DC-06-tech-view-compact-light-1440.png", "DC-06-tech-view-regular-light-1440.png", "DC-06-tech-view-comfortable-light-1440.png"]),
          'Customer "ZZAUTOTEST C590128 Density" has an Approved work order, unit "C590128-U1", led by technician "ZZAUTOTEST C590128 Ana", '
@@ -590,7 +590,7 @@ K.append(dict(
 
 K.append(dict(
     case_id=590113, section_id=73780, refs="SV-10045,SV-10048,SV-10050,SV-11317,SV-11321",
-    title="Tech View opens on 13 default columns with small grey header labels",
+    title="Design: Tech View opens with 13 columns and small grey column headings",
     pre=[LOC + ' You have never changed Tech View\'s columns.',
          design_view(["DC-04-tech-view-header-row-1440.png", "DC-04-tech-view-all-columns-1440.png"])
          + " Your screen lets you widen the window to 1536 px.",
@@ -627,7 +627,7 @@ K.append(dict(
 
 K.append(dict(
     case_id=590122, section_id=73780, refs="SV-10044,SV-10045,SV-10046,SV-11319",
-    title="Empty groups, empty columns and no-results pages look as designed",
+    title="Design: Empty groups, empty columns and no-results pages look as in the design",
     pre=[LOC,
          design_view(["DC-18-tech-technician-chosen-light-1440.png", "DC-13-tech-search-empty-light-1440.png"])
          + ' The pictures\' words differ from the ones checked here; compare the look and the place only.',
@@ -663,7 +663,7 @@ K.append(dict(
 
 K.append(dict(
     case_id=590127, section_id=73780, refs="SV-10044,SV-11326",
-    title="Technician filter sits after Assigned to me in Tech View and Board View",
+    title="Design: The Technician filter sits right after Assigned to me in both views",
     pre=[LOC,
          design_view(["DC-18-tech-technician-chip-open-light-1440.png"]) + " The picture's Department filter is left out of this release.",
          'Technician "ZZAUTOTEST C590127 Yan" is active at this location and leads the Approved work order of customer "ZZAUTOTEST C590127 Technician Filter", unit "C590127-U1".',
@@ -754,7 +754,7 @@ K.append(dict(
 
 K.append(dict(
     key="N3-S2R23-tooltips", section_id=73780, refs="SV-10045",
-    title="Density and Columns tooltips open above their button and hide while open",
+    title="Design: Density and Columns tips show above their buttons, hidden while open",
     pre=[LOC,
          "The browser window is 1440 px wide with the zoom at 100%.",
          'Customer "ZZAUTOTEST N3 Tooltips" has an Approved work order, unit "N3-U1", led by technician "ZZAUTOTEST N3 Tia".',
@@ -782,7 +782,7 @@ K.append(dict(
 
 K.append(dict(
     key="N4-S2R23-name-bubbles", section_id=73780, refs="SV-10045,SV-10046,SV-10050",
-    title="Row and card name bubbles open above the avatar, headers keep the plain tip",
+    title="Design: Name bubbles show above row and card avatars, headings keep a plain tip",
     pre=[LOC,
          'Six technicians are active at this location: "ZZAUTOTEST N4 Ana", "… Ben", "… Cal", "… Dee", "… Eve" and "… Fay" (each name starts "ZZAUTOTEST N4").',
          'Customer "ZZAUTOTEST N4 Name Bubbles" has an Approved work order, unit "N4-U1", led by "ZZAUTOTEST N4 Ana", with five approved '
