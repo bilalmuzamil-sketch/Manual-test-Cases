@@ -1,11 +1,11 @@
-# WO Board and Tech View: setup file for Claude sessions (45 cases, 16 to 19 Oct 2026)
+# WO Board and Tech View: setup file for Claude sessions (46 cases, 16 to 19 Oct 2026)
 
 This file is for a Claude session. A manual tester never needs it: each test case is complete on its own. With this file and the access the user gives at the start of the session, a new session can put the account into every case's starting state. It holds no environment address, credentials, cookies or session data.
 
 ## 1. Header
 
 - Feature: Work Orders, Board View and Tech View display options (epic SV-10043; stories SV-10044 to SV-10054).
-- Generated: 16 Oct 2026, for the 21 cases rewritten that day in the two-audience layout (a one-time trial ordered by the QA lead), and C614719 added the same evening for PRD v62 S11-R1; C665914 added 19 Oct 2026 for SV-11503 (drag preview), PRD v64; C368131, C368167 and C96936 added 19 Oct 2026 when their preconditions and steps were simplified (QA lead).
+- Generated: 16 Oct 2026, for the 21 cases rewritten that day in the two-audience layout (a one-time trial ordered by the QA lead), and C614719 added the same evening for PRD v62 S11-R1; C665914 added 19 Oct 2026 for SV-11503 (drag preview), PRD v64; C368131, C368167 and C96936 added 19 Oct 2026 when their preconditions and steps were simplified (QA lead); C682420 (SV-11467) added 19 Oct 2026 from its own preconditions and ticket only (QA lead: "setup should not be invented it should be 100% authentic").
 - Sources: PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 62 (16 Oct 2026 17:35 UTC, Chris Ward; S2-R23 and S11-R1 reworded after answers 32 and 33); Jira stories SV-10044 to SV-10054 and defects SV-11317 to SV-11326, SV-11338, SV-11416; tech plan (upload of 8 Oct 2026); Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026; QA handoff test plan (8 Oct 2026); Chris Ward's answers 1 to 33 (sheet of 14 Oct 2026).
 - At session start, ask the user for: the site to use (staging or a QA site) and how to sign in as ACCOUNT-A, and ACCOUNT-B where a case needs it.
 
@@ -1122,7 +1122,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
 
-1.  Use a Ready For Review work order with open service and parts actions (S2-33351 on staging, from SV-11467), or make one: P-WO-REVIEW plus a part request and a service action left open.
+1.  Use work order S2-33351 on staging (from SV-11467; see SETUP-C682420 step 2). On another environment there is no recorded way in this repository to create a work order with a red and a blue count: ask the user for one, or mark the test Blocked: "setup not done".
 2.  Screenshot the pill at each density next to List's pill.
 
 **Check:** every precondition line is true on screen.
@@ -1252,6 +1252,22 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Check:** every precondition line is true on screen.
 
+#### SETUP-C682420 — [C682420](https://shopview.testrail.io/index.php?/cases/view/682420) Design- Tech View count bubbles sit on the status label as in List, any density
+
+**Satisfies these precondition lines, exactly as the case states them** (this case is still in the older layout: it has no placeholders and no setup-file link):
+
+- Sign in as an Owner/Admin user (on staging or a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). Browser zoom 100%. Window about 1600 px wide.
+- Location "Staging Heavy Duty - 9919" (shown in the top bar next to the bell). To change it: click your initials at the top right > Change Location.
+- Work order S2-33351 has the status "Ready For Review" with a red number and a blue number on its status pill. (On another environment use any work order whose status pill shows both a red and a blue number.)
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN. The case says "no setup": it creates no records.
+
+1.  **P-SIGNIN** and **P-LOCATION** ("Staging Heavy Duty - 9919"). Set the window to about 1600 px wide at 100% zoom (the case's own line; ticket SV-11467 used the same).
+2.  Use work order **S2-33351** on staging. Where this comes from: ticket SV-11467 (Story Defect, "Found while testing SV-11318") names it, shows its Ready For Review pill with a red 2 and a blue 3, and opens it with https://app.staging.shopview.com/workorders?search=S2-33351 (tested on staging build v26.40.19-754919e, 16 Oct 2026). The case was last checked against staging build v26.40.19-c850386 on 19 Oct 2026, and its test in run 498 (T4054407) is marked Passed.
+3.  On another environment there is **no recorded way** in this repository to create a work order with a red service-actions count and a blue parts-actions count. Do not invent one: ask the user for a work order whose pill shows both numbers, or mark the test Blocked: "setup not done".
+
+**Check:** List with "S2-33351" in Search shows its status pill reading "Ready For Review" with a red and a blue number on it. Not re-checked by the session that wrote this recipe (19 Oct 2026).
+
 ## 5. Mapping table (execution order)
 
 | Test case                                                                                                                                             | Account slots        | Recipes in order                          |
@@ -1293,6 +1309,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 | [C682438](https://shopview.testrail.io/index.php?/cases/view/682438) On a Board View card, a focused avatar shows the technician's name | ACCOUNT-A | SETUP-ADMIN, SETUP-C682438 |
 | [C682439](https://shopview.testrail.io/index.php?/cases/view/682439) Design- In the Dark theme, Board View column scrollbars are thin and dark | ACCOUNT-A | SETUP-ADMIN, SETUP-C682439 |
 | [C682440](https://shopview.testrail.io/index.php?/cases/view/682440) Design- At Compact, count bubbles leave the Tech View status name readable | ACCOUNT-A | SETUP-ADMIN, SETUP-C682440 |
+| [C682420](https://shopview.testrail.io/index.php?/cases/view/682420) Design- Tech View count bubbles sit on the status label as in List, any density | ACCOUNT-A | SETUP-ADMIN, SETUP-C682420 |
 | [C682429](https://shopview.testrail.io/index.php?/cases/view/682429) Design- Lead menu reads Assign Tech and Reassign Lead Tech (design's version) | ACCOUNT-A | SETUP-ADMIN, SETUP-C682429 |
 | [C682430](https://shopview.testrail.io/index.php?/cases/view/682430) Design- Lead change messages, Assignment undone, 2.6 s close (design's version) | ACCOUNT-A | SETUP-ADMIN, SETUP-C682430 |
 | [C682431](https://shopview.testrail.io/index.php?/cases/view/682431) Design- Locked work orders show short notes, Declined locked (design's version) | ACCOUNT-A | SETUP-ADMIN, SETUP-C682431 |
@@ -1784,6 +1801,7 @@ SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, 
 | [C682438](https://shopview.testrail.io/index.php?/cases/view/682438) | UNVERIFIED: not yet run (test T4060516 in run 498; ticket SV-11409). AUTOMATION: READY |
 | [C682439](https://shopview.testrail.io/index.php?/cases/view/682439) | UNVERIFIED: not yet run (test T4060517 in run 498; ticket SV-11430). AUTOMATION: READY |
 | [C682440](https://shopview.testrail.io/index.php?/cases/view/682440) | UNVERIFIED: not yet run (test T4060518 in run 498; ticket SV-11467). AUTOMATION: READY - EXPECT FAIL (SV-11467) |
+| [C682420](https://shopview.testrail.io/index.php?/cases/view/682420) | Test T4054407 in run 498 is marked Passed (ticket SV-11467); the result was not recorded by this session. AUTOMATION: READY. TestRail marks the case Automated. |
 | [C682429](https://shopview.testrail.io/index.php?/cases/view/682429) | UNVERIFIED: not yet run (held; not in run 498). AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO |
 | [C682430](https://shopview.testrail.io/index.php?/cases/view/682430) | UNVERIFIED: not yet run (held; not in run 498). AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO |
 | [C682431](https://shopview.testrail.io/index.php?/cases/view/682431) | UNVERIFIED: not yet run (held; not in run 498). AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO |
