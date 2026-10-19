@@ -3216,3 +3216,4 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
 - QA lead: update the 49 existing cases PRD v65/v66 may change (18 Automated)? Full pass or named set. List: `build/wo-board-tech-view/sv11522-11524-2026-10-19/EXISTING-CASES-AFFECTED-BY-PRD-v65-v66.md`.
 - Confirm or cover the 10 tickets the sweep flags (ledger `build/wo-board-tech-view/TICKET-LEDGER.json`).
 - PO question for Chris Ward: PRD v66 messages table and Story 4 example still use the old toast words.
+- 19 Oct 2026 (later): design-differences sheet for Chris Ward ready, not sent (18 questions): https://docs.google.com/spreadsheets/d/1coGNz1ZNj1GiFA4rS7pt9nwKsNgE8bCLpuutygK4iQs. Daily WO sweep routine trig_01KGYhRrGdEXnCrqjfrhYPKL: stop when the QA lead says the squad has closed. Footers on SV-11402/11409/11430/11467 not added (others' tickets; ask first).

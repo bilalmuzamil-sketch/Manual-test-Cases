@@ -1,4 +1,4 @@
-# WO Board and Tech View: setup file for Claude sessions (33 cases, 16 to 19 Oct 2026)
+# WO Board and Tech View: setup file for Claude sessions (45 cases, 16 to 19 Oct 2026)
 
 This file is for a Claude session. A manual tester never needs it: each test case is complete on its own. With this file and the access the user gives at the start of the session, a new session can put the account into every case's starting state. It holds no environment address, credentials, cookies or session data.
 
@@ -1060,6 +1060,198 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Placeholder values:** the names above; give the tester the real work order numbers after setup.
 
+#### SETUP-C682437 — [C682437](https://shopview.testrail.io/index.php?/cases/view/682437) Releasing a dragged technician header over a row opens no work order
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians {Technician-A}, {Technician-B} and {Technician-C} are active at {Location-A}; {Technician-A} and {Technician-B} are pinned in your views, {Technician-C} is not. For example: ZZAUTOTEST C682437 Ana, ZZAUTOTEST C682437 Ben and ZZAUTOTEST C682437 Cy.
+- Each of them leads one Approved work order: {Work-order-1} ({Technician-A}), {Work-order-2} ({Technician-B}) and {Work-order-3} ({Technician-C}). For example: customer ZZAUTOTEST C682437 Header Drag.
+- Starting screen: "Work Orders" > "All" tab, "Tech View" shown, every group expanded, "Search" empty.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  P-TECH ×3 (Ana, Ben, Cy with the case number), P-PIN Ana and Ben (P-UNPIN-ALL first), P-WO one per technician (customer "ZZAUTOTEST C682437 Header Drag").
+2.  Drag with Playwright mouse down/move/up on the group header (the whole header drags, S9-R1a); after release record page URL and title: it must still be Work Orders.
+
+**Check:** every precondition line is true on screen.
+
+#### SETUP-C682438 — [C682438](https://shopview.testrail.io/index.php?/cases/view/682438) On a Board View card, a focused avatar shows the technician's name
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians {Technician-A} and {Technician-B} are active at {Location-A}, and "Line technicians" is on in Board View's "Fields to display". For example: ZZAUTOTEST C682438 Ana and ZZAUTOTEST C682438 Ben.
+- Customer {Customer-A} has an Approved work order {Work-order-1} led by {Technician-A}, with {Technician-B} on one of its lines. For example: {Customer-A} is ZZAUTOTEST C682438 Avatar Keys.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", nothing focused yet.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  P-TECH Ana and Ben, P-FIELDS-LINETECHS, P-CUSTOMER "ZZAUTOTEST C682438 Avatar Keys", P-WO lead Ana, P-LINE-TECH Ben.
+2.  Keyboard only after the click in Search; record each focused element's accessible name and the bubble text.
+
+**Check:** every precondition line is true on screen.
+
+#### SETUP-C682439 — [C682439](https://shopview.testrail.io/index.php?/cases/view/682439) In the dark theme, Board View column scrollbars are thin and dark
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The app is in the dark theme.
+- At least one technician column at {Location-A} holds more work orders than fit on screen, so it scrolls. For example: Unassigned at Staging Heavy Duty - 9919.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, in a window 1440 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  Switch the user to the dark theme (initials > theme). Use Unassigned at Staging Heavy Duty - 9919 (it holds far more cards than fit).
+2.  Capture the column's computed scrollbar-color/scrollbar-width and a screenshot of the right edge.
+
+**Check:** every precondition line is true on screen.
+
+#### SETUP-C682440 — [C682440](https://shopview.testrail.io/index.php?/cases/view/682440) At Compact, the count bubbles leave the Tech View status name readable
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Work order {Work-order-1} at {Location-A} is Ready For Review and has open service and parts actions, so its status pill shows a red and a blue count. For example: {Work-order-1} is S2-33351.
+- Starting screen: "Work Orders" > "All" tab, "List" shown, the number of {Work-order-1} in "Search", in a window 1440 px wide at 100% zoom.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  Use a Ready For Review work order with open service and parts actions (S2-33351 on staging, from SV-11467), or make one: P-WO-REVIEW plus a part request and a service action left open.
+2.  Screenshot the pill at each density next to List's pill.
+
+**Check:** every precondition line is true on screen.
+
+#### SETUP-C682429 — [C682429](https://shopview.testrail.io/index.php?/cases/view/682429) Design version: the lead menu reads Assign Tech and Reassign Lead Tech
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technician {Technician-A} is active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682429 Ana.
+- Customer {Customer-A} has two Approved work orders: {Work-order-1} with no lead technician and {Work-order-2} led by {Technician-A}. For example: {Customer-A} is ZZAUTOTEST C682429 Design Labels.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  Make the named records with the P- procedures (names carry the case number); this is a held design-version case: do not run it until the QA lead releases it.
+
+**Check:** every precondition line is true on screen.
+
+#### SETUP-C682430 — [C682430](https://shopview.testrail.io/index.php?/cases/view/682430) Design version: lead change messages, Assignment undone and a 2.6 second close
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on. For example: ZZAUTOTEST C682430 Ana and ZZAUTOTEST C682430 Ben.
+- Customer {Customer-A} has three Approved work orders led by {Technician-A}: {Work-order-1}, {Work-order-2} with {Technician-B} on one of its lines, and {Work-order-3}. None has a shift on the Schedule. For example: {Customer-A} is ZZAUTOTEST C682430 Design Messages.
+- You have a stopwatch, for example on your phone.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  Make the named records with the P- procedures (names carry the case number); this is a held design-version case: do not run it until the QA lead releases it.
+
+**Check:** every precondition line is true on screen.
+
+#### SETUP-C682431 — [C682431](https://shopview.testrail.io/index.php?/cases/view/682431) Design version: locked work orders show short notes and Declined is locked
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on. For example: ZZAUTOTEST C682431 Ana and ZZAUTOTEST C682431 Ben.
+- Customer {Customer-A} has four work orders led by {Technician-A}: {Work-order-1} Invoiced, {Work-order-2} Declined, {Work-order-3} Imported, and {Work-order-4} Approved. For example: {Customer-A} is ZZAUTOTEST C682431 Design Locks.
+- A second user, {User-B}, whose role has Work orders > View only, is signed in at {Location-A} in a second browser on the same starting screen. For example: {User-B} is ZZAUTOTEST C682431 Viewer.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A, ACCOUNT-B. **Run first:** SETUP-ADMIN.
+
+1.  Make the named records with the P- procedures (names carry the case number); this is a held design-version case: do not run it until the QA lead releases it.
+
+**Check:** every precondition line is true on screen.
+
+#### SETUP-C682432 — [C682432](https://shopview.testrail.io/index.php?/cases/view/682432) Design version: up to five technicians can be pinned, with pin messages
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Six technicians are active at {Location-A}: {Technician-A}, {Technician-B}, {Technician-C}, {Technician-D}, {Technician-E} and {Technician-F}. None is pinned in your Board View. For example: ZZAUTOTEST C682432 Ana to ZZAUTOTEST C682432 Fay.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, "Search" empty.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  Make the named records with the P- procedures (names carry the case number); this is a held design-version case: do not run it until the QA lead releases it.
+
+**Check:** every precondition line is true on screen.
+
+#### SETUP-C682433 — [C682433](https://shopview.testrail.io/index.php?/cases/view/682433) Design version: Row height in Tech View and Card size on Board View
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Starting screen: "Work Orders" > "All" tab, "Tech View" shown, "Search" empty, no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  Make the named records with the P- procedures (names carry the case number); this is a held design-version case: do not run it until the QA lead releases it.
+
+**Check:** every precondition line is true on screen.
+
+#### SETUP-C682434 — [C682434](https://shopview.testrail.io/index.php?/cases/view/682434) Design version: an empty Tech View group reads No work orders assigned
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians {Technician-A} and {Technician-B} are active at {Location-A}, and {Technician-A} is pinned in your views. For example: ZZAUTOTEST C682434 Ana and ZZAUTOTEST C682434 Ben.
+- Customer {Customer-A} has one Approved work order, {Work-order-1}, led by {Technician-B}. For example: {Customer-A} is ZZAUTOTEST C682434 Design Empty.
+- Starting screen: "Work Orders" > "All" tab, "Tech View" shown, "Search" empty, no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  Make the named records with the P- procedures (names carry the case number); this is a held design-version case: do not run it until the QA lead releases it.
+
+**Check:** every precondition line is true on screen.
+
+#### SETUP-C682435 — [C682435](https://shopview.testrail.io/index.php?/cases/view/682435) Design version: search opens a collapsed group, N open counts every card
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technician {Technician-A} is active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682435 Ana.
+- {Technician-A} leads exactly three work orders at {Location-A}: {Work-order-1} Approved, {Work-order-2} an Estimate and {Work-order-3} Declined. For example: customer ZZAUTOTEST C682435 Design Count.
+- Starting screen: "Work Orders" > "All" tab, "Tech View" shown, "Search" empty, no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  Make the named records with the P- procedures (names carry the case number); this is a held design-version case: do not run it until the QA lead releases it.
+
+**Check:** every precondition line is true on screen.
+
+#### SETUP-C682436 — [C682436](https://shopview.testrail.io/index.php?/cases/view/682436) Design version: No technicians yet and Nothing here yet states
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Location {Location-B} has work orders but no technicians, and location {Location-C} has neither, and you may sign in at both. For example: ZZAUTOTEST Location No Techs and ZZAUTOTEST Location Empty.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  Make the named records with the P- procedures (names carry the case number); this is a held design-version case: do not run it until the QA lead releases it.
+
+**Check:** every precondition line is true on screen.
+
 ## 5. Mapping table (execution order)
 
 | Test case                                                                                                                                             | Account slots        | Recipes in order                          |
@@ -1097,6 +1289,18 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 | [C682426](https://shopview.testrail.io/index.php?/cases/view/682426) Undo puts the work order back with its old lead and in its old place | ACCOUNT-A | SETUP-ADMIN, SETUP-C682426 |
 | [C682427](https://shopview.testrail.io/index.php?/cases/view/682427) Undo brings back the shifts that a lead change cleared | ACCOUNT-A | SETUP-ADMIN, SETUP-C682427 |
 | [C682428](https://shopview.testrail.io/index.php?/cases/view/682428) Undo cannot move back a work order that was invoiced in the meantime | ACCOUNT-A | SETUP-ADMIN, SETUP-C682428 |
+| [C682437](https://shopview.testrail.io/index.php?/cases/view/682437) Releasing a dragged technician header over a row opens no work order | ACCOUNT-A | SETUP-ADMIN, SETUP-C682437 |
+| [C682438](https://shopview.testrail.io/index.php?/cases/view/682438) On a Board View card, a focused avatar shows the technician's name | ACCOUNT-A | SETUP-ADMIN, SETUP-C682438 |
+| [C682439](https://shopview.testrail.io/index.php?/cases/view/682439) In the dark theme, Board View column scrollbars are thin and dark | ACCOUNT-A | SETUP-ADMIN, SETUP-C682439 |
+| [C682440](https://shopview.testrail.io/index.php?/cases/view/682440) At Compact, the count bubbles leave the Tech View status name readable | ACCOUNT-A | SETUP-ADMIN, SETUP-C682440 |
+| [C682429](https://shopview.testrail.io/index.php?/cases/view/682429) Design version: the lead menu reads Assign Tech and Reassign Lead Tech | ACCOUNT-A | SETUP-ADMIN, SETUP-C682429 |
+| [C682430](https://shopview.testrail.io/index.php?/cases/view/682430) Design version: lead change messages, Assignment undone and a 2.6 second close | ACCOUNT-A | SETUP-ADMIN, SETUP-C682430 |
+| [C682431](https://shopview.testrail.io/index.php?/cases/view/682431) Design version: locked work orders show short notes and Declined is locked | ACCOUNT-A | SETUP-ADMIN, SETUP-C682431 |
+| [C682432](https://shopview.testrail.io/index.php?/cases/view/682432) Design version: up to five technicians can be pinned, with pin messages | ACCOUNT-A | SETUP-ADMIN, SETUP-C682432 |
+| [C682433](https://shopview.testrail.io/index.php?/cases/view/682433) Design version: Row height in Tech View and Card size on Board View | ACCOUNT-A | SETUP-ADMIN, SETUP-C682433 |
+| [C682434](https://shopview.testrail.io/index.php?/cases/view/682434) Design version: an empty Tech View group reads No work orders assigned | ACCOUNT-A | SETUP-ADMIN, SETUP-C682434 |
+| [C682435](https://shopview.testrail.io/index.php?/cases/view/682435) Design version: search opens a collapsed group, N open counts every card | ACCOUNT-A | SETUP-ADMIN, SETUP-C682435 |
+| [C682436](https://shopview.testrail.io/index.php?/cases/view/682436) Design version: No technicians yet and Nothing here yet states | ACCOUNT-A | SETUP-ADMIN, SETUP-C682436 |
 
 ## 6. Dependencies and shared fixtures
 
@@ -1576,6 +1780,18 @@ SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, 
 | [C682426](https://shopview.testrail.io/index.php?/cases/view/682426) | UNVERIFIED: not yet run (test T4056660 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
 | [C682427](https://shopview.testrail.io/index.php?/cases/view/682427) | UNVERIFIED: not yet run (test T4056661 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
 | [C682428](https://shopview.testrail.io/index.php?/cases/view/682428) | UNVERIFIED: not yet run (test T4056662 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
+| [C682437](https://shopview.testrail.io/index.php?/cases/view/682437) | UNVERIFIED: not yet run (test T4060515 in run 498; ticket SV-11402). AUTOMATION: READY |
+| [C682438](https://shopview.testrail.io/index.php?/cases/view/682438) | UNVERIFIED: not yet run (test T4060516 in run 498; ticket SV-11409). AUTOMATION: READY |
+| [C682439](https://shopview.testrail.io/index.php?/cases/view/682439) | UNVERIFIED: not yet run (test T4060517 in run 498; ticket SV-11430). AUTOMATION: READY |
+| [C682440](https://shopview.testrail.io/index.php?/cases/view/682440) | UNVERIFIED: not yet run (test T4060518 in run 498; ticket SV-11467). AUTOMATION: READY - EXPECT FAIL (SV-11467) |
+| [C682429](https://shopview.testrail.io/index.php?/cases/view/682429) | UNVERIFIED: not yet run (held; not in run 498). AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO |
+| [C682430](https://shopview.testrail.io/index.php?/cases/view/682430) | UNVERIFIED: not yet run (held; not in run 498). AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO |
+| [C682431](https://shopview.testrail.io/index.php?/cases/view/682431) | UNVERIFIED: not yet run (held; not in run 498). AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO |
+| [C682432](https://shopview.testrail.io/index.php?/cases/view/682432) | UNVERIFIED: not yet run (held; not in run 498). AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO |
+| [C682433](https://shopview.testrail.io/index.php?/cases/view/682433) | UNVERIFIED: not yet run (held; not in run 498). AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO |
+| [C682434](https://shopview.testrail.io/index.php?/cases/view/682434) | UNVERIFIED: not yet run (held; not in run 498). AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO |
+| [C682435](https://shopview.testrail.io/index.php?/cases/view/682435) | UNVERIFIED: not yet run (held; not in run 498). AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO |
+| [C682436](https://shopview.testrail.io/index.php?/cases/view/682436) | UNVERIFIED: not yet run (held; not in run 498). AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO |
 
 ## 10. Open questions
 

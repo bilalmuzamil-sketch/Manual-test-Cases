@@ -2,6 +2,13 @@
 
 **Created:** 2026-09-23 · **PO / spec owner:** Sasha Grosman · **Status:** ACTIVE — source-verified authoring complete, not yet build-verified.
 
+## 🟢 19 Oct 2026 (evening): SV-11522/SV-11524, Rules 129/130
+- New cases C682422–C682428 (SV-11522/11524, PRD v66) and C682437–C682440 (tickets SV-11402, SV-11409, SV-11430, SV-11467); run 498 = 294.
+- Held design-version cases C682429–C682436 (section 73780, not in the run) for 16 open design differences; register `DESIGN-DIVERGENCE-REGISTER.json`;
+  question sheet for Chris Ward (18 rows, NOT sent): https://docs.google.com/spreadsheets/d/1coGNz1ZNj1GiFA4rS7pt9nwKsNgE8bCLpuutygK4iQs
+- Ticket ledger `TICKET-LEDGER.json`: 45/45 handled. PRD v66 not handled until the existing cases it changes are updated (QA lead: separately, 20 Oct).
+- Daily sweep routine trig_01KGYhRrGdEXnCrqjfrhYPKL, weekdays 8:51 Asia/Karachi, into this session. STOP it when the QA lead says the WO Board feature squad has closed.
+
 ## 🟢 CURRENT STATE — 16 Oct 2026: Chris Ward's answers 12–31 (PRD v54) applied
 42 of our cases updated + 1 new (C598326, section 73780), all read back OK, 43/43 runnable, run 498 = 272 tests (union only).
 Retest on staging: 27 · first run: 3 · no retest: 13. Report with every C-id, test link and doc: `answers-2026-10-15/APPLY-REPORT.md`.
