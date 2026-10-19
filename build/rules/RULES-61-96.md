@@ -3331,8 +3331,10 @@ and the message "S1-352 assigned to Kristin Watson" with Undo. I drove the desig
 
 **Root cause, three parts.**
 1. **One-way check.** My design check asks only "is every word the design shows covered?". It never asks "does the design show what
-   the PRD requires?". The PRD said "Unassigned is the first row" and "Confirming the dialog"; the design had no such row and no
-   confirm button. That difference was never compared, so never recorded, never asked.
+   the PRD requires?". (Corrected the same day after re-reading the record: the dialog's missing Unassigned row WAS asked, Chris
+   Ward answer 19 of 15 Oct 2026, "Test the dialog as drawn … plus Unassigned as its first row"; but "as drawn" also meant no
+   confirm button, and our case C96956 kept "click Reassign", following the PRD's "Confirming the dialog" without asking.) The
+   PRD-to-design comparison found 16 differences on 19 Oct that had never been asked.
 2. **"KNOWN — cases follow the spec" was a dead end.** The label ("Assign Tech" vs "Reassign lead technician") and the message wording
    were filed as KNOWN and left there: no question went to the PO about the label, and no case was written for the design's version.
    Following the PRD was right (Rule 57); stopping there was wrong. When the PO moved the PRD to the design (v66), nothing was ready.
@@ -3349,9 +3351,14 @@ and the message "S1-352 assigned to Kristin Watson" with Undo. I drove the desig
 3. **The case that follows the PRD names the difference** under "References from Design" (Rule 117, tenth amendment), so a later PRD
    change finds every affected case by search.
 4. **When a ruling or a new PRD version moves to the design, the cases are written or changed the same day** (Rule 129).
-5. **Proposed, waiting for the QA lead's yes (Rule 72):** also write, for each open difference, a ready "design version" case in
-   "Design — how it looks", marked AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO, so coverage of the design
-   exists from the first day and only needs releasing.
+5. **A ready "design version" case for every difference — APPROVED, PERMANENT (QA lead, 19 Oct 2026: "Yes and permanent").** Where
+   the design SHOWS a behaviour or wording different from the PRD, write a case for the design's version in "Design — how it looks",
+   with the design's own words quoted under "References from Design", the PO question named, and the marker
+   `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO`. It is not run while held. The day the PO rules or the PRD
+   moves: if the design wins, release it (marker updated, PRD quote added) and change the PRD-following case; if the PRD wins, delete
+   the held case with the QA lead's go-ahead and record the ruling. Where the design draws no version of that state at all
+   (DESIGN-SILENT: for example an error message the design never shows), there is nothing to write; the register records where
+   that was checked. Held cases are added to the project's run only when released.
 
 Worked example and evidence: `build/wo-board-tech-view/sv11522-11524-2026-10-19/` (PRD v66 against the 14 Oct design: 23 PRD words the
 design does not show, all open in the new register).

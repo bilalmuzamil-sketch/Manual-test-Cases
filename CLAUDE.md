@@ -85,7 +85,8 @@ These are stated here **in full** because a session that gets only this far must
 - **🔴 A DESIGN DIFFERENCE IS CLOSED, NEVER PARKED (130, 19 Oct 2026).** Check both ways: design → cases (text inventory) AND PRD →
   design (`build/testing-tools/spec_to_design_check.py`, plus each dialog/menu/message's rows and buttons listed by hand). Every
   difference is closed in `build/<project>/DESIGN-DIVERGENCE-REGISTER.json` by a SENT PO question or a ruling; "KNOWN, cases follow
-  the spec" is never an outcome. Why: the WO design showed SV-11522/SV-11524's behaviour on 14 Oct and no case or question existed.
+  the spec" is never an outcome. **Every design behaviour that differs gets a held "design version" case (approved, permanent, 19 Oct
+  2026), released or removed the day the PO rules.** Why: the WO design showed SV-11522/SV-11524's behaviour on 14 Oct and no case or question existed.
 - **🔴 KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS (123).** New and changed cases go into the project's run in the
   same pass, union only (34). Before editing a case someone else created: give the QA lead the list with C-ids, links,
   who created each and when, and ask permission. No edit until he says yes.

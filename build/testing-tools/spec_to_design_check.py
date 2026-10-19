@@ -13,7 +13,10 @@ version, so when the designer raised SV-11522 / SV-11524 and the PO moved the PR
   python3 build/testing-tools/spec_to_design_check.py --prd PRD.md --design FILE [FILE ...] --register REGISTER.json [--out OUT.json]
 
 PRD.md: the saved PRD (requirement lines "- **S4-R12:** ..."). FILE: the design export's .html files. REGISTER.json:
-  {"<code>|<words>": {"outcome": "QUESTION-SENT|PO-RULED|QA-LEAD-RULED", "where": "sheet/row or quote+date", "cases": ["C…"]}}
+  {"<code>|<words>": {"outcome": "QUESTION-SENT|PO-RULED|QA-LEAD-RULED|DESIGN-SILENT", "where": "sheet/row, quote+date, or where the design was checked", "cases": ["C…"]}}
+DESIGN-SILENT: the design draws no version of that state at all (nothing to compare; the PRD stands alone).
+SHOWN-WHEN-DRIVEN: the words are built at run time, so they are not literally in the files; the flow drive saw them on screen.
+QUESTION-READY (written, not yet sent) does NOT close a row.
 "KNOWN" is not an outcome: a difference is closed only by a sent question or a ruling.
 Elements the PRD names without quotes (a row, a button, an order) are not machine-checkable: the design drive lists each dialog's,
 menu's and toast's rows and buttons by hand (skill 21, step "spec to design") and adds any difference to the same register."""
@@ -26,7 +29,7 @@ prd = open(a.prd, encoding="utf-8").read()
 files = [f for p in a.design for f in glob.glob(p)]
 des = html.unescape(" ".join(open(f, encoding="utf-8", errors="replace").read() for f in files)).lower()
 reg = json.load(open(a.register)) if glob.glob(a.register) else {}
-OK = {"QUESTION-SENT", "PO-RULED", "QA-LEAD-RULED"}
+OK = {"QUESTION-SENT", "PO-RULED", "QA-LEAD-RULED", "DESIGN-SILENT", "SHOWN-WHEN-DRIVEN"}
 rows = []
 for line in prd.split("\n"):
     m = re.match(r"- \*\*(S\d+-[RNE]\d+[a-z]?):\*\*\s*(.*)", line)
