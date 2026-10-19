@@ -1,0 +1,69 @@
+{
+ "log": {
+  "mk": {
+   "version": "v26.40.19-e435950",
+   "lastModified": "Mon, 19 Oct 2026 06:18:22 GMT",
+   "etag": "W/\"6981e2219a3c344efbb6b3fed69132b3\""
+  },
+  "phase": "off",
+  "staff0": {
+   "clockable": true,
+   "active": true,
+   "role": "Technician",
+   "deps": [
+    "QB Location/Shop Time (Shop hand)",
+    "Staging Heavy Duty - 9919/Service"
+   ]
+  },
+  "toggleBefore": "true",
+  "toggleAfter": "false",
+  "afterSave": [],
+  "afterSaveBtns": [],
+  "toasts": [],
+  "staff1": {
+   "clockable": false,
+   "active": true,
+   "role": "Technician",
+   "deps": [
+    "QB Location/Shop Time (Shop hand)",
+    "Staging Heavy Duty - 9919/Service"
+   ]
+  },
+  "board": {
+   "hit": {
+    "tid": "board_column_header_d1879db8-30dd-47b4-b8ad-97e9cf1d4c67",
+    "head": "ZD ZZAUTOTEST DC15 Wes Hover You can pin up to 3 technicians. 2 2 work orders",
+    "grip": 1,
+    "inact": [],
+    "cards": [
+     "S2-37319",
+     "S2-37320"
+    ],
+    "match": true
+   },
+   "seen": [
+    {
+     "tid": "board_column_header_d1879db8-30dd-47b4-b8ad-97e9cf1d4c67",
+     "head": "ZD ZZAUTOTEST DC15 Wes Hover You can pin up to 3 technicians. 2 2 work orders",
+     "grip": 1,
+     "inact": [],
+     "cards": [
+      "S2-37319",
+      "S2-37320"
+     ],
+     "match": true
+    }
+   ]
+  },
+  "unassignedBoard": [],
+  "err": "page.waitForTimeout: Target page, context or browser has been closed"
+ },
+ "reqs": [
+  {
+   "m": "POST",
+   "u": "https://api.staging.shopview.com/api/staff/d1879db8-30dd-47b4-b8ad-97e9cf1d4c67/change",
+   "st": 201,
+   "b": "{\"first_name\":\"ZZAUTOTEST DC15\",\"last_name\":\"Wes Hover\",\"email\":\"zz.wob.dc15.wes@staging.shopview.local\",\"role_id\":\"af8d02b5-ecd1-4205-a82f-32a4d5bb1015\",\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"job_title\":null,\"salary_type\":null,\"salary\":null,\"billable\":0,\"clockable\":false,\"is_sales_rep\":false}"
+  }
+ ]
+}
