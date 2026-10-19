@@ -930,3 +930,10 @@ the product (Rule 104).
 - **Wheel sideways over the board (`mouse.wheel(1200, 0)` at the header row) stopped at 45,600 px of ~89,000** and only 158 of 284 columns were seen (c96953-cols.mts first run). A short count is the instrument: finish with the board's own scroll position in 900 px steps and count with `allBoardCols` (proven: 284 = 284). Never judge "technicians are never hidden" from a sweep that did not reach `scrollWidth - clientWidth`.
 - **refresh-tab.mts at 16:08 landed on accounts.google.com ("NOT SIGNED IN after 3 quick-login attempts")**; the next script at 16:12 signed in normally. Same as L0413/L0417: one failed sign-in is not an expired gate — run the next step and re-queue the failed one.
 #run498 #board #sideways #instrument #staging #signin → L0413, L0417, L0464
+
+## L0466 — 2026-10-19 — A reload keeps the All tab (staging c850386 and production d2441a9); C96936's tab change came from the shared Admin
+`refresh-tab.mts`: All tab + a search, reload → still All, twice 5 s apart, in production List and staging List and Tech View. So when
+C96936's tab A came back on "Work Orders" after its refresh (16:00), the cause was another session changing the shared staging Admin's
+saved tab mid-run (L0463), not the product. Not a defect; nothing to report beyond that. The probe's saved-preference read returned the
+app's HTML (the API lives on the api. host, not the app host) — read preferences with `api(p)` from data.mts, not a relative fetch.
+#run498 #refresh #tab #shared-admin #probe → L0463
