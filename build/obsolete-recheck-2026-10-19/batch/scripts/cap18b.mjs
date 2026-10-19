@@ -1,0 +1,15 @@
+import {session,toView} from './rec.mjs'; import fs from 'fs';
+const s=await session({vp:{width:1440,height:900},dpr:2}); const p=s.page; const log={mk:await s.marker()}; const J={method:'POST',headers:{'Content-Type':'application/json'}}; const W='d1879db8-30dd-47b4-b8ad-97e9cf1d4c67';
+const OWN=['display','tab','density','collapsedGroups']; const getP=async()=>(await s.api('/api/users/me/preferences/work-orders-list')).json.data.value; const prefs0=await getP();
+const staff=v=>s.api(`/api/staff/${W}/change`,{...J,body:JSON.stringify({first_name:'Wes',last_name:'Hover',email:'zz.wob.dc15.wes@staging.shopview.local',role_id:'af8d02b5-ecd1-4205-a82f-32a4d5bb1015',workplace_id:'b3c8c820-f815-4cf1-8938-10956c5ee71a',job_title:null,salary_type:null,salary:null,billable:0,clockable:v,is_sales_rep:false})}).then(r=>r.status);
+try{ log.off=await staff(false); log.clock=(await s.api('/api/staff?limit=100&search=Hover')).json.data.collection.filter(x=>x.staff_id===W).map(x=>x.clockable);
+ await s.go('/workorders?tab=all&search=QA1019'); await p.waitForTimeout(3500); await toView(p,'tech_view'); await p.waitForTimeout(3500);
+ for(let i=0;i<150;i++){ const ok=await p.evaluate(()=>{const g=[...document.querySelectorAll('[data-test-id^=tech_view_group_name_]')].find(e=>/^\s*(WH\s*)?Wes Hover/.test(e.closest('tr').innerText)); if(g){ g.scrollIntoView({block:'start'}); return true;} const m=document.querySelector('.q-table__middle'); m.scrollTop+=500; return false;}); if(ok) break; await p.waitForTimeout(300); }
+ await p.evaluate(()=>{document.querySelector('.q-table__middle').scrollTop-=120;}); await p.waitForTimeout(1500); await p.mouse.move(700,890);
+ log.group=await p.evaluate(()=>{const g=[...document.querySelectorAll('[data-test-id^=tech_view_group_name_]')].find(e=>/Wes Hover/.test(e.closest('tr').innerText)&&!/ZZAUTOTEST/.test(e.closest('tr').innerText)); const tr=g.closest('tr'); const r=tr.getBoundingClientRect(); const rows=[]; let n=tr.nextElementSibling; while(n&&!n.querySelector('[data-test-id^=tech_view_group_name_]')){ const q=n.getBoundingClientRect(); if(q.height>20) rows.push({x:q.x,y:q.y,w:q.width,h:q.height,t:n.innerText.replace(/\s+/g,' ').slice(0,90)}); n=n.nextElementSibling;} return {x:r.x,y:r.y,w:r.width,h:r.height,t:tr.innerText.replace(/\s+/g,' ').slice(0,80),rows};});
+ const lt=await p.evaluate(()=>{const hs=[...document.querySelectorAll('thead th')]; const i=hs.findIndex(h=>/Lead Tech/i.test(h.innerText)); const r=hs[i]?.getBoundingClientRect(); return r?{x:r.x,w:r.width,i}:null;}); log.leadCol=lt;
+ await p.screenshot({path:'/tmp/qa11310/ex21/b6-tech-off.png'});
+}catch(e){ log.err=e.message.slice(0,300); }
+log.on=await staff(true);
+try{ const cur=await getP(); const v={...cur}; for(const k of OWN) v[k]=prefs0[k]; await s.api('/api/users/me/preferences/work-orders-list',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({value:v})}); }catch(e){}
+fs.writeFileSync('/tmp/qa11310/ex21/cap18b.json',JSON.stringify(log,null,1)); console.log(JSON.stringify(log).slice(0,1500)); await s.close();

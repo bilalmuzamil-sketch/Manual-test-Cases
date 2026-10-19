@@ -1,0 +1,25 @@
+// SV-11101: create Zeta, Alpha, Mid; assign lead Vic Hover from each work order page in order Mid, Zeta, Alpha; read Tech/Board order
+import {session,toView} from './rec.mjs'; import fs from 'fs';
+const s=await session({vp:{width:1440,height:900}}); const p=s.page; const J={method:'POST',headers:{'Content-Type':'application/json'}}; const log={mk:await s.marker()};
+const OWN=['display','tab','density','collapsedGroups']; const getP=async()=>(await s.api('/api/users/me/preferences/work-orders-list')).json.data.value; const prefs0=await getP();
+const C={Z:['5e28493c-81ad-491f-b1bc-1db01694fc2b','e92844f4-f56f-4395-b718-97c1be1d1cca'],A:['9155093b-a433-4320-80aa-71108917cb1f','d2271ca9-4b01-4e6a-9089-22fbab30bd56'],M:['28812082-2711-4aca-a5f8-c19a252c04a3','e5ef1848-7ebf-4f6c-a607-090c6b6063fd']};
+const reqs=[]; p.on('response',async r=>{const q=r.request(); if(q.method()!=='GET'&&/lead|tech|assign/.test(q.url())) reqs.push({u:q.url().replace(/^https:\/\/[^/]+/,''),st:r.status(),b:(q.postData()||'').slice(0,200)});});
+try{
+ log.wo={}; for(const k of ['Z','A','M']){ const c=await s.api('/api/work-orders/create',{...J,body:JSON.stringify({company_id:C[k][0],vehicle_id:C[k][1],workplace_id:'b3c8c820-f815-4cf1-8938-10956c5ee71a',start_date:new Date().toISOString().slice(0,19).replace('T',' '),is_vehicle_here:true})}); const id=c.json.data.work_order_id; const w=(await s.api('/api/work-orders/view/'+id)).json.data; log.wo[k]={id,n:(w.work_order||w).number}; await p.waitForTimeout(1500); }
+ for(const k of ['M','Z','A']){ await s.go(`/workorders/${log.wo[k].id}/lines`); await p.waitForTimeout(5000);
+  const sel=await p.$('[data-test-id=select_lead_technician]'); const bb=await sel.boundingBox(); await p.mouse.click(bb.x+bb.width/2,bb.y+bb.height/2); await p.waitForTimeout(900); await p.keyboard.type('Vic',{delay:60}); await p.waitForTimeout(1500);
+  const it=await p.$('.q-menu .q-item:has-text("Vic Hover")'); if(it){ const ib=await it.boundingBox(); await p.mouse.click(ib.x+ib.width/2,ib.y+ib.height/2); await p.waitForTimeout(2000); }
+  // confirm dialogs (shift prompt etc) — re-read, Rule 102
+  for(let i=0;i<3;i++){ const d=await p.$('.q-dialog button:has-text("Confirm"), .q-dialog button:has-text("Yes"), .q-dialog button:has-text("Keep"), .q-dialog button:has-text("Save")'); if(!d) break; log['dlg_'+k+i]=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(x=>x.innerText.replace(/\s+/g,' ').slice(0,200))); const db=await d.boundingBox(); await p.mouse.click(db.x+db.width/2,db.y+db.height/2); await p.waitForTimeout(1800); }
+  log['lead_'+k]=await p.evaluate(()=>document.querySelector('[data-test-id=select_lead_technician]')?.innerText.trim()); await p.waitForTimeout(1500); }
+ await s.go('/workorders?tab=all&search=ZZ96929'); await p.waitForTimeout(3500); await toView(p,'tech_view'); await p.waitForTimeout(3500);
+ for(let i=0;i<150;i++){ const ok=await p.evaluate(()=>{const g=[...document.querySelectorAll('[data-test-id^=tech_view_group_name_]')].find(e=>/Vic Hover/.test(e.innerText)); if(g){ g.scrollIntoView({block:'start'}); return true;} const m=document.querySelector('.q-table__middle'); m.scrollTop+=500; return false;}); if(ok) break; await p.waitForTimeout(300); }
+ await p.waitForTimeout(1500); log.tech=await p.evaluate(()=>{ const rows=[...document.querySelectorAll('tbody tr')]; const gi=rows.findIndex(r=>/Vic Hover/.test(r.innerText)&&r.querySelector('[data-test-id^=tech_view_group_name_]')); const out=[]; for(let i=gi+1;i<rows.length;i++){ if(rows[i].querySelector('[data-test-id^=tech_view_group_name_]')) break; const t=rows[i].innerText; const n=(t.match(/S\d*-\d+/)||[])[0]; if(n) out.push(n+' '+(t.match(/(Zeta|Alpha|Mid)[^\n]*/)||[''])[0].slice(0,30)); } return out; });
+ await p.screenshot({path:'/tmp/qa11310/ex20/k2-tech.png'});
+ await toView(p,'board_view'); await p.waitForTimeout(3500);
+ for(let i=0;i<120;i++){ const ok=await p.evaluate(()=>{const h=[...document.querySelectorAll('[data-test-id^=board_column_header_]')].find(e=>/Vic Hover/.test(e.innerText)); if(h){ h.scrollIntoView({inline:'center'}); return true;} document.querySelector('[data-test-id=board_view_scroller]').scrollLeft+=900; return false;}); if(ok) break; await p.waitForTimeout(300); }
+ await p.waitForTimeout(1500); log.board=await p.evaluate(()=>{const h=[...document.querySelectorAll('[data-test-id^=board_column_header_]')].find(e=>/Vic Hover/.test(e.innerText)); const pn=h.closest('.board-column__panel'); return [...pn.querySelectorAll('.board-card')].map(c=>{const t=c.innerText; return (t.match(/S\d*-\d+/)||[])[0]+' '+((t.match(/(Zeta|Alpha|Mid)[^\n]*/)||[''])[0]).slice(0,25);});});
+ await p.screenshot({path:'/tmp/qa11310/ex20/k2-board.png'});
+}catch(e){ log.err=e.message.slice(0,300); }
+try{ const cur=await getP(); const v={...cur}; for(const k of OWN) v[k]=prefs0[k]; await s.api('/api/users/me/preferences/work-orders-list',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({value:v})}); }catch(e){}
+log.reqs=reqs; fs.writeFileSync('/tmp/qa11310/ex20/k2.json',JSON.stringify(log,null,1)); console.log('DONE'); await s.close();

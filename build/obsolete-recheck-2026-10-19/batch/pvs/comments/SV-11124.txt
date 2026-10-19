@@ -1,0 +1,19 @@
+{panel:bgColor=#deebff|borderColor=#0052cc}
+*QA RE-CHECK: SAME ON PRODUCTION*
+{panel}
+
+Re-checked on 19 October 2026 on Staging (build v26.40.19-e435950) and Production (build v26.40.19-d2441a9), signed in as Admin, window 1440 x 900 px, zoom 100%.
+* On both, *Settings* > *Staff* has no photo column: First Name, Last Name, Email, Job Title, Role, Department(S), Created, Confirmed Invitation and Billable.
+* The Staff list has never shown photos on production, so this is not a fault.
+
+*Production vs Staging*
+!sv11124-production-vs-staging.png|width=1200,height=776!
+_Production (top) and Staging (bottom): the Staff list columns, no photo column on either._
+
+*Where the expected result comes from*
+The ticket's source, the developer regression list (8 Oct 2026), Medium 9:
+{quote}Avatars everywhere (header, Staff, Schedule, cards). Avatars are now cached. After someone uploads a new photo, a reload must show the new one.{quote}
+
+*How to see it yourself*
+# Sign in to Staging: https://app.staging.shopview.com/administration/staff (or Production: https://app.shopview.com/administration/staff).
+# Look at the column headings of the Staff list: there is no photo column, and no row shows a photo. Production is the same.
