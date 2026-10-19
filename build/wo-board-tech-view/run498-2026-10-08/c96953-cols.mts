@@ -9,7 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { open, done } from './session.mts';
 import { api, candidates, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, display, tab, search, boardCols, toColumn } from './wob.mts';
+import { EV, t, display, tab, search, boardCols, toColumn, allBoardCols } from './wob.mts';
 
 const { browser, page: p } = await open('/workorders?tab=all');
 const a = api(p); const W = (ms: number) => p.waitForTimeout(ms);
@@ -65,9 +65,18 @@ const seen = new Set<string>(); let steps = 0;
 await p.mouse.move(800, 160);
 for (; steps < 400; steps++) { for (const c of await boardCols(p)) seen.add(`${c.id}|${c.name}`); const b = (await read()).boardLeft; await p.mouse.wheel(1200, 0); await W(350); if ((await read()).boardLeft === b) { await W(800); if ((await read()).boardLeft === b) break; } }
 for (const c of await boardCols(p)) seen.add(`${c.id}|${c.name}`);
-o.s9right = await read(); await shot('s9-far-right');
+o.s9wheelStopped = await read();
+// 19 Oct 2026 (first run): the wheel stopped at 45,600 px of ~89,000 and only 158 of 284 columns were seen — the instrument, not the
+// product. If the wheel stalls, keep going by moving the board's own scroll position (what dragging its scroll bar does), and count
+// every column with allBoardCols (steps of 900 px, the proven reader).
+o.s9fallbackSteps = 0;
+for (let i = 0; i < 300; i++) { const r = await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); return { left: Math.round(h.scrollLeft), max: h.scrollWidth - h.clientWidth }; })()`) as any;
+  if (r.left >= r.max - 2) break; await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); h.scrollLeft += 900; })()`); await W(250); o.s9fallbackSteps++; for (const c of await boardCols(p)) seen.add(`${c.id}|${c.name}`); }
+o.s9right = { ...(await read()), max: await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); return h.scrollWidth - h.clientWidth; })()`) }; await shot('s9-far-right');
+o.lastColumns = (await boardCols(p)).slice(-3).map((c: any) => c.name);
 for (let i = 0; i < 400 && (await read()).boardLeft > 0; i++) { await p.mouse.wheel(-3000, 0); await W(150); }
 o.s9left = await read();
+for (const c of await allBoardCols(p)) seen.add(`${c.id}|${c.name}`);
 const names = [...seen].map((x) => x.split('|')); const techCols = names.filter(([id]) => id !== 'unassigned');
 o.s10 = { technicianColumns: techCols.length, eligible: techs.length, missing: techs.filter((x) => !techCols.some(([id]) => id === x.id)).map((x) => x.name).slice(0, 20), wheelSteps: steps };
 await search(p, ''); await display(p, 'List').catch(() => {});
