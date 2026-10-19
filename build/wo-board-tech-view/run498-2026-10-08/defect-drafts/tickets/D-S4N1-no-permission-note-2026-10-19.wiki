@@ -1,0 +1,64 @@
+TITLE: Board View and Tech View – View-Only User Never Sees "You Don't Have Permission to Assign Technicians"
+TYPE: Story Defect · PARENT: SV-10047 (Reassign or unassign the lead technician from the board or grouped table; Ready for QA, read live 19 Oct 2026 23:00 UTC) · PRIORITY: Medium · LINK: relates to SV-10047
+ALREADY REPORTED: none. JQL read live 19 Oct 2026: text ~ "permission to assign technicians" → SV-11524 / SV-11522 (Open, Branko; Assign tech wording, dialog, message — not the permission note), SV-10580 (Board Backlog; back-end check), the stories themselves. No Story Defect under SV-10047 / SV-10052 on this note.
+BASIS: PRD version 68 (19 Oct 2026 19:44 UTC, Chris Ward), read live 19 Oct 2026; version confirmed live again 23:15 UTC. The v68 change log records this sentence.
+SOURCE CHECK (Rule 106): the tests' Expected = the PRD v68 sentence (agree) · build shows no note (differs) ⇒ real defect.
+INSTRUMENT CHECK (Rule 104): the same press-move-hold routine, run as the Admin on the same build minutes earlier, picks the card up (a drag copy follows the mouse) and shows the locked note at the top of the column (C96964), so the routine works; as the view-only user the card is not picked up and only text is selected. Seen on Board View and Tech View, three separate work orders, two separate view-only users.
+STORY STATUS (Rule 112): SV-10047 Ready for QA ⇒ may be filed with the QA lead's yes.
+STATUS: HELD — waiting for the QA lead's yes (Rule 62/113). Nothing filed.
+
+h2. Description
+
+*When a user who may only view work orders tries to drag a card or row to another technician, the note "You don't have permission to assign technicians" should show at the top of that technician's column or group.* On staging nothing shows, so the user gets no explanation.
+
+For example,
+* the user presses on a card and moves the mouse to another technician's column: the card is not picked up, the mouse only highlights the card's text, and no note appears
+* the same in Tech View on a row moved over another technician's group
+* nothing is changed, which is correct — only the explanation is missing
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin and check the top bar shows *Staging Heavy Duty - 9919*.
+# Go to your initials > *Settings* > *Roles & Permissions* and make a role whose *Work orders* permission has only *View* ticked. Give it to a staff member at this location (Settings > Staff).
+# Make two *Approved* work orders for one customer, both with the same lead technician, and make sure a second technician is active at this location.
+# Sign in as the view-only user. Open *Work Orders*, click the *All* tab, click *Board View*, and type the customer's name in *Search*.
+# Press on one of the cards and, keeping the mouse button down, move it over the second technician's column.
+#* The card does not move with the mouse; its text gets highlighted.
+#* No note appears at the top of the second technician's column.
+# Let go.
+#* The card stays where it was (correct).
+# Click *Tech View* and do the same with the row, over the second technician's group.
+#* Again no note appears.
+
+*Actual Result:*
+* No note shows anywhere. The card or row is simply not picked up, and the user is not told why.
+
+*Expected Result:*
+* The PRD says: *"A user without it who drags a card or row over another technician’s column or group sees the design’s note “You don’t have permission to assign technicians” at the top of that column or group, and the drop is refused."*
+
+h2. Screenshots
+
+!C368147-1-no-permission-note-1019.png|width=1000!
+
+!C96967-1-no-permission-note-tech-1019.png|width=1000!
+
+
+h2. Environment
+
+* *Build:* {{v26.40.19-c850386}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 19 Oct 2026
+* *Example records:* S2-37512 and S2-37513 (customer "ZZAUTOTEST F3 No Drag Permission"), S2-37511 (customer "ZZAUTOTEST F1 View Only No Drag")
+* *User:* a staff member with the role "ZZAUTOTEST WO View Only" (Work orders: View only)
+
+h2. Sources
+
+* PRD "Work Orders — Board View & Tech View Display Options", [Confluence 845185030|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030], version 68 (19 Oct 2026, Chris Ward), read 19 Oct 2026, S4-N1:
+{quote}Require Work Orders create and edit permission to drag work orders or use Assign lead technician, Reassign lead technician or Unassign. A user without it who drags a card or row over another technician’s column or group sees the design’s note “You don’t have permission to assign technicians” at the top of that column or group, and the drop is refused.{quote}
+* Same PRD, User Feedback Summary, row "Drag without permission (S4-N1)":
+{quote}“You don’t have permission to assign technicians”{quote}
+* Same PRD, version history, v68:
+{quote}a user without the permission sees “You don’t have permission to assign technicians” while dragging. v68.{quote}
+
+h2. Test case
+
+* [C96967 A user without create and edit cannot drag or reassign work orders|https://shopview.testrail.io/index.php?/cases/view/96967]
+* [C368147 A user without Work Orders create and edit cannot drag work orders|https://shopview.testrail.io/index.php?/cases/view/368147]
