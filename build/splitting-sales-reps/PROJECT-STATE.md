@@ -20,6 +20,11 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
 - **113 cases created in TestRail group 84266**, 11 sub folders (applied/sections.json), all read back field by field
   (applied/apply-log.jsonl); id map testrail-id-map.csv. All 138 PRD codes covered. Every case: "The build is not yet available to
   check this case against." Built by authoring/build.py (quotes checked verbatim against PRD v8, tech plan, report specs).
+- 19 Oct 2026 (later): QA lead caught that the design cases had no design references. Fixed to the WO Board standard: 18 design
+  cases (7 new, C666028–C666034), every design board's picture attached (68 of 68 boards, 69 attachments over 23 cases, read back),
+  the boards' own titles and notes quoted verbatim, every story case's Source names the design page its story cites. All 120 cases
+  updated and read back (applied/apply2-log.jsonl). build.py now has a DESIGN GATE that refuses a design case without pictures or
+  design words, or a board attached to no case.
 - Setup file prepared, NOT linked: SPLITTING-SALES-REPS-SETUP-FILE.md.
 - PO question sheet for Chris Ward: https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ (38 questions from 65 sources, 4 dropped as answered; 258/258 cells verified). Not shared or sent; the QA lead sends it.
 - Open with the QA lead: the 41 existing cases that will break (baseline/V1-BASELINE-AND-INVARIANTS.md section e); the design

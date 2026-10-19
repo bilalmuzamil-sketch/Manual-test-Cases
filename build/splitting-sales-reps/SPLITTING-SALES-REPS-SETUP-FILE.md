@@ -3,7 +3,7 @@
 This file is for a Claude session. A manual tester never needs it: each test case is complete on its own. **It is prepared but not linked from the test cases** (QA lead, 19 Oct 2026). It holds no environment address, credentials, cookies or session data.
 
 ## 1. Header
-- Feature: Splitting Sales Representatives (epic SV-10890; stories SV-11265 to SV-11272). TestRail group 84266, 113 cases.
+- Feature: Splitting Sales Representatives (epic SV-10890; stories SV-11265 to SV-11272). TestRail group 84266, 120 cases.
 - Generated: 19 Oct 2026, with the cases.
 - Sources: PRD Confluence 919928833 version 8 (14 Oct 2026, Chris Ward); tech plan (dated 14 Oct 2026, uploaded 19 Oct 2026); Claude design canvas https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm (export read 19 Oct 2026); Sales By Representative spec Confluence 585629698 version 28; Sales By Customer spec Confluence 577634305 version 21.
 - **No build yet** (QA lead, 19 Oct 2026). Every recipe below is UNVERIFIED until the build verification session runs it.
@@ -1062,6 +1062,7 @@ Satisfies these precondition lines, exactly as the case states them:
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Before the release was installed, customer {Customer-A} had {Sales-rep-A} as its sales representative and customer {Customer-B} had none, and you noted how both customer pages looked. For example: {Customer-A} is ZZAUTOTEST SSR Before and {Customer-B} is ZZAUTOTEST SSR Before None.
 - Starting screen: the release is installed and {Customer-A}'s page is open in a desktop browser at least 1024 px wide.
+- The browser window is a desktop browser at least 1024 px wide, and the design pictures "customer-00-b-customer-page.png" (board 2.0), "customer-01-b-customer-dialog-open.png" (board 2.1) and "customer-02-b-new.png" (board 2.2) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Customer-B}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
@@ -1074,6 +1075,7 @@ Satisfies these precondition lines, exactly as the case states them:
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
 - Before the release was installed, work order {Work-order-1} for {Customer-A} was open (not invoiced) with {Sales-rep-A} as its sales representative. For example: {Work-order-1} is S2-39001.
 - Starting screen: the release is installed and {Work-order-1} is open in a desktop browser at least 1024 px wide.
+- The browser window is a desktop browser at least 1024 px wide, and the design pictures "card-00-b-wo-rest2.png" (board 1.0) and "card-01-b-wo-open.png" (board 1.1) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
@@ -1084,6 +1086,7 @@ Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Before the release was installed, you exported Sales By Representative (Expanded CSV) for a past date range with invoices, with Show Unassigned on. For example: the range is 1 Aug 2026 to 31 Aug 2026.
 - Starting screen: the release is installed and Reports > Sales By Representative is open in a desktop browser at least 1024 px wide.
+- The browser window is a desktop browser at least 1024 px wide, and the design pictures "sbr-00-b-sbr.png" (board 4.0), "sbr-01-b-sbr-filter.png" (board 4.1), "sbr-02-b-sbr-columns.png" (board 4.2) and "sbr-03-b-sbr-expanded.png" (board 4.3) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
@@ -1114,6 +1117,7 @@ Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Before the release was installed, you bookmarked Sales By Customer with only one Product Type option selected. For example: only the parts option selected.
 - Starting screen: the release is installed and the bookmark is ready in a desktop browser at least 1024 px wide.
+- The browser window is a desktop browser at least 1024 px wide, and the design picture "sbc-00-b-sbc-filter.png" (board 5.0) attached to this case is open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
@@ -1181,6 +1185,7 @@ Satisfies these precondition lines, exactly as the case states them:
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
 - Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its card shows one "Sales Representative" field reading "Unassigned". For example: {Work-order-1} is S2-40001.
 - Starting screen: {Work-order-1} is open on a phone (a touch screen with no mouse pointer).
+- The browser window is a phone screen, and the design pictures "phone-00-b-phone-details.png" (board 6.0) and "phone-01-b-phone-open.png" (board 6.1) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
@@ -1211,11 +1216,11 @@ Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Wo
 Sub folder: Design — how it looks (section 84277).
 Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "card-02-n1-rest.png" (board 1.2) and "card-05-n1-picked.png" (board 1.5) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
-- Work order {Work-order-1} for {Customer-A} is open and not invoiced, with Lead Technician, Service Advisor and Sales Representative {Sales-rep-A}; work order {Work-order-2} has nobody in Sales Representative. For example: {Work-order-1} is S2-40001 and {Work-order-2} is S2-40002.
-- The design canvas is open in another tab at page 1, boards 1.2 and 1.5. For example: the canvas is https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm.
-- Starting screen: {Work-order-2} is open in a desktop browser window 1440 px wide at 100% zoom.
+- Work order {Work-order-1} for {Customer-A} is open and not invoiced with nobody in Sales Representative; work order {Work-order-2} has Sales Representative {Sales-rep-A}. For example: {Work-order-1} is S2-40001 and {Work-order-2} is S2-40002.
+- Starting screen: {Work-order-1} is open in that browser window.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
@@ -1224,122 +1229,210 @@ Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Wo
 Sub folder: Design — how it looks (section 84277).
 Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "card-03-n1-hover.png" (board 1.3) and "card-06-n1-picked-hover.png" (board 1.6) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
 - Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its one "Sales Representative" field reads {Sales-rep-A}. For example: {Work-order-1} is S2-40001.
-- The design canvas is open in another tab at page 1, boards 1.3 and 1.6. For example: the canvas is https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm.
-- Starting screen: {Work-order-1} is open in a desktop browser window 1440 px wide at 100% zoom.
+- Starting screen: {Work-order-1} is open in that browser window.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
-#### SETUP-D-03 — [C666019](https://shopview.testrail.io/index.php?/cases/view/666019) The + tooltip and menu look as designed
+#### SETUP-D-03 — [C666019](https://shopview.testrail.io/index.php?/cases/view/666019) The Sales Representative list looks as designed
 Sub folder: Design — how it looks (section 84277).
 Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "card-04-n1-list.png" (board 1.4) and "card-15-n1-unassign-list.png" (board 1.15) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
+- Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
+- Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its one "Sales Representative" field reads "Unassigned". For example: {Work-order-1} is S2-40001.
+- Starting screen: {Work-order-1} is open in that browser window.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-D-04 — [C666020](https://shopview.testrail.io/index.php?/cases/view/666020) The + tooltip and menu look as designed
+Sub folder: Design — how it looks (section 84277).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "card-07-n1-add-tip.png" (board 1.7) and "card-08-n1-add-menu.png" (board 1.8) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
 - Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its one "Sales Representative" field reads {Sales-rep-A}. For example: {Work-order-1} is S2-40001.
-- The design canvas is open in another tab at page 1, boards 1.7 and 1.8. For example: the canvas is https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm.
-- Starting screen: {Work-order-1} is open in a desktop browser window 1440 px wide at 100% zoom.
+- Starting screen: {Work-order-1} is open in that browser window.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
-#### SETUP-D-04 — [C666020](https://shopview.testrail.io/index.php?/cases/view/666020) Labor and Parts fields at rest and on hover look as designed
+#### SETUP-D-05 — [C666021](https://shopview.testrail.io/index.php?/cases/view/666021) Labor and Parts fields at rest and on hover look as designed
 Sub folder: Design — how it looks (section 84277).
 Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "card-09-n1-added.png" (board 1.9), "card-10-n1-added-hover.png" (board 1.10) and "card-11-n1-labor-list.png" (board 1.11) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
-- Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and Labor reads {Sales-rep-A} and Parts reads {Sales-rep-B}. For example: {Work-order-1} is S2-40001.
-- The design canvas is open in another tab at page 1, boards 1.9, 1.10, 1.12 and 1.13. For example: the canvas is https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm.
-- Starting screen: {Work-order-1} is open in a desktop browser window 1440 px wide at 100% zoom.
+- Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its card shows "Sales Representative - Labor" and "Sales Representative - Parts", both reading {Sales-rep-A}. For example: {Work-order-1} is S2-40001.
+- Starting screen: {Work-order-1} is open in that browser window.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
-#### SETUP-D-05 — [C666021](https://shopview.testrail.io/index.php?/cases/view/666021) The invoiced work order card shows the representatives as plain text
+#### SETUP-D-06 — [C666022](https://shopview.testrail.io/index.php?/cases/view/666022) Two reps, the remove x and removing Parts look as designed
 Sub folder: Design — how it looks (section 84277).
 Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "card-12-n1-two.png" (board 1.12), "card-13-n1-remove-tip.png" (board 1.13) and "card-14-n1-removed.png" (board 1.14) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
+- Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
+- Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and Labor reads {Sales-rep-B} and Parts reads {Sales-rep-A}. For example: {Work-order-1} is S2-40001.
+- Starting screen: {Work-order-1} is open in that browser window.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-D-07 — [C666023](https://shopview.testrail.io/index.php?/cases/view/666023) Clearing the field with Unassigned looks as designed
+Sub folder: Design — how it looks (section 84277).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "card-15-n1-unassign-list.png" (board 1.15) and "card-16-n1-cleared.png" (board 1.16) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
+- Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
+- Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its one "Sales Representative" field reads {Sales-rep-A}. For example: {Work-order-1} is S2-40001.
+- Starting screen: {Work-order-1} is open in that browser window.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-D-08 — [C666024](https://shopview.testrail.io/index.php?/cases/view/666024) The invoiced work order card shows the reps as plain text
+Sub folder: Design — how it looks (section 84277).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design picture "card-17-n1-invoiced.png" (board 1.17) attached to this case is open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
 - Work order {Work-order-1} for {Customer-A} exists; Labor reads {Sales-rep-A} and Parts reads {Sales-rep-B}; it has been invoiced. For example: {Work-order-1} is S2-40001.
-- The design canvas is open in another tab at page 1, board 1.17. For example: the canvas is https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm.
-- Starting screen: {Work-order-1} is open in a desktop browser window 1440 px wide at 100% zoom.
+- Starting screen: {Work-order-1} is open in that browser window.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
-#### SETUP-D-06 — [C666022](https://shopview.testrail.io/index.php?/cases/view/666022) Edit Customer and New Customer representative fields look as designed
+#### SETUP-D-09 — [C666025](https://shopview.testrail.io/index.php?/cases/view/666025) Work order log entries read as designed
 Sub folder: Design — how it looks (section 84277).
 Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
-- Customer {Customer-A} has {Sales-rep-A} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
-- The design canvas is open in another tab at page 2, boards 2.3 to 2.12 and 2.16 to 2.18. For example: the canvas is https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm.
-- Starting screen: {Customer-A}'s page is open in a desktop browser window 1440 px wide at 100% zoom.
-- If any record above is missing, mark this test Blocked: "setup not done".
-Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
-Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
-
-#### SETUP-D-07 — [C666023](https://shopview.testrail.io/index.php?/cases/view/666023) The customer page reads every representative row as designed
-Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
-- Customer {Customer-A} shows Service Labor {Sales-rep-A}, Service Parts {Sales-rep-B} and "Sales Representative - Part Sales" {Sales-rep-C}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
-- The design canvas is open in another tab at page 2, board 2.15. For example: the canvas is https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm.
-- Starting screen: {Customer-A}'s page is open in a desktop browser window 1440 px wide at 100% zoom.
-- If any record above is missing, mark this test Blocked: "setup not done".
-Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
-Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
-
-#### SETUP-D-08 — [C666024](https://shopview.testrail.io/index.php?/cases/view/666024) Sales By Representative filter, column and dash cells look as designed
-Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "card-18-b-audit.png" (board 1.18) and "card-19-n1-audit.png" (board 1.19) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
-- Today has one invoiced split work order (Labor {Sales-rep-A}, Parts {Sales-rep-B}) and one invoiced part sale with no shop supplies.
-- The design canvas is open in another tab at page 4, boards 4.4 to 4.10. For example: the canvas is https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm.
-- Starting screen: Reports > Sales By Representative is open for today in a desktop browser window 1440 px wide at 100% zoom.
+- Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its one "Sales Representative" field reads {Sales-rep-A}. For example: {Work-order-1} is S2-40001.
+- Starting screen: {Work-order-1} is open in that browser window.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-D-10 — [C666026](https://shopview.testrail.io/index.php?/cases/view/666026) Edit Customer: one field, its list and the + look as designed
+Sub folder: Design — how it looks (section 84277).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "customer-03-n2-edit.png" (board 2.3), "customer-04-n2-edit-list.png" (board 2.4), "customer-05-n2-edit-picked.png" (board 2.5), "customer-06-n2-add-tip.png" (board 2.6) and "customer-07-n2-add-menu.png" (board 2.7) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
+- Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
+- Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Starting screen: {Customer-A}'s page is open in that browser window.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-D-11 — [C666027](https://shopview.testrail.io/index.php?/cases/view/666027) Edit Customer with Service Parts and Part Sales looks as designed
+Sub folder: Design — how it looks (section 84277).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "customer-08-n2-service-parts.png" (board 2.8), "customer-09-n2-add-menu-2.png" (board 2.9), "customer-10-n2-three-added.png" (board 2.10), "customer-11-n2-ps-list.png" (board 2.11), "customer-12-n2-three.png" (board 2.12), "customer-13-n2-remove-tip.png" (board 2.13) and "customer-14-n2-ps-only.png" (board 2.14) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
+- Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
+- Customer {Customer-A} has {Sales-rep-A} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Starting screen: {Customer-A}'s page is open in that browser window.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-D-12 — [C666028](https://shopview.testrail.io/index.php?/cases/view/666028) The customer page reads every representative row as designed
+Sub folder: Design — how it looks (section 84277).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design picture "customer-15-n2-page-three.png" (board 2.15) attached to this case is open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
+- Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
+- Customer {Customer-A} shows Service Labor {Sales-rep-A}, Service Parts {Sales-rep-B} and "Sales Representative - Part Sales" {Sales-rep-C}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Starting screen: {Customer-A}'s page is open in that browser window.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-D-13 — [C666029](https://shopview.testrail.io/index.php?/cases/view/666029) New Customer's representative field looks as designed
+Sub folder: Design — how it looks (section 84277).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "customer-16-n2-new.png" (board 2.16), "customer-17-n2-new-menu.png" (board 2.17) and "customer-18-n2-new-ps.png" (board 2.18) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
+- Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
+- Starting screen: the Customers page is open in that browser window.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-D-14 — [C666030](https://shopview.testrail.io/index.php?/cases/view/666030) A part sale's representative field is unchanged from Part Sales Update v1
+Sub folder: Design — how it looks (section 84277).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "partsale-00-b-ps.png" (board 3.0), "partsale-01-n3-rest.png" (board 3.1), "partsale-02-n3-hover.png" (board 3.2), "partsale-03-n3-list.png" (board 3.3) and "partsale-04-n3-picked-hover.png" (board 3.4) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
+- Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
+- Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Part sale {Part-sale-1} for {Customer-A} is open and not invoiced. For example: {Part-sale-1} is P-30001.
+- Starting screen: {Part-sale-1} is open in that browser window.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Part-sale-1}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-D-15 — [C666031](https://shopview.testrail.io/index.php?/cases/view/666031) Sales By Representative screen, filter and column look as designed
+Sub folder: Design — how it looks (section 84277).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "sbr-04-a4-sbr-c.png" (board 4.4), "sbr-05-a4-sbr-expanded.png" (board 4.5), "sbr-06-a4-filter-open.png" (board 4.6), "sbr-07-a4-sbr-labor-only.png" (board 4.7), "sbr-08-a4-columns-off.png" (board 4.8), "sbr-09-a4-columns-on.png" (board 4.9) and "sbr-10-a4-sbr-expanded-type.png" (board 4.10) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
+- Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
+- Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Today has one invoiced split work order (Labor {Sales-rep-A}, Parts {Sales-rep-B}), one invoiced work order with {Sales-rep-A} on both sides and one invoiced part sale with no shop supplies.
+- Starting screen: Reports > Sales By Representative is open in that browser window.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
-#### SETUP-D-09 — [C666025](https://shopview.testrail.io/index.php?/cases/view/666025) Sales By Representative Expanded CSV and PDF look as designed
+#### SETUP-D-16 — [C666032](https://shopview.testrail.io/index.php?/cases/view/666032) Sales By Representative Expanded CSV and PDF look as designed
 Sub folder: Design — how it looks (section 84277).
 Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "sbr-11-a4-export-csv.png" (board 4.11) and "sbr-12-a4-export-pdf-crop-1.png" (board 4.12) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
 - Today has one invoiced split work order (Labor {Sales-rep-A}, Parts {Sales-rep-B}).
-- The design canvas is open in another tab at page 4, boards 4.11 and 4.12. For example: the canvas is https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm.
-- Starting screen: Reports > Sales By Representative is open for today in a desktop browser window 1440 px wide at 100% zoom.
+- Starting screen: Reports > Sales By Representative is open in that browser window, with the Sales Type column off.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
-#### SETUP-D-10 — [C666026](https://shopview.testrail.io/index.php?/cases/view/666026) Sales By Customer Sales Type filter looks as designed
+#### SETUP-D-17 — [C666033](https://shopview.testrail.io/index.php?/cases/view/666033) Sales By Customer Sales Type filter looks as designed
 Sub folder: Design — how it looks (section 84277).
 Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The design canvas is open in another tab at page 5, boards 5.1 and 5.2. For example: the canvas is https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm.
-- Starting screen: Reports > Sales By Customer is open in a desktop browser window 1440 px wide at 100% zoom.
+- The browser window is 1440 px wide with the zoom at 100%, and the design pictures "sbc-01-n5-sbc.png" (board 5.1) and "sbc-02-n5-sbc-open.png" (board 5.2) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
+- Starting screen: Reports > Sales By Customer is open in that browser window.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
-#### SETUP-D-11 — [C666027](https://shopview.testrail.io/index.php?/cases/view/666027) On a phone the representative fields look as designed
+#### SETUP-D-18 — [C666034](https://shopview.testrail.io/index.php?/cases/view/666034) On a phone the representative fields look as designed
 Sub folder: Design — how it looks (section 84277).
 Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- The browser window is a phone screen 390 px wide, and the design pictures "phone-02-n6-field.png" (board 6.2), "phone-03-n6-list.png" (board 6.3), "phone-04-n6-picked.png" (board 6.4), "phone-05-n6-add-menu.png" (board 6.5), "phone-06-n6-added.png" (board 6.6) and "phone-07-n6-parts-list.png" (board 6.7) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
-- Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its one "Sales Representative" field reads {Sales-rep-A}. For example: {Work-order-1} is S2-40001.
-- The design canvas is open in another tab at page 6, boards 6.2 to 6.7. For example: the canvas is https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm.
+- Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its one "Sales Representative" field reads "Unassigned". For example: {Work-order-1} is S2-40001.
 - Starting screen: {Work-order-1} is open on a phone (a touch screen with no mouse pointer), card expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
@@ -1358,7 +1451,7 @@ Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Wo
 | Story 7 — Work order log | [C665981](https://shopview.testrail.io/index.php?/cases/view/665981), [C665982](https://shopview.testrail.io/index.php?/cases/view/665982), [C665983](https://shopview.testrail.io/index.php?/cases/view/665983), [C665994](https://shopview.testrail.io/index.php?/cases/view/665994) |
 | Story 8 — Sales Type filters on both sales reports | [C665984](https://shopview.testrail.io/index.php?/cases/view/665984), [C665985](https://shopview.testrail.io/index.php?/cases/view/665985), [C665986](https://shopview.testrail.io/index.php?/cases/view/665986), [C665987](https://shopview.testrail.io/index.php?/cases/view/665987), [C665988](https://shopview.testrail.io/index.php?/cases/view/665988), [C665996](https://shopview.testrail.io/index.php?/cases/view/665996), [C665997](https://shopview.testrail.io/index.php?/cases/view/665997), [C665998](https://shopview.testrail.io/index.php?/cases/view/665998), [C665999](https://shopview.testrail.io/index.php?/cases/view/665999), [C666000](https://shopview.testrail.io/index.php?/cases/view/666000), [C666001](https://shopview.testrail.io/index.php?/cases/view/666001) |
 | Release day and what must not change | [C666002](https://shopview.testrail.io/index.php?/cases/view/666002), [C666003](https://shopview.testrail.io/index.php?/cases/view/666003), [C666004](https://shopview.testrail.io/index.php?/cases/view/666004), [C666005](https://shopview.testrail.io/index.php?/cases/view/666005), [C666006](https://shopview.testrail.io/index.php?/cases/view/666006), [C666007](https://shopview.testrail.io/index.php?/cases/view/666007), [C666008](https://shopview.testrail.io/index.php?/cases/view/666008), [C666009](https://shopview.testrail.io/index.php?/cases/view/666009), [C666010](https://shopview.testrail.io/index.php?/cases/view/666010), [C666011](https://shopview.testrail.io/index.php?/cases/view/666011), [C666012](https://shopview.testrail.io/index.php?/cases/view/666012), [C666013](https://shopview.testrail.io/index.php?/cases/view/666013), [C666014](https://shopview.testrail.io/index.php?/cases/view/666014), [C666015](https://shopview.testrail.io/index.php?/cases/view/666015), [C666016](https://shopview.testrail.io/index.php?/cases/view/666016) |
-| Design — how it looks | [C666017](https://shopview.testrail.io/index.php?/cases/view/666017), [C666018](https://shopview.testrail.io/index.php?/cases/view/666018), [C666019](https://shopview.testrail.io/index.php?/cases/view/666019), [C666020](https://shopview.testrail.io/index.php?/cases/view/666020), [C666021](https://shopview.testrail.io/index.php?/cases/view/666021), [C666022](https://shopview.testrail.io/index.php?/cases/view/666022), [C666023](https://shopview.testrail.io/index.php?/cases/view/666023), [C666024](https://shopview.testrail.io/index.php?/cases/view/666024), [C666025](https://shopview.testrail.io/index.php?/cases/view/666025), [C666026](https://shopview.testrail.io/index.php?/cases/view/666026), [C666027](https://shopview.testrail.io/index.php?/cases/view/666027) |
+| Design — how it looks | [C666017](https://shopview.testrail.io/index.php?/cases/view/666017), [C666018](https://shopview.testrail.io/index.php?/cases/view/666018), [C666019](https://shopview.testrail.io/index.php?/cases/view/666019), [C666020](https://shopview.testrail.io/index.php?/cases/view/666020), [C666021](https://shopview.testrail.io/index.php?/cases/view/666021), [C666022](https://shopview.testrail.io/index.php?/cases/view/666022), [C666023](https://shopview.testrail.io/index.php?/cases/view/666023), [C666024](https://shopview.testrail.io/index.php?/cases/view/666024), [C666025](https://shopview.testrail.io/index.php?/cases/view/666025), [C666026](https://shopview.testrail.io/index.php?/cases/view/666026), [C666027](https://shopview.testrail.io/index.php?/cases/view/666027), [C666028](https://shopview.testrail.io/index.php?/cases/view/666028), [C666029](https://shopview.testrail.io/index.php?/cases/view/666029), [C666030](https://shopview.testrail.io/index.php?/cases/view/666030), [C666031](https://shopview.testrail.io/index.php?/cases/view/666031), [C666032](https://shopview.testrail.io/index.php?/cases/view/666032), [C666033](https://shopview.testrail.io/index.php?/cases/view/666033), [C666034](https://shopview.testrail.io/index.php?/cases/view/666034) |
 
 ## 6. Dependencies and shared fixtures
 - Every case owns its records; the example names carry ZZAUTOTEST. Money cases need a location where nothing else is invoiced that day (or a fresh ZZAUTOTEST location).

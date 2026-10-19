@@ -9,6 +9,9 @@ PRDW = ws(PRD_TXT)
 TPW = ws(open(f"{P}/sources/Tech-Plan-Splitting-Sales-Representatives-2026-10-19-upload.md").read())
 SBRW = ws(open(f"{P}/report-specs/SBR-585629698-v28-2026-10-19.txt").read())
 SBCW = ws(open(f"{P}/report-specs/SBC-577634305-v21-2026-10-19.txt").read())
+import json as _json
+_DI = _json.load(open(f"{P}/design-drive-2026-10-19/design-text-inventory-2026-10-19.json"))
+DESW = ws(" ".join(x["text"].replace(" / ", " ") for x in _DI if x["src"] in ("A-title", "A-note")))
 SPEC_NAMES = {"Sales By Representative spec": "\"SBR (Sales By Representative) Report\" spec, Confluence 585629698, version 28 (12 Oct 2026)", "Sales By Customer spec": "\"SBC (Sales By Customer) Report\" spec, Confluence 577634305, version 21 (6 Oct 2026)"}
 TP_NAME = "Tech plan \"Splitting Sales Representatives — Technical Implementation Plan\" (dated 14 Oct 2026, uploaded 19 Oct 2026)"
 CODE = {}
@@ -28,16 +31,17 @@ STORY = {1: ("SV-11265", "Story 1, Give a work order its sales representative"),
          6: ("SV-11270", "Story 6, Print both representatives on the work order"),
          7: ("SV-11271", "Story 7, Record representative changes in the work order log"),
          8: ("SV-11272", "Story 8, Filter both sales reports by Sales Type")}
+DESIGN_PAGE = {1: "1", 2: "1", 3: "6", 4: "2", 5: "4", 6: "1", 8: "4 and 5"}
 PRD_NAME = 'PRD "Splitting Sales Representatives", Confluence 919928833, version 8 (14 Oct 2026, Chris Ward)'
 NOBUILD = "The build is not yet available to check this case against."
 MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
 BLOCKED = 'If any record above is missing, mark this test Blocked: "setup not done".'
 CASES = []
 
-def C(key, sec, title, pre, steps, res, q, stories=None, extra_src="", note="", marker=None, known=""):
+def C(key, sec, title, pre, steps, res, q, stories=None, extra_src="", note="", marker=None, known="", pictures=None):
     """pre: list of str or (state, example). res: one 'Step N:' line per step. q: list of PRD codes or ('label', 'verbatim text')."""
     CASES.append(dict(key=key, sec=sec, title=title, pre=[p if isinstance(p, tuple) else (p, None) for p in pre] + [(BLOCKED, None)],
-                      steps=steps, res=res, q=q, stories=stories, extra_src=extra_src, note=note, marker=marker or MARKER, known=known))
+                      steps=steps, res=res, q=q, stories=stories, extra_src=extra_src, note=note, marker=marker or MARKER, known=known, pictures=pictures or []))
 
 def quotes(c):
     out = []
@@ -55,13 +59,19 @@ def source(c):
     sto = "; ".join(f"story {STORY[n][0]} ({STORY[n][1]})" for n in st)
     codes = [x for x in c["q"] if isinstance(x, str)]
     other = [x[0] for x in c["q"] if isinstance(x, tuple)]
-    refs = ", ".join(codes + other)
+    refs = ", ".join(codes + [l for l in other if not l.startswith(("Design —", "Tech plan", "Sales By Representative spec", "Sales By Customer spec"))])
     s = f"Epic SV-10890; {sto}; {PRD_NAME}, {refs}, read 19 Oct 2026."
     if any(l.startswith("Tech plan") for l in other): s += f" {TP_NAME}, " + ", ".join(l for l in other if l.startswith("Tech plan")) + ", read 19 Oct 2026."
     for k, v in SPEC_NAMES.items():
         ls = [l.split(", ", 1)[1] for l in other if l.startswith(k)]
         if ls: s += f" {v}, " + ", ".join(ls) + ", read 19 Oct 2026."
     if c["extra_src"]: s += " " + c["extra_src"]
+    if "Claude design canvas" not in s:
+        pg = sorted({DESIGN_PAGE[n] for n in st if n in DESIGN_PAGE})
+        if pg:
+            s += (' Claude design canvas "Splitting Sales Representatives" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), '
+                  + (("pages " if " and " in pg[0] else "page ") + pg[0] if len(pg) == 1 else "pages " + ", ".join(pg[:-1]) + " and " + pg[-1])
+                  + " (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.")
     return s + " Source-verified 19 October 2026. " + NOBUILD
 
 e = lambda s: html.escape(s, quote=False)
@@ -95,7 +105,7 @@ def check(c, extra_sources=None):
     if "ZZAUTOTEST" in tester: p.append(f"{k}: hard-coded record in tester text")
     if re.search(r"\bS\d+-[RNE]\d+", tester): p.append(f"{k}: requirement code in tester text")
     for l, t in quotes(c):
-        src = TPW if l.startswith("Tech plan") else SBRW if l.startswith("Sales By Representative spec") else SBCW if l.startswith("Sales By Customer spec") else (PRDW if not (extra_sources and l in extra_sources) else ws(extra_sources[l]))
+        src = DESW if l.startswith("Design — board") else TPW if l.startswith("Tech plan") else SBRW if l.startswith("Sales By Representative spec") else SBCW if l.startswith("Sales By Customer spec") else (PRDW if not (extra_sources and l in extra_sources) else ws(extra_sources[l]))
         if ws(t) not in src: p.append(f"{k}: quote {l} not verbatim")
     if len(c["pre"]) > 7: p.append(f"{k}: {len(c['pre'])} preconditions")
     if len(c["steps"]) > 10: p.append(f"{k}: {len(c['steps'])} steps (over 10: ask before splitting, Rule 127)")

@@ -13,6 +13,21 @@ from collections import Counter
 print("cases", len(ssr_lib.CASES), dict(Counter(c["sec"] for c in ssr_lib.CASES)))
 codes = set(ssr_lib.CODE); used = {x for c in ssr_lib.CASES for x in c["q"] if isinstance(x, str)}
 print("PRD codes", len(codes), "covered", len(codes & used), "not yet covered:", sorted(codes - used, key=lambda s: (int(s.split('-')[0][1:]), s)))
+# DESIGN GATE (19 Oct 2026, after the QA lead caught design cases with no design references): every "Design — how it looks"
+# case must attach its design pictures, name them in the preconditions and quote the design's own words; every design board must
+# be attached to at least one case. The build refuses otherwise.
+import glob as _g
+for c in ssr_lib.CASES:
+    if c["sec"] == "DESIGN":
+        if not c["pictures"]: probs.append(f"{c['key']}: design case with no attached design picture")
+        if not any(isinstance(x, tuple) and x[0].startswith("Design — board") for x in c["q"]): probs.append(f"{c['key']}: design case quotes no design text")
+        pre = " ".join(a for a, _ in c["pre"])
+        for p in c["pictures"]:
+            if p not in pre: probs.append(f"{c['key']}: picture {p} not named in the preconditions")
+_boards = {os.path.basename(x) for x in _g.glob(f"{ssr_lib.P}/design-drive-2026-10-19/unpacked/png/*.png")}
+_used = {p for c in ssr_lib.CASES for p in c["pictures"]}
+if _boards - _used: probs.append(f"design boards attached to no case: {sorted(_boards - _used)}")
+print("design gate: boards", len(_boards), "attached", len(_boards & _used), "| design cases", sum(c['sec'] == 'DESIGN' for c in ssr_lib.CASES))
 for p in probs: print("PROBLEM", p)
 out = {c["key"]: dict(sec=c["sec"], fields=ssr_lib.render(c)) for c in ssr_lib.CASES}
 json.dump(out, open(f"{ssr_lib.D}/proposals.json", "w"), indent=1, ensure_ascii=False)
