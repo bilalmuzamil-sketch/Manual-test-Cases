@@ -4,7 +4,8 @@ ALREADY REPORTED: none. JQL read live 17 Oct 2026: text ~ "S5-R8"; text ~ "List 
 SEEN ON: staging {{v26.40.19-1493c63}}, 17 Oct 2026 10:55–10:57 UTC (run 498, C96975, signout-1017.json → C96975.step18list: Progress turned off at "setList", back at "step18list" after a REAL log-out / Admin sign-in). Production {{v26.40.19-d2441a9}}, 17 Oct 2026 11:12–11:13 UTC (prod-c96975.json): Progress turned off, real log-out, log-in through the form — Progress stayed off; then turned back on (restored).
 CONTROL: production on the same day keeps the choice (Rule 121: same on production = not a regression; here production differs, so it is one). Tech View's own columns DID survive the same log-out on staging (step18tech), so the log-out/log-in itself worked.
 RE-MEASURED 17 Oct 2026 11:18–11:21 UTC (READING RISK CLOSED): staging, shared Admin with a real log-out and the sign-in page's Admin button, the saved Work Orders preference read from the SERVER at each point (c96975-relog.json, pictures C96975-relog-*.png at 2x). REPRODUCED: Progress turned off on screen (menu true -> false, column gone), signed out (/login, 401), signed in (200), Progress back on screen and on in the menu. No interference: the saved preference was byte-identical before the log-out and after the sign-in (updatedAt 2026-10-17T10:57:13Z both times). Cause seen: turning Progress off on staging never reaches the saved preference (columns.progress stayed true, updatedAt unchanged), while on production the same click saves it (columns.progress false, updatedAt 11:20:39Z) and it survives the log-out (prod-c96975.json, re-run at 2x 11:20–11:21 UTC). A dedicated user was not possible: a new staff user has no password until it accepts the invitation e-mail (L0441).
-STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+RE-MEASURED 19 Oct 2026 03:40–03:41 UTC on staging v26.40.19-31ad1e1 (c96975-relog.mts; c96975-relog.json; log logs-live-1019/C96975-recheck.log): Progress off on screen -> real log-out (401) -> sign-in (200) -> Progress back on screen and on in the menu; the saved preference never recorded progress:false. REPRODUCED. Production comparison stays the 17 Oct reading. PRD re-read live 19 Oct: still v64. SV-10048 Ready for QA, read live 19 Oct.
+STATUS: APPROVED BY THE QA LEAD 19 Oct 2026 ("File with the Quote from the Updated PRD").
 
 h2. Description
 
@@ -37,17 +38,19 @@ h2. Steps to Reproduce
 
 h2. Screenshots
 
+!D-C96975-2-staging-before-after-relogin-1019.png|width=1000!
+
 !D-C96975-1-list-columns-after-relogin.png|width=1000!
 
 
 h2. Environment
 
-* *Staging:* build {{v26.40.19-1493c63}} on [staging Work Orders|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), Admin, 17 Oct 2026
+* *Staging:* build {{v26.40.19-31ad1e1}} on [staging Work Orders|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), Admin, 19 Oct 2026 (first seen 17 Oct 2026 on {{v26.40.19-1493c63}})
 * *Production:* build {{v26.40.19-d2441a9}} on [production Work Orders|https://app.shopview.com/workorders], 17 Oct 2026
 
 h2. Sources
 
-* PRD "Work Orders — Board View & Tech View Display Options", [Confluence 845185030|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030], version 64 (16 Oct 2026, Chris Ward), read 17 Oct 2026, S5-R8:
+* PRD "Work Orders — Board View & Tech View Display Options", [Confluence 845185030|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030], version 64 (16 Oct 2026, Chris Ward), read 19 Oct 2026, S5-R8:
 {quote}Save the Tech View column selection per user across logout/login, devices, and locations. List keeps saving its columns exactly as it does today.{quote}
 
 h2. Test case

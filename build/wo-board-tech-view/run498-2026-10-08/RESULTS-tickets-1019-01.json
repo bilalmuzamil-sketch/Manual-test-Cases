@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-31ad1e1",
+  "date": "19 October 2026",
+  "note": "run 498: approved tickets filed 19 Oct (C97020)"
+ },
+ "results": {
+  "C97020": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, checked again today before filing the ticket.",
+    "An Invoiced work order (S2-37313) on Board View, using only the keyboard: the More actions menu opens and Reassign lead technician and Unassign are greyed out.",
+    "With the keyboard focus on Reassign lead technician, no note appears on the screen.",
+    "With the mouse over the same item, the note \"The lead technician can't be changed once a work order is Invoiced or Paid.\" does appear.",
+    "Requirements (Confluence 845185030, version 64, 16 Oct 2026), S4-N6: \"The disabled Reassign lead technician action on an Invoiced or Paid work order shows this tooltip: \u201cThe lead technician can\u2019t be changed once a work order is Invoiced or Paid.\u201d\"",
+    "What the tester must do: follow the ticket; when it is fixed, run this test again with the keyboard only."
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11498 (Open, read 19 Oct 2026).",
+   "pictures": [
+    "defect-drafts/C97020-1-locked-menu.png"
+   ]
+  }
+ }
+}

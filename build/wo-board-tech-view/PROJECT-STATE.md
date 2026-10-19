@@ -250,3 +250,17 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
 - Final report to the QA lead: `run498-2026-10-08/REPORT-QA-LEAD-2026-10-17.md` (run 498: 244 Passed, 13 Failed, 21 Blocked, 0 untested at 11:25 UTC).
 - 19 Oct — Rule 131 pass (staging v26.40.19-31ad1e1): C96929 and C590130 passed against PRD v64 (S2-R6/S9-R14 change log v53 15 Oct; §9 "Success toast, auto-fades" + Chris on SV-11396); case updates ASKED of the QA lead (per test). C97007, C368159, C368173, C368169, C368171 re-failed on SV-11429 (Open; SV-11393 re-homed there by Chris). Evidence `source-verify-2026-10-19/RULE131-TICKET-COMMENTS.md`, `c96929-live.json`, `c590130-live.json`, `sv11393-lists.json`.
 - 19 Oct — QA lead: the five SV-11429 tests (C97007, C368159, C368173, C368169, C368171) stay at **Retest** ("same on production", kept separate for now). Run 498 now: 248 Passed, 6 Failed, 19 Blocked, 5 Retest. C96929 and C590130 updated to PRD v64 with his yes (case-updates-2026-10-19/); C96929 is Automated — Vlad to be told.
+
+### 19 Oct 2026 — two approved tickets filed (QA lead: "File with the Quote from the Updated PRD"); design-only two NOT filed
+- Re-checked first on staging v26.40.19-31ad1e1 (PRD still v64, read live 19 Oct; stories SV-10054, SV-10048 Ready for QA, read live):
+  - C97020 reproduced (kbd-r4.mts, Invoiced S2-37313): keyboard highlight on the greyed-out Reassign lead technician shows no note; mouse hover does.
+    Filed **SV-11498** https://shopview.atlassian.net/browse/SV-11498 — Story Defect · parent SV-10054 · Medium · board-tech-view · Relates SV-10054.
+    Run result 527952 (Failed, ticket) + Follow-the-status comment; test https://shopview.testrail.io/index.php?/tests/view/3481958
+  - C96975 reproduced (c96975-relog.mts): List's Progress turned off comes back after a real log-out/sign-in; saved preference never records it.
+    Filed **SV-11499** https://shopview.atlassian.net/browse/SV-11499 — Story Defect · parent SV-10048 · Medium · board-tech-view · Relates SV-10048.
+    Run result 527954 (Failed, ticket); this replaces the mistaken SV-10048 in the ticket field. Test https://shopview.testrail.io/index.php?/tests/view/3481919
+- C590114 (Total price alignment) and C590117 (count tooltip above/below): PRD v64 searched again 19 Oct — no sentence on either
+  (only Status/Waiting On Parts/Progress alignment, and Density/Columns/switcher/avatar tooltip placement). Not against the PRD ⇒ not filed
+  (his condition). Their test pages show SV-11325 / SV-11338 only because those tickets sit on results from before the 16 Oct rewrite;
+  the 17 Oct results carry no ticket.
+- Run 498 now: 248 Passed, 6 Failed, 19 Blocked, 5 Retest.

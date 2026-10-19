@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-31ad1e1",
+  "date": "19 October 2026",
+  "note": "run 498: approved tickets filed 19 Oct (C96975)"
+ },
+ "results": {
+  "C96975": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, checked again today before filing the ticket.",
+    "In the Work Orders List, Progress was turned off with Column Selection and the column disappeared.",
+    "After logging out and signing in again as the same user, Progress was back in the List and turned on in Column Selection.",
+    "Tech View's own column choice is not the problem here; only List loses its choice.",
+    "Production (checked 17 Oct 2026) keeps the List choice after logging out and back in, so this is new on staging.",
+    "Requirements (Confluence 845185030, version 64, 16 Oct 2026), S5-R8: \"Save the Tech View column selection per user across logout/login, devices, and locations. List keeps saving its columns exactly as it does today.\"",
+    "Note: an earlier result on this test showed the story SV-10048 in the ticket field by mistake; the real ticket is SV-11499.",
+    "What the tester must do: follow the ticket; when it is fixed, run this test again."
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11499 (Open, read 19 Oct 2026).",
+   "pictures": [
+    "defect-drafts/D-C96975-2-staging-before-after-relogin-1019.png"
+   ]
+  }
+ }
+}
