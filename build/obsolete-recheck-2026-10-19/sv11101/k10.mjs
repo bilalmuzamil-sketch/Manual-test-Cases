@@ -1,0 +1,42 @@
+// SV-11101: create Zeta, Alpha, Mid; assign lead Nora Sort from each work order page in order Mid, Zeta, Alpha; read Tech/Board order
+import {session,toView} from './rec.mjs'; import fs from 'fs';
+const s=await session({vp:{width:1440,height:2100},dpr:2}); const p=s.page; const J={method:'POST',headers:{'Content-Type':'application/json'}}; const log={mk:await s.marker()};
+const OWN=['display','tab','density','collapsedGroups','sortBy','descending']; const getP=async()=>(await s.api('/api/users/me/preferences/work-orders-list')).json.data.value; const prefs0=await getP();
+const C={Z:['7750703f-f960-4350-b74b-e76e6b7e2c81','d1f52ba5-027a-48e3-926c-419db4259576'],A:['81a87a50-2882-4bb5-86ff-ae8f56e827b4','3e752276-edc0-4132-9f6a-1a3c69b599d5'],M:['99dfc7ca-ff6d-4b8e-a01b-910c1a4bf89a','e03b03b9-decf-4cfe-a63b-8bf1dcfda9a1']};
+const reqs=[]; p.on('response',async r=>{const q=r.request(); if(q.method()!=='GET'&&/lead|tech|assign/.test(q.url())) reqs.push({u:q.url().replace(/^https:\/\/[^/]+/,''),st:r.status(),b:(q.postData()||'').slice(0,200)});});
+try{
+ log.wo={}; const post=(u,b)=>s.api(u,{...J,body:JSON.stringify(b)});
+ for(const [tag,k] of [['Z','Z'],['A','A'],['M1','M'],['M2','M']]){ const r=await post('/api/work-orders/create',{company_id:C[k][0],vehicle_id:C[k][1],workplace_id:'b3c8c820-f815-4cf1-8938-10956c5ee71a',start_date:new Date().toISOString().slice(0,19).replace('T',' '),is_vehicle_here:true}); const id=r.json?.data?.work_order_id; const w=(await s.api('/api/work-orders/view/'+id)).json.data; log.wo[tag]={id,n:(w.work_order||w).number,st:r.status,lead:(w.work_order||w).techAssignedLastName||null}; await p.waitForTimeout(2500); }
+ for(const k in log.wo) log.wo[k].n=String(log.wo[k].n).replace(/^S-/,'S2-');
+ for(let i=0;i<30;i++){ const w=(await s.api('/api/work-orders?pagination[page]=1&pagination[rowsPerPage]=50&search=QA1019')).json.data.work_orders.map(x=>x.number); if(Object.values(log.wo).every(o=>w.includes(o.n))) { log.indexedAfter=i*3; break; } await p.waitForTimeout(3000); }
+ { const cur=await getP(); const v={...cur}; delete v.sortBy; delete v.descending; v.display='list'; v.tab='all'; log.prefStripped=await s.api('/api/users/me/preferences/work-orders-list',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({value:v})}).then(r=>r.status); }
+ await s.go('/workorders?tab=all&search=QA1019'); await p.waitForTimeout(3500); await toView(p,'list'); await p.waitForTimeout(3500);
+ log.list=await p.evaluate(()=>[...document.querySelectorAll('tbody tr')].map(r=>{const t=r.innerText; const b=r.getBoundingClientRect(); return {t:(t.match(/S\d*-\d+/)||[''])[0]+' '+((t.match(/(Zeta|Alpha|Mid)[^\t\n]*/)||[''])[0]).slice(0,22),y:b.y,h:b.height};}).filter(x=>x.t.trim()));
+ await p.screenshot({path:'/tmp/qa11310/ex26/k10-list.png'});
+ await s.go('/workorders?tab=all&search=QA1019'); await p.waitForTimeout(3500); await toView(p,'board_view'); await p.waitForTimeout(3500);
+ for(const k of ['Z','M1','M2','A']){ const n=log.wo[k].n;
+  const h=await p.evaluateHandle(n=>{const c=[...document.querySelectorAll('.board-card')].find(e=>e.innerText.includes(n)); c.scrollIntoView({block:'center'}); c.dispatchEvent(new MouseEvent('mouseover',{bubbles:true})); return c.querySelector('[data-test-id=button_work_order_more_actions]');},n); await p.waitForTimeout(600);
+  const cb=await h.asElement().boundingBox(); await p.mouse.move(cb.x-60,cb.y+30); await p.waitForTimeout(400); await p.mouse.click(cb.x+cb.width/2,cb.y+cb.height/2); await p.waitForTimeout(900);
+  const mb=await p.locator('[data-test-id=menu_item_reassign_lead_technician]').last().boundingBox(); await p.mouse.click(mb.x+mb.width/2,mb.y+mb.height/2); await p.waitForTimeout(2000);
+  if(false) log.dlgTids=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id]')].map(e=>e.dataset.testId.replace(/[0-9a-f-]{36}/,'{id}')+':'+(e.innerText||'').replace(/\s+/g,' ').slice(0,25)).slice(0,40));
+  await p.keyboard.type('Nora Sort',{delay:50}); await p.waitForTimeout(1500);
+  const row=await p.evaluateHandle(()=>[...document.querySelectorAll('.q-dialog .q-item, .q-dialog [role=option], .q-dialog [data-test-id*=technician]')].find(e=>/Nora Sort/.test(e.innerText))); const rb=await row.asElement().boundingBox(); await p.mouse.click(rb.x+rb.width/2,rb.y+rb.height/2); await p.waitForTimeout(1200);
+  for(let i=0;i<4;i++){ const d=await p.evaluateHandle(()=>[...document.querySelectorAll('.q-dialog button')].find(b=>/^(Reassign|Confirm|Save|Yes|Assign|Keep shifts|Are You Sure\?)$/i.test(b.innerText.trim()))); const de=d.asElement(); if(!de) break; log['btn_'+k+i]=await de.innerText(); const db=await de.boundingBox(); await p.mouse.click(db.x+db.width/2,db.y+db.height/2); await p.waitForTimeout(2000); }
+  log['dlgLeft_'+k]=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(x=>x.innerText.replace(/\s+/g,' ').slice(0,200)));
+  log['toast_'+k]=await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(x=>x.innerText.replace(/\s+/g,' ').trim()));
+  const w=(await s.api('/api/work-orders?pagination[page]=1&pagination[rowsPerPage]=3&search='+n)).json.data.work_orders[0]; log['lead_'+k]=w.techAssignedLastName; await p.waitForTimeout(2500); }
+ await s.go('/workorders?tab=all&search=QA1019'); await p.waitForTimeout(3500); await toView(p,'list'); await p.waitForTimeout(3500);
+ log.list2=await p.evaluate(()=>[...document.querySelectorAll('tbody tr')].map(r=>{const t=r.innerText; const b=r.getBoundingClientRect(); return {t:(t.match(/S\d*-\d+/)||[''])[0]+' '+((t.match(/(Zeta|Alpha|Mid)[^\t\n]*/)||[''])[0]).slice(0,22)+' | '+((t.match(/Nora Sort[^\t\n]*/)||[''])[0]),x:b.x,y:b.y,w:b.width,h:b.height};}).filter(x=>x.t.trim()));
+ log.sortHdr=await p.evaluate(()=>[...document.querySelectorAll('th')].map(h=>h.innerText.trim()+(h.className.includes('sorted')?'*':'')).join('|'));
+ await p.screenshot({path:'/tmp/qa11310/ex26/k10-list-after.png'});
+ await s.go('/workorders?tab=all&search=QA1019'); await p.waitForTimeout(3500); await toView(p,'tech_view'); await p.waitForTimeout(3500);
+ for(let i=0;i<150;i++){ const ok=await p.evaluate(()=>{const g=[...document.querySelectorAll('[data-test-id^=tech_view_group_name_]')].find(e=>/Nora Sort/.test(e.innerText)); if(g){ g.scrollIntoView({block:'start'}); return true;} const m=document.querySelector('.q-table__middle'); m.scrollTop+=500; return false;}); if(ok) break; await p.waitForTimeout(300); }
+ await p.waitForTimeout(1500); log.tech=await p.evaluate(()=>{ const rows=[...document.querySelectorAll('tbody tr')]; const gi=rows.findIndex(r=>/Nora Sort/.test(r.innerText)&&r.querySelector('[data-test-id^=tech_view_group_name_]')); const out=[]; for(let i=gi+1;i<rows.length;i++){ if(rows[i].querySelector('[data-test-id^=tech_view_group_name_]')) break; const t=rows[i].innerText; const n=(t.match(/S\d*-\d+/)||[])[0]; const b=rows[i].getBoundingClientRect(); if(n) out.push({t:n+' '+(t.match(/(Zeta|Alpha|Mid)[^\n]*/)||[''])[0].slice(0,30),y:b.y,h:b.height,x:b.x,w:b.width}); } return out; });
+ await p.screenshot({path:'/tmp/qa11310/ex26/k10-tech.png'});
+ await toView(p,'board_view'); await p.waitForTimeout(3500);
+ for(let i=0;i<120;i++){ const ok=await p.evaluate(()=>{const h=[...document.querySelectorAll('[data-test-id^=board_column_header_]')].find(e=>/Nora Sort/.test(e.innerText)); if(h){ h.scrollIntoView({inline:'center',block:'nearest'}); return true;} document.querySelector('[data-test-id=board_view_scroller]').scrollLeft+=900; return false;}); if(ok) break; await p.waitForTimeout(300); }
+ await p.waitForTimeout(1500); log.board=await p.evaluate(()=>{const h=[...document.querySelectorAll('[data-test-id^=board_column_header_]')].find(e=>/Nora Sort/.test(e.innerText)); const pn=h.closest('.board-column__panel'); return [...pn.querySelectorAll('.board-card')].map(c=>{const t=c.innerText; const b=c.getBoundingClientRect(); return {t:(t.match(/S\d*-\d+/)||[])[0]+' '+((t.match(/(Zeta|Alpha|Mid)[^\n]*/)||[''])[0]).slice(0,25),x:b.x,y:b.y,w:b.width,h:b.height};});});
+ await p.screenshot({path:'/tmp/qa11310/ex26/k10-board.png'});
+}catch(e){ log.err=e.message.slice(0,300); }
+try{ const cur=await getP(); const v={...cur}; for(const k of OWN) v[k]=prefs0[k]; await s.api('/api/users/me/preferences/work-orders-list',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({value:v})}); }catch(e){}
+log.reqs=reqs; fs.writeFileSync('/tmp/qa11310/ex26/k10.json',JSON.stringify(log,null,1)); console.log('DONE'); await s.close();
