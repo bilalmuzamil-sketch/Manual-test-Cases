@@ -950,3 +950,10 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - **Trap: copying a line range out of another script** (`sed -n 5,91p dash-seed.mts`) cut a function in half → "Transform failed … Unexpected end of file". Check a generated script with `npx esbuild --loader:.mts=ts file.mts > /dev/null` (from build/global-search/e2e) before running it.
 - **The bridge dropped again before a run** (ERR_PROXY_CONNECTION_FAILED): run `ensure_bridge.sh` right before every staging script, not once per session.
 #run498 #design #held #pill #tooling → L0464, L0467
+
+## L0469 — 2026-10-19 — Chris answered the design-differences sheet (all 19 rows); what it means for the Design- cases, and two staging traps
+- Answers (read live ~22:15 UTC): D01 b, D02–D06 a, D07 b, D08 b, D09 a, D10–D15 b, D16 a (button only for users who can add staff), row 17 a ("already done in PRD v67"), row 18 b, row 19 a ("Unassigned"; PRD sentence to change). Per the held cases' own rule: C682429, C682432, C682433, C682434, C682435 → remove; C682430, C682436 → release; C682431 → mixed, needs rewording (Expected → QA lead's go-ahead). Full table: `run498-2026-10-08/design-dash-2026-10-19/READY-TO-RUN.md`.
+- c850386 today vs the released design: messages still "Lead technician updated/removed", no Undo, ~6.4 s, no bar; no-technician page has the text but no Add Technician button; an empty location shows "No work orders yet" (not "Nothing here yet"). The PRD-v66 cases C682424/C682425 (Undo message, 8 s) conflict with D05 (2.6 s) — re-check against PRD v67 before running.
+- **ZZAUTOTEST technicians sort last**: their Board columns are far right and not drawn at the left; pin them for the runner (`pins([...])`, restored after) so they sit after Unassigned.
+- **`POST /api/iam/change-location` does not change what the open page shows** for the runner here; switch with `switchLocUI(p, name)` and read the header back. The runner's location is reset by `asRunner` at the next start anyway.
+#run498 #design #chris #ruling #staging → L0468, L0467

@@ -330,3 +330,8 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
   (2) no need to tell Vlad; (3) authoring notes: leave for now; (4) PRD v66 S3-R20e "blank, as today" vs "Unassigned" added as row 19 of
   Chris's sheet https://docs.google.com/spreadsheets/d/1coGNz1ZNj1GiFA4rS7pt9nwKsNgE8bCLpuutygK4iQs (tab "Questions for Chris").
   New in run 498 since 16:48: C682421 (Blocked by another session, SV-11422) and C682422–C682428 (untested: Assign lead dialog / Undo).
+
+- 19 Oct (22:20 UTC) — Design- cases: C682439, C682440 Passed (c850386). Eight held "(design's version)" cases prepared and read on the build
+  (c6824-held.mts, READY-TO-RUN.md). Chris answered all rows of his design-differences sheet: 5 cases to remove (PRD won), 2 released
+  (C682430 messages/Undo/2.6 s, C682436 no-technician pages — both fail on today's build), C682431 mixed → needs rewording. Asked the QA lead:
+  add the released ones to run 498, reword C682431, remove the five.
