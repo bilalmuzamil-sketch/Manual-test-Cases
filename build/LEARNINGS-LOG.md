@@ -965,3 +965,10 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - **Rule 112 gap**: the owning story of Board View (SV-10046) is now "Ready for Production", a status Rule 112 does not list (it lists Ready for QA, Testing QA, QA Complete). By the 2026-10-01 QA Complete reasoning (a fault after sign-off is our miss) it should be fileable, but this is NOT ruled — name it in the ask, do not assume.
 - `jira.sh GET` prints a status line after the JSON: parse with `json.JSONDecoder().raw_decode(...)`, not `json.load`.
 #run498 #retest #sv-11416 #sv-11524 #queue #rule112 → L0469, L0462
+
+## L0471 — 2026-10-19 — Keyboard and menu-look re-tests on c850386: what the scripts' fields really mean, and the locked note's wording
+- **`kbd-r4.mts ONLY=C97020` runs only the Admin half (steps 7–16)**; steps 1–6 (the view-only user) need their own run — now the `C97020` block in `retest-locks.mts` (viewer made with role "ZZAUTOTEST WO View Only", keyboard only).
+- **`noteOnKeyboard: true` in kbd-r4 output means the disabled item carries the note as its accessible description (aria-describedby), NOT that anything shows on screen**; `tooltips: []` and the picture (`C97020-r4-s12-item-by-keyboard.png`) are what say whether a sighted keyboard user sees it. On c850386 nothing shows (SV-11498, In Progress).
+- **Locked wording on c850386 is still the pre-v68 sentence** "The lead technician can't be changed once a work order is Invoiced or Paid." (disabled menu item tooltip, Board and Tech View); PRD v68 S4-N6 wants "Invoiced · can't be reassigned" / "Paid · can't be reassigned".
+- **`design-stg5.mts` step 2 picture can be "off screen"** (the card sat at y≈980 in a 900-high window), and the button's own computed opacity says nothing about a hidden parent. Re-read with `c590121-s2.mts` (card scrolled into view, mouse parked, elementFromPoint + ancestor opacity chain, 2x crop, hover as positive control).
+#run498 #retest #keyboard #locked #c850386 → L0470, L0469
