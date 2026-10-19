@@ -6159,3 +6159,7 @@ This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as a
 - Launch: `firefox.launch({executablePath:'/tmp/pwff/firefox-1495/firefox/firefox', headless:false, proxy:{server:'http://127.0.0.1:'+bridgePort}, firefoxUserPrefs:{'widget.gtk.overlay-scrollbars.enabled':false,'ui.useOverlayScrollbars':0}})`, context `{viewport:null, ignoreHTTPSErrors:true}`, run under `xvfb-run -a -s "-screen 0 1600x1200x24"`. Add the staging cookies on `.shopview.com`, open /login and click `button_quick_login_admin`.
 - **A fixed `viewport` (or headless) makes Playwright Firefox hide every scrollbar** — computed `scrollbar-width: none` even on a plain div. With `viewport:null` headed, the real bar shows (12 px). Always test a plain `overflow:scroll` div first.
 - Script: build/sv11466-11467-11422-2026-10-19/sv11466/s466ff.mjs.
+
+
+## §AK-VIS — IS THE FOCUSED ITEM ACTUALLY VISIBLE? (proven 2026-10-19, SV-11422)
+`document.activeElement` being the right row does NOT mean the user can see it. Sticky headings (Tech View `tech_view_sticky_group`) can sit on top of a row the app scrolled into view. After any focus move that scrolls, sample `document.elementFromPoint(x,y)` at the row's top, middle and bottom (y = rect.top+3 / middle / bottom-3; two x values) and require `row.contains(hit)` for every point. If a sticky element is hit, the focus ring is hidden: screenshot it and report the case. Script: `build/sv11466-11467-11422-2026-10-19/sv11422/z22p.mjs` (`probe()`).
