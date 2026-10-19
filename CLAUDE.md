@@ -107,6 +107,7 @@
 > - **AFTER ANY CONFIRM CLICK, RE-READ THE DIALOG — ShopView often asks twice ("Yes" → orange "Are You Sure?") (Standing Rule 102); never call a control "does nothing" before that.**
 > - **BEFORE CALLING A TICKET OUTSTANDING, RE-OPEN IT LIVE: status + last comment (Standing Rule 103).**
 > - **SCREEN RECORDING ON A QA COMMENT ONLY IF THE QA LEAD SAYS YES — ASK ON EVERY TICKET FIRST; no yes = no recording (Standing Rule 104; method playbook §AK). ONLY AFTER A RECORDING YES, ASK A SECOND QUESTION: VOICE-OVER YES/NO — on yes, a professional female voice explains the bug/fix in plain, professional words, in short lines that do NOT make the film longer (Rule 104, amended 2026-10-16).**
+> - **POINT TO A TEST CASE WITH ITS TEST-RUN LINK (`/tests/view/<test_id>`), NEVER THE CASE NUMBER OR CASE LINK (Standing Rule 111).**
 > - **A RE-CHECKED TICKET THAT NOW FOLLOWS THE PRD IS QA PASSED → green PASSED comment with annotated screenshots + verbatim PRD quote, existing label added, moved to Done; one that still fails is reopened, labelled and the developer tagged (Standing Rule 110).**
 > - **A PO RULING WINS ONLY IF THE PRD MATCHES IT — otherwise notify the PO instead of passing; a developer ruling that matches the PRD wins only after the QA lead approves; settle open questions from the PRD first (Standing Rule 109).**
 > - **ANYTHING DONE OUTSIDE THE PRODUCT (developer tools, console, direct API) IS LABELLED "COMPARISON ONLY" WHERE IT APPEARS — what was done, where, and that it is NOT a ShopView feature; never call a page style a "setting" (Standing Rule 108).**
@@ -5539,6 +5540,20 @@ deliver the 7-tab management report.
     **(c) USE THE EXISTING LABEL ONLY** (for Board/Tech View: `board-tech-view`); never create a new one.
     **(d) An already-posted "information" comment is edited in place to the verdict with a dated note (Rule 100)**, not
     stacked. Canonical batch: `build/obsolete-recheck-2026-10-19/`. Ties to Standing Rules 64, 72, 90, 97, 100, 103 and 109.
+
+111. **WHEN I REFER TO A TEST CASE, I GIVE THE QA LEAD ITS TEST-RUN LINK — NEVER THE CASE NUMBER OR THE CASE LINK (all
+    projects).**
+    USER DIRECTIVE (2026-10-19, verbatim): *"NOte pleae never give me the test case number an dlink rather ALWAYS Give me the
+    test run link of a test case."*
+    **THE RULE:** in every chat reply, status report and summary to the QA lead, a test case is pointed to by **its test in
+    the run** — `https://shopview.testrail.io/index.php?/tests/view/<test_id>` — with the run named alongside where useful
+    (`https://shopview.testrail.io/index.php?/runs/view/<run_id>`). **No C-number and no `/cases/view/` link.** Look the test
+    id up live (`get_tests/<run_id>` → the row whose `case_id` matches). **If a case is in no run, say that plainly** and
+    ask whether to add it, rather than falling back to the case link. Where a case is in more than one active run, give the
+    test link from the run for that project (Filters 352 · Schedule 357 · Reports Suite 359 · Board/Tech View 498).
+    **This SUPERSEDES Rule 8's "pair the internal ID with the C-id + /cases/view/ link" for what I tell the QA lead**; the
+    C-id still lives in TestRail write logs, id-maps and committed findings, where it is the record of which case was
+    written. Ties to Standing Rules 8, 34, 47 and 72 (the pre-post gate checks reports use test links).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
