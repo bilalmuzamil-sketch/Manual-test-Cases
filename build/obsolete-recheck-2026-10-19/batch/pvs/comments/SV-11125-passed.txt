@@ -1,0 +1,24 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+_Updated on 19 October 2026, 04:52 CDT: this comment first opened with "QA RE-CHECK: SAME ON PRODUCTION". It now gives the QA verdict, PASSED, and the ticket is moved to Done._
+
+Re-checked on 19 October 2026 on Staging (build v26.40.19-e435950) and Production (build v26.40.19-d2441a9), signed in as Admin, window 1440 x 900 px, zoom 100%.
+* This ticket is QA passed: the 60-day filter is kept after a reload, which is the check this ticket came from. The project spec does not cover the Parts > Returns page, and the page works the same as production.
+* On both, after a reload on *Parts* > *Returns* > *Credits*, the page opens on the *Returns* tab. The *60 days* date choice is kept (click *Credits* again and it is still 60 days).
+* The check this ticket came from asks for the chosen filter to be kept after a reload, which it is; the page opening on Returns is how production works.
+
+*1. Production vs Staging*
+!sv11125-production-vs-staging.png|width=1100,height=850!
+_Production and Staging: Credits tab with Date: 60 days (1, 2); after a reload the page opens on Returns (3)._
+
+*Where the expected result comes from*
+The ticket's source, the developer regression list (8 Oct 2026), item 6:
+{quote}Pages that remember filters and settings: Orders, Vendors, Return Requests, Return Credits, Part Sales, Deliveries, Parts Catalogue, Inventory, and the report pages. Set a filter, reload, and check that it's kept.{quote}
+
+*How to see it yourself*
+# Sign in to Staging (https://app.staging.shopview.com) or Production (https://app.shopview.com). Click *Parts* in the top menu, then *Returns*.
+# Click the *Credits* tab (next to *Returns*, top left). Click the *Date* filter on the right and choose *60 days*.
+# Reload the page (F5). The page opens on the *Returns* tab.
+# Click *Credits*: the *Date* filter still shows *60 days*. Production does the same.

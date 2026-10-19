@@ -1437,11 +1437,8 @@ what is still owed.
 ## Board View & Tech View bug batch (staging v26.40.19-754919e) — raised 2026-10-17
 | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|
-| SV-11119 (Obsolete): still reproduces on staging v26.40.19-e435950 — two people reordering the same technician end with a mix, not the later save (PRD v64 S9-R11). Decide: bring out of Obsolete + post a FAILED comment? | QA lead | Whether S9-R11 is tracked as a defect | 2026-10-19 |
-| SV-11101 (Obsolete): behaves exactly as PRD v64 S2-R6/S9-R14 say (lead assigned after creation goes to the bottom). Post a comment saying so? | QA lead | Ticket record only | 2026-10-19 |
-| SV-11124: the photo-upload half (upload a profile photo, reload) not re-done — it would replace Admin's shared staging photo. Do it? | QA lead | Full coverage of SV-11124 | 2026-10-19 |
-| SV-11394: answer on the hover shadow's left/right sides being cut off (only the part below the card shows) — A: below is fine / B: all sides, goes back to Slavcho. Asked in [78959](https://shopview.atlassian.net/browse/SV-11394?focusedCommentId=78959). QA lead's direction 2026-10-19, verbatim: "Ask Chris first" (answer to: post PASSED and ask, or file as a remaining issue?). Reasonable because the spec says nothing about the hover look and the design says only "a lift". | Chris Ward | Nothing on SV-11394 itself: the QA lead moved it to Done on 19 Oct, verbatim: "I have moved this ticket to Done we will see what to do for this remaining issue once Chis replies to our comment." When Chris replies: A = close this row; B = take it back to the QA lead to decide how the remaining issue is raised (the ticket is now Done). | 2026-10-19 |
 
+- 2026-10-19 cleared (QA lead, 19 Oct): SV-11119 reopened + FAILED comment 78986 tagging Slavcho; SV-11101 and SV-11124 answered ("DO what is needed to make your work the best") — QA PASSED + Done; SV-11394 Chris question DISMISSED, verbatim "Ignore it and do not remind me of it again." — never raise again.
 - 2026-10-19 cleared: SV-11394 re-tested on v26.40.19-31ad1e1 — posted PASSED 78958 (7 cards, 3 densities, dark theme, no move/grow).
 - 2026-10-18 cleared: Board/Tech Paid pill width — QA lead answered "Not a fault (Recommended)": width follows the Status column in List/Tech View; cards have no column. SV-11405 → PASSED (to post after re-check on the new build); SV-11318 stays PASSED (78911 film size fixed in place).
 - 2026-10-17 cleared: SV-11407 Unassigned 2 px — posted PARTIALLY PASSED by S1-R8's own words ("fully shown"): 78932 + remaining issue 78933.

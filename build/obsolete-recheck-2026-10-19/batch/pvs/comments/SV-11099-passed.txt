@@ -1,0 +1,24 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+_Updated on 19 October 2026, 04:52 CDT: this comment first opened with "QA RE-CHECK: SAME ON PRODUCTION". It now gives the QA verdict, PASSED, and the ticket is moved to Done._
+
+Re-checked on 19 October 2026 on Staging (build v26.40.19-e435950) and Production (build v26.40.19-d2441a9), signed in as Admin, window 1440 x 900 px, zoom 100%.
+* This ticket is QA passed: the empty search page matches the current spec (version 64, S1-N1a and S1-N1b) word for word.
+* On both, a search that finds nothing shows "No work orders match the search "ZZNOMATCH123"." with no button. With a filter on as well, both show "No work orders match these filters" with *Clear all filters*.
+* Since this ticket was raised, the spec was changed to say exactly this (S1-N1a and S1-N1b), so this is no longer a fault.
+
+*1. Production vs Staging*
+!sv11099-production-vs-staging.png|width=780,height=1176!
+_Production (left) and Staging (right): a search that matches nothing shows the search message and no button._
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S1-N1a: With filters active, with or without a search, the empty state reads “No work orders match these filters”, then “Try removing a filter to widen your results.”, with a Clear all filters button.
+S1-N1b: With only a search active, the empty state reads “No work orders match the search "{search}".” and shows no button.{quote}
+
+*How to see it yourself*
+# Sign in to Staging (https://app.staging.shopview.com) or Production (https://app.shopview.com) and click *Work Orders* in the top menu, then the *All* tab.
+# Click *Search* (the magnifying glass above the list, on the right) and type {{ZZNOMATCH123}}. The page reads "No work orders match the search "ZZNOMATCH123"." and has no button.
+# Also choose a status in the *Status* filter (for example *Paid*): the page reads "No work orders match these filters" with a *Clear all filters* button.

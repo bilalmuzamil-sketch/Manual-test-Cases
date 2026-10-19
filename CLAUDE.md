@@ -107,6 +107,7 @@
 > - **AFTER ANY CONFIRM CLICK, RE-READ THE DIALOG — ShopView often asks twice ("Yes" → orange "Are You Sure?") (Standing Rule 102); never call a control "does nothing" before that.**
 > - **BEFORE CALLING A TICKET OUTSTANDING, RE-OPEN IT LIVE: status + last comment (Standing Rule 103).**
 > - **SCREEN RECORDING ON A QA COMMENT ONLY IF THE QA LEAD SAYS YES — ASK ON EVERY TICKET FIRST; no yes = no recording (Standing Rule 104; method playbook §AK). ONLY AFTER A RECORDING YES, ASK A SECOND QUESTION: VOICE-OVER YES/NO — on yes, a professional female voice explains the bug/fix in plain, professional words, in short lines that do NOT make the film longer (Rule 104, amended 2026-10-16).**
+> - **A RE-CHECKED TICKET THAT NOW FOLLOWS THE PRD IS QA PASSED → green PASSED comment with annotated screenshots + verbatim PRD quote, existing label added, moved to Done; one that still fails is reopened, labelled and the developer tagged (Standing Rule 110).**
 > - **A PO RULING WINS ONLY IF THE PRD MATCHES IT — otherwise notify the PO instead of passing; a developer ruling that matches the PRD wins only after the QA lead approves; settle open questions from the PRD first (Standing Rule 109).**
 > - **ANYTHING DONE OUTSIDE THE PRODUCT (developer tools, console, direct API) IS LABELLED "COMPARISON ONLY" WHERE IT APPEARS — what was done, where, and that it is NOT a ShopView feature; never call a page style a "setting" (Standing Rule 108).**
 > - **A RECORDING SHOWS ONLY THE ACTIVITY — NO LONG STILL PAUSES (Standing Rule 107): `finish_recording.py` cuts every still stretch to 1.5 s (2 s on the final result); check the frame grid and the printed idle-removed figure before posting.**
@@ -5516,6 +5517,28 @@ deliver the 7-tab management report.
     **(d) OPEN QUESTIONS ARE ANSWERED FROM THE PRD FIRST.** Before asking anyone, read the PRD text that governs the point
     and settle it there if it can be settled; only what the PRD genuinely does not decide goes to the PO (Rules 7/55).
     Ties to Standing Rules 25, 32, 33, 45, 55, 57, 58 and 97.
+
+110. **A RE-CHECKED TICKET (OBSOLETE OR OTHERWISE) WHOSE BEHAVIOUR NOW FOLLOWS THE PRD IS QA PASSED AND GOES TO DONE; ONE THAT
+    STILL FAILS IS REOPENED, LABELLED AND HANDED TO THE DEVELOPER (all projects).**
+    USER DIRECTIVE (2026-10-19, verbatim): *"if that follows the PRD now and should be a passed test cases then its status
+    should be DOne with the annotated screenshots and quotation from the PRD and it should clearly confirm that it is QA
+    passed or not - save it as a rule for future aswell."* — and, for the same batch: *"apply the label to every ticket which
+    is not QA passed but before it was Obsoleted by me and move the QA passed ticket to done from the obsolete status after
+    adding the QA pass comment and applying the label which we had removed from such tickets … do not recreate the label
+    rather use the existing one."*
+    **(a) NEVER LEAVE A RE-CHECK AS AN "INFORMATION" COMMENT.** When re-checking a ticket (including one the QA lead closed as
+    Obsolete), the comment ends the question: a green **OVERALL QA STATUS: PASSED** when the behaviour now matches the PRD
+    (or the spec has changed so it no longer asks for what the ticket wanted), or a red **FAILED** when it still does not.
+    The comment says in plain words that the ticket **is QA passed** (or not), shows **annotated screenshots** (a Production
+    vs Staging pair where production behaves the same — QA lead 19 Oct), and **quotes the PRD text verbatim with its version**.
+    Where the PRD does not cover the surface (another page, a developer regression list), say so plainly and quote the
+    source the check came from (Rule 109(d)).
+    **(b) PASSED → add the project label → move it to Done** through the workflow (helper:
+    `build/testing-tools/jira_to_status.py KEY --label <label> --to Done`; Story Defects reopen to Open, Bugs leave OBSOLETE via
+    Blocked). **FAILED → reopen it, add the label, post the FAILED comment tagging the developer.**
+    **(c) USE THE EXISTING LABEL ONLY** (for Board/Tech View: `board-tech-view`); never create a new one.
+    **(d) An already-posted "information" comment is edited in place to the verdict with a dated note (Rule 100)**, not
+    stacked. Canonical batch: `build/obsolete-recheck-2026-10-19/`. Ties to Standing Rules 64, 72, 90, 97, 100, 103 and 109.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

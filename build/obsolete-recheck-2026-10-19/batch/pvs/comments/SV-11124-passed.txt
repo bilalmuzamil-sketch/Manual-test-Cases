@@ -1,0 +1,35 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+_Updated on 19 October 2026, 04:52 CDT: this comment first opened with "QA RE-CHECK: SAME ON PRODUCTION". It now gives the QA verdict, PASSED, and the ticket is moved to Done._
+
+Re-checked on 19 October 2026 on Staging (build v26.40.19-e435950) and Production (build v26.40.19-d2441a9), signed in as Admin, window 1440 x 900 px, zoom 100%.
+* This ticket is QA passed: a new profile photo shows after a reload, for the person who uploaded it and for other people (pictures 2 and 3 below). The Staff list has no photo column on production either, and the project spec does not ask for one.
+* On both, *Settings* > *Staff* has no photo column: First Name, Last Name, Email, Job Title, Role, Department(S), Created, Confirmed Invitation and Billable.
+* The Staff list has never shown photos on production, so this is not a fault.
+
+*1. Production vs Staging*
+!sv11124-production-vs-staging.png|width=1200,height=776!
+_Production (top) and Staging (bottom): the Staff list columns, no photo column on either._
+
+*2. A new photo shows after a reload (Tech's own screen)*
+!sv11124-01-own-screen.png|width=1440,height=820!
+_Staging, signed in as Tech: after uploading a red A and reloading, both the profile photo (1) and the top-right photo (2) show A. After uploading a green B and reloading, both show B._
+
+*3. Other people see the new photo after a reload*
+!sv11124-02-other-user.png|width=540,height=525!
+_Staging, signed in as Admin in a second browser, Schedule page: Tech ShopView's photo is the green B. Tech then uploads a blue C; after Admin reloads the page it shows C._
+
+*Where the expected result comes from*
+The ticket's source, the developer regression list (8 Oct 2026), Medium 9:
+{quote}Avatars everywhere (header, Staff, Schedule, cards). Avatars are now cached. After someone uploads a new photo, a reload must show the new one.{quote}
+
+*How to see it yourself*
+# Sign in to Staging: https://app.staging.shopview.com/administration/staff (or Production: https://app.shopview.com/administration/staff).
+# Look at the column headings of the Staff list: there is no photo column, and no row shows a photo. Production is the same.
+
+*To check the photo refresh*
+# Sign in to Staging as any user and click your initials or photo at the top right, then *Edit Profile*.
+# Click the photo on the left (*Click to upload a profile photo*), choose a new picture and reload the page (F5): the new photo shows on the profile page and at the top right.
+# In a second browser, sign in as another user and click *Schedule* in the top menu. Find the first user's row: after you reload, it shows the new photo.

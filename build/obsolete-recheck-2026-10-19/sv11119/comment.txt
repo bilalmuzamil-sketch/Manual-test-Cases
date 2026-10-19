@@ -1,0 +1,44 @@
+{panel:bgColor=#ffebe6|borderColor=#de350b}
+*OVERALL QA STATUS: FAILED*
+{panel}
+
+[~accountid:712020:1b27a800-7b5a-43f3-982a-81e7071a4fdb] could you please look into this one? It still reproduces on Staging (build v26.40.19-e435950), 19 October 2026, 4 times out of 4.
+
+*What is happening*
+When two people reorder the same technician's column at the same time, the later save does not win. After both refresh, the column shows a mix of the two moves, so neither person gets the order they saved.
+
+*1. The two moves*
+!sv11119-01-two-browsers.png|width=1060,height=978!
+_Browser 1 drags Zeta to the top (2). Browser 2, which has not refreshed, then drags Mid to the top (3). Browser 2 saved last, so its order (Mid, Alpha, Zeta) should win._
+
+*2. After both refresh*
+!sv11119-02-after-refresh.png|width=700,height=949!
+_Both browsers show Zeta, Mid, Alpha: browser 1's top card with browser 2's card squeezed in under it. Browser 2's order is not kept._
+
+*Steps to reproduce*
+# Open two different browsers (for example Chrome and a Chrome incognito window) and sign in to Staging (https://app.staging.shopview.com) as Admin in both.
+# In both browsers click *Work Orders* in the top menu, then the *All* tab (top left), then *Board View* (the right-most of the three view buttons, right side of the bar above the list).
+# In both browsers click *Search* (the magnifying glass above the board, on the right) and type {{QA1019}}.
+# Scroll the board sideways to the column whose cards end with *ZZAUTOTEST DC15 Vic Hover*. It holds four work orders: S2-37377 (Zeta Hauling QA1019), S2-37378 (Alpha Freight QA1019), S2-37379 and S2-37380 (Mid Trucking QA1019). Note the order of the first three cards; it is the same in both browsers.
+# In browser 1, drag the third card to the top of that column. Browser 1 shows the moved card first.
+# In browser 2, *without refreshing*, drag the second card to the top of the same column. Browser 2 shows its moved card first. Neither browser shows a message, which is correct.
+# Refresh both browsers (F5) and look at that column again.
+
+*Current behaviour*
+* Both browsers show a mix: browser 1's moved card first, then browser 2's moved card, then the rest.
+* In the run in the pictures: start Alpha, Mid (S2-37380), Zeta → browser 1 saves Zeta, Alpha, Mid → browser 2 saves Mid, Alpha, Zeta → after refresh both show *Zeta, Mid, Alpha*.
+
+*Expected behaviour*
+The later save wins: after refreshing, both browsers show browser 2's order, *Mid, Alpha, Zeta*.
+
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S9-R11: Save the manual order of work orders once per location. Everyone at the location sees the same order, in both Tech View and Board View. If two people reorder at the same time, the later save wins; the other person sees the saved order on their next refresh and is not warned.{quote}
+
+*Environment*
+* Staging, build v26.40.19-e435950, 19 October 2026, location Staging Heavy Duty - 9919.
+* Two Admin sign-ins in separate browsers, window 1440 x 900 px, zoom 100%.
+
+----
+
+*What passed*
+* Both people see the same order after a refresh, and neither is shown a warning, as S9-R11 asks. Only "the later save wins" fails.

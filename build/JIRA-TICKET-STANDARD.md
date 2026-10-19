@@ -229,3 +229,8 @@ When approved, the QA comment — **PASSED, FAILED or PARTIALLY PASSED** — end
 - When no before picture exists (the view is not on Production and the ticket has no screenshot), do NOT use the "Before and after" title. Title it "What it looks like now (after the fix)", put an AFTER banner on the picture, and say in one line why there is no before.
 - Words inside a picture such as "before opening" or "after Back" must not be confusable with before/after the fix; say so in the banner when they appear.
 - Tool: `build/board-tech-view-bugs-2026-10-16/before-after-fix-2026-10-19/relabel.py` (banner with wrapped title).
+
+## 12. Re-checking a ticket (Obsolete or otherwise) — the comment ends the question (Standing Rule 110, QA lead 19 Oct 2026)
+- Behaviour now follows the PRD (or the PRD changed so it no longer asks for it) → green **OVERALL QA STATUS: PASSED**, a plain line saying the ticket is QA passed and why, annotated screenshots (Production vs Staging where production is the same), the PRD text quoted verbatim with its version, steps to see it → add the existing project label → move to Done (`jira_to_status.py`).
+- Still fails → reopen, add the label, red **FAILED** comment tagging the developer (Rule 90 order).
+- Never a neutral "re-check" comment that leaves the reader to decide. An earlier one is edited in place with a dated note.

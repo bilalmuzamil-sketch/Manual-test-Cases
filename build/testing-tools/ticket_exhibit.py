@@ -55,6 +55,7 @@ def panel(src, crop, title, boxes, notes, scale=2):
         d.rectangle(a, outline=c, width=int(3.5*S))
         r = 15*S
         if side == 'top': cx = (a[0] + a[2])//2; cy = a[1] - r - 3*S   # 'top' puts the badge above the box when both sides hold words (SV-11118)
+        elif side == 'below': cx = (a[0] + a[2])//2; cy = a[3] + r + 3*S   # 'below' for a box at the very top edge with words both sides (SV-11124 header photo)
         else: cx = a[0] - r - 3*S if (side != 'right' and a[0] - 2*r - 6*S > 0) else a[2] + r + 3*S; cy = (a[1] + a[3])//2
         d.ellipse([cx-r, cy-r, cx+r, cy+r], fill=c)
         d.text((cx, cy), str(n), font=font(17*S, True), fill=(255, 255, 255), anchor='mm')
