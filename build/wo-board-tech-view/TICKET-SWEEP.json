@@ -17,5 +17,6 @@
  ],
  "prd_page": "845185030",
  "prd_version_handled": 64,
- "_note": "prd_version_handled moves to 66 only when the existing cases PRD v65/v66 change are updated (affected list: sv11522-11524-2026-10-19/classified.json)"
+ "_note": "prd_version_handled moves to 66 only when the existing cases PRD v65/v66 change are updated (affected list: sv11522-11524-2026-10-19/classified.json)",
+ "_query": "Every sweep reads EVERY ticket: (parent in (SV-10043, the 12 stories) OR \"Epic Link\" = SV-10043), every page, no date filter. The 19 Oct 2026 morning sweep used \"AND created >= 2026-10-14\" and left 49 older tickets without a ledger row; found the same evening."
 }
