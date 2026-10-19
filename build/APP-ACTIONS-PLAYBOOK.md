@@ -6163,3 +6163,5 @@ This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as a
 
 ## §AK-VIS — IS THE FOCUSED ITEM ACTUALLY VISIBLE? (proven 2026-10-19, SV-11422)
 `document.activeElement` being the right row does NOT mean the user can see it. Sticky headings (Tech View `tech_view_sticky_group`) can sit on top of a row the app scrolled into view. After any focus move that scrolls, sample `document.elementFromPoint(x,y)` at the row's top, middle and bottom (y = rect.top+3 / middle / bottom-3; two x values) and require `row.contains(hit)` for every point. If a sticky element is hit, the focus ring is hidden: screenshot it and report the case. Script: `build/sv11466-11467-11422-2026-10-19/sv11422/z22p.mjs` (`probe()`).
+
+**Addendum (19 Oct 2026): restore DENSITY too.** The x22/z22-derived scripts restore only `display`, `collapsedGroups` and `tab` in `/api/users/me/preferences/work-orders-list`. Any script that changes density must add `density` to that list, or the shared Admin user is left on the wrong density. Read the starting density from the row height if unsure (Compact 36, Regular 48, Comfortable 64 px).

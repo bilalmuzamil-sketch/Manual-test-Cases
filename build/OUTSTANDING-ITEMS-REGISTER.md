@@ -57,6 +57,12 @@ else owes).
 
 ---
 
+## 2026-10-19, ~18:30 UTC. **New layman cases for SV-11467 (test 4054407, Passed) and SV-11422 (test 4054408, Blocked on Chris). C614719 half-edited by Vladimir.**
+| What is missing | Who owes it | What it blocks | Since |
+|---|---|---|---|
+| C614719 (run 498 test 4007027): Vladimir Tomovic rewrote its preconditions today (08:46 and 09:17 UTC) for steps 8–13 (an off-screen technician C, WO-4), but its steps and expected results still stop at 7. | Vladimir / the QA lead decides who finishes it. The QA lead asked on 19 Oct for the SV-11422 test case to be "super simple for a layman"; I did not edit a case another author is changing (Rules 38/39/53) and wrote a new short case instead (test 4054408). | A tester reading C614719 meets setup for steps that don't exist. | 2026-10-19 |
+| TestRail result 527989 (test 4053764) says the DVI Test handle is "most of the bar"; measured 1053 / 516 / 204 px at 1920 / 1440 / 1024. | The QA lead: edit or delete in the TestRail UI (the API cannot edit a result). | One imprecise phrase in a Passed result. | 2026-10-19 |
+
 ## 2026-10-19, ~17:30 UTC. **SV-11422 RE-TESTED ON STAGING c850386: BOTH 18-OCT FAILURES FIXED, 9 OF 9 CHECKS PASS. ONE QUESTION OPEN WITH CHRIS (comment 79031).**
 | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|
