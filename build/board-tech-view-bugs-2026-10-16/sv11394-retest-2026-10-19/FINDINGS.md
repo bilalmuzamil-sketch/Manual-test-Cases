@@ -35,3 +35,6 @@ Build marker re-read (unchanged), ticket re-read (TESTING STAGE, 4 comments, las
 
 ## Learning check
 Nothing new beyond the existing before/after-label rule — applied: the BEFORE half is the same work order as the AFTER.
+
+## 2026-10-19 update
+QA lead moved SV-11394 to Done (status Done, resolution Done, re-read live). Chris's answer on the side shadow is still awaited; once he replies, the QA lead will decide what to do (verbatim: "we will see what to do for this remaining issue once Chis replies to our comment").
