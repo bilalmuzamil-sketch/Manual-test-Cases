@@ -439,7 +439,7 @@ rule. Generated from the split files' own headers.
 | **5** | Self-service test data & roles (all projects) |
 | **6** | Everything except TestRail is a disposable TEST account — act freely |
 | **7** | PO & Dev questions (all projects) |
-| **8** | TestRail IDs in deliverables (all projects) |
+| **8** | TestRail IDs in deliverables (all projects) — **amended 2026-10-19: every case reference carries the link to that test in its run (`/tests/view/<test_id>`)** |
 | **9** | Build-accurate, layman-friendly wording (all projects) |
 | **10** | "VIU" = the full BUILD-ACCURATE-WORDING-VIU-PROCESS (all projects, default |
 | **11** | ALWAYS ASK which process to run on a new/updated spec OR a VIU request |

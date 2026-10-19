@@ -706,3 +706,7 @@ after the `---REFERENCE---` line. The **key** is a reference; the **link and its
 answer to "where is it and is it still open?"
 
 **Learning:** L0254.
+
+### RULE 8 — AMENDMENT, 2026-10-19: **EVERY TEST CASE REFERENCE CARRIES THE LINK TO THAT TEST IN ITS RUN**
+His words (19 Oct 2026, run 498): *"WHenever you give me the reference of a test case always give that reference with the link to access the test case RUN for that test, note it as your learning/rule."*
+Every time a case is named to him — chat, report, ask, status line, run comment, handoff — it carries **the link to that test inside its run**: `https://shopview.testrail.io/index.php?/tests/view/<test_id>` (the test id comes from `get_tests/<run>`, paged; never guessed from the case id), next to the C-id. The case link (`/cases/view/<id>`) and the run link (`/runs/view/<run>`) may follow, but the **test-in-run link is the one he opens** and is never left out. A list of cases is a list of these links.
