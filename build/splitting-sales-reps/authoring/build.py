@@ -3,7 +3,7 @@
 import sys, json, os, importlib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ssr_lib
-MODS = [m for m in ["cases_s1_s2", "cases_s3_s4", "cases_s5_s8", "cases_rel", "cases_design"] if os.path.exists(f"{ssr_lib.D}/{m}.py")]
+MODS = [m for m in ["cases_s1_s2", "cases_s3_s4", "cases_s5_s8", "cases_tp", "cases_rel", "cases_design"] if os.path.exists(f"{ssr_lib.D}/{m}.py")]
 for m in MODS: importlib.import_module(m)
 probs = [p for c in ssr_lib.CASES for p in ssr_lib.check(c)]
 keys = [c["key"] for c in ssr_lib.CASES]

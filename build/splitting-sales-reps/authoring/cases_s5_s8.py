@@ -77,7 +77,7 @@ C("S5-05", "DATA", "A cent left over by rounding the shares goes to the Labor ro
    "Step 2: two rows show for the invoice.",
    "Step 3: the two shares add up to exactly ($0.01), and the cent is on the Labor row: Labor ($0.01), Parts $0.00."],
   ["S5-R7", "S5-R6"],
-  note="Each side's exact share is half a cent. The PRD says a cent left over by rounding goes to the Labor row; whether the split rounds each half down first is a question for the product owner (question list). Until answered, judge only that the shares add up to ($0.01) and that any odd cent is on the Labor row.")
+  note="Each side's exact share is half a cent, so this tie lands on the Labor row under every reading of the rounding rule. How a share that is not a tie is rounded is a question for the product owner.")
 
 C("S5-06", "DATA", "A whole-invoice fee with no labor or parts dollars goes to one side",
   [ADMIN, REPS2, CUST, ("{Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.", None),

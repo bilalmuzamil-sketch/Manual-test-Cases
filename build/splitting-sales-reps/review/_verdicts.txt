@@ -1,0 +1,138 @@
+S1-R1||CONFIRM||Restated verbatim [L49]; built in Phase 5.||CONFIRM||Same text.
+S1-R2||ADD||The card label's capital R is a change from today: [L1603] «Label case: "Sales representative" -> "Sales Representative" (PRD wording; Lead technician / Service advisor untouched).»||CONFIRM||Same text.
+S1-R3||CONFIRM||—||CONFIRM||Same text.
+S1-R4||ADD||Box height pinned to 42px: [L23] «S1-R4 no longer names a pixel value, so the plan builds to the existing **42px**.» and [L1578] «min-height:42px;». Keyboard reveal: [L635] «Keyboard: tabbing onto a hidden action focuses it, which triggers `:focus-within` and reveals it (S1-R4 "keyboard focus").»||DIVERGE||Jira names a number the PRD removed: [SV-11265 L27] «at the same 44px height and the same left edge» vs [PRD L82] «at the same height as those two fields and the same left edge». Tech plan builds 42px. See Q2.
+S1-R5||CONFIRM||Grid of field, 16px gap, 32px button column [L1575].||CONFIRM||Same text.
+S1-R6||DIVERGE||Requirement confirmed, but the tech plan says TODAY's gaps are already 16px, contradicting the PRD context note: [L29] «Product's reply calls this "a must-fix in this build" and says *"Today the gap under Lead Technician is wrong."*» vs PRD context note [PRD L101] «before this change Lead Technician reserved a 20px strip for messages under itself, so the gap to Service Advisor measured 36px». Expected result (16px) is the same either way. See Q12.||CONFIRM||Same text (Jira repeats the 36px context note).
+S1-R7||CONFIRM||[L1524].||CONFIRM||Same text.
+S1-R8||CONFIRM||List stays unpaginated, A–Z [L484].||CONFIRM||Same text.
+S1-R9||CONFIRM||—||CONFIRM||Same text.
+S1-R10||CONFIRM||—||CONFIRM||Same text.
+S1-R11||ADD||Split arrow offsets are left to the design check: [L1581] «[design-verify] offsets».||CONFIRM (older copy)||Jira omits the PRD's second sentence (arrow moves to the bottom-right corner when split). It says nothing different, but a tester reading only Jira would miss it. See Q13.
+S1-R12||CONFIRM||—||CONFIRM||Same text.
+S1-R13||CONFIRM||[L1506].||CONFIRM||Same text.
+S1-R14||CONFIRM||—||CONFIRM||Same text.
+S1-R15||CONFIRM||—||CONFIRM||Same text.
+S1-N1||ADD||The built-in technician role sees plain text: [L2268] «`tech` sees plain text on the card (S1-N1).» Server gate is 'Work Orders — Create & Edit' [L1288].||CONFIRM||Same text.
+S1-N2||ADD||The refusal applies only to people the work order does not already hold: [L401] «An id the WO already holds is accepted as-is, so an inactive holder can stay, move between».||CONFIRM||Same text.
+S1-N3||CONFIRM||Server message shown, field drops back [L1488], [L1492].||CONFIRM||Same text.
+S1-E1||ADD||[L2266] «Throttled network (Slow 3G): a second pick during a save is ignored with no flash; + / x disabled until the save finishes (S1-E1).»||CONFIRM||Same text.
+S1-E2||ADD||"Inactive" also covers a staff record that no longer exists [L1352]. A rep from another organization: [L283] «Behavior change: a cross-org id now reads "(Inactive)" with no name.» The card code shows a blank instead [L1525]. See Q5.||CONFIRM||Same text.
+S2-R1||ADD||Dark-mode fill defined: [L586] «body.body--dark .icon-action-btn:hover, body.body--dark .icon-action-btn--active { background: rgba(255,255,255,.08); }»||CONFIRM||Same text.
+S2-R2||ADD||[L585] «.icon-action-btn:hover, .icon-action-btn--active { background: rgba(0,0,0,.06); }  // [design-verify] fill token»||CONFIRM||Same text.
+S2-R3||CONFIRM||[L576].||CONFIRM||Same text.
+S2-R4||ADD||Menu anchored to the bottom-left of the +: [L592] «anchor="bottom left" self="top left"».||CONFIRM||Same text.
+S2-R5||CONFIRM||[L1528]–[L1530].||CONFIRM||Same text.
+S2-R6||CONFIRM||[L1510]; an inactive holder may be copied onto Parts [L401].||CONFIRM||Same text.
+S2-R7||CONFIRM||[L1571].||CONFIRM||Same text.
+S2-R8||CONFIRM||—||CONFIRM||Same text.
+S2-R9||CONFIRM||[L1550].||CONFIRM||Same text.
+S2-R10||ADD||[L1568] «The Labor field renders an EMPTY `.sales-rep-row__action` cell (S2-R10: no button, column kept so both boxes end at the» (both boxes end at the same point).||CONFIRM||Same text.
+S2-R11||CONFIRM||—||CONFIRM||Same text.
+S2-R12||CONFIRM||[L1507].||CONFIRM||Same text.
+S2-R13||CONFIRM||Phases 7–8.||CONFIRM||Same text.
+S2-R14||ADD||[L1586] «S2-R14 check: at 100% and 200% zoom in the browser walk,» plus a narrow window [L1676].||CONFIRM||Same text.
+S2-R15||CONFIRM||[L1404].||CONFIRM||Same text.
+S2-R16||CONFIRM||[L1511].||CONFIRM||Same text.
+S2-R17||ADD||Work orders saved in history before the release show one field: [L2384] «Old WO history snapshots** lack `sales_rep_split`; treated as not split.»||CONFIRM||Same text.
+S2-N1||ADD||[L388] «S2-N1 ("a side is never refilled on its own") hold for every caller, including a stale tab or a» but [L389] «The FE still always sends `split` explicitly.» So a second open tab that still shows one field would remove the Parts field. See Q8.||CONFIRM||Same text.
+S2-N2||DIVERGE||Tech plan rebuilds the part-sale field on the new component and changes its label case: [L297] «The part sale's rep field moves onto the new work order rep component with the + off» and [L1603]; it claims the card is [L1570] «visually unchanged (S2-N2 context note).» PRD context note [PRD L129] «with no + button, no remove x and no change to how it looks.» See Q6.||CONFIRM||Same text.
+S2-E1||CONFIRM||[L397]–[L402].||CONFIRM||Same text.
+S2-E2||CONFIRM||[L1376].||CONFIRM||Same text.
+S2-E3||CONFIRM||[L1836].||CONFIRM||Same text.
+S2-E4||ADD||A part sale keeps its own wording: [L396] «The part-sale message is unchanged: "…on an invoiced or paid part sale."»||CONFIRM||Same text.
+S2-E5||ADD||[L1738] «Moving lines to an EXISTING target WO» [L1739] «does not touch reps.»||CONFIRM||Same text.
+S3-R1||CONFIRM||—||CONFIRM||Same text.
+S3-R2||ADD||"Phone" means a device with no hover, not a small screen: [L289] «"Phone" = `@media (hover: none)`, not screen width».||CONFIRM||Same text.
+S3-R3||CONFIRM||—||CONFIRM||Same text.
+S3-R4||CONFIRM||[L632].||CONFIRM (older copy)||Jira omits the PRD's two sentences about the arrow always showing on touch and Lead Technician / Service Advisor keeping today's tap-to-reveal. See Q13.
+S3-R5||CONFIRM||[L1193].||CONFIRM||Same text.
+S3-R6||ADD||Collapse is decided by screen width, not touch: [L1678] «No new code: below `md`, `WorkOrderLeftSection.vue` renders the collapsed `OrderStatusCardMobile` (no assignee fields) until its edit button expands the full `OrderStatusCard`.» See Q11.||DIVERGE||[SV-11267 L29] «They show after Show Details, as Lead Technician and Service Advisor do today.» vs [PRD L149] «They show after the card is expanded with its edit button, as Lead Technician and Service Advisor do today. The expand control itself does not change.» See Q3.
+S4-R1||ADD||[L1193] «the dialog stays open (no Access Denied) and lists reps (D14)» for a user with only 'Work Orders — Create & Edit'.||CONFIRM||Same text.
+S4-R2||CONFIRM||[L963].||CONFIRM||Same text.
+S4-R3||CONFIRM||Unpaginated [L484].||CONFIRM||Same text.
+S4-R4||ADD||[L1141] «the + and x sit inside the form body (scrolls with the fields)».||CONFIRM||Same text.
+S4-R5||CONFIRM||—||CONFIRM||Same text.
+S4-R6||CONFIRM||[L1100]–[L1103].||CONFIRM||Same text.
+S4-R7||CONFIRM||[L1096].||CONFIRM||Same text.
+S4-R8||CONFIRM||[L1097].||CONFIRM||Same text.
+S4-R9||CONFIRM||—||CONFIRM||Same text.
+S4-R10||CONFIRM||[L1125].||CONFIRM||Same text.
+S4-R11||CONFIRM||[L1098].||CONFIRM||Same text.
+S4-R12||CONFIRM||—||CONFIRM||Same text.
+S4-R13||CONFIRM||—||CONFIRM||Same text.
+S4-R14||CONFIRM||—||CONFIRM||Same text.
+S4-R15||CONFIRM||[L1127].||CONFIRM||Same text.
+S4-R16||CONFIRM||Cancel saves nothing [L1193].||CONFIRM||Same text.
+S4-R17||ADD||A switched-off person is still credited: [L1837] «NO is_sales_rep filter: the S4-R27 context note». A customer person with no staff record credits nobody [L900]–[L901].||CONFIRM||Same text.
+S4-R18||CONFIRM||[L1828].||CONFIRM||Same text.
+S4-R24||CONFIRM||[L1714]–[L1719].||CONFIRM||Same text.
+S4-R25||ADD||A split customer with one ineligible side still gives a split work order, that side Unassigned [L1717]–[L1718].||CONFIRM||Same text.
+S4-R26||CONFIRM||[L791]–[L793].||CONFIRM||Same text.
+S4-R31||CONFIRM||[L1734], [L966].||CONFIRM||Same text.
+S4-R32||CONFIRM||[L1742].||CONFIRM||Same text.
+S4-R27||CONFIRM||[L1725].||CONFIRM||Same text.
+S4-R28||CONFIRM||[L1740].||CONFIRM||Same text.
+S4-R30||CONFIRM||[L1762].||CONFIRM||Same text.
+S4-R29||CONFIRM||Split state is copied too [L1738].||CONFIRM||Same text.
+S4-R19||ADD||[L1155] «Everything else in that block (Phone, Credit, Website, IBS) stays inside the address check, as today.» No "(Inactive)" on customer fields: [L296] «No "(Inactive)" suffix on customer fields». See Q7.||CONFIRM (older copy)||Jira omits the PRD's two address sentences (rows show on every customer, other fields keep today's address rule). See Q13.
+S4-R20||CONFIRM||[L794]–[L795].||CONFIRM||Same text.
+S4-R21||CONFIRM||[L875]–[L879]; worked count [L969].||CONFIRM||Same text.
+S4-R22||ADD||Renames made through the public API reach customers too: [L803] «ADD a regression test: rename a staff member via the public API, then GET a».||CONFIRM||Same text.
+S4-R23||ADD||Only fields holding a person get a row [L989]; sort order [L993] «ORDER BY LOWER(co.name), LOWER(sales_rep_name), co.id, csr.user_id»; [L1001] «Rows are keyed by user id rather than name, which answers the old "two people with the same name"».||CONFIRM||Same text.
+S4-N1||CONFIRM||[L1831].||CONFIRM||Same text.
+S4-N2||ADD||[L284] «S4-N2 holders stay re-savable».||CONFIRM||Same text.
+S4-N3||CONFIRM||[L863]–[L864].||CONFIRM||Same text.
+S4-E1||DIVERGE||[L30] «The Phase 2 migration turns those 10 into "Unassigned".» vs [PRD L196] «On release day every existing customer has the one "Sales Representative" field, with no Service Parts or Part Sales field, and keeps its one representative». Product accepted it as an FYI [L239] but the PRD text has no exception. See Q4.||CONFIRM||Same text.
+S4-E2||CONFIRM||—||CONFIRM||Same text.
+S5-R1||CONFIRM||[L1817].||CONFIRM||Same text.
+S5-R2||CONFIRM||[L2005].||CONFIRM (older copy)||Jira omits the PRD's sentences on the report showing the CURRENT name and the captured name only when the staff record is gone. See Q13.
+S5-R3||ADD||Part sale vs work order is decided by invoice number: [L316] «an invoice numbered `LIKE 'P%'` is a part sale (one Part Sales row); **every other invoice** — `S%` and any number outside both prefixes — is a work order with a Labor row and a Parts row.»||CONFIRM||Same text.
+S5-R4||ADD||Line fees and discounts are already inside Labor/Parts Invoiced: [L1957] «`InvoiceFinancialSnapshotService` already nets `labor_line`-scoped adjustments into `labor_sell` and `part_line`-scoped ones into `parts_sell`».||CONFIRM||Same text.
+S5-R5||CONFIRM||[L1957].||CONFIRM||Same text.
+S5-R6||ADD||The processing fee and the old invoice discount rate count as whole-invoice amounts: [L1957] «"scopes whole_wo / whole_parts_sale, the processing fee, the legacy invoice.discount rate and the §5 subtotal floor"». Worked example recomputed and correct [L2051]–[L2053].||CONFIRM||Same text.
+S5-R7||DIVERGE||Parts share is rounded to the NEAREST cent; Labor only gets the extra cent on an exact half-cent tie: [L1968] «round half TOWARD ZERO: a tie cent stays with Labor (S5-R7)» and the non-tie example [L2059] «PARTS=−67 (exact −66.67), LABOR=−33 ✓.» PRD [PRD L212] «A cent left over by rounding the share goes to the Labor row.» Two readings give different cents. See Q1.||CONFIRM||Same text.
+S5-R8||ADD||"Empty side" is read as "no representative": [L1970] «THEN CASE WHEN LR IS NULL AND PR IS NOT NULL THEN A ELSE 0 END    -- S5-R8». See Q9.||CONFIRM||Same text.
+S5-R9||CONFIRM||[L1984].||CONFIRM||Same text.
+S5-R10||CONFIRM||[L2043].||CONFIRM||Same text.
+S5-R11||CONFIRM||[L2044].||CONFIRM||Same text.
+S5-R12||CONFIRM||—||CONFIRM||Same text.
+S5-R13||CONFIRM||[L2013].||CONFIRM||Same text.
+S5-R14||CONFIRM||[L1972], [L1996].||CONFIRM||Same text.
+S5-R15||ADD||Exact columns blanked per row type [L463]–[L464]; dash is an em dash, real zero "$0.00" [L2194].||CONFIRM||Same text.
+S5-R15a||CONFIRM||[L1917]–[L1918].||CONFIRM||Same text.
+S5-R16||CONFIRM||[L1919]–[L1921].||CONFIRM||Same text.
+S5-R17||CONFIRM||[L467]–[L468].||CONFIRM||Same text.
+S5-R18||CONFIRM||—||CONFIRM||Same text.
+S5-R19||ADD||[L2207] «after the four identifiers and BEFORE Location»; not sortable [L2192] «Not server-sortable»; the rep-name and Totals cells span the new column [L2209].||CONFIRM||Same text.
+S5-R20||CONFIRM||[L2188].||CONFIRM||Same text.
+S5-R21||CONFIRM||[L2189].||CONFIRM||Same text.
+S5-R22||ADD||The choice is remembered in the browser: [L2233] «persisted in localStorage». See Q10.||CONFIRM||Same text.
+S5-R23||ADD||Sales Type cell blank on rep and Totals rows [L471]; [L1924] «in `expanded()` only, never in `summary()`.» (no Sales Type column in the Summary export).||CONFIRM||Same text.
+S5-R24||CONFIRM||[L2347].||CONFIRM||Same text.
+S5-N1||CONFIRM||[L27], [L2013].||CONFIRM (older copy)||Jira omits the PRD sentence "On a split work order, a side with no dollars … still gives its representative a $0.00 row". See Q13.
+S5-N2||CONFIRM||[L2093].||CONFIRM||Same text.
+S5-E1||CONFIRM||Recomputed [L2054]–[L2056]; adds up.||CONFIRM||Same text.
+S5-E2||CONFIRM||[L367], [L2062]–[L2063].||CONFIRM (older copy)||Jira omits the PRD sentence on invoices before 2026-07-29 staying Unassigned. See Q13.
+S6-R1||ADD||A split work order with the same person on both sides also prints one name: [L1647] «const samePerson = !split» (not split, or the same person on both sides).||CONFIRM||Same text.
+S6-R2||CONFIRM||[L640]–[L645]; printed row label [L2308].||CONFIRM||Same text.
+S6-R3||CONFIRM||[L642].||CONFIRM||Same text.
+S6-R4||CONFIRM||[L1649].||CONFIRM||Same text.
+S6-N1||CONFIRM||[L1644].||CONFIRM||Same text.
+S7-R1||CONFIRM||[L403]–[L404].||CONFIRM||Same text.
+S7-R2||CONFIRM||—||CONFIRM||Same text.
+S7-R3||ADD||[L1664] «a split entry reads both sides even when one person holds both»; [L1670] «"Unknown" for an unresolved id.»; Parts names become searchable in the log [L1345]–[L1346].||CONFIRM||Same text.
+S7-R4||CONFIRM||[L1264].||CONFIRM||Same text.
+S7-R5||CONFIRM||[L1270].||CONFIRM||Same text. (Story 7's prerequisite paragraph diverges — see section c and Q14.)
+S8-R1||CONFIRM||[L2171]–[L2172].||CONFIRM||Same text.
+S8-R2||CONFIRM||—||CONFIRM||Same text.
+S8-R3||ADD||The chip never shortens the names: [L613] «skip `truncate()` when `summaryListsNames` is set».||CONFIRM||Same text.
+S8-R4||CONFIRM||[L474].||CONFIRM||Same text.
+S8-R5||CONFIRM||[L2220]–[L2221].||CONFIRM||Same text.
+S8-R6||CONFIRM||[L667].||CONFIRM||Same text.
+S8-R7||CONFIRM||[L663].||CONFIRM||Same text.
+S8-R8||CONFIRM||[L667]–[L668].||CONFIRM||Same text.
+S8-R9||CONFIRM||[L678]–[L679].||CONFIRM||Same text.
+S8-R10||CONFIRM||SBC keeps its own split [L316].||CONFIRM||Same text.
+S8-N1||CONFIRM||—||CONFIRM||Same text.
+S8-E1||ADD||[L690] «an old `?productTypes=parts` URL opens with Part Sales selected».||CONFIRM||Same text.
