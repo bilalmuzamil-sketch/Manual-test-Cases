@@ -1,0 +1,56 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-e435950",
+  "date": "19 October 2026",
+  "note": "run 498 blocked step 1: QA lead's A on all three (19 Oct)"
+ },
+ "results": {
+  "C368131": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging. Step 3 now uses the staff list's Department(s) button (QA lead's decision, 19 Oct 2026; the test was updated to match).",
+    "Step 2: Jenny Pinned was deactivated with Deactivate Account.",
+    "Step 3: Theresa Pinned's Location was changed to Staging Lethbridge - 4310, then in Manage staff enrollments her Staging Heavy Duty enrolment was removed with the bin icon; she is then no longer offered as a technician here.",
+    "Step 7: Jenny Pinned's column is still pinned right after Unassigned, marked Inactive and reading \"No work orders\"; Theresa Pinned is not among the pinned columns.",
+    "Step 8: Theresa Pinned's column appears further along as a normal column holding S2-35909, with no pin icon and no Inactive marker.",
+    "Step 9: S2-35908 cannot be dropped on Jenny Pinned's column and stays with Tara Lead.",
+    "Steps 10 and 11: dropping S2-35908 on Theresa Pinned's column is refused with \"This technician can't be assigned work orders.\" and it stays with Tara Lead.",
+    "Step 13: S2-35909 moved to Unassigned (\"Lead technician removed\") and Theresa Pinned no longer has a column.",
+    "Step 15: for the view-only user, Jenny Pinned's pinned column also reads \"No work orders\" and there is no Theresa Pinned column."
+   ],
+   "ticket": null,
+   "pictures": [
+    "pictures-1019/C368131-1-pins-and-refusal.png"
+   ]
+  },
+  "C368167": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging. Step 2 now leaves the New Customer Payment window open (QA lead's decision, 19 Oct 2026; the test was updated). Closing it with X takes the invoice back off, on staging and on production alike.",
+    "Set-up: S2-37327, Complete, led by Esther Howard.",
+    "Step 2 (tab 2): Finance tab > Create Invoice; the work order read Invoiced and the payment window was left open.",
+    "Steps 3 to 5 (tab 1, not reloaded): Lead Technician was opened and another technician (Jenny Wilson) picked; the message \"The lead technician can't be changed once a work order is Invoiced or Paid. Please try to resolve this.\" appeared and the field kept Esther Howard.",
+    "Step 6: after reloading tab 1, Lead Technician still reads Esther Howard; the change was not saved."
+   ],
+   "ticket": null,
+   "pictures": [
+    "pictures-1019/C368167-1-lead-kept.png"
+   ]
+  },
+  "C96936": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging. The second technician is Aaron Baker instead of Ralph Edwards (QA lead's decision, 19 Oct 2026; the test was updated), because Ralph Edwards cannot be picked on the work order page.",
+    "Steps 1 to 4: tab A, All tab, search ZZAUTOTEST F2 Refresh Lead, Tech View: Esther Howard shows 3 and Aaron Baker shows 2.",
+    "Step 5: in tab B, S2-35331's Lead Technician was changed to Aaron Baker on the work order page.",
+    "Step 6: before the refresh, tab A still showed S2-35331 under Esther Howard.",
+    "Steps 7 and 8: after the refresh, S2-35331 is under Aaron Baker; Esther Howard shows 2 and Aaron Baker shows 3."
+   ],
+   "ticket": null,
+   "pictures": [
+    "pictures-1019/C96936-1-after-refresh.png"
+   ]
+  }
+ }
+}

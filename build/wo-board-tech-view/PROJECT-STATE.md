@@ -290,3 +290,6 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
   - C96936 behaviour matches on screen with Aaron Baker (Ralph Edwards cannot be picked — list cut-off SV-11429). Expected names Ralph.
     Asked: Pass + rename (114(c) needs his naming) or Retest per the SV-11429 ruling.
   - New test in the run today: C665914 (test 4014037) Failed "Track here SV-11503" — not ours, untouched.
+- 19 Oct — QA lead "A" on all three: C368131 (527970), C368167 (527971), C96936 (527972) PASSED with pictures; cases updated
+  (case-updates-2026-10-19b/AUDIT.md). C368167 and C96936 are Automated → tell Vlad. Run now 253 Passed · 7 Failed · 9 Blocked · 10 Retest.
+  Blocked left: C96916, C368214 (Back button — waiting A/B/C), C97024, C97035, C368153 (analytics), C97003, C614711, C96945, C590122.
