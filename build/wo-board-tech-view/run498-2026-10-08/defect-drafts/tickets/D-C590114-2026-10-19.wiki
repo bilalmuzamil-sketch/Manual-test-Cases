@@ -1,0 +1,49 @@
+TITLE: Tech View – Total Price Sits at the Left of Its Column Instead of the Right
+TYPE: Story Defect · PARENT: SV-10045 (Tech View — table grouped by lead technician; Ready for QA, read live 19 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-10045
+ALREADY REPORTED: none. JQL read live 19 Oct 2026: text ~ "Total price" OR summary ~ "tooltip" (30 days); label board-tech-view (3 days). SV-11325 (TESTING STAGE) is the number link, progress bar and advisor avatar under S2-R20, not Total price; SV-11420 (TESTING STAGE) is row text size.
+BASIS: design only. PRD v64 (16 Oct 2026, read live 19 Oct) has no sentence on Total price alignment; S2-R20 says "Tech View’s cells follow the design" and S2-R23 left-aligns only Status, Waiting On Parts and Progress. The design file right-aligns Total price in Tech View at every density (14 Oct design inventory V0753/V0754: align right). QA lead 19 Oct 2026: "If the build going against the design if YES then create them too."
+STATUS: APPROVED BY THE QA LEAD 19 Oct 2026 (design-based).
+
+h2. Description
+
+*In Tech View, the Total price amount should sit at the right of its column, as in the design.* On staging it sits at the left.
+
+For example,
+* a work order's total such as {{$173.98}} starts at the left edge of the Total price column
+* the *Total Price* heading is at the left too
+* in the design, amounts line up on the right so the dollar figures can be compared down the column
+
+This differs from the design file for Tech View (Claude Design project "Work Orders", board "Work Orders.dc.html").
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin, check the top bar shows *Staging Heavy Duty - 9919*, and use a browser window 1440 px wide at 100% zoom.
+# Open *Work Orders*, click the *All* tab, then click *Tech View* in the display switcher.
+# Scroll right to the *Total Price* column of any group's group.
+#* Each amount starts at the left of the column.
+
+*Actual Result:*
+* Total Price amounts sit at the left of their column in Tech View.
+
+*Expected Result:*
+* As the test expects: *"Step 7: “Waiting On Parts” shows a grey dash (-), not a blank, and “Total price” sits at the right of its column."*
+
+h2. Screenshots
+
+!C590114-1-total-price-1019.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.40.19-31ad1e1}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 19 Oct 2026 (first seen 16 Oct 2026)
+* *User:* Admin, browser window 1440 px wide at 100% zoom
+
+h2. Sources
+
+* Design: Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html", Tech View Total price cell:
+{quote}text-align: right; color: var(--sv-text-primary); font-variant-numeric: tabular-nums;">{{ wo.total }}{quote}
+* PRD "Work Orders — Board View & Tech View Display Options", [Confluence 845185030|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030], version 64 (16 Oct 2026, Chris Ward), read 19 Oct 2026, S2-R20 (part):
+{quote}Tech View’s cells follow the design{quote}
+
+h2. Test case
+
+* [C590114 Tech View cells show a blue number, a thin progress bar and the advisor's avatar|https://shopview.testrail.io/index.php?/cases/view/590114]

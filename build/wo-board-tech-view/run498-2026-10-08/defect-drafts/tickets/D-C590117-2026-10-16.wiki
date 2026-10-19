@@ -2,7 +2,8 @@ TITLE: Tech View Group Header – Count Tooltip Opens Below the Number Instead o
 TYPE: Story Defect · PARENT: SV-10045 (Tech View — table grouped by lead technician; Ready for QA, read live 16 Oct 2026 — re-read before the ask) · PRIORITY: Medium · LINK: relates to SV-10045
 ALREADY REPORTED: none found among SV-11317 to SV-11326, SV-11338, SV-11393 to SV-11398 (titles read live 16 Oct 2026). SV-11322 is the display switcher's tooltip; SV-11395 is Board View's avatar bubble.
 SEEN ON: staging build {{v26.40.18-7d85b7d}}, 16 Oct 2026 (run 498, C590117).
-STATUS: DRAFT — NOT FILED. One ask per ticket; the QA lead decides (Rule 62/113).
+BASIS 19 Oct 2026: design only — PRD v64 (read live 19 Oct) still names no position for this tooltip. The design does: 14 Oct design inventory V0929, Tech View, design state "tech-group-count-tooltip": [role=tooltip] "4 work orders" opens ABOVE its host and covers no column header; the design tooltip style is transform: translate(-50%, -100%) (quoted in C590114). QA lead 19 Oct 2026: "If the build going against the design if YES then create them too."
+STATUS: APPROVED BY THE QA LEAD 19 Oct 2026 (design-based).
 RE-CHECKED 17 Oct 2026: still Failed on staging build {{v26.40.19-1493c63}} (count tooltip below the number). PRD re-read live at version 64 (16 Oct 2026 20:42 UTC, Chris Ward): still NO sentence on where the group-header count tooltip opens; v60/v61 set placement only for avatar name bubbles on rows and cards (above) and header avatars (browser's plain name tip). Stays HELD as design-only (Rule 58); the QA lead decides on a design-based ticket. The case was rewritten on 16 Oct: the tooltip line is now Step 4 (quote below refreshed). See source-verify-2026-10-17/RECONCILE-4.md.
 NOTE: the placement "above the number" comes from the test case's Expected and the design picture; no PRD sentence names the tooltip's position (S2-R12 names only the count).
 
@@ -31,21 +32,20 @@ h2. Steps to Reproduce
 
 h2. Screenshots
 
-!C590117-1-headers-and-count-tooltip.png|width=1000!
+!C590117-1-count-tooltip-1019.png|width=1000!
 
 h2. Environment
 
-* *Build:* {{v26.40.18-7d85b7d}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 16 Oct 2026
+* *Build:* {{v26.40.19-31ad1e1}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 19 Oct 2026 (first seen 16 Oct 2026 on {{v26.40.18-7d85b7d}})
 * *User:* Admin, browser window 1440 px wide at 100% zoom
 
 h2. Sources
 
-* Test case C590117 (Expected, verbatim):
-{quote}Step 4: a dark tooltip opens above the number and does not cover any column header label.{quote}
-* PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 54, S2-R12 (as quoted in the test case):
+* Design: Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html", Tech View state "tech-group-count-tooltip": hovering a group's count shows the tooltip "4 work orders" above the number, covering no column header. The design's tooltip style:
+{quote}transform: translate(-50%, -100%); padding: 6px 10px; border-radius: var(--sv-radius-md); background: var(--sv-surface-inverse);{quote}
+* PRD "Work Orders — Board View & Tech View Display Options", [Confluence 845185030|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030], version 64 (16 Oct 2026, Chris Ward), read 19 Oct 2026, S2-R12:
 {quote}Each group header shows the technician’s name, avatar, and a count of the work orders currently shown in that group, after the filter view and filters are applied, so the count always matches the rows listed.{quote}
-* Design: Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026, board "Work Orders.dc.html", state core__work-orders__tech-regular__light__1440 (design picture DC-08-tech-view-group-headers-light-1440.png, attached to the test case).
 
 h2. Test case
 
-* [C590117 Tech View group headers show grip, arrow, avatar, name and count as designed|https://shopview.testrail.io/index.php?/cases/view/590117]
+* [C590117 Tech View group headers show grip, arrow, avatar, name, pin and count|https://shopview.testrail.io/index.php?/cases/view/590117]

@@ -1,0 +1,40 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-31ad1e1",
+  "date": "19 October 2026",
+  "note": "run 498: design-based tickets filed 19 Oct (C590114, C590117)"
+ },
+ "results": {
+  "C590114": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, checked again today before filing the ticket.",
+    "In Tech View, every Total Price amount starts at the left of its column (for example $984.79, $4,142.67, $309.23), and the Total Price heading is at the left too.",
+    "The test expects Total price at the right of its column, as in the design.",
+    "Design (Work Orders design file, Tech View Total price cell): \"text-align: right\". The requirements page does not set this alignment; it says Tech View's cells follow the design.",
+    "The other steps of this test were not part of today's re-check; they read as on 17 Oct.",
+    "What the tester must do: follow the ticket; when it is fixed, run this test again."
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11500 (Open, read 19 Oct 2026).",
+   "pictures": [
+    "defect-drafts/C590114-1-total-price-1019.png"
+   ]
+  },
+  "C590117": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging, checked again today before filing the ticket.",
+    "In Tech View, hovering the count at the right of a technician's group header shows the tooltip \"1 work order\" BELOW the number, over the group's first row.",
+    "The test expects the dark tooltip to open above the number, as in the design.",
+    "Design (Work Orders design file, Tech View state for the group count tooltip): the tooltip \"4 work orders\" opens above the count and covers no column header. The requirements page does not set where this tooltip opens.",
+    "The other steps of this test were not part of today's re-check; they read as on 17 Oct.",
+    "What the tester must do: follow the ticket; when it is fixed, run this test again."
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11501 (Open, read 19 Oct 2026).",
+   "pictures": [
+    "defect-drafts/C590117-1-count-tooltip-1019.png"
+   ]
+  }
+ }
+}

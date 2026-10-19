@@ -264,3 +264,11 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
   (his condition). Their test pages show SV-11325 / SV-11338 only because those tickets sit on results from before the 16 Oct rewrite;
   the 17 Oct results carry no ticket.
 - Run 498 now: 248 Passed, 6 Failed, 19 Blocked, 5 Retest.
+- 19 Oct (later) — QA lead: "If the build going against the design if YES then create them too." Both checked against the design and
+  re-measured on v26.40.19-31ad1e1 → both against the design → filed (owning story SV-10045 Ready for QA, read live):
+  - **SV-11500** https://shopview.atlassian.net/browse/SV-11500 — Tech View Total Price at the left (design: right). C590114, result 527956/527958,
+    test https://shopview.testrail.io/index.php?/tests/view/3995723
+  - **SV-11501** https://shopview.atlassian.net/browse/SV-11501 — Tech View group count tooltip opens below (design: above). C590117, result 527957/527959,
+    test https://shopview.testrail.io/index.php?/tests/view/3995726
+  - Design basis: commit 23ab6f695 VISUAL-INVENTORY-ROWS V0753/V0754 and V0929 (L0450). Drafts D-C590114-2026-10-19.wiki, D-C590117-2026-10-16.wiki.
+- C96929 (Automated, changed with his yes 19 Oct) — tell Vlad: test https://shopview.testrail.io/index.php?/tests/view/3481873 (run 498).
