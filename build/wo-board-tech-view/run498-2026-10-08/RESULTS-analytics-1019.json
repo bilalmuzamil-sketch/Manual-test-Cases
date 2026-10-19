@@ -1,0 +1,53 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-e435950",
+  "date": "19 October 2026",
+  "note": "run 498 analytics trio after case update"
+ },
+ "results": {
+  "C97024": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (events captured from the browser).",
+    "Step 2: opening Board View sent 13 field events (one per optional Board View field) and 1 density event.",
+    "Step 4: opening Tech View sent 17 field events (one per Tech View column the user can choose) and 1 density event.",
+    "Step 8: reopening the displays in the same session sent no new field or density events.",
+    "Field events for the session: 13 + 17 = 30.",
+    "The test's numbers were updated on 19 Oct 2026 (QA lead's decision) to the latest requirements: PRD version 64, S2-R4, \"Tech View offers the same columns as List, plus the Assigned Techs column\" - 16 List columns plus Assigned Techs makes 17. The old 15 came from a developer's comment of 6 Oct."
+   ],
+   "ticket": null,
+   "pictures": [
+    "pictures-1019/C97024-1-field-events.png"
+   ]
+  },
+  "C97035": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging (events captured from the browser).",
+    "Display views 5, field loads 30, density loads 2, field changes 3 (one per changed field, even when changed quickly together), density changes 1.",
+    "The last step added nothing. Grand total 41, as expected.",
+    "The test's numbers were updated on 19 Oct 2026 (QA lead's decision) to the latest requirements: PRD version 64, S2-R4, \"Tech View offers the same columns as List, plus the Assigned Techs column\" - 16 List columns plus Assigned Techs makes 17. The old 15 came from a developer's comment of 6 Oct."
+   ],
+   "ticket": null,
+   "pictures": [
+    "pictures-1019/C97035-1-event-totals.png"
+   ]
+  },
+  "C368153": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, as a user whose role has See Financial Data turned off.",
+    "Step 2: Board View sent 12 field events, none for total price.",
+    "Step 4: Tech View sent 16 field events, none for total price.",
+    "Step 5: Fields to display does not offer Total price, and no card shows a dollar amount.",
+    "Total for this user: 12 + 16 = 28.",
+    "The test's numbers were updated on 19 Oct 2026 (QA lead's decision) to the latest requirements: PRD version 64, S2-R4, \"Tech View offers the same columns as List, plus the Assigned Techs column\" - 16 List columns plus Assigned Techs makes 17. The old 15 came from a developer's comment of 6 Oct."
+   ],
+   "ticket": null,
+   "pictures": [
+    "pictures-1019/C368153-1-no-money-fields.png"
+   ]
+  }
+ }
+}

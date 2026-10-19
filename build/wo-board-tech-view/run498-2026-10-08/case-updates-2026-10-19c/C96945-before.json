@@ -1,0 +1,486 @@
+{
+ "case": {
+  "id": 96945,
+  "title": "A card's More actions menu appears on hover or focus and offers Reassign",
+  "section_id": 13238,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": "SV-10046",
+  "created_by": 3,
+  "created_on": 1790157771,
+  "updated_by": 3,
+  "updated_on": 1792177877,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 6,
+  "is_deleted": 0,
+  "is_ai_generated": false,
+  "is_ai_automated": false,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 3,
+  "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as an Admin user (the \"Admin\" role, which has Work orders &gt; View and Create &amp; Edit) at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A} with the \"Technician\" role and is pinned in your Board View.<br>For example: {Technician-A} is ZZAUTOTEST C96945 Ana.</li><li>Customer {Customer-A} has one Approved work order, {Work-order-1}, led by {Technician-A}.<br>For example: {Customer-A} is ZZAUTOTEST C96945 Card Menu and {Work-order-1} is S10043-17731.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, the name of {Customer-A} in \"Search\", no filter chosen, \"Assigned to me\" off, in a browser window at least 1024 px wide.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+  "custom_steps": "<ol><li>Hover the card for {Work-order-1}.</li><li>Click the \"More actions\" (\u2026) button that appears.</li><li>Read the menu items.</li><li>Press Escape.</li><li>Move the mouse off the card.</li><li>Click once in the \"Search\" box.</li><li>Press Tab until a card shows a focus ring.</li><li>Use the arrow keys to move the focus ring to the card for {Work-order-1}.</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the \"More actions\" (\u2026) button appears on the card.</li><li>Step 2: the card's menu opens.</li><li>Step 3: the menu includes \"Reassign lead technician\".</li><li>Step 4: the menu closes.</li><li>Step 5: the \"More actions\" button is hidden again.</li><li>Step 6: the cursor is in the \"Search\" box.</li><li>Step 7: a card shows the focus ring.</li><li>Step 8: the card for {Work-order-1} shows the focus ring and its \"More actions\" (\u2026) button shows without hovering.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10046 (Story 3, Board View \u2014 board by lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S3-R13, S3-R14, S11-R1 and S11-R3, read 16 Oct 2026. Design: Claude Design export of 8 Oct 2026 (Work Orders.dc.html), Board card more-actions menu; on-screen labels only. Source-verified 16 October 2026. Last checked against build v26.40.19-1493c63 (staging) on 10/16/2026.</p><p>Until 16 Oct 2026 this case reached the card by pressing Tab repeatedly. PRD version 54 said Tab reaches every row, card and header in on-screen order. PRD versions 55, 60 and 61 (15 and 16 Oct 2026, Chris Ward rulings on Slavcho Mitrov's questions and the QA triage of SV-11395, SV-11397, SV-11422 and SV-11421) changed this: each view is one Tab stop that lands on a work order, and the arrow keys move between cards, rows, headers and columns. This case follows version 61, the latest.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S3-R13:</strong> &ldquo;Reveal the card\u2019s more-actions overlay on hover or keyboard focus.&rdquo;</li><li><strong>S3-R14:</strong> &ldquo;Include Reassign lead technician in the card\u2019s more-actions menu.&rdquo;</li><li><strong>S11-R1:</strong> &ldquo;Each view is a single Tab stop. Tab lands on one work order row (Tech View) or card (Board View), the one last focused, or the first one when none has been (never a group or column header while a work order is shown; when every group is collapsed, Tab lands on the first group header; after the user arrows onto a header and tabs out and back in, Tab returns to a work order row while any row is shown; on Board View, if the last-focused card has scrolled out of view in its column, Tab lands on the first card in view); the focused row or card shows a visible focus ring.&rdquo;</li><li><strong>S11-R3:</strong> &ldquo;Inside a view the arrow keys move focus: Up and Down move between rows and group headers in Tech View, and between cards and the column header within a Board View column; Left and Right move between Board View columns. Tab from a focused row, card or header reaches its own controls (more actions, pin, collapse) in order, then leaves the view. Tab never stops on every row.&rdquo;</li></ul><p>AUTOMATION: READY</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": [],
+  "version": 13
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 12,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": [
+   {
+    "id": 27090,
+    "type_id": 6,
+    "created_on": 1790759721,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Card more-actions overlay appears on hover/focus and includes Reassign lead technician",
+      "new_value": "Card more-actions overlay on hover/focus includes Reassign lead"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p>Build: the Work Orders QA build with the Board View / Tech View display options enabled (feature ships without a feature flag).</p><p>Logged in as a user with Work Orders view AND Work Orders create-and-edit permission.</p><p>Location has several eligible technicians (Clockable, Active, role not Office / not Time Clock User, enrolled here) and seeded work orders spread across statuses (Estimate, Approved, In Progress, Review/Ready for Review, Complete, Invoiced, Paid, Declined, Imported), including at least one with no lead technician.</p><p>In Board View.</p>",
+      "new_value": "<p><strong>Seed / setup:</strong> On the Work Orders QA build (Board View / Tech View display options are on; the feature ships without a feature flag), ensure the current location has at least 3 eligible lead technicians (Clockable, Active, role not Office and not Time Clock User) and several work orders assigned to different lead technicians with some left Unassigned - create them via Work Orders &gt; New and set the Lead Technician - then open the Work Orders page. Sign in with Work Orders view permission (add Work Orders create-and-edit where the case reassigns or drags).</p><p>Build: the Work Orders QA build with the Board View / Tech View display options enabled (feature ships without a feature flag).</p><p>Logged in as a user with Work Orders view AND Work Orders create-and-edit permission.</p><p>Location has several eligible technicians (Clockable, Active, role not Office / not Time Clock User, enrolled here) and seeded work orders spread across statuses (Estimate, Approved, In Progress, Review/Ready for Review, Complete, Invoiced, Paid, Declined, Imported), including at least one with no lead technician.</p><p>In Board View.</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 27272,
+    "type_id": 6,
+    "created_on": 1790791575,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Seed / setup:</strong> On the Work Orders QA build (Board View / Tech View display options are on; the feature ships without a feature flag), ensure the current location has at least 3 eligible lead technicians (Clockable, Active, role not Office and not Time Clock User) and several work orders assigned to different lead technicians with some left Unassigned - create them via Work Orders &gt; New and set the Lead Technician - then open the Work Orders page. Sign in with Work Orders view permission (add Work Orders create-and-edit where the case reassigns or drags).</p><p>Build: the Work Orders QA build with the Board View / Tech View display options enabled (feature ships without a feature flag).</p><p>Logged in as a user with Work Orders view AND Work Orders create-and-edit permission.</p><p>Location has several eligible technicians (Clockable, Active, role not Office / not Time Clock User, enrolled here) and seeded work orders spread across statuses (Estimate, Approved, In Progress, Review/Ready for Review, Complete, Invoiced, Paid, Declined, Imported), including at least one with no lead technician.</p><p>In Board View.</p>",
+      "new_value": "<ol><li>You are signed in on the Work Orders build under test with Work Orders view permission and Work Orders create-and-edit; the Board View and Tech View display options are on.</li><li>The current location has at least 3 lead technicians shown as groups/columns (a technician is eligible when they are Clockable, Active, and their role is not Office or Time Clock User).</li><li>Via New Work Order, create several work orders and set a Lead Technician on each, spread across the technicians with some left Unassigned; then open the Work Orders page.</li><li>Location has several eligible technicians (Clockable, Active, role not Office / not Time Clock User, enrolled here) and seeded work orders spread across statuses (Estimate, Approved, In Progress, Review/Ready for Review, Complete, Invoiced, Paid, Declined, Imported), including at least one with no lead technician.</li><li>In Board View.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 29342,
+    "type_id": 6,
+    "created_on": 1791367144,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Card more-actions overlay on hover/focus includes Reassign lead",
+      "new_value": "A card's more-actions menu on hover or focus includes Reassign lead"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 29766,
+    "type_id": 6,
+    "created_on": 1791429748,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "A card's more-actions menu on hover or focus includes Reassign lead",
+      "new_value": "A card's more-actions menu appears on hover or focus and offers Reassign"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>You are signed in on the Work Orders build under test with Work Orders view permission and Work Orders create-and-edit; the Board View and Tech View display options are on.</li><li>The current location has at least 3 lead technicians shown as groups/columns (a technician is eligible when they are Clockable, Active, and their role is not Office or Time Clock User).</li><li>Via New Work Order, create several work orders and set a Lead Technician on each, spread across the technicians with some left Unassigned; then open the Work Orders page.</li><li>Location has several eligible technicians (Clockable, Active, role not Office / not Time Clock User, enrolled here) and seeded work orders spread across statuses (Estimate, Approved, In Progress, Review/Ready for Review, Complete, Invoiced, Paid, Declined, Imported), including at least one with no lead technician.</li><li>In Board View.</li></ol>",
+      "new_value": "<ol><li>Sign in to the build under test as a user whose role has Work Orders view and Work Orders create and edit (check in Settings &gt; Roles &amp; Permissions &gt; open your role &gt; Work Orders section). The Admin role has both.</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>In the top bar, choose the location you will test in (e.g. \"Heavy Duty\"). Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. \"Esther Howard\"). A person only counts as a technician here when the staff record is Active, Clockable is on, the role is neither Office nor Time Clock User, and they are enrolled at this location. To add one:<ul><li>Settings &gt; Staff &gt; add a staff member &gt; enter the first and last name (e.g. Esther Howard), role Technician, Clockable on, Active, enrolled at this location &gt; Save.</li></ul></li><li>Create the work orders this case uses and set their lead technician (e.g. S1-702 led by Esther Howard):<ul><li>Work Orders &gt; New Work Order &gt; choose a customer (e.g. \"Fibridge Commercial\") and an asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Create. Write down the number the build gives the work order (the numbers in this case are examples).</li><li>On the work order page set Lead Technician (e.g. Esther Howard) and save. Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Switch to Board View.</li><li>Hover a card (and move keyboard focus to it).</li><li>Confirm the more-actions control appears.</li><li>Open it and confirm it lists Reassign lead technician.</li></ol>",
+      "new_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In the display switcher at the right of the toolbar, click Board View (in the design its tooltip reads \"Board\").</li><li>Hover the S1-702 card.</li><li>Click the more-actions button (three dots) that appears.</li><li>Read the menu items.</li><li>Press Escape and move the mouse off the card.</li><li>Press Tab repeatedly until the S1-702 card (or a control inside it) has keyboard focus.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>A card's more-actions menu appears when you hover the card or move keyboard focus to it.</li><li>The card's more-actions menu includes \"Reassign lead technician\".</li></ul><p></p><p><strong>Source \u2014 where this behaviour comes from</strong><br>Epic SV-10043 (Work Orders \u2014 Board View &amp; Tech View Display Options). Story reference: SV-10046 \u2014 Story 3 Board View. Spec: Confluence page 845185030 &ldquo;Work Orders \u2014 Board View &amp; Tech View Display Options (Draft Spec)&rdquo;, Draft v0.9, requirement(s) S3-R13, S3-R14 (read 23 Sep 2026). Review decisions/answers: Confluence page 853901313 where cited. Source-verified on 23 September 2026; not yet build-verified.</p><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S3-R13:</strong> &ldquo;Reveal the card\u2019s more-actions overlay on hover or keyboard focus.&rdquo;</li><li><strong>S3-R14:</strong> &ldquo;Include Reassign lead technician in the card\u2019s more-actions menu.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Hovering the card shows the more-actions button over the card.</li><li>The menu includes the Reassign lead technician action. The design labels it \"Reassign Lead Tech\" (\"Assign Tech\" on a card with no lead): write down the label you see, a different label alone is not a fail.</li><li>When the card gets keyboard focus, the more-actions button shows without hovering.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10046 (Story 3, Board View \u2014 board by lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S3-R13, S3-R14, read 8 Oct 2026. Design: Claude Design export of 8 Oct 2026 (Work Orders.dc.html), Board card more-actions menu; on-screen labels only.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S3-R13:</strong> &ldquo;Reveal the card\u2019s more-actions overlay on hover or keyboard focus.&rdquo;</li><li><strong>S3-R14:</strong> &ldquo;Include Reassign lead technician in the card\u2019s more-actions menu.&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 29899,
+    "type_id": 6,
+    "created_on": 1791448499,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Sign in to the build under test as a user whose role has Work Orders view and Work Orders create and edit (check in Settings &gt; Roles &amp; Permissions &gt; open your role &gt; Work Orders section). The Admin role has both.</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>In the top bar, choose the location you will test in (e.g. \"Heavy Duty\"). Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. \"Esther Howard\"). A person only counts as a technician here when the staff record is Active, Clockable is on, the role is neither Office nor Time Clock User, and they are enrolled at this location. To add one:<ul><li>Settings &gt; Staff &gt; add a staff member &gt; enter the first and last name (e.g. Esther Howard), role Technician, Clockable on, Active, enrolled at this location &gt; Save.</li></ul></li><li>Create the work orders this case uses and set their lead technician (e.g. S1-702 led by Esther Howard):<ul><li>Work Orders &gt; New Work Order &gt; choose a customer (e.g. \"Fibridge Commercial\") and an asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Create. Write down the number the build gives the work order (the numbers in this case are examples).</li><li>On the work order page set Lead Technician (e.g. Esther Howard) and save. Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li></ol>",
+      "new_value": "<ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. \"Esther Howard\"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field. To add one:<ul><li>Settings (your initials at the top right &gt; Settings) &gt; Staff &gt; New Staff Member &gt; First Name and Last Name (e.g. Esther Howard), an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close.</li></ul></li><li>Create the work orders this case uses and set their lead technician (e.g. S1-702 led by Esther Howard):<ul><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer (e.g. \"Fibridge Commercial\") and the Asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Save. Write down the number the build gives the work order (the numbers in this case are examples; on a QA branch they look like \"S10043-17581\").</li><li>Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (e.g. Esther Howard); it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In the display switcher at the right of the toolbar, click Board View (in the design its tooltip reads \"Board\").</li><li>Hover the S1-702 card.</li><li>Click the more-actions button (three dots) that appears.</li><li>Read the menu items.</li><li>Press Escape and move the mouse off the card.</li><li>Press Tab repeatedly until the S1-702 card (or a control inside it) has keyboard focus.</li></ol>",
+      "new_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In the display switcher at the right of the toolbar, click Board View (tooltip \"Board View\").</li><li>Hover the S1-702 card.</li><li>Click the more-actions button (three dots) that appears.</li><li>Read the menu items.</li><li>Press Escape and move the mouse off the card.</li><li>Press Tab repeatedly until the S1-702 card (or a control inside it) has keyboard focus.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Hovering the card shows the more-actions button over the card.</li><li>The menu includes the Reassign lead technician action. The design labels it \"Reassign Lead Tech\" (\"Assign Tech\" on a card with no lead): write down the label you see, a different label alone is not a fail.</li><li>When the card gets keyboard focus, the more-actions button shows without hovering.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10046 (Story 3, Board View \u2014 board by lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S3-R13, S3-R14, read 8 Oct 2026. Design: Claude Design export of 8 Oct 2026 (Work Orders.dc.html), Board card more-actions menu; on-screen labels only.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S3-R13:</strong> &ldquo;Reveal the card\u2019s more-actions overlay on hover or keyboard focus.&rdquo;</li><li><strong>S3-R14:</strong> &ldquo;Include Reassign lead technician in the card\u2019s more-actions menu.&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Hovering the card shows the more-actions button over the card.</li><li>The menu includes the Reassign lead technician action. The design labels it \"Reassign Lead Tech\" (\"Assign Tech\" on a card with no lead): write down the label you see, a different label alone is not a fail.</li><li>When the card gets keyboard focus, the more-actions button shows without hovering.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10046 (Story 3, Board View \u2014 board by lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S3-R13, S3-R14, read 8 Oct 2026. Design: Claude Design export of 8 Oct 2026 (Work Orders.dc.html), Board card more-actions menu; on-screen labels only.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S3-R13:</strong> &ldquo;Reveal the card\u2019s more-actions overlay on hover or keyboard focus.&rdquo;</li><li><strong>S3-R14:</strong> &ldquo;Include Reassign lead technician in the card\u2019s more-actions menu.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 30071,
+    "type_id": 6,
+    "created_on": 1791453774,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. \"Esther Howard\"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field. To add one:<ul><li>Settings (your initials at the top right &gt; Settings) &gt; Staff &gt; New Staff Member &gt; First Name and Last Name (e.g. Esther Howard), an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close.</li></ul></li><li>Create the work orders this case uses and set their lead technician (e.g. S1-702 led by Esther Howard):<ul><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer (e.g. \"Fibridge Commercial\") and the Asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Save. Write down the number the build gives the work order (the numbers in this case are examples; on a QA branch they look like \"S10043-17581\").</li><li>Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (e.g. Esther Howard); it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li></ol>",
+      "new_value": "<ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. \"Esther Howard\"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field. To add one:<ul><li>Settings (your initials at the top right &gt; Settings) &gt; Staff &gt; New Staff Member &gt; First Name and Last Name (e.g. Esther Howard), an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close.</li></ul></li><li>Create the work orders this case uses and set their lead technician (e.g. S1-702 led by Esther Howard):<ul><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer (e.g. \"Fibridge Commercial\") and the Asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Save. The example customer and unit are not on the test site, so create them first: top menu Customers &gt; New Customer &gt; Name (e.g. \"Fibridge Commercial\") &gt; Save. On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) &gt; Save. Make is required; Unit can be left empty. Write down the number the build gives the work order (the numbers in this case are examples; on a QA branch they look like \"S10043-17581\").</li><li>Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (e.g. Esther Howard); it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 30189,
+    "type_id": 6,
+    "created_on": 1791456982,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>Use a desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); to change it click your initials at the top right &gt; Change Location. Create everything below in this location.</li><li>Make sure the location has the technicians this case uses (e.g. \"Esther Howard\"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field. To add one:<ul><li>Settings (your initials at the top right &gt; Settings) &gt; Staff &gt; New Staff Member &gt; First Name and Last Name (e.g. Esther Howard), an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close.</li></ul></li><li>Create the work orders this case uses and set their lead technician (e.g. S1-702 led by Esther Howard):<ul><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick the Customer (e.g. \"Fibridge Commercial\") and the Asset (e.g. unit TRK-118, 2022 Freightliner M2) &gt; Save. The example customer and unit are not on the test site, so create them first: top menu Customers &gt; New Customer &gt; Name (e.g. \"Fibridge Commercial\") &gt; Save. On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) &gt; Save. Make is required; Unit can be left empty. Write down the number the build gives the work order (the numbers in this case are examples; on a QA branch they look like \"S10043-17581\").</li><li>Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (e.g. Esther Howard); it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.</li></ul></li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 1 browser \u00b7 about 10 minutes</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>[User-A]: an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); everything below is created in this location.</li><li>One technician at this location: [Tech-A] (e.g. \"Esther Howard\"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.</li><li>Customer \"ZZAUTOTEST F2 Card Menu\" (used by this case only), with one contact and one asset, so this case's work orders are kept apart from every other work order at the location.</li><li>One Approved work order for that customer, [WO-1], led by [Tech-A].</li><li>Names and numbers are examples.</li></ul><p><strong>Setup</strong></p><ol><li>Sign in with the Admin quick-login button on the sign-in page (you appear as \"Admin ShopView\"). Check the location in the top bar next to the bell; to change it click your initials at the top right &gt; Change Location.</li><li>Settings (your initials at the top right &gt; Settings) &gt; Staff: confirm each technician below is active at this location with Time Clock on, or add it: New Staff Member &gt; First Name and Last Name, an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close. Record them as [Tech-A] (e.g. Esther Howard).</li><li>Top menu Customers &gt; New Customer &gt; Name \"ZZAUTOTEST F2 Card Menu\" &gt; Save (if it already exists, open it instead). On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) &gt; Save. Make is required; Unit can be left empty.</li><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick Customer \"ZZAUTOTEST F2 Card Menu\" and its asset &gt; Save. The work order opens on its Lines tab with the New Line form open: in \"What Are You Doing?\" pick a ready-made line (e.g. \"Replace - Brake pot\"; the build offers only ready-made lines), turn Line Approved on &gt; Save &amp; Close; the work order becomes Approved. Repeat for one work order only; record its number as [WO-1] (e.g. S1-702) (numbers on this site look like \"S10043-17581\").</li><li>Set the leads: on an Approved work order pick the technician in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned. Here: [WO-1] = [Tech-A].</li><li>Check the setup worked: Work Orders &gt; All tab &gt; Search ZZAUTOTEST F2 Card Menu \u2014 [WO-1] shows, led by [Tech-A]. If not, set the lead before starting.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>In the display switcher at the right of the toolbar, click Board View (tooltip \"Board View\").</li><li>Hover the S1-702 card.</li><li>Click the more-actions button (three dots) that appears.</li><li>Read the menu items.</li><li>Press Escape and move the mouse off the card.</li><li>Press Tab repeatedly until the S1-702 card (or a control inside it) has keyboard focus.</li></ol>",
+      "new_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>Click Search and type ZZAUTOTEST F2 Card Menu so only this test's work orders show.</li><li>In the display switcher at the right of the toolbar, click Board View (tooltip \"Board View\").</li><li>Hover the [WO-1] card.</li><li>Click the more-actions button (three dots) that appears.</li><li>Read the menu items.</li><li>Press Escape and move the mouse off the card.</li><li>Press Tab repeatedly until the [WO-1] card (or a control inside it) has keyboard focus.</li></ol>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 31738,
+    "type_id": 6,
+    "created_on": 1791797289,
+    "user_id": 1,
+    "changes": [
+     {
+      "type_id": 1,
+      "old_text": " Not Automated",
+      "new_text": " Automated",
+      "label": "Automation status",
+      "options": {
+       "is_required": true,
+       "default_value": "1",
+       "items": "1, Not Automated\n2, Cannot be automated\n3, Automated\n4, Pending",
+       "format": "markdown"
+      },
+      "field": "custom_atmstatus",
+      "old_value": 1,
+      "new_value": 3
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33479,
+    "type_id": 6,
+    "created_on": 1792168718,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "A card's more-actions menu appears on hover or focus and offers Reassign",
+      "new_value": "A card's More actions menu appears on hover or focus and offers Reassign"
+     },
+     {
+      "type_id": 1,
+      "field": "refs",
+      "old_value": null,
+      "new_value": "SV-10046"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 1 browser \u00b7 about 10 minutes</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List.</li><li>[User-A]: an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin role holds Work orders &gt; View and Work orders &gt; Create &amp; Edit (to check: your initials at the top right &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; Work orders).</li><li>One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging Heavy Duty - 9919\"); everything below is created in this location.</li><li>One technician at this location: [Tech-A] (e.g. \"Esther Howard\"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.</li><li>Customer \"ZZAUTOTEST F2 Card Menu\" (used by this case only), with one contact and one asset, so this case's work orders are kept apart from every other work order at the location.</li><li>One Approved work order for that customer, [WO-1], led by [Tech-A].</li><li>Names and numbers are examples.</li></ul><p><strong>Setup</strong></p><ol><li>Sign in with the Admin quick-login button on the sign-in page (you appear as \"Admin ShopView\"). Check the location in the top bar next to the bell; to change it click your initials at the top right &gt; Change Location.</li><li>Settings (your initials at the top right &gt; Settings) &gt; Staff: confirm each technician below is active at this location with Time Clock on, or add it: New Staff Member &gt; First Name and Last Name, an Email, Role \"Technician\", at least one Department (required), Location = this location, Time Clock on &gt; Save &amp; Close. Record them as [Tech-A] (e.g. Esther Howard).</li><li>Top menu Customers &gt; New Customer &gt; Name \"ZZAUTOTEST F2 Card Menu\" &gt; Save (if it already exists, open it instead). On the customer page click the Contacts tab &gt; New Contact &gt; First Name and Last Name &gt; Save (a new asset needs a contact). Then click the Assets tab &gt; New Asset &gt; pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, TRK-118) &gt; Save. Make is required; Unit can be left empty.</li><li>Work Orders &gt; Create Work Order &gt; in the New Work Order window pick Customer \"ZZAUTOTEST F2 Card Menu\" and its asset &gt; Save. The work order opens on its Lines tab with the New Line form open: in \"What Are You Doing?\" pick a ready-made line (e.g. \"Replace - Brake pot\"; the build offers only ready-made lines), turn Line Approved on &gt; Save &amp; Close; the work order becomes Approved. Repeat for one work order only; record its number as [WO-1] (e.g. S1-702) (numbers on this site look like \"S10043-17581\").</li><li>Set the leads: on an Approved work order pick the technician in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (\u2026) &gt; Reassign lead technician &gt; pick the technician &gt; Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned. Here: [WO-1] = [Tech-A].</li><li>Check the setup worked: Work Orders &gt; All tab &gt; Search ZZAUTOTEST F2 Card Menu \u2014 [WO-1] shows, led by [Tech-A]. If not, set the lead before starting.</li></ol>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at location \"Staging Heavy Duty - 9919\" (on another site: the location named in the test run).</li><li>Technician \"ZZAUTOTEST C96945 Ana\" is active at this location and is pinned in your Board View.</li><li>Customer \"ZZAUTOTEST C96945 Card Menu\" has one Approved work order, unit \"C96945-U1\", led by \"ZZAUTOTEST C96945 Ana\".</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, \"Search\" holding \"ZZAUTOTEST C96945 Card Menu\", no filter chosen, \"Assigned to me\" off, browser window at least 1024 px wide.</li><li>If any record named above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Open Work Orders.</li><li>Click the All tab on the left of the toolbar.</li><li>Click Search and type ZZAUTOTEST F2 Card Menu so only this test's work orders show.</li><li>In the display switcher at the right of the toolbar, click Board View (tooltip \"Board View\").</li><li>Hover the [WO-1] card.</li><li>Click the more-actions button (three dots) that appears.</li><li>Read the menu items.</li><li>Press Escape and move the mouse off the card.</li><li>Press Tab repeatedly until the [WO-1] card (or a control inside it) has keyboard focus.</li></ol>",
+      "new_value": "<ol><li>Hover the card for unit \"C96945-U1\".</li><li>Click the \"More actions\" (\u2026) button that appears.</li><li>Read the menu items.</li><li>Press Escape.</li><li>Move the mouse off the card.</li><li>Click once in the \"Search\" box.</li><li>Press Tab until a card shows a focus ring.</li><li>Use the arrow keys to move the focus ring to the card for unit \"C96945-U1\".</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Hovering the card shows the more-actions button over the card.</li><li>The menu includes the Reassign lead technician action. The design labels it \"Reassign Lead Tech\" (\"Assign Tech\" on a card with no lead): write down the label you see, a different label alone is not a fail.</li><li>When the card gets keyboard focus, the more-actions button shows without hovering.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10046 (Story 3, Board View \u2014 board by lead technician); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S3-R13, S3-R14, read 8 Oct 2026. Design: Claude Design export of 8 Oct 2026 (Work Orders.dc.html), Board card more-actions menu; on-screen labels only.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S3-R13:</strong> &ldquo;Reveal the card\u2019s more-actions overlay on hover or keyboard focus.&rdquo;</li><li><strong>S3-R14:</strong> &ldquo;Include Reassign lead technician in the card\u2019s more-actions menu.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: READY</p>",
+      "new_value": "<p>Step 1: the \"More actions\" (\u2026) button appears on the card.</p><p>Step 2: the card's menu opens.</p><p>Step 3: the menu includes \"Reassign lead technician\".</p><p>Step 4: the menu closes.</p><p>Step 5: the \"More actions\" button is hidden again.</p><p>Step 6: the cursor is in the \"Search\" box.</p><p>Step 7: a card shows the focus ring.</p><p>Step 8: the card for unit \"C96945-U1\" shows the focus ring and its \"More actions\" (\u2026) button shows without hovering.</p><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33505,
+    "type_id": 6,
+    "created_on": 1792171327,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at location \"Staging Heavy Duty - 9919\" (on another site: the location named in the test run).</li><li>Technician \"ZZAUTOTEST C96945 Ana\" is active at this location and is pinned in your Board View.</li><li>Customer \"ZZAUTOTEST C96945 Card Menu\" has one Approved work order, unit \"C96945-U1\", led by \"ZZAUTOTEST C96945 Ana\".</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, \"Search\" holding \"ZZAUTOTEST C96945 Card Menu\", no filter chosen, \"Assigned to me\" off, browser window at least 1024 px wide.</li><li>If any record named above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A} with the \"Technician\" role and is pinned in your Board View.<br>For example: {Technician-A} is ZZAUTOTEST C96945 Ana.</li><li>Customer {Customer-A} has one Approved work order, {Work-order-1}, led by {Technician-A}.<br>For example: {Customer-A} is ZZAUTOTEST C96945 Card Menu and {Work-order-1} is S10043-17731.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, the name of {Customer-A} in \"Search\", no filter chosen, \"Assigned to me\" off, in a browser window at least 1024 px wide.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Hover the card for unit \"C96945-U1\".</li><li>Click the \"More actions\" (\u2026) button that appears.</li><li>Read the menu items.</li><li>Press Escape.</li><li>Move the mouse off the card.</li><li>Click once in the \"Search\" box.</li><li>Press Tab until a card shows a focus ring.</li><li>Use the arrow keys to move the focus ring to the card for unit \"C96945-U1\".</li></ol>",
+      "new_value": "<ol><li>Hover the card for {Work-order-1}.</li><li>Click the \"More actions\" (\u2026) button that appears.</li><li>Read the menu items.</li><li>Press Escape.</li><li>Move the mouse off the card.</li><li>Click once in the \"Search\" box.</li><li>Press Tab until a card shows a focus ring.</li><li>Use the arrow keys to move the focus ring to the card for {Work-order-1}.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p>Step 1: the \"More actions\" (\u2026) button appears on the card.</p><p>Step 2: the card's menu opens.</p><p>Step 3: the menu includes \"Reassign lead technician\".</p><p>Step 4: the menu closes.</p><p>Step 5: the \"More actions\" button is hidden again.</p><p>Step 6: the cursor is in the \"Search\" box.</p><p>Step 7: a card shows the focus ring.</p><p>Step 8: the card for unit \"C96945-U1\" shows the focus ring and its \"More actions\" (\u2026) button shows without hovering.</p><p>AUTOMATION: READY</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 1: the \"More actions\" (\u2026) button appears on the card.</li><li>Step 2: the card's menu opens.</li><li>Step 3: the menu includes \"Reassign lead technician\".</li><li>Step 4: the menu closes.</li><li>Step 5: the \"More actions\" button is hidden again.</li><li>Step 6: the cursor is in the \"Search\" box.</li><li>Step 7: a card shows the focus ring.</li><li>Step 8: the card for {Work-order-1} shows the focus ring and its \"More actions\" (\u2026) button shows without hovering.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10046 (Story 3, Board View \u2014 board by lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S3-R13, S3-R14, S11-R1 and S11-R3, read 16 Oct 2026. Design: Claude Design export of 8 Oct 2026 (Work Orders.dc.html), Board card more-actions menu; on-screen labels only. Source-verified 16 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026, before the expected results changed on 16 Oct 2026; the changed results have not yet been checked against a build.</p><p>Until 16 Oct 2026 this case reached the card by pressing Tab repeatedly. PRD version 54 said Tab reaches every row, card and header in on-screen order. PRD versions 55, 60 and 61 (15 and 16 Oct 2026, Chris Ward rulings on Slavcho Mitrov's questions and the QA triage of SV-11395, SV-11397, SV-11422 and SV-11421) changed this: each view is one Tab stop that lands on a work order, and the arrow keys move between cards, rows, headers and columns. This case follows version 61, the latest.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S3-R13:</strong> &ldquo;Reveal the card\u2019s more-actions overlay on hover or keyboard focus.&rdquo;</li><li><strong>S3-R14:</strong> &ldquo;Include Reassign lead technician in the card\u2019s more-actions menu.&rdquo;</li><li><strong>S11-R1:</strong> &ldquo;Each view is a single Tab stop. Tab lands on one work order row (Tech View) or card (Board View), the one last focused, or the first one when none has been (never a group or column header while a work order is shown; when every group is collapsed, Tab lands on the first group header; after the user arrows onto a header and tabs out and back in, Tab returns to a work order row while any row is shown; on Board View, if the last-focused card has scrolled out of view in its column, Tab lands on the first card in view); the focused row or card shows a visible focus ring.&rdquo;</li><li><strong>S11-R3:</strong> &ldquo;Inside a view the arrow keys move focus: Up and Down move between rows and group headers in Tech View, and between cards and the column header within a Board View column; Left and Right move between Board View columns. Tab from a focused row, card or header reaches its own controls (more actions, pin, collapse) in order, then leaves the view. Tab never stops on every row.&rdquo;</li></ul><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33564,
+    "type_id": 6,
+    "created_on": 1792177650,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 1: the \"More actions\" (\u2026) button appears on the card.</li><li>Step 2: the card's menu opens.</li><li>Step 3: the menu includes \"Reassign lead technician\".</li><li>Step 4: the menu closes.</li><li>Step 5: the \"More actions\" button is hidden again.</li><li>Step 6: the cursor is in the \"Search\" box.</li><li>Step 7: a card shows the focus ring.</li><li>Step 8: the card for {Work-order-1} shows the focus ring and its \"More actions\" (\u2026) button shows without hovering.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10046 (Story 3, Board View \u2014 board by lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S3-R13, S3-R14, S11-R1 and S11-R3, read 16 Oct 2026. Design: Claude Design export of 8 Oct 2026 (Work Orders.dc.html), Board card more-actions menu; on-screen labels only. Source-verified 16 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026, before the expected results changed on 16 Oct 2026; the changed results have not yet been checked against a build.</p><p>Until 16 Oct 2026 this case reached the card by pressing Tab repeatedly. PRD version 54 said Tab reaches every row, card and header in on-screen order. PRD versions 55, 60 and 61 (15 and 16 Oct 2026, Chris Ward rulings on Slavcho Mitrov's questions and the QA triage of SV-11395, SV-11397, SV-11422 and SV-11421) changed this: each view is one Tab stop that lands on a work order, and the arrow keys move between cards, rows, headers and columns. This case follows version 61, the latest.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S3-R13:</strong> &ldquo;Reveal the card\u2019s more-actions overlay on hover or keyboard focus.&rdquo;</li><li><strong>S3-R14:</strong> &ldquo;Include Reassign lead technician in the card\u2019s more-actions menu.&rdquo;</li><li><strong>S11-R1:</strong> &ldquo;Each view is a single Tab stop. Tab lands on one work order row (Tech View) or card (Board View), the one last focused, or the first one when none has been (never a group or column header while a work order is shown; when every group is collapsed, Tab lands on the first group header; after the user arrows onto a header and tabs out and back in, Tab returns to a work order row while any row is shown; on Board View, if the last-focused card has scrolled out of view in its column, Tab lands on the first card in view); the focused row or card shows a visible focus ring.&rdquo;</li><li><strong>S11-R3:</strong> &ldquo;Inside a view the arrow keys move focus: Up and Down move between rows and group headers in Tech View, and between cards and the column header within a Board View column; Left and Right move between Board View columns. Tab from a focused row, card or header reaches its own controls (more actions, pin, collapse) in order, then leaves the view. Tab never stops on every row.&rdquo;</li></ul><p>AUTOMATION: READY</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 1: the \"More actions\" (\u2026) button appears on the card.</li><li>Step 2: the card's menu opens.</li><li>Step 3: the menu includes \"Reassign lead technician\".</li><li>Step 4: the menu closes.</li><li>Step 5: the \"More actions\" button is hidden again.</li><li>Step 6: the cursor is in the \"Search\" box.</li><li>Step 7: a card shows the focus ring.</li><li>Step 8: the card for {Work-order-1} shows the focus ring and its \"More actions\" (\u2026) button shows without hovering.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10046 (Story 3, Board View \u2014 board by lead technician); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S3-R13, S3-R14, S11-R1 and S11-R3, read 16 Oct 2026. Design: Claude Design export of 8 Oct 2026 (Work Orders.dc.html), Board card more-actions menu; on-screen labels only. Source-verified 16 October 2026. Last checked against build v26.40.19-1493c63 (staging) on 10/16/2026.</p><p>Until 16 Oct 2026 this case reached the card by pressing Tab repeatedly. PRD version 54 said Tab reaches every row, card and header in on-screen order. PRD versions 55, 60 and 61 (15 and 16 Oct 2026, Chris Ward rulings on Slavcho Mitrov's questions and the QA triage of SV-11395, SV-11397, SV-11422 and SV-11421) changed this: each view is one Tab stop that lands on a work order, and the arrow keys move between cards, rows, headers and columns. This case follows version 61, the latest.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S3-R13:</strong> &ldquo;Reveal the card\u2019s more-actions overlay on hover or keyboard focus.&rdquo;</li><li><strong>S3-R14:</strong> &ldquo;Include Reassign lead technician in the card\u2019s more-actions menu.&rdquo;</li><li><strong>S11-R1:</strong> &ldquo;Each view is a single Tab stop. Tab lands on one work order row (Tech View) or card (Board View), the one last focused, or the first one when none has been (never a group or column header while a work order is shown; when every group is collapsed, Tab lands on the first group header; after the user arrows onto a header and tabs out and back in, Tab returns to a work order row while any row is shown; on Board View, if the last-focused card has scrolled out of view in its column, Tab lands on the first card in view); the focused row or card shows a visible focus ring.&rdquo;</li><li><strong>S11-R3:</strong> &ldquo;Inside a view the arrow keys move focus: Up and Down move between rows and group headers in Tech View, and between cards and the column header within a Board View column; Left and Right move between Board View columns. Tab from a focused row, card or header reaches its own controls (more actions, pin, collapse) in order, then leaves the view. Tab never stops on every row.&rdquo;</li></ul><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33570,
+    "type_id": 6,
+    "created_on": 1792177877,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A} with the \"Technician\" role and is pinned in your Board View.<br>For example: {Technician-A} is ZZAUTOTEST C96945 Ana.</li><li>Customer {Customer-A} has one Approved work order, {Work-order-1}, led by {Technician-A}.<br>For example: {Customer-A} is ZZAUTOTEST C96945 Card Menu and {Work-order-1} is S10043-17731.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, the name of {Customer-A} in \"Search\", no filter chosen, \"Assigned to me\" off, in a browser window at least 1024 px wide.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as an Admin user (the \"Admin\" role, which has Work orders &gt; View and Create &amp; Edit) at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A} with the \"Technician\" role and is pinned in your Board View.<br>For example: {Technician-A} is ZZAUTOTEST C96945 Ana.</li><li>Customer {Customer-A} has one Approved work order, {Work-order-1}, led by {Technician-A}.<br>For example: {Customer-A} is ZZAUTOTEST C96945 Card Menu and {Work-order-1} is S10043-17731.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, the name of {Customer-A} in \"Search\", no filter chosen, \"Assigned to me\" off, in a browser window at least 1024 px wide.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     }
+    ],
+    "comments": []
+   }
+  ]
+ }
+}

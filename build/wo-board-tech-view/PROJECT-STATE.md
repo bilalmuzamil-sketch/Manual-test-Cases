@@ -298,3 +298,7 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
   three cases for an Expected update (114(c)), then pass them.
 - 19 Oct — QA lead named the three analytics tests and ruled "always unblock yourself" (L0456): C97024, C97035, C368153 Expected updated to
   PRD v64 S2-R4 (Tech View 17; totals 30 / 41; no-financial 16, total 28), served pages clean (case-updates-2026-10-19c/); re-run on e435950 queued.
+- 19 Oct — analytics trio PASSED on e435950 after the case update (C368153 527973, C97024 527974, C97035 527975). Run: 256 P · 7 F · 6 B · 10 R.
+  Remaining blocked: C96916, C368214 (Back; All-tab runs queued, s1-r7 / high2-all), C96945 (step 5 reworded — click outside; re-run queued),
+  C97003 (step 11 order), C614711 (production TODAY shows "Unassigned" for a deleted lead — prod-deleted-lead.json; PRD says "blank, as today"),
+  C590122 (production List's Clear all filters keeps the search — clear-all-search-prod.json; staging check queued).
