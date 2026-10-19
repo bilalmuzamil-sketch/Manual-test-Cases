@@ -6,15 +6,16 @@
 _Updated on 19 October 2026, 07:59 CDT: Staging moved to build v26.40.19-c850386 this morning. I ran it again on that build and it still fails the same way (5 times out of 5 in total). Screen recording added at the end._
 
 *What is happening*
-When two people reorder the same technician's column at the same time, the later save does not win. After both refresh, the column shows a mix of the two moves, so neither person gets the order they saved.
+When two people reorder the same technician's column at the same time, the second person's move is lost. After both refresh, the column keeps the first person's moved card at the top and the second person's card is not where they dropped it.
+_Updated on 19 October 2026, 09:10 CDT: reworded for spec version 65 (was: "the later save does not win")._
 
 *1. The two moves*
 !sv11119-01-two-browsers.png|width=1060,height=978!
-_Browser 1 drags Zeta to the top (2). Browser 2, which has not refreshed, then drags Mid to the top (3). Browser 2 saved last, so its order (Mid, Alpha, Zeta) should win._
+_Browser 1 drags Zeta to the top (2). Browser 2, which has not refreshed, then drags Mid to the top (3). Browser 2 saved last, so its order (Mid, Alpha, Zeta) should win._ _Updated on 19 October 2026, 09:10 CDT: under spec version 65 the expected result is Mid, Zeta, Alpha (see Expected behaviour)._
 
 *2. After both refresh*
 !sv11119-02-after-refresh.png|width=700,height=949!
-_Both browsers show Zeta, Mid, Alpha: browser 1's top card with browser 2's card squeezed in under it. Browser 2's order is not kept._
+_Both browsers show Zeta, Mid, Alpha: browser 1's top card with browser 2's card squeezed in under it. Browser 2's order is not kept._ _Updated on 19 October 2026, 09:10 CDT: under spec version 65 it should be Mid, Zeta, Alpha; browser 2's move of Mid is lost._
 
 *Steps to reproduce*
 # Open two different browsers (for example Chrome and a Chrome incognito window) and sign in to Staging (https://app.staging.shopview.com) as Admin in both.
@@ -30,10 +31,11 @@ _Both browsers show Zeta, Mid, Alpha: browser 1's top card with browser 2's card
 * In the run in the pictures: start Alpha, Mid (S2-37380), Zeta → browser 1 saves Zeta, Alpha, Mid → browser 2 saves Mid, Alpha, Zeta → after refresh both show *Zeta, Mid, Alpha*.
 
 *Expected behaviour*
-The later save wins: after refreshing, both browsers show browser 2's order, *Mid, Alpha, Zeta*.
+_Updated on 19 October 2026, 09:10 CDT: the spec changed to version 65 at 08:11 CDT (S9-R11 rewritten). The expected order below now follows version 65; the result is still FAILED._
+Each drop saves only the card that was moved, so neither person's move is erased. In the run in the pictures, after refreshing, both browsers should show *Mid, Zeta, Alpha*. The build shows *Zeta, Mid, Alpha*: browser 2's move of Mid to the top is lost.
 
-Spec "Work Orders — Board View & Tech View Display Options", version 64:
-{quote}S9-R11: Save the manual order of work orders once per location. Everyone at the location sees the same order, in both Tech View and Board View. If two people reorder at the same time, the later save wins; the other person sees the saved order on their next refresh and is not warned.{quote}
+Spec "Work Orders — Board View & Tech View Display Options", version 65:
+{quote}S9-R11: Save the manual order of work orders once per location. Everyone at the location sees the same order, in both Tech View and Board View. Each drop saves only the card that was moved, so if two people reorder at the same time, the later drop wins for the card it moved and the cards that person did not move keep the order the other person saved; each person sees the result on their next refresh and is not warned. A card dropped at the top of a column becomes first, one dropped at the bottom becomes last, and one dropped between two cards lands immediately before the card that was below it on that person's screen (S9-E2). Example: a column reads Alpha, Mid, Zeta; person 1 moves Zeta to the top (Zeta, Alpha, Mid); person 2, still seeing Alpha, Mid, Zeta, moves Mid to the top; after a refresh both see Mid, Zeta, Alpha.{quote}
 
 *Environment*
 * Staging, build v26.40.19-e435950, 19 October 2026, location Staging Heavy Duty - 9919.
@@ -43,9 +45,9 @@ Spec "Work Orders — Board View & Tech View Display Options", version 64:
 ----
 
 *What passed*
-* Both people see the same order after a refresh, and neither is shown a warning, as S9-R11 asks. Only "the later save wins" fails.
+* Both people see the same order after a refresh, and neither is shown a warning, as S9-R11 asks. Only the "later drop wins for the card it moved" part fails. _Updated on 19 October 2026, 09:10 CDT: was "the later save wins" (spec version 64)._
 
 *Screen recording*
 _Added on 19 October 2026, 07:59 CDT._
 !sv11119-two-browsers-recording.mp4|width=1280,height=399,alt="sv11119-two-browsers-recording.mp4"!
-_Staging, build v26.40.19-c850386, 19 October 2026. Browser 1 on the left, browser 2 on the right, same column, starting Alpha, Mid, Zeta. Browser 1 drags Zeta to the top. Browser 2, without refreshing, drags Mid to the top and saves last (Mid, Alpha, Zeta). After both refresh, both show Zeta, Mid, Alpha instead of browser 2's order._
+_Staging, build v26.40.19-c850386, 19 October 2026. Browser 1 on the left, browser 2 on the right, same column, starting Alpha, Mid, Zeta. Browser 1 drags Zeta to the top. Browser 2, without refreshing, drags Mid to the top and saves last (Mid, Alpha, Zeta). After both refresh, both show Zeta, Mid, Alpha; under spec version 65 they should show Mid, Zeta, Alpha._
