@@ -1,0 +1,29 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-c850386",
+  "date": "19 October 2026",
+  "note": "run 498: re-test of six tests on request, by their current steps (PRD version 68)"
+ },
+ "results": {
+  "C614711": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on staging at step 10 only. Steps 1 to 9 passed.",
+    "Steps 1 and 2: ZZAUTOTEST C614711 Dana 19214 was opened from Settings > Staff, deleted with Delete and confirmed, and is no longer in the Staff list.",
+    "Steps 3 to 5: on Board View the card S2-37496 sits in a column headed \"Deleted technician\" with the \"Inactive\" marker and no drag handle. The earlier problem (\"Unknown Technician\") is fixed on this build.",
+    "Step 6: S2-37497 was dragged from Unassigned onto the Deleted technician column and let go; it stayed in Unassigned.",
+    "Step 7: in Tech View, S2-37496 sits in the group \"Deleted technician\" with the Inactive marker.",
+    "Step 8: in List, the Lead Technician cell of S2-37496 reads \"Unassigned\".",
+    "Step 10: S2-37496 moved to ZZAUTOTEST C614711 Eli's column, but the message reads only \"Lead technician updated\" in a solid green box with a Close button. It does not read \"S2-37496 assigned to ZZAUTOTEST C614711 Eli\" and has no Undo button, which the test expects.",
+    "This message problem is already reported (see the ticket below), so nothing new is raised."
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11524 (Board View UX Improvements, Open). It covers the generic message with no work order, no technician and no Undo.",
+   "todo": "Re-test step 10 when SV-11524 is fixed. The test's note about the old \"Unknown Technician\" problem can be dropped: that fix has reached staging.",
+   "pictures": [
+    "pictures-1019/C614711-3-deleted-column-1019.png",
+    "pictures-1019/C614711-4-message-1019.png"
+   ]
+  }
+ }
+}

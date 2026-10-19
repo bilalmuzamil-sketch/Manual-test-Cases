@@ -957,3 +957,11 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - **ZZAUTOTEST technicians sort last**: their Board columns are far right and not drawn at the left; pin them for the runner (`pins([...])`, restored after) so they sit after Unassigned.
 - **`POST /api/iam/change-location` does not change what the open page shows** for the runner here; switch with `switchLocUI(p, name)` and read the header back. The runner's location is reset by `asRunner` at the next start anyway.
 #run498 #design #chris #ruling #staging → L0468, L0467
+
+## L0470 — 2026-10-19 — Retest of six run 498 tests: SV-11416 fix is on staging, Branko's two UX tickets cover the lead-change message, and a running queue can be extended
+- **Staging v26.40.19-c850386 has the SV-11416 fix**: a deleted lead's work orders sit under "Deleted technician" with the "Inactive" marker and no grip (Board and Tech View), drops onto it are refused, List reads "Unassigned" (C614711 steps 1–9 pass). A case still carrying "EXPECT FAIL (SV-11416)" is now outcome 3 — tell the QA lead.
+- **Before preparing a defect for the lead-change message, read SV-11524 (Board View UX Improvements) and SV-11522 (Tech View UX Improvements)** — both Open, by Branko Cicovic, 19 Oct, parent SV-10047. They already cover: generic "Lead technician updated" message with no work order / technician / Undo (PRD S4-R5), "Assign tech" for a work order with no lead, no "Unassigned" in the dialog, one-click assign. A failure on those points points at them; nothing new is prepared.
+- **`run_queue.sh` reads its queue file line by line while running**, so appending a line (`echo "<cmd>" >> <queue file>`) to a RUNNING queue adds a step without restarting it. Use absolute `cd` paths (each line is `eval`ed in one shell).
+- **Rule 112 gap**: the owning story of Board View (SV-10046) is now "Ready for Production", a status Rule 112 does not list (it lists Ready for QA, Testing QA, QA Complete). By the 2026-10-01 QA Complete reasoning (a fault after sign-off is our miss) it should be fileable, but this is NOT ruled — name it in the ask, do not assume.
+- `jira.sh GET` prints a status line after the JSON: parse with `json.JSONDecoder().raw_decode(...)`, not `json.load`.
+#run498 #retest #sv-11416 #sv-11524 #queue #rule112 → L0469, L0462
