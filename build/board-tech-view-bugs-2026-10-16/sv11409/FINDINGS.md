@@ -29,3 +29,6 @@ Admin `tab`, `display`, `filters`, `collapsedGroups` preferences snapshot before
 
 ## Gate
 build identical · ticket TESTING STAGE, 1 comment · PRD v64 · text scan clean · steps 2 and 5 walked live (k09k: Tech View button + Tab x3 → first row; Board View button + Tab x2 → first card) · posted 78924 · read back: PASSED panel, media 1024x443, 1024x467, video; table 7 rows; steps 5.
+
+## 2026-10-19 — chip x focus re-checked on v26.40.19-31ad1e1 (data/chipx-31ad1e1.json)
+- After Enter on the Status chip x (Tech and Board): focus sits on the page body (no ring), but the next Tab goes to the next filter, "Assigned to me" — on 17 Oct it went to "Skip to main content". No PRD rule covers focus after a chip is removed (S11-R2 reachability only; S11-R6 menus/dialogs). Closed, not raised.

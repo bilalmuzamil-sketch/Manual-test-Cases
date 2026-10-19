@@ -33,3 +33,7 @@ Not run (not posted).
 - Mixed pages (`data/widths-mixed.json`): Tech View stretches every pill to its Status column like List (S2-363: Estimate, Approved, Paid all 114 px, column 130; S2-368: Complete and Approved 72.4, column 88.4). Board cards keep their own width (Estimate 67, Approved 72.4, Paid 44.5, Complete 71.5).
 - Question put to the QA lead with those numbers; his answer: "Not a fault (Recommended)" — post SV-11405 PASSED, leave SV-11318 PASSED.
 - Film v1 (`ev/sv11405-card-pill-staging-recording-voiceover.mp4`) says "still needs a fix" — superseded, not to be posted.
+
+## 2026-10-19 — POSTED PASSED, comment 78951
+- Re-check on v26.40.19-31ad1e1 (data/recheck-31ad1e1.json): 10 cards / 8 statuses — text, colours, counts identical to List and Tech View; hover text identical (S2-34941, S2-17528, both counts); pill 22 px; top 17 / right 17 px at Comfortable on 10/10 cards. S2-36332 and S2-36683 cards not found on screen (same statuses already covered).
+- Film v2 (no "needs a fix" line; bridging captions after a first take showed a caption over a reloading page): 82.8 s → 39.6 s. Read back: green PASSED, 1024x351 + 1280x800, 7 table rows.

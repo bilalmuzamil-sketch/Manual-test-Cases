@@ -1437,8 +1437,6 @@ what is still owed.
 ## Board View & Tech View bug batch (staging v26.40.19-754919e) — raised 2026-10-17
 | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|
-| Decision: after a filter chip's x is used by keyboard, focus drops to the top of the page. No rule covers it. Raise it or not? | QA lead | nothing posted (SV-11409 passed on its own rule) | 2026-10-17 |
-| Decision: SV-11422 — when the only matching work order is off screen (search S2-16688: Unassigned empty, row far down; Board card in a column off to the right), the first Tab lands on the Unassigned header. S11-R1 says "never a group or column header while a work order is shown". Does an off-screen row count as "shown"? | QA lead (Chris if he wants the PO) | SV-11422 comment (held, not posted); everything else on it passes | 2026-10-17 |
 
 - 2026-10-18 cleared: Board/Tech Paid pill width — QA lead answered "Not a fault (Recommended)": width follows the Status column in List/Tech View; cards have no column. SV-11405 → PASSED (to post after re-check on the new build); SV-11318 stays PASSED (78911 film size fixed in place).
 - 2026-10-17 cleared: SV-11407 Unassigned 2 px — posted PARTIALLY PASSED by S1-R8's own words ("fully shown"): 78932 + remaining issue 78933.
@@ -1450,3 +1448,6 @@ what is still owed.
   - SV-11416 List "blank" vs "Unassigned": QA lead ruled "Unassigned" is expected for this ticket only; dated note added to 78930.
   - Staging cookies: received 2026-10-19.
   - Pinned technicians overwritten (16–17 Oct): information only; scripts restore only their own keys since. Nothing further to do.
+- 2026-10-19 cleared: SV-11422 — Chris's ruling matches PRD S11-R1 v64 ("shown" = listed, S2-R12); posted PARTIALLY PASSED 78952 + remaining issue 78953 (off-screen first work order → header, Tech + Board).
+- 2026-10-19 cleared: filter chip x focus — on v26.40.19-31ad1e1 the next Tab continues to the next filter; no PRD rule; closed.
+- 2026-10-19 cleared: SV-11405 posted PASSED 78951 on v26.40.19-31ad1e1.

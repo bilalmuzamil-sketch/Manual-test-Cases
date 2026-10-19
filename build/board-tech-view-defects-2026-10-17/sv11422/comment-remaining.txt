@@ -1,0 +1,19 @@
+[~accountid:712020:1b27a800-7b5a-43f3-982a-81e7071a4fdb] *Remaining issue to be fixed*
+
+*What's happening:*
+* When Unassigned is empty and the first work order is listed further down the page (out of sight), the first Tab lands on the empty "Unassigned" header in Tech View, and on the "Unassigned" column header in Board View, instead of on that work order.
+* Example on staging: search {{S2-16688}} (its only work order sits in Brandi Smith's group or column).
+
+!sv11422-02-off-screen-row.png|width=512,height=704!
+_Top (Tech View): the first Tab is on the "Unassigned" header; S2-16688 is far below. Bottom (Board View): the first Tab is on the "Unassigned" column header; the card is in Brandi Smith's column off to the right._
+
+*Steps:*
+# Staging → *Work Orders* → *All* tab.
+# In *Search* type {{S2-16688}} and click *Tech View* (the middle view button, a person icon).
+# Click once in the *Search* box and press Tab until the blue focus ring appears in the table: it is on the "Unassigned" header.
+# Click *Board View* (the right view button) and do the same: the ring is on the "Unassigned" column header.
+
+*What it should be:*
+The first Tab lands on S2-16688 (scrolled into view), because a work order is listed. Spec version 64, S11-R1:
+{quote}… or the first technician's first row or card when Unassigned is collapsed or empty (never a group or column header while a work order is shown …){quote}
+Chris in this ticket (16 October): "The Tab stop must land on a work order row, never the Unassigned header while a row is shown."
