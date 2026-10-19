@@ -96,6 +96,7 @@ Requirements:
 - S2-R7: The chosen date range is reflected in the CSV and PDF exports.
 - S2-R8: Changing the date range is remembered between visits — see Story 6.
 - S2-R9: When the report is opened with both a saved view and a date range in the page link, the saved view is applied and the link value is ignored.
+  * Context note: the remembered view (Story 6) was given priority over the link so a returning user always lands on their own last view. A shared link therefore restores the sender's range only for a recipient who has no saved range of their own for this report.
 Negative cases:
 - S2-N1: If the chosen date range contains no matching invoices, the table shows the empty-state message (see Story 17).
 - S2-N2: A Custom range wider than 366 days cannot be applied. If the user picks a start and end date more than 366 days apart, the report prevents the selection rather than loading the wider range.
@@ -151,6 +152,7 @@ Requirements:
 - S6-R1: The report saves the user's view to the browser so it can be restored on the next visit.
 - S6-R2: The saved view includes: the date range, the Sales Type, the location selection, the Customer filter selection, the sort column and direction, and the visible columns.
 - S6-R3: The saved view does not include the Customer filter's type-ahead search text, expansion state, or scroll position.
+  * Context note: the Customer filter's search text is a transient way to find a name in the dropdown, not a saved setting — only the resulting customer selection is saved (S18-R8); expansion is treated as fresh each visit so a returning user is not faced with rows expanded against data they have not looked at yet.
 - S6-R4: On load, the report shows the restored view immediately — the default view is never shown first and then replaced.
 - S6-R5: On restore, any saved value that is no longer valid is discarded, and that setting uses its default instead.
 - S6-R6: A saved value is treated as no longer valid when it is an unknown date range, a location the user no longer has access to, a sort column that no longer exists, or a column set that does not match the current columns.
@@ -199,6 +201,7 @@ Requirements:
 - S8-R5b: The Date cell is blank on asset rows.
 - S8-R5c: Asset rows are indented one level under the customer.
 - S8-R6: A customer's work with no vehicle collects under a single row labeled "Parts Sales," always sorted last among that customer's assets.
+  * Context note: a service work order always has a vehicle, so no-vehicle work is treated as a parts sale.
 - S8-R6a: A customer's real asset rows are ordered A→Z by their label, case-insensitive; the "Parts Sales" bucket is always last, whatever the active column sort.
 - S8-R7 (asset label — primary): The asset label is the vehicle's VIN.
 - S8-R8 (asset label — first fallback): When the vehicle has no VIN, the label is the vehicle's Unit number.
@@ -328,8 +331,10 @@ Requirements:
 - S14-R13: Each CSV includes a "Locations:" line naming the location or locations the report is scoped to, or "All locations" when every location the user has access to is selected (S4-R13).
 - S14-R13a: The CSV carries the same filter-summary lines as the PDF header, verbatim and in the same order: every filter the PDF header names (the date range, the "Locations:" line, and any report-specific filter lines — in particular the "Sales Type: {value}" line the PDF header already carries (S15-R10)) appears as a leading metadata line in the CSV, above the column-header row. A CSV saved or forwarded later is never ambiguous about which filters produced it. (Suite-wide rule, 2026-08-12.)
 - S14-R14: The files are named for the report, the version, and the active date range: the Summary CSV is sales-by-customer-summary-{range}.csv and the Expanded CSV is sales-by-customer-expanded-{range}.csv. {range} uses this map from range label: Today → today; Yesterday → yesterday; This Week → this_week; Last Week → last_week; This Month → this_month; Last Month → last_month; This Year → this_year; Last Year → last_year; This Quarter → this_quarter; Last Quarter → last_quarter; Custom → custom.
+  * Context note: for the Custom range the literal word "custom" is used; the actual start and end dates are not put in the filename.
 - S14-R15: Each downloaded file is plain comma-separated text with a .csv extension and opens as rows and columns in a spreadsheet; it is not an .xlsx workbook and not a JSON file.
 - S14-R16: Each CSV is capped at 10,000 data rows — for the Summary CSV the customer rows; for the Expanded CSV the customer, asset, and invoice rows combined — not counting the header row or the totals row, counted on the server against the active date range, Sales Type, location, Customer filter, and sort. When the result would exceed the cap, the server does not generate the file, no download starts, and the user is shown an error toast: "This export is too large to generate. Narrow the date range or filters, then try again."
+  * Context note: the cap is a guardrail against runaway exports; it is enforced server-side against the same filters and sort that produce the on-screen report, so the count the cap checks is the count the file would contain.
 Negative cases:
 - S14-N1: If a CSV download fails, the user is shown an error toast: "CSV export failed."
 Edge cases:
@@ -351,9 +356,11 @@ Requirements:
 - S15-R9: The PDF header is two columns: a text block on the left (70% width) and the organization logo on the right (30% width).
 - S15-R10: The header text block shows, in order: the report title "Sales By Customer Report"; the organization name; the date range; the filter summary line "Sales Type: {value}" where value is "All Sales", "Part Sales only", "Service Sales only" or "No sales"; and the location line "Locations: {value}" (S15-R14).
 - S15-R11: The header date range shows the start and end dates in the format "Mon D, YYYY," joined by an em dash — for example, "May 1, 2026 — May 31, 2026."
+  * Context note: the header range uses this comma form on purpose; the body Date cells use "Mon DD YYYY" (S15-R20). The header-versus-cell difference is intentional.
 - S15-R12: Every date range is bounded, so the PDF header date range always shows a start and end date (per S15-R11); there is no unbounded-range wording.
 - S15-R13: The header title reads "Sales By Customer Report" for both versions; the version (Summary or Expanded) is conveyed by the file name (S15-R6) and the body contents (S15-R4, S15-R5), not by a change to the title.
 - S15-R14: The header shows a "Locations:" line naming the location or locations the report is scoped to, or "All locations" when every location the user has access to is selected (S4-R13). The names shown match the Location filter's current selection.
+  * Context note: this reverses the earlier rule that hid the location from the PDF header; the export must now carry its own location context so a printed copy is not ambiguous about which location's data it shows.
 - S15-R15: The organization logo is embedded in the PDF, not loaded from a network address, so it renders offline.
 - S15-R16: The logo scales to fit its area without distortion, pinned to the top-right.
 - S15-R17: The logo is chosen in this order: (1) the organization's uploaded logo; (2) the bundled ShopView logo only when an uploaded logo is set but fails to load; (3) no logo when none is uploaded.
@@ -393,9 +400,11 @@ Prerequisites:
 Requirements:
 - S18-R1: The toolbar has a Customer filter, labeled "Customer," positioned between the Sales Type filter and the Location filter.
 - S18-R2: The filter is a multi-select with server-backed type-ahead. The control carries a search (magnifier) icon marking it as searchable. The dropdown does not load the full customer list into the browser; instead, as the user types, it fetches matching customers from the server — case-insensitive "contains" matching on the customer name, scoped to the active date range, Sales Type, and location — and lists the returned customers, each shown with a checkmark when selected. A "Search customers…" hint is pinned to the top of the dropdown before any query is typed, and yields to the typed query while the user is searching. Before the user types, the dropdown shows the pinned all/clear control (S18-R3) and the hint; the user types to reveal individual customers to select or deselect.
+  * Context note: the customer list is fetched on demand as the user types rather than loaded into the browser up front, so the report does not depend on the full customer list being small enough to ship to the client. The all-customers state is stored as an explicit state (S18-R4), not an enumeration of the fetched ids, so "all customers" — including customers not currently listed in the dropdown — can be represented without loading them.
 - S18-R3: A control pinned to the top of the dropdown selects or clears every customer at once. It reads "All customers" when the filter is not in the all-customers state (activating it puts the filter in the all-customers state, S18-R4) and "Clear all" when the filter is in the all-customers state (activating it clears the selection to an empty set).
 - S18-R4: On first load, with no saved selection, the filter is in the all-customers state — an explicit state meaning "all customers," stored as a flag rather than an enumeration of the current customer ids — and the report shows every customer. While the filter is in the all-customers state, every customer matching the other active filters is included, including any customer that appears later (S18-R8, S18-R9).
 - S18-R5: The report shows only the customers currently selected in the filter. The collapsed filter label reads "All customers" when the filter is in the all-customers state (S18-R4), "None" when the selection is an empty set, the customer's name when exactly one customer is selected, and "N selected" when more than one customer is selected (N is the number of selected customers). While the user is typing a search query in the filter, the field shows the query text instead of the summary label; the summary label returns when the query is cleared or the field loses focus.
+  * Context note: the label no longer uses an "N of M" form because, with server-backed type-ahead (S18-R2), the total customer count M is not held in the browser; the all-customers state is conveyed by the "All customers" label driven by the explicit all-state flag (S18-R4) rather than by comparing a selected count to a total.
 - S18-R6: The totals row is computed on the server over the full set of customers matching the active filters (date range, Sales Type, location, and the Customer filter), not only the customers on the current page.
 - S18-R7: Exports (CSV, PDF) are generated on the server and contain exactly the customers matching the active filters — the customers selected in the Customer filter, within the active date range, Sales Type, and location. When every customer is selected, the export contains the full set of customers under those filters.
 - S18-R8: The Customer filter selection is remembered between visits (Story 6), saved as either the all-customers state (S18-R4) or an explicit set of selected customer ids. On restore: if the saved state is the all-customers state, the filter restores to the all-customers state and the report shows every customer present in the current results, including any customer that appeared since the selection was saved. If the saved state is an explicit set of ids, the saved ids are intersected with the customers present in the current results — still-present ids are re-selected, any saved id no longer present is dropped (a stale saved id never forces an empty view), and a customer that appeared since the set was saved is not auto-selected.
@@ -425,6 +434,7 @@ Requirements:
 - S20-R8: Column-header cells and customer summary rows use the white surface (#ffffff), or the dark surface in dark mode.
 - S20-R9: Asset rows and invoice rows use the blue-grey background (#f9fafb), or the dark background in dark mode.
 - S20-R10: The totals row uses the white surface (#ffffff), or the dark surface in dark mode, with a top border and bold text.
+  * Context note: the totals row was set to white on purpose, not the tinted background, to match Technician Efficiency, the suite's visual reference.
 - S20-R11: The pinned Subtotal cell on any row uses that row's own background — it is never a contrasting strip.
 - S20-R12: The leftmost cell (header, body, totals) has 2rem of left padding; the rightmost cell has 2rem of right padding.
 - S20-R13: The table has no rounded corners.
@@ -446,6 +456,7 @@ Requirements:
 - S21-R1: Every toolbar control — date range, Sales Type, the Customer filter, location, the overflow menu, and the column selector — is visible and works on touch.
 - S21-R2: Below a 1024px viewport width, the toolbar uses two rows: the action controls (overflow menu and column selector) on the first row, and the filter dropdowns on the second row, stacked at full width.
 - S21-R3: At 1024px width and above, the toolbar uses the desktop single-row layout.
+  * Context note: the two-row layout keeps a filter dropdown's expand arrow from overlapping the action controls.
 - S21-R4: The data table scrolls sideways to show all columns, and the pinned Subtotal column stays visible during that scroll.
 - S21-R5: The chevron expand and collapse control on each row works on touch.
 - S21-R6: The invoice number link opens the invoice in the same tab on touch, the same as on desktop.

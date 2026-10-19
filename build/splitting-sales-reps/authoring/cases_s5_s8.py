@@ -20,7 +20,8 @@ C("S5-01", "S5", "A split invoice gives the Labor rep a Labor row and the Parts 
    "Step 3: Sales Type \"Labor\"; Labor Invoiced $200.00, Hrs Invoiced 2.00, labor columns filled; Parts Invoiced and Parts Margin show a dash, not $0.00.",
    "Step 4: Sales Type \"Parts\"; Parts Invoiced $50.00; Labor Invoiced, Labor Margin, Hrs Worked, Hrs Invoiced, Labor Delta and Shop Supplies show a dash.",
    "Step 5: each summary row shows real sums (no dashes): {Sales-rep-A} $200.00 of labor, {Sales-rep-B} $50.00 of parts; each counts the invoice once."],
-  ["S5-R1", "S5-R3", "S5-R4", "S5-R5", "S5-R11", "S5-R13", "S5-R15", "S5-R16", "S5-R19", "S2-R13"])
+  ["S5-R1", "S5-R3", "S5-R4", "S5-R5", "S5-R11", "S5-R13", "S5-R15", "S5-R16", "S5-R19", "S2-R13"],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, S9-N1), shows Labor Delta as 0.0 on a Parts row, and it also places Location right after Status (S18-R13). PRD version 8 (14 Oct 2026) is later and says a dash; this case follows the PRD, which we take as prevailing. Both points are on the product owner's question list.")
 
 C("S5-02", "S5", "All shop supplies, including a hand-typed amount, go to the Labor row",
   [ADMIN, REPS2, CUST, ("{Location-A}'s Shop Supplies Charge is 10% of labor, and nothing else is invoiced at {Location-A} today.", None),
@@ -50,7 +51,8 @@ C("S5-03", "DATA", "A whole-invoice discount is shared by the size of each side"
    "Step 3: Labor row: Labor Invoiced $600.00, Shop Supplies $30.00, its share of the discount ($30.00) (600 ÷ 1,000 × 50), subtotal $600.00.",
    "Step 4: Parts row: Parts Invoiced $400.00, its share of the discount ($20.00) (400 ÷ 1,000 × 50), subtotal $380.00.",
    "Step 5: $600.00 + $380.00 = $980.00, the invoice's total before tax."],
-  ["S5-R6"])
+  ["S5-R6"],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, S5-R11), still keeps whole-invoice fees and discounts out of the Labor and Parts columns. PRD version 8 (14 Oct 2026) is later and shares them by side; this case follows the PRD, which we take as prevailing. Which column shows each row's share is on the product owner's question list; judge the amounts wherever they show.")
 
 C("S5-04", "DATA", "A negative side still shares a discount by size",
   [ADMIN, REPS2, CUST, ("{Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.", None),
@@ -290,7 +292,8 @@ C("S8-02", "S8", "Sales By Representative exports name the Sales Type selection"
   ["Step 1: both read \"Sales Type: All\".",
    "Step 2: both read \"Sales Type: Parts, Part Sales\".",
    "Step 3: \"Empty export\" shows and no file is made."],
-  ["S8-R4"])
+  ["S8-R4"],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, S3-R10 and S14-E3), still makes a file with a \"Sales Type: None\" line when no option is selected. PRD version 8 (14 Oct 2026) is later and says Export shows \"Empty export\" and makes no file; this case follows the PRD, which we take as prevailing. The difference is on the product owner's question list.")
 
 C("S8-03", "S8", "Sales By Customer's Product Type filter now reads Sales Type",
   [ADMIN, START("Reports > Sales By Customer is open in a desktop browser at least 1024 px wide")],
@@ -314,7 +317,8 @@ C("S8-04", "S8", "Sales By Customer exports name the Sales Type selection",
    "Step 2: both read \"Sales Type: Part Sales only\".",
    "Step 3: both read \"Sales Type: Service Sales only\".",
    "Step 4: \"Empty export\" shows and no file is made."],
-  ["S8-R9"])
+  ["S8-R9"],
+  note="The Sales By Customer spec, version 21 (6 Oct 2026, S3-R7, S15-R10 and S18-R10), still makes a file with a \"No sales\" line when no option is selected. PRD version 8 (14 Oct 2026) is later and says Export shows \"Empty export\" and makes no file; this case follows the PRD, which we take as prevailing. The difference is on the product owner's question list.")
 
 C("S8-05", "S8", "Sales By Customer figures do not change with the new wording",
   [ADMIN, REPS2,

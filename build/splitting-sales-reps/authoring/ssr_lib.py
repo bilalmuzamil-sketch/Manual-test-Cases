@@ -7,6 +7,9 @@ PRD_TXT = open(f"{P}/sources/CONFLUENCE-919928833-v8-2026-10-19.txt").read()
 def ws(s): return re.sub(r"\s+", " ", html.unescape(s).replace("**", "").replace("\\", "")).strip()
 PRDW = ws(PRD_TXT)
 TPW = ws(open(f"{P}/sources/Tech-Plan-Splitting-Sales-Representatives-2026-10-19-upload.md").read())
+SBRW = ws(open(f"{P}/report-specs/SBR-585629698-v28-2026-10-19.txt").read())
+SBCW = ws(open(f"{P}/report-specs/SBC-577634305-v21-2026-10-19.txt").read())
+SPEC_NAMES = {"Sales By Representative spec": "\"SBR (Sales By Representative) Report\" spec, Confluence 585629698, version 28 (12 Oct 2026)", "Sales By Customer spec": "\"SBC (Sales By Customer) Report\" spec, Confluence 577634305, version 21 (6 Oct 2026)"}
 TP_NAME = "Tech plan \"Splitting Sales Representatives — Technical Implementation Plan\" (dated 14 Oct 2026, uploaded 19 Oct 2026)"
 CODE = {}
 for line in PRD_TXT.split("\n"):
@@ -55,6 +58,9 @@ def source(c):
     refs = ", ".join(codes + other)
     s = f"Epic SV-10890; {sto}; {PRD_NAME}, {refs}, read 19 Oct 2026."
     if any(l.startswith("Tech plan") for l in other): s += f" {TP_NAME}, " + ", ".join(l for l in other if l.startswith("Tech plan")) + ", read 19 Oct 2026."
+    for k, v in SPEC_NAMES.items():
+        ls = [l.split(", ", 1)[1] for l in other if l.startswith(k)]
+        if ls: s += f" {v}, " + ", ".join(ls) + ", read 19 Oct 2026."
     if c["extra_src"]: s += " " + c["extra_src"]
     return s + " Source-verified 19 October 2026. " + NOBUILD
 
@@ -89,7 +95,7 @@ def check(c, extra_sources=None):
     if "ZZAUTOTEST" in tester: p.append(f"{k}: hard-coded record in tester text")
     if re.search(r"\bS\d+-[RNE]\d+", tester): p.append(f"{k}: requirement code in tester text")
     for l, t in quotes(c):
-        src = TPW if l.startswith("Tech plan") else (PRDW if not (extra_sources and l in extra_sources) else ws(extra_sources[l]))
+        src = TPW if l.startswith("Tech plan") else SBRW if l.startswith("Sales By Representative spec") else SBCW if l.startswith("Sales By Customer spec") else (PRDW if not (extra_sources and l in extra_sources) else ws(extra_sources[l]))
         if ws(t) not in src: p.append(f"{k}: quote {l} not verbatim")
     if len(c["pre"]) > 7: p.append(f"{k}: {len(c['pre'])} preconditions")
     if len(c["steps"]) > 10: p.append(f"{k}: {len(c['steps'])} steps (over 10: ask before splitting, Rule 127)")

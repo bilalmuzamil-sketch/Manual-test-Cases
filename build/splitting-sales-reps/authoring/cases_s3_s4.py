@@ -136,7 +136,8 @@ C("S4-09", "S4", "A new work order starts with the customer's one representative
    "Open the work order's Audit Log from its menu."],
   ["Step 1: the new work order shows one \"Sales Representative\" field reading {Sales-rep-A}; it is not split.",
    "Step 2: there is no \"Sales representative changed\" entry for the copied representative."],
-  ["S4-R24", "S7-R5"])
+  ["S4-R24", "S7-R5"],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, S19-R3), still says a new work order opens \"Unassigned\". PRD version 8 (14 Oct 2026) is later and fills it from the customer; this case follows the PRD, which we take as prevailing. The difference is on the product owner's question list.")
 
 C("S4-10", "S4", "A new work order for a split customer starts with Labor and Parts",
   [ADMIN, REPS2,
@@ -239,7 +240,8 @@ C("S4-18", "S4", "Deactivating a rep clears their customer fields and removes Pa
    "Step 2: {Sales-rep-C} is deactivated.",
    "Step 3: {Customer-A} shows Service Labor {Sales-rep-A} and Service Parts {Sales-rep-B}; the Part Sales field is gone, so new part sales follow Service Parts.",
    "Step 4: {Customer-B} shows \"Sales Representative\" reading \"Unassigned\"."],
-  ["S4-R20", "S4-R21"])
+  ["S4-R20", "S4-R21"],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, Story 13), still keeps a deactivated person on their customers. PRD version 8 (14 Oct 2026) is later and removes them; this case follows the PRD, which we take as prevailing. The difference is on the product owner's question list.")
 
 C("S4-19", "S4", "A deactivation warning counts a customer once when a rep holds two fields",
   [ADMIN, REPS2,
@@ -276,7 +278,8 @@ C("S4-21", "S4", "The assignments export lists one row per customer per person w
   ["Step 1: the file downloads.",
    "Step 2: it is a column named \"Side\".",
    "Step 3: {Customer-A}: one row, {Sales-rep-A}, Side \"Parts and Service\". {Customer-B}: two rows, {Sales-rep-A} \"Service Labor\" and {Sales-rep-B} \"Service Parts\". {Customer-C}: one row, {Sales-rep-C}, Side \"Parts and Service, Part Sales\"."],
-  ["S4-R23"])
+  ["S4-R23"],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, S15-R1, S15-R4, S15-R5 and S15-R9), names the export, its heading (\"Rep is active?\") and its Side values differently. PRD version 8 (14 Oct 2026) is later; this case follows the PRD, which we take as prevailing. The difference is on the product owner's question list.")
 
 C("S4-22", "S4", "Re-importing a customer keeps all its representatives",
   [ADMIN, REPS3,
