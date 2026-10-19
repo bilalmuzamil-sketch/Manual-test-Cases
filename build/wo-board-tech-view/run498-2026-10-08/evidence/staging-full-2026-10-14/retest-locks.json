@@ -1,0 +1,256 @@
+{
+ "runner": "3620a2b1",
+ "C96964": {
+  "data": {
+   "Invoiced": {
+    "id": "d324e38e-3bd7-4310-97b3-d2a827f870fd",
+    "number": "S2-37502"
+   },
+   "Paid": {
+    "id": "fb7ee008-4f3e-47f3-9a60-a73d975e4b50",
+    "number": "S2-37503"
+   }
+  },
+  "log": [
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "status now Invoiced",
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "paid 201",
+   "status now Paid"
+  ],
+  "boardInvoiced": {
+   "lock": {
+    "host": true,
+    "lock": true,
+    "tag": "SPAN",
+    "cls": "board-card__lock",
+    "box": [
+     415,
+     240,
+     12,
+     12
+    ]
+   },
+   "lockTip": [],
+   "items": [
+    {
+     "text": "Reassign lead technician",
+     "disabled": true
+    },
+    {
+     "text": "Unassign",
+     "disabled": true
+    }
+   ],
+   "reassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "unassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "drop": {
+    "drag": "held then released",
+    "held": {
+     "targetText": "ZC ZZAUTOTEST C96964 Ben Ben 0 0 work orders Drag a work order here to assign it",
+     "overlays": [
+      "The lead technician can't be changed once a work order is Invoiced or Paid."
+     ]
+    },
+    "messagesAfter": []
+   },
+   "leadAfter": "d4e5b0ab-6c81-493d-a144-335815816da8",
+   "columnAfter": "ZZAUTOTEST C96964 Ana Alpha"
+  },
+  "boardPaid": {
+   "lock": {
+    "host": true,
+    "lock": true,
+    "tag": "SPAN",
+    "cls": "board-card__lock",
+    "box": [
+     415,
+     411,
+     12,
+     12
+    ]
+   },
+   "lockTip": [],
+   "items": [
+    {
+     "text": "Reassign lead technician",
+     "disabled": true
+    },
+    {
+     "text": "Unassign",
+     "disabled": true
+    }
+   ],
+   "reassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "unassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "drop": {
+    "drag": "held then released",
+    "held": {
+     "targetText": "ZC ZZAUTOTEST C96964 Ben Ben 0 0 work orders Drag a work order here to assign it",
+     "overlays": [
+      "The lead technician can't be changed once a work order is Invoiced or Paid."
+     ]
+    },
+    "messagesAfter": []
+   },
+   "leadAfter": "d4e5b0ab-6c81-493d-a144-335815816da8",
+   "columnAfter": "ZZAUTOTEST C96964 Ana Alpha"
+  },
+  "techInvoiced": {
+   "lock": {
+    "host": true,
+    "lock": true,
+    "tag": "SPAN",
+    "cls": "tech-view__row-lock",
+    "box": [
+     327,
+     342,
+     12,
+     12
+    ]
+   },
+   "lockTip": [],
+   "items": [
+    {
+     "text": "Reassign lead technician",
+     "disabled": true
+    },
+    {
+     "text": "Unassign",
+     "disabled": true
+    }
+   ],
+   "reassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "unassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "drop": {
+    "drag": "held then released",
+    "held": {
+     "targetText": "ZC ZZAUTOTEST C96964 Ben Ben 0 0 work orders",
+     "overlays": [
+      "The lead technician can't be changed once a work order is Invoiced or Paid."
+     ]
+    },
+    "messagesAfter": []
+   },
+   "leadAfter": "d4e5b0ab-6c81-493d-a144-335815816da8"
+  },
+  "techPaid": {
+   "lock": {
+    "host": true,
+    "lock": true,
+    "tag": "SPAN",
+    "cls": "tech-view__row-lock",
+    "box": [
+     175,
+     390,
+     12,
+     12
+    ]
+   },
+   "lockTip": [],
+   "items": [
+    {
+     "text": "Reassign lead technician",
+     "disabled": true
+    },
+    {
+     "text": "Unassign",
+     "disabled": true
+    }
+   ],
+   "reassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "unassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "drop": {
+    "drag": "held then released",
+    "held": {
+     "targetText": "ZC ZZAUTOTEST C96964 Ben Ben 0 0 work orders",
+     "overlays": [
+      "The lead technician can't be changed once a work order is Invoiced or Paid."
+     ]
+    },
+    "messagesAfter": []
+   },
+   "leadAfter": "d4e5b0ab-6c81-493d-a144-335815816da8"
+  }
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "C96967": {
+  "data": {
+   "One": {
+    "id": "62245f0c-cce4-43c1-a3fc-cfb1a66be4a5",
+    "number": "S2-37504"
+   }
+  },
+  "viewer": {
+   "made": true,
+   "role": true
+  },
+  "error": "ME is not defined"
+ },
+ "C368147": {
+  "data": {
+   "Alpha Co": {
+    "id": "1cfaf56d-e6f9-4f3e-9cce-a0577bee3a2e",
+    "number": "S2-37505"
+   },
+   "Bravo Co": {
+    "id": "f9e315c3-359c-48fa-83b5-ee8cfd59bf2a",
+    "number": "S2-37506"
+   }
+  },
+  "viewer": {
+   "made": true,
+   "role": true
+  },
+  "error": "ME is not defined"
+ },
+ "C97020": {
+  "data": {
+   "Alpha Co": {
+    "id": "e8a60b92-ba58-4913-ba38-6ec3f0c99aa0",
+    "number": "S2-37507"
+   },
+   "Bravo Co": {
+    "id": "61eb8ee5-cc23-4451-8e4e-09e16eb09f37",
+    "number": "S2-37508"
+   }
+  },
+  "viewer": {
+   "made": true,
+   "role": true
+  },
+  "error": "ME is not defined"
+ }
+}
