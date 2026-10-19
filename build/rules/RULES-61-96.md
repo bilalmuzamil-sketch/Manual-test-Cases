@@ -2903,6 +2903,26 @@ Sales Representatives."*
    Representatives cases" Only"):** only the Splitting Sales Representatives cases were converted. Cases in other suites keep their
    Source paragraph until the QA lead names them for conversion.
 
+### 117 — TWELFTH AMENDMENT, PERMANENT (QA lead, 2026-10-19): every design case's title starts "Design: "
+
+Ordered on WO Board and Tech View on 19 Oct 2026, verbatim: *"every test case design for wonboard and tech view which yoi have
+created vefore today should have the easiest to understand titke for a lay man and that title should start with Design: And the
+Test cases for design which we have created today should fillow the same ruke for title but their titke should start with
+Design-"*. Asked whether it is permanent, he answered *"Design:"*; the rule was stated back in plain words (every new design case
+starts "Design: ", every project, existing titles stay, nothing else changes) and he confirmed: *"Yes, Yes"* (permanent, every project).
+
+1. **Every new case that checks how a design looks** (the cases in a suite's "Design — how it looks" section, Rule 126, and any
+   other case whose purpose is the design's look or words) gets a title that **starts with "Design: "** (capital D, colon, space).
+2. **The rest of the title is the easiest wording for a lay person:** the screen's own words, no specification shorthand, one
+   check, no semicolons, and the whole title, prefix included, at most 80 characters (requirements 1 and 3 of this rule, and the
+   7 Oct 2026 amendment).
+3. **Every project**, not only WO Board and Tech View.
+4. **Existing titles stay as they are.** On WO Board and Tech View the 25 design cases made before 19 Oct 2026 start "Design: ",
+   and the 12 made on 19 Oct 2026 start "Design- " (C665914, C682420, C682429 to C682436, C682439, C682440), as he ordered for
+   that day. They are not changed to "Design: " unless he names them.
+5. **Nothing else about a case changes** because of this amendment.
+6. Record of the retitling: `build/wo-board-tech-view/design-titles-2026-10-19/`.
+
 ## 118 · EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK — FACTS MAY BE SHARED, RULES MAY NOT (all projects, permanent)
 
 Standing instruction from the QA lead, 2026-10-06, recorded with his explicit approval ("This message is my

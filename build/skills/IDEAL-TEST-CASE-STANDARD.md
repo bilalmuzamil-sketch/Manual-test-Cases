@@ -145,3 +145,6 @@ Below "Exact quotes from the source (for reproducibility)", after a blank line, 
 
 ## Eleventh amendment (PERMANENT, QA lead, 19 Oct 2026): no separate "Source" paragraph
 Under "Exact quotes from the source (for reproducibility)", each document quoted gets one line "From: <name, id, version, date, author>, read <date>" directly above its own quotes; the epic and story go on the first "From:" line. The requirement-code list and "Source-verified" are dropped (they repeat). The build-check sentence follows the last quote. Order: expected results → non-design note → quotes with their From lines → build sentence → References from Design → AUTOMATION. Full text: Rule 117, eleventh amendment.
+
+## Twelfth amendment (PERMANENT, QA lead, 19 Oct 2026): design case titles start "Design: "
+Every new case that checks how a design looks gets a title starting "Design: ", then the easiest lay-person wording (screen's own words, one check, no semicolons, at most 80 characters including the prefix). Every project. Existing titles stay (the WO Board cases made on 19 Oct 2026 keep "Design- "). Nothing else changes. Full text: Rule 117, twelfth amendment.
