@@ -2899,6 +2899,9 @@ Sales Representatives."*
    version, tickets or build line). Worked example: Splitting Sales Representatives, group 84266, all 120 cases.
 7. Where the QA lead says a case's expected results and sources must not change (19 Oct 2026: C368131, C368167, C96936, "the
    expected result is not supposed to be changed and so the sources"), that case's Expected field is left exactly as it is.
+8. **Scope of the conversion (QA lead, 19 Oct 2026, verbatim: "You need to correct the test cases for the "Splitting Sales
+   Representatives cases" Only"):** only the Splitting Sales Representatives cases were converted. Cases in other suites keep their
+   Source paragraph until the QA lead names them for conversion.
 
 ## 118 · EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK — FACTS MAY BE SHARED, RULES MAY NOT (all projects, permanent)
 

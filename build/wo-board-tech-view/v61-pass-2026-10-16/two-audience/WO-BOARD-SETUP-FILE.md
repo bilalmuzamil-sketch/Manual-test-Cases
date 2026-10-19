@@ -1,11 +1,11 @@
-# WO Board and Tech View: setup file for Claude sessions (23 cases, 16 to 19 Oct 2026)
+# WO Board and Tech View: setup file for Claude sessions (26 cases, 16 to 19 Oct 2026)
 
 This file is for a Claude session. A manual tester never needs it: each test case is complete on its own. With this file and the access the user gives at the start of the session, a new session can put the account into every case's starting state. It holds no environment address, credentials, cookies or session data.
 
 ## 1. Header
 
 - Feature: Work Orders, Board View and Tech View display options (epic SV-10043; stories SV-10044 to SV-10054).
-- Generated: 16 Oct 2026, for the 21 cases rewritten that day in the two-audience layout (a one-time trial ordered by the QA lead), and C614719 added the same evening for PRD v62 S11-R1; C665914 added 19 Oct 2026 for SV-11503 (drag preview), PRD v64.
+- Generated: 16 Oct 2026, for the 21 cases rewritten that day in the two-audience layout (a one-time trial ordered by the QA lead), and C614719 added the same evening for PRD v62 S11-R1; C665914 added 19 Oct 2026 for SV-11503 (drag preview), PRD v64; C368131, C368167 and C96936 added 19 Oct 2026 when their preconditions and steps were simplified (QA lead).
 - Sources: PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 62 (16 Oct 2026 17:35 UTC, Chris Ward; S2-R23 and S11-R1 reworded after answers 32 and 33); Jira stories SV-10044 to SV-10054 and defects SV-11317 to SV-11326, SV-11338, SV-11416; tech plan (upload of 8 Oct 2026); Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026; QA handoff test plan (8 Oct 2026); Chris Ward's answers 1 to 33 (sheet of 14 Oct 2026).
 - At session start, ask the user for: the site to use (staging or a QA site) and how to sign in as ACCOUNT-A, and ACCOUNT-B where a case needs it.
 
@@ -797,6 +797,113 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 Known examples already on staging (from SV-11503, not created by this file): S2-36633 and S2-35480.
 
+#### SETUP-C368131 — [C368131](https://shopview.testrail.io/index.php?/cases/view/368131) Pinned technician columns after deactivation or removal from this location
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in as an Admin user (Work orders > View and Create & Edit) at {Location-A}, in a desktop browser window at least 1024 px wide. The company has a second location, {Location-B}. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
+- A second user, {User-B}, whose role has Work orders > View only, is signed in at {Location-A} in a second browser or a private window. For example: {User-B} is ZZAUTOTEST C368131 Viewer.
+- Three active technicians work at {Location-A}: {Technician-A}, and {Technician-B} and {Technician-C}, who are made for this case only. {Technician-B} leads no work order. For example: {Technician-A} is Esther Howard, {Technician-B} is ZZAUTOTEST Jenny Pinned and {Technician-C} is ZZAUTOTEST Theresa Pinned.
+- Customer {Customer-A} has two Approved work orders, with no shift booked for them on the Schedule: {Work-order-1} led by {Technician-A}, and {Work-order-2} led by {Technician-C}. For example: {Customer-A} is ZZAUTOTEST C368131 Pinned Gone, {Work-order-1} is S10043-17691 and {Work-order-2} is S10043-17692.
+- You and {User-B} both have {Technician-B} and {Technician-C} pinned in Board View.
+- Starting screen: the Work Orders page with no filter set (nothing ticked in "Status", no choice in "Asset on Site", "Assigned to me" off, "Search" empty).
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A, ACCOUNT-B (view only). **Run first:** SETUP-ADMIN.
+
+1.  **P-TECH** (ACCOUNT-A): {Technician-A}: reuse "Esther Howard" if active at the case location with Time Clock on and a Role other than Office User or Time Clock User; otherwise make one.
+2.  **P-TECH** (ACCOUNT-A): {Technician-B}: First Name "ZZAUTOTEST", Last Name "Jenny Pinned". New for every run: the test deactivates it.
+3.  **P-TECH** (ACCOUNT-A): {Technician-C}: First Name "ZZAUTOTEST", Last Name "Theresa Pinned", Location {Location-A}. New for every run: the test moves it to {Location-B} (for example Staging Lethbridge - 4310).
+4.  **P-CUSTOMER** (ACCOUNT-A): Name "ZZAUTOTEST C368131 Pinned Gone"; unit "C368131-U1".
+5.  **P-WO** (ACCOUNT-A), twice on unit "C368131-U1": {Work-order-1} with lead {Technician-A}; {Work-order-2} with lead {Technician-C}. Book no Schedule shift on either.
+6.  ACCOUNT-B: Settings > Roles & Permissions > Create Custom Role > Skip > Role Name "ZZAUTOTEST C368131 View Role" > under Work orders turn on View only > Create. Then Settings > Staff > New Staff Member "ZZAUTOTEST C368131 Viewer" with an email you can open, that role, one Department, Location {Location-A} > Save & Close; accept the invitation and set a password. Quick login signs in only as Admin, so ACCOUNT-B signs in with email and password in a second browser context (password in /tmp only).
+7.  **P-PIN** as ACCOUNT-A and again as ACCOUNT-B: pin {Technician-B} and {Technician-C}. Only three pins are allowed: if three are already pinned, unpin one first. Pins are per user.
+8.  **P-START** (ACCOUNT-A): the Work Orders page with no filter set (nothing in Status, no Asset on Site choice, Assigned to me off, Search empty).
+
+**Check:** Both users' Board View shows {Technician-B} and {Technician-C} right after Unassigned with filled pins; Search with the customer name shows {Work-order-1} led by {Technician-A} and {Work-order-2} led by {Technician-C}. Clear the search.
+
+**Placeholder values** (give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging); {Location-B} = another location (Staging Lethbridge - 4310 on staging)
+- {User-B} = ZZAUTOTEST C368131 Viewer
+- {Technician-A} = Esther Howard (or the reused technician)
+- {Technician-B} = ZZAUTOTEST Jenny Pinned
+- {Technician-C} = ZZAUTOTEST Theresa Pinned
+- {Customer-A} = ZZAUTOTEST C368131 Pinned Gone
+- {Work-order-1}, {Work-order-2} = the two work orders on unit C368131-U1
+
+**Notes for a Claude session:**
+
+- Staging, 19 Oct 2026 (passed, T3761652): S2-35908 led by Aaa ZZAUTOTEST Tara Lead and S2-35909 led by Aaa ZZAUTOTEST Theresa Pinned.
+- Step 3 needs both parts on screen: the Location field change (Save & Close) AND the bin icon in Manage staff enrollments (the Department(s) button on her row). The Location change alone leaves her a technician at {Location-A} (seen 17 Oct 2026); the QA lead decided the two-part step on 19 Oct 2026.
+- GET /api/staff rows carry both id and staff_id; the Schedule's staffId and the working-hours calls use staff_id.
+- Steps 9 to 12: drag each card onto the target column with Playwright; read the message after step 10 character for character; record where each card ends up.
+- Steps 7, 8 and 15: record each header's text and whether it shows a pin, an inactive marker and the empty-column text. Evidence: a screenshot after each step with a result, the build marker, the real value of every placeholder.
+
+#### SETUP-C368167 — [C368167](https://shopview.testrail.io/index.php?/cases/view/368167) A refused lead change on the work order page shows an error, keeps the old lead
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in as an Admin user (Work orders > View and Create & Edit) at {Location-A}, in a desktop browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Two active technicians work at {Location-A}: "Esther Howard" (the expected results name her) and {Technician-B}, who is offered in the work order page's "Lead Technician" list. For example: {Technician-B} is Jenny Wilson.
+- Customer {Customer-A}, used by this case only, has work order {Work-order-1}, led by "Esther Howard", with status Complete (all lines complete and reviewed, not invoiced). For example: {Customer-A} is ZZAUTOTEST Refused Lead Change and {Work-order-1} is S2-37327.
+- Two tabs of the same browser window are open, tab 1 and tab 2, both signed in as you. Do not sign in again in a private window: a second sign-in can end the first tab's session.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  **P-TECH** (ACCOUNT-A): "Esther Howard" (the expected results name her): reuse if active at the case location with Time Clock on; otherwise make one with this name.
+2.  **P-TECH** (ACCOUNT-A): {Technician-B}: any second active technician that the work order page's Lead Technician list offers. That list stops after about 100 names (seen 17 Oct 2026, SV-11393 closed as obsolete but still there), so pick one near the top; Jenny Wilson worked on staging on 19 Oct 2026. Ralph Edwards is NOT offered there.
+3.  **P-CUSTOMER** (ACCOUNT-A): Name "ZZAUTOTEST Refused Lead Change"; unit "TRK-118" (contact first: Contact and Make are required). If the customer shows Over Limit, raise its credit limit first.
+4.  **P-WO-REVIEW** (ACCOUNT-A) on that unit: the line "Service - Full grease service"; Lead Technician "Esther Howard" (only a dropdown once the work order is Approved; it saves at once). If a "Missing Details (1)" step shows on Complete, type a Mileage. "Work order sent to review." appears and the status reads Review.
+5.  Click "Mark Reviewed"; if the Mark as reviewed window asks for a VIN, type any 17 characters (for example 1FVACWDT1BDAZ0001) > "Confirm Review". The status reads Complete. Do NOT click Create Invoice: the test does that in step 2.
+6.  Open the work order in two tabs of the same browser window (right-click > Open link in new tab). Do not quick-login again in a private window: a second quick-login can end the first tab's session.
+
+**Check:** Reload {Work-order-1}: status Complete, Lead Technician "Esther Howard", and on the Finance tab "Create Invoice" can be clicked.
+
+**Placeholder values** (give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-B} = the second technician picked (Jenny Wilson on staging, 19 Oct 2026)
+- {Customer-A} = ZZAUTOTEST Refused Lead Change
+- {Work-order-1} = the new Complete work order
+
+**Notes for a Claude session:**
+
+- Staging, 19 Oct 2026 (passed, T3792488): S2-37327, Complete, led by Esther Howard; the refusal read "The lead technician can't be changed once a work order is Invoiced or Paid. Please try to resolve this."
+- Step 2: leave New Customer Payment open. Closing it with its X takes the invoice back off and the work order returns to Complete (staging and production, 17 Oct 2026); the QA lead decided on 19 Oct 2026 to leave it open.
+
+#### SETUP-C96936 — [C96936](https://shopview.testrail.io/index.php?/cases/view/96936) A lead changed elsewhere moves the work order to its new group on refresh
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in as an Admin user (Work orders > View and Create & Edit) at {Location-A}, in a desktop browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians "Esther Howard" and "Aaron Baker" are active at {Location-A} (the expected results name them, so use these two).
+- Customer {Customer-A}, used by this case only, has five Approved work orders: {Work-order-1}, {Work-order-2} and {Work-order-3} led by Esther Howard, and {Work-order-4} and {Work-order-5} led by Aaron Baker. For example: {Customer-A} is ZZAUTOTEST F2 Refresh Lead and {Work-order-1} is S2-35331 (the expected results call it "S1-702").
+- Two tabs of the same browser window are open, tab A and tab B, both signed in as you.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  **P-TECH** (ACCOUNT-A): "Esther Howard" and "Aaron Baker" (the expected results name them, keep these names), active at the case location, Time Clock on, Role neither Office User nor Time Clock User, this location in Location. Aaron Baker is used because his name sorts near the top: the work order page's Lead Technician list stops after about 100 names (QA lead's decision, 19 Oct 2026, replacing Ralph Edwards, who is not offered there).
+2.  **P-CUSTOMER** (ACCOUNT-A): Name "ZZAUTOTEST F2 Refresh Lead" (if it exists, open it); unit "TRK-118".
+3.  **P-WO** (ACCOUNT-A), five times on that unit: {Work-order-1}, {Work-order-2}, {Work-order-3} with lead Esther Howard; {Work-order-4}, {Work-order-5} with lead Aaron Baker. (An Estimate's lead is read-only on the page; give it from Board View: More actions (…) > Reassign lead technician.)
+4.  Open a second tab of the same browser window (tab B).
+
+**Check:** Work Orders > All tab > Search "ZZAUTOTEST F2 Refresh Lead" > Tech View: Esther Howard shows 3 and Aaron Baker shows 2. If not, fix the leads first.
+
+**Placeholder values** (give the tester the real work order numbers after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Customer-A} = ZZAUTOTEST F2 Refresh Lead
+- {Work-order-1} = one of Esther Howard's three (the expected results call it "S1-702"; give the tester the real number)
+- {Work-order-2} to {Work-order-5} = the other four
+
+**Notes for a Claude session:**
+
+- Staging, 19 Oct 2026 (passed, T3481880): S2-35331, S2-35332, S2-35333 led by Esther Howard; S2-35334, S2-35335 by Aaron Baker; {Work-order-1} = S2-35331.
+- Step 5: a work order with no lines opens with a New Line window over it; close it with its X before reaching Lead Technician (seen 17 Oct 2026).
+
 ## 5. Mapping table (execution order)
 
 | Test case                                                                                                                                             | Account slots        | Recipes in order                          |
@@ -824,6 +931,9 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 | [C614717](https://shopview.testrail.io/index.php?/cases/view/614717) Row and card name bubbles open above the avatar, headers keep the plain tip      | ACCOUNT-A            | SETUP-ADMIN, SETUP-N4                     |
 | [C614719](https://shopview.testrail.io/index.php?/cases/view/614719) First Tab skips a collapsed or empty Unassigned to the first technician | ACCOUNT-A | SETUP-ADMIN, SETUP-C614719 |
 | [C665914](https://shopview.testrail.io/index.php?/cases/view/665914) A long customer name stays inside the drag preview in Board View and Tech View | ACCOUNT-A | SETUP-ADMIN, SETUP-C665914 |
+| [C368131](https://shopview.testrail.io/index.php?/cases/view/368131) Pinned technician columns after deactivation or removal from this location | ACCOUNT-A, ACCOUNT-B | SETUP-ADMIN, SETUP-C368131 |
+| [C368167](https://shopview.testrail.io/index.php?/cases/view/368167) A refused lead change on the work order page shows an error, keeps the old lead | ACCOUNT-A | SETUP-ADMIN, SETUP-C368167 |
+| [C96936](https://shopview.testrail.io/index.php?/cases/view/96936) A lead changed elsewhere moves the work order to its new group on refresh | ACCOUNT-A | SETUP-ADMIN, SETUP-C96936 |
 
 ## 6. Dependencies and shared fixtures
 
@@ -840,6 +950,9 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 - **SETUP-C590117**: Pins and unpins inside the test; ends with no pin.
 - **SETUP-C590119**: Pins and unpins inside the test; ends with no pin.
 - Every other recipe is safe to re-run: reuse a record that already exists with exactly the same name and state.
+- **SETUP-C368131**: Steps 1 to 3 spend {Technician-B} (deactivated) and {Technician-C} (moved to {Location-B}): make two new technicians before the next run (keep ZZAUTOTEST at the start), pin them for both users and give {Work-order-2} the new {Technician-C}. Step 12 moves {Work-order-2} to Unassigned.
+- **SETUP-C368167**: Step 2 invoices {Work-order-1}: make a new Complete work order (same recipe) before the next run.
+- **SETUP-C96936**: Step 5 moves {Work-order-1} to Aaron Baker: set its lead back to Esther Howard before the next run.
 
 ## 8. Traceability
 
@@ -1178,6 +1291,33 @@ Steps with no source sentence (navigation and on-screen labels, taken from the b
 
 Jira: SV-10052, SV-11503 (known problem). Not yet checked against a build.
 
+### [C368131](https://shopview.testrail.io/index.php?/cases/view/368131) Pinned technician columns after deactivation or removal from this location
+
+Preconditions and steps simplified 19 Oct 2026 (QA lead); the Expected field, its sources and quotes are unchanged. The quotes, word for word as in the case:
+
+- S3-R20a: “The empty column of a pinned technician who has been deactivated shows “No work orders” to every user, because nothing can be dropped there (S4-N5).”
+- S3-E3: “Retain a technician’s pin after deactivation.”
+- S3-N4: “Show an inactive indicator on deactivated technician columns.”
+- S3-R20b: “A pinned technician who is not enrolled at this location gets no column here. If they still lead work orders at this location, they appear as a normal, unpinned column holding that work.”
+- S3-R20c: “The column of S3-R20b takes no drops. Dropping a work order on it is refused with "This technician can't be assigned work orders." and the work order stays where it was. The column shows no inactive marker, because the technician is not deactivated (S3-N4). Once it holds no work orders, the column is no longer shown.”
+- S4-N5: “Nothing can be dropped onto the column/group of an inactive technician (S2-N2, S3-N2) or of a technician who is not enrolled at this location (S3-R20c).”
+- Context note (S3-R20a, S3-R20b): “A pin only counts at locations where the technician is enrolled.”
+
+### [C368167](https://shopview.testrail.io/index.php?/cases/view/368167) A refused lead change on the work order page shows an error, keeps the old lead
+
+Preconditions and steps simplified 19 Oct 2026 (QA lead); the Expected field, its sources and quotes are unchanged. The quotes, word for word as in the case:
+
+- Dev reply High 1: “A refused change now shows an error and puts the old value back.”
+- QA handoff §7: “A refused change shows an error and puts the old value back.”
+- QA handoff §7: “changing the lead from the dialog, by a board drag or from the detail card is refused with "The lead technician can't be changed once a work order is Invoiced or Paid."”
+- PRD §4 Key Decisions (lead lock): “Lead technician cannot be changed once a work order is Invoiced or Paid. This is a product rule, not only a screen rule, so it must hold on every path that changes the lead technician — board drag, Reassign dialog, and the work order detail page.”
+
+### [C96936](https://shopview.testrail.io/index.php?/cases/view/96936) A lead changed elsewhere moves the work order to its new group on refresh
+
+Preconditions and steps simplified 19 Oct 2026 (QA lead); the Expected field, its sources and quotes are unchanged. The quotes, word for word as in the case:
+
+- S2-E2: “After a lead change elsewhere, move the work order to its new technician group on the next refresh.”
+
 ## 9. VIU status
 
 | Item                                                                 | Status                                                                                                                      |
@@ -1208,6 +1348,9 @@ Jira: SV-10052, SV-11503 (known problem). Not yet checked against a build.
 | [C614717](https://shopview.testrail.io/index.php?/cases/view/614717) | UNVERIFIED: not yet run in this layout. AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build               |
 | [C614719](https://shopview.testrail.io/index.php?/cases/view/614719) | UNVERIFIED: not yet run. AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build |
 | [C665914](https://shopview.testrail.io/index.php?/cases/view/665914) | UNVERIFIED: not yet run. AUTOMATION: READY - EXPECT FAIL (SV-11503) |
+| [C368131](https://shopview.testrail.io/index.php?/cases/view/368131) | Passed on staging v26.40.19-e435950, 19 Oct 2026 (run 498, T3761652), in the wording before this simplification; the actions are the same. AUTOMATION: READY |
+| [C368167](https://shopview.testrail.io/index.php?/cases/view/368167) | Passed on staging v26.40.19-e435950, 19 Oct 2026 (run 498, T3792488), in the wording before this simplification; the actions are the same. AUTOMATION: READY |
+| [C96936](https://shopview.testrail.io/index.php?/cases/view/96936) | Passed on staging v26.40.19-e435950, 19 Oct 2026 (run 498, T3481880), in the wording before this simplification; the actions are the same. AUTOMATION: READY |
 
 ## 10. Open questions
 
