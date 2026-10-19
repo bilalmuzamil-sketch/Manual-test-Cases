@@ -21,6 +21,6 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
   (applied/apply-log.jsonl); id map testrail-id-map.csv. All 138 PRD codes covered. Every case: "The build is not yet available to
   check this case against." Built by authoring/build.py (quotes checked verbatim against PRD v8, tech plan, report specs).
 - Setup file prepared, NOT linked: SPLITTING-SALES-REPS-SETUP-FILE.md.
-- PO question sheet for Chris Ward: being built (po-questions/), not sent.
+- PO question sheet for Chris Ward: https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ (38 questions from 65 sources, 4 dropped as answered; 258/258 cells verified). Not shared or sent; the QA lead sends it.
 - Open with the QA lead: the 41 existing cases that will break (baseline/V1-BASELINE-AND-INVARIANTS.md section e); the design
   helper scanned 2.47 MB of canvas viewer code by script instead of line by line (Rule 119 needs his OK).
