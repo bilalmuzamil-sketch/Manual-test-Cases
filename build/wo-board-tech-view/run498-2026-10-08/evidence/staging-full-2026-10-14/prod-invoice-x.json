@@ -1,0 +1,104 @@
+{
+ "version": "v26.40.19-d2441a9",
+ "at": "2026-10-19T07:36:53.301Z",
+ "statuses": {
+  "approved": 94,
+  "invoiced": 26,
+  "ready_for_review": 20,
+  "complete": 18,
+  "in_progress": 1,
+  "declined": 1,
+  "paid": 35,
+  "estimate": 5
+ },
+ "workOrder": {
+  "number": "S2-981",
+  "id": "897ff8c6-5ba5-432a-98dc-4d757830b0a1",
+  "customer": "Ahsan"
+ },
+ "before": {
+  "status": "Complete",
+  "invoice_id": ""
+ },
+ "button": 1,
+ "disabled": false,
+ "server2s": {
+  "status": null,
+  "invoice_id": null
+ },
+ "server5s": {
+  "status": null,
+  "invoice_id": null
+ },
+ "server10s": {
+  "status": "Invoiced",
+  "invoice_id": "71c0e600-5ac6-40bd-a343-11058c34245c"
+ },
+ "paymentWindow": 1,
+ "paymentText": "New Customer Payment close event Payment Date Payment Method arrow_drop_down Reference Number Memo No. Datearrow_drop_up Due Balance Payment S2-981 Today Today ",
+ "closedWith": "X",
+ "afterClose": {
+  "status": "Complete",
+  "invoice_id": ""
+ },
+ "afterReload": {
+  "status": "Complete",
+  "invoice_id": ""
+ },
+ "requests": [
+  "GET /js/useCreateInvoiceGate.D0o2h6lg.js",
+  "GET /js/CustomerTransactionDialog.oDeM5auF.js",
+  "GET /js/invoicedFieldLock.Df2os_lM.js",
+  "GET /js/Invoice.DECRaADY.js",
+  "GET /js/invoiceCreditReverse.D2L3rIB-.js",
+  "GET /css/Invoice.DRnL_mhe.css",
+  "GET /js/InvoiceActionBar.Cj6pv_5x.js",
+  "GET /css/InvoiceActionBar.eTQLVpjK.css",
+  "GET /js/InvoiceContentSettings.KsMqMrk4.js",
+  "GET /css/InvoiceContentSettings.nX6K3e5V.css",
+  "GET /js/InvoiceDisplay.Da-WX3Q8.js",
+  "GET /css/InvoiceDisplay.CGJCxyL_.css",
+  "GET /js/InvoiceWarningDialog.mA-IUf_U.js",
+  "GET /api/invoices/897ff8c6-5ba5-432a-98dc-4d757830b0a1/settings/view",
+  "GET /api/invoices/897ff8c6-5ba5-432a-98dc-4d757830b0a1/details?includeDeclined=0",
+  "GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52",
+  "GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=897ff8c6-5ba5-432a-98dc-4d757830b0a1",
+  "POST /api/work-orders/invoices/estimate",
+  "POST /api/invoices/create",
+  "POST /g/collect?v=2&tid=G-Q8V1RLY7LK&gtm=45je6ae1h1v9217041122za200zd9217041122xf1&_p=1792395416142&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1447790757.1792395400&frm=0&ngs=1&pscdl=noapi&rcb=15&sr=1600x1000&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=6&tag_exp=115938466~115938468~118897920~118897930~119860442~120213116~120385423~120469145~120469153~121246026~121246034&sid=1792395400&sct=1&seg=1&dl=https%3A%2F%2Fapp.shopview.com%2Fworkorders%2F897ff8c6-5ba5-432a-98dc-4d757830b0a1%2Ffinance&dr=https%3A%2F%2Fapp.shopview.com%2Fworkorders%2F897ff8c6-5ba5-432a-98dc-4d757830b0a1%2Flines&dt=S2-981%20-%20Ahsan%20%7C%20Work%20Order%20%7C%20ShopView&uid=1d610634-2618-4c70-9ce4-791f8d201642&en=invoice_create&_ee=1&ep.page_type=work_orders&ep.element_type=button&ep.element_location=action_bar&ep.element_label=create_invoice&_et=3372&tfd=18075",
+  "GET /api/invoices/71c0e600-5ac6-40bd-a343-11058c34245c/view",
+  "GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52",
+  "GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=897ff8c6-5ba5-432a-98dc-4d757830b0a1",
+  "GET /api/customer-account/list-unpaid-transaction?accountId=ec376278-c83e-4188-b032-a440da8a8ecf&pagination%5BrowsPerPage%5D=1000&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=true",
+  "GET /js/TransactionsPaymentDialog.K0z1i1Qm.js",
+  "GET /js/usePaymentMethods.F0Bxpv_K.js",
+  "GET /css/TransactionsPaymentDialog.BWKVsHId.css",
+  "GET /api/invoices/preview?invoice_id=71c0e600-5ac6-40bd-a343-11058c34245c&type=html&isEstimate=0&includeDeclined=0&historyEvent=",
+  "GET /js/PaymentMethodSelect.C7l--iqb.js",
+  "GET /css/PaymentMethodSelect.qMWSuUXx.css",
+  "GET /api/customer-account/payment-methods",
+  "POST /api/invoices/remove-customer-transaction",
+  "GET /api/invoices/897ff8c6-5ba5-432a-98dc-4d757830b0a1/details?includeDeclined=0",
+  "GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52",
+  "GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=897ff8c6-5ba5-432a-98dc-4d757830b0a1",
+  "POST /api/work-orders/invoices/estimate",
+  "GET /js/useCreateInvoiceGate.D0o2h6lg.js",
+  "GET /js/CustomerTransactionDialog.oDeM5auF.js",
+  "GET /js/Invoice.DECRaADY.js",
+  "GET /js/invoiceCreditReverse.D2L3rIB-.js",
+  "GET /css/Invoice.DRnL_mhe.css",
+  "GET /js/InvoiceActionBar.Cj6pv_5x.js",
+  "GET /css/InvoiceActionBar.eTQLVpjK.css",
+  "GET /js/InvoiceContentSettings.KsMqMrk4.js",
+  "GET /css/InvoiceContentSettings.nX6K3e5V.css",
+  "GET /js/InvoiceDisplay.Da-WX3Q8.js",
+  "GET /css/InvoiceDisplay.CGJCxyL_.css",
+  "GET /js/InvoiceWarningDialog.mA-IUf_U.js",
+  "GET /api/invoices/897ff8c6-5ba5-432a-98dc-4d757830b0a1/settings/view",
+  "GET /api/invoices/897ff8c6-5ba5-432a-98dc-4d757830b0a1/details?includeDeclined=0",
+  "GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52",
+  "GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=897ff8c6-5ba5-432a-98dc-4d757830b0a1",
+  "POST /api/work-orders/invoices/estimate"
+ ],
+ "invoiceUndoneByX": true
+}
