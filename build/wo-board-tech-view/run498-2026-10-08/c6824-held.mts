@@ -88,9 +88,6 @@ const card = (set: any, co: string) => `[data-test-id="board_card_${set.w[co].id
 const row = (set: any, co: string) => `[data-test-id="tech_view_row_${set.w[co].id}"]`;
 const leadOf = async (set: any, co: string) => { const w = (await workOrders(a, set.q)).find((x: any) => x.id === set.w[co].id); return w?.techAssignedFirstName ? `${w.techAssignedFirstName} ${w.techAssignedLastName}` : 'none'; };
 const below = async (sel: string) => { const b = await p.locator(sel).boundingBox(); return b ? Math.round(b.height - 4) : 40; };
-/** drag a whole column/group by its six-dot handle to just before another column/group */
-async function dragHandle(fromHeader: string, toHeader: string) {
-const ME = (await candidates(a)).find((x) => x.name === 'Admin ShopView');
 const shotC = (n: string) => p.screenshot({ path: path.join(EV, `${n}.png`) }).catch(() => {});
 const menuOf = async (sel: string) => { const host = p.locator(sel).first(); await host.scrollIntoViewIfNeeded().catch(() => {}); await host.hover().catch(() => {}); await p.waitForTimeout(400);
   await host.locator('[data-test-id="button_work_order_more_actions"]').click({ timeout: 8000 }).catch(() => {}); await p.waitForTimeout(900);
