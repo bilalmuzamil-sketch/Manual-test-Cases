@@ -144,3 +144,6 @@ caught 0 of the 10; C96927 and C96979 assert the old S5-R4. Review, root causes 
 - PRD 845185030 v62 (17:35 UTC): S2-R23 header initials #4B5565; S11-R1 first Tab = first in Unassigned, or first technician's when Unassigned is collapsed or empty. No behaviour change for our cases.
 - QA lead: no quote refresh in the 12 cases that quote v61 S2-R23/S11-R1; new case C614719 (https://shopview.testrail.io/index.php?/cases/view/614719) created and added to run 498 (278 tests, test https://shopview.testrail.io/index.php?/tests/view/4007027); setup file updated to v62 (22 cases).
 - Record: `v62-check-2026-10-16/ANSWERS-32-33-IMPACT-2026-10-16.md`.
+
+### 19 Oct 2026 — SV-11503 drag preview
+- PRD now v64 (S3-E2 scrollbar only since v62). New case C665914 (https://shopview.testrail.io/index.php?/cases/view/665914) in "Design — how it looks", EXPECT FAIL (SV-11503); run 498 now 279 tests (test https://shopview.testrail.io/index.php?/tests/view/4014037); links added at the bottom of SV-11503. No PRD rule on the drag preview: QA lead chose to build the case on the design's "…" cut-off without a PO question. Record: `sv11503-2026-10-19/RECORD-SV-11503-2026-10-19.md`.

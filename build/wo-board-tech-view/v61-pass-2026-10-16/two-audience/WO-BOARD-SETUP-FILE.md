@@ -1,11 +1,11 @@
-# WO Board and Tech View: setup file for Claude sessions (22 cases, 16 Oct 2026)
+# WO Board and Tech View: setup file for Claude sessions (23 cases, 16 to 19 Oct 2026)
 
 This file is for a Claude session. A manual tester never needs it: each test case is complete on its own. With this file and the access the user gives at the start of the session, a new session can put the account into every case's starting state. It holds no environment address, credentials, cookies or session data.
 
 ## 1. Header
 
 - Feature: Work Orders, Board View and Tech View display options (epic SV-10043; stories SV-10044 to SV-10054).
-- Generated: 16 Oct 2026, for the 21 cases rewritten that day in the two-audience layout (a one-time trial ordered by the QA lead), and C614719 added the same evening for PRD v62 S11-R1.
+- Generated: 16 Oct 2026, for the 21 cases rewritten that day in the two-audience layout (a one-time trial ordered by the QA lead), and C614719 added the same evening for PRD v62 S11-R1; C665914 added 19 Oct 2026 for SV-11503 (drag preview), PRD v64.
 - Sources: PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 62 (16 Oct 2026 17:35 UTC, Chris Ward; S2-R23 and S11-R1 reworded after answers 32 and 33); Jira stories SV-10044 to SV-10054 and defects SV-11317 to SV-11326, SV-11338, SV-11416; tech plan (upload of 8 Oct 2026); Claude Design project "Work Orders" (Branko Cicovic), export of 14 Oct 2026; QA handoff test plan (8 Oct 2026); Chris Ward's answers 1 to 33 (sheet of 14 Oct 2026).
 - At session start, ask the user for: the site to use (staging or a QA site) and how to sign in as ACCOUNT-A, and ACCOUNT-B where a case needs it.
 
@@ -768,6 +768,35 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 - {Work-order-2} = the work order for unit C614719-U2
 - {Work-order-3} = the work order for unit C614719-U3
 
+#### SETUP-C665914 — [C665914](https://shopview.testrail.io/index.php?/cases/view/665914) A long customer name stays inside the drag preview in Board View and Tech View
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technician {Technician-A} is active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C665914 Ana.
+- Customer {Customer-A} has a long name, more than 60 characters, that includes one long word with no spaces. For example: {Customer-A} is ZZAUTOTEST C665914 Superlongunbrokencustomernamewithoutanyspacesforthedragpreview.
+- Work order {Work-order-1} for {Customer-A} is Approved and led by {Technician-A}. For example: {Work-order-1} is S10043-17901.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, in a browser window at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  **P-TECH** (ACCOUNT-A): First Name "ZZAUTOTEST C665914", Last Name "Ana" (shows as "ZZAUTOTEST C665914 Ana").
+2.  **P-CUSTOMER** (ACCOUNT-A): Name "ZZAUTOTEST C665914 Superlongunbrokencustomernamewithoutanyspacesforthedragpreview"; unit "C665914-U1".
+3.  **P-WO** (ACCOUNT-A): Unit "C665914-U1"; customer "ZZAUTOTEST C665914 Superlongunbrokencustomernamewithoutanyspacesforthedragpreview"; lead "ZZAUTOTEST C665914 Ana".
+4.  **P-START** (ACCOUNT-A): starting screen: Board View, All tab, Search "ZZAUTOTEST C665914 Superlong".
+
+**Check:** Every precondition line of the case is true on screen, read top to bottom. The card shows the customer name cut off with "…" (the card itself; the preview box is what the case tests).
+
+**Placeholder values** (the case names records by placeholder; give the tester the real work order number after setup):
+
+- {Location-A} = the case location (Staging Heavy Duty - 9919 on staging)
+- {Technician-A} = ZZAUTOTEST C665914 Ana
+- {Customer-A} = ZZAUTOTEST C665914 Superlongunbrokencustomernamewithoutanyspacesforthedragpreview
+- {Work-order-1} = the work order for unit C665914-U1
+
+Known examples already on staging (from SV-11503, not created by this file): S2-36633 and S2-35480.
+
 ## 5. Mapping table (execution order)
 
 | Test case                                                                                                                                             | Account slots        | Recipes in order                          |
@@ -794,6 +823,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 | [C614716](https://shopview.testrail.io/index.php?/cases/view/614716) Density and Columns tooltips open above their button and hide while open         | ACCOUNT-A            | SETUP-ADMIN, SETUP-N3                     |
 | [C614717](https://shopview.testrail.io/index.php?/cases/view/614717) Row and card name bubbles open above the avatar, headers keep the plain tip      | ACCOUNT-A            | SETUP-ADMIN, SETUP-N4                     |
 | [C614719](https://shopview.testrail.io/index.php?/cases/view/614719) First Tab skips a collapsed or empty Unassigned to the first technician | ACCOUNT-A | SETUP-ADMIN, SETUP-C614719 |
+| [C665914](https://shopview.testrail.io/index.php?/cases/view/665914) A long customer name stays inside the drag preview in Board View and Tech View | ACCOUNT-A | SETUP-ADMIN, SETUP-C665914 |
 
 ## 6. Dependencies and shared fixtures
 
@@ -1135,6 +1165,19 @@ Steps with no source sentence (navigation and on-screen labels, taken from the b
 
 Jira: SV-10054. Not yet checked against a build.
 
+### [C665914](https://shopview.testrail.io/index.php?/cases/view/665914) A long customer name stays inside the drag preview in Board View and Tech View
+
+SV-11503 (19 Oct 2026). The PRD (v64) has no rule for the drag preview and the design draws none; the case applies the design's "…" cut-off of customer names on cards and rows to the preview, by the QA lead's decision of 19 Oct 2026.
+
+- Steps 1, 5 — **S9-R1** (PRD Confluence 845185030 version 64 (16 Oct 2026)): “Allow dragging work orders within or between technician groups/columns in Tech View and Board View.”
+- Step 2 — **Design — Work Orders.dc.html, Board View card customer name** (export of 14 Oct 2026): `<span style="font-size: 14px; font-weight: 500; color: {{ wo.titleColor }}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wo.cust }}</span>`
+- Step 6 — **Design — Work Orders.dc.html, Tech View row customer name** (export of 14 Oct 2026): `<span style="font-size: {{ cellFs }}; font-weight: 500; color: {{ wo.titleColor }}; overflow: hidden; text-overflow: ellipsis;">{{ wo.cust }}</span>`
+- Steps 3, 7 — **Tech plan, drag files row** (upload of 8 Oct 2026): “Pointer-events drag: threshold (SQ-10) exported as a named constant and documented so tests can exceed it deterministically, rAF auto-scroll, Escape cancels, click suppressed after a drag”
+
+Steps with no source sentence (navigation and on-screen labels, taken from the build): 4.
+
+Jira: SV-10052, SV-11503 (known problem). Not yet checked against a build.
+
 ## 9. VIU status
 
 | Item                                                                 | Status                                                                                                                      |
@@ -1164,6 +1207,7 @@ Jira: SV-10054. Not yet checked against a build.
 | [C614716](https://shopview.testrail.io/index.php?/cases/view/614716) | UNVERIFIED: not yet run in this layout. AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build               |
 | [C614717](https://shopview.testrail.io/index.php?/cases/view/614717) | UNVERIFIED: not yet run in this layout. AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build               |
 | [C614719](https://shopview.testrail.io/index.php?/cases/view/614719) | UNVERIFIED: not yet run. AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build |
+| [C665914](https://shopview.testrail.io/index.php?/cases/view/665914) | UNVERIFIED: not yet run. AUTOMATION: READY - EXPECT FAIL (SV-11503) |
 
 ## 10. Open questions
 

@@ -1,0 +1,47 @@
+{
+ "new_case": 665914,
+ "pre": [
+  "You are signed in with the \"Admin\" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.",
+  "Technician {Technician-A} is active at {Location-A} with the \"Technician\" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C665914 Ana.",
+  "Customer {Customer-A} has a long name, more than 60 characters, that includes one long word with no spaces. For example: {Customer-A} is ZZAUTOTEST C665914 Superlongunbrokencustomernamewithoutanyspacesforthedragpreview.",
+  "Work order {Work-order-1} for {Customer-A} is Approved and led by {Technician-A}. For example: {Work-order-1} is S10043-17901.",
+  "Starting screen: \"Work Orders\" > \"All\" tab, \"Board View\" shown, the name of {Customer-A} in \"Search\", no filter chosen, \"Assigned to me\" off, in a browser window at least 1024 px wide.",
+  "If any record above is missing, mark this test Blocked: \"setup not done\"."
+ ],
+ "steps": [
+  "Press and hold the mouse button on {Work-order-1}'s card and move the pointer a little to the right. Do not let go.",
+  "Look at the preview box that follows the pointer.",
+  "Press Escape, then let go of the mouse button.",
+  "Click \"Tech View\" in the display switcher.",
+  "Press and hold the mouse button on {Work-order-1}'s row and move the pointer a little down. Do not let go.",
+  "Look at the preview box that follows the pointer.",
+  "Press Escape, then let go of the mouse button."
+ ],
+ "results": [
+  "Step 1: a drag starts and a small preview box with {Work-order-1}'s work order number and customer name follows the pointer.",
+  "Step 2: the whole customer name stays inside the preview box. A name too long to fit is cut off with \"…\" (or wraps onto another line inside the box). No letter of it is drawn outside the box or over the neighbouring columns and cards.",
+  "Step 3: the drag is cancelled and {Work-order-1}'s card stays in {Technician-A}'s column.",
+  "Step 4: Tech View shows {Work-order-1}'s row in {Technician-A}'s group.",
+  "Step 5: a drag starts and a small preview box with {Work-order-1}'s work order number and customer name follows the pointer.",
+  "Step 6: the whole customer name stays inside the preview box. A name too long to fit is cut off with \"…\" (or wraps onto another line inside the box). No letter of it is drawn outside the box or over the neighbouring rows.",
+  "Step 7: the drag is cancelled and {Work-order-1}'s row stays in {Technician-A}'s group."
+ ],
+ "quotes": [
+  [
+   "S9-R1",
+   "Allow dragging work orders within or between technician groups/columns in Tech View and Board View."
+  ],
+  [
+   "Design — Work Orders.dc.html, Board View card customer name",
+   "<span style=\"font-size: 14px; font-weight: 500; color: {{ wo.titleColor }}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\">{{ wo.cust }}</span>"
+  ],
+  [
+   "Design — Work Orders.dc.html, Tech View row customer name",
+   "<span style=\"font-size: {{ cellFs }}; font-weight: 500; color: {{ wo.titleColor }}; overflow: hidden; text-overflow: ellipsis;\">{{ wo.cust }}</span>"
+  ],
+  [
+   "Tech plan, drag files row",
+   "Pointer-events drag: threshold (SQ-10) exported as a named constant and documented so tests can exceed it deterministically, rAF auto-scroll, Escape cancels, click suppressed after a drag"
+  ]
+ ]
+}
