@@ -925,3 +925,8 @@ handle must launch with `ignoreDefaultArgs: ['--hide-scrollbars']` (same executa
 `storageState`, no new sign-in) and carry a positive control (a List/Tech View bar must read > 0). A 0 everywhere is the instrument, never
 the product (Rule 104).
 #scrollbar #headless #playwright #instrument #run498 → L0461, L0458
+
+## L0465 — 2026-10-19 — Board sideways sweep with the mouse wheel stalls halfway; a failed staging sign-in at 16:08 recovered at 16:12
+- **Wheel sideways over the board (`mouse.wheel(1200, 0)` at the header row) stopped at 45,600 px of ~89,000** and only 158 of 284 columns were seen (c96953-cols.mts first run). A short count is the instrument: finish with the board's own scroll position in 900 px steps and count with `allBoardCols` (proven: 284 = 284). Never judge "technicians are never hidden" from a sweep that did not reach `scrollWidth - clientWidth`.
+- **refresh-tab.mts at 16:08 landed on accounts.google.com ("NOT SIGNED IN after 3 quick-login attempts")**; the next script at 16:12 signed in normally. Same as L0413/L0417: one failed sign-in is not an expired gate — run the next step and re-queue the failed one.
+#run498 #board #sideways #instrument #staging #signin → L0413, L0417, L0464
