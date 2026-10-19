@@ -5,9 +5,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { open, done } from './session.mts';
-import { EV, t, display, tab, search } from './wob.mts';
+import { EV, t, display, tab, search, toColumn } from './wob.mts';
+import { api, candidates } from './data.mts';
 const { browser, page: p } = await open('/workorders?tab=all'); const o: any = {}; const N = process.env.WO || 'S2-37500';
 await tab(p, 'All'); await display(p, 'Board View'); await search(p, N); await p.waitForTimeout(3000);
+// the lead's column can sit far right (columns are drawn only near the screen): scroll the board to it first
+const RAE = (await candidates(api(p))).find((x) => /DC12 Rae Menu/.test(x.name)); o.lead = RAE?.name ?? null; if (RAE) o.toColumn = await toColumn(p, RAE.id); await p.waitForTimeout(1500);
 const card = p.locator('[data-test-id^="board_card_"]').filter({ hasText: N }).first();
 await card.scrollIntoViewIfNeeded().catch(() => {}); await p.mouse.move(5, 880); await p.waitForTimeout(1500);
 const READ = `(() => { const c = [...document.querySelectorAll('[data-test-id^="board_card_"]')].find(e => e.innerText.includes(${JSON.stringify(N)})); if (!c) return null; const b = c.querySelector('[data-test-id="button_work_order_more_actions"]');

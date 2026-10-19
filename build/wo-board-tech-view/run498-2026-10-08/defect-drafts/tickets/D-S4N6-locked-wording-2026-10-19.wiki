@@ -1,0 +1,67 @@
+TITLE: Board View and Tech View – Locked Work Orders Still Show the Old "Can't Be Changed" Sentence
+TYPE: Story Defect · PARENT: SV-10047 (Reassign or unassign the lead technician from the board or grouped table; Ready for QA, read live 19 Oct 2026 23:00 UTC) · PRIORITY: Medium · LINK: relates to SV-10047
+ALREADY REPORTED: none. JQL read live 19 Oct 2026: text ~ "can't be reassigned" (all time) → SV-11498 (In Progress; the note never shows for a KEYBOARD highlight — about whether the note shows, not its words), SV-11454 (In Progress; card badge after a refused move), older unrelated. Story Defects under SV-10047 / SV-10054 / SV-10046 read: none on this wording. SV-11524 / SV-11522 (Open, Branko) cover the lead-change message, Assign tech, the dialog — not the locked wording.
+BASIS: PRD version 68 (19 Oct 2026 19:44 UTC, Chris Ward), read live 19 Oct 2026; version confirmed live again 23:15 UTC. The PRD's own change log for v68 records this exact change.
+SOURCE CHECK (Rule 106, 4 ways): the tests' Expected = the PRD v68 sentence, word for word (agree) · build shows the pre-v68 sentence (differs) ⇒ real defect.
+STORY STATUS (Rule 112): SV-10047 Ready for QA ⇒ may be filed with the QA lead's yes.
+STATUS: HELD — waiting for the QA lead's yes (Rule 62/113). Nothing filed.
+
+h2. Description
+
+*On an Invoiced or Paid work order, the short words "Invoiced · can't be reassigned" (or "Paid · can't be reassigned") should show wherever the lead technician can't be changed.* On staging the old long sentence still shows instead.
+
+For example,
+* the greyed-out *Reassign lead technician* and *Unassign* items in *More actions* show the tooltip {{The lead technician can't be changed once a work order is Invoiced or Paid.}}
+* while the work order is dragged over another technician's column (Board View) or group (Tech View), the note at the top shows the same old sentence
+* this is the same on Invoiced and on Paid work orders, so the word "Invoiced" or "Paid" that tells the user why never appears on its own
+
+The blocking itself works: the items are greyed out, the drop is refused and the lead does not change. Only the words are out of date.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin and check the top bar shows *Staging Heavy Duty - 9919*.
+# Open a customer's *Approved* work order with a lead technician and finish it until its status is *Invoiced* (*Finance* tab > *Create Invoice*). Make a second one and take it on to *Paid*.
+# Open *Work Orders*, click the *All* tab, click *Board View*, and type the customer's name in *Search*.
+# Hover the Invoiced card, click its *More actions* (three dots), then rest the pointer on *Reassign lead technician*.
+#* A tooltip shows {{The lead technician can't be changed once a work order is Invoiced or Paid.}}
+# Rest the pointer on *Unassign*.
+#* The same sentence shows.
+# Press Escape. Drag the Invoiced card over another technician's column and, without letting go, read the note at the top of that column.
+#* The note reads {{The lead technician can't be changed once a work order is Invoiced or Paid.}}
+# Let go. The card goes back to its technician (correct).
+# Repeat steps 4 to 8 with the Paid card, then in *Tech View* on the rows, dragging over another technician's group.
+#* Every place shows the same old sentence.
+
+*Actual Result:*
+* Every tooltip and every drag note on a locked work order reads {{The lead technician can't be changed once a work order is Invoiced or Paid.}}
+
+*Expected Result:*
+* The PRD says: *"their tooltip reads “Invoiced · can’t be reassigned” or “Paid · can’t be reassigned”, as in the design. The same words are the tooltip on the card’s or row’s lock icon, and the note shown at the top of another technician’s column or group while the work order is dragged over it"*
+
+h2. Screenshots
+
+!C96964-1-menu-tooltip-1019.png|width=1000!
+
+!C96964-2-drag-note-board-1019.png|width=1000!
+
+!C96964-3-drag-note-tech-1019.png|width=1000!
+
+
+h2. Environment
+
+* *Build:* {{v26.40.19-c850386}} on [staging|https://app.staging.shopview.com/workorders] (Staging Heavy Duty - 9919), 19 Oct 2026
+* *Example records:* S2-37502 (Invoiced) and S2-37503 (Paid), customer "ZZAUTOTEST F1 Locked Lead Tooltip"
+* *User:* Admin
+
+h2. Sources
+
+* PRD "Work Orders — Board View & Tech View Display Options", [Confluence 845185030|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030], version 68 (19 Oct 2026, Chris Ward), read 19 Oct 2026, S4-N6:
+{quote}On an Invoiced or Paid work order the Assign lead technician or Reassign lead technician action (S3-R14) and the Unassign action are disabled, and their tooltip reads “Invoiced · can’t be reassigned” or “Paid · can’t be reassigned”, as in the design. The same words are the tooltip on the card’s or row’s lock icon, and the note shown at the top of another technician’s column or group while the work order is dragged over it, where the drop is refused.{quote}
+* Same PRD, version history, v68:
+{quote}S4-N6, S4-N1: locked work orders read “Invoiced · can’t be reassigned” / “Paid · can’t be reassigned” on the disabled actions, the lock icon and the drag note (was “The lead technician can’t be changed once a work order is Invoiced or Paid.”); a user without the permission sees “You don’t have permission to assign technicians” while dragging. v68.{quote}
+
+h2. Test case
+
+* [C96964 Invoiced and Paid work orders show why the lead can't be changed|https://shopview.testrail.io/index.php?/cases/view/96964]
+* [C590121 Design: The More actions button and its menu look as in the design|https://shopview.testrail.io/index.php?/cases/view/590121]
+* [C97020 The keyboard cannot get around permission or status limits|https://shopview.testrail.io/index.php?/cases/view/97020]
