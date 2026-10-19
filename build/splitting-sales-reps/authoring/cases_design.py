@@ -38,7 +38,7 @@ def DSRC(boards):
             + "; ".join(f'{TITLE[b]}' for b in boards) + " (the attached pictures are these boards).")
 def D(key, title, pre, steps, res, q, boards, note="", stories=None, width=None):
     C(key, "DESIGN", title, pre[:1] + [PIC_PRE(boards, width) if width else PIC_PRE(boards)] + pre[1:], steps, res, q + DQ(boards),
-      extra_src=DSRC(boards), note=note, pictures=PICS(boards), stories=stories)
+      design_src=DSRC(boards), note=note, pictures=PICS(boards), stories=stories)
 
 W = START("{Work-order-1} is open in that browser window")
 
@@ -260,8 +260,8 @@ for c in ssr_lib.CASES:
         b = BEFORE[c["key"]]
         if c["key"].startswith("REL"):
             c["pre"].insert(len(c["pre"]) - 1, PIC_PRE(b, "a desktop browser at least 1024 px wide" if c["key"] != "REL-12" else "a phone screen"))
-            c["extra_src"] = (c["extra_src"] + " " if c["extra_src"] else "") + DSRC(b).replace("(the attached pictures are these boards)", "(\"Before\" boards: production today, attached for comparison)")
+            c["design_src"] = DSRC(b).replace("(the attached pictures are these boards)", "(\"Before\" boards: production today, attached for comparison)")
         else:
             c["pre"][1] = PIC_PRE(sorted(set(b) | set(re.findall(r'\(board (\d+\.\d+)\)', c["pre"][1][0])), key=lambda x: [int(y) for y in x.split(".")]))
-            c["extra_src"] = DSRC(sorted(set(b) | set(re.findall(r'board (\d+\.\d+)', " ".join(c["steps"]))), key=lambda x: [int(y) for y in x.split(".")]))
+            c["design_src"] = DSRC(sorted(set(b) | set(re.findall(r'board (\d+\.\d+)', " ".join(c["steps"]))), key=lambda x: [int(y) for y in x.split(".")]))
         c["q"] = c["q"] + DQ(b); c["pictures"] = sorted(set(c["pictures"]) | set(PICS(b)))

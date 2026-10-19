@@ -38,10 +38,10 @@ MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
 BLOCKED = 'If any record above is missing, mark this test Blocked: "setup not done".'
 CASES = []
 
-def C(key, sec, title, pre, steps, res, q, stories=None, extra_src="", note="", marker=None, known="", pictures=None):
+def C(key, sec, title, pre, steps, res, q, stories=None, extra_src="", note="", marker=None, known="", pictures=None, design_src=""):
     """pre: list of str or (state, example). res: one 'Step N:' line per step. q: list of PRD codes or ('label', 'verbatim text')."""
     CASES.append(dict(key=key, sec=sec, title=title, pre=[p if isinstance(p, tuple) else (p, None) for p in pre] + [(BLOCKED, None)],
-                      steps=steps, res=res, q=q, stories=stories, extra_src=extra_src, note=note, marker=marker or MARKER, known=known, pictures=pictures or []))
+                      steps=steps, res=res, q=q, stories=stories, extra_src=extra_src, note=note, marker=marker or MARKER, known=known, pictures=pictures or [], design_src=design_src))
 
 def quotes(c):
     out = []
@@ -66,15 +66,32 @@ def source(c):
         ls = [l.split(", ", 1)[1] for l in other if l.startswith(k)]
         if ls: s += f" {v}, " + ", ".join(ls) + ", read 19 Oct 2026."
     if c["extra_src"]: s += " " + c["extra_src"]
-    if "Claude design canvas" not in s:
-        pg = sorted({DESIGN_PAGE[n] for n in st if n in DESIGN_PAGE})
-        if pg:
-            s += (' Claude design canvas "Splitting Sales Representatives" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), '
-                  + (("pages " if " and " in pg[0] else "page ") + pg[0] if len(pg) == 1 else "pages " + ", ".join(pg[:-1]) + " and " + pg[-1])
-                  + " (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.")
     return s + " Source-verified 19 October 2026. " + NOBUILD
 
+def design_ref(c):
+    """The design references of a case, shown under their own title "References from Design" (QA lead, 19 Oct 2026)."""
+    if c.get("design_src"): return c["design_src"]
+    pg = sorted({DESIGN_PAGE[n] for n in story_nums(c) if n in DESIGN_PAGE})
+    if not pg and 7 in story_nums(c):
+        return ('Claude design canvas "Splitting Sales Representatives" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 1, '
+                'board 1.19 "The log records every rep change", export read 19 Oct 2026. The PRD\'s Story 7 says "Design: none", yet this board '
+                'shows the log; its wording is checked in the "Design — how it looks" case for the log.')
+    if not pg: return ""
+    return ('Claude design canvas "Splitting Sales Representatives" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), '
+            + (("pages " if " and " in pg[0] else "page ") + pg[0] if len(pg) == 1 else "pages " + ", ".join(pg[:-1]) + " and " + pg[-1])
+            + ' (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the "Design — how it looks" cases.')
+
 e = lambda s: html.escape(s, quote=False)
+def design_block(c):
+    dq = [(l, t) for l, t in quotes(c) if l.startswith("Design — board")]
+    ref = design_ref(c)
+    if not (ref or dq or c["pictures"]): return ""
+    h = "<p></p><p><strong>References from Design</strong></p>"
+    if ref: h += f"<p>{e(ref)}</p>"
+    if c["pictures"]: h += "<p>Design pictures attached to this case: " + e(", ".join(c["pictures"])) + ".</p>"
+    if dq: h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in dq) + "</ul>"
+    return h + "<p></p>"
+
 def render(c):
     pre = "<p><strong>Preconditions</strong></p><ul>" + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>"
     exp = ("<p><strong>Expected results</strong></p><ul>" + "".join(f"<li>{e(r)}</li>" for r in c["res"]) + "</ul>"
@@ -82,7 +99,8 @@ def render(c):
            + f"<p><strong>Source &mdash; where this behaviour comes from</strong><br>{e(source(c))}</p>"
            + (f"<p>{e(c['note'])}</p>" if c["note"] else "")
            + "<p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul>"
-           + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in quotes(c)) + "</ul>"
+           + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in quotes(c) if not l.startswith("Design — board")) + "</ul>"
+           + design_block(c)
            + f"<p>{e(c['marker'])}</p>")
     refs = ",".join(dict.fromkeys(STORY[n][0] for n in story_nums(c)))
     return {"title": c["title"], "template_id": 1, "type_id": 7, "priority_id": 2, "refs": refs, "custom_automation_type": 2,
