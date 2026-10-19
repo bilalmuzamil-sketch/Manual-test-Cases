@@ -296,3 +296,5 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
 - 19 Oct — analytics trio reconciled (source-verify-2026-10-19/ANALYTICS-RECONCILE.md): PRD v64 S2-R4 + S12-R2 ⇒ Tech View exposes 17 fields
   (List's 16 + Assigned Techs) — the build is right, the cases' 15 (a 6 Oct developer comment) is out of date. Asked the QA lead to name the
   three cases for an Expected update (114(c)), then pass them.
+- 19 Oct — QA lead named the three analytics tests and ruled "always unblock yourself" (L0456): C97024, C97035, C368153 Expected updated to
+  PRD v64 S2-R4 (Tech View 17; totals 30 / 41; no-financial 16, total 28), served pages clean (case-updates-2026-10-19c/); re-run on e435950 queued.

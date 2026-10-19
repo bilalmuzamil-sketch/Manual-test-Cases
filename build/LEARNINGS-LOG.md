@@ -850,3 +850,13 @@ QA lead, 19 Oct 2026, on the Technician-filter tests (SV-11326 Open, not on stag
 ## L0455 — 2026-10-19 — QA lead ruling: a test that only passes by a route its own step does not describe is PASSED and the step is reworded (his "A", three cases)
 On 19 Oct he chose "pass it and change the step" for C368131 (location removal = enrolment screen), C368167 (leave the payment window open) and "pass it and change the names" for C96936 (Ralph Edwards → Aaron Baker, Expected included under 114(c) because he named it). Pattern: run the behaviour by the route that works, put the case to him with A = pass + reword (my pick) / B = keep blocked or Retest, and after his A: safe_case_edit.py only the lines that change, one dated decision line in the Expected for a name change, then the served-page scan. Trap: `safe_case_edit.py` refuses any field holding `<br>` — when the Expected must be re-sent and it carries a UI-made `<br>`, turn it into `</p><p>` (text unchanged) before sending. Folder `run498-2026-10-08/case-updates-2026-10-19b/`. C368167 and C96936 are Automated: tell Vlad.
 #run498 #ruling #case-edit #testrail → L0447, L0453
+
+## L0456 — 2026-10-19 — QA lead ruling: "always unblock yourself, never get stuck like this"
+After I put the three analytics tests to him as a question (the build matched PRD v64 S2-R4 — Tech View 17 fields — and the cases' 15 came from a
+developer comment), he named them and wrote: *"Please unblock yourself as you had done previously when marked the test as passed by fully
+unblocking yourself and finding the ways for yourself and always unblock yourself never get stuck like this."* So when the reconciliation shows the
+case is out of date and the build follows the CURRENT PRD, do not park the test as a question: verify against the live PRD, update the case to the
+PRD (only the changing lines, one dated decision line, `safe_case_edit.py` + served-page scan), re-run on today's build, post Passed with pictures,
+and REPORT what was done. Still never: Vladimir's cases, Automated cases without telling Vlad, Jira without per-ticket permission.
+Applied: C97024, C97035, C368153 (case-updates-2026-10-19c/). Same family as Rule 107, Rule 131 and L0455.
+#run498 #ruling #unblock #analytics → L0455
