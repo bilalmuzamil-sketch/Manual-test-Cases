@@ -1,0 +1,49 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.19-c850386", "date": "19 October 2026", "note": "run 498: re-test of the tests updated in the last 9 hours, by their current steps"},
+ "results": {
+  "C368131": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging, re-tested on today's build by the test's current steps (step 3 uses the staff list's Department(s) button).",
+    "Step 2: Jenny Pinned was deactivated with Deactivate Account.",
+    "Step 3: Theresa Pinned's Location was changed to Staging Lethbridge - 4310, then in Manage staff enrollments her Staging Heavy Duty enrolment was removed with the bin icon; she is then no longer offered as a technician here.",
+    "Step 7: Jenny Pinned's column stays pinned right after Unassigned, marked Inactive, reading \"No work orders\"; Theresa Pinned is no longer pinned.",
+    "Step 8: Theresa Pinned's column shows further along as a normal column holding S2-35909, with no pin and no Inactive marker.",
+    "Steps 9 to 11: S2-35908 could not be dropped on Jenny Pinned's column, and dropping it on Theresa Pinned's column was refused with \"This technician can't be assigned work orders.\"; it stayed with Tara Lead.",
+    "Step 13: S2-35909 moved to Unassigned (\"Lead technician removed\") and Theresa Pinned no longer has a column.",
+    "Step 15: the view-only user also sees Jenny Pinned's pinned column reading \"No work orders\" and no Theresa Pinned column."
+   ], "ticket": null, "pictures": ["pictures-1019/C368131-2-retest-1019.png"]},
+  "C368167": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging, re-tested on today's build by the test's current steps.",
+    "Set-up: S2-37468, Complete, lead Esther Howard; tab 1 left open on it.",
+    "Step 2 (tab 2): Finance tab > Create Invoice made invoice INV-S2-37468 and the work order became Invoiced. On today's build no \"New Customer Payment\" window opened (a New Payment button shows instead), so there was nothing to leave open or close.",
+    "Steps 3 to 5 (tab 1, not reloaded): Lead Technician was opened and Jenny Wilson picked; the message \"The lead technician can't be changed once a work order is Invoiced or Paid. Please try to resolve this.\" appeared and the field showed Esther Howard again.",
+    "Step 6: after reloading tab 1, Lead Technician still reads Esther Howard; the change was not saved.",
+    "Note for the test: step 2 still mentions the payment window, which no longer appears on today's build."
+   ], "ticket": null, "pictures": ["pictures-1019/C368167-2-retest-1019.png"]},
+  "C96936": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging, re-tested on today's build by the test's current steps (second technician Aaron Baker).",
+    "Steps 1 to 4: tab A, All tab, search ZZAUTOTEST F2 Refresh Lead, Tech View: Esther Howard shows 3 and Aaron Baker shows 2.",
+    "Step 5: in tab B, S2-35331's Lead Technician was changed to Aaron Baker on the work order page (picked from the list).",
+    "Step 6: before the refresh, tab A still showed S2-35331 under Esther Howard (allowed).",
+    "Steps 7 and 8: after the refresh, S2-35331 is under Aaron Baker; Esther Howard shows 2 and Aaron Baker shows 3."
+   ], "ticket": null, "pictures": ["pictures-1019/C96936-2-retest-1019.png"]},
+  "C614719": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging, re-tested on today's build after the test's set-up text was updated; its 7 steps and expected results are unchanged.",
+    "Set-up: ZZAUTOTEST C614719 Ana and Ben pinned first and second; S2-37039 (Ana) and S2-37040 (Ben) for Customer-A, S2-37041 with no lead; search ZZAUTOTEST C614719 Keyboard; All tab, Tech View, every group open.",
+    "Step 1: Unassigned collapsed; its header stays and S2-37041 is hidden; Ana's group follows, then Ben's.",
+    "Step 2: the cursor is in Search and nothing in the table has a focus ring.",
+    "Step 3: Tab lands the focus ring on S2-37039, the first row of Ana's group, not on a header.",
+    "Steps 4 and 5: Board View shows Unassigned first, then Ana's and Ben's columns; with Customer-A's name in Search, S2-37039 is in Ana's column, S2-37040 in Ben's, and Unassigned has no cards.",
+    "Steps 6 and 7: the cursor is in Search with no ring on the board; Tab lands the focus ring on S2-37039's card, the first card in Ana's column, not a column header."
+   ], "ticket": null, "pictures": ["pictures-1019/C614719-1-first-tab-1019.png"]},
+  "C682419": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging (Chrome).",
+    "Steps 1 to 4: on Staging Heavy Duty - 9919 the board is wider than the window; the bottom bar is 16 px thick, the bar inside the Unassigned column 10 px.",
+    "Step 5: the grey handle is 150 px wide; one technician column is 286 px, so it is more than half a column.",
+    "Step 6: dragging the handle right reached the last column; dragging it left came back to the first; Unassigned stayed on the left the whole time.",
+    "Step 7: at 1280 px and 1024 px wide the handle stayed 150 px; on DVI Test (few technicians) it was 665 px, most of the bar.",
+    "Step 8: in Dark the bar and its handle are still easy to see; switched back to Light.",
+    "Step 9: Tech View and List keep their thin 8 px scroll bars.",
+    "Firefox was not checked: only Chrome is available here."
+   ], "ticket": null, "pictures": ["pictures-1019/C682419-1-scroll-bar-1019.png"]}
+ }
+}
