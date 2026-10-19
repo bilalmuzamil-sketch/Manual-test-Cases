@@ -109,9 +109,10 @@ const T = async (key: string, first: string) => tech(`${key} ${first}`, first ==
 
 await run('C682429', async (o) => {
   const A1 = await T('C682429', 'Ana'); const set = await mkSet('ZZAUTOTEST C682429 Design Labels', [{ co: 'NoLead', lead: null }, { co: 'Led', lead: A1 }]); o.data = set.w;
-  await go('Board View', set.q);
+  await pins([A1.staff_id]); await go('Board View', set.q); // 19 Oct fix: ZZAUTOTEST columns sort last and are not drawn at the left; pinned they sit after Unassigned
   o.s1 = await menuOf(card(set, 'NoLead')); await shotC('C682429-held-s1-menu-nolead');
   await leadItem().click({ timeout: 5000 }).catch(() => {}); await p.waitForTimeout(1200); o.s2 = await dialogRead(); await shotC('C682429-held-s2-dialog-nolead'); await cancelDialog();
+  await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(500);
   o.s4 = await menuOf(card(set, 'Led')); await shotC('C682429-held-s4-menu-led');
   await leadItem().click({ timeout: 5000 }).catch(() => {}); await p.waitForTimeout(1200); o.s5 = await dialogRead(); await shotC('C682429-held-s5-dialog-led'); await cancelDialog();
 });
@@ -120,31 +121,34 @@ await run('C682430', async (o) => {
   const A1 = await T('C682430', 'Ana'), B1 = await T('C682430', 'Ben');
   const set = await mkSet('ZZAUTOTEST C682430 Design Messages', [{ co: 'One', lead: A1 }, { co: 'Two', lead: A1 }, { co: 'Three', lead: A1 }]); o.data = set.w;
   // Two: Ben on one of its lines (line_tech_assigned_id), read back
-  const l2 = (await linesRaw(set.w.Two.id))[0]; if (l2) { const r = await a.post('/api/work-orders/lines/change', { line_id: l2.line_id, work_order_id: set.w.Two.id, lineName: l2.line_name ?? l2.name ?? 'Line', line_tech_assigned_id: B1.staff_id }); o.crewSet = say(r); o.crewNow = JSON.stringify((await linesRaw(set.w.Two.id))[0]?.line_tech_assigned_id ?? null); }
-  await go('Board View', set.q); await toColumn(p, B1.staff_id); await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller').scrollLeft = 0`); await p.waitForTimeout(600);
+  const l2 = (await linesRaw(set.w.Two.id))[0]; if (l2) { const r = await a.post('/api/work-orders/lines/change', { ...l2, line_id: l2.line_id, work_order_id: set.w.Two.id, lineName: l2.line_name ?? l2.name ?? 'Line', line_tech_assigned_id: B1.staff_id }); /* 19 Oct: the short body was refused ("Labor or fixed prices must be set") */ o.crewSet = say(r); o.crewNow = JSON.stringify((await linesRaw(set.w.Two.id))[0]?.line_tech_assigned_id ?? null); }
+  await pins([A1.staff_id, B1.staff_id]); await go('Board View', set.q);
   const benCol = `[data-test-id="board_column_${B1.staff_id}"]`;
   await drag(p, card(set, 'One'), '[data-test-id="board_column_unassigned"]'); o.s1 = { toasts: await toasts(p), prompt: await shiftPrompt(p) }; await shotC('C682430-held-s1');
-  await toColumn(p, B1.staff_id); await drag(p, card(set, 'Two'), benCol); o.s2 = { toasts: await toasts(p), prompt: await shiftPrompt(p) }; await shotC('C682430-held-s2');
-  await toColumn(p, B1.staff_id); await drag(p, card(set, 'Three'), benCol); o.s3 = { toasts: await toasts(p), undo: await p.locator('.q-notification button').filter({ hasText: /undo/i }).count() }; await shotC('C682430-held-s3');
+  await drag(p, card(set, 'Two'), benCol); o.s2 = { toasts: await toasts(p), prompt: await shiftPrompt(p) }; await shotC('C682430-held-s2');
+  await drag(p, card(set, 'Three'), benCol); o.s3 = { toasts: await toasts(p), undo: await p.locator('.q-notification button').filter({ hasText: /undo/i }).count() }; await shotC('C682430-held-s3');
   await p.locator('.q-notification button').filter({ hasText: /undo/i }).first().click({ timeout: 4000 }).catch(() => {}); await p.waitForTimeout(1500);
   o.s4 = { toasts: await toasts(p), leadThree: await leadOf(set, 'Three') }; await shotC('C682430-held-s4');
-  await p.waitForTimeout(9000); await toColumn(p, B1.staff_id); await p.mouse.move(5, 5);
-  const a1 = await p.locator(card(set, 'Three')).first().boundingBox(); const b1 = await p.locator(benCol).first().boundingBox();
+  await p.waitForTimeout(9000); await p.mouse.move(5, 5);
+  // 19 Oct: today's build has no Undo, so Three is still with Ben; to time a message, drop it on the OTHER column (Ana's) — any lead change shows one
+  const target5 = /Ben/.test(await leadOf(set, 'Three')) ? `[data-test-id="board_column_${A1.staff_id}"]` : benCol; o.s5target = target5.includes(A1.staff_id) ? 'Ana (Three was still with Ben: no Undo)' : 'Ben';
+  const a1 = await p.locator(card(set, 'Three')).first().boundingBox(); const b1 = await p.locator(target5).first().boundingBox();
   if (a1 && b1) { const gx = a1.x + a1.width * 0.45; await p.mouse.move(gx, a1.y + a1.height / 2); await p.mouse.down(); await p.mouse.move(gx, a1.y + a1.height / 2 + 8, { steps: 4 }); await p.mouse.move(b1.x + b1.width / 2, b1.y + 4, { steps: 20 }); await p.waitForTimeout(300); await p.mouse.up(); await p.mouse.move(5, 5);
     await shiftPrompt(p); o.s5_6 = await toastWatch(15000); }
-  await shotC('C682430-held-s6');
+  await shotC('C682430-held-s6'); await pins(ORIGINAL.pinnedTechnicianIds ?? []);
 });
 
 await run('C682431', async (o) => {
   const A1 = await T('C682431', 'Ana'), B1 = await T('C682431', 'Ben');
   const set = await mkSet('ZZAUTOTEST C682431 Design Locks', [{ co: 'Invoiced', lead: A1, status: 'invoiced' }, { co: 'Declined', lead: A1, status: 'declined' }, { co: 'Approved', lead: A1 }]); o.data = set.w; o.log = set.log;
   o.importedNote = 'no imported work order can be made by the app or API here (imported work orders come from a data import); the build follows the PRD: Imported opens in List only';
-  await go('Board View', set.q); await toColumn(p, B1.staff_id); await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller').scrollLeft = 0`); await p.waitForTimeout(600);
+  await pins([A1.staff_id, B1.staff_id]); await go('Board View', set.q);
   o.cardsShown = Object.fromEntries(await Promise.all(Object.keys(set.w).map(async (k) => [k, await p.locator(card(set, k)).count()])));
   o.s1 = await menuOf(card(set, 'Invoiced')); await shotC('C682431-held-s1-menu'); await p.keyboard.press('Escape'); await p.waitForTimeout(500);
   const benCol = `[data-test-id="board_column_${B1.staff_id}"]`;
-  for (const k of ['Invoiced', 'Declined']) { await toColumn(p, B1.staff_id); await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller').scrollLeft = 0`); await p.waitForTimeout(400);
+  for (const k of ['Invoiced', 'Declined']) {
     const h = await holdOver(card(set, k), benCol); await shotC(`C682431-held-${k}-holding`); o[k] = { notes: (h as any).notes, drag: h.drag }; if ((h as any).release) await (h as any).release(); o[k].leadAfter = await leadOf(set, k); }
+  await pins(ORIGINAL.pinnedTechnicianIds ?? []);
 });
 
 await run('C682432', async (o) => {
@@ -188,11 +192,31 @@ await run('C682435', async (o) => {
 });
 
 await run('C682436', async (o) => {
-  o.note = 'needs a location with work orders but no technicians (ZZAUTOTEST F2 No Tech Shop, notech-stg4.mts) and a location with neither; switched as the runner and put back';
-  o.locs = ((await a.get('/api/staff/my-workplaces')).body?.data ?? []).map((w: any) => w.name ?? w.workplace_name).filter(Boolean);
-  const target = o.locs.find((n: string) => /No Tech/i.test(n));
-  if (target) { o.switched = await switchLocUI(p, target); await go('Board View', ''); o.s3 = await p.evaluate(`document.querySelector('main, .q-page')?.innerText.replace(/\\s+/g, ' ').slice(0, 500)`); await shotC('C682436-held-notech'); o.back = await switchLocUI(p, 'Staging Heavy Duty - 9919'); }
-  else o.s3 = 'the runner is not enrolled at a no-technician location';
+  // Location-B (work orders, no technicians): ZZAUTOTEST F2 No Tech Shop (notech-stg4.mts). Location-C (neither): ZZAUTOTEST Location Empty,
+  // made here by the runner on screen with notech-stg4's recipe (the creator is enrolled but has Time Clock off, so it has no technician).
+  const wpList = async () => { const d = (await a.get('/api/workplaces')).body?.data; return (Array.isArray(d) ? d : d?.collection ?? []) as any[]; };
+  const mk = async (LOC: string) => { let w = (await wpList()).find((x) => x.name === LOC); if (w) return { w, made: false };
+    await p.goto(APP + '/administration/locations', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000);
+    await p.locator('button').filter({ hasText: /New Location/i }).first().click(); await p.waitForTimeout(3000);
+    const d = p.locator('.q-dialog').last();
+    await d.locator('.q-field').filter({ hasText: /Name \*/ }).first().locator('input').fill(LOC);
+    const fill = async (lab: string, v: string) => { const i = d.getByLabel(lab, { exact: true }).first(); await i.click(); await i.fill(v); await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(300); };
+    await fill('Address 1', '3 ZZAUTOTEST Way'); await fill('City', 'Las Vegas'); { const z = d.getByLabel(/ZIP/i).first(); await z.click(); await z.fill('89135'); } { const ph = d.getByLabel(/Telephone/i).first(); await ph.click(); await p.keyboard.type('7025550199', { delay: 30 }); }
+    const st = d.getByLabel('State/Province').first(); await st.click(); await p.waitForTimeout(800); await p.keyboard.type('Nevada', { delay: 40 }); await p.waitForTimeout(1200);
+    await p.locator('.q-menu .q-item').filter({ hasText: 'Nevada' }).first().click().catch(() => {}); await p.waitForTimeout(800);
+    const tz = d.locator('.q-field').filter({ hasText: /Timezone/ }).first(); await tz.click(); await p.waitForTimeout(800); await p.keyboard.type('Karachi', { delay: 50 }); await p.waitForTimeout(1500);
+    await p.locator('.q-menu .q-item').filter({ hasText: 'Asia/Karachi' }).first().click().catch(() => {}); await p.waitForTimeout(800);
+    await p.evaluate(`(() => { const b = [...document.querySelectorAll('.q-dialog button')].filter(x => x.innerText.replace(/\\s+/g,' ').trim() === 'Save & Close').pop(); if (b) { b.scrollIntoView(); b.click(); } })()`); await p.waitForTimeout(4000);
+    w = (await wpList()).find((x) => x.name === LOC); return { w, made: true }; };
+  const view = async (w: any, tag: string) => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await switchLocUI(p, w.name); await p.waitForTimeout(3000); /* 19 Oct: the API change-location did not change the page; the on-screen switch does */
+    const header = await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => ''); await tab(p, 'All'); await display(p, 'Board View').catch(() => {}); await p.waitForTimeout(2500);
+    const text = await p.evaluate(`(document.querySelector('main, .q-page') || document.body).innerText.replace(/\\s+/g, ' ').slice(0, 700)`); await shotC(`C682436-held-${tag}`); return { header: header.replace(/\s+/g, ' ').trim(), text }; };
+  const B = await mk('ZZAUTOTEST F2 No Tech Shop'); const C = await mk('ZZAUTOTEST Location Empty');
+  o.locationB = { made: B.made, found: !!B.w }; o.locationC = { made: C.made, found: !!C.w };
+  if (B.w) o.s1_3 = await view(B.w, 'loc-b-no-techs');
+  if (C.w) { o.s4_6 = await view(C.w, 'loc-c-empty'); }
+  o.back = await switchLocUI(p, 'Staging Heavy Duty - 9919');
+  if (!/Heavy Duty/.test(o.back)) { await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'Asia/Karachi' }); await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); o.backAfterApi = await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => ''); }
 });
 
 await a.put(PREF, { value: ORIGINAL }).catch(() => {});

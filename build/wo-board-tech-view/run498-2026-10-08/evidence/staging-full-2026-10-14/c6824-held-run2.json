@@ -1,0 +1,159 @@
+{
+ "runner": "3620a2b1",
+ "C682429": {
+  "data": {
+   "NoLead": {
+    "id": "022cdc26-9508-490e-8a39-66f53fcdf803",
+    "number": "S2-37485"
+   },
+   "Led": {
+    "id": "dbe646ae-4c1c-4903-b787-0532ffef7b1e",
+    "number": "S2-37486"
+   }
+  },
+  "s1": [
+   {
+    "text": "Reassign lead technician",
+    "disabled": false
+   }
+  ],
+  "s2": {
+   "title": "Reassign lead technician S2-37485 · ZZAUTOTEST C682429 Design Labels 14630 NoLea",
+   "placeholder": "Search technicians",
+   "text": "Reassign lead technician S2-37485 · ZZAUTOTEST C682429 Design Labels 14630 NoLead close Loading technicians… Cancel Reassign"
+  },
+  "s4": [
+   {
+    "text": "Reassign lead technician",
+    "disabled": false
+   },
+   {
+    "text": "Unassign",
+    "disabled": false
+   }
+  ],
+  "s5": {
+   "title": "Reassign lead technician S2-37486 · ZZAUTOTEST C682429 Design Labels 14630 Led c",
+   "placeholder": "Search technicians",
+   "text": "Reassign lead technician S2-37486 · ZZAUTOTEST C682429 Design Labels 14630 Led close Unassigned AB Aaron Baker 19 open AZ Aaron Zed 20 open AS Admin ShopView 11 open AA Advisor Analysis 8 open AA Ahtasham Admin 4 open AS Ahtasham Service Advisor 0 open AF Ahtsham Foreman 1 open AP Ahtsham Parts Manger 1 open AS Ahtsham Service Manager 0 open AM Ammar Mughamis 1 open AF Amy Fernandez 0 open AH Angelica Harper 0 open AT Ashlee Thomas 0 open AS Ashley Schultz 0 open AT Automation Tech 0 open AK Ayesha Khan 87 open AT Ayesha Tech Role 0 open BM Bilal Muzamil 11 open BM BIlal Muzamil 0 open BN Bill"
+  }
+ },
+ "C682430": {
+  "data": {
+   "One": {
+    "id": "d09a0572-5d4c-40d7-9b8e-f7c7cd1f6b9b",
+    "number": "S2-37487"
+   },
+   "Two": {
+    "id": "e732286a-a71b-47fb-b03b-9fbe0d84914d",
+    "number": "S2-37488"
+   },
+   "Three": {
+    "id": "e0e07ae4-8efc-4f5a-aad7-be9a4e84a905",
+    "number": "S2-37489"
+   }
+  },
+  "crewSet": "500 [{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"524cf49c-df2e-47eb-8119-3d27",
+  "crewNow": "\"dec92369-5772-4f14-b8a3-f2a0d37851b9\"",
+  "s1": {
+   "toasts": [
+    "Lead technician removed"
+   ],
+   "prompt": null
+  },
+  "s2": {
+   "toasts": [
+    "Lead technician updated"
+   ],
+   "prompt": null
+  },
+  "s3": {
+   "toasts": [
+    "Lead technician updated Close 2"
+   ],
+   "undo": 0
+  },
+  "s4": {
+   "toasts": [],
+   "leadThree": "ZZAUTOTEST C682430 Ben Ben"
+  },
+  "s5_6": {
+   "seen": [],
+   "goneAfterMs": null,
+   "progressBar": false
+  }
+ },
+ "C682431": {
+  "data": {
+   "Invoiced": {
+    "id": "3269863b-02d3-4534-900d-3bea55207e97",
+    "number": "S2-37490"
+   },
+   "Declined": {
+    "id": "27825fff-1478-4a2a-ade6-0ede46697556",
+    "number": "S2-37491"
+   },
+   "Approved": {
+    "id": "43260846-b26e-4bea-99f6-6a15ef0a8f64",
+    "number": "S2-37492"
+   }
+  },
+  "log": [
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "status now Invoiced",
+   "declined 201"
+  ],
+  "importedNote": "no imported work order can be made by the app or API here (imported work orders come from a data import); the build follows the PRD: Imported opens in List only",
+  "cardsShown": {
+   "Invoiced": 1,
+   "Declined": 1,
+   "Approved": 1
+  },
+  "s1": [
+   {
+    "text": "Reassign lead technician",
+    "disabled": true
+   },
+   {
+    "text": "Unassign",
+    "disabled": true
+   }
+  ],
+  "Invoiced": {
+   "notes": [
+    "S2-37490 ZZAUTOTEST C682431 Design Locks 14630 Invoiced The lead technician can't be changed once a work order is Invoiced or Paid.",
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "drag": "held",
+   "leadAfter": "ZZAUTOTEST C682431 Ana Alpha"
+  },
+  "Declined": {
+   "notes": [
+    "S2-37491 ZZAUTOTEST C682431 Design Locks 14630 Declined"
+   ],
+   "drag": "held",
+   "leadAfter": "ZZAUTOTEST C682431 Ana Alpha"
+  }
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "C682436": {
+  "note": "needs a location with work orders but no technicians (ZZAUTOTEST F2 No Tech Shop, notech-stg4.mts) and a location with neither; switched as the runner and put back",
+  "locs": [
+   "QB Location",
+   "ZZAUTOTEST F2 No Tech Shop",
+   "Staging Heavy Duty - 9919",
+   "Staging Lethbridge - 4310"
+  ],
+  "switched": "ZZAUTOTEST F2 No Tech Sho..",
+  "s3": "All Estimates Work Orders Completed Search Status keyboard_arrow_down Assigned to me Asset on Site keyboard_arrow_down Create Work Order Unassigned 2 2 work orders S-35901 Approved ZZF2NT Line count 0 lines Progress 0% Total price $0.00 S-35902 Approved ZZF2NT Line count 0 lines Progress 0% Total price $0.00 No technicians yet Add technicians to assign work orders. Until then, every work order stays in Unassigned.",
+  "back": "ZZAUTOTEST F2 No Tech Sho.."
+ }
+}

@@ -1,0 +1,244 @@
+{
+ "runner": "3620a2b1",
+ "C682429": {
+  "data": {
+   "NoLead": {
+    "id": "c9de92bd-95c7-44ff-ae2e-5a6ece4865ba",
+    "number": "S2-37473"
+   },
+   "Led": {
+    "id": "af0206b4-3d3f-4a38-81e1-781bfad42691",
+    "number": "S2-37474"
+   }
+  },
+  "s1": [
+   {
+    "text": "Reassign lead technician",
+    "disabled": false
+   }
+  ],
+  "s2": {
+   "title": "Reassign lead technician S2-37473 · ZZAUTOTEST C682429 Design Labels 92697 NoLea",
+   "placeholder": "Search technicians",
+   "text": "Reassign lead technician S2-37473 · ZZAUTOTEST C682429 Design Labels 92697 NoLead close Loading technicians… Cancel Reassign"
+  },
+  "s4": [],
+  "s5": null
+ },
+ "C682430": {
+  "data": {
+   "One": {
+    "id": "40062cd1-966b-4936-9a36-de0378af9947",
+    "number": "S2-37475"
+   },
+   "Two": {
+    "id": "7164fae3-9c85-4b3a-9b9f-9045c488155a",
+    "number": "S2-37476"
+   },
+   "Three": {
+    "id": "24110e77-7ded-4ccc-83ae-afd58d63b715",
+    "number": "S2-37477"
+   }
+  },
+  "crewSet": "400 [{\"error\":\"Labor or fixed prices must be set.\"}]",
+  "crewNow": "\"dec92369-5772-4f14-b8a3-f2a0d37851b9\"",
+  "error": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"board_card_40062cd1-966b-4936-9a36-de0378af9947\"]').first()\n"
+ },
+ "C682431": {
+  "data": {
+   "Invoiced": {
+    "id": "b8738d09-c204-40a3-a9af-7fe9ebbba51e",
+    "number": "S2-37478"
+   },
+   "Declined": {
+    "id": "444fa905-0233-4dc8-91f3-c1b42eabc9e6",
+    "number": "S2-37479"
+   },
+   "Approved": {
+    "id": "91af3052-4396-4f75-92aa-f39161d6eba4",
+    "number": "S2-37480"
+   }
+  },
+  "log": [
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "status now Invoiced",
+   "declined 201"
+  ],
+  "importedNote": "no imported work order can be made by the app or API here (imported work orders come from a data import); the build follows the PRD: Imported opens in List only",
+  "cardsShown": {
+   "Invoiced": 0,
+   "Declined": 0,
+   "Approved": 0
+  },
+  "s1": [],
+  "error": "page.evaluate: TypeError: Cannot set properties of null (setting 'scrollLeft')\n    at eval (eval at evaluate (:290:30), <anonymous>:1:98)\n    at eval (<anonymous>)\n    at UtilityScript.evaluate (<anonymous>:290:30)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "C682432": {
+  "steps": [
+   {
+    "pin": 1,
+    "toasts": [],
+    "pinned": 1,
+    "disabled": null
+   },
+   {
+    "pin": 2,
+    "toasts": [],
+    "pinned": 2,
+    "disabled": null
+   },
+   {
+    "pin": 3,
+    "toasts": [],
+    "pinned": 3,
+    "disabled": null
+   },
+   {
+    "i": 3,
+    "clickError": "TimeoutError: locator.click: Timeout 6000ms exceeded.\nCall log:\n  - waiting for "
+   },
+   {
+    "pin": 4,
+    "toasts": [],
+    "pinned": 3,
+    "disabled": "true"
+   },
+   {
+    "i": 4,
+    "clickError": "TimeoutError: locator.click: Timeout 6000ms exceeded.\nCall log:\n  - waiting for "
+   },
+   {
+    "pin": 5,
+    "toasts": [],
+    "pinned": 3,
+    "disabled": "true"
+   },
+   {
+    "i": 5,
+    "clickError": "TimeoutError: locator.click: Timeout 6000ms exceeded.\nCall log:\n  - waiting for "
+   },
+   {
+    "pin": 6,
+    "toasts": [],
+    "pinned": 3,
+    "disabled": "true"
+   }
+  ],
+  "unpinA": {
+   "toasts": [],
+   "pinned": 2
+  }
+ },
+ "C682433": {
+  "s1_2": [
+   "Density Compact Regular Comfortable"
+  ],
+  "s5": [
+   "module_selector_trigger | Current module: ShopHub. Switch module",
+   "global_search_trigger | Search",
+   "profile_menu_button | Profile",
+   "page_search_toggle | Search",
+   "filter_chip_status | Status keyboard_arrow_down",
+   "filter_chip_assigned_to_me | Assigned to me",
+   "filter_chip_vehicleHere | Asset on Site keyboard_arrow_down",
+   "button_density | Density",
+   "button_board_fields_selection | Fields to display",
+   "display_option_list | List",
+   "display_option_tech_view | Tech View",
+   "display_option_board_view | Board View",
+   "button_new_work_order | Create Work Order",
+   "button_board_pin_b669608e-a897-4f21-a510-8ced9d9fa982 | Unpin Esther Howard",
+   "button_board_pin_b51a80a5-2d2a-488a-87cd-747e8798d8ee | Unpin Ralph Edwards",
+   "button_board_pin_96b2ca3b-ba85-404e-a60d-b6dabe5b89e6 | Unpin Dana Ortiz",
+   "button_board_pin_c57d19d7-dc2b-4472-a11d-984c61b01c0e | Pin Aaron Baker",
+   "button_board_pin_52b5c2b4-79db-4168-9f59-5ef4469393bd | Pin Aaron Zed",
+   "button_board_pin_7f85bc58-9ff5-4b50-b3f3-d85821069066 | Pin Admin ShopView",
+   "button_board_pin_1bdce760-77df-4f45-b520-25fc96393623 | Pin Advisor Analysis",
+   "button_board_pin_b06dd063-d7c6-4aad-9739-48ffd8814c3a | Pin Ahtasham Admin",
+   "button_board_pin_052a953c-79e3-4ca1-ab55-3d72fceba153 | Pin Ahtasham Service Advisor",
+   "button_board_pin_07253c44-3af0-4164-8a6d-0039dd74034c | Pin Ahtsham Foreman",
+   "button_board_pin_55319163-e4c8-4099-82b2-4f5e9e98c125 | Pin Ahtsham Parts Manger",
+   "button_board_pin_1bc0e956-f70e-44fc-84a3-eb191112b8ce | Pin Ahtsham Service Manager",
+   "button_board_pin_768eb047-c671-4145-84a9-3853ef0f5176 | Pin Ammar Mughamis"
+  ],
+  "s6_7": [
+   "Density Compact Regular Comfortable"
+  ]
+ },
+ "C682434": {
+  "data": {
+   "One": {
+    "id": "edd0b91d-cf8c-40d9-8db7-c14adcca3691",
+    "number": "S2-37481"
+   }
+  },
+  "s2": {
+   "header": "ZC ZZAUTOTEST C682434 Ana Alpha 0 0 work orders",
+   "next": [
+    "No work orders",
+    "AB Aaron Baker 0 0 work orders"
+   ]
+  }
+ },
+ "C682435": {
+  "data": {
+   "Approved": {
+    "id": "52651cff-cc11-423f-9ee3-880e55c8790b",
+    "number": "S2-37482"
+   },
+   "Estimate": {
+    "id": "46a3ad6b-40a7-4757-913f-12c2909e1c92",
+    "number": "S2-37483"
+   },
+   "Declined": {
+    "id": "fdb430c7-067d-4d45-bbd1-30582e63891c",
+    "number": "S2-37484"
+   }
+  },
+  "log": [
+   "declined 201"
+  ],
+  "s3": {
+   "rowsShownInAnaGroup": 1,
+   "header": "ZC ZZAUTOTEST C682435 Ana Alpha 1 1 work order"
+  },
+  "s4": {
+   "id": "5a41ac66-c242-4d63-8f91-09a84252d394",
+   "name": "ZZAUTOTEST C682435 Ana Alpha",
+   "count": 3,
+   "cards": [
+    "S2-37482",
+    "S2-37483",
+    "S2-37484"
+   ],
+   "pinned": "true",
+   "pinDisabled": false,
+   "empty": null,
+   "left": 321
+  },
+  "s5": [
+   {
+    "text": "Reassign lead technician",
+    "disabled": false
+   },
+   {
+    "text": "Unassign",
+    "disabled": false
+   }
+  ],
+  "s7": "ZC ZZAUTOTEST C682435 Ana Alpha Current · 2 open"
+ },
+ "C682436": {
+  "note": "needs a location with work orders but no technicians (ZZAUTOTEST F2 No Tech Shop, notech-stg4.mts) and a location with neither; switched as the runner and put back",
+  "error": "((intermediate value) ?? []).map is not a function"
+ }
+}
