@@ -1,0 +1,11 @@
+import {session,toView} from './rec.mjs'; import fs from 'fs';
+const s=await session({vp:{width:1440,height:900},dpr:2}); const p=s.page;
+const OWN=['display','tab','density','collapsedGroups']; const getP=async()=>(await s.api('/api/users/me/preferences/work-orders-list')).json.data.value; const prefs0=await getP();
+await s.go('/workorders?tab=all&search=ZZAUTOTEST%20F3%20Keyboard%20Reach'); await p.waitForTimeout(3500); await toView(p,'tech_view'); await p.waitForTimeout(3000);
+const r=await p.evaluate(()=>{const rows=[...document.querySelectorAll('[data-test-id^=tech_view_row_]')].filter(e=>/^tech_view_row_[0-9a-f-]{36}$/.test(e.dataset.testId)); const e=rows[1]||rows[0]; const b=e.getBoundingClientRect(); return {n:(e.innerText.match(/S\d-\d+/)||[])[0],x:b.x,y:b.y,w:b.width,h:b.height};});
+const clip={x:0,y:r.y-4,width:1440,height:r.h+8};
+await p.mouse.move(5,890); await p.waitForTimeout(500); await p.screenshot({path:'/tmp/qa11310/ex/row94-rest.png',clip});
+await p.mouse.move(700,r.y+r.h/2,{steps:6}); await p.waitForTimeout(700); await p.screenshot({path:'/tmp/qa11310/ex/row94-hover.png',clip});
+const hit=await p.evaluate(({x,y})=>{const e=document.elementFromPoint(x,y); const tr=e.closest('tr'); return {tag:e.tagName,tid:tr&&tr.dataset.testId&&tr.dataset.testId.slice(0,14),bg:tr&&getComputedStyle(tr).backgroundColor,tdbg:getComputedStyle(e.closest('td')||e).backgroundColor};},{x:700,y:r.y+r.h/2});
+const cur=await getP(); const vv={...cur}; for(const k of OWN) vv[k]=prefs0[k]; await s.api('/api/users/me/preferences/work-orders-list',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({value:vv})});
+await s.close(); console.log(JSON.stringify({r,hit}));
