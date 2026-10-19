@@ -895,3 +895,11 @@ all four Passed with pictures. C368214 is Automated → tell Vlad.
 - **Overwrote `build-marker.mts` without reading it** (restored with git) → read a file before Write, always; check `ls` first when the name is generic.
 - **Parked tests as a question when the build matched the latest PRD** → L0456 ("always unblock yourself").
 #run498 #mistakes #guards #tooling → L0450, L0456, L0458
+
+## L0461 — 2026-10-19 — Retesting cases updated in the last N hours: find them live; queue with ABSOLUTE paths; pkill -f again; a mid-run session_expired
+- **Which tests need a retest after case edits:** for every test in the run, compare the case's `updated_on` with the test's newest result (`get_results/<test>&limit=1`); NEED = result older than the edit. Use `get_cases/<project>&suite_id=<s>&updated_after=<epoch>` (paged) to list the edited cases first. On 19 Oct this found 3 beyond the 3 he named: C614719 (preconditions rewritten by Vladimir 08:46/09:17, steps and Expected unchanged), C96953 (only the S3-E2 quote updated to v65), C682419 (new, untested).
+- **run_queue.sh runs every line in ONE shell**: a relative `cd build/...` works for line 1 and fails for line 2 (already inside). Always `cd <absolute path> && ...` per line.
+- **`pkill -f <pattern>` killed my own shell AGAIN** (exit 144) — L0453 already said so. Never pkill -f; list with `ps aux | grep <pat> | grep -v grep` and `kill <pid>`.
+- **`switch 401 session_expired` mid-run** (moved-r5, 2 min in, 15:44): the Admin app session ended under the script. One Google sign-in holds one app session (L0394); another session signing in as Admin ends ours. Re-run; if it repeats, ask whether another session is on staging.
+- **C682419 scroll bar:** the board's sideways bar is the browser's own, so its handle length is read from screen pixels (strip screenshot → canvas in the page → run of pixels differing from the track), with the board scrolled to the middle so both ends are track (`c682419-bar.mts`).
+#run498 #retest #queue #pkill #session #scrollbar → L0394, L0453, L0460
