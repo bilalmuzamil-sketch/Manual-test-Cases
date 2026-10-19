@@ -1,0 +1,8 @@
+<p>Tested on staging, build v26.40.19-e435950, on 19 October 2026, signed in as Admin, window 1440 px wide.</p>
+<ul><li><strong>Result: Passed.</strong></li>
+<li>Set-up: a new technician, Owen Created QA1019 (leads no other work, nobody has reordered his work). On the Schedule page I clicked an empty cell in his row, chose New Work Order and saved, four times: S2-37442 (Zeta Hauling QA1019), S2-37443 (Alpha Freight QA1019), S2-37444 and S2-37446 (Mid Trucking QA1019), in that order. Each one was made with Owen Created QA1019 already set as its Lead Technician.</li>
+<li>Step 7, List with no saved sort (Customer, A to Z): S2-37443 Alpha, S2-37446 Mid (newer first), S2-37444 Mid, S2-37442 Zeta (picture 1). All four show Owen Created QA1019 as Lead Technician.</li>
+<li>Step 8, Tech View, his group: S2-37443, S2-37446, S2-37444, S2-37442 — the same order as List, not the order they were made. Picture 2, left.</li>
+<li>Step 9, Board View, his column: the same order. Picture 2, right.</li>
+<li>For the List step, Admin's saved List sort was cleared so it behaved like a user with no saved sort, and put back afterwards.</li>
+<li>Source: PRD version 64 S9-R14 ("A work order created or split off with a lead keeps the initial sort (S9-R3)") and S2-R6 (the initial sort is List's default order, same customer newest first).</li></ul>

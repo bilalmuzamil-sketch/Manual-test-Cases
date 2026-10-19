@@ -1,0 +1,43 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Re-tested on Staging (build v26.40.19-e435950) on 19 October 2026, signed in as Admin, window 1440 x 900 px, zoom 100%.
+* This ticket is QA passed: the order it reports is the order the current spec asks for.
+* The spec (version 64) says a work order that gets its lead *after* it is made goes to the bottom of that technician's work. That is what happened in this ticket's steps, because the leads were given one by one after the work orders were made.
+* A work order that is *made with* its lead keeps the List's order (customer A to Z, same customer newest first). I checked that too, and it works.
+* Slavcho's closing note on this ticket matches the spec word for word. Both TestRail cases for this rule passed today: C96929 (lead given later) and C674226 (made with the lead).
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 64:
+{quote}S2-R6: Before a manual order is saved, use the List's default work order sort, ties included, exactly as the List sorts today: work orders for the same customer go by start date, newest first. The List itself does not change. A work order that gets a new lead after it was created goes to the bottom of that technician's work instead (S9-R14).{quote}
+{quote}S9-R14: A work order that gets a new lead from the Reassign lead technician dialog or from its detail page goes to the bottom of the new technician's work, for everyone at the location, in both views. … A work order created or split off with a lead keeps the initial sort (S9-R3).{quote}
+Chris Ward confirmed it in the spec's change log (version 53, 15 Oct 2026): "S9-R14 confirmed as written: a lead given after creation puts the work order at the bottom of that technician's work (SV-11312 works as specified)."
+
+*1. Lead given after the work order was made (this ticket's steps)*
+!sv11101-01-lead-later-list.png|width=1120,height=825!
+_List with no saved sort: Alpha S2-37438, Mid S2-37440, Mid S2-37439, Zeta S2-37437 (customer A to Z). All four are led by Nora Sort QA1019._
+
+!sv11101-02-lead-later-tech-board.png|width=1125,height=1184!
+_The four were made Zeta, Alpha, Mid, Mid, then given the lead Nora Sort QA1019 in the order Zeta, Mid S2-37439, Mid S2-37440, Alpha. Tech View and Board View show exactly that order, each one at the bottom when its lead was given._
+
+*2. Work orders made with their lead*
+!sv11101-03-made-with-lead-list.png|width=1120,height=1001!
+_Made from the Schedule page on Owen Created QA1019's row, in the order Zeta, Alpha, Mid, Mid. List: Alpha S2-37443, Mid S2-37446 (newer), Mid S2-37444, Zeta S2-37442._
+
+!sv11101-04-made-with-lead-tech-board.png|width=1125,height=1074!
+_Tech View and Board View show the same order as List, not the order they were made._
+
+*How to see it yourself*
+Lead given after the work order is made:
+# Sign in to Staging: https://app.staging.shopview.com
+# Click *Work Orders* in the top menu, then the *All* tab (top left).
+# Click *Search* (the magnifying glass above the list, on the right) and type {{QA1019}}.
+# Click *Tech View* (the middle of the three view buttons, right side of the bar above the list). Scroll down to the group *Nora Sort QA1019*: S2-37437, S2-37439, S2-37440, S2-37438 (the order the leads were given).
+# Click *Board View* (the right-most view button) and scroll sideways to the column *Nora Sort QA…*: the same order.
+
+Work order made with its lead:
+# Click *Schedule* in the top menu and find a technician's row (we used *Owen Created QA1019*).
+# Click an empty cell in that row. A small menu opens: click *New Work Order*.
+# Choose a *Customer* and an *Asset*, then click *Save*. Do this a few times for customers whose names sort differently.
+# Go back to *Work Orders* > *All* > *Tech View* and find that technician's group: the work orders are in the List's order (customer A to Z), not the order you made them. The four we made are S2-37443, S2-37446, S2-37444, S2-37442 under *Owen Created QA1019*.

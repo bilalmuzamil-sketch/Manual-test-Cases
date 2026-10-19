@@ -6146,3 +6146,7 @@ This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as a
 ### Staging: a work order cannot be created with a lead from the API (19 Oct 2026)
 - `POST /api/work-orders/create` silently ignores `tech_assigned_id`, `lead_technician_id`, `technician_id`, `techAssignedId` (201, no lead). A work order "created with its lead" comes only from a split or a Schedule slot.
 - A fresh technician for an ordering test: `POST /api/iam/create` (snake_case) then `POST /api/staff/{staff_id}/change` with `clockable:true` (iam/create makes them clockable:false, so they do not get a Board column until Time Clock is on).
+
+### Staging: make a work order WITH its lead set at creation (19 Oct 2026)
+- **Schedule** → click an empty cell in a technician's row → menu `menu_schedule_assign_work_order` / `menu_schedule_create_event` / **`menu_schedule_new_work_order`** → dialog *New Work Order* (`select_customer_select`, `select_company_vehicle_select`, `checkbox_is_vehicle_here`, `button_save_work_order`). Save sends `POST /api/work-orders/create` with `assigned_staff_id` = that technician's staff id and the work order comes back with that technician as **lead**. A cell that already holds a shift opens the shift instead — click further along the row.
+- TestRail: `add_case` always appends to the end of the section; there is no API to set the position, and a scripted drag on the section page sent no reorder request. Positioning is a manual drag.

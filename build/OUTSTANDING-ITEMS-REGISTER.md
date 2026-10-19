@@ -1438,6 +1438,7 @@ what is still owed.
 | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|
 
+- 2026-10-19 cleared: SV-11101 QA PASSED comment 78994 + label + Done; new case C674226 added to run 498 and Passed (result 527976). Open: C674226 sits at the end of section 13237 — one manual drag puts it under C96929.
 - 2026-10-19 cleared (QA lead, 19 Oct): SV-11119 reopened + FAILED comment 78986 tagging Slavcho; SV-11101 and SV-11124 answered ("DO what is needed to make your work the best") — QA PASSED + Done; SV-11394 Chris question DISMISSED, verbatim "Ignore it and do not remind me of it again." — never raise again.
 - 2026-10-19 cleared: SV-11394 re-tested on v26.40.19-31ad1e1 — posted PASSED 78958 (7 cards, 3 densities, dark theme, no move/grow).
 - 2026-10-18 cleared: Board/Tech Paid pill width — QA lead answered "Not a fault (Recommended)": width follows the Status column in List/Tech View; cards have no column. SV-11405 → PASSED (to post after re-check on the new build); SV-11318 stays PASSED (78911 film size fixed in place).
