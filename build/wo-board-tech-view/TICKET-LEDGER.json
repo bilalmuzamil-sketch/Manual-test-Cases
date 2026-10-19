@@ -476,11 +476,12 @@
  },
  "SV-11119": {
   "updated": "2026-10-19",
-  "outcome": "ASKED",
+  "outcome": "NEW-CASES",
   "cases": [
+   "C682445",
    "C97005"
   ],
-  "note": "Proposed new case; asked the QA lead 19 Oct 2026. No case checks two people reordering the same technician at once. It was raised from our C368149, which was deleted on 12 Oct; C97005 checks only that one person's saved order is shared, and quotes the old S9-R11 wording. Missing check: two browsers, the same column Alpha, Mid, Zeta; person 1 moves Zeta to the top, person 2 (without refreshing) moves Mid to the top; after both refresh, both show Mid, Zeta, Alpha with no warning. Ticket's own words (PRD v65 S9-R11, quoted in the 19 Oct comment): \"Each drop saves only the card that was moved, so neither person's move is erased... after a refresh both see Mid, Zeta, Alpha.\" Ticket is still In Progress and FAILED on 19 Oct."
+  "note": "QA lead approved, 19 Oct 2026. C682445 (PRD v68 S9-R11, worked example; EXPECT FAIL SV-11119), test T4062446 in run 498; footer added to the ticket. Before-copy po-defects-2026-10-14/ticket-footer-backups/SV-11119-before.html."
  },
  "SV-11118": {
   "updated": "2026-10-19",
@@ -549,11 +550,12 @@
  },
  "SV-11087": {
   "updated": "2026-10-19",
-  "outcome": "ASKED",
+  "outcome": "NEW-CASES",
   "cases": [
+   "C682446",
    "C368177"
   ],
-  "note": "Proposed new case; asked the QA lead 19 Oct 2026. unsure: this fix ships in the separate bugfix release (PR #3619, branch sv11087), not in SV-10043, so it may belong outside this suite. Raised from our C368177, which checks only that the receiving line gets the technician. No case checks the source line. Missing check: after moving a timesheet entry to another line, the source line no longer lists a technician the app added on clock-in, while one added through Edit Line stays at 0.00 h. Chris Ward's ruling in the comments: \"When an entry moves to another line, only remove the labor row that clocking in added automatically (SV-8766), and only if the technician has no other time on that line. A technician someone put on the line on purpose (Edit Line) stays there, with 0.00 hours.\" Plus the claimed-row case: \"the line goes back to Unassigned.\" Ahtasham passed all 6 developer scenarios on 14 Oct."
+  "note": "QA lead: 'Yes', 19 Oct 2026. C682446 from Chris Ward's rulings in the ticket's comments (9 Oct 2026), test T4062447 in run 498; footer added. Before-copy ticket-footer-backups/SV-11087-before.html. Scenarios 2 to 6 of Slavcho's 14 Oct test list are not in this case."
  },
  "SV-11075": {
   "updated": "2026-10-19",
