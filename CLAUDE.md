@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109–129** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109–130** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -82,6 +82,10 @@ These are stated here **in full** because a session that gets only this far must
   version; every ticket gets a row in `build/<project>/TICKET-LEDGER.json` (new cases / covered / from our case / no case / asked);
   a newer PRD is diffed the same day and its affected cases listed. `build/testing-tools/ticket_sweep.py` exits 1 until nothing is
   unhandled; never call a project current while it does. Why: SV-11522 and SV-11524 and PRD v65/v66 (19 Oct) went unseen.
+- **🔴 A DESIGN DIFFERENCE IS CLOSED, NEVER PARKED (130, 19 Oct 2026).** Check both ways: design → cases (text inventory) AND PRD →
+  design (`build/testing-tools/spec_to_design_check.py`, plus each dialog/menu/message's rows and buttons listed by hand). Every
+  difference is closed in `build/<project>/DESIGN-DIVERGENCE-REGISTER.json` by a SENT PO question or a ruling; "KNOWN, cases follow
+  the spec" is never an outcome. Why: the WO design showed SV-11522/SV-11524's behaviour on 14 Oct and no case or question existed.
 - **🔴 KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS (123).** New and changed cases go into the project's run in the
   same pass, union only (34). Before editing a case someone else created: give the QA lead the list with C-ids, links,
   who created each and when, and ask permission. No edit until he says yes.

@@ -3316,3 +3316,42 @@ UTC, so no step of mine would ever have seen them. The last full Jira read for t
 7. **Worked example:** WO Board, 19 Oct 2026: 45 tickets since 14 Oct, 7 new cases for SV-11522 and SV-11524 (C682422 to C682428),
    10 tickets still to confirm, PRD v66 not handled until the 49 affected existing cases are updated.
    (`build/wo-board-tech-view/TICKET-LEDGER.json`, `TICKET-SWEEP.json`, `sv11522-11524-2026-10-19/`.)
+
+## 130 · A DESIGN DIFFERENCE IS CLOSED, NEVER PARKED — CHECK BOTH WAYS, ASK EVERY TIME (all projects, permanent)
+
+Ordered by the QA lead, 2026-10-19, verbatim: *"where is the root cause and what jave you learned any why did YOU miss to. Reate the test
+cases when yoi already had the design? You need to permanently fix these issues of missing the test cases against the design. Tell me
+the root cause of missing it and how will you ensure that ot never happens again and how are you saving the learning amd lesson for
+yourself???"*
+
+**What happened.** The WO Board design (export of 14 Oct 2026) already showed everything Branko Cicovic filed on 19 Oct as SV-11522 and
+SV-11524: "Assign Tech" on a work order with no lead; a lead dialog with no Unassigned row and only a Cancel button (a click assigns);
+and the message "S1-352 assigned to Kristin Watson" with Undo. I drove the design and wrote every one of these down
+(`design-drive-2026-10-14/FLOWS-2026-10-14.md` W2, W3, D2).
+
+**Root cause, three parts.**
+1. **One-way check.** My design check asks only "is every word the design shows covered?". It never asks "does the design show what
+   the PRD requires?". The PRD said "Unassigned is the first row" and "Confirming the dialog"; the design had no such row and no
+   confirm button. That difference was never compared, so never recorded, never asked.
+2. **"KNOWN — cases follow the spec" was a dead end.** The label ("Assign Tech" vs "Reassign lead technician") and the message wording
+   were filed as KNOWN and left there: no question went to the PO about the label, and no case was written for the design's version.
+   Following the PRD was right (Rule 57); stopping there was wrong. When the PO moved the PRD to the design (v66), nothing was ready.
+3. **No trigger** to look again when tickets or PRD versions arrive (fixed by Rule 129).
+
+**From now on, on every project:**
+1. **Check both ways.** Besides the text inventory (design → cases), run `build/testing-tools/spec_to_design_check.py` (PRD → design):
+   every word the PRD quotes for the screen that the design does not show is a difference. And list, by hand, each dialog, menu,
+   message and empty state in the design with its title, rows, buttons and order, beside what the PRD says; every mismatch (a missing
+   row, an extra or missing button, a different order) is a difference.
+2. **Every difference is closed in the register** (`build/<project>/DESIGN-DIVERGENCE-REGISTER.json`) by a sent PO question (sheet and
+   row) or a ruling (quote and date). "KNOWN" is not a closing outcome; the tool exits 1 while any difference is open, and no suite is
+   handed over or called complete while it does.
+3. **The case that follows the PRD names the difference** under "References from Design" (Rule 117, tenth amendment), so a later PRD
+   change finds every affected case by search.
+4. **When a ruling or a new PRD version moves to the design, the cases are written or changed the same day** (Rule 129).
+5. **Proposed, waiting for the QA lead's yes (Rule 72):** also write, for each open difference, a ready "design version" case in
+   "Design — how it looks", marked AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO, so coverage of the design
+   exists from the first day and only needs releasing.
+
+Worked example and evidence: `build/wo-board-tech-view/sv11522-11524-2026-10-19/` (PRD v66 against the 14 Oct design: 23 PRD words the
+design does not show, all open in the new register).

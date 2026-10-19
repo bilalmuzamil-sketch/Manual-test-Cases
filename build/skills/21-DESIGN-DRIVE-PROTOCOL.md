@@ -86,6 +86,13 @@ map to a case here before the suite is called complete.
 
 Every design reference in a case (design link, boards or pages, attached picture names, the design's own words) goes under its own title **"References from Design"**, after a blank line below the source quotes; never in the Source paragraph or the quote list (Rule 117, tenth amendment, 19 Oct 2026). Design cases attach the board pictures, name them in the preconditions and quote the boards' own titles and notes; every board is attached to at least one case.
 
+## 6c · Spec to design, the other direction (Rule 130, 19 Oct 2026)
+1. Run `python3 build/testing-tools/spec_to_design_check.py --prd <saved PRD> --design <export>/*.html --register build/<project>/DESIGN-DIVERGENCE-REGISTER.json`.
+2. By hand, for every dialog, menu, message and empty state the design draws: write its title, rows, buttons and their order next to what the PRD says. A missing row, a missing or extra button, a different order or label is a difference.
+3. Every difference goes in the register and is closed only by a SENT PO question (sheet, row, date) or a ruling (quote, date). "KNOWN" never closes one.
+4. The case that follows the PRD names the difference under "References from Design".
+5. The hand-over gate below fails while the tool exits 1.
+
 ## 7 · Hand-over gate
 Only when steps 2–6 (including 4b and 6b) are done: commit `DESIGN-COVERAGE-<date>.md` (the file-reading table; the sweep totals; the
 VISUAL inventory counts and the unsent-question count, which must be 0 (Rule 126); the text
