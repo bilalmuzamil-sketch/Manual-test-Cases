@@ -6,7 +6,9 @@ REPS3 = ('Three active staff members at {Location-A} have their "Sales Represent
          "For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.")
 CUST = ("Customer {Customer-A} has no sales representative.", "For example: {Customer-A} is ZZAUTOTEST SSR Fleet.")
 def WO(state='its card shows one "Sales Representative" field reading "Unassigned"', n=1):
-    return (f"Work order {{Work-order-{n}}} for {{Customer-A}} is open, not invoiced, with one approved labor line and one part; {state}.",
+    inv = "invoiced" in state.replace("not invoiced", "")
+    lines = "" if ("labor line" in state or inv) else "it has one approved labor line and one part, and "
+    return (f"Work order {{Work-order-{n}}} for {{Customer-A}} is open{'' if inv else ' and not invoiced'}; {lines}{state}.",
             f"For example: {{Work-order-{n}}} is S2-{40000 + n}.")
 def START(where="{Work-order-1} is open in a desktop browser at least 1024 px wide"):
     return f"Starting screen: {where}."
