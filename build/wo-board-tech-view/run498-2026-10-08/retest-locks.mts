@@ -188,6 +188,33 @@ await run('C368147', async (o) => {
   o.s12_lead = await leadName(set.w['Alpha Co'].id);
 });
 
+// C97020 steps 1-6: the view-only user with the keyboard only (the Admin half is kbd-r4.mts ONLY=C97020)
+const focusOf = (pg: Page) => pg.evaluate(`(() => { const e = document.activeElement; if (!e) return null; const card = e.closest('[data-test-id^="board_card_"]'); const num = card ? (card.querySelector('[data-test-id="board_card_number"]') || {}).textContent : null;
+  return { id: e.getAttribute('data-test-id') || e.tagName, label: e.getAttribute('aria-label'), card: num ? num.trim() : null, inMenu: !!e.closest('.q-menu') }; })()`) as Promise<any>;
+await run('C97020', async (o) => {
+  const A1 = await T('C97020', 'Ana'), B1 = await T('C97020', 'Ben');
+  const set = await mkSet('ZZAUTOTEST F3 Keyboard Viewer', [{ co: 'Alpha Co', lead: A1 }, { co: 'Bravo Co', lead: A1, status: 'invoiced' }]); o.data = set.w;
+  await asViewer('C97020', async (pg, va, o) => {
+    const PV = (await va.get(PREF)).body?.data?.value ?? {}; await va.put(PREF, { value: { ...PV, pinnedTechnicianIds: [A1.staff_id, B1.staff_id] } });
+    await goV(pg, 'Board View', set.q); await pg.locator('[data-test-id="page_search_input"]').first().click(); await pg.waitForTimeout(500);
+    o.s1 = await focusOf(pg); const stops: any[] = [];
+    for (let i = 0; i < 25; i++) { await pg.keyboard.press('Tab'); await pg.waitForTimeout(250); const f = await focusOf(pg); stops.push(f.id + (f.card ? ' ' + f.card : '')); if (f.card) break; }
+    o.s2 = { stops, focus: await focusOf(pg) };
+    for (let i = 0; i < 4 && (await focusOf(pg)).card !== set.w['Alpha Co'].number; i++) { await pg.keyboard.press(i < 2 ? 'ArrowDown' : 'ArrowUp'); await pg.waitForTimeout(300); }
+    o.s3 = await focusOf(pg); await pg.screenshot({ path: path.join(EV, 'C97020-v-s3-card.png') });
+    await pg.keyboard.press('Tab'); await pg.waitForTimeout(400); o.s4 = await focusOf(pg); o.s4.moreActionsOnCard = await pg.locator(`${card(set, 'Alpha Co')} [data-test-id="button_work_order_more_actions"]`).count();
+    await pg.keyboard.press('Enter'); await pg.waitForTimeout(1200); o.s5 = { menus: await pg.locator('.q-menu').count(), items: await menuItems(pg), dialogs: await pg.locator('.q-dialog').count(), focus: await focusOf(pg) }; await pg.screenshot({ path: path.join(EV, 'C97020-v-s5-enter.png') });
+    await pg.keyboard.press('Escape'); await pg.waitForTimeout(400);
+    // step 6 from the card itself
+    for (let i = 0; i < 2 && (await focusOf(pg)).card !== set.w['Alpha Co'].number; i++) { await pg.keyboard.press('Shift+Tab'); await pg.waitForTimeout(300); }
+    o.s6 = { from: await focusOf(pg), keys: {} };
+    for (const k of ['Space', 'Shift+ArrowUp', 'Shift+ArrowDown', 'Shift+ArrowLeft', 'Shift+ArrowRight']) { await pg.keyboard.press(k); await pg.waitForTimeout(900); o.s6.keys[k] = { focus: await focusOf(pg), col: (await boardCols(pg)).find((c) => c.cards.includes(set.w['Alpha Co'].number))?.name ?? null, menus: await pg.locator('.q-menu').count(), dialogs: await pg.locator('.q-dialog').count() }; if (o.s6.keys[k].menus || o.s6.keys[k].dialogs) { await pg.keyboard.press('Escape'); await pg.waitForTimeout(300); } }
+    await pg.screenshot({ path: path.join(EV, 'C97020-v-s6-after-keys.png') });
+    await va.put(PREF, { value: PV });
+  }, o);
+  o.s6_lead = await leadName(set.w['Alpha Co'].id);
+});
+
 await a.put(PREF, { value: ORIGINAL }).catch(() => {});
 fs.writeFileSync(path.join(EV, 'retest-locks.json'), JSON.stringify(R, null, 1));
 try { await (RUN as any).close?.(); } catch { /* */ }
