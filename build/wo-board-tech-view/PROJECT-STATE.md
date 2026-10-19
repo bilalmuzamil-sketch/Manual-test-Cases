@@ -307,3 +307,4 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
   tab, so it needs the QA lead to name the case (114(c)).
 - 19 Oct — C368214 on the ALL tab (high2-all.json): Back/Forward/Back keep All tab, Status Approved, search and row S2-37445 — HELD for naming (114(c)).
 - 19 Oct — C96945 PASSED after step 5 reworded (click outside; Expected unchanged; case Automated → tell Vlad).
+- 19 Oct — Clear all filters on staging e435950 (clear-all-search-staging.json): List AND Tech View clear Status and KEEP the search, same as production List → C590122 step 8 'search is empty' has no source; Expected change needs naming.
