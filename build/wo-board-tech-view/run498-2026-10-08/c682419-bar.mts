@@ -6,15 +6,26 @@
  *  clientWidth after scrolling it. Step 6 drags the handle with the mouse (start = left end, then from the right end back). Step 7: window
  *  1280 and 1024 wide, then location "DVI Test" (few technicians), then back to Staging Heavy Duty - 9919. Step 8: profile menu > Dark,
  *  measure, back to Light. Step 9: Tech View and List bar thickness. Firefox is not on this machine (Chromium only) — that expected line is
- *  reported as not checked. Output EV/c682419-bar.json; pictures EV/C682419-*.png. Records only; location and theme put back. */
+ *  reported as not checked. Output EV/c682419-bar.json; pictures EV/C682419-*.png. Records only; location and theme put back.
+ *  Scrollbars: launched WITHOUT --hide-scrollbars (Playwright's headless default hides every scrollbar; L0464). */
 import fs from 'node:fs';
 import path from 'node:path';
 import { open, done } from './session.mts';
 import { EV, t, display, tab, search, switchLocUI } from './wob.mts';
 
-const { browser, page: p } = await open('/workorders?tab=all');
-const W = (ms: number) => p.waitForTimeout(ms);
+const { browser: b0, page: p0 } = await open('/workorders?tab=all');
 const scale = Number(process.env.WOB_SCALE || 1);
+// 19 Oct 2026 (first run read every bar as 0 px, in Board, Tech View AND List): headless Chromium is launched with --hide-scrollbars by
+// default, so no scrollbar is drawn at all. Positive control below: List/Tech View bars must read > 0. A second browser WITHOUT that flag
+// carries the same signed-in state (no new sign-in).
+const { chromium } = await import('playwright');
+const state = await p0.context().storageState(); const APPU = new URL(p0.url()).origin;
+const browser = await chromium.launch({ executablePath: process.env.CHROME_BIN || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', headless: true,
+  proxy: { server: `http://127.0.0.1:${fs.readFileSync('/tmp/atlassian/bridge-port.txt', 'utf8').trim()}` }, args: ['--no-sandbox', '--ignore-certificate-errors'], ignoreDefaultArgs: ['--hide-scrollbars'] });
+const ctx = await browser.newContext({ storageState: state, viewport: { width: 1600, height: 1000 }, deviceScaleFactor: scale, ignoreHTTPSErrors: true });
+const p = await ctx.newPage(); await b0.close().catch(() => {});
+await p.goto(APPU + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(6000);
+const W = (ms: number) => p.waitForTimeout(ms);
 const o: any = { scale };
 const SC = `[data-test-id="board_view_scroller"], .board-view__scroller`;
 const shot = (n: string) => p.screenshot({ path: path.join(EV, `C682419-${n}.png`) }).catch(() => {});
@@ -52,6 +63,8 @@ async function handle(name: string) {
 }
 const measureMid = async (name: string) => { const g = await geo(); if (g?.max > 0) await setLeft(String(Math.round(g.max / 2))); const h = await handle(name); await setLeft('0'); return h; };
 
+const tableBar0 = () => p.evaluate(`(() => { const m = document.querySelector('.q-table__middle'); if (!m) return null; return { horizontal: m.offsetHeight - m.clientHeight, vertical: m.offsetWidth - m.clientWidth }; })()`);
+await display(p, 'List').catch(() => {}); await W(2500); o.control_listBars = await tableBar0();
 // step 1-2: All tab, Board View, nothing narrowing the board
 o.location = await switchLocUI(p, HOME);
 await tab(p, 'All'); await search(p, ''); await p.locator('[data-test-id="clear_filters"]').click().catch(() => {}); await W(1200);

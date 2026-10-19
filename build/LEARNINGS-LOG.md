@@ -917,3 +917,11 @@ the outcome (Invoiced, lead unchanged), the reading proves the words.
 - **C614719-stg start state found** the Admin's saved view on `tab: work_orders` with ~80 groups collapsed — none of it set by this session. Another session works on staging as Admin at the same time and changes the SAME saved preferences (tab, collapsed groups, pins). Every script must set its own start state and read it back (startState/fixup-1017 pattern) — never trust what is saved. It may also explain why C96936's tab A came back on the Work Orders tab after a reload (probe `refresh-tab.mts`: production List keeps All after a reload; staging read queued).
 - **s3-batchA.mts's C96953 part set `scrollTop` from code and its Esther reading never moved** — a script that does not use the mouse and whose reading does not change is not evidence for "scrolls on its own" (skill 19 §9.7). Replaced by `c96953-cols.mts` (mouse wheel inside each column, wheel below a short column, wheel sideways collecting every column, count vs `candidates()`).
 #run498 #staging #shared-admin #preferences #instrument → L0458, L0461
+
+## L0464 — 2026-10-19 — Headless Chromium hides EVERY scrollbar: launch without --hide-scrollbars to measure one
+Playwright launches headless Chromium with `--hide-scrollbars` by default, so `offsetHeight - clientHeight` reads 0 and no bar is drawn
+in a screenshot — on the board AND in List/Tech View (c682419-bar.mts first run: all 0). Any check about a scrollbar's size, colour or
+handle must launch with `ignoreDefaultArgs: ['--hide-scrollbars']` (same executablePath/proxy as qa-branch-boot.mjs; reuse the signed-in
+`storageState`, no new sign-in) and carry a positive control (a List/Tech View bar must read > 0). A 0 everywhere is the instrument, never
+the product (Rule 104).
+#scrollbar #headless #playwright #instrument #run498 → L0461, L0458
