@@ -293,3 +293,6 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
 - 19 Oct — QA lead "A" on all three: C368131 (527970), C368167 (527971), C96936 (527972) PASSED with pictures; cases updated
   (case-updates-2026-10-19b/AUDIT.md). C368167 and C96936 are Automated → tell Vlad. Run now 253 Passed · 7 Failed · 9 Blocked · 10 Retest.
   Blocked left: C96916, C368214 (Back button — waiting A/B/C), C97024, C97035, C368153 (analytics), C97003, C614711, C96945, C590122.
+- 19 Oct — analytics trio reconciled (source-verify-2026-10-19/ANALYTICS-RECONCILE.md): PRD v64 S2-R4 + S12-R2 ⇒ Tech View exposes 17 fields
+  (List's 16 + Assigned Techs) — the build is right, the cases' 15 (a 6 Oct developer comment) is out of date. Asked the QA lead to name the
+  three cases for an Expected update (114(c)), then pass them.
