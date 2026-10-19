@@ -979,3 +979,10 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - **On c850386 the locked work order's lock icon is `span.board-card__lock` / `span.tech-view__row-lock` (12 px)**; a hover on it gave no `.q-tooltip` in the first pass — re-read with attributes (title/aria) and a slow mouse move in retest-locks2 before calling it.
 - **PRD v68 change log (line "S4-N6, S4-N1: locked work orders read …") is the cleanest Source quote for a wording defect**: it names the old sentence and the new words in one line.
 #run498 #retest #viewas #board #locked → L0471, L0470
+
+## L0473 — 2026-10-19 — Run 498 six-case retest outcome (c850386) and two product facts
+- **Posted 19 Oct 23:3x UTC, all six Failed** (C614711 → SV-11524; C97020 → SV-11498 + held wording; C96964, C590121 → held S4-N6 wording draft; C96967, C368147 → held S4-N1 permission-note draft). Drafts: `run498-2026-10-08/defect-drafts/tickets/D-S4N6-locked-wording-2026-10-19.wiki`, `D-S4N1-no-permission-note-2026-10-19.wiki`.
+- **View-only user on c850386: a card or row cannot be picked up at all** — the mouse only selects text — so no drag note can ever show (PRD v68 S4-N1 wants "You don't have permission to assign technicians" over the target). Positive control: the same press-move-hold as Admin picks the card up and shows the locked note.
+- **The lock icon's tooltip is a native `title` attribute** (also `aria-label`) on `span.board-card__lock` / `span.tech-view__row-lock`; headless Chromium never draws a native title box, so read the attribute — a missing `.q-tooltip` is not "no tooltip".
+- **For the view-only user the Invoiced card shows no lock icon** (seen in C97020-v-s5-enter.png) — not asserted by any test; noted only.
+#run498 #retest #permission #locked #c850386 → L0472, L0471
