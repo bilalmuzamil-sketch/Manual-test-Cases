@@ -37,6 +37,10 @@ for f in sorted(glob.glob("proposals-*.json")):
         # old words outside quotes
         # a dated record of an earlier build's symptom ("What you should see today (build ...)") is not an expected result
         e_nodated = re.sub(r"<p>(?:(?!</p>).)*What you should see today(?:</strong>)? \(build(?:(?!</p>).)*</p>", "", e, flags=re.S)
+        e_nodated = re.sub(r"<p>(?:(?!</p>).)*Known problem(?:(?!</p>).)*</p>", "", e_nodated, flags=re.S)  # the build's current symptom (Rule 61)
+        for row in re.findall(r"(\| 2026-10-\d\d \| Chris Ward \|[^\n]*)", PRD):  # verbatim change-log rows may hold old words
+            cell = row.split(" | ")[2] if row.count(" | ") >= 2 else ""
+            if cell and cell[:60] in html.unescape(e_nodated): e_nodated = html.unescape(e_nodated).replace(cell, "")
         unq = re.sub(r"“[^”]*”", "", txt(e_nodated))
         for w in OLD:
             if w.lower() in unq.lower(): probs.append(f"old words outside a quote: {w}")

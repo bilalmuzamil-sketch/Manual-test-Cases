@@ -131,9 +131,9 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 - You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two technicians are active at {Location-A} with the "Technician" role and Time Clock on: {Technician-A} and {Technician-B}. For example: {Technician-A} is ZZAUTOTEST C368152 Ana and {Technician-B} is ZZAUTOTEST C368152 Ben.
-- Customer {Customer-A} has three Approved work orders: {Work-order-1} led by {Technician-A}, {Work-order-2} led by {Technician-B}, and {Work-order-3} with no lead technician. None has a shift on the Schedule. For example: {Customer-A} is ZZAUTOTEST C368152 Reassign, and {Work-order-1} to {Work-order-3} are S10043-17721 to S10043-17723.
+- Customer {Customer-A} has three Approved work orders: {Work-order-1} led by {Technician-A}, {Work-order-2} led by {Technician-B}, and {Work-order-3} with no lead technician. None has a shift on the Schedule. {Technician-B} is not the technician on any line of {Work-order-1}. For example: {Customer-A} is ZZAUTOTEST C368152 Reassign, and {Work-order-1} to {Work-order-3} are S10043-17721 to S10043-17723.
 - {Technician-A} and {Technician-B} are pinned in your Board View, and no other technician is pinned.
-- Starting screen: "Work Orders" \> "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, in a browser window at least 1024 px wide.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, in a browser window at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
@@ -223,10 +223,10 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
-- You are signed in with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- You are signed in as an Admin user (the "Admin" role, which has Work orders > View and Create & Edit) at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two technicians are active at {Location-A} with the "Technician" role: {Technician-A} and {Technician-B}. {Technician-A} was made for this case only and has no labor on any work order, because this test deletes that staff record. For example: {Technician-A} is ZZAUTOTEST C614711 Dana and {Technician-B} is ZZAUTOTEST C614711 Eli.
-- Customer {Customer-A} has two Approved work orders: {Work-order-1} led by {Technician-A}, and {Work-order-2} with no lead technician. For example: {Customer-A} is ZZAUTOTEST C614711 Deleted Lead, and {Work-order-1} and {Work-order-2} are S10043-17901 and S10043-17902.
-- Starting screen: your initials (top right) \> "Settings" \> "Staff", in a browser window at least 1024 px wide.
+- Customer {Customer-A} has two Approved work orders: {Work-order-1} led by {Technician-A}, and {Work-order-2} with no lead technician. {Technician-B} is not the technician on any line of {Work-order-1}. For example: {Customer-A} is ZZAUTOTEST C614711 Deleted Lead, and {Work-order-1} and {Work-order-2} are S10043-17901 and S10043-17902.
+- Starting screen: your initials (top right) > "Settings" > "Staff", in a browser window at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 
 **Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
@@ -931,7 +931,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 - You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682423 Ana and {Technician-B} is ZZAUTOTEST C682423 Ben.
-- Customer {Customer-A} has an Approved work order {Work-order-1} led by {Technician-A}, with no shift booked for it on the Schedule. For example: {Customer-A} is ZZAUTOTEST C682423 One Click and {Work-order-1} is S2-37411.
+- Customer {Customer-A} has an Approved work order {Work-order-1} led by {Technician-A}, with no shift booked for it on the Schedule. {Technician-B} is not the technician on any of its lines. For example: {Customer-A} is ZZAUTOTEST C682423 One Click and {Work-order-1} is S2-37411.
 - Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
 - If any record above is missing, mark this test Blocked: "setup not done".
 
@@ -952,7 +952,8 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 - You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682424 Ana and {Technician-B} is ZZAUTOTEST C682424 Ben.
-- Customer {Customer-A} has three Approved work orders: {Work-order-1} with no lead technician, and {Work-order-2} and {Work-order-3} led by {Technician-A}. None has a shift booked on the Schedule. For example: {Customer-A} is ZZAUTOTEST C682424 Toast Words, and {Work-order-1} to {Work-order-3} are S2-37421 to S2-37423.
+- Customer {Customer-A} has four Approved work orders: {Work-order-1} with no lead technician, and {Work-order-2}, {Work-order-3} and {Work-order-4} led by {Technician-A}. None has a shift booked on the Schedule. For example: {Customer-A} is ZZAUTOTEST C682424 Toast Words, and {Work-order-1} to {Work-order-4} are S2-37421 to S2-37424.
+- No line of {Work-order-1} has a technician, and {Technician-B} is not the technician on any line of {Work-order-3}. {Work-order-4} has a line, {Line-1}, whose technician is {Technician-B}, set on the line itself. For example: {Line-1} is "Brake inspection".
 - The design picture DC-21-toast-light-1440.png is attached to this case.
 - Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -961,7 +962,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 1.  **P-TECH**: "ZZAUTOTEST C682424 Ana" and "ZZAUTOTEST C682424 Ben".
 2.  **P-CUSTOMER**: "ZZAUTOTEST C682424 Toast Words", unit "C682424-U1".
-3.  **P-WO** three times: {Work-order-1} no lead; {Work-order-2} and {Work-order-3} with lead {Technician-A}; no shifts.
+3.  **P-WO** four times: {Work-order-1} no lead; {Work-order-2}, {Work-order-3} and {Work-order-4} with lead {Technician-A}; no shifts. Then **P-LINE-TECH** on {Work-order-4}'s line ({Line-1}): click the line's name, Edit Line > Technicians > {Technician-B}, save (PRD v68 S4-R5: the new lead "was already the technician on at least one of the work order’s lines").
 4.  The picture DC-21-toast-light-1440.png is attached to the case (also in `build/wo-board-tech-view/design-look-2026-10-14/compare/`).
 5.  **P-START**: Board View, All tab, Search = the customer name.
 
@@ -969,13 +970,13 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Placeholder values:** the names above; give the tester the real work order numbers after setup.
 
-#### SETUP-C682425 — [C682425](https://shopview.testrail.io/index.php?/cases/view/682425) The lead change message stays while hovered and closes after 8 seconds
+#### SETUP-C682425 — [C682425](https://shopview.testrail.io/index.php?/cases/view/682425) Lead change messages stay while hovered and close after 5 or 2.6 seconds
 
 **Satisfies these precondition lines, exactly as the case states them:**
 
 - You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682425 Ana and {Technician-B} is ZZAUTOTEST C682425 Ben.
-- Customer {Customer-A} has two Approved work orders, {Work-order-1} and {Work-order-2}, both led by {Technician-A}. Neither has a shift booked on the Schedule. For example: {Customer-A} is ZZAUTOTEST C682425 Toast Timing, and {Work-order-1} and {Work-order-2} are S2-37431 and S2-37432.
+- Customer {Customer-A} has two Approved work orders, {Work-order-1} and {Work-order-2}, both led by {Technician-A}. Neither has a shift booked on the Schedule, and no line of either has its own technician or any logged time. For example: {Customer-A} is ZZAUTOTEST C682425 Toast Timing, and {Work-order-1} and {Work-order-2} are S2-37431 and S2-37432.
 - You have a stopwatch, for example on your phone.
 - Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -985,7 +986,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 1.  **P-TECH**: "ZZAUTOTEST C682425 Ana" and "ZZAUTOTEST C682425 Ben".
 2.  **P-CUSTOMER**: "ZZAUTOTEST C682425 Toast Timing", unit "C682425-U1".
 3.  **P-WO** twice, both with lead {Technician-A}; no shifts.
-4.  Timing: measure the close with the page clock (performance.now) or a recorded video; 8 s per S4-R16.
+4.  Timing: measure the close with the page clock (performance.now) or a recorded video; PRD v68 S4-R16: 5 s while the message carries Undo, 2.6 s without it ("Assignment undone").
 5.  **P-START**: Board View, All tab, Search = the customer name.
 
 **Check:** every precondition line is true on screen.
@@ -998,7 +999,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 - You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682426 Ana and {Technician-B} is ZZAUTOTEST C682426 Ben.
-- Customer {Customer-A} has three Approved work orders led by {Technician-A}, shown in that column in this order from the top: {Work-order-1}, {Work-order-2}, {Work-order-3}. It also has an Approved work order {Work-order-4} with no lead technician. None has a shift booked on the Schedule. For example: {Customer-A} is ZZAUTOTEST C682426 Undo Place, and {Work-order-1} to {Work-order-4} are S2-37441 to S2-37444.
+- Customer {Customer-A} has three Approved work orders led by {Technician-A}, shown in that column in this order from the top: {Work-order-1}, {Work-order-2}, {Work-order-3}. It also has an Approved work order {Work-order-4} with no lead technician. None has a shift booked on the Schedule. {Technician-B} is not the technician on any line of {Work-order-2}, and no line of {Work-order-4} has a technician. For example: {Customer-A} is ZZAUTOTEST C682426 Undo Place, and {Work-order-1} to {Work-order-4} are S2-37441 to S2-37444.
 - Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
 - If any record above is missing, mark this test Blocked: "setup not done".
 
@@ -1020,7 +1021,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 - You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682427 Ana and {Technician-B} is ZZAUTOTEST C682427 Ben.
-- Customer {Customer-A} has an Approved work order {Work-order-1} with one approved line, led by {Technician-A}. For example: {Customer-A} is ZZAUTOTEST C682427 Undo Shifts and {Work-order-1} is S2-37451.
+- Customer {Customer-A} has an Approved work order {Work-order-1} with one approved line, led by {Technician-A}. {Technician-B} is not the technician on that line. For example: {Customer-A} is ZZAUTOTEST C682427 Undo Shifts and {Work-order-1} is S2-37451.
 - On the Schedule, {Technician-A} has two "Entire work order" shifts on {Work-order-1}: {Shift-A} today, which started an hour ago and ends later today, and {Shift-B} tomorrow. For example: {Shift-A} is today 9:00 to 15:00 and {Shift-B} is tomorrow 8:00 to 12:00.
 - Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1043,7 +1044,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 - You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682428 Ana and {Technician-B} is ZZAUTOTEST C682428 Ben.
-- Customer {Customer-A} has a work order {Work-order-1} led by {Technician-A}, with status Complete (all lines complete and reviewed, not invoiced) and no shift booked on the Schedule. For example: {Customer-A} is ZZAUTOTEST C682428 Undo Invoiced and {Work-order-1} is S2-37461.
+- Customer {Customer-A} has a work order {Work-order-1} led by {Technician-A}, with status Complete (all lines complete and reviewed, not invoiced) and no shift booked on the Schedule. {Technician-B} is not the technician on any of its lines. For example: {Customer-A} is ZZAUTOTEST C682428 Undo Invoiced and {Work-order-1} is S2-37461.
 - Two browser windows are open side by side, both signed in as you: window 1 on the starting screen below, window 2 on {Work-order-1}'s "Finance" tab.
 - Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1351,7 +1352,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 | [C682422](https://shopview.testrail.io/index.php?/cases/view/682422) More actions reads Assign lead technician when a work order has no lead | ACCOUNT-A | SETUP-ADMIN, SETUP-C682422 |
 | [C682423](https://shopview.testrail.io/index.php?/cases/view/682423) The lead technician dialog offers no Unassigned and assigns on one click | ACCOUNT-A | SETUP-ADMIN, SETUP-C682423 |
 | [C682424](https://shopview.testrail.io/index.php?/cases/view/682424) A lead change message names the work order and technician, with Undo | ACCOUNT-A | SETUP-ADMIN, SETUP-C682424 |
-| [C682425](https://shopview.testrail.io/index.php?/cases/view/682425) The lead change message stays while hovered and closes after 8 seconds | ACCOUNT-A | SETUP-ADMIN, SETUP-C682425 |
+| [C682425](https://shopview.testrail.io/index.php?/cases/view/682425) Lead change messages stay while hovered and close after 5 or 2.6 seconds | ACCOUNT-A | SETUP-ADMIN, SETUP-C682425 |
 | [C682426](https://shopview.testrail.io/index.php?/cases/view/682426) Undo puts the work order back with its old lead and in its old place | ACCOUNT-A | SETUP-ADMIN, SETUP-C682426 |
 | [C682427](https://shopview.testrail.io/index.php?/cases/view/682427) Undo brings back the shifts that a lead change cleared | ACCOUNT-A | SETUP-ADMIN, SETUP-C682427 |
 | [C682428](https://shopview.testrail.io/index.php?/cases/view/682428) Undo cannot move back a work order that was invoiced in the meantime | ACCOUNT-A | SETUP-ADMIN, SETUP-C682428 |
@@ -1780,7 +1781,7 @@ SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, 
 - **S4-R5**: “After a successful lead change on Board View or Tech View, whether by drag, the dialog or Unassign, show the design’s toast (white, with the check icon) reading “{work order number} assigned to {technician name}”, or “{work order number} unassigned” after removing the lead, with an Undo button. Example: “S1-357 assigned to Esther Howard”. This replaces the standard success toast for these two messages only.”
 - **PRD change log, 19 Oct 2026**: “S4-R5, S4-R16, new S4-R32: the lead-change toast is the design’s toast, “{work order number} assigned to {technician name}” / “{work order number} unassigned”, with Undo; 8 seconds, held while hovered; Undo restores the lead, the order position and any cleared shifts (was: standard toast “Lead technician updated” / “Lead technician removed”, no Undo; reverses the SV-11396 call for these two toasts). v66.”
 
-### [C682425](https://shopview.testrail.io/index.php?/cases/view/682425) The lead change message stays while hovered and closes after 8 seconds
+### [C682425](https://shopview.testrail.io/index.php?/cases/view/682425) Lead change messages stay while hovered and close after 5 or 2.6 seconds
 
 SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, word for word as in the case:
 
