@@ -302,3 +302,6 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
   Remaining blocked: C96916, C368214 (Back; All-tab runs queued, s1-r7 / high2-all), C96945 (step 5 reworded — click outside; re-run queued),
   C97003 (step 11 order), C614711 (production TODAY shows "Unassigned" for a deleted lead — prod-deleted-lead.json; PRD says "blank, as today"),
   C590122 (production List's Clear all filters keeps the search — clear-all-search-prod.json; staging check queued).
+- 19 Oct — C96916 on the ALL tab + Status Approved (s1-r7-C96916.json, dedicated user): Board View Back keeps columns, top card S2-36407,
+  All tab, Status Approved; Tech View Back keeps top row S2-36421 and filters. Passes under option A — HELD: Expected names the Work Orders
+  tab, so it needs the QA lead to name the case (114(c)).
