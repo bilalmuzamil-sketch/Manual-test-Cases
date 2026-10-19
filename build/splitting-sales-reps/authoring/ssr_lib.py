@@ -97,14 +97,36 @@ def design_block(c):
     if dq: h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in dq) + "</ul>"
     return h + "<p></p>"
 
+DOCS = [("PRD", None), ("Tech plan", TP_NAME)] + [(k, v) for k, v in SPEC_NAMES.items()]
+def doc_of(label):
+    for k, _ in DOCS[1:]:
+        if label.startswith(k): return k
+    return "PRD"
+def quotes_block(c):
+    """Rule 117 eleventh amendment (QA lead, 19 Oct 2026, PERMANENT): no separate Source paragraph. Each document quoted gets one
+    "From:" line (name, version, date, read date) directly above its own quotes; the epic and story go on the first "From:" line;
+    the build line follows the last quote."""
+    groups = {}
+    for l, t in quotes(c):
+        if l.startswith("Design — board"): continue
+        groups.setdefault(doc_of(l), []).append((l, t))
+    sto = ", ".join(f"story {STORY[n][0]} ({STORY[n][1]})" for n in story_nums(c))
+    tickets = f"Epic SV-10890, {sto}"
+    h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
+    first = True
+    for k, name in DOCS:
+        if k not in groups: continue
+        h += f"<p>From: {e(name or PRD_NAME)}, read 19 Oct 2026" + (f" &middot; {e(tickets)}" if first else "") + "</p>"
+        h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in groups[k]) + "</ul>"
+        first = False
+    return h + f"<p>{e(NOBUILD)}</p>"
+
 def render(c):
     pre = "<p><strong>Preconditions</strong></p><ul>" + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>"
     exp = ("<p><strong>Expected results</strong></p><ul>" + "".join(f"<li>{e(r)}</li>" for r in c["res"]) + "</ul>"
            + (f"<p>{e(c['known'])}</p>" if c["known"] else "")
-           + f"<p><strong>Source &mdash; where this behaviour comes from</strong><br>{e(source(c))}</p>"
            + (f"<p>{e(c['note'])}</p>" if c["note"] and not design_note(c) else "")
-           + "<p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul>"
-           + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in quotes(c) if not l.startswith("Design — board")) + "</ul>"
+           + quotes_block(c)
            + design_block(c)
            + f"<p>{e(c['marker'])}</p>")
     refs = ",".join(dict.fromkeys(STORY[n][0] for n in story_nums(c)))

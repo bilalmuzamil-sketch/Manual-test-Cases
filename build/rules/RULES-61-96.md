@@ -2874,6 +2874,32 @@ the current test cases aswell."* Stated back in plain words and confirmed as PER
 5. Existing suites in the older layout (WO Board and Tech View, Dashboard) are converted only when the QA lead asks (19 Oct 2026:
    "Not now").
 
+### 117 — ELEVENTH AMENDMENT, PERMANENT (QA lead, 2026-10-19): no separate "Source" paragraph; each document's details sit on a "From:" line above its own quotes
+
+Asked over the Splitting Sales Representatives suite on 19 Oct 2026, verbatim: *"I eman when we have exat quotes from the sources then
+why do we have htis serscion ? "Source — where this behaviour comes from""*. The change was shown to him piece by piece (what is
+deleted, what moves where, with a before and after of C666034) and he answered: *"Permanent and correct the test cases for Splitting
+Sales Representatives."*
+
+1. **The "Source — where this behaviour comes from" paragraph is gone** from every case we write or change, on every project.
+2. **Its facts move, none is lost:** under "Exact quotes from the source (for reproducibility)", each document quoted gets one line
+   **"From: <document name>, <id>, version <n> (<date>, <author>), read <date>"** directly above ITS OWN quotes; the epic and story
+   tickets go on the first "From:" line after a " · ". A case quoting the PRD and the tech plan has two "From:" lines, each above
+   its own quotes.
+3. **Deleted as repeats:** the list of requirement codes (each quote already starts with its code) and "Source-verified <date>"
+   (it repeats the read date).
+4. **The build-check sentence** (Rule 54's second sentence, e.g. "The build is not yet available to check this case against." or
+   "Last checked against build … on …") follows the last quote, on its own line.
+5. **Unchanged:** the quotes themselves, word for word (Rule 113); the plain expected results that lead; a non-design note or
+   divergence sentence (Rule 56) stays between the results and the quotes; "References from Design" (tenth amendment) and the
+   AUTOMATION line, last.
+6. This replaces part (2) "Source" of the 22 Sep 2026 three-part layout (Rule 113) and the placement of Rule 54's provenance line:
+   the provenance is now the "From:" lines plus the build sentence. Enforced by the build gate in
+   `build/splitting-sales-reps/authoring/build.py` (refuses a Source paragraph, a quote group without its own "From:" line, a missing
+   version, tickets or build line). Worked example: Splitting Sales Representatives, group 84266, all 120 cases.
+7. Where the QA lead says a case's expected results and sources must not change (19 Oct 2026: C368131, C368167, C96936, "the
+   expected result is not supposed to be changed and so the sources"), that case's Expected field is left exactly as it is.
+
 ## 118 · EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK — FACTS MAY BE SHARED, RULES MAY NOT (all projects, permanent)
 
 Standing instruction from the QA lead, 2026-10-06, recorded with his explicit approval ("This message is my

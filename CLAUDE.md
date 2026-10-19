@@ -473,6 +473,8 @@ in `build/rules/RULES-61-96.md` before writing a case.
 
 **🔴 Rule 117 TENTH AMENDMENT, PERMANENT (QA lead, 2026-10-19): design references have their own block.** Below the source quotes, after a blank line, a separate title **"References from Design"** holds the design link with the boards or pages used, the attached design pictures and the design's own words quoted; nothing from the design stays in the Source paragraph or the quote list; the AUTOMATION line stays last. Read the amendment in `build/rules/RULES-61-96.md`.
 
+**🔴 Rule 117 ELEVENTH AMENDMENT, PERMANENT (QA lead, 2026-10-19): no separate "Source" paragraph.** Under "Exact quotes from the source", each document quoted gets a **"From:"** line (name, id, version, date, author, read date) directly above its own quotes; the epic and story go on the first "From:" line; the requirement-code list and "Source-verified" are dropped as repeats; the build-check sentence follows the last quote. Quotes unchanged. Replaces part (2) of the 22 Sep layout. Read the amendment in `build/rules/RULES-61-96.md`.
+
 **🔴 Rule 118 (each session follows only its own rule book — facts may be shared, rules may not)** was
 ordered by the QA lead **2026-10-06** and lives at the end of `build/rules/RULES-61-96.md`, after 117.
 My rules are this copy's index, rule files and skills; another session's notes are read for facts only;
@@ -695,6 +697,8 @@ Compact form — **the rule named in brackets is the authority; read it before r
   them one-to-one; where a plain result could disagree with its quote, the quote wins and the plain
   result is corrected. **Improving/​drifting the quote is the failure the rule exists to prevent.**
   No quotable sentence ⇒ hold the case and ask. [**113**, **114**, 57, 58, 64, 7, 9]
+  **🔴 AMENDED 19 Oct 2026 (Rule 117, eleventh amendment, PERMANENT): part (2) is no longer a separate paragraph — each
+  document's details sit on a "From:" line directly above its own quotes, and the build-check sentence follows the last quote.**
 - **PRD, design and Figma are expected to AGREE.** Where they disagree that is a **finding to raise**
   (a PO question + the outstanding register), never a side to pick silently; meanwhile the case follows
   the most recent authoritative source and DISCLOSES the divergence. "Everything should match the

@@ -142,3 +142,6 @@ implication, or your own judgement is never authorization.
 
 ## Tenth amendment (PERMANENT, QA lead, 19 Oct 2026): "References from Design"
 Below "Exact quotes from the source (for reproducibility)", after a blank line, a separate title **References from Design** holds every design reference: the design link with the boards or pages used, the names of the attached design pictures, and the design's own words quoted (board titles and notes). The Source paragraph and the quote list hold documents only. The AUTOMATION line stays last. Full text: Rule 117, tenth amendment (`build/rules/RULES-61-96.md`).
+
+## Eleventh amendment (PERMANENT, QA lead, 19 Oct 2026): no separate "Source" paragraph
+Under "Exact quotes from the source (for reproducibility)", each document quoted gets one line "From: <name, id, version, date, author>, read <date>" directly above its own quotes; the epic and story go on the first "From:" line. The requirement-code list and "Source-verified" are dropped (they repeat). The build-check sentence follows the last quote. Order: expected results → non-design note → quotes with their From lines → build sentence → References from Design → AUTOMATION. Full text: Rule 117, eleventh amendment.

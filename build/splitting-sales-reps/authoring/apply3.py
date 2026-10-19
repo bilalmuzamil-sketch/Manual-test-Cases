@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""19 Oct 2026, QA lead asked why a design-vs-PRD note sat above "References from Design" when the block below already holds the
+"""Re-used 19 Oct 2026 for Rule 117 eleventh amendment (Source paragraph merged into "From:" lines above the quotes).
+First used 19 Oct 2026: QA lead asked why a design-vs-PRD note sat above "References from Design" when the block below already holds the
 design's words. Six design cases carried such a note; it now sits inside the block (Rule 117, tenth amendment). Updates only cases
 whose rendered fields differ from our last read-back (edit lock on updated_on), reads each back.  python3 apply3.py [--apply]"""
 import sys, os, json, csv
