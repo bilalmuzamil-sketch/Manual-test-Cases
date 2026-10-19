@@ -32,6 +32,7 @@ How the stores divide (each fact lives in ONE place; this map and `recall.py` fi
 | sign in to staging | `build/wo-board-tech-view/run498-2026-10-08/STAGING-READY.md` (THREE cookies: SV_SSO_SESSION, PHPSESSID, CF_CLEARANCE in `/tmp/shopview/app.env`); `build/BLOCKED-shopview-app-session.md`; L0064 |
 | sign in to production | playbook §K; `build/ENVIRONMENT-CREDENTIALS.md`; `build/testing-tools/prod-boot.mjs`, `prod-login-boot.mjs` |
 | reach TestRail / Jira / Confluence | `build/skills/14-ACCESS-RESILIENCE.md`; `build/ATLASSIAN-JIRA-ACCESS-METHOD.md`; `/tmp/testrail/creds.json` keys are `email`, `password`, `host`; `build/testing-tools/tr_client.py` |
+| sign a brand-new staging user in for real (a user who never chose anything) | `build/LEARNINGS-LOG.md` L0454 — yopmail inbox + gate cookie; `run498-2026-10-08/c96912-accept.mts` |
 | the browser cannot connect (ERR_PROXY_CONNECTION_FAILED) | `bash build/testing-tools/ensure_bridge.sh` before EVERY normal-browser script, the TestRail page scan included |
 | the QA branch went to sleep / is down | L0307 (watch the real thing); L0317 (network error → sleep page); `build/testing-tools/wake_branch.mjs`, `wait_branch_up.sh` |
 | read a file that is too big to read whole (Rule 128) | `recall.py "<words>" --show 3` (the blocks themselves) · `recall.py --rule N` (a rule + all its amendments) · `recall.py --section "<heading>" --file <path>` · `python3 build/testing-tools/knowledge_health.py` (sizes vs budgets) · `knowledge_health.py shard <file>` / `verify` / `logical` |
