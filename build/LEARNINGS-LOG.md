@@ -972,3 +972,10 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - **Locked wording on c850386 is still the pre-v68 sentence** "The lead technician can't be changed once a work order is Invoiced or Paid." (disabled menu item tooltip, Board and Tech View); PRD v68 S4-N6 wants "Invoiced · can't be reassigned" / "Paid · can't be reassigned".
 - **`design-stg5.mts` step 2 picture can be "off screen"** (the card sat at y≈980 in a 900-high window), and the button's own computed opacity says nothing about a hidden parent. Re-read with `c590121-s2.mts` (card scrolled into view, mouse parked, elementFromPoint + ancestor opacity chain, 2x crop, hover as positive control).
 #run498 #retest #keyboard #locked #c850386 → L0470, L0469
+
+## L0472 — 2026-10-19 — Two script traps in the lock/permission re-test, and where the locked wording lives
+- **`viewAs(..., adminStaffId, backTo)` in a script built on c6824-held helpers: there is no `ME`** — pass `(RUN as any).id` (the runner) and `RUN.toRunner` as backTo. `ME?.id` threw "ME is not defined" and voided all three view-only checks (C96967, C368147, C97020 steps 1–6) of retest-locks.mts; fixed in retest-locks2.mts.
+- **A Board card whose lead's column sits far right is not in the page at all** (columns are drawn near the screen only), so `locator(card).boundingBox()` times out for 60 s. Scroll to the column first: `toColumn(p, staffId)` (staff id from `candidates(api(p))`), or pin the technician.
+- **On c850386 the locked work order's lock icon is `span.board-card__lock` / `span.tech-view__row-lock` (12 px)**; a hover on it gave no `.q-tooltip` in the first pass — re-read with attributes (title/aria) and a slow mouse move in retest-locks2 before calling it.
+- **PRD v68 change log (line "S4-N6, S4-N1: locked work orders read …") is the cleanest Source quote for a wording defect**: it names the old sentence and the new words in one line.
+#run498 #retest #viewas #board #locked → L0471, L0470
