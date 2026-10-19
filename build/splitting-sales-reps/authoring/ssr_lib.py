@@ -82,12 +82,17 @@ def design_ref(c):
             + ' (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the "Design — how it looks" cases.')
 
 e = lambda s: html.escape(s, quote=False)
+DESIGN_WORDS = re.compile(r"\b[Dd]esign\b|\bboards?\b|\bpictures?\b|\bcanvas\b")
+def design_note(c):
+    """A note comparing the design with the PRD belongs under "References from Design", never above it (QA lead, 19 Oct 2026)."""
+    return bool(c["note"]) and bool(DESIGN_WORDS.search(c["note"]))
 def design_block(c):
     dq = [(l, t) for l, t in quotes(c) if l.startswith("Design — board")]
     ref = design_ref(c)
-    if not (ref or dq or c["pictures"]): return ""
+    if not (ref or dq or c["pictures"] or design_note(c)): return ""
     h = "<p></p><p><strong>References from Design</strong></p>"
     if ref: h += f"<p>{e(ref)}</p>"
+    if design_note(c): h += f"<p><strong>Where the design and the PRD differ:</strong> {e(c['note'])}</p>"
     if c["pictures"]: h += "<p>Design pictures attached to this case: " + e(", ".join(c["pictures"])) + ".</p>"
     if dq: h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in dq) + "</ul>"
     return h + "<p></p>"
@@ -97,7 +102,7 @@ def render(c):
     exp = ("<p><strong>Expected results</strong></p><ul>" + "".join(f"<li>{e(r)}</li>" for r in c["res"]) + "</ul>"
            + (f"<p>{e(c['known'])}</p>" if c["known"] else "")
            + f"<p><strong>Source &mdash; where this behaviour comes from</strong><br>{e(source(c))}</p>"
-           + (f"<p>{e(c['note'])}</p>" if c["note"] else "")
+           + (f"<p>{e(c['note'])}</p>" if c["note"] and not design_note(c) else "")
            + "<p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul>"
            + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in quotes(c) if not l.startswith("Design — board")) + "</ul>"
            + design_block(c)

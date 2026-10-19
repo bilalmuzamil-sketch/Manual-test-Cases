@@ -213,7 +213,7 @@ D("D-15", "Sales By Representative screen, filter and column look as designed",
    "Step 5: \"Sales Type\" is the first entry, off by default; switching it on adds the column next to Status.",
    "Step 6: the Sales Type column reads \"Labor\", \"Parts\", \"Part Sales\" and \"Labor, Parts\"; columns line up as in the picture and nothing overlaps."],
   ["S5-R10", "S5-R15", "S5-R19", "S5-R20", "S5-R21", "S8-R1", "S8-R3"], ["4.4", "4.5", "4.6", "4.7", "4.8", "4.9", "4.10"],
-  note="The pictures show $0.00 under Shop Supplies on the Parts row (boards 4.5 and 4.10) while the board 4.5 note says \"A side a rep did not sell shows a dash.\" The PRD says a dash; this case follows the PRD. That, and whether a part sale with no shop supplies shows a dash or $0.00, are on the product owner's question sheet.")
+  note="The pictures show $0.00 under Shop Supplies on the Parts row (boards 4.5 and 4.10) while the board 4.5 note (quoted below) says a side a rep did not sell shows a dash. The PRD says a dash; this case follows the PRD. That, and whether a part sale with no shop supplies shows a dash or $0.00, are on the product owner's question sheet.")
 
 D("D-16", "Sales By Representative Expanded CSV and PDF look as designed",
   [ADMIN, REPS2, CUST, ("Today has one invoiced split work order (Labor {Sales-rep-A}, Parts {Sales-rep-B}).", None),
@@ -249,7 +249,7 @@ D("D-18", "On a phone the representative fields look as designed",
    "Step 5: \"Sales Representative - Labor\" and \"Sales Representative - Parts\", both {Sales-rep-A}, labels in full; the remove x (32 px) always showing beside Parts; each field shows its arrow.",
    "Step 6: the same list per row."],
   ["S3-R1", "S3-R2", "S3-R4"], ["6.2", "6.3", "6.4", "6.5", "6.6", "6.7"], width="a phone screen 390 px wide",
-  note="The design shows no dropdown arrow at rest on a phone (boards 6.2 and 6.6: \"At rest the rows read as plain text.\"). The PRD says the arrow always shows on a touch screen; this case follows the PRD, and the difference is on the product owner's question sheet.")
+  note="The pictures of boards 6.2 and 6.6 show no dropdown arrow at rest (the board 6.6 note, quoted below, says the rows read as plain text). The PRD says the arrow always shows on a touch screen; this case follows the PRD, and the difference is on the product owner's question sheet.")
 
 # "Before" boards (production today) → the release-day / must-not-change cases that compare against today's screens
 import ssr_lib

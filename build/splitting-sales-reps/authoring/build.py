@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Build and check every Splitting Sales Representatives case. python3 build.py [--md]"""
-import sys, json, os, importlib
+import sys, json, os, importlib, re
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ssr_lib
 MODS = [m for m in ["cases_s1_s2", "cases_s3_s4", "cases_s5_s8", "cases_tp", "cases_rs", "cases_rel", "cases_design"] if os.path.exists(f"{ssr_lib.D}/{m}.py")]
@@ -32,7 +32,7 @@ print("design gate: boards", len(_boards), "attached", len(_boards & _used), "| 
 for c in ssr_lib.CASES:
     h = ssr_lib.render(c)["custom_expected"]
     top = h.split("References from Design")[0]
-    if any(w in top for w in ("Claude design canvas", "Design — board", "Design pictures attached")): probs.append(f"{c['key']}: design reference above the References from Design block")
+    if any(w in top for w in ("Claude design canvas", "Design — board", "Design pictures attached")) or ssr_lib.DESIGN_WORDS.search(re.sub(r"<[^>]+>", " ", top.split("Exact quotes from the source")[0].split("Source &mdash;")[-1])): probs.append(f"{c['key']}: design reference above the References from Design block")
     if ("Design — board" in h or c["pictures"]) and "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{c['key']}: design references without their own block")
 for p in probs: print("PROBLEM", p)
 out = {c["key"]: dict(sec=c["sec"], fields=ssr_lib.render(c)) for c in ssr_lib.CASES}
