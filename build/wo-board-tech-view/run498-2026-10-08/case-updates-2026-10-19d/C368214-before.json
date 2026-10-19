@@ -1,0 +1,312 @@
+{
+ "case": {
+  "id": 368214,
+  "title": "After Back and Forward the List keeps its tab, search and filters",
+  "section_id": 47110,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 3,
+  "milestone_id": null,
+  "refs": null,
+  "created_by": 3,
+  "created_on": 1791450536,
+  "updated_by": 3,
+  "updated_on": 1792177660,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 50,
+  "is_deleted": 0,
+  "is_ai_generated": false,
+  "is_ai_automated": false,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 3,
+  "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Customer {Customer-A} has one Approved work order, {Work-order-1}.<br>For example: {Customer-A} is ZZAUTOTEST C368214 Back Forward and {Work-order-1} is S10043-17751.</li><li>Starting screen: \"Work Orders\" &gt; \"Work Orders\" tab, \"List\" shown, \"Search\" empty, no filter chosen, \"Assigned to me\" off, in a browser window at least 1024 px wide.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+  "custom_steps": "<ol><li>Click \"Status\" and tick \"Approved\".</li><li>Type the name of {Customer-A} in \"Search\".</li><li>Click {Work-order-1}'s row.</li><li>Press the browser Back button.</li><li>Press the browser Forward button.</li><li>Press the browser Back button.</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the \"Status\" chip shows \"Approved\".</li><li>Step 2: {Work-order-1}'s row shows.</li><li>Step 3: the work order page for {Work-order-1} opens.</li><li>Step 4: List comes back on the \"Work Orders\" tab with \"Status\" \"Approved\" and the same rows, as it does in production today.</li><li>Step 5: the work order page for {Work-order-1} opens again.</li><li>Step 6: List shows the same tab, filter and rows as at step 4.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), hotspot 3; PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S1-R8 and section 1 Business Case where quoted, read 16 Oct 2026. In versions 54 and 61 S1-R8 gained sentences about Tech View and Board View; its List sentences are unchanged, so the expected results are unchanged. Source-verified 16 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>QA handoff hotspot 3:</strong> &ldquo;The rebuilt Work Orders List. Check saved preferences against URL links, Back and Forward, location switch, stale rows after an edit, and sorting and paging.&rdquo;</li><li><strong>S1-R8:</strong> &ldquo;In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. Horizontal position comes back exactly, and so do the filter view (tab) and filters that were on screen, in Tech View and Board View. List\u2019s Back behavior is unchanged in this release. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position. List behaves as it does today.&rdquo;</li><li><strong>PRD section 1 Business Case:</strong> &ldquo;List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.&rdquo;</li></ul><p>AUTOMATION: Not available on Build to test Yet - Last checked 10/16/2026</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": [],
+  "version": 7
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 6,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": [
+   {
+    "id": 30444,
+    "type_id": 6,
+    "created_on": 1791468311,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<ol><li>Sign in to the Work Orders build under test as a user whose role has Work Orders view and Work Orders create and edit. To check: Settings &gt; Roles &amp; Permissions &gt; open the role &gt; Work Orders (an Owner or Admin role has both).</li><li>Use a desktop browser window at least 1024 px wide.</li><li>In the top bar, pick the location you will test in (e.g. \"Heavy Duty\") and stay in it for the whole case.</li><li>On Work Orders, click List in the display switcher at the right of the toolbar (in the design its tooltip reads \"Table\"), so the page shows the List.</li><li>Create a customer used only by this case: Customers &gt; New Customer, name (e.g. \"ZZAUTOTEST Regression Co\"), add an asset with a unit number and year/make/model (e.g. unit \"TRK-118\", \"2022 Freightliner M2\"), then Save.</li><li>To create a work order: Work Orders &gt; Create Work Order &gt; pick the case customer and its asset &gt; create it, and write down the number the build gives it (the numbers in this case are examples, e.g. \"S1-702\").</li><li>Create one Approved work order for the case customer (e.g. \"S1-796\").</li></ol>",
+      "new_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 1 browser \u00b7 about 10 minutes</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.</li><li>Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders &gt; View and Create &amp; Edit (check: your initials (top right) &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; edit).</li><li>Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials &gt; Change Location).</li><li>View: on Work Orders the List is shown (click List in the display switcher at the right of the toolbar; its tooltip reads \"List\").</li><li>Customer \"ZZAUTOTEST Back Forward\" (used by this case only) with one contact, one asset and one Approved work order [WO-1].</li></ul><p><strong>Setup</strong></p><ol><li>Customers &gt; New Customer &gt; Name \"ZZAUTOTEST Back Forward\" &gt; Save (the customer page opens). Contacts tab &gt; New Contact &gt; First Name \"ZZAUTOTEST\", Last Name \"Contact\" &gt; Save. Assets tab &gt; New Asset &gt; Contact = ZZAUTOTEST Contact &gt; Year 2022 &gt; Make: type \"Freight\" and pick Freightliner &gt; Model: type \"M2\" and pick it &gt; Unit \"TRK-118\" &gt; Save (Contact and Make are required).</li><li>Work Orders &gt; Create Work Order &gt; New Work Order: Customer = \"ZZAUTOTEST Back Forward\" &gt; Asset = its asset &gt; Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-1] (the expected results call it \"S1-796\").</li><li>In New Line &gt; What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\" (it has no parts) &gt; turn Line Approved on &gt; Save &amp; Close.</li><li>Check the setup worked: Work Orders tab &gt; Search \"ZZAUTOTEST Back Forward\" lists [WO-1].</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Open Work Orders and click the Work Orders tab.</li><li>Click Status and tick Approved only.</li><li>Type \"ZZAUTOTEST Regression Co\" in Search.</li><li>Click the \"S1-796\" row to open it.</li><li>Press the browser Back button and read the tab, Status, search and rows.</li><li>Press the browser Forward button and read the page.</li><li>Press Back again and read the List.</li></ol>",
+      "new_value": "<ol><li>Open Work Orders and click the Work Orders tab.</li><li>Click Status and tick Approved only. (On this build the Work Orders tab shows no Status button \u2014 write \"no Status filter on this tab\" in the result and go on.)</li><li>Click Search and type \"ZZAUTOTEST Back Forward\".</li><li>Click the [WO-1] row to open it.</li><li>Press the browser Back button and read the tab, Status, search and rows.</li><li>Press the browser Forward button and read the page.</li><li>Press Back again and read the List.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 5: the Work Orders tab, Status Approved and the same rows show, as they do in production today. Write down whether the search text is kept.</li><li>Step 6: the work order \"S1-796\" opens again.</li><li>Step 7: the List shows the same tab, filters and rows as at step 5.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), hotspot 3; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (\u00a71 Business Case). Source-verified 8 October 2026; not yet build-verified.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>QA handoff hotspot 3:</strong> &ldquo;The rebuilt Work Orders List. Check saved preferences against URL links, Back and Forward, location switch, stale rows after an edit, and sorting and paging.&rdquo;</li><li><strong>PRD S1-R8:</strong> &ldquo;In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. List behaves as it does today.&rdquo;</li><li><strong>PRD \u00a71 Business Case:</strong> &ldquo;List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 5: the Work Orders tab, Status Approved and the same rows show, as they do in production today. Write down whether the search text is kept.</li><li>Step 6: the work order \"S1-796\" opens again.</li><li>Step 7: the List shows the same tab, filters and rows as at step 5.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), hotspot 3; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (\u00a71 Business Case). Source-verified 8 October 2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>QA handoff hotspot 3:</strong> &ldquo;The rebuilt Work Orders List. Check saved preferences against URL links, Back and Forward, location switch, stale rows after an edit, and sorting and paging.&rdquo;</li><li><strong>PRD S1-R8:</strong> &ldquo;In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. List behaves as it does today.&rdquo;</li><li><strong>PRD \u00a71 Business Case:</strong> &ldquo;List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 31607,
+    "type_id": 6,
+    "created_on": 1791564549,
+    "user_id": 1,
+    "changes": [
+     {
+      "type_id": 1,
+      "old_text": " Not Automated",
+      "new_text": " Automated",
+      "label": "Automation status",
+      "options": {
+       "is_required": true,
+       "default_value": "1",
+       "items": "1, Not Automated\n2, Cannot be automated\n3, Automated\n4, Pending",
+       "format": "markdown"
+      },
+      "field": "custom_atmstatus",
+      "old_value": 1,
+      "new_value": 3
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33424,
+    "type_id": 6,
+    "created_on": 1792136852,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Preconditions</strong></p><ul><li>Needs: 1 user \u00b7 1 browser \u00b7 about 10 minutes</li><li>Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide.</li><li>Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders &gt; View and Create &amp; Edit (check: your initials (top right) &gt; Settings &gt; Roles &amp; Permissions &gt; Admin &gt; edit).</li><li>Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials &gt; Change Location).</li><li>View: on Work Orders the List is shown (click List in the display switcher at the right of the toolbar; its tooltip reads \"List\").</li><li>Customer \"ZZAUTOTEST Back Forward\" (used by this case only) with one contact, one asset and one Approved work order [WO-1].</li></ul><p><strong>Setup</strong></p><ol><li>Customers &gt; New Customer &gt; Name \"ZZAUTOTEST Back Forward\" &gt; Save (the customer page opens). Contacts tab &gt; New Contact &gt; First Name \"ZZAUTOTEST\", Last Name \"Contact\" &gt; Save. Assets tab &gt; New Asset &gt; Contact = ZZAUTOTEST Contact &gt; Year 2022 &gt; Make: type \"Freight\" and pick Freightliner &gt; Model: type \"M2\" and pick it &gt; Unit \"TRK-118\" &gt; Save (Contact and Make are required).</li><li>Work Orders &gt; Create Work Order &gt; New Work Order: Customer = \"ZZAUTOTEST Back Forward\" &gt; Asset = its asset &gt; Save. If a Confirmation says the customer is over their credit limit, click Create. The work order opens on its Lines tab with the New Line form open. Record the number shown at the top left as [WO-1] (the expected results call it \"S1-796\").</li><li>In New Line &gt; What Are You Doing? type \"grease\" and pick the ready-made line \"Service - Full grease service\" (it has no parts) &gt; turn Line Approved on &gt; Save &amp; Close.</li><li>Check the setup worked: Work Orders tab &gt; Search \"ZZAUTOTEST Back Forward\" lists [WO-1].</li></ol>",
+      "new_value": "<p><strong><a href=\"https://docs.google.com/document/d/1QoS6_qJwKdMWR0-ePd9zV4Cn1gpleVZDIREkkB4E0oI/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner or Admin user whose role has Work orders &gt; View and Work orders &gt; Create &amp; Edit, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST Back Forward\") is used by this case only and has one Approved work order, {Work-order-1} (for example S10043-17751).</li><li>The Work Orders page shows List (List is highlighted in the display switcher).</li><li>On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Open Work Orders and click the Work Orders tab.</li><li>Click Status and tick Approved only. (On this build the Work Orders tab shows no Status button \u2014 write \"no Status filter on this tab\" in the result and go on.)</li><li>Click Search and type \"ZZAUTOTEST Back Forward\".</li><li>Click the [WO-1] row to open it.</li><li>Press the browser Back button and read the tab, Status, search and rows.</li><li>Press the browser Forward button and read the page.</li><li>Press Back again and read the List.</li></ol>",
+      "new_value": "<ol><li>Open Work Orders and click the Work Orders tab.</li><li>Click Status and tick Approved only. If the Work Orders tab shows no Status filter, write \"no Status filter on this tab\" in the result comment and go on.</li><li>Click Search and type the name of {Customer-A}.</li><li>Click {Work-order-1}'s row to open it.</li><li>Press the browser Back button and read the tab, Status, Search and rows.</li><li>Press the browser Forward button and read the page.</li><li>Press the browser Back button again and read the List.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 5: the Work Orders tab, Status Approved and the same rows show, as they do in production today. Write down whether the search text is kept.</li><li>Step 6: the work order \"S1-796\" opens again.</li><li>Step 7: the List shows the same tab, filters and rows as at step 5.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), hotspot 3; PRD Confluence 845185030 (edited 7 Oct 2026) where quoted (\u00a71 Business Case). Source-verified 8 October 2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>QA handoff hotspot 3:</strong> &ldquo;The rebuilt Work Orders List. Check saved preferences against URL links, Back and Forward, location switch, stale rows after an edit, and sorting and paging.&rdquo;</li><li><strong>PRD S1-R8:</strong> &ldquo;In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. List behaves as it does today.&rdquo;</li><li><strong>PRD \u00a71 Business Case:</strong> &ldquo;List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.&rdquo;</li></ul><p>Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p>AUTOMATION: READY</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 5: the Work Orders tab, Status Approved and the same rows show, as they do in production today. Write down whether the search text is kept.</li><li>Step 6: {Work-order-1} opens again.</li><li>Step 7: the List shows the same tab, filters and rows as at step 5.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), hotspot 3; PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S1-R8 and section 1 Business Case where quoted, read 15 Oct 2026. In version 54 S1-R8 gained two sentences about Tech View and Board View; its List sentence is unchanged, so the expected results are unchanged. Source-verified 15 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>QA handoff hotspot 3:</strong> &ldquo;The rebuilt Work Orders List. Check saved preferences against URL links, Back and Forward, location switch, stale rows after an edit, and sorting and paging.&rdquo;</li><li><strong>PRD S1-R8:</strong> &ldquo;In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. Horizontal position comes back exactly. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position. List behaves as it does today.&rdquo;</li><li><strong>PRD section 1 Business Case:</strong> &ldquo;List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.&rdquo;</li></ul><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33482,
+    "type_id": 6,
+    "created_on": 1792168722,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://docs.google.com/document/d/1QoS6_qJwKdMWR0-ePd9zV4Cn1gpleVZDIREkkB4E0oI/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as an Owner or Admin user whose role has Work orders &gt; View and Work orders &gt; Create &amp; Edit, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST Back Forward\") is used by this case only and has one Approved work order, {Work-order-1} (for example S10043-17751).</li><li>The Work Orders page shows List (List is highlighted in the display switcher).</li><li>On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.</li></ul>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at location \"Staging Heavy Duty - 9919\" (on another site: the location named in the test run).</li><li>Customer \"ZZAUTOTEST C368214 Back Forward\" has one Approved work order, unit \"C368214-U1\".</li><li>Starting screen: \"Work Orders\" &gt; \"Work Orders\" tab, \"List\" shown, no filter chosen, \"Assigned to me\" off, \"Search\" empty, browser window at least 1024 px wide.</li><li>If any record named above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Open Work Orders and click the Work Orders tab.</li><li>Click Status and tick Approved only. If the Work Orders tab shows no Status filter, write \"no Status filter on this tab\" in the result comment and go on.</li><li>Click Search and type the name of {Customer-A}.</li><li>Click {Work-order-1}'s row to open it.</li><li>Press the browser Back button and read the tab, Status, Search and rows.</li><li>Press the browser Forward button and read the page.</li><li>Press the browser Back button again and read the List.</li></ol>",
+      "new_value": "<ol><li>Click \"Status\" and tick \"Approved\".</li><li>Type \"ZZAUTOTEST C368214 Back Forward\" in \"Search\".</li><li>Click the row for unit \"C368214-U1\".</li><li>Press the browser Back button.</li><li>Press the browser Forward button.</li><li>Press the browser Back button.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 5: the Work Orders tab, Status Approved and the same rows show, as they do in production today. Write down whether the search text is kept.</li><li>Step 6: {Work-order-1} opens again.</li><li>Step 7: the List shows the same tab, filters and rows as at step 5.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), hotspot 3; PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S1-R8 and section 1 Business Case where quoted, read 15 Oct 2026. In version 54 S1-R8 gained two sentences about Tech View and Board View; its List sentence is unchanged, so the expected results are unchanged. Source-verified 15 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>QA handoff hotspot 3:</strong> &ldquo;The rebuilt Work Orders List. Check saved preferences against URL links, Back and Forward, location switch, stale rows after an edit, and sorting and paging.&rdquo;</li><li><strong>PRD S1-R8:</strong> &ldquo;In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. Horizontal position comes back exactly. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position. List behaves as it does today.&rdquo;</li><li><strong>PRD section 1 Business Case:</strong> &ldquo;List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.&rdquo;</li></ul><p>AUTOMATION: READY</p>",
+      "new_value": "<p>Step 1: the \"Status\" chip shows \"Approved\".</p><p>Step 2: the row for unit \"C368214-U1\" shows.</p><p>Step 3: the work order page for unit \"C368214-U1\" opens.</p><p>Step 4: List comes back on the \"Work Orders\" tab with \"Status\" \"Approved\" and the same rows, as it does in production today.</p><p>Step 5: the work order page for unit \"C368214-U1\" opens again.</p><p>Step 6: List shows the same tab, filter and rows as at step 4.</p><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33508,
+    "type_id": 6,
+    "created_on": 1792171331,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at location \"Staging Heavy Duty - 9919\" (on another site: the location named in the test run).</li><li>Customer \"ZZAUTOTEST C368214 Back Forward\" has one Approved work order, unit \"C368214-U1\".</li><li>Starting screen: \"Work Orders\" &gt; \"Work Orders\" tab, \"List\" shown, no filter chosen, \"Assigned to me\" off, \"Search\" empty, browser window at least 1024 px wide.</li><li>If any record named above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Customer {Customer-A} has one Approved work order, {Work-order-1}.<br>For example: {Customer-A} is ZZAUTOTEST C368214 Back Forward and {Work-order-1} is S10043-17751.</li><li>Starting screen: \"Work Orders\" &gt; \"Work Orders\" tab, \"List\" shown, \"Search\" empty, no filter chosen, \"Assigned to me\" off, in a browser window at least 1024 px wide.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Click \"Status\" and tick \"Approved\".</li><li>Type \"ZZAUTOTEST C368214 Back Forward\" in \"Search\".</li><li>Click the row for unit \"C368214-U1\".</li><li>Press the browser Back button.</li><li>Press the browser Forward button.</li><li>Press the browser Back button.</li></ol>",
+      "new_value": "<ol><li>Click \"Status\" and tick \"Approved\".</li><li>Type the name of {Customer-A} in \"Search\".</li><li>Click {Work-order-1}'s row.</li><li>Press the browser Back button.</li><li>Press the browser Forward button.</li><li>Press the browser Back button.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p>Step 1: the \"Status\" chip shows \"Approved\".</p><p>Step 2: the row for unit \"C368214-U1\" shows.</p><p>Step 3: the work order page for unit \"C368214-U1\" opens.</p><p>Step 4: List comes back on the \"Work Orders\" tab with \"Status\" \"Approved\" and the same rows, as it does in production today.</p><p>Step 5: the work order page for unit \"C368214-U1\" opens again.</p><p>Step 6: List shows the same tab, filter and rows as at step 4.</p><p>AUTOMATION: READY</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 1: the \"Status\" chip shows \"Approved\".</li><li>Step 2: {Work-order-1}'s row shows.</li><li>Step 3: the work order page for {Work-order-1} opens.</li><li>Step 4: List comes back on the \"Work Orders\" tab with \"Status\" \"Approved\" and the same rows, as it does in production today.</li><li>Step 5: the work order page for {Work-order-1} opens again.</li><li>Step 6: List shows the same tab, filter and rows as at step 4.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), hotspot 3; PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S1-R8 and section 1 Business Case where quoted, read 16 Oct 2026. In versions 54 and 61 S1-R8 gained sentences about Tech View and Board View; its List sentences are unchanged, so the expected results are unchanged. Source-verified 16 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>QA handoff hotspot 3:</strong> &ldquo;The rebuilt Work Orders List. Check saved preferences against URL links, Back and Forward, location switch, stale rows after an edit, and sorting and paging.&rdquo;</li><li><strong>S1-R8:</strong> &ldquo;In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. Horizontal position comes back exactly, and so do the filter view (tab) and filters that were on screen, in Tech View and Board View. List\u2019s Back behavior is unchanged in this release. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position. List behaves as it does today.&rdquo;</li><li><strong>PRD section 1 Business Case:</strong> &ldquo;List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.&rdquo;</li></ul><p>AUTOMATION: READY</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33568,
+    "type_id": 6,
+    "created_on": 1792177660,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 1: the \"Status\" chip shows \"Approved\".</li><li>Step 2: {Work-order-1}'s row shows.</li><li>Step 3: the work order page for {Work-order-1} opens.</li><li>Step 4: List comes back on the \"Work Orders\" tab with \"Status\" \"Approved\" and the same rows, as it does in production today.</li><li>Step 5: the work order page for {Work-order-1} opens again.</li><li>Step 6: List shows the same tab, filter and rows as at step 4.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), hotspot 3; PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S1-R8 and section 1 Business Case where quoted, read 16 Oct 2026. In versions 54 and 61 S1-R8 gained sentences about Tech View and Board View; its List sentences are unchanged, so the expected results are unchanged. Source-verified 16 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>QA handoff hotspot 3:</strong> &ldquo;The rebuilt Work Orders List. Check saved preferences against URL links, Back and Forward, location switch, stale rows after an edit, and sorting and paging.&rdquo;</li><li><strong>S1-R8:</strong> &ldquo;In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. Horizontal position comes back exactly, and so do the filter view (tab) and filters that were on screen, in Tech View and Board View. List\u2019s Back behavior is unchanged in this release. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position. List behaves as it does today.&rdquo;</li><li><strong>PRD section 1 Business Case:</strong> &ldquo;List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.&rdquo;</li></ul><p>AUTOMATION: READY</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 1: the \"Status\" chip shows \"Approved\".</li><li>Step 2: {Work-order-1}'s row shows.</li><li>Step 3: the work order page for {Work-order-1} opens.</li><li>Step 4: List comes back on the \"Work Orders\" tab with \"Status\" \"Approved\" and the same rows, as it does in production today.</li><li>Step 5: the work order page for {Work-order-1} opens again.</li><li>Step 6: List shows the same tab, filter and rows as at step 4.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), hotspot 3; PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S1-R8 and section 1 Business Case where quoted, read 16 Oct 2026. In versions 54 and 61 S1-R8 gained sentences about Tech View and Board View; its List sentences are unchanged, so the expected results are unchanged. Source-verified 16 October 2026. Last checked against build v26.40.8-7a95011 on 10/8/2026.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>QA handoff hotspot 3:</strong> &ldquo;The rebuilt Work Orders List. Check saved preferences against URL links, Back and Forward, location switch, stale rows after an edit, and sorting and paging.&rdquo;</li><li><strong>S1-R8:</strong> &ldquo;In Tech View and Board View, browser Back restores both vertical and horizontal scroll position. Horizontal position comes back exactly, and so do the filter view (tab) and filters that were on screen, in Tech View and Board View. List\u2019s Back behavior is unchanged in this release. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position. List behaves as it does today.&rdquo;</li><li><strong>PRD section 1 Business Case:</strong> &ldquo;List remains the default and stays exactly as it is in production today; the only addition to the Work Orders page is the switcher that offers the two new displays.&rdquo;</li></ul><p>AUTOMATION: Not available on Build to test Yet - Last checked 10/16/2026</p>"
+     }
+    ],
+    "comments": []
+   }
+  ]
+ }
+}

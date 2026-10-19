@@ -312,3 +312,9 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
 - 19 Oct — C590122 re-run e435950: steps 5-10 as before (search kept after Clear all filters in Board/Tech/List); the empty-group/column readings (steps 1-4) were not drawn by the script today (17 Oct readings stand). Decisions put to the QA lead: C96916, C368214, C97003, C590122 (Expected changes, need naming), C614711 (PRD 'blank, as today' vs production 'Unassigned').
 - 19 Oct — QA lead: deleted lead → List shows 'Unassigned' is EXPECTED (L0457). C614711 step 8 updated; re-run on e435950 in progress.
 - 19 Oct — C614711 PASSED (527978-ish) after the 'Unassigned' ruling. Blocked left: C96916, C368214, C97003, C590122 (waiting for his yes).
+
+- 19 Oct — last four blocked tests passed after the QA lead's go-ahead ("if editing does not go against the PRD … easiest for the tester"):
+  C96916 + C368214 start on the All tab (Status filter only there), C97003 step 11 = order written down at step 8, C590122 step 8 = search stays
+  (PRD v64 §9 "Existing List empty state and clear-filter behavior in all display options"). Edits: case-updates-2026-10-19d/. C96916's Tech
+  View half re-run with s1-r8.mts (s1-r7's reading was void, L0458). Results RESULTS-four-1019.json, pictures pictures-1019/C96916-*, C368214-1,
+  C97003-1, C590122-1. Run now 263 Passed · 7 Failed · 0 Blocked · 10 Retest. C368214 Automated → tell Vlad.

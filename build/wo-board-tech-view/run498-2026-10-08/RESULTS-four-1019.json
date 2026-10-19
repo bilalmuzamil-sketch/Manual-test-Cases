@@ -1,0 +1,32 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.19-e435950", "date": "19 October 2026", "note": "run 498: four tests passed after the QA lead let their expected wording be updated (19 Oct 2026)"},
+ "results": {
+  "C96916": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging. The test now starts on the \"All\" tab, because the \"Status\" filter is only offered there (production is the same). QA lead's decision, 19 Oct 2026.",
+    "Board View: scrolled right to Theresa Webb's column and down to card S2-36407, opened a card, pressed Back.",
+    "After Back, Board View came back on the All tab with Status: Approved, the same columns in view, and S2-36407 back at the top of the column, fully shown.",
+    "Tech View: showed the same search and Status: Approved; scrolled well down to Theresa Webb's rows (S2-36403 at the top) and a little to the right, opened S2-36404, pressed Back.",
+    "After Back, Tech View came back on the All tab with Status: Approved, exactly the same columns in view, and S2-36403 one row from the top, fully shown (allowed: at most one row away).",
+    "The tester only needs to follow the steps as written; nothing else is needed."
+   ], "ticket": null, "pictures": ["pictures-1019/C96916-1-board-after-back.png", "pictures-1019/C96916-2-tech-before-after.png"]},
+  "C368214": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging. The test now starts on the \"All\" tab, because the \"Status\" filter is only offered there (production is the same). QA lead's decision, 19 Oct 2026.",
+    "Status set to Approved and the customer's name typed in Search: only S2-37445 showed.",
+    "Opened S2-37445, pressed Back: List came back on the All tab with Status: Approved and the same row.",
+    "Pressed Forward: the same work order opened again. Pressed Back: List showed the same tab, filter and row again."
+   ], "ticket": null, "pictures": ["pictures-1019/C368214-1-list-after-back.png"]},
+  "C97003": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging, signed in as a user who can only view work orders.",
+    "The view-only user could drag Cal's column; Unassigned stayed the first column.",
+    "Trying to drop Ben before Unassigned put Ben just after Unassigned instead; Unassigned could not be dragged at all; in Tech View Ben could not be dropped above Unassigned.",
+    "After refreshing, both views kept the order left at step 8: Unassigned, Ben, Cal, Ana. Step 11 now compares with that written-down order (QA lead's decision, 19 Oct 2026).",
+    "The dispatcher's own order was unchanged: Unassigned, Ana, Ben, Cal, because the order is saved per user."
+   ], "ticket": null, "pictures": ["pictures-1019/C97003-1-order-after-refresh.png"]},
+  "C590122": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging. Step 8 now expects the search to stay after \"Clear all filters\", as it does in List on production and staging, and as the requirements say (the List's clear-filter behaviour in every view). QA lead's decision, 19 Oct 2026.",
+    "Empty technician group, empty Board View column and the filtered no-results page looked as the test describes.",
+    "With Status Paid and the search zzzz, Tech View, Board View and List showed \"No work orders match these filters\" with the Clear all filters button.",
+    "Clicking Clear all filters cleared the Status filter and kept zzzz in Search; Tech View then showed \"No work orders match the search \"zzzz\".\" with no button, and List showed the same."
+   ], "ticket": null, "pictures": ["pictures-1019/C590122-1-clear-all-keeps-search.png"]}
+ }
+}

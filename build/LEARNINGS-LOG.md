@@ -864,3 +864,25 @@ Applied: C97024, C97035, C368153 (case-updates-2026-10-19c/). Same family as Rul
 ## L0457 — 2026-10-19 — QA lead ruling: a deleted lead's work order shows "Unassigned" in List — that is the expected behaviour
 PRD v64 S3-R20e says "List shows the Lead Technician as blank for these work orders, as today", but production TODAY shows "Unassigned" (prod-deleted-lead.json: throwaway technician made lead of S2-968, deleted, List read "Unassigned"; lead restored) and staging the same. Put to the QA lead; he ruled 19 Oct: *"Unassigned if the expected behavior"*. C614711 step 8 now expects "Unassigned" with a dated decision line (case-updates-2026-10-19c/). The PRD wording ("blank") still disagrees — worth telling Chris.
 #run498 #ruling #deleted-lead #prd-conflict → L0456
+
+## L0458 — 2026-10-19 — Tech View scroll readings: read the SCREEN, not the first thead, and never let Playwright scroll a row in before clicking
+s1-r7 reported C96916's Tech View "Back restores the top row" as passed, but its own pictures disagreed (before = empty groups at the top, the
+reading said S2-36421). Three instrument faults, all mine: **(1)** Tech View is a Quasar virtual scroll (`.q-table__middle q-virtual-scroll`,
+~28,000 px tall with ~280 technician groups) and `s.querySelector('thead')` returns a thead that SCROLLS AWAY — its bottom was ≈ −scrollTop,
+so every "distance from the heading" was off by thousands of px (a wheel aimed with it overshot to 22,545). Use the heading band ON SCREEN:
+the thead rects whose bottom > table top and top < table top + 120. **(2)** Matching work orders by `tr.innerText` also hits GROUP rows that
+wrap their work orders — find rows by their number LINK (`a[data-test-id^="tech_view_row_number_link_"]`). **(3)** The fallback
+`locator.click()` on an off-screen link makes Playwright scroll it into view FIRST, so "after Back" was compared with a position the click
+itself had changed. Refuse the click unless `elementFromPoint` at the link's centre is the link. Fixed in `s1-r8.mts` (wheel scrolling like
+a user, elementFromPoint screen reading, click-in-place only); it passed honestly: S2-36403 top before, one row off after, sideways exact.
+Lesson: when a reading and its own picture disagree, the reading is void — look at the picture before judging (Rule 104).
+#run498 #tech-view #virtual-scroll #instrument #rule104 → L0451, L0456
+
+## L0459 — 2026-10-19 — QA lead: "if editing those test cases does not go against the specs/PRD then go ahead and edit them … easiest for the Manual QA tester"
+Given for the four named blocked tests C96916, C368214, C97003, C590122 (114(c), named in conversation). Each change was first checked
+against PRD v64: tab change (filter views and filter bar "apply the same way in every display option"; Status chip only on All, also on
+production, L0451); C97003 step 11 compares with the order written down at step 8 (S9-R2 saved per user, S9-R8 Unassigned fixed);
+C590122 step 8 "search stays" (PRD §9 User Feedback Summary: "Existing List empty state and clear-filter behavior in all display options").
+Edited in `case-updates-2026-10-19d/` (old `<br>` converted to `<p>` blocks so `safe_case_edit.py` accepts them), served pages clean,
+all four Passed with pictures. C368214 is Automated → tell Vlad.
+#run498 #ruling #case-edit #114c → L0455, L0456
