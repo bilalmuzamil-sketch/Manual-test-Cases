@@ -3211,3 +3211,8 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
 6. C614711 (SV-11416, deleted lead technician): update to the PO's ruling once SV-11416 is decided.
 4. Vladimir: C96929 and C96978 expected results changed (note in followup-2026-10-16/NOTE-FOR-VLADIMIR-2026-10-16.md) — QA lead to send.
 6a. Splitting Sales Representatives (19 Oct 2026): 113 cases in group 84266 (11 sub folders), no build yet, no run (QA lead). PO sheet for Chris Ward ready, not sent: https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ. QA lead to decide: the 41 existing cases that will break (EXISTING-CASES-THAT-WILL-BREAK-2026-10-19.md); OK for the 2.47 MB canvas viewer code scanned by script. Setup file prepared, not linked.
+
+### WO Board — 19 Oct 2026 (SV-11522 / SV-11524, Rule 129)
+- QA lead: update the 49 existing cases PRD v65/v66 may change (18 Automated)? Full pass or named set. List: `build/wo-board-tech-view/sv11522-11524-2026-10-19/EXISTING-CASES-AFFECTED-BY-PRD-v65-v66.md`.
+- Confirm or cover the 10 tickets the sweep flags (ledger `build/wo-board-tech-view/TICKET-LEDGER.json`).
+- PO question for Chris Ward: PRD v66 messages table and Story 4 example still use the old toast words.

@@ -625,3 +625,6 @@ once to a file, and grep that for anchors instead of re-parsing.
 **Keep the extract dated** next to the project (`reconcile-<date>/design-extract-<date>.txt`), because
 the design moves: this one caught up to spec v45 on 2026-08-31, and the dated extract is what makes the
 next diff possible.
+
+## Ticket and source sweep (Rule 129, 19 Oct 2026)
+Before any work on a project, before every report and whenever the project is named: read every ticket under the epic and its stories (every page) and the PRD's version number; give every ticket a row in `build/<project>/TICKET-LEDGER.json`; diff a newer PRD the same day and list the cases it changes; run `python3 build/testing-tools/ticket_sweep.py` and do not call the project current while it exits 1.

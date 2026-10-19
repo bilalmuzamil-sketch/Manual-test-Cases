@@ -1,4 +1,4 @@
-# WO Board and Tech View: setup file for Claude sessions (26 cases, 16 to 19 Oct 2026)
+# WO Board and Tech View: setup file for Claude sessions (33 cases, 16 to 19 Oct 2026)
 
 This file is for a Claude session. A manual tester never needs it: each test case is complete on its own. With this file and the access the user gives at the start of the session, a new session can put the account into every case's starting state. It holds no environment address, credentials, cookies or session data.
 
@@ -904,6 +904,162 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 - Staging, 19 Oct 2026 (passed, T3481880): S2-35331, S2-35332, S2-35333 led by Esther Howard; S2-35334, S2-35335 by Aaron Baker; {Work-order-1} = S2-35331.
 - Step 5: a work order with no lines opens with a New Line window over it; close it with its X before reaching Lead Technician (seen 17 Oct 2026).
 
+#### SETUP-C682422 — [C682422](https://shopview.testrail.io/index.php?/cases/view/682422) More actions reads Assign lead technician when a work order has no lead
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technician {Technician-A} is active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682422 Ana.
+- Customer {Customer-A} has two Approved work orders: {Work-order-1} with no lead technician, and {Work-order-2} led by {Technician-A}. For example: {Customer-A} is ZZAUTOTEST C682422 Assign Wording, and {Work-order-1} and {Work-order-2} are S2-37401 and S2-37402.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  **P-TECH**: {Technician-A} "ZZAUTOTEST C682422 Ana".
+2.  **P-CUSTOMER**: "ZZAUTOTEST C682422 Assign Wording", unit "C682422-U1".
+3.  **P-WO** twice on "C682422-U1": {Work-order-1} with no lead; {Work-order-2} with lead {Technician-A}.
+4.  **P-START**: Board View, All tab, Search = the customer name.
+
+**Check:** every precondition line is true on screen.
+
+**Placeholder values:** the names above; give the tester the real work order numbers after setup.
+
+#### SETUP-C682423 — [C682423](https://shopview.testrail.io/index.php?/cases/view/682423) The lead technician dialog offers no Unassigned and assigns on one click
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682423 Ana and {Technician-B} is ZZAUTOTEST C682423 Ben.
+- Customer {Customer-A} has an Approved work order {Work-order-1} led by {Technician-A}, with no shift booked for it on the Schedule. For example: {Customer-A} is ZZAUTOTEST C682423 One Click and {Work-order-1} is S2-37411.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  **P-TECH**: "ZZAUTOTEST C682423 Ana" and "ZZAUTOTEST C682423 Ben".
+2.  **P-CUSTOMER**: "ZZAUTOTEST C682423 One Click", unit "C682423-U1".
+3.  **P-WO**: {Work-order-1} with lead {Technician-A}; no Schedule shift.
+4.  **P-START**: Board View, All tab, Search = the customer name.
+
+**Check:** every precondition line is true on screen.
+
+**Placeholder values:** the names above; give the tester the real work order numbers after setup.
+
+#### SETUP-C682424 — [C682424](https://shopview.testrail.io/index.php?/cases/view/682424) A lead change message names the work order and technician, with Undo
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682424 Ana and {Technician-B} is ZZAUTOTEST C682424 Ben.
+- Customer {Customer-A} has three Approved work orders: {Work-order-1} with no lead technician, and {Work-order-2} and {Work-order-3} led by {Technician-A}. None has a shift booked on the Schedule. For example: {Customer-A} is ZZAUTOTEST C682424 Toast Words, and {Work-order-1} to {Work-order-3} are S2-37421 to S2-37423.
+- The design picture DC-21-toast-light-1440.png is attached to this case.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  **P-TECH**: "ZZAUTOTEST C682424 Ana" and "ZZAUTOTEST C682424 Ben".
+2.  **P-CUSTOMER**: "ZZAUTOTEST C682424 Toast Words", unit "C682424-U1".
+3.  **P-WO** three times: {Work-order-1} no lead; {Work-order-2} and {Work-order-3} with lead {Technician-A}; no shifts.
+4.  The picture DC-21-toast-light-1440.png is attached to the case (also in `build/wo-board-tech-view/design-look-2026-10-14/compare/`).
+5.  **P-START**: Board View, All tab, Search = the customer name.
+
+**Check:** every precondition line is true on screen.
+
+**Placeholder values:** the names above; give the tester the real work order numbers after setup.
+
+#### SETUP-C682425 — [C682425](https://shopview.testrail.io/index.php?/cases/view/682425) The lead change message stays while hovered and closes after 8 seconds
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682425 Ana and {Technician-B} is ZZAUTOTEST C682425 Ben.
+- Customer {Customer-A} has two Approved work orders, {Work-order-1} and {Work-order-2}, both led by {Technician-A}. Neither has a shift booked on the Schedule. For example: {Customer-A} is ZZAUTOTEST C682425 Toast Timing, and {Work-order-1} and {Work-order-2} are S2-37431 and S2-37432.
+- You have a stopwatch, for example on your phone.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  **P-TECH**: "ZZAUTOTEST C682425 Ana" and "ZZAUTOTEST C682425 Ben".
+2.  **P-CUSTOMER**: "ZZAUTOTEST C682425 Toast Timing", unit "C682425-U1".
+3.  **P-WO** twice, both with lead {Technician-A}; no shifts.
+4.  Timing: measure the close with the page clock (performance.now) or a recorded video; 8 s per S4-R16.
+5.  **P-START**: Board View, All tab, Search = the customer name.
+
+**Check:** every precondition line is true on screen.
+
+**Placeholder values:** the names above; give the tester the real work order numbers after setup.
+
+#### SETUP-C682426 — [C682426](https://shopview.testrail.io/index.php?/cases/view/682426) Undo puts the work order back with its old lead and in its old place
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682426 Ana and {Technician-B} is ZZAUTOTEST C682426 Ben.
+- Customer {Customer-A} has three Approved work orders led by {Technician-A}, shown in that column in this order from the top: {Work-order-1}, {Work-order-2}, {Work-order-3}. It also has an Approved work order {Work-order-4} with no lead technician. None has a shift booked on the Schedule. For example: {Customer-A} is ZZAUTOTEST C682426 Undo Place, and {Work-order-1} to {Work-order-4} are S2-37441 to S2-37444.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  **P-TECH**: "ZZAUTOTEST C682426 Ana" and "ZZAUTOTEST C682426 Ben".
+2.  **P-CUSTOMER**: "ZZAUTOTEST C682426 Undo Place", unit "C682426-U1".
+3.  **P-WO** three times with lead {Technician-A}, then drag them in Board View into the order {Work-order-1}, {Work-order-2}, {Work-order-3}; **P-WO** once more with no lead ({Work-order-4}).
+4.  Audit Log: open the work order, ⋮ (top right, next to New Line) > Audit Log > Work Order Log, entries "Lead tech changed".
+5.  **P-START**: Board View, All tab, Search = the customer name.
+
+**Check:** every precondition line is true on screen.
+
+**Placeholder values:** the names above; give the tester the real work order numbers after setup.
+
+#### SETUP-C682427 — [C682427](https://shopview.testrail.io/index.php?/cases/view/682427) Undo brings back the shifts that a lead change cleared
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682427 Ana and {Technician-B} is ZZAUTOTEST C682427 Ben.
+- Customer {Customer-A} has an Approved work order {Work-order-1} with one approved line, led by {Technician-A}. For example: {Customer-A} is ZZAUTOTEST C682427 Undo Shifts and {Work-order-1} is S2-37451.
+- On the Schedule, {Technician-A} has two "Entire work order" shifts on {Work-order-1}: {Shift-A} today, which started an hour ago and ends later today, and {Shift-B} tomorrow. For example: {Shift-A} is today 9:00 to 15:00 and {Shift-B} is tomorrow 8:00 to 12:00.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  **P-TECH**: "ZZAUTOTEST C682427 Ana" and "ZZAUTOTEST C682427 Ben".
+2.  **P-CUSTOMER**: "ZZAUTOTEST C682427 Undo Shifts", unit "C682427-U1".
+3.  **P-WO** with one approved line, lead {Technician-A}.
+4.  Schedule: drag the work order onto {Technician-A}'s row, choose "Entire work order": {Shift-A} today starting an hour ago and ending later today; {Shift-B} tomorrow 8:00 to 12:00. UNVERIFIED: whether the Schedule accepts a start time in the past; if not, book {Shift-A} to start a few minutes from now and run the test once it has started.
+5.  **P-START**: Board View, All tab, Search = the customer name.
+
+**Check:** every precondition line is true on screen.
+
+**Placeholder values:** the names above; give the tester the real work order numbers after setup.
+
+#### SETUP-C682428 — [C682428](https://shopview.testrail.io/index.php?/cases/view/682428) Undo cannot move back a work order that was invoiced in the meantime
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians {Technician-A} and {Technician-B} are active at {Location-A} with the "Technician" role and Time Clock on. For example: {Technician-A} is ZZAUTOTEST C682428 Ana and {Technician-B} is ZZAUTOTEST C682428 Ben.
+- Customer {Customer-A} has a work order {Work-order-1} led by {Technician-A}, with status Complete (all lines complete and reviewed, not invoiced) and no shift booked on the Schedule. For example: {Customer-A} is ZZAUTOTEST C682428 Undo Invoiced and {Work-order-1} is S2-37461.
+- Two browser windows are open side by side, both signed in as you: window 1 on the starting screen below, window 2 on {Work-order-1}'s "Finance" tab.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  **P-TECH**: "ZZAUTOTEST C682428 Ana" and "ZZAUTOTEST C682428 Ben".
+2.  **P-CUSTOMER**: "ZZAUTOTEST C682428 Undo Invoiced", unit "C682428-U1" (raise the credit limit if Over Limit).
+3.  **P-WO-REVIEW** with lead {Technician-A}, then "Mark Reviewed" (status Complete); do not invoice.
+4.  Two browser contexts of the same sign-in side by side; window 2 on the work order's Finance tab. Leave New Customer Payment open after Create Invoice (closing it with X takes the invoice back off). The Undo must be clicked within the toast's 8 seconds.
+5.  **P-START**: Board View, All tab, Search = the customer name.
+
+**Check:** every precondition line is true on screen.
+
+**Placeholder values:** the names above; give the tester the real work order numbers after setup.
+
 ## 5. Mapping table (execution order)
 
 | Test case                                                                                                                                             | Account slots        | Recipes in order                          |
@@ -934,6 +1090,13 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 | [C368131](https://shopview.testrail.io/index.php?/cases/view/368131) Pinned technician columns after deactivation or removal from this location | ACCOUNT-A, ACCOUNT-B | SETUP-ADMIN, SETUP-C368131 |
 | [C368167](https://shopview.testrail.io/index.php?/cases/view/368167) A refused lead change on the work order page shows an error, keeps the old lead | ACCOUNT-A | SETUP-ADMIN, SETUP-C368167 |
 | [C96936](https://shopview.testrail.io/index.php?/cases/view/96936) A lead changed elsewhere moves the work order to its new group on refresh | ACCOUNT-A | SETUP-ADMIN, SETUP-C96936 |
+| [C682422](https://shopview.testrail.io/index.php?/cases/view/682422) More actions reads Assign lead technician when a work order has no lead | ACCOUNT-A | SETUP-ADMIN, SETUP-C682422 |
+| [C682423](https://shopview.testrail.io/index.php?/cases/view/682423) The lead technician dialog offers no Unassigned and assigns on one click | ACCOUNT-A | SETUP-ADMIN, SETUP-C682423 |
+| [C682424](https://shopview.testrail.io/index.php?/cases/view/682424) A lead change message names the work order and technician, with Undo | ACCOUNT-A | SETUP-ADMIN, SETUP-C682424 |
+| [C682425](https://shopview.testrail.io/index.php?/cases/view/682425) The lead change message stays while hovered and closes after 8 seconds | ACCOUNT-A | SETUP-ADMIN, SETUP-C682425 |
+| [C682426](https://shopview.testrail.io/index.php?/cases/view/682426) Undo puts the work order back with its old lead and in its old place | ACCOUNT-A | SETUP-ADMIN, SETUP-C682426 |
+| [C682427](https://shopview.testrail.io/index.php?/cases/view/682427) Undo brings back the shifts that a lead change cleared | ACCOUNT-A | SETUP-ADMIN, SETUP-C682427 |
+| [C682428](https://shopview.testrail.io/index.php?/cases/view/682428) Undo cannot move back a work order that was invoiced in the meantime | ACCOUNT-A | SETUP-ADMIN, SETUP-C682428 |
 
 ## 6. Dependencies and shared fixtures
 
@@ -953,6 +1116,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 - **SETUP-C368131**: Steps 1 to 3 spend {Technician-B} (deactivated) and {Technician-C} (moved to {Location-B}): make two new technicians before the next run (keep ZZAUTOTEST at the start), pin them for both users and give {Work-order-2} the new {Technician-C}. Step 12 moves {Work-order-2} to Unassigned.
 - **SETUP-C368167**: Step 2 invoices {Work-order-1}: make a new Complete work order (same recipe) before the next run.
 - **SETUP-C96936**: Step 5 moves {Work-order-1} to Aaron Baker: set its lead back to Esther Howard before the next run.
+- **SETUP-C682422 to SETUP-C682428**: each run moves leads (and C682427 clears and restores shifts, C682428 invoices its work order): make new work orders before the next run.
 
 ## 8. Traceability
 
@@ -1318,6 +1482,60 @@ Preconditions and steps simplified 19 Oct 2026 (QA lead); the Expected field, it
 
 - S2-E2: “After a lead change elsewhere, move the work order to its new technician group on the next refresh.”
 
+### [C682422](https://shopview.testrail.io/index.php?/cases/view/682422) More actions reads Assign lead technician when a work order has no lead
+
+SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, word for word as in the case:
+
+- **S3-R14**: “Include the lead technician action in the card’s more-actions menu: “Assign lead technician” on a work order with no lead technician, “Reassign lead technician” on one that has a lead technician.”
+- **S4-R4**: “The card or row more-actions menu opens the lead technician dialog, titled “Assign lead technician” or “Reassign lead technician” to match the menu item it was opened from (S3-R14).”
+- **PRD change log, 19 Oct 2026**: “S3-R14, S4-R4: the menu item and dialog read “Assign lead technician” on a work order with no lead and “Reassign lead technician” on one with a lead. v66.”
+
+### [C682423](https://shopview.testrail.io/index.php?/cases/view/682423) The lead technician dialog offers no Unassigned and assigns on one click
+
+SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, word for word as in the case:
+
+- **S4-R12**: “The dialog offers eligible active technicians in the current location and nothing else. Unassigned is not offered there: Unassigned is the place for work orders without a lead, not a technician, and removing the lead is the menu’s Unassign action (S11-R9) or a drag to Unassigned. It follows the design: a Search technicians box, each technician with their avatar and N open count, no grouping.”
+- **S4-R13**: “Clicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog’s only button is Cancel. When the shift-clearing prompt applies (S4-R28) it shows first, and the change is made from the prompt. Clicking the work order’s current lead closes the dialog with no change (S4-N4).”
+- **S4-N4**: “Selecting the current lead again leaves all assignments unchanged and produces no reassignment toast.”
+- **S4-R5**: “After a successful lead change on Board View or Tech View, whether by drag, the dialog or Unassign, show the design’s toast (white, with the check icon) reading “{work order number} assigned to {technician name}”, or “{work order number} unassigned” after removing the lead, with an Undo button. Example: “S1-357 assigned to Esther Howard”. This replaces the standard success toast for these two messages only.”
+- **PRD change log, 19 Oct 2026**: “S4-R12, S4-R13, S4-R30: Unassigned is no longer offered in the dialog (Unassign stays in the menu, S11-R9); clicking a technician assigns at once, no Reassign button; clicking the current lead closes with no change. v66.”
+
+### [C682424](https://shopview.testrail.io/index.php?/cases/view/682424) A lead change message names the work order and technician, with Undo
+
+SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, word for word as in the case:
+
+- **S4-R5**: “After a successful lead change on Board View or Tech View, whether by drag, the dialog or Unassign, show the design’s toast (white, with the check icon) reading “{work order number} assigned to {technician name}”, or “{work order number} unassigned” after removing the lead, with an Undo button. Example: “S1-357 assigned to Esther Howard”. This replaces the standard success toast for these two messages only.”
+- **PRD change log, 19 Oct 2026**: “S4-R5, S4-R16, new S4-R32: the lead-change toast is the design’s toast, “{work order number} assigned to {technician name}” / “{work order number} unassigned”, with Undo; 8 seconds, held while hovered; Undo restores the lead, the order position and any cleared shifts (was: standard toast “Lead technician updated” / “Lead technician removed”, no Undo; reverses the SV-11396 call for these two toasts). v66.”
+
+### [C682425](https://shopview.testrail.io/index.php?/cases/view/682425) The lead change message stays while hovered and closes after 8 seconds
+
+SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, word for word as in the case:
+
+- **S4-R16**: “The lead-change toast closes on its own after 8 seconds, stays open while the pointer is over it, and closes when Undo is clicked. Other success toasts dismiss automatically, as today.”
+- **S4-R5**: “After a successful lead change on Board View or Tech View, whether by drag, the dialog or Unassign, show the design’s toast (white, with the check icon) reading “{work order number} assigned to {technician name}”, or “{work order number} unassigned” after removing the lead, with an Undo button. Example: “S1-357 assigned to Esther Howard”. This replaces the standard success toast for these two messages only.”
+- **S4-R32**: “Undo puts the work order back exactly as it was before the change: the previous lead technician (or Unassigned), its previous place in that technician’s order, and any shifts the change cleared (removed shifts come back as they were; a shift that was ended at the moment of the change gets its original end time back). Undo is itself a lead change: it records its own audit entry (S4-R9), follows the Invoiced or Paid rule (S4-N2), and shows no shift-clearing prompt and no new toast. If Undo cannot be saved, nothing changes and the alert “Couldn’t undo the change. Please try again.” shows.”
+
+### [C682426](https://shopview.testrail.io/index.php?/cases/view/682426) Undo puts the work order back with its old lead and in its old place
+
+SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, word for word as in the case:
+
+- **S4-R32**: “Undo puts the work order back exactly as it was before the change: the previous lead technician (or Unassigned), its previous place in that technician’s order, and any shifts the change cleared (removed shifts come back as they were; a shift that was ended at the moment of the change gets its original end time back). Undo is itself a lead change: it records its own audit entry (S4-R9), follows the Invoiced or Paid rule (S4-N2), and shows no shift-clearing prompt and no new toast. If Undo cannot be saved, nothing changes and the alert “Couldn’t undo the change. Please try again.” shows.”
+- **S4-R9**: “Every lead-change path records one audit entry with the previous lead, new lead, logged-in actor, and time.”
+
+### [C682427](https://shopview.testrail.io/index.php?/cases/view/682427) Undo brings back the shifts that a lead change cleared
+
+SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, word for word as in the case:
+
+- **S4-R32**: “Undo puts the work order back exactly as it was before the change: the previous lead technician (or Unassigned), its previous place in that technician’s order, and any shifts the change cleared (removed shifts come back as they were; a shift that was ended at the moment of the change gets its original end time back). Undo is itself a lead change: it records its own audit entry (S4-R9), follows the Invoiced or Paid rule (S4-N2), and shows no shift-clearing prompt and no new toast. If Undo cannot be saved, nothing changes and the alert “Couldn’t undo the change. Please try again.” shows.”
+- **S4-R29**: “The prompt reads: title “Clear {Name}'s scheduled shifts?” (with no name: “Clear the lead technician's scheduled shifts?”); text “{Name} has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change.”; buttons “Keep shifts”, “Clear shifts” and “Cancel”.”
+
+### [C682428](https://shopview.testrail.io/index.php?/cases/view/682428) Undo cannot move back a work order that was invoiced in the meantime
+
+SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, word for word as in the case:
+
+- **S4-R32**: “Undo puts the work order back exactly as it was before the change: the previous lead technician (or Unassigned), its previous place in that technician’s order, and any shifts the change cleared (removed shifts come back as they were; a shift that was ended at the moment of the change gets its original end time back). Undo is itself a lead change: it records its own audit entry (S4-R9), follows the Invoiced or Paid rule (S4-N2), and shows no shift-clearing prompt and no new toast. If Undo cannot be saved, nothing changes and the alert “Couldn’t undo the change. Please try again.” shows.”
+- **S4-N2**: “Do not allow the lead technician to change in Invoiced or Paid status. An Invoiced or Paid work order can still be dragged to reorder it within its current technician (or within Unassigned), but it cannot be moved to another technician, to Unassigned, or out of Unassigned. Declined and Complete work orders can be moved freely, as today.”
+
 ## 9. VIU status
 
 | Item                                                                 | Status                                                                                                                      |
@@ -1351,6 +1569,13 @@ Preconditions and steps simplified 19 Oct 2026 (QA lead); the Expected field, it
 | [C368131](https://shopview.testrail.io/index.php?/cases/view/368131) | Passed on staging v26.40.19-e435950, 19 Oct 2026 (run 498, T3761652), in the wording before this simplification; the actions are the same. AUTOMATION: READY |
 | [C368167](https://shopview.testrail.io/index.php?/cases/view/368167) | Passed on staging v26.40.19-e435950, 19 Oct 2026 (run 498, T3792488), in the wording before this simplification; the actions are the same. AUTOMATION: READY |
 | [C96936](https://shopview.testrail.io/index.php?/cases/view/96936) | Passed on staging v26.40.19-e435950, 19 Oct 2026 (run 498, T3481880), in the wording before this simplification; the actions are the same. AUTOMATION: READY |
+| [C682422](https://shopview.testrail.io/index.php?/cases/view/682422) | UNVERIFIED: not yet run (test T4056656 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
+| [C682423](https://shopview.testrail.io/index.php?/cases/view/682423) | UNVERIFIED: not yet run (test T4056657 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
+| [C682424](https://shopview.testrail.io/index.php?/cases/view/682424) | UNVERIFIED: not yet run (test T4056658 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
+| [C682425](https://shopview.testrail.io/index.php?/cases/view/682425) | UNVERIFIED: not yet run (test T4056659 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
+| [C682426](https://shopview.testrail.io/index.php?/cases/view/682426) | UNVERIFIED: not yet run (test T4056660 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
+| [C682427](https://shopview.testrail.io/index.php?/cases/view/682427) | UNVERIFIED: not yet run (test T4056661 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
+| [C682428](https://shopview.testrail.io/index.php?/cases/view/682428) | UNVERIFIED: not yet run (test T4056662 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
 
 ## 10. Open questions
 
@@ -1359,3 +1584,5 @@ Preconditions and steps simplified 19 Oct 2026 (QA lead); the Expected field, it
 - ANSWERED (Chris Ward, answer 32, 16 Oct 2026; PRD v62 S2-R23): header avatar initials use the same --sv-grey-600 (\#4B5565) as every other avatar, at the design's smaller size. The cases' "dark grey, a little darker than the design picture" matches it.
 - ANSWERED (Chris Ward, answer 33, 16 Oct 2026; PRD v62 S11-R1): with nothing focused yet, the first Tab lands on the first row or card in Unassigned, or the first technician's first row or card when Unassigned is collapsed or empty. C97021 already follows the first part; C614719 covers the collapsed and empty case.
 - C368214: the old "write down whether the search text is kept" note was dropped (it was not a pass/fail check; S1-R8 keeps List's Back behaviour as in production).
+- PO (Chris Ward): PRD v66 changed S4-R5 to "{work order number} assigned to {technician name}" / "{work order number} unassigned" with Undo, but the messages table ("Lead technician updated", "Lead technician removed") and the Story 4 example still read the old words. The new cases follow S4-R5.
+- S4-R32's failure alert ("Couldn't undo the change. Please try again.") needs a forced save failure: not checkable by hand; no manual case.

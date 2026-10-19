@@ -3276,3 +3276,43 @@ bottom of the ticket whenever you are given a ticket to create a test case for."
    never touches a ticket someone else owns without saying so first (Rule 38).
 5. Worked example: SV-11503 → C665914 and run 498 test 4014037, 19 Oct 2026
    (`build/wo-board-tech-view/sv11503-2026-10-19/RECORD-SV-11503-2026-10-19.md`).
+
+### 128 — AMENDMENT (19 Oct 2026): screenshots inside bullet points are dropped by the HTML write — check every media id by script
+
+On 19 Oct 2026 the footer write on SV-11522 and SV-11524 removed four screenshots that sat inside bullet points (two on each ticket);
+the files stayed attached but were no longer shown. The read-back caught it and the screenshots were put back within minutes, each
+directly under its bullet (a screenshot between blocks survives the write; one inside a list item does not, though the format guide
+allows it). From now on: (1) before the write, list every media id in the before-copy and note any that sit inside a list item;
+(2) write such media straight after its list, never inside it, and say so in the report; (3) after the write, compare the media ids
+by script against the before-copy: any missing id is restored at once and reported. Record:
+`build/wo-board-tech-view/sv11522-11524-2026-10-19/RECORD-SV-11522-11524-2026-10-19.md`.
+
+## 129 · THE TICKET AND SOURCE SWEEP — EVERY TICKET UNDER THE EPIC AND EVERY PRD VERSION IS HANDLED, NOT ONLY THE ONES HANDED OVER (all projects, permanent)
+
+Ordered by the QA lead, 2026-10-19, verbatim: *"For work order. Oard and Tech view see how did you miss to create the test cases for the
+following? You know you have let me down once again. https://shopview.atlassian.net/browse/SV-11522
+https://shopview.atlassian.net/browse/SV-11524 You need to permanently solve this problem learn at any cost and find the root case of
+this miss and permanently fix this error."*
+
+**Root cause.** Nothing in my process looked at Jira or the PRD between currency checks. I wrote cases for a ticket only when the QA
+lead handed it to me, and read the PRD only when a pass was ordered. On 19 Oct 2026 the designer filed SV-11522 (14:17 UTC) and
+SV-11524 (14:59 UTC), and the PO changed the PRD to v65 and v66 (15:33 UTC) for them. My last WO Board work that day ended at 11:10
+UTC, so no step of mine would ever have seen them. The last full Jira read for the suite was the 14 Oct currency check.
+
+1. **When it runs.** At the start of any work on a project, before every report on it, and whenever the QA lead names the project.
+2. **What it reads.** Every ticket whose parent is the epic or one of its stories (JQL `parent in (<epic>, <stories>)`, every page),
+   and the PRD's current version number (Confluence summary). Save the result in the project folder.
+3. **The ledger.** `build/<project>/TICKET-LEDGER.json` holds one row per ticket with its outcome: NEW-CASES (cases written for it),
+   COVERED (existing cases test it, named), FROM-OUR-CASE (filed from one of our cases, which it names), NO-CASE (why), ASKED (where).
+   A ticket updated after its row is unhandled again until re-read.
+4. **The PRD.** `build/<project>/TICKET-SWEEP.json` holds the PRD version already handled. A newer version is diffed against the last
+   saved copy the same day; the diff lists every case that quotes a changed line or expects a changed behaviour.
+5. **The tool.** `python3 build/testing-tools/ticket_sweep.py --config … --jira … --prd-version N --ledger … --cases …` prints every
+   unhandled ticket and an unhandled PRD version, and exits 1 until there are none.
+6. **Acting on it.** A new ticket or PRD change that adds behaviour gets new cases in the same pass (in the project's run, Rule 123;
+   footer on the ticket, Rule 128). Changes that alter existing cases are listed with C-ids and links, and the QA lead is asked full
+   pass or a named set first (Rule 122 as amended). A report never calls a project current while the sweep exits 1; it says what is
+   unhandled.
+7. **Worked example:** WO Board, 19 Oct 2026: 45 tickets since 14 Oct, 7 new cases for SV-11522 and SV-11524 (C682422 to C682428),
+   10 tickets still to confirm, PRD v66 not handled until the 49 affected existing cases are updated.
+   (`build/wo-board-tech-view/TICKET-LEDGER.json`, `TICKET-SWEEP.json`, `sv11522-11524-2026-10-19/`.)

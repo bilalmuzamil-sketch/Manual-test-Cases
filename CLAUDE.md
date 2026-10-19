@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109–128** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109–129** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -77,6 +77,11 @@ These are stated here **in full** because a session that gets only this far must
 - **🔴 A CASE MADE FROM A TICKET IS LINKED AT THE BOTTOM OF THAT TICKET (128, 19 Oct 2026).** Whenever I am given a ticket to create a
   test case for, I add the test case link and the test-run link at the bottom of the ticket's description, after a divider, as a
   lossless HTML edit with a before-copy and a read-back. Nothing else in the ticket changes.
+- **🔴 SWEEP EVERY TICKET AND EVERY PRD VERSION, NOT ONLY WHAT IS HANDED OVER (129, 19 Oct 2026).** At the start of any work on a
+  project, before every report and whenever the project is named: read every ticket under the epic and its stories and the PRD's
+  version; every ticket gets a row in `build/<project>/TICKET-LEDGER.json` (new cases / covered / from our case / no case / asked);
+  a newer PRD is diffed the same day and its affected cases listed. `build/testing-tools/ticket_sweep.py` exits 1 until nothing is
+  unhandled; never call a project current while it does. Why: SV-11522 and SV-11524 and PRD v65/v66 (19 Oct) went unseen.
 - **🔴 KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS (123).** New and changed cases go into the project's run in the
   same pass, union only (34). Before editing a case someone else created: give the QA lead the list with C-ids, links,
   who created each and when, and ask permission. No edit until he says yes.
