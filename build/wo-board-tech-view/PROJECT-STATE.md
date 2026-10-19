@@ -280,3 +280,13 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
   for QA". Done: C581915–C581918, C97022 → Retest (results 527962–527966, defects SV-11326; retest-sv11326-1019.json).
   Run now 248 Passed · 6 Failed · 14 Blocked · 10 Retest. Remaining blocked: C96916, C368214 (asked, item 1), C368145, C96912,
   C96936, C368167, C368131, C97003, C614711, C96945, C590122, C97024, C97035, C368153.
+- 19 Oct — blocked step 1 done (staging v26.40.19-e435950):
+  - C368145 PASSED (Split route the case allows; S2-37324 kept its lead and its customer-name place) — result 527967.
+  - C96912 PASSED with every sign-in real (two new yopmail users, L0454) — result 527968.
+  - C368131 behaviour matches every Expected once the Heavy Duty ENROLMENT is removed on screen (Settings > Staff > Department(s) >
+    Manage staff enrollments); the case's step 3 (Location field only) does not remove her. Asked: Pass + reword step 3.
+  - C368167 behaviour matches (message shown, lead kept, reload keeps it) with the payment window LEFT OPEN; closing it with X undoes the
+    invoice on staging AND production (prod-invoice-x.json). Asked: Pass + reword step 2.
+  - C96936 behaviour matches on screen with Aaron Baker (Ralph Edwards cannot be picked — list cut-off SV-11429). Expected names Ralph.
+    Asked: Pass + rename (114(c) needs his naming) or Retest per the SV-11429 ruling.
+  - New test in the run today: C665914 (test 4014037) Failed "Track here SV-11503" — not ours, untouched.

@@ -1,0 +1,26 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-e435950",
+  "date": "19 October 2026",
+  "note": "run 498 blocked step 1: C96912"
+ },
+ "results": {
+  "C96912": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging. Every sign-in was a real one, through the sign-in page's Email, Password and Login.",
+    "Two new users were made for this test only (User-A and User-B, each with their own e-mail inbox); each accepted its invitation and set a password.",
+    "User-A opened Work Orders and clicked Board View.",
+    "After signing out and signing in again, Work Orders opened in Board View.",
+    "In a second browser, User-A signed in and Work Orders opened in Board View.",
+    "After Change Location to Staging Lethbridge - 4310, Work Orders opened in Board View.",
+    "User-A signed out and User-B (who never chose a display) signed in: Work Orders opened in List."
+   ],
+   "ticket": null,
+   "pictures": [
+    "pictures-1019/C96912-1-display-follows-user.png"
+   ]
+  }
+ }
+}
