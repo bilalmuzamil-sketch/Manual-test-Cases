@@ -1,0 +1,34 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Re-tested on Staging (build v26.40.19-e435950) on 19 October 2026, signed in as Admin, window 1440 x 900 px, zoom 100%.
+* A part sale's status card now has a *Sales Representative* field.
+* Changing it saves, and the change is still there after a reload.
+* All 4 checks passed.
+
+*Before and after*
+!sv11123-01-before-after.png|width=1124,height=504!
+_Left (BEFORE): this ticket's own picture from 10 October: Estimate part sale P10043-255, the card has no technician or Sales Representative field. Right (AFTER): today, Estimate part sale P2-2406 on staging shows a Sales Representative field._
+
+*What I checked*
+||#||Check||Status||
+|1|The status card shows a *Sales Representative* field on part sales in every status: a dropdown on Estimate, Approved, Complete and Declined; shown but not changeable on Invoiced and Paid (checked P2-2406, P2-2407, P2-2398, P2-2316, P2-2385, P2-2404).|PASSED|
+|2|Estimate part sale P2-2406: Sales Representative changed from Unassigned to Ahtasham Admin, then the page reloaded: still Ahtasham Admin.|PASSED|
+|3|Approved part sale P2-2407: the same change, then a reload: still Ahtasham Admin.|PASSED|
+|4|Changed back to Unassigned on both and reloaded: Unassigned.|PASSED|
+
+!sv11123-02-change-and-reload.png|width=1140,height=331!
+_Estimate part sale P2-2406: the Sales Representative changed to Ahtasham Admin (1), and still Ahtasham Admin after reloading the page (2)._
+
+*Where the expected result comes from*
+The ticket's source, the developer regression list (8 Oct 2026), Medium 5:
+{quote}The detail page's status card had props removed. Check that it renders and that changing the technician works.{quote}
+The ticket's expected result: "The person can be changed on the card and the change is kept after a reload."
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com and sign in as Admin.
+# Click *Parts* in the top menu, then *Part Sales*. Click *Search* above the list and type {{P2-2406}}, then click the row to open it.
+# On the card at the top left (under *P2-2406* and *Estimate*), click the *Sales Representative* field and pick any name, for example *Ahtasham Admin*.
+# Reload the page (F5). The *Sales Representative* field still shows the name you picked.
+# Set it back to *Unassigned* when done.
