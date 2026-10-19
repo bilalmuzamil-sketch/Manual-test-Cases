@@ -886,3 +886,12 @@ C590122 step 8 "search stays" (PRD §9 User Feedback Summary: "Existing List emp
 Edited in `case-updates-2026-10-19d/` (old `<br>` converted to `<p>` blocks so `safe_case_edit.py` accepts them), served pages clean,
 all four Passed with pictures. C368214 is Automated → tell Vlad.
 #run498 #ruling #case-edit #114c → L0455, L0456
+
+## L0460 — 2026-10-19 — Today's own mistakes, and the guard now in place for each
+- **False pass from a reading its picture contradicted** (C96916 Tech View) → skill 19 §9.7: open the picture of every judged step before a Passed; click only what is on screen. Details L0458.
+- **A test-in-run link given from memory was wrong** (C96929, L0450) → new `build/testing-tools/test_link.py <run> <C-ids…>` prints case link + `/tests/view/<id>` + live status, paged. Use it every time a link goes to him.
+- **QA_DPR=2 was silently dropped on staging runs** (`wob-run.sh` runs `env -i`; the browser scale knob is `WOB_SCALE`) → `wob-run.sh` now passes `WOB_SCALE=${WOB_SCALE:-$QA_DPR}`; s1-r8 pictures were 1x because of it.
+- **"Waiting on your yes" without saying what yes does** → skill 19 §9.8.
+- **Overwrote `build-marker.mts` without reading it** (restored with git) → read a file before Write, always; check `ls` first when the name is generic.
+- **Parked tests as a question when the build matched the latest PRD** → L0456 ("always unblock yourself").
+#run498 #mistakes #guards #tooling → L0450, L0456, L0458

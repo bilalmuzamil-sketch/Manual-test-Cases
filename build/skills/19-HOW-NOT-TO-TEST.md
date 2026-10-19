@@ -223,3 +223,21 @@ every permission, who could simply ask?"** — Rule 107's own test, which I did 
 **Add it to the thirteen-step drill as step 0:** *before writing the word Blocked, write the
 one-line question I would ask him. If that question is shorter than the routes I am about to try,
 ASK IT.*
+
+## 9.7 A false PASS: the reading said yes and its own picture said no (19 Oct 2026, C96916)
+
+A script reported "the row at the top comes back after Back" in Tech View. Its own before/after pictures showed something else
+(before: empty groups at the top, not the row the reading named). Three instrument faults made it lie (L0458): a heading that
+scrolls away used as the measuring line, rows matched by text that also hit group rows, and a fallback click that let Playwright
+scroll the row into view, which changed the very position being measured. I nearly posted it Passed.
+
+**⇒ THE RULE.** Rule 104 asks for proof before a NEGATIVE claim; a POSITIVE claim needs the same. **Before any Passed that rests
+on a script reading, open the picture of each judged step and check it shows what the reading says.** If they disagree, the
+reading is void; fix the instrument and re-run. Never click something the tester could not see: refuse the click unless the
+target is on screen under the pointer (`elementFromPoint`). On a scrolling table, measure from what is ON SCREEN.
+
+## 9.8 An ask must say what "yes" will make me do (19 Oct 2026)
+
+I listed four tests as "Waiting on your yes" and he had to ask what that meant. Rule 99 already says every ask is
+self-contained; this was a status line that slipped into being an ask. **⇒ Any line that waits on him names the action his
+"yes" starts, per item** ("yes = I change the expected result of these four tests to X and mark them Passed").

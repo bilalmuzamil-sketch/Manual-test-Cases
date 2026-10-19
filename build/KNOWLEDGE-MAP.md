@@ -84,6 +84,7 @@ How the stores divide (each fact lives in ONE place; this map and `recall.py` fi
 | I am about to … | Look here first |
 |---|---|
 | prepare or file a Jira ticket | `build/skills/06-DEFECT-PREP.md`; Rules 62, 110, 112, 113, 116, 120; label `board-tech-view` for WO Board; `jira.sh` takes a body FILE; Product Area `customfield_10153` |
+| give him a test's run link | `python3 build/testing-tools/test_link.py <run> <C-ids…>` — read live, never from memory (L0450, L0460) |
 | ask a developer for access or help | Rule 107 amendment 2026-10-12: first test what the PRODUCT owns on the QA branch; an ask is the last step (L0314) |
 | send the PO questions | `build/testing-tools/make_question_sheet.py`; skill 07; a Google Sheet editable by @shopview.com |
 | decide whether something is really blocked | Rules 97, 104, 107; `python3 build/testing-tools/blocker_gate.py --check <claim>`; `ls build/BLOCKED-*.md` |
