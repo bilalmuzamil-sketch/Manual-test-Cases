@@ -396,5 +396,542 @@
    "C590124"
   ],
   "note": "new 19 Oct 14:01 CDT (Chris Ward, Story Defect under SV-10046, follow-up to SV-11394): hover shadow on all sides, not cut off by the column, at every density, Unassigned and technician columns, light and dark. C590124 checks only that a soft shadow appears. A new 'Design: ' case was proposed; QA lead, 19 Oct 2026: \"No leave it.\" No case is made."
+ },
+ "SV-11240": {
+  "updated": "2026-10-19",
+  "outcome": "FROM-OUR-CASE",
+  "cases": [
+   "C97026",
+   "C97033",
+   "C97034"
+  ],
+  "note": "Raised by us from our three report cases, which can only be judged by reading the Google Analytics reports (QA has no access). Our closing comment (12 Oct) says the events were checked and passed for the default/saved split and the weekly-use counts; the reports themselves belong to Milos in Google Analytics, so nothing is needed from engineering. No new case."
+ },
+ "SV-11128": {
+  "updated": "2026-10-19",
+  "outcome": "FROM-OUR-CASE",
+  "cases": [
+   "C96960",
+   "C581891"
+  ],
+  "note": "Raised from our C96960. The fixed behaviour (a line whose technician is there only because of a Schedule shift follows the new lead; the shift technician stays on the line's list; PRD S4-R8 context note, v46) is now checked by C581891 Steps 7 and 9. QA passed 13 Oct."
+ },
+ "SV-11126": {
+  "updated": "2026-10-19",
+  "outcome": "FROM-OUR-CASE",
+  "cases": [
+   "C368136",
+   "C368133"
+  ],
+  "note": "Raised from our C368136. The fix (a shift made with the Schedule's \"Entire work order\" option brings up the \"Clear …'s scheduled shifts?\" prompt; PRD S4-R28, v47) is checked by C368133 Step 4 (prompt opens for the whole-work-order shift) and Steps 6 to 10 (no prompt for a shift on some lines only, an ended shift or another person's shift); C368136 checks the prompt on Board View and Tech View, drag and dialog. QA passed 13 Oct."
+ },
+ "SV-11125": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Outside WO Board and Tech View: Parts > Returns > Credits, from the developer's regression list. It came from our regression case C368221, which the QA lead deleted on 12 Oct. QA passed it on 19 Oct: the 60-day filter is kept after a reload (the check the ticket came from), and opening on Returns is how production works. Nothing to add."
+ },
+ "SV-11124": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [
+   "C368241",
+   "C368243",
+   "C368244"
+  ],
+  "note": "The Staff list has no photo column on production either and the PRD does not ask for one, so its expected result (photos in the Staff list) is not a requirement. It came from our regression case C368242, deleted by the QA lead on 12 Oct. The real regression check, a new photo shows after a reload, is still checked by C368241 (top bar), C368243 (Schedule) and C368244 (Board View). QA passed 19 Oct."
+ },
+ "SV-11123": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [
+   "C368215"
+  ],
+  "note": "Outside WO Board and Tech View: the Part Sales page, from the developer's regression list. It came from our regression case C368216, which the QA lead deleted on 12 Oct. C368215 still checks that the part sale's status card shows a Sales Representative field (a dropdown on an Estimate). Saving a changed person and keeping it after a reload has no case now; QA passed that on staging on 19 Oct. Ask the QA lead if he wants that check back."
+ },
+ "SV-11122": {
+  "updated": "2026-10-19",
+  "outcome": "FROM-OUR-CASE",
+  "cases": [
+   "C368181"
+  ],
+  "note": "Raised from our regression case C368181 (an asset's Work Orders tab count matches its rows), which is still in the suite. The ticket was closed as OBSOLETE because it duplicates SV-11110 (\"Asset page – Work Orders tab shows no count while Invoices does\", Ready to Fix), which carries the defect. No new case; C368181 keeps checking it."
+ },
+ "SV-11121": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [
+   "C154648",
+   "C581896"
+  ],
+  "note": "The behaviour was dropped: PRD v48 (13–14 Oct) removed Imported from the lead-technician lock (S4-N2) and made Imported work orders List-only (S1-R13a). QA passed on 19 Oct (no Lead technician on the Imported page, same as production). Its source case C368247 was deleted. The List-only rule is checked by C154648 and C581896."
+ },
+ "SV-11120": {
+  "updated": "2026-10-19",
+  "outcome": "COVERED",
+  "cases": [
+   "C96963"
+  ],
+  "note": "The PRD only says the lead technician cannot be changed once a work order is Invoiced or Paid (Key Decisions); it does not ask for a greyed-out field. C96963 Step 10 checks that the lead of an Invoiced work order cannot be changed on the work order page, and the case covers Paid on the board. Source case C368165 was deleted 12 Oct. QA passed 19 Oct (plain text, same as production)."
+ },
+ "SV-11119": {
+  "updated": "2026-10-19",
+  "outcome": "ASKED",
+  "cases": [
+   "C97005"
+  ],
+  "note": "Proposed new case; asked the QA lead 19 Oct 2026. No case checks two people reordering the same technician at once. It was raised from our C368149, which was deleted on 12 Oct; C97005 checks only that one person's saved order is shared, and quotes the old S9-R11 wording. Missing check: two browsers, the same column Alpha, Mid, Zeta; person 1 moves Zeta to the top, person 2 (without refreshing) moves Mid to the top; after both refresh, both show Mid, Zeta, Alpha with no warning. Ticket's own words (PRD v65 S9-R11, quoted in the 19 Oct comment): \"Each drop saves only the card that was moved, so neither person's move is erased... after a refresh both see Mid, Zeta, Alpha.\" Ticket is still In Progress and FAILED on 19 Oct."
+ },
+ "SV-11118": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Its expected result came from the QA handoff test plan, but the PRD keeps List exactly as production (§1 Business Case), and production behaves the same way. QA passed on 19 Oct as not a fault. Source case C368204 was deleted by the QA lead on 12 Oct. Nothing in the PRD asks for this, so no case."
+ },
+ "SV-11117": {
+  "updated": "2026-10-19",
+  "outcome": "FROM-OUR-CASE",
+  "cases": [
+   "C96983"
+  ],
+  "note": "Raised from our C96983. The fixed behaviour (after a failed settings load the defaults show and the next field choice is saved; PRD S5-N2, S5-N3) is checked by C96983 Steps 6 to 8 (defaults) and Steps 10 and 11 (the choice made after the failure is still on after a reload). Fix verified 13 Oct."
+ },
+ "SV-11107": {
+  "updated": "2026-10-19",
+  "outcome": "FROM-OUR-CASE",
+  "cases": [
+   "C96962"
+  ],
+  "note": "Raised from our C96962. QA passed on 19 Oct: adding a second technician writes no Audit log entry on production either, and S4-R18 only asks to \"Continue existing line auditing\". C96962 still checks S4-R18 (a technician change made directly in Edit Line adds its own line entry, as today)."
+ },
+ "SV-11106": {
+  "updated": "2026-10-19",
+  "outcome": "FROM-OUR-CASE",
+  "cases": [
+   "C96978",
+   "C581894"
+  ],
+  "note": "Raised from our C96978. The fixed behaviour (a card's Estimated hours is the sum of the lines' estimates with declined lines left out, within 0.1 hours of Total Hours; PRD S5-R11a, v49) is checked by C581894 Steps 4 and 10. Fix verified 13 Oct."
+ },
+ "SV-11104": {
+  "updated": "2026-10-19",
+  "outcome": "FROM-OUR-CASE",
+  "cases": [
+   "C368138"
+  ],
+  "note": "Raised from our C368138. QA found it working as expected on 12 Oct. C368138 checks the S4-N11 sentence \"The card you dropped this next to has moved. Refresh the board and try again.\" and, by the QA lead's decision, accepts the extra \"Couldn't save the new order. Please try again.\" headline above it."
+ },
+ "SV-11101": {
+  "updated": "2026-10-19",
+  "outcome": "FROM-OUR-CASE",
+  "cases": [
+   "C96929",
+   "C674226"
+  ],
+  "note": "Raised from our C96929. Closed as a duplicate of SV-11312: under S2-R6 and S9-R14 (PRD v53) a work order that gets its lead after it was made goes to the bottom of that technician's work. C96929 checks that (lead given later) and C674226 checks that a work order made with its lead keeps the List's order; both passed on 19 Oct."
+ },
+ "SV-11099": {
+  "updated": "2026-10-19",
+  "outcome": "COVERED",
+  "cases": [
+   "C581890",
+   "C581889"
+  ],
+  "note": "The PRD changed after this ticket (S1-N1a and S1-N1b): a search alone that matches nothing reads \"No work orders match the search \"{search}\".\" with no button; with a filter on it reads \"No work orders match these filters\" with Clear all filters. C581890 checks the search-only message with no button and C581889 checks the filter message, in Board View and Tech View. Source case C368211 was deleted. QA passed 19 Oct."
+ },
+ "SV-11098": {
+  "updated": "2026-10-19",
+  "outcome": "FROM-OUR-CASE",
+  "cases": [
+   "C96923"
+  ],
+  "note": "Raised from our C96923. Chris corrected S1-E3 in PRD v45 (12 Oct): \"Assigned to me stays as the user set it when the location changes, as it does today.\" C96923 now checks exactly that, and also S1-E2 (the location's default page opens). Passed."
+ },
+ "SV-11087": {
+  "updated": "2026-10-19",
+  "outcome": "ASKED",
+  "cases": [
+   "C368177"
+  ],
+  "note": "Proposed new case; asked the QA lead 19 Oct 2026. unsure: this fix ships in the separate bugfix release (PR #3619, branch sv11087), not in SV-10043, so it may belong outside this suite. Raised from our C368177, which checks only that the receiving line gets the technician. No case checks the source line. Missing check: after moving a timesheet entry to another line, the source line no longer lists a technician the app added on clock-in, while one added through Edit Line stays at 0.00 h. Chris Ward's ruling in the comments: \"When an entry moves to another line, only remove the labor row that clocking in added automatically (SV-8766), and only if the technician has no other time on that line. A technician someone put on the line on purpose (Edit Line) stays there, with 0.00 hours.\" Plus the claimed-row case: \"the line goes back to Unassigned.\" Ahtasham passed all 6 developer scenarios on 14 Oct."
+ },
+ "SV-11075": {
+  "updated": "2026-10-19",
+  "outcome": "FROM-OUR-CASE",
+  "cases": [
+   "C96938"
+  ],
+  "note": "Raised from our C96938. The fixed behaviour (S2-R10: \"Hovering a technician header or avatar reveals the technician's name.\") is checked by C96938, which hovers both the header name and the avatar, including a long name. QA passed 12 Oct."
+ },
+ "SV-11074": {
+  "updated": "2026-10-19",
+  "outcome": "FROM-OUR-CASE",
+  "cases": [
+   "C96968",
+   "C97010"
+  ],
+  "note": "Raised from our C96968 and C97010. The fixed behaviour (a move that cannot be saved goes back, shows \"Failed to update lead technician, please try again.\" and the lead stays unchanged; S9-N2, S4-N3, S4-N8) is checked by C96968 (offline reassign: the exact alert, the lead unchanged after a reload) and C97010 Steps 9 to 14. QA passed 12 Oct."
+ },
+ "SV-10985": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "A server-side fault (a database lock left held after a request crashes on a persistent connection). A manual tester cannot cause it, QA's database connection is not persistent, and it has never been seen in production; the developer proves the fix on the server stack. The tester-visible alert it could produce (\"The board is busy with another move. Please try again.\", S4-N12) is already checked by C368139."
+ },
+ "SV-10984": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "A performance task (a 2-letter search on the board takes about 450 ms on the server against 200 ms for the List), measured by developers on a 9,000-work-order location. A manual tester cannot measure server timing. Its second \"done when\" point, board and List search results stay identical (S1-R11), is already checked by C96914."
+ },
+ "SV-10593": {
+  "updated": "2026-10-19",
+  "outcome": "COVERED",
+  "cases": [
+   "C97023",
+   "C97024",
+   "C97025",
+   "C97026",
+   "C97027",
+   "C97028",
+   "C97029",
+   "C97033",
+   "C97034",
+   "C97035",
+   "C368153",
+   "C368154",
+   "C368155"
+  ],
+  "note": "All 8 acceptance criteria have cases: display view on load and on switch, and none on a row refresh (C97023); fields recorded once per display per session (C97024); no money fields without financial data (C368153); changes recorded only after a successful save (C97025); no record values in events (C97027); analytics blocked never breaks the page (C97028); report figures (C97026, C97033, C97034, C97035); each listed situation (C97029). Also S12-R14 (C368154) and S12-R15 (C368155). The report-side checks can only be judged in Google Analytics (see SV-11240). Event names follow the GA4 standard agreed in the comments (work_orders_display_view etc.)."
+ },
+ "SV-10232": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "OBSOLETE: the phone and tablet layouts were never designed (UX-20). The PRD now uses a 1024 px screen-width switch (S1-R14), checked by C154885 and C154649. a developer's verification checklist for Phase 13 of the technical plan, not a behaviour to test by hand. The user-facing checks in it are tested through the story cases."
+ },
+ "SV-10231": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Performance validation at production scale (response times, query plans, frame rates). a developer's verification checklist for one phase of the technical plan, not a behaviour to test by hand. The user-facing checks in it are tested through the story cases; its findings were filed as SV-10984 and SV-10985."
+ },
+ "SV-10230": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Phase 11 (keyboard and focus). a developer's verification checklist for one phase of the technical plan, not a behaviour to test by hand. The user-facing checks in it are tested through the story cases for SV-10054 (Story 11). Chris noted on 15 Oct that PRD v55 now gives concrete keyboard rules (S11-R1 to S11-R10, S11-E1, S11-E2)."
+ },
+ "SV-10229": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Phase 10 (analytics events). a developer's verification checklist for one phase of the technical plan, not a behaviour to test by hand. The user-facing checks in it are tested through the story cases for SV-10593 (Story 12)."
+ },
+ "SV-10228": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Phase 9 (drag and drop, board move, shift prompt). a developer's verification checklist for one phase of the technical plan, not a behaviour to test by hand. The user-facing checks in it are tested through the story cases for SV-10044, SV-10047 and SV-10052. Note: the S9-R11 check in it (two people reordering at the same time) has no case; see SV-11119."
+ },
+ "SV-10227": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Phase 8 (Tech View read). a developer's verification checklist for one phase of the technical plan, not a behaviour to test by hand. The user-facing checks in it are tested through the story cases for SV-10045 and SV-10048."
+ },
+ "SV-10226": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Phase 7 (Board View read and Fields to display). a developer's verification checklist for one phase of the technical plan, not a behaviour to test by hand. The user-facing checks in it are tested through the story cases for SV-10046 and SV-10048."
+ },
+ "SV-10225": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Phase 6 (board read endpoints, no screen yet). a developer's verification checklist for one phase of the technical plan, not a behaviour to test by hand. The user-facing checks in it are tested through the story cases for SV-10045, SV-10046 and SV-10047."
+ },
+ "SV-10224": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Phase 5 (Reassign building blocks, unit-tested). a developer's verification checklist for one phase of the technical plan, not a behaviour to test by hand. The user-facing checks in it are tested through the story cases for SV-10047 and SV-10050."
+ },
+ "SV-10223": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Phase 4 (preferences, switcher, density, mobile guard). a developer's verification checklist for one phase of the technical plan, not a behaviour to test by hand. The user-facing checks in it are tested through the story cases for SV-10044, SV-10048 and SV-10049."
+ },
+ "SV-10222": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Phase 3 (lead-change hardening). a developer's verification checklist for one phase of the technical plan, not a behaviour to test by hand. The user-facing checks in it are tested through the story cases for SV-10047."
+ },
+ "SV-10221": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Phase 2 (groundwork; the List must not change). a developer's verification checklist for one phase of the technical plan, not a behaviour to test by hand. The user-facing checks in it are tested through the story cases for SV-10044 and SV-10050, plus the regression cases."
+ },
+ "SV-10220": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Phase 1 (tech-story check mark removed). a developer's verification checklist for one phase of the technical plan, not a behaviour to test by hand. The user-facing checks in it are tested through the story cases for SV-10051."
+ },
+ "SV-10054": {
+  "updated": "2026-10-19",
+  "outcome": "COVERED",
+  "cases": [
+   "C97011",
+   "C97020",
+   "C97021",
+   "C97022",
+   "C368150",
+   "C368151",
+   "C368152",
+   "C96945"
+  ],
+  "note": "All 5 acceptance criteria have cases: focus reaches cards, rows, groups and columns (C97021); Enter and Escape (C368150, C97011); the more-actions overlay shows on keyboard focus, S3-R13 (C96945); keyboard paths to menu, pins, collapse and reassign keep permission and status limits (C368151, C368152, C97020); focus recovery (C97022). Note: the story text still says \"Design must define…\"; the cases follow the concrete rules in PRD v55 and later (C97021 quotes v61)."
+ },
+ "SV-10053": {
+  "updated": "2026-10-19",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "OBSOLETE: Story 10 (more-actions menu and lead reassignment on List rows) was removed from the PRD on 25 Sep 2026; the List stays exactly as production. Nothing to test."
+ },
+ "SV-10052": {
+  "updated": "2026-10-19",
+  "outcome": "COVERED",
+  "cases": [
+   "C97001",
+   "C97002",
+   "C97003",
+   "C97004",
+   "C97005",
+   "C97006",
+   "C97007",
+   "C97008",
+   "C97009",
+   "C97010",
+   "C97011",
+   "C97012",
+   "C97013",
+   "C368144",
+   "C368145",
+   "C368146",
+   "C368147",
+   "C368148",
+   "C97031"
+  ],
+  "note": "8 of 9 acceptance criteria have cases (drag within and between technicians, technician order per user, filtered reorder, rejected or cancelled drags, shared order, bottom placement, Invoiced/Paid reorder only, failure alerts). NEW-CASES-NEEDED for one criterion: \"other concurrent reorders save last-wins without a warning\" (S9-R11, now rewritten in PRD v65 as \"Each drop saves only the card that was moved\"). Its case C368149 was deleted on 12 Oct and SV-11119 still fails; see SV-11119."
+ },
+ "SV-10051": {
+  "updated": "2026-10-19",
+  "outcome": "COVERED",
+  "cases": [
+   "C96997",
+   "C96998",
+   "C96999",
+   "C97000"
+  ],
+  "note": "All 3 acceptance criteria have cases: no check mark on the line list or in the Simple Flow tech view mode (C96997), entering, editing and requiring a tech story still work (C96998), lines without a tech story unchanged (C96999); S8-E1 (C97000)."
+ },
+ "SV-10050": {
+  "updated": "2026-10-19",
+  "outcome": "COVERED",
+  "cases": [
+   "C96993",
+   "C96994",
+   "C96995",
+   "C96996",
+   "C368141",
+   "C368142",
+   "C368143",
+   "C368161"
+  ],
+  "note": "All 7 acceptance criteria have cases: lead first and each technician once (C96993, C96994), +N and names discoverable, each avatar's own hover area S7-R2 (C96995), blank only with no lead and no line technician (C96996), Assigned Techs right after Lines (C368141), scheduled technicians replace Unassigned with no badge (C368142), Unassigned when none (C368143)."
+ },
+ "SV-10049": {
+  "updated": "2026-10-19",
+  "outcome": "COVERED",
+  "cases": [
+   "C96987",
+   "C96988",
+   "C96989",
+   "C96990",
+   "C96991",
+   "C96992"
+  ],
+  "note": "All 6 acceptance criteria have cases, one each: options and Regular default (C96987), size only, never content (C96988), shared and kept (C96989), minimum text size (C96990), Regular on load failure (C96991), List unchanged (C96992)."
+ },
+ "SV-10048": {
+  "updated": "2026-10-19",
+  "outcome": "COVERED",
+  "cases": [
+   "C96975",
+   "C96976",
+   "C96977",
+   "C96978",
+   "C96979",
+   "C96980",
+   "C96981",
+   "C96982",
+   "C96983",
+   "C96984",
+   "C96985",
+   "C96986",
+   "C96927",
+   "C581894",
+   "C97023",
+   "C97024",
+   "C368153",
+   "C368154"
+  ],
+  "note": "All 7 acceptance criteria have cases (own Tech View columns, chooser with Assigned Techs after Lines and not in List, Board View fields saved, mandatory fields, defaults and save after a load failure, all optional fields off with the unit/asset fallback, no dollar amounts without financial data). Note: C96979 now follows the PRD v51 ruling (the design's 13 columns), not the story's older \"current production List default columns\" wording. C368160 and C368164 (design-only menu controls) were deleted 12 Oct."
+ },
+ "SV-10047": {
+  "updated": "2026-10-19",
+  "outcome": "COVERED",
+  "cases": [
+   "C96956",
+   "C96957",
+   "C96958",
+   "C96959",
+   "C96960",
+   "C96961",
+   "C96962",
+   "C96963",
+   "C96964",
+   "C96965",
+   "C96966",
+   "C96967",
+   "C96968",
+   "C96969",
+   "C96970",
+   "C96971",
+   "C96972",
+   "C96973",
+   "C96974",
+   "C154888",
+   "C154889",
+   "C154890",
+   "C368133",
+   "C368134",
+   "C368135",
+   "C368136",
+   "C368137",
+   "C368138",
+   "C368139",
+   "C368140",
+   "C368163",
+   "C368158",
+   "C368159",
+   "C97032",
+   "C581891"
+  ],
+  "note": "All 15 acceptance criteria have cases, for example: line table for assign, reassign and remove (C96960, C96961, C368140, C581891); one audit entry (C96962); Invoiced/Paid lock and tooltip (C96963, C96964); failure recovery (C96968, C154890); reorder alerts (C368137, C368138, C368139); time unchanged and Schedule never changes the lead (C96966); shift prompt rules, text, cancel and where it shows (C96965, C154888, C154889, C368133 to C368136). C154887 (Imported tooltip) was deleted correctly when PRD v48 removed S4-N9."
+ },
+ "SV-10046": {
+  "updated": "2026-10-19",
+  "outcome": "COVERED",
+  "cases": [
+   "C96940",
+   "C96941",
+   "C96942",
+   "C96943",
+   "C96944",
+   "C96945",
+   "C96946",
+   "C96947",
+   "C96948",
+   "C96949",
+   "C96950",
+   "C96951",
+   "C96952",
+   "C96953",
+   "C96954",
+   "C96955",
+   "C154886",
+   "C368131",
+   "C368132",
+   "C368156",
+   "C368157",
+   "C368161",
+   "C97030"
+  ],
+  "note": "All 9 acceptance criteria have cases: columns with name, avatar, count, Unassigned first (C96940, C96941, C97030); scrolling and sticky headers (C96942, C96953, C96954); pins and the 3-pin limit (C96947, C96948, C96949); empty-column text by permission (C96950, C368132); deactivated and not-enrolled pinned technicians (C96952, C368131); empty Unassigned accepts a drop (C154886); Assigned to me (C96951)."
+ },
+ "SV-10045": {
+  "updated": "2026-10-19",
+  "outcome": "COVERED",
+  "cases": [
+   "C96924",
+   "C96925",
+   "C96926",
+   "C96927",
+   "C96928",
+   "C96929",
+   "C96930",
+   "C96931",
+   "C96932",
+   "C96933",
+   "C96934",
+   "C96935",
+   "C96936",
+   "C96937",
+   "C96938",
+   "C96939",
+   "C368125",
+   "C368126",
+   "C368127",
+   "C368128",
+   "C368129",
+   "C368130",
+   "C368161",
+   "C97004",
+   "C97007",
+   "C97030"
+  ],
+  "note": "All 8 acceptance criteria have cases: grouping with name, avatar, count and no total row (C96924, C368129); Unassigned first, expanded, paged (C96925, C368127); every eligible technician and \"No work orders\" (C96930, C96931); collapse kept, also under search (C96928, C368125); pins and no pinning under Assigned to me (C96939, C368126, C368128); inactive header (C96934); sticky header (C96935); Assigned to me (C96937). C368162 (Collapse all, design-only) was deleted 12 Oct."
+ },
+ "SV-10044": {
+  "updated": "2026-10-19",
+  "outcome": "COVERED",
+  "cases": [
+   "C96909",
+   "C96910",
+   "C96911",
+   "C96912",
+   "C96913",
+   "C96914",
+   "C96915",
+   "C96916",
+   "C96917",
+   "C96919",
+   "C96920",
+   "C96921",
+   "C96923",
+   "C154884",
+   "C154885",
+   "C154649",
+   "C154648",
+   "C581896",
+   "C581889",
+   "C581890"
+  ],
+  "note": "All 9 acceptance criteria have cases: switching keeps tab, search and filters, and List sort comes back (C96909, C96911, C96914, C96915); saved display follows the user, List by default (C96910, C96912); load or save failure (C96919, C96920); empty states S1-N1a/S1-N1b (C581889, C581890; these replace C96918, which was deleted); Back and top-left rules (C96916, C96917); Imported locks S1-R13a/S1-R13b (C154648, C581896); 1024 px switch (C154885, C154649); two tabs (C96921); location change S1-E2/S1-E3 (C96923)."
+ },
+ "SV-9769": {
+  "updated": "2026-10-19",
+  "outcome": "COVERED",
+  "cases": [
+   "C368142",
+   "C368143"
+  ],
+  "note": "Resolved by PRD S7-R8 to S7-R10. C368142 checks that a line with no labor technician but scheduled technicians shows their names in place of \"Unassigned\", with no badge; C368143 checks that a line with neither still reads \"Unassigned\". QA passed 7 Oct."
  }
 }
