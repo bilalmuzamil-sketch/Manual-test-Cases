@@ -1,0 +1,14 @@
+import {session,toView} from './rec.mjs'; import fs from 'fs';
+const s=await session({vp:{width:1440,height:900},dpr:2}); const p=s.page; const out={mk:await s.marker()};
+const OWN=['display','tab','density','collapsedGroups']; const getP=async()=>(await s.api('/api/users/me/preferences/work-orders-list')).json.data.value; const prefs0=await getP();
+out.density=prefs0.density;
+await s.go('/workorders?tab=all&search=S2-33692'); await p.waitForTimeout(3500); await toView(p,'board_view'); await p.waitForTimeout(3000);
+const c=await p.evaluate(()=>{const c=[...document.querySelectorAll('.board-card')].find(e=>/S2-33692/.test(e.innerText)); const r=c.getBoundingClientRect(); return {x:r.x,y:r.y,w:r.width,h:r.height,txt:c.innerText.slice(0,120)};}); out.card=c;
+const clip={x:c.x-20,y:c.y-20,width:c.w+40,height:c.h+40}; const edge={x:c.x-4,y:c.y+c.h-24,width:c.w+8,height:48};
+const bs=()=>p.evaluate(()=>{const c=[...document.querySelectorAll('.board-card')].find(e=>/S2-33692/.test(e.innerText)); const st=getComputedStyle(c); return {shadow:st.boxShadow,border:st.borderTopColor,cls:c.className};});
+await p.mouse.move(5,890); await p.waitForTimeout(600); out.rest=await bs();
+await p.screenshot({path:'/tmp/qa11310/ex/ba94-rest.png',clip}); await p.screenshot({path:'/tmp/qa11310/ex/ba94-rest-edge.png',clip:edge});
+await p.mouse.move(c.x+c.w/2,c.y+c.h*0.6,{steps:8}); await p.waitForTimeout(900); out.hover=await bs();
+await p.screenshot({path:'/tmp/qa11310/ex/ba94-hover.png',clip}); await p.screenshot({path:'/tmp/qa11310/ex/ba94-hover-edge.png',clip:edge});
+const cur=await getP(); const vv={...cur}; for(const k of OWN) vv[k]=prefs0[k]; await s.api('/api/users/me/preferences/work-orders-list',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({value:vv})});
+fs.writeFileSync('/home/user/Manual-test-Cases/build/board-tech-view-bugs-2026-10-16/sv11394-retest-2026-10-19/ba94cap.json',JSON.stringify(out,null,1)); await s.close(); console.log(JSON.stringify(out));

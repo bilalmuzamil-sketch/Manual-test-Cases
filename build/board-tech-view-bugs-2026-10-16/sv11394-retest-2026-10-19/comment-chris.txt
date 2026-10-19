@@ -1,0 +1,12 @@
+[~accountid:712020:aa00b8d6-a71f-4259-8919-82a304227c20] one question on the card hover shadow, so you can decide whether it needs anything more. The shadow now shows *below* the card, but its *left and right sides are cut off*. The spec doesn't describe how the hover looks, and the design says only "a lift (elev-1 → elev-2)".
+
+!sv11394-q-side-shadow.png|width=1024,height=383!
+_Staging build v26.40.19-31ad1e1, 19 October 2026, card S2-17495, window 1440 x 900 px, zoom 100%. 1: at rest, no shadow. 2: pointer on the card today: shadow below the card only, the sides are cut off. 3: Comparison only: I switched off the list's clipping in the browser's developer tools (right-click > Inspect). This is not a ShopView feature and users cannot do it; it only shows what a full shadow would look like._
+
+*How to see it*
+# On Staging, open *Work Orders* > *All* tab, click *Board View* (right of the three view buttons above the list).
+# Move the pointer onto any card and look closely at its left and right edges: there is no shadow there, only below the card.
+
+*The question:* is a shadow below the card enough, or should it also show on the left and right sides as in a full lift?
+* A: Below the card is fine. Nothing more to do.
+* B: It should show on all sides. This goes back to Slavcho as a remaining issue.

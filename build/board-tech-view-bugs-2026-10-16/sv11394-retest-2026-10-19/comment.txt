@@ -1,0 +1,38 @@
+{panel:bgColor=#e3fcef|borderColor=#00875a}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Tested on Staging (build v26.40.19-31ad1e1) on 19 October 2026, signed in as Admin, window 1440 x 900 px, zoom 100%.
+* Resting the pointer on a Board View card now darkens its border *and* shows a soft shadow under the card.
+* Nothing changes at rest, and the card does not move or grow.
+* All 7 checks passed. One small question about the shadow's left and right sides is in a separate comment to Chris.
+
+*Before and after*
+!sv11394-01-before-after.png|width=1024,height=567!
+_The same work order, S2-33692, with the pointer on its card. Left (BEFORE): our capture of 16 October on staging build v26.40.19-edc8195, border darker, no shadow. Right (AFTER): today on staging build v26.40.19-31ad1e1, border darker and a soft shadow under the card. The extra lines on today's card (VIN, On site) come from other changes, not this ticket. Window 1440 x 900 px, zoom 100%._
+
+*What I checked*
+||#||Check||Status||
+|1|At rest a card has no shadow (7 cards: S2-34941, S2-16688, S2-17495, S2-33692, S2-33043, S2-35175, S2-35176).|PASSED|
+|2|With the pointer on the card, a soft shadow shows under it, on all 7 cards.|PASSED|
+|3|With the pointer on the card, the border turns darker, as before the fix.|PASSED|
+|4|The card does not move or grow on hover: its position and size are the same at rest and on hover on all 7 cards.|PASSED|
+|5|The same at Compact, Regular and Comfortable card size, in the Unassigned column, in technician columns and on a Paid card.|PASSED|
+|6|Dark theme (switched from the profile menu, top right): no shadow at rest, a shadow on hover and a darker border (checked on 3 cards).|PASSED|
+|7|Tech View is not affected: a row still turns light grey under the pointer, as before.|PASSED|
+
+*Where the expected result comes from*
+The ticket's own sources: the spec (version 64) covers what hover reveals (S3-R13) but not how the hover looks, so the look comes from the design named in story SV-10046's UI/UX section:
+{quote}Hover is a colour shift plus a lift (elev-1 → elev-2), never a scale.{quote}
+Chris confirmed it on 16 October in this ticket: "please remove that override on Board View cards so hovering a card shows the design's soft shadow, with the darker border as today."
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com and sign in as Admin.
+# Click *Work Orders* in the top menu, then the *All* tab (top left).
+# In the *Search* box above the list type {{S2-33692}}.
+# Click the *Board View* button (the right of the three view buttons, right side of the bar above the list).
+# Move the mouse pointer onto the card (don't click): its border turns darker and a soft shadow appears under it. Move the pointer away: the shadow goes.
+
+*Screen recording*
+!sv11394-card-hover-shadow-staging-recording-voiceover-v4.mp4|width=1280,height=800,alt="sv11394-card-hover-shadow-staging-recording-voiceover-v4.mp4"!
+_Staging, build v26.40.19-31ad1e1, 19 October 2026, Admin, window 1440 x 900 px, zoom 100%: card S2-33692 at rest, then with the pointer on it (light theme), the same in the dark theme, then a Tech View row on hover. Each caption is read from the page. With voice-over._
