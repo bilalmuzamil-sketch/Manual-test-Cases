@@ -1,0 +1,26 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-e435950",
+  "date": "19 October 2026",
+  "note": "run 498 C96945 after step 5 reworded"
+ },
+ "results": {
+  "C96945": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging. Step 5 now also clicks once on an empty part of the page: after Escape the keyboard focus stays on the More actions button (as the requirement for keyboard users asks), which keeps it showing until the focus leaves the card. The test's step was updated on 19 Oct 2026; its expected results are unchanged.",
+    "Step 1: with nothing hovered the More actions button is hidden; hovering S2-35376's card shows it.",
+    "Steps 2 and 3: the menu opens and offers Reassign lead technician (and Unassign).",
+    "Step 4: Escape closes the menu.",
+    "Step 5: after moving the mouse off and clicking outside the card, the button is hidden again.",
+    "Steps 6 to 8: the cursor is in Search; Tab lands on a card with a focus ring; with the focus on S2-35376's card, More actions shows without hovering.",
+    "Requirement (PRD version 64, S3-R13): \"Reveal the card's more-actions overlay on hover or keyboard focus.\""
+   ],
+   "ticket": null,
+   "pictures": [
+    "pictures-1019/C96945-1-more-actions.png"
+   ]
+  }
+ }
+}
