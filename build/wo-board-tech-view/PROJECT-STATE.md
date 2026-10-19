@@ -311,3 +311,4 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
 - 19 Oct — C97003 re-run e435950 (s9-r4-C97003.json): step 7 Ben lands right after Unassigned; step 11 reads Unassigned, Ben, Cal, Ana (case expects Unassigned, Cal, Ana, Ben); dispatcher unchanged. Expected step 11 needs naming.
 - 19 Oct — C590122 re-run e435950: steps 5-10 as before (search kept after Clear all filters in Board/Tech/List); the empty-group/column readings (steps 1-4) were not drawn by the script today (17 Oct readings stand). Decisions put to the QA lead: C96916, C368214, C97003, C590122 (Expected changes, need naming), C614711 (PRD 'blank, as today' vs production 'Unassigned').
 - 19 Oct — QA lead: deleted lead → List shows 'Unassigned' is EXPECTED (L0457). C614711 step 8 updated; re-run on e435950 in progress.
+- 19 Oct — C614711 PASSED (527978-ish) after the 'Unassigned' ruling. Blocked left: C96916, C368214, C97003, C590122 (waiting for his yes).

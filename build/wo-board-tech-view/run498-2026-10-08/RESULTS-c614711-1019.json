@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-e435950",
+  "date": "19 October 2026",
+  "note": "run 498 C614711 after QA lead ruling"
+ },
+ "results": {
+  "C614711": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging. Step 8 now expects \"Unassigned\" (QA lead's decision, 19 Oct 2026): it is what List shows today, on production and staging, for a work order whose lead was deleted.",
+    "Steps 1 and 2: ZZAUTOTEST C614711 Dana 13259's staff record opened; Delete and the confirmation removed her from the Staff list.",
+    "Steps 3 to 5: Board View shows both cards; S2-37460 sits in a column headed \"Deleted technician\" with the Inactive marker and no drag handle.",
+    "Step 6: S2-37461 dropped on the Deleted technician column was refused and stayed in Unassigned.",
+    "Step 7: in Tech View, S2-37460 sits in a group headed \"Deleted technician\" with the Inactive marker and no handle.",
+    "Step 8: in List, S2-37460's Lead Technician cell reads \"Unassigned\".",
+    "Steps 9 and 10: back in Board View, S2-37460 dragged onto ZZAUTOTEST C614711 Eli's column moved there with \"Lead technician updated\".",
+    "The old problem SV-11416 (\"Unknown Technician\") was not seen; that ticket is Done."
+   ],
+   "ticket": null,
+   "pictures": [
+    "pictures-1019/C614711-1-deleted-lead.png"
+   ]
+  }
+ }
+}
