@@ -276,3 +276,7 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
   Item 1: C96916 / C368214 — "Work Orders tab + Status Approved" cannot exist: Status is offered on the All tab only, on staging
   (v26.40.19-e435950) AND production (v26.40.19-d2441a9) (L0451, evidence tabs-status-filter-*.json). Both Expected texts name that
   state, so fixing them needs the QA lead to name the cases (114(c)). C368214 is Automated (tell Vlad if changed). Asked 19 Oct.
+- 19 Oct — QA lead: Technician-filter tests to RETEST with "will be retested once <SV-11326> is development-complete and available
+  for QA". Done: C581915–C581918, C97022 → Retest (results 527962–527966, defects SV-11326; retest-sv11326-1019.json).
+  Run now 248 Passed · 6 Failed · 14 Blocked · 10 Retest. Remaining blocked: C96916, C368214 (asked, item 1), C368145, C96912,
+  C96936, C368167, C368131, C97003, C614711, C96945, C590122, C97024, C97035, C368153.
