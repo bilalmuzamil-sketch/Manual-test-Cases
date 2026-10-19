@@ -84,6 +84,8 @@ design's own words or name the element as the design names it). Design and spec 
 PO question goes out the same day; the divergence register records "sent on". Every defect anyone reports on the design must
 map to a case here before the suite is called complete.
 
+Every design reference in a case (design link, boards or pages, attached picture names, the design's own words) goes under its own title **"References from Design"**, after a blank line below the source quotes; never in the Source paragraph or the quote list (Rule 117, tenth amendment, 19 Oct 2026). Design cases attach the board pictures, name them in the preconditions and quote the boards' own titles and notes; every board is attached to at least one case.
+
 ## 7 · Hand-over gate
 Only when steps 2–6 (including 4b and 6b) are done: commit `DESIGN-COVERAGE-<date>.md` (the file-reading table; the sweep totals; the
 VISUAL inventory counts and the unsent-question count, which must be 0 (Rule 126); the text

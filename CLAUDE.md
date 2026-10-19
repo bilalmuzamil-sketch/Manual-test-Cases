@@ -471,6 +471,8 @@ traceability, VIU, open questions), linked from every case; it replaces the per-
 "Step N:" result per step; below the results the Source, divergence, exact quotes and AUTOMATION line stay. Read the amendment
 in `build/rules/RULES-61-96.md` before writing a case.
 
+**🔴 Rule 117 TENTH AMENDMENT, PERMANENT (QA lead, 2026-10-19): design references have their own block.** Below the source quotes, after a blank line, a separate title **"References from Design"** holds the design link with the boards or pages used, the attached design pictures and the design's own words quoted; nothing from the design stays in the Source paragraph or the quote list; the AUTOMATION line stays last. Read the amendment in `build/rules/RULES-61-96.md`.
+
 **🔴 Rule 118 (each session follows only its own rule book — facts may be shared, rules may not)** was
 ordered by the QA lead **2026-10-06** and lives at the end of `build/rules/RULES-61-96.md`, after 117.
 My rules are this copy's index, rule files and skills; another session's notes are read for facts only;

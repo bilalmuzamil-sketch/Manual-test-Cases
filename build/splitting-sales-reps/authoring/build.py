@@ -28,6 +28,12 @@ _boards = {os.path.basename(x) for x in _g.glob(f"{ssr_lib.P}/design-drive-2026-
 _used = {p for c in ssr_lib.CASES for p in c["pictures"]}
 if _boards - _used: probs.append(f"design boards attached to no case: {sorted(_boards - _used)}")
 print("design gate: boards", len(_boards), "attached", len(_boards & _used), "| design cases", sum(c['sec'] == 'DESIGN' for c in ssr_lib.CASES))
+# REFERENCES-FROM-DESIGN GATE (Rule 117, tenth amendment, 19 Oct 2026)
+for c in ssr_lib.CASES:
+    h = ssr_lib.render(c)["custom_expected"]
+    top = h.split("References from Design")[0]
+    if any(w in top for w in ("Claude design canvas", "Design — board", "Design pictures attached")): probs.append(f"{c['key']}: design reference above the References from Design block")
+    if ("Design — board" in h or c["pictures"]) and "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{c['key']}: design references without their own block")
 for p in probs: print("PROBLEM", p)
 out = {c["key"]: dict(sec=c["sec"], fields=ssr_lib.render(c)) for c in ssr_lib.CASES}
 json.dump(out, open(f"{ssr_lib.D}/proposals.json", "w"), indent=1, ensure_ascii=False)

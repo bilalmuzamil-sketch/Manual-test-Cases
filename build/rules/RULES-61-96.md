@@ -2853,6 +2853,27 @@ the sentence).** Everything else in Rule 117 and Rules 113/114 still applies.
    `correction-c97021/C97021-fields.json`; the live case was edited by someone else afterwards). Existing cases in the older shape
    are converted only when the QA lead asks (Rule 122 as amended: ask full pass or a named set).
 
+### 117 — TENTH AMENDMENT, PERMANENT (QA lead, 2026-10-19): design references have their own block, "References from Design"
+
+Ordered over the Splitting Sales Representatives suite on 19 Oct 2026, verbatim: *"Please revisit all the design cases and make sure
+that there is a line break after the Sources refrences end and the design references begin, thete should be a separate title like
+"References from Design" and then below that the design references should begin. Make it a permanent rule for future too and amend
+the current test cases aswell."* Stated back in plain words and confirmed as PERMANENT the same day ("Yes, record it as permanent").
+
+1. **In every case we write or change, on every project,** design references are not mixed into the Source paragraph or the
+   "Exact quotes from the source" list. They go in their own block, after a blank line that follows the source quotes, under the
+   title **"References from Design"**.
+2. **The block holds:** the design link with the boards or pages used (and why: the picture to compare against, or the page the
+   story cites for on-screen labels); the names of the design pictures attached to the case; and the design's own words quoted
+   verbatim (board titles and notes), one bullet each.
+3. **Order below the expected results:** Source paragraph (documents only: epic, stories, PRD, tech plan, other specs, PO answers,
+   build check) → divergence paragraph(s) → "Exact quotes from the source (for reproducibility)" → blank line → "References from
+   Design" → the AUTOMATION line, last.
+4. **Enforced by the build:** a case whose design references sit above the block, or that has design references with no block, is
+   refused. Worked example: Splitting Sales Representatives, group 84266, all 120 cases (`build/splitting-sales-reps/authoring/`).
+5. Existing suites in the older layout (WO Board and Tech View, Dashboard) are converted only when the QA lead asks (19 Oct 2026:
+   "Not now").
+
 ## 118 · EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK — FACTS MAY BE SHARED, RULES MAY NOT (all projects, permanent)
 
 Standing instruction from the QA lead, 2026-10-06, recorded with his explicit approval ("This message is my

@@ -139,3 +139,6 @@ or PERMANENT.** If PERMANENT, **state back in plain words exactly what you would
 standard, and ask whether they still want it done** before recording anything (Rule 72). A one-time
 authorization affects only that single case/run and never edits this file or Rule 117. Silence,
 implication, or your own judgement is never authorization.
+
+## Tenth amendment (PERMANENT, QA lead, 19 Oct 2026): "References from Design"
+Below "Exact quotes from the source (for reproducibility)", after a blank line, a separate title **References from Design** holds every design reference: the design link with the boards or pages used, the names of the attached design pictures, and the design's own words quoted (board titles and notes). The Source paragraph and the quote list hold documents only. The AUTOMATION line stays last. Full text: Rule 117, tenth amendment (`build/rules/RULES-61-96.md`).
