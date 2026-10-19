@@ -318,3 +318,10 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
   (PRD v64 §9 "Existing List empty state and clear-filter behavior in all display options"). Edits: case-updates-2026-10-19d/. C96916's Tech
   View half re-run with s1-r8.mts (s1-r7's reading was void, L0458). Results RESULTS-four-1019.json, pictures pictures-1019/C96916-*, C368214-1,
   C97003-1, C590122-1. Run now 263 Passed · 7 Failed · 0 Blocked · 10 Retest. C368214 Automated → tell Vlad.
+
+- 19 Oct (16:20 UTC) — retest of tests updated in the last 9 hours (QA lead: "test all the test cases which have been updated since last 9 hours"),
+  staging v26.40.19-c850386: C368131, C368167, C96936, C614719 (preconds rewritten by Vladimir, steps unchanged), C682419 (NEW, scroll bar
+  16 px / handle 150 px; PRD v65 S3-E2 read live, matches the case quote) — all Passed with pictures (RESULTS-retest6-1019.json). C96953
+  re-run with a mouse-driven script (c96953-cols.mts) in progress. Facts: no New Customer Payment window after Create Invoice on c850386
+  (L0462, C368167 step 2 wording now stale, Automated → asked); scrollbar measurements need --hide-scrollbars off (L0464). Run: 264 Passed
+  · 7 Failed · 0 Blocked · 10 Retest.
