@@ -1,11 +1,12 @@
 {panel:bgColor=#fffae6|borderColor=#ff991f}
-*QA STATUS: WAITING ON ONE ANSWER FROM CHRIS — everything I checked passes*
+*OVERALL QA STATUS: PASSED, as long as Chris confirms the behaviour in the next comment is acceptable*
 {panel}
+_First posted 19 October 2026, 11:26 CDT. Updated on 19 October 2026, 11:35 CDT: the status now says the ticket is QA passed if Chris accepts the one behaviour I asked him about, and that question moved to its own comment below._
 
 Tested on Staging (build v26.40.19-c850386) on 19 October 2026, against the spec (version 66), signed in as Admin. This comment replaces the PARTIALLY PASSED result from 18 October.
 * The two checks that failed on 18 October now pass. When "Unassigned" is empty and the first work order is further down the page, the first Tab now goes to that work order, in Tech View and in Board View.
 * The other 7 checks still pass.
-* One question for Chris is at the bottom. In Tech View the first Tab moves the work order up so it sits under its technician's heading, which stays fixed at the top. The row and its focus ring can't be seen until you press an arrow key.
+* One question for Chris is in the next comment. In Tech View the first Tab moves the work order up so it sits under its technician's heading, which stays fixed at the top. The row and its focus ring can't be seen until you press an arrow key. If Chris says that's acceptable, this ticket is QA passed.
 
 *Where the expected result comes from*
 Spec "Work Orders — Board View & Tech View Display Options", version 66:
@@ -33,17 +34,6 @@ _Staging today, Admin, window 1440 x 900 px, zoom 100%. 1: rows in Unassigned, f
 
 ----
 
-*Question for [~accountid:712020:aa00b8d6-a71f-4259-8919-82a304227c20]*
-In Tech View, when the first Tab has to bring the work order onto the screen (check 1), it moves the row to the very top. That puts it under its technician's heading ("Brandi Smith"), which stays fixed at the top, so the row and its blue focus ring can't be seen. The keyboard focus is on the row. Pressing the Up arrow and then the Down arrow moves it below the heading, where it shows with its ring. Board View doesn't do this: the card shows fully.
-
-S11-R1 ends: "the focused row or card shows a visible focus ring." Does this count as a fault for this ticket, or is it fine as it is?
-
-!sv11422-03-row-under-heading.png|width=1100,height=693!
-_Staging today, Admin, window 1440 x 900 px, zoom 100%. 1 (red): right after the first Tab the keyboard focus is on S2-16688, but the "Brandi Smith" heading covers it. 2 (green): after Up arrow then Down arrow, S2-16688 shows below the heading with its blue focus ring._
-
-*How to see it yourself*
-# Open Staging: [https://app.staging.shopview.com/workorders|https://app.staging.shopview.com/workorders] and click the *All* tab (top left).
-# In the *Search* box above the list type {{S2-16688}}.
-# On the right of that bar, click the *Tech View* button (the middle of the three view buttons, a person icon).
-# Click once in the *Search* box, then press Tab until the keyboard focus moves into the table. The list jumps down and the "Brandi Smith" heading is at the top, but no work order row shows under it.
-# Press the Up arrow, then the Down arrow: {{S2-16688}} now shows just below "Brandi Smith" with the blue focus ring.
+*The one open question*
+_Updated on 19 October 2026, 11:35 CDT: the question, its picture and the steps to see it are now in a separate comment to Chris, below this one._
+In Tech View the first Tab brings S2-16688 onto the screen, but under the fixed "Brandi Smith" heading, so its focus ring can't be seen until an arrow key is pressed. If Chris confirms that's acceptable, SV-11422 is QA passed; if not, it goes back to Slavcho to fix.
