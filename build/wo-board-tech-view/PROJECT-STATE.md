@@ -272,3 +272,7 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
     test https://shopview.testrail.io/index.php?/tests/view/3995726
   - Design basis: commit 23ab6f695 VISUAL-INVENTORY-ROWS V0753/V0754 and V0929 (L0450). Drafts D-C590114-2026-10-19.wiki, D-C590117-2026-10-16.wiki.
 - C96929 (Automated, changed with his yes 19 Oct) — tell Vlad: test https://shopview.testrail.io/index.php?/tests/view/3481873 (run 498).
+- 19 Oct — blocked tests, one by one. Technician filter (SV-11326) still Open, not on staging → C581915–C581918, C97022 stay Blocked.
+  Item 1: C96916 / C368214 — "Work Orders tab + Status Approved" cannot exist: Status is offered on the All tab only, on staging
+  (v26.40.19-e435950) AND production (v26.40.19-d2441a9) (L0451, evidence tabs-status-filter-*.json). Both Expected texts name that
+  state, so fixing them needs the QA lead to name the cases (114(c)). C368214 is Automated (tell Vlad if changed). Asked 19 Oct.
