@@ -132,10 +132,11 @@ def main(quick=False):
         c3 = [ptt.titled('Lock note shows', ['SV-11545']) == 'SV-11545 - Lock note shows',
               ptt.titled('SV-11326 - Lock note shows', ['SV-11545']) == 'SV-11545 - Lock note shows',
               ptt.titled('Lock note shows', []) == 'Lock note shows',
-              ptt.titled('SV-11326 - X', ['SV-11545', 'SV-11546']) == 'SV-11545, SV-11546 - X']
+              ptt.titled('SV-11326 - X', ['SV-11545', 'SV-11546']) == 'SV-11545, SV-11546 - X',
+              ptt.unprefixed('SV-11545, SV-11546 - X') == 'X', ptt.unprefixed('Plain title - X') == 'Plain title - X']
         src133 = open(f'{T}/push_results_to_run.py').read()
-        check('results: a Failed/Retest/Blocked case with a ticket gets one current "SV-n - " title prefix, none without (Rule 133)',
-              all(c3) and 'prefix_case(t,' in src133 and "custom_atmstatus') == 3" in open(f'{T}/prefix_ticket_titles.py').read(), str(c3))
+        check('results: a Failed/Retest/Blocked case with a ticket gets one current "SV-n - " title prefix, none without, removed on a pass (Rule 133)',
+              all(c3) and 'prefix_case(t,' in src133 and 'unprefix_case(t,' in src133 and "custom_atmstatus') == 3" in open(f'{T}/prefix_ticket_titles.py').read(), str(c3))
     except Exception as e:
         check('results: Rule 133 title prefix', False, repr(e)[:160])
     # 7d · Rule 130 (2026-10-14): results are refused until the QA lead's screenshot answer is recorded; "yes" attaches pictures

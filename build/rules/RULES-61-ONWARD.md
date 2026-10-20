@@ -5177,3 +5177,8 @@ His words (20 Oct 2026, run 498), in order: *"Please prefix all the test cases w
 (5) **Unchanged guards:** Vladimir Tomovic's cases are never changed (Rule 38). A case TestRail flags Automated (`custom_atmstatus 3`) is held for his go-ahead (Rule 71 — the tool reports it as HELD; `--include-automated` only on his yes) and, once changed, Vlad is told (Rule 65). The Expected is never touched (Rule 114).
 (6) **Open with him (asked 20 Oct):** whether the prefix comes off when the test later passes. Until he answers, it is left in place.
 Relation to other rules: complements Rules 122/123/132 (what the result says) — this is what the CASE title says; Rule 113 unchanged.
+
+## RULE 133 — AMENDMENT 2026-10-20 (QA lead, same day): **WHEN THE TEST PASSES, THE TICKET PREFIX COMES OFF**
+Asked *"When a test with a prefix later passes, should the ticket number come off its title?"*, he answered: *"Yes save it as a rule aswell."*
+(7) **A Passed test's case title loses its `SV-… - ` prefix** — the title goes back to its own words. This **replaces clause (6)** ("left in place until he answers"), kept here dated. The same guards apply: never Vladimir's (38); an Automated case is held for his go-ahead and Vlad is told after (71/65).
+(8) **Mechanics:** `push_results_to_run.py` removes it for every Passed result it posts; `prefix_ticket_titles.py --run N` removes it from every Passed test in the run (and adds/refreshes it on Failed/Retest/Blocked). Self-test check 7c3 covers both directions.

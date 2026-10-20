@@ -490,3 +490,9 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - `build/testing-tools/prefix_ticket_titles.py` (sweep a run, `--dry-run`, `--include-automated`, `--audit`) and a hook in `push_results_to_run.py` (step 3c: only the record's own ticket LINK counts — comments may mention other tickets in passing). Self-test check 7c3; proven to FAIL on a throwaway worktree with the prefix logic broken.
 - Run 498 after the sweep: all 22 Failed/Retest cases carry their ticket; 0 Blocked.
 #rule133 #testrail #titles #tooling → L0486, L0487
+
+## L0489 — 2026-10-20 — Rule 133 amended: a Passed test's ticket prefix comes off
+- QA lead: "Yes save it as a rule aswell" — when a prefixed test passes, its title goes back to its own words. `unprefix_case()` in `prefix_ticket_titles.py`; `push_results_to_run.py` calls it for every Passed result; the run sweep removes it from Passed tests. Self-test 7c3 covers both directions; a copy with removal broken fails it.
+- Order matters: check "title already correct" BEFORE the Automated hold, or an Automated case prefixed on his yes is reported as still held (fixed). A `pgrep -f "<cmd>"` wait loop matches its own command line — never wait on a process that way.
+- Run 498 sweep (dry): all 22 Failed/Retest titles correct, no Passed title carries a prefix — nothing to change.
+#rule133 #testrail #titles #tooling → L0488

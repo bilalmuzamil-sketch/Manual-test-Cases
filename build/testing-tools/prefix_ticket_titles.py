@@ -33,6 +33,30 @@ def titled(title, keys):
     return '%s - %s' % (', '.join(keys), base) if keys else title
 
 
+def unprefixed(title):
+    """The title with its ticket prefix removed (Rule 133 amendment: a Passed test loses its prefix)."""
+    return PREFIX.sub('', title, count=1)
+
+
+def unprefix_case(t, case_id, include_automated=False, dry=False):
+    s, c = t.get('get_case/%d' % case_id)
+    old = c.get('title', '')
+    row = {'case': case_id, 'tickets': [], 'old': old}
+    new = unprefixed(old)
+    if new == old:
+        return {**row, 'skipped': 'no prefix'}
+    if c.get('created_by') == 1:
+        return {**row, 'skipped': "Vladimir Tomovic's case — never changed (Rule 38)"}
+    if c.get('custom_atmstatus') == 3 and not include_automated:
+        return {**row, 'held': 'Automated — needs the QA lead\'s go-ahead, then tell Vlad (Rules 71/65)'}
+    if dry:
+        return {**row, 'would': new}
+    s2, _ = t.post('update_case/%d' % case_id, {'title': new})
+    s3, b = t.get('get_case/%d' % case_id)
+    return {**row, 'new': new, 'http': s2, 'readBack': b.get('title'), 'verified': b.get('title') == new,
+            'automated': c.get('custom_atmstatus') == 3}
+
+
 def tickets_for(t, test):
     """Distinct SV keys named by the test's newest results down to the newest one in its current status."""
     s, r = t.get('get_results/%d&limit=25' % test['id'])
@@ -53,11 +77,11 @@ def prefix_case(t, case_id, keys, include_automated=False, dry=False):
         return {**row, 'skipped': 'no ticket — no prefix (Rule 133)'}
     if c.get('created_by') == 1:
         return {**row, 'skipped': "Vladimir Tomovic's case — never changed (Rule 38)"}
+    new = titled(old, keys)
+    if new == old:   # checked BEFORE the Automated hold: an already-correct title needs nobody's go-ahead
+        return {**row, 'skipped': 'already prefixed'}
     if c.get('custom_atmstatus') == 3 and not include_automated:
         return {**row, 'held': 'Automated — needs the QA lead\'s go-ahead, then tell Vlad (Rules 71/65)'}
-    new = titled(old, keys)
-    if new == old:
-        return {**row, 'skipped': 'already prefixed'}
     if dry:
         return {**row, 'would': new}
     s2, _ = t.post('update_case/%d' % case_id, {'title': new})
@@ -82,7 +106,13 @@ def main():
             break
         off += 250
     log = []
-    for x in [x for x in tests if x['status_id'] in STATUS]:
+    for x in [x for x in tests if x['status_id'] in STATUS or x['status_id'] == 1]:
+        if x['status_id'] == 1:   # Passed: the prefix comes off (amendment 2026-10-20)
+            row = unprefix_case(t, x['case_id'], a.include_automated, a.dry_run)
+            if row.get('skipped') == 'no prefix':
+                continue
+            row.update({'test': x['id'], 'status': 'Passed'}); log.append(row)
+            print(json.dumps({k: row[k] for k in row if k not in ('old', 'readBack')})); continue
         row = prefix_case(t, x['case_id'], tickets_for(t, x), a.include_automated, a.dry_run)
         row.update({'test': x['id'], 'status': STATUS[x['status_id']]})
         log.append(row)

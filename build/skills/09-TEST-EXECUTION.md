@@ -661,3 +661,4 @@ Edit link; ~2–3 day window, L0475), never by adding a new one. Full text: `bui
 - `push_results_to_run.py` does this by itself for what it posts; for a whole run: `python3 build/testing-tools/prefix_ticket_titles.py --run <N> --dry-run`, then without `--dry-run`.
 - Never Vladimir's cases (38). Automated cases (`custom_atmstatus 3`) are HELD and listed — ask him, then `--include-automated`, then tell Vlad (71/65).
 - Full text: `build/rules/RULES-61-ONWARD.md` rule 133.
+- **Amended 2026-10-20: when the test PASSES, the prefix comes off** (both tools do it; same guards).

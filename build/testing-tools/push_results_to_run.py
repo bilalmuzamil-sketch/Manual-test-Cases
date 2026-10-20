@@ -388,8 +388,13 @@ def main():
 
     # --- 3c. Rule 133 (QA lead 2026-10-20): a Failed, Retest or Blocked case whose result names a ticket carries it at the
     # start of its title, "SV-11545 - <title>". No ticket, no prefix. Automated cases are held for his go-ahead (Rule 71).
-    from prefix_ticket_titles import prefix_case, KEY as _KEY
+    from prefix_ticket_titles import prefix_case, unprefix_case, KEY as _KEY
     for p_ in payload:
+        if p_.get('status_id') == 1:   # Passed: the ticket prefix comes off (Rule 133 amendment 2026-10-20)
+            row = unprefix_case(t, p_['case_id'])
+            if row.get('skipped') != 'no prefix':
+                print('  C%d: title prefix removed (Rule 133) ->' % p_['case_id'], row.get('new') or row.get('skipped') or row.get('held'))
+            continue
         if p_.get('status_id') not in (2, 4, 5):
             continue
         # only the record's own ticket LINK counts (a comment may mention other tickets in passing; a held ticket has no key)
