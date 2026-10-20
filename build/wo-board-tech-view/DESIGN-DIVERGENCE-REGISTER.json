@@ -415,5 +415,13 @@
    "C682431"
   ],
   "ruled": "2026-10-19"
+ },
+ "S4-R29|Clear {Name}'s scheduled shifts?": {
+  "outcome": "DESIGN-SILENT",
+  "where": "Design export 14 Oct 2026: the three .dc.html files contain no clear-shifts prompt (no \"Keep shifts\", no \"has shifts scheduled\"; checked by grep 20 Oct 2026). Surfaced when spec_to_design_check.py stopped probing only the text before a placeholder (it had matched the bare word \"Clear\").",
+  "cases": [
+   "C368134"
+  ],
+  "ruled": "2026-10-20"
  }
 }

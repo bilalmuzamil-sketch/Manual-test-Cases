@@ -17,6 +17,9 @@ PRD.md: the saved PRD (requirement lines "- **S4-R12:** ..."). FILE: the design 
 DESIGN-SILENT: the design draws no version of that state at all (nothing to compare; the PRD stands alone).
 SHOWN-WHEN-DRIVEN: the words are built at run time, so they are not literally in the files; the flow drive saw them on screen.
 QUESTION-READY (written, not yet sent) does NOT close a row.
+Letter case counts (QA lead, 20 Oct 2026, lesson L-04): a PRD word the design shows only in other letter case ("Sales representative" vs
+"Sales Representative") is reported as CASE-DIFFERS and needs its own register row; it is never taken as shown. A label that appears only
+inside a longer phrase (for example "Sales representative changed") still counts as shown here, so labels are also compared by hand.
 "KNOWN" is not an outcome: a difference is closed only by a sent question or a ruling.
 Elements the PRD names without quotes (a row, a button, an order) are not machine-checkable: the design drive lists each dialog's,
 menu's and toast's rows and buttons by hand (skill 21, step "spec to design") and adds any difference to the same register."""
@@ -27,7 +30,8 @@ ap.add_argument("--register", required=True); ap.add_argument("--out")
 a = ap.parse_args()
 prd = open(a.prd, encoding="utf-8").read()
 files = [f for p in a.design for f in glob.glob(p)]
-des = html.unescape(" ".join(open(f, encoding="utf-8", errors="replace").read() for f in files)).lower()
+des_exact = html.unescape(" ".join(open(f, encoding="utf-8", errors="replace").read() for f in files))
+des = des_exact.lower()
 reg = json.load(open(a.register)) if glob.glob(a.register) else {}
 OK = {"QUESTION-SENT", "PO-RULED", "QA-LEAD-RULED", "DESIGN-SILENT", "SHOWN-WHEN-DRIVEN"}
 rows = []
@@ -35,12 +39,13 @@ for line in prd.split("\n"):
     m = re.match(r"- \*\*(S\d+-[RNE]\d+[a-z]?):\*\*\s*(.*)", line)
     if not m: continue
     for q in re.findall(r"[“\"]([^”\"]{2,90})[”\"]", m.group(2)):
-        probe = q.split("{")[0].strip()
-        if len(probe) < 3 or probe.lower() in des: continue
+        probe = max((p.strip() for p in re.split(r"\{[^}]*\}", q)), key=len)  # the longest fixed piece, not just the part before a placeholder
+        if len(probe) < 3 or probe in des_exact: continue
+        kind = "CASE-DIFFERS" if probe.lower() in des else "NOT-SHOWN"
         key = f"{m.group(1)}|{q}"; r = reg.get(key, {})
-        rows.append(dict(key=key, code=m.group(1), words=q, outcome=r.get("outcome"), closed=r.get("outcome") in OK))
+        rows.append(dict(key=key, code=m.group(1), words=q, kind=kind, outcome=r.get("outcome"), closed=r.get("outcome") in OK))
 open_rows = [r for r in rows if not r["closed"]]
-print(f"design files {len(files)}; PRD words not shown by the design: {len(rows)}; not closed in the register: {len(open_rows)}")
-for r in open_rows: print(f"OPEN {r['code']}: \"{r['words']}\"" + (f" (outcome '{r['outcome']}' is not a closing outcome)" if r["outcome"] else ""))
+print(f"design files {len(files)}; PRD words not shown by the design: {len(rows)} ({sum(r['kind'] == 'CASE-DIFFERS' for r in rows)} only in other letter case); not closed in the register: {len(open_rows)}")
+for r in open_rows: print(f"OPEN {r['code']} [{r['kind']}]: \"{r['words']}\"" + (f" (outcome '{r['outcome']}' is not a closing outcome)" if r["outcome"] else ""))
 if a.out: json.dump(rows, open(a.out, "w"), indent=1, ensure_ascii=False)
 sys.exit(1 if open_rows else 0)
