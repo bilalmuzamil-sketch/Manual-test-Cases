@@ -31,3 +31,14 @@ picks the label from the lead state: `hasLead ? "Reassign lead technician" : "As
 branch works. Live testing there is waiting on the QA lead's go-ahead (asked: test on branch instead of staging?).
 
 Nothing posted to Jira. No data changed on staging (menus and dialogs were opened and closed with Cancel/close only).
+
+## Update 20 Oct 2026 ~18:30 UTC
+- QA lead's choices: test on the QA branch sv11570 (staging shown as the before) · screen recording YES, voice-over NO ·
+  no "Technical details for developers" section.
+- Ticket changelog (shared account = QA lead's own actions, not reversed): 13:07 CDT TESTING QA → REJECTED FROM TESTING with
+  comment "This ticket is in Testing QA but I still do not see the fix on staging" + video; 13:15–13:18 CDT moved back through
+  In Progress → Code Review → Ready for QA → TESTING QA. That comment is not on the ticket any more. Stefan Mitrovic set
+  QA Branch = https://sv11570.qa.shopview.com at 12:04 CDT.
+- TestRail: C682422 "More actions reads Assign lead technician when a work order has no lead", test T4056656 in run 498.
+- sv11570 signed in fine at ~18:12 UTC (v26.40.20-c1e9c1b), then stopped answering (connection closed / no response) from
+  ~18:15 UTC. Waiting for it to come back before the live matrix.
