@@ -1,0 +1,38 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-c850386",
+  "date": "20 October 2026",
+  "note": "run 498: release copies"
+ },
+ "results": {
+  "C690650": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, by the test's steps.",
+    "Steps 1 and 2: Board View with \"ZZAUTOTEST F1 Prompt Only Unfinished\": the six work orders show in Esther Howard's column.",
+    "Steps 3 and 4: dragging Work-order-1 (Esther's unfinished shift for the whole work order) into Ralph Edwards' column opens \"Clear Esther Howard's scheduled shifts?\".",
+    "Step 5: after Keep shifts it is in Ralph Edwards' column.",
+    "Steps 6 to 10: Work-order-2 (no shift), 3 (shift on one line only), 4 (only an ended shift), 5 (only Dana Ortiz's shift) and 6 (no shift of its own) each move straight away with no question.",
+    "In all the question opened for 1 of the 6 work orders."
+   ],
+   "pictures": [
+    "pictures-1019/C690650-1-question-only-wo1-1020.png"
+   ]
+  },
+  "C690651": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, by the test's steps.",
+    "Steps 1 and 2: Board View with \"ZZAUTOTEST F1 Prompt Cancel\": the card shows in Esther Howard's column.",
+    "Steps 3 to 8: each drag into Ralph Edwards' column opens the question about Esther Howard's scheduled shifts; after Cancel, after X and after Escape the question closes and the card is back in Esther Howard's column.",
+    "Steps 9 and 10: Lead Technician is still Esther Howard and her 8:00 to 12:00 shift for tomorrow is still there.",
+    "Steps 11 and 12: Tech View behaves the same: the question opens for each drag and after Cancel, X and Escape the row is back in Esther Howard's group.",
+    "Clicking outside the question leaves it open, which the test says is expected."
+   ],
+   "pictures": [
+    "pictures-1019/C690651-1-back-with-esther-1020.png"
+   ]
+  }
+ }
+}
