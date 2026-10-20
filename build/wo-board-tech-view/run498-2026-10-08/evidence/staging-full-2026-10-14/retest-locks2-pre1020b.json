@@ -1,0 +1,273 @@
+{
+ "runner": "3620a2b1",
+ "C96964": {
+  "data": {
+   "Invoiced": {
+    "id": "2dc5996f-21e9-40f6-8fb5-8324d800b105",
+    "number": "S2-37581"
+   },
+   "Paid": {
+    "id": "9e80d2b6-9482-4bef-bff1-c8cc3b452a7f",
+    "number": "S2-37582"
+   }
+  },
+  "log": [
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "status now Invoiced",
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "paid 201",
+   "status now Paid"
+  ],
+  "boardInvoiced": {
+   "lock": {
+    "host": true,
+    "lock": true,
+    "tag": "SPAN",
+    "cls": "board-card__lock",
+    "box": [
+     415,
+     240,
+     12,
+     12
+    ]
+   },
+   "lockAttrs": {
+    "self": {
+     "title": "The lead technician can't be changed once a work order is Invoiced or Paid.",
+     "aria": "The lead technician can't be changed once a work order is Invoiced or Paid.",
+     "desc": null,
+     "role": "img",
+     "html": "<span data-v-92b54839=\"\" id=\"v-5-141\" title=\"The lead technician can't be changed once a work order is Invoiced or Paid.\" aria-label=\"The lead technician can't be changed once a work order is Invoiced or Paid.\" class=\"board-card__lock\" data-test-id=\"board_card_lock\" role=\"img\" data-zz-lock=\"1\"><svg "
+    },
+    "parent": {
+     "title": null,
+     "aria": null,
+     "desc": null,
+     "role": null,
+     "html": "<span data-v-92b54839=\"\" class=\"board-card__heading\"><span data-v-92b54839=\"\" id=\"v-5-139\" class=\"board-card__number\" data-test-id=\"board_card_number\">S2-37581</span><span data-v-92b54839=\"\" id=\"v-5-141\" title=\"The lead technician can't be changed once a work order is Invoiced or Paid.\" aria-label=\""
+    }
+   },
+   "lockTip": [],
+   "items": [
+    {
+     "text": "Reassign lead technician",
+     "disabled": true
+    },
+    {
+     "text": "Unassign",
+     "disabled": true
+    }
+   ],
+   "reassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "unassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "drop": {
+    "drag": "held then released",
+    "held": {
+     "targetText": "ZC ZZAUTOTEST C96964 Ben Ben 0 0 work orders Drag a work order here to assign it",
+     "overlays": [
+      "The lead technician can't be changed once a work order is Invoiced or Paid."
+     ]
+    },
+    "messagesAfter": []
+   },
+   "leadAfter": "d4e5b0ab-6c81-493d-a144-335815816da8",
+   "columnAfter": "ZZAUTOTEST C96964 Ana Alpha"
+  },
+  "boardPaid": {
+   "lock": {
+    "host": true,
+    "lock": true,
+    "tag": "SPAN",
+    "cls": "board-card__lock",
+    "box": [
+     415,
+     411,
+     12,
+     12
+    ]
+   },
+   "lockAttrs": {
+    "self": {
+     "title": "The lead technician can't be changed once a work order is Invoiced or Paid.",
+     "aria": "The lead technician can't be changed once a work order is Invoiced or Paid.",
+     "desc": null,
+     "role": "img",
+     "html": "<span data-v-92b54839=\"\" id=\"v-5-146\" title=\"The lead technician can't be changed once a work order is Invoiced or Paid.\" aria-label=\"The lead technician can't be changed once a work order is Invoiced or Paid.\" class=\"board-card__lock\" data-test-id=\"board_card_lock\" role=\"img\" data-zz-lock=\"1\"><svg "
+    },
+    "parent": {
+     "title": null,
+     "aria": null,
+     "desc": null,
+     "role": null,
+     "html": "<span data-v-92b54839=\"\" class=\"board-card__heading\"><span data-v-92b54839=\"\" id=\"v-5-144\" class=\"board-card__number\" data-test-id=\"board_card_number\">S2-37582</span><span data-v-92b54839=\"\" id=\"v-5-146\" title=\"The lead technician can't be changed once a work order is Invoiced or Paid.\" aria-label=\""
+    }
+   },
+   "lockTip": [],
+   "items": [
+    {
+     "text": "Reassign lead technician",
+     "disabled": true
+    },
+    {
+     "text": "Unassign",
+     "disabled": true
+    }
+   ],
+   "reassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "unassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "drop": {
+    "drag": "held then released",
+    "held": {
+     "targetText": "ZC ZZAUTOTEST C96964 Ben Ben 0 0 work orders Drag a work order here to assign it",
+     "overlays": [
+      "The lead technician can't be changed once a work order is Invoiced or Paid."
+     ]
+    },
+    "messagesAfter": []
+   },
+   "leadAfter": "d4e5b0ab-6c81-493d-a144-335815816da8",
+   "columnAfter": "ZZAUTOTEST C96964 Ana Alpha"
+  },
+  "techInvoiced": {
+   "lock": {
+    "host": true,
+    "lock": true,
+    "tag": "SPAN",
+    "cls": "tech-view__row-lock",
+    "box": [
+     327,
+     342,
+     12,
+     12
+    ]
+   },
+   "lockAttrs": {
+    "self": {
+     "title": "The lead technician can't be changed once a work order is Invoiced or Paid.",
+     "aria": "The lead technician can't be changed once a work order is Invoiced or Paid.",
+     "desc": null,
+     "role": "img",
+     "html": "<span data-v-f10d21ac=\"\" title=\"The lead technician can't be changed once a work order is Invoiced or Paid.\" aria-label=\"The lead technician can't be changed once a work order is Invoiced or Paid.\" class=\"tech-view__row-lock\" data-test-id=\"tech_view_row_lock\" role=\"img\" data-zz-lock=\"1\"><svg data-v-"
+    },
+    "parent": {
+     "title": null,
+     "aria": null,
+     "desc": null,
+     "role": null,
+     "html": "<td data-v-f10d21ac=\"\" class=\"q-td cell rawNumber\"><a data-v-f10d21ac=\"\" href=\"/workorders/2dc5996f-21e9-40f6-8fb5-8324d800b105\" data-test-id=\"tech_view_row_number_link_2dc5996f-21e9-40f6-8fb5-8324d800b105\" class=\"tech-view__row-number\" draggable=\"false\" tabindex=\"-1\" data-drag-through=\"\">S2-37581</"
+    }
+   },
+   "lockTip": [],
+   "items": [
+    {
+     "text": "Reassign lead technician",
+     "disabled": true
+    },
+    {
+     "text": "Unassign",
+     "disabled": true
+    }
+   ],
+   "reassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "unassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "drop": {
+    "drag": "held then released",
+    "held": {
+     "targetText": "ZC ZZAUTOTEST C96964 Ben Ben 0 0 work orders",
+     "overlays": [
+      "The lead technician can't be changed once a work order is Invoiced or Paid."
+     ]
+    },
+    "messagesAfter": []
+   },
+   "leadAfter": "d4e5b0ab-6c81-493d-a144-335815816da8"
+  },
+  "techPaid": {
+   "lock": {
+    "host": true,
+    "lock": true,
+    "tag": "SPAN",
+    "cls": "tech-view__row-lock",
+    "box": [
+     175,
+     390,
+     12,
+     12
+    ]
+   },
+   "lockAttrs": {
+    "self": {
+     "title": "The lead technician can't be changed once a work order is Invoiced or Paid.",
+     "aria": "The lead technician can't be changed once a work order is Invoiced or Paid.",
+     "desc": null,
+     "role": "img",
+     "html": "<span data-v-f10d21ac=\"\" title=\"The lead technician can't be changed once a work order is Invoiced or Paid.\" aria-label=\"The lead technician can't be changed once a work order is Invoiced or Paid.\" class=\"tech-view__row-lock\" data-test-id=\"tech_view_row_lock\" role=\"img\" data-zz-lock=\"1\"><svg data-v-"
+    },
+    "parent": {
+     "title": null,
+     "aria": null,
+     "desc": null,
+     "role": null,
+     "html": "<td data-v-f10d21ac=\"\" class=\"q-td cell rawNumber\"><a data-v-f10d21ac=\"\" href=\"/workorders/9e80d2b6-9482-4bef-bff1-c8cc3b452a7f\" data-test-id=\"tech_view_row_number_link_9e80d2b6-9482-4bef-bff1-c8cc3b452a7f\" class=\"tech-view__row-number\" draggable=\"false\" tabindex=\"-1\" data-drag-through=\"\">S2-37582</"
+    }
+   },
+   "lockTip": [],
+   "items": [
+    {
+     "text": "Reassign lead technician",
+     "disabled": true
+    },
+    {
+     "text": "Unassign",
+     "disabled": true
+    }
+   ],
+   "reassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "unassignTip": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
+   "drop": {
+    "drag": "held then released",
+    "held": {
+     "targetText": "ZC ZZAUTOTEST C96964 Ben Ben 0 0 work orders",
+     "overlays": [
+      "The lead technician can't be changed once a work order is Invoiced or Paid."
+     ]
+    },
+    "messagesAfter": []
+   },
+   "leadAfter": "d4e5b0ab-6c81-493d-a144-335815816da8"
+  }
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline"
+}

@@ -135,6 +135,12 @@ def main(quick=False):
               ptt.titled('SV-11326 - X', ['SV-11545', 'SV-11546']) == 'SV-11545, SV-11546 - X',
               ptt.unprefixed('SV-11545, SV-11546 - X') == 'X', ptt.unprefixed('Plain title - X') == 'Plain title - X']
         src133 = open(f'{T}/push_results_to_run.py').read()
+        # 20 Oct 2026: a non-Passed result with NO ticket must take an old prefix off (a Retest that becomes Blocked-on-a-question)
+        class _T:
+            def __init__(s): s.title = 'SV-11326 - X'; s.posted = []
+            def get(s, p): return 200, {'title': s.title, 'created_by': 3, 'custom_atmstatus': 1}
+            def post(s, p, b): s.posted.append(b); s.title = b['title']; return 200, {}
+        ft = _T(); c3.append(ptt.prefix_case(ft, 1, []).get('verified') is True and ft.title == 'X')
         check('results: a Failed/Retest/Blocked case with a ticket gets one current "SV-n - " title prefix, none without, removed on a pass (Rule 133)',
               all(c3) and 'prefix_case(t,' in src133 and 'unprefix_case(t,' in src133 and "custom_atmstatus') == 3" in open(f'{T}/prefix_ticket_titles.py').read(), str(c3))
     except Exception as e:

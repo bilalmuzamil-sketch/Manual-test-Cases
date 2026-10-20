@@ -73,7 +73,9 @@ def prefix_case(t, case_id, keys, include_automated=False, dry=False):
     s, c = t.get('get_case/%d' % case_id)
     old = c.get('title', '')
     row = {'case': case_id, 'tickets': keys, 'old': old}
-    if not keys:
+    if not keys:   # "When there is no ticket no need to prefix": a prefix left from an earlier ticket comes off (20 Oct 2026)
+        if PREFIX.match(old):
+            return {**unprefix_case(t, case_id, include_automated, dry), 'tickets': []}
         return {**row, 'skipped': 'no ticket — no prefix (Rule 133)'}
     if c.get('created_by') == 1:
         return {**row, 'skipped': "Vladimir Tomovic's case — never changed (Rule 38)"}
