@@ -986,3 +986,10 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - **The lock icon's tooltip is a native `title` attribute** (also `aria-label`) on `span.board-card__lock` / `span.tech-view__row-lock`; headless Chromium never draws a native title box, so read the attribute — a missing `.q-tooltip` is not "no tooltip".
 - **For the view-only user the Invoiced card shows no lock icon** (seen in C97020-v-s5-enter.png) — not asserted by any test; noted only.
 #run498 #retest #permission #locked #c850386 → L0472, L0471
+
+## L0474 — 2026-10-20 — Finding which open runs hold a case: skip the Nightly runs first
+- Project 1 has **357 open runs; 321 are "Nightly Test Run …"** (Engineering's automated runs, Rule 47 — not ours). Paging `get_tests` across all of them took over 30 min and was killed. **Filter `get_runs` to names not starting "Nightly Test Run" (36 runs) and page only those** — done in under 10 min.
+- `tr_client.get()` returns `(status, body)`; body of `get_runs` / `get_tests` is a dict with `runs` / `tests`.
+- 20 Oct: C614711, C96964, C97020, C590121, C96967, C368147 sit in exactly one manual run, **498**, plus every Nightly run from 20 Sep on.
+- `push_results_to_run.py` posts the "Follow the status here" comment for the FIRST ticket of a result only; a result with two tickets needs the second posted by hand (`add_result_for_case`, status 5, `defects` = key) — done for C97020 / SV-11545 (result 529863).
+#testrail #runs #nightly #tooling → L0473
