@@ -1,4 +1,4 @@
-# WO Board and Tech View: setup file for Claude sessions (46 cases, 16 to 20 Oct 2026)
+# WO Board and Tech View: setup file for Claude sessions (45 cases, 16 to 20 Oct 2026)
 
 This file is for a Claude session. A manual tester never needs it: each test case is complete on its own. With this file and the access the user gives at the start of the session, a new session can put the account into every case's starting state. It holds no environment address, credentials, cookies or session data.
 
@@ -1314,6 +1314,48 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Placeholder values:** give the tester the real technician names, customer name and work order numbers after setup. Source of these steps: the case before the 20 Oct 2026 conversion (`build/wo-board-tech-view/c97022-standard-2026-10-20/C97022-before.json`) and the SV-11582 reproduction steps (Bilal Muzamil, 20 Oct 2026).
 
+#### SETUP-C581915 — [C581915](https://shopview.testrail.io/index.php?/cases/view/581915) SV-11575 - Tech View and Board View offer a Technician filter that List does not
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Three technicians are active at {Location-A} with the "Technician" role and Time Clock on, added in this order: {Technician-A}, {Technician-B}, {Technician-C}. For example: {Technician-A} is Ana Carter, {Technician-B} is Ana Brooks and {Technician-C} is Ben Adams.
+- Technician {Technician-D} is deactivated at {Location-A} and still leads at least one work order there, so Tech View shows their group marked "Inactive". For example: {Technician-D} is Aimee Francis.
+- Starting screen: "Work Orders" > "All" tab, "Tech View" shown, "Search" empty, no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  On staging, Ana Carter, Ana Brooks and Ben Adams (added in that order) and Aimee Francis (deactivated, column marked Inactive with 8 work orders) already exist (run of 20 Oct 2026, T3982130). Check them in Tech View before starting.
+2.  Elsewhere: **P-TECH** three times, in this order: First Name "Ana" Last Name "Carter", "Ana" "Brooks", "Ben" "Adams" (add ZZAUTOTEST to the email only, so the names sort as the case needs). **P-TECH** a fourth, **P-CUSTOMER** and **P-WO** with that fourth technician as lead, then deactivate the fourth technician (Settings > Staff > open the person > set them inactive; UNVERIFIED click path). Check that Tech View shows their group marked "Inactive".
+3.  **P-START**: Tech View, All tab, Search empty, no filter, Assigned to me off.
+
+**Check:** Tech View shows {Technician-D}'s group marked "Inactive".
+
+**Placeholder values:** give the tester the four real names after setup.
+
+#### SETUP-C698883 — [C698883](https://shopview.testrail.io/index.php?/cases/view/698883) SV-11575 - Opening the Technician list never shows the 50-value limit message
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- {Location-A} has at least one technician. For example: Esther Howard.
+- Starting screen: "Work Orders" > "All" tab, "Tech View" shown, "Search" empty, no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN. **Steps:** **P-START** (Tech View, All tab, Search empty). No records to create on staging.
+
+#### SETUP-C698884 — [C698884](https://shopview.testrail.io/index.php?/cases/view/698884) Board View has no Density control and Column Selection sits centred
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- {Location-A} has at least one technician and one work order. For example: Esther Howard.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, "Search" empty, no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN. **Steps:** **P-START** (Board View, All tab, Search empty). No records to create on staging. Written 20 Oct 2026 for SV-11580 (PRD v71 S3-R11).
+
 ## 5. Mapping table (execution order)
 
 | Test case                                                                                                                                             | Account slots        | Recipes in order                          |
@@ -1364,6 +1406,9 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 | [C368173](https://shopview.testrail.io/index.php?/cases/view/368173) Changing a line's technician in Edit Line saves the new technician | ACCOUNT-A | SETUP-ADMIN, SETUP-C368173 |
 | [C682436](https://shopview.testrail.io/index.php?/cases/view/682436) Design- No technicians yet and Nothing here yet in both views | ACCOUNT-A, ACCOUNT-B | SETUP-ADMIN, SETUP-VIEWONLY, SETUP-C682436 |
 | [C97022](https://shopview.testrail.io/index.php?/cases/view/97022) SV-11582 - Focus returns to the opener and moves on when a focused card leaves | ACCOUNT-A | SETUP-ADMIN, SETUP-C97022 |
+| [C581915](https://shopview.testrail.io/index.php?/cases/view/581915) SV-11575 - Tech View and Board View offer a Technician filter that List does not | ACCOUNT-A | SETUP-ADMIN, SETUP-C581915 |
+| [C698883](https://shopview.testrail.io/index.php?/cases/view/698883) SV-11575 - Opening the Technician list never shows the 50-value limit message | ACCOUNT-A | SETUP-ADMIN, SETUP-C698883 |
+| [C698884](https://shopview.testrail.io/index.php?/cases/view/698884) Board View has no Density control and Column Selection sits centred | ACCOUNT-A | SETUP-ADMIN, SETUP-C698884 |
 
 ## 6. Dependencies and shared fixtures
 
@@ -1856,6 +1901,9 @@ PRD Confluence 845185030 version 71 (20 Oct 2026): S11-R1, S11-R2, S11-R3, S3-R1
 | [C682446](https://shopview.testrail.io/index.php?/cases/view/682446) | UNVERIFIED: not yet run (test T4062447 in run 498; ticket SV-11087, fix in the bugfix release). AUTOMATION: READY |
 | [C682436](https://shopview.testrail.io/index.php?/cases/view/682436) | UNVERIFIED: not yet run (released 19 Oct 2026 on PRD v68 S1-N1d; test T4062445 in run 498). AUTOMATION: READY |
 | [C97022](https://shopview.testrail.io/index.php?/cases/view/97022) | UNVERIFIED in this wording (converted 20 Oct 2026 on PRD v71; ticket SV-11582, failing on staging v26.40.20-0509710, 20 Oct 2026). AUTOMATION: READY - EXPECT FAIL (SV-11582) |
+| [C581915](https://shopview.testrail.io/index.php?/cases/view/581915) | Test T3982130 in run 498 is Failed (SV-11575, staging v26.40.20-0509710, 20 Oct 2026); converted 20 Oct 2026 on PRD v71. AUTOMATION: READY - EXPECT FAIL (SV-11575) |
+| [C698883](https://shopview.testrail.io/index.php?/cases/view/698883) | Test T4093190 in run 498 is Blocked by SV-11575 (QA lead's instruction); converted 20 Oct 2026 on PRD v71. AUTOMATION: READY - EXPECT FAIL (SV-11575) |
+| [C698884](https://shopview.testrail.io/index.php?/cases/view/698884) | UNVERIFIED: new 20 Oct 2026 for SV-11580 (Open), added to run 498. AUTOMATION: READY - EXPECT FAIL (SV-11580) |
 
 ## 10. Open questions
 
