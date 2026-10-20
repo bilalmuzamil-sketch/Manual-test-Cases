@@ -1,0 +1,28 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs';
+import fs from 'fs';
+const [tag,att,bcc,opt]=process.argv.slice(2); const S=JSON.parse(fs.readFileSync('/tmp/qa6915/seed.json')); if(process.env.WO) S.wo=process.env.WO;
+const note=process.env.NOTE?process.env.NOTE.replace("TAG",tag):`ZZAUTOTEST ${tag} note body: please check the brake lines before pickup.`;
+const s=await open({env:'prod',dir:'/tmp/qa6915',vp:{width:1440,height:900},dpr:2,user:'bilal.muzamil@shopview.com'});
+const p=s.page; const reqs=[]; const out={tag,att,bcc,opt,note};
+p.on('response',async r=>{const q=r.request(); if(/\/api\/(?!6364962)/.test(r.url())&&q.method()!=='GET') reqs.push({m:q.method(),u:r.url().replace(/https:\/\/[^/]+/,''),st:r.status(),body:(q.postData()||'').slice(0,800)});});
+out.build=await p.evaluate(async()=>{const r=await fetch('/index.html?cb='+Date.now(),{cache:'no-store'});const t=await r.text();return (t.match(/name="app-version"\s+content="([^"]+)"/)||[])[1];});
+await s.go('/workorders/'+S.wo+'/finance'); await p.waitForTimeout(7000);
+await p.locator('[data-test-id="button_send_email"]').first().click(); await p.waitForTimeout(3500);
+if(att==='1') await p.locator('[data-test-id="checkbox_include_customer_attachments"]').click();
+if(opt) await p.locator('[data-test-id="input_optional_emails"]').fill(opt);
+await p.locator('[data-test-id="input_email_content"]').fill(note);
+if(bcc==='1') await p.locator('[data-test-id="toggle_include_bcc"]').click();
+await p.waitForTimeout(800);
+out.boxes=await p.evaluate(()=>{const g=t=>{const e=document.querySelector(`[data-test-id="${t}"]`);if(!e)return null;const r=e.getBoundingClientRect();return [r.x,r.y,r.x+r.width,r.y+r.height].map(Math.round)};
+ return Object.fromEntries(['dialog_title','checkbox_include_customer_attachments','input_optional_emails','input_email_content','toggle_include_bcc','button_send_email'].map(t=>[t,g(t)]));});
+out.state=await p.evaluate(()=>({att:document.querySelector('[data-test-id="checkbox_include_customer_attachments"]')?.getAttribute('aria-checked'),bcc:document.querySelector('[data-test-id="toggle_include_bcc"]')?.getAttribute('aria-checked'),
+ opt:document.querySelector('[data-test-id="input_optional_emails"]')?.value,content:document.querySelector('[data-test-id="input_email_content"]')?.value}));
+await p.screenshot({path:`/tmp/qa6915/${tag}-filled.png`});
+out.sentAt=new Date().toISOString();
+await p.locator('[data-test-id="button_send_email"]').last().click(); await p.waitForTimeout(5000);
+out.after=await p.evaluate(()=>({dlg:!!document.querySelector('.q-dialog'),notes:[...document.querySelectorAll('.q-notification')].map(e=>e.innerText)}));
+await p.screenshot({path:`/tmp/qa6915/${tag}-after.png`});
+out.reqs=reqs.filter(r=>!/recent-entities/.test(r.u));
+fs.writeFileSync(`/tmp/qa6915/${tag}.json`,JSON.stringify(out,null,1));
+console.log(JSON.stringify({tag,build:out.build,state:out.state,sentAt:out.sentAt,after:out.after,reqs:out.reqs.map(r=>[r.u,r.st,r.body.slice(0,300)])}));
+await s.close();

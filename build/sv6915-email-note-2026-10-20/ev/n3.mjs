@@ -1,0 +1,13 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs';
+import fs from 'fs';
+const S=JSON.parse(fs.readFileSync('/tmp/qa6915/seed.json'));
+const s=await open({env:'prod',dir:'/tmp/qa6915',vp:{width:1440,height:900},dpr:2,user:'bilal.muzamil@shopview.com'});
+const p=s.page; const reqs=[];
+p.on('request',r=>{if(/\/api\/(?!6364962)/.test(r.url())&&r.method()!=='GET')reqs.push(r.method()+' '+r.url().replace(/https:\/\/[^/]+/,'')+' '+(r.postData()||'').slice(0,200))});
+await s.go('/workorders/'+S.wo+'/notes'); await p.waitForTimeout(6000);
+const ids=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')).filter(t=>/customer|attach|file/i.test(t)));
+console.log(JSON.stringify(ids));
+const cb=p.locator('text=For Customer').first(); await cb.click(); await p.waitForTimeout(3000);
+await p.screenshot({path:'/tmp/qa6915/for-customer.png'});
+console.log('reqs',JSON.stringify(reqs));
+await s.close();

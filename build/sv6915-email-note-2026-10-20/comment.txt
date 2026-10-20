@@ -1,0 +1,59 @@
+{panel:bgColor=#deebff}
+*REPRODUCTION ON PRODUCTION: the note is still lost, but attachments, BCC and extra recipients are not the cause.*
+{panel}
+[~accountid:712020:1f21c3b6-c183-4d46-9561-7b79f0e197ab] I tested this on Production (build v26.40.20-aada856) on 20 October 2026, as Admin at Trucks Hill 2. I sent 11 invoice and estimate emails and read every one in the receiving inbox.
+
+* With attachments, BCC, extra recipients, or all of them together, the note arrived in full every time.
+* The note goes missing when it contains text inside angle brackets ({{<like this>}}). If the note starts with {{<}}, the whole note is missing from the email.
+* The note looks fine in the box when you send it. It only disappears in the email that arrives.
+
+h3. What I tried
+
+||#||Email sent||Options used||Note in the email that arrived?||
+|1|Invoice|None|Yes, in full|
+|2|Invoice|'For Customer' attachment ticked|Yes, in full|
+|3|Invoice|Include your email to BCC|Yes, in full|
+|4|Invoice|One extra email in Optional Emails|Yes, in full|
+|5|Invoice|Attachment + BCC + extra email|Yes, in full|
+|6|Invoice|Attachment (2 files) + BCC + 2 extra emails, note on several lines|Yes, except the word {{<urgent>}}, which was missing|
+|7|Estimate|Attachment + BCC + extra email|Yes, in full|
+|8|Invoice|None, note starts with {{<Note from …}}|*No, the whole note is missing*|
+|9|Invoice|Attachment + BCC + extra email, note contains {{<see attached photo>}}|*Partly: {{<see attached photo>}} is missing, the rest arrived*|
+|10|Invoice|None, note contains {{<30 psi}}|Yes, in full ({{<}} followed by a number is kept)|
+|11|Invoice|None, note starts with {{<Note from …}} (the screen recording below)|*No, the whole note is missing*|
+
+!01-all-options-note-arrives.png|width=825,height=1273!
+_Pictures 1 and 2: every option switched on (try 5), and the email that arrived with the note in full._
+
+h3. How to reproduce the missing note
+
+# Open Production: [https://app.shopview.com] and sign in.
+# In the top menu, click {{Work Orders}} and open an invoiced work order whose customer contact has an email address you can read. I used *S2-983* (customer *ZZAUTOTEST SV6915 Email Note*, contact *Inbox SV6915*).
+# Click the {{Finance}} tab (the last tab, after {{Stats}}).
+# In the row of icons above the invoice, click the envelope icon. The {{Sending invoice}} window opens.
+# Leave {{Include 'For Customer' Attachments in email}} unticked, leave {{Optional Emails (Comma Separated)}} empty and leave {{Include your email to BCC}} off.
+# Click in the {{Email Content}} box and type: {{<Note from me: please call the customer before starting work.}}
+# Click {{Send Email}}. A green message says {{Successfully sent invoice to email.}}
+# Open the email in the contact's inbox. Between {{Please find your attached invoice for work order: S2-983.}} and {{Best regards,}} there is no note.
+# Send again with {{Tires replaced. <see attached photo> Brakes still need a second look.}} The email shows {{Tires replaced. Brakes still need a second look.}} The part in angle brackets is missing.
+
+!02-note-starting-with-angle-bracket-missing.png|width=775,height=1143!
+_Pictures 3 and 4: the note starts with "<" (try 8), and the email that arrived has no note._
+
+*Current behaviour:* any part of the note written inside angle brackets is missing from the email. When the note starts with {{<}}, the whole note is missing.
+
+*Expected behaviour:* as the ticket says, "The sent work order email should include the full note body/message exactly as entered, regardless of whether attachments, BCC recipients, or additional recipients are included."
+
+This looks like the same kind of problem as [SV-11227|https://shopview.atlassian.net/browse/SV-11227] (mention emails showing note text as formatting), which is Done. The invoice and estimate emails still behave this way.
+
+h3. What I could not show separately
+
+The BCC copy goes to the signed-in user's own address, which is the same inbox as the contact's address, so the inbox shows one copy per email. In tries 3, 5, 6, 7 and 9 that one copy had the same note as the contact's copy.
+
+h3. Screen recording
+
+The recording shows try 11 on Production: the note typed with a "<" at the start, the green sent message, then the same email as it arrived in the inbox (opened in a browser) with the note missing.
+
+!sv6915-recording.mp4|width=1280,alt="sv6915-recording.mp4"!
+
+_Tested on Production (build v26.40.20-aada856), 20 October 2026, as Admin at Trucks Hill 2. Work orders S2-983 (invoice) and S2-984 (estimate), customer ZZAUTOTEST SV6915 Email Note._

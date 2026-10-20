@@ -1,0 +1,79 @@
+{
+ "tag": "V7-estimate-all",
+ "att": "1",
+ "bcc": "1",
+ "opt": "bilal.muzamil+sv6915est@shopview.com",
+ "note": "ZZAUTOTEST V7-estimate-all note body: please check the brake lines before pickup.",
+ "build": "v26.40.20-aada856",
+ "boxes": {
+  "dialog_title": [
+   345,
+   63,
+   494,
+   95
+  ],
+  "checkbox_include_customer_attachments": [
+   329,
+   111,
+   1095,
+   157
+  ],
+  "input_optional_emails": [
+   357,
+   287,
+   1083,
+   400
+  ],
+  "input_email_content": [
+   368,
+   520,
+   689,
+   561
+  ],
+  "toggle_include_bcc": [
+   329,
+   714,
+   1095,
+   770
+  ],
+  "button_send_email": [
+   1030,
+   85,
+   1069,
+   124
+  ]
+ },
+ "state": {
+  "att": "true",
+  "bcc": "true",
+  "opt": "bilal.muzamil+sv6915est@shopview.com",
+  "content": "ZZAUTOTEST V7-estimate-all note body: please check the brake lines before pickup."
+ },
+ "sentAt": "2026-10-20T16:54:43.780Z",
+ "after": {
+  "dlg": false,
+  "notes": [
+   "check_circle\nSuccessfully sent estimate to email.\nClose"
+  ]
+ },
+ "reqs": [
+  {
+   "m": "POST",
+   "u": "/api/work-orders/invoices/estimate",
+   "st": 200,
+   "body": "{\"work_order_id\":\"c6e92abc-2415-4a59-bd40-915eb471f3bc\",\"type\":\"html\",\"isEstimate\":1,\"includeDeclined\":0,\"issueDate\":\"2026-10-20T16:54:11+00:00\",\"dueDate\":\"2026-10-20T16:54:11+00:00\",\"historyEvent\":null}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-orders/invoices/estimate",
+   "st": 200,
+   "body": "{\"work_order_id\":\"c6e92abc-2415-4a59-bd40-915eb471f3bc\",\"type\":\"pdf\",\"isEstimate\":1,\"includeDeclined\":0,\"issueDate\":\"2026-10-20T16:54:11+00:00\",\"dueDate\":\"2026-10-20T16:54:11+00:00\",\"historyEvent\":null}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-order/invoice/send-email",
+   "st": 201,
+   "body": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs';
+import fs from 'fs';
+const s=await open({env:'prod',dir:'/tmp/qa6915',vp:{width:1440,height:900},dpr:2,user:'bilal.muzamil@shopview.com'});
+const j=x=>(JSON.stringify(x)||'').slice(0,400);
+const post=async(u,b)=>{const r=await s.api(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});console.log('POST',u,r.status,j(r.json));return r.json;};
+const ws=await s.api('/api/staff/my-workplaces'); console.log('workplaces',j(ws.json));
+const c=await post('/api/customers/create',{name:'ZZAUTOTEST SV6915 Email Note'});
+const cid=c?.data?.company_id||c?.data?.id||c?.data?.company?.id; console.log('cid',cid);
+const ct=await post('/api/contacts/create',{company_id:cid,first_name:'Inbox',last_name:'SV6915',email:'bilal.muzamil+sv6915to@shopview.com'});
+const ctid=ct?.data?.contact_id; 
+const cv=await s.api('/api/customers/view/'+cid); console.log('contacts',j(cv.json?.data?.company?.contacts));
+fs.writeFileSync('/tmp/qa6915/seed.json',JSON.stringify({cid,ctid},null,1));
+await s.close();

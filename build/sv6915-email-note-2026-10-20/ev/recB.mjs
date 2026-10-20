@@ -1,0 +1,10 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs';
+import fs from 'fs';
+const s=await open({env:'prod',dir:'/tmp/qa6915',vp:{width:1440,height:900},record:'/tmp/qa6915/recB',user:'bilal.muzamil@shopview.com'});
+const p=s.page;
+await p.goto('file:///tmp/qa6915/mail/REC-received.html'); await p.waitForTimeout(1500);
+await s.caption('The same email as it arrived in the inbox at 17:04 UTC (opened in a browser)',{hold:2500});
+const r=await p.evaluate(()=>{const ps=[...document.querySelectorAll('td.wrapper p')];const a=ps.find(e=>/Please find/.test(e.innerText)).getBoundingClientRect(),b=ps.find(e=>/Best regards/.test(e.innerText)).getBoundingClientRect();return {x:a.x+a.width-40,y:(a.bottom+b.top)/2}});
+await p.mouse.move(r.x,r.y,{steps:20});
+await s.caption('The note should be here, between these two lines. It is missing.',{hold:3500});
+const v=await s.close(); fs.writeFileSync('/tmp/qa6915/recB/B.json',JSON.stringify(v)); console.log(JSON.stringify(v));

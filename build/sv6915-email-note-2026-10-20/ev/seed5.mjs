@@ -1,0 +1,14 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs';
+import fs from 'fs';
+const S=JSON.parse(fs.readFileSync('/tmp/qa6915/seed.json'));
+const s=await open({env:'prod',dir:'/tmp/qa6915',vp:{width:1440,height:900},dpr:2,user:'bilal.muzamil@shopview.com'});
+const j=x=>(JSON.stringify(x)||'').slice(0,500);
+const post=async(u,b)=>{const r=await s.api(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b||{})});console.log('POST',u,r.status,j(r.json));return r;};
+const pr=await s.api(`/api/work-orders/${S.wo}/parts/list-requests-by-line?search=`); console.log('reqs',pr.status,j(pr.json));
+const ids=[...JSON.stringify(pr.json).matchAll(/"(?:part_request_id|request_id|id)":"([0-9a-f-]{36})"/g)].map(m=>m[1]);
+const txt=JSON.stringify(pr.json);
+for(const id of [...new Set(ids)]) if(id!==S.wo && id!==S.line) await post('/api/work-orders/part/remove-request/'+id);
+await post('/api/work-orders/change-status',{id:S.wo,status:'complete'});
+await post('/api/invoices/create',{work_order_id:S.wo});
+const v=(await s.api('/api/work-orders/view/'+S.wo)).json?.data; const W=v?.work_order||v; console.log('WO',W?.number,W?.status,W?.invoice_status,W?.total_cost);
+await s.close();

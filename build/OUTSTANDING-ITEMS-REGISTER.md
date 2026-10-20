@@ -1489,3 +1489,8 @@ what is still owed.
 - 2026-10-19 cleared: SV-11422 — Chris's ruling matches PRD S11-R1 v64 ("shown" = listed, S2-R12); posted PARTIALLY PASSED 78952 + remaining issue 78953 (off-screen first work order → header, Tech + Board).
 - 2026-10-19 cleared: filter chip x focus — on v26.40.19-31ad1e1 the next Tab continues to the next filter; no PRD rule; closed.
 - 2026-10-19 cleared: SV-11405 posted PASSED 78951 on v26.40.19-31ad1e1.
+
+## 2026-10-20 ~17:10 UTC — SV-6915 production reproduction posted (79140)
+| Kind | Item | Owner | Blocks | Since |
+|---|---|---|---|---|
+| OTHER TEAM | SV-6915 (Open): note lost only when it contains text in angle brackets; attachments/BCC/extra recipients do not cause it on v26.40.20-aada856. Dev/PO to decide the fix. | Milos / developer | Fix for the invoice/estimate email note | 20 Oct |

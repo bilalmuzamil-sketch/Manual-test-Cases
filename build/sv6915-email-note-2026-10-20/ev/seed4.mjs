@@ -1,0 +1,11 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs';
+import fs from 'fs';
+const S=JSON.parse(fs.readFileSync('/tmp/qa6915/seed.json')); S.line='4e1f0f1f-5833-4c27-823c-44db8c7879c8';
+const s=await open({env:'prod',dir:'/tmp/qa6915',vp:{width:1440,height:900},dpr:2,user:'bilal.muzamil@shopview.com'});
+const j=x=>(JSON.stringify(x)||'').slice(0,300);
+const post=async(u,b)=>{const r=await s.api(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});console.log('POST',u,r.status,j(r.json));return r;};
+await post('/api/work-orders/lines/change-status',{line_id:S.line,work_order_id:S.wo,status:'complete'});
+let r=await post('/api/work-orders/change-status',{id:S.wo,status:'complete'});
+const v=(await s.api('/api/work-orders/view/'+S.wo)).json?.data; const W=v?.work_order||v; console.log('WO',W?.number,W?.status,'mileage',W?.mileage);
+fs.writeFileSync('/tmp/qa6915/seed.json',JSON.stringify(S,null,1));
+await s.close();

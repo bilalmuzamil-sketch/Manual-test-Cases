@@ -1,0 +1,67 @@
+{
+ "tag": "V6-all-multiline",
+ "att": "1",
+ "bcc": "1",
+ "opt": "bilal.muzamil+sv6915m1@shopview.com, bilal.muzamil+sv6915m2@shopview.com",
+ "note": "ZZAUTOTEST V6-all-multiline note line 1: Bob & Sons asked for <urgent> service.\nLine 2: don't forget the 10% \"fleet\" discount.\n\nLine 4 after a blank line.",
+ "build": "v26.40.20-aada856",
+ "boxes": {
+  "dialog_title": [
+   345,
+   49,
+   479,
+   81
+  ],
+  "checkbox_include_customer_attachments": [
+   329,
+   97,
+   1095,
+   143
+  ],
+  "input_optional_emails": [
+   357,
+   273,
+   1083,
+   386
+  ],
+  "input_email_content": [
+   368,
+   506,
+   678,
+   601
+  ],
+  "toggle_include_bcc": [
+   329,
+   754,
+   1095,
+   810
+  ],
+  "button_send_email": [
+   1098,
+   85,
+   1137,
+   124
+  ]
+ },
+ "state": {
+  "att": "true",
+  "bcc": "true",
+  "opt": "bilal.muzamil+sv6915m1@shopview.com, bilal.muzamil+sv6915m2@shopview.com",
+  "content": "ZZAUTOTEST V6-all-multiline note line 1: Bob & Sons asked for <urgent> service.\nLine 2: don't forget the 10% \"fleet\" discount.\n\nLine 4 after a blank line."
+ },
+ "sentAt": "2026-10-20T16:49:14.498Z",
+ "after": {
+  "dlg": false,
+  "notes": [
+   "check_circle\nSuccessfully sent invoice to email.\nClose"
+  ]
+ },
+ "reqs": [
+  {
+   "m": "POST",
+   "u": "/api/work-order/invoice/send-email",
+   "st": 201,
+   "body": ""
+  }
+ ]
+}

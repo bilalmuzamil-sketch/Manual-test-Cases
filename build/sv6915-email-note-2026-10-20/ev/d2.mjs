@@ -1,0 +1,11 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs';
+const s=await open({env:'prod',dir:'/tmp/qa6915',vp:{width:1440,height:900},dpr:2,user:'bilal.muzamil@shopview.com'});
+const j=x=>JSON.stringify(x).slice(0,600);
+const st=await s.api('/api/organizations/settings'); const S=st.json?.data||{};
+console.log('settings keys w/ review/email:',j(Object.fromEntries(Object.entries(S.settings||S).filter(([k])=>/review|email|bcc|invoice/i.test(k)))));
+const v=await s.api('/api/work-orders/view/e8818160-92d3-4d7d-a921-9cdbb2a7203d'); const W=v.json?.data?.work_order||v.json?.data;
+console.log('WO keys',Object.keys(W||{}).join(','));
+console.log('contact',j(W?.contact||W?.customer));
+const me=await s.api('/api/auth/me'); console.log('me',j(me.json?.data?.user?.email||me.json));
+const ws=await s.api('/api/staff/my-workplaces'); console.log('workplaces',j(ws.json));
+await s.close();

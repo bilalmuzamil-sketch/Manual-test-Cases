@@ -1,0 +1,67 @@
+{
+ "tag": "V8-angle-bracket",
+ "att": "0",
+ "bcc": "0",
+ "opt": "",
+ "note": "<Note from V8-angle-bracket: please call the customer before starting work. Brakes need a second look.",
+ "build": "v26.40.20-aada856",
+ "boxes": {
+  "dialog_title": [
+   345,
+   54,
+   479,
+   86
+  ],
+  "checkbox_include_customer_attachments": [
+   329,
+   102,
+   1095,
+   148
+  ],
+  "input_optional_emails": [
+   357,
+   278,
+   1083,
+   391
+  ],
+  "input_email_content": [
+   368,
+   511,
+   678,
+   570
+  ],
+  "toggle_include_bcc": [
+   329,
+   723,
+   1095,
+   779
+  ],
+  "button_send_email": [
+   1098,
+   85,
+   1137,
+   124
+  ]
+ },
+ "state": {
+  "att": "false",
+  "bcc": "false",
+  "opt": "",
+  "content": "<Note from V8-angle-bracket: please call the customer before starting work. Brakes need a second look."
+ },
+ "sentAt": "2026-10-20T16:56:57.634Z",
+ "after": {
+  "dlg": false,
+  "notes": [
+   "check_circle\nSuccessfully sent invoice to email.\nClose"
+  ]
+ },
+ "reqs": [
+  {
+   "m": "POST",
+   "u": "/api/work-order/invoice/send-email",
+   "st": 201,
+   "body": ""
+  }
+ ]
+}

@@ -1,0 +1,67 @@
+{
+ "tag": "V2-attach",
+ "att": "1",
+ "bcc": "0",
+ "opt": "",
+ "note": "ZZAUTOTEST V2-attach note body: please check the brake lines before pickup.",
+ "build": "v26.40.20-aada856",
+ "boxes": {
+  "dialog_title": [
+   345,
+   63,
+   479,
+   95
+  ],
+  "checkbox_include_customer_attachments": [
+   329,
+   111,
+   1095,
+   157
+  ],
+  "input_optional_emails": [
+   357,
+   287,
+   1083,
+   400
+  ],
+  "input_email_content": [
+   368,
+   520,
+   678,
+   561
+  ],
+  "toggle_include_bcc": [
+   329,
+   714,
+   1095,
+   770
+  ],
+  "button_send_email": [
+   1098,
+   85,
+   1137,
+   124
+  ]
+ },
+ "state": {
+  "att": "true",
+  "bcc": "false",
+  "opt": "",
+  "content": "ZZAUTOTEST V2-attach note body: please check the brake lines before pickup."
+ },
+ "sentAt": "2026-10-20T16:39:11.310Z",
+ "after": {
+  "dlg": false,
+  "notes": [
+   "check_circle\nSuccessfully sent invoice to email.\nClose"
+  ]
+ },
+ "reqs": [
+  {
+   "m": "POST",
+   "u": "/api/work-order/invoice/send-email",
+   "st": 201,
+   "body": ""
+  }
+ ]
+}

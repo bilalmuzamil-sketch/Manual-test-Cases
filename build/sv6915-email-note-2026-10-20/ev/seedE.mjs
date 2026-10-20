@@ -1,0 +1,17 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs';
+import fs from 'fs';
+const S=JSON.parse(fs.readFileSync('/tmp/qa6915/seed.json'));
+const s=await open({env:'prod',dir:'/tmp/qa6915',vp:{width:1440,height:900},dpr:2,user:'bilal.muzamil@shopview.com'});
+const j=x=>(JSON.stringify(x)||'').slice(0,250);
+const post=async(u,b)=>{const r=await s.api(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});console.log('POST',u,r.status,j(r.json));return r.json;};
+const w=await post('/api/work-orders/create',{company_id:S.cid,customer_id:S.ctid,vehicle_id:S.vid,workplace_id:S.wp,start_date:new Date().toISOString().slice(0,19).replace('T',' '),is_vehicle_here:true});
+S.wo2=w.data.work_order_id;
+await post('/api/work-orders/change-contact',{work_order_id:S.wo2,vehicle_id:S.vid,contact_id:S.ctid,update_vehicle:true});
+const cl=(await s.api('/api/work-orders/canned-lines')).json; const L=(cl?.data?.collection||cl?.data||[]);
+await post(`/api/work-orders/${S.wo2}/lines/create-from-canned-line`,{canned_line_id:L[0].id,status:'authorized'});
+const v=(await s.api('/api/work-orders/view/'+S.wo2)).json?.data; const W=v?.work_order||v; console.log('WO2',W?.display_number||W?.number,W?.status);
+S.number2=W?.display_number||W?.number; fs.writeFileSync('/tmp/qa6915/seed.json',JSON.stringify(S,null,1));
+await s.go('/workorders/'+S.wo2+'/finance'); await s.page.waitForTimeout(7000);
+const ids=await s.page.evaluate(()=>[...document.querySelectorAll('[data-test-id^="button_"]')].map(e=>e.getAttribute('data-test-id')).filter(t=>/email|estimate|invoice|print|download/.test(t)));
+console.log('finance buttons',JSON.stringify(ids));
+await s.close();
