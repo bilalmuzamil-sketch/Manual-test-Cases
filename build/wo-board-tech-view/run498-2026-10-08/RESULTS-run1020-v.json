@@ -1,0 +1,55 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.20-0509710", "date": "20 October 2026", "note": "run 498 - retest after SV-11326, SV-11119 and SV-11498 were fixed"},
+ "results": {
+  "C581916": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging by the test's steps; the Technician filter now exists (SV-11326 is Done).",
+    "Set-up: one customer with five Approved work orders - WO-1 led by Esther Howard, WO-2 by Ralph Edwards, WO-3 by Dana Ortiz, WO-4 with no lead, WO-5 led by Dana Ortiz with Esther only on a line. Dana's column pinned.",
+    "Step 2: with Unassigned and Esther Howard ticked, Tech View shows only Unassigned (WO-4) and Esther Howard (WO-1). WO-5 is not shown.",
+    "Step 3: Board View keeps the same choice and shows only those two columns; pinned Dana Ortiz and Ralph Edwards are hidden.",
+    "Step 4: after clearing the Technician choice, all columns come back and Dana Ortiz is still pinned."],
+   "pictures": ["pictures-1019/C581916-1-board-only-two-1020.png"]},
+  "C581918": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging by the test's steps.",
+    "Step 1: with Esther Howard chosen, Tech View shows only WO-1.",
+    "Step 2: List shows all three of the customer's work orders and has no Technician filter.",
+    "Step 3: back in Tech View, Esther Howard is chosen again and only WO-1 shows.",
+    "Step 4 (record which happened): after Asset on Site = No and a page reload, BOTH Asset on Site: No and Technician: Esther Howard are still chosen."],
+   "pictures": ["pictures-1019/C581918-1-list-all-three-1020.png", "pictures-1019/C581918-2-after-reload-1020.png"]},
+  "C590127": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging by the test's steps.",
+    "Step 1: the Technician filter sits directly after Assigned to me, with the wrench icon, the word Technician and a down arrow. No Department filter.",
+    "Steps 2 and 3: the list opens directly below the filter, starting with Unassigned, then technicians by first name then last name, each with a tick box.",
+    "Steps 4 and 5: the technician is ticked; Escape closes the list.",
+    "Step 6: Board View shows the same filter in the same place, still with the technician chosen.",
+    "Step 7: List has no Technician filter.",
+    "Seen but not part of this test: on opening the list, the red message 'This change would exceed the 50-value limit across all filters' already shows although nothing is ticked."],
+   "pictures": ["pictures-1019/C590127-1-tech-view-list-1020.png", "pictures-1019/C590127-2-board-view-1020.png", "pictures-1019/C590127-3-list-1020.png"]},
+  "C682445": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging (outcome 3 of the test: the fix for SV-11119 has reached staging).",
+    "Set-up: three Approved work orders led by one technician, in the order S2-37648, S2-37649, S2-37650; two browsers.",
+    "Steps 3 and 4: browser 1 moves the third to the top, browser 2 (not refreshed) moves the second to the top. No message in either browser.",
+    "Steps 5 and 6: after refreshing, both browsers show S2-37649, S2-37650, S2-37648 - browser 2's move is kept. No warning.",
+    "Step 7: Tech View lists the same order."],
+   "pictures": ["pictures-1019/C682445-1-browser1-after-refresh-1020.png", "pictures-1019/C682445-2-browser2-after-refresh-1020.png"]},
+  "C97020": {"verdict": "Failed", "failed_steps": "Failed at step 11: the note on the disabled menu items still reads the old sentence.", "bold_steps": [11],
+   "ticket": "https://shopview.atlassian.net/browse/SV-11545",
+   "observed": [
+    "Result: Failed on staging - outcome 1 of the test (the known wording problem, SV-11545, still open).",
+    "Steps 1 to 6 (view-only user): the card takes the focus ring; Tab leaves the board because the card has no More actions; no menu opens; no key moves the work order, which stays with its technician.",
+    "Steps 7 to 10 (Admin): the Invoiced card is reached with the keyboard and its More actions button takes the focus.",
+    "Step 11: the menu opens with Reassign lead technician and Unassign disabled, and the note now shows with the keyboard (SV-11498 is fixed), but it reads 'The lead technician can't be changed once a work order is Invoiced or Paid.' instead of 'Invoiced · can't be reassigned'.",
+    "Steps 12 to 16: nothing opens, Escape closes the menu, no key moves the work order, after a refresh it is still in the technician's column and its page shows the same lead."],
+   "todo": "Re-run this test when SV-11545 is fixed on staging.",
+   "pictures": ["pictures-1019/C97020-1-old-note-1020.png"]},
+  "C97022": {"verdict": "Blocked", "failed_steps": "Blocked at step 6: the product document says two different things about this moment, so it cannot be judged.", "bold_steps": [6, 7],
+   "observed": [
+    "Result: Blocked - steps 1 to 5 pass; steps 6 and 7 wait for the Product Owner.",
+    "Steps 1 to 3: the card and its More actions button show a focus ring; Escape closes the menu and the reassign window and focus goes back to the button that opened them.",
+    "Step 4: with Technician = A, only A's column shows, holding both work orders; the first card has the focus ring.",
+    "Step 5: after reassigning the first card to B, it leaves the column and the focus ring moves to the next card.",
+    "Step 6: after reassigning the last card, the board is replaced by 'No work orders match these filters', so A's column and its header are gone and keyboard focus falls to the page.",
+    "Why blocked: the requirements say focus moves to the column header when the last card leaves, but they also say that when nothing matches the filters the 'No work orders match these filters' screen shows, which has no column header. Asked the Product Owner which one applies here."],
+   "todo": "Wait for the Product Owner's answer, then re-run steps 6 and 7.",
+   "pictures": ["pictures-1019/C97022-1-focus-next-card-1020.png", "pictures-1019/C97022-2-column-gone-1020.png"]}
+ }
+}

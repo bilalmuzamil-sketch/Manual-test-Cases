@@ -400,10 +400,12 @@ def main():
         # only the record's own ticket LINK counts (a comment may mention other tickets in passing; a held ticket has no key)
         tk = res.get('C%d' % p_['case_id'], {}).get('ticket') or ''
         keys = list(dict.fromkeys(_KEY.findall(tk))) if 'browse/' in tk else []
-        if keys:
+        # no ticket at all (e.g. Blocked on a question) => an old prefix comes off; a ticket still HELD for his yes keeps it
+        if keys or not res.get('C%d' % p_['case_id'], {}).get('ticket_held'):
             row = prefix_case(t, p_['case_id'], keys)
-            print('  C%d: title prefix (Rule 133) ->' % p_['case_id'],
-                  row.get('new') or row.get('skipped') or row.get('held'))
+            if keys or row.get('skipped') != 'no ticket — no prefix (Rule 133)':
+                print('  C%d: title prefix (Rule 133) ->' % p_['case_id'],
+                      row.get('new') or row.get('skipped') or row.get('held'))
 
     # --- 4. read it back (a 200 is not evidence a human can read it)
     s, run = t.get('get_run/%d' % a.run)
