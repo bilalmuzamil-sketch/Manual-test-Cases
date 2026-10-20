@@ -1064,3 +1064,8 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Timesheets list (⋮ > Timesheets) has empty rows around the entries: click the row filtered by the person's name, never `tbody tr:last`.
 - A tester-like on-screen set-up beats an API one when the API answer is ambiguous: C368173's start state ("Line-1's technician is Dee") was built in Edit Line (remove lead → confirm "Remove technician?" → add Dee → Save & Close).
 #run498 #tooling #setup → L0484
+
+## L0486 — 2026-10-20 — Prefixing case titles on the QA lead's order: title-only update_case, read back, audit file
+- QA lead: "Please prefix all the test cases which are under RETEST with SV-11326 - {{Title}}". Run 498 had 5 Retest tests (C581915–C581918, C97022), all ours (created_by 3), none Automated. `update_case/<id> {title}` only (no other field sent, so the escaping-container trap of preconds/steps/expected is not touched), read back, audit in `wo-board-tech-view/run498-2026-10-08/title-prefix-1020/audit.json`. Skip a title that already starts with the prefix; never Vladimir's (created_by 1).
+- Two titles went past the ~80-character guide (82 and 83) — reported, not shortened (his exact wording was asked for).
+#run498 #testrail #titles
