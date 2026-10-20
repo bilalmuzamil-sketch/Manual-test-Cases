@@ -19,6 +19,7 @@ o.removed = [] as any[];
 for (const c of o.before) for (const d of depts.length ? depts : [{ id: null }]) { const r = await a.post('/api/staff/enrollment/remove', { staffId: c.id, workplaceId: C.id, departmentId: d.id }); if (r.status < 300) o.removed.push(`${c.name} / ${d.name ?? d.label ?? '-'}`); }
 o.after = await candidates(a);
 o.back = await switchLocUI(p, 'Staging Heavy Duty - 9919');
+if (!/Heavy Duty/.test(String(o.back))) { await a.post('/api/iam/change-location', { workplace_id: (await import('./staff.mts')).HEAVY, workplace_timezone: 'Asia/Karachi' }); o.backApi = true; }
 fs.writeFileSync(path.join(EV, 'locC-fix.json'), JSON.stringify(o, null, 1)); console.log(t(), 'locC-fix', JSON.stringify(o).slice(0, 2000));
 try { await (RUN as any).close?.(); } catch { /* */ }
 await done(browser);

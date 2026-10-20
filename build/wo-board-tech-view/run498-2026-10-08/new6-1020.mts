@@ -110,8 +110,16 @@ const focusInfo = (pg: Page) => pg.evaluate(`(() => { const e = document.activeE
     ring: cs.outlineStyle !== 'none' && cs.outlineWidth !== '0px' || /rgb/.test(cs.boxShadow), box: [Math.round(r.left), Math.round(r.top), Math.round(r.width), Math.round(r.height)] }; })()`) as Promise<any>;
 const tips = (pg: Page) => pg.evaluate(`[...document.querySelectorAll('.q-tooltip')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.replace(/\\s+/g, ' ').trim())`) as Promise<string[]>;
 
+
+// 20 Oct 2026 (first run): C682436 left the runner at "ZZAUTOTEST Location Empty" (the on-screen switch back did not take), so the
+// next four tests ran in the wrong location. Every block now starts here: switch on screen, read the header back, fall back to the API.
+const toHeavy = async () => { let h = await switchLocUI(p, 'Staging Heavy Duty - 9919').catch(() => '');
+  if (!/Heavy Duty/.test(String(h))) { await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'Asia/Karachi' }); await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
+    h = (await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); }
+  if (!/Heavy Duty/.test(String(h))) throw new Error('could not get back to Staging Heavy Duty: header reads ' + h); return h; };
+
 // ───── C682421: first Tab lands on S2-16688, the whole row / card seen
-await run('C682421', async (o) => {
+await run('C682421', async (o) => { o.location = await toHeavy();
   await p.setViewportSize({ width: 1440, height: 900 }); const N = 'S2-16688';
   await p.goto(APP + '/workorders?tab=all&search=' + N, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
   o.s1 = { search: await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null) };
@@ -156,8 +164,8 @@ await run('C682436', async (o) => {
   // User-B: Work orders View only, enrolled at Location-B, no Settings → App
   const VIEW_ROLE = ((d: any) => (Array.isArray(d) ? d : d?.collection ?? []))((await a.get(`/api/organizations/${(await import('./profile.mts')).ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data).find((r: any) => /^ZZAUTOTEST WO View Only$/.test(r.label ?? r.name ?? ''))?.id;
   const u = (await person(a, 'ZZAUTOTEST C682436', 'Viewer', { role: VIEW_ROLE, email: `zz.wob.c682436.viewer${D}`, clockable: false })).row;
-  o.userB = { made: !!u, role: !!VIEW_ROLE }; if (u) o.userB.enrol = say(await a.post('/api/staff/enrollment/create', { staffId: u.staff_id, workplaceId: B.id }));
-  o.back = await switchLocUI(p, 'Staging Heavy Duty - 9919');
+  o.userB = { made: !!u, role: !!VIEW_ROLE }; if (u) { const dl = ((d: any) => (Array.isArray(d) ? d : d?.collection ?? []))((await a.get('/api/departments')).body?.data); const svc = dl.find((d: any) => (d.name ?? d.label) === 'Service') ?? dl[0]; o.userB.enrol = say(await a.post('/api/staff/enrollment/create', { staffId: u.staff_id, workplaceId: B.id, departmentId: svc?.id })); }
+  o.back = await toHeavy();
   if (u) { const V = await viewAs(browser, p, a, u.id, (RUN as any).id, (RUN as any).toRunner); o.s8 = { perms: V.perms };
     try { const vp = V.page; await vp.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await vp.waitForTimeout(5000); o.s9 = await switchLocUI(vp, B.name);
       await vp.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await vp.waitForTimeout(5000); await tab(vp, 'All'); await display(vp, 'Board View'); await vp.waitForTimeout(2500);
@@ -166,7 +174,7 @@ await run('C682436', async (o) => {
 });
 
 // ───── C682437: a technician header released over a row opens no work order
-await run('C682437', async (o) => {
+await run('C682437', async (o) => { o.location = await toHeavy();
   const A1 = await T('C682437', 'Ana'), B1 = await T('C682437', 'Ben'), C1 = await T('C682437', 'Cy');
   const set = await mkSet('ZZAUTOTEST C682437 Header Drag', [{ co: 'One', lead: A1 }, { co: 'Two', lead: B1 }, { co: 'Three', lead: C1 }]); o.data = Object.fromEntries(Object.entries(set.w).map(([k, v]) => [k, v.number]));
   await pins([A1.staff_id, B1.staff_id]); await go('Tech View', set.q);
@@ -181,7 +189,7 @@ await run('C682437', async (o) => {
 });
 
 // ───── C682438: a focused avatar on a Board card shows the technician's name
-await run('C682438', async (o) => {
+await run('C682438', async (o) => { o.location = await toHeavy();
   const A1 = await T('C682438', 'Ana'), B1 = await T('C682438', 'Ben');
   const set = await mkSet('ZZAUTOTEST C682438 Avatar Keys', [{ co: 'One', lead: A1 }]); o.wo = set.w.One.number;
   const l = (await linesRaw(set.w.One.id))[0]; o.lineTech = l ? say(await a.post('/api/work-orders/lines/assign-technician', { line_id: l.line_id, workOrderId: set.w.One.id, staff_id: B1.staff_id })) : 'no line';
@@ -201,7 +209,7 @@ await run('C682438', async (o) => {
 });
 
 // ───── C682445: two people reorder one column at once
-await run('C682445', async (o) => {
+await run('C682445', async (o) => { o.location = await toHeavy();
   const A1 = await T('C682445', 'Ana');
   const set = await mkSet('ZZAUTOTEST C682445 Two People', [{ co: 'Alpha', lead: A1 }, { co: 'Bravo', lead: A1 }, { co: 'Charlie', lead: A1 }]);
   await pins([A1.staff_id]);
@@ -220,7 +228,7 @@ await run('C682445', async (o) => {
 });
 
 // ───── C682446: moving a timesheet entry to another line takes you off the old line
-await run('C682446', async (o) => {
+await run('C682446', async (o) => { o.location = await toHeavy();
   const A1 = await T('C682446', 'Ana');
   const set = await mkSet('ZZAUTOTEST C682446 Timesheet Move', [{ co: 'One', lead: A1 }]); const wo = set.w.One.id; o.wo = set.w.One.number;
   await mkLine(wo, 2); await a.post('/api/work-orders/change-status', { id: wo, status: 'approved' });
