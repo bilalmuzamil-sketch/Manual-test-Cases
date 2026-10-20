@@ -197,8 +197,8 @@ await run('C682438', async (o) => { o.location = await toHeavy();
   const l = (await linesRaw(set.w.One.id))[0]; o.lineTech = l ? say(await a.put(`/api/work-orders/lines/${l.line_id}/technicians`, { staffIds: [B1.staff_id] })) : 'no line';
   // fix 2 (20 Oct 06:15): with one line the card showed only the lead's name and no avatars; a second approved line that follows the lead gives the card both people (as on S2-37552)
   await mkLine(set.w.One.id, 2); o.lines = (await linesRaw(set.w.One.id)).map((x: any) => `${x.line_name}=${x.status}`);
-  // fix (20 Oct): the precondition needs "Line technicians" on in Board View's Fields to display (it read technician:false)
-  { const pv0 = await prefGet(); const key = pv0.boardFields ? 'boardFields' : 'fields'; o.fieldsBefore = pv0[key] ?? null; await a.put(PREF, { value: { ...pv0, [key]: { ...(pv0[key] ?? {}), technician: true } } }); }
+  // fix (20 Oct; corrected 06:30: the field is lineTechnicians — "technician" is Lead technician): the precondition needs "Line technicians" on in Board View's Fields to display (it read technician:false)
+  { const pv0 = await prefGet(); const key = pv0.boardFields ? 'boardFields' : 'fields'; o.fieldsBefore = pv0[key] ?? null; await a.put(PREF, { value: { ...pv0, [key]: { ...(pv0[key] ?? {}), technician: true, lineTechnicians: true } } }); }
   await pins([A1.staff_id, B1.staff_id]); const pv = await prefGet(); o.fields = pv.boardFields ?? pv.fields ?? null;
   await go('Board View', set.q); await p.mouse.move(5, 880);
   await p.locator('[data-test-id="page_search_input"]').click(); o.s1 = await focusInfo(p); const st: any[] = [];
@@ -206,7 +206,7 @@ await run('C682438', async (o) => { o.location = await toHeavy();
   o.s2 = { stops: st, focus: await focusInfo(p) };
   for (let i = 0; i < 4 && (await focusInfo(p)).card !== set.w.One.number; i++) { await p.keyboard.press('ArrowDown'); await p.waitForTimeout(350); }
   o.s3 = await focusInfo(p); const av: any[] = [];
-  for (let i = 0; i < 8; i++) { await p.keyboard.press('Tab'); await p.waitForTimeout(900); const f = await focusInfo(p); const tp = await tips(p); av.push({ focus: f, tooltips: tp }); await sh(p, `C682438-n-tab${i + 1}`); if (!f.card) break; }
+  for (let i = 0; i < 8; i++) { await p.keyboard.press('Tab'); await p.waitForTimeout(900); const f = await focusInfo(p); const tp = await tips(p); av.push({ focus: f, tooltips: tp }); await sh(p, `C682438-n-tab${i + 1}`); if (!f.card && !/^avatar_/.test(String(f.id))) break; } /* fix 06:35: an avatar's focus is not "in the card" by focusInfo — keep going through the avatars */
   o.s4_5 = av;
   // positive control: the same avatars on mouse hover
   const avs = p.locator(`${card(set, 'One')} .q-avatar, ${card(set, 'One')} [class*=avatar]`); o.hover = [];

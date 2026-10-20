@@ -349,3 +349,10 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
 - SV-11545 https://shopview.atlassian.net/browse/SV-11545 and SV-11546 https://shopview.atlassian.net/browse/SV-11546 — Story Defect ·
   parent SV-10047 (Ready for QA, read live) · Medium · board-tech-view · Relates SV-10047 · pictures inline full-width (read back).
 - The six cases also sit in the Nightly Test Runs 539–543 (Engineering's automated runs; Rule 47 — not ours, not written to).
+
+## 20 Oct 2026 (06:50 UTC) — QA lead's 27-test batch in run 498 on staging: ALL judged and posted (v26.40.19-c850386)
+- Passed (22): C682437, C682438, C682446, C368159, C368169, C368171, C368173, C97021, C690643–C690646, C690648–C690657.
+- Failed (5): C682421 (SV-11422, REJECTED FROM TESTING), C682436 (**SV-11555 filed today** — no "Nothing here yet" / "Add Technician" on today's build, proven from the app code), C682445 (SV-11119 In Progress, known outcome 1), C690642 and C690647 (SV-11545 Open — locked wording).
+- Every Failed result has the bold failing steps (Rule 132) and a "Follow the status here" comment.
+- Lessons: L0483 (release copies need drag / Unassign, not the dialog), L0484 (correction of L0479; assign-technician 500; runner not clockable; queue file read once), L0485 (Fields-to-display keys; lines made after the lead only follow it).
+- Results files: `run498-2026-10-08/RESULTS-run1020-*.json`; defect draft `defect-drafts/tickets/D-S1N1d-empty-states-2026-10-20.wiki`.

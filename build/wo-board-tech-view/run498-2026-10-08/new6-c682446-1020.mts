@@ -233,6 +233,9 @@ await run('C682446', async (o) => { o.location = await toHeavy();
   const set = await mkSet('ZZAUTOTEST C682446 Timesheet Move', [{ co: 'One', lead: A1 }]); const wo = set.w.One.id; o.wo = set.w.One.number;
   await mkLine(wo, 2); await a.post('/api/work-orders/change-status', { id: wo, status: 'approved' });
   const ls = await linesRaw(wo); o.lines = ls.map((l: any) => ({ name: l.line_name, status: l.status }));
+  // fix (20 Oct 06:45): line 2 is made after the lead was set, so it only FOLLOWED the lead (API techs []) — and a moved entry takes a line's
+  // unassigned row by design (SV-11087 scenario 5). Re-setting the lead (none → Ana) puts Ana on BOTH lines, as the precondition says (proven in C368171).
+  await a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: null }); await a.post('/api/work-orders/change-lead-technician', { work_order_id: wo, tech_assigned_id: A1.staff_id });
   // fix (20 Oct): assign-technician answers 500 on c850386; PUT …/technicians is the proven route
   for (const l of ls) o['assign_' + l.line_name] = say(await a.put(`/api/work-orders/lines/${l.line_id}/technicians`, { staffIds: [A1.staff_id] }));
   // "you" must be able to clock in: the runner is not (clockable:false by design), so the steps run as ZZAUTOTEST C682446 Me (Admin role, Time Clock on) in its own browser
@@ -244,6 +247,13 @@ await run('C682446', async (o) => { o.location = await toHeavy();
   const labor = async (tag: string) => { await p.goto(APP + `/workorders/${wo}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); await sh(p, `C682446-n-${tag}`);
     return Promise.all((await linesRaw(wo)).map(async (l: any) => ({ line: l.line_name, techs: (l.assigned_techs ?? []).map((x: any) => `${x.first_name ?? x.firstName ?? ''} ${x.last_name ?? x.lastName ?? ''}`.trim()), logged: (l.logged_techs ?? []).map((x: any) => JSON.stringify(x).slice(0, 160)), tech_times: (l.tech_times ?? []).length }))); };
   o.before = await labor('s0-lines');
+  // Rule 104 check (20 Oct 06:35): is Technician-A really set on each line, or only shown because she leads? Read each line's Edit Line roster.
+  o.rosters = [] as any[];
+  for (const l of ls) { await p.getByText(l.line_name.trim(), { exact: false }).first().click().catch(() => {}); await p.waitForTimeout(2500);
+    const d = p.locator('.q-dialog').filter({ hasText: 'Edit Line' }).last();
+    o.rosters.push({ line: l.line_name.trim(), roster: await d.evaluate((e: any) => [...e.querySelectorAll('[data-test-id^="line_roster_technician_"]')].map((x: any) => x.innerText.replace(/\s+/g, ' ').trim())).catch(() => null) });
+    await sh(p, `C682446-n-roster-${o.rosters.length}`); await p.keyboard.press('Escape'); await p.waitForTimeout(1200); if (await d.count()) { await d.locator('button').filter({ hasText: /^close$/ }).first().click().catch(() => {}); await p.waitForTimeout(800); } }
+  await p.goto(APP + `/workorders/${wo}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
   // step 1-3 on screen: Start under Line-1's Labor, ~1 minute, Stop, Clock Out with Line Completed? off
   const l1 = ls[0]; const btns = await p.evaluate(`[...document.querySelectorAll('button')].filter(b => b.getBoundingClientRect().width > 0).map(b => (b.getAttribute('data-test-id') || '') + ':' + b.innerText.replace(/\\s+/g, ' ').trim()).filter(x => /start|clock|stop/i.test(x))`); o.buttonsSeen = btns;
   const start = p.locator('button').filter({ hasText: /^\s*Start\s*$/ }).first(); o.s1 = { start: await start.count() };

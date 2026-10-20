@@ -1057,3 +1057,10 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - `run_queue.sh` reads its queue file ONCE at start: lines appended later are NOT run (run1020 stopped at 16 of 24). Start a second queue for appended lines.
 - An unpinned technician group can be ~280 groups down in Tech View: give "Technician-C" an "AA …" name so its header is drawn (C682437).
 #run498 #design #emptystate #tooling #correction → L0479, L0482, L0483
+
+## L0485 — 2026-10-20 — Three more set-up traps from the last run-498 batch (all were MY set-up, not the product)
+- Board View "Fields to display" keys (work-orders-list preference): `technician` = **Lead technician**, `lineTechnicians` = **Line technicians** (avatars on the card), plus `clockedInTechnicians`, `serviceAdvisor`, `vin`, `timeEstimate`, `vehicleHere`, `startDate`, `companyName`, `vehicle`, `progress`, `linesCount`, `totalPrice`. Read from the app's `WorkOrders.*.js` labels map. C682438 needed `lineTechnicians: true`.
+- A line created AFTER the lead was set only FOLLOWS the lead (API `assigned_techs` empty) even though the screen and Edit Line show the lead; a moved time entry then takes that line's row by design (SV-11087 scenario 5), so the lead "disappears" — a FALSE fault. Re-set the lead (none → lead) after making the lines so the lead is on every line (C682446, C368171). Check the API `assigned_techs` per line before judging anything about labor rows.
+- Timesheets list (⋮ > Timesheets) has empty rows around the entries: click the row filtered by the person's name, never `tbody tr:last`.
+- A tester-like on-screen set-up beats an API one when the API answer is ambiguous: C368173's start state ("Line-1's technician is Dee") was built in Edit Line (remove lead → confirm "Remove technician?" → add Dee → Save & Close).
+#run498 #tooling #setup → L0484

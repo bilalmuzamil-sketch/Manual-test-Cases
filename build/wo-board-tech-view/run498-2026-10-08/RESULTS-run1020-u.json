@@ -1,0 +1,11 @@
+{"pass_meta": {"env": "staging", "build": "v26.40.19-c850386", "date": "20 October 2026", "note": "run 498"},
+ "results": {
+  "C682446": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging, by the test's steps (outcome 3: the lines read as expected, so the fix has reached staging). \"You\" is ZZAUTOTEST C682446 Me, an Admin with Time Clock on.",
+    "Set-up: S2-37605, two approved lines, each with ZZAUTOTEST C682446 Ana Alpha under Labor (both listed in Edit Line).",
+    "Steps 1 to 3: Start under Line 1's Labor, Stop after about a minute, Line Completed? left off, Clock Out.",
+    "Steps 4 and 5: ⋮ > Timesheets, the new entry opened and its Line changed to Line 2, Save.",
+    "Step 6: Line 1's Labor lists only Ana; Line 2's lists Ana and Me, with the hours.",
+    "Steps 7 and 8: the same entry opened (it shows Line 2) and changed back to Line 1, Save.",
+    "Step 9: Line 2's Labor lists only Ana; Line 1's lists Ana and Me once, with the hours. Neither line has an extra labor row."],
+   "pictures": ["pictures-1019/C682446-1-moved-to-line2-1020.png", "pictures-1019/C682446-2-moved-back-1020.png"]}}}
