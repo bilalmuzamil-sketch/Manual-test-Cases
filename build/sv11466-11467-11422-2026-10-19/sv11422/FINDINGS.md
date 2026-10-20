@@ -32,3 +32,11 @@ S11-R1 ends: "the focused row or card shows a visible focus ring."
 Jira search (sticky / focus ring / hidden behind / covered + Tech/Board View): no ticket covers this. SV-11406 is about sticky headings but describes a different problem and is Done.
 
 Exhibit: `exhibits/q-row-under-heading.png`.
+
+## Re-check 20 Oct 2026 (fresh staging cookies), build v26.40.19-c850386 (unchanged since 19 Oct 11:32 GMT)
+- SV-11422 live: Ready for QA; last comment Chris 79047 (19 Oct 14:17 CDT); nothing new from Slavcho.
+- Tech View, search S2-16688, first Tab (walkB-1020.json): Compact row 208–244 under heading 208–244 (fully covered); Regular row 208–256, heading 208–252; Comfortable row 208–272, heading 208–264. Focus ring solid 2px blue on the row. Unchanged → the fix is not on staging.
+- Board View (z22.json, 2 loads): S2-16688 card focused at x 1149–1411, fully on screen. Pass.
+- Run 498 test 4054408: result **530263 Failed** (Tech step 5), 2 pictures attached (ev-1020 → exhibits/sv11422-1020-*.png). Run results 1516 → 1517, 0 missing, 0 changed.
+- Density preference restored to Compact (it was Compact before the run).
+- **Run 498 changed by another session overnight** (not this session; our shared account, about 03:38 UTC 20 Oct): 20 tests removed (lead-technician dialog cases; the cases themselves still exist) and 23 added (clear-shifts / lead cases 690650+). 116 results left the run with the removed tests. Reported to the QA lead and not reversed.

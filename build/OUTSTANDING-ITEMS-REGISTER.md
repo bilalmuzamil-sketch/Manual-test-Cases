@@ -60,7 +60,7 @@ else owes).
 ## 2026-10-20, ~03:45 UTC. **SV-11422: Chris ruled "not acceptable" (79047). Waiting on Slavcho's fix + fresh staging cookies. SV-11452 rewritten on production.**
 | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|
-| Fresh staging cookies (`sv_sso_session` / `PHPSESSID` / `cf_clearance` for `.shopview.com` staging; the session now redirects to Google sign-in) | The QA lead | Re-checking SV-11422 (search S2-16688) live, as Chris asked, and logging the run result on test 4054408 (still Blocked from 19 Oct; it will be Passed or Failed after the live re-check). | 2026-10-20 |
+| ~~CLEARED 20 Oct: cookies supplied; re-check done, test 4054408 Failed (530263)~~ Fresh staging cookies (`sv_sso_session` / `PHPSESSID` / `cf_clearance` for `.shopview.com` staging; the session now redirects to Google sign-in) | The QA lead | Re-checking SV-11422 (search S2-16688) live, as Chris asked, and logging the run result on test 4054408 (still Blocked from 19 Oct; it will be Passed or Failed after the live re-check). | 2026-10-20 |
 | Slavcho's fix for the hidden row (Chris, 79047: scroll the row so it sits just below the sticky heading). Staging front-end still v26.40.19-c850386 (last-modified 19 Oct 11:32 GMT) at 03:30 UTC 20 Oct, so the fix does not look deployed. | Slavcho Mitrov | The final SV-11422 verdict. | 2026-10-19 |
 
 ## 2026-10-19, ~18:30 UTC. **New layman cases for SV-11467 (test 4054407, Passed) and SV-11422 (test 4054408, Blocked on Chris). C614719 half-edited by Vladimir.**
