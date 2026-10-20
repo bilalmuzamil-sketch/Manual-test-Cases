@@ -1,0 +1,17 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.20-0509710", "date": "20 October 2026", "note": "run 498 - retest after SV-11326 was fixed"},
+ "results": {
+  "C581915": {"verdict": "Failed", "failed_steps": "Failed at steps 2 and 4: 11 technicians who have their own group and column are missing from the Technician filter.", "bold_steps": [2, 4],
+   "ticket": "New report prepared - waiting with the QA lead for permission to file it", "ticket_held": true,
+   "observed": [
+    "Result: Failed on staging. The Technician filter now exists (SV-11326 is Done), but it does not list everyone who has a group or column.",
+    "Step 1: the Technician filter sits right after Assigned to me; there is no Department, Customer or Service Advisor filter.",
+    "Step 2: the list starts with Unassigned and is sorted by first name then last name (Ana Brooks, then Ana Carter, then Ben Adams, whatever order they were added). BUT Tech View shows 329 technician groups and the filter offers only 317 names: these 11 have a group and no filter entry - Aimee Francis, Allison Hughes, Brett Guerra, Darrell Martinez, Debra Taylor, James Price, Jared Miller, Mary Parker, Rebecca Mitchell, ZZAUTOTEST F3 Dan Delta and Deleted technician.",
+    "Example: Aimee Francis has a column marked Inactive with 8 work orders; typing Aimee in the filter's search box gives No results (typing Esther Howard finds her, so the search works).",
+    "Step 3: two technicians can be ticked at the same time.",
+    "Step 4: Board View has the same filter in the same place and the same 317 names, so the same 11 columns cannot be chosen.",
+    "Step 5: List has no Technician filter."],
+   "todo": "Nothing for the tester yet: a new report is with the QA lead. Re-run this test when it is fixed.",
+   "pictures": ["pictures-1019/C581915-1-aimee-has-column-1020.png", "pictures-1019/C581915-2-filter-no-aimee-1020.png", "pictures-1019/C581915-3-filter-control-1020.png"]}
+ }
+}

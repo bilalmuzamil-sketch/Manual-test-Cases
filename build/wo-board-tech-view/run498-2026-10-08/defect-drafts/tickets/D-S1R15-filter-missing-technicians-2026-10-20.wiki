@@ -5,7 +5,7 @@ BASIS: PRD 845185030 version 69 (20 Oct 2026 15:31 UTC), read live 20 Oct 2026 1
 SOURCE CHECK (Rule 106): C581915 step 2 Expected ("The remaining options match the location's Tech View groups") agrees with PRD v69 S1-R15 ("everyone who gets a group or column at this location") · build differs ⇒ real defect.
 INSTRUMENT CHECK (Rule 104): both lists walked to their true end (Tech View 329 groups with Unassigned closed; Board View 340 columns; filter 317 options); every option IS a group, so the walk works in both directions (positive control); the 11 are missing in Tech View and Board View alike.
 STORY STATUS (Rule 112): SV-10044 is past QA (Ready for Production), SV-11326 is Done — surfaced in the ask.
-STATUS: HELD — ask the QA lead (Rule 113).
+STATUS: HELD — ask the QA lead (Rule 113). Result posted to run 498 as Failed with the ticket held (20 Oct 2026 16:02 UTC). Before filing, compose the two pictures into one landscape picture (Rule 116) and run size_pics.py after the description write.
 
 h2. Description
 
@@ -32,7 +32,9 @@ h2. Steps to Reproduce
 
 h2. Screenshots
 
-(pictures added after the Board View picture run)
+!C581915-1-aimee-has-column-1020.png|width=1000!
+
+!C581915-2-filter-no-aimee-1020.png|width=1000!
 
 
 h2. Environment
