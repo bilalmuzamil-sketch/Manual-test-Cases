@@ -1,0 +1,38 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Tested on Staging (build v26.40.20-9c75418) on 20 October 2026, signed in as Admin, window 1440 x 900 px, zoom 100%.
+* On Board View, hovering a card now shows a soft shadow on the left and right as well as below. The sides are no longer cut off by the column.
+* At rest there is no shadow, the border darkens on hover, and the card does not move or grow.
+
+*Before and after*
+!sv11541-01-side-shadow-before-after.png|width=900,height=804!
+_Card S2-17495 hovered. BEFORE: Staging build v26.40.19-31ad1e1 on 19 October, nothing beside the card (red boxes). AFTER: Staging build v26.40.20-9c75418 today, a soft shadow beside the card on both sides (green boxes). The strips on the right of each picture are the card's two edges magnified 5x with the contrast raised so the faint shadow is easy to see._
+
+*What I checked*
+||#||Check||Status||
+|1|Rest the pointer on a card: a soft shadow shows on the left, right and bottom, not cut off by the column (measured on the screen beside both side edges and below the card).|PASSED|
+|2|At rest there is no shadow.|PASSED|
+|3|The border darkens on hover (light theme) or lightens (dark theme).|PASSED|
+|4|The card does not move or grow on hover (same position and size, at rest and hovered).|PASSED|
+|5|Compact, Regular and Comfortable spacing.|PASSED|
+|6|Unassigned column (top card and second card) and technician columns (first technician column and the right-most column on screen).|PASSED|
+|7|Light and dark theme.|PASSED|
+
+All 24 combinations (3 spacings x 4 cards x 2 themes) gave the same result.
+
+*At rest and hovered*
+!sv11541-02-rest-and-hover.png|width=900,height=1085!
+_Staging, today. Left of each pair: at rest (blue box), no shadow. Right: hovered (green box), a soft shadow all round and a stronger border. Light theme in the Unassigned column (S2-17495) and a technician column (S2-16176); dark theme in the Unassigned column (S2-33692)._
+
+*Where the expected result comes from*
+The ticket's own "How to check" list (Chris Ward, 19 October: "the How to check list above is what passing looks like"):
+{quote}Board View, rest the pointer on any card: a soft shadow shows on the left, right and bottom, not cut off by the column. At rest there is no shadow; the border darkens on hover; the card does not move or grow. Same at Compact, Regular and Comfortable, in Unassigned and technician columns, light and dark theme.{quote}
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com and sign in as Admin.
+# In the top menu click {{Work Orders}}, then the {{All}} tab (top left of the page).
+# On the right of the bar above the list there are three view buttons. Click the right one, {{Board View}}.
+# Move the mouse pointer over any card (don't click): a soft shadow appears on both sides and below it, and its border gets darker.
+# Move the pointer away: the shadow goes.
