@@ -1,0 +1,32 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.20-0509710",
+  "date": "20 October 2026",
+  "note": "run 498 - C97022 re-run after its step 6 was updated to PRD v70"
+ },
+ "results": {
+  "C97022": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at steps 6 and 7: when the last work order leaves the filtered technician, keyboard focus is lost to the page.",
+   "bold_steps": [
+    6,
+    7
+   ],
+   "ticket": "https://shopview.atlassian.net/browse/SV-11582",
+   "observed": [
+    "Result: Failed on staging, re-run after the test's step 6 was updated to Chris's answer (focus should move to Clear all filters). Reported as SV-11582.",
+    "Steps 1 to 3: the card and its More actions button show a focus ring; Escape closes the menu and the reassign window and focus goes back to the button that opened them.",
+    "Step 4: with Technician = A, only A's column shows, holding both work orders; the first card has the focus ring.",
+    "Step 5: after reassigning the first card to B, it leaves the column and the focus ring moves to the next card.",
+    "Step 6: after reassigning the last card, 'No work orders match these filters' shows, but the Clear all filters button does not get focus; focus falls to the page.",
+    "Step 7: the next arrow key does nothing, and the next Tab jumps back to the top of the page (Skip to main content)."
+   ],
+   "todo": "Re-run this test when SV-11582 is fixed on staging.",
+   "pictures": [
+    "pictures-1019/C97022-1-focus-next-card-1020.png",
+    "pictures-1019/C97022-3-focus-lost-rerun-1020.png"
+   ]
+  }
+ }
+}

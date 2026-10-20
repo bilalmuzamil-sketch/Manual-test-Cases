@@ -4,7 +4,7 @@ ALREADY REPORTED: none. JQL read live 20 Oct 2026: parent = SV-10043 AND created
 BASIS: PRD 845185030 version 70 (20 Oct 2026 17:26 UTC), read live 20 Oct 2026 17:3x UTC, S11-E1 (Chris Ward's answer to question 34 of the question sheet: "please log that as a bug against S11-E1").
 SOURCE CHECK (Rule 106): C97022 step 6 Expected still says "focus moves to A's column header"; PRD v70 says Clear all filters for this moment. The build matches NEITHER (focus falls to the page) ⇒ real defect either way; the case text diverges from v70 and is reported, not changed (Rule 114).
 STORY STATUS (Rule 112): SV-10054 Ready for QA — allowed.
-STATUS: HELD — ask the QA lead (Rule 113). Result posted to run 498 as Failed with the ticket held (20 Oct 2026).
+STATUS: FILED 20 Oct 2026 as SV-11582 on the QA lead's yes (after updating C97022 step 6 to PRD v70, re-running it at 18:08 UTC — reproduced — and a fresh duplicate check). https://shopview.atlassian.net/browse/SV-11582
 
 h2. Description
 
@@ -24,7 +24,7 @@ h2. Steps to Reproduce
 # Press *Tab* to reach the card's *More actions* (…) button, press *Enter*, choose *Reassign lead technician* with the arrow keys and press *Enter*. Pick the second technician and confirm.
 #* The card leaves the column and the focus ring moves to the remaining card.
 # Do the same for the remaining card.
-#* "No work orders match these filters" shows, but no focus ring is anywhere and the arrow keys do nothing.
+#* "No work orders match these filters" shows, but no focus ring is anywhere: the arrow keys do nothing and the next Tab jumps back to the top of the page.
 
 *Actual Result:*
 * Keyboard focus is lost to the page after the last work order leaves the result.
@@ -34,13 +34,13 @@ h2. Steps to Reproduce
 
 h2. Screenshots
 
-!C97022-2-column-gone-1020.png|width=1000!
+!C97022-1-focus-lost-1020.png|width=1000!
 
 
 h2. Environment
 
 * *Build:* {{v26.40.20-0509710}} on [staging|https://app.staging.shopview.com/workorders] , 20 Oct 2026
-* *Example records:* customer "ZZAUTOTEST F3 Keyboard Focus Kept 40422" (work orders S2-37645 and S2-37646)
+* *Example records:* customer "ZZAUTOTEST F3 Keyboard Focus Kept 92916" (work orders S2-37664 and S2-37665)
 * *User:* Admin
 
 h2. Sources
