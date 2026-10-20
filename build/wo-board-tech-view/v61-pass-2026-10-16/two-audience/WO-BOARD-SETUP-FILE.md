@@ -1744,6 +1744,23 @@ SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, 
 ## 10. Open questions
 
 - Fast-follow (20 Oct 2026): the 27 cases blocked on SV-11522 / SV-11524 sit in TestRail folder "Fast-follow" (section 87347) and are not in run 498. Reference: Chris Ward, Slack, https://shopview.slack.com/archives/C0C41RV3T3L/p1792455057423139. Their recipes stay valid for when they are run after the release.
+- Release copies (20 Oct 2026, QA lead): 16 copies of the mixed Fast-follow cases, without the SV-11522 / SV-11524 parts, in run 498. Each uses its original's setup:
+  - [C690642](https://shopview.testrail.io/index.php?/cases/view/690642) Lead of an Invoiced or Paid work order cannot be changed (release) — same preconditions as C96963 (setup in the case itself or its linked setup doc)
+  - [C690643](https://shopview.testrail.io/index.php?/cases/view/690643) Reassign lead technician dialog lists technicians outside the filter (release) — same preconditions as C96973 (setup in the case itself or its linked setup doc)
+  - [C690644](https://shopview.testrail.io/index.php?/cases/view/690644) Dragging a card changes its lead, dragging to Unassigned clears it (release) — same preconditions as C97002 (setup in the case itself or its linked setup doc)
+  - [C690645](https://shopview.testrail.io/index.php?/cases/view/690645) A lead set on the work order page sends it to the bottom (release) — same preconditions as C97007 (setup in the case itself or its linked setup doc)
+  - [C690646](https://shopview.testrail.io/index.php?/cases/view/690646) Moving a card updates the counts, reordering shows no message (release) — same preconditions as C97008 (setup in the case itself or its linked setup doc)
+  - [C690647](https://shopview.testrail.io/index.php?/cases/view/690647) Invoiced and Paid work orders can be reordered but not reassigned (release) — same preconditions as C97009 (setup in the case itself or its linked setup doc)
+  - [C690648](https://shopview.testrail.io/index.php?/cases/view/690648) Blocked analytics never stops the page, settings or a lead change (release) — same preconditions as C97028 (setup in the case itself or its linked setup doc)
+  - [C690649](https://shopview.testrail.io/index.php?/cases/view/690649) Removing the lead by drag or Unassign asks the clear-shifts question (release) — same preconditions as C154889 (setup in the case itself or its linked setup doc)
+  - [C690650](https://shopview.testrail.io/index.php?/cases/view/690650) Clear-shifts question opens only for the old lead's unfinished shifts (release) — same preconditions as C368133 (setup in the case itself or its linked setup doc)
+  - [C690651](https://shopview.testrail.io/index.php?/cases/view/690651) Cancel, X or Escape on the clear-shifts question puts the card back (release) — same preconditions as C368135 (setup in the case itself or its linked setup doc)
+  - [C690652](https://shopview.testrail.io/index.php?/cases/view/690652) Clear-shifts question shows on Board and Tech View, not page or List (release) — same preconditions as C368136 (setup in the case itself or its linked setup doc)
+  - [C690653](https://shopview.testrail.io/index.php?/cases/view/690653) Assigning a lead by drag moves only open unassigned lines (release) — same preconditions as C368140 (setup in the case itself or its linked setup doc)
+  - [C690654](https://shopview.testrail.io/index.php?/cases/view/690654) Unassigning puts the work order in its normal place in Unassigned (release) — same preconditions as C368144 (setup in the case itself or its linked setup doc)
+  - [C690655](https://shopview.testrail.io/index.php?/cases/view/690655) Line with only a Schedule shift technician follows the new lead (release) — same preconditions as C581891 (setup in the case itself or its linked setup doc)
+  - [C690656](https://shopview.testrail.io/index.php?/cases/view/690656) The Clear shifts question ignores lines not approved or declined (release) — same preconditions as C581892 (setup in the case itself or its linked setup doc)
+  - [C690657](https://shopview.testrail.io/index.php?/cases/view/690657) An Entire work order shift stops counting after a new line is approved (release) — same preconditions as C581893 (setup in the case itself or its linked setup doc)
 
 - Deleted 19 Oct 2026 (QA lead's go-ahead; Chris Ward ruled for the PRD or v68 adopted the design): held cases C682429 to C682435. Full copies in `build/wo-board-tech-view/chris-answers-2026-10-19/apply/deleted/`.
 

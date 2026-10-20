@@ -28,10 +28,15 @@ for i, v in C.items():
     res_unq = re.sub(r"“[^”]*”|\"[^\"]*\"", "", res)
     steps_t = txt(v["custom_steps"]).replace("Assigned to me", "")
     res_unq = res_unq.replace("Assigned to me", "")
-    for w in BAD:
+    bad = [w for w in BAD if not (i == 96973 and w in ("Assign lead technician", "Reassign lead technician"))]  # C96973 keeps the dialog for a work order that has a lead: its name today
+    for w in bad:
         if w.lower() in res_unq.lower() or w.lower() in steps_t.lower(): p.append(f"fast-follow words left: {w}")
-    n = len(re.findall(r"<li", v["custom_steps"])); r = re.findall(r"Step (\d+):", res)
-    if [int(x) for x in r] != list(range(1, n + 1)): p.append(f"Step N results {r} vs {n} steps")
+    n = len(re.findall(r"<li", v["custom_steps"])); cov = set()
+    for grp in re.findall(r"Steps? ((?:\d+(?:\s*(?:,|and|to|–|-)\s*)?)+):", res):
+        nums = [int(x) for x in re.findall(r"\d+", grp)]
+        if re.search(r"\bto\b|–|-", grp) and len(nums) == 2: cov |= set(range(nums[0], nums[1] + 1))
+        else: cov |= set(nums)
+    if cov != set(range(1, n + 1)): p.append(f"steps without a result {sorted(set(range(1, n + 1)) - cov)}, results for missing steps {sorted(cov - set(range(1, n + 1)))}")
     if p: probs[i] = p
 print(len(C), "copies of", len(WANT), "; missing:", sorted(WANT - set(C)), "; extra:", sorted(set(C) - WANT))
 for i, p in probs.items(): print(f"C{i}:", p[:5])
