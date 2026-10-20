@@ -1655,4 +1655,4 @@ Every case's expected results quote their source sentences word for word (PRD v1
 
 ## 10. Open questions
 - Chris Ward answered all 38 questions of the first sheet on 19 Oct 2026 (design-recheck-2026-10-20/chris-answers.json).
-- Three design questions (A, B, C) are on the sheet shared with Chris on 20 Oct 2026 (https://docs.google.com/spreadsheets/d/1OjdCkjsGEeEc8ue6MDtr2Z_AoiFqko5mKYL2ucY3UYE); [C690660](https://shopview.testrail.io/index.php?/cases/view/690660), [C690662](https://shopview.testrail.io/index.php?/cases/view/690662) and [C690665](https://shopview.testrail.io/index.php?/cases/view/690665) are held until he answers.
+- Three design questions are questions 39, 40 and 41 (rows 46 to 48, light green) of the same sheet, added 20 Oct 2026 (https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ); [C690660](https://shopview.testrail.io/index.php?/cases/view/690660), [C690662](https://shopview.testrail.io/index.php?/cases/view/690662) and [C690665](https://shopview.testrail.io/index.php?/cases/view/690665) are held until he answers.

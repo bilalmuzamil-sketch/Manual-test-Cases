@@ -3382,3 +3382,26 @@ and the message "S1-352 assigned to Kristin Watson" with Undo. I drove the desig
 
 Worked example and evidence: `build/wo-board-tech-view/sv11522-11524-2026-10-19/` (PRD v66 against the 14 Oct design: 23 PRD words the
 design does not show, all open in the new register).
+
+## 131 · NEW QUESTIONS GO IN THE SAME SHEET, AT THE BOTTOM, IN A NEW COLOUR — NEVER A NEW FILE (all projects, permanent)
+
+**Ordered by the QA lead, 20 Oct 2026, verbatim:** *"Remember this as a rule to ALWAYS add new Questins with a new color code in the
+same file which you had created for the same testing suite before at the bottom in the new rows, do the same
+https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ/edit?gid=0#gid=0"*
+
+**Why:** on 20 Oct 2026 three new Splitting Sales Representatives questions were put in a NEW sheet (1OjdCk…), although the suite
+already had its question sheet for Chris Ward (17Ry1Bt…). Two files for one suite split the PO's answers and the history.
+
+**Every time, on every project:**
+1. Before writing any PO or dev question, look up the question sheet already made for that testing suite (the project's
+   `PROJECT-STATE.md`, `build/OUTSTANDING-ITEMS-REGISTER.md`). If one exists, the new questions go INTO IT. A new file is made only
+   when the suite has none yet.
+2. Add them at the BOTTOM, in new rows below the last row. Never insert between, reorder, overwrite or delete earlier rows or answers.
+3. Give the new batch its OWN colour, one not used in that sheet before, and add it to the sheet's colour guide with the date
+   (for example "Light green = new questions added 20 Oct 2026 (from row 45)"). Start the batch with one dated heading row in that
+   colour. The answer column keeps the sheet's answer colour so the PO always knows where to write.
+4. Number the new questions on from the last number in the sheet (after 38 comes 39).
+5. Keep the sheet's existing layout, columns and wording style (Rule 125, the colour-coded format first made for Milos Vasic).
+6. Read back the new rows (values and colours) before reporting, and give the QA lead the sheet link and the row numbers.
+
+Worked example: Splitting Sales Representatives, 20 Oct 2026, questions 39–41 in rows 46–48 of 17Ry1Bt…, light green.

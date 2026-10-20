@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109–130** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109–131** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -87,6 +87,9 @@ These are stated here **in full** because a session that gets only this far must
   difference is closed in `build/<project>/DESIGN-DIVERGENCE-REGISTER.json` by a SENT PO question or a ruling; "KNOWN, cases follow
   the spec" is never an outcome. **Every design behaviour that differs gets a held "design version" case (approved, permanent, 19 Oct
   2026), released or removed the day the PO rules.** Why: the WO design showed SV-11522/SV-11524's behaviour on 14 Oct and no case or question existed.
+- **🔴 NEW QUESTIONS GO IN THE SAME SHEET, AT THE BOTTOM, IN A NEW COLOUR (131, 20 Oct 2026).** When a testing suite already has a
+  question sheet, new PO/dev questions are added to THAT file in new rows at the bottom, numbered on, in a colour not used there before
+  (added to the colour guide with the date); never a new file, never touching earlier rows or answers.
 - **🔴 KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS (123).** New and changed cases go into the project's run in the
   same pass, union only (34). Before editing a case someone else created: give the QA lead the list with C-ids, links,
   who created each and when, and ask permission. No edit until he says yes.
@@ -530,6 +533,9 @@ carry the feature squad's name and the person the file is for.
 subfolder)** was ordered by the QA lead **2026-10-14** and lives at the end of `build/rules/RULES-61-96.md`, after 125;
 operator form `build/skills/21-DESIGN-DRIVE-PROTOCOL.md` §4b and §6b. It amends Rule 124 (a visual inventory passes beside the
 text inventory; for the look, the design is the source where the spec is silent). Lessons: `build/LESSONS-REGISTER.md` (L-01).
+
+**🔴 Rule 131 (new questions go in the same sheet, at the bottom, in a new colour)** was ordered by the QA lead **2026-10-20** and
+lives at the end of `build/rules/RULES-61-96.md`, after 130.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is

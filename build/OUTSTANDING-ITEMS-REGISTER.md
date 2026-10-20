@@ -3230,5 +3230,5 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
 ### Splitting Sales Representatives — 20 Oct 2026
 - DONE: 117 cases updated to PRD v10 and Chris Ward's answers; 7 new cases C690666–C690672 (incl. C690672 for answer 10, wide touch tablet);
   setup file regenerated (135 recipes, incl. DR-01..DR-08; still not linked from the cases). Suite 135 cases, no run, no build.
-- Waiting on Chris: questions A, B, C (sheet https://docs.google.com/spreadsheets/d/1OjdCkjsGEeEc8ue6MDtr2Z_AoiFqko5mKYL2ucY3UYE); C690660, C690662, C690665 held.
+- Waiting on Chris: questions 39, 40, 41 (rows 46-48, light green) of the suite's sheet https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ (moved there 20 Oct 2026 under Rule 131; the separate sheet 1OjdCk… is no longer used); C690660, C690662, C690665 held.
 - SV-11269's v8 acceptance criterion ("that cent goes to the Labor row"): QA lead, 20 Oct 2026: "Leave it for your cases follow the PRD and design". Closed.

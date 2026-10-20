@@ -34,6 +34,12 @@ or a database field name. Feed it a small JSON spec; a worked example is
 **Unchanged:** Rule 55 (the project and feature are named, and a non-technical person can answer every
 row) and Rule 66 (the sheet is the LAST thing sent, once everything answerable without him is done).
 
+## 🔴 §0a — ONE SHEET PER TESTING SUITE: NEW QUESTIONS AT THE BOTTOM, IN A NEW COLOUR (Rule 131, QA lead, 20 Oct 2026)
+
+If the suite already has a question sheet, never make a new file: add the new questions to that sheet in new rows below the last
+row, numbered on, in a colour not used there before, with a dated heading row and a dated line in the colour guide. Never touch
+earlier rows or answers. Read the rows back and give the link and row numbers. Full text: `build/rules/RULES-61-96.md` Rule 131.
+
 ## PURPOSE, IN PLAIN ENGLISH
 
 **Ask a product owner only the things we genuinely cannot settle ourselves — once, at the end, on one
