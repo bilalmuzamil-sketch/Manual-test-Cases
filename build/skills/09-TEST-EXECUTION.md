@@ -648,3 +648,10 @@ first, one at a time, each approved). How the ruling is recorded in the test dep
   quoted question or answer, no option labels, no internal rule numbers.
 - **Anyone else's ruling (Product Owner, developer, another lead):** quoted word for word, with who, date, where and a link.
 Write with `build/testing-tools/safe_case_edit.py`; served-page scan before and after. Full text: `build/rules/RULES-61-ONWARD.md` rule 114(d).
+
+## Rule 132 (QA lead 2026-10-20) — a result that is not Passed names its failing step(s) in bold, first
+Every Failed / Blocked / Retest result opens with one bold line naming the test case's own step number(s) that fail or cannot
+be done ("Failed at steps 6 and 10: …", "Blocked at step 5 …", "Retest — cannot pass from step 2 until …"), and the bullets
+for those steps are bold. In the results JSON: `"failed_steps": "<that line>"`, `"bold_steps": [6, 10]` — `push_results_to_run.py`
+refuses a non-Passed result without `failed_steps`. Correct an existing comment by EDITING it in the TestRail UI (the result's
+Edit link; ~2–3 day window, L0475), never by adding a new one. Full text: `build/rules/RULES-61-ONWARD.md` rule 132.

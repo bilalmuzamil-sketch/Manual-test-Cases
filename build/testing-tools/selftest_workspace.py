@@ -118,6 +118,14 @@ def main(quick=False):
         check('results: run comments hide a Passed "None." and never hide a Failed/Blocked to-do', all(c), str(c))
     except Exception as e:
         check('results: run comments', False, repr(e)[:160])
+    # 7c2 · Rule 132 (2026-10-20): a non-Passed result opens with the failing step(s) in bold and bolds those steps' bullets; refused without them
+    try:
+        h = pr.comment_for({'verdict': 'Failed', 'failed_steps': 'Failed at step 2: x.', 'bold_steps': [2], 'observed': ['Step 1: a', 'Step 2: b', 'Step 20: c']}, 'td', 'H')
+        ok = h.startswith('<p><strong>Failed at step 2') and '<li><strong>Step 2: b</strong></li>' in h and '<li>Step 20: c</li>' in h and '<li>Step 1: a</li>' in h
+        src132 = open(f'{T}/push_results_to_run.py').read()
+        check('results: a non-Passed result opens with its failing step(s) in bold and is refused without them (Rule 132)', ok and 'no "failed_steps"' in src132)
+    except Exception as e:
+        check('results: Rule 132 bold failing steps', False, repr(e)[:160])
     # 7d · Rule 130 (2026-10-14): results are refused until the QA lead's screenshot answer is recorded; "yes" attaches pictures
     src_pr = open(f'{T}/push_results_to_run.py').read()
     check('results: a write without his screenshot answer is refused, and "yes" attaches the pictures (Rule 130)',

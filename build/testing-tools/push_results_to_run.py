@@ -142,9 +142,21 @@ def comment_for(rec, todo, header, footer=None, lead=None):
     # Rule 122 (QA lead 2026-10-12): the comment is short plain bullet points a non-technical reader
     # can follow. `observed` / `not_observed` may be a LIST of points -> one <ul><li> each (block
     # tags only, never <br>, per the TestRail formatting rule). A string still renders as before.
+    # Rule 132 (QA lead 2026-10-20): a non-Passed result opens with ONE bold line naming the failing step
+    # number(s) (`failed_steps`), and the bullets for those steps are bold: any bullet starting with
+    # "Step N"/"Steps N" for N in `bold_steps`, or with "Result:". Passed results are unchanged.
+    bold_steps = [str(x) for x in (rec.get('bold_steps') or [])] if rec.get('verdict') != 'Passed' else []
+    def is_bold(x):
+        t = str(x).strip()
+        if not bold_steps: return False
+        if t.startswith('Result:'): return True
+        m = re.match(r'Steps? ([0-9]+)', t)
+        return bool(m) and m.group(1) in bold_steps
     def bullets(v):
-        return '<ul>%s</ul>' % ''.join('<li>%s</li>' % esc(str(x).strip()) for x in v if str(x).strip())
+        return '<ul>%s</ul>' % ''.join(('<li><strong>%s</strong></li>' if is_bold(x) else '<li>%s</li>') % esc(str(x).strip()) for x in v if str(x).strip())
     obs = rec['observed']
+    if rec.get('verdict') != 'Passed' and (rec.get('failed_steps') or '').strip():
+        blocks.append('<p><strong>%s</strong></p>' % esc(rec['failed_steps'].strip()))
     blocks += ['<p>%s</p>' % esc(header), bullets(obs) if isinstance(obs, list) else '<p>%s</p>' % esc(obs.strip())]
     nobs = rec.get('not_observed') or ''
     if isinstance(nobs, list):
@@ -280,6 +292,12 @@ def main():
         if r.get('ticket_held') and HELD in (r.get('ticket') or '').lower():
             continue
         no_ticket.append(c)
+    # Rule 132 (QA lead 2026-10-20): every non-Passed result names its failing step(s) in bold first.
+    no_steps = sorted(c for c, r in res.items() if r['verdict'] != 'Passed' and not (r.get('failed_steps') or '').strip())
+    if no_steps:
+        sys.exit('REFUSING: no "failed_steps" on %s (Rule 132: every Failed/Blocked/Retest result opens with the '
+                 'failing step number(s) in bold, e.g. "Failed at steps 6 and 10: ..."; list those steps in '
+                 '"bold_steps" so their bullets are bold too).' % ', '.join(no_steps))
     if no_ticket:
         sys.exit('REFUSING: Failed with no ticket link for %s '
                  '(QA lead 2026-09-15: every failed case carries its ticket). If the finding is new '

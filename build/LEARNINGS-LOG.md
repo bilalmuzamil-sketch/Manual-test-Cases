@@ -1000,3 +1000,9 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - `<strong>` written through the editor renders bold (screenshot `shown-3761668.png`); the API-write literal-tag trap does not apply to a UI save.
 - QA lead ruling 20 Oct 2026: every not-Passed run-498 comment must open with the failing step number(s) in bold, and the bullet(s) describing those steps bold — "to know exactly at which step the test failed".
 #testrail #results #edit #run498 #ruling → L0474
+
+## L0476 — 2026-10-20 — Rule 132 recorded and enforced: bold failing steps on every non-Passed result
+- QA lead: *"Save adding the step numbers in the results and bolding the Failed steps as a permanent rule."* → Rule 132 (RULES-61-ONWARD.md), index row in CLAUDE.md, skill 09 section.
+- `push_results_to_run.py`: new fields `failed_steps` (bold first line) and `bold_steps` (step numbers whose bullets, plus "Result:", are bolded); a non-Passed result without `failed_steps` is REFUSED (proved with a deliberate failing dry-run). Self-test check 7c2 added; selftest 33/33 before→after (32 before + the new one).
+- An API-posted `<a>` in a result comment renders as a link (shown-api-link-529847.png), so `<strong>` posted by the tool is expected to render too — confirm on the first post (screenshot), as the case-field literal-tag trap is about case fields, not results.
+#rule132 #results #tooling → L0475
