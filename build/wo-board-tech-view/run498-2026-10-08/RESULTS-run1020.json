@@ -1,0 +1,29 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-c850386",
+  "date": "20 October 2026",
+  "note": "run 498: six untested/blocked + 16 release copies + 4 added + C97021, by their current steps"
+ },
+ "results": {
+  "C682421": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at step 5: in Tech View the focused row S2-16688 is hidden behind its technician's fixed heading. Steps 1 to 4 and 7 passed.",
+   "bold_steps": [
+    5
+   ],
+   "observed": [
+    "Result: Failed on staging at step 5. Chris Ward (product owner) ruled on 19 Oct 2026 in SV-11422 that the covered row is not acceptable: \"the user has to be able to see which row they're on.\"",
+    "Steps 1 to 4: the link opens the All tab with S2-16688 in Search; every group is open; Unassigned shows 0 work orders and S2-16688 is further down, off the screen.",
+    "Step 5: after Tab from Search the keyboard focus is on S2-16688's row (not on the Unassigned heading), but the row sits behind the Brandi Smith heading, which stays fixed at the top of the list. Only a thin blue line of the focus ring shows; the row cannot be seen.",
+    "Step 7: in Board View the board scrolls to Brandi Smith's column and the S2-16688 card has the blue focus ring and is fully on the screen."
+   ],
+   "ticket": "Ticket to follow: https://shopview.atlassian.net/browse/SV-11422 (Ready for QA; Chris Ward asked on 19 Oct 2026 for the row to be scrolled fully below the heading).",
+   "todo": "Re-run this test once SV-11422 is fixed: in Tech View the whole focused row and its ring must be visible below the heading.",
+   "pictures": [
+    "pictures-1019/C682421-1-row-hidden-1020.png",
+    "pictures-1019/C682421-2-board-ok-1020.png"
+   ]
+  }
+ }
+}

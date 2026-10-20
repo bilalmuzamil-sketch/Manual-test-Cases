@@ -1025,3 +1025,10 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - A re-run of one block of a multi-test script (`ONLY=…`) overwrites that script's whole result JSON — copy the JSON first (queue line does `cp new6-1020.json new6-1020-main.json`).
 - QA lead added C97021 (Tab enters each view once) to the batch; case unchanged since 16 Oct, `kbd-fix4.mts ONLY=C97021` follows it.
 #run498 #design #emptystate #tooling → L0478
+
+## L0480 — 2026-10-20 — First-Tab (C682421) re-judged Failed; another session posts on run 498 too; a script must come back to Heavy Duty itself
+- C682421 on c850386: focus lands on S2-16688's row, but the row sits behind Brandi Smith's sticky group heading (elementFromPoint at the row's top and middle hit the heading; only the bottom 2–4 px are the row). Chris Ward ruled 19 Oct (SV-11422) "not acceptable" → Failed at step 5; step 7 (Board) passes. Posted result 530264 + follow comment 530265.
+- **Another session posted the same Failed at 04:35 (result 530263, same account)** — check `get_results_for_run/498&created_after=<ts>` before posting a batch so duplicates are seen, and expect the shared Admin/Google sign-in to be in use by it (L0394: one sign-in = one app session).
+- `switchLocUI` back to Heavy Duty after a block at another location did NOT take (header stayed "ZZAUTOTEST Location Empty"), and the next four blocks of the same script ran at the wrong location (no cards, 500 on assign-technician). Fix in `new6-1020.mts`: `toHeavy()` at the start of every block — on-screen switch, header read back, API `/api/iam/change-location` fallback, throw if still wrong.
+- `staff/enrollment/create` needs `departmentId` (400 "department_id Missing required parameter" without it).
+#run498 #keyboard #location #tooling → L0479
