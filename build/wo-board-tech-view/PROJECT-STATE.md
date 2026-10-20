@@ -356,3 +356,10 @@ Verbatim: *"If a failed or blocked or retest test case has a comment asking you 
 - Every Failed result has the bold failing steps (Rule 132) and a "Follow the status here" comment.
 - Lessons: L0483 (release copies need drag / Unassign, not the dialog), L0484 (correction of L0479; assign-technician 500; runner not clockable; queue file read once), L0485 (Fields-to-display keys; lines made after the lead only follow it).
 - Results files: `run498-2026-10-08/RESULTS-run1020-*.json`; defect draft `defect-drafts/tickets/D-S1N1d-empty-states-2026-10-20.wiki`.
+
+## 20 Oct 2026 (15:55 UTC) — fixed-ticket retest in run 498 on staging (v26.40.20-0509710), QA lead's order after SV-11541/11498/11454/11422/11326/11119 were fixed
+- All six tickets read live: Done. SV-11541 and SV-11454 had no Failed/Retest test in the run.
+- Posted (results file `run498-2026-10-08/RESULTS-run1020-v.json`, pictures `pictures-1019/*-1020.png`): **Passed** C581916, C581918, C590127, C682445 (SV-11119 fix shipped) · **Failed** C97020 (keyboard note now shows — SV-11498 fixed — but still the old sentence, SV-11545 Open) · **Blocked** C97022 at step 6 (PRD S11-E1 vs S1-R15a/S1-N1a conflict: when the last card leaves a filtered column, the board becomes "No work orders match these filters", so there is no header to take focus; PO question).
+- Pending: C581917 (re-check passed: after Clear all filters WO-1 and WO-2 are back; picture run queued) · C581915 (fails step 2/4: 11 technicians with a group/column are missing from the Technician filter; lookup queued; ticket to be asked for).
+- PRD 845185030 is now **v69** (20 Oct 15:31 UTC): S1-R15 widened (deactivated / not-enrolled / Time-Clock-off leads keep a column and are listed, "Inactive" label), new S1-R15c (50-value message never on opening the list) — staging shows that message on opening; no case covers it.
+- C682421 (Automated) is Passed but still titled "SV-11422 - …": removing it needs the QA lead's go-ahead (Rule 71), then tell Vlad.
