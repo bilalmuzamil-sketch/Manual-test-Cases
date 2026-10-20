@@ -1,0 +1,2 @@
+import {session} from './rec.mjs';
+const s=await session({quick:'admin'}); const g=async()=>(await s.api('/api/users/me/preferences/work-orders-list')).json.data.value; const v=await g(); console.log('pins before',JSON.stringify(v.pinnedTechnicianIds)); v.pinnedTechnicianIds=[]; const r=await s.api('/api/users/me/preferences/work-orders-list',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({value:v})}); console.log('put',r.status,JSON.stringify((await g()).pinnedTechnicianIds)); await s.close();
