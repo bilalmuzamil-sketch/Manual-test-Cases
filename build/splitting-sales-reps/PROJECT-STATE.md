@@ -29,3 +29,11 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
 - PO question sheet for Chris Ward: https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ (38 questions from 65 sources, 4 dropped as answered; 258/258 cells verified). Not shared or sent; the QA lead sends it.
 - Open with the QA lead: the 41 existing cases that will break (baseline/V1-BASELINE-AND-INVARIANTS.md section e); the design
   helper scanned 2.47 MB of canvas viewer code by script instead of line by line (Rule 119 needs his OK).
+
+## 20 Oct 2026 — design re-check both ways (lessons L-01, L-02), PRD v10, Chris Ward's answers
+- PRD moved v8 → **v10** (19 Oct 2026, Chris Ward; v9 from his answers to our question sheet, v10 S4-R21 wording): 20 codes changed, 4 new (S1-R6a, S1-E3, S2-E6, S7-R6). Saved and diffed: `prd-v10-2026-10-20/`. The 120 cases still quote v8; updating them waits for the QA lead (full pass or named set).
+- Chris answered all 38 questions (sheet 17Ry1Bt…, saved `design-recheck-2026-10-20/chris-answers.json`). The 19 Oct design conflicts C1–C5 are all ruled for the PRD (answers 2, 11, 15, 24, 25).
+- Stories SV-11265–SV-11272 refreshed by Chris on 19 Oct to match v9 (answer 37); ticket ledger created (`TICKET-LEDGER.json`, 18 tickets).
+- Design re-check both ways (`design-recheck-2026-10-20/`): all 68 board pictures viewed again; PRD v10 → design 78 elements (51 shown, 9 different, 18 not drawn) plus a by-hand table of 27 menus, lists, tooltips and messages; design → cases 1,370 text rows and 70 visual rows; divergence register 59 rows.
+- **8 missing design cases created in section 84277, pictures attached, read back:** C690658–C690665 (3 of them, C690660, C690662, C690665, held: AUTOMATION: HOLD waiting on the PO, questions Q-A, Q-B, Q-C not yet sent).
+- **C666030 is now wrong:** it expects "Sales Representative" on the part sale; v10 S2-N2 and answer 7 keep "Sales representative". Correcting it waits for the QA lead (with the v10 update).

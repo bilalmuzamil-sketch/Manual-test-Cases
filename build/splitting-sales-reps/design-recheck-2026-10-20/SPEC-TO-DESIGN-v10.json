@@ -1,0 +1,1382 @@
+{
+ "prd": "Confluence 919928833 v10",
+ "elements": [
+  {
+   "id": "E01",
+   "prd": "S1-R1",
+   "kind": "position",
+   "element": "Sales Representative field directly under Service Advisor",
+   "result": "SHOWN",
+   "boards": "1.2-1.16",
+   "design_shows": "under Service Advisor",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665915",
+    "C666017"
+   ]
+  },
+  {
+   "id": "E02",
+   "prd": "S1-R2",
+   "kind": "label",
+   "element": "label \"Sales Representative\" on line 1, name on line 2, same style/size/weight/left edge as Lead Technician and Service Advisor",
+   "result": "SHOWN",
+   "boards": "1.2, 1.5",
+   "design_shows": "same, x=36",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666017"
+   ]
+  },
+  {
+   "id": "E03",
+   "prd": "S1-R3",
+   "kind": "look at rest",
+   "element": "no box, no dropdown arrow, no buttons at rest",
+   "result": "SHOWN",
+   "boards": "1.2, 1.5, 1.9, 1.12, 1.14, 1.16",
+   "design_shows": "plain text",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666017",
+    "C666021"
+   ]
+  },
+  {
+   "id": "E04",
+   "prd": "S1-R4",
+   "kind": "hover",
+   "element": "hover shows the box on every Sales Representative field at once, same height/left edge as LT/SA, arrow and buttons together; they stay while a dropdown or the + menu is open or a field has keyboard focus",
+   "result": "SHOWN (focus NOT DRAWN)",
+   "boards": "1.3, 1.6, 1.8, 1.10, 1.11",
+   "design_shows": "box on SR only; stays with list/menu open; no focus board",
+   "register": "S1-R4|keyboard focus",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C666018",
+    "C666021"
+   ]
+  },
+  {
+   "id": "E05",
+   "prd": "S1-R5",
+   "kind": "spacing",
+   "element": "box ends 16px before the 32px button column",
+   "result": "DIFFERENT",
+   "boards": "1.3, 1.6, 1.7, 1.10, 1.13",
+   "design_shows": "about 22 px (16 px in the customer window)",
+   "register": "S1-R5|16px gap",
+   "outcome": "PO-RULED",
+   "cases": [
+    "C666018"
+   ]
+  },
+  {
+   "id": "E06",
+   "prd": "S1-R6",
+   "kind": "spacing",
+   "element": "16px between Lead Technician, Service Advisor and every Sales Representative field (one field, two fields, read-only)",
+   "result": "SHOWN",
+   "boards": "1.2, 1.9, 1.10, 1.17",
+   "design_shows": "16 px measured",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666017",
+    "C666021",
+    "C666024"
+   ]
+  },
+  {
+   "id": "E07",
+   "prd": "S1-R6a",
+   "kind": "message/layout",
+   "element": "a Lead Technician message shows directly below the Lead Technician field and pushes the fields under it down",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "no board shows a Lead Technician message",
+   "register": "S1-R6a|Lead Technician message",
+   "outcome": "QUESTION-NEEDED",
+   "cases": [
+    "MISSING: GAP-8 (held)"
+   ]
+  },
+  {
+   "id": "E08",
+   "prd": "S1-R7",
+   "kind": "value",
+   "element": "\"Unassigned\" with nobody assigned",
+   "result": "SHOWN",
+   "boards": "1.2, 1.16",
+   "design_shows": "Unassigned",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665915",
+    "C666017",
+    "C666023"
+   ]
+  },
+  {
+   "id": "E09",
+   "prd": "S1-R8",
+   "kind": "list rows",
+   "element": "dropdown: \"Unassigned\" first, then every active rep A-Z by first, then last name",
+   "result": "SHOWN",
+   "boards": "1.4, 1.11, 1.15",
+   "design_shows": "Unassigned, Becky Gonzales, Daniel Montoya, Gerald Ortiz",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665916",
+    "C666019"
+   ]
+  },
+  {
+   "id": "E10",
+   "prd": "S1-R9",
+   "kind": "list state",
+   "element": "the person in the field is checked; with nobody \"Unassigned\" is checked",
+   "result": "SHOWN",
+   "boards": "1.4, 1.11, 1.15",
+   "design_shows": "tick + blue row",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666019"
+   ]
+  },
+  {
+   "id": "E11",
+   "prd": "S1-R10",
+   "kind": "list",
+   "element": "no x inside the field; picking \"Unassigned\" clears",
+   "result": "SHOWN",
+   "boards": "1.15, 1.16",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665918",
+    "C666023"
+   ]
+  },
+  {
+   "id": "E12",
+   "prd": "S1-R11",
+   "kind": "icon position",
+   "element": "arrow at the right end, vertically centred (one field); bottom-right on the name line (two fields)",
+   "result": "SHOWN",
+   "boards": "1.6, 1.10, 1.13, 6.7",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666018",
+    "C666021"
+   ]
+  },
+  {
+   "id": "E13",
+   "prd": "S1-R12",
+   "kind": "list",
+   "element": "no search box",
+   "result": "SHOWN",
+   "boards": "1.4, 2.4, 3.3, 6.3",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666019"
+   ]
+  },
+  {
+   "id": "E14",
+   "prd": "S1-R15",
+   "kind": "behaviour",
+   "element": "dropdown closes on pick, click outside, Escape",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "pictures cannot show closing",
+   "register": "S1-R15|closing",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665917",
+    "C665919"
+   ]
+  },
+  {
+   "id": "E15",
+   "prd": "S1-N1",
+   "kind": "read-only",
+   "element": "no Create & Edit, invoiced, paid or history: plain text, same label and wording, no + / x",
+   "result": "SHOWN (invoiced only)",
+   "boards": "1.17",
+   "design_shows": "invoiced card",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665920",
+    "C665932",
+    "C666024"
+   ]
+  },
+  {
+   "id": "E16",
+   "prd": "S1-N2",
+   "kind": "message",
+   "element": "\"The selected staff member is not a sales representative.\"",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "",
+   "register": "S1-N2|The selected staff member is not a sales representative.",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665923"
+   ]
+  },
+  {
+   "id": "E17",
+   "prd": "S1-N3",
+   "kind": "message",
+   "element": "error message after a failed save, field returns to the saved value",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "",
+   "register": "S1-N3|failed save",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665924"
+   ]
+  },
+  {
+   "id": "E18",
+   "prd": "S1-E2",
+   "kind": "value",
+   "element": "\"(Inactive)\" after the name, e.g. \"Elliot Brennan (Inactive)\"; no option checked",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "",
+   "register": "S1-E2|(Inactive)",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665921",
+    "C665922"
+   ]
+  },
+  {
+   "id": "E19",
+   "prd": "S1-E3",
+   "kind": "value",
+   "element": "staff member gone or in another organization reads \"Unassigned\", never a bare \"(Inactive)\"",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "developer-only (context note S6-N1)",
+   "register": "S1-E3|(Inactive)",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "MISSING (behaviour, developer check): no case quotes S1-E3"
+   ]
+  },
+  {
+   "id": "E20",
+   "prd": "S2-R1",
+   "kind": "button",
+   "element": "+ : Tertiary button, small icon-only, 32px square, 8px corners, Lucide plus at 20px",
+   "result": "SHOWN",
+   "boards": "1.3, 1.7",
+   "design_shows": "32x32, grey plus",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666018"
+   ]
+  },
+  {
+   "id": "E21",
+   "prd": "S2-R2",
+   "kind": "button state",
+   "element": "grey on no fill at rest; light fill on hover; fill stays while the menu is open",
+   "result": "SHOWN",
+   "boards": "1.3, 1.7, 1.8",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666018",
+    "C666020"
+   ]
+  },
+  {
+   "id": "E22",
+   "prd": "S2-R3",
+   "kind": "tooltip",
+   "element": "\"Add representative\" on hover; not shown while the menu is open",
+   "result": "SHOWN",
+   "boards": "1.7, 1.8, 2.6",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666020",
+    "C666026"
+   ]
+  },
+  {
+   "id": "E23",
+   "prd": "S2-R4",
+   "kind": "menu rows",
+   "element": "menu below the + with ONE option \"Sales Representative - Parts\"; outside click / Escape closes",
+   "result": "SHOWN (closing NOT DRAWN)",
+   "boards": "1.8, 6.5",
+   "design_shows": "1 row, right-aligned under the +",
+   "register": "S1-R15|closing",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665927",
+    "C666020"
+   ]
+  },
+  {
+   "id": "E24",
+   "prd": "S2-R5",
+   "kind": "labels/order",
+   "element": "\"Sales Representative - Labor\" then \"Sales Representative - Parts\"",
+   "result": "SHOWN",
+   "boards": "1.9",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665925",
+    "C666021"
+   ]
+  },
+  {
+   "id": "E25",
+   "prd": "S2-R6",
+   "kind": "values",
+   "element": "both start with the one field's person (or Unassigned)",
+   "result": "SHOWN",
+   "boards": "1.9",
+   "design_shows": "both Becky",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665925",
+    "C665926"
+   ]
+  },
+  {
+   "id": "E26",
+   "prd": "S2-R7",
+   "kind": "behaviour",
+   "element": "neither dropdown opens on its own",
+   "result": "SHOWN",
+   "boards": "1.9",
+   "design_shows": "no list open",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665925"
+   ]
+  },
+  {
+   "id": "E27",
+   "prd": "S2-R8",
+   "kind": "button",
+   "element": "remove x beside \"Sales Representative - Parts\": same Tertiary 32px button, Lucide x 20px, grey, light fill on hover",
+   "result": "SHOWN",
+   "boards": "1.10, 1.13",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666021",
+    "C666022"
+   ]
+  },
+  {
+   "id": "E28",
+   "prd": "S2-R9",
+   "kind": "tooltip",
+   "element": "\"Remove Sales Representative - Parts\"",
+   "result": "SHOWN",
+   "boards": "1.13",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666022"
+   ]
+  },
+  {
+   "id": "E29",
+   "prd": "S2-R10",
+   "kind": "button",
+   "element": "no + while two fields show; nothing beside Labor",
+   "result": "SHOWN",
+   "boards": "1.10",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666021"
+   ]
+  },
+  {
+   "id": "E30",
+   "prd": "S2-R14",
+   "kind": "label",
+   "element": "both labels in full, never cut off",
+   "result": "SHOWN",
+   "boards": "1.9, 6.6",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666021"
+   ]
+  },
+  {
+   "id": "E31",
+   "prd": "S2-R16",
+   "kind": "result",
+   "element": "remove x leaves one \"Sales Representative\" with the Labor person",
+   "result": "SHOWN",
+   "boards": "1.14",
+   "design_shows": "Daniel Montoya",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665929",
+    "C666022"
+   ]
+  },
+  {
+   "id": "E32",
+   "prd": "S2-R17",
+   "kind": "read-only labels",
+   "element": "invoiced/paid/history: plain text, same label and wording, no + / x; both labels shown; ONLY the Sales Representative fields read as in S1-R2/S2-R5; Lead Technician and Service Advisor keep today's read-only labels",
+   "result": "SHOWN",
+   "boards": "1.17",
+   "design_shows": "\"Lead technician\", \"Service advisor\", \"Sales Representative - Labor\", \"Sales Representative - Parts\"",
+   "register": "S2-R17|read-only labels",
+   "outcome": "PO-RULED",
+   "cases": [
+    "C665932",
+    "C666024",
+    "MISSING: GAP-1 (LT/SA labels)"
+   ]
+  },
+  {
+   "id": "E33",
+   "prd": "S2-N2",
+   "kind": "label",
+   "element": "part sale keeps one field, no +; its label stays \"Sales representative\" and its look and behaviour do not change",
+   "result": "DIFFERENT",
+   "boards": "3.1-3.4",
+   "design_shows": "label \"Sales Representative\" (capital R)",
+   "register": "S2-N2|Sales representative",
+   "outcome": "PO-RULED",
+   "cases": [
+    "C665935",
+    "C666030",
+    "MISSING: GAP-2"
+   ]
+  },
+  {
+   "id": "E34",
+   "prd": "S2-E4",
+   "kind": "message",
+   "element": "\"The sales representative cannot be changed on an invoiced or paid work order.\"",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "",
+   "register": "S2-E4|The sales representative cannot be changed on an invoiced or paid work order.",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665933"
+   ]
+  },
+  {
+   "id": "E35",
+   "prd": "S2-E6",
+   "kind": "behaviour",
+   "element": "two screens: the later save wins; each screen shows what was saved",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "",
+   "register": "S2-E6|two screens",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "MISSING (behaviour): no case quotes S2-E6"
+   ]
+  },
+  {
+   "id": "E36",
+   "prd": "S3-R1",
+   "kind": "list",
+   "element": "tap opens the same dropdown Lead Technician and Service Advisor open on a phone, same options",
+   "result": "SHOWN",
+   "boards": "6.1, 6.3, 6.7",
+   "design_shows": "same list as today's phone list",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665938",
+    "C666034"
+   ]
+  },
+  {
+   "id": "E37",
+   "prd": "S3-R2",
+   "kind": "button",
+   "element": "+ and remove x always shown at 32px on a touch screen",
+   "result": "SHOWN",
+   "boards": "6.2, 6.4, 6.6",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665938",
+    "C666034"
+   ]
+  },
+  {
+   "id": "E38",
+   "prd": "S3-R4",
+   "kind": "phone look",
+   "element": "on a touch screen the Sales Representative fields always show their dropdown arrow; LT/SA keep today's arrow-on-tap",
+   "result": "DIFFERENT",
+   "boards": "6.2, 6.6",
+   "design_shows": "no arrow at rest; note 'At rest the rows read as plain text.'",
+   "register": "S3-R4|arrow at rest on a phone",
+   "outcome": "PO-RULED",
+   "cases": [
+    "C665938",
+    "C666014",
+    "C666034"
+   ]
+  },
+  {
+   "id": "E39",
+   "prd": "S3-R5",
+   "kind": "phone",
+   "element": "Edit Customer / New Customer fields, + and x on a phone",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "",
+   "register": "S3-R5|customer window on a phone",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665939"
+   ]
+  },
+  {
+   "id": "E40",
+   "prd": "S3-R6",
+   "kind": "phone control",
+   "element": "card opens collapsed; fields show after the card is expanded with its edit button; expand control unchanged",
+   "result": "DIFFERENT (collapsed state NOT DRAWN)",
+   "boards": "6.0, 6.2-6.7",
+   "design_shows": "'Hide Details' toggle above the card on every phone board, today (6.0) and build",
+   "register": "S3-R6|expand control",
+   "outcome": "QUESTION-NEEDED",
+   "cases": [
+    "C665937",
+    "C665938",
+    "C666014",
+    "MISSING: GAP-5 (held)"
+   ]
+  },
+  {
+   "id": "E41",
+   "prd": "S4-R1",
+   "kind": "field/position",
+   "element": "Edit Customer and New Customer: field in today's Edit Customer place, outlined box",
+   "result": "SHOWN",
+   "boards": "2.3, 2.16",
+   "design_shows": "after Credit Terms/Limit; New Customer after State/Country",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665940",
+    "C665941",
+    "C666026",
+    "C666029"
+   ]
+  },
+  {
+   "id": "E42",
+   "prd": "S4-R3",
+   "kind": "list rows",
+   "element": "\"Unassigned\" first, then active reps A-Z by first, then last name; every one listed; no search; same list from a part sale",
+   "result": "DIFFERENT",
+   "boards": "2.4, 2.11",
+   "design_shows": "Unassigned, Dylan Rush, Christian Wallace, Jason Garrison",
+   "register": "S4-R3|order",
+   "outcome": "PO-RULED",
+   "cases": [
+    "C665940",
+    "C666026"
+   ]
+  },
+  {
+   "id": "E43",
+   "prd": "S4-R3",
+   "kind": "access",
+   "element": "New Customer opened from a part sale by a part-sales-only user lists the reps",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "",
+   "register": "S4-R3|from a part sale",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "MISSING (behaviour): C665990 covers the work-order route only"
+   ]
+  },
+  {
+   "id": "E44",
+   "prd": "S4-R4",
+   "kind": "button",
+   "element": "+ and remove x always shown in the window; arrows centred; no x inside a field",
+   "result": "SHOWN",
+   "boards": "2.3-2.18",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665940",
+    "C666026"
+   ]
+  },
+  {
+   "id": "E45",
+   "prd": "S4-R5",
+   "kind": "tooltip",
+   "element": "\"Add representative\"",
+   "result": "SHOWN",
+   "boards": "2.6",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666026"
+   ]
+  },
+  {
+   "id": "E46",
+   "prd": "S4-R6",
+   "kind": "menu rows",
+   "element": "in this order, each field not yet added: \"Sales Representative - Service Parts\", \"Sales Representative - Part Sales\"; no + when both added",
+   "result": "SHOWN",
+   "boards": "2.7, 2.9, 2.10, 2.17",
+   "design_shows": "2 rows; 1 row after Service Parts; no + with three fields",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666026",
+    "C666027",
+    "C666029"
+   ]
+  },
+  {
+   "id": "E47",
+   "prd": "S4-R7",
+   "kind": "label",
+   "element": "\"Sales Representative - Service Labor\" / \"Sales Representative - Service Parts\", both the first field's person",
+   "result": "SHOWN",
+   "boards": "2.8",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665942",
+    "C666027"
+   ]
+  },
+  {
+   "id": "E48",
+   "prd": "S4-R8",
+   "kind": "label",
+   "element": "\"Sales Representative - Part Sales\" last, starting with what new part sales get",
+   "result": "SHOWN",
+   "boards": "2.10, 2.18",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665943",
+    "C666027",
+    "C666029"
+   ]
+  },
+  {
+   "id": "E49",
+   "prd": "S4-R9",
+   "kind": "order",
+   "element": "first field, Service Parts, Part Sales",
+   "result": "SHOWN",
+   "boards": "2.10, 2.12",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C666027"
+   ]
+  },
+  {
+   "id": "E50",
+   "prd": "S4-R10",
+   "kind": "tooltip",
+   "element": "\"Remove Sales Representative - Service Parts\" / \"Remove Sales Representative - Part Sales\"; first field has the + while something is left",
+   "result": "SHOWN (Part Sales tooltip NOT DRAWN)",
+   "boards": "2.13, 2.14",
+   "design_shows": "",
+   "register": "S4-R10|Remove Sales Representative - Part Sales",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665943",
+    "C666027"
+   ]
+  },
+  {
+   "id": "E51",
+   "prd": "S4-R11",
+   "kind": "result",
+   "element": "removing Service Parts renames the first field \"Sales Representative\"; Part Sales keeps its choice",
+   "result": "SHOWN",
+   "boards": "2.14",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665944",
+    "C666027"
+   ]
+  },
+  {
+   "id": "E52",
+   "prd": "S4-R19",
+   "kind": "page rows",
+   "element": "customer page rows with the window's labels and order; empty reads Unassigned; rows show with or without an address",
+   "result": "SHOWN (no-address case NOT DRAWN)",
+   "boards": "2.3 (behind), 2.15",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665947",
+    "C666028"
+   ]
+  },
+  {
+   "id": "E53",
+   "prd": "S4-R21",
+   "kind": "dialog line",
+   "element": "Deactivate window: \"They will be removed as sales representative from {n} customer{s}.\" (\"customer\" when n is 1) in place of \"Their customer assignments will stay where they are.\"; \"Turn Off Sales Representative\" warning unchanged, no count",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "",
+   "register": "S4-R21|They will be removed as sales representative from {n} customer{s}.",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665957 / C665958 check the count only: wording MISSING (behaviour)"
+   ]
+  },
+  {
+   "id": "E54",
+   "prd": "S4-R23",
+   "kind": "file/columns",
+   "element": "\"Sales Representative Assignments\", file sales-representative-assignments.csv, column Side after \"Representative is active?\", values \"Parts and Service\", \"Service Labor\", \"Service Parts\", \"Part Sales\", \"Parts and Service, Part Sales\"",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "",
+   "register": "S4-R23|Sales Representative Assignments",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665960 (file name not checked)"
+   ]
+  },
+  {
+   "id": "E55",
+   "prd": "S4-N2",
+   "kind": "value",
+   "element": "switch-off person reads \"Name (Inactive)\" in Edit Customer and on the customer page; no option checked",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "",
+   "register": "S4-N2|(Inactive)",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665959 expects the plain name: now wrong"
+   ]
+  },
+  {
+   "id": "E56",
+   "prd": "S4-E1",
+   "kind": "value",
+   "element": "\"Unassigned\" instead of \"N/A\"",
+   "result": "SHOWN",
+   "boards": "2.0 vs 2.3",
+   "design_shows": "N/A today, Unassigned in the build",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665947",
+    "C666003"
+   ]
+  },
+  {
+   "id": "E57",
+   "prd": "S5-R6",
+   "kind": "column",
+   "element": "each split row shows its share of whole-invoice fees/discounts in its Adjustments column",
+   "result": "SHOWN",
+   "boards": "4.7, 4.11, 4.12",
+   "design_shows": "Elliot S1-12 83.32, Devon S1-12 11.03",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "MISSING: GAP-7"
+   ]
+  },
+  {
+   "id": "E58",
+   "prd": "S5-R10",
+   "kind": "value",
+   "element": "one person on both sides: one row \"Labor, Parts\"",
+   "result": "SHOWN",
+   "boards": "4.10, 4.11, 4.12",
+   "design_shows": "S1-32",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665969",
+    "C666031"
+   ]
+  },
+  {
+   "id": "E59",
+   "prd": "S5-R15",
+   "kind": "cells",
+   "element": "Labor row: parts columns dash; Parts row: labor, hours and Shop Supplies dash, not $0.00; a both-sides row keeps Labor Delta 0.0 with no labor",
+   "result": "DIFFERENT",
+   "boards": "4.5, 4.10",
+   "design_shows": "dashes, but Shop Supplies $0.00 on Devon's Parts row",
+   "register": "S5-R15|Shop Supplies on a Parts row",
+   "outcome": "PO-RULED",
+   "cases": [
+    "C665962",
+    "C666031"
+   ]
+  },
+  {
+   "id": "E60",
+   "prd": "S5-R15a",
+   "kind": "cells",
+   "element": "Part Sales row: Shop Supplies dash when no shop supplies charge; $0.00 only with a $0.00 charge",
+   "result": "DIFFERENT",
+   "boards": "4.5, 4.10, 4.11, 4.12",
+   "design_shows": "$0.00 / 0.00",
+   "register": "S5-R15a|Shop Supplies on a part sale",
+   "outcome": "PO-RULED",
+   "cases": [
+    "C665968",
+    "C666031"
+   ]
+  },
+  {
+   "id": "E61",
+   "prd": "S5-R9/S5-R15",
+   "kind": "cells",
+   "element": "Part Sales row labor columns (Labor Delta, Labor Invoiced, Labor Margin; hours in exports): PRD names no rule",
+   "result": "DIFFERENT (from today; PRD silent)",
+   "boards": "4.3 vs 4.5, 4.10, 4.11, 4.12",
+   "design_shows": "today 0.00 / $0.00; build '—' on screen and PDF, blank in CSV",
+   "register": "S5-R9|part sale labor columns",
+   "outcome": "QUESTION-NEEDED",
+   "cases": [
+    "MISSING: GAP-3 (held)"
+   ]
+  },
+  {
+   "id": "E62",
+   "prd": "S5-R16",
+   "kind": "cells",
+   "element": "summary rows show real sums, never dashes",
+   "result": "SHOWN",
+   "boards": "4.5, 4.7",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665962",
+    "C666031"
+   ]
+  },
+  {
+   "id": "E63",
+   "prd": "S5-R19",
+   "kind": "column order",
+   "element": "\"Sales Type\" after Status and before Location (Status, Sales Type, Location); values \"Labor\", \"Parts\", \"Part Sales\", \"Labor, Parts\"",
+   "result": "SHOWN (Location NOT DRAWN)",
+   "boards": "4.9, 4.10",
+   "design_shows": "after Status; no Location column on any board",
+   "register": "S5-R19|before Location",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665972",
+    "C666031",
+    "MISSING: GAP-6"
+   ]
+  },
+  {
+   "id": "E64",
+   "prd": "S5-R20",
+   "kind": "picker",
+   "element": "Sales Type first in the column selector",
+   "result": "SHOWN",
+   "boards": "4.8",
+   "design_shows": "",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665972",
+    "C666031"
+   ]
+  },
+  {
+   "id": "E65",
+   "prd": "S5-R21",
+   "kind": "default",
+   "element": "Sales Type off by default on screen",
+   "result": "SHOWN",
+   "boards": "4.4, 4.8",
+   "design_shows": "tooltip covers the switch",
+   "register": "S5-R21|tooltip covers the switch",
+   "outcome": "PO-RULED",
+   "cases": [
+    "C665972",
+    "C666031"
+   ]
+  },
+  {
+   "id": "E66",
+   "prd": "S5-R23",
+   "kind": "exports",
+   "element": "Expanded CSV and PDF always carry Sales Type, after Status and before Location; non-credited cells blank (CSV) / dash (PDF)",
+   "result": "SHOWN (Location NOT DRAWN; Shop Supplies DIFFERENT)",
+   "boards": "4.11, 4.12",
+   "design_shows": "",
+   "register": "S5-R19|before Location",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665973",
+    "C666032",
+    "MISSING: GAP-6"
+   ]
+  },
+  {
+   "id": "E67",
+   "prd": "Answer 33",
+   "kind": "exports",
+   "element": "the same invoice dates on screen and in the exports",
+   "result": "DIFFERENT",
+   "boards": "4.10 vs 4.11, 4.12",
+   "design_shows": "Sep 28 2026 on screen, Sep 29 2026 in both exports",
+   "register": "Answer 33|dates",
+   "outcome": "PO-RULED",
+   "cases": [
+    "MISSING: GAP-4"
+   ]
+  },
+  {
+   "id": "E68",
+   "prd": "Story 6",
+   "kind": "printout",
+   "element": "printed row \"Devon Whitfield\", \"(Inactive)\", \"(Parts) · ... (Labor)\", \"(Parts, inactive)\", \"(Labor, inactive)\", \"Unassigned (Labor)\", row left off with nobody",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "page 1 has no printout",
+   "register": "S6|printout",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665976",
+    "C665977",
+    "C665978",
+    "C665979",
+    "C665980"
+   ]
+  },
+  {
+   "id": "E69",
+   "prd": "S7-R1/R2/R3",
+   "kind": "log",
+   "element": "\"Sales representative changed\"; \"Sales Representative: {before} → {after}\"; Parts first, \" · \", \"Unassigned\" for an empty side; adding Parts with the same person writes one entry",
+   "result": "SHOWN",
+   "boards": "1.19",
+   "design_shows": "same wording with the design's sample names",
+   "register": "S7|examples with other names",
+   "outcome": "SHOWN-WHEN-DRIVEN",
+   "cases": [
+    "C665981",
+    "C665982",
+    "C666025"
+   ]
+  },
+  {
+   "id": "E70",
+   "prd": "S7-R6",
+   "kind": "log",
+   "element": "gone / other-organization staff reads \"Unassigned\" in the entry",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "",
+   "register": "S1-E3|(Inactive)",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "MISSING (behaviour, developer check): no case quotes S7-R6"
+   ]
+  },
+  {
+   "id": "E71",
+   "prd": "S8-R1",
+   "kind": "menu rows",
+   "element": "Sales Type filter options in order \"Labor\", \"Parts\", \"Part Sales\", all selected by default",
+   "result": "SHOWN",
+   "boards": "4.6",
+   "design_shows": "plus 'Select all', '3 selected', 'Clear selection' (existing control)",
+   "register": null,
+   "outcome": null,
+   "cases": [
+    "C665984",
+    "C666031 (step 3 compares the menu with board 4.6)"
+   ]
+  },
+  {
+   "id": "E72",
+   "prd": "S8-R3",
+   "kind": "chip",
+   "element": "\"Sales Type: All\"; \"Sales Type: None\"; selected names in option order e.g. \"Sales Type: Labor, Parts\"",
+   "result": "SHOWN ('All', 'Labor'); 'None' and two names NOT DRAWN",
+   "boards": "4.4, 4.7",
+   "design_shows": "",
+   "register": "S8-R3|Sales Type: None",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665984"
+   ]
+  },
+  {
+   "id": "E73",
+   "prd": "S8-R4",
+   "kind": "exports",
+   "element": "export filter line \"Sales Type: All\" or names; none selected: \"Empty export\", no file; other empty exports still download headings",
+   "result": "SHOWN ('Sales Type: All'); 'Empty export' NOT DRAWN",
+   "boards": "4.11, 4.12",
+   "design_shows": "",
+   "register": "S8-R4|Empty export",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665985",
+    "C666032"
+   ]
+  },
+  {
+   "id": "E74",
+   "prd": "S8-R5",
+   "kind": "empty state",
+   "element": "no option selected: no invoices, the report's empty state",
+   "result": "NOT DRAWN (empty state drawn only for today's Product Type, 4.1)",
+   "boards": "4.1",
+   "design_shows": "'No record matches these filters' / 'Try changing filters to widen your results.'",
+   "register": "S8-R3|Sales Type: None",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665984"
+   ]
+  },
+  {
+   "id": "E75",
+   "prd": "S8-R6/R7",
+   "kind": "chip/menu rows",
+   "element": "Sales By Customer filter \"Sales Type\", options \"Part Sales\", \"Service Sales\"",
+   "result": "SHOWN",
+   "boards": "5.1, 5.2",
+   "design_shows": "'Select all', '2 selected', 'Part Sales', 'Service Sales', 'Clear selection'",
+   "register": "S8-R7|options renamed",
+   "outcome": "PO-RULED",
+   "cases": [
+    "C665986",
+    "C665998",
+    "C666033"
+   ]
+  },
+  {
+   "id": "E76",
+   "prd": "S8-R8",
+   "kind": "chip",
+   "element": "\"Sales Type: All Sales\"; one option: its name; none: \"Sales Type: No sales\"",
+   "result": "SHOWN ('All Sales'); others NOT DRAWN",
+   "boards": "5.1, 5.2",
+   "design_shows": "",
+   "register": "S8-R8|Sales Type: No sales",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665986",
+    "C665998"
+   ]
+  },
+  {
+   "id": "E77",
+   "prd": "S8-R9",
+   "kind": "exports",
+   "element": "\"Sales Type: All Sales\", \"Sales Type: Part Sales only\", \"Sales Type: Service Sales only\"; \"Empty export\"",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "",
+   "register": "S8-R9|Sales Type: Part Sales only",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665987"
+   ]
+  },
+  {
+   "id": "E78",
+   "prd": "Release day",
+   "kind": "export name",
+   "element": "\"Sales Rep Assignments\" renamed \"Sales Representative Assignments\"",
+   "result": "NOT DRAWN",
+   "boards": "-",
+   "design_shows": "",
+   "register": "S4-R23|Sales Representative Assignments",
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665960"
+   ]
+  }
+ ],
+ "by_hand_menus_lists_dialogs": [
+  {
+   "item": "Work order Sales Representative list (one field)",
+   "prd": "S1-R8, S1-R9, S1-R12",
+   "prd_rows": "Unassigned (checked when empty) · every active rep A-Z by first, then last name · no search · no buttons",
+   "boards": "1.4, 1.15",
+   "design_rows": "Unassigned ✓ · Becky Gonzales · Daniel Montoya · Gerald Ortiz · no search · no buttons",
+   "verdict": "SAME"
+  },
+  {
+   "item": "Work order Labor list / Parts list",
+   "prd": "S2-R11",
+   "prd_rows": "as above, per field; the other field's person is not removed",
+   "boards": "1.11, 6.7",
+   "design_rows": "Unassigned · Becky Gonzales ✓ · Daniel Montoya · Gerald Ortiz",
+   "verdict": "SAME"
+  },
+  {
+   "item": "Work order + menu",
+   "prd": "S2-R4",
+   "prd_rows": "1 row: \"Sales Representative - Parts\" · below the + · no buttons",
+   "boards": "1.8, 6.5",
+   "design_rows": "1 row \"Sales Representative - Parts\" · below the +, right-aligned · no buttons",
+   "verdict": "SAME"
+  },
+  {
+   "item": "Work order + tooltip",
+   "prd": "S2-R3",
+   "prd_rows": "\"Add representative\"; hidden while the menu is open",
+   "boards": "1.7, 1.8",
+   "design_rows": "\"Add representative\" below the +; gone when the menu is open",
+   "verdict": "SAME"
+  },
+  {
+   "item": "Work order remove x tooltip",
+   "prd": "S2-R9",
+   "prd_rows": "\"Remove Sales Representative - Parts\"",
+   "boards": "1.13",
+   "design_rows": "\"Remove Sales Representative - Parts\"",
+   "verdict": "SAME"
+  },
+  {
+   "item": "Invoiced (read-only) work order card",
+   "prd": "S2-R17, S1-N1",
+   "prd_rows": "LT and SA keep today's read-only labels · SR labels as editable · no + / x · no box on hover",
+   "boards": "1.17",
+   "design_rows": "\"Lead technician\" · \"Service advisor\" · \"Sales Representative - Labor\" · \"Sales Representative - Parts\" · no buttons",
+   "verdict": "SAME (v10)"
+  },
+  {
+   "item": "Work Order Log dialog",
+   "prd": "S7-R1-R3, Story 7 prerequisites",
+   "prd_rows": "Event \"Sales representative changed\"; \"Sales Representative: {before} → {after}\"; opened from Audit Log",
+   "boards": "1.19",
+   "design_rows": "Title \"Work Order Log\", Search, close x; columns Event · User · Line · Details · Date · Time; Line \"-\"; bold \"Sales Representative:\"",
+   "verdict": "SAME (Line column design-only)"
+  },
+  {
+   "item": "Edit Customer / New Customer Sales Representative list",
+   "prd": "S4-R3",
+   "prd_rows": "Unassigned · every active rep A-Z by first, then last name · all listed · no search",
+   "boards": "2.4, 2.11",
+   "design_rows": "Unassigned ✓ · Dylan Rush · Christian Wallace · Jason Garrison",
+   "verdict": "DIFFERENT (order) - PO-RULED answer 15"
+  },
+  {
+   "item": "Customer + menu (nothing added)",
+   "prd": "S4-R6",
+   "prd_rows": "2 rows in order: \"Sales Representative - Service Parts\" · \"Sales Representative - Part Sales\"",
+   "boards": "2.7, 2.17",
+   "design_rows": "same 2 rows, same order, right-aligned under the +",
+   "verdict": "SAME"
+  },
+  {
+   "item": "Customer + menu (Service Parts added)",
+   "prd": "S4-R6",
+   "prd_rows": "1 row: \"Sales Representative - Part Sales\"",
+   "boards": "2.9",
+   "design_rows": "1 row \"Sales Representative - Part Sales\"",
+   "verdict": "SAME"
+  },
+  {
+   "item": "Customer + menu (Part Sales added, Service Parts not)",
+   "prd": "S4-R6",
+   "prd_rows": "1 row: \"Sales Representative - Service Parts\"",
+   "boards": "-",
+   "design_rows": "not drawn (2.14 shows the + back, menu closed)",
+   "verdict": "NOT DRAWN"
+  },
+  {
+   "item": "Customer + (both added)",
+   "prd": "S4-R6",
+   "prd_rows": "no +",
+   "boards": "2.10",
+   "design_rows": "no +",
+   "verdict": "SAME"
+  },
+  {
+   "item": "Customer + tooltip",
+   "prd": "S4-R5",
+   "prd_rows": "\"Add representative\"",
+   "boards": "2.6",
+   "design_rows": "\"Add representative\"",
+   "verdict": "SAME"
+  },
+  {
+   "item": "Customer remove x tooltips",
+   "prd": "S4-R10",
+   "prd_rows": "\"Remove Sales Representative - Service Parts\" · \"Remove Sales Representative - Part Sales\"",
+   "boards": "2.13",
+   "design_rows": "only \"Remove Sales Representative - Service Parts\" drawn",
+   "verdict": "SAME / Part Sales NOT DRAWN"
+  },
+  {
+   "item": "Part sale Sales Representative field and list",
+   "prd": "S2-N2",
+   "prd_rows": "label \"Sales representative\" · one field · no + / x · look and list unchanged (Part Sales Update v1)",
+   "boards": "3.1-3.4",
+   "design_rows": "label \"Sales Representative\" · Unassigned ✓ · Becky Gonzales · Daniel Montoya · Gerald Ortiz · no + / x",
+   "verdict": "DIFFERENT (label casing) - PO-RULED answer 7 + v10 S2-N2"
+  },
+  {
+   "item": "Deactivate window",
+   "prd": "S4-R21",
+   "prd_rows": "line \"They will be removed as sales representative from {n} customer{s}.\" replacing \"Their customer assignments will stay where they are.\"",
+   "boards": "-",
+   "design_rows": "not drawn",
+   "verdict": "NOT DRAWN"
+  },
+  {
+   "item": "Turn Off Sales Representative warning",
+   "prd": "S4-R21, S4-N2",
+   "prd_rows": "unchanged, no count",
+   "boards": "-",
+   "design_rows": "not drawn",
+   "verdict": "NOT DRAWN"
+  },
+  {
+   "item": "Error messages",
+   "prd": "S1-N2, S2-E4, S1-N3",
+   "prd_rows": "\"The selected staff member is not a sales representative.\" · \"The sales representative cannot be changed on an invoiced or paid work order.\" · the server's message",
+   "boards": "-",
+   "design_rows": "not drawn",
+   "verdict": "NOT DRAWN"
+  },
+  {
+   "item": "Sales By Representative Sales Type menu",
+   "prd": "S8-R1, S8-R3",
+   "prd_rows": "3 options in order \"Labor\", \"Parts\", \"Part Sales\", all selected; chip \"Sales Type: All\" / names / \"Sales Type: None\"",
+   "boards": "4.6, 4.7",
+   "design_rows": "\"Select all\" · \"3 selected\" · Labor ✓ · Parts ✓ · Part Sales ✓ · \"Clear selection\"; chip ⓧ while open; \"Sales Type: All\", \"Sales Type: Labor\"",
+   "verdict": "SAME (+ 3 design-only rows of the existing control; 'None' not drawn)"
+  },
+  {
+   "item": "Sales By Representative column selector",
+   "prd": "S5-R20, S5-R21",
+   "prd_rows": "\"Sales Type\" first, off by default",
+   "boards": "4.8, 4.9",
+   "design_rows": "Sales Type · Labor Delta · Labor Invoiced · Labor Margin · Parts Invoiced · Parts Margin · Shop Supplies · Adjustments · Margin · Margin %; \"Column Selection\" tooltip covers the first switch",
+   "verdict": "SAME (overlap PO-RULED acceptable, answer 36)"
+  },
+  {
+   "item": "Sales By Representative columns on screen",
+   "prd": "S5-R19, S5-R21",
+   "prd_rows": "Sales Type off by default; when on: Status, Sales Type, Location",
+   "boards": "4.4, 4.9",
+   "design_rows": "Date · Invoice · Customer · Status · [Sales Type] · Labor Delta ... Adjustments · Margin · Subtotal; no Location column",
+   "verdict": "SAME (Location NOT DRAWN)"
+  },
+  {
+   "item": "Sales By Representative Expanded CSV",
+   "prd": "S5-R23, S8-R4",
+   "prd_rows": "Sales Type after Status and before Location; non-credited cells blank; filter line",
+   "boards": "4.11",
+   "design_rows": "Representative · Date · Invoice # · Customer · Status · Sales Type · Hrs Worked · Hrs Invoiced · Labor Delta ... Margin % · Subtotal; header lines Date Range / Sales Type: All / Invoice Status: All Statuses / Locations",
+   "verdict": "SAME (Shop Supplies 0.00 PO-RULED 24/25; dates PO-RULED 33; Location NOT DRAWN)"
+  },
+  {
+   "item": "Sales By Representative Expanded PDF",
+   "prd": "S5-R23, S8-R4",
+   "prd_rows": "as the CSV, dash for non-credited cells",
+   "boards": "4.12",
+   "design_rows": "same columns; '—'; title 'Sales By Representative Report', company, location, bold filter labels, logo",
+   "verdict": "SAME (same rulings)"
+  },
+  {
+   "item": "Empty export / empty state",
+   "prd": "S8-R4, S8-R5, S8-R9",
+   "prd_rows": "\"Empty export\", no file; empty state",
+   "boards": "4.1, 5.0 (today only)",
+   "design_rows": "today's empty state 'No record matches these filters' / 'Try changing filters to widen your results.'",
+   "verdict": "NOT DRAWN for Sales Type"
+  },
+  {
+   "item": "Sales By Customer Sales Type menu",
+   "prd": "S8-R6-R8",
+   "prd_rows": "\"Part Sales\", \"Service Sales\"; chip \"Sales Type: All Sales\" / name / \"Sales Type: No sales\"",
+   "boards": "5.1, 5.2",
+   "design_rows": "\"Select all\" · \"2 selected\" · Part Sales ✓ · Service Sales ✓ · \"Clear selection\"; \"Sales Type: All Sales\"",
+   "verdict": "SAME (others not drawn)"
+  },
+  {
+   "item": "Phone Sales Representative list",
+   "prd": "S3-R1",
+   "prd_rows": "same dropdown as LT/SA on a phone, same options",
+   "boards": "6.3, 6.7",
+   "design_rows": "Unassigned ✓ · Becky Gonzales · Daniel Montoya · Gerald Ortiz (same look as today's 6.1)",
+   "verdict": "SAME"
+  },
+  {
+   "item": "Phone card expand control",
+   "prd": "S3-R6",
+   "prd_rows": "card opens collapsed; expanded with its edit button; control unchanged",
+   "boards": "6.0, 6.2-6.7",
+   "design_rows": "\"Hide Details\" toggle above the card (today and build); collapsed state not drawn",
+   "verdict": "DIFFERENT - QUESTION-NEEDED"
+  }
+ ]
+}

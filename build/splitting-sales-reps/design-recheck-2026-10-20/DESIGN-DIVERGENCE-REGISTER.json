@@ -1,0 +1,802 @@
+{
+ "project": "Splitting Sales Representatives",
+ "prd": "Confluence 919928833 v10 (19 Oct 2026, Chris Ward)",
+ "design": "Claude artifact 8MHqwyffAYtqZ6EccS5RUm, export of 19 Oct 2026 (68 boards)",
+ "built": "2026-10-20",
+ "outcomes": [
+  "DESIGN-SILENT",
+  "PO-RULED",
+  "QUESTION-NEEDED",
+  "SHOWN-WHEN-DRIVEN"
+ ],
+ "counts": {
+  "DESIGN-SILENT": 40,
+  "PO-RULED": 12,
+  "QUESTION-NEEDED": 3,
+  "SHOWN-WHEN-DRIVEN": 4
+ },
+ "unsent_questions": 3,
+ "rows": {
+  "S2-N2|Sales representative": {
+   "outcome": "PO-RULED",
+   "boards": "3.1-3.4",
+   "design_shows": "label reads \"Sales Representative\" (capital R; 4x crop of 3.1)",
+   "prd_v10": "S2-N2 v10: \"its label stays \"Sales representative\" and its look and behavior do not change\"",
+   "cases": [
+    "C666030 (expects capital R - must change)",
+    "C665935",
+    "draft DR-02"
+   ],
+   "po_answer": {
+    "answer_no": 7,
+    "answer_verbatim": "7. (b) Nothing changes: keep the label and the look exactly as Part Sales Update v1 built them.",
+    "sheet_row": 12
+   },
+   "note": "The text check cannot see this (it matches case-insensitively and finds 'Sales representative changed' in the log); found only by looking at the picture.",
+   "where": "Chris Ward answer 7 (question sheet of 19 Oct 2026, row 12)"
+  },
+  "S1-R5|16px gap": {
+   "outcome": "PO-RULED",
+   "boards": "1.3, 1.6, 1.7, 1.10, 1.13",
+   "design_shows": "about 22 px from the box to the button column on the card (16 px in the customer window)",
+   "prd_v10": "S1-R5: \"The box ends 16px before the 32px column that holds the + and remove x buttons.\"",
+   "cases": [
+    "C666018"
+   ],
+   "po_answer": {
+    "answer_no": 2,
+    "answer_verbatim": "(a) 16 px, as the feature spec says.",
+    "sheet_row": 7
+   },
+   "where": "Chris Ward answer 2 (question sheet of 19 Oct 2026, row 7)"
+  },
+  "S4-R3|order": {
+   "outcome": "PO-RULED",
+   "boards": "2.4, 2.11",
+   "design_shows": "Unassigned, Dylan Rush, Christian Wallace, Jason Garrison (not A-Z)",
+   "prd_v10": "S4-R3: \"sorted by first name, then last name, A to Z\"",
+   "cases": [
+    "C666026",
+    "C665940"
+   ],
+   "po_answer": {
+    "answer_no": 15,
+    "answer_verbatim": "15. (a) \"Unassigned\" first, then A to Z by first name, then last name.",
+    "sheet_row": 20
+   },
+   "where": "Chris Ward answer 15 (question sheet of 19 Oct 2026, row 20)"
+  },
+  "S3-R4|arrow at rest on a phone": {
+   "outcome": "PO-RULED",
+   "boards": "6.2, 6.6",
+   "design_shows": "no arrow at rest; note \"At rest the rows read as plain text.\"",
+   "prd_v10": "S3-R4: \"On a touch screen the Sales Representative fields always show their dropdown arrow\"",
+   "cases": [
+    "C666034",
+    "C665938"
+   ],
+   "po_answer": {
+    "answer_no": 11,
+    "answer_verbatim": "11. (a) Always show the dropdown arrow, as the feature spec says.",
+    "sheet_row": 16
+   },
+   "where": "Chris Ward answer 11 (question sheet of 19 Oct 2026, row 16)"
+  },
+  "S5-R15|Shop Supplies on a Parts row": {
+   "outcome": "PO-RULED",
+   "boards": "4.5, 4.10, 4.11, 4.12",
+   "design_shows": "$0.00 (screen, PDF) / 0.00 (CSV) on Devon's S1-12 Parts row",
+   "prd_v10": "S5-R15: \"on a Parts row the labor, hours and Shop Supplies columns show a dash, not $0.00\"",
+   "cases": [
+    "C666031",
+    "C666032",
+    "C665962",
+    "C665973"
+   ],
+   "po_answer": {
+    "answer_no": 24,
+    "answer_verbatim": "24. (a) as the feature spec: a dash on screen and in the PDF, an empty cell in the CSV. The 0.0 rule still applies to an invoice with one person on both sides.",
+    "sheet_row": 29
+   },
+   "where": "Chris Ward answer 24 (question sheet of 19 Oct 2026, row 29)"
+  },
+  "S5-R15a|Shop Supplies on a part sale": {
+   "outcome": "PO-RULED",
+   "boards": "4.5, 4.10, 4.11, 4.12",
+   "design_shows": "$0.00 / 0.00 on P1-9006, P1-4, P1-9005",
+   "prd_v10": "S5-R15a v10: \"or a dash when the part sale has no shop supplies charge\"",
+   "cases": [
+    "C666031",
+    "C665968"
+   ],
+   "po_answer": {
+    "answer_no": 25,
+    "answer_verbatim": "25. (a) A dash when the part sale has no shop supplies; $0.00 only when it has a shop supplies line that totals $0.00. The design's $0.00 is a sample-data mistake.",
+    "sheet_row": 30
+   },
+   "where": "Chris Ward answer 25 (question sheet of 19 Oct 2026, row 30)"
+  },
+  "S2-R17|read-only labels": {
+   "outcome": "PO-RULED",
+   "boards": "1.17",
+   "design_shows": "\"Lead technician\", \"Service advisor\" beside \"Sales Representative - Labor\" / \"- Parts\"",
+   "prd_v10": "S2-R17 v10: \"Lead Technician and Service Advisor keep today's read-only labels.\"",
+   "cases": [
+    "C666024",
+    "C665932",
+    "draft DR-01"
+   ],
+   "po_answer": {
+    "answer_no": 8,
+    "answer_verbatim": "8. (a) Lead technician and Service advisor stay as they are today; only the Sales Representative fields use the new labels.",
+    "sheet_row": 13
+   },
+   "note": "The design now matches v10; the cases do not check it yet.",
+   "where": "Chris Ward answer 8 (question sheet of 19 Oct 2026, row 13)"
+  },
+  "Answer 33|dates": {
+   "outcome": "PO-RULED",
+   "boards": "4.10 vs 4.11, 4.12",
+   "design_shows": "Sep 28 2026 on screen, Sep 29 2026 in both exports for S1-32 and S1-12",
+   "prd_v10": "(PRD silent)",
+   "cases": [
+    "draft DR-04"
+   ],
+   "po_answer": {
+    "answer_no": 33,
+    "answer_verbatim": "33. (b) A mistake in the design's sample data; the dates must match.",
+    "sheet_row": 38
+   },
+   "where": "Chris Ward answer 33 (question sheet of 19 Oct 2026, row 38)"
+  },
+  "S5-R21|tooltip covers the switch": {
+   "outcome": "PO-RULED",
+   "boards": "4.2, 4.8",
+   "design_shows": "\"Column Selection\" tooltip covers the Sales Type switch",
+   "prd_v10": "S5-R21: \"off by default on screen\"",
+   "cases": [
+    "C666031",
+    "C665972"
+   ],
+   "po_answer": {
+    "answer_no": 36,
+    "answer_verbatim": "36. (b) Acceptable as shown, same as today's report.",
+    "sheet_row": 41
+   },
+   "where": "Chris Ward answer 36 (question sheet of 19 Oct 2026, row 41)"
+  },
+  "S8-R7|options renamed": {
+   "outcome": "PO-RULED",
+   "boards": "4.1, 5.0, 5.2",
+   "design_shows": "today's pictures read \"Parts\" / \"Services\"; notes say \"Part Sales\" / \"Service Sales\"",
+   "prd_v10": "S8-R7: \"Its two options read \"Part Sales\" and \"Service Sales\".\"",
+   "cases": [
+    "C666033",
+    "C665986",
+    "C666008"
+   ],
+   "po_answer": {
+    "answer_no": 28,
+    "answer_verbatim": "28. (a) Yes: renamed to \"Part Sales\" and \"Service Sales\", and a saved choice keeps its options under the new names.",
+    "sheet_row": 33
+   },
+   "where": "Chris Ward answer 28 (question sheet of 19 Oct 2026, row 33)"
+  },
+  "Design notes|numbered decisions": {
+   "outcome": "PO-RULED",
+   "boards": "canvas notes, pages 1-6",
+   "design_shows": "decision 34, 37, 38, 40, 47, 48, 65, 66, 67, 69, 70, 71",
+   "prd_v10": "(none)",
+   "cases": [],
+   "po_answer": {
+    "answer_no": 34,
+    "answer_verbatim": "34. (b) No; the feature spec is the full record.",
+    "sheet_row": 39
+   },
+   "where": "Chris Ward answer 34 (question sheet of 19 Oct 2026, row 39)"
+  },
+  "S1-R6|context note 36px": {
+   "outcome": "PO-RULED",
+   "boards": "1.0 note",
+   "design_shows": "\"Measured gaps: Lead Technician to Service Advisor 36px\" (today)",
+   "prd_v10": "v10 removed the S1-R6 context note",
+   "cases": [
+    "C666017 (step 2 still mentions 36 px today)"
+   ],
+   "po_answer": {
+    "answer_no": 3,
+    "answer_verbatim": "3. (a) Drop the background note.",
+    "sheet_row": 8
+   },
+   "where": "Chris Ward answer 3 (question sheet of 19 Oct 2026, row 8)"
+  },
+  "S3-R6|expand control": {
+   "outcome": "QUESTION-NEEDED",
+   "boards": "6.0, 6.2-6.7",
+   "design_shows": "every phone board, today (6.0) and build, shows a \"Hide Details\" toggle above the card; no board shows the collapsed card or an edit button",
+   "prd_v10": "S3-R6: \"They show after the card is expanded with its edit button, as Lead Technician and Service Advisor do today. The expand control itself does not change.\"",
+   "cases": [
+    "C665937",
+    "C665938",
+    "C666014",
+    "draft DR-05 (held)"
+   ],
+   "po_answer": {
+    "answer_no": 9,
+    "answer_verbatim": "9. (a) as the feature spec: the card's existing edit button, unchanged.",
+    "sheet_row": 14
+   },
+   "question_drafted_not_sent": "On a phone, the design's picture of today's screen (board 6.0) shows a \"Hide Details\" toggle above the work order card, and no edit button. Your answer 9 says the fields show after the card is expanded with its existing edit button, not \"Show Details\". Which control does a tester tap on a phone to show Lead Technician, Service Advisor and the Sales Representative fields? (a) the card's edit button (please say where it is on the card); (b) the \"Show Details\" / \"Hide Details\" toggle above the card, as the design shows; (c) both are needed (edit button first, then the toggle, or the other way).",
+   "sent_on": null,
+   "note": "Answer 9 rejected the Jira story's \"Show Details\", but the design's own picture of today shows that control; a ruling covers only what it names (Rule 126.7), so this is asked, not assumed.",
+   "where": "question drafted 20 Oct 2026, NOT sent (lane session sends)"
+  },
+  "S5-R9|part sale labor columns": {
+   "outcome": "QUESTION-NEEDED",
+   "boards": "4.3 (today) vs 4.5, 4.10, 4.11, 4.12",
+   "design_shows": "part sale rows show \"—\" in Labor Delta, Labor Invoiced and Labor Margin on screen and in the PDF, blank cells (and blank hours) in the CSV; today's report (4.3) shows 0.00 / $0.00 for a part sale",
+   "prd_v10": "S5-R9: \"A part sale is one \"Part Sales\" row holding every dollar of the invoice.\" S5-R15 and S5-R15a name the dash only for Labor/Parts rows and for a part sale's Shop Supplies.",
+   "cases": [
+    "draft DR-03 (held)"
+   ],
+   "question_drafted_not_sent": "On Sales By Representative, a part sale row has no labor. The design shows a dash in Labor Delta, Labor Invoiced and Labor Margin (and blank hours and labor cells in the CSV); today's report shows 0.00 and $0.00 there. The feature spec gives the dash rule only for a work order's Labor and Parts rows and for a part sale's Shop Supplies. What should a part sale row show in the labor and hours columns? (a) a dash on screen and in the PDF, blank in the CSV, as the design shows; (b) 0.00 / $0.00 as today.",
+   "sent_on": null,
+   "where": "question drafted 20 Oct 2026, NOT sent (lane session sends)"
+  },
+  "S1-R6a|Lead Technician message": {
+   "outcome": "QUESTION-NEEDED",
+   "boards": "none (no board shows a Lead Technician message)",
+   "design_shows": "not drawn",
+   "prd_v10": "S1-R6a: \"A Lead Technician message shows directly below the Lead Technician field and pushes the fields under it down while it shows.\"",
+   "cases": [
+    "draft DR-08 (held)"
+   ],
+   "po_answer": {
+    "answer_no": 4,
+    "answer_verbatim": "4. (a) Below the field, pushing the fields under it down while the message shows.",
+    "sheet_row": 9
+   },
+   "question_drafted_not_sent": "The feature spec now says a Lead Technician message shows directly below the Lead Technician field and pushes the fields under it down (your answer 4). What makes that message show, so a manual tester can see it? Please name the message or the action (the tech plan says Lead Technician is not a required field, so no validation message is expected).",
+   "sent_on": null,
+   "where": "question drafted 20 Oct 2026, NOT sent (lane session sends)"
+  },
+  "S5-R19|before Location": {
+   "outcome": "DESIGN-SILENT",
+   "boards": "4.9, 4.10, 4.11, 4.12 (one location; no Location column drawn)",
+   "design_shows": "Sales Type after Status; no Location column on screen or in the exports",
+   "prd_v10": "S5-R19 v10: \"after Status and before Location (Status, Sales Type, Location)\"",
+   "cases": [
+    "C665972",
+    "C665973",
+    "C666031",
+    "C666032",
+    "draft DR-06"
+   ],
+   "po_answer": {
+    "answer_no": 26,
+    "answer_verbatim": "26. (a) Status, Sales Type, Location.",
+    "sheet_row": 31
+   },
+   "where": "boards 4.9, 4.10, 4.11, 4.12 (one location; no Location column drawn) looked at 20 Oct 2026"
+  },
+  "S1-R4|keyboard focus": {
+   "outcome": "DESIGN-SILENT",
+   "boards": "none",
+   "design_shows": "no focus state drawn",
+   "prd_v10": "S1-R4: \"or while a field has keyboard focus\"",
+   "cases": [
+    "C666018"
+   ],
+   "where": "boards none looked at 20 Oct 2026"
+  },
+  "S1-R15|closing": {
+   "outcome": "DESIGN-SILENT",
+   "boards": "none (pictures cannot close)",
+   "design_shows": "-",
+   "prd_v10": "S1-R15 / S2-R4 Escape and outside click",
+   "cases": [
+    "C665919",
+    "C665927"
+   ],
+   "where": "boards none (pictures cannot close) looked at 20 Oct 2026"
+  },
+  "S1-N3|failed save": {
+   "outcome": "DESIGN-SILENT",
+   "boards": "none",
+   "design_shows": "-",
+   "prd_v10": "S1-N3",
+   "cases": [
+    "C665924"
+   ],
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   },
+   "where": "boards none looked at 20 Oct 2026"
+  },
+  "S2-E6|two screens": {
+   "outcome": "DESIGN-SILENT",
+   "boards": "none",
+   "design_shows": "-",
+   "prd_v10": "S2-E6 v10 (later save wins)",
+   "cases": [
+    "none - behaviour gap B-2"
+   ],
+   "po_answer": {
+    "answer_no": 6,
+    "answer_verbatim": "6. (a) Tab B's choice wins and the Parts field disappears: the later save wins, as everywhere else.",
+    "sheet_row": 11
+   },
+   "where": "boards none looked at 20 Oct 2026"
+  },
+  "S3-R5|customer window on a phone": {
+   "outcome": "DESIGN-SILENT",
+   "boards": "none",
+   "design_shows": "-",
+   "prd_v10": "S3-R5",
+   "cases": [
+    "C665939"
+   ],
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   },
+   "where": "boards none looked at 20 Oct 2026"
+  },
+  "S4-R3|from a part sale": {
+   "outcome": "DESIGN-SILENT",
+   "boards": "none",
+   "design_shows": "-",
+   "prd_v10": "S4-R3 v10 last sentence",
+   "cases": [
+    "none - behaviour gap B-3"
+   ],
+   "po_answer": {
+    "answer_no": 16,
+    "answer_verbatim": "16. (a) Show and list the sales representatives, as when opened from a work order.",
+    "sheet_row": 21
+   },
+   "where": "boards none looked at 20 Oct 2026"
+  },
+  "S4-R10|Remove Sales Representative - Part Sales": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665943"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)"
+  },
+  "S6|printout": {
+   "outcome": "DESIGN-SILENT",
+   "boards": "none (page 1 has no printout)",
+   "design_shows": "-",
+   "prd_v10": "Story 6",
+   "cases": [
+    "C665976",
+    "C665977",
+    "C665978",
+    "C665979",
+    "C665980"
+   ],
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   },
+   "where": "boards none (page 1 has no printout) looked at 20 Oct 2026"
+  },
+  "S7|examples with other names": {
+   "outcome": "SHOWN-WHEN-DRIVEN",
+   "boards": "1.19",
+   "design_shows": "same entries with the design's names, e.g. \"Sales Representative: Becky Gonzales → Becky Gonzales (Parts) · Becky Gonzales (Labor)\"",
+   "prd_v10": "S7-R1, S7-R3 examples",
+   "cases": [
+    "C665981",
+    "C665982",
+    "C666025"
+   ],
+   "po_answer": {
+    "answer_no": 31,
+    "answer_verbatim": "31. (a) Yes, one entry.",
+    "sheet_row": 36
+   },
+   "where": "boards 1.19 looked at 20 Oct 2026"
+  },
+  "S1-N2|The selected staff member is not a sales representative.": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665923"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S1-E2|(Inactive)": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665921",
+    "C665922"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S1-E2|Elliot Brennan (Inactive)": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665921",
+    "C665922"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S1-E3|(Inactive)": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "none - behaviour gap B-1 (developer check)"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 5,
+    "answer_verbatim": "5. Card: (a) \"Unassigned\". Audit Log: (d) \"Unassigned\". Same as the printout.",
+    "sheet_row": 10
+   }
+  },
+  "S2-E1|(Inactive)": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665931"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S2-E2|(Inactive)": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665931"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S2-E4|The sales representative cannot be changed on an invoiced or paid work order.": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665933"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S4-R21|They will be removed as sales representative from {n} customer{s}.": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665957",
+    "C665958 (count only; wording gap B-4)"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 12,
+    "answer_verbatim": "12. (a) as the feature spec: removed from every customer field they hold, not put back on reactivation. New warning line: \"They will be removed as sales representative from {n} customers.\"",
+    "sheet_row": 17
+   }
+  },
+  "S4-R21|Their customer assignments will stay where they are.": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "gap B-4"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 12,
+    "answer_verbatim": "12. (a) as the feature spec: removed from every customer field they hold, not put back on reactivation. New warning line: \"They will be removed as sales representative from {n} customers.\"",
+    "sheet_row": 17
+   }
+  },
+  "S4-R21|Turn Off Sales Representative": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "gap B-4"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 13,
+    "answer_verbatim": "13. (a) Only the Deactivate window; the Turn Off Sales Representative warning stays as it is.",
+    "sheet_row": 18
+   }
+  },
+  "S4-R23|Sales Representative Assignments": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665960"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 17,
+    "answer_verbatim": "17. (a) as the feature spec: \"Sales Representative Assignments\", column \"Representative is active?\", Side after it; file name sales-representative-assignments.csv.",
+    "sheet_row": 22
+   }
+  },
+  "S4-R23|Representative is active?": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665960"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 17,
+    "answer_verbatim": "17. (a) as the feature spec: \"Sales Representative Assignments\", column \"Representative is active?\", Side after it; file name sales-representative-assignments.csv.",
+    "sheet_row": 22
+   }
+  },
+  "S4-R23|Parts and Service": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665960"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 18,
+    "answer_verbatim": "18. (a) as the feature spec.",
+    "sheet_row": 23
+   }
+  },
+  "S4-R23|Parts and Service, Part Sales": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665960"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 18,
+    "answer_verbatim": "18. (a) as the feature spec.",
+    "sheet_row": 23
+   }
+  },
+  "S4-N2|(Inactive)": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665959 (expects the plain name; v10 changed it)"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 14,
+    "answer_verbatim": "14. (b) \"Name (Inactive)\", as on a work order. Yes, no option is ticked while they hold the field.",
+    "sheet_row": 19
+   }
+  },
+  "S4-N2|Elliot Brennan (Inactive)": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665959"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 14,
+    "answer_verbatim": "14. (b) \"Name (Inactive)\", as on a work order. Yes, no option is ticked while they hold the field.",
+    "sheet_row": 19
+   }
+  },
+  "S6-R1|Devon Whitfield (Inactive)": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665976"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S6-R2|Devon Whitfield (Parts) · Elliot Brennan (Labor)": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665977"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S6-R2|(Parts, inactive)": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665977"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S6-R2|(Labor, inactive)": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665977"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S6-R3|Devon Whitfield (Parts) · Unassigned (Labor)": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665978"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S6-R3|Unassigned (Parts) · Elliot Brennan (Labor)": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665978"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S6-N1|(Inactive)": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665980"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 30,
+    "answer_verbatim": "30. (b) Only through a data repair, so the developers check it, not a manual tester.",
+    "sheet_row": 35
+   }
+  },
+  "S7-R1|Sales Representative: Ann Able → Ann Able (Parts) · Ann Able (Labor)": {
+   "outcome": "SHOWN-WHEN-DRIVEN",
+   "cases": [
+    "C665981",
+    "C666025"
+   ],
+   "where": "board 1.19 shows the same wording with the design's sample names",
+   "po_answer": {
+    "answer_no": 31,
+    "answer_verbatim": "31. (a) Yes, one entry.",
+    "sheet_row": 36
+   }
+  },
+  "S7-R3|Devon Whitfield (Parts) · Elliot Brennan (Labor)": {
+   "outcome": "SHOWN-WHEN-DRIVEN",
+   "cases": [
+    "C665981",
+    "C666025"
+   ],
+   "where": "board 1.19 shows the same wording with the design's sample names"
+  },
+  "S7-R3|Devon Whitfield (Parts) · Unassigned (Labor)": {
+   "outcome": "SHOWN-WHEN-DRIVEN",
+   "cases": [
+    "C665982"
+   ],
+   "where": "board 1.19 shows the same wording with the design's sample names"
+  },
+  "S8-R3|Sales Type: None": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665984"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S8-R3|Sales Type: Labor, Parts": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665984"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)"
+  },
+  "S8-R4|Empty export": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665985"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 27,
+    "answer_verbatim": "27. (a) as the feature spec on both reports. Other empty results still download a file with headings and no rows, unchanged.",
+    "sheet_row": 32
+   }
+  },
+  "S8-R8|Sales Type: Part Sales": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665986",
+    "C665998"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)"
+  },
+  "S8-R8|Sales Type: No sales": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665986",
+    "C665998"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S8-R9|Sales Type: Part Sales only": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665987"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S8-R9|Sales Type: Service Sales only": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665987"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 35,
+    "answer_verbatim": "35. (b) Test these from the feature spec's wording.",
+    "sheet_row": 40
+   }
+  },
+  "S8-R9|Empty export": {
+   "outcome": "DESIGN-SILENT",
+   "cases": [
+    "C665987"
+   ],
+   "where": "no board draws this state (all 68 boards looked at 20 Oct 2026)",
+   "po_answer": {
+    "answer_no": 27,
+    "answer_verbatim": "27. (a) as the feature spec on both reports. Other empty results still download a file with headings and no rows, unchanged.",
+    "sheet_row": 32
+   }
+  }
+ }
+}
