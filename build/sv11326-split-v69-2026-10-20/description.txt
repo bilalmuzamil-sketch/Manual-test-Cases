@@ -1,0 +1,50 @@
+*Split from [SV-11326|https://shopview.atlassian.net/browse/SV-11326].* That ticket passed. These are the two points Chris ruled on afterwards in [his answer|https://shopview.atlassian.net/browse/SV-11326?focusedCommentId=79135] and added to the spec (version 69). The build does not do them yet.
+
+[~accountid:712020:1b27a800-7b5a-43f3-982a-81e7071a4fdb] [~accountid:712020:aa00b8d6-a71f-4259-8919-82a304227c20]
+
+h3. Summary
+In Tech View and Board View, the Technician filter has two problems:
+# A deactivated technician who still has a column (grey "Inactive" label) is not in the Technician list, so you cannot filter to them.
+# The red "This change would exceed the 50-value limit across all filters" message shows as soon as the list is opened, with nothing ticked.
+
+h3. Steps to reproduce
+# Open staging: [https://app.staging.shopview.com] and sign in as Admin.
+# At the top right, check that the location reads {{Staging Heavy Duty - 9919}}. If not, click it and pick that location.
+# In the top menu, click {{Work Orders}}.
+# Above the list, on the right, click the last of the three view icons (the square with three bars; its tooltip reads {{Board View}}).
+# Scroll right along the columns to the one whose header reads {{D..}} with a grey {{Inactive}} label and {{113}}. That is Darrell Martinez's column (picture 1, part 1).
+# Above the board, click {{Technician}} (the wrench icon). A list opens with a {{Search technician}} box.
+# Type {{Darrell}} in the search box. Only {{Darrell Thomas}} is listed. Darrell Martinez is not there (picture 1, part 2).
+# Click the grey x at the end of the search box to clear it. Look at the bottom of the list: nothing is ticked, but the red 50-value message is already showing (picture 2).
+# Tick {{Unassigned}}. The tick is applied and the red message is still showing.
+
+!01-deactivated-tech-missing.png|width=660,height=1259!
+
+!02-limit-message-before-any-tick.png|width=640,height=740!
+
+The same happens in Tech View (the middle of the three view icons, the person icon).
+
+*Fastest way to see it:* open [Work Orders on staging|https://app.staging.shopview.com/workorders] at {{Staging Heavy Duty - 9919}}, switch to Board View and click {{Technician}}. The red message is there before you tick anything. Type {{Darrell}} and Darrell Martinez is missing.
+
+h3. Expected behaviour
+# Darrell Martinez is in the Technician list, after the active technicians, with the grey {{Inactive}} label, and choosing him shows only his column.
+# The red 50-value message shows only when a tick would take the total across all filters over 50. It does not show when the list is opened, or after one tick.
+
+*Where this comes from:* the spec, version 69 ([Work Orders — Board View & Tech View|https://shopview.atlassian.net/wiki/spaces/~7120207b6068952672480db1a06bd810e23ba1/pages/845185030]).
+
+S1-R15 states:
+{quote}It is a multi-select listing Unassigned first, then everyone who gets a group or column at this location: the location’s technicians (S9-R4), and any lead technician who keeps a column while still leading work orders here (deactivated, S2-N2 and S3-N2; not enrolled here, S3-R20b; Time Clock turned off, S3-R20d). Active technicians come first, by first name then last name, then deactivated technicians, by first name then last name, each with the same grey “Inactive” label as their column. Someone who no longer gets a group or column is not listed.{quote}
+
+S1-R15c states:
+{quote}The filters’ 50-value limit message, “This change would exceed the 50-value limit across all filters”, shows only when a tick would take the total across all filters over 50 values, and that tick is not applied. It never shows just because the Technician list is opened, or while the total is 50 or fewer.{quote}
+
+h3. Current behaviour
+Neither point is done yet.
+
+||What I tried||Board View||Tech View||
+|Search {{Darrell}} in the Technician list|Only Darrell Thomas|Only Darrell Thomas|
+|Any deactivated technician in the whole list (328 names)|None|None|
+|Open the list, nothing ticked|Red 50-value message shows|Red 50-value message shows|
+|Tick one name (total 1)|Tick applied, red message still shows|Tick applied, red message still shows|
+
+Tested on staging, build v26.40.20-0509710, 20 October 2026, as Admin at Staging Heavy Duty - 9919, window 1440 x 900, zoom 100%.

@@ -61,10 +61,11 @@ else owes).
 
 | Category | Item | Owner | Blocks | Since |
 |---|---|---|---|---|
-| QUESTION | SV-11326 comment 79133: (1) should deactivated technicians who still have a column be in the Technician list? (2) should the "50-value limit" red line show before anything is ticked? | Chris Ward | Whether the two behaviours are intended; the ticket itself is PASSED (79132) | 20 Oct |
-| GO-AHEAD | TestRail result on run 498 for SV-11119 (test T4062446) and SV-11326 (test 3995736): log Passed with the exhibit? Not written — only test 4054408 (SV-11422) had a recorded go-ahead, and that one is logged (result 530472). | QA lead | The run still shows the older results for those two tests | 20 Oct |
+| ~~QUESTION~~ CLEARED 20 Oct 15:51 UTC | SV-11326 comment 79133 → Chris answered A/A in 79135 and put both into PRD v69 (S1-R15, S1-R15c). Build does not do them yet → split ticket [SV-11575](https://shopview.atlassian.net/browse/SV-11575) assigned to Slavcho; pointer comment 79138. | — | — | 20 Oct |
+| ~~GO-AHEAD~~ CLEARED 20 Oct | QA lead said yes. Both tests already had Passed results logged 15:48 UTC under our account (results 530478 / 530477), so none added: https://shopview.testrail.io/index.php?/tests/view/4062446 · https://shopview.testrail.io/index.php?/tests/view/3995736 | — | — | 20 Oct |
 | DECISION | Old comments to delete if wanted: SV-11407 78932/78933, SV-11119 78986 (each replaced by a new complete PASSED comment, as asked). | QA lead | Nothing; tidy-up only | 20 Oct |
 | OTHER TEAM | SV-11545 (Open): the lock wording ("Invoiced · can't be reassigned") is not on the build yet; noted on SV-11498 and SV-11454 but not counted against them. | Slavcho | The v68 wording in menus, lock icon and refused-move alert | 19 Oct |
+| OTHER TEAM | [SV-11575](https://shopview.atlassian.net/browse/SV-11575) (Open, Slavcho): Technician filter must list deactivated leads with a column, and the 50-value message must only show over 50 (PRD v69). | Slavcho | Re-test both points when staging changes | 20 Oct |
 
 ## 2026-10-20, ~08:00 UTC. **SV-10687 tested on sv10687 (v26.40.19-edfe7b0): every work-order and payment flow in the handoff passes except the portal payment, which could not be run. Nothing posted yet.**
 | What is missing | Who owes it | What it blocks | Since |
