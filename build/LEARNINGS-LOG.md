@@ -479,3 +479,8 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - QA lead: "Please prefix all the test cases which are under RETEST with SV-11326 - {{Title}}". Run 498 had 5 Retest tests (C581915–C581918, C97022), all ours (created_by 3), none Automated. `update_case/<id> {title}` only (no other field sent, so the escaping-container trap of preconds/steps/expected is not touched), read back, audit in `wo-board-tech-view/run498-2026-10-08/title-prefix-1020/audit.json`. Skip a title that already starts with the prefix; never Vladimir's (created_by 1).
 - Two titles went past the ~80-character guide (82 and 83) — reported, not shortened (his exact wording was asked for).
 #run498 #testrail #titles
+
+## L0487 — 2026-10-20 — "Prefix every Failed case with its ticket": where the ticket comes from, and Automated cases are held
+- QA lead: Failed tests in run 498 get "SV-<ticket> - <title>". The ticket is the one in each Failed test's LATEST results (the "Follow the status here" comment; else any SV key in the newest Failed result) — read live with `get_results/<test>`. All 17 named exactly one ticket.
+- `custom_atmstatus` values: 1 Not Automated · 2 Cannot be automated · **3 Automated** · 4 Pending. Three Failed cases are 3 (C96967, C368147, C682421) → held and asked (Rule 71; tell Vlad if changed, Rule 65). The other 14 were prefixed, read back; audit `title-prefix-1020/audit-failed.json`.
+#run498 #testrail #titles → L0486
