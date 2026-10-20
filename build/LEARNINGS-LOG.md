@@ -1019,3 +1019,9 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Quick check: `GET https://api.staging.shopview.com/api/auth/me` with the cookies — `401 sso_required` = expired; a `404 resource not found` means the SSO was ACCEPTED (that path just doesn't exist). Then `wob-run.sh build-marker.mts` proves the full sign-in (20 Oct 04:2x UTC: build v26.40.19-c850386).
 - C368159, C368169, C368171, C368173 were rewritten (~19 Oct) to use technicians named "AA ZZAUTOTEST <case> Ana/Ben/Dee" so they fall inside the work order page's ~100-name lists (SV-11429). Old scripts (s11-batch, editwo-fix, high1-fix5) still use Ralph Edwards etc. — use `four-aa-1020.mts` instead.
 #staging #signin #cookies #run498 → L0477
+
+## L0479 — 2026-10-20 — C682436's "empty" location must have no technician: the first-run title tells you which state you are in
+- The empty-state title depends on BOTH counts (design: `noWo && noTech ? "Nothing here yet" : noWo ? "No work orders yet" : "No technicians yet"`). On 20 Oct "ZZAUTOTEST Location Empty" showed **"No work orders yet"** — so it HAD a technician (it is not a product fault). `locC-fix.mts` switches the runner there on screen, reads `lead-technician-candidates`, removes each one's enrolment at that location (`/api/staff/enrollment/remove` per department), reads back, switches back. Re-run C682436 after it.
+- A re-run of one block of a multi-test script (`ONLY=…`) overwrites that script's whole result JSON — copy the JSON first (queue line does `cp new6-1020.json new6-1020-main.json`).
+- QA lead added C97021 (Tab enters each view once) to the batch; case unchanged since 16 Oct, `kbd-fix4.mts ONLY=C97021` follows it.
+#run498 #design #emptystate #tooling → L0478
