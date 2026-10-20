@@ -1,0 +1,22 @@
+[~accountid:712020:aa00b8d6-a71f-4259-8919-82a304227c20] two small questions on the Technician filter, please. The filter itself passes (comment above).
+
+*1. Deactivated technicians who still have work*
+* *What happens now:* a deactivated technician who still leads work orders keeps their column (with the grey "Inactive" label), but they are not in the Technician list, so you can't filter to them. On staging that is 11 people, for example Darrell Martinez (113 work orders) and Allison Hughes (85).
+* *Why I'm asking:* S1-R15 says the list holds "the location's technicians (the same people who get a group or column, S9-R4)". These people do get a column, but S9-R4 counts only active staff, so it can be read either way.
+* *The question:* should deactivated technicians who still have a column be in the Technician list?
+** A: Yes, anyone who has a column can be chosen.
+** B: No, only active technicians (as it works today).
+
+*2. The 50-value line shows before anything is ticked*
+* *What happens now:* as soon as the Technician list opens, a red line reads "This change would exceed the 50-value limit across all filters", even though nothing is ticked. Ticking still works.
+* *The question:* is that line meant to show only when someone actually tries to go over 50, or is it fine to show it all the time?
+** A: Show it only when the limit is reached.
+** B: Fine as it is.
+
+!sv11326-05-question-deactivated-technician.png|width=900,height=1222!
+_Staging build v26.40.20-0509710, 20 October 2026, Admin. Top: Darrell Martinez's column with the "Inactive" label and 113 work orders. Bottom: typing "Darrell" in the Technician list finds only Darrell Thomas, and the red 50-value line shows with nothing ticked._
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com, sign in as Admin, click {{Work Orders}}, then the {{All}} tab, then {{Board View}} (the right view button).
+# Scroll the board sideways until you reach the column with the grey {{Inactive}} label for Darrell Martinez.
+# Click {{Technician}} in the bar and type {{Darrell}} in its search box: only Darrell Thomas is listed. The red 50-value line is already showing.

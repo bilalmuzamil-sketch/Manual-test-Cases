@@ -1,0 +1,50 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Tested on Staging (build v26.40.20-0509710) on 20 October 2026, against the spec (version 68), signed in as Admin at Staging Heavy Duty - 9919, window 1440 x 900 px, zoom 100%.
+* Tech View and Board View now have a Technician filter after Assigned to me. Choosing technicians shows only their groups or columns, it combines with the other filters, and List is left as it was.
+* Two points I'd like Chris to rule on are in a separate comment below. They don't change this result.
+
+*Board View with the new filter*
+!sv11326-01-board-technician-filter.png|width=900,height=1046!
+_Staging today. Top: no technician chosen, every column shows, including the pinned Brandi Smith. Middle: Aaron Baker chosen, only his column is left. Bottom: Aaron Baker, Brandi Smith and Unassigned chosen, exactly those three columns show._
+
+*What I checked*
+||#||Check||Status||
+|1|Tech View and Board View show a {{Technician}} chip right after {{Assigned to me}}. List does not show it (only Status, Assigned to me and Asset on Site).|PASSED|
+|2|The chip uses the design's wrench icon (Chris, 15 October).|PASSED|
+|3|The list opens with a search box, then {{Unassigned}} first, then the technicians by first name and last name (327 technicians checked, in order).|PASSED|
+|4|Choosing Aaron Baker shows only his column (Board View) or group (Tech View), with his 22 work orders. Every other one is hidden, including the pinned Brandi Smith. All 22 have Aaron Baker as lead technician.|PASSED|
+|5|Choosing Aaron Baker, Brandi Smith and Unassigned shows exactly those three, in both views. The chip reads "Technician: Aaron Baker, +2".|PASSED|
+|6|It filters by lead technician only: S2-37620 has Aaron Baker on its line but no lead technician, and it does not show when Aaron Baker is chosen.|PASSED|
+|7|Combined with {{Assigned to me}}: 19 work orders, the same 19 the system lists for "led by Aaron Baker and assigned to me".|PASSED|
+|8|Combined with {{Asset on Site}} set to Yes: 3 work orders, all on site and all led by Aaron Baker.|PASSED|
+|9|When nothing matches (Aaron Baker + search S2-37620): "No work orders match these filters", "Try removing a filter to widen your results." and a {{Clear all filters}} button. Clicking it clears the Technician chip too.|PASSED|
+|10|With Aaron Baker chosen, switching to List shows all work orders as if none were chosen (30 rows on the first page, none led by Aaron Baker). Switching back brings "Technician: Aaron Baker" and his column back.|PASSED|
+|11|The choice is kept after a page reload, and it is kept in the page address like the other filters.|PASSED|
+
+*The Technician list*
+!sv11326-02-technician-list.png|width=900,height=789!
+_Search box (blue), Unassigned first (green), then technicians by first and last name. The orange line is one of the two points for Chris below._
+
+*No results, and Clear all filters*
+!sv11326-03-empty-state-and-clear.png|width=900,height=815!
+_Top: Aaron Baker chosen and S2-37620 searched; Aaron is only on that work order's line, so nothing matches and the empty state shows. Bottom: after Clear all filters the Technician chip is cleared and S2-37620 shows in Unassigned._
+
+*List, and back to Tech View*
+!sv11326-04-list-and-tech-view.png|width=900,height=717!
+_Top: List has no Technician chip and lists every work order. Bottom: back in Tech View the choice is still there and only Aaron Baker's group shows._
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 68:
+{quote}S1-R15: In Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location's technicians (the same people who get a group or column, S9-R4), by first name then last name. Choosing one or more shows only those technicians' groups or columns; every other group or column, pinned ones included, is hidden. It filters by lead technician only.{quote}
+{quote}S1-R15a: The Technician filter combines with every other filter and with Assigned to me: a work order shows only if it matches all of them. When nothing matches, the empty state of S1-N1a applies, and Clear all filters also clears the Technician filter.{quote}
+{quote}S1-R15b: List does not offer the Technician filter and stays as in production. Switching to List while technicians are chosen shows List as if none were chosen; switching back to Tech View or Board View brings the choice back. The choice is remembered the same way as the other filters.{quote}
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com and sign in as Admin. Check the top bar shows {{Staging Heavy Duty - 9919}}.
+# In the top menu click {{Work Orders}}, then the {{All}} tab (top left).
+# On the right of the bar above the list, click the right view button, {{Board View}}.
+# In the bar, click {{Technician}} (the chip with a wrench, right after {{Assigned to me}}) and tick {{Aaron Baker}}. Click anywhere outside the list to close it.
+# Only Aaron Baker's column is left. Now click the left view button, {{List}}: there is no Technician chip and every work order shows. Click {{Board View}} again: Aaron Baker's column is back on its own.
