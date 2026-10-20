@@ -4,49 +4,141 @@
   "found": {
    "saved": {
     "status": 200,
-    "display": "board_view",
+    "display": "tech_view",
     "collapsedGroups": [
-     "unassigned"
+     "unassigned",
+     "3ebf3050-70a7-40ac-b649-48e873d88c19",
+     "c57d19d7-dc2b-4472-a11d-984c61b01c0e",
+     "52b5c2b4-79db-4168-9f59-5ef4469393bd",
+     "7f85bc58-9ff5-4b50-b3f3-d85821069066",
+     "1bdce760-77df-4f45-b520-25fc96393623",
+     "b06dd063-d7c6-4aad-9739-48ffd8814c3a"
     ],
     "pinned": [
      "3ebf3050",
-     "11e59e34"
+     "c57d19d7"
     ],
-    "filters": [],
+    "filters": {
+     "assigned_to_me": []
+    },
     "density": "compact",
     "tab": "all"
    },
    "screen": {
     "switcher": 3,
-    "active": "Board View"
+    "active": "Tech View"
    }
   },
   "clearCollapsedPut": 200,
   "collapsedSavedAfter": [],
   "savedAfter": {
    "status": 200,
-   "display": "board_view",
+   "display": "tech_view",
    "collapsedGroups": [],
    "pinned": [
     "3ebf3050",
-    "11e59e34"
+    "c57d19d7"
    ],
-   "filters": [],
+   "filters": {
+    "assigned_to_me": []
+   },
    "density": "compact",
    "tab": "all"
+  }
+ },
+ "C368135": {
+  "board": {
+   "Cancel": {
+    "opened": 1,
+    "promptStillOpen": 0,
+    "cardBackWithEsther": true,
+    "message": [],
+    "lead": "Esther Howard"
+   },
+   "X": {
+    "opened": 1,
+    "promptStillOpen": 0,
+    "cardBackWithEsther": true,
+    "message": [],
+    "lead": "Esther Howard"
+   },
+   "Escape": {
+    "opened": 1,
+    "promptStillOpen": 0,
+    "cardBackWithEsther": true,
+    "message": [],
+    "lead": "Esther Howard"
+   },
+   "outside": {
+    "opened": 1,
+    "promptStillOpen": 1,
+    "cardBackWithEsther": false,
+    "message": [],
+    "lead": "Esther Howard"
+   },
+   "dialogPath": {
+    "opened": 1,
+    "backInReassignDialog": true,
+    "ralphStillChosen": "true"
+   },
+   "final": {
+    "lead": "Esther Howard",
+    "shifts": [
+     "Esther 2026-10-21 08:00-12:00 whole"
+    ]
+   }
+  },
+  "tech": {
+   "Cancel": {
+    "opened": 1,
+    "promptStillOpen": 0,
+    "cardBackWithEsther": true,
+    "message": [],
+    "lead": "Esther Howard"
+   },
+   "X": {
+    "opened": 1,
+    "promptStillOpen": 0,
+    "cardBackWithEsther": true,
+    "message": [],
+    "lead": "Esther Howard"
+   },
+   "Escape": {
+    "opened": 1,
+    "promptStillOpen": 0,
+    "cardBackWithEsther": true,
+    "message": [],
+    "lead": "Esther Howard"
+   },
+   "outside": {
+    "opened": 1,
+    "promptStillOpen": 1,
+    "cardBackWithEsther": false,
+    "message": [],
+    "lead": "Esther Howard"
+   },
+   "dialogPath": {
+    "opened": 1,
+    "backInReassignDialog": true,
+    "ralphStillChosen": "true"
+   },
+   "final": {
+    "lead": "Esther Howard",
+    "shifts": [
+     "Esther 2026-10-21 08:00-12:00 whole"
+    ]
+   }
   }
  },
  "C368136": {
   "startFound": {
    "lead": "Esther Howard",
-   "shifts": [
-    "Esther 2026-10-18 08:00-12:00 whole"
-   ]
+   "shifts": []
   },
   "startSet": {
    "lead": "Esther Howard",
    "shifts": [
-    "Esther 2026-10-18 08:00-12:00 whole"
+    "Esther 2026-10-21 08:00-12:00 whole"
    ]
   },
   "board": {
@@ -56,6 +148,51 @@
    "dialogPrompt": true,
    "lead": "Esther Howard"
   },
-  "error": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"tech_view_group_b51a80a5-2d2a-488a-87cd-747e8798d8ee\"]').first()\n"
+  "tech": {
+   "dragPrompt": true,
+   "leadAfterDrag": "Ralph Edwards",
+   "leadAfterBack": "Esther Howard",
+   "dialogPrompt": true,
+   "lead": "Esther Howard"
+  },
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-zz-pick=\"1\"]').first()\n    - locator resolved to <div role=\"option\" tabindex=\"-1\" data-zz-pick=\"1\" data-v-4fabca5c=\"\" aria-selected=\"false\" id=\"f_31aa0555-d7b7-4d05-aa9a-06607096b54b_60\" data-test-id=\"option_lead_technician_aa23aa05-38c9-470e-a280-01ed3863b0eb\" class=\"q-item q-item-type row no-wrap q-item--clickable "
+ },
+ "C154889": {
+  "drag": {
+   "opened": 1,
+   "title": "Clear Esther Howard's scheduled shifts?",
+   "heading": "Clear Esther Howard's scheduled shifts? close",
+   "text": "Clear Esther Howard's scheduled shifts? close Esther Howard has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change. Cancel Keep Shifts Clear Shifts",
+   "buttons": [
+    "close",
+    "Cancel",
+    "Keep shifts",
+    "Clear shifts"
+   ]
+  },
+  "dialog": {
+   "opened": 1,
+   "title": "Clear Esther Howard's scheduled shifts?",
+   "heading": "Clear Esther Howard's scheduled shifts? close",
+   "text": "Clear Esther Howard's scheduled shifts? close Esther Howard has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change. Cancel Keep Shifts Clear Shifts",
+   "buttons": [
+    "close",
+    "Cancel",
+    "Keep shifts",
+    "Clear shifts"
+   ]
+  },
+  "leads": {
+   "S2-35492": "none",
+   "S2-35491": "none"
+  },
+  "shifts": {
+   "S2-35492": [
+    "Esther 2026-10-21 08:00-12:00 whole"
+   ],
+   "S2-35491": [
+    "Esther 2026-10-21 08:00-12:00 whole"
+   ]
+  }
  }
 }
