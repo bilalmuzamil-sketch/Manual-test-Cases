@@ -24,8 +24,12 @@ const ORIGINAL = (await a.get(PREF)).body?.data?.value ?? {};
 const R: Record<string, any> = { started: new Date().toISOString(), staff: {} };
 const save = () => fs.writeFileSync(OUT, JSON.stringify(R, null, 1));
 for (const n of NAMES) {
-  const rows = (await staffRows(a, n)).filter((x: any) => `${x.first_name ?? ''} ${x.last_name ?? ''}`.trim() === n || String(x.name ?? x.full_name ?? '').trim() === n);
-  R.staff[n] = rows.map((x: any) => Object.fromEntries(Object.entries(x).filter(([k, v]) => /status|active|clock|role|locat|enrol|deleted|deactiv|time_clock|is_/i.test(k) && (typeof v !== 'object' || v === null || Array.isArray(v))).map(([k, v]) => [k, Array.isArray(v) ? JSON.stringify(v).slice(0, 200) : v])));
+  const out: any = {};
+  for (const u of [`/api/staff?limit=50&search=${encodeURIComponent(n)}`, `/api/staff?limit=50&include_inactive=1&search=${encodeURIComponent(n)}`, `/api/staff?limit=50&status=all&search=${encodeURIComponent(n)}`]) {
+    const r = await a.get(u); const c = r.body?.data?.collection ?? [];
+    out[u.replace(/search=.*/, '')] = { status: r.status, count: c.length, rows: c.slice(0, 3).map((x: any) => Object.fromEntries(Object.entries(x).filter(([, v]) => typeof v !== 'object' || v === null).map(([k, v]) => [k, typeof v === 'string' ? v.slice(0, 60) : v]))) };
+  }
+  R.staff[n] = out;
 }
 save();
 try {
@@ -37,14 +41,15 @@ try {
   if (await un.count()) { const id = ((await un.getAttribute('data-test-id')) || '').replace('tech_view_group_', ''); await p.locator(`[data-test-id="button_tech_view_group_toggle_${id}"]`).click().catch(() => {}); await W(1500); }
   const head = p.locator('[data-test-id^="tech_view_group_name_"]').filter({ hasText: /^\s*Aimee Francis\s*$/ }).first();
   await p.evaluate(`document.querySelector('.q-table__middle').scrollTop = 0`); await W(600);
-  for (let i = 0; i < 3000 && !(await head.count()); i++) { const end = await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); s.scrollTop += Math.floor(s.clientHeight * 0.8); return s.scrollTop + s.clientHeight >= s.scrollHeight - 2; })()`); await W(250); if (end && !(await head.count())) break; }
+  const inView = async () => (await head.count()) && await head.evaluate((e) => { const s = document.querySelector('.q-table__middle')!.getBoundingClientRect(); const b = e.getBoundingClientRect(); return b.top > s.top + 40 && b.bottom < s.bottom - 40; });
+  for (let i = 0; i < 3000 && !(await inView()); i++) { const end = await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); s.scrollTop += Math.floor(s.clientHeight * 0.8); return s.scrollTop + s.clientHeight >= s.scrollHeight - 2; })()`); await W(250); if (end && !(await inView())) break; }
   R.aimeeGroup = await head.count() ? 'on screen' : 'not found';
-  if (await head.count()) { await head.scrollIntoViewIfNeeded(); await W(800); R.aimeeHeaderText = (await head.locator('xpath=ancestor::tr[1]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); await shot(p, 'C581915-1020-aimee-group'); }
+  if (await head.count()) { await head.evaluate((e) => e.scrollIntoView({ block: 'center' })); await W(800); R.aimeeHeaderText = await head.evaluate((e) => (e.closest('tr') || e.parentElement)!.textContent!.replace(/\s+/g, ' ').trim()); await shot(p, 'C581915-1020-aimee-group'); }
   const chip = p.locator('[data-test-id^="filter_chip_"]').filter({ hasText: /Technician/ }).first();
   for (const [typed, key] of [['Esther Howard', 'control'], ['Aimee', 'aimee']] as const) {
-    await chip.click(); await W(1200); const box = p.locator('.q-menu').last().locator('input').first(); await box.fill(typed); await W(1500);
+    if (!(await p.locator('.q-menu').count())) { await chip.click(); await W(1500); } const box = p.locator('.q-menu input, [role=menu] input').last(); await box.waitFor({ timeout: 8000 }); await box.fill(typed); await W(1500);
     R[key] = { typed, offered: (await p.locator('.q-menu').last().locator('.q-item').allInnerTexts()).map((x) => x.replace(/\s+/g, ' ').trim()).filter(Boolean).slice(0, 10) };
-    await shot(p, `C581915-1020-search-${key}`); await box.fill(''); await p.keyboard.press('Escape'); await W(800);
+    await shot(p, `C581915-1020-search-${key}`); await box.fill(''); await W(600);
   }
 } catch (e: any) { R.err = String(e?.message || e).slice(0, 400); }
 R.restorePref = (await a.put(PREF, { value: ORIGINAL })).status; R.ended = new Date().toISOString(); save(); console.log(JSON.stringify(R).slice(0, 4000));
