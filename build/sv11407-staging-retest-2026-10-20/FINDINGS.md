@@ -40,5 +40,8 @@ Tech + Admin work-orders-list prefs saved (`/tmp/qa11310/ev07/prefs0-*.json`) an
 `restore 200 identical true` both users. Nothing else written.
 
 ## Outcome
-Comment drafted (`comment.txt`, OVERALL PASSED). No recording, no technical section (QA lead's answers). Held for the QA
-lead's look at the coverage before posting (Rule 96d).
+QA lead shown the per-point coverage (incl. the Comfortable 0 px flush detail) and chose "New PASSED comment".
+Pre-post gate (20 Oct): build marker re-read v26.40.20-9c75418 (same as tested), ticket still TESTING STAGE with no new
+comment since 78933, PRD still v68, text scanned (no AI fingerprint, no technical section). **Posted comment 79103**:
+read back = green PASSED panel first, 3 attachments in order (62710/62711/62712, 900x947 / 900x454 / 900x748), table
+9 rows + header, 7 steps. Older comments 78932/78933 left for the QA lead to delete. No recording, no technical section.
