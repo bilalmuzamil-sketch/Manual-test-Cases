@@ -1,0 +1,51 @@
+TITLE: Tech View and Board View – Technician Filter Leaves Out 11 Technicians Who Have Their Own Group and Column
+TYPE: Story Defect · PARENT: SV-10044 (Switch between display options; Ready for Production, read live 20 Oct 2026 15:58 UTC) · PRIORITY: Medium · LINK: relates to SV-11326 (Technician filter; Bug, Done, read live 20 Oct 2026)
+ALREADY REPORTED: none. JQL read live 20 Oct 2026: project = SV AND text ~ "Technician filter" AND created >= -21d → 20 issues, none about names missing from the filter.
+BASIS: PRD 845185030 version 69 (20 Oct 2026 15:31 UTC), read live 20 Oct 2026 15:3x UTC, S1-R15.
+SOURCE CHECK (Rule 106): C581915 step 2 Expected ("The remaining options match the location's Tech View groups") agrees with PRD v69 S1-R15 ("everyone who gets a group or column at this location") · build differs ⇒ real defect.
+INSTRUMENT CHECK (Rule 104): both lists walked to their true end (Tech View 329 groups with Unassigned closed; Board View 340 columns; filter 317 options); every option IS a group, so the walk works in both directions (positive control); the 11 are missing in Tech View and Board View alike.
+STORY STATUS (Rule 112): SV-10044 is past QA (Ready for Production), SV-11326 is Done — surfaced in the ask.
+STATUS: HELD — ask the QA lead (Rule 113).
+
+h2. Description
+
+*The Technician filter must list everyone who has a group in Tech View or a column in Board View.* On staging 11 people have their own group and column but cannot be picked in the filter.
+
+For example,
+* Tech View shows 329 technician groups and Board View 340 columns, but the Technician filter offers 317 names
+* every name in the filter has a group, but these have a group and no filter entry: Aimee Francis, Allison Hughes, Brett Guerra, Darrell Martinez, Debra Taylor, James Price, Jared Miller, Mary Parker, Rebecca Mitchell, ZZAUTOTEST F3 Dan Delta, Deleted technician
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin at *Staging Heavy Duty - 9919*.
+# Open *Work Orders*, click the *All* tab and click *Board View*. Clear any filter and the search.
+# Scroll the board to the right until the *Aimee Francis* column.
+#* Aimee Francis has her own column.
+# Click the *Technician* filter and type *Aimee* in *Search technician*.
+#* No name is offered.
+
+*Actual Result:*
+* Aimee Francis (and 10 others) have a column and a Tech View group but are not in the Technician filter, so their work cannot be filtered.
+
+*Expected Result:*
+* The PRD says: *"In Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then everyone who gets a group or column at this location: the location’s technicians (S9-R4), and any lead technician who keeps a column while still leading work orders here (deactivated, S2-N2 and S3-N2; not enrolled here, S3-R20b; Time Clock turned off, S3-R20d)."*
+
+h2. Screenshots
+
+(pictures added after the Board View picture run)
+
+
+h2. Environment
+
+* *Build:* {{v26.40.20-0509710}} on [staging|https://app.staging.shopview.com/workorders] , 20 Oct 2026
+* *Location:* Staging Heavy Duty - 9919
+* *User:* Admin
+
+h2. Sources
+
+* PRD "Work Orders — Board View & Tech View Display Options", [Confluence 845185030|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030], version 69 (20 Oct 2026), read 20 Oct 2026, S1-R15:
+{quote}In Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then everyone who gets a group or column at this location: the location’s technicians (S9-R4), and any lead technician who keeps a column while still leading work orders here (deactivated, S2-N2 and S3-N2; not enrolled here, S3-R20b; Time Clock turned off, S3-R20d).{quote}
+
+h2. Test case
+
+* [C581915 Tech View and Board View offer a Technician filter that List does not|https://shopview.testrail.io/index.php?/cases/view/581915]
