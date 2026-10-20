@@ -1,0 +1,51 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build": "v26.40.19-c850386",
+  "date": "20 October 2026",
+  "note": "run 498: release copies"
+ },
+ "results": {
+  "C690644": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, by the test's steps (the message after each change is left out of this release copy).",
+    "Steps 1 to 3: the All tab, \"ZZAUTOTEST F3 Drag Lead Change\" in Search, Board View: Alpha Co in Ana's column and Golf Co in Unassigned.",
+    "Steps 4 and 5: Alpha Co dragged into Ben's column sits there; its page reads Lead Technician ZZAUTOTEST Ben Bravo.",
+    "Steps 6 and 7: Alpha Co dragged into Unassigned sits there; its page shows no lead technician.",
+    "Steps 8 and 9: Golf Co dragged into Cal's column; its page reads ZZAUTOTEST Cal Charlie.",
+    "Steps 10 and 11: in Tech View Golf Co's row dragged into Ana's group moves there; its page reads ZZAUTOTEST Ana Alpha."
+   ],
+   "pictures": [
+    "pictures-1019/C690644-1-end-1020.png"
+   ]
+  },
+  "C690646": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, by the test's steps (the wording of the move message is left out of this release copy).",
+    "Steps 1 to 4: Board View with \"ZZAUTOTEST F3 Move Message\": Ana 3, Ben 1.",
+    "Steps 5 and 6: Alpha Co dragged into Ben's column; the counts change at once to Ana 2, Ben 2, with no reload.",
+    "Step 7: the message goes away and the counts stay Ana 2, Ben 2.",
+    "Steps 8 and 9: Alpha Co dragged above Delta Co inside Ben's column moves there; no message appears, the counts stay 2 and 2, and Alpha Co's lead is still ZZAUTOTEST Ben Bravo."
+   ],
+   "pictures": [
+    "pictures-1019/C690646-1-end-1020.png"
+   ]
+  },
+  "C690654": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, by the test's steps.",
+    "Steps 1 to 4: Board View with \"ZZAUTOTEST F3 Unassigned Place\": Unassigned reads Bravo Co, Delta Co.",
+    "Steps 5 and 6: Charlie Co's More actions > Unassign: it leaves Ana's column.",
+    "Step 7: Unassigned reads Bravo Co, Charlie Co, Delta Co: Charlie Co takes its customer-name place, not the bottom.",
+    "Steps 8 and 9: Alpha Co's lead cleared on its work order page; Unassigned reads Alpha Co, Bravo Co, Charlie Co, Delta Co: Alpha Co comes first by name, not last.",
+    "Step 10: Tech View's Unassigned group shows the same order."
+   ],
+   "pictures": [
+    "pictures-1019/C690654-1-unassigned-1020.png"
+   ]
+  }
+ }
+}
