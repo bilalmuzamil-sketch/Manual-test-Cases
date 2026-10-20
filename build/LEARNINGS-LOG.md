@@ -496,3 +496,11 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Order matters: check "title already correct" BEFORE the Automated hold, or an Automated case prefixed on his yes is reported as still held (fixed). A `pgrep -f "<cmd>"` wait loop matches its own command line — never wait on a process that way.
 - Run 498 sweep (dry): all 22 Failed/Retest titles correct, no Passed title carries a prefix — nothing to change.
 #rule133 #testrail #titles #tooling → L0488
+
+## L0490 — 2026-10-20 — Fixed-ticket retest of run 498: queue chaining trap, virtual-list readings, PRD v69, no-ticket prefix
+- **Chaining one queue after another:** `until grep -q QUEUE-DONE /tmp/queue-<a>.log` matches the queue's OWN `START` line (it echoes the command, which contains "QUEUE-DONE"), so the second queue started at once and ran beside the first. Wait with `grep -q '^QUEUE-DONE'` (anchored). Same family as L0489's `pgrep -f` self-match.
+- **Tech View draws only what is near the screen:** a "groups" or "rows after Clear all filters" read without walking the whole list is NOT evidence (C581915 walked 94 of the groups; C581917 saw no rows because the right groups were far down). `tech-filter-check-1020.mts` walks `.q-table__middle` to the true bottom (scrollTop + clientHeight ≥ scrollHeight, three times) with Unassigned closed first.
+- **PRD 845185030 moved to v69 (20 Oct 2026 15:31 UTC):** S1-R15 now lists deactivated / not-enrolled / Time-Clock-off lead technicians who keep a column, with a grey "Inactive" label, active first; new S1-R15c: the 50-value limit message must never show just because the Technician list is opened. On staging v26.40.20-0509710 it DOES show on opening (no case covers it yet).
+- **Source conflict found by C97022 step 6:** S11-E1 (focus to the column header when the last card leaves) vs S1-R15a/S1-N1a (nothing matches ⇒ empty state, so the header is gone). Ambiguous source ⇒ Blocked + PO question (Rule 58), not a ticket.
+- **Rule 133 gap fixed:** a non-Passed result with NO ticket left the old "SV-n - " prefix on; `prefix_case()` now takes it off. Self-test 7c3 covers it (proved red on a broken copy).
+#run498 #queue #techview #prd #rule133 → L0489, L0458

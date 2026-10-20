@@ -9,13 +9,13 @@
  "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
  "C97020": {
   "statuses": [
-   "Alpha Co S2-37498 approved",
-   "Bravo Co S2-37499 invoiced"
+   "Alpha Co S2-37655 approved",
+   "Bravo Co S2-37656 invoiced"
   ],
   "adminPins": 200,
   "adminStart": {
    "tab": "All",
-   "search": "ZZAUTOTEST F3 Keyboard Limits 6586",
+   "search": "ZZAUTOTEST F3 Keyboard Limits 86258",
    "assignedToMe": "false",
    "width": 1600
   },
@@ -31,7 +31,7 @@
     "label": null,
     "title": null,
     "cls": "q-field__native q-placeholder",
-    "text": "ZZAUTOTEST F3 Keyboard Limits 6586",
+    "text": "ZZAUTOTEST F3 Keyboard Limits 86258",
     "ring": true,
     "where": "page",
     "card": null,
@@ -41,19 +41,19 @@
     "group": null
    },
    "inSearch": true,
-   "searchHolds": "ZZAUTOTEST F3 Keyboard Limits 6586",
+   "searchHolds": "ZZAUTOTEST F3 Keyboard Limits 86258",
    "ringsInViews": 0
   },
   "s8": {
    "landed": {
     "key": "Tab",
     "raw": "board_card_Alpha Co",
-    "own": "board_card_978d83a4-b01a-4b8c-8063-c20c767124e2",
+    "own": "board_card_af9d95ee-6510-42b8-82dd-534a0f3bed32",
     "tag": "DIV",
     "label": null,
     "title": null,
     "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
-    "text": "S2-37498 Approved 1 ZZF9 Line count 1 line Progres",
+    "text": "S2-37655 Approved 1 ZZF9 Line count 1 line Progres",
     "ring": true,
     "where": "board",
     "card": "board_card_Alpha Co",
@@ -62,11 +62,12 @@
     "row": null,
     "group": null
    },
-   "presses": 11,
+   "presses": 12,
    "stops": [
     "page_search_clear (ring) [page]",
     "filter_chip_status (ring) [page]",
     "filter_chip_assigned_to_me (ring) [page]",
+    "filter_chip_lead_technician (ring) [page]",
     "filter_chip_vehicleHere (ring) [page]",
     "button_density (ring) [page]",
     "button_board_fields_selection (ring) [page]",
@@ -86,12 +87,12 @@
    "focus": {
     "key": "ArrowDown",
     "raw": "board_card_Bravo Co",
-    "own": "board_card_63db8dbb-065d-4861-8773-4f7de1d67890",
+    "own": "board_card_c19e375d-dd10-48d2-8271-7fa338f15658",
     "tag": "DIV",
     "label": null,
     "title": null,
     "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
-    "text": "S2-37499 Invoiced ZZF9 Line count 1 line Progress ",
+    "text": "S2-37656 Invoiced ZZF9 Line count 1 line Progress ",
     "ring": true,
     "where": "board",
     "card": "board_card_Bravo Co",
@@ -107,7 +108,7 @@
    "raw": "button_work_order_more_actions",
    "own": "button_work_order_more_actions",
    "tag": "BUTTON",
-   "label": "More actions for S2-37499",
+   "label": "More actions for S2-37656",
    "title": null,
    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text- q-btn-",
    "text": "",
@@ -137,12 +138,14 @@
     "highlighted": true,
     "box": {
      "x": 305.828125,
-     "y": 426.046875,
+     "y": 466.046875,
      "w": 202.453125,
      "h": 32
     }
    },
-   "tooltips": [],
+   "tooltips": [
+    "The lead technician can't be changed once a work order is Invoiced or Paid."
+   ],
    "noteExpected": "The lead technician can’t be changed once a work order is Invoiced or Paid."
   },
   "s12": {
@@ -152,14 +155,18 @@
      "focus": "menu_item_unassign_lead_technician (ring) [menu]",
      "focusText": "Unassign",
      "itemHighlighted": false,
-     "tooltips": []
+     "tooltips": [
+      "The lead technician can't be changed once a work order is Invoiced or Paid."
+     ]
     },
     {
      "key": "ArrowDown",
      "focus": "menu_item_reassign_lead_technician (ring) [menu]",
      "focusText": "Reassign lead technician",
      "itemHighlighted": true,
-     "tooltips": []
+     "tooltips": [
+      "The lead technician can't be changed once a work order is Invoiced or Paid."
+     ]
     }
    ],
    "onItem": {
@@ -173,12 +180,14 @@
      "highlighted": true,
      "box": {
       "x": 305.828125,
-      "y": 426.046875,
+      "y": 466.046875,
       "w": 202.453125,
       "h": 32
      }
     },
-    "tooltips": []
+    "tooltips": [
+     "The lead technician can't be changed once a work order is Invoiced or Paid."
+    ]
    },
    "noteOnKeyboard": true,
    "dialogs": 0,
@@ -190,7 +199,7 @@
    "raw": "button_work_order_more_actions",
    "own": "button_work_order_more_actions",
    "tag": "BUTTON",
-   "label": "More actions for S2-37499",
+   "label": "More actions for S2-37656",
    "title": null,
    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text- q-btn-",
    "text": "",
@@ -217,7 +226,7 @@
     "highlighted": true,
     "box": {
      "x": 305.828125,
-     "y": 426.046875,
+     "y": 466.046875,
      "w": 202.453125,
      "h": 32
     }
@@ -268,7 +277,7 @@
   },
   "s15": {
    "wo2": "Technician-A",
-   "searchHolds": "ZZAUTOTEST F3 Keyboard Limits 6586"
+   "searchHolds": "ZZAUTOTEST F3 Keyboard Limits 86258"
   },
   "s16": {
    "url": "/workorders/<id>/lines",
