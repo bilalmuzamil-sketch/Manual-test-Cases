@@ -993,3 +993,10 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - 20 Oct: C614711, C96964, C97020, C590121, C96967, C368147 sit in exactly one manual run, **498**, plus every Nightly run from 20 Sep on.
 - `push_results_to_run.py` posts the "Follow the status here" comment for the FIRST ticket of a result only; a result with two tickets needs the second posted by hand (`add_result_for_case`, status 5, `defects` = key) — done for C97020 / SV-11545 (result 529863).
 #testrail #runs #nightly #tooling → L0473
+
+## L0475 — 2026-10-20 — Editing (not adding) a TestRail result comment: UI only, and only within an edit window
+- **The TestRail API cannot edit a result.** The test page (`index.php?/tests/view/<test>`) gives each result its own `Edit` link (`App.Tests.editResult(1, <result_id>, <status>)`), which opens the "Edit Result" dialog; the comment is the Froala instance `addResultComment_display` (backing `#addResultComment`); save is `#addResultSubmit`. `html.set` + save keeps the same result id, status, defects and attachments (read back for 20 results). Tool: `build/wo-board-tech-view/run498-2026-10-08/comment-edits-1020/apply_edits.mjs` (edits.json {rid: {test, new}}); snapshot + verify pattern in the same folder.
+- **Results older than about 2–3 days have NO Edit link** (17 Oct results had none on 20 Oct; 19 Oct ones did) — a TestRail site setting. Such a comment cannot be edited by us; only a new result can carry the change, and the QA lead said "not to add a new comment" → ask him.
+- `<strong>` written through the editor renders bold (screenshot `shown-3761668.png`); the API-write literal-tag trap does not apply to a UI save.
+- QA lead ruling 20 Oct 2026: every not-Passed run-498 comment must open with the failing step number(s) in bold, and the bullet(s) describing those steps bold — "to know exactly at which step the test failed".
+#testrail #results #edit #run498 #ruling → L0474

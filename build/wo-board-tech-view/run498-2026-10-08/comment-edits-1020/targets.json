@@ -1,0 +1,170 @@
+{
+ "581915": {
+  "test": 3982130,
+  "status": "Retest",
+  "rid": 527962,
+  "rstatus": 4,
+  "comment": "<p>This test will be retested once <a href=\"https://shopview.atlassian.net/browse/SV-11326\">https://shopview.atlassian.net/browse/SV-11326</a> (Tech View and Board View: add a Technician filter) is development-complete and available for QA.</p><ul><li>Ticket status on 19 Oct 2026: Open.</li><li>On staging on 19 Oct 2026 (build v26.40.19-31ad1e1), Tech View and Board View still offer no Technician filter.</li></ul>",
+  "title": "Tech View and Board View offer a Technician filter that List does not"
+ },
+ "581916": {
+  "test": 3982131,
+  "status": "Retest",
+  "rid": 527963,
+  "rstatus": 4,
+  "comment": "<p>This test will be retested once <a href=\"https://shopview.atlassian.net/browse/SV-11326\">https://shopview.atlassian.net/browse/SV-11326</a> (Tech View and Board View: add a Technician filter) is development-complete and available for QA.</p><ul><li>Ticket status on 19 Oct 2026: Open.</li><li>On staging on 19 Oct 2026 (build v26.40.19-31ad1e1), Tech View and Board View still offer no Technician filter.</li></ul>",
+  "title": "Choosing technicians hides every other group and column, pinned ones too"
+ },
+ "581917": {
+  "test": 3982132,
+  "status": "Retest",
+  "rid": 527964,
+  "rstatus": 4,
+  "comment": "<p>This test will be retested once <a href=\"https://shopview.atlassian.net/browse/SV-11326\">https://shopview.atlassian.net/browse/SV-11326</a> (Tech View and Board View: add a Technician filter) is development-complete and available for QA.</p><ul><li>Ticket status on 19 Oct 2026: Open.</li><li>On staging on 19 Oct 2026 (build v26.40.19-31ad1e1), Tech View and Board View still offer no Technician filter.</li></ul>",
+  "title": "The Technician filter combines with other filters and Clear all filters"
+ },
+ "581918": {
+  "test": 3982133,
+  "status": "Retest",
+  "rid": 527965,
+  "rstatus": 4,
+  "comment": "<p>This test will be retested once <a href=\"https://shopview.atlassian.net/browse/SV-11326\">https://shopview.atlassian.net/browse/SV-11326</a> (Tech View and Board View: add a Technician filter) is development-complete and available for QA.</p><ul><li>Ticket status on 19 Oct 2026: Open.</li><li>On staging on 19 Oct 2026 (build v26.40.19-31ad1e1), Tech View and Board View still offer no Technician filter.</li></ul>",
+  "title": "List ignores the Technician choice and Tech View brings it back"
+ },
+ "614711": {
+  "test": 4004397,
+  "status": "Failed",
+  "rid": 529591,
+  "rstatus": 5,
+  "comment": "<p>Tested on staging, build v26.40.19-c850386, on 19 October 2026.</p><ul><li>Result: Failed on staging at step 10 only. Steps 1 to 9 passed.</li><li>Steps 1 and 2: ZZAUTOTEST C614711 Dana 19214 was opened from Settings &gt; Staff, deleted with Delete and confirmed, and is no longer in the Staff list.</li><li>Steps 3 to 5: on Board View the card S2-37496 sits in a column headed \"Deleted technician\" with the \"Inactive\" marker and no drag handle. The earlier problem (\"Unknown Technician\") is fixed on this build.</li><li>Step 6: S2-37497 was dragged from Unassigned onto the Deleted technician column and let go; it stayed in Unassigned.</li><li>Step 7: in Tech View, S2-37496 sits in the group \"Deleted technician\" with the Inactive marker.</li><li>Step 8: in List, the Lead Technician cell of S2-37496 reads \"Unassigned\".</li><li>Step 10: S2-37496 moved to ZZAUTOTEST C614711 Eli's column, but the message reads only \"Lead technician updated\" in a solid green box with a Close button. It does not read \"S2-37496 assigned to ZZAUTOTEST C614711 Eli\" and has no Undo button, which the test expects.</li><li>This message problem is already reported (see the ticket below), so nothing new is raised.</li></ul><hr /><p>Ticket: https://shopview.atlassian.net/browse/SV-11524 (Board View UX Improvements, Open). It covers the generic message with no work order, no technician and no Undo.</p><hr /><p>Re-test step 10 when SV-11524 is fixed. The test's note about the old \"Unknown Technician\" problem can be dropped: that fix has reached staging.</p>",
+  "title": "Work orders of a deleted lead sit under Deleted technician, which takes no drops"
+ },
+ "96964": {
+  "test": 3481908,
+  "status": "Failed",
+  "rid": 529844,
+  "rstatus": 5,
+  "comment": "<p>Tested on staging, build v26.40.19-c850386, on 19 October 2026.</p><ul><li>Result: Failed on staging (re-test of 19 Oct; ticket now raised). The blocking works; the words shown are the old ones.</li><li>Set-up: S2-37502 (Invoiced) and S2-37503 (Paid), both led by ZZAUTOTEST C96964 Ana Alpha; ZZAUTOTEST C96964 Ben Ben as the other technician.</li><li>Both cards and both rows show a lock icon next to the number (correct).</li><li>The lock icon's hover text reads \"The lead technician can't be changed once a work order is Invoiced or Paid.\" The test expects \"Invoiced \u00b7 can\u2019t be reassigned\" / \"Paid \u00b7 can\u2019t be reassigned\".</li><li>More actions: Reassign lead technician and Unassign are greyed out (correct), but their tooltip reads the same old sentence, on both work orders, in Board View and Tech View.</li><li>While each work order is dragged over Ben Ben's column (Board View) or group (Tech View), the note at the top reads the same old sentence.</li><li>On release the drop is refused: both stay with Ana Alpha and the lead does not change (correct).</li></ul><hr /><p>Ticket to follow: https://shopview.atlassian.net/browse/SV-11545 \u2014 Locked work orders still show the old \"can't be changed\" sentence (Open)</p><hr /><p>Re-run this test once SV-11545 is fixed (the lock icon, the greyed-out menu items and the drag note all show \"Invoiced \u00b7 can\u2019t be reassigned\" / \"Paid \u00b7 can\u2019t be reassigned\").</p>",
+  "title": "Invoiced and Paid work orders show why the lead can't be changed"
+ },
+ "96967": {
+  "test": 3481911,
+  "status": "Failed",
+  "rid": 529845,
+  "rstatus": 5,
+  "comment": "<p>Tested on staging, build v26.40.19-c850386, on 19 October 2026.</p><ul><li>Result: Failed on staging (re-test of 19 Oct; ticket now raised). The view-only user cannot change anything (correct), but is never told why.</li><li>Set-up: a new staff member \"ZZAUTOTEST Vera Viewonly C96967\" with the role \"ZZAUTOTEST WO View Only\" (Work orders: View only); S2-37511 (Approved) led by Esther Howard; ZZAUTOTEST C96967 Ben Ben as the other technician.</li><li>Step 4: pressing on S2-37511's card and moving over Ben Ben's column does not pick the card up; the mouse only highlights text, and no note appears at the top of the column. The test expects \"You don\u2019t have permission to assign technicians\".</li><li>Steps 5 and 6: the card stays in Esther Howard's column and cannot be moved within it either.</li><li>Step 7: the card has no More actions button, so Reassign lead technician and Unassign are not offered.</li><li>Step 8: in Tech View the row is not picked up either and no note appears over Ben Ben's group; no More actions on the row.</li><li>Step 9: S2-37511's lead is still Esther Howard.</li></ul><hr /><p>Ticket to follow: https://shopview.atlassian.net/browse/SV-11546 \u2014 View-only user never sees \"You don't have permission to assign technicians\" (Open)</p><hr /><p>Re-run this test once SV-11546 is fixed (the note \"You don\u2019t have permission to assign technicians\" shows while the view-only user drags).</p>",
+  "title": "A user without create and edit cannot drag or reassign work orders"
+ },
+ "96975": {
+  "test": 3481919,
+  "status": "Failed",
+  "rid": 527954,
+  "rstatus": 5,
+  "comment": "<p>Tested on staging, build v26.40.19-31ad1e1, on 19 October 2026.</p><ul><li>Result: Failed on staging, checked again today before filing the ticket.</li><li>In the Work Orders List, Progress was turned off with Column Selection and the column disappeared.</li><li>After logging out and signing in again as the same user, Progress was back in the List and turned on in Column Selection.</li><li>Tech View's own column choice is not the problem here; only List loses its choice.</li><li>Production (checked 17 Oct 2026) keeps the List choice after logging out and back in, so this is new on staging.</li><li>Requirements (Confluence 845185030, version 64, 16 Oct 2026), S5-R8: \"Save the Tech View column selection per user across logout/login, devices, and locations. List keeps saving its columns exactly as it does today.\"</li><li>Note: an earlier result on this test showed the story SV-10048 in the ticket field by mistake; the real ticket is SV-11499.</li><li>What the tester must do: follow the ticket; when it is fixed, run this test again.</li></ul><hr /><p>Ticket: https://shopview.atlassian.net/browse/SV-11499 (Open, read 19 Oct 2026).</p><hr /><p>What needs to be done: follow ticket SV-11499; when it is fixed, run this test again.</p>",
+  "title": "Tech View keeps its own column choice, separate from List, for each user"
+ },
+ "581895": {
+  "test": 3974851,
+  "status": "Failed",
+  "rid": 527841,
+  "rstatus": 5,
+  "comment": "<p>Tested on staging, build v26.40.19-1493c63, on 17 October 2026.</p><ul><li>Result: Failed on staging, following the test's steps.</li><li>Steps 1 and 2: Settings &gt; Staff shows Technician-A as \"Carol Neal\" and Technician-B as \"Ralph Edwards\".</li><li>Step 5: List's Lead Technician for this test's work order S2-37054 reads \"David Sparks\", not the staff record name \"Carol Neal\".</li><li>Steps 7 to 9: Board View shows \"Carol Neal\" on the card and in the column header; the line technician avatars read Carol Neal and Ralph Edwards.</li><li>Step 11: Tech View's group header reads \"Carol Neal\".</li><li>Step 12 (the Assigned Techs avatar names in Tech View) was not read by the script.</li><li>Same problem as already reported, ticket below (status Open, read 17 Oct 2026).</li></ul><hr /><p>Ticket: https://shopview.atlassian.net/browse/SV-11336.</p><hr /><p>What needs to be done: the developers to fix SV-11336 (Open); then run this test again.</p>",
+  "title": "Technician names and avatar hover names match the staff record in both views"
+ },
+ "368147": {
+  "test": 3761668,
+  "status": "Failed",
+  "rid": 529842,
+  "rstatus": 5,
+  "comment": "<p>Tested on staging, build v26.40.19-c850386, on 19 October 2026.</p><ul><li>Result: Failed on staging (re-test of 19 Oct; ticket now raised) at steps 6 and 10. The other steps match the test.</li><li>Set-up: a new staff member with the role \"ZZAUTOTEST WO View Only\" (Work orders: View only); S2-37512 (Alpha Co) and S2-37513 (Bravo Co), both Approved and led by ZZAUTOTEST C368147 Ana Alpha; ZZAUTOTEST C368147 Ben Ben as the other technician.</li><li>Step 5: Bravo Co cannot be moved within Ana Alpha's column; no message appears.</li><li>Step 6: pressing on Alpha Co and moving over Ben Ben's column does not pick the card up (only text is highlighted) and no note appears at the top of the column. The test expects \"You don\u2019t have permission to assign technicians\".</li><li>Step 7: Alpha Co stays in Ana Alpha's column. Step 8: the card has no More actions button.</li><li>Step 10: in Tech View, the same over Ben Ben's group: no note. Step 11: the row stays in Ana Alpha's group.</li><li>Step 12: the order is still Alpha Co, Bravo Co and Alpha Co's lead is still Ana Alpha.</li></ul><hr /><p>Ticket to follow: https://shopview.atlassian.net/browse/SV-11546 \u2014 View-only user never sees \"You don't have permission to assign technicians\" (Open)</p><hr /><p>Re-run this test once SV-11546 is fixed (steps 6 and 10: the note \"You don\u2019t have permission to assign technicians\" shows).</p>",
+  "title": "A user without Work Orders create and edit cannot drag work orders"
+ },
+ "97020": {
+  "test": 3481958,
+  "status": "Failed",
+  "rid": 529846,
+  "rstatus": 5,
+  "comment": "<p>Tested on staging, build v26.40.19-c850386, on 19 October 2026.</p><ul><li>Result: Failed on staging (re-test of 19 Oct; ticket now raised) at step 11 only. Every other step matches the test; the keyboard cannot get round the limits.</li><li>Steps 1 to 6 (view-only user, keyboard only): the cursor is in Search; Tab reaches S2-37514's card with a focus ring after the toolbar buttons; the card has no More actions, so the next Tab leaves the board; Enter opens nothing; Space and Shift with each arrow key move nothing and the lead stays Ana Alpha.</li><li>Steps 7 to 10 (Admin): the cursor is in Search; Tab lands on S2-37498's card; the down arrow moves the ring to Invoiced S2-37499; Tab reaches its own More actions.</li><li>Step 11: Enter opens the menu and Reassign lead technician and Unassign are greyed out, but no note shows while the item is highlighted with the keyboard. The note exists only on mouse hover, and its words are the old sentence \"The lead technician can't be changed once a work order is Invoiced or Paid.\", not \"Invoiced \u00b7 can\u2019t be reassigned\".</li><li>Step 12: Enter on the item does nothing; no window opens. Step 13: Escape closes the menu and focus returns to More actions.</li><li>Step 14: Space and Shift with each arrow key move nothing. Steps 15 and 16: after a refresh S2-37499 is still in Ana Alpha's column and its page reads Lead technician ZZAUTOTEST Ana Alpha.</li></ul><hr /><p>Tickets to follow: https://shopview.atlassian.net/browse/SV-11498 \u2014 Locked work order's note never shows with the keyboard (In Progress) \u00b7 https://shopview.atlassian.net/browse/SV-11545 \u2014 Locked work orders still show the old \"can't be changed\" sentence (Open)</p><hr /><p>Re-run this test once both tickets are fixed: SV-11498 (the note shows when the item is highlighted with the keyboard) and SV-11545 (the note reads \"Invoiced \u00b7 can\u2019t be reassigned\").</p>",
+  "title": "The keyboard cannot get around permission or status limits"
+ },
+ "97022": {
+  "test": 3481960,
+  "status": "Retest",
+  "rid": 527966,
+  "rstatus": 4,
+  "comment": "<p>This test will be retested once <a href=\"https://shopview.atlassian.net/browse/SV-11326\">https://shopview.atlassian.net/browse/SV-11326</a> (Tech View and Board View: add a Technician filter) is development-complete and available for QA.</p><ul><li>Ticket status on 19 Oct 2026: Open.</li><li>On staging on 19 Oct 2026 (build v26.40.19-31ad1e1), Tech View and Board View still offer no Technician filter.</li></ul>",
+  "title": "Focus returns to the opener and moves on when a focused card leaves"
+ },
+ "682421": {
+  "test": 4054408,
+  "status": "Blocked",
+  "rid": 527991,
+  "rstatus": 2,
+  "comment": "Tested on staging, build v26.40.19-c850386, on 19 October 2026, signed in as Admin, window 1440 x 900, zoom 100%. Result: Blocked, waiting on one answer from Chris Ward in SV-11422 (comment 79033).\n\n- Steps 1 to 4: the link opens the All tab with S2-16688 in Search; every group is open; \"Unassigned\" shows 0 work orders and S2-16688 is further down, off the screen.\n- Step 5 (Tech View): the list moves down and the keyboard focus is on S2-16688, not on the \"Unassigned\" heading. But the row sits under the \"Brandi Smith\" heading, which stays fixed at the top, so the row and its ring are covered: fully at Compact; at Regular and Comfortable only the bottom 4 px and 8 px of the row show. The expected result asks for the whole row and its ring to be seen.\n- Step 7 (Board View): passes. The board scrolls sideways and the S2-16688 card in Brandi Smith's column has the blue focus ring and is fully on the screen.\n\nChris has been asked whether the covered row is acceptable. If he says yes, this test passes (and its expected result will be updated to match). If he says no, it fails and goes back to the developer.\nTicket: https://shopview.atlassian.net/browse/SV-11422 (QA comment 79031; question 79033).\nAttached: the Board View before and after picture, and the Tech View picture of the covered row.",
+  "title": "First Tab goes to the work order even when it is far down or off to the side"
+ },
+ "368159": {
+  "test": 3761680,
+  "status": "Retest",
+  "rid": 527950,
+  "rstatus": 4,
+  "comment": "<ul><li>Moved to Retest on the QA lead's instruction (19 Oct 2026): these cases are kept separate for now because the behaviour is the same on production.</li><li>Still seen on staging today (build v26.40.19-31ad1e1): the technician lists stop at about 97 names and Ralph Edwards is not offered.</li><li>The bug is tracked in https://shopview.atlassian.net/browse/SV-11429 (Open). The old ticket SV-11393 was moved there by Chris Ward.</li></ul>",
+  "title": "Toggling On Site from a stale page does not undo another user's lead change"
+ },
+ "368173": {
+  "test": 3792494,
+  "status": "Retest",
+  "rid": 527951,
+  "rstatus": 4,
+  "comment": "<ul><li>Moved to Retest on the QA lead's instruction (19 Oct 2026): these cases are kept separate for now because the behaviour is the same on production.</li><li>Still seen on staging today (build v26.40.19-31ad1e1): the technician lists stop at about 97 names and Ralph Edwards is not offered.</li><li>The bug is tracked in https://shopview.atlassian.net/browse/SV-11429 (Open). The old ticket SV-11393 was moved there by Chris Ward.</li></ul>",
+  "title": "Changing a line's technician in Edit Line saves the new technician"
+ },
+ "368169": {
+  "test": 3792490,
+  "status": "Retest",
+  "rid": 527935,
+  "rstatus": 5,
+  "comment": "<p>Tested on staging, build v26.40.19-31ad1e1, on 19 October 2026.</p><ul><li>Result: Failed on staging: Edit Work Order cannot change the lead to Ralph Edwards, because the technician lists are cut off (same problem as before).</li><li>Re-observed today on staging (build v26.40.19-31ad1e1, work order S2-37308): the work order page's technician lists stop after about 100 people: Lead Technician shows 98 names, Edit Line &gt; Add Technician 96, Edit labor &gt; Technician 97, all ending at \"QA ServiceManager\".</li><li>Ralph Edwards, the name the test asks for, is not offered in any of the three, and typing \"Ralph\" does not narrow the list to him.</li><li>The earlier ticket SV-11393 was closed by Chris Ward (product owner) only because he moved the bug to its own ticket: \"Re-homed as standalone bug SV-11429 (not Board/Tech View; same on production)\". It was not accepted as expected behaviour.</li><li>The bug is now tracked in SV-11429 (Open, read 19 Oct 2026; created by Chris Ward on 16 Oct 2026: \"Work Order page: technician lists (Lead Technician, Edit Line, Edit labor) stop after about 100 people\").</li></ul><hr /><p>Ticket: https://shopview.atlassian.net/browse/SV-11429 (Open, read 19 Oct 2026).</p><hr /><p>What needs to be done: nothing new to report; follow SV-11429 and run this test again once it is fixed on staging.</p>",
+  "title": "Edit Work Order saves a new lead and a new mileage together"
+ },
+ "368171": {
+  "test": 3792492,
+  "status": "Retest",
+  "rid": 527936,
+  "rstatus": 5,
+  "comment": "<p>Tested on staging, build v26.40.19-31ad1e1, on 19 October 2026.</p><ul><li>Result: Failed on staging: the lead cannot be changed to Ralph Edwards, so the audit entry cannot be made, because the technician lists are cut off (same problem as before).</li><li>Re-observed today on staging (build v26.40.19-31ad1e1, work order S2-37308): the work order page's technician lists stop after about 100 people: Lead Technician shows 98 names, Edit Line &gt; Add Technician 96, Edit labor &gt; Technician 97, all ending at \"QA ServiceManager\".</li><li>Ralph Edwards, the name the test asks for, is not offered in any of the three, and typing \"Ralph\" does not narrow the list to him.</li><li>The earlier ticket SV-11393 was closed by Chris Ward (product owner) only because he moved the bug to its own ticket: \"Re-homed as standalone bug SV-11429 (not Board/Tech View; same on production)\". It was not accepted as expected behaviour.</li><li>The bug is now tracked in SV-11429 (Open, read 19 Oct 2026; created by Chris Ward on 16 Oct 2026: \"Work Order page: technician lists (Lead Technician, Edit Line, Edit labor) stop after about 100 people\").</li></ul><hr /><p>Ticket: https://shopview.atlassian.net/browse/SV-11429 (Open, read 19 Oct 2026).</p><hr /><p>What needs to be done: nothing new to report; follow SV-11429 and run this test again once it is fixed on staging.</p>",
+  "title": "A lead change in Edit Work Order adds one Lead tech changed entry"
+ },
+ "590114": {
+  "test": 3995723,
+  "status": "Failed",
+  "rid": 527956,
+  "rstatus": 5,
+  "comment": "<p>Tested on staging, build v26.40.19-31ad1e1, on 19 October 2026.</p><ul><li>Result: Failed on staging, checked again today before filing the ticket.</li><li>In Tech View, every Total Price amount starts at the left of its column (for example $984.79, $4,142.67, $309.23), and the Total Price heading is at the left too.</li><li>The test expects Total price at the right of its column, as in the design.</li><li>Design (Work Orders design file, Tech View Total price cell): \"text-align: right\". The requirements page does not set this alignment; it says Tech View's cells follow the design.</li><li>The other steps of this test were not part of today's re-check; they read as on 17 Oct.</li><li>What the tester must do: follow the ticket; when it is fixed, run this test again.</li></ul><hr /><p>Ticket: https://shopview.atlassian.net/browse/SV-11500 (Open, read 19 Oct 2026).</p><hr /><p>What needs to be done: follow ticket SV-11500; when it is fixed, run this test again.</p>",
+  "title": "Design: Tech View rows show a blue number, a thin progress bar and an avatar"
+ },
+ "590117": {
+  "test": 3995726,
+  "status": "Failed",
+  "rid": 527957,
+  "rstatus": 5,
+  "comment": "<p>Tested on staging, build v26.40.19-31ad1e1, on 19 October 2026.</p><ul><li>Result: Failed on staging, checked again today before filing the ticket.</li><li>In Tech View, hovering the count at the right of a technician's group header shows the tooltip \"1 work order\" BELOW the number, over the group's first row.</li><li>The test expects the dark tooltip to open above the number, as in the design.</li><li>Design (Work Orders design file, Tech View state for the group count tooltip): the tooltip \"4 work orders\" opens above the count and covers no column header. The requirements page does not set where this tooltip opens.</li><li>The other steps of this test were not part of today's re-check; they read as on 17 Oct.</li><li>What the tester must do: follow the ticket; when it is fixed, run this test again.</li></ul><hr /><p>Ticket: https://shopview.atlassian.net/browse/SV-11501 (Open, read 19 Oct 2026).</p><hr /><p>What needs to be done: follow ticket SV-11501; when it is fixed, run this test again.</p>",
+  "title": "Design: Tech View headings show handle, arrow, avatar, name, pin and count"
+ },
+ "590121": {
+  "test": 3995730,
+  "status": "Failed",
+  "rid": 529843,
+  "rstatus": 5,
+  "comment": "<p>Tested on staging, build v26.40.19-c850386, on 19 October 2026.</p><ul><li>Result: Failed on staging (re-test of 19 Oct; ticket now raised) at step 11 only. Steps 2 to 10 match the test.</li><li>Step 2: without the pointer on it, S2-37500's card shows no three-dot button.</li><li>Step 3: with the pointer on it the border darkens, a soft shadow appears and a small white three-dot button appears at the top right, by the status label.</li><li>Step 4: a white menu opens below the button, lined up with its right edge: Reassign lead technician first, then Unassign, each with an icon.</li><li>Steps 7 and 8: in Tech View the row turns light grey, the three-dot button shows at the row's right end, and the same menu opens below it, lined up with its right edge.</li><li>Step 10: for Invoiced S2-37501 Reassign lead technician and Unassign are greyed out.</li><li>Step 11: the tooltip reads \"The lead technician can't be changed once a work order is Invoiced or Paid.\" The test expects \"Invoiced \u00b7 can\u2019t be reassigned\".</li></ul><hr /><p>Ticket to follow: https://shopview.atlassian.net/browse/SV-11545 \u2014 Locked work orders still show the old \"can't be changed\" sentence (Open)</p><hr /><p>Re-run this test once SV-11545 is fixed (step 11: the tooltip reads \"Invoiced \u00b7 can\u2019t be reassigned\").</p>",
+  "title": "Design: The More actions button and its menu look as in the design"
+ },
+ "590127": {
+  "test": 3995736,
+  "status": "Failed",
+  "rid": 527798,
+  "rstatus": 5,
+  "comment": "<p>Tested on staging, build v26.40.19-1493c63, on 17 October 2026.</p><ul><li>Result: Failed on staging, following the test's steps.</li><li>Step 2: Tech View's filter bar reads Search, Status, Assigned to me, Asset on Site. There is no Technician filter after Assigned to me.</li><li>Step 7: Board View's filter bar is the same, with no Technician filter.</li><li>Step 8: List has no Technician filter, as the test wants.</li><li>Steps 3 to 6 cannot be done without the filter.</li></ul><hr /><p>Ticket: https://shopview.atlassian.net/browse/SV-11326.</p><hr /><p>What needs to be done: the developers to add the Technician filter (SV-11326, Open); then run this test again.</p>",
+  "title": "Design: The Technician filter sits right after Assigned to me in both views"
+ }
+}
