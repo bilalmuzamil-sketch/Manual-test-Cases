@@ -1,0 +1,59 @@
+_Updated on 19 October 2026, 22:30 CDT: rewritten with on-screen steps and annotated pictures after re-testing on production today. Ahtasham's original report and video are kept at the bottom._
+
+h3. Summary
+If someone opens Work Orders from a link or bookmark whose status is one the app doesn't recognise, the list is filtered by something you can't see. The Status button above the list lights up as if a status were chosen, but it names no status and nothing is ticked in its menu. Depending on the link, the list is either empty or quietly filtered.
+
+h3. Steps to reproduce
+Open Production: [https://app.shopview.com|https://app.shopview.com] (any user who can see Work Orders).
+# In the top menu click *Work Orders*. The list shows work orders of several statuses, and the *Status* button above the list (next to *Search*) just says "Status".
+# Click in the browser's address bar, replace the address with [https://app.shopview.com/workorders?status=bogus|https://app.shopview.com/workorders?status=bogus] and press Enter. This is what happens when someone opens a link or bookmark with a status the app doesn't know.
+# Look at the list and at the *Status* button, and move the mouse pointer over the button (don't click).
+!01-link-with-unknown-status-hd.png|width=560,height=1250!
+_1: the Status button is highlighted blue and shows the clear X when you point at it, but it names no status. 2: the list says "No work orders match these filters". 3: in the Status menu nothing is ticked._
+# Click the *Status* button: nothing is ticked in the menu, so there is no way to see what is filtering the list. Press Esc.
+# Replace the address with [https://app.shopview.com/workorders?status=approved,estimate|https://app.shopview.com/workorders?status=approved,estimate] (two statuses separated by a comma) and press Enter: the same empty list and the same blank, highlighted Status button.
+# Replace the address with [https://app.shopview.com/workorders?status=Approved|https://app.shopview.com/workorders?status=Approved] (capital A) and press Enter. This time the list is NOT empty: every row is Approved. But the Status button still names no status, and in its menu *Approved* is not ticked.
+!02-link-with-capital-letter-hd.png|width=1040,height=1078!
+_4: the Status button is highlighted with the clear X but names no status. 5: every row is Approved, so the list is filtered. 6: Approved is not ticked in the menu._
+
+*Fastest way to see it:* open [https://app.shopview.com/workorders?status=bogus|https://app.shopview.com/workorders?status=bogus] and look at the Status button above the list.
+
+h3. Expected behaviour
+A status in the link that the app doesn't recognise is ignored: the full list loads and the Status button stays plain, with no X. Whenever the list is filtered by status, the Status button names that status and it is ticked in the menu, so a user can always see what is filtering the list.
+*Where this comes from:* the Filters specification (Confluence, version 23):
+* A link the app can't read loads with no filters and no error — _"S11-N1: If the URL filter state is malformed or unrecognizable, the page loads without any filters applied and does not show an error"_
+* A value in the link that doesn't exist is skipped — _"S11-R3: If the URL contains a filter value that no longer exists, the system ignores that value and loads the page without it"_
+* A filter with nothing chosen shows no X — _"S7-N1: A chip with no selection never displays the X-circle, on hover or otherwise"_
+* A filter that is in use says what it is — _"S7-R5: Selected state: … the label becomes "{Filter name}: {value}""_
+
+h3. Current behaviour
+The list is filtered by a status the Status button doesn't show. For comparison, this is how the same page looks when the statuses are chosen in the Status menu itself:
+!03-same-filter-chosen-in-the-menu-hd.png|width=1040,height=1066!
+_7: the button names the filter, "Status: Approved, +1", and the app writes the link as ?status=approved&status=estimate. 8: Estimate and Approved are ticked._
+
+Every link I tried:
+||Link opened||List||Status button||Ticked in the menu||
+|/workorders?status=bogus|Empty: "No work orders match these filters"|Highlighted, X on hover, no status named|Nothing|
+|/workorders?status=approved,estimate|Empty: "No work orders match these filters"|Highlighted, X on hover, no status named|Nothing|
+|/workorders?status=Approved|Only Approved work orders|Highlighted, X on hover, no status named|Nothing|
+|/workorders?status=approved&status=bogus|Only Approved work orders|"Status: Approved"|Approved (the unknown value is skipped, as expected)|
+|/workorders?status=approved|Only Approved work orders|"Status: Approved"|Approved|
+|/workorders?status=approved&status=estimate (what the app writes itself)|Approved and Estimate work orders|"Status: Approved, +1"|Approved, Estimate|
+*Clear all filters* on the empty page brings the full list back, and opening *Work Orders* normally afterwards is not affected (nothing from the link is saved).
+
+Tested on Production (build v26.40.19-d2441a9) on 19 October 2026, 22:23 CDT, signed in as an Admin user, Chrome, window 1440 x 900 px, zoom 100%.
+
+----
+h3. Original report (Ahtasham Amjad, 16 October 2026)
+*Environment:* Production — Chrome 154 / Windows 10.
+*Steps to reproduce*
+# Open /workorders?status=bogus (or the comma form, /workorders?status=approved,estimate).
+# Read the list and the Status chip.
+# Open the Status menu.
+# Click Clear all filters.
+# Open /workorders with no parameters.
+
+*Expected result:* The page ignores status values it doesn't recognize and shows the unfiltered list. At minimum, an active filter shows what it's filtering by.
+*Actual result:* "No work orders match these filters" with a Clear all filters button. The Status chip is highlighted as active with a clear (x) icon but shows no value, and no option is ticked in the menu, so you can't see what's filtering. Clear all filters recovers the list. Opening /workorders with no parameters restores the real saved filter, so nothing from the URL is saved.
+*Evidence:* [^invalid URL.webm]
+*QA note:* The app itself writes repeated parameters (status=approved&status=estimate). The comma form fails the same way as an unknown value. Tech View and Board View (new displays, not yet released) behave the same.

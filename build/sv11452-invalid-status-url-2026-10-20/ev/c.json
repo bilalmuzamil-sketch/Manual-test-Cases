@@ -1,0 +1,161 @@
+{
+ "pref0": {
+  "tab": "all",
+  "sortBy": "linesCount",
+  "columns": {
+   "vin": true,
+   "vehicle": true,
+   "daysOpen": true,
+   "progress": true,
+   "startDate": true,
+   "linesCount": true,
+   "technician": true,
+   "totalPrice": true,
+   "invoicedDate": true,
+   "serviceAdvisor": true,
+   "partRequestsCount": true,
+   "clockedInTechnicians": true,
+   "partReturnRequestsCount": true,
+   "unreceivedPartRequestsCount": true
+  },
+  "filters": [],
+  "descending": true
+ },
+ "control": {
+  "st": {
+   "Approved": 17,
+   "Invoiced": 3,
+   "Ready For Review": 4,
+   "Paid": 4,
+   "Complete": 1,
+   "In Progress": 1,
+   "$,.": 1
+  },
+  "chip": "Status keyboard_arrow_down | active=false"
+ },
+ "valid": {
+  "st": {
+   "Approved": 30,
+   "$,.": 1
+  },
+  "chip": "Status: Approved keyboard_arrow_down cancel | active=true",
+  "ticks": [
+   "Estimate:false",
+   "Approved:true",
+   "In progress:false",
+   "Review:false",
+   "Complete:false",
+   "Invoiced:false",
+   "Paid:false",
+   "Declined:false",
+   "Imported:false"
+  ]
+ },
+ "capital": {
+  "st": {
+   "Approved": 30,
+   "$,.": 1
+  },
+  "chip": "Status keyboard_arrow_down cancel | active=true",
+  "ticks": [
+   "Estimate:false",
+   "Approved:false",
+   "In progress:false",
+   "Review:false",
+   "Complete:false",
+   "Invoiced:false",
+   "Paid:false",
+   "Declined:false",
+   "Imported:false"
+  ]
+ },
+ "bogus": {
+  "st": {},
+  "chip": "Status keyboard_arrow_down cancel | active=true",
+  "ticks": [
+   "Estimate:false",
+   "Approved:false",
+   "In progress:false",
+   "Review:false",
+   "Complete:false",
+   "Invoiced:false",
+   "Paid:false",
+   "Declined:false",
+   "Imported:false"
+  ]
+ },
+ "ui": {
+  "url": "/workorders?status=approved&status=estimate",
+  "ticks": [
+   "Estimate:true",
+   "Approved:true",
+   "In progress:false",
+   "Review:false",
+   "Complete:false",
+   "Invoiced:false",
+   "Paid:false",
+   "Declined:false",
+   "Imported:false"
+  ],
+  "chip": "Status: Approved, +1 keyboard_arrow_down cancel | active=true",
+  "st": {
+   "Approved": 30,
+   "$,.": 1
+  },
+  "url2": "/workorders?status=approved&status=estimate"
+ },
+ "prefUi": {
+  "tab": "all",
+  "sortBy": "linesCount",
+  "columns": {
+   "vin": true,
+   "vehicle": true,
+   "daysOpen": true,
+   "progress": true,
+   "startDate": true,
+   "linesCount": true,
+   "technician": true,
+   "totalPrice": true,
+   "invoicedDate": true,
+   "serviceAdvisor": true,
+   "partRequestsCount": true,
+   "clockedInTechnicians": true,
+   "partReturnRequestsCount": true,
+   "unreceivedPartRequestsCount": true
+  },
+  "filters": {
+   "status": [
+    "approved",
+    "estimate"
+   ]
+  },
+  "descending": true
+ },
+ "dash": [],
+ "prefEnd": {
+  "tab": "all",
+  "sortBy": "linesCount",
+  "columns": {
+   "vin": true,
+   "vehicle": true,
+   "daysOpen": true,
+   "progress": true,
+   "startDate": true,
+   "linesCount": true,
+   "technician": true,
+   "totalPrice": true,
+   "invoicedDate": true,
+   "serviceAdvisor": true,
+   "partRequestsCount": true,
+   "clockedInTechnicians": true,
+   "partReturnRequestsCount": true,
+   "unreceivedPartRequestsCount": true
+  },
+  "filters": {
+   "status": []
+  },
+  "descending": true
+ },
+ "restore": 200,
+ "prefRestored": true
+}
