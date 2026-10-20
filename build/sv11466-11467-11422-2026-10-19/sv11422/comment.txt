@@ -1,12 +1,14 @@
 {panel:bgColor=#fffae6|borderColor=#ff991f}
-*OVERALL QA STATUS: PASSED, as long as Chris confirms the behaviour in the next comment is acceptable*
+*OVERALL QA STATUS: PARTIALLY PASSED*
 {panel}
-_First posted 19 October 2026, 11:26 CDT. Updated on 19 October 2026, 11:35 CDT: the status now says the ticket is QA passed if Chris accepts the one behaviour I asked him about, and that question moved to its own comment below._
+_First posted 19 October 2026, 11:26 CDT. Edited at 11:35 CDT (the status said QA passed if Chris accepted the one behaviour I asked him about) and at 19 October 2026, 22:30 CDT (Chris answered in comment 79047 that it is not acceptable, so the status is now PARTIALLY PASSED and check 10 is added as FAILED)._
+
+The details of what passed are below. The one thing still to be fixed is in Chris's comment 79047 to Slavcho, further down this ticket: in Tech View the work order the first Tab goes to must sit just below its technician's heading, fully visible with its blue focus ring.
 
 Tested on Staging (build v26.40.19-c850386) on 19 October 2026, against the spec (version 66), signed in as Admin. This comment replaces the PARTIALLY PASSED result from 18 October.
 * The two checks that failed on 18 October now pass. When "Unassigned" is empty and the first work order is further down the page, the first Tab now goes to that work order, in Tech View and in Board View.
 * The other 7 checks still pass.
-* One question for Chris is in the next comment. In Tech View the first Tab moves the work order up so it sits under its technician's heading, which stays fixed at the top. The row and its focus ring can't be seen until you press an arrow key. If Chris says that's acceptable, this ticket is QA passed.
+* One thing is still to be fixed (check 10). In Tech View the first Tab moves the work order up so it sits under its technician's heading, which stays fixed at the top, and the row and its focus ring can't be seen until you press an arrow key. Chris confirmed on 19 October (comment 79047) that this is not acceptable. _Updated on 19 October 2026, 22:30 CDT._
 
 *Where the expected result comes from*
 Spec "Work Orders — Board View & Tech View Display Options", version 66:
@@ -23,6 +25,7 @@ Spec "Work Orders — Board View & Tech View Display Options", version 66:
 |7|Tech View, "Unassigned" collapsed (search {{Truck}}): the first Tab lands on {{S2-31594}}, the first technician's first row.|PASSED|
 |8|Tech View, a row focused further down (search {{Lamkin}}, row {{S2-16218}}), Tab out and back in: focus comes back to {{S2-16218}}.|PASSED|
 |9|Board View: the first Tab lands on the first card ({{S2-37015}}). After the last-focused card is scrolled out of its column, Tab lands on {{S2-34972}}, the first card fully in view ({{S2-33377}} above it is half under the column heading). With the card still in view, Tab goes back to it.|PASSED|
+|10|Tech View, search {{S2-16688}}, after the first Tab: the row {{S2-16688}} has the keyboard focus but sits under the fixed "Brandi Smith" heading, so the row and its blue focus ring can't be seen (all of it at Compact; only the bottom 4 to 8 px at Regular and Comfortable). Chris, 19 October (comment 79047): "not acceptable: the user has to be able to see which row they're on." _Added on 19 October 2026, 22:30 CDT._|FAILED|
 
 *Board View, search S2-16688: before and after the first Tab*
 !sv11422-01-board-first-tab.png|width=1440,height=953!
@@ -34,6 +37,6 @@ _Staging today, Admin, window 1440 x 900 px, zoom 100%. 1: rows in Unassigned, f
 
 ----
 
-*The one open question*
-_Updated on 19 October 2026, 11:35 CDT: the question, its picture and the steps to see it are now in a separate comment to Chris, below this one._
-In Tech View the first Tab brings S2-16688 onto the screen, but under the fixed "Brandi Smith" heading, so its focus ring can't be seen until an arrow key is pressed. If Chris confirms that's acceptable, SV-11422 is QA passed; if not, it goes back to Slavcho to fix.
+*The remaining issue*
+_Updated on 19 October 2026, 22:30 CDT: Chris answered the question (comment 79047): not acceptable. The question itself and its picture are in comment 79033._
+In Tech View the first Tab brings S2-16688 onto the screen, but under the fixed "Brandi Smith" heading, so its focus ring can't be seen until an arrow key is pressed. Chris asked Slavcho to scroll the row so the whole row sits just below the heading with its blue focus ring visible, as Board View already does with its card. I'll re-check S2-16688 when that is on staging.
