@@ -3223,3 +3223,12 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
 - 18 cases from the PRD v65/v66 list not yet re-checked against v68 (`wo-board-tech-view/sweep-2026-10-20/`): full or named set? Dialog ones (C590129, C368163, C96974, C97032) may belong in Fast-follow.
 - C368169 / C368171 back to their story folders? "AA ZZAUTOTEST" names in P-TECH? Tell Vlad (when the QA lead says). C682436 needs two locations.
 
+- 🔕 20 Oct 2026, QA lead, verbatim: "Dont remind me about this again" — the three WO Board items above (EXPECT FAIL for SV-11545/SV-11546 cases;
+  the 18 v65/v66 cases; moving C368169/C368171) stay recorded here but are NOT to be listed in any report's OUTSTANDING section again.
+  Act on them only if he raises them.
+
+### Splitting Sales Representatives — 20 Oct 2026
+- DONE: 117 cases updated to PRD v10 and Chris Ward's answers; 7 new cases C690666–C690672 (incl. C690672 for answer 10, wide touch tablet);
+  setup file regenerated (135 recipes, incl. DR-01..DR-08; still not linked from the cases). Suite 135 cases, no run, no build.
+- Waiting on Chris: questions A, B, C (sheet https://docs.google.com/spreadsheets/d/1OjdCkjsGEeEc8ue6MDtr2Z_AoiFqko5mKYL2ucY3UYE); C690660, C690662, C690665 held.
+- SV-11269's v8 acceptance criterion ("that cent goes to the Labor row"): QA lead, 20 Oct 2026: "Leave it for your cases follow the PRD and design". Closed.

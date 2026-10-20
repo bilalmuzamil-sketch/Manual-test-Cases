@@ -38,8 +38,9 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
 - 6 new cases: C690666 (S1-11, S1-E3), C690667 (S2-14, S2-E6), C690668 (S4-25, S4-R3), C690669 (S4-26, S4-R20), C690670 (S7-05, S7-R6),
   C690671 (S8-12, S8-R4/S8-R9). C690666 and C690670 are AUTOMATION: HOLD (only a data repair sets them up; developers check).
 - Suite now 134 cases (126 in the library + DR-01..DR-08). TICKET-SWEEP prd_version_handled = 10.
-- Open: setup file has no recipes for the 6 new cases and 6 recipes need extra records; answer 10 has no case; SV-11269 still carries a
-  v8 acceptance criterion contradicting S5-R7 (for Chris); questions Q-A/Q-B/Q-C sheet shared with Chris 20 Oct, not yet answered.
+- Then (QA lead "1. Yes 2. Yes 3. Leave it"): setup file regenerated for v10 (135 recipes incl. DR-01..DR-08, ACCOUNT-E part-sales-only
+  slot, developer-check slot; still not linked); new case C690672 (S3-04) for answer 10, wide touch tablet; SV-11269's old acceptance
+  criterion left alone (our cases follow the PRD and design). Suite now 135 cases. Questions A/B/C shared with Chris 20 Oct, not yet answered.
   Report: v10-update-2026-10-20/REPORT.md.
 
 ## 20 Oct 2026 — design re-check both ways (lessons L-01, L-02), PRD v10, Chris Ward's answers

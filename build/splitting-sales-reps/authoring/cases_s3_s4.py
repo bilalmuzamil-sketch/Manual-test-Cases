@@ -328,3 +328,19 @@ C("S4-26", "S4", "Reactivating a rep does not put them back on their customers",
    "Step 4: {Customer-B} shows \"Sales Representative - Service Labor\" {Sales-rep-A} and \"Sales Representative - Service Parts\" {Sales-rep-B}, with no Part Sales field; {Sales-rep-C} has not been put back."],
   ["S4-R20", AQ(12)],
   note="The Sales By Representative spec, version 28 (12 Oct 2026, Story 13), says reactivating brings a person back to their customers. Chris Ward ruled on 19 Oct 2026 that they are not put back (answer 12, quoted below); this case follows PRD version 10.")
+
+# 20 Oct 2026, QA lead "2. Yes": a case for Chris Ward's answer 10 (wide touch tablet), which has no PRD v10 sentence of its own.
+C("S3-04", "S3", "On a wide touch tablet the card opens expanded with its buttons showing",
+  [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-A}'),
+   ("Starting screen: {Work-order-1} is open on a touch tablet with no mouse, held so its screen is at least 1024 px wide.",
+    "For example: an iPad Pro 12.9-inch in landscape.")],
+  ["Look at the work order card as it first opens, without tapping anything.",
+   "Look at the Sales Representative field and the space to its right, without tapping them.",
+   "Tap the + button and tap \"Sales Representative - Parts\".",
+   "Look at the two fields and the space to the right of \"Sales Representative - Parts\", without tapping them."],
+  ["Step 1: the card is not collapsed: Lead Technician, Service Advisor and the Sales Representative field show without tapping the card's edit button.",
+   "Step 2: the field shows its dropdown arrow and the + button shows beside it at its full size, without any hover.",
+   "Step 3: the menu closes and \"Sales Representative - Labor\" and \"Sales Representative - Parts\" show, in that order.",
+   "Step 4: both fields show their dropdown arrow, and the remove x shows beside \"Sales Representative - Parts\", without any hover."],
+  [AQ(10), "S3-R2", "S3-R4", "S2-R5"],
+  note="Chris Ward's answer 10 chose option (a) of the question sheet: on a wide touch screen with no mouse the card opens expanded, with the + and remove x always shown. Touch decides the buttons; the screen width decides whether the card is collapsed.")
