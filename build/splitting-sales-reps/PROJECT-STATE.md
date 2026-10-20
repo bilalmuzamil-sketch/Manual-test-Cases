@@ -40,7 +40,7 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
 - Suite now 134 cases (126 in the library + DR-01..DR-08). TICKET-SWEEP prd_version_handled = 10.
 - Then (QA lead "1. Yes 2. Yes 3. Leave it"): setup file regenerated for v10 (135 recipes incl. DR-01..DR-08, ACCOUNT-E part-sales-only
   slot, developer-check slot; still not linked); new case C690672 (S3-04) for answer 10, wide touch tablet; SV-11269's old acceptance
-  criterion left alone (our cases follow the PRD and design). Suite now 135 cases. Questions A/B/C shared with Chris 20 Oct, not yet answered.
+  criterion left alone (our cases follow the PRD and design). Suite now 134 cases. Later 20 Oct (Rule 131): the questions moved into the suite's own sheet 17Ry1Bt… (light green, rows 46-47, questions 39-40); the phone-control question was withdrawn as answered by answer 9 and C690662 (DR-05) deleted; the separate sheet 1OjdCk… moved to the bin. C690660 and C690665 held for questions 39 and 40.
   Report: v10-update-2026-10-20/REPORT.md.
 
 ## 20 Oct 2026 — design re-check both ways (lessons L-01, L-02), PRD v10, Chris Ward's answers

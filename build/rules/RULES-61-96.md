@@ -3404,4 +3404,4 @@ already had its question sheet for Chris Ward (17Ry1Bt…). Two files for one su
 5. Keep the sheet's existing layout, columns and wording style (Rule 125, the colour-coded format first made for Milos Vasic).
 6. Read back the new rows (values and colours) before reporting, and give the QA lead the sheet link and the row numbers.
 
-Worked example: Splitting Sales Representatives, 20 Oct 2026, questions 39–41 in rows 46–48 of 17Ry1Bt…, light green.
+Worked example: Splitting Sales Representatives, 20 Oct 2026, questions 39–41 in rows 46–48 of 17Ry1Bt…, light green (the QA lead later withdrew the phone question as already answered, leaving 39–40 in rows 46–47).

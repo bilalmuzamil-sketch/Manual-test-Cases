@@ -10,12 +10,12 @@
   "SHOWN-WHEN-DRIVEN"
  ],
  "counts": {
+  "PO-RULED": 13,
+  "QUESTION-NEEDED": 2,
   "DESIGN-SILENT": 40,
-  "PO-RULED": 12,
-  "QUESTION-NEEDED": 3,
   "SHOWN-WHEN-DRIVEN": 4
  },
- "unsent_questions": 3,
+ "unsent_questions": 2,
  "rows": {
   "S2-N2|Sales representative": {
    "outcome": "PO-RULED",
@@ -211,15 +211,14 @@
    "where": "Chris Ward answer 3 (question sheet of 19 Oct 2026, row 8)"
   },
   "S3-R6|expand control": {
-   "outcome": "QUESTION-NEEDED",
+   "outcome": "PO-RULED",
    "boards": "6.0, 6.2-6.7",
    "design_shows": "every phone board, today (6.0) and build, shows a \"Hide Details\" toggle above the card; no board shows the collapsed card or an edit button",
    "prd_v10": "S3-R6: \"They show after the card is expanded with its edit button, as Lead Technician and Service Advisor do today. The expand control itself does not change.\"",
    "cases": [
     "C665937",
     "C665938",
-    "C666014",
-    "draft DR-05 (held)"
+    "C666014"
    ],
    "po_answer": {
     "answer_no": 9,
@@ -227,9 +226,10 @@
     "sheet_row": 14
    },
    "question_drafted_not_sent": "On a phone, the design's picture of today's screen (board 6.0) shows a \"Hide Details\" toggle above the work order card, and no edit button. Your answer 9 says the fields show after the card is expanded with its existing edit button, not \"Show Details\". Which control does a tester tap on a phone to show Lead Technician, Service Advisor and the Sales Representative fields? (a) the card's edit button (please say where it is on the card); (b) the \"Show Details\" / \"Hide Details\" toggle above the card, as the design shows; (c) both are needed (edit button first, then the toggle, or the other way).",
-   "sent_on": null,
+   "sent_on": "withdrawn 20 Oct 2026",
    "note": "Answer 9 rejected the Jira story's \"Show Details\", but the design's own picture of today shows that control; a ruling covers only what it names (Rule 126.7), so this is asked, not assumed.",
-   "where": "question drafted 20 Oct 2026, NOT sent (lane session sends)"
+   "where": "Chris Ward answer 9 (question sheet of 19 Oct 2026, row 14); QA lead ruling 20 Oct 2026",
+   "ruled": "Chris Ward's answer 9 (19 Oct 2026): \"9. (a) as the feature spec: the card's existing edit button, unchanged.\" QA lead, 20 Oct 2026: the question (sheet 17Ry1Bt…, briefly question 40) is withdrawn as already answered by answer 9, and the held design-version case DR-05 (C690662) deleted (snapshot design-recheck-2026-10-20/deleted/)."
   },
   "S5-R9|part sale labor columns": {
    "outcome": "QUESTION-NEEDED",

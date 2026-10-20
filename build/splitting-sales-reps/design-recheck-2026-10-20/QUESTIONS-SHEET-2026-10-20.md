@@ -1,3 +1,4 @@
+> **Later 20 Oct 2026 (QA lead):** question B (phone control) was withdrawn as answered by Chris's answer 9 and its held case C690662 deleted; the remaining two are questions 39 and 40, rows 46 and 47. The separate sheet 1OjdCk… was moved to the bin.
 > **20 Oct 2026 (Rule 131):** these three questions are now questions 39, 40 and 41, rows 46 to 48 (light green), of the suite's own sheet https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ. Question 39's "What we know" also names answers 24 and 25. The separate sheet 1OjdCk… is no longer used.
 
 # Questions for Chris Ward — design re-check (20 Oct 2026)

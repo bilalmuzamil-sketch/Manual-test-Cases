@@ -91,6 +91,6 @@ L += ["", "## 6. Dependencies and shared fixtures",
       "Every case's expected results quote their source sentences word for word (PRD v10, Chris Ward's answers, tech plan, report specs); the checker `authoring/build.py` refuses any quote not found verbatim. All 142 PRD version 10 requirement codes are covered.",
       "", "## 9. VIU status", "- Every case and recipe: UNVERIFIED — the build is not yet available.",
       "", "## 10. Open questions",
-      "- Chris Ward answered all 38 questions of the first sheet on 19 Oct 2026 (design-recheck-2026-10-20/chris-answers.json).", "- Three design questions are questions 39, 40 and 41 (rows 46 to 48, light green) of the same sheet, added 20 Oct 2026 (https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ); " + link("DR-03") + ", " + link("DR-05") + " and " + link("DR-08") + " are held until he answers."]
+      "- Chris Ward answered all 38 questions of the first sheet on 19 Oct 2026 (design-recheck-2026-10-20/chris-answers.json).", "- Two design questions are questions 39 and 40 (rows 46 and 47, light green) of the same sheet, added 20 Oct 2026 (https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ); " + link("DR-03") + " and " + link("DR-08") + " are held until he answers. (A third, on the phone control, was withdrawn on 20 Oct 2026 as answered by answer 9; its held case DR-05 was deleted.)"]
 open(f"{P}/SPLITTING-SALES-REPS-SETUP-FILE.md", "w").write("\n".join(L) + "\n")
 print("setup file:", len(L), "lines")
