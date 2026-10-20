@@ -386,6 +386,20 @@ def main():
                         'comment': '<p>Follow the status here <a href="%s">%s</a></p>' % (url, url)})
         print('  C%d: "Follow the status here" comment ->' % p_['case_id'], s2)
 
+    # --- 3c. Rule 133 (QA lead 2026-10-20): a Failed, Retest or Blocked case whose result names a ticket carries it at the
+    # start of its title, "SV-11545 - <title>". No ticket, no prefix. Automated cases are held for his go-ahead (Rule 71).
+    from prefix_ticket_titles import prefix_case, KEY as _KEY
+    for p_ in payload:
+        if p_.get('status_id') not in (2, 4, 5):
+            continue
+        # only the record's own ticket LINK counts (a comment may mention other tickets in passing; a held ticket has no key)
+        tk = res.get('C%d' % p_['case_id'], {}).get('ticket') or ''
+        keys = list(dict.fromkeys(_KEY.findall(tk))) if 'browse/' in tk else []
+        if keys:
+            row = prefix_case(t, p_['case_id'], keys)
+            print('  C%d: title prefix (Rule 133) ->' % p_['case_id'],
+                  row.get('new') or row.get('skipped') or row.get('held'))
+
     # --- 4. read it back (a 200 is not evidence a human can read it)
     s, run = t.get('get_run/%d' % a.run)
     print('run now: untested %s | passed %s | failed %s | blocked %s | retest %s'

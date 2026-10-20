@@ -484,3 +484,9 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - QA lead: Failed tests in run 498 get "SV-<ticket> - <title>". The ticket is the one in each Failed test's LATEST results (the "Follow the status here" comment; else any SV key in the newest Failed result) — read live with `get_results/<test>`. All 17 named exactly one ticket.
 - `custom_atmstatus` values: 1 Not Automated · 2 Cannot be automated · **3 Automated** · 4 Pending. Three Failed cases are 3 (C96967, C368147, C682421) → held and asked (Rule 71; tell Vlad if changed, Rule 65). The other 14 were prefixed, read back; audit `title-prefix-1020/audit-failed.json`.
 #run498 #testrail #titles → L0486
+
+## L0488 — 2026-10-20 — Rule 133 recorded and automated: ticket prefix on Failed/Retest/Blocked case titles
+- QA lead made the prefix a standing rule ("When there is no ticket no need to prefix"), and said **Yes** to the three Automated cases (C96967, C368147, C682421 — prefixed, read back; Vlad must be told, Rule 65; note handed to the QA lead).
+- `build/testing-tools/prefix_ticket_titles.py` (sweep a run, `--dry-run`, `--include-automated`, `--audit`) and a hook in `push_results_to_run.py` (step 3c: only the record's own ticket LINK counts — comments may mention other tickets in passing). Self-test check 7c3; proven to FAIL on a throwaway worktree with the prefix logic broken.
+- Run 498 after the sweep: all 22 Failed/Retest cases carry their ticket; 0 Blocked.
+#rule133 #testrail #titles #tooling → L0486, L0487

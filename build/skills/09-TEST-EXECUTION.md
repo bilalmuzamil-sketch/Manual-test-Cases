@@ -655,3 +655,9 @@ be done ("Failed at steps 6 and 10: …", "Blocked at step 5 …", "Retest — c
 for those steps are bold. In the results JSON: `"failed_steps": "<that line>"`, `"bold_steps": [6, 10]` — `push_results_to_run.py`
 refuses a non-Passed result without `failed_steps`. Correct an existing comment by EDITING it in the TestRail UI (the result's
 Edit link; ~2–3 day window, L0475), never by adding a new one. Full text: `build/rules/RULES-61-ONWARD.md` rule 132.
+
+## Rule 133 (QA lead 2026-10-20) — the ticket goes at the start of a Failed / Retest / Blocked case's title
+- When a result names a ticket, the case title becomes `SV-nnnnn - <title>` (several: `SV-a, SV-b - <title>`); no ticket → no prefix. One prefix, replaced if the ticket changes.
+- `push_results_to_run.py` does this by itself for what it posts; for a whole run: `python3 build/testing-tools/prefix_ticket_titles.py --run <N> --dry-run`, then without `--dry-run`.
+- Never Vladimir's cases (38). Automated cases (`custom_atmstatus 3`) are HELD and listed — ask him, then `--include-automated`, then tell Vlad (71/65).
+- Full text: `build/rules/RULES-61-ONWARD.md` rule 133.

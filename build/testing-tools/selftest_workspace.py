@@ -126,6 +126,18 @@ def main(quick=False):
         check('results: a non-Passed result opens with its failing step(s) in bold and is refused without them (Rule 132)', ok and 'no "failed_steps"' in src132)
     except Exception as e:
         check('results: Rule 132 bold failing steps', False, repr(e)[:160])
+    # 7c3 · Rule 133 (2026-10-20): Failed/Retest/Blocked cases with a ticket carry "SV-n - " in their title; one prefix, kept current
+    try:
+        sp3 = importlib.util.spec_from_file_location('ptt', f'{T}/prefix_ticket_titles.py'); ptt = importlib.util.module_from_spec(sp3); sp3.loader.exec_module(ptt)
+        c3 = [ptt.titled('Lock note shows', ['SV-11545']) == 'SV-11545 - Lock note shows',
+              ptt.titled('SV-11326 - Lock note shows', ['SV-11545']) == 'SV-11545 - Lock note shows',
+              ptt.titled('Lock note shows', []) == 'Lock note shows',
+              ptt.titled('SV-11326 - X', ['SV-11545', 'SV-11546']) == 'SV-11545, SV-11546 - X']
+        src133 = open(f'{T}/push_results_to_run.py').read()
+        check('results: a Failed/Retest/Blocked case with a ticket gets one current "SV-n - " title prefix, none without (Rule 133)',
+              all(c3) and 'prefix_case(t,' in src133 and "custom_atmstatus') == 3" in open(f'{T}/prefix_ticket_titles.py').read(), str(c3))
+    except Exception as e:
+        check('results: Rule 133 title prefix', False, repr(e)[:160])
     # 7d · Rule 130 (2026-10-14): results are refused until the QA lead's screenshot answer is recorded; "yes" attaches pictures
     src_pr = open(f'{T}/push_results_to_run.py').read()
     check('results: a write without his screenshot answer is refused, and "yes" attaches the pictures (Rule 130)',
