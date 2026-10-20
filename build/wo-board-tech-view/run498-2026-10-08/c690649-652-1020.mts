@@ -110,7 +110,8 @@ await run('C690652', async () => {
   for (const where of ['board', 'tech'] as const) {
     const r: any = (o[where] = {});
     await bv(n, where === 'board' ? 'Board View' : 'Tech View');
-    if (where === 'tech') { const un = (await groups(p)).find((g) => g.id === 'unassigned'); if (un && !un.collapsed) await toggleGroup(p, 'unassigned'); }
+    // fix (20 Oct 06:02): the Unassigned group is left OPEN in Tech View — step 8's drag back starts from it (it was folded and the row could not be found)
+    if (where === 'tech') { const un = (await groups(p)).find((g) => g.id === 'unassigned'); if (un && un.collapsed) await toggleGroup(p, 'unassigned'); }
     r.start = where === 'board' ? await colOfWo(w.number) : (await groups(p)).find((g: any) => g.id === ES.staff_id)?.rows ?? null; await shot(p, `C690652-${where}-start`);
     await dragTo(w.id, RE.staff_id, where); r.dragQ = await qRead(); await shot(p, `C690652-${where}-drag-question`); await shiftPrompt(p, 'Keep shifts');
     r.afterDrag = (await lead(n))[w.number];

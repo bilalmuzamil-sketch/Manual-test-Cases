@@ -170,18 +170,24 @@ await run('C368171', async (o) => {
 
 // C368173 — Edit Line: remove the line's technician, add another, save
 await run('C368173', async (o) => {
+  // fix-up 2 (20 Oct 06:12): the starting state "Line-1's technician is Technician-D" is built ON SCREEN, as a tester would: Edit Line > remove
+  // the lead (confirm "Remove technician?" > Remove) > Add Technician Dee > Save & Close — the API route left the lead on the line.
   const A1 = await AA('C368173', 'Ana'), B1 = await AA('C368173', 'Ben'), D1 = await AA('C368173', 'Dee');
   const set = await mkSet('ZZAUTOTEST Edit Line Tech', [{ co: 'One', lead: A1 }]); const W = set.w.One; o.wo = W.number; const L = (await linesRaw(W.id))[0];
-  o.setupLineTech = say(await a.put(`/api/work-orders/lines/${L.line_id}/technicians`, { staffIds: [D1.staff_id] }));
-  o.setupOnlyDee = await lineTechs(W.id);
-  await wpage(W.id); o.s4 = { labor: await laborRows() }; await sh(p, 'C368173-aa-s4');
-  await p.getByText(L.line_name, { exact: false }).first().click(); await p.waitForTimeout(2500); const d = p.locator('.q-dialog').last(); o.s5 = { open: await d.isVisible().catch(() => false), roster: await d.evaluate((e: any) => [...e.querySelectorAll('[data-test-id^="line_roster_technician_"]')].map((x: any) => x.innerText.trim())).catch(() => null) };
-  for (const x of [A1, B1]) { const b = d.locator(`[data-test-id="button_line_roster_remove_${x.staff_id}"]`); if (await b.count()) { o['setupRemoved_' + x.staff_id.slice(0, 4)] = true; await b.click(); await p.waitForTimeout(500); } }
-  const rm = d.locator(`[data-test-id="button_line_roster_remove_${D1.staff_id}"]`); o.s6 = { button: await rm.count() }; if (o.s6.button) { await rm.click(); await p.waitForTimeout(600); }
-  o.s6.roster = await d.evaluate((e: any) => [...e.querySelectorAll('[data-test-id^="line_roster_technician_"]')].map((x: any) => x.innerText.trim())).catch(() => null);
-  o.s7 = await pickTyped(p, d.locator('[data-test-id="select_line_roster_add_technician"]'), nm('C368173', 'Ben')); o.s7.roster = await d.evaluate((e: any) => [...e.querySelectorAll('[data-test-id^="line_roster_technician_"]')].map((x: any) => x.innerText.trim())).catch(() => null); await sh(p, 'C368173-aa-s7-form');
-  await d.locator('[data-test-id="button_save_close"], button:has-text("Save & Close")').first().click().catch(() => {}); await p.waitForTimeout(3500); o.s8 = { msgs: await msgs(), dialogOpen: await p.locator('.q-dialog').count() };
-  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.s10 = { labor: await laborRows(), lines: await lineTechs(W.id) }; await sh(p, 'C368173-aa-s10-after-reload');
+  const roster = async (d: any) => d.evaluate((e: any) => [...e.querySelectorAll('[data-test-id^="line_roster_technician_"]')].map((x: any) => x.innerText.replace(/\s+/g, ' ').replace(/ ?close$/, '').trim())).catch(() => null);
+  const openEdit = async () => { await p.getByText(L.line_name, { exact: false }).first().click(); await p.waitForTimeout(2500); return p.locator('.q-dialog').filter({ hasText: 'Edit Line' }).last(); };
+  const removeTech = async (d: any, id: string) => { const b = d.locator(`[data-test-id="button_line_roster_remove_${id}"]`); if (!(await b.count())) return 'no button'; await b.click(); await p.waitForTimeout(900);
+    const c = p.locator('.q-dialog').filter({ hasText: 'Remove technician?' }).last(); if (await c.count()) { await c.locator('button').filter({ hasText: /^\s*Remove\s*$/ }).first().click(); await p.waitForTimeout(900); return 'removed (confirmed)'; } return 'removed'; };
+  const save = async (d: any) => { await d.locator('[data-test-id="button_save_close"], button:has-text("Save & Close")').first().click().catch(() => {}); await p.waitForTimeout(3500); };
+  await wpage(W.id); let d = await openEdit(); o.setup = { before: await roster(d), removeA: await removeTech(d, A1.staff_id) };
+  o.setup.addD = await pickTyped(p, d.locator('[data-test-id="select_line_roster_add_technician"]'), nm('C368173', 'Dee')); o.setup.after = await roster(d); await save(d);
+  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
+  o.s4 = { labor: await laborRows() }; await sh(p, 'C368173-aa2-s4');
+  d = await openEdit(); o.s5 = { open: await d.isVisible().catch(() => false), roster: await roster(d) }; await sh(p, 'C368173-aa2-s5');
+  o.s6 = { remove: await removeTech(d, D1.staff_id), roster: await roster(d) };
+  o.s7 = await pickTyped(p, d.locator('[data-test-id="select_line_roster_add_technician"]'), nm('C368173', 'Ben')); o.s7.roster = await roster(d); await sh(p, 'C368173-aa2-s7-form');
+  await save(d); o.s8 = { msgs: await msgs(), dialogOpen: await p.locator('.q-dialog').count() };
+  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.s10 = { labor: await laborRows() }; await sh(p, 'C368173-aa2-s10-after-reload');
 });
 
 

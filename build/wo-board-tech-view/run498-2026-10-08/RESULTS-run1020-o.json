@@ -1,0 +1,17 @@
+{"pass_meta": {"env": "staging", "build": "v26.40.19-c850386", "date": "20 October 2026", "note": "run 498"},
+ "results": {
+  "C368159": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging, by the test's steps (browser 2 is a second user, ZZAUTOTEST Dispatcher Two).",
+    "Steps 1 and 2: browser 1's List shows S2-37586 (\"ZZAUTOTEST F3 Stale On Site\"), led by AA ZZAUTOTEST C368159 Ana.",
+    "Steps 3 and 4: in browser 2 the work order page's Lead Technician is changed to AA ZZAUTOTEST C368159 Ben; it saves at once.",
+    "Step 5: in browser 1, without refreshing, the On Site toggle changes to on.",
+    "Step 6: after refreshing browser 1, On Site is still on.",
+    "Step 7: browser 1 opens the work order: Lead Technician is still Ben; the older page did not put Ana back."],
+   "pictures": ["pictures-1019/C368159-1-lead-kept-1020.png"]},
+  "C368171": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging, by the test's steps.",
+    "Steps 1 to 3: S2-37587 (\"ZZAUTOTEST Edit WO Audit\") opens; both lines show AA ZZAUTOTEST C368171 Ana in their Labor rows.",
+    "Steps 4 to 6: the Work Order Log has 3 \"Lead tech changed\" entries; closed.",
+    "Step 7: Lead Technician picked as AA ZZAUTOTEST C368171 Ben; it saves at once.",
+    "Steps 8 and 9: the log now has 4: exactly one new entry, \"Ana → Ben\", by ZZ WOB Runner at 11:08 AM. No separate entries for the two lines, which now both show Ben."],
+   "pictures": ["pictures-1019/C368171-1-one-log-entry-1020.png"]}}}
