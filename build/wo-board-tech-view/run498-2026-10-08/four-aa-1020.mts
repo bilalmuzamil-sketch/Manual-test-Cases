@@ -177,6 +177,32 @@ await run('C368173', async (o) => {
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.s10 = { labor: await laborRows(), lines: await lineTechs(W.id) }; await sh(p, 'C368173-aa-s10-after-reload');
 });
 
+
+// C690645 (release copy of C97007) — a lead set on the work order page sends the work order to the bottom of its new column.
+// 20 Oct 2026: s9-batchB could not pick "ZZAUTOTEST Ben Bravo" on the page (the list stops at ~100 names, SV-11429); the case's names are
+// examples, so the technicians are "AA ZZAUTOTEST C690645 Ana/Ben/Cal" (Technician-A/B/C).
+await run('C690645', async (o) => {
+  const A1 = await AA('C690645', 'Ana'), B1 = await AA('C690645', 'Ben'), C1 = await AA('C690645', 'Cal');
+  const set = await mkSet('ZZAUTOTEST F3 Reassign Bottom', [{ co: 'Aardvark Co', lead: C1 }, { co: 'Abbey Co', lead: C1 }, { co: 'Bravo Co', lead: B1 }, { co: 'Delta Co', lead: B1 }, { co: 'Echo Co', lead: C1 }]);
+  const N = (k: string) => set.w[k].number; o.wo = { W1: N('Aardvark Co'), W2: N('Abbey Co'), W3: N('Bravo Co'), W4: N('Delta Co'), W5: N('Echo Co') };
+  await pins([B1.staff_id, C1.staff_id]);
+  const colOf = async (pg: Page, id: string) => pg.evaluate(`(() => { const c = document.querySelector('[data-test-id="board_column_${'${'}id}"]'); return c ? [...c.querySelectorAll('[data-test-id="board_card_number"]')].map(e => e.textContent.trim()) : null; })()`.replace('${id}', id)) as Promise<string[] | null>;
+  await go('Board View', set.q); o.s3 = { B: await colOf(p, B1.staff_id), C: await colOf(p, C1.staff_id) }; await sh(p, 'C690645-aa-s3');
+  await wpage(set.w['Abbey Co'].id); o.s4 = await pickTyped(p, leadField(p), nm('C690645', 'Ben')); o.s4.leadNow = await leadText();
+  await go('Board View', set.q); o.s5 = { B: await colOf(p, B1.staff_id) }; await sh(p, 'C690645-aa-s5');
+  const w5 = p.locator(card(set, 'Echo Co')).first(); const w4 = p.locator(card(set, 'Delta Co')).first(); await w5.scrollIntoViewIfNeeded().catch(() => {});
+  const a1 = await w5.boundingBox(), b1 = await w4.boundingBox();
+  if (a1 && b1) { await p.mouse.move(a1.x + a1.width * 0.45, a1.y + 20); await p.mouse.down(); await p.mouse.move(a1.x + a1.width * 0.45, a1.y + 30, { steps: 4 }); await p.mouse.move(b1.x + b1.width / 2, b1.y + 6, { steps: 20 }); await p.waitForTimeout(700); await p.mouse.up(); await p.waitForTimeout(3000); }
+  o.s6 = { drag: !!(a1 && b1), B: await colOf(p, B1.staff_id), msgs: await msgs(), prompt: await p.locator('.q-dialog').count() }; if (o.s6.prompt) { await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(2000); o.s6.B = await colOf(p, B1.staff_id); } await sh(p, 'C690645-aa-s6');
+  await display(p, 'Tech View'); await p.waitForTimeout(2500); await expandSmallGroups(p); o.s7 = (await groups(p)).find((g: any) => g.id === B1.staff_id)?.rows ?? null; await sh(p, 'C690645-aa-s7-tech');
+  // step 8: a second user with Work orders View + Create & Edit (role Admin), her own page
+  const adminRole = (await roleIds(a))['Admin']; const u = (await person(a, 'ZZAUTOTEST Dispatcher', 'Two', { role: adminRole, email: `zz.wob.dispatcher.two${D}`, clockable: false })).row; o.s8 = { user: !!u };
+  if (u) { const V = await viewAs(browser, p, a, u.id, (RUN as any).id, (RUN as any).toRunner);
+    try { const vp = V.page; const va = api(vp); const PV = (await va.get(PREF)).body?.data?.value ?? {}; await va.put(PREF, { value: { ...PV, pinnedTechnicianIds: [B1.staff_id, C1.staff_id] } });
+      await go('Tech View', set.q, vp); o.s8.tech = ((await groups(vp)).find((g: any) => g.id === B1.staff_id)?.rows) ?? null; await sh(vp, 'C690645-aa-s8-userB-tech');
+      await go('Board View', set.q, vp); o.s8.board = await colOf(vp, B1.staff_id); await sh(vp, 'C690645-aa-s8-userB-board'); await va.put(PREF, { value: PV }); } finally { await V.close().catch(() => {}); } }
+  await pins(ORIGINAL.pinnedTechnicianIds ?? []);
+});
 await a.put(PREF, { value: ORIGINAL }).catch(() => {});
 fs.writeFileSync(path.join(EV, 'four-aa-1020.json'), JSON.stringify(R, null, 1));
 try { await (RUN as any).close?.(); } catch { /* */ }
