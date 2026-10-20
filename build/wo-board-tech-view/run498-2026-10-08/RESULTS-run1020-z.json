@@ -1,0 +1,13 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.20-0509710", "date": "20 October 2026", "note": "run 498 - new test for the 50-value limit message, added on the QA lead's order"},
+ "results": {
+  "C698883": {"verdict": "Blocked", "failed_steps": "Blocked at step 2: blocked by SV-11575 - the 50-value limit message already shows when the Technician list is opened.", "bold_steps": [2],
+   "ticket": "https://shopview.atlassian.net/browse/SV-11575",
+   "observed": [
+    "Result: Blocked by SV-11575 (Open), on the QA lead's instruction.",
+    "Seen on staging today: as soon as the Technician list opens, with nothing ticked, the red message 'This change would exceed the 50-value limit across all filters' shows at the bottom of the list.",
+    "The same message shows in Board View and Tech View, and also while typing a name into Search technician."],
+   "todo": "Re-run this test when SV-11575 is fixed on staging.",
+   "pictures": ["pictures-1019/OBS-50-value-message-on-open-1020.png"]}
+ }
+}

@@ -5,7 +5,7 @@ BASIS: PRD 845185030 version 69 (20 Oct 2026 15:31 UTC), read live 20 Oct 2026 1
 SOURCE CHECK (Rule 106): C581915 step 2 Expected ("The remaining options match the location's Tech View groups") agrees with PRD v69 S1-R15 ("everyone who gets a group or column at this location") · build differs ⇒ real defect.
 INSTRUMENT CHECK (Rule 104): both lists walked to their true end (Tech View 329 groups with Unassigned closed; Board View 340 columns; filter 317 options); every option IS a group, so the walk works in both directions (positive control); the 11 are missing in Tech View and Board View alike.
 STORY STATUS (Rule 112): SV-10044 is past QA (Ready for Production), SV-11326 is Done — surfaced in the ask.
-STATUS: HELD — ask the QA lead (Rule 113). Result posted to run 498 as Failed with the ticket held (20 Oct 2026 16:02 UTC). Before filing, compose the two pictures into one landscape picture (Rule 116) and run size_pics.py after the description write.
+STATUS: CLOSED AS DUPLICATE (20 Oct 2026 16:20 UTC) — the QA lead said YES, but the re-check before filing found SV-11575 (Bug, Open, created by him 20 Oct 10:50 UTC: "Technician filter: inactive techs missing, 50-value warning shows too early") already covers it. Not filed; C581915 now points at SV-11575. Earlier note: HELD — ask the QA lead (Rule 113). Result posted to run 498 as Failed with the ticket held (20 Oct 2026 16:02 UTC). Before filing, compose the two pictures into one landscape picture (Rule 116) and run size_pics.py after the description write.
 
 h2. Description
 
