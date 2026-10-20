@@ -1,0 +1,133 @@
+{
+ "meta": {
+  "at": "2026-10-20T06:04:07.319Z",
+  "stamp": "10200604",
+  "browserZone": "Asia/Karachi",
+  "build": "v26.40.19-c850386",
+  "homeLocation": "already Staging Heavy Duty - 9919",
+  "roleUsed": "Technician",
+  "department": "Service",
+  "staff": [
+   {
+    "id": "b669608e-a897-4f21-a510-8ced9d9fa982",
+    "name": "Esther Howard",
+    "role": "Technician",
+    "clock": true,
+    "billable": 1,
+    "departments": [
+     "QB Location/Shop Time (Shop hand)",
+     "Staging Heavy Duty - 9919/Service"
+    ]
+   },
+   {
+    "id": "b51a80a5-2d2a-488a-87cd-747e8798d8ee",
+    "name": "Ralph Edwards",
+    "role": "Technician",
+    "clock": true,
+    "billable": 1,
+    "departments": [
+     "QB Location/Shop Time (Shop hand)",
+     "Staging Heavy Duty - 9919/Service"
+    ]
+   },
+   {
+    "id": "96b2ca3b-ba85-404e-a60d-b6dabe5b89e6",
+    "name": "Dana Ortiz",
+    "role": "Technician",
+    "clock": true,
+    "billable": 1,
+    "departments": [
+     "QB Location/Shop Time (Shop hand)",
+     "Staging Heavy Duty - 9919/Service"
+    ]
+   },
+   {
+    "id": "aa23aa05-38c9-470e-a280-01ed3863b0eb",
+    "name": "Jenny Wilson",
+    "role": "Technician",
+    "clock": true,
+    "billable": 1,
+    "departments": [
+     "QB Location/Shop Time (Shop hand)",
+     "Staging Heavy Duty - 9919/Service"
+    ]
+   }
+  ],
+  "cannedLines": [
+   "Service - Transmission service (Automatic)",
+   "Service - Cabin air filter"
+  ]
+ },
+ "C581891": {
+  "wo": "S2-37585",
+  "setupPut": 200,
+  "before": [
+   {
+    "line": "8d1e1b0d-ff1d-448b-864a-0ec3476bd016",
+    "techs": [
+     "Ralph Edwards"
+    ],
+    "followsLead": false
+   },
+   {
+    "line": "c59f6c7a-bff5-4835-9a26-ad6b3e7f8692",
+    "techs": [
+     "Dana Ortiz"
+    ],
+    "followsLead": false
+   }
+  ],
+  "shifts": [
+   "Ralph 2026-10-21 09:00-11:00 lines"
+  ],
+  "s1": 1,
+  "step4": {
+   "prompt": false,
+   "toasts": [
+    "Lead technician updated"
+   ],
+   "inD": true,
+   "lead": "Jenny Wilson"
+  },
+  "url": "https://app.staging.shopview.com/workorders/4b7c9676-70d4-4f3c-989f-31c8c733f3e3/lines",
+  "step7": [
+   "Labor Jenny Wilson more_vert",
+   "Labor Dana Ortiz more_vert"
+  ],
+  "step9click": "ok",
+  "step9": {
+   "dialog": "Edit Line close What Are You Doing? Why Are You Doing It? Status Authorized arrow_drop_down Technicians Jenny Wilson close Ralph Edwards event close Add Technician arrow_drop_down Labor Rate HD Fleet Rate arrow_drop_down Estimated Time Tech Time AI SHOPCOACH LABOR GUIDE Delete Save & Close",
+   "roster": [
+    "Jenny Wilson close",
+    "Ralph Edwards event close"
+   ]
+  },
+  "step12click": "ok",
+  "step12": {
+   "dialog": "Edit Line close What Are You Doing? Why Are You Doing It? Status Authorized arrow_drop_down Technicians Dana Ortiz close Add Technician arrow_drop_down Labor Rate HD Fleet Rate arrow_drop_down Estimated Time Tech Time AI SHOPCOACH LABOR GUIDE Delete Save & Close",
+   "roster": [
+    "Dana Ortiz close"
+   ]
+  },
+  "after": [
+   {
+    "line": "8d1e1b0d-ff1d-448b-864a-0ec3476bd016",
+    "techs": [
+     "Ralph Edwards"
+    ],
+    "followsLead": false
+   },
+   {
+    "line": "c59f6c7a-bff5-4835-9a26-ad6b3e7f8692",
+    "techs": [
+     "Dana Ortiz"
+    ],
+    "followsLead": false
+   }
+  ],
+  "lines": {
+   "l1": "8d1e1b0d-ff1d-448b-864a-0ec3476bd016",
+   "l2": "c59f6c7a-bff5-4835-9a26-ad6b3e7f8692"
+  }
+ }
+}
