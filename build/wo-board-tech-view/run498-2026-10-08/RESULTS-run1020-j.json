@@ -1,0 +1,15 @@
+{"pass_meta": {"env": "staging", "build": "v26.40.19-c850386", "date": "20 October 2026", "note": "run 498"},
+ "results": {
+  "C682445": {"verdict": "Failed", "failed_steps": "Failed at steps 5, 6 and 7: after both refresh, the second person's move is lost (the known problem in the test, outcome 1).",
+   "bold_steps": ["5", "6", "7"],
+   "observed": [
+    "Result: Failed on staging, exactly as the test's known problem describes, so nothing new is raised.",
+    "Steps 1 and 2: both browsers show Technician-A's column as S2-37577, S2-37578, S2-37579.",
+    "Step 3: browser 1 drags S2-37579 to the top: S2-37579, S2-37577, S2-37578. No message.",
+    "Step 4: browser 2, without refreshing, drags S2-37578 to the top: S2-37578, S2-37577, S2-37579. No message in either browser.",
+    "Step 5: browser 1 after refresh reads S2-37579, S2-37578, S2-37577 instead of S2-37578, S2-37579, S2-37577.",
+    "Step 6: browser 2 after refresh reads the same, S2-37579, S2-37578, S2-37577: browser 2's move was lost.",
+    "Step 7: Tech View lists S2-37579, S2-37578, S2-37577 in Technician-A's group."],
+   "ticket": "https://shopview.atlassian.net/browse/SV-11119",
+   "todo": "Re-run this test once SV-11119 is fixed on staging.",
+   "pictures": ["pictures-1019/C682445-1-browser2-move-lost-1020.png"]}}}

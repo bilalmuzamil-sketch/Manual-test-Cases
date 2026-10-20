@@ -1,0 +1,57 @@
+TITLE: Board View and Tech View – Empty Locations Show No "Add Technician" Button and No "Nothing Here Yet" State
+TYPE: Story Defect · PARENT: SV-10044 (Switch between display options; Ready for Production, read live 20 Oct 2026 05:50 UTC) · PRIORITY: Medium · LINK: relates to SV-10044
+ALREADY REPORTED: none. JQL read live 20 Oct 2026 (/rest/api/3/search/jql): text ~ "Nothing here yet" → 0; text ~ "No technicians yet" → 0; text ~ "Add Technician" → SV-11429 / SV-11393 (technician lists stop at ~100 names), SV-11107 (line history) and older unrelated stories; parent = SV-10044 → 7 Story Defects, none on the empty states.
+BASIS: PRD version 68 (19 Oct 2026 19:44 UTC, Chris Ward), version read live 20 Oct 2026 05:50 UTC, S1-N1d.
+SOURCE CHECK (Rule 106): C682436's Expected = the PRD v68 S1-N1d sentence (agree) · build differs ⇒ real defect.
+INSTRUMENT CHECK (Rule 104): seen on screen at both locations, Board View and Tech View, as Admin. The build's own code (shopview-app@v26.40.19, chunks WorkOrderMoreActions / WorkOrdersBoardViewDisplay / WorkOrdersTechViewDisplay, fetched 20 Oct 05:48 UTC) contains no "Nothing here yet" text and no "Add Technician" button on these screens; its first-run state is fixed to "No work orders yet" / "Create a work order and assign a technician to see it here." So the location set-up cannot change what is shown (my 20 Oct note L0479 that blamed a leftover technician was wrong).
+STORY STATUS (Rule 112): SV-10044 is "Ready for Production" — past QA Complete; filed on the QA lead's instruction for this batch ("For the failed tests create a story defect is not already created"). Surfaced in the report (112.7).
+STATUS: FILED 20 Oct 2026 as SV-11555 on the QA lead's instruction for this batch. https://shopview.atlassian.net/browse/SV-11555
+
+h2. Description
+
+*When a location has no technicians, the Work Orders board should help the user add them: an "Add Technician" button under "No technicians yet", and — when the location also has no work orders — a "Nothing here yet" state with both Create Work Order and Add Technician.* On staging neither is there.
+
+For example,
+* at a location with work orders but no technicians, Board View and Tech View show "No technicians yet" and its text, but no "Add Technician" button
+* at a location with no technicians and no work orders, both views read "No work orders yet" and "Create a work order and assign a technician to see it here." with only a Create Work Order button
+* "Nothing here yet" and "Add technicians and create your first work order to track work by tech." never appear
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin.
+# Make a location with no technicians and two *Approved* work orders (for example *ZZAUTOTEST F2 No Tech Shop*), and a second location with no technicians and no work orders (for example *ZZAUTOTEST Location Empty*).
+# Change location to the first one. Open *Work Orders*, click the *All* tab and click *Tech View*, then *Board View*.
+#* Both show only *Unassigned*, then "No technicians yet" and "Add technicians to assign work orders. Until then, every work order stays in Unassigned."
+#* There is no *Add Technician* button.
+# Change location to the second one. Open *Work Orders* > *All* and click *Board View*, then *Tech View*.
+#* Both read "No work orders yet" and "Create a work order and assign a technician to see it here." with only *Create Work Order*.
+
+*Actual Result:*
+* No *Add Technician* button anywhere, and the "Nothing here yet" state never shows.
+
+*Expected Result:*
+* The PRD says: *"When the location has no technicians but has work orders, Tech View and Board View show only Unassigned, followed by the design’s state: the user-round icon, “No technicians yet”, then “Add technicians to assign work orders. Until then, every work order stays in Unassigned.”, with an Add Technician button. When the location has neither technicians nor work orders, the state reads “Nothing here yet”, then “Add technicians and create your first work order to track work by tech.”, with the Create Work Order button of S1-N1c and the Add Technician button."*
+
+h2. Screenshots
+
+!C682436-1-no-add-technician-1020.png|width=1000!
+
+!C682436-2-empty-location-1020.png|width=1000!
+
+
+h2. Environment
+
+* *Build:* {{v26.40.19-c850386}} on [staging|https://app.staging.shopview.com/workorders] , 20 Oct 2026
+* *Example records:* locations "ZZAUTOTEST F2 No Tech Shop" (work orders S-35901 and S-35902, no technicians) and "ZZAUTOTEST Location Empty" (nothing)
+* *User:* Admin
+
+h2. Sources
+
+* PRD "Work Orders — Board View & Tech View Display Options", [Confluence 845185030|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030], version 68 (19 Oct 2026, Chris Ward), read 20 Oct 2026, S1-N1d:
+{quote}When the location has no technicians but has work orders, Tech View and Board View show only Unassigned, followed by the design’s state: the user-round icon, “No technicians yet”, then “Add technicians to assign work orders. Until then, every work order stays in Unassigned.”, with an Add Technician button. When the location has neither technicians nor work orders, the state reads “Nothing here yet”, then “Add technicians and create your first work order to track work by tech.”, with the Create Work Order button of S1-N1c and the Add Technician button. Add Technician opens Settings → Staff, the page where staff are added, and shows only to users with 'Settings → App', the permission that opens that page.{quote}
+* Design, Claude Design project "Work Orders" (export of 14 Oct 2026), Work Orders.dc.html:
+{quote}const frTitle = noWo && noTech ? "Nothing here yet" : noWo ? "No work orders yet" : "No technicians yet";{quote}
+
+h2. Test case
+
+* [C682436 Design- No technicians yet and Nothing here yet in both views|https://shopview.testrail.io/index.php?/cases/view/682436]
