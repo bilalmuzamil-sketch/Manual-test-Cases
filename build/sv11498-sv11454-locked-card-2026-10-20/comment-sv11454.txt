@@ -1,0 +1,37 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Tested on Staging (build v26.40.20-9c75418) on 20 October 2026, signed in as Admin, window 1440 x 900 px, zoom 100%.
+* When a move is refused because the work order was invoiced in another tab, the card now updates: it reads *Invoiced* with a lock icon, matching the alert. Before, it kept reading *Approved* until the page was reloaded.
+* The same works when the work order was paid instead, and in Tech View.
+
+*Before and after*
+!sv11454-01-refused-move-before-after.png|width=900,height=1120!
+_BEFORE: the picture from this ticket (Staging, 16 October), where the card still read "Approved" next to the alert. AFTER: Staging build v26.40.20-9c75418 today, work order S2-37623. Blue box: the same alert. Green box: the card now reads "Invoiced" with a lock icon and stays in its technician's column._
+
+*What I checked*
+||#||Check||Status||
+|1|Board View: Approved work order S2-37623 dragged to Brandi Smith (lead set). In a second tab it was taken to Invoiced. Back in the first tab, without reloading, I dragged the card to another technician. The move is refused with the alert "Failed to update lead technician, please try again." and "The lead technician can't be changed once a work order is Invoiced or Paid."|PASSED|
+|2|Right after the refused move the card reads *Invoiced*, shows a lock icon and stays in Brandi Smith's column. It still reads the same 15 seconds later.|PASSED|
+|3|The lead technician did not change (still Brandi Smith).|PASSED|
+|4|Board View, work order S2-37627 *paid* in the second tab: the card reads *Paid* with a lock icon after the refused move.|PASSED|
+|5|Tech View, work order S2-37625 invoiced in the second tab: the row reads *Invoiced* with a lock icon and stays in Brandi Smith's group.|PASSED|
+
+*Other cases*
+!sv11454-02-paid-and-tech-view.png|width=900,height=613!
+_Staging today. Top: Board View, the paid work order S2-37627 after the refused move. Bottom: Tech View, the invoiced work order S2-37625 after the refused move. Green boxes: the card and the row read the new status with a lock icon._
+
+The alert still uses the long sentence. The spec's shorter words ("Invoiced · can't be reassigned") are already raised as [SV-11545|https://shopview.atlassian.net/browse/SV-11545], so I have not counted them here.
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 68:
+{quote}S4-E3: If status becomes prohibited during a drag, reject the drop using S4-N3 and S4-N8, with a status explanation.{quote}
+This ticket's expected result: "the refused move is explained by the work order's status, and the card agrees with the explanation: it reads Invoiced."
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com and sign in as Admin.
+# Tab A: click {{Work Orders}}, the {{All}} tab, then the right view button {{Board View}}. Find an Approved work order that has a lead technician. Leave this tab as it is.
+# Tab B: open the same work order and take it to Invoiced (finish its line, then on the {{Finance}} tab click {{Create Invoice}}).
+# Back in tab A, without reloading, drag that card into another technician's column.
+# The alert appears and the card goes back to its column reading {{Invoiced}}, with a small lock icon after its number.

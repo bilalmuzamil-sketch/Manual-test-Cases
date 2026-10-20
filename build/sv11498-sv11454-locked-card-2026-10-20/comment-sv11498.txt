@@ -1,0 +1,36 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Tested on Staging (build v26.40.20-9c75418) on 20 October 2026, signed in as Admin, keyboard only, window 1440 x 900 px, zoom 100%.
+* On a locked (Invoiced or Paid) work order, moving the keyboard focus onto the greyed-out *Reassign lead technician* item now shows the note that explains why, the same as the mouse does.
+* The same happens on *Unassign*, in Board View and in Tech View, and pressing Enter on a greyed-out item does nothing.
+
+*Before and after*
+!sv11498-01-keyboard-note-before-after.png|width=900,height=520!
+_BEFORE: the picture from this ticket (Staging build v26.40.19-31ad1e1, 19 October), where keyboard focus showed no note. AFTER: Staging build v26.40.20-9c75418 today, work order S2-37313. Blue box: the item with the keyboard focus. Green box: the note shown under it._
+
+*What I checked*
+||#||Check||Status||
+|1|Board View, Invoiced work order S2-37313: keyboard only from the Search box (Tab to the card, Tab to *More actions*, Enter, Down arrow). Focus on *Reassign lead technician* shows the note.|PASSED|
+|2|Same menu: focus on *Unassign* shows the note.|PASSED|
+|3|Pressing Enter on the greyed-out item opens nothing (the keyboard cannot get round the lock).|PASSED|
+|4|Board View, Paid work order S2-16688 (with a lead technician): same result.|PASSED|
+|5|Board View, Paid work order S2-33692 in the Unassigned column: same result.|PASSED|
+|6|Tech View, Invoiced S2-37313 and Paid S2-16688: same result.|PASSED|
+|7|With the mouse, hovering the same items still shows the same note.|PASSED|
+
+*About the words of the note*
+The note reads "The lead technician can't be changed once a work order is Invoiced or Paid." Since version 68 (19 October) the spec asks for shorter words, "Invoiced · can't be reassigned" or "Paid · can't be reassigned". That change is already raised as [SV-11545|https://shopview.atlassian.net/browse/SV-11545] (Open), so I have not counted it against this ticket. This ticket was about the note not showing at all with the keyboard, and it now shows.
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 68:
+{quote}S4-N6: On an Invoiced or Paid work order the Assign lead technician or Reassign lead technician action (S3-R14) and the Unassign action are disabled, and their tooltip reads "Invoiced · can't be reassigned" or "Paid · can't be reassigned", as in the design.{quote}
+{quote}S11-N1: Keyboard access must not bypass action permissions or work order status restrictions.{quote}
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com and sign in as Admin. Check the top bar shows {{Staging Heavy Duty - 9919}}.
+# In the top menu click {{Work Orders}}, then the {{All}} tab (top left), type {{S2-37313}} in {{Search}} and click the right view button, {{Board View}}.
+# Click once in the {{Search}} box. From now on use only the keyboard.
+# Press *Tab* until the card {{S2-37313}} has the blue focus ring, then *Tab* once more to its {{...}} (More actions) button and press *Enter*.
+# Press the *Down* arrow: as each greyed-out item ({{Reassign lead technician}}, {{Unassign}}) gets the focus, a dark note appears just below it.

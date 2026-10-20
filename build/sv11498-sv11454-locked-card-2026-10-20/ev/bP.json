@@ -1,0 +1,223 @@
+{
+ "view": "board_view",
+ "mk": {
+  "version": "v26.40.20-9c75418",
+  "lastModified": "Tue, 20 Oct 2026 11:36:03 GMT",
+  "etag": "W/\"ce9b48a40368e6635986fb1e547ca107\""
+ },
+ "log": [
+  [
+   "/api/work-orders/view/75e04715-a3d6-4053-aa0c-33f6d1042cbf",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":false,\"deletable_reason\":\"Work order with a sent invoice cannot be deleted.\",\"editable\":false,\"id\":\"75e04715-a3d6-4053-aa0c-3"
+  ],
+  [
+   "/api/work-orders/create",
+   201,
+   "{\"data\":{\"work_order_id\":\"a1c72699-8146-4f55-a050-dec059dd75ab\"}}"
+  ],
+  [
+   "/api/work-orders/a1c72699-8146-4f55-a050-dec059dd75ab/lines/create-from-canned-line",
+   201,
+   "{\"data\":{\"line_id\":\"709b7093-ef36-49d3-8cb6-f0677b7af63a\"}}"
+  ],
+  [
+   "/api/work-orders/view/a1c72699-8146-4f55-a050-dec059dd75ab",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":true,\"deletable_reason\":\"\",\"editable\":true,\"id\":\"a1c72699-8146-4f55-a050-dec059dd75ab\",\"number\":\"S-37627\",\"display_number\":\"S"
+  ],
+  [
+   "/api/work-orders/view/a1c72699-8146-4f55-a050-dec059dd75ab",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":true,\"deletable_reason\":\"\",\"editable\":true,\"id\":\"a1c72699-8146-4f55-a050-dec059dd75ab\",\"number\":\"S-37627\",\"display_number\":\"S"
+  ],
+  [
+   "/api/work-orders/change-mileage",
+   201,
+   "{\"data\":{\"work_order_id\":\"a1c72699-8146-4f55-a050-dec059dd75ab\"}}"
+  ],
+  [
+   "/api/work-orders/lines/change-story",
+   201,
+   "{\"data\":{\"line_id\":\"709b7093-ef36-49d3-8cb6-f0677b7af63a\"}}"
+  ],
+  [
+   "/api/work-orders/lines/change-status",
+   200,
+   "{\"data\":[]}"
+  ],
+  [
+   "/api/work-orders/change-status",
+   400,
+   "{\"errors\":[{\"error\":\"Complete work order cannot change its status again.\"}]}"
+  ],
+  [
+   "/api/invoices/create",
+   201,
+   "{\"data\":{\"invoice_id\":\"f2094c71-64fa-4aa9-b08f-077d882d3fe6\",\"customer_account_id\":\"5e8db013-5169-4de1-a240-d1ad6a3480c2\",\"auto_paid\":false,\"auto_paid_credit_id"
+  ],
+  [
+   "/api/customer-account/list-unpaid-transaction?accountId=5e8db013-5169-4de1-a240-d1ad6a3480c2&pagination[rowsPerPage]=1000",
+   200,
+   "{\"data\":{\"response\":{\"unpaid_transactions_count\":4,\"groupByDueDateData\":{\"current\":1218.27,\"days1To30\":52.2,\"days31To60\":0,\"days61To90\":0,\"daysGreater90\":0,\"tot"
+  ],
+  [
+   "/api/customer-account/create-customer-payment",
+   201,
+   "{\"data\":{\"id\":\"693f925f-de1c-4a09-b991-60cb39f088dc\",\"bookkeepingSyncDeferred\":true}}"
+  ],
+  [
+   "/api/work-orders/view/a1c72699-8146-4f55-a050-dec059dd75ab",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":false,\"deletable_reason\":\"Paid work order cannot be deleted.\",\"editable\":false,\"id\":\"a1c72699-8146-4f55-a050-dec059dd75ab\",\"n"
+  ],
+  [
+   "/api/work-orders/view/a1c72699-8146-4f55-a050-dec059dd75ab",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":false,\"deletable_reason\":\"Paid work order cannot be deleted.\",\"editable\":false,\"id\":\"a1c72699-8146-4f55-a050-dec059dd75ab\",\"n"
+  ]
+ ],
+ "woId": "a1c72699-8146-4f55-a050-dec059dd75ab",
+ "num": "S2-37627",
+ "start": {
+  "x": 29,
+  "y": 262,
+  "w": 262,
+  "h": 236.953125,
+  "badge": [
+   "Approved"
+  ],
+  "lock": false,
+  "col": "Unassigned 1 1 work order",
+  "text": "S2-37627 Approved Customer ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co ZZF9 VIN/serial VIN ZZWOB179238135356 On-site On"
+ },
+ "targets": [
+  {
+   "name": "Unassigned 1 1 work order",
+   "x": 160,
+   "y": 400,
+   "l": 16
+  },
+  {
+   "name": "BS Brandi Smith 0 0 work order",
+   "x": 464,
+   "y": 400,
+   "l": 320
+  },
+  {
+   "name": "AZ Aaron Zed 0 0 work orders",
+   "x": 768,
+   "y": 400,
+   "l": 624
+  },
+  {
+   "name": "AB Aaron Baker 0 0 work orders",
+   "x": 1072,
+   "y": 400,
+   "l": 928
+  },
+  {
+   "name": "AS Admin ShopView 0 0 work ord",
+   "x": 1376,
+   "y": 400,
+   "l": 1232
+  }
+ ],
+ "afterAssign": {
+  "item": {
+   "x": 333,
+   "y": 262,
+   "w": 262,
+   "h": 240.09375,
+   "badge": [
+    "Approved"
+   ],
+   "lock": false,
+   "col": "BS Brandi Smith 1 1 work order",
+   "text": "S2-37627 Approved Customer ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co ZZF9 VIN/serial VIN ZZWOB179238135356 On-site On"
+  },
+  "notes": [
+   "check_circle Lead technician updated Close"
+  ],
+  "mid": {
+   "notes": []
+  }
+ },
+ "leadApi": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+ "tabB": "about:blank",
+ "payRow": {
+  "id": "3a8e7ffe-39c5-4098-a93a-83bd42e798b9",
+  "customer_account_id": "5e8db013-5169-4de1-a240-d1ad6a3480c2",
+  "date": "2026-10-20 13:30:00",
+  "due_date": "2026-10-20 13:30:00",
+  "description": null,
+  "amount": 406.09,
+  "balance": 406.09,
+  "type": "invoice",
+  "type_label": "Invoice",
+  "status": "unpaid",
+  "status_label": "Unpaid",
+  "invoice_number": "S-37627",
+  "invoice_display_number": "S2-37627",
+  "credit_display_number": null
+ },
+ "statusApi": "Paid",
+ "beforeMove": {
+  "x": 333,
+  "y": 262,
+  "w": 262,
+  "h": 240.09375,
+  "badge": [
+   "Approved"
+  ],
+  "lock": false,
+  "col": "BS Brandi Smith 1 1 work order",
+  "text": "S2-37627 Approved Customer ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co ZZF9 VIN/serial VIN ZZWOB179238135356 On-site On"
+ },
+ "target": {
+  "name": "AZ Aaron Zed 0 0 work orders",
+  "x": 768,
+  "y": 400,
+  "l": 624
+ },
+ "midDrag": {
+  "notes": []
+ },
+ "after1": {
+  "x": 333,
+  "y": 262,
+  "w": 262,
+  "h": 240.09375,
+  "badge": [
+   "Paid"
+  ],
+  "lock": true,
+  "col": "BS Brandi Smith 1 1 work order",
+  "text": "S2-37627 Paid Customer ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co ZZF9 VIN/serial VIN ZZWOB179238135356 On-site On sit"
+ },
+ "notes1": [
+  "warning Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid. Close"
+ ],
+ "after15": {
+  "x": 333,
+  "y": 262,
+  "w": 262,
+  "h": 240.09375,
+  "badge": [
+   "Paid"
+  ],
+  "lock": true,
+  "col": "BS Brandi Smith 1 1 work order",
+  "text": "S2-37627 Paid Customer ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co ZZF9 VIN/serial VIN ZZWOB179238135356 On-site On sit"
+ },
+ "notes15": [
+  "warning Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid. Close"
+ ],
+ "leadEnd": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+ "restored": true,
+ "mkEnd": {
+  "version": "v26.40.20-9c75418",
+  "lastModified": "Tue, 20 Oct 2026 11:36:03 GMT",
+  "etag": "W/\"ce9b48a40368e6635986fb1e547ca107\""
+ }
+}

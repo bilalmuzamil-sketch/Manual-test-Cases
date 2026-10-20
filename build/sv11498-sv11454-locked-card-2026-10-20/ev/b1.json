@@ -1,0 +1,197 @@
+{
+ "view": "board_view",
+ "mk": {
+  "version": "v26.40.20-9c75418",
+  "lastModified": "Tue, 20 Oct 2026 11:36:03 GMT",
+  "etag": "W/\"ce9b48a40368e6635986fb1e547ca107\""
+ },
+ "log": [
+  [
+   "/api/work-orders/view/75e04715-a3d6-4053-aa0c-33f6d1042cbf",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":false,\"deletable_reason\":\"Work order with a sent invoice cannot be deleted.\",\"editable\":false,\"id\":\"75e04715-a3d6-4053-aa0c-3"
+  ],
+  [
+   "/api/work-orders/create",
+   201,
+   "{\"data\":{\"work_order_id\":\"4cb1a94d-34f8-49c8-88b1-4525ebb12055\"}}"
+  ],
+  [
+   "/api/work-orders/4cb1a94d-34f8-49c8-88b1-4525ebb12055/lines/create-from-canned-line",
+   201,
+   "{\"data\":{\"line_id\":\"73353d7f-7a78-4da1-a9d4-f15f09e043b9\"}}"
+  ],
+  [
+   "/api/work-orders/view/4cb1a94d-34f8-49c8-88b1-4525ebb12055",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":true,\"deletable_reason\":\"\",\"editable\":true,\"id\":\"4cb1a94d-34f8-49c8-88b1-4525ebb12055\",\"number\":\"S-37623\",\"display_number\":\"S"
+  ],
+  [
+   "/api/work-orders/view/4cb1a94d-34f8-49c8-88b1-4525ebb12055",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":true,\"deletable_reason\":\"\",\"editable\":true,\"id\":\"4cb1a94d-34f8-49c8-88b1-4525ebb12055\",\"number\":\"S-37623\",\"display_number\":\"S"
+  ],
+  [
+   "/api/work-orders/change-mileage",
+   201,
+   "{\"data\":{\"work_order_id\":\"4cb1a94d-34f8-49c8-88b1-4525ebb12055\"}}"
+  ],
+  [
+   "/api/work-orders/lines/change-story",
+   201,
+   "{\"data\":{\"line_id\":\"73353d7f-7a78-4da1-a9d4-f15f09e043b9\"}}"
+  ],
+  [
+   "/api/work-orders/lines/change-status",
+   200,
+   "{\"data\":[]}"
+  ],
+  [
+   "/api/work-orders/change-status",
+   400,
+   "{\"errors\":[{\"error\":\"Complete work order cannot change its status again.\"}]}"
+  ],
+  [
+   "/api/invoices/create",
+   201,
+   "{\"data\":{\"invoice_id\":\"a487f553-fd1c-4898-a0c6-5433700077ca\",\"customer_account_id\":\"5e8db013-5169-4de1-a240-d1ad6a3480c2\",\"auto_paid\":false,\"auto_paid_credit_id"
+  ],
+  [
+   "/api/work-orders/view/4cb1a94d-34f8-49c8-88b1-4525ebb12055",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":false,\"deletable_reason\":\"Work order with a sent invoice cannot be deleted.\",\"editable\":false,\"id\":\"4cb1a94d-34f8-49c8-88b1-4"
+  ],
+  [
+   "/api/work-orders/view/4cb1a94d-34f8-49c8-88b1-4525ebb12055",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":false,\"deletable_reason\":\"Work order with a sent invoice cannot be deleted.\",\"editable\":false,\"id\":\"4cb1a94d-34f8-49c8-88b1-4"
+  ]
+ ],
+ "woId": "4cb1a94d-34f8-49c8-88b1-4525ebb12055",
+ "num": "S2-37623",
+ "start": {
+  "x": 29,
+  "y": 262,
+  "w": 262,
+  "h": 236.953125,
+  "badge": [
+   "Approved"
+  ],
+  "lock": false,
+  "col": "Unassigned 1 1 work order",
+  "text": "S2-37623 Approved Customer ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co ZZF9 VIN/serial VIN ZZWOB179238135356 On-site On"
+ },
+ "targets": [
+  {
+   "name": "Unassigned 1 1 work order",
+   "x": 160,
+   "y": 400,
+   "l": 16
+  },
+  {
+   "name": "BS Brandi Smith 0 0 work order",
+   "x": 464,
+   "y": 400,
+   "l": 320
+  },
+  {
+   "name": "AZ Aaron Zed 0 0 work orders",
+   "x": 768,
+   "y": 400,
+   "l": 624
+  },
+  {
+   "name": "AB Aaron Baker 0 0 work orders",
+   "x": 1072,
+   "y": 400,
+   "l": 928
+  },
+  {
+   "name": "AS Admin ShopView 0 0 work ord",
+   "x": 1376,
+   "y": 400,
+   "l": 1232
+  }
+ ],
+ "afterAssign": {
+  "item": {
+   "x": 333,
+   "y": 262,
+   "w": 262,
+   "h": 240.09375,
+   "badge": [
+    "Approved"
+   ],
+   "lock": false,
+   "col": "BS Brandi Smith 1 1 work order",
+   "text": "S2-37623 Approved Customer ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co ZZF9 VIN/serial VIN ZZWOB179238135356 On-site On"
+  },
+  "notes": [
+   "check_circle Lead technician updated Close"
+  ],
+  "mid": {
+   "notes": []
+  }
+ },
+ "leadApi": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+ "tabB": "about:blank",
+ "statusApi": "Invoiced",
+ "beforeMove": {
+  "x": 333,
+  "y": 262,
+  "w": 262,
+  "h": 240.09375,
+  "badge": [
+   "Approved"
+  ],
+  "lock": false,
+  "col": "BS Brandi Smith 1 1 work order",
+  "text": "S2-37623 Approved Customer ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co ZZF9 VIN/serial VIN ZZWOB179238135356 On-site On"
+ },
+ "target": {
+  "name": "AZ Aaron Zed 0 0 work orders",
+  "x": 768,
+  "y": 400,
+  "l": 624
+ },
+ "midDrag": {
+  "notes": []
+ },
+ "after1": {
+  "x": 333,
+  "y": 262,
+  "w": 262,
+  "h": 240.09375,
+  "badge": [
+   "Invoiced"
+  ],
+  "lock": true,
+  "col": "BS Brandi Smith 1 1 work order",
+  "text": "S2-37623 Invoiced Customer ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co ZZF9 VIN/serial VIN ZZWOB179238135356 On-site On"
+ },
+ "notes1": [
+  "warning Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid. Close"
+ ],
+ "after15": {
+  "x": 333,
+  "y": 262,
+  "w": 262,
+  "h": 240.09375,
+  "badge": [
+   "Invoiced"
+  ],
+  "lock": true,
+  "col": "BS Brandi Smith 1 1 work order",
+  "text": "S2-37623 Invoiced Customer ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co ZZF9 VIN/serial VIN ZZWOB179238135356 On-site On"
+ },
+ "notes15": [
+  "warning Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid. Close"
+ ],
+ "leadEnd": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+ "restored": true,
+ "mkEnd": {
+  "version": "v26.40.20-9c75418",
+  "lastModified": "Tue, 20 Oct 2026 11:36:03 GMT",
+  "etag": "W/\"ce9b48a40368e6635986fb1e547ca107\""
+ }
+}

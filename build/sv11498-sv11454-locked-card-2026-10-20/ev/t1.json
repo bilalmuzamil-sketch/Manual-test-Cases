@@ -1,0 +1,211 @@
+{
+ "view": "tech_view",
+ "mk": {
+  "version": "v26.40.20-9c75418",
+  "lastModified": "Tue, 20 Oct 2026 11:36:03 GMT",
+  "etag": "W/\"ce9b48a40368e6635986fb1e547ca107\""
+ },
+ "log": [
+  [
+   "/api/work-orders/view/75e04715-a3d6-4053-aa0c-33f6d1042cbf",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":false,\"deletable_reason\":\"Work order with a sent invoice cannot be deleted.\",\"editable\":false,\"id\":\"75e04715-a3d6-4053-aa0c-3"
+  ],
+  [
+   "/api/work-orders/create",
+   201,
+   "{\"data\":{\"work_order_id\":\"e2b5f10f-f1f6-4308-8a77-21522e55caaf\"}}"
+  ],
+  [
+   "/api/work-orders/e2b5f10f-f1f6-4308-8a77-21522e55caaf/lines/create-from-canned-line",
+   201,
+   "{\"data\":{\"line_id\":\"5a1ef6b1-be1f-4cc3-bf27-b5d00b12da31\"}}"
+  ],
+  [
+   "/api/work-orders/view/e2b5f10f-f1f6-4308-8a77-21522e55caaf",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":true,\"deletable_reason\":\"\",\"editable\":true,\"id\":\"e2b5f10f-f1f6-4308-8a77-21522e55caaf\",\"number\":\"S-37625\",\"display_number\":\"S"
+  ],
+  [
+   "/api/work-orders/view/e2b5f10f-f1f6-4308-8a77-21522e55caaf",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":true,\"deletable_reason\":\"\",\"editable\":true,\"id\":\"e2b5f10f-f1f6-4308-8a77-21522e55caaf\",\"number\":\"S-37625\",\"display_number\":\"S"
+  ],
+  [
+   "/api/work-orders/change-mileage",
+   201,
+   "{\"data\":{\"work_order_id\":\"e2b5f10f-f1f6-4308-8a77-21522e55caaf\"}}"
+  ],
+  [
+   "/api/work-orders/lines/change-story",
+   201,
+   "{\"data\":{\"line_id\":\"5a1ef6b1-be1f-4cc3-bf27-b5d00b12da31\"}}"
+  ],
+  [
+   "/api/work-orders/lines/change-status",
+   200,
+   "{\"data\":[]}"
+  ],
+  [
+   "/api/work-orders/change-status",
+   400,
+   "{\"errors\":[{\"error\":\"Complete work order cannot change its status again.\"}]}"
+  ],
+  [
+   "/api/invoices/create",
+   201,
+   "{\"data\":{\"invoice_id\":\"f9df4b42-9bda-4e79-8bc6-3b6bbf296a06\",\"customer_account_id\":\"5e8db013-5169-4de1-a240-d1ad6a3480c2\",\"auto_paid\":false,\"auto_paid_credit_id"
+  ],
+  [
+   "/api/work-orders/view/e2b5f10f-f1f6-4308-8a77-21522e55caaf",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":false,\"deletable_reason\":\"Work order with a sent invoice cannot be deleted.\",\"editable\":false,\"id\":\"e2b5f10f-f1f6-4308-8a77-2"
+  ],
+  [
+   "/api/work-orders/view/e2b5f10f-f1f6-4308-8a77-21522e55caaf",
+   200,
+   "{\"data\":{\"work_order\":{\"deletable\":false,\"deletable_reason\":\"Work order with a sent invoice cannot be deleted.\",\"editable\":false,\"id\":\"e2b5f10f-f1f6-4308-8a77-2"
+  ]
+ ],
+ "woId": "e2b5f10f-f1f6-4308-8a77-21522e55caaf",
+ "num": "S2-37625",
+ "start": {
+  "x": 0,
+  "y": 264,
+  "w": 1827.171875,
+  "h": 36,
+  "badge": [
+   "Approved"
+  ],
+  "lock": false,
+  "col": null,
+  "text": " location_on Approved — S2-37625 ZZAUTOTEST F3 Keyboard Limits .. ZZF9 ZZWOB179238135356 content_copy 0% Unassigned 1 To"
+ },
+ "targets": [
+  {
+   "name": "Unassigned",
+   "x": 700,
+   "y": 280.9921875
+  },
+  {
+   "name": "Brandi Smith",
+   "x": 700,
+   "y": 352.9921875
+  },
+  {
+   "name": "Aaron Zed",
+   "x": 700,
+   "y": 424.9921875
+  },
+  {
+   "name": "Aaron Baker",
+   "x": 700,
+   "y": 496.9921875
+  },
+  {
+   "name": "Admin ShopView",
+   "x": 700,
+   "y": 568.9921875
+  },
+  {
+   "name": "Advisor Analysis",
+   "x": 700,
+   "y": 640.9921875
+  },
+  {
+   "name": "Ahtasham Admin",
+   "x": 700,
+   "y": 712.9921875
+  },
+  {
+   "name": "Ahtasham Service Advisor",
+   "x": 700,
+   "y": 784.9921875
+  },
+  {
+   "name": "Ahtsham Foreman",
+   "x": 700,
+   "y": 856.9921875
+  }
+ ],
+ "afterAssign": {
+  "item": {
+   "x": 0,
+   "y": 336,
+   "w": 1827.171875,
+   "h": 36,
+   "badge": [
+    "Approved"
+   ],
+   "lock": false,
+   "col": null,
+   "text": " location_on Approved — S2-37625 ZZAUTOTEST F3 Keyboard Limits .. ZZF9 ZZWOB179238135356 content_copy 0% Brandi Smith 1 "
+  },
+  "notes": [
+   "check_circle Lead technician updated Close"
+  ],
+  "mid": {
+   "notes": []
+  }
+ },
+ "leadApi": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+ "tabB": "about:blank",
+ "statusApi": "Invoiced",
+ "beforeMove": {
+  "x": 0,
+  "y": 336,
+  "w": 1827.171875,
+  "h": 36,
+  "badge": [
+   "Approved"
+  ],
+  "lock": false,
+  "col": null,
+  "text": " location_on Approved — S2-37625 ZZAUTOTEST F3 Keyboard Limits .. ZZF9 ZZWOB179238135356 content_copy 0% Brandi Smith 1 "
+ },
+ "target": {
+  "name": "Aaron Zed",
+  "x": 700,
+  "y": 424.9921875
+ },
+ "midDrag": {
+  "notes": []
+ },
+ "after1": {
+  "x": 0,
+  "y": 336,
+  "w": 1818.984375,
+  "h": 36,
+  "badge": [
+   "Invoiced"
+  ],
+  "lock": true,
+  "col": null,
+  "text": " location_on Invoiced — S2-37625 ZZAUTOTEST F3 Keyboard Limits .. ZZF9 ZZWOB179238135356 content_copy 0% Brandi Smith 1 "
+ },
+ "notes1": [
+  "warning Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid. Close"
+ ],
+ "after15": {
+  "x": 0,
+  "y": 336,
+  "w": 1818.984375,
+  "h": 36,
+  "badge": [
+   "Invoiced"
+  ],
+  "lock": true,
+  "col": null,
+  "text": " location_on Invoiced — S2-37625 ZZAUTOTEST F3 Keyboard Limits .. ZZF9 ZZWOB179238135356 content_copy 0% Brandi Smith 1 "
+ },
+ "notes15": [
+  "warning Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid. Close"
+ ],
+ "leadEnd": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+ "restored": true,
+ "mkEnd": {
+  "version": "v26.40.20-9c75418",
+  "lastModified": "Tue, 20 Oct 2026 11:36:03 GMT",
+  "etag": "W/\"ce9b48a40368e6635986fb1e547ca107\""
+ }
+}
