@@ -1,4 +1,4 @@
-# WO Board and Tech View: setup file for Claude sessions (41 cases, 16 to 19 Oct 2026)
+# WO Board and Tech View: setup file for Claude sessions (45 cases, 16 to 20 Oct 2026)
 
 This file is for a Claude session. A manual tester never needs it: each test case is complete on its own. With this file and the access the user gives at the start of the session, a new session can put the account into every case's starting state. It holds no environment address, credentials, cookies or session data.
 
@@ -1208,6 +1208,91 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Notes from SV-11087 (developer and QA comments, 14 Oct 2026):** the fix ships in the bugfix release (PR #3619), not with SV-10043; labor rows that existed before the fix count as deliberate and are never removed, so use records made after the fix reached the site. The ticket's own example S10043-18489 is on the QA site sv10043.
 
+#### SETUP-C368159 — [C368159](https://shopview.testrail.io/index.php?/cases/view/368159) Toggling On Site from a stale page does not undo another user's lead change
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A} in browser 1, in a window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- User {User-B} is signed in at {Location-A} in browser 2, with a role that has Work Orders View and Create & Edit. For example: ZZAUTOTEST Dispatcher Two.
+- Technicians {Technician-A} and {Technician-B} are active at {Location-A}, and both are offered in the Lead Technician list on the work order page. For example: AA ZZAUTOTEST C368159 Ana and AA ZZAUTOTEST C368159 Ben (names starting "AA" sit near the top of the work order page's technician lists, which offer only about the first 100 people in A to Z order (SV-11429)).
+- Customer {Customer-A} has one Approved work order, {Work-order-1}, led by {Technician-A}. For example: {Customer-A} is ZZAUTOTEST F3 Stale On Site Site Co.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A, a second sign-in for {User-B}. **Run first:** SETUP-ADMIN.
+
+**Why the names start with "AA" (SV-11429):** on the work order page the Lead Technician list, Edit Line > Add Technician and Edit labor > Technician offer only about the first 100 people in A to Z order (on staging, 253 staff: the lists start at "Aaron Baker" and stop at the "QA …" names). A technician whose name sorts later (for example "Ralph Edwards", or any "ZZAUTOTEST …" first name) cannot be picked there. So P-TECH here uses First Name "AA ZZAUTOTEST" and Last Name "CC368159 <name>" (shows as "AA ZZAUTOTEST CC368159 <name>"). Check the name is offered before starting.
+
+1.  **P-TECH** twice: First Name "AA ZZAUTOTEST", Last Names "C368159 Ana" and "C368159 Ben".
+2.  {User-B}: Settings > Staff > New Staff Member "ZZAUTOTEST Dispatcher Two" (skip if one exists) with a role that has Work Orders View and Create & Edit at this location; sign them in in browser 2 (finish the invite so they can sign in).
+3.  **P-CUSTOMER**: "ZZAUTOTEST F3 Stale On Site Site Co" (one contact, one asset).
+4.  **P-WO** on that asset, lead {Technician-A}.
+5.  Check: Work Orders > All > List, Search the customer: exactly 1 work order, Approved, lead {Technician-A}; {User-B} is signed in in browser 2 at the same location.
+
+**Placeholder values:** give the tester the real names and work order numbers after setup. Source of these steps: the case's own Setup block before the 20 Oct 2026 conversion (`build/wo-board-tech-view/sv11429-simplify-2026-10-20/before/`).
+
+#### SETUP-C368169 — [C368169](https://shopview.testrail.io/index.php?/cases/view/368169) The work order page saves a new lead and a new mileage together
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians {Technician-A} and {Technician-B} are active at {Location-A}, and both are offered in the Lead Technician list on the work order page. For example: AA ZZAUTOTEST C368169 Ana and AA ZZAUTOTEST C368169 Ben (names starting "AA" sit near the top of the work order page's technician lists, which offer only about the first 100 people in A to Z order (SV-11429)).
+- Customer {Customer-A} has an Approved work order {Work-order-1} led by {Technician-A}, with Mileage 120,000. For example: {Customer-A} is ZZAUTOTEST Edit WO Lead Mileage and {Work-order-1} is S1-712.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+**Why the names start with "AA" (SV-11429):** on the work order page the Lead Technician list, Edit Line > Add Technician and Edit labor > Technician offer only about the first 100 people in A to Z order (on staging, 253 staff: the lists start at "Aaron Baker" and stop at the "QA …" names). A technician whose name sorts later (for example "Ralph Edwards", or any "ZZAUTOTEST …" first name) cannot be picked there. So P-TECH here uses First Name "AA ZZAUTOTEST" and Last Name "CC368169 <name>" (shows as "AA ZZAUTOTEST CC368169 <name>"). Check the name is offered before starting.
+
+1.  **P-TECH** twice: First Name "AA ZZAUTOTEST", Last Names "C368169 Ana" and "C368169 Ben".
+2.  **P-CUSTOMER**: "ZZAUTOTEST Edit WO Lead Mileage", unit "TRK-118".
+3.  **P-WO** on that asset (one approved grease line), lead {Technician-A}.
+4.  On the work order's status card click Mileage, type 120000 and click outside the field (it saves when you leave it).
+5.  Check: reload; Lead Technician reads {Technician-A} and Mileage reads 120,000.
+
+**Placeholder values:** give the tester the real names and work order numbers after setup. Source of these steps: the case's own Setup block before the 20 Oct 2026 conversion (`build/wo-board-tech-view/sv11429-simplify-2026-10-20/before/`).
+
+#### SETUP-C368171 — [C368171](https://shopview.testrail.io/index.php?/cases/view/368171) A lead change on the work order page adds one Lead tech changed entry
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians {Technician-A} and {Technician-B} are active at {Location-A}, and both are offered in the Lead Technician list on the work order page. For example: AA ZZAUTOTEST C368171 Ana and AA ZZAUTOTEST C368171 Ben (names starting "AA" sit near the top of the work order page's technician lists, which offer only about the first 100 people in A to Z order (SV-11429)).
+- Customer {Customer-A} has an Approved work order {Work-order-1} led by {Technician-A}, with two approved lines, {Line-1} and {Line-2}, that have no technician of their own (they follow the lead). For example: {Customer-A} is ZZAUTOTEST Edit WO Audit, {Work-order-1} is S1-716, {Line-1} is "Service - Full grease service" and {Line-2} is "Service - Adjust clutch".
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+**Why the names start with "AA" (SV-11429):** on the work order page the Lead Technician list, Edit Line > Add Technician and Edit labor > Technician offer only about the first 100 people in A to Z order (on staging, 253 staff: the lists start at "Aaron Baker" and stop at the "QA …" names). A technician whose name sorts later (for example "Ralph Edwards", or any "ZZAUTOTEST …" first name) cannot be picked there. So P-TECH here uses First Name "AA ZZAUTOTEST" and Last Name "CC368171 <name>" (shows as "AA ZZAUTOTEST CC368171 <name>"). Check the name is offered before starting.
+
+1.  **P-TECH** twice: First Name "AA ZZAUTOTEST", Last Names "C368171 Ana" and "C368171 Ben".
+2.  **P-CUSTOMER**: "ZZAUTOTEST Edit WO Audit", unit "TRK-118".
+3.  Work Orders > Create Work Order on that asset; in New Line type "grease", pick "Service - Full grease service", Line Approved on > Save & Add Line; then "clutch", "Service - Adjust clutch", Line Approved on > Save & Close. Do not give either line a technician of its own.
+4.  On the status card pick {Technician-A} in Lead Technician.
+5.  Check: reload; both lines' Labor rows show {Technician-A}. The history is at the three dots at the top right of the tabs > Audit Log (window "Work Order Log").
+
+**Placeholder values:** give the tester the real names and work order numbers after setup. Source of these steps: the case's own Setup block before the 20 Oct 2026 conversion (`build/wo-board-tech-view/sv11429-simplify-2026-10-20/before/`).
+
+#### SETUP-C368173 — [C368173](https://shopview.testrail.io/index.php?/cases/view/368173) Changing a line's technician in Edit Line saves the new technician
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technicians {Technician-A}, {Technician-B} and {Technician-D} are active at {Location-A}, and all three are offered in Edit Line's "Add Technician" list. For example: AA ZZAUTOTEST C368173 Ana, AA ZZAUTOTEST C368173 Ben and AA ZZAUTOTEST C368173 Dee (names starting "AA" sit near the top of the work order page's technician lists, which offer only about the first 100 people in A to Z order (SV-11429)).
+- Customer {Customer-A} has an Approved work order {Work-order-1} led by {Technician-A}, with one approved line, {Line-1}, whose technician is {Technician-D}. For example: {Customer-A} is ZZAUTOTEST Edit Line Tech, {Work-order-1} is S1-722 and {Line-1} is "Service - Full grease service".
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+**Why the names start with "AA" (SV-11429):** on the work order page the Lead Technician list, Edit Line > Add Technician and Edit labor > Technician offer only about the first 100 people in A to Z order (on staging, 253 staff: the lists start at "Aaron Baker" and stop at the "QA …" names). A technician whose name sorts later (for example "Ralph Edwards", or any "ZZAUTOTEST …" first name) cannot be picked there. So P-TECH here uses First Name "AA ZZAUTOTEST" and Last Name "CC368173 <name>" (shows as "AA ZZAUTOTEST CC368173 <name>"). Check the name is offered before starting.
+
+1.  **P-TECH** three times: First Name "AA ZZAUTOTEST", Last Names "C368173 Ana", "C368173 Ben" and "C368173 Dee".
+2.  **P-CUSTOMER**: "ZZAUTOTEST Edit Line Tech", unit "TRK-118".
+3.  **P-WO** on that asset (one approved grease line, {Line-1}), lead {Technician-A}.
+4.  On the Lines tab click {Line-1}'s name > Edit Line > Technicians > Add Technician > {Technician-D} > Save & Close.
+5.  Check: reload > Lines tab; {Line-1}'s Labor row shows {Technician-D}.
+
+**Placeholder values:** give the tester the real names and work order numbers after setup. Source of these steps: the case's own Setup block before the 20 Oct 2026 conversion (`build/wo-board-tech-view/sv11429-simplify-2026-10-20/before/`).
+
 ## 5. Mapping table (execution order)
 
 | Test case                                                                                                                                             | Account slots        | Recipes in order                          |
@@ -1252,6 +1337,10 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 | [C682420](https://shopview.testrail.io/index.php?/cases/view/682420) Design- Tech View count bubbles sit on the status label as in List, any density | ACCOUNT-A | SETUP-ADMIN, SETUP-C682420 |
 | [C682445](https://shopview.testrail.io/index.php?/cases/view/682445) Two people reorder one column at once and each moved card keeps its place | ACCOUNT-A (two browsers) | SETUP-ADMIN, SETUP-C682445 |
 | [C682446](https://shopview.testrail.io/index.php?/cases/view/682446) Moving a timesheet entry to another line takes you off the old line | ACCOUNT-A | SETUP-ADMIN, SETUP-C682446 |
+| [C368159](https://shopview.testrail.io/index.php?/cases/view/368159) Toggling On Site from a stale page does not undo another user's lead change | ACCOUNT-A | SETUP-ADMIN, SETUP-C368159 |
+| [C368169](https://shopview.testrail.io/index.php?/cases/view/368169) The work order page saves a new lead and a new mileage together | ACCOUNT-A | SETUP-ADMIN, SETUP-C368169 |
+| [C368171](https://shopview.testrail.io/index.php?/cases/view/368171) A lead change on the work order page adds one Lead tech changed entry | ACCOUNT-A | SETUP-ADMIN, SETUP-C368171 |
+| [C368173](https://shopview.testrail.io/index.php?/cases/view/368173) Changing a line's technician in Edit Line saves the new technician | ACCOUNT-A | SETUP-ADMIN, SETUP-C368173 |
 | [C682436](https://shopview.testrail.io/index.php?/cases/view/682436) Design- No technicians yet and Nothing here yet in both views | ACCOUNT-A, ACCOUNT-B | SETUP-ADMIN, SETUP-VIEWONLY, SETUP-C682436 |
 
 ## 6. Dependencies and shared fixtures

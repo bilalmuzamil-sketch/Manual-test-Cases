@@ -1,0 +1,70 @@
+"""C368159, C368169, C368171, C368173 converted to the two-audience layout (QA lead, 20 Oct 2026: "convert these test cases into the
+new test case modal but make sure that we do not loose anything or miss anything to test"), and freed from SV-11429: they need any
+technician the work order page offers, not the 100th-plus person. Every original check is kept; every quote is unchanged."""
+ADMIN = ('You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide.', "For example: {Location-A} is Staging Heavy Duty - 9919.")
+CUT = 'names starting "AA" sit near the top of the work order page\'s technician lists, which offer only about the first 100 people in A to Z order (SV-11429)'
+TP = ("Work Orders Board View & Tech View Display Options Technical Implementation Plan (revised 24 Sep 2026, uploaded 8 Oct 2026), Phase 3, read 20 Oct 2026",)
+DEV = "developer's regression list (reply received 8 Oct 2026), High 1, read 20 Oct 2026"
+QA = "QA handoff test plan for SV-10043 (generated 2026-10-08), §7, read 20 Oct 2026"
+PRD = 'PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 68 (19 Oct 2026, Chris Ward), read 20 Oct 2026'
+NOWIN = ("QA lead decision, 9 Oct 2026: there is no separate Edit Work Order window for an existing work order; the lead technician, mileage and "
+         "engine hours are changed on the card at the left of the work order page. The sources below call it Edit Work Order.")
+CASES = [
+dict(id=368159, title="Toggling On Site from a stale page does not undo another user's lead change",
+  pre=[('You are signed in with the "Admin" role at {Location-A} in browser 1, in a window at least 1024 px wide.', "For example: {Location-A} is Staging Heavy Duty - 9919."),
+       ('User {User-B} is signed in at {Location-A} in browser 2, with a role that has Work Orders View and Create & Edit.', "For example: ZZAUTOTEST Dispatcher Two."),
+       ("Technicians {Technician-A} and {Technician-B} are active at {Location-A}, and both are offered in the Lead Technician list on the work order page.",
+        f"For example: AA ZZAUTOTEST C368159 Ana and AA ZZAUTOTEST C368159 Ben ({CUT})."),
+       ("Customer {Customer-A} has one Approved work order, {Work-order-1}, led by {Technician-A}.", "For example: {Customer-A} is ZZAUTOTEST F3 Stale On Site Site Co.")],
+  steps=['In browser 1, open "Work Orders" > "All".', 'In browser 1, type the name of {Customer-A} in "Search" and click "List".', "In browser 2, open {Work-order-1}.",
+         'In browser 2, change "Lead Technician" on the work order page to {Technician-B}.', "In browser 1, without refreshing, click {Work-order-1}'s \"On Site\" toggle.",
+         "In browser 1, refresh the page.", "In browser 1, open {Work-order-1}."],
+  res=['Step 1: Work Orders opens on the "All" tab.', "Step 2: the List shows {Work-order-1}, led by {Technician-A}.", "Step 3: the work order page of {Work-order-1} opens.",
+       'Step 4: "Lead Technician" reads {Technician-B}; it saves at once.', "Step 5: the \"On Site\" toggle changes.",
+       "Step 6: {Work-order-1}'s \"On Site\" toggle keeps the change made in step 5.",
+       'Step 7: "Lead Technician" reads {Technician-B}. Browser 1\'s older page did not put {Technician-A} back when it saved On Site.'],
+  note="", quotes=[(TP[0] + " · Epic SV-10043 · story SV-10047 (Story 4, Reassign or unassign the lead technician)",
+                    ["Tech plan Phase 3 asset-on-site: “Stop sending `tech_assigned_id` — today a stale value can silently undo another user's lead change with no audit entry”"]),
+                   (PRD, ["S4-R9: “Every lead-change path records one audit entry with the previous lead, new lead, logged-in actor, and time.”"])]),
+dict(id=368169, title="The work order page saves a new lead and a new mileage together",
+  pre=[ADMIN, ("Technicians {Technician-A} and {Technician-B} are active at {Location-A}, and both are offered in the Lead Technician list on the work order page.",
+               f"For example: AA ZZAUTOTEST C368169 Ana and AA ZZAUTOTEST C368169 Ben ({CUT})."),
+       ("Customer {Customer-A} has an Approved work order {Work-order-1} led by {Technician-A}, with Mileage 120,000.", "For example: {Customer-A} is ZZAUTOTEST Edit WO Lead Mileage and {Work-order-1} is S1-712.")],
+  steps=['Open "Work Orders" > "All".', 'Type the name of {Customer-A} in "Search".', "Click {Work-order-1}.",
+         'On the status card at the left, click "Lead Technician" and pick {Technician-B}.', 'On the status card, click "Mileage" and change it to 120500.',
+         "Click outside the Mileage field.", "Reload the page."],
+  res=['Step 1: Work Orders opens on the "All" tab.', "Step 2: {Work-order-1} shows in the List.",
+       'Step 3: the work order page opens. On the status card "Lead Technician" reads {Technician-A} and "Mileage" reads 120,000.',
+       'Step 4: "Lead Technician" reads {Technician-B}. It saves at once, with no error message.', 'Step 5: the field shows 120500.',
+       "Step 6: the mileage saves, with no error message.", 'Step 7: "Lead Technician" reads {Technician-B} and "Mileage" reads 120,500. Both changes were saved.'],
+  note=NOWIN, quotes=[(DEV + " · Epic SV-10043 · regression for PR #3548", ["Dev reply High 1: “Edit Work Order: the lead now goes through the new shared path.”"]),
+                      (QA, ["QA handoff §7: “A successful change shows the new lead.”"])]),
+dict(id=368171, title="A lead change on the work order page adds one Lead tech changed entry",
+  pre=[ADMIN, ("Technicians {Technician-A} and {Technician-B} are active at {Location-A}, and both are offered in the Lead Technician list on the work order page.",
+               f"For example: AA ZZAUTOTEST C368171 Ana and AA ZZAUTOTEST C368171 Ben ({CUT})."),
+       ("Customer {Customer-A} has an Approved work order {Work-order-1} led by {Technician-A}, with two approved lines, {Line-1} and {Line-2}, that have no technician of their own (they follow the lead).",
+        '{Customer-A} is ZZAUTOTEST Edit WO Audit, {Work-order-1} is S1-716, {Line-1} is "Service - Full grease service" and {Line-2} is "Service - Adjust clutch".'.join(["For example: ", ""]))],
+  steps=['Open "Work Orders" > "All".', 'Type the name of {Customer-A} in "Search".', "Click {Work-order-1}.",
+         'Click the three dots at the top right of the tabs and choose "Audit Log".', 'Count the "Lead tech changed" entries and note the time.', "Close the window (X).",
+         'On the status card at the left, click "Lead Technician" and pick {Technician-B}.', 'Click the three dots at the top right of the tabs and choose "Audit Log".', "Read the newest entries."],
+  res=['Step 1: Work Orders opens on the "All" tab.', "Step 2: {Work-order-1} shows in the List.", "Step 3: the work order page opens. {Line-1} and {Line-2} show {Technician-A} in their Labor rows.",
+       'Step 4: the "Work Order Log" window opens.', 'Step 5: you have the number of "Lead tech changed" entries (for example 1) and the time.', "Step 6: the window closes.",
+       'Step 7: "Lead Technician" reads {Technician-B}; it saves at once.', 'Step 8: the "Work Order Log" window opens.',
+       'Step 9: exactly one new "Lead tech changed" entry appears (the count from step 5 plus 1). It names {Technician-A} as the previous lead, {Technician-B} as the new lead, your user, and the time you noted. No separate entries appear for {Line-1} and {Line-2}, which followed the lead.'],
+  note=NOWIN, quotes=[(DEV + " · Epic SV-10043 · story SV-10047 · regression for PR #3548", ["Dev reply High 1: “Every lead change also adds a \"Lead tech changed\" history entry.”"]),
+                      (QA, ["QA handoff §7: “Each change adds exactly one \"Lead tech changed\" entry to the work order history.”", "QA handoff §7: “This now also happens for changes made in Edit Work Order”"]),
+                      (PRD, ["S4-R9: “Every lead-change path records one audit entry with the previous lead, new lead, logged-in actor, and time.”",
+                             "S4-R17: “Do not create separate audit entries for implicit line movements caused by a lead change.”"])]),
+dict(id=368173, title="Changing a line's technician in Edit Line saves the new technician",
+  pre=[ADMIN, ("Technicians {Technician-A}, {Technician-B} and {Technician-D} are active at {Location-A}, and all three are offered in Edit Line's \"Add Technician\" list.",
+               f"For example: AA ZZAUTOTEST C368173 Ana, AA ZZAUTOTEST C368173 Ben and AA ZZAUTOTEST C368173 Dee ({CUT})."),
+       ("Customer {Customer-A} has an Approved work order {Work-order-1} led by {Technician-A}, with one approved line, {Line-1}, whose technician is {Technician-D}.",
+        'For example: {Customer-A} is ZZAUTOTEST Edit Line Tech, {Work-order-1} is S1-722 and {Line-1} is "Service - Full grease service".')],
+  steps=['Open "Work Orders" > "All".', 'Type the name of {Customer-A} in "Search".', "Click {Work-order-1}.", 'Click the "Lines" tab.', "Click {Line-1}'s name to open Edit Line.",
+         'In "Technicians", click the X next to {Technician-D}.', 'Click "Add Technician" and pick {Technician-B}.', 'Click "Save & Close".', "Reload the page.", 'Click the "Lines" tab.'],
+  res=['Step 1: Work Orders opens on the "All" tab.', "Step 2: {Work-order-1} shows in the List.", "Step 3: the work order page opens.", "Step 4: {Line-1}'s Labor row shows {Technician-D}.",
+       "Step 5: Edit Line opens with {Technician-D} under \"Technicians\".", "Step 6: {Technician-D} is removed from the list.", "Step 7: {Technician-B} is added under \"Technicians\".",
+       "Step 8: the line saves, with no error message.", "Step 9: the page reloads.", "Step 10: {Line-1}'s Labor row shows {Technician-B} as its technician."],
+  note="", quotes=[(DEV + " · Epic SV-10043 · regression for PR #3548", ["Dev reply High 1: “Lines tab: adding a line, editing a line's technician and assigning a technician now reject staff from another organization.”"]),
+                   (QA, ["QA handoff §7: “Adding, editing and assigning line technicians on the Lines tab still works.”"])]),
+]
