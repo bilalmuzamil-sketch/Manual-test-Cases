@@ -1,0 +1,24 @@
+{panel:bgColor=#e3fcef|borderColor=#36b37e}
+*Rule 4: PASSED (checked on screen)*
+{panel}
+[~accountid:5bd6d7573aa82432ce72b8d3] Mudassir noted rule 4 wasn't tested in the UI. It can be seen on screen in the Work Order Log, and it passes on the QA branch.
+
+Chris's rule 4 (comment 77580):
+{quote}4. When checking whether the part number changed, the new value is trimmed too, so re-saving "PF-2135" over "PF-2135 " does not count as a change.{quote}
+
+*What I checked:* re-saving a part's own number with one space typed at the end.
+* Production: the save is logged as a *Part number changed* event, from the number to the same number.
+* QA branch: the number is saved without the space and nothing is logged.
+
+The exact example in the rule (an old number already stored with a space) can't be made on the QA branch any more, because every new save there is trimmed. That's why I checked it the other way round: the new value carries the space.
+
+*How to see it*
+# Open a work order, *Lines* tab, and click the pencil next to a part that has a Part Number.
+# In *Part Number*, click at the end of the number, type one space, and click *Save & Close*.
+# At the top right, next to *New Line*, click ⋮ and choose *Audit Log*. Click the magnifying glass and type {{Part number}}.
+# Production adds a new *Part number changed* row that shows the same number on both sides of the arrow. On the QA branch no row is added for that save.
+
+!sv9938-rule4-before-after.png|width=900,height=813!
+_1 (production): the same number re-saved with a space at the end is logged as a change, "ZZ9938-D-02432 → ZZ9938-D-02432". 2 (QA branch): the same number typed with one space at the end. 3 (QA branch): saved without the space; no "Part number changed" was logged for this save._
+
+Tested on the QA branch sv9938 (build v26.40.19-f2443c6) and on Production (build v26.40.21-81fa887) on 20 October 2026, signed in as Admin, window 1440 x 900 px (Production 1900 x 1100 px), zoom 100%. The QA branch has since been taken down.

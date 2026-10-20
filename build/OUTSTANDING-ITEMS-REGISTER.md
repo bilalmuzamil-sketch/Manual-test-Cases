@@ -61,7 +61,7 @@ else owes).
 | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|
 | ~~CLEARED 20 Oct: Nemanja 79075 said skip it (portal not on QA env); Mudassir passed the ticket (79076), now Ready for Production; QA lead ruled "No, skip it" — no comment from us.~~ A decision on the handoff's "Customer portal: pay an invoice online" check. On the branch, online payments are not set up for the organisation (`customer-portal/payment-settings` → `onboarded:false`) and the invoice shows no Send to Portal, so the payment cannot be made there. | The QA lead (or Nemanja, if a portal set up against sv10687 exists) | Whether the SV-10687 comment can be a full PASSED, or must be PARTIALLY PASSED with the portal check still to do. | 2026-10-20 |
-| SV-9938 and SV-10645 still to test (after SV-10687 is posted). | Me | — | 2026-10-20 |
+| ~~SV-9938 done 20 Oct: Mudassir passed it (79080); our rule-4 note posted as 79093 per your ruling.~~ SV-10645 still to test. | Me | — | 2026-10-20 |
 
 ## 2026-10-20, ~03:45 UTC. **SV-11422: Chris ruled "not acceptable" (79047). Waiting on Slavcho's fix + fresh staging cookies. SV-11452 rewritten on production.**
 | What is missing | Who owes it | What it blocks | Since |
