@@ -1032,3 +1032,9 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - `switchLocUI` back to Heavy Duty after a block at another location did NOT take (header stayed "ZZAUTOTEST Location Empty"), and the next four blocks of the same script ran at the wrong location (no cards, 500 on assign-technician). Fix in `new6-1020.mts`: `toHeavy()` at the start of every block — on-screen switch, header read back, API `/api/iam/change-location` fallback, throw if still wrong.
 - `staff/enrollment/create` needs `departmentId` (400 "department_id Missing required parameter" without it).
 #run498 #keyboard #location #tooling → L0479
+
+## L0481 — 2026-10-20 — Release copies run on their originals' scripts, but those scripts do not read everything the copy asks
+- `s4-batchG.mts ONLY=C96963` (for C690642) reads the moves, reorders, leads and the server refusal, but NOT the note shown while dragging ("Invoiced · can't be reassigned") — read it with `retest-locks2.mts ONLY=C96964` on the same build. Its Unassigned reorder of W4 dropped at W1's bottom edge, i.e. W4's own place → "reordered: false" is the instrument, not the product (L0417); `C96963-unassigned-reorder.mts` now takes `W4N`/`OTHERN` from the environment (passed by `wob-run.sh`) and reads the customer name from W4's record.
+- `wob-run.sh` passes ONLY the variables it lists (`env -i`): any new env input to a script must be added there (W4N, OTHERN added 20 Oct).
+- On c850386 an Invoiced work order's page shows "Lead technician" as plain read-only text (no dropdown) — C690642 step 14 passes (C96963-wo-page.png).
+#run498 #release #tooling → L0480, L0417
