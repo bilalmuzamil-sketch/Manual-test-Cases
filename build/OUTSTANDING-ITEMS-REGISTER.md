@@ -3232,3 +3232,7 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
   setup file regenerated (135 recipes, incl. DR-01..DR-08; still not linked from the cases). Suite 135 cases, no run, no build.
 - Waiting on Chris: questions 39 and 40 (rows 46-47, light green) of the suite's sheet https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ (moved there 20 Oct 2026 under Rule 131; the separate sheet 1OjdCk… was moved to the bin, QA lead 20 Oct); C690660 and C690665 held. The phone-control question was withdrawn as answered by answer 9 and C690662 deleted (QA lead, 20 Oct 2026).
 - SV-11269's v8 acceptance criterion ("that cent goes to the Labor row"): QA lead, 20 Oct 2026: "Leave it for your cases follow the PRD and design". Closed.
+
+### WO Board — 20 Oct 2026 (evening): PRD v69 to v71
+- PRD moved v68 → v71 on 20 Oct 2026 (v69 S1-R15 / S1-R15c, v70 S11-E1 from answer 34, v71 Board View Density hidden for this release (SV-11580), Card size fast follow (SV-11581), "Fields to display" renamed "Column Selection"). Diff: wo-board-tech-view/prd-v71-2026-10-20/PRD-DIFF-v68-to-v71.diff; affected cases: cases-affected-by-v69-v71.json. QA lead to decide full pass or named set (Rule 122). TICKET-SWEEP prd_version_handled stays 64 until then.
+- C97022 rebuilt to the standard on v71 + answer 34, EXPECT FAIL (SV-11582); test T3481960 in run 498 keeps its Failed result.
