@@ -42,3 +42,14 @@ Nothing posted to Jira. No data changed on staging (menus and dialogs were opene
 - TestRail: C682422 "More actions reads Assign lead technician when a work order has no lead", test T4056656 in run 498.
 - sv11570 signed in fine at ~18:12 UTC (v26.40.20-c1e9c1b), then stopped answering (connection closed / no response) from
   ~18:15 UTC. Waiting for it to come back before the live matrix.
+
+## Result — 20 Oct 2026 (QA lead's ruling)
+QA lead, verbatim: "The test has just passed, I have verified it manually. Trust my hudgement. Even though I have marked the
+ticket as blocked for now and sent a question to Chris. But you should consider as passed for the test run result. In teh result
+for the related test case run for thisticket do not put any statement rather just say manually tested and found to be QA passed."
+- Verdict: PASSED, on the QA lead's own manual check (not observed by me — the branch went down before my live matrix ran).
+- Ticket live at 13:31 CDT: Blocked (QA lead's action, question sent to Chris). Not changed by me. No Jira comment posted.
+- TestRail: C682422 was not in run 498 (and test 4056656 returned 400). On the QA lead's choice it was added to run 498 by UNION
+  (287 → 288 tests; all 287 prior test ids kept, 0 status changes; all 1,566 prior results present by id — snapshots
+  run498-before.json / run498-after-sync.json). TestRail re-created it as test 4056656.
+- add_result → result 530491, status Passed, comment exactly "Manually tested and found to be QA passed." Read back: test status 1.
