@@ -1,0 +1,55 @@
+TITLE: Board View and Tech View – Keyboard Focus Is Lost When the Last Filtered Work Order Is Reassigned
+TYPE: Story Defect · PARENT: SV-10054 (Keyboard access and focus; Ready for QA, read live 20 Oct 2026 17:40 UTC) · PRIORITY: Medium · LINK: relates to SV-10054
+ALREADY REPORTED: none. JQL read live 20 Oct 2026: parent = SV-10043 AND created >= -2d → SV-11575 only (Technician filter list, not focus); text ~ "Clear all filters" (30 days) → SV-11099 (search with no results, Done); text ~ "focus" under SV-10043/SV-10044/SV-10054 → SV-11498, SV-11422, SV-11419, SV-11409 (all Done, other moments).
+BASIS: PRD 845185030 version 70 (20 Oct 2026 17:26 UTC), read live 20 Oct 2026 17:3x UTC, S11-E1 (Chris Ward's answer to question 34 of the question sheet: "please log that as a bug against S11-E1").
+SOURCE CHECK (Rule 106): C97022 step 6 Expected still says "focus moves to A's column header"; PRD v70 says Clear all filters for this moment. The build matches NEITHER (focus falls to the page) ⇒ real defect either way; the case text diverges from v70 and is reported, not changed (Rule 114).
+STORY STATUS (Rule 112): SV-10054 Ready for QA — allowed.
+STATUS: HELD — ask the QA lead (Rule 113). Result posted to run 498 as Failed with the ticket held (20 Oct 2026).
+
+h2. Description
+
+*When a keyboard user's move leaves nothing matching the filters, keyboard focus must move to the Clear all filters button of the "No work orders match these filters" message.* On staging the focus is lost: it falls to the page, so the next key does nothing.
+
+For example,
+* the Technician filter is set to one technician and that technician's last work order is reassigned with the keyboard
+* the board is replaced by "No work orders match these filters", but no control has focus and the arrow keys do nothing
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin at *Staging Heavy Duty - 9919*.
+# Make a customer with two *Approved* work orders led by one technician (for example *ZZAUTOTEST Ana Alpha*), and a second technician to move them to.
+# Open *Work Orders*, click the *All* tab and click *Board View*. Type the customer's name in *Search*.
+# Click *Technician* and tick the first technician. Press Escape.
+# Click in *Search*, then press *Tab* until the first card shows a focus ring.
+# Press *Tab* to reach the card's *More actions* (…) button, press *Enter*, choose *Reassign lead technician* with the arrow keys and press *Enter*. Pick the second technician and confirm.
+#* The card leaves the column and the focus ring moves to the remaining card.
+# Do the same for the remaining card.
+#* "No work orders match these filters" shows, but no focus ring is anywhere and the arrow keys do nothing.
+
+*Actual Result:*
+* Keyboard focus is lost to the page after the last work order leaves the result.
+
+*Expected Result:*
+* Focus moves to the *Clear all filters* button of "No work orders match these filters". The PRD says: *"When the focused work order leaves the result (for example after a filter change or a reassignment), focus moves to the next row or card in the same group or column, or to that group or column header when none is left. When the move leaves nothing matching the filters, so the board or table is replaced by the “No work orders match these filters” empty state (S1-N1a), for example moving the last work order of the only technician chosen in the Technician filter, focus moves to its Clear all filters button."*
+
+h2. Screenshots
+
+!C97022-2-column-gone-1020.png|width=1000!
+
+
+h2. Environment
+
+* *Build:* {{v26.40.20-0509710}} on [staging|https://app.staging.shopview.com/workorders] , 20 Oct 2026
+* *Example records:* customer "ZZAUTOTEST F3 Keyboard Focus Kept 40422" (work orders S2-37645 and S2-37646)
+* *User:* Admin
+
+h2. Sources
+
+* PRD "Work Orders — Board View & Tech View Display Options", [Confluence 845185030|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030], version 70 (20 Oct 2026), read 20 Oct 2026, S11-E1:
+{quote}When the focused work order leaves the result (for example after a filter change or a reassignment), focus moves to the next row or card in the same group or column, or to that group or column header when none is left. When the move leaves nothing matching the filters, so the board or table is replaced by the “No work orders match these filters” empty state (S1-N1a), for example moving the last work order of the only technician chosen in the Technician filter, focus moves to its Clear all filters button.{quote}
+* Chris Ward, question sheet "WO Board and Tech View – questions for Chris Ward", question 34, 20 Oct 2026:
+{quote}34. (b). The "No work orders match these filters" empty state shows (S1-N1a), and keyboard focus moves to its Clear all filters button. Focus going to the column header (S11-E1) still applies when a move leaves other work orders on screen. The build drops focus to the page today, so please log that as a bug against S11-E1. PRD v70.{quote}
+
+h2. Test case
+
+* [C97022 Focus returns to the opener and moves on when a focused card leaves|https://shopview.testrail.io/index.php?/cases/view/97022]

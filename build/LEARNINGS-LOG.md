@@ -517,3 +517,8 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Where the QA lead says "mention the block on this ticket in the comment and not in the test case itself": no "Known problem (SV-…)" paragraph and no ticket in `refs` / the marker; the ticket goes in the result comment. Rule 133 still prefixes the title (said so in the report).
 - **Which PO sheet is "the same sheet"?** For WO Board / Tech View the running question sheet for Chris is **https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU** ("Questions on the spec and design", started 14 Oct; numbered 1…34, intro line says which numbers are new on which day). The 19 Oct "design differences" sheet (1coGNz1Z…) is a separate, finished one. I picked the latter from PROJECT-STATE's newest link and the QA lead corrected it — new questions go on the 14 Oct sheet unless he names another.
 #run498 #jira #duplicates #testrail #fr-view #po-questions → L0490, L0486
+
+## L0492 — 2026-10-20 — A PO answer that asks "please log a bug" is not the QA lead's permission
+- Chris answered Q34 on the 14 Oct sheet and wrote "please log that as a bug against S11-E1" (PRD v70 the same afternoon). Jira filing still needs the QA lead's per-ticket yes (Rules 62/113): the test (C97022) was posted Failed with the ticket held, the draft prepared, and the question put to him. The case's own Expected (step 6 "column header") now diverges from v70 — reported, not edited, until he names the case (Rule 114(c)).
+- Owning story for keyboard/focus defects on WO Board: **SV-10054** "Keyboard access and focus" (Ready for QA on 20 Oct) — earlier focus defects (SV-11498, SV-11422, SV-11419) sit under it.
+#run498 #po-ruling #jira #rule113 #rule114 → L0491

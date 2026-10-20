@@ -1,0 +1,17 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.20-0509710", "date": "20 October 2026", "note": "run 498 - C97022 re-judged after Chris answered question 34 (PRD v70)"},
+ "results": {
+  "C97022": {"verdict": "Failed", "failed_steps": "Failed at steps 6 and 7: when the last work order leaves the filtered technician, keyboard focus is lost to the page.", "bold_steps": [6, 7],
+   "ticket": "New report prepared - waiting with the QA lead for permission to file it", "ticket_held": true,
+   "observed": [
+    "Result: Failed on staging. Chris answered the open question (20 Oct): when the move leaves nothing matching the filters, the 'No work orders match these filters' message shows and keyboard focus moves to its Clear all filters button. He asked for the lost focus to be logged as a bug.",
+    "Steps 1 to 3: the card and its More actions button show a focus ring; Escape closes the menu and the reassign window and focus goes back to the button that opened them.",
+    "Step 4: with Technician = A, only A's column shows, holding both work orders; the first card has the focus ring.",
+    "Step 5: after reassigning the first card to B, it leaves the column and the focus ring moves to the next card.",
+    "Step 6: after reassigning the last card, 'No work orders match these filters' shows, but keyboard focus falls to the page: neither a column header nor the Clear all filters button has it.",
+    "Step 7: the next arrow key does nothing; focus is lost.",
+    "Note: this test's expected result for step 6 still says the column header; Chris's answer says the Clear all filters button. The test text has not been changed."],
+   "todo": "Nothing for the tester yet: a new report is with the QA lead. Re-run this test when it is fixed.",
+   "pictures": ["pictures-1019/C97022-1-focus-next-card-1020.png", "pictures-1019/C97022-2-column-gone-1020.png"]}
+ }
+}
