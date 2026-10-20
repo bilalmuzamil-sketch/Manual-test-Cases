@@ -57,6 +57,15 @@ else owes).
 
 ---
 
+## 2026-10-20, ~15:30 UTC. **Six staging tickets re-tested and posted (SV-11541, SV-11498, SV-11454, SV-11422, SV-11326, SV-11119), all PASSED. Staging redeployed twice during the pass (3312e15 → 9c75418 → 0509710).**
+
+| Category | Item | Owner | Blocks | Since |
+|---|---|---|---|---|
+| QUESTION | SV-11326 comment 79133: (1) should deactivated technicians who still have a column be in the Technician list? (2) should the "50-value limit" red line show before anything is ticked? | Chris Ward | Whether the two behaviours are intended; the ticket itself is PASSED (79132) | 20 Oct |
+| GO-AHEAD | TestRail result on run 498 for SV-11119 (test T4062446) and SV-11326 (test 3995736): log Passed with the exhibit? Not written — only test 4054408 (SV-11422) had a recorded go-ahead, and that one is logged (result 530472). | QA lead | The run still shows the older results for those two tests | 20 Oct |
+| DECISION | Old comments to delete if wanted: SV-11407 78932/78933, SV-11119 78986 (each replaced by a new complete PASSED comment, as asked). | QA lead | Nothing; tidy-up only | 20 Oct |
+| OTHER TEAM | SV-11545 (Open): the lock wording ("Invoiced · can't be reassigned") is not on the build yet; noted on SV-11498 and SV-11454 but not counted against them. | Slavcho | The v68 wording in menus, lock icon and refused-move alert | 19 Oct |
+
 ## 2026-10-20, ~08:00 UTC. **SV-10687 tested on sv10687 (v26.40.19-edfe7b0): every work-order and payment flow in the handoff passes except the portal payment, which could not be run. Nothing posted yet.**
 | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|
