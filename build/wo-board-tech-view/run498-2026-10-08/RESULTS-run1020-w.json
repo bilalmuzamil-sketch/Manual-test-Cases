@@ -1,0 +1,14 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.20-0509710", "date": "20 October 2026", "note": "run 498 - retest after SV-11326 was fixed"},
+ "results": {
+  "C581917": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging by the test's steps; the Technician filter now exists (SV-11326 is Done).",
+    "Set-up: WO-1 led by Esther Howard and WO-2 led by Ralph Edwards for customer A; WO-3 led by Esther for customer B; none is assigned to the signed-in user.",
+    "Step 1: searching customer A and choosing Esther Howard shows only WO-1.",
+    "Step 2: Assigned to me on shows 'No work orders match these filters', 'Try removing a filter to widen your results.' and Clear all filters.",
+    "Step 3: Assigned to me off brings WO-1 back; search and Esther Howard are kept.",
+    "Step 4: Status = Paid shows the same no-match message, text and button.",
+    "Step 5: Clear all filters clears Technician and Status; the search stays, and WO-2 (Ralph Edwards) is visible again, with WO-1."],
+   "pictures": ["pictures-1019/C581917-1-only-wo1-1020.png", "pictures-1019/C581917-3-paid-no-match-1020.png", "pictures-1019/C581917-2-after-clear-wo2-1020.png"]}
+ }
+}
