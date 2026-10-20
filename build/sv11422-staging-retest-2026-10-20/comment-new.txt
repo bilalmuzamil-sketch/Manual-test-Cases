@@ -1,0 +1,33 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Re-tested on Staging on 20 October 2026 on build v26.40.20-9c75418, and again on the current build v26.40.20-0509710 for checks 1 and 4, against the spec (version 69; the rule below reads the same as in version 68), signed in as Admin, window 1440 x 900 px, zoom 100%.
+* The one remaining piece from Chris's comment 79047 is fixed. In Tech View, when the first Tab goes to a work order further down the list, the row now sits just below its technician's heading, fully visible, with its blue focus ring. No arrow key is needed.
+* Board View still lands on the card with its blue focus ring.
+* With this, SV-11422 is QA passed. The other checks from my comment of 19 October (79031) were not repeated; Chris asked for this case only.
+
+*Before and after*
+!sv11422-01-first-tab-before-after.png|width=900,height=1118!
+_BEFORE: Staging build v26.40.19-c850386, 19 October, search S2-16688, first Tab: the focus was on the row but the "Brandi Smith" heading covered it. AFTER: Staging build v26.40.20-9c75418 today (same result on v26.40.20-0509710), the same search, first Tab only. Green box: the S2-16688 row sits just below the heading, fully visible, with its blue focus ring._
+
+*What I tested today*
+||#||Check||Status||
+|1|Tech View, search {{S2-16688}}, Compact, Regular and Comfortable: after the first Tab the list scrolls down to the "Brandi Smith" heading and the S2-16688 row sits just below it, fully visible, with the blue focus ring. Nothing covers any part of the row.|PASSED|
+|2|Tech View, the same check with two work orders much further down the list ({{S2-35560}} and {{S2-37560}}), at all three spacings: same result.|PASSED|
+|3|Tech View, before the Tab: "Unassigned" shows 0 work orders and S2-16688 is off the screen, further down. The focus ring never lands on the "Unassigned" heading.|PASSED|
+|4|Board View, search {{S2-16688}}, two fresh page loads: the board scrolls sideways to Brandi Smith's column and the S2-16688 card has the blue focus ring, fully on the screen. The ring is not on the "Unassigned" column heading.|PASSED|
+
+Note: Brandi Smith was pinned on the Admin account, which puts her group near the top so nothing needs to scroll. For checks 1 and 4 I unpinned her so her group sat far down the page, as in the original report, and pinned her again afterwards.
+
+*Where the expected result comes from*
+Spec "Work Orders — Board View & Tech View Display Options", version 69:
+{quote}S11-R1: ... the focused row or card shows a visible focus ring.{quote}
+Chris Ward in this ticket (19 October, comment 79047): "not acceptable: the user has to be able to see which row they're on."
+
+*How to see it yourself*
+# Open Staging: https://app.staging.shopview.com, sign in as Admin and click {{Work Orders}}, then the {{All}} tab (top left).
+# In the {{Search}} box above the list type {{S2-16688}}.
+# On the right of that bar click the middle view button, {{Tech View}} (a person icon).
+# Click once in the {{Search}} box, then press *Tab* until the focus moves into the table.
+# The list scrolls down and the {{S2-16688}} row sits just below the "Brandi Smith" heading with a blue ring around it. If Brandi Smith is pinned on your account her group is near the top; try {{S2-35560}} instead, which is much further down.

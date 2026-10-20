@@ -18,3 +18,8 @@ Checks 3–9 of 79031 were not re-run (Chris asked for this case only); stated i
 - TestRail run 498 test 4054408 (case 682421): **result 530472 Passed** + attachment 1000035840 (the exhibit). Results 1549 → 1550, 0 missing, 0 changed by id (`testrail/run498-results-*.json`). Test status 5 → 1.
 - Admin prefs: saved full, Brandi Smith unpinned only during two runs, restored byte-identical (`restore 200 identical true` both times). Location restored to what it was (QB Location at the time).
 - Not touched: C614719 / test 4007027 (QA lead 19 Oct: "Leave it as is").
+
+## Correction (QA lead, 20 Oct): old comment restored, new comment posted
+- 79031 restored via v2 PUT to the exact pre-edit text saved in `comment-79031-live.txt` (5846 chars, byte-identical on read-back, its 2 original images).
+- New comment **79136** (PASSED): today's checks; S2-16688 re-run on the current build v26.40.20-0509710 (Brandi unpinned, row 244–280 / 252–300 / 264–328, scroll 1728 / 2208 / 2880, ring, nothing covering it; Board card x 1149 with ring, 2 loads). Spec v69 (S11-R1 unchanged). Admin prefs restored identical.
+- Standing Rule 112 added.

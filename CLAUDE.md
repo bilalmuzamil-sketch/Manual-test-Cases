@@ -5555,6 +5555,15 @@ deliver the 7-tab management report.
     C-id still lives in TestRail write logs, id-maps and committed findings, where it is the record of which case was
     written. Ties to Standing Rules 8, 34, 47 and 72 (the pre-post gate checks reports use test links).
 
+112. **A RE-TEST ON A LATER DAY GETS ITS OWN NEW COMMENT — NEVER EDIT AN OLDER QA COMMENT TO CHANGE ITS VERDICT (all projects).**
+    USER DIRECTIVE (2026-10-20, verbatim): *"Keep the older comment as it was before you editted that and add a new comment with what you TEST today with your findings and if that is NOW qa passed or not. You shoud have not edited the older comment"*.
+    **THE RULE:** an older QA-result comment is the record of what was found on that build and that day. When a ticket is re-tested later
+    (a fix lands, the build moves, the PO answers), **post a NEW comment** that opens with the verdict as it stands NOW and says what was
+    tested today, on which build, and whether the ticket is NOW QA passed. **Leave the old comment exactly as it was.** Rule 100's dated
+    edit note is for correcting a mistake in a comment on the same pass (a wrong figure, a missing step), never for turning an old FAILED
+    or PARTIALLY PASSED into today's PASSED. If an old comment was edited by mistake, restore it byte for byte from the saved text and
+    verify it. Ties to Rules 72, 90, 97, 100.
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
