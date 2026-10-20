@@ -2,6 +2,18 @@
 
 **Created:** 2026-09-23 · **PO / spec owner:** Sasha Grosman · **Status:** ACTIVE — source-verified authoring complete, not yet build-verified.
 
+## 🟢 CURRENT STATE — 20 Oct 2026 (morning)
+
+- **PRD:** Confluence 845185030 **v68** (19 Oct 2026 19:44 UTC, Chris Ward; carries his answers to the design-difference sheet). Saved `prd-v68-2026-10-19/`, diff v66→v68 read in full. `TICKET-SWEEP.json` still says handled 64: 18 cases from the v65/v66 list are not yet re-checked (`sweep-2026-10-20/v65-v66-cases-not-yet-updated.json`), waiting for the QA lead (full or named set).
+- **Chris's 19 answers** (sheet 1coGNz1Z…): all recorded (`chris-answers-2026-10-19/`); register rows PO-RULED; `spec_to_design_check.py` passes on v68.
+- **Cases (19–20 Oct):** 41 corrected to v68 + C368167 quote; C682436 released; C682429–C682435 deleted (copies in `chris-answers-2026-10-19/apply/deleted/`); C682445 (SV-11119) and C682446 (SV-11087) created with ticket footers; design titles "Design:" (before 19 Oct) / "Design- " (19 Oct) — Rule 117 twelfth amendment.
+- **Fast-follow (20 Oct, Chris Ward on Slack https://shopview.slack.com/archives/C0C41RV3T3L/p1792455057423139):** 27 cases blocked on SV-11522/SV-11524 in TestRail section **87347 "Fast-follow"**, out of run 498; 16 release copies C690642–C690657 in run 498 (`fast-follow-2026-10-20/`).
+- **SV-11429 (work order page lists stop at ~100 names):** C368159, C368169, C368171, C368173 converted to the two-audience layout and freed from it (technicians named "AA ZZAUTOTEST …"; `sv11429-simplify-2026-10-20/`). C368169 and C368171 still in section 55300 "Not runnable for now".
+- **Run 498:** 286 tests.
+- **Ticket ledger:** 97/97 tickets (`ticket_sweep.py` 0 unhandled; PRD flag stays until the 18 cases are checked). New 19 Oct: SV-11545 (lock wording) → C96964, C590121, C97020; SV-11546 (view-only note) → C96967, C368147; marking them EXPECT FAIL waits for the QA lead.
+- **Daily sweep routine** trig_01KGYhRrGdEXnCrqjfrhYPKL (08:51 PKT weekdays) runs until the QA lead says the squad has closed.
+- **Waiting for the QA lead:** EXPECT FAIL for the 5 cases above; the 18 cases; moving C368169/C368171; "AA ZZAUTOTEST" in P-TECH; telling Vlad (Automated cases changed: 14 on 19 Oct, 9 moved to Fast-follow, C368173); two locations for C682436.
+
 ## 🟢 19 Oct 2026 (evening): SV-11522/SV-11524, Rules 129/130
 - New cases C682422–C682428 (SV-11522/11524, PRD v66) and C682437–C682440 (tickets SV-11402, SV-11409, SV-11430, SV-11467); run 498 = 294.
 - Held design-version cases C682429–C682436 (section 73780, not in the run) for 16 open design differences; register `DESIGN-DIVERGENCE-REGISTER.json`;

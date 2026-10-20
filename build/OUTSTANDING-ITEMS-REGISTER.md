@@ -3217,3 +3217,9 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
 - Confirm or cover the 10 tickets the sweep flags (ledger `build/wo-board-tech-view/TICKET-LEDGER.json`).
 - PO question for Chris Ward: PRD v66 messages table and Story 4 example still use the old toast words.
 - 19 Oct 2026 (later): design-differences sheet for Chris Ward ready, not sent (18 questions): https://docs.google.com/spreadsheets/d/1coGNz1ZNj1GiFA4rS7pt9nwKsNgE8bCLpuutygK4iQs. Daily WO sweep routine trig_01KGYhRrGdEXnCrqjfrhYPKL: stop when the QA lead says the squad has closed. Footers on SV-11402/11409/11430/11467 not added (others' tickets; ask first).
+
+### WO Board — 20 Oct 2026
+- EXPECT FAIL for C96964, C590121, C97020 (SV-11545) and C96967, C368147 (SV-11546): waiting for the QA lead.
+- 18 cases from the PRD v65/v66 list not yet re-checked against v68 (`wo-board-tech-view/sweep-2026-10-20/`): full or named set? Dialog ones (C590129, C368163, C96974, C97032) may belong in Fast-follow.
+- C368169 / C368171 back to their story folders? "AA ZZAUTOTEST" names in P-TECH? Tell Vlad (when the QA lead says). C682436 needs two locations.
+
