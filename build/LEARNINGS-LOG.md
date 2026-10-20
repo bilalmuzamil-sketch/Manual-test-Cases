@@ -1006,3 +1006,10 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - `push_results_to_run.py`: new fields `failed_steps` (bold first line) and `bold_steps` (step numbers whose bullets, plus "Result:", are bolded); a non-Passed result without `failed_steps` is REFUSED (proved with a deliberate failing dry-run). Self-test check 7c2 added; selftest 33/33 before→after (32 before + the new one).
 - An API-posted `<a>` in a result comment renders as a link (shown-api-link-529847.png), so `<strong>` posted by the tool is expected to render too — confirm on the first post (screenshot), as the case-field literal-tag trap is about case fields, not results.
 #rule132 #results #tooling → L0475
+
+## L0477 — 2026-10-20 — Staging sign-in expired overnight; the 22-test batch is queued and waits only on fresh cookies
+- 20 Oct ~03:20 UTC: every saved staging sign-in (Admin `staging-full.json`, `staging-analyst1.json`, the SSO files) answers `401 {"error":"sso_required"}` on `/api/auth/me` and `/api/quick-login`; the boot lands on accounts.google.com twice. Staging has no password sign-in → only the QA lead can renew it: THREE cookies `SV_SSO_SESSION`, `PHPSESSID`, `CF_CLEARANCE` into `/tmp/shopview/app.env` (STAGING-READY.md step 1) and the Admin JSON in `/tmp/qa-cookies/`.
+- The 16 "(release)" tests C690642–C690657 are copies of C96963, C96973, C97002, C97007, C97008, C97009, C97028, C154889, C368133, C368135, C368136, C368140, C368144, C581891, C581892, C581893 — each leaves out only the lead-change MESSAGE (fast-follow SV-11522/SV-11524, Chris Ward, Slack 20 Oct). Their originals' scripts run them with ONLY=… : queue `run498-2026-10-08/run-1020/queue-1020.txt`.
+- New script `new6-1020.mts` covers C682421, C682436 (after `c6824-held.mts ONLY=C682436` makes the two locations), C682437, C682438, C682445, C682446.
+- QA lead 20 Oct: for this batch's failures, create the Story Defect if none exists and put "Follow the status here <link>" on the result (his go-ahead for these failures; still check for an existing ticket first).
+#staging #signin #run498 #release → L0476, L0393
