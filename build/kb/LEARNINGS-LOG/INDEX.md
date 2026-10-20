@@ -387,3 +387,60 @@
 - L0363 — 2026-10-15 — Wave 16: a cookies-only second window is signed out on staging; the loading bar element proves no paging
 - L0364 — 2026-10-15 — Wave 17: read the shop setting before judging a "not blocked", read a line's audit on its own screen, frame the row you cite
 - L0365 — 2026-10-15 — A background watcher dies at two hours; plan the night around check-ins, not around the watcher
+
+## build/kb/LEARNINGS-LOG/006-L0366-L0420.md
+- L0366 — 2026-10-15 — Wave 18: judge from json-before-passN, photograph the right window, call toasts(p)
+- L0367 — 2026-10-15 — Two machine restarts during the same script: skip it, guard memory, resume — and write down how to resume
+- L0368 — 2026-10-15 — A page that never answers must not be awaited without a limit: cap every in-page read, count reloads, add a watchdog
+- L0369 — 2026-10-15 — The work order page's Lead Technician list holds 100 people: type the name into the field, never scroll for it
+- L0370 — 2026-10-15 — CORRECTION to L0367: the restarts are the environment's, not the script's — recover with one command
+- L0371 — 2026-10-15 — "Switching back" to Heavy Duty never took because the helper clicked the "Change Location: …" row
+- L0372 — 2026-10-15 — (Being tested) The container is reclaimed when the session is idle: keep check-ins under 10 minutes
+- L0373 — 2026-10-15 — An asset page is /customers/vehicle/<id>; the customer's own Assets tab is /customers/<id>/vehicles
+- L0374 — 2026-10-15 — Staging Schedule drops land 15 minutes early; every staff pick list stops at 100 names
+- L0375 — 2026-10-15 — "Click outside" at a fixed point can open a dialog; and a GA reading must keep every user id, not the first
+- L0376 — 2026-10-15 — "Just below a row" must be inside the row when that row ends its group
+- L0377 — 2026-10-15 — Long location names are cut short in the picker; a name prefix matched an old run's Schedule block; hold the block while scrolling
+- L0378 — 2026-10-15 — Every time a pass is added, check where the sign-out test is: it must be in the LAST plan only
+- L0379 — 2026-10-15 — Never switch users while a "view as" window is open; a page set behind the screen is not the screen's location
+- L0380 — 2026-10-15 — QA lead ruling: a distinct finding met along the way gets its OWN Story Defect
+- L0381 — 2026-10-15 — A hung script costs its whole timeout: spot it by log age and CPU, kill only its `timeout`, re-queue
+- L0382 — 2026-10-15 — A production read inside a staging script needs its own limits: the 90 s default × nested loops hung for 17 minutes
+- L0383 — 2026-10-15 — Open a Schedule block to prove it is yours before dragging it; the Schedule drop snaps down to the quarter
+- L0384 — 2026-10-15 — A running pass reads its PLAN once, but loads each SCRIPT only when its line starts
+- L0385 — 2026-10-15 — `pgrep -f <name>` counts the shell that runs it: count waiters with a bracketed `ps` pattern
+- L0386 — 2026-10-15 — A short production list cannot answer "does production have the same list limit?": read the request's limit instead
+- L0387 — 2026-10-15 — I told the QA lead "typing does not narrow the list" before anyone looked at the field in the picture
+- L0388 — 2026-10-15 — A list's size cap need not be in the request: compare the request AND say what it cannot prove
+- L0389 — 2026-10-15 — Before drafting a ticket for a failed design test, read the reports the case itself says it covers
+- L0390 — 2026-10-15 — QA lead ruling: every ticket we reopen or file for this suite carries the label `board-tech-view`
+- L0391 — 2026-10-15 — `recover.sh` hung after a container restart: its relay check `curl` had no time limit
+- L0392 — 2026-10-15 — Production's work-order list holds only the ACTIVE location's work orders: switch to the record's location first
+- L0393 — 2026-10-15 — Staging's sign-in ends within about two hours; "no DEV MODE Admin button" was Google's sign-in page
+- L0394 — 2026-10-15 — One staging Google sign-in holds ONE app session at a time; the Staff page is /administration/staff
+- L0395 — 2026-10-15 — Staging HAS a second company: the QA lead's "Analyst 1" login (bilal.muzamil+dako) reaches it
+- L0396 — 2026-10-15 — The technician lists stop at 100 because the server pages at 100; a list's absence is proved from the full source
+- L0397 — 2026-10-15 — A Jira attachment upload needs the same Origin/Referer/User-Agent headers as jira.sh, and goes BEFORE the comment that shows it
+- L0398 — 2026-10-16 — A scheduled check-in fires into a reclaimed container; and "not_authenticated" (not "sso_required") means the Google sign-in still works
+- L0399 — 2026-10-16 — The staging test account's location DRIFTS between runs; check it before every test
+- L0400 — 2026-10-16 — A scripted Schedule drop cannot judge a start time; and the location field can already read the target
+- L0401 — 2026-10-16 — Read the build with build-marker.mts (wob-run hides /api/version); recount the run before reporting, other sessions change it
+- L0402 — 2026-10-16 — Run 498 re-runs on v26.40.18: queue waiters, Tech View traps, and staff vs account names on staging
+- L0403 — 2026-10-16 — Re-read the PRD before filing a held draft: a version bump can turn a "defect" into the product being right
+- L0404 — 2026-10-16 — Two different Google sign-ins = two staging sessions that can run at the SAME time
+- L0405 — 2026-10-16 — Unblocking run 498 (batch 40): exact Schedule drops, the line's own Audit log, two-person tests, a clean company
+- L0406 — 2026-10-16 — "Deleted user" labor exists in the Analyst 1 company (S1-3); company A cannot make it; a card pill check waits on SV-11405
+- L0407 — 2026-10-16 — Check whether the Admin and Analyst 1 cookies share ONE Google sign-in before planning parallel sessions
+- L0408 — 2026-10-16 — Finding the script that judged a test, a case's old wording, and an empty location for run 498
+- L0409 — 2026-10-16 — Keyboard scripts for PRD v61 (one Tab stop per view), and a status pill's red count has no seed recipe
+- L0410 — 2026-10-16 — Before a long run: hold the sign-out step, and delete check-ins that would start it twice
+- L0411 — 2026-10-16 — On a long run, post results as steps finish: the QA lead sees TestRail, not our logs
+- L0412 — 2026-10-16 — Judging a long staging queue as it runs: where the readings are, and four script traps seen in run 498
+- L0413 — 2026-10-17 — One script landing on Google's sign-in page is not proof the staging sign-in expired
+- L0414 — 2026-10-17 — A message to a helper that has finished RESUMES it: pick one judge before sending, or results get posted twice
+- L0415 — 2026-10-17 — Run 498 fix-up: what the eleven script faults taught (fixup-1017.mts, fixup-1017.txt, run-fixup-1017.sh)
+- L0416 — 2026-10-17 — A wait-loop on a resumed queue log must read only the recent lines
+- L0417 — 2026-10-17 — Run 498 fix-up 2: six script faults, and what each one teaches (fx6-1017.mts, fixup-1017.txt "C-fix2" lines)
+- L0418 — 2026-10-17 — Reading a run's history: what a full re-run's posts did to earlier verdicts (run 498)
+- L0419 — 2026-10-17 — A background wait-loop is cut at 30 minutes unless it is given a timeout
+- L0420 — 2026-10-17 — Run 498 steps 61-68: one test's leftover state blocks the next four, and three reading traps
