@@ -1,0 +1,141 @@
+-Epic
+-https://shopview.atlassian.net/browse/SV-10890
+-Owner
+-@Chris Ward
+-Status
+-Ready for tech plan - 2026-10-14
+-Design
+-https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm
++---  ---
++Epic  [SV-10890](https://shopview.atlassian.net/browse/SV-10890)
++Owner  @Chris Ward
++Status  Ready for tech plan - 2026-10-14
++Design  <https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm
++---
+-- Every existing customer keeps its one sales representative and is not split, so the customer page reads as before (S4-E1). One wording changes: a customer with no representative reads "Unassigned" instead of "N/A" (S4-R19).
++- Every existing customer keeps its one sales representative and is not split, so the customer page reads as before (S4-E1). The exception is about 10 customers whose representative is no longer a user of the shop: they read "Unassigned". One wording changes: a customer with no representative reads "Unassigned" instead of "N/A" (S4-R19).
+-- Each user's saved column choices and sort on Sales By Representative reset once to the defaults. A saved link that narrowed Sales By Representative by Product Type opens with every Sales Type selected.
++- Each user's saved column choices and sort on Sales By Representative reset once to the defaults. The "Sales Rep Assignments" export is renamed "Sales Representative Assignments" (S4-R23). A saved link that narrowed Sales By Representative by Product Type opens with every Sales Type selected.
+-Design: Splitting Sales Representatives design canvas, page 1
+-Jira: SV-11265
++Design: [Splitting Sales Representatives design canvas](https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 1
++Jira: [SV-11265](https://shopview.atlassian.net/browse/SV-11265)
++- S1-R6a: A Lead Technician message shows directly below the Lead Technician field and pushes the fields under it down while it shows. With no message, the gaps are as in S1-R6.
+-Context note: before this change Lead Technician reserved a 20px strip for messages under itself, so the gap to Service Advisor measured 36px while the others measured 16px. S1-R6 makes every gap 16px.
++- S1-E3: A side whose staff member no longer exists, or belongs to another organization, reads "Unassigned" on the card, as on the printout (S6-N1). It never reads a bare "(Inactive)".
+-Design: Splitting Sales Representatives design canvas, page 1
+-Jira: SV-11266
++Design: [Splitting Sales Representatives design canvas](https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 1
++Jira: [SV-11266](https://shopview.atlassian.net/browse/SV-11266)
+-- S2-R17: Once the work order is invoiced or paid, or when it is opened from its history, each field is plain text with the same label and wording, with no + or remove x. A work order with both fields shows both labels with their names.
++- S2-R17: Once the work order is invoiced or paid, or when it is opened from its history, each field is plain text with the same label and wording, with no + or remove x. A work order with both fields shows both labels with their names. On the read-only card only the Sales Representative fields read as in S1-R2 and S2-R5; Lead Technician and Service Advisor keep today's read-only labels.
+-- S2-N2: A part sale's card has no + button. A part sale keeps one Sales Representative field.
++- S2-N2: A part sale's card has no + button. A part sale keeps one Sales Representative field, exactly as Part Sales Update v1 builds it: its label stays "Sales representative" and its look and behavior do not change.
++- S2-E6: When the same work order is open in two places and one adds the Parts field while the other, still showing the one field, then picks a person, the later save wins: the work order ends with the one Sales Representative field holding the person picked last, and the Parts field is gone. Each screen shows what was saved once its save finishes.
+-Design: Splitting Sales Representatives design canvas, page 6
+-Jira: SV-11267
++Design: [Splitting Sales Representatives design canvas](https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 6
++Jira: [SV-11267](https://shopview.atlassian.net/browse/SV-11267)
+-Design: Splitting Sales Representatives design canvas, page 2
+-Jira: SV-11268
+-Prerequisites
+-- User has 'Customers — Create & Edit' enabled, or 'Work Orders — Create & Edit' when the New Customer window is opened from the work order window, as today.
++Design: [Splitting Sales Representatives design canvas](https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 2
++Jira: [SV-11268](https://shopview.atlassian.net/browse/SV-11268)
++Prerequisites
++- User has 'Customers — Create & Edit' enabled, or 'Work Orders — Create & Edit' when the New Customer window is opened from the work order window, as today, or 'Part Sales — Create & Edit' when it is opened from a part sale.
+-- S4-R3: Its dropdown starts with "Unassigned", followed by every staff member whose Sales Representative switch is on and whose account is active, sorted by first name, then last name, A to Z, as on the work order (S1-R8). Every one of them is listed, however many there are. It has no search box (S1-R12).
++- S4-R3: Its dropdown starts with "Unassigned", followed by every staff member whose Sales Representative switch is on and whose account is active, sorted by first name, then last name, A to Z, as on the work order (S1-R8). Every one of them is listed, however many there are. It has no search box (S1-R12). The same list shows when the New Customer window is opened from a part sale by a user who can create part sales but not customers.
+-- S4-R20: Deactivating a staff member's account removes them from every customer field they hold. The customer's other fields keep their people. A Part Sales field where they were picked is removed, so new part sales follow again (S4-R26).
+-- S4-R21: The warning shown before deactivating a sales representative counts every customer where they are in the first field, Service Parts or Part Sales, and counts each customer once.
++- S4-R20: Deactivating a staff member's account removes them from every customer field they hold. The customer's other fields keep their people. A Part Sales field where they were picked is removed, so new part sales follow again (S4-R26). Reactivating the account does not put them back.
++- S4-R21: The Deactivate window, shown before deactivating a sales representative's account, counts every customer where they are in the first field, Service Parts or Part Sales, counting each customer once, and reads "They will be removed as sales representative from {n} customer{s}.", with "customer" when {n} is 1 and "customers" otherwise, in place of today's "Their customer assignments will stay where they are." The "Turn Off Sales Representative" warning, shown when the Sales Representative switch is turned off, does not change and shows no count (S4-N2).
+-- S4-R23: The Sales Representative Assignments export lists one row per customer per person, with a column, Side, after "Representative is active?". The one representative of a customer that is not split reads "Parts and Service". A split customer lists "Service Labor" and "Service Parts". "Part Sales" is listed for the person in an added Part Sales field, split or not. A person in more than one field of one customer gets one row listing them in window order, separated by ", ", for example "Parts and Service, Part Sales".
++- S4-R23: The "Sales Representative Assignments" export, file sales-representative-assignments.csv, lists one row per customer per person, with a column, Side, after "Representative is active?". The one representative of a customer that is not split reads "Parts and Service". A split customer lists "Service Labor" and "Service Parts". "Part Sales" is listed for the person in an added Part Sales field, split or not. A person in more than one field of one customer gets one row listing them in window order, separated by ", ", for example "Parts and Service, Part Sales".
+-- S4-N2: Turning off a staff member's Sales Representative switch, without deactivating their account, leaves them in the customer fields they hold, as today.
++- S4-N2: Turning off a staff member's Sales Representative switch, without deactivating their account, leaves them in the customer fields they hold, as today. In Edit Customer and on the customer page their name reads followed by "(Inactive)", for example "Elliot Brennan (Inactive)", as on the work order (S1-E2). They are not offered in the dropdown, so no option is checked while they hold the field.
+-- S4-E1: On release day every existing customer has the one "Sales Representative" field, with no Service Parts or Part Sales field, and keeps its one representative, so the customer page and every invoice read exactly as before, except that an empty field reads "Unassigned" instead of "N/A".
++- S4-E1: On release day every existing customer has the one "Sales Representative" field, with no Service Parts or Part Sales field, and keeps its one representative, so the customer page and every invoice read exactly as before, except that an empty field reads "Unassigned" instead of "N/A". About 10 customers whose representative is no longer a user of the shop are the exception: they read "Unassigned".
+-Design: Splitting Sales Representatives design canvas, page 4
+-Jira: SV-11269
++Design: [Splitting Sales Representatives design canvas](https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 4
++Jira: [SV-11269](https://shopview.atlassian.net/browse/SV-11269)
+-- S5-R6: Whole-invoice fees and discounts are shared between the Labor and the Parts rows in proportion to each side's labor or parts dollars after that side's line fees and discounts, measured by size whatever their sign. The adjustment that stops a non-taxable discount from taking the subtotal below zero is a whole-invoice amount and is shared the same way. Example: labor $600.00, parts $400.00, shop supplies $30.00, whole-invoice discount ($50.00). The Labor row gets $30.00 supplies and ($30.00); the Parts row gets ($20.00). Subtotals $600.00 and $380.00 add up to $980.00.
+-- S5-R7: A cent left over by rounding the share goes to the Labor row.
+-- S5-R8: A whole-invoice amount on an invoice with no labor and no parts dollars goes to the labor representative. If the labor side is empty and the parts side is not, it goes to the parts representative. If both are empty, it is Unassigned.
++- S5-R6: Whole-invoice fees and discounts are shared between the Labor and the Parts rows in proportion to each side's labor or parts dollars after that side's line fees and discounts, measured by size whatever their sign. The adjustment that stops a non-taxable discount from taking the subtotal below zero is a whole-invoice amount and is shared the same way. Example: labor $600.00, parts $400.00, shop supplies $30.00, whole-invoice discount ($50.00). The Labor row gets $30.00 supplies and ($30.00); the Parts row gets ($20.00). Subtotals $600.00 and $380.00 add up to $980.00. Each row shows its share in its Adjustments column.
++- S5-R7: The Parts row's share is rounded to the nearest cent and the Labor row gets the rest, so the two shares always add up to the whole amount. On an exact half cent the Labor row gets the extra cent. Example: labor $100.00, parts $200.00, whole-invoice discount ($1.00): Parts ($0.67), Labor ($0.33).
++- S5-R8: A whole-invoice amount on an invoice with no labor and no parts dollars goes to the labor representative. If the labor side is empty and the parts side is not, it goes to the parts representative. If both are empty, it is Unassigned. A side is empty when it has no representative.
+-- S5-R15: On a Labor row the parts columns show a dash, and on a Parts row the labor, hours and Shop Supplies columns show a dash, not $0.00. $0.00 is shown only for a real zero.
+-- S5-R15a: On a Part Sales row, Shop Supplies shows the part sale's shop supplies, or a dash when it has none.
++- S5-R15: On a Labor row the parts columns show a dash, and on a Parts row the labor, hours and Shop Supplies columns show a dash, not $0.00. $0.00 is shown only for a real zero. A row that holds both sides, one person on both, keeps the report's rule that an invoice with no labor shows Labor Delta 0.0.
++- S5-R15a: On a Part Sales row, Shop Supplies shows the part sale's shop supplies, or a dash when the part sale has no shop supplies charge. $0.00 shows only when a shop supplies charge of $0.00 is on it.
+-- S5-R19: An invoice row carries a "Sales Type" column, after Status, reading "Labor", "Parts", "Part Sales" or "Labor, Parts".
++- S5-R19: An invoice row carries a "Sales Type" column, after Status and before Location (Status, Sales Type, Location), reading "Labor", "Parts", "Part Sales" or "Labor, Parts".
+-- S5-R23: The Expanded CSV and the Expanded PDF always carry the Sales Type column, after Status, whatever the screen shows. In them, the cells of the side a row is not credited with are blank in the CSV and show a dash in the PDF.
++- S5-R23: The Expanded CSV and the Expanded PDF always carry the Sales Type column, after Status and before Location, whatever the screen shows. In them, the cells of the side a row is not credited with are blank in the CSV and show a dash in the PDF.
+-Design: Splitting Sales Representatives design canvas, page 1
+-Jira: SV-11270
++Design: [Splitting Sales Representatives design canvas](https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 1
++Jira: [SV-11270](https://shopview.atlassian.net/browse/SV-11270)
++Context note (S6-N1, S1-E3, S7-R6): a staff record stops existing only through a data repair; ShopView offers no way to delete one. Developers check these cases; manual QA cannot set them up.
+-Jira: SV-11271
++Jira: [SV-11271](https://shopview.atlassian.net/browse/SV-11271)
+-- S7-R1: Each change to a work order's representatives, including adding or removing the Parts field, writes one log entry, "Sales representative changed".
++- S7-R1: Each change to a work order's representatives, including adding or removing the Parts field, writes one log entry, "Sales representative changed". Adding the Parts field with the same person on both sides is a change and writes one entry, for example "Sales Representative: Ann Able → Ann Able (Parts) · Ann Able (Labor)".
+-- S7-R4: A change that leaves the representatives as they were writes no entry.
++- S7-R4: A change that leaves the representatives as they were writes no entry. For example, picking the person already in the field.
++- S7-R6: A side whose staff member no longer exists, or belongs to another organization, reads "Unassigned" in the entry, as on the card (S1-E3).
+-Design: Splitting Sales Representatives design canvas, pages 4 and 5
+-Jira: SV-11272
++Design: [Splitting Sales Representatives design canvas](https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), pages 4 and 5
++Jira: [SV-11272](https://shopview.atlassian.net/browse/SV-11272)
+-- S8-R4: The filter line at the top of every PDF and CSV export of Sales By Representative reads the same: "Sales Type: All", or the selected names. With no option selected there is nothing to export: Export shows "Empty export" and makes no file.
++- S8-R4: The filter line at the top of every PDF and CSV export of Sales By Representative reads the same: "Sales Type: All", or the selected names. With no option selected there is nothing to export: Export shows "Empty export" and makes no file. Any other export with no rows, for example a date range with no invoices, still downloads a file with the headings and no rows, as today.
+-- S8-R9: The filter line at the top of every PDF and CSV export of Sales By Customer reads "Sales Type: All Sales", "Sales Type: Part Sales only", or "Sales Type: Service Sales only". With no option selected, Export shows "Empty export" and makes no file.
++- S8-R9: The filter line at the top of every PDF and CSV export of Sales By Customer reads "Sales Type: All Sales", "Sales Type: Part Sales only", or "Sales Type: Service Sales only". With no option selected, Export shows "Empty export" and makes no file. Any other export with no rows still downloads a file with the headings and no rows, as today.
+-- S8-E1: A Sales By Customer filter choice remembered from before the release opens with the same options selected, under the new names.
++- S8-E1: A saved or bookmarked Sales By Customer link from before the release that carries a Product Type choice opens with the same options selected, under the new names. Report filters are kept in the page link, not saved between visits.
+-Trigger
+-Message
+-Behavior
+-Nobody in a field
+-"Unassigned"
+-In the field; "Unassigned" is checked in its dropdown
+-A person who is no longer a sales representative
+-"(Inactive)" after the name
+-In the work order field
+-The + button
+-"Add representative"
+-Tooltip on hover
+-The + menu
+-"Sales Representative - Parts" (work order); "Sales Representative - Service Parts" and "Sales Representative - Part Sales" (customer)
+-Menu options; only fields not yet added are listed
+-The remove x
+-"Remove Sales Representative - Parts" (work order); "Remove Sales Representative - Service Parts", "Remove Sales Representative - Part Sales" (customer)
+-Tooltip on hover
+-A non-representative sent by another route
+-"The selected staff member is not a sales representative."
+-Error message; the field returns to the saved value
+-A change sent by another route to an invoiced or paid work order
+-"The sales representative cannot be changed on an invoiced or paid work order."
+-Error message; the field returns to the saved value
+-A change that cannot be saved
+-The server's error message
+-Error message; the field returns to the saved value
++Trigger  Message  Behavior
++---  ---  ---
++Nobody in a field  "Unassigned"  In the field; "Unassigned" is checked in its dropdown
++A person who is no longer a sales representative  "(Inactive)" after the name  In the work order field
++The + button  "Add representative"  Tooltip on hover
++The + menu  "Sales Representative - Parts" (work order); "Sales Representative - Service Parts" and "Sales Representative - Part Sales" (customer)  Menu options; only fields not yet added are listed
++The remove x  "Remove Sales Representative - Parts" (work order); "Remove Sales Representative - Service Parts", "Remove Sales Representative - Part Sales" (customer)  Tooltip on hover
++A non-representative sent by another route  "The selected staff member is not a sales representative."  Error message; the field returns to the saved value
++A change sent by another route to an invoiced or paid work order  "The sales representative cannot be changed on an invoiced or paid work order."  Error message; the field returns to the saved value
++A change that cannot be saved  The server's error message  Error message; the field returns to the saved value
++Deactivating a sales representative who holds customer fields  "They will be removed as sales representative from {n} customer{s}."  Line in the Deactivate window (S4-R21)
++9. Change Log
++Date  Reporter  Change  Notes
++---  ---  ---  ---
++2026-10-19  Chris Ward  New S1-R6a (Lead Technician message below its field), S1-E3 and S7-R6 (a person who no longer exists or is in another organization reads Unassigned), S2-E6 (two screens: the later save wins), S7-R6. S2-R17 and S2-N2: only the Sales Representative fields change; the part sale field and its label stay as Part Sales Update v1 builds them. S4 prerequisites and S4-R3: New Customer from a part sale lists the representatives. S4-R20, S4-R21: deactivation is not undone by reactivating; the Deactivate window reads "They will be removed as sales representative from {n} customers."; the Turn Off warning shows no count. S4-R23: file name. S4-N2: "(Inactive)" on customer fields. S4-E1 and Release day: about 10 customers read Unassigned. S5-R6 (Adjustments column), S5-R7 (rounding), S5-R8 (empty side), S5-R15, S5-R15a, S5-R19, S5-R23 (column order). S7-R1, S7-R4. S8-R4, S8-R9 (other empty exports), S8-E1 (saved links). Removed the S1-R6 context note. v9.  Bilal's QA sheet, 19 Oct 2026. Chris ruling.
++2026-10-19  Chris Ward  S4-R21: the Deactivate window line reads "customer" when {n} is 1, matching the Sales By Representative dialog (S13-R4). v10.  Consistency with the Sales By Representative spec v29.
