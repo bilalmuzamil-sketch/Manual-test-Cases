@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792398806,
  "updated_by": 3,
- "updated_on": 1792407894,
+ "updated_on": 1792474762,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -25,11 +25,11 @@
  "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>{Location-A} has invoices dated before 29 Jul 2026.<br>For example: invoices from June 2026.</li><li>Starting screen: Reports &gt; Sales By Representative is open in a desktop browser at least 1024 px wide.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Set a date range before 29 Jul 2026 that holds invoices, turn Show Unassigned on and the Sales Type column on.</li><li>Read the rows.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the report shows the range.</li><li>Step 2: those invoices are credited to Unassigned on both sides; no representative has been added to them.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 8 (14 Oct 2026, Chris Ward), read 19 Oct 2026 &middot; Epic SV-10890, story SV-11269 (Story 5, Credit each side on the invoice and in Sales By Representative)</p><ul><li><strong>S5-E2:</strong> &ldquo;Every invoice created before the release has its one representative on both sides, so the report for any past date reads exactly as before, with that person's Labor and Parts rows shown as one \"Labor, Parts\" row (S5-R10). Invoices created before 2026-07-29 have no representative recorded; they stay Unassigned on both sides, and none is added.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 4 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+ "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the report shows the range.</li><li>Step 2: those invoices are credited to Unassigned on both sides; no representative has been added to them.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 10 (19 Oct 2026, Chris Ward), read 20 Oct 2026 &middot; Epic SV-10890, story SV-11269 (Story 5, Credit each side on the invoice and in Sales By Representative)</p><ul><li><strong>S5-E2:</strong> &ldquo;Every invoice created before the release has its one representative on both sides, so the report for any past date reads exactly as before, with that person's Labor and Parts rows shown as one \"Labor, Parts\" row (S5-R10). Invoices created before 2026-07-29 have no representative recorded; they stay Unassigned on both sides, and none is added.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 4 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 4
+ "version": 5
 }

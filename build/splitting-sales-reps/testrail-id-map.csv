@@ -42,7 +42,7 @@ S4-15,665954,S4,A rep with the switch off is not copied but still credited at in
 S4-16,665955,S4,A work order invoiced with nobody takes the customer's reps per side,https://shopview.testrail.io/index.php?/cases/view/665955
 S4-17,665956,S4,An empty side is not filled from the customer at invoicing,https://shopview.testrail.io/index.php?/cases/view/665956
 S4-18,665957,S4,Deactivating a rep clears their customer fields and removes Part Sales,https://shopview.testrail.io/index.php?/cases/view/665957
-S4-19,665958,S4,A deactivation warning counts a customer once when a rep holds two fields,https://shopview.testrail.io/index.php?/cases/view/665958
+S4-19,665958,S4,The Deactivate window counts a customer once when a rep holds two fields,https://shopview.testrail.io/index.php?/cases/view/665958
 S4-20,665959,S4,Renaming a rep updates customer fields and a switched-off rep stays,https://shopview.testrail.io/index.php?/cases/view/665959
 S4-21,665960,S4,The assignments export lists one row per customer per person with Side,https://shopview.testrail.io/index.php?/cases/view/665960
 S4-22,665961,S4,Re-importing a customer keeps all its representatives,https://shopview.testrail.io/index.php?/cases/view/665961
@@ -50,7 +50,7 @@ S5-01,665962,S5,A split invoice gives the Labor rep a Labor row and the Parts re
 S5-02,665963,S5,"All shop supplies, including a hand-typed amount, go to the Labor row",https://shopview.testrail.io/index.php?/cases/view/665963
 S5-03,665964,DATA,A whole-invoice discount is shared by the size of each side,https://shopview.testrail.io/index.php?/cases/view/665964
 S5-04,665965,DATA,A negative side still shares a discount by size,https://shopview.testrail.io/index.php?/cases/view/665965
-S5-05,665966,DATA,A cent left over by rounding the shares goes to the Labor row,https://shopview.testrail.io/index.php?/cases/view/665966
+S5-05,665966,DATA,The Parts share is rounded to the cent and the Labor row gets the rest,https://shopview.testrail.io/index.php?/cases/view/665966
 S5-06,665967,DATA,A whole-invoice fee with no labor or parts dollars goes to one side,https://shopview.testrail.io/index.php?/cases/view/665967
 S5-07,665968,S5,A part sale is one Part Sales row holding the whole sale,https://shopview.testrail.io/index.php?/cases/view/665968
 S5-08,665969,S5,"One person on both sides shows one Labor, Parts row",https://shopview.testrail.io/index.php?/cases/view/665969
@@ -127,3 +127,9 @@ DR-05,690662,DESIGN,"Design: on a phone the reps show under the ""Hide Details""
 DR-06,690663,DESIGN,Design: Sales Type sits between Status and Location,https://shopview.testrail.io/index.php?/cases/view/690663
 DR-07,690664,DESIGN,Design: each split row shows its share under Adjustments,https://shopview.testrail.io/index.php?/cases/view/690664
 DR-08,690665,DESIGN,Design: a Lead Technician message pushes the fields below it down,https://shopview.testrail.io/index.php?/cases/view/690665
+S1-11,690666,S1,A rep who no longer exists or is in another organization reads Unassigned,https://shopview.testrail.io/index.php?/cases/view/690666
+S2-14,690667,S2,Two windows: the later pick on the one field wins and Parts goes,https://shopview.testrail.io/index.php?/cases/view/690667
+S4-25,690668,S4,A part-sales-only user adding a customer from a part sale sees the reps,https://shopview.testrail.io/index.php?/cases/view/690668
+S4-26,690669,S4,Reactivating a rep does not put them back on their customers,https://shopview.testrail.io/index.php?/cases/view/690669
+S7-05,690670,S7,A log entry reads Unassigned for a rep who no longer exists,https://shopview.testrail.io/index.php?/cases/view/690670
+S8-12,690671,S8,Exports with no rows still download a file with only the headings,https://shopview.testrail.io/index.php?/cases/view/690671
