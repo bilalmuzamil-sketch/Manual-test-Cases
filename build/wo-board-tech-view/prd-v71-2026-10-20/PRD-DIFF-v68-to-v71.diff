@@ -1,0 +1,52 @@
+20c20
+< - **Fields to display** lets the user choose which fields appear on Board View cards; Tech View has its own column chooser. List keeps its existing column chooser exactly as today.
+---
+> - **Column Selection** lets the user choose which fields appear on Board View cards; Tech View has its own column chooser. List keeps its existing column chooser exactly as today.
+49c49
+< - **Fields vs. density are separate controls.** Board View has Fields to display plus a separate Density control; Tech View has its own column chooser plus Density. Density changes spacing and element sizing only; it never hides fields. Options are Compact, Regular (default), Comfortable; Simple / Detailed presets do not ship. List has neither new control and stays as it is in production.
+---
+> - **Fields vs. density are separate controls.** Board View has Column Selection (its card field picker) and, from the fast follow, a separate Card size control; Tech View has its own column chooser plus Density. Density changes spacing and element sizing only; it never hides fields. Options are Compact, Regular (default), Comfortable; Simple / Detailed presets do not ship. List has neither new control and stays as it is in production.
+72c72
+< - **Fields to display** → Which pieces of information appear on a Board View card. **Density** → Spacing and sizing of rows and cards (padding, margins, line height, and in-row/card elements) in Tech View and Board View (List is unchanged); it never changes which information is shown. Design must define the three variants without reducing text below the application’s minimum body size.
+---
+> - **Column Selection** → Which pieces of information appear on a Board View card. **Density** → Spacing and sizing of rows and cards (padding, margins, line height, and in-row/card elements) in Tech View and Board View (List is unchanged); it never changes which information is shown. Design must define the three variants without reducing text below the application’s minimum body size.
+102c102
+< - **S1-R15:** In Tech View and Board View the filter bar also offers a **Technician** filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location’s technicians (the same people who get a group or column, S9-R4), by first name then last name. Choosing one or more shows only those technicians’ groups or columns; every other group or column, pinned ones included, is hidden. It filters by lead technician only.
+---
+> - **S1-R15:** In Tech View and Board View the filter bar also offers a **Technician** filter, after Assigned to me. It is a multi-select listing Unassigned first, then everyone who gets a group or column at this location: the location’s technicians (S9-R4), and any lead technician who keeps a column while still leading work orders here (deactivated, S2-N2 and S3-N2; not enrolled here, S3-R20b; Time Clock turned off, S3-R20d). Active technicians come first, by first name then last name, then deactivated technicians, by first name then last name, each with the same grey “Inactive” label as their column. Someone who no longer gets a group or column is not listed. Choosing one or more shows only those technicians’ groups or columns; every other group or column, pinned ones included, is hidden. It filters by lead technician only.
+104a105
+> - **S1-R15c:** The filters’ 50-value limit message, “This change would exceed the 50-value limit across all filters”, shows only when a tick would take the total across all filters over 50 values, and that tick is not applied. It never shows just because the Technician list is opened, or while the total is 50 or fewer.
+212c213
+< **S3-R11:** Provide the shared Density control from Story 6 in Board View.
+---
+> **S3-R11:** Board View shows no Density control in this release (SV-11580). Column Selection sits centered between the toolbar’s two dividers, with no empty gap where Density was. A Card size control as in the design (Compact and Detailed) follows as a fast follow (SV-11581).
+291c292
+< ### Story 5: Choose what is shown — Fields to display (Board View) and columns (tables)
+---
+> ### Story 5: Choose what is shown — Column Selection (Board View) and columns (tables)
+301c302
+< - **S5-R2:** Board View offers a separate Fields to display picker in the same toolbar position and with the same interaction as the column chooser.
+---
+> - **S5-R2:** Board View offers a separate Column Selection picker in the same toolbar position and with the same interaction as the column chooser.
+334c335
+< - **S6-R1:** Offer Compact, Regular, and Comfortable density in Tech View and Board View.
+---
+> - **S6-R1:** Offer Compact, Regular, and Comfortable density in Tech View. Board View has no Density control in this release (S3-R11).
+339c340
+< - **S6-R3:** Share one density selection between Tech View and Board View.
+---
+> - **S6-R3:** Density belongs to Tech View only. Board View’s fast-follow Card size (SV-11581) is saved separately.
+345c346
+< - **S6-E1:** Density applies to Tech View rows and Board View cards on Work Orders. List keeps today’s row size, and other application tables are unchanged.
+---
+> - **S6-E1:** Density applies to Tech View rows on Work Orders; Board View cards keep their current spacing in this release. List keeps today’s row size, and other application tables are unchanged.
+436c437
+< - **S11-E1:** When the focused work order leaves the result (for example after a filter change or a reassignment), focus moves to the next row or card in the same group or column, or to that group or column header when none is left.
+---
+> - **S11-E1:** When the focused work order leaves the result (for example after a filter change or a reassignment), focus moves to the next row or card in the same group or column, or to that group or column header when none is left. When the move leaves nothing matching the filters, so the board or table is replaced by the “No work orders match these filters” empty state (S1-N1a), for example moving the last work order of the only technician chosen in the Technician filter, focus moves to its Clear all filters button.
+575a577,581
+> | 2026-10-20 | Chris Ward | S1-R15: the Technician list holds everyone who gets a group or column, including deactivated lead technicians who still lead work orders (listed after active technicians, with the grey “Inactive” label), not-enrolled leads and leads with Time Clock off (was: active technicians only, by reading of S9-R4). v69. | Bilal’s QA on SV-11326, 2026-10-20. Chris ruling. |
+> | 2026-10-20 | Chris Ward | New S1-R15c: the 50-value limit message shows only when a tick would go over 50, and that tick is not applied (was: shown as soon as the Technician list opened). v69. | Bilal’s QA on SV-11326, 2026-10-20. Chris ruling. |
+> | 2026-10-20 | Chris Ward | S11-E1: when a move leaves nothing matching the filters, the S1-N1a empty state shows and focus moves to its Clear all filters button (was: unstated; the build dropped focus to the page). v70. | Bilal’s question sheet, Q34, 2026-10-20. Chris ruling. |
+> | 2026-10-20 | Chris Ward | S3-R11, S6-R1, S6-R3, S6-E1: Board View has no Density control in this release, with no empty toolbar gap (SV-11580); a Card size control as in the design (Compact and Detailed) is a fast follow, saved separately from Tech View’s density (SV-11581). Was: one shared density in both views. v71. | Chris ruling: Board View density has minimal function; fast follow matches the design. |
+> | 2026-10-20 | Chris Ward | Fields to display renamed Column Selection everywhere it appears, the same name the other views use. v71. | Chris ruling: Board View density has minimal function; fast follow matches the design. |

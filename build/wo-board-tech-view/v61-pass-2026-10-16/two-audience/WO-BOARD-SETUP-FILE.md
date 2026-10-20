@@ -1,4 +1,4 @@
-# WO Board and Tech View: setup file for Claude sessions (45 cases, 16 to 20 Oct 2026)
+# WO Board and Tech View: setup file for Claude sessions (46 cases, 16 to 20 Oct 2026)
 
 This file is for a Claude session. A manual tester never needs it: each test case is complete on its own. With this file and the access the user gives at the start of the session, a new session can put the account into every case's starting state. It holds no environment address, credentials, cookies or session data.
 
@@ -1293,6 +1293,27 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 
 **Placeholder values:** give the tester the real names and work order numbers after setup. Source of these steps: the case's own Setup block before the 20 Oct 2026 conversion (`build/wo-board-tech-view/sv11429-simplify-2026-10-20/before/`).
 
+#### SETUP-C97022 — [C97022](https://shopview.testrail.io/index.php?/cases/view/97022) SV-11582 - Focus returns to the opener and moves on when a focused card leaves
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Two technicians are active at {Location-A} with the "Technician" role and Time Clock on: {Technician-A} and {Technician-B}. For example: {Technician-A} is ZZAUTOTEST Ana Alpha and {Technician-B} is ZZAUTOTEST C97022 Ben.
+- Customer {Customer-A} has two Approved work orders, {Work-order-1} and {Work-order-2}, both led by {Technician-A}. Neither has a shift on the Schedule, and {Technician-B} is not the technician on any of their lines. For example: {Customer-A} is ZZAUTOTEST F3 Keyboard Focus Kept 92916, with work orders S2-37664 and S2-37665.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  **P-TECH** (ACCOUNT-A): "ZZAUTOTEST C97022 Ana" and "ZZAUTOTEST C97022 Ben" (on staging the SV-11582 records can be reused instead: technician "ZZAUTOTEST Ana Alpha", customer "ZZAUTOTEST F3 Keyboard Focus Kept 92916", work orders S2-37664 and S2-37665; check they are still Approved and led by Ana Alpha).
+2.  **P-CUSTOMER** (ACCOUNT-A): Name "ZZAUTOTEST C97022 Focus"; units "C97022-U1", "C97022-U2".
+3.  **P-WO** twice (ACCOUNT-A): one per unit, each with lead {Technician-A}; no shift on the Schedule.
+4.  **P-START** (ACCOUNT-A): Board View, All tab, Search = the customer name, no filter, Assigned to me off.
+
+**Check:** {Technician-A}'s column shows both work orders; {Technician-B} leads neither. The Technician filter is in the filter bar (SV-11326, Done 20 Oct 2026).
+
+**Placeholder values:** give the tester the real technician names, customer name and work order numbers after setup. Source of these steps: the case before the 20 Oct 2026 conversion (`build/wo-board-tech-view/c97022-standard-2026-10-20/C97022-before.json`) and the SV-11582 reproduction steps (Bilal Muzamil, 20 Oct 2026).
+
 ## 5. Mapping table (execution order)
 
 | Test case                                                                                                                                             | Account slots        | Recipes in order                          |
@@ -1342,6 +1363,7 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 | [C368171](https://shopview.testrail.io/index.php?/cases/view/368171) A lead change on the work order page adds one Lead tech changed entry | ACCOUNT-A | SETUP-ADMIN, SETUP-C368171 |
 | [C368173](https://shopview.testrail.io/index.php?/cases/view/368173) Changing a line's technician in Edit Line saves the new technician | ACCOUNT-A | SETUP-ADMIN, SETUP-C368173 |
 | [C682436](https://shopview.testrail.io/index.php?/cases/view/682436) Design- No technicians yet and Nothing here yet in both views | ACCOUNT-A, ACCOUNT-B | SETUP-ADMIN, SETUP-VIEWONLY, SETUP-C682436 |
+| [C97022](https://shopview.testrail.io/index.php?/cases/view/97022) SV-11582 - Focus returns to the opener and moves on when a focused card leaves | ACCOUNT-A | SETUP-ADMIN, SETUP-C97022 |
 
 ## 6. Dependencies and shared fixtures
 
@@ -1781,6 +1803,10 @@ SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, 
 - **S4-R32**: “Undo puts the work order back exactly as it was before the change: the previous lead technician (or Unassigned), its previous place in that technician’s order, and any shifts the change cleared (removed shifts come back as they were; a shift that was ended at the moment of the change gets its original end time back). Undo is itself a lead change: it records its own audit entry (S4-R9), follows the Invoiced or Paid rule (S4-N2), and shows no shift-clearing prompt and no new toast. If Undo cannot be saved, nothing changes and the alert “Couldn’t undo the change. Please try again.” shows.”
 - **S4-N2**: “Do not allow the lead technician to change in Invoiced or Paid status. An Invoiced or Paid work order can still be dragged to reorder it within its current technician (or within Unassigned), but it cannot be moved to another technician, to Unassigned, or out of Unassigned. Declined and Complete work orders can be moved freely, as today.”
 
+### [C97022](https://shopview.testrail.io/index.php?/cases/view/97022) SV-11582 - Focus returns to the opener and moves on when a focused card leaves
+
+PRD Confluence 845185030 version 71 (20 Oct 2026): S11-R1, S11-R2, S11-R3, S3-R14, S11-R9, S4-R4, S11-R5, S11-R6, S1-R15 (one sentence), S11-E1, S1-N1a, S1-R15a, quoted word for word in the case; Chris Ward's answer 34 (sheet 1gBGmNB4…, row 39, 20 Oct 2026); ticket SV-11582.
+
 ## 9. VIU status
 
 | Item                                                                 | Status                                                                                                                      |
@@ -1829,6 +1855,7 @@ SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, 
 | [C682445](https://shopview.testrail.io/index.php?/cases/view/682445) | UNVERIFIED: not yet run (test T4062446 in run 498; ticket SV-11119, still failing on staging 19 Oct 2026). AUTOMATION: READY - EXPECT FAIL (SV-11119) |
 | [C682446](https://shopview.testrail.io/index.php?/cases/view/682446) | UNVERIFIED: not yet run (test T4062447 in run 498; ticket SV-11087, fix in the bugfix release). AUTOMATION: READY |
 | [C682436](https://shopview.testrail.io/index.php?/cases/view/682436) | UNVERIFIED: not yet run (released 19 Oct 2026 on PRD v68 S1-N1d; test T4062445 in run 498). AUTOMATION: READY |
+| [C97022](https://shopview.testrail.io/index.php?/cases/view/97022) | UNVERIFIED in this wording (converted 20 Oct 2026 on PRD v71; ticket SV-11582, failing on staging v26.40.20-0509710, 20 Oct 2026). AUTOMATION: READY - EXPECT FAIL (SV-11582) |
 
 ## 10. Open questions
 
