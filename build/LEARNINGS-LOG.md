@@ -1013,3 +1013,9 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - New script `new6-1020.mts` covers C682421, C682436 (after `c6824-held.mts ONLY=C682436` makes the two locations), C682437, C682438, C682445, C682446.
 - QA lead 20 Oct: for this batch's failures, create the Story Defect if none exists and put "Follow the status here <link>" on the result (his go-ahead for these failures; still check for an existing ticket first).
 #staging #signin #run498 #release → L0476, L0393
+
+## L0478 — 2026-10-20 — Fresh staging cookies: where they go, how to check them, and the "AA" technician names
+- The QA lead pastes THREE values in order: SV_SSO_SESSION (64 hex) · PHPSESSID (32 hex) · CF_CLEARANCE (long). Save all three into `/tmp/shopview/app.env` (three `KEY=value` lines), the SSO into `/tmp/qa-cookies/staging-sso.txt` (keep its existing `sv_sso_session=` prefix form) and all three into `/tmp/qa-cookies/staging-full.json` (keys `sv_sso_session`, `PHPSESSID`, `cf_clearance`); chmod 600, back up the old file first, never echo the values.
+- Quick check: `GET https://api.staging.shopview.com/api/auth/me` with the cookies — `401 sso_required` = expired; a `404 resource not found` means the SSO was ACCEPTED (that path just doesn't exist). Then `wob-run.sh build-marker.mts` proves the full sign-in (20 Oct 04:2x UTC: build v26.40.19-c850386).
+- C368159, C368169, C368171, C368173 were rewritten (~19 Oct) to use technicians named "AA ZZAUTOTEST <case> Ana/Ben/Dee" so they fall inside the work order page's ~100-name lists (SV-11429). Old scripts (s11-batch, editwo-fix, high1-fix5) still use Ralph Edwards etc. — use `four-aa-1020.mts` instead.
+#staging #signin #cookies #run498 → L0477
