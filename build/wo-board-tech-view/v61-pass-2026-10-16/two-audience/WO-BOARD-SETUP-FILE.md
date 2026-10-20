@@ -1725,13 +1725,13 @@ SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, 
 | [C368131](https://shopview.testrail.io/index.php?/cases/view/368131) | Passed on staging v26.40.19-e435950, 19 Oct 2026 (run 498, T3761652), in the wording before this simplification; the actions are the same. AUTOMATION: READY |
 | [C368167](https://shopview.testrail.io/index.php?/cases/view/368167) | Passed on staging v26.40.19-e435950, 19 Oct 2026 (run 498, T3792488), in the wording before this simplification; the actions are the same. AUTOMATION: READY |
 | [C96936](https://shopview.testrail.io/index.php?/cases/view/96936) | Passed on staging v26.40.19-e435950, 19 Oct 2026 (run 498, T3481880), in the wording before this simplification; the actions are the same. AUTOMATION: READY |
-| [C682422](https://shopview.testrail.io/index.php?/cases/view/682422) | UNVERIFIED: not yet run (test T4056656 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
-| [C682423](https://shopview.testrail.io/index.php?/cases/view/682423) | UNVERIFIED: not yet run (test T4056657 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
-| [C682424](https://shopview.testrail.io/index.php?/cases/view/682424) | UNVERIFIED: not yet run (test T4056658 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
-| [C682425](https://shopview.testrail.io/index.php?/cases/view/682425) | UNVERIFIED: not yet run (test T4056659 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
-| [C682426](https://shopview.testrail.io/index.php?/cases/view/682426) | UNVERIFIED: not yet run (test T4056660 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
-| [C682427](https://shopview.testrail.io/index.php?/cases/view/682427) | UNVERIFIED: not yet run (test T4056661 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
-| [C682428](https://shopview.testrail.io/index.php?/cases/view/682428) | UNVERIFIED: not yet run (test T4056662 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
+| [C682422](https://shopview.testrail.io/index.php?/cases/view/682422) | FAST-FOLLOW (moved 20 Oct 2026 to the Fast-follow folder and out of run 498; Chris Ward, Slack 20 Oct 2026). UNVERIFIED: not yet run (test T4056656 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
+| [C682423](https://shopview.testrail.io/index.php?/cases/view/682423) | FAST-FOLLOW (moved 20 Oct 2026 to the Fast-follow folder and out of run 498; Chris Ward, Slack 20 Oct 2026). UNVERIFIED: not yet run (test T4056657 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
+| [C682424](https://shopview.testrail.io/index.php?/cases/view/682424) | FAST-FOLLOW (moved 20 Oct 2026 to the Fast-follow folder and out of run 498; Chris Ward, Slack 20 Oct 2026). UNVERIFIED: not yet run (test T4056658 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
+| [C682425](https://shopview.testrail.io/index.php?/cases/view/682425) | FAST-FOLLOW (moved 20 Oct 2026 to the Fast-follow folder and out of run 498; Chris Ward, Slack 20 Oct 2026). UNVERIFIED: not yet run (test T4056659 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
+| [C682426](https://shopview.testrail.io/index.php?/cases/view/682426) | FAST-FOLLOW (moved 20 Oct 2026 to the Fast-follow folder and out of run 498; Chris Ward, Slack 20 Oct 2026). UNVERIFIED: not yet run (test T4056660 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
+| [C682427](https://shopview.testrail.io/index.php?/cases/view/682427) | FAST-FOLLOW (moved 20 Oct 2026 to the Fast-follow folder and out of run 498; Chris Ward, Slack 20 Oct 2026). UNVERIFIED: not yet run (test T4056661 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
+| [C682428](https://shopview.testrail.io/index.php?/cases/view/682428) | FAST-FOLLOW (moved 20 Oct 2026 to the Fast-follow folder and out of run 498; Chris Ward, Slack 20 Oct 2026). UNVERIFIED: not yet run (test T4056662 in run 498). AUTOMATION: READY - EXPECT FAIL (SV-11524) |
 | [C682437](https://shopview.testrail.io/index.php?/cases/view/682437) | UNVERIFIED: not yet run (test T4060515 in run 498; ticket SV-11402). AUTOMATION: READY |
 | [C682438](https://shopview.testrail.io/index.php?/cases/view/682438) | UNVERIFIED: not yet run (test T4060516 in run 498; ticket SV-11409). AUTOMATION: READY |
 | [C682439](https://shopview.testrail.io/index.php?/cases/view/682439) | UNVERIFIED: not yet run (test T4060517 in run 498; ticket SV-11430). AUTOMATION: READY |
@@ -1742,6 +1742,8 @@ SV-11522 / SV-11524 (19 Oct 2026), PRD Confluence 845185030 version 66. Quotes, 
 | [C682436](https://shopview.testrail.io/index.php?/cases/view/682436) | UNVERIFIED: not yet run (released 19 Oct 2026 on PRD v68 S1-N1d; test T4062445 in run 498). AUTOMATION: READY |
 
 ## 10. Open questions
+
+- Fast-follow (20 Oct 2026): the 27 cases blocked on SV-11522 / SV-11524 sit in TestRail folder "Fast-follow" (section 87347) and are not in run 498. Reference: Chris Ward, Slack, https://shopview.slack.com/archives/C0C41RV3T3L/p1792455057423139. Their recipes stay valid for when they are run after the release.
 
 - Deleted 19 Oct 2026 (QA lead's go-ahead; Chris Ward ruled for the PRD or v68 adopted the design): held cases C682429 to C682435. Full copies in `build/wo-board-tech-view/chris-answers-2026-10-19/apply/deleted/`.
 
