@@ -1,0 +1,18 @@
+{"pass_meta": {"env": "staging", "build": "v26.40.19-c850386", "date": "20 October 2026", "note": "run 498"},
+ "results": {
+  "C368169": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging, by the test's steps.",
+    "Steps 1 to 3: S2-37561 for \"ZZAUTOTEST Edit WO Lead Mileage\" opens with Lead Technician AA ZZAUTOTEST C368169 Ana and Mileage 120,000.",
+    "Step 4: Lead Technician picked as AA ZZAUTOTEST C368169 Ben; it saves at once with no error message.",
+    "Steps 5 and 6: Mileage changed to 120500; after clicking outside it saves with no error message.",
+    "Step 7: after reloading, Lead Technician reads AA ZZAUTOTEST C368169 Ben and Mileage reads 120,500: both changes were saved."],
+   "pictures": ["pictures-1019/C368169-1-lead-and-mileage-saved-1020.png"]},
+  "C690645": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging, by the test's steps (technicians AA ZZAUTOTEST C690645 Ana/Ben/Cal, so they are offered on the work order page).",
+    "Steps 1 to 3: Board View with \"ZZAUTOTEST F3 Reassign Bottom\": Ben's column reads S2-37566, S2-37567; S2-37564, S2-37565 and S2-37568 are in Cal's column.",
+    "Step 4: on S2-37565's work order page Lead Technician is set to AA ZZAUTOTEST C690645 Ben.",
+    "Step 5: Ben's column reads S2-37566, S2-37567, S2-37565: the work order page change went to the bottom.",
+    "Step 6: S2-37568 dropped between S2-37566 and S2-37567 lands there: S2-37566, S2-37568, S2-37567, S2-37565.",
+    "Step 7: Tech View shows the same order in Ben's group.",
+    "Step 8: a second user (ZZAUTOTEST Dispatcher Two) sees the same order in Tech View and Board View."],
+   "pictures": ["pictures-1019/C690645-1-bottom-then-drop-1020.png"]}}}
