@@ -59,3 +59,16 @@ While at Lethbridge: issued store credit CM10687-4190 ($25) and overpaid S2-1730
 - At **Heavy Duty**: the Invoices tab shows no CM10687-4190 row; New Payment for S2-17312 shows no deposit row (Payment amount $6,122.86). Deposit list from Heavy Duty shows only DEP-4703.
 - At **Lethbridge**: CM10687-4190 row shown (Unapplied); New Payment for the same S2-17312 adds "Deposit DEP10687-4704 −$3.33" (Payment amount $6,119.53).
 Matches the handoff: a deposit or credit held at location B is not offered in location A. PASS
+
+## 9. Invoice page → payment
+S2-17312 → its Finance tab → **New Payment** (the invoice is pre-filled on its row) → Cash, $100 → Make Payment → 201; S2-17312 balance $6,122.86 → **$6,022.86, "Partially paid"**. PASS
+
+## 10. IBS batch payment
+Reports → IBS Batch Transactions → Ready To Send → tick INV-S2-17462 (Lansing Truck & Trailer Repair, $1,113.83) → ⋮ → Create Batch (setup). Sent tab → tick the batch → ⋮ → **Make Payment** → "New Batch Payment" → Cash → Make Payment → ibs/payment 201; batch now **$0.00 Paid**, Payments tab lists the $1,113.83 payment. PASS
+
+## 11. Customer portal online payment — NOT RUN (open question for the QA lead)
+`GET /api/customer-portal/payment-settings` on the branch → `{"payments_mode":"shared","onboarded":false}`: online payments are not onboarded for this organisation on sv10687, and no "Send to Portal" control shows on the invoice. The portal is a separate app (laravel.cloud). Asked the QA lead how to proceed before posting (Rule 91).
+
+## 12. Production before (app.shopview.com, build v26.40.19-d2441a9, 20 Oct 2026, Trucks Hill 2, S2-868)
+Same return flow on ZZQA9807-P1: Return (qty 1) → click Returned row → **"Edit part return request"** (same dialog, reason box also starts empty) → Save & Close (change-return-request 200) → ⋮ Cancel Return → same "This will put that part back onto the work order." → **Put Back** (one click) → part back to qty 2. Identical to the branch.
+Move part dialog on production offers the same Move / Return / Add Part Fee / Discount menu.
