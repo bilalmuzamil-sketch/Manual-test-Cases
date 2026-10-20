@@ -1038,3 +1038,8 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - `wob-run.sh` passes ONLY the variables it lists (`env -i`): any new env input to a script must be added there (W4N, OTHERN added 20 Oct).
 - On c850386 an Invoiced work order's page shows "Lead technician" as plain read-only text (no dropdown) — C690642 step 14 passes (C96963-wo-page.png).
 #run498 #release #tooling → L0480, L0417
+
+## L0482 — 2026-10-20 — Any release copy that picks a lead on the WORK ORDER PAGE needs top-sorting technician names
+- `s9-batchB.mts ONLY=C97007` (for C690645) timed out waiting for "Ben Bravo" in the work order page's Lead Technician list: "ZZAUTOTEST Ben Bravo" sorts after the ~100 names the page lists (SV-11429). The case's names are examples, so C690645 now runs in `four-aa-1020.mts` with "AA ZZAUTOTEST C690645 Ana/Ben/Cal". Rule of thumb: every test that sets a lead or a line technician ON THE PAGE (not by drag/dialog) uses "AA ZZAUTOTEST <case> …" names.
+- `s9-batchA5.mts` takes only an end-of-test picture (`<id>-end.png`, session.mts __shotEach) — enough for a pass when it shows the final state; a failure needs its own picture of the failing moment (e.g. the lock hover read in `retest-locks2.mts`).
+#run498 #release #sv-11429 → L0478, L0481
