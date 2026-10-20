@@ -14,8 +14,10 @@ import { api, workOrders } from './data.mts';
 import { EV, t, display, tab, search, toasts } from './wob.mts';
 import { startState } from './fixup-1017.mts';
 
-const Q = 'ZZAUTOTEST F1 Invoiced Paid Locked 84534', W4N = 'S2-37066', OTHERN = 'S2-37063';
+// 20 Oct 2026: the data can be given as env W4N / OTHERN (the customer name is then read from W4's own record), for C690642 step 10.
 const { browser, page: p } = await open('/workorders?tab=all'); p.setDefaultTimeout(30_000); const a = api(p);
+const W4N = process.env.W4N || 'S2-37066', OTHERN = process.env.OTHERN || 'S2-37063';
+const Q = process.env.W4N ? (((await workOrders(a, W4N))[0] ?? {}).companyName ?? ((await workOrders(a, W4N))[0] ?? {}).customerName ?? '') : 'ZZAUTOTEST F1 Invoiced Paid Locked 84534';
 const o: any = { exitSwitch: (await a.post('/api/exit-switch-user', {})).status }; const W = (ms: number) => p.waitForTimeout(ms);
 const shot = (n: string) => p.screenshot({ path: path.join(EV, `C96963-unassigned-${n}.png`) }).catch(() => {});
 const lead = (w: any) => w?.techAssignedFirstName ? `${w.techAssignedFirstName} ${w.techAssignedLastName}` : 'none';
