@@ -254,7 +254,7 @@ await run('C682446', async (o) => { o.location = await toHeavy();
   o.after3 = await labor('s3-lines');
   // steps 4-9: Timesheets, open the entry, change Line, Save — the dialog is read and dumped so its fields are known
   const openTs = async () => { await p.locator('[data-test-id="button_work_order_nav_bar_menu"]').click().catch(() => {}); await p.waitForTimeout(800); await p.locator('.q-menu .q-item').filter({ hasText: /Timesheets/ }).first().click().catch(() => {}); await p.waitForTimeout(4000);
-    const rows = (await p.locator('tbody tr').allInnerTexts()).map((x) => x.replace(/\s+/g, ' ').slice(0, 160)); await p.locator('tbody tr').last().click().catch(() => {}); await p.waitForTimeout(2500); return { rows, dialog: await dialogRead() }; };
+    const rows = (await p.locator('tbody tr').allInnerTexts()).map((x) => x.replace(/\s+/g, ' ').slice(0, 160)); await p.locator('tbody tr').filter({ hasText: 'C682446 Me' }).last().click().catch(() => {}); /* fix 06:20: the list has empty rows around the entry */ await p.waitForTimeout(2500); return { rows, dialog: await dialogRead() }; };
   const setLine = async (name: string, tag: string) => { const d = p.locator('.q-dialog').last(); const f = d.locator('.q-field').filter({ hasText: /^\s*Line/ }).first(); await f.click().catch(() => {}); await p.waitForTimeout(1000);
     const opt = p.locator('.q-menu .q-item').filter({ hasText: name }).first(); const had = await opt.count(); if (had) await opt.click(); await p.waitForTimeout(800); await sh(p, `C682446-n-${tag}`);
     const save = d.locator('button').filter({ hasText: /^\s*Save\s*$/ }).first(); if (await save.count()) await save.click(); await p.waitForTimeout(3000); return { option: had, messages: await toasts(p) }; };

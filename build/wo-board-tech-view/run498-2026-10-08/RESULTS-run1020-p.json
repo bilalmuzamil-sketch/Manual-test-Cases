@@ -1,0 +1,17 @@
+{"pass_meta": {"env": "staging", "build": "v26.40.19-c850386", "date": "20 October 2026", "note": "run 498"},
+ "results": {
+  "C682436": {"verdict": "Failed", "failed_steps": "Failed at steps 2, 3, 4, 6 and 7: there is no \"Add Technician\" button, and the \"Nothing here yet\" state never shows.",
+   "bold_steps": ["2", "3", "4", "6", "7"],
+   "observed": [
+    "Result: Failed on staging.",
+    "Step 1: the top bar shows ZZAUTOTEST F2 No Tech Shop (work orders S-35901 and S-35902, no technicians).",
+    "Step 2: Tech View shows only Unassigned, then \"No technicians yet\" and \"Add technicians to assign work orders. Until then, every work order stays in Unassigned.\" — but no \"Add Technician\" button.",
+    "Step 3: Board View is the same: Unassigned, \"No technicians yet\" and its text, no \"Add Technician\" button.",
+    "Step 4: cannot be done, because the button is not there.",
+    "Step 5: the top bar shows ZZAUTOTEST Location Empty (no technicians, no work orders).",
+    "Steps 6 and 7: Board View and Tech View read \"No work orders yet\" and \"Create a work order and assign a technician to see it here.\" with only Create Work Order, instead of \"Nothing here yet\", \"Add technicians and create your first work order to track work by tech.\", Create Work Order and Add Technician.",
+    "Steps 8 to 10: as ZZAUTOTEST C682436 Viewer (Work orders View only) at ZZAUTOTEST F2 No Tech Shop, Board View shows Unassigned and \"No technicians yet\" with its text, and no \"Add Technician\" button (as expected for this user).",
+    "The app's own code on this build has no \"Nothing here yet\" text and no \"Add Technician\" button on these screens, so this is not caused by the test data."],
+   "ticket": "https://shopview.atlassian.net/browse/SV-11555",
+   "todo": "Re-run this test once SV-11555 is fixed on staging.",
+   "pictures": ["pictures-1019/C682436-1-no-add-technician-1020.png", "pictures-1019/C682436-2-empty-location-1020.png"]}}}

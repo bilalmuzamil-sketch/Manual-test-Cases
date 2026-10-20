@@ -195,6 +195,8 @@ await run('C682438', async (o) => { o.location = await toHeavy();
   const A1 = await T('C682438', 'Ana'), B1 = await T('C682438', 'Ben');
   const set = await mkSet('ZZAUTOTEST C682438 Avatar Keys', [{ co: 'One', lead: A1 }]); o.wo = set.w.One.number;
   const l = (await linesRaw(set.w.One.id))[0]; o.lineTech = l ? say(await a.put(`/api/work-orders/lines/${l.line_id}/technicians`, { staffIds: [B1.staff_id] })) : 'no line';
+  // fix 2 (20 Oct 06:15): with one line the card showed only the lead's name and no avatars; a second approved line that follows the lead gives the card both people (as on S2-37552)
+  await mkLine(set.w.One.id, 2); o.lines = (await linesRaw(set.w.One.id)).map((x: any) => `${x.line_name}=${x.status}`);
   // fix (20 Oct): the precondition needs "Line technicians" on in Board View's Fields to display (it read technician:false)
   { const pv0 = await prefGet(); const key = pv0.boardFields ? 'boardFields' : 'fields'; o.fieldsBefore = pv0[key] ?? null; await a.put(PREF, { value: { ...pv0, [key]: { ...(pv0[key] ?? {}), technician: true } } }); }
   await pins([A1.staff_id, B1.staff_id]); const pv = await prefGet(); o.fields = pv.boardFields ?? pv.fields ?? null;
