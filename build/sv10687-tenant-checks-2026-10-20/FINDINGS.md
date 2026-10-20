@@ -43,3 +43,19 @@ Note: the edit dialog opens with an empty Return reason (the saved reason is not
 ## 6. Change sales rep
 Setup: no sales reps existed on the branch; Ashley Schultz and Brandon Jarvis were made sales reps (Settings → Staff → edit → "Sales Representative" toggle → Save & Close).
 Left panel **Sales Representative** dropdown: Unassigned → Ashley Schultz → Brandon Jarvis; each change-sales-rep 201 and survives a reload. PASS
+
+## 7. Receive Payment (customer Desert Edge → Invoices → tick → New Payment → Cash → Make Payment), at Heavy Duty
+| Case | What was ticked | Dialog showed | Result |
+|---|---|---|---|
+| Cash only | S2-17296 $183.38 | Payment amount $183.38 | create-customer-payment 201; invoice leaves the unpaid list. PASS |
+| Two locations in one payment | S2-17278 $472.91 (Heavy Duty) + S10687-17582 $243.58 (Lethbridge, built for this test) | Both rows; Payment amount $716.49; note "Select invoices from a single location to pay by terminal." | 201; both invoices paid. PASS |
+| Overpayment | S2-17069 $995.34, Amount to credit $4.66 | Payment amount $1,000.00 | 201; invoice paid, $4.66 held as deposit DEP-4703 (Heavy Duty). PASS |
+| With a deposit | S2-16198 $844.43 | Deposit DEP10687-4703 row added by itself, "Fully consumed −$4.66"; Payment amount $839.77 | 201; invoice paid; DEP-4703 open balance 0, fully_consumed. PASS |
+| With a store credit | Issue Credit → $25, Issue Store Credit → CM10687-4189 (Unapplied row on the Invoices tab). Then ticked S2-17198 $2,116.97 + CM10687-4189 | Credit row "Fully consumed −$25.00"; Payment amount $2,091.97 | 201; invoice paid; credit gone from the open list. PASS |
+| Credit not ticked | S2-16985 $1,952.34 only | No credit row (store credit is applied only when its row is ticked) | 201, paid in full in cash. (behaviour note, not a fault) |
+
+## 8. Another location's deposit / credit (handoff "known difference")
+While at Lethbridge: issued store credit CM10687-4190 ($25) and overpaid S2-17307 by $3.33 → deposit DEP-4704 held at Lethbridge.
+- At **Heavy Duty**: the Invoices tab shows no CM10687-4190 row; New Payment for S2-17312 shows no deposit row (Payment amount $6,122.86). Deposit list from Heavy Duty shows only DEP-4703.
+- At **Lethbridge**: CM10687-4190 row shown (Unapplied); New Payment for the same S2-17312 adds "Deposit DEP10687-4704 −$3.33" (Payment amount $6,119.53).
+Matches the handoff: a deposit or credit held at location B is not offered in location A. PASS
