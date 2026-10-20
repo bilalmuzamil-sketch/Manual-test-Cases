@@ -1,4 +1,4 @@
-from ssr_lib import C, prd_line
+from ssr_lib import C, prd_line, AQ
 from common import *
 
 PHONE = "Starting screen: {Work-order-1} is open on a phone (a touch screen with no mouse pointer)."
@@ -9,7 +9,7 @@ C("S3-01", "S3", "On a phone the representatives show after the card is expanded
    "Tap the card's edit button to expand it."],
   ["Step 1: the card is collapsed: Lead Technician, Service Advisor and the Sales Representative field are not shown.",
    "Step 2: the card expands and shows Lead Technician, Service Advisor and the Sales Representative field reading {Sales-rep-A}."],
-  ["S3-R6"])
+  ["S3-R6", AQ(9)])
 
 C("S3-02", "S3", "On a phone the field, its arrow and the + work without hover",
   [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-A}'), PHONE],
@@ -23,7 +23,7 @@ C("S3-02", "S3", "On a phone the field, its arrow and the + work without hover",
    "Step 3: the field reads \"Unassigned\".",
    "Step 4: \"Sales Representative - Labor\" and \"Sales Representative - Parts\" show, both reading \"Unassigned\", each with its arrow showing; the remove x shows beside Parts.",
    "Step 5: one \"Sales Representative\" field shows again, reading \"Unassigned\"."],
-  ["S3-R1", "S3-R2", "S3-R3", "S3-R4"])
+  ["S3-R1", "S3-R2", "S3-R3", "S3-R4", AQ(11)])
 
 C("S3-03", "S3", "On a phone the customer window's representative fields work as on desktop",
   [ADMIN, REPS2, CUST, "Starting screen: {Customer-A}'s page is open on a phone (a touch screen with no mouse pointer)."],
@@ -49,7 +49,7 @@ C("S4-01", "S4", "Edit Customer has an optional Sales Representative field",
   ["Step 1: the window shows a Sales Representative field in the place Edit Customer shows it today, with the same outlined box as the other fields; the + shows beside it without hovering. No field has an x inside it.",
    "Step 2: \"Unassigned\" is first, then every active sales representative sorted by first name, then last name, A to Z (including {Sales-rep-A} and {Sales-rep-B}); {Staff-member-D} is not listed; there is no search box.",
    "Step 3: the customer saves with nobody in the field."],
-  ["S4-R1", "S4-R2", "S4-R3", "S4-R4"])
+  ["S4-R1", "S4-R2", "S4-R3", "S4-R4", AQ(15)])
 
 C("S4-02", "S4", "New Customer has the Sales Representative field too",
   [ADMIN, REPS2, START("the Customers page is open in a desktop browser at least 1024 px wide")],
@@ -136,8 +136,8 @@ C("S4-09", "S4", "A new work order starts with the customer's one representative
    "Open the work order's Audit Log from its menu."],
   ["Step 1: the new work order shows one \"Sales Representative\" field reading {Sales-rep-A}; it is not split.",
    "Step 2: there is no \"Sales representative changed\" entry for the copied representative."],
-  ["S4-R24", "S7-R5"],
-  note="The Sales By Representative spec, version 28 (12 Oct 2026, S19-R3), still says a new work order opens \"Unassigned\". PRD version 8 (14 Oct 2026) is later and fills it from the customer; this case follows the PRD, which we take as prevailing. The difference is on the product owner's question list.")
+  ["S4-R24", "S7-R5", AQ(38)],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, S19-R3), still says a new work order opens \"Unassigned\". Chris Ward ruled on 19 Oct 2026 that the PRD wins (answer 38, quoted below); this case follows PRD version 10, which fills it from the customer.")
 
 C("S4-10", "S4", "A new work order for a split customer starts with Labor and Parts",
   [ADMIN, REPS2,
@@ -202,11 +202,11 @@ C("S4-15", "S4", "A rep with the switch off is not copied but still credited at 
    "Create a new work order for {Customer-A} with one labor line and one part.",
    "Invoice the work order without picking a representative.",
    "Open Reports > Sales By Representative for today."],
-  ["Step 1: {Customer-A} still shows {Sales-rep-B}.",
+  ["Step 1: {Customer-A} still shows {Sales-rep-B}, reading \"{Sales-rep-B} (Inactive)\".",
    "Step 2: the new work order's Sales Representative reads \"Unassigned\".",
    "Step 3: the invoice is created.",
    "Step 4: the invoice is credited to {Sales-rep-B}, labor and parts."],
-  ["S4-R27", "S4-N2", "S4-R17", ("Story 4 context note (S4-R27, S4-N2)", prd_line("* Context note (S4-R27, S4-N2)"))])
+  ["S4-R27", "S4-N2", AQ(14), "S4-R17", ("Story 4 context note (S4-R27, S4-N2)", prd_line("* Context note (S4-R27, S4-N2)"))])
 
 C("S4-16", "S4", "A work order invoiced with nobody takes the customer's reps per side",
   [ADMIN, REPS2,
@@ -232,26 +232,30 @@ C("S4-18", "S4", "Deactivating a rep clears their customer fields and removes Pa
    ('Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A}, "Sales Representative - Service Parts" {Sales-rep-B} and "Sales Representative - Part Sales" {Sales-rep-C}; customer {Customer-B} has {Sales-rep-C} as its one representative.',
     "For example: {Customer-A} is ZZAUTOTEST SSR Fleet and {Customer-B} is ZZAUTOTEST SSR Other."),
    START("Settings > Staff is open in a desktop browser at least 1024 px wide")],
-  ["Start deactivating {Sales-rep-C}'s account and read the warning.",
+  ["Start deactivating {Sales-rep-C}'s account and read the Deactivate window.",
    "Confirm the deactivation.",
    "Open {Customer-A}'s page.",
    "Open {Customer-B}'s page."],
-  ["Step 1: the warning counts 2 customers ({Customer-A} once, {Customer-B} once).",
+  ["Step 1: the Deactivate window reads \"They will be removed as sales representative from 2 customers.\" ({Customer-A} once, {Customer-B} once); the old line \"Their customer assignments will stay where they are.\" is not shown.",
    "Step 2: {Sales-rep-C} is deactivated.",
    "Step 3: {Customer-A} shows Service Labor {Sales-rep-A} and Service Parts {Sales-rep-B}; the Part Sales field is gone, so new part sales follow Service Parts.",
    "Step 4: {Customer-B} shows \"Sales Representative\" reading \"Unassigned\"."],
-  ["S4-R20", "S4-R21"],
-  note="The Sales By Representative spec, version 28 (12 Oct 2026, Story 13), still keeps a deactivated person on their customers. PRD version 8 (14 Oct 2026) is later and removes them; this case follows the PRD, which we take as prevailing. The difference is on the product owner's question list.")
+  ["S4-R20", "S4-R21", AQ(12), AQ(13)],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, Story 13), still keeps a deactivated person on their customers. Chris Ward ruled on 19 Oct 2026 for the PRD (answers 12 and 13, quoted below); this case follows PRD version 10, which removes them.")
 
-C("S4-19", "S4", "A deactivation warning counts a customer once when a rep holds two fields",
+C("S4-19", "S4", "The Deactivate window counts a customer once when a rep holds two fields",
   [ADMIN, REPS2,
    ('Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-B} and "Sales Representative - Service Parts" {Sales-rep-B}, and no other customer has {Sales-rep-B}.', "For example: {Customer-A} is ZZAUTOTEST SSR Fleet."),
    START("Settings > Staff is open in a desktop browser at least 1024 px wide")],
-  ["Start deactivating {Sales-rep-B}'s account and read the warning.",
-   "Cancel the deactivation."],
-  ["Step 1: the warning counts 1 customer.",
-   "Step 2: nothing changes; {Sales-rep-B} stays active."],
-  ["S4-R21"])
+  ["Start deactivating {Sales-rep-B}'s account and read the Deactivate window.",
+   "Cancel the deactivation.",
+   "Open {Sales-rep-B}'s staff record, turn the \"Sales Representative\" switch off and read the \"Turn Off Sales Representative\" warning.",
+   "Cancel the warning."],
+  ["Step 1: the Deactivate window reads \"They will be removed as sales representative from 1 customer.\" (\"customer\", not \"customers\"; {Customer-A} is counted once).",
+   "Step 2: nothing changes; {Sales-rep-B} stays active.",
+   "Step 3: the \"Turn Off Sales Representative\" warning shows as it does today, with no customer count.",
+   "Step 4: the switch stays on and nothing changes."],
+  ["S4-R21", AQ(13)])
 
 C("S4-20", "S4", "Renaming a rep updates customer fields and a switched-off rep stays",
   [ADMIN, REPS2,
@@ -260,12 +264,14 @@ C("S4-20", "S4", "Renaming a rep updates customer fields and a switched-off rep 
   ["Change {Sales-rep-B}'s last name (for example to \"Brook\") and save.",
    "Open {Customer-A}'s page.",
    "Turn {Sales-rep-A}'s \"Sales Representative\" switch off (keep the account active) and save.",
-   "Open {Customer-A}'s page again."],
+   "Open {Customer-A}'s page again.",
+   "Open Edit Customer and click the \"Sales Representative - Service Labor\" field."],
   ["Step 1: the staff record saves.",
    "Step 2: Service Parts shows {Sales-rep-B}'s new name.",
    "Step 3: the staff record saves.",
-   "Step 4: Service Labor still shows {Sales-rep-A}."],
-  ["S4-R22", "S4-N2"])
+   "Step 4: Service Labor still shows {Sales-rep-A}, now reading \"{Sales-rep-A} (Inactive)\".",
+   "Step 5: the field reads \"{Sales-rep-A} (Inactive)\"; {Sales-rep-A} is not offered in the dropdown and no option is checked."],
+  ["S4-R22", "S4-N2", AQ(14)])
 
 C("S4-21", "S4", "The assignments export lists one row per customer per person with Side",
   [ADMIN, REPS3,
@@ -275,11 +281,11 @@ C("S4-21", "S4", "The assignments export lists one row per customer per person w
   ["Download the Sales Representative Assignments export.",
    "Find the column after \"Representative is active?\".",
    "Find the rows for {Customer-A}, {Customer-B} and {Customer-C}."],
-  ["Step 1: the file downloads.",
+  ["Step 1: a file named sales-representative-assignments.csv downloads.",
    "Step 2: it is a column named \"Side\".",
    "Step 3: {Customer-A}: one row, {Sales-rep-A}, Side \"Parts and Service\". {Customer-B}: two rows, {Sales-rep-A} \"Service Labor\" and {Sales-rep-B} \"Service Parts\". {Customer-C}: one row, {Sales-rep-C}, Side \"Parts and Service, Part Sales\"."],
-  ["S4-R23"],
-  note="The Sales By Representative spec, version 28 (12 Oct 2026, S15-R1, S15-R4, S15-R5 and S15-R9), names the export, its heading (\"Rep is active?\") and its Side values differently. PRD version 8 (14 Oct 2026) is later; this case follows the PRD, which we take as prevailing. The difference is on the product owner's question list.")
+  ["S4-R23", AQ(17), AQ(18)],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, S15-R1, S15-R4, S15-R5 and S15-R9), names the export, its heading (\"Rep is active?\") and its Side values differently. Chris Ward ruled on 19 Oct 2026 for the PRD (answers 17 and 18, quoted below); this case follows PRD version 10.")
 
 C("S4-22", "S4", "Re-importing a customer keeps all its representatives",
   [ADMIN, REPS3,
@@ -291,3 +297,34 @@ C("S4-22", "S4", "Re-importing a customer keeps all its representatives",
   ["Step 1: the import finishes.",
    "Step 2: Service Labor {Sales-rep-A}, Service Parts {Sales-rep-B} and Part Sales {Sales-rep-C} are all still there."],
   ["S4-N3"])
+
+C("S4-25", "S4", "A part-sales-only user adding a customer from a part sale sees the reps",
+  [('You are signed in as {User-B}, whose role has "Part Sales — Create & Edit" but not "Customers — Create & Edit" or "Work Orders — Create & Edit", at {Location-A}.',
+    "For example: {User-B} is ZZAUTOTEST SSR Part Sales Only with the custom role ZZAUTOTEST SSR Part Sales Only; {Location-A} is Staging Heavy Duty - 9919."),
+   REPS2, ('Staff member {Staff-member-D} is active at {Location-A} with the "Sales Representative" switch off.', "For example: {Staff-member-D} is ZZAUTOTEST Dan Noswitch."),
+   START("the Part Sales page is open in a desktop browser at least 1024 px wide")],
+  ["Start a New Part Sale and choose to add a new customer from it.",
+   "Click the Sales Representative field in the New Customer window.",
+   "Read the options in the dropdown from top to bottom.",
+   "Pick {Sales-rep-A}, fill in the required details and save the customer."],
+  ["Step 1: the New Customer window opens with a Sales Representative field.",
+   "Step 2: the dropdown opens and lists the sales representatives; it is not empty and shows no access-denied message.",
+   "Step 3: \"Unassigned\" is first, then every active sales representative sorted by first name, then last name, A to Z (including {Sales-rep-A} and {Sales-rep-B}); {Staff-member-D} is not listed; there is no search box.",
+   "Step 4: the customer is created with {Sales-rep-A} as its sales representative."],
+  ["S4-R3", AQ(16), ("Story 4 prerequisites", prd_line("User has 'Customers — Create & Edit' enabled, or 'Work Orders — Create & Edit'")), "S4-R1"])
+
+C("S4-26", "S4", "Reactivating a rep does not put them back on their customers",
+  [ADMIN, REPS3,
+   ('Customer {Customer-A} has {Sales-rep-C} as its one sales representative; customer {Customer-B} shows "Sales Representative - Service Labor" {Sales-rep-A}, "Sales Representative - Service Parts" {Sales-rep-B} and "Sales Representative - Part Sales" {Sales-rep-C}.',
+    "For example: {Customer-A} is ZZAUTOTEST SSR Fleet and {Customer-B} is ZZAUTOTEST SSR Other."),
+   START("Settings > Staff is open in a desktop browser at least 1024 px wide")],
+  ["Deactivate {Sales-rep-C}'s account (confirm the Deactivate window).",
+   "Reactivate {Sales-rep-C}'s account.",
+   "Open {Customer-A}'s page.",
+   "Open {Customer-B}'s page."],
+  ["Step 1: {Sales-rep-C} is deactivated.",
+   "Step 2: {Sales-rep-C}'s account is active again.",
+   "Step 3: {Customer-A}'s \"Sales Representative\" reads \"Unassigned\"; {Sales-rep-C} has not been put back.",
+   "Step 4: {Customer-B} shows \"Sales Representative - Service Labor\" {Sales-rep-A} and \"Sales Representative - Service Parts\" {Sales-rep-B}, with no Part Sales field; {Sales-rep-C} has not been put back."],
+  ["S4-R20", AQ(12)],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, Story 13), says reactivating brings a person back to their customers. Chris Ward ruled on 19 Oct 2026 that they are not put back (answer 12, quoted below); this case follows PRD version 10.")

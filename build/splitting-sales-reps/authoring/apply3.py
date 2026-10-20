@@ -11,7 +11,10 @@ import ssr_lib, importlib
 for m in ["cases_s1_s2", "cases_s3_s4", "cases_s5_s8", "cases_tp", "cases_rs", "cases_rel", "cases_design"]: importlib.import_module(m)
 ids = {r["key"]: int(r["case_id"]) for r in csv.DictReader(open(f"{P}/testrail-id-map.csv"))}
 todo = []
+new = [c["key"] for c in ssr_lib.CASES if c["key"] not in ids]   # 20 Oct 2026: new cases have no C-id yet; this script only updates
+print("new, no C-id yet (not created by this script):", new)
 for c in ssr_lib.CASES:
+    if c["key"] in new: continue
     prev = json.load(open(f"{P}/applied/C{ids[c['key']]}-after.json")); f = ssr_lib.render(c)
     if any(prev.get(k) != v for k, v in f.items()): todo.append((c, f, prev))
 print("to update:", [f"{c['key']} C{ids[c['key']]}" for c, _, _ in todo])

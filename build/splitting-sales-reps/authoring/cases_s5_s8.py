@@ -1,4 +1,4 @@
-from ssr_lib import C, prd_line
+from ssr_lib import C, prd_line, AQ
 from common import *
 
 SBR = START("Reports > Sales By Representative is open in a desktop browser at least 1024 px wide")
@@ -16,12 +16,12 @@ C("S5-01", "S5", "A split invoice gives the Labor rep a Labor row and the Parts 
    "Read {Sales-rep-B}'s invoice row for {Work-order-1}.",
    "Read each representative's summary row and invoice count."],
   ["Step 1: the invoice is created.",
-   "Step 2: the report shows two rows for {Work-order-1}'s invoice, one under {Sales-rep-A} and one under {Sales-rep-B}; the Sales Type column shows after Status.",
+   "Step 2: the report shows two rows for {Work-order-1}'s invoice, one under {Sales-rep-A} and one under {Sales-rep-B}; the Sales Type column shows right after Status, and before Location when the Location column shows.",
    "Step 3: Sales Type \"Labor\"; Labor Invoiced $200.00, Hrs Invoiced 2.00, labor columns filled; Parts Invoiced and Parts Margin show a dash, not $0.00.",
    "Step 4: Sales Type \"Parts\"; Parts Invoiced $50.00; Labor Invoiced, Labor Margin, Hrs Worked, Hrs Invoiced, Labor Delta and Shop Supplies show a dash.",
    "Step 5: each summary row shows real sums (no dashes): {Sales-rep-A} $200.00 of labor, {Sales-rep-B} $50.00 of parts; each counts the invoice once."],
-  ["S5-R1", "S5-R3", "S5-R4", "S5-R5", "S5-R11", "S5-R13", "S5-R15", "S5-R16", "S5-R19", "S2-R13"],
-  note="The Sales By Representative spec, version 28 (12 Oct 2026, S9-N1), shows Labor Delta as 0.0 on a Parts row, and it also places Location right after Status (S18-R13). PRD version 8 (14 Oct 2026) is later and says a dash; this case follows the PRD, which we take as prevailing. Both points are on the product owner's question list.")
+  ["S5-R1", "S5-R3", "S5-R4", "S5-R5", "S5-R11", "S5-R13", "S5-R15", "S5-R16", "S5-R19", "S2-R13", AQ(24), AQ(26)],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, S9-N1), shows Labor Delta as 0.0 on a Parts row, and it also places Location right after Status (S18-R13). Chris Ward ruled on 19 Oct 2026 for the PRD (answers 24 and 26, quoted below): a dash on the Parts row, and the order Status, Sales Type, Location. This case follows PRD version 10.")
 
 C("S5-02", "S5", "All shop supplies, including a hand-typed amount, go to the Labor row",
   [ADMIN, REPS2, CUST, ("{Location-A}'s Shop Supplies Charge is 10% of labor, and nothing else is invoiced at {Location-A} today.", None),
@@ -48,11 +48,11 @@ C("S5-03", "DATA", "A whole-invoice discount is shared by the size of each side"
    "Add the two rows' subtotals."],
   ["Step 1: the invoice total before tax is $980.00 (600.00 + 400.00 + 30.00 − 50.00).",
    "Step 2: two rows show for the invoice.",
-   "Step 3: Labor row: Labor Invoiced $600.00, Shop Supplies $30.00, its share of the discount ($30.00) (600 ÷ 1,000 × 50), subtotal $600.00.",
-   "Step 4: Parts row: Parts Invoiced $400.00, its share of the discount ($20.00) (400 ÷ 1,000 × 50), subtotal $380.00.",
+   "Step 3: Labor row: Labor Invoiced $600.00, Shop Supplies $30.00, Adjustments ($30.00), its share of the discount (600 ÷ 1,000 × 50), subtotal $600.00.",
+   "Step 4: Parts row: Parts Invoiced $400.00, Adjustments ($20.00), its share of the discount (400 ÷ 1,000 × 50), subtotal $380.00.",
    "Step 5: $600.00 + $380.00 = $980.00, the invoice's total before tax."],
-  ["S5-R6"],
-  note="The Sales By Representative spec, version 28 (12 Oct 2026, S5-R11), still keeps whole-invoice fees and discounts out of the Labor and Parts columns. PRD version 8 (14 Oct 2026) is later and shares them by side; this case follows the PRD, which we take as prevailing. Which column shows each row's share is on the product owner's question list; judge the amounts wherever they show.")
+  ["S5-R6", AQ(22)],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, S5-R11), still keeps whole-invoice fees and discounts out of the Labor and Parts columns. Chris Ward ruled on 19 Oct 2026 that each row shows its own share in its Adjustments column (answer 22, quoted below); this case follows PRD version 10.")
 
 C("S5-04", "DATA", "A negative side still shares a discount by size",
   [ADMIN, REPS2, CUST, ("{Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.", None),
@@ -64,22 +64,25 @@ C("S5-04", "DATA", "A negative side still shares a discount by size",
    "Add the two rows' subtotals."],
   ["Step 1: the invoice total before tax is $430.00 (600.00 − 100.00 − 70.00).",
    "Step 2: two rows show for the invoice.",
-   "Step 3: the shares are six sevenths and one seventh by size: Labor row ($60.00), subtotal $540.00; Parts row ($10.00), subtotal ($110.00). The returned part reduces {Sales-rep-B}; it is not dropped.",
+   "Step 3: the shares are six sevenths and one seventh by size: the Labor row's Adjustments reads ($60.00), subtotal $540.00; the Parts row's Adjustments reads ($10.00), subtotal ($110.00). The returned part reduces {Sales-rep-B}; it is not dropped.",
    "Step 4: $540.00 + ($110.00) = $430.00, the invoice total."],
-  ["S5-E1", "S5-N2", "S5-R6"])
+  ["S5-E1", "S5-N2", "S5-R6", AQ(22)])
 
-C("S5-05", "DATA", "A cent left over by rounding the shares goes to the Labor row",
+C("S5-05", "DATA", "The Parts share is rounded to the cent and the Labor row gets the rest",
   [ADMIN, REPS2, CUST, ("{Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.", None),
-   WO('it has one labor line of 1.00 hour at $100.00 ($100.00), one part sold at $100.00 and a whole-invoice discount of $0.01; Labor reads {Sales-rep-A} and Parts reads {Sales-rep-B}'),
-   WO_START],
-  ["Invoice {Work-order-1}.",
+   ('Work order {Work-order-1} for {Customer-A} has one labor line of 1.00 hour at $100.00 ($100.00), one part sold at $200.00 and a whole-invoice discount of $1.00; work order {Work-order-2} for {Customer-A} has one labor line of 1.00 hour at $100.00, one part sold at $100.00 and a whole-invoice discount of $0.01. On both, Labor reads {Sales-rep-A} and Parts reads {Sales-rep-B}.',
+    "For example: {Work-order-1} is S2-40001 and {Work-order-2} is S2-40002."),
+   START("the Work Orders page is open in a desktop browser at least 1024 px wide")],
+  ["Invoice {Work-order-1} and {Work-order-2}.",
    SBR_STEP,
-   "Read the discount share on the Labor row and on the Parts row."],
-  ["Step 1: the invoice is created.",
-   "Step 2: two rows show for the invoice.",
-   "Step 3: the two shares add up to exactly ($0.01), and the cent is on the Labor row: Labor ($0.01), Parts $0.00."],
-  ["S5-R7", "S5-R6"],
-  note="Each side's exact share is half a cent, so this tie lands on the Labor row under every reading of the rounding rule. How a share that is not a tie is rounded is a question for the product owner.")
+   "Read the Adjustments column on the Labor row and on the Parts row of {Work-order-1}'s invoice.",
+   "Read the Adjustments column on the Labor row and on the Parts row of {Work-order-2}'s invoice."],
+  ["Step 1: both invoices are created.",
+   "Step 2: two rows show for each invoice, a Labor row under {Sales-rep-A} and a Parts row under {Sales-rep-B}.",
+   "Step 3: Parts ($0.67) (the exact share 200 ÷ 300 × 1.00 = 0.666… rounded to the nearest cent) and Labor ($0.33), the rest; together ($1.00).",
+   "Step 4: each exact share is half a cent, so the Labor row gets the extra cent: Labor ($0.01) and Parts $0.00; together ($0.01)."],
+  ["S5-R7", "S5-R6", AQ(21)],
+  note="Chris Ward answered on 19 Oct 2026 how the shares are rounded (answer 21, quoted below); PRD version 10 replaced the earlier rule \"A cent left over by rounding the share goes to the Labor row.\"")
 
 C("S5-06", "DATA", "A whole-invoice fee with no labor or parts dollars goes to one side",
   [ADMIN, REPS2, CUST, ("{Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.", None),
@@ -91,37 +94,40 @@ C("S5-06", "DATA", "A whole-invoice fee with no labor or parts dollars goes to o
    "Find each invoice's fee in the report."],
   ["Step 1: three invoices are created.",
    "Step 2: the report shows today's invoices.",
-   "Step 3: {Work-order-1}'s $25.00 is credited to {Sales-rep-A} (the labor representative); {Work-order-2}'s $25.00 to {Sales-rep-B} (the parts representative, because the labor side is empty); {Work-order-3}'s $25.00 to Unassigned."],
-  ["S5-R8"])
+   "Step 3: {Work-order-1}'s $25.00 is credited to {Sales-rep-A} (the labor representative); {Work-order-2}'s $25.00 to {Sales-rep-B} (the parts representative, because the labor side has no representative); {Work-order-3}'s $25.00 to Unassigned."],
+  ["S5-R8", AQ(23)])
 
 C("S5-07", "S5", "A part sale is one Part Sales row holding the whole sale",
   [ADMIN, REPS2, CUST, ("{Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.", None),
-   ("Part sale {Part-sale-1} for {Customer-A} has one part at $80.00 and shop supplies of $5.00, and its Sales Representative reads {Sales-rep-A}; part sale {Part-sale-2} has one part at $40.00, no shop supplies and Sales Representative {Sales-rep-A}.",
-    "For example: {Part-sale-1} is P-30001 and {Part-sale-2} is P-30002."),
+   ("Three part sales for {Customer-A} have Sales Representative {Sales-rep-A}: {Part-sale-1} has one part at $80.00 and shop supplies of $5.00; {Part-sale-2} has one part at $40.00 and no shop supplies charge; {Part-sale-3} has one part at $30.00 and a shop supplies charge of $0.00.",
+    "For example: {Part-sale-1} is P-30001, {Part-sale-2} is P-30002 and {Part-sale-3} is P-30003."),
    START("the Part Sales page is open in a desktop browser at least 1024 px wide")],
-  ["Invoice {Part-sale-1} and {Part-sale-2}.",
+  ["Invoice {Part-sale-1}, {Part-sale-2} and {Part-sale-3}.",
    SBR_STEP,
-   "Read {Sales-rep-A}'s rows for the two part sales."],
-  ["Step 1: both are invoiced.",
+   "Read {Sales-rep-A}'s rows for the three part sales."],
+  ["Step 1: all three are invoiced.",
    "Step 2: the report shows today's invoices.",
-   "Step 3: each part sale is one row with Sales Type \"Part Sales\" holding every dollar: {Part-sale-1} $80.00 of parts with Shop Supplies $5.00; {Part-sale-2} $40.00 with Shop Supplies showing a dash."],
-  ["S5-R9", "S5-R15a", "S5-R3"])
+   "Step 3: each part sale is one row with Sales Type \"Part Sales\" holding every dollar: {Part-sale-1} $80.00 of parts with Shop Supplies $5.00; {Part-sale-2} $40.00 with Shop Supplies showing a dash; {Part-sale-3} $30.00 with Shop Supplies $0.00."],
+  ["S5-R9", "S5-R15a", "S5-R3", AQ(25)])
 
 C("S5-08", "S5", "One person on both sides shows one Labor, Parts row",
   [ADMIN, REPS2, CUST, ("{Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.", None),
-   WO('it has one labor line of 2.00 hours at $100.00 an hour and one part sold at $50.00; "Sales Representative - Labor" and "Sales Representative - Parts" both read {Sales-rep-A}'),
-   WO_START],
-  ["Invoice {Work-order-1}.",
+   ('Work order {Work-order-1} for {Customer-A} has one labor line of 2.00 hours at $100.00 an hour and one part sold at $50.00; work order {Work-order-2} for {Customer-A} has one part sold at $50.00 and no labor. On both, "Sales Representative - Labor" and "Sales Representative - Parts" read {Sales-rep-A}.',
+    "For example: {Work-order-1} is S2-40001 and {Work-order-2} is S2-40002."),
+   START("the Work Orders page is open in a desktop browser at least 1024 px wide")],
+  ["Invoice {Work-order-1} and {Work-order-2}.",
    SBR_STEP,
-   "Read {Sales-rep-A}'s rows for the invoice.",
+   "Read {Sales-rep-A}'s rows for {Work-order-1}'s invoice.",
+   "Read {Sales-rep-A}'s row for {Work-order-2}'s invoice.",
    "Set the Sales Type filter to Labor only.",
    "Set the Sales Type filter to Parts only."],
-  ["Step 1: the invoice is created.",
+  ["Step 1: both invoices are created.",
    "Step 2: the report shows today's invoices.",
    "Step 3: one row, Sales Type \"Labor, Parts\", with the sum of both sides: Labor Invoiced $200.00 and Parts Invoiced $50.00; the invoice counts once.",
-   "Step 4: only a \"Labor\" row shows, with $200.00 of labor.",
-   "Step 5: only a \"Parts\" row shows, with $50.00 of parts."],
-  ["S5-R10", "S5-R12", "S5-R13"])
+   "Step 4: one row, Sales Type \"Labor, Parts\", with Parts Invoiced $50.00 and Labor Delta 0.0 (not a dash), because the invoice has no labor.",
+   "Step 5: only the \"Labor\" side shows: {Work-order-1}'s row reads \"Labor\" with $200.00 of labor.",
+   "Step 6: only the \"Parts\" side shows: {Work-order-1}'s row reads \"Parts\" with $50.00 of parts."],
+  ["S5-R10", "S5-R12", "S5-R13", "S5-R15", AQ(24)])
 
 C("S5-09", "DATA", "Report totals are the same split or not when Show Unassigned is on",
   [ADMIN, REPS2, CUST, ("{Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.", None),
@@ -159,9 +165,9 @@ C("S5-11", "S5", "The Sales Type column is off by default, first in the list and
    "Sign out, sign in again and open Sales By Representative."],
   ["Step 1: there is no Sales Type column.",
    "Step 2: \"Sales Type\" is first in the list and is off.",
-   "Step 3: a Sales Type column shows after Status; it holds words only (no money).",
+   "Step 3: a Sales Type column shows right after Status, and before Location when the Location column shows; it holds words only (no money).",
    "Step 4: the Sales Type column is still on."],
-  ["S5-R19", "S5-R20", "S5-R21", "S5-R22", "S5-R24"])
+  ["S5-R19", "S5-R20", "S5-R21", "S5-R22", "S5-R24", AQ(26)])
 
 C("S5-12", "S5", "Expanded CSV and PDF always carry the Sales Type column",
   [ADMIN, REPS2, CUST,
@@ -171,9 +177,9 @@ C("S5-12", "S5", "Expanded CSV and PDF always carry the Sales Type column",
    "Open the CSV and find the rows for {Work-order-1}'s invoice.",
    "Export the Expanded PDF and find the same rows."],
   ["Step 1: the CSV downloads.",
-   "Step 2: it has a Sales Type column after Status; the Labor row reads \"Labor\" with blank parts cells; the Parts row reads \"Parts\" with blank labor, hours and Shop Supplies cells.",
-   "Step 3: the PDF has the Sales Type column after Status; the cells of the side a row is not credited with show a dash."],
-  ["S5-R23"])
+   "Step 2: it has a Sales Type column right after Status, and before Location when the file has a Location column; the Labor row reads \"Labor\" with blank parts cells; the Parts row reads \"Parts\" with blank labor, hours and Shop Supplies cells.",
+   "Step 3: the PDF has the Sales Type column in the same place, right after Status and before any Location column; the cells of the side a row is not credited with show a dash."],
+  ["S5-R23", AQ(24), AQ(26)])
 
 C("S5-13", "DATA", "A zero-dollar side or invoice still counts for its representative",
   [ADMIN, REPS2, CUST, ("{Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.", None),
@@ -237,7 +243,9 @@ C("S6-05", "S6", "A side whose staff member no longer exists prints as Unassigne
   [ADMIN, REPS2, CUST, WO('Labor reads {Sales-rep-A} and Parts held {Sales-rep-B}, whose staff record no longer exists'), WO_START],
   [PR],
   ["Step 1: the row reads \"Unassigned (Parts) · {Sales-rep-A} (Labor)\"; it never reads a bare \"(Inactive)\"."],
-  ["S6-N1"], marker="AUTOMATION: HOLD - needs a staff record that no longer exists; if staff cannot be deleted in the app, check with the developers")
+  ["S6-N1", ("Story 6 context note (S6-N1, S1-E3, S7-R6)", prd_line("* Context note (S6-N1, S1-E3, S7-R6)")), AQ(30)],
+  marker="AUTOMATION: HOLD - only a data repair makes a staff record stop existing; developers check this, manual QA cannot set it up",
+  note="A manual tester cannot set up this case: a staff record stops existing only through a data repair. The developers check it.")
 
 # ---------------- Story 7: log ----------------
 LOG = "Open the work order's menu and click Audit Log."
@@ -252,8 +260,7 @@ C("S7-01", "S7", "Each representative change writes one log entry with before an
    "Step 4: two new entries: adding the field \"Sales Representative: {Sales-rep-A} → {Sales-rep-A} (Parts) · {Sales-rep-A} (Labor)\", then \"{Sales-rep-A} (Parts) · {Sales-rep-A} (Labor) → {Sales-rep-B} (Parts) · {Sales-rep-A} (Labor)\".",
    "Step 5: one \"Sales Representative\" field reads {Sales-rep-A}.",
    "Step 6: a new entry reads \"Sales Representative: {Sales-rep-B} (Parts) · {Sales-rep-A} (Labor) → {Sales-rep-A}\"."],
-  ["S7-R1", "S7-R2", "S7-R3"],
-  note="Step 4: whether adding the Parts field with the same person on both sides writes an entry is a question for the product owner (S7-R1 says adding the field writes one; S7-R4 says a change that leaves the representatives as they were writes none). Until answered, judge the entry for setting Parts to {Sales-rep-B} and record what you see for the add.")
+  ["S7-R1", "S7-R2", "S7-R3", AQ(31)])
 
 C("S7-02", "S7", "A split work order's log entry shows Unassigned for an empty side",
   [ADMIN, REPS2, CUST, WO('Labor reads {Sales-rep-A} and Parts reads {Sales-rep-B}'), WO_START],
@@ -270,6 +277,24 @@ C("S7-03", "S7", "Picking the person already in the field writes no log entry",
    "Step 2: the field still reads {Sales-rep-A}.",
    "Step 3: the count is the same; no new entry."],
   ["S7-R4"])
+
+C("S7-05", "S7", "A log entry reads Unassigned for a rep who no longer exists",
+  [ADMIN, REPS2, CUST,
+   ('Work order {Work-order-1} for {Customer-A} is open and not invoiced; "Sales Representative - Labor" reads {Sales-rep-A} and "Sales Representative - Parts" holds {Staff-member-C}, whose staff record no longer exists.',
+    "For example: {Work-order-1} is S2-40001 and {Staff-member-C} is ZZAUTOTEST Gone Rep."),
+   ('Work order {Work-order-2} for {Customer-A} is open and not invoiced; its one "Sales Representative" field holds {Staff-member-D}, a staff member of another organization.',
+    "For example: {Work-order-2} is S2-40002 and {Staff-member-D} is ZZAUTOTEST Other Org Rep."),
+   WO_START],
+  ["Set \"Sales Representative - Labor\" to {Sales-rep-B}.", LOG,
+   "Close the log, open {Work-order-2} and set its Sales Representative to {Sales-rep-A}.", LOG],
+  ["Step 1: Labor reads {Sales-rep-B}.",
+   "Step 2: the newest entry reads \"Sales Representative: Unassigned (Parts) · {Sales-rep-A} (Labor) → Unassigned (Parts) · {Sales-rep-B} (Labor)\"; the Parts side never reads a bare \"(Inactive)\".",
+   "Step 3: the field reads {Sales-rep-A}.",
+   "Step 4: the newest entry reads \"Sales Representative: Unassigned → {Sales-rep-A}\"."],
+  ["S7-R6", "S7-R2", "S7-R3", ("Story 6 context note (S6-N1, S1-E3, S7-R6)", prd_line("* Context note (S6-N1, S1-E3, S7-R6)")), AQ(5), AQ(30)],
+  stories=[7],
+  marker="AUTOMATION: HOLD - only a data repair makes a staff record stop existing or belong to another organization; developers check this, manual QA cannot set it up",
+  note="A manual tester cannot set up this case: a staff record stops existing, or sits in another organization, only through a data repair. The developers check it.")
 
 # ---------------- Story 8: Sales Type filters ----------------
 C("S8-01", "S8", "Sales By Representative has a Sales Type filter, all selected",
@@ -292,8 +317,8 @@ C("S8-02", "S8", "Sales By Representative exports name the Sales Type selection"
   ["Step 1: both read \"Sales Type: All\".",
    "Step 2: both read \"Sales Type: Parts, Part Sales\".",
    "Step 3: \"Empty export\" shows and no file is made."],
-  ["S8-R4"],
-  note="The Sales By Representative spec, version 28 (12 Oct 2026, S3-R10 and S14-E3), still makes a file with a \"Sales Type: None\" line when no option is selected. PRD version 8 (14 Oct 2026) is later and says Export shows \"Empty export\" and makes no file; this case follows the PRD, which we take as prevailing. The difference is on the product owner's question list.")
+  ["S8-R4", AQ(27)],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, S3-R10 and S14-E3), still makes a file with a \"Sales Type: None\" line when no option is selected. Chris Ward ruled on 19 Oct 2026 for the PRD (answer 27, quoted below): Export shows \"Empty export\" and makes no file. This case follows PRD version 10.")
 
 C("S8-03", "S8", "Sales By Customer's Product Type filter now reads Sales Type",
   [ADMIN, START("Reports > Sales By Customer is open in a desktop browser at least 1024 px wide")],
@@ -305,7 +330,7 @@ C("S8-03", "S8", "Sales By Customer's Product Type filter now reads Sales Type",
    "Step 2: it reads \"Sales Type: All Sales\".",
    "Step 3: it reads \"Sales Type: Part Sales\".",
    "Step 4: it reads \"Sales Type: No sales\"."],
-  ["S8-R6", "S8-R7", "S8-R8"])
+  ["S8-R6", "S8-R7", "S8-R8", AQ(28)])
 
 C("S8-04", "S8", "Sales By Customer exports name the Sales Type selection",
   [ADMIN, START("Reports > Sales By Customer is open in a desktop browser at least 1024 px wide")],
@@ -317,8 +342,8 @@ C("S8-04", "S8", "Sales By Customer exports name the Sales Type selection",
    "Step 2: both read \"Sales Type: Part Sales only\".",
    "Step 3: both read \"Sales Type: Service Sales only\".",
    "Step 4: \"Empty export\" shows and no file is made."],
-  ["S8-R9"],
-  note="The Sales By Customer spec, version 21 (6 Oct 2026, S3-R7, S15-R10 and S18-R10), still makes a file with a \"No sales\" line when no option is selected. PRD version 8 (14 Oct 2026) is later and says Export shows \"Empty export\" and makes no file; this case follows the PRD, which we take as prevailing. The difference is on the product owner's question list.")
+  ["S8-R9", AQ(27)],
+  note="The Sales By Customer spec, version 21 (6 Oct 2026, S3-R7, S15-R10 and S18-R10), still makes a file with a \"No sales\" line when no option is selected. Chris Ward ruled on 19 Oct 2026 for the PRD on both reports (answer 27, quoted below): Export shows \"Empty export\" and makes no file. This case follows PRD version 10.")
 
 C("S8-05", "S8", "Sales By Customer figures do not change with the new wording",
   [ADMIN, REPS2,
@@ -331,3 +356,15 @@ C("S8-05", "S8", "Sales By Customer figures do not change with the new wording",
    "Step 2: it holds only the work order, $250.00, including the part sold on it.",
    "Step 3: it holds both, $290.00."],
   ["S8-R10", "S8-N1"])
+
+C("S8-12", "S8", "Exports with no rows still download a file with only the headings",
+  [ADMIN, ("{Location-A} has no invoices on {Date-A}.", "For example: {Date-A} is 1 Jan 2026."), SBR],
+  ["Set the date range to {Date-A}, keep all three Sales Types selected and export the CSV.",
+   "Export the PDF.",
+   "Open Reports > Sales By Customer, set the date range to {Date-A}, keep both Sales Types selected and export the CSV.",
+   "Export the PDF."],
+  ["Step 1: \"Empty export\" does not show; a CSV downloads with the filter line \"Sales Type: All\", the column headings and no rows.",
+   "Step 2: a PDF downloads with the filter line \"Sales Type: All\", the column headings and no rows.",
+   "Step 3: \"Empty export\" does not show; a CSV downloads with the filter line \"Sales Type: All Sales\", the column headings and no rows.",
+   "Step 4: a PDF downloads with the filter line \"Sales Type: All Sales\", the column headings and no rows."],
+  ["S8-R4", "S8-R9", AQ(27)])

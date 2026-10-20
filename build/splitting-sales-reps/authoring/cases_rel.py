@@ -1,22 +1,23 @@
 """Release day and what must not change (Rule 96 invariants with a quotable PRD sentence; baseline/V1-BASELINE-AND-INVARIANTS.md)."""
-from ssr_lib import C, prd_line
+from ssr_lib import C, prd_line, AQ
 from common import *
 
 PRE_REL = "AUTOMATION: HOLD - needs data and a report captured before the release is installed on the test site"
 
 C("REL-01", "REL", "On release day an existing customer keeps its one representative",
   [ADMIN, REPS2,
-   ("Before the release was installed, customer {Customer-A} had {Sales-rep-A} as its sales representative and customer {Customer-B} had none, and you noted how both customer pages looked.", "For example: {Customer-A} is ZZAUTOTEST SSR Before and {Customer-B} is ZZAUTOTEST SSR Before None."),
+   ("Before the release was installed, customer {Customer-A} had {Sales-rep-A} as its sales representative, customer {Customer-B} had none, and customer {Customer-C} had a representative who was no longer a user of the shop; you noted how the three customer pages looked.", "For example: {Customer-A} is ZZAUTOTEST SSR Before, {Customer-B} is ZZAUTOTEST SSR Before None and {Customer-C} is ZZAUTOTEST SSR Before Gone User."),
    START("the release is installed and {Customer-A}'s page is open in a desktop browser at least 1024 px wide")],
   ["Read {Customer-A}'s page.",
    "Open Edit Customer for {Customer-A}.",
-   "Open {Customer-B}'s page."],
+   "Open {Customer-B}'s page.",
+   "Open {Customer-C}'s page."],
   ["Step 1: \"Sales Representative\" reads {Sales-rep-A}; the page reads as before.",
    "Step 2: one \"Sales Representative\" field reading {Sales-rep-A}, with no Service Parts or Part Sales field.",
-   "Step 3: \"Sales Representative\" reads \"Unassigned\" where it used to read \"N/A\"."],
-  ["S4-E1", "S4-R19", ("Release day", prd_line("Every existing customer keeps its one sales representative and is not split"))],
-  marker=PRE_REL, stories=[4],
-  note="The tech plan says about 10 production customers whose representative is no longer a user of the shop will read \"Unassigned\" after the release (accepted by Product as an FYI). This case follows the PRD; the difference is a question for the product owner.")
+   "Step 3: \"Sales Representative\" reads \"Unassigned\" where it used to read \"N/A\".",
+   "Step 4: \"Sales Representative\" reads \"Unassigned\"; this is one of the few customers whose representative was no longer a user of the shop."],
+  ["S4-E1", "S4-R19", ("Release day", prd_line("Every existing customer keeps its one sales representative and is not split")), AQ(19)],
+  marker=PRE_REL, stories=[4])
 
 C("REL-02", "REL", "On release day an open work order keeps its one representative",
   [ADMIN, REPS2, CUST,
@@ -71,8 +72,7 @@ C("REL-06", "REL", "A Sales By Customer filter from before the release keeps its
    "Open the Sales Type filter."],
   ["Step 1: the report opens with the same choice applied.",
    "Step 2: the same option is selected under its new name (for example only \"Part Sales\"), and the filter reads \"Sales Type: Part Sales\"."],
-  ["S8-E1", "S8-R8"], marker=PRE_REL,
-  note="Report filters are kept in the page link today, not saved per user; whether S8-E1 means a bookmarked link is a question for the product owner.")
+  ["S8-E1", "S8-R8", AQ(29)], marker=PRE_REL)
 
 C("REL-07", "REL", "Imported work orders still have no sales representative",
   [ADMIN, ("{Location-A} has an imported work order, {Work-order-1}.", "For example: {Work-order-1} is an imported work order from the previous system."),

@@ -1,9 +1,9 @@
 """Design — how it looks (Rules 124, 126; the WO Board design cases are the model). One case per screen-and-state group. Each case:
 the design pictures of its boards ATTACHED and named in the preconditions; every visible attribute as a plain observation; the
 PRD sentence quoted where it speaks; the design's own board title and note quoted (Exact quotes); the boards named in Source.
-Where design and PRD disagree the case follows the PRD (latest) and the difference is on the PO question sheet."""
+Where design and PRD disagree the case follows the PRD (latest); since 20 Oct 2026 each such note quotes Chris Ward's ruling (answers of 19 Oct 2026)."""
 import os, json, glob, re
-from ssr_lib import C, P
+from ssr_lib import C, P, AQ
 from common import *
 
 CANVAS = "https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm"
@@ -50,9 +50,9 @@ D("D-01", "Work order card at rest matches the design",
    "Measure the gaps between Lead Technician, Service Advisor and Sales Representative.",
    "Open {Work-order-2} and compare the card with the picture of board 1.5."],
   ["Step 1: \"Sales Representative\" sits directly under Service Advisor, label on the first line and \"Unassigned\" on the second, in the same text style, size, weight and left edge as Lead Technician and Service Advisor; no box, no arrow and no button at rest, as in the picture.",
-   "Step 2: every gap is 16 px, including the gap under Lead Technician (the design's \"before\" board measures 36 px there today).",
+   "Step 2: with no message showing under Lead Technician, every gap is 16 px, including the gap under Lead Technician.",
    "Step 3: the name {Sales-rep-A} on the second line as plain text, no box, as in the picture."],
-  ["S1-R1", "S1-R2", "S1-R3", "S1-R6", "S1-R7"], ["1.2", "1.5"])
+  ["S1-R1", "S1-R2", "S1-R3", "S1-R6", "S1-R6a", "S1-R7"], ["1.2", "1.5"])
 
 D("D-02", "Hovering the Sales Representative row shows the box, arrow and +",
   [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-A}'), W],
@@ -64,8 +64,8 @@ D("D-02", "Hovering the Sales Representative row shows the box, arrow and +",
    "Step 2: the box ends 16 px before a 32 px column holding the +; the + is a 32 px square with 8 px corners and a 20 px plus icon, grey on no fill.",
    "Step 3: the + shows a light fill.",
    "Step 4: while the field has keyboard focus the box, the arrow and the + stay shown."],
-  ["S1-R4", "S1-R5", "S1-R11", "S2-R1", "S2-R2"], ["1.3", "1.6"],
-  note="The design pictures measure about 22 px between the box and the + on the work order card (16 px in the customer window). This case follows the PRD's 16 px; the difference is on the product owner's question sheet.")
+  ["S1-R4", "S1-R5", "S1-R11", "S2-R1", "S2-R2", AQ(1), AQ(2)], ["1.3", "1.6"],
+  note="The design pictures measure about 22 px between the box and the + on the work order card (16 px in the customer window). Chris Ward ruled on 19 Oct 2026 for the PRD's 16 px (answer 2, quoted above); this case follows it.")
 
 D("D-03", "The Sales Representative list looks as designed",
   [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads "Unassigned"'), W],
@@ -117,9 +117,9 @@ D("D-08", "The invoiced work order card shows the reps as plain text",
   [ADMIN, REPS2, CUST, WO('Labor reads {Sales-rep-A} and Parts reads {Sales-rep-B}; it has been invoiced'), W],
   ["Hover over the representative rows and compare with the picture of board 1.17.",
    "Measure the gaps between Lead Technician, Service Advisor and both representative fields."],
-  ["Step 1: \"Sales Representative - Labor\" {Sales-rep-A} and \"Sales Representative - Parts\" {Sales-rep-B} as plain text, with no box, arrow, + or remove x even on hover, as in the picture.",
+  ["Step 1: \"Sales Representative - Labor\" {Sales-rep-A} and \"Sales Representative - Parts\" {Sales-rep-B} as plain text, with no box, arrow, + or remove x even on hover, as in the picture; Lead Technician and Service Advisor keep the labels an invoiced card shows today.",
    "Step 2: every gap is 16 px."],
-  ["S2-R17", "S1-R6"], ["1.17"])
+  ["S2-R17", AQ(8), "S1-R6"], ["1.17"])
 
 D("D-09", "Work order log entries read as designed",
   [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-A}'), W],
@@ -143,8 +143,8 @@ D("D-10", "Edit Customer: one field, its list and the + look as designed",
    "Step 3: the field reads {Sales-rep-A}.",
    "Step 4: the tooltip \"Add representative\".",
    "Step 5: the menu lists \"Sales Representative - Service Parts\" then \"Sales Representative - Part Sales\", as in the picture."],
-  ["S4-R1", "S4-R3", "S4-R4", "S4-R5", "S4-R6"], ["2.3", "2.4", "2.5", "2.6", "2.7"],
-  note="The design's list shows names out of A to Z order (board 2.4; the canvas says its test copy lists login names). The PRD says A to Z by first name, then last name; this case follows the PRD, and the point is on the product owner's question sheet.")
+  ["S4-R1", "S4-R3", "S4-R4", "S4-R5", "S4-R6", AQ(15)], ["2.3", "2.4", "2.5", "2.6", "2.7"],
+  note="The design's list shows names out of A to Z order (board 2.4; the canvas says its test copy lists login names). Chris Ward ruled on 19 Oct 2026 for the PRD's A to Z by first name, then last name (answer 15, quoted above); this case follows it.")
 
 D("D-11", "Edit Customer with Service Parts and Part Sales looks as designed",
   [ADMIN, REPS3, ("Customer {Customer-A} has {Sales-rep-A} as its one sales representative.", "For example: {Customer-A} is ZZAUTOTEST SSR Fleet."),
@@ -190,12 +190,12 @@ D("D-14", "A part sale's representative field is unchanged from Part Sales Updat
    "Hover over it and compare with the picture of board 3.2.",
    "Open its list and compare with the picture of board 3.3.",
    "Pick {Sales-rep-A}, hover and compare with the picture of board 3.4."],
-  ["Step 1: one \"Sales Representative\" field, plain text at rest, the full width of the card; no + and no remove x.",
+  ["Step 1: one field labelled \"Sales representative\" (small \"r\"), plain text at rest, the full width of the card; no + and no remove x.",
    "Step 2: Part Sales Update v1's own hover box and arrow, the full width of the card.",
    "Step 3: the list as in the picture.",
-   "Step 4: {Sales-rep-A} in the same field, still no + and no remove x."],
-  ["S2-N2"], ["3.1", "3.2", "3.3", "3.4"], stories=[2],
-  note="The tech plan rebuilds this field on the new work order field and changes its label case (\"Sales representative\" to \"Sales Representative\"); the PRD says nothing about it changes. That is on the product owner's question sheet.")
+   "Step 4: {Sales-rep-A} in the same field, its label still \"Sales representative\", still no + and no remove x."],
+  ["S2-N2", AQ(7)], ["3.1", "3.2", "3.3", "3.4"], stories=[2],
+  note="The pictures of boards 3.1 to 3.4 read \"Sales Representative\" with a capital R, and the tech plan changes the label to \"Sales Representative\". Chris Ward ruled on 19 Oct 2026 that nothing changes (answer 7, quoted above), as PRD version 10 says: the label stays \"Sales representative\". This case follows them, not the design's capital R.")
 
 D("D-15", "Sales By Representative screen, filter and column look as designed",
   [ADMIN, REPS2, CUST, ("Today has one invoiced split work order (Labor {Sales-rep-A}, Parts {Sales-rep-B}), one invoiced work order with {Sales-rep-A} on both sides and one invoiced part sale with no shop supplies.", None),
@@ -207,23 +207,23 @@ D("D-15", "Sales By Representative screen, filter and column look as designed",
    "Open the column selector and compare with the pictures of boards 4.8 and 4.9 as you turn Sales Type on.",
    "Expand both representatives and compare with the picture of board 4.10."],
   ["Step 1: one row per representative; the filter reads \"Sales Type: All\"; no Sales Type column by default.",
-   "Step 2: the split invoice shows under both representatives; a side a representative did not sell shows a dash (including Shop Supplies on the Parts row).",
+   "Step 2: the split invoice shows under both representatives; a side a representative did not sell shows a dash (including Shop Supplies on the Parts row); the part sale with no shop supplies shows a dash under Shop Supplies.",
    "Step 3: the filter lists \"Labor\", \"Parts\", \"Part Sales\", all ticked.",
    "Step 4: only the labor side of each work order shows, as in the picture.",
-   "Step 5: \"Sales Type\" is the first entry, off by default; switching it on adds the column next to Status.",
+   "Step 5: \"Sales Type\" is the first entry, off by default; switching it on adds the column right after Status (and before Location when the Location column shows).",
    "Step 6: the Sales Type column reads \"Labor\", \"Parts\", \"Part Sales\" and \"Labor, Parts\"; columns line up as in the picture and nothing overlaps."],
-  ["S5-R10", "S5-R15", "S5-R19", "S5-R20", "S5-R21", "S8-R1", "S8-R3"], ["4.4", "4.5", "4.6", "4.7", "4.8", "4.9", "4.10"],
-  note="The pictures show $0.00 under Shop Supplies on the Parts row (boards 4.5 and 4.10) while the board 4.5 note (quoted below) says a side a rep did not sell shows a dash. The PRD says a dash; this case follows the PRD. That, and whether a part sale with no shop supplies shows a dash or $0.00, are on the product owner's question sheet.")
+  ["S5-R10", "S5-R15", "S5-R15a", "S5-R19", "S5-R20", "S5-R21", "S8-R1", "S8-R3", AQ(24), AQ(25), AQ(26), AQ(36)], ["4.4", "4.5", "4.6", "4.7", "4.8", "4.9", "4.10"],
+  note="The pictures show $0.00 under Shop Supplies on the Parts row (boards 4.5 and 4.10) and on the part sales, while the board 4.5 note (quoted below) says a side a rep did not sell shows a dash. Chris Ward ruled on 19 Oct 2026 for the PRD's dash, and said the design's $0.00 on the part sales is a sample-data mistake (answers 24 and 25, quoted above); this case follows them. The \"Column Selection\" tooltip covering the Sales Type switch (board 4.8) is acceptable as today (answer 36).")
 
 D("D-16", "Sales By Representative Expanded CSV and PDF look as designed",
   [ADMIN, REPS2, CUST, ("Today has one invoiced split work order (Labor {Sales-rep-A}, Parts {Sales-rep-B}).", None),
    START("Reports > Sales By Representative is open in that browser window, with the Sales Type column off")],
   ["Export the Expanded CSV and compare it with the picture of board 4.11.",
    "Export the Expanded PDF and compare it with the picture of board 4.12."],
-  ["Step 1: the file has the Sales Type column after Status even though it is off on screen; the cells of the side a row is not credited with are blank.",
-   "Step 2: the PDF has the Sales Type column after Status; those cells show a dash; the header lines name the filters, including \"Sales Type: All\"."],
-  ["S5-R23", "S8-R4"], ["4.11", "4.12"],
-  note="The export pictures show 0.00 / $0.00 under Shop Supplies on the Parts row; the PRD says blank in the CSV and a dash in the PDF. This case follows the PRD; the difference is on the product owner's question sheet.")
+  ["Step 1: the file has the Sales Type column right after Status (and before any Location column) even though it is off on screen; the cells of the side a row is not credited with are blank.",
+   "Step 2: the PDF has the Sales Type column in the same place; those cells show a dash; the header lines name the filters, including \"Sales Type: All\"."],
+  ["S5-R23", "S8-R4", AQ(24), AQ(26)], ["4.11", "4.12"],
+  note="The export pictures show 0.00 / $0.00 under Shop Supplies on the Parts row. Chris Ward ruled on 19 Oct 2026 for the PRD: blank in the CSV and a dash in the PDF (answer 24, quoted above); this case follows it.")
 
 D("D-17", "Sales By Customer Sales Type filter looks as designed",
   [ADMIN, START("Reports > Sales By Customer is open in that browser window")],
@@ -231,7 +231,7 @@ D("D-17", "Sales By Customer Sales Type filter looks as designed",
    "Open it and compare with the picture of board 5.2."],
   ["Step 1: it reads \"Sales Type: All Sales\" where \"Product Type\" used to be, as in the picture.",
    "Step 2: options \"Part Sales\" and \"Service Sales\", both ticked, as in the picture."],
-  ["S8-R6", "S8-R7", "S8-R8"], ["5.1", "5.2"])
+  ["S8-R6", "S8-R7", "S8-R8", AQ(28)], ["5.1", "5.2"])
 
 D("D-18", "On a phone the representative fields look as designed",
   [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads "Unassigned"'),
@@ -248,8 +248,8 @@ D("D-18", "On a phone the representative fields look as designed",
    "Step 4: the menu \"Sales Representative - Parts\".",
    "Step 5: \"Sales Representative - Labor\" and \"Sales Representative - Parts\", both {Sales-rep-A}, labels in full; the remove x (32 px) always showing beside Parts; each field shows its arrow.",
    "Step 6: the same list per row."],
-  ["S3-R1", "S3-R2", "S3-R4"], ["6.2", "6.3", "6.4", "6.5", "6.6", "6.7"], width="a phone screen 390 px wide",
-  note="The pictures of boards 6.2 and 6.6 show no dropdown arrow at rest (the board 6.6 note, quoted below, says the rows read as plain text). The PRD says the arrow always shows on a touch screen; this case follows the PRD, and the difference is on the product owner's question sheet.")
+  ["S3-R1", "S3-R2", "S3-R4", AQ(11)], ["6.2", "6.3", "6.4", "6.5", "6.6", "6.7"], width="a phone screen 390 px wide",
+  note="The pictures of boards 6.2 and 6.6 show no dropdown arrow at rest (the board 6.6 note, quoted below, says the rows read as plain text). Chris Ward ruled on 19 Oct 2026 that the arrow always shows on a touch screen, as the PRD says (answer 11, quoted above); this case follows it.")
 
 # "Before" boards (production today) → the release-day / must-not-change cases that compare against today's screens
 import ssr_lib

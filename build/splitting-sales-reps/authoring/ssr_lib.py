@@ -1,10 +1,26 @@
-"""Splitting Sales Representatives — case model, quote lookup, checks and TestRail rendering (19 Oct 2026).
+"""Splitting Sales Representatives — case model, quote lookup, checks and TestRail rendering (19 Oct 2026; PRD v10 and Chris Ward's answers, 20 Oct 2026).
 Shape: Rule 117 ninth amendment (two-audience), WITHOUT the setup-file link (QA lead, 19 Oct 2026: "do not attach that claude file …
 but keep it prepared"). Every expected result comes from a verbatim source sentence (Rules 57, 113); the build is not yet available."""
 import os, re, html, json
 D = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(D)
-PRD_TXT = open(f"{P}/sources/CONFLUENCE-919928833-v8-2026-10-19.txt").read()
 def ws(s): return re.sub(r"\s+", " ", html.unescape(s).replace("**", "").replace("\\", "")).strip()
+def md_to_text(md):
+    """PRD v10 is saved as markdown (20 Oct 2026). Turn it into the plain lines the v8 text had: no ** or \\, no blockquote mark,
+    links reduced to their words, an italic context note "> *\\* Context note ...*" back to "* Context note ...", one table cell per line."""
+    out = []
+    for line in md.split("\n"):
+        t = line.replace("\\", "")
+        t = re.sub(r"^>\s*", "", t)
+        t = re.sub(r"^\*\*\s*(Context note.*?)\*?\s*$", r"* \1", t)
+        t = t.replace("**", "")
+        t = re.sub(r"\[([^\]]*)\]\(([^)]*)\)", r"\1", t)
+        t = re.sub(r"<(https?://[^>]*)>", r"\1", t)
+        t = re.sub(r"^#+\s*", "", t)
+        if t.startswith("|"):
+            out += [x.strip() for x in t.strip().strip("|").split("|") if x.strip() and not re.fullmatch(r"-+", x.strip())]
+        else: out.append(t)
+    return "\n".join(out)
+PRD_TXT = md_to_text(open(f"{P}/prd-v10-2026-10-20/CONFLUENCE-919928833-v10-2026-10-20.md").read())
 PRDW = ws(PRD_TXT)
 TPW = ws(open(f"{P}/sources/Tech-Plan-Splitting-Sales-Representatives-2026-10-19-upload.md").read())
 SBRW = ws(open(f"{P}/report-specs/SBR-585629698-v28-2026-10-19.txt").read())
@@ -32,7 +48,14 @@ STORY = {1: ("SV-11265", "Story 1, Give a work order its sales representative"),
          7: ("SV-11271", "Story 7, Record representative changes in the work order log"),
          8: ("SV-11272", "Story 8, Filter both sales reports by Sales Type")}
 DESIGN_PAGE = {1: "1", 2: "1", 3: "6", 4: "2", 5: "4", 6: "1", 8: "4 and 5"}
-PRD_NAME = 'PRD "Splitting Sales Representatives", Confluence 919928833, version 8 (14 Oct 2026, Chris Ward)'
+PRD_NAME = 'PRD "Splitting Sales Representatives", Confluence 919928833, version 10 (19 Oct 2026, Chris Ward)'
+# Chris Ward's answers to our question sheet (Google Sheet 17Ry1Bt..., rows 6-43), saved 20 Oct 2026 (design-recheck-2026-10-20/chris-answers.json)
+ANS_NAME = "Chris Ward's answers to the Splitting Sales Representatives question sheet (19 Oct 2026)"
+ANS = {a["no"]: a["answer_verbatim"] for a in json.load(open(f"{P}/design-recheck-2026-10-20/chris-answers.json"))["answers"]}
+def AQ(n, part=None):
+    """Quote Chris Ward's answer n (verbatim, or one verbatim sentence of it)."""
+    return (f"Chris Ward's answer {n}", part or ANS[n])
+READ = {"PRD": "read 20 Oct 2026", "Chris Ward's answer": "read 20 Oct 2026"}
 NOBUILD = "The build is not yet available to check this case against."
 MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
 BLOCKED = 'If any record above is missing, mark this test Blocked: "setup not done".'
@@ -60,13 +83,13 @@ def source(c):
     codes = [x for x in c["q"] if isinstance(x, str)]
     other = [x[0] for x in c["q"] if isinstance(x, tuple)]
     refs = ", ".join(codes + [l for l in other if not l.startswith(("Design —", "Tech plan", "Sales By Representative spec", "Sales By Customer spec"))])
-    s = f"Epic SV-10890; {sto}; {PRD_NAME}, {refs}, read 19 Oct 2026."
+    s = f"Epic SV-10890; {sto}; {PRD_NAME}, {refs}, read 20 Oct 2026."
     if any(l.startswith("Tech plan") for l in other): s += f" {TP_NAME}, " + ", ".join(l for l in other if l.startswith("Tech plan")) + ", read 19 Oct 2026."
     for k, v in SPEC_NAMES.items():
         ls = [l.split(", ", 1)[1] for l in other if l.startswith(k)]
         if ls: s += f" {v}, " + ", ".join(ls) + ", read 19 Oct 2026."
     if c["extra_src"]: s += " " + c["extra_src"]
-    return s + " Source-verified 19 October 2026. " + NOBUILD
+    return s + " Source-verified 20 October 2026. " + NOBUILD
 
 def design_ref(c):
     """The design references of a case, shown under their own title "References from Design" (QA lead, 19 Oct 2026)."""
@@ -97,7 +120,7 @@ def design_block(c):
     if dq: h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in dq) + "</ul>"
     return h + "<p></p>"
 
-DOCS = [("PRD", None), ("Tech plan", TP_NAME)] + [(k, v) for k, v in SPEC_NAMES.items()]
+DOCS = [("PRD", None), ("Chris Ward's answer", ANS_NAME), ("Tech plan", TP_NAME)] + [(k, v) for k, v in SPEC_NAMES.items()]
 def doc_of(label):
     for k, _ in DOCS[1:]:
         if label.startswith(k): return k
@@ -116,7 +139,7 @@ def quotes_block(c):
     first = True
     for k, name in DOCS:
         if k not in groups: continue
-        h += f"<p>From: {e(name or PRD_NAME)}, read 19 Oct 2026" + (f" &middot; {e(tickets)}" if first else "") + "</p>"
+        h += f"<p>From: {e(name or PRD_NAME)}, {READ.get(k, 'read 19 Oct 2026')}" + (f" &middot; {e(tickets)}" if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in groups[k]) + "</ul>"
         first = False
     return h + f"<p>{e(NOBUILD)}</p>"
@@ -150,6 +173,10 @@ def check(c, extra_sources=None):
     if "ZZAUTOTEST" in tester: p.append(f"{k}: hard-coded record in tester text")
     if re.search(r"\bS\d+-[RNE]\d+", tester): p.append(f"{k}: requirement code in tester text")
     for l, t in quotes(c):
+        if l.startswith("Chris Ward's answer"):
+            n = int(l.split()[-1])
+            if ws(t) not in ws(ANS[n]): p.append(f"{k}: quote {l} not verbatim")
+            continue
         src = DESW if l.startswith("Design — board") else TPW if l.startswith("Tech plan") else SBRW if l.startswith("Sales By Representative spec") else SBCW if l.startswith("Sales By Customer spec") else (PRDW if not (extra_sources and l in extra_sources) else ws(extra_sources[l]))
         if ws(t) not in src: p.append(f"{k}: quote {l} not verbatim")
     if len(c["pre"]) > 7: p.append(f"{k}: {len(c['pre'])} preconditions")

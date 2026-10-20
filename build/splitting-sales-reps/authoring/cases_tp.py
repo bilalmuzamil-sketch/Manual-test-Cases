@@ -1,5 +1,5 @@
 """Cases for testable behaviour the tech plan adds beyond the PRD (review/TECHPLAN-JIRA-REVIEW.md section c), quoted from the tech plan."""
-from ssr_lib import C, prd_line
+from ssr_lib import C, prd_line, AQ
 from common import *
 
 C("S4-23", "S4", "Saving a customer with a rep turned off in another tab is refused",
@@ -47,10 +47,10 @@ C("S5-16", "DATA", "Line fees stay with their side and a processing fee is share
    "Add the two rows' subtotals."],
   ["Step 1: the invoice total before tax is $418.00 (300.00 − 30.00 + 100.00 + 10.00 + 38.00).",
    "Step 2: two rows show for the invoice.",
-   "Step 3: Labor row: labor $270.00 after its own discount, plus its share of the whole-invoice fee, $27.00 (270 ÷ 380 × 38); subtotal $297.00.",
-   "Step 4: Parts row: parts $110.00 after its own fee, plus its share of the whole-invoice fee, $11.00 (110 ÷ 380 × 38); subtotal $121.00.",
+   "Step 3: Labor row: labor $270.00 after its own discount, and its share of the whole-invoice fee in its Adjustments column, $27.00 (270 ÷ 380 × 38); subtotal $297.00.",
+   "Step 4: Parts row: parts $110.00 after its own fee, and its share of the whole-invoice fee in its Adjustments column, $11.00 (110 ÷ 380 × 38); subtotal $121.00.",
    "Step 5: $297.00 + $121.00 = $418.00, the invoice total before tax."],
-  ["S5-R4", "S5-R5", "S5-R6",
+  ["S5-R4", "S5-R5", "S5-R6", AQ(22),
    ("Tech plan, line fees and discounts", "Functional test: an invoice with a labor-line discount and a part-line fee credits each to its own row")])
 
 C("S5-17", "DATA", "Every report row adds up to the report totals to the cent",
