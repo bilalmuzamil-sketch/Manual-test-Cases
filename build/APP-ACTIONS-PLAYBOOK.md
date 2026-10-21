@@ -6206,3 +6206,9 @@ This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as a
   **`XSRF-TOKEN`** (~352) and **`cf_clearance`** (~438). The session + XSRF + cf_clearance alone still bounce to /login
   — the `Pr8K50…` and `remember_web_…` cookies are what sign you in. Check each pasted value's length against the Size
   column (Size = name length + value length) to catch truncation. Keep them in `/tmp` only.
+- **Reading the ShopCoach model (once signed in):** `GET https://feature.shopcoach.shopview.com/admin/assistant/<name>/config`
+  → `{provider, model, temperature, systemMessage}`; `GET /api/audit-logs?type=assistant&name=<name>&limit=50&page=1` → each
+  run's `operations[]` (the AI step has `input.provider` + `input.model`), with organization/workplace from the token, so a
+  run can be tied to the QA branch's data. On screen: `/admin/features/<name>/history` → click a run → "LLM Call" shows
+  Provider, Model, System Message and Response. The systemMessage is also where "always add X" wording lives (e.g. Improve
+  Story ends every story with "Job complete.") — read it before calling an output an invented fact.
