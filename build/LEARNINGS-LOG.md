@@ -581,3 +581,9 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - **Leave the shared Admin's columns as found:** `c96975-1021.mts` turned Tech View's Service Advisor / Assigned Techs and List's Progress off and did not restore them, which hid Assigned Techs from the next test. It now restores at the end; `restore-cols-1021.mts` puts them back (staging done; sv11499 not — its sign-in went to Google twice at 15:30–15:40).
 - `/api/technicians` is location-scoped and paged (100 at one location, 7 at Heavy Duty); don't treat "not in the list" as "no staff record".
 #run498 #prd-v73 #escape #names #jira-search #columns → L0497, L0495
+
+## L0499 — 2026-10-21 — Filing a held Story Defect end to end, then the fast-follow move (SV-11627, C707079)
+- QA lead's yes was conditional ("file it if the current behavior is against the PRD"): re-read the PRD live (still v73, S11-R5 unchanged) and the staging build (still c627fc7, reproduced 15:21) before writing anything.
+- `file-esc-1021.py` is the whole filing in one script: last duplicate check (`/rest/api/3/search/jql`) → `POST /rest/api/2/issue` (Story Defect, parent SV-10054, Medium, labels board-tech-view + fast-follow) → multipart attachments with the size compared → wiki description `PUT` → `size_pics.py` (needs `PYTHONPATH=/tmp/pylib` after a restart) → `issueLink` Relates → read back (type, parent, priority, labels, links, attachments, pictures in the description, test case at the end). Evidence `defect-drafts/tickets/esc-1021/filed.json`.
+- Order after filing: post the result again WITH the ticket (push tool adds the "Follow the status here" comment and the `SV-nnnnn - ` title prefix) BEFORE the fast-follow move, so the run's history carries the ticket; then snapshot results, `move_cases_to_section/87347`, `update_run` without the case, read back.
+#run498 #jira #filing #fast-follow → L0495, L0498
