@@ -1,0 +1,53 @@
+{
+ "L0": "Waiting On Parts:true | Asset:false | VIN/Serial #:true | Progress:true | Service Advisor:true | Lead Technician:true | Clocked In:true | Lines:true | Total price:true | Created on:true | Invoiced Date:false | Days open:false | Parts:false | Returns:false",
+ "L1": "Waiting On Parts:false | Asset:true | VIN/Serial #:true | Progress:false | Service Advisor:true | Lead Technician:true | Clocked In:true | Lines:true | Total price:true | Created on:true | Invoiced Date:false | Days open:false | Parts:false | Returns:false",
+ "LH1": "On Site,Status,Number,Customer,Asset,Unit,VIN/Serial #,Service Advisor,Lead Technician,Clocked In,Lines,Total Price,Created On",
+ "netList": [
+  [
+   "PATCH",
+   "/users/me/preferences/work-orders-list",
+   "{\"value\":{\"display\":\"list\"}}"
+  ],
+  [
+   "PUT",
+   "/users/me/preferences/work-orders-list",
+   "{\"value\":{\"tab\":\"all\",\"filters\":{},\"columns\":{\"unreceivedPartRequestsCount\":true,\"vehicle\":false,\"vin\":true,\"progress\":false,\"serviceAdvisor\":true,\"technician\":true,\"clockedInTechnicians\":true,\"linesCount\":true,\"totalPrice\":true,\"startDate\":true,\"invoicedDate\":false,\"daysOpen\":false,\"partRequestsCount\":false,\"partReturnRequestsCount\":false},\"sortBy\":\"companyName\",\"descending\":false,\"display\":\"list\",\"techViewColumns\":{\"assignedTechs\":false,\"serviceAdvisor\":false}}}"
+  ],
+  [
+   "PUT",
+   "/users/me/preferences/work-orders-list",
+   "{\"value\":{\"tab\":\"all\",\"filters\":{},\"columns\":{\"unreceivedPartRequestsCount\":false,\"vehicle\":false,\"vin\":true,\"progress\":false,\"serviceAdvisor\":true,\"technician\":true,\"clockedInTechnicians\":true,\"linesCount\":true,\"totalPrice\":true,\"startDate\":true,\"invoicedDate\":false,\"daysOpen\":false,\"partRequestsCount\":false,\"partReturnRequestsCount\":false},\"sortBy\":\"companyName\",\"descending\":false,\"display\":\"list\",\"techViewColumns\":{\"assignedTechs\":false,\"serviceAdvisor\":false}}}"
+  ],
+  [
+   "PUT",
+   "/users/me/preferences/work-orders-list",
+   "{\"value\":{\"tab\":\"all\",\"filters\":{},\"columns\":{\"unreceivedPartRequestsCount\":false,\"vehicle\":true,\"vin\":true,\"progress\":false,\"serviceAdvisor\":true,\"technician\":true,\"clockedInTechnicians\":true,\"linesCount\":true,\"totalPrice\":true,\"startDate\":true,\"invoicedDate\":false,\"daysOpen\":false,\"partRequestsCount\":false,\"partReturnRequestsCount\":false},\"sortBy\":\"companyName\",\"descending\":false,\"display\":\"list\",\"techViewColumns\":{\"assignedTechs\":false,\"serviceAdvisor\":false}}}"
+  ]
+ ],
+ "T0": "On Site:false | Waiting On Parts:true | Unit:true | Asset:true | VIN/Serial #:false | Progress:true | Service Advisor:false | Lead Technician:false | Clocked In:true | Lines:true | Assigned Techs:false | Created on:true | Total price:true | Invoiced Date:false | Days open:false | Parts:false | Returns:false",
+ "TH0": "Status,Waiting On Parts,Number,Customer,Unit,Asset,Progress,Clocked In,Lines,Created On,Total Price",
+ "T1": "On Site:false | Waiting On Parts:true | Unit:false | Asset:true | VIN/Serial #:false | Progress:true | Service Advisor:false | Lead Technician:false | Clocked In:true | Lines:true | Assigned Techs:false | Created on:true | Total price:true | Invoiced Date:false | Days open:false | Parts:false | Returns:false",
+ "TH1": "Status,Waiting On Parts,Number,Customer,Asset,Progress,Clocked In,Lines,Created On,Total Price",
+ "netTech": [
+  [
+   "PATCH",
+   "/users/me/preferences/work-orders-list",
+   "{\"value\":{\"display\":\"tech_view\"}}"
+  ],
+  [
+   "PATCH",
+   "/users/me/preferences/work-orders-list",
+   "{\"entries\":{\"techViewColumns\":{\"unit\":false}}}"
+  ]
+ ],
+ "Lcheck": "Waiting On Parts:false | Asset:true | VIN/Serial #:true | Progress:false | Service Advisor:true | Lead Technician:true | Clocked In:true | Lines:true | Total price:true | Created on:true | Invoiced Date:false | Days open:false | Parts:false | Returns:false",
+ "re": {
+  "afterLogout": "https://sv11499.qa.shopview.com/login",
+  "lsKeysAtLogin": 5,
+  "url": "https://sv11499.qa.shopview.com/workorders"
+ },
+ "L2": "Waiting On Parts:false | Asset:true | VIN/Serial #:true | Progress:false | Service Advisor:true | Lead Technician:true | Clocked In:true | Lines:true | Total price:true | Created on:true | Invoiced Date:false | Days open:false | Parts:false | Returns:false",
+ "LH2": "On Site,Status,Number,Customer,Asset,Unit,VIN/Serial #,Service Advisor,Lead Technician,Clocked In,Lines,Total Price,Created On",
+ "T2": "On Site:false | Waiting On Parts:true | Unit:false | Asset:true | VIN/Serial #:false | Progress:true | Service Advisor:false | Lead Technician:false | Clocked In:true | Lines:true | Assigned Techs:false | Created on:true | Total price:true | Invoiced Date:false | Days open:false | Parts:false | Returns:false",
+ "TH2": "Status,Waiting On Parts,Number,Customer,Asset,Progress,Clocked In,Lines,Created On,Total Price"
+}

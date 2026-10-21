@@ -1,0 +1,39 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on the QA branch [sv11499|https://sv11499.qa.shopview.com/workorders] (build v26.40.20-00f1fd6) on 21 October 2026, as Admin at Staging Heavy Duty - 9919, and compared it with staging (build v26.40.20-c627fc7), where the problem was reported.
+
+* A column turned off in List stays off after logging out and signing in again, and in a new browser.
+* The cause was a second Work Orders window: changing the view, density or Tech View columns there brought back its old List columns. That no longer happens.
+* Tech View keeps its own column choice, separate from List.
+
+!SV-11499_before-after.png|width=1000,height=444!
+_Picture 1: Progress was turned off in one window, then the other (older) window was switched to Tech View. Staging brings Progress back; the QA branch keeps it off._
+
+h3. What I checked
+
+||#||Check||Staging (before)||QA branch||Status||
+|1|Turn columns off and on in List (Progress off, Waiting On Parts off, Asset on), log out, sign in again|-|All three kept|PASSED|
+|2|The same user in a new browser|-|The same columns|PASSED|
+|3|The Estimates, Work Orders, Completed and All tabs|-|The same columns on every tab|PASSED|
+|4|After changing location to Staging Lethbridge - 4310|-|The same columns|PASSED|
+|5|Tech View column change (Unit off) after log out and sign in|-|Kept, and the List columns are unchanged|PASSED|
+|6|Older window switches to Tech View|Progress comes back|Progress stays off|PASSED|
+|7|Older window changes the Tech View density|Progress comes back|Progress stays off|PASSED|
+|8|Older window changes a Tech View column|Progress comes back|Progress stays off|PASSED|
+|9|Older window switches to Board View|Progress comes back|Progress stays off|PASSED|
+|10|Older window switches the List tab or sorts the List|Progress comes back|Progress comes back, the same as Production does today|PASSED|
+
+Row 10 is how List already behaves on Production (build v26.40.20-aada856, the same steps there bring Progress back). The PRD (version 73, S5-R8) states: "List keeps saving its columns exactly as it does today."
+
+!SV-11499_relogin-and-new-browser.png|width=1000,height=356!
+_Picture 2: on the QA branch the List columns are the same after logging out and signing in again, and in a new browser._
+
+h3. How to see it
+
+# Open the QA branch: [https://sv11499.qa.shopview.com/] and sign in as Admin.
+# In the top menu, click {{Work Orders}}, click the {{All}} tab, then the first of the three view icons ({{List}}).
+# Click {{Column Selection}} (the columns icon next to the view icons) and turn {{Progress}} off. Close the menu.
+# Click your initials at the top right, click {{Logout}}, and sign in again.
+# Open {{Work Orders}}, {{All}} and {{List}}. Progress is still off.
+# To check the two-window case: open Work Orders in a second browser tab first, turn Progress off in the first tab, then click the middle view icon ({{Tech View}}) in the second tab. Open Work Orders in a third tab: Progress is still off.

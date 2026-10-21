@@ -6223,3 +6223,9 @@ This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as a
 - ⚠️ `POST /api/staff/{id}/change` **resets fields you don't send** — omitting `clockable` turned it off
   (`clockableChanged:true`). Echo the LIST record's `clockable, billable, salary_type, salary, is_sales_rep` too; the
   `/view` record lacks them.
+
+### §AL.3 Work Orders view preferences (SV-11499, 2026-10-21)
+- Saved per user at `GET/PUT/PATCH /api/users/me/preferences/work-orders-list` → `{value:{tab,filters,columns{},sortBy,descending,display,density,techViewColumns{},boardFields{}}}`.
+  Snapshot `data.value` and `PUT {value:<snapshot>}` to restore (read back equal).
+- Column buttons: List `button_column_selection`, Tech View `button_tech_view_column_selection`, density `button_density`.
+- Two-window test: open Work Orders in tab A first, change a column in tab B, then make an edit in A, then read a fresh tab C.
