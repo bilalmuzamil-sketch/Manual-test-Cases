@@ -15,7 +15,7 @@ import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { HEAVY } from './staff.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, shot, display, tab, search, switchLocUI, findRow, allBoardCols, toColumn } from './wob.mts';
+import { EV, shot, display, tab, search, switchLocUI, findRow, allBoardCols, toColumn, ensureLocation } from './wob.mts';
 import { staffRows } from './staff.mts';
 const only = (process.env.ONLY || '').split(',').filter(Boolean); const want = (id: string) => !only.length || only.includes(id);
 const OUT = path.join(EV, 'fixed-1021.json');
@@ -76,6 +76,12 @@ await run('C707077', async (o) => {
   const lines = (await a.get(`/api/work-orders/lines/${id}`)).body?.data; const L = (Array.isArray(lines) ? lines : lines?.collection ?? [])[0]; o.lineName = L?.line_name?.trim();
   o.apiLineTechs = (L?.assigned_techs ?? []).map((x: any) => `${x.first_name ?? ''} ${x.last_name ?? ''}`.trim());
   o.location = await home('List');
+  // positive control (L0402): the List's Lead Technician column shows the ACCOUNT name; it must differ from the staff record name, else
+  // this test cannot show the fault at all
+  await search(p, name); await W(2500);
+  o.listLead = await p.evaluate(`(() => { const ths = [...document.querySelectorAll('thead th')].filter(th => th.getBoundingClientRect().width > 0); const i = ths.findIndex(th => /Lead Technician/.test(th.innerText));
+    const row = [...document.querySelectorAll('tbody tr')].find(r => r.innerText.includes(${JSON.stringify(o.wo)})); return row && i >= 0 ? (row.cells[i] || {}).innerText?.trim() : null; })()`);
+  await shot(p, 'C707077-1021-control-list-lead');
   await p.goto(APP + `/workorders/${id}/lines`, { waitUntil: 'domcontentloaded' }); await W(7000);
   const names = (t: string) => ({ staff: (t.match(/Carol Neal/g) || []).length, account: (t.match(/David Sparks/g) || []).length });
   const block = await p.evaluate(`(() => { const n = ${JSON.stringify(o.lineName || 'Full grease service')}; const el = [...document.querySelectorAll('[data-test-id^="line_"], .line-card, .q-card, tr')].filter(e => e.innerText && e.innerText.includes(n)).sort((a, b) => a.innerText.length - b.innerText.length)[0];
