@@ -29,3 +29,10 @@ Staging `app.staging.shopview.com`, build **v26.40.20-c627fc7**, Admin, Staging 
 - Status filter put back to none after the combined-limit check; Technician filter cleared after each run.
 - Learning check: a crashed run left 50 ticks saved in the Technician filter (it is remembered) — clear the filter at the start
   of every filter script.
+
+## Retest after Chris's answer (79208, 09:43 CDT) — PASSED, comment 79210
+- PRD **v73** (21 Oct 14:42 UTC, "SV-11575 rulings: 50-value limit as built; Deleted technician in the filter"): S1-R15c now
+  describes the build; S1-R15 puts "Deleted technician" last as a fast follow in SV-11594 (Open). Rule 109: ruling matches PRD.
+- New clause checked live (Board + Tech View, c627fc7): at 50 → red line + 304 names disabled; untick Unassigned → 49, no red
+  line, 0 disabled; tick again → 50 + red line; Clear selection → 0. (`ev/e575i-*.json`)
+- Comment 79210: green PASSED, first line "Check 11: PASSED against S1-R15c (version 73)" with the v73 quote; 79204 left as it was.

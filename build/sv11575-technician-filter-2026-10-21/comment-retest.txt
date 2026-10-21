@@ -1,0 +1,28 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+*Check 11: PASSED against S1-R15c (version 73).* I re-tested it on staging (build v26.40.20-c627fc7) on 21 October 2026 after Chris's answer (comment 79208), as Admin at Staging Heavy Duty - 9919, in Board View and Tech View.
+
+S1-R15c (version 73) states:
+{quote}The filters allow 50 values in total across all filters. Below 50, no limit message shows: not when the Technician list opens, and not after any tick. When the total reaches 50, a red line at the bottom of the list reads “50 selected (max 50 across all filters)” and every unticked name is greyed out and can’t be ticked, so the total can never go over 50. Unticking any value lifts the limit again.{quote}
+
+* Below 50 there is no message: not on opening the list, and not at 1 or 49 ticks.
+* At 50 the red line "50 selected (max 50 across all filters)" shows and every other name is greyed out (304 of them), so the total can't go over 50. The count includes other filters: 3 Status values + 47 technicians stops at 50.
+* Unticking one name removes the red line and makes every name tickable again; ticking one more brings the line back.
+* Checks 1 to 10 from my earlier comment are unchanged, so every point of this ticket is now done.
+* The "Deleted technician" entry in the list is a fast follow in [SV-11594|https://shopview.atlassian.net/browse/SV-11594] (S1-R15, version 73), so it doesn't hold this ticket.
+
+!SV-11575_limit-message.png|width=1200,height=507!
+_Picture 1: the Technician list at 0, 1, 49 and 50 ticks. No message until 50; at 50 the red line shows and the other names go grey._
+
+!SV-11575_untick-lifts-limit.png|width=360,height=644!
+_Picture 2: after unticking Unassigned at 50, the red line is gone and every name can be ticked again._
+
+h3. How to see it
+
+# Open staging: [https://app.staging.shopview.com/workorders] and sign in as Admin. At the top right, choose the location {{Staging Heavy Duty - 9919}}.
+# Above the list, on the right, click the last of the three view icons ({{Board View}}).
+# Above the board, click {{Technician}} (the wrench icon) and tick names from the top, one at a time. No message shows.
+# At the 50th tick the red line "50 selected (max 50 across all filters)" appears at the bottom of the list and the other names go grey.
+# Untick any name. The red line goes and the grey names can be ticked again.
+# Click {{Clear selection}} at the bottom of the list when you're done.
