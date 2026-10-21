@@ -12,7 +12,10 @@ import { APP } from './session.mts';
 import { person, roleIds, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 const ORG = (await import('./profile.mts')).ORG;
-export const RUNNER_EMAIL = 'zz.wob.runner@staging.shopview.local';
+// 21 Oct 2026: WOB_RUNNER=<tag> gives a script its OWN runner ("ZZ WOB Runner <tag>", zz.wob.runner.<tag>@…) — the shared runner was moved
+// to another location by another session mid-run (L0493). Unset = the shared runner, exactly as before.
+const RUNNER_TAG = (process.env.WOB_RUNNER || '').replace(/[^a-z0-9]/gi, '').toLowerCase();
+export const RUNNER_EMAIL = RUNNER_TAG ? `zz.wob.runner.${RUNNER_TAG}@staging.shopview.local` : 'zz.wob.runner@staging.shopview.local';
 export async function asRunner(browser: Browser, main: Page, a0: Api) {
   await a0.post('/api/exit-switch-user', {});
   const roles: any[] = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a0.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data) /* 15 Oct 2026: staging answers a plain list (L0339) */;
@@ -20,7 +23,7 @@ export async function asRunner(browser: Browser, main: Page, a0: Api) {
   const fromStaff = await roleIds(a0);
   const admin = roles.find((r) => /^admin(istrator)?$/i.test(r.label ?? r.name ?? ''))?.id ?? Object.entries(fromStaff).find(([l]) => /^admin(istrator)?$/i.test(l))?.[1];
   if (!admin) throw new Error('no Admin role found in this organisation');
-  const { row, log } = await person(a0, 'ZZ WOB', 'Runner', { role: admin, email: RUNNER_EMAIL, clockable: false });
+  const { row, log } = await person(a0, 'ZZ WOB', RUNNER_TAG ? `Runner ${RUNNER_TAG.toUpperCase()}` : 'Runner', { role: admin, email: RUNNER_EMAIL, clockable: false });
   if (!row) throw new Error(`runner not made: ${log.join('; ')}`);
   const me = (await candidates(a0)).find((x) => x.name === 'Admin ShopView');
   // after the first switch every call goes through the runner's own browser: a switch can renew the session cookie,
