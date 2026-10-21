@@ -1,14 +1,14 @@
 {panel:bgColor=#fffae6}
 *OVERALL QA STATUS: PARTIALLY PASSED*
 {panel}
-_First posted 06:20 CDT. Updated at 07:05 CDT after Parth's reply (comment 79184): the model is now checked (row 11), Picture 2 added._
+_First posted 06:20 CDT. Updated at 07:05 CDT after Parth's reply (comment 79184): the model is now checked (row 11), Picture 2 added. Updated at 07:08 CDT: what is still needed is stated in the summary and row 12._
 
 I tested this on the QA branch [sv10673|https://sv10673.qa.shopview.com/] (build v26.40.3-df33ae5) on 21 October 2026, as Admin at Staging Heavy Duty - 9919. I compared it with Production using the same wording.
 
 * All ten ShopCoach features answer on the branch, with no errors, and keep the facts I gave them.
 * Every ShopCoach feature runs on GPT-5.6 Luna. The ShopCoach admin shows all of them set to provider openai, model gpt-5.6-luna, and my own runs from this branch are logged with that model (Picture 2). _Updated on 21 October 2026, 07:05 CDT: was "cannot confirm"._
 * Parth confirmed this build has only the model change, with the Tech Story improvements removed (comment 79184).
-* Lee's 18-case baseline, which the ticket needs before it closes, has not been run yet.
+* *Still needed before this ticket can close:* Lee's 18-case baseline, run once on the current model and once on Luna, with both results attached here. Parth has copied Lee in (comment 79184), and Chris asked for the run on staging after the 22 October release (comment 78702). _Updated on 21 October 2026, 07:08 CDT: added who and when._
 
 !SV-10673_before-after-improve-story.png|width=510,height=1035!
 _Picture 1: the same notes put through Improve Story on Production and on the QA branch. Both keep every fact. Production rewrites "test drove ok" as "operation normal". Both end with "Job complete."; that comes from the Improve Story instructions, which say to end every story with it (Picture 2)._
@@ -27,7 +27,7 @@ h3. What I checked
 |9|ShopCoach Analysis|The front brake line|Flags the missing rotors. Its suggested story for this line is "Job complete." (the line is not complete)|PASSED|
 |10|New line time estimate|"Replace front brake pads and rotors" / "Pads worn, rotors under minimum"|2.0 hours with pads and two rotors|PASSED|
 |11|Runs on GPT-5.6 Luna|ShopCoach admin ([feature.shopcoach.shopview.com|https://feature.shopcoach.shopview.com/admin/features/parts]): the settings and the run history of each feature|All 11 features set to openai / gpt-5.6-luna. My runs from sv10673 today are logged with gpt-5.6-luna for 8 features. Line Builder and Analysis call other features in steps that don't name the model; those features are all set to Luna. _Updated on 21 October 2026, 07:05 CDT: was NOT CHECKED._|PASSED|
-|12|Lee's 18-case baseline on the current model and on Luna|-|Not run yet. Chris asked for it on staging after the 22 Oct release|NOT CHECKED|
+|12|Lee's 18-case baseline on the current model and on Luna|-|Not run yet. Parth has copied Lee in (comment 79184); Chris asked for it on staging after the 22 October release (comment 78702). _Updated on 21 October 2026, 07:08 CDT: added who and when._|NOT CHECKED|
 
 h3. How to see it
 
