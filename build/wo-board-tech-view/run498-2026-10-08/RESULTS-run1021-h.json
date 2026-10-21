@@ -1,0 +1,15 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.20-c627fc7", "date": "21 October 2026", "note": "run 498 - C707077 corrected: the earlier Failed read the wrong name as the staff record name"},
+ "results": {
+  "C707077": {"verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging - outcome (3) of this test: every place shows the staff record name, so the fix for SV-11577 has reached staging.",
+    "Correction: my earlier Failed today was wrong. I took the name in Settings > Staff (Carol Neal) as the staff record name, but that page shows the login account name. Her staff record name is David Sparks (the technician list reads it, tied to the Carol Neal login).",
+    "Step 1: the line's Labor text reads David Sparks - the staff record name.",
+    "Step 2: the roster reads the same staff record name, David Sparks, not the login name Carol Neal.",
+    "Steps 3-5: Edit Line opens; Technicians reads David Sparks; Cancel closes it with no change.",
+    "Steps 6-7: Board View's card and its column header read David Sparks, the same name List's Lead Technician shows.",
+    "Same build and same work order (S2-37765) as the earlier reading; nothing was re-run, only re-judged."],
+   "pictures": ["pictures-1019/C707077-2-lines-tab-1021-pass.png", "pictures-1019/C707077-3-edit-line-1021-pass.png", "pictures-1019/C707077-4-board-1021-pass.png"]}
+ }
+}

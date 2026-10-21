@@ -564,3 +564,11 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - **The staging sign-in cookie opened the sv11499 QA branch** (same Google sign-in), but the first attempt landed on `accounts.google.com/v3/signin/identifier` and the second, 30 s later, signed in. Retry once before asking for a branch cookie (Rule 104: two attempts).
 - After a restart `PIL` from `/usr/lib/python3/dist-packages` is built for 3.12 while `python3` is 3.11 (`cannot import name '_imaging'`); `python3 -m pip install --target /tmp/pylib pillow` and run the annotate/push tools with `PYTHONPATH=/tmp/pylib`. (`pip` alone installs for 3.13.)
 #run498 #sv11499 #location #signin #restart → L0494, L0495
+
+## L0497 — 2026-10-21 — Settings > Staff shows the LOGIN ACCOUNT name, not the staff record name; my C707077 Failed was wrong
+- `GET /api/staff` (Settings > Staff) names a person by the **login account**; `GET /api/technicians` names them by the **staff record** (`user_id` ties the two). Staging pairs: staff **David Sparks** ↔ login **Carol Neal** (user 5b7d54ab…), staff **Debra Garcia** ↔ login **Lindsay Perez** (staff 069b545f…). Probe: `names-probe2-1021.mts`. (Fact first written on another session's branch, playbook §AL.2 — read for facts only, Rule 119.)
+- L0402 and L0493 had the pair the wrong way round ("Carol Neal (account David Sparks)"). With it corrected, every place on c627fc7 (List lead, Lines Labor, roster, Edit Line, Board card + header) shows the staff record name → C707077 **Passed** (outcome 3); the morning's Failed was re-judged, not re-run, and corrected by a new Passed result.
+- Before calling a name "the staff record name", read `/api/technicians`; never Settings > Staff. Searching `/api/staff` for a staff-record-only name (Sparks, Debra) returns nothing — a quick tell that the two names differ.
+- QA lead's question on 21 Oct ("check if we already have a ticket for this") found SV-11577 already carried a PASSED QA comment (08:58, staging c627fc7, Debra Garcia). Read the ticket's comments live before reporting any failure against it.
+- C581895 (SV-11336) still uses Settings > Staff at steps 1–2 as the source of the staff record name; its preconditions say staging names cannot differ, which is no longer true. Put to the QA lead, not changed.
+#run498 #names #staff-record #correction #rule104 → L0402, L0493, L0496
