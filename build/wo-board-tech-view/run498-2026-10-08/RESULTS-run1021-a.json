@@ -1,0 +1,17 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.20-b1e205d", "date": "21 October 2026", "note": "run 498 - C698883 retest on the QA lead's request"},
+ "results": {
+  "C698883": {"verdict": "Blocked", "failed_steps": "Blocked at step 2: blocked by SV-11575 - the 50-value limit message still shows as soon as the Technician list opens.", "bold_steps": [2, 3, 6, 7],
+   "ticket": "https://shopview.atlassian.net/browse/SV-11575",
+   "observed": [
+    "Result: Blocked by SV-11575 (In Progress) - outcome (1) of this test: exactly the known problem, nothing new raised.",
+    "Step 1: the Technician list opens, starting with Unassigned.",
+    "Step 2: nothing is ticked, but 'This change would exceed the 50-value limit across all filters' already shows at the bottom of the list.",
+    "Step 3: Unassigned is ticked; the message is still there.",
+    "Steps 4 and 5: Escape closes the list; Board View shows.",
+    "Step 6: the Board View list opens with Unassigned still ticked; the message is there.",
+    "Step 7: Unassigned unticked, nothing ticked; the message is still there."],
+   "todo": "Re-run this test when SV-11575 is fixed on staging.",
+   "pictures": ["pictures-1019/C698883-1-tech-list-open-1021.png", "pictures-1019/C698883-2-board-untick-1021.png"]}
+ }
+}
