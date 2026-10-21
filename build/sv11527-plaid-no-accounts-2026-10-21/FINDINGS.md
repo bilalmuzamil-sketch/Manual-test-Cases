@@ -20,3 +20,7 @@ and ShopView/shopview#3838 (core card warning + Reconnect), both open.
 From Nikola: Accounting on for the sv11527 org, and one sandbox bank feed paused (e.g. `/sandbox/item/reset_login` on its
 item, or its status set to error), so AC2 (warning on the card) and AC3 (Reconnect in place, no duplicates) can be checked
 on screen. AC1/AC4 are back-end behaviours (PR tests) — observable only via Sentry/job logs, which QA doesn't have.
+
+## Asked Nikola (QA lead: "Yes if that makes sense", 21 Oct)
+Comment **79215** (tags Nikola Mitrovic): (1) switch Accounting on for the sv11527 org, (2) pause one sandbox feed and name
+the bank card. Picture `ev/SV-11527_accounting-not-enabled.png`; height corrected in place 10:33 CDT with a dated note.

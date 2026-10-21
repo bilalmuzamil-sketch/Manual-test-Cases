@@ -1,0 +1,22 @@
+*Two things needed on sv11527 before this can be tested*
+_Updated on 21 October 2026, 10:33 CDT: Picture 1 resized to its real proportions._
+
+[~accountid:712020:b18c1f84-d454-4a9d-9eff-1ffbe21550f6] I can't test this on the QA branch yet. Checked 21 October 2026 on [sv11527|https://sv11527.qa.shopview.com/] (build v26.40.20-3fe1a3e), as Admin at Staging Heavy Duty - 9919.
+
+*1. AccountingHub is not switched on for the organisation on sv11527*
+
+* *What's happening:* opening AccountingHub > BANKING > Transactions shows the Accounting module sales page, and every AccountingHub screen answers "Access denied". The Admin role has all the Accounting permissions; the organisation just doesn't have the Accounting feature. I can't switch it on myself: changing an organisation's features now needs a staff admin signed in through the admin portal.
+* *Could you:* switch Accounting on for this organisation on sv11527?
+
+!SV-11527_accounting-not-enabled.png|width=1000,height=453!
+_Picture 1: AccountingHub on sv11527 shows the sales page instead of Transactions._
+
+How to see it:
+# Open [https://sv11527.qa.shopview.com/] and sign in as Admin.
+# Top left, click {{ShopHub}} and choose {{AccountingHub}}.
+# In the left menu under {{BANKING}}, click {{Transactions}}. The sales page "Your books, run from the shop floor" shows.
+
+*2. A paused bank feed to test the warning and Reconnect*
+
+* *What's happening:* the feed only pauses when Plaid itself answers with one of the "shop must fix it" errors, and nothing in the app or the Plaid sandbox sign-in can make that happen from QA.
+* *Could you:* once Accounting is on, connect one sandbox bank on sv11527 and pause its feed, for example with Plaid's sandbox reset-login call on its item, or by setting that connection to the error state? Then tell me which bank card it is, and I'll check the "Connection needs attention" warning and that Reconnect brings the same bank account back with no duplicate account, opening balance or transactions.
