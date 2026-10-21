@@ -6196,3 +6196,13 @@ This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as a
 - On screen: the line's grey "Add tech story for this line" opens the Tech Story window; its ShopCoach button reads
   SUGGEST STORY when the box is empty and IMPROVE STORY when it has text, and shows the result above "Save Story".
 - Production repeats identical requests from a cache (~0.5 s), so timing is not a model signal.
+- **ShopCoach admin access — WHAT TO ASK THE QA LEAD FOR (QA-lead instruction 2026-10-21, SV-10673).** The ShopCoach
+  admin (e.g. `https://feature.shopcoach.shopview.com/admin/features/<feature>`; the per-feature page shows the model)
+  is a SEPARATE app from staging/production/QA branches: it signs in only with "Sign in with Google" (@shopview.com),
+  so the usual `.qa.shopview.com` cookies do NOT work and a Google sign-in can't be done from the container. Ask, in one
+  message, for these **five cookies from that site** (DevTools → Application → Cookies → feature.shopcoach.shopview.com,
+  copy each from the "Cookie Value" box): **`Pr8K50KaVcu0D7yep3y1BhnWPZi0CqshKVvw2BYT`** (the login, ~1100 size),
+  **`remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d`** (~601), **`shopview-shopcoach-session`** (~368),
+  **`XSRF-TOKEN`** (~352) and **`cf_clearance`** (~438). The session + XSRF + cf_clearance alone still bounce to /login
+  — the `Pr8K50…` and `remember_web_…` cookies are what sign you in. Check each pasted value's length against the Size
+  column (Size = name length + value length) to catch truncation. Keep them in `/tmp` only.
