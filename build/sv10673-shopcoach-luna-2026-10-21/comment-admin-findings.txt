@@ -1,4 +1,5 @@
 *ShopCoach admin check: which model each feature uses on sv10673*
+_Updated on 21 October 2026, 07:21 CDT: added the Google Doc access note and Picture 2._
 
 I signed in to the ShopCoach QA admin ([feature.shopcoach.shopview.com|https://feature.shopcoach.shopview.com/admin/features/parts]) as Parth suggested. For each feature I read its settings and the run history of the runs I made from sv10673 today (work order S10673-17583, Staging Heavy Duty - 9919).
 
@@ -29,7 +30,11 @@ _Picture 1: ShopCoach admin, Improve Story history. My run from S10673-17583 (21
 * No results from the baseline are attached to this ticket yet.
 * Lee's [SV-9629 report|https://shopview.atlassian.net/wiki/spaces/~712020e177200ff16d4e8c8909f6a2239e0cc4/pages/905773057] (7 October) tested the Tech Story changes and Luna together on sv10673: 19 cases, 17 passed, 1 failed (BAIT2) and 1 unresolved (EMPTY). It says this is "not a controlled old-model versus new-model comparison", and "No further testing by Lee is planned as part of this report."
 
-[~accountid:5bd6d7573aa82432ce72b8d3] [~accountid:557058:17189c93-b223-4b4c-8efe-c508356d0492] can you please confirm:
+[~accountid:5bd6d7573aa82432ce72b8d3] [~accountid:557058:17189c93-b223-4b4c-8efe-c508356d0492] can you please confirm the two points below. Please note that *we no longer have access to Lee's Google Doc* that the baseline page links to as its source: opening it as bilal.muzamil@shopview.com shows "You need access" (Picture 2), so the 18 cases can't be read from here.
+
+!SV-10673_lee-google-doc-no-access.png|width=303,height=313!
+_Picture 2: Lee's Google Doc from the baseline page asks for access._
+
 
 # Should this ticket wait for the 18-case baseline before it moves on, as Lee said earlier (comment 78654) and Chris set out (comment 78701): run on staging after the 22 October release, once on the current model and once on Luna, with both results attached here?
-# If yes, who will run it? Lee's report says no further testing by him is planned, and the 18 cases themselves are only in his Google Doc.
+# If yes, who will run it, and can the 18 cases be shared? Lee's report says no further testing by him is planned, and the cases are only in his Google Doc, which we can't open.
