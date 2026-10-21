@@ -40,6 +40,12 @@ If the suite already has a question sheet, never make a new file: add the new qu
 row, numbered on, in a colour not used there before, with a dated heading row and a dated line in the colour guide. Never touch
 earlier rows or answers. Read the rows back and give the link and row numbers. Full text: `build/rules/RULES-61-96.md` Rule 131.
 
+## 🔴 §0b — REMIND THE QA LEAD OF EVERY UNANSWERED QUESTION IN EVERY REPORT (Rule 132, QA lead, 20 Oct 2026)
+
+Add each question to `build/PO-QUESTIONS-OPEN.md` the moment it is written into a sheet. Before every report read every listed sheet's
+answer column; act on new answers and remove them; list the rest under "Waiting on the PO" at the end of OUTSTANDING (sheet link,
+question numbers, cases held). Full text: `build/rules/RULES-61-96.md` Rule 132.
+
 ## PURPOSE, IN PLAIN ENGLISH
 
 **Ask a product owner only the things we genuinely cannot settle ourselves — once, at the end, on one

@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109–131** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109–132** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -90,6 +90,9 @@ These are stated here **in full** because a session that gets only this far must
 - **🔴 NEW QUESTIONS GO IN THE SAME SHEET, AT THE BOTTOM, IN A NEW COLOUR (131, 20 Oct 2026).** When a testing suite already has a
   question sheet, new PO/dev questions are added to THAT file in new rows at the bottom, numbered on, in a colour not used there before
   (added to the colour guide with the date); never a new file, never touching earlier rows or answers.
+- **🔴 EVERY UNANSWERED PO QUESTION IS IN EVERY REPORT UNTIL ANSWERED (132, 20 Oct 2026).** QA lead: *"the most crucial part to never
+  miss."* Every report's OUTSTANDING ends with "Waiting on the PO": each sheet (link), its unanswered question numbers and the cases held
+  on them. The list lives in `build/PO-QUESTIONS-OPEN.md`; read every sheet's answer column before each report.
 - **🔴 KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS (123).** New and changed cases go into the project's run in the
   same pass, union only (34). Before editing a case someone else created: give the QA lead the list with C-ids, links,
   who created each and when, and ask permission. No edit until he says yes.
@@ -536,6 +539,9 @@ text inventory; for the look, the design is the source where the spec is silent)
 
 **🔴 Rule 131 (new questions go in the same sheet, at the bottom, in a new colour)** was ordered by the QA lead **2026-10-20** and
 lives at the end of `build/rules/RULES-61-96.md`, after 130.
+
+**🔴 Rule 132 (every unanswered PO question is in every report until answered)** was ordered by the QA lead **2026-10-20** and
+lives at the end of `build/rules/RULES-61-96.md`, after 131; the open list is `build/PO-QUESTIONS-OPEN.md`.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is

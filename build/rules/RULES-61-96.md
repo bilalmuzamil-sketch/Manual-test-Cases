@@ -3405,3 +3405,21 @@ already had its question sheet for Chris Ward (17Ry1Bt…). Two files for one su
 6. Read back the new rows (values and colours) before reporting, and give the QA lead the sheet link and the row numbers.
 
 Worked example: Splitting Sales Representatives, 20 Oct 2026, questions 39–41 in rows 46–48 of 17Ry1Bt…, light green (the QA lead later withdrew the phone question as already answered, leaving 39–40 in rows 46–47).
+
+## 132 · EVERY UNANSWERED PO QUESTION IS IN EVERY REPORT UNTIL IT IS ANSWERED — NEVER MISSED (all projects, permanent)
+
+**Ordered by the QA lead, 20 Oct 2026, verbatim:** *"This is the best thing please make it a permanent rule for yourself that when you
+have not received the answers for anything in the Sheet from the PO keep on remining me the way you are doing. This is the most crucial
+part to never miss."*
+
+**Every time, on every project:**
+1. Every report's "OUTSTANDING — what I need from you" ends with a **"Waiting on the PO"** part listing every question on any PO
+   question sheet that has no answer yet: the project, the sheet (as a link), the question numbers, and the cases held on them (C-id
+   with link). One line per sheet, as on 20 Oct 2026: *"Chris still needs to answer questions 39 and 40 on the Sales Representatives
+   sheet; C690660 and C690665 stay on hold until he does."*
+2. The list is kept in `build/PO-QUESTIONS-OPEN.md`. A question is added the moment it is written into a sheet, and removed only when
+   its answer has been read from the sheet (or from wherever the PO answered) and acted on.
+3. Before every report, read the answer column of every sheet in that file (Google Sheets get_values) so the reminder is current:
+   an answer that has arrived is acted on, not reminded about.
+4. This reminder is never dropped because the QA lead said not to be reminded about something else; only he can stop it, for a named
+   sheet or question.
