@@ -1,0 +1,75 @@
+{
+ "path": "edit",
+ "sc": "1",
+ "date": "2026-10-04",
+ "mode": "cancel",
+ "ids": {
+  "B": "6964de38-6f19-4b59-b0b6-8bf94279089c",
+  "A": "3a69a9cc-73f2-47e3-951d-c016c26485f3"
+ },
+ "before": [
+  {
+   "id": "3a69a9cc-73f2-47e3-951d-c016c26485f3",
+   "in": "01:00 PM",
+   "out": "02:00 PM",
+   "act": "Shop Time (Shop hand)"
+  },
+  {
+   "id": "6964de38-6f19-4b59-b0b6-8bf94279089c",
+   "in": "09:30 AM",
+   "out": "10:30 AM",
+   "act": "Shop Time (Shop hand)"
+  }
+ ],
+ "row": "Oct 04 2026 Justin Lin N/A Shop Time (Shop Hand) 01:00 PM 02:00 PM 1.00 0.00 1.00 N/A Manual Entry By Admin ShopView ",
+ "pop": {
+  "text": "Confirm Overwrite | close | We have detected overlapping time records. Please review changes. | 1 entry will be permanently deleted | Shop Time (Shop hand) | Oct 4, 2026 09:30 AM – Oct 4, 2026 10:30 AM | Deleted | After the overwrite, the timesheet records will be: | WO/Dept\tStart\tEnd\tLine | \tOct 4, 2026 09:00 AM\tOct 4, 2026 11:00 AM\t | Confirm | Cancel",
+  "btns": [
+   "button_close_overwrite_confirmation:close",
+   "button_confirm_overwrite_confirmation:Confirm",
+   "button_cancel_overwrite_confirmation:Cancel"
+  ]
+ },
+ "afterCancel": [
+  {
+   "id": "3a69a9cc-73f2-47e3-951d-c016c26485f3",
+   "in": "01:00 PM",
+   "out": "02:00 PM",
+   "act": "Shop Time (Shop hand)"
+  },
+  {
+   "id": "6964de38-6f19-4b59-b0b6-8bf94279089c",
+   "in": "09:30 AM",
+   "out": "10:30 AM",
+   "act": "Shop Time (Shop hand)"
+  }
+ ],
+ "popAfterCancel": {
+  "text": "Edit Timesheet | close | Select Department | 0653be2e-2816-4428-8dd2-Db3526cccebb | arrow_drop_down | Work Order | arrow_drop_down | event | Start | access_time | event | End | access_time | Cancel | Save",
+  "btns": [
+   "button_close_dialog:close",
+   "button_cancel_timesheet:Cancel",
+   "button_save_timesheet:Save"
+  ]
+ },
+ "pop2": {
+  "text": "Confirm Overwrite | close | We have detected overlapping time records. Please review changes. | 1 entry will be permanently deleted | Shop Time (Shop hand) | Oct 4, 2026 09:30 AM – Oct 4, 2026 10:30 AM | Deleted | After the overwrite, the timesheet records will be: | WO/Dept\tStart\tEnd\tLine | \tOct 4, 2026 09:00 AM\tOct 4, 2026 11:00 AM\t | Confirm | Cancel",
+  "btns": [
+   "button_close_overwrite_confirmation:close",
+   "button_confirm_overwrite_confirmation:Confirm",
+   "button_cancel_overwrite_confirmation:Cancel"
+  ]
+ },
+ "toast": "",
+ "after": [
+  {
+   "id": "3a69a9cc-73f2-47e3-951d-c016c26485f3",
+   "in": "09:00 AM",
+   "out": "11:00 AM",
+   "act": "Shop Time (Shop hand)"
+  }
+ ],
+ "rowsUI": [
+  "Oct 04 2026 Justin Lin N/A Shop Time (Shop Hand) 09:00 AM 11:00 AM 2.00 0.00 2.00 Admin ShopView Oct 21, 2026 05:45 AM Manual Entry By Admin ShopView"
+ ]
+}
