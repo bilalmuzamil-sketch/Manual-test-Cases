@@ -312,3 +312,4 @@ Read these before trusting any verdict you are about to give:
 | 2026-10-21 | ShopCoach admin (feature.shopcoach.shopview.com) needs different access from staging/prod/QA branches — I asked for the wrong cookies twice | Ask once for the five site cookies named in the playbook (Pr8K50…, remember_web_…, shopview-shopcoach-session, XSRF-TOKEN, cf_clearance); check lengths against Size | APP-ACTIONS-PLAYBOOK.md §AL |
 
 | 2026-10-21 SV-11577 | A staff edit on production sent without `clockable` switched the technician's clockable flag off; salary/billable originals weren't captured first | Before any staff edit, save the full `GET /api/staff` list record and echo every flag back | playbook §AL.2 |
+| 2026-10-21 SV-11527 | The recorded org-flag unblock (§AC.14) stopped working — flag changes now need an admin-portal staff-admin token | Check the controller's guard before relying on an old unblock; report the block with the code reference | playbook §AC.14 note |

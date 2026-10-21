@@ -5784,6 +5784,8 @@ price before concluding anything.
 **`POST /api/organization/feature-flags` sets the org's enabled features to EXACTLY the list you
 send**, so it both enables and disables:
 
+> ⚠️ _Updated 21 Oct 2026 (SV-11527, sv11527 v26.40.20-3fe1a3e): this POST now answers **403 "Access denied."** for the quick-login Admin. The controller requires `StaffAdminVoter::STAFF_ADMIN_VIA_ADMIN_PORTAL_TOKEN` — a staff admin signed in through the admin portal. From a normal session you can no longer change flags; ask the developer._
+
 ```
 GET  /api/organization/feature-flags?organization_id=<org>   -> data.features[] = {id, name, featureFlagId}
 POST /api/organization/feature-flags  {"organization_id":"<org>","feature_flag_ids":[<featureFlagId>,…]}
