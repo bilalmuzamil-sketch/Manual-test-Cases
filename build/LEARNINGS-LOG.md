@@ -523,3 +523,9 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Owning story for keyboard/focus defects on WO Board: **SV-10054** "Keyboard access and focus" (Ready for QA on 20 Oct) — earlier focus defects (SV-11498, SV-11422, SV-11419) sit under it.
 - Order the QA lead asked for when a ruling changes a failing test (20 Oct): update the named step's Expected (only that step, before/after snapshots, served page checked) → re-run the test on staging → duplicate check again (parent + last day + text) → file → post the re-run result with the ticket. Filing script: scratchpad `file-1020b.py` (copy of `file-1020.py`, one plan line changed) + `verify_ticket.sh`.
 #run498 #po-ruling #jira #rule113 #rule114 → L0491
+
+## L0493 — 2026-10-21 — Finding a fixed ticket's tests: title prefix + newest results AND the cases whose refs name the ticket
+- "Rerun every test blocked on SV-11577 / SV-11576 / SV-11575": scanning run 498 for the key in the TITLE (Rule 133 prefix) and in the newest 3 results' comments/defects found only SV-11575's two (C581915, C698883). The other two tickets each had a brand-new UNTESTED case written for them (C707076 asset year → SV-11576; C707077 Lines-tab staff name → SV-11577) that only the case's `refs` field names. Scan untested tests' `refs` too.
+- C707077 needs a technician whose staff-record name and account name differ: on staging that is **Carol Neal** (account "David Sparks", L0402). `fixed-1021.mts` reads the account name back first (positive control). C707076's asset needs year/make/model: create the work order first, then `POST /api/vehicles/change` with year 2022 + borrowed make/model ids + a VIN (design-stg5 C590120 recipe).
+- `tech-filter-stg6.mts` and `tech-filter-check-1020.mts` now switch to Staging Heavy Duty on screen and stop if the header reads anything else (L0490).
+#run498 #retest #refs #staging → L0490, L0402
