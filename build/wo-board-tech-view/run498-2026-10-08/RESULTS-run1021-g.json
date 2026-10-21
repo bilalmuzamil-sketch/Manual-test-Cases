@@ -1,0 +1,17 @@
+{
+ "pass_meta": {"env": "QA branch sv11499", "build": "v26.40.20-00f1fd6", "date": "21 October 2026", "note": "run 498 - SV-11499 retest on the QA lead's order"},
+ "results": {
+  "C96975": {"verdict": "Passed",
+   "observed": [
+    "Result: Passed on the QA branch sv11499 (https://sv11499.qa.shopview.com), build v26.40.20-00f1fd6 - the fix for SV-11499 works there: List keeps its column choice after logging out and back in.",
+    "Set-up: signed in as Admin at Staging Heavy Duty - 9919; List started with Service Advisor and Progress on, Tech View with Service Advisor, Progress and Assigned Techs on.",
+    "Steps 1-9: in Tech View, Service Advisor and Assigned Techs were turned off.",
+    "Steps 10-11: List still shows Service Advisor and has no Assigned Techs column.",
+    "Steps 12-15: Progress turned off in List; Tech View still shows Progress.",
+    "Steps 16-18: after a real Logout and signing in again, Tech View shows Progress without Service Advisor or Assigned Techs, and List shows Service Advisor without Progress.",
+    "Steps 19-20: a second browser signed in as the same user shows the same columns in both views.",
+    "Steps 21-23: after Change Location to Staging Lethbridge - 4310, both views still show the same columns.",
+    "Not yet checked on staging: this result is from the QA branch the ticket names."],
+   "pictures": ["pictures-1019/C96975-1-s11-list-1021.png", "pictures-1019/C96975-2-s15-tech-1021.png", "pictures-1019/C96975-3-s18-tech-1021.png", "pictures-1019/C96975-4-s18-list-1021.png", "pictures-1019/C96975-5-s20-list-1021.png", "pictures-1019/C96975-6-s23-tech-1021.png", "pictures-1019/C96975-7-s23-list-1021.png"]}
+ }
+}

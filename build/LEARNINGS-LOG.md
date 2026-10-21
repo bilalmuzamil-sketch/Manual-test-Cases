@@ -557,3 +557,10 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Automated cases (`custom_atmstatus` 3: C96967, C368147) are held for his yes before the move (Rule 71, as with the prefix on 20 Oct); tell Vlad if moved (Rule 65).
 - After a restart the run scripts also need `build/wo-board-tech-view/node_modules` → `../global-search/e2e/node_modules` (symlink, git-ignored); without it every script dies in 3 s with `Cannot find package 'playwright' imported from …/session.mts`.
 #run498 #fast-follow #testrail #ruling → L0494, L0488
+
+## L0496 — 2026-10-21 — SV-11499 retest on sv11499: the location rows sit inside the profile menu; a first Google redirect on a QA branch can be a one-off
+- C96975 Passed on sv11499 (v26.40.20-00f1fd6), all 23 steps in one script (`c96975-1021.mts`): real Logout + sign-in, a second browser, Change Location to Staging Lethbridge - 4310. The saved Work Orders preference now records `progress:false` across sign-ins.
+- **Change Location:** after clicking `select_location`, the choices are rows INSIDE the profile menu, read as `check <location name>`; the first `.q-menu .q-item` is "Edit Profile". Take the `check …` rows, strip the prefix, then `switchLocUI(p, name)` and read the top bar back.
+- **The staging sign-in cookie opened the sv11499 QA branch** (same Google sign-in), but the first attempt landed on `accounts.google.com/v3/signin/identifier` and the second, 30 s later, signed in. Retry once before asking for a branch cookie (Rule 104: two attempts).
+- After a restart `PIL` from `/usr/lib/python3/dist-packages` is built for 3.12 while `python3` is 3.11 (`cannot import name '_imaging'`); `python3 -m pip install --target /tmp/pylib pillow` and run the annotate/push tools with `PYTHONPATH=/tmp/pylib`. (`pip` alone installs for 3.13.)
+#run498 #sv11499 #location #signin #restart → L0494, L0495

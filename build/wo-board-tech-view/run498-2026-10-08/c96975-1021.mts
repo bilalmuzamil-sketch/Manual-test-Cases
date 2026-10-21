@@ -10,7 +10,7 @@ import fs from 'node:fs'; import path from 'node:path';
 import type { Page, Browser } from 'playwright';
 import { open, done, APP, API } from './session.mts';
 import { api, type Api } from './data.mts';
-import { EV, t, display, tab } from './wob.mts';
+import { EV, t, display, tab, switchLocUI } from './wob.mts';
 
 const OUT = path.join(EV, 'c96975-1021.json');
 const o: any = { app: APP, started: new Date().toISOString() };
@@ -103,24 +103,23 @@ try {
   await goWO(p2);
   // Step 20
   o.s20 = await readBoth(p2, 's20'); save();
-  // Step 21: Change Location to Location-B, in the second browser (the session now live)
+  // Step 21: Change Location to Location-B, in the second browser (the session now live). 21 Oct fix: the location choices sit INSIDE the
+  // profile menu as "check <name>" rows (first run picked "Edit Profile"); read them there, then switch with switchLocUI and read the top bar back.
   await p2.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await W(1200, p2);
   await p2.locator('[data-test-id="select_location"]').click().catch(() => {}); await W(1500, p2);
   const here = (await topBar(p2)) || '';
-  const opts = (await p2.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).filter((x) => x && !/Change Location/i.test(x));
-  const want = process.env.WOB_LOC_B || opts.find((x) => !here.includes(x.slice(0, 20)) && !/^ZZAUTOTEST/i.test(x)) || opts.find((x) => !here.includes(x.slice(0, 20)));
-  o.s21 = { from: here, offered: opts.slice(0, 15), chose: want ?? null };
-  if (want) { await p2.locator('.q-menu .q-item').filter({ hasText: want.slice(0, 20) }).filter({ hasNotText: /Change Location/i }).last().click().catch(() => {}); await W(7000, p2); }
-  await p2.keyboard.press('Escape').catch(() => {}); o.s21.to = await topBar(p2); o.s21.ok = !!want && o.s21.to !== here; await shot(p2, 's21-location-b');
+  const offered = (await p2.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim());
+  const locs = offered.filter((x) => /^check\s+/.test(x)).map((x) => x.replace(/^check\s+/, ''));
+  await p2.keyboard.press('Escape').catch(() => {}); await W(600, p2); await p2.keyboard.press('Escape').catch(() => {}); await W(600, p2);
+  const want = process.env.WOB_LOC_B || locs.find((x) => !here.includes(x) && !/^ZZAUTOTEST/i.test(x)) || locs.find((x) => !here.includes(x));
+  o.s21 = { from: here, locations: locs, chose: want ?? null };
+  if (want) o.s21.to = await switchLocUI(p2, want);
+  o.s21.ok = !!want && !!o.s21.to && o.s21.to.includes(want.slice(0, 20)); await shot(p2, 's21-location-b');
   console.log(t(), 'STEP 21', JSON.stringify(o.s21));
   // Steps 22-23
   await goWO(p2); o.s23 = await readBoth(p2, 's23');
   // put the first location back for later runs
-  o.restore = { from: await topBar(p2) };
-  await p2.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await W(1200, p2);
-  await p2.locator('[data-test-id="select_location"]').click().catch(() => {}); await W(1500, p2);
-  await p2.locator('.q-menu .q-item').filter({ hasText: here.slice(0, 20) }).filter({ hasNotText: /Change Location/i }).last().click().catch(() => {}); await W(6000, p2);
-  o.restore.to = await topBar(p2);
+  o.restore = { from: await topBar(p2), to: await switchLocUI(p2, here.replace(/\s+[A-Z]{2}$/, '')) };
   const V = (r: any) => r && Object.values(r.verdict).every(Boolean);
   o.summary = { s11: o.s11.ok, s15: o.s15.ok, s18: V(o.s18), s20: V(o.s20), s21: o.s21.ok, s23: V(o.s23) };
   console.log(t(), 'SUMMARY C96975', JSON.stringify(o.summary));

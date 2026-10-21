@@ -1,0 +1,503 @@
+{
+ "app": "https://sv11499.qa.shopview.com",
+ "started": "2026-10-21T14:30:34.489Z",
+ "exitSwitch": 200,
+ "build": "v26.40.20-00f1fd6",
+ "location": "Staging Heavy Duty - 9919 AS",
+ "startListFound": [
+  "Asset",
+  "VIN/Serial #",
+  "Service Advisor",
+  "Lead Technician",
+  "Clocked In",
+  "Lines",
+  "Total price",
+  "Created on"
+ ],
+ "startListSet": [
+  "Asset",
+  "VIN/Serial #",
+  "Progress",
+  "Service Advisor",
+  "Lead Technician",
+  "Clocked In",
+  "Lines",
+  "Total price",
+  "Created on"
+ ],
+ "startTechFound": [
+  "Waiting On Parts",
+  "Unit",
+  "Asset",
+  "Progress",
+  "Clocked In",
+  "Lines",
+  "Created on",
+  "Total price"
+ ],
+ "startTechSet": [
+  "Waiting On Parts",
+  "Unit",
+  "Asset",
+  "Progress",
+  "Service Advisor",
+  "Clocked In",
+  "Lines",
+  "Assigned Techs",
+  "Created on",
+  "Total price"
+ ],
+ "s3": {
+  "on": [
+   "Asset",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total price",
+   "Created on"
+  ],
+  "heads": [
+   "On Site",
+   "Status",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On"
+  ]
+ },
+ "s7_8": [
+  "Waiting On Parts",
+  "Unit",
+  "Asset",
+  "Progress",
+  "Clocked In",
+  "Lines",
+  "Created on",
+  "Total price"
+ ],
+ "s11": {
+  "on": [
+   "Asset",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total price",
+   "Created on"
+  ],
+  "heads": [
+   "On Site",
+   "Status",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On"
+  ],
+  "ok": true
+ },
+ "s13": [
+  "Asset",
+  "VIN/Serial #",
+  "Service Advisor",
+  "Lead Technician",
+  "Clocked In",
+  "Lines",
+  "Total price",
+  "Created on"
+ ],
+ "s13heads": [
+  "On Site",
+  "Status",
+  "Number",
+  "Customer",
+  "Asset",
+  "Unit",
+  "VIN/Serial #",
+  "Service Advisor",
+  "Lead Technician",
+  "Clocked In",
+  "Lines",
+  "Total Price",
+  "Created On"
+ ],
+ "s15": {
+  "on": [
+   "Waiting On Parts",
+   "Unit",
+   "Asset",
+   "Progress",
+   "Clocked In",
+   "Lines",
+   "Created on",
+   "Total price"
+  ],
+  "heads": [
+   "Status",
+   "Waiting On Parts",
+   "Number",
+   "Customer",
+   "Unit",
+   "Asset",
+   "Progress",
+   "Clocked In",
+   "Lines",
+   "Created On",
+   "Total Price"
+  ],
+  "ok": true
+ },
+ "prefBeforeLogout": {
+  "status": 200,
+  "updated": "2026-10-21T14:31:49Z",
+  "keys": {
+   "columns": {
+    "vin": true,
+    "vehicle": true,
+    "daysOpen": false,
+    "progress": false,
+    "startDate": true,
+    "linesCount": true,
+    "technician": true,
+    "totalPrice": true,
+    "invoicedDate": false,
+    "serviceAdvisor": true,
+    "partRequestsCount": false,
+    "clockedInTechnicians": true,
+    "partReturnRequestsCount": false,
+    "unreceivedPartRequestsCount": false
+   },
+   "techViewColumns": {
+    "assignedTechs": false,
+    "serviceAdvisor": false
+   }
+  }
+ },
+ "s16": {
+  "logoutItem": 1,
+  "url": "/login",
+  "permissions": 401
+ },
+ "s17": {
+  "button": 1,
+  "url": "/workorders",
+  "permissions": 200,
+  "user": null,
+  "ok": true
+ },
+ "s18": {
+  "techView": {
+   "on": [
+    "Waiting On Parts",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Clocked In",
+    "Lines",
+    "Created on",
+    "Total price"
+   ],
+   "heads": [
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Clocked In",
+    "Lines",
+    "Created On",
+    "Total Price"
+   ]
+  },
+  "list": {
+   "on": [
+    "Asset",
+    "VIN/Serial #",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total price",
+    "Created on"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On"
+   ]
+  },
+  "pref": {
+   "status": 200,
+   "updated": "2026-10-21T14:32:32Z",
+   "keys": {
+    "columns": {
+     "vin": true,
+     "vehicle": true,
+     "daysOpen": false,
+     "progress": false,
+     "startDate": true,
+     "linesCount": true,
+     "technician": true,
+     "totalPrice": true,
+     "invoicedDate": false,
+     "serviceAdvisor": true,
+     "partRequestsCount": false,
+     "clockedInTechnicians": true,
+     "partReturnRequestsCount": false,
+     "unreceivedPartRequestsCount": false
+    },
+    "techViewColumns": {
+     "assignedTechs": false,
+     "serviceAdvisor": false
+    }
+   }
+  },
+  "topBar": "Staging Heavy Duty - 9919 AS",
+  "user": null,
+  "verdict": {
+   "techNoServiceAdvisor": true,
+   "techNoAssignedTechs": true,
+   "techProgress": true,
+   "listServiceAdvisor": true,
+   "listNoProgress": true
+  }
+ },
+ "s19": {
+  "user": null,
+  "permissions": 200,
+  "topBar": "Staging Heavy Duty - 9919 AS"
+ },
+ "s20": {
+  "techView": {
+   "on": [
+    "Waiting On Parts",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Clocked In",
+    "Lines",
+    "Created on",
+    "Total price"
+   ],
+   "heads": [
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Clocked In",
+    "Lines",
+    "Created On",
+    "Total Price"
+   ]
+  },
+  "list": {
+   "on": [
+    "Asset",
+    "VIN/Serial #",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total price",
+    "Created on"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On"
+   ]
+  },
+  "pref": {
+   "status": 200,
+   "updated": "2026-10-21T14:33:25Z",
+   "keys": {
+    "columns": {
+     "vin": true,
+     "vehicle": true,
+     "daysOpen": false,
+     "progress": false,
+     "startDate": true,
+     "linesCount": true,
+     "technician": true,
+     "totalPrice": true,
+     "invoicedDate": false,
+     "serviceAdvisor": true,
+     "partRequestsCount": false,
+     "clockedInTechnicians": true,
+     "partReturnRequestsCount": false,
+     "unreceivedPartRequestsCount": false
+    },
+    "techViewColumns": {
+     "assignedTechs": false,
+     "serviceAdvisor": false
+    }
+   }
+  },
+  "topBar": "Staging Heavy Duty - 9919 AS",
+  "user": null,
+  "verdict": {
+   "techNoServiceAdvisor": true,
+   "techNoAssignedTechs": true,
+   "techProgress": true,
+   "listServiceAdvisor": true,
+   "listNoProgress": true
+  }
+ },
+ "s21": {
+  "from": "Staging Heavy Duty - 9919 AS",
+  "locations": [
+   "Staging Heavy Duty - 9919",
+   "Staging Lethbridge - 4310"
+  ],
+  "chose": "Staging Lethbridge - 4310",
+  "to": "Staging Lethbridge - 4310 AS",
+  "ok": true
+ },
+ "s23": {
+  "techView": {
+   "on": [
+    "Waiting On Parts",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Clocked In",
+    "Lines",
+    "Created on",
+    "Total price"
+   ],
+   "heads": [
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Clocked In",
+    "Lines",
+    "Created On",
+    "Total Price"
+   ]
+  },
+  "list": {
+   "on": [
+    "Asset",
+    "VIN/Serial #",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total price",
+    "Created on"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On"
+   ]
+  },
+  "pref": {
+   "status": 200,
+   "updated": "2026-10-21T14:34:05Z",
+   "keys": {
+    "columns": {
+     "vin": true,
+     "vehicle": true,
+     "daysOpen": false,
+     "progress": false,
+     "startDate": true,
+     "linesCount": true,
+     "technician": true,
+     "totalPrice": true,
+     "invoicedDate": false,
+     "serviceAdvisor": true,
+     "partRequestsCount": false,
+     "clockedInTechnicians": true,
+     "partReturnRequestsCount": false,
+     "unreceivedPartRequestsCount": false
+    },
+    "techViewColumns": {
+     "assignedTechs": false,
+     "serviceAdvisor": false
+    }
+   }
+  },
+  "topBar": "Staging Lethbridge - 4310 AS",
+  "user": null,
+  "verdict": {
+   "techNoServiceAdvisor": true,
+   "techNoAssignedTechs": true,
+   "techProgress": true,
+   "listServiceAdvisor": true,
+   "listNoProgress": true
+  }
+ },
+ "restore": {
+  "from": "Staging Lethbridge - 4310 AS",
+  "to": "Staging Heavy Duty - 9919 AS"
+ },
+ "summary": {
+  "s11": true,
+  "s15": true,
+  "s18": true,
+  "s20": true,
+  "s21": true,
+  "s23": true
+ },
+ "ended": "2026-10-21T14:34:22.654Z"
+}
