@@ -1,0 +1,32 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on staging ([app.staging.shopview.com|https://app.staging.shopview.com/workorders], build v26.40.20-00f1fd6) on 21 October 2026, as Admin at the DVI Test location, and compared it with Production (build v26.40.20-aada856).
+
+* The Work Orders List's *Asset* column now shows the year before the make and model, in the same format as the Board card.
+* Tech View rows show the same text.
+
+!SV-11576_before-after-list.png|width=980,height=486!
+_Picture 1: Production's List shows only "Freightliner" for a 2019 Freightliner (S2-988). Staging's List shows "2018 CAT" for S1-37462. These are different work orders with the same kind of asset data: a year and a make, no model._
+
+h3. What I checked
+
+||#||Asset data on the work order||Work order||List||Tech View||Board card||Status||
+|1|Year, make and model|S1-34993|2013 Ford Flex|2013 Ford Flex|2013 Ford Flex|PASSED|
+|2|Year and make, no model|S1-37462|2018 CAT|2018 CAT|2018 CAT|PASSED|
+|3|Make and model, no year|S1-37618|17 Creek Enterprises 17 Creek Enterprise.. (shortened to fit)|the same|17 Creek Enterprises 17 Creek Enterprises|PASSED|
+|4|Make only|S1-37681|Valley|(no lead technician, so not in Tech View)|Valley|PASSED|
+|5|Year only, no make or model|S1-36297|empty|empty|no asset line; the card shows the unit ZZF4LH|PASSED|
+
+In every case the List and Tech View match the Board card, and no empty part shows as a blank word or "null".
+
+!SV-11576_board-and-tech-view.png|width=1080,height=736!
+_Picture 2: the same work order S1-37462 on the Board card and in Tech View, both showing "2018 CAT"._
+
+h3. How to see it
+
+# Open staging: [https://app.staging.shopview.com/] and sign in as Admin.
+# At the top right, click the location and choose {{DVI Test}}.
+# In the top menu, click {{Work Orders}}. Above the list, on the right, click the first of the three view icons (the lines icon; its tooltip reads {{List}}).
+# In the search box above the list, type {{S1-37462}}. The {{Asset}} column reads {{2018 CAT}}.
+# Click the last of the three view icons ({{Board View}}). The card for S1-37462 shows {{EXH-177 · 2018 CAT}}.
