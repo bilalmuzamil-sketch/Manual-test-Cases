@@ -1,0 +1,15 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.20-00f1fd6", "date": "21 October 2026", "note": "run 498 - retest after SV-11575 was merged to staging"},
+ "results": {
+  "C698883": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging - outcome (3) of this test: the fix for SV-11575 has reached staging.",
+    "Step 1: the Technician list opens, starting with Unassigned.",
+    "Step 2: nothing is ticked and the 50-value limit message does not show.",
+    "Step 3: Unassigned is ticked; no message.",
+    "Steps 4 and 5: Escape closes the list; Board View shows.",
+    "Step 6: the Board View list opens with Unassigned still ticked; no message.",
+    "Step 7: Unassigned unticked, nothing ticked; no message.",
+    "Check outside this test's steps: ticking 50 technicians, the 51st tick is refused, so the limit works; the red text at that point reads '50 selected (max 50 across all filters)'."],
+   "pictures": ["pictures-1019/C698883-3-open-no-message-1021.png", "pictures-1019/C698883-4-board-untick-no-message-1021.png", "pictures-1019/OBS-50-limit-wording-1021.png"]}
+ }
+}
