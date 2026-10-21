@@ -605,3 +605,7 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Stories of an epic: `/rest/api/3/search/jql` with `(parent = EPIC OR "Epic Link" = EPIC) AND issuetype = Story`. SV-10043 has 12 stories (SV-10044–SV-10054, SV-10593; SV-10053 is OBSOLETE) among 50 children (rest Bugs/Tasks).
 - `PUT /rest/api/3/issue/{KEY} {"fields":{"customfield_10385":[{"accountId":…}]}}` → 204; read back each. All 12 were empty before. Log: `build/wo-board-tech-view/qa-assignee-2026-10-21/`.
 #jira #qa-assignee #wo-board → L0500
+
+## L0503 — 2026-10-21 — Labelling WO Board / Tech View's Done defects "QAcomplete"
+- QA lead: label `QAcomplete` (exact case, as in his screenshot) on every WO Board / Tech View Story Defect or Bug that is Done with QA Assignee Bilal Muzamil. JQL `project = SV AND issuetype in ("Story Defect", Bug) AND status = Done AND "QA Assignee" = "<accountId>"` returns 516 across all features; WO Board / Tech View = label `board-tech-view` OR parent in SV-10043, its 12 stories, or the Fast Follow epic SV-11593 → 50. 11 already had the label; 39 got it via `PUT {"update":{"labels":[{"add":"QAcomplete"}]}}` (keeps every other label), each read back. Log `build/wo-board-tech-view/qa-assignee-2026-10-21/QAcomplete-labels-2026-10-21.json`.
+#jira #labels #wo-board → L0502
