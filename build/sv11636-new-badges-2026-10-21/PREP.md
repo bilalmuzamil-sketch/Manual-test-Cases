@@ -41,3 +41,14 @@ directly above the middle button, Tech View (the person icon). Extra checks for 
 - Hovering Tech View: its tooltip still shows and isn't hidden under the pill.
 - Report plainly that a centred pill sits over Tech View only, so it can read as "Tech View is new" while Board View (also new)
   carries no mark; the ticket asks for exactly this placement, so it is noted, not failed, unless the QA lead says otherwise.
+
+## Chris Ward's answers (Slack DM D0B48J5BYQ7, 22 Oct 01:14 +04 = 21 Oct 21:14 UTC), to Bilal's question at ts 1792617184.811789
+Verbatim: "Dashboard is not visible to anyone that doesnt have reports access, so that pill shouldnt appear if they cannot have
+reports access" · "For board/tech on phone view, because those options aren't visible, the "new" shouldnt be visible either"
+Extra cells:
+- A user WITHOUT Reports access: no Dashboard link and no Dashboard pill, in the desktop nav AND the phone menu. Method: reset the
+  chosen role to template first (Standing Rule 105), read its permissions back, assign it to a test user, sign in AS that user
+  (never impersonate). Also a user WITH Reports but not Admin (pill shows).
+- Phone width (and anything below 1024 px): no view switcher and no switcher pill anywhere on Work Orders (List/Tech/Board).
+- Before passing, confirm Chris's Reports-access rule against the Dashboard PRD (Standing Rule 109); if the PRD doesn't say it,
+  ask Chris to add it rather than passing on the Slack answer alone.
