@@ -32,3 +32,12 @@ it exists and responds, else staging.
 - Expiry: clock set past 2026-10-31T07:00Z (browser clock override, labelled "comparison only") → both gone, including a tab left
   open across the moment; just before → still shown. Disclosed as done in the browser, not a product feature.
 - Tech View + Board View pages too (the switcher badge shows in all three views).
+
+## QA lead's pointer (21 Oct, Slack file F0CAY7HAKQV → `ref/slack-F0CAY7HAKQV-badges-preview.png`)
+"Also see the Tech View — the buddy sign with small New on that." In the preview, the switcher pill centred over the group lands
+directly above the middle button, Tech View (the person icon). Extra checks for that cell:
+- The pill must not touch or cover the Tech View icon or its button (measure the gap between the pill's bottom and the button's
+  top, and check the person icon is fully visible and the button clickable at the pill's position).
+- Hovering Tech View: its tooltip still shows and isn't hidden under the pill.
+- Report plainly that a centred pill sits over Tech View only, so it can read as "Tech View is new" while Board View (also new)
+  carries no mark; the ticket asks for exactly this placement, so it is noted, not failed, unless the QA lead says otherwise.
