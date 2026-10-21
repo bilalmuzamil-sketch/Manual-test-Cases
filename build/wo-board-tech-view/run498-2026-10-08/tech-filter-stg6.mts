@@ -27,7 +27,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, groups, allBoardCols, listAllOptions } from './wob.mts';
+import { EV, t, shot, display, tab, search, groups, allBoardCols, listAllOptions , switchLocUI } from './wob.mts';
 import { person, roleIds, staffRows, ensureEligible } from './staff.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -68,7 +68,7 @@ async function prep(pins: string[] = []) {
   const pv = (await a.get(PREF)).body?.data?.value ?? {}; const v: any = {}; for (const [k, x] of Object.entries(pv)) if (!/^(technicianOrder)$|collaps/i.test(k)) v[k] = x;
   Object.assign(v, { filters: {}, density: 'regular', pinnedTechnicianIds: pins }); const st = (await a.put(PREF, { value: v })).status;
   await p.setViewportSize({ width: 1440, height: 900 });
-  await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await W(4500); await tab(p, 'All').catch(() => {});
+  await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await W(4500); { const loc = await switchLocUI(p, 'Staging Heavy Duty - 9919'); if (!/Staging Heavy Duty/.test(loc)) throw new Error('not at Staging Heavy Duty: ' + loc); } // 21 Oct 2026: L0490 — a run can land at another location await tab(p, 'All').catch(() => {});
   const am = p.locator('[data-test-id="filter_chip_assigned_to_me"]').first(); let amOn = null;
   if (await am.count()) { amOn = await am.evaluate((e) => e.getAttribute('aria-pressed') === 'true' || /selected|active|bg-primary/.test(String(e.className))).catch(() => null); if (amOn) { await am.click().catch(() => {}); await W(1500); } }
   return { pref: st, assignedToMeWasOn: amOn };
