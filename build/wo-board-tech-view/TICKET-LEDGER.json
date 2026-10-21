@@ -338,31 +338,31 @@
   "note": "20 Oct 2026 sweep: updated since 19 Oct 17:00 for status, labels, links or our footers only; nothing new to test."
  },
  "SV-11500": {
-  "updated": "2026-10-19",
+  "updated": "2026-10-21",
   "outcome": "FROM-OUR-CASE",
   "cases": [
    "C590114"
   ],
-  "note": ""
+  "note": "21 Oct 2026 sweep: labelled fast-follow 20 Oct 2026."
  },
  "SV-11501": {
-  "updated": "2026-10-19",
+  "updated": "2026-10-21",
   "outcome": "FROM-OUR-CASE",
   "cases": [
    "C590117"
   ],
-  "note": ""
+  "note": "21 Oct 2026 sweep: labelled fast-follow 20 Oct 2026."
  },
  "SV-11503": {
-  "updated": "2026-10-19",
+  "updated": "2026-10-21",
   "outcome": "NEW-CASES",
   "cases": [
    "C665914"
   ],
-  "note": ""
+  "note": "21 Oct 2026 sweep: labelled fast-follow 20 Oct 2026."
  },
  "SV-11522": {
-  "updated": "2026-10-20",
+  "updated": "2026-10-21",
   "outcome": "NEW-CASES",
   "cases": [
    "C682422",
@@ -373,7 +373,7 @@
    "C682427",
    "C682428"
   ],
-  "note": "20 Oct 2026: Chris Ward labelled it a fast-follow (Slack https://shopview.slack.com/archives/C0C41RV3T3L/p1792455057423139). The 27 cases blocked on SV-11522/SV-11524 moved to TestRail folder Fast-follow (section 87347) and out of run 498 (297 -> 270), QA lead's order. | 20 Oct 2026 sweep: updated since 19 Oct 17:00 for status, labels, links or our footers only; nothing new to test."
+  "note": "20 Oct 2026: Chris Ward labelled it a fast-follow (Slack https://shopview.slack.com/archives/C0C41RV3T3L/p1792455057423139). The 27 cases blocked on SV-11522/SV-11524 moved to TestRail folder Fast-follow (section 87347) and out of run 498 (297 -> 270), QA lead's order. | 20 Oct 2026 sweep: updated since 19 Oct 17:00 for status, labels, links or our footers only; nothing new to test. | 21 Oct 2026 sweep: status OBSOLETE (duplicate of SV-11524, Chris Ward 20 Oct 2026)."
  },
  "SV-11524": {
   "updated": "2026-10-20",
@@ -587,7 +587,7 @@
   "note": "A performance task (a 2-letter search on the board takes about 450 ms on the server against 200 ms for the List), measured by developers on a 9,000-work-order location. A manual tester cannot measure server timing. Its second \"done when\" point, board and List search results stay identical (S1-R11), is already checked by C96914."
  },
  "SV-10593": {
-  "updated": "2026-10-19",
+  "updated": "2026-10-21",
   "outcome": "COVERED",
   "cases": [
    "C97023",
@@ -604,7 +604,7 @@
    "C368154",
    "C368155"
   ],
-  "note": "All 8 acceptance criteria have cases: display view on load and on switch, and none on a row refresh (C97023); fields recorded once per display per session (C97024); no money fields without financial data (C368153); changes recorded only after a successful save (C97025); no record values in events (C97027); analytics blocked never breaks the page (C97028); report figures (C97026, C97033, C97034, C97035); each listed situation (C97029). Also S12-R14 (C368154) and S12-R15 (C368155). The report-side checks can only be judged in Google Analytics (see SV-11240). Event names follow the GA4 standard agreed in the comments (work_orders_display_view etc.)."
+  "note": "All 8 acceptance criteria have cases: display view on load and on switch, and none on a row refresh (C97023); fields recorded once per display per session (C97024); no money fields without financial data (C368153); changes recorded only after a successful save (C97025); no record values in events (C97027); analytics blocked never breaks the page (C97028); report figures (C97026, C97033, C97034, C97035); each listed situation (C97029). Also S12-R14 (C368154) and S12-R15 (C368155). The report-side checks can only be judged in Google Analytics (see SV-11240). Event names follow the GA4 standard agreed in the comments (work_orders_display_view etc.). | 21 Oct 2026 sweep: status Ready for Production; no content change for our cases."
  },
  "SV-10232": {
   "updated": "2026-10-19",
@@ -685,7 +685,7 @@
   "note": "Phase 1 (tech-story check mark removed). a developer's verification checklist for one phase of the technical plan, not a behaviour to test by hand. The user-facing checks in it are tested through the story cases for SV-10051."
  },
  "SV-10054": {
-  "updated": "2026-10-19",
+  "updated": "2026-10-21",
   "outcome": "COVERED",
   "cases": [
    "C97011",
@@ -697,7 +697,7 @@
    "C368152",
    "C96945"
   ],
-  "note": "All 5 acceptance criteria have cases: focus reaches cards, rows, groups and columns (C97021); Enter and Escape (C368150, C97011); the more-actions overlay shows on keyboard focus, S3-R13 (C96945); keyboard paths to menu, pins, collapse and reassign keep permission and status limits (C368151, C368152, C97020); focus recovery (C97022). Note: the story text still says \"Design must define…\"; the cases follow the concrete rules in PRD v55 and later (C97021 quotes v61)."
+  "note": "All 5 acceptance criteria have cases: focus reaches cards, rows, groups and columns (C97021); Enter and Escape (C368150, C97011); the more-actions overlay shows on keyboard focus, S3-R13 (C96945); keyboard paths to menu, pins, collapse and reassign keep permission and status limits (C368151, C368152, C97020); focus recovery (C97022). Note: the story text still says \"Design must define…\"; the cases follow the concrete rules in PRD v55 and later (C97021 quotes v61). | 21 Oct 2026 sweep: link to SV-11582 added."
  },
  "SV-10053": {
   "updated": "2026-10-19",
@@ -937,31 +937,31 @@
   "note": "Resolved by PRD S7-R8 to S7-R10. C368142 checks that a line with no labor technician but scheduled technicians shows their names in place of \"Unassigned\", with no badge; C368143 checks that a line with neither still reads \"Unassigned\". QA passed 7 Oct."
  },
  "SV-11545": {
-  "updated": "2026-10-20",
+  "updated": "2026-10-21",
   "outcome": "FROM-OUR-CASE",
   "cases": [
    "C96964",
    "C590121",
    "C97020"
   ],
-  "note": "Filed 19 Oct 2026 18:27 CDT (Bilal Muzamil) from these cases: locked work orders still show the old sentence instead of PRD v68 S4-N6's \"Invoiced · can’t be reassigned\" / \"Paid · can’t be reassigned\". The cases already expect v68's words; proposed: mark them EXPECT FAIL (SV-11545)."
+  "note": "Filed 19 Oct 2026 18:27 CDT (Bilal Muzamil) from these cases: locked work orders still show the old sentence instead of PRD v68 S4-N6's \"Invoiced · can’t be reassigned\" / \"Paid · can’t be reassigned\". The cases already expect v68's words; proposed: mark them EXPECT FAIL (SV-11545). | 21 Oct 2026 sweep: updated 20 Oct 12:29 CDT (labels)."
  },
  "SV-11546": {
-  "updated": "2026-10-20",
+  "updated": "2026-10-21",
   "outcome": "FROM-OUR-CASE",
   "cases": [
    "C96967",
    "C368147"
   ],
-  "note": "Filed 19 Oct 2026 18:27 CDT (Bilal Muzamil) from these cases: a view-only user never sees PRD v68 S4-N1's note; the card is not picked up at all. Proposed: mark them EXPECT FAIL (SV-11546)."
+  "note": "Filed 19 Oct 2026 18:27 CDT (Bilal Muzamil) from these cases: a view-only user never sees PRD v68 S4-N1's note; the card is not picked up at all. Proposed: mark them EXPECT FAIL (SV-11546). | 21 Oct 2026 sweep: updated 20 Oct 12:29 CDT (labels)."
  },
  "SV-11570": {
-  "updated": "2026-10-20",
+  "updated": "2026-10-21",
   "outcome": "COVERED",
   "cases": [
    "C682422"
   ],
-  "note": "Copy of SV-11524 cut down to the label only (Chris Ward, Slack #fs-board-tech-view, 20 Oct 2026): \"Assign lead technician\" / \"Reassign lead technician\". C682422 checks the label; the one-click dialog stays in Fast-follow (SV-11524)."
+  "note": "Copy of SV-11524 cut down to the label only (Chris Ward, Slack #fs-board-tech-view, 20 Oct 2026): \"Assign lead technician\" / \"Reassign lead technician\". C682422 checks the label; the one-click dialog stays in Fast-follow (SV-11524). | 21 Oct 2026 sweep: status Done (20 Oct 21:44 CDT). C682422 (EXPECT FAIL SV-11570) in run 498 as T4056656 should now be run again."
  },
  "SV-11575": {
   "updated": "2026-10-20",
@@ -993,5 +993,41 @@
    "C97022"
   ],
   "note": "Filed by Bilal Muzamil from C97022 after Chris Ward's answer 34 (PRD v70 S11-E1). C97022 rebuilt 20 Oct 2026 with AUTOMATION: READY - EXPECT FAIL (SV-11582)."
+ },
+ "SV-11555": {
+  "updated": "2026-10-21",
+  "outcome": "FROM-OUR-CASE",
+  "cases": [
+   "C682436"
+  ],
+  "note": "Filed by Bilal Muzamil 20 Oct 2026 from C682436 (PRD v68 S1-N1d: Add Technician, Nothing here yet). Labelled fast-follow 20 Oct 2026."
+ },
+ "SV-11567": {
+  "updated": "2026-10-21",
+  "outcome": "COVERED",
+  "cases": [
+   "C682426",
+   "C682427",
+   "C682428"
+  ],
+  "note": "Undo split out of SV-11522/SV-11524 by Chris Ward 20 Oct 2026 (fast-follow); its cases are in the Fast-follow folder."
+ },
+ "SV-11576": {
+  "updated": "2026-10-21",
+  "outcome": "ASKED",
+  "cases": [],
+  "note": "List (and Tech View) Asset column should show year make model (Chris Ward, Slack 20 Oct 2026, quoted in the ticket); not in PRD v71. Ask the QA lead whether to write a case."
+ },
+ "SV-11577": {
+  "updated": "2026-10-21",
+  "outcome": "ASKED",
+  "cases": [],
+  "note": "Lines tab roster and Edit Line show the account name instead of the staff record name (PRD S5-R11b; Chris Ward, Slack 20 Oct 2026). C581895 checks Board/Tech View names only. Ask the QA lead whether to write a case."
+ },
+ "SV-11588": {
+  "updated": "2026-10-21",
+  "outcome": "ASKED",
+  "cases": [],
+  "note": "Fast-follow (Chris Ward, 20 Oct 2026): our own outlined hand cursor on Windows Chrome in Board View and Tech View. Not in PRD v71. Ask the QA lead whether to write a case (Windows needed)."
  }
 }
