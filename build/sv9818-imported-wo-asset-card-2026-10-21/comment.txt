@@ -1,0 +1,32 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on the QA branch [sv9818|https://sv9818.qa.shopview.com/] (build v26.40.19-e435950) on 21 October 2026, as Admin at Staging Heavy Duty - 9919.
+
+* An imported work order's asset card now shows *Mileage* and *Engine Hours* as two labelled rows, the same as a regular work order's card.
+* I imported four invoices through *Settings → Imports → Invoices* to cover both values, mileage only, hours only and neither.
+
+!SV-9818_before-after.png|width=1160,height=1142!
+_Picture 1: the same import (Mileage 45, Hours 9987). On Production the asset card shows one unlabelled number, 459987. On the QA branch it shows Mileage 45 and Engine Hours 9,987._
+
+h3. What I checked
+
+||#||Imported work order||Mileage / Hours in the file||Asset card shows||Status||
+|1|ZZ9818-A|45 / 9987|Mileage 45, Engine Hours 9,987|PASSED|
+|2|ZZ9818-B|45 / empty|Mileage 45, Engine Hours -|PASSED|
+|3|ZZ9818-C|empty / empty|Mileage -, Engine Hours -|PASSED|
+|4|ZZ9818-D|empty / 9987|Mileage -, Engine Hours 9,987|PASSED|
+|5|The invoice on the same page (ZZ9818-A)|45 / 9987|Mileage 45, Eng Hrs 9987, unchanged|PASSED|
+
+!SV-9818_variants.png|width=1040,height=298!
+_Picture 2: the other three imports. Each card shows both labels, with a dash where the file had no value._
+
+h3. How to see it
+
+# Open the QA branch: [https://sv9818.qa.shopview.com/] and sign in as Admin.
+# In the top menu, click *Work Orders*, then the *All* tab.
+# Click the *Status* filter above the list and tick *Imported*.
+# Click the *ZZ9818-A* row (customer Colesville Diesel Repair).
+# On the left, the asset card *2011 Hyundai Santa Fe* shows *Mileage 45* and *Engine Hours 9,987* under *VIN/Serial #*.
+
+To make your own: *Settings* → *Invoices* (under Imports) → *Download Template*, fill in one row with Mileage and Hours, then use the upload box and *Import Invoices*.
