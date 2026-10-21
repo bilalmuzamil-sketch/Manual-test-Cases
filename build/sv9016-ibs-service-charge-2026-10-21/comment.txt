@@ -1,0 +1,47 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on the QA branch [sv9016|https://sv9016.qa.shopview.com/] (build v26.40.19-362cbdf) on 21 October 2026, as Admin at Staging Heavy Duty - 9919, following the QA handoff checklist.
+
+* *Settings → IBS* now has an *IBS Service Charge* section where the rate can be changed. It starts at 1.90%.
+* The batch cover sheet (*batch_export.csv*) uses the saved rate for *S/C* and *Net Total*. I checked 1.90%, 3.50%, 3.50% with a credit, and a half-cent rounding case.
+
+!SV-9016_before-after-settings.png|width=1030,height=902!
+_Picture 1: Settings → IBS. On Production there is no IBS Service Charge section. On the QA branch it sits between Credentials and Location ID Mappings._
+
+!SV-9016_before-after-cover-sheet.png|width=750,height=595!
+_Picture 2: the batch cover sheet. On Production the charge is always 1.90% ($5.70 on a $299.90 invoice). On the QA branch, with the rate set to 3.50%, it is $112.20 on a $3,205.72 invoice._
+
+h3. What I checked
+
+||#||Check||Result||Status||
+|1|IBS Service Charge section: where it sits, its text, the starting rate, and with no IBS credentials set|Between Credentials and Location ID Mappings, "The rate used for the service charge on the IBS batch cover sheet.", *Service Charge: 1.90%*, works with "No credentials configured"|PASSED|
+|2|Pencil opens the edit box|*Service Charge* box with a % sign, prefilled 1.90, *Cancel* and *Save*|PASSED|
+|3|Save with no change, or with {{1.9}} typed|Save stays greyed out|PASSED|
+|4|Type {{3.5}}, then *Cancel*, then reload|Goes back to 1.90%; nothing saved|PASSED|
+|5|Type {{3.5}}, then *Save*, then reload|"IBS service charge saved successfully." and *Service Charge: 3.50%*, still 3.50% after reload|PASSED|
+|6|While saving (slowed down)|Save, Cancel and the box are all greyed out|PASSED|
+|7|Empty / {{-1}} / {{100.01}} and {{101}} / {{1.999}} / {{1e1}}|"Service charge is required" / "cannot be lower than 0" / "cannot be higher than 100" / "can have at most 2 decimal places" / "must be a number", Save greyed out each time|PASSED|
+|8|Allowed values {{0}}, {{100}}, {{.5}}, {{0.29}}|Saved and shown as 0.00%, 100.00%, 0.50%, 0.29%|PASSED|
+|9|Cover sheet at 1.90%, one $1,211.85 invoice (S2-16913)|S/C $23.03, Net Total $1,188.82|PASSED|
+|10|Cover sheet at 3.50%, one $3,205.72 invoice (S2-17292)|S/C $112.20, Net Total $3,093.52|PASSED|
+|11|Cover sheet at 3.50%, one $5,047.60 invoice (S2-17322) plus a $1,880.00 credit|Credits $1,880.00, S/C $110.87, Net Total $3,056.73|PASSED|
+|12|Rounding: 0.40% on a $2,188.75 invoice (S2-15996), where the charge is exactly half a cent|S/C $8.76, Net Total $2,180.00. These add up to $2,188.76, one cent over, which is the existing rounding rule the handoff describes|PASSED|
+|13|On every cover sheet: Dealer# and the invoice rows|Dealer# QAIBS01 (the Location ID I set); the Acct#, Ref#, Amount, PO, Invoice Date rows look the same as on Production; each invoice moved to the *Sent* tab|PASSED|
+|14|Change location to Staging Lethbridge - 4310 (top-right menu → Change Location)|The same rate shows; it is one rate for the whole company|PASSED|
+|15|Second company|This account has only one company, so there is no second company to compare against|Not applicable|
+|16|A Technician (role reset to its template first; no Settings → Integrations permission)|No Settings item in the menu, and opening the IBS page sends them back to Work Orders|PASSED|
+
+!SV-9016_validation.png|width=1030,height=325!
+_Picture 3: typing 1.999 shows "Service charge can have at most 2 decimal places", and Save stays greyed out._
+
+h3. How to see it
+
+# Open the QA branch: [https://sv9016.qa.shopview.com/] and sign in as Admin.
+# Click the avatar at the top right, then *Settings*. In the left menu, click *IBS* (just below *QuickBooks*).
+# The *IBS Service Charge* section is under *Credentials*. Click its pencil on the right, type {{3.5}} and click *Save*.
+# In the top menu, click *Reports*, then *IBS Batches* in the left menu. Stay on the *Ready To Send* tab.
+# Tick one invoice, click the ⋮ button above the list on the right, and choose *Create Batch*.
+# Open the downloaded *batch_export.csv*. The *S/C* line is 3.5% of the *Invoices* amount.
+
+*Production before the fix:* I made one invoice for the IBS customer Ahsan (S-988, $299.90) and created a batch. The cover sheet shows S/C $5.70, which is 1.90% (Picture 2, top).
