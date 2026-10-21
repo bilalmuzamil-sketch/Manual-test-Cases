@@ -1,0 +1,16 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.20-c627fc7", "date": "21 October 2026", "note": "run 498 - C581895 re-run with technicians whose staff record and login names match (QA lead chose a)"},
+ "results": {
+  "C581895": {"verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging - every name matches the staff record name; SV-11336's fix holds.",
+    "Why re-run: Settings > Staff shows the sign-in account name, so the earlier run's technician (staff record David Sparks, sign-in Carol Neal) could never match step 2. On the QA lead's choice the test now uses technicians whose two names are the same, and its set-up sentence says so.",
+    "Steps 1-2: Settings > Staff reads Esther Howard (Technician-A) and Ralph Edwards (Technician-B).",
+    "Step 5: List's Lead Technician of S2-37951 reads Esther Howard.",
+    "Steps 7-8: Board View's card lead and its column header read Esther Howard.",
+    "Step 9: hovering the card's line technicians shows Esther Howard and Ralph Edwards.",
+    "Step 11: Tech View's group header reads Esther Howard.",
+    "Step 12: hovering the Assigned Techs avatars shows Esther Howard and Ralph Edwards; no other name appears."],
+   "pictures": ["pictures-1019/C581895-1-staff-1021.png", "pictures-1019/C581895-2-list-1021.png", "pictures-1019/C581895-3-board-hover-1021.png", "pictures-1019/C581895-4-tech-hover-1021.png"]}
+ }
+}

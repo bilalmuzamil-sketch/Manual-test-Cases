@@ -120,6 +120,8 @@ try {
   await goWO(p2); o.s23 = await readBoth(p2, 's23');
   // put the first location back for later runs
   o.restore = { from: await topBar(p2), to: await switchLocUI(p2, here.replace(/\s+[A-Z]{2}$/, '')) };
+  await display(p2, 'List'); o.restoreCols = { list: await columns(p2, 'List', { 'Service Advisor': true, Progress: true }) };
+  await display(p2, 'Tech View'); o.restoreCols.tech = await columns(p2, 'Tech View', { 'Service Advisor': true, Progress: true, 'Assigned Techs': true });
   const V = (r: any) => r && Object.values(r.verdict).every(Boolean);
   o.summary = { s11: o.s11.ok, s15: o.s15.ok, s18: V(o.s18), s20: V(o.s20), s21: o.s21.ok, s23: V(o.s23) };
   console.log(t(), 'SUMMARY C96975', JSON.stringify(o.summary));

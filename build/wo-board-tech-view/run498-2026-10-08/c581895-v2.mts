@@ -10,7 +10,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { open, done, APP } from './session.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, display, active, tab, search, drag, toColumn, toasts, shiftPrompt, findRow } from './wob.mts';
+import { EV, t, display, active, tab, search, drag, toColumn, toasts, shiftPrompt, findRow, ensureLocation } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { mkShift, shiftsOn } from './shifts.mts';
 import { openRetry } from './fx6-1017.mts';
@@ -23,6 +23,8 @@ const want = (id: string) => !only.length || only.includes(id);
 const { browser, page: p } = await openRetry(open, '/workorders?tab=all'); p.setDefaultTimeout(30_000);
 const a = api(p);
 await startState(p, a, 'c581895-v2');   // L0415: the saved Work Orders choices found before anything is set
+// 21 Oct 2026: the run landed at another location (S1- work order, line-2 technician refused 400): make sure it is Staging Heavy Duty first.
+console.log(t(), 'LOCATION', await ensureLocation(p, a, HEAVY));
 const OUT = path.join(EV, 'c581895-v2.json');
 const R: Record<string, any> = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : {};
 const stamp = new Date().toISOString().slice(5, 16).replace(/[-T:]/g, '');
@@ -95,7 +97,9 @@ await run('C581895', async () => {
   // Tech View and Board View showed "Carol Neal" — so on staging a staff record and its sign-in account CAN carry different names. The
   // case's precondition asks for such a technician "where the site allows it", so Technician-A is now Carol Neal's staff record when it
   // is found (else Esther Howard, as before). Technician-B stays Ralph Edwards.
-  const CN = (await staffRows(a, 'Carol')).find((x: any) => x.first_name === 'Carol' && x.last_name === 'Neal' && x.staff_id);
+  // 21 Oct 2026 (QA lead chose a): Settings > Staff shows the LOGIN name (L0497), so the case runs with technicians whose two names match:
+  // C581895_SAME_NAMES=1 skips Carol Neal (staff record David Sparks) and keeps Esther Howard / Ralph Edwards.
+  const CN = process.env.C581895_SAME_NAMES ? undefined : (await staffRows(a, 'Carol')).find((x: any) => x.first_name === 'Carol' && x.last_name === 'Neal' && x.staff_id);
   const TA = CN ?? ES, TB = RE; if (CN) names[CN.staff_id] = 'Carol';
   o.staffRowA = CN ? { first: CN.first_name, last: CN.last_name, email: String(CN.email ?? '').replace(/^(.).*@/, '$1…@'), user: CN.user_first_name ?? CN.user?.first_name ?? null } : 'Carol Neal not found; Esther Howard used';
   o.staff = [TA, TB].map((x: any) => ({ id: x.staff_id, name: `${x.first_name} ${x.last_name}` }));
@@ -106,7 +110,7 @@ await run('C581895', async () => {
   const num = (await workOrders(a, n))[0]?.number; o.wo = num; o.lines = await lineStates(w);
   // step 1: Settings > Staff
   await p.goto(APP + '/administration/staff', { waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(6000);
-  o.step1 = {}; for (const x of o.staff) { const sb = p.locator('input[placeholder*="Search" i]').first(); if (await sb.count()) { await sb.fill(x.name.split(' ')[0]); await p.waitForTimeout(3000); }
+  o.step1 = {}; for (const x of o.staff) { await p.getByText('Search', { exact: true }).first().click().catch(() => {}); await p.waitForTimeout(800); const sb = p.locator('input[placeholder*="Search" i], input[type="search"], .q-field input').first(); if (await sb.count()) { await sb.fill(x.name.split(' ')[0]); await p.waitForTimeout(3000); }
     o.step1[x.name] = await p.evaluate(`[...document.querySelectorAll('tbody tr, .q-item')].map(r => r.innerText.replace(/\\s+/g, ' ').trim()).filter(t => t.includes(${JSON.stringify(x.name)})).slice(0, 2)`);
     await shot(`C581895-v2-step1-staff-${x.name.split(' ')[0]}`); }
   // steps 2-3: List, Lead Technician column
@@ -146,7 +150,10 @@ await run('C581895', async () => {
   o.techHeads = await p.evaluate(`[...document.querySelectorAll('thead th')].map(e => e.innerText.trim()).filter(Boolean)`);
   o.techRow = (await row.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 300); await shot('C581895-v2-step7-tech');
   const ai = (o.techHeads as string[]).findIndex((h) => /^Assigned Techs/i.test(h));
-  const cell = ai >= 0 ? row.locator('td').nth(ai) : row; const tav = cell.locator('.q-avatar, [class*="avatar"], [class*="overflow"]');
+  // 21 Oct 2026: the row has an unlabelled drag-grip cell, so the header index can be one off — try ai, ai+1, ai-1 and keep the first
+  // cell that holds avatars (the Lead Technician cell is never tried: it is not next to Assigned Techs).
+  let cell = ai >= 0 ? row.locator('td').nth(ai) : row; let tav = cell.locator('.q-avatar, [class*="avatar"], [class*="overflow"]');
+  for (const k of [ai, ai + 1, ai - 1]) { if (ai < 0) break; const c2 = row.locator('td').nth(k); const t2 = c2.locator('.q-avatar, [class*="avatar"], [class*="overflow"]'); if (await t2.count()) { cell = c2; tav = t2; o.step8cellIndex = k; break; } }
   o.step8count = await tav.count(); o.step8 = [];
   for (let i = 0; i < Math.min(o.step8count, 6); i++) { await tav.nth(i).hover().catch(() => {}); await p.waitForTimeout(1200); o.step8.push((await tooltips()).join(' | ')); if (o.step8[i] && !o.step8pic) { o.step8pic = i + 1; await shot('C581895-v2-step8-tech-hover'); } } // 16 Oct 2026: picture at the first hover that SHOWS a name (the first hover on 16 Oct showed none)
   o.step8cell = await cell.innerText().catch(() => null);
