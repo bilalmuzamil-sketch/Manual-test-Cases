@@ -1,0 +1,14 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.20-4c6c9e0", "date": "21 October 2026", "note": "run 498 - C698884 tested within the QA lead's 5-hour window, after SV-11580 reached staging"},
+ "results": {
+  "C698884": {"verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging - outcome (3) of this test: the change for SV-11580 has shipped (staging build v26.40.20-4c6c9e0, ticket in Testing Stage).",
+    "Step 1: Board View's toolbar has no density button. Column Selection sits between the two dividers with even space either side (13 px and 12 px), and there is no empty gap or double divider.",
+    "Step 2: Column Selection opens the card-fields picker (Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date).",
+    "Step 3: Escape closes the picker; the cards keep their usual spacing (8 px between cards, the same as before the change).",
+    "Step 4: Tech View's toolbar still has the density button.",
+    "Step 5: its menu offers Compact, Regular and Comfortable."],
+   "pictures": ["pictures-1019/C698884-1-board-toolbar-1021.png", "pictures-1019/C698884-2-picker-1021.png", "pictures-1019/C698884-3-tech-toolbar-1021.png", "pictures-1019/C698884-4-density-menu-1021.png"]}
+ }
+}
