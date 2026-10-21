@@ -1,0 +1,42 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on the QA branch [sv11564|https://sv11564.qa.shopview.com/] (build v26.40.20-0509710) on 21 October 2026, as Admin at Staging Heavy Duty - 9919, following the QA handoff checklist.
+
+* A date or time typed in a shape the field can't read now shows "Start date is invalid — use Jan 5, 2026 09:30 AM" (or the End version), and *Save*, *Create* and *Clock Out* stay disabled. Nothing is sent.
+* Valid typed dates, the calendar and clock pickers, the overlap confirmation and New clock-ins all still work.
+
+!SV-11564_before-after.png|width=608,height=1251!
+_Picture 1: Edit Timesheet with "8:00 AM" typed in Start. On Production, Save stays enabled under a short "Start date is invalid". On the QA branch the message shows the expected format and Save is disabled. I did not click Save on Production, as the handoff asks._
+
+h3. What I checked
+
+||#||Check||Result||Status||
+|1|Edit Timesheet: {{8:00 AM}} in Start|"Start date is invalid — use Jan 5, 2026 09:30 AM", Save disabled, clicking it sends nothing|PASSED|
+|2|Edit Timesheet: {{4:30PM}} in End|"End date is invalid — use …" under End, Save disabled|PASSED|
+|3|{{8}}, {{800}}, {{Sep 21, 2026}}, {{9/21/2026 4:34 PM}}, {{Sep 21, 2026 16:34}}, {{Sep 21 2026 4:34 PM}}, {{Feb 30, 2026 04:34 PM}}, each in Start and each in End (14 tries)|The invalid message on that field every time, Save disabled|PASSED|
+|4|Valid typed edit in lower case: {{oct 12, 2026 1:15 pm}}|Message clears, Save saves and closes; the report row shows 01:15 PM|PASSED|
+|5|Calendar and clock icons for Start and End|Values accepted (Oct 11, 2026 08:30 AM – 11:15 AM), no error|PASSED|
+|6|Garbage, then a picker|The error clears. The calendar fills the time as 12:00 AM; the clock fills the date as today|PASSED|
+|7|No false error on open, from Timesheet Activities and from a work order's Timesheets|No message on open; Save enables after a real edit|PASSED|
+|8|End equal to or before Start / Start in the future / End cleared on Edit|"The end time must be after the start time." / "Start date cannot be set in the future" / "End date is required", Save disabled|PASSED|
+|9|Press Enter inside an invalid field (Edit and Clock Out)|Nothing is sent|PASSED|
+|10|New: invalid Start, invalid End, then End cleared with a valid Start|Message and Create disabled for the first two; Create enabled and saves a running clock-in for the third|PASSED|
+|11|Overwrite confirmation (Carol Ramos, overlapping her Oct 13 9:00–10:00 AM entry)|Lists the affected entry and the result; the new row shows the work order picked in the form (S2-17579, then S2-17578 after I changed it), from both Timesheet Activities and the work order's Timesheets; Cancel saves nothing; Confirm saves and closes|PASSED|
+|12|Clock Out: {{5:00 PM}} in End|"End date is invalid — use …", Clock Out disabled|PASSED|
+|13|Clock Out: End equal to or before Start, future Start|The matching message, Clock Out disabled|PASSED|
+|14|Clock Out with a valid End from a work order's Timesheets|"Timesheet clocked out successfully." and the row is completed|PASSED|
+|15|An Office User staff member's department entry|{{8:00 AM}} disables Save; a valid typed time saves|PASSED|
+|16|Window 900 px and 768 px wide, both messages showing|Both wrap onto extra lines; no clipping and no sideways scroll|PASSED|
+
+h3. Separate issue raised
+
+While testing Clock Out from a work order's *Timesheets* section, I found that the window fills *Start* six hours late at an Edmonton-time location. Clicking *Clock Out* saves that wrong start. Production does the same, so it is not caused by this ticket. I raised it as [SV-11590|https://shopview.atlassian.net/browse/SV-11590] "Clock Out from a work order's Timesheets fills Start with the wrong time".
+
+h3. How to see the fix
+
+# Open the QA branch: [https://sv11564.qa.shopview.com/] and sign in as Admin.
+# In the top menu, click *Reports*, then *Timesheet Activities* in the left menu.
+# At the top, click *Filter by Staff* and choose *Carol Ramos*.
+# Move the mouse pointer over her *Oct 12 2026* row (01:15 PM – 02:00 PM) and click the pencil icon at the far right. The *Edit Timesheet* window opens.
+# Click in *Start*, select all, type {{8:00 AM}} and press Tab. The red message "Start date is invalid — use Jan 5, 2026 09:30 AM" appears under Start and *Save* is greyed out.

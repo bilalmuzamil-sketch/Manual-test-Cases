@@ -1,0 +1,96 @@
+[
+ {
+  "k": "rows before",
+  "rows": [
+   "Oct 14 2026 Carol Ramos N/A Shop Time (Shop Hand) 01:00 PM 02:00 PM 1.00 0.00 1.00 N/A Manual Entry By Admin ShopView edit_note",
+   "Oct 13 2026 Carol Ramos N/A Shop Time (Shop Hand) 09:00 AM 10:00 AM 1.00 0.00 1.00 N/A Manual Entry By Admin ShopView",
+   "Oct 12 2026 Carol Ramos N/A Shop Time (Shop Hand) 01:15 PM 02:00 PM 0.75 0.00 0.75 Admin ShopView Oct 21, 2026 01:53 AM Manual Entry By Admin ShopView",
+   "Totals 2.75 0 2.75"
+  ]
+ },
+ {
+  "k": "edit filled",
+  "title": "Edit Timesheet",
+  "start": "Oct 13, 2026 09:30 AM",
+  "end": "Oct 13, 2026 10:30 AM",
+  "eStart": "",
+  "eEnd": "",
+  "btn": "Save",
+  "disabled": false,
+  "text": "Edit Timesheet\nclose\nSelect Department\narrow_drop_down\nWork Order\nS2-17579 [ Buda Truck Repair ]\narrow_drop_down\nLine\n1 Service - CVIP Inspection Single Or Tandem Axle\narrow_drop_down\nevent\nStart\naccess_time\nevent\nEnd\naccess_time\nCancel\nSave"
+ },
+ {
+  "k": "confirm 1 (S2-17579)",
+  "n": 2,
+  "text": "Confirm Overwrite | close | We have detected overlapping time records. please review changes. | WO/Dept\tStart\tEnd\tLine | Shop Time (Shop hand)\tOct 13, 2026 09:00 AM\tOct 13, 2026 10:00 AM\t | After the overwrite, the timesheet records will be: | WO/Dept\tStart\tEnd\tLine | Shop Time (Shop hand)\tOct 13, 2026 09:00 AM\tOct 13, 2026 09:30 AM\t | S2-17579\tOct 13, 2026 09:30 AM\tOct 13, 2026 10:30 AM\t1 Service - CVIP inspect... | Confirm | Cancel",
+  "btns": [
+   "button_close_dialog:close",
+   "button_confirm_overwrite_confirmation:Confirm",
+   "button_cancel_overwrite_confirmation:Cancel"
+  ],
+  "net": [
+   "GET /api/technician-tasks/list-overlapping/f1f90331-312f-4f0e-ad77-f93a89d"
+  ]
+ },
+ {
+  "k": "after cancel",
+  "n": 1,
+  "text": "Edit Timesheet | close | Select Department | arrow_drop_down | Work Order | S2-17579 [ Buda Truck Repair ] | arrow_drop_down | Line | 1 Service - CVIP Inspection Single Or Tandem Axle | arrow_drop_down | event | Start | access_time | event | End | access_time | Cancel | Save",
+  "btns": [
+   "button_close_dialog:close",
+   "button_cancel_timesheet:Cancel",
+   "button_save_timesheet:Save"
+  ]
+ },
+ {
+  "k": "confirm 2 (changed to S2-17578)",
+  "n": 2,
+  "text": "Confirm Overwrite | close | We have detected overlapping time records. please review changes. | WO/Dept\tStart\tEnd\tLine | Shop Time (Shop hand)\tOct 13, 2026 09:00 AM\tOct 13, 2026 10:00 AM\t | After the overwrite, the timesheet records will be: | WO/Dept\tStart\tEnd\tLine | Shop Time (Shop hand)\tOct 13, 2026 09:00 AM\tOct 13, 2026 09:30 AM\t | S2-17578\tOct 13, 2026 09:30 AM\tOct 13, 2026 10:30 AM\t1 Service - Air brake tra... | Confirm | Cancel",
+  "btns": [
+   "button_close_dialog:close",
+   "button_confirm_overwrite_confirmation:Confirm",
+   "button_cancel_overwrite_confirmation:Cancel"
+  ],
+  "net": [
+   "GET /api/technician-tasks/list-overlapping/f1f90331-312f-4f0e-ad77-f93a89d"
+  ]
+ },
+ {
+  "k": "rows after cancel (nothing saved?)",
+  "rows": [
+   "Oct 14 2026 Carol Ramos N/A Shop Time (Shop Hand) 01:00 PM 02:00 PM 1.00 0.00 1.00 N/A Manual Entry By Admin ShopView edit_note",
+   "Oct 13 2026 Carol Ramos N/A Shop Time (Shop Hand) 09:00 AM 10:00 AM 1.00 0.00 1.00 N/A Manual Entry By Admin ShopView",
+   "Oct 12 2026 Carol Ramos N/A Shop Time (Shop Hand) 01:15 PM 02:00 PM 0.75 0.00 0.75 Admin ShopView Oct 21, 2026 01:53 AM Manual Entry By Admin ShopView",
+   "Totals 2.75 0 2.75"
+  ]
+ },
+ {
+  "k": "confirm 3",
+  "n": 2,
+  "text": "Confirm Overwrite | close | We have detected overlapping time records. please review changes. | WO/Dept\tStart\tEnd\tLine | Shop Time (Shop hand)\tOct 13, 2026 09:00 AM\tOct 13, 2026 10:00 AM\t | After the overwrite, the timesheet records will be: | WO/Dept\tStart\tEnd\tLine | Shop Time (Shop hand)\tOct 13, 2026 09:00 AM\tOct 13, 2026 09:30 AM\t | S2-17578\tOct 13, 2026 09:30 AM\tOct 13, 2026 10:30 AM\t1 Service - Air brake tra... | Confirm | Cancel",
+  "btns": [
+   "button_close_dialog:close",
+   "button_confirm_overwrite_confirmation:Confirm",
+   "button_cancel_overwrite_confirmation:Cancel"
+  ]
+ },
+ {
+  "k": "after confirm",
+  "n": 1,
+  "btns": [],
+  "net": [
+   "GET /api/technician-tasks/list-overlapping/f1f90331-312f-4f0e-ad77-f93a89d",
+   "POST /api/technician-tasks/change",
+   "POST /api/technician-tasks/move"
+  ]
+ },
+ {
+  "k": "rows after confirm",
+  "rows": [
+   "Oct 13 2026 Carol Ramos S2-17578 Service - Air Brake Trailer CVIP Tri-Axle 09:30 AM 10:30 AM 1.00 1.00 0.00 Admin ShopView Oct 21, 2026 02:00 AM Manual Entry By Admin ShopView edit_note",
+   "Oct 13 2026 Carol Ramos N/A Shop Time (Shop Hand) 09:00 AM 09:30 AM 0.50 0.00 0.50 Admin ShopView Oct 21, 2026 02:00 AM Manual Entry By Admin ShopView",
+   "Oct 12 2026 Carol Ramos N/A Shop Time (Shop Hand) 01:15 PM 02:00 PM 0.75 0.00 0.75 Admin ShopView Oct 21, 2026 01:53 AM Manual Entry By Admin ShopView",
+   "Totals 2.25 1 1.25"
+  ]
+ }
+]

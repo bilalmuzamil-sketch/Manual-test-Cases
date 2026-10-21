@@ -1,0 +1,32 @@
+Found while testing [SV-11564|https://shopview.atlassian.net/browse/SV-11564]
+
+h3. Summary
+When you clock someone out from a work order's *Timesheets* section, the *Clock Out Timesheet* window fills *Start* with the wrong time. At a location on Edmonton time it shows the entry's start six hours later. If you click *Clock Out*, that wrong start is saved and the entry loses those hours.
+
+h3. Steps to reproduce
+Open the QA branch: [https://sv11564.qa.shopview.com/] (Admin, location *Staging Heavy Duty - 9919*, which is on Edmonton time).
+# In the top menu, click *Work Orders*, search *S2-17578* and open it.
+# At the top right of the tabs (*Lines*, *Parts*, *Notes*, *Stats*, *Finance*), click the three dots and click *Timesheets*.
+# Find Carol Ramos's row whose *Start Time* reads *06:00 PM* and whose *End Time* is the green *Active* label.
+# Move the mouse pointer over that row and click *Clock Out* at its far right. The *Clock Out Timesheet* window opens.
+# Look at *Start*: it reads *Oct 21, 2026 12:00 AM*, not Oct 20, 2026 06:00 PM.
+
+!clockout-wo-tab-start-shift.png|width=1140,height=1186!
+_Picture 1: top, the QA branch; bottom, Production with its location set to Edmonton time. Both rows started at 06:00 PM; both windows fill Start with 12:00 AM the next day._
+
+*To compare:* in the top menu click *Reports*, then *Timesheet Activities* on the left, choose *Filter by Staff* → *Carol Ramos*, and click *Clock Out* on the same Active row. There, Start correctly reads *Oct 20, 2026 06:00 PM*.
+
+h3. Expected behaviour
+*Start* shows the time the entry actually started, the same as when the window is opened from *Timesheet Activities*.
+
+h3. Current behaviour
+From a work order's *Timesheets* section, *Start* is filled six hours late (the location's difference from UTC). Clicking *Clock Out* saves it: on the QA branch, an entry that started at 08:00 AM was saved as 02:00 PM – 05:00 PM after clocking out from the work order (Carol Ramos, S2-17578, 20 Oct 2026).
+
+||Where Clock Out was opened||Entry started||Start shown||
+|Work order S2-17578 → Timesheets (QA branch)|Oct 20, 06:00 PM|Oct 21, 12:00 AM|
+|Work order S2-17578 → Timesheets (QA branch)|Oct 20, 08:00 AM|Oct 20, 02:00 PM (and saved like that)|
+|Timesheet Activities (QA branch)|Oct 20, 06:00 PM|Oct 20, 06:00 PM|
+|Work order S2-984 → Timesheets (Production, location set to Edmonton time for the check)|Oct 20, 06:00 PM|Oct 21, 12:00 AM|
+|Timesheet Activities (Production, same)|Oct 20, 06:00 PM|Oct 20, 06:00 PM|
+
+Tested on 21 October 2026: QA branch sv11564 (v26.40.20-0509710) and Production (v26.40.20-aada856), with the computer clock on UTC and on Edmonton time (same result). It happens on Production too, so it is not caused by SV-11564. Locations on UTC+0 time do not show it.
