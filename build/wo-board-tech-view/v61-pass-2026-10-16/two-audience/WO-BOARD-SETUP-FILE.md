@@ -1,4 +1,4 @@
-# WO Board and Tech View: setup file for Claude sessions (51 cases, 16 to 20 Oct 2026)
+# WO Board and Tech View: setup file for Claude sessions (54 cases, 16 to 21 Oct 2026)
 
 This file is for a Claude session. A manual tester never needs it: each test case is complete on its own. With this file and the access the user gives at the start of the session, a new session can put the account into every case's starting state. It holds no environment address, credentials, cookies or session data.
 
@@ -1520,6 +1520,60 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 - {Customer-A} = ZZAUTOTEST F1 Density Scope
 - {Work-order-1} = the work order for unit C96992-U1
 
+#### SETUP-C707076 — [C707076](https://shopview.testrail.io/index.php?/cases/view/707076) List and Tech View show the asset's year, make and model
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Customer {Customer-A} has an asset {Asset-A} with a year, make, model and unit number. For example: {Customer-A} is ZZAUTOTEST C11576 Asset Year, and {Asset-A} is a 2022 Freightliner M2, unit C11576-U1.
+- Work order {Work-order-1} for {Customer-A} on {Asset-A} is Approved. For example: {Work-order-1} is S2-37700.
+- Starting screen: "Work Orders" > "All" tab, "List" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  **P-CUSTOMER**: "ZZAUTOTEST C11576 Asset Year", asset Year 2022, Make Freightliner, Model M2, Unit "C11576-U1".
+2.  **P-WO** on that asset (Approved, no lead needed).
+3.  **P-START**: List, All tab, Search = the customer name.
+
+**Check:** every precondition line is true on screen. Ticket SV-11576.
+
+#### SETUP-C707077 — [C707077](https://shopview.testrail.io/index.php?/cases/view/707077) The Lines tab and Edit Line name the technician by their staff record name
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Technician {Technician-A} is active at {Location-A}, and the name on their staff record differs from the name on their login account. For example: the staff record reads ZZAUTOTEST C11577 Ana Staff and the login account reads ZZAUTOTEST C11577 Ana Login.
+- Work order {Work-order-1} is Approved, led by {Technician-A}, and has one approved line, {Line-1}, with {Technician-A} as its technician. For example: {Work-order-1} is S2-37701 and {Line-1} is "Service - Full grease service".
+- Starting screen: {Work-order-1} is open on its "Lines" tab.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  **P-TECH** "ZZAUTOTEST C11577 Ana Staff" with an email inbox you can open; accept the invitation and set a password.
+2.  Sign in as that technician in a private window, your initials > "Edit Profile", change the name to "ZZAUTOTEST C11577 Ana Login", save, close the window (UNVERIFIED click path; the staff record keeps "Ana Staff").
+3.  **P-CUSTOMER** + **P-WO** with lead {Technician-A}; **P-LINE-TECH** with {Technician-A} on the grease line.
+4.  Open the work order on its "Lines" tab.
+
+**Check:** every precondition line is true on screen. Ticket SV-11577.
+
+#### SETUP-C707078 — [C707078](https://shopview.testrail.io/index.php?/cases/view/707078) On Windows Chrome the hand pointer has a black outline in Board and Tech View
+
+**Satisfies these precondition lines, exactly as the case states them:**
+
+- You are signed in with the "Admin" role at {Location-A}, in a browser window at least 1024 px wide. For example: {Location-A} is Staging Heavy Duty - 9919.
+- You are on a Windows computer in Chrome, with the standard Windows pointer. For example: Windows 11, one 1920 x 1080 screen.
+- {Location-A} has a technician {Technician-A} who leads at least one Approved work order, {Work-order-1}. For example: {Technician-A} is Esther Howard.
+- Starting screen: "Work Orders" > "All" tab, "Board View" shown, "Search" empty, no filter chosen.
+- If any record above is missing, mark this test Blocked: "setup not done".
+
+**Slots:** ACCOUNT-A. **Run first:** SETUP-ADMIN.
+
+1.  Needs a Windows computer with Chrome (cannot be done from this container). Any technician who leads an Approved work order, for example Esther Howard on staging.
+2.  **P-START**: Board View, All tab, Search empty.
+
+**Check:** every precondition line is true on screen. Ticket SV-11588.
+
 ## 5. Mapping table (execution order)
 
 | Test case                                                                                                                                             | Account slots        | Recipes in order                          |
@@ -1579,6 +1633,9 @@ Known examples already on staging (from SV-11503, not created by this file): S2-
 | [C96990](https://shopview.testrail.io/index.php?/cases/view/96990) Tech View row text stays the same size at every density | ACCOUNT-A | SETUP-ADMIN, SETUP-C96990 |
 | [C96991](https://shopview.testrail.io/index.php?/cases/view/96991) If the saved density can't load, Regular is used | ACCOUNT-A | SETUP-ADMIN, SETUP-C96991 |
 | [C96992](https://shopview.testrail.io/index.php?/cases/view/96992) Density changes Tech View rows only, not Board View cards or List | ACCOUNT-A | SETUP-ADMIN, SETUP-C96992 |
+| [C707076](https://shopview.testrail.io/index.php?/cases/view/707076) List and Tech View show the asset's year, make and model | ACCOUNT-A | SETUP-ADMIN, SETUP-C707076 |
+| [C707077](https://shopview.testrail.io/index.php?/cases/view/707077) The Lines tab and Edit Line name the technician by their staff record name | ACCOUNT-A | SETUP-ADMIN, SETUP-C707077 |
+| [C707078](https://shopview.testrail.io/index.php?/cases/view/707078) On Windows Chrome the hand pointer has a black outline in Board and Tech View | ACCOUNT-A | SETUP-ADMIN, SETUP-C707078 |
 
 ## 6. Dependencies and shared fixtures
 

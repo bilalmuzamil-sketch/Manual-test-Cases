@@ -1,0 +1,7 @@
+{"SV-11576": {"expected": "The same format as the Board card: year make model (Chris, Slack, 20 Oct 2026: \"yes, in the same format as the Board card… Put it in this release if you can; if not, a fast follow is fine\"). Tech View rows share this cell, so they show the year too."},
+ "SV-11577": {"expected": "The staff record name in both places, the same name List, Board View and Tech View show (PRD S5-R11b; Chris, Slack, 20 Oct 2026: \"use the staff record name in both places, so the roster changes to match the Labor text… Same timing as #2\", i.e. this release if possible, otherwise a fast follow)."},
+ "SV-11588": {"fix1": "Replace the browser's grab and grabbing hands in Board View and Tech View with our own hand cursors: a white hand with a 2px black outline, the same shapes (open hand while hovering, closed hand while dragging), about 32px.",
+              "fix3": "Apply it everywhere these views use a hand today: Board View cards and column headers, Tech View rows and group headers, and while dragging in either view.",
+              "check1": "On Windows in Chrome, hover a Board View card, a Tech View row and a technician header: the hand has a clear black outline on white and on blue.",
+              "check2": "Drag a card or row: the closed hand keeps its black outline the whole drag.",
+              "check3": "List and every other page are unchanged."}}
