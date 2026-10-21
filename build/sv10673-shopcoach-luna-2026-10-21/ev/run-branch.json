@@ -1,0 +1,122 @@
+[
+ {
+  "a": "line-builder-v2",
+  "st": 200,
+  "ms": 9333,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "{\"lines\":[{\"name\":\"Oil Change\",\"description\":\"\",\"estimate\":0.5,\"parts\":[{\"part_name\":\"Engine Oil\",\"quantity\":6,\"required\":true,\"part_number\":null,\"notes\":\"Use manufacturer-specified viscosity and specification; confirm engine-specific capacity before filling.\"},{\"part_name\":\"Engine Oil Filter\",\"quantity\":1,\"required\":true,\"part_number\":null,\"notes\":null}]},{\"name\":\"Hydraulic Inspection\",\"description\":\"\",\"estimate\":1,\"parts\":[]},{\"name\":\"Replace front brake pads and rotors\",\"description\":\"\",\"estimate\":2,\"parts\":[{\"part_name\":\"Front brake pad set\",\"quantity\":1,\"required\":true,\"part_number\":null,\"notes\":null},{\"part_name\":\"Front brake rotor\",\"quantity\":2,\"required\":true,\"part_number\":null,\"notes\":null}]}]}"
+ },
+ {
+  "a": "recommend-work",
+  "st": 200,
+  "ms": 11702,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "{\"recommendedWork\":[{\"work_order\":null,\"date\":null,\"name\":\"Change engine oil and filter\",\"description\":\"Mileage exceeds typical 10,000-mile service interval; prior completion unavailable\",\"estimate\":0.5,\"reason\":\"Maintenance\",\"parts\":[{\"part_name\":\"Engine oil\",\"quantity\":6,\"required\":true,\"part_number\":null,\"notes\":\"Approximate 6.0 L; verify engine-specific capacity\"},{\"part_name\":\"Engine oil filter\",\"quantity\":1,\"required\":true,\"part_number\":null,\"notes\":null}]},{\"work_order\":null,\"date\":null,\"name\":\"Replace engine air filter\",\"description\":\"Mileage exceeds typical replacement interval; prior completion unavailable\",\"estimate\":0.3,\"reason\":\"Maintenance\",\"parts\":[{\"part_name\":\"Engine air filter\",\"quantity\":1,\"required\":true,\"part_number\":null,\"notes\":null}]},{\"work_order\":null,\"date\":null,\"name\":\"Replace cabin air filter\",\"description\":\"Mileage exceeds typical replacement interval; prior completion unavailable\",\"estimate\":0.3,\"reason\":\"Maintenance\",\"parts\":[{\"part_name\":\"Cabin air filter\",\"quantity\":1,\"required\":true,\"part_number\":null,\"notes\":null}]},{\"work_order\":null,\"date\":null,\"name\":\"Replace spark plugs\",\"description\":\"Mileage exceeds typical 60,000-mile replacement interval; prior completion unavailable\",\"estimate\":1.8,\"reason\":\"Maintenance\",\"parts\":[{\"part_name\":\"Spark plug\",\"quantity\":6,\"required\":true,\"part_number\":null,\"notes\":\"Verify engine-specific quantity and specification\"}]},{\"work_order\":null,\"date\":null,\"name\":\"Service transmission fluid\",\"description\":\"Mileage exceeds severe-service interval; prior completion unavailable\",\"estimate\":2.5,\"reason\":\"Maintenance\",\"parts\":[{\"part_name\":\"Automatic transmission fluid\",\"quantity\":6,\"required\":true,\"part_number\":null,\"notes\":\"Approximate drain-and-fill quantity; use Mercon ULV Spec\"}]},{\"work_order\":null,\"date\":null,\"name\":\"Service 4WD drivetrain fluids\",\"description\":\"Mileage exceeds typical severe-service interval; prior completion unavailable\",\"estimate\":2.0,\"reason\":\"Maintenance\",\"parts\":[{\"part_name\":\"Transfer case fluid\",\"quantity\":2,\"required\":true,\"part_number\":null,\"notes\":\"Approximate quantity; verify capacity\"},{\"part_name\":\"Front differential fluid\",\"quantity\":2,\"required\":true,\"part_number\":null,\"notes\":\"Approximate quantity; verify capacity\"},{\"part_name\":\"Rear differential fluid\",\"quantity\":3,\"required\":true,\"part_number\":null,\"notes\":\"Approximate quantity; verify capacity\"}]}]}"
+ },
+ {
+  "a": "vehicle-history",
+  "st": 200,
+  "ms": 2839,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "{\n  \"maintenanceHistorySummary\": \"Brake service recorded: front brake pads and rotors were replaced on October 6, 2026. Mileage was not documented.\",\n  \"maintenanceHistory\": [\n    {\n      \"work_order_id\": \"3ba1c92e-0ece-4976-aa04-5a6cccc681c9\",\n      \"work_order_number\": \"S-17583\",\n      \"mileage\": null,\n      \"date\": \"Oct 06, 2026\",\n      \"summary\": \"Replaced the front brake pads and rotors. One set of front brake pads was documented as installed.\"\n    }\n  ]\n}"
+ },
+ {
+  "a": "suggest-story",
+  "st": 200,
+  "ms": 4346,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "Replaced front pads and rotors. Measured rotors 1.12 in, under minimum spec. Test drove OK. Customer declined rear brakes. Job complete."
+ },
+ {
+  "a": "improve-story",
+  "st": 200,
+  "ms": 4753,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "Replaced front pads and rotors. Measured rotors 1.12 in under min spec. Test drove OK. Customer declined rear brakes. Job complete."
+ },
+ {
+  "a": "summary",
+  "st": 200,
+  "ms": 2785,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "Replaced front brake pads and rotors; removed rotors measured 1.12 inches below minimum specification. Test drive completed with no issues. Customer declined recommended rear brake service."
+ },
+ {
+  "a": "estimate",
+  "st": 200,
+  "ms": 4884,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "{\n  \"reason\": \"Front friction and rotor surfaces require replacement.\",\n  \"description\": \"Inspect calipers, slide pins, hoses, wheel bearings, and hardware; clean mounting surfaces and verify braking operation after installation.\",\n  \"estimate\": \"2.0\",\n  \"required_parts\": [\n    {\n      \"part_name\": \"Front brake pad set\",\n      \"part_number\": null,\n      \"quantity\": 1,\n      \"required\": true,\n      \"notes\": \"Includes inner and outer pads.\"\n    },\n    {\n      \"part_name\": \"Front brake rotors\",\n      \"part_number\": null,\n      \"quantity\": 2,\n      \"required\": true,\n      \"notes\": \"Replace both sides as an axle set.\"\n    },\n    {\n      \"part_name\": \"Front brake hardware kit\",\n      \"part_number\": null,\n      \"quantity\": 1,\n      \"required\": false,\n      \"notes\": \"Replace if clips or abutment hardware are worn or damaged.\"\n    }\n  ]\n}"
+ },
+ {
+  "a": "parts",
+  "st": 200,
+  "ms": 4245,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "{\n  \"existing_on_line\": [\n    {\n      \"part_name\": \"Front brake pad set\",\n      \"part_number\": null,\n      \"quantity\": 1,\n      \"required\": true,\n      \"notes\": null\n    }\n  ],\n  \"recommended\": [\n    {\n      \"part_name\": \"Front brake rotor\",\n      \"part_number\": null,\n      \"quantity\": 2,\n      \"required\": true,\n      \"notes\": null\n    }\n  ]\n}"
+ },
+ {
+  "a": "analyze-line",
+  "st": 200,
+  "ms": 639,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "{\"line_review\":{\"line_name\":\"Replace front brake pads and rotors\",\"line_id\":\"4bf26f58-78c5-481a-81cd-3c2f4b1c350f\",\"status\":\"authorized\",\"score\":5,\"tech_story_quality\":\"missing\",\"suggested_tech_story\":\"Job complete.\",\"parts_completeness\":\"likely_missing_items\",\"suggested_parts\":[{\"description\":\"Front brake rotor\",\"quantity\":2,\"part_number\":null,\"required\":true}],\"labor_assessment\":\"appropriate\",\"labor_notes\":null,\"suggested_estimate\":null},\"findings\":[{\"id\":\"F1\",\"category\":\"MISSING_PARTS\",\"severity\":\"warning\",\"confidence\":\"high\",\"title\":\"1 required part missing\",\"description\":\"Missing required parts: Front brake rotor\",\"affected_line\":\"4bf26f58-78c5-481a-81cd-3c2f4b1c350f\",\"recommended_action\":\"Add missing required parts to the line\",\"estimated_impact\":{\"revenue\":null,\"type\":\"risk_mitigation\"},\"evidence\":{\"facts\":[\"Parts not currently on the line\"],\"inferences\":[\"These parts are typically required for: Replace front brake pads and rotors\"]}},{\"id\":\"F2\",\"category\":\"INCOMPLETE_STORY\",\"severity\":\"warning\",\"confidence\":\"high\",\"title\":\"Tech story missing\",\"description\":\"No tech story documented for this line.\",\"affected_line\":\"4bf26f58-78c5-481a-81cd-3c2f4b1c350f\",\"recommended_action\":\"Add a professional tech story documenting the work performed\",\"estimated_impact\":{\"revenue\":null,\"type\":\"risk_mitigation\"},\"evidence\":{\"facts\":[\"Tech story field is empty\"],\"inferences\":[\"Documentation supports warranty claims and billing justification\"]}}]}"
+ },
+ {
+  "a": "estimate-new-line",
+  "st": 200,
+  "ms": 3759,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "{\n  \"reason\": \"Worn pads and rotors below minimum thickness require replacement.\",\n  \"description\": \"Inspect calipers, brake hoses, wheel bearings, hardware, and rotor mating surfaces; verify proper torque and perform bedding procedure after installation.\",\n  \"estimate\": \"2.0\",\n  \"required_parts\": [\n    {\n      \"part_name\": \"Front brake pads\",\n      \"part_number\": null,\n      \"quantity\": 1,\n      \"required\": true,\n      \"notes\": \"Complete axle set including shims or noise-reduction hardware.\"\n    },\n    {\n      \"part_name\": \"Front brake rotors\",\n      \"part_number\": null,\n      \"quantity\": 2,\n      \"required\": true,\n      \"notes\": \"Confirm correct diameter and configuration before ordering.\"\n    }\n  ]\n}"
+ }
+]

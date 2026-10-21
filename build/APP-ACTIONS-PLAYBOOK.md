@@ -6183,3 +6183,16 @@ This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as a
 - **For Customer attachment:** Notes tab → `button_attach_files` (file chooser) creates a note (`POST /api/note/create` content `_files_` + `note/add-attachments`); tick `checkbox_attachment_for_customer_<id>` → `POST /api/note/update-attachment {id, forCustomer:true}`.
 - **Gotcha:** the note is put into the email HTML unescaped — text like `<word>` disappears in the received email (SV-6915 comment 79140).
 - `api()` helper in qa-session needs `{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(b)}` — a raw object body gives 400 "Could not decode request body."
+
+### §AL — ShopCoach: run every assistant + why the model can't be seen (proven 2026-10-21, SV-10673)
+- Every ShopCoach feature is `POST /api/shopcoach/run-assistant {"assistant":"<name>","parameters":{...}}` (an empty body
+  returns 400 naming `assistant`). Names + parameters: `app/src/api/shopcoach/ShopCoachModel.ts` — estimate / parts /
+  analyze-line {workOrderId, lineId}; line-builder-v2 {vehicleId, content}; recommend-work {vehicleId};
+  vehicle-history {vehicleId, techQuery?}; improve-story {workOrderId, lineId, content}; suggest-story {..., content?};
+  summary {content}; estimate-new-line {workOrderId, lineName, lineDescription}. Answer text is in
+  `data.responseData.text`, status in `data.responseMeta.messageCode` (`assistant.completed`).
+- The model is set in the external ShopCoach service (`SHOPCOACH_API_BASE_URL`, ShopCoachClient.php) — no response,
+  header or screen names it, so a "which model" ticket needs the developer to confirm; QA can only check behaviour.
+- On screen: the line's grey "Add tech story for this line" opens the Tech Story window; its ShopCoach button reads
+  SUGGEST STORY when the box is empty and IMPROVE STORY when it has text, and shows the result above "Save Story".
+- Production repeats identical requests from a cache (~0.5 s), so timing is not a model signal.

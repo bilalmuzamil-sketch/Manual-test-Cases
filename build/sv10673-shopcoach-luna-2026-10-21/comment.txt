@@ -1,0 +1,35 @@
+{panel:bgColor=#fffae6}
+*OVERALL QA STATUS: PARTIALLY PASSED*
+{panel}
+I tested this on the QA branch [sv10673|https://sv10673.qa.shopview.com/] (build v26.40.3-df33ae5) on 21 October 2026, as Admin at Staging Heavy Duty - 9919. I compared it with Production using the same wording.
+
+* All ten ShopCoach features answer on the branch, with no errors, and keep the facts I gave them.
+* I cannot confirm from QA that the branch runs on GPT-5.6 Luna. ShopCoach never shows which model answered. The questions for Parth are in a separate comment below.
+* Lee's 18-case baseline, which the ticket needs before it closes, has not been run yet.
+
+!SV-10673_before-after-improve-story.png|width=510,height=1035!
+_Picture 1: the same notes put through Improve Story on Production and on the QA branch. Both keep every fact. Production rewrites "test drove ok" as "operation normal". Both end with "Job complete.", which the notes never say._
+
+h3. What I checked
+
+||#||ShopCoach feature||What I gave it||QA branch result||Status||
+|1|Line Builder|"oil change, check hydraulics, replace front brake pads and rotors"|Three lines, one per job asked for. Check hydraulics gets inspection time only and no parts. Oil and filter are separate parts|PASSED|
+|2|Recommend Work|The work order's 2022 Ford F-150|A list of service items (oil and filter, air filter, cabin filter) based on mileage, each saying no earlier record was found|PASSED|
+|3|Vehicle History|The same truck, "brakes"|Finds the 6 Oct front pads and rotors job and says the mileage was not recorded|PASSED|
+|4|Suggest Story|The notes in Picture 1|Same facts, tidied: "Measured rotors 1.12 in, under minimum spec. Test drove OK…", ends "Job complete."|PASSED|
+|5|Improve Story|The same notes|Picture 1, after|PASSED|
+|6|Summary|The same notes|"Replaced front brake pads and rotors; removed rotors measured 1.12 inches below minimum specification…"|PASSED|
+|7|Labor Guide (time estimate)|The front brake line|2.0 hours, with pads, two rotors and an optional hardware kit|PASSED|
+|8|Parts Lookup|The front brake line|Lists the pad set already on the line and recommends two rotors|PASSED|
+|9|ShopCoach Analysis|The front brake line|Flags the missing rotors. Its suggested story for this line is "Job complete." (the line is not complete)|PASSED|
+|10|New line time estimate|"Replace front brake pads and rotors" / "Pads worn, rotors under minimum"|2.0 hours with pads and two rotors|PASSED|
+|11|Runs on GPT-5.6 Luna|-|Cannot be seen from the app; asked Parth below|NOT CHECKED|
+|12|Lee's 18-case baseline on the current model and on Luna|-|Not run yet. Chris asked for it on staging after the 22 Oct release|NOT CHECKED|
+
+h3. How to see it
+
+# Open the QA branch: [https://sv10673.qa.shopview.com/] and sign in as Admin.
+# In the top menu, click *Work Orders* and open *S10673-17583* (Aberdeen Diesel Services LLC, 2022 Ford F-150).
+# On the *Lines* tab, under the line name *Replace front brake pads and rotors*, click the grey text *Add tech story for this line*. The *Tech Story* window opens.
+# Type the notes from Picture 1 and click *SHOPCOACH IMPROVE STORY*. The improved story appears above *Save Story*.
+# For Line Builder, close the window, type the request into the box under the *AI SHOPCOACH LINE BUILDER* heading below the lines, and click *Build Lines*.

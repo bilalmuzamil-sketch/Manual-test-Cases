@@ -1,0 +1,119 @@
+[
+ {
+  "a": "line-builder-v2",
+  "st": 200,
+  "ms": 3780,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "{\"lines\":[{\"name\":\"Oil Change\",\"description\":\"\",\"estimate\":1,\"parts\":[{\"part_name\":\"Engine Oil\",\"quantity\":40,\"required\":true,\"part_number\":null,\"notes\":\"40 quarts typical for 2019 Freightliner with Detroit DD15 engine; adjust if different engine.\"},{\"part_name\":\"Oil Filter\",\"quantity\":1,\"required\":true,\"part_number\":null,\"notes\":null}]},{\"name\":\"Check Hydraulics\",\"description\":\"\",\"estimate\":1,\"parts\":[]},{\"name\":\"Replace Front Brake Pads\",\"description\":\"\",\"estimate\":1.2,\"parts\":[{\"part_name\":\"Front Brake Pads\",\"quantity\":1,\"required\":true,\"part_number\":null,\"notes\":null},{\"part_name\":\"Brake Pad Wear Sensors\",\"quantity\":2,\"required\":false,\"part_number\":null,\"notes\":\"If equipped\"},{\"part_name\":\"Brake Pad Retaining Clips\",\"quantity\":1,\"required\":false,\"part_number\":null,\"notes\":\"If replacement is needed\"}]},{\"name\":\"Replace Front Rotors\",\"description\":\"\",\"estimate\":2.5,\"parts\":[{\"part_name\":\"Front Brake Rotor\",\"quantity\":2,\"required\":true,\"part_number\":null,\"notes\":null},{\"part_name\":\"Front Brake Pads\",\"quantity\":1,\"required\":true,\"part_number\":null,\"notes\":\"Set for both front wheels\"}]}]}"
+ },
+ {
+  "a": "recommend-work",
+  "st": 200,
+  "ms": 2657,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "{\n  \"recommendedWork\": [\n    {\n      \"work_order\": null,\n      \"date\": null,\n      \"name\": \"Replace engine oil\",\n      \"description\": \"Interval exceeded 50,000 km since last documented service\",\n      \"estimate\": 1.0,\n      \"reason\": \"Maintenance\",\n      \"parts\": [\n        {\n          \"part_name\": \"Engine oil\",\n          \"quantity\": 36,\n          \"required\": true,\n          \"part_number\": null,\n          \"notes\": \"Estimate for typical heavy-duty diesel engine\"\n        }\n      ]\n    },\n    {\n      \"work_order\": null,\n      \"date\": null,\n      \"name\": \"Replace engine oil filter\",\n      \"description\": \"Interval exceeded 50,000 km since last documented service\",\n      \"estimate\": 0.3,\n      \"reason\": \"Maintenance\",\n      \"parts\": [\n        {\n          \"part_name\": \"Engine oil filter\",\n          \"quantity\": 1,\n          \"required\": true,\n          \"part_number\": null,\n          \"notes\": null\n        }\n      ]\n    },\n    {\n      \"work_order\": null,\n      \"date\": null,\n      \"name\": \"Inspect fuel filters\",\n      \"description\": \"Interval exceeded 80,000 km since last documented replacement\",\n      \"estimate\": 0.5,\n      \"reason\": \"Maintenance\",\n      \"parts\": []\n    },\n    {\n      \"work_order\": null,\n      \"date\": null,\n      \"name\": \"Inspect air filter\",\n      \"description\": \"Interval exceeded 80,000 km since last documented replacement\",\n      \"estimate\": 0.3,\n      \"reason\": \"Maintenance\",\n      \"parts\": []\n    },\n    {\n      \"work_order\": null,\n      \"date\": null,\n      \"name\": \"Inspect coolant\",\n      \"description\": \"Interval exceeded 100,000 km since last documented service\",\n      \"estimate\": 0.3,\n      \"reason\": \"Maintenance\",\n      \"parts\": []\n    }\n  ]\n}"
+ },
+ {
+  "a": "vehicle-history",
+  "st": 200,
+  "ms": 6145,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "{\n  \"maintenanceHistorySummary\": \"No brake-related work is documented in the available work order history for this 2019 Freightliner. No records indicate brake inspections, repairs, or parts replacement.\",\n  \"maintenanceHistory\": [\n    {\n      \"work_order_id\": \"98f95d2b-7400-4656-aa52-11d1377e00ea\",\n      \"work_order_number\": \"S-988\",\n      \"mileage\": \"123,456\",\n      \"date\": \"Oct 21, 2026\",\n      \"summary\": \"General labor performed; no brake-specific work noted.\"\n    },\n    {\n      \"work_order_id\": \"21b6d378-68c7-49de-92c0-fdd2eabdf654\",\n      \"work_order_number\": \"S-985\",\n      \"mileage\": \"123,456\",\n      \"date\": \"Oct 21, 2026\",\n      \"summary\": \"Parts testing and installation; no brake-related parts or services indicated.\"\n    },\n    {\n      \"work_order_id\": \"ee9adbb2-0df5-4e12-8771-506591445638\",\n      \"work_order_number\": \"S-918\",\n      \"mileage\": \"5,645,454\",\n      \"date\": \"Sep 22, 2026\",\n      \"summary\": \"General repair entry; no brake work described.\"\n    }\n  ]\n}"
+ },
+ {
+  "a": "suggest-story",
+  "st": 200,
+  "ms": 1673,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "Replaced front pads and rotors. Measured rotors 1.12 in under min spec. Test drove, all ok. Customer declined rear brakes. Job complete."
+ },
+ {
+  "a": "improve-story",
+  "st": 200,
+  "ms": 1604,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "Replaced front pads and rotors. Measured rotors 1.12in under min spec. Test drove; all ok. Customer declined rear brakes. Job complete."
+ },
+ {
+  "a": "summary",
+  "st": 200,
+  "ms": 1207,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "Replaced front pads and rotors; old rotors measured 1.12 in, below minimum spec. Test drive confirmed proper operation. Customer declined recommended rear brake service."
+ },
+ {
+  "a": "estimate",
+  "st": 200,
+  "ms": 555,
+  "meta": {
+   "status": "ServerError",
+   "isError": true,
+   "message": "Line does not belong to this work order",
+   "messageCode": "assistant.server_error"
+  }
+ },
+ {
+  "a": "parts",
+  "st": 200,
+  "ms": 538,
+  "meta": {
+   "status": "ServerError",
+   "isError": true,
+   "message": "Line does not belong to this work order",
+   "messageCode": "assistant.server_error"
+  }
+ },
+ {
+  "a": "analyze-line",
+  "st": 200,
+  "ms": 583,
+  "meta": {
+   "status": "ValidationError",
+   "isError": true,
+   "message": "Work order or line not found",
+   "messageCode": "assistant.validation_error"
+  }
+ },
+ {
+  "a": "estimate-new-line",
+  "st": 200,
+  "ms": 1947,
+  "meta": {
+   "status": "Ok",
+   "isError": false,
+   "message": null,
+   "messageCode": "assistant.completed"
+  },
+  "text": "{\n  \"reason\": \"Brake pads and rotors below service limits.\",\n  \"description\": \"Check caliper condition and hardware for wear. Inspect wheel bearings and ABS sensors. Ensure proper torque and bed-in procedure after installation. Verify no fluid leaks or unusual noises post-repair.\",\n  \"estimate\": \"2.5\",\n  \"required_parts\": [\n    { \"part_name\": \"Front brake pads\", \"part_number\": null, \"quantity\": 1, \"required\": true, \"notes\": \"Set for both sides\" },\n    { \"part_name\": \"Front brake rotors\", \"part_number\": null, \"quantity\": 2, \"required\": true, \"notes\": \"Both sides\" },\n    { \"part_name\": \"Brake hardware kit\", \"part_number\": null, \"quantity\": 1, \"required\": false, \"notes\": \"If existing hardware is worn or damaged\" }\n  ]\n}"
+ }
+]
