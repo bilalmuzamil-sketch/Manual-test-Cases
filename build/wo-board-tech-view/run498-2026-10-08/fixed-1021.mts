@@ -13,6 +13,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
+import { HEAVY } from './staff.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
 import { EV, shot, display, tab, search, switchLocUI, findRow, allBoardCols, toColumn } from './wob.mts';
 import { staffRows } from './staff.mts';
@@ -31,7 +32,7 @@ async function home(display_: string) {
   Object.assign(v, { filters: {}, density: 'regular', pinnedTechnicianIds: [] }); await a.put(PREF, { value: v });
   await p.setViewportSize({ width: 1440, height: 900 });
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await W(4500);
-  const loc = await switchLocUI(p, 'Staging Heavy Duty - 9919'); if (!/Staging Heavy Duty/.test(loc)) throw new Error('not at Staging Heavy Duty: ' + loc);
+  const loc = await ensureLocation(p, a, HEAVY);
   await tab(p, 'All').catch(() => {}); await display(p, display_); return loc;
 }
 async function run(id: string, f: (o: any) => Promise<void>) {

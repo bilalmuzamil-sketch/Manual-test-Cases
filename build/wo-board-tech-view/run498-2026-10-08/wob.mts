@@ -257,3 +257,18 @@ export async function listAllOptions(pg: Page) {
   }
   return seen;
 }
+
+/** 21 Oct 2026: make sure the page is at Staging Heavy Duty before anything is read. The shared test user can be moved to another location
+ *  by another session between steps (L0490, 21 Oct: the page showed S1- work orders and an empty location name, so switchLocUI found no
+ *  header to read). Sets the location through the API (as asRunner does), reloads, reads the header back; falls back to the on-screen
+ *  switch. Throws if the header still does not read the location — never read a list at the wrong location. */
+export async function ensureLocation(p: Page, a: any, workplaceId: string, name = 'Staging Heavy Duty - 9919') {
+  const header = () => p.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => '');
+  for (let i = 0; i < 2; i++) {
+    if ((await header()).includes(name.slice(0, 20))) return await header();
+    await a.post('/api/iam/change-location', { workplace_id: workplaceId, workplace_timezone: process.env.WOB_LOC_TZ || 'Asia/Karachi' }).catch(() => null);
+    await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(5000);
+  }
+  if (!(await header()).includes(name.slice(0, 20))) await switchLocUI(p, name);
+  const h = await header(); if (!h.includes(name.slice(0, 20))) throw new Error(`not at ${name}: header reads "${h}"`); return h;
+}
