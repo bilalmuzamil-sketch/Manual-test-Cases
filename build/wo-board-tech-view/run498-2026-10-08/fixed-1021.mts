@@ -57,8 +57,9 @@ await run('C707076', async (o) => {
   const cell = async () => p.evaluate(`(() => { const ths = [...document.querySelectorAll('thead th')].filter(th => th.getBoundingClientRect().width > 0); const i = ths.findIndex(th => th.innerText.trim() === 'Asset');
     const row = [...document.querySelectorAll('tbody tr')].find(r => r.innerText.includes(${JSON.stringify(num)})); if (!row) return { found: false, headers: ths.map(t => t.innerText.trim()) };
     return { found: true, asset: i >= 0 ? (row.cells[i] || {}).innerText?.trim() : null, row: row.innerText.replace(/\\s+/g, ' ').slice(0, 200) }; })()`);
+  await ensureLocation(p, a, HEAVY); await search(p, name); await W(2500);
   o.s1_list = await cell(); await shot(p, 'C707076-1021-s1-list');
-  await display(p, 'Tech View'); await W(2500); o.s2_group = await findRow(p, id).catch(() => null); o.s3_tech = await cell(); await shot(p, 'C707076-1021-s3-tech');
+  await ensureLocation(p, a, HEAVY); await display(p, 'Tech View'); await W(2500); o.s2_group = await findRow(p, id).catch(() => null); o.s3_tech = await cell(); await shot(p, 'C707076-1021-s3-tech');
   o.s2_board = null;
 });
 
@@ -82,7 +83,7 @@ await run('C707077', async (o) => {
   o.listLead = await p.evaluate(`(() => { const ths = [...document.querySelectorAll('thead th')].filter(th => th.getBoundingClientRect().width > 0); const i = ths.findIndex(th => /Lead Technician/.test(th.innerText));
     const row = [...document.querySelectorAll('tbody tr')].find(r => r.innerText.includes(${JSON.stringify(o.wo)})); return row && i >= 0 ? (row.cells[i] || {}).innerText?.trim() : null; })()`);
   await shot(p, 'C707077-1021-control-list-lead');
-  await p.goto(APP + `/workorders/${id}/lines`, { waitUntil: 'domcontentloaded' }); await W(7000);
+  await p.goto(APP + `/workorders/${id}/lines`, { waitUntil: 'domcontentloaded' }); await W(7000); o.linesHeader = await ensureLocation(p, a, HEAVY).catch((e: any) => String(e.message));
   const names = (t: string) => ({ staff: (t.match(/Carol Neal/g) || []).length, account: (t.match(/David Sparks/g) || []).length });
   const block = await p.evaluate(`(() => { const n = ${JSON.stringify(o.lineName || 'Full grease service')}; const el = [...document.querySelectorAll('[data-test-id^="line_"], .line-card, .q-card, tr')].filter(e => e.innerText && e.innerText.includes(n)).sort((a, b) => a.innerText.length - b.innerText.length)[0];
     const labor = [...document.querySelectorAll('*')].filter(e => e.children.length < 6 && /Labor/.test(e.innerText || '') && (e.innerText || '').length < 300).map(e => e.innerText.replace(/\\s+/g, ' ').trim()).slice(0, 6);

@@ -264,7 +264,7 @@ export async function listAllOptions(pg: Page) {
  *  switch. Throws if the header still does not read the location — never read a list at the wrong location. */
 export async function ensureLocation(p: Page, a: any, workplaceId: string, name = 'Staging Heavy Duty - 9919') {
   const header = () => p.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => '');
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < Number(process.env.WOB_LOC_TRIES || 2); i++) {   // 21 Oct: WOB_LOC_TRIES raises the retries (the location is moved under us)
     if ((await header()).includes(name.slice(0, 20))) return await header();
     await a.post('/api/iam/change-location', { workplace_id: workplaceId, workplace_timezone: process.env.WOB_LOC_TZ || 'Asia/Karachi' }).catch(() => null);
     await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(5000);
