@@ -1,0 +1,33 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on staging ([app.staging.shopview.com|https://app.staging.shopview.com/workorders], build v26.40.20-912efe2) on 21 October 2026, as Admin at Staging Heavy Duty - 9919, in Board View, Tech View and List.
+
+* Board View no longer shows the Density control, and there is no empty gap or double divider where it was.
+* The remaining control is called *Column Selection* and sits centred between the two dividers.
+* Tech View still has Density, and List is unchanged.
+
+!SV-11580_before-after-toolbar.png|width=500,height=549!
+_Picture 1: the Board View toolbar before (staging this morning: Density plus the fields picker) and now (Column Selection only, centred)._
+
+h3. What I checked
+
+||#||Check||Result||Status||
+|1|Board View has no Density control|Not there, at window widths 1024, 1280, 1440, 1600 and 1920 px|PASSED|
+|2|No blank space or double divider where Density was|Two dividers only, with Column Selection 13 px from each, at every width above|PASSED|
+|3|The control is named Column Selection|Its tooltip and label read "Column Selection", the same as Tech View and List|PASSED|
+|4|Column Selection opens the same picker|The same 13 fields (Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date)|PASSED|
+|5|Field choices are kept|The saved choices show unchanged (10 on, 3 off); turning Lead technician off survives a page reload|PASSED|
+|6|Cards keep their spacing|Cards S2-33692, S2-32262, S2-16176 and S2-35703 measure 230, 230, 207 and 183 px tall, the same as at Regular density on 20 October, and they no longer change with the Tech View density|PASSED|
+|7|Tech View keeps Density|Density opens with Compact, Regular and Comfortable, next to Tech View's own Column Selection|PASSED|
+|8|List is unchanged|Column Selection only, in the same place|PASSED|
+
+!SV-11580_picker-tech-list.png|width=500,height=1090!
+_Picture 2: the Board View field picker, and the Tech View and List toolbars._
+
+h3. How to see it
+
+# Open staging: [https://app.staging.shopview.com/] and sign in as Admin. At the top right, choose the location {{Staging Heavy Duty - 9919}}.
+# In the top menu, click {{Work Orders}}. Above the list, on the right, click the last of the three view icons ({{Board View}}).
+# Between the two thin dividers to the left of the view icons there is only one icon, the columns icon. Hover it: the tooltip reads {{Column Selection}}. Click it to open the field list.
+# Click the middle view icon ({{Tech View}}). Two icons sit between the dividers there: {{Density}} and {{Column Selection}}.

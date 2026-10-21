@@ -1,0 +1,618 @@
+{
+ "board_view": [
+  {
+   "id": "tab_all",
+   "cls": "q-tab relative-position self-stretch flex flex-center text-c",
+   "t": "All",
+   "aria": null,
+   "x": 35,
+   "w": 40,
+   "y": 81,
+   "h": 40
+  },
+  {
+   "id": "tab_estimates",
+   "cls": "q-tab relative-position self-stretch flex flex-center text-c",
+   "t": "Estimates",
+   "aria": null,
+   "x": 95,
+   "w": 61.8,
+   "y": 81,
+   "h": 40
+  },
+  {
+   "id": "tab_work_orders",
+   "cls": "q-tab relative-position self-stretch flex flex-center text-c",
+   "t": "Work Orders",
+   "aria": null,
+   "x": 176.8,
+   "w": 81.6,
+   "y": 81,
+   "h": 40
+  },
+  {
+   "id": "tab_completed",
+   "cls": "q-tab relative-position self-stretch flex flex-center text-c",
+   "t": "Completed",
+   "aria": null,
+   "x": 278.5,
+   "w": 69.3,
+   "y": 81,
+   "h": 40
+  },
+  {
+   "id": "page_search_toggle",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "Search",
+   "aria": "Search",
+   "x": 593.8,
+   "w": 93.5,
+   "y": 83,
+   "h": 36
+  },
+  {
+   "id": null,
+   "cls": "toolbar-divider",
+   "t": "",
+   "aria": null,
+   "x": 700.2,
+   "w": 1,
+   "y": 91,
+   "h": 20
+  },
+  {
+   "id": "filter_chip_assigned_to_me",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "Assigned to me",
+   "aria": null,
+   "x": 714.2,
+   "w": 143.3,
+   "y": 87,
+   "h": 28
+  },
+  {
+   "id": "filter_chip_lead_technician",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "Technician\nkeyboard_arrow_down",
+   "aria": null,
+   "x": 871.5,
+   "w": 134.6,
+   "y": 87,
+   "h": 28
+  },
+  {
+   "id": "filter_chip_vehicleHere",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "Asset on Site\nkeyboard_arrow_d",
+   "aria": null,
+   "x": 1020.1,
+   "w": 152.4,
+   "y": 87,
+   "h": 28
+  },
+  {
+   "id": null,
+   "cls": "toolbar-divider",
+   "t": "",
+   "aria": null,
+   "x": 1185.5,
+   "w": 1,
+   "y": 91,
+   "h": 20
+  },
+  {
+   "id": "button_board_fields_selection",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "",
+   "aria": "Column Selection",
+   "x": 1199.5,
+   "w": 54.5,
+   "y": 86,
+   "h": 31
+  },
+  {
+   "id": null,
+   "cls": "toolbar-divider",
+   "t": "",
+   "aria": null,
+   "x": 1267,
+   "w": 1,
+   "y": 91,
+   "h": 20
+  },
+  {
+   "id": "toggle_display_option",
+   "cls": "display-switcher",
+   "t": "",
+   "aria": "Display",
+   "x": 1276,
+   "w": 136,
+   "y": 83,
+   "h": 36
+  },
+  {
+   "id": "display_option_wrapper_list",
+   "cls": "display-switcher__slot",
+   "t": "",
+   "aria": null,
+   "x": 1279,
+   "w": 42,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_list",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "",
+   "aria": "List",
+   "x": 1284,
+   "w": 32,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_wrapper_tech_view",
+   "cls": "display-switcher__slot",
+   "t": "",
+   "aria": null,
+   "x": 1323,
+   "w": 42,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_tech_view",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "",
+   "aria": "Tech View",
+   "x": 1328,
+   "w": 32,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_wrapper_board_view",
+   "cls": "display-switcher__slot",
+   "t": "",
+   "aria": null,
+   "x": 1367,
+   "w": 42,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_board_view",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "",
+   "aria": "Board View",
+   "x": 1372,
+   "w": 32,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "button_new_work_order",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--unelevated",
+   "t": "Create Work Order",
+   "aria": "Create Work Order",
+   "x": 1420,
+   "w": 150,
+   "y": 81,
+   "h": 40
+  }
+ ],
+ "board_view_ids": [
+  "button_board_fields_selection"
+ ],
+ "tech_view": [
+  {
+   "id": "tab_all",
+   "cls": "q-tab relative-position self-stretch flex flex-center text-c",
+   "t": "All",
+   "aria": null,
+   "x": 35,
+   "w": 40,
+   "y": 81,
+   "h": 40
+  },
+  {
+   "id": "tab_estimates",
+   "cls": "q-tab relative-position self-stretch flex flex-center text-c",
+   "t": "Estimates",
+   "aria": null,
+   "x": 95,
+   "w": 61.8,
+   "y": 81,
+   "h": 40
+  },
+  {
+   "id": "tab_work_orders",
+   "cls": "q-tab relative-position self-stretch flex flex-center text-c",
+   "t": "Work Orders",
+   "aria": null,
+   "x": 176.8,
+   "w": 81.6,
+   "y": 81,
+   "h": 40
+  },
+  {
+   "id": "tab_completed",
+   "cls": "q-tab relative-position self-stretch flex flex-center text-c",
+   "t": "Completed",
+   "aria": null,
+   "x": 278.5,
+   "w": 69.3,
+   "y": 81,
+   "h": 40
+  },
+  {
+   "id": "page_search_toggle",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "Search",
+   "aria": "Search",
+   "x": 529.3,
+   "w": 93.5,
+   "y": 83,
+   "h": 36
+  },
+  {
+   "id": null,
+   "cls": "toolbar-divider",
+   "t": "",
+   "aria": null,
+   "x": 635.7,
+   "w": 1,
+   "y": 91,
+   "h": 20
+  },
+  {
+   "id": "filter_chip_assigned_to_me",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "Assigned to me",
+   "aria": null,
+   "x": 649.7,
+   "w": 143.3,
+   "y": 87,
+   "h": 28
+  },
+  {
+   "id": "filter_chip_lead_technician",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "Technician\nkeyboard_arrow_down",
+   "aria": null,
+   "x": 807,
+   "w": 134.6,
+   "y": 87,
+   "h": 28
+  },
+  {
+   "id": "filter_chip_vehicleHere",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "Asset on Site\nkeyboard_arrow_d",
+   "aria": null,
+   "x": 955.6,
+   "w": 152.4,
+   "y": 87,
+   "h": 28
+  },
+  {
+   "id": null,
+   "cls": "toolbar-divider",
+   "t": "",
+   "aria": null,
+   "x": 1121,
+   "w": 1,
+   "y": 91,
+   "h": 20
+  },
+  {
+   "id": "button_density",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "",
+   "aria": "Density",
+   "x": 1135,
+   "w": 54.5,
+   "y": 86,
+   "h": 31
+  },
+  {
+   "id": "button_tech_view_column_selection",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "",
+   "aria": "Column Selection",
+   "x": 1199.5,
+   "w": 54.5,
+   "y": 86,
+   "h": 31
+  },
+  {
+   "id": null,
+   "cls": "toolbar-divider",
+   "t": "",
+   "aria": null,
+   "x": 1267,
+   "w": 1,
+   "y": 91,
+   "h": 20
+  },
+  {
+   "id": "toggle_display_option",
+   "cls": "display-switcher",
+   "t": "",
+   "aria": "Display",
+   "x": 1276,
+   "w": 136,
+   "y": 83,
+   "h": 36
+  },
+  {
+   "id": "display_option_wrapper_list",
+   "cls": "display-switcher__slot",
+   "t": "",
+   "aria": null,
+   "x": 1279,
+   "w": 42,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_list",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "",
+   "aria": "List",
+   "x": 1284,
+   "w": 32,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_wrapper_tech_view",
+   "cls": "display-switcher__slot",
+   "t": "",
+   "aria": null,
+   "x": 1323,
+   "w": 42,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_tech_view",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "",
+   "aria": "Tech View",
+   "x": 1328,
+   "w": 32,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_wrapper_board_view",
+   "cls": "display-switcher__slot",
+   "t": "",
+   "aria": null,
+   "x": 1367,
+   "w": 42,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_board_view",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "",
+   "aria": "Board View",
+   "x": 1372,
+   "w": 32,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "button_new_work_order",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--unelevated",
+   "t": "Create Work Order",
+   "aria": "Create Work Order",
+   "x": 1420,
+   "w": 150,
+   "y": 81,
+   "h": 40
+  }
+ ],
+ "tech_view_ids": [
+  "button_density",
+  "button_tech_view_column_selection"
+ ],
+ "list": [
+  {
+   "id": "tab_all",
+   "cls": "q-tab relative-position self-stretch flex flex-center text-c",
+   "t": "All",
+   "aria": null,
+   "x": 35,
+   "w": 40,
+   "y": 81,
+   "h": 40
+  },
+  {
+   "id": "tab_estimates",
+   "cls": "q-tab relative-position self-stretch flex flex-center text-c",
+   "t": "Estimates",
+   "aria": null,
+   "x": 95,
+   "w": 61.8,
+   "y": 81,
+   "h": 40
+  },
+  {
+   "id": "tab_work_orders",
+   "cls": "q-tab relative-position self-stretch flex flex-center text-c",
+   "t": "Work Orders",
+   "aria": null,
+   "x": 176.8,
+   "w": 81.6,
+   "y": 81,
+   "h": 40
+  },
+  {
+   "id": "tab_completed",
+   "cls": "q-tab relative-position self-stretch flex flex-center text-c",
+   "t": "Completed",
+   "aria": null,
+   "x": 278.5,
+   "w": 69.3,
+   "y": 81,
+   "h": 40
+  },
+  {
+   "id": "page_search_toggle",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "Search",
+   "aria": "Search",
+   "x": 742.4,
+   "w": 93.5,
+   "y": 83,
+   "h": 36
+  },
+  {
+   "id": null,
+   "cls": "toolbar-divider",
+   "t": "",
+   "aria": null,
+   "x": 848.8,
+   "w": 1,
+   "y": 91,
+   "h": 20
+  },
+  {
+   "id": "filter_chip_assigned_to_me",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "Assigned to me",
+   "aria": null,
+   "x": 862.8,
+   "w": 143.3,
+   "y": 87,
+   "h": 28
+  },
+  {
+   "id": "filter_chip_vehicleHere",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "Asset on Site\nkeyboard_arrow_d",
+   "aria": null,
+   "x": 1020.1,
+   "w": 152.4,
+   "y": 87,
+   "h": 28
+  },
+  {
+   "id": null,
+   "cls": "toolbar-divider",
+   "t": "",
+   "aria": null,
+   "x": 1185.5,
+   "w": 1,
+   "y": 91,
+   "h": 20
+  },
+  {
+   "id": "button_column_selection",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "width_normal",
+   "aria": "Column Selection",
+   "x": 1199.5,
+   "w": 54.5,
+   "y": 86,
+   "h": 31
+  },
+  {
+   "id": null,
+   "cls": "toolbar-divider",
+   "t": "",
+   "aria": null,
+   "x": 1267,
+   "w": 1,
+   "y": 91,
+   "h": 20
+  },
+  {
+   "id": "toggle_display_option",
+   "cls": "display-switcher",
+   "t": "",
+   "aria": "Display",
+   "x": 1276,
+   "w": 136,
+   "y": 83,
+   "h": 36
+  },
+  {
+   "id": "display_option_wrapper_list",
+   "cls": "display-switcher__slot",
+   "t": "",
+   "aria": null,
+   "x": 1279,
+   "w": 42,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_list",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "",
+   "aria": "List",
+   "x": 1284,
+   "w": 32,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_wrapper_tech_view",
+   "cls": "display-switcher__slot",
+   "t": "",
+   "aria": null,
+   "x": 1323,
+   "w": 42,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_tech_view",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "",
+   "aria": "Tech View",
+   "x": 1328,
+   "w": 32,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_wrapper_board_view",
+   "cls": "display-switcher__slot",
+   "t": "",
+   "aria": null,
+   "x": 1367,
+   "w": 42,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "display_option_board_view",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn",
+   "t": "",
+   "aria": "Board View",
+   "x": 1372,
+   "w": 32,
+   "y": 86,
+   "h": 30
+  },
+  {
+   "id": "button_new_work_order",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--unelevated",
+   "t": "Create Work Order",
+   "aria": "Create Work Order",
+   "x": 1420,
+   "w": 150,
+   "y": 81,
+   "h": 40
+  }
+ ],
+ "list_ids": [
+  "button_column_selection"
+ ]
+}
