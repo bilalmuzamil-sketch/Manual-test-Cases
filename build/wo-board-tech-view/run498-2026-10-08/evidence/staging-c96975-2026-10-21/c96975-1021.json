@@ -1,0 +1,625 @@
+{
+ "app": "https://app.staging.shopview.com",
+ "started": "2026-10-21T14:36:19.196Z",
+ "exitSwitch": 200,
+ "build": "v26.40.20-c627fc7",
+ "location": "DVI Test AS",
+ "startListFound": [
+  "Waiting On Parts",
+  "Asset",
+  "VIN/Serial #",
+  "Progress",
+  "Service Advisor",
+  "Lead Technician",
+  "Clocked In",
+  "Lines",
+  "Total price",
+  "Created on",
+  "Invoiced Date",
+  "Days open",
+  "Parts",
+  "Returns"
+ ],
+ "startListSet": [
+  "Waiting On Parts",
+  "Asset",
+  "VIN/Serial #",
+  "Progress",
+  "Service Advisor",
+  "Lead Technician",
+  "Clocked In",
+  "Lines",
+  "Total price",
+  "Created on",
+  "Invoiced Date",
+  "Days open",
+  "Parts",
+  "Returns"
+ ],
+ "startTechFound": [
+  "On Site",
+  "Waiting On Parts",
+  "Unit",
+  "Asset",
+  "VIN/Serial #",
+  "Progress",
+  "Lead Technician",
+  "Clocked In",
+  "Lines",
+  "Created on",
+  "Total price"
+ ],
+ "startTechSet": [
+  "On Site",
+  "Waiting On Parts",
+  "Unit",
+  "Asset",
+  "VIN/Serial #",
+  "Progress",
+  "Service Advisor",
+  "Lead Technician",
+  "Clocked In",
+  "Lines",
+  "Assigned Techs",
+  "Created on",
+  "Total price"
+ ],
+ "s3": {
+  "on": [
+   "Waiting On Parts",
+   "Asset",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total price",
+   "Created on",
+   "Invoiced Date",
+   "Days open",
+   "Parts",
+   "Returns"
+  ],
+  "heads": [
+   "On Site",
+   "Status",
+   "Waiting On Parts",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On",
+   "Invoiced Date",
+   "Days Open",
+   "Parts",
+   "Returns"
+  ]
+ },
+ "s7_8": [
+  "On Site",
+  "Waiting On Parts",
+  "Unit",
+  "Asset",
+  "VIN/Serial #",
+  "Progress",
+  "Lead Technician",
+  "Clocked In",
+  "Lines",
+  "Created on",
+  "Total price"
+ ],
+ "s11": {
+  "on": [
+   "Waiting On Parts",
+   "Asset",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total price",
+   "Created on",
+   "Invoiced Date",
+   "Days open",
+   "Parts",
+   "Returns"
+  ],
+  "heads": [
+   "On Site",
+   "Status",
+   "Waiting On Parts",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On",
+   "Invoiced Date",
+   "Days Open",
+   "Parts",
+   "Returns"
+  ],
+  "ok": true
+ },
+ "s13": [
+  "Waiting On Parts",
+  "Asset",
+  "VIN/Serial #",
+  "Service Advisor",
+  "Lead Technician",
+  "Clocked In",
+  "Lines",
+  "Total price",
+  "Created on",
+  "Invoiced Date",
+  "Days open",
+  "Parts",
+  "Returns"
+ ],
+ "s13heads": [
+  "On Site",
+  "Status",
+  "Waiting On Parts",
+  "Number",
+  "Customer",
+  "Asset",
+  "Unit",
+  "VIN/Serial #",
+  "Service Advisor",
+  "Lead Technician",
+  "Clocked In",
+  "Lines",
+  "Total Price",
+  "Created On",
+  "Invoiced Date",
+  "Days Open",
+  "Parts",
+  "Returns"
+ ],
+ "s15": {
+  "on": [
+   "On Site",
+   "Waiting On Parts",
+   "Unit",
+   "Asset",
+   "VIN/Serial #",
+   "Progress",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Created on",
+   "Total price"
+  ],
+  "heads": [
+   "On Site",
+   "Status",
+   "Waiting On Parts",
+   "Number",
+   "Customer",
+   "Unit",
+   "Asset",
+   "VIN/Serial #",
+   "Progress",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Created On",
+   "Total Price"
+  ],
+  "ok": true
+ },
+ "prefBeforeLogout": {
+  "status": 200,
+  "updated": "2026-10-21T14:37:54Z",
+  "keys": {
+   "columns": {
+    "vin": true,
+    "vehicle": true,
+    "daysOpen": true,
+    "progress": false,
+    "startDate": true,
+    "linesCount": true,
+    "technician": true,
+    "totalPrice": true,
+    "invoicedDate": true,
+    "serviceAdvisor": true,
+    "partRequestsCount": true,
+    "clockedInTechnicians": true,
+    "partReturnRequestsCount": true,
+    "unreceivedPartRequestsCount": true
+   },
+   "techViewColumns": {
+    "vin": true,
+    "unit": true,
+    "technician": true,
+    "vehicleHere": true,
+    "assignedTechs": false,
+    "serviceAdvisor": false
+   }
+  }
+ },
+ "s16": {
+  "logoutItem": 1,
+  "url": "/login",
+  "permissions": 401
+ },
+ "s17": {
+  "button": 1,
+  "url": "/workorders",
+  "permissions": 200,
+  "user": null,
+  "ok": true
+ },
+ "s18": {
+  "techView": {
+   "on": [
+    "On Site",
+    "Waiting On Parts",
+    "Unit",
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Created on",
+    "Total price"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Unit",
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Created On",
+    "Total Price"
+   ]
+  },
+  "list": {
+   "on": [
+    "Waiting On Parts",
+    "Asset",
+    "VIN/Serial #",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total price",
+    "Created on",
+    "Invoiced Date",
+    "Days open",
+    "Parts",
+    "Returns"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On",
+    "Invoiced Date",
+    "Days Open",
+    "Parts",
+    "Returns"
+   ]
+  },
+  "pref": {
+   "status": 200,
+   "updated": "2026-10-21T14:38:40Z",
+   "keys": {
+    "columns": {
+     "vin": true,
+     "vehicle": true,
+     "daysOpen": true,
+     "progress": false,
+     "startDate": true,
+     "linesCount": true,
+     "technician": true,
+     "totalPrice": true,
+     "invoicedDate": true,
+     "serviceAdvisor": true,
+     "partRequestsCount": true,
+     "clockedInTechnicians": true,
+     "partReturnRequestsCount": true,
+     "unreceivedPartRequestsCount": true
+    },
+    "techViewColumns": {
+     "vin": true,
+     "unit": true,
+     "technician": true,
+     "vehicleHere": true,
+     "assignedTechs": false,
+     "serviceAdvisor": false
+    }
+   }
+  },
+  "topBar": "DVI Test AS",
+  "user": null,
+  "verdict": {
+   "techNoServiceAdvisor": true,
+   "techNoAssignedTechs": true,
+   "techProgress": true,
+   "listServiceAdvisor": true,
+   "listNoProgress": true
+  }
+ },
+ "s19": {
+  "user": null,
+  "permissions": 200,
+  "topBar": "DVI Test AS"
+ },
+ "s20": {
+  "techView": {
+   "on": [
+    "On Site",
+    "Waiting On Parts",
+    "Unit",
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Created on",
+    "Total price"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Unit",
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Created On",
+    "Total Price"
+   ]
+  },
+  "list": {
+   "on": [
+    "Waiting On Parts",
+    "Asset",
+    "VIN/Serial #",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total price",
+    "Created on",
+    "Invoiced Date",
+    "Days open",
+    "Parts",
+    "Returns"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On",
+    "Invoiced Date",
+    "Days Open",
+    "Parts",
+    "Returns"
+   ]
+  },
+  "pref": {
+   "status": 200,
+   "updated": "2026-10-21T14:39:32Z",
+   "keys": {
+    "columns": {
+     "vin": true,
+     "vehicle": true,
+     "daysOpen": true,
+     "progress": false,
+     "startDate": true,
+     "linesCount": true,
+     "technician": true,
+     "totalPrice": true,
+     "invoicedDate": true,
+     "serviceAdvisor": true,
+     "partRequestsCount": true,
+     "clockedInTechnicians": true,
+     "partReturnRequestsCount": true,
+     "unreceivedPartRequestsCount": true
+    },
+    "techViewColumns": {
+     "vin": true,
+     "unit": true,
+     "technician": true,
+     "vehicleHere": true,
+     "assignedTechs": false,
+     "serviceAdvisor": false
+    }
+   }
+  },
+  "topBar": "DVI Test AS",
+  "user": null,
+  "verdict": {
+   "techNoServiceAdvisor": true,
+   "techNoAssignedTechs": true,
+   "techProgress": true,
+   "listServiceAdvisor": true,
+   "listNoProgress": true
+  }
+ },
+ "s21": {
+  "from": "DVI Test AS",
+  "locations": [
+   "QB Location",
+   "Staging Heavy Duty - 9919",
+   "Staging Lethbridge - 4310",
+   "DVI Test"
+  ],
+  "chose": "QB Location",
+  "to": "QB Location AS",
+  "ok": true
+ },
+ "s23": {
+  "techView": {
+   "on": [
+    "On Site",
+    "Waiting On Parts",
+    "Unit",
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Created on",
+    "Total price"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Unit",
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Created On",
+    "Total Price"
+   ]
+  },
+  "list": {
+   "on": [
+    "Waiting On Parts",
+    "Asset",
+    "VIN/Serial #",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total price",
+    "Created on",
+    "Invoiced Date",
+    "Days open",
+    "Parts",
+    "Returns"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On",
+    "Invoiced Date",
+    "Days Open",
+    "Parts",
+    "Returns"
+   ]
+  },
+  "pref": {
+   "status": 200,
+   "updated": "2026-10-21T14:40:13Z",
+   "keys": {
+    "columns": {
+     "vin": true,
+     "vehicle": true,
+     "daysOpen": true,
+     "progress": false,
+     "startDate": true,
+     "linesCount": true,
+     "technician": true,
+     "totalPrice": true,
+     "invoicedDate": true,
+     "serviceAdvisor": true,
+     "partRequestsCount": true,
+     "clockedInTechnicians": true,
+     "partReturnRequestsCount": true,
+     "unreceivedPartRequestsCount": true
+    },
+    "techViewColumns": {
+     "vin": true,
+     "unit": true,
+     "technician": true,
+     "vehicleHere": true,
+     "assignedTechs": false,
+     "serviceAdvisor": false
+    }
+   }
+  },
+  "topBar": "QB Location AS",
+  "user": null,
+  "verdict": {
+   "techNoServiceAdvisor": true,
+   "techNoAssignedTechs": true,
+   "techProgress": true,
+   "listServiceAdvisor": true,
+   "listNoProgress": true
+  }
+ },
+ "restore": {
+  "from": "QB Location AS",
+  "to": "DVI Test AS"
+ },
+ "summary": {
+  "s11": true,
+  "s15": true,
+  "s18": true,
+  "s20": true,
+  "s21": true,
+  "s23": true
+ },
+ "ended": "2026-10-21T14:40:31.265Z"
+}
