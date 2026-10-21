@@ -310,3 +310,5 @@ Read these before trusting any verdict you are about to give:
 | 2026-10-20 | SV-6915: the ticket blamed attachments/BCC/extra recipients; testing only those would have said "not reproducible" | Run the reported triggers AND vary the note content itself (special characters, angle brackets, line breaks); read the received email, not the toast | `build/sv6915-email-note-2026-10-20/FINDINGS.md` · playbook "Production: test what a sent invoice/estimate EMAIL actually contains" |
 
 | 2026-10-21 | ShopCoach admin (feature.shopcoach.shopview.com) needs different access from staging/prod/QA branches — I asked for the wrong cookies twice | Ask once for the five site cookies named in the playbook (Pr8K50…, remember_web_…, shopview-shopcoach-session, XSRF-TOKEN, cf_clearance); check lengths against Size | APP-ACTIONS-PLAYBOOK.md §AL |
+
+| 2026-10-21 SV-11577 | A staff edit on production sent without `clockable` switched the technician's clockable flag off; salary/billable originals weren't captured first | Before any staff edit, save the full `GET /api/staff` list record and echo every flag back | playbook §AL.2 |

@@ -1,0 +1,41 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on staging ([app.staging.shopview.com|https://app.staging.shopview.com/workorders], build v26.40.20-c627fc7) on 21 October 2026, as Admin at Staging Heavy Duty - 9919.
+
+* The Lines tab technician list and the Edit Line dialog now name a technician by their staff record name.
+* It is the same name that List, Board View and Tech View show, so one person no longer appears under two names.
+
+For the test I used the technician whose staff record reads *Debra Garcia* while her login account reads *Lindsay Perez*. She is the only active technician on staging with two different names.
+
+!SV-11577_lines-and-edit-line.png|width=980,height=929!
+_Picture 1: work order S2-37763. The Lines tab and Edit Line both show "Debra Garcia", not the login account name "Lindsay Perez"._
+
+h3. What I checked
+
+||#||Where the name shows||What it shows||Status||
+|1|Lines tab, the line's technician list (first of two technicians)|Debra Garcia|PASSED|
+|2|Lines tab, second technician on the same line|David Sparks (no split name, unchanged)|PASSED|
+|3|Edit Line, Technicians|Debra Garcia and David Sparks|PASSED|
+|4|Edit Line, Add Technician list|Lists "Debra Garcia"; "Lindsay Perez" is not offered|PASSED|
+|5|Saving Edit Line with Debra Garcia added|The line shows "Debra Garcia" straight after saving and after reopening Edit Line|PASSED|
+|6|Lead Technician on the work order|Debra Garcia|PASSED|
+|7|Board View column header and card|Debra Garcia on both|PASSED|
+|8|Board View, name shown on hover over the card's avatar|Debra Garcia|PASSED|
+|9|Tech View group header|Debra Garcia|PASSED|
+|10|List, Lead Technician column|Debra Garcia|PASSED|
+|11|Technician filter|Typing "Debra" finds Debra Garcia; typing "Lindsay" finds nobody|PASSED|
+
+!SV-11577_board-tech-list.png|width=1080,height=752!
+_Picture 2: the same work order in Board View, Tech View and List. Every place shows "Debra Garcia"._
+
+*Production:* I couldn't show the old behaviour on Production. No technician there has two different names, and the screens can't create one: changing your name in Edit Profile, or editing the staff member's name, changes both names together. The names were put back afterwards.
+
+h3. How to see it
+
+# Open staging: [https://app.staging.shopview.com/] and sign in as Admin.
+# At the top right, click the location and choose {{Staging Heavy Duty - 9919}}.
+# In the top menu, click {{Work Orders}}. In the search box above the list, type {{S2-37763}} and click the work order number.
+# On the {{Lines}} tab, look at line 1 ({{Service - Transmission service (Automatic)}}). Next to {{Labor}} it reads {{Debra Garcia}} and, under it, {{David Sparks}}.
+# Click the line name. In the {{Edit Line}} window, under {{Technicians}}, it reads {{Debra Garcia}} and {{David Sparks}}. Click the X at the top right to close it.
+# Go back to {{Work Orders}}. Above the list, click {{Technician}}, type {{Debra}} and tick {{Debra Garcia}}. Click the last of the three view icons ({{Board View}}). The column header and the card for S2-37763 both read {{Debra Garcia}}.

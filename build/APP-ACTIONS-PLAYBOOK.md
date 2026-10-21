@@ -6212,3 +6212,12 @@ This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as a
   run can be tied to the QA branch's data. On screen: `/admin/features/<name>/history` → click a run → "LLM Call" shows
   Provider, Model, System Message and Response. The systemMessage is also where "always add X" wording lives (e.g. Improve
   Story ends every story with "Job complete.") — read it before calling an output an invented fact.
+
+### §AL.2 Staff name split (SV-11577, 2026-10-21)
+- `GET /api/technicians` names a person by the **staff record**; `GET /api/staff` list by the **login account**. Where they
+  differ (staging: Debra Garcia / Lindsay Perez, staff 069b545f…) one person can show under two names.
+- The split **cannot be created from screens**: Edit Profile (`POST /api/iam/change-name {first_name,last_name}`) and the
+  staff edit (`POST /api/staff/{id}/change`) both change BOTH names.
+- ⚠️ `POST /api/staff/{id}/change` **resets fields you don't send** — omitting `clockable` turned it off
+  (`clockableChanged:true`). Echo the LIST record's `clockable, billable, salary_type, salary, is_sales_rep` too; the
+  `/view` record lacks them.
