@@ -539,3 +539,12 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - **On staging v26.40.20-c627fc7 (21 Oct 13:20) Carol Neal's work show "David Sparks" EVERYWHERE** — List lead, Lines-tab Labor text, roster, Edit Line, Board card and column header — although the staff API row reads first/last "Carol"/"Neal". L0402's split (List = David Sparks, Board = Carol Neal) no longer holds; read Settings → Staff (`c581895-staff-carol.mts`) before deciding which name is the "staff record name".
 - The List's Asset cell is not found by header text "Asset" in fixed-1021 (index null) — the row text holds it; read the cell by the column's data-test-id next time.
 #run498 #retest #refs #staging #location → L0490, L0402
+
+## L0494 — 2026-10-21 — After a container restart: what is lost, and the quickest way back to TestRail, Jira and the runner
+- The restart (21 Oct ~13:35 UTC) re-cloned the repo on ANOTHER session's branch (`claude/slack-session-0sxnd9`) and emptied `/tmp`. First: `git fetch origin <my-branch>` and `git checkout -B <my-branch> origin/<my-branch>` (the local commits belonged to the other branch, nothing of mine was lost).
+- **TestRail API answers to the committed web password** (`build/ENVIRONMENT-CREDENTIALS.md` §4/§5) when the API key in `/tmp/testrail/creds.json` is gone: `get_run/498` → 200. Re-create `/tmp/testrail/creds.json` (`password` = that value, chmod 600) and `tr_client.py` works again.
+- **Jira:** `bash build/testing-tools/ensure_bridge.sh` FIRST (login.mjs dies with `ENOENT bridge-port.txt` without it), then `/tmp/atlassian/creds.json` {email,password}, then `NODE_PATH=/opt/node22/lib/node_modules node build/atlassian-login/login.mjs`; `jira.sh` then reads 200.
+- **The run-498 runner (`wob-run.sh`) runs from `build/global-search/e2e`, whose `node_modules` is not committed:** `npm ci` there (8 packages, 1 s) before the first script.
+- **Staging and QA-branch sign-in cookies are NOT recoverable** after a restart — the QA lead must send them again; never dig them out of the conversation transcript.
+- Finding a ticket's tests is now a committed tool: `python3 build/wo-board-tech-view/run498-2026-10-08/find-ticket-tests.py SV-1,SV-2 [run] [N]` (title prefix, refs, newest N results).
+#restart #access #testrail #jira #run498 → L0493, L0355
