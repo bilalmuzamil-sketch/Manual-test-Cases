@@ -18,6 +18,9 @@ const RUNNER_TAG = (process.env.WOB_RUNNER || '').replace(/[^a-z0-9]/gi, '').toL
 export const RUNNER_EMAIL = RUNNER_TAG ? `zz.wob.runner.${RUNNER_TAG}@staging.shopview.local` : 'zz.wob.runner@staging.shopview.local';
 export async function asRunner(browser: Browser, main: Page, a0: Api) {
   await a0.post('/api/exit-switch-user', {});
+  // 21 Oct 2026 (L0493): with WOB_MAIN_LOC=1 the signed-in admin's own location is set to Heavy Duty BEFORE switching — the runner's page
+  // otherwise opened at another location (S1-, no location name) although the runner is enrolled only at Heavy Duty. Unset = as before.
+  if (process.env.WOB_MAIN_LOC) await a0.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }).catch(() => null);
   const roles: any[] = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a0.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data) /* 15 Oct 2026: staging answers a plain list (L0339) */;
   // the organisation's role list sometimes comes back empty; staff records carry role_label + role_id too
   const fromStaff = await roleIds(a0);
