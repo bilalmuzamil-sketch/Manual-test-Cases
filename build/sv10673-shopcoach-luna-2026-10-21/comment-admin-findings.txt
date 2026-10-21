@@ -1,0 +1,35 @@
+*ShopCoach admin check: which model each feature uses on sv10673*
+
+I signed in to the ShopCoach QA admin ([feature.shopcoach.shopview.com|https://feature.shopcoach.shopview.com/admin/features/parts]) as Parth suggested. For each feature I read its settings and the run history of the runs I made from sv10673 today (work order S10673-17583, Staging Heavy Duty - 9919).
+
+* Every ShopCoach feature is set to provider *openai*, model *gpt-5.6-luna*.
+* My runs from sv10673 are logged with model *gpt-5.6-luna* for 8 of the 10 features I ran. Line Builder V2 and ShopCoach Analysis run their AI steps without naming the model in the history. Analysis runs the Suggest Story, Estimate and Parts features, which are all set to Luna.
+
+||#||Feature in the admin||Model in its settings||Model logged for my sv10673 run today||
+|1|Estimate (Labor Guide)|gpt-5.6-luna|gpt-5.6-luna (11:06 UTC)|
+|2|Parts|gpt-5.6-luna|gpt-5.6-luna (11:06 UTC)|
+|3|Line Builder V2|gpt-5.6-luna|AI steps "parse" and "enrich" ran; the history does not name the model|
+|4|Recommend Work|gpt-5.6-luna|gpt-5.6-luna (11:06 UTC)|
+|5|Improve Story|gpt-5.6-luna|gpt-5.6-luna (11:06 UTC, and repeats at 11:11–11:14 from cache)|
+|6|Suggest Story|gpt-5.6-luna|gpt-5.6-luna (11:06 UTC)|
+|7|Summary|gpt-5.6-luna|gpt-5.6-luna (11:06 UTC)|
+|8|Vehicle History|gpt-5.6-luna|gpt-5.6-luna (11:06 UTC)|
+|9|Estimate New Line|gpt-5.6-luna|gpt-5.6-luna (11:07 UTC)|
+|10|Analyze Line (ShopCoach Analysis)|gpt-5.6-luna|Runs Suggest Story, Estimate and Parts in parallel; the history does not name the model|
+|11|Line Builder (older version)|gpt-5.6-luna|Not run; the app uses Line Builder V2|
+
+!SV-10673_model-luna-run.png|width=820,height=1312!
+_Picture 1: ShopCoach admin, Improve Story history. My run from S10673-17583 (21 Oct, 11:13 UTC, Staging Foothills Group Inc, Staging Heavy Duty - 9919) shows Provider openai and Model gpt-5.6-luna. The instructions sent with it end: Output only the revised text, ending with: "Job complete."_
+
+*One thing this explains:* every improved story ends with "Job complete." because the Improve Story instructions ask for it (Picture 1). It is not the model adding a fact, and it is the same on Production.
+
+*Lee's 18-case baseline*
+
+* [Lee's baseline page|https://shopview.atlassian.net/wiki/spaces/~712020e177200ff16d4e8c8909f6a2239e0cc4/pages/859406338/ShopCoach+Baseline+Evaluation+Experiment+Draft+1] (Draft 1, last updated 15 September) describes how to run it. It lists 18 cases: 4 Line Builder, 4 Story, 4 Work Order Review, 3 Labor Guide and 3 Parts Guide. It doesn't include the cases themselves. Its source is a Google Doc that I don't have access to.
+* No results from the baseline are attached to this ticket yet.
+* Lee's [SV-9629 report|https://shopview.atlassian.net/wiki/spaces/~712020e177200ff16d4e8c8909f6a2239e0cc4/pages/905773057] (7 October) tested the Tech Story changes and Luna together on sv10673: 19 cases, 17 passed, 1 failed (BAIT2) and 1 unresolved (EMPTY). It says this is "not a controlled old-model versus new-model comparison", and "No further testing by Lee is planned as part of this report."
+
+[~accountid:5bd6d7573aa82432ce72b8d3] [~accountid:557058:17189c93-b223-4b4c-8efe-c508356d0492] can you please confirm:
+
+# Should this ticket wait for the 18-case baseline before it moves on, as Lee said earlier (comment 78654) and Chris set out (comment 78701): run on staging after the 22 October release, once on the current model and once on Luna, with both results attached here?
+# If yes, who will run it? Lee's report says no further testing by him is planned, and the 18 cases themselves are only in his Google Doc.

@@ -49,3 +49,10 @@ list + parameters in `app/src/api/shopcoach/ShopCoachModel.ts`; the model is not
 - **"Job complete." is the configured prompt, not invention:** the Improve Story system message ends
   `Output only the revised text, ending with: "Job complete."`. The QA-lead question about filing it is withdrawn.
 - Status stays PARTIALLY PASSED only for Lee's 18-case baseline (row 12).
+
+## Update 07:20 CDT — admin findings comment 79185 (tags Parth + Stefan)
+- Baseline page 859406338 v2 (15 Sep): method only; 18 cases named by type, contents in Google Doc
+  1E0Vk3tqZs3Pf6EzcnMd2wvKQpi_a35GFX67fh_oisTg — "Permission denied" for this account. No results on the ticket.
+- Lee's SV-9629 report 905773057 v7 (7 Oct): Tech Story changes + Luna together on sv10673, 19 cases (17 pass, BAIT2
+  fail, EMPTY unresolved); "not a controlled old-model versus new-model comparison"; "No further testing by Lee is planned".
+- Asked Parth + Stefan whether the ticket should wait for the baseline (Lee 78654, Chris 78701) and who runs it.
