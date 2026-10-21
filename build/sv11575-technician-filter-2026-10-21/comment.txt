@@ -1,0 +1,37 @@
+{panel:bgColor=#fffae6}
+*OVERALL QA STATUS: PARTIALLY PASSED*
+{panel}
+I tested this on staging ([app.staging.shopview.com|https://app.staging.shopview.com/workorders], build v26.40.20-c627fc7) on 21 October 2026, as Admin at Staging Heavy Duty - 9919, in Board View and Tech View. The details are below; two questions for Chris are posted in a separate comment above.
+
+* *Point 1 passed:* Darrell Martinez and the other deactivated lead technicians are now in the Technician list, after the active ones, with the grey Inactive label, and choosing him shows only his column.
+* *Point 2:* the reported problem is gone: the red message no longer shows when the list is opened or after one tick. At the 50-value limit the build greys out the list instead of showing the message, which I've asked Chris about.
+
+!SV-11575_inactive-technician.png|width=640,height=923!
+_Picture 1: Darrell Martinez in the Technician list with the Inactive label, and only his column (Board View) and group (Tech View) after ticking him._
+
+h3. What I checked
+
+||#||Check||Board View||Tech View||Status||
+|1|Darrell Martinez is in the list (search "Darrell")|Darrell Thomas and Darrell Martinez (Inactive)|the same|PASSED|
+|2|Every technician who has a column is in the list|All 331 columns are listed, except the "Deleted technician" column|the same list|PASSED (Deleted technician: question 2 for Chris)|
+|3|Order: Unassigned, then active technicians by first name then last name, then deactivated ones|Unassigned; 327 active A to Z; then Darrell Martinez, ZZAUTOTEST F3 Dan Delta (twice)|the same|PASSED|
+|4|Deactivated technicians carry the grey Inactive label|All 3|All 3|PASSED|
+|5|Choosing Darrell Martinez shows only his column or group|Only "D.." Inactive, 113 work orders|Only his group, Inactive, 113|PASSED|
+|6|No message when the list is opened, nothing ticked|No message|No message|PASSED|
+|7|No message after one tick|No message|No message|PASSED|
+|8|No message at 49 ticks|No message|No message|PASSED|
+|9|At the limit, the next tick is refused|At 50 the other names are greyed out and can't be ticked|the same|PASSED|
+|10|The limit counts other filters too|3 Status values + 47 technicians stops at 50|-|PASSED|
+|11|The S1-R15c message shows when a tick would go over 50|Never shows; a red line "50 selected (max 50 across all filters)" shows at 50 instead|the same|WAITING FOR CHRIS (question 1)|
+
+!SV-11575_limit-message.png|width=1200,height=507!
+_Picture 2: the Technician list at 0, 1, 49 and 50 ticks. No message until 50; at 50 the red line appears and the other names go grey._
+
+h3. How to see it
+
+# Open staging: [https://app.staging.shopview.com/] and sign in as Admin.
+# At the top right, click the location and choose {{Staging Heavy Duty - 9919}}.
+# In the top menu, click {{Work Orders}}. Above the list, on the right, click the last of the three view icons ({{Board View}}).
+# Above the board, click {{Technician}} (the wrench icon). Nothing is ticked and no red message shows.
+# Type {{Darrell}} in the {{Search technician}} box. {{Darrell Martinez}} is listed with the grey {{Inactive}} label. Tick it and click outside the list: only his column is shown.
+# Click the middle of the three view icons ({{Tech View}}): only his group is shown.

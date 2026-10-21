@@ -1,0 +1,33 @@
+*Questions for Chris*
+
+[~accountid:712020:aa00b8d6-a71f-4259-8919-82a304227c20] two things on the Technician filter need your call before this can pass. Tested on staging, build v26.40.20-c627fc7, Staging Heavy Duty - 9919.
+
+*1. At the 50-value limit the list greys out instead of showing the limit message*
+
+* *What's happening:* nothing shows at 0, 1 or 49 ticks. At the 50th tick a red line *"50 selected (max 50 across all filters)"* appears at the bottom of the list and every other name is greyed out, so the 51st can't be ticked. The message "This change would exceed the 50-value limit across all filters" never appears. The same happens in Tech View, and the count includes other filters (3 Status values + 47 technicians stops at 50).
+* *What the spec says (S1-R15c, version 72):*
+{quote}The filters’ 50-value limit message, “This change would exceed the 50-value limit across all filters”, shows only when a tick would take the total across all filters over 50 values, and that tick is not applied. It never shows just because the Technician list is opened, or while the total is 50 or fewer.{quote}
+* *Question:* is the greyed-out list with "50 selected (max 50 across all filters)" at 50 acceptable, or should the list stay tickable and show the spec's message when the 51st tick is refused?
+
+!SV-11575_limit-message.png|width=1200,height=507!
+_Picture A: the Technician list in Board View at 0, 1, 49 and 50 ticks._
+
+How to see it:
+# Open staging: [https://app.staging.shopview.com/workorders] at {{Staging Heavy Duty - 9919}}.
+# Above the list, on the right, click the last of the three view icons ({{Board View}}).
+# Above the board, click {{Technician}} (the wrench icon) and tick names from the top, one at a time.
+# At the 50th tick the red line appears at the bottom of the list and the names below go grey.
+
+*2. The "Deleted technician" column can't be chosen in the Technician filter*
+
+* *What's happening:* work orders whose lead technician was deleted sit in a "Deleted technician" column (5 work orders at Heavy Duty), but typing "Deleted" in the Technician list shows "No results".
+* *What the spec says (S1-R15, version 72):*
+{quote}It is a multi-select listing Unassigned first, then everyone who gets a group or column at this location{quote}
+* *Question:* should "Deleted technician" be in the Technician list (for example after the inactive technicians), or is it right that it can't be chosen?
+
+!SV-11575_deleted-technician.png|width=400,height=733!
+_Picture B: the "Deleted technician" column, and the Technician list finding nothing for "Deleted"._
+
+How to see it:
+# In Board View, scroll right to the last column, {{Deleted technician}} with the grey {{Inactive}} label.
+# Click {{Technician}} and type {{Deleted}} in the search box. The list reads {{No results}}.
