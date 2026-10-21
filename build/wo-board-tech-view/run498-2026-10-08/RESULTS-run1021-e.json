@@ -1,0 +1,17 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.20-c627fc7", "date": "21 October 2026", "note": "run 498 - SV-11577 test, first run"},
+ "results": {
+  "C707077": {"verdict": "Failed", "failed_steps": "Failed at steps 1, 2, 4 and 7: every place shows the technician's login account name instead of the staff record name.", "bold_steps": [1, 2, 4, 7],
+   "ticket": "https://shopview.atlassian.net/browse/SV-11577",
+   "observed": [
+    "Result: Failed on staging - outcome (2) of this test: it fails in a different way from the known problem. The names now all match each other, but they all show the login account name.",
+    "Set-up: Technician-A = Carol Neal. Settings > Staff lists her as Carol Neal (no staff record named Sparks); her login account is named David Sparks. Work order S2-37765, led by her, one approved line with her as its technician.",
+    "Step 1: the line's Labor text reads David Sparks (expected Carol Neal). The work order's Lead Technician also reads David Sparks.",
+    "Step 2: the same name, David Sparks, is used for the line's technician.",
+    "Steps 3 and 4: Edit Line opens; Technicians reads David Sparks (expected Carol Neal).",
+    "Step 5: Cancel closes Edit Line without changes.",
+    "Steps 6 and 7: Board View shows her card and column header as David Sparks (expected Carol Neal). List's Lead Technician column also reads David Sparks."],
+   "todo": "Re-run this test when SV-11577 is fixed so every place shows the staff record name.",
+   "pictures": ["pictures-1019/C707077-1-staff-record-1021.png", "pictures-1019/C707077-2-lines-tab-1021.png", "pictures-1019/C707077-3-edit-line-1021.png", "pictures-1019/C707077-4-board-1021.png"]}
+ }
+}
