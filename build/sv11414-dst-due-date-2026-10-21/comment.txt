@@ -1,0 +1,39 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on the QA branch [sv11414|https://sv11414.qa.shopview.com/] (build v26.40.19-36196fa) on 21 October 2026, as Admin at Staging Heavy Duty - 9919, which is on the America/Edmonton time zone.
+
+* Changing the Invoice Date on the Finance tab now gives the right due date when the Net term crosses the 1 November clock change.
+* The saved invoice keeps the same correct dates after Create Invoice and a page reload.
+* Dates that don't cross a clock change, today's date, a Net 60 customer and the March clock change are all correct as well.
+
+!SV-11414_before-after.png|width=780,height=1313!
+_Picture 1: the same Invoice Date (10/09/2026) on a Net 30 work order. On Production the due date shows Nov 7, 2026 (one day early). On the QA branch it shows Nov 8, 2026._
+
+h3. What I checked
+
+||#||Check||Invoice Date typed||Due date expected||Due date shown||Status||
+|1|The ticket's case: Net 30, crosses 1 Nov (S2-17113)|10/09/2026|Nov 8, 2026|Nov 8, 2026|PASSED|
+|2|Net 30, lands exactly on 1 Nov|10/02/2026|Nov 1, 2026|Nov 1, 2026|PASSED|
+|3|Net 30, does not cross 1 Nov|10/01/2026|Oct 31, 2026|Oct 31, 2026|PASSED|
+|4|Net 30, today's date (21 Oct)|10/21/2026|Nov 20, 2026|Nov 20, 2026|PASSED|
+|5|Net 30, crosses the March clock change|02/20/2027|Mar 22, 2027|Mar 22, 2027|PASSED|
+|6|Net 30, after the March clock change|03/10/2027 and 03/15/2027|Apr 9 and Apr 14, 2027|Apr 9 and Apr 14, 2027|PASSED|
+|7|Net 60 customer, crosses 1 Nov (S2-16673)|10/09/2026|Dec 8, 2026|Dec 8, 2026|PASSED|
+|8|Net 60, before the clock change|09/02/2026|Nov 1, 2026|Nov 1, 2026|PASSED|
+|9|Net 60, crosses the March clock change|01/20/2027|Mar 21, 2027|Mar 21, 2027|PASSED|
+|10|Create Invoice with Invoice Date 10/09/2026, then reload the page|10/09/2026|Invoice date Oct 9, Due date Nov 8|Invoice date Oct 9, Due date Nov 8|PASSED|
+|11|The same checks with the computer's clock set to Edmonton time and to UTC|all of the above|same|same|PASSED|
+
+!SV-11414_saved-invoice.png|width=780,height=604!
+_Picture 2: after Create Invoice and a page reload, the saved invoice still shows Invoice date Oct 9, 2026 and Due date Nov 8, 2026._
+
+h3. How to see it
+
+# Open the QA branch: [https://sv11414.qa.shopview.com/] and sign in as Admin. The location at the top right is {{Staging Heavy Duty - 9919}} (Edmonton time).
+# In the top menu, click {{Work Orders}} and open a work order in {{Complete}} status for a Net 30 customer. I used *S2-16673* (Monroe Truck Service & Repair, Net 60) for the Net 60 check; *S2-17513* (Orchard City Truck & Trailer Repair) and *S2-17362* (Phillipsburg Truck & Trailer Repair) are Net 30 and still Complete.
+# Click the {{Finance}} tab (the last tab, after {{Stats}}).
+# Click in the {{Invoice Date}} box next to {{Customer PO}}, select all, type {{10/09/2026}} and press Tab.
+# On the invoice below, the {{Due date}} under the invoice number reads {{Nov 8, 2026}} for a Net 30 customer.
+
+*Production before the fix:* I set one Production location to the America/Edmonton time zone for this check and put it back afterwards. The same steps there show {{Due date: Nov 7, 2026}} (Picture 1, top).
