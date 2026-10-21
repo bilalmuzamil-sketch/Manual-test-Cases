@@ -1,0 +1,17 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.40.20-00f1fd6", "date": "21 October 2026", "note": "run 498 - retest after SV-11575 was merged to staging"},
+ "results": {
+  "C581915": {"verdict": "Passed", "observed": [
+    "Result: Passed on staging by the test's 11 steps - outcome (3): the fix for SV-11575 has reached staging. Technician-D = Aimee Francis (deactivated, keeps a column with 8 work orders).",
+    "Step 1: the Technician filter sits right after Assigned to me; no Department, Customer or Service Advisor filter.",
+    "Step 2: the list starts with Unassigned; the active technicians follow by first name then last name (Ana Brooks, then Ana Carter, then Ben Adams); the 10 deactivated technicians come after every active one, each with the grey Inactive label.",
+    "Step 3: typing Aimee Francis finds her, with Inactive.",
+    "Step 4: clearing the box shows the whole list again.",
+    "Step 5: Ana Carter and Ana Brooks are both ticked, and Tech View shows only their two groups.",
+    "Steps 6 and 7: Clear selection unticks both; Escape closes the list and every technician group shows again.",
+    "Step 8: Board View shows the same columns as Tech View had groups.",
+    "Step 9: the Technician filter sits in the same place with the same options in the same order, Aimee Francis included with Inactive.",
+    "Step 10: Escape closes the list. Step 11: List has no Technician filter."],
+   "pictures": ["pictures-1019/C581915-4-inactive-at-end-1021.png", "pictures-1019/C581915-5-search-aimee-1021.png", "pictures-1019/C581915-6-two-ticked-1021.png", "pictures-1019/C581915-7-board-aimee-1021.png", "pictures-1019/C581915-8-list-no-filter-1021.png"]}
+ }
+}
