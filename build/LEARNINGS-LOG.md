@@ -548,3 +548,12 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - **Staging and QA-branch sign-in cookies are NOT recoverable** after a restart — the QA lead must send them again; never dig them out of the conversation transcript.
 - Finding a ticket's tests is now a committed tool: `python3 build/wo-board-tech-view/run498-2026-10-08/find-ticket-tests.py SV-1,SV-2 [run] [N]` (title prefix, refs, newest N results).
 #restart #access #testrail #jira #run498 → L0493, L0355
+
+## L0495 — 2026-10-21 — QA lead ruling: a test failing or blocked on a "fast-follow" ticket is not tested; it moves to the Fast-follow section and leaves the run
+- Ruling (QA lead, 21 Oct 2026): "If there is any test case, which is blocked or failed on any ticket which has this tag called "fast-follow" please do not test that case rather move that case to this fast follow folder and exclude it from the test run." WO Board / Tech View folder = TestRail section **87347 "Fast-follow"** (parent 13204, suite 1).
+- Check BEFORE any retest: `python3 build/wo-board-tech-view/run498-2026-10-08/fast-follow-scan.py 498` (tickets from the title prefix, refs and newest results; labels read live from Jira; writes fast-follow-scan.json). The label is lower-case `fast-follow`.
+- **API trap:** `move_cases_to_section/{id}` takes the TARGET SECTION id in the path, body `{suite_id, case_ids}`. Calling `move_cases_to_section/1` with `section_id` in the body put seven cases into section 1 "Test Cases" (200, no error). Read `get_case/<id>.section_id` back after every move.
+- Excluding from the run: snapshot every test's results first (`fast-follow-2026-10-21/run498-results-before-removal.json`), then `update_run/498 {include_all:false, case_ids: all-current minus the moved}`, read back the full test list (285 → 278, no other case lost).
+- Automated cases (`custom_atmstatus` 3: C96967, C368147) are held for his yes before the move (Rule 71, as with the prefix on 20 Oct); tell Vlad if moved (Rule 65).
+- After a restart the run scripts also need `build/wo-board-tech-view/node_modules` → `../global-search/e2e/node_modules` (symlink, git-ignored); without it every script dies in 3 s with `Cannot find package 'playwright' imported from …/session.mts`.
+#run498 #fast-follow #testrail #ruling → L0494, L0488
