@@ -599,3 +599,9 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - `get_history_for_case/{id}&limit=250` → each entry's `changes[]` has `{"field": "section_id", "old_value", "old_text", "new_value"}` for a folder move (my first read filtered on the wrong key and found nothing — read `field == "section_id"`). Each case had exactly one move into 55300; native = that move's `old_value`.
 - Native folders: 13247 S12 Google Analytics (8) · 13248 Counts and data accuracy (3) · 20449 TP Tech-plan coverage (1) · 47111 Medium shared plumbing (6) · 47110 High shares code (6). `move_cases_to_section/{target}` per folder; read back: every case in its native section, run 498 test ids and statuses unchanged (276 → 276), 55300 empty (left in place, not deleted). Plan + read-back: `run498-2026-10-08/not-runnable-return-2026-10-21.json`.
 #run498 #testrail #sections #history → L0495, L0500
+
+## L0502 — 2026-10-21 — Setting "QA Assignee" on an epic's stories
+- Jira field **QA Assignee = `customfield_10385`** (people, array). Bilal Muzamil's accountId `712020:6d590212-5c9b-4135-ae11-277f3826110e` (`/rest/api/3/user/search?query=bilal`).
+- Stories of an epic: `/rest/api/3/search/jql` with `(parent = EPIC OR "Epic Link" = EPIC) AND issuetype = Story`. SV-10043 has 12 stories (SV-10044–SV-10054, SV-10593; SV-10053 is OBSOLETE) among 50 children (rest Bugs/Tasks).
+- `PUT /rest/api/3/issue/{KEY} {"fields":{"customfield_10385":[{"accountId":…}]}}` → 204; read back each. All 12 were empty before. Log: `build/wo-board-tech-view/qa-assignee-2026-10-21/`.
+#jira #qa-assignee #wo-board → L0500
