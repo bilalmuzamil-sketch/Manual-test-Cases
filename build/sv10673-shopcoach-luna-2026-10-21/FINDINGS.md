@@ -37,3 +37,15 @@ Build marker re-read; ticket re-read (TESTING QA, newest comment Chris 78702); i
 back; non-green panel confirmed on the posted comment; no technical section; no recording.
 Learning check: new recipe — ShopCoach assistants are all `POST /api/shopcoach/run-assistant {assistant, parameters}`;
 list + parameters in `app/src/api/shopcoach/ShopCoachModel.ts`; the model is not visible to QA (external service).
+
+## Update 07:05 CDT — model confirmed (comment 79182 edited in place, dated notes)
+- Parth (79184): use the ShopCoach QA admin; the build now has only the model change (Tech Story improvements removed).
+- ShopCoach admin `feature.shopcoach.shopview.com` (Google sign-in; access = the five site cookies, playbook §AL):
+  `GET /admin/assistant/<name>/config` → all 11 assistants `provider openai, model gpt-5.6-luna` (`ev/configs.json`).
+  `GET /api/audit-logs?type=assistant&name=<name>` → my sv10673 runs today (org Staging Foothills Group Inc, Heavy Duty
+  9919, WO 3ba1c92e…) logged `gpt-5.6-luna` for recommend-work, vehicle-history, suggest-story, improve-story, summary,
+  estimate, parts, estimate-new-line (`ev/runs_today.json`). line-builder-v2 (`llm_call_parse` + `llm_calls_enrich`) and
+  analyze-line (`llm_calls_parallel` story/estimate/parts) don't record the model name in their steps.
+- **"Job complete." is the configured prompt, not invention:** the Improve Story system message ends
+  `Output only the revised text, ending with: "Job complete."`. The QA-lead question about filing it is withdrawn.
+- Status stays PARTIALLY PASSED only for Lee's 18-case baseline (row 12).
