@@ -47,3 +47,14 @@
   C715478 added (no longer held) → 253 tests; held out: C715279, C715322, C715463, C715464.
 - Sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA — 10 questions, same layout as the
   Splitting Sales Representatives sheet; shared with chris.w@shopview.com (Editor). Mapping: questions-2026-10-22/QUESTION-SHEET-2026-10-22.md.
+
+## 22 Oct 2026 — design received; full pass started
+- QA lead shared the design link with a share key: https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4?sk=… (readable now). Tech plan still
+  missing. Saved: `design-2026-10-22/` (canvas.json, 7 boards, DESIGN-FIGURES-2026-10-22.json = 45 figures, 43 screenshots). The design
+  is annotated before/after screenshots: production today vs "this build (round 13, 2026-10-19)".
+- QA lead chose "Full pass now" (Rule 122 asked): drive the whole design, re-check all 257 cases, held design-version cases, new design
+  cases (Rule 133), design questions into Chris's sheet in a new colour; a second full pass when the tech plan arrives. Worker brief:
+  `design-2026-10-22/WORKER-BRIEF.md`.
+- Incident: commit 256d8c4c7 pushed the design tool's runtime files, one of which (fast-edit-worker.js) bundles a private-key block
+  (claude.ai's public viewer code, not a ShopView secret). Cause: the secret scan was piped into `tail`, so its failure did not stop
+  the commit. Removed from the branch in f1d80b658 (.gitignore fixed). QA lead: leave history as is.
