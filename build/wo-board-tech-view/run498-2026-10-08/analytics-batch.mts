@@ -181,7 +181,11 @@ const settle = async (pg: Page, ms = 6000) => { await pg.waitForTimeout(ms); con
 const fresh = async (tag: string, role = ADMIN_ROLE) => mkUser('ZZAUTOTEST', `GA ${tag} ${stamp}`, role, `ga${tag.toLowerCase()}`);
 const roleRead = async (id: string) => (await a.get(`/api/roles/${id}`)).body?.data;
 async function setFin(id: string, on: boolean) { const r = await roleRead(id); const w = await a.put(`/api/roles/${id}`, { name: r.name, description: r.description, view_mode: r.view_mode, template_id: r.template_id, fe_permissions: (r.fe_permissions ?? []).map((x: any) => x.id), cross_toggles: { ...(r.cross_toggles ?? {}), seeFinancialData: on } }); return `${w.status} now ${(await roleRead(id))?.cross_toggles?.seeFinancialData}`; }
-const openWO = async (pg: Page) => { await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); };
+// 22 Oct 2026: "Open Work Orders" as a person does — the top menu's Work Orders link from whatever page is open (the address only as a
+// fallback when the link is not there, e.g. a blank page). Judged 22 Oct: C97023 had been opened by address.
+const openWO = async (pg: Page) => { const link = pg.locator('[data-test-id="button_desktop_nav_link"]').filter({ hasText: /^\s*Work Orders\s*$/ }).first();
+  if (await link.count()) { await link.click().catch(() => {}); await pg.waitForTimeout(5000); if (/\/workorders/.test(pg.url())) return; }
+  await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); };
 async function withUser(u: any, f: (pg: Page, ev: Ev[]) => Promise<void>) { const v = await asUser(u); const ev = tap(v.page); try { await f(v.page, ev); } finally { (R.unread ??= []).push((ev as any).unread); await v.close(); } }
 
 await run('C97023', async () => { const o: any = {}; const u = await fresh('Views');
