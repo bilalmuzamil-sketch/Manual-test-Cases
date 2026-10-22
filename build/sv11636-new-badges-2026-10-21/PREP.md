@@ -52,3 +52,12 @@ Extra cells:
 - Phone width (and anything below 1024 px): no view switcher and no switcher pill anywhere on Work Orders (List/Tech/Board).
 - Before passing, confirm Chris's Reports-access rule against the Dashboard PRD (Standing Rule 109); if the PRD doesn't say it,
   ask Chris to add it rather than passing on the Slack answer alone.
+
+## Check 22 Oct 04:08 UTC — status moved, change not deployed
+- Changelog: Milomir Kotlajic moved SV-11636 Open → In Progress (03:26:44 UTC) → Code Review (03:26:48) → Ready for QA (03:27:44)
+  → TESTING QA (03:27:49) → **QA Complete (03:28:55)**. No QA comment; only comment is still Chris's 79239. QA Assignee Ayesha Khan.
+- No QA branch: sv11636.qa.shopview.com does not answer (curl 000); toggleQaEnv returns 500.
+- Staging still **v26.40.20-7405769** (last-modified 21 Oct 19:49:03 GMT, etag f90e347f…) = the no-badge baseline. Main bundle
+  `/js/index.Be17E1Re.js` has `badge:"New"` only on the AccountingHub/HR apps, nothing for Dashboard or the view switcher.
+- Not testable yet → nothing tested, nothing posted. Routine trig_016o1PRHVCDYnqEFJsfaDbHR kept on (every 2 h, next 06:05 UTC),
+  prompt changed to wait for the change to reach staging (app-version moves) rather than for a status change.
