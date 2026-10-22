@@ -718,3 +718,7 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Three analytics cases (C97025, C97027, C97035) change density while in Board View — Blocked under PRD v73 S3-R11 and put to the QA lead per case (Rule 114(c)); C97035's Expected "work_orders_density_load = 2 (once for each of the two displays)" may also conflict with density existing in Tech View only — reported, never edited.
 - Judges flagged scripts that open screens by address (Purchase Orders, Vendors, Vendor Invoices, a work order) where the case lists clicks — Unsure under L0513; and an Escape press that emptied a Search box the case never empties.
 #run498 #production #reports #location #analytics → L0513, L0514
+
+## L0523 — 2026-10-22 — Rule 134: a question he can't follow is not a question; a reminder repeats the whole question
+- Three questions were first sent with context but then REMINDED as one-line recaps ("Should C368233 pass on the behaviours it describes?"); he answered "I understand none of your questions … always make a rule". Rule 134 (RULES-61-ONWARD.md, index row, §1 line): every question and every reminder states what the thing is for, what happened, why it is a question, options each with what I will do, my marked recommendation, and the cost of silence — in layman words ("the spacing button", not "density"; "the app quietly records what people do", not "analytics"); `plain_check.py` before sending. Worked example: `run498-2026-10-08/asks-1022-rewritten.md`.
+#communication #rule134 → Rules 99, 103
