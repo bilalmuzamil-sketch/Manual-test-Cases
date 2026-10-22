@@ -664,3 +664,8 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 ## L0512 — 2026-10-22 — Check a test is still IN the run before re-running it
 - The production redo queue re-ran C96956 and C96973 (about 3 minutes of production time and one sign-in) although both had already been moved to the fast-follow folder and taken out of run 498; `judge_pack.py` then skipped them ("not in run 498"). Before queuing any re-run, list the run's tests (`get_tests/498`, paged) and drop the C-ids that are not there — fast-follow moves happen mid-day.
 #run498 #fast-follow #redo → L0494, L0511
+
+## L0513 — 2026-10-22 — A script that reaches the right END state by different steps is not a pass (C97006)
+- `s9-batchA5.mts` C97006 dragged Ana's own second card above her first for BOTH step 6 and step 8, instead of "drag Alpha Co above Bravo Co" (step 6) and "drag the Charlie Co card from Ben's column into Ana's column" (step 8). The Expected (List keeps its sort and row order) was observed, so a judge called it Passed — but step 8 was never performed, and the staging pass of 8–16 Oct carried the same deviation. Held, script fixed to the case's own drags (by company name, `row(s,'Alpha Co')`, `card(s,'Charlie Co')`), re-run queued.
+- When judging, compare the script's ACTIONS with the case's steps, not only its readings with the Expected; a deviation in the actions means re-run, never Passed.
+#run498 #judging #verified-means-observed → L0510
