@@ -148,3 +148,8 @@ Under "Exact quotes from the source (for reproducibility)", each document quoted
 
 ## Twelfth amendment (PERMANENT, QA lead, 19 Oct 2026): design case titles start "Design: "
 Every new case that checks how a design looks gets a title starting "Design: ", then the easiest lay-person wording (screen's own words, one check, no semicolons, at most 80 characters including the prefix). Every project. Existing titles stay (the WO Board cases made on 19 Oct 2026 keep "Design- "). Nothing else changes. Full text: Rule 117, twelfth amendment.
+
+
+## Amendment, 22 Oct 2026 (QA lead, PERMANENT; Rule 135)
+
+One action per step: a step never bundles two UI actions, and each step has exactly one "Step N:" result. No unnecessary steps: leave out any step a manual QA tester does not need to run the case, but never remove or merge a step needed to reach the result or decide pass/fail. Runnability wins; when in doubt, keep the step.

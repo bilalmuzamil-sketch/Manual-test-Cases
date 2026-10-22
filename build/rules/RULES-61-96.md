@@ -3458,3 +3458,20 @@ It strengthens Rule 41 (re-verify the whole case) from a re-read into a rewrite 
    QA lead's go-ahead.
 5. **The tech plan informs, it never overrules** (Rules 30, 57, 115): what it adds that is testable becomes a case cited to it; where it
    conflicts with the PRD or a PO answer, the case follows the PRD and the conflict becomes a PO question (Rule 96).
+
+## 135 · ONE ACTION PER STEP, AND NO UNNECESSARY STEPS — WITHOUT EVER MAKING A CASE UNRUNNABLE (all projects, permanent)
+
+**Ordered by the QA lead, 22 Oct 2026, PERMANENT (an authorized amendment to the Rule 117 standard), verbatim:** *"'Fixing steps that do
+several things at once..' This should be a permanent rule, also do not add unecessary steps in the test cases. Unecessary steps=Those
+steps which are NOT actually needed to RUN that test by a manual QA tester, but that should not be done at a cost that it make the test
+NOT runnable for the manual QA tester"*
+
+1. **One action per step.** A step never bundles two UI actions (two clicks, a click and a save, open-change-save, a click and a
+   reload). Each step is one action in the screen's own words, with exactly one "Step N:" result. Why: when a bundled step fails, the
+   tester cannot tell which part went wrong.
+2. **No unnecessary steps.** A step that is not needed for a manual QA tester to run the case is left out (filler such as "look at the
+   screen", a step that only restates the starting screen, extra confirmation steps that check nothing the case is about).
+3. **Runnability wins.** Rule 2 never removes or merges a step a tester needs to reach the result or decide pass/fail. When in doubt,
+   keep the step.
+4. Every case written or touched is checked for both, by script and by reading (a step with two or more UI actions is a gate failure),
+   and Rule 134 applies to every case changed for it.
