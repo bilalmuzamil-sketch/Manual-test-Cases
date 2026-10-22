@@ -6229,3 +6229,15 @@ This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as a
   Snapshot `data.value` and `PUT {value:<snapshot>}` to restore (read back equal).
 - Column buttons: List `button_column_selection`, Tech View `button_tech_view_column_selection`, density `button_density`.
 - Two-window test: open Work Orders in tab A first, change a column in tab B, then make an edit in A, then read a fresh tab C.
+
+### §AL.4 Page wider than the screen — finding the real cause (SV-11636 follow-ups, 2026-10-22)
+- Measure `documentElement.scrollWidth` vs `clientWidth`. Then **hide each suspect on its own** and re-read the width; a bisection
+  that hides a parent container proves only that something inside it is the cause.
+- Overflowing **text** is a text node: an element-rect scan misses it. Scan leaf text with `Range.selectNodeContents(el)` +
+  `getBoundingClientRect().right`.
+- Check the **data** before comparing builds: on staging the phone Work Orders page is 810 px wide because of the ZZBREAK test customer
+  ("…Superlongunbrokencustomername…" with no spaces); hiding those names brings it back to 390/768. The mobile filter chip row is NOT the
+  cause (hiding it leaves 810). Production has no such customer, so production at the same width is not a fair comparison.
+- To show it on screen: `page.mouse.wheel(500,0)` over the list = a sideways swipe; `window.scrollX` reads 420 at 390 px.
+- Header at tablet width: at 1024 px the profile button `profile_menu_button` sits at x 1021–1061 (cut off, still clickable on the 3 px
+  sliver); from 1100 px it fits. Filed as SV-11661. A screenshot of something cut by the window edge: pad it with a striped strip.

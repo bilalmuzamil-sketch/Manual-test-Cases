@@ -124,6 +124,7 @@ Tested on <environment>, <date>.
 - **Before/after in one image** when the point is a difference (SV-10804: "when the part was received"
   above "when the part was returned").
 - **Name files by what they show**, ending `-hd.png`.
+- **Something at the very edge of the screen** (a button cut off by the window edge): pad the screenshot with a striped grey strip, say in the title that the stripes are past the edge of the screen, and put the badge in the strip (SV-11661, 22 Oct 2026).
 - **Look at every image before uploading**: nothing cut off at the edges, badges visible, no caption
   covering a value.
 - **Upload as real Jira attachments** (`POST /rest/api/3/issue/{key}/attachments`, `X-Atlassian-Token:
