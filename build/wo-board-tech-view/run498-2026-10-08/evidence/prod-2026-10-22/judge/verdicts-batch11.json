@@ -1,0 +1,181 @@
+{
+ "C96940": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4: on the All tab, with \"ZZAUTOTEST F2 Board Columns\" searched, Board View shows one column for each of the 64 technicians who can lead work at Truck Hill 1, plus Unassigned (65 columns).",
+   "Steps 5 and 6: each header shows the name, the avatar (Esther Howard shows \"EH\") and a number that matches its cards: Unassigned 2, Esther Howard 3, Ralph Edwards 2, Jenny Wilson 0 (her column reads \"Drag a work order here to assign it\").",
+   "Steps 7 and 8: with the Status filter on Approved only, Esther Howard's header shows 2 and her column lists 2 cards (the Estimate has dropped out)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96940-board.png",
+   "evidence/prod-2026-10-22/C96940-end.png"
+  ],
+  "reason_for_reviewer": "s3-batchA.mts C96940: work orders seeded behind the screen (set-up); Work Orders opened, All tab, Board View and search clicked/typed on the screen; Status chip > Approved clicked. columns 65 = eligible 64 + Unassigned. Unassigned 2 [S1-1408, S1-1409]; Esther 3 [S1-1403, S1-1404, S1-1405 (Estimate)], avatar 'EH'; Ralph 2 [S1-1406, S1-1407]; Jenny 0 with the empty text. Approved: Esther 2 [S1-1403, S1-1404]. The case's numbers are examples; counts match the case exactly. 0 differences from staging (staging had 261 columns, production 65: location size only). No time-of-day readings."
+ },
+ "C96941": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 6: the board was moved 3,000 pixels to the right, not all the way to the right end, so whether Unassigned stays at the left edge at the far end was not seen.",
+  "bold_steps": [
+   6,
+   7
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The board was only moved part of the way to the right; everything seen meets the expected result.",
+   "Steps 1 to 5: on the All tab, with \"ZZAUTOTEST F2 Sticky Unassigned\" searched, Board View shows Unassigned as the first column.",
+   "Steps 6 and 7: after moving the board sideways by about 1,200 and then 3,000 pixels, Unassigned stayed at exactly the same spot at the left edge while technician columns slid past behind it (the picture shows a column partly hidden behind Unassigned).",
+   "Step 6, far right: NOT SEEN. The board is about 64 columns wide and was not moved to its right end.",
+   "Manual check that would settle it: drag the board's sideways scroll bar all the way to the right and confirm Unassigned is still showing at the left edge."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96941-scrolled.png",
+   "evidence/prod-2026-10-22/C96941-end.png"
+  ],
+  "reason_for_reviewer": "s3-batchA.mts C96941: board_view_scroller.scrollLeft set to 1200 and 3000 by script (same method as the staging pass). Unassigned left = 8 px at 0, 1200 and 3000; first column 'unassigned' each time. With 65 columns (~300 px each) the right end is far beyond 3000, and a sticky column can come loose at the end of its container, so the far-right reading matters. Step 8 (scroll back) has no expected result of its own and was not performed. 0 differences from staging. No time-of-day readings."
+ },
+ "C96942": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 5: Esther Howard's column was scrolled down 2,000 pixels, which stops about five cards before her last card, so the header at the very end of the column was not seen.",
+  "bold_steps": [
+   5,
+   6
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Her column was not scrolled all the way to her last card; everything seen meets the expected result.",
+   "Steps 1 to 4: on the All tab, with \"ZZAUTOTEST F2 Sticky Column Header\" searched, Board View shows Esther Howard's column with 20 cards, taller than the screen.",
+   "Steps 5 and 6: while her column was scrolled down (about 600 and then 2,000 pixels), her header (\"EH\", Esther Howard, 20) stayed at the top of her column, and the other column headers stayed at the same height, so it was always clear whose column it is.",
+   "Step 5, last card: NOT SEEN. At the deepest point the column shows S1-1424 to S1-1427; her cards run on to about S1-1432.",
+   "Manual check that would settle it: scroll Esther Howard's column right down to her last card and confirm her name and count are still at the top."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96942-scrolled.png",
+   "evidence/prod-2026-10-22/C96942-end.png"
+  ],
+  "reason_for_reviewer": "s3-batchA.mts C96942: the column body's scrollTop set to 600 and 2000 by script. headerTop 181 at 0/600/2000; header text 'EH Esther Howard 20 20 work orders'; four other header tops 181 each time. Body was not clamped at 2000, and 20 cards of ~192 px in a ~770 px body give ~3,100 px of scroll room, so the last card (about S1-1432; this case's cards start at S1-1413) was not reached. Side note: the page itself sits 36 px down in both pictures (the toolbar row is half under the top bar) after the script brought her column into view; the same page movement is what fails C96953. 0 differences from staging. No time-of-day readings."
+ },
+ "C96945": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Start: Esther Howard is pinned; with nothing pointed at and nothing selected, the card S1-1436 shows no \"More actions\" (…) button.",
+   "Step 1: pointing at the card makes the \"More actions\" (…) button appear on it.",
+   "Steps 2 and 3: clicking it opens the card's menu, which offers \"Reassign lead technician\" (and \"Unassign\").",
+   "Step 4: pressing Escape closes the menu.",
+   "Step 5: after moving the mouse off the card and clicking once on an empty part of the page, the \"More actions\" button is hidden again.",
+   "Step 6: after clicking once in Search, the cursor is in the Search box (it holds \"ZZAUTOTEST F2 Card Menu\").",
+   "Step 7: pressing Tab moves through the toolbar and then lands on the card S1-1436, which shows a blue focus ring.",
+   "Step 8: S1-1436 is the only card on the board, so no arrow key was needed; with the focus ring on it and the mouse away from it, its \"More actions\" (…) button shows."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96945-s1-hover.png",
+   "evidence/prod-2026-10-22/C96945-s2-s3-menu.png",
+   "evidence/prod-2026-10-22/C96945-s8-arrows-card.png",
+   "evidence/prod-2026-10-22/C96945-s5-after-click-outside.png"
+  ],
+  "reason_for_reviewer": "s3-batchA.mts C96945 (current version, follows the case's step 5 with the click outside). idle: effectiveOpacity 0, shown false (active body). s1 hover: effectiveOpacity 1, shown true (positive control). s2 menusOpen 1; s3 items 'Reassign lead technician Unassign'. s4 menusOpen 0. s5 mouse-off only: still shown (focus on the More actions button, as the case's note says); s5 after click outside: effectiveOpacity 0, shown false, active body. s6 focus page_search_input. s7: 11 Tab presses (search clear, Status, Assigned to me, Technician, Asset on Site, Column Selection, List, Tech View, Board View, Create Work Order, then board_card_Work-order-1, ring true). s8 keys [] (already on the target, the only card), moreActionsWithoutHover shown true with the mouse at (5,500). Pictures confirm each state. Customer name differs from the case's example only. No time-of-day readings."
+ },
+ "C96946": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: on the All tab, with \"ZZAUTOTEST F2 Card Click\" searched, Board View shows the card S1-1438 in Esther Howard's column.",
+   "Step 3: clicking the customer name on the card opens that work order (its Lines page).",
+   "Steps 4 and 5: after the browser Back button, clicking an empty part of the card opens the same work order.",
+   "Steps 6 and 7: after Back again, pointing at the card and clicking its \"More actions\" (…) button opens its menu (\"Reassign lead technician\", \"Unassign\") and the page stays on Work Orders: the work order does not open."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96946-end.png"
+  ],
+  "reason_for_reviewer": "s3-batchA.mts C96946: real clicks on board_card_field_company_name and on a blank point near the card's lower right; browser Back via goBack. customerName and emptySpace both -> /workorders/38ed773e-.../lines (the one seeded work order, S1-1438); moreActions: URL still /workorders?search=ZZAUTOTEST+F2+Card+Click, menu 'Reassign lead technician Unassign'. The case's 'S1-702' is an example number. There is no picture of the opened work order page; the address reading is the evidence for steps 3 and 5. 0 differences from staging. No time-of-day readings."
+ },
+ "C96947": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 5: on the All tab, with \"ZZAUTOTEST F2 Board Pin Order\" searched and no pins shown, Board View reads Unassigned, Esther Howard, Jenny Wilson, Kristin Watson, Ralph Edwards; every technician header has a pin button.",
+   "Steps 6 and 7: after clicking the pin on Ralph Edwards' header the order is Unassigned, Ralph Edwards (pinned), Esther Howard, Jenny Wilson, Kristin Watson, with Ralph right after Unassigned.",
+   "Steps 8 and 9: after pinning Esther Howard the order is Unassigned, Ralph Edwards (pinned), Esther Howard (pinned), Jenny Wilson, Kristin Watson: the newest pin goes after the existing one."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96947-board.png",
+   "evidence/prod-2026-10-22/C96947-end.png"
+  ],
+  "reason_for_reviewer": "s3-batchA.mts C96947: unpinAll clicked off every visible pin first; pins then clicked on the headers. The picture shows Unassigned, Ralph Edwards, Esther Howard (both with the filled pin) directly followed by the unpinned Ayesha Khan, Aaron Baker. Set-up note: the account's saved pins still held one earlier pin (id 3ff0914b, a person who has no column at Truck Hill 1; it was the account's own pin before the run and was put back after). It never appears on this board, so the start the tester sees is 'no pins'. The optional 'Ralph Edwards pinned' message was not read. 0 differences from staging. No time-of-day readings."
+ },
+ "C96949": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 3: on the All tab, with \"ZZAUTOTEST F2 Board Pin Limit\" searched, Ralph Edwards, Jenny Wilson and Theresa Webb were pinned in Board View.",
+   "Step 4: Kristin Watson's pin button is turned off and pointing at it shows \"You can pin up to 3 technicians.\"",
+   "Step 5: clicking it pins nobody: the pins stay Ralph Edwards, Theresa Webb, Jenny Wilson.",
+   "Steps 6 and 7: after unpinning Jenny Wilson, Esther Howard could be pinned (pins: Ralph Edwards, Theresa Webb, Esther Howard).",
+   "Steps 8 and 9: Tech View shows the same three pinned groups (Ralph Edwards, Theresa Webb, Esther Howard), and Kristin Watson's pin button there is turned off with the same words \"You can pin up to 3 technicians.\"",
+   "The limit is 3 and the wording is exactly as the requirement says (not the design's 5 / \"Up to 5 pinned columns, unpin one first\")."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96949-limit.png",
+   "evidence/prod-2026-10-22/C96949-tech-pins.png",
+   "evidence/prod-2026-10-22/C96949-tech-kristin.png",
+   "evidence/prod-2026-10-22/C96949-end.png"
+  ],
+  "reason_for_reviewer": "s3-batchA.mts C96949: pins clicked on the headers; Kristin's control read disabled=true, hovered (tooltip 'You can pin up to 3 technicians.'), then clicked (force) - saved pins unchanged apart from the three. afterSwap Ralph, Theresa, Esther; Tech View pressed pins Ralph, Theresa, Esther; techKwDisabled true, techKwTip same text. Set-up note: the saved pin list also held one earlier pin (3ff0914b, a person with no column at Truck Hill 1, the account's own pin before the run, restored after). It is not shown on this board and did not count toward the limit (the limit appeared at exactly 3 visible pins), so it did not change what a tester sees. 0 differences from staging. No time-of-day readings."
+ },
+ "C96951": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 3: on the All tab, with \"ZZAUTOTEST F2 Board Assigned\" searched and Jenny Wilson pinned, Board View was opened.",
+   "Steps 4 and 5: with Assigned to me on, Board View shows only Unassigned (holding S1-1451) and my own column, \"Service Advisor No Reports (Admin)\" (holding S1-1449).",
+   "Ralph Edwards, Esther Howard and the pinned Jenny Wilson are hidden.",
+   "Step 6: neither column shown has a pin button.",
+   "Step 7: turning Assigned to me off brings back every column (65) and the pin buttons, with Jenny Wilson still pinned right after Unassigned."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96951-assigned-on.png",
+   "evidence/prod-2026-10-22/C96951-end.png"
+  ],
+  "reason_for_reviewer": "s3-batchA.mts C96951: seeded lead=me (S1-1449), lead=Ralph (service advisor changed to Ralph so it does not count as mine), no lead with me as service advisor (S1-1451). Jenny pinned by clicking; Assigned to me chip clicked on and off. on: 'Unassigned(1) [S1-1451] pin:null', 'Service Advisor No Reports (Admin)(1) [S1-1449] pin:null' (null = no pin button). off: 65 columns, first 'Unassigned', 'Jenny Wilson pin:true', 'Ayesha Khan pin:false'. The case's S1-352/S1-702 are examples. 0 differences from staging. No time-of-day readings."
+ },
+ "C96952": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: Ralph Edwards was turned inactive behind the screen, not through Settings > Staff > his edit icon > Deactivate Account, so the case's own route was not walked.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Ralph Edwards was made inactive behind the screen instead of with the Deactivate Account button; everything after that meets the expected result.",
+   "Step 1: NOT DONE ON THE SCREEN. Ralph Edwards was made inactive directly (read back: inactive), not through Settings > Staff > edit > Deactivate Account.",
+   "Steps 2 to 5: on the All tab, with \"ZZAUTOTEST F2 Inactive Pinned\" searched, Board View still shows Ralph Edwards' column, still pinned right after Unassigned, with S1-1452 and S1-1453 (count 2).",
+   "His header shows a grey \"Inactive\" label next to his name.",
+   "Steps 6 and 7: clicking his pin unpins him; the board then starts Unassigned, Ayesha Khan, Aaron Baker, so his column has left the pinned area.",
+   "Afterwards Ralph Edwards was set active again (read back: active).",
+   "Manual check that would settle it: deactivate Ralph Edwards with Settings > Staff > his edit icon > Deactivate Account, then repeat steps 2 to 7."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96952-inactive-pinned.png",
+   "evidence/prod-2026-10-22/C96952-end.png"
+  ],
+  "reason_for_reviewer": "s3-batchA.mts C96952: deactivation by POST /api/iam/change-status (201, is_active false), not the Staff screen; the Tech View twin C96934 passed because its script used the Staff screen's Deactivate Account button (no confirm dialog appeared on production). Board readings: order Unassigned, Ralph Edwards pin:true, Ayesha Khan pin:false; Ralph count 2 [S1-1452, S1-1453], header 'RE Ralph Edwards Inactive 2 2 work orders'; after clicking his pin: first Unassigned, Ayesha Khan, Aaron Baker. Reactivated by the same call (201, active true). The case's S1-691/S1-578 are examples. 0 differences from staging. No time-of-day readings."
+ },
+ "C96953": {
+  "verdict": "Failed",
+  "failed_steps": "Failed at step 7: turning the mouse wheel over the empty space below a short column moved the whole page down by 56 pixels, hiding the toolbar row; the expected result says \"The page itself does not scroll down: only the content inside a column scrolls.\"",
+  "bold_steps": [
+   7
+  ],
+  "observed": [
+   "Result: Failed on production (v26.43.0-ffea43c). The whole page moved down when the mouse wheel was turned over empty space below a short column.",
+   "Steps 1 to 4: on the All tab, with \"ZZAUTOTEST F2 Column Scroll\" searched, Board View shows Unassigned with 25 cards and Esther Howard with 20, both taller than the screen; the board is wider than the window.",
+   "Steps 5 and 6: scrolling inside Unassigned moved only its cards; the next column and every header stayed where they were and the page did not move.",
+   "Step 7: turning the mouse wheel over the empty space below a short (empty) column moved the whole page down by 56 pixels: every header moved up and the row with the tabs, Search, filters and the display switcher went out of view. Expected: \"The page itself does not scroll down: only the content inside a column scrolls.\"",
+   "Step 8: Esther Howard's column scrolled on its own (her first visible card became S1-1486) while Unassigned kept its own position and the other columns did not move.",
+   "Steps 9 and 10: moving the board sideways to the far right and back passed 64 technician columns, the same as the 64 technicians who can lead work at Truck Hill 1; none is hidden."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96953-columns.png",
+   "evidence/prod-2026-10-22/C96953-end.png"
+  ],
+  "reason_for_reviewer": "s3-batchA.mts C96953. start: header tops 217, page/docScroll 0. Unassigned body scrollTop 1200 (script): headers 217, second column 0, page 0. Step 7 with a real mouse wheel (delta 1500) at a point ~200 px below the first empty column's placeholder: page 56, docScroll 56, header tops 161 (all four). C96953-columns/-end show the toolbar row gone above 'Create Work Order' compared with an unscrolled page such as C96941-end.png (toolbar at y 92, headers at ~217). Staging (19 Oct) did not move at this step, so this is new on production; C96942/C96945 pictures also show the page sitting 36 px down after the script brought a column into view, i.e. the production page is taller than the window. The esther reading's 'secondBodyScroll' is the second column in the page, not Esther's; step 8 is judged from the picture (her column starts at S1-1486, 7 cards in, matching scrollTop 1200 while Unassigned still shows S1-1466). 64 technician columns = 64 eligible (scrolled to the end and back by the helper). No known ticket in the case; none raised (holds stand). No time-of-day readings."
+ }
+}
