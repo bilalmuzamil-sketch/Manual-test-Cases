@@ -54,7 +54,7 @@ const ORG = (await import('./profile.mts')).ORG;
 const rolesL: any[] = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data);
 const RI = await roleIds(a);
 const roleId = (re: RegExp) => rolesL.find((r) => re.test(r.label ?? r.name ?? ''))?.id ?? Object.entries(RI).find(([l]) => re.test(l))?.[1];
-const TECH_ROLE = roleId(/^Technician$/), ADMIN_ROLE = roleId(/^admin(istrator)?$/i), VIEW_ROLE = roleId(/^ZZAUTOTEST WO View Only$/);
+const TECH_ROLE = roleId(/^Technician$/), ADMIN_ROLE = roleId(/^admin(istrator)?$/i); let VIEW_ROLE = roleId(/^ZZAUTOTEST WO View Only$/);   // let: C590116 may create it on production (22 Oct 2026)
 R.roles = { tech: !!TECH_ROLE, admin: !!ADMIN_ROLE, viewOnly: !!VIEW_ROLE };
 const say = (r: any) => `${r.status}${r.status >= 300 ? ' ' + JSON.stringify(r.body?.message ?? r.body?.errors ?? r.body).slice(0, 140) : ''}`;
 const W = (ms: number, pg: Page = p) => pg.waitForTimeout(ms);
@@ -267,6 +267,23 @@ async function dragHold(pg: Page, from: { x: number; y: number }, to: { x: numbe
   const during = await D(pg, '__D.fresh()'); during.picture = await pic(pg, name);
   await pg.mouse.up(); await W(2500, pg); return during;
 }
+/** 22 Oct 2026 (production C590112 step 4): one "scrollLeft = scrollWidth" stopped at 326 px of 443 because the table kept widening
+ *  (1766 -> 1883 px) while rows re-rendered after the scroll, so "Total price" was cut by the window edge. Scroll to the end, wait,
+ *  re-read scrollWidth and the scroll position, and repeat until the width has stopped growing (same width on two reads in a row) and
+ *  the scroll sits at its true end. Pure robustness: on a table that is already settled it ends after two quiet reads. */
+async function scrollToRightEnd(pg: Page, sel = '.q-table__middle') {
+  const rd = `(() => { const s = document.querySelector(${JSON.stringify(sel)}); return s ? { scrollW: s.scrollWidth, clientW: s.clientWidth, scrollLeft: Math.round(s.scrollLeft) } : null; })()`;
+  const tries: any[] = []; let quiet = 0, last: any = null;
+  for (let i = 0; i < 20 && quiet < 2; i++) {
+    await pg.evaluate(`(() => { const s = document.querySelector(${JSON.stringify(sel)}); if (s) s.scrollLeft = s.scrollWidth; })()`).catch(() => {});
+    await W(900, pg);
+    const now: any = await pg.evaluate(rd).catch(() => null); if (!now) { tries.push('no scroller'); break; }
+    const atEnd = now.scrollLeft >= now.scrollW - now.clientW - 1;
+    quiet = atEnd && last && last.scrollW === now.scrollW ? quiet + 1 : 0;
+    tries.push(`${now.scrollLeft}/${now.scrollW - now.clientW}${atEnd ? ' end' : ''}`); last = now;
+  }
+  return { settled: quiet >= 2, final: last, tries };
+}
 
 // ───────────────────────────── data ─────────────────────────────
 const canned: any[] = []; { const c = (await a.get('/api/work-orders/canned-lines')).body?.data; canned.push(...(Array.isArray(c) ? c : c?.collection ?? [])); }
@@ -411,7 +428,9 @@ await run('C590112', async (o) => { // Tech View edge to edge, double border on 
   await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollTop += 2100; })()`); await W(1200);
   o.s3_sticky = { before, after: { thead: await D(p, '__D.box(__D.headRow())'), theadPosition: await D(p, `(function () { var t = __D.q('thead'); var th = __D.q('thead th'); return { thead: t ? getComputedStyle(t).position : null, th: th ? getComputedStyle(th).position : null, top: th ? getComputedStyle(th).top : null }; })()`), sc: await D(p, '__D.tScroller()') }, picture: await pic(p, 'C590112-s3-scrolled-down') };
   await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) { s.scrollTop = 0; s.scrollLeft = s.scrollWidth; } })()`); await W(1200);
-  o.s4_sideways = { sc: await D(p, '__D.tScroller()'), align: await D(p, '__D.align()'), heads: (await D(p, '__D.heads()'))?.cells?.map((x: any) => ({ label: x.label, w: x.box?.w, labelW: x.labelBox?.w })), overlaps: await D(p, '__D.overOf(__D.headRow())'), picture: await pic(p, 'C590112-s4-scrolled-sideways') };
+  const toEnd = await scrollToRightEnd(p);   // 22 Oct 2026: wait for the table to stop widening, then sit at the TRUE right end (read back)
+  console.log(t(), 'C590112 step 4 scroll to the right end', JSON.stringify(toEnd));
+  o.s4_sideways = { scrollToEnd: toEnd, sc: await D(p, '__D.tScroller()'), align: await D(p, '__D.align()'), heads: (await D(p, '__D.heads()'))?.cells?.map((x: any) => ({ label: x.label, w: x.box?.w, labelW: x.labelBox?.w })), overlaps: await D(p, '__D.overOf(__D.headRow())'), picture: await pic(p, 'C590112-s4-scrolled-sideways') };
   await p.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollLeft = 0; })()`);
   await p.setViewportSize({ width: 1536, height: 900 }); await W(1500);
   o.s5_1536 = { ...(await read('s5-tech-1536')), align: await D(p, '__D.align()') };
@@ -533,6 +552,28 @@ await run('C590114', async (o) => { // Tech View cells
   }
 });
 
+// 22 Oct 2026 (production C590115): the set-up made only the BLUE number (a part request), so the RED number and its tooltip were never
+// compared. Copied unchanged from design-r4.mts (round 4, 17 Oct 2026 — the recipe of the staging PASS): the red number is List's
+// serviceActionsCount ("<n> Line(s) in Auth Req'd"), i.e. a SECOND line on the work order in "Needs Approval" (authorization_required),
+// added through the app's own add-line call; read back in the list answer and on List's screen before anything is compared.
+async function redLine(wo: { id: string; line: string | null }) {
+  const o: any = {};
+  const before = new Set((await linesRaw(wo.id)).map((l: any) => l.line_id));
+  const r = await a.post(`/api/work-orders/${wo.id}/lines/create-from-canned-line`, { canned_line_id: GREASE.id, status: 'authorization_required' });
+  o.create = say(r); o.lineId = r.body?.data?.line_id ?? (await linesRaw(wo.id)).map((l: any) => l.line_id).find((x: string) => !before.has(x)) ?? null;
+  if (!o.lineId) return o;
+  // its own part requests come off, so the blue number still counts Part-A only (Line-1's request)
+  for (const l of await linesRaw(wo.id)) if (l.line_id === o.lineId) for (const rq of (l.part_requests ?? [])) o.partOff = say(await a.post(`/api/work-orders/part/remove-request/${rq.id ?? rq.part_request_id}`, {}));
+  const st = (await linesRaw(wo.id)).find((l: any) => l.line_id === o.lineId)?.status;
+  o.statusAfterCreate = st;
+  if (st && st !== 'authorization_required') o.statusFix = say(await a.post('/api/work-orders/lines/change-status', { line_id: o.lineId, status: 'authorization_required', workOrderId: wo.id }));
+  return o;
+}
+const linesNow = async (wo: { id: string; line: string | null }, red: string | null) => (await linesRaw(wo.id)).map((l: any) => `${l.line_id === wo.line ? 'Line-1' : l.line_id === red ? 'Line-2 (red)' : 'other line'} ${l.status} parts=${(l.part_requests ?? []).map((x: any) => x.status).join('+') || 'none'}`);
+const countsOf = async (c: any, id: string) => { const w = (await workOrders(a, c.name)).find((x: any) => x.id === id); return w ? { status: w.status, serviceActionsCount: w.serviceActionsCount ?? null, partRequestsCount: w.partRequestsCount ?? null, statusRequestedCount: w.statusRequestedCount ?? null, statusAuthToOrderCount: w.statusAuthToOrderCount ?? null, statusInStock: w.statusInStock ?? null } : 'not in the list answer'; };
+const RED_BG = /rgb\(239, 83, 80\)|rgb\(2[0-5]\d, \d{1,2}, \d{1,2}\)/;   // Quasar red-5 = rgb(239, 83, 80); any strong red counts as "a red number"
+const BLUE_BG = /rgb\(66, 165, 245\)/;   // Quasar blue-5
+
 await run('C590115', async (o) => { // status pill in List and Tech View, at each density
   const A = await tech('DC06', 'Gia Pills'); const c = await cust('ZZAUTOTEST DC06 Status Pill');
   const w1 = await mkWO(c, { lead: A.staff, line: true, keepParts: true }); o.wo1 = brief(w1);
@@ -540,11 +581,19 @@ await run('C590115', async (o) => { // status pill in List and Tech View, at eac
     const cats = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/inventory/categories')).body?.data); const cat = cats[0]?.value ?? cats[0]?.id;
     o.partRequest = say(await a.post('/api/work-orders/part/make-request', { line: w1.line, work_order: w1.id, description: 'ZZAUTOTEST-PN-DC06', quantity: 1, part_source_type: 'vendor', part_category_id: cat, part_number: `ZZAUTOTEST-PN-DC06-${RUNNO}`, cost: 10, sell_price: 20, vendor: vendor?.id, is_core: false }));
     o.partRequests = (await linesRaw(w1.id)).flatMap((l: any) => (l.part_requests ?? []).map((r: any) => `${r.part_number}:${r.status}`)); }
+  // 22 Oct 2026: red = Line-2 in Needs Approval (design-r4 recipe); read back from the server BEFORE any step is measured
+  o.redLine = await redLine(w1);
+  o.lines = await linesNow(w1, o.redLine.lineId); o.serverCounts = await countsOf(c, w1.id);
+  o.preparedOk = { red: (o.serverCounts?.serviceActionsCount ?? 0) > 0, blue: (o.serverCounts?.partRequestsCount ?? 0) > 0 || (o.serverCounts?.statusAuthToOrderCount ?? 0) > 0, stillApproved: o.serverCounts?.status === 'approved' };
+  console.log(t(), 'START STATE set C590115 (red and blue counts on the server?)', JSON.stringify({ wo1: o.wo1, redLine: o.redLine, lines: o.lines, serverCounts: o.serverCounts, preparedOk: o.preparedOk }));
   const pillAt = async (key: string, tag: string) => { const pl = await D(p, `__D.pill(__D.cell(${J(key)}, 'Status'))`); const hov: any[] = [];
-    for (const [i, n] of ((pl?.numbers ?? []) as any[]).entries()) { await away(); await hoverBox(p, n.bgBox ?? n.box); const tp = await D(p, '__D.tips()'); hov.push({ number: n.text, bg: n.bg, tooltips: tp?.map((x: any) => x.text), place: rel(tp?.[0]?.box ?? null, n.bgBox ?? n.box) }); await pic(p, `C590115-${tag}-number${i + 1}-hover`); }
+    for (const [i, n] of ((pl?.numbers ?? []) as any[]).entries()) { await away(); await hoverBox(p, n.bgBox ?? n.box); const tp = await D(p, '__D.tips()'); hov.push({ number: n.text, bg: n.bg, kind: RED_BG.test(String(n.bg)) ? 'red' : BLUE_BG.test(String(n.bg)) ? 'blue' : 'other', tooltips: tp?.map((x: any) => x.text), place: rel(tp?.[0]?.box ?? null, n.bgBox ?? n.box) }); await pic(p, `C590115-${tag}-number${i + 1}-hover`); }
     await away(); return { pill: pl, hovers: hov, picture: await clip(p, `C590115-${tag}-pill`, pl?.pill?.box ?? null, 30) }; };
   o.prep = await prep([A.staff], 'List'); await search(p, c.name); o.listUsedSearch = true;
   o.s2_s3_list = await pillAt(w1.number, 's2-list');
+  // positive control on screen: are a red AND a blue number drawn on List's pill before Tech View is compared with it?
+  o.listControl = { redDrawn: o.s2_s3_list.hovers.some((h: any) => h.kind === 'red'), blueDrawn: o.s2_s3_list.hovers.some((h: any) => h.kind === 'blue'), numbers: o.s2_s3_list.hovers.map((h: any) => `${h.kind}:${h.number}`) };
+  console.log(t(), 'C590115 List control (red and blue drawn?)', JSON.stringify(o.listControl));
   // FIX-UP 2 (17 Oct 2026): List was searched down to Work-order-1 but Tech View was not, so the two pills were measured on different
   // screens. Tech View now gets the SAME search before it is measured (and keeps it for the density readings); both search boxes are read back.
   await display(p, 'Tech View'); await search(p, c.name); o.techSearchHolds = await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null); o.find = await rowOn(p, w1.id, c.name, A.staff);
@@ -555,6 +604,57 @@ await run('C590115', async (o) => { // status pill in List and Tech View, at eac
   { const pl = await D(p, `__D.pill(__D.cell(${J(w1.number)}, 'Status'))`); o.s13_list = { pill: pl, picture: await clip(p, 'C590115-s13-list-pill', pl?.pill?.box ?? null, 30) }; }
   await search(p, '');
 });
+
+/** 22 Oct 2026 (production C590116 step 9): production has no "ZZAUTOTEST WO View Only" role (role-viewonly-stg4 on production read
+ *  nothing), so step 9 was never run. ONLY with WOB_PROD_LOGIN and only when the role is missing (staging / QA branches are untouched):
+ *  (1) on screen, the stg-setup.mts recipe (14 Oct 2026): Administration > Roles & Permissions > Create Custom Role > Skip > role name +
+ *      Work orders View switch (area_workorders_view) > Create; the app's own POST /api/roles answer is caught for the new id;
+ *  (2) only if the screen route did not make it: POST /api/roles in the shape seed_roles.py proved (fePermissions = permission ids), with
+ *      only workOrdersView's id (taken from the Admin role) and See financial data off;
+ *  then READ BACK (GET /api/roles/<id>): used only if Work orders View is on and no Work orders Create & Edit / Delete is held. */
+async function ensureViewRoleProd() {
+  const NAME = 'ZZAUTOTEST WO View Only'; const o: any = {};
+  const list = async () => ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data);
+  const find = async () => (await list()).find((r: any) => (r.label ?? r.name) === NAME)?.id ?? null;
+  const toasts = () => p.evaluate(`[...document.querySelectorAll('.q-notification')].map(e => e.innerText.replace(/\\s+/g, ' ').slice(0, 150))`).catch(() => []);
+  const fromPage = () => p.evaluate(`(() => { const all = [...document.querySelectorAll('tr, .q-item, [role="row"], .q-card')].filter(e => (e.innerText || '').includes(${J(NAME)})); all.sort((x, y) => x.innerText.length - y.innerText.length);
+      for (const e of all) { const h = [e, ...e.querySelectorAll('[href], [data-test-id]')].map(x => (x.getAttribute('href') || '') + ' ' + (x.getAttribute('data-test-id') || '')).join(' '); const m = /([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/.exec(h); if (m) return m[1]; } return null; })()`).catch(() => null) as Promise<string | null>;
+  o.listed = (await list()).length; let id: string | null = await find(); o.foundInList = !!id;
+  if (!id) {
+    try {
+      await p.goto(APP + '/administration/roles-permissions', { waitUntil: 'domcontentloaded' }); await W(6000);
+      o.onPageBefore = (await p.evaluate(`(document.querySelector('main, .q-page') || document.body).innerText`).catch(() => '') as string).includes(NAME);
+      if (o.onPageBefore) { id = await fromPage(); o.idFromPage = id; }
+      else {
+        await p.locator('button').filter({ hasText: /Create Custom Role/i }).first().click(); await W(3000);
+        const skip = p.locator('.q-dialog button').filter({ hasText: /^\s*Skip\s*$/i }).first(); if (await skip.count()) { await skip.click(); await W(5000); }
+        await p.locator('[data-test-id="role_name_input"]').fill(NAME);
+        await p.locator('[data-test-id="area_workorders_view"]').click(); await W(800);
+        o.filledPic = await pic(p, 'C590116-s9-role-filled');
+        const resp = p.waitForResponse((r) => /\/api\/roles\/?(\?|$)/.test(r.url()) && r.request().method() === 'POST', { timeout: 15_000 }).catch(() => null);
+        await p.locator('button').filter({ hasText: /^\s*Create\s*$/ }).last().click(); await W(3000);
+        const conf = p.locator('.q-dialog button').filter({ hasText: /Create|Continue|Yes|Confirm/i }).last(); if (await conf.count()) { o.confirm = (await p.locator('.q-dialog').last().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 200); await conf.click(); await W(3000); }
+        const r = await resp; if (r) { o.uiPost = r.status(); const b: any = await r.json().catch(() => null); id = b?.data?.id ?? b?.id ?? null; }
+        o.uiToasts = await toasts();
+        if (!id) id = await find();
+        if (!id) { await p.goto(APP + '/administration/roles-permissions', { waitUntil: 'domcontentloaded' }); await W(6000); id = await fromPage(); o.idFromPageAfter = id; }
+        o.afterPic = await pic(p, 'C590116-s9-roles-after');
+      }
+    } catch (e: any) { o.ui = 'screen route failed: ' + String(e?.message || e).slice(0, 200); }
+  }
+  if (!id) {
+    const src = ADMIN_ROLE ? (await a.get(`/api/roles/${ADMIN_ROLE}`)).body?.data : null;
+    const view = (src?.fe_permissions ?? []).find((x: any) => /^workOrdersView$/i.test(String(x?.code ?? x?.name ?? '')));
+    if (view) { const r = await a.post('/api/roles', { name: NAME, fePermissions: [view.id], organization: ORG, viewMode: src?.view_mode ?? null, crossToggles: { ...(src?.cross_toggles ?? {}), seeFinancialData: false }, description: 'ZZAUTOTEST fixture: Work orders > View only (C590116 step 9)', templateId: src?.template_id ?? null });
+      o.api = say(r); id = r.body?.data?.id ?? r.body?.data?.role_id ?? (await find()); }
+    else o.api = 'not tried: no workOrdersView permission id on the Admin role';
+  }
+  o.id = id ? id.slice(0, 8) : null;
+  if (id) { const codes: string[] = ((await a.get(`/api/roles/${id}`)).body?.data?.fe_permissions ?? []).map((x: any) => String(x?.code ?? x?.name ?? x));
+    o.readBack = codes.filter((c) => /^(workOrder|wo[A-Z])/.test(c)); o.viewOnly = codes.includes('workOrdersView') && !codes.some((c) => /^workOrder.*(CreateAndEdit|Delete)/i.test(c)); }
+  console.log(t(), 'C590116 step 9 view-only role on production', JSON.stringify(o));
+  return { id: id && o.viewOnly ? id : null, log: o };
+}
 
 await run('C590116', async (o) => { // six-dot grip on rows and group headers; not for a view-only user
   const A = await tech('DC07', 'Hana Grip'); const c = await cust('ZZAUTOTEST DC07 Grip');
@@ -573,16 +673,39 @@ await run('C590116', async (o) => { // six-dot grip on rows and group headers; n
   const before = await D(p, `__D.rowGrip(${J(w1.id)})`); await hoverSel(p, `[data-test-id="tech_view_row_${w1.id}"]`);
   o.s4_hover = { before, after: await D(p, `__D.rowGrip(${J(w1.id)})`), picture: await clip(p, 'C590116-s4-row-hover', await D(p, `__D.box(__D.rowEl(${J(w1.id)}))`), 40) };
   await away();
-  const cb = await D(p, `__D.box(__D.cell(${J(w1.id)}, 'Customer'))`), r2 = await D(p, `__D.box(__D.rowEl(${J(w2.id)}))`);
+  // 22 Oct 2026: step 5's drop point copied from design-r4.mts (round 4, 17 Oct 2026 — the staging PASS). The old target (WO-2's bottom
+  // edge + 6 px) let go over a LOWER group on staging and on production (production moved S1-996's lead to "Ahtasham Amjad"). Now the
+  // release point is INSIDE WO-2's row (70% down, then its centre, then between the two rows), and document.elementFromPoint there must be a
+  // row of Technician-A's group (data-group-key), not a group header, before the mouse is pressed; it is read again while held. If no such
+  // point exists the drag is NOT made. If the lead still changes, it is put back through the app's call and the reading says so.
   const order = async () => (await groups(p)).find((g) => g.id === A.staff)?.rows.map((n) => n === w1.number ? 'WO-1' : n === w2.number ? 'WO-2' : n);
-  o.s5_orderBefore = await order();
-  if (cb && r2) { o.s5_during = await dragHold(p, { x: cb.x + cb.w / 2, y: cb.y + cb.h / 2 }, { x: cb.x + cb.w / 2, y: r2.b + 6 }, 'C590116-s5-dragging'); o.s5_toasts = await D(p, '__D.notes()'); }
-  else o.s5_during = `customer cell ${!!cb}, WO-2 row ${!!r2}`;
-  o.s5_orderAfter = await order(); await pic(p, 'C590116-s5-after-drop');
-  await findRow(p, w1.id, A.staff).catch(() => {}); const url0 = p.url(); const cb2 = await D(p, `__D.box(__D.cell(${J(w1.id)}, 'Customer'))`);
+  const leadNow = async (id: string) => { const w = (await workOrders(a, c.name)).find((x: any) => x.id === id); return w?.techAssignedFirstName ? `${w.techAssignedFirstName} ${w.techAssignedLastName ?? ''}`.trim() : 'none'; };
+  const under = (pg: Page, x: number, y: number) => pg.evaluate(`(() => { const e = document.elementFromPoint(${x}, ${y}); const tr = e && e.closest('tr'); if (!tr) return { what: e ? e.tagName : 'nothing' };
+    const tid = tr.getAttribute('data-test-id') || ''; return { tid: tid.replace(${J(w1.id)}, 'WO-1').replace(${J(w2.id)}, 'WO-2').replace(${J(A.staff)}, 'Technician-A').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>'), groupKey: tr.getAttribute('data-group-key') === ${J(A.staff)} ? 'Technician-A' : tr.getAttribute('data-group-key'), isGroupHeader: /^tech_view_group_/.test(tid) }; })()`) as Promise<any>;
+  o.s5_orderBefore = await order(); o.s5_leadBefore = await leadNow(w1.id);
+  const cb = await D(p, `__D.box(__D.cell(${J(w1.id)}, 'Customer'))`), r1 = await D(p, `__D.box(__D.rowEl(${J(w1.id)}))`), r2 = await D(p, `__D.box(__D.rowEl(${J(w2.id)}))`);
+  o.s5_boxes = { customerCell: cb, wo1Row: r1, wo2Row: r2 };
+  if (cb && r1 && r2) {
+    const x = cb.x + cb.w / 2; const tries = [{ name: 'inside WO-2, 70% down', y: r2.y + r2.h * 0.7 }, { name: 'WO-2 centre', y: r2.y + r2.h / 2 }, { name: 'between the two row centres', y: (r1.y + r1.h / 2 + r2.y + r2.h / 2) / 2 }];
+    o.s5_checked = []; let pick: any = null;
+    for (const tr of tries) { const u = await under(p, x, tr.y); o.s5_checked.push({ ...tr, y: Math.round(tr.y), under: u }); if (!pick && u?.groupKey === 'Technician-A' && !u.isGroupHeader) pick = { ...tr, under: u }; }
+    o.s5_dropPoint = pick ? { name: pick.name, x: Math.round(x), y: Math.round(pick.y), under: pick.under } : 'no point inside Technician-A\'s group found — drag NOT made';
+    if (pick) {
+      await D(p, '__D.snap()'); await p.mouse.move(x, cb.y + cb.h / 2); await p.mouse.down(); await p.mouse.move(x, cb.y + cb.h / 2 + 8, { steps: 4 });
+      await p.mouse.move(x, pick.y, { steps: 22 }); await W(800);
+      o.s5_during = await D(p, '__D.fresh()'); o.s5_during.underWhileHeld = await under(p, x, pick.y); o.s5_during.picture = await pic(p, 'C590116-s5-dragging');
+      await p.mouse.up(); await W(2500); o.s5_toasts = await D(p, '__D.notes()');
+    }
+  } else o.s5_during = `customer cell ${!!cb}, WO-1 row ${!!r1}, WO-2 row ${!!r2}`;
+  o.s5_orderAfter = await order(); o.s5_leadAfter = await leadNow(w1.id); await pic(p, 'C590116-s5-after-drop');
+  o.s5_movedBelow = Array.isArray(o.s5_orderAfter) && o.s5_orderAfter.indexOf('WO-1') > o.s5_orderAfter.indexOf('WO-2') && o.s5_orderAfter.indexOf('WO-2') >= 0;
+  if (o.s5_leadAfter !== o.s5_leadBefore) { o.s5_leadPutBack = say(await a.post('/api/work-orders/change-lead-technician', { work_order_id: w1.id, tech_assigned_id: A.staff })); o.s5_leadAfterPutBack = await leadNow(w1.id); }
+  console.log(t(), 'C590116 step 5', JSON.stringify({ before: o.s5_orderBefore, after: o.s5_orderAfter, movedBelow: o.s5_movedBelow, leadBefore: o.s5_leadBefore, leadAfter: o.s5_leadAfter, drop: o.s5_dropPoint, messages: o.s5_toasts }));
+  await rowOn(p, w1.id, c.name, A.staff); /* 22 Oct 2026: as design-r4 */ const url0 = p.url(); const cb2 = await D(p, `__D.box(__D.cell(${J(w1.id)}, 'Customer'))`);
   if (cb2) { await p.mouse.click(cb2.x + cb2.w / 2, cb2.y + cb2.h / 2); await W(3500); }
   o.s6_click = { before: url0.replace(APP, ''), after: p.url().replace(APP, '').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>'), orderAfter: p.url() === url0 ? await order() : 'page changed', picture: await pic(p, 'C590116-s6-after-click') };
   // steps 7–9 as User-B in User-B's own window (the shared session is never signed out, L0342)
+  if (!VIEW_ROLE && process.env.WOB_PROD_LOGIN) { const vr = await ensureViewRoleProd(); o.viewRoleMade = vr.log; if (vr.id) { VIEW_ROLE = vr.id; R.roles.viewOnly = true; } }   // 22 Oct 2026: production only
   if (!VIEW_ROLE) { o.userB = 'no "ZZAUTOTEST WO View Only" role in this organisation'; return; }
   const vb = (await person(a, 'ZZAUTOTEST DC07', 'Viewer', { role: VIEW_ROLE, email: `zz.wob.dc07.viewer${MAIL}`, clockable: false })).row;
   if (!vb) { o.userB = 'User-B not made'; return; }
@@ -592,6 +715,11 @@ await run('C590116', async (o) => { // six-dot grip on rows and group headers; n
     o.userB.perms = v.perms; o.userB.prep = await prep([A.staff], 'Tech View', 1440, pg, api(pg)); o.userB.find1 = await rowOn(pg, w1.id, c.name, A.staff);   // fix-up 2: rows brought on screen for User-B too
     o.s9_rows = { wo1: await D(pg, `__D.rowGrip(${J(w1.id)})`), wo2: await D(pg, `__D.rowGrip(${J(w2.id)})`), sample: await D(pg, `__D.qa('[data-test-id^="tech_view_row_"]').slice(0, 5).map(function (tr) { return __D.rowGrip(tr.getAttribute('data-test-id').replace('tech_view_row_', '')); })`) };
     o.s9_groupHeadersAlsoRecorded = await D(pg, `__D.qa('[data-test-id^="tech_view_group_drag_handle_"]').length`);
+    // 22 Oct 2026 (as design-r4): step 9 also judges the group headers, Unassigned included — table scrolled to the top so Unassigned is drawn; extra reading + pictures only
+    o.s9_rowsPic = await pic(pg, 'C590116-s9-user-b-rows');   // the rows as found, before the scroll to the top
+    await pg.evaluate(`(() => { const s = document.querySelector('.q-table__middle'); if (s) s.scrollTop = 0; })()`).catch(() => {}); await W(1200, pg);
+    o.s9_groupHeaders = await D(pg, `__D.qa('[data-test-id^="tech_view_group_"]').filter(function (e) { return /^tech_view_group_([0-9a-f-]{36}|unassigned)$/.test(e.getAttribute('data-test-id')); }).slice(0, 6).map(function (tr) { var g = tr.querySelector('[data-test-id^="tech_view_group_drag_handle_"]'); var n = tr.querySelector('[data-test-id^="tech_view_group_name_"]'); return { group: n ? n.textContent.trim() : tr.getAttribute('data-test-id'), grip: g ? __D.desc(g, true) : null, gripLeftOfRow: g ? Math.round(g.getBoundingClientRect().left - tr.getBoundingClientRect().left) : null, firstParts: __D.parts(tr, 3) }; })`); o.s9_unassignedDrawn = (await pg.locator('[data-test-id="tech_view_group_unassigned"]').count()) > 0;
+    o.s9_headersPic = await clip(pg, 'C590116-s9-user-b-group-headers', await D(pg, `__D.box(__D.grp('unassigned'))`), 8);
     o.s9_pic = await pic(pg, 'C590116-s9-user-b-tech'); await pg.screenshot({ path: path.join(EV, 'C590116-end.png') }).catch(() => {});
   } finally { registerShotPage(p); await v.close(); }
 });
@@ -997,10 +1125,21 @@ await run('C590127', async (o) => { // Technician filter after Assigned to me
     await display(p, 'List'); await away(); o.listChips = ((await D(p, '__D.chips()')) ?? []).map((x: any) => x.text); return; }
   const cb = await chip.boundingBox(); await chip.click(); await W(1200);
   const m = await D(p, '__D.menu()'); o.s4_list = { chip: cb, menuBox: m?.box, opensBelow: m?.box && cb ? m.box.y >= cb.y + cb.height - 1 : null, count: m?.items?.length, items: m?.items?.slice(0, 15), allNames: m?.items?.map((x: any) => x.text) };
+  // 22 Oct 2026: production read 0 list items (the kit looks for .q-item / role=option); when that happens, read the open list's tick boxes too (extra reading only)
+  if (!o.s4_list.count) o.s4_list.itemsFallback = await p.evaluate(`(() => { const ms = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().height > 0); const m = ms[ms.length - 1]; if (!m) return 'no open list';
+      return [...m.querySelectorAll('.q-checkbox, [role="checkbox"], label')].map(e => ({ text: (e.innerText || '').replace(/\\s+/g, ' ').trim().slice(0, 60), checked: e.getAttribute('aria-checked') })).filter(x => x.text).slice(0, 40); })()`).catch((e: any) => String(e).slice(0, 120));
   o.s4_pic = await pic(p, 'C590127-s4-technician-list');
   const it = p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: A.name }).first();
   if (await it.count()) { await it.scrollIntoViewIfNeeded().catch(() => {}); await it.click(); await W(1500); o.s5_ticked = true; } else { o.s5_ticked = false; o.s5_note = `${A.name} not in the open list`; }
-  o.s5_pic = await pic(p, 'C590127-s5-ticked'); await p.keyboard.press('Escape'); await W(800); await away();
+  o.s5_pic = await pic(p, 'C590127-s5-ticked');
+  // 22 Oct 2026 (production): step 5 is "Press Escape" -> "the list closes". Read and picture RIGHT AFTER Escape, before any other mouse or
+  // key action (the old away() click/move came first, so Escape alone was never isolated): visible .q-menu count before and after, the chip.
+  const openMenus = () => p.evaluate(`[...document.querySelectorAll('.q-menu')].filter(e => { const r = e.getBoundingClientRect(); const s = getComputedStyle(e); return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden'; }).length`).catch(() => null);
+  o.s5_escape = { visibleMenusBefore: await openMenus() }; await p.keyboard.press('Escape'); await W(800);
+  o.s5_escape.visibleMenusAfter = await openMenus(); o.s5_escape.chip = (await chip.innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
+  o.s5_escape.picture = await pic(p, 'C590127-s5-after-escape');
+  console.log(t(), 'C590127 step 5 after Escape', JSON.stringify(o.s5_escape));
+  await away();
   o.s6_chips = (await D(p, '__D.chips()'))?.map((x: any) => x.text);
   await display(p, 'Board View'); await away(); o.s7_board = { chips: await D(p, '__D.chips()'), columns: (await D(p, `__D.cols().map(function (c) { return c.getAttribute('data-test-id').replace('board_column_', ''); })`))?.map((x: string) => x === A.staff ? 'Technician-A' : x), picture: await pic(p, 'C590127-s7-board') };
   await display(p, 'List'); await away(); o.s8_list = { chips: await D(p, '__D.chips()'), picture: await pic(p, 'C590127-s8-list') };
@@ -1093,8 +1232,22 @@ await run('C598326', async (o) => { // 16 Oct 2026 NEW: List's Approved and Read
   const A = await tech('S6', 'Pia Pills'); const c = await cust('ZZAUTOTEST S6 Pill Widths');
   const w1 = await mkWO(c, { lead: A.staff }); o.wo1 = brief(w1);
   const w2 = await mkWO(c, { lead: A.staff, line: true });
-  for (const l of await linesRaw(w2.id)) { await a.post('/api/work-orders/lines/change-story', { line_id: l.line_id, tech_story: 'Done', work_order_id: w2.id }); w2.log.push(`line complete ${say(await a.post('/api/work-orders/lines/change-status', { line_id: l.line_id, status: 'complete', workOrderId: w2.id }))}`); }
-  for (const st of ['in_progress', 'ready_for_review']) w2.log.push(`${st} ${say(await a.post('/api/work-orders/change-status', { id: w2.id, work_order: w2.id, status: st }))}`);
+  // 22 Oct 2026 (production): finishing the only line made the work order Complete at once (production's "Require Review Before
+  // Completion" is off), and production then refused In Progress / Ready For Review ("Complete work order cannot change its status
+  // again.", 400). Same fallback as C590112, which reached Ready For Review on production today: when the status read back is not
+  // ready_for_review, "Require Review Before Completion" is switched on (setRequireReview), the same moves are made again, the status is
+  // read back, and the setting is put back in finally. Staging reached Ready For Review on the first try, so there nothing changes.
+  const toReview = async () => { const log: string[] = [];
+    for (const l of await linesRaw(w2.id)) { log.push(`story ${say(await a.post('/api/work-orders/lines/change-story', { line_id: l.line_id, tech_story: 'Done', work_order_id: w2.id }))}`); log.push(`line complete ${say(await a.post('/api/work-orders/lines/change-status', { line_id: l.line_id, status: 'complete', workOrderId: w2.id }))}`); }
+    for (const st of ['in_progress', 'ready_for_review']) log.push(`${st} ${say(await a.post('/api/work-orders/change-status', { id: w2.id, work_order: w2.id, status: st }))}`);
+    return { log, status: (await workOrders(a, c.name)).find((x: any) => x.id === w2.id)?.status }; };
+  let rr: any = null;
+  try {
+    o.wo2setup = await toReview(); w2.log.push(...o.wo2setup.log.filter((x: string) => /line complete|in_progress|ready_for_review/.test(x)));
+    if (o.wo2setup.status !== 'ready_for_review') { rr = await setRequireReview(a, true); o.requireReviewOn = rr; o.wo2retry = await toReview(); w2.log.length = 0; w2.log.push(...o.wo2retry.log); }
+  } finally { if (rr && rr.before === false) o.requireReviewPutBack = await setRequireReview(a, false); }
+  o.wo2statusReadBack = (await workOrders(a, c.name)).find((x: any) => x.id === w2.id)?.status;
+  console.log(t(), 'START STATE set C598326 (Work-order-2 in Ready For Review?)', JSON.stringify({ first: o.wo2setup, requireReviewOn: o.requireReviewOn ?? null, retry: o.wo2retry ?? null, putBack: o.requireReviewPutBack ?? null, statusNow: o.wo2statusReadBack }));
   const w2n = (await workOrders(a, c.name)).find((x: any) => x.id === w2.id); o.wo2 = `${w2n?.number ?? '?'} ${w2n?.status ?? '?'} lead=${w2n?.techAssignedFirstName ?? '-'} ${w2.log.filter((x) => / [45]\d\d /.test(x)).join('; ')}`;
   const both = async (k1: string, k2: string, tag: string) => { const p1 = await D(p, `__D.pill(__D.cell(${J(k1)}, 'Status'))`), p2 = await D(p, `__D.pill(__D.cell(${J(k2)}, 'Status'))`);
     const b1 = p1?.pill?.box ?? null, b2 = p2?.pill?.box ?? null; const u = b1 && b2 ? { x: Math.min(b1.x, b2.x), y: Math.min(b1.y, b2.y), w: Math.max(b1.r, b2.r) - Math.min(b1.x, b2.x), h: Math.max(b1.b, b2.b) - Math.min(b1.y, b2.y), r: Math.max(b1.r, b2.r), b: Math.max(b1.b, b2.b) } : (b1 ?? b2);
