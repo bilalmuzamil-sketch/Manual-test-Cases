@@ -72,3 +72,8 @@ Extra cells:
 ## 22 Oct 05:01 UTC — developer ETA
 - Minja (Milomir Kotlajic) in Slack C0C45KCLS92 ts 1792645311.856259: "I expect to have it ready on staging in about 3 hours"
   → ~08:00 UTC. Extra one-shot check trig_012Q3RSeWZrJEKqbjjVQBmvo at 08:30 UTC; the 2-hourly routine continues.
+
+## 22 Oct 07:50 UTC — QA lead: "Please start on staging"
+- Staging still v26.40.20-7405769 (same etag f90e347f…, last-modified 21 Oct 19:49:03 GMT) — Minja's ETA is ~08:00 UTC.
+- The staging cookies (supplied 21 Oct 07:18 UTC) are now past ~24 h: quick-login → HTTP 401, browser lands on the Google sign-in.
+  Fresh `sv_sso_session` / `PHPSESSID` / `cf_clearance` for .staging.shopview.com needed before any live check can run.
