@@ -16,10 +16,10 @@ try {
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); o.tab1Rows = await p.locator('tbody tr').count();
   const t2 = await p.context().newPage(); await t2.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await t2.waitForTimeout(5000);
   await t2.locator('[data-test-id="profile_menu_button"]').click(); await t2.waitForTimeout(800);
-  const so = t2.locator('.q-menu').getByText('Logout', { exact: true }).last(); o.signOutFound = await so.count();
+  const so = t2.locator('.q-menu').getByText('Logout', { exact: true }).last(); o.signOutFound = await so.count(); console.log(t(), 'C368240 progress: sign-out item', o.signOutFound);
   if (o.signOutFound) { await so.click(); await t2.waitForTimeout(6000); } o.tab2 = t2.url().replace(APP, '').slice(0, 80); await shot(t2, 'C368240-tab2-signed-out');
-  await p.bringToFront(); await report(p).catch((e) => { o.reportClick = String(e).slice(0, 120); });
-  o.toasts = await toasts(p, 10_000); await p.waitForTimeout(2000);
+  console.log(t(), 'C368240 progress: tab 2 at', o.tab2); await p.bringToFront(); await report(p).catch((e) => { o.reportClick = String(e).slice(0, 120); });
+  console.log(t(), 'C368240 progress: report clicked'); o.toasts = await toasts(p, 10_000); await p.waitForTimeout(2000);
   o.tab1 = p.url().replace(APP, '').slice(0, 80); o.signInShown = /login|sign-?in/i.test(p.url()) || (await p.locator('input[type=password], button:has-text("Sign in"), button:has-text("Google")').count()) > 0;
   o.rowsLeft = await p.locator('tbody tr').count(); o.cardsLeft = await p.locator('[data-test-id^="board_card_"], [data-test-id^="tech_view_row_"]').count(); await shot(p, 'C368240-tab1');
   // sign in again through the sign-in page (DEV MODE quick-login on QA branches)
@@ -32,7 +32,7 @@ try {
     await p.locator('button:has-text("Login"), button:has-text("Sign in"), button[type=submit]').first().click();
     for (let i = 0; i < 20 && /\/login/.test(p.url()); i++) await p.waitForTimeout(2000);
   } else if (o.quickLoginButton) { await qb.click(); await p.waitForTimeout(8000); }
-  o.afterSignIn = p.url().replace(APP, '').slice(0, 80);
+  o.afterSignIn = p.url().replace(APP, '').slice(0, 80); console.log(t(), 'C368240 progress: after sign-in', o.afterSignIn);
   if (!/login/i.test(p.url())) { await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await report(p).catch(() => {}); await p.waitForTimeout(7000);
     o.reportAfter = { url: p.url().replace(APP, '').slice(0, 60), rows: await p.locator('tbody tr').count(), toasts: await toasts(p, 3000) }; await shot(p, 'C368240-after-sign-in'); }
 } catch (e: any) { o.error = String(e?.message || e).slice(0, 300); await shot(p, 'C368240-error'); }
