@@ -111,10 +111,11 @@ await run('C96944', async () => {
   if (!w2.length) { const c = await customer(a, 'ZZAUTOTEST F2 Badge Spot', 'ZZF3BS'); const v2 = await vehicle(a, c, ''); await workOrder(a, c, 'estimate', ES.staff_id); await workOrder(a, { ...c, vehicle_id: v2 }, 'approved', ES.staff_id); }
   await bv('ZZAUTOTEST F2 Badge Spot'); await toColumn(p, ES.staff_id);
   const spot = () => p.evaluate(`[...document.querySelectorAll('[data-test-id="board_column_${ES.staff_id}"] [data-test-id^="board_card_"]')].filter(e => /^board_card_[0-9a-f-]{36}$/.test(e.getAttribute('data-test-id'))).map(c => { const r = c.getBoundingClientRect(), b = c.querySelector('[data-test-id="board_card_status"]').getBoundingClientRect(), n = c.querySelector('[data-test-id="board_card_number"]'); return { n: n.textContent.trim(), right: Math.round(r.right - b.right), top: Math.round(b.top - r.top), nextToNumber: Math.abs(Math.round(b.top - n.getBoundingClientRect().top)) <= 6 }; })`);
-  R.C96944 = { regular: await spot() };
-  for (const d of ['compact', 'comfortable', 'regular']) { await p.locator('[data-test-id="button_density"]').click(); await p.waitForTimeout(600); await p.locator(`[data-test-id="option_density_${d}"]`).click(); await p.waitForTimeout(1500); R.C96944[d] = await spot(); if (d !== 'regular') await shot(p, `C96944-${d}`); }
-  const first = p.locator(`[data-test-id="board_column_${ES.staff_id}"] [data-test-id="board_card_number"]`).first();
-  await first.hover(); await p.waitForTimeout(800); R.C96944.hovered = await spot(); await shot(p, 'C96944-hover');
+  // 22 Oct 2026 (QA lead, case rewritten): no density step (Board View has none, PRD v73 S3-R11). Step 5 reads the badge spot on the three
+  // cards; step 6 hovers EACH card (the old code hovered only the first) and reads the spots again with the card under the pointer.
+  R.C96944 = { start: await spot(), hovered: [] as any[] }; await shot(p, 'C96944-s5-cards');
+  const nums = p.locator(`[data-test-id="board_column_${ES.staff_id}"] [data-test-id="board_card_number"]`);
+  for (let k = 0; k < Math.min(await nums.count(), 3); k++) { await nums.nth(k).hover(); await p.waitForTimeout(800); R.C96944.hovered.push(await spot()); await shot(p, `C96944-s6-hover-${k + 1}`); }
 });
 
 await run('C96945', async () => {
