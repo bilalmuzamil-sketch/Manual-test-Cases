@@ -804,3 +804,8 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - The production test admin's staff name is "Service Advisor No Reports (Admin)" (`ME_NAME`, profile meName), but a work order's lead reads first + last only: "Service Advisor No Reports". `s2-batchA.mts` C96937 compared the lead NAME with `ME_NAME`, decided the admin's own work order had a wrong lead and re-led it to Ralph, so the admin's group never appeared (judged Unsure). Compare a work order's lead by **id** (`techAssignedId ?? tech_assigned_id` vs `me.id`), never by name.
 - Same batch: C96928 steps 9–10 on production now close every Work Orders tab (page to blank, fresh tab) and do a real Logout + sign-in form in that browser, instead of a second browser (which ends the first session).
 #run498 #production #me #names → L0510-ish ME_NAME, L0529
+
+## L0539 — 2026-10-22 — Production: renaming an account through account access ALSO renamed its staff record
+- `seed-carol-prod-1022.mts` made staff "Carol Neal", switched into her account (`POST /api/switch-user`) and changed the account name to "David Sparks" (`/api/iam/change-name` 201). On staging that leaves the staff record "Carol Neal" and the account "David Sparks" (L0402, the state C707077 needs). On production the staff list then read **"David Sparks"** too, so `fixed-1021.mts` C707077 stopped with "Carol Neal not found (setup not done)".
+- The seed now tries the other direction (staff record back to Carol Neal) and records `namesTied`. If production keeps one name for both, C707077's precondition cannot be built on production — an environment fact for the report, not a product fault and not "no data" (Rule 107: every route tried and named).
+#run498 #production #staff #account → L0402

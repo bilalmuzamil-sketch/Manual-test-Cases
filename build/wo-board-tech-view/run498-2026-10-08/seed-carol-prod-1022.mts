@@ -28,7 +28,19 @@ try {
   if (await p.locator('[data-test-id="button_exit_impersonation"]').count()) { o.exitApi2 = (await a.post('/api/exit-switch-user', {})).status; await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); }
   o.stillInAccountAccess = await p.locator('[data-test-id="button_exit_impersonation"]').count();
   const back = (await staffRows(a, EM))[0]; o.after = back ? { staff: `${back.first_name} ${back.last_name}`, raw: JSON.stringify(back).slice(0, 400) } : null;
-  o.ok = !o.stillInAccountAccess && o.after?.staff === 'Carol Neal' && /David/.test(o.profileAfter) && /Sparks/.test(o.profileAfter);
+  // 22 Oct 2026 (production, first run): renaming the ACCOUNT also renamed the STAFF record (staff list read "David Sparks"), unlike staging
+  // (L0402). Try the other direction: set the staff record back to Carol Neal (Settings > Staff edit, behind the screen) and read BOTH
+  // names again (staff list, and the account's own profile through account access). If they move together, production keeps one name.
+  if (back && o.after?.staff !== 'Carol Neal') {
+    const sc = await a.post(`/api/staff/${back.staff_id}/change`, { first_name: 'Carol', last_name: 'Neal', email: back.email, role_id: back.role_id, workplace_id: back.workplace_id, job_title: back.job_title, salary_type: back.salary_type, salary: back.salary, billable: !!back.billable, clockable: !!back.clockable });
+    o.staffBack = `${sc.status} ${JSON.stringify(sc.body).slice(0, 160)}`;
+    const b2 = (await staffRows(a, EM))[0]; o.after2 = b2 ? `${b2.first_name} ${b2.last_name}` : null;
+    const sw2 = await a.post('/api/switch-user', { user_id: back.id ?? o.before?.user_id }); o.switch2 = sw2.status;
+    if (sw2.status < 300) { o.profileAfter2 = JSON.stringify((await a.get('/api/iam/view-profile/').catch(() => ({ body: null } as any))).body?.data?.user ?? null).slice(0, 160); o.exit2 = (await a.post('/api/exit-switch-user', {})).status; }
+    o.namesTied = o.after2 === 'Carol Neal' && !/Sparks/.test(o.profileAfter2 ?? '') ? 'yes - production keeps ONE name for staff and account' : (o.after2 === 'Carol Neal' ? 'no - staff Carol Neal, account still David Sparks' : 'staff rename refused');
+  }
+  const fin = (await staffRows(a, EM))[0]; o.final = fin ? `${fin.first_name} ${fin.last_name}` : null;
+  o.ok = !o.stillInAccountAccess && o.final === 'Carol Neal' && (/David/.test(o.profileAfter2 ?? o.profileAfter) && /Sparks/.test(o.profileAfter2 ?? o.profileAfter));
 } catch (e: any) { o.error = String(e?.message || e).slice(0, 300); }
 console.log(t(), 'CAROL', JSON.stringify(o)); fs.writeFileSync(path.join(EV, 'seed-carol-prod-1022.json'), JSON.stringify(o, null, 1));
 await done(browser, o.ok ? 0 : 1);
