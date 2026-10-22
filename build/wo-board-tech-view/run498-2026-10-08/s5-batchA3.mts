@@ -71,7 +71,8 @@ const seed = async (name: string, unit: string, leads: (string | null)[]) => { l
 
 
 const say = (r: any) => `${r.status}${r.status >= 300 ? ' ' + JSON.stringify(r.body).slice(0, 200) : ''}`;
-const where = (pg: Page) => pg.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`) as Promise<string | null>;
+// 22 Oct 2026: the top bar's location line — staging names end in " - 9919"; production's ("Truck Hill 1") do not, so the profile's names are matched too
+const where = (pg: Page) => pg.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l) || l.includes(${JSON.stringify(LOC1_NAME)}) || l.includes(${JSON.stringify(LOC2_NAME)})) || null`) as Promise<string | null>;
 
 
 const LS = await p.evaluate(`Object.fromEntries(Object.keys(localStorage).map(k => [k, localStorage.getItem(k)]))`) as Record<string, string>;
@@ -94,7 +95,7 @@ const readView = async (d: string, pg: Page = p) => { const m = await menu(d, pg
 await run('C96975', async () => {
   const n = 'ZZAUTOTEST F2 Tech Own Columns'; await seed(n, 'ZZF2TC', [ES.staff_id]); const o: any = (R.C96975 = {});
   // preconditions: found, then set, then read back
-  await go('List'); o.locationFound = await where(p); if (!/Heavy Duty/.test(String(o.locationFound))) { o.locationSwitch = await switchLocUI(p, LOC1_NAME); await go('List'); o.locationNow = await where(p); if (!/Heavy Duty/.test(String(o.locationNow))) throw new Error(`the runner is not at Staging Heavy Duty - 9919 (top bar: ${o.locationNow})`); }   // fix-up 2: the runner's own location (not the Admin's) is checked first
+  await go('List'); o.locationFound = await where(p); if (!String(o.locationFound).includes(LOC1_NAME)) { o.locationSwitch = await switchLocUI(p, LOC1_NAME); await go('List'); o.locationNow = await where(p); if (!String(o.locationNow).includes(LOC1_NAME)) throw new Error(`the runner is not at Staging Heavy Duty - 9919 (top bar: ${o.locationNow})`); }   // fix-up 2: the runner's own location (not the Admin's) is checked first
   o.foundList = await readView('List'); await display(p, 'Tech View'); await p.waitForTimeout(1500); o.foundTech = await readView('Tech View');
   console.log(t(), 'START STATE found C96975', JSON.stringify({ list: o.foundList.labelsOn, tech: o.foundTech.labelsOn, location: await where(p) }));
   o.setup = [await setBy('Tech View', /Service Advisor/i, true), await setBy('Tech View', /Progress/i, true), await setBy('Tech View', /Assigned Techs/i, true)];
@@ -148,7 +149,7 @@ await run('loc2', async () => {
   }
   R.loc2.back = process.env.WOB_LOC_SELECT ? await switchLocUI(p, LOC1_NAME) : say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
   // fix-up 2 (17 Oct 2026): on 16 Oct the page was left at Lethbridge — read the top bar back on a fresh load and switch again through the menu if needed
-  for (let k = 0; k < 2; k++) { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); R.loc2.backReadBack = await where(p); if (/Heavy Duty/.test(String(R.loc2.backReadBack))) break; R.loc2[`backRetry${k}`] = await switchLocUI(p, LOC1_NAME); }
+  for (let k = 0; k < 2; k++) { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); R.loc2.backReadBack = await where(p); if (String(R.loc2.backReadBack).includes(LOC1_NAME)) break; R.loc2[`backRetry${k}`] = await switchLocUI(p, LOC1_NAME); }
   console.log(t(), 'LOCATION after the second-location part', JSON.stringify({ back: R.loc2.back, readBack: R.loc2.backReadBack }));
 });
 

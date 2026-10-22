@@ -44,7 +44,7 @@ await run('enrol', async () => {
   R.enrol = { labels: await p.evaluate(`[...document.querySelectorAll('.q-dialog .q-field__label')].map(e => e.innerText.trim()).filter(Boolean)`) };
   const dep = p.locator('.q-dialog:visible .q-field').filter({ hasText: /Department/ }).first(); await dep.click(); await p.waitForTimeout(1200);
   R.enrol.options = (await p.locator('.q-menu:visible .q-item').allInnerTexts()).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 30);
-  const leth = p.locator('.q-menu:visible .q-item').filter({ hasText: /Lethbridge/ }).first();
+  const leth = p.locator('.q-menu:visible .q-item').filter({ hasText: LOC2_NAME }).first();
   if (await leth.count()) { R.enrol.picked = (await leth.innerText()).replace(/\s+/g, ' ').trim(); await leth.click(); await p.waitForTimeout(1000); }
   else { // options may be grouped: open the Lethbridge group / type it
     await p.keyboard.type(LOC2_NAME); await p.waitForTimeout(1500); R.enrol.optionsTyped = (await p.locator('.q-menu:visible .q-item').allInnerTexts()).slice(0, 10);
