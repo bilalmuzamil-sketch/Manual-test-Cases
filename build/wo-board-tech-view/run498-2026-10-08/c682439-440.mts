@@ -51,9 +51,20 @@ const PILL = (num: string) => `(() => { const rows = [...document.querySelectorA
   return { status: pill.textContent.trim(), shown: getComputedStyle(pill).textTransform, pill: { x: Math.round(pb.left), y: Math.round(pb.top), w: Math.round(pb.width), h: Math.round(pb.height) }, words: { x: Math.round(tb.left), y: Math.round(tb.top), w: Math.round(tb.width), h: Math.round(tb.height) },
     red: bub('.service-actions .q-badge', 'red'), blue: bub('.parts-actions .q-badge', 'blue'), density: r.getAttribute('data-density') }; })()`;
 const crop = async (name: string, r: any) => { if (!r?.pill) return; const x = Math.max(0, r.pill.x - 30), y = Math.max(0, r.pill.y - 22); await p.screenshot({ path: path.join(EV, `C682440-${name}.png`), clip: { x, y, width: r.pill.w + 90, height: r.pill.h + 44 } }).catch(() => {}); };
-const N = 'S2-33351';
+// 22 Oct 2026: S2-33351 exists on staging only. Elsewhere (production) take the first work order in List whose status pill carries BOTH a red
+// and a blue count — the case's own fallback ("on another environment use any work order whose status pill shows both"). Also serves C682420.
+let N = process.env.WOB_PILL_WO || 'S2-33351';
 await tab(p, 'All'); await p.locator('[data-test-id="clear_filters"]').click().catch(() => {}); await W(1000);
 await display(p, 'List'); await search(p, N); await W(3000);
+if (!(await p.evaluate(PILL(N)) as any)?.pill) {
+  await search(p, ''); await W(3000);
+  for (let i = 0; i < 6 && !o.pickedWo; i++) {
+    o.pickedWo = await p.evaluate(`(() => { for (const r of document.querySelectorAll('tr')) { const c = r.querySelector('td.status'); if (c && c.querySelector('.service-actions .q-badge') && c.querySelector('.parts-actions .q-badge')) { const m = r.innerText.match(/\\b[A-Z]\\d*-\\d+\\b/); if (m) return m[0]; } } return null; })()`);
+    if (!o.pickedWo) { await p.mouse.wheel(0, 1500); await W(1500); }
+  }
+  if (o.pickedWo) { N = o.pickedWo; await search(p, N); await W(3000); }
+}
+o.wo = N;
 o.c440 = { list: await p.evaluate(PILL(N)) }; await crop('s1-list', o.c440.list); await p.screenshot({ path: path.join(EV, 'C682440-s1-list-page.png') });
 await display(p, 'Tech View'); await W(3000);
 // step 4: open the group holding the work order if it is collapsed
