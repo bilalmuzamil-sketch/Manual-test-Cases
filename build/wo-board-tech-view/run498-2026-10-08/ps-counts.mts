@@ -15,7 +15,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, switchLocUI } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, switchLocUI, ensureLocation } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY, LETH } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
@@ -301,7 +301,7 @@ await run('C368217', async () => { const ps = await partSale(`ZZAUTOTEST Part Sa
   // reload), so the list was read at Lethbridge and found nothing. The app keeps the location in this browser's storage: it is saved
   // here before the switch and put back (with the server-side location) afterwards, then the page is reloaded and the top bar read.
   const lsBefore = await p.evaluate(`(() => { const o = {}; for (const k of ['location', 'current_shop_id', 'timezone', 'user']) o[k] = localStorage.getItem(k); return o; })()`).catch(() => null) as any;
-  await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: 'America/Edmonton' }).catch(() => {}); o.l2TopBar = await switchLocUI(p, LOC2_NAME);
+  await a.post('/api/iam/change-location', { workplace_id: LETH, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }).catch(() => {}); o.l2TopBar = await switchLocUI(p, LOC2_NAME);
   // 15 Oct 2026 (wave 30, ninth pass): the case makes the second location's part sale for the SAME customer (that is what makes
   // "counts from the second location are not added" a real check); the ninth pass used a separate "… L2 …" customer. Same name now.
   const ps2 = await partSale(`ZZAUTOTEST Part Sale Counts ${RUNNO}`); o.l2id = ps2.id; o.l2customer = ps2.c?.name ?? ps2.c?.company_name ?? null;
@@ -309,7 +309,16 @@ await run('C368217', async () => { const ps = await partSale(`ZZAUTOTEST Part Sa
   finally { await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); o.backTopBar = await switchLocUI(p, LOC1_NAME);
     if (!String(o.backTopBar).includes(LOC1_NAME)) { if (lsBefore) await p.evaluate(`(() => { const s = ${JSON.stringify(lsBefore)}; for (const k of Object.keys(s)) if (s[k] !== null) localStorage.setItem(k, s[k]); })()`).catch(() => {});
       await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(6000); o.backTopBarAfterReload = (await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); o.storageRestored = !!lsBefore; }
-    if (!String(o.backTopBarAfterReload ?? o.backTopBar).includes(LOC1_NAME)) throw new Error(`the screen did not come back to Staging Heavy Duty - 9919 (top bar: ${o.backTopBarAfterReload ?? o.backTopBar}); the list would be read at the wrong location`); }
+    // 22 Oct 2026 (production): the switch back read Trucks Hill 2 three times (menu, storage restore, reload). Two more routes before
+    // giving up: the shared location helper (server set + reload, three tries, then the menu), then the menu in a FRESH tab of the
+    // same session (its picker is not the stale one, L0400), and this page reloaded.
+    if (!String(o.backTopBarAfterReload ?? o.backTopBar).includes(LOC1_NAME)) {
+      process.env.WOB_LOC_TRIES = '3'; o.backEnsure = await ensureLocation(p, a, HEAVY).catch((e) => 'failed: ' + String(e).slice(0, 120));
+      if (!String(o.backEnsure).includes(LOC1_NAME)) { const np = await p.context().newPage(); await np.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await np.waitForTimeout(6000);
+        o.backFreshTab = await switchLocUI(np, LOC1_NAME); await np.close().catch(() => {}); await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(6000);
+        o.backEnsure = (await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); }
+      o.backTopBarAfterReload = o.backEnsure; }
+    if (!String(o.backTopBarAfterReload ?? o.backTopBar).includes(LOC1_NAME)) throw new Error(`the screen did not come back to ${LOC1_NAME} (top bar: ${o.backTopBarAfterReload ?? o.backTopBar}); the list would be read at the wrong location`); }
   // the list, filtered by the page's own Search (right of the header)
   await p.goto(APP + '/parts/part-sales', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.topBar = (await p.locator('header').innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 160);
   const box = p.locator('[data-test-id="page_search_input"]'); if (!(await box.isVisible().catch(() => false))) await p.locator('[data-test-id="page_search_toggle"]').click().catch(() => st('no page search toggle'));
