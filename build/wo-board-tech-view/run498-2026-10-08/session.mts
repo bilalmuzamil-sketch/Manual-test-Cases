@@ -43,6 +43,14 @@ export function registerShotPage(pg: Page) { (globalThis as any).__wobPage = pg;
   (globalThis as any).__shotEach = async (id: string) => { if (process.env.WOB_SHOT_EACH === '0') return; const p2 = (globalThis as any).__wobPage as Page | undefined; if (!p2) return;
     const dir = process.env.WOB_EV || new URL('./evidence/', import.meta.url).pathname; await p2.screenshot({ path: `${dir.replace(/\/$/, '')}/${id}-end.png` }).catch(() => {}); }; }
 export async function open(route = '/workorders'): Promise<{ browser: Browser; page: Page }> {
+  // 22 Oct 2026 (QA lead: run the suite on PRODUCTION once the release is there): production has no quick-login and no Google
+  // sign-in cookie — it signs in with a password (testing-tools/prod-login-boot.mjs, the second admin test account in
+  // /tmp/shopview/prod-login.env, never the QA lead's own). Only when WOB_PROD_LOGIN=1; every other environment is unchanged.
+  if (process.env.WOB_PROD_LOGIN) {
+    const { bootProdLogin } = await import('../../testing-tools/prod-login-boot.mjs') as any;
+    const r = await bootProdLogin(route, { deviceScaleFactor: Number(process.env.WOB_SCALE || 1), viewport: { width: 1600, height: 1000 } });
+    await quiet(r.page); registerShotPage(r.page); return { browser: r.browser, page: r.page };
+  }
   // 14 Oct 2026 (Rule 125, L0312/L0330): WOB_NORMAL_SIGNIN=1 signs in through the sign-in page (bootOrigin, quick-login), the
   // way a person does — the harness sign-in below shows the Schedule clock in UTC. Cookies: WOB_SSO_FILE (+ its -full.json).
   if (process.env.WOB_NORMAL_SIGNIN) {
