@@ -293,16 +293,25 @@ await run('C96953', async () => {
 });
 
 await run('C96955', async () => {
+  // 22 Oct 2026: rewritten to the case as it reads now (PRD v73): Board View has NO density control; Tech View keeps its own and Board
+  // cards do not change with it. Steps 3-9: density buttons on Board View (count) and Column Selection present; [WO-1]'s card box; Tech
+  // View's density menu (options, ticked); Comfortable; Board card box again; Tech View Compact; Board card box again. Tech View is put
+  // back to Regular at the end.
   const n = 'ZZAUTOTEST F2 Shared Density';
-  await seedCase(a, n, 'ZZF3SD', [{ lead: ES.staff_id }]);
-  await bv(n);
-  // 15 Oct 2026 (Rule 130, picture only): each reading is photographed WITH the Density menu still open, so the picture shows the
-  // ticked option in that view (Board View at the start, Tech View after Compact, Board View after Comfortable); readings unchanged.
-  const menu = async (pic: string) => { await p.locator('[data-test-id="button_density"]').click(); await p.waitForTimeout(800); const o = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="option_density_"]')].map(e => e.innerText.replace(/check/, '').trim() + (e.getAttribute('aria-checked') === 'true' || /check/.test(e.innerText) ? ' (selected)' : ''))`); await shot(p, pic); return o; };
-  R.C96955 = { boardStart: await menu('C96955-board-start-menu') }; await p.locator('[data-test-id="option_density_compact"]').click(); await p.waitForTimeout(1500);
-  await display(p, 'Tech View'); R.C96955.techAfterBoardCompact = await menu('C96955-tech-after-board-compact-menu'); await p.locator('[data-test-id="option_density_comfortable"]').click(); await p.waitForTimeout(1500);
-  await display(p, 'Board View'); R.C96955.boardAfterTechComfortable = await menu('C96955-board-after-tech-comfortable-menu'); await p.locator('[data-test-id="option_density_regular"]').click(); await p.waitForTimeout(1000);
-  R.C96955.saved = (await prefs()).density;
+  const [w1] = await seedCase(a, n, 'ZZF3SD', [{ lead: ES.staff_id }]);
+  await bv(n); await toColumn(p, ES.staff_id).catch(() => {}); await p.waitForTimeout(1000);
+  const vis = (sel: string) => p.evaluate(`[...document.querySelectorAll('${sel}')].filter(e => e.getBoundingClientRect().width > 0).length`) as Promise<number>;
+  const box = () => p.evaluate(`(() => { const c = document.querySelector('[data-test-id="board_card_${w1.id}"]'); if (!c) return null; const r = c.getBoundingClientRect(); return { w: Math.round(r.width), h: Math.round(r.height) }; })()`);
+  const o: any = { step3: { densityButtons: await vis('[data-test-id="button_density"]'), columnSelection: await vis('[data-test-id="button_board_fields_selection"]') } };
+  o.step4 = await box(); await shot(p, 'C96955-s4-board-card'); R.C96955 = o;
+  await display(p, 'Tech View'); await p.waitForTimeout(1500); await p.locator('[data-test-id="button_density"]').click(); await p.waitForTimeout(800);
+  o.step6 = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="option_density_"]')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.replace(/check/, '').trim() + (e.getAttribute('aria-checked') === 'true' || e.getAttribute('aria-selected') === 'true' || e.querySelector('.q-icon') ? ' [ticked]' : ''))`);
+  await shot(p, 'C96955-s6-tech-density-menu'); await p.locator('[data-test-id="option_density_comfortable"]').click(); await p.waitForTimeout(1500);
+  await display(p, 'Board View'); await p.waitForTimeout(1500); await toColumn(p, ES.staff_id).catch(() => {}); o.step8 = await box(); await shot(p, 'C96955-s8-board-after-tech-comfortable');
+  await display(p, 'Tech View'); await p.waitForTimeout(1500); await p.locator('[data-test-id="button_density"]').click(); await p.waitForTimeout(800); await p.locator('[data-test-id="option_density_compact"]').click(); await p.waitForTimeout(1500);
+  await display(p, 'Board View'); await p.waitForTimeout(1500); await toColumn(p, ES.staff_id).catch(() => {}); o.step9 = await box(); await shot(p, 'C96955-s9-board-after-tech-compact');
+  o.sameCard = JSON.stringify(o.step4) === JSON.stringify(o.step8) && JSON.stringify(o.step4) === JSON.stringify(o.step9);
+  await display(p, 'Tech View'); await p.waitForTimeout(1200); await p.locator('[data-test-id="button_density"]').click(); await p.waitForTimeout(600); await p.locator('[data-test-id="option_density_regular"]').click().catch(() => {}); await p.waitForTimeout(800); await display(p, 'Board View');
 });
 
 await run('C96954', async () => {
@@ -314,13 +323,12 @@ await run('C96954', async () => {
   for (const e of await p.locator('.q-menu [role=switch][aria-checked="false"], .q-menu [role=checkbox][aria-checked="false"]').all()) { await e.click().catch(() => {}); await p.waitForTimeout(300); }
   await p.keyboard.press('Escape'); await p.waitForTimeout(800);
   await toColumn(p, ES.staff_id); R.C96954 = {};
-  for (const d of ['comfortable', 'regular', 'compact']) {
-    await p.locator('[data-test-id="button_density"]').click(); await p.waitForTimeout(600); await p.locator(`[data-test-id="option_density_${d}"]`).click(); await p.waitForTimeout(1500);
+  // 22 Oct 2026: the case has no density step (and Board View has no density control in this release) — one reading, as the case says
+  for (const d of ['board']) {
     await p.evaluate(`(() => { const b = document.querySelector('[data-test-id="board_column_${ES.staff_id}"] .board-column__body'); if (b) b.scrollTop = b.scrollHeight; })()`); await p.waitForTimeout(1200);
     R.C96954[d] = await p.evaluate(`(() => { const b = document.querySelector('[data-test-id="board_column_${ES.staff_id}"] .board-column__body'); const cards = [...b.querySelectorAll('[data-test-id^="board_card_"]')].filter(e => /^board_card_[0-9a-f-]{36}$/.test(e.getAttribute('data-test-id'))); const last = cards[cards.length - 1]; const br = b.getBoundingClientRect(), lr = last.getBoundingClientRect(); return { cards: cards.length, lastNumber: last.querySelector('[data-test-id="board_card_number"]').textContent.trim(), lastBottomInside: Math.round(br.bottom - lr.bottom), fields: [...last.querySelectorAll('[data-test-id^="board_card_field_"]')].map(f => f.getAttribute('data-test-id').replace('board_card_field_', '')), atEnd: Math.round(b.scrollHeight - b.clientHeight - b.scrollTop) }; })()`);
     await shot(p, `C96954-${d}`);
   }
-  await p.locator('[data-test-id="button_density"]').click(); await p.waitForTimeout(600); await p.locator('[data-test-id="option_density_regular"]').click();
 });
 
 fs.writeFileSync(path.join(EV, 's3-batchA.json'), JSON.stringify(R, null, 1));

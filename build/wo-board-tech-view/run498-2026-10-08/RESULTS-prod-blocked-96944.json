@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - blocked-96944"
+ },
+ "results": {
+  "C96944": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on production (v26.43.0-ffea43c): step 6 cannot be done as written.",
+    "Steps 1 to 5: Work Orders, the All tab, the search and Board View were reached; the three test cards were on screen.",
+    "Step 6: Board View has no Density control in this release. The current product document says: \"Board View shows no Density control in this release (SV-11580).\" (PRD v73, S3-R11, read 22 Oct 2026). The product follows the document; this test step is out of date.",
+    "What needs to be done: the QA lead decides whether step 6 and the words \"at every density\" are removed from this test; the test is then run again."
+   ],
+   "pictures": [],
+   "failed_steps": "Blocked at step 6: the test changes the spacing (Density control) while on Board View, and this release has no Density control on Board View.",
+   "bold_steps": [
+    6
+   ],
+   "todo": "QA lead decision (Rule 114(c), named case): remove step 6 and \"at every density\" from the Expected, or leave Blocked."
+  }
+ }
+}
