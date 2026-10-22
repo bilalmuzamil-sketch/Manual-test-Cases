@@ -730,3 +730,9 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - **A searched card can sit off-screen in its column** (C368153 read only empty columns) — bring the column into view (`toColumn`) and count cards as a positive control before any "no dollar amount on cards" claim.
 - **Analytics passes have no screen to photograph:** `push_results_to_run.py --screenshots yes` refuses a Passed with no picture; post such results separately with `--screenshots no` and a bullet saying why.
 #run498 #production #setup #analytics → L0510, L0513
+
+## L0525 — 2026-10-22 — Production: Board View's field button is "Column Selection"; a brand-new user cannot really sign in unattended
+- On production v26.43.0 the board's field picker is labelled **"Column Selection"** (SV-11580 renamed "Fields to display"); match `[data-test-id="button_board_fields_selection"]` first, labels second. The old `.board-view__scroller` scroll never reached a technician's column — use `wob.mts toColumn()`.
+- Cases whose steps say a brand-new user signs out / signs in (C96910, C96912) cannot be done for real on production unattended: a new staff member has no password until they accept an emailed invitation, and test addresses (`@staging.shopview.local`) receive nothing; real mailboxes are barred (never a real person's address). The switch-user window is the stand-in and is judged Unsure with the one manual check named — not a self-imposed blocker: the route that would work (an invitation to a mailbox we can read) is not available without a real person's address.
+- Seen while judging C96912: a fresh production sign-in's top bar read "Truck Hill 1" while the board showed S2-numbered work orders (the Trucks Hill 2 numbering) — noted for a look, not concluded.
+#run498 #production #signin #board → L0518, L0511
