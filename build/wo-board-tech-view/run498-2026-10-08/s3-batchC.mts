@@ -19,7 +19,7 @@ const R: Record<string, any> = {};
 const D = '@staging.shopview.local';
 const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
 const ES = await sid('esther.howard'), JW = await sid('jenny.wilson'), VO = await sid('viewonly');
-const TW = (await staffRows(a, 'ayesha.khan@shopview.com')).find((x) => x.email === 'ayesha.khan@shopview.com');
+const TW = (await staffRows(a, 'ayesha.khan@shopview.com')).find((x) => x.email === 'ayesha.khan@shopview.com') ?? (await staffRows(a, `zz.wob.ayesha.khan${D}`)).find((x) => x.email === `zz.wob.ayesha.khan${D}`);   // 22 Oct: production has only the zz test copy
 const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
 R.clearedLeftoverSwitch = (await a.post('/api/exit-switch-user', {})).status;
 // a stopped earlier attempt left Jenny Wilson deactivated: put her back first
