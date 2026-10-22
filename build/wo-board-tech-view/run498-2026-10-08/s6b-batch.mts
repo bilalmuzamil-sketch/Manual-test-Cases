@@ -110,13 +110,15 @@ await run('C96988', async () => {
   const n = `ZZAUTOTEST F1 Density Content ${Date.now() % 100000}`; const c = await customer(a, n, 'ZZF6CT');
   const w = await workOrder(a, c, 'estimate', null); for (const i of [1, 2, 3]) await mkLine(w, i);
   await a.post('/api/work-orders/change-status', { id: w, status: 'approved' }); await a.post('/api/work-orders/change-lead-technician', { work_order_id: w, tech_assigned_id: ES.staff_id });
-  await go('Board View', n); await setSwitch('Board View', 'time_estimate', true); await setSwitch('Board View', 'total_price', true);
-  R.C96988 = { on: onKeys(await menu('Board View')), woEstimate: (await a.get(`/api/work-orders/view/${w}`)).body?.data?.work_order?.time_estimate ?? null, board: {}, tech: {} }; await close();
-  for (const d of ['compact', 'regular', 'comfortable']) { await setDensity(d); R.C96988.board[d] = { card: await card(p, w), size: await sizes(p, cardSel(w)) }; await shot(p, `C96988-board-${d}`); }
-  await display(p, 'Tech View'); await p.waitForTimeout(1500); await expandSmallGroups(p);
-  for (const d of ['compact', 'regular', 'comfortable']) { await setDensity(d); R.C96988.tech[d] = { heads: await heads(), size: await sizes(p, rowSel(w)) }; }
+  // 22 Oct 2026: the case is Tech View only (PRD v73 S6-R1; Board View has no density control, S3-R11). Lead Technician turned on,
+  // start at Regular (step 1 = the reference), then Compact (steps 2-3) and Comfortable (steps 4-5): headings + the row's text each time.
+  await go('Tech View', n); R.C96988 = { leadSwitch: await setSwitch('Tech View', 'lead_technician', true), totalSwitch: await setSwitch('Tech View', 'total_price', true), tech: {} };
+  await expandSmallGroups(p);
+  for (const d of ['regular', 'compact', 'comfortable']) { await setDensity(d); await expandSmallGroups(p); R.C96988.tech[d] = { heads: await heads(), size: await sizes(p, rowSel(w)) }; await shot(p, `C96988-tech-${d}`); }
+  R.C96988.order = ['regular', 'compact', 'comfortable'];
+  R.C96988.heights = Object.fromEntries(Object.entries(R.C96988.tech).map(([k, v]: any) => [k, v.size?.h ?? null]));
   const same = (o: any, k: string) => new Set(Object.values(o).map((x: any) => JSON.stringify(x[k]))).size === 1;
-  R.C96988.sameCardEverywhere = same(R.C96988.board, 'card'); R.C96988.sameTechHeads = same(R.C96988.tech, 'heads');
+  R.C96988.sameTechHeads = same(R.C96988.tech, 'heads');
   R.C96988.sameRowText = new Set(Object.values(R.C96988.tech).map((x: any) => x.size?.text)).size === 1;
 });
 
