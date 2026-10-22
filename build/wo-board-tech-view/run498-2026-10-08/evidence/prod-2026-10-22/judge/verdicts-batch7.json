@@ -1,0 +1,200 @@
+{
+ "C581894": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: work order S1-1299 for \"ZZAUTOTEST S5R11a Card Hours 10221502\" has three approved lines of 1.00, 5.00 and 1.00 hours and a declined line of 1.00 hours (production's ready-made lines differ from the test's example values).",
+   "Steps 1 to 3: on the All tab with List chosen, the customer was searched and the work order opened by clicking its row.",
+   "Step 4: the work order page reads \"Total Hours: 7.0 hrs\", which is 1.00 + 5.00 + 1.00 with the declined line's hours left out (8.0 would have counted it).",
+   "Steps 5 to 9: back on Work Orders, Board View chosen, the customer searched, and Estimated hours turned on in Fields to display.",
+   "Step 10: the card reads \"Est. 7.0 hrs\", the same as Total Hours."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581894-step4-total-hours.png",
+   "evidence/prod-2026-10-22/C581894-step10-card.png"
+  ],
+  "reason_for_reviewer": "Line estimates (from the ready-made lines): 60 + 300 + 60 min approved = 420 min = 7.0 h; declined line 60 min excluded. Page text 'Total Hours: 7.0 hrs'; card field 'Estimated hours / Est. 7.0 hrs'. Work order opened by row click (openedBy 'row click'). Step 5 (Work Orders in the top menu) was done by opening the Work Orders address rather than the menu click; it carries no expected result. Only data differences from staging (2.1 there, 7.0 here, because production's ready-made lines carry different hours). Signed in as Service Advisor No Reports (Admin)."
+ },
+ "C581895": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: Settings > Staff shows \"Esther Howard\" (Technician-A) and \"Ralph Edwards\" (Technician-B).",
+   "Set-up: work order S1-1300 is led by Esther Howard and its second line's technician is Ralph Edwards.",
+   "Step 5: in List, the Lead Technician of S1-1300 reads \"Esther Howard\".",
+   "Steps 7 and 8: in Board View the card's lead technician reads \"Esther Howard\" and the card sits in the column headed \"Esther Howard\".",
+   "Step 9: pointing at the card's line technician pictures shows \"Esther Howard\" and \"Ralph Edwards\".",
+   "Step 11: in Tech View the work order sits in the group headed \"Esther Howard\".",
+   "Step 12: pointing at the Assigned Techs pictures shows \"Esther Howard\" and \"Ralph Edwards\". No other name for either technician appears anywhere."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581895-v2-step6-board-hover.png",
+   "evidence/prod-2026-10-22/C581895-v2-step8-tech-hover.png",
+   "evidence/prod-2026-10-22/C581895-v2-step5-board.png",
+   "evidence/prod-2026-10-22/C581895-v2-step1-staff-Esther.png"
+  ],
+  "reason_for_reviewer": "step3 cell 'Esther Howard'; Board card text '... Line technicians EH RE Lead technician Esther Howard'; column header 'Esther Howard'; card hover tooltips: Ralph Edwards / Esther Howard only; Tech View group 'Esther Howard'; Assigned Techs hover tooltips: '', Esther Howard x3, Ralph Edwards x2 (the empty one is the group wrapper, not an avatar). 'Line technicians' was off in Fields to display and was turned on as the precondition asks. Settings > Staff was opened by its address, not by clicking the initials; step 1 has no expected result. The card's first avatar is drawn half-hidden so its letters look like 'EI'; the name on hover is Esther Howard. Tech View on production has no Lead Technician column (not part of this test). As on staging, these technicians carry the same name on their staff record and sign-in account, so the run shows every name matches Settings > Staff but cannot show which of the two the screen reads."
+ },
+ "C368167": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 2: the run closed the \"New Customer Payment\" window with its X, which the test says not to do, so the invoice was taken back off before the lead change was tried. Manual check: On production repeat steps 1 to 6 with the New Customer Payment window left open in tab 2 (do not close it), then try the lead change in tab 1 and read the message and the field.",
+  "bold_steps": [
+   2,
+   3,
+   4,
+   5,
+   6
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The run did not follow step 2 as written, so the refused-change check never happened.",
+   "Step 1: tab 1 opened work order S1-1302 (Complete, Lead Technician Esther Howard) and was left open.",
+   "Step 2: in tab 2, Finance > Create Invoice made invoice INV-S1-1302 and the \"New Customer Payment\" window opened. The run then closed that window with its X; the test says to leave it open because closing it takes the invoice back off.",
+   "Just before step 3 the work order was Complete again with no invoice, and after the reload Create Invoice is offered again, so the invoice had been taken back off.",
+   "Steps 3 to 5: in tab 1 Lead Technician was changed to Ralph Edwards; no message appeared and the field read Ralph Edwards. This was allowed because the work order was no longer invoiced, so it says nothing about the refusal the test checks.",
+   "Step 6: after the reload Lead Technician reads Ralph Edwards."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368167-tab2-invoice.png",
+   "evidence/prod-2026-10-22/C368167-message.png",
+   "evidence/prod-2026-10-22/C368167-after-reload.png",
+   "evidence/prod-2026-10-22/C368167-tab1-start.png"
+  ],
+  "reason_for_reviewer": "high1-fix.mts closes the payment dialog (button_close_dialog / Escape) right after Create Invoice. statusAfterInvoice 'Invoiced' was read immediately, but serverRightBeforeChange = status Complete, invoiceId '' ; toasts []; fieldNow / afterReload / apiLead = Ralph Edwards; createInvoiceOfferedAfterReload 1 (button visible in picture). Unlike staging (no payment window on v26.40.19), production v26.43.0 DOES open 'New Customer Payment' after Create Invoice, so the case's instruction to leave it open applies here. Ralph Edwards used as Technician-B (names are examples). This run was signed in as ZZ WOB Runner (initials ZR), not Service Advisor No Reports (Admin). Not a product failure: the lead change was made on a Complete, un-invoiced work order, where changing the lead is allowed."
+ },
+ "C368172": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: work order S1-1304 is Approved, led by Esther Howard, with one line.",
+   "Steps 1 to 3: on the Lines tab New Line was opened, \"ZZAUTOTEST Oil change zq\" was typed until the list read \"No results\", then Enter; Estimated Time 1.",
+   "Step 4: Add Technician > Dana Ortiz; the Technicians box then shows Esther Howard (filled in already when the window opened) and Dana Ortiz.",
+   "Step 5: Save & Close saved the line with no error message.",
+   "Step 6: after a reload the new line's Labor row shows \"Dana Ortiz\" (with Esther Howard above it)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368172-end.png",
+   "evidence/prod-2026-10-22/C368172-form.png"
+  ],
+  "reason_for_reviewer": "toasts []; saved line technicians read back 'Dana Ortiz, Esther Howard'. The script's Labor-row reader kept only one name per line ('Esther Howard'), but the after-reload picture C368172-end.png plainly shows the new line's Labor row with Esther Howard and Dana Ortiz on two rows. The new line saved as 'Needs Approval' because Line Approved was not ticked; the test does not ask about it. Work order opened by address; step 1 has no expected result."
+ },
+ "C368173": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 to 3: the run opened the work order straight from its address, so the All tab, the search result in the List and the click into the work order were not seen. Manual check: On production click Work Orders > All, type \"ZZAUTOTEST New Line Tech 92947\" in Search, confirm S1-1304 is listed and opens when clicked.",
+  "bold_steps": [
+   1,
+   2,
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 4 to 10 match the test; steps 1 to 3 were not done as written.",
+   "Set-up: line \"ZZAUTOTEST Oil change zq\" on work order S1-1304 was made to hold only Dana Ortiz (Technician-D); the work order is led by Esther Howard.",
+   "Steps 1 to 3: not done on screen; the run went straight to the work order page instead of Work Orders > All > Search > click.",
+   "Step 4: the line's Labor row shows \"Dana Ortiz\".",
+   "Step 5: Edit Line opens with Dana Ortiz under Technicians.",
+   "Step 6: the X next to Dana Ortiz removes her.",
+   "Step 7: Add Technician > Ralph Edwards (Technician-B) adds him under Technicians.",
+   "Step 8: Save & Close saves with no error message.",
+   "Steps 9 and 10: after reloading, the line's Labor row shows \"Ralph Edwards\"."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368173-lines-after.png",
+   "evidence/prod-2026-10-22/C368173-form.png"
+  ],
+  "reason_for_reviewer": "setupOnlyDana labor 'Dana Ortiz'; rosterBefore ['Dana Ortiz']; removed 1; Ralph picked by typing his name; roster ['Ralph Edwards']; toasts []; labor after reload 'Ralph Edwards'. high1-fix5.mts opens the work order with page(w.id) (address), so the Expected for steps 1-3 (All tab, work order shown in the List, page opens) has no reading. The line is 'Needs Approval' (Authorization Required) rather than the precondition's approved line; the steps do not depend on it. Names are examples (Dana Ortiz / Ralph Edwards instead of the AA ZZAUTOTEST C368173 names)."
+ },
+ "C368177": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: work order S1-1306 has no lead; signed in as Esther Howard in a second browser, Start then Clock Out on line 1 (\"Timesheet clocked out\").",
+   "Steps 1 and 2: work order menu > Timesheets > Esther Howard's row (Line \"1 - Line 1\") > pencil; the Edit Timesheet window opens.",
+   "Step 3: Line set to \"2 New York State Inspection\".",
+   "Step 4: Save saved the move with no error message.",
+   "Step 5: after a reload, line 2's Labor row reads \"Esther Howard\" with 0.02 hours logged; line 1 now reads \"Unassigned\"."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368177-after-move-2.png",
+   "evidence/prod-2026-10-22/C368177-edit-line2.png",
+   "evidence/prod-2026-10-22/C368177-edit.png",
+   "evidence/prod-2026-10-22/C368177-stopped.png"
+  ],
+  "reason_for_reviewer": "toasts [] after Save, no Confirm Overwrite; labor after move and after a second reload: line 2 'Esther Howard', line 1 'Unassigned'; no 'Deleted user' entry. Line names differ from the test (production's ready-made lines). TIME NOTE (not part of this test's expected result): the Timesheets row and Edit Timesheet read Start 03:17 PM, End 03:18 PM. A part on the same work order was stamped 15:17 UTC by the server minutes earlier, so the clock-in was about 15:17 UTC = 8:17 PM Karachi; the screen shows the UTC clock time. The saved time record itself reads 10:17 UTC (five hours early). This is inference from the server stamps, not a browser-clock reading."
+ },
+ "C368188": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 4: the run did not open the work order; the lead was read from the asset page row and the saved data, not from the work order page. Manual check: On production open S1-1310 and confirm Lead Technician reads ZZAUTOTEST Ana Alpha.",
+  "bold_steps": [
+   4
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 3 are met; step 4 was not done as written.",
+   "Step 1: customer \"ZZAUTOTEST Asset Tab Toggle Lead 92947\" > Assets > TRK-201 > Work Orders tab lists S1-1310 with Lead Technician ZZAUTOTEST Ana Alpha.",
+   "Step 2: clicking S1-1310's Asset on Site pin flipped it from not on site to on site, with no error message.",
+   "Step 3: after a reload the row shows the green pin (on site).",
+   "Step 4: the work order page was not opened. The asset page row still reads \"ZZAUTOTEST Ana Alpha\" as Lead Technician."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368188-after.png"
+  ],
+  "reason_for_reviewer": "before false, after true (saved value read after the reload; green pin in picture), toasts []. Lead from the saved work order data = Ana Alpha, and the asset-tab row on screen reads 'ZZAUTOTEST Ana Alpha'. The case's step 4 asks to open the work order and read Lead Technician there; the script never opened it (same treatment as C368158 in batch 6). The customer page was opened by address, then Assets tab, TRK-201 and Work Orders tab by clicks; step 1 has no expected result. Technician names carry the ZZAUTOTEST prefix on production."
+ },
+ "C368189": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 2: the lead was changed to Ben Bravo behind the screen, not by opening the work order in a second tab and changing Lead Technician there. Manual check: On production, with the asset's Work Orders tab open in tab 1, open the work order in tab 2 and change Lead Technician to ZZAUTOTEST Ben Bravo on screen, then click the pin in tab 1 without reloading and confirm the lead still reads Ben Bravo and the pin change is kept.",
+  "bold_steps": [
+   2
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Every expected result is met, but step 2 was not done on screen as written.",
+   "Step 1: tab 1 opened customer \"ZZAUTOTEST Asset Tab Old Page 92947\" > Assets > TRK-201 > Work Orders tab and was left open.",
+   "Step 2: S1-1314's lead was changed from Ana Alpha to Ben Bravo without using a second tab's screen.",
+   "Step 3: in tab 1, without reloading, S1-1314's Asset on Site pin was clicked; no error message appeared.",
+   "Step 4: the refreshed asset page shows S1-1314 with a green pin (on site) and Lead Technician \"ZZAUTOTEST Ben Bravo\"; the work order page reads Lead Technician \"ZZAUTOTEST Ben Bravo\". Ana Alpha was not put back."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368189-wo-page-lead.png",
+   "evidence/prod-2026-10-22/C368189-asset-page-refreshed.png"
+  ],
+  "reason_for_reviewer": "leadChange made with a direct save call (status 201), not in a second tab's Lead Technician field. After the old-page toggle: saved vehicleHere true, lead Ben; asset row 'location_on ... ZZAUTOTEST Ben Bravo'; work order page 'Lead Technician ZZAUTOTEST Ben Bravo', showsAna false; toasts []. The outcome the test checks looks right, but the lead change was not made the way the test's step 2 says."
+ },
+ "C368202": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: Work Orders on the All tab, Create Work Order clicked.",
+   "Step 3: customer \"ZZAUTOTEST New WO Listed 92947\" and its asset picked, saved; the new work order is S1-1318 and the New Line window was closed.",
+   "Step 4: back to Work Orders from the top menu, without reloading.",
+   "Step 5: All tab, List, Search \"New WO Listed 92947\": S1-1318 is listed straight away, without a manual reload."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368202-list.png"
+  ],
+  "reason_for_reviewer": "number S1-1318; listed ['S1-1318']; Status chip empty before and after. Back to Work Orders by the top-menu link (button_desktop_nav_link), not a reload. Search text was the unique part of the customer name ('New WO Listed 92947'), which finds the same work order. Step 1 opened the Work Orders address on the All tab; it has no separate expected result. 0 differences from staging."
+ },
+ "C96962": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 4 (and its repeats in steps 7 and 8): every entry shows the user and the old and new lead, but the time on each entry (03:25 PM to 03:29 PM) is five hours behind the browser's clock, which is the open time-zone question. Manual check: On production, with the browser clock and the location both on Asia/Karachi, make one lead change, note the clock, open the Work Order Log and compare the entry's time with the clock.",
+  "bold_steps": [
+   4,
+   7,
+   8
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Everything matches except the time shown on each entry, which waits on the time-zone question.",
+   "Set-up: work order S1-1321 (customer \"ZZAUTOTEST F1 Lead History 45519\"), lead Esther Howard, two lines with no technician of their own.",
+   "Steps 1 to 4: on Board View the card was dragged from Esther Howard to Ralph Edwards (\"Lead technician updated\"). The Work Order Log shows one new \"Lead tech changed\" entry: Esther Howard to Ralph Edwards, by Service Advisor No Reports (Admin), 03:26 PM.",
+   "Steps 5 and 6: in Edit Line on line 1, Ralph Edwards removed and Dana Ortiz added, Save & Close. Line 1's Audit log shows \"Line tech changed\", Ralph Edwards to Dana Ortiz, 03:27 PM.",
+   "Step 7: Board View > More actions > Reassign lead technician back to Esther Howard: one new entry, Ralph Edwards to Esther Howard, 03:28 PM.",
+   "Step 8: Lead Technician changed on the work order page to Dana Ortiz: one new entry, Esther Howard to Dana Ortiz, 03:29 PM.",
+   "Three lead changes made three entries; line 2's own log still shows only \"Line created\", so no entries were added for the lines that moved with the lead.",
+   "Time: each entry reads 03:25 PM to 03:29 PM, while the browser and the location (both Asia/Karachi) read about 8:25 PM to 8:29 PM, so the shown times match UTC, not the time a tester would note."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96962-b40-4-leftcard-wo-log.png",
+   "evidence/prod-2026-10-22/C96962-b40-2-line1-line-log.png",
+   "evidence/prod-2026-10-22/C96962-b40-1-drag-wo-log.png",
+   "evidence/prod-2026-10-22/C96962-b40-3-line2-line-log.png"
+  ],
+  "reason_for_reviewer": "Work Order Log after all changes: Lead tech changed x3 (03:26 Esther->Ralph, 03:28 Ralph->Esther, 03:29 Esther->Dana) plus the set-up's '- -> Esther Howard' at 03:25 and one 'Line tech changed' at 03:27; Line 2 log only 'Line created'. User on every entry 'Service Advisor No Reports (Admin)' = the signed-in account. All steps were done on screen (drag, Edit Line, line number > Audit log, More actions > Reassign, left-card Lead Technician); the work order page was opened by address. TIME: the first entry is the change made at 15:25 UTC and it reads '03:25 PM'; with location, user zone and browser all Asia/Karachi it should read about 8:25 PM. Per the open time-zone question this is not failed on time alone. Every other clause of the expected result is met; if the zone question is settled as 'times may show in UTC' this becomes Passed, otherwise it is a time-zone fault."
+ }
+}
