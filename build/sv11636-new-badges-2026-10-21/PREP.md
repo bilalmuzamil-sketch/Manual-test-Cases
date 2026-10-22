@@ -61,3 +61,10 @@ Extra cells:
   `/js/index.Be17E1Re.js` has `badge:"New"` only on the AccountingHub/HR apps, nothing for Dashboard or the view switcher.
 - Not testable yet → nothing tested, nothing posted. Routine trig_016o1PRHVCDYnqEFJsfaDbHR kept on (every 2 h, next 06:05 UTC),
   prompt changed to wait for the change to reach staging (app-version moves) rather than for a status change.
+
+## Staging check 22 Oct 04:55 UTC (QA lead: "test this on staging")
+- Staging build still v26.40.20-7405769 (same etag f90e347f…). Live at 1440 px: 0 elements reading "New" on the page; nav and
+  switcher geometry identical to the baseline (Dashboard 760.1+105.6, switcher 1116+136). At 390 px, phone menu: 0 "New",
+  Dashboard row 8th at y 431, 57 px. Pictures prep/e636-now-1440.png, prep/e636-now-390-menu.png; data prep/e636-now.json.
+- Jira development panel for SV-11636: no pull request and no branch linked.
+- So the change is not on staging; nothing to test against. No comment posted — asked the QA lead how to proceed.
