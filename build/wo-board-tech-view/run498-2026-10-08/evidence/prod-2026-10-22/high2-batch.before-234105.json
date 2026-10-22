@@ -1,0 +1,907 @@
+{
+ "runner": "88b0aaad",
+ "techs": {
+  "ana": true,
+  "ben": true,
+  "cal": true,
+  "dan": true
+ },
+ "C368193": {
+  "before": "ZZAUTOTEST Tab Clears Search",
+  "after": null,
+  "rows": 30,
+  "statuses": [
+   "Estimate",
+   "Estimate 1"
+  ],
+  "startState": {
+   "found": {
+    "savedFilters": "null",
+    "savedTab": null,
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "estimate",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  }
+ },
+ "C368194": {
+  "before": [
+   "daysOpen",
+   "false"
+  ],
+  "step4": true,
+  "step5": true,
+  "heads": [
+   "On Site",
+   "Status",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On",
+   "Days Open"
+  ],
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  }
+ },
+ "C368195": {
+  "userRole": "Technician",
+  "saved": {},
+  "heads": [
+   "On Site",
+   "Status",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Created On"
+  ],
+  "menu": [
+   [
+    "unreceivedPartRequestsCount",
+    "false"
+   ],
+   [
+    "vehicle",
+    "true"
+   ],
+   [
+    "vin",
+    "true"
+   ],
+   [
+    "progress",
+    "true"
+   ],
+   [
+    "serviceAdvisor",
+    "true"
+   ],
+   [
+    "technician",
+    "true"
+   ],
+   [
+    "clockedInTechnicians",
+    "true"
+   ],
+   [
+    "linesCount",
+    "true"
+   ],
+   [
+    "startDate",
+    "true"
+   ],
+   [
+    "invoicedDate",
+    "false"
+   ],
+   [
+    "daysOpen",
+    "false"
+   ],
+   [
+    "partRequestsCount",
+    "false"
+   ],
+   [
+    "partReturnRequestsCount",
+    "false"
+   ]
+  ],
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  }
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "C368198": {
+  "x": "S1-1597",
+  "y": "S1-1598",
+  "rows": [
+   "S1-1598",
+   "S1-1597"
+  ],
+  "yAboveX": true,
+  "heads": [
+   "On Site",
+   "Status",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Total Price",
+   "Created On",
+   "Invoiced Date",
+   "Days Open"
+  ],
+  "rowsWithDates": [
+   {
+    "number": "S1-1598",
+    "status": "Invoiced",
+    "invoicedDate": "Today",
+    "customer": "ZZAUTOTEST Invoice Order 88884.."
+   },
+   {
+    "number": "S1-1597",
+    "status": "Invoiced",
+    "invoicedDate": "Today",
+    "customer": "ZZAUTOTEST Invoice Order 88884.."
+   }
+  ],
+  "statusChip": "Status: Invoiced keyboard_arrow_down cancel",
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "{\"status\":[]}",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  }
+ },
+ "C368199": {
+  "active": "Completed",
+  "statuses": [
+   "Complete"
+  ],
+  "toasts": [],
+  "apiErrors": [],
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "complete",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  }
+ },
+ "C368200": {
+  "before": "0",
+  "url": "/workorders?search=ZZAUTOTEST+Row+Toggle+88884",
+  "after": "1",
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  }
+ },
+ "C368201": {
+  "requireReview": {
+   "before": false,
+   "save": "200",
+   "after": true
+  },
+  "line": "first ready-made line (grease service not in the list)",
+  "wo": "S1-1600",
+  "opened": "/workorders/56dc7fd5-c299-4991-b948-129afd6a2a30/lines",
+  "dialog": "",
+  "toasts": [],
+  "status": "ready_for_review",
+  "pageStatus": "Review",
+  "backUrl": "/workorders?search=ZZAUTOTEST+Back+Status+88884",
+  "rowStatus": "Ready For Review",
+  "requireReviewBack": {
+   "before": true,
+   "save": "200",
+   "after": false
+  },
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  }
+ },
+ "C368203": {
+  "tab": "Estimates",
+  "assigned": "true",
+  "url": "/workorders?tab=estimate&assigned_to_me=1",
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  }
+ },
+ "C368205": {
+  "rowsBefore": 30,
+  "rowsAfter": 30,
+  "bottomBefore": null,
+  "bottomAfter": null,
+  "toasts": [],
+  "chip": "Asset on Site\nkeyboard_arrow_down",
+  "filter": "Yes No Clear selection",
+  "checked": 0,
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  }
+ },
+ "C368206": {
+  "off": "200",
+  "heads": [
+   "On Site",
+   "Status",
+   "Number",
+   "Customer",
+   "Asset",
+   "Unit",
+   "VIN/Serial #",
+   "Progress",
+   "Service Advisor",
+   "Lead Technician",
+   "Clocked In",
+   "Lines",
+   "Created On"
+  ],
+  "menu": [
+   "unreceivedPartRequestsCount",
+   "vehicle",
+   "vin",
+   "progress",
+   "serviceAdvisor",
+   "technician",
+   "clockedInTechnicians",
+   "linesCount",
+   "startDate",
+   "invoicedDate",
+   "daysOpen",
+   "partRequestsCount",
+   "partReturnRequestsCount"
+  ],
+  "bottom": null,
+  "dollars": [],
+  "restore": "200",
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  }
+ },
+ "C368207": {
+  "createButton": 0,
+  "perms": 2,
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  }
+ },
+ "C368208": {
+  "before": "0",
+  "disabled": true,
+  "state": {
+   "tag": "BUTTON",
+   "disabledProp": true,
+   "disabledAttr": true,
+   "ariaDisabled": null,
+   "tabindex": "0",
+   "buttonClass": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-negative q-btn--actionable q-focusable q-hoverable cursor-pointer transparent-btn opacity-25",
+   "cursor": "not-allowed",
+   "opacity": "0.6",
+   "pointerEvents": "auto",
+   "icon": "location_on",
+   "iconClass": "q-icon notranslate material-icons",
+   "iconColor": "rgb(193, 0, 21)",
+   "iconOpacity": "1"
+  },
+  "tooltip": [
+   "Asset not here. Click to toggle status."
+  ],
+  "reloadUrl": "/workorders",
+  "after": "0",
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  }
+ },
+ "C368209": {
+  "sortButton": 1,
+  "options": [
+   "Newest First",
+   "Oldest First",
+   "Customer A-Z\ncheck",
+   "Customer Z-A"
+  ],
+  "ticked": [
+   "Customer A-Z"
+  ],
+  "cardCount": 150,
+  "cards": [
+   "Ahsan",
+   "Ahsan",
+   "Ahsan",
+   "Ahsan",
+   "Ahsan",
+   "Ahsan",
+   "Ahsan",
+   "Ahsan",
+   "Ali Raza Hamid",
+   "Ali Raza Hamid",
+   "Ali Raza Hamid",
+   "Ali Raza Hamid",
+   "Ali Raza Hamid",
+   "Ali Raza Hamid",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56",
+   "aqeel transport 56"
+  ],
+  "customersInOrder": [
+   "Ahsan",
+   "Ali Raza Hamid",
+   "aqeel transport 56",
+   "Asher transport3",
+   "Ayesha",
+   "Bilal Production",
+   "First Customer Prod"
+  ],
+  "aToZ": true,
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  }
+ },
+ "C368210": {
+  "before": 30,
+  "after": 390,
+  "unique": true,
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  }
+ },
+ "C368212": {
+  "toLeth": "200",
+  "back": "200",
+  "num": "S2-1602",
+  "heavyLoc2": false,
+  "heavyByNumber": false,
+  "enrolRunner": "400 [{\"error\":\"Staff is already enrolled in department\"}]",
+  "switched": "Trucks Hill 2",
+  "lethTopBar": "Trucks Hill 2",
+  "lethLoc2": true,
+  "backTopBar": "Trucks Hill 2",
+  "backHeavy": {
+   "tries": [
+    "switchLocUI -> Trucks Hill 2",
+    "picker by hand -> Trucks Hill 2",
+    "api 200"
+   ],
+   "options": [
+    "ZZ WOB Runner zz.wob.runner@staging.sho.. Edit Profile",
+    "Change Location: Truck Hill 1",
+    "co_present Customer Portal New open_in_new",
+    "credit_card Billing open_in_new",
+    "campaign What's New New open_in_new",
+    "settings Settings",
+    "logout Logout",
+    "light_mode Light dark_mode Dark",
+    "check Truck Hill 1",
+    "check Trucks Hill 2"
+   ],
+   "now": "Trucks Hill 2"
+  },
+  "backTopBarFinal": "Trucks Hill 2",
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Truck Hill 1",
+    "locationTries": []
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Trucks Hill 2"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Trucks Hill 2",
+    "locationTries": [
+     "switchLocUI -> Trucks Hill 2",
+     "picker by hand -> Trucks Hill 2",
+     "api 200"
+    ],
+    "options": [
+     "ZZ WOB Runner zz.wob.runner@staging.sho.. Edit Profile",
+     "Change Location: Truck Hill 1",
+     "co_present Customer Portal New open_in_new",
+     "credit_card Billing open_in_new",
+     "campaign What's New New open_in_new",
+     "settings Settings",
+     "logout Logout",
+     "light_mode Light dark_mode Dark",
+     "check Truck Hill 1",
+     "check Trucks Hill 2"
+    ]
+   }
+  }
+ },
+ "C368214": {
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('tbody tr').filter({ hasText: 'S1-1603' }).locator('td').nth(2)\n",
+  "startState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "all",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Trucks Hill 2"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Trucks Hill 2",
+    "locationTries": [
+     "switchLocUI -> Trucks Hill 2",
+     "picker by hand -> Trucks Hill 2",
+     "api 200"
+    ],
+    "options": [
+     "ZZ WOB Runner zz.wob.runner@staging.sho.. Edit Profile",
+     "Change Location: Truck Hill 1",
+     "co_present Customer Portal New open_in_new",
+     "credit_card Billing open_in_new",
+     "campaign What's New New open_in_new",
+     "settings Settings",
+     "logout Logout",
+     "light_mode Light dark_mode Dark",
+     "check Truck Hill 1",
+     "check Trucks Hill 2"
+    ]
+   }
+  },
+  "endState": {
+   "found": {
+    "savedFilters": "[]",
+    "savedTab": "work_orders",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Trucks Hill 2"
+   },
+   "set": {
+    "put": 200,
+    "savedFilters": "[]",
+    "statusChip": "Status keyboard_arrow_down",
+    "location": "Trucks Hill 2",
+    "locationTries": [
+     "switchLocUI -> Trucks Hill 2",
+     "picker by hand -> Trucks Hill 2",
+     "api 200"
+    ],
+    "options": [
+     "ZZ WOB Runner zz.wob.runner@staging.sho.. Edit Profile",
+     "Change Location: Truck Hill 1",
+     "co_present Customer Portal New open_in_new",
+     "credit_card Billing open_in_new",
+     "campaign What's New New open_in_new",
+     "settings Settings",
+     "logout Logout",
+     "light_mode Light dark_mode Dark",
+     "check Truck Hill 1",
+     "check Trucks Hill 2"
+    ]
+   }
+  }
+ },
+ "restored": true
+}

@@ -1,0 +1,109 @@
+{
+ "runner": "88b0aaad",
+ "techs": {
+  "ana": true,
+  "ben": true,
+  "cal": true,
+  "dan": true
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "C97032": {
+  "requireReview": {
+   "on": {
+    "before": false,
+    "save": "200",
+    "after": true
+   },
+   "back": {
+    "before": true,
+    "save": "200",
+    "after": false
+   }
+  },
+  "reviewFix": null,
+  "loc2": {
+   "enrol": "201",
+   "approved": "201",
+   "lead": "201",
+   "wo": "S2-1694 approved lead=ZZAUTOTEST F3 Count Ben"
+  },
+  "statuses": {
+   "Approved Co": "approved",
+   "Complete Co": "complete",
+   "Declined Co": "declined",
+   "Estimate Co": "estimate",
+   "Invoiced Co": "invoiced",
+   "Line Only Co": "approved",
+   "Paid Co": "paid",
+   "Progress Co": "in_progress",
+   "Review Co": "ready_for_review",
+   "Spare Co": "approved"
+  },
+  "boardReady": 1,
+  "step5": "4 open",
+  "visibleAfterFilter": [
+   "b31122cf-1444-4888-9e9e-5c22739204a8"
+  ],
+  "step6from": "Estimate Co",
+  "step6": "4 open",
+  "approve": {
+   "line": "25290c4c-e0bd-42c1-bf55-f8126f4ed3c8",
+   "statusBefore": "Estimate",
+   "number": "S1-1688",
+   "rowShown": 0,
+   "opened": false,
+   "statusAfter": "Approved",
+   "onScreen": false,
+   "fallback": "NOT ON SCREEN: authorized line added behind the screen: added"
+  },
+  "step7": "5 open"
+ },
+ "C368157": {
+  "calIndexBefore": 34,
+  "pinClick": {
+   "column": true,
+   "found": 1,
+   "after": null,
+   "toasts": []
+  },
+  "pinned": {
+   "calIndex": 1,
+   "first3": [
+    "Unassigned",
+    "Cal"
+   ]
+  },
+  "unpinClick": {
+   "column": true,
+   "found": 1,
+   "after": null,
+   "toasts": []
+  },
+  "unpinned": {
+   "calIndex": 34,
+   "sameAsBefore": true
+  },
+  "neighbours": {
+   "boardBefore": [
+    "af058dd0",
+    "0db16f53"
+   ],
+   "boardAfter": [
+    "af058dd0",
+    "0db16f53"
+   ],
+   "tech": [
+    "af058dd0",
+    "0db16f53"
+   ]
+  },
+  "tech": {
+   "count": 80,
+   "boardCount": 81,
+   "calIndex": 34,
+   "sameAsBoard": false,
+   "firstDiff": -1
+  }
+ },
+ "restored": true
+}

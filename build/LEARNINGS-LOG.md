@@ -424,3 +424,8 @@
 - The production re-run queue (`q-prod-redo3.txt`, tag prod-redo3) printed `QUEUE-DONE 23:23:49 -- 54 steps` although 20 more lines (55–74) had been appended while it ran. Do not count on lazy reading of appended lines over a long run: after QUEUE-DONE, compare `grep -c '^EXIT'` with the queue file's line count, and put any unrun tail into a NEW queue (`sed -n '55,$p' … > q-prod-redo4.txt`; tag prod-redo4) — with read-only probes first and any sign-out script last.
 - `redo4-pack-1022.sh` and the scratchpad watcher are the redo3 versions pointed at the new log.
 #queue #tooling #production → L0537
+
+## L0547 — 2026-10-22 — Production facts: the Schedule draws UTC; account access is not a role setting
+- `tz-source-probe-1022.mts` (read only): location Truck Hill 1 = Asia/Karachi, the user's workplaces = Asia/Karachi, browser = Asia/Karachi; organisation/user settings reads 404; Settings > Organization has no time-zone field. Yet at 04:24 Karachi (Fri 23 Oct) the Schedule read "Thu, Oct 22" with the now-line near 11 PM = UTC. Staging matched the location's zone (Rule 125 positive control). So on production every time-of-day verdict stays unjudged until the QA lead decides on this finding.
+- `role-access-probe-1022.mts` (read only): the production test admin's role IS "Admin" (Admin template, 45 permissions, identical to the built-in Admin; no permission code mentions account access). The missing account-access item on Settings > Staff is not fixable by a role change — next route is the QA lead's own sign-in or staging-only.
+#production #timezone #account-access → L0542, Rule 125
