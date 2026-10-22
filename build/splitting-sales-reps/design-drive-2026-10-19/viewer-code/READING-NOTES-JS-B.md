@@ -262,3 +262,34 @@ Found:
   html/body = the artboard itself. Viewer-only.
 - 62783-62795: font-weight probe 100-900 via `document.fonts.check` (editor panel only).
 No ShopView content.
+
+### Chunk 14: lines 62,901-64,000 (read)  ** the canvas.json reader **
+What it is: image-drop revert, image header size sniffers (PNG/GIF/WebP/JPEG EXIF orientation/SVG), image downscale for preview
+(1,600 px, 400 KB), file write with create-only collision check, host event bus, file-change tracking, image upload to project
+files, selection models, undo/redo stack (50), then the CANVAS DOCUMENT MODEL: `qi = "canvas.json"` (63538) and its parser
+`Kv` / serializer `qv` / normalisers `LF` (artboard), `Dne` (note), `Nne` (pages), `Mne` (launch) (63538-63914); note styling
+(63915-63960); start of the note component `Vne` (63961-).
+canvas.json FIELDS THE CODE READS (complete for this parser):
+- top level: `artboards`, `annotations`, `pages`, `launch` (63734-63758). Anything else is ignored and dropped on save (63781-63790).
+- artboard (`LF`, 63697-63716): `file` (must name an existing `*.dc.html`; unknown or duplicate files dropped, 63736-63741),
+  `x`, `y` (default 0, clamp ±1,000,000), `w` (default 800, clamp 120-8,000), `h` (default 600, clamp 120-8,000), `title`
+  (control characters removed, trimmed, CUT TO 120 chars; 63617-63624), `expand` (only "fill" kept), `print` (only "flow" kept),
+  `page` (id `[A-Za-z0-9_-]{1,40}`), `is_interactive` (only `true` kept). Every other artboard key is dropped.
+- any `*.dc.html` file NOT listed in canvas.json is ADDED as an extra artboard 80 px to the right of the right-most artboard,
+  at the top-most y, 800x600, no title (63743-63747, 63717-63722).
+- annotation = sticky note (`Dne`, 63638-63662): `id` (`[A-Za-z0-9_-]{1,40}` else the note is DROPPED), `x`, `y` (±1e6), `w`
+  (default 240, clamp 120-2,000), `text` (control chars other than tab/newline removed, CUT TO 5,000 chars), `size` (number
+  rounded and clamped 8-400, or named s=14, m=24, l=40, xl=72, xxl=120; default 14), `kind` ("title1"; or "text" with size >= 40
+  becomes "title1"; everything else "note"), `bold`, `italic`, `color` (gray/red/orange/green/teal/blue/purple/pink, else
+  "default"), `page`. At most 200 notes; duplicate ids dropped (63749-63756).
+- pages (`Nne`, 63663-63678): at most 40; `id` (same pattern, else dropped), `name` (cut to 120 chars, default "Page N").
+- launch (`Mne`, 63679-63696): `{view:"canvas", page}` (page kept only if there is more than one page and it exists) or
+  `{view:"focused", file}`.
+- an artboard or note whose `page` is not a known page id loses it and shows on the FIRST page (63759-63766, 63592-63595).
+Note look (63915-63960): yellow sticky background #fef3a2, default text colour #4a4220; size 14 => line-height 1.45, padding
+10 px x 12 px; a "title1" note is forced to 72 px bold in the primary text colour regardless of its own size (63544-63561).
+Checked against OUR canvas.json (script, read only): 6 pages, 68 artboards, 74 annotations, launch {view: canvas, page: card};
+artboard keys only file/x/y/w/h/title/page; note keys only id/x/y/w/text/page (no kind/size/colour/bold/italic, so every note
+renders as a plain 14 px yellow sticky); 68 `*.dc.html` files = 68 listed (none missing, none extra, no duplicates); longest
+title 42 chars (< 120); longest note 1,004 chars (< 5,000); artboard w 390-2,625, h 600-1,000; note w 390-1,400 (all inside
+the clamps). So NOTHING in our canvas.json is cut, dropped, clamped or re-styled by this parser.
