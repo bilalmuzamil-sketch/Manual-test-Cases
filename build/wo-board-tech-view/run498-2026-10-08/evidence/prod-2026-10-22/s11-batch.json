@@ -4,11 +4,12 @@
   "found": {
    "saved": {
     "status": 200,
-    "display": "tech_view",
-    "collapsedGroups": null,
+    "display": "board_view",
+    "collapsedGroups": [
+     "unassigned"
+    ],
     "pinned": [
-     "3adb78a3",
-     "76a46d3b"
+     "3adb78a3"
     ],
     "filters": null,
     "density": null,
@@ -16,16 +17,17 @@
    },
    "screen": {
     "switcher": 3,
-    "active": "Tech View"
+    "active": "Board View"
    }
   },
   "savedAfter": {
    "status": 200,
-   "display": "tech_view",
-   "collapsedGroups": null,
+   "display": "board_view",
+   "collapsedGroups": [
+    "unassigned"
+   ],
    "pinned": [
-    "3adb78a3",
-    "76a46d3b"
+    "3adb78a3"
    ],
    "filters": null,
    "density": null,
@@ -38,181 +40,60 @@
   "cal": true,
   "dan": true
  },
- "C97028": {
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"button_density\"]')\n"
- },
  "C368154": {
-  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"button_density\"]')\n"
- },
- "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
- "C97031": {
-  "step4": {
-   "Unassigned": "2/2",
-   "Ana": "3/3",
-   "Ben": "2/2",
-   "Cal": "0/0"
-  },
-  "step5": {
-   "Unassigned": "2/2",
-   "Ana": "2/2",
-   "Ben": "2/2",
-   "Cal": "1/1"
-  },
-  "step6": {
-   "Unassigned": "3/3",
-   "Ana": "1/1",
-   "Ben": "2/2",
-   "Cal": "1/1"
-  },
-  "step7": {
-   "counts": {
-    "Unassigned": "3/3",
-    "Ana": "1/1",
-    "Ben": "2/2",
-    "Cal": "1/1"
+  "savedBefore": {},
+  "step2active": "List",
+  "step4menu": [
+   {
+    "tid": "compact",
+    "text": "Compact",
+    "ariaSelected": null,
+    "ariaChecked": "false",
+    "activeClass": false,
+    "icons": []
    },
-   "un": [
-    "Bravo Co",
-    "Golf Co",
-    "Hotel Co"
-   ]
-  },
-  "step8": {
-   "counts": {
-    "Unassigned": "3/3",
-    "Ana": "1/1",
-    "Ben": "2/2",
-    "Cal": "1/1"
+   {
+    "tid": "regular",
+    "text": "Regular",
+    "ariaSelected": null,
+    "ariaChecked": "true",
+    "activeClass": true,
+    "icons": []
    },
-   "echoLead": "ZZAUTOTEST Ben Bravo"
-  },
-  "step9": {
-   "Unassigned": "3/3",
-   "Ana": "1/1",
-   "Ben": "2/2",
-   "Cal": "1/1"
-  },
-  "step10": {
-   "Unassigned": "3/3",
-   "Ana": "1/1",
-   "Ben": "2/2",
-   "Cal": "1/1"
-  }
- },
- "C154649": {
-  "saved0": "board_view",
-  "narrow": {
-   "switcher": 0,
-   "density": 0,
-   "fields": 0,
-   "board": 0
-  },
-  "narrowAfterRefresh": {
-   "switcher": 0,
-   "density": 0,
-   "fields": 0,
-   "board": 0
-  },
-  "savedNarrow": "board_view",
-  "wide": {
-   "switcher": 2,
-   "density": 0,
-   "fields": 1,
-   "board": 83,
-   "saved": "board_view"
-  }
- },
- "C368158": {
-  "status": "invoiced",
-  "before": "0",
-  "msg": [],
-  "after": "1",
-  "lead": "ZZAUTOTEST Ana Alpha"
- },
- "C368159": {
-  "eligible": [],
-  "offered": {
-   "ana": true,
-   "ben": true
-  },
-  "before": {
-   "here": "0",
-   "lead": "ZZAUTOTEST Ana Alpha"
-  },
-  "benWhyBefore": {
-   "email": "zz.wob.ben.bravo@staging.shopview.local",
-   "name": "ZZAUTOTEST Ben Bravo",
-   "staffId": "48e57869",
-   "active": true,
-   "timeClock": true,
-   "role": "Technician",
-   "location": "this location",
-   "departments": [
-    "Truck Hill 1/Department1"
-   ],
-   "enrolments": [],
-   "viewKeys": [
-    "collection"
-   ],
-   "offeredAsLead": true,
-   "sameNameOffered": [
-    "48e57869 open=19"
-   ]
-  },
-  "benWhyAfter": {
-   "email": "zz.wob.ben.bravo@staging.shopview.local",
-   "name": "ZZAUTOTEST Ben Bravo",
-   "staffId": "48e57869",
-   "active": true,
-   "timeClock": true,
-   "role": "Technician",
-   "location": "this location",
-   "departments": [
-    "Truck Hill 1/Department1"
-   ],
-   "enrolments": [],
-   "viewKeys": [
-    "collection"
-   ],
-   "offeredAsLead": true,
-   "sameNameOffered": [
-    "48e57869 open=19"
-   ]
-  },
-  "pageTyped": {
-   "field": 1,
-   "tries": [
-    {
-     "term": "Ben Bravo",
-     "hasInput": 1,
-     "count": 30,
-     "offered": [
-      "check Jenny Wilson",
-      "check Kristin Watson",
-      "check Maximiliana Fitzgerald-Montgomery",
-      "check Nina Newtech",
-      "check Ralph Edwards",
-      "check Service Advisor No Reports (Admin)",
-      "check Service advisor. No Reports",
-      "check Technician 1",
-      "check Theresa Webb",
-      "check ZZAUTOTEST Deleted Lead 46045"
-     ]
-    }
-   ],
-   "picked": true,
-   "pickedWith": "Ben Bravo"
-  },
-  "page": {
-   "picked": true,
-   "by": "typed into the field: Ben Bravo"
-  },
-  "leadAfterB2": "ZZAUTOTEST Ben Bravo",
-  "leadIsThisBen": true,
-  "after": {
-   "here": "1",
-   "lead": "ZZAUTOTEST Ben Bravo"
-  }
+   {
+    "tid": "comfortable",
+    "text": "Comfortable",
+    "ariaSelected": null,
+    "ariaChecked": "false",
+    "activeClass": false,
+    "icons": []
+   }
+  ],
+  "step4": [
+   "Regular"
+  ],
+  "step5": [
+   "Lead technician [technician]",
+   "Customer [company_name]",
+   "Asset [vehicle]",
+   "Progress [progress]",
+   "Total price [total_price]"
+  ],
+  "step5all": [
+   "technician=true/on",
+   "company_name=true/on",
+   "vehicle=true/on",
+   "vin=false/off",
+   "progress=true/on",
+   "service_advisor=false/off",
+   "clocked_in_technicians=false/off",
+   "lines_count=false/off",
+   "line_technicians=false/off",
+   "time_estimate=false/off",
+   "total_price=true/on",
+   "vehicle_here=false/off",
+   "start_date=false/off"
+  ]
  },
  "restored": true
 }
