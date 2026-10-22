@@ -782,3 +782,9 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 ## L0534 — 2026-10-22 — The draft scripts (C6147xx-stg.mts) write FLAT readings; wrap them before judging
 - `C614714-stg.mts` … `C614719-stg.mts` (run 498's drafts, full-run steps 74–78) and `C368156-pins-loc-stg.mts` write one flat object to `<script>.json` / `C368156-b40.json`, not `{ "<C-id>": {...} }`, so `judge_pack.py` finds no readings for the case and the step watcher says "tests=0". Wrap first: `python3 -c "import json;o=json.load(open('X.stepN.json'));json.dump({'C614714':o},open('X.stepNw.json','w'),indent=1)"`, then `judge_pack.py X.stepNw.json C614714`.
 #run498 #judging #tooling → L0533
+
+## L0535 — 2026-10-22 — A production failure that matches a known ticket: post Failed with that ticket, no new ask
+- C368152 (keyboard reassign/unassign) failed on production at steps 8 and 12: the message is "Lead technician updated" / "Lead technician removed" with Close, not "<number> assigned to <technician>" / "<number> moved to Unassigned" with Undo (PRD v73 S4 message table, lines 525/990–994 of the 22 Oct read). `grep -n "Lead technician updated" build/wo-board-tech-view/PROJECT-STATE.md` found **SV-11524** at once (Bug under Fast Follow SV-11593; its description lists the Undo/message cases). Read live: Code Review → not shipped. So the result is Failed with `"ticket": "https://shopview.atlassian.net/browse/SV-11524 (…status…)"` + `"defects": ["SV-11524"]`; `push_results_to_run.py --allow-non-passed` then posts the follow-the-status comment and the title prefix itself. No new ticket, no ask.
+- The push tool REFUSES a non-Passed result without a `"todo"` ("What needs to be done", Rule 7) — `post_verdicts.py` copies `todo` from the verdicts file, so put it there.
+- Always check `custom_atmstatus` of a case before its title is prefixed (Rule 133/71): C368152 is 1 (not Automated), fine.
+#run498 #production #known-ticket #push → L0529
